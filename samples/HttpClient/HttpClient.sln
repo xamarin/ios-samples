@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClient", "HttpClient.csproj", "{A7833601-70B7-4E22-8CEC-0B822863286D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A7833601-70B7-4E22-8CEC-0B822863286D}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{A7833601-70B7-4E22-8CEC-0B822863286D}.Debug|iPhone.Build.0 = Debug|iPhone
+		{A7833601-70B7-4E22-8CEC-0B822863286D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{A7833601-70B7-4E22-8CEC-0B822863286D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{A7833601-70B7-4E22-8CEC-0B822863286D}.Release|iPhone.ActiveCfg = Release|iPhone
+		{A7833601-70B7-4E22-8CEC-0B822863286D}.Release|iPhone.Build.0 = Release|iPhone
+		{A7833601-70B7-4E22-8CEC-0B822863286D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{A7833601-70B7-4E22-8CEC-0B822863286D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = HttpClient.csproj
+	EndGlobalSection
+EndGlobal
