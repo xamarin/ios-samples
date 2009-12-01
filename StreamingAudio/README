@@ -9,3 +9,8 @@ that are created at startup.   It will happily stall until the audio
 pipeline releases one of the audio buffers.
 
 A better implementation would save the data to disk as well.
+
+To use this you need either MonoTouch 1.4 or to download the preview
+monotouch.dll from:
+
+	http://tirania.org/tmp/monotouch.dll
