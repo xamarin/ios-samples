@@ -96,15 +96,24 @@ public static class Reachability {
 	static NetworkReachability remoteHostReachability;
 	public static NetworkStatus RemoteHostStatus ()
 	{
+		NetworkReachabilityFlags flags;
+		bool reachable;
+		
 		if (remoteHostReachability == null){
 			remoteHostReachability = new NetworkReachability (HostName);
+
+			// Need to probe before we queue, or we wont get any meaningful values
+			// this only happens when you create NetworkReachability from a hostname
+			reachable = remoteHostReachability.TryGetFlags (out flags);
+			
 			remoteHostReachability.SetCallback (OnChange);
 			remoteHostReachability.Schedule (CFRunLoop.Current, CFRunLoop.ModeDefault);
-		}
-		NetworkReachabilityFlags flags;
-		if (!remoteHostReachability.TryGetFlags (out flags))
-			return NetworkStatus.NotReachable;
+		} else
+			reachable = remoteHostReachability.TryGetFlags (out flags);			
 		
+		if (!reachable)
+			return NetworkStatus.NotReachable;
+
 		if (!IsReachableWithoutRequiringConnection (flags))
 			return NetworkStatus.NotReachable;
 		
