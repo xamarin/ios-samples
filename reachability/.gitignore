@@ -1,0 +1,5 @@
+*.exe
+*.mdb
+*.userprefs
+bin
+simulator
