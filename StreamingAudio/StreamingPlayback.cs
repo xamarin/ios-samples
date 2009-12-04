@@ -28,7 +28,7 @@ namespace StreamingAudio
 	//
 	public class StreamingPlayback : IDisposable
 	{
-		public AudioFileStream FileStream;		// The decoder
+		AudioFileStream fileStream;		// The decoder
 		public OutputAudioQueue OutputQueue;
 		AutoResetEvent outputCompleted = new AutoResetEvent (false);
 		bool started;
@@ -42,9 +42,14 @@ namespace StreamingAudio
 		
 		public StreamingPlayback ()
 		{
-			FileStream = new AudioFileStream (AudioFileType.MP3);
-			FileStream.PacketDecoded += AudioPacketDecoded;
-			FileStream.PropertyFound += AudioPropertyFound;
+			fileStream = new AudioFileStream (AudioFileType.MP3);
+			fileStream.PacketDecoded += AudioPacketDecoded;
+			fileStream.PropertyFound += AudioPropertyFound;
+		}
+		
+		public void ParseBytes (byte [] buffer, int count, bool discontinuity)
+		{
+			fileStream.ParseBytes (buffer, 0, count, discontinuity);
 		}
 		
 		public void Dispose ()
@@ -61,9 +66,9 @@ namespace StreamingAudio
 					foreach (var b in outputBuffers)
 						OutputQueue.FreeBuffer (b);
 				
-				if (FileStream != null){
-					FileStream.Close ();
-					FileStream = null;
+				if (fileStream != null){
+					fileStream.Close ();
+					fileStream = null;
 				}
 				if (OutputQueue != null){
 					OutputQueue.Dispose ();
@@ -146,6 +151,9 @@ namespace StreamingAudio
 			started = true;
 		}
 		
+		// Raised when we are done.
+		public event EventHandler Finished;
+			
 		void AudioPropertyFound (object sender, PropertyFoundEventArgs args)
 		{
 			switch (args.Property){
@@ -157,7 +165,7 @@ namespace StreamingAudio
 				fillBufferIndex = 0;
 				packetsFilled = 0;
 				started = false;
-				OutputQueue = new OutputAudioQueue (FileStream.StreamBasicDescription);
+				OutputQueue = new OutputAudioQueue (fileStream.StreamBasicDescription);
 				OutputQueue.OutputCompleted += HandleOutputQueueOutputCompleted;
 				
 				outputBuffers = new IntPtr [4];
@@ -167,9 +175,11 @@ namespace StreamingAudio
 				for (int i = 0; i < outputBuffers.Length; i++)
 					OutputQueue.AllocateBuffer (bufferSize, out outputBuffers [i]);
 				
-				OutputQueue.MagicCookie = FileStream.MagicCookie;
+				OutputQueue.MagicCookie = fileStream.MagicCookie;
 				OutputQueue.AddListener (AudioQueueProperty.IsRunning, delegate (AudioQueueProperty p) {
-					Console.WriteLine ("IsRunning changed state");
+					var h = Finished;
+					if (h != null)
+						h (this, EventArgs.Empty);
 				});
 				
 				break;

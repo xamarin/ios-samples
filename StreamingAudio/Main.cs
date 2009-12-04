@@ -79,7 +79,7 @@ namespace StreamingAudio
 				
 				while ((n = stream.Read (buffer, 0, buffer.Length)) != 0){
 					l += n;
-					player.FileStream.ParseBytes (buffer, 0, n, false);
+					player.ParseBytes (buffer, n, false);
 					
 					InvokeOnMainThread (delegate {
 						progress.Progress = l / (float) response.ContentLength;
