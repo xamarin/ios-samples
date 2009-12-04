@@ -1,4 +1,7 @@
 *.exe
+*.nib
+error
+output
 *.mdb
 *.userprefs
 bin
