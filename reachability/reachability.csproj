@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{39F57FAA-67B1-4686-9D42-377DFC6DE989}</ProjectGuid>
+    <ProjectGuid>{E1356D0A-1572-4157-BD97-05F0B9DA832E}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
+    <RootNamespace>reachability</RootNamespace>
     <MainNibFile>MainWindow.xib</MainNibFile>
-    <AssemblyName>avTouch</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <RootNamespace>avTouch</RootNamespace>
+    <AssemblyName>reachability</AssemblyName>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <BundleIcon>icon.png</BundleIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +23,7 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ExtraMtouchArgs>-debug</ExtraMtouchArgs>
+    <PlatformTarget>x86</PlatformTarget>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
   </PropertyGroup>
@@ -32,6 +33,8 @@
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <MtouchLink>None</MtouchLink>
     <MtouchDebug>False</MtouchDebug>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -42,6 +45,7 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
   </PropertyGroup>
@@ -51,6 +55,7 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>False</MtouchDebug>
   </PropertyGroup>
@@ -59,24 +64,16 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="OpenTK" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="avTouchViewController.xib.designer.cs">
-      <DependentUpon>avTouchViewController.xib</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xib.designer.cs">
       <DependentUpon>MainWindow.xib</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
-    <Compile Include="avTouchViewController.cs" />
-    <Compile Include="CALevelMeter.cs" />
-    <Compile Include="MeterTable.cs" />
-    <Compile Include="LevelMeter.cs" />
+    <Compile Include="reachability.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
-    <Page Include="avTouchViewController.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -85,20 +82,11 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Content Include="Default.png" />
+    <Content Include="Network.png" />
+    <Content Include="Airport.png" />
+    <Content Include="stop-32.png" />
+    <Content Include="WWAN5.png" />
     <Content Include="icon.png" />
-    <Content Include="images\pause.png" />
-    <Content Include="images\play.png" />
-    <Content Include="images\play_hi.png" />
-    <Content Include="images\rewind.png" />
-    <Content Include="images\sound_meter_background.png" />
-    <Content Include="images\sound_meter_glare.png" />
-    <Content Include="images\volume_down.png" />
-    <Content Include="images\volume_up.png" />
-    <Content Include="sample.m4a" />
-    <Content Include="images\forward.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\" />
+    <Content Include="Default.png" />
   </ItemGroup>
 </Project>

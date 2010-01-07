@@ -15,6 +15,7 @@ namespace avTouch {
 	[MonoTouch.Foundation.Register("avTouchViewController")]
 	public partial class avTouchViewController {
 		
+		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("view")]
 		private MonoTouch.UIKit.UIView view {
 			get {
@@ -40,6 +41,7 @@ namespace avTouch {
 	[MonoTouch.Foundation.Register("avTouchController")]
 	public partial class avTouchController {
 		
+		#pragma warning disable 0169
 		[MonoTouch.Foundation.Export("volumeSliderMoved:")]
 		partial void volumeSliderMoved (MonoTouch.UIKit.UISlider sender);
 

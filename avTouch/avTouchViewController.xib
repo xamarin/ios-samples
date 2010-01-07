@@ -3,9 +3,9 @@
 	<data>
 		<int key="IBDocument.SystemTarget">528</int>
 		<string key="IBDocument.SystemVersion">10B504</string>
-		<string key="IBDocument.InterfaceBuilderVersion">732</string>
-		<string key="IBDocument.AppKitVersion">1038.2</string>
-		<string key="IBDocument.HIToolboxVersion">437.00</string>
+		<string key="IBDocument.InterfaceBuilderVersion">740</string>
+		<string key="IBDocument.AppKitVersion">1038.22</string>
+		<string key="IBDocument.HIToolboxVersion">457.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">62</string>
@@ -63,7 +63,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">sound_meter_background.png</string>
+							<string key="NSResourceName">images/sound_meter_background.png</string>
 						</object>
 					</object>
 					<object class="IBUIView" id="544780062">
@@ -157,14 +157,14 @@
 					<object class="IBUIImageView" id="202417773">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{16, 355}, {9, 15}}</string>
+						<string key="NSFrame">{{20, 355}, {5, 15}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">volume_down.png</string>
+							<string key="NSResourceName">images/volume_down.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="596049103">
@@ -177,7 +177,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">volume_up.png</string>
+							<string key="NSResourceName">images/volume_up.png</string>
 						</object>
 					</object>
 					<object class="IBUIToolbar" id="570549170">
@@ -214,7 +214,7 @@
 								</object>
 								<object class="NSCustomResource" key="IBUIHighlightedImage" id="384982964">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">rewind.png</string>
+									<string key="NSResourceName">images/rewind.png</string>
 								</object>
 								<reference key="IBUIDisabledImage" ref="384982964"/>
 								<reference key="IBUISelectedImage" ref="384982964"/>
@@ -239,7 +239,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="584139103"/>
 								<object class="NSCustomResource" key="IBUIHighlightedImage" id="300183811">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">play.png</string>
+									<string key="NSResourceName">images/play.png</string>
 								</object>
 								<reference key="IBUIDisabledImage" ref="300183811"/>
 								<reference key="IBUISelectedImage" ref="300183811"/>
@@ -268,7 +268,10 @@
 								</object>
 								<reference key="IBUIDisabledImage" ref="384715260"/>
 								<reference key="IBUISelectedImage" ref="384715260"/>
-								<reference key="IBUINormalImage" ref="384715260"/>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">images/forward.png</string>
+								</object>
 							</object>
 						</object>
 						<string key="NSFrame">{{-1, 416}, {320, 44}}</string>
@@ -319,7 +322,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">sound_meter_glare.png</string>
+							<string key="NSResourceName">images/sound_meter_glare.png</string>
 						</object>
 					</object>
 				</object>

@@ -36,8 +36,8 @@ namespace avTouch
 		
 		public override void AwakeFromNib ()
 		{
-			playBtnBg = UIImage.FromFile ("play.png").StretchableImage (12, 0);
-			pauseBtnBg = UIImage.FromFile ("pause.png").StretchableImage (12, 0);
+			playBtnBg = UIImage.FromFile ("images/play.png").StretchableImage (12, 0);
+			pauseBtnBg = UIImage.FromFile ("images/pause.png").StretchableImage (12, 0);
 			_playButton.SetImage (playBtnBg, UIControlState.Normal);
 			
 			_duration.AdjustsFontSizeToFitWidth = true;
@@ -46,6 +46,7 @@ namespace avTouch
 			
 			var fileUrl = NSBundle.MainBundle.PathForResource ("sample", "m4a");
 			player = AVAudioPlayer.FromUrl (new NSUrl (fileUrl, false));
+			
 			player.FinishedPlaying += delegate(object sender, AVStatusEventArgs e) {
 				if (!e.Status)
 					Console.WriteLine ("Did not complete successfully");
@@ -65,8 +66,6 @@ namespace avTouch
 			_fileName.Text = String.Format ("Mono {0} ({1} ch)", Path.GetFileName (player.Url.RelativePath), player.NumberOfChannels);
 			UpdateViewForPlayerInfo ();
 			UpdateViewForPlayerState ();
-			
-
 		}
  
 		public void UpdateCurrentTime ()
