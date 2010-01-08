@@ -40,11 +40,25 @@ namespace StreamingAudio
 		int packetsFilled;
 		AudioStreamPacketDescription [] pdesc = new AudioStreamPacketDescription [512];
 		
+		public void Pause ()
+		{
+			OutputQueue.Pause ();
+		}
+		
+		public void Play ()
+		{
+			OutputQueue.Start ();
+		}
+		
 		public StreamingPlayback ()
 		{
 			fileStream = new AudioFileStream (AudioFileType.MP3);
 			fileStream.PacketDecoded += AudioPacketDecoded;
 			fileStream.PropertyFound += AudioPropertyFound;
+			
+			// The following line prevents the audio from stopping 
+			// when the device autolocks.
+			AudioSession.Category = AudioSessionCategory.MediaPlayback;
 		}
 		
 		public void ParseBytes (byte [] buffer, int count, bool discontinuity)
@@ -62,6 +76,11 @@ namespace StreamingAudio
 		{
 			// Release unmanaged buffers, flush output, close files.
 			if (disposing){
+				AudioSession.Category = AudioSessionCategory.SoloAmbientSound;
+				
+				if (OutputQueue != null)
+					OutputQueue.Stop (false);
+				
 				if (outputBuffers != null)
 					foreach (var b in outputBuffers)
 						OutputQueue.FreeBuffer (b);
@@ -70,7 +89,7 @@ namespace StreamingAudio
 					fileStream.Close ();
 					fileStream = null;
 				}
-				if (OutputQueue != null){
+				if (OutputQueue != null){	
 					OutputQueue.Dispose ();
 					OutputQueue = null;
 				}
@@ -111,7 +130,6 @@ namespace StreamingAudio
 		{
 			EnqueueBuffer ();
 			OutputQueue.Flush ();
-			OutputQueue.Stop (false);
 			
 			// Release resources
 			Dispose ();
