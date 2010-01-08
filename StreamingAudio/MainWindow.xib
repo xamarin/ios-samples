@@ -13,7 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="2"/>
-			<integer value="39"/>
+			<integer value="50"/>
 			<integer value="21"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -255,7 +255,7 @@
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIUserInteractionEnabled">NO</bool>
-							<string key="IBUIText">Playback Progress: (not hooked up)</string>
+							<string key="IBUIText">Playback Progress:</string>
 							<reference key="IBUITextColor" ref="79086812"/>
 							<nil key="IBUIHighlightedColor"/>
 							<int key="IBUIBaselineAdjustment">1</int>
@@ -264,7 +264,7 @@
 						<object class="IBUIProgressView" id="1021442588">
 							<reference key="NSNextResponder" ref="983264090"/>
 							<int key="NSvFlags">292</int>
-							<string key="NSFrame">{{20, 226}, {150, 9}}</string>
+							<string key="NSFrame">{{20, 226}, {280, 9}}</string>
 							<reference key="NSSuperview" ref="983264090"/>
 							<bool key="IBUIOpaque">NO</bool>
 							<bool key="IBUIClipsSubviews">YES</bool>
@@ -403,6 +403,14 @@
 						<int key="IBEventType">13</int>
 					</object>
 					<int key="connectionID">54</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playbackProgress</string>
+						<reference key="source" ref="987256611"/>
+						<reference key="destination" ref="1021442588"/>
+					</object>
+					<int key="connectionID">55</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -657,7 +665,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">54</int>
+			<int key="maxID">55</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -686,6 +694,7 @@
 							<string>button</string>
 							<string>entry</string>
 							<string>playController</string>
+							<string>playbackProgress</string>
 							<string>progress</string>
 							<string>status</string>
 							<string>viewController</string>
@@ -694,6 +703,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

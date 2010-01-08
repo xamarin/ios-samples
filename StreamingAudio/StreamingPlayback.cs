@@ -55,10 +55,6 @@ namespace StreamingAudio
 			fileStream = new AudioFileStream (AudioFileType.MP3);
 			fileStream.PacketDecoded += AudioPacketDecoded;
 			fileStream.PropertyFound += AudioPropertyFound;
-			
-			// The following line prevents the audio from stopping 
-			// when the device autolocks.
-			AudioSession.Category = AudioSessionCategory.MediaPlayback;
 		}
 		
 		public void ParseBytes (byte [] buffer, int count, bool discontinuity)
@@ -76,8 +72,6 @@ namespace StreamingAudio
 		{
 			// Release unmanaged buffers, flush output, close files.
 			if (disposing){
-				AudioSession.Category = AudioSessionCategory.SoloAmbientSound;
-				
 				if (OutputQueue != null)
 					OutputQueue.Stop (false);
 				
@@ -193,13 +187,7 @@ namespace StreamingAudio
 				for (int i = 0; i < outputBuffers.Length; i++)
 					OutputQueue.AllocateBuffer (bufferSize, out outputBuffers [i]);
 				
-				OutputQueue.MagicCookie = fileStream.MagicCookie;
-				OutputQueue.AddListener (AudioQueueProperty.IsRunning, delegate (AudioQueueProperty p) {
-					var h = Finished;
-					if (h != null)
-						h (this, EventArgs.Empty);
-				});
-				
+				OutputQueue.MagicCookie = fileStream.MagicCookie;				
 				break;
 			}
 			

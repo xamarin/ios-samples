@@ -104,5 +104,15 @@ namespace StreamingAudio {
 				this.SetNativeField("button", value);
 			}
 		}
+		
+		[MonoTouch.Foundation.Connect("playbackProgress")]
+		private MonoTouch.UIKit.UIProgressView playbackProgress {
+			get {
+				return ((MonoTouch.UIKit.UIProgressView)(this.GetNativeField("playbackProgress")));
+			}
+			set {
+				this.SetNativeField("playbackProgress", value);
+			}
+		}
 	}
 }
