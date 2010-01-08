@@ -40,7 +40,6 @@ namespace StreamingAudio
 			
 			// Nice creative commons source.
 			entry.Text = "http://ccmixter.org/content/bradstanfield/bradstanfield_-_People_Let_s_Stop_The_War.mp3";
-			entry.Text = "http://tirania.org/c.mp3";
 			entry.EditingDidEnd += delegate {
 				entry.ResignFirstResponder ();
 			};
