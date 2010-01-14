@@ -19,6 +19,12 @@ namespace StreamingAudio {
 		[MonoTouch.Foundation.Export("startPlayback:")]
 		partial void startPlayback (MonoTouch.UIKit.UIButton sender);
 
+		[MonoTouch.Foundation.Export("playControlClicked:")]
+		partial void playControlClicked (MonoTouch.UIKit.UIButton sender);
+
+		[MonoTouch.Foundation.Export("volumeSet:")]
+		partial void volumeSet (MonoTouch.UIKit.UISlider sender);
+
 		[MonoTouch.Foundation.Connect("window")]
 		private MonoTouch.UIKit.UIWindow window {
 			get {
@@ -86,6 +92,26 @@ namespace StreamingAudio {
 			}
 			set {
 				this.SetNativeField("status", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("button")]
+		private MonoTouch.UIKit.UIButton button {
+			get {
+				return ((MonoTouch.UIKit.UIButton)(this.GetNativeField("button")));
+			}
+			set {
+				this.SetNativeField("button", value);
+			}
+		}
+		
+		[MonoTouch.Foundation.Connect("playbackProgress")]
+		private MonoTouch.UIKit.UIProgressView playbackProgress {
+			get {
+				return ((MonoTouch.UIKit.UIProgressView)(this.GetNativeField("playbackProgress")));
+			}
+			set {
+				this.SetNativeField("playbackProgress", value);
 			}
 		}
 	}

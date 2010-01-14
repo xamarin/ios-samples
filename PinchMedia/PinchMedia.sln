@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinchMedia", "PinchMedia.csproj", "{4C58CFA1-8CA8-4CCD-9EC2-571DA33FAAAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C58CFA1-8CA8-4CCD-9EC2-571DA33FAAAA}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{4C58CFA1-8CA8-4CCD-9EC2-571DA33FAAAA}.Debug|iPhone.Build.0 = Debug|iPhone
+		{4C58CFA1-8CA8-4CCD-9EC2-571DA33FAAAA}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{4C58CFA1-8CA8-4CCD-9EC2-571DA33FAAAA}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{4C58CFA1-8CA8-4CCD-9EC2-571DA33FAAAA}.Release|iPhone.ActiveCfg = Release|iPhone
+		{4C58CFA1-8CA8-4CCD-9EC2-571DA33FAAAA}.Release|iPhone.Build.0 = Release|iPhone
+		{4C58CFA1-8CA8-4CCD-9EC2-571DA33FAAAA}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{4C58CFA1-8CA8-4CCD-9EC2-571DA33FAAAA}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = PinchMedia.csproj
+	EndGlobalSection
+EndGlobal

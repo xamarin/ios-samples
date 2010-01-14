@@ -30,22 +30,58 @@ namespace StreamingAudio
 		{
 		}
 		
+		StreamingPlayback player = null;
+		bool paused;
+		
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window.AddSubview (viewController.View);
+			AudioSession.Initialize ();
 			
 			// Nice creative commons source.
 			entry.Text = "http://ccmixter.org/content/bradstanfield/bradstanfield_-_People_Let_s_Stop_The_War.mp3";
 			entry.EditingDidEnd += delegate {
 				entry.ResignFirstResponder ();
 			};
+			
 			window.MakeKeyAndVisible ();
 			
 			return true;
 		}
 
+		partial void playControlClicked (UIButton sender)
+		{
+			paused = !paused;
+					
+			if (player == null)
+				return;
+			
+			if (paused)
+				player.Pause ();
+			else
+				player.Play ();
+			
+			string title = paused ? "Play" : "Pause";
+			button.SetTitle (title, UIControlState.Normal);
+			button.SetTitle (title, UIControlState.Selected);
+		}
+
+		partial void volumeSet (UISlider sender)
+		{
+			if (player == null)
+				return;
+			
+			player.OutputQueue.Volume = sender.Value;
+		}
+
 		partial void startPlayback (UIButton sender)
 		{
+			status.Text = "Starting HTTP request";
+			AudioSession.Category = AudioSessionCategory.MediaPlayback;
+			AudioSession.RoutingOverride = AudioSessionRoutingOverride.Speaker;
+			
+			button.TitleLabel.Text = "Pause";
+			
 			try {
 				var request = (HttpWebRequest) WebRequest.Create (entry.Text);
 				request.BeginGetResponse (StreamDownloaded, request);
@@ -69,28 +105,45 @@ namespace StreamingAudio
 				});
 				
 				pushed = true;
-				StreamingPlayback player = null;
-				
-				try {
-					player = new StreamingPlayback ();
-				} catch (Exception e){
-					Console.WriteLine (e);
-				}
-				
-				while ((n = stream.Read (buffer, 0, buffer.Length)) != 0){
-					l += n;
-					player.ParseBytes (buffer, n, false);
+							
+				// The following line prevents the audio from stopping 
+				// when the device autolocks.
+				AudioSession.Category = AudioSessionCategory.MediaPlayback;
+
+				// 
+				// Create StreamingPlayer, the using statement will automatically
+				// force the resources to be disposed and the playback to stop.
+				//
+				using (player = new StreamingPlayback ()){
+					while ((n = stream.Read (buffer, 0, buffer.Length)) != 0){
+						l += n;
+						player.ParseBytes (buffer, n, false);
+						
+						InvokeOnMainThread (delegate {
+							progress.Progress = l / (float) response.ContentLength;
+						});
+					}
 					
-					InvokeOnMainThread (delegate {
-						progress.Progress = l / (float) response.ContentLength;
-					});
 				}
 			} catch (Exception e){
 				InvokeOnMainThread (delegate {
-					if (pushed)
+					if (pushed){
 						viewController.PopToRootViewController (true);
+						pushed = false;
+					}
 					status.Text = "Error fetching response stream\n" + e;
+					Console.WriteLine (e);
 				});
+			}
+	
+			//
+			// Restore the default AudioSession, this allows the iPhone
+			// to go to sleep now that we are done playing the audio
+			//
+			AudioSession.Category = AudioSessionCategory.SoloAmbientSound;
+			if (pushed){
+				viewController.PopToRootViewController (true);
+				status.Text = "Finished playback";
 			}
 		}
 	}

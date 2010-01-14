@@ -40,6 +40,16 @@ namespace StreamingAudio
 		int packetsFilled;
 		AudioStreamPacketDescription [] pdesc = new AudioStreamPacketDescription [512];
 		
+		public void Pause ()
+		{
+			OutputQueue.Pause ();
+		}
+		
+		public void Play ()
+		{
+			OutputQueue.Start ();
+		}
+		
 		public StreamingPlayback ()
 		{
 			fileStream = new AudioFileStream (AudioFileType.MP3);
@@ -62,6 +72,9 @@ namespace StreamingAudio
 		{
 			// Release unmanaged buffers, flush output, close files.
 			if (disposing){
+				if (OutputQueue != null)
+					OutputQueue.Stop (false);
+				
 				if (outputBuffers != null)
 					foreach (var b in outputBuffers)
 						OutputQueue.FreeBuffer (b);
@@ -70,7 +83,7 @@ namespace StreamingAudio
 					fileStream.Close ();
 					fileStream = null;
 				}
-				if (OutputQueue != null){
+				if (OutputQueue != null){	
 					OutputQueue.Dispose ();
 					OutputQueue = null;
 				}
@@ -111,7 +124,6 @@ namespace StreamingAudio
 		{
 			EnqueueBuffer ();
 			OutputQueue.Flush ();
-			OutputQueue.Stop (false);
 			
 			// Release resources
 			Dispose ();
@@ -175,13 +187,7 @@ namespace StreamingAudio
 				for (int i = 0; i < outputBuffers.Length; i++)
 					OutputQueue.AllocateBuffer (bufferSize, out outputBuffers [i]);
 				
-				OutputQueue.MagicCookie = fileStream.MagicCookie;
-				OutputQueue.AddListener (AudioQueueProperty.IsRunning, delegate (AudioQueueProperty p) {
-					var h = Finished;
-					if (h != null)
-						h (this, EventArgs.Empty);
-				});
-				
+				OutputQueue.MagicCookie = fileStream.MagicCookie;				
 				break;
 			}
 			
