@@ -10,9 +10,26 @@
 
 namespace MonoCatalog {
 	
+	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
 	[MonoTouch.Foundation.Register("AddressBookController")]
 	public partial class AddressBookController {
+		
+		private MonoTouch.UIKit.UIView __mt_view;
+		
+		private MonoTouch.UIKit.UILabel __mt_firstName;
+		
+		private MonoTouch.UIKit.UILabel __mt_lastName;
+		
+		private MonoTouch.UIKit.UISwitch __mt_performAction;
+		
+		private MonoTouch.UIKit.UISwitch __mt_selectProperty;
+		
+		private MonoTouch.UIKit.UILabel __mt_property;
+		
+		private MonoTouch.UIKit.UILabel __mt_identifier;
+		
+		private MonoTouch.UIKit.UILabel __mt_toString;
 		
 		#pragma warning disable 0169
 		[MonoTouch.Foundation.Export("showPicker:")]
@@ -21,9 +38,11 @@ namespace MonoCatalog {
 		[MonoTouch.Foundation.Connect("view")]
 		private MonoTouch.UIKit.UIView view {
 			get {
-				return ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				return this.__mt_view;
 			}
 			set {
+				this.__mt_view = value;
 				this.SetNativeField("view", value);
 			}
 		}
@@ -31,9 +50,11 @@ namespace MonoCatalog {
 		[MonoTouch.Foundation.Connect("firstName")]
 		private MonoTouch.UIKit.UILabel firstName {
 			get {
-				return ((MonoTouch.UIKit.UILabel)(this.GetNativeField("firstName")));
+				this.__mt_firstName = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("firstName")));
+				return this.__mt_firstName;
 			}
 			set {
+				this.__mt_firstName = value;
 				this.SetNativeField("firstName", value);
 			}
 		}
@@ -41,9 +62,11 @@ namespace MonoCatalog {
 		[MonoTouch.Foundation.Connect("lastName")]
 		private MonoTouch.UIKit.UILabel lastName {
 			get {
-				return ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lastName")));
+				this.__mt_lastName = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lastName")));
+				return this.__mt_lastName;
 			}
 			set {
+				this.__mt_lastName = value;
 				this.SetNativeField("lastName", value);
 			}
 		}
@@ -51,9 +74,11 @@ namespace MonoCatalog {
 		[MonoTouch.Foundation.Connect("performAction")]
 		private MonoTouch.UIKit.UISwitch performAction {
 			get {
-				return ((MonoTouch.UIKit.UISwitch)(this.GetNativeField("performAction")));
+				this.__mt_performAction = ((MonoTouch.UIKit.UISwitch)(this.GetNativeField("performAction")));
+				return this.__mt_performAction;
 			}
 			set {
+				this.__mt_performAction = value;
 				this.SetNativeField("performAction", value);
 			}
 		}
@@ -61,9 +86,11 @@ namespace MonoCatalog {
 		[MonoTouch.Foundation.Connect("selectProperty")]
 		private MonoTouch.UIKit.UISwitch selectProperty {
 			get {
-				return ((MonoTouch.UIKit.UISwitch)(this.GetNativeField("selectProperty")));
+				this.__mt_selectProperty = ((MonoTouch.UIKit.UISwitch)(this.GetNativeField("selectProperty")));
+				return this.__mt_selectProperty;
 			}
 			set {
+				this.__mt_selectProperty = value;
 				this.SetNativeField("selectProperty", value);
 			}
 		}
@@ -71,9 +98,11 @@ namespace MonoCatalog {
 		[MonoTouch.Foundation.Connect("property")]
 		private MonoTouch.UIKit.UILabel property {
 			get {
-				return ((MonoTouch.UIKit.UILabel)(this.GetNativeField("property")));
+				this.__mt_property = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("property")));
+				return this.__mt_property;
 			}
 			set {
+				this.__mt_property = value;
 				this.SetNativeField("property", value);
 			}
 		}
@@ -81,9 +110,11 @@ namespace MonoCatalog {
 		[MonoTouch.Foundation.Connect("identifier")]
 		private MonoTouch.UIKit.UILabel identifier {
 			get {
-				return ((MonoTouch.UIKit.UILabel)(this.GetNativeField("identifier")));
+				this.__mt_identifier = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("identifier")));
+				return this.__mt_identifier;
 			}
 			set {
+				this.__mt_identifier = value;
 				this.SetNativeField("identifier", value);
 			}
 		}
@@ -91,9 +122,11 @@ namespace MonoCatalog {
 		[MonoTouch.Foundation.Connect("toString")]
 		private MonoTouch.UIKit.UILabel toString {
 			get {
-				return ((MonoTouch.UIKit.UILabel)(this.GetNativeField("toString")));
+				this.__mt_toString = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("toString")));
+				return this.__mt_toString;
 			}
 			set {
+				this.__mt_toString = value;
 				this.SetNativeField("toString", value);
 			}
 		}

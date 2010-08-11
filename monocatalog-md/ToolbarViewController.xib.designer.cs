@@ -15,58 +15,82 @@ namespace MonoCatalog {
 	[MonoTouch.Foundation.Register("ToolbarViewController")]
 	public partial class ToolbarViewController {
 		
-		[MonoTouch.Foundation.Export("toggleStyle:")]partial void toggleStyle (MonoTouch.UIKit.UISegmentedControl sender);
+		private MonoTouch.UIKit.UIView __mt_view;
+		
+		private MonoTouch.UIKit.UISegmentedControl __mt_barStyleSegControl;
+		
+		private MonoTouch.UIKit.UISegmentedControl __mt_buttonItemStyleSegControl;
+		
+		private MonoTouch.UIKit.UIPickerView __mt_systemButtonPicker;
+		
+		private MonoTouch.UIKit.UISwitch __mt_tintSwitch;
+		
+		#pragma warning disable 0169
+		[MonoTouch.Foundation.Export("toggleStyle:")]
+		partial void toggleStyle (MonoTouch.UIKit.UISegmentedControl sender);
 
-		[MonoTouch.Foundation.Export("toggleBarStyle:")]partial void toggleBarStyle (MonoTouch.UIKit.UISegmentedControl sender);
+		[MonoTouch.Foundation.Export("toggleBarStyle:")]
+		partial void toggleBarStyle (MonoTouch.UIKit.UISegmentedControl sender);
 
-		[MonoTouch.Foundation.Export("toggleTintColor:")]partial void toggleTintColor (MonoTouch.UIKit.UISwitch sender);
+		[MonoTouch.Foundation.Export("toggleTintColor:")]
+		partial void toggleTintColor (MonoTouch.UIKit.UISwitch sender);
 
 		[MonoTouch.Foundation.Connect("view")]
-		protected MonoTouch.UIKit.UIView view {
+		private MonoTouch.UIKit.UIView view {
 			get {
-				return ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				return this.__mt_view;
 			}
 			set {
+				this.__mt_view = value;
 				this.SetNativeField("view", value);
 			}
 		}
 		
 		[MonoTouch.Foundation.Connect("barStyleSegControl")]
-		protected MonoTouch.UIKit.UISegmentedControl barStyleSegControl {
+		private MonoTouch.UIKit.UISegmentedControl barStyleSegControl {
 			get {
-				return ((MonoTouch.UIKit.UISegmentedControl)(this.GetNativeField("barStyleSegControl")));
+				this.__mt_barStyleSegControl = ((MonoTouch.UIKit.UISegmentedControl)(this.GetNativeField("barStyleSegControl")));
+				return this.__mt_barStyleSegControl;
 			}
 			set {
+				this.__mt_barStyleSegControl = value;
 				this.SetNativeField("barStyleSegControl", value);
 			}
 		}
 		
 		[MonoTouch.Foundation.Connect("buttonItemStyleSegControl")]
-		protected MonoTouch.UIKit.UISegmentedControl buttonItemStyleSegControl {
+		private MonoTouch.UIKit.UISegmentedControl buttonItemStyleSegControl {
 			get {
-				return ((MonoTouch.UIKit.UISegmentedControl)(this.GetNativeField("buttonItemStyleSegControl")));
+				this.__mt_buttonItemStyleSegControl = ((MonoTouch.UIKit.UISegmentedControl)(this.GetNativeField("buttonItemStyleSegControl")));
+				return this.__mt_buttonItemStyleSegControl;
 			}
 			set {
+				this.__mt_buttonItemStyleSegControl = value;
 				this.SetNativeField("buttonItemStyleSegControl", value);
 			}
 		}
 		
 		[MonoTouch.Foundation.Connect("systemButtonPicker")]
-		protected MonoTouch.UIKit.UIPickerView systemButtonPicker {
+		private MonoTouch.UIKit.UIPickerView systemButtonPicker {
 			get {
-				return ((MonoTouch.UIKit.UIPickerView)(this.GetNativeField("systemButtonPicker")));
+				this.__mt_systemButtonPicker = ((MonoTouch.UIKit.UIPickerView)(this.GetNativeField("systemButtonPicker")));
+				return this.__mt_systemButtonPicker;
 			}
 			set {
+				this.__mt_systemButtonPicker = value;
 				this.SetNativeField("systemButtonPicker", value);
 			}
 		}
 		
 		[MonoTouch.Foundation.Connect("tintSwitch")]
-		protected MonoTouch.UIKit.UISwitch tintSwitch {
+		private MonoTouch.UIKit.UISwitch tintSwitch {
 			get {
-				return ((MonoTouch.UIKit.UISwitch)(this.GetNativeField("tintSwitch")));
+				this.__mt_tintSwitch = ((MonoTouch.UIKit.UISwitch)(this.GetNativeField("tintSwitch")));
+				return this.__mt_tintSwitch;
 			}
 			set {
+				this.__mt_tintSwitch = value;
 				this.SetNativeField("tintSwitch", value);
 			}
 		}

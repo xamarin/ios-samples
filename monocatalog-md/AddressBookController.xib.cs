@@ -10,6 +10,9 @@ namespace MonoCatalog
 {
 	public partial class AddressBookController : UIViewController
 	{
+
+		ABPeoplePickerNavigationController p;
+
 		public AddressBookController () : base ("AddressBookController", null)
 		{
 		}
@@ -29,7 +32,7 @@ namespace MonoCatalog
 	  partial void showPicker (MonoTouch.UIKit.UIButton sender)
 		{
 			Console.Error.WriteLine ("# Select Contacts pushed!");
-			using (var p = new ABPeoplePickerNavigationController ()) {
+			using (p = new ABPeoplePickerNavigationController ()) {
 				p.SelectPerson += (o, e) => {
 					Console.Error.WriteLine ("# select Person: {0}", e.Person);
 					toString.Text   = e.Person.ToString ();
