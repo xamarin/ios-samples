@@ -15,12 +15,17 @@ namespace MonoCatalog {
 	[MonoTouch.Foundation.Register("ButtonsViewController")]
 	public partial class ButtonsViewController {
 		
+		private MonoTouch.UIKit.UITableView __mt_view;
+		
+		#pragma warning disable 0169
 		[MonoTouch.Foundation.Connect("view")]
-		protected MonoTouch.UIKit.UITableView view {
+		private MonoTouch.UIKit.UITableView view {
 			get {
-				return ((MonoTouch.UIKit.UITableView)(this.GetNativeField("view")));
+				this.__mt_view = ((MonoTouch.UIKit.UITableView)(this.GetNativeField("view")));
+				return this.__mt_view;
 			}
 			set {
+				this.__mt_view = value;
 				this.SetNativeField("view", value);
 			}
 		}
