@@ -71,7 +71,7 @@ namespace StreamingAudio
 			if (player == null)
 				return;
 			
-			player.OutputQueue.Volume = sender.Value;
+			player.Volume = sender.Value;
 		}
 
 		partial void startPlayback (UIButton sender)
