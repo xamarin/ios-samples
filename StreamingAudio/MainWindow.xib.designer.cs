@@ -15,6 +15,24 @@ namespace StreamingAudio {
 	[MonoTouch.Foundation.Register("AppDelegate")]
 	public partial class AppDelegate {
 		
+		private MonoTouch.UIKit.UIWindow __mt_window;
+		
+		private MonoTouch.UIKit.UINavigationController __mt_viewController;
+		
+		private MonoTouch.UIKit.UITextField __mt_entry;
+		
+		private MonoTouch.UIKit.UIViewController __mt_playController;
+		
+		private MonoTouch.UIKit.UISlider __mt_volume;
+		
+		private MonoTouch.UIKit.UIProgressView __mt_progress;
+		
+		private MonoTouch.UIKit.UILabel __mt_status;
+		
+		private MonoTouch.UIKit.UIButton __mt_button;
+		
+		private MonoTouch.UIKit.UIProgressView __mt_playbackProgress;
+		
 		#pragma warning disable 0169
 		[MonoTouch.Foundation.Export("startPlayback:")]
 		partial void startPlayback (MonoTouch.UIKit.UIButton sender);
@@ -25,12 +43,17 @@ namespace StreamingAudio {
 		[MonoTouch.Foundation.Export("volumeSet:")]
 		partial void volumeSet (MonoTouch.UIKit.UISlider sender);
 
+		[MonoTouch.Foundation.Export("startPlaybackAndSave:")]
+		partial void startPlaybackAndSave (MonoTouch.UIKit.UIButton sender);
+
 		[MonoTouch.Foundation.Connect("window")]
 		private MonoTouch.UIKit.UIWindow window {
 			get {
-				return ((MonoTouch.UIKit.UIWindow)(this.GetNativeField("window")));
+				this.__mt_window = ((MonoTouch.UIKit.UIWindow)(this.GetNativeField("window")));
+				return this.__mt_window;
 			}
 			set {
+				this.__mt_window = value;
 				this.SetNativeField("window", value);
 			}
 		}
@@ -38,9 +61,11 @@ namespace StreamingAudio {
 		[MonoTouch.Foundation.Connect("viewController")]
 		private MonoTouch.UIKit.UINavigationController viewController {
 			get {
-				return ((MonoTouch.UIKit.UINavigationController)(this.GetNativeField("viewController")));
+				this.__mt_viewController = ((MonoTouch.UIKit.UINavigationController)(this.GetNativeField("viewController")));
+				return this.__mt_viewController;
 			}
 			set {
+				this.__mt_viewController = value;
 				this.SetNativeField("viewController", value);
 			}
 		}
@@ -48,9 +73,11 @@ namespace StreamingAudio {
 		[MonoTouch.Foundation.Connect("entry")]
 		private MonoTouch.UIKit.UITextField entry {
 			get {
-				return ((MonoTouch.UIKit.UITextField)(this.GetNativeField("entry")));
+				this.__mt_entry = ((MonoTouch.UIKit.UITextField)(this.GetNativeField("entry")));
+				return this.__mt_entry;
 			}
 			set {
+				this.__mt_entry = value;
 				this.SetNativeField("entry", value);
 			}
 		}
@@ -58,9 +85,11 @@ namespace StreamingAudio {
 		[MonoTouch.Foundation.Connect("playController")]
 		private MonoTouch.UIKit.UIViewController playController {
 			get {
-				return ((MonoTouch.UIKit.UIViewController)(this.GetNativeField("playController")));
+				this.__mt_playController = ((MonoTouch.UIKit.UIViewController)(this.GetNativeField("playController")));
+				return this.__mt_playController;
 			}
 			set {
+				this.__mt_playController = value;
 				this.SetNativeField("playController", value);
 			}
 		}
@@ -68,9 +97,11 @@ namespace StreamingAudio {
 		[MonoTouch.Foundation.Connect("volume")]
 		private MonoTouch.UIKit.UISlider volume {
 			get {
-				return ((MonoTouch.UIKit.UISlider)(this.GetNativeField("volume")));
+				this.__mt_volume = ((MonoTouch.UIKit.UISlider)(this.GetNativeField("volume")));
+				return this.__mt_volume;
 			}
 			set {
+				this.__mt_volume = value;
 				this.SetNativeField("volume", value);
 			}
 		}
@@ -78,9 +109,11 @@ namespace StreamingAudio {
 		[MonoTouch.Foundation.Connect("progress")]
 		private MonoTouch.UIKit.UIProgressView progress {
 			get {
-				return ((MonoTouch.UIKit.UIProgressView)(this.GetNativeField("progress")));
+				this.__mt_progress = ((MonoTouch.UIKit.UIProgressView)(this.GetNativeField("progress")));
+				return this.__mt_progress;
 			}
 			set {
+				this.__mt_progress = value;
 				this.SetNativeField("progress", value);
 			}
 		}
@@ -88,9 +121,11 @@ namespace StreamingAudio {
 		[MonoTouch.Foundation.Connect("status")]
 		private MonoTouch.UIKit.UILabel status {
 			get {
-				return ((MonoTouch.UIKit.UILabel)(this.GetNativeField("status")));
+				this.__mt_status = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("status")));
+				return this.__mt_status;
 			}
 			set {
+				this.__mt_status = value;
 				this.SetNativeField("status", value);
 			}
 		}
@@ -98,9 +133,11 @@ namespace StreamingAudio {
 		[MonoTouch.Foundation.Connect("button")]
 		private MonoTouch.UIKit.UIButton button {
 			get {
-				return ((MonoTouch.UIKit.UIButton)(this.GetNativeField("button")));
+				this.__mt_button = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("button")));
+				return this.__mt_button;
 			}
 			set {
+				this.__mt_button = value;
 				this.SetNativeField("button", value);
 			}
 		}
@@ -108,9 +145,11 @@ namespace StreamingAudio {
 		[MonoTouch.Foundation.Connect("playbackProgress")]
 		private MonoTouch.UIKit.UIProgressView playbackProgress {
 			get {
-				return ((MonoTouch.UIKit.UIProgressView)(this.GetNativeField("playbackProgress")));
+				this.__mt_playbackProgress = ((MonoTouch.UIKit.UIProgressView)(this.GetNativeField("playbackProgress")));
+				return this.__mt_playbackProgress;
 			}
 			set {
+				this.__mt_playbackProgress = value;
 				this.SetNativeField("playbackProgress", value);
 			}
 		}

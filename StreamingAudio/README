@@ -4,11 +4,14 @@ parse an audio stream progressively and play the audio back.
 The audio is a creative commons MP3 file that is downloaded from a
 website using Mono's HTTP stack.
 
-This code does not attempt to buffer beyond the four built-in buffers
-that are created at startup.   It will happily stall until the audio
-pipeline releases one of the audio buffers.
+There are two samples:
 
-A better implementation would save the data to disk as well.
+	* One plays as it streams, and does not attempt to buffer
+	  more than the audio buffers that are used for AudioToolbox.
+
+	* The second sample shows how to save a copy of the data as it
+	  is being downloaded (for example, a podcasting application
+	  would stream audio and retain a copy).
 
 To use this you need either MonoTouch 1.4 or to download the preview
 monotouch.dll from:

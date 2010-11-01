@@ -187,13 +187,29 @@ namespace StreamingAudio
 				}
 					
 				AudioQueue.FillAudioData (currentBuffer.Buffer, currentBuffer.CurrentOffset, args.InputData, (int)pd.StartOffset, pd.DataByteSize);
-				
+#if false	
 				// Set new offset for this packet
 				pd.StartOffset = currentBuffer.CurrentOffset;
 				// Add the packet to our Buffer
 				currentBuffer.PacketDescriptions.Add (pd);
 				// Add the Size so that we know how much is in the buffer
 				currentBuffer.CurrentOffset += pd.DataByteSize;
+#else
+				// Fill out the packet description
+				pdesc [packetsFilled] = pd;
+				pdesc [packetsFilled].StartOffset = bytesFilled;
+				bytesFilled += packetSize;
+				packetsFilled++;
+				
+				var t = OutputQueue.CurrentTime;
+				Console.WriteLine ("Time:  {0}", t);
+				
+				// If we filled out all of our packet descriptions, enqueue the buffer
+				if (pdesc.Length == packetsFilled){
+					EnqueueBuffer ();
+					WaitForBuffer ();
+				}
+#endif
 			}
 			
 			if (currentByteCount == fileStream.DataByteCount)

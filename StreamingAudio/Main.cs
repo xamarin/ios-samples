@@ -7,8 +7,10 @@
 // MIT X11
 //
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Net;
@@ -31,7 +33,9 @@ namespace StreamingAudio
 		}
 		
 		StreamingPlayback player = null;
+		QueueStream queueStream;
 		bool paused;
+		bool saveCopy;
 		
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -49,6 +53,7 @@ namespace StreamingAudio
 			return true;
 		}
 
+		// Action hooked up on Interface Builder
 		partial void playControlClicked (UIButton sender)
 		{
 			paused = !paused;
@@ -66,6 +71,7 @@ namespace StreamingAudio
 			button.SetTitle (title, UIControlState.Selected);
 		}
 
+		// Action hooked up on Interface Builder
 		partial void volumeSet (UISlider sender)
 		{
 			if (player == null)
@@ -74,14 +80,35 @@ namespace StreamingAudio
 			player.Volume = sender.Value;
 		}
 
-		partial void startPlayback (UIButton sender)
+		void PreparePlayback ()
 		{
 			status.Text = "Starting HTTP request";
+			
+			// The following line prevents the audio from stopping 
+			// when the device autolocks.
 			AudioSession.Category = AudioSessionCategory.MediaPlayback;
 			AudioSession.RoutingOverride = AudioSessionRoutingOverride.Speaker;
 			
-			button.TitleLabel.Text = "Pause";
-			
+			button.TitleLabel.Text = "Pause";			
+		}
+		
+		// Action hooked up on Interface Builder
+		partial void startPlayback (UIButton sender)
+		{
+			saveCopy = false;
+			StartPlayback ();
+		}
+		
+		// Action hooked up on Interface Builder
+		partial void startPlaybackAndSave (UIButton sender)
+		{
+			saveCopy = true;
+			StartPlayback ();
+		}
+
+		void StartPlayback ()
+		{
+			PreparePlayback ();
 			try {
 				var request = (HttpWebRequest) WebRequest.Create (entry.Text);
 				request.BeginGetResponse (StreamDownloaded, request);
@@ -89,14 +116,15 @@ namespace StreamingAudio
 				status.Text = "Error: " + e.ToString ();
 			}
 		}
-
+		
 		void StreamDownloaded (IAsyncResult result)
 		{
 			var request = result.AsyncState as HttpWebRequest;
 			bool pushed = false;
 			try {
 				var response = request.EndGetResponse (result);
-				var stream = response.GetResponseStream ();
+				var responseStream = response.GetResponseStream ();
+				Stream inputStream;
 				var buffer = new byte [8192];
 				int l = 0, n;
 				
@@ -105,17 +133,18 @@ namespace StreamingAudio
 				});
 				
 				pushed = true;
-							
-				// The following line prevents the audio from stopping 
-				// when the device autolocks.
-				AudioSession.Category = AudioSessionCategory.MediaPlayback;
-
+				
+				if (saveCopy)
+					inputStream = MakeQueueStream (responseStream);
+				else
+					inputStream = responseStream;
+				
 				// 
 				// Create StreamingPlayer, the using statement will automatically
 				// force the resources to be disposed and the playback to stop.
 				//
 				using (player = new StreamingPlayback ()){
-					while ((n = stream.Read (buffer, 0, buffer.Length)) != 0){
+					while ((n = inputStream.Read (buffer, 0, buffer.Length)) != 0){
 						l += n;
 						player.ParseBytes (buffer, n, false);
 						
@@ -146,5 +175,26 @@ namespace StreamingAudio
 				status.Text = "Finished playback";
 			}
 		}
+		
+		//
+		// Launches a thread that reads the network stream
+		// and queues it for use by our audio thread
+		//
+		Stream MakeQueueStream (Stream networkStream)
+		{
+			queueStream = new QueueStream (Environment.GetFolderPath (Environment.SpecialFolder.Personal) + "copy.mp3");
+			var t = new Thread ((x) => {
+				var tbuf = new byte [8192];
+				int count;
+				
+				while ((count = networkStream.Read (tbuf, 0, tbuf.Length)) != 0){
+					queueStream.Push (tbuf, 0, count);
+				}
+				
+			});
+			t.Start ();
+			return queueStream;
+		}
+		
 	}
 }

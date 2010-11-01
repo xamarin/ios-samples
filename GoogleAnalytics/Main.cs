@@ -20,6 +20,8 @@ namespace GoogleAnalytics
 	{
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
+			Console.WriteLine ("Foo");
+				 
 			// Replace with your account information.
 			var account = "UA-000000-1";
 			int time = 10;
@@ -27,7 +29,7 @@ namespace GoogleAnalytics
 			var tracker = GoogleAnalytics.GANTracker.SharedTracker;
 			tracker.StartTracker (account, time, null);
 			
-			var label = new UILabel (new RectangleF (10, 10, 300, 20));
+			var label = new UILabel (new RectangleF (10, 90, 300, 20));
 			                         
 			NSError error;
 			if (tracker.TrackPageView ("/app_entry_point", out error))
