@@ -187,7 +187,7 @@ namespace StreamingAudio
 				}
 					
 				AudioQueue.FillAudioData (currentBuffer.Buffer, currentBuffer.CurrentOffset, args.InputData, (int)pd.StartOffset, pd.DataByteSize);
-#if false	
+#if true
 				// Set new offset for this packet
 				pd.StartOffset = currentBuffer.CurrentOffset;
 				// Add the packet to our Buffer
