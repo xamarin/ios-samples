@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keychain", "Keychain\Keychain.csproj", "{C9712ECD-9A4F-4DDE-A439-D7C2897203FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9712ECD-9A4F-4DDE-A439-D7C2897203FD}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C9712ECD-9A4F-4DDE-A439-D7C2897203FD}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C9712ECD-9A4F-4DDE-A439-D7C2897203FD}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C9712ECD-9A4F-4DDE-A439-D7C2897203FD}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C9712ECD-9A4F-4DDE-A439-D7C2897203FD}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C9712ECD-9A4F-4DDE-A439-D7C2897203FD}.Release|iPhone.Build.0 = Release|iPhone
+		{C9712ECD-9A4F-4DDE-A439-D7C2897203FD}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C9712ECD-9A4F-4DDE-A439-D7C2897203FD}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Keychain\Keychain.csproj
+	EndGlobalSection
+EndGlobal
