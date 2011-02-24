@@ -11,8 +11,8 @@
     <RootNamespace>GoogleAnalytics</RootNamespace>
     <MainNibFile>MainWindow.xib</MainNibFile>
     <AssemblyName>GoogleAnalytics</AssemblyName>
-    <MtouchSdkVersion>3.0</MtouchSdkVersion>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <MtouchMinimumOS>3.0</MtouchMinimumOS>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,10 +22,14 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lGoogleAnalytics -lsqlite3.0 -framework CFNetwork -ObjC"</MtouchExtraArgs>
+    <MtouchExtraArgs>-v -v -v -gcc_flags "-L${ProjectDir} -lGoogleAnalytics_NoThumb -lsqlite3.0 -framework CFNetwork -force_load ${ProjectDir}/libGoogleAnalytics_NoThumb.a"</MtouchExtraArgs>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -33,10 +37,15 @@
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>False</MtouchDebug>
-    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lGoogleAnalytics -lsqlite3.0 -framework CFNetwork -ObjC"</MtouchExtraArgs>
+    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lGoogleAnalytics_NoThumb -lsqlite3.0 -framework CFNetwork -force_load ${ProjectDir}/libGoogleAnalytics_NoThumb.a"</MtouchExtraArgs>
+    <MtouchSdkVersion>3.0</MtouchSdkVersion>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,10 +55,15 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lGoogleAnalytics -lsqlite3.0 -framework CFNetwork -ObjC"</MtouchExtraArgs>
+    <MtouchExtraArgs>-v -v -v -gcc_flags "-L${ProjectDir} -lGoogleAnalytics_NoThumb -lsqlite3.0 -framework CFNetwork -force_load ${ProjectDir}/libGoogleAnalytics_NoThumb.a"</MtouchExtraArgs>
+    <MtouchSdkVersion>3.0</MtouchSdkVersion>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -57,10 +71,15 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>False</MtouchDebug>
-    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lGoogleAnalytics -lsqlite3.0 -framework CFNetwork -ObjC"</MtouchExtraArgs>
+    <MtouchExtraArgs>-gcc_flags "-L${ProjectDir} -lGoogleAnalytics_NoThumb -lsqlite3.0 -framework CFNetwork -force_load ${ProjectDir}/libGoogleAnalytics_NoThumb.a"</MtouchExtraArgs>
+    <MtouchSdkVersion>3.0</MtouchSdkVersion>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchI18n />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -69,7 +88,7 @@
     <Reference Include="monotouch" />
     <Reference Include="GANTracker, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>GANTracker.dll</HintPath>
+      <HintPath>..\..\monotouch-libs\GoogleAnalytics\GANTracker.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -82,9 +101,4 @@
     <Page Include="MainWindow.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ProjectExtensions>
-    <MonoDevelop>
-      <Properties InternalTargetFrameworkVersion="IPhone" />
-    </MonoDevelop>
-  </ProjectExtensions>
 </Project>
