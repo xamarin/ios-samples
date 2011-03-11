@@ -31,30 +31,29 @@ namespace avcaptureframes
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		public static UIImageView ImageView;
+		AVCaptureSession session;
+		OutputRecorder outputRecorder;
 		
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window.MakeKeyAndVisible ();
+			window.BackgroundColor = UIColor.Black;
 			
 			if (SetupCaptureSession ()){
 				ImageView = new UIImageView (new RectangleF (20, 20, 280, 280));
 				window.AddSubview (ImageView);				
-			} else {
+			} else
 				window.AddSubview (new UILabel (new RectangleF (20, 20, 200, 60)) { Text = "No input device" });
-			}
 			
 			return true;
 		}
-		
-		OutputRecorder or;
-		AVCaptureSession session;
 		
 		bool SetupCaptureSession ()
 		{
 			// configure the capture session for low resolution, change this if your code
 			// can cope with more data or volume
 			session = new AVCaptureSession () {
-				SessionPreset = "AVCaptureSessionPresetMedium"
+				SessionPreset = AVCaptureSession.PresetMedium
 			};
 			
 			// create a device input and attach it to the session
@@ -76,8 +75,8 @@ namespace avcaptureframes
 			
 			// configure the output
 			var queue = new MonoTouch.CoreFoundation.DispatchQueue ("myQueue");
-			or = new OutputRecorder ();
-			output.SetSampleBufferDelegateAndQueue (or, queue);
+			outputRecorder = new OutputRecorder ();
+			output.SetSampleBufferDelegateAndQueue (outputRecorder, queue);
 			session.AddOutput (output);
 			
 			session.StartRunning ();
@@ -109,29 +108,24 @@ namespace avcaptureframes
 			{
 				// Get the CoreVideo image
 				using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer){
+					// Lock the base address
+					pixelBuffer.Lock (0);
 					
-				
-				// Lock the base address
-				var r = pixelBuffer.Lock (0);
-				Console.WriteLine ("The return is: {0} on this handle: {1}", r, pixelBuffer.Handle);
-				
-				// Get the number of bytes per row for the pixel buffer
-				var baseAddress = pixelBuffer.BaseAddress;
-				int bytesPerRow = pixelBuffer.BytesPerRow;
-				int width = pixelBuffer.Width;
-				int height = pixelBuffer.Height;
-				var flags = CGBitmapFlags.PremultipliedFirst | CGBitmapFlags.ByteOrder32Little;
-				
-				Console.WriteLine ("Base={0} bytes={1} width={2} height={3} flags={4}", baseAddress,bytesPerRow, width,height, flags);
-				// Create a CGImage on the RGB colorspace from the configured parameter above
-				using (var cs = CGColorSpace.CreateDeviceRGB ())
-				using (var context = new CGBitmapContext (baseAddress,width, height, 8, bytesPerRow, cs, (CGImageAlphaInfo) flags)){
-					Console.WriteLine ("Context is: {0}", context.Handle);
-				using (var cgImage = context.ToImage ()){
-					pixelBuffer.Unlock (0);
-					return UIImage.FromImage (cgImage);
-				}
-				}
+					// Get the number of bytes per row for the pixel buffer
+					var baseAddress = pixelBuffer.BaseAddress;
+					int bytesPerRow = pixelBuffer.BytesPerRow;
+					int width = pixelBuffer.Width;
+					int height = pixelBuffer.Height;
+					var flags = CGBitmapFlags.PremultipliedFirst | CGBitmapFlags.ByteOrder32Little;
+					
+					// Create a CGImage on the RGB colorspace from the configured parameter above
+					using (var cs = CGColorSpace.CreateDeviceRGB ())
+					using (var context = new CGBitmapContext (baseAddress,width, height, 8, bytesPerRow, cs, (CGImageAlphaInfo) flags)){
+					using (var cgImage = context.ToImage ()){
+						pixelBuffer.Unlock (0);
+						return UIImage.FromImage (cgImage);
+					}
+					}
 				}
 			}
 		}
