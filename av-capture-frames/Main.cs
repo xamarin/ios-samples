@@ -40,10 +40,10 @@ namespace avcaptureframes
 			window.MakeKeyAndVisible ();
 			window.BackgroundColor = UIColor.Black;
 			
-			if (SetupCaptureSession ()){
-				ImageView = new UIImageView (new RectangleF (20, 20, 280, 280));
-				window.AddSubview (ImageView);				
-			} else
+			ImageView = new UIImageView (new RectangleF (20, 20, 280, 280));
+			window.AddSubview (ImageView);				
+			
+			if (!SetupCaptureSession ())
 				window.AddSubview (new UILabel (new RectangleF (20, 20, 200, 60)) { Text = "No input device" });
 			
 			return true;
@@ -91,14 +91,18 @@ namespace avcaptureframes
 		public class OutputRecorder : AVCaptureVideoDataOutputSampleBufferDelegate { 	
 			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
 			{
-				var image = ImageFromSampleBuffer (sampleBuffer);
-
-				// Do something with the image, we just stuff it in our main view.
-				AppDelegate.ImageView.BeginInvokeOnMainThread (delegate {
-					AppDelegate.ImageView.Image = image;
-				});
-			
-				sampleBuffer.Dispose ();
+				try {
+					var image = ImageFromSampleBuffer (sampleBuffer);
+	
+					// Do something with the image, we just stuff it in our main view.
+					AppDelegate.ImageView.BeginInvokeOnMainThread (delegate {
+						AppDelegate.ImageView.Image = image;
+					});
+				
+					sampleBuffer.Dispose ();
+				} catch (Exception e){
+					Console.WriteLine (e);
+				}
 			}
 			
 			UIImage ImageFromSampleBuffer (CMSampleBuffer sampleBuffer)
@@ -107,21 +111,19 @@ namespace avcaptureframes
 				using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer){
 					// Lock the base address
 					pixelBuffer.Lock (0);
-					
 					// Get the number of bytes per row for the pixel buffer
 					var baseAddress = pixelBuffer.BaseAddress;
 					int bytesPerRow = pixelBuffer.BytesPerRow;
 					int width = pixelBuffer.Width;
 					int height = pixelBuffer.Height;
 					var flags = CGBitmapFlags.PremultipliedFirst | CGBitmapFlags.ByteOrder32Little;
-					
+
 					// Create a CGImage on the RGB colorspace from the configured parameter above
 					using (var cs = CGColorSpace.CreateDeviceRGB ())
-					using (var context = new CGBitmapContext (baseAddress,width, height, 8, bytesPerRow, cs, (CGImageAlphaInfo) flags)){
+					using (var context = new CGBitmapContext (baseAddress,width, height, 8, bytesPerRow, cs, (CGImageAlphaInfo) flags))
 					using (var cgImage = context.ToImage ()){
 						pixelBuffer.Unlock (0);
 						return UIImage.FromImage (cgImage);
-					}
 					}
 				}
 			}
