@@ -93,16 +93,6 @@ namespace avcaptureframes
                 internal extern static IntPtr CFRelease (IntPtr obj);
 
 			
-			[Export ("captureOutput:didOutputSampleBuffer:fromConnection:")]
-			public void Foo (AVCaptureOutput a, CMSampleBuffer b, AVCaptureConnection c)
-			{
-				Console.WriteLine ("here2 {0}", b.GetType ());
-				b.Dispose ();
-				//a.Dispose ();
-				              
-			}
-			
-			/*
 			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
 			{
 				var image = ImageFromSampleBuffer (sampleBuffer);
@@ -111,11 +101,9 @@ namespace avcaptureframes
 				AppDelegate.ImageView.BeginInvokeOnMainThread (delegate {
 					AppDelegate.ImageView.Image = image;
 				});
-				captureOutput.Dispose ();
+			
 				sampleBuffer.Dispose ();
-				connection.Dispose ();
 			}
-			*/
 			
 			UIImage ImageFromSampleBuffer (CMSampleBuffer sampleBuffer)
 			{
