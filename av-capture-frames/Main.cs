@@ -33,6 +33,7 @@ namespace avcaptureframes
 		public static UIImageView ImageView;
 		AVCaptureSession session;
 		OutputRecorder outputRecorder;
+		DispatchQueue queue;
 		
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -74,7 +75,7 @@ namespace avcaptureframes
 			};
 			
 			// configure the output
-			var queue = new MonoTouch.CoreFoundation.DispatchQueue ("myQueue");
+			queue = new MonoTouch.CoreFoundation.DispatchQueue ("myQueue");
 			outputRecorder = new OutputRecorder ();
 			output.SetSampleBufferDelegateAndQueue (outputRecorder, queue);
 			session.AddOutput (output);
@@ -87,11 +88,7 @@ namespace avcaptureframes
 		{
 		}
 		
-		public class OutputRecorder : AVCaptureVideoDataOutputSampleBufferDelegate {
-                [DllImport (MonoTouch.Constants.CoreFoundationLibrary, CharSet=CharSet.Unicode)]
-                internal extern static IntPtr CFRelease (IntPtr obj);
-
-			
+		public class OutputRecorder : AVCaptureVideoDataOutputSampleBufferDelegate { 	
 			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
 			{
 				var image = ImageFromSampleBuffer (sampleBuffer);
