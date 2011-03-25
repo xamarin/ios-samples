@@ -117,7 +117,6 @@ namespace avcaptureframes
 					int width = pixelBuffer.Width;
 					int height = pixelBuffer.Height;
 					var flags = CGBitmapFlags.PremultipliedFirst | CGBitmapFlags.ByteOrder32Little;
-
 					// Create a CGImage on the RGB colorspace from the configured parameter above
 					using (var cs = CGColorSpace.CreateDeviceRGB ())
 					using (var context = new CGBitmapContext (baseAddress,width, height, 8, bytesPerRow, cs, (CGImageAlphaInfo) flags))
