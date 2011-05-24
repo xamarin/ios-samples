@@ -20,7 +20,7 @@ dev: $(EXTRA_DEPS) device/$(APPDIR)
 
 launch: simulator/$(APP)
 	-rm -f output error
-	$(MTOUCH) --launchsim=simulator/$(APPDIR) --stdout=output --stderr=error
+	$(MTOUCH) --sdk=4.3 --launchsim=simulator/$(APPDIR) --stdout=output --stderr=error
 
 debug: simulator/$(APP)
 	$(MTOUCH) --debugsim=simulator/$(APPDIR) --stdout=output --stderr=error
