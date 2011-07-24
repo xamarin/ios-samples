@@ -1,4 +1,0 @@
-This is a port of the MacOS GLView program and uses the low-level APIs to implement
-the same functionality.
-
-For a higher-level port, see GLPaint-GV

@@ -1,11 +1,7 @@
 
 
 	The samples in this directory use the MonoTouch toolchain and
-	Unix Makefiles as we wanted to illustrate the basics of how to
-	work with the SDK. 
-
-	There is a sample MonoDevelop project as well called
-	"monocatalog-md".  It is the same project as "monocatalog",
-	but written as a MonoDevelop solution.
+	MonoDevelop project files to illustrate the basics of how to
+	work with iOS and the SDK. 
 
 	
