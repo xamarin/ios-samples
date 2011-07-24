@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGLESSample", "OpenGLESSample\OpenGLESSample.csproj", "{E17580BA-3BE1-4E77-8449-ACB4F7FBFE17}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E17580BA-3BE1-4E77-8449-ACB4F7FBFE17}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{E17580BA-3BE1-4E77-8449-ACB4F7FBFE17}.Debug|iPhone.Build.0 = Debug|iPhone
+		{E17580BA-3BE1-4E77-8449-ACB4F7FBFE17}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E17580BA-3BE1-4E77-8449-ACB4F7FBFE17}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E17580BA-3BE1-4E77-8449-ACB4F7FBFE17}.Release|iPhone.ActiveCfg = Release|iPhone
+		{E17580BA-3BE1-4E77-8449-ACB4F7FBFE17}.Release|iPhone.Build.0 = Release|iPhone
+		{E17580BA-3BE1-4E77-8449-ACB4F7FBFE17}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E17580BA-3BE1-4E77-8449-ACB4F7FBFE17}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = OpenGLESSample\OpenGLESSample.csproj
+	EndGlobalSection
+EndGlobal
