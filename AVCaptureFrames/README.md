@@ -18,7 +18,7 @@ a purchased version of MonoTouch.
 License
 =======
 
-The bindings are licensed under the MIT X11 license:
+The samples are licensed under the MIT X11 license:
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
