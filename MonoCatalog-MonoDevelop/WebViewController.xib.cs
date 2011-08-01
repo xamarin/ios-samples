@@ -58,7 +58,7 @@ namespace MonoCatalog {
 				BorderStyle = UITextBorderStyle.Bezel,
 				TextColor = UIColor.Black,
 				Placeholder = "<enter a URL>",
-				Text = "http://www.mono-project.com/",
+				Text = "http://ios.xamarin.com/",
 				BackgroundColor = UIColor.White,
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth,
 				ReturnKeyType = UIReturnKeyType.Go,
@@ -77,7 +77,7 @@ namespace MonoCatalog {
 	
 			View.AddSubview (urlField);
 			
-			web.LoadRequest (NSUrlRequest.FromUrl (new NSUrl ("http://www.mono-project.com")));
+			web.LoadRequest (NSUrlRequest.FromUrl (new NSUrl ("http://ios.xamarin.com/")));
 		}
 	}
 }

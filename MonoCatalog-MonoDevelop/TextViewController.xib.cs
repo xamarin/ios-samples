@@ -21,7 +21,7 @@ namespace MonoCatalog {
 				TextColor = UIColor.Black,
 				Font = UIFont.FromName ("Arial", 18f),
 				BackgroundColor = UIColor.White,
-				Text = "This code brought to you by ECMA 334, ECMA 335 and the Mono Team at Novell\n\n\nEmbrace the CIL!",
+				Text = "This code brought to you by ECMA 334, ECMA 335\n\n\nEmbrace the CIL!",
 				ReturnKeyType = UIReturnKeyType.Default,
 				KeyboardType = UIKeyboardType.Default,
 				ScrollEnabled = true,
