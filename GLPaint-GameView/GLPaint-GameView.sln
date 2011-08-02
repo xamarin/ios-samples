@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLPaint-GameView", "GLPaint-GameView\GLPaint-GameView.csproj", "{8887E326-58AC-441E-AA81-AFED78B32B1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8887E326-58AC-441E-AA81-AFED78B32B1E}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{8887E326-58AC-441E-AA81-AFED78B32B1E}.Debug|iPhone.Build.0 = Debug|iPhone
+		{8887E326-58AC-441E-AA81-AFED78B32B1E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{8887E326-58AC-441E-AA81-AFED78B32B1E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{8887E326-58AC-441E-AA81-AFED78B32B1E}.Release|iPhone.ActiveCfg = Release|iPhone
+		{8887E326-58AC-441E-AA81-AFED78B32B1E}.Release|iPhone.Build.0 = Release|iPhone
+		{8887E326-58AC-441E-AA81-AFED78B32B1E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{8887E326-58AC-441E-AA81-AFED78B32B1E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = GLPaint-GameView\GLPaint-GameView.csproj
+	EndGlobalSection
+EndGlobal
