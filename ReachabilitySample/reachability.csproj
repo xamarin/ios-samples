@@ -5,13 +5,14 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{63C1A34F-2729-426B-92EA-073C62477053}</ProjectGuid>
+    <ProjectGuid>{E1356D0A-1572-4157-BD97-05F0B9DA832E}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>StreamingAudio</RootNamespace>
+    <RootNamespace>reachability</RootNamespace>
     <MainNibFile>MainWindow.xib</MainNibFile>
-    <AssemblyName>StreamingAudio</AssemblyName>
+    <AssemblyName>reachability</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <BundleIcon>icon.png</BundleIcon>
     <MtouchMinimumOS>3.0</MtouchMinimumOS>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -24,12 +25,11 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <MtouchI18n />
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchArch>ARMv6</MtouchArch>
     <MtouchUseThumb>false</MtouchUseThumb>
     <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -39,7 +39,6 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>False</MtouchDebug>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchArch>ARMv6</MtouchArch>
@@ -54,9 +53,8 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Miguel de Icaza (6YW2BSTNRQ)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchArch>ARMv6</MtouchArch>
@@ -69,9 +67,8 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Miguel de Icaza (6YW2BSTNRQ)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>False</MtouchDebug>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchArch>ARMv6</MtouchArch>
@@ -89,11 +86,18 @@
       <DependentUpon>MainWindow.xib</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
-    <Compile Include="StreamingPlayback.cs" />
-    <Compile Include="Storage.cs" />
+    <Compile Include="reachability.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Content Include="Network.png" />
+    <Content Include="Airport.png" />
+    <Content Include="stop-32.png" />
+    <Content Include="WWAN5.png" />
+    <Content Include="icon.png" />
+    <Content Include="Default.png" />
+  </ItemGroup>
 </Project>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{63C1A34F-2729-426B-92EA-073C62477053}</ProjectGuid>
+    <ProjectGuid>{39F57FAA-67B1-4686-9D42-377DFC6DE989}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>StreamingAudio</RootNamespace>
     <MainNibFile>MainWindow.xib</MainNibFile>
-    <AssemblyName>StreamingAudio</AssemblyName>
+    <AssemblyName>avTouch</AssemblyName>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <RootNamespace>avTouch</RootNamespace>
     <MtouchMinimumOS>3.0</MtouchMinimumOS>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -22,14 +22,14 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <ExtraMtouchArgs>-debug</ExtraMtouchArgs>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <MtouchI18n />
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchArch>ARMv6</MtouchArch>
     <MtouchUseThumb>false</MtouchUseThumb>
     <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -37,9 +37,7 @@
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchLink>None</MtouchLink>
     <MtouchDebug>False</MtouchDebug>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchArch>ARMv6</MtouchArch>
@@ -54,9 +52,8 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Miguel de Icaza (6YW2BSTNRQ)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchArch>ARMv6</MtouchArch>
@@ -69,9 +66,8 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Miguel de Icaza (6YW2BSTNRQ)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>False</MtouchDebug>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <MtouchSdkVersion>3.0</MtouchSdkVersion>
     <MtouchUseLlvm>false</MtouchUseLlvm>
     <MtouchArch>ARMv6</MtouchArch>
@@ -83,17 +79,41 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="OpenTK" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="avTouchViewController.xib.designer.cs">
+      <DependentUpon>avTouchViewController.xib</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xib.designer.cs">
       <DependentUpon>MainWindow.xib</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
-    <Compile Include="StreamingPlayback.cs" />
-    <Compile Include="Storage.cs" />
+    <Compile Include="avTouchViewController.cs" />
+    <Compile Include="CALevelMeter.cs" />
+    <Compile Include="MeterTable.cs" />
+    <Compile Include="LevelMeter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
+    <Page Include="avTouchViewController.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Content Include="Default.png" />
+    <Content Include="icon.png" />
+    <Content Include="images\pause.png" />
+    <Content Include="images\play.png" />
+    <Content Include="images\play_hi.png" />
+    <Content Include="images\rewind.png" />
+    <Content Include="images\sound_meter_background.png" />
+    <Content Include="images\sound_meter_glare.png" />
+    <Content Include="images\volume_down.png" />
+    <Content Include="images\volume_up.png" />
+    <Content Include="sample.m4a" />
+    <Content Include="images\forward.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="images\" />
+  </ItemGroup>
 </Project>

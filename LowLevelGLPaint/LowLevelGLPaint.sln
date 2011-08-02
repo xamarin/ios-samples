@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LowLevelGLPaint", "LowLevelGLPaint\LowLevelGLPaint.csproj", "{0D8B7B18-9CE6-4F16-8BA4-D6FF6D38ACB7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D8B7B18-9CE6-4F16-8BA4-D6FF6D38ACB7}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{0D8B7B18-9CE6-4F16-8BA4-D6FF6D38ACB7}.Debug|iPhone.Build.0 = Debug|iPhone
+		{0D8B7B18-9CE6-4F16-8BA4-D6FF6D38ACB7}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{0D8B7B18-9CE6-4F16-8BA4-D6FF6D38ACB7}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{0D8B7B18-9CE6-4F16-8BA4-D6FF6D38ACB7}.Release|iPhone.ActiveCfg = Release|iPhone
+		{0D8B7B18-9CE6-4F16-8BA4-D6FF6D38ACB7}.Release|iPhone.Build.0 = Release|iPhone
+		{0D8B7B18-9CE6-4F16-8BA4-D6FF6D38ACB7}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{0D8B7B18-9CE6-4F16-8BA4-D6FF6D38ACB7}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = LowLevelGLPaint\LowLevelGLPaint.csproj
+	EndGlobalSection
+EndGlobal

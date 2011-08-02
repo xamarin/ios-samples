@@ -5,14 +5,14 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{63C1A34F-2729-426B-92EA-073C62477053}</ProjectGuid>
+    <ProjectGuid>{E17580BA-3BE1-4E77-8449-ACB4F7FBFE17}</ProjectGuid>
     <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>StreamingAudio</RootNamespace>
+    <RootNamespace>OpenGLESSample</RootNamespace>
     <MainNibFile>MainWindow.xib</MainNibFile>
-    <AssemblyName>StreamingAudio</AssemblyName>
-    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+    <AssemblyName>OpenGLESSample</AssemblyName>
     <MtouchMinimumOS>3.0</MtouchMinimumOS>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,12 +24,12 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <MtouchI18n />
     <MtouchUseLlvm>false</MtouchUseLlvm>
-    <MtouchArch>ARMv6</MtouchArch>
-    <MtouchUseThumb>false</MtouchUseThumb>
+    <ConsolePause>false</ConsolePause>
     <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -39,12 +39,11 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>False</MtouchDebug>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <MtouchSdkVersion>3.0</MtouchSdkVersion>
-    <MtouchUseLlvm>false</MtouchUseLlvm>
-    <MtouchArch>ARMv6</MtouchArch>
-    <MtouchUseThumb>false</MtouchUseThumb>
     <MtouchUseSGen>false</MtouchUseSGen>
+    <ConsolePause>false</ConsolePause>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchArch>ARMv6</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,14 +53,13 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Miguel de Icaza (6YW2BSTNRQ)</CodesignKey>
-    <MtouchDebug>True</MtouchDebug>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <MtouchSdkVersion>3.0</MtouchSdkVersion>
-    <MtouchUseLlvm>false</MtouchUseLlvm>
-    <MtouchArch>ARMv6</MtouchArch>
-    <MtouchUseThumb>false</MtouchUseThumb>
     <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchDebug>True</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <ConsolePause>false</ConsolePause>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -69,28 +67,30 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Developer: Miguel de Icaza (6YW2BSTNRQ)</CodesignKey>
-    <MtouchDebug>False</MtouchDebug>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <MtouchSdkVersion>3.0</MtouchSdkVersion>
-    <MtouchUseLlvm>false</MtouchUseLlvm>
-    <MtouchArch>ARMv6</MtouchArch>
-    <MtouchUseThumb>false</MtouchUseThumb>
     <MtouchUseSGen>false</MtouchUseSGen>
+    <MtouchDebug>False</MtouchDebug>
+    <MtouchUseThumb>false</MtouchUseThumb>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchUseLlvm>false</MtouchUseLlvm>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="OpenTK" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.xib.designer.cs">
       <DependentUpon>MainWindow.xib</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
-    <Compile Include="StreamingPlayback.cs" />
-    <Compile Include="Storage.cs" />
+    <Compile Include="EAGLView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainWindow.xib" />
