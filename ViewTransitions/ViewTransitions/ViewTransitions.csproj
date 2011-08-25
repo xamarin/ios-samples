@@ -75,8 +75,8 @@
     <Content Include="Images\image1.png" />
     <Content Include="Images\image2.png" />
     <Content Include="Images\image3.png" />
-    <Content Include="Icon.png" />
-    <Content Include="Icon%402x.png" />
+    <Content Include="Images\Icon.png" />
+    <Content Include="Images\Icon%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\" />
