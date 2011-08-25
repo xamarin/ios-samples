@@ -6,8 +6,8 @@
 	<string>Touches Classic</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Icon.png</string>
-		<string>Icon@2x.png</string>
+		<string>Images/Icon.png</string>
+		<string>Images/Icon@2x.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>Touches_Classic</string>

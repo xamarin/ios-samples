@@ -75,14 +75,13 @@
     <Folder Include="Classes\" />
     <Folder Include="Other Sources\" />
     <Folder Include="Images\" />
-    <Folder Include="Images\Icons\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\CyanSquare.png" />
     <Content Include="Images\MagentaSquare.png" />
     <Content Include="Images\YellowSquare.png" />
-    <Content Include="Icon.png" />
-    <Content Include="Icon%402x.png" />
+    <Content Include="Images\Icon.png" />
+    <Content Include="Images\Icon%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Classes\Touches_ClassicViewController.xib" />
