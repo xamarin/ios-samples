@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Popovers", "Popovers\Popovers.csproj", "{057068E0-A1D1-4919-A5E6-69F7FBB49492}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{057068E0-A1D1-4919-A5E6-69F7FBB49492}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{057068E0-A1D1-4919-A5E6-69F7FBB49492}.Debug|iPhone.Build.0 = Debug|iPhone
+		{057068E0-A1D1-4919-A5E6-69F7FBB49492}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{057068E0-A1D1-4919-A5E6-69F7FBB49492}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{057068E0-A1D1-4919-A5E6-69F7FBB49492}.Release|iPhone.ActiveCfg = Release|iPhone
+		{057068E0-A1D1-4919-A5E6-69F7FBB49492}.Release|iPhone.Build.0 = Release|iPhone
+		{057068E0-A1D1-4919-A5E6-69F7FBB49492}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{057068E0-A1D1-4919-A5E6-69F7FBB49492}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Popovers\Popovers.csproj
+	EndGlobalSection
+EndGlobal
