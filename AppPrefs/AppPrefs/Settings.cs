@@ -35,13 +35,13 @@ namespace AppPrefs
 		{
 			var settingsDict = new NSDictionary (NSBundle.MainBundle.PathForResource ("Settings.bundle/Root.plist", null));
 			
-			var prefSpecifierArray = settingsDict.ObjectForKey (new NSString ("PreferenceSpecifiers")) as NSArray;
+			var prefSpecifierArray = settingsDict[(NSString)"PreferenceSpecifiers"] as NSArray;
 			
 			foreach (var prefItem in NSArray.FromArray<NSDictionary> (prefSpecifierArray)) {
-				var key = prefItem.ObjectForKey (new NSString ("Key")) as NSString;
+				var key = prefItem[(NSString)"Key"] as NSString;
 				if (key == null)
 					continue;
-				var val = prefItem.ObjectForKey (new NSString ("DefaultValue"));
+				var val = prefItem[(NSString)"DefaultValue"];
 				switch (key.ToString ()) {
 				case firstNameKey:
 					FirstName = val.ToString ();
