@@ -53,8 +53,7 @@ namespace WeatherMap
 			}
 			
 			set {
-				if (value != null) // FIXME: workaround for bug #483
-					base.Annotation = value;
+				base.Annotation = value;
 				
 				// this annotation view has custom drawing code.  So when we reuse an annotation view
 				// (through MapView's delegate "dequeueReusableAnnoationViewWithIdentifier" which returns non-nil)
