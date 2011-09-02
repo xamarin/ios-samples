@@ -1,6 +1,8 @@
 ViewTransitions
 ===========================
 
+This sample requires the new MonoDevelop 2.8 support for XCode 4 integration.
+
 Preview
 =======
 
