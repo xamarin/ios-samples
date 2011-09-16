@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldCities", "WorldCities\WorldCities.csproj", "{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}.Debug|iPhone.Build.0 = Debug|iPhone
+		{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}.Release|iPhone.ActiveCfg = Release|iPhone
+		{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}.Release|iPhone.Build.0 = Release|iPhone
+		{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = WorldCities\WorldCities.csproj
+	EndGlobalSection
+EndGlobal
