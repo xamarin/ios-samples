@@ -2,3 +2,4 @@
 *.userprefs
 bin
 *.swp
+*.DS_Store
