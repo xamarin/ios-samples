@@ -24,9 +24,9 @@ namespace WorldCities
 			var path = NSBundle.MainBundle.PathForResource ("CityList", "plist");
 			var cities = NSArray.FromFile (path);
 			foreach (var city in NSArray.FromArray <NSDictionary> (cities)) {
-				cityList.Add (new WorldCity (city.ObjectForKey ((NSString)"cityNameKey").ToString (),
-					double.Parse (city.ObjectForKey ((NSString)"latitudeKey").ToString ()),
-					double.Parse (city.ObjectForKey ((NSString)"longitudeKey").ToString ())));
+				cityList.Add (new WorldCity (city[(NSString)"cityNameKey"].ToString (),
+					double.Parse (city[(NSString)"latitudeKey"].ToString ()),
+					double.Parse (city[(NSString)"longitudeKey"].ToString ())));
 			}
 			
 			TableView.Source = new MyTableViewDelegate (this);
