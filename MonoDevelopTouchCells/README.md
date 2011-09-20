@@ -1,8 +1,6 @@
 MonoDevelopTouchCells
-===================================
+=====================
 
-Description
------------
 An example showing using the a UITableView and displaying a custom cell within it.
 
 Preview
@@ -11,4 +9,5 @@ Preview
 
 Authors
 =======
+
 Miguel de Icaza

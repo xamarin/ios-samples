@@ -1,8 +1,6 @@
 MonoCatalog MonoDevelop
-===================================
+=======================
 
-Description
------------
 A kitchen sink example of common UI elements and APIs used in iOS and how you can use these with MonoTouch.
 
 Preview
@@ -11,4 +9,5 @@ Preview
 
 Authors
 =======
+
 Miguel de Icaza

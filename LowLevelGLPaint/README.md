@@ -1,6 +1,8 @@
 OpenGL Paint using Low Level OpenGL
 ===================================
 
+TODO
+
 Preview
 =======
 
@@ -14,4 +16,5 @@ http://developer.apple.com/library/ios/#samplecode/GLPaint/Introduction/Intro.ht
 
 Authors
 =======
+
 Miguel de Icaza

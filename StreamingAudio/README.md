@@ -1,8 +1,6 @@
 Streaming Audio Sample
 ======================
 
-Description
------------
 This sample illustrates how to use AudioToolbox's AudioFileStream to 
 parse an audio stream progressively and play the audio back.
  
@@ -21,4 +19,5 @@ Preview
 
 Authors
 -------
+
 Miguel de Icaza

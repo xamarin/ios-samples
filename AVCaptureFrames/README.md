@@ -1,5 +1,5 @@
 AV Capture Frames
-==================
+=================
 
 An example on using AVFoundation and AVCaptureSession to display a real-time
 capture from a raw stream using a video camera.
@@ -40,4 +40,5 @@ THE SOFTWARE.
 
 Authors
 =======
+
 Miguel de Icaza

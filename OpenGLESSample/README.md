@@ -1,8 +1,6 @@
 OpenGLES Sample
 ===============
 
-Description
------------
 A simple example of using OpenGLES in a MonoTouch application.
 
 Preview
@@ -12,4 +10,5 @@ Preview
 
 Authors
 -------
+
 Miguel de Icaza
