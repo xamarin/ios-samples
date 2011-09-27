@@ -1,3 +1,6 @@
+Zooming PDF Viewer
+==================
+
 This is a port of Apple's ZoomingPDFViewer (original written in ObjectiveC) available from:
 http://developer.apple.com/library/ios/#samplecode/ZoomingPDFViewer/Introduction/Intro.html#//apple_ref/doc/uid/DTS40010281
 

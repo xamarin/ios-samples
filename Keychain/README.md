@@ -1,4 +1,4 @@
 Keychain
 ========
 
-TODO
+This sample demonstrates simple interaction with the iOS keychain.

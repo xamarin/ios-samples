@@ -1,4 +1,4 @@
 System Sound
 ============
 
-TODO
+This sample demonstrates playing sound via AudioToolkit.

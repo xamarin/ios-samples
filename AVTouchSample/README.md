@@ -8,6 +8,6 @@ Based on Apple's avTouch example:
 http://developer.apple.com/library/ios/#samplecode/avTouch/Introduction/Intro.html
 
 Authors
-=======
+-------
 
 Miguel de Icaza

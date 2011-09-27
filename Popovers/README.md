@@ -1,25 +1,23 @@
 Popovers
-
-================================================================================
-ABSTRACT:
+========
 
 This sample demonstrates proper use of UIPopoverController in iOS.
 UIPopoverController presentation, dismissing, and rotation handling are covered.
 The sample is provided using a UISplitViewController in order to show proper handling of UIPopoverControllers being presented from UIBarButtonItems.
 Additional handling ensures that multiple UIPopoverControllers are never presented at the same time.
 
-================================================================================
-BUILD REQUIREMENTS:
+Build Requirements
+------------------
 
 iOS 4.1 or later
 
-================================================================================
-RUNTIME REQUIREMENTS:
+Runtime Requirements
+--------------------
 
 iOS 3.2 or later
 
-================================================================================
-PACKAGING LIST:
+Packaging List
+--------------
 
 PopoversAppDelegate
 The application delegate sets up the initial view and makes the window visible.
@@ -35,11 +33,7 @@ The detail view is also responsible for ensuring that there are never multiple p
 PopoverContentViewController
 A view controller that is the contents of the popovers in this sample. In this example, the view controller only contains a label with text.
 
-================================================================================
-CHANGES FROM PREVIOUS VERSIONS:
+Copyright
+---------
 
-Version 1.0
-- First version.
-
-================================================================================
 Copyright (C) 2010 Apple Inc. All rights reserved.

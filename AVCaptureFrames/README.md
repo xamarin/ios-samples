@@ -9,14 +9,14 @@ How to capture video frames from the camera as images using AV Foundation
 http://developer.apple.com/library/ios/#qa/qa1702/_index.html
 
 Requires
-========
+--------
 
 iOS 4.0 and up.
 This example will only run correctly on a iOS device, this requires
 a purchased version of MonoTouch.
 
 License
-=======
+-------
 
 The samples are licensed under the MIT X11 license:
 
@@ -39,6 +39,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 Authors
-=======
+-------
 
 Miguel de Icaza
