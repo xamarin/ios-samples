@@ -6,12 +6,10 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C9712ECD-9A4F-4DDE-A439-D7C2897203FD}</ProjectGuid>
-    <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>Keychain</RootNamespace>
-    <MainNibFile>MainWindow.xib</MainNibFile>
     <AssemblyName>Keychain</AssemblyName>
-    <MtouchMinimumOS>3.0</MtouchMinimumOS>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -94,7 +92,7 @@
     <Compile Include="Main.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainWindow.xib" />
+    <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,13 +6,10 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1254BB03-9156-4633-8298-74433DF4BB31}</ProjectGuid>
-    <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <MainNibFile>MainWindow.xib</MainNibFile>
     <AssemblyName>MonoDevelopTouchCells</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <BundleDisplayName>Touch Cells</BundleDisplayName>
-    <BundleIcon>images\Icon.png</BundleIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +19,8 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -29,6 +28,7 @@
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +38,7 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -70,8 +71,8 @@
     <Compile Include="DataSource.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainWindow.xib" />
-    <Page Include="DetailViewController.xib" />
+    <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
+    <InterfaceDefinition Include="DetailViewController.xib" xmlns="" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
@@ -84,5 +85,8 @@
     <Content Include="images\unchecked.png" />
     <Content Include="data.xml" />
     <Content Include="images\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
   </ItemGroup>
 </Project>

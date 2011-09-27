@@ -6,12 +6,10 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0D8B7B18-9CE6-4F16-8BA4-D6FF6D38ACB7}</ProjectGuid>
-    <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>LowLevelGLPaint</RootNamespace>
-    <MainNibFile>MainWindow.xib</MainNibFile>
     <AssemblyName>LowLevelGLPaint</AssemblyName>
-    <MtouchMinimumOS>3.0</MtouchMinimumOS>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -95,7 +93,7 @@
     <Compile Include="EAGLView.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainWindow.xib" />
+    <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

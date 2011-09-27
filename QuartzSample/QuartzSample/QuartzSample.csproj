@@ -6,14 +6,11 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7139C08D-67A4-4C35-8987-BF37E4E306EB}</ProjectGuid>
-    <ProjectTypeGuids>{E613F3A2-FE9C-494F-B74E-F63BCB86FEA6};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>QuartzSample</RootNamespace>
-    <MainNibFile>MainWindow.xib</MainNibFile>
     <AssemblyName>QuartzSample</AssemblyName>
-    <MtouchMinimumOS>3.0</MtouchMinimumOS>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
-    <BundleIcon>Images\Icon.png</BundleIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -110,9 +107,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainWindow.xib" />
-    <Page Include="QuartzViewController.xib" />
-    <Page Include="QuartzBlendingViewController.xib" />
+    <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
+    <InterfaceDefinition Include="QuartzViewController.xib" xmlns="" />
+    <InterfaceDefinition Include="QuartzBlendingViewController.xib" xmlns="" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
