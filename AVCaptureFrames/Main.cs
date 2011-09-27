@@ -98,7 +98,13 @@ namespace avcaptureframes
 					AppDelegate.ImageView.BeginInvokeOnMainThread (delegate {
 						AppDelegate.ImageView.Image = image;
 					});
-				
+			
+					//
+					// Although this looks innocent "Oh, he is just optimizing this case away"
+					// this is incredibly important to call on this callback, because the AVFoundation
+					// has a fixed number of buffers and if it runs out of free buffers, it will stop
+					// delivering frames. 
+					//	
 					sampleBuffer.Dispose ();
 				} catch (Exception e){
 					Console.WriteLine (e);
