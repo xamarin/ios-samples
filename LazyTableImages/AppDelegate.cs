@@ -48,7 +48,7 @@ namespace LazyTableImages {
 		
 		RootViewController RootController { get; set; }
 		
-		public override UIWindow Window { get; set; }
+		public UIWindow Window { get; set; }
 		
 		
 		/// <summary>
