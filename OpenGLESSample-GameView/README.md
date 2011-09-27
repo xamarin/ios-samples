@@ -1,8 +1,6 @@
 OpenGLES Sample using GameView
 ==============================
 
-Description
------------
 A simple example of using OpenGLES with a iPhoneOSGameView in a MonoTouch application.
 
 Preview
@@ -12,4 +10,5 @@ Preview
 
 Authors
 -------
+
 Miguel de Icaza

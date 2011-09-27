@@ -1,8 +1,6 @@
 Quartz Sample
 =============
 
-Description
------------
 A sample of using the Core Graphics capabilities in a MonoTouch application.
 
 Preview
@@ -13,4 +11,5 @@ Preview
 
 Authors
 -------
+
 Miguel de Icaza

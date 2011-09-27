@@ -1,8 +1,6 @@
 Reachability Sample
 ===================
 
-Description
------------
 This sample shows how to use the APIs to find out what kind of connectivity is available.
 
 This sample started as a line-by-line port of the Apple sample, and it
@@ -17,4 +15,5 @@ Preview
 
 Authors
 -------
+
 Miguel de Icaza
