@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTextInput", "SimpleTextInput.csproj", "{062EA932-42E2-4CD7-ABFB-FE03779BF90E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{062EA932-42E2-4CD7-ABFB-FE03779BF90E}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{062EA932-42E2-4CD7-ABFB-FE03779BF90E}.Debug|iPhone.Build.0 = Debug|iPhone
+		{062EA932-42E2-4CD7-ABFB-FE03779BF90E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{062EA932-42E2-4CD7-ABFB-FE03779BF90E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{062EA932-42E2-4CD7-ABFB-FE03779BF90E}.Release|iPhone.ActiveCfg = Release|iPhone
+		{062EA932-42E2-4CD7-ABFB-FE03779BF90E}.Release|iPhone.Build.0 = Release|iPhone
+		{062EA932-42E2-4CD7-ABFB-FE03779BF90E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{062EA932-42E2-4CD7-ABFB-FE03779BF90E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SimpleTextInput.csproj
+	EndGlobalSection
+EndGlobal
