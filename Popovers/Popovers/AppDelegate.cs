@@ -10,7 +10,7 @@ namespace Popovers
 	public partial class AppDelegate : UIApplicationDelegate
 	{
  		[Outlet]
-		public override UIWindow Window { get; set; }
+		public UIWindow Window { get; set; }
 
 		[Outlet]
 		public UISplitViewController SplitViewController { get; set; }
