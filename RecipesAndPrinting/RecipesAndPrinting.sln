@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesAndPrinting", "RecipesAndPrinting\RecipesAndPrinting.csproj", "{6436B735-B954-4E71-BDC1-F64DC7EC91FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6436B735-B954-4E71-BDC1-F64DC7EC91FF}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{6436B735-B954-4E71-BDC1-F64DC7EC91FF}.Debug|iPhone.Build.0 = Debug|iPhone
+		{6436B735-B954-4E71-BDC1-F64DC7EC91FF}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{6436B735-B954-4E71-BDC1-F64DC7EC91FF}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{6436B735-B954-4E71-BDC1-F64DC7EC91FF}.Release|iPhone.ActiveCfg = Release|iPhone
+		{6436B735-B954-4E71-BDC1-F64DC7EC91FF}.Release|iPhone.Build.0 = Release|iPhone
+		{6436B735-B954-4E71-BDC1-F64DC7EC91FF}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{6436B735-B954-4E71-BDC1-F64DC7EC91FF}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = RecipesAndPrinting\RecipesAndPrinting.csproj
+	EndGlobalSection
+EndGlobal
