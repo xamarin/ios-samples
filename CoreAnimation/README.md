@@ -1,10 +1,12 @@
 Core Animation
-=================
+==============
 
-This sample illustrates how to use core animation in MonoTouch. It covers View Animations with both animation blocks and block animations, as well as advanced layer animations, and view transitions. 
+This sample illustrates how to use core animation in MonoTouch. It covers View
+Animations with both animation blocks and block animations, as well as advanced
+layer animations, and view transitions.
 
 License
-=======
+-------
 
 The samples are licensed under the MIT X11 license:
 
@@ -27,6 +29,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 Authors
-=======
+-------
 
 Bryan Costanich
