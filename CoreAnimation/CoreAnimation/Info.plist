@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>Capt. Frames</string>
+	<string>Animation</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Images/Icons/57_icon.png</string>
@@ -15,12 +15,10 @@
 		<string>Images/Icons/512_icon.png</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>3.0</string>
-	<key>NSMainNibFile</key>
-	<string>MainWindow</string>
+	<string>3.2</string>
 	<key>UIDeviceFamily</key>
 	<array>
-		<string>1</string>
+		<string>2</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -28,6 +26,11 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 </dict>
 </plist>

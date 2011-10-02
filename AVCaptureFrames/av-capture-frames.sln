@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "av-capture-frames", "av-capture-frames.csproj", "{03B4BFB8-0CBB-4A21-805C-2614FA8FE489}"
 EndProject
 Global
