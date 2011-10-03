@@ -1,5 +1,5 @@
 APPDIR = MonoCatalog.app
-EXE = monocatalog.exe
+EXE = bin/monocatalog.exe
 APP = $(APPDIR)/monocatalog
 
 CSFILES = \
@@ -77,4 +77,4 @@ include ../Make.common
 
 xcodeproj:
 	mkdir -p xcode/MonoCatalog
-	$(MTOUCH) -nostrip -v -icon=Icon.png -bundleid=com.mono-project.monocatalog -xcode xcode/MonoCatalog -res:xibs/AlertsViewController.xib -res:xibs/ImagesViewController.xib -res=xibs/SearchBarController.xib -res=xibs/TextViewController.xib -res=xibs/WebViewController.xib -res=xibs/ButtonsViewController.xib -res=xibs/MainWindow.xib -res=xibs/SegmentViewController.xib -res=xibs/ToolbarViewController.xib -res=xibs/ControlsViewController.xib -res=xibs/PickerViewController.xib -res=xibs/TextFieldController.xib -res=xibs/TransitionViewController.xib -res=images/12-6AM.png -res=images/6-12PM.png -res=images/blueButton.png -res=images/scene2.jpg -res=images/scene5.jpg -res=images/segment_tools.png -res=images/yellowslide.png -res=images/12-6PM.png -res=images/Icon.png -res=images/orangeslide.png -res=images/scene3.jpg -res=images/segment_check.png -res=images/slider_ball.png -res=images/6-12AM.png -res=images/UIButton_custom.png -res=images/scene1.jpg -res=images/scene4.jpg -res=images/segment_search.png -res=images/whiteButton.png monocatalog.exe -res=xibs/AddressBookController.xib
+	$(MTOUCH) -nostrip -v -icon=Icon.png -bundleid=com.mono-project.monocatalog -xcode xcode/MonoCatalog -res:xibs/AlertsViewController.xib -res:xibs/ImagesViewController.xib -res=xibs/SearchBarController.xib -res=xibs/TextViewController.xib -res=xibs/WebViewController.xib -res=xibs/ButtonsViewController.xib -res=xibs/MainWindow.xib -res=xibs/SegmentViewController.xib -res=xibs/ToolbarViewController.xib -res=xibs/ControlsViewController.xib -res=xibs/PickerViewController.xib -res=xibs/TextFieldController.xib -res=xibs/TransitionViewController.xib -res=images/12-6AM.png -res=images/6-12PM.png -res=images/blueButton.png -res=images/scene2.jpg -res=images/scene5.jpg -res=images/segment_tools.png -res=images/yellowslide.png -res=images/12-6PM.png -res=images/Icon.png -res=images/orangeslide.png -res=images/scene3.jpg -res=images/segment_check.png -res=images/slider_ball.png -res=images/6-12AM.png -res=images/UIButton_custom.png -res=images/scene1.jpg -res=images/scene4.jpg -res=images/segment_search.png -res=images/whiteButton.png $(EXE) -res=xibs/AddressBookController.xib
