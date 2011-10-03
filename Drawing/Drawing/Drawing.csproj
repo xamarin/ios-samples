@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3C05703F-0141-4F1A-A986-DFC409288411}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Example_Drawing</RootNamespace>
+    <AssemblyName>Example_Drawing</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchLink>None</MtouchLink>
+    <MtouchI18n />
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchI18n />
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n />
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <IpaPackageName />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n />
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="Screens\" />
+    <Folder Include="Images\Icons\" />
+    <Folder Include="Images\" />
+    <Folder Include="Images\" />
+    <Folder Include="Images\" />
+    <Folder Include="Images\" />
+    <Folder Include="Images\" />
+    <Folder Include="Screens\iPad\" />
+    <Folder Include="Screens\iPad\Home\" />
+    <Folder Include="Screens\iPad\DrawRectVsPath\" />
+    <Folder Include="Screens\iPad\DrawOffScreenUsingCGBitmapContext\" />
+    <Folder Include="Screens\iPad\Layers\" />
+    <Folder Include="Screens\iPad\CoordinatesOnScreen\" />
+    <Folder Include="Screens\iPad\CoordinatesOffScreen\" />
+    <Folder Include="Screens\iPad\OnScreenUncorrectedTextRotation\" />
+    <Folder Include="Screens\iPad\FlagOffScreen\" />
+    <Folder Include="Screens\iPad\Images\" />
+    <Folder Include="Screens\iPad\ColorPattern\" />
+    <Folder Include="Screens\iPad\StencilPattern\" />
+    <Folder Include="Screens\iPad\Shadows\" />
+    <Folder Include="Screens\iPad\HitTesting\" />
+    <Folder Include="Screens\iPad\TouchDrawing\" />
+    <Folder Include="Screens\iPad\FlagOnScreen\" />
+    <Folder Include="Screens\iPad\Transformations\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Icons\29_icon.png" />
+    <Content Include="Images\Icons\50_icon.png" />
+    <Content Include="Images\Icons\57_icon.png" />
+    <Content Include="Images\Icons\58_icon.png" />
+    <Content Include="Images\Icons\72_icon.png" />
+    <Content Include="Images\Icons\114_icon.png" />
+    <Content Include="Images\Icons\512_icon.png" />
+    <Content Include="Default-Landscape~ipad.png" />
+    <Content Include="Default-Portrait~ipad.png" />
+    <Content Include="Default.png" />
+    <Content Include="Default%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="Screens\iPad\Home\HomeScreen.xib.cs">
+      <DependentUpon>HomeScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPad\Home\HomeScreen.xib.designer.cs">
+      <DependentUpon>HomeScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPad\DrawRectVsPath\Controller.cs" />
+    <Compile Include="Screens\iPad\DrawRectVsPath\View.cs" />
+    <Compile Include="Screens\iPad\DrawOffScreenUsingCGBitmapContext\Controller.cs" />
+    <Compile Include="Screens\iPad\Layers\View.cs" />
+    <Compile Include="Screens\iPad\Layers\Controller.cs" />
+    <Compile Include="Screens\iPad\CoordinatesOffScreen\Controller.cs" />
+    <Compile Include="Screens\iPad\CoordinatesOnScreen\Controller.cs" />
+    <Compile Include="Screens\iPad\CoordinatesOnScreen\View.cs" />
+    <Compile Include="Screens\iPad\OnScreenUncorrectedTextRotation\Controller.cs" />
+    <Compile Include="Screens\iPad\OnScreenUncorrectedTextRotation\View.cs" />
+    <Compile Include="Screens\iPad\FlagOffScreen\Controller.cs" />
+    <Compile Include="Screens\iPad\Images\Controller.cs" />
+    <Compile Include="Screens\iPad\ColorPattern\Controller.cs" />
+    <Compile Include="Screens\iPad\StencilPattern\Controller.cs" />
+    <Compile Include="Screens\iPad\Shadows\Controller.cs" />
+    <Compile Include="Screens\iPad\HitTesting\Controller.cs" />
+    <Compile Include="Screens\iPad\HitTesting\View.cs" />
+    <Compile Include="Screens\iPad\TouchDrawing\Controller.cs" />
+    <Compile Include="Screens\iPad\TouchDrawing\View.cs" />
+    <Compile Include="Screens\iPad\FlagOnScreen\Controller.cs" />
+    <Compile Include="Screens\iPad\FlagOnScreen\View.cs" />
+    <Compile Include="Screens\iPad\Transformations\Controller.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Screens\iPad\Home\HomeScreen.xib" />
+    <InterfaceDefinition Include="" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+</Project>
