@@ -264,7 +264,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="584139103"/>
 								<object class="NSCustomResource" key="IBUIHighlightedImage" id="384715260">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">forward.png</string>
+									<string key="NSResourceName">images/forward.png</string>
 								</object>
 								<reference key="IBUIDisabledImage" ref="384715260"/>
 								<reference key="IBUISelectedImage" ref="384715260"/>
