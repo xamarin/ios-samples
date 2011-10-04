@@ -1,5 +1,5 @@
-Core Animation
-=================
+Core Location
+=============
 
 This sample illustrates how to retrieve location, orientation, and velocity
 data from the device using the Core Location API exposed in MonoTouch. It
