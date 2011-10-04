@@ -96,6 +96,18 @@ class QueueStream : Stream {
 	{
 		throw new NotImplementedException ();
 	}
+	
+	protected override void Dispose (bool disposing)
+	{	
+		if(disposing)
+		{
+			readStream.Close();
+			readStream.Dispose();
+			writeStream.Close();
+			writeStream.Dispose();
+		}
+		base.Dispose (disposing);
+	}
 }
 #if TEST
 class Test {
