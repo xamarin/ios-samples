@@ -43,6 +43,7 @@
     <ConsolePause>false</ConsolePause>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <IpaPackageName />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -68,13 +69,13 @@
       <DependentUpon>Touches_ClassicViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\AppDelegate.cs" />
-    <Compile Include="Other Sources\Main.cs" />
+    <Compile Include="OtherSources\Main.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Classes\" />
-    <Folder Include="Other Sources\" />
     <Folder Include="Images\" />
+    <Folder Include="OtherSources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\CyanSquare.png" />

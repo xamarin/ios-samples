@@ -11,6 +11,10 @@
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>Touches_Classic</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<string>1</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
