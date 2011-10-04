@@ -14,6 +14,8 @@
 [MonoTouch.Foundation.Register("TransitionViewController")]
 public partial class TransitionViewController {
 	
+	private MonoTouch.UIKit.UIView __mt_view;
+	
 	#pragma warning disable 0169
 	[MonoTouch.Foundation.Export("curlAction:")]
 	partial void curlAction (MonoTouch.UIKit.UIBarButtonItem sender);
@@ -24,9 +26,11 @@ public partial class TransitionViewController {
 	[MonoTouch.Foundation.Connect("view")]
 	private MonoTouch.UIKit.UIView view {
 		get {
-			return ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+			this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+			return this.__mt_view;
 		}
 		set {
+			this.__mt_view = value;
 			this.SetNativeField("view", value);
 		}
 	}

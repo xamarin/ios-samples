@@ -14,6 +14,7 @@ cycle:
 	cat output error
 
 dev: $(EXTRA_DEPS) device/$(APPDIR)
+	-mkdir bin
 	$(MTOUCH) -bundleid com.novell.monotouch.sample.$(EXE) -dev device/$(APPDIR) -c "iPhone Developer: $(DEVNAME)" $(EXE)
 	for f in $(DATA); do cp $$f device/$(APPDIR); done
 	$(MTOUCH) -installdev device/$(APPDIR)

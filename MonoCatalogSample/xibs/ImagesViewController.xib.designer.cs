@@ -14,6 +14,12 @@
 [MonoTouch.Foundation.Register("ImagesViewController")]
 public partial class ImagesViewController {
 	
+	private MonoTouch.UIKit.UIView __mt_view;
+	
+	private MonoTouch.UIKit.UIImageView __mt_imageView;
+	
+	private MonoTouch.UIKit.UISlider __mt_slider;
+	
 	#pragma warning disable 0169
 	[MonoTouch.Foundation.Export("sliderAction:")]
 	partial void sliderAction (MonoTouch.UIKit.UISlider sender);
@@ -21,9 +27,11 @@ public partial class ImagesViewController {
 	[MonoTouch.Foundation.Connect("view")]
 	private MonoTouch.UIKit.UIView view {
 		get {
-			return ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+			this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+			return this.__mt_view;
 		}
 		set {
+			this.__mt_view = value;
 			this.SetNativeField("view", value);
 		}
 	}
@@ -31,9 +39,11 @@ public partial class ImagesViewController {
 	[MonoTouch.Foundation.Connect("imageView")]
 	private MonoTouch.UIKit.UIImageView imageView {
 		get {
-			return ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("imageView")));
+			this.__mt_imageView = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("imageView")));
+			return this.__mt_imageView;
 		}
 		set {
+			this.__mt_imageView = value;
 			this.SetNativeField("imageView", value);
 		}
 	}
@@ -41,9 +51,11 @@ public partial class ImagesViewController {
 	[MonoTouch.Foundation.Connect("slider")]
 	private MonoTouch.UIKit.UISlider slider {
 		get {
-			return ((MonoTouch.UIKit.UISlider)(this.GetNativeField("slider")));
+			this.__mt_slider = ((MonoTouch.UIKit.UISlider)(this.GetNativeField("slider")));
+			return this.__mt_slider;
 		}
 		set {
+			this.__mt_slider = value;
 			this.SetNativeField("slider", value);
 		}
 	}
