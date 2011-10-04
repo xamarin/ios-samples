@@ -1,5 +1,5 @@
 Core Animation
-=================
+==============
 
 This sample illustrates how to develop multitasking (background execution)
 aware applications in MonoTouch. The AppDelegate class illustrates the
