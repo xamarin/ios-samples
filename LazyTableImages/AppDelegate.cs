@@ -95,7 +95,7 @@ namespace LazyTableImages {
 				
 				// Now handle the result from the WebClient
 				if (e.Error != null) {
-					DisplayError ("Warning", "The rss feed could not be downloaded");
+					DisplayError ("Warning", "The rss feed could not be downloaded: " + e.Error.Message);
 				} else {
 					try {
 						RootController.Apps.Clear ();
