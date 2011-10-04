@@ -1,4 +1,9 @@
-
+//
+// Shows how to use the MonoTouch.Security stack on iOS5 to
+// securely store a password on the KeyChain.
+//
+// This API is not particularly user-friendly
+//
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +37,6 @@ namespace Keychain
 				Console.WriteLine ("Key existed, the password is: {0}", match.ValueData.ToString ());
 			else
 				Console.WriteLine ("Key not found, code: {0}", res);
-			
 			
 			var s = new SecRecord (SecKind.GenericPassword) {
 				Label = "Item Label",
