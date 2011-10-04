@@ -139,9 +139,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.png" />
-    <Content Include="Default%402x.png" />
-    <Content Include="Default-Portrait.png" />
-    <Content Include="Default-Landscape.png" />
     <Content Include="Images\Icons\29_icon.png" />
     <Content Include="Images\Icons\50_icon.png" />
     <Content Include="Images\Icons\57_icon.png" />
