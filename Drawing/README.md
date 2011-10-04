@@ -1,10 +1,12 @@
 Core Animation
 =================
 
-This sample illustrates how to use Core Graphics in MonoTouch. It covers on and off screen graphics contexts, layers, transformations, text, images, stencils, patterns, shadows, and more.
+This sample illustrates how to use Core Graphics in MonoTouch. It covers on
+and off screen graphics contexts, layers, transformations, text, images,
+stencils, patterns, shadows, and more.
 
 License
-=======
+-------
 
 The samples are licensed under the MIT X11 license:
 
@@ -27,6 +29,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 Authors
-=======
+-------
 
 Bryan Costanich
