@@ -16,7 +16,7 @@ namespace SysSound {
 		}
 		
 		//holds the sound to play
-		private SystemSound _Sound;
+		private SystemSound Sound;
 		
 		//prepares the audio
 		public override void ViewDidLoad () {
@@ -26,17 +26,16 @@ namespace SysSound {
 			AudioSession.Initialize();
 			
 			//load the sound
-			var url = NSBundle.MainBundle.URLForResource("tap", "aif");
-			this._Sound = SystemSound.FromFile(url);
+			Sound = SystemSound.FromFile("Sounds/tap.aif");
     		
 		}
 		
 		partial void playSystemSound(NSObject sender) {
-			this._Sound.PlaySystemSound(); 
+			Sound.PlaySystemSound(); 
 		}
 		
 		partial void playAlertSound (NSObject sender) {
-			this._Sound.PlayAlertSound();
+			Sound.PlayAlertSound();
 		}
 
 		partial void vibrate (NSObject sender) {
