@@ -1,10 +1,14 @@
 Core Animation
 =================
 
-This sample illustrates how to retrieve location, orientation, and velocity data from the device using the Core Location API exposed in MonoTouch. It covers initializing the CLLocationManager, configuring update frequency and accuracy, and receiving updates using both the event and delegate pattern. It also illustrates how to get retrieve "Distance To" information.
+This sample illustrates how to retrieve location, orientation, and velocity
+data from the device using the Core Location API exposed in MonoTouch. It
+covers initializing the CLLocationManager, configuring update frequency and
+accuracy, and receiving updates using both the event and delegate pattern.
+It also illustrates how to retrieve "Distance To" information.
 
 License
-=======
+-------
 
 The samples are licensed under the MIT X11 license:
 
@@ -27,6 +31,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 Authors
-=======
+-------
 
 Bryan Costanich
