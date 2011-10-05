@@ -34,9 +34,9 @@ namespace Keychain
 			SecStatusCode res;
 			var match = SecKeyChain.QueryAsRecord (rec, out res);
 			if (res == SecStatusCode.Success)
-				Console.WriteLine ("Key existed, the password is: {0}", match.ValueData.ToString ());
+				DisplayMessage ("Key found, password is: {0}", match.ValueData);
 			else
-				Console.WriteLine ("Key not found, code: {0}", res);
+				DisplayMessage ("Key not found: {0}", res);
 			
 			var s = new SecRecord (SecKind.GenericPassword) {
 				Label = "Item Label",
@@ -50,6 +50,9 @@ namespace Keychain
 			
 			var err = SecKeyChain.Add (s);
 			
+			if (err != SecStatusCode.Success)
+				DisplayMessage ("Error adding record: {0}", err);
+			
 			window.MakeKeyAndVisible ();
 			
 			return true;
@@ -58,6 +61,11 @@ namespace Keychain
 		// This method is required in iPhoneOS 3.0
 		public override void OnActivated (UIApplication application)
 		{
+		}
+		
+		void DisplayMessage (string message, params object[] format)
+		{
+			new UIAlertView ("Keychain", string.Format (message, format), null, "OK", null).Show ();
 		}
 	}
 }
