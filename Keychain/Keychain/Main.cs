@@ -50,7 +50,7 @@ namespace Keychain
 			
 			var err = SecKeyChain.Add (s);
 			
-			if (err != SecStatusCode.Success)
+			if (err != SecStatusCode.Success && err != SecStatusCode.DuplicateItem)
 				DisplayMessage ("Error adding record: {0}", err);
 			
 			window.MakeKeyAndVisible ();
