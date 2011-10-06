@@ -79,7 +79,7 @@ namespace LazyTableImages {
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 			
 			// Retrieve the rss feed from the server
-			var downloader = new WebClient ();
+			var downloader = new GzipWebClient ();
 			downloader.DownloadStringCompleted += DownloadCompleted;
 			downloader.DownloadStringAsync (RssFeedUrl);
 		}

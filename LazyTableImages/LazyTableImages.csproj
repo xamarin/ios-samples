@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="App.cs" />
     <Compile Include="RssParser.cs" />
+    <Compile Include="GzipWebClient.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="RootViewController.xib" />
