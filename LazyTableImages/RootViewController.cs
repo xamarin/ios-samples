@@ -154,7 +154,7 @@ namespace LazyTableImages {
 				DownloadTask = DownloadTask.ContinueWith (prevTask => {
 					try {
 						UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
-						using (var c = new WebClient ())
+						using (var c = new GzipWebClient ())
 							data = c.DownloadData (app.ImageUrl);
 					} finally {
 						UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
