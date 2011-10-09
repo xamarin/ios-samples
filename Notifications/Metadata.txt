@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>2e06dea9-3e3f-47a7-a979-193dd7ed0e05</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Notifications</Tags>
+</SampleMetadata>

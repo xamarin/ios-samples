@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifications", "Notifications\Notifications.csproj", "{C80CDF6C-CE6D-4B55-97E0-497BC47797BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C80CDF6C-CE6D-4B55-97E0-497BC47797BF}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C80CDF6C-CE6D-4B55-97E0-497BC47797BF}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C80CDF6C-CE6D-4B55-97E0-497BC47797BF}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C80CDF6C-CE6D-4B55-97E0-497BC47797BF}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C80CDF6C-CE6D-4B55-97E0-497BC47797BF}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C80CDF6C-CE6D-4B55-97E0-497BC47797BF}.Release|iPhone.Build.0 = Release|iPhone
+		{C80CDF6C-CE6D-4B55-97E0-497BC47797BF}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C80CDF6C-CE6D-4B55-97E0-497BC47797BF}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Notifications\Notifications.csproj
+	EndGlobalSection
+EndGlobal
