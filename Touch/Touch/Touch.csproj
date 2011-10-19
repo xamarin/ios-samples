@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C9ED2A86-1656-43C7-998B-CA78D2DAC2E6}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Example_Touch</RootNamespace>
+    <AssemblyName>Example_Touch</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>true</MtouchDebug>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchSdkVersion>3.2</MtouchSdkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>true</MtouchDebug>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchSdkVersion>3.2</MtouchSdkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchSdkVersion>3.2</MtouchSdkVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="Images\Icons\" />
+    <Folder Include="Screens\" />
+    <Folder Include="Screens\iPhone\" />
+    <Folder Include="Screens\iPhone\Home\" />
+    <Folder Include="Screens\iPhone\GestureRecognizers\" />
+    <Folder Include="Screens\iPhone\SimpleTouch\" />
+    <Folder Include="Code\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\DragMe.png" />
+    <Content Include="Images\DragMe%402x.png" />
+    <Content Include="Images\TouchMe.png" />
+    <Content Include="Images\TouchMe%402x.png" />
+    <Content Include="Images\DoubleTapMe_Highlighted.png" />
+    <Content Include="Images\DoubleTapMe_Highlighted%402x.png" />
+    <Content Include="Images\DoubleTapMe.png" />
+    <Content Include="Images\DoubleTapMe%402x.png" />
+    <Content Include="Images\CheckBox_Checked.png" />
+    <Content Include="Images\CheckBox_Checked%402x.png" />
+    <Content Include="Images\CheckBox_Start.png" />
+    <Content Include="Images\CheckBox_Start%402x.png" />
+    <Content Include="Images\CheckBox_Unchecked.png" />
+    <Content Include="Images\CheckBox_Unchecked%402x.png" />
+    <Content Include="Images\Icons\29_icon.png" />
+    <Content Include="Images\Icons\50_icon.png" />
+    <Content Include="Images\Icons\57_icon.png" />
+    <Content Include="Images\Icons\58_icon.png" />
+    <Content Include="Images\Icons\72_icon.png" />
+    <Content Include="Images\Icons\114_icon.png" />
+    <Content Include="Images\Icons\512_icon.png" />
+    <Content Include="Default-Landscape~ipad.png" />
+    <Content Include="Default-Portrait~ipad.png" />
+    <Content Include="Default.png" />
+    <Content Include="Default%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="Screens\iPhone\Home\Home_iPhone.xib.cs">
+      <DependentUpon>Home_iPhone.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Home\Home_iPhone.xib.designer.cs">
+      <DependentUpon>Home_iPhone.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\SimpleTouch\Touches_iPhone.xib.cs">
+      <DependentUpon>Touches_iPhone.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\SimpleTouch\Touches_iPhone.xib.designer.cs">
+      <DependentUpon>Touches_iPhone.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\GestureRecognizers\GestureRecognizers_iPhone.xib.cs">
+      <DependentUpon>GestureRecognizers_iPhone.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\GestureRecognizers\GestureRecognizers_iPhone.xib.designer.cs">
+      <DependentUpon>GestureRecognizers_iPhone.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Code\CheckmarkGestureRecognizer.cs" />
+    <Compile Include="Screens\iPhone\GestureRecognizers\CustomCheckmarkGestureRecognizer_iPhone.xib.cs">
+      <DependentUpon>CustomCheckmarkGestureRecognizer_iPhone.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\GestureRecognizers\CustomCheckmarkGestureRecognizer_iPhone.xib.designer.cs">
+      <DependentUpon>CustomCheckmarkGestureRecognizer_iPhone.xib</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Screens\iPhone\Home\Home_iPhone.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\SimpleTouch\Touches_iPhone.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\GestureRecognizers\GestureRecognizers_iPhone.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\GestureRecognizers\CustomCheckmarkGestureRecognizer_iPhone.xib" xmlns="" />
+  </ItemGroup>
+</Project>
