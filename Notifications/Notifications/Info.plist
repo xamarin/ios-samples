@@ -15,7 +15,7 @@
 		<string>Images/Icons/512_icon.png</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>4.0</string>
+	<string>5.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<string>1</string>

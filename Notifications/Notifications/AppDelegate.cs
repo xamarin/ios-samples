@@ -26,7 +26,7 @@ namespace Example_Notifications
 		
 			home = new Screens.iPhone.Home.Home_iPhone();
 			home.View.Frame = new System.Drawing.RectangleF (0, UIApplication.SharedApplication.StatusBarFrame.Height, UIScreen.MainScreen.ApplicationFrame.Width, UIScreen.MainScreen.ApplicationFrame.Height);			
-			window.AddSubview(home.View);
+			window.RootViewController = home;
 			
 			// check for a notification
 			if(options != null) {
