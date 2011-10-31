@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello_iPad", "Hello_iPad\Hello_iPad.csproj", "{822346B5-6805-42FD-9B6A-65446A688E63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{822346B5-6805-42FD-9B6A-65446A688E63}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{822346B5-6805-42FD-9B6A-65446A688E63}.Debug|iPhone.Build.0 = Debug|iPhone
+		{822346B5-6805-42FD-9B6A-65446A688E63}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{822346B5-6805-42FD-9B6A-65446A688E63}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{822346B5-6805-42FD-9B6A-65446A688E63}.Release|iPhone.ActiveCfg = Release|iPhone
+		{822346B5-6805-42FD-9B6A-65446A688E63}.Release|iPhone.Build.0 = Release|iPhone
+		{822346B5-6805-42FD-9B6A-65446A688E63}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{822346B5-6805-42FD-9B6A-65446A688E63}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Hello_iPad\Hello_iPad.csproj
+	EndGlobalSection
+EndGlobal
