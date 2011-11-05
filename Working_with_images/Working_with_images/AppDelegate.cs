@@ -15,7 +15,13 @@ namespace Working_with_images
     public partial class AppDelegate : UIApplicationDelegate
     {
         // class-level declarations
-        UIWindow window;
+        UIWindow window;   
+        
+        // Added contoller. As of MonoTouch 5.0.2, applications are expected to 
+        // have a root view controller at the end of application launch
+
+        UIViewController controller;
+        UILabel label;
          
         /// <summary>
         /// This method is invoked when the application has loaded and is ready to run. In this 
@@ -30,8 +36,16 @@ namespace Working_with_images
             // create a new window instance based on the screen size
             window = new UIWindow (UIScreen.MainScreen.Bounds);
             
-            // If you have defined a view, add it here:
-            // window.AddSubview (navigationController.View);
+            controller = new UIViewController ();
+            controller.View.BackgroundColor = UIColor.White;
+            
+            label = new UILabel();
+            label.Frame = new System.Drawing.RectangleF(10 ,10, UIScreen.MainScreen.Bounds.Width, 50);
+            label.Text = "Hello, Working with Images";
+            
+            controller.View.AddSubview(label);
+            
+            window.RootViewController = controller;
                  
             // make the window visible
             window.MakeKeyAndVisible ();
