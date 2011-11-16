@@ -1,4 +1,10 @@
 Keychain
 ========
 
-This sample demonstrates simple interaction with the iOS keychain.
+An example on using Apple's keychain storage for storing
+information securely within an application.
+
+Authors
+-------
+
+Miguel de Icaza

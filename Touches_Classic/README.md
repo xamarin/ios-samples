@@ -1,7 +1,7 @@
 Touches
 =======
 
-An example how to handle touches to move multiple objects.
+An example on how to handle touches to move multiple objects.
 Touches_Classic demonstrates how to use the UIResponder events
 
 Loosely based on Apple's Touches example:

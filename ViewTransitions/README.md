@@ -1,7 +1,7 @@
-ViewTransitions
-===============
+View Transitions
+================
 
-An example how to use Core Animation transitions.
+An example on how to use Core Animation transitions.
 
 Requires
 --------

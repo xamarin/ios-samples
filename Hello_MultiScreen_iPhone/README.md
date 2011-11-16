@@ -1,4 +1,4 @@
-Hello Multi-screen iPhone
+Hello Multi-Screen iPhone
 =========================
 
 This sample serves as an introduction to the primary pattern used

@@ -1,7 +1,7 @@
-OpenGL Paint using Low Level OpenGL
-===================================
+Low-Level OpenGL Painting
+=========================
 
-An example on using the low level OpenGL classes
+An example on using the low-level OpenGL classes
 to create a touch painting application.
 
 Loosely based on Apple's GLPaint example:

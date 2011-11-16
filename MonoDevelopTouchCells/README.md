@@ -1,7 +1,7 @@
-MonoDevelopTouchCells
-=====================
+Touch Cells
+===========
 
-An example showing using the a UITableView and displaying a custom cell within it.
+An example showing using a UITableView and displaying a custom cell within it.
 
 Preview
 -------

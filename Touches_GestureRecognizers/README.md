@@ -1,7 +1,7 @@
 Gesture Recognizers
 ===================
 
-An example how to handle touches to move multiple objects.
+An example on how to handle touches to move multiple objects.
 Touches_GestureRecognizers demostrate how to do it with UIGestureRecognizers.
 
 Loosely based on Apple's Touches example:
