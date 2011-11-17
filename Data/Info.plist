@@ -6,10 +6,6 @@
 	<string>Data</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Images/Icon/Xamarin-57x57.png</string>
-		<string>Images/Icon/Xamarin-114x114.png</string>
-		<string>Images/Icon/Xamarin-29x29.png</string>
-		<string>Images/Icon/Xamarin-58x58.png</string>
 		<string>Images/Icon/57_icon.png</string>
 		<string>Images/Icon/114_icon.png</string>
 		<string>Images/Icon/72_icon.png</string>

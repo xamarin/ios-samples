@@ -52,6 +52,11 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
+<<<<<<< HEAD
+=======
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchI18n />
+>>>>>>> fixed plist icon issues in data sample
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
