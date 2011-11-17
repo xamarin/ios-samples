@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuartzSample", "QuartzSample\QuartzSample.csproj", "{7139C08D-67A4-4C35-8987-BF37E4E306EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuartzSample", "QuartzSample.csproj", "{7139C08D-67A4-4C35-8987-BF37E4E306EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

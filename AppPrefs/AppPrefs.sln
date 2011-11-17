@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppPrefs", "AppPrefs\AppPrefs.csproj", "{FBCE3A88-42CC-481E-8190-1DD5154C646D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppPrefs", "AppPrefs.csproj", "{FBCE3A88-42CC-481E-8190-1DD5154C646D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

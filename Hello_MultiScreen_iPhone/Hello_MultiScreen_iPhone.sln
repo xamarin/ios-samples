@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello_MultiScreen_iPhone", "Hello_MultiScreen_iPhone\Hello_MultiScreen_iPhone.csproj", "{A10944A3-80E8-4A8D-A6F5-1A10606AAE60}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello_MultiScreen_iPhone", "Hello_MultiScreen_iPhone.csproj", "{A10944A3-80E8-4A8D-A6F5-1A10606AAE60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewTransitions", "ViewTransitions\ViewTransitions.csproj", "{4A3269EF-A9BC-406F-BA04-3B4BED7CE6C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewTransitions", "ViewTransitions.csproj", "{4A3269EF-A9BC-406F-BA04-3B4BED7CE6C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

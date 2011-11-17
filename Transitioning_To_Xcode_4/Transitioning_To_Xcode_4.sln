@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transitioning_To_Xcode_4", "Transitioning_To_Xcode_4\Transitioning_To_Xcode_4.csproj", "{7CC074CC-6520-4693-8670-CD533BCFD195}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transitioning_To_Xcode_4", "Transitioning_To_Xcode_4.csproj", "{7CC074CC-6520-4693-8670-CD533BCFD195}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

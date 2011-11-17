@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGLESSample", "OpenGLESSample\OpenGLESSample.csproj", "{E17580BA-3BE1-4E77-8449-ACB4F7FBFE17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGLESSample", "OpenGLESSample.csproj", "{E17580BA-3BE1-4E77-8449-ACB4F7FBFE17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drawing", "Drawing\Drawing.csproj", "{3C05703F-0141-4F1A-A986-DFC409288411}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drawing", "Drawing.csproj", "{3C05703F-0141-4F1A-A986-DFC409288411}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreAnimation", "CoreAnimation\CoreAnimation.csproj", "{98F6ED66-B4E9-45F2-948E-5DCF19E18B24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreAnimation", "CoreAnimation.csproj", "{98F6ED66-B4E9-45F2-948E-5DCF19E18B24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tabbed_Images", "Tabbed_Images\Tabbed_Images.csproj", "{BB12EF41-7C00-443C-B8C1-734ECD648B71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tabbed_Images", "Tabbed_Images.csproj", "{BB12EF41-7C00-443C-B8C1-734ECD648B71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Working_with_images", "Working_with_images\Working_with_images.csproj", "{A26C5AFA-9170-4009-84FA-DFFDBBB72F86}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Working_with_images", "Working_with_images.csproj", "{A26C5AFA-9170-4009-84FA-DFFDBBB72F86}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

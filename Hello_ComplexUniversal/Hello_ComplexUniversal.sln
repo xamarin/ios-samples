@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello_ComplexUniversal", "Hello_ComplexUniversal\Hello_ComplexUniversal.csproj", "{0E42ADD6-34AD-49EA-BCEC-013A12CD04D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello_ComplexUniversal", "Hello_ComplexUniversal.csproj", "{0E42ADD6-34AD-49EA-BCEC-013A12CD04D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

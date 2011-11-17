@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundExecution", "BackgroundExecution\BackgroundExecution.csproj", "{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundExecution", "BackgroundExecution.csproj", "{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

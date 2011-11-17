@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touches_Classic", "Touches_Classic\Touches_Classic.csproj", "{2099AE48-7732-405F-99E3-26E021ABEBC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touches_Classic", "Touches_Classic.csproj", "{2099AE48-7732-405F-99E3-26E021ABEBC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

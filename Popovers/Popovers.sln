@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Popovers", "Popovers\Popovers.csproj", "{057068E0-A1D1-4919-A5E6-69F7FBB49492}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Popovers", "Popovers.csproj", "{057068E0-A1D1-4919-A5E6-69F7FBB49492}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

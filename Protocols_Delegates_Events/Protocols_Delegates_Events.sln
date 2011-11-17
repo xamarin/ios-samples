@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protocols_Delegates_Events", "Protocols_Delegates_Events\Protocols_Delegates_Events.csproj", "{28A5CDE5-FEE3-4513-BEBF-CEED65DC744D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protocols_Delegates_Events", "Protocols_Delegates_Events.csproj", "{28A5CDE5-FEE3-4513-BEBF-CEED65DC744D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

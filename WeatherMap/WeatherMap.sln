@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherMap", "WeatherMap\WeatherMap.csproj", "{A9F63BE7-8999-4B98-9080-4AD089CC06DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherMap", "WeatherMap.csproj", "{A9F63BE7-8999-4B98-9080-4AD089CC06DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

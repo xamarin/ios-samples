@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLocation", "CoreLocation\CoreLocation.csproj", "{6EC86F9F-D4AE-4BFA-8936-11B3ECD60B01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreLocation", "CoreLocation.csproj", "{6EC86F9F-D4AE-4BFA-8936-11B3ECD60B01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

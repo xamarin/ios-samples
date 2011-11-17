@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesAndPrinting", "RecipesAndPrinting\RecipesAndPrinting.csproj", "{6436B735-B954-4E71-BDC1-F64DC7EC91FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipesAndPrinting", "RecipesAndPrinting.csproj", "{6436B735-B954-4E71-BDC1-F64DC7EC91FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
