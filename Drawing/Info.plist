@@ -6,12 +6,6 @@
 	<string>Drawing</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Images/Icons/Apress-57x57.png</string>
-		<string>Images/Icons/Apress-114x114.png</string>
-		<string>Images/Icons/Apress-72x72.png</string>
-		<string>Images/Icons/Apress-29x29.png</string>
-		<string>Images/Icons/Apress-58x58.png</string>
-		<string>Images/Icons/Apress-50x50.png</string>
 		<string>Images/Icons/72_icon.png</string>
 		<string>Images/Icons/50_icon.png</string>
 		<string>Images/Icons/29_icon.png</string>
