@@ -34,6 +34,8 @@ namespace StreamingAudio
 		int queuedBufferCount = 0;
 		// Current Filestream Position - if we don't keep track we don't know when to push the last uncompleted buffer
 		long currentByteCount = 0;
+		//Used to trigger a dump of the last buffer.
+		bool lastPacket;
 		
 		public event EventHandler Finished;
 		
@@ -133,8 +135,9 @@ namespace StreamingAudio
 		/// <summary>
 		/// Main methode to kick off the streaming, just send the bytes to this method
 		/// </summary>
-		public void ParseBytes (byte [] buffer, int count, bool discontinuity)
+		public void ParseBytes (byte [] buffer, int count, bool discontinuity,bool lastPacket)
 		{
+			this.lastPacket = lastPacket;
 			fileStream.ParseBytes (buffer, 0, count, discontinuity);
 		}
 		
@@ -212,7 +215,7 @@ namespace StreamingAudio
 #endif
 			}
 			
-			if (currentByteCount == fileStream.DataByteCount)
+			if ((fileStream != null && currentByteCount == fileStream.DataByteCount) || lastPacket)
 				EnqueueBuffer ();
 		}
 		

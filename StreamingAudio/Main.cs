@@ -146,7 +146,7 @@ namespace StreamingAudio
 				using (player = new StreamingPlayback ()){
 					while ((n = inputStream.Read (buffer, 0, buffer.Length)) != 0){
 						l += n;
-						player.ParseBytes (buffer, n, false);
+						player.ParseBytes (buffer, n, false, l == (int)response.ContentLength);
 						
 						InvokeOnMainThread (delegate {
 							progress.Progress = l / (float) response.ContentLength;
@@ -169,7 +169,7 @@ namespace StreamingAudio
 			// Restore the default AudioSession, this allows the iPhone
 			// to go to sleep now that we are done playing the audio
 			//
-			AudioSession.Category = AudioSessionCategory.SoloAmbientSound;
+			AudioSession.Category = AudioSessionCategory.MediaPlayback;
 			if (pushed){
 				viewController.PopToRootViewController (true);
 				status.Text = "Finished playback";
