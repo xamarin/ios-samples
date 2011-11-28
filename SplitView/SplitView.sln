@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SplitView", "SplitView\SplitView.csproj", "{293DB35C-E6F7-4465-AA99-5111596881CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{293DB35C-E6F7-4465-AA99-5111596881CC}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{293DB35C-E6F7-4465-AA99-5111596881CC}.Debug|iPhone.Build.0 = Debug|iPhone
+		{293DB35C-E6F7-4465-AA99-5111596881CC}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{293DB35C-E6F7-4465-AA99-5111596881CC}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{293DB35C-E6F7-4465-AA99-5111596881CC}.Release|iPhone.ActiveCfg = Release|iPhone
+		{293DB35C-E6F7-4465-AA99-5111596881CC}.Release|iPhone.Build.0 = Release|iPhone
+		{293DB35C-E6F7-4465-AA99-5111596881CC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{293DB35C-E6F7-4465-AA99-5111596881CC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SplitView\SplitView.csproj
+	EndGlobalSection
+EndGlobal
