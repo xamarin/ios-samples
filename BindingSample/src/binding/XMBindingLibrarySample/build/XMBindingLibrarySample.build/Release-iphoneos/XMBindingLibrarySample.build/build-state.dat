@@ -1,0 +1,246 @@
+TXMBindingLibrarySample
+v4
+r1
+cCheck dependencies
+cProcessPCH /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-cihpbyspokpioxbowhteujpwgwfz/XMBindingLibrarySample-Prefix.pch.pth XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch normal armv6 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMBindingLibrarySample.o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m normal armv6 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMUtilities.o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.m normal armv6 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMCustomView.o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.m normal armv6 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cLibtool /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/libXMBindingLibrarySample.a normal armv6
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk
+c000000004E8B65C30000000000000110
+t1317758403
+s272
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004E72F3440000000000529540
+t1316156228
+s5412160
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/QuartzCore.framework/QuartzCore
+c000000004E72F8910000000000173260
+t1316157585
+s1520224
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004E7808C7000000000078BE50
+t1316489415
+s7913040
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch
+c000000004F18483D00000000000000FB
+t1326991421
+s251
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.h
+c000000004F1790A400000000000000FE
+t1326944420
+s254
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m
+c000000004F1790A40000000000000173
+t1326944420
+s371
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.h
+c000000004F17B6AC0000000000000198
+t1326954156
+s408
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.m
+c000000004F189F7300000000000005FE
+t1327013747
+s1534
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomViewDelegate.h
+c000000004F1848A60000000000000121
+t1326991526
+s289
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.h
+c000000004F17C41600000000000001D6
+t1326957590
+s470
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.m
+c000000004F17C32800000000000005A9
+t1326957352
+s1449
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/libXMBindingLibrarySample.a
+t2
+s0
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMBindingLibrarySample.LinkFileList
+c000000004F1B8DD70000000000000270
+t1327205847
+s624
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMBindingLibrarySample.o
+t2
+s0
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMCustomView.o
+t2
+s0
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMUtilities.o
+t2
+s0
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMBindingLibrarySample.LinkFileList
+c000000004F1B8DD10000000000000270
+t1327205841
+s624
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMBindingLibrarySample.o
+t2
+s0
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMCustomView.o
+t2
+s0
+
+N/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMUtilities.o
+t2
+s0
+
+N/var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-cihpbyspokpioxbowhteujpwgwfz/XMBindingLibrarySample-Prefix.pch.pth
+t2
+s0
+
+N/var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-dgskiwuzppoylvapzfobrpkoedbw/XMBindingLibrarySample-Prefix.pch.pth
+t2
+s0
+
+CCheck dependencies
+r0
+lSLF04#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies28b7bd57c5cbb441^bf43c957c5cbb441^---0#1#0#--18"Check dependencies36"FD2BD462-4D90-4AE1-B908-01610218F74A-
+
+CCompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMBindingLibrarySample.o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m normal armv6 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s348898648.108839
+e348898648.199608
+r1
+xCompileC
+xbuild/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMBindingLibrarySample.o
+x/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m
+xnormal
+xarmv6
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF04#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection143"Compile /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m8e021c58c5cbb441^b3293358c5cbb441^---0#0#0#-19%DVTDocumentLocation2@151"file://localhost/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m0000000000000000^3627"CompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMBindingLibrarySample.o XMBindingLibrarySample/XMBindingLibrarySample.m normal armv6 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/nginx/1.0.5/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/clang -x objective-c -arch armv6 -fmessage-length=0 -fdiagnostics-print-source-range-info -fdiagnostics-show-category=id -fdiagnostics-parseable-fixits -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wmissing-prototypes -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk -gdwarf-2 -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-generated-files.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-own-target-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-all-target-headers.hmap -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-project-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/include -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources/armv6 -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources -F/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos -include /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-cihpbyspokpioxbowhteujpwgwfz/XMBindingLibrarySample-Prefix.pch -MMD -MT dependencies -MF /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMBindingLibrarySample.d -c /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m -o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMBindingLibrarySample.o36"52DAABB7-414D-4F10-AD19-4FC841574F12-
+
+CCompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMCustomView.o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.m normal armv6 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s348898648.201042
+e348898648.298664
+r1
+xCompileC
+xbuild/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMCustomView.o
+x/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.m
+xnormal
+xarmv6
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF04#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection110"Compile /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.m4da13358c5cbb441^899a4c58c5cbb441^---0#0#0#-19%DVTDocumentLocation2@118"file://localhost/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.m0000000000000000^3531"CompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMCustomView.o XMCustomView.m normal armv6 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/nginx/1.0.5/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/clang -x objective-c -arch armv6 -fmessage-length=0 -fdiagnostics-print-source-range-info -fdiagnostics-show-category=id -fdiagnostics-parseable-fixits -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wmissing-prototypes -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk -gdwarf-2 -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-generated-files.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-own-target-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-all-target-headers.hmap -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-project-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/include -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources/armv6 -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources -F/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos -include /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-cihpbyspokpioxbowhteujpwgwfz/XMBindingLibrarySample-Prefix.pch -MMD -MT dependencies -MF /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMCustomView.d -c /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.m -o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMCustomView.o36"FF4934D1-64EA-428E-9A09-8CBDCDF6B9E1-
+
+CCompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMUtilities.o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.m normal armv6 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s348898648.109422
+e348898648.206094
+r1
+xCompileC
+xbuild/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMUtilities.o
+x/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.m
+xnormal
+xarmv6
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF04#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection109"Compile /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.m971f1c58c5cbb441^24d03458c5cbb441^---0#0#0#-19%DVTDocumentLocation2@117"file://localhost/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.m0000000000000000^3526"CompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMUtilities.o XMUtilities.m normal armv6 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/nginx/1.0.5/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/clang -x objective-c -arch armv6 -fmessage-length=0 -fdiagnostics-print-source-range-info -fdiagnostics-show-category=id -fdiagnostics-parseable-fixits -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wmissing-prototypes -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk -gdwarf-2 -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-generated-files.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-own-target-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-all-target-headers.hmap -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-project-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/include -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources/armv6 -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources -F/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos -include /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-cihpbyspokpioxbowhteujpwgwfz/XMBindingLibrarySample-Prefix.pch -MMD -MT dependencies -MF /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMUtilities.d -c /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.m -o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMUtilities.o36"C6FC3FB9-707B-401C-B2F5-4B5BAFEA18F4-
+
+CCompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMBindingLibrarySample.o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s348898646.385760
+e348898646.786550
+r1
+xCompileC
+xbuild/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMBindingLibrarySample.o
+x/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF04#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection143"Compile /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.md4f36256c5cbb441^bb5fc956c5cbb441^---0#0#0#-19%DVTDocumentLocation2@151"file://localhost/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m0000000000000000^3627"CompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMBindingLibrarySample.o XMBindingLibrarySample/XMBindingLibrarySample.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/nginx/1.0.5/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=0 -fdiagnostics-print-source-range-info -fdiagnostics-show-category=id -fdiagnostics-parseable-fixits -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wmissing-prototypes -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk -gdwarf-2 -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-generated-files.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-own-target-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-all-target-headers.hmap -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-project-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/include -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources/armv7 -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources -F/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos -include /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-dgskiwuzppoylvapzfobrpkoedbw/XMBindingLibrarySample-Prefix.pch -MMD -MT dependencies -MF /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMBindingLibrarySample.d -c /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m -o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMBindingLibrarySample.o36"AC58C1F2-F82C-4635-9F0F-49AF5526FFE4-
+
+CCompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMCustomView.o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s348898646.787954
+e348898646.925596
+r1
+xCompileC
+xbuild/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMCustomView.o
+x/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF04#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection110"Compile /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.m97e3c956c5cbb441^41f4ec56c5cbb441^---0#0#0#-19%DVTDocumentLocation2@118"file://localhost/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.m0000000000000000^3531"CompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMCustomView.o XMCustomView.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/nginx/1.0.5/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=0 -fdiagnostics-print-source-range-info -fdiagnostics-show-category=id -fdiagnostics-parseable-fixits -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wmissing-prototypes -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk -gdwarf-2 -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-generated-files.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-own-target-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-all-target-headers.hmap -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-project-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/include -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources/armv7 -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources -F/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos -include /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-dgskiwuzppoylvapzfobrpkoedbw/XMBindingLibrarySample-Prefix.pch -MMD -MT dependencies -MF /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMCustomView.d -c /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMCustomView.m -o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMCustomView.o36"12102C52-652F-45A8-814C-30044B1E4CD5-
+
+CCompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMUtilities.o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s348898646.386580
+e348898646.786512
+r1
+xCompileC
+xbuild/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMUtilities.o
+x/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.m
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF04#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection109"Compile /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.m53206356c5cbb441^1553c956c5cbb441^---0#0#0#-19%DVTDocumentLocation2@117"file://localhost/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.m0000000000000000^3526"CompileC build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMUtilities.o XMUtilities.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/nginx/1.0.5/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=0 -fdiagnostics-print-source-range-info -fdiagnostics-show-category=id -fdiagnostics-parseable-fixits -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wmissing-prototypes -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk -gdwarf-2 -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-generated-files.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-own-target-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-all-target-headers.hmap -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-project-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/include -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources/armv7 -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources -F/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos -include /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-dgskiwuzppoylvapzfobrpkoedbw/XMBindingLibrarySample-Prefix.pch -MMD -MT dependencies -MF /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMUtilities.d -c /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMUtilities.m -o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMUtilities.o36"4E75EAE6-A4EF-4514-9169-557D1270F76B-
+
+CLibtool /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/libXMBindingLibrarySample.a normal armv6
+s348898648.305907
+e348898648.314233
+r1
+xLibtool
+x/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/libXMBindingLibrarySample.a
+xnormal
+xarmv6
+o/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC 
+lSLF04#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection71"Libtool build/Release-iphoneos/libXMBindingLibrarySample.a normal armv61e6b4e58c5cbb441^e2725058c5cbb441^---0#0#0#--1192"Libtool build/Release-iphoneos/libXMBindingLibrarySample.a normal armv6    cd /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample    setenv IPHONEOS_DEPLOYMENT_TARGET 5.0    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/nginx/1.0.5/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/libtool -static -arch_only armv6 -syslibroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk -L/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos -filelist /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv6/XMBindingLibrarySample.LinkFileList -ObjC -framework QuartzCore -framework Foundation -framework UIKit -o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/libXMBindingLibrarySample.a36"460EE55D-9016-4777-9A9E-B4154A119E52-
+
+CLibtool /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/libXMBindingLibrarySample.a normal armv7
+s348898646.933315
+e348898646.961609
+r1
+xLibtool
+x/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/libXMBindingLibrarySample.a
+xnormal
+xarmv7
+o/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC 
+lSLF04#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection71"Libtool build/Release-iphoneos/libXMBindingLibrarySample.a normal armv7cb10ef56c5cbb441^713df656c5cbb441^---0#0#0#--1192"Libtool build/Release-iphoneos/libXMBindingLibrarySample.a normal armv7    cd /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample    setenv IPHONEOS_DEPLOYMENT_TARGET 5.0    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/nginx/1.0.5/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/libtool -static -arch_only armv7 -syslibroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk -L/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos -filelist /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/Objects-normal/armv7/XMBindingLibrarySample.LinkFileList -ObjC -framework QuartzCore -framework Foundation -framework UIKit -o /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/libXMBindingLibrarySample.a36"2B6C5F1F-B408-40C3-9593-9EDD6FFE389C-
+
+CProcessPCH /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-cihpbyspokpioxbowhteujpwgwfz/XMBindingLibrarySample-Prefix.pch.pth XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch normal armv6 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s348898647.790757
+e348898648.101940
+r1
+xProcessPCH
+x/var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-cihpbyspokpioxbowhteujpwgwfz/XMBindingLibrarySample-Prefix.pch.pth
+xXMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch
+xnormal
+xarmv6
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF04#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection67"Precompile XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch499fca57c5cbb441^37181a58c5cbb441^---0#0#0#-19%DVTDocumentLocation2@160"file://localhost/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch0000000000000000^3472"ProcessPCH /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-cihpbyspokpioxbowhteujpwgwfz/XMBindingLibrarySample-Prefix.pch.pth XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch normal armv6 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/nginx/1.0.5/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/clang -x objective-c-header -arch armv6 -fmessage-length=0 -fdiagnostics-print-source-range-info -fdiagnostics-show-category=id -fdiagnostics-parseable-fixits -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wmissing-prototypes -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk -gdwarf-2 -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-generated-files.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-own-target-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-all-target-headers.hmap -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-project-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/include -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources/armv6 -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources -F/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos -c /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch -o /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-cihpbyspokpioxbowhteujpwgwfz/XMBindingLibrarySample-Prefix.pch.pth -MMD -MT dependencies -MF /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-cihpbyspokpioxbowhteujpwgwfz/XMBindingLibrarySample-Prefix.pch.d36"452D5603-420C-4504-B998-6C7BD9769691-
+
+CProcessPCH /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-dgskiwuzppoylvapzfobrpkoedbw/XMBindingLibrarySample-Prefix.pch.pth XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s348898641.763597
+e348898646.379085
+r1
+xProcessPCH
+x/var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-dgskiwuzppoylvapzfobrpkoedbw/XMBindingLibrarySample-Prefix.pch.pth
+xXMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF04#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection67"Precompile XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch7aaac351c5cbb441^ee0a6156c5cbb441^---0#0#0#-19%DVTDocumentLocation2@160"file://localhost/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch0000000000000000^3472"ProcessPCH /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-dgskiwuzppoylvapzfobrpkoedbw/XMBindingLibrarySample-Prefix.pch.pth XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/Cellar/nginx/1.0.5/sbin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/clang -x objective-c-header -arch armv7 -fmessage-length=0 -fdiagnostics-print-source-range-info -fdiagnostics-show-category=id -fdiagnostics-parseable-fixits -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wmissing-prototypes -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk -gdwarf-2 -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.0 -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-generated-files.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-own-target-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-all-target-headers.hmap -iquote /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/XMBindingLibrarySample-project-headers.hmap -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos/include -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources/armv7 -I/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/XMBindingLibrarySample.build/Release-iphoneos/XMBindingLibrarySample.build/DerivedSources -F/Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/build/Release-iphoneos -c /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch -o /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-dgskiwuzppoylvapzfobrpkoedbw/XMBindingLibrarySample-Prefix.pch.pth -MMD -MT dependencies -MF /var/folders/9c/91k59k7j5rd9nxx874q6d3pm0000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/XMBindingLibrarySample-Prefix-dgskiwuzppoylvapzfobrpkoedbw/XMBindingLibrarySample-Prefix.pch.d36"2FB05572-CD6E-415E-9D49-06EC8EBB15EF-
+
