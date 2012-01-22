@@ -1,0 +1,415 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D09B81014C87E5F00033666 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6535114C7C824007670AC /* Foundation.framework */; };
+		1D09B81614C87E5F00033666 /* XMBindingLibrarySampleUniversal.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D09B81514C87E5F00033666 /* XMBindingLibrarySampleUniversal.m */; };
+		1D09B81B14C87E7700033666 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6535F14C7C8BA007670AC /* UIKit.framework */; };
+		1D09B81C14C87E8200033666 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6536E14C7ECE5007670AC /* QuartzCore.framework */; };
+		1D09B82514C87F8500033666 /* XMUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536214C7C8EF007670AC /* XMUtilities.m */; };
+		1D09B82714C87F8500033666 /* XMCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536914C7D087007670AC /* XMCustomView.m */; };
+		1DE6535214C7C824007670AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6535114C7C824007670AC /* Foundation.framework */; };
+		1DE6535814C7C824007670AC /* XMBindingLibrarySample.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6535714C7C824007670AC /* XMBindingLibrarySample.m */; };
+		1DE6536014C7C8BA007670AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6535F14C7C8BA007670AC /* UIKit.framework */; };
+		1DE6536314C7C8EF007670AC /* XMUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536114C7C8EF007670AC /* XMUtilities.h */; };
+		1DE6536414C7C8EF007670AC /* XMUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536214C7C8EF007670AC /* XMUtilities.m */; };
+		1DE6536A14C7D087007670AC /* XMCustomView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536814C7D087007670AC /* XMCustomView.h */; };
+		1DE6536B14C7D087007670AC /* XMCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536914C7D087007670AC /* XMCustomView.m */; };
+		1DE6536D14C7D118007670AC /* XMCustomViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536C14C7D118007670AC /* XMCustomViewDelegate.h */; };
+		1DE6536F14C7ECE5007670AC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6536E14C7ECE5007670AC /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D09B80F14C87E5F00033666 /* libXMBindingLibrarySampleUniversal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXMBindingLibrarySampleUniversal.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D09B81314C87E5F00033666 /* XMBindingLibrarySampleUniversal-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMBindingLibrarySampleUniversal-Prefix.pch"; sourceTree = "<group>"; };
+		1D09B81414C87E5F00033666 /* XMBindingLibrarySampleUniversal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMBindingLibrarySampleUniversal.h; sourceTree = "<group>"; };
+		1D09B81514C87E5F00033666 /* XMBindingLibrarySampleUniversal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMBindingLibrarySampleUniversal.m; sourceTree = "<group>"; };
+		1D22C39B14CBA7A80000024A /* RunScript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = RunScript.sh; sourceTree = "<group>"; };
+		1DE6534E14C7C824007670AC /* libXMBindingLibrarySample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXMBindingLibrarySample.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DE6535114C7C824007670AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1DE6535514C7C824007670AC /* XMBindingLibrarySample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMBindingLibrarySample-Prefix.pch"; sourceTree = "<group>"; };
+		1DE6535614C7C824007670AC /* XMBindingLibrarySample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMBindingLibrarySample.h; sourceTree = "<group>"; };
+		1DE6535714C7C824007670AC /* XMBindingLibrarySample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMBindingLibrarySample.m; sourceTree = "<group>"; };
+		1DE6535F14C7C8BA007670AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1DE6536114C7C8EF007670AC /* XMUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMUtilities.h; sourceTree = "<group>"; };
+		1DE6536214C7C8EF007670AC /* XMUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMUtilities.m; sourceTree = "<group>"; };
+		1DE6536814C7D087007670AC /* XMCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMCustomView.h; sourceTree = "<group>"; };
+		1DE6536914C7D087007670AC /* XMCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMCustomView.m; sourceTree = "<group>"; };
+		1DE6536C14C7D118007670AC /* XMCustomViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMCustomViewDelegate.h; sourceTree = "<group>"; };
+		1DE6536E14C7ECE5007670AC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D09B80C14C87E5F00033666 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D09B81C14C87E8200033666 /* QuartzCore.framework in Frameworks */,
+				1D09B81B14C87E7700033666 /* UIKit.framework in Frameworks */,
+				1D09B81014C87E5F00033666 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DE6534B14C7C824007670AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DE6536F14C7ECE5007670AC /* QuartzCore.framework in Frameworks */,
+				1DE6535214C7C824007670AC /* Foundation.framework in Frameworks */,
+				1DE6536014C7C8BA007670AC /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1D09B81114C87E5F00033666 /* XMBindingLibrarySampleUniversal */ = {
+			isa = PBXGroup;
+			children = (
+				1D09B81414C87E5F00033666 /* XMBindingLibrarySampleUniversal.h */,
+				1D09B81514C87E5F00033666 /* XMBindingLibrarySampleUniversal.m */,
+				1D09B81214C87E5F00033666 /* Supporting Files */,
+			);
+			path = XMBindingLibrarySampleUniversal;
+			sourceTree = "<group>";
+		};
+		1D09B81214C87E5F00033666 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1D09B81314C87E5F00033666 /* XMBindingLibrarySampleUniversal-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1D22C39914CBA7800000024A /* Post-Build Run Script */ = {
+			isa = PBXGroup;
+			children = (
+				1D22C39B14CBA7A80000024A /* RunScript.sh */,
+			);
+			name = "Post-Build Run Script";
+			sourceTree = "<group>";
+		};
+		1DE6534314C7C824007670AC = {
+			isa = PBXGroup;
+			children = (
+				1D22C39914CBA7800000024A /* Post-Build Run Script */,
+				1DE6535E14C7C87F007670AC /* Classes */,
+				1DE6535314C7C824007670AC /* XMBindingLibrarySample */,
+				1D09B81114C87E5F00033666 /* XMBindingLibrarySampleUniversal */,
+				1DE6535014C7C824007670AC /* Frameworks */,
+				1DE6534F14C7C824007670AC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1DE6534F14C7C824007670AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1DE6534E14C7C824007670AC /* libXMBindingLibrarySample.a */,
+				1D09B80F14C87E5F00033666 /* libXMBindingLibrarySampleUniversal.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1DE6535014C7C824007670AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DE6536E14C7ECE5007670AC /* QuartzCore.framework */,
+				1DE6535F14C7C8BA007670AC /* UIKit.framework */,
+				1DE6535114C7C824007670AC /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1DE6535314C7C824007670AC /* XMBindingLibrarySample */ = {
+			isa = PBXGroup;
+			children = (
+				1DE6535614C7C824007670AC /* XMBindingLibrarySample.h */,
+				1DE6535714C7C824007670AC /* XMBindingLibrarySample.m */,
+				1DE6535414C7C824007670AC /* Supporting Files */,
+			);
+			path = XMBindingLibrarySample;
+			sourceTree = "<group>";
+		};
+		1DE6535414C7C824007670AC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1DE6535514C7C824007670AC /* XMBindingLibrarySample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1DE6535E14C7C87F007670AC /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1DE6536114C7C8EF007670AC /* XMUtilities.h */,
+				1DE6536214C7C8EF007670AC /* XMUtilities.m */,
+				1DE6536814C7D087007670AC /* XMCustomView.h */,
+				1DE6536914C7D087007670AC /* XMCustomView.m */,
+				1DE6536C14C7D118007670AC /* XMCustomViewDelegate.h */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1D09B80D14C87E5F00033666 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DE6534C14C7C824007670AC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DE6536314C7C8EF007670AC /* XMUtilities.h in Headers */,
+				1DE6536A14C7D087007670AC /* XMCustomView.h in Headers */,
+				1DE6536D14C7D118007670AC /* XMCustomViewDelegate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1D09B80E14C87E5F00033666 /* XMBindingLibrarySampleUniversal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D09B81914C87E5F00033666 /* Build configuration list for PBXNativeTarget "XMBindingLibrarySampleUniversal" */;
+			buildPhases = (
+				1D09B80B14C87E5F00033666 /* Sources */,
+				1D09B80C14C87E5F00033666 /* Frameworks */,
+				1D09B80D14C87E5F00033666 /* Headers */,
+				1D09B81D14C87E8900033666 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XMBindingLibrarySampleUniversal;
+			productName = XMBindingLibrarySampleUniversal;
+			productReference = 1D09B80F14C87E5F00033666 /* libXMBindingLibrarySampleUniversal.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		1DE6534D14C7C824007670AC /* XMBindingLibrarySample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DE6535B14C7C824007670AC /* Build configuration list for PBXNativeTarget "XMBindingLibrarySample" */;
+			buildPhases = (
+				1DE6534A14C7C824007670AC /* Sources */,
+				1DE6534B14C7C824007670AC /* Frameworks */,
+				1DE6534C14C7C824007670AC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XMBindingLibrarySample;
+			productName = XMBindingLibrarySample;
+			productReference = 1DE6534E14C7C824007670AC /* libXMBindingLibrarySample.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1DE6534514C7C824007670AC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 1DE6534814C7C824007670AC /* Build configuration list for PBXProject "XMBindingLibrarySample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1DE6534314C7C824007670AC;
+			productRefGroup = 1DE6534F14C7C824007670AC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1DE6534D14C7C824007670AC /* XMBindingLibrarySample */,
+				1D09B80E14C87E5F00033666 /* XMBindingLibrarySampleUniversal */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D09B81D14C87E8900033666 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Version 2.0 (updated for Xcode 4, with some fixes)\n# Changes:\n#    - Works with xcode 4, even when running xcode 3 projects (Workarounds for apple bugs)\n#    - Faster / better: only runs lipo once, instead of once per recursion\n#    - Added some debugging statemetns that can be switched on/off by changing the DEBUG_THIS_SCRIPT variable to \"true\"\n#    - Fixed some typos\n# \n# Purpose:\n#   Create a static library for iPhone from within XCode\n#   Because Apple staff DELIBERATELY broke Xcode to make this impossible from the GUI (Xcode 3.2.3 specifically states this in the Release notes!)\n#   ...no, I don't understand why they did this!\n#\n# Author: Adam Martin - http://twitter.com/redglassesapps\n# Based on: original script from Eonil (main changes: Eonil's script WILL NOT WORK in Xcode GUI - it WILL CRASH YOUR COMPUTER)\n#\n# More info: see this Stack Overflow question: http://stackoverflow.com/questions/3520977/build-fat-static-library-device-simulator-using-xcode-and-sdk-4\n\n#################[ Tests: helps workaround any future bugs in Xcode ]########\n#\nDEBUG_THIS_SCRIPT=\"false\"\n\nif [ $DEBUG_THIS_SCRIPT = \"true\" ]\nthen\necho \"########### TESTS #############\"\necho \"Use the following variables when debugging this script; note that they may change on recursions\"\necho \"BUILD_DIR = $BUILD_DIR\"\necho \"BUILD_ROOT = $BUILD_ROOT\"\necho \"CONFIGURATION_BUILD_DIR = $CONFIGURATION_BUILD_DIR\"\necho \"BUILT_PRODUCTS_DIR = $BUILT_PRODUCTS_DIR\"\necho \"CONFIGURATION_TEMP_DIR = $CONFIGURATION_TEMP_DIR\"\necho \"TARGET_BUILD_DIR = $TARGET_BUILD_DIR\"\nfi\n\n#####################[ part 1 ]##################\n# First, work out the BASESDK version number (NB: Apple ought to report this, but they hide it)\n#    (incidental: searching for substrings in sh is a nightmare! Sob)\n\nSDK_VERSION=$(echo ${SDK_NAME} | grep -o '.\\{3\\}$')\n\n# Next, work out if we're in SIM or DEVICE\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nOTHER_SDK_TO_BUILD=iphoneos${SDK_VERSION}\nelse\nOTHER_SDK_TO_BUILD=iphonesimulator${SDK_VERSION}\nfi\n\necho \"XCode has selected SDK: ${PLATFORM_NAME} with version: ${SDK_VERSION} (although back-targetting: ${IPHONEOS_DEPLOYMENT_TARGET})\"\necho \"...therefore, OTHER_SDK_TO_BUILD = ${OTHER_SDK_TO_BUILD}\"\n#\n#####################[ end of part 1 ]##################\n\n#####################[ part 2 ]##################\n#\n# IF this is the original invocation, invoke WHATEVER other builds are required\n#\n# Xcode is already building ONE target...\n#\n# ...but this is a LIBRARY, so Apple is wrong to set it to build just one.\n# ...we need to build ALL targets\n# ...we MUST NOT re-build the target that is ALREADY being built: Xcode WILL CRASH YOUR COMPUTER if you try this (infinite recursion!)\n#\n#\n# So: build ONLY the missing platforms/configurations.\n\nif [ \"true\" == ${ALREADYINVOKED:-false} ]\nthen\necho \"RECURSION: I am NOT the root invocation, so I'm NOT going to recurse\"\nelse\n# CRITICAL:\n# Prevent infinite recursion (Xcode sucks)\nexport ALREADYINVOKED=\"true\"\n\necho \"RECURSION: I am the root ... recursing all missing build targets NOW...\"\necho \"RECURSION: ...about to invoke: xcodebuild -configuration \\\"${CONFIGURATION}\\\" -target \\\"${TARGET_NAME}\\\" -sdk \\\"${OTHER_SDK_TO_BUILD}\\\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO\"\nxcodebuild -configuration \"${CONFIGURATION}\" -target \"${TARGET_NAME}\" -sdk \"${OTHER_SDK_TO_BUILD}\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\"\n\nACTION=\"build\"\n\n#Merge all platform binaries as a fat binary for each configurations.\n\n# Calculate where the (multiple) built files are coming from:\nCURRENTCONFIG_DEVICE_DIR=${SYMROOT}/${CONFIGURATION}-iphoneos\nCURRENTCONFIG_SIMULATOR_DIR=${SYMROOT}/${CONFIGURATION}-iphonesimulator\n\necho \"Taking device build from: ${CURRENTCONFIG_DEVICE_DIR}\"\necho \"Taking simulator build from: ${CURRENTCONFIG_SIMULATOR_DIR}\"\n\nCREATING_UNIVERSAL_DIR=${SYMROOT}/${CONFIGURATION}-universal\necho \"...I will output a universal build to: ${CREATING_UNIVERSAL_DIR}\"\n\n# ... remove the products of previous runs of this script\n#      NB: this directory is ONLY created by this script - it should be safe to delete!\n\nrm -rf \"${CREATING_UNIVERSAL_DIR}\"\nmkdir \"${CREATING_UNIVERSAL_DIR}\"\n\n#\necho \"lipo: for current configuration (${CONFIGURATION}) creating output file: ${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\"\nlipo -create -output \"${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_DEVICE_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_SIMULATOR_DIR}/${EXECUTABLE_NAME}\"\n\n#########\n#\n# Added: StackOverflow suggestion to also copy \"include\" files\n#    (untested, but should work OK)\n#\nif [ -d \"${CURRENTCONFIG_DEVICE_DIR}/usr/local/include\" ]\nthen\nmkdir -p \"${CREATING_UNIVERSAL_DIR}/usr/local/include\"\n# * needs to be outside the double quotes?\ncp \"${CURRENTCONFIG_DEVICE_DIR}/usr/local/include/\"* \"${CREATING_UNIVERSAL_DIR}/usr/local/include\"\nfi\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D09B80B14C87E5F00033666 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D09B82514C87F8500033666 /* XMUtilities.m in Sources */,
+				1D09B82714C87F8500033666 /* XMCustomView.m in Sources */,
+				1D09B81614C87E5F00033666 /* XMBindingLibrarySampleUniversal.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DE6534A14C7C824007670AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DE6535814C7C824007670AC /* XMBindingLibrarySample.m in Sources */,
+				1DE6536414C7C8EF007670AC /* XMUtilities.m in Sources */,
+				1DE6536B14C7D087007670AC /* XMCustomView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D09B81714C87E5F00033666 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/XMBindingLibrarySampleUniversal.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XMBindingLibrarySampleUniversal/XMBindingLibrarySampleUniversal-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1D09B81814C87E5F00033666 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/XMBindingLibrarySampleUniversal.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XMBindingLibrarySampleUniversal/XMBindingLibrarySampleUniversal-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		1DE6535914C7C824007670AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1DE6535A14C7C824007670AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1DE6535C14C7C824007670AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/XMBindingLibrarySample.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1DE6535D14C7C824007670AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/XMBindingLibrarySample.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D09B81914C87E5F00033666 /* Build configuration list for PBXNativeTarget "XMBindingLibrarySampleUniversal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D09B81714C87E5F00033666 /* Debug */,
+				1D09B81814C87E5F00033666 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DE6534814C7C824007670AC /* Build configuration list for PBXProject "XMBindingLibrarySample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DE6535914C7C824007670AC /* Debug */,
+				1DE6535A14C7C824007670AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DE6535B14C7C824007670AC /* Build configuration list for PBXNativeTarget "XMBindingLibrarySample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DE6535C14C7C824007670AC /* Debug */,
+				1DE6535D14C7C824007670AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1DE6534514C7C824007670AC /* Project object */;
+}
