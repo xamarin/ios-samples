@@ -17,7 +17,7 @@ namespace avTouch
 		AVAudioPlayer player;
 		
 		float refreshHz = (float) 1 / 60f;
-		bool showPeaks, vertical;
+		bool showPeaks = true, vertical;
 		int [] channelNumbers = new int [1] { 0 };
 		MeterTable meterTable = new MeterTable (kMinDbValue);
 		List<LevelMeter> sublevelMeters = new List<LevelMeter> ();
@@ -45,6 +45,7 @@ namespace avTouch
 				meter.RemoveFromSuperview ();
 		
 			sublevelMeters.Clear ();
+			vertical = Frame.Size.Width < Frame.Size.Height;
 			
 			RectangleF totalRect;
 			if (vertical)
