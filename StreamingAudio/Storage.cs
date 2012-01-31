@@ -70,6 +70,7 @@ class QueueStream : Stream {
 		lock (plock){
 			writeStream.Write (buffer, offset, count);
 			size += count;
+			writeStream.Flush ();
 			Monitor.Pulse (plock);
 		}
 	}
@@ -99,12 +100,11 @@ class QueueStream : Stream {
 	
 	protected override void Dispose (bool disposing)
 	{	
-		if(disposing)
-		{
-			readStream.Close();
-			readStream.Dispose();
-			writeStream.Close();
-			writeStream.Dispose();
+		if (disposing) {
+			readStream.Close ();
+			readStream.Dispose ();
+			writeStream.Close ();
+			writeStream.Dispose ();
 		}
 		base.Dispose (disposing);
 	}

@@ -19,7 +19,8 @@ namespace BubbleCell
 	{
 		DialogViewController chat;
 		UIWindow window;
-
+		Section chatSection;
+		
 		static void Main (string[] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
@@ -29,14 +30,17 @@ namespace BubbleCell
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			var root = new RootElement ("Chat Sample") {
-				new Section () {
+				(chatSection = new Section () {
+					new ChatBubble (false, " "),
+					new ChatBubble (false, "           "),
+					new ChatBubble (false, "           \n           \n           \n           "),
+					new ChatBubble (false, "                                                        \n                    "),
 					new ChatBubble (true, "This is the text on the left, what I find fascinating about this is how many lines can fit!"),
 					new ChatBubble (false, "This is some text on the right"),
 					new ChatBubble (true, "Wow, you are very intense!"),
 					new ChatBubble (false, "oops"),
 					new ChatBubble (true, "yes"),
-					
-				}
+				})
 			};
 			chat = new DialogViewController (UITableViewStyle.Plain, root);
 			chat.TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
