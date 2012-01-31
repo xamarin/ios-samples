@@ -148,7 +148,7 @@ namespace avTouch
 						var thisTresh = ColorThresholds [color_i];
 						var nextTresh = ColorThresholds [color_i+1];
 						if (thisTresh.MaxValue <= lightMaxVal){
-							Console.WriteLine ("PICKED COLOR at {0}", color_i);
+							//Console.WriteLine ("PICKED COLOR at {0}", color_i);
 							lightColor = nextTresh.Color;
 						}
 					}
@@ -162,7 +162,7 @@ namespace avTouch
 						ctx.FillRect (lightRect);
 					}
 					
-					Console.WriteLine ("Got: {0} {1}", lightColor, UIColor.Red);
+					//Console.WriteLine ("Got: {0} {1}", lightColor, UIColor.Red);
 					//lightColor = UIColor.Red;
 					if (lightIntensity == 1){
 						lightColor.SetColor ();
@@ -170,8 +170,8 @@ namespace avTouch
 						ctx.FillRect (lightRect);
 					} else if (lightIntensity > 0){
 						using (var clr = new CGColor (lightColor.CGColor, lightIntensity)){
-							ctx.SetFillColorWithColor (clr);
-							ctx.FillRect (lightRect);
+							ctx.SetFillColorWithColor (clr); 
+							ctx.FillRect (lightRect); 
 						}						
 					}
 					
