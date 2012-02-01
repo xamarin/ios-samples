@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m \
-  /Users/abhatia/projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.h
+  /cvs/monotouch-samples/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.m \
+  /cvs/monotouch-samples/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample.h
