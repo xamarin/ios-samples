@@ -13,6 +13,7 @@
 		1D09B81C14C87E8200033666 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6536E14C7ECE5007670AC /* QuartzCore.framework */; };
 		1D09B82514C87F8500033666 /* XMUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536214C7C8EF007670AC /* XMUtilities.m */; };
 		1D09B82714C87F8500033666 /* XMCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536914C7D087007670AC /* XMCustomView.m */; };
+		1D7D8A0314D9BFB90043495B /* XMBindingLibrarySample-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 1D7D8A0214D9BFB90043495B /* XMBindingLibrarySample-Prefix.pch */; };
 		1DE6535214C7C824007670AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6535114C7C824007670AC /* Foundation.framework */; };
 		1DE6535814C7C824007670AC /* XMBindingLibrarySample.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6535714C7C824007670AC /* XMBindingLibrarySample.m */; };
 		1DE6536014C7C8BA007670AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6535F14C7C8BA007670AC /* UIKit.framework */; };
@@ -30,9 +31,9 @@
 		1D09B81414C87E5F00033666 /* XMBindingLibrarySampleUniversal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMBindingLibrarySampleUniversal.h; sourceTree = "<group>"; };
 		1D09B81514C87E5F00033666 /* XMBindingLibrarySampleUniversal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMBindingLibrarySampleUniversal.m; sourceTree = "<group>"; };
 		1D22C39B14CBA7A80000024A /* RunScript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = RunScript.sh; sourceTree = "<group>"; };
+		1D7D8A0214D9BFB90043495B /* XMBindingLibrarySample-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "XMBindingLibrarySample-Prefix.pch"; path = "../../../../../../../projects/monotouch/work/BindingSample/src/binding/XMBindingLibrarySample/XMBindingLibrarySample/XMBindingLibrarySample-Prefix.pch"; sourceTree = "<group>"; };
 		1DE6534E14C7C824007670AC /* libXMBindingLibrarySample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXMBindingLibrarySample.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DE6535114C7C824007670AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1DE6535514C7C824007670AC /* XMBindingLibrarySample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "XMBindingLibrarySample-Prefix.pch"; sourceTree = "<group>"; };
 		1DE6535614C7C824007670AC /* XMBindingLibrarySample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMBindingLibrarySample.h; sourceTree = "<group>"; };
 		1DE6535714C7C824007670AC /* XMBindingLibrarySample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMBindingLibrarySample.m; sourceTree = "<group>"; };
 		1DE6535F14C7C8BA007670AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -138,7 +139,7 @@
 		1DE6535414C7C824007670AC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1DE6535514C7C824007670AC /* XMBindingLibrarySample-Prefix.pch */,
+				1D7D8A0214D9BFB90043495B /* XMBindingLibrarySample-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -172,6 +173,7 @@
 				1DE6536314C7C8EF007670AC /* XMUtilities.h in Headers */,
 				1DE6536A14C7D087007670AC /* XMCustomView.h in Headers */,
 				1DE6536D14C7D118007670AC /* XMCustomViewDelegate.h in Headers */,
+				1D7D8A0314D9BFB90043495B /* XMBindingLibrarySample-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
