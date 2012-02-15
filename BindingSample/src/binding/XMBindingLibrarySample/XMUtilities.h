@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+// This is how to define a block function prototype.
+typedef void (^XMUtilityCallback) (NSString *message);
+
 @interface XMUtilities : NSObject {
-    
+	XMUtilityCallback _callback;
 }
 
 -(id) init;
@@ -17,5 +20,7 @@
 -(NSString *) hello:(NSString *)name;
 -(NSInteger) add:(NSInteger)operandUn and:(NSInteger) operandDeux;
 -(NSInteger) multiply:(NSInteger)operandUn and:(NSInteger)operandDeux;
+-(void) setCallback:(XMUtilityCallback) callback;
+-(void) invokeCallback:(NSString *) message;
 
 @end

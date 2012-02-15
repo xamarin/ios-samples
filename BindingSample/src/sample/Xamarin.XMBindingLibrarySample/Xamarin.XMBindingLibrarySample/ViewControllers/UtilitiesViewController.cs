@@ -24,6 +24,7 @@ namespace Xamarin.XMBindingLibrarySample
 {
 	public class UtilitiesViewController : DialogViewController
 	{
+		XMUtilityCallback callback;
 		XMUtilities Utility;
 		
 		public UtilitiesViewController()
@@ -41,8 +42,9 @@ namespace Xamarin.XMBindingLibrarySample
 		{
 			base.LoadView();
 			
-			
 			Utility = new XMUtilities();
+			
+			Utility.SetCallback (new XMUtilityCallback (OurCallback));
 			
 			var operandSection = new Section("Operands") {
 				new EntryElement("Name: ", "", ""),
@@ -54,6 +56,7 @@ namespace Xamarin.XMBindingLibrarySample
 				new StringElement("Add", Handle_AddOperation),
 				new StringElement("Multiply", Handle_MultiplyOperation),
 				new StringElement("Hello", Handle_HelloOperation),
+				new StringElement("Invoke Callback", Handle_InvokeCallback),
 			};
 			
 			var resultSection = new Section("Result") {
@@ -80,6 +83,18 @@ namespace Xamarin.XMBindingLibrarySample
 		public override void ViewWillLayoutSubviews()
 		{
 			base.ViewWillLayoutSubviews();
+		}
+		
+		void OurCallback (NSString message)
+		{
+			SetResultElementValue(message);
+		}
+		
+		public void Handle_InvokeCallback ()
+		{
+			using (NSString message = new NSString ("Callback invoked!")) {
+				Utility.InvokeCallback (message);
+			}
 		}
 				
 		public void Handle_AddOperation()

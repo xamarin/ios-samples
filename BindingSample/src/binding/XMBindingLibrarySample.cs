@@ -22,6 +22,8 @@ namespace XMBindingLibrarySample
 	using MonoTouch.UIKit;
 	using MonoTouch.ObjCRuntime;
 
+	public delegate void XMUtilityCallback (NSString message);
+
 	[BaseType (typeof (NSObject))]
 	interface XMUtilities
 	{
@@ -37,7 +39,6 @@ namespace XMBindingLibrarySample
 		[Export("echo:")]
 		string Echo(string message);
 
-
 		// Methods without a parameter do not need the trailing colon (":")
 		// But methods with parameters do!
 		
@@ -52,6 +53,12 @@ namespace XMBindingLibrarySample
 		
 		[Export("multiply:and")]
 		int Multiply(int operandUn, int operandDeux);
+
+		[Export("setCallback:")]
+		void SetCallback(XMUtilityCallback callback);
+
+		[Export("invokeCallback:")]
+		void InvokeCallback(NSString message);
 	}
 	
 	[BaseType(typeof(UIView), Delegates = new string [] {"WeakDelegate"}, Events = new Type[] { (typeof(XMCustomViewDelegate)) })]

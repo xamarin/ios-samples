@@ -59,6 +59,16 @@
     return operandUn * operandDeux;
 }
 
+// This is an example of how to set a block function for later use.
+-(void) setCallback:(XMUtilityCallback) callback
+{
+	_callback = [callback copy];
+}
 
+// This is an example of how to invoke a block function.
+-(void) invokeCallback:(NSString *) message
+{
+	_callback (message);
+}
 
 @end
