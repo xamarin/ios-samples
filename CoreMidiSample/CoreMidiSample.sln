@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMidiSample", "CoreMidiSample.csproj", "{87885F18-9E8A-4975-8BF1-C92CD519021A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87885F18-9E8A-4975-8BF1-C92CD519021A}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{87885F18-9E8A-4975-8BF1-C92CD519021A}.Debug|iPhone.Build.0 = Debug|iPhone
+		{87885F18-9E8A-4975-8BF1-C92CD519021A}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{87885F18-9E8A-4975-8BF1-C92CD519021A}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{87885F18-9E8A-4975-8BF1-C92CD519021A}.Release|iPhone.ActiveCfg = Release|iPhone
+		{87885F18-9E8A-4975-8BF1-C92CD519021A}.Release|iPhone.Build.0 = Release|iPhone
+		{87885F18-9E8A-4975-8BF1-C92CD519021A}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{87885F18-9E8A-4975-8BF1-C92CD519021A}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CoreMidiSample.csproj
+	EndGlobalSection
+EndGlobal
