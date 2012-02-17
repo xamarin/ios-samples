@@ -1,5 +1,5 @@
 XMBindingLibrarySample Binding Project
-================
+======================================
 
 This project contains the following items:
 

@@ -1,5 +1,5 @@
 MonoTouch BTouch Binding Sample
-================
+===============================
 
 This example shows how we can utilize an existing Objective-C library
 and expose it for use in a MonoTouch project. For instance, you may
@@ -17,7 +17,7 @@ template/overview of the steps involved, including:
   embedded native library.
 
 Understanding this Sample
-======================
+-------------------------
 
 This sample consists of three distinct source projects:
 
@@ -28,7 +28,7 @@ This sample consists of three distinct source projects:
 Please see the README in each project folder for more details.
 
 Building this Sample
-======================
+--------------------
 
 To compile the Xcode Project and binding classes execute the
 ```make``` command from the root directory.
@@ -44,7 +44,7 @@ The resulting .dll is created using the [LinkWithAttribute]
 and will automatically embed the native library in your application.
 
 Creating a Universal Binary
-======================
+---------------------------
 
 A "fat" or multi-architecture library is a compiled binary that is
 usable on multiple targets, for example: armv6, armv7, i386
@@ -65,7 +65,6 @@ $^``` which will take the libraries compiled for armv6, armv7, and
 i386 using xbuild and output them to the current directory with the
 name of our build target.
 
-
 ## Using Xcode
 
 In our Xcode project we have created a separate ```Build Target```
@@ -76,8 +75,3 @@ that will execute a post build ```Run Script``` to output a
 
 This Run Script is also available for reference in the "Post-Build Run
 Script" group of the Xcode project.
-
-
-
-
-
