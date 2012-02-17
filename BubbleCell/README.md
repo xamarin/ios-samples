@@ -1,3 +1,6 @@
+BubbleCell
+==========
+
 This project shows one way of implementing a bubble-chat rendering
 using MonoTouch.Dialog and a custom ChatBubble element.
 
@@ -10,7 +13,6 @@ This is the core of the program:
 			new ChatBubble (true, "Wow, you are very intense!"),
 			new ChatBubble (false, "oops"),
 			new ChatBubble (true, "yes"),
-			
 		}
 	};
 	var chat = new DialogViewController (UITableViewStyle.Plain, root);
