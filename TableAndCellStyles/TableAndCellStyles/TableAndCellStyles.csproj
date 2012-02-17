@@ -77,7 +77,6 @@
     <Folder Include="Screens\iPhone\" />
     <Folder Include="Screens\iPhone\Home\" />
     <Folder Include="Screens\iPhone\TableStyles\" />
-    <Folder Include="Code\NavigationTable\" />
     <Folder Include="Screens\iPhone\CellStyles\" />
     <Folder Include="Code\CustomCells\" />
     <Folder Include="Screens\iPhone\CustomCells\" />
