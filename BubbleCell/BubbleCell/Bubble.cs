@@ -28,12 +28,11 @@ namespace BubbleCell
 		
 		static BubbleCell ()
 		{
-			var a = new System.Uri ("http://www.google.com", UriKind.Absolute);
 			bright = UIImage.FromFile ("green.png");
 			bleft = UIImage.FromFile ("grey.png");
 
-			left = bleft;
-			right = bright;
+			left = bleft.CreateResizableImage (new UIEdgeInsets (10, 16, 18, 26));
+			right = bright.CreateResizableImage (new UIEdgeInsets (11, 20, 17, 20));
 		}
 		
 		public BubbleCell (bool isLeft) : base (UITableViewCellStyle.Default, isLeft ? KeyLeft : KeyRight)
