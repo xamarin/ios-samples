@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedResources", "SharedResources\SharedResources.csproj", "{7624AE01-3981-42DC-AA85-9D88A2CF6840}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7624AE01-3981-42DC-AA85-9D88A2CF6840}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{7624AE01-3981-42DC-AA85-9D88A2CF6840}.Debug|iPhone.Build.0 = Debug|iPhone
+		{7624AE01-3981-42DC-AA85-9D88A2CF6840}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{7624AE01-3981-42DC-AA85-9D88A2CF6840}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{7624AE01-3981-42DC-AA85-9D88A2CF6840}.Release|iPhone.ActiveCfg = Release|iPhone
+		{7624AE01-3981-42DC-AA85-9D88A2CF6840}.Release|iPhone.Build.0 = Release|iPhone
+		{7624AE01-3981-42DC-AA85-9D88A2CF6840}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{7624AE01-3981-42DC-AA85-9D88A2CF6840}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SharedResources\SharedResources.csproj
+	EndGlobalSection
+EndGlobal

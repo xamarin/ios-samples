@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7624AE01-3981-42DC-AA85-9D88A2CF6840}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Example_SharedResources</RootNamespace>
+    <AssemblyName>Example_SharedResources</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>true</MtouchDebug>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <MtouchI18n />
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <MtouchI18n />
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>true</MtouchDebug>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n />
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n />
+    <MtouchUseArmv7>false</MtouchUseArmv7>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Code\" />
+    <Folder Include="Controls\" />
+    <Folder Include="Images\" />
+    <Folder Include="Images\Icons\" />
+    <Folder Include="Screens\" />
+    <Folder Include="Screens\iPhone\" />
+    <Folder Include="Screens\iPhone\Home\" />
+    <Folder Include="Screens\iPhone\Network\" />
+    <Folder Include="Screens\iPhone\Battery\" />
+    <Folder Include="Code\Network\" />
+    <Folder Include="Screens\iPhone\Contacts\" />
+    <Folder Include="Screens\iPhone\Photos\" />
+    <Folder Include="Screens\iPhone\Accelerometer\" />
+    <Folder Include="Screens\iPhone\FileSystem\" />
+    <Folder Include="Screens\iPhone\AVAssets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="Code\NavItem.cs" />
+    <Compile Include="Code\NavItemGroup.cs" />
+    <Compile Include="Code\NavItemTableSource.cs" />
+    <Compile Include="Screens\iPhone\Home\HomeTableViewController.cs" />
+    <Compile Include="Screens\iPhone\Network\ActivityIndicatorScreen.xib.cs">
+      <DependentUpon>ActivityIndicatorScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Network\ActivityIndicatorScreen.xib.designer.cs">
+      <DependentUpon>ActivityIndicatorScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Battery\BatteryStatusScreen.xib.cs">
+      <DependentUpon>BatteryStatusScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Battery\BatteryStatusScreen.xib.designer.cs">
+      <DependentUpon>BatteryStatusScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Network\ReachabilityScreen.xib.cs">
+      <DependentUpon>ReachabilityScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Network\ReachabilityScreen.xib.designer.cs">
+      <DependentUpon>ReachabilityScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Network\NetworkStatus.cs" />
+    <Compile Include="Code\Network\Reachability.cs" />
+    <Compile Include="Screens\iPhone\Contacts\ContactPickerScreen.xib.cs">
+      <DependentUpon>ContactPickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Contacts\ContactPickerScreen.xib.designer.cs">
+      <DependentUpon>ContactPickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Contacts\AddressBookScreen.xib.cs">
+      <DependentUpon>AddressBookScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Contacts\AddressBookScreen.xib.designer.cs">
+      <DependentUpon>AddressBookScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Contacts\NewAndUnknownContactScreen.xib.cs">
+      <DependentUpon>NewAndUnknownContactScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Contacts\NewAndUnknownContactScreen.xib.designer.cs">
+      <DependentUpon>NewAndUnknownContactScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Photos\ImagePickerScreen.xib.cs">
+      <DependentUpon>ImagePickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Photos\ImagePickerScreen.xib.designer.cs">
+      <DependentUpon>ImagePickerScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Accelerometer\XYZDataScreen.xib.cs">
+      <DependentUpon>XYZDataScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Accelerometer\XYZDataScreen.xib.designer.cs">
+      <DependentUpon>XYZDataScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Accelerometer\ShakeScreen.xib.cs">
+      <DependentUpon>ShakeScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Accelerometer\ShakeScreen.xib.designer.cs">
+      <DependentUpon>ShakeScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\FileSystem\FileSystemInfo.xib.cs">
+      <DependentUpon>FileSystemInfo.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\FileSystem\FileSystemInfo.xib.designer.cs">
+      <DependentUpon>FileSystemInfo.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Photos\CustomCameraViewScreen.xib.cs">
+      <DependentUpon>CustomCameraViewScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Photos\CustomCameraViewScreen.xib.designer.cs">
+      <DependentUpon>CustomCameraViewScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Photos\CameraOverlayView.cs" />
+    <Compile Include="Screens\iPhone\Photos\TestCameraOverlayController.cs" />
+    <Compile Include="Screens\iPhone\AVAssets\PhotoLibraryController.cs" />
+    <Compile Include="Screens\iPhone\AVAssets\AssetEnumerationScreen.cs" />
+    <Compile Include="Screens\iPhone\AVAssets\AssetGroupEnumerationScreen.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Screens\iPhone\Network\ActivityIndicatorScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Battery\BatteryStatusScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Network\ReachabilityScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Contacts\ContactPickerScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Contacts\AddressBookScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Contacts\NewAndUnknownContactScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Photos\ImagePickerScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Accelerometer\XYZDataScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Accelerometer\ShakeScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\FileSystem\FileSystemInfo.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Photos\CustomCameraViewScreen.xib" xmlns="" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Icons\29_icon.png" />
+    <Content Include="Images\Icons\50_icon.png" />
+    <Content Include="Images\Icons\57_icon.png" />
+    <Content Include="Images\Icons\58_icon.png" />
+    <Content Include="Images\Icons\72_icon.png" />
+    <Content Include="Images\Icons\114_icon.png" />
+    <Content Include="Images\Icons\512_icon.png" />
+    <Content Include="Default-Landscape~ipad.png" />
+    <Content Include="Default-Portrait~ipad.png" />
+    <Content Include="Default.png" />
+    <Content Include="Default%402x.png" />
+  </ItemGroup>
+</Project>
