@@ -34,11 +34,11 @@ namespace avTouch
 			Level = 0;
 			NumLights = 0;
 			BgColor = UIColor.FromRGBA (0, 0, 0, 0.6f);
-			BorderColor = UIColor.FromRGBA (0, 0, 0, 1);
+			BorderColor = UIColor.FromRGBA (0f, 0f, 0, 1f);
 			ColorThresholds = new LevelMeterColorThreshold [] {
-				new LevelMeterColorThreshold (0.25f, UIColor.FromRGBA (0, 1, 0, 1)),
-				new LevelMeterColorThreshold (0.8f, UIColor.FromRGBA (1, 1, 0, 1)),
-				new LevelMeterColorThreshold (1, UIColor.FromRGBA (1, 0, 0, 1)),
+				new LevelMeterColorThreshold (0.25f, UIColor.FromRGBA (0, 1f, 0, 1f)),
+				new LevelMeterColorThreshold (0.8f, UIColor.FromRGBA (1f, 1f, 0, 1f)),
+				new LevelMeterColorThreshold (1, UIColor.FromRGBA (1f, 0, 0, 1f)),
 			};
 			Vertical = Frame.Width < Frame.Height;
 		}
@@ -77,7 +77,7 @@ namespace avTouch
 				bds = Bounds;
 			} else {
 				ctx.TranslateCTM (0, Bounds.Height);
-				ctx.RotateCTM ((float)Math.PI/2);
+				ctx.RotateCTM (-(float)Math.PI/2);
 				bds = new RectangleF (0, 0, Bounds.Height, Bounds.Width);
 			}
 			
@@ -134,44 +134,50 @@ namespace avTouch
 					RectangleF lightRect;
 					UIColor lightColor;
 					
-					if (light_i == peakLight){
+					if (light_i == peakLight)
 						lightIntensity = 1;
-					} else {
+					else {
 						lightIntensity = (Level - lightMinVal) / (lightMaxVal - lightMinVal);
 						lightIntensity = Clamp (0, lightIntensity, 1);
 						if (!VariableLightIntensity && lightIntensity > 0)
 							lightIntensity = 1;
 					}
-					
 					lightColor = ColorThresholds [0].Color;
 					int color_i = 0;
 					for (; color_i < ColorThresholds.Length-1; color_i++){
 						var thisTresh = ColorThresholds [color_i];
 						var nextTresh = ColorThresholds [color_i+1];
-						if (thisTresh.MaxValue < lightMaxVal)
+						if (thisTresh.MaxValue <= lightMaxVal){
+							//Console.WriteLine ("PICKED COLOR at {0}", color_i);
 							lightColor = nextTresh.Color;
+						}
 					}
 					
-					lightRect = new RectangleF (0, bds.Height * color_i / (float) NumLights,
+					lightRect = new RectangleF (0, bds.Height * light_i / (float) NumLights,
 					                            bds.Width, bds.Height * (1f / NumLights));
-					lightRect.Inflate (-insetAmount, -insetAmount);
+					lightRect.Inset (insetAmount, insetAmount);
+					
 					if (BgColor != null){
 						BgColor.SetColor ();
 						ctx.FillRect (lightRect);
 					}
+					
+					//Console.WriteLine ("Got: {0} {1}", lightColor, UIColor.Red);
+					//lightColor = UIColor.Red;
 					if (lightIntensity == 1){
 						lightColor.SetColor ();
+						//Console.WriteLine ("Setting color to {0}", lightColor);
 						ctx.FillRect (lightRect);
 					} else if (lightIntensity > 0){
 						using (var clr = new CGColor (lightColor.CGColor, lightIntensity)){
-							ctx.SetFillColorWithColor (clr);
-							ctx.FillRect (lightRect);
+							ctx.SetFillColorWithColor (clr); 
+							ctx.FillRect (lightRect); 
 						}						
 					}
 					
 					if (BorderColor != null){
 						BorderColor.SetColor ();
-						lightRect.Inflate (-0.5f, -0.5f);
+						lightRect.Inset (0.5f, 0.5f);
 						ctx.StrokeRect (lightRect);
 					}
 					

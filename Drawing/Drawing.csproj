@@ -69,11 +69,6 @@
     <Folder Include="Images\" />
     <Folder Include="Screens\" />
     <Folder Include="Images\Icons\" />
-    <Folder Include="Images\" />
-    <Folder Include="Images\" />
-    <Folder Include="Images\" />
-    <Folder Include="Images\" />
-    <Folder Include="Images\" />
     <Folder Include="Screens\iPad\" />
     <Folder Include="Screens\iPad\Home\" />
     <Folder Include="Screens\iPad\DrawRectVsPath\" />

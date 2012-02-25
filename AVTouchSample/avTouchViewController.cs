@@ -24,7 +24,7 @@ namespace avTouch
 	}
 	
 	public partial class avTouchController : NSObject {
-		TimeSpan SkipTime = TimeSpan.FromSeconds (1);
+		TimeSpan SkipTime = TimeSpan.FromSeconds (0.5);
 		double SkipTimeSeconds = 1;
 		TimeSpan SkipInterval = TimeSpan.FromSeconds (0.2);
 		

@@ -66,6 +66,14 @@ namespace MonoCatalog
 				new SectionInfo { Title = "Key/Value Pairs",    Creator = GetKeyValuePairCell },
 			};
 
+			protected override void Dispose (bool disposing)
+			{
+				foreach (var cell in cells)
+					cell.Dispose ();
+				cells = null;
+				base.Dispose (disposing);
+			}
+
 			public override int NumberOfSections (UITableView tableView)
 			{
 				return Sections.Length;
@@ -75,6 +83,11 @@ namespace MonoCatalog
 			{
 				return Sections [section].Title;
 			}
+
+			// keep a managed reference to the `cell` otherwise the GC can collect it and events
+			// like TouchUpInside will crash the application (needs to be static for SectionInfo
+			// initialization)
+			static List<UITableViewCell> cells = new List<UITableViewCell> ();
 
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
@@ -86,6 +99,7 @@ namespace MonoCatalog
 				var cell = tableView.DequeueReusableCell (kAdd);
 				if (cell == null) {
 					cell = new UITableViewCell (UITableViewCellStyle.Default, kAdd);
+					cells.Add (cell);
 				} else {
 					RemoveViewWithTag (cell, kKeyTag   << 1);
 					RemoveViewWithTag (cell, kKeyTag);
@@ -173,6 +187,7 @@ namespace MonoCatalog
 				if (cell == null){
 					cell = new UITableViewCell (UITableViewCellStyle.Default, kKey);
 					cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+					cells.Add (cell);
 				}
 				else {
 					RemoveViewWithTag (cell, kKeyTag);

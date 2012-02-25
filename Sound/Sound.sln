@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sound", "Sound\Sound.csproj", "{55F46846-CDA1-4BC2-9C40-0458BC6F909C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Debug|iPhone.Build.0 = Debug|iPhone
+		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Release|iPhone.ActiveCfg = Release|iPhone
+		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Release|iPhone.Build.0 = Release|iPhone
+		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Sound\Sound.csproj
+	EndGlobalSection
+EndGlobal

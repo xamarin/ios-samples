@@ -27,7 +27,7 @@ namespace StreamingAudio
 		int bufferSize =  128 * 1024;
 		List<AudioBuffer> outputBuffers;
 		AudioBuffer currentBuffer;
-		OutputAudioQueue OutputQueue;
+		public OutputAudioQueue OutputQueue;
 		// Maximum buffers
 		int maxBufferCount = 4;
 		// Keep track of all queued up buffers, so that we know that the playback finished
@@ -263,12 +263,14 @@ namespace StreamingAudio
 			Play ();
 		}
 			
+		public event Action<OutputAudioQueue> OutputReady;
+		
 		/// <summary>
 		/// When a AudioProperty in the fed packets is found this callback is called
 		/// </summary>
 		void AudioPropertyFound (object sender, PropertyFoundEventArgs args)
 		{
-			switch (args.Property) {
+			switch (args.Property) { 
 			case AudioFileStreamProperty.ReadyToProducePackets:
 				Started = false;
 				
@@ -277,12 +279,14 @@ namespace StreamingAudio
 					OutputQueue.Dispose ();
 				
 				OutputQueue = new OutputAudioQueue (fileStream.StreamBasicDescription);
+				if (OutputReady != null)
+					OutputReady (OutputQueue);
+				
 				currentByteCount = 0;
 				OutputQueue.OutputCompleted += HandleOutputQueueOutputCompleted;
 				outputBuffers = new List<AudioBuffer>();
 				
-				for (int i = 0; i < MaxBufferCount; i++)
-				{
+				for (int i = 0; i < MaxBufferCount; i++) {
 					IntPtr outBuffer;
 					OutputQueue.AllocateBuffer (BufferSize, out outBuffer);
 					outputBuffers.Add (new AudioBuffer () { Buffer = outBuffer, PacketDescriptions = new List<AudioStreamPacketDescription>() });

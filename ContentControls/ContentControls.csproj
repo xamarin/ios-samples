@@ -150,7 +150,6 @@
     <Folder Include="Content\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Content\Style\" />
-    <Folder Include="Screens\iPhone\" />
     <Folder Include="Screens\iPhone\Extra Screens\" />
     <Folder Include="Screens\iPhone\CustomizingNavBar\" />
     <Folder Include="Content\InteractivePages\" />

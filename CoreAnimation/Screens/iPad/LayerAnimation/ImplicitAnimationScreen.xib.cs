@@ -9,7 +9,7 @@ using System.Drawing;
 
 namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 {
-	public partial class ImplicitAnimationScreen : UIViewController
+	public partial class ImplicitAnimationScreen : UIViewController, IDetailView
 	{
 		protected CALayer imgLayer;
 		

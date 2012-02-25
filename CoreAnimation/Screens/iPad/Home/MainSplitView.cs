@@ -10,6 +10,11 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 		
 		protected Screens.iPad.NavTable.MasterNavTableViewController masterView;
 		protected UIViewController detailView;
+
+		// fix http://bugzilla.xamarin.com/show_bug.cgi?id=2820 like Apple's sample shown in
+		// http://developer.apple.com/library/ios/#samplecode/MultipleDetailViews/Listings/Classes_RootViewController_m.html#//apple_ref/doc/uid/DTS40009775-Classes_RootViewController_m-DontLinkElementID_8
+		UIPopoverController popoverController;
+		UIBarButtonItem rootPopoverButtonItem;
 		
 		#endregion
 		
@@ -33,13 +38,17 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 			// when the master view controller is hid (portrait mode), we add a button to 
 			// the detail view that when clicked will show the master view in a popover controller
 			this.WillHideViewController += (object sender, UISplitViewHideEventArgs e) => {
-				(detailView as IDetailView).AddContentsButton (e.BarButtonItem);
+				popoverController = e.Pc;
+				rootPopoverButtonItem = e.BarButtonItem;
+				(detailView as IDetailView).AddContentsButton (rootPopoverButtonItem);
 			};
 
 			// when the master view controller is shown (landscape mode), remove the button
 			// since the controller is shown.
 			this.WillShowViewController += (object sender, UISplitViewShowEventArgs e) => {
 				(detailView as IDetailView).RemoveContentsButton ();
+				popoverController = null;
+				rootPopoverButtonItem = null;
 			};
 		}
 		
@@ -51,6 +60,10 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 		protected void HandleRowClicked(RowClickedEventArgs e)
 		{
 			Console.WriteLine("Changing Screens");
+			
+			if (popoverController != null)
+				popoverController.Dismiss (true);
+
 			// if the nav item has a proper controller, push it on to the NavigationController
 			// NOTE: we could also raise an event here, to loosely couple this, but isn't neccessary,
 			// because we'll only ever use this this way
@@ -110,6 +123,8 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 				}
 			}
 
+			if (rootPopoverButtonItem != null)
+				(detailView as IDetailView).AddContentsButton (rootPopoverButtonItem);
 		}
 
 	}

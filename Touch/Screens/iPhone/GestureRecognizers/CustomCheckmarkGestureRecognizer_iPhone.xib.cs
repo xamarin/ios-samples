@@ -58,7 +58,7 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers
 				if (checkmarkGesture.State == (UIGestureRecognizerState.Recognized | UIGestureRecognizerState.Ended)) {
 
 					if (isChecked)
-						imgCheckmark.Image = UIImage.FromBundle ("Images/CheckBox_UnChecked.png");
+						imgCheckmark.Image = UIImage.FromBundle ("Images/CheckBox_Unchecked.png");
 					else
 						imgCheckmark.Image = UIImage.FromBundle ("Images/CheckBox_Checked.png");
 					isChecked = !isChecked;

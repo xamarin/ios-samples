@@ -141,7 +141,7 @@ namespace MonoCatalog
 			var background = UIImage.FromFile ("images/whiteButton.png");
 			var backgroundPressed = UIImage.FromFile ("images/blueButton.png");
 			var frame = new RectangleF (182f, 5f, 106f, 40f);
-
+			//button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
 			return ButtonWithTitle ("Gray", frame, background, backgroundPressed, true);
 		}
 
@@ -152,7 +152,7 @@ namespace MonoCatalog
 			var frame = new RectangleF (182f, 5f, 106f, 40f);
 
 			var button = ButtonWithTitle ("", frame, background, backgroundPressed, true);
-
+			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
 			button.SetImage (UIImage.FromFile ("images/UIButton_custom.png"), UIControlState.Normal);
 			return button;
 		}
@@ -163,7 +163,7 @@ namespace MonoCatalog
 			button.Frame = new RectangleF (182f, 5f, 106f, 40f);
 			button.BackgroundColor = UIColor.Clear;
 			button.SetTitle ("Rounded", UIControlState.Normal);
-
+			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
 			button.Tag = kViewTag;
 			// To support reusable cells
 			return button;
@@ -175,7 +175,7 @@ namespace MonoCatalog
 			button.Frame = new RectangleF (250f, 8f, 25f, 25f);
 			button.BackgroundColor = UIColor.Clear;
 			button.SetTitle ("Detail Disclosure", UIControlState.Normal);
-
+			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
 			button.Tag = kViewTag;
 			// To support reusable cells
 			return button;
@@ -188,7 +188,7 @@ namespace MonoCatalog
 			button.Frame = new RectangleF (250, 8f, 25f, 25f);
 			button.BackgroundColor = UIColor.Clear;
 			button.SetTitle ("Detail Disclosure", UIControlState.Normal);
-
+			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
 			button.Tag = kViewTag;
 			// To support reusable cells
 			return button;
@@ -200,7 +200,7 @@ namespace MonoCatalog
 			button.Frame = new RectangleF (250, 8f, 25f, 25f);
 			button.BackgroundColor = UIColor.Gray;
 			button.SetTitle ("Detail Disclosure", UIControlState.Normal);
-
+			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
 			button.Tag = kViewTag;
 			// To support reusable cells
 			return button;
@@ -212,7 +212,7 @@ namespace MonoCatalog
 			button.Frame = new RectangleF (250, 8f, 25f, 25f);
 			button.BackgroundColor = UIColor.Clear;
 			button.SetTitle ("Detail Disclosure", UIControlState.Normal);
-
+			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
 			button.Tag = kViewTag;
 			// To support reusable cells
 			return button;

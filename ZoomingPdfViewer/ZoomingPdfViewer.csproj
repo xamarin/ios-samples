@@ -59,7 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
-    <None Include="README" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />

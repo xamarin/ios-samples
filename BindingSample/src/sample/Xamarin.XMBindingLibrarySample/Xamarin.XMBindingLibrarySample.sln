@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.XMBindingLibrarySample", "Xamarin.XMBindingLibrarySample\Xamarin.XMBindingLibrarySample.csproj", "{0CDEA6B0-A495-48B0-ADC0-A6459F730571}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0CDEA6B0-A495-48B0-ADC0-A6459F730571}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{0CDEA6B0-A495-48B0-ADC0-A6459F730571}.Debug|iPhone.Build.0 = Debug|iPhone
+		{0CDEA6B0-A495-48B0-ADC0-A6459F730571}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{0CDEA6B0-A495-48B0-ADC0-A6459F730571}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{0CDEA6B0-A495-48B0-ADC0-A6459F730571}.Release|iPhone.ActiveCfg = Release|iPhone
+		{0CDEA6B0-A495-48B0-ADC0-A6459F730571}.Release|iPhone.Build.0 = Release|iPhone
+		{0CDEA6B0-A495-48B0-ADC0-A6459F730571}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{0CDEA6B0-A495-48B0-ADC0-A6459F730571}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Xamarin.XMBindingLibrarySample\Xamarin.XMBindingLibrarySample.csproj
+	EndGlobalSection
+EndGlobal

@@ -32,6 +32,7 @@ namespace StreamingAudio
 		{
 		}
 		
+		NSTimer updatingTimer;
 		StreamingPlayback player = null;
 		QueueStream queueStream;
 		bool paused;
@@ -144,6 +145,28 @@ namespace StreamingAudio
 				// force the resources to be disposed and the playback to stop.
 				//
 				using (player = new StreamingPlayback ()){
+					AudioQueueTimeline timeline = null;
+					double sampleRate = 0;
+					
+					player.OutputReady += delegate {
+						timeline = player.OutputQueue.CreateTimeline ();
+						sampleRate = player.OutputQueue.SampleRate;
+					};
+					InvokeOnMainThread (delegate {
+						if (updatingTimer != null)
+							updatingTimer.Invalidate ();
+								
+						updatingTimer = NSTimer.CreateRepeatingScheduledTimer (0.5, delegate {
+							var queue = player.OutputQueue;
+							if (queue == null || timeline == null)
+								return;
+							bool disc;
+							AudioTimeStamp time;
+							queue.GetCurrentTime (timeline, ref time, ref disc);
+							
+							playbackTime.Text = FormatTime (time.SampleTime / sampleRate);
+						});
+					});
 					while ((n = inputStream.Read (buffer, 0, buffer.Length)) != 0){
 						l += n;
 						player.ParseBytes (buffer, n, false, l == (int)response.ContentLength);
@@ -174,6 +197,14 @@ namespace StreamingAudio
 				viewController.PopToRootViewController (true);
 				status.Text = "Finished playback";
 			}
+		}
+		
+		static string FormatTime (double time)
+		{
+			double minutes = time / 60;
+			double seconds = time % 60;
+			
+			return String.Format ("{0}:{1:D2}", (int) minutes, (int) seconds);
 		}
 		
 		//

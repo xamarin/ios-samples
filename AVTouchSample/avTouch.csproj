@@ -106,7 +106,4 @@
   <ItemGroup>
     <None Include="Info.plist" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Info.plist" />
-  </ItemGroup>
 </Project>
