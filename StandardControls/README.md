@@ -1,5 +1,5 @@
-Sound
-=====
+Standard Controls
+=================
 This example application illustrates how to use a number of standard controls including: 
 * Action Sheet
 * Activity Spinner
@@ -11,7 +11,7 @@ This example application illustrates how to use a number of standard controls in
 * Pager Control
 * Progress Bar
 * Scroll View
-* Segmented Controlr
+* Segmented Control
 * Slider
 * Switch
 * Text Field
