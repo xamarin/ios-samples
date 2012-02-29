@@ -32,8 +32,8 @@ namespace BubbleCell
 			bright = UIImage.FromFile ("green.png");
 			bleft = UIImage.FromFile ("grey.png");
 
-			left = bleft;
-			right = bright;
+			left = bleft.CreateResizableImage (new UIEdgeInsets (10, 16, 18, 26));
+			right = bright.CreateResizableImage (new UIEdgeInsets (11, 11, 17, 18));
 		}
 		
 		public BubbleCell (bool isLeft) : base (UITableViewCellStyle.Default, isLeft ? KeyLeft : KeyRight)
