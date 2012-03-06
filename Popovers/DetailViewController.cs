@@ -73,12 +73,24 @@ namespace Popovers
 		}
 		
 		public DetailViewController (IntPtr handle) : base (handle)
-		{
+		{		
+			// lost connection to DetailView.xib, create buttons manually for now
+			Button1 = new UIButton();
+			Button2 = new UIButton();
+			Button3 = new UIButton();
+			Button4 = new UIButton();
+			Button5 = new UIButton();
 		}
 		
 		//loads the DetailViewController.xib file and connects it to this object
 		public DetailViewController () : base ("DetailViewController", null)
-		{
+		{		
+			// lost connection to DetailView.xib, create buttons manually for now
+			Button1 = new UIButton();
+			Button2 = new UIButton();
+			Button3 = new UIButton();
+			Button4 = new UIButton();
+			Button5 = new UIButton();
 		}
 
 		public override void ViewDidLoad ()
@@ -93,7 +105,7 @@ namespace Popovers
 			BarButtonItemPopover = new UIPopoverController (content);
 			BarButtonItemPopover.PopoverContentSize = new SizeF (320, 320);
 			BarButtonItemPopover.DidDismiss += delegate { LastTappedButton = null; };
-		
+
 		}
 
 		[Action ("showPopover:")]
