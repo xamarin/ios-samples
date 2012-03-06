@@ -102,19 +102,19 @@ namespace Touches_GestureRecognizers
 		{
 			image.UserInteractionEnabled = true;
 			
-			var rotationGesture = new UIRotationGestureRecognizer (this, new Selector ("RotateImage"));
+			var rotationGesture = new UIRotationGestureRecognizer (RotateImage);
 			image.AddGestureRecognizer (rotationGesture);
 			
-			var pinchGesture = new UIPinchGestureRecognizer (this, new Selector ("ScaleImage"));
+			var pinchGesture = new UIPinchGestureRecognizer (ScaleImage);
 			pinchGesture.Delegate = new GestureDelegate (this);
 			image.AddGestureRecognizer (pinchGesture);
 			
-			var panGesture = new UIPanGestureRecognizer (this, new Selector ("PanImage"));
+			var panGesture = new UIPanGestureRecognizer (PanImage);
 			panGesture.MaximumNumberOfTouches = 2;
 			panGesture.Delegate = new GestureDelegate (this);
 			image.AddGestureRecognizer (panGesture);
 			
-			var longPressGesture = new UILongPressGestureRecognizer (this, new Selector ("ShowResetMenu"));
+			var longPressGesture = new UILongPressGestureRecognizer (ShowResetMenu);
 			image.AddGestureRecognizer (longPressGesture);
 		}
 		
@@ -165,7 +165,6 @@ namespace Touches_GestureRecognizers
 		
 		#region Touch handling
 		// Shift the image's center by the pan amount
-		[Export("PanImage")]
 		void PanImage (UIPanGestureRecognizer gestureRecognizer)
 		{
 			AdjustAnchorPointForGestureRecognizer (gestureRecognizer);
@@ -179,7 +178,6 @@ namespace Touches_GestureRecognizers
 		}
 			
 		// Rotates the image by the current rotation
-		[Export("RotateImage")]
 		void RotateImage (UIRotationGestureRecognizer gestureRecognizer)
 		{
 			AdjustAnchorPointForGestureRecognizer (gestureRecognizer);
@@ -191,7 +189,6 @@ namespace Touches_GestureRecognizers
 		}
 		
 		// Scales the image by the current scale
-		[Export("ScaleImage")]
 		void ScaleImage (UIPinchGestureRecognizer gestureRecognizer)
 		{
 			AdjustAnchorPointForGestureRecognizer (gestureRecognizer);
