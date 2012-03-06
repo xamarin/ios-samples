@@ -40,6 +40,7 @@ namespace CoreMidiSample
 			return new RootElement ("CoreMidi Sample"){
 				(hardwareSection = new Section ("Hardware") {
 					MakeHardware (),
+					new RootElement ("Devices (" + Midi.DeviceCount + ", " + Midi.ExternalDeviceCount + ")")
 				}),
 				new Section ("Send"){
 					new StringElement ("Send Note", SendNote)	
@@ -53,10 +54,10 @@ namespace CoreMidiSample
 
 		RootElement MakeHardware ()
 		{
-			int sources = MidiEndpoint.SourceCount;
-			int destinations = MidiEndpoint.DestinationCount;
+			int sources = Midi.SourceCount;
+			int destinations = Midi.DestinationCount;
 			
-			return new RootElement ("Devices (" + sources + ", " + destinations +")") {
+			return new RootElement ("Endpoints (" + sources + ", " + destinations +")") {
 				new Section ("Sources"){
 					from x in Enumerable.Range (0, sources)
 						let source = MidiEndpoint.GetSource (x)
@@ -82,7 +83,7 @@ namespace CoreMidiSample
 		
 		void SendNote ()
 		{
-			for (int i = 0; i < MidiEndpoint.DestinationCount; i++){
+			for (int i = 0; i < Midi.DestinationCount; i++){
 				var endpoint = MidiEndpoint.GetDestination (i);
 				
 				var note = (byte) (rand.Next () % 127);
@@ -102,6 +103,9 @@ namespace CoreMidiSample
 		void SetupMidi ()
 		{
 			client = new MidiClient ("CoreMidiSample MIDI CLient");
+			client.ObjectAdded += delegate(object sender, ObjectAddedOrRemovedEventArgs e) {
+				
+			};
 			client.ObjectAdded += delegate { ReloadDevices (); };
 			client.ObjectRemoved += delegate { ReloadDevices (); };
 			client.PropertyChanged += delegate(object sender, ObjectPropertyChangedEventArgs e) {
@@ -116,7 +120,9 @@ namespace CoreMidiSample
 			
 			outputPort = client.CreateOutputPort ("CoreMidiSample Output Port");
 			inputPort = client.CreateInputPort ("CoreMidiSample Input Port");
-			
+			inputPort.MessageReceived += delegate(object sender, MidiPacketsEventArgs e) {
+				Console.WriteLine ("Got {0} packets", e.Packets.Length);
+			};
 			ConnectExistingDevices ();	
 			
 			var session = MidiNetworkSession.DefaultSession;
@@ -126,7 +132,7 @@ namespace CoreMidiSample
 
 		void ConnectExistingDevices ()
 		{
-			for (int i = 0; i < MidiEndpoint.SourceCount; i++){
+			for (int i = 0; i < Midi.SourceCount; i++){
 				var code = inputPort.ConnectSource (MidiEndpoint.GetSource (i));
 				if (code != MidiError.Ok)
 					Console.WriteLine ("Failed to connect");
