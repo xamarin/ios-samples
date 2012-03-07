@@ -1,4 +1,4 @@
-Core Location
+Shared Resources
 =============
 
 This sample illustrates how to work with various iOS resources including: the accelerometer, photo/video library, camera, battery status, contacts, file system, and network activity indicator.
