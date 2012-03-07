@@ -23,10 +23,6 @@ namespace coreimage
 		#region UIApplicationDelegate Methods
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			//var items = GetDialogElements ().ToList();
-			//var section = new Section ();
-			//section.AddAll (items);
-			
 			window = new UIWindow (UIScreen.MainScreen.Bounds) 
 			{
 				RootViewController = new UINavigationController (
@@ -56,30 +52,30 @@ namespace coreimage
 								new RootElement ("GaussianGradient", (x) => Demo (GaussianGradient)),
 								new RootElement ("HardLightBlendMode", (x) => Demo (HardLightBlendMode)),
 								new RootElement ("HighlightShadowAdjust", (x) => Demo (HighlightShadowAdjust)),
-								new RootElement("HueAdjust", (x) => Demo (HueAdjust)),
-								new RootElement("HueBlendMode", (x) => Demo (HueBlendMode)),
-								new RootElement("LightenBlendMode", (x) => Demo (LightenBlendMode)),
-								new RootElement("LinearGradient", (x) =>Demo(LinearGradient)),
-								new RootElement("LuminosityBlendMode", (x) => Demo (LuminosityBlendMode)),
-								new RootElement("MaximumCompositing", (x) => Demo (MaximumCompositing)),
-								new RootElement("MultiplyBlendMode", (x) => Demo (MultiplyBlendMode)),
-								new RootElement("MultiplyCompositing", (x) => Demo (MultiplyCompositing)),
-								new RootElement("OverlayBlendMode", (x) => Demo (OverlayBlendMode)),
-								new RootElement("RadialGradient", (x) => Demo (RadialGradient)),
-								new RootElement("SaturationBlendMode", (x) => Demo (SaturationBlendMode)),
-								new RootElement("ScreenBlendMode", (x) => Demo (ScreenBlendMode)),
-								new RootElement("SoftLightBlendMode", (x) => Demo (SoftLightBlendMode)),
-								new RootElement("SourceAtopCompositing", (x) => Demo (SourceAtopCompositing)),
-								new RootElement("SourceInCompositing", (x) => Demo(SourceInCompositing)),
-								new RootElement("SourceOutCompositing", (x) => Demo(SourceOutCompositing)),
-								new RootElement("SourceOverCompositing", (x) => Demo (SourceOverCompositing)),
-								new RootElement("StraightenFilter", (x) => Demo (StraightenFilter)),
-								new RootElement("StripesGenerator", (x) => Demo (StripesGenerator)),
-								new RootElement("TemperatureAndTint", (x) => Demo (TemperatureAndTint)),
-								new RootElement("ToneCurve", (x) => Demo (ToneCurve)),
-								new RootElement("Vibrance", (x) => Demo (Vibrance)),
-								new RootElement("Vignette", (x) => Demo (Vignette)),
-								new RootElement("WhitePointAdjust", (x) => Demo(WhitePointAdjust))
+								new RootElement ("HueAdjust", (x) => Demo (HueAdjust)),
+								new RootElement ("HueBlendMode", (x) => Demo (HueBlendMode)),
+								new RootElement ("LightenBlendMode", (x) => Demo (LightenBlendMode)),
+								new RootElement ("LinearGradient", (x) =>Demo(LinearGradient)),
+								new RootElement ("LuminosityBlendMode", (x) => Demo (LuminosityBlendMode)),
+								new RootElement ("MaximumCompositing", (x) => Demo (MaximumCompositing)),
+								new RootElement ("MultiplyBlendMode", (x) => Demo (MultiplyBlendMode)),
+								new RootElement ("MultiplyCompositing", (x) => Demo (MultiplyCompositing)),
+								new RootElement ("OverlayBlendMode", (x) => Demo (OverlayBlendMode)),
+								new RootElement ("RadialGradient", (x) => Demo (RadialGradient)),
+								new RootElement ("SaturationBlendMode", (x) => Demo (SaturationBlendMode)),
+								new RootElement ("ScreenBlendMode", (x) => Demo (ScreenBlendMode)),
+								new RootElement ("SoftLightBlendMode", (x) => Demo (SoftLightBlendMode)),
+								new RootElement ("SourceAtopCompositing", (x) => Demo (SourceAtopCompositing)),
+								new RootElement ("SourceInCompositing", (x) => Demo(SourceInCompositing)),
+								new RootElement ("SourceOutCompositing", (x) => Demo(SourceOutCompositing)),
+								new RootElement ("SourceOverCompositing", (x) => Demo (SourceOverCompositing)),
+								new RootElement ("StraightenFilter", (x) => Demo (StraightenFilter)),
+								new RootElement ("StripesGenerator", (x) => Demo (StripesGenerator)),
+								new RootElement ("TemperatureAndTint", (x) => Demo (TemperatureAndTint)),
+								new RootElement ("ToneCurve", (x) => Demo (ToneCurve)),
+								new RootElement ("Vibrance", (x) => Demo (Vibrance)),
+								new RootElement ("Vignette", (x) => Demo (Vignette)),
+								new RootElement ("WhitePointAdjust", (x) => Demo(WhitePointAdjust))
 								//section	
 							}
 						}))
@@ -91,35 +87,18 @@ namespace coreimage
 		#endregion
 		
 		#region Helper Methods
-		
-		IEnumerable<Element> GetDialogElements ()
+		// 
+		// Utility function used by pure-output generation filters
+		//
+		public CIImage Crop (CIFilter input)
 		{
-			var filterMethods = GetFilterMethods ();
-			
-			foreach (var kvp in filterMethods) {
-				yield return new RootElement(kvp.Key, (x) => Demo(kvp.Value));
-			}
-				
+			return new CICrop () { 
+				Image = input.OutputImage,
+				Rectangle = new CIVector (0, 0, window.Bounds.Width, window.Bounds.Height) 
+			}.OutputImage;			
 		}
 		
 		public delegate CIImage ImageFilter ();
-
-		Dictionary<string, ImageFilter> GetFilterMethods ()
-		{
-			var type = this.GetType ();
-			
-			var filterMethods = type.GetMethods ().Where (m =>
-			{
-				var attribs = m.GetCustomAttributes (typeof(FilterAttribute), true);
-				if (attribs != null && attribs.Length == 1)
-					return true;
-				return false;
-			}).ToList ();
-			
-			var fType = typeof(ImageFilter);
-			
-			return filterMethods.ToDictionary (k => k.Name, v => (ImageFilter)Delegate.CreateDelegate (fType, this, v));
-		}
 		
 		public UIViewController Demo (ImageFilter makeDemo)
 		{
@@ -424,18 +403,18 @@ namespace coreimage
 		public CIImage GaussianGradient ()
 		{
 			var centerVector = new CIVector (100, 100); // Default is [150 150]
-			var color1 = new CIColor (new CGColor (255F, 255F, 255F)); //(new CGColor(0, 255F, 255F));
-			var color0 = new CIColor (new CGColor (0, 0, 0));//(new CGColor(255F, 0, 0));
+			var color1 = CIColor.FromRgba (1, 0, 1, 1);
+			var color0 = CIColor.FromRgba (0, 1, 1, 1);
 				
 			var gaussGradient = new CIGaussianGradient ()
 			{
 				Center = centerVector,
 				Color0 = color0,
 				Color1 = color1,
-				Radius = 500F // Default is 300
+				Radius = 280f // Default is 300
 			};
 			
-			return gaussGradient.OutputImage;
+			return Crop (gaussGradient);
 		}
 		
 		/// <summary>
@@ -447,19 +426,17 @@ namespace coreimage
 		[Filter]
 		public CIImage LinearGradient()
 		{
-			var point0 = new CIVector(100, 0); // Default [0 0]
-			var point1 = new CIVector(0, 100); // Default [200 200]
-			var inputColor0 = new CIColor(new CGColor(0, 0, 255F)); // Blue
-			var inputColor1 = new CIColor(new CGColor(255F, 0, 0)); // Red
+			var point0 = new CIVector(0, 0); // Default [0 0]
+			var point1 = new CIVector(250, 250); // Default [200 200]
 			var linearGrad = new CILinearGradient()
 			{
 				Point0 = point0,
 				Point1 = point1,
-				Color0 = inputColor0,
-				Color1 = inputColor1
+				Color0 = new CIColor (UIColor.Red),
+				Color1 = new CIColor (UIColor.Blue)
 			};
 			
-			return linearGrad.OutputImage;
+			return Crop (linearGrad);
 		}
 		
 		/// <summary>
@@ -481,7 +458,7 @@ namespace coreimage
 				Color1 = new CIColor(new CGColor(0, 0, 0)) // Black
 			};
 			
-			return radGradient.OutputImage;
+			return Crop (radGradient);
 		}
 		#endregion
 		
@@ -948,8 +925,8 @@ namespace coreimage
 		public CIImage CheckerboardGenerator ()
 		{
 			// Color 1 
-			var c0 = new CIColor (new CGColor (0xFF, 0x0, 0x0, 0x0)); // Red
-			var c1 = new CIColor (new CGColor (0x00, 0XFF, 0x0, 0x0)); // Green
+			var c0 = CIColor.FromRgb (1, 0, 0);
+			var c1 = CIColor.FromRgb (0, 1, 0);
 			var checker = new CICheckerboardGenerator ()
 			{
 				Color0 = c0,
@@ -958,7 +935,7 @@ namespace coreimage
 				Sharpness = 1F // Default 1
 			};
 			
-			return checker.OutputImage;
+			return Crop (checker);
 		}
 		
 		/// <summary>
@@ -970,13 +947,12 @@ namespace coreimage
 		[Filter]
 		public CIImage ConstantColorGenerator ()
 		{
-			var color = new CIColor (new CGColor (77F, 247F, 250F)); // A nice Teal
 			var colorGen = new CIConstantColorGenerator ()
 			{
-				Color = color
+				Color = new CIColor (UIColor.Blue)
 			};
 			
-			return colorGen.OutputImage;
+			return Crop (colorGen);
 		}
 		
 		/// <summary>
@@ -988,15 +964,15 @@ namespace coreimage
 		[Filter]
 		public CIImage StripesGenerator()
 		{
-			var center = new CIVector(100, 100); // Default [150 150]
 			var stripeGen = new CIStripesGenerator()
 			{
-				Center=center,
-				Color0 = new CIColor(new CGColor(0,0,255F)), // Blue
-				Color1 = new CIColor(new CGColor(255F, 255F, 255F)), // Black
+				Center = new CIVector(150, 100), // Default [150 150]
+				Color0 = new CIColor (UIColor.Blue),
+				Color1 = new CIColor (UIColor.Red),
+				Width = 10,
 			};
 			
-			return stripeGen.OutputImage;
+			return Crop (stripeGen);
 		}
 		#endregion
 	
