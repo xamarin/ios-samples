@@ -15,8 +15,19 @@ namespace coreimage
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
+		/// <summary>
+		/// "Flower" © 2012 Milica Sekulic, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/ 
+		/// </summary>
 		CIImage flower = CIImage.FromCGImage (UIImage.FromFile ("flower.png").CGImage);
+		
+		/// <summary>
+		/// "Sunrise near Atkeison Plateau" © 2012 Charles Atkeison, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/ 
+		/// </summary>
 		CIImage clouds = CIImage.FromCGImage (UIImage.FromFile ("clouds.jpg").CGImage);
+		
+		/// <summary>
+		/// "Heron" © 2012 cuatrok77 hernandez, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/ 
+		/// </summary>
 		CIImage heron = CIImage.FromCGImage (UIImage.FromFile ("heron.jpg").CGImage);
 		UIWindow window;
 		
