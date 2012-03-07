@@ -23,62 +23,90 @@ namespace coreimage
 		#region UIApplicationDelegate Methods
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			window = new UIWindow (UIScreen.MainScreen.Bounds) 
-			{
-				RootViewController = new UINavigationController (
-					new DialogViewController (
-						new RootElement ("Effects") 
-				    	{
-							new Section () 
-							{
-								new RootElement ("SepiaTone", (x) => Demo (SepiaTone)),
-								new RootElement ("Crop", (x) => Demo (Crop)),
-								new RootElement ("ColorControls", (x) => Demo (ColorControls)),
-								new RootElement ("AdditionCompositing", (x) => Demo (AdditionCompositing)),
-								new RootElement ("AffineTransform", (x) => Demo (AffineTransform)),
-								new RootElement ("CheckerboardGenerator", (x) => Demo (CheckerboardGenerator)),
-								new RootElement ("ColorBlendMode", (x) => Demo (ColorBlendMode)),
-								new RootElement ("ColorCube", (x) => Demo (ColorCube)),
-								new RootElement ("ColorDodgeBlendMode", (x) => Demo (ColorDodgeBlendMode)),
-								new RootElement ("ColorInvert", (x) => Demo (ColorInvert)),
-								new RootElement ("ColorMatrix", (x) => Demo (ColorMatrix)),
-								new RootElement ("ColorMonochrome", (x) => Demo (ColorMonochrome)),
-								new RootElement ("ConstantColorGenerator", (x) => Demo (ConstantColorGenerator)),
-								new RootElement ("DifferenceBlendMode", (x) => Demo (DifferenceBlendMode)),
-								new RootElement ("ExclusionBlendMode", (x) => Demo (ExclusionBlendMode)),
-								new RootElement ("ExposureAdjust", (x) => Demo (ExposureAdjust)),
-								new RootElement ("FalseColor", (x) => Demo (FalseColor)),
-								new RootElement ("GammaAdjust", (x) => Demo (GammaAdjust)),
-								new RootElement ("GaussianGradient", (x) => Demo (GaussianGradient)),
-								new RootElement ("HardLightBlendMode", (x) => Demo (HardLightBlendMode)),
-								new RootElement ("HighlightShadowAdjust", (x) => Demo (HighlightShadowAdjust)),
-								new RootElement ("HueAdjust", (x) => Demo (HueAdjust)),
-								new RootElement ("HueBlendMode", (x) => Demo (HueBlendMode)),
-								new RootElement ("LightenBlendMode", (x) => Demo (LightenBlendMode)),
-								new RootElement ("LinearGradient", (x) =>Demo(LinearGradient)),
-								new RootElement ("LuminosityBlendMode", (x) => Demo (LuminosityBlendMode)),
-								new RootElement ("MaximumCompositing", (x) => Demo (MaximumCompositing)),
-								new RootElement ("MultiplyBlendMode", (x) => Demo (MultiplyBlendMode)),
-								new RootElement ("MultiplyCompositing", (x) => Demo (MultiplyCompositing)),
-								new RootElement ("OverlayBlendMode", (x) => Demo (OverlayBlendMode)),
-								new RootElement ("RadialGradient", (x) => Demo (RadialGradient)),
-								new RootElement ("SaturationBlendMode", (x) => Demo (SaturationBlendMode)),
-								new RootElement ("ScreenBlendMode", (x) => Demo (ScreenBlendMode)),
-								new RootElement ("SoftLightBlendMode", (x) => Demo (SoftLightBlendMode)),
-								new RootElement ("SourceAtopCompositing", (x) => Demo (SourceAtopCompositing)),
-								new RootElement ("SourceInCompositing", (x) => Demo(SourceInCompositing)),
-								new RootElement ("SourceOutCompositing", (x) => Demo(SourceOutCompositing)),
-								new RootElement ("SourceOverCompositing", (x) => Demo (SourceOverCompositing)),
-								new RootElement ("StraightenFilter", (x) => Demo (StraightenFilter)),
-								new RootElement ("StripesGenerator", (x) => Demo (StripesGenerator)),
-								new RootElement ("TemperatureAndTint", (x) => Demo (TemperatureAndTint)),
-								new RootElement ("ToneCurve", (x) => Demo (ToneCurve)),
-								new RootElement ("Vibrance", (x) => Demo (Vibrance)),
-								new RootElement ("Vignette", (x) => Demo (Vignette)),
-								new RootElement ("WhitePointAdjust", (x) => Demo(WhitePointAdjust))
-								//section	
-							}
-						}))
+			var root = new RootElement ("Effects") {
+				new Section () {
+					new RootElement ("Color Adjustment"){
+						new Section () {
+							new RootElement ("ColorControls", (x) => Demo (ColorControls)),
+							new RootElement ("ColorMatrix", (x) => Demo (ColorMatrix)),
+							new RootElement ("ExposureAdjust", (x) => Demo (ExposureAdjust)),
+							new RootElement ("GammaAdjust", (x) => Demo (GammaAdjust)),
+							new RootElement ("HueAdjust", (x) => Demo (HueAdjust)),
+							new RootElement ("TemperatureAndTint", (x) => Demo (TemperatureAndTint)),
+							new RootElement ("ToneCurve", (x) => Demo (ToneCurve)),
+							new RootElement ("Vibrance", (x) => Demo (Vibrance)),
+							new RootElement ("WhitePointAdjust", (x) => Demo(WhitePointAdjust))
+						}
+					},
+					new RootElement ("Color Effect"){
+						new Section () {
+							new RootElement ("ColorCube", (x) => Demo (ColorCube)),
+							new RootElement ("ColorInvert", (x) => Demo (ColorInvert)),
+							new RootElement ("ColorMonochrome", (x) => Demo (ColorMonochrome)),
+							new RootElement ("FalseColor", (x) => Demo (FalseColor)),
+							new RootElement ("SepiaTone", (x) => Demo (SepiaTone)),
+						}
+					},
+					new RootElement ("Composite Operation"){
+						new Section () {
+							new RootElement ("AdditionCompositing", (x) => Demo (AdditionCompositing)),
+							new RootElement ("ColorBlendMode", (x) => Demo (ColorBlendMode)),
+							new RootElement ("ColorDodgeBlendMode", (x) => Demo (ColorDodgeBlendMode)),
+							new RootElement ("DifferenceBlendMode", (x) => Demo (DifferenceBlendMode)),
+							new RootElement ("ExclusionBlendMode", (x) => Demo (ExclusionBlendMode)),
+							new RootElement ("HardLightBlendMode", (x) => Demo (HardLightBlendMode)),
+							new RootElement ("HueBlendMode", (x) => Demo (HueBlendMode)),
+							new RootElement ("LightenBlendMode", (x) => Demo (LightenBlendMode)),
+							new RootElement ("LuminosityBlendMode", (x) => Demo (LuminosityBlendMode)),
+							new RootElement ("MaximumCompositing", (x) => Demo (MaximumCompositing)),
+							new RootElement ("MultiplyCompositing", (x) => Demo (MultiplyCompositing)),
+							new RootElement ("MultiplyBlendMode", (x) => Demo (MultiplyBlendMode)),
+							new RootElement ("OverlayBlendMode", (x) => Demo (OverlayBlendMode)),
+							new RootElement ("SaturationBlendMode", (x) => Demo (SaturationBlendMode)),
+							new RootElement ("ScreenBlendMode", (x) => Demo (ScreenBlendMode)),
+							new RootElement ("SoftLightBlendMode", (x) => Demo (SoftLightBlendMode)),
+							new RootElement ("SourceAtopCompositing", (x) => Demo (SourceAtopCompositing)),
+							new RootElement ("SourceInCompositing", (x) => Demo(SourceInCompositing)),
+							new RootElement ("SourceOutCompositing", (x) => Demo(SourceOutCompositing)),
+							new RootElement ("SourceOverCompositing", (x) => Demo (SourceOverCompositing)),
+						}
+					},
+					new RootElement ("Distortions"){
+						new Section () {
+						}
+					},
+					new RootElement ("Generators"){
+						new Section () {
+							new RootElement ("CheckerboardGenerator", (x) => Demo (CheckerboardGenerator)),
+							new RootElement ("ConstantColorGenerator", (x) => Demo (ConstantColorGenerator)),
+							new RootElement ("StripesGenerator", (x) => Demo (StripesGenerator)),
+						}
+					},
+					new RootElement ("Geometry Adjust"){
+						new Section () {
+							new RootElement ("AffineTransform", (x) => Demo (AffineTransform)),
+							new RootElement ("Crop", (x) => Demo (Crop)),
+							new RootElement ("StraightenFilter", (x) => Demo (StraightenFilter)),
+						}
+					},
+					new RootElement ("Gradients"){
+						new Section () {
+							new RootElement ("GaussianGradient", (x) => Demo (GaussianGradient)),
+							new RootElement ("LinearGradient", (x) =>Demo(LinearGradient)),
+							new RootElement ("RadialGradient", (x) => Demo (RadialGradient)),
+						}
+					},
+					new RootElement ("Stylize"){
+						new Section () {
+							new RootElement ("HighlightShadowAdjust", (x) => Demo (HighlightShadowAdjust)),
+						}
+					},
+					new RootElement ("Vignette", (x) => Demo (Vignette))
+				}
+			};					
+			
+			window = new UIWindow (UIScreen.MainScreen.Bounds) {
+				RootViewController = new UINavigationController (new DialogViewController (root))
 			};
 			window.MakeKeyAndVisible ();
 
