@@ -948,13 +948,14 @@ namespace coreimage
 		public CIImage CheckerboardGenerator ()
 		{
 			// Color 1 
-			var c0 = new CIColor (new CGColor (0xFF, 0x0, 0x0, 0x0));
-			var c1 = new CIColor (new CGColor (0x00, 0XFF, 0x0, 0x0));
+			var c0 = new CIColor (new CGColor (0xFF, 0x0, 0x0, 0x0)); // Red
+			var c1 = new CIColor (new CGColor (0x00, 0XFF, 0x0, 0x0)); // Green
 			var checker = new CICheckerboardGenerator ()
 			{
 				Color0 = c0,
 				Color1 = c1,
-				Center = new CIVector (new float[] { 10 , 10 })
+				Center = new CIVector (new float[] { 10 , 10 }), // Default [80 80]
+				Sharpness = 1F // Default 1
 			};
 			
 			return checker.OutputImage;
@@ -970,10 +971,9 @@ namespace coreimage
 		public CIImage ConstantColorGenerator ()
 		{
 			var color = new CIColor (new CGColor (77F, 247F, 250F)); // A nice Teal
-			var color2 = new CIColor (new CGColor (255F, 0F, 0F));
 			var colorGen = new CIConstantColorGenerator ()
 			{
-				Color = color2
+				Color = color
 			};
 			
 			return colorGen.OutputImage;
