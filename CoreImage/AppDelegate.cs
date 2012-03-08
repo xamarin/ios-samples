@@ -72,6 +72,7 @@ namespace coreimage
 							new RootElement ("LightenBlendMode", (x) => Demo (LightenBlendMode)),
 							new RootElement ("LuminosityBlendMode", (x) => Demo (LuminosityBlendMode)),
 							new RootElement ("MaximumCompositing", (x) => Demo (MaximumCompositing)),
+							new RootElement ("MinimumCompositing", (x) => Demo (MinimumCompositing)),
 							new RootElement ("MultiplyCompositing", (x) => Demo (MultiplyCompositing)),
 							new RootElement ("MultiplyBlendMode", (x) => Demo (MultiplyBlendMode)),
 							new RootElement ("OverlayBlendMode", (x) => Demo (OverlayBlendMode)),
