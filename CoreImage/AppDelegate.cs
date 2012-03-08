@@ -62,6 +62,7 @@ namespace coreimage
 						new Section () {
 							new RootElement ("AdditionCompositing", (x) => Demo (AdditionCompositing)),
 							new RootElement ("ColorBlendMode", (x) => Demo (ColorBlendMode)),
+							new RootElement ("ColorBurnBlendMode", (x) => Demo (ColorBurnBlendMode)),
 							new RootElement ("ColorDodgeBlendMode", (x) => Demo (ColorDodgeBlendMode)),
 							new RootElement ("DifferenceBlendMode", (x) => Demo (DifferenceBlendMode)),
 							new RootElement ("ExclusionBlendMode", (x) => Demo (ExclusionBlendMode)),
@@ -524,6 +525,7 @@ namespace coreimage
 		[Filter]
 		public CIImage AffineTransform ()
 		{
+			// Create an AffineTransform to Skew the Image
 			var transform = new CGAffineTransform (1F, .5F, .5F, 1F, 0F, 0F);
 			
 			var affineTransform = new CIAffineTransform ()
@@ -609,6 +611,24 @@ namespace coreimage
 			};
 			
 			return colorBlend.OutputImage;
+		}
+		
+		/// <summary>
+		/// Darkens the background image samples to reflect the source image samples.
+		/// </summary>
+		/// <returns>
+		/// The composite image
+		/// </returns>
+		[Filter]
+		public CIImage ColorBurnBlendMode()
+		{
+			var colorBurn = new CIColorBurnBlendMode()
+			{
+				Image = heron,
+				BackgroundImage = clouds
+			};
+			
+			return colorBurn.OutputImage;
 		}
 		
 		/// <summary>
