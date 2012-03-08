@@ -64,6 +64,7 @@ namespace coreimage
 							new RootElement ("ColorBlendMode", (x) => Demo (ColorBlendMode)),
 							new RootElement ("ColorBurnBlendMode", (x) => Demo (ColorBurnBlendMode)),
 							new RootElement ("ColorDodgeBlendMode", (x) => Demo (ColorDodgeBlendMode)),
+							new RootElement ("DarkenBlendMode", (x) => Demo (DarkenBlendMode)),
 							new RootElement ("DifferenceBlendMode", (x) => Demo (DifferenceBlendMode)),
 							new RootElement ("ExclusionBlendMode", (x) => Demo (ExclusionBlendMode)),
 							new RootElement ("HardLightBlendMode", (x) => Demo (HardLightBlendMode)),
@@ -193,11 +194,12 @@ namespace coreimage
 		[Filter]
 		public CIImage ColorControls ()
 		{
-			var colorCtrls = new CIColorControls (){
+			var colorCtrls = new CIColorControls ()
+			{
 				Image = flower,
-				Brightness = .5F,
-				Saturation = 1.2F,
-				Contrast = 3.1F
+				Brightness = .5F, // Min: 0 Max: 2
+				Saturation = 1.2F, // Min: -1 Max: 1
+				Contrast = 3.1F // Min: 0 Max: 4
 			};
 			
 			return colorCtrls.OutputImage;
@@ -386,7 +388,7 @@ namespace coreimage
 			{
 				Image = flower,
 				Color = inputColor,
-				Intensity = 1F,
+				Intensity = 1F, // Default 1
 			};
 			
 			return monoChrome.OutputImage;
@@ -646,6 +648,24 @@ namespace coreimage
 			};
 			
 			return colorDodgeBlend.OutputImage;
+		}
+		
+		/// <summary>
+		/// Creates composite image samples by choosing the darker samples (from either the source image or the background).
+		/// </summary>
+		/// <returns>
+		/// The composite Image
+		/// </returns>
+		[Filter]
+		public CIImage DarkenBlendMode()
+		{
+			var darkenBlend = new CIDarkenBlendMode()
+			{
+				Image = heron,
+				BackgroundImage = clouds
+			};
+			
+			return darkenBlend.OutputImage;
 		}
 		
 		/// <summary>
