@@ -26,6 +26,7 @@ namespace GLCameraRipple
 		CVOpenGLESTexture lumaTexture, chromaTexture;
 		CVOpenGLESTextureCache videoTextureCache;
 		AVCaptureSession session;
+		GLKView glkView;
 		
 		//
 		// OpenGL components
@@ -38,13 +39,29 @@ namespace GLCameraRipple
 		int [] uniforms = new int [2];
 		int program;
 		
+		UILabel label, label2;
+		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			context = new EAGLContext (EAGLRenderingAPI.OpenGLES2);
-			((GLKView)View).Context = context;
-			PreferredFramesPerSecond = 60;
+			glkView = (GLKView) View;
+			label = new UILabel (new RectangleF (0, 0, 320, 30)){
+				BackgroundColor = UIColor.White,
+				TextColor = UIColor.Black
+			};
+			label2 = new UILabel (new RectangleF (0, 40, 320, 30)){
+				BackgroundColor = UIColor.White,
+				TextColor = UIColor.Black
+			};
+			glkView.AddSubview (label);
+			glkView.AddSubview (label2);
+			           
+			glkView.Context = context;
+			glkView.DrawInRect += Draw;
+			
+			PreferredFramesPerSecond = 10;
 			size = UIScreen.MainScreen.Bounds.Size.ToSize ();
 			View.ContentScaleFactor = UIScreen.MainScreen.Scale;
 			
@@ -57,6 +74,23 @@ namespace GLCameraRipple
 			}
 			SetupGL ();
 			SetupAVCapture ();
+		}
+		
+		void Draw (object sender, GLKViewDrawEventArgs args)
+		{
+			GL.Clear ((int)All.ColorBufferBit);
+			if (ripple != null){
+				short s = 0;
+				GL.DrawElements (All.TriangleStrip, ripple.IndexCount, All.UnsignedShort, IntPtr.Zero);
+			}
+		}
+
+		public override void Update ()
+		{
+			if (ripple != null){
+				ripple.RunSimulation ();
+				unsafe {GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.VertexSize, (IntPtr)ripple.TexCoords, All.DynamicDraw);}
+			}
 		}
 		
 		public override void ViewDidUnload ()
@@ -73,6 +107,7 @@ namespace GLCameraRipple
 			// Camera is fixed, only allow portrait
 			return (toInterfaceOrientation == UIInterfaceOrientation.Portrait);
 		}
+		
 		
 		void CleanupTextures ()
 		{
@@ -131,6 +166,14 @@ namespace GLCameraRipple
 				VideoSettings = new AVVideoSettings (CVPixelFormatType.CV420YpCbCr8BiPlanarFullRange)
 			};
 			dataOutputDelegate = new DataOutputDelegate (this);
+			
+			//
+			// FIXME: Using the MainQueue seems to hang
+			//
+			NSTimer.CreateRepeatingScheduledTimer (0.2, delegate {
+				Console.WriteLine ("Tick tock");
+			});
+			
 			dataOutput.SetSampleBufferDelegateAndQueue (dataOutputDelegate, DispatchQueue.MainQueue);
 			session.AddOutput (dataOutput);
 			session.CommitConfiguration ();
@@ -243,15 +286,13 @@ namespace GLCameraRipple
 		RippleModel ripple;
 		
 		void SetupRipple (Size textureSize)
-		{
-			ripple = new RippleModel (size, meshFactor, 5, textureSize);
+		{			ripple = new RippleModel (size, meshFactor, 5, textureSize);
 			SetupBuffers ();
 		}
 		
 		class DataOutputDelegate : AVCaptureVideoDataOutputSampleBufferDelegate {
 			Size textureSize;
 			RippleViewController container;
-			RippleModel ripple;
 			
 			public DataOutputDelegate (RippleViewController container)
 			{
@@ -259,27 +300,47 @@ namespace GLCameraRipple
 			}
 			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, MonoTouch.CoreMedia.CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
 			{
-				var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer;
-				int width = pixelBuffer.Width;
-				int height = pixelBuffer.Height;
-				
-				if (container.videoTextureCache == null){
-					Console.WriteLine ("No video texture cache");
-					return;
+				try {
+					using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer){
+						sampleBuffer.Dispose ();
+	
+						int width = pixelBuffer.Width;
+						int height = pixelBuffer.Height;
+					
+						if (container.ripple == null || width != textureSize.Width || height != textureSize.Height){
+							textureSize = new Size (width, height);
+							container.SetupRipple (textureSize);
+						}
+						container.CleanupTextures ();
+						
+						// Y-plane
+						GL.ActiveTexture (All.Texture0);
+						All re = (All) 0x1903; // GL_RED_EXT
+						CVReturn status;
+						var lumaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureSize.Width, textureSize.Height, re, DataType.UnsignedByte, 0, out status);
+						if (lumaTexture == null){
+							Console.WriteLine ("Error creating luma texture: {0}", status);
+							return;
+						}
+						GL.BindTexture ((All)lumaTexture.Target, lumaTexture.Name);
+						GL.TexParameter (All.Texture2D, All.TextureWrapS, (int) All.ClampToEdge);
+						GL.TexParameter (All.Texture2D, All.TextureWrapT, (int) All.ClampToEdge);
+						
+						// UV Plane
+						GL.ActiveTexture (All.Texture1);
+						re = (All) 0x8227; // GL_RG_EXT
+						var chromaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureSize.Width/2, textureSize.Height/2, re, DataType.UnsignedByte, 1, out status);
+						if (chromaTexture == null){
+							Console.WriteLine ("Error creating chroma texture: {0}", status);
+							return;
+						}
+						GL.BindTexture ((All) chromaTexture.Target, chromaTexture.Name);
+						GL.TexParameter (All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
+						GL.TexParameter (All.Texture2D, All.TextureWrapT, (int) All.ClampToEdge);
+					}
+				} finally {
+					sampleBuffer.Dispose ();
 				}
-							
-				if (ripple == null || width != textureSize.Width || height != textureSize.Height){
-					textureSize = new Size (width, height);
-
-					container.SetupRipple (textureSize);
-				}
-				container.CleanupTextures ();
-				GL.ActiveTexture (All.Texture0);
-				PixelFormat re = (PixelFormat) 0x1903;
-				var lumaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureSize.Width, textureSize.Height, re, DataType.UnsignedByte, 0);
-				
-				
-				//sampleBuffer.Dispose ();
 			}
 		}
 	}

@@ -30,6 +30,7 @@ namespace GLCameraRipple
 		
 		public RippleModel (Size screenSize, int meshFactor, int touchRadius, Size textureSize)
 		{
+			Console.WriteLine ("New RippleModel");
 			this.screenSize = screenSize;
 			this.meshFactor = meshFactor;
 			this.touchRadius = touchRadius;
@@ -84,9 +85,9 @@ namespace GLCameraRipple
 		                float factor = (distance/touchRadius);
 		
 		                // goes from -512 -> 0
-		                rippleCoeff[y+1,x] = -((float)Math.Cos(factor*Math.PI)+1f) * 256f;
+		                rippleCoeff[x,y] = -((float)Math.Cos(factor*Math.PI)+1f) * 256f;
 		            } else 
-		                rippleCoeff[y+1,x] = 0;   
+		                rippleCoeff[x,y] = 0;   
 		        }
 		    }    
 		}
@@ -181,16 +182,16 @@ namespace GLCameraRipple
 		            //       b 
 		            
 		            // +1 to both x/y values because the border is padded
-		            float a = rippleSource[y,x+1];
-		            float b = rippleSource[y+2, x+1];
-		            float c = rippleSource[y+1, x];
-		            float d = rippleSource[y+1, x+2];
+		            float a = rippleSource[x+1,y];
+		            float b = rippleSource[x+1, y+2];
+		            float c = rippleSource[x, y+1];
+		            float d = rippleSource[x+2, y+1];
 		            
-		            float result = (a + b + c + d)/2f - rippleDest[y+1, x+1];
+		            float result = (a + b + c + d)/2f - rippleDest[x+1, y+1];
 		            
 		            result -= result/32f;
 		            
-		            rippleDest[y+1, + x+1] = result;
+		            rippleDest[x+1,y+1] = result;
 		        }            
 		    }
 		    
@@ -204,10 +205,10 @@ namespace GLCameraRipple
 		            //       b
 		            
 		            // +1 to both x/y values because the border is padded
-		            float a = rippleDest[y, x+1];
-		            float b = rippleDest[y+2, x+1];
-		            float c = rippleDest[y+1, x];
-		            float d = rippleDest[y+1, x+2];
+		            float a = rippleDest[x+1,y];
+		            float b = rippleDest[x+1,y+2];
+		            float c = rippleDest[x,y+1];
+		            float d = rippleDest[x+2,y+1];
 		            
 		            float s_offset = ((b - a) / 2048f);
 		            float t_offset = ((c - d) / 2048f);
@@ -240,7 +241,7 @@ namespace GLCameraRipple
 		        for (int x=(int)xIndex-(int)touchRadius; x<=(int)xIndex+(int)touchRadius; x++){
 		            if (x>=0 && x<poolWidth && y>=0 && y<poolHeight)
 		                // +1 to both x/y values because the border is padded
-        		        rippleSource[y+1,x+1] += rippleCoeff[(y-(yIndex-touchRadius)),x-(xIndex-touchRadius)];   
+        		        rippleSource[x+1,y+1] += rippleCoeff[(y-(yIndex-touchRadius)),x-(xIndex-touchRadius)];   
 	            }
         }
     }    
