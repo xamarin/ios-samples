@@ -60,12 +60,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="MonoTouch.Dialog">
-      <HintPath>..\..\..\..\lib\MonoTouch.Dialog.dll</HintPath>
-    </Reference>
     <Reference Include="XMBindingLibrary">
       <HintPath>..\..\..\binding\XMBindingLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

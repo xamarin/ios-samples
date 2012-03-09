@@ -26,7 +26,7 @@ namespace Xamarin.XMBindingLibrarySample
 		XMCustomView _CustomView;
 		
 		public CustomViewController()
-			: base(new RootElement(@"XMCustomView Binding") { UnevenRows = true })
+			: base(new RootElement(@"XMCustomView Binding") { UnevenRows = true }, true)
 		{	
 		}
 		
