@@ -1,5 +1,5 @@
-Core Graphics
-=============
+Drawing with CoreGraphics
+=========================
 
 This sample illustrates how to use Core Graphics in MonoTouch. It covers on
 and off screen graphics contexts, layers, transformations, text, images,
