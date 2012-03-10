@@ -74,10 +74,12 @@ namespace GLCameraRipple
 			}
 			SetupGL ();
 			SetupAVCapture ();
+			//SetupRipple (new Size (640, 480));
 		}
 		
 		void Draw (object sender, GLKViewDrawEventArgs args)
 		{
+			Console.WriteLine ("GL Draw");
 			GL.Clear ((int)All.ColorBufferBit);
 			if (ripple != null){
 				short s = 0;
@@ -87,6 +89,7 @@ namespace GLCameraRipple
 
 		public override void Update ()
 		{
+			Console.WriteLine ("GL UPdate");
 			if (ripple != null){
 				ripple.RunSimulation ();
 				unsafe {GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.VertexSize, (IntPtr)ripple.TexCoords, All.DynamicDraw);}
@@ -170,7 +173,7 @@ namespace GLCameraRipple
 			//
 			// FIXME: Using the MainQueue seems to hang
 			//
-			NSTimer.CreateRepeatingScheduledTimer (0.2, delegate {
+			NSTimer.CreateRepeatingScheduledTimer (1, delegate {
 				Console.WriteLine ("Tick tock");
 			});
 			
@@ -262,8 +265,8 @@ namespace GLCameraRipple
 		unsafe void SetupBuffers ()
 		{
 			GL.GenBuffers (1, ref indexVbo);
-			GL.BindBuffer (All.ArrayBuffer, indexVbo);
-			GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.IndexSize, (IntPtr) ripple.Indices, All.StaticDraw);
+			GL.BindBuffer (All.ElementArrayBuffer, indexVbo);
+			GL.BufferData (All.ElementArrayBuffer, (IntPtr) ripple.IndexSize, (IntPtr) ripple.Indices, All.StaticDraw);
 			
 			GL.GenBuffers (1, ref positionVbo);
 			GL.BindBuffer (All.ArrayBuffer, positionVbo);
@@ -271,22 +274,20 @@ namespace GLCameraRipple
 			
 			GL.EnableVertexAttribArray (ATTRIB_VERTEX);
 			
-			float v = 0;
-			GL.VertexAttribPointer<float> (ATTRIB_VERTEX, 2, All.Float, false, 2*sizeof(float), ref v);
-			
+			GL.VertexAttribPointer (ATTRIB_VERTEX, 2, All.Float, false, 2*sizeof(float), IntPtr.Zero);
 			GL.GenBuffers (1, ref texcoordVbo);
 			GL.BindBuffer (All.ArrayBuffer, texcoordVbo);
 			GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.VertexSize, (IntPtr) ripple.TexCoords, All.DynamicDraw);
 			
 			GL.EnableVertexAttribArray (ATTRIB_TEXCOORD);
-			GL.VertexAttribPointer (ATTRIB_TEXCOORD, 2, All.Float, false, 2*sizeof (float), ref v);
-			
+			GL.VertexAttribPointer (ATTRIB_TEXCOORD, 2, All.Float, false, 2*sizeof (float), IntPtr.Zero);
 		}
 			  
 		RippleModel ripple;
 		
 		void SetupRipple (Size textureSize)
-		{			ripple = new RippleModel (size, meshFactor, 5, textureSize);
+		{			
+			ripple = new RippleModel (size, meshFactor, 5, textureSize);
 			SetupBuffers ();
 		}
 		
@@ -301,9 +302,8 @@ namespace GLCameraRipple
 			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, MonoTouch.CoreMedia.CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
 			{
 				try {
-					using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer){
-						sampleBuffer.Dispose ();
-	
+					Console.WriteLine ("Got a buffer");
+					using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer){	
 						int width = pixelBuffer.Width;
 						int height = pixelBuffer.Height;
 					
