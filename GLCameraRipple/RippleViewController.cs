@@ -14,6 +14,7 @@ using MonoTouch.UIKit;
 using MonoTouch.AVFoundation;
 using MonoTouch.CoreVideo;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace GLCameraRipple
 {
@@ -23,7 +24,6 @@ namespace GLCameraRipple
 		Size size;
 		int meshFactor;
 		NSString sessionPreset;
-		CVOpenGLESTexture lumaTexture, chromaTexture;
 		CVOpenGLESTextureCache videoTextureCache;
 		AVCaptureSession session;
 		GLKView glkView;
@@ -74,7 +74,6 @@ namespace GLCameraRipple
 			}
 			SetupGL ();
 			SetupAVCapture ();
-			//SetupRipple (new Size (640, 480));
 		}
 		
 		void Draw (object sender, GLKViewDrawEventArgs args)
@@ -109,20 +108,6 @@ namespace GLCameraRipple
 		{
 			// Camera is fixed, only allow portrait
 			return (toInterfaceOrientation == UIInterfaceOrientation.Portrait);
-		}
-		
-		
-		void CleanupTextures ()
-		{
-			if (lumaTexture != null){
-				lumaTexture.Dispose ();
-				lumaTexture = null;
-			}
-			if (chromaTexture != null){
-				chromaTexture.Dispose ();
-				chromaTexture = null;
-			}
-			videoTextureCache.Flush (CVOptionFlags.None);
 		}
 		
 		void SetupGL ()
@@ -169,14 +154,11 @@ namespace GLCameraRipple
 				VideoSettings = new AVVideoSettings (CVPixelFormatType.CV420YpCbCr8BiPlanarFullRange)
 			};
 			dataOutputDelegate = new DataOutputDelegate (this);
-			
+
+			// 
+			// This dispatches the video frames into the main thread, because the OpenGL
+			// code is accessing the data synchronously.
 			//
-			// FIXME: Using the MainQueue seems to hang
-			//
-			NSTimer.CreateRepeatingScheduledTimer (1, delegate {
-				Console.WriteLine ("Tick tock");
-			});
-			
 			dataOutput.SetSampleBufferDelegateAndQueue (dataOutputDelegate, DispatchQueue.MainQueue);
 			session.AddOutput (dataOutput);
 			session.CommitConfiguration ();
@@ -285,39 +267,51 @@ namespace GLCameraRipple
 			  
 		RippleModel ripple;
 		
-		void SetupRipple (Size textureSize)
+		void SetupRipple (int width, int height)
 		{			
-			ripple = new RippleModel (size, meshFactor, 5, textureSize);
+			ripple = new RippleModel (size, meshFactor, 5, new Size (width, height));
 			SetupBuffers ();
 		}
 		
 		class DataOutputDelegate : AVCaptureVideoDataOutputSampleBufferDelegate {
-			Size textureSize;
+			CVOpenGLESTexture lumaTexture, chromaTexture;
 			RippleViewController container;
+			int textureWidth, textureHeight;
 			
 			public DataOutputDelegate (RippleViewController container)
 			{
 				this.container = container;
 			}
+			
+			void CleanupTextures ()
+			{
+				if (lumaTexture != null)
+					lumaTexture.Dispose ();
+				if (chromaTexture != null)
+					chromaTexture.Dispose ();
+				container.videoTextureCache.Flush (CVOptionFlags.None);
+			}
+		
 			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, MonoTouch.CoreMedia.CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
 			{
 				try {
-					Console.WriteLine ("Got a buffer");
 					using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer){	
 						int width = pixelBuffer.Width;
 						int height = pixelBuffer.Height;
 					
-						if (container.ripple == null || width != textureSize.Width || height != textureSize.Height){
-							textureSize = new Size (width, height);
-							container.SetupRipple (textureSize);
+						if (container.ripple == null || width != textureWidth || height != textureHeight){
+							textureWidth = width;
+							textureHeight = height;
+							container.SetupRipple (textureWidth, textureHeight);
 						}
-						container.CleanupTextures ();
+						CleanupTextures ();
 						
 						// Y-plane
 						GL.ActiveTexture (All.Texture0);
 						All re = (All) 0x1903; // GL_RED_EXT
 						CVReturn status;
-						var lumaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureSize.Width, textureSize.Height, re, DataType.UnsignedByte, 0, out status);
+						lumaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureWidth, textureHeight, re, DataType.UnsignedByte, 0, out status);
+						
 						if (lumaTexture == null){
 							Console.WriteLine ("Error creating luma texture: {0}", status);
 							return;
@@ -329,7 +323,7 @@ namespace GLCameraRipple
 						// UV Plane
 						GL.ActiveTexture (All.Texture1);
 						re = (All) 0x8227; // GL_RG_EXT
-						var chromaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureSize.Width/2, textureSize.Height/2, re, DataType.UnsignedByte, 1, out status);
+						chromaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureWidth/2, textureHeight/2, re, DataType.UnsignedByte, 1, out status);
 						if (chromaTexture == null){
 							Console.WriteLine ("Error creating chroma texture: {0}", status);
 							return;
