@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Drawing;
-using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.ES20;
 using MonoTouch.GLKit;
@@ -13,21 +11,19 @@ using MonoTouch.CoreMedia;
 using MonoTouch.UIKit;
 using MonoTouch.AVFoundation;
 using MonoTouch.CoreVideo;
-using System.IO;
-using System.Runtime.InteropServices;
 
 namespace GLCameraRipple
 {
 	public class RippleViewController : GLKViewController {
 		DataOutputDelegate dataOutputDelegate;
 		EAGLContext context;
-		Size size;
-		int meshFactor;
-		NSString sessionPreset;
 		CVOpenGLESTextureCache videoTextureCache;
 		AVCaptureSession session;
 		GLKView glkView;
-		
+		RippleModel ripple;
+		int meshFactor;
+		Size size;
+
 		//
 		// OpenGL components
 		//
@@ -35,63 +31,61 @@ namespace GLCameraRipple
 		const int UNIFORM_UV = 1;
 		const int ATTRIB_VERTEX = 0;
     	const int ATTRIB_TEXCOORD = 1;
-
 		int [] uniforms = new int [2];
 		int program;
-		
-		UILabel label, label2;
-		
+		int indexVbo, positionVbo, texcoordVbo;
+				
 		public override void ViewDidLoad ()
 		{
+			bool isPad = UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad;
 			base.ViewDidLoad ();
 
 			context = new EAGLContext (EAGLRenderingAPI.OpenGLES2);
 			glkView = (GLKView) View;
-			label = new UILabel (new RectangleF (0, 0, 320, 30)){
-				BackgroundColor = UIColor.White,
-				TextColor = UIColor.Black
-			};
-			label2 = new UILabel (new RectangleF (0, 40, 320, 30)){
-				BackgroundColor = UIColor.White,
-				TextColor = UIColor.Black
-			};
-			glkView.AddSubview (label);
-			glkView.AddSubview (label2);
-			           
 			glkView.Context = context;
+			glkView.MultipleTouchEnabled = true;
 			glkView.DrawInRect += Draw;
 			
-			PreferredFramesPerSecond = 10;
+			PreferredFramesPerSecond = 60;
 			size = UIScreen.MainScreen.Bounds.Size.ToSize ();
 			View.ContentScaleFactor = UIScreen.MainScreen.Scale;
 			
-			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad){
-				meshFactor = 8;
-				sessionPreset = AVCaptureSession.PresetiFrame1280x720;
-			} else {
-				meshFactor = 4;
-				sessionPreset = AVCaptureSession.Preset640x480;
-			}
+			meshFactor = isPad ? 8 : 4;
 			SetupGL ();
-			SetupAVCapture ();
+			SetupAVCapture (isPad ? AVCaptureSession.PresetiFrame1280x720 : AVCaptureSession.Preset640x480;);
 		}
 		
 		void Draw (object sender, GLKViewDrawEventArgs args)
 		{
-			Console.WriteLine ("GL Draw");
 			GL.Clear ((int)All.ColorBufferBit);
-			if (ripple != null){
-				short s = 0;
+			if (ripple != null)
 				GL.DrawElements (All.TriangleStrip, ripple.IndexCount, All.UnsignedShort, IntPtr.Zero);
-			}
+		}
+		
+		void ProcessTouches (NSSet touches)
+		{
+			if (ripple == null)
+				return;
+			
+			foreach (UITouch touch in touches.ToArray<UITouch> ())
+				ripple.InitiateRippleAtLocation (touch.LocationInView (touch.View));
+		}
+		
+		public override void TouchesBegan (NSSet touches, UIEvent evt)
+		{
+			ProcessTouches (touches);
 		}
 
+		public override void TouchesMoved (NSSet touches, UIEvent evt)
+		{
+			ProcessTouches (touches);
+		}
+		
 		public override void Update ()
 		{
-			Console.WriteLine ("GL UPdate");
 			if (ripple != null){
 				ripple.RunSimulation ();
-				unsafe {GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.VertexSize, (IntPtr)ripple.TexCoords, All.DynamicDraw);}
+				GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.VertexSize, ripple.TexCoords, All.DynamicDraw);
 			}
 		}
 		
@@ -120,7 +114,7 @@ namespace GLCameraRipple
 			}
 		}
 		
-		void SetupAVCapture ()
+		void SetupAVCapture (NSString sessionPreset)
 		{
 			if ((videoTextureCache = CVOpenGLESTextureCache.FromEAGLContext (context)) == null){
 				Console.WriteLine ("Could not create the CoreVideo TextureCache");
@@ -213,7 +207,7 @@ namespace GLCameraRipple
 		
 		bool CompileShader (out int shader, All type, string path)
 		{
-			string shaderProgram = File.ReadAllText (path);
+			string shaderProgram = System.IO.File.ReadAllText (path);
 			int len = shaderProgram.Length, status = 0;
 			shader = GL.CreateShader (type);
 			
@@ -241,32 +235,28 @@ namespace GLCameraRipple
 			}
 			return status != 0;
 		}
-			
-		int indexVbo, positionVbo, texcoordVbo;
 		
 		unsafe void SetupBuffers ()
 		{
 			GL.GenBuffers (1, ref indexVbo);
 			GL.BindBuffer (All.ElementArrayBuffer, indexVbo);
-			GL.BufferData (All.ElementArrayBuffer, (IntPtr) ripple.IndexSize, (IntPtr) ripple.Indices, All.StaticDraw);
+			GL.BufferData (All.ElementArrayBuffer, (IntPtr) ripple.IndexSize, ripple.Indices, All.StaticDraw);
 			
 			GL.GenBuffers (1, ref positionVbo);
 			GL.BindBuffer (All.ArrayBuffer, positionVbo);
-			GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.VertexSize, (IntPtr) ripple.Vertices, All.StaticDraw);
+			GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.VertexSize, ripple.Vertices, All.StaticDraw);
 			
 			GL.EnableVertexAttribArray (ATTRIB_VERTEX);
 			
 			GL.VertexAttribPointer (ATTRIB_VERTEX, 2, All.Float, false, 2*sizeof(float), IntPtr.Zero);
 			GL.GenBuffers (1, ref texcoordVbo);
 			GL.BindBuffer (All.ArrayBuffer, texcoordVbo);
-			GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.VertexSize, (IntPtr) ripple.TexCoords, All.DynamicDraw);
+			GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.VertexSize, ripple.TexCoords, All.DynamicDraw);
 			
 			GL.EnableVertexAttribArray (ATTRIB_TEXCOORD);
 			GL.VertexAttribPointer (ATTRIB_TEXCOORD, 2, All.Float, false, 2*sizeof (float), IntPtr.Zero);
 		}
 			  
-		RippleModel ripple;
-		
 		void SetupRipple (int width, int height)
 		{			
 			ripple = new RippleModel (size, meshFactor, 5, new Size (width, height));

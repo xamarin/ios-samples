@@ -146,16 +146,16 @@ namespace GLCameraRipple
 			}
 		}
 
-		public unsafe float *Vertices {
-			get { return rippleVertices; } 
+		public IntPtr Vertices {
+			get { unsafe { return (IntPtr) rippleVertices; } }
 		}
 		
-		public unsafe float *TexCoords {
-			get { return rippleTexCoords; }
+		public IntPtr TexCoords {
+			get { unsafe { return (IntPtr) rippleTexCoords; } }
 		}
 
-		public unsafe ushort * Indices {
-			get { return rippleIndicies; }
+		public IntPtr Indices {
+			get { unsafe { return (IntPtr) rippleIndicies; } }
 		}
 
 		public int VertexSize {
@@ -173,7 +173,7 @@ namespace GLCameraRipple
 		public unsafe void RunSimulation ()
 		{
 			for (int y = 0; y < poolHeight; y++){
-		        for (int x=0; x<poolWidth; x++)
+		        for (int x = 0; x < poolWidth; x++)
 		        {
 		            // * - denotes current pixel
 		            //
@@ -196,7 +196,7 @@ namespace GLCameraRipple
 		    }
 		    
 			for (int y = 0; y < poolHeight; y++){
-		        for (int x=0; x<poolWidth; x++)
+		        for (int x = 0; x < poolWidth; x++)
 		        {
 		            // * - denotes current pixel
 		            //
@@ -232,13 +232,13 @@ namespace GLCameraRipple
 			rippleSource = tmp;
 		}
 
-		void InitiateRippleAtLocation (PointF location)
+		public void InitiateRippleAtLocation (PointF location)
 		{
 		    int xIndex = (int)((location.X / screenSize.Width) * poolWidth);
-		    int yIndex = (int) ((location.X / screenSize.Height) * poolHeight);
+		    int yIndex = (int) ((location.Y / screenSize.Height) * poolHeight);
     
-		    for (int y=(int)yIndex-(int)touchRadius; y<=(int)yIndex+(int)touchRadius; y++)
-		        for (int x=(int)xIndex-(int)touchRadius; x<=(int)xIndex+(int)touchRadius; x++){
+		    for (int y = (int)yIndex-(int)touchRadius; y <= (int)	yIndex+(int)touchRadius; y++)
+		        for (int x=(int)xIndex-(int)touchRadius; x <= (int)xIndex+(int)touchRadius; x++){
 		            if (x>=0 && x<poolWidth && y>=0 && y<poolHeight)
 		                // +1 to both x/y values because the border is padded
         		        rippleSource[x+1,y+1] += rippleCoeff[(y-(yIndex-touchRadius)),x-(xIndex-touchRadius)];   
