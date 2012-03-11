@@ -52,7 +52,7 @@ namespace GLCameraRipple
 			
 			meshFactor = isPad ? 8 : 4;
 			SetupGL ();
-			SetupAVCapture (isPad ? AVCaptureSession.PresetiFrame1280x720 : AVCaptureSession.Preset640x480;);
+			SetupAVCapture (isPad ? AVCaptureSession.PresetiFrame1280x720 : AVCaptureSession.Preset640x480);
 		}
 		
 		void Draw (object sender, GLKViewDrawEventArgs args)
@@ -144,7 +144,8 @@ namespace GLCameraRipple
 			var dataOutput = new AVCaptureVideoDataOutput () {
 				AlwaysDiscardsLateVideoFrames = true,
 				
-				// YUV 420
+				// YUV 420, use "BiPlanar" to split the Y and UV planes in two separate blocks of 
+				// memory, then we can index 0 to get the Y and 1 for the UV planes in the frame decoding
 				VideoSettings = new AVVideoSettings (CVPixelFormatType.CV420YpCbCr8BiPlanarFullRange)
 			};
 			dataOutputDelegate = new DataOutputDelegate (this);
@@ -286,6 +287,7 @@ namespace GLCameraRipple
 			{
 				try {
 					using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer){	
+						
 						int width = pixelBuffer.Width;
 						int height = pixelBuffer.Height;
 					
@@ -298,7 +300,7 @@ namespace GLCameraRipple
 						
 						// Y-plane
 						GL.ActiveTexture (All.Texture0);
-						All re = (All) 0x1903; // GL_RED_EXT
+						All re = (All) 0x1903; // GL_RED_EXT, RED component from ARB OpenGL extension
 						CVReturn status;
 						lumaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureWidth, textureHeight, re, DataType.UnsignedByte, 0, out status);
 						
@@ -312,7 +314,7 @@ namespace GLCameraRipple
 						
 						// UV Plane
 						GL.ActiveTexture (All.Texture1);
-						re = (All) 0x8227; // GL_RG_EXT
+						re = (All) 0x8227; // GL_RG_EXT, RED GREEN component from ARB OpenGL extension
 						chromaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureWidth/2, textureHeight/2, re, DataType.UnsignedByte, 1, out status);
 						if (chromaTexture == null){
 							Console.WriteLine ("Error creating chroma texture: {0}", status);
