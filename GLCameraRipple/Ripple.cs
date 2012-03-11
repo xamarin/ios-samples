@@ -64,17 +64,10 @@ namespace GLCameraRipple
 		        rippleIndicies = (ushort *)Marshal.AllocHGlobal((poolHeight-1)*(poolWidth*2+2)*sizeof(ushort));
 			}
 			
-			InitRippleMap ();
         	InitRippleCoef ();
 			InitMesh ();
 	    }
 		
-		void InitRippleMap ()
-		{
-			Array.Clear (rippleSource, 0, (poolWidth+2) * (poolHeight+2));
-			Array.Clear (rippleDest, 0, (poolWidth+2) * (poolHeight+2));
-		}
-
 		void InitRippleCoef ()
 		{
 		    for (int y = 0; y <= 2*touchRadius; y++){

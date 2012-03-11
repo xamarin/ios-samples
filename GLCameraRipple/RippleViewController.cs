@@ -287,7 +287,6 @@ namespace GLCameraRipple
 			{
 				try {
 					using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer){	
-						
 						int width = pixelBuffer.Width;
 						int height = pixelBuffer.Height;
 					
