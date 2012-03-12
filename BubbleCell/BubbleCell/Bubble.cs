@@ -28,7 +28,6 @@ namespace BubbleCell
 		
 		static BubbleCell ()
 		{
-			var a = new System.Uri ("http://www.google.com", UriKind.Absolute);
 			bright = UIImage.FromFile ("green.png");
 			bleft = UIImage.FromFile ("grey.png");
 
