@@ -23,7 +23,7 @@ libXMBindingLibrarySample-armv7.a:
 libXMBindingLibrarySampleUniversal.a: libXMBindingLibrarySample-armv7.a libXMBindingLibrarySample-armv6.a libXMBindingLibrarySample-i386.a
 	lipo -create -output $@ $^
 
-XMBindingLibrary.dll: AssemblyInfo.cs XMBindingLibrarySample.cs supplement.cs extras.cs libXMBindingLibrarySampleUniversal.a
+XMBindingLibrary.dll: AssemblyInfo.cs XMBindingLibrarySample.cs extras.cs libXMBindingLibrarySampleUniversal.a
 	$(BTOUCH) -unsafe --outdir=tmp -out:$@ XMBindingLibrarySample.cs -x=AssemblyInfo.cs -x=extras.cs --link-with=libXMBindingLibrarySampleUniversal.a,libXMBindingLibrarySampleUniversal.a
 
 clean:

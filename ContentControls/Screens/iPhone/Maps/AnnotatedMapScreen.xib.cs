@@ -56,19 +56,20 @@ namespace Example_ContentControls.Screens.iPhone.Maps
 			mapMain.Delegate = new MapDelegate();
 			
 			// add a basic annotation
-			//mapMain.AddAnnotation (new BasicMapAnnotation (new CLLocationCoordinate2D (34.120, -118.188), "Los Angeles", "City of Demons"));
+			mapMain.AddAnnotation (new BasicMapAnnotation (new CLLocationCoordinate2D (34.120, -118.188), "Los Angeles", "City of Demons"));
 			
 			// can use this as well.
-			mapMain.AddAnnotationObject(
-				new BasicMapAnnotationProto() { Coordinate = new CLLocationCoordinate2D(34.120, -118.188), Title = "Los Angeles", Subtitle = "City of Demons" }
-			);
+//			mapMain.AddAnnotationObject(
+//				new BasicMapAnnotationProto() { Coordinate = new CLLocationCoordinate2D(34.120, -118.188), Title = "Los Angeles", Subtitle = "City of Demons" }
+//			);
 		}
 		
 		// The map delegate is much like the table delegate.
 		protected class MapDelegate : MKMapViewDelegate
 		{
 			protected string annotationIdentifier = "BasicAnnotation";
-			
+			UIButton detailButton; // need class-level ref to avoid GC
+
 			/// <summary>
 			/// This is very much like the GetCell method on the table delegate
 			/// </summary>
@@ -90,10 +91,13 @@ namespace Example_ContentControls.Screens.iPhone.Maps
 				annotationView.Selected = true;
 				
 				// you can add an accessory view, in this case, we'll add a button on the right, and an image on the left
-				UIButton detailButton = UIButton.FromType(UIButtonType.DetailDisclosure);
-				detailButton.TouchUpInside += (s, e) => { new UIAlertView("Annotation Clicked", "You clicked on " +
-					(annotation as MKAnnotation).Coordinate.Latitude.ToString() + ", " +
-					(annotation as MKAnnotation).Coordinate.Longitude.ToString() , null, "OK", null).Show(); };
+				detailButton = UIButton.FromType(UIButtonType.DetailDisclosure);
+				detailButton.TouchUpInside += (s, e) => { 
+					var c = (annotation as MKAnnotation).Coordinate;
+					new UIAlertView("Annotation Clicked", "You clicked on " +
+					c.Latitude.ToString() + ", " +
+					c.Longitude.ToString() , null, "OK", null).Show(); 
+				};
 				annotationView.RightCalloutAccessoryView = detailButton;
 				annotationView.LeftCalloutAccessoryView = new UIImageView(UIImage.FromBundle("Images/Icon/29_icon.png"));
 				//annotationView.Image = UIImage.FromBundle("Images/Apress-29x29.png");

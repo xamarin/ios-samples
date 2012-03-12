@@ -8,6 +8,8 @@ in order to show proper handling of UIPopoverControllers being presented
 from UIBarButtonItems. Additional handling ensures that multiple
 UIPopoverControllers are never presented at the same time.
 
+Popovers are only supported on the iPad.
+
 Build Requirements
 ------------------
 
@@ -39,3 +41,9 @@ Copyright
 ---------
 
 Copyright (C) 2010 Apple Inc. All rights reserved.
+
+Authors
+-------
+
+alexrp, 
+Craig Dunn

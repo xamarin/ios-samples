@@ -28,7 +28,7 @@ namespace Xamarin.XMBindingLibrarySample
 		XMUtilities Utility;
 		
 		public UtilitiesViewController()
-			: base(new RootElement("XMUtilities Binding"))
+			: base(new RootElement("XMUtilities Binding"), true)
 		{
 			
 		}

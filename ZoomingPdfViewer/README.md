@@ -10,3 +10,9 @@ Text is available under the Creative Commons Attribution-ShareAlike License [1];
 
 [1] http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License
 [2] http://wikimediafoundation.org/wiki/Terms_of_use
+
+
+Authors
+-------
+
+Sebastien Pouliot

@@ -76,5 +76,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="Tamarin.pdf" />
+    <Content Include="29_icon.png" />
+    <Content Include="57_icon.png" />
   </ItemGroup>
 </Project>
