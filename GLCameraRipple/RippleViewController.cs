@@ -148,6 +148,7 @@ namespace GLCameraRipple
 				// memory, then we can index 0 to get the Y and 1 for the UV planes in the frame decoding
 				VideoSettings = new AVVideoSettings (CVPixelFormatType.CV420YpCbCr8BiPlanarFullRange)
 			};
+					
 			dataOutputDelegate = new DataOutputDelegate (this);
 
 			// 
@@ -186,7 +187,7 @@ namespace GLCameraRipple
 					if (LinkProgram (program)){
 						// Get uniform locations
 						uniforms [UNIFORM_Y] = GL.GetUniformLocation (program, "SamplerY");
-						uniforms [UNIFORM_UV] = GL.GetUniformLocation (program, "SampleUV");
+						uniforms [UNIFORM_UV] = GL.GetUniformLocation (program, "SamplerUV");
 						
 						// Delete these ones, we do not need them anymore
 						GL.DeleteShader (vertShader);
@@ -315,6 +316,7 @@ namespace GLCameraRipple
 						GL.ActiveTexture (All.Texture1);
 						re = (All) 0x8227; // GL_RG_EXT, RED GREEN component from ARB OpenGL extension
 						chromaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureWidth/2, textureHeight/2, re, DataType.UnsignedByte, 1, out status);
+						
 						if (chromaTexture == null){
 							Console.WriteLine ("Error creating chroma texture: {0}", status);
 							return;
