@@ -220,9 +220,9 @@ namespace GLCameraRipple
 		        }
 		    }
 		    
-			var tmp = rippleDest;
+			var tmp = rippleSource;
 			rippleSource = rippleDest;
-			rippleSource = tmp;
+			rippleDest = tmp;
 		}
 
 		public void InitiateRippleAtLocation (PointF location)
