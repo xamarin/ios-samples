@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
-    <None Include="README.txt" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
