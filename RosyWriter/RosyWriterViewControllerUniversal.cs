@@ -49,11 +49,14 @@ namespace RosyWriter
 				dimensionsLabel.Text = dimensionString;
 				dimensionsLabel.BackgroundColor = UIColor.FromRGBA (0, 0, 0, .25F);
 				
-				// TODO: How to get a Human Readable value from the Video Type
-				var type = BitConverter.GetBytes((uint)videoProcessor.VideoType);
-				if(BitConverter.IsLittleEndian)
-					Array.Reverse(type); 
-				var typeString = BitConverter.ToString(type, 0, 4);
+				// Turn the integer constant into something human readable
+				var type = videoProcessor.VideoType;
+				char [] code = new char [4];
+				for (int i = 0; i < 4; i++){
+					code [3-i] = (char) (type & 0xff); 
+					type = type >> 8;
+				}
+				var typeString = new String (code);
 				
 				typeLabel.Text = typeString;
 				typeLabel.BackgroundColor = UIColor.FromRGBA (0, 0, 0, .25F);
