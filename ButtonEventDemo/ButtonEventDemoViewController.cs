@@ -27,7 +27,8 @@ namespace ButtonEventDemo
             //the UIButton created in Interface Builder. Also see the target-action
             //approach for accomplishing the same thing below.
             aButton.TouchUpInside += (o,s) => {
-                Console.WriteLine ("button touched"); }; 
+                Console.WriteLine ("button touched using a TouchUpInside event"); 
+			}; 
             
             //You could also use a C# 2.0 style anonymous function
 //            aButton.TouchUpInside += delegate {
@@ -53,9 +54,10 @@ namespace ButtonEventDemo
         //of a UIButton. The action is connected via Interface Builder
         //The same thing can be accomplished with a .NET event registered
         //to the UIButton in code, as we do in the ViewDidLoad method above.
+
         partial void HandleButtonTouch (NSObject sender)
         {
-            Console.WriteLine ("button touched");
+			Console.WriteLine ("button touched using the action method");
         }
     }
 }
