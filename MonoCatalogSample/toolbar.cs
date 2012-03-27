@@ -119,7 +119,8 @@ public partial class ToolbarViewController : UIViewController {
 			break;
 			
 		case 2:
-			toolbar.BarStyle = UIBarStyle.BlackTranslucent;
+			toolbar.BarStyle = UIBarStyle.Black;
+			toolbar.Translucent = true;
 			break;
 		}
 		
