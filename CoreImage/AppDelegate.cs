@@ -9,6 +9,8 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using MonoTouch.CoreGraphics;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace coreimage
 {
@@ -115,7 +117,9 @@ namespace coreimage
 							new RootElement ("HighlightShadowAdjust", (x) => Demo (HighlightShadowAdjust)),
 						}
 					},
-					new RootElement ("Vignette", (x) => Demo (Vignette))
+					new RootElement ("Vignette", (x) => Demo (Vignette)),
+					new RootElement("Rebase Test Images", (x) => RebaseTestImages()),
+					new RootElement("Test Filters", (x) => TestView())
 				}
 			};					
 			
@@ -154,6 +158,257 @@ namespace coreimage
 			imageView.Image = UIImage.FromImage (result);
 			return v;
 		}	
+		
+		public UIViewController TestView()
+		{
+			// Create a view with a Button to run the tests and a Text View for the Results.
+			var vc = new UIViewController();
+			var btn = new UIButton(new RectangleF(0, 0, 100, 40));
+			btn.SetTitle("Run Tests", UIControlState.Normal);
+			btn.BackgroundColor = UIColor.White;
+			btn.SetTitleColor(UIColor.Black, UIControlState.Normal);
+			
+			var textResults = new UITextView(new RectangleF(0, 50, vc.View.Bounds.Width, 40));
+			textResults.Text = "";
+			textResults.Hidden = true;
+			
+			// Setup Test here
+			btn.TouchUpInside += (sender, e) => 
+			{
+				Console.WriteLine("Running Tests...");
+				textResults.Text = "Tests Running";
+			 	btn.Enabled = false;
+				
+				textResults.SetNeedsDisplay();
+				btn.SetNeedsDisplay();
+				
+				try	
+				{	
+					var results = RunTests();
+					
+					var failed = results.Where(r => !r.Pass).ToList();
+					
+					textResults.Text = failed.Count == 0 ? "All Filters Passed" : "These filters failed " + string.Join(Environment.NewLine, failed.Select (r => r.FilterName));
+					textResults.Hidden = false;
+				}
+				finally	{
+					btn.Enabled = true;
+				}
+			};
+			
+			vc.View.AddSubviews(btn, textResults);
+			
+			return vc;
+		}
+		
+		struct TestResult
+		{
+			public bool Pass {get; set;}
+			public string FilterName {get; set;}
+		}
+		
+	    List<TestResult> RunTests()
+		{
+			var filters = CreateFilterDictionary();
+			var resultList = new List<TestResult>();
+			
+			foreach(var filter in filters)
+			{
+				Console.WriteLine("Testing Filter " + filter.Key);
+				
+				// Run the Filter
+				var view = filter.Value();
+				
+				// Capture the Ouput as an Image
+				var image = CaptureView(view.View);
+				var cgImage = image.CGImage;
+				
+				// Get the Image data for the current Image
+				byte[] testRawData = new byte[cgImage.Width * cgImage.Height * 4];
+				var testColorSpace = CGColorSpace.CreateDeviceRGB();
+			
+				var testCGContext = new CGBitmapContext(testRawData, cgImage.Width, cgImage.Height, 8, cgImage.BytesPerRow, testColorSpace, CGImageAlphaInfo.PremultipliedLast);
+				testCGContext.DrawImage(new RectangleF(0, 0, cgImage.Width, cgImage.Height), cgImage);
+				
+				// Get the base image
+				var baseImage = GetTestImage(filter.Key);
+				
+				// Get the image data for the base image.
+				byte[] baseRawData = new byte[baseImage.Width * baseImage.Height * 4];
+				var baseColorSpace = CGColorSpace.CreateDeviceRGB();
+				
+				var baseCGContext = new CGBitmapContext(baseRawData, baseImage.Width, baseImage.Height, 8, baseImage.BytesPerRow, baseColorSpace, CGImageAlphaInfo.PremultipliedLast);
+				baseCGContext.DrawImage(new RectangleF(0, 0, baseImage.Width, baseImage.Height), baseImage);
+				
+				// Compare each Pixel
+				bool wasMismatch = false;
+				for(var i = 0; i < baseRawData.Length; i++)
+				{
+					if(testRawData[i] != baseRawData[i])
+					{
+						wasMismatch = true;
+						resultList.Add(new TestResult() { FilterName = filter.Key, Pass = false});
+						break;
+					}
+				}
+				
+				if(!wasMismatch)
+					resultList.Add(new TestResult() { FilterName = filter.Key, Pass = true});
+			}
+			
+			return resultList;
+		}
+		
+		CGImage GetTestImage(string imageName)
+		{
+			var image = UIImage.FromFile(ImagePath(imageName));
+			return image.CGImage;
+		}
+		
+		private UIViewController RebaseTestImages()
+		{	
+			var filterList = CreateFilterDictionary();
+			UIViewController view = new UIViewController();
+			
+			var txtBounds = view.View.Bounds;
+			var boundsHeight = txtBounds.Height / 2;
+			var boundsWidth =  txtBounds.Width / 2;
+			txtBounds.Height = boundsHeight;
+			//txtBounds.Width = boundsWidth;
+			var text = new UITextView(txtBounds){ Text = "Rebasing Images" };
+			text.Hidden = true;
+			view.View.AddSubview(text);
+			
+			var btnBounds = view.View.Bounds;
+			btnBounds.Y = boundsHeight;
+			//btnBounds.Width = boundsWidth;
+			btnBounds.Height = boundsHeight;
+			var btn = new UIButton(btnBounds);
+			btn.SetTitle("Rebase", UIControlState.Normal);
+			
+			btn.TouchUpInside += (sender, e) => {
+				Console.WriteLine("Rebasing Images");
+				text.Text = "Rebasing Images"; 
+				text.Hidden = false;
+				
+				// Foreach ViewController, Display it, take a screen shot and then, save it
+				foreach(var filter in filterList)
+				{
+					Console.WriteLine("Rebasing Filter " + filter.Key);
+					view = filter.Value();
+					
+					// Display the Filter
+					//window.RootViewController  = view;
+					
+					// Get a screenshot
+					var image = CaptureView(view.View);
+					
+					// Save the Screenshot.
+					NSError err;
+					var directory = ImageDirectory();
+					var fileName = ImagePath(filter.Key);
+					
+					if(!Directory.Exists(directory))
+						Directory.CreateDirectory(directory);
+					
+					if(File.Exists(fileName))
+						File.Delete(fileName);
+					
+					image.AsPNG().Save(fileName, NSDataWritingOptions.FileProtectionNone, out err);
+					
+					if(err != null)
+						Console.WriteLine("Could not write image File. " + Environment.NewLine + err.LocalizedDescription);
+				}
+				text.Text = "Done";	
+			};
+			
+			view.View.AddSubview(btn);
+			return view;
+		}
+		
+		string ImagePath(string imageName)
+		{	
+			var fileName = Path.Combine (ImageDirectory(), imageName);
+			fileName = Path.ChangeExtension(fileName, ".png");
+			
+			return fileName;
+		}
+		
+		string ImageDirectory()
+		{
+			var directory = Path.Combine(Directory.GetCurrentDirectory(), "TestImages");
+			return directory;
+		}
+		
+		UIImage CaptureView (UIView view)
+		{
+			RectangleF rect = UIScreen.MainScreen.Bounds;
+			UIGraphics.BeginImageContext(rect.Size);
+			
+			CGContext context = UIGraphics.GetCurrentContext();
+			view.Layer.RenderInContext(context);
+			UIImage img = UIGraphics.GetImageFromCurrentImageContext();
+			
+			UIGraphics.EndImageContext();	
+			return img;
+		}
+		
+		private Dictionary<string, Func<UIViewController>> CreateFilterDictionary()
+		{
+			var dictionary = new Dictionary<string, Func<UIViewController>>()
+			{
+				{ "ColorControls", () => Demo (ColorControls) },
+				{ "ColorMatrix", () => Demo (ColorMatrix) },
+				{ "ExposureAdjust", () => Demo (ExposureAdjust) },
+				{ "GammaAdjust", () => Demo (GammaAdjust) },
+				{ "HueAdjust", () => Demo (HueAdjust) },
+				{ "TemperatureAndTint", () => Demo (TemperatureAndTint) },
+				{ "ToneCurve", () => Demo (ToneCurve) },
+				{ "Vibrance", () => Demo (Vibrance) },
+				{ "WhitePointAdjust", () => Demo(WhitePointAdjust) },
+				//{ "ColorCube", () => Demo (ColorCube) },
+				{ "ColorInvert", () => Demo (ColorInvert) },
+				{ "ColorMonochrome", () => Demo (ColorMonochrome) },
+				{ "FalseColor", () => Demo (FalseColor) },
+				{ "SepiaTone", () => Demo (SepiaTone) },
+				{ "AdditionCompositing", () => Demo (AdditionCompositing)},
+				{ "ColorBlendMode", () => Demo (ColorBlendMode)},
+				{ "ColorBurnBlendMode", () => Demo (ColorBurnBlendMode)},
+				{ "ColorDodgeBlendMode", () => Demo (ColorDodgeBlendMode)},
+				{ "DarkenBlendMode", () => Demo (DarkenBlendMode)},
+				{ "DifferenceBlendMode", () => Demo (DifferenceBlendMode)},
+				{ "ExclusionBlendMode", () => Demo (ExclusionBlendMode)},
+				{ "HardLightBlendMode", () => Demo (HardLightBlendMode)},
+				{ "HueBlendMode", () => Demo (HueBlendMode)},
+				{ "LightenBlendMode", () => Demo (LightenBlendMode)},
+				{ "LuminosityBlendMode", () => Demo (LuminosityBlendMode)},
+				{ "MaximumCompositing", () => Demo (MaximumCompositing)},
+				{ "MinimumCompositing", () => Demo (MinimumCompositing)},
+				{ "MultiplyCompositing", () => Demo (MultiplyCompositing)},
+				{ "MultiplyBlendMode", () => Demo (MultiplyBlendMode)},
+				{ "OverlayBlendMode", () => Demo (OverlayBlendMode)},
+				{ "SaturationBlendMode", () => Demo (SaturationBlendMode)},
+				{ "ScreenBlendMode", () => Demo (ScreenBlendMode)},
+				{ "SoftLightBlendMode", () => Demo (SoftLightBlendMode)},
+				{ "SourceAtopCompositing", () => Demo (SourceAtopCompositing)},
+				{ "SourceInCompositing", () => Demo(SourceInCompositing)},
+				{ "SourceOutCompositing", () => Demo(SourceOutCompositing)},
+				{ "SourceOverCompositing", () => Demo (SourceOverCompositing)},
+				{ "CheckerboardGenerator", () => Demo (CheckerboardGenerator) },
+				{ "ConstantColorGenerator", () => Demo (ConstantColorGenerator) },
+				{ "StripesGenerator", () => Demo (StripesGenerator) },
+				{ "AffineTransform", () => Demo (AffineTransform) },
+				{ "Crop", () => Demo (Crop) },
+				{ "StraightenFilter", () => Demo (StraightenFilter) },
+				{ "GaussianGradient", () => Demo (GaussianGradient) },
+				{ "LinearGradient", () =>Demo(LinearGradient) },
+				{ "RadialGradient", () => Demo (RadialGradient) },
+				{ "HighlightShadowAdjust", () => Demo (HighlightShadowAdjust) },
+				{ "Vignette", () => Demo (Vignette) } 
+			};
+			
+			return dictionary;
+		}
 		#endregion
 		
 		#region Filter Methods
