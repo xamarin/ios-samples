@@ -71,7 +71,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="OpenTK" />
+    <Reference Include="OpenTK-1.0">
+      <HintPath>..\..\..\..\..\Developer\MonoTouch\usr\lib\mono\2.1\OpenTK-1.0.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

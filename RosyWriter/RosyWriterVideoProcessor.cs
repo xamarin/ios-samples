@@ -92,10 +92,10 @@ namespace RosyWriter
 			case AVCaptureVideoOrientation.Portrait:
 				angle = 0.0F;
 				break;
-			case AVCaptureVideoOrientation.LandscapeLeft:
+			case AVCaptureVideoOrientation.LandscapeRight:
 				angle = -Convert.ToSingle (Math.PI / 2.0);
 				break;
-			case AVCaptureVideoOrientation.LandscapeRight:
+			case AVCaptureVideoOrientation.LandscapeLeft:
 				angle = Convert.ToSingle (Math.PI / 2.0);
 				break;
 			case AVCaptureVideoOrientation.PortraitUpsideDown:

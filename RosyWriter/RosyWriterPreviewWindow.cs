@@ -61,22 +61,22 @@ namespace RosyWriter
 		{
 			bool success = true;
 					
-			GL.Disable (All.DepthTest);
+			GL.Disable (EnableCap.DepthTest);
 					
-			GL.GenFramebuffers (1, ref FrameBuffer);
-			GL.BindFramebuffer (All.Framebuffer, FrameBuffer);
+			GL.GenFramebuffers (1, out FrameBuffer);
+			GL.BindFramebuffer (FramebufferTarget.Framebuffer, FrameBuffer);
 					
-			GL.GenRenderbuffers (1, ref ColorBuffer);
-			GL.BindRenderbuffer (All.Renderbuffer, ColorBuffer);
+			GL.GenRenderbuffers (1, out ColorBuffer);
+			GL.BindRenderbuffer (RenderbufferTarget.Renderbuffer, ColorBuffer);
 					
 			Context.RenderBufferStorage ((uint)All.Renderbuffer, (CAEAGLLayer)Layer);
 					
-			GL.GetRenderbufferParameter (All.Renderbuffer, All.RenderbufferWidth, ref renderBufferWidth);
-			GL.GetRenderbufferParameter (All.Renderbuffer, All.RenderbufferHeight, ref renderBufferHeight);
+			GL.GetRenderbufferParameter (RenderbufferTarget.Renderbuffer, RenderbufferParameterName.RenderbufferWidth, out renderBufferWidth);
+			GL.GetRenderbufferParameter (RenderbufferTarget.Renderbuffer, RenderbufferParameterName.RenderbufferHeight, out renderBufferHeight);
 			
-			GL.FramebufferRenderbuffer (All.Framebuffer, All.ColorAttachment0, All.Renderbuffer, ColorBuffer);
+			GL.FramebufferRenderbuffer (FramebufferTarget.Framebuffer, FramebufferSlot.ColorAttachment0, RenderbufferTarget.Renderbuffer, ColorBuffer);
 					
-			if (GL.CheckFramebufferStatus (All.Framebuffer) != All.FramebufferComplete){
+			if (GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer) != FramebufferErrorCode.FramebufferComplete){
 				Console.WriteLine ("Failure with framebuffer generation");
 				success = false;
 			}
@@ -100,10 +100,10 @@ namespace RosyWriter
 			// Create and Compile Vertex Shader
 			int vertShader, fragShader;
 			bool success = true;
-			success = success && CompileShader (out vertShader, All.VertexShader, "Shaders/passThrough.vsh");
+			success = success && CompileShader (out vertShader, ShaderType.VertexShader, "Shaders/passThrough.vsh");
 			
 			// Create and Compile fragment shader
-			success = success && CompileShader (out fragShader, All.FragmentShader, "Shaders/passThrough.fsh");
+			success = success && CompileShader (out fragShader, ShaderType.FragmentShader, "Shaders/passThrough.fsh");
 			
 			// Attach Vertext Shader
 			GL.AttachShader (program, vertShader);
@@ -137,19 +137,19 @@ namespace RosyWriter
 			int status = 0;
 			int len = 0;
 			
-			GL.GetProgram (program, All.LinkStatus, ref status);
+			GL.GetProgram (program, ProgramParameter.LinkStatus, out status);
 			
 			if (status == 0)
 			{
-				GL.GetProgram (program, All.InfoLogLength, ref len);
+				GL.GetProgram (program, ProgramParameter.InfoLogLength, out len);
 				var sb = new System.Text.StringBuilder (len);
-				GL.GetProgramInfoLog (program, len, ref len, sb);
+				GL.GetProgramInfoLog (program, len, out len, sb);
 				Console.WriteLine ("Link error: {0}", sb);
 			}
 			return status != 0;
 		}
 		
-		bool CompileShader (out int shader, All type, string path)
+		bool CompileShader (out int shader, ShaderType type, string path)
 		{
 			string shaderProgram = System.IO.File.ReadAllText (path);
 			int len = shaderProgram.Length, status = 0;
@@ -157,7 +157,7 @@ namespace RosyWriter
 
 			GL.ShaderSource (shader, 1, new string [] { shaderProgram }, ref len);
 			GL.CompileShader (shader);
-			GL.GetShader (shader, All.CompileStatus, ref status);
+			GL.GetShader (shader, ShaderParameter.CompileStatus, out status);
 			
 			if (status == 0) {
 				GL.DeleteShader (shader);
@@ -199,15 +199,15 @@ namespace RosyWriter
 					Console.WriteLine ("Could not create Texture from Texture Cache");
 					return;
 				}
-				GL.BindTexture ((All)texture.Target, texture.Name);
+				GL.BindTexture (texture.Target, texture.Name);
 			
 				// Set texture parameters
-				GL.TexParameter (All.Texture2D, All.TextureMinFilter, (int)All.Linear);
-				GL.TexParameter (All.Texture2D, All.TextureMagFilter, (int)All.Linear);
-				GL.TexParameter (All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
-				GL.TexParameter (All.Texture2D, All.TextureWrapT, (int)All.ClampToEdge);
+				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)All.Linear);
+				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)All.Linear);
+				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)All.ClampToEdge);
+				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)All.ClampToEdge);
 			
-				GL.BindFramebuffer (All.Framebuffer, FrameBuffer);
+				GL.BindFramebuffer (FramebufferTarget.Framebuffer, FrameBuffer);
 			
 				// Set the view port to the entire view
 				GL.Viewport (0, 0, renderBufferWidth, renderBufferHeight);
@@ -233,7 +233,7 @@ namespace RosyWriter
 				// Draw the texture on the screen with OpenGL ES 2
 				RenderWithSquareVerticies (squareVerticies, textureVertices);
 			
-				GL.BindTexture ((All)texture.Target, texture.Name);
+				GL.BindTexture (texture.Target, texture.Name);
 			
 				// Flush the CVOpenGLESTexture cache and release the texture
 				videoTextureCache.Flush (CVOptionFlags.None);
@@ -272,20 +272,20 @@ namespace RosyWriter
 			GL.UseProgram (glProgram);
 			
 			// Update attribute values
-			GL.VertexAttribPointer (ATTRIB_VERTEX, 2, All.Float, false, 0, squareVerticies);
+			GL.VertexAttribPointer (ATTRIB_VERTEX, 2, VertexAttribPointerType.Float, false, 0, squareVerticies);
 			GL.EnableVertexAttribArray (ATTRIB_VERTEX);
 			
-			GL.VertexAttribPointer (ATTRIB_TEXCOORD, 2, All.Float, false, 0, textureVerticies);
+			GL.VertexAttribPointer (ATTRIB_TEXCOORD, 2, VertexAttribPointerType.Float, false, 0, textureVerticies);
 			GL.EnableVertexAttribArray (ATTRIB_TEXCOORD);
 			
 			// Validate program before drawing. (For Debugging purposes)
 #if DEBUG
 			GL.ValidateProgram(glProgram);
 #endif
-			GL.DrawArrays (All.TriangleStrip, 0, 4);
+			GL.DrawArrays (BeginMode.TriangleStrip, 0, 4);
 			
 			// Present
-			GL.BindRenderbuffer (All.Renderbuffer, ColorBuffer);
+			GL.BindRenderbuffer (RenderbufferTarget.Renderbuffer, ColorBuffer);
 			Context.PresentRenderBuffer ((uint)All.Renderbuffer);
 		}
 		#endregion		

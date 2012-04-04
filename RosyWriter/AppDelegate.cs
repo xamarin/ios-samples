@@ -11,7 +11,6 @@ namespace RosyWriter
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		UIWindow window;
-		RosyWriterViewControllerUniversal viewController;
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
