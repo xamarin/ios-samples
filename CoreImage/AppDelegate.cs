@@ -118,8 +118,10 @@ namespace coreimage
 						}
 					},
 					new RootElement ("Vignette", (x) => Demo (Vignette)),
+#if DEBUG
 					new RootElement("Rebase Test Images", (x) => RebaseTestImages()),
 					new RootElement("Test Filters", (x) => TestView())
+#endif
 				}
 			};					
 			
@@ -163,6 +165,7 @@ namespace coreimage
 		{
 			// Create a view with a Button to run the tests and a Text View for the Results.
 			var vc = new UIViewController();
+			
 			var btn = new UIButton(new RectangleF(0, 0, 100, 40));
 			btn.SetTitle("Run Tests", UIControlState.Normal);
 			btn.BackgroundColor = UIColor.White;
@@ -191,7 +194,8 @@ namespace coreimage
 					textResults.Text = failed.Count == 0 ? "All Filters Passed" : "These filters failed " + string.Join(Environment.NewLine, failed.Select (r => r.FilterName));
 					textResults.Hidden = false;
 				}
-				finally	{
+				finally
+				{
 					btn.Enabled = true;
 				}
 			};
@@ -271,19 +275,20 @@ namespace coreimage
 			UIViewController view = new UIViewController();
 			
 			var txtBounds = view.View.Bounds;
-			var boundsHeight = txtBounds.Height / 2;
-			var boundsWidth =  txtBounds.Width / 2;
+			var boundsHeight = 20;
 			txtBounds.Height = boundsHeight;
-			//txtBounds.Width = boundsWidth;
+
 			var text = new UITextView(txtBounds){ Text = "Rebasing Images" };
 			text.Hidden = true;
 			view.View.AddSubview(text);
 			
 			var btnBounds = view.View.Bounds;
 			btnBounds.Y = boundsHeight;
-			//btnBounds.Width = boundsWidth;
 			btnBounds.Height = boundsHeight;
+			
 			var btn = new UIButton(btnBounds);
+			btn.BackgroundColor = UIColor.Black;
+			btn.SetTitleColor(UIColor.White, UIControlState.Normal);
 			btn.SetTitle("Rebase", UIControlState.Normal);
 			
 			btn.TouchUpInside += (sender, e) => {
