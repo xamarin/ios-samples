@@ -31,11 +31,13 @@
 		<string>Images/58_icon.png</string>
 		<string>Images/50_icon.png</string>
 		<string>Images/512_icon.png</string>
+		<string>Images/144_icon.png</string>
+		<string>Images/100_icon.png</string>
 	</array>
 	<key>UIDeviceFamily</key>
 	<array>
-		<string>1</string>
-		<string>2</string>
+		<integer>1</integer>
+		<integer>2</integer>
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
