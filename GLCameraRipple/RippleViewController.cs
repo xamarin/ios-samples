@@ -85,7 +85,7 @@ namespace GLCameraRipple
 		{
 			if (ripple != null){
 				ripple.RunSimulation ();
-				GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.VertexSize, ripple.TexCoords, All.DynamicDraw);
+				GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr) ripple.VertexSize, ripple.TexCoords, BufferUsage.DynamicDraw);
 			}
 		}
 		
@@ -228,11 +228,11 @@ namespace GLCameraRipple
 			GL.LinkProgram (program);
 			int status = 0;
 			int len = 0;
-			GL.GetProgram (program, All.LinkStatus, ref status);
+			GL.GetProgram (program, ProgramParameter.LinkStatus, out status);
 			if (status == 0){
-				GL.GetProgram (program, All.InfoLogLength, ref len);
+				GL.GetProgram (program, ProgramParameter.InfoLogLength, out len);
 				var sb = new System.Text.StringBuilder (len);
-				GL.GetProgramInfoLog (program, len, ref len, sb);
+				GL.GetProgramInfoLog (program, len, out len, sb);
 				Console.WriteLine ("Link error: {0}", sb);
 			}
 			return status != 0;
@@ -240,23 +240,23 @@ namespace GLCameraRipple
 		
 		unsafe void SetupBuffers ()
 		{
-			GL.GenBuffers (1, ref indexVbo);
-			GL.BindBuffer (All.ElementArrayBuffer, indexVbo);
-			GL.BufferData (All.ElementArrayBuffer, (IntPtr) ripple.IndexSize, ripple.Indices, All.StaticDraw);
+			GL.GenBuffers (1, out indexVbo);
+			GL.BindBuffer (BufferTarget.ElementArrayBuffer, indexVbo);
+			GL.BufferData (BufferTarget.ElementArrayBuffer, (IntPtr) ripple.IndexSize, ripple.Indices, BufferUsage.StaticDraw);
 			
-			GL.GenBuffers (1, ref positionVbo);
-			GL.BindBuffer (All.ArrayBuffer, positionVbo);
-			GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.VertexSize, ripple.Vertices, All.StaticDraw);
+			GL.GenBuffers (1, out positionVbo);
+			GL.BindBuffer (BufferTarget.ArrayBuffer, positionVbo);
+			GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr) ripple.VertexSize, ripple.Vertices, BufferUsage.StaticDraw);
 			
 			GL.EnableVertexAttribArray (ATTRIB_VERTEX);
 			
-			GL.VertexAttribPointer (ATTRIB_VERTEX, 2, All.Float, false, 2*sizeof(float), IntPtr.Zero);
-			GL.GenBuffers (1, ref texcoordVbo);
-			GL.BindBuffer (All.ArrayBuffer, texcoordVbo);
-			GL.BufferData (All.ArrayBuffer, (IntPtr) ripple.VertexSize, ripple.TexCoords, All.DynamicDraw);
+			GL.VertexAttribPointer (ATTRIB_VERTEX, 2, VertexAttribPointerType.Float, false, 2*sizeof(float), IntPtr.Zero);
+			GL.GenBuffers (1, out texcoordVbo);
+			GL.BindBuffer (BufferTarget.ArrayBuffer, texcoordVbo);
+			GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr) ripple.VertexSize, ripple.TexCoords, BufferUsage.DynamicDraw);
 			
 			GL.EnableVertexAttribArray (ATTRIB_TEXCOORD);
-			GL.VertexAttribPointer (ATTRIB_TEXCOORD, 2, All.Float, false, 2*sizeof (float), IntPtr.Zero);
+			GL.VertexAttribPointer (ATTRIB_TEXCOORD, 2, VertexAttribPointerType.Float, false, 2*sizeof (float), IntPtr.Zero);
 		}
 			  
 		void SetupRipple (int width, int height)
