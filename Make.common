@@ -1,4 +1,4 @@
-IOS_SDK_VERSION         = 5.0
+IOS_SDK_VERSION         = 5.1
 
 MONOTOUCH_MONO_PATH     = /Developer/MonoTouch/usr/lib/mono/2.1
 MONOTOUCH_VERSION       = 1.0
@@ -42,6 +42,7 @@ main.m: $(EXE) $(MTOUCH)
 	$(MTOUCH) --sdk=$(IOS_SDK_VERSION) -v $(EXE)
 
 $(EXE): $(SOURCES)
+	mkdir -p bin
 	/Developer/MonoTouch/usr/bin/smcs $(SOURCES) -debug -r:monotouch.dll $(REFS) -out:$(EXE)
 
 clean:
