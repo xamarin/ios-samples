@@ -77,10 +77,10 @@ namespace Example_Drawing.Screens.iPad.TouchDrawing
 			{
 				Random rdm = new Random (Environment.TickCount);
 				Spot spot = new View.Spot () { 
-					Red = (float)rdm.NextDouble ()
-					, Green = (float)rdm.NextDouble ()
-					, Blue = (float)rdm.NextDouble ()
-					, Alpha = 1
+					Red = (float)rdm.NextDouble (),
+					Green = (float)rdm.NextDouble (),
+					Blue = (float)rdm.NextDouble (),
+					Alpha = 1
 				};
 				spot.Point = point;
 				return spot;

@@ -49,18 +49,20 @@ namespace Example_SharedResources.Screens.iPhone.Battery
 			lblBatteryState.Text = UIDevice.CurrentDevice.BatteryState.ToString ();
 			
 			// add a notification handler for battery level changes
-			NSNotificationCenter.DefaultCenter.AddObserver (UIDevice.BatteryLevelDidChangeNotification
-				, (NSNotification n) => { 
-				barBatteryLevel.Progress = UIDevice.CurrentDevice.BatteryLevel;
-				n.Dispose();
-			});
+			NSNotificationCenter.DefaultCenter.AddObserver (
+				UIDevice.BatteryLevelDidChangeNotification,
+				(NSNotification n) => { 
+					barBatteryLevel.Progress = UIDevice.CurrentDevice.BatteryLevel;
+					n.Dispose();
+				});
 			
 			// add a notification handler for battery state changes
-			NSNotificationCenter.DefaultCenter.AddObserver (UIDevice.BatteryStateDidChangeNotification
-				, (NSNotification n) => { 
-				lblBatteryState.Text = UIDevice.CurrentDevice.BatteryState.ToString(); 
-				n.Dispose();
-			});
+			NSNotificationCenter.DefaultCenter.AddObserver (
+				UIDevice.BatteryStateDidChangeNotification,
+				(NSNotification n) => { 
+					lblBatteryState.Text = UIDevice.CurrentDevice.BatteryState.ToString(); 
+					n.Dispose();
+				});
 			
 			
 		}

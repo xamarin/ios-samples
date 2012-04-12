@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
@@ -34,12 +35,12 @@ namespace TableEditing {
 						
 			//---- create the home screen
 			iPhoneHome = new TableEditing.Screens.HomeScreen();
-			iPhoneHome.View.Frame = new System.Drawing.RectangleF(0
-									, UIApplication.SharedApplication.StatusBarFrame.Height
-									, UIScreen.MainScreen.ApplicationFrame.Width
-									, UIScreen.MainScreen.ApplicationFrame.Height);
+			iPhoneHome.View.Frame = new RectangleF 
+				(0, UIApplication.SharedApplication.StatusBarFrame.Height,
+				 UIScreen.MainScreen.ApplicationFrame.Width,
+				 UIScreen.MainScreen.ApplicationFrame.Height);
 			
-			window.AddSubview (this.iPhoneHome.View);
+			window.AddSubview (iPhoneHome.View);
 			
 			return true;
 		}

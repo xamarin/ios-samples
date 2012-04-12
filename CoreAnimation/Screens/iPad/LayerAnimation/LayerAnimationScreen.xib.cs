@@ -48,13 +48,13 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 			base.ViewDidLoad ();
 			
 			// add our background image view that we'll show our path on
-			backgroundImage = new UIImageView (this.View.Frame);
-			this.View.AddSubview (backgroundImage);
+			backgroundImage = new UIImageView (View.Frame);
+			View.AddSubview (backgroundImage);
 			
 			// create our path
-			this.CreatePath ();
+			CreatePath ();
 			
-			this.btnAnimate.TouchUpInside += (s, e) => {
+			btnAnimate.TouchUpInside += (s, e) => {
 				
 				// create a keyframe animation
 				CAKeyFrameAnimation keyFrameAnimation = (CAKeyFrameAnimation)CAKeyFrameAnimation.FromKeyPath ("position");
@@ -63,11 +63,11 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 				
 				keyFrameAnimation.TimingFunction = CAMediaTimingFunction.FromName (CAMediaTimingFunction.EaseInEaseOut);
 				
-				this.imgToAnimate.Layer.AddAnimation (keyFrameAnimation, "MoveImage");
-				this.imgToAnimate.Layer.Position = new PointF (700, 900);
+				imgToAnimate.Layer.AddAnimation (keyFrameAnimation, "MoveImage");
+				imgToAnimate.Layer.Position = new PointF (700, 900);
 				
 				// later, if we want to stop/remove the animation, we can call RemoveAnimation and pass the name:
-				//this.imgToAnimate.Layer.RemoveAnimation("MoveImage");
+				//imgToAnimate.Layer.RemoveAnimation("MoveImage");
 			};
 		}
 		
@@ -88,7 +88,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 			animationPath.AddCurveToPoint (curve2ControlPoint1.X, curve2ControlPoint1.Y, curve2ControlPoint2.X, curve2ControlPoint2.Y, curve2EndPoint.X, curve2EndPoint.Y);
 			
 			//
-			this.DrawPathAsBackground ();
+			DrawPathAsBackground ();
 		}
 		
 		// Draws our animation path on the background image, just to show it
@@ -96,18 +96,19 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 		{
 			// create our offscreen bitmap context
 			// size
-			SizeF bitmapSize = new SizeF (this.View.Frame.Size);
-			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero
-					, (int)bitmapSize.Width, (int)bitmapSize.Height, 8
-					, (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB ()
-					, CGImageAlphaInfo.PremultipliedFirst)) {
+			SizeF bitmapSize = new SizeF (View.Frame.Size);
+			using (CGBitmapContext context = new CGBitmapContext (
+				       IntPtr.Zero,
+				       (int)bitmapSize.Width, (int)bitmapSize.Height, 8,
+				       (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
+				       CGImageAlphaInfo.PremultipliedFirst)) {
 				
 				// convert to View space
 				CGAffineTransform affineTransform = CGAffineTransform.MakeIdentity ();
 				// invert the y axis
 				affineTransform.Scale (1, -1);
 				// move the y axis up
-				affineTransform.Translate (0, this.View.Frame.Height);
+				affineTransform.Translate (0, View.Frame.Height);
 				context.ConcatCTM (affineTransform);
 
 				// actually draw the path
@@ -124,12 +125,12 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 		public void AddContentsButton (UIBarButtonItem button)
 		{
 			button.Title = "Contents";
-			this.tlbrMain.SetItems (new UIBarButtonItem[] { button }, false );
+			tlbrMain.SetItems (new UIBarButtonItem[] { button }, false );
 		}
 		
 		public void RemoveContentsButton ()
 		{
-			this.tlbrMain.SetItems (new UIBarButtonItem[0], false);
+			tlbrMain.SetItems (new UIBarButtonItem[0], false);
 		}
 
 	}

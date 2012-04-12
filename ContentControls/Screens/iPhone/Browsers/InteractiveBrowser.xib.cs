@@ -59,8 +59,8 @@ namespace Example_ContentControls.Screens.iPhone.Browsers
 		/// do it, we need to return false, so that the navigation doesn't happen. in this
 		/// particular case we are checking for links that have //LOCAL/Action='whateverAction'
 		/// </summary>
-		public bool HandleStartLoad (UIWebView webView, NSUrlRequest request
-			, UIWebViewNavigationType navigationType)
+		public bool HandleStartLoad (UIWebView webView, NSUrlRequest request, 
+					     UIWebViewNavigationType navigationType)
 		{
 			Console.WriteLine (navigationType.ToString ());
 			

@@ -31,10 +31,10 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 			// create our offscreen bitmap context
 			// size
 			SizeF bitmapSize = new SizeF (View.Frame.Size);
-			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero
-					, (int)bitmapSize.Width, (int)bitmapSize.Height, 8
-					, (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB ()
-					, CGImageAlphaInfo.PremultipliedFirst)) {
+			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero,
+									      (int)bitmapSize.Width, (int)bitmapSize.Height, 8,
+									      (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
+									      CGImageAlphaInfo.PremultipliedFirst)) {
 				
 				// declare vars
 				RectangleF patternRect = new RectangleF (0, 0, 16, 16);
@@ -43,9 +43,9 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 				context.SetFillColorSpace (CGColorSpace.CreatePattern (null));
 				
 				// create a new pattern
-				CGPattern pattern = new CGPattern (patternRect
-					, CGAffineTransform.MakeRotation (.3f), 16, 16, CGPatternTiling.NoDistortion
-					, true, DrawPolkaDotPattern);
+				CGPattern pattern = new CGPattern (patternRect,
+								   CGAffineTransform.MakeRotation (.3f), 16, 16, CGPatternTiling.NoDistortion,
+								   true, DrawPolkaDotPattern);
 				
 				// set our fill as our pattern, color doesn't matter because the pattern handles it
 				context.SetFillPattern (pattern, new float[] { 1 });

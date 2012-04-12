@@ -44,25 +44,25 @@ namespace Example_StandardControls.Screens.iPhone.Images
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Images";
+			Title = "Images";
 			
 			// a simple image
 			imageView1 = new UIImageView (UIImage.FromBundle ("Images/Icons/50_icon.png"));
 			imageView1.Frame = new RectangleF (20, 20, imageView1.Image.CGImage.Width, imageView1.Image.CGImage.Height);
-			this.View.AddSubview (imageView1);
+			View.AddSubview (imageView1);
 			
 			// an animating image
 			imgSpinningCircle = new UIImageView();
 			imgSpinningCircle.AnimationImages = new UIImage[] {
-				UIImage.FromBundle ("Images/Spinning Circle_1.png")
-				, UIImage.FromBundle ("Images/Spinning Circle_2.png")
-				, UIImage.FromBundle ("Images/Spinning Circle_3.png")
-				, UIImage.FromBundle ("Images/Spinning Circle_4.png")
+				UIImage.FromBundle ("Images/Spinning Circle_1.png"),
+				UIImage.FromBundle ("Images/Spinning Circle_2.png"),
+				UIImage.FromBundle ("Images/Spinning Circle_3.png"),
+				UIImage.FromBundle ("Images/Spinning Circle_4.png")
 			};
 			imgSpinningCircle.AnimationRepeatCount = 0;
 			imgSpinningCircle.AnimationDuration = .5;
 			imgSpinningCircle.Frame = new RectangleF(150, 20, 100, 100);
-			this.View.AddSubview(imgSpinningCircle);
+			View.AddSubview(imgSpinningCircle);
 			imgSpinningCircle.StartAnimating ();
 		}
 		
