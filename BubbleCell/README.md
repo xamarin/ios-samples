@@ -2,9 +2,17 @@ BubbleCell
 ==========
 
 This project shows one way of implementing a bubble-chat rendering
-using MonoTouch.Dialog and a custom ChatBubble element.
+similar to the iPhone Messages application using MonoTouch.Dialog and
+a custom ChatBubble element.    
 
-This is the core of the program:
+This also shows how to setup a Login screen that transitions to the
+chat.  On startup, it will request a login and password (both are
+"Root").
+
+The ChatViewController renders the discussion as well as a styled
+entry to get messages from the user and resizes the entry as needed (up to a point). 
+
+This is how the conversation is added:
 
 	var root = new RootElement ("Chat Sample") {
 		new Section () {
@@ -28,5 +36,11 @@ The bubble images are from Cedric Vandendriessche
 (http://about.me/skytrix) and are posted on his web site:
 
 http://www.freshcreations.be/files/Bubbles.zip
+
+The Entry images as well as the foundation for the ChatViewController
+are from the AcaniChat sample:
+
+https://github.com/acani/AcaniChat
+
 
 Miguel de Icaza
