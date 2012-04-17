@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageProtocol", "ImageProtocol.csproj", "{C7A10540-758C-4EB8-AE9E-F77D289F139D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7A10540-758C-4EB8-AE9E-F77D289F139D}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{C7A10540-758C-4EB8-AE9E-F77D289F139D}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{C7A10540-758C-4EB8-AE9E-F77D289F139D}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{C7A10540-758C-4EB8-AE9E-F77D289F139D}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{C7A10540-758C-4EB8-AE9E-F77D289F139D}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C7A10540-758C-4EB8-AE9E-F77D289F139D}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C7A10540-758C-4EB8-AE9E-F77D289F139D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C7A10540-758C-4EB8-AE9E-F77D289F139D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C7A10540-758C-4EB8-AE9E-F77D289F139D}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C7A10540-758C-4EB8-AE9E-F77D289F139D}.Release|iPhone.Build.0 = Release|iPhone
+		{C7A10540-758C-4EB8-AE9E-F77D289F139D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C7A10540-758C-4EB8-AE9E-F77D289F139D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ImageProtocol.csproj
+	EndGlobalSection
+EndGlobal
