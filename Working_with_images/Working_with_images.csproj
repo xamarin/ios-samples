@@ -96,5 +96,9 @@
     <Content Include="Default-Landscape~ipad.png" />
     <Content Include="Images\doc_icon.png" />
     <Content Include="Images\doc_icon%402x.png" />
+    <Content Include="Images\100_icon.png" />
+    <Content Include="Images\144_icon.png" />
+    <Content Include="Default-Portrait%402x.png" />
+    <Content Include="Default-Landscape%402x.png" />
   </ItemGroup>
 </Project>

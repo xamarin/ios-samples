@@ -1,3 +1,5 @@
+IOS_SDK_VERSION         = 5.1
+
 MONOTOUCH_MONO_PATH     = /Developer/MonoTouch/usr/lib/mono/2.1
 MONOTOUCH_VERSION       = 1.0
 MONOTOUCH_PREFIX        = /Developer/MonoTouch
@@ -15,19 +17,19 @@ cycle:
 
 dev: $(EXTRA_DEPS) device/$(APPDIR)
 	-mkdir bin
-	$(MTOUCH) -bundleid com.novell.monotouch.sample.$(EXE) -dev device/$(APPDIR) -c "iPhone Developer: $(DEVNAME)" $(EXE)
+	$(MTOUCH) --sdk=$(IOS_SDK_VERSION) -bundleid com.novell.monotouch.sample.$(EXE) -dev device/$(APPDIR) -c "iPhone Developer: $(DEVNAME)" $(EXE)
 	for f in $(DATA); do cp $$f device/$(APPDIR); done
-	$(MTOUCH) -installdev device/$(APPDIR)
+	$(MTOUCH) --sdk=$(IOS_SDK_VERSION) -installdev device/$(APPDIR)
 
 launch: simulator/$(APP)
 	-rm -f output error
-	$(MTOUCH) --sdk=4.3 --launchsim=simulator/$(APPDIR) --stdout=output --stderr=error
+	$(MTOUCH) --sdk=$(IOS_SDK_VERSION) --launchsim=simulator/$(APPDIR) --stdout=output --stderr=error
 
 debug: simulator/$(APP)
-	$(MTOUCH) --debugsim=simulator/$(APPDIR) --stdout=output --stderr=error
+	$(MTOUCH) --sdk=$(IOS_SDK_VERSION) --debugsim=simulator/$(APPDIR) --stdout=output --stderr=error
 
 simulator/$(APP): simulator/$(APPDIR) $(EXE) $(MTOUCH)
-	$(MTOUCH) -bundleid com.novell.monotouch.sample.$(EXE) $(MFLAGS) -sim simulator/$(APPDIR) $(EXE)
+	$(MTOUCH) --sdk=$(IOS_SDK_VERSION) -bundleid com.novell.monotouch.sample.$(EXE) $(MFLAGS) -sim simulator/$(APPDIR) $(EXE)
 	for f in $(DATA); do cp $$f simulator/$(APPDIR); done
 
 simulator/$(APPDIR):
@@ -37,9 +39,10 @@ device/$(APPDIR):
 	mkdir -p device/$(APPDIR)
 
 main.m: $(EXE) $(MTOUCH)
-	$(MTOUCH) -v $(EXE)
+	$(MTOUCH) --sdk=$(IOS_SDK_VERSION) -v $(EXE)
 
 $(EXE): $(SOURCES)
+	mkdir -p bin
 	/Developer/MonoTouch/usr/bin/smcs $(SOURCES) -debug -r:monotouch.dll $(REFS) -out:$(EXE)
 
 clean:

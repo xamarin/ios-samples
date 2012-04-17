@@ -29,10 +29,9 @@ namespace avTouch
 		TimeSpan SkipInterval = TimeSpan.FromSeconds (0.2);
 		
 		NSTimer update_timer;
-		ArrayList soundfiles = new ArrayList ();
 		UIImage playBtnBg, pauseBtnBg;
 		AVAudioPlayer player;
-		NSTimer updateTimer, rewTimer, ffwTimer;
+		NSTimer rewTimer, ffwTimer;
 		
 		public override void AwakeFromNib ()
 		{
