@@ -112,8 +112,8 @@ namespace BubbleCell
 			//
 			// Listen to keyboard notifications to animate
 			//
-			showObserver = NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillShowNotification, PlaceKeyboard);
-			hideObserver = NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillHideNotification, PlaceKeyboard);
+			showObserver = UIKeyboard.Notifications.ObserveWillShow (PlaceKeyboard);
+			hideObserver = UIKeyboard.Notifications.ObserveWillHide (PlaceKeyboard);
 			
 			ScrollToBottom (false);
 			// Track changes in the entry to resize the view accordingly
@@ -122,8 +122,8 @@ namespace BubbleCell
 		
 		public override void ViewDidUnload ()
 		{
-			NSNotificationCenter.DefaultCenter.RemoveObserver (showObserver);
-			NSNotificationCenter.DefaultCenter.RemoveObserver (hideObserver);
+			showObserver.Dispose ();
+			hideObserver.Dispose ();
 			discussion = null;
 			discussionHost = null;
 			root = null;
@@ -240,18 +240,13 @@ namespace BubbleCell
 		// When the keyboard appears, animate the new position for the entry
 		// and scroll the chat to the bottom
 		//
-		void PlaceKeyboard (NSNotification notification)
+		void PlaceKeyboard (object sender, UIKeyboardEventArgs args)
 		{
-			var dict = notification.UserInfo;
-			var animationCurve = (UIViewAnimationCurve) (dict [UIKeyboard.AnimationCurveUserInfoKey] as NSNumber).Int32Value;
-			double duration = (dict [UIKeyboard.AnimationDurationUserInfoKey] as NSNumber).DoubleValue;
-			RectangleF endFrame = (dict [UIKeyboard.FrameEndUserInfoKey] as NSValue).RectangleFValue;
-			
 			UIView.BeginAnimations (""); {
-				UIView.SetAnimationCurve (animationCurve);
-				UIView.SetAnimationDuration (duration);
+				UIView.SetAnimationCurve (args.AnimationCurve);
+				UIView.SetAnimationDuration (args.AnimationDuration);
 				var viewFrame = View.Frame;
-				var endRelative = View.ConvertRectFromView (endFrame, null);
+				var endRelative = View.ConvertRectFromView (args.FrameEnd, null);
 				viewFrame.Height = endRelative.Y;
 				View.Frame = viewFrame;
 			} UIView.CommitAnimations ();
