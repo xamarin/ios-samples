@@ -9,6 +9,8 @@ using System;
 
 using System.Drawing;
 
+using System.Runtime.CompilerServices;
+
 using System.Runtime.InteropServices;
 
 using MonoTouch;
@@ -52,6 +54,7 @@ namespace XMBindingLibrarySample {
 		
 		public override IntPtr ClassHandle { get { return class_ptr; } }
 		
+		[CompilerGenerated]
 		[Export ("init")]
 		public  XMCustomView () : base (NSObjectFlag.Empty)
 		{
@@ -63,6 +66,7 @@ namespace XMBindingLibrarySample {
 			}
 		}
 
+		[CompilerGenerated]
 		[Export ("initWithCoder:")]
 		public XMCustomView (NSCoder coder) : base (NSObjectFlag.Empty)
 		{
@@ -74,11 +78,14 @@ namespace XMBindingLibrarySample {
 			}
 		}
 
+		[CompilerGenerated]
 		public XMCustomView (NSObjectFlag t) : base (t) {}
 
+		[CompilerGenerated]
 		public XMCustomView (IntPtr handle) : base (handle) {}
 
 		[Export ("customizeViewWithText:")]
+		[CompilerGenerated]
 		public virtual void CustomizeViewWithText (string message)
 		{
 			if (message == null)
@@ -94,6 +101,7 @@ namespace XMBindingLibrarySample {
 			
 		}
 		
+		[CompilerGenerated]
 		public virtual string Name {
 			[Export ("name")]
 			get {
@@ -119,6 +127,7 @@ namespace XMBindingLibrarySample {
 		}
 		
 		object __mt_WeakDelegate_var;
+		[CompilerGenerated]
 		public virtual NSObject WeakDelegate {
 			[Export ("delegate", ArgumentSemantic.Assign)]
 			get {
@@ -145,6 +154,7 @@ namespace XMBindingLibrarySample {
 			}
 		}
 		
+		[CompilerGenerated]
 		public XMCustomViewDelegate Delegate {
 			get { return WeakDelegate as XMCustomViewDelegate; }
 			set { WeakDelegate = value; }

@@ -9,6 +9,8 @@ using System;
 
 using System.Drawing;
 
+using System.Runtime.CompilerServices;
+
 using System.Runtime.InteropServices;
 
 using MonoTouch;
@@ -46,6 +48,7 @@ namespace XMBindingLibrarySample {
 		
 		static IntPtr class_ptr = Class.GetHandle ("NSObject");
 		
+		[CompilerGenerated]
 		[Export ("init")]
 		public  XMCustomViewDelegate () : base (NSObjectFlag.Empty)
 		{
@@ -57,6 +60,7 @@ namespace XMBindingLibrarySample {
 			}
 		}
 
+		[CompilerGenerated]
 		[Export ("initWithCoder:")]
 		public XMCustomViewDelegate (NSCoder coder) : base (NSObjectFlag.Empty)
 		{
@@ -68,11 +72,14 @@ namespace XMBindingLibrarySample {
 			}
 		}
 
+		[CompilerGenerated]
 		public XMCustomViewDelegate (NSObjectFlag t) : base (t) {}
 
+		[CompilerGenerated]
 		public XMCustomViewDelegate (IntPtr handle) : base (handle) {}
 
 		[Export ("viewWasTouched:")]
+		[CompilerGenerated]
 		public abstract void ViewWasTouched (XMCustomView view);
 	} /* class XMCustomViewDelegate */
 }
