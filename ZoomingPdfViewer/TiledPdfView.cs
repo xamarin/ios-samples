@@ -42,17 +42,16 @@ namespace ZoomingPdfViewer {
 	class TiledLayerDelegate : CALayerDelegate {
 		
 		TiledPdfView view;
+		RectangleF bounds;
 		
 		public TiledLayerDelegate (TiledPdfView view)
 		{
 			this.view = view;
+			bounds = view.Bounds;
 		}
 		
 		public override void DrawLayer (CALayer layer, CGContext context)
 		{
-			// keep a copy since (a) it's a _virtual_ property and (b) it could change between filling and flipping
-			RectangleF bounds = view.Bounds;
-			
 			// fill with white background
 			context.SetFillColor (1.0f, 1.0f, 1.0f, 1.0f);
 			context.FillRect (bounds);
