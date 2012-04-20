@@ -101,7 +101,7 @@ namespace ZoomingPdfViewer {
 			ZoomingEnded += delegate (object sender, ZoomingEndedEventArgs e) {
 				scale *= e.AtScale;
 
-				RectangleF rect = pdfView.Page.GetBoxRect (CGPDFBox.Media);
+				RectangleF rect = page.GetBoxRect (CGPDFBox.Media);
 				rect.Size = new SizeF (rect.Width * scale, rect.Height * scale);
 				
 				pdfView = new TiledPdfView (rect, scale);
@@ -114,7 +114,7 @@ namespace ZoomingPdfViewer {
 		{
 			base.LayoutSubviews ();
 			
-    		// if the page becomes smaller than the view's bounds then we
+			// if the page becomes smaller than the view's bounds then we
 			// center it in the screen
 			SizeF boundsSize = Bounds.Size;
 			RectangleF frameToCenter = pdfView.Frame;
