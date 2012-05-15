@@ -80,6 +80,10 @@ namespace Xamarin.Screens.SQLiteNet
 				// create the tables
 				db.CreateTable<Person> ();
 				
+				// skip inserting data if it already exists
+				if(db.Table<Person>().Count() > 0)
+					return;
+					
 				// declare vars
 				List<Person> people = new List<Person> ();
 				Person person;
