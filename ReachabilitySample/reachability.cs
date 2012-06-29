@@ -81,7 +81,7 @@ public static class Reachability {
 	}
 	
 	static NetworkReachability defaultRouteReachability;
-	static bool IsNetworkAvaialable (out NetworkReachabilityFlags flags)
+	static bool IsNetworkAvailable (out NetworkReachabilityFlags flags)
 	{
 		if (defaultRouteReachability == null){
 			defaultRouteReachability = new NetworkReachability (new IPAddress (0));
@@ -126,12 +126,14 @@ public static class Reachability {
 	public static NetworkStatus InternetConnectionStatus ()
 	{
 		NetworkReachabilityFlags flags;
-		bool defaultNetworkAvailable = IsNetworkAvaialable (out flags);
+		bool defaultNetworkAvailable = IsNetworkAvailable (out flags);
 		if (defaultNetworkAvailable){
 			if ((flags & NetworkReachabilityFlags.IsDirect) != 0)
 				return NetworkStatus.NotReachable;
 		} else if ((flags & NetworkReachabilityFlags.IsWWAN) != 0)
 			return NetworkStatus.ReachableViaCarrierDataNetwork;
+		else if (flags == 0)
+			return NetworkStatus.NotReachable;
 		return NetworkStatus.ReachableViaWiFiNetwork;
 	}
 	
