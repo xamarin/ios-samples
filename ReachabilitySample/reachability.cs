@@ -132,6 +132,8 @@ public static class Reachability {
 				return NetworkStatus.NotReachable;
 		} else if ((flags & NetworkReachabilityFlags.IsWWAN) != 0)
 			return NetworkStatus.ReachableViaCarrierDataNetwork;
+		else if (flags == 0)
+			return NetworkStatus.NotReachable;
 		return NetworkStatus.ReachableViaWiFiNetwork;
 	}
 	
