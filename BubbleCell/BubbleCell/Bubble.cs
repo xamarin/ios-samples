@@ -31,8 +31,11 @@ namespace BubbleCell
 			bright = UIImage.FromFile ("green.png");
 			bleft = UIImage.FromFile ("grey.png");
 
-			left = bleft.CreateResizableImage (new UIEdgeInsets (10, 16, 18, 26));
-			right = bright.CreateResizableImage (new UIEdgeInsets (11, 11, 17, 18));
+			// buggy, see https://bugzilla.xamarin.com/show_bug.cgi?id=6177
+			//left = bleft.CreateResizableImage (new UIEdgeInsets (10, 16, 18, 26));
+			//right = bright.CreateResizableImage (new UIEdgeInsets (11, 11, 17, 18));
+			left = bleft.StretchableImage (26, 16);
+			right = bright.StretchableImage (11, 11);
 		}
 		
 		public BubbleCell (bool isLeft) : base (UITableViewCellStyle.Default, isLeft ? KeyLeft : KeyRight)
