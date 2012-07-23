@@ -47,33 +47,40 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 			this.Title = "Custom Camera View";
 			
 			this.btnTakePhoto.TouchUpInside += (object sender, EventArgs e) => {
-				// create a new picker controller
-				imagePicker = new UIImagePickerController();
+
+				try {
+					// create a new picker controller
+					imagePicker = new UIImagePickerController ();
 				
-				// set our source to the camera
-				imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;
+					// set our source to the camera
+					imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;
 								
-				// set				
-				imagePicker.MediaTypes = new string[] { "public.image" };
+					// set				
+					imagePicker.MediaTypes = new string[] { "public.image" };
 				
-				// show the camera controls
-				imagePicker.ShowsCameraControls = true;
+					// show the camera controls
+					imagePicker.ShowsCameraControls = true;
 			
-				//UILabel overlay = new UILabel (new System.Drawing.RectangleF (20, 100, 200, 30));
-				//overlay.Text = "This is an overlay";
+					//UILabel overlay = new UILabel (new System.Drawing.RectangleF (20, 100, 200, 30));
+					//overlay.Text = "This is an overlay";
 				
-				//imagePicker.CameraOverlayView = overlay;
+					//imagePicker.CameraOverlayView = overlay;
 				
 				
-				//BUGBUG: MT/Apple Bug? - this won't display the overlay, but if i add a label, it'll display
-				imagePicker.CameraOverlayView = new CameraOverlayView ( UIScreen.MainScreen.ApplicationFrame );
+					//BUGBUG: MT/Apple Bug? - this won't display the overlay, but if i add a label, it'll display
+					imagePicker.CameraOverlayView = new CameraOverlayView (UIScreen.MainScreen.ApplicationFrame);
 				
-				// attach the delegate
-				pickerDelegate = new PickerDelegate();
-				imagePicker.Delegate = pickerDelegate;
+					// attach the delegate
+					pickerDelegate = new PickerDelegate ();
+					imagePicker.Delegate = pickerDelegate;
 				
-				// show the picker
-				this.NavigationController.PresentModalViewController (imagePicker, true);
+					// show the picker
+					this.NavigationController.PresentModalViewController (imagePicker, true);
+
+				} catch (Exception ex) {
+					UIAlertView alert = new UIAlertView ("No Camera", "No Camera Detected!", null, "OK", null);
+					alert.Show ();
+				}
 			};
 		}
 
@@ -91,18 +98,18 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 			{
 				// determine what was selected, video or image
 				bool isImage = false;
-				switch (info[UIImagePickerController.MediaType].ToString ()) {
-					case "public.image":
-						Console.WriteLine ("Image selected");
-						isImage = true;
-						break;
-						Console.WriteLine ("Video selected");
-					case "public.video":
-						break;
+				switch (info [UIImagePickerController.MediaType].ToString ()) {
+				case "public.image":
+					Console.WriteLine ("Image selected");
+					isImage = true;
+					break;
+					Console.WriteLine ("Video selected");
+				case "public.video":
+					break;
 				}
 				
 				//MT BUGBUG:				
-				Console.Write("Reference URL: [" + UIImagePickerController.ReferenceUrl + "]");
+				Console.Write ("Reference URL: [" + UIImagePickerController.ReferenceUrl + "]");
 				
 //				// get common info (shared between images and video)
 //				NSUrl referenceURL = info[new NSString("UIImagePickerControllerReferenceUrl")] as NSUrl;
@@ -113,8 +120,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 //				}
 				
 				// if it was an image, get the other image info
-				if (isImage)
-				{
+				if (isImage) {
 //					// get the original image
 //					UIImage originalImage = info[UIImagePickerController.OriginalImage] as UIImage;
 //					if(originalImage != null)
