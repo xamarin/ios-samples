@@ -66,18 +66,18 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Screens\HomeScreenController.cs" />
     <Compile Include="Screens\HomeScreen.designer.cs">
       <DependentUpon>HomeScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\HelloWorldScreenController.cs" />
     <Compile Include="Screens\HelloWorldScreen.designer.cs">
       <DependentUpon>HelloWorldScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Screens\HelloUniverseScreenController.cs" />
     <Compile Include="Screens\HelloUniverseScreen.designer.cs">
       <DependentUpon>HelloUniverseScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\HomeScreen.cs" />
+    <Compile Include="Screens\HelloWorldScreen.cs" />
+    <Compile Include="Screens\HelloUniverseScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

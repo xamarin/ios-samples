@@ -26,9 +26,8 @@ namespace Example_SharedResources.Screens.iPhone.AVAssets
 			// instantiate a reference to the shared assets library
 			assetsLibrary = new ALAssetsLibrary();
 			// enumerate the photo albums
-			assetsLibrary.Enumerate(ALAssetsGroupType.All
-				, GroupsEnumerator
-				, (NSError e) => { Console.WriteLine ("Could not enumerate albums: " + e.LocalizedDescription); });
+			assetsLibrary.Enumerate(ALAssetsGroupType.All, GroupsEnumerator,
+						(NSError e) => { Console.WriteLine ("Could not enumerate albums: " + e.LocalizedDescription); });
 			
 		}
 		

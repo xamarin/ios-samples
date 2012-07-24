@@ -30,12 +30,11 @@ namespace Example_TableAndCellStyles.Screens.iPhone.CellStyles
 		/// <summary>
 		/// You specify the table style in the constructor when using a UITableViewController
 		/// </summary>
-		public TableScreen (UITableViewStyle tableStyle, UITableViewCellStyle cellStyle
-			, UITableViewCellAccessory cellAccessory)
+		public TableScreen (UITableViewStyle tableStyle, UITableViewCellStyle cellStyle, UITableViewCellAccessory cellAccessory)
 			: base (tableStyle)
 		{
-			this.cellStyle = cellStyle;
-			this.cellAccessory = cellAccessory;
+			cellStyle = cellStyle;
+			cellAccessory = cellAccessory;
 		}
 		
 		#endregion
@@ -63,18 +62,18 @@ namespace Example_TableAndCellStyles.Screens.iPhone.CellStyles
 			
 			// Section 1
 			tGroup = new TableItemGroup() { Name = "Places" };
-			tGroup.Items.Add (new TableItem() { CellStyle = cellStyle, CellAccessory = cellAccessory
-				, ImageName = "Images/Beach.png", Heading = "Fiji", SubHeading = "A nice beach" });
-			tGroup.Items.Add (new TableItem() { CellStyle = cellStyle, CellAccessory = cellAccessory
-				, ImageName = "Images/Shanghai.png", Heading = "Beijing", SubHeading = "AKA Shanghai" });
+			tGroup.Items.Add (new TableItem() { CellStyle = cellStyle, CellAccessory = cellAccessory,
+						ImageName = "Images/Beach.png", Heading = "Fiji", SubHeading = "A nice beach" });
+			tGroup.Items.Add (new TableItem() { CellStyle = cellStyle, CellAccessory = cellAccessory,
+						ImageName = "Images/Shanghai.png", Heading = "Beijing", SubHeading = "AKA Shanghai" });
 			tableItems.Add (tGroup);
 			
 			// Section 2
 			tGroup = new TableItemGroup() { Name = "Other" };
-			tGroup.Items.Add (new TableItem() { CellStyle = cellStyle, CellAccessory = cellAccessory
-				, ImageName = "Images/Seeds.png", Heading = "Seedlings", SubHeading = "Tiny Plants" });
-			tGroup.Items.Add (new TableItem() { CellStyle = cellStyle, CellAccessory = cellAccessory
-				, ImageName = "Images/Plants.png", Heading = "Plants", SubHeading = "Green plants" });
+			tGroup.Items.Add (new TableItem() { CellStyle = cellStyle, CellAccessory = cellAccessory,
+						ImageName = "Images/Seeds.png", Heading = "Seedlings", SubHeading = "Tiny Plants" });
+			tGroup.Items.Add (new TableItem() { CellStyle = cellStyle, CellAccessory = cellAccessory,
+						ImageName = "Images/Plants.png", Heading = "Plants", SubHeading = "Green plants" });
 			tableItems.Add (tGroup);
 			
 			tableSource = new TableSource(tableItems);

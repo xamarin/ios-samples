@@ -9,6 +9,8 @@ using System;
 
 using System.Drawing;
 
+using System.Runtime.CompilerServices;
+
 using System.Runtime.InteropServices;
 
 using MonoTouch;
@@ -53,6 +55,7 @@ namespace XMBindingLibrarySample {
 		
 		public override IntPtr ClassHandle { get { return class_ptr; } }
 		
+		[CompilerGenerated]
 		[Export ("init")]
 		public  XMUtilities () : base (NSObjectFlag.Empty)
 		{
@@ -64,6 +67,7 @@ namespace XMBindingLibrarySample {
 			}
 		}
 
+		[CompilerGenerated]
 		[Export ("initWithCoder:")]
 		public XMUtilities (NSCoder coder) : base (NSObjectFlag.Empty)
 		{
@@ -75,11 +79,14 @@ namespace XMBindingLibrarySample {
 			}
 		}
 
+		[CompilerGenerated]
 		public XMUtilities (NSObjectFlag t) : base (t) {}
 
+		[CompilerGenerated]
 		public XMUtilities (IntPtr handle) : base (handle) {}
 
 		[Export ("echo:")]
+		[CompilerGenerated]
 		public static string Echo (string message)
 		{
 			if (message == null)
@@ -94,6 +101,7 @@ namespace XMBindingLibrarySample {
 		}
 		
 		[Export ("hello:")]
+		[CompilerGenerated]
 		public virtual string Hello (string name)
 		{
 			if (name == null)
@@ -112,6 +120,7 @@ namespace XMBindingLibrarySample {
 		}
 		
 		[Export ("add:and:")]
+		[CompilerGenerated]
 		public virtual int Add (int operandUn, int operandDeux)
 		{
 			if (IsDirectBinding) {
@@ -122,6 +131,7 @@ namespace XMBindingLibrarySample {
 		}
 		
 		[Export ("multiply:and")]
+		[CompilerGenerated]
 		public virtual int Multiply (int operandUn, int operandDeux)
 		{
 			if (IsDirectBinding) {
@@ -132,6 +142,7 @@ namespace XMBindingLibrarySample {
 		}
 		
 		[Export ("setCallback:")]
+		[CompilerGenerated]
 		public unsafe virtual void SetCallback (XMUtilityCallback callback)
 		{
 			if (callback == null)
@@ -152,6 +163,7 @@ namespace XMBindingLibrarySample {
 		}
 		
 		[Export ("invokeCallback:")]
+		[CompilerGenerated]
 		public virtual void InvokeCallback (NSString message)
 		{
 			if (message == null)

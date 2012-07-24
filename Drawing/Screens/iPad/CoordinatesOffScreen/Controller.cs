@@ -31,10 +31,11 @@ namespace Example_Drawing.Screens.iPad.CoordinatesOffScreen
 			// create our offscreen bitmap context
 			// size
 			SizeF bitmapSize = new SizeF (View.Frame.Size);
-			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero
-					, (int)bitmapSize.Width, (int)bitmapSize.Height, 8
-					, (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB ()
-					, CGImageAlphaInfo.PremultipliedFirst))
+			using (CGBitmapContext context = new CGBitmapContext (
+				       IntPtr.Zero,
+				       (int)bitmapSize.Width, (int)bitmapSize.Height, 8,
+				       (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
+				       CGImageAlphaInfo.PremultipliedFirst))
 			{
 				// declare vars
 				int remainder;

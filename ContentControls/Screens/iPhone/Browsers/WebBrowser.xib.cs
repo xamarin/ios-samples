@@ -40,44 +40,44 @@ namespace Example_ContentControls.Screens.iPhone.Browsers
 			base.ViewDidLoad ();
 			
 			// set the title
-			this.Title = "Browser";
+			Title = "Browser";
 			
 			// wire up event handlers
-			this.btnBack.TouchUpInside += (s, e) => { if (this.webMain.CanGoBack) { this.webMain.GoBack (); } };
-			this.btnForward.TouchUpInside += (s, e) => { if (this.webMain.CanGoForward) { this.webMain.GoForward (); } };
-			this.btnStop.TouchUpInside += (s, e) => { this.webMain.StopLoading (); };
-			this.btnGo.TouchUpInside += (s, e) => { NavigateToUrl (); };
-			this.txtAddress.ShouldReturn += HandleEditingDone;
-			this.webMain.LoadStarted += LoadStarted;
-			this.webMain.LoadFinished += LoadingFinished;
-			this.webMain.LoadError += LoadError;
+			btnBack.TouchUpInside += (s, e) => { if (webMain.CanGoBack) { webMain.GoBack (); } };
+			btnForward.TouchUpInside += (s, e) => { if (webMain.CanGoForward) { webMain.GoForward (); } };
+			btnStop.TouchUpInside += (s, e) => { webMain.StopLoading (); };
+			btnGo.TouchUpInside += (s, e) => { NavigateToUrl (); };
+			txtAddress.ShouldReturn += HandleEditingDone;
+			webMain.LoadStarted += LoadStarted;
+			webMain.LoadFinished += LoadingFinished;
+			webMain.LoadError += LoadError;
 			
 			// disable our buttons to start
-			this.btnBack.Enabled = false;
-			this.btnForward.Enabled = false;
-			this.btnStop.Enabled = false;
+			btnBack.Enabled = false;
+			btnForward.Enabled = false;
+			btnStop.Enabled = false;
 			
 			// navigate to google
-			this.txtAddress.Text = "google.com";
-			this.NavigateToUrl ();
+			txtAddress.Text = "google.com";
+			NavigateToUrl ();
 
 		}
 
 		protected void NavigateToUrl ()
 		{
-			string url = this.txtAddress.Text;
+			string url = txtAddress.Text;
 			
 			// make sure it's prefixed with either https:// or http://
 			if (!(url.StartsWith ("http://") || url.StartsWith ("https://")))
 				url = "http://" + url;
 			
-			this.webMain.LoadRequest (new NSUrlRequest (new NSUrl (url)));
+			webMain.LoadRequest (new NSUrlRequest (new NSUrl (url)));
 		}
 
 		protected void SetBackAndForwardEnable ()
 		{
-			this.btnBack.Enabled = this.webMain.CanGoBack;
-			this.btnForward.Enabled = this.webMain.CanGoForward;
+			btnBack.Enabled = webMain.CanGoBack;
+			btnForward.Enabled = webMain.CanGoForward;
 		}
 		
 		#region event handlers
@@ -91,27 +91,27 @@ namespace Example_ContentControls.Screens.iPhone.Browsers
 				
 		public void LoadStarted (object source, EventArgs e)
 		{
-			this.btnStop.Enabled = true;
-			this.SetBackAndForwardEnable ();
-			this.imgBusy.StartAnimating ();
+			btnStop.Enabled = true;
+			SetBackAndForwardEnable ();
+			imgBusy.StartAnimating ();
 		}
 			
 		public void LoadingFinished (object source, EventArgs e)
 		{
-			this.SetBackAndForwardEnable ();
-			this.btnStop.Enabled = false;
-			this.imgBusy.StopAnimating ();
+			SetBackAndForwardEnable ();
+			btnStop.Enabled = false;
+			imgBusy.StopAnimating ();
 		}
 		
 		public void LoadError (object sender, UIWebErrorArgs e)
 		{
-			this.imgBusy.StopAnimating ();
-			this.btnStop.Enabled = false;
-			this.SetBackAndForwardEnable ();
+			imgBusy.StopAnimating ();
+			btnStop.Enabled = false;
+			SetBackAndForwardEnable ();
 			// show the error
-			UIAlertView alert = new UIAlertView ("Browse Error"
-				, "Web page failed to load: " + e.Error.ToString ()
-				, null, "OK", null);
+			UIAlertView alert = new UIAlertView ("Browse Error",
+							     "Web page failed to load: " + e.Error.ToString (),
+							     null, "OK", null);
 			alert.Show ();
 		}
 	

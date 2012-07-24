@@ -1,7 +1,7 @@
-Application
+CoreImage
 ===========
 
-This sample application demonstraes how to use the image filters found in the CoreImage Library
+This sample application demonstrates how to use the image filters found in the CoreImage Library
 
 Images:
 ------

@@ -74,8 +74,6 @@ namespace WeatherMap
 				new MKCoordinateSpan (28.49, 31.025)
 			);
 			
-			mapView.SetRegion (region, false);
-			
 			// Connect to the RegionChanged event so we can update the displayed forecasts
 			// depending on what area of the map is shown.
 			mapView.RegionChanged += (sender, e) => {
@@ -89,6 +87,8 @@ namespace WeatherMap
 			};
 			
 			mapView.GetViewForAnnotation += GetWeatherAnnotationView;
+
+			mapView.SetRegion (region, false);
 		}
 		
 		public override void ViewDidUnload ()

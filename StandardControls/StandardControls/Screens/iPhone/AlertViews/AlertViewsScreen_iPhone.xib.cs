@@ -51,12 +51,12 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews
 		{
 			base.ViewDidLoad ();
 			
-			this.Title = "Alert Views";
+			Title = "Alert Views";
 			
-			this.btnSimpleAlert.TouchUpInside += HandleBtnSimpleAlertTouchUpInside;
-			this.btnCustomButtons.TouchUpInside += HandleBtnCustomButtonsTouchUpInside;
-			this.btnCustomButtonsWithDelegate.TouchUpInside += HandleBtnCustomButtonsWithDelegateTouchUpInside;
-			this.btnCustomAlert.TouchUpInside += HandleBtnCustomAlertTouchUpInside;
+			btnSimpleAlert.TouchUpInside += HandleBtnSimpleAlertTouchUpInside;
+			btnCustomButtons.TouchUpInside += HandleBtnCustomButtonsTouchUpInside;
+			btnCustomButtonsWithDelegate.TouchUpInside += HandleBtnCustomButtonsWithDelegateTouchUpInside;
+			btnCustomAlert.TouchUpInside += HandleBtnCustomAlertTouchUpInside;
 		}
 		
 		#region -= simple alert =-
@@ -89,8 +89,10 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews
 		protected void HandleBtnCustomButtonsTouchUpInside (object sender, EventArgs e)
 		{
 			// create an alert and add more buttons
-			alert = new UIAlertView () { Title = "custom buttons alert"
-				, Message = "this alert has custom buttons"	};
+			alert = new UIAlertView () {
+				Title = "custom buttons alert", 
+				Message = "this alert has custom buttons"
+			};
 			alert.AddButton("custom button 1");
 			alert.AddButton("custom button 2");
 			// last button added is the 'cancel' button (index of '2')
@@ -119,8 +121,8 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews
 		{
 			string[] otherButtons = { "custom button 1", "custom button 2" };
 			
-			alert = new UIAlertView ("custom buttons alert", "this alert has custom buttons"
-				, new CustomButtonsAlertDelegate (), "ok", otherButtons);
+			alert = new UIAlertView ("custom buttons alert", "this alert has custom buttons",
+						 new CustomButtonsAlertDelegate (), "ok", otherButtons);
 			alert.Show ();
 		}
 		
@@ -177,7 +179,7 @@ namespace Example_StandardControls.Screens.iPhone.AlertViews
 			alert.Show ();
 			
 			Thread longRunningProc = new Thread (delegate() {
-				this.LongRunningProcess (5);
+				LongRunningProcess (5);
 			});
 			longRunningProc.Start ();
 		}

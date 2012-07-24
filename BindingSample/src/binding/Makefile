@@ -1,5 +1,5 @@
 BINDDIR=/src/binding
-XBUILD=/Developer/usr/bin/xcodebuild
+XBUILD=/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild
 PROJECT_ROOT=XMBindingLibrarySample
 PROJECT=$(PROJECT_ROOT)/XMBindingLibrarySample.xcodeproj
 TARGET=XMBindingLibrarySample

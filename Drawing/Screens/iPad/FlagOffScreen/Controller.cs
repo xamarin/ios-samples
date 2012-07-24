@@ -31,10 +31,10 @@ namespace Example_Drawing.Screens.iPad.FlagOffScreen
 			// create our offscreen bitmap context
 			// size
 			SizeF bitmapSize = new SizeF (imageView.Frame.Size);
-			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero
-					, (int)bitmapSize.Width, (int)bitmapSize.Height, 8
-					, (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB ()
-					, CGImageAlphaInfo.PremultipliedFirst)) {
+			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero,
+									      (int)bitmapSize.Width, (int)bitmapSize.Height, 8,
+									      (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
+									      CGImageAlphaInfo.PremultipliedFirst)) {
 				
 				// draw our coordinates for reference
 				DrawCoordinateSpace (context);

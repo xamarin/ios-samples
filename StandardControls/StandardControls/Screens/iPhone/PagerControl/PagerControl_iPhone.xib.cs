@@ -88,10 +88,10 @@ namespace Example_StandardControls.Screens.iPhone.PagerControl
 				// set their location and size, each one is moved to the 
 				// right by the width of the previous
 				RectangleF viewFrame = new RectangleF (
-					scrlMain.Frame.Width * i
-					, scrlMain.Frame.Y
-					, scrlMain.Frame.Width
-					, scrlMain.Frame.Height);
+					scrlMain.Frame.Width * i,
+					scrlMain.Frame.Y,
+					scrlMain.Frame.Width,
+					scrlMain.Frame.Height);
 				controllers[i].View.Frame = viewFrame;
 		
 				// add the view to the scrollview

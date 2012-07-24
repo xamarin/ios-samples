@@ -15,9 +15,7 @@ namespace Example_SplitView.Screens.MainSplitView
 			masterView = new Screens.MasterView.MasterTableView ();
 			detailView = new Screens.DetailView.DetailViewScreen ();
 
-			// create an array of controllers from them and then assign it to the 
-			// controllers property
-			ViewControllers = new UIViewController[] { masterView, detailView };
+
 			
 			// in this example, i expose an event on the master view called RowClicked, and i listen 
 			// for it in here, and then call a method on the detail view to update. this class thereby 
@@ -37,6 +35,19 @@ namespace Example_SplitView.Screens.MainSplitView
 			this.WillShowViewController += (object sender, UISplitViewShowEventArgs e) => {
 				detailView.RemoveContentsButton ();
 			};
+
+			// this method was introduced in iOS5
+			// return true to hide the master list (can still be 'dragged out') or false to force it to show
+			this.ShouldHideViewController = (svc, vc, orientation) => {
+				return orientation == UIInterfaceOrientation.Portrait || orientation == UIInterfaceOrientation.PortraitUpsideDown;
+			};
+
+			// ALWAYS SET THIS LAST (since iOS5.1)
+			// https://bugzilla.xamarin.com/show_bug.cgi?id=3803
+			// http://spouliot.wordpress.com/2012/03/26/events-vs-objective-c-delegates/
+			// create an array of controllers from them and then assign it to the 
+			// controllers property
+			ViewControllers = new UIViewController[] { masterView, detailView };
 		}
 	}
 }
