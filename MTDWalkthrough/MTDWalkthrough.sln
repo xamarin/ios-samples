@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTDWalkthrough", "MTDWalkthrough.csproj", "{668E9122-90F7-4F6A-A9A2-553BE8267165}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{668E9122-90F7-4F6A-A9A2-553BE8267165}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{668E9122-90F7-4F6A-A9A2-553BE8267165}.Debug|iPhone.Build.0 = Debug|iPhone
+		{668E9122-90F7-4F6A-A9A2-553BE8267165}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{668E9122-90F7-4F6A-A9A2-553BE8267165}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{668E9122-90F7-4F6A-A9A2-553BE8267165}.Release|iPhone.ActiveCfg = Release|iPhone
+		{668E9122-90F7-4F6A-A9A2-553BE8267165}.Release|iPhone.Build.0 = Release|iPhone
+		{668E9122-90F7-4F6A-A9A2-553BE8267165}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{668E9122-90F7-4F6A-A9A2-553BE8267165}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MTDWalkthrough.csproj
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTDJsonDemo", "MTDJsonDemo.csproj", "{CEBCEAD4-1FBD-41B0-82A0-1694E9978AFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		AdHoc|iPhoneSimulator = AdHoc|iPhoneSimulator
+		AppStore|iPhoneSimulator = AppStore|iPhoneSimulator
+		AdHoc|iPhone = AdHoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEBCEAD4-1FBD-41B0-82A0-1694E9978AFE}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{CEBCEAD4-1FBD-41B0-82A0-1694E9978AFE}.Debug|iPhone.Build.0 = Debug|iPhone
+		{CEBCEAD4-1FBD-41B0-82A0-1694E9978AFE}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{CEBCEAD4-1FBD-41B0-82A0-1694E9978AFE}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{CEBCEAD4-1FBD-41B0-82A0-1694E9978AFE}.Release|iPhone.ActiveCfg = Release|iPhone
+		{CEBCEAD4-1FBD-41B0-82A0-1694E9978AFE}.Release|iPhone.Build.0 = Release|iPhone
+		{CEBCEAD4-1FBD-41B0-82A0-1694E9978AFE}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{CEBCEAD4-1FBD-41B0-82A0-1694E9978AFE}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MTDJsonDemo.csproj
+	EndGlobalSection
+EndGlobal

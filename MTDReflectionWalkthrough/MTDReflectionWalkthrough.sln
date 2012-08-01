@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTDReflectionWalkthrough", "MTDReflectionWalkthrough.csproj", "{D718F82C-1F49-4C44-ABC0-C82B9A34C020}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D718F82C-1F49-4C44-ABC0-C82B9A34C020}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{D718F82C-1F49-4C44-ABC0-C82B9A34C020}.Debug|iPhone.Build.0 = Debug|iPhone
+		{D718F82C-1F49-4C44-ABC0-C82B9A34C020}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{D718F82C-1F49-4C44-ABC0-C82B9A34C020}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{D718F82C-1F49-4C44-ABC0-C82B9A34C020}.Release|iPhone.ActiveCfg = Release|iPhone
+		{D718F82C-1F49-4C44-ABC0-C82B9A34C020}.Release|iPhone.Build.0 = Release|iPhone
+		{D718F82C-1F49-4C44-ABC0-C82B9A34C020}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{D718F82C-1F49-4C44-ABC0-C82B9A34C020}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MTDReflectionWalkthrough.csproj
+	EndGlobalSection
+EndGlobal
