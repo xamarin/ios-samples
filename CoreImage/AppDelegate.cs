@@ -347,18 +347,162 @@ namespace coreimage
 		[Filter]
 		public CIImage ColorCube ()
 		{
-			var data = new NSData ();
-			
+			const uint size = 64;
+			var data = generateCubeData(size);
+
 			var cube = new CIColorCube ()
 			{
 				Image = flower,
-				CubeDimension = Convert.ToSingle (Math.Pow (2F, 2F)),
-			//CubeData = 
+				CubeDimension = size,
+				CubeData = data
 			};
 			
 			return cube.OutputImage;
 		}
-		
+		#region Generate Cube Data -- for ColorCube() example
+		/// <summary>
+		/// Generates the cube data. Based on Objective-C example at 
+		/// https://github.com/vhbit/ColorCubeSample
+		/// Many thanks to the original author!
+		/// </summary>
+		/// <remarks>
+		/// Original author grants permission to use this sample code
+		/// https://github.com/vhbit/ColorCubeSample/issues/1
+		/// </remarks>			
+		NSData generateCubeData (uint size)
+		{
+			var data = new NSData ();
+			
+			float minHueAngle = 0.1f; // modify to see different result
+			float maxHueAngle = 0.4f; // modify to see different result
+			float centerHueAngle = minHueAngle + (maxHueAngle - minHueAngle)/2.0f;
+			float destCenterHueAngle = 1.0f/4.0f; // modify to see different result
+
+			byte [] cubeData = new byte[size*size*size*4];
+			float [] rgb = new float[3], hsv = new float[3], newRGB = new float[3];
+			
+			uint offset = 0;
+			
+			for (int z = 0; z < size; z++)
+			{
+				rgb[2] = (float) ((double) z) / size; // blue value
+				for (int y = 0; y < size; y++)
+				{
+					rgb[1] = (float) ((double) y) / size; // green value
+					for (int x = 0; x < size; x++)
+					{
+						rgb[0] = (float) ((double) x) / size; // red value
+						rgbToHSV(rgb, ref hsv);
+						
+						if (hsv[0] < minHueAngle || hsv[0] > maxHueAngle)
+							newRGB = rgb;
+						else
+						{
+							hsv[0] = destCenterHueAngle + (centerHueAngle - hsv[0]);
+							hsvToRGB(hsv, ref newRGB);
+						}
+						
+						cubeData[offset]   = (byte) (newRGB[0] * 255);
+						cubeData[offset+1] = (byte) (newRGB[1] * 255);
+						cubeData[offset+2] = (byte) (newRGB[2] * 255);
+						cubeData[offset+3] = (byte) 255; //1.0;
+						
+						offset += 4;
+					}
+				}
+			}
+			return NSData.FromArray(cubeData);
+		}
+		/// <summary>
+		/// https://github.com/vhbit/ColorCubeSample
+		/// </summary>
+		void rgbToHSV(float[] rgb, ref float[] hsv)
+		{
+			float min, max, delta;
+			float r = rgb[0], g = rgb[1], b = rgb[2];
+			
+			min = Math.Min( r, Math.Min( g, b ));
+			max = Math.Max( r, Math.Max( g, b ));
+			hsv[2] = max;               // v
+			delta = max - min;
+			if( max != 0 )
+				hsv[1] = delta / max;       // s
+			else {
+				// r = g = b = 0        // s = 0, v is undefined
+				hsv[1] = 0;
+				hsv[0] = -1;
+				return;
+			}
+			if( r == max )
+				hsv[0] = ( g - b ) / delta;     // between yellow & magenta
+			else if( g == max )
+				hsv[0] = 2 + ( b - r ) / delta; // between cyan & yellow
+			else
+				hsv[0] = 4 + ( r - g ) / delta; // between magenta & cyan
+			hsv[0] *= 60;               // degrees
+			if( hsv[0] < 0 )
+				hsv[0] += 360;
+			hsv[0] /= 360.0f;
+		}
+		/// <summary>
+		/// https://github.com/vhbit/ColorCubeSample
+		/// </summary>
+		void hsvToRGB(float[] hsv, ref float[] rgb)
+		{
+			float C = hsv[2] * hsv[1];
+			float HS = (float) hsv[0] * 6.0f;
+			float X = (float)C * (1.0f - Math.Abs((HS % 2.0f) - 1.0f));
+			
+			if (HS >= 0 && HS < 1)
+			{
+				rgb[0] = C;
+				rgb[1] = X;
+				rgb[2] = 0;
+			}
+			else if (HS >= 1 && HS < 2)
+			{
+				rgb[0] = X;
+				rgb[1] = C;
+				rgb[2] = 0;
+			}
+			else if (HS >= 2 && HS < 3)
+			{
+				rgb[0] = 0;
+				rgb[1] = C;
+				rgb[2] = X;
+			}
+			else if (HS >= 3 && HS < 4)
+			{
+				rgb[0] = 0;
+				rgb[1] = X;
+				rgb[2] = C;
+			}
+			else if (HS >= 4 && HS < 5)
+			{
+				rgb[0] = X;
+				rgb[1] = 0;
+				rgb[2] = C;
+			}
+			else if (HS >= 5 && HS < 6)
+			{
+				rgb[0] = C;
+				rgb[1] = 0;
+				rgb[2] = X;
+			}
+			else {
+				rgb[0] = 0.0f;
+				rgb[1] = 0.0f;
+				rgb[2] = 0.0f;
+			}
+			
+			
+			float m = hsv[2] - C;
+			rgb[0] += m;
+			rgb[1] += m;
+			rgb[2] += m;
+		}
+		#endregion
+
 		/// <summary>
 		/// Inverts the colors in an image.
 		/// </summary>
