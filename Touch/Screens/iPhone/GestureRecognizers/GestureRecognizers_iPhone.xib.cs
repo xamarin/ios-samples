@@ -59,9 +59,7 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers
 		protected void WireUpTapGestureRecognizer ()
 		{
 			// create a new tap gesture
-			UITapGestureRecognizer tapGesture = new UITapGestureRecognizer ();
-			// wire up the event handler (have to use a selector)
-			tapGesture.AddTarget ( () => {
+			UITapGestureRecognizer tapGesture = new UITapGestureRecognizer (() =>  {
 				lblGestureStatus.Text = "tap me image tapped @" + tapGesture.LocationOfTouch (0, imgTapMe).ToString ();
 			});
 			// configure it
