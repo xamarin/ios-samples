@@ -144,7 +144,7 @@ namespace MapCallouts
 					
 					UIImage flagImage = UIImage.FromFile ("flag.png");
 					
-					RectangleF resizeRect;
+					RectangleF resizeRect = RectangleF.Empty;
 					
 					resizeRect.Size = flagImage.Size;
 					SizeF maxSize = View.Bounds.Inset (AnnotationPadding, AnnotationPadding).Size;
