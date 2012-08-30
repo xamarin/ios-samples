@@ -213,9 +213,8 @@ namespace RecipesAndPrinting
 			float largestImageDimension = Math.Max (image.Size.Width, image.Size.Height);
 			float scale = maxImageDimension / largestImageDimension;
 			
-			imageRect.Size.Width = image.Size.Width * scale;
-			imageRect.Size.Height = image.Size.Height * scale;
-			
+			imageSize.Size = new Size (image.Size.Width * scale, image.Size.Height * scale);
+
 			// Place the image rect at the x,y defined by the argument rect
 			imageRect.Location = new PointF (rect.Left + Padding, rect.Top + Padding);
 			
