@@ -8,6 +8,7 @@ using MonoTouch.Dialog;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using MonoTouch.CoreGraphics;
 using System.IO;
 using System.Threading.Tasks;
@@ -605,17 +606,26 @@ namespace coreimage
 		/// The Altered Image
 		/// </returns>
 		[Filter]
-		public CIImage ColorCube ()
+		public unsafe CIImage ColorCube ()
 		{
-			var data = new NSData ();
-			
+			int size = 4;
+			float [] values = new float [size * size * size * 4];
+			for (int i = 0; i < values.Length;) {
+				values [i++] = 1.0f / i;
+				values [i++] = 0.6f / i;
+				values [i++] = 0.4f / i;
+				values [i++] = 1.0f; 
+			}
+
 			var cube = new CIColorCube ()
 			{
 				Image = flower,
-				CubeDimension = Convert.ToSingle (Math.Pow (2F, 2F)),
-			//CubeData = 
+				CubeDimension = size,
 			};
-			
+
+			fixed (float* p = &values [0])
+				cube.CubeData = NSData.FromBytes ((IntPtr) p, (uint) values.Length * 4);
+
 			return cube.OutputImage;
 		}
 		
