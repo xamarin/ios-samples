@@ -321,6 +321,9 @@ namespace RosyWriter
 			// Create audio connection
 			NSError error;
 			var audioDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Audio); //AudioDevice ();
+			if (audioDevice == null)
+				return false; // e.g. simulator
+
 			AVCaptureDeviceInput audioIn = new AVCaptureDeviceInput (audioDevice, out error);
 			if (captureSession.CanAddInput (audioIn))
 				captureSession.AddInput (audioIn);
@@ -541,50 +544,52 @@ namespace RosyWriter
 			extern static IntPtr CFCopyDescription (IntPtr obj);
 			
 			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
-			{	
+			{
 				CMFormatDescription formatDescription = sampleBuffer.GetFormatDescription ();
-				
-				// Get framerate
-				CMTime timestamp = sampleBuffer.PresentationTimeStamp;
-				CalculateFramerateAtTimestamp (timestamp);				
-					
-				// Get frame dimensions (for onscreen display)
-				if (processor.VideoDimensions.Width == 0 && processor.VideoDimensions.Height == 0)
-					processor.VideoDimensions = formatDescription.GetVideoPresentationDimensions (true, false);
-					
-				// Get the buffer type
-				if (processor.VideoType == 0)
-					processor.VideoType = formatDescription.MediaSubType;
-				// TODO: processor.VideoType = (CMVideoCodecType)Enum.ToObject (typeof(CMVideoCodecType), formatDescription.MediaSubType);
-				
-				// Synchronously process the pixel buffer to de-green it.
-				using (var pixelBuffer = sampleBuffer.GetImageBuffer ())
-					ProcessPixelBuffer (pixelBuffer);
 
-				processor.previewBufferQueue.Enqueue (sampleBuffer);
+				if (connection == processor.videoConnection) {
+					// Get framerate
+					CMTime timestamp = sampleBuffer.PresentationTimeStamp;
+					CalculateFramerateAtTimestamp (timestamp);			
+						
+					// Get frame dimensions (for onscreen display)
+					if (processor.VideoDimensions.Width == 0 && processor.VideoDimensions.Height == 0)
+						processor.VideoDimensions = formatDescription.GetVideoPresentationDimensions (true, false);
+						
+					// Get the buffer type
+					if (processor.VideoType == 0)
+						processor.VideoType = formatDescription.MediaSubType;
+					// TODO: processor.VideoType = (CMVideoCodecType)Enum.ToObject (typeof(CMVideoCodecType), formatDescription.MediaSubType);
 					
-				//var writeBuffer = sampleBuffer.Duplicate ();
-				InvokeOnMainThread (() => {
-					var j = processor.previewBufferQueue.Dequeue ();
-			
-					var sbuf = j as CMSampleBuffer;
-					if (sbuf == null) {
-						// Record the current sampleBuffer.ClassHandle
-						// Then run another iteration and on the next one, print the ClassHandle
-						Console.WriteLine ("The type is {0}", new NSString (CFCopyDescription (j.Handle)));
-						return;
-					}
-					
-					using (CVImageBuffer pixBuf = sbuf.GetImageBuffer ()){
-						if (processor.PixelBufferReadyForDisplay != null)
-							processor.PixelBufferReadyForDisplay (pixBuf);
-					}
-	
-					if(processor.assetWriter == null)
-						sbuf.Dispose();
-					else
-						processor.CompleteBufferUse (sbuf);
-				});
+					// Synchronously process the pixel buffer to de-green it.
+					using (var pixelBuffer = sampleBuffer.GetImageBuffer ())
+						ProcessPixelBuffer (pixelBuffer);
+
+					processor.previewBufferQueue.Enqueue (sampleBuffer);
+						
+					//var writeBuffer = sampleBuffer.Duplicate ();
+					InvokeOnMainThread (() => {
+						var j = processor.previewBufferQueue.Dequeue ();
+				
+						var sbuf = j as CMSampleBuffer;
+						if (sbuf == null) {
+							// Record the current sampleBuffer.ClassHandle
+							// Then run another iteration and on the next one, print the ClassHandle
+							Console.WriteLine ("The type is {0}", new NSString (CFCopyDescription (j.Handle)));
+							return;
+						}
+						
+						using (CVImageBuffer pixBuf = sbuf.GetImageBuffer ()){
+							if (processor.PixelBufferReadyForDisplay != null)
+								processor.PixelBufferReadyForDisplay (pixBuf);
+						}
+		
+						if(processor.assetWriter == null)
+							sbuf.Dispose();
+						else
+							processor.CompleteBufferUse (sbuf);
+					});
+				}
 				
 				
 				processor.movieWritingQueue.DispatchAsync (() => {
