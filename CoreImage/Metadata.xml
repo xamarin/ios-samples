@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SampleMetadata>
-	<ID>e2a0ccca-ab10-4e41-9c09-11831a8c1380</ID>
-	<IsFullApplication>false</IsFullApplication>
+	<ID>4f210755-51c1-48e4-abe0-b3c6d867b549</ID>
+	<IsFullApplication>true</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>Data, User Interface</Tags>
-	<SupportedPlatforms>Media, Graphics</SupportedPlatforms>
+	<Tags>Media, Graphics</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
 </SampleMetadata>

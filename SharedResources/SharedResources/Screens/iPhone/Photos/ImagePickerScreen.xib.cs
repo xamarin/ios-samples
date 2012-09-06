@@ -67,33 +67,39 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 				imagePicker.FinishedPickingMedia += Handle_imagePickerhandleFinishedPickingMedia;
 				imagePicker.Canceled += (sender,evt) => {
 					Console.WriteLine ("picker cancelled");
-					imagePicker.DismissModalViewControllerAnimated(true);
+					imagePicker.DismissModalViewControllerAnimated (true);
 				};
 				
 				// show the picker
-				NavigationController.PresentModalViewController(imagePicker, true);
+				NavigationController.PresentModalViewController (imagePicker, true);
 			};
 			
 			btnTakePhoto.TouchUpInside += (s, e) => {
-				// create a new picker controller
-				imagePicker = new UIImagePickerController ();
-				
-				// set our source to the camera
-				imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;
-								
-				// set what media types
-				imagePicker.MediaTypes = UIImagePickerController.AvailableMediaTypes (UIImagePickerControllerSourceType.Camera);
-				
-				// show the camera controls
-				imagePicker.ShowsCameraControls = true;
 
-				// attach the delegate
-				pickerDelegate = new ImagePickerScreen.PickerDelegate ();
-				imagePicker.Delegate = pickerDelegate;
+				try {
+					// create a new picker controller
+					imagePicker = new UIImagePickerController ();
 				
-				// show the picker
-				NavigationController.PresentModalViewController (imagePicker, true);
+					// set our source to the camera
+					imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;
+								
+					// set what media types
+					imagePicker.MediaTypes = UIImagePickerController.AvailableMediaTypes (UIImagePickerControllerSourceType.Camera);
 				
+					// show the camera controls
+					imagePicker.ShowsCameraControls = true;
+
+					// attach the delegate
+					pickerDelegate = new ImagePickerScreen.PickerDelegate ();
+					imagePicker.Delegate = pickerDelegate;
+				
+					// show the picker
+					NavigationController.PresentModalViewController (imagePicker, true);
+
+				} catch (Exception ex) {
+					UIAlertView alert = new UIAlertView ("No Camera", "No Camera Detected!", null, "OK", null);
+					alert.Show ();
+				}
 			};
 
 					
@@ -122,45 +128,44 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		{
 			// determine what was selected, video or image
 			bool isImage = false;
-			switch(e.Info[UIImagePickerController.MediaType].ToString())
-			{
-				case "public.image":
-					Console.WriteLine("Image selected");
-					isImage = true;
-					break;
-					Console.WriteLine("Video selected");
-				case "public.video":
-					break;
+			switch (e.Info [UIImagePickerController.MediaType].ToString ()) {
+			case "public.image":
+				Console.WriteLine ("Image selected");
+				isImage = true;
+				break;
+				Console.WriteLine ("Video selected");
+			case "public.video":
+				break;
 			}
 			
-			Console.Write("Reference URL: [" + UIImagePickerController.ReferenceUrl + "]");
+			Console.Write ("Reference URL: [" + UIImagePickerController.ReferenceUrl + "]");
 			
 			// get common info (shared between images and video)
 			//NSUrl referenceURL = info[UIImagePickerController.ReferenceUrl] as NSUrl;
-			NSUrl referenceURL = e.Info[new NSString("UIImagePickerControllerReferenceUrl")] as NSUrl;
+			NSUrl referenceURL = e.Info [new NSString ("UIImagePickerControllerReferenceUrl")] as NSUrl;
 			if (referenceURL != null) 
-				Console.WriteLine(referenceURL.ToString ());
+				Console.WriteLine (referenceURL.ToString ());
 			
 			// if it was an image, get the other image info
-			if(isImage) {
+			if (isImage) {
 				
 				// get the original image
-				UIImage originalImage = e.Info[UIImagePickerController.OriginalImage] as UIImage;
-				if(originalImage != null) {
+				UIImage originalImage = e.Info [UIImagePickerController.OriginalImage] as UIImage;
+				if (originalImage != null) {
 					// do something with the image
 					Console.WriteLine ("got the original image");
 				}
 				
 				// get the edited image
-				UIImage editedImage = e.Info[UIImagePickerController.EditedImage] as UIImage;
-				if(editedImage != null) {
+				UIImage editedImage = e.Info [UIImagePickerController.EditedImage] as UIImage;
+				if (editedImage != null) {
 					// do something with the image
 					Console.WriteLine ("got the edited image");
 				}
 				
 				//- get the image metadata
-				NSDictionary imageMetadata = e.Info[UIImagePickerController.MediaMetadata] as NSDictionary;
-				if(imageMetadata != null) {
+				NSDictionary imageMetadata = e.Info [UIImagePickerController.MediaMetadata] as NSDictionary;
+				if (imageMetadata != null) {
 					// do something with the metadata
 					Console.WriteLine ("got image metadata");
 				}
@@ -169,10 +174,10 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 			// if it's a video
 			else {
 				// get video url
-				NSUrl mediaURL = e.Info[UIImagePickerController.MediaURL] as NSUrl;
-				if(mediaURL != null) {
+				NSUrl mediaURL = e.Info [UIImagePickerController.MediaURL] as NSUrl;
+				if (mediaURL != null) {
 					//
-					Console.WriteLine(mediaURL.ToString());
+					Console.WriteLine (mediaURL.ToString ());
 				}
 			}
 			
@@ -181,7 +186,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		}
 		
 		// Fills the table with a list of available features
-		protected void PopulateFeaturesTable()
+		protected void PopulateFeaturesTable ()
 		{
 			// declare vars
 			List<FeatureGroup> features = new List<FeatureGroup> ();
@@ -189,41 +194,64 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 			string[] mediaTypes;
 			
 			// Sources
-			featGroup = new FeatureGroup() { Name = "Sources" };
-			featGroup.Features.Add(new Feature() { Name = "Camera", IsAvailable = UIImagePickerController.IsSourceTypeAvailable (UIImagePickerControllerSourceType.Camera) });
-			featGroup.Features.Add(new Feature() { Name = "Photo Library", IsAvailable = UIImagePickerController.IsSourceTypeAvailable (UIImagePickerControllerSourceType.PhotoLibrary) });
-			featGroup.Features.Add(new Feature() { Name = "Saved Photos Album", IsAvailable = UIImagePickerController.IsSourceTypeAvailable (UIImagePickerControllerSourceType.SavedPhotosAlbum) });			
+			featGroup = new FeatureGroup () { Name = "Sources" };
+
+			try {
+
+				featGroup.Features.Add (new Feature () { Name = "Camera", IsAvailable = UIImagePickerController.IsSourceTypeAvailable (UIImagePickerControllerSourceType.Camera) });
+			
+			} catch (System.NullReferenceException ex) {
+				UIAlertView alert = new UIAlertView ("No Camera", "No Camera Detected!", null, "OK", null);
+				alert.Show ();
+			}
+
+			featGroup.Features.Add (new Feature () { Name = "Photo Library", IsAvailable = UIImagePickerController.IsSourceTypeAvailable (UIImagePickerControllerSourceType.PhotoLibrary) });
+			featGroup.Features.Add (new Feature () { Name = "Saved Photos Album", IsAvailable = UIImagePickerController.IsSourceTypeAvailable (UIImagePickerControllerSourceType.SavedPhotosAlbum) });			
 			features.Add (featGroup);
 			
 			// Camera and Flash
-			featGroup = new FeatureGroup() { Name = "Camera and Flash" };			
-			featGroup.Features.Add(new Feature() { Name = "Front Camera", IsAvailable = UIImagePickerController.IsCameraDeviceAvailable (UIImagePickerControllerCameraDevice.Front) });			
-			featGroup.Features.Add(new Feature() { Name = "Front Flash", IsAvailable = UIImagePickerController.IsFlashAvailableForCameraDevice (UIImagePickerControllerCameraDevice.Front) });			
-			featGroup.Features.Add(new Feature() { Name = "Rear Camera", IsAvailable = UIImagePickerController.IsCameraDeviceAvailable (UIImagePickerControllerCameraDevice.Rear) });			
-			featGroup.Features.Add(new Feature() { Name = "Rear Flash", IsAvailable = UIImagePickerController.IsFlashAvailableForCameraDevice (UIImagePickerControllerCameraDevice.Rear) });
-			features.Add (featGroup);
-			
-			// Camera Media Types
-			featGroup = new FeatureGroup() { Name = "Camera Media Types" };
-			mediaTypes = UIImagePickerController.AvailableMediaTypes (UIImagePickerControllerSourceType.Camera);
-			foreach (var mediaType in mediaTypes) {
-				featGroup.Features.Add (new Feature() { Name = mediaType, IsAvailable = true });
+			featGroup = new FeatureGroup () { Name = "Camera and Flash" };
+			try {
+
+				featGroup.Features.Add (new Feature () { Name = "Front Camera", IsAvailable = UIImagePickerController.IsCameraDeviceAvailable (UIImagePickerControllerCameraDevice.Front) });			
+				featGroup.Features.Add (new Feature () { Name = "Front Flash", IsAvailable = UIImagePickerController.IsFlashAvailableForCameraDevice (UIImagePickerControllerCameraDevice.Front) });			
+				featGroup.Features.Add (new Feature () { Name = "Rear Camera", IsAvailable = UIImagePickerController.IsCameraDeviceAvailable (UIImagePickerControllerCameraDevice.Rear) });			
+				featGroup.Features.Add (new Feature () { Name = "Rear Flash", IsAvailable = UIImagePickerController.IsFlashAvailableForCameraDevice (UIImagePickerControllerCameraDevice.Rear) });
+				features.Add (featGroup);
+
+			} catch (System.NullReferenceException ex) {
+				UIAlertView alert = new UIAlertView ("No Camera", "No Camera Detected!", null, "OK", null);
+				alert.Show ();
 			}
-			features.Add(featGroup);
+
+			// Camera Media Types
+			featGroup = new FeatureGroup () { Name = "Camera Media Types" };
+			try {
+
+				mediaTypes = UIImagePickerController.AvailableMediaTypes (UIImagePickerControllerSourceType.Camera);
+				foreach (var mediaType in mediaTypes) {
+					featGroup.Features.Add (new Feature () { Name = mediaType, IsAvailable = true });
+				}
+				features.Add (featGroup);
+
+			} catch (System.NullReferenceException ex) {
+				UIAlertView alert = new UIAlertView ("No Camera", "No Camera Detected!", null, "OK", null);
+				alert.Show ();
+			}
 			
 			// Photo Library Media Types
-			featGroup = new FeatureGroup() { Name = "Photo Library Media Types" };
+			featGroup = new FeatureGroup () { Name = "Photo Library Media Types" };
 			mediaTypes = UIImagePickerController.AvailableMediaTypes (UIImagePickerControllerSourceType.PhotoLibrary);
-			foreach(var mediaType in mediaTypes) {
-				featGroup.Features.Add(new Feature() { Name = mediaType, IsAvailable = true });
+			foreach (var mediaType in mediaTypes) {
+				featGroup.Features.Add (new Feature () { Name = mediaType, IsAvailable = true });
 			}
 			features.Add (featGroup);
 			
 			// Saved Photos Album Media Types
-			featGroup = new FeatureGroup() { Name = "Saved Photos Album Media Types" };
+			featGroup = new FeatureGroup () { Name = "Saved Photos Album Media Types" };
 			mediaTypes = UIImagePickerController.AvailableMediaTypes (UIImagePickerControllerSourceType.SavedPhotosAlbum);
-			foreach(var mediaType in mediaTypes) {
-				featGroup.Features.Add(new Feature() { Name = mediaType, IsAvailable = true });
+			foreach (var mediaType in mediaTypes) {
+				featGroup.Features.Add (new Feature () { Name = mediaType, IsAvailable = true });
 			}
 			features.Add (featGroup);
 			
@@ -246,38 +274,38 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 			{
 				// determine what was selected, video or image
 				bool isImage = false;
-				switch (info[UIImagePickerController.MediaType].ToString()) {
-					case "public.image":
-						Console.WriteLine ("Image selected");
-						isImage = true;
-						break;
-						Console.WriteLine ("Video selected");
-					case "public.video":
-						break;
+				switch (info [UIImagePickerController.MediaType].ToString ()) {
+				case "public.image":
+					Console.WriteLine ("Image selected");
+					isImage = true;
+					break;
+					Console.WriteLine ("Video selected");
+				case "public.video":
+					break;
 				}
 				
 				Console.Write ("Reference URL: [" + UIImagePickerController.ReferenceUrl + "]");
 				
 				// get common info (shared between images and video)
 				//NSUrl referenceURL = info[UIImagePickerController.ReferenceUrl] as NSUrl;
-				NSUrl referenceURL = info[new NSString("UIImagePickerControllerReferenceUrl")] as NSUrl;
-				if(referenceURL != null) {
+				NSUrl referenceURL = info [new NSString ("UIImagePickerControllerReferenceUrl")] as NSUrl;
+				if (referenceURL != null) {
 					//
-					Console.WriteLine(referenceURL.ToString ());
+					Console.WriteLine (referenceURL.ToString ());
 				}
 				
 				// if it was an image, get the other image info
-				if(isImage) {
+				if (isImage) {
 					// get the original image
-					UIImage originalImage = info[UIImagePickerController.OriginalImage] as UIImage;
-					if(originalImage != null) {
+					UIImage originalImage = info [UIImagePickerController.OriginalImage] as UIImage;
+					if (originalImage != null) {
 						// do something with the image
 						Console.WriteLine ("got the original image");
 					}
 					
 					// get the edited image
-					UIImage editedImage = info[UIImagePickerController.EditedImage] as UIImage;
-					if(editedImage != null) {
+					UIImage editedImage = info [UIImagePickerController.EditedImage] as UIImage;
+					if (editedImage != null) {
 						// do something with the image
 						Console.WriteLine ("got the edited image");
 						
@@ -296,8 +324,8 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 //					} finally {}
 					
 					//- get the image metadata
-					NSDictionary imageMetadata = info[UIImagePickerController.MediaMetadata] as NSDictionary;
-					if(imageMetadata != null) {
+					NSDictionary imageMetadata = info [UIImagePickerController.MediaMetadata] as NSDictionary;
+					if (imageMetadata != null) {
 						// do something with the metadata
 						Console.WriteLine ("got image metadata");
 					}
@@ -307,10 +335,10 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 				// if it's a video
 				else {
 					// get video url
-					NSUrl mediaURL = info[UIImagePickerController.MediaURL] as NSUrl;
-					if(mediaURL != null) {
+					NSUrl mediaURL = info [UIImagePickerController.MediaURL] as NSUrl;
+					if (mediaURL != null) {
 						//
-						Console.WriteLine(mediaURL.ToString ());
+						Console.WriteLine (mediaURL.ToString ());
 					}
 					
 				}
@@ -328,9 +356,11 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		protected class FeatureGroup
 		{
 			public string Name { get; set; }
+
 			public List<Feature> Features
 			{ get { return features; } set { features = value; } }
-			protected List<Feature> features = new List<Feature>();
+
+			protected List<Feature> features = new List<Feature> ();
 		}
 		
 		/// <summary>
@@ -339,6 +369,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		protected class Feature
 		{
 			public string Name { get; set; }
+
 			public bool IsAvailable { get; set; }
 		}
 		
@@ -349,30 +380,42 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		{
 			protected List<FeatureGroup> features { get; set; }
 			
-			public FeaturesTableDataSource(List<FeatureGroup> features)
-			{ this.features = features; }
+			public FeaturesTableDataSource (List<FeatureGroup> features)
+			{
+				this.features = features;
+			}
 			
-			public override int NumberOfSections (UITableView tableView) { return features.Count; }
+			public override int NumberOfSections (UITableView tableView)
+			{
+				return features.Count;
+			}
 			
-			public override int RowsInSection (UITableView tableview, int section) { return features[section].Features.Count; }
+			public override int RowsInSection (UITableView tableview, int section)
+			{
+				return features [section].Features.Count;
+			}
 			
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				UITableViewCell cell = tableView.DequeueReusableCell ("FeatureCell");
-				if(cell == null)
-					cell = new UITableViewCell(UITableViewCellStyle.Value1, "FeatureCell");
+				if (cell == null)
+					cell = new UITableViewCell (UITableViewCellStyle.Value1, "FeatureCell");
 				
-				cell.TextLabel.Text = features[indexPath.Section].Features[indexPath.Row].Name;
-				cell.DetailTextLabel.Text = features[indexPath.Section].Features[indexPath.Row].IsAvailable.ToString ();
+				cell.TextLabel.Text = features [indexPath.Section].Features [indexPath.Row].Name;
+				cell.DetailTextLabel.Text = features [indexPath.Section].Features [indexPath.Row].IsAvailable.ToString ();
 				cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 				return cell;
 			}
 			
 			public override string TitleForHeader (UITableView tableView, int section)
-			{ return features[section].Name; }
+			{
+				return features [section].Name;
+			}
 			
 			public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
-			{ return 35; }
+			{
+				return 35;
+			}
 		}
 		
 		#endregion

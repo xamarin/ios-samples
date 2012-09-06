@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>Audio Queue Offline Render Demo</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>icons/57_icon.png</string>
+		<string>icons/114_icon.png</string>
+		<string>icons/72_icon.png</string>
+		<string>icons/144_icon.png</string>
+		<string>icons/29_icon.png</string>
+		<string>icons/58_icon.png</string>
+		<string>icons/50_icon.png</string>
+	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.audioqueueofflinerenderdemo</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>MinimumOSVersion</key>
+	<string>4.3</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>2</integer>
+		<integer>1</integer>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+</dict>
+</plist>

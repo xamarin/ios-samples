@@ -40,7 +40,7 @@ namespace CoreMidiSample
 			return new RootElement ("CoreMidi Sample"){
 				(hardwareSection = new Section ("Hardware") {
 					MakeHardware (),
-					new RootElement ("Devices (" + Midi.DeviceCount + ", " + Midi.ExternalDeviceCount + ")")
+					MakeDevices (),
 				}),
 				new Section ("Send"){
 					new StringElement ("Send Note", SendNote)	
@@ -71,11 +71,70 @@ namespace CoreMidiSample
 			};
 		}
 		
+		RootElement MakeDevices ()
+		{
+			return new RootElement ("Devices (" + Midi.DeviceCount + ", " + Midi.ExternalDeviceCount + ")") {
+				new Section ("Internal Devices"){
+					from x in Enumerable.Range (0, Midi.DeviceCount)
+						let dev = Midi.GetDevice (x)
+						where dev.EntityCount > 0
+						select MakeDevice (dev)
+				},
+				new Section ("External Devices"){
+					from x in Enumerable.Range (0, Midi.ExternalDeviceCount)
+						let dev = Midi.GetExternalDevice (x)
+						where dev.EntityCount > 0
+						select (Element) MakeDevice (dev)
+				}
+			};
+		}
+
+		Element MakeDevice (MidiDevice dev)
+		{
+			return new RootElement (String.Format ("{2} {0} {1}", dev.Manufacturer, dev.Model, dev.EntityCount)){
+				new Section ("Entities") {
+					from ex in Enumerable.Range (0, dev.EntityCount)
+						let entity = dev.GetEntity (ex)
+						select (Element) new RootElement (entity.Name) {
+							new Section ("Sources"){
+								from sx in Enumerable.Range (0, entity.Sources)
+									let endpoint = entity.GetSource (sx)
+									select MakeEndpoint (endpoint)
+							},
+							new Section ("Destinations"){
+								from sx in Enumerable.Range (0, entity.Destinations)
+									let endpoint = entity.GetDestination (sx)
+									select MakeEndpoint (endpoint)
+							}
+						}
+				}
+			};
+		}
+		
+		Element MakeEndpoint (MidiEndpoint endpoint)
+		{
+			Section s;
+			var root = new RootElement (endpoint.Name){
+				(s = new Section ("Properties") {
+					new StringElement ("Driver Owner", endpoint.DriverOwner),
+					new StringElement ("Manufacturer", endpoint.Manufacturer),
+					new StringElement ("MaxSysExSpeed", endpoint.MaxSysExSpeed.ToString ()),
+					new StringElement ("Network Session", endpoint.IsNetworkSession ? "yes" : "no"),
+					new StringElement ("Offline", endpoint.Offline ? "yes" : "no"),
+				})
+			};
+			try { s.Add (new StringElement ("Receive Channels", endpoint.ReceiveChannels.ToString ())); } catch {}
+			try { s.Add (new StringElement ("Transmit Channels", endpoint.TransmitChannels.ToString ())); } catch {}
+			return root;
+		}
+		
 		void ReloadDevices ()
 		{
 			BeginInvokeOnMainThread (delegate {
 				hardwareSection.Remove (0);
+				hardwareSection.Remove (0);
 				hardwareSection.Add (MakeHardware ());
+				hardwareSection.Add (MakeDevices ());
 			});
 		}
 		
@@ -126,8 +185,10 @@ namespace CoreMidiSample
 			ConnectExistingDevices ();	
 			
 			var session = MidiNetworkSession.DefaultSession;
-			session.Enabled = true;
-			session.ConnectionPolicy = MidiNetworkConnectionPolicy.Anyone;
+			if (session != null){
+				session.Enabled = true;
+				session.ConnectionPolicy = MidiNetworkConnectionPolicy.Anyone;
+			}
 		}
 
 		void ConnectExistingDevices ()

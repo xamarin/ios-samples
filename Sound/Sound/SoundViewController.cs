@@ -18,6 +18,7 @@ namespace Sound
 		NSDictionary settings;
 		Stopwatch stopwatch = null;
 		NSUrl audioFilePath = null;
+		NSObject observer;
 		
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
@@ -26,6 +27,7 @@ namespace Sound
 		public SoundViewController ()
 			: base (UserInterfaceIdiomIsPhone ? "SoundViewController_iPhone" : "SoundViewController_iPad", null)
 		{
+			AudioSession.Initialize ();
 		}
 		
 		public override void ViewDidLoad ()
@@ -39,8 +41,18 @@ namespace Sound
 			this.StartRecordingButton.TouchUpInside += (sender, e) => {
 				Console.WriteLine("Begin Recording");
 				
-				this.PrepareAudioRecording();
-				this.recorder.Record();
+				AudioSession.Category = AudioSessionCategory.RecordAudio;
+				AudioSession.SetActive (true);
+				
+				if (!PrepareAudioRecording ()) {
+					RecordingStatusLabel.Text = "Error preparing";
+					return;
+				}
+
+				if (!recorder.Record ()) {
+					RecordingStatusLabel.Text = "Error preparing";
+					return;
+				}
 				
 				this.stopwatch = new Stopwatch();
 				this.stopwatch.Start();
@@ -55,11 +67,6 @@ namespace Sound
 			this.StopRecordingButton.TouchUpInside += (sender, e) => {
 				this.recorder.Stop();
 				
-				recorder.FinishedRecording += delegate {
-					recorder.Dispose();
-					Console.WriteLine("Done Recording");
-				};
-				
 				this.LengthOfRecordingLabel.Text = string.Format("{0:hh\\:mm\\:ss}", this.stopwatch.Elapsed);
 				this.stopwatch.Stop();
 				this.RecordingStatusLabel.Text = "";
@@ -68,31 +75,34 @@ namespace Sound
 				this.PlayRecordedSoundButton.Enabled = true;
 			};
 			
+			observer = NSNotificationCenter.DefaultCenter.AddObserver (AVPlayerItem.DidPlayToEndTimeNotification, delegate (NSNotification n) {
+				player.Dispose ();
+				player = null;
+			});
+			
 			// play recorded sound wireup
 			this.PlayRecordedSoundButton.TouchUpInside += (sender, e) => {
 				try {
-					
 					Console.WriteLine("Playing Back Recording " + this.audioFilePath.ToString());
 
 					// The following line prevents the audio from stopping 
 					// when the device autolocks. will also make sure that it plays, even
 					// if the device is in mute
 					AudioSession.Category = AudioSessionCategory.MediaPlayback;
-					AudioSession.RoutingOverride = AudioSessionRoutingOverride.Speaker;
 					
 					this.player = new AVPlayer (this.audioFilePath);
 					this.player.Play();
-										
 				} catch (Exception ex) {
 					Console.WriteLine("There was a problem playing back audio: ");
 					Console.WriteLine(ex.Message);
 				}
-
 			};
 		}
 		
 		public override void ViewDidUnload ()
 		{
+			NSNotificationCenter.DefaultCenter.RemoveObserver (observer);
+			
 			base.ViewDidUnload ();
 			
 			// Clear any references to subviews of the main view in order to
@@ -108,13 +118,13 @@ namespace Sound
 			return true;
 		}
 		
-		protected void PrepareAudioRecording()
+		bool PrepareAudioRecording ()
 		{
-            //Declare string for application temp path and tack on the file extension
+			//Declare string for application temp path and tack on the file extension
 			string fileName = string.Format ("Myfile{0}.aac", DateTime.Now.ToString ("yyyyMMddHHmmss"));
 			string tempRecording = NSBundle.MainBundle.BundlePath + "/../tmp/" + fileName;
 			           
-            Console.WriteLine(tempRecording);
+			Console.WriteLine (tempRecording);
 			this.audioFilePath = NSUrl.FromFilename(tempRecording);
 			
  			//set up the NSObject Array of values that will be combined with the keys to make the NSDictionary
@@ -139,15 +149,25 @@ namespace Sound
 			//Set recorder parameters
 			NSError error;
 			recorder = AVAudioRecorder.ToUrl(this.audioFilePath, settings, out error);
-			if (recorder == null){
+			if ((recorder == null) || (error != null)) {
 				Console.WriteLine (error);
-				return;
+				return false;
 			}
 			
 			//Set Recorder to Prepare To Record
-			recorder.PrepareToRecord(); 
+			if (!recorder.PrepareToRecord ()) {
+				recorder.Dispose ();
+				recorder = null;
+				return false;
+			}
 			
+			recorder.FinishedRecording += delegate (object sender, AVStatusEventArgs e) {
+				recorder.Dispose ();
+				recorder = null;
+				Console.WriteLine ("Done Recording (status: {0})", e.Status);
+			};
+			
+			return true;
 		}
 	}
 }
-

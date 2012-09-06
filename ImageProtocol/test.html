@@ -1,0 +1,32 @@
+<html>
+<head>
+	<title>NSUrlProtocol Example</title>
+</head>
+<body>
+		
+	<img src="custom:///NSUrlProtocol%20Example">
+	
+	<!-- we have implemented a special NSURLProtocol that uses the 'special'
+	scheme to identify urls it is capable of handling.  Our protocol simply
+	renders the path part of the URL into a jpeg image.  We use this scheme
+	here to produce images in the html.  -->
+	
+	<form action="" method="get" onSubmit="return false;">
+		<p>Type your text here:<br> 
+		<input name="exampletext" id="stringtext" type="text" size="21" onKeyUp="NewText();" value="Example Text"></p>
+		<img src="custom:///Example%20Text" id="stringimage">
+	</form>	
+	
+<script type="text/javascript" language="javascript">
+
+function NewText() {
+	var textField = document.getElementById('stringtext');
+	var image = document.getElementById('stringimage');
+	var theNewURL = 'custom:///' + escape(textField.value);
+	image.src = theNewURL;
+}
+
+</script>
+
+</body>
+</html>

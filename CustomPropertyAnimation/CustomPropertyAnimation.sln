@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomPropertyAnimation", "CustomPropertyAnimation.csproj", "{C27E84DD-CFA2-4136-8C63-07F4AF75E91F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C27E84DD-CFA2-4136-8C63-07F4AF75E91F}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C27E84DD-CFA2-4136-8C63-07F4AF75E91F}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C27E84DD-CFA2-4136-8C63-07F4AF75E91F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C27E84DD-CFA2-4136-8C63-07F4AF75E91F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C27E84DD-CFA2-4136-8C63-07F4AF75E91F}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C27E84DD-CFA2-4136-8C63-07F4AF75E91F}.Release|iPhone.Build.0 = Release|iPhone
+		{C27E84DD-CFA2-4136-8C63-07F4AF75E91F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C27E84DD-CFA2-4136-8C63-07F4AF75E91F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CustomPropertyAnimation.csproj
+	EndGlobalSection
+EndGlobal

@@ -30,9 +30,13 @@ namespace SimpleTextInput
 			: base (frame)
 		{
 			// Add tap gesture recognizer to let the user enter editing mode
-			UITapGestureRecognizer tap = new UITapGestureRecognizer (this, new Selector ("Tap:"));
+			UITapGestureRecognizer tap = new UITapGestureRecognizer (Tap) {
+				ShouldReceiveTouch = delegate(UIGestureRecognizer recognizer, UITouch touch) {
+					// If gesture touch occurs in our view, we want to handle it
+					return touch.View == this;
+				}
+			};
 			AddGestureRecognizer (tap);
-			tap.Delegate = new TapGestureRecognizerDelegate (this); 
         
 			// Create our tokenizer and text storage
 			tokenizer = new UITextInputStringTokenizer (this);

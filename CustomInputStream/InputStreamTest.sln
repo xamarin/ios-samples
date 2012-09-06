@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputStreamTest", "InputStreamTest.csproj", "{30C54D9F-CAFA-4A7C-A6DA-14AE82D3093F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30C54D9F-CAFA-4A7C-A6DA-14AE82D3093F}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{30C54D9F-CAFA-4A7C-A6DA-14AE82D3093F}.Debug|iPhone.Build.0 = Debug|iPhone
+		{30C54D9F-CAFA-4A7C-A6DA-14AE82D3093F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{30C54D9F-CAFA-4A7C-A6DA-14AE82D3093F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{30C54D9F-CAFA-4A7C-A6DA-14AE82D3093F}.Release|iPhone.ActiveCfg = Release|iPhone
+		{30C54D9F-CAFA-4A7C-A6DA-14AE82D3093F}.Release|iPhone.Build.0 = Release|iPhone
+		{30C54D9F-CAFA-4A7C-A6DA-14AE82D3093F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{30C54D9F-CAFA-4A7C-A6DA-14AE82D3093F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = InputStreamTest.csproj
+	EndGlobalSection
+EndGlobal
