@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontList", "FontList.csproj", "{0181730D-31E9-4DCA-8C52-6455A0963E1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Debug|iPhone.Build.0 = Debug|iPhone
+		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Release|iPhone.ActiveCfg = Release|iPhone
+		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Release|iPhone.Build.0 = Release|iPhone
+		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = FontList.csproj
+	EndGlobalSection
+EndGlobal
