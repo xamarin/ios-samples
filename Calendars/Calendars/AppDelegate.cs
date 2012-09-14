@@ -16,7 +16,7 @@ namespace Calendars
 		// class-level declarations
 		UIWindow window;
 		UINavigationController navController;
-		Screens.CalendarList.CalendarListController homeController;
+		UIViewController homeController;
 
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
@@ -32,7 +32,7 @@ namespace Calendars
 
 			navController = new UINavigationController();
 			window.RootViewController = navController;
-			homeController = new Calendars.Screens.CalendarList.CalendarListController ();
+			homeController = new Calendars.Screens.Home.HomeController ();
 			navController.PushViewController ( homeController, false );
 						
 			// make the window visible
