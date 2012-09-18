@@ -66,10 +66,11 @@ namespace Example_ContentControls.Screens.iPhone.Browsers
 			
 			// first, we check to see if it's a link
 			if (navigationType == UIWebViewNavigationType.LinkClicked) {
-				
+
 				// next, we check to see if it's a link with //LOCAL in it.
-				if(request.Url.RelativeString.StartsWith("file://LOCAL")) {
-					
+				// note: up to iOS 5.1.1 the URL would start with "file://LOCAL" but later releases returns "file://local"
+				const string prefix = "file://local";
+				if (String.Compare (request.Url.RelativeString, 0, prefix, 0, prefix.Length, StringComparison.InvariantCultureIgnoreCase) == 0) {
 					new UIAlertView ("Action!", "You clicked an action.", null, "OK", null).Show();
 					// return false so that the browser doesn't try to navigate
 					return false;
