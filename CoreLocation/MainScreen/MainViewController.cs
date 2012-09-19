@@ -60,16 +60,16 @@ namespace Example_CoreLocation
 			//iPhoneLocationManager.DesiredAccuracy = CLLocation.AccuracyNearestTenMeters;
 			
 			// handle the updated location method and update the UI
-			iPhoneLocationManager.UpdatedLocation += (object sender, CLLocationUpdatedEventArgs e) => {
-				mainScreen.LblAltitude.Text = e.NewLocation.Altitude.ToString () + "meters";
-				mainScreen.LblLongitude.Text = e.NewLocation.Coordinate.Longitude.ToString () + "º";
-				mainScreen.LblLatitude.Text = e.NewLocation.Coordinate.Latitude.ToString () + "º";
-				mainScreen.LblCourse.Text = e.NewLocation.Course.ToString () + "º";
-				mainScreen.LblSpeed.Text = e.NewLocation.Speed.ToString () + "meters/s";
-				
-				// get the distance from here to paris
-				mainScreen.LblDistanceToParis.Text = (e.NewLocation.DistanceFrom(new CLLocation(48.857, 2.351)) / 1000).ToString() + "km";
-			};
+			if (UIDevice.CurrentDevice.CheckSystemVersion (6, 0)) {
+				iPhoneLocationManager.LocationsUpdated += (object sender, CLLocationsUpdatedEventArgs e) => {
+					UpdateLocation (e.Locations [e.Locations.Length - 1]);
+				};
+			} else {
+				// this won't be called on iOS 6 (deprecated)
+				iPhoneLocationManager.UpdatedLocation += (object sender, CLLocationUpdatedEventArgs e) => {
+					UpdateLocation (e.NewLocation);
+				};
+			}
 			
 			// handle the updated heading method and update the UI
 			iPhoneLocationManager.UpdatedHeading += (object sender, CLHeadingUpdatedEventArgs e) => {
@@ -82,6 +82,18 @@ namespace Example_CoreLocation
 				iPhoneLocationManager.StartUpdatingLocation ();
 			if (CLLocationManager.HeadingAvailable)
 				iPhoneLocationManager.StartUpdatingHeading ();
+		}
+
+		static public void UpdateLocation (IMainScreen ms, CLLocation newLocation)
+		{
+			ms.LblAltitude.Text = newLocation.Altitude.ToString () + " meters";
+			ms.LblLongitude.Text = newLocation.Coordinate.Longitude.ToString () + "º";
+			ms.LblLatitude.Text = newLocation.Coordinate.Latitude.ToString () + "º";
+			ms.LblCourse.Text = newLocation.Course.ToString () + "º";
+			ms.LblSpeed.Text = newLocation.Speed.ToString () + " meters/s";
+			
+			// get the distance from here to paris
+			ms.LblDistanceToParis.Text = (newLocation.DistanceFrom(new CLLocation(48.857, 2.351)) / 1000).ToString() + " km";
 		}
 		
 		#region -= protected methods =-
@@ -114,16 +126,16 @@ namespace Example_CoreLocation
 				ms = mainScreen;
 			}
 			
+			// called for iOS5.x and earlier
 			public override void UpdatedLocation (CLLocationManager manager, CLLocation newLocation, CLLocation oldLocation)
 			{
-				ms.LblAltitude.Text = newLocation.Altitude.ToString () + "meters";
-				ms.LblLongitude.Text = newLocation.Coordinate.Longitude.ToString () + "º";
-				ms.LblLatitude.Text = newLocation.Coordinate.Latitude.ToString () + "º";
-				ms.LblCourse.Text = newLocation.Course.ToString () + "º";
-				ms.LblSpeed.Text = newLocation.Speed.ToString () + "meters/s";
-				
-				// get the distance from here to paris
-				ms.LblDistanceToParis.Text = (newLocation.DistanceFrom(new CLLocation(48.857, 2.351)) / 1000).ToString() + "km";
+				MainViewController.UpdateLocation (ms, newLocation);
+			}
+
+			// called for iOS6 and later
+			public override void LocationsUpdated (CLLocationManager manager, CLLocation[] locations)
+			{
+				MainViewController.UpdateLocation (ms, locations [locations.Length - 1]);
 			}
 			
 			public override void UpdatedHeading (CLLocationManager manager, CLHeading newHeading)
