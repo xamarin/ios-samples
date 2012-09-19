@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfImageDetails xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+	<ImageDetails>
+		<Height>3840</Height>
+		<Name>LeggyFrog</Name>
+		<Width>2560</Width>
+	</ImageDetails>
+	<ImageDetails>
+		<Height>2400</Height>
+		<Name>CuriousFrog</Name>
+		<Width>3600</Width>
+	</ImageDetails>
+	<ImageDetails>
+		<Height>3840</Height>
+		<Name>PeeringFrog</Name>
+		<Width>2560</Width>		
+	</ImageDetails>
+	
+</ArrayOfImageDetails>
