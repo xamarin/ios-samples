@@ -93,6 +93,7 @@
     <Folder Include="Screens\" />
     <Folder Include="Screens\CalendarList\" />
     <Folder Include="Screens\Home\" />
+    <Folder Include="Screens\EventList\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -103,6 +104,7 @@
     <Compile Include="Screens\CalendarList\CalendarListController.cs" />
     <Compile Include="Screens\Home\HomeController.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="Screens\EventList\EventListController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
