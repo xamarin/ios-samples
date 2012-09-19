@@ -18,7 +18,7 @@ namespace Calendars.Screens.CalendarList
 		// the type of calendar: Event or Reminder
 		protected EKEntityType entityType;
 
-		public CalendarListController ( EKEntityType storeType ) : base ( UITableViewStyle.Plain, null, false)
+		public CalendarListController ( EKEntityType storeType ) : base ( UITableViewStyle.Plain, null, true)
 		{
 			entityType = storeType;
 			// request access will popup a dialog to the user asking them if they 
