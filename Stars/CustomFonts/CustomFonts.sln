@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomFonts", "CustomFonts.csproj", "{03EF0D11-1602-4734-9174-942EEFB3AF33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenEmbeddedFonts", "GenEmbeddedFonts\GenEmbeddedFonts.csproj", "{E7A4A17A-F2CB-405D-B903-1B95206187C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+		AppStore|iPhoneSimulator = AppStore|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03EF0D11-1602-4734-9174-942EEFB3AF33}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{03EF0D11-1602-4734-9174-942EEFB3AF33}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{03EF0D11-1602-4734-9174-942EEFB3AF33}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{03EF0D11-1602-4734-9174-942EEFB3AF33}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{03EF0D11-1602-4734-9174-942EEFB3AF33}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{03EF0D11-1602-4734-9174-942EEFB3AF33}.Debug|iPhone.Build.0 = Debug|iPhone
+		{03EF0D11-1602-4734-9174-942EEFB3AF33}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{03EF0D11-1602-4734-9174-942EEFB3AF33}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{03EF0D11-1602-4734-9174-942EEFB3AF33}.Release|iPhone.ActiveCfg = Release|iPhone
+		{03EF0D11-1602-4734-9174-942EEFB3AF33}.Release|iPhone.Build.0 = Release|iPhone
+		{03EF0D11-1602-4734-9174-942EEFB3AF33}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{03EF0D11-1602-4734-9174-942EEFB3AF33}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.Ad-Hoc|iPhone.ActiveCfg = Debug|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.Ad-Hoc|iPhone.Build.0 = Debug|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.AppStore|iPhone.ActiveCfg = AppStore|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.AppStore|iPhone.Build.0 = AppStore|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.Debug|iPhone.ActiveCfg = Debug|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.Debug|iPhone.Build.0 = Debug|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.Release|iPhone.ActiveCfg = Release|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.Release|iPhone.Build.0 = Release|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E7A4A17A-F2CB-405D-B903-1B95206187C0}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CustomFonts.csproj
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<array>
+	<dict>
+		<key>text</key>
+		<string>First, rehearse your song by rote,
+To each word a warbling note;
+Hand in hand, with fairy grace,
+Will we sing, and bless this place.</string>
+		<key>speaker</key>
+		<string>TITANIA</string>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>OBERON leading, the FAIRIES sing and dance</string>
+		<key>speaker</key>
+		<string>STAGE DIRECTION</string>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>Now, until the break of day,
+Through this house each fairy stray.
+To the best bride-bed will we,
+Which by us shall blessed be;
+And the issue there create
+Ever shall be fortunate.
+So shall all the couples three
+Ever true in loving be;
+And the blots of Nature&apos;s hand
+Shall not in their issue stand;
+Never mole, hare-lip, nor scar,
+Nor mark prodigious, such as are
+Despised in nativity,
+Shall upon their children be.
+With this field-dew consecrate,
+Every fairy take his gait,
+And each several chamber bless,
+Through this palace, with sweet peace;
+And the owner of it blest
+Ever shall in safety rest.
+Trip away; make no stay;
+Meet me all by break of day.</string>
+		<key>speaker</key>
+		<string>OBERON</string>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>Exeunt all but PUCK</string>
+		<key>speaker</key>
+		<string>STAGE DIRECTION</string>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>If we shadows have offended,
+Think but this, and all is mended,
+That you have but slumb&apos;red here
+While these visions did appear.
+And this weak and idle theme,
+No more yielding but a dream,
+Gentles, do not reprehend.
+If you pardon, we will mend.
+And, as I am an honest Puck,
+If we have unearned luck
+Now to scape the serpent&apos;s tongue,
+We will make amends ere long;
+Else the Puck a liar call.
+So, good night unto you all.
+Give me your hands, if we be friends,
+And Robin shall restore amends.</string>
+		<key>speaker</key>
+		<string>PUCK</string>
+	</dict>
+	<dict>
+		<key>text</key>
+		<string>Exit</string>
+		<key>speaker</key>
+		<string>STAGE DIRECTION</string>
+	</dict>
+	</array>

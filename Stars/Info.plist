@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icons/57_icon.png</string>
+		<string>Icons/114_icon.png</string>
+		<string>Icons/72_icon.png</string>
+		<string>Icons/144_icon.png</string>
+		<string>Icons/29_icon.png</string>
+		<string>Icons/58_icon.png</string>
+		<string>Icons/50_icon.png</string>
+		<string>Icons/100_icon.png</string>
+	</array>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>MinimumOSVersion</key>
+	<string>5.1</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.stars</string>
+	<key>CFBundleDisplayName</key>
+	<string>Stars</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+</dict>
+</plist>
