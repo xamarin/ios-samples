@@ -1,0 +1,41 @@
+{
+  "formatVersion" : 1,
+  "passTypeIdentifier" : "pass.com.xamarin.coupon.banana",
+  "serialNumber" : "BANANA-B1",
+  "teamIdentifier" : "XXXAA1234",
+  "webServiceURL" : "https://xamarin.com/passes/",
+  "authenticationToken" : "asdfasdfJ8AlNNFa0FfUFtq0ewzFdc",
+  "barcode" : {
+    "message" : "FREE-BANANA",
+    "format" : "PKBarcodeFormatPDF417",
+    "messageEncoding" : "iso-8859-1"
+  },
+  "organizationName" : "Xamarin",
+  "logoText" : "Xamarin",
+  "description" : "Entitled to one free banana",
+  "foregroundColor" : "rgb(255, 255, 255)",
+  "backgroundColor" : "rgb(206, 140, 53)",
+  "coupon" : {
+    "primaryFields" : [
+      {
+        "key" : "offer",
+        "label" : "One banana",
+        "value" : "FREE"
+      }
+    ],
+    "auxiliaryFields" : [
+      {
+        "key" : "expires",
+        "label" : "EXPIRES",
+        "value" : "2 weeks"
+      }
+    ],
+    "backFields" : [
+      {
+        "key" : "terms",
+        "label" : "TERMS AND CONDITIONS",
+        "value" : "Xamarin offers this pass, including all information, software, products and services available from this pass or offered as part of or in conjunction with this pass (the \"pass\"), to you, the user, conditioned upon your acceptance of all of the terms, conditions, policies and notices stated here. la-de-da"
+      }
+    ]
+  }
+}

@@ -1,0 +1,164 @@
+using System;
+using System.Drawing;
+using System.Collections.Generic;
+using MonoTouch.UIKit;
+using MonoTouch.Foundation;
+using System.IO;
+
+using MonoTouch.PassKit;
+
+namespace PassLibrary {
+
+	/// <summary>
+	/// Lists the passes associated with our Team ID.
+	/// Has buttons to 'test' adding and updating a card.
+	/// </summary>
+	public class HomeScreen : UIViewController {
+		UITableView table;
+		UILabel passLibraryAvailableLabel;
+		UIButton addPassButton, replacePassButton, refreshButton;
+
+		PKPassLibrary library;
+
+		NSObject noteCenter;
+
+		public HomeScreen ()
+		{	
+		}
+
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+			View.BackgroundColor = UIColor.White;
+
+			table = new UITableView (new RectangleF (0, 110, View.Bounds.Width, View.Bounds.Height - 120));
+			table.AutoresizingMask = UIViewAutoresizing.All;
+
+			refreshButton = UIButton.FromType (UIButtonType.RoundedRect);
+			refreshButton.Frame = new RectangleF (230, 50, 80, 40);
+			refreshButton.SetTitle ("Refresh", UIControlState.Normal);
+			refreshButton.TouchUpInside += HandleRefreshTouchUpInside;
+
+			addPassButton = UIButton.FromType (UIButtonType.RoundedRect);
+			addPassButton.Frame = new RectangleF (10, 50, 80, 40);
+			addPassButton.SetTitle ("Add", UIControlState.Normal);
+			addPassButton.TouchUpInside += HandleAddTouchUpInside;
+
+			replacePassButton = UIButton.FromType (UIButtonType.RoundedRect);
+			replacePassButton.Frame = new RectangleF (100, 50, 80, 40);
+			replacePassButton.SetTitle ("Replace", UIControlState.Normal);
+			replacePassButton.TouchUpInside += HandleReplaceTouchUpInside;
+
+			passLibraryAvailableLabel = new UILabel (new RectangleF (10, 5, 300, 40));
+			passLibraryAvailableLabel.Text = "Pass Library Available: " + PKPassLibrary.IsAvailable.ToString ();
+
+			if (PKPassLibrary.IsAvailable) {
+				library = new PKPassLibrary ();
+				Console.WriteLine ("library.GetPasses");
+				var passes = library.GetPasses ();
+				table.Source = new TableSource (passes, library);
+
+				// Notification for changes to the library!
+				noteCenter = NSNotificationCenter.DefaultCenter.AddObserver (PKPassLibrary.DidChangeNotification, (not) => {
+					BeginInvokeOnMainThread (() => {
+						new UIAlertView("Pass Library Changed"
+						                , "Notification Received", null, "OK", null).Show();
+						// refresh the list
+						var passlist = library.GetPasses ();
+						table.Source = new TableSource (passlist, library);
+						table.ReloadData ();
+					});
+				}, library);  // IMPORTANT: must pass the library in 
+			} else {
+				Console.WriteLine ("No Pass Kit - must be an iPad");
+				addPassButton.SetTitleColor (UIColor.LightGray, UIControlState.Disabled);
+				addPassButton.Enabled = false;
+			}
+
+			Add (table);
+			Add (passLibraryAvailableLabel);
+			Add (refreshButton);
+			Add (addPassButton);
+			Add (replacePassButton);
+		}
+
+		/// <summary>
+		/// Proves that they return the passes in non-deterministic order,
+		/// and that developers should sort them manually
+		/// </summary>
+		void HandleRefreshTouchUpInside (object sender, EventArgs e)
+		{
+			Console.WriteLine ("HandleRefreshTouchUpInside");
+			var passes = library.GetPasses ();
+			table.Source = new TableSource (passes, library);
+			table.ReloadData ();
+		}
+		void HandleAddTouchUpInside (object sender, EventArgs e)
+		{
+			if (PKPassLibrary.IsAvailable) {
+
+				var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
+				var newFilePath = Path.Combine (documentsPath, "CouponBanana2.pkpass");
+				var builtInPassPath = Path.Combine (System.Environment.CurrentDirectory, "CouponBanana2.pkpass");
+				if (!System.IO.File.Exists(newFilePath))
+					System.IO.File.Copy (builtInPassPath, newFilePath);
+
+				NSData nsdata;
+				using ( FileStream oStream = File.Open (newFilePath, FileMode.Open ) ) {
+					nsdata = NSData.FromStream ( oStream );
+				}
+
+				var err = new NSError(new NSString("42"), -42);
+				var newPass = new PKPass(nsdata,out err);
+
+				bool alreadyExists = library.Contains (newPass);
+
+				if (alreadyExists) {
+					new UIAlertView(newPass.LocalizedDescription + " Tapped"
+					                , "Already exists", null, "OK", null).Show();
+				} else {
+//					new UIAlertView(newPass.LocalizedDescription + " Tapped"
+//					                , "Isn't in Pass Library", null, "OK, add it", null).Show();
+
+					var pkapvc = new PKAddPassesViewController(newPass);
+					NavigationController.PresentModalViewController (pkapvc, true);
+				}
+			}
+		}
+
+		/// <summary>
+		/// PKLibrary.Replace() doesn't require user to agreee (no UI)
+		/// BUT only works if the pass already exists
+		/// </summary>
+		void HandleReplaceTouchUpInside (object sender, EventArgs e)
+		{
+			if (PKPassLibrary.IsAvailable) {
+			
+				var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
+				var newFilePath = Path.Combine (documentsPath, "CouponBanana2.pkpass");
+				var builtInPassPath = Path.Combine (System.Environment.CurrentDirectory, "CouponBanana2.pkpass");
+				if (!System.IO.File.Exists(newFilePath))
+					System.IO.File.Copy (builtInPassPath, newFilePath);
+				
+				NSData nsdata;
+				using ( FileStream oStream = File.Open (newFilePath, FileMode.Open ) ) {
+					nsdata = NSData.FromStream ( oStream );
+				}
+				
+				var err = new NSError(new NSString("42"), -42);
+				var newPass = new PKPass(nsdata,out err);
+
+
+				bool alreadyExists = library.Contains (newPass);
+
+				if (alreadyExists) {
+					library.Replace (newPass);
+					new UIAlertView(newPass.LocalizedDescription + " replaced!"
+					                , "your choice if you offer UI when you update", null, "OK", null).Show();
+				} else
+					new UIAlertView(newPass.LocalizedDescription + " doesn't exit"
+					                , "Can't *replace* if the pass isn't already in library", null, "OK", null).Show();
+			}
+		}
+	}
+}
