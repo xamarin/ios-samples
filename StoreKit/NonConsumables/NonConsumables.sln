@@ -1,0 +1,40 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NonConsumables", "NonConsumables.csproj", "{EB92A80A-4519-4C0D-AFE2-D0801FE5A221}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB92A80A-4519-4C0D-AFE2-D0801FE5A221}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{EB92A80A-4519-4C0D-AFE2-D0801FE5A221}.Debug|iPhone.Build.0 = Debug|iPhone
+		{EB92A80A-4519-4C0D-AFE2-D0801FE5A221}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{EB92A80A-4519-4C0D-AFE2-D0801FE5A221}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{EB92A80A-4519-4C0D-AFE2-D0801FE5A221}.Release|iPhone.ActiveCfg = Release|iPhone
+		{EB92A80A-4519-4C0D-AFE2-D0801FE5A221}.Release|iPhone.Build.0 = Release|iPhone
+		{EB92A80A-4519-4C0D-AFE2-D0801FE5A221}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{EB92A80A-4519-4C0D-AFE2-D0801FE5A221}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = NonConsumables\NonConsumables.csproj
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.StandardHeader = $2
+		$2.Text = 
+		$2.IncludeInNewFiles = True
+		$0.VersionControlPolicy = $3
+		$3.inheritsSet = Mono
+		$0.ChangeLogPolicy = $4
+		$4.UpdateMode = None
+		$4.MessageStyle = $5
+		$5.LineAlign = 0
+		$4.inheritsSet = Mono
+	EndGlobalSection
+EndGlobal

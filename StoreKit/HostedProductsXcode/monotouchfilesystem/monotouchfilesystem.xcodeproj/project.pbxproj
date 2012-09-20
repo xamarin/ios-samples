@@ -1,0 +1,199 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		22D3D4DF160733EC008DD90C /* Chapter.txt in Resources */ = {isa = PBXBuildFile; fileRef = 22D3D4DD160733EC008DD90C /* Chapter.txt */; };
+		22D3D4E0160733EC008DD90C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 22D3D4DE160733EC008DD90C /* icon.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		22D3D4D3160733CC008DD90C /* monotouchfilesystem */ = {isa = PBXFileReference; explicitFileType = folder; includeInIndex = 0; path = monotouchfilesystem; sourceTree = BUILT_PRODUCTS_DIR; };
+		22D3D4D7160733CC008DD90C /* ContentInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ContentInfo.plist; sourceTree = "<group>"; };
+		22D3D4DD160733EC008DD90C /* Chapter.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Chapter.txt; sourceTree = "<group>"; };
+		22D3D4DE160733EC008DD90C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		22D3D4CA160733CC008DD90C = {
+			isa = PBXGroup;
+			children = (
+				22D3D4D5160733CC008DD90C /* monotouchfilesystem */,
+				22D3D4D4160733CC008DD90C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		22D3D4D4160733CC008DD90C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22D3D4D3160733CC008DD90C /* monotouchfilesystem */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22D3D4D5160733CC008DD90C /* monotouchfilesystem */ = {
+			isa = PBXGroup;
+			children = (
+				22D3D4DD160733EC008DD90C /* Chapter.txt */,
+				22D3D4DE160733EC008DD90C /* icon.png */,
+				22D3D4D6160733CC008DD90C /* Supporting Files */,
+			);
+			path = monotouchfilesystem;
+			sourceTree = "<group>";
+		};
+		22D3D4D6160733CC008DD90C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				22D3D4D7160733CC008DD90C /* ContentInfo.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		22D3D4D2160733CC008DD90C /* monotouchfilesystem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 22D3D4DA160733CC008DD90C /* Build configuration list for PBXNativeTarget "monotouchfilesystem" */;
+			buildPhases = (
+				22D3D4D1160733CC008DD90C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = monotouchfilesystem;
+			productName = monotouchfilesystem;
+			productReference = 22D3D4D3160733CC008DD90C /* monotouchfilesystem */;
+			productType = "com.apple.product-type.in-app-purchase-content";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		22D3D4CC160733CC008DD90C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = Xamarin;
+			};
+			buildConfigurationList = 22D3D4CF160733CC008DD90C /* Build configuration list for PBXProject "monotouchfilesystem" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 22D3D4CA160733CC008DD90C;
+			productRefGroup = 22D3D4D4160733CC008DD90C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				22D3D4D2160733CC008DD90C /* monotouchfilesystem */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		22D3D4D1160733CC008DD90C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22D3D4DF160733EC008DD90C /* Chapter.txt in Resources */,
+				22D3D4E0160733EC008DD90C /* icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		22D3D4D8160733CC008DD90C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Debug;
+		};
+		22D3D4D9160733CC008DD90C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+			};
+			name = Release;
+		};
+		22D3D4DB160733CC008DD90C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = monotouchfilesystem/ContentInfo.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/InAppPurchaseContent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos6.0;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				WRAPPER_EXTENSION = "";
+			};
+			name = Debug;
+		};
+		22D3D4DC160733CC008DD90C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = monotouchfilesystem/ContentInfo.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/InAppPurchaseContent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos6.0;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				WRAPPER_EXTENSION = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		22D3D4CF160733CC008DD90C /* Build configuration list for PBXProject "monotouchfilesystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22D3D4D8160733CC008DD90C /* Debug */,
+				22D3D4D9160733CC008DD90C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		22D3D4DA160733CC008DD90C /* Build configuration list for PBXNativeTarget "monotouchfilesystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22D3D4DB160733CC008DD90C /* Debug */,
+				22D3D4DC160733CC008DD90C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 22D3D4CC160733CC008DD90C /* Project object */;
+}
