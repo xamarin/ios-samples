@@ -33,7 +33,7 @@ namespace coreimage
 		/// </summary>
 		CIImage heron = CIImage.FromCGImage (UIImage.FromFile ("heron.jpg").CGImage);
 		UIWindow window;
-		
+
 		#region UIApplicationDelegate Methods
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -56,9 +56,15 @@ namespace coreimage
 						new Section () {
 							new RootElement ("ColorCube", (x) => Demo (ColorCube)),
 							new RootElement ("ColorInvert", (x) => Demo (ColorInvert)),
+							new RootElement ("ColorMap", l => Demo (ColorMap)),
 							new RootElement ("ColorMonochrome", (x) => Demo (ColorMonochrome)),
+							new RootElement ("ColorPosterize", l => Demo (ColorPosterize)),
 							new RootElement ("FalseColor", (x) => Demo (FalseColor)),
+							new RootElement ("MaskToAlpha", l => Demo (MaskToAlpha)),
+							new RootElement ("MaximumComponent", l => Demo (MaximumComponent)),
+							new RootElement ("MinimumComponent", l => Demo (MinimumComponent)),
 							new RootElement ("SepiaTone", (x) => Demo (SepiaTone)),
+							new RootElement ("Vignete", l => Demo (Vignette))
 						}
 					},
 					new RootElement ("Composite Operation"){
@@ -76,8 +82,8 @@ namespace coreimage
 							new RootElement ("LuminosityBlendMode", (x) => Demo (LuminosityBlendMode)),
 							new RootElement ("MaximumCompositing", (x) => Demo (MaximumCompositing)),
 							new RootElement ("MinimumCompositing", (x) => Demo (MinimumCompositing)),
-							new RootElement ("MultiplyCompositing", (x) => Demo (MultiplyCompositing)),
 							new RootElement ("MultiplyBlendMode", (x) => Demo (MultiplyBlendMode)),
+							new RootElement ("MultiplyCompositing", (x) => Demo (MultiplyCompositing)),
 							new RootElement ("OverlayBlendMode", (x) => Demo (OverlayBlendMode)),
 							new RootElement ("SaturationBlendMode", (x) => Demo (SaturationBlendMode)),
 							new RootElement ("ScreenBlendMode", (x) => Demo (ScreenBlendMode)),
@@ -90,12 +96,20 @@ namespace coreimage
 					},
 					new RootElement ("Distortions"){
 						new Section () {
+							new RootElement ("CircleSplashDistortion", l => Demo (CircleSplashDistortion)),
+							new RootElement ("HoleDistortion", l => Demo (HoleDistortion)),
+							new RootElement ("LightTunnel", l => Demo (LightTunel)),
+							new RootElement ("PinchDistortion", l => Demo (PinchDistortion)),
+							new RootElement ("TwirlDistortion", l => Demo (TwirlDistortion)),
+							new RootElement ("VortexDistortion", l => Demo (VortexDistortion))
 						}
 					},
 					new RootElement ("Generators"){
 						new Section () {
 							new RootElement ("CheckerboardGenerator", (x) => Demo (CheckerboardGenerator)),
 							new RootElement ("ConstantColorGenerator", (x) => Demo (ConstantColorGenerator)),
+							new RootElement ("RandomGenerator", l => Demo (RandomGenerator)),
+							new RootElement ("StarShineGenerator", l => Demo (StarShineGenerator)),
 							new RootElement ("StripesGenerator", (x) => Demo (StripesGenerator)),
 						}
 					},
@@ -103,6 +117,8 @@ namespace coreimage
 						new Section () {
 							new RootElement ("AffineTransform", (x) => Demo (AffineTransform)),
 							new RootElement ("Crop", (x) => Demo (Crop)),
+							new RootElement ("LanczosScaleTransform", l => Demo (LanczosScaleTransform)),
+							new RootElement ("PerspectiveTransform", l => Demo (PerspectiveTransform)),
 							new RootElement ("StraightenFilter", (x) => Demo (StraightenFilter)),
 						}
 					},
@@ -113,12 +129,54 @@ namespace coreimage
 							new RootElement ("RadialGradient", (x) => Demo (RadialGradient)),
 						}
 					},
-					new RootElement ("Stylize"){
+					new RootElement ("Halftone Effect") {
 						new Section () {
-							new RootElement ("HighlightShadowAdjust", (x) => Demo (HighlightShadowAdjust)),
+							new RootElement ("CircularScreen", l => Demo (CircularScreen)),
+							new RootElement ("DotScreen", l => Demo (DotScreen)),
+							new RootElement ("HatchedScreen", l => Demo (HatchedScreen)),
+							new RootElement ("LineScreen", l => Demo (LineScreen))
 						}
 					},
-					new RootElement ("Vignette", (x) => Demo (Vignette)),
+					new RootElement ("Sharpen") {
+						new Section () {
+							new RootElement ("SharpenLuminance", l => Demo (SharpenLuminance)),
+							new RootElement ("UnsharpMask", l => Demo (UnsharpMask)),
+						}
+					},
+					new RootElement ("Stylize"){
+						new Section () {
+							new RootElement ("BlendWithMask", l => Demo (BlendWithMask)),
+							new RootElement ("Bloom", l => Demo (Bloom)),
+							new RootElement ("Gloom", l => Demo (Gloom)),
+							new RootElement ("HighlightShadowAdjust", (x) => Demo (HighlightShadowAdjust)),
+							new RootElement ("Pixellate", l => Demo (Pixellate)),
+						}
+					},
+					new RootElement ("Tile Effect"){
+						new Section () {
+							new RootElement ("AffineClamp", l => Demo (AffineClamp)),
+							new RootElement ("AffineTile", l => Demo (AffineTile)),
+							new RootElement ("EightfoldReflectedTile", l => Demo (EightfoldReflectedTile)),
+							new RootElement ("FourfoldReflectedTile", l => Demo (FourfoldReflectedTile)),
+							new RootElement ("FourfoldRotatedTile", l => Demo (FourfoldRotatedTile)),
+							new RootElement ("GlideReflectedTile", l => Demo (GlideReflectedTile)),
+							new RootElement ("PerspectiveTile", l => Demo (PerspectiveTile)),
+							new RootElement ("SixfoldReflectedTile", l => Demo (SixfoldReflectedTile)),
+							new RootElement ("SixfoldRotatedTile", l => Demo (SixfoldRotatedTile)),
+							new RootElement ("TriangleKaleidoscope", l => Demo (TriangleKaleidoscope)),
+							new RootElement ("TwelvefoldReflectedTile", l => Demo (TwelvefoldReflectedTile))
+						}
+					},
+					new RootElement ("Transition"){
+						new Section () {
+							new RootElement ("BarsSwipeTransition", l => Demo (BarsSwipeTransition)),
+							new RootElement ("CopyMachineTransition", l => Demo (CopyMachineTransition)),
+							new RootElement ("DissolveTransition", l => Demo (DissolveTransition)),
+							new RootElement ("FlashTransition", l => Demo (FlashTransition)),
+							new RootElement ("ModTransition", l => Demo (ModTransition)),
+							new RootElement ("SwipeTransition", l => Demo (SwipeTransition))
+						}
+					},
 #if DEBUG
 					new RootElement("Rebase Test Images", (x) => RebaseTestImages()),
 					new RootElement("Test Filters", (x) => TestView())
@@ -146,10 +204,8 @@ namespace coreimage
 				Rectangle = new CIVector (0, 0, window.Bounds.Width, window.Bounds.Height) 
 			}.OutputImage;			
 		}
-		
-		public delegate CIImage ImageFilter ();
-		
-		public UIViewController Demo (ImageFilter makeDemo)
+
+		public UIViewController Demo (Func<CIImage> makeDemo)
 		{
 			var v = new UIViewController ();
 			var imageView = new UIImageView (v.View.Bounds);
@@ -410,7 +466,39 @@ namespace coreimage
 				{ "LinearGradient", () =>Demo(LinearGradient) },
 				{ "RadialGradient", () => Demo (RadialGradient) },
 				{ "HighlightShadowAdjust", () => Demo (HighlightShadowAdjust) },
-				{ "Vignette", () => Demo (Vignette) } 
+				{ "Vignette", () => Demo (Vignette) },
+
+				//{ "RandomGenerator", () => Demo (RandomGenerator) },
+				{ "StarShineGenerator", () => Demo (StarShineGenerator) },
+				{ "LanczosScaleTransform", () => Demo (LanczosScaleTransform) },
+				{ "PerspectiveTransform", () => Demo (PerspectiveTransform) },
+				{ "CircularScreen", () => Demo (CircularScreen) },
+				{ "DotScreen", () => Demo (DotScreen) },
+				{ "HatchedScreen", () => Demo (HatchedScreen) },
+				{ "LineScreen", () => Demo (LineScreen) },
+				{ "SharpenLuminance", () => Demo (SharpenLuminance) },
+				{ "UnsharpMask", () => Demo (UnsharpMask) },
+				{ "BlendWithMask", () => Demo (BlendWithMask) },
+				{ "Bloom", () => Demo (Bloom) },
+				{ "Gloom", () => Demo (Gloom) },
+				{ "Pixellate", () => Demo (Pixellate) },
+				{ "AffineClamp", () => Demo (AffineClamp) },
+				{ "AffineTile", () => Demo (AffineTile) },
+				{ "EightfoldReflectedTile", () => Demo (EightfoldReflectedTile) },
+				{ "FourfoldReflectedTile", () => Demo (FourfoldReflectedTile) },
+				{ "FourfoldRotatedTile", () => Demo (FourfoldRotatedTile) },
+				{ "GlideReflectedTile", () => Demo (GlideReflectedTile) },
+				{ "PerspectiveTile", () => Demo (PerspectiveTile) },
+				{ "SixfoldReflectedTile", () => Demo (SixfoldReflectedTile) },
+				{ "SixfoldRotatedTile", () => Demo (SixfoldRotatedTile) },
+				{ "TriangleKaleidoscope", () => Demo (TriangleKaleidoscope) },
+				{ "TwelvefoldReflectedTile", () => Demo (TwelvefoldReflectedTile) },
+				{ "BarsSwipeTransition", () => Demo (BarsSwipeTransition) },
+				{ "CopyMachineTransition", () => Demo (CopyMachineTransition) },
+				{ "DissolveTransition", () => Demo (DissolveTransition) },
+				{ "FlashTransition", () => Demo (FlashTransition) },
+				{ "ModTransition", () => Demo (ModTransition) },
+				{ "SwipeTransition", () => Demo (SwipeTransition) }
 			};
 			
 			return dictionary;
@@ -779,6 +867,17 @@ namespace coreimage
 			
 			return invert.OutputImage;
 		}
+
+		CIImage ColorMap ()
+		{
+			var map = new CIColorMap ()
+			{
+				Image = flower,
+				GradientImage = flower
+			};
+
+			return map.OutputImage;
+		}
 		
 		/// <summary>
 		/// Remaps colors so they fall within shades of a single color.
@@ -798,6 +897,16 @@ namespace coreimage
 			};
 			
 			return monoChrome.OutputImage;
+		}
+
+		CIImage ColorPosterize ()
+		{
+			var posterize = new CIColorPosterize () {
+				Image = flower,
+				Levels = 8
+			};
+
+			return posterize.OutputImage;
 		}
 		
 		/// <summary>
@@ -820,7 +929,37 @@ namespace coreimage
 			
 			return falseColor.OutputImage;
 		}
-		
+
+		CIImage MaskToAlpha ()
+		{
+			var masktoalpha = new CIMaskToAlpha ()
+			{
+				Image = heron
+			};
+
+			return masktoalpha.OutputImage;
+		}
+
+		CIImage MaximumComponent ()
+		{
+			var maximumcomponent = new CIMaximumComponent ()
+			{
+				Image = flower
+			};
+
+			return maximumcomponent.OutputImage;
+		}
+
+		CIImage MinimumComponent ()
+		{
+			var minimumcomponent = new CIMinimumComponent ()
+			{
+				Image = flower
+			};
+
+			return minimumcomponent.OutputImage;
+		}
+
 		/// <summary>
 		/// Adjusts midtone brightness.
 		/// </summary>
@@ -909,6 +1048,70 @@ namespace coreimage
 			return Crop (radGradient);
 		}
 		#endregion
+
+		#region CICategoryHalftoneEffect
+
+		CIImage CircularScreen ()
+		{
+			var cilcular_screen = new CICircularScreen () {
+				Image = flower
+			};
+
+			return cilcular_screen.OutputImage;
+		}
+
+		CIImage DotScreen ()
+		{
+			var dot_screen = new CIDotScreen () {
+				Image = flower
+			};
+
+			return dot_screen.OutputImage;
+		}
+
+		CIImage HatchedScreen ()
+		{
+			var hatched_screen = new CIHatchedScreen () {
+				Image = flower
+			};
+
+			return hatched_screen.OutputImage;
+		}
+
+		CIImage LineScreen ()
+		{
+			var line_screen = new CILineScreen () {
+				Image = flower
+			};
+
+			return line_screen.OutputImage;
+		}
+
+		#endregion
+
+		#region CICategorySharpen
+
+		CIImage SharpenLuminance ()
+		{
+			var sharpen = new CISharpenLuminance ()
+			{
+				Image = heron
+			};
+
+			return sharpen.OutputImage;
+		}
+
+		CIImage UnsharpMask ()
+		{
+			var sharpen = new CIUnsharpMask ()
+			{
+				Image = heron
+			};
+
+			return sharpen.OutputImage;
+		}
+
+		#endregion
 		
 		#region CICategoryGeometryAdjustment
 		/// <summary>
@@ -961,6 +1164,24 @@ namespace coreimage
 			};
 			
 			return exposureAdjust.OutputImage;
+		}
+
+		CIImage LanczosScaleTransform ()
+		{
+			var lanczos_scale_transform = new CILanczosScaleTransform () {
+				Image = heron
+			};
+
+			return lanczos_scale_transform.OutputImage;
+		}
+
+		CIImage PerspectiveTransform ()
+		{
+			var perspective_transform = new CIPerspectiveTransform () {
+				Image = heron
+			};
+
+			return perspective_transform.OutputImage;
 		}
 		
 		/// <summary>
@@ -1398,6 +1619,65 @@ namespace coreimage
 			return sourceOverComposite.OutputImage;
 		}
 		#endregion
+
+		#region CICategoryDistortionEffect
+
+		CIImage CircleSplashDistortion ()
+		{
+			var distortion = new CICircleSplashDistortion () {
+				Image = heron,
+			};
+
+			return Crop (distortion);
+		}
+
+		CIImage HoleDistortion ()
+		{
+			var distortion = new CIHoleDistortion () {
+				Image = heron,
+				Radius = 85
+			};
+
+			return distortion.OutputImage;
+		}
+
+		CIImage LightTunel ()
+		{
+			var lighttunel = new CILightTunnel () {
+				Image = flower
+			};
+
+			return Crop (lighttunel);
+		}
+
+		CIImage PinchDistortion ()
+		{
+			var pinchdistortion = new CIPinchDistortion () {
+				Image = flower
+			};
+
+			return pinchdistortion.OutputImage;
+		}
+
+		CIImage TwirlDistortion ()
+		{
+			var twirldistortion = new CITwirlDistortion () {
+				Image = flower
+			};
+
+			return twirldistortion.OutputImage;
+		}
+
+		CIImage VortexDistortion ()
+		{
+			var vortexdistortion = new CIVortexDistortion () {
+				Image = heron
+			};
+
+			return vortexdistortion.OutputImage;
+		}
+
+		#endregion
 		
 		#region CICategoryGenerator
 		/// <summary>
@@ -1439,6 +1719,21 @@ namespace coreimage
 			
 			return Crop (colorGen);
 		}
+
+		CIImage RandomGenerator ()
+		{
+			var random = new CIRandomGenerator ();
+			return Crop (random);
+		}
+
+		CIImage StarShineGenerator ()
+		{
+			var generator = new CIStarShineGenerator () {
+				Radius = 20,
+			};
+
+			return Crop (generator);
+		}
 		
 		/// <summary>
 		/// Generates a stripe pattern.
@@ -1462,6 +1757,36 @@ namespace coreimage
 		#endregion
 	
 		#region CICategoryStylize
+
+		CIImage BlendWithMask ()
+		{
+			var blend_with_mask = new CIBlendWithMask () {
+				Image = heron,
+				BackgroundImage = clouds,
+				Mask = RandomGenerator ()
+			};
+
+			return blend_with_mask.OutputImage;
+		}
+
+		CIImage Bloom ()
+		{
+			var bloom = new CIBloom () {
+				Image = flower
+			};
+
+			return bloom.OutputImage;
+		}
+
+		CIImage Gloom ()
+		{
+			var gloom = new CIGloom () {
+				Image = flower
+			};
+
+			return gloom.OutputImage;
+		}
+
 		/// <summary>
 		/// Adjust the tonal mapping of an image while preserving spatial detail.
 		/// </summary>
@@ -1480,7 +1805,197 @@ namespace coreimage
 			
 			return shadowAdjust.OutputImage;
 		}
+
+		CIImage Pixellate ()
+		{
+			var pixellate = new CIGloom () {
+				Image = flower
+			};
+
+			return pixellate.OutputImage;
+		}
+
 		#endregion
+
+		#region CICategoryTileEffect
+
+		CIImage AffineClamp ()
+		{
+			var affine_clamp = new CIAffineClamp () {
+				Image = flower
+			};
+
+			return Crop (affine_clamp);
+		}
+
+		CIImage AffineTile ()
+		{
+			var affine_tile = new CIAffineTile () {
+				Image = flower
+			};
+
+			return Crop (affine_tile);
+		}
+
+		CIImage EightfoldReflectedTile ()
+		{
+			var tile = new CIEightfoldReflectedTile () {
+				Image = flower
+			};
+
+			return Crop (tile);
+		}
+
+		CIImage FourfoldReflectedTile ()
+		{
+			var tile = new CIFourfoldReflectedTile () {
+				Image = flower
+			};
+
+			return Crop (tile);
+		}
+
+		CIImage FourfoldRotatedTile ()
+		{
+			var tile = new CIFourfoldRotatedTile () {
+				Image = flower
+			};
+
+			return Crop (tile);
+		}
+
+		CIImage GlideReflectedTile ()
+		{
+			var tile = new CIGlideReflectedTile () {
+				Image = flower
+			};
+
+			return Crop (tile);
+		}
+
+		CIImage PerspectiveTile ()
+		{
+			var tile = new CIPerspectiveTile () {
+				Image = flower
+			};
+
+			return Crop (tile);
+		}
+
+		CIImage SixfoldReflectedTile ()
+		{
+			var tile = new CISixfoldReflectedTile () {
+				Image = flower
+			};
+
+			return Crop (tile);
+		}
+
+		CIImage SixfoldRotatedTile ()
+		{
+			var tile = new CISixfoldRotatedTile () {
+				Image = flower
+			};
+
+			return Crop (tile);
+		}
+
+		CIImage TriangleKaleidoscope ()
+		{
+			var kaleidoscope = new CITriangleKaleidoscope () {
+				Image = heron
+			};
+
+			return Crop (kaleidoscope);
+		}
+
+		CIImage TwelvefoldReflectedTile ()
+		{
+			var tile = new CITwelvefoldReflectedTile () {
+				Image = flower
+			};
+
+			return Crop (tile);
+		}
+
+		#endregion
+
+		#region CICategoryTransition
+
+		CIImage BarsSwipeTransition ()
+		{
+			var transition = new CIBarsSwipeTransition ()
+			{
+				Image = heron,
+				TargetImage = clouds,
+				Time = 0.5f
+			};
+
+			return transition.OutputImage;
+		}
+
+		CIImage CopyMachineTransition ()
+		{
+			var transition = new CICopyMachineTransition ()
+			{
+				Image = heron,
+				TargetImage = clouds,
+				Time = 0.5f
+			};
+
+			return transition.OutputImage;
+		}
+
+		CIImage DissolveTransition ()
+		{
+			var transition = new CIDissolveTransition ()
+			{
+				Image = heron,
+				TargetImage = clouds,
+				Time = 0.5f
+			};
+
+			return transition.OutputImage;
+		}
+
+		CIImage FlashTransition ()
+		{
+			var transition = new CIFlashTransition ()
+			{
+				Image = heron,
+				TargetImage = clouds,
+				Time = 0.8f
+			};
+
+			return transition.OutputImage;
+		}
+
+		CIImage ModTransition ()
+		{
+			var transition = new CIModTransition ()
+			{
+				Image = heron,
+				TargetImage = clouds,
+				Time = 0.5f
+			};
+
+			return transition.OutputImage;
+		}
+
+		CIImage SwipeTransition ()
+		{
+			var transition = new CISwipeTransition ()
+			{
+				Image = heron,
+				TargetImage = clouds,
+				Time = 0.8f
+			};
+
+			return transition.OutputImage;
+		}
+
+		#endregion
+
 		#endregion
 	}
 
