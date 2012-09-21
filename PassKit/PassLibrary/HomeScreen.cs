@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using System.IO;
-
 using MonoTouch.PassKit;
+
+/*
+ NOTE: Be sure to check the Entitlements.plist - you must enter your TeamID with the 
+ PassTypeIDs that you have created on the iOS Provisioning Portal, and ensure that your
+ Provisioning Profiles for testing/deploying this app have PassKit enabled.
+ */
 
 namespace PassLibrary {
 
