@@ -62,12 +62,12 @@ namespace Example_CoreLocation
 			// handle the updated location method and update the UI
 			if (UIDevice.CurrentDevice.CheckSystemVersion (6, 0)) {
 				iPhoneLocationManager.LocationsUpdated += (object sender, CLLocationsUpdatedEventArgs e) => {
-					UpdateLocation (e.Locations [e.Locations.Length - 1]);
+					UpdateLocation (mainScreen, e.Locations [e.Locations.Length - 1]);
 				};
 			} else {
 				// this won't be called on iOS 6 (deprecated)
 				iPhoneLocationManager.UpdatedLocation += (object sender, CLLocationUpdatedEventArgs e) => {
-					UpdateLocation (e.NewLocation);
+					UpdateLocation (mainScreen, e.NewLocation);
 				};
 			}
 			
@@ -108,7 +108,9 @@ namespace Example_CoreLocation
 					mainScreen = mainViewController_iPad as IMainScreen;
 			} else {
 					mainViewController_iPhone = new MainViewController_iPhone ();
+					var b = this.View.Bounds;
 					this.View.AddSubview (mainViewController_iPhone.View);
+					mainViewController_iPhone.View.Frame = b; // for 4 inch iPhone5 screen
 					mainScreen = mainViewController_iPhone as IMainScreen;
 			}
 		}

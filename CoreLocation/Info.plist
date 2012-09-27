@@ -12,13 +12,16 @@
 		<string>Images/Icons/29_icon.png</string>
 		<string>Images/Icons/58_icon.png</string>
 		<string>Images/Icons/50_icon.png</string>
-		<string>Images/Icons/512_icon.png</string>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 	<key>MinimumOSVersion</key>
-	<string>3.0</string>
+	<string>5.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<string>1</string>
+		<integer>1</integer>
+		<integer>2</integer>
 	</array>
 </dict>
 </plist>
