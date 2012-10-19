@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchDemo", "SearchDemo\SearchDemo.csproj", "{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}.Debug|iPhone.Build.0 = Debug|iPhone
+		{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}.Release|iPhone.ActiveCfg = Release|iPhone
+		{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}.Release|iPhone.Build.0 = Release|iPhone
+		{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E57BD6EE-FC50-4553-80A5-CE89CA66A78B}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SearchDemo\SearchDemo.csproj
+	EndGlobalSection
+EndGlobal
