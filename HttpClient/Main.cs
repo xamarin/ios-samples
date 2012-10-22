@@ -19,7 +19,7 @@ namespace HttpClient
 	public class Application
 	{
 		// URL where we fetch the wisdom from
-		public const string WisdomUrl = "http://twitter.com/statuses/user_timeline/823083.rss";
+		public const string WisdomUrl = "http://api.twitter.com/1/statuses/user_timeline.rss?screen_name=migueldeicaza";
 
 		static void Main (string[] args)
 		{
