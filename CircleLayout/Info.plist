@@ -14,7 +14,7 @@
 		<string>Images/100_icon.png</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>4.0</string>
+	<string>6.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>

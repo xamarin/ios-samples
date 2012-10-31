@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDisplayName</key>
+	<string>Poker Night Voting</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Images/57_icon.png</string>
@@ -13,8 +15,12 @@
 		<string>Images/50_icon.png</string>
 		<string>Images/100_icon.png</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.pokernightvoting</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
 	<key>MinimumOSVersion</key>
-	<string>5.0</string>
+	<string>6.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -34,11 +40,5 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.pokernightvoting</string>
-	<key>CFBundleDisplayName</key>
-	<string>Poker Night Voting</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
 </dict>
 </plist>
