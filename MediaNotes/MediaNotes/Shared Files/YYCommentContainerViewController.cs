@@ -81,7 +81,7 @@ namespace MediaNotes
 			View.AddGestureRecognizer (gestureRecognizer);
 
 # if USE_AUTOLAYOUT
-			commentView.TranslatesAutoresizingMaskIntoConstrainst = false;
+			commentView.TranslatesAutoresizingMaskIntoConstraints = false;
 # endif
 		}
 

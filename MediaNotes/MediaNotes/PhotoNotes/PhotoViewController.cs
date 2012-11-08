@@ -63,8 +63,8 @@ namespace MediaNotes
 		{
 			base.ViewDidLoad ();
 # if USE_AUTOLAYOUT
-			toolbar.TranslatesAutoresizingMaskIntoConstrainst = false;
-			photoImageView.TranslatesAutoresizingMaskIntoConstrainst = false;
+			toolbar.TranslatesAutoresizingMaskIntoConstraints = false;
+			photoImageView.TranslatesAutoresizingMaskIntoConstraints = false;
 					
 # endif			// Perform any additional setup after loading the view, typically from a nib.
 		}
