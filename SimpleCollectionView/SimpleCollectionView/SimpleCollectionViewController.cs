@@ -93,6 +93,20 @@ namespace SimpleCollectionView
         {
             Console.WriteLine ("code to perform action");
         }
+
+        public override void WillRotate (UIInterfaceOrientation toInterfaceOrientation, double duration)
+        {
+            base.WillRotate (toInterfaceOrientation, duration);
+
+            var lineLayout = CollectionView.CollectionViewLayout as LineLayout;
+            if (lineLayout != null)
+            {
+                if((toInterfaceOrientation == UIInterfaceOrientation.Portrait) || (toInterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown))
+                    lineLayout.SectionInset = new UIEdgeInsets (400,0,400,0);
+                else
+                    lineLayout.SectionInset  = new UIEdgeInsets (220, 0.0f, 200, 0.0f);
+            }
+        }
        
     }
 

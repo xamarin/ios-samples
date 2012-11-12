@@ -9,8 +9,6 @@
 		<integer>2</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-	</array>
+	<array/>
 </dict>
 </plist>

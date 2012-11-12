@@ -17,7 +17,7 @@ namespace SimpleCollectionView
 		{	
 			ItemSize = new SizeF (ITEM_SIZE, ITEM_SIZE);
 			ScrollDirection = UICollectionViewScrollDirection.Horizontal;
-			SectionInset = new UIEdgeInsets (220, 0.0f, 200, 0.0f);
+            SectionInset = new UIEdgeInsets (400,0,400,0);
 			MinimumLineSpacing = 50.0f;		
 		}
 
@@ -29,7 +29,7 @@ namespace SimpleCollectionView
 		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (RectangleF rect)
 		{
 			var array = base.LayoutAttributesForElementsInRect (rect);
-			var visibleRect = new RectangleF (CollectionView.ContentOffset, CollectionView.Bounds.Size);
+            var visibleRect = new RectangleF (CollectionView.ContentOffset, CollectionView.Bounds.Size);
 						
 			foreach (var attributes in array) {
 				if (attributes.Frame.IntersectsWith (rect)) {
@@ -57,8 +57,9 @@ namespace SimpleCollectionView
 					offSetAdjustment = itemHorizontalCenter - horizontalCenter;
 				}
 			}
-			return new PointF (proposedContentOffset.X + offSetAdjustment, proposedContentOffset.Y);
+            return new PointF (proposedContentOffset.X + offSetAdjustment, proposedContentOffset.Y);
 		}
+
 	}
 }
 
