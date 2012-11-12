@@ -21,15 +21,6 @@ namespace SimpleCollectionView
 			RegisterClassForDecorationView (typeof(MyDecorationView), myDecorationViewId);
 		}
 
-//		public override UICollectionViewLayoutAttributes LayoutAttributesForDecorationView (string decorationViewKind, NSIndexPath indexPath)
-//		{
-//			var attribs = UICollectionViewLayoutAttributes.CreateForDecorationView (decorationViewKind, indexPath);
-//			attribs.Frame = new RectangleF(0,0, 400, 800);
-//			attribs.ZIndex = -1;
-//
-//			return attribs;
-//		}
-
 		public override void PrepareLayout ()
 		{
 			base.PrepareLayout ();
@@ -45,6 +36,11 @@ namespace SimpleCollectionView
 				return CollectionView.Frame.Size;
 			}
 		}
+
+        public override bool ShouldInvalidateLayoutForBoundsChange (RectangleF newBounds)
+        {
+            return true;
+        }
 
 		public override UICollectionViewLayoutAttributes LayoutAttributesForItem (NSIndexPath path)
 		{
@@ -65,7 +61,7 @@ namespace SimpleCollectionView
 			}
 
             var decorationAttribs = UICollectionViewLayoutAttributes.CreateForDecorationView (myDecorationViewId, NSIndexPath.FromItemSection (0, 0));
-			decorationAttribs.Size = rect.Size;
+            decorationAttribs.Size = CollectionView.Frame.Size;
 			decorationAttribs.Center = CollectionView.Center;
 			decorationAttribs.ZIndex = -1;
 			attributes [cellCount] = decorationAttribs;
@@ -81,7 +77,6 @@ namespace SimpleCollectionView
 		public MyDecorationView (System.Drawing.RectangleF frame) : base (frame)
 		{
 			BackgroundColor = UIColor.Red;
-			Frame = frame;
 		}
 	}
 }

@@ -94,6 +94,7 @@
     <Compile Include="Monkey.cs" />
     <Compile Include="SimpleCollectionViewController.cs" />
     <Compile Include="LineLayout.cs" />
+    <Compile Include="GridLayout.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

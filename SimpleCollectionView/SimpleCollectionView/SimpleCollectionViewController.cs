@@ -6,149 +6,147 @@ using MonoTouch.CoreGraphics;
 
 namespace SimpleCollectionView
 {
-	public class SimpleCollectionViewController : UICollectionViewController
-	{
-		static NSString animalCellId = new NSString ("AnimalCell");
-		static NSString headerId = new NSString ("Header");																			
+    public class SimpleCollectionViewController : UICollectionViewController
+    {
+        static NSString animalCellId = new NSString ("AnimalCell");
+        static NSString headerId = new NSString ("Header");
+        List<IAnimal> animals;
 
-		List<IAnimal> animals;
+        public SimpleCollectionViewController (UICollectionViewLayout layout) : base (layout)
+        {
+            animals = new List<IAnimal> ();
+            for (int i = 0; i < 20; i++) {
+                animals.Add (new Monkey ());
+            }
+        }
 
-		public SimpleCollectionViewController (UICollectionViewLayout layout) : base (layout)
-		{
-			animals = new List<IAnimal> ();
-			for (int i = 0; i< 20; i++) {
-				animals.Add (new Monkey ());
-			}
+        public override void ViewDidLoad ()
+        {
+            base.ViewDidLoad ();
 
-//			CollectionView.ContentInset = new UIEdgeInsets (20, 20, 20, 20);
-		}
+            CollectionView.RegisterClassForCell (typeof(AnimalCell), animalCellId);
+            CollectionView.RegisterClassForSupplementaryView (typeof(Header), UICollectionElementKindSection.Header, headerId);
+        }
 
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
+        public override int NumberOfSections (UICollectionView collectionView)
+        {
+            return 1;
+        }
 
-			CollectionView.RegisterClassForCell (typeof(AnimalCell), animalCellId);
-			CollectionView.RegisterClassForSupplementaryView (typeof(Header), UICollectionElementKindSection.Header, headerId);
-		}
+        public override int GetItemsCount (UICollectionView collectionView, int section)
+        {
+            return animals.Count;
+        }
 
-		public override int NumberOfSections (UICollectionView collectionView)
-		{
-			return 1;
-		}
+        public override UICollectionViewCell GetCell (UICollectionView collectionView, MonoTouch.Foundation.NSIndexPath indexPath)
+        {
+            var animalCell = (AnimalCell)collectionView.DequeueReusableCell (animalCellId, indexPath);
 
-		public override int GetItemsCount (UICollectionView collectionView, int section)
-		{
-			return animals.Count;
-		}
+            var animal = animals [indexPath.Row];
 
-		public override UICollectionViewCell GetCell (UICollectionView collectionView, MonoTouch.Foundation.NSIndexPath indexPath)
-		{
-			var animalCell = (AnimalCell)collectionView.DequeueReusableCell (animalCellId, indexPath);
+            animalCell.Image = animal.Image;
 
-			var animal = animals [indexPath.Row];
+            return animalCell;
+        }
 
-			animalCell.Image = animal.Image;
+        public override UICollectionReusableView GetViewForSupplementaryElement (UICollectionView collectionView, NSString elementKind, NSIndexPath indexPath)
+        {
+            var headerView = (Header)collectionView.DequeueReusableSupplementaryView (elementKind, headerId, indexPath);
+            headerView.Text = "Supplementary View";
+            return headerView;
+        }
 
-			return animalCell;
-		}
+        public override void ItemHighlighted (UICollectionView collectionView, NSIndexPath indexPath)
+        {
+            var cell = collectionView.CellForItem (indexPath);
+            cell.ContentView.BackgroundColor = UIColor.Yellow;
+        }
 
-		public override UICollectionReusableView GetViewForSupplementaryElement (UICollectionView collectionView, NSString elementKind, NSIndexPath indexPath)
-		{
-			var headerView = (Header)collectionView.DequeueReusableSupplementaryView (elementKind, headerId, indexPath);
-			headerView.Text = "This is a Supplementary View";
-			return headerView;
-		}
+        public override void ItemUnhighlighted (UICollectionView collectionView, NSIndexPath indexPath)
+        {
+            var cell = collectionView.CellForItem (indexPath);
+            cell.ContentView.BackgroundColor = UIColor.White;
+        }
 
-		public override void ItemHighlighted (UICollectionView collectionView, NSIndexPath indexPath)
-		{
-			var cell = collectionView.CellForItem(indexPath);
-			cell.ContentView.BackgroundColor = UIColor.Yellow;
-		}
+        public override bool ShouldHighlightItem (UICollectionView collectionView, NSIndexPath indexPath)
+        {
+            return true;
+        }
 
-		public override void ItemUnhighlighted (UICollectionView collectionView, NSIndexPath indexPath)
-		{
-			var cell = collectionView.CellForItem(indexPath);
-			cell.ContentView.BackgroundColor = UIColor.White;
-		}
+//      public override bool ShouldSelectItem (UICollectionView collectionView, NSIndexPath indexPath)
+//      {
+//          return false;
+//      }
 
-		public override bool ShouldHighlightItem (UICollectionView collectionView, NSIndexPath indexPath)
-		{
-			return true;
-		}
+        // for edit menu
+        public override bool ShouldShowMenu (UICollectionView collectionView, NSIndexPath indexPath)
+        {
+            return true;
+        }
 
-//		public override bool ShouldSelectItem (UICollectionView collectionView, NSIndexPath indexPath)
-//		{
-//			return false;
-//		}
+        public override bool CanPerformAction (UICollectionView collectionView, MonoTouch.ObjCRuntime.Selector action, NSIndexPath indexPath, NSObject sender)
+        {
+            return true;
+        }
 
-		// for edit menu
-		public override bool ShouldShowMenu (UICollectionView collectionView, NSIndexPath indexPath)
-		{
-			return true;
-		}
+        public override void PerformAction (UICollectionView collectionView, MonoTouch.ObjCRuntime.Selector action, NSIndexPath indexPath, NSObject sender)
+        {
+            Console.WriteLine ("code to perform action");
+        }
+       
+    }
 
-		public override bool CanPerformAction (UICollectionView collectionView, MonoTouch.ObjCRuntime.Selector action, NSIndexPath indexPath, NSObject sender)
-		{
-			return true;
-		}
+    public class AnimalCell : UICollectionViewCell
+    {
+        UIImageView imageView;
 
-		public override void PerformAction (UICollectionView collectionView, MonoTouch.ObjCRuntime.Selector action, NSIndexPath indexPath, NSObject sender)
-		{
-			Console.WriteLine ("code to perform action");
-		}
-	}
+        [Export ("initWithFrame:")]
+        public AnimalCell (System.Drawing.RectangleF frame) : base (frame)
+        {
+            BackgroundView = new UIView{BackgroundColor = UIColor.Orange};
 
-	public class AnimalCell : UICollectionViewCell
-	{
-		UIImageView imageView;
+            SelectedBackgroundView = new UIView{BackgroundColor = UIColor.Green};
 
-		[Export ("initWithFrame:")]
-		public AnimalCell (System.Drawing.RectangleF frame) : base (frame)
-		{
-			BackgroundView = new UIView{BackgroundColor = UIColor.Orange};
+            ContentView.Layer.BorderColor = UIColor.LightGray.CGColor;
+            ContentView.Layer.BorderWidth = 2.0f;
+            ContentView.BackgroundColor = UIColor.White;
+            ContentView.Transform = CGAffineTransform.MakeScale (0.8f, 0.8f);
 
-			SelectedBackgroundView = new UIView{BackgroundColor = UIColor.Green};
+            imageView = new UIImageView (UIImage.FromBundle ("placeholder.png"));
+            imageView.Center = ContentView.Center;
+            imageView.Transform = CGAffineTransform.MakeScale (0.7f, 0.7f);
 
-			ContentView.Layer.BorderColor = UIColor.LightGray.CGColor;
-			ContentView.Layer.BorderWidth = 2.0f;
-			ContentView.BackgroundColor = UIColor.White;
-			ContentView.Transform = CGAffineTransform.MakeScale (0.8f, 0.8f);
+            ContentView.AddSubview (imageView);
+        }
 
-			imageView = new UIImageView (UIImage.FromBundle ("placeholder.png"));
-			imageView.Center = ContentView.Center;
-			imageView.Transform = CGAffineTransform.MakeScale (0.7f, 0.7f);
+        public UIImage Image {
+            set {
+                imageView.Image = value;
+            }
+        }
+    }
 
-			ContentView.AddSubview (imageView);
-		}
+    public class Header : UICollectionReusableView
+    {
+        UILabel label;
 
-		public UIImage Image {
-			set {
-				imageView.Image = value;
-			}
-		}
-	}
+        public string Text {
+            get {
+                return label.Text;
+            }
+            set {
+                label.Text = value;
+                SetNeedsDisplay ();
+            }
+        }
 
-	public class Header : UICollectionReusableView
-	{
-		UILabel label;
-
-		public string Text {
-			get {
-				return label.Text;
-			}
-			set {
-				label.Text = value;
-				SetNeedsDisplay ();
-			}
-		}
-
-		[Export ("initWithFrame:")]
-		public Header (System.Drawing.RectangleF frame) : base (frame)
-		{
-			label = new UILabel (){Frame = frame, BackgroundColor = UIColor.White};
-			AddSubview (label);
-		}
-	}
-	
+        [Export ("initWithFrame:")]
+        public Header (System.Drawing.RectangleF frame) : base (frame)
+        {
+            label = new UILabel (){Frame = frame, BackgroundColor = UIColor.Yellow};
+            AddSubview (label);
+        }
+    }
+    
 }
 

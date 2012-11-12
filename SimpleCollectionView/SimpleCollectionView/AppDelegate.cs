@@ -4,54 +4,51 @@ using System.Linq;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using System.Drawing;
 
 namespace SimpleCollectionView
 {
-	// The UIApplicationDelegate for the application. This class is responsible for launching the 
-	// User Interface of the application, as well as listening (and optionally responding) to 
-	// application events from iOS.
-	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
-		// class-level declarations
-		UIWindow window;
-		UIViewController simpleCollectionViewController;
+    [Register ("AppDelegate")]
+    public partial class AppDelegate : UIApplicationDelegate
+    {
+        // class-level declarations
+        UIWindow window;
+        UICollectionViewController simpleCollectionViewController;
+        CircleLayout circleLayout;
+        LineLayout lineLayout;
+        UICollectionViewFlowLayout flowLayout;
 
-		//
-		// This method is invoked when the application has loaded and is ready to run. In this 
-		// method you should instantiate the window, load the UI into it and then make the window
-		// visible.
-		//
-		// You have 17 seconds to return from this method, or iOS will terminate your application.
-		//
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-		{
-			// create a new window instance based on the screen size
-			window = new UIWindow (UIScreen.MainScreen.Bounds);
+        public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+        {
+            window = new UIWindow (UIScreen.MainScreen.Bounds);
 
-			// use UICollectionViewFlowLayout
-			var layout = new UICollectionViewFlowLayout (){
-				HeaderReferenceSize = new System.Drawing.SizeF (50, 50),
-				SectionInset = new UIEdgeInsets (20,0,0,0)
-			};
+            // Flow Layout
+            flowLayout = new UICollectionViewFlowLayout (){
+                HeaderReferenceSize = new System.Drawing.SizeF (100, 100),
+                SectionInset = new UIEdgeInsets (20,20,20,20),
+                ScrollDirection = UICollectionViewScrollDirection.Vertical
+            };
 
-			// use CircleLayout
-//			var layout = new CircleLayout ();
+            // Line Layout
+            lineLayout = new LineLayout (){
+                HeaderReferenceSize = new System.Drawing.SizeF (160, 100),
+                ScrollDirection = UICollectionViewScrollDirection.Horizontal
+            };
 
-			// use LineLayout
-//			var layout = new LineLayout (){
-//				HeaderReferenceSize = new System.Drawing.SizeF (250, 50)
-//			};
-		
-			simpleCollectionViewController = new SimpleCollectionViewController (layout);
+            // Circle Layout
+            circleLayout = new CircleLayout ();
 
-			window.RootViewController = simpleCollectionViewController;
+            simpleCollectionViewController = new SimpleCollectionViewController (flowLayout);
+//            simpleCollectionViewController = new SimpleCollectionViewController (lineLayout);
+//            simpleCollectionViewController = new SimpleCollectionViewController (circleLayout);
 
-			// make the window visible
-			window.MakeKeyAndVisible ();
-			
-			return true;
-		}
-	}
+            simpleCollectionViewController.CollectionView.ContentInset = new UIEdgeInsets (50, 0, 0, 0);
+
+            window.RootViewController = simpleCollectionViewController;
+            window.MakeKeyAndVisible ();
+            
+            return true;
+        }
+    }
 }
 

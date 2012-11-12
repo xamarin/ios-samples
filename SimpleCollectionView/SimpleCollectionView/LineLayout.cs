@@ -17,7 +17,7 @@ namespace SimpleCollectionView
 		{	
 			ItemSize = new SizeF (ITEM_SIZE, ITEM_SIZE);
 			ScrollDirection = UICollectionViewScrollDirection.Horizontal;
-			SectionInset = new UIEdgeInsets (200, 0.0f, 200, 0.0f);
+			SectionInset = new UIEdgeInsets (220, 0.0f, 200, 0.0f);
 			MinimumLineSpacing = 50.0f;		
 		}
 
