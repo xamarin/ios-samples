@@ -2,6 +2,7 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.CoreImage;
+using MonoTouch.ObjCRuntime;
 
 using System.Collections.Generic;
 using MonoTouch.Dialog;
@@ -373,14 +374,20 @@ namespace coreimage
 					if(!Directory.Exists(directory))
 						Directory.CreateDirectory(directory);
 					
-					if(File.Exists(fileName))
-						File.Delete(fileName);
+					if (Runtime.Arch == Arch.SIMULATOR) {
+						if(File.Exists(fileName))
+							File.Delete(fileName);
 					
-					image.AsPNG().Save(fileName, NSDataWritingOptions.FileProtectionNone, out err);
+						image.AsPNG().Save(fileName, NSDataWritingOptions.FileProtectionNone, out err);
 					
-					if(err != null)
-						Console.WriteLine("Could not write image File. " + Environment.NewLine + err.LocalizedDescription);
+						if(err != null)
+							Console.WriteLine("Could not write image File. " + Environment.NewLine + err.LocalizedDescription);
+					}
 				}
+
+				if (Runtime.Arch == Arch.DEVICE)
+					Console.WriteLine ("File cannnot be updated on device (only on the simulator)");
+
 				text.Text = "Done";	
 			};
 			
