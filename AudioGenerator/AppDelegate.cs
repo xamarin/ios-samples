@@ -12,6 +12,7 @@ namespace tone
 	unsafe public partial class AppDelegate : UIApplicationDelegate {
 		double sampleRate;
 		const int numBuffers = 3;
+		bool alternate;
 
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
