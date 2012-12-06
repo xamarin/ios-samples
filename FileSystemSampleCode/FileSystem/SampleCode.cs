@@ -60,13 +60,13 @@ namespace FileSystem
 			display.Text = "";
 
 			// Sample code from the article (doesn't output any values)
-			using (TextReader reader = new StreamReader("TestData/test.xml")) {
+			using (TextReader reader = new StreamReader("TestData/Test.xml")) {
 				XmlSerializer serializer = new XmlSerializer(typeof(TestXml));
 				var xml = (TestXml)serializer.Deserialize(reader);
 			}
 
 			// Output to app UITextView
-			using (TextReader reader = new StreamReader("TestData/test.xml")) {
+			using (TextReader reader = new StreamReader("TestData/Test.xml")) {
 				XmlSerializer serializer = new XmlSerializer(typeof(TestXml));
 				var xml = (TestXml)serializer.Deserialize(reader);
 
