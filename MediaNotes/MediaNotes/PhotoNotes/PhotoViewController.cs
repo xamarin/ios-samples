@@ -57,6 +57,7 @@ namespace MediaNotes
 			photoImageView = null;
 			toolbar = null;
 			syncIsNeeded = true;
+			base.DidReceiveMemoryWarning ();
 		}
 				
 		public override void ViewDidLoad ()
