@@ -208,19 +208,21 @@ namespace AudioQueueOfflineRenderDemo
 					dstFormat.BytesPerPacket = 2 * dstFormat.ChannelsPerFrame;
 					dstFormat.BytesPerFrame = dstFormat.BytesPerPacket;
 					dstFormat.FramesPerPacket = 1;
-					
+
 					using (var captureFile = ExtAudioFile.CreateWithUrl (destinationUrl, AudioFileType.CAF, dstFormat, AudioFileFlags.EraseFlags)) {
 						captureFile.ClientDataFormat = captureFormat;
 						
 						int captureBufferSize = bufferSize / 2;
-						var captureABL = new AudioBufferList (1);
+						var captureABL = new AudioBuffers (1);
 						
 						AudioQueueBuffer *captureBuffer;
 						queue.AllocateBuffer (captureBufferSize, out captureBuffer);
 						
-						captureABL.Buffers [0].Data = captureBuffer->AudioData;
-						captureABL.Buffers [0].NumberChannels = captureFormat.ChannelsPerFrame;
-						
+						captureABL[0] = new AudioBuffer () {
+							Data = captureBuffer->AudioData,
+							NumberChannels = captureFormat.ChannelsPerFrame
+						};
+
 						queue.Start ();
 						
 						double ts = 0;
@@ -232,15 +234,14 @@ namespace AudioQueueOfflineRenderDemo
 							int reqFrames = captureBufferSize / captureFormat.BytesPerFrame;
 							
 							queue.RenderOffline (ts, captureBuffer, reqFrames);
-							
-							captureABL.Buffers [0].Data = captureBuffer->AudioData;
-							captureABL.Buffers [0].DataByteSize = (int) captureBuffer->AudioDataByteSize;
-							int writeFrames = captureABL.Buffers [0].DataByteSize / captureFormat.BytesPerFrame;
+
+							captureABL.SetData (0, captureBuffer->AudioData, (int) captureBuffer->AudioDataByteSize);
+							var writeFrames = captureABL[0].DataByteSize / captureFormat.BytesPerFrame;
 							
 							// Console.WriteLine ("ts: {0} AudioQueueOfflineRender: req {1} frames / {2} bytes, got {3} frames / {4} bytes", 
 							//	ts, reqFrames, captureBufferSize, writeFrames, captureABL.Buffers [0].DataByteSize);
 							
-							captureFile.WriteAsync (writeFrames, captureABL);
+							captureFile.WriteAsync ((uint) writeFrames, captureABL);
 							
 							if (flushed)
 								break;
