@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AUSoundTriggeredPlayingSoundMemoryBased", "AUSoundTriggeredPlayingSoundMemoryBased.csproj", "{FEAD8552-5EA3-45C8-8DBE-BBA24397671F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEAD8552-5EA3-45C8-8DBE-BBA24397671F}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FEAD8552-5EA3-45C8-8DBE-BBA24397671F}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FEAD8552-5EA3-45C8-8DBE-BBA24397671F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FEAD8552-5EA3-45C8-8DBE-BBA24397671F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FEAD8552-5EA3-45C8-8DBE-BBA24397671F}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FEAD8552-5EA3-45C8-8DBE-BBA24397671F}.Release|iPhone.Build.0 = Release|iPhone
+		{FEAD8552-5EA3-45C8-8DBE-BBA24397671F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FEAD8552-5EA3-45C8-8DBE-BBA24397671F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = AUSoundTriggeredPlayingSoundMemoryBased.csproj
+	EndGlobalSection
+EndGlobal
