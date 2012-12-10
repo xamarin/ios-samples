@@ -137,7 +137,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 			// getting total frame
 			_totalFrames = _extAudioFile.FileLengthFrames;
 
-			// Aloocating AudoBufferList
+			// Allocating AudioBufferList
 			_buffer = new AudioBuffers (_srcFormat.ChannelsPerFrame);
 			for (int i = 0; i < _buffer.Count; ++i) {
 				int size = (int)(sizeof(uint) * _totalFrames);
