@@ -59,9 +59,13 @@ namespace avcaptureframes
 			
 			// create a device input and attach it to the session
 			var captureDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Video);
+			if (captureDevice == null){
+				Console.WriteLine ("No captureDevice - this won't work on the simulator, try a physical device");
+				return false;
+			}
 			var input = AVCaptureDeviceInput.FromDevice (captureDevice);
 			if (input == null){
-				Console.WriteLine ("No input device");
+				Console.WriteLine ("No input - this won't work on the simulator, try a physical device");
 				return false;
 			}
 			session.AddInput (input);
