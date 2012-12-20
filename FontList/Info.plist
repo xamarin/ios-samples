@@ -5,14 +5,16 @@
 	<key>CFBundleDisplayName</key>
 	<string>FontExample</string>
 	<key>CFBundleIconFiles</key>
-	<array>
-		<string>Resources/57_icon.png</string>
-		<string>Resources/114_icon.png</string>
-		<string>Resources/72_icon.png</string>
-		<string>Resources/29_icon.png</string>
-		<string>Resources/58_icon.png</string>
-		<string>Resources/50_icon.png</string>
-	</array>
+    <array>
+        <string>Resources/icon-57.png</string>
+        <string>Resources/icon-114.png</string>
+        <string>Resources/icon-72.png</string>
+        <string>Resources/icon-144.png</string>
+        <string>Resources/icon-29.png</string>
+        <string>Resources/icon-58.png</string>
+        <string>Resources/icon-50.png</string>
+        <string>Resources/icon-100.png</string>
+    </array>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.samples.fontlist</string>
 	<key>CFBundleVersion</key>

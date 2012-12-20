@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Keychain", "Keychain.csproj", "{C9712ECD-9A4F-4DDE-A439-D7C2897203FD}"
 EndProject
 Global
@@ -21,6 +21,6 @@ Global
 		{C9712ECD-9A4F-4DDE-A439-D7C2897203FD}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Keychain\Keychain.csproj
+		StartupItem = Keychain.csproj
 	EndGlobalSection
 EndGlobal

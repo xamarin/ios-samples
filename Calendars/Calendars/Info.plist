@@ -15,17 +15,17 @@
 	</array>
 	<key>CFBundleDisplayName</key>
 	<string>Calendars</string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>Resources/57_icon.png</string>
-		<string>Resources/114_icon.png</string>
-		<string>Resources/72_icon.png</string>
-		<string>Resources/144_icon.png</string>
-		<string>Resources/29_icon.png</string>
-		<string>Resources/58_icon.png</string>
-		<string>Resources/50_icon.png</string>
-		<string>Resources/100_icon.png</string>
-	</array>
+ 	<key>CFBundleIconFiles</key>
+    	<array>
+        	<string>Resources/icon-57.png</string>
+        	<string>Resources/icon-114.png</string>
+        	<string>Resources/icon-72.png</string>
+        	<string>Resources/icon-144.png</string>
+        	<string>Resources/icon-29.png</string>
+        	<string>Resources/icon-58.png</string>
+        	<string>Resources/icon-50.png</string>
+        	<string>Resources/icon-100.png</string>
+    	</array>
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
 </dict>

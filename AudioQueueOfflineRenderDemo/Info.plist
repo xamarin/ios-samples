@@ -5,15 +5,16 @@
 	<key>CFBundleDisplayName</key>
 	<string>Audio Queue Offline Render Demo</string>
 	<key>CFBundleIconFiles</key>
-	<array>
-		<string>icons/57_icon.png</string>
-		<string>icons/114_icon.png</string>
-		<string>icons/72_icon.png</string>
-		<string>icons/144_icon.png</string>
-		<string>icons/29_icon.png</string>
-		<string>icons/58_icon.png</string>
-		<string>icons/50_icon.png</string>
-	</array>
+    	<array>
+        	<string>Resources/icon-57.png</string>
+        	<string>Resources/icon-114.png</string>
+        	<string>Resources/icon-72.png</string>
+        	<string>Resources/icon-144.png</string>
+        	<string>Resources/icon-29.png</string>
+        	<string>Resources/icon-58.png</string>
+        	<string>Resources/icon-50.png</string>
+        	<string>Resources/icon-100.png</string>
+    	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.audioqueueofflinerenderdemo</string>
 	<key>CFBundleVersion</key>

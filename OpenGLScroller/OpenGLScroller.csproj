@@ -105,20 +105,32 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Screenshots\" />
-    <Folder Include="Icons\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Screenshots\Screen Shot 2012-09-10 at 10.49.56 AM.png" />
     <Content Include="Screenshots\Screen Shot 2012-09-10 at 10.50.22 AM.png" />
     <Content Include="Screenshots\Screen Shot 2012-09-10 at 10.50.37 AM.png" />
-    <Content Include="Default.png" />
-    <Content Include="Icons\29_icon.png" />
-    <Content Include="Icons\50_icon.png" />
-    <Content Include="Icons\57_icon.png" />
-    <Content Include="Icons\58_icon.png" />
-    <Content Include="Icons\72_icon.png" />
-    <Content Include="Icons\100_icon.png" />
-    <Content Include="Icons\114_icon.png" />
-    <Content Include="Icons\144_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\Default-Landscape%402x~ipad.png" />
+    <BundleResource Include="Resources\Default-Landscape~ipad.png" />
+    <BundleResource Include="Resources\Default-Portrait%402x~ipad.png" />
+    <BundleResource Include="Resources\Default-Portrait~ipad.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\iTunesArtwork%402x.png" />
+    <BundleResource Include="Resources\icon-100.png" />
+    <BundleResource Include="Resources\icon-114.png" />
+    <BundleResource Include="Resources\icon-144.png" />
+    <BundleResource Include="Resources\icon-29.png" />
+    <BundleResource Include="Resources\icon-50.png" />
+    <BundleResource Include="Resources\icon-57.png" />
+    <BundleResource Include="Resources\icon-58.png" />
+    <BundleResource Include="Resources\icon-72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="Resources\iTunesArtwork.png" />
   </ItemGroup>
 </Project>

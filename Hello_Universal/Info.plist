@@ -4,16 +4,17 @@
 <dict>
 	<key>CFBundleDisplayName</key>
 	<string>Universal!</string>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>Images/Icons/57_icon.png</string>
-		<string>Images/Icons/114_icon.png</string>
-		<string>Images/Icons/72_icon.png</string>
-		<string>Images/Icons/29_icon.png</string>
-		<string>Images/Icons/58_icon.png</string>
-		<string>Images/Icons/50_icon.png</string>
-		<string>Images/Icons/512_icon.png</string>
-	</array>
+	 <key>CFBundleIconFiles</key>
+    <array>
+        <string>Resources/icon-57.png</string>
+        <string>Resources/icon-114.png</string>
+        <string>Resources/icon-72.png</string>
+        <string>Resources/icon-144.png</string>
+        <string>Resources/icon-29.png</string>
+        <string>Resources/icon-58.png</string>
+        <string>Resources/icon-50.png</string>
+        <string>Resources/icon-100.png</string>
+    </array>
 	<key>UIDeviceFamily</key>
 	<array>
 		<string>1</string>

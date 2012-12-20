@@ -44,7 +44,7 @@ namespace Example_Drawing.Screens.iPad.Layers
 				// create the layer
 				using (CGLayer starLayer = CGLayer.Create (context, rect.Size)) {
 					// set fill to blue
-					starLayer.Context.SetRGBFillColor (0f, 0f, 1f, 1f);
+					starLayer.Context.SetFillColor (0f, 0f, 1f, 1f);
 					starLayer.Context.AddLines (myStarPoints);
 					starLayer.Context.FillPath ();
 

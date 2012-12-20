@@ -4,10 +4,14 @@
 <dict>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Images/Icon.png</string>
-		<string>Images/Icon@2x.png</string>
-		<string>Images/Image29.png</string>
-		<string>Images/Image58.png</string>
+        	<string>Resources/icon-57.png</string>
+        	<string>Resources/icon-114.png</string>
+        	<string>Resources/icon-72.png</string>
+        	<string>Resources/icon-144.png</string>
+        	<string>Resources/icon-29.png</string>
+        	<string>Resources/icon-58.png</string>
+        	<string>Resources/icon-50.png</string>
+        	<string>Resources/icon-100.png</string>
 	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>

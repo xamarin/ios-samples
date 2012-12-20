@@ -5,15 +5,16 @@
 	<key>CFBundleDisplayName</key>
 	<string>Content Ctrls</string>
 	<key>CFBundleIconFiles</key>
-	<array>
-		<string>Images/Icon/57_icon.png</string>
-		<string>Images/Icon/114_icon.png</string>
-		<string>Images/Icon/72_icon.png</string>
-		<string>Images/Icon/29_icon.png</string>
-		<string>Images/Icon/58_icon.png</string>
-		<string>Images/Icon/50_icon.png</string>
-		<string>Images/Icon/512_icon.png</string>
-	</array>
+    	<array>
+        	<string>Resources/icon-57.png</string>
+        	<string>Resources/icon-114.png</string>
+        	<string>Resources/icon-72.png</string>
+        	<string>Resources/icon-144.png</string>
+        	<string>Resources/icon-29.png</string>
+        	<string>Resources/icon-58.png</string>
+        	<string>Resources/icon-50.png</string>
+        	<string>Resources/icon-100.png</string>
+    	</array>
 	<key>MinimumOSVersion</key>
 	<string>3.0</string>
 	<key>UIDeviceFamily</key>

@@ -3,16 +3,16 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIconFiles</key>
-	<array>
-		<string>Images/57_icon.png</string>
-		<string>Images/114_icon.png</string>
-		<string>Images/72_icon.png</string>
-		<string>Images/144_icon.png</string>
-		<string>Images/29_icon.png</string>
-		<string>Images/58_icon.png</string>
-		<string>Images/50_icon.png</string>
-		<string>Images/100_icon.png</string>
-	</array>
+    	<array>
+        	<string>Resources/icon-57.png</string>
+        	<string>Resources/icon-114.png</string>
+        	<string>Resources/icon-72.png</string>
+        	<string>Resources/icon-144.png</string>
+        	<string>Resources/icon-29.png</string>
+        	<string>Resources/icon-58.png</string>
+        	<string>Resources/icon-50.png</string>
+        	<string>Resources/icon-100.png</string>
+    	</array>
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
 	<key>UIDeviceFamily</key>

@@ -62,7 +62,7 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 		// the pattern base.
 		protected void DrawPolkaDotPattern (CGContext context)
 		{
-			context.SetRGBFillColor (.3f, .3f, .3f, 1);
+			context.SetFillColor (.3f, .3f, .3f, 1);
 			context.FillEllipseInRect (new RectangleF (4, 4, 8, 8));
 		}
 
@@ -85,7 +85,7 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 				context.AddLineToPoint (radius * (float)Math.Sin (i * theta), radius * (float)Math.Cos (i * theta));
 			}
 			// fill our star as dark gray
-			context.SetRGBFillColor (.3f, .3f, .3f, 1);
+			context.SetFillColor (.3f, .3f, .3f, 1);
 			context.ClosePath ();
 			context.FillPath ();
 		}

@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "monocatalog", "monocatalog.csproj", "{B757F754-E31A-4EBD-BDBD-0B86875D78DB}"
 EndProject
 Global
@@ -27,7 +27,6 @@ Global
 		$1.FileWidth = 120
 		$1.TabWidth = 4
 		$1.NoTabsAfterNonTabs = True
-		$1.RemoveTrailingWhitespace = True
 		$1.inheritsSet = Mono
 		$1.inheritsScope = text/plain
 		$1.scope = text/plain

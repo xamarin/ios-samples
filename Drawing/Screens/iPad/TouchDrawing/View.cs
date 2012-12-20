@@ -32,7 +32,7 @@ namespace Example_Drawing.Screens.iPad.TouchDrawing
 				
 				// loop through each spot and draw it
 				foreach (Spot spot in touchSpots) {
-					context.SetRGBFillColor (spot.Red, spot.Green, spot.Blue, spot.Alpha);
+					context.SetFillColor (spot.Red, spot.Green, spot.Blue, spot.Alpha);
 					context.FillEllipseInRect (new RectangleF (spot.Point, spotSize));
 				}
 			}

@@ -113,7 +113,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 
 				// actually draw the path
 				context.AddPath (animationPath);
-				context.SetStrokeColorWithColor (UIColor.LightGray.CGColor);
+				context.SetStrokeColor (UIColor.LightGray.CGColor);
 				context.SetLineWidth (3);
 				context.StrokePath ();
 				

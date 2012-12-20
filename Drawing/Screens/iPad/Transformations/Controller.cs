@@ -70,7 +70,7 @@ namespace Example_Drawing.Screens.iPad.Transformations
 				context.SaveState ();
 				
 				// draw our circle
-				context.SetRGBFillColor (1, 0, 0, 1);
+				context.SetFillColor (1, 0, 0, 1);
 				context.TranslateCTM (currentLocation.X, currentLocation.Y);
 				context.RotateCTM (currentRotation);
 				context.ScaleCTM (currentScale, currentScale);

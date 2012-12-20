@@ -170,7 +170,7 @@ namespace avTouch
 						ctx.FillRect (lightRect);
 					} else if (lightIntensity > 0){
 						using (var clr = new CGColor (lightColor.CGColor, lightIntensity)){
-							ctx.SetFillColorWithColor (clr); 
+							ctx.SetFillColor (clr); 
 							ctx.FillRect (lightRect); 
 						}						
 					}

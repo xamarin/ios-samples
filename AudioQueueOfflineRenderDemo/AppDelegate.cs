@@ -213,7 +213,7 @@ namespace AudioQueueOfflineRenderDemo
 						captureFile.ClientDataFormat = captureFormat;
 						
 						int captureBufferSize = bufferSize / 2;
-						var captureABL = new AudioBuffers (1);
+						AudioBuffers captureABL = new AudioBuffers (1);
 						
 						AudioQueueBuffer *captureBuffer;
 						queue.AllocateBuffer (captureBufferSize, out captureBuffer);

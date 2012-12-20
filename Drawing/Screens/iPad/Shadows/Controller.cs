@@ -39,7 +39,7 @@ namespace Example_Drawing.Screens.iPad.Shadows
 				// 2) set shadow context for offset and blur
 				context.SetShadow (new SizeF (10, -10), 15);
 				// 3) perform your drawing operation
-				context.SetRGBFillColor (.3f, .3f, .9f, 1);
+				context.SetFillColor (.3f, .3f, .9f, 1);
 				context.FillRect (new RectangleF (100, 600, 300, 250));
 				// 4) restore the graphics state
 				context.RestoreState ();

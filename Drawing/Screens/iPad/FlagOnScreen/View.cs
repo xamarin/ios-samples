@@ -75,7 +75,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 			context.SaveState ();
 			// note: when drawing on-screen,the coord space for shadows doesn't get modified
 			context.SetShadow (new SizeF (15, 15), 7);
-			context.SetRGBFillColor (1, 1, 1, 1);
+			context.SetFillColor (1, 1, 1, 1);
 			context.FillRect (new RectangleF (flagOrigin.X, flagOrigin.Y, flagWidth, flagHeight));
 			context.RestoreState ();
 			
@@ -84,7 +84,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 				
 				// set red as the fill color
 				// this works
-				stripeLayer.Context.SetRGBFillColor (1f, 0f, 0f, 1f);
+				stripeLayer.Context.SetFillColor (1f, 0f, 0f, 1f);
 				// but this doesn't ????
 				//stripeLayer.Context.SetFillColor (new float[] { 1f, 0f, 0f, 1f });
 				// fill the stripe
@@ -105,7 +105,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 			// draw the star field
 			//BUGBUG: apple bug - this only works on on-screen CGContext and CGLayer
 			//context.SetFillColor (new float[] { 0f, 0f, 0.329f, 1.0f });
-			context.SetRGBFillColor (0f, 0f, 0.329f, 1.0f);
+			context.SetFillColor (0f, 0f, 0.329f, 1.0f);
 			context.FillRect (starField);
 			
 			// create the star layer
@@ -187,7 +187,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 			for (int i = 1; i < 5; i++) {
 				context.AddLineToPoint (radius * (float)Math.Sin (i * theta), radius * (float)Math.Cos (i * theta));
 			}
-			context.SetRGBFillColor (1, 1, 1, 1);
+			context.SetFillColor (1, 1, 1, 1);
 			context.ClosePath ();
 			context.FillPath ();
 		}

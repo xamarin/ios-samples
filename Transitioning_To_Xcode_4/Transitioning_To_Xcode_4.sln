@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transitioning_To_Xcode_4", "Transitioning_To_Xcode_4.csproj", "{7CC074CC-6520-4693-8670-CD533BCFD195}"
 EndProject
 Global
@@ -21,6 +21,6 @@ Global
 		{7CC074CC-6520-4693-8670-CD533BCFD195}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Transitioning_To_Xcode_4\Transitioning_To_Xcode_4.csproj
+		StartupItem = Transitioning_To_Xcode_4.csproj
 	EndGlobalSection
 EndGlobal
