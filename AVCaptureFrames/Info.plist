@@ -21,7 +21,8 @@
 	<string>MainWindow</string>
 	<key>UIDeviceFamily</key>
 	<array>
-		<string>1</string>
+		<integer>1</integer>
+		<integer>2</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -30,5 +31,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.avcaptureframes</string>
 </dict>
 </plist>

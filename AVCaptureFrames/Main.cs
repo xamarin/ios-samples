@@ -31,18 +31,22 @@ namespace avcaptureframes
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		public static UIImageView ImageView;
+		UIViewController vc;
 		AVCaptureSession session;
 		OutputRecorder outputRecorder;
 		DispatchQueue queue;
 		
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
+			ImageView = new UIImageView (new RectangleF (20, 20, 280, 280));
+
+			vc = new UIViewController ();
+			vc.View = ImageView;
+			window.RootViewController = vc;
+
 			window.MakeKeyAndVisible ();
 			window.BackgroundColor = UIColor.Black;
-			
-			ImageView = new UIImageView (new RectangleF (20, 20, 280, 280));
-			window.AddSubview (ImageView);				
-			
+
 			if (!SetupCaptureSession ())
 				window.AddSubview (new UILabel (new RectangleF (20, 20, 200, 60)) { Text = "No input device" });
 			
@@ -81,7 +85,7 @@ namespace avcaptureframes
 			// configure the output
 			queue = new MonoTouch.CoreFoundation.DispatchQueue ("myQueue");
 			outputRecorder = new OutputRecorder ();
-			output.SetSampleBufferDelegateAndQueue (outputRecorder, queue);
+			output.SetSampleBufferDelegate (outputRecorder, queue);
 			session.AddOutput (output);
 			
 			session.StartRunning ();
