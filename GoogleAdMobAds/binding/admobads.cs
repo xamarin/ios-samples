@@ -129,6 +129,7 @@ namespace GoogleAdMobAds
 		void AdViewDidDismissScreen (GADBannerView adView);
 		
 		///<summary>Indicates that application has been sent to the background due to application user input in the <see cref="T:GoogleAdMobAds.GADBannerView"/>.</summary>
+		///<param name="adView">The <see cref="T:GoogleAdMobAds.GADBannerView" associated with the event./>
 		//- (void)adViewWillLeaveApplication:(GADBannerView *)adView;
 		[Export ("adViewWillLeaveApplication:")]
 		void adViewWillLeaveApplication (GADBannerView adView);
@@ -173,7 +174,7 @@ namespace GoogleAdMobAds
 		[Export ("delegate", ArgumentSemantic.Assign), NullAllowed]
 		NSObject WeakDelegate { get; set; }
 		
-		///<summary>#tk check# Requests an interstitial ad.</summary>
+		///<summary>Requests an interstitial ad.</summary>
 		///<param name="request">A <see cref="T:GoogleAdMobAds.GADRequest"/> that can be customized with demographic data or flagged as a test request.</param>
 		///<remarks>
 		///<para>
@@ -208,7 +209,14 @@ namespace GoogleAdMobAds
 		[Export ("isReady")]
 		bool IsReady { get; }
 		
-		///<summary>Presents an <see cref="P:GoogleAdMobAds.GADInterstitial.IsReady"/> <see cref="T:GoogleAdMobAds.GADInterstitial"/>.</summary>
+		///<summary>Presents a <see cref="T:GoogleAdMobAds.GADInterstitial"/>.</summary>
+		///<remarks>
+		///<para>
+		///The application developer must not call this prior to the 
+		///<see cref="M:GoogleAdMobAds.GADInterstitialDelegate.interstitialDidReceiveAd"/> method having been called. Also, the 
+		///<see cref="P:GoogleAdMobAds.GADInterstitial.IsReady"/> property must be <see langword="true"/> #tk check#
+		///</xpara>
+		///</remarks>
 		//- (void)presentFromRootViewController:(UIViewController *)rootViewController;
 		[Export ("presentFromRootViewController:")]
 		void PresentFromRootViewController (UIViewController rootViewController);
@@ -222,32 +230,39 @@ namespace GoogleAdMobAds
 	{
 		///<summary>Subsequent to <see cref="M:GoogleAdMobAds.GADInterstitial.LoadRequest"/> indicates that the 
 		///<see cref="T:GoogleAdMobAds.GADInterstitial"/> received a new ad.</summary>
+		///<param name="ad">The <see cref="T:GoogleAdMobAds.GADInterstitial"/> associated with this event.</param>
 		//- (void)interstitialDidReceiveAd:(GADInterstitial *)ad;
 		[Export ("interstitialDidReceiveAd:")]
 		void interstitialDidReceiveAd (GADInterstitial ad);
 
 		///<summary>Subsequent to <see cref="M:GoogleAdMobAds.GADInterstitial.LoadRequest"/> indicates that the 
 		///<see cref="T:GoogleAdMobAds.GADInterstitial"/> failed to receive a new ad.</summary>
+		///<param name="ad">The <see cref="T:GoogleAdMobAds.GADInterstitial"/> associated with this event.</param>
+		///<param name="error">A <see cref="T:GoogleAdMobAds.GADRequestError"/> describing the specific failure.</param>
 		//- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error;
 		[Export ("interstitial:didFailToReceiveAdWithError:")]
 		void Interstitial (GADInterstitial ad, GADRequestError error);
 	
-		///<summary>Indicates that the <see cref="T:GoogleAdMobAds.GADInterstitial"/> is about to present a full-screen ad.</summary>
+		///<summary>Indicates that the <see cref="T:GoogleAdMobAds.GADInterstitial"/> is about to present an interstitial ad.</summary>
+		///<param name="ad">The <see cref="T:GoogleAdMobAds.GADInterstitial"/> associated with this event.</param>
 		//- (void)interstitialWillPresentScreen:(GADInterstitial *)ad;
 		[Export ("interstitialWillPresentScreen:")]
 		void InterstitialWillPresentScreen (GADInterstitial ad);
 	
-		///<summary>Indicates that the application user has asked to dismiss the full-screen ad.</summary>
+		///<summary>Indicates that the application user has asked to dismiss the interstitial ad.</summary>
+		///<param name="ad">The <see cref="T:GoogleAdMobAds.GADInterstitial"/> associated with this event.</param>
 		//- (void)interstitialWillDismissScreen:(GADInterstitial *)ad;
 		[Export ("interstitialWillDismissScreen:")]
 		void InterstitialWillDismissScreen (GADInterstitial ad);
 		
-		///<summary>Indicates that the full-screen ad has been dismissed.</summary>
+		///<summary>Indicates that the interstitial ad has been dismissed.</summary>
+		///<param name="ad">The <see cref="T:GoogleAdMobAds.GADInterstitial"/> associated with this event.</param>
 		//- (void)interstitialDidDismissScreen:(GADInterstitial *)ad;
 		[Export ("interstitialDidDismissScreen:")]
 		void InterstitialDidDismissScreen (GADInterstitial ad);
 	
-		///<summary>Indicates that application has been sent to the background due to application user input in the <see cref="T:GoogleAdMobAds.GADInterstitial"/>.</summary>
+		///<summary>Indicates that application has been sent to the background due to the presentation of a <see cref="T:GoogleAdMobAds.GADInterstitial"/>.</summary>
+		///<param name="ad">The <see cref="T:GoogleAdMobAds.GADInterstitial"/> associated with this event.</param>
 		//- (void)interstitialWillLeaveApplication:(GADInterstitial *)ad;
 		[Export ("interstitialWillLeaveApplication:")]
 		void InterstitialWillLeaveApplication (GADInterstitial ad);
