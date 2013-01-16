@@ -1,0 +1,59 @@
+<Type Name="GADGender" FullName="GoogleAdMobAds.GADGender">
+  <TypeSignature Language="C#" Value="public enum GADGender" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed GADGender extends System.Enum" />
+  <AssemblyInfo>
+    <AssemblyName>GoogleAdMobAds</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="kGADGenderFemale">
+      <MemberSignature Language="C#" Value="kGADGenderFemale" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype GoogleAdMobAds.GADGender kGADGenderFemale = int32(2)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>GoogleAdMobAds.GADGender</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="kGADGenderMale">
+      <MemberSignature Language="C#" Value="kGADGenderMale" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype GoogleAdMobAds.GADGender kGADGenderMale = int32(1)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>GoogleAdMobAds.GADGender</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="kGADGenderUnknown">
+      <MemberSignature Language="C#" Value="kGADGenderUnknown" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype GoogleAdMobAds.GADGender kGADGenderUnknown = int32(0)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>GoogleAdMobAds.GADGender</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

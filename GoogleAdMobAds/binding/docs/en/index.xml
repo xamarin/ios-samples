@@ -1,0 +1,32 @@
+<Overview>
+  <Assemblies>
+    <Assembly Name="GoogleAdMobAds" Version="0.0.0.0">
+      <Attributes>
+        <Attribute>
+          <AttributeName>MonoTouch.ObjCRuntime.LinkWith("libGoogleAdMobAds.a", MonoTouch.ObjCRuntime.LinkTarget.Simulator | MonoTouch.ObjCRuntime.LinkTarget.ArmV6 | MonoTouch.ObjCRuntime.LinkTarget.ArmV7, ForceLoad=true, Frameworks="AudioToolbox MessageUI SystemConfiguration")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows=true)</AttributeName>
+        </Attribute>
+      </Attributes>
+    </Assembly>
+  </Assemblies>
+  <Remarks>To be added.</Remarks>
+  <Copyright>To be added.</Copyright>
+  <Types>
+    <Namespace Name="admobads">
+      <Type Name="Messaging" Kind="Class" />
+    </Namespace>
+    <Namespace Name="GoogleAdMobAds">
+      <Type Name="GADBannerView" Kind="Class" />
+      <Type Name="GADBannerViewDelegate" Kind="Class" />
+      <Type Name="GADErrorCode" Kind="Enumeration" />
+      <Type Name="GADGender" Kind="Enumeration" />
+      <Type Name="GADInterstitial" Kind="Class" />
+      <Type Name="GADInterstitialDelegate" Kind="Class" />
+      <Type Name="GADRequest" Kind="Class" />
+      <Type Name="GADRequestError" Kind="Class" />
+    </Namespace>
+  </Types>
+  <Title>GoogleAdMobAds</Title>
+</Overview>

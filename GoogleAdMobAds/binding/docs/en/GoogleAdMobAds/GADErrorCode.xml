@@ -1,0 +1,101 @@
+<Type Name="GADErrorCode" FullName="GoogleAdMobAds.GADErrorCode">
+  <TypeSignature Language="C#" Value="public enum GADErrorCode" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed GADErrorCode extends System.Enum" />
+  <AssemblyInfo>
+    <AssemblyName>GoogleAdMobAds</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="kGADErrorInvalidRequest">
+      <MemberSignature Language="C#" Value="kGADErrorInvalidRequest" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype GoogleAdMobAds.GADErrorCode kGADErrorInvalidRequest = int32(0)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>GoogleAdMobAds.GADErrorCode</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="kGADErrorNetworkError">
+      <MemberSignature Language="C#" Value="kGADErrorNetworkError" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype GoogleAdMobAds.GADErrorCode kGADErrorNetworkError = int32(2)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>GoogleAdMobAds.GADErrorCode</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="kGADErrorNoFill">
+      <MemberSignature Language="C#" Value="kGADErrorNoFill" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype GoogleAdMobAds.GADErrorCode kGADErrorNoFill = int32(1)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>GoogleAdMobAds.GADErrorCode</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="kGADErrorOSVersionTooLow">
+      <MemberSignature Language="C#" Value="kGADErrorOSVersionTooLow" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype GoogleAdMobAds.GADErrorCode kGADErrorOSVersionTooLow = int32(4)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>GoogleAdMobAds.GADErrorCode</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="kGADErrorServerError">
+      <MemberSignature Language="C#" Value="kGADErrorServerError" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype GoogleAdMobAds.GADErrorCode kGADErrorServerError = int32(3)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>GoogleAdMobAds.GADErrorCode</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+    <Member MemberName="kGADErrorTimeout">
+      <MemberSignature Language="C#" Value="kGADErrorTimeout" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal valuetype GoogleAdMobAds.GADErrorCode kGADErrorTimeout = int32(5)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>GoogleAdMobAds.GADErrorCode</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
