@@ -153,9 +153,8 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>	The application developer's AdMob Publisher ID.
-        </summary>
-        <value>To be added.</value>
+        <summary>	The application developer's AdMob Publisher ID.</summary>
+        <value>The application developer's AdMob Publisher ID.</value>
         <remarks>The Publisher ID is a 15-digit hexadecimal string retrieved from the "Sites &amp; Apps" section of the AdMobs account. </remarks>
       </Docs>
     </Member>
@@ -171,7 +170,7 @@
       </ReturnValue>
       <Docs>
         <summary>	The <see cref="T:GoogleAdMobAds.GADBannerViewDelegate"/> delegate with which to handle events relating to this <see cref="T:GoogleAdMobAds.GADBannerView"/>.</summary>
-        <value>To be added.</value>
+        <value>The <see cref="T:GoogleAdMobAds.GADBannerViewDelegate"/> delegate with which to handle events relating to this <see cref="T:GoogleAdMobAds.GADBannerView"/> or <see langword="null"/>.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -205,8 +204,11 @@
         <ReturnType>System.Drawing.SizeF</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>IAB Medium Banner Size.</summary>
         <remarks>To be added.</remarks>
+        <altmember cref="M:GoogleAdMobAds.GADBannerView.GAD_SIZE_320x50"/>
+        <altmember cref="M:GoogleAdMobAds.GADBannerView.GAD_SIZE_468x60"/>
+        <altmember cref="M:GoogleAdMobAds.GADBannerView.GAD_SIZE_728x90"/>
       </Docs>
     </Member>
     <Member MemberName="GAD_SIZE_320x50">
@@ -220,8 +222,11 @@
         <ReturnType>System.Drawing.SizeF</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Standard Banner Size.</summary>
+        <remarks>Intended for both phones and tablets.</remarks>
+        <altmember cref="M:GoogleAdMobAds.GADBannerView.GAD_SIZE_320x250"/>
+        <altmember cref="M:GoogleAdMobAds.GADBannerView.GAD_SIZE_468x60"/>
+        <altmember cref="M:GoogleAdMobAds.GADBannerView.GAD_SIZE_728x90"/>
       </Docs>
     </Member>
     <Member MemberName="GAD_SIZE_468x60">
@@ -235,8 +240,11 @@
         <ReturnType>System.Drawing.SizeF</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>IAB Full-Size Banner.</summary>
+        <remarks>Intended for tablets only.</remarks>
+        <altmember cref="M:GoogleAdMobAds.GADBannerView.GAD_SIZE_320x50"/>
+        <altmember cref="M:GoogleAdMobAds.GADBannerView.GAD_SIZE_320x250"/>
+        <altmember cref="M:GoogleAdMobAds.GADBannerView.GAD_SIZE_728x90"/>
       </Docs>
     </Member>
     <Member MemberName="GAD_SIZE_728x90">
@@ -250,8 +258,11 @@
         <ReturnType>System.Drawing.SizeF</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>IAB Leaderboard.</summary>
+        <remarks>Intended for tablets only.</remarks>
+        <altmember cref="M:GoogleAdMobAds.GADBannerView.GAD_SIZE_320x50"/>
+        <altmember cref="M:GoogleAdMobAds.GADBannerView.GAD_SIZE_320x250"/>
+        <altmember cref="M:GoogleAdMobAds.GADBannerView.GAD_SIZE_468x60"/>
       </Docs>
     </Member>
     <Member MemberName="HasAutoRefreshed">
@@ -376,10 +387,11 @@
       <Docs>
         <summary>	The <see cref="T:MonoTouch.UIKit.UIViewController"/> to restore after the ad has been visited.
         </summary>
-        <value>To be added.</value>
+        <value>The root <see cref="T:MonoTouch.UIKit.UViewController"/>. Mandatory.</value>
         <remarks>
           <para>
-            The application developer must set this value prior to calling <see cref="M:GoogleAdMobs.GADBannerView.LoadRequest"/>.
+            The application developer must set this value prior to calling <see cref="M:GoogleAdMobs.GADBannerView.LoadRequest"/>. If this value is <see langword="null"/> when <see cref="M:GoogleAdMobAds.GADBannerView.LoadRequest"/>
+            is called, the application may crash.
           </para>
         </remarks>
       </Docs>

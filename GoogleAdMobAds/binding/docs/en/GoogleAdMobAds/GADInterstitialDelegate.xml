@@ -139,6 +139,7 @@
         <summary>	Indicates that the interstitial ad has been dismissed.
         </summary>
         <remarks>To be added.</remarks>
+        <altmember cref="M:GoogleAdMobs.GADInterstitialDelegate.InterstitialDidDismissScreen"/>
       </Docs>
     </Member>
     <Member MemberName="interstitialDidReceiveAd">
@@ -190,6 +191,7 @@
         <summary>	Indicates that the application user has asked to dismiss the interstitial ad.
         </summary>
         <remarks>To be added.</remarks>
+        <altmember cref="M:GoogleAdMobs.GADInterstitialDelegate.InterstitialDidDismissScreen"/>
       </Docs>
     </Member>
     <Member MemberName="InterstitialWillLeaveApplication">
