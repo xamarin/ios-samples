@@ -1,6 +1,7 @@
+<?xml version="1.0"?>
 <Type Name="GADInterstitial" FullName="GoogleAdMobAds.GADInterstitial">
-  <TypeSignature Language="C#" Value="public class GADInterstitial : MonoTouch.Foundation.NSObject" />
-  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit GADInterstitial extends MonoTouch.Foundation.NSObject" />
+  <TypeSignature Language="C#" Value="public class GADInterstitial : MonoTouch.Foundation.NSObject"/>
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit GADInterstitial extends MonoTouch.Foundation.NSObject"/>
   <AssemblyInfo>
     <AssemblyName>GoogleAdMobAds</AssemblyName>
     <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -8,20 +9,40 @@
   <Base>
     <BaseTypeName>MonoTouch.Foundation.NSObject</BaseTypeName>
   </Base>
-  <Interfaces />
+  <Interfaces/>
   <Attributes>
     <Attribute>
       <AttributeName>MonoTouch.Foundation.Register("GADInterstitial", true)</AttributeName>
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>	Rich ads that provide an in-app browsing experience. Richer and more immersive than <see cref="T:GoogleAdMobs.GADBannerView"/>s.
+    </summary>
+    <remarks>
+      <para><see cref="T:GoogleAdMobAds.GADInterstitial"/>s provide immediate rich in-app browsing experiences, in contrast with <see cref="T:MonoTouch.UIKit.GADBannerView"/>s,
+        which initially present a small ad. <see cref="T:GoogleAdMobAds.GADInterstitial"/>s are intended to be placed at natural transition points within an app, 
+        such as at launch, before loading an article or level, before launching video, etc. 
+      </para>
+      <para>
+        Because <see cref="T:GoogleAdMobAds.GADInterstitial"/>s have more responsibilities than <see cref="T:GoogleAdMobAds.GADBannerView"/>s, they are not <see cref="T:MonoTouch.UIKit.UIView"/>s
+        but descend directly from <see cref="T:MonoTouch.Foundation.NSObject"/>. However, for the application developer, instantiating and creating a <see cref="T:GoogleAdMobAds.GADInterstitial"/>
+        is similar to the process for a <see cref="T:GoogleAdMobAds.GADBannerView"/>. #tk code
+      </para>
+      <para>
+        One important difference between <see cref="T:GoogleAdMobAds.GADInterstitial"/>s and <see cref="T:GoogleAdMobAds.GADBannerView"/>s is that <see cref="T:GoogleAdMobAds.GADInterstitial"/>s
+        are single-use. Any request to load or display an interstitial after the first request will cause the <see cref="M:GoogleAdMobAds.GADInterstitialDelegate.Interstitial(GADInterstitial, GADRequestError)"/>
+        method to be called.  
+      </para>
+      <para>
+        All publishers can run interstitial house ads, but paid interstitial ads are only offered to some publishers. Google's documntation states 
+        "if you become eligible, Google will be sure to contact you."
+      </para>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public GADInterstitial ();" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberSignature Language="C#" Value="public GADInterstitial ();"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed"/>
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -34,15 +55,15 @@
           <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)</AttributeName>
         </Attribute>
       </Attributes>
-      <Parameters />
+      <Parameters/>
       <Docs>
         <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public GADInterstitial (MonoTouch.Foundation.NSObjectFlag t);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class MonoTouch.Foundation.NSObjectFlag t) cil managed" />
+      <MemberSignature Language="C#" Value="public GADInterstitial (MonoTouch.Foundation.NSObjectFlag t);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class MonoTouch.Foundation.NSObjectFlag t) cil managed"/>
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -53,7 +74,7 @@
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="t" Type="MonoTouch.Foundation.NSObjectFlag" />
+        <Parameter Name="t" Type="MonoTouch.Foundation.NSObjectFlag"/>
       </Parameters>
       <Docs>
         <param name="t">To be added.</param>
@@ -62,8 +83,8 @@
       </Docs>
     </Member>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public GADInterstitial (IntPtr handle);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(native int handle) cil managed" />
+      <MemberSignature Language="C#" Value="public GADInterstitial (IntPtr handle);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(native int handle) cil managed"/>
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -74,7 +95,7 @@
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="handle" Type="System.IntPtr" />
+        <Parameter Name="handle" Type="System.IntPtr"/>
       </Parameters>
       <Docs>
         <param name="handle">To be added.</param>
@@ -83,8 +104,8 @@
       </Docs>
     </Member>
     <Member MemberName="AdUnitID">
-      <MemberSignature Language="C#" Value="public virtual string AdUnitID { get; set; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance string AdUnitID" />
+      <MemberSignature Language="C#" Value="public virtual string AdUnitID { get; set; }"/>
+      <MemberSignature Language="ILAsm" Value=".property instance string AdUnitID"/>
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -101,14 +122,15 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>	The application developer's AdMob Publisher ID.
+        </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>tk copy from banner view </remarks>
       </Docs>
     </Member>
     <Member MemberName="Delegate">
-      <MemberSignature Language="C#" Value="public GoogleAdMobAds.GADInterstitialDelegate Delegate { get; set; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class GoogleAdMobAds.GADInterstitialDelegate Delegate" />
+      <MemberSignature Language="C#" Value="public GoogleAdMobAds.GADInterstitialDelegate Delegate { get; set; }"/>
+      <MemberSignature Language="ILAsm" Value=".property instance class GoogleAdMobAds.GADInterstitialDelegate Delegate"/>
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -117,14 +139,15 @@
         <ReturnType>GoogleAdMobAds.GADInterstitialDelegate</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>		The <see cref="T:GoogleAdMobAds.GADBInterstitialDelegate"/> delegate with which to handle events relating to this <see cref="T:GoogleAdMobAds.GADInterstitial"/>.
+          .</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Dispose">
-      <MemberSignature Language="C#" Value="protected override void Dispose (bool disposing);" />
-      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void Dispose(bool disposing) cil managed" />
+      <MemberSignature Language="C#" Value="protected override void Dispose (bool disposing);"/>
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void Dispose(bool disposing) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -133,7 +156,7 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="disposing" Type="System.Boolean" />
+        <Parameter Name="disposing" Type="System.Boolean"/>
       </Parameters>
       <Docs>
         <param name="disposing">To be added.</param>
@@ -142,8 +165,8 @@
       </Docs>
     </Member>
     <Member MemberName="IsReady">
-      <MemberSignature Language="C#" Value="public virtual bool IsReady { get; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance bool IsReady" />
+      <MemberSignature Language="C#" Value="public virtual bool IsReady { get; }"/>
+      <MemberSignature Language="ILAsm" Value=".property instance bool IsReady"/>
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -157,14 +180,23 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary><see langword="true"/> when the <see cref="T:GoogleAdMobAds.GADInterstitial"/> is ready to display. Used for "splash interstitials."
+        </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>
+          <para>
+            A "splash interstitial" appears at app launch. In this scenario, the <see cref="M:GADInterstitial.LoadAndDisplayRequest"/> method is called
+            by the notification-handler registered with the <see cref="M:MonoTouch.UIKit.UIApplication.DidFinishLaunching"/> method.
+          </para>
+          <para>
+            Subsequently, as soon as the interstitial is ready, it will appear #tk check
+          </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="LoadAndDisplayRequest">
-      <MemberSignature Language="C#" Value="public virtual void LoadAndDisplayRequest (GoogleAdMobAds.GADRequest request, MonoTouch.UIKit.UIWindow window, MonoTouch.UIKit.UIImage image);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void LoadAndDisplayRequest(class GoogleAdMobAds.GADRequest request, class MonoTouch.UIKit.UIWindow window, class MonoTouch.UIKit.UIImage image) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void LoadAndDisplayRequest (GoogleAdMobAds.GADRequest request, MonoTouch.UIKit.UIWindow window, MonoTouch.UIKit.UIImage image);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void LoadAndDisplayRequest(class GoogleAdMobAds.GADRequest request, class MonoTouch.UIKit.UIWindow window, class MonoTouch.UIKit.UIImage image) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -178,21 +210,31 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="request" Type="GoogleAdMobAds.GADRequest" />
-        <Parameter Name="window" Type="MonoTouch.UIKit.UIWindow" />
-        <Parameter Name="image" Type="MonoTouch.UIKit.UIImage" />
+        <Parameter Name="request" Type="GoogleAdMobAds.GADRequest"/>
+        <Parameter Name="window" Type="MonoTouch.UIKit.UIWindow"/>
+        <Parameter Name="image" Type="MonoTouch.UIKit.UIImage"/>
       </Parameters>
       <Docs>
-        <param name="request">To be added.</param>
-        <param name="window">To be added.</param>
-        <param name="image">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="request">	The <see cref="T:GoogleAdMobAds.GADRequest"/> for an ad.
+        </param>
+        <param name="window">	The <see cref="T:MonoTouch.UIKit.UIWindow"/> in which the interstitial will appear #tk check
+        </param>
+        <param name="image">	The initial image (such as a splash image) to display prior to the interstitial load completing.
+        </param>
+        <summary>	Used to create a "splash interstitial." The <paramref name="image"/> will display until the load request succeeds or fails.
+        </summary>
+        <remarks>
+          <para>
+            A "splash interstitial" appears at app launch. Typically, one calls this method a notification-handler registered with the 
+            <see cref="M:MonoTouch.UIKit.UIApplication.DidFinishLaunching"/> method. The <paramref name="image"/> will typically be an app's default splash
+            screen. It remains on-screen until the load request succeeds or fails.
+          </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="LoadRequest">
-      <MemberSignature Language="C#" Value="public virtual void LoadRequest (GoogleAdMobAds.GADRequest request);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void LoadRequest(class GoogleAdMobAds.GADRequest request) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void LoadRequest (GoogleAdMobAds.GADRequest request);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void LoadRequest(class GoogleAdMobAds.GADRequest request) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -206,17 +248,28 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="request" Type="GoogleAdMobAds.GADRequest" />
+        <Parameter Name="request" Type="GoogleAdMobAds.GADRequest"/>
       </Parameters>
       <Docs>
-        <param name="request">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="request">	A <see cref="T:GoogleAdMobAds.GADRequest"/> that can be customized with demographic data or flagged as a test request.
+        </param>
+        <summary>	Requests an interstitial ad.
+        </summary>
+        <remarks>
+          <para>
+            This method requests an interstitial ad. The default timeout for an interstitial ad is 5 seconds but can be adjusted in the AdMob account.
+          </para>
+          <para>
+            The application developer must not attempt to display the content of an interstitial until 
+            <see cref="M:GoogleAdMobAds.GADInterstitialDelegate.InterstitialDidReceiveAd"/> is called. If the load is unsuccessful, 
+            <see cref="M:GoogleAdMobAds.GADInterstitialDelegate.Interstitial(GADInterstitial, GADRequestError)"/> will be called instead.
+          </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="PresentFromRootViewController">
-      <MemberSignature Language="C#" Value="public virtual void PresentFromRootViewController (MonoTouch.UIKit.UIViewController rootViewController);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void PresentFromRootViewController(class MonoTouch.UIKit.UIViewController rootViewController) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void PresentFromRootViewController (MonoTouch.UIKit.UIViewController rootViewController);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void PresentFromRootViewController(class MonoTouch.UIKit.UIViewController rootViewController) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -230,17 +283,24 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rootViewController" Type="MonoTouch.UIKit.UIViewController" />
+        <Parameter Name="rootViewController" Type="MonoTouch.UIKit.UIViewController"/>
       </Parameters>
       <Docs>
         <param name="rootViewController">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>Presents a <see cref="T:GoogleAdMobAds.GADInterstitial"/>.
+        </summary>
+        <remarks>
+          <para>
+            The application developer must not call this prior to the 
+            <see cref="M:GoogleAdMobAds.GADInterstitialDelegate.interstitialDidReceiveAd"/> method having been called. Also, the 
+            <see cref="P:GoogleAdMobAds.GADInterstitial.IsReady"/> property must be <see langword="true"/> #tk check#
+          </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="WeakDelegate">
-      <MemberSignature Language="C#" Value="public virtual MonoTouch.Foundation.NSObject WeakDelegate { get; set; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class MonoTouch.Foundation.NSObject WeakDelegate" />
+      <MemberSignature Language="C#" Value="public virtual MonoTouch.Foundation.NSObject WeakDelegate { get; set; }"/>
+      <MemberSignature Language="ILAsm" Value=".property instance class MonoTouch.Foundation.NSObject WeakDelegate"/>
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>

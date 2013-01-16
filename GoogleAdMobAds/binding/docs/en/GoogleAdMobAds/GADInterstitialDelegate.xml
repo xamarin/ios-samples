@@ -1,6 +1,7 @@
+<?xml version="1.0"?>
 <Type Name="GADInterstitialDelegate" FullName="GoogleAdMobAds.GADInterstitialDelegate">
-  <TypeSignature Language="C#" Value="public class GADInterstitialDelegate : MonoTouch.Foundation.NSObject" />
-  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit GADInterstitialDelegate extends MonoTouch.Foundation.NSObject" />
+  <TypeSignature Language="C#" Value="public class GADInterstitialDelegate : MonoTouch.Foundation.NSObject"/>
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit GADInterstitialDelegate extends MonoTouch.Foundation.NSObject"/>
   <AssemblyInfo>
     <AssemblyName>GoogleAdMobAds</AssemblyName>
     <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -8,7 +9,7 @@
   <Base>
     <BaseTypeName>MonoTouch.Foundation.NSObject</BaseTypeName>
   </Base>
-  <Interfaces />
+  <Interfaces/>
   <Attributes>
     <Attribute>
       <AttributeName>MonoTouch.Foundation.Model</AttributeName>
@@ -18,13 +19,14 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>To be added.</summary>
+    <summary>	A delegate object for handling events relating to a <see cref="T:GoogleAdMobAds.GADInterstitial"/>.
+    </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public GADInterstitialDelegate ();" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberSignature Language="C#" Value="public GADInterstitialDelegate ();"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed"/>
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -37,15 +39,15 @@
           <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)</AttributeName>
         </Attribute>
       </Attributes>
-      <Parameters />
+      <Parameters/>
       <Docs>
         <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public GADInterstitialDelegate (MonoTouch.Foundation.NSObjectFlag t);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class MonoTouch.Foundation.NSObjectFlag t) cil managed" />
+      <MemberSignature Language="C#" Value="public GADInterstitialDelegate (MonoTouch.Foundation.NSObjectFlag t);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class MonoTouch.Foundation.NSObjectFlag t) cil managed"/>
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -56,7 +58,7 @@
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="t" Type="MonoTouch.Foundation.NSObjectFlag" />
+        <Parameter Name="t" Type="MonoTouch.Foundation.NSObjectFlag"/>
       </Parameters>
       <Docs>
         <param name="t">To be added.</param>
@@ -65,8 +67,8 @@
       </Docs>
     </Member>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public GADInterstitialDelegate (IntPtr handle);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(native int handle) cil managed" />
+      <MemberSignature Language="C#" Value="public GADInterstitialDelegate (IntPtr handle);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(native int handle) cil managed"/>
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -77,7 +79,7 @@
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="handle" Type="System.IntPtr" />
+        <Parameter Name="handle" Type="System.IntPtr"/>
       </Parameters>
       <Docs>
         <param name="handle">To be added.</param>
@@ -86,8 +88,8 @@
       </Docs>
     </Member>
     <Member MemberName="Interstitial">
-      <MemberSignature Language="C#" Value="public virtual void Interstitial (GoogleAdMobAds.GADInterstitial ad, GoogleAdMobAds.GADRequestError error);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void Interstitial(class GoogleAdMobAds.GADInterstitial ad, class GoogleAdMobAds.GADRequestError error) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void Interstitial (GoogleAdMobAds.GADInterstitial ad, GoogleAdMobAds.GADRequestError error);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void Interstitial(class GoogleAdMobAds.GADInterstitial ad, class GoogleAdMobAds.GADRequestError error) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -101,19 +103,22 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="ad" Type="GoogleAdMobAds.GADInterstitial" />
-        <Parameter Name="error" Type="GoogleAdMobAds.GADRequestError" />
+        <Parameter Name="ad" Type="GoogleAdMobAds.GADInterstitial"/>
+        <Parameter Name="error" Type="GoogleAdMobAds.GADRequestError"/>
       </Parameters>
       <Docs>
-        <param name="ad">To be added.</param>
-        <param name="error">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="ad">	The <see cref="T:GoogleAdMobAds.GadInterstitial"/> associated with this event.</param>
+        <param name="error">	A <see cref="T:GoogleAdMobAds.GADRequestError"/> describing the specific failure.
+        </param>
+        <summary>		Subsequent to <see cref="M:GoogleAdMobAds.GADInterstitial.LoadRequest"/> indicates that the 
+          <see cref="T:GoogleAdMobAds.GADInterstitial"/> failed to receive a new ad.
+        </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="InterstitialDidDismissScreen">
-      <MemberSignature Language="C#" Value="public virtual void InterstitialDidDismissScreen (GoogleAdMobAds.GADInterstitial ad);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void InterstitialDidDismissScreen(class GoogleAdMobAds.GADInterstitial ad) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void InterstitialDidDismissScreen (GoogleAdMobAds.GADInterstitial ad);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void InterstitialDidDismissScreen(class GoogleAdMobAds.GADInterstitial ad) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -127,17 +132,18 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="ad" Type="GoogleAdMobAds.GADInterstitial" />
+        <Parameter Name="ad" Type="GoogleAdMobAds.GADInterstitial"/>
       </Parameters>
       <Docs>
-        <param name="ad">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="ad">	The <see cref="T:GoogleAdMobAds.GadInterstitial"/> associated with this event.</param>
+        <summary>	Indicates that the interstitial ad has been dismissed.
+        </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="interstitialDidReceiveAd">
-      <MemberSignature Language="C#" Value="public virtual void interstitialDidReceiveAd (GoogleAdMobAds.GADInterstitial ad);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void interstitialDidReceiveAd(class GoogleAdMobAds.GADInterstitial ad) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void interstitialDidReceiveAd (GoogleAdMobAds.GADInterstitial ad);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void interstitialDidReceiveAd(class GoogleAdMobAds.GADInterstitial ad) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -151,17 +157,19 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="ad" Type="GoogleAdMobAds.GADInterstitial" />
+        <Parameter Name="ad" Type="GoogleAdMobAds.GADInterstitial"/>
       </Parameters>
       <Docs>
-        <param name="ad">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="ad">	The <see cref="T:GoogleAdMobAds.GadInterstitial"/> associated with this event.</param>
+        <summary>	Subsequent to <see cref="M:GoogleAdMobAds.GADInterstitial.LoadRequest"/> indicates that the 
+          <see cref="T:GoogleAdMobAds.GADInterstitial"/> received a new ad.
+        </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="InterstitialWillDismissScreen">
-      <MemberSignature Language="C#" Value="public virtual void InterstitialWillDismissScreen (GoogleAdMobAds.GADInterstitial ad);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void InterstitialWillDismissScreen(class GoogleAdMobAds.GADInterstitial ad) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void InterstitialWillDismissScreen (GoogleAdMobAds.GADInterstitial ad);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void InterstitialWillDismissScreen(class GoogleAdMobAds.GADInterstitial ad) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -175,17 +183,18 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="ad" Type="GoogleAdMobAds.GADInterstitial" />
+        <Parameter Name="ad" Type="GoogleAdMobAds.GADInterstitial"/>
       </Parameters>
       <Docs>
-        <param name="ad">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="ad">	The <see cref="T:GoogleAdMobAds.GadInterstitial"/> associated with this event.</param>
+        <summary>	Indicates that the application user has asked to dismiss the interstitial ad.
+        </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="InterstitialWillLeaveApplication">
-      <MemberSignature Language="C#" Value="public virtual void InterstitialWillLeaveApplication (GoogleAdMobAds.GADInterstitial ad);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void InterstitialWillLeaveApplication(class GoogleAdMobAds.GADInterstitial ad) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void InterstitialWillLeaveApplication (GoogleAdMobAds.GADInterstitial ad);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void InterstitialWillLeaveApplication(class GoogleAdMobAds.GADInterstitial ad) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -199,17 +208,18 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="ad" Type="GoogleAdMobAds.GADInterstitial" />
+        <Parameter Name="ad" Type="GoogleAdMobAds.GADInterstitial"/>
       </Parameters>
       <Docs>
-        <param name="ad">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="ad">	The <see cref="T:GoogleAdMobAds.GadInterstitial"/> associated with this event.</param>
+        <summary>		Indicates that application has been sent to the background due to the presentation of a <see cref="T:GoogleAdMobAds.GADInterstitial"/>.
+        </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="InterstitialWillPresentScreen">
-      <MemberSignature Language="C#" Value="public virtual void InterstitialWillPresentScreen (GoogleAdMobAds.GADInterstitial ad);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void InterstitialWillPresentScreen(class GoogleAdMobAds.GADInterstitial ad) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void InterstitialWillPresentScreen (GoogleAdMobAds.GADInterstitial ad);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void InterstitialWillPresentScreen(class GoogleAdMobAds.GADInterstitial ad) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -223,11 +233,12 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="ad" Type="GoogleAdMobAds.GADInterstitial" />
+        <Parameter Name="ad" Type="GoogleAdMobAds.GADInterstitial"/>
       </Parameters>
       <Docs>
-        <param name="ad">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="ad">	The <see cref="T:GoogleAdMobAds.GadInterstitial"/> associated with this event.</param>
+        <summary>	Indicates that the <see cref="T:GoogleAdMobAds.GADInterstitial"/> is about to present an interstitial ad.
+        </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
