@@ -1,6 +1,7 @@
+<?xml version="1.0"?>
 <Type Name="GADRequest" FullName="GoogleAdMobAds.GADRequest">
-  <TypeSignature Language="C#" Value="public class GADRequest : MonoTouch.Foundation.NSObject" />
-  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit GADRequest extends MonoTouch.Foundation.NSObject" />
+  <TypeSignature Language="C#" Value="public class GADRequest : MonoTouch.Foundation.NSObject"/>
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit GADRequest extends MonoTouch.Foundation.NSObject"/>
   <AssemblyInfo>
     <AssemblyName>GoogleAdMobAds</AssemblyName>
     <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -8,20 +9,35 @@
   <Base>
     <BaseTypeName>MonoTouch.Foundation.NSObject</BaseTypeName>
   </Base>
-  <Interfaces />
+  <Interfaces/>
   <Attributes>
     <Attribute>
       <AttributeName>MonoTouch.Foundation.Register("GADRequest", true)</AttributeName>
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>To be added.</summary>
-    <remarks>To be added.</remarks>
+    <summary>	An ad request that can be customized to facilitate better ad-targeting.
+    </summary>
+    <remarks>
+      <para>
+        Google requests that demographic data used to target ads be restricted to information that is already used in the application.
+      </para>
+      <para>
+        The following code shows the creation of a simple testing <see cref="T:GoogleAdMobs.GADRequest"/>.
+      </para>
+      <example>
+        <code lang="C#">
+          var request = new GADRequest ();
+          request.Testing = true;
+          request.TestDevices = new string[] { GADRequest.GAD_SIMULATOR_ID };
+        </code>
+      </example>
+    </remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public GADRequest ();" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberSignature Language="C#" Value="public GADRequest ();"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed"/>
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -34,15 +50,15 @@
           <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)</AttributeName>
         </Attribute>
       </Attributes>
-      <Parameters />
+      <Parameters/>
       <Docs>
         <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public GADRequest (MonoTouch.Foundation.NSObjectFlag t);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class MonoTouch.Foundation.NSObjectFlag t) cil managed" />
+      <MemberSignature Language="C#" Value="public GADRequest (MonoTouch.Foundation.NSObjectFlag t);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class MonoTouch.Foundation.NSObjectFlag t) cil managed"/>
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -53,7 +69,7 @@
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="t" Type="MonoTouch.Foundation.NSObjectFlag" />
+        <Parameter Name="t" Type="MonoTouch.Foundation.NSObjectFlag"/>
       </Parameters>
       <Docs>
         <param name="t">To be added.</param>
@@ -62,8 +78,8 @@
       </Docs>
     </Member>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public GADRequest (IntPtr handle);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(native int handle) cil managed" />
+      <MemberSignature Language="C#" Value="public GADRequest (IntPtr handle);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(native int handle) cil managed"/>
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -74,7 +90,7 @@
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="handle" Type="System.IntPtr" />
+        <Parameter Name="handle" Type="System.IntPtr"/>
       </Parameters>
       <Docs>
         <param name="handle">To be added.</param>
@@ -83,8 +99,8 @@
       </Docs>
     </Member>
     <Member MemberName="AdditionalParameters">
-      <MemberSignature Language="C#" Value="public virtual MonoTouch.Foundation.NSDictionary AdditionalParameters { get; set; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class MonoTouch.Foundation.NSDictionary AdditionalParameters" />
+      <MemberSignature Language="C#" Value="public virtual MonoTouch.Foundation.NSDictionary AdditionalParameters { get; set; }"/>
+      <MemberSignature Language="ILAsm" Value=".property instance class MonoTouch.Foundation.NSDictionary AdditionalParameters"/>
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -107,8 +123,8 @@
       </Docs>
     </Member>
     <Member MemberName="AddKeyword">
-      <MemberSignature Language="C#" Value="public virtual void AddKeyword (string keyword);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AddKeyword(string keyword) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void AddKeyword (string keyword);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AddKeyword(string keyword) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -122,17 +138,18 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="keyword" Type="System.String" />
+        <Parameter Name="keyword" Type="System.String"/>
       </Parameters>
       <Docs>
         <param name="keyword">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>	Appends a keyword to the <see cref="P:GoogleAdMobAds.GADRequest.keywords"/> property.
+        </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Birthday">
-      <MemberSignature Language="C#" Value="public virtual MonoTouch.Foundation.NSDate Birthday { get; set; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance class MonoTouch.Foundation.NSDate Birthday" />
+      <MemberSignature Language="C#" Value="public virtual MonoTouch.Foundation.NSDate Birthday { get; set; }"/>
+      <MemberSignature Language="ILAsm" Value=".property instance class MonoTouch.Foundation.NSDate Birthday"/>
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -149,14 +166,15 @@
         <ReturnType>MonoTouch.Foundation.NSDate</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>	The birthday best targeted by the ad.
+        </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Dispose">
-      <MemberSignature Language="C#" Value="protected override void Dispose (bool disposing);" />
-      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void Dispose(bool disposing) cil managed" />
+      <MemberSignature Language="C#" Value="protected override void Dispose (bool disposing);"/>
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance void Dispose(bool disposing) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -165,7 +183,7 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="disposing" Type="System.Boolean" />
+        <Parameter Name="disposing" Type="System.Boolean"/>
       </Parameters>
       <Docs>
         <param name="disposing">To be added.</param>
@@ -174,8 +192,8 @@
       </Docs>
     </Member>
     <Member MemberName="GAD_SIMULATOR_ID">
-      <MemberSignature Language="C#" Value="public static readonly string GAD_SIMULATOR_ID;" />
-      <MemberSignature Language="ILAsm" Value=".field public static initonly string GAD_SIMULATOR_ID" />
+      <MemberSignature Language="C#" Value="public static readonly string GAD_SIMULATOR_ID;"/>
+      <MemberSignature Language="ILAsm" Value=".field public static initonly string GAD_SIMULATOR_ID"/>
       <MemberType>Field</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -189,8 +207,8 @@
       </Docs>
     </Member>
     <Member MemberName="Gender">
-      <MemberSignature Language="C#" Value="public virtual GoogleAdMobAds.GADGender Gender { get; set; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance valuetype GoogleAdMobAds.GADGender Gender" />
+      <MemberSignature Language="C#" Value="public virtual GoogleAdMobAds.GADGender Gender { get; set; }"/>
+      <MemberSignature Language="ILAsm" Value=".property instance valuetype GoogleAdMobAds.GADGender Gender"/>
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -207,14 +225,15 @@
         <ReturnType>GoogleAdMobAds.GADGender</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>	The gender best targeted by the ad.
+          .</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="keywords">
-      <MemberSignature Language="C#" Value="public virtual string[] keywords { get; set; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance string[] keywords" />
+      <MemberSignature Language="C#" Value="public virtual string[] keywords { get; set; }"/>
+      <MemberSignature Language="ILAsm" Value=".property instance string[] keywords"/>
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -231,14 +250,15 @@
         <ReturnType>System.String[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>	An array of keywords suggesting appropriate ads.
+        </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Request">
-      <MemberSignature Language="C#" Value="public static GoogleAdMobAds.GADRequest Request ();" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class GoogleAdMobAds.GADRequest Request() cil managed" />
+      <MemberSignature Language="C#" Value="public static GoogleAdMobAds.GADRequest Request ();"/>
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class GoogleAdMobAds.GADRequest Request() cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -251,7 +271,7 @@
       <ReturnValue>
         <ReturnType>GoogleAdMobAds.GADRequest</ReturnType>
       </ReturnValue>
-      <Parameters />
+      <Parameters/>
       <Docs>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
@@ -259,8 +279,8 @@
       </Docs>
     </Member>
     <Member MemberName="SdkVersion">
-      <MemberSignature Language="C#" Value="public static string SdkVersion ();" />
-      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string SdkVersion() cil managed" />
+      <MemberSignature Language="C#" Value="public static string SdkVersion ();"/>
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string SdkVersion() cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -273,7 +293,7 @@
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
-      <Parameters />
+      <Parameters/>
       <Docs>
         <summary>To be added.</summary>
         <returns>To be added.</returns>
@@ -281,8 +301,8 @@
       </Docs>
     </Member>
     <Member MemberName="SetBirthda">
-      <MemberSignature Language="C#" Value="public virtual void SetBirthda (int m, int d, int y);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void SetBirthda(int32 m, int32 d, int32 y) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void SetBirthda (int m, int d, int y);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void SetBirthda(int32 m, int32 d, int32 y) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -296,21 +316,22 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="m" Type="System.Int32" />
-        <Parameter Name="d" Type="System.Int32" />
-        <Parameter Name="y" Type="System.Int32" />
+        <Parameter Name="m" Type="System.Int32"/>
+        <Parameter Name="d" Type="System.Int32"/>
+        <Parameter Name="y" Type="System.Int32"/>
       </Parameters>
       <Docs>
         <param name="m">To be added.</param>
         <param name="d">To be added.</param>
         <param name="y">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>	Initializes the <see cref="P:GoogleAdMobAds.GADRequest.Birthday"/> property.
+        </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="SetLocationWithDescription">
-      <MemberSignature Language="C#" Value="public virtual void SetLocationWithDescription (string locationDescription);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void SetLocationWithDescription(string locationDescription) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void SetLocationWithDescription (string locationDescription);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void SetLocationWithDescription(string locationDescription) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -324,17 +345,25 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="locationDescription" Type="System.String" />
+        <Parameter Name="locationDescription" Type="System.String"/>
       </Parameters>
       <Docs>
         <param name="locationDescription">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>	The location best targeted by the ad.
+        </summary>
+        <remarks>
+          <para>
+            Cannot be simultaneously used with <see cref="T:GoogleAdMobAds.GADRequest.SetLocationy"/>.
+          </para>
+          <para>
+            Can be used with strings such as <c>SetLocationWithDescription("94104 US");</c>
+          </para>
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="SetLocationy">
-      <MemberSignature Language="C#" Value="public virtual void SetLocationy (float latitude, float longitude, float accuracyInMeters);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void SetLocationy(float32 latitude, float32 longitude, float32 accuracyInMeters) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void SetLocationy (float latitude, float longitude, float accuracyInMeters);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void SetLocationy(float32 latitude, float32 longitude, float32 accuracyInMeters) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -348,21 +377,23 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="latitude" Type="System.Single" />
-        <Parameter Name="longitude" Type="System.Single" />
-        <Parameter Name="accuracyInMeters" Type="System.Single" />
+        <Parameter Name="latitude" Type="System.Single"/>
+        <Parameter Name="longitude" Type="System.Single"/>
+        <Parameter Name="accuracyInMeters" Type="System.Single"/>
       </Parameters>
       <Docs>
         <param name="latitude">To be added.</param>
         <param name="longitude">To be added.</param>
         <param name="accuracyInMeters">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>	The location best targeted by the ad.
+        </summary>
+        <remarks>	Cannot be simultaneously used with <see cref="M:GoogleAdMobAds.GADRequest.SetLocationWithDescription"/>.
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="TestDevices">
-      <MemberSignature Language="C#" Value="public virtual string[] TestDevices { get; set; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance string[] TestDevices" />
+      <MemberSignature Language="C#" Value="public virtual string[] TestDevices { get; set; }"/>
+      <MemberSignature Language="ILAsm" Value=".property instance string[] TestDevices"/>
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -379,14 +410,16 @@
         <ReturnType>System.String[]</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary>		An array of identifiers to receive test ads and thus avoid false impressions.
+        </summary>
         <value>To be added.</value>
-        <remarks>To be added.</remarks>
+        <remarks>	The identifier of a device is the value of its <see cref="P:MonoTouch.UIKit.UIDevice.UniqueIdentifier"/> property.
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="Testing">
-      <MemberSignature Language="C#" Value="public virtual bool Testing { get; set; }" />
-      <MemberSignature Language="ILAsm" Value=".property instance bool Testing" />
+      <MemberSignature Language="C#" Value="public virtual bool Testing { get; set; }"/>
+      <MemberSignature Language="ILAsm" Value=".property instance bool Testing"/>
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -403,7 +436,8 @@
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
+        <summary><see langword="true"/> if the request is in a testing context.
+        </summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>

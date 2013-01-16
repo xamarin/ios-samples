@@ -11,7 +11,7 @@
       </Attributes>
     </Assembly>
   </Assemblies>
-  <Remarks>To be added.</Remarks>
+  <Remarks>MonoTouch bindings for Google Ad Mobs.</Remarks>
   <Copyright>To be added.</Copyright>
   <Types>
     <Namespace Name="admobads">

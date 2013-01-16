@@ -1,6 +1,7 @@
+<?xml version="1.0"?>
 <Type Name="GADBannerViewDelegate" FullName="GoogleAdMobAds.GADBannerViewDelegate">
-  <TypeSignature Language="C#" Value="public class GADBannerViewDelegate : MonoTouch.Foundation.NSObject" />
-  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit GADBannerViewDelegate extends MonoTouch.Foundation.NSObject" />
+  <TypeSignature Language="C#" Value="public class GADBannerViewDelegate : MonoTouch.Foundation.NSObject"/>
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit GADBannerViewDelegate extends MonoTouch.Foundation.NSObject"/>
   <AssemblyInfo>
     <AssemblyName>GoogleAdMobAds</AssemblyName>
     <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -8,7 +9,7 @@
   <Base>
     <BaseTypeName>MonoTouch.Foundation.NSObject</BaseTypeName>
   </Base>
-  <Interfaces />
+  <Interfaces/>
   <Attributes>
     <Attribute>
       <AttributeName>MonoTouch.Foundation.Model</AttributeName>
@@ -18,13 +19,14 @@
     </Attribute>
   </Attributes>
   <Docs>
-    <summary>To be added.</summary>
+    <summary>A delegate object for handling events relating to a <see cref="T:GoogleAdMobAds.GADBannerView"/>.
+    </summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public GADBannerViewDelegate ();" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberSignature Language="C#" Value="public GADBannerViewDelegate ();"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed"/>
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -37,15 +39,15 @@
           <AttributeName>System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Advanced)</AttributeName>
         </Attribute>
       </Attributes>
-      <Parameters />
+      <Parameters/>
       <Docs>
         <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public GADBannerViewDelegate (MonoTouch.Foundation.NSObjectFlag t);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class MonoTouch.Foundation.NSObjectFlag t) cil managed" />
+      <MemberSignature Language="C#" Value="public GADBannerViewDelegate (MonoTouch.Foundation.NSObjectFlag t);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class MonoTouch.Foundation.NSObjectFlag t) cil managed"/>
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -56,7 +58,7 @@
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="t" Type="MonoTouch.Foundation.NSObjectFlag" />
+        <Parameter Name="t" Type="MonoTouch.Foundation.NSObjectFlag"/>
       </Parameters>
       <Docs>
         <param name="t">To be added.</param>
@@ -65,8 +67,8 @@
       </Docs>
     </Member>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public GADBannerViewDelegate (IntPtr handle);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(native int handle) cil managed" />
+      <MemberSignature Language="C#" Value="public GADBannerViewDelegate (IntPtr handle);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(native int handle) cil managed"/>
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -77,7 +79,7 @@
         </Attribute>
       </Attributes>
       <Parameters>
-        <Parameter Name="handle" Type="System.IntPtr" />
+        <Parameter Name="handle" Type="System.IntPtr"/>
       </Parameters>
       <Docs>
         <param name="handle">To be added.</param>
@@ -86,8 +88,8 @@
       </Docs>
     </Member>
     <Member MemberName="AdView">
-      <MemberSignature Language="C#" Value="public virtual void AdView (GoogleAdMobAds.GADBannerView view, GoogleAdMobAds.GADRequestError error);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AdView(class GoogleAdMobAds.GADBannerView view, class GoogleAdMobAds.GADRequestError error) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void AdView (GoogleAdMobAds.GADBannerView view, GoogleAdMobAds.GADRequestError error);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AdView(class GoogleAdMobAds.GADBannerView view, class GoogleAdMobAds.GADRequestError error) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -101,19 +103,21 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="view" Type="GoogleAdMobAds.GADBannerView" />
-        <Parameter Name="error" Type="GoogleAdMobAds.GADRequestError" />
+        <Parameter Name="view" Type="GoogleAdMobAds.GADBannerView"/>
+        <Parameter Name="error" Type="GoogleAdMobAds.GADRequestError"/>
       </Parameters>
       <Docs>
-        <param name="view">To be added.</param>
-        <param name="error">To be added.</param>
-        <summary>To be added.</summary>
+        <param name="view">	The <see cref="T:GoogleAdMobAds.GADBannerView"/> associated with the event.
+        </param>
+        <param name="error">	A <see cref="T:GoogleAdMobAds.GADRequestError"/> with the specifics of the failure.
+        </param>
+        <summary>Subsequent to <see cref="M:GoogleAdMobAds.GADBannerView.LoadRequest"/> indicates that the <see cref="T:GoogleAdMobAds.GADBannerView"/> failed to receive a new ad.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="AdViewDidDismissScreen">
-      <MemberSignature Language="C#" Value="public virtual void AdViewDidDismissScreen (GoogleAdMobAds.GADBannerView adView);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AdViewDidDismissScreen(class GoogleAdMobAds.GADBannerView adView) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void AdViewDidDismissScreen (GoogleAdMobAds.GADBannerView adView);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AdViewDidDismissScreen(class GoogleAdMobAds.GADBannerView adView) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -127,17 +131,24 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="adView" Type="GoogleAdMobAds.GADBannerView" />
+        <Parameter Name="adView" Type="GoogleAdMobAds.GADBannerView"/>
       </Parameters>
       <Docs>
-        <param name="adView">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="adView">	The <see cref="T:GoogleAdMobAds.GADBannerView"/> associated with the event.
+        </param>
+        <summary>	Indicates that the full-screen ad has been dismissed.
+          
+        </summary>
+        <remarks>	 Generally, after a full-screen ad has been dismissed control will return to the application. However, it is also possible for the ad to 
+          cause the App Store or iTunes to launch, in which case the application will be sent to the background and potentially terminated. If that
+          is the situation, the application will receive the <see cref="P:MonoTouch.UIApplication.WillResignActiveNotification"/> notification 
+          (see <see cref="M:MonoTouch.UIApplication+Notifications.ObserveWillResignActive"/>) and the 
+          <see cref="M:GoogleAdMobAds.GADBannerViewDelegate.adViewWillLeaveApplication"/> method of <c>this</c> will be called.	</remarks>
       </Docs>
     </Member>
     <Member MemberName="AdViewDidReceiveAd">
-      <MemberSignature Language="C#" Value="public virtual void AdViewDidReceiveAd (GoogleAdMobAds.GADBannerView view);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AdViewDidReceiveAd(class GoogleAdMobAds.GADBannerView view) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void AdViewDidReceiveAd (GoogleAdMobAds.GADBannerView view);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AdViewDidReceiveAd(class GoogleAdMobAds.GADBannerView view) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -151,17 +162,19 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="view" Type="GoogleAdMobAds.GADBannerView" />
+        <Parameter Name="view" Type="GoogleAdMobAds.GADBannerView"/>
       </Parameters>
       <Docs>
-        <param name="view">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="view">	The <see cref="T:GoogleAdMobAds.GADBannerView"/> associated with the event.
+        </param>
+        <summary>	Subsequent to <see cref="M:GoogleAdMobAds.GADBannerView.LoadRequest"/> indicates that the <see cref="T:GoogleAdMobAds.GADBannerView"/> received a new ad.</summary>
+        <remarks>	 This method is an appropriate place for the application developer to add the <paramref name="view"/> to the view hierarchy if it has been hidden.
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="AdViewWillDismissScreen">
-      <MemberSignature Language="C#" Value="public virtual void AdViewWillDismissScreen (GoogleAdMobAds.GADBannerView adView);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AdViewWillDismissScreen(class GoogleAdMobAds.GADBannerView adView) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void AdViewWillDismissScreen (GoogleAdMobAds.GADBannerView adView);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AdViewWillDismissScreen(class GoogleAdMobAds.GADBannerView adView) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -175,17 +188,20 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="adView" Type="GoogleAdMobAds.GADBannerView" />
+        <Parameter Name="adView" Type="GoogleAdMobAds.GADBannerView"/>
       </Parameters>
       <Docs>
         <param name="adView">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>	Indicates that the application user has asked to dismiss the full-screen ad.
+        </summary>
+        <remarks>	The application developer should prepare for their application to be brought to the foreground, reversing the steps taken 
+          in <see cref="T:GoogleAdMobAds.GADBannerViewDelegate.AdViewWillPresentScreen"/>.
+        </remarks>
       </Docs>
     </Member>
     <Member MemberName="adViewWillLeaveApplication">
-      <MemberSignature Language="C#" Value="public virtual void adViewWillLeaveApplication (GoogleAdMobAds.GADBannerView adView);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void adViewWillLeaveApplication(class GoogleAdMobAds.GADBannerView adView) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void adViewWillLeaveApplication (GoogleAdMobAds.GADBannerView adView);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void adViewWillLeaveApplication(class GoogleAdMobAds.GADBannerView adView) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -199,17 +215,18 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="adView" Type="GoogleAdMobAds.GADBannerView" />
+        <Parameter Name="adView" Type="GoogleAdMobAds.GADBannerView"/>
       </Parameters>
       <Docs>
         <param name="adView">To be added.</param>
-        <summary>To be added.</summary>
+        <summary>	Indicates that application has been sent to the background due to application user input in the <see cref="T:GoogleAdMobAds.GADBannerView"/>.
+        </summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="AdViewWillPresentScreen">
-      <MemberSignature Language="C#" Value="public virtual void AdViewWillPresentScreen (GoogleAdMobAds.GADBannerView adView);" />
-      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AdViewWillPresentScreen(class GoogleAdMobAds.GADBannerView adView) cil managed" />
+      <MemberSignature Language="C#" Value="public virtual void AdViewWillPresentScreen (GoogleAdMobAds.GADBannerView adView);"/>
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void AdViewWillPresentScreen(class GoogleAdMobAds.GADBannerView adView) cil managed"/>
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>0.0.0.0</AssemblyVersion>
@@ -223,12 +240,16 @@
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="adView" Type="GoogleAdMobAds.GADBannerView" />
+        <Parameter Name="adView" Type="GoogleAdMobAds.GADBannerView"/>
       </Parameters>
       <Docs>
-        <param name="adView">To be added.</param>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <param name="adView">	The <see cref="T:GoogleAdMobAds.GADBannerView"/> associated with the event.
+        </param>
+        <summary>	Indicates that the <see cref="T:GoogleAdMobAds.GADBannerView"/> is about to present a full-screen ad in response to application user input.
+        </summary>
+        <remarks>	The application developer should take the same steps with the application that they would take if it were being sent to the background.
+          This might include pausing animations and timers and saving application state.
+        </remarks>
       </Docs>
     </Member>
   </Members>
