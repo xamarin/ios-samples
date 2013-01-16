@@ -18,8 +18,25 @@ namespace GoogleAdMobAds
 	///   </para>
 	///   <para>
 	///   There may be a delay of up to 2 minutes the first time AdMob sees the application's publisher ID (see 
-	///   <see cref="T:GoogleAdMobAds.GADBannerView.AdUnitId"/>) in any 24-hour period. Application developers should tk tk tk
+	///   <see cref="T:GoogleAdMobAds.GADBannerView.AdUnitId"/>) in any 24-hour period. During development, application developers 
+	///   should request test ads (see <see cref="P:GoogleAdMobAds.GADRequest.TestDevices"/> and 
+	///   <see cref="P:GoogleAdMobAds.GADRequest.Testing"/>).
 	///   </para>
+	///   <para>
+	///   A <see cref="T:GoogleAdMobAds.GADBannerView"/> must have its <see cref="P:GoogleAdMobAds.GADBannerView.RootViewController"/> property
+	///   set prior to calling <see cref="M:GoogleAdMobAds.GADBannerView.LoadRequest"/> as shown in the following code:
+	///   <example>
+	///   <code lang="C#">
+	///   myBanner = new GADBannerView (new RectangleF (0, 0, 320, 50));
+	///   //Set the AdMob Publisher ID
+	///   myBanner.AdUnitID = MY_PUBLISHER_ID;  //A 15-digit hexadecimal string
+    ///   //The RootViewController *must* be set prior to calling LoadRequest()
+	///   myBanner.RootViewController = this;
+    ///   
+	///   var request = CreateAdRequest ();
+	///   myBanner.LoadRequest (request);
+	///   </code>
+	///   </example>
 	/// </remarks>
 	[BaseType (typeof(UIView))]
 	interface GADBannerView
@@ -27,6 +44,9 @@ namespace GoogleAdMobAds
 		/// <summary>
 		/// The application developer's AdMob Publisher ID
 		/// </summary>
+		/// <remarks>
+		/// The Publisher ID is a 15-digit hexadecimal string retrieved from the "Sites &amp; Apps" section of the AdMobs account. 
+		/// </remarks>
 		//@property (nonatomic, copy) NSString *adUnitID;
 		[Export ("adUnitID", ArgumentSemantic.Copy)]
 		string AdUnitID { get; set; }
@@ -34,6 +54,10 @@ namespace GoogleAdMobAds
 		/// <summary>
 		/// The <see cref="T:MonoTouch.UIKit.UIViewController"/> to #tk check -> # restore after the ad has been visited.
 		/// </summary>
+		/// <remarks>
+		/// <para>
+		/// The application developer must set this value prior to calling <see cref="M:GoogleAdMobs.GADBannerView.LoadRequest"/>.
+		/// </para>
 		//@property (nonatomic, assign) UIViewController *rootViewController;
 		[Export ("rootViewController", ArgumentSemantic.Assign)]
 		UIViewController RootViewController { get; set; }
@@ -50,7 +74,7 @@ namespace GoogleAdMobAds
 		NSObject WeakDelegate { get; set; }
 		
 		/// <summary>
-		/// #tk check# Requests an ad to be displayed in this <see cref="T:GoogleAdMobAds.GADBannerView"/>.
+		/// Requests an ad to be displayed in this <see cref="T:GoogleAdMobAds.GADBannerView"/>.
 		/// </summary>
 		/// <param name="request">
 		/// A <see cref="T:GoogleAdMobAds.GADRequest"/> that can be customized with demographic data or flagged as a test request.
@@ -84,6 +108,8 @@ namespace GoogleAdMobAds
 		///  <para>
 		///  Ad targeting can be improved by specifying demographic data in the <paramref name="request"/>.
 		///  </para>
+		///  <para>
+		///  The application developer must set <see cref="P:GoogleAdMobs.GADBannerView.RootViewController"/> prior to calling this method.
 		///</remarks>
 		//- (void)loadRequest:(GADRequest *)request;
 		[Export ("loadRequest:")]
@@ -395,7 +421,19 @@ namespace GoogleAdMobAds
 	/// An ad request that can be customized to facilitate better ad-targeting.
 	/// </summary>
 	/// <remarks>
+	/// <para>
 	/// Google requests that demographic data used to target ads be restricted to information that is already used in the application.
+	/// </para>
+	/// <para>
+	/// The following code shows the creation of a simple testing <see cref="T:GoogleAdMobs.GADRequest"/>.
+	/// </para>
+	/// <example>
+	/// <code lang="C#">
+	///  var request = new GADRequest ();
+	///  request.Testing = true;
+	///  request.TestDevices = new string[] { GADRequest.GAD_SIMULATOR_ID };
+	/// </code>
+	/// </example>
 	/// </remarks>
 	//@interface GADRequest : NSObject <NSCopying>
 	[BaseType (typeof(NSObject))]
