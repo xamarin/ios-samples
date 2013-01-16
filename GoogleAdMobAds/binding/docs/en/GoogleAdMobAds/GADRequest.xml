@@ -117,8 +117,8 @@
         <ReturnType>MonoTouch.Foundation.NSDictionary</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <value>To be added.</value>
+        <summary>Additional demographic parameters for specific ad networks.</summary>
+        <value>The default value is <see langword="null"/>.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -141,7 +141,7 @@
         <Parameter Name="keyword" Type="System.String"/>
       </Parameters>
       <Docs>
-        <param name="keyword">To be added.</param>
+        <param name="keyword">A keyword that may aid in targeting the served ad.</param>
         <summary>	Appends a keyword to the <see cref="P:GoogleAdMobAds.GADRequest.keywords"/> property.
         </summary>
         <remarks>To be added.</remarks>
@@ -168,7 +168,7 @@
       <Docs>
         <summary>	The birthday best targeted by the ad.
         </summary>
-        <value>To be added.</value>
+        <value>The default value is <see langword="null"/>.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -202,8 +202,8 @@
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>To be added.</summary>
-        <remarks>To be added.</remarks>
+        <summary>A value used in <see cref="P:GoogleAdMobAds.GADRequest.TestingDevices"/> to indicate the iOS simulator.</summary>
+        <remarks></remarks>
       </Docs>
     </Member>
     <Member MemberName="Gender">
@@ -227,7 +227,7 @@
       <Docs>
         <summary>	The gender best targeted by the ad.
           .</summary>
-        <value>To be added.</value>
+        <value>Default value is <see cref="M:GoogleAdMobAds.GADGender.kGADGenderUnknown"/></value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -252,7 +252,7 @@
       <Docs>
         <summary>	An array of keywords suggesting appropriate ads.
         </summary>
-        <value>To be added.</value>
+        <value>The default value is <see langword="null"/>.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -295,8 +295,8 @@
       </ReturnValue>
       <Parameters/>
       <Docs>
-        <summary>To be added.</summary>
-        <returns>To be added.</returns>
+        <summary>The Google Ad Mobs SDK version</summary>
+        <returns>The Google Ad Mobs SDK version.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -321,9 +321,9 @@
         <Parameter Name="y" Type="System.Int32"/>
       </Parameters>
       <Docs>
-        <param name="m">To be added.</param>
-        <param name="d">To be added.</param>
-        <param name="y">To be added.</param>
+        <param name="m">Month (Jan = 1, Dec = 12)</param>
+        <param name="d">Day.</param>
+        <param name="y">Year (4 digits).</param>
         <summary>	Initializes the <see cref="P:GoogleAdMobAds.GADRequest.Birthday"/> property.
         </summary>
         <remarks>To be added.</remarks>
@@ -348,7 +348,7 @@
         <Parameter Name="locationDescription" Type="System.String"/>
       </Parameters>
       <Docs>
-        <param name="locationDescription">To be added.</param>
+        <param name="locationDescription">A short description of a location such as "94104 US".</param>
         <summary>	The location best targeted by the ad.
         </summary>
         <remarks>
@@ -382,9 +382,9 @@
         <Parameter Name="accuracyInMeters" Type="System.Single"/>
       </Parameters>
       <Docs>
-        <param name="latitude">To be added.</param>
-        <param name="longitude">To be added.</param>
-        <param name="accuracyInMeters">To be added.</param>
+        <param name="latitude">The decimal latitude best targeted by the ad.</param>
+        <param name="longitude">The decimal longitude (- for West of Greenwich) best targeted by the ad.</param>
+        <param name="accuracyInMeters">The accuracy of the location information.</param>
         <summary>	The location best targeted by the ad.
         </summary>
         <remarks>	Cannot be simultaneously used with <see cref="M:GoogleAdMobAds.GADRequest.SetLocationWithDescription"/>.
@@ -412,8 +412,8 @@
       <Docs>
         <summary>		An array of identifiers to receive test ads and thus avoid false impressions.
         </summary>
-        <value>To be added.</value>
-        <remarks>	The identifier of a device is the value of its <see cref="P:MonoTouch.UIKit.UIDevice.UniqueIdentifier"/> property.
+        <value>The default value is <see langword="null"/>.</value>
+        <remarks>	The identifier of a device is the value of its <see cref="P:MonoTouch.UIKit.UIDevice.UniqueIdentifier"/> property. The simulator can be specified using <see cref="M:GoogleAdMobAds.GADRequest.GAD_SIMULATOR_ID"/>.
         </remarks>
       </Docs>
     </Member>
@@ -438,7 +438,7 @@
       <Docs>
         <summary><see langword="true"/> if the request is in a testing context.
         </summary>
-        <value>To be added.</value>
+        <value>The default value is <see langword="false"/>.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>

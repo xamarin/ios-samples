@@ -191,7 +191,7 @@
         <Parameter Name="adView" Type="GoogleAdMobAds.GADBannerView"/>
       </Parameters>
       <Docs>
-        <param name="adView">To be added.</param>
+        <param name="adView">The <see cref="T:GoogleAdMobAds.GADBannerView"/> associated with the event.</param>
         <summary>	Indicates that the application user has asked to dismiss the full-screen ad.
         </summary>
         <remarks>	The application developer should prepare for their application to be brought to the foreground, reversing the steps taken 
@@ -218,7 +218,7 @@
         <Parameter Name="adView" Type="GoogleAdMobAds.GADBannerView"/>
       </Parameters>
       <Docs>
-        <param name="adView">To be added.</param>
+        <param name="adView">The <see cref="T:GoogleAdMobAds.GADBannerView"/> associated with the event.</param>
         <summary>	Indicates that application has been sent to the background due to application user input in the <see cref="T:GoogleAdMobAds.GADBannerView"/>.
         </summary>
         <remarks>To be added.</remarks>
