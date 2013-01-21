@@ -157,7 +157,7 @@ namespace SimpleCollectionView
         [Export ("initWithFrame:")]
         public Header (System.Drawing.RectangleF frame) : base (frame)
         {
-            label = new UILabel (){Frame = frame, BackgroundColor = UIColor.Yellow};
+            label = new UILabel (){Frame = new System.Drawing.RectangleF (0,0,300,50), BackgroundColor = UIColor.Yellow};
             AddSubview (label);
         }
     }
