@@ -88,7 +88,7 @@ public static class Reachability {
 			defaultRouteReachability.SetCallback (OnChange);
 			defaultRouteReachability.Schedule (CFRunLoop.Current, CFRunLoop.ModeDefault);
 		}
-		if (defaultRouteReachability.TryGetFlags (out flags))
+		if (!defaultRouteReachability.TryGetFlags (out flags))
 		    return false;
 		return IsReachableWithoutRequiringConnection (flags);
 	}	
