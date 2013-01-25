@@ -3,7 +3,11 @@ AQTapDemo
 
 This sample shows how to use the new iOS 6 AudioQueue Processing Taps.
 With Audio Processing Taps, you can either apply effects to your audio
-or analize data as it is being decoded.
+or analize data as it is being decoded.  
+
+This sample shows how to change the pitch of the audio being played
+back.  As a bonus, it also contains code showing how to playback
+streaming audio from the network.
 
 This sample is a port of Chris Adamson's AQTapDemo from CocoaConf
 which he has been kind enough to license under the MIT X11 license.
