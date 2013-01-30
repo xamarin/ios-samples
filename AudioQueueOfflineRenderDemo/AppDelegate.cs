@@ -185,29 +185,13 @@ namespace AudioQueueOfflineRenderDemo
 					queue.AllocateBuffer (bufferSize, out buffer);
 					
 					// prepare the capture format
-					AudioStreamBasicDescription captureFormat;
-					captureFormat.SampleRate = dataFormat.SampleRate;
-					captureFormat.Format = AudioFormatType.LinearPCM;
-					captureFormat.FormatFlags = AudioFormatFlags.IsSignedInteger | AudioFormatFlags.IsPacked | 
-							(AudioFormatFlags) (24 << (int) AudioFormatFlags.LinearPCMSampleFractionShift);
-					captureFormat.ChannelsPerFrame = dataFormat.ChannelsPerFrame;
-					captureFormat.FramesPerPacket = 1;
-					captureFormat.BitsPerChannel = 32;
-					captureFormat.BytesPerPacket = dataFormat.ChannelsPerFrame * 4;
-					captureFormat.BytesPerFrame = captureFormat.BytesPerPacket;
-					
+					var captureFormat = AudioStreamBasicDescription.CreateLinearPCM (dataFormat.SampleRate, (uint) dataFormat.ChannelsPerFrame, 32);
+					captureFormat.BytesPerFrame = captureFormat.BytesPerPacket = dataFormat.ChannelsPerFrame * 4;
+
 					queue.SetOfflineRenderFormat (captureFormat, audioFile.ChannelLayout);
 					
 					// prepare the target format
-					AudioStreamBasicDescription dstFormat;
-					dstFormat.SampleRate = dataFormat.SampleRate;
-					dstFormat.ChannelsPerFrame = dataFormat.ChannelsPerFrame;
-					dstFormat.Format = AudioFormatType.LinearPCM;
-					dstFormat.FormatFlags = AudioFormatFlags.IsPacked | AudioFormatFlags.LinearPCMIsSignedInteger;
-					dstFormat.BitsPerChannel = 16;
-					dstFormat.BytesPerPacket = 2 * dstFormat.ChannelsPerFrame;
-					dstFormat.BytesPerFrame = dstFormat.BytesPerPacket;
-					dstFormat.FramesPerPacket = 1;
+					var dstFormat = AudioStreamBasicDescription.CreateLinearPCM (dataFormat.SampleRate, (uint) dataFormat.ChannelsPerFrame);
 
 					using (var captureFile = ExtAudioFile.CreateWithUrl (destinationUrl, AudioFileType.CAF, dstFormat, AudioFileFlags.EraseFlags)) {
 						captureFile.ClientDataFormat = captureFormat;
@@ -224,7 +208,7 @@ namespace AudioQueueOfflineRenderDemo
 						};
 
 						queue.Start ();
-						
+
 						double ts = 0;
 						queue.RenderOffline (ts, captureBuffer, 0);
 						
