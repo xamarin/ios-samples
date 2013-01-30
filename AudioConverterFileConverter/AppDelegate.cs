@@ -90,6 +90,8 @@ namespace AudioConverterFileConverter
 			AudioSession.Resumed += delegate {
 				Debug.WriteLine ("Session resumed");
 
+				Debug.Print (AudioSession.InterruptionType);
+
 				AudioSession.SetActive (true);
 				ThreadStateEndInterruption();
 			};
