@@ -160,8 +160,9 @@ namespace StreamingAudio
 							var queue = player.OutputQueue;
 							if (queue == null || timeline == null)
 								return;
-							bool disc;
-							AudioTimeStamp time;
+
+							bool disc = false;
+							AudioTimeStamp time = new AudioTimeStamp ();
 							queue.GetCurrentTime (timeline, ref time, ref disc);
 							
 							playbackTime.Text = FormatTime (time.SampleTime / sampleRate);
