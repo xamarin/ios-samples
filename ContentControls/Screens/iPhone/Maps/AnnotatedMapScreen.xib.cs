@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,8 +98,7 @@ namespace Example_ContentControls.Screens.iPhone.Maps
 					c.Longitude.ToString() , null, "OK", null).Show(); 
 				};
 				annotationView.RightCalloutAccessoryView = detailButton;
-				annotationView.LeftCalloutAccessoryView = new UIImageView(UIImage.FromBundle("Images/Icon/29_icon.png"));
-				//annotationView.Image = UIImage.FromBundle("Images/Apress-29x29.png");
+				annotationView.LeftCalloutAccessoryView = new UIImageView(UIImage.FromBundle("icon-29.png"));
 				
 				return annotationView;
 			}
