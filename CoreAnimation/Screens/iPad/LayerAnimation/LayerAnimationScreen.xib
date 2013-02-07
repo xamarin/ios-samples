@@ -67,7 +67,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">icon_72.png</string>
+							<string key="NSResourceName">icon-72.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="467036142">
