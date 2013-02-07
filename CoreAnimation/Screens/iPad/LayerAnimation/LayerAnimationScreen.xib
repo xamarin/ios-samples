@@ -67,7 +67,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">72_icon.png</string>
+							<string key="NSResourceName">icon-72.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="467036142">
@@ -343,7 +343,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">72_icon.png</string>
+			<string key="NS.key.0">icon-72.png</string>
 			<string key="NS.object.0">{72, 72}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">534</string>
