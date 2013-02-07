@@ -104,6 +104,7 @@
     <BundleResource Include="Resources\icon-57.png" />
     <BundleResource Include="Resources\icon-58.png" />
     <BundleResource Include="Resources\icon-72.png" />
+    <BundleResource Include="flag.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />

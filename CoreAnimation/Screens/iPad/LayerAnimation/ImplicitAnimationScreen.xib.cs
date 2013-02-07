@@ -79,7 +79,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 		protected CALayer CreateLayerFromImage ()
 		{
 			CALayer layer = new CALayer ();
-			layer.Contents = UIImage.FromBundle ("Images/Icons/114_icon.png").CGImage;
+			layer.Contents = UIImage.FromBundle ("icon-114.png").CGImage;
 			return layer;			
 		}
 		
