@@ -22,13 +22,16 @@ namespace Calendars.Screens.EventList
 			this.events = events;
 			this.eventType = eventType;
 
-			// add elements to the dialog root for each item
-			itemListRoot.Add (
-				new Section ( ) { 
-				from items in this.events
-					select ( Element ) new StringElement ( items.Title )
-				}
-			);
+			Section section;
+			if (events == null) {
+				section = new Section () { new StringElement ("No calendar events") };
+			} else {
+				section = new Section () { 
+					from items in this.events
+						select ( Element ) new StringElement ( items.Title )
+				};
+			} 
+			itemListRoot.Add (section);
 			// set our element root
 			this.InvokeOnMainThread ( () => { this.Root = itemListRoot; } ); 
 		}
