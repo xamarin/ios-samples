@@ -47,7 +47,6 @@
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>True</MtouchProfiling>
     <MtouchI18n />
-    <MtouchExtraArgs>-v -v -v --keeptemp</MtouchExtraArgs>
     <IpaPackageName />
     <CrashReportingApiKey />
   </PropertyGroup>
