@@ -46,14 +46,14 @@ namespace RosyWriter
 			
 			Context = new EAGLContext (EAGLRenderingAPI.OpenGLES2);
 			
-			if(!EAGLContext.SetCurrentContext(Context))
-				throw new ApplicationException("Could not set EAGLContext");
+			if (!EAGLContext.SetCurrentContext (Context))
+				throw new ApplicationException ("Could not set EAGLContext");
 		}
 	
 		[Export ("layerClass")]
 		public static Class LayerClass ()
 		{
-			return new Class (typeof (CAEAGLLayer));
+			return new Class (typeof(CAEAGLLayer));
 		}
 		
 		#region Setup
@@ -76,7 +76,7 @@ namespace RosyWriter
 			
 			GL.FramebufferRenderbuffer (FramebufferTarget.Framebuffer, FramebufferSlot.ColorAttachment0, RenderbufferTarget.Renderbuffer, ColorBuffer);
 					
-			if (GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer) != FramebufferErrorCode.FramebufferComplete){
+			if (GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer) != FramebufferErrorCode.FramebufferComplete) {
 				Console.WriteLine ("Failure with framebuffer generation");
 				success = false;
 			}
@@ -98,8 +98,8 @@ namespace RosyWriter
 			int program = GL.CreateProgram ();
 			
 			// Create and Compile Vertex Shader
-            int vertShader = 0;
-            int fragShader = 0;
+			int vertShader = 0;
+			int fragShader = 0;
 			bool success = true;
 			success = success && CompileShader (out vertShader, ShaderType.VertexShader, "Shaders/passThrough.vsh");
 			
@@ -118,7 +118,7 @@ namespace RosyWriter
 			
 			// Link program
 			success = success && LinkProgram (program);
-			if (success){
+			if (success) {
 				// Delete these ones, we do not need them anymore
 				GL.DeleteShader (vertShader);
 				GL.DeleteShader (fragShader);
@@ -140,8 +140,7 @@ namespace RosyWriter
 			
 			GL.GetProgram (program, ProgramParameter.LinkStatus, out status);
 			
-			if (status == 0)
-			{
+			if (status == 0) {
 				GL.GetProgram (program, ProgramParameter.InfoLogLength, out len);
 				var sb = new System.Text.StringBuilder (len);
 				GL.GetProgramInfoLog (program, len, out len, sb);
@@ -180,13 +179,13 @@ namespace RosyWriter
 				}
 			}
 			
-			if (videoTextureCache == null){
-				Console.WriteLine("Video Texture Cache not initialized");
+			if (videoTextureCache == null) {
+				Console.WriteLine ("Video Texture Cache not initialized");
 				return;
 			}
 			
 			var pixelBuffer = imageBuffer as CVPixelBuffer;
-			if (pixelBuffer == null){
+			if (pixelBuffer == null) {
 				Console.WriteLine ("Could not get Pixel Buffer from Image Buffer");
 				return;
 			}
@@ -195,8 +194,8 @@ namespace RosyWriter
 			var frameWidth = pixelBuffer.Width;
 			var frameHeight = pixelBuffer.Height;
 			CVReturn ret;
-			using (var texture =  videoTextureCache.TextureFromImage(imageBuffer, true, All.Rgba, frameWidth, frameHeight, All.Bgra, DataType.UnsignedByte, 0, out ret)){
-				if (texture == null || ret != CVReturn.Success){
+			using (var texture =  videoTextureCache.TextureFromImage(imageBuffer, true, All.Rgba, frameWidth, frameHeight, All.Bgra, DataType.UnsignedByte, 0, out ret)) {
+				if (texture == null || ret != CVReturn.Success) {
 					Console.WriteLine ("Could not create Texture from Texture Cache");
 					return;
 				}
@@ -250,14 +249,14 @@ namespace RosyWriter
 			var scaledTextureSize = new SizeF (textureAspectRatio.Width * maxScale, textureAspectRatio.Height * maxScale);
 			
 			float width, height;
-			if (cropScaleAmount.Height > cropScaleAmount.Width)	{
+			if (cropScaleAmount.Height > cropScaleAmount.Width) {
 				width = croppingAspectRatio.Width / scaledTextureSize.Width;
 				height = 1.0F;
-				normalizedSamplingRect = new RectangleF(0, 0, width, height );				
+				normalizedSamplingRect = new RectangleF (0, 0, width, height);				
 			} else {
 				height = croppingAspectRatio.Height / scaledTextureSize.Height;
 				width = 1.0F;
-				normalizedSamplingRect = new RectangleF(0, 0, height, width);
+				normalizedSamplingRect = new RectangleF (0, 0, height, width);
 			}
 			
 			// Center crop
@@ -281,7 +280,7 @@ namespace RosyWriter
 			
 			// Validate program before drawing. (For Debugging purposes)
 #if DEBUG
-			GL.ValidateProgram(glProgram);
+			GL.ValidateProgram (glProgram);
 #endif
 			GL.DrawArrays (BeginMode.TriangleStrip, 0, 4);
 			
