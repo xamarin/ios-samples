@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9F7D0654-2249-49E0-9907-30A65E632BEA}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>HandlingRotation</RootNamespace>
+    <AssemblyName>Example_HandlingRotation</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchLink>None</MtouchLink>
+    <MtouchI18n />
+    <MtouchArch>ARMv7</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchI18n />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>True</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n />
+    <IpaPackageName />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="DeviceType.cs" />
+    <Compile Include="Screens\iPhone\Home\HomeScreen.xib.cs">
+      <DependentUpon>HomeScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Home\HomeScreen.xib.designer.cs">
+      <DependentUpon>HomeScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Method1Autosize\AutosizeScreen.xib.cs">
+      <DependentUpon>AutosizeScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Method1Autosize\AutosizeScreen.xib.designer.cs">
+      <DependentUpon>AutosizeScreen.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Method2MoveControls\Controller.cs" />
+    <Compile Include="Screens\iPhone\Method3SwapViews\Controller.cs" />
+    <Compile Include="Screens\iPhone\Method3SwapViews\LandscapeView.xib.cs">
+      <DependentUpon>LandscapeView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Method3SwapViews\LandscapeView.xib.designer.cs">
+      <DependentUpon>LandscapeView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Method3SwapViews\PortraitView.xib.cs">
+      <DependentUpon>PortraitView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPhone\Method3SwapViews\PortraitView.xib.designer.cs">
+      <DependentUpon>PortraitView.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPad\Method2MoveControls\Controller.cs" />
+    <Compile Include="Screens\iPad\Method1Autosize\AutosizeScreenPad.xib.cs">
+      <DependentUpon>AutosizeScreenPad.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPad\Home\HomeScreenPad.xib.cs">
+      <DependentUpon>HomeScreenPad.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPad\Home\HomeScreenPad.xib.designer.cs">
+      <DependentUpon>HomeScreenPad.xib</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\iPad\Method1Autosize\AutosizeScreenPad.xib.designer.cs">
+      <DependentUpon>AutosizeScreenPad.xib</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Screens\" />
+    <Folder Include="Screens\iPhone\" />
+    <Folder Include="Screens\iPhone\Home\" />
+    <Folder Include="Screens\iPhone\Method1Autosize\" />
+    <Folder Include="Screens\iPhone\Method2MoveControls\" />
+    <Folder Include="Screens\iPhone\Method3SwapViews\" />
+    <Folder Include="Screens\iPad\" />
+    <Folder Include="Screens\iPad\Home\" />
+    <Folder Include="Screens\iPad\Method1Autosize\" />
+    <Folder Include="Screens\iPad\Method2MoveControls\" />
+    <Folder Include="Screens\iPad\Method3SwapViews\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Screens\iPhone\Home\HomeScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Method1Autosize\AutosizeScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Method3SwapViews\LandscapeView.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\Method3SwapViews\PortraitView.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPad\Home\HomeScreenPad.xib" />
+    <InterfaceDefinition Include="Screens\iPad\Method1Autosize\AutosizeScreenPad.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\Default-Landscape%402x~ipad.png" />
+    <BundleResource Include="Resources\Default-Landscape~ipad.png" />
+    <BundleResource Include="Resources\Default-Portrait%402x~ipad.png" />
+    <BundleResource Include="Resources\Default-Portrait~ipad.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\icon-29.png" />
+    <BundleResource Include="Resources\icon-50.png" />
+    <BundleResource Include="Resources\icon-57.png" />
+    <BundleResource Include="Resources\icon-58.png" />
+    <BundleResource Include="Resources\icon-72.png" />
+    <BundleResource Include="Resources\icon-100.png" />
+    <BundleResource Include="Resources\icon-114.png" />
+    <BundleResource Include="Resources\icon-144.png" />
+    <BundleResource Include="Resources\iTunesArtwork%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="Resources\iTunesArtwork.png" />
+  </ItemGroup>
+</Project>

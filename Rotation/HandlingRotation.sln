@@ -1,0 +1,26 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandlingRotation", "HandlingRotation/HandlingRotation.csproj", "{9F7D0654-2249-49E0-9907-30A65E632BEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F7D0654-2249-49E0-9907-30A65E632BEA}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{9F7D0654-2249-49E0-9907-30A65E632BEA}.Debug|iPhone.Build.0 = Debug|iPhone
+		{9F7D0654-2249-49E0-9907-30A65E632BEA}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{9F7D0654-2249-49E0-9907-30A65E632BEA}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{9F7D0654-2249-49E0-9907-30A65E632BEA}.Release|iPhone.ActiveCfg = Release|iPhone
+		{9F7D0654-2249-49E0-9907-30A65E632BEA}.Release|iPhone.Build.0 = Release|iPhone
+		{9F7D0654-2249-49E0-9907-30A65E632BEA}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{9F7D0654-2249-49E0-9907-30A65E632BEA}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Example_HandlingRotation\HandlingRotation.csproj
+	EndGlobalSection
+EndGlobal
