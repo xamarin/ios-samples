@@ -12,5 +12,7 @@
 	<string>MapKitSearch</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.mapkitsearch</string>
+	<key>MinimumOSVersion</key>
+	<string>6.1</string>
 </dict>
 </plist>
