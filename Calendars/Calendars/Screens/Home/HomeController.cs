@@ -66,10 +66,12 @@ namespace Calendars.Screens.Home
 		{
 			App.Current.EventStore.RequestAccess (type, 
 				(bool granted, NSError e) => {
-					if (granted)
-						InvokeOnMainThread ( () => { completion.Invoke(); } );
-					else
-						new UIAlertView ( "Access Denied", "User Denied Access to Calendars/Reminders", null, "ok", null).Show ();
+					InvokeOnMainThread ( () => { 
+						if (granted)
+							completion.Invoke ();
+						else
+							new UIAlertView ( "Access Denied", "User Denied Access to Calendars/Reminders", null, "ok", null).Show ();
+					});
 				} );
 		}
 

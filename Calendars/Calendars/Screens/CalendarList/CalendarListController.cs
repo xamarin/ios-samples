@@ -60,7 +60,9 @@ namespace Calendars.Screens.CalendarList
 			// if the user didn't grant access, show an alert
 			else {
 				Console.WriteLine ( "Access denied by user. " );
-				new UIAlertView ( "No Access", "Access to calendar not granted", null, "ok", null).Show ();
+				InvokeOnMainThread ( () => { 
+					new UIAlertView ( "No Access", "Access to calendar not granted", null, "ok", null).Show ();
+				});
 			}
 		}
 
