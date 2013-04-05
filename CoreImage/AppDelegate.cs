@@ -40,147 +40,147 @@ namespace coreimage
 		{
 			var root = new RootElement ("Effects") {
 				new Section () {
-					new RootElement ("Color Adjustment"){
+					(Element)new RootElement ("Color Adjustment"){
 						new Section () {
-							new RootElement ("ColorControls", (x) => Demo (ColorControls)),
-							new RootElement ("ColorMatrix", (x) => Demo (ColorMatrix)),
-							new RootElement ("ExposureAdjust", (x) => Demo (ExposureAdjust)),
-							new RootElement ("GammaAdjust", (x) => Demo (GammaAdjust)),
-							new RootElement ("HueAdjust", (x) => Demo (HueAdjust)),
-							new RootElement ("TemperatureAndTint", (x) => Demo (TemperatureAndTint)),
-							new RootElement ("ToneCurve", (x) => Demo (ToneCurve)),
-							new RootElement ("Vibrance", (x) => Demo (Vibrance)),
-							new RootElement ("WhitePointAdjust", (x) => Demo(WhitePointAdjust))
+							(Element)new RootElement ("ColorControls", (x) => Demo (ColorControls)),
+							(Element)new RootElement ("ColorMatrix", (x) => Demo (ColorMatrix)),
+							(Element)new RootElement ("ExposureAdjust", (x) => Demo (ExposureAdjust)),
+							(Element)new RootElement ("GammaAdjust", (x) => Demo (GammaAdjust)),
+							(Element)new RootElement ("HueAdjust", (x) => Demo (HueAdjust)),
+							(Element)new RootElement ("TemperatureAndTint", (x) => Demo (TemperatureAndTint)),
+							(Element)new RootElement ("ToneCurve", (x) => Demo (ToneCurve)),
+							(Element)new RootElement ("Vibrance", (x) => Demo (Vibrance)),
+							(Element)new RootElement ("WhitePointAdjust", (x) => Demo(WhitePointAdjust))
 						}
 					},
-					new RootElement ("Color Effect"){
+					(Element)new RootElement ("Color Effect"){
 						new Section () {
-							new RootElement ("ColorCube", (x) => Demo (ColorCube)),
-							new RootElement ("ColorInvert", (x) => Demo (ColorInvert)),
-							new RootElement ("ColorMap", l => Demo (ColorMap)),
-							new RootElement ("ColorMonochrome", (x) => Demo (ColorMonochrome)),
-							new RootElement ("ColorPosterize", l => Demo (ColorPosterize)),
-							new RootElement ("FalseColor", (x) => Demo (FalseColor)),
-							new RootElement ("MaskToAlpha", l => Demo (MaskToAlpha)),
-							new RootElement ("MaximumComponent", l => Demo (MaximumComponent)),
-							new RootElement ("MinimumComponent", l => Demo (MinimumComponent)),
-							new RootElement ("SepiaTone", (x) => Demo (SepiaTone)),
-							new RootElement ("Vignete", l => Demo (Vignette))
+							(Element)new RootElement ("ColorCube", (x) => Demo (ColorCube)),
+							(Element)new RootElement ("ColorInvert", (x) => Demo (ColorInvert)),
+							(Element)new RootElement ("ColorMap", l => Demo (ColorMap)),
+							(Element)new RootElement ("ColorMonochrome", (x) => Demo (ColorMonochrome)),
+							(Element)new RootElement ("ColorPosterize", l => Demo (ColorPosterize)),
+							(Element)new RootElement ("FalseColor", (x) => Demo (FalseColor)),
+							(Element)new RootElement ("MaskToAlpha", l => Demo (MaskToAlpha)),
+							(Element)new RootElement ("MaximumComponent", l => Demo (MaximumComponent)),
+							(Element)new RootElement ("MinimumComponent", l => Demo (MinimumComponent)),
+							(Element)new RootElement ("SepiaTone", (x) => Demo (SepiaTone)),
+							(Element)new RootElement ("Vignete", l => Demo (Vignette))
 						}
 					},
-					new RootElement ("Composite Operation"){
+					(Element)new RootElement ("Composite Operation"){
 						new Section () {
-							new RootElement ("AdditionCompositing", (x) => Demo (AdditionCompositing)),
-							new RootElement ("ColorBlendMode", (x) => Demo (ColorBlendMode)),
-							new RootElement ("ColorBurnBlendMode", (x) => Demo (ColorBurnBlendMode)),
-							new RootElement ("ColorDodgeBlendMode", (x) => Demo (ColorDodgeBlendMode)),
-							new RootElement ("DarkenBlendMode", (x) => Demo (DarkenBlendMode)),
-							new RootElement ("DifferenceBlendMode", (x) => Demo (DifferenceBlendMode)),
-							new RootElement ("ExclusionBlendMode", (x) => Demo (ExclusionBlendMode)),
-							new RootElement ("HardLightBlendMode", (x) => Demo (HardLightBlendMode)),
-							new RootElement ("HueBlendMode", (x) => Demo (HueBlendMode)),
-							new RootElement ("LightenBlendMode", (x) => Demo (LightenBlendMode)),
-							new RootElement ("LuminosityBlendMode", (x) => Demo (LuminosityBlendMode)),
-							new RootElement ("MaximumCompositing", (x) => Demo (MaximumCompositing)),
-							new RootElement ("MinimumCompositing", (x) => Demo (MinimumCompositing)),
-							new RootElement ("MultiplyBlendMode", (x) => Demo (MultiplyBlendMode)),
-							new RootElement ("MultiplyCompositing", (x) => Demo (MultiplyCompositing)),
-							new RootElement ("OverlayBlendMode", (x) => Demo (OverlayBlendMode)),
-							new RootElement ("SaturationBlendMode", (x) => Demo (SaturationBlendMode)),
-							new RootElement ("ScreenBlendMode", (x) => Demo (ScreenBlendMode)),
-							new RootElement ("SoftLightBlendMode", (x) => Demo (SoftLightBlendMode)),
-							new RootElement ("SourceAtopCompositing", (x) => Demo (SourceAtopCompositing)),
-							new RootElement ("SourceInCompositing", (x) => Demo(SourceInCompositing)),
-							new RootElement ("SourceOutCompositing", (x) => Demo(SourceOutCompositing)),
-							new RootElement ("SourceOverCompositing", (x) => Demo (SourceOverCompositing)),
+							(Element)new RootElement ("AdditionCompositing", (x) => Demo (AdditionCompositing)),
+							(Element)new RootElement ("ColorBlendMode", (x) => Demo (ColorBlendMode)),
+							(Element)new RootElement ("ColorBurnBlendMode", (x) => Demo (ColorBurnBlendMode)),
+							(Element)new RootElement ("ColorDodgeBlendMode", (x) => Demo (ColorDodgeBlendMode)),
+							(Element)new RootElement ("DarkenBlendMode", (x) => Demo (DarkenBlendMode)),
+							(Element)new RootElement ("DifferenceBlendMode", (x) => Demo (DifferenceBlendMode)),
+							(Element)new RootElement ("ExclusionBlendMode", (x) => Demo (ExclusionBlendMode)),
+							(Element)new RootElement ("HardLightBlendMode", (x) => Demo (HardLightBlendMode)),
+							(Element)new RootElement ("HueBlendMode", (x) => Demo (HueBlendMode)),
+							(Element)new RootElement ("LightenBlendMode", (x) => Demo (LightenBlendMode)),
+							(Element)new RootElement ("LuminosityBlendMode", (x) => Demo (LuminosityBlendMode)),
+							(Element)new RootElement ("MaximumCompositing", (x) => Demo (MaximumCompositing)),
+							(Element)new RootElement ("MinimumCompositing", (x) => Demo (MinimumCompositing)),
+							(Element)new RootElement ("MultiplyBlendMode", (x) => Demo (MultiplyBlendMode)),
+							(Element)new RootElement ("MultiplyCompositing", (x) => Demo (MultiplyCompositing)),
+							(Element)new RootElement ("OverlayBlendMode", (x) => Demo (OverlayBlendMode)),
+							(Element)new RootElement ("SaturationBlendMode", (x) => Demo (SaturationBlendMode)),
+							(Element)new RootElement ("ScreenBlendMode", (x) => Demo (ScreenBlendMode)),
+							(Element)new RootElement ("SoftLightBlendMode", (x) => Demo (SoftLightBlendMode)),
+							(Element)new RootElement ("SourceAtopCompositing", (x) => Demo (SourceAtopCompositing)),
+							(Element)new RootElement ("SourceInCompositing", (x) => Demo(SourceInCompositing)),
+							(Element)new RootElement ("SourceOutCompositing", (x) => Demo(SourceOutCompositing)),
+							(Element)new RootElement ("SourceOverCompositing", (x) => Demo (SourceOverCompositing)),
 						}
 					},
-					new RootElement ("Distortions"){
+					(Element)new RootElement ("Distortions"){
 						new Section () {
-							new RootElement ("CircleSplashDistortion", l => Demo (CircleSplashDistortion)),
-							new RootElement ("HoleDistortion", l => Demo (HoleDistortion)),
-							new RootElement ("LightTunnel", l => Demo (LightTunel)),
-							new RootElement ("PinchDistortion", l => Demo (PinchDistortion)),
-							new RootElement ("TwirlDistortion", l => Demo (TwirlDistortion)),
-							new RootElement ("VortexDistortion", l => Demo (VortexDistortion))
+							(Element)new RootElement ("CircleSplashDistortion", l => Demo (CircleSplashDistortion)),
+							(Element)new RootElement ("HoleDistortion", l => Demo (HoleDistortion)),
+							(Element)new RootElement ("LightTunnel", l => Demo (LightTunel)),
+							(Element)new RootElement ("PinchDistortion", l => Demo (PinchDistortion)),
+							(Element)new RootElement ("TwirlDistortion", l => Demo (TwirlDistortion)),
+							(Element)new RootElement ("VortexDistortion", l => Demo (VortexDistortion))
 						}
 					},
-					new RootElement ("Generators"){
+					(Element)new RootElement ("Generators"){
 						new Section () {
-							new RootElement ("CheckerboardGenerator", (x) => Demo (CheckerboardGenerator)),
-							new RootElement ("ConstantColorGenerator", (x) => Demo (ConstantColorGenerator)),
-							new RootElement ("RandomGenerator", l => Demo (RandomGenerator)),
-							new RootElement ("StarShineGenerator", l => Demo (StarShineGenerator)),
-							new RootElement ("StripesGenerator", (x) => Demo (StripesGenerator)),
+							(Element)new RootElement ("CheckerboardGenerator", (x) => Demo (CheckerboardGenerator)),
+							(Element)new RootElement ("ConstantColorGenerator", (x) => Demo (ConstantColorGenerator)),
+							(Element)new RootElement ("RandomGenerator", l => Demo (RandomGenerator)),
+							(Element)new RootElement ("StarShineGenerator", l => Demo (StarShineGenerator)),
+							(Element)new RootElement ("StripesGenerator", (x) => Demo (StripesGenerator)),
 						}
 					},
-					new RootElement ("Geometry Adjust"){
+					(Element)new RootElement ("Geometry Adjust"){
 						new Section () {
-							new RootElement ("AffineTransform", (x) => Demo (AffineTransform)),
-							new RootElement ("Crop", (x) => Demo (Crop)),
-							new RootElement ("LanczosScaleTransform", l => Demo (LanczosScaleTransform)),
-							new RootElement ("PerspectiveTransform", l => Demo (PerspectiveTransform)),
-							new RootElement ("StraightenFilter", (x) => Demo (StraightenFilter)),
+							(Element)new RootElement ("AffineTransform", (x) => Demo (AffineTransform)),
+							(Element)new RootElement ("Crop", (x) => Demo (Crop)),
+							(Element)new RootElement ("LanczosScaleTransform", l => Demo (LanczosScaleTransform)),
+							(Element)new RootElement ("PerspectiveTransform", l => Demo (PerspectiveTransform)),
+							(Element)new RootElement ("StraightenFilter", (x) => Demo (StraightenFilter)),
 						}
 					},
-					new RootElement ("Gradients"){
+					(Element)new RootElement ("Gradients"){
 						new Section () {
-							new RootElement ("GaussianGradient", (x) => Demo (GaussianGradient)),
-							new RootElement ("LinearGradient", (x) =>Demo(LinearGradient)),
-							new RootElement ("RadialGradient", (x) => Demo (RadialGradient)),
+							(Element)new RootElement ("GaussianGradient", (x) => Demo (GaussianGradient)),
+							(Element)new RootElement ("LinearGradient", (x) =>Demo(LinearGradient)),
+							(Element)new RootElement ("RadialGradient", (x) => Demo (RadialGradient)),
 						}
 					},
-					new RootElement ("Halftone Effect") {
+					(Element)new RootElement ("Halftone Effect") {
 						new Section () {
-							new RootElement ("CircularScreen", l => Demo (CircularScreen)),
-							new RootElement ("DotScreen", l => Demo (DotScreen)),
-							new RootElement ("HatchedScreen", l => Demo (HatchedScreen)),
-							new RootElement ("LineScreen", l => Demo (LineScreen))
+							(Element)new RootElement ("CircularScreen", l => Demo (CircularScreen)),
+							(Element)new RootElement ("DotScreen", l => Demo (DotScreen)),
+							(Element)new RootElement ("HatchedScreen", l => Demo (HatchedScreen)),
+							(Element)new RootElement ("LineScreen", l => Demo (LineScreen))
 						}
 					},
-					new RootElement ("Sharpen") {
+					(Element)new RootElement ("Sharpen") {
 						new Section () {
-							new RootElement ("SharpenLuminance", l => Demo (SharpenLuminance)),
-							new RootElement ("UnsharpMask", l => Demo (UnsharpMask)),
+							(Element)new RootElement ("SharpenLuminance", l => Demo (SharpenLuminance)),
+							(Element)new RootElement ("UnsharpMask", l => Demo (UnsharpMask)),
 						}
 					},
-					new RootElement ("Stylize"){
+					(Element)new RootElement ("Stylize"){
 						new Section () {
-							new RootElement ("BlendWithMask", l => Demo (BlendWithMask)),
-							new RootElement ("Bloom", l => Demo (Bloom)),
-							new RootElement ("Gloom", l => Demo (Gloom)),
-							new RootElement ("HighlightShadowAdjust", (x) => Demo (HighlightShadowAdjust)),
-							new RootElement ("Pixellate", l => Demo (Pixellate)),
+							(Element)new RootElement ("BlendWithMask", l => Demo (BlendWithMask)),
+							(Element)new RootElement ("Bloom", l => Demo (Bloom)),
+							(Element)new RootElement ("Gloom", l => Demo (Gloom)),
+							(Element)new RootElement ("HighlightShadowAdjust", (x) => Demo (HighlightShadowAdjust)),
+							(Element)new RootElement ("Pixellate", l => Demo (Pixellate)),
 						}
 					},
-					new RootElement ("Tile Effect"){
+					(Element)new RootElement ("Tile Effect"){
 						new Section () {
-							new RootElement ("AffineClamp", l => Demo (AffineClamp)),
-							new RootElement ("AffineTile", l => Demo (AffineTile)),
-							new RootElement ("EightfoldReflectedTile", l => Demo (EightfoldReflectedTile)),
-							new RootElement ("FourfoldReflectedTile", l => Demo (FourfoldReflectedTile)),
-							new RootElement ("FourfoldRotatedTile", l => Demo (FourfoldRotatedTile)),
-							new RootElement ("GlideReflectedTile", l => Demo (GlideReflectedTile)),
-							new RootElement ("PerspectiveTile", l => Demo (PerspectiveTile)),
-							new RootElement ("SixfoldReflectedTile", l => Demo (SixfoldReflectedTile)),
-							new RootElement ("SixfoldRotatedTile", l => Demo (SixfoldRotatedTile)),
-							new RootElement ("TriangleKaleidoscope", l => Demo (TriangleKaleidoscope)),
-							new RootElement ("TwelvefoldReflectedTile", l => Demo (TwelvefoldReflectedTile))
+							(Element)new RootElement ("AffineClamp", l => Demo (AffineClamp)),
+							(Element)new RootElement ("AffineTile", l => Demo (AffineTile)),
+							(Element)new RootElement ("EightfoldReflectedTile", l => Demo (EightfoldReflectedTile)),
+							(Element)new RootElement ("FourfoldReflectedTile", l => Demo (FourfoldReflectedTile)),
+							(Element)new RootElement ("FourfoldRotatedTile", l => Demo (FourfoldRotatedTile)),
+							(Element)new RootElement ("GlideReflectedTile", l => Demo (GlideReflectedTile)),
+							(Element)new RootElement ("PerspectiveTile", l => Demo (PerspectiveTile)),
+							(Element)new RootElement ("SixfoldReflectedTile", l => Demo (SixfoldReflectedTile)),
+							(Element)new RootElement ("SixfoldRotatedTile", l => Demo (SixfoldRotatedTile)),
+							(Element)new RootElement ("TriangleKaleidoscope", l => Demo (TriangleKaleidoscope)),
+							(Element)new RootElement ("TwelvefoldReflectedTile", l => Demo (TwelvefoldReflectedTile))
 						}
 					},
-					new RootElement ("Transition"){
+					(Element)new RootElement ("Transition"){
 						new Section () {
-							new RootElement ("BarsSwipeTransition", l => Demo (BarsSwipeTransition)),
-							new RootElement ("CopyMachineTransition", l => Demo (CopyMachineTransition)),
-							new RootElement ("DissolveTransition", l => Demo (DissolveTransition)),
-							new RootElement ("FlashTransition", l => Demo (FlashTransition)),
-							new RootElement ("ModTransition", l => Demo (ModTransition)),
-							new RootElement ("SwipeTransition", l => Demo (SwipeTransition))
+							(Element)new RootElement ("BarsSwipeTransition", l => Demo (BarsSwipeTransition)),
+							(Element)new RootElement ("CopyMachineTransition", l => Demo (CopyMachineTransition)),
+							(Element)new RootElement ("DissolveTransition", l => Demo (DissolveTransition)),
+							(Element)new RootElement ("FlashTransition", l => Demo (FlashTransition)),
+							(Element)new RootElement ("ModTransition", l => Demo (ModTransition)),
+							(Element)new RootElement ("SwipeTransition", l => Demo (SwipeTransition))
 						}
 					},
 #if DEBUG
-					new RootElement("Rebase Test Images", (x) => RebaseTestImages()),
-					new RootElement("Test Filters", (x) => TestView())
+					(Element)new RootElement("Rebase Test Images", (x) => RebaseTestImages()),
+					(Element)new RootElement("Test Filters", (x) => TestView())
 #endif
 				}
 			};					
