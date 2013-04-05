@@ -24,8 +24,8 @@ namespace MTDJsonDemo
 			
 			_rootElement = new RootElement ("Json Example"){
                 new Section ("Demo Json"){
-                    JsonElement.FromFile ("sample.json"),
-                    new JsonElement ("Load from url", "http://localhost/sample.json")
+                    (Element)JsonElement.FromFile ("sample.json"),
+                    (Element)new JsonElement ("Load from url", "http://localhost/sample.json")
                 },
 				new Section ("Tasks Sample")
             };
@@ -59,7 +59,7 @@ namespace MTDJsonDemo
 					duedate.DateValue = task.DueDate;
 				}
          
-				_rootElement [1].Add (taskElement);
+				_rootElement [1].Add ((Element)taskElement);
 			};
             
 			_window.RootViewController = _nav;
