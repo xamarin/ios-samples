@@ -38,9 +38,9 @@ namespace CoreMidiSample
 		RootElement MakeRoot ()
 		{
 			return new RootElement ("CoreMidi Sample"){
-				(hardwareSection = new Section ("Hardware") {
-					MakeHardware (),
-					MakeDevices (),
+				(hardwareSection = new Section ("Hardware"){
+					(Element)MakeHardware (),
+					(Element)MakeDevices (),
 				}),
 				new Section ("Send"){
 					new StringElement ("Send Note", SendNote)	
@@ -133,8 +133,8 @@ namespace CoreMidiSample
 			BeginInvokeOnMainThread (delegate {
 				hardwareSection.Remove (0);
 				hardwareSection.Remove (0);
-				hardwareSection.Add (MakeHardware ());
-				hardwareSection.Add (MakeDevices ());
+				hardwareSection.Add ((Element)MakeHardware ());
+				hardwareSection.Add ((Element)MakeDevices ());
 			});
 		}
 		
