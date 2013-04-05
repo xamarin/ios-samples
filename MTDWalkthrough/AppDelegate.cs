@@ -42,7 +42,7 @@ namespace MTDWalkthrough
 
 				var dateElement = new FutureDateElement ("Due Date", task.DueDate);
                 
-				var taskElement = new RootElement (task.Name){
+				var taskElement = (Element)new RootElement (task.Name){
                     new Section () { 
 						element
 					},
