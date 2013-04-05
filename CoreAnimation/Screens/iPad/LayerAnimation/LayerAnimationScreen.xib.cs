@@ -57,7 +57,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 			btnAnimate.TouchUpInside += (s, e) => {
 				
 				// create a keyframe animation
-				CAKeyFrameAnimation keyFrameAnimation = (CAKeyFrameAnimation)CAKeyFrameAnimation.FromKeyPath ("position");
+				CAKeyFrameAnimation keyFrameAnimation = (CAKeyFrameAnimation)CAKeyFrameAnimation.GetFromKeyPath ("position");
 				keyFrameAnimation.Path =  animationPath;
 				keyFrameAnimation.Duration = 3;
 				
