@@ -42,8 +42,8 @@ namespace BubbleCell {
 		{
 			var options = new DialogViewController (new RootElement ("Options") {
 				new Section ("Active Chats"){
-					new RootElement ("Chat with a Robot", x=> MakeChat ("Robot")),
-					new RootElement ("Chat with Mom", x=> MakeChat ("Mom")),
+					(Element)new RootElement ("Chat with a Robot", x=> MakeChat ("Robot")),
+					(Element)new RootElement ("Chat with Mom", x=> MakeChat ("Mom")),
 				}
 			});
 			return new UINavigationController (options);
