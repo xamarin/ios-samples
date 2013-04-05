@@ -72,8 +72,8 @@ namespace MediaCapture
 			moviesElement = buildMoviesElement();
 			imagesElement = buildImagesElement();
 			Section rootSection = new Section("File Types");
-			rootSection.Add(moviesElement);
-			rootSection.Add(imagesElement);
+			rootSection.Add((Element)moviesElement);
+			rootSection.Add((Element)imagesElement);
 			menu.Add(rootSection);
 			return menu;
 		}

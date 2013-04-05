@@ -84,20 +84,20 @@ namespace MediaCapture
 			{
 				new Section("Camera")
 				{
-					cameraElement,
-					resolutionElement,
+					(Element)cameraElement,
+					(Element)resolutionElement,
 				},
 				new Section("Still Images")
 				{
-					imageCaptureEnabledElement,
-					saveImageElement,
+					(Element)imageCaptureEnabledElement,
+					(Element)saveImageElement,
 				},
 				new Section("Media")
 				{
 					audioCaptureEnabledElement,
 					videoCaptureEnabledElement,
 					autoRecordNextMovieElement,
-					durationElement,
+					(Element)durationElement,
 				},
 				new Section("Actions")
 				{
