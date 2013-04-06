@@ -61,10 +61,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
-    <CodesignKey>iPhone Developer: Craig Dunn (PDBNK53Q8A)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchI18n />
     <MtouchUseArmv7>false</MtouchUseArmv7>
-    <CodesignProvision>8475DF5D-1C26-442D-8176-DFEA50FCC641</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
