@@ -47,11 +47,10 @@
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>True</MtouchDebug>
     <ConsolePause>False</ConsolePause>
-    <CodesignKey>iPhone Developer: Craig Dunn (PDBNK53Q8A)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchI18n />
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <IpaPackageName />
-    <CodesignProvision>8475DF5D-1C26-442D-8176-DFEA50FCC641</CodesignProvision>
     <MtouchArch>ARMv7</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
