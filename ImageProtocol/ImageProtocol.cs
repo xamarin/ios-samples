@@ -58,11 +58,13 @@ namespace ImageProtocol
 			var value = Request.Url.Path.Substring (1);
 			using (var image = Render (value)) {
 				using (var response = new NSUrlResponse (Request.Url, "image/jpeg", -1, null)) {
-					using (var data = image.AsJPEG ()) {
-						Client.ReceivedResponse (this, response, NSUrlCacheStoragePolicy.NotAllowed);
-						Client.DataLoaded (this, data);
+					Client.ReceivedResponse (this, response, NSUrlCacheStoragePolicy.NotAllowed);
+					this.InvokeOnMainThread (delegate {
+						using (var data = image.AsJPEG ()) {
+							Client.DataLoaded (this, data);
+						}
 						Client.FinishedLoading (this);
-					}
+					});
 				}
 			}
 		}
