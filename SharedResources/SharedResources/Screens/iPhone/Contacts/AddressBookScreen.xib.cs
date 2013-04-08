@@ -28,6 +28,8 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 		/// Used to resize the scroll view to allow for keyboard
 		/// </summary>
 		RectangleF contentViewSize = RectangleF.Empty;
+
+		ABAddressBook addressBook;
 		
 		#region Constructors
 
@@ -85,13 +87,21 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 			// neccessary to access each item
 			
 			// instantiate a reference to the address book
-			using(ABAddressBook addressBook = new ABAddressBook ()) {
+			NSError err;
+			addressBook = ABAddressBook.Create (out err);
+			if (err != null)
+				return;
+
+			// if you want to subscribe to changes
+			addressBook.ExternalChange += (object sender, ExternalChangeEventArgs e) => {
+				// code to deal with changes
+			};
 				
-				// if you want to subscribe to changes
-				addressBook.ExternalChange += (object sender, ExternalChangeEventArgs e) => {
-					// code to deal with changes
-				};
-				
+			addressBook.RequestAccess (delegate (bool granted, NSError error) {
+
+				if (!granted || error != null)
+					return;
+					
 				// for each record
 				foreach(ABRecord item in addressBook) {
 					
@@ -102,7 +112,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 						// type
 						ABPerson person = item as ABPerson;
 						Console.WriteLine (person.FirstName + " " + person.LastName);
-						
+
 						// get the phone numbers
 						ABMultiValue<string> phones = person.GetPhones ();
 						foreach(ABMultiValueEntry<string> val in phones) {
@@ -110,12 +120,12 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 						}
 					}
 				}
-				
+					
 				// save changes (if you were to have made any)
 				//addressBook.Save();
 				// or cancel them
 				//addressBook.Revert();
-			}
+			});
 			//====
 			#endregion
 			
