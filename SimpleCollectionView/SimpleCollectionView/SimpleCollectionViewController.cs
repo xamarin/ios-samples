@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using MonoTouch.CoreGraphics;
+using MonoTouch.ObjCRuntime;
 
 namespace SimpleCollectionView
 {
@@ -26,7 +27,12 @@ namespace SimpleCollectionView
 
             CollectionView.RegisterClassForCell (typeof(AnimalCell), animalCellId);
             CollectionView.RegisterClassForSupplementaryView (typeof(Header), UICollectionElementKindSection.Header, headerId);
-        }
+        
+			// add a custom menu item
+			UIMenuController.SharedMenuController.MenuItems = new UIMenuItem[] { 
+				new UIMenuItem ("Custom", new Selector ("custom:")) 
+			};
+		}
 
         public override int NumberOfSections (UICollectionView collectionView)
         {
@@ -93,6 +99,29 @@ namespace SimpleCollectionView
         {
             Console.WriteLine ("code to perform action");
         }
+
+		// CanBecomeFirstResponder and CanPerform are needed for a custom menu item to appear
+		public override bool CanBecomeFirstResponder {
+			get {
+				return true;
+			}
+		}
+		
+		public override bool CanPerform (Selector action, NSObject withSender)
+		{
+			if (action == new Selector ("custom:"))
+				return true;
+			else
+				return false;
+		}
+
+		// System provided cut, copy and paste will be sent to PerformAction method above, but any custom menu items
+		// must have their assocatied actions implementated explicitly
+		[Export("custom:")]
+		void Custom()
+		{
+			Console.WriteLine ("custom");
+		}
 
         public override void WillRotate (UIInterfaceOrientation toInterfaceOrientation, double duration)
         {
