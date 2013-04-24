@@ -70,13 +70,15 @@ namespace InputStreamTest
 			// Just call the base implementation, which knows how to handle everything.
 			return base.SetCFClientFlags (inFlags, inCallback, inContextPtr);
 		}
-		
-		public override void ScheduleInCFRunLoop (CFRunLoop runloop, NSString mode)
+
+		[Export ("_scheduleInCFRunLoop:forMode:")]
+		public void ScheduleInCFRunLoop (CFRunLoop runloop, NSString mode)
 		{
 			Notify (CFStreamEventType.HasBytesAvailable);
 		}
-		
-		public override void UnscheduleInCFRunLoop (CFRunLoop runloop, NSString mode)
+
+		[Export ("_unscheduleFromCFRunLoop:forMode:")]
+		public void UnscheduleInCFRunLoop (CFRunLoop runloop, NSString mode)
 		{
 			// Nothing to do here
 		}
