@@ -40,7 +40,7 @@ namespace WorldCities
 		// class-level declarations
 		
 		[Export("window")]
-		public UIWindow Window {
+		public override UIWindow Window {
 			get;
 			set;
 		}
