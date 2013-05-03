@@ -26,7 +26,9 @@ namespace SimpleCollectionView
             flowLayout = new UICollectionViewFlowLayout (){
                 HeaderReferenceSize = new System.Drawing.SizeF (100, 100),
                 SectionInset = new UIEdgeInsets (20,20,20,20),
-                ScrollDirection = UICollectionViewScrollDirection.Vertical
+                ScrollDirection = UICollectionViewScrollDirection.Vertical,
+				MinimumInteritemSpacing = 50, // minimum spacing between cells
+				MinimumLineSpacing = 50 // minimum spacing between rows if ScrollDirection is Vertical or between columns if Horizontal
             };
 
             // Line Layout
