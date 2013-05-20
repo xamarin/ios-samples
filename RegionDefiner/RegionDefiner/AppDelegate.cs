@@ -1,5 +1,4 @@
 using System;
-
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
@@ -27,6 +26,11 @@ namespace RegionDefiner
 			// if you want to use a different Application Delegate class from "AppDelegate"
 			// you can specify it here.
 			UIApplication.Main (args, null, "AppDelegate");
+		}
+
+		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations (UIApplication application, UIWindow forWindow)
+		{
+			return UIInterfaceOrientationMask.Portrait;
 		}
 	}
 }
