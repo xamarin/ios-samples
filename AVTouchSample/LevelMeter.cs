@@ -123,7 +123,7 @@ namespace avTouch
 					insetAmount = 1;
 				
 				if (PeakLevel > 0){
-					peakLight = (int) PeakLevel * NumLights;
+                    peakLight = (int)(PeakLevel * NumLights); 
 					if (peakLight >= NumLights)
 						peakLight = NumLights-1;
 				}
