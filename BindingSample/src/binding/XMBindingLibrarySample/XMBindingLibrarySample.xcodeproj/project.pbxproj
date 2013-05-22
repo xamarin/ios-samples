@@ -13,7 +13,6 @@
 		1D09B81C14C87E8200033666 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6536E14C7ECE5007670AC /* QuartzCore.framework */; };
 		1D09B82514C87F8500033666 /* XMUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536214C7C8EF007670AC /* XMUtilities.m */; };
 		1D09B82714C87F8500033666 /* XMCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536914C7D087007670AC /* XMCustomView.m */; };
-		1D7D8A0314D9BFB90043495B /* XMBindingLibrarySample-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 1D7D8A0214D9BFB90043495B /* XMBindingLibrarySample-Prefix.pch */; };
 		1DE6535214C7C824007670AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6535114C7C824007670AC /* Foundation.framework */; };
 		1DE6535814C7C824007670AC /* XMBindingLibrarySample.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6535714C7C824007670AC /* XMBindingLibrarySample.m */; };
 		1DE6536014C7C8BA007670AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6535F14C7C8BA007670AC /* UIKit.framework */; };
@@ -23,6 +22,9 @@
 		1DE6536B14C7D087007670AC /* XMCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536914C7D087007670AC /* XMCustomView.m */; };
 		1DE6536D14C7D118007670AC /* XMCustomViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536C14C7D118007670AC /* XMCustomViewDelegate.h */; };
 		1DE6536F14C7ECE5007670AC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6536E14C7ECE5007670AC /* QuartzCore.framework */; };
+		CE304A2F174D4DFB001653BF /* XMUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536114C7C8EF007670AC /* XMUtilities.h */; };
+		CE304A30174D4DFB001653BF /* XMCustomView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536814C7D087007670AC /* XMCustomView.h */; };
+		CE304A31174D4DFB001653BF /* XMCustomViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536C14C7D118007670AC /* XMCustomViewDelegate.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +165,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE304A2F174D4DFB001653BF /* XMUtilities.h in Headers */,
+				CE304A30174D4DFB001653BF /* XMCustomView.h in Headers */,
+				CE304A31174D4DFB001653BF /* XMCustomViewDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +178,6 @@
 				1DE6536314C7C8EF007670AC /* XMUtilities.h in Headers */,
 				1DE6536A14C7D087007670AC /* XMCustomView.h in Headers */,
 				1DE6536D14C7D118007670AC /* XMCustomViewDelegate.h in Headers */,
-				1D7D8A0314D9BFB90043495B /* XMBindingLibrarySample-Prefix.pch in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
