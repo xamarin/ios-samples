@@ -67,6 +67,7 @@
 						<object class="IBUIView" key="IBUIView" id="890851057">
 							<reference key="NSNextResponder"/>
 							<int key="NSvFlags">274</int>
+							<bool key="IBUIAutoresizesSubviews">NO</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="IBUITableView" id="454813512">
