@@ -45,14 +45,20 @@ namespace ViewTransitions
 			base.ViewDidLoad ();
 			
 			view1 = new UIImageView (new UIImage ("Images/image1.png"));
-			view1.ContentMode = UIViewContentMode.ScaleToFill;
+			view1.ContentMode = UIViewContentMode.ScaleAspectFit;
+			view1.AutoresizingMask = UIViewAutoresizing.All;
+
 			view2 = new UIImageView (new UIImage ("Images/image2.png"));
 			view2.Hidden = true;
-			view2.ContentMode = UIViewContentMode.ScaleToFill;
+			view2.ContentMode = UIViewContentMode.ScaleAspectFit;
+			view1.AutoresizingMask = UIViewAutoresizing.All;
+
 			
 			view3 = new UIImageView (new UIImage ("Images/image3.png"));
 			view3.Hidden = true;
-			view3.ContentMode = UIViewContentMode.ScaleToFill;
+			view3.ContentMode = UIViewContentMode.ScaleAspectFit;
+			view1.AutoresizingMask = UIViewAutoresizing.All;
+
 			
 			imageView.AddSubview (view1);
 			imageView.AddSubview (view2);
