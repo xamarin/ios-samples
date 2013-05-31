@@ -22,8 +22,6 @@ namespace SimpleCollectionView
             circleLayout = new CircleLayout ();
             simpleCollectionViewController = new SimpleCollectionViewController (circleLayout);
 
-            simpleCollectionViewController.CollectionView.ContentInset = new UIEdgeInsets (50, 0, 0, 0);
-
             window.RootViewController = simpleCollectionViewController;
             window.MakeKeyAndVisible ();
             
