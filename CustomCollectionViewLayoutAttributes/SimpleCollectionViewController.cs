@@ -12,6 +12,7 @@ namespace SimpleCollectionView
     {
         static NSString animalCellId = new NSString ("AnimalCell");
         List<IAnimal> animals;
+        UIGestureRecognizer tapRecognizer;
 
         public SimpleCollectionViewController (UICollectionViewLayout layout) : base (layout)
         {
@@ -25,7 +26,22 @@ namespace SimpleCollectionView
         {
             base.ViewDidLoad ();
 
+            tapRecognizer = new UITapGestureRecognizer (Tapped);
+            CollectionView.AddGestureRecognizer (tapRecognizer);
             CollectionView.RegisterClassForCell (typeof (AnimalCell), animalCellId);
+            CollectionView.BackgroundColor = UIColor.ScrollViewTexturedBackgroundColor;
+        }
+
+        void Tapped ()
+        {
+            if (tapRecognizer.State == UIGestureRecognizerState.Ended) {
+                var pinchPoint = tapRecognizer.LocationInView (CollectionView);
+                var tappedCellPath = CollectionView.IndexPathForItemAtPoint (pinchPoint);
+                if (tappedCellPath != null) {
+                    animals.RemoveAt (tappedCellPath.Row);
+                    CollectionView.DeleteItems (new NSIndexPath[] { tappedCellPath });
+                }
+            }
         }
 
         public override int GetItemsCount (UICollectionView collectionView, int section)
