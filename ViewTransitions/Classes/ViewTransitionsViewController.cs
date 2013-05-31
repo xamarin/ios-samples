@@ -51,13 +51,13 @@ namespace ViewTransitions
 			view2 = new UIImageView (new UIImage ("Images/image2.png"));
 			view2.Hidden = true;
 			view2.ContentMode = UIViewContentMode.ScaleAspectFit;
-			view1.AutoresizingMask = UIViewAutoresizing.All;
+			view2.AutoresizingMask = UIViewAutoresizing.All;
 
 			
 			view3 = new UIImageView (new UIImage ("Images/image3.png"));
 			view3.Hidden = true;
 			view3.ContentMode = UIViewContentMode.ScaleAspectFit;
-			view1.AutoresizingMask = UIViewAutoresizing.All;
+			view3.AutoresizingMask = UIViewAutoresizing.All;
 
 			
 			imageView.AddSubview (view1);
