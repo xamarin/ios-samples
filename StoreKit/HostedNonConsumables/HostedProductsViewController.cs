@@ -5,18 +5,27 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Drawing;
 
+/*
+Prices will appear in the iOS Simulator, but downloads cannot be tested except on a real device
+
+http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/DevelopingwithStoreKit/DevelopingwithStoreKit.html
+
+NOTE: Store Kit can be tested in the iOS Simulator, except for hosted content downloads.
+*/
+
+
 namespace NonConsumables {
 	public class HostedProductsViewController : UIViewController {
-		public static string oldeStyleProductId = "com.xamarin.storekitdoc.monotouchimages",
-		eightBitProductId = "com.xamarin.storekitdoc.monotouchfilesystem";
+		public static string hostedImagesProductId = "com.xamarin.storekit.hosted.monotouchimages",   //"com.xamarin.storekitdoc.monotouchimages",
+		hostedFilesystemProductId = "com.xamarin.storekit.hosted.monotouchfilesystem";                //"com.xamarin.storekitdoc.monotouchfilesystem";
 
-		UIButton oldStyleButton, eightBitButton, restoreButton;
-		UILabel oldStyleTitle, oldStyleDescription, eightBitTitle, eightBitDescription;
+		UIButton hostedImagesButton, hostedFilesystemButton, restoreButton;
+		UILabel hostedImagesTitle, hostedImagesDescription, hostedFilesystemTitle, hostedFilesystemDescription;
 		UITextView bookTextDisplay;
 		UIImageView bookIcon;
 		List<string> products;
 		bool pricesLoaded = false;
-		bool oldeStylePurchased, eightBitPurchased;
+		bool hostedImagesPurchased, hostedFilesystemPurchased;
 		NSObject priceObserver, requestObserver;
 		
 		InAppPurchaseManager iap;
@@ -24,7 +33,7 @@ namespace NonConsumables {
 		public HostedProductsViewController () : base()
 		{
 			// two products for sale on this page
-			products = new List<string>() {oldeStyleProductId, eightBitProductId};
+			products = new List<string>() {hostedImagesProductId, hostedFilesystemProductId};
 			iap = new InAppPurchaseManager();
 		}
 	
@@ -36,27 +45,27 @@ namespace NonConsumables {
 			Title = "Hosted Products";
 			View.BackgroundColor = UIColor.White;
 
-			oldStyleButton = UIButton.FromType (UIButtonType.RoundedRect);
-			oldStyleButton.SetTitle ("loading...", UIControlState.Disabled);
-			oldStyleButton.SetTitleColor(UIColor.Gray, UIControlState.Disabled);
-			oldStyleButton.SetTitle ("Buy...", UIControlState.Normal);
-			oldStyleButton.Enabled = false;
+			hostedImagesButton = UIButton.FromType (UIButtonType.RoundedRect);
+			hostedImagesButton.SetTitle ("loading...", UIControlState.Disabled);
+			hostedImagesButton.SetTitleColor(UIColor.Gray, UIControlState.Disabled);
+			hostedImagesButton.SetTitle ("Buy...", UIControlState.Normal);
+			hostedImagesButton.Enabled = false;
 
-			eightBitButton = UIButton.FromType (UIButtonType.RoundedRect);
-			eightBitButton.SetTitle ("loading...", UIControlState.Disabled);
-			eightBitButton.SetTitleColor(UIColor.Gray, UIControlState.Disabled);
-			eightBitButton.SetTitle ("Buy...", UIControlState.Normal);
-			eightBitButton.Enabled = false;
+			hostedFilesystemButton = UIButton.FromType (UIButtonType.RoundedRect);
+			hostedFilesystemButton.SetTitle ("loading...", UIControlState.Disabled);
+			hostedFilesystemButton.SetTitleColor(UIColor.Gray, UIControlState.Disabled);
+			hostedFilesystemButton.SetTitle ("Buy...", UIControlState.Normal);
+			hostedFilesystemButton.Enabled = false;
 
-			oldStyleTitle = new UILabel(new RectangleF(10, 5, 300, 30));
-			oldStyleTitle.Font = UIFont.BoldSystemFontOfSize(18f);
-			oldStyleDescription = new UILabel(new RectangleF(10, 30, 300, 30));
-			oldStyleButton.Frame = new RectangleF(10, 65, 180, 40);
+			hostedImagesTitle = new UILabel(new RectangleF(10, 5, 300, 30));
+			hostedImagesTitle.Font = UIFont.BoldSystemFontOfSize(18f);
+			hostedImagesDescription = new UILabel(new RectangleF(10, 30, 300, 30));
+			hostedImagesButton.Frame = new RectangleF(10, 65, 180, 40);
 
-			eightBitTitle = new UILabel(new RectangleF(10, 110, 300, 30));
-			eightBitTitle.Font = UIFont.BoldSystemFontOfSize(18f);
-			eightBitDescription = new UILabel(new RectangleF(10, 135, 300, 30));
-			eightBitButton.Frame = new RectangleF(10, 170, 180, 40);
+			hostedFilesystemTitle = new UILabel(new RectangleF(10, 110, 300, 30));
+			hostedFilesystemTitle.Font = UIFont.BoldSystemFontOfSize(18f);
+			hostedFilesystemDescription = new UILabel(new RectangleF(10, 135, 300, 30));
+			hostedFilesystemButton.Frame = new RectangleF(10, 170, 180, 40);
 
 
 			restoreButton = UIButton.FromType (UIButtonType.RoundedRect);
@@ -70,33 +79,33 @@ namespace NonConsumables {
 			bookIcon = new UIImageView(new RectangleF(240, 210, 60, 60));
 
 
-			View.AddSubview (oldStyleButton);
-			View.AddSubview (oldStyleTitle);
-			View.AddSubview (oldStyleDescription);
-			View.AddSubview (eightBitButton);			
-			View.AddSubview (eightBitTitle);
-			View.AddSubview (eightBitDescription);
+			View.AddSubview (hostedImagesButton);
+			View.AddSubview (hostedImagesTitle);
+			View.AddSubview (hostedImagesDescription);
+			View.AddSubview (hostedFilesystemButton);			
+			View.AddSubview (hostedFilesystemTitle);
+			View.AddSubview (hostedFilesystemDescription);
 			View.AddSubview (restoreButton);
 			View.AddSubview (bookTextDisplay);
 			View.AddSubview (bookIcon);
 			#endregion	
 
-			oldStyleButton.TouchUpInside += (sender, e) => {
-				if (oldeStylePurchased) {
+			hostedImagesButton.TouchUpInside += (sender, e) => {
+				if (hostedImagesPurchased) {
 					// paid for, therefore allow access
-					HostedProductManager.Read (oldeStyleProductId, bookTextDisplay, bookIcon);
+					HostedProductManager.Read (hostedImagesProductId, bookTextDisplay, bookIcon);
 				} else {
 					// initiate payment
-					iap.PurchaseProduct (oldeStyleProductId);
+					iap.PurchaseProduct (hostedImagesProductId);
 				}
 			};	
-			eightBitButton.TouchUpInside += (sender, e) => {
-				if (eightBitPurchased) {
+			hostedFilesystemButton.TouchUpInside += (sender, e) => {
+				if (hostedFilesystemPurchased) {
 					// paid for, therefore allow access
-					HostedProductManager.Read (eightBitProductId, bookTextDisplay, bookIcon);
+					HostedProductManager.Read (hostedFilesystemProductId, bookTextDisplay, bookIcon);
 				} else {
 					// initiate payment
-					iap.PurchaseProduct (eightBitProductId);
+					iap.PurchaseProduct (hostedFilesystemProductId);
 				}
 			};	
 			restoreButton.TouchUpInside += (sender, e) => {
@@ -112,48 +121,58 @@ namespace NonConsumables {
 			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerProductsFetchedNotification, 
 			(notification) => {
 				var info = notification.UserInfo;
-				var NSgreyscaleProductId = new NSString(oldeStyleProductId);
-				var NSsepiaProductId = new NSString(eightBitProductId);
-				
-				// we only update the button with a price if the user hasn't already purchased it
-				if (!oldeStylePurchased && info.ContainsKey(NSgreyscaleProductId)) {
-					pricesLoaded = true;
+				var NSimagesProductId = new NSString(hostedImagesProductId);
+				var NSfilesystemProductId = new NSString(hostedFilesystemProductId);
+		
+				if (info == null) {
+					// if info is null, probably NO valid prices returned, therefore it doesn't exist at all
+					hostedImagesDescription.Text = "check iTunes connect setup";
+					hostedFilesystemDescription.Text = "check iTunes connect setup";
+					hostedImagesButton.SetTitle("invalid product id", UIControlState.Disabled);
+					hostedFilesystemButton.SetTitle("invalid product id", UIControlState.Disabled);
+				} else {
+					// we only update the button with a price if the user hasn't already purchased it
+					if (!hostedImagesPurchased && info.ContainsKey(NSimagesProductId)) {
+						pricesLoaded = true;
 
-					var product = (SKProduct) info.ObjectForKey(NSgreyscaleProductId);
-					
-					Console.WriteLine("Product id: " + product.ProductIdentifier);
-					Console.WriteLine("Product title: " + product.LocalizedTitle);
-					Console.WriteLine("Product description: " + product.LocalizedDescription);
-					Console.WriteLine("Product price: " + product.Price);
-					Console.WriteLine("Product l10n price: " + product.LocalizedPrice());	
-					Console.WriteLine("Product downloadable: " + product.Downloadable);	// iOS6
-					Console.WriteLine("Product version:      " + product.DownloadContentVersion);    // iOS6
-					Console.WriteLine("Product length:       " + product.DownloadContentLengths[0]); // iOS6
+						var product = (SKProduct) info.ObjectForKey(NSimagesProductId);
+						
+						Console.WriteLine("Product id: " + product.ProductIdentifier);
+						Console.WriteLine("Product title: " + product.LocalizedTitle);
+						Console.WriteLine("Product description: " + product.LocalizedDescription);
+						Console.WriteLine("Product price: " + product.Price);
+						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());	
+						Console.WriteLine("Product downloadable: " + product.Downloadable);	// iOS6
+						Console.WriteLine("Product version:      " + product.DownloadContentVersion);    // iOS6
+						if (product.DownloadContentLengths != null)
+							Console.WriteLine("Product length:       " + product.DownloadContentLengths[0]); // iOS6
 
-					oldStyleButton.Enabled = true;
-					oldStyleTitle.Text = product.LocalizedTitle;
-					oldStyleDescription.Text = product.LocalizedDescription;
-					oldStyleButton.SetTitle("Buy " + product.LocalizedPrice(), UIControlState.Normal);
-				}
-				// we only update the button with a price if the user hasn't already purchased it
-				if (!eightBitPurchased && info.ContainsKey(NSsepiaProductId)) {
-					pricesLoaded = true;
+						hostedImagesButton.Enabled = true;
+						hostedImagesTitle.Text = product.LocalizedTitle;
+						hostedImagesDescription.Text = product.LocalizedDescription;
+						hostedImagesButton.SetTitle("Buy " + product.LocalizedPrice(), UIControlState.Normal);
+					}
+					// we only update the button with a price if the user hasn't already purchased it
+					if (!hostedFilesystemPurchased && info.ContainsKey(NSfilesystemProductId)) {
+						pricesLoaded = true;
 
-					var product = (SKProduct) info.ObjectForKey(NSsepiaProductId);
-					
-					Console.WriteLine("Product id: " + product.ProductIdentifier);
-					Console.WriteLine("Product title: " + product.LocalizedTitle);
-					Console.WriteLine("Product description: " + product.LocalizedDescription);
-					Console.WriteLine("Product price: " + product.Price);
-					Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
-					Console.WriteLine("Product downloadable: " + product.Downloadable); // iOS6
-					Console.WriteLine("Product version:      " + product.DownloadContentVersion);    // iOS6
-					Console.WriteLine("Product length:       " + product.DownloadContentLengths[0]); // iOS6
+						var product = (SKProduct) info.ObjectForKey(NSfilesystemProductId);
+						
+						Console.WriteLine("Product id: " + product.ProductIdentifier);
+						Console.WriteLine("Product title: " + product.LocalizedTitle);
+						Console.WriteLine("Product description: " + product.LocalizedDescription);
+						Console.WriteLine("Product price: " + product.Price);
+						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
+						Console.WriteLine("Product downloadable: " + product.Downloadable); // iOS6
+						Console.WriteLine("Product version:      " + product.DownloadContentVersion);    // iOS6
+						if (product.DownloadContentLengths != null)
+							Console.WriteLine("Product length:       " + product.DownloadContentLengths[0]); // iOS6
 
-					eightBitButton.Enabled = true;
-					eightBitTitle.Text = product.LocalizedTitle;
-					eightBitDescription.Text = product.LocalizedDescription;
-					eightBitButton.SetTitle("Buy " + product.LocalizedPrice(), UIControlState.Normal);
+						hostedFilesystemButton.Enabled = true;
+						hostedFilesystemTitle.Text = product.LocalizedTitle;
+						hostedFilesystemDescription.Text = product.LocalizedDescription;
+						hostedFilesystemButton.SetTitle("Buy " + product.LocalizedPrice(), UIControlState.Normal);
+					}
 				}
 			});
 			
@@ -164,8 +183,8 @@ namespace NonConsumables {
 					iap.RequestProductData(products); // async request via StoreKit -> App Store
 			} else {
 				// can't make payments (purchases turned off in Settings?)
-				oldStyleButton.SetTitle ("AppStore disabled", UIControlState.Disabled);
-				eightBitButton.SetTitle ("AppStore disabled", UIControlState.Disabled);
+				hostedImagesButton.SetTitle ("AppStore disabled", UIControlState.Disabled);
+				hostedFilesystemButton.SetTitle ("AppStore disabled", UIControlState.Disabled);
 			}
 			// update the buttons before displaying, to reflect past purchases
 			UpdateButtons ();
@@ -180,22 +199,22 @@ namespace NonConsumables {
 			                                                                 (notification) => {
 				// TODO: 
 				Console.WriteLine ("Request Failed");
-				oldStyleButton.SetTitle ("Network down?", UIControlState.Disabled);
-				eightBitButton.SetTitle ("Network down?", UIControlState.Disabled);
+				hostedImagesButton.SetTitle ("Network down?", UIControlState.Disabled);
+				hostedFilesystemButton.SetTitle ("Network down?", UIControlState.Disabled);
 			});
 		}
 
 		void UpdateButtons () {
 			// set whether the user already has purchased these products
-			if (HostedProductManager.HasPurchased(oldeStyleProductId)) {
-				oldStyleButton.Enabled = true;
-				oldStyleButton.SetTitle("Read Images Chapter", UIControlState.Normal);
-				oldeStylePurchased = true;
+			if (HostedProductManager.HasPurchased(hostedImagesProductId)) {
+				hostedImagesButton.Enabled = true;
+				hostedImagesButton.SetTitle("Read Images Chapter", UIControlState.Normal);
+				hostedImagesPurchased = true;
 			}
-			if (HostedProductManager.HasPurchased(eightBitProductId)) {
-				eightBitButton.Enabled = true;
-				eightBitButton.SetTitle("Read FileSystem Chapter ", UIControlState.Normal);
-				eightBitPurchased = true;
+			if (HostedProductManager.HasPurchased(hostedFilesystemProductId)) {
+				hostedFilesystemButton.Enabled = true;
+				hostedFilesystemButton.SetTitle("Read FileSystem Chapter ", UIControlState.Normal);
+				hostedFilesystemPurchased = true;
 			}
 		}
 

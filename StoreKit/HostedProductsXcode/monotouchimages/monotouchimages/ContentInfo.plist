@@ -5,6 +5,6 @@
 	<key>ContentVersion</key>
 	<string>1.0</string>
 	<key>IAPProductIdentifier</key>
-	<string>com.xamarin.storekitdoc.monotouchimages</string>
+	<string>com.xamarin.storekit.hosted.monotouchimages</string>
 </dict>
 </plist>
