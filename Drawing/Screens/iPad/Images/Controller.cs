@@ -37,7 +37,7 @@ namespace Example_Drawing.Screens.iPad.Images
 									      CGImageAlphaInfo.PremultipliedFirst)) {
 				
 				// declare vars
-				UIImage apressImage = UIImage.FromFile ("Images/Icons/512_icon.png");
+				UIImage apressImage = UIImage.FromFile ("icon-114.png");
 				PointF imageOrigin = new PointF ((imageView.Frame.Width / 2) - (apressImage.CGImage.Width / 2), (imageView.Frame.Height / 2) - (apressImage.CGImage.Height / 2)); 
 				RectangleF imageRect = new RectangleF (imageOrigin.X, imageOrigin.Y, apressImage.CGImage.Width, apressImage.CGImage.Height);
 				
