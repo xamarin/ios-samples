@@ -57,6 +57,7 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.xib.designer.cs">
@@ -66,6 +67,7 @@
     <Compile Include="TableViewRocks.cs" />
     <Compile Include="DotNet.cs" />
     <Compile Include="Cocoa.cs" />
+    <Compile Include="NetHttp.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
