@@ -54,7 +54,7 @@ namespace HttpClient
 	}
 	
 	public class StringDelegate : UITableViewDelegate {
-		internal int selected = 0;
+		internal int selected;
 		
 		public StringDelegate ()
 		{
