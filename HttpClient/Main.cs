@@ -50,7 +50,8 @@ namespace HttpClient
 			TableViewSelector.Configure (this.stack, new string [] {
 				"http  - WebRequest",
 				"https - WebRequest",
-				"http  - NSUrlConnection"
+				"http  - NSUrlConnection",
+				"http  - HttpClient/CFNetwork"
 			});
 			                   
 			window.MakeKeyAndVisible ();
@@ -76,6 +77,10 @@ namespace HttpClient
 			case 2:
 				new Cocoa (this).HttpSample ();
 				break;
+
+			case 3:
+				new NetHttp (this).HttpSample ();
+				break;
 			}
 		}
 		
@@ -83,7 +88,6 @@ namespace HttpClient
 		{	
 			var doc = XDocument.Load (new XmlTextReader (stream));
 			var items = doc.XPathSelectElements ("./rss/channel/item/title");
-			XElement a = null;
 
 			//
 			// Since this is invoked on a separated thread, make sure that
