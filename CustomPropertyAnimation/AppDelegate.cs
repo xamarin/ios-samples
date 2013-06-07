@@ -23,7 +23,8 @@ namespace CustomPropertyAnimation
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 		
-			vc = new UIViewController ();
+			vc = new UIViewControllerRotation ();
+
 			vc.View.BackgroundColor = UIColor.Black;
 			testLayer = new CircleLayer();
 			testLayer.Color = UIColor.Green.CGColor;
@@ -58,7 +59,6 @@ namespace CustomPropertyAnimation
 			window.RootViewController = vc;
 			// make the window visible
 			window.MakeKeyAndVisible ();
-			
 			return true;
 		}
 		
@@ -69,6 +69,22 @@ namespace CustomPropertyAnimation
 			// you can specify it here.
 			UIApplication.Main (args, null, "AppDelegate");
 		}
+	}
+
+	public class UIViewControllerRotation : UIViewController
+	{
+		public override void WillAnimateRotation (UIInterfaceOrientation toInterfaceOrientation, double duration)
+		{
+			base.WillAnimateRotation (toInterfaceOrientation, duration);
+
+			// call our helper method to position the controls
+			CALayer[] layers = this.View.Layer.Sublayers;
+			foreach (CALayer layer in layers) 
+			{
+				layer.Frame = this.View.Layer.Bounds;
+			}
+		}
+
 	}
 	
 	public class CircleLayer : CALayer
@@ -119,7 +135,9 @@ namespace CustomPropertyAnimation
 			base.DrawInContext (context);
 
 			// Console.WriteLine ("DrawInContext Radius: {0} Thickness: {1} Color: {2}", Radius, Thickness, Color);
-			
+			//Console.WriteLine (this.Bounds.Width+"   "+ this.Bounds.Height);
+
+
 			PointF centerPoint = new PointF (this.Bounds.Width / 2, this.Bounds.Height / 2);
 			CGColor glowColor = new UIColor (Color).ColorWithAlpha (0.85f).CGColor;
 			double innerRadius = (Radius - Thickness) > 0 ? Radius - Thickness : 0;
