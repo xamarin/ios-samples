@@ -15,6 +15,7 @@ namespace Stars
 {
 	public class StarsViewController : GLKViewController
 	{
+		//comment
 		const double RadiansToDegrees = (180 / Math.PI);
 		const int NumCubes = 11;
 		const int NumStars = 400;
