@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-	<ID>064a9ab4-1e58-4cf6-a1c2-aab04997aa57</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Intermediate</Level>
-	<Tags>Graphics, iPad</Tags>
+  <ID>064a9ab4-1e58-4cf6-a1c2-aab04997aa57</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>Graphics, iPad</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>

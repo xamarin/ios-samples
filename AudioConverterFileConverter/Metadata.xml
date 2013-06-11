@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-	<ID>916079CB-76E6-4BB3-A7F8-2908DF1151BF</ID>
-	<IsFullApplication>true</IsFullApplication>
-	<Level>Advanced</Level>
-	<Tags>CoreAudio, Audio, AudioToolbox</Tags>
+  <ID>916079CB-76E6-4BB3-A7F8-2908DF1151BF</ID>
+  <IsFullApplication>true</IsFullApplication>
+  <Level>Advanced</Level>
+  <Tags>CoreAudio, Audio, AudioToolbox</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>

@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-	<ID>C30005F2-43D7-4242-85C8-5C13BFE7BBA5</ID>
-	<IsFullApplication>true</IsFullApplication>
-	<Level>Advanced</Level>
-	<Tags>MIDI, Audio</Tags>
+  <ID>C30005F2-43D7-4242-85C8-5C13BFE7BBA5</ID>
+  <IsFullApplication>true</IsFullApplication>
+  <Level>Advanced</Level>
+  <Tags>MIDI, Audio</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>

@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-	<ID>adbcadf5-c8fa-41bc-897b-4e8b20b98d26</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
-	<Tags>User Interface, iPhone</Tags>
+  <ID>adbcadf5-c8fa-41bc-897b-4e8b20b98d26</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>User Interface, iPhone</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>
