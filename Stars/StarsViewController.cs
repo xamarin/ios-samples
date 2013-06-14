@@ -135,6 +135,7 @@ namespace Stars
 			rpyLabel.TextColor = UIColor.White;
 			rpyLabel.TextAlignment = UITextAlignment.Center;
 			rpyLabel.LineBreakMode = UILineBreakMode.WordWrap;
+			rpyLabel.Font = UIFont.FromName ("Helvetica-Bold", 20f);
 			View.AddSubview (rpyLabel);
 		}
 
