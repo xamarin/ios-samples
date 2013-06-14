@@ -278,6 +278,7 @@ namespace Stars
 			                               String.Format("{0:0.#}", dm.Attitude.Roll * RadiansToDegrees),
 			                               String.Format("{0:0.#}", dm.Attitude.Pitch * RadiansToDegrees), 
 			                               String.Format("{0:0.#}", dm.Attitude.Yaw * RadiansToDegrees));
+			//...now we can print out coordinates
 		}
 		 
 		public void Draw (object sender, GLKViewDrawEventArgs args)
