@@ -20,7 +20,8 @@ namespace InputStreamTest
 			}
 			
 			if (request != null) {
-				request.BodyStream = null;
+				if(request.BodyStream!=null)
+					request.BodyStream = null;
 				request.Dispose ();
 				request = null;
 			}
