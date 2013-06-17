@@ -151,7 +151,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 				ABMutableMultiValue<string> phones = contact.GetPhones ().ToMutableMultiValue ();
 				
 				// add the phone number to the phones via the multivalue.Add method
-				phones.Add (new NSString (txtPhoneLabel.Text), new NSString (txtPhoneNumber.Text));
+				phones.Add (new NSString (txtPhoneNumber.Text), new NSString (txtPhoneLabel.Text));
 				
 				// attach the phones back to the contact
 				contact.SetPhones (phones);
@@ -202,7 +202,44 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 		
 		protected void BtnSaveChangesTouchUpInside (object sender, EventArgs e)
 		{
-			
+			using(ABAddressBook addressBook = new ABAddressBook ())
+			{
+				ABPerson contact = addressBook.GetPerson (contactID);
+
+				// save contact name information
+				contact.FirstName = txtFirstName.Text;
+				contact.LastName = txtLastName.Text;
+
+				// get the phones and copy them to a mutable set of multivalues (so we can edit)
+				ABMutableMultiValue<string> phones = contact.GetPhones ().ToMutableMultiValue ();
+
+				// remove all phones data
+				for (int i = phones.Count - 1; i >= 0 ; i--) {
+					phones.RemoveAt(i);
+				}
+
+				// add the phone number to the phones from the table data source
+				for(int i=0; i<PhoneNumberTableSource.labels.Count; i++)
+				{
+					phones.Add (new NSString (PhoneNumberTableSource.numbers[i]), new NSString (PhoneNumberTableSource.labels[i]));
+				}
+
+				// attach the phones back to the contact
+				contact.SetPhones (phones);
+
+				// save the address book changes
+				addressBook.Save ();
+
+				// show an alert, letting the user know information saved successfully
+				new UIAlertView ("Alert", "Contact Information Saved!", null, "OK", null).Show();
+
+				// update the page
+				PopulatePage (contact);
+
+				// we have to call reload to refresh the table because the action didn't originate
+				// from the table.
+				tblPhoneNumbers.ReloadData ();
+			}
 		}
 		
 		protected void PopulatePage (ABPerson contact)
@@ -215,6 +252,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 			txtLastName.Text = contact.LastName;
 			tableDataSource = new AddressBookScreen.PhoneNumberTableSource (contact.GetPhones ());
 			tblPhoneNumbers.Source = tableDataSource;
+
 			
 			// wire up our delete clicked handler
 			tableDataSource.DeleteClicked += 
@@ -249,9 +287,27 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 			public event EventHandler<PhoneNumberClickedEventArgs> DeleteClicked;
 			
 			protected ABMultiValue<string> phoneNumbers { get; set; }
+			public static List<string> labels;
+			public static List<string> numbers;
+
 			
 			public PhoneNumberTableSource(ABMultiValue<string> phoneNumbers)
-			{ this.phoneNumbers = phoneNumbers; }
+			{ 
+				this.phoneNumbers = phoneNumbers;
+				if(labels == null)
+					labels = new List<string>();
+				else
+					labels.Clear();
+				if(numbers == null)
+					numbers = new List<string>();
+				else
+					numbers.Clear();
+				for (int i=0; i<phoneNumbers.Count; i++)
+				{
+					labels.Add(phoneNumbers[i].Label.Description);
+					numbers.Add (phoneNumbers[i].Value);
+				}
+			}
 			
 			public override int NumberOfSections (UITableView tableView) { return 1; }
 			
@@ -260,12 +316,28 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				EditablePhoneTableCell cell = tableView.DequeueReusableCell ("PhoneCell") as EditablePhoneTableCell;
-				if(cell == null)
+				if (cell != null)
+					cell.dataIndex = indexPath.Row;
+				if (cell == null) {
 					cell = new EditablePhoneTableCell ("PhoneCell");
-				
-				cell.PhoneLabel = phoneNumbers[indexPath.Row].Label.ToString ().Replace ("_$!<", "").Replace (">!$_", "");
-				cell.PhoneNumber = phoneNumbers[indexPath.Row].Value.ToString ();
+					cell.dataIndex = indexPath.Row;
+					cell.txtLabel.EditingDidEnd += (sender, e) => {
+						labels[cell.dataIndex] = cell.PhoneLabel;
+
+					};
+					cell.txtPhoneNumber.EditingDidEnd += (sender, e) => {
+						numbers[cell.dataIndex] = cell.PhoneNumber;
+					};
+				}
+//				cell.PhoneLabel = phoneNumbers[indexPath.Row].Label.ToString ().Replace ("_$!<", "").Replace (">!$_", "");
+//				cell.PhoneNumber = phoneNumbers[indexPath.Row].Value.ToString ();
+				cell.PhoneLabel = labels[indexPath.Row].Replace ("_$!<", "").Replace (">!$_", "");
+				cell.PhoneNumber = numbers [indexPath.Row];
 				cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+
+
+
+
 				return cell;
 			}
 			
@@ -298,13 +370,15 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 		protected class EditablePhoneTableCell : UITableViewCell
 		{	
 			// label and phone number text boxes
-			UITextField txtLabel = new UITextField(new RectangleF(10, 5, 110, 33));
-			UITextField txtPhoneNumber = new UITextField(new RectangleF(130, 5, 140, 33));
-			
+			public UITextField txtLabel = new UITextField(new RectangleF(10, 5, 110, 33));
+			public UITextField txtPhoneNumber = new UITextField(new RectangleF(130, 5, 140, 33));
+
 			// properties
 			public string PhoneLabel { get { return txtLabel.Text; } set { txtLabel.Text = value; } }
 			public string PhoneNumber { get { return txtPhoneNumber.Text; } set { txtPhoneNumber.Text = value; } }
-			
+
+			public int dataIndex;
+
 			public EditablePhoneTableCell(string reuseIdentifier) : base(UITableViewCellStyle.Default, reuseIdentifier)
 			{
 				AddSubview(txtLabel);
@@ -316,7 +390,11 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 				txtPhoneNumber.ReturnKeyType= UIReturnKeyType.Done;
 				txtPhoneNumber.BorderStyle = UITextBorderStyle.Line;
 				txtPhoneNumber.ShouldReturn += (t) => { t.ResignFirstResponder(); return true; };
-			}			
+
+
+			}
+
+
 		}
 		
 		#endregion	                         
