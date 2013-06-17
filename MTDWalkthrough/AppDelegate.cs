@@ -37,15 +37,17 @@ namespace MTDWalkthrough
 				++n;
                 
 				var task = new Task{Name = "task " + n, DueDate = DateTime.Now};
-				
+
 				var element = new EntryElement (task.Name, "Enter task description", task.Description);
+
+				var dateElement = new FutureDateElement ("Due Date", task.DueDate);
                 
 				var taskElement = new RootElement (task.Name){
                     new Section () { 
 						element
 					},
                     new Section () { 
-						new DateElement ("Due Date", task.DueDate)
+						dateElement
                     },
 					new Section ("Demo Retrieving Element Value") {
 						new StringElement ("Output Task Description", 
@@ -57,10 +59,25 @@ namespace MTDWalkthrough
      
 			_window.RootViewController = _nav;
 			_window.MakeKeyAndVisible ();
-            
+
 			return true;
 		}
-        
+     	
+	}
+
+	public class FutureDateElement : DateElement
+	{
+		public FutureDateElement(string caption, DateTime date) : base(caption,date)
+		{
+
+		}
+		public override UIDatePicker CreatePicker ()
+		{
+			UIDatePicker futureDatePicker = base.CreatePicker ();
+			futureDatePicker.MinimumDate = DateTime.Today;
+			return futureDatePicker;
+		}
+
 	}
 }
 
