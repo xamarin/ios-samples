@@ -1,0 +1,50 @@
+    y
+for i in 1..360
+    for j in 1..480
+    print i,' ',j
+    puts
+    end
+    endy
+for i in 1..360
+for j in 1..480
+print i,'  ',j
+puts
+end
+end
+run
+lakdf
+aq
+'sdasdf
+asd
+f
+as
+dfa
+sdf
+as
+q
+1
+123
+1
+quit
+;
+'
+?
+>
+*
+q
+asdf
+qwe
+df
+as
+df
+xzc
+v
+sd
+quit
+clear
+auit
+auit
+auit
+auit
+auit
+asdf

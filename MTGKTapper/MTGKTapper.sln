@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTGKTapper", "MTGKTapper\MTGKTapper.csproj", "{FFFD9C88-1625-4A58-81A7-7783AF80E475}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFFD9C88-1625-4A58-81A7-7783AF80E475}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{FFFD9C88-1625-4A58-81A7-7783AF80E475}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{FFFD9C88-1625-4A58-81A7-7783AF80E475}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{FFFD9C88-1625-4A58-81A7-7783AF80E475}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{FFFD9C88-1625-4A58-81A7-7783AF80E475}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FFFD9C88-1625-4A58-81A7-7783AF80E475}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FFFD9C88-1625-4A58-81A7-7783AF80E475}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FFFD9C88-1625-4A58-81A7-7783AF80E475}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FFFD9C88-1625-4A58-81A7-7783AF80E475}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FFFD9C88-1625-4A58-81A7-7783AF80E475}.Release|iPhone.Build.0 = Release|iPhone
+		{FFFD9C88-1625-4A58-81A7-7783AF80E475}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FFFD9C88-1625-4A58-81A7-7783AF80E475}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MTGKTapper\MTGKTapper.csproj
+	EndGlobalSection
+EndGlobal
