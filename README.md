@@ -40,9 +40,9 @@ Samples Submission Guidelines
 
 We love samples! Application samples show off our platform and provide a great way for people to learn our stuff. And we even promote them as a first-class feature of the docs site. You can find our two sample galleries here:
 
-* [iOS Samples](http://docs.xamarin.com/ios/samples)
+* [iOS Samples](http://docs.xamarin.com/samples/ios)
 
-* [Android Samples](http://docs.xamarin.com/android/samples)
+* [Android Samples](http://docs.xamarin.com/samples/android)
 
 ## Sample GitHub Repositories
 
