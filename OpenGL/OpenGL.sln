@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGLES20Example", "OpenGLES20Example\OpenGLES20Example.csproj", "{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerVertexDirectionalLighting", "PerVertexDirectionalLighting\PerVertexDirectionalLighting.csproj", "{522284B6-ED61-4F9D-8BA4-F7A863126445}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLKBaseEffectDrawing", "GLKBaseEffectDrawing\GLKBaseEffectDrawing.csproj", "{F17A7552-709F-4109-AFD2-FE557F0C4CD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLKBaseEffectDrawingTexture", "GLKBaseEffectDrawingTexture\GLKBaseEffectDrawingTexture.csproj", "{7268D497-8ADF-4ECD-ACE9-37AE15A84624}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLKReflectionMapEffectSkybox", "GLKReflectionMapEffectSkybox\GLKReflectionMapEffectSkybox.csproj", "{512A6C28-7D23-4AD6-AE19-86647B15C1C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{512A6C28-7D23-4AD6-AE19-86647B15C1C4}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{512A6C28-7D23-4AD6-AE19-86647B15C1C4}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{512A6C28-7D23-4AD6-AE19-86647B15C1C4}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{512A6C28-7D23-4AD6-AE19-86647B15C1C4}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{512A6C28-7D23-4AD6-AE19-86647B15C1C4}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{512A6C28-7D23-4AD6-AE19-86647B15C1C4}.Debug|iPhone.Build.0 = Debug|iPhone
+		{512A6C28-7D23-4AD6-AE19-86647B15C1C4}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{512A6C28-7D23-4AD6-AE19-86647B15C1C4}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{512A6C28-7D23-4AD6-AE19-86647B15C1C4}.Release|iPhone.ActiveCfg = Release|iPhone
+		{512A6C28-7D23-4AD6-AE19-86647B15C1C4}.Release|iPhone.Build.0 = Release|iPhone
+		{512A6C28-7D23-4AD6-AE19-86647B15C1C4}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{512A6C28-7D23-4AD6-AE19-86647B15C1C4}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{522284B6-ED61-4F9D-8BA4-F7A863126445}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{522284B6-ED61-4F9D-8BA4-F7A863126445}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{522284B6-ED61-4F9D-8BA4-F7A863126445}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{522284B6-ED61-4F9D-8BA4-F7A863126445}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{522284B6-ED61-4F9D-8BA4-F7A863126445}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{522284B6-ED61-4F9D-8BA4-F7A863126445}.Debug|iPhone.Build.0 = Debug|iPhone
+		{522284B6-ED61-4F9D-8BA4-F7A863126445}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{522284B6-ED61-4F9D-8BA4-F7A863126445}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{522284B6-ED61-4F9D-8BA4-F7A863126445}.Release|iPhone.ActiveCfg = Release|iPhone
+		{522284B6-ED61-4F9D-8BA4-F7A863126445}.Release|iPhone.Build.0 = Release|iPhone
+		{522284B6-ED61-4F9D-8BA4-F7A863126445}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{522284B6-ED61-4F9D-8BA4-F7A863126445}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{7268D497-8ADF-4ECD-ACE9-37AE15A84624}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{7268D497-8ADF-4ECD-ACE9-37AE15A84624}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{7268D497-8ADF-4ECD-ACE9-37AE15A84624}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{7268D497-8ADF-4ECD-ACE9-37AE15A84624}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{7268D497-8ADF-4ECD-ACE9-37AE15A84624}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{7268D497-8ADF-4ECD-ACE9-37AE15A84624}.Debug|iPhone.Build.0 = Debug|iPhone
+		{7268D497-8ADF-4ECD-ACE9-37AE15A84624}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{7268D497-8ADF-4ECD-ACE9-37AE15A84624}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{7268D497-8ADF-4ECD-ACE9-37AE15A84624}.Release|iPhone.ActiveCfg = Release|iPhone
+		{7268D497-8ADF-4ECD-ACE9-37AE15A84624}.Release|iPhone.Build.0 = Release|iPhone
+		{7268D497-8ADF-4ECD-ACE9-37AE15A84624}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{7268D497-8ADF-4ECD-ACE9-37AE15A84624}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Debug|iPhone.Build.0 = Debug|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Release|iPhone.ActiveCfg = Release|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Release|iPhone.Build.0 = Release|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.Debug|iPhone.Build.0 = Debug|iPhone
+		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.Release|iPhone.ActiveCfg = Release|iPhone
+		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.Release|iPhone.Build.0 = Release|iPhone
+		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = PerVertexDirectionalLighting\PerVertexDirectionalLighting.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = Mono
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal
