@@ -10,6 +10,7 @@ using System;
 using System.Net;
 using MonoTouch.Foundation;
 using System.Security.Cryptography.X509Certificates;
+using System.Diagnostics;
 
 namespace HttpClient
 {
@@ -42,10 +43,10 @@ namespace HttpClient
 			var request = result.AsyncState as HttpWebRequest;
 			
 			try {
-            		var response = request.EndGetResponse (result);
-				ad.RenderRssStream (response.GetResponseStream ());
-			} catch {
-				// Error				
+				var response = request.EndGetResponse (result);
+				ad.RenderStream (response.GetResponseStream ());
+			} catch (Exception e) {
+				Debug.WriteLine (e);
 			}
 		}
 		

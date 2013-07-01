@@ -45,7 +45,7 @@ namespace HttpClient
 		{
 			Application.Done ();
 			var ms = new MemoryStream (result);
-			ad.RenderRssStream (ms);
+			ad.RenderStream (ms);
 		}
 
 		public override void FailedWithError (NSUrlConnection connection, NSError error)

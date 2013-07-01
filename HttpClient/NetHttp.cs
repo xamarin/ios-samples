@@ -21,7 +21,7 @@ namespace HttpClient
 		public async Task HttpSample ()
 		{
 			var client = new System.Net.Http.HttpClient (new CFNetworkHandler ());
-			ad.RenderRssStream (await client.GetStreamAsync (Application.WisdomUrl));
+			ad.RenderStream (await client.GetStreamAsync (Application.WisdomUrl));
 		}
 	}
 }

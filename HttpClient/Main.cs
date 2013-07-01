@@ -19,7 +19,7 @@ namespace HttpClient
 	public class Application
 	{
 		// URL where we fetch the wisdom from
-		public const string WisdomUrl = "http://api.twitter.com/1/statuses/user_timeline.rss?screen_name=migueldeicaza";
+		public const string WisdomUrl = "http://httpbin.org/ip";
 
 		static void Main (string[] args)
 		{
@@ -59,7 +59,7 @@ namespace HttpClient
 			return true;
 		}
 
-		void Button1TouchDown (object sender, EventArgs e)
+		async void Button1TouchDown (object sender, EventArgs e)
 		{
 			// Do not queue more than one request
 			if (UIApplication.SharedApplication.NetworkActivityIndicatorVisible)
@@ -79,11 +79,11 @@ namespace HttpClient
 				break;
 
 			case 3:
-				new NetHttp (this).HttpSample ();
+				await new NetHttp (this).HttpSample ();
 				break;
 			}
 		}
-		
+/*		
 		public void RenderRssStream (Stream stream)
 		{	
 			var doc = XDocument.Load (new XmlTextReader (stream));
@@ -107,7 +107,7 @@ namespace HttpClient
 				TableViewSelector.Configure (table.View as UITableView, entries);
 			});
 		}
-		
+*/		
 		public void RenderStream (Stream stream)
 		{
 			var reader = new System.IO.StreamReader (stream);
@@ -115,7 +115,7 @@ namespace HttpClient
 			InvokeOnMainThread (delegate {
 				var view = new UIViewController ();
 				var label = new UILabel (new RectangleF (20, 20, 300, 80)){
-					Text = "The HTML returned by Google:"
+					Text = "The HTML returned by the server:"
 				};
 				var tv = new UITextView (new RectangleF (20, 100, 300, 400)){
 					Text = reader.ReadToEnd ()
