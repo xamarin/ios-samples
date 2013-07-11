@@ -89,32 +89,30 @@ namespace OpenGLES20Example
 			GL.UseProgram (program);
 		}
 
-		string getLog (int obj)
-		{
-			int logLength = 0;
-
-			GL.GetProgram (obj, ProgramParameter.InfoLogLength, out logLength);
-			if (logLength < 1)
-				return null;
-
-			string log = GL.GetProgramInfoLog (program);
+		string GetLog (int obj) {
+			string log;
+			if (GL.IsShader (obj)) {
+				log = GL.GetShaderInfoLog (obj);
+			} else {
+				log = GL.GetProgramInfoLog (obj);
+			}
 
 			return log;
 		}
 
 		public string VertexShaderLog ()
 		{
-			return getLog (vertShader);
+			return GetLog (vertShader);
 		}
 
 		public string FragmentShaderLog ()
 		{
-			return getLog (fragShader);
+			return GetLog (fragShader);
 		}
 
 		public string ProgramLog ()
 		{
-			return getLog (program);
+			return GetLog (program);
 		}
 	}
 }
