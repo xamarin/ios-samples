@@ -6,6 +6,8 @@ using MonoTouch.Dialog;
 using MonoTouch.MapKit;
 using MonoTouch.UIKit;
 
+using System.Threading.Tasks;
+
 namespace MapKitSearch {
 
 	[Register ("AppDelegate")]
@@ -36,8 +38,12 @@ namespace MapKitSearch {
 					lm.StartUpdatingLocation ();
 				}));
 			}
-			section.Add (new StringElement ("Search...", delegate {
-				Search (what.Value, where.Value);
+//			section.Add (new StringElement ("Search...", delegate {
+//				Search (what.Value, where.Value);
+//			}));
+
+			section.Add (new StringElement ("Search...", async delegate {
+				await SearchAsync (what.Value, where.Value);
 			}));
 
 			var root = new RootElement ("MapKit Search Sample") {
@@ -72,6 +78,7 @@ namespace MapKitSearch {
 			request.NaturalLanguageQuery = what;
 
 			MKLocalSearch search = new MKLocalSearch (request);
+
 			search.Start (delegate (MKLocalSearchResponse response, NSError error) {
 				// this is executed in the application main thread
 				if (response == null || error != null)
@@ -91,6 +98,42 @@ namespace MapKitSearch {
 				var dvc = new DialogViewController (root);
 				(window.RootViewController as UINavigationController).PushViewController (dvc, true);
 			});
+		}
+
+		async Task SearchAsync (string what, string where)
+		{
+			var coord = here == null ? Parse (where) : here.Coordinate;
+
+			MKCoordinateSpan span = new MKCoordinateSpan (0.25, 0.25);
+			MKLocalSearchRequest request = new MKLocalSearchRequest ();
+			request.Region = new MKCoordinateRegion (coord, span);
+			request.NaturalLanguageQuery = what;
+			MKLocalSearch search = new MKLocalSearch (request);
+			MKLocalSearchResponse response;
+			try{
+				response = await search.StartAsync ();
+
+			}
+			catch(Exception e){
+				return;
+			}	
+			if (response == null)			
+				return;	
+
+			var section = new Section ("Search Results for " + what);
+			results.Clear ();
+			foreach (MKMapItem mi in response.MapItems) {
+				results.Add (mi);
+				var element = new StyledStringElement (mi.Name, mi.PhoneNumber, UITableViewCellStyle.Subtitle);
+				element.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+				element.Tapped += () => { results [element.IndexPath.Row].OpenInMaps (); };
+				section.Add (element);
+			}
+
+			var root = new RootElement ("MapKit Search Sample") { section };
+			var dvc = new DialogViewController (root);
+			(window.RootViewController as UINavigationController).PushViewController (dvc, true);
+
 		}
 
 		static void Main (string[] args)
