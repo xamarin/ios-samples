@@ -122,39 +122,47 @@ namespace NonConsumables {
 				var NSgreyscaleProductId = new NSString(greyscaleProductId);
 				var NSsepiaProductId = new NSString(sepiaProductId);
 				
-				// we only update the button with a price if the user hasn't already purchased it
-				if (!greyscalePurchased && info.ContainsKey(NSgreyscaleProductId)) {
-					pricesLoaded = true;
+				if (info == null) {
+					// if info is null, probably NO valid prices returned, therefore it doesn't exist at all
+					greyscaleDescription.Text = "check iTunes connect setup";
+					sepiaDescription.Text = "check iTunes connect setup";
+					greyscaleButton.SetTitle("invalid product id", UIControlState.Disabled);
+					sepiaButton.SetTitle("invalid product id", UIControlState.Disabled);
+				} else {
+					// we only update the button with a price if the user hasn't already purchased it
+					if (!greyscalePurchased && info.ContainsKey(NSgreyscaleProductId)) {
+						pricesLoaded = true;
 
-					var product = (SKProduct) info.ObjectForKey(NSgreyscaleProductId);
-					
-					Console.WriteLine("Product id: " + product.ProductIdentifier);
-					Console.WriteLine("Product title: " + product.LocalizedTitle);
-					Console.WriteLine("Product description: " + product.LocalizedDescription);
-					Console.WriteLine("Product price: " + product.Price);
-					Console.WriteLine("Product l10n price: " + product.LocalizedPrice());	
+						var product = (SKProduct) info.ObjectForKey(NSgreyscaleProductId);
+						
+						Console.WriteLine("Product id: " + product.ProductIdentifier);
+						Console.WriteLine("Product title: " + product.LocalizedTitle);
+						Console.WriteLine("Product description: " + product.LocalizedDescription);
+						Console.WriteLine("Product price: " + product.Price);
+						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());	
 
-					greyscaleButton.Enabled = true;
-					greyscaleTitle.Text = product.LocalizedTitle;
-					greyscaleDescription.Text = product.LocalizedDescription;
-					greyscaleButton.SetTitle("Buy " + product.LocalizedPrice(), UIControlState.Normal);
-				}
-				// we only update the button with a price if the user hasn't already purchased it
-				if (!sepiaPurchased && info.ContainsKey(NSsepiaProductId)) {
-					pricesLoaded = true;
+						greyscaleButton.Enabled = true;
+						greyscaleTitle.Text = product.LocalizedTitle;
+						greyscaleDescription.Text = product.LocalizedDescription;
+						greyscaleButton.SetTitle("Buy " + product.LocalizedPrice(), UIControlState.Normal);
+					}
+					// we only update the button with a price if the user hasn't already purchased it
+					if (!sepiaPurchased && info.ContainsKey(NSsepiaProductId)) {
+						pricesLoaded = true;
 
-					var product = (SKProduct) info.ObjectForKey(NSsepiaProductId);
-					
-					Console.WriteLine("Product id: " + product.ProductIdentifier);
-					Console.WriteLine("Product title: " + product.LocalizedTitle);
-					Console.WriteLine("Product description: " + product.LocalizedDescription);
-					Console.WriteLine("Product price: " + product.Price);
-					Console.WriteLine("Product l10n price: " + product.LocalizedPrice());	
+						var product = (SKProduct) info.ObjectForKey(NSsepiaProductId);
+						
+						Console.WriteLine("Product id: " + product.ProductIdentifier);
+						Console.WriteLine("Product title: " + product.LocalizedTitle);
+						Console.WriteLine("Product description: " + product.LocalizedDescription);
+						Console.WriteLine("Product price: " + product.Price);
+						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());	
 
-					sepiaButton.Enabled = true;
-					sepiaTitle.Text = product.LocalizedTitle;
-					sepiaDescription.Text = product.LocalizedDescription;
-					sepiaButton.SetTitle("Buy " + product.LocalizedPrice(), UIControlState.Normal);
+						sepiaButton.Enabled = true;
+						sepiaTitle.Text = product.LocalizedTitle;
+						sepiaDescription.Text = product.LocalizedDescription;
+						sepiaButton.SetTitle("Buy " + product.LocalizedPrice(), UIControlState.Normal);
+					}
 				}
 			});
 			
