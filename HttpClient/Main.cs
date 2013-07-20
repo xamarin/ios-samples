@@ -13,6 +13,7 @@ using MonoTouch.UIKit;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Linq;
+using System.Threading;
 
 namespace HttpClient
 {
@@ -41,11 +42,14 @@ namespace HttpClient
 	// The name AppDelegate is referenced in the MainWindow.xib file.
 	public partial class AppDelegate : UIApplicationDelegate
 	{
+		CancellationTokenSource cts;
+
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window.AddSubview (navigationController.View);
-			
+
+			cancelButton.TouchDown += CancelButtonTouchDown;
 			button1.TouchDown += Button1TouchDown;
 			TableViewSelector.Configure (this.stack, new string [] {
 				"http  - WebRequest",
@@ -58,25 +62,42 @@ namespace HttpClient
 			return true;
 		}
 
-		void Button1TouchDown (object sender, EventArgs e)
+		async void Button1TouchDown (object sender, EventArgs e)
 		{
 			// Do not queue more than one request
 			if (UIApplication.SharedApplication.NetworkActivityIndicatorVisible)
 				return;
-			
+
+			cts = new CancellationTokenSource ();
+
 			switch (stack.SelectedRow ()){
 			case 0:
-				new DotNet (this).HttpSample ();
+				await new DotNet (this).HttpSample ();
 				break;
 			
 			case 1:
-				new DotNet (this).HttpSecureSample ();
+				try {
+					cancelButton.Hidden = false;
+					await new DotNet (this).HttpSecureSample (cts.Token);
+				} catch (Exception ex) {
+					InvokeOnMainThread (delegate {
+						new UIAlertView ("", "The Request was cancelled", null, "Okay", null).Show ();
+					});
+				}
 				break;
 				
 			case 2:
 				new Cocoa (this).HttpSample ();
 				break;
 			}
+		}
+
+		void CancelButtonTouchDown (object sender, EventArgs e)
+		{
+			cancelButton.Hidden = true;
+
+			if (cts != null)
+				cts.Cancel ();
 		}
 		
 		public void RenderRssStream (Stream stream)
@@ -106,6 +127,8 @@ namespace HttpClient
 		
 		public void RenderStream (Stream stream)
 		{
+			cancelButton.Hidden = true;
+
 			var reader = new System.IO.StreamReader (stream);
 
 			InvokeOnMainThread (delegate {

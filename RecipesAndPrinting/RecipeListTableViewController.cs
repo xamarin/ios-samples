@@ -23,12 +23,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 // 
-
 using System;
 using System.Collections.Generic;
-
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using System.Threading.Tasks;
 
 namespace RecipesAndPrinting
 {
@@ -37,7 +36,7 @@ namespace RecipesAndPrinting
 		RecipeDetailViewController details;
 		UIBarButtonItem printButtonItem;
 		RecipesController recipes;
-		
+
 		public RecipeListTableViewController (UITableViewStyle style, RecipesController recipes) : base (style)
 		{
 			Title = "Recipes";
@@ -45,7 +44,7 @@ namespace RecipesAndPrinting
 			this.recipes = recipes;
 			
 			// Add a print button and use PrintSelectedRecipes as the pressed event handler
-			printButtonItem = new UIBarButtonItem ("Print", UIBarButtonItemStyle.Bordered, PrintSelectedRecipes);
+			printButtonItem = new UIBarButtonItem ("Print", UIBarButtonItemStyle.Bordered, PrintSelectedRecipesAsync);
 			NavigationItem.RightBarButtonItem = printButtonItem;
 			
 			// Increase the height of the table rows - 1 pixel higher than the recipe thumbnails displayed in the table cells
@@ -53,8 +52,8 @@ namespace RecipesAndPrinting
 			
 			TableView.Source = new RecipeListSource (this);
 		}
-		
-		void PrintSelectedRecipes (object sender, EventArgs args)
+
+		async void PrintSelectedRecipesAsync (object sender, EventArgs args)
 		{
 			// Get a reference to the singleton iOS printing concierge
 			UIPrintInteractionController printController = UIPrintInteractionController.SharedPrintController;
@@ -75,45 +74,40 @@ namespace RecipesAndPrinting
 			printController.PrintInfo = info;
 			
 			// Present the standard iOS Print Panel that allows you to pick the target Printer, number of pages, double-sided, etc.
-			printController.Present (true, PrintingCompleted);
+			await printController.PresentAsync (true);
 		}
-		
-		void PrintingCompleted (UIPrintInteractionController controller, bool completed, NSError error)
-		{
-			
-		}
-		
+
 		void ShowRecipe (Recipe recipe, bool animated)
 		{
 			details = new RecipeDetailViewController (recipe);
 			
 			NavigationController.PushViewController (details, animated);
 		}
-		
-		class RecipeListSource : UITableViewSource {
+
+		class RecipeListSource : UITableViewSource
+		{
 			static NSString RecipeCellId = new NSString ("RecipeCell");
-			
 			RecipeListTableViewController controller;
-			
+
 			public RecipeListSource (RecipeListTableViewController controller)
 			{
 				this.controller = controller;
 			}
-			
+
 			Recipe[] Recipes {
 				get { return controller.recipes.Recipes; }
 			}
-			
+
 			public override int NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
-			
+
 			public override int RowsInSection (UITableView tableView, int section)
 			{
 				return Recipes.Length;
 			}
-			
+
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				// Ask for a cached cell that's been moved off the screen that we can therefore repurpose for a new cell coming onto the screen. 
@@ -125,27 +119,27 @@ namespace RecipesAndPrinting
 					cell = new RecipeTableViewCell (UITableViewCellStyle.Default, RecipeCellId);
 				
 				// Provide to the cell its corresponding recipe depending on the argument row
-				cell.Recipe = Recipes[indexPath.Row];
+				cell.Recipe = Recipes [indexPath.Row];
 				
 				// Right arrow-looking indicator on the right side of the table view cell
 				cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 				
 				return cell;
 			}
-			
+
 			public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 			{
-				Recipe recipe = Recipes[indexPath.Row];
+				Recipe recipe = Recipes [indexPath.Row];
 				
 				controller.ShowRecipe (recipe, true);
 			}
 		}
-		
+
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
 		}
-		
+
 		protected override void Dispose (bool disposing)
 		{
 			base.Dispose (disposing);
