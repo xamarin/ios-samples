@@ -74,7 +74,6 @@ namespace MTGKTapper
 					break;
 				}
 				currentLeaderBoard = gameCenterManager.reloadLeaderboard(currentCategory);
-//				updateHighScore();
 				await updateHighScoreAsync();
 			};
 
@@ -103,19 +102,16 @@ namespace MTGKTapper
 			this.incrementScoreButton.TouchUpInside += async (sender, e) => {
 				currentScore++;
 				currentScoreTextField.Text = currentScore.ToString();
-//				checkAchievements();
 				await checkAchievementsAsync();
 
 			};
 
 			this.submitScoreButton.TouchUpInside +=async (sender, e) => {
 				if(currentScore >0)
-//					gameCenterManager.reportScore(currentScore,currentCategory,this);
 					await gameCenterManager.reportScoreAsync(currentScore,currentCategory,this).ConfigureAwait(false);
 			};
 
 			this.resetButton.TouchUpInside +=async (sender, e) => {
-//				gameCenterManager.resetAchievement();
 				await gameCenterManager.resetAchievementAsync();
 			};
 		}
@@ -219,47 +215,7 @@ namespace MTGKTapper
 				globalHighestScoreTextField.Text = currentLeaderBoard.Scores [0].Value.ToString ();
 			}
 		}
-		void checkAchievements()
-		{
-			string identifier = null;
-			string achievementName = null;
-			double percentComplete = 0;
-			switch (currentScore) {
-				case 1:
-				identifier = AchievementGotOneTap;
-				percentComplete = 100.0;
-				achievementName = AchievementNameGotOneTap;
-				break;
-				case 10:
-				identifier = AchievementHidden20Taps;
-				percentComplete = 50.0;
-				achievementName = AchievementNameHidden20Taps;
-				break;
-				case 20:
-				identifier = AchievementHidden20Taps;
-				percentComplete = 100.0;
-				achievementName = AchievementNameHidden20Taps;
-				break;
-				case 50:
-				identifier = AchievementBigOneHundred;
-				percentComplete = 50.0;
-				achievementName = AchievementNameHidden20Taps;
-				break;
-				case 75:
-				identifier = AchievementBigOneHundred;
-				percentComplete = 75.0;
-				achievementName = AchievementNameBigOneHundred;
-				break;
-				case 100:
-				identifier = AchievementBigOneHundred;
-				percentComplete = 100.0;
-				achievementName = AchievementNameBigOneHundred;
-				break;
-			}
-			if (identifier != null) {
-				gameCenterManager.submitAchievement (identifier, percentComplete, achievementName);
-			}
-		}
+
 		async Task checkAchievementsAsync()
 		{
 			string identifier = null;
