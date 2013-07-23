@@ -2,6 +2,7 @@ using System;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using System.Threading.Tasks;
 
 namespace FrogScroller
 {
@@ -26,9 +27,13 @@ namespace FrogScroller
 
 			// kick things off by making the first page
 			ImageViewController pageZero = ImageViewController.ImageViewControllerForPageIndex (0);
-			viewController.SetViewControllers (new UIViewController[] { pageZero },
+//			viewController.SetViewControllers (new UIViewController[] { pageZero },
+//			                                       UIPageViewControllerNavigationDirection.Forward,
+//			                                       false, null);
+			viewController.SetViewControllersAsync (new UIViewController[] { pageZero },
 			                                       UIPageViewControllerNavigationDirection.Forward,
-			                                       false, null);
+			                                       false);
+
 			viewController.DataSource = new MyDataSource ();
 			window.RootViewController = viewController;
 			// make the window visible
