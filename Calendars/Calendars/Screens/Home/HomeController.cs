@@ -5,6 +5,7 @@ using MonoTouch.UIKit;
 using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.EventKit;
+using System.Threading.Tasks;
 
 namespace Calendars.Screens.Home
 {
@@ -33,21 +34,21 @@ namespace Calendars.Screens.Home
 				} );
 			// events
 			Root.Add ( new Section ( "Events" ) {
-				new StyledStringElement ("Add New Event",
-					() => { RequestAccess (EKEntityType.Event, () => { LaunchCreateNewEvent (); } ); } ), 
-				new StyledStringElement ("Modify Event",
-					() => { RequestAccess (EKEntityType.Event, () => { LaunchModifyEvent (); } ); } ),
-				new StyledStringElement ("Save and Retrieve Event",
-					() => { RequestAccess (EKEntityType.Event, () => { SaveAndRetrieveEvent (); } ); } ),
-				new StyledStringElement ("Get Events via Query",
-					() => { RequestAccess (EKEntityType.Event, () => { GetEventsViaQuery (); } ); } )
+				new StyledStringElement ("Add New Event",async 
+				    () => { await RequestAccessAsync (EKEntityType.Event, () => { LaunchCreateNewEventAsync (); } ); } ), 
+				new StyledStringElement ("Modify Event", async
+				    () => { await RequestAccessAsync (EKEntityType.Event, () => { LaunchModifyEvent (); } ); } ),
+				new StyledStringElement ("Save and Retrieve Event", async
+				    () => { await RequestAccessAsync (EKEntityType.Event, () => { SaveAndRetrieveEvent (); } ); } ),
+				new StyledStringElement ("Get Events via Query", async
+				    () => { await RequestAccessAsync (EKEntityType.Event, () => { GetEventsViaQuery (); } ); } )
 			});
 			// reminders
 			Root.Add ( new Section ( "Reminders" ) {
-				new StyledStringElement ("Create a Reminder",
-					() => { RequestAccess (EKEntityType.Reminder, () => { CreateReminder (); } ); } ),
-				new StyledStringElement ("Get Reminders via Query",
-					() => { RequestAccess (EKEntityType.Reminder, () => { GetRemindersViaQuery (); } ); } )
+				new StyledStringElement ("Create a Reminder", async
+					() => { await RequestAccessAsync (EKEntityType.Reminder, () => { CreateReminder (); } ); } ),
+				new StyledStringElement ("Get Reminders via Query", async
+					() => { await RequestAccessAsync (EKEntityType.Reminder, () => { GetRemindersViaQueryAsync(); } ); } )
 			});
 		}
 
@@ -64,6 +65,7 @@ namespace Calendars.Screens.Home
 		/// </summary>
 		protected void RequestAccess ( EKEntityType type, Action completion )
 		{
+		
 			App.Current.EventStore.RequestAccess (type, 
 				(bool granted, NSError e) => {
 					InvokeOnMainThread ( () => { 
@@ -74,6 +76,27 @@ namespace Calendars.Screens.Home
 					});
 				} );
 		}
+
+		//Async RequestAccess
+
+		async Task RequestAccessAsync (EKEntityType type, Action completion)
+		{
+			bool granted = await App.Current.EventStore.RequestAccessAsync (type);
+			if (granted)
+				completion.Invoke ();
+			else
+				new UIAlertView ( "Access Denied", "User Denied Access to Calendars/Reminders", null, "ok", null).Show ();
+		}
+
+		async Task RequestAccessAsync (EKEntityType type, Task completion)
+		{
+			bool granted = await App.Current.EventStore.RequestAccessAsync (type);
+			if (granted)
+				completion.Start ();
+			else
+				new UIAlertView ( "Access Denied", "User Denied Access to Calendars/Reminders", null, "ok", null).Show ();
+		}
+
 
 		/// <summary>
 		/// Launchs the create new event controller.
@@ -94,6 +117,24 @@ namespace Calendars.Screens.Home
 
 			// show the event controller
 			PresentViewController ( eventController, true, null );
+		}
+
+		protected async Task LaunchCreateNewEventAsync ()
+		{
+			// create a new EKEventEditViewController. This controller is built in an allows
+			// the user to create a new, or edit an existing event.
+			MonoTouch.EventKitUI.EKEventEditViewController eventController = 
+				new MonoTouch.EventKitUI.EKEventEditViewController ();
+
+			// set the controller's event store - it needs to know where/how to save the event
+			eventController.EventStore = App.Current.EventStore;
+
+			// wire up a delegate to handle events from the controller
+			eventControllerDelegate = new CreateEventEditViewDelegate ( eventController );
+			eventController.EditViewDelegate = eventControllerDelegate;
+
+			// show the event controller
+			await PresentViewControllerAsync ( eventController, true );
 		}
 
 		/// <summary>
@@ -146,8 +187,8 @@ namespace Calendars.Screens.Home
 			// completed is called when a user eith
 			public override void Completed (MonoTouch.EventKitUI.EKEventEditViewController controller, EKEventEditViewAction action)
 			{
-				eventController.DismissViewController (true, null);
-
+				//eventController.DismissViewController (true, null);
+				eventController.DismissViewControllerAsync (true);
 				// action tells you what the user did in the dialog, so you can optionally
 				// do things based on what their action was. additionally, you can get the 
 				// Event from the controller.Event property, so for instance, you could 
@@ -275,6 +316,19 @@ namespace Calendars.Screens.Home
 						NavigationController.PushViewController ( eventListScreen, true );
 					} );
 				} );
+		}
+
+
+		async Task GetRemindersViaQueryAsync ()
+		{
+			// create our NSPredicate which we'll use for the query
+			NSPredicate query = App.Current.EventStore.PredicateForReminders ( null );
+
+			// execute the query
+			EKReminder[] items = await App.Current.EventStore.FetchRemindersAsync (query);
+			
+			eventListScreen = new Calendars.Screens.EventList.EventListController ( items, EKEntityType.Reminder );
+			NavigationController.PushViewController ( eventListScreen, true );
 		}
 	}
 }
