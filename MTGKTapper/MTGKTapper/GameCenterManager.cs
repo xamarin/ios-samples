@@ -2,6 +2,7 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.GameKit;
 using MonoTouch.UIKit;
+using System.Threading.Tasks;
 
 namespace MTGKTapper
 {
@@ -45,6 +46,24 @@ namespace MTGKTapper
 				controller.updateHighScore();
 			}));
 		}
+
+		public async Task reportScoreAsync(long score, string category, MTGKTapperViewController controller)
+		{
+			GKScore scoreReporter = new GKScore (category);
+			scoreReporter.Value = score;
+			try{
+				await scoreReporter.ReportScoreAsync ();
+			}
+			catch(Exception e){
+				new UIAlertView ("Score Reported Failed", "Score Reported Failed", null, "OK", null).Show ();
+				return;
+			}
+
+			new UIAlertView ("Score reported", "Score Reported successfully", null, "OK", null).Show ();
+			controller.updateHighScoreAsync();
+
+		}
+
 
 
 		public void submitAchievement(string identifier, double percentComplete, string achievementName)
@@ -106,6 +125,71 @@ namespace MTGKTapper
 			}
 		}
 
+		public async Task submitAchievementAsync(string identifier, double percentComplete, string achievementName)
+		{
+			if(earnedAchievementCache == null)
+			{
+				GKAchievement[] achievements; 
+				try{
+					 achievements = await GKAchievement.LoadAchievementsAsync ();
+				}
+				catch (Exception e){
+					return;
+				}
+				NSMutableDictionary tempCache = new NSMutableDictionary();
+				if(achievements !=null)
+				{
+					foreach(var achievement in achievements)
+					{
+						tempCache.Add(new NSString(achievement.Identifier), achievement);
+					}
+				}
+				earnedAchievementCache = tempCache;
+				submitAchievement(identifier,percentComplete,achievementName);
+			}
+			else
+			{
+				GKAchievement achievement =(GKAchievement) earnedAchievementCache.ValueForKey (new NSString(identifier));
+				if (achievement != null)
+				{
+
+					if (achievement.PercentComplete >= 100.0 || achievement.PercentComplete >= percentComplete) 
+					{
+						achievement = null;
+					}
+					else
+						achievement.PercentComplete = percentComplete;
+				}
+				else
+				{
+					achievement = new GKAchievement(identifier);
+					achievement.PercentComplete = percentComplete;
+					earnedAchievementCache.Add(new NSString(achievement.Identifier),achievement);
+				}
+				if(achievement != null)
+				{
+					try{
+						await achievement.ReportAchievementAsync();
+					}
+					catch(Exception e)
+					{
+						new UIAlertView ("Achievement submittion failed", "Submittion failed because: " + e, null, "OK", null).Show ();
+						return;
+					}
+
+					if(percentComplete == 100)
+					{
+						new UIAlertView ("Achievement Earned", "Great job!  You earned an achievement: " + achievementName, null, "OK", null).Show ();
+					}
+					else if(percentComplete >0)
+					{
+						new UIAlertView ("Achievement Progress", "Great job!  You're "+percentComplete+" % of the way to " + achievementName, null, "OK", null).Show ();
+					}
+
+				}
+			}
+		}
+
 		public void resetAchievement()
 		{
 			earnedAchievementCache = null;
@@ -115,6 +199,19 @@ namespace MTGKTapper
 				else
 					new UIAlertView ("Reset failed", "Reset failed because: " + error, null, "OK", null).Show ();
 			}));
+		}
+
+		public async Task resetAchievementAsync()
+		{
+			earnedAchievementCache = null;
+			try{
+				await GKAchievement.ResetAchivementsAsync ();
+			}
+			catch (Exception e){
+				new UIAlertView ("Reset failed", "Reset failed because: " + e, null, "OK", null).Show ();
+				return;
+			}
+			new UIAlertView ("Achievement reset", "Achievement reset successfully", null, "OK", null).Show ();
 		}
 
 	}

@@ -4,6 +4,8 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.GameKit;
 
+using System.Threading.Tasks;
+
 namespace MTGKTapper
 {
 	public partial class MTGKTapperViewController : UIViewController
@@ -47,7 +49,7 @@ namespace MTGKTapper
 
 			string[] categories = {"Easy","Hard","Awesome"};
 			UIActionSheet selectCategory = new UIActionSheet("Choose Leaderboard",null,"Cancel",null,categories);
-			selectCategory.Dismissed += (sender, e) => {
+			selectCategory.Dismissed += async (sender, e) => {
 				switch (e.ButtonIndex)
 				{
 				case 0:
@@ -72,7 +74,8 @@ namespace MTGKTapper
 					break;
 				}
 				currentLeaderBoard = gameCenterManager.reloadLeaderboard(currentCategory);
-				updateHighScore();
+//				updateHighScore();
+				await updateHighScoreAsync();
 			};
 
 			this.selectLeaderBoardButton.TouchUpInside += (sender, e) => {
@@ -97,19 +100,23 @@ namespace MTGKTapper
 				PresentViewController(achievementController, true, null);
 			};
 
-			this.incrementScoreButton.TouchUpInside += (sender, e) => {
+			this.incrementScoreButton.TouchUpInside += async (sender, e) => {
 				currentScore++;
 				currentScoreTextField.Text = currentScore.ToString();
-				checkAchievements();
+//				checkAchievements();
+				await checkAchievementsAsync();
+
 			};
 
-			this.submitScoreButton.TouchUpInside += (sender, e) => {
+			this.submitScoreButton.TouchUpInside +=async (sender, e) => {
 				if(currentScore >0)
-					gameCenterManager.reportScore(currentScore,currentCategory,this);
+//					gameCenterManager.reportScore(currentScore,currentCategory,this);
+					await gameCenterManager.reportScoreAsync(currentScore,currentCategory,this).ConfigureAwait(false);
 			};
 
-			this.resetButton.TouchUpInside += (sender, e) => {
-				gameCenterManager.resetAchievement();
+			this.resetButton.TouchUpInside +=async (sender, e) => {
+//				gameCenterManager.resetAchievement();
+				await gameCenterManager.resetAchievementAsync();
 			};
 		}
 
@@ -191,7 +198,69 @@ namespace MTGKTapper
 			}));
 		}
 
+		public async Task updateHighScoreAsync()
+		{
+			try{
+				GKScore[] scoreArray = await currentLeaderBoard.LoadScoresAsync();
+			}
+			catch(Exception e){
+				playerBestScoreTextField.Text = "Unavailable";
+				globalHighestScoreTextField.Text = "Unavailable";
+				return;
+			}
+
+			long personalBest;
+			if(currentLeaderBoard.LocalPlayerScore != null)
+				personalBest = currentLeaderBoard.LocalPlayerScore.Value;
+			else
+				personalBest = 0;
+			playerBestScoreTextField.Text = personalBest.ToString ();
+			if (currentLeaderBoard.Scores.Length > 0) {
+				globalHighestScoreTextField.Text = currentLeaderBoard.Scores [0].Value.ToString ();
+			}
+		}
 		void checkAchievements()
+		{
+			string identifier = null;
+			string achievementName = null;
+			double percentComplete = 0;
+			switch (currentScore) {
+				case 1:
+				identifier = AchievementGotOneTap;
+				percentComplete = 100.0;
+				achievementName = AchievementNameGotOneTap;
+				break;
+				case 10:
+				identifier = AchievementHidden20Taps;
+				percentComplete = 50.0;
+				achievementName = AchievementNameHidden20Taps;
+				break;
+				case 20:
+				identifier = AchievementHidden20Taps;
+				percentComplete = 100.0;
+				achievementName = AchievementNameHidden20Taps;
+				break;
+				case 50:
+				identifier = AchievementBigOneHundred;
+				percentComplete = 50.0;
+				achievementName = AchievementNameHidden20Taps;
+				break;
+				case 75:
+				identifier = AchievementBigOneHundred;
+				percentComplete = 75.0;
+				achievementName = AchievementNameBigOneHundred;
+				break;
+				case 100:
+				identifier = AchievementBigOneHundred;
+				percentComplete = 100.0;
+				achievementName = AchievementNameBigOneHundred;
+				break;
+			}
+			if (identifier != null) {
+				gameCenterManager.submitAchievement (identifier, percentComplete, achievementName);
+			}
+		}
+		async Task checkAchievementsAsync()
 		{
 			string identifier = null;
 			string achievementName = null;
@@ -229,7 +298,7 @@ namespace MTGKTapper
 				break;
 			}
 			if (identifier != null) {
-				gameCenterManager.submitAchievement (identifier, percentComplete, achievementName);
+				await gameCenterManager.submitAchievementAsync (identifier, percentComplete, achievementName);
 			}
 		}
 	}
