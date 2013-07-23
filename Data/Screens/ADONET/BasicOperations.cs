@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,54 +6,62 @@ using MonoTouch.UIKit;
 using System.Data;
 using System.IO;
 using Mono.Data.Sqlite;
-
+using System.Threading.Tasks;
 
 namespace Xamarin.Screens.ADONET
 {
 	public partial class BasicOperations : UITableViewController
 	{
-		protected List<string> people = new List<string>();
+		protected List<string> people = new List<string> ();
 		protected TableSource tableSource;
-		
 		#region Constructors
-
 		// The IntPtr and initWithCoder constructors are required for items that need 
 		// to be able to be created from a xib rather than from managed code
-		public BasicOperations (IntPtr handle) : base (handle) { Initialize (); }
+		public BasicOperations (IntPtr handle) : base (handle)
+		{
+			InitializeAsync ();
+		}
+
 		[Export("initWithCoder:")]
-		public BasicOperations (NSCoder coder) : base (coder) { Initialize (); }
-		public BasicOperations () : base ("DataSample", null) { Initialize (); }
-		
-		protected void Initialize ()
+		public BasicOperations (NSCoder coder) : base (coder)
+		{
+			InitializeAsync ();
+		}
+
+		public BasicOperations () : base ("DataSample", null)
+		{
+			InitializeAsync ();
+		}
+
+		protected async void InitializeAsync ()
 		{
 			this.Title = "ADO.NET";
 			
 			// performance timing
-			System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+			System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch ();
 			stopwatch.Start ();
 
 			// create a connection to the database, if the db doesn't exist, it'll get created			
-	        var connection = GetConnection ("db_adonet.db3");
+			var connection = await GetConnectionAsync ("db_adonet.db3");
 			
 			// performance timing
-			Console.WriteLine("database creation: " + stopwatch.ElapsedMilliseconds.ToString());
+			Console.WriteLine ("database creation: " + stopwatch.ElapsedMilliseconds.ToString ());
 			
 			// create a command
-			using (var cmd = connection.CreateCommand ())
-			{
+			using (var cmd = connection.CreateCommand ()) {
 				// open the connection
-				connection.Open ();
+				await connection.OpenAsync ();
 				// create a select statement
 				cmd.CommandText = "SELECT * FROM People";
-				using (var reader = cmd.ExecuteReader ()) {
+				using (var reader = await cmd.ExecuteReaderAsync ()) {
 					// loop through each record and add the name to our collection
-					while (reader.Read ()) { 
-						people.Add (reader[1] + " " + reader[2]);
+					while (await reader.ReadAsync ()) { 
+						people.Add (reader [1] + " " + reader [2]);
 					}
 				}
 				
 				// performance timing
-				Console.WriteLine("database query: " + stopwatch.ElapsedMilliseconds.ToString ());
+				Console.WriteLine ("database query: " + stopwatch.ElapsedMilliseconds.ToString ());
 				
 				// close the connection
 				connection.Close ();
@@ -67,13 +74,11 @@ namespace Xamarin.Screens.ADONET
 			TableView = new UITableView ();
 			TableView.Source = tableSource;
 		}
-		
 		#endregion
-		
 		// Creates a connection to a database. if the database doesn't exist, it 
 		// creates it.
-	    protected SqliteConnection GetConnection(string dbName)
-	    {
+		protected async Task<SqliteConnection> GetConnectionAsync (string dbName)
+		{
 			// declare vars
 			bool needToCreate;
 			
@@ -92,23 +97,22 @@ namespace Xamarin.Screens.ADONET
 				SqliteConnection.CreateFile (db);
 			
 			// create a new connection object, from the path to the database
-	        var conn = new SqliteConnection("Data Source=" + db);
+			var conn = new SqliteConnection ("Data Source=" + db);
 			
 			// now that we have a connnection to the database, let's actually create our table structure
-	        if (needToCreate) 
-				CreateDBSchema(conn);
+			if (needToCreate) 
+				await CreateDBSchemaAsync (conn);
 			
-	        return conn;
-	    }
-		
+			return conn;
+		}
+
 		/// <summary>
 		/// Creates a People table and inserts some data
 		/// </summary>
-		protected void CreateDBSchema(SqliteConnection connection)
+		protected async Task CreateDBSchemaAsync (SqliteConnection connection)
 		{
 			// create a an array of commands
-			var commands = new[]
-			{
+			var commands = new[] {
 				"CREATE TABLE People (PersonID INTEGER PRIMARY KEY AUTOINCREMENT, FirstName ntext, LastName ntext)",
 				"INSERT INTO People (FirstName, LastName) VALUES ('Peter', 'Gabriel')",
 				"INSERT INTO People (FirstName, LastName) VALUES ('Thom', 'Yorke')",
@@ -121,39 +125,46 @@ namespace Xamarin.Screens.ADONET
 				using (var c = connection.CreateCommand()) {
 					c.CommandText = cmd;
 					c.CommandType = CommandType.Text;
-					connection.Open ();
-					c.ExecuteNonQuery ();
+					await connection.OpenAsync ();
+					await c.ExecuteNonQueryAsync ();
 					connection.Close ();
 				}
 			}
 			
 		}
-		
+
 		/// <summary>
 		/// A simple data source for our table
 		/// </summary>
 		protected class TableSource : UITableViewSource
 		{
 			List<string> items;
-			
-			public TableSource(List<string> items) : base() { this.items = items; }
-			
-			public override int NumberOfSections (UITableView tableView) { return 1; }
-			
-			public override int RowsInSection (UITableView tableview, int section) { return this.items.Count; }
-			
+
+			public TableSource (List<string> items) : base()
+			{
+				this.items = items;
+			}
+
+			public override int NumberOfSections (UITableView tableView)
+			{
+				return 1;
+			}
+
+			public override int RowsInSection (UITableView tableview, int section)
+			{
+				return this.items.Count;
+			}
+
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				UITableViewCell cell;
-				cell = tableView.DequeueReusableCell("item");
-				if(cell == null) 
-					cell = new UITableViewCell(UITableViewCellStyle.Default, "item");
-				cell.TextLabel.Text = this.items[indexPath.Row];
+				cell = tableView.DequeueReusableCell ("item");
+				if (cell == null) 
+					cell = new UITableViewCell (UITableViewCellStyle.Default, "item");
+				cell.TextLabel.Text = this.items [indexPath.Row];
 				return cell;
 			}
-			
 		}
-		
 	}
 }
 

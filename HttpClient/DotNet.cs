@@ -10,6 +10,9 @@ using System;
 using System.Net;
 using MonoTouch.Foundation;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Net.Http;
 
 namespace HttpClient
 {
@@ -24,65 +27,40 @@ namespace HttpClient
 		//
 		// Asynchronous HTTP request
 		//
-		public void HttpSample ()
+		public async Task HttpSample ()
 		{
 			Application.Busy ();
-			var request = WebRequest.Create (Application.WisdomUrl);
-			request.BeginGetResponse (FeedDownloaded, request);
-		}
-		
-		//
-		// Invoked when we get the stream back from the twitter feed
-		// We parse the RSS feed and push the data into a 
-		// table.
-		//
-		void FeedDownloaded (IAsyncResult result)
-		{
-			Application.Done ();
-			var request = result.AsyncState as HttpWebRequest;
-			
-			try {
-            		var response = request.EndGetResponse (result);
-				ad.RenderRssStream (response.GetResponseStream ());
-			} catch {
-				// Error				
-			}
-		}
-		
-		//
-		// Asynchornous HTTPS request
-		//
-		public void HttpSecureSample ()
-		{
-			var https = (HttpWebRequest) WebRequest.Create ("https://gmail.com");
-			// 
-			// To not depend on the root certficates, we will
-			// accept any certificates:
-			//
-			ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, ssl) =>  true;
 
-			https.BeginGetResponse (GmailDownloaded, https);
-		}
-		
-		//
-		// This sample just gets the result from calling
-		// https://gmail.com, an HTTPS secure connection,
-		// we do not attempt to parse the output, but merely
-		// dump it as text
-		//
-		void GmailDownloaded (IAsyncResult result)
-		{
+			var request = WebRequest.Create (Application.WisdomUrl);
+			var response = await request.GetResponseAsync ();
+
 			Application.Done ();
-			var request = result.AsyncState as HttpWebRequest;
-			
 			try {
-            		var response = request.EndGetResponse (result);
-				ad.RenderStream (response.GetResponseStream ());
-			} catch {
+				ad.RenderRssStream (response.GetResponseStream ());
+			} catch (Exception e){ 
+				Console.WriteLine (e);
 				// Error
 			}
 		}
-		
+
+		//
+		// Asynchornous HTTPS request
+		//
+		public async Task HttpSecureSample (CancellationToken token)
+		{
+//			try {
+				var client = new System.Net.Http.HttpClient ();
+
+				var response = await client.GetAsync ("https://gmail.com", HttpCompletionOption.ResponseContentRead, token);
+
+				Application.Done ();
+
+				var stream = await response.Content.ReadAsStreamAsync ();
+
+				ad.RenderStream (stream);
+			 
+		}
+
 		//
 		// For an explanation of this AcceptingPolicy class, see
 		// http://mono-project.com/UsingTrustedRootsRespectfully
