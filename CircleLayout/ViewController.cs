@@ -46,21 +46,12 @@ namespace CircleLayout
 			
 			if (tappedCellPath != null) {
 				cellCount--;
-				
-//				CollectionView.PerformBatchUpdates (delegate {
-//						CollectionView.DeleteItems (new NSIndexPath [] { tappedCellPath });
-//					}, null);
+
 				await CollectionView.PerformBatchUpdatesAsync (delegate {
 					CollectionView.DeleteItems (new NSIndexPath [] { tappedCellPath });
 				});
 			} else {
 				cellCount++;
-				
-//				CollectionView.PerformBatchUpdates (delegate {
-//						CollectionView.InsertItems (new NSIndexPath[] {
-//								NSIndexPath.FromItemSection (0, 0)
-//							});
-//					}, null);
 
 				await CollectionView.PerformBatchUpdatesAsync (delegate {
 					CollectionView.InsertItems (new NSIndexPath [] { NSIndexPath.FromItemSection (0, 0) });
