@@ -3,6 +3,7 @@ using System.Drawing;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using System.Threading.Tasks;
 
 namespace CircleLayout
 {
@@ -20,7 +21,7 @@ namespace CircleLayout
 			base.ViewDidLoad ();
 			
 			CollectionView.RegisterClassForCell (typeof(Cell), cellClass);
-			CollectionView.AddGestureRecognizer (new UITapGestureRecognizer (HandleTapGesture));
+			CollectionView.AddGestureRecognizer (new UITapGestureRecognizer (HandleTapGestureAsync));
 			CollectionView.ReloadData ();
 			CollectionView.BackgroundColor = UIColor.ScrollViewTexturedBackgroundColor;
 		}
@@ -35,7 +36,7 @@ namespace CircleLayout
 			return (UICollectionViewCell) collectionView.DequeueReusableCell (cellClass, indexPath);
 		}
 
-		void HandleTapGesture (UITapGestureRecognizer sender)
+		async void HandleTapGestureAsync (UITapGestureRecognizer sender)
 		{
 			if (sender.State != UIGestureRecognizerState.Ended)
 				return;
@@ -46,17 +47,24 @@ namespace CircleLayout
 			if (tappedCellPath != null) {
 				cellCount--;
 				
-				CollectionView.PerformBatchUpdates (delegate {
-						CollectionView.DeleteItems (new NSIndexPath [] { tappedCellPath });
-					}, null);
+//				CollectionView.PerformBatchUpdates (delegate {
+//						CollectionView.DeleteItems (new NSIndexPath [] { tappedCellPath });
+//					}, null);
+				await CollectionView.PerformBatchUpdatesAsync (delegate {
+					CollectionView.DeleteItems (new NSIndexPath [] { tappedCellPath });
+				});
 			} else {
 				cellCount++;
 				
-				CollectionView.PerformBatchUpdates (delegate {
-						CollectionView.InsertItems (new NSIndexPath[] {
-								NSIndexPath.FromItemSection (0, 0)
-							});
-					}, null);
+//				CollectionView.PerformBatchUpdates (delegate {
+//						CollectionView.InsertItems (new NSIndexPath[] {
+//								NSIndexPath.FromItemSection (0, 0)
+//							});
+//					}, null);
+
+				await CollectionView.PerformBatchUpdatesAsync (delegate {
+					CollectionView.InsertItems (new NSIndexPath [] { NSIndexPath.FromItemSection (0, 0) });
+				});
 			}
 		}
 	}
