@@ -35,7 +35,7 @@ namespace Calendars.Screens.Home
 			// events
 			Root.Add ( new Section ( "Events" ) {
 				new StyledStringElement ("Add New Event",async 
-				    () => { await RequestAccessAsync (EKEntityType.Event, () => { LaunchCreateNewEventAsync (); } ); } ), 
+				    () => { await RequestAccessAsync (EKEntityType.Event, () => { LaunchCreateNewEvent (); } ); } ),
 				new StyledStringElement ("Modify Event", async
 				    () => { await RequestAccessAsync (EKEntityType.Event, () => { LaunchModifyEvent (); } ); } ),
 				new StyledStringElement ("Save and Retrieve Event", async
@@ -48,7 +48,7 @@ namespace Calendars.Screens.Home
 				new StyledStringElement ("Create a Reminder", async
 					() => { await RequestAccessAsync (EKEntityType.Reminder, () => { CreateReminder (); } ); } ),
 				new StyledStringElement ("Get Reminders via Query", async
-					() => { await RequestAccessAsync (EKEntityType.Reminder, () => { GetRemindersViaQueryAsync(); } ); } )
+					() => { await RequestAccessAsync (EKEntityType.Reminder, GetRemindersViaQueryAsync() ); } )
 			});
 		}
 
@@ -63,19 +63,6 @@ namespace Calendars.Screens.Home
 		/// shows an alert if access is not granted, otherwise executes the completion 
 		/// method.
 		/// </summary>
-		protected void RequestAccess ( EKEntityType type, Action completion )
-		{
-		
-			App.Current.EventStore.RequestAccess (type, 
-				(bool granted, NSError e) => {
-					InvokeOnMainThread ( () => { 
-						if (granted)
-							completion.Invoke ();
-						else
-							new UIAlertView ( "Access Denied", "User Denied Access to Calendars/Reminders", null, "ok", null).Show ();
-					});
-				} );
-		}
 
 		//Async RequestAccess
 
@@ -92,7 +79,7 @@ namespace Calendars.Screens.Home
 		{
 			bool granted = await App.Current.EventStore.RequestAccessAsync (type);
 			if (granted)
-				completion.Start ();
+				await completion;
 			else
 				new UIAlertView ( "Access Denied", "User Denied Access to Calendars/Reminders", null, "ok", null).Show ();
 		}
@@ -117,24 +104,6 @@ namespace Calendars.Screens.Home
 
 			// show the event controller
 			PresentViewController ( eventController, true, null );
-		}
-
-		protected async Task LaunchCreateNewEventAsync ()
-		{
-			// create a new EKEventEditViewController. This controller is built in an allows
-			// the user to create a new, or edit an existing event.
-			MonoTouch.EventKitUI.EKEventEditViewController eventController = 
-				new MonoTouch.EventKitUI.EKEventEditViewController ();
-
-			// set the controller's event store - it needs to know where/how to save the event
-			eventController.EventStore = App.Current.EventStore;
-
-			// wire up a delegate to handle events from the controller
-			eventControllerDelegate = new CreateEventEditViewDelegate ( eventController );
-			eventController.EditViewDelegate = eventControllerDelegate;
-
-			// show the event controller
-			await PresentViewControllerAsync ( eventController, true );
 		}
 
 		/// <summary>
@@ -300,24 +269,6 @@ namespace Calendars.Screens.Home
 		/// This method retrieves all the events for the past week via a query and displays them
 		/// on the EventList Screen.
 		/// </summary>
-		protected void GetRemindersViaQuery ()
-		{
-			// create our NSPredicate which we'll use for the query
-			NSPredicate query = App.Current.EventStore.PredicateForReminders ( null );
-
-			// execute the query
-			App.Current.EventStore.FetchReminders (
-				query, ( EKReminder[] items ) => {
-					// since this is happening in a completion callback, we have to update
-					// on the main thread
-					InvokeOnMainThread ( () => {
-						// create a new event list screen with these events and show it
-						eventListScreen = new Calendars.Screens.EventList.EventListController ( items, EKEntityType.Reminder );
-						NavigationController.PushViewController ( eventListScreen, true );
-					} );
-				} );
-		}
-
 
 		async Task GetRemindersViaQueryAsync ()
 		{
