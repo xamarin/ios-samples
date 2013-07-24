@@ -13,22 +13,13 @@ namespace Xamarin.Screens.ViciCoolStorage
 	{
 		protected CSList<Person> people;
 		protected TableSource tableSource;
+		
 		#region Constructors
-		public BasicOperations (IntPtr handle) : base (handle)
-		{
-			Initialize ();
-		}
 
+		public BasicOperations (IntPtr handle) : base (handle) { Initialize (); }
 		[Export("initWithCoder:")]
-		public BasicOperations (NSCoder coder) : base (coder)
-		{
-			Initialize ();
-		}
-
-		public BasicOperations () : base ("DataSample", null)
-		{
-			Initialize ();
-		}
+		public BasicOperations (NSCoder coder) : base (coder) { Initialize (); }
+		public BasicOperations () : base ("DataSample", null) { Initialize (); }
 
 		protected void Initialize ()
 		{
@@ -47,7 +38,7 @@ namespace Xamarin.Screens.ViciCoolStorage
 			Console.WriteLine ("database creation: " + stopwatch.ElapsedMilliseconds.ToString ());
 			
 			// query a list of people from the db			
-			people = Person.List ();
+			people = Person.List();
 				
 			// performance timing
 			Console.WriteLine ("database query: " + stopwatch.ElapsedMilliseconds.ToString ());
@@ -56,12 +47,14 @@ namespace Xamarin.Screens.ViciCoolStorage
 			tableSource = new BasicOperations.TableSource (people);
 			
 			// initialize the table view and set the source
-			this.TableView = new UITableView () {
+			this.TableView = new UITableView (){
 				Source = tableSource
 			};
 			
 		}
+		
 		#endregion
+		
 		protected string GetDBPath (string dbName)
 		{
 			// get a reference to the documents folder
@@ -72,6 +65,7 @@ namespace Xamarin.Screens.ViciCoolStorage
 			
 			return db;
 		}
+
 		// This method checks to see if the database exists, and if it doesn't, it creates
 		// it and inserts some data. It also sets our database to be the default database
 		// connection.
@@ -106,36 +100,30 @@ namespace Xamarin.Screens.ViciCoolStorage
 				}
 			});
 		}
+
 		// A simple data source for our table
 		protected class TableSource : UITableViewSource
 		{
 			CSList<Person> items;
-
-			public TableSource (CSList<Person> items) : base()
-			{
-				this.items = items;
-			}
-
-			public override int NumberOfSections (UITableView tableView)
-			{
-				return 1;
-			}
-
-			public override int RowsInSection (UITableView tableview, int section)
-			{
-				return this.items.Count;
-			}
-
+			
+			public TableSource (CSList<Person> items) : base() { this.items = items; }
+			
+			public override int NumberOfSections (UITableView tableView) { return 1; }
+			
+			public override int RowsInSection (UITableView tableview, int section) { return this.items.Count; }
+			
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				UITableViewCell cell;
 				cell = tableView.DequeueReusableCell ("item");
 				if (cell == null)
 					cell = new UITableViewCell (UITableViewCellStyle.Default, "item");
-				cell.TextLabel.Text = this.items [indexPath.Row].FirstName + " " + this.items [indexPath.Row].LastName;
+				cell.TextLabel.Text = this.items[indexPath.Row].FirstName + " " + this.items[indexPath.Row].LastName;
 				return cell;
 			}
+			
 		}
+		
 	}
 }
 
