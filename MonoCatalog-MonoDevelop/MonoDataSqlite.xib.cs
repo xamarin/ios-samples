@@ -6,6 +6,7 @@ using System.IO;
 using Mono.Data.Sqlite;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using System.Threading.Tasks;
 
 namespace MonoCatalog
 {
@@ -58,7 +59,7 @@ namespace MonoCatalog
 
 			class SectionInfo {
 				public string Title;
-				public Func<UITableView, NSIndexPath, UITableViewCell> Creator;
+				public Func<UITableView, NSIndexPath, Task<UITableViewCell>> Creator;
 			}
 
 			SectionInfo [] Sections = new[]{
@@ -91,10 +92,10 @@ namespace MonoCatalog
 
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
-				return Sections [indexPath.Section].Creator (tableView, indexPath);
+				return Sections [indexPath.Section].Creator (tableView, indexPath).Result;
 			}
 
-			static UITableViewCell GetAddKeyValuePairCell (UITableView tableView, NSIndexPath indexPath)
+			static async Task<UITableViewCell> GetAddKeyValuePairCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				var cell = tableView.DequeueReusableCell (kAdd);
 				if (cell == null) {
@@ -140,17 +141,17 @@ namespace MonoCatalog
 				add.VerticalAlignment   = UIControlContentVerticalAlignment.Center;
 				add.Frame               = new RectangleF (255, 0, 40f, 70f);
 				add.SetTitle ("Add", UIControlState.Normal);
-				add.TouchUpInside += (o, e) => {
-					WithCommand (c => {
+				add.TouchUpInside += async (o, e) => {
+					await WithCommandAysnc (async c => {
 						c.CommandText = "INSERT INTO [Items] ([Key], [Value]) VALUES (@key, @value)";
 						c.Parameters.Add (new SqliteParameter ("@key", key.Text));
 						c.Parameters.Add (new SqliteParameter ("@value", value.Text));
-						c.ExecuteNonQuery ();
+						await c.ExecuteNonQueryAsync ();
 						key.Text      = "";
 						value.Text    = "";
 						key.ResignFirstResponder ();
 						value.ResignFirstResponder ();
-						var path = NSIndexPath.FromRowSection (GetItemCount () - 1, 1);
+						var path = NSIndexPath.FromRowSection (await GetItemCountAsync () - 1, 1);
 						tableView.InsertRows (new NSIndexPath [] {path}, UITableViewRowAnimation.Bottom);
 					});
 				};
@@ -171,14 +172,14 @@ namespace MonoCatalog
 					u.RemoveFromSuperview ();
 			}
 
-			static UITableViewCell GetKeyValuePairCell (UITableView tableView, NSIndexPath indexPath)
+			static async Task<UITableViewCell> GetKeyValuePairCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				string query = string.Format ("SELECT [Key], [Value] FROM [Items] LIMIT {0},1", indexPath.Row);
 				string key = null, value = null;
-				WithCommand (c => {
-					c.CommandText = query;
-					var r = c.ExecuteReader ();
-					while (r.Read ()) {
+				await WithCommandAysnc (async c => {
+						c.CommandText = query;
+						var r = await c.ExecuteReaderAsync ();
+						while (await r.ReadAsync ()) {
 						key   = r ["Key"].ToString ();
 						value = r ["Value"].ToString ();
 					}
@@ -216,17 +217,17 @@ namespace MonoCatalog
 			{
 				if (section == 0)
 					return 1;
-				return GetItemCount ();
+				return GetItemCountAsync ().Result;
 			}
 		}
 
-		static int GetItemCount ()
+		static async Task<int> GetItemCountAsync ()
 		{
 			int count = 0;
-			WithCommand (c => {
+			await WithCommandAysnc (async c => {
 				c.CommandText = "SELECT COUNT(*) FROM [Items]";
-				var r = c.ExecuteReader ();
-				while (r.Read ()) {
+				var r = await c.ExecuteReaderAsync ();
+				while (await r.ReadAsync ()) {
 					count = (int) (long) r [0];
 				}
 			});
@@ -240,7 +241,7 @@ namespace MonoCatalog
 			TableView.Delegate = new ItemsTableDelegate ();
 		}
 
-		static SqliteConnection GetConnection ()
+		static async Task<SqliteConnection> GetConnectionAsync ()
 		{
 			var documents = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 			string db = Path.Combine (documents, "items.db3");
@@ -254,31 +255,32 @@ namespace MonoCatalog
 					"INSERT INTO [Items] ([Key], [Value]) VALUES ('sample', 'text')",
 				};
 				foreach (var cmd in commands)
-					WithCommand (c => {
+					await WithCommandAysnc (async c => {
 						c.CommandText = cmd;
-						c.ExecuteNonQuery ();
+						await c.ExecuteNonQueryAsync ();
 					});
 			}
 			return conn;
 		}
 
-		static void WithConnection (Action<SqliteConnection> action)
+		static async Task WithConnectionAsync (Func<SqliteConnection, Task> action)
 		{
-			var connection = GetConnection ();
+
+			var connection = await GetConnectionAsync ();
 			try {
-				connection.Open ();
-				action (connection);
+				await connection.OpenAsync ();
+				await action (connection);
 			}
 			finally {
 				connection.Close ();
 			}
 		}
 
-		static void WithCommand (Action<SqliteCommand> command)
+		static async Task WithCommandAysnc (Func<SqliteCommand, Task> command)
 		{
-			WithConnection (conn => {
+			await WithConnectionAsync (async conn => {
 				using (var cmd = conn.CreateCommand ())
-					command (cmd);
+					await command (cmd);
 			});
 		}
 	}
