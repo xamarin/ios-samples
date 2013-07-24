@@ -13,15 +13,23 @@ namespace Xamarin.Screens.SQLiteNet
 	{
 		protected List<Person> people = new List<Person> ();
 		protected TableSource tableSource;
-		
 		#region Constructors
+		public BasicOperations (IntPtr handle) : base(handle)
+		{
+			Initialize ();
+		}
 
-		public BasicOperations (IntPtr handle) : base(handle) { Initialize (); }
 		[Export("initWithCoder:")]
-		public BasicOperations (NSCoder coder) : base(coder) { Initialize (); }
-		public BasicOperations () : base("DataSample", null) { Initialize (); }
+		public BasicOperations (NSCoder coder) : base(coder)
+		{
+			Initialize ();
+		}
 
-		
+		public BasicOperations () : base("DataSample", null)
+		{
+			Initialize ();
+		}
+
 		protected void Initialize ()
 		{
 			this.Title = "SQLite .NET";
@@ -55,9 +63,7 @@ namespace Xamarin.Screens.SQLiteNet
 				};
 			}
 		}
-		
 		#endregion
-		
 		protected string GetDBPath (string dbName)
 		{
 			// get a reference to the documents folder
@@ -68,20 +74,18 @@ namespace Xamarin.Screens.SQLiteNet
 			
 			return db;
 		}
-		
 		// This method checks to see if the database exists, and if it doesn't, it creates
 		// it and inserts some data
 		protected void CheckAndCreateDatabase (string dbName)
 		{
 			// create a connection object. if the database doesn't exist, it will create 
 			// a blank database
-			using(SQLiteConnection db = new SQLiteConnection (GetDBPath (dbName)))
-			{				
+			using (SQLiteConnection db = new SQLiteConnection (GetDBPath (dbName))) {				
 				// create the tables
 				db.CreateTable<Person> ();
 				
 				// skip inserting data if it already exists
-				if(db.Table<Person>().Count() > 0)
+				if (db.Table<Person> ().Count () > 0)
 					return;
 					
 				// declare vars
@@ -106,30 +110,36 @@ namespace Xamarin.Screens.SQLiteNet
 			}
 
 		}
-		
 		// A simple data source for our table
 		protected class TableSource : UITableViewSource
 		{
 			List<Person> items;
-			
-			public TableSource (List<Person> items) : base() { this.items = items; }
-			
-			public override int NumberOfSections (UITableView tableView) { return 1; }
-			
-			public override int RowsInSection (UITableView tableview, int section) { return this.items.Count; }
-			
+
+			public TableSource (List<Person> items) : base()
+			{
+				this.items = items;
+			}
+
+			public override int NumberOfSections (UITableView tableView)
+			{
+				return 1;
+			}
+
+			public override int RowsInSection (UITableView tableview, int section)
+			{
+				return this.items.Count;
+			}
+
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				UITableViewCell cell;
 				cell = tableView.DequeueReusableCell ("item");
-				if(cell == null) 
-					cell = new UITableViewCell(UITableViewCellStyle.Default, "item");
-				cell.TextLabel.Text = this.items[indexPath.Row].FirstName + " " + this.items[indexPath.Row].LastName;
+				if (cell == null) 
+					cell = new UITableViewCell (UITableViewCellStyle.Default, "item");
+				cell.TextLabel.Text = this.items [indexPath.Row].FirstName + " " + this.items [indexPath.Row].LastName;
 				return cell;
 			}
-			
 		}
-		
 	}
 }
 
