@@ -29,56 +29,22 @@ namespace GameCenterSample
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
+			if (!isGameCenterAPIAvailable ())
+			{
+				new UIAlertView ("Error", "Game Center is not supported on this device", null, "OK", null).Show();
+				return true;
+			}
 			viewController = new MainViewController ();
 			window.RootViewController = viewController;
 			window.MakeKeyAndVisible ();
 
-			if (!isGameCenterAPIAvailable ())
-				gameCenterAuthenticationComplete = false;
+			GKLocalPlayer.LocalPlayer.Authenticate (viewController.authenticatedHandler);
 
-			else {
-
-				
-				GKLocalPlayer.LocalPlayer.AuthenticateHandler = (ui, error) => 
-				{
-					if(ui != null)
-					{
-						viewController.PresentViewController(ui,true,null);
-					}
-					else if(error != null)
-					{
-						new UIAlertView ("Error", error.ToString(), null, "OK", null).Show();
-					}
-					else if(GKLocalPlayer.LocalPlayer.Authenticated)
-					{
-						this.gameCenterAuthenticationComplete = true;
-
-						//Switching Users
-						if(currentPlayerID != null || currentPlayerID != GKLocalPlayer.LocalPlayer.PlayerID)
-						{
-							currentPlayerID = GKLocalPlayer.LocalPlayer.PlayerID;
-							viewController.player = new PlayerModel();
-							viewController.player.loadStoredScores();
-							viewController.player.loadSotredAchievements();
-
-						}
-					}
-					else
-					{
-						this.gameCenterAuthenticationComplete = false;
-					}
-
-
-				};
-			}
-			
 			return true;
 		}
 
 		public override void DidEnterBackground (UIApplication application)
 		{
-			this.gameCenterAuthenticationComplete = false;
 		}
 
 		private bool isGameCenterAPIAvailable()

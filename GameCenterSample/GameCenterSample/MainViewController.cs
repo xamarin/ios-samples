@@ -8,12 +8,33 @@ namespace GameCenterSample
 {
 	public partial class MainViewController : UIViewController
 	{
+
+		public GKNotificationHandler authenticatedHandler;
 		public PlayerModel player;
+		string currentPlayerID;
 		int achievementsPercentageComplete = 0;
 
 		public MainViewController () : base ("MainViewController", null)
 		{
+			authenticatedHandler = new GKNotificationHandler (delegate(NSError error) {
+				if (GKLocalPlayer.LocalPlayer.Authenticated) {
+					//Switching Users
+					if(currentPlayerID != null || currentPlayerID != GKLocalPlayer.LocalPlayer.PlayerID)
+					{
+						currentPlayerID = GKLocalPlayer.LocalPlayer.PlayerID;
+						player = new PlayerModel();
+						player.loadStoredScores();
+						player.loadSotredAchievements();
+					}
+				} else {
+					var alert = new UIAlertView ("Game Center Account Required", "Need login the game center!", null, "Retry", null);
+					alert.Clicked += delegate {
+						GKLocalPlayer.LocalPlayer.Authenticate (authenticatedHandler);
+					};
+					alert.Show ();
 
+				}
+			});
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -55,11 +76,22 @@ namespace GameCenterSample
 
 		void resetAchievementsButtonHandleTouchUpInside (object sender, EventArgs e)
 		{
+			if (!GKLocalPlayer.LocalPlayer.Authenticated) {
+				new UIAlertView ("Error", "Need sign in Game Center to reset the achievement", null, "OK", null).Show();
+				GKLocalPlayer.LocalPlayer.Authenticate (authenticatedHandler);
+				return;
+			}
 			player.resetAchievements ();
 		}
 
 		void submitAchievementHandleTouchUpInside (object sender, EventArgs e)
 		{
+			if (!GKLocalPlayer.LocalPlayer.Authenticated) {
+				new UIAlertView ("Error", "Need sign in Game Center to submit the achievement", null, "OK", null).Show();
+				GKLocalPlayer.LocalPlayer.Authenticate (authenticatedHandler);
+				return;
+			}
+
 			//Create the achievement we want to submit.
 			NSString identifier = new NSString ("com.appledts.GameCenterSampleApps.achievement");
 
@@ -75,9 +107,22 @@ namespace GameCenterSample
 
 		void submitScoreHandleTouchUpInside (object sender, EventArgs e)
 		{
+			if (!GKLocalPlayer.LocalPlayer.Authenticated) {
+				new UIAlertView ("Error", "Need sign in Game Center to submit the score", null, "OK", null).Show();
+				GKLocalPlayer.LocalPlayer.Authenticate (authenticatedHandler);
+				return;
+			}
+
+
 			GKScore submitScore = new GKScore ("leaderboard");
 			submitScore.Init ();
-			submitScore.Value = Convert.ToInt64(this.scoreTextField.Text);
+			try{
+				submitScore.Value = Convert.ToInt64(this.scoreTextField.Text);
+			}
+			catch{
+				new UIAlertView ("Error", "Score should be a number", null, "OK", null).Show();
+				return;
+			}
 
 			submitScore.ShouldSetDefaultLeaderboard = true;
 			submitScore.Context = 100;
