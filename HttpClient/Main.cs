@@ -80,9 +80,7 @@ namespace HttpClient
 					cancelButton.Hidden = false;
 					await new DotNet (this).HttpSecureSample (cts.Token);
 				} catch (Exception ex) {
-					InvokeOnMainThread (delegate {
-						new UIAlertView ("", "The Request was cancelled", null, "Okay", null).Show ();
-					});
+					new UIAlertView ("", "The Request was cancelled", null, "Okay", null).Show ();
 				}
 				break;
 				
@@ -110,19 +108,17 @@ namespace HttpClient
 			// Since this is invoked on a separated thread, make sure that
 			// we call UIKit only from the main thread.
 			//
-			InvokeOnMainThread (delegate {
-				var table = new UITableViewController ();
-				navigationController.PushViewController (table, true);
-				
-				// Put the data on a string [] so we can use our existing 
-				// UITableView renderer for strings.
-				string [] entries = new string [items.Count ()];
-				int i = 0;
-				foreach (var e in items)
-					entries [i++] = e.Value;
-				
-				TableViewSelector.Configure (table.View as UITableView, entries);
-			});
+			var table = new UITableViewController ();
+			navigationController.PushViewController (table, true);
+			
+			// Put the data on a string [] so we can use our existing 
+			// UITableView renderer for strings.
+			string [] entries = new string [items.Count ()];
+			int i = 0;
+			foreach (var e in items)
+				entries [i++] = e.Value;
+			
+			TableViewSelector.Configure (table.View as UITableView, entries);
 		}
 		
 		public void RenderStream (Stream stream)
@@ -131,19 +127,17 @@ namespace HttpClient
 
 			var reader = new System.IO.StreamReader (stream);
 
-			InvokeOnMainThread (delegate {
-				var view = new UIViewController ();
-				var label = new UILabel (new RectangleF (20, 20, 300, 80)){
-					Text = "The HTML returned by Google:"
-				};
-				var tv = new UITextView (new RectangleF (20, 100, 300, 400)){
-					Text = reader.ReadToEnd ()
-				};
-				view.Add (label);
-				view.Add (tv);
-					
-				navigationController.PushViewController (view, true);
-			});			
+			var view = new UIViewController ();
+			var label = new UILabel (new RectangleF (20, 20, 300, 80)){
+				Text = "The HTML returned by Google:"
+			};
+			var tv = new UITextView (new RectangleF (20, 100, 300, 400)){
+				Text = reader.ReadToEnd ()
+			};
+			view.Add (label);
+			view.Add (tv);
+				
+			navigationController.PushViewController (view, true);	
 		}
 		
 		// This method is required in iPhoneOS 3.0
