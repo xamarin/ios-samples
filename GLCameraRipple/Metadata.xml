@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-	<ID>70831482-A373-41AE-B5AC-37DA900C5561</ID>
-	<IsFullApplication>true</IsFullApplication>
-	<Level>Advanced</Level>
-	<Tags>OpenGL, OpenTK, GLKit, AVFoundation, Media, Video, Shaders</Tags>
+  <ID>70831482-A373-41AE-B5AC-37DA900C5561</ID>
+  <IsFullApplication>true</IsFullApplication>
+  <Level>Advanced</Level>
+  <Tags>OpenGL, OpenTK, GLKit, AVFoundation, Media, Video, Shaders</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>

@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-	<ID>cdff00c8-a144-4148-9c24-aa2956d5416c</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Intermediate</Level>
-	<Tags>User Interface, iPad</Tags>
+  <ID>cdff00c8-a144-4148-9c24-aa2956d5416c</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>User Interface, iPad</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>

@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-	<ID>5d6b4991-e2b4-4be0-9081-a7b3f9f89827</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Intermediate</Level>
-	<Tags>Graphics, Games</Tags>
+  <ID>5d6b4991-e2b4-4be0-9081-a7b3f9f89827</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>Graphics, Games</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>

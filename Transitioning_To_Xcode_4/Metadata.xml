@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-	<ID>c1506066-cd22-4687-830d-e320d2d87d8e</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
-	<Tags>Project Management</Tags>
+  <ID>c1506066-cd22-4687-830d-e320d2d87d8e</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>Project Management</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>
