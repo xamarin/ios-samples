@@ -47,11 +47,17 @@ namespace ImageProtocol
 
 			controller = new UIViewController ();
 
-			web = new UIWebView (UIScreen.MainScreen.Bounds) {
+			web = new UIWebView () {
 				BackgroundColor = UIColor.White,
 				ScalesPageToFit = true,
 				AutoresizingMask = UIViewAutoresizing.All
 			};
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0))
+				web.Frame = new RectangleF (0, 20, 
+				                            UIScreen.MainScreen.Bounds.Width,
+				                            UIScreen.MainScreen.Bounds.Height - 20);
+			else
+				web.Frame = UIScreen.MainScreen.Bounds;
 			controller.NavigationItem.Title = "Test case";
 
 			controller.View.AutosizesSubviews = true;
@@ -60,6 +66,7 @@ namespace ImageProtocol
 			web.LoadRequest (NSUrlRequest.FromUrl (NSUrl.FromFilename (NSBundle.MainBundle.PathForResource ("test", "html"))));
 
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
+			window.BackgroundColor = UIColor.White;
 			window.MakeKeyAndVisible ();
 			window.RootViewController = controller;
 
