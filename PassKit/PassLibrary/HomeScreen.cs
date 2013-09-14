@@ -40,21 +40,20 @@ namespace PassLibrary {
 			table.AutoresizingMask = UIViewAutoresizing.All;
 
 			refreshButton = UIButton.FromType (UIButtonType.RoundedRect);
-			refreshButton.Frame = new RectangleF (230, 50, 80, 40);
 			refreshButton.SetTitle ("Refresh", UIControlState.Normal);
 			refreshButton.TouchUpInside += HandleRefreshTouchUpInside;
 
 			addPassButton = UIButton.FromType (UIButtonType.RoundedRect);
-			addPassButton.Frame = new RectangleF (10, 50, 80, 40);
+
 			addPassButton.SetTitle ("Add", UIControlState.Normal);
 			addPassButton.TouchUpInside += HandleAddTouchUpInside;
 
 			replacePassButton = UIButton.FromType (UIButtonType.RoundedRect);
-			replacePassButton.Frame = new RectangleF (100, 50, 80, 40);
+
 			replacePassButton.SetTitle ("Replace", UIControlState.Normal);
 			replacePassButton.TouchUpInside += HandleReplaceTouchUpInside;
 
-			passLibraryAvailableLabel = new UILabel (new RectangleF (10, 5, 300, 40));
+			passLibraryAvailableLabel = new UILabel ();
 			passLibraryAvailableLabel.Text = "Pass Library Available: " + PKPassLibrary.IsAvailable.ToString ();
 
 			if (PKPassLibrary.IsAvailable) {
@@ -78,6 +77,18 @@ namespace PassLibrary {
 				Console.WriteLine ("No Pass Kit - must be an iPad");
 				addPassButton.SetTitleColor (UIColor.LightGray, UIControlState.Disabled);
 				addPassButton.Enabled = false;
+			}
+
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
+				refreshButton.Frame = new RectangleF (230, 114, 80, 40);
+				addPassButton.Frame = new RectangleF (10, 114, 80, 40);
+				replacePassButton.Frame = new RectangleF (100, 114, 80, 40);
+				passLibraryAvailableLabel.Frame = new RectangleF (10, 69, 300, 40);
+			} else {
+				refreshButton.Frame = new RectangleF (230, 50, 80, 40);
+				addPassButton.Frame = new RectangleF (10, 50, 80, 40);
+				replacePassButton.Frame = new RectangleF (100, 50, 80, 40);
+				passLibraryAvailableLabel.Frame = new RectangleF (10, 5, 300, 40);
 			}
 
 			Add (table);
