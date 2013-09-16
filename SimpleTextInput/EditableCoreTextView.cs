@@ -93,14 +93,10 @@ namespace SimpleTextInput
 				BecomeFirstResponder ();
 			} else {
 				// Already in editing mode, set insertion point (via selectedTextRange)
-				inputDelegate.SelectionWillChange (this);
 				// Find and update insertion point in underlying SimpleCoreTextView
 				int index = textView.ClosestIndex (tap.LocationInView (textView));
 				textView.MarkedTextRange = new NSRange (NSRange.NotFound, 0);
 				textView.SelectedTextRange = new NSRange (index, 0);
-
-				// Let inputDelegate know selection has changed
-				inputDelegate.SelectionDidChange (this);
 			}
 		}
 #endregion
