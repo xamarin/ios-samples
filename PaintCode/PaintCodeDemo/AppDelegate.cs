@@ -29,7 +29,7 @@ namespace PaintCode
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			
 			navCtrlr = new UINavigationController ();
-			
+			navCtrlr.NavigationBar.Translucent = false;
 			
 			blue = new BlueButtonViewController ();
 			glossy = new GlossyButtonViewController ();
