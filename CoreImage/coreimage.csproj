@@ -21,10 +21,10 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchProfiling>True</MtouchProfiling>
-    <MtouchLink>None</MtouchLink>
     <MtouchI18n />
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -47,10 +47,10 @@
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchProfiling>True</MtouchProfiling>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <MtouchArch>ARMv7</MtouchArch>
     <MtouchI18n />
+    <IpaPackageName />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -75,7 +75,10 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="FilterAttribute.cs" />
+    <Compile Include="FilterHolder.cs" />
+    <Compile Include="VisitFilterViewController.cs" />
+    <Compile Include="RebaseImagesViewController.cs" />
+    <Compile Include="TestImagesViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -187,6 +190,50 @@
     <BundleResource Include="Resources\icon-57.png" />
     <BundleResource Include="Resources\icon-114.png" />
     <BundleResource Include="Resources\icon-144.png" />
+    <BundleResource Include="Xamarin.png" />
+    <BundleResource Include="XamarinAlpha.png" />
+    <BundleResource Include="XamarinCheck.png" />
+    <BundleResource Include="TestImages\BlendWithAlphaMask.png" />
+    <BundleResource Include="TestImages\BumpDistortion.png" />
+    <BundleResource Include="TestImages\CircleSplashDistortion.png" />
+    <BundleResource Include="TestImages\ColorClamp.png" />
+    <BundleResource Include="TestImages\ColorCrossPolynomial.png" />
+    <BundleResource Include="TestImages\ColorCube.png" />
+    <BundleResource Include="TestImages\ColorCubeWithColorSpace.png" />
+    <BundleResource Include="TestImages\ColorMap.png" />
+    <BundleResource Include="TestImages\ColorPolynomial.png" />
+    <BundleResource Include="TestImages\ColorPosterize.png" />
+    <BundleResource Include="TestImages\Convolution3X3.png" />
+    <BundleResource Include="TestImages\Convolution5X5.png" />
+    <BundleResource Include="TestImages\Convolution9Horizontal.png" />
+    <BundleResource Include="TestImages\Convolution9Vertical.png" />
+    <BundleResource Include="TestImages\DisintegrateWithMaskTransition.png" />
+    <BundleResource Include="TestImages\FourfoldTranslatedTile.png" />
+    <BundleResource Include="TestImages\GaussianBlur.png" />
+    <BundleResource Include="TestImages\HoleDistortion.png" />
+    <BundleResource Include="TestImages\LightTunnel.png" />
+    <BundleResource Include="TestImages\LinearToSRGBToneCurve.png" />
+    <BundleResource Include="TestImages\MaskToAlpha.png" />
+    <BundleResource Include="TestImages\MaximumComponent.png" />
+    <BundleResource Include="TestImages\MinimumComponent.png" />
+    <BundleResource Include="TestImages\PerspectiveTransformWithExtent.png" />
+    <BundleResource Include="TestImages\PhotoEffectChrome.png" />
+    <BundleResource Include="TestImages\PhotoEffectFade.png" />
+    <BundleResource Include="TestImages\PhotoEffectInstant.png" />
+    <BundleResource Include="TestImages\PhotoEffectMono.png" />
+    <BundleResource Include="TestImages\PhotoEffectNoir.png" />
+    <BundleResource Include="TestImages\PhotoEffectProcess.png" />
+    <BundleResource Include="TestImages\PhotoEffectTonal.png" />
+    <BundleResource Include="TestImages\PhotoEffectTransfer.png" />
+    <BundleResource Include="TestImages\PinchDistortion.png" />
+    <BundleResource Include="TestImages\QRCodeGenerator.png" />
+    <BundleResource Include="TestImages\RandomGenerator.png" />
+    <BundleResource Include="TestImages\SmoothLinearGradient.png" />
+    <BundleResource Include="TestImages\SRGBToneCurveToLinear.png" />
+    <BundleResource Include="TestImages\TwirlDistortion.png" />
+    <BundleResource Include="TestImages\VignetteEffect.png" />
+    <BundleResource Include="TestImages\VortexDistortion.png" />
+    <BundleResource Include="TestImages\BumpDistortionLinear.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
