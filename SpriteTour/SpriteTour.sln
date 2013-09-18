@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpriteTour", "SpriteTour\SpriteTour.csproj", "{158DA706-E91D-4638-9575-10F73FB86C82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{158DA706-E91D-4638-9575-10F73FB86C82}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{158DA706-E91D-4638-9575-10F73FB86C82}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{158DA706-E91D-4638-9575-10F73FB86C82}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{158DA706-E91D-4638-9575-10F73FB86C82}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{158DA706-E91D-4638-9575-10F73FB86C82}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{158DA706-E91D-4638-9575-10F73FB86C82}.Debug|iPhone.Build.0 = Debug|iPhone
+		{158DA706-E91D-4638-9575-10F73FB86C82}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{158DA706-E91D-4638-9575-10F73FB86C82}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{158DA706-E91D-4638-9575-10F73FB86C82}.Release|iPhone.ActiveCfg = Release|iPhone
+		{158DA706-E91D-4638-9575-10F73FB86C82}.Release|iPhone.Build.0 = Release|iPhone
+		{158DA706-E91D-4638-9575-10F73FB86C82}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{158DA706-E91D-4638-9575-10F73FB86C82}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SpriteTour\SpriteTour.csproj
+	EndGlobalSection
+EndGlobal

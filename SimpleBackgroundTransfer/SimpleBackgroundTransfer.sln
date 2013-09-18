@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBackgroundTransfer", "SimpleBackgroundTransfer\SimpleBackgroundTransfer.csproj", "{72B2CC49-39DC-44D7-AF1A-008BE4585538}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72B2CC49-39DC-44D7-AF1A-008BE4585538}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{72B2CC49-39DC-44D7-AF1A-008BE4585538}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{72B2CC49-39DC-44D7-AF1A-008BE4585538}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{72B2CC49-39DC-44D7-AF1A-008BE4585538}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{72B2CC49-39DC-44D7-AF1A-008BE4585538}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{72B2CC49-39DC-44D7-AF1A-008BE4585538}.Debug|iPhone.Build.0 = Debug|iPhone
+		{72B2CC49-39DC-44D7-AF1A-008BE4585538}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{72B2CC49-39DC-44D7-AF1A-008BE4585538}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{72B2CC49-39DC-44D7-AF1A-008BE4585538}.Release|iPhone.ActiveCfg = Release|iPhone
+		{72B2CC49-39DC-44D7-AF1A-008BE4585538}.Release|iPhone.Build.0 = Release|iPhone
+		{72B2CC49-39DC-44D7-AF1A-008BE4585538}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{72B2CC49-39DC-44D7-AF1A-008BE4585538}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SimpleBackgroundTransfer\SimpleBackgroundTransfer.csproj
+	EndGlobalSection
+EndGlobal

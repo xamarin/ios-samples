@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{158DA706-E91D-4638-9575-10F73FB86C82}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SpriteTour</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>SpriteTour</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>true</MtouchDebug>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <BuildIpa>true</BuildIpa>
+    <ConsolePause>false</ConsolePause>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <ConsolePause>false</ConsolePause>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="BasicSpritesViewController.cs" />
+    <Compile Include="BasicSpritesViewController.designer.cs">
+      <DependentUpon>BasicSpritesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColorizedSpritesViewController.cs" />
+    <Compile Include="ColorizedSpritesViewController.designer.cs">
+      <DependentUpon>ColorizedSpritesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnchorsSpritesViewController.cs" />
+    <Compile Include="AnchorsSpritesViewController.designer.cs">
+      <DependentUpon>AnchorsSpritesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BlendingSpritesViewController.cs" />
+    <Compile Include="BlendingSpritesViewController.designer.cs">
+      <DependentUpon>BlendingSpritesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnimatedSpritesViewController.cs" />
+    <Compile Include="AnimatedSpritesViewController.designer.cs">
+      <DependentUpon>AnimatedSpritesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResizingSpritesViewController.cs" />
+    <Compile Include="ResizingSpritesViewController.designer.cs">
+      <DependentUpon>ResizingSpritesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommonSpritesViewController.cs" />
+    <Compile Include="Extensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="MainStoryboard.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\first.png" />
+    <BundleResource Include="Resources\first%402x.png" />
+    <BundleResource Include="Resources\second.png" />
+    <BundleResource Include="Resources\second%402x.png" />
+    <BundleResource Include="Art\rocket.png" />
+    <BundleResource Include="Art\spark.png" />
+    <BundleResource Include="Art\stretchable_image.png" />
+    <BundleResource Include="Art\warrior_walk_0001.png" />
+    <BundleResource Include="Art\warrior_walk_0002.png" />
+    <BundleResource Include="Art\warrior_walk_0003.png" />
+    <BundleResource Include="Art\warrior_walk_0004.png" />
+    <BundleResource Include="Art\warrior_walk_0005.png" />
+    <BundleResource Include="Art\warrior_walk_0006.png" />
+    <BundleResource Include="Art\warrior_walk_0007.png" />
+    <BundleResource Include="Art\warrior_walk_0008.png" />
+    <BundleResource Include="Art\warrior_walk_0009.png" />
+    <BundleResource Include="Art\warrior_walk_0010.png" />
+    <BundleResource Include="Art\warrior_walk_0011.png" />
+    <BundleResource Include="Art\warrior_walk_0012.png" />
+    <BundleResource Include="Art\warrior_walk_0013.png" />
+    <BundleResource Include="Art\warrior_walk_0014.png" />
+    <BundleResource Include="Art\warrior_walk_0015.png" />
+    <BundleResource Include="Art\warrior_walk_0016.png" />
+    <BundleResource Include="Art\warrior_walk_0017.png" />
+    <BundleResource Include="Art\warrior_walk_0018.png" />
+    <BundleResource Include="Art\warrior_walk_0019.png" />
+    <BundleResource Include="Art\warrior_walk_0020.png" />
+    <BundleResource Include="Art\warrior_walk_0021.png" />
+    <BundleResource Include="Art\warrior_walk_0022.png" />
+    <BundleResource Include="Art\warrior_walk_0023.png" />
+    <BundleResource Include="Art\warrior_walk_0024.png" />
+    <BundleResource Include="Art\warrior_walk_0025.png" />
+    <BundleResource Include="Art\warrior_walk_0026.png" />
+    <BundleResource Include="Art\warrior_walk_0027.png" />
+    <BundleResource Include="Art\warrior_walk_0028.png" />
+    <BundleResource Include="Resources\Default-Landscape%402x~ipad.png" />
+    <BundleResource Include="Resources\Default-Landscape~ipad.png" />
+    <BundleResource Include="Resources\icon-72.png" />
+    <BundleResource Include="Resources\icon-144.png" />
+    <BundleResource Include="Resources\icon-50.png" />
+    <BundleResource Include="Resources\icon-100.png" />
+    <BundleResource Include="Resources\icon-29.png" />
+    <BundleResource Include="Resources\icon-58.png" />
+    <BundleResource Include="Resources\Icon-76.png" />
+    <BundleResource Include="Resources\Icon-76%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-40.png" />
+    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
+    <BundleResource Include="Resources\Default-Portrait.png" />
+    <BundleResource Include="Resources\Default-Portrait%402x.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Art\" />
+  </ItemGroup>
+</Project>

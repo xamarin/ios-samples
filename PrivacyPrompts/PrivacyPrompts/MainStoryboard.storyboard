@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4457.6" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" initialViewController="obP-e3-iKa">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <development version="4600" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.6"/>
+    </dependencies>
+    <scenes>
+        <!--Privacy Detail View Controller-->
+        <scene sceneID="wm0-fc-TVa">
+            <objects>
+                <viewController id="FqB-Ok-pwy" customClass="PrivacyDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a7g-93-5wV">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Location Services" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJa-gr-53a">
+                                <rect key="frame" x="20" y="43" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="gkc-6G-ReY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline1"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udf-qN-M6y">
+                                <rect key="frame" x="20" y="126" width="280" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.56078431370000004" green="0.80000000000000004" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" type="user" id="UUy-nR-1VD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <state key="normal" title="Check Access">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedCheckAccessButton:" destination="FqB-Ok-pwy" eventType="touchUpInside" id="XSW-RA-Kwf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmQ-i2-cJv">
+                                <rect key="frame" x="20" y="193" width="280" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" type="user" id="vnh-es-nom"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <state key="normal" title="Request Access">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedRequestAccessButton:" destination="FqB-Ok-pwy" eventType="touchUpInside" id="2fu-se-TaD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="udf-qN-M6y" firstAttribute="top" secondItem="a7g-93-5wV" secondAttribute="top" constant="126" id="6y6-fr-PSh"/>
+                            <constraint firstItem="gJa-gr-53a" firstAttribute="leading" secondItem="a7g-93-5wV" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="7cF-1r-trf"/>
+                            <constraint firstItem="rmQ-i2-cJv" firstAttribute="top" secondItem="a7g-93-5wV" secondAttribute="top" constant="193" id="NNP-Mm-vFf"/>
+                            <constraint firstAttribute="trailing" secondItem="gJa-gr-53a" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Rxe-Na-qiu"/>
+                            <constraint firstItem="gJa-gr-53a" firstAttribute="leading" secondItem="rmQ-i2-cJv" secondAttribute="leading" type="default" id="XyM-WB-Q61"/>
+                            <constraint firstItem="gJa-gr-53a" firstAttribute="trailing" secondItem="udf-qN-M6y" secondAttribute="trailing" type="default" id="bKa-0O-Io9"/>
+                            <constraint firstItem="gJa-gr-53a" firstAttribute="trailing" secondItem="rmQ-i2-cJv" secondAttribute="trailing" type="default" id="jrb-9N-N6d"/>
+                            <constraint firstItem="gJa-gr-53a" firstAttribute="leading" secondItem="udf-qN-M6y" secondAttribute="leading" type="default" id="lDF-4v-AEs"/>
+                            <constraint firstItem="gJa-gr-53a" firstAttribute="top" secondItem="a7g-93-5wV" secondAttribute="top" constant="43" id="oWc-Lk-Bae"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="checkAccessButton" destination="udf-qN-M6y" id="0nN-uB-mvZ"/>
+                        <outlet property="requestAccessButton" destination="rmQ-i2-cJv" id="3Ty-Cb-Oei"/>
+                        <outlet property="titleLabel" destination="gJa-gr-53a" id="0OY-n1-aEj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dGV-o8-xuv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="738" y="-435"/>
+        </scene>
+        <!--Privacy Classes Table View Controller - Privacy Data Classes-->
+        <scene sceneID="fnp-8p-uMQ">
+            <objects>
+                <tableViewController id="ibo-fB-sWs" customClass="PrivacyClassesTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aVX-wW-VOj">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BasicCell" textLabel="7lO-kD-O5W" style="IBUITableViewCellStyleDefault" id="jL1-Wc-bNj">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lO-kD-O5W">
+                                            <rect key="frame" x="129" y="9" width="42" height="24"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ibo-fB-sWs" id="OW2-jr-jdZ"/>
+                            <outlet property="delegate" destination="ibo-fB-sWs" id="Ya5-Qw-8fx"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Privacy Data Classes" id="4X8-O2-Dv0"/>
+                    <connections>
+                        <segue destination="FqB-Ok-pwy" kind="push" identifier="serviceSegue" id="4kW-sj-SvU"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zsE-fA-BMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="292" y="-435"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gA7-EQ-mww">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="obP-e3-iKa" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZVb-UU-YGc">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ibo-fB-sWs" kind="relationship" relationship="rootViewController" id="JfL-VT-iRj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ITc-VM-fOK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-184" y="-435"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PrivacyClassesTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrivacyClassesTableViewController.h"/>
+        </class>
+        <class className="PrivacyDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PrivacyDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="tappedCheckAccessButton:"/>
+                <relationship kind="action" name="tappedRequestAccessButton:"/>
+                <relationship kind="outlet" name="checkAccessButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="requestAccessButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

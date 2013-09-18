@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonTapper3000", "ButtonTapper3000\ButtonTapper3000.csproj", "{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}.Debug|iPhone.Build.0 = Debug|iPhone
+		{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}.Release|iPhone.ActiveCfg = Release|iPhone
+		{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}.Release|iPhone.Build.0 = Release|iPhone
+		{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{D0493837-812B-4A0F-9A0C-D0E3F5FF9B95}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ButtonTapper3000\ButtonTapper3000.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = Mono
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal

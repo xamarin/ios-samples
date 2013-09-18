@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4488.2" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3715.3"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
+            <connections>
+                <outlet property="memeButton" destination="vPv-Gy-Dmr" id="MzP-EX-vVx"/>
+                <outlet property="previewView" destination="3Wv-MG-wyc" id="jjs-so-r6J"/>
+                <outlet property="slider" destination="Sng-6r-643" id="t7G-8W-4PS"/>
+                <outlet property="view" destination="2" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="2" customClass="PreviewView">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Wv-MG-wyc" customClass="PreviewView">
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Zoom" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8y4-pz-l4U">
+                    <rect key="frame" x="310" y="983" width="43" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Sng-6r-643">
+                    <rect key="frame" x="50" y="947" width="562" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="HkR-c0-asA"/>
+                    </constraints>
+                    <connections>
+                        <action selector="sliderChanged:" destination="-1" eventType="valueChanged" id="R70-wl-BmU"/>
+                    </connections>
+                </slider>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPv-Gy-Dmr">
+                    <rect key="frame" x="650" y="924" width="98" height="80"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="ZEn-NR-bQF"/>
+                        <constraint firstAttribute="width" constant="98" id="pnz-4z-u52"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" backgroundImage="Dramatic_Chipmunk.png">
+                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="meme:" destination="-1" eventType="touchUpInside" id="iBe-1N-lFV"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vPv-Gy-Dmr" firstAttribute="leading" secondItem="Sng-6r-643" secondAttribute="trailing" constant="40" id="19O-Hf-MiD"/>
+                <constraint firstItem="3Wv-MG-wyc" firstAttribute="trailing" secondItem="2" secondAttribute="trailing" id="Gfp-d0-YpZ"/>
+                <constraint firstItem="vPv-Gy-Dmr" firstAttribute="bottom" secondItem="8y4-pz-l4U" secondAttribute="bottom" id="JRa-ev-hdd"/>
+                <constraint firstItem="Sng-6r-643" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="52" id="Sg2-Hb-8Bd"/>
+                <constraint firstItem="3Wv-MG-wyc" firstAttribute="top" secondItem="2" secondAttribute="top" id="UY3-T8-ouQ"/>
+                <constraint firstItem="Sng-6r-643" firstAttribute="centerX" secondItem="8y4-pz-l4U" secondAttribute="centerX" id="W6A-MF-EU8"/>
+                <constraint firstAttribute="trailing" secondItem="vPv-Gy-Dmr" secondAttribute="trailing" constant="20" symbolic="YES" id="XbJ-2n-iyR"/>
+                <constraint firstAttribute="bottom" secondItem="Sng-6r-643" secondAttribute="bottom" constant="49" id="Xtb-xI-afc"/>
+                <constraint firstItem="3Wv-MG-wyc" firstAttribute="bottom" secondItem="2" secondAttribute="bottom" id="hyG-Ma-e1a"/>
+                <constraint firstItem="8y4-pz-l4U" firstAttribute="top" secondItem="Sng-6r-643" secondAttribute="bottom" constant="8" symbolic="YES" id="i6l-be-T3n"/>
+                <constraint firstItem="3Wv-MG-wyc" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="jlZ-eL-E2d"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Dramatic_Chipmunk.png" width="351" height="288"/>
+    </resources>
+</document>

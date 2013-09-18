@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "TicTacToe\TicTacToe.csproj", "{0AF3D7B9-D248-492C-91DE-101158F01700}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Debug|iPhone.Build.0 = Debug|iPhone
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Release|iPhone.ActiveCfg = Release|iPhone
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Release|iPhone.Build.0 = Release|iPhone
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = TicTacToe\TicTacToe.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = Mono
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal

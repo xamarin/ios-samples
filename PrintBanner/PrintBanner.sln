@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintBanner", "PrintBanner\PrintBanner.csproj", "{85785546-934D-4A12-A411-479891E33A46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{85785546-934D-4A12-A411-479891E33A46}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{85785546-934D-4A12-A411-479891E33A46}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{85785546-934D-4A12-A411-479891E33A46}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{85785546-934D-4A12-A411-479891E33A46}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{85785546-934D-4A12-A411-479891E33A46}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{85785546-934D-4A12-A411-479891E33A46}.Debug|iPhone.Build.0 = Debug|iPhone
+		{85785546-934D-4A12-A411-479891E33A46}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{85785546-934D-4A12-A411-479891E33A46}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{85785546-934D-4A12-A411-479891E33A46}.Release|iPhone.ActiveCfg = Release|iPhone
+		{85785546-934D-4A12-A411-479891E33A46}.Release|iPhone.Build.0 = Release|iPhone
+		{85785546-934D-4A12-A411-479891E33A46}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{85785546-934D-4A12-A411-479891E33A46}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = PrintBanner\PrintBanner.csproj
+	EndGlobalSection
+EndGlobal

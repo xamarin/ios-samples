@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4488.2" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="18P-NS-c4a">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3715.3"/>
+    </dependencies>
+    <scenes>
+        <!--Basic Sprites View Controller - Basic Sprites-->
+        <scene sceneID="SZw-SG-B0U">
+            <objects>
+                <viewController id="keE-Za-OXV" customClass="BasicSpritesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DRr-F7-ibg"/>
+                        <viewControllerLayoutGuide type="bottom" id="7Na-vf-sXQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="86Y-oL-O9j" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="719"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <tabBarItem key="tabBarItem" title="Basic Sprites" image="first.png" id="fcW-nV-4DU"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pY4-7R-qDG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="119" y="-705"/>
+        </scene>
+        <!--Anchors Sprites View Controller - Anchors-->
+        <scene sceneID="XHh-dS-6GY">
+            <objects>
+                <viewController id="sbH-4l-JRH" customClass="AnchorsSpritesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Veg-4g-8VC"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Sz-6U-NGK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Auk-S8-Lkt" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="719"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <tabBarItem key="tabBarItem" title="Anchors" image="first.png" id="rNY-no-1u4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7BC-9j-D4X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1478" y="-705"/>
+        </scene>
+        <!--Blending Sprites View Controller - Blending-->
+        <scene sceneID="9Ru-mK-zwq">
+            <objects>
+                <viewController id="wCl-ki-gXa" customClass="BlendingSpritesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hiV-Ap-f5E"/>
+                        <viewControllerLayoutGuide type="bottom" id="wek-d6-JVX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fci-29-0DD" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="719"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <tabBarItem key="tabBarItem" title="Blending" image="first.png" id="ism-Ff-uen"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1LK-T8-v82" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1478" y="275"/>
+        </scene>
+        <!--Animated Sprites View Controller - Animated-->
+        <scene sceneID="4we-bn-U3B">
+            <objects>
+                <viewController id="GTf-hT-oTk" customClass="AnimatedSpritesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Feh-k0-gnH"/>
+                        <viewControllerLayoutGuide type="bottom" id="fEP-Vp-ebM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uzS-qC-P2X" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="719"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <tabBarItem key="tabBarItem" title="Animated" image="first.png" id="Brs-L8-qEM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bcm-N3-W3S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1478" y="1231"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="34t-aT-tNN">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="18P-NS-c4a" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="aSp-ap-dmU">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="keE-Za-OXV" kind="relationship" relationship="viewControllers" id="5kI-oJ-ls8"/>
+                        <segue destination="Rx5-5H-6mm" kind="relationship" relationship="viewControllers" id="Z8M-Sn-APy"/>
+                        <segue destination="QMc-Fg-XhF" kind="relationship" relationship="viewControllers" id="nxA-53-2O6"/>
+                        <segue destination="sbH-4l-JRH" kind="relationship" relationship="viewControllers" id="9Qf-Gn-fWp"/>
+                        <segue destination="wCl-ki-gXa" kind="relationship" relationship="viewControllers" id="yi0-5o-f9P"/>
+                        <segue destination="GTf-hT-oTk" kind="relationship" relationship="viewControllers" id="Qaf-B0-njG"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="93q-GD-sw2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1313" y="248"/>
+        </scene>
+        <!--Colorized Sprites View Controller - Colorized Sprites-->
+        <scene sceneID="jaG-Yq-UvB">
+            <objects>
+                <viewController id="Rx5-5H-6mm" customClass="ColorizedSpritesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6vO-zg-fNb"/>
+                        <viewControllerLayoutGuide type="bottom" id="KUX-aI-kV4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UBt-5S-7Sa" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="719"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <tabBarItem key="tabBarItem" title="Colorized Sprites" image="first.png" id="rXh-iF-a2B"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lOV-MR-aJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="119" y="248"/>
+        </scene>
+        <!--Resizing Sprites View Controller - Resizing-->
+        <scene sceneID="pjZ-ld-NEX">
+            <objects>
+                <viewController id="QMc-Fg-XhF" customClass="ResizingSpritesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7uR-lZ-VUj"/>
+                        <viewControllerLayoutGuide type="bottom" id="UgQ-xg-DJu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YeB-rv-8ib" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="719"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <tabBarItem key="tabBarItem" title="Resizing" image="first.png" id="4Ow-1n-lgW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c4S-kE-Wvk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="143" y="1214"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="first.png" width="30" height="30"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
