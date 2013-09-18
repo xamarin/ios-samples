@@ -58,7 +58,11 @@ namespace coreimage
 
 					var catSection = new Section (section);
 					iOSRoot.Add (catSection);
-					var elementList = query.Select (fi => (Element)new RootElement (fi.Name, (x) => Demo (fi.Callback)));
+					var elementList = query.Select (fi => (Element)new RootElement (fi.Name, (x) => {
+						var viewCtrl = Demo (fi.Callback);
+						viewCtrl.Title = fi.Name;
+						return viewCtrl;
+					}));
 					catSection.AddAll (elementList);
 				}
 			}
@@ -89,7 +93,11 @@ namespace coreimage
 					var catSection = new Section ();
 					catRoot.Add (catSection);
 
-					var elementList = query.Select (fi => (Element)new RootElement (fi.Name, (x) => Demo (fi.Callback)));
+					var elementList = query.Select (fi => (Element)new RootElement (fi.Name, (x) => {
+						var viewCtrl = Demo (fi.Callback);
+						viewCtrl.Title = fi.Name;
+						return viewCtrl;
+					}));
 					catSection.AddAll (elementList);
 				}
 			}
