@@ -98,10 +98,6 @@ namespace coreimage
 			root.Add (testingSection);
 
 			testingSection.Add (new RootElement("Show All Filters", (x) => new VisitFilterViewController (masterList)));
-			testingSection.Add (new RootElement("Test Filters", (x) => new TestImagesViewController (masterList)));	
-
-			if (Runtime.Arch == Arch.SIMULATOR) 
-				testingSection.Add (new RootElement("Rebase Test Images", (x) => new RebaseImagesViewController (masterList)));
 
 			window = new UIWindow (UIScreen.MainScreen.Bounds) {
 				RootViewController = new UINavigationController (new DialogViewController (root))
