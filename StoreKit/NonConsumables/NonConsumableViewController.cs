@@ -32,6 +32,10 @@ namespace NonConsumables {
 		{
 			base.ViewDidLoad ();
 
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
+				EdgesForExtendedLayout = UIRectEdge.None;
+			}
+
 			#region UI layout stuff, not relevant to example
 			Title = "Non-Consumable Products";
 			View.BackgroundColor = UIColor.White;
@@ -72,7 +76,7 @@ namespace NonConsumables {
 			testFilterImage = new UIImageView(new Rectangle(10, 265, 300, 100));
 			testFilterImage.Image = UIImage.FromFile (testImagePath);
 			
-			infoLabel = new UILabel(new RectangleF(10, 340, 300, 80));
+			infoLabel = new UILabel(new RectangleF(10, 370, 300, 80));
 			infoLabel.Lines = 3;
 			infoLabel.Text = "Notice how you can only purchase each product once. After that the transaction can't be charged again.";
 	
