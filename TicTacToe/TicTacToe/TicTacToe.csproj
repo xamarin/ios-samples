@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0AF3D7B9-D248-492C-91DE-101158F01700}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TicTacToe</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>TicTacToe</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>Full</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <IpaPackageName />
+    <MtouchI18n />
+    <MtouchArch>ARMv7</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <BuildIpa>true</BuildIpa>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <ConsolePause>false</ConsolePause>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Model\" />
+    <Folder Include="View\" />
+    <Folder Include="Controller\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Model\TTTMove.cs" />
+    <Compile Include="Model\TTTMessage.cs" />
+    <Compile Include="Model\TTTProfile.cs" />
+    <Compile Include="Model\TTTMessageServer.cs" />
+    <Compile Include="Model\TTTGame.cs" />
+    <Compile Include="View\TTTGameView.cs" />
+    <Compile Include="View\TTTRatingControl.cs" />
+    <Compile Include="View\TTTCountView.cs" />
+    <Compile Include="Controller\TTTPlayViewController.cs" />
+    <Compile Include="Controller\TTTMessagesViewController.cs" />
+    <Compile Include="Controller\TTTNewMessageViewController.cs" />
+    <Compile Include="Controller\TTTProfileViewController.cs" />
+    <Compile Include="Controller\TTTHistoryListViewController.cs" />
+    <Compile Include="Controller\TTTGameHistoryViewController.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="Resources\backIndicator.png" />
+    <BundleResource Include="Resources\backIndicator%402x.png" />
+    <BundleResource Include="Resources\backIndicatorMask.png" />
+    <BundleResource Include="Resources\backIndicatorMask%402x.png" />
+    <BundleResource Include="Resources\barBackground.png" />
+    <BundleResource Include="Resources\barBackground%402x.png" />
+    <BundleResource Include="Resources\navigationBarBackground.png" />
+    <BundleResource Include="Resources\navigationBarBackground%402x.png" />
+    <BundleResource Include="Resources\favorite.png" />
+    <BundleResource Include="Resources\favorite%402x.png" />
+    <BundleResource Include="Resources\favoriteButton.png" />
+    <BundleResource Include="Resources\favoriteButton%402x.png" />
+    <BundleResource Include="Resources\favoriteUnselected.png" />
+    <BundleResource Include="Resources\favoriteUnselected%402x.png" />
+    <BundleResource Include="Resources\reply.png" />
+    <BundleResource Include="Resources\reply%402x.png" />
+    <BundleResource Include="Resources\unselectedButton.png" />
+    <BundleResource Include="Resources\unselectedButton%402x.png" />
+    <BundleResource Include="Resources\o.png" />
+    <BundleResource Include="Resources\o%402x.png" />
+    <BundleResource Include="Resources\smallO.png" />
+    <BundleResource Include="Resources\smallO%402x.png" />
+    <BundleResource Include="Resources\smallX.png" />
+    <BundleResource Include="Resources\smallX%402x.png" />
+    <BundleResource Include="Resources\x.png" />
+    <BundleResource Include="Resources\x%402x.png" />
+    <BundleResource Include="Resources\segmentBackground.png" />
+    <BundleResource Include="Resources\segmentBackground%402x.png" />
+    <BundleResource Include="Resources\segmentBackgroundHighlighted.png" />
+    <BundleResource Include="Resources\segmentBackgroundHighlighted%402x.png" />
+    <BundleResource Include="Resources\segmentBackgroundSelected.png" />
+    <BundleResource Include="Resources\segmentBackgroundSelected%402x.png" />
+    <BundleResource Include="Resources\segmentDivider.png" />
+    <BundleResource Include="Resources\segmentDivider%402x.png" />
+    <BundleResource Include="Resources\messagesTab.png" />
+    <BundleResource Include="Resources\messagesTab%402x.png" />
+    <BundleResource Include="Resources\messagesTabSelected.png" />
+    <BundleResource Include="Resources\messagesTabSelected%402x.png" />
+    <BundleResource Include="Resources\playTab.png" />
+    <BundleResource Include="Resources\playTab%402x.png" />
+    <BundleResource Include="Resources\playTabSelected.png" />
+    <BundleResource Include="Resources\playTabSelected%402x.png" />
+    <BundleResource Include="Resources\profileTab.png" />
+    <BundleResource Include="Resources\profileTab%402x.png" />
+    <BundleResource Include="Resources\profileTabSelected.png" />
+    <BundleResource Include="Resources\profileTabSelected%402x.png" />
+    <BundleResource Include="Resources\victory.png" />
+    <BundleResource Include="Resources\victory%402x.png" />
+    <BundleResource Include="Resources\draw.png" />
+    <BundleResource Include="Resources\draw%402x.png" />
+    <BundleResource Include="Resources\defeat.png" />
+    <BundleResource Include="Resources\defeat%402x.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\icon-29.png" />
+    <BundleResource Include="Resources\icon-50.png" />
+    <BundleResource Include="Resources\icon-57.png" />
+    <BundleResource Include="Resources\icon-58.png" />
+    <BundleResource Include="Resources\icon-72.png" />
+    <BundleResource Include="Resources\icon-114.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-60%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-Small.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-Small%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-Small-40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
+  </ItemGroup>
+</Project>
