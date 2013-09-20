@@ -14,6 +14,12 @@ namespace PinchIt
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
+				app.SetStatusBarStyle (UIStatusBarStyle.LightContent, false);
+				var frame = window.Frame;
+				frame.Y = 20;
+				window.Frame = frame;
+			}
 
 			PinchLayout pinchLayout = new PinchLayout ();
 			pinchLayout.ItemSize = new SizeF (100.0f, 100.0f);
