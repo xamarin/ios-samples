@@ -19,7 +19,7 @@ namespace PaintCode
 
 			View.BackgroundColor = UIColor.White;
 
-			float statusBarHeight = UIDevice.CurrentDevice.SystemVersion == "7.0" ?
+			float statusBarHeight = float.Parse(UIDevice.CurrentDevice.SystemVersion) >= 7 ?
 				UIApplication.SharedApplication.StatusBarFrame.Height : 0f;
 			button = new BlueButton (new RectangleF (10, 10 + statusBarHeight, 120, 120 - statusBarHeight));
 			

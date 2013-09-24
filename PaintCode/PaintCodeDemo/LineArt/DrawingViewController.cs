@@ -21,7 +21,7 @@ namespace PaintCode
 			View.BackgroundColor = UIColor.White;
 
 			drawing = new DrawingView ();
-			float statusBarHeight = UIDevice.CurrentDevice.SystemVersion == "7.0" ?
+			float statusBarHeight = float.Parse(UIDevice.CurrentDevice.SystemVersion) >= 7 ?
 				UIApplication.SharedApplication.StatusBarFrame.Height : 0f;
 			drawing.Frame = new System.Drawing.RectangleF (0, statusBarHeight, 320, 640 - statusBarHeight);
 			
