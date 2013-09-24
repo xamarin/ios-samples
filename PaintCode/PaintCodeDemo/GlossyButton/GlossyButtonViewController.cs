@@ -18,8 +18,10 @@ namespace PaintCode
 			base.ViewDidLoad ();
 
 			View.BackgroundColor = UIColor.White;
-			
-			button = new GlossyButton (new RectangleF (30, 30, 130, 38));
+
+			float statusBarHeight = UIDevice.CurrentDevice.SystemVersion == "7.0" ?
+				UIApplication.SharedApplication.StatusBarFrame.Height : 0f;
+			button = new GlossyButton (new RectangleF (30, 30 + statusBarHeight, 130, 38));
 			button.SetTitle ("Stop!", UIControlState.Normal);
 			
 			button.Tapped += (obj) => {
@@ -29,7 +31,7 @@ namespace PaintCode
 			View.AddSubview (button);
 			
 			
-			text = new UITextView (new Rectangle (10, 100, 300, 300));
+			text = new UITextView (new RectangleF (10, 100 + statusBarHeight , 300, 300 - statusBarHeight));
 			text.Font = UIFont.SystemFontOfSize (14f);
 			text.Editable = false;
 			text.Text = "PaintCode GlossyButton Example\n\n"

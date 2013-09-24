@@ -18,8 +18,10 @@ namespace PaintCode
 			base.ViewDidLoad ();
 
 			View.BackgroundColor = UIColor.White;
-			
-			button = new BlueButton (new RectangleF (10, 10, 120, 120));
+
+			float statusBarHeight = UIDevice.CurrentDevice.SystemVersion == "7.0" ?
+				UIApplication.SharedApplication.StatusBarFrame.Height : 0f;
+			button = new BlueButton (new RectangleF (10, 10 + statusBarHeight, 120, 120 - statusBarHeight));
 			
 			button.Tapped += (obj) => {
 				new UIAlertView ("Tapped", "Button tapped", null, "OK", null).Show ();
@@ -28,7 +30,7 @@ namespace PaintCode
 			View.AddSubview (button);
 			
 			
-			text = new UITextView (new Rectangle (10, 100, 300, 300));
+			text = new UITextView (new RectangleF (10, 100 + statusBarHeight, 300, 300 - statusBarHeight));
 			text.Font = UIFont.SystemFontOfSize (14f);
 			text.Editable = false;
 			text.Text = "PaintCode BlueButton Example\n\n"
