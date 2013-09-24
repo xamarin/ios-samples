@@ -63,6 +63,7 @@ namespace RecipesAndPrinting
 			mainViewController = new RecipeListTableViewController (UITableViewStyle.Plain, recipesController);
 			
 			navController = new UINavigationController (mainViewController);
+			navController.NavigationBar.Translucent = false;
 			
 			window.AddSubview (navController.View);
 			window.MakeKeyAndVisible ();
