@@ -71,6 +71,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="Calabash">
+      <HintPath>Components\calabash-1.2\lib\ios\Calabash.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -132,5 +135,12 @@
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="calabash">
+      <InstallationInProgress>False</InstallationInProgress>
+      <Version>1.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
 </Project>

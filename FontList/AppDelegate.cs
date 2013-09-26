@@ -1,6 +1,7 @@
 using System;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
+using Xamarin;
 
 namespace FontList {
 	[Register("AppDelegate")]
@@ -17,6 +18,7 @@ namespace FontList {
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
+			Calabash.Start ();
 			// create our window
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.MakeKeyAndVisible ();
