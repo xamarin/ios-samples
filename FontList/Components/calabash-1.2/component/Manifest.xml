@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="calabash">
+  <name>Calabash</name>
+  <publisher>Xamarin</publisher>
+  <publisher-url>http://calaba.sh/</publisher-url>
+  <version>1.2</version>
+  <summary>Run automated acceptance tests of your iOS and Android apps.</summary>
+  <screenshots>
+    <img src="screenshots/Screenshot_1.png" title="Screenshot_1" />
+  </screenshots>
+  <samples>
+    <sample id="CalabashSample.iOS">
+      <name>iOS Sample</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>
