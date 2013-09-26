@@ -23,6 +23,7 @@ namespace Example_Drawing
 
 			// instantiate our main navigatin controller and add it's view to the window
 			mainNavController = new UINavigationController ();
+			mainNavController.NavigationBar.Translucent = false;
 			
 			iPadHome = new Example_Drawing.Screens.iPad.Home.HomeScreen ();
 			mainNavController.PushViewController (iPadHome, false);

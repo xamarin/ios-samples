@@ -26,7 +26,8 @@ namespace MonoDevelopTouchCells
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			this.InitializeTableData();
-			
+
+			navigationController.NavigationBar.Translucent = false;
 			// If you have defined a view, add it here:
 			// window.AddSubview (navigationController.View);
 			       

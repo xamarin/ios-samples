@@ -27,7 +27,8 @@ namespace HandlingRotation {
 
 			// instantiate our main navigatin controller and add it's view to the window
 			mainNavController = new UINavigationController ();
-			
+			mainNavController.NavigationBar.Translucent = false;
+
 			switch (CurrentDevice)
 			{
 				case DeviceType.iPhone:

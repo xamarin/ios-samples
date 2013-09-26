@@ -74,6 +74,7 @@ namespace MTDWalkthrough
 		public override UIDatePicker CreatePicker ()
 		{
 			UIDatePicker futureDatePicker = base.CreatePicker ();
+			futureDatePicker.BackgroundColor = UIColor.White;
 			futureDatePicker.MinimumDate = DateTime.Today;
 			return futureDatePicker;
 		}
