@@ -57,29 +57,35 @@ namespace coreimage
 				BarButton.Enabled = false;
 				ShouldStop = false;
 
-				foreach(var filter in FilterList)
-				{
-					Title = filter.Name;
+				using (var context = CIContext.FromOptions (null)) {
 
-					if (ShouldStop) 
-						break;
+					foreach(var filter in FilterList)
+					{
+						Title = filter.Name;
 
-					UIImage resultImage = await Task.Factory.StartNew ( () =>{
-						var output = filter.Callback ();
-						var context = CIContext.FromOptions (null);
-						var result = context.CreateCGImage (output, output.Extent);
-						return UIImage.FromImage (result);
-					});
+						if (ShouldStop) 
+							break;
 
-					if (ShouldStop) 
-						break;
+						var resultImageTask = Task.Factory.StartNew ( () =>{
+							var output = filter.Callback ();
+							
+								using (var result = context.CreateCGImage (output, output.Extent)) {
+									return UIImage.FromImage (result);
+							}
+						});
 
-					if (ImageView.Image != null)
-						ImageView.Image.Dispose ();
+						var resultImage = await resultImageTask;
 
-					ImageView.Image = resultImage;
+						if (ShouldStop) 
+							break;
 
-					await PerformActionOnTestImage (resultImage, filter);
+						if (ImageView.Image != null)
+							ImageView.Image.Dispose ();
+
+						ImageView.Image = resultImage;
+
+						await PerformActionOnTestImage (resultImage, filter);
+					}
 				}
 
 			}
