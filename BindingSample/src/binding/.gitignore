@@ -1,0 +1,4 @@
+*.a
+*.dll
+*.mdb
+XMBindingLibrarySample/build/
