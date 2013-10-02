@@ -16,6 +16,7 @@ namespace reachability {
 		{	
 			AddTable ();
 			UpdateStatus ();
+			Reachability.ReachabilityChanged += (object sender, EventArgs e) =>  { UpdateStatus (); };
 		
 			window.MakeKeyAndVisible ();
 	
@@ -27,6 +28,7 @@ namespace reachability {
 			remoteHostStatus = Reachability.RemoteHostStatus ();
 			internetStatus = Reachability.InternetConnectionStatus ();
 			localWifiStatus = Reachability.LocalWifiConnectionStatus ();
+			tableView.ReloadData ();
 		}
 
 		void AddTable ()
