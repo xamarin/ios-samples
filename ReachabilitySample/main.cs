@@ -16,19 +16,10 @@ namespace reachability {
 		{	
 			AddTable ();
 			UpdateStatus ();
-			//UpdateCarrierWarning ();
-	
+		
 			window.MakeKeyAndVisible ();
 	
 			return true;
-		}
-
-		//
-		// Invoked on the main loop when reachability changes
-		//
-		void ReachabilityChanged (NetworkReachabilityFlags flags)
-		{
-			UpdateStatus ();
 		}
 
 		void UpdateStatus ()
@@ -55,11 +46,6 @@ namespace reachability {
 			contentView.InsertSubviewBelow (tableView, summaryLabel);
 			contentView.BringSubviewToFront (summaryLabel);
 			tableView.ReloadData ();
-		}
-
-		public override void OnActivated (UIApplication application)
-		{
-			Console.WriteLine ("OnActivated");
 		}
 
 		class DataSource : UITableViewSource {
@@ -144,7 +130,7 @@ namespace reachability {
 						image = imageStop;
 						break;
 					case NetworkStatus.ReachableViaCarrierDataNetwork:
-						text = "Avaialble via data carrier network";
+						text = "Available via data carrier network";
 						image = imageCarrier;
 						break;
 					case NetworkStatus.ReachableViaWiFiNetwork:
@@ -171,9 +157,7 @@ namespace reachability {
 				return cell;
 			}
 		}
-	}
 
-	class Demo {
 		static void Main (string[] args)
 		{
 			UIApplication.Main (args, null, null);
