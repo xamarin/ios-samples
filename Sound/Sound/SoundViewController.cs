@@ -1,12 +1,11 @@
 using System;
 using System.Drawing;
-
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.AVFoundation;
 using System.Diagnostics;
 using System.IO;
-using MonoTouch.AudioToolbox;
+using MonoTouch.CoreFoundation;
 
 namespace Sound
 {
@@ -15,24 +14,24 @@ namespace Sound
 		// declarations
 		AVAudioRecorder recorder;
 		AVPlayer player;
-		NSDictionary settings;
 		Stopwatch stopwatch = null;
 		NSUrl audioFilePath = null;
 		NSObject observer;
-		
-		static bool UserInterfaceIdiomIsPhone {
+
+		static bool UserInterfaceIdiomIsPhone
+		{
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}
 
-		public SoundViewController ()
-			: base (UserInterfaceIdiomIsPhone ? "SoundViewController_iPhone" : "SoundViewController_iPad", null)
+		public SoundViewController()
+			: base(UserInterfaceIdiomIsPhone ? "SoundViewController_iPhone" : "SoundViewController_iPad", null)
 		{
-			AudioSession.Initialize ();
+
 		}
-		
-		public override void ViewDidLoad ()
+
+		public override void ViewDidLoad()
 		{
-			base.ViewDidLoad ();
+			base.ViewDidLoad();
 			
 			this.RecordingStatusLabel.Text = "";
 			this.LengthOfRecordingLabel.Text = "";
@@ -40,16 +39,32 @@ namespace Sound
 			// start recording wireup
 			this.StartRecordingButton.TouchUpInside += (sender, e) => {
 				Console.WriteLine("Begin Recording");
+
+				var session = AVAudioSession.SharedInstance();
+
+				NSError error = null;
+				session.SetCategory(AVAudioSession.CategoryRecord, out error);
+				if(error != null)
+				{
+					Console.WriteLine(error);
+					return;
+				}
+
+				session.SetActive(true, out error);
+				if(error != null)
+				{
+					Console.WriteLine(error);
+					return;
+				}
 				
-				AudioSession.Category = AudioSessionCategory.RecordAudio;
-				AudioSession.SetActive (true);
-				
-				if (!PrepareAudioRecording ()) {
+				if(!PrepareAudioRecording())
+				{
 					RecordingStatusLabel.Text = "Error preparing";
 					return;
 				}
 
-				if (!recorder.Record ()) {
+				if(!recorder.Record())
+				{
 					RecordingStatusLabel.Text = "Error preparing";
 					return;
 				}
@@ -75,98 +90,97 @@ namespace Sound
 				this.PlayRecordedSoundButton.Enabled = true;
 			};
 			
-			observer = NSNotificationCenter.DefaultCenter.AddObserver (AVPlayerItem.DidPlayToEndTimeNotification, delegate (NSNotification n) {
-				player.Dispose ();
+			observer = NSNotificationCenter.DefaultCenter.AddObserver(AVPlayerItem.DidPlayToEndTimeNotification, delegate (NSNotification n) {
+				player.Dispose();
 				player = null;
 			});
 			
 			// play recorded sound wireup
 			this.PlayRecordedSoundButton.TouchUpInside += (sender, e) => {
-				try {
+				try
+				{
 					Console.WriteLine("Playing Back Recording " + this.audioFilePath.ToString());
 
 					// The following line prevents the audio from stopping 
 					// when the device autolocks. will also make sure that it plays, even
 					// if the device is in mute
-					AudioSession.Category = AudioSessionCategory.MediaPlayback;
+					NSError error = null;
+					AVAudioSession.SharedInstance().SetCategory(AVAudioSession.CategoryPlayback, out error);
+					if(error != null)
+					{
+						throw new Exception(error.DebugDescription);
+					}
+					//AudioSession.Category = AudioSessionCategory.MediaPlayback;
 					
-					this.player = new AVPlayer (this.audioFilePath);
+					this.player = new AVPlayer(this.audioFilePath);
 					this.player.Play();
-				} catch (Exception ex) {
+				}
+				catch(Exception ex)
+				{
 					Console.WriteLine("There was a problem playing back audio: ");
 					Console.WriteLine(ex.Message);
 				}
 			};
 		}
-		
-		public override void ViewDidUnload ()
+
+		public override void ViewDidUnload()
 		{
-			NSNotificationCenter.DefaultCenter.RemoveObserver (observer);
+			NSNotificationCenter.DefaultCenter.RemoveObserver(observer);
 			
-			base.ViewDidUnload ();
+			base.ViewDidUnload();
 			
 			// Clear any references to subviews of the main view in order to
 			// allow the Garbage Collector to collect them sooner.
 			//
 			// e.g. myOutlet.Dispose (); myOutlet = null;
 			
-			ReleaseDesignerOutlets ();
+			ReleaseDesignerOutlets();
 		}
-		
-		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+
+		public override bool ShouldAutorotateToInterfaceOrientation(UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return true;
 		}
-		
-		bool PrepareAudioRecording ()
+
+		bool PrepareAudioRecording()
 		{
 			//Declare string for application temp path and tack on the file extension
-			string fileName = string.Format ("Myfile{0}.aac", DateTime.Now.ToString ("yyyyMMddHHmmss"));
+			string fileName = string.Format("Myfile{0}.aac", DateTime.Now.ToString("yyyyMMddHHmmss"));
 			string tempRecording = NSBundle.MainBundle.BundlePath + "/../tmp/" + fileName;
-			           
-			Console.WriteLine (tempRecording);
+
+			Console.WriteLine(tempRecording);
 			this.audioFilePath = NSUrl.FromFilename(tempRecording);
-			
- 			//set up the NSObject Array of values that will be combined with the keys to make the NSDictionary
-			NSObject[] values = new NSObject[]
-            {    
-                NSNumber.FromFloat(44100.0f),
-                NSNumber.FromInt32((int)MonoTouch.AudioToolbox.AudioFormatType.MPEG4AAC),
-                NSNumber.FromInt32(1),
-                NSNumber.FromInt32((int)AVAudioQuality.High)
-            };
-			//Set up the NSObject Array of keys that will be combined with the values to make the NSDictionary
-            NSObject[] keys = new NSObject[]
-            {
-                AVAudioSettings.AVSampleRateKey,
-                AVAudioSettings.AVFormatIDKey,
-                AVAudioSettings.AVNumberOfChannelsKey,
-                AVAudioSettings.AVEncoderAudioQualityKey
-            };			
-			//Set Settings with the Values and Keys to create the NSDictionary
-			settings = NSDictionary.FromObjectsAndKeys (values, keys);
-			
+
+			var audioSettings = new AudioSettings() {
+				SampleRate = 44100.0f, 
+				Format = MonoTouch.AudioToolbox.AudioFormatType.MPEG4AAC,
+				NumberChannels = 1,
+				AudioQuality = AVAudioQuality.High
+			};
+
 			//Set recorder parameters
 			NSError error;
-			recorder = AVAudioRecorder.ToUrl(this.audioFilePath, settings, out error);
-			if ((recorder == null) || (error != null)) {
-				Console.WriteLine (error);
+			recorder = AVAudioRecorder.Create(this.audioFilePath, audioSettings, out error);
+			if((recorder == null) || (error != null))
+			{
+				Console.WriteLine(error);
 				return false;
 			}
-			
+
 			//Set Recorder to Prepare To Record
-			if (!recorder.PrepareToRecord ()) {
-				recorder.Dispose ();
+			if(!recorder.PrepareToRecord())
+			{
+				recorder.Dispose();
 				recorder = null;
 				return false;
 			}
-			
+
 			recorder.FinishedRecording += delegate (object sender, AVStatusEventArgs e) {
-				recorder.Dispose ();
+				recorder.Dispose();
 				recorder = null;
-				Console.WriteLine ("Done Recording (status: {0})", e.Status);
+				Console.WriteLine("Done Recording (status: {0})", e.Status);
 			};
-			
+
 			return true;
 		}
 	}
