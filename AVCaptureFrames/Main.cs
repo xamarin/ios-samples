@@ -67,6 +67,19 @@ namespace avcaptureframes
 				Console.WriteLine ("No captureDevice - this won't work on the simulator, try a physical device");
 				return false;
 			}
+			//Configure for 15 FPS. Note use of LockForConigfuration()/UnlockForConfiguration()
+			NSError error = null;
+			captureDevice.LockForConfiguration(out error);
+			if(error != null)
+			{
+				Console.WriteLine(error);
+				captureDevice.UnlockForConfiguration();
+				return false;
+			}
+			captureDevice.ActiveVideoMinFrameDuration = new CMTime(1, 15);
+			captureDevice.UnlockForConfiguration();
+
+
 			var input = AVCaptureDeviceInput.FromDevice (captureDevice);
 			if (input == null){
 				Console.WriteLine ("No input - this won't work on the simulator, try a physical device");
@@ -77,11 +90,9 @@ namespace avcaptureframes
 			// create a VideoDataOutput and add it to the sesion
 			var output = new AVCaptureVideoDataOutput () {
 				VideoSettings = new AVVideoSettings (CVPixelFormatType.CV32BGRA),
-				
-				// If you want to cap the frame rate at a given speed, in this sample: 15 frames per second
-				MinFrameDuration = new CMTime (1, 15)
 			};
-			
+
+
 			// configure the output
 			queue = new MonoTouch.CoreFoundation.DispatchQueue ("myQueue");
 			outputRecorder = new OutputRecorder ();
