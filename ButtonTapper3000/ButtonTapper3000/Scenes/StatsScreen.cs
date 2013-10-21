@@ -77,7 +77,7 @@ namespace ButtonTapper3000 {
 			var title = new SKLabelNode ("GillSans-Bold") {
 				Text = "Achievements",
 				FontSize = 30,
-				Position = new PointF (FrameMidX, FrameMidY + 200)
+				Position = new PointF (FrameMidX, FrameMidY + 190)
 			};
 
 			backButton = new SKLabelNode ("GillSans-Bold") {
@@ -172,7 +172,7 @@ namespace ButtonTapper3000 {
 			SKLabelNode title = new SKLabelNode ("GillSans-Bold") {
 				Text = "Leaderboards Sets",
 				FontSize = 30,
-				Position = new PointF (FrameMidX, FrameMidY + 200)
+				Position = new PointF (FrameMidX, FrameMidY + 190)
 			};
 
 			backButton = new SKLabelNode ("GillSans-Bold") {
@@ -245,7 +245,7 @@ namespace ButtonTapper3000 {
 			var title = new SKLabelNode ("GillSans-Bold") {
 				Text = "Leaderboards",
 				FontSize = 30,
-				Position = new PointF (FrameMidX, FrameMidY + 200)
+				Position = new PointF (FrameMidX, FrameMidY + 190)
 			};
 
 			backButton = new SKLabelNode ("GillSans-Bold") {
@@ -311,7 +311,7 @@ namespace ButtonTapper3000 {
 			SKLabelNode title = new SKLabelNode ("GillSans-Bold") {
 				Text = GameInfo.CurrentLeaderBoard.Title,
 				FontSize = 14,
-				Position = new PointF (FrameMidX, FrameMidY + 200)
+				Position = new PointF (FrameMidX, FrameMidY + 190)
 			};
 
 			var podiumSprite = SKSpriteNode.FromTexture (SKTexture.FromImageNamed ("Images/Podium.png"));

@@ -9,6 +9,10 @@ namespace ButtonTapper3000 {
 		public override void LoadView ()
 		{
 			View = new SKView ();
+
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) { 
+				this.EdgesForExtendedLayout = UIRectEdge.None;
+			}
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -24,6 +28,11 @@ namespace ButtonTapper3000 {
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
 		{
 			return UIInterfaceOrientationMask.Portrait;
+		}
+
+		public override UIStatusBarStyle PreferredStatusBarStyle ()
+		{
+			return UIStatusBarStyle.LightContent;
 		}
 	}
 }
