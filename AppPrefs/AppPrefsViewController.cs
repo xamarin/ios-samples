@@ -19,8 +19,10 @@ namespace AppPrefs
 			base.ViewDidLoad ();
 			
 			TableView.Source = new MyUITableViewSource ();
-			observer = NSNotificationCenter.DefaultCenter.AddObserver ((NSString)"NSUserDefaultsDidChangeNotification", UpdateSettings);	
+			observer = NSNotificationCenter.DefaultCenter.AddObserver ((NSString)"NSUserDefaultsDidChangeNotification", UpdateSettings);
+
 		}
+
 		
 		public override void ViewDidUnload ()
 		{
@@ -92,6 +94,7 @@ namespace AppPrefs
 				var firstNameStr = Settings.FirstName;
 				var lastNameStr = Settings.LastName;
 				cell.TextLabel.Text = firstNameStr + " " + lastNameStr;
+				cell.BackgroundColor = UIView.Appearance.BackgroundColor;
 				
 				switch (Settings.TextColor) {
 				case TextColors.Blue:
