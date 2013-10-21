@@ -74,7 +74,7 @@ namespace BubbleCell
 			entry = new UITextView (new RectangleF (10, 9, 234, 22)) {
 				ContentSize = new SizeF (234, 22),
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
-				ScrollEnabled = false,
+				ScrollEnabled = true,
 				ScrollIndicatorInsets = new UIEdgeInsets (5, 0, 4, -2),
 				ClearsContextBeforeDrawing = false,
 				Font = UIFont.SystemFontOfSize (messageFontSize),
