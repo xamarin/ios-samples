@@ -24,7 +24,8 @@
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>True</MtouchProfiling>
     <MtouchLink>None</MtouchLink>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -48,10 +49,13 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>True</MtouchProfiling>
-    <IpaPackageName />
-    <MtouchI18n />
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchArch>ARMv7</MtouchArch>
-    <CrashReportingApiKey />
+    <CrashReportingApiKey>
+    </CrashReportingApiKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -109,6 +113,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
+    <ITunesArtwork Include="Resources\iTunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon-29.png" />
@@ -127,5 +132,7 @@
     <BundleResource Include="Resources\icon-114.png" />
     <BundleResource Include="Resources\icon-144.png" />
     <BundleResource Include="Resources\icon-72.png" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
   </ItemGroup>
 </Project>
