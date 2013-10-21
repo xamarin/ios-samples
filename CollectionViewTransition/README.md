@@ -12,5 +12,5 @@ The sample exhibits the known issue that exists in the corresponding Apple sampl
 after pinching the collection view (in Grid Layout) becomes empty.
 
 This is a port of Apple's iOS7 sample CollectionViewTransition.
-Link to Apple’s sample: https://developer.apple.com/downloads/index.action?name=WWDC%202013#
+Link to Apple's sample: https://developer.apple.com/downloads/index.action?name=WWDC%202013#
 
