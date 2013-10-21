@@ -34,6 +34,10 @@ namespace AsyncDownloadImage
 		{
 			base.ViewDidLoad ();
 
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) { 
+				this.EdgesForExtendedLayout = UIRectEdge.None;
+			}
+
 			this.clickButton.TouchUpInside += (sender, e) => {
 				clickNumber++;
 				this.clickButton.SetTitle( "Click Me:" + clickNumber, UIControlState.Normal);
@@ -43,6 +47,15 @@ namespace AsyncDownloadImage
 
 			this.downloadProgress.Progress = 0.0f;
 
+		}
+
+		//Change Status Bar colour to light
+		public override UIStatusBarStyle PreferredStatusBarStyle ()
+		{
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
+				return UIStatusBarStyle.LightContent;
+			}
+			return UIStatusBarStyle.Default;
 		}
 
 		async void downloadAsync(object sender, System.EventArgs ea)
