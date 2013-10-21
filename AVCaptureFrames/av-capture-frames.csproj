@@ -33,7 +33,8 @@
     <MtouchLink>None</MtouchLink>
     <ConsolePause>False</ConsolePause>
     <MtouchUseArmv7>false</MtouchUseArmv7>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>True</DebugSymbols>
@@ -58,7 +59,8 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchExtraArgs>-v -v -v -keeptemp</MtouchExtraArgs>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -87,7 +89,6 @@
     <BundleResource Include="Resources\icon-50.png" />
     <BundleResource Include="Resources\icon-58.png" />
     <BundleResource Include="Resources\icon-100.png" />
-    <BundleResource Include="Resources\iTunesArtwork%402x.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\Default-Landscape%402x~ipad.png" />
     <BundleResource Include="Resources\Default-Landscape~ipad.png" />
@@ -99,8 +100,16 @@
     <BundleResource Include="Resources\icon-114.png" />
     <BundleResource Include="Resources\icon-144.png" />
     <BundleResource Include="Resources\icon-72.png" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Icon-76.png" />
+    <BundleResource Include="Resources\Icon-76%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-40.png" />
+    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
+    <ITunesArtwork Include="Resources\iTunesArtwork%402x">
+      <DependentUpon>Default-Landscape%402x~ipad.png</DependentUpon>
+    </ITunesArtwork>
   </ItemGroup>
 </Project>
