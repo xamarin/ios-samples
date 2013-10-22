@@ -65,7 +65,7 @@ namespace GLPaintGameView
 			segmentedControl.Frame = frame;
 			// When the user chooses a color, the method changeBrushColor: is called.
 			segmentedControl.ValueChanged += ChangeBrushColor;
-			segmentedControl.ControlStyle = UISegmentedControlStyle.Bar;
+			//segmentedControl.ControlStyle = UISegmentedControlStyle.Bar;
 			// Make sure the color of the color complements the black background
 			segmentedControl.TintColor = UIColor.DarkGray;
 			// Set the third color (index values start at 0)
@@ -85,7 +85,7 @@ namespace GLPaintGameView
 			
 			// Look in the Info.plist file and you'll see the status bar is hidden
 			// Set the style to black so it matches the background of the application
-			app.SetStatusBarStyle (UIStatusBarStyle.LightContent, false);
+			app.SetStatusBarStyle (UIStatusBarStyle.Default, false);
 			// Now show the status bar, but animate to the style.
 			app.SetStatusBarHidden (false, true);
 
