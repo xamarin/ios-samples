@@ -45,7 +45,9 @@ namespace FontList.Screens.iPad.FontViewer
 			
 			Title = displayFont.Name;
 			
+			txtMain.Editable = true;
 			txtMain.Font = displayFont;
+			txtMain.Editable = false;
 		}
 		
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
