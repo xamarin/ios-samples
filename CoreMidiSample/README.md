@@ -8,9 +8,9 @@ all of the MIDI devices connected to the system.
 For more information about CoreMidi in MonoTouch, check the online API
 documentation that includes an explanation of the different pieces:
 
-	      http://iosapi.xamarin.com/?link=N%3aMonoTouch.CoreMidi
+http://iosapi.xamarin.com/?link=N%3aMonoTouch.CoreMidi
 
 Author
-======
+-------
 
 Miguel de Icaza (miguel@xamarin.com)
