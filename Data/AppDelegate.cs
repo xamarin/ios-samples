@@ -15,7 +15,7 @@ namespace Xamarin
 		
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
+			UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.Default;
 			
 			// create our window
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
