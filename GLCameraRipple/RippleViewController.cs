@@ -54,7 +54,12 @@ namespace GLCameraRipple
 			SetupGL ();
 			SetupAVCapture (isPad ? AVCaptureSession.PresetiFrame1280x720 : AVCaptureSession.Preset640x480);
 		}
-		
+
+		public override UIStatusBarStyle PreferredStatusBarStyle ()
+		{
+			return UIStatusBarStyle.LightContent;
+		}
+
 		void Draw (object sender, GLKViewDrawEventArgs args)
 		{
 			GL.Clear ((int)All.ColorBufferBit);
