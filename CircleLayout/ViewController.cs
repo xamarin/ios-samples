@@ -22,7 +22,13 @@ namespace CircleLayout
 			CollectionView.RegisterClassForCell (typeof(Cell), cellClass);
 			CollectionView.AddGestureRecognizer (new UITapGestureRecognizer (HandleTapGesture));
 			CollectionView.ReloadData ();
-			CollectionView.BackgroundColor = UIColor.ScrollViewTexturedBackgroundColor;
+			CollectionView.BackgroundColor = UIColor.DarkGray;
+		}
+
+		//adjust the status bar in ios7 to use default or light style
+		public override UIStatusBarStyle PreferredStatusBarStyle ()
+		{
+			return UIStatusBarStyle.LightContent;
 		}
 
 		public override int GetItemsCount (UICollectionView collectionView, int section)

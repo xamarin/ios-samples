@@ -12,7 +12,7 @@ namespace CircleLayout
 			ContentView.Layer.CornerRadius = 35.0f;
 			ContentView.Layer.BorderWidth = 1.0f;
 			ContentView.Layer.BorderColor = UIColor.White.CGColor;
-			ContentView.BackgroundColor = UIColor.UnderPageBackgroundColor;
+			ContentView.BackgroundColor = UIColor.LightGray;
 		}
 	}
 }
