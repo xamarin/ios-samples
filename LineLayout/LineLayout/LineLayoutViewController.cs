@@ -29,5 +29,10 @@ namespace LineLayout
 			cell.Label.Text = indexPath.Row.ToString ();
 			return cell;
 		}
+
+		public override UIStatusBarStyle PreferredStatusBarStyle ()
+		{
+			return UIStatusBarStyle.LightContent;
+		}
 	}
 }
