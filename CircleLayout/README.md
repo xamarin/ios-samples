@@ -1,3 +1,6 @@
+Circle Layout
+=============
+
 This sample provides an introduction to Collection Views. It demonstrates how to arrange view cells on a circle, 
 and how to use custom animations when adding or removing cells.
 
