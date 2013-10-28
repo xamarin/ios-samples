@@ -172,6 +172,12 @@ namespace Stars
 				motionManager.StopDeviceMotionUpdates ();
 		}
 
+		public override bool PrefersStatusBarHidden ()
+		{
+			return true;
+		}
+
+
 		public void setupGL ()
 		{
 			EAGLContext.SetCurrentContext (context);

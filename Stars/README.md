@@ -1,3 +1,5 @@
+Stars
+===========
 
 This sample provides an introduction to Core Motion by demonstrating
 how to implement virtual reality.  The view controller provides a view
