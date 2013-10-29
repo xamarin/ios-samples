@@ -17,6 +17,10 @@ namespace Quotes
 			pageView.UnstyledDrawing = !NSUserDefaults.StandardUserDefaults.BoolForKey ("DrawWithStyle");
 
 			pageView.SetPage (controllerPage);
+
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) { 
+				this.EdgesForExtendedLayout = UIRectEdge.None;
+			}
 		}
 
 		public override void ViewDidDisappear (bool animated)
