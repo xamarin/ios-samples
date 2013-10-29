@@ -1,3 +1,6 @@
+Poker Night Voting
+==================
+
 This is a port of the WWDC2012 application of the same name
 
 This sample application utilizes the EventKit API to allow a user to
