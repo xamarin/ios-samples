@@ -18,7 +18,8 @@ namespace PinchIt
 				AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth,
 				TextAlignment = UITextAlignment.Center,
 				Font = UIFont.BoldSystemFontOfSize (50.0f),
-				BackgroundColor = UIColor.ScrollViewTexturedBackgroundColor,
+				BackgroundColor = UIColor.Clear,
+
 			};
 
 			UIImageView imageView = new UIImageView (new UIImage ("Images/rupert.png")) {
