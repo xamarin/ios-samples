@@ -69,7 +69,6 @@ namespace LazyTableImages {
 		class DataSource : UITableViewSource {
 
 			RootViewController Controller { get; set; }
-			Task DownloadTask { get; set; }
 			UIImage PlaceholderImage { get; set; }
 
 			public DataSource (RootViewController controller)
@@ -78,8 +77,6 @@ namespace LazyTableImages {
 
 				// Listen for changes to the Apps collection so the TableView can be updated
 				Controller.Apps.CollectionChanged += HandleAppsCollectionChanged;
-				// Initialise DownloadTask with an empty and complete task
-				DownloadTask = Task.Factory.StartNew (() => { });
 				// Load the Placeholder image so it's ready to be used immediately
 				PlaceholderImage = UIImage.FromFile ("Images/Placeholder.png");
 
