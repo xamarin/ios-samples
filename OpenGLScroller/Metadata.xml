@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>a41d0b53-3788-4a98-b091-974b4d8bb429</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Graphics, OpenGL</Tags>
+    <SupportedPlatforms>iOS</SupportedPlatforms>
+    <LicenseRequirement>Indie</LicenseRequirement>
+</SampleMetadata>

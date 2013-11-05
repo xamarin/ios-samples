@@ -44,6 +44,11 @@ namespace OpenGLScroller
 			dummyView.AddGestureRecognizer (scrollView.PanGestureRecognizer);
 			View.AddSubview (dummyView);
 		}
+
+		public override UIStatusBarStyle PreferredStatusBarStyle ()
+		{
+			return UIStatusBarStyle.LightContent;
+		}
 		
 		void Scrolled (object sender, EventArgs ea)
 		{
