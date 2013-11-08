@@ -127,9 +127,8 @@ public static class Reachability {
 	{
 		NetworkReachabilityFlags flags;
 		bool defaultNetworkAvailable = IsNetworkAvailable (out flags);
-		if (defaultNetworkAvailable){
-			if ((flags & NetworkReachabilityFlags.IsDirect) != 0)
-				return NetworkStatus.NotReachable;
+		if (defaultNetworkAvailable && ((flags & NetworkReachabilityFlags.IsDirect) != 0)){
+			return NetworkStatus.NotReachable;
 		} else if ((flags & NetworkReachabilityFlags.IsWWAN) != 0)
 			return NetworkStatus.ReachableViaCarrierDataNetwork;
 		else if (flags == 0)
