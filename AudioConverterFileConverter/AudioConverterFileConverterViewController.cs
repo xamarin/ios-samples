@@ -175,6 +175,7 @@ namespace AudioConverterFileConverter
 				case 2:
 					// iLBC sample rate is 8K
 					outputFormat = AudioFormatType.iLBC;
+					sampleRate = 8000.0;
 					outputSampleRateSelector.SelectedSegment = 2;
 					outputSampleRateSelector.SetEnabled (false, 0);
 					outputSampleRateSelector.SetEnabled (false, 1);
