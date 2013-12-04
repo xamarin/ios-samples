@@ -203,7 +203,7 @@ namespace TicTacToe
 				ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 
 			SegmentedControl = new UISegmentedControl (new object[] { x, o }) {
-				Frame = new RectangleF (0, 0, 240, 80),
+				Frame = new RectangleF (UIScreen.MainScreen.Bounds.Width / 2 - 120, 0, 240, 80),
 				AutoresizingMask =UIViewAutoresizing.FlexibleTopMargin |
 				UIViewAutoresizing.FlexibleBottomMargin |
 				UIViewAutoresizing.FlexibleLeftMargin |
