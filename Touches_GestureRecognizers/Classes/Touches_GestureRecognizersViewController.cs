@@ -36,11 +36,9 @@ namespace Touches_GestureRecognizers
 {
 	public partial class Touches_GestureRecognizersViewController : UIViewController
 	{
-		UIWindow window;
 		
 		public Touches_GestureRecognizersViewController (UIWindow window, string nibName, NSBundle bundle) : base (nibName, bundle)
 		{
-			this.window = window;
 		}
 		
 		#region Tearing down
@@ -170,7 +168,7 @@ namespace Touches_GestureRecognizers
 			AdjustAnchorPointForGestureRecognizer (gestureRecognizer);
 			var image = gestureRecognizer.View;
 			if (gestureRecognizer.State == UIGestureRecognizerState.Began || gestureRecognizer.State == UIGestureRecognizerState.Changed) {
-				var translation = gestureRecognizer.TranslationInView (window);
+				var translation = gestureRecognizer.TranslationInView (View);
 				image.Center = new PointF (image.Center.X + translation.X, image.Center.Y + translation.Y);
 				// Reset the gesture recognizer's translation to {0, 0} - the next callback will get a delta from the current position.
 				gestureRecognizer.SetTranslation (PointF.Empty, image);
