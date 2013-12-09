@@ -34,11 +34,10 @@ namespace Touches_Classic
 {
 	public partial class Touches_ClassicViewController : UIViewController
 	{
-		UIWindow window;
-		
+		private float padding = 10f;
+
 		public Touches_ClassicViewController (UIWindow window, string nibName, NSBundle bundle) : base (nibName, bundle)
 		{
-			this.window = window;
 		}
 		
 		protected override void Dispose (bool disposing)
@@ -56,10 +55,15 @@ namespace Touches_Classic
 			touchInstructionLabel.Dispose ();
 			touchTrackingLabel.Dispose ();
 		}
+
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+		}
 		
 		#region Touch handling
 		bool piecesOnTop;
-		
+
 		public override void TouchesBegan (NSSet touchesSet, UIEvent evt)
 		{
 			var touches = touchesSet.ToArray<UITouch> ();
@@ -71,12 +75,11 @@ namespace Touches_Classic
 				touchInfoLabel.Text = string.Format ("{0} taps", numTaps);
 				if (numTaps == 2 && piecesOnTop) {
 					// recieved double tap -> align the three pieces diagonal.
-					if (firstImage.Center.X == secondImage.Center.X)
-						secondImage.Center = new PointF (firstImage.Center.X - 50, firstImage.Center.Y - 50);
-					if (firstImage.Center.X == thirdImage.Center.X)
-						thirdImage.Center = new PointF (firstImage.Center.X + 50, firstImage.Center.Y + 50);
-					if (secondImage.Center.X == thirdImage.Center.X)
-						thirdImage.Center = new PointF (secondImage.Center.X + 50, secondImage.Center.Y + 50);
+					firstImage.Center = new PointF (padding + firstImage.Frame.Width / 2f,
+						touchInfoLabel.Frame.Bottom + padding + firstImage.Frame.Height / 2f);
+					secondImage.Center = new PointF (View.Bounds.Width / 2f, View.Bounds.Height / 2f);
+					thirdImage.Center = new PointF (View.Bounds.Width - thirdImage.Frame.Width / 2f - padding,
+						touchInstructionLabel.Frame.Top - thirdImage.Frame.Height);
 					touchInstructionLabel.Text = "";
 				}
 					
@@ -85,7 +88,7 @@ namespace Touches_Classic
 			}
 			foreach (var touch in touches) {
 				// Send to the dispatch method, which will make sure the appropriate subview is acted upon
-				DispatchTouchAtPoint (touch.LocationInView (window));
+				DispatchTouchAtPoint (touch.LocationInView (View));
 			}
 		}
 		
@@ -108,7 +111,7 @@ namespace Touches_Classic
 			
 			foreach (var touch in touches) {
 				// Send to the dispatch touch method, which ensures that the image is moved
-				DispatchTouchEvent (touch.View, touch.LocationInView (window));
+				DispatchTouchEvent (touch.View, touch.LocationInView (View));
 			}
 			
 			// When multiple touches, report the number of touches. 
@@ -134,7 +137,7 @@ namespace Touches_Classic
 		{
 			touchPhaseLabel.Text = "Phase: Touches ended";
 			foreach (var touch in touchesSet.ToArray<UITouch> ()) {
-				DispatchTouchEndEvent (touch.View, touch.LocationInView (window));
+				DispatchTouchEndEvent (touch.View, touch.LocationInView (View));
 			}
 		}
 		
@@ -155,13 +158,15 @@ namespace Touches_Classic
 			
 			if (piecesOnTop)
 				touchInstructionLabel.Text = @"Double tap the background to move the pieces apart.";
+
+			touchTrackingLabel.Text = string.Empty;
 		}
 		
 		public override void TouchesCancelled (NSSet touchesSet, UIEvent evt)
 		{
 			touchPhaseLabel.Text = "Phase: Touches cancelled";
 			foreach (var touch in touchesSet.ToArray<UITouch> ()) {
-				DispatchTouchEndEvent (touch.View, touch.LocationInView (window));
+				DispatchTouchEndEvent (touch.View, touch.LocationInView (View));
 			}
 		}
 		#endregion
@@ -188,11 +193,5 @@ namespace Touches_Classic
 			theView.Transform = MonoTouch.CoreGraphics.CGAffineTransform.MakeIdentity ();
 		}
 		#endregion
-		
-		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
-		{
-			// Return true for supported orientations
-			return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
-		}
 	}
 }

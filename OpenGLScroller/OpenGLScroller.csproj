@@ -113,11 +113,6 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Screenshots\Screen Shot 2012-09-10 at 10.49.56 AM.png" />
-    <Content Include="Screenshots\Screen Shot 2012-09-10 at 10.50.22 AM.png" />
-    <Content Include="Screenshots\Screen Shot 2012-09-10 at 10.50.37 AM.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\Default-Landscape%402x~ipad.png" />
     <BundleResource Include="Resources\Default-Landscape~ipad.png" />
