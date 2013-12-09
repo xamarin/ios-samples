@@ -28,30 +28,29 @@ namespace MoviePlaybackSample
 			//Button Events
 			playMovieButton.TouchUpInside += delegate {
 			
-			try{
-				
-				//Set already instantiated MPMoviePlayerController to playback from Movies/file.m4v
-				mp = new MPMoviePlayerController (NSUrl.FromFilename("Movies/file.m4v"));
-				
-				//enable AirPlay
-				mp.AllowsAirPlay = true;
-				
-				//Add the MPMoviePlayerController View
-				this.View.AddSubview(mp.View);
-				
-				//set the view to be full screen and show animated
-				mp.SetFullscreen(true, true);
+				try{
+					//Set already instantiated MPMoviePlayerController to playback from Movies/file.m4v
+					mp = new MPMoviePlayerController (NSUrl.FromFilename("Movies/file.m4v"));
+					
+					//enable AirPlay
+					mp.AllowsAirPlay = true;
+					
+					//Add the MPMoviePlayerController View
+					this.View.AddSubview(mp.View);
+					
+					//set the view to be full screen and show animated
+					mp.SetFullscreen(true, true);
+
+					//Disable the pinch-to-zoom gesture
+					mp.ControlStyle = MPMovieControlStyle.Fullscreen;
 			
-				//MPMoviePlayer must be set to PrepareToPlay before playback
-				mp.PrepareToPlay();
-				
-				//Play Movie
-				mp.Play();
-							
-				}catch{
+					//MPMoviePlayer must be set to PrepareToPlay before playback
+					mp.PrepareToPlay();
 					
-				Console.WriteLine("There was a problem playing back Video");
-					
+					//Play Movie
+					mp.Play();
+				} catch {
+					Console.WriteLine("There was a problem playing back Video");
 				}		
 				
 			};
