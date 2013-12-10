@@ -123,6 +123,10 @@ namespace HttpClient
 				view.Add (label);
 				view.Add (tv);
 					
+				if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) { 
+					view.EdgesForExtendedLayout = UIRectEdge.None;
+				}
+
 				navigationController.PushViewController (view, true);
 			});			
 		}
