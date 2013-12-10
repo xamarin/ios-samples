@@ -95,12 +95,14 @@ namespace TicTacToe
 
 		void close (object sender, EventArgs e)
 		{
+			messageTextView.ResignFirstResponder ();
 			UIView.Animate (0.3f, delegate {
 				View.Alpha = 0f;
 				currentMessageSourceWindow.TintAdjustmentMode = UIViewTintAdjustmentMode.Automatic;
 			}, 
 			                delegate {
 				currentMessageWindow = null;
+				currentMessageSourceWindow.MakeKeyAndVisible ();
 			});
 		}
 
