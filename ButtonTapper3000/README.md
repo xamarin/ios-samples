@@ -6,6 +6,8 @@ The app lets the user play a simple tapping game, choosing from two difficulty l
 
 There are achievements for playing on hard mode, playing all difficulty levels, and playing tapping once, a hundred times, and a thousand times in a single game.
 
+**NOTE: This sample will only work with Xcode 5.0 or above.
+
 Authors
 -------
 Timothy Risi

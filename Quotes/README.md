@@ -11,4 +11,6 @@ Perform a swipe gesture to enter drawing mode, which changes speaker
 text color, italicizes and centers stage direction, and enables the
 slider on the bottom right.
 
+**NOTE: This sample will only work with Xcode 5.0 or above.
+
 Ported by: Peter Collins

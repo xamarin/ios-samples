@@ -6,6 +6,8 @@ SoZoomy shows how to use the AVCaptureDevice APIs to zoom with the camera. There
 * Manually setting zoom: Moving the slider at the bottom of the screen adjusts the zoom accordingly
 * Meme mode: Triggers an automatically zoom that ramps up quickly.
 
+**NOTE: This sample will only work with Xcode 5.0 or above.
+
 Authors
 -------
 Timothy Risi

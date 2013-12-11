@@ -5,3 +5,5 @@ This sample application demonstrates how to use the new Async/Await feature whic
 
 The sample downloads a large image from Internet using the DownloadDataTaskAsync in WebClient. Saving and resizing the image also use the new async feature.
 
+**NOTE: This sample will only work with Xcode 5.0 or above.
+

@@ -9,3 +9,5 @@ This sample differs from the regular Hello, Universal sample in the
 way UI switching is done. Instead of having one controller manage
 two separate views depending on the device in use, we employ two
 different root controllers.
+
+**NOTE: This sample will only work with Xcode 5.0 or above.

@@ -15,6 +15,8 @@ Marek Safar implemented the Xamarin.iOS/Xamarin.Mac support for
 AudioQueueProcessingTap as well as the AudioUnit stack and ported
 the original Objective-C code to C#.
 
+**NOTE: This sample will only work with Xcode 5.0 or above.
+
 
 Resources
 =========

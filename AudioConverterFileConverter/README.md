@@ -26,6 +26,8 @@ Supported transformations include the following:
 * PCM interleaved to and from PCM deinterleaved
 * PCM to and from compressed formats<
 
+**NOTE: This sample will only work with Xcode 5.0 or above.
+
 Resources
 =========
 

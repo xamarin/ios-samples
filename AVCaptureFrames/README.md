@@ -16,6 +16,8 @@ iOS 4.0 and up.
 **This example will only run correctly on a iOS device,** this requires
 a purchased version of MonoTouch.
 
+**NOTE: This sample will only work with Xcode 5.0 or above.
+
 Authors
 -------
 
