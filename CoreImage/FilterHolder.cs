@@ -18,9 +18,9 @@ namespace coreimage
 			SectionName = sectionName;
 			Callback = callback;
 			MajorVersion = version;
-			var attrNum = filterType.GetCustomAttribute <SinceAttribute> ();
+			var attrNum = filterType.GetCustomAttribute <SinceAttribute> (false);
 			if (attrNum != null && attrNum.Major != version)
-				Console.WriteLine ("WANRING!  {0} has not provided the correct version number according to the since attribute.", name);
+				Console.WriteLine ("WARNING!  {0} has not provided the correct version number according to the since attribute.", name);
 		}
 	}
 }
