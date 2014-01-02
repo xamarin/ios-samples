@@ -107,7 +107,7 @@ namespace MediaCapture
 			workingRect.Height = workingRect.Height - mainToolBar.Frame.Height;
 			
 			// figure out padding and sizes
-			double maxDimensionPercent = .95;
+			double maxDimensionPercent = .80;
 			double paddingPercent =  settings.ImageCaptureEnabled ? ((1 - maxDimensionPercent) / 3) : ((1 - maxDimensionPercent) / 2);
 			
 			bool isPortrait = UIDevice.CurrentDevice.Orientation == UIDeviceOrientation.Portrait || UIDevice.CurrentDevice.Orientation == UIDeviceOrientation.PortraitUpsideDown;

@@ -7,17 +7,17 @@
 		<integer>1</integer>
 		<integer>2</integer>
 	</array>
-	 <key>CFBundleIconFiles</key>
-    <array>
-        <string>Resources/icon-57.png</string>
-        <string>Resources/icon-114.png</string>
-        <string>Resources/icon-72.png</string>
-        <string>Resources/icon-144.png</string>
-        <string>Resources/icon-29.png</string>
-        <string>Resources/icon-58.png</string>
-        <string>Resources/icon-50.png</string>
-        <string>Resources/icon-100.png</string>
-    </array>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Resources/icon-57.png</string>
+		<string>Resources/icon-114.png</string>
+		<string>Resources/icon-72.png</string>
+		<string>Resources/icon-144.png</string>
+		<string>Resources/icon-29.png</string>
+		<string>Resources/icon-58.png</string>
+		<string>Resources/icon-50.png</string>
+		<string>Resources/icon-100.png</string>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -32,5 +32,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>MinimumOSVersion</key>
+	<string>5.0</string>
 </dict>
 </plist>
