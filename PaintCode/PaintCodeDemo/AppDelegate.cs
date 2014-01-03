@@ -58,8 +58,8 @@ namespace PaintCode
 			};
 			
 			
-			
-			window.AddSubview (tabBarController.View);
+			window.RootViewController = tabBarController;
+
 			// make the window visible
 			window.MakeKeyAndVisible ();
 			
