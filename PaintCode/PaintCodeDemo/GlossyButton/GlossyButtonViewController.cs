@@ -19,7 +19,7 @@ namespace PaintCode
 
 			View.BackgroundColor = UIColor.White;
 
-			float statusBarHeight = float.Parse(UIDevice.CurrentDevice.SystemVersion) >= 7 ?
+			float statusBarHeight = float.Parse(UIDevice.CurrentDevice.SystemVersion.Replace(".","")) >= 7 ?
 				UIApplication.SharedApplication.StatusBarFrame.Height : 0f;
 			button = new GlossyButton (new RectangleF (30, 30 + statusBarHeight, 130, 38));
 			button.SetTitle ("Stop!", UIControlState.Normal);
