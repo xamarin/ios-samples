@@ -68,7 +68,9 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 				
 				
 					//BUGBUG: MT/Apple Bug? - this won't display the overlay, but if i add a label, it'll display
-					imagePicker.CameraOverlayView = new CameraOverlayView (UIScreen.MainScreen.ApplicationFrame);
+					//imagePicker.CameraOverlayView = new CameraOverlayView (UIScreen.MainScreen.ApplicationFrame);
+					//Fix bug 14776 to make Retake and UsePhoto usable on iOS7 device. 
+					imagePicker.CameraOverlayView = new CameraOverlayView ();
 				
 					// attach the delegate
 					pickerDelegate = new PickerDelegate ();
