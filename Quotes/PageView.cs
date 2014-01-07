@@ -168,6 +168,8 @@ namespace Quotes
 
 			var ret = UIGraphics.GetImageFromCurrentImageContext ();
 
+			UIGraphics.EndImageContext ();
+
 			return ret;
 		}
 	}
