@@ -44,6 +44,7 @@ namespace ProductView
 			viewController = new ProductViewController();
 			
 			navigationController = new UINavigationController();
+			navigationController.NavigationBar.Translucent = false;
 			navigationController.PushViewController (viewController, false);
 			
 			window.RootViewController = navigationController;
