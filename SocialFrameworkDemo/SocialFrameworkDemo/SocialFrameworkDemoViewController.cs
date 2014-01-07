@@ -44,6 +44,8 @@ namespace SocialFrameworkDemo
 					};
 
 					PresentViewController (slComposer, true, null);
+				} else {
+					resultsTextView.Text = "Twitter Account not added";
 				}
 			};
 
@@ -65,6 +67,8 @@ namespace SocialFrameworkDemo
 					};
 					
 					PresentViewController (slComposer, true, null);
+				} else {
+					resultsTextView.Text = "Facebook Account not added";
 				}				
 			};
 
@@ -89,6 +93,8 @@ namespace SocialFrameworkDemo
 								resultsTextView.Text = "Error: " + response.StatusCode.ToString (); });
 						}
 					});
+				} else {
+					resultsTextView.Text = "Twitter Account not added";
 				}
 			};
 
@@ -113,7 +119,10 @@ namespace SocialFrameworkDemo
 								resultsTextView.Text = "Error: " + response.StatusCode.ToString (); });
 						}
 					});
+				} else {
+					resultsTextView.Text = "Facebook Account not added";
 				}
+
 			};
 
 		}
