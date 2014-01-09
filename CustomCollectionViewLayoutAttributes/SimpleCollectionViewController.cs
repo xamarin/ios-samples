@@ -108,7 +108,7 @@ namespace SimpleCollectionView
 				                                data.Center.Y + data.Radius * attributes.Distance * (float) Math.Sin (2 * attributes.Row * Math.PI / data.CellCount));
 
 				if (!float.IsNaN (attributes.Center.X) && !float.IsNaN (attributes.Center.Y) &&
-				   UIDevice.CurrentDevice.SystemVersion.StartsWith ("7"))
+					UIDevice.CurrentDevice.CheckSystemVersion(7, 0))
 					Center = attributes.Center;
 			}
 
