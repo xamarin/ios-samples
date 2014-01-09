@@ -29,20 +29,30 @@ namespace SimpleCollectionView
             tapRecognizer = new UITapGestureRecognizer (Tapped);
             CollectionView.AddGestureRecognizer (tapRecognizer);
             CollectionView.RegisterClassForCell (typeof (AnimalCell), animalCellId);
-            CollectionView.BackgroundColor = UIColor.ScrollViewTexturedBackgroundColor;
+			CollectionView.BackgroundColor = UIColor.LightGray;
         }
 
         void Tapped ()
         {
             if (tapRecognizer.State == UIGestureRecognizerState.Ended) {
                 var pinchPoint = tapRecognizer.LocationInView (CollectionView);
-                var tappedCellPath = CollectionView.IndexPathForItemAtPoint (pinchPoint);
+				var tappedCellPath = GetIndexPathsForVisibleItems (pinchPoint);
                 if (tappedCellPath != null) {
-                    animals.RemoveAt (tappedCellPath.Row);
-                    CollectionView.DeleteItems (new NSIndexPath[] { tappedCellPath });
+					animals.RemoveAt (tappedCellPath.Row);
+					CollectionView.DeleteItems (new NSIndexPath[] { tappedCellPath });
                 }
             }
         }
+
+		public NSIndexPath GetIndexPathsForVisibleItems (PointF touchPoint)
+		{
+			for (int i = 0; i < CollectionView.VisibleCells.Length; i++) {
+				if (CollectionView.VisibleCells [i].Frame.Contains (touchPoint))
+					return CollectionView.IndexPathForCell (CollectionView.VisibleCells [i]);
+			}
+
+			return null;
+		}
 
         public override int GetItemsCount (UICollectionView collectionView, int section)
         {
@@ -96,6 +106,10 @@ namespace SimpleCollectionView
 				var data = attributes.Data;
 				attributes.Center = new PointF (data.Center.X + data.Radius * attributes.Distance * (float) Math.Cos (2 * attributes.Row * Math.PI / data.CellCount),
 				                                data.Center.Y + data.Radius * attributes.Distance * (float) Math.Sin (2 * attributes.Row * Math.PI / data.CellCount));
+
+				if (!float.IsNaN (attributes.Center.X) && !float.IsNaN (attributes.Center.Y) &&
+				   UIDevice.CurrentDevice.SystemVersion.StartsWith ("7"))
+					Center = attributes.Center;
 			}
 
 			base.ApplyLayoutAttributes (layoutAttributes);
