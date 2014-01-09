@@ -43,25 +43,6 @@ namespace Example_CoreAnimation.Screens.iPad.CustomizableAnimationViewer
 			
 			btnStart.TouchUpInside += (s, e) => {
 				
-//				double duration = (double)sldrDuration.Value;
-//				double delay = (double)sldrDelay.Value;
-//				UIViewAnimationOptions animationOptions = UIViewAnimationOptions.CurveEaseIn | UIViewAnimationOptions.Repeat;
-//				UIView.Animate(duration, delay, animationOptions, () => {
-//					// move the image one way or the other
-//					if(imgToAnimate.Frame.Y == 190)
-//					{
-//						imgToAnimate.Frame = new System.Drawing.RectangleF(
-//							imgToAnimate.Frame.X, imgToAnimate.Frame.Y + 400,
-//							imgToAnimate.Frame.Size.Width, imgToAnimate.Frame.Size.Height);
-//					}
-//					else
-//					{
-//						imgToAnimate.Frame = new System.Drawing.RectangleF(
-//							imgToAnimate.Frame.X, imgToAnimate.Frame.Y - 400,
-//							imgToAnimate.Frame.Size.Width, imgToAnimate.Frame.Size.Height);
-//					}
-//				}, null);
-				
 				// begin our animation block. the name allows us to refer to it later
 				UIView.BeginAnimations ("ImageMove");
 
@@ -111,10 +92,7 @@ namespace Example_CoreAnimation.Screens.iPad.CustomizableAnimationViewer
 		{
 			Console.WriteLine("Animation completed");
 		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
+
 		public void AddContentsButton (UIBarButtonItem button)
 		{
 			button.Title = "Contents";
@@ -125,8 +103,6 @@ namespace Example_CoreAnimation.Screens.iPad.CustomizableAnimationViewer
 		{
 			tlbrMain.SetItems (new UIBarButtonItem[0], false);
 		}
-		
-		
 	}
 }
 
