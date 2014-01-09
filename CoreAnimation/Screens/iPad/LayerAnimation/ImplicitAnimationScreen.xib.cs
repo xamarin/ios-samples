@@ -108,10 +108,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 				// implement your drawing
 			}			
 		}
-		
-		/// <summary>
-		/// 
-		/// </summary>
+
 		public void AddContentsButton (UIBarButtonItem button)
 		{
 			button.Title = "Contents";
