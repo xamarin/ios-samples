@@ -25,8 +25,6 @@ namespace Example_CoreAnimation
 			splitView = new Screens.iPad.Home.MainSplitView ();
 			
 			window.RootViewController = splitView;
-			
-			//
 			return true;
 		}
 	}
