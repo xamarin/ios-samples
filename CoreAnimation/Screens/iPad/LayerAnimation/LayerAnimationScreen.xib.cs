@@ -17,39 +17,11 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 		private CGPath animationPath;
 		private UIImageView backgroundImage;
 		
-		#region Constructors
-
-		// The IntPtr and initWithCoder constructors are required for controllers that need 
-		// to be able to be created from a xib rather than from managed code
-
-		public LayerAnimationScreen (IntPtr handle) : base(handle)
-		{
-			Initialize ();
-		}
-
-		[Export("initWithCoder:")]
-		public LayerAnimationScreen (NSCoder coder) : base(coder)
-		{
-			Initialize ();
-		}
-
-		public LayerAnimationScreen () : base("LayerAnimationScreen", null)
-		{
-			Initialize ();
-		}
-
-		private void Initialize ()
-		{
-			animationPath = new CGPath ();
-		}
-		
-		#endregion
-		
-		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
+			animationPath = new CGPath ();
 			backgroundImage = new UIImageView (View.Frame);
 			View.AddSubview (backgroundImage);
 

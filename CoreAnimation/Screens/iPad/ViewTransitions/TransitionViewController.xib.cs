@@ -33,37 +33,9 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 			}
 		}
 
-		#region Constructors
-
-		// The IntPtr and initWithCoder constructors are required for controllers that need
-		// to be able to be created from a xib rather than from managed code
-		public TransitionViewController (IntPtr handle) : base (handle)
-		{
-			Initialize ();
-		}
-
-		[Export ("initWithCoder:")]
-		public TransitionViewController (NSCoder coder) : base (coder)
-		{
-			Initialize ();
-		}
-
-		public TransitionViewController () : base ("TransitionViewController", null)
-		{
-			Initialize ();
-		}
-
-		void Initialize ()
-		{
-		}
-
-		#endregion
-
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-
-			SetToolbarVisibility (InterfaceOrientation);
 
 			btnContents.TouchUpInside += (sender, e) => {
 				if (ContentsClicked != null)
@@ -74,18 +46,6 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 				if (TransitionClicked != null)
 					TransitionClicked (this, e);
 			};
-		}
-
-		public override void WillRotate (UIInterfaceOrientation toInterfaceOrientation, double duration)
-		{
-			SetToolbarVisibility (toInterfaceOrientation);
-			base.WillRotate (toInterfaceOrientation, duration);
-		}
-
-		private void SetToolbarVisibility (UIInterfaceOrientation interfaceOrientation)
-		{
-			toolbar.Hidden = interfaceOrientation == UIInterfaceOrientation.LandscapeLeft ||
-			interfaceOrientation == UIInterfaceOrientation.LandscapeRight;
 		}
 	}
 }
