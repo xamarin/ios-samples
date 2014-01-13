@@ -15,7 +15,6 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 
 		// The IntPtr and initWithCoder constructors are required for controllers that need 
 		// to be able to be created from a xib rather than from managed code
-
 		public BackTransitionViewController (IntPtr handle) : base(handle)
 		{
 			Initialize ();
@@ -42,9 +41,9 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 		{
 			base.ViewDidLoad ();
 			
-			this.btnBack.TouchUpInside += (s, e) => {
-				if(this.BackClicked != null)
-					this.BackClicked(this, e);
+			btnBack.TouchUpInside += (s, e) => {
+				if(BackClicked != null)
+					BackClicked(this, e);
 			};
 		}
 	}
