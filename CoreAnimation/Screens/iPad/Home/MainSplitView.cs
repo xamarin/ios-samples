@@ -10,8 +10,8 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 {
 	public class MainSplitView : UISplitViewController
 	{
-		protected MasterNavTableViewController masterViewController;
-		protected UIViewController detailViewController;
+		private MasterNavTableViewController masterViewController;
+		private UIViewController detailViewController;
 		private Selector toggleMasterVisible;
 
 		private bool MasterViewHidden { get; set; }
@@ -50,7 +50,6 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-
 			(detailViewController as IDetailView).ContentsButtonClicked += ContentsButtonClickHandler;
 		}
 
@@ -68,6 +67,7 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 		protected void HandleRowClicked (RowClickedEventArgs e)
 		{
 			Console.WriteLine ("Changing Screens");
+			(detailViewController as IDetailView).ContentsButtonClicked -= ContentsButtonClickHandler;
 
 			// if the nav item has a proper controller, push it on to the NavigationController
 			// NOTE: we could also raise an event here, to loosely couple this, but isn't neccessary,
