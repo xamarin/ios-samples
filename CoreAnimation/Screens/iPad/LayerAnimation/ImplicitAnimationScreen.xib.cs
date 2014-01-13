@@ -11,6 +11,8 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 {
 	public partial class ImplicitAnimationScreen : UIViewController, IDetailView
 	{
+		public event EventHandler ContentsButtonClicked;
+
 		protected CALayer imgLayer;
 		
 		#region Constructors
@@ -52,20 +54,17 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 		{
 			base.ViewDidLoad ();
 			
-			
+			btnContents.TouchUpInside += (sender, e) => {
+				if(ContentsButtonClicked != null)
+					ContentsButtonClicked(sender, e);
+			};
+
 			// anonymous delegate that runs when the btnAnimate button is clicked
-			this.btnAnimate.TouchUpInside += (s, e) => {
-			
-				// if you want to override the animation duration, you can:
-				//this.imgToAnimate.Layer.Duration = 1.0;
-			
-				if(imgLayer.Frame.Y == 70)
-				{
+			btnAnimate.TouchUpInside += (s, e) => {
+				if(imgLayer.Frame.Y == 70) {
 					 imgLayer.Frame = new RectangleF (new PointF (200, 270), imgLayer.Frame.Size);
 					 imgLayer.Opacity = 0.2f;
-				}
-				else
-				{
+				} else {
 					 imgLayer.Frame = new RectangleF (new PointF (200, 70), imgLayer.Frame.Size);
 					 imgLayer.Opacity = 1.0f;
 				}
@@ -108,18 +107,6 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 				// implement your drawing
 			}			
 		}
-
-		public void AddContentsButton (UIBarButtonItem button)
-		{
-			button.Title = "Contents";
-			this.tlbrMain.SetItems (new UIBarButtonItem[] { button }, false );
-		}
-		
-		public void RemoveContentsButton ()
-		{
-			this.tlbrMain.SetItems (new UIBarButtonItem[0], false);
-		}
-
 	}
 }
 
