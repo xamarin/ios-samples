@@ -37,6 +37,7 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 		{
 			base.ViewDidLoad ();
 
+			SetToolbarVisibility (InterfaceOrientation);
 			btnContents.TouchUpInside += (sender, e) => {
 				if (ContentsClicked != null)
 					ContentsClicked ();
@@ -46,6 +47,12 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 				if (TransitionClicked != null)
 					TransitionClicked (this, e);
 			};
+		}
+
+		public void SetToolbarVisibility (UIInterfaceOrientation interfaceOrientation)
+		{
+			toolbar.Hidden = interfaceOrientation == UIInterfaceOrientation.LandscapeLeft ||
+			                 interfaceOrientation == UIInterfaceOrientation.LandscapeRight;
 		}
 	}
 }

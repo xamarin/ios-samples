@@ -25,7 +25,8 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 			backViewController.View.Frame = mainFrame;
 
 			View.AddSubview (transitionViewController.View);
-			
+
+			transitionViewController.SetToolbarVisibility (InterfaceOrientation);
 			transitionViewController.TransitionClicked += (s, e) => {
 				UIView.Animate (1, 0, transitionViewController.SelectedTransition, () => {
 					transitionViewController.View.RemoveFromSuperview ();
@@ -50,9 +51,14 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 
 		public override void WillRotate (UIInterfaceOrientation toInterfaceOrientation, double duration)
 		{
-			transitionViewController.WillRotate (toInterfaceOrientation, duration);
-			backViewController.WillRotate (toInterfaceOrientation, duration);
+			transitionViewController.SetToolbarVisibility (toInterfaceOrientation);
 			base.WillRotate (toInterfaceOrientation, duration);
+		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			transitionViewController.SetToolbarVisibility (InterfaceOrientation);
+			base.ViewWillAppear (animated);
 		}
 	}
 }
