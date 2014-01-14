@@ -69,8 +69,8 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 			};
 		}
 
-		//==== Ways to create a CALayer
-		//==== Method 1: create a layer from an image
+		// Ways to create a CALayer
+		// Method 1: create a layer from an image
 		protected CALayer CreateLayerFromImage ()
 		{
 			var layer = new CALayer ();
@@ -78,7 +78,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 			return layer;			
 		}
 
-		//==== Method 2: create a layer and assign a custom delegate that performs the drawing
+		// Method 2: create a layer and assign a custom delegate that performs the drawing
 		protected CALayer CreateLayerWithDelegate ()
 		{
 			var layer = new CALayer ();
@@ -93,7 +93,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 				// implement your drawing
 			}
 		}
-		//===== Method 3: Create a custom CALayer and override the appropriate methods
+		// Method 3: Create a custom CALayer and override the appropriate methods
 		public class MyCustomLayer : CALayer
 		{
 			public override void DrawInContext (MonoTouch.CoreGraphics.CGContext ctx)
