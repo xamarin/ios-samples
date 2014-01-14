@@ -6,20 +6,19 @@ using System.Reflection;
 
 namespace Example_CoreAnimation.Code.NavigationTable
 {
-	 
 	/// <summary>
 	/// Combined DataSource and Delegate for our UITableView
 	/// </summary>
 	public class NavItemTableSource : UITableViewSource
 	{
 		public event EventHandler<RowClickedEventArgs> RowClicked;
-		
+
 		protected List<NavItemGroup> navItems;
-		string cellIdentifier = "NavTableCellView";
-		
+		private string cellIdentifier = "NavTableCellView";
+
 		public NavItemTableSource (List<NavItemGroup> items)
 		{
-			 navItems = items;
+			navItems = items;
 		}
 
 		/// <summary>
@@ -35,7 +34,7 @@ namespace Example_CoreAnimation.Code.NavigationTable
 		/// </summary>
 		public override int RowsInSection (UITableView tableview, int section)
 		{
-			return navItems[section].Items.Count;
+			return navItems [section].Items.Count;
 		}
 
 		/// <summary>
@@ -43,7 +42,7 @@ namespace Example_CoreAnimation.Code.NavigationTable
 		/// </summary>
 		public override string TitleForHeader (UITableView tableView, int section)
 		{
-			return navItems[section].Name;
+			return navItems [section].Name;
 		}
 
 		/// <summary>
@@ -51,7 +50,7 @@ namespace Example_CoreAnimation.Code.NavigationTable
 		/// </summary>
 		public override string TitleForFooter (UITableView tableView, int section)
 		{
-			return navItems[section].Footer;
+			return navItems [section].Footer;
 		}
 
 		/// <summary>
@@ -60,37 +59,34 @@ namespace Example_CoreAnimation.Code.NavigationTable
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			// declare vars
-			NavItem navItem = navItems[indexPath.Section].Items[indexPath.Row];
+			NavItem navItem = navItems [indexPath.Section].Items [indexPath.Row];
 			UIImage navIcon = null;
 			
 			var cell = tableView.DequeueReusableCell (cellIdentifier);
 			if (cell == null) {
-				cell = new UITableViewCell (UITableViewCellStyle.Default,  cellIdentifier);
+				cell = new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
 				cell.Tag = Environment.TickCount;
 			}
 			
 			// set the cell properties
-			cell.TextLabel.Text = navItems[indexPath.Section].Items[indexPath.Row].Name;
+			cell.TextLabel.Text = navItems [indexPath.Section].Items [indexPath.Row].Name;
 			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 						
 			// return the cell
 			return cell;
 		}
 
-		 
 		/// <summary>
 		/// Is called when a row is selected
 		/// </summary>
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			// get a reference to the nav item
-			NavItem navItem = navItems[indexPath.Section].Items[indexPath.Row];
+			NavItem navItem = navItems [indexPath.Section].Items [indexPath.Row];
 			
-			if(this.RowClicked != null)
-				this.RowClicked(this, new RowClickedEventArgs(navItem));
+			if (RowClicked != null)
+				RowClicked (this, new RowClickedEventArgs (navItem));
 		}
-		 
-		
 	}
 }
 
