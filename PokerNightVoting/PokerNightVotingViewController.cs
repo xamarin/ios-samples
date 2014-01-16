@@ -23,7 +23,9 @@ namespace PokerNightVoting
 		{
 			base.ViewDidLoad ();
 			model = new PNVModel ();
-			Title = model.SelectedCalendar.Title;
+
+			if(model.SelectedCalendar != null)
+				Title = model.SelectedCalendar.Title;
 
 			// Start listening for changes
 			model.StartBoradcastingModelChangedNotificaitons ();
