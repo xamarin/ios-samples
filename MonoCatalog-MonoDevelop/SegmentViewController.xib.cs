@@ -84,6 +84,7 @@ namespace MonoCatalog {
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+			NavigationController.NavigationBar.Translucent = false;
 			View.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
 			CreateControls ();
 		}
