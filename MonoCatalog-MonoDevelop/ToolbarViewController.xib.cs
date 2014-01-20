@@ -73,6 +73,7 @@ namespace MonoCatalog {
 	
 			Title = "Toolbar";
 	
+			NavigationController.NavigationBar.Translucent = false;
 			View.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
 			toolbar = new UIToolbar() {
 				BarStyle = UIBarStyle.Default
