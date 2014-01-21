@@ -12,7 +12,10 @@ namespace MonoCatalog {
 		UIPickerView myPickerView, customPickerView;
 		UIDatePicker datePickerView;
 		UILabel label;
-		
+		UIColor backgroundColor;
+		UIColor labelTextColor;
+		bool greaterThanSeven;
+
 		public PickerViewController () : base ("PickerViewController", null)
 		{
 		}
@@ -21,7 +24,13 @@ namespace MonoCatalog {
 		{
 			base.ViewDidLoad ();
 			Title = "Picker";
-	
+			greaterThanSeven = UIDevice.CurrentDevice.CheckSystemVersion (7, 0);
+			backgroundColor = greaterThanSeven ? UIColor.White : UIColor.Clear;
+			labelTextColor = greaterThanSeven ? UIColor.Black : UIColor.White;
+
+			NavigationController.NavigationBar.Translucent = false;
+			NavigationController.NavigationBar.BackgroundColor = backgroundColor;
+			View.BackgroundColor = greaterThanSeven ? UIColor.White : UIColor.Black;
 			CreatePicker ();
 			CreateDatePicker ();
 			CreateCustomPicker ();
@@ -33,7 +42,7 @@ namespace MonoCatalog {
 			label = new UILabel (new RectangleF (20f, myPickerView.Frame.Y - 30f, View.Bounds.Width - 40f, 30f)){
 				Font = UIFont.SystemFontOfSize (14),
 				TextAlignment = UITextAlignment.Center,
-				TextColor = UIColor.White,
+				TextColor = labelTextColor,
 				BackgroundColor = UIColor.Clear
 			};
 			View.AddSubview (label);
@@ -43,8 +52,8 @@ namespace MonoCatalog {
 	
 		public override void ViewWillAppear (bool animated)
 		{
-			NavigationController.NavigationBar.BarStyle = UIBarStyle.Black;
-			UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
+			NavigationController.NavigationBar.BarStyle = greaterThanSeven ? UIBarStyle.Default : UIBarStyle.Black;
+			UIApplication.SharedApplication.StatusBarStyle = greaterThanSeven ? UIStatusBarStyle.Default : UIStatusBarStyle.BlackOpaque;
 			TogglePickers (buttonBarSegmentedControl);
 		}
 	
@@ -135,6 +144,7 @@ namespace MonoCatalog {
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth,
 				Model = new CustomPickerModel (),
 				ShowSelectionIndicator = true,
+				BackgroundColor = backgroundColor,
 				Hidden = true
 			};
 			customPickerView.Frame = PickerFrameWithSize (customPickerView.SizeThatFits (SizeF.Empty));
@@ -149,6 +159,7 @@ namespace MonoCatalog {
 			datePickerView = new UIDatePicker (RectangleF.Empty) {
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth,
 				Mode = UIDatePickerMode.Date,
+				BackgroundColor = backgroundColor,
 				Hidden = true
 			};
 			datePickerView.Frame = PickerFrameWithSize (datePickerView.SizeThatFits (SizeF.Empty));
@@ -168,6 +179,7 @@ namespace MonoCatalog {
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth,
 				ShowSelectionIndicator = true,
 				Model = new PeopleModel (this),
+				BackgroundColor = backgroundColor,
 				Hidden = true
 			};
 			// Now update it:
