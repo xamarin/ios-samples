@@ -27,6 +27,7 @@ namespace MonoCatalog {
 			base.ViewDidLoad ();
 			
 			Title = "Search Bar";
+			NavigationController.NavigationBar.Translucent = false;
 			View.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
 				var f = new RectangleF (0f, 64f, View.Bounds.Width, 44f);
 			bar = new UISearchBar (f){

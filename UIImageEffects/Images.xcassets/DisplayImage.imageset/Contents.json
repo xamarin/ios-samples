@@ -1,0 +1,40 @@
+{
+  "images": [
+    {
+      "scale": "1x",
+      "idiom": "universal"
+    },
+    {
+      "scale": "2x",
+      "idiom": "universal"
+    },
+    {
+      "filename": "cheetah480.png",
+      "scale": "1x",
+      "idiom": "iphone"
+    },
+    {
+      "filename": "cheetah960.png",
+      "scale": "2x",
+      "idiom": "iphone"
+    },
+    {
+      "filename": "cheetah1136.png",
+      "subtype": "retina4",
+      "scale": "2x",
+      "idiom": "iphone"
+    },
+    {
+      "scale": "1x",
+      "idiom": "ipad"
+    },
+    {
+      "scale": "2x",
+      "idiom": "ipad"
+    }
+  ],
+  "info": {
+    "version": 1,
+    "author": "xcode"
+  }
+}

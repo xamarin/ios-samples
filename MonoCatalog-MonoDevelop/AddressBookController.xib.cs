@@ -25,6 +25,12 @@ namespace MonoCatalog
 			}
 			base.Dispose (disposing);
 		}
+
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+			NavigationController.NavigationBar.Translucent = false;
+		}
 	
 		ABPeoplePickerNavigationController GetPicker ()
 		{

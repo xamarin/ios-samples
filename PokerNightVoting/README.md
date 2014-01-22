@@ -8,4 +8,6 @@ create events at specific times.  Users can suggest times for a poker
 night with friends, view times suggested by others, and vote on which
 time is the most convenient.
 
+Note: You may get an error when deleting an event with the message "CADObjectGetRelatedObjects failed with error Error Domain=NSMachErrorDomain Code=268435459 "The operation couldn’t be completed. (Mach error 268435459 - (ipc/send) invalid destination port)". This is a known Apple bug that does not interfere with the running of the sample.
+
 Ported by: Peter Collins

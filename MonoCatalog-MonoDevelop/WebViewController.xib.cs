@@ -32,6 +32,7 @@ namespace MonoCatalog {
 		public override void ViewDidLoad ()
 		{
 			Title = "Web";
+			NavigationController.NavigationBar.Translucent = false;
 			var webFrame = UIScreen.MainScreen.ApplicationFrame;
 			webFrame.Y += 25f;
 			webFrame.Height -= 40f;
