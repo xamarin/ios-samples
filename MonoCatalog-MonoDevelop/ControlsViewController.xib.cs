@@ -121,7 +121,8 @@ namespace MonoCatalog {
 				MaxValue = 100f,
 				Continuous = true,
 				Value = 50f,
-				Tag = kViewTag
+				Tag = kViewTag,
+				AccessibilityLabel = "SimpleSlider"
 			};
 			slider.ValueChanged += delegate {
 				Console.WriteLine ("New value {0}", slider.Value);
@@ -137,7 +138,8 @@ namespace MonoCatalog {
 				MaxValue = 100f,
 				Continuous = true,
 				Value = 50f,
-				Tag = kViewTag
+				Tag = kViewTag,
+				AccessibilityLabel = "CustomSlider"
 			};
 			
 			var left = UIImage.FromFile ("images/orangeslide.png");

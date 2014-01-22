@@ -107,6 +107,7 @@ namespace MonoCatalog {
 				ClearButtonMode = UITextFieldViewMode.WhileEditing,
 				Tag = kViewTag,
 				ShouldReturn = DoReturn,
+				AccessibilityLabel = "Normal"
 			};
 		}
 	
@@ -123,7 +124,8 @@ namespace MonoCatalog {
 				ReturnKeyType = UIReturnKeyType.Done,
 				ClearButtonMode = UITextFieldViewMode.WhileEditing,
 				Tag = kViewTag,
-				ShouldReturn = DoReturn
+				ShouldReturn = DoReturn,
+				AccessibilityLabel = "Rounded"
 			};
 		}
 	
@@ -141,7 +143,8 @@ namespace MonoCatalog {
 				ClearButtonMode = UITextFieldViewMode.WhileEditing,
 				SecureTextEntry = true,
 				Tag = kViewTag,
-				ShouldReturn = DoReturn
+				ShouldReturn = DoReturn,
+				AccessibilityLabel = "Secure"
 			};
 		}
 	
@@ -160,9 +163,9 @@ namespace MonoCatalog {
 				ClearButtonMode = UITextFieldViewMode.WhileEditing,
 				Tag = kViewTag,
 				ShouldReturn = DoReturn,
-				
 				LeftView = new UIImageView (UIImage.FromFile ("images/segment_check.png")),
-				LeftViewMode = UITextFieldViewMode.Always
+				LeftViewMode = UITextFieldViewMode.Always,
+				AccessibilityLabel = "LeftView"
 			};
 		}
 		

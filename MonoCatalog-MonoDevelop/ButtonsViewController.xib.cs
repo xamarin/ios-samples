@@ -190,6 +190,7 @@ namespace MonoCatalog
 			button.SetTitle ("Detail Disclosure", UIControlState.Normal);
 			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
 			button.Tag = kViewTag;
+			button.AccessibilityLabel = "InfoDark";
 			// To support reusable cells
 			return button;
 		}
@@ -202,6 +203,7 @@ namespace MonoCatalog
 			button.SetTitle ("Detail Disclosure", UIControlState.Normal);
 			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
 			button.Tag = kViewTag;
+			button.AccessibilityLabel = "InfoLight";
 			// To support reusable cells
 			return button;
 		}
@@ -214,6 +216,7 @@ namespace MonoCatalog
 			button.SetTitle ("Detail Disclosure", UIControlState.Normal);
 			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
 			button.Tag = kViewTag;
+			button.AccessibilityLabel = "ContactAdd";
 			// To support reusable cells
 			return button;
 		}

@@ -5,6 +5,7 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System;
 using System.Drawing;
+using MonoTouch;
 
 namespace MonoCatalog {
 	
@@ -30,7 +31,9 @@ namespace MonoCatalog {
 			var items = new string [] { "Check", "Search", "Tools" };
 			
 			float yPlacement = 20f;
-			
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0))
+				yPlacement += 44f;
+
 			View.AddSubview (MakeLabel ("UISegmentedControl", new RectangleF (20f, yPlacement, View.Bounds.Width - 40f, lHeight)));
 			yPlacement += 40f;
 			
@@ -40,7 +43,8 @@ namespace MonoCatalog {
 					UIImage.FromFile ("images/segment_tools.png")}){
 				Frame = new RectangleF (20f, yPlacement, View.Bounds.Width - 40f, 40f),
 				ControlStyle = UISegmentedControlStyle.Plain,
-				SelectedSegment = 1
+				SelectedSegment = 1,
+				AccessibilityLabel = "Plain"
 			};
 			View.AddSubview (segmentedControl);
 			yPlacement += 60f;
@@ -51,7 +55,8 @@ namespace MonoCatalog {
 			segmentedControl = new UISegmentedControl (items){
 				Frame = new RectangleF (20f, yPlacement, View.Bounds.Width - 40f, 40f),
 				ControlStyle = UISegmentedControlStyle.Bordered,
-				SelectedSegment = 1
+				SelectedSegment = 1,
+				AccessibilityLabel = "Bordered"
 			};
 			segmentedControl.ValueChanged += delegate {
 				Console.WriteLine ("Value changed");
@@ -64,7 +69,8 @@ namespace MonoCatalog {
 			segmentedControl = new UISegmentedControl (items){
 				Frame = new RectangleF (20f, yPlacement, View.Bounds.Width - 40f, 40f),
 				ControlStyle = UISegmentedControlStyle.Bar,
-				SelectedSegment = 1
+				SelectedSegment = 1,
+				AccessibilityLabel = "Bar"
 			};
 			View.AddSubview (segmentedControl);
 			yPlacement += 60f;
@@ -75,7 +81,8 @@ namespace MonoCatalog {
 				Frame = new RectangleF (20f, yPlacement, View.Bounds.Width - 40f, 40f),
 				ControlStyle = UISegmentedControlStyle.Bar,
 				TintColor = UIColor.FromRGB (0.7f, 0.171f, 0.1f),
-				SelectedSegment = 1
+								SelectedSegment = 1,
+								AccessibilityLabel = "Tinted"
 			};
 			View.AddSubview (segmentedControl);
 			yPlacement += 60f;

@@ -88,6 +88,14 @@ namespace MonoCatalog {
 	
 			systemButtonPicker.Model = new ItemPickerModel (this);
 		}
+
+		public override void ViewDidAppear (bool animated)
+		{
+			base.ViewDidAppear (animated);
+
+			barStyleSegControl.AccessibilityLabel = "BarStyle";
+			buttonItemStyleSegControl.AccessibilityLabel = "BarButtonStyle";
+		}
 		
 		partial void toggleStyle (UISegmentedControl sender)
 		{

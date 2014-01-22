@@ -21,8 +21,9 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchI18n />
-    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -30,7 +31,8 @@
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchSdkVersion>4.0</MtouchSdkVersion>
     <MtouchArch>ARMv6</MtouchArch>
   </PropertyGroup>
@@ -44,7 +46,8 @@
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>True</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchSdkVersion>4.0</MtouchSdkVersion>
     <MtouchArch>ARMv6</MtouchArch>
   </PropertyGroup>
@@ -54,7 +57,8 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchSdkVersion>4.0</MtouchSdkVersion>
     <MtouchArch>ARMv6</MtouchArch>
   </PropertyGroup>

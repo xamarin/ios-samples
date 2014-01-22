@@ -120,6 +120,7 @@ namespace MonoCatalog
 					Frame              = new RectangleF (80f, 1f, 170f, 31f),
 					Placeholder        = "Key",
 					Tag                = kKeyTag,
+					AccessibilityLabel = "Key"
 				};
 				var lblValue = new UILabel () {
 					BaselineAdjustment = UIBaselineAdjustment.AlignCenters,
@@ -134,6 +135,7 @@ namespace MonoCatalog
 					Frame              = new RectangleF (80f, 38f, 170f, 31f),
 					Placeholder        = "Value",
 					Tag                = kValueTag,
+					AccessibilityLabel = "Value"
 				};
 				var add = UIButton.FromType (UIButtonType.ContactAdd);
 				add.HorizontalAlignment = UIControlContentHorizontalAlignment.Center;
