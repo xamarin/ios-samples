@@ -57,8 +57,7 @@ namespace HandlingRotation.Screens.iPad.Home {
 			// wire up our button TouchUpInside handlers
 			btnMethod1.TouchUpInside += delegate { NavigationController.PushViewController (new Method1Autosize.AutosizeScreenPad (), true); };
 			btnMethod2.TouchUpInside += delegate { NavigationController.PushViewController (new Method2MoveControls.Controller (), true); };
-			//btnMethod3.TouchUpInside += delegate { this.NavigationController.PushViewController (new Method3SwapViews.Controller (), true); };
-			btnMethod3.Alpha = 0f; // since it's not wired up!
+			btnMethod3.TouchUpInside += delegate { NavigationController.PushViewController (new Method3SwapViews.Controller (), true); };
 		}
 
 
