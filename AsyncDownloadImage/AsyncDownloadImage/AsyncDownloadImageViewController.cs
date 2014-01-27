@@ -37,7 +37,8 @@ namespace AsyncDownloadImage
 			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) { 
 				this.EdgesForExtendedLayout = UIRectEdge.None;
 			}
-
+			this.downloadButton.SetTitleColor (UIColor.Blue, UIControlState.Normal);
+			this.clickButton.SetTitleColor (UIColor.Blue, UIControlState.Normal);
 			this.clickButton.TouchUpInside += (sender, e) => {
 				clickNumber++;
 				this.clickButton.SetTitle( "Click Me:" + clickNumber, UIControlState.Normal);
