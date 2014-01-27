@@ -21,6 +21,22 @@ namespace HandlingRotation.Screens.iPad.Method3SwapViews
 				break;
 			}
 		}
+
+		public override void WillAnimateRotation (UIInterfaceOrientation toInterfaceOrientation, double duration)
+		{
+			base.WillAnimateRotation (toInterfaceOrientation, duration);
+
+			switch (toInterfaceOrientation) {
+			case UIInterfaceOrientation.LandscapeLeft:
+			case UIInterfaceOrientation.LandscapeRight:
+				NSBundle.MainBundle.LoadNib ("LandscapeView", this, null);
+				break;
+			case UIInterfaceOrientation.Portrait:
+			case UIInterfaceOrientation.PortraitUpsideDown:
+				NSBundle.MainBundle.LoadNib ("PortraitView", this, null);
+				break;
+			}
+		}
 	}
 }
 
