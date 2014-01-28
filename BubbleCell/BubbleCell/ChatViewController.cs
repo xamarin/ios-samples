@@ -41,6 +41,7 @@ namespace BubbleCell
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+			NavigationController.NavigationBar.Translucent = false;
 			var bounds = View.Bounds;
 			
 			var backgroundColor =  new UIColor (0.859f, 0.866f, 0.929f, 1);
