@@ -55,21 +55,27 @@ namespace LowLevelGLPaint
 			window.AddSubview (drawingView);
 
 			// Create a segmented control so that the user can choose the brush color.
-			UISegmentedControl segmentedControl = new UISegmentedControl (new[]{
-					UIImage.FromFile ("Images/Red.png"),
-					UIImage.FromFile ("Images/Yellow.png"),
-					UIImage.FromFile ("Images/Green.png"),
-					UIImage.FromFile ("Images/Blue.png"),
-					UIImage.FromFile ("Images/Purple.png"),
-			});
+			var images = new[] {
+				UIImage.FromFile ("Images/Red.png"),
+				UIImage.FromFile ("Images/Yellow.png"),
+				UIImage.FromFile ("Images/Green.png"),
+				UIImage.FromFile ("Images/Blue.png"),
+				UIImage.FromFile ("Images/Purple.png")
+			};
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
+				// we want the original colors, which is not the default iOS7 behaviour, so we need to
+				// replace them with ones having the right UIImageRenderingMode
+				for (int i = 0; i < images.Length; i++)
+					images [i] = images [i].ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
+			}
+			var segmentedControl = new UISegmentedControl (images);
 
 			// Compute a rectangle that is positioned correctly for the segmented control you'll use as a brush color palette
-			RectangleF frame = new RectangleF (rect.X + LeftMarginPadding, rect.Height - PaletteHeight - TopMarginPadding,
+			var frame = new RectangleF (rect.X + LeftMarginPadding, rect.Height - PaletteHeight - TopMarginPadding,
 				rect.Width - (LeftMarginPadding + RightMarginPadding), PaletteHeight);
 			segmentedControl.Frame = frame;
 			// When the user chooses a color, the method changeBrushColor: is called.
 			segmentedControl.ValueChanged += ChangeBrushColor;
-			segmentedControl.ControlStyle = UISegmentedControlStyle.Bar;
 			// Make sure the color of the color complements the black background
 			segmentedControl.TintColor = UIColor.DarkGray;
 			// Set the third color (index values start at 0)
