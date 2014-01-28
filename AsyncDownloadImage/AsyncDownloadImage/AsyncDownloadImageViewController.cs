@@ -78,7 +78,7 @@ namespace AsyncDownloadImage
 			try{
 				bytes = await webClient.DownloadDataTaskAsync(url);
 			}
-			catch(TaskCanceledException){
+			catch(OperationCanceledException){
 				Console.WriteLine ("Task Canceled!");
 				return;
 			}
