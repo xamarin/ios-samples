@@ -76,7 +76,8 @@ namespace avcaptureframes
 				captureDevice.UnlockForConfiguration();
 				return false;
 			}
-			captureDevice.ActiveVideoMinFrameDuration = new CMTime(1, 15);
+			if(UIDevice.CurrentDevice.CheckSystemVersion(7,0))
+				captureDevice.ActiveVideoMinFrameDuration = new CMTime (1,15);
 			captureDevice.UnlockForConfiguration();
 
 
