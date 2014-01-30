@@ -1,28 +1,25 @@
 using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Runtime.InteropServices;
+using MonoTouch;
 using MonoTouch.AVFoundation;
-using MonoTouch.Foundation;
+using MonoTouch.AssetsLibrary;
+using MonoTouch.AudioToolbox;
 using MonoTouch.CoreFoundation;
 using MonoTouch.CoreGraphics;
-using System.IO;
 using MonoTouch.CoreMedia;
-using System.Collections.Generic;
-using MonoTouch.AssetsLibrary;
-using System.Threading.Tasks;
-using MonoTouch.AudioToolbox;
 using MonoTouch.CoreVideo;
-using System.Runtime.InteropServices;
-using MonoTouch.UIKit;
+using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
-using System.Drawing;
-using System.Diagnostics;
-using System.Threading;
-using MonoTouch;
+using MonoTouch.UIKit;
 
 namespace RosyWriter
 {
 	public delegate void RosyWriterVideoProcessorDelegate ();
 	
-	public class RosyWriterVideoProcessor : NSObject
+	public class RosyWriterVideoProcessor : NSObject, IAVCaptureVideoDataOutputSampleBufferDelegate, IAVCaptureAudioDataOutputSampleBufferDelegate
 	{
 		public double VideoFrameRate{ get; private set; }
 		public SizeF VideoDimensions { get; private set; }
@@ -39,12 +36,13 @@ namespace RosyWriter
 		const int BYTES_PER_PIXEL = 4;
 		AVCaptureSession captureSession;
 		AVCaptureConnection videoConnection;
-		NSUrl movieURL;
+		AVCaptureConnection audioConnection;
+		readonly NSUrl movieURL;
 		AVAssetWriter assetWriter;
 		AVAssetWriterInput assetWriterAudioIn;
 		AVAssetWriterInput assetWriterVideoIn;
 	    DispatchQueue movieWritingQueue;
-	    List<CMTime> previousSecondTimestamps;
+	    readonly List<CMTime> previousSecondTimestamps;
 		AVCaptureVideoOrientation videoOrientation;
 		CMBufferQueue previewBufferQueue;
 		
@@ -54,10 +52,6 @@ namespace RosyWriter
 		bool recordingWillBeStarted;
 		bool recordingWillBeStopped;
 		
-		// Capture Delegates
-		AVCaptureAudioDataOutputSampleBufferDelegate audioDataOutputDelegate;
-		AVCaptureVideoDataOutputSampleBufferDelegate videoDataOutputDelegate;
-		
 		public RosyWriterVideoProcessor ()
 		{
 			previousSecondTimestamps = new List<CMTime> ();
@@ -65,47 +59,28 @@ namespace RosyWriter
 			
 			// The temp path for the video before saving it to photo album
 			movieURL = NSUrl.FromFilename (Path.Combine (Path.GetTempPath (), "Movie.MOV"));
-			
-			audioDataOutputDelegate = new AudioOutputDataDelegate (this);
-			videoDataOutputDelegate = new VideoOutputDataDelegate (this);
 		}
 		
-		void RemoveFile (NSUrl fileURL)
+		static void RemoveFile (NSUrl fileURL)
 		{
-			NSFileManager fileManager = NSFileManager.DefaultManager;
-			NSString filePath = new NSString (fileURL.Path);
-			
-			if (fileManager.FileExists (filePath))
-			{
-				NSError error;
-				bool success = fileManager.Remove (filePath, out error);
-				if (!success)
-					ShowError (error);
-			}
+			var filePath = fileURL.Path;
+			if (File.Exists (filePath))
+				File.Delete (filePath);
 		}
 		
-	    float AngleOffsetFromPortraitOrientationToOrientation (AVCaptureVideoOrientation orientation)
+	    static float AngleOffsetFromPortraitOrientationToOrientation (AVCaptureVideoOrientation orientation)
 		{
-			float angle = 0.0F;
-			
-			switch (orientation){
-			case AVCaptureVideoOrientation.Portrait:
-				angle = 0.0F;
-				break;
+			switch (orientation) {
 			case AVCaptureVideoOrientation.LandscapeRight:
-				angle = -Convert.ToSingle (Math.PI / 2.0);
-				break;
+				return (float) (-Math.PI / 2.0);
 			case AVCaptureVideoOrientation.LandscapeLeft:
-				angle = Convert.ToSingle (Math.PI / 2.0);
-				break;
+				return (float) (Math.PI / 2.0);
 			case AVCaptureVideoOrientation.PortraitUpsideDown:
-				angle = Convert.ToSingle(Math.PI);
-				break;
+				return (float) Math.PI;
+			//case AVCaptureVideoOrientation.Portrait:
 			default:
-				break;
+				return 0.0f;
 			}
-			
-			return angle;
 		}
 		
 		/// <summary>
@@ -113,10 +88,9 @@ namespace RosyWriter
 		/// </summary>
 	    void SaveMovieToCameraRoll ()
 		{
-			Console.WriteLine ("Save movie to camera roll");
-			using (ALAssetsLibrary library = new ALAssetsLibrary ()){
-				library.WriteVideoToSavedPhotosAlbum (movieURL, (NSUrl assetUrl, NSError error) => 
-				{
+			//Console.WriteLine ("Save movie to camera roll");
+			using (var library = new ALAssetsLibrary ()) {
+				library.WriteVideoToSavedPhotosAlbum (movieURL, (assetUrl, error) => {
 					if (error != null)
 						ShowError (error);
 					else
@@ -124,7 +98,7 @@ namespace RosyWriter
 													
 					movieWritingQueue.DispatchAsync (() => {
 						recordingWillBeStopped = false;
-						this.IsRecording = false;
+						IsRecording = false;
 						if (RecordingDidStop != null)
 							RecordingDidStop ();
 					});
@@ -143,17 +117,13 @@ namespace RosyWriter
 		/// </param>
 		public CGAffineTransform TransformFromCurrentVideoOrientationToOrientation (AVCaptureVideoOrientation orientation)
 		{
-			CGAffineTransform transform = CGAffineTransform.MakeIdentity ();
-			
 			// Calculate offsets from an arbitrary reference orientation (portrait)
 			float orientationAngleOffset = AngleOffsetFromPortraitOrientationToOrientation (orientation);
 			float videoOrientationAngleOffset = AngleOffsetFromPortraitOrientationToOrientation (videoOrientation);
 				
 			// Find the difference in angle between the passed in orientation and the current video orientation
 			float angleOffset = orientationAngleOffset - videoOrientationAngleOffset;
-			transform = CGAffineTransform.MakeRotation (angleOffset);
-			
-			return transform;
+			return CGAffineTransform.MakeRotation (angleOffset);
 		}
 		
 		void WriteSampleBuffer (CMSampleBuffer sampleBuffer, NSString mediaType)
@@ -186,7 +156,7 @@ namespace RosyWriter
 		/// </summary>
 		public void StartRecording ()
 		{
-			Console.WriteLine ("Start Recording");
+			//Console.WriteLine ("Start Recording");
 			movieWritingQueue.DispatchAsync (() =>
 			{
 				if (recordingWillBeStarted || IsRecording)
@@ -213,7 +183,7 @@ namespace RosyWriter
 		{
 			movieWritingQueue.DispatchAsync (() =>
 			{
-				if (recordingWillBeStopped || IsRecording == false)
+				if (recordingWillBeStopped || !IsRecording)
 					return;
 				
 				recordingWillBeStopped = true;
@@ -250,19 +220,19 @@ namespace RosyWriter
 				
 		#region Capture
 		
-		List<CMSampleBuffer> inuse = new List<CMSampleBuffer> ();
+		readonly List<CMSampleBuffer> inuse = new List<CMSampleBuffer> ();
 		
 		// This is used to solve the issue with the movieWriter queue and the DisplayPixelBuffer
 		// thread not releasing CMSampleBuffers when 
 		void CompleteBufferUse (CMSampleBuffer buf)
 		{
 			lock (inuse){
-				if (inuse.Contains (buf))
-				{
+				if (inuse.Contains (buf)) {
 					inuse.Remove (buf);
 					buf.Dispose ();
-				} else 
+				} else {
 					inuse.Add (buf);
+				}
 			}
 		}
 		
@@ -275,15 +245,13 @@ namespace RosyWriter
 		/// <param name='position'>
 		/// The desired Position.
 		/// </param>
-		AVCaptureDevice VideoDeviceWithPosition (AVCaptureDevicePosition position)
+		static AVCaptureDevice VideoDeviceWithPosition (AVCaptureDevicePosition position)
 		{
 			var devices = AVCaptureDevice.DevicesWithMediaType (AVMediaType.Video);
-			foreach (var device in devices)
-			{
+			foreach (var device in devices) {
 				if (device.Position == position)
 					return device;
 			}
-			
 			return null;
 		}
 		
@@ -293,18 +261,15 @@ namespace RosyWriter
 		/// <returns>
 		/// The audio device.
 		/// </returns>
-		AVCaptureDevice AudioDevice ()
+		static AVCaptureDevice AudioDevice ()
 		{
 			var devices = AVCaptureDevice.DevicesWithMediaType (AVMediaType.Audio);
-			if (devices.Length > 0)
-				return devices [0];
-			
-			return null;
+			return (devices.Length == 0) ? null : devices [0];
 		}
 	
 	    bool SetupCaptureSession ()
 		{
-			Console.WriteLine ("SetupCaptureSession");
+			//Console.WriteLine ("SetupCaptureSession");
 			// Overview: RosyWriter uses separate GCD queues for audio and video capture.  If a single GCD queue
 			// is used to deliver both audio and video buffers, and our video processing consistently takes
 			// too long, the delivery queue can back up, resulting in audio being dropped.
@@ -320,25 +285,28 @@ namespace RosyWriter
 			
 			// Create audio connection
 			NSError error;
-			var audioDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Audio); //AudioDevice ();
+			var audioDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Audio);
 			if (audioDevice == null)
 				return false; // e.g. simulator
 
-			AVCaptureDeviceInput audioIn = new AVCaptureDeviceInput (audioDevice, out error);
+			var audioIn = new AVCaptureDeviceInput (audioDevice, out error);
 			if (captureSession.CanAddInput (audioIn))
 				captureSession.AddInput (audioIn);
 			
-			AVCaptureAudioDataOutput audioOut = new AVCaptureAudioDataOutput ();
+			var audioOut = new AVCaptureAudioDataOutput ();
+			var audioCaptureQueue = new DispatchQueue ("Audio Capture Queue");
 
 			// Add the Delegate to capture each sample that comes through
-			audioOut.SetSampleBufferDelegatequeue (audioDataOutputDelegate, movieWritingQueue);
+			audioOut.SetSampleBufferDelegateQueue (this, audioCaptureQueue);
 			
 			if (captureSession.CanAddOutput (audioOut))
 				captureSession.AddOutput (audioOut);
 			
+			audioConnection = audioOut.ConnectionFromMediaType (AVMediaType.Audio);
+					
 			// Create Video Session
-			var videoDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Video); //VideoDeviceWithPosition (AVCaptureDevicePosition.Back);
-			AVCaptureDeviceInput videoIn = new AVCaptureDeviceInput (videoDevice, out error);
+			var videoDevice = VideoDeviceWithPosition (AVCaptureDevicePosition.Back);
+			var videoIn = new AVCaptureDeviceInput (videoDevice, out error);
 			
 			if (captureSession.CanAddInput (videoIn))
 				captureSession.AddInput (videoIn);
@@ -347,14 +315,14 @@ namespace RosyWriter
 			// processing can take longer than real-time on some platforms (such as iPhone 3GS).
 			// Clients whose image processing is faster than real-time should consider setting AVCaptureVideoDataOutput's
 			// alwaysDiscardsLateVideoFrames property to NO.
-			AVCaptureVideoDataOutput videoOut = new AVCaptureVideoDataOutput (){
+			var videoOut = new AVCaptureVideoDataOutput {
 				AlwaysDiscardsLateVideoFrames = true,
 				VideoSettings = new AVVideoSettings (CVPixelFormatType.CV32BGRA)
 			};
 			
 			// Create a DispatchQueue for the Video Processing
-			DispatchQueue videoCaptureQueue = new DispatchQueue ("Video Capture Queue");
-			videoOut.SetSampleBufferDelegateAndQueue (videoDataOutputDelegate, videoCaptureQueue);
+			var videoCaptureQueue = new DispatchQueue ("Video Capture Queue");
+			videoOut.SetSampleBufferDelegateQueue (this, videoCaptureQueue);
 			
 			if (captureSession.CanAddOutput (videoOut))
 				captureSession.AddOutput (videoOut);
@@ -370,7 +338,7 @@ namespace RosyWriter
 		
 		public void SetupAndStartCaptureSession ()
 		{
-			Console.WriteLine ("SetupAndStartCapture Session");
+			//Console.WriteLine ("SetupAndStartCapture Session");
 			
 			// Create a shallow queue for buffers going to the display for preview.
 			previewBufferQueue = CMBufferQueue.CreateUnsorted (1);
@@ -418,9 +386,8 @@ namespace RosyWriter
 			captureSession.Dispose ();
 			captureSession = null;
 			
-			
 			if (previewBufferQueue != null){
-				//previewBufferQueue.Dispose ();
+				previewBufferQueue.Dispose ();
 				previewBufferQueue = null;
 			}
 			
@@ -440,285 +407,235 @@ namespace RosyWriter
 			});
 		}
 		
-		#region Capture Delegate Classes
-		class AudioOutputDataDelegate : AVCaptureAudioDataOutputSampleBufferDelegate
-		{
-			RosyWriterVideoProcessor processor;
-			
-			public AudioOutputDataDelegate (RosyWriterVideoProcessor processor)
-			{
-				this.processor = processor;
-			}
-			
-			// This runs on the movieWritingQueue already
-			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
-			{		
-				try {
-					if (processor.assetWriter != null) {
-						var formatDescription = sampleBuffer.GetFormatDescription ();
-						bool wasReadyToRecord = (processor.readyToRecordAudio && processor.readyToRecordVideo);
-						
-						// Initalize the audio input if this is not done yet
-						if (!processor.readyToRecordAudio)
-							processor.readyToRecordAudio = SetupAssetWriterAudioInput (formatDescription);
-							
-						// Write audio data to file
-						if (processor.readyToRecordAudio && processor.readyToRecordVideo)
-							processor.WriteSampleBuffer (sampleBuffer, AVMediaType.Audio);
-			
-						bool isReadyToRecord = (processor.readyToRecordAudio && processor.readyToRecordVideo);
-						
-						if (!wasReadyToRecord && isReadyToRecord) {
-							processor.recordingWillBeStarted = false;
-							processor.IsRecording = true;
-							
-							if (processor.RecordingDidStart != null)
-								processor.RecordingDidStart ();
-						}
-					}
-				} finally {
-					sampleBuffer.Dispose();
-				}
-			}
-			
-			public bool SetupAssetWriterAudioInput (CMFormatDescription currentFormatDescription)
-			{
-				// If the AudioStreamBasicDescription is null return false;
-				if (!currentFormatDescription.AudioStreamBasicDescription.HasValue)
-					return false;
-				
-				var currentASBD = currentFormatDescription.AudioStreamBasicDescription.Value;
-				
-				// Get the Audio Channel Layout from the Format Description.
-				var currentChannelLayout = currentFormatDescription.AudioChannelLayout;
-				var currentChannelLayoutData = currentChannelLayout == null ? new NSData () : currentChannelLayout.AsData ();
-								
-				NSDictionary audioCompressionSettings = NSDictionary.FromObjectsAndKeys (
-					new NSObject[]
-					{ 
-						  NSNumber.FromInt32 ((int)AudioFormatType.MPEG4AAC), 
-					      NSNumber.FromDouble (currentASBD.SampleRate),
-						  NSNumber.FromInt32 (64000),
-						  NSNumber.FromInt32 (currentASBD.ChannelsPerFrame),
-						  currentChannelLayoutData
-					},
-					new NSObject[]
-					{ 
-						AVAudioSettings.AVFormatIDKey,
-						AVAudioSettings.AVSampleRateKey,
-						AVAudioSettings.AVEncoderBitRateKey,
-						AVAudioSettings.AVNumberOfChannelsKey,
-						new NSString("AVChannelLayoutKey") //AVAudioSettings.AVChannelLayoutKey,
-					});
-				
-				if (processor.assetWriter.CanApplyOutputSettings (audioCompressionSettings, AVMediaType.Audio)){
-					processor.assetWriterAudioIn = new AVAssetWriterInput (AVMediaType.Audio, audioCompressionSettings);
-					processor.assetWriterAudioIn.ExpectsMediaDataInRealTime = true;
-					
-					if (processor.assetWriter.CanAddInput (processor.assetWriterAudioIn))
-						processor.assetWriter.AddInput (processor.assetWriterAudioIn);
-					else {
-						Console.WriteLine ("Couldn't add asset writer audio input.");
-						return false;
-					}
-				} else {
-					Console.WriteLine ("Couldn't apply audio output settings.");
-					return false;
-				}
-				
-				return true;
-			}
-		}
-		
-		class VideoOutputDataDelegate : AVCaptureVideoDataOutputSampleBufferDelegate
-		{
-			RosyWriterVideoProcessor processor;
-			
-			public VideoOutputDataDelegate (RosyWriterVideoProcessor processor)
-			{
-				Console.WriteLine ("Creating VideoOutputDataDelegate");
-				this.processor = processor;
-			}
-			
-			[DllImportAttribute (Constants.CoreFoundationLibrary)]
-			extern static IntPtr CFCopyDescription (IntPtr obj);
-			
-			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
-			{
-				CMFormatDescription formatDescription = sampleBuffer.GetFormatDescription ();
+		#region AVCapture[Audio|Video]DataOutputSampleBufferDelegate
 
-				if (connection == processor.videoConnection) {
-					// Get framerate
-					CMTime timestamp = sampleBuffer.PresentationTimeStamp;
-					CalculateFramerateAtTimestamp (timestamp);			
-						
-					// Get frame dimensions (for onscreen display)
-					if (processor.VideoDimensions.Width == 0 && processor.VideoDimensions.Height == 0)
-						processor.VideoDimensions = formatDescription.GetVideoPresentationDimensions (true, false);
-						
-					// Get the buffer type
-					if (processor.VideoType == 0)
-						processor.VideoType = formatDescription.MediaSubType;
-					// TODO: processor.VideoType = (CMVideoCodecType)Enum.ToObject (typeof(CMVideoCodecType), formatDescription.MediaSubType);
-					
-					// Synchronously process the pixel buffer to de-green it.
-					using (var pixelBuffer = sampleBuffer.GetImageBuffer ())
-						ProcessPixelBuffer (pixelBuffer);
+#if DEBUG
+		[DllImportAttribute (Constants.CoreFoundationLibrary)]
+		extern static IntPtr CFCopyDescription (IntPtr obj);
+#endif
 
-					processor.previewBufferQueue.Enqueue (sampleBuffer);
-						
-					//var writeBuffer = sampleBuffer.Duplicate ();
-					InvokeOnMainThread (() => {
-						var j = processor.previewBufferQueue.Dequeue ();
-				
-						var sbuf = j as CMSampleBuffer;
-						if (sbuf == null) {
-							// Record the current sampleBuffer.ClassHandle
-							// Then run another iteration and on the next one, print the ClassHandle
-							Console.WriteLine ("The type is {0}", new NSString (CFCopyDescription (j.Handle)));
-							return;
-						}
-						
-						using (CVImageBuffer pixBuf = sbuf.GetImageBuffer ()){
-							if (processor.PixelBufferReadyForDisplay != null)
-								processor.PixelBufferReadyForDisplay (pixBuf);
-						}
-		
-						if(processor.assetWriter == null)
-							sbuf.Dispose();
-						else
-							processor.CompleteBufferUse (sbuf);
-					});
-				}
-				
-				
-				processor.movieWritingQueue.DispatchAsync (() => {
-					if (processor.assetWriter != null) {
-						bool wasReadyToRecord = (processor.readyToRecordAudio && processor.readyToRecordVideo);
+		[Export ("captureOutput:didOutputSampleBuffer:fromConnection:")]
+		public virtual void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
+		{
+			CMFormatDescription formatDescription = sampleBuffer.GetFormatDescription ();
+
+			if (connection == videoConnection) {
+				// Get framerate
+				CMTime timestamp = sampleBuffer.PresentationTimeStamp;
+				CalculateFramerateAtTimestamp (timestamp);			
 					
+				// Get frame dimensions (for onscreen display)
+				if (VideoDimensions.IsEmpty)
+					VideoDimensions = formatDescription.GetVideoPresentationDimensions (true, false);
+					
+				// Get the buffer type
+				if (VideoType == 0)
+					VideoType = formatDescription.MediaSubType;
+
+				// Synchronously process the pixel buffer to de-green it.
+				using (var pixelBuffer = sampleBuffer.GetImageBuffer ())
+					ProcessPixelBuffer (pixelBuffer);
+
+				previewBufferQueue.Enqueue (sampleBuffer);
+					
+				//var writeBuffer = sampleBuffer.Duplicate ();
+				InvokeOnMainThread (() => {
+					var j = previewBufferQueue.Dequeue ();
+			
+					var sbuf = j as CMSampleBuffer;
+					if (sbuf == null) {
+#if DEBUG
+						// Record the current sampleBuffer.ClassHandle
+						// Then run another iteration and on the next one, print the ClassHandle
+						Console.WriteLine ("The type is {0}", new NSString (CFCopyDescription (j.Handle)));
+#endif
+						return;
+					}
+
+					using (CVImageBuffer pixBuf = sbuf.GetImageBuffer ()) {
+						if (PixelBufferReadyForDisplay != null)
+							PixelBufferReadyForDisplay (pixBuf);
+					}
+				});
+			}
+			// keep a reference to 'sampleBuffer', movieWritingQueue will remove it
+			CompleteBufferUse (sampleBuffer);
+
+			movieWritingQueue.DispatchAsync (() => {
+				if (assetWriter != null) {
+					bool wasReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
+				
+					if (connection == videoConnection) {
 						// Initialize the video input if this is not done yet
-						if (!processor.readyToRecordVideo)
-							processor.readyToRecordVideo = SetupAssetWriterVideoInput (formatDescription);
-						
+						if (!readyToRecordVideo)
+							readyToRecordVideo = SetupAssetWriterVideoInput (formatDescription);
+
 						// Write the video data to file
-						if (processor.readyToRecordVideo && processor.readyToRecordAudio)
-							processor.WriteSampleBuffer (sampleBuffer, AVMediaType.Video);
-			
-						bool isReadyToRecord = (processor.readyToRecordAudio && processor.readyToRecordVideo);
-					
-						if (!wasReadyToRecord && isReadyToRecord) {
-							processor.recordingWillBeStarted = false;
-							processor.IsRecording = true;
-						
-							if (processor.RecordingDidStart != null)
-								processor.RecordingDidStart ();
+						if (readyToRecordVideo && readyToRecordAudio) {
+							WriteSampleBuffer (sampleBuffer, AVMediaType.Video);
 						}
-						
-						processor.CompleteBufferUse (sampleBuffer);
+					} else if (connection == audioConnection) {
+						if (!readyToRecordAudio)
+							readyToRecordAudio = SetupAssetWriterAudioInput (formatDescription);
+
+						if (readyToRecordAudio && readyToRecordVideo)
+							WriteSampleBuffer (sampleBuffer, AVMediaType.Audio);
 					}
-				});	
-			}
-			
-			public bool SetupAssetWriterVideoInput (CMFormatDescription currentFormatDescription)
-			{
-				Console.WriteLine ("Setting up Video Asset Writer");
-				float bitsPerPixel;
-				var dimensions = currentFormatDescription.VideoDimensions;
-				int numPixels = dimensions.Width * dimensions.Height;
-				int bitsPerSecond; 
+					bool isReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
 				
-				// Assume that lower-than-SD resolution are intended for streaming, and use a lower bitrate
-				if (numPixels < (640 * 480))
-					bitsPerPixel = 4.05F; // This bitrate matches the quality produced by AVCaptureSessionPresetMedium or Low.
-				else
-					bitsPerPixel = 11.4F; // This bitrate matches the quality produced by AVCaptureSessionPresetHigh.	
-				
-				bitsPerSecond = Convert.ToInt32 ((float)numPixels * bitsPerPixel);
-				
-				NSDictionary videoCompressionSettings = NSDictionary.FromObjectsAndKeys (
-					new NSObject[] 
-					{   // The Compression Settings Values
-						AVVideo.CodecH264,
-						NSNumber.FromInt32 (dimensions.Width),
-						NSNumber.FromInt32 (dimensions.Height),
-						NSDictionary.FromObjectsAndKeys (
-							new object[] 
-							{	// Compression Property Values
-								NSNumber.FromInt32 (bitsPerSecond),
-								NSNumber.FromInt32 (30)
-							},
-							new object[]
-							{	// Compression Property Keys
-								AVVideo.AverageBitRateKey,
-								AVVideo.MaxKeyFrameIntervalKey
-							})
-					},
-					new NSObject[]
-					{	// The Compression Settings Keys
-						AVVideo.CodecKey,
-						AVVideo.WidthKey,
-						AVVideo.HeightKey,
-						AVVideo.CompressionPropertiesKey
+					if (!wasReadyToRecord && isReadyToRecord) {
+						recordingWillBeStarted = false;
+						IsRecording = true;
+					
+						if (RecordingDidStart != null)
+							RecordingDidStart ();
 					}
-					);
-				
-				if (processor.assetWriter.CanApplyOutputSettings (videoCompressionSettings, AVMediaType.Video)){
-					processor.assetWriterVideoIn = new AVAssetWriterInput (AVMediaType.Video, videoCompressionSettings);
-					processor.assetWriterVideoIn.ExpectsMediaDataInRealTime = true;
-					processor.assetWriterVideoIn.Transform = processor.TransformFromCurrentVideoOrientationToOrientation (processor.ReferenceOrientation);
-					
-					if (processor.assetWriter.CanAddInput (processor.assetWriterVideoIn))
-						processor.assetWriter.AddInput (processor.assetWriterVideoIn);
-					else {
-						Console.WriteLine ("Couldn't add asset writer video input.");
-						return false;
-					}
-				} else 
-					Console.WriteLine ("Couldn't apply video output settings.");	
-				
-				return true;
-			}
-			
-			public void CalculateFramerateAtTimestamp (CMTime timeStamp)
-			{
-				processor.previousSecondTimestamps.Add (timeStamp);
-				
-				var oneSecond = CMTime.FromSeconds (1, 1);
-				var oneSecondAgo = CMTime.Subtract (timeStamp, oneSecond);
-				
-				while (processor.previousSecondTimestamps.Count > 0 && CMTime.Compare(processor.previousSecondTimestamps[0], oneSecondAgo) < 0)
-					processor.previousSecondTimestamps.RemoveAt (0);
-				
-				double newRate = Convert.ToDouble (processor.previousSecondTimestamps.Count);
-				
-				processor.VideoFrameRate = (processor.VideoFrameRate + newRate) / 2;
-			}
-			
-			public unsafe void ProcessPixelBuffer (CVImageBuffer imageBuffer)
-			{
-				using (CVPixelBuffer pixelBuffer = imageBuffer as CVPixelBuffer)
-				{
-					pixelBuffer.Lock (CVOptionFlags.None);
-					
-					int bufferWidth = pixelBuffer.Width;
-					int bufferHeight = pixelBuffer.Height;
-					byte* pixelPtr = (byte*)pixelBuffer.BaseAddress.ToPointer();
-					
-					int position = 0;
-					for (var row = 0; row < bufferHeight; row++){
-						for (var column = 0; column < bufferWidth; column++) {
-							// De-green (Second pixel in BGRA is green)
-							*(pixelPtr+1) = 0;
-							pixelPtr += BYTES_PER_PIXEL;
-							position += BYTES_PER_PIXEL; // For each pixel increase the offset by the number of bytes per pixel
-						}
-					}
-					
-					pixelBuffer.Unlock (CVOptionFlags.None);
 				}
+				CompleteBufferUse (sampleBuffer);
+			});	
+		}
+
+		public bool SetupAssetWriterVideoInput (CMFormatDescription currentFormatDescription)
+		{
+			//Console.WriteLine ("Setting up Video Asset Writer");
+			float bitsPerPixel;
+			var dimensions = currentFormatDescription.VideoDimensions;
+			int numPixels = dimensions.Width * dimensions.Height;
+			int bitsPerSecond; 
+			
+			// Assume that lower-than-SD resolution are intended for streaming, and use a lower bitrate
+			bitsPerPixel = numPixels < (640 * 480) ? 4.05F : 11.4F;
+			
+			bitsPerSecond = (int) (numPixels * bitsPerPixel);
+			
+			NSDictionary videoCompressionSettings = NSDictionary.FromObjectsAndKeys (
+				new NSObject[] 
+				{   // The Compression Settings Values
+					AVVideo.CodecH264,
+					NSNumber.FromInt32 (dimensions.Width),
+					NSNumber.FromInt32 (dimensions.Height),
+					NSDictionary.FromObjectsAndKeys (
+						new object[] 
+						{	// Compression Property Values
+							NSNumber.FromInt32 (bitsPerSecond),
+							NSNumber.FromInt32 (30)
+						},
+						new object[]
+						{	// Compression Property Keys
+							AVVideo.AverageBitRateKey,
+							AVVideo.MaxKeyFrameIntervalKey
+						})
+				},
+				new NSObject[]
+				{	// The Compression Settings Keys
+					AVVideo.CodecKey,
+					AVVideo.WidthKey,
+					AVVideo.HeightKey,
+					AVVideo.CompressionPropertiesKey
+				}
+				);
+			
+			if (assetWriter.CanApplyOutputSettings (videoCompressionSettings, AVMediaType.Video)){
+				assetWriterVideoIn = new AVAssetWriterInput (AVMediaType.Video, videoCompressionSettings);
+				assetWriterVideoIn.ExpectsMediaDataInRealTime = true;
+				assetWriterVideoIn.Transform = TransformFromCurrentVideoOrientationToOrientation (ReferenceOrientation);
+				
+				if (assetWriter.CanAddInput (assetWriterVideoIn))
+					assetWriter.AddInput (assetWriterVideoIn);
+				else {
+					Console.WriteLine ("Couldn't add asset writer video input.");
+					return false;
+				}
+			} else 
+				Console.WriteLine ("Couldn't apply video output settings.");	
+			
+			return true;
+		}
+
+		public bool SetupAssetWriterAudioInput (CMFormatDescription currentFormatDescription)
+		{
+			// If the AudioStreamBasicDescription is null return false;
+			if (!currentFormatDescription.AudioStreamBasicDescription.HasValue)
+				return false;
+
+			var currentASBD = currentFormatDescription.AudioStreamBasicDescription.Value;
+
+			// Get the Audio Channel Layout from the Format Description.
+			var currentChannelLayout = currentFormatDescription.AudioChannelLayout;
+			var currentChannelLayoutData = currentChannelLayout == null ? new NSData () : currentChannelLayout.AsData ();
+
+			NSDictionary audioCompressionSettings = NSDictionary.FromObjectsAndKeys (
+				new NSObject[]
+				{ 
+					NSNumber.FromInt32 ((int)AudioFormatType.MPEG4AAC), 
+					NSNumber.FromDouble (currentASBD.SampleRate),
+					NSNumber.FromInt32 (64000),
+					NSNumber.FromInt32 (currentASBD.ChannelsPerFrame),
+					currentChannelLayoutData
+				},
+				new NSObject[]
+				{ 
+					AVAudioSettings.AVFormatIDKey,
+					AVAudioSettings.AVSampleRateKey,
+					AVAudioSettings.AVEncoderBitRateKey,
+					AVAudioSettings.AVNumberOfChannelsKey,
+					new NSString("AVChannelLayoutKey") //AVAudioSettings.AVChannelLayoutKey,
+				});
+
+			if (assetWriter.CanApplyOutputSettings (audioCompressionSettings, AVMediaType.Audio)){
+				assetWriterAudioIn = new AVAssetWriterInput (AVMediaType.Audio, audioCompressionSettings);
+				assetWriterAudioIn.ExpectsMediaDataInRealTime = true;
+
+				if (assetWriter.CanAddInput (assetWriterAudioIn))
+					assetWriter.AddInput (assetWriterAudioIn);
+				else {
+					Console.WriteLine ("Couldn't add asset writer audio input.");
+					return false;
+				}
+			} else {
+				Console.WriteLine ("Couldn't apply audio output settings.");
+				return false;
+			}
+
+			return true;
+		}
+				
+		public void CalculateFramerateAtTimestamp (CMTime timeStamp)
+		{
+			previousSecondTimestamps.Add (timeStamp);
+			
+			var oneSecond = CMTime.FromSeconds (1, 1);
+			var oneSecondAgo = CMTime.Subtract (timeStamp, oneSecond);
+			
+			while (previousSecondTimestamps.Count > 0 && CMTime.Compare (previousSecondTimestamps[0], oneSecondAgo) < 0)
+				previousSecondTimestamps.RemoveAt (0);
+			
+			double newRate = Convert.ToDouble (previousSecondTimestamps.Count);
+			
+			VideoFrameRate = (VideoFrameRate + newRate) / 2;
+		}
+		
+		public unsafe void ProcessPixelBuffer (CVImageBuffer imageBuffer)
+		{
+			using (var pixelBuffer = imageBuffer as CVPixelBuffer)
+			{
+				pixelBuffer.Lock (CVOptionFlags.None);
+				
+				int bufferWidth = pixelBuffer.Width;
+				int bufferHeight = pixelBuffer.Height;
+				// offset by one to de-green the BGRA array (green is second)
+				byte* pixelPtr = (byte*)pixelBuffer.BaseAddress.ToPointer () + 1;
+				
+				for (var row = 0; row < bufferHeight; row++){
+					for (var column = 0; column < bufferWidth; column++) {
+						*pixelPtr = 0;
+						pixelPtr += BYTES_PER_PIXEL;
+					}
+				}
+				
+				pixelBuffer.Unlock (CVOptionFlags.None);
 			}
 		}
-		#endregion
 	}
+	#endregion
 }
-

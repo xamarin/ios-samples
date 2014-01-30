@@ -1,24 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
 namespace RosyWriter
 {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
-		UIWindow window;
+	public class AppDelegate : UIApplicationDelegate {
 
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+		public override UIWindow Window { get; set; }
+
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			window = new UIWindow (UIScreen.MainScreen.Bounds) {
+			Window = new UIWindow (UIScreen.MainScreen.Bounds) {
 				RootViewController = new RosyWriterViewControllerUniversal ()
 			};
-			window.MakeKeyAndVisible ();
-			
+			Window.MakeKeyAndVisible ();
 			return true;
 		}
 
@@ -28,4 +23,3 @@ namespace RosyWriter
 		}
 	}
 }
-

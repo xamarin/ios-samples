@@ -5,14 +5,6 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.CoreVideo;
 using MonoTouch.AVFoundation;
-using MonoTouch.GLKit;
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreMedia;
-using MonoTouch.OpenGLES;
-using OpenTK.Graphics.ES20;
-using System.Threading.Tasks;
-using System.Diagnostics;
-using System.IO;
 
 namespace RosyWriter
 {
@@ -40,13 +32,12 @@ namespace RosyWriter
 
 	    void UpdateLabels ()
 		{
-			if (shouldShowStats){
-				var frameRateString = string.Format ("{0} FPS", videoProcessor.VideoFrameRate.ToString ("F"));
-				frameRateLabel.Text = frameRateString;
+			if (shouldShowStats) {
+				frameRateLabel.Text = String.Format ("{0:F} FPS", videoProcessor.VideoFrameRate);
 				frameRateLabel.BackgroundColor = UIColor.FromRGBA (0, 0, 0, .25F);
-				
-				var dimensionString = string.Format ("{0} x {0}", videoProcessor.VideoDimensions.Width, videoProcessor.VideoDimensions.Height);
-				dimensionsLabel.Text = dimensionString;
+
+				var dimension = videoProcessor.VideoDimensions;
+				dimensionsLabel.Text = String.Format ("{0} x {1}", dimension.Width, dimension.Height);
 				dimensionsLabel.BackgroundColor = UIColor.FromRGBA (0, 0, 0, .25F);
 				
 				// Turn the integer constant into something human readable
@@ -74,12 +65,11 @@ namespace RosyWriter
 		
 		UILabel LabelWithText (string text, float yPosition)
 		{
-			float labelWidth = 200.0F;
-			float labelHeight = 40.0F;
+			const float labelWidth = 200.0F;
+			const float labelHeight = 40.0F;
 			float xPosition = previewView.Bounds.Size.Width - labelWidth - 10;
 			
-			RectangleF labelFrame = new RectangleF (xPosition, yPosition, labelWidth, labelHeight);
-			UILabel label = new UILabel (labelFrame) {
+			var label = new UILabel (new RectangleF (xPosition, yPosition, labelWidth, labelHeight)) {
 				Font = UIFont.SystemFontOfSize (36F),
 				LineBreakMode = UILineBreakMode.WordWrap,
 				TextAlignment = UITextAlignment.Right,
@@ -100,28 +90,20 @@ namespace RosyWriter
 				videoProcessor.ReferenceOrientation = OrientationFromDeviceOrientation (orientation);
 		}
 		
-		private AVCaptureVideoOrientation OrientationFromDeviceOrientation (UIDeviceOrientation orientation)
+		static AVCaptureVideoOrientation OrientationFromDeviceOrientation (UIDeviceOrientation orientation)
 		{
-			AVCaptureVideoOrientation retOrientation;
-			switch (orientation){
+			switch (orientation) {
 			case UIDeviceOrientation.PortraitUpsideDown:
-				retOrientation = AVCaptureVideoOrientation.PortraitUpsideDown;
-				break;
+				return AVCaptureVideoOrientation.PortraitUpsideDown;
 			case UIDeviceOrientation.Portrait:
-				retOrientation = AVCaptureVideoOrientation.Portrait;
-				break;
+				return AVCaptureVideoOrientation.Portrait;
 			case UIDeviceOrientation.LandscapeLeft:
-				retOrientation = AVCaptureVideoOrientation.LandscapeLeft;
-				break;
+				return AVCaptureVideoOrientation.LandscapeLeft;
 			case UIDeviceOrientation.LandscapeRight:
-				retOrientation = AVCaptureVideoOrientation.LandscapeRight;
-				break;
+				return AVCaptureVideoOrientation.LandscapeRight;
 			default:
-				retOrientation = (AVCaptureVideoOrientation)0;
-				break;
+				return (AVCaptureVideoOrientation) 0;
 			}
-			
-			return retOrientation;
 		}
 		
 		void Cleanup ()
@@ -142,19 +124,19 @@ namespace RosyWriter
 		}
 		
 		#region Event Handler
-		public void On_PixelBufferReadyForDisplay (CVImageBuffer imageBuffer)
+		public void OnPixelBufferReadyForDisplay (CVImageBuffer imageBuffer)
 		{	
 			// Don't make OpenGLES calls while in the backgroud.
 			if (UIApplication.SharedApplication.ApplicationState != UIApplicationState.Background)
 				oglView.DisplayPixelBuffer(imageBuffer);
 		}
 				
-		public void On_ToggleRecording (object sender, EventArgs e)
+		public void OnToggleRecording (object sender, EventArgs e)
 		{
 			// UIBarButtonItem btn = (UIBarButtonItem)sender;
 			
 			// Wait for the recording to start/stop before re-enabling the record button.
-			InvokeOnMainThread (() => { btnRecord.Enabled = false; });
+			InvokeOnMainThread (() => btnRecord.Enabled = false);
 			
 			// The recordingWill/DidStop delegate methods will fire asynchronously in the response to this call.
 			if (videoProcessor.IsRecording)
@@ -163,7 +145,7 @@ namespace RosyWriter
 				videoProcessor.StartRecording ();	
 		}
 		
-		public void On_ApplicationDidBecomeActive (NSNotification notification)
+		public void OnApplicationDidBecomeActive (NSNotification notification)
 		{
 			// For performance reasons, we manually pause/resume the session when saving a recoding.
 			// If we try to resume the session in the background it will fail. Resume the session here as well to ensure we will succeed.
@@ -171,9 +153,8 @@ namespace RosyWriter
 		}
 		
 		#region Video Processer Event handlers
-		public void On_RecordingWillStart ()
+		public void OnRecordingWillStart ()
 		{
-			Console.WriteLine("Recording Will Start now");
 			InvokeOnMainThread (() => {
 				btnRecord.Enabled = false;
 				btnRecord.Title = "Stop";
@@ -187,17 +168,13 @@ namespace RosyWriter
 			});
 		}
 		
-		public void On_RecordingDidStart ()
+		public void OnRecordingDidStart ()
 		{
-			Console.WriteLine("Recording Did Start");
-			InvokeOnMainThread (() => {
-				btnRecord.Enabled = true;
-			});
+			InvokeOnMainThread (() => btnRecord.Enabled = true);
 		}
 		
-		public void On_RecordingWillStop ()
+		public void OnRecordingWillStop ()
 		{
-			Console.WriteLine("Recording Will Stop");
 			InvokeOnMainThread (() => {
 				// Disable until saving to the camera roll is complete
 				btnRecord.Title = "Record";
@@ -209,9 +186,8 @@ namespace RosyWriter
 			});
 		}
 		
-		public void On_RecordingDidStop ()
+		public void OnRecordingDidStop ()
 		{
-			Console.WriteLine("Recording Did Stop");
 			InvokeOnMainThread (() => {
 				btnRecord.Enabled = true;
 				
@@ -240,14 +216,6 @@ namespace RosyWriter
 			}
 		}
 		
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning ();
-			
-			// Release any cached data, images, etc that aren't in use.
-		}
-		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -263,9 +231,8 @@ namespace RosyWriter
 			
 			// Setup and start the capture session
 			videoProcessor.SetupAndStartCaptureSession ();
-			Console.WriteLine("Finished Setting up AV");
-			
-			notificationCenter.AddObserver (UIApplication.DidBecomeActiveNotification, On_ApplicationDidBecomeActive);
+
+			notificationCenter.AddObserver (UIApplication.DidBecomeActiveNotification, OnApplicationDidBecomeActive);
 			
 			oglView = new RosyWriterPreviewWindow(RectangleF.Empty);
 			
@@ -277,8 +244,6 @@ namespace RosyWriter
 			oglView.Center = new PointF(previewView.Bounds.Size.Width / 2.0F, previewView.Bounds.Size.Height / 2.0F);
 			
 			previewView.AddSubview(oglView);
-			
-			Console.WriteLine("Added OGL View");
 			
 			// Set up labels
 			shouldShowStats = true;
@@ -293,29 +258,14 @@ namespace RosyWriter
 			previewView.Add (typeLabel);
 			
 			// btnRecord Event Handler
-			btnRecord.Clicked += On_ToggleRecording;
+			btnRecord.Clicked += OnToggleRecording;
 			
 			// Video Processor Event Handlers
-			videoProcessor.RecordingDidStart += On_RecordingDidStart;
-			videoProcessor.RecordingDidStop += On_RecordingDidStop;
-			videoProcessor.RecordingWillStart += On_RecordingWillStart;
-			videoProcessor.RecordingWillStop += On_RecordingWillStop;
-			videoProcessor.PixelBufferReadyForDisplay += On_PixelBufferReadyForDisplay;
-			
-			Console.WriteLine("Finished OnDidLoad");
-		}
-		
-		public override void ViewDidUnload ()
-		{
-			base.ViewDidUnload ();
-			
-			// Clear any references to subviews of the main view in order to
-			// allow the Garbage Collector to collect them sooner.
-			//
-			// e.g. myOutlet.Dispose (); myOutlet = null;
-			Cleanup ();
-			
-			ReleaseDesignerOutlets ();
+			videoProcessor.RecordingDidStart += OnRecordingDidStart;
+			videoProcessor.RecordingDidStop += OnRecordingDidStop;
+			videoProcessor.RecordingWillStart += OnRecordingWillStart;
+			videoProcessor.RecordingWillStop += OnRecordingWillStop;
+			videoProcessor.PixelBufferReadyForDisplay += OnPixelBufferReadyForDisplay;
 		}
 		
 		public override void ViewWillAppear (bool animated)
@@ -341,4 +291,3 @@ namespace RosyWriter
 		#endregion
 	}
 }
-

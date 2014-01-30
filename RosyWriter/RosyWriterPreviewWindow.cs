@@ -1,22 +1,18 @@
 using System;
-using MonoTouch.UIKit;
-using OpenTK.Platform.iPhoneOS;
-using MonoTouch.Foundation;
-using MonoTouch.CoreAnimation;
-using OpenTK.Graphics;
-using MonoTouch.OpenGLES;
-using OpenTK.Graphics.ES20;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.CoreVideo;
 using System.Drawing;
-using MonoTouch.GLKit;
-using System.IO;
+using MonoTouch.CoreAnimation;
+using MonoTouch.CoreVideo;
+using MonoTouch.Foundation;
+using MonoTouch.ObjCRuntime;
+using MonoTouch.OpenGLES;
+using MonoTouch.UIKit;
+using OpenTK.Graphics.ES20;
 
 namespace RosyWriter
 {
 	public class RosyWriterPreviewWindow: UIView
 	{
-		EAGLContext Context;
+		readonly EAGLContext Context;
 		CVOpenGLESTextureCache videoTextureCache;
 		uint FrameBuffer, ColorBuffer;
 		int renderBufferWidth, renderBufferHeight;
@@ -37,7 +33,7 @@ namespace RosyWriter
 			ContentScaleFactor = UIScreen.MainScreen.Scale;
 			
 			// Initialize OpenGL ES 2
-			CAEAGLLayer eagleLayer = (CAEAGLLayer)Layer;
+			var eagleLayer = (CAEAGLLayer)Layer;
 			eagleLayer.Opaque = true;
 			eagleLayer.DrawableProperties = NSDictionary.FromObjectsAndKeys (
 				new object[] { NSNumber.FromBoolean (false), EAGLColorFormat.RGBA8  },
@@ -86,20 +82,17 @@ namespace RosyWriter
 
 			glProgram = CreateProgram ();
 			
-			if (glProgram == 0)
-				success = false;					
-			
-			return success;
+			return success && (glProgram != 0);
 		}
 		
-		int CreateProgram ()
+		static int CreateProgram ()
 		{
 			// Create shader program
 			int program = GL.CreateProgram ();
 			
 			// Create and Compile Vertex Shader
-			int vertShader = 0;
-			int fragShader = 0;
+			int vertShader;
+			int fragShader;
 			bool success = true;
 			success = success && CompileShader (out vertShader, ShaderType.VertexShader, "Shaders/passThrough.vsh");
 			
@@ -131,16 +124,15 @@ namespace RosyWriter
 			return program;
 		}
 		
-		bool LinkProgram (int program)
+		static bool LinkProgram (int program)
 		{
 			GL.LinkProgram (program);
 			
-			int status = 0;
-			int len = 0;
-			
+			int status;
 			GL.GetProgram (program, ProgramParameter.LinkStatus, out status);
 			
 			if (status == 0) {
+				int len;
 				GL.GetProgram (program, ProgramParameter.InfoLogLength, out len);
 				var sb = new System.Text.StringBuilder (len);
 				GL.GetProgramInfoLog (program, len, out len, sb);
@@ -149,13 +141,14 @@ namespace RosyWriter
 			return status != 0;
 		}
 		
-		bool CompileShader (out int shader, ShaderType type, string path)
+		static bool CompileShader (out int shader, ShaderType type, string path)
 		{
 			string shaderProgram = System.IO.File.ReadAllText (path);
-			int len = shaderProgram.Length, status = 0;
+			int status;
+			int len = shaderProgram.Length;
 			shader = GL.CreateShader (type);
 
-			GL.ShaderSource (shader, 1, new string [] { shaderProgram }, ref len);
+			GL.ShaderSource (shader, 1, new [] { shaderProgram }, ref len);
 			GL.CompileShader (shader);
 			GL.GetShader (shader, ShaderParameter.CompileStatus, out status);
 			
@@ -221,7 +214,7 @@ namespace RosyWriter
 				
 				// The texture verticies are setup such that we flip the texture vertically.
 				// This is so that our top left origin buffers match OpenGL's bottom left texture coordinate system.
-				var textureSamplingRect = TextureSamplingRectForCroppingTextureWithAspectRatio (new SizeF (frameWidth, frameHeight), this.Bounds.Size);
+				var textureSamplingRect = TextureSamplingRectForCroppingTextureWithAspectRatio (new SizeF (frameWidth, frameHeight), Bounds.Size);
 				var textureVertices = new float[,]
 				{
 					{textureSamplingRect.Left, textureSamplingRect.Bottom},
@@ -240,7 +233,7 @@ namespace RosyWriter
 			}
 		}
 		
-		RectangleF TextureSamplingRectForCroppingTextureWithAspectRatio (SizeF textureAspectRatio, SizeF croppingAspectRatio)
+		static RectangleF TextureSamplingRectForCroppingTextureWithAspectRatio (SizeF textureAspectRatio, SizeF croppingAspectRatio)
 		{
 			RectangleF normalizedSamplingRect;
 			var cropScaleAmount = new SizeF (croppingAspectRatio.Width / textureAspectRatio.Width, croppingAspectRatio.Height / textureAspectRatio.Height);
