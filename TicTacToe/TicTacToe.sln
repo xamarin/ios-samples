@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "TicTacToe\TicTacToe.csproj", "{0AF3D7B9-D248-492C-91DE-101158F01700}"
@@ -15,16 +15,22 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0AF3D7B9-D248-492C-91DE-101158F01700}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
 		{0AF3D7B9-D248-492C-91DE-101158F01700}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Ad-Hoc|iPhone.Deploy.0 = Ad-Hoc|iPhone
 		{0AF3D7B9-D248-492C-91DE-101158F01700}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
 		{0AF3D7B9-D248-492C-91DE-101158F01700}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.AppStore|iPhone.Deploy.0 = AppStore|iPhone
 		{0AF3D7B9-D248-492C-91DE-101158F01700}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{0AF3D7B9-D248-492C-91DE-101158F01700}.Debug|iPhone.Build.0 = Debug|iPhone
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Debug|iPhone.Deploy.0 = Debug|iPhone
 		{0AF3D7B9-D248-492C-91DE-101158F01700}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{0AF3D7B9-D248-492C-91DE-101158F01700}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Debug|iPhoneSimulator.Deploy.0 = Debug|iPhoneSimulator
 		{0AF3D7B9-D248-492C-91DE-101158F01700}.Release|iPhone.ActiveCfg = Release|iPhone
 		{0AF3D7B9-D248-492C-91DE-101158F01700}.Release|iPhone.Build.0 = Release|iPhone
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Release|iPhone.Deploy.0 = Release|iPhone
 		{0AF3D7B9-D248-492C-91DE-101158F01700}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{0AF3D7B9-D248-492C-91DE-101158F01700}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{0AF3D7B9-D248-492C-91DE-101158F01700}.Release|iPhoneSimulator.Deploy.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = TicTacToe\TicTacToe.csproj
