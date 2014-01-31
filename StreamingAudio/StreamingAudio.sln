@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamingAudio", "StreamingAudio.csproj", "{63C1A34F-2729-426B-92EA-073C62477053}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamingAudio", "StreamingAudio.csproj", "{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,16 +9,22 @@ Global
 		Release|iPhoneSimulator = Release|iPhoneSimulator
 		Debug|iPhone = Debug|iPhone
 		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{63C1A34F-2729-426B-92EA-073C62477053}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{63C1A34F-2729-426B-92EA-073C62477053}.Debug|iPhone.Build.0 = Debug|iPhone
-		{63C1A34F-2729-426B-92EA-073C62477053}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{63C1A34F-2729-426B-92EA-073C62477053}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{63C1A34F-2729-426B-92EA-073C62477053}.Release|iPhone.ActiveCfg = Release|iPhone
-		{63C1A34F-2729-426B-92EA-073C62477053}.Release|iPhone.Build.0 = Release|iPhone
-		{63C1A34F-2729-426B-92EA-073C62477053}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{63C1A34F-2729-426B-92EA-073C62477053}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}.Debug|iPhone.Build.0 = Debug|iPhone
+		{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}.Release|iPhone.ActiveCfg = Release|iPhone
+		{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}.Release|iPhone.Build.0 = Release|iPhone
+		{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{25D5D65C-97C4-49C2-8BF1-545D3DFF8812}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = StreamingAudio.csproj
