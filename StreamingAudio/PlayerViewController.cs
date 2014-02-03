@@ -100,8 +100,10 @@ namespace StreamingAudio
 		private void PreparePlayback ()
 		{
 			//The following line prevents the audio from stopping when the device autolocks
-			AudioSession.Category = AudioSessionCategory.MediaPlayback;
-			AudioSession.RoutingOverride = AudioSessionRoutingOverride.Speaker;
+			if (!UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
+				AudioSession.Category = AudioSessionCategory.MediaPlayback;
+				AudioSession.RoutingOverride = AudioSessionRoutingOverride.Speaker;
+			}
 		}
 
 		private void StreamDownloadedHandler (IAsyncResult result)
@@ -180,7 +182,7 @@ namespace StreamingAudio
 
 		private Stream GetQueueStream (Stream responseStream)
 		{
-			var queueStream = new QueueStream (Environment.GetFolderPath (Environment.SpecialFolder.Personal) + "copy.mp3");
+			var queueStream = new QueueStream (Environment.GetFolderPath (Environment.SpecialFolder.Personal) + "/copy.mp3");
 			var t = new Thread ((x) => {
 				var tbuf = new byte [8192];
 				int count;
