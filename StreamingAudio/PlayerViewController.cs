@@ -60,8 +60,13 @@ namespace StreamingAudio
 		public override void ViewDidDisappear (bool animated)
 		{
 			base.ViewDidDisappear (animated);
-			if (player != null)
+			updatingTimer.Invalidate ();
+
+			if (player != null) {
 				player.Pause ();
+				player.FlushAndClose ();
+				player = null;
+			}
 		}
 
 		private void PlayPauseButtonClickHandler (object sender, EventArgs e)
@@ -139,7 +144,7 @@ namespace StreamingAudio
 						updatingTimer = NSTimer.CreateRepeatingScheduledTimer (0.5, () => RepeatingAction (timeline, sampleRate));
 					});
 
-					while ((inputStreamLength = inputStream.Read (buffer, 0, buffer.Length)) != 0) {
+					while ((inputStreamLength = inputStream.Read (buffer, 0, buffer.Length)) != 0 && player != null) {
 						l += inputStreamLength;
 						player.ParseBytes (buffer, inputStreamLength, false, l == (int)response.ContentLength);
 

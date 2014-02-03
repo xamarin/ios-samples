@@ -159,11 +159,15 @@ namespace StreamingAudio
 			if (disposing) {
 
 				if (OutputQueue != null)
-					OutputQueue.Stop(false);
+					OutputQueue.Stop(true);
 
-				if (outputBuffers != null)
+				if (outputBuffers != null) {
 					foreach (var b in outputBuffers)
 						OutputQueue.FreeBuffer (b.Buffer);
+
+					outputBuffers.Clear ();
+					outputBuffers = null;
+				}
 
 				if (fileStream != null) {
 					fileStream.Close ();
