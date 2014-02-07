@@ -216,8 +216,10 @@ namespace StreamingAudio
 		/// </summary>
 		public void FlushAndClose ()
 		{
-			EnqueueBuffer ();
-			OutputQueue.Flush ();
+			if (OutputQueue != null) {
+				EnqueueBuffer ();
+				OutputQueue.Flush ();
+			}
 
 			Dispose ();
 		}

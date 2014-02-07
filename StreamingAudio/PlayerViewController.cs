@@ -60,10 +60,11 @@ namespace StreamingAudio
 		public override void ViewDidDisappear (bool animated)
 		{
 			base.ViewDidDisappear (animated);
-			updatingTimer.Invalidate ();
+
+			if(updatingTimer != null)
+				updatingTimer.Invalidate ();
 
 			if (player != null) {
-				player.Pause ();
 				player.FlushAndClose ();
 				player = null;
 			}
