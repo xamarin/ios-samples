@@ -59,9 +59,7 @@ namespace TextKitDemo
 			var newViewController = (TextViewController) Storyboard.InstantiateViewController (demo.ViewControllerIdentifier);
 			newViewController.Title = demo.Title;
 			newViewController.model = demo;
-
-			if (newViewController != null)
-				NavigationController.PushViewController (newViewController,true);
+			NavigationController.PushViewController (newViewController, true);
 
 			return;
 		}
