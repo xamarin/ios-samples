@@ -1,6 +1,7 @@
 
-MotionGraphs
-============
+#MotionGraphs
+
+
 
 This is a port of the WWDC2012 sample.
 
@@ -25,5 +26,5 @@ If you run the compiled application on a device that does not have a
 gyroscope, no gyroscope or device motion data will be available. You
 cannot effectively run the application on the simulator.
 
-Ported By: GouriKumari
+####Ported By: GouriKumari
 
