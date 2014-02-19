@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRchestra", "QRchestra\QRchestra.csproj", "{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}.Debug|iPhone.Build.0 = Debug|iPhone
+		{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}.Release|iPhone.ActiveCfg = Release|iPhone
+		{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}.Release|iPhone.Build.0 = Release|iPhone
+		{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{DABBB109-B3B7-4D54-9180-45EA1AFEFAC6}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = QRchestra\QRchestra.csproj
+	EndGlobalSection
+EndGlobal

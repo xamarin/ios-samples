@@ -1,8 +1,3 @@
-//
-// UIImageEffects.cs: extensio methods on UIImage to lighten, darken, tint and blur images.
-//
-// 
-//
 using System;
 using MonoTouch.UIKit;
 using MonoTouch.Accelerate;

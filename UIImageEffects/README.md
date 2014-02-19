@@ -22,5 +22,3 @@ Main classes:
 		Contains various extension methods that allow the user
 		to blur images and tint those images.  The convenience
 		methods show how to use the API.
-
-Port by Miguel de Icaza

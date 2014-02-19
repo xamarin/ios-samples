@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SampleMetadata>
-	<ID>508579D3-C90F-4E18-8308-1B2A4CFD6D77</ID>
-	<IsFullApplication>true</IsFullApplication>
+	<ID>9d40b32a-aa38-47e2-ab80-907ca3569cf5</ID>
+	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>Media, Graphics</Tags>
+	<Tags>Media, Image</Tags>
+    <SupportedPlatforms>iOS</SupportedPlatforms>
+    <LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>
