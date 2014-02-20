@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Game Center</Tags>
     <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>

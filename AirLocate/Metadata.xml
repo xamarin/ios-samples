@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Device Features</Tags>
     <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>

@@ -6,4 +6,5 @@
 	<Tags>Graphics</Tags>
     <SupportedPlatforms>iOS</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>

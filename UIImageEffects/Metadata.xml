@@ -6,4 +6,5 @@
 	<Tags>Media, Image</Tags>
     <SupportedPlatforms>iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>

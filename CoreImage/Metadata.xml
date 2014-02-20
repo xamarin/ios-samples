@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Media, Graphics</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<Gallery>true</Gallery>
 </SampleMetadata>

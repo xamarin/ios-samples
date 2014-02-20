@@ -5,4 +5,5 @@
   <Level>Beginning</Level>
   <Tags>Games, Platform Features</Tags>
   <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>

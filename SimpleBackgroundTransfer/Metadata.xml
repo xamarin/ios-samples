@@ -5,4 +5,5 @@
   <Level>Beginning</Level>
   <Tags>Backgrounding</Tags>
   <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>

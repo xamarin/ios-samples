@@ -6,4 +6,5 @@
 	<Tags>Core Data, Multithreading</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>

@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>User Interface</Tags>
     <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
 </SampleMetadata>
