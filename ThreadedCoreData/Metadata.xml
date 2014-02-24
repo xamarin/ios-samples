@@ -3,7 +3,7 @@
 	<ID>2aea5a8a-dcb1-4b9b-9edf-3b51bf2d7433</ID>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>Core Data, Multithreading</Tags>
+	<Tags>Data, Backgrounding</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
