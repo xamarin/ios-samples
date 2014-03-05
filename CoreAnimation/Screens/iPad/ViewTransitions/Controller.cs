@@ -28,11 +28,8 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 
 			transitionViewController.SetToolbarVisibility (InterfaceOrientation);
 			transitionViewController.TransitionClicked += (s, e) => {
-				UIView.Animate (1, 0, transitionViewController.SelectedTransition, () => {
-					transitionViewController.View.RemoveFromSuperview ();
-					View.AddSubview (backViewController.View);
-				}, null);
-				UIView.BeginAnimations ("ViewChange");
+				UIView.Transition(transitionViewController.View, backViewController.View, 0.75,
+					transitionViewController.SelectedTransition, null);
 			};
 
 			transitionViewController.ContentsClicked += () => {
@@ -42,10 +39,8 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 			};
 			
 			backViewController.BackClicked += (s, e) => {
-				UIView.Animate (.75, 0, transitionViewController.SelectedTransition, () => {
-					backViewController.View.RemoveFromSuperview ();
-					View.AddSubview (transitionViewController.View);
-				}, null);
+				UIView.Transition(backViewController.View, transitionViewController.View, 0.75,
+					transitionViewController.SelectedTransition, null);
 			};
 		}
 
