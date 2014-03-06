@@ -23,29 +23,31 @@ namespace Protocols_Delegates_Events
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
+
+			// HINT: Select the commented example code blocks below and type Command + / to uncomment
             
-            //Exmaple 1 - Using Strongly tryped delegate
+            //Exmaple 1 - Using Strongly typed delegate
             //set the map's delegate
-            _mapDelegate = new SampleMapDelegate ();
-            map.Delegate = _mapDelegate;
+//            _mapDelegate = new SampleMapDelegate ();
+//            map.Delegate = _mapDelegate;
             
-            //Example 2 - Using weak deleegate
-            //map.WeakDelegate = this;
+            //Example 2 - Using weak delegate
+//			map.WeakDelegate = this;
             
             //Exmaple 3 - Using .NET event
-            /*map.DidSelectAnnotationView += (s,e) => {
-                
-                var sampleAnnotation = e.View.Annotation as SampleMapAnnotation;
-                
-                if (sampleAnnotation != null) {
-                    
-                    //demo accessing the coordinate of the selected annotation to zoom in on it
-                    mapView.Region = MKCoordinateRegion.FromDistance (sampleAnnotation.Coordinate, 500, 500);
-                    
-                    //demo accessing the title of the selected annotation
-                    Console.WriteLine ("{0} was tapped", sampleAnnotation.Title);
-                }     
-            };*/
+//            map.DidSelectAnnotationView += (s,e) => {
+//                
+//                var sampleAnnotation = e.View.Annotation as SampleMapAnnotation;
+//                
+//                if (sampleAnnotation != null) {
+//                    
+//                    //demo accessing the coordinate of the selected annotation to zoom in on it
+//                    map.Region = MKCoordinateRegion.FromDistance (sampleAnnotation.Coordinate, 500, 500);
+//                    
+//                    //demo accessing the title of the selected annotation
+//                    Console.WriteLine ("{0} was tapped", sampleAnnotation.Title);
+//                }     
+//            };
             
             //an arbitrary coordinate used for demonstration here
             var sampleCoordinate = new CLLocationCoordinate2D (42.3467512, -71.0969456);
@@ -55,20 +57,6 @@ namespace Protocols_Delegates_Events
   
             //create an annotation and add it to the map
             map.AddAnnotation (new SampleMapAnnotation (sampleCoordinate));
-        }
-     
-        public override void ViewDidUnload ()
-        {
-            base.ViewDidUnload ();
-         
-            // Release any retained subviews of the main view.
-            // e.g. myOutlet = null;
-        }
-     
-        public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
-        {
-            // Return true for supported orientations
-            return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
         }
         
         class SampleMapDelegate : MKMapViewDelegate
