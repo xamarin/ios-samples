@@ -204,10 +204,8 @@ namespace TicTacToe
 
 			SegmentedControl = new UISegmentedControl (new object[] { x, o }) {
 				Frame = new RectangleF (UIScreen.MainScreen.Bounds.Width / 2 - 120, 0, 240, 80),
-				AutoresizingMask =UIViewAutoresizing.FlexibleTopMargin |
-				UIViewAutoresizing.FlexibleBottomMargin |
-				UIViewAutoresizing.FlexibleLeftMargin |
-				UIViewAutoresizing.FlexibleRightMargin
+				AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin |
+					UIViewAutoresizing.FlexibleBottomMargin
 			};
 			UIEdgeInsets capInsets = new UIEdgeInsets (6f, 6f, 6f, 6f);
 			SegmentedControl.SetBackgroundImage (
