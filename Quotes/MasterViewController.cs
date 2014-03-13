@@ -19,7 +19,7 @@ namespace Quotes
 		string[] titles = new string [5];
 		NSString cellName = new NSString ("PagePreview");
 
-		[Export ("initWithNibName:")]
+		[Export ("initWithNibName:bundle:")]
 		public MasterViewController (string nibNameOrNull, NSBundle nibBundleOrNull) : base (nibNameOrNull, nibBundleOrNull)
 		{
 			titles [0] = "Faust - Erste Szene";
