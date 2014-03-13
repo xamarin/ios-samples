@@ -26,7 +26,7 @@ namespace Example_CoreAnimation.Screens.iPad.CustomizableAnimationViewer
 				// begin our animation block. the name allows us to refer to it later
 				UIView.BeginAnimations ("ImageMove");
 
-				UIView.SetAnimationDidStopSelector (new Selector ("AnimationStopped"));
+				UIView.SetAnimationDidStopSelector (new Selector ("animationStopped:numFinished:context:"));
 				UIView.SetAnimationDelegate (this); //NOTE: you need this for the selector b.s.
 				
 				// animation delay
@@ -75,7 +75,7 @@ namespace Example_CoreAnimation.Screens.iPad.CustomizableAnimationViewer
 			};
 		}
 
-		[Export]
+		[Export ("animationStopped:numFinished:context:")]
 		public void AnimationStopped (string name, NSNumber numFinished, IntPtr context)
 		{
 			Console.WriteLine ("Animation completed");
