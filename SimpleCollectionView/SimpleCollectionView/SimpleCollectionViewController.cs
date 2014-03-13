@@ -109,7 +109,7 @@ namespace SimpleCollectionView
 		
 		public override bool CanPerform (Selector action, NSObject withSender)
 		{
-			if (action == new Selector ("custom:"))
+			if (action == new Selector ("custom"))
 				return true;
 			else
 				return false;
@@ -117,7 +117,7 @@ namespace SimpleCollectionView
 
 		// System provided cut, copy and paste will be sent to PerformAction method above, but any custom menu items
 		// must have their assocatied actions implementated explicitly
-		[Export("custom:")]
+		[Export("custom")]
 		void Custom()
 		{
 			Console.WriteLine ("custom");
