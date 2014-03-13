@@ -140,7 +140,7 @@ namespace Touches_GestureRecognizers
 		}
 		
 		// Reset image to the default anchor point and transform
-		[Export("ResetImage")]
+		[Export("ResetImage:")]
 		void ResetImage (UIMenuController controller)
 		{
 			var mid = new PointF ((imageForReset.Bounds.Left + imageForReset.Bounds.Right) / 2, (imageForReset.Bounds.Top + imageForReset.Bounds.Bottom) / 2);
@@ -199,12 +199,12 @@ namespace Touches_GestureRecognizers
 		
 		UIView imageForReset;
 		// Display a menu with a single item to allow the piece's transform to be reset
-		[Export("ShowResetMenu")]
+		[Export("ShowResetMenu:")]
 		void ShowResetMenu (UILongPressGestureRecognizer gestureRecognizer)
 		{
 			if (gestureRecognizer.State == UIGestureRecognizerState.Began) {
 				var menuController = UIMenuController.SharedMenuController;
-				var resetMenuItem = new UIMenuItem ("Reset", new Selector ("ResetImage"));
+				var resetMenuItem = new UIMenuItem ("Reset", new Selector ("ResetImage:"));
 				var location = gestureRecognizer.LocationInView (gestureRecognizer.View);
 				BecomeFirstResponder ();
 				menuController.MenuItems = new [] { resetMenuItem };
