@@ -64,13 +64,13 @@ namespace RegionDefiner
 		public void setUpGesture ()
 		{
 			longPress = new UILongPressGestureRecognizer ();
-			longPress.AddTarget (this, new MonoTouch.ObjCRuntime.Selector ("HandleLongPress"));
+			longPress.AddTarget (this, new MonoTouch.ObjCRuntime.Selector ("HandleLongPress:"));
 			longPress.Delegate = new GestureDelegate ();
 			View.AddGestureRecognizer (longPress);
 			
 		}
 		
-		[MonoTouch.Foundation.Export("HandleLongPress")]
+		[MonoTouch.Foundation.Export("HandleLongPress:")]
 		public void handleLongPress (UILongPressGestureRecognizer recognizer)
 		{
 			if (recognizer.State == UIGestureRecognizerState.Began) {
