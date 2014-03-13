@@ -21,7 +21,7 @@ namespace SimpleTextInput
 		UITextInputStringTokenizer tokenizer;
 		SimpleCoreTextView textView;
 		NSDictionary markedTextStyle;
-		UITextInputDelegate inputDelegate;
+		IUITextInputDelegate inputDelegate;
 		
 		public delegate void ViewWillEditDelegate (EditableCoreTextView editableCoreTextView);
 		public event ViewWillEditDelegate ViewWillEdit;
@@ -103,7 +103,7 @@ namespace SimpleTextInput
 		
 #region UITextInput methods
 		[Export ("inputDelegate")]
-		public UITextInputDelegate InputDelegate {
+		public IUITextInputDelegate InputDelegate {
 			get {
 				return inputDelegate;
 			}
