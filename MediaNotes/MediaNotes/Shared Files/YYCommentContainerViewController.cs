@@ -77,7 +77,7 @@ namespace MediaNotes
 			contentController.View.Frame = rect;
 			commentView.Bounds = new RectangleF (0.0f, 0.0f, rect.Size.Width / 2.0f, rect.Size.Height / 4.0f);
 			View.AddSubview (contentController.View);
-			UILongPressGestureRecognizer gestureRecognizer = new UILongPressGestureRecognizer (this, new MonoTouch.ObjCRuntime.Selector ("LongPressGesture"));
+			UILongPressGestureRecognizer gestureRecognizer = new UILongPressGestureRecognizer (this, new MonoTouch.ObjCRuntime.Selector ("LongPressGesture:"));
 			View.AddGestureRecognizer (gestureRecognizer);
 
 # if USE_AUTOLAYOUT
@@ -118,7 +118,7 @@ namespace MediaNotes
 			}
 		}
 
-		[Export("LongPressGesture")]
+		[Export("LongPressGesture:")]
 		void toggleCommentViewVisibility (UIGestureRecognizer gestureRecognizer)
 		{
 			bool began = (gestureRecognizer.State == UIGestureRecognizerState.Began);
@@ -255,7 +255,7 @@ namespace MediaNotes
 
 # if ENABLE_KEYBOARD_AVOIDANCE
 
-		[Export("KeyBoardWillShow")]
+		[Export("KeyBoardWillShow:")]
 		public void KeyboardWillShow (NSNotification notification)
 		{
 			//Gather some info about the keyboard and its information
@@ -270,7 +270,7 @@ namespace MediaNotes
 			AdjustCommentViewYPosition (keyboardOverlap, animationDuration, false);
 		}
 
-		[Export("KeyBoardWillHide")]
+		[Export("KeyBoardWillHide:")]
 		public void KeyBoardWillHide (NSNotification notification)
 		{
 			//Gather some info about the keyboard and its information
