@@ -7,7 +7,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>6.1</string>
+	<string>5.1</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon@2x</string>
