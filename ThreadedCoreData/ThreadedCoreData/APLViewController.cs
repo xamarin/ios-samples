@@ -54,7 +54,7 @@ namespace ThreadedCoreData
 					PersistentStoreCoordinator = PersistentStoreCoordinator
 				};
 
-				NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("MergeChanges"),
+				NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("MergeChanges:"),
 				                                                NSManagedObjectContext.DidSaveNotification, null); 
 
 				return managedObjectContext;
@@ -124,8 +124,8 @@ namespace ThreadedCoreData
 			parseQueue = new NSOperationQueue ();
 			parseQueue.AddObserver (this, new NSString ("operationCount"), NSKeyValueObservingOptions.New, IntPtr.Zero);
 
-			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("EarthquakesError"), APLParseOperation.EarthquakesErrorNotificationName, null);
-			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("LocaleChanged"), NSLocale.CurrentLocaleDidChangeNotification, null);
+			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("EarthquakesError:"), APLParseOperation.EarthquakesErrorNotificationName, null);
+			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("LocaleChanged:"), NSLocale.CurrentLocaleDidChangeNotification, null);
 
 			var spinner = new UIActivityIndicatorView (UIActivityIndicatorViewStyle.White);
 			spinner.StartAnimating ();
@@ -167,33 +167,33 @@ namespace ThreadedCoreData
 			return cell;
 		}
 
-		[Export("EarthquakesError")]
+		[Export("EarthquakesError:")]
 		public void EarthquakesError (NSNotification notification)
 		{
 			if (notification.Name == APLParseOperation.EarthquakesErrorNotificationName)
 				HandleError ((NSError)notification.UserInfo.ValueForKey (new NSString (APLParseOperation.EarthquakesMessageErrorKey)));
 		}
 
-		[Export("MergeChanges")]
+		[Export("MergeChanges:")]
 		public void MergeChanges (NSNotification notification)
 		{
 			if (notification.Object != ManagedObjectContext) 
-				InvokeOnMainThread (new Selector ("UpdateMainContext"), notification);
+				InvokeOnMainThread (new Selector ("UpdateMainContext:"), notification);
 		}
 
-		[Export("LocaleChanged")]
+		[Export("LocaleChanged:")]
 		public void LocaleChanged (NSNotification notification)
 		{
 			TableView.ReloadData ();
 		}
 
-		[Export("UpdateMainContext")]
+		[Export("UpdateMainContext:")]
 		public void UpdateMainContext (NSNotification notification)
 		{
 			ManagedObjectContext.MergeChangesFromContextDidSaveNotification (notification);
 		}
 
-		[Export("HandleError")]
+		[Export("HandleError:")]
 		public void HandleError (NSError error)
 		{
 			string errorMessage = error.LocalizedDescription;
