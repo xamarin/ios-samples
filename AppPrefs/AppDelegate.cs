@@ -16,13 +16,9 @@ namespace AppPrefs
 	{
 		// class-level declarations
 		NSObject observer;
-		
-		[Export("window")]
-		public UIWindow Window {
-			get;
-			set;
-		}
-		
+
+		public override UIWindow Window { get; set; }
+
 		public override void FinishedLaunching (UIApplication application)
 		{
 			observer = NSNotificationCenter.DefaultCenter.AddObserver ((NSString)"NSUserDefaultsDidChangeNotification", DefaultsChanged);
