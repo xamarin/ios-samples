@@ -91,8 +91,8 @@ namespace RosyWriter
 			int program = GL.CreateProgram ();
 			
 			// Create and Compile Vertex Shader
-			int vertShader;
-			int fragShader;
+			int vertShader = 0;
+			int fragShader = 0;
 			bool success = true;
 			success = success && CompileShader (out vertShader, ShaderType.VertexShader, "Shaders/passThrough.vsh");
 			

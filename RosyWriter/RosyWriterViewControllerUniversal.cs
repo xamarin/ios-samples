@@ -206,16 +206,6 @@ namespace RosyWriter
 		#endregion
 		
 		#region UIViewController Methods		
-		
-		public override void DidRotate (UIInterfaceOrientation fromInterfaceOrientation)
-		{
-			if (fromInterfaceOrientation == UIInterfaceOrientation.Portrait || 
-			   fromInterfaceOrientation == UIInterfaceOrientation.LandscapeLeft || fromInterfaceOrientation == UIInterfaceOrientation.LandscapeRight)
-			{
-				
-			}
-		}
-		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

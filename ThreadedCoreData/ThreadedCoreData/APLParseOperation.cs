@@ -89,11 +89,11 @@ namespace ThreadedCoreData
 				                                              NSError.LocalizedDescriptionKey);
 
 				var parsingError = new NSError (new NSString (), 0, userInfo);
-				InvokeOnMainThread (new Selector ("HandleEarthquakesError"), parsingError);
+				InvokeOnMainThread (new Selector ("HandleEarthquakesError:"), parsingError);
 			}
 		}
 
-		[Export("HandleEarthquakesError")]
+		[Export("HandleEarthquakesError:")]
 		public void HandleEarthquakesError (NSError parserError)
 		{
 			var userInfo = NSDictionary.FromObjectAndKey (parserError, new NSString (EarthquakesMessageErrorKey));
