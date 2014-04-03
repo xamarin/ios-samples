@@ -1,12 +1,15 @@
 using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+
 using MonoTouch.AudioUnit;
 using MonoTouch.CoreMidi;
 using MonoTouch.AudioToolbox;
+
 using MonoTouch.Foundation;
-using System.Threading;
-using System.Collections.Generic;
 using MonoTouch.CoreFoundation;
-using System.Runtime.InteropServices;
+using MonoTouch.UIKit;
 
 namespace MidiTest
 {
@@ -18,35 +21,35 @@ namespace MidiTest
 
 		MidiClient virtualMidi;
 		MidiEndpoint virtualEndpoint;
+		UILabel label;
 
-		public AudioTest ()
+		bool CreateAUGraph ()
 		{
-
-		}
-
-		bool createAUGraph ()
-		{
-			int samplerNode, ioNode;
-
-			var cd = new AudioComponentDescription () {
-				ComponentManufacturer = AudioComponentManufacturerType.Apple
-			};
-
 			processingGraph = new AUGraph ();
 
-			cd.ComponentType = AudioComponentType.MusicDevice;
-			cd.ComponentSubType = (int)AudioTypeMusicDevice.Sampler;
+			int samplerNode, ioNode;
 
-			samplerNode = processingGraph.AddNode (cd);
+			var musicSampler = new AudioComponentDescription () {
+				ComponentManufacturer = AudioComponentManufacturerType.Apple,
+				ComponentType = AudioComponentType.MusicDevice,
+				ComponentSubType = (int)AudioTypeMusicDevice.Sampler
+			};
+			samplerNode = processingGraph.AddNode (musicSampler);
 
-			cd.ComponentType = AudioComponentType.Output;
-			cd.ComponentSubType = (int)AudioTypeOutput.Remote;
-
-			ioNode = processingGraph.AddNode (cd);
+			var remoteOutput = new AudioComponentDescription () {
+				ComponentManufacturer = AudioComponentManufacturerType.Apple,
+				ComponentType = AudioComponentType.Output,
+				ComponentSubType = (int)AudioTypeOutput.Remote
+			};
+			ioNode = processingGraph.AddNode (remoteOutput);
 
 			processingGraph.Open ();
 
-			processingGraph.ConnnectNodeInput (samplerNode, 0, ioNode, 0);
+			processingGraph.ConnnectNodeInput (
+				sourceNode: samplerNode, 
+				sourceOutputNumber: 0, 
+				destNode: ioNode, 
+				destInputNumber: 0);
 
 			samplerUnit = processingGraph.GetNodeInfo (samplerNode);
 
@@ -55,7 +58,7 @@ namespace MidiTest
 			return true;
 		}
 
-		void configureAndStartAudioProcessingGraph (AUGraph graph)
+		void ConfigureAndStartAudioProcessingGraph (AUGraph graph)
 		{
 			if (graph == null)
 				return;
@@ -69,9 +72,9 @@ namespace MidiTest
 				throw new Exception ("Unable to start audio processing graph.  Error code: " + error);
 		}
 
-		void MIDIMessageReceived (object sender, MidiPacketsEventArgs e)
+		void MidiMessageReceived (object sender, MidiPacketsEventArgs midiPacketArgs)
 		{
-			var packets = e.Packets;
+			var packets = midiPacketArgs.Packets;
 
 			for (int i = 0; i < packets.Length; i++) {
 				var packet = packets [i];
@@ -126,14 +129,17 @@ namespace MidiTest
 					default:
 						throw new NotImplementedException ();
 					}
-					Console.WriteLine ("{0}: {1}", noteType, noteNumber);
-
+						
 					samplerUnit.MusicDeviceMIDIEvent ((uint)midiStatus, (uint)note, (uint)velocity);
+
+					label.InvokeOnMainThread (delegate {
+						label.Text = String.Format ("Playing: {0}: {1}", noteType, noteNumber);
+					});
 				}
 			}
 		}
 
-		AudioUnitStatus loadFromDLSOrSoundFont (CFUrl bankUrl, int presetNumber)
+		AudioUnitStatus LoadFromDLSOrSoundFont (CFUrl bankUrl, int presetNumber)
 		{
 			var instrumentData = new SamplerInstrumentData (bankUrl, InstrumentType.SF2Preset) {
 				PresetID = (byte)presetNumber,
@@ -148,10 +154,11 @@ namespace MidiTest
 			return result;
 		}
 
-		public void MidiTest ()
+		public async void MidiTest (UILabel label)
 		{
-			createAUGraph ();
-			configureAndStartAudioProcessingGraph (processingGraph);
+			this.label = label;
+			CreateAUGraph ();
+			ConfigureAndStartAudioProcessingGraph (processingGraph);
 
 			virtualMidi = new MidiClient ("VirtualClient");
 			virtualMidi.IOError += (object sender, IOErrorEventArgs e) => {
@@ -167,7 +174,7 @@ namespace MidiTest
 
 			if (error != MidiError.Ok)
 				throw new Exception ("Error creating virtual destination: " + error);
-			virtualEndpoint.MessageReceived += MIDIMessageReceived;
+			virtualEndpoint.MessageReceived += MidiMessageReceived;
 
 			var sequence = new MusicSequence ();
 
@@ -180,9 +187,9 @@ namespace MidiTest
 
 			sequence.SetMidiEndpoint (virtualEndpoint);
 
-			var presetUrl = CFUrl.FromFile (NSBundle.MainBundle.PathForResource ("Gorts_Filters", "sf2"));
+			var presetUrl = CFUrl.FromFile (NSBundle.MainBundle.PathForResource ("gorts_filters", "sf2"));
 
-			loadFromDLSOrSoundFont (presetUrl, 10);
+			LoadFromDLSOrSoundFont (presetUrl, 10);
 
 			player.MusicSequence = sequence;
 			player.Preroll ();
@@ -193,7 +200,7 @@ namespace MidiTest
 			var length = track.TrackLength;
 
 			while (true) {
-				Thread.Sleep (TimeSpan.FromSeconds (3));
+				await Task.Delay (TimeSpan.FromSeconds (3));
 				double now = player.Time;
 				if (now > length)
 					break;
@@ -202,6 +209,7 @@ namespace MidiTest
 			player.Stop ();
 			sequence.Dispose ();
 			player.Dispose ();
+			label.Text = "Done";
 		}
 	}
 }
