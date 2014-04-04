@@ -19,8 +19,10 @@ Global
 		{9FCCAAC1-E823-49FC-947C-255A2F37C0C2}.AppStore|iPhone.Build.0 = AppStore|iPhone
 		{9FCCAAC1-E823-49FC-947C-255A2F37C0C2}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{9FCCAAC1-E823-49FC-947C-255A2F37C0C2}.Debug|iPhone.Build.0 = Debug|iPhone
+		{9FCCAAC1-E823-49FC-947C-255A2F37C0C2}.Debug|iPhone.Deploy.0 = Debug|iPhone
 		{9FCCAAC1-E823-49FC-947C-255A2F37C0C2}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{9FCCAAC1-E823-49FC-947C-255A2F37C0C2}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{9FCCAAC1-E823-49FC-947C-255A2F37C0C2}.Debug|iPhoneSimulator.Deploy.0 = Debug|iPhoneSimulator
 		{9FCCAAC1-E823-49FC-947C-255A2F37C0C2}.Release|iPhone.ActiveCfg = Release|iPhone
 		{9FCCAAC1-E823-49FC-947C-255A2F37C0C2}.Release|iPhone.Build.0 = Release|iPhone
 		{9FCCAAC1-E823-49FC-947C-255A2F37C0C2}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
