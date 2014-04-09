@@ -20,8 +20,8 @@
 	</array>
 	<key>UIDeviceFamily</key>
 	<array>
-		<string>1</string>
-		<string>2</string>
+		<integer>1</integer>
+		<integer>2</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

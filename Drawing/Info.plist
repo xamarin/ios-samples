@@ -23,7 +23,7 @@
 	<string>4.3</string>
 	<key>UIDeviceFamily</key>
 	<array>
-		<string>2</string>
+		<integer>2</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
