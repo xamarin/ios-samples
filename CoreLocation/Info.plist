@@ -26,7 +26,6 @@
 	<string>5.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
-		<string>1</string>
 		<integer>1</integer>
 		<integer>2</integer>
 	</array>
