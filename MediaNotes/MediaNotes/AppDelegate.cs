@@ -106,11 +106,14 @@ namespace MediaNotes
 		{
 			currentAsset = photoAssets [index];
 			ALAssetRepresentation rep = currentAsset.RepresentationForUti ("public.jpeg");
+			// image might not be available as a JPEG
+			if (rep == null)
+				return;
 			CGImage imageRef = rep.GetFullScreenImage ();
-			if (imageRef != null) {
-				currentPhotoImage = UIImage.FromImage (imageRef);
-				currentPhotoIndex = index;
-			}
+			if (imageRef == null)
+				return;
+			currentPhotoImage = UIImage.FromImage (imageRef);
+			currentPhotoIndex = index;
 		}
 		  
 		public class MyDatasource : PNDataSourceProtocol
