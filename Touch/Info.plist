@@ -19,7 +19,7 @@
 	<string>3.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
-		<string>1</string>
+		<integer>1</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

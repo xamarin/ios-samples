@@ -4,22 +4,22 @@
 <dict>
 	<key>CFBundleDisplayName</key>
 	<string>Table Parts</string>
-	   <key>CFBundleIconFiles</key>
-    <array>
-        <string>Resources/icon-57.png</string>
-        <string>Resources/icon-114.png</string>
-        <string>Resources/icon-72.png</string>
-        <string>Resources/icon-144.png</string>
-        <string>Resources/icon-29.png</string>
-        <string>Resources/icon-58.png</string>
-        <string>Resources/icon-50.png</string>
-        <string>Resources/icon-100.png</string>
-    </array>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Resources/icon-57.png</string>
+		<string>Resources/icon-114.png</string>
+		<string>Resources/icon-72.png</string>
+		<string>Resources/icon-144.png</string>
+		<string>Resources/icon-29.png</string>
+		<string>Resources/icon-58.png</string>
+		<string>Resources/icon-50.png</string>
+		<string>Resources/icon-100.png</string>
+	</array>
 	<key>MinimumOSVersion</key>
 	<string>4.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
-		<string>1</string>
+		<integer>1</integer>
 	</array>
 </dict>
 </plist>
