@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultichannelMixer", "MultichannelMixer\MultichannelMixer.csproj", "{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}.Debug|iPhone.Build.0 = Debug|iPhone
+		{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}.Release|iPhone.ActiveCfg = Release|iPhone
+		{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}.Release|iPhone.Build.0 = Release|iPhone
+		{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{26D9FF14-32BD-48F5-BDE1-10839A3DEFB8}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MultichannelMixer\MultichannelMixer.csproj
+	EndGlobalSection
+EndGlobal
