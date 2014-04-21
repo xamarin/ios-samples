@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4504" systemVersion="12E55" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3734.1"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="APLViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HW1-23-v0T"/>
+                        <viewControllerLayoutGuide type="bottom" id="id1-19-7ln"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4ci-rG-4W9" userLabel="Player View" customClass="APLPlayerView">
+                                <rect key="frame" x="0.0" y="-8" width="768" height="548"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="w3O-nU-IbS">
+                                        <rect key="frame" x="0.0" y="504" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <items>
+                                            <barButtonItem style="plain" systemItem="play" id="tdC-tQ-N0S"/>
+                                            <barButtonItem style="plain" id="7XK-Re-dF5">
+                                                <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="ycx-pg-dKp">
+                                                    <rect key="frame" x="42" y="5" width="669" height="34"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </slider>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="--:--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0D-LA-ZKr">
+                                        <rect key="frame" x="709" y="515" width="52" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="52" id="b1b-J2-VeK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="r0D-LA-ZKr" secondAttribute="bottom" constant="12" id="4t5-3H-dL3"/>
+                                    <constraint firstItem="w3O-nU-IbS" firstAttribute="bottom" secondItem="4ci-rG-4W9" secondAttribute="bottom" id="G0b-JR-qIn"/>
+                                    <constraint firstAttribute="trailing" secondItem="r0D-LA-ZKr" secondAttribute="trailing" constant="7" id="GS6-0y-wXx"/>
+                                    <constraint firstItem="w3O-nU-IbS" firstAttribute="leading" secondItem="4ci-rG-4W9" secondAttribute="leading" id="QNh-26-HyN"/>
+                                    <constraint firstItem="w3O-nU-IbS" firstAttribute="trailing" secondItem="4ci-rG-4W9" secondAttribute="trailing" id="d9M-lL-hdG"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Di6-xO-c3b" userLabel="Composition Debug View" customClass="APLCompositionDebugView">
+                                <rect key="frame" x="0.0" y="548" width="768" height="476"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Di6-xO-c3b" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AB9-gS-IaK"/>
+                            <constraint firstItem="4ci-rG-4W9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="E7N-J3-DP2"/>
+                            <constraint firstItem="Di6-xO-c3b" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="KSP-BX-vCP"/>
+                            <constraint firstItem="Di6-xO-c3b" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="Oae-GG-1XK"/>
+                            <constraint firstItem="4ci-rG-4W9" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="PCa-Gi-1Hp"/>
+                            <constraint firstItem="Di6-xO-c3b" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="548" id="QXd-Wi-rcX"/>
+                            <constraint firstItem="4ci-rG-4W9" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="lYC-U3-EBf"/>
+                            <constraint firstAttribute="bottom" secondItem="4ci-rG-4W9" secondAttribute="bottom" constant="476" id="mv9-ps-xbX"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="compositionDebugView" destination="Di6-xO-c3b" id="vgD-SW-Ag5"/>
+                        <outlet property="currentTimeLabel" destination="r0D-LA-ZKr" id="3lU-ks-HEu"/>
+                        <outlet property="playPauseButton" destination="tdC-tQ-N0S" id="ZCG-3D-MeZ"/>
+                        <outlet property="playerView" destination="4ci-rG-4W9" id="aOS-Wa-Oxo"/>
+                        <outlet property="scrubber" destination="ycx-pg-dKp" id="CQt-AA-nvJ"/>
+                        <outlet property="toolbar" destination="w3O-nU-IbS" id="krk-fr-Ixe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVCompositionDebugVieweriOS", "..\AVCompositionDebugVieweriOS\AVCompositionDebugVieweriOS\AVCompositionDebugVieweriOS.csproj", "{E3DC6813-EE7D-4054-B5A7-082685FDE864}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Debug|iPhone.Build.0 = Debug|iPhone
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Debug|x86.ActiveCfg = Debug|iPhoneSimulator
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Debug|x86.Build.0 = Debug|iPhoneSimulator
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Release|iPhone.ActiveCfg = Release|iPhone
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Release|iPhone.Build.0 = Release|iPhone
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Release|x86.ActiveCfg = Debug|iPhoneSimulator
+		{E3DC6813-EE7D-4054-B5A7-082685FDE864}.Release|x86.Build.0 = Debug|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ..\AVCompositionDebugVieweriOS\AVCompositionDebugVieweriOS\AVCompositionDebugVieweriOS.csproj
+	EndGlobalSection
+EndGlobal
