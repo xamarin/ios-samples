@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManualStoryboard", "ManualStoryboard\ManualStoryboard.csproj", "{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}.Debug|iPhone.Build.0 = Debug|iPhone
+		{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}.Release|iPhone.ActiveCfg = Release|iPhone
+		{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}.Release|iPhone.Build.0 = Release|iPhone
+		{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E3834E0F-1908-4AEF-88F7-8FB8CE3FEDF4}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ManualStoryboard\ManualStoryboard.csproj
+	EndGlobalSection
+EndGlobal
