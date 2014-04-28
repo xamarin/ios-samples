@@ -1,7 +1,7 @@
 //
 // How to capture video frames from the camera as images using AVFoundation sample
 //
-// Based on Apple's echnical Q&A QA1702 sample
+// Based on Apple's technical Q&A QA1702 sample
 //
 //
 using System;
@@ -39,6 +39,7 @@ namespace avcaptureframes
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			ImageView = new UIImageView (new RectangleF (20, 20, 280, 280));
+			ImageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 
 			vc = new UIViewController ();
 			vc.View = ImageView;
@@ -117,6 +118,8 @@ namespace avcaptureframes
 					// Do something with the image, we just stuff it in our main view.
 					AppDelegate.ImageView.BeginInvokeOnMainThread (delegate {
 						AppDelegate.ImageView.Image = image;
+						AppDelegate.ImageView.Transform = CGAffineTransform.MakeRotation((float)Math.PI/2);
+
 					});
 			
 					//
