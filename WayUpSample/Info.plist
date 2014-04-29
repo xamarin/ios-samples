@@ -6,16 +6,24 @@
 	<string>3.0</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
-	   <key>CFBundleIconFiles</key>
-    <array>
-        <string>Resources/icon-57.png</string>
-        <string>Resources/icon-114.png</string>
-        <string>Resources/icon-72.png</string>
-        <string>Resources/icon-144.png</string>
-        <string>Resources/icon-29.png</string>
-        <string>Resources/icon-58.png</string>
-        <string>Resources/icon-50.png</string>
-        <string>Resources/icon-100.png</string>
-    </array>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Resources/icon-57.png</string>
+		<string>Resources/icon-114.png</string>
+		<string>Resources/icon-72.png</string>
+		<string>Resources/icon-144.png</string>
+		<string>Resources/icon-29.png</string>
+		<string>Resources/icon-58.png</string>
+		<string>Resources/icon-50.png</string>
+		<string>Resources/icon-100.png</string>
+	</array>
+	<key>CFBundleDisplayName</key>
+	<string>WayUp</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.WayUp</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
 </dict>
 </plist>

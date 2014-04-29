@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>Hello, iPad!</string>
+	<string>Hello_iPad</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Resources/icon-57.png</string>
@@ -30,5 +30,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.Hello_iPad</string>
+	<key>MinimumOSVersion</key>
+	<string>4.0</string>
 </dict>
 </plist>
