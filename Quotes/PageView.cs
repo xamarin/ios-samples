@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using MonoTouch.CoreGraphics;
@@ -64,7 +63,6 @@ namespace Quotes
 				return true;
 			}
 		}
-
 		/*
 		 * Render the page here: we assume we are already in a normalized coordinate system which maps 
 		 * 	our standard aspect ratio (3:4) to (1:1)
@@ -77,44 +75,46 @@ namespace Quotes
 			var pageRect = new RectangleF (0, 0, size.Width, size.Height);
 			var paragraphBounds = new RectangleF [page.Paragraphs.Count];
 
-			// fill background
-			UIGraphics.GetCurrentContext ().SetFillColor (UIColor.FromHSBA (0.11f, 0.2f, 1, 1).CGColor);
-			UIGraphics.GetCurrentContext ().FillRect (pageRect);
+			using (var ctxt = UIGraphics.GetCurrentContext ()) {
+				// fill background
+				ctxt.SetFillColor (UIColor.FromHSBA (0.11f, 0.2f, 1, 1).CGColor);
+				ctxt.FillRect (pageRect);
 
-			pageRect = pageRect.Inset (20, 20);
+				pageRect = pageRect.Inset (20, 20);
 
-			int i = 0;
-			foreach (var p in page.Paragraphs) {
-				var bounds = new RectangleF (pageRect.X, pageRect.Y, 0, 0);
+				int i = 0;
+				foreach (var p in page.Paragraphs) {
+					var bounds = new RectangleF (pageRect.X, pageRect.Y, 0, 0);
 
-				if (UnstyledDrawing) {
+					if (UnstyledDrawing) {
 
-					var text = new NSString (page.StringForParagraph (p));
+						var text = new NSString (page.StringForParagraph (p));
 	
-					var font = UIFont.FromName ("HoeflerText-Regular", 24);
+						var font = UIFont.FromName ("HoeflerText-Regular", 24);
 
-					// draw text with the old legacy path, setting the font color to black.
-					UIGraphics.GetCurrentContext ().SetFillColor (UIColor.Black.CGColor);
-					bounds.Size = text.DrawString (pageRect, font);
+						// draw text with the old legacy path, setting the font color to black.
+						ctxt.SetFillColor (UIColor.Black.CGColor);
+						bounds.Size = text.DrawString (pageRect, font);
 
-				} else {
+					} else {
 
-					// TODO: draw attributed text with new string drawing
-					var text = page.AttributedStringForParagraph (p);
-					var textContext = new NSStringDrawingContext ();
+						// TODO: draw attributed text with new string drawing
+						var text = page.AttributedStringForParagraph (p);
+						var textContext = new NSStringDrawingContext ();
 
-					text.DrawString (pageRect, NSStringDrawingOptions.UsesLineFragmentOrigin, textContext);
+						text.DrawString (pageRect, NSStringDrawingOptions.UsesLineFragmentOrigin, textContext);
 
-					bounds = textContext.TotalBounds;
-					bounds.Offset (pageRect.X, pageRect.Y);
+						bounds = textContext.TotalBounds;
+						bounds.Offset (pageRect.X, pageRect.Y);
+					}
+
+					paragraphBounds [i++] = bounds;
+
+					pageRect.Y += bounds.Height;
 				}
 
-				paragraphBounds [i++] = bounds;
-
-				pageRect.Y += bounds.Height;
+				return paragraphBounds;
 			}
-
-			return paragraphBounds;
 		}
 
 		public void SelectParagraphAtPosition (PointF position, bool shouldShowMenu)
@@ -137,7 +137,7 @@ namespace Quotes
 				theMenu.SetTargetRect (bounds, this);
 				theMenu.Update ();
 				theMenu.SetMenuVisible (true, true);
-			} else 
+			} else
 				UIMenuController.SharedMenuController.SetMenuVisible (false, true);
 
 			UpdatePage ();

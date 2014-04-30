@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 using MonoTouch.CoreGraphics;
@@ -19,12 +18,15 @@ namespace MotionGraphs
 	// redrawing the entire graph every frame.
 	//
 	// Functions used to draw all content
-	[Register("GraphView")]
+	[Register ("GraphView")]
 	public class GraphView : UIView
 	{
 		PointF kSegmentInitialPosition = new PointF (14.0f, 56.0f);
+
 		List<GraphViewSegment> segments { get; set; }
+
 		GraphTextView  text { get; set; }
+
 		GraphViewSegment current { get; set; }
 
 		public void CommonInit ()
@@ -56,7 +58,7 @@ namespace MotionGraphs
 		{
 			CommonInit ();
 		}
-		
+
 		public GraphView (NSCoder coder) : base (coder)
 		{
 			CommonInit ();
@@ -119,7 +121,7 @@ namespace MotionGraphs
 				// determine the next current segment
 				RecycleSegment ();
 				// And to keep the graph looking continuous, we add the value to the new segment as well.
-				current.AddX(x, y, z);
+				current.AddX (x, y, z);
 			}
 			// After adding a new data point, we need to advance the x-position of all the segment layers by 1 to
 			// create the illusion that the graph is advancing.
@@ -134,7 +136,6 @@ namespace MotionGraphs
 		// visible to the user. This value could be tweaked a little bit with varying results, but the X coordinate
 		// should never be larger than 16 (the center of the text view) or the zero values in the segment's history
 		// will be exposed to the user.
-
 		GraphViewSegment AddSegment ()
 		{
 			// Create a new segment and add it to the segments array.
@@ -142,7 +143,7 @@ namespace MotionGraphs
 			segments.Insert (0, segment);
 			//Ensure that newly added segment layers are placed after the text view's layer so that the text view
 			// always renders above the segment layer.
-			Layer.InsertSublayerBelow(segment.Layer,text.Layer);
+			Layer.InsertSublayerBelow (segment.Layer, text.Layer);
 			// Console.WriteLine (this.Layer.InsertSublayerBelow (segment.layer, text.Layer));
 			// Position it properly 
 			//segment.layer.Position = kSegmentInitialPosition;
@@ -168,35 +169,33 @@ namespace MotionGraphs
 				current = lastObj;
 			}
 		}
-
 		// The graph view itself exists only to draw the background and gridlines. All other content is drawn either into
 		// the GraphTextView or into a layer managed by a GraphViewSegment.
-	  	public override void Draw (RectangleF rect)
+		public override void Draw (RectangleF rect)
 		{
-			CGContext context = UIGraphics.GetCurrentContext ();
-			//Fill in the background			
-			context.SetFillColor (GraphBackgroundColour ());
-			context.FillRect (Bounds);
+			using (var context = UIGraphics.GetCurrentContext ()) {
+				//Fill in the background			
+				context.SetFillColor (GraphBackgroundColour ());
+				context.FillRect (Bounds);
 
-			float width = Bounds.Size.Width;
-			context.TranslateCTM (0.0f, 56.0f);
+				float width = Bounds.Size.Width;
+				context.TranslateCTM (0.0f, 56.0f);
 
-			//Draw the grid lines
-			DrawGridLines (context, 0.0F, width);
+				//Draw the grid lines
+				DrawGridLines (context, 0.0F, width);
 
-			UIColor.White.SetColor ();
+				UIColor.White.SetColor ();
+			}
 		}
-
 		// We use a seperate view to draw the text for the
 		// graph so that we can layer the segment layers below
 		// it which gives the illusion that the numbers are
 		// drawn over the graph, and hides the fact that the
 		// graph drawing for each segment is incomplete until
 		// the segment is filled.
-	
 		class GraphTextView : UIView
 		{
-			public GraphTextView (RectangleF rect): base (rect)
+			public GraphTextView (RectangleF rect) : base (rect)
 			{
 			}
 
@@ -206,35 +205,35 @@ namespace MotionGraphs
 			{
 				DrawString (label, new RectangleF (2, pos, 24, 16), systemFont, UILineBreakMode.WordWrap, UITextAlignment.Right);
 			}
-		
+
 			public override void Draw (RectangleF rect)
 			{
-				CGContext context = UIGraphics.GetCurrentContext ();
+				using (var context = UIGraphics.GetCurrentContext ()) {
 			
-				//Fill in the background			
-				context.SetFillColor (GraphBackgroundColour ());
-				context.FillRect (Bounds);
-				context.TranslateCTM (0.0f, 56.0f);		
+					//Fill in the background			
+					context.SetFillColor (GraphBackgroundColour ());
+					context.FillRect (Bounds);
+					context.TranslateCTM (0.0f, 56.0f);		
 			
-				//Draw the gridlines			
-				DrawGridLines (context, 26.0f, 6.0f);
+					//Draw the gridlines			
+					DrawGridLines (context, 26.0f, 6.0f);
 			
-				//Draw the text			
-				UIColor.White.SetColor ();			
-				DrawLabel ("+3.0",  -56.0f);
-				DrawLabel ("+2.0",  -40.0f);
-				DrawLabel ("+1.0",  -24.0f);
-				DrawLabel ("0.0",    -8.0f);                      
-				DrawLabel ("-1.0",    8.0f);
-				DrawLabel ("-2.0",   24.0f);
-				DrawLabel ("-3.0",   40.0f);
+					//Draw the text			
+					UIColor.White.SetColor ();			
+					DrawLabel ("+3.0", -56.0f);
+					DrawLabel ("+2.0", -40.0f);
+					DrawLabel ("+1.0", -24.0f);
+					DrawLabel ("0.0", -8.0f);                      
+					DrawLabel ("-1.0", 8.0f);
+					DrawLabel ("-2.0", 24.0f);
+					DrawLabel ("-3.0", 40.0f);
+				}
 			}
 		}
-
 		// The GraphViewSegment manages up to 32 values and a CALayer that it updates with
 		// the segment of the graph that those values represent.
-		
-		class GraphViewSegment {
+		class GraphViewSegment
+		{
 			public CALayer Layer { get; set; }
 			// Need 33 values to fill 32 pixel width.
 			double[] xhistory = new double [33];
@@ -250,13 +249,13 @@ namespace MotionGraphs
 				Layer.Opaque = true;
 				index = 33;
 			}
-			
+
 			void Clear (double[] array)
 			{
 				for (int i = 0; i < array.Length; i++)
 					array [i] = 0;
 			}
-			
+
 			public void Reset ()
 			{
 				Clear (xhistory);
@@ -270,13 +269,13 @@ namespace MotionGraphs
 			{
 				return index == 0;
 			}
-			
+
 			public bool IsVisibleInRect (RectangleF r)
 			{
 				// Returns true if the layer for this segment is visible in the given rect.
-				return r.IntersectsWith(Layer.Frame);
+				return r.IntersectsWith (Layer.Frame);
 			}
-			
+
 			public bool AddX (double x, double y, double z)
 			{
 				// If this segment is not full, then we add a new value to the history.
@@ -286,16 +285,17 @@ namespace MotionGraphs
 					xhistory [index] = x;
 					yhistory [index] = y;
 					zhistory [index] = z;
-				    // And inform Core Animation to redraw the layer.
+					// And inform Core Animation to redraw the layer.
 					Layer.SetNeedsDisplay ();
 				}
 				// And return if we are now full or not (really just avoids needing to call isFull after adding a value).
 				return index == 0;				
 			}
-						
-			class LayerDelegate : CALayerDelegate {
 
+			class LayerDelegate : CALayerDelegate
+			{
 				GraphViewSegment _parent;
+
 				public LayerDelegate (GraphViewSegment parent)
 				{
 					_parent = parent; 
@@ -316,11 +316,11 @@ namespace MotionGraphs
 					int i;
 										
 					//X
-					for (i = 0; i<32; ++i) {	   
+					for (i = 0; i < 32; ++i) {	   
 						lines [i * 2].X = i;
-						lines [i * 2].Y = ((float)(_parent.xhistory [i] * (-1)) * 16.0f) ;
+						lines [i * 2].Y = ((float)(_parent.xhistory [i] * (-1)) * 16.0f);
 						lines [(i * 2 + 1)].X = i + 1;
-						lines [(i * 2 + 1)].Y = ((float)(_parent.xhistory [i + 1]* (-1)) * 16.0f) ;
+						lines [(i * 2 + 1)].Y = ((float)(_parent.xhistory [i + 1] * (-1)) * 16.0f);
 					}
 
 					context.SetStrokeColor (GraphXColor ());
@@ -328,8 +328,8 @@ namespace MotionGraphs
 				
 					//Y
 					for (i = 0; i < 32; ++i) {
-						lines [i * 2].Y = ((float)(_parent.yhistory [i]* (-1) ) * 16.0f) ;
-						lines [(i * 2 + 1)].Y = ((float)(_parent.yhistory [i + 1]* (-1)) * 16.0f) ;
+						lines [i * 2].Y = ((float)(_parent.yhistory [i] * (-1)) * 16.0f);
+						lines [(i * 2 + 1)].Y = ((float)(_parent.yhistory [i + 1] * (-1)) * 16.0f);
 					}
 					
 					context.SetStrokeColor (GraphYColor ());
@@ -337,8 +337,8 @@ namespace MotionGraphs
 
 					//Z
 					for (i = 0; i < 32; ++i) {
-						lines [i * 2].Y = ((float)(_parent.zhistory [i]* (-1)) * 16.0f) ;
-						lines [(i * 2 + 1)].Y = ((float)(_parent.zhistory [i + 1]* (-1)) * 16.0f);
+						lines [i * 2].Y = ((float)(_parent.zhistory [i] * (-1)) * 16.0f);
+						lines [(i * 2 + 1)].Y = ((float)(_parent.zhistory [i + 1] * (-1)) * 16.0f);
 					}
 					
 					context.SetStrokeColor (GraphZColor ());

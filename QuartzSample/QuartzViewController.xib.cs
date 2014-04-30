@@ -14,7 +14,9 @@ namespace QuartzSample
 					       
 		public override void Draw (RectangleF rect)
 		{
-			DrawInContext (UIGraphics.GetCurrentContext ());
+			using (var ctxt = UIGraphics.GetCurrentContext ()) {
+				DrawInContext ( ctxt );
+			}
 		}
 	}
 
