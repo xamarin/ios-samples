@@ -1,9 +1,9 @@
 //
 // The PickerViewController
 //
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 using System;
 
 namespace MonoCatalog {
@@ -39,7 +39,7 @@ namespace MonoCatalog {
 			buttonBarSegmentedControl.TintColor = UIColor.DarkGray;
 			pickerStyleSegmentedControl.TintColor = UIColor.DarkGray;
 	
-			label = new UILabel (new RectangleF (20f, myPickerView.Frame.Y - 30f, View.Bounds.Width - 40f, 30f)){
+			label = new UILabel (new CGRect (20f, myPickerView.Frame.Y - 30f, View.Bounds.Width - 40f, 30f)){
 				Font = UIFont.SystemFontOfSize (14),
 				TextAlignment = UITextAlignment.Center,
 				TextColor = labelTextColor,
@@ -65,10 +65,10 @@ namespace MonoCatalog {
 			UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.Default;
 		}
 		
-		RectangleF PickerFrameWithSize (SizeF size)
+		CGRect PickerFrameWithSize (CGSize size)
 		{
 			var screenRect = UIScreen.MainScreen.ApplicationFrame;
-			return new RectangleF (0f, screenRect.Height - 84f - size.Height, size.Width, size.Height);
+			return new CGRect (0f, screenRect.Height - 84f - size.Height, size.Width, size.Height);
 		}
 	
 		UIView currentPicker;
@@ -140,14 +140,14 @@ namespace MonoCatalog {
 		#region Custom picker
 		public void CreateCustomPicker ()
 		{
-			customPickerView = new UIPickerView (RectangleF.Empty) {
+			customPickerView = new UIPickerView (CGRect.Empty) {
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth,
 				Model = new CustomPickerModel (),
 				ShowSelectionIndicator = true,
 				BackgroundColor = backgroundColor,
 				Hidden = true
 			};
-			customPickerView.Frame = PickerFrameWithSize (customPickerView.SizeThatFits (SizeF.Empty));
+			customPickerView.Frame = PickerFrameWithSize (customPickerView.SizeThatFits (CGSize.Empty));
 			View.AddSubview (customPickerView);
 		}
 	
@@ -156,13 +156,13 @@ namespace MonoCatalog {
 		#region Date picker
 		public void CreateDatePicker ()
 		{
-			datePickerView = new UIDatePicker (RectangleF.Empty) {
+			datePickerView = new UIDatePicker (CGRect.Empty) {
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth,
 				Mode = UIDatePickerMode.Date,
 				BackgroundColor = backgroundColor,
 				Hidden = true
 			};
-			datePickerView.Frame = PickerFrameWithSize (datePickerView.SizeThatFits (SizeF.Empty));
+			datePickerView.Frame = PickerFrameWithSize (datePickerView.SizeThatFits (CGSize.Empty));
 			View.AddSubview (datePickerView);
 		}
 		#endregion
@@ -175,7 +175,7 @@ namespace MonoCatalog {
 			// Empty is used, since UIPickerViews have auto-sizing,
 			// all that is required is the origin
 			//
-			myPickerView = new UIPickerView (RectangleF.Empty){
+			myPickerView = new UIPickerView (CGRect.Empty){
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth,
 				ShowSelectionIndicator = true,
 				Model = new PeopleModel (this),
@@ -183,7 +183,7 @@ namespace MonoCatalog {
 				Hidden = true
 			};
 			// Now update it:
-			myPickerView.Frame = PickerFrameWithSize (myPickerView.SizeThatFits (SizeF.Empty));
+			myPickerView.Frame = PickerFrameWithSize (myPickerView.SizeThatFits (CGSize.Empty));
 			View.AddSubview (myPickerView);
 		}
 	

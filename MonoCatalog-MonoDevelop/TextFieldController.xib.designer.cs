@@ -11,17 +11,17 @@
 namespace MonoCatalog {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("TextFieldController")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("TextFieldController")]
 	public partial class TextFieldController {
 		
-		private MonoTouch.UIKit.UITableView __mt_view;
+		private UIKit.UITableView __mt_view;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UITableView view {
+		[Foundation.Connect("view")]
+		private UIKit.UITableView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UITableView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UITableView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {

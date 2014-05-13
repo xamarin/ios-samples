@@ -11,24 +11,24 @@
 namespace MonoCatalog {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("ImagesViewController")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("ImagesViewController")]
 	public partial class ImagesViewController {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIImageView __mt_imageView;
+		private UIKit.UIImageView __mt_imageView;
 		
-		private MonoTouch.UIKit.UISlider __mt_slider;
+		private UIKit.UISlider __mt_slider;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Export("sliderAction:")]
-		partial void sliderAction (MonoTouch.UIKit.UISlider sender);
+		[Foundation.Export("sliderAction:")]
+		partial void sliderAction (UIKit.UISlider sender);
 
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -37,10 +37,10 @@ namespace MonoCatalog {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("imageView")]
-		private MonoTouch.UIKit.UIImageView imageView {
+		[Foundation.Connect("imageView")]
+		private UIKit.UIImageView imageView {
 			get {
-				this.__mt_imageView = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("imageView")));
+				this.__mt_imageView = ((UIKit.UIImageView)(this.GetNativeField("imageView")));
 				return this.__mt_imageView;
 			}
 			set {
@@ -49,10 +49,10 @@ namespace MonoCatalog {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("slider")]
-		private MonoTouch.UIKit.UISlider slider {
+		[Foundation.Connect("slider")]
+		private UIKit.UISlider slider {
 			get {
-				this.__mt_slider = ((MonoTouch.UIKit.UISlider)(this.GetNativeField("slider")));
+				this.__mt_slider = ((UIKit.UISlider)(this.GetNativeField("slider")));
 				return this.__mt_slider;
 			}
 			set {

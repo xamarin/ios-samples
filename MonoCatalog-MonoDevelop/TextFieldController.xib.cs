@@ -2,9 +2,9 @@
 // Textfields sample ported to C#
 //
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace MonoCatalog {
 	
@@ -25,17 +25,17 @@ namespace MonoCatalog {
 				this.tvc = tvc;
 			}
 	
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return tvc.samples.Length;
 			}
 	
-			public override string TitleForHeader (UITableView tableView, int section)
+			public override string TitleForHeader (UITableView tableView, nint section)
 			{
 				return tvc.samples [section].Title;
 			}
 	
-			public override int RowsInSection (UITableView tableView, int section)
+			public override nint RowsInSection (UITableView tableView, nint section)
 			{
 				return 2;
 			}
@@ -43,7 +43,7 @@ namespace MonoCatalog {
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				UITableViewCell cell = null;
-				int row = indexPath.Row;
+				nint row = indexPath.Row;
 	
 				if (row == 0){
 					cell = tableView.DequeueReusableCell (kDisplayCell_ID);
@@ -81,7 +81,7 @@ namespace MonoCatalog {
 	
 		class TableDelegate : UITableViewDelegate {
 			// Override to provide the sizing of the rows in our table
-			public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+			public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 			{
 				return indexPath.Row == 0 ? 50f : 22f;
 			}
@@ -95,7 +95,7 @@ namespace MonoCatalog {
 		
 		UITextField TextFieldNormal ()
 		{
-			return new UITextField (new RectangleF (30f, 8f, 260f, 30f)){
+			return new UITextField (new CGRect (30f, 8f, 260f, 30f)){
 				BorderStyle = UITextBorderStyle.Bezel,
 				TextColor = UIColor.Black,
 				Font = UIFont.SystemFontOfSize (17f),
@@ -113,7 +113,7 @@ namespace MonoCatalog {
 	
 		UITextField TextFieldRounded ()
 		{
-			return new UITextField (new RectangleF (30f, 8f, 260f, 30f)){
+			return new UITextField (new CGRect (30f, 8f, 260f, 30f)){
 				BorderStyle = UITextBorderStyle.RoundedRect,
 				TextColor = UIColor.Black,
 				Font = UIFont.SystemFontOfSize (17f),
@@ -131,7 +131,7 @@ namespace MonoCatalog {
 	
 		UITextField TextFieldSecure ()
 		{
-			return new UITextField (new RectangleF (30f, 8f, 260f, 30f)){
+			return new UITextField (new CGRect (30f, 8f, 260f, 30f)){
 				BorderStyle = UITextBorderStyle.Bezel,
 				TextColor = UIColor.Black,
 				Font = UIFont.SystemFontOfSize (17f),
@@ -151,7 +151,7 @@ namespace MonoCatalog {
 	
 		UITextField TextFieldLeftView ()
 		{
-			return new UITextField (new RectangleF (30f, 8f, 260f, 30f)){
+			return new UITextField (new CGRect (30f, 8f, 260f, 30f)){
 				BorderStyle = UITextBorderStyle.Bezel,
 				TextColor = UIColor.Black,
 				Font = UIFont.SystemFontOfSize (17f),

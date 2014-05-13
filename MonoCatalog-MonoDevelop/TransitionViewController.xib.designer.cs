@@ -11,23 +11,23 @@
 namespace MonoCatalog {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("TransitionViewController")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("TransitionViewController")]
 	public partial class TransitionViewController {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Export("curlAction:")]
-		partial void curlAction (MonoTouch.UIKit.UIBarButtonItem sender);
+		[Foundation.Export("curlAction:")]
+		partial void curlAction (UIKit.UIBarButtonItem sender);
 
-		[MonoTouch.Foundation.Export("flipAction:")]
-		partial void flipAction (MonoTouch.UIKit.UIBarButtonItem sender);
+		[Foundation.Export("flipAction:")]
+		partial void flipAction (UIKit.UIBarButtonItem sender);
 
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {

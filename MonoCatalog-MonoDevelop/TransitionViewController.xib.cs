@@ -1,10 +1,10 @@
 //
 // Port of the transition sample
 //
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System;
-using System.Drawing;
+using CoreGraphics;
 
 namespace MonoCatalog {
 	
@@ -24,15 +24,15 @@ namespace MonoCatalog {
 		{
 			Title = "Transition";
 	
-			containerView = new UIView (new RectangleF ((View.Bounds.Width - kImageWidth)/2.0f, kTopPlacement, kImageWidth, kImageHeight));
+			containerView = new UIView (new CGRect ((View.Bounds.Width - kImageWidth)/2.0f, kTopPlacement, kImageWidth, kImageHeight));
 			View.AddSubview (containerView);
 	
-			mainView = new UIImageView (new RectangleF (0, 0, kImageWidth, kImageHeight)){
+			mainView = new UIImageView (new CGRect (0, 0, kImageWidth, kImageHeight)){
 				Image = UIImage.FromFile ("images/scene1.jpg")
 			};					
 			containerView.AddSubview (mainView);
 	
-			flipToView = new UIImageView (new RectangleF (0, 0, kImageWidth, kImageHeight)){
+			flipToView = new UIImageView (new CGRect (0, 0, kImageWidth, kImageHeight)){
 				Image = UIImage.FromFile ("images/scene2.jpg")				
 			};
 		}

@@ -8,9 +8,9 @@ using System.Collections;
 //
 // Import the MonoTouch namespaces
 //
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace MonoCatalog {
 	
@@ -56,7 +56,7 @@ namespace MonoCatalog {
 				this.mvc = mvc;
 			}
 			
-			public override int RowsInSection (UITableView tableView, int section)
+			public override nint RowsInSection (UITableView tableView, nint section)
 			{
 				return mvc.samples.Length;
 			}

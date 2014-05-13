@@ -1,10 +1,10 @@
 //
 // Port of the toolbar sample to C#
 //
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System;
-using System.Drawing;
+using CoreGraphics;
 
 namespace MonoCatalog {
 	
@@ -52,7 +52,7 @@ namespace MonoCatalog {
 		void CreateToolbarItems ()
 		{
 			// The order is mapped one to one to the UIBarButtonItemStyle
-			var style = (UIBarButtonItemStyle) buttonItemStyleSegControl.SelectedSegment;
+						var style = UIBarButtonItemStyle.Plain;
 				
 			var systemItem = new UIBarButtonItem (currentSystemItem, Action){
 				Style = style
@@ -79,9 +79,9 @@ namespace MonoCatalog {
 				BarStyle = UIBarStyle.Default
 			};
 			toolbar.SizeToFit ();
-			float toolbarHeight = toolbar.Frame.Height;
+			nfloat toolbarHeight = toolbar.Frame.Height;
 			var mainViewBounds = View.Bounds;
-			toolbar.Frame = new RectangleF (mainViewBounds.X, (float)(mainViewBounds.Y + mainViewBounds.Height - toolbarHeight * 2 + 2),
+			toolbar.Frame = new CGRect (mainViewBounds.X, (float)(mainViewBounds.Y + mainViewBounds.Height - toolbarHeight * 2 + 2),
 							mainViewBounds.Width, toolbarHeight);
 			View.AddSubview (toolbar);
 			currentSystemItem = UIBarButtonSystemItem.Done;
@@ -158,7 +158,8 @@ namespace MonoCatalog {
 			
 			public override void Selected (UIPickerView picker, int row, int component)
 			{
-				tvc.currentSystemItem = (UIBarButtonSystemItem) picker.SelectedRowInComponent (0);
+							
+								//tvc.currentSystemItem = picker.SelectedRowInComponent (0);
 				tvc.CreateToolbarItems ();
 			}
 	

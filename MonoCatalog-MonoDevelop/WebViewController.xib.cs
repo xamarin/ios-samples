@@ -3,9 +3,9 @@
 //
 
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace MonoCatalog {
 	
@@ -55,7 +55,7 @@ namespace MonoCatalog {
 			View.AddSubview (web);
 	
 			// Delegate = new 
-			var urlField = new UITextField (new RectangleF (20f, 10f, View.Bounds.Width - (20f * 2f), 30f)){
+			var urlField = new UITextField (new CGRect (20f, 10f, View.Bounds.Width - (20f * 2f), 30f)){
 				BorderStyle = UITextBorderStyle.Bezel,
 				TextColor = UIColor.Black,
 				Placeholder = "<enter a URL>",

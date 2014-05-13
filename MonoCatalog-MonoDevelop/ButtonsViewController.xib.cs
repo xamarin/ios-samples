@@ -3,9 +3,9 @@
 //
 
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace MonoCatalog
 {
@@ -33,17 +33,17 @@ namespace MonoCatalog
 				this.bvc = bvc;
 			}
 
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return bvc.samples.Length;
 			}
 
-			public override string TitleForHeader (UITableView tableView, int section)
+			public override string TitleForHeader (UITableView tableView, nint section)
 			{
 				return bvc.samples[section].Title;
 			}
 
-			public override int RowsInSection (UITableView tableView, int section)
+			public override nint RowsInSection (UITableView tableView, nint section)
 			{
 				return 2;
 			}
@@ -93,7 +93,7 @@ namespace MonoCatalog
 			//
 			// Override to provide the sizing of the rows in our table
 			//
-			public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+			public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 			{
 				// First row is always 50 pixes, second row 38
 				return indexPath.Row == 0 ? 50f : 38f;
@@ -111,7 +111,7 @@ namespace MonoCatalog
 		//
 		// Utility function that configures the various buttons that we create
 		//
-		static UIButton ButtonWithTitle (string title, RectangleF frame, UIImage image, UIImage imagePressed, bool darkTextColor)
+		static UIButton ButtonWithTitle (string title, CGRect frame, UIImage image, UIImage imagePressed, bool darkTextColor)
 		{
 			var button = new UIButton (frame) {
 				VerticalAlignment = UIControlContentVerticalAlignment.Center,
@@ -140,7 +140,7 @@ namespace MonoCatalog
 		{
 			var background = UIImage.FromFile ("images/whiteButton.png");
 			var backgroundPressed = UIImage.FromFile ("images/blueButton.png");
-			var frame = new RectangleF (182f, 5f, 106f, 40f);
+			var frame = new CGRect (182f, 5f, 106f, 40f);
 			//button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
 			return ButtonWithTitle ("Gray", frame, background, backgroundPressed, true);
 		}
@@ -149,7 +149,7 @@ namespace MonoCatalog
 		{
 			var background = UIImage.FromFile ("images/whiteButton.png");
 			var backgroundPressed = UIImage.FromFile ("images/blueButton.png");
-			var frame = new RectangleF (182f, 5f, 106f, 40f);
+			var frame = new CGRect (182f, 5f, 106f, 40f);
 
 			var button = ButtonWithTitle ("", frame, background, backgroundPressed, true);
 			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
@@ -160,7 +160,7 @@ namespace MonoCatalog
 		UIButton RoundedButtonType ()
 		{
 			var button = UIButton.FromType (UIButtonType.RoundedRect);
-			button.Frame = new RectangleF (182f, 5f, 106f, 40f);
+			button.Frame = new CGRect (182f, 5f, 106f, 40f);
 			button.BackgroundColor = UIColor.Clear;
 			button.SetTitle ("Rounded", UIControlState.Normal);
 			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
@@ -172,7 +172,7 @@ namespace MonoCatalog
 		UIButton DetailDisclosureButton ()
 		{
 			var button = UIButton.FromType (UIButtonType.DetailDisclosure);
-			button.Frame = new RectangleF (250f, 8f, 25f, 25f);
+			button.Frame = new CGRect (250f, 8f, 25f, 25f);
 			button.BackgroundColor = UIColor.Clear;
 			button.SetTitle ("Detail Disclosure", UIControlState.Normal);
 			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
@@ -185,7 +185,7 @@ namespace MonoCatalog
 		UIButton InfoDarkButtonType ()
 		{
 			var button = UIButton.FromType (UIButtonType.InfoDark);
-			button.Frame = new RectangleF (250, 8f, 25f, 25f);
+			button.Frame = new CGRect (250, 8f, 25f, 25f);
 			button.BackgroundColor = UIColor.Clear;
 			button.SetTitle ("Detail Disclosure", UIControlState.Normal);
 			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
@@ -198,7 +198,7 @@ namespace MonoCatalog
 		UIButton InfoLightButtonType ()
 		{
 			var button = UIButton.FromType (UIButtonType.InfoLight);
-			button.Frame = new RectangleF (250, 8f, 25f, 25f);
+			button.Frame = new CGRect (250, 8f, 25f, 25f);
 			button.BackgroundColor = UIColor.Gray;
 			button.SetTitle ("Detail Disclosure", UIControlState.Normal);
 			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };
@@ -211,7 +211,7 @@ namespace MonoCatalog
 		UIButton ContactAddButtonType ()
 		{
 			var button = UIButton.FromType (UIButtonType.ContactAdd);
-			button.Frame = new RectangleF (250, 8f, 25f, 25f);
+			button.Frame = new CGRect (250, 8f, 25f, 25f);
 			button.BackgroundColor = UIColor.Clear;
 			button.SetTitle ("Detail Disclosure", UIControlState.Normal);
 			button.TouchDown += delegate { Console.WriteLine ("The button has been touched"); };

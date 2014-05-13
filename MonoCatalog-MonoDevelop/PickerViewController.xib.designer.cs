@@ -11,29 +11,29 @@
 namespace MonoCatalog {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("PickerViewController")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("PickerViewController")]
 	public partial class PickerViewController {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UISegmentedControl __mt_buttonBarSegmentedControl;
+		private UIKit.UISegmentedControl __mt_buttonBarSegmentedControl;
 		
-		private MonoTouch.UIKit.UISegmentedControl __mt_pickerStyleSegmentedControl;
+		private UIKit.UISegmentedControl __mt_pickerStyleSegmentedControl;
 		
-		private MonoTouch.UIKit.UILabel __mt_segmentLabel;
+		private UIKit.UILabel __mt_segmentLabel;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Export("togglePickerStyle:")]
-		partial void togglePickerStyle (MonoTouch.UIKit.UISegmentedControl sender);
+		[Foundation.Export("togglePickerStyle:")]
+		partial void togglePickerStyle (UIKit.UISegmentedControl sender);
 
-		[MonoTouch.Foundation.Export("togglePickers:")]
-		partial void togglePickers (MonoTouch.UIKit.UIBarButtonItem sender);
+		[Foundation.Export("togglePickers:")]
+		partial void togglePickers (UIKit.UIBarButtonItem sender);
 
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -42,10 +42,10 @@ namespace MonoCatalog {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("buttonBarSegmentedControl")]
-		private MonoTouch.UIKit.UISegmentedControl buttonBarSegmentedControl {
+		[Foundation.Connect("buttonBarSegmentedControl")]
+		private UIKit.UISegmentedControl buttonBarSegmentedControl {
 			get {
-				this.__mt_buttonBarSegmentedControl = ((MonoTouch.UIKit.UISegmentedControl)(this.GetNativeField("buttonBarSegmentedControl")));
+				this.__mt_buttonBarSegmentedControl = ((UIKit.UISegmentedControl)(this.GetNativeField("buttonBarSegmentedControl")));
 				return this.__mt_buttonBarSegmentedControl;
 			}
 			set {
@@ -54,10 +54,10 @@ namespace MonoCatalog {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("pickerStyleSegmentedControl")]
-		private MonoTouch.UIKit.UISegmentedControl pickerStyleSegmentedControl {
+		[Foundation.Connect("pickerStyleSegmentedControl")]
+		private UIKit.UISegmentedControl pickerStyleSegmentedControl {
 			get {
-				this.__mt_pickerStyleSegmentedControl = ((MonoTouch.UIKit.UISegmentedControl)(this.GetNativeField("pickerStyleSegmentedControl")));
+				this.__mt_pickerStyleSegmentedControl = ((UIKit.UISegmentedControl)(this.GetNativeField("pickerStyleSegmentedControl")));
 				return this.__mt_pickerStyleSegmentedControl;
 			}
 			set {
@@ -66,10 +66,10 @@ namespace MonoCatalog {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("segmentLabel")]
-		private MonoTouch.UIKit.UILabel segmentLabel {
+		[Foundation.Connect("segmentLabel")]
+		private UIKit.UILabel segmentLabel {
 			get {
-				this.__mt_segmentLabel = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("segmentLabel")));
+				this.__mt_segmentLabel = ((UIKit.UILabel)(this.GetNativeField("segmentLabel")));
 				return this.__mt_segmentLabel;
 			}
 			set {

@@ -1,28 +1,29 @@
 //
 // The PickerViewController
 //
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 using System.Collections.Generic;
-using System.Drawing;
+
 
 public class CustomView : UIView {
 	const float MAIN_FONT_SIZE = 18.0f;
 	const float MIN_MAIN_FONT_SIZE = 16.0f;
 
-	public CustomView (RectangleF frame) : base (new RectangleF (PointF.Empty, new SizeF (Width, Height))) {
+	public CustomView (CGRect frame) : base (new CGRect (CGPoint.Empty, new CGSize (Width, Height))) {
 		AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
 		BackgroundColor = UIColor.Clear;
 	}
 
-	public override void Draw (RectangleF rect) {
-		float yCoord = (Bounds.Size.Height - Image.Size.Height) / 2;
-		PointF point = new PointF (10.0f, yCoord);
+		public override void Draw (CGRect rect) {
+		float yCoord = (float) (Bounds.Size.Height - Image.Size.Height) / 2;
+		CGPoint point = new CGPoint (10.0f, yCoord);
 
 		Image.Draw (point);
 
-		yCoord = (Bounds.Size.Height - MAIN_FONT_SIZE) / 2;
-		point = new PointF (10.0f + Image.Size.Width + 10.0f, yCoord);
+		yCoord = (float) (Bounds.Size.Height - MAIN_FONT_SIZE) / 2;
+		point = new CGPoint (10.0f + Image.Size.Width + 10.0f, yCoord);
 
 		DrawString (Title, point, UIFont.SystemFontOfSize (MAIN_FONT_SIZE) );
 	}
@@ -39,7 +40,7 @@ public class CustomPickerModel : UIPickerViewModel {
 
 	public CustomPickerModel () : base () {
 		views = new List <CustomView> ();
-		var empty = RectangleF.Empty;
+		var empty = CGRect.Empty;
 
 		views.Add (new CustomView (empty) { Title = "Early Morning", Image = UIImage.FromFile ("images/12-6AM.png") });
 		views.Add (new CustomView (empty) { Title = "Late Morning", Image = UIImage.FromFile ("images/6-12AM.png") });

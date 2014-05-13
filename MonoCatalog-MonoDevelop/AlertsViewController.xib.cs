@@ -3,9 +3,9 @@
 //
 
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
+using UIKit;
+using Foundation;
+
 
 namespace MonoCatalog {
 	
@@ -110,17 +110,17 @@ namespace MonoCatalog {
 			static NSString kDisplayCell_ID = new NSString ("AlertCellID");
 			static NSString kSourceCell_ID = new NSString ("SourceCellID");
 			
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return samples.Length;
 			}
 	
-			public override string TitleForHeader (UITableView tableView, int section)
+			public override string TitleForHeader (UITableView tableView, nint section)
 			{
 				return samples [section].Title;
 			}
 	
-			public override int RowsInSection (UITableView tableView, int section)
+			public override nint RowsInSection (UITableView tableView, nint section)
 			{
 				return 2;
 			}
@@ -162,7 +162,7 @@ namespace MonoCatalog {
 				this.avc = avc;
 			}
 				
-			public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+			public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 			{
 				return indexPath.Row == 0 ? 50f : 22f;
 			}
