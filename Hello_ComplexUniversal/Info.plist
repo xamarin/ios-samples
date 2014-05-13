@@ -35,5 +35,9 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>4.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>Hello_ComplexUniversal</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.Hello_ComplexUniversal</string>
 </dict>
 </plist>

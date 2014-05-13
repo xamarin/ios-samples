@@ -23,5 +23,7 @@
 	<string>5.0</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.HttpClient</string>
+	<key>CFBundleDisplayName</key>
+	<string>HttpClient</string>
 </dict>
 </plist>
