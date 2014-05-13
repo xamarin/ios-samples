@@ -11,9 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace BubbleCell
 {
@@ -29,7 +29,7 @@ namespace BubbleCell
 		const float messageFontSize = 16;
 		const float maxContentHeight = 84;
 		const int entryHeight = 40;
-		float previousContentHeight;
+		nfloat previousContentHeight;
 		
 		NSObject showObserver, hideObserver;
 		
@@ -50,7 +50,7 @@ namespace BubbleCell
 			//
 			// Add the bubble chat interface
 			//
-			discussionHost = new UIView (new RectangleF (bounds.X, bounds.Y, bounds.Width, bounds.Height-entryHeight)) {
+			discussionHost = new UIView (new CGRect (bounds.X, bounds.Y, bounds.Width, bounds.Height-entryHeight)) {
 				AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth,
 				AutosizesSubviews = true,
 				UserInteractionEnabled = true
@@ -64,7 +64,7 @@ namespace BubbleCell
 			// 
 			// Add styled entry
 			//
-			chatBar = new UIImageView (new RectangleF (0, bounds.Height-entryHeight, bounds.Width, entryHeight)) {
+			chatBar = new UIImageView (new CGRect (0, bounds.Height-entryHeight, bounds.Width, entryHeight)) {
 				ClearsContextBeforeDrawing = false,
 				AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth,
 				Image = UIImage.FromFile ("ChatBar.png").StretchableImage (18, 20),
@@ -72,8 +72,8 @@ namespace BubbleCell
 			};
 			View.AddSubview (chatBar);
 			
-			entry = new UITextView (new RectangleF (10, 9, 234, 22)) {
-				ContentSize = new SizeF (234, 22),
+			entry = new UITextView (new CGRect (10, 9, 234, 22)) {
+				ContentSize = new CGSize (234, 22),
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
 				ScrollEnabled = true,
 				ScrollIndicatorInsets = new UIEdgeInsets (5, 0, 4, -2),
@@ -96,14 +96,14 @@ namespace BubbleCell
 			//
 			sendButton = UIButton.FromType (UIButtonType.Custom);
 			sendButton.ClearsContextBeforeDrawing = false;
-			sendButton.Frame = new RectangleF (chatBar.Frame.Width - 70, 8, 64, 26);
+			sendButton.Frame = new CGRect (chatBar.Frame.Width - 70, 8, 64, 26);
 			sendButton.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleLeftMargin;
 			
 			var sendBackground = UIImage.FromFile ("SendButton.png");
 			sendButton.SetBackgroundImage (sendBackground, UIControlState.Normal);
 			sendButton.SetBackgroundImage (sendBackground, UIControlState.Disabled);
 			sendButton.TitleLabel.Font = UIFont.BoldSystemFontOfSize (16);
-			sendButton.TitleLabel.ShadowOffset = new SizeF (0, -1);
+			sendButton.TitleLabel.ShadowOffset = new CGSize (0, -1);
 			sendButton.SetTitle ("Send", UIControlState.Normal);
 			sendButton.SetTitleShadowColor (new UIColor (0.325f, 0.463f, 0.675f, 1), UIControlState.Normal);
 			sendButton.AddTarget (SendMessage, UIControlEvent.TouchUpInside);
@@ -169,10 +169,10 @@ namespace BubbleCell
 						SetChatBarHeight (contentHeight + 18);
 						if (previousContentHeight > maxContentHeight)
 							entry.ScrollEnabled = false;
-						entry.ContentOffset = new PointF (0, 6);
+						entry.ContentOffset = new CGPoint (0, 6);
 					} else if (previousContentHeight <= maxContentHeight){
 						entry.ScrollEnabled = true;
-						entry.ContentOffset = new PointF (0, contentHeight-68);
+						entry.ContentOffset = new CGPoint (0, contentHeight-68);
 						if (previousContentHeight < maxContentHeight){
 							ExpandChatBarHeight ();
 						}
@@ -196,7 +196,7 @@ namespace BubbleCell
 		}
 		
 		// Resizes the chat bar to the specified height
-		void SetChatBarHeight (float height)
+		void SetChatBarHeight (nfloat height)
 		{
 			var chatFrame = discussion.View.Frame;
 			chatFrame.Height = View.Frame.Height-height;
@@ -205,7 +205,7 @@ namespace BubbleCell
 			UIView.BeginAnimations ("");
 			UIView.SetAnimationDuration (.3);
 			discussion.View.Frame = chatFrame;
-			chatBar.Frame = new RectangleF (chatBar.Frame.X, chatFrame.Height, chatFrame.Width, height);
+			chatBar.Frame = new CGRect (chatBar.Frame.X, chatFrame.Height, chatFrame.Width, height);
 			UIView.CommitAnimations ();
 		}
 		
@@ -225,7 +225,7 @@ namespace BubbleCell
 		void AdjustEntry ()
 		{
 			// This fixes a rendering glitch
-			entry.ContentOffset = new PointF (0, 6);
+			entry.ContentOffset = new CGPoint (0, 6);
 		}
 		
 		// 

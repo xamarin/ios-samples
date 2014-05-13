@@ -8,11 +8,10 @@
 //
 using System;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
+using UIKit;
 using MonoTouch.Dialog;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using System.Drawing;
+using CoreGraphics;
+using Foundation;
 
 namespace BubbleCell
 {
@@ -40,7 +39,7 @@ namespace BubbleCell
 		
 		public BubbleCell (bool isLeft) : base (UITableViewCellStyle.Default, isLeft ? KeyLeft : KeyRight)
 		{
-			var rect = new RectangleF (0, 0, 1, 1);
+			var rect = new CGRect (0, 0, 1, 1);
 			this.isLeft = isLeft;
 			view = new UIView (rect);
 			imageView = new UIImageView (isLeft ? left : right);
@@ -60,17 +59,17 @@ namespace BubbleCell
 			base.LayoutSubviews ();
 			var frame = ContentView.Frame;
 			var size = GetSizeForText (this, label.Text) + BubblePadding;
-			imageView.Frame = new RectangleF (new PointF (isLeft ? 10 : frame.Width-size.Width-10, frame.Y), size);
+			imageView.Frame = new CGRect (new CGPoint (isLeft ? 10 : frame.Width-size.Width-10, frame.Y), size);
 			view.SetNeedsDisplay ();
 			frame = imageView.Frame;
-			label.Frame = new RectangleF (new PointF (frame.X + (isLeft ? 12 : 8), frame.Y + 6), size-BubblePadding);
+			label.Frame = new CGRect (new CGPoint (frame.X + (isLeft ? 12 : 8), frame.Y + 6), size-BubblePadding);
 		}
 		
-		static internal SizeF BubblePadding = new SizeF (22, 16);
+		static internal CGSize BubblePadding = new CGSize (22, 16);
 		
-		static internal SizeF GetSizeForText (UIView tv, string text)
+		static internal CGSize GetSizeForText (UIView tv, string text)
 		{
-			return tv.StringSize (text, font, new SizeF (tv.Bounds.Width*.7f-10-22, 99999));
+			return tv.StringSize (text, font, new CGSize (tv.Bounds.Width*.7f-10-22, 99999));
 		}
 		
 		public void Update (string text)
@@ -98,7 +97,7 @@ namespace BubbleCell
 			return cell;
 		}
 		
-		public float GetHeight (UITableView tableView, NSIndexPath indexPath)
+		public nfloat GetHeight (UITableView tableView, NSIndexPath indexPath)
 		{
 			return BubbleCell.GetSizeForText (tableView, Caption).Height + BubbleCell.BubblePadding.Height;
 		}
