@@ -28,5 +28,9 @@
 		<string>Icon-Small-40</string>
 		<string>Icon-Small-40@2x</string>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>SpriteTour</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.SpriteTour</string>
 </dict>
 </plist>

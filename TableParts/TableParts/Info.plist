@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>Table Parts</string>
+	<string>TableParts</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Resources/icon-57.png</string>
@@ -21,5 +21,7 @@
 	<array>
 		<integer>1</integer>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.TableParts</string>
 </dict>
 </plist>

@@ -16,7 +16,7 @@
 		<string>Resources/icon-100.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.simpletextinput</string>
+	<string>com.xamarin.SimpleTextInput</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>MinimumOSVersion</key>

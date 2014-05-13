@@ -16,7 +16,7 @@
 		<string>Resources/icon-100.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.samples.splitview</string>
+	<string>com.xamarin.samples.SplitView</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>MinimumOSVersion</key>

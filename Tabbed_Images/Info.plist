@@ -31,5 +31,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>Tabbed_Images</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.Tabbed_Images</string>
+	<key>MinimumOSVersion</key>
+	<string>4.0</string>
 </dict>
 </plist>

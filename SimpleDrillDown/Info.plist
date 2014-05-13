@@ -25,5 +25,9 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>5.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>SimpleDrillDown</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.SimpleDrillDown</string>
 </dict>
 </plist>
