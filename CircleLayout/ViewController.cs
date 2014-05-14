@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace CircleLayout
 {
@@ -31,7 +31,7 @@ namespace CircleLayout
 			return UIStatusBarStyle.LightContent;
 		}
 
-		public override int GetItemsCount (UICollectionView collectionView, int section)
+		public override nint GetItemsCount (UICollectionView collectionView, nint section)
 		{
 			return cellCount;
 		}
@@ -46,7 +46,7 @@ namespace CircleLayout
 			if (sender.State != UIGestureRecognizerState.Ended)
 				return;
 			
-			PointF initialPinchPoint = sender.LocationInView (CollectionView);
+			CGPoint initialPinchPoint = sender.LocationInView (CollectionView);
 			NSIndexPath tappedCellPath = CollectionView.IndexPathForItemAtPoint (initialPinchPoint);
 			
 			if (tappedCellPath != null) {

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.CoreAnimation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using CoreAnimation;
+using UIKit;
 
 namespace CircleLayout
 {
@@ -13,7 +13,7 @@ namespace CircleLayout
 
 		int cellCount = 20;
 		float radius;
-		PointF center;
+		CGPoint center;
 
 		public CircleLayout ()
 		{
@@ -23,13 +23,13 @@ namespace CircleLayout
 		{
 			base.PrepareLayout ();
 
-			SizeF size = CollectionView.Frame.Size;
-			cellCount = CollectionView.NumberOfItemsInSection (0);
-			center = new PointF (size.Width / 2.0f, size.Height / 2.0f);
-			radius = Math.Min (size.Width, size.Height) / 2.5f;
+			CGSize size = CollectionView.Frame.Size;
+			cellCount = (int)CollectionView.NumberOfItemsInSection (0);
+			center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
+			radius = (float)Math.Min (size.Width, size.Height) / 2.5f;
 		}
 			
-		public override SizeF CollectionViewContentSize {
+		public override CGSize CollectionViewContentSize {
 			get {
 				return CollectionView.Frame.Size;
 			}
@@ -38,13 +38,13 @@ namespace CircleLayout
 		public override UICollectionViewLayoutAttributes LayoutAttributesForItem (NSIndexPath path)
 		{
 			UICollectionViewLayoutAttributes attributes = UICollectionViewLayoutAttributes.CreateForCell (path);
-			attributes.Size = new SizeF (ItemSize, ItemSize);
-			attributes.Center = new PointF (center.X + radius * (float) Math.Cos (2 * path.Row * Math.PI / cellCount),
+			attributes.Size = new CGSize (ItemSize, ItemSize);
+			attributes.Center = new CGPoint (center.X + radius * (float) Math.Cos (2 * path.Row * Math.PI / cellCount),
 			                                center.Y + radius * (float) Math.Sin (2 * path.Row * Math.PI / cellCount));
 			return attributes;
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (RectangleF rect)
+		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			var attributes = new UICollectionViewLayoutAttributes [cellCount];
 
@@ -62,7 +62,7 @@ namespace CircleLayout
 		{
 			var attributes = LayoutAttributesForItem (itemIndexPath);
 			attributes.Alpha = 0;
-			attributes.Center = new PointF (center.X, center.Y);
+			attributes.Center = new CGPoint (center.X, center.Y);
 				
 			return attributes;
 		}
@@ -71,7 +71,7 @@ namespace CircleLayout
 		{
 			var attributes = LayoutAttributesForItem (itemIndexPath);
 			attributes.Alpha = 0;
-			attributes.Center = new PointF (center.X, center.Y);
+			attributes.Center = new CGPoint (center.X, center.Y);
 			attributes.Transform3D = CATransform3D.MakeScale (0.1f, 0.1f, 1);
 				
 			return attributes;

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreAnimation;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreAnimation;
+using CoreGraphics;
 
 namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 {
@@ -40,7 +40,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 			
 			// create our layer and set it's frame
 			imgLayer = CreateLayerFromImage ();
-			imgLayer.Frame = new RectangleF (200, 70, 114, 114);
+			imgLayer.Frame = new CGRect (200, 70, 114, 114);
 			
 			// add the layer to the layer tree so that it's visible
 			View.Layer.AddSublayer (imgLayer);
@@ -60,10 +60,10 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 			// anonymous delegate that runs when the btnAnimate button is clicked
 			btnAnimate.TouchUpInside += (s, e) => {
 				if (imgLayer.Frame.Y == 70) {
-					imgLayer.Frame = new RectangleF (new PointF (200, 270), imgLayer.Frame.Size);
+					imgLayer.Frame = new CGRect (new CGPoint (200, 270), imgLayer.Frame.Size);
 					imgLayer.Opacity = 0.2f;
 				} else {
-					imgLayer.Frame = new RectangleF (new PointF (200, 70), imgLayer.Frame.Size);
+					imgLayer.Frame = new CGRect (new CGPoint (200, 70), imgLayer.Frame.Size);
 					imgLayer.Opacity = 1.0f;
 				}
 			};
@@ -88,7 +88,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 
 		public class LayerDelegate : CALayerDelegate
 		{
-			public override void DrawLayer (CALayer layer, MonoTouch.CoreGraphics.CGContext context)
+			public override void DrawLayer (CALayer layer, CoreGraphics.CGContext context)
 			{
 				// implement your drawing
 			}
@@ -96,7 +96,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 		// Method 3: Create a custom CALayer and override the appropriate methods
 		public class MyCustomLayer : CALayer
 		{
-			public override void DrawInContext (MonoTouch.CoreGraphics.CGContext ctx)
+			public override void DrawInContext (CoreGraphics.CGContext ctx)
 			{
 				base.DrawInContext (ctx);
 				// implement your drawing
