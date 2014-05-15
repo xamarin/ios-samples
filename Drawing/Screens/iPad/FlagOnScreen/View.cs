@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using UIKit;
+
+using CoreGraphics;
 
 namespace Example_Drawing.Screens.iPad.FlagOnScreen
 {
@@ -14,7 +14,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 		#endregion
 
 		// rect changes depending on if the whole view is being redrawn, or just a section
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			Console.WriteLine ("Draw() Called");
 			base.Draw (rect);
@@ -48,19 +48,19 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 			int i, j;
 			
 			// general sizes
-			float flagWidth = Frame.Width * .8f;
+			float flagWidth = (float) Frame.Width * .8f;
 			float flagHeight = (float)(flagWidth / 1.9);
-			PointF flagOrigin = new PointF (Frame.Width * .1f, Frame.Height / 3);
+			CGPoint flagOrigin = new CGPoint (Frame.Width * .1f, Frame.Height / 3);
 			
 			// stripe
 			float stripeHeight = flagHeight / 13;
 			float stripeSpacing = stripeHeight * 2;
-			RectangleF stripeRect = new RectangleF (0, 0, flagWidth, stripeHeight);
+			CGRect stripeRect = new CGRect (0, 0, flagWidth, stripeHeight);
 			
 			// star field
 			float starFieldHeight = 7 * stripeHeight;
 			float starFieldWidth = flagWidth * (2f / 5f);
-			RectangleF starField = new RectangleF (flagOrigin.X, flagOrigin.Y + (6 * stripeHeight), starFieldWidth, starFieldHeight);
+			CGRect starField = new CGRect (flagOrigin.X, flagOrigin.Y + (6 * stripeHeight), starFieldWidth, starFieldHeight);
 			
 			// stars
 			float starDiameter = flagHeight * 0.0616f;
@@ -68,15 +68,15 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 			float starHorizontalPadding = (starHorizontalCenterSpacing / 4);
 			float starVerticalCenterSpacing = (starFieldHeight / 5);
 			float starVerticalPadding = (starVerticalCenterSpacing / 4);
-			PointF firstStarOrigin = new PointF (flagOrigin.X + starHorizontalPadding, flagOrigin.Y + flagHeight - starVerticalPadding - (starVerticalCenterSpacing / 2));
-			PointF secondRowFirstStarOrigin = new PointF (firstStarOrigin.X + (starHorizontalCenterSpacing / 2), firstStarOrigin.Y - (starVerticalCenterSpacing / 2));
+			CGPoint firstStarOrigin = new CGPoint (flagOrigin.X + starHorizontalPadding, flagOrigin.Y + flagHeight - starVerticalPadding - (starVerticalCenterSpacing / 2));
+			CGPoint secondRowFirstStarOrigin = new CGPoint (firstStarOrigin.X + (starHorizontalCenterSpacing / 2), firstStarOrigin.Y - (starVerticalCenterSpacing / 2));
 			
 			// white background + shadow
 			context.SaveState ();
 			// note: when drawing on-screen,the coord space for shadows doesn't get modified
-			context.SetShadow (new SizeF (15, 15), 7);
+			context.SetShadow (new CGSize (15, 15), 7);
 			context.SetFillColor (1, 1, 1, 1);
-			context.FillRect (new RectangleF (flagOrigin.X, flagOrigin.Y, flagWidth, flagHeight));
+			context.FillRect (new CGRect (flagOrigin.X, flagOrigin.Y, flagWidth, flagHeight));
 			context.RestoreState ();
 			
 			// create a stripe layer
@@ -126,7 +126,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 					for (i = 0; i < 6; i++) {
 						
 						// draw the star, then move the origin to the right
-						context.DrawLayer (starLayer, new PointF (0f, 0f));
+						context.DrawLayer (starLayer, new CGPoint (0f, 0f));
 						context.TranslateCTM (starHorizontalCenterSpacing, 0f);
 					}
 					// move the row down, and then back left
@@ -143,7 +143,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 					// each star in the row
 					for (i = 0; i < 5; i++) {
 						
-						context.DrawLayer (starLayer, new PointF (0f, 0f));
+						context.DrawLayer (starLayer, new CGPoint (0f, 0f));
 						context.TranslateCTM (starHorizontalCenterSpacing, 0);
 					}
 					context.TranslateCTM ((-i * starHorizontalCenterSpacing), -starVerticalCenterSpacing);
@@ -205,10 +205,10 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 			#region -= vertical ticks =-
 			
 			// create our vertical tick lines
-			using (CGLayer verticalTickLayer = CGLayer.Create (context, new SizeF (20, 3))) {
+			using (CGLayer verticalTickLayer = CGLayer.Create (context, new CGSize (20, 3))) {
 				
 				// draw a single tick
-				verticalTickLayer.Context.FillRect (new RectangleF (0, 1, 20, 2));
+				verticalTickLayer.Context.FillRect (new CGRect (0, 1, 20, 2));
 				
 				// draw a vertical tick every 20 pixels
 				float yPos = 20;
@@ -216,7 +216,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 				for (int i = 0; i < numberOfVerticalTicks; i++) {
 					
 					// draw the layer
-					context.DrawLayer (verticalTickLayer, new PointF (0, yPos));
+					context.DrawLayer (verticalTickLayer, new CGPoint (0, yPos));
 					
 					// starting at 40, draw the coordinate text nearly to the top
 					if (yPos > 40 && i < (numberOfVerticalTicks - 2)) {
@@ -237,16 +237,16 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 			#region -= horizontal ticks =-
 			
 			// create our horizontal tick lines
-			using (CGLayer horizontalTickLayer = CGLayer.Create (context, new SizeF (3, 20))) {
+			using (CGLayer horizontalTickLayer = CGLayer.Create (context, new CGSize (3, 20))) {
 				
-				horizontalTickLayer.Context.FillRect (new RectangleF (1, 0, 2, 20));
+				horizontalTickLayer.Context.FillRect (new CGRect (1, 0, 2, 20));
 				
 				// draw a horizontal tick every 20 pixels
 				float xPos = 20;
 				int numberOfHorizontalTicks = ((int)(Frame.Width / 20) - 1);
 				for (int i = 0; i < numberOfHorizontalTicks; i++) {
 					
-					context.DrawLayer (horizontalTickLayer, new PointF (xPos, 0));
+					context.DrawLayer (horizontalTickLayer, new CGPoint (xPos, 0));
 					
 					// starting at 100, draw the coordinate text nearly to the top
 					if (xPos > 100 && i < (numberOfHorizontalTicks - 1)) {

@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MapCallouts
 {
@@ -12,15 +12,15 @@ namespace MapCallouts
 	partial class MainViewController
 	{
 		[Outlet]
-		MonoTouch.MapKit.MKMapView mapView { get; set; }
+		MapKit.MKMapView mapView { get; set; }
 
 		[Action ("cityAction:")]
-		partial void cityAction (MonoTouch.Foundation.NSObject sender);
+		partial void cityAction (Foundation.NSObject sender);
 
 		[Action ("bridgeAction:")]
-		partial void bridgeAction (MonoTouch.Foundation.NSObject sender);
+		partial void bridgeAction (Foundation.NSObject sender);
 
 		[Action ("allAction:")]
-		partial void allAction (MonoTouch.Foundation.NSObject sender);
+		partial void allAction (Foundation.NSObject sender);
 	}
 }

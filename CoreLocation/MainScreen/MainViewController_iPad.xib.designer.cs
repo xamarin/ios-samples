@@ -11,33 +11,33 @@
 namespace Example_CoreLocation.MainScreen {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("MainViewController_iPad")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("MainViewController_iPad")]
 	public partial class MainViewController_iPad {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblAltitude;
+		private UIKit.UILabel __mt_lblAltitude;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblCourse;
+		private UIKit.UILabel __mt_lblCourse;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblLatitude;
+		private UIKit.UILabel __mt_lblLatitude;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblLongitude;
+		private UIKit.UILabel __mt_lblLongitude;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblMagneticHeading;
+		private UIKit.UILabel __mt_lblMagneticHeading;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblSpeed;
+		private UIKit.UILabel __mt_lblSpeed;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblTrueHeading;
+		private UIKit.UILabel __mt_lblTrueHeading;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblDistanceToParis;
+		private UIKit.UILabel __mt_lblDistanceToParis;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace Example_CoreLocation.MainScreen {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblAltitude")]
-		private MonoTouch.UIKit.UILabel lblAltitude {
+		[Foundation.Connect("lblAltitude")]
+		private UIKit.UILabel lblAltitude {
 			get {
-				this.__mt_lblAltitude = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblAltitude")));
+				this.__mt_lblAltitude = ((UIKit.UILabel)(this.GetNativeField("lblAltitude")));
 				return this.__mt_lblAltitude;
 			}
 			set {
@@ -58,10 +58,10 @@ namespace Example_CoreLocation.MainScreen {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblCourse")]
-		private MonoTouch.UIKit.UILabel lblCourse {
+		[Foundation.Connect("lblCourse")]
+		private UIKit.UILabel lblCourse {
 			get {
-				this.__mt_lblCourse = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblCourse")));
+				this.__mt_lblCourse = ((UIKit.UILabel)(this.GetNativeField("lblCourse")));
 				return this.__mt_lblCourse;
 			}
 			set {
@@ -70,10 +70,10 @@ namespace Example_CoreLocation.MainScreen {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblLatitude")]
-		private MonoTouch.UIKit.UILabel lblLatitude {
+		[Foundation.Connect("lblLatitude")]
+		private UIKit.UILabel lblLatitude {
 			get {
-				this.__mt_lblLatitude = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblLatitude")));
+				this.__mt_lblLatitude = ((UIKit.UILabel)(this.GetNativeField("lblLatitude")));
 				return this.__mt_lblLatitude;
 			}
 			set {
@@ -82,10 +82,10 @@ namespace Example_CoreLocation.MainScreen {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblLongitude")]
-		private MonoTouch.UIKit.UILabel lblLongitude {
+		[Foundation.Connect("lblLongitude")]
+		private UIKit.UILabel lblLongitude {
 			get {
-				this.__mt_lblLongitude = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblLongitude")));
+				this.__mt_lblLongitude = ((UIKit.UILabel)(this.GetNativeField("lblLongitude")));
 				return this.__mt_lblLongitude;
 			}
 			set {
@@ -94,10 +94,10 @@ namespace Example_CoreLocation.MainScreen {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblMagneticHeading")]
-		private MonoTouch.UIKit.UILabel lblMagneticHeading {
+		[Foundation.Connect("lblMagneticHeading")]
+		private UIKit.UILabel lblMagneticHeading {
 			get {
-				this.__mt_lblMagneticHeading = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblMagneticHeading")));
+				this.__mt_lblMagneticHeading = ((UIKit.UILabel)(this.GetNativeField("lblMagneticHeading")));
 				return this.__mt_lblMagneticHeading;
 			}
 			set {
@@ -106,10 +106,10 @@ namespace Example_CoreLocation.MainScreen {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblSpeed")]
-		private MonoTouch.UIKit.UILabel lblSpeed {
+		[Foundation.Connect("lblSpeed")]
+		private UIKit.UILabel lblSpeed {
 			get {
-				this.__mt_lblSpeed = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblSpeed")));
+				this.__mt_lblSpeed = ((UIKit.UILabel)(this.GetNativeField("lblSpeed")));
 				return this.__mt_lblSpeed;
 			}
 			set {
@@ -118,10 +118,10 @@ namespace Example_CoreLocation.MainScreen {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblTrueHeading")]
-		private MonoTouch.UIKit.UILabel lblTrueHeading {
+		[Foundation.Connect("lblTrueHeading")]
+		private UIKit.UILabel lblTrueHeading {
 			get {
-				this.__mt_lblTrueHeading = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblTrueHeading")));
+				this.__mt_lblTrueHeading = ((UIKit.UILabel)(this.GetNativeField("lblTrueHeading")));
 				return this.__mt_lblTrueHeading;
 			}
 			set {
@@ -130,10 +130,10 @@ namespace Example_CoreLocation.MainScreen {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblDistanceToParis")]
-		private MonoTouch.UIKit.UILabel lblDistanceToParis {
+		[Foundation.Connect("lblDistanceToParis")]
+		private UIKit.UILabel lblDistanceToParis {
 			get {
-				this.__mt_lblDistanceToParis = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblDistanceToParis")));
+				this.__mt_lblDistanceToParis = ((UIKit.UILabel)(this.GetNativeField("lblDistanceToParis")));
 				return this.__mt_lblDistanceToParis;
 			}
 			set {

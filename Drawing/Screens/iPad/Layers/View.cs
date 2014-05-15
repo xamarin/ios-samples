@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
-using MonoTouch.UIKit;
+
+using CoreGraphics;
+using UIKit;
 
 namespace Example_Drawing.Screens.iPad.Layers
 {
@@ -14,7 +14,7 @@ namespace Example_Drawing.Screens.iPad.Layers
 		#endregion
 
 		// rect changes depending on if the whole view is being redrawn, or just a section
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			Console.WriteLine ("Draw() Called");
 			base.Draw (rect);
@@ -33,13 +33,13 @@ namespace Example_Drawing.Screens.iPad.Layers
 				// paint
 				context.FillRect (rect);
 				
-				PointF[] myStarPoints = { new PointF (5f, 5f)
-					, new PointF (10f, 15f), new PointF (10f, 15f)
-					, new PointF (15f, 5f), new PointF (15f, 5f)
-					, new PointF (12f, 5f), new PointF (15f, 5f)
-					, new PointF (2.5f, 11f), new PointF (2.5f, 11f)
-					, new PointF (16.5f, 11f), new PointF (16.5f, 11f)
-					, new PointF (5f, 5f) };
+				CGPoint[] myStarPoints = { new CGPoint (5f, 5f)
+					, new CGPoint (10f, 15f), new CGPoint (10f, 15f)
+					, new CGPoint (15f, 5f), new CGPoint (15f, 5f)
+					, new CGPoint (12f, 5f), new CGPoint (15f, 5f)
+					, new CGPoint (2.5f, 11f), new CGPoint (2.5f, 11f)
+					, new CGPoint (16.5f, 11f), new CGPoint (16.5f, 11f)
+					, new CGPoint (5f, 5f) };
 				
 				// create the layer
 				using (CGLayer starLayer = CGLayer.Create (context, rect.Size)) {
@@ -58,7 +58,7 @@ namespace Example_Drawing.Screens.iPad.Layers
 						starXPos = 5;
 						//
 						for (int col = 0; col < 30; col++) {
-							context.DrawLayer (starLayer, new PointF (starXPos, starYPos));
+							context.DrawLayer (starLayer, new CGPoint (starXPos, starYPos));
 							starXPos += 20;
 						}
 						starYPos += 20;

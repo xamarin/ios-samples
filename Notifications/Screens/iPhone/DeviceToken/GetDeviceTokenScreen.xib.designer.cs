@@ -11,19 +11,19 @@
 namespace Example_Notifications.Screens.iPhone.DeviceToken {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("GetDeviceTokenScreen")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("GetDeviceTokenScreen")]
 	public partial class GetDeviceTokenScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblToken;
+		private UIKit.UILabel __mt_lblToken;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_Notifications.Screens.iPhone.DeviceToken {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblToken")]
-		private MonoTouch.UIKit.UILabel lblToken {
+		[Foundation.Connect("lblToken")]
+		private UIKit.UILabel lblToken {
 			get {
-				this.__mt_lblToken = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblToken")));
+				this.__mt_lblToken = ((UIKit.UILabel)(this.GetNativeField("lblToken")));
 				return this.__mt_lblToken;
 			}
 			set {

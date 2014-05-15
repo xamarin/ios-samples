@@ -11,47 +11,47 @@
 namespace Example_Drawing.Screens.iPad.Home {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("HomeScreen")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("HomeScreen")]
 	public partial class HomeScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnDrawRectVsPath;
+		private UIKit.UIButton __mt_btnDrawRectVsPath;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnDrawUsingCGBitmapContext;
+		private UIKit.UIButton __mt_btnDrawUsingCGBitmapContext;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnDrawUsingLayers;
+		private UIKit.UIButton __mt_btnDrawUsingLayers;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnOffScreenCoords;
+		private UIKit.UIButton __mt_btnOffScreenCoords;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnOnScreenCoords;
+		private UIKit.UIButton __mt_btnOnScreenCoords;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnOnScreenUncorrectedText;
+		private UIKit.UIButton __mt_btnOnScreenUncorrectedText;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnOffScreenFlag;
+		private UIKit.UIButton __mt_btnOffScreenFlag;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnImage;
+		private UIKit.UIButton __mt_btnImage;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnPatterns;
+		private UIKit.UIButton __mt_btnPatterns;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnStencilPattern;
+		private UIKit.UIButton __mt_btnStencilPattern;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnShadows;
+		private UIKit.UIButton __mt_btnShadows;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnHitTesting;
+		private UIKit.UIButton __mt_btnHitTesting;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnTouchDrawing;
+		private UIKit.UIButton __mt_btnTouchDrawing;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnOnScreenFlag;
+		private UIKit.UIButton __mt_btnOnScreenFlag;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnTransformations;
+		private UIKit.UIButton __mt_btnTransformations;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -60,10 +60,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnDrawRectVsPath")]
-		private MonoTouch.UIKit.UIButton btnDrawRectVsPath {
+		[Foundation.Connect("btnDrawRectVsPath")]
+		private UIKit.UIButton btnDrawRectVsPath {
 			get {
-				this.__mt_btnDrawRectVsPath = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnDrawRectVsPath")));
+				this.__mt_btnDrawRectVsPath = ((UIKit.UIButton)(this.GetNativeField("btnDrawRectVsPath")));
 				return this.__mt_btnDrawRectVsPath;
 			}
 			set {
@@ -72,10 +72,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnDrawUsingCGBitmapContext")]
-		private MonoTouch.UIKit.UIButton btnDrawUsingCGBitmapContext {
+		[Foundation.Connect("btnDrawUsingCGBitmapContext")]
+		private UIKit.UIButton btnDrawUsingCGBitmapContext {
 			get {
-				this.__mt_btnDrawUsingCGBitmapContext = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnDrawUsingCGBitmapContext")));
+				this.__mt_btnDrawUsingCGBitmapContext = ((UIKit.UIButton)(this.GetNativeField("btnDrawUsingCGBitmapContext")));
 				return this.__mt_btnDrawUsingCGBitmapContext;
 			}
 			set {
@@ -84,10 +84,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnDrawUsingLayers")]
-		private MonoTouch.UIKit.UIButton btnDrawUsingLayers {
+		[Foundation.Connect("btnDrawUsingLayers")]
+		private UIKit.UIButton btnDrawUsingLayers {
 			get {
-				this.__mt_btnDrawUsingLayers = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnDrawUsingLayers")));
+				this.__mt_btnDrawUsingLayers = ((UIKit.UIButton)(this.GetNativeField("btnDrawUsingLayers")));
 				return this.__mt_btnDrawUsingLayers;
 			}
 			set {
@@ -96,10 +96,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnOffScreenCoords")]
-		private MonoTouch.UIKit.UIButton btnOffScreenCoords {
+		[Foundation.Connect("btnOffScreenCoords")]
+		private UIKit.UIButton btnOffScreenCoords {
 			get {
-				this.__mt_btnOffScreenCoords = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnOffScreenCoords")));
+				this.__mt_btnOffScreenCoords = ((UIKit.UIButton)(this.GetNativeField("btnOffScreenCoords")));
 				return this.__mt_btnOffScreenCoords;
 			}
 			set {
@@ -108,10 +108,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnOnScreenCoords")]
-		private MonoTouch.UIKit.UIButton btnOnScreenCoords {
+		[Foundation.Connect("btnOnScreenCoords")]
+		private UIKit.UIButton btnOnScreenCoords {
 			get {
-				this.__mt_btnOnScreenCoords = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnOnScreenCoords")));
+				this.__mt_btnOnScreenCoords = ((UIKit.UIButton)(this.GetNativeField("btnOnScreenCoords")));
 				return this.__mt_btnOnScreenCoords;
 			}
 			set {
@@ -120,10 +120,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnOnScreenUncorrectedText")]
-		private MonoTouch.UIKit.UIButton btnOnScreenUncorrectedText {
+		[Foundation.Connect("btnOnScreenUncorrectedText")]
+		private UIKit.UIButton btnOnScreenUncorrectedText {
 			get {
-				this.__mt_btnOnScreenUncorrectedText = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnOnScreenUncorrectedText")));
+				this.__mt_btnOnScreenUncorrectedText = ((UIKit.UIButton)(this.GetNativeField("btnOnScreenUncorrectedText")));
 				return this.__mt_btnOnScreenUncorrectedText;
 			}
 			set {
@@ -132,10 +132,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnOffScreenFlag")]
-		private MonoTouch.UIKit.UIButton btnOffScreenFlag {
+		[Foundation.Connect("btnOffScreenFlag")]
+		private UIKit.UIButton btnOffScreenFlag {
 			get {
-				this.__mt_btnOffScreenFlag = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnOffScreenFlag")));
+				this.__mt_btnOffScreenFlag = ((UIKit.UIButton)(this.GetNativeField("btnOffScreenFlag")));
 				return this.__mt_btnOffScreenFlag;
 			}
 			set {
@@ -144,10 +144,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnImage")]
-		private MonoTouch.UIKit.UIButton btnImage {
+		[Foundation.Connect("btnImage")]
+		private UIKit.UIButton btnImage {
 			get {
-				this.__mt_btnImage = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnImage")));
+				this.__mt_btnImage = ((UIKit.UIButton)(this.GetNativeField("btnImage")));
 				return this.__mt_btnImage;
 			}
 			set {
@@ -156,10 +156,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnPatterns")]
-		private MonoTouch.UIKit.UIButton btnPatterns {
+		[Foundation.Connect("btnPatterns")]
+		private UIKit.UIButton btnPatterns {
 			get {
-				this.__mt_btnPatterns = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnPatterns")));
+				this.__mt_btnPatterns = ((UIKit.UIButton)(this.GetNativeField("btnPatterns")));
 				return this.__mt_btnPatterns;
 			}
 			set {
@@ -168,10 +168,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnStencilPattern")]
-		private MonoTouch.UIKit.UIButton btnStencilPattern {
+		[Foundation.Connect("btnStencilPattern")]
+		private UIKit.UIButton btnStencilPattern {
 			get {
-				this.__mt_btnStencilPattern = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnStencilPattern")));
+				this.__mt_btnStencilPattern = ((UIKit.UIButton)(this.GetNativeField("btnStencilPattern")));
 				return this.__mt_btnStencilPattern;
 			}
 			set {
@@ -180,10 +180,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnShadows")]
-		private MonoTouch.UIKit.UIButton btnShadows {
+		[Foundation.Connect("btnShadows")]
+		private UIKit.UIButton btnShadows {
 			get {
-				this.__mt_btnShadows = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnShadows")));
+				this.__mt_btnShadows = ((UIKit.UIButton)(this.GetNativeField("btnShadows")));
 				return this.__mt_btnShadows;
 			}
 			set {
@@ -192,10 +192,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnHitTesting")]
-		private MonoTouch.UIKit.UIButton btnHitTesting {
+		[Foundation.Connect("btnHitTesting")]
+		private UIKit.UIButton btnHitTesting {
 			get {
-				this.__mt_btnHitTesting = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnHitTesting")));
+				this.__mt_btnHitTesting = ((UIKit.UIButton)(this.GetNativeField("btnHitTesting")));
 				return this.__mt_btnHitTesting;
 			}
 			set {
@@ -204,10 +204,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnTouchDrawing")]
-		private MonoTouch.UIKit.UIButton btnTouchDrawing {
+		[Foundation.Connect("btnTouchDrawing")]
+		private UIKit.UIButton btnTouchDrawing {
 			get {
-				this.__mt_btnTouchDrawing = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnTouchDrawing")));
+				this.__mt_btnTouchDrawing = ((UIKit.UIButton)(this.GetNativeField("btnTouchDrawing")));
 				return this.__mt_btnTouchDrawing;
 			}
 			set {
@@ -216,10 +216,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnOnScreenFlag")]
-		private MonoTouch.UIKit.UIButton btnOnScreenFlag {
+		[Foundation.Connect("btnOnScreenFlag")]
+		private UIKit.UIButton btnOnScreenFlag {
 			get {
-				this.__mt_btnOnScreenFlag = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnOnScreenFlag")));
+				this.__mt_btnOnScreenFlag = ((UIKit.UIButton)(this.GetNativeField("btnOnScreenFlag")));
 				return this.__mt_btnOnScreenFlag;
 			}
 			set {
@@ -228,10 +228,10 @@ namespace Example_Drawing.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnTransformations")]
-		private MonoTouch.UIKit.UIButton btnTransformations {
+		[Foundation.Connect("btnTransformations")]
+		private UIKit.UIButton btnTransformations {
 			get {
-				this.__mt_btnTransformations = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnTransformations")));
+				this.__mt_btnTransformations = ((UIKit.UIButton)(this.GetNativeField("btnTransformations")));
 				return this.__mt_btnTransformations;
 			}
 			set {

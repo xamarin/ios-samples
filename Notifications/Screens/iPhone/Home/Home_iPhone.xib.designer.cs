@@ -11,19 +11,19 @@
 namespace Example_Notifications.Screens.iPhone.Home {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("Home_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("Home_iPhone")]
 	public partial class Home_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnAddLocalNotification;
+		private UIKit.UIButton __mt_btnAddLocalNotification;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_Notifications.Screens.iPhone.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnAddLocalNotification")]
-		private MonoTouch.UIKit.UIButton btnAddLocalNotification {
+		[Foundation.Connect("btnAddLocalNotification")]
+		private UIKit.UIButton btnAddLocalNotification {
 			get {
-				this.__mt_btnAddLocalNotification = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnAddLocalNotification")));
+				this.__mt_btnAddLocalNotification = ((UIKit.UIButton)(this.GetNativeField("btnAddLocalNotification")));
 				return this.__mt_btnAddLocalNotification;
 			}
 			set {

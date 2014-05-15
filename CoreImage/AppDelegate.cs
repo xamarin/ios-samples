@@ -1,16 +1,15 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreImage;
-using MonoTouch.ObjCRuntime;
+using Foundation;
+using UIKit;
+using CoreImage;
+using ObjCRuntime;
 
 using System.Collections.Generic;
 using MonoTouch.Dialog;
-using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -526,7 +525,7 @@ namespace coreimage
 				Image = flower,
 				Center = new CIVector (flower.Extent.Width * .3f, flower.Extent.Width * .35f),
 				Intensity = .6f,
-				Radius = flower.Extent.Width * .20f,
+				Radius = (float) flower.Extent.Width * .20f,
 			};
 
 			return vignette_effect.OutputImage;
@@ -575,9 +574,9 @@ namespace coreimage
 		{
 			var color_cross_polynomial = new CIColorCrossPolynomial () {
 				Image = flower,
-				RedCoefficients = new CIVector (new float []{1, 0, 0, 0, 0, 0, 0, 0, 0, 0}),
-				GreenCoefficients = new CIVector (new float []{0, 1, 0, 0, 0, 0, 0, 0, 0, 0}),
-				BlueCoefficients = new CIVector (new float []{1, 0, 1, 0, -20, 0, 0, 0, 0, 0}),
+				RedCoefficients = new CIVector (new nfloat []{1, 0, 0, 0, 0, 0, 0, 0, 0, 0}),
+				GreenCoefficients = new CIVector (new nfloat []{0, 1, 0, 0, 0, 0, 0, 0, 0, 0}),
+				BlueCoefficients = new CIVector (new nfloat []{1, 0, 1, 0, -20, 0, 0, 0, 0, 0}),
 			};
 			return color_cross_polynomial.OutputImage;
 		}
@@ -1168,7 +1167,7 @@ namespace coreimage
 				BottomRight = new CIVector (extent.Right - 70, extent.Top - 20),
 				TopLeft = new CIVector (extent.Left - 70, extent.Bottom - 20),
 				TopRight = new CIVector (extent.Right + 70, extent.Bottom + 20),
-				Extent = new CIVector (new float [] {extent.X + 100, extent.Y + 100, extent.Width - 100, extent.Height - 100})
+				Extent = new CIVector (new nfloat [] {extent.X + 100, extent.Y + 100, extent.Width - 100, extent.Height - 100})
 			};
 
 			return perspective_transform_with_extent.OutputImage;
@@ -1600,7 +1599,7 @@ namespace coreimage
 			var bump_distortion = new CIBumpDistortion () {
 				Image = xamarinCheck,
 				Center = new CIVector (width/2f, height/2f),
-				Radius = .4f * height,
+				Radius = .4f * (float)height,
 				Scale = .5f
 			};
 
@@ -1619,7 +1618,7 @@ namespace coreimage
 			var bump_distortion_linear = new CIBumpDistortionLinear () {
 				Image = xamarinCheck,
 				Center = new CIVector (width * .5f, height * .5f),
-				Radius = .4f * height,
+				Radius = (float) .4f * (float)height,
 				Scale = .5f,
 				Angle = (float)Math.PI * .5f
 			};
@@ -1724,7 +1723,7 @@ namespace coreimage
 			{
 				Color0 = c0,
 				Color1 = c1,
-				Center = new CIVector (new float[] { 10 , 10 }), // Default [80 80]
+				Center = new CIVector (new nfloat[] { 10 , 10 }), // Default [80 80]
 				Sharpness = 1F // Default 1
 			};
 			
@@ -1858,7 +1857,7 @@ namespace coreimage
 		{
 			var convolution_3X3 = new CIConvolution3X3 () {
 				Image = heron,
-				Weights = new CIVector (new float [] {
+				Weights = new CIVector (new nfloat [] {
 					0, -1, 0,
 					-1, 5, -1,
 					0, -1, 0}),
@@ -1876,7 +1875,7 @@ namespace coreimage
 		{
 			var convolution_5X5 = new CIConvolution5X5 () {
 				Image = heron,
-				Weights = new CIVector (new float [] {
+				Weights = new CIVector (new nfloat [] {
 					.5f, 0, 0, 0, 0,
 					0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0,
@@ -1896,7 +1895,7 @@ namespace coreimage
 		{
 			var convolution_9_horizontal = new CIConvolution9Horizontal () {
 				Image = heron,
-				Weights = new CIVector (new float [] {1, -1, 1, 0, 1, 0, -1, 1, -1}),
+				Weights = new CIVector (new nfloat [] {1, -1, 1, 0, 1, 0, -1, 1, -1}),
 			};
 
 			return convolution_9_horizontal.OutputImage;
@@ -1910,7 +1909,7 @@ namespace coreimage
 		{
 			var convolution_9_vertical = new CIConvolution9Vertical () {
 				Image = heron,
-				Weights = new CIVector (new float [] {1, -1, 1, 0, 1, 0, -1, 1, -1}),
+				Weights = new CIVector (new nfloat [] {1, -1, 1, 0, 1, 0, -1, 1, -1}),
 			};
 
 			return convolution_9_vertical.OutputImage;

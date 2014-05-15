@@ -8,9 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.Security;
+using Foundation;
+using UIKit;
+using Security;
 
 namespace Keychain
 {

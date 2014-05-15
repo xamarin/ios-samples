@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using CoreGraphics;
+
 
 namespace Example_Drawing.Screens.iPad.Images
 {
@@ -24,13 +24,13 @@ namespace Example_Drawing.Screens.iPad.Images
 			
 			// instantiate a new image view that takes up the whole screen and add it to 
 			// the view hierarchy
-			RectangleF imageViewFrame = new RectangleF (0, -NavigationController.NavigationBar.Frame.Height, View.Frame.Width, View.Frame.Height);
+			CGRect imageViewFrame = new CGRect (0, -NavigationController.NavigationBar.Frame.Height, View.Frame.Width, View.Frame.Height);
 			imageView = new UIImageView (imageViewFrame);
 			View.AddSubview (imageView);
 			
 			// create our offscreen bitmap context
 			// size
-			SizeF bitmapSize = new SizeF (View.Frame.Size);
+			CGSize bitmapSize = new CGSize (View.Frame.Size);
 			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero,
 									      (int)bitmapSize.Width, (int)bitmapSize.Height, 8,
 									      (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
@@ -38,8 +38,8 @@ namespace Example_Drawing.Screens.iPad.Images
 				
 				// declare vars
 				UIImage apressImage = UIImage.FromFile ("icon-114.png");
-				PointF imageOrigin = new PointF ((imageView.Frame.Width / 2) - (apressImage.CGImage.Width / 2), (imageView.Frame.Height / 2) - (apressImage.CGImage.Height / 2)); 
-				RectangleF imageRect = new RectangleF (imageOrigin.X, imageOrigin.Y, apressImage.CGImage.Width, apressImage.CGImage.Height);
+				CGPoint imageOrigin = new CGPoint ((imageView.Frame.Width / 2) - (apressImage.CGImage.Width / 2), (imageView.Frame.Height / 2) - (apressImage.CGImage.Height / 2)); 
+				CGRect imageRect = new CGRect (imageOrigin.X, imageOrigin.Y, apressImage.CGImage.Width, apressImage.CGImage.Height);
 				
 				// draw the image
 				context.DrawImage (imageRect, apressImage.CGImage);

@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreLocation;
+using UIKit;
+using Foundation;
+using CoreLocation;
 using Example_CoreLocation.MainScreen;
 
 namespace Example_CoreLocation

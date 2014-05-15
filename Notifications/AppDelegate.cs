@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using Example_Notifications.Screens;
 
 namespace Example_Notifications
@@ -25,7 +25,7 @@ namespace Example_Notifications
 			window.MakeKeyAndVisible ();
 		
 			home = new Screens.iPhone.Home.Home_iPhone();
-			home.View.Frame = new System.Drawing.RectangleF (0, UIApplication.SharedApplication.StatusBarFrame.Height, UIScreen.MainScreen.ApplicationFrame.Width, UIScreen.MainScreen.ApplicationFrame.Height);			
+			home.View.Frame = new CoreGraphics.CGRect (0, UIApplication.SharedApplication.StatusBarFrame.Height, UIScreen.MainScreen.ApplicationFrame.Width, UIScreen.MainScreen.ApplicationFrame.Height);			
 			window.RootViewController = home;
 			
 			// check for a notification

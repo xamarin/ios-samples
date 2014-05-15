@@ -1,10 +1,10 @@
 using System;
 using System.IO;
 using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.CoreImage;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
+using UIKit;
+using CoreImage;
+using Foundation;
+using ObjCRuntime;
 using System.Threading.Tasks;
 
 namespace coreimage

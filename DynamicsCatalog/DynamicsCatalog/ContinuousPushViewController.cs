@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.UIKit;
+using CoreGraphics;
+
+using UIKit;
 
 namespace DynamicsCatalog {
 
@@ -29,8 +29,8 @@ namespace DynamicsCatalog {
 			Animator = new UIDynamicAnimator (View);
 			Animator.AddBehaviors (collisionBehavior, pushBehavior);
 
-			redSquare.Center = new PointF (View.Bounds.GetMidX (), View.Bounds.GetMidY ());
-			redSquare.Layer.AnchorPoint = new PointF (0.0f, 0.5f);
+			redSquare.Center = new CGPoint (View.Bounds.GetMidX (), View.Bounds.GetMidY ());
+			redSquare.Layer.AnchorPoint = new CGPoint (0.0f, 0.5f);
 
 			View.AddGestureRecognizer (new UITapGestureRecognizer ((gesture) => {
 				/*
@@ -38,13 +38,13 @@ namespace DynamicsCatalog {
 	    		 To visually show the impulse vector on screen, a red line representing 
 	    		 the angle and magnitude of this vector is briefly drawn.
 	    		 */
-				PointF p = gesture.LocationInView (View);
-				PointF o = new PointF (View.Bounds.GetMidX (), View.Bounds.GetMidY ());
+				CGPoint p = gesture.LocationInView (View);
+				CGPoint o = new CGPoint (View.Bounds.GetMidX (), View.Bounds.GetMidY ());
 				float distance = (float) Math.Sqrt ((p.X - o.X) * (p.X - o.X) + (p.Y - o.Y) * (p.Y - o.Y));
 				float angle = (float) Math.Atan2 (p.Y - o.Y, p.X - o.X);
 				distance = Math.Min (distance, 200.0f);
 
-				redSquare.Bounds = new RectangleF (0.0f, 0.0f, distance, 5.0f);
+				redSquare.Bounds = new CGRect (0.0f, 0.0f, distance, 5.0f);
 				redSquare.Transform = CGAffineTransform.MakeRotation (angle);
 
 				pushBehavior.Magnitude = distance / 100.0f;

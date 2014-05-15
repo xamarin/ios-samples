@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
-using MonoTouch.Foundation;
+using UIKit;
+
+using CoreGraphics;
+using Foundation;
 
 namespace Example_Drawing.Screens.iPad.HitTesting
 {
@@ -18,7 +18,7 @@ namespace Example_Drawing.Screens.iPad.HitTesting
 		#endregion
 	
 		// rect changes depending on if the whole view is being redrawn, or just a section
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			Console.WriteLine ("Draw() Called");
 			base.Draw (rect);
@@ -26,7 +26,7 @@ namespace Example_Drawing.Screens.iPad.HitTesting
 			using (CGContext context = UIGraphics.GetCurrentContext ()) {
 				// draw a rectangle using a path
 				myRectangleButtonPath = new CGPath ();
-				myRectangleButtonPath.AddRect (new RectangleF (new PointF (100, 10), new SizeF (200, 400)));
+				myRectangleButtonPath.AddRect (new CGRect (new CGPoint (100, 10), new CGSize (200, 400)));
 				context.AddPath (myRectangleButtonPath);
 				context.DrawPath (CGPathDrawingMode.Stroke);
 			}
@@ -62,7 +62,7 @@ namespace Example_Drawing.Screens.iPad.HitTesting
 			if (touch != null) {
 				
 				// the point of touch
-				PointF pt = touch.LocationInView (this);
+				CGPoint pt = touch.LocationInView (this);
 				
 				// if the touch ended in the path AND it started in the path
 				if (myRectangleButtonPath.ContainsPoint (pt, true) && touchStartedInPath) {
