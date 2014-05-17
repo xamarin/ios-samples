@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace PinchIt
 {
@@ -22,7 +22,7 @@ namespace PinchIt
 			}
 
 			PinchLayout pinchLayout = new PinchLayout ();
-			pinchLayout.ItemSize = new SizeF (100.0f, 100.0f);
+			pinchLayout.ItemSize = new CGSize (100.0f, 100.0f);
 
 			window.RootViewController = (new ViewController (pinchLayout));
 			window.MakeKeyAndVisible ();

@@ -26,8 +26,8 @@
 
 using System;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
-using MonoTouch.MapKit;
+using Foundation;
+using MapKit;
 using SQLite;
 
 namespace WeatherMap

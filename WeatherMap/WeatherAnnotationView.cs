@@ -25,12 +25,12 @@
 //
 
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Reflection;
-using MonoTouch.UIKit;
-using MonoTouch.MapKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using MapKit;
+using Foundation;
+
 
 namespace WeatherMap
 {
@@ -38,12 +38,12 @@ namespace WeatherMap
 	{
 		public WeatherAnnotationView (NSObject annotation, string reuseIdentifier) : base (annotation, reuseIdentifier)
 		{
-			RectangleF frame = Frame;
-			frame.Size = new SizeF (60.0f, 85.0f);
+			CGRect frame = Frame;
+			frame.Size = new CGSize (60.0f, 85.0f);
 			Frame = frame;
 			
 			BackgroundColor = UIColor.Clear;
-			CenterOffset = new PointF (30.0f, 42.0f);
+			CenterOffset = new CGPoint (30.0f, 42.0f);
 		}
 
 		public override NSObject Annotation {
@@ -64,7 +64,7 @@ namespace WeatherMap
 			}
 		}
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			WeatherForecastAnnotation annotation;
 			CGPath path;
@@ -110,13 +110,13 @@ namespace WeatherMap
 			
 				// Draw the text in black
 				UIColor.Black.SetColor ();
-				temperature.DrawString (new RectangleF (15.0f, 5.0f, 50.0f, 40.0f), UIFont.SystemFontOfSize (11.0f));
+				temperature.DrawString (new CGRect (15.0f, 5.0f, 50.0f, 40.0f), UIFont.SystemFontOfSize (11.0f));
 				temperature.Dispose ();
 			
 				// Draw the icon for the weather condition
 				string imageName = string.Format ("WeatherMap.WeatherIcons.{0}.png", forecast.Condition);
 				UIImage image = UIImage.FromResource (typeof(WeatherAnnotationView).Assembly, imageName);
-				image.Draw (new RectangleF (12.5f, 28.0f, 45.0f, 45.0f));
+				image.Draw (new CGRect (12.5f, 28.0f, 45.0f, 45.0f));
 				image.Dispose ();
 			}
 		}

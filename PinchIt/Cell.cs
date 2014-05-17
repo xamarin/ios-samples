@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
+using UIKit;
+
+using Foundation;
 
 namespace PinchIt
 {
@@ -12,9 +12,9 @@ namespace PinchIt
 		UILabel label;
 
 		[Export ("initWithFrame:")]
-		public Cell (RectangleF frame) : base (frame)	
+		public Cell (CGRect frame) : base (frame)	
 		{
-			label = new UILabel (new RectangleF (PointF.Empty, frame.Size)) {
+			label = new UILabel (new CGRect (CGPoint.Empty, frame.Size)) {
 				AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth,
 				TextAlignment = UITextAlignment.Center,
 				Font = UIFont.BoldSystemFontOfSize (50.0f),

@@ -1,25 +1,25 @@
 using System;
-using MonoTouch.SpriteKit;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.UIKit;
+using SpriteKit;
+using CoreGraphics;
+
+using UIKit;
 
 namespace SpriteKit
 {
 	public class MyScene : SKScene
 	{
-		public MyScene (SizeF size) : base(size)
+		public MyScene (CGSize size) : base(size)
 		{
-			BackgroundColor = new MonoTouch.UIKit.UIColor (.15f, .15f, .3f, 1);
+			BackgroundColor = new UIKit.UIColor (.15f, .15f, .3f, 1);
 
 			AddChild( new SKLabelNode ("Chalkduster") {
 				Text = "Hello World",
 				FontSize = 30,
-				Position = new PointF(Frame.GetMidX(),Frame.GetMidY()),
+				Position = new CGPoint(Frame.GetMidX(),Frame.GetMidY()),
 			});
 
 		}
-		public override void TouchesBegan (MonoTouch.Foundation.NSSet touches, MonoTouch.UIKit.UIEvent evt)
+		public override void TouchesBegan (Foundation.NSSet touches, UIKit.UIEvent evt)
 		{
 			foreach (UITouch touch in touches) {
 				var location = touch.LocationInNode (this);
