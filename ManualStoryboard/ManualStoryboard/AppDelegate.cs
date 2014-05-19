@@ -13,20 +13,23 @@ namespace ManualStoryboard
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
-		UIWindow window;
+		public override UIWindow Window {
+			get;
+			set;
+		}
+
 		public static UIStoryboard Storyboard = UIStoryboard.FromName ("MainStoryboard", null);
 		public static UIViewController initialViewController;
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			window = new UIWindow (UIScreen.MainScreen.Bounds);
-
 			initialViewController = Storyboard.InstantiateInitialViewController () as UIViewController;
 
-			window.RootViewController = initialViewController;
-			window.MakeKeyAndVisible ();
+			Window.RootViewController = initialViewController;
+			Window.MakeKeyAndVisible ();
 			return true;
 		}
+
 	}
 
 
