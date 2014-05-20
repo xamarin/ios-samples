@@ -1,9 +1,9 @@
 using System;
-using MonoTouch.CoreBluetooth;
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreLocation;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreBluetooth;
+using CoreFoundation;
+using CoreLocation;
+using Foundation;
+using UIKit;
 
 namespace AirLocate {
 
@@ -111,7 +111,7 @@ namespace AirLocate {
 					peripheralManager.StopAdvertising ();
 				}
 
-				NavigationController.PopViewControllerAnimated (true);
+				NavigationController.PopViewController (true);
 			});
 
 			NavigationItem.RightBarButtonItem = saveButton;

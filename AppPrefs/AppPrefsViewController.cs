@@ -1,7 +1,7 @@
-using MonoTouch.UIKit;
+using UIKit;
 using System.Drawing;
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace AppPrefs
 {
@@ -71,12 +71,12 @@ namespace AppPrefs
 		#region UITableViewDataSource
 		class MyUITableViewSource : UITableViewSource
 		{
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
 			
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				return 1;
 			}

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreLocation;
-using MonoTouch.Foundation;
+using CoreFoundation;
+using CoreLocation;
+using Foundation;
 
 namespace AirLocate {
 

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.CoreLocation;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreLocation;
+using Foundation;
+using UIKit;
 
 namespace AirLocate {
 
@@ -60,10 +60,10 @@ namespace AirLocate {
 				locationManager.StopRangingBeacons (region);
 		}
 
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			// skip empty groups
-			int sections = 0;
+			nint sections = 0;
 			foreach (var group in beacons) {
 				if (group.Count > 0)
 					sections++;
@@ -85,17 +85,17 @@ namespace AirLocate {
 			return -1;
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return beacons [GetNonEmptySection (section)].Count;
+			return beacons [GetNonEmptySection ((int)section)].Count;
 		}
 
-		public override string TitleForHeader (UITableView tableView, int section)
+		public override string TitleForHeader (UITableView tableView, nint section)
 		{
 			if (NumberOfSections (tableView) == 0)
 				return null;
 
-			return ((CLProximity) GetNonEmptySection (section)).ToString ();
+			return ((CLProximity) GetNonEmptySection ((int)section)).ToString ();
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -107,7 +107,7 @@ namespace AirLocate {
 			}
 
 			// Display the UUID, major, minor and accuracy for each beacon.
-			CLBeacon beacon = beacons [GetNonEmptySection (indexPath.Section)] [indexPath.Row];
+			CLBeacon beacon = beacons [GetNonEmptySection ((int)indexPath.Section)] [(int)indexPath.Row];
 
 			cell.TextLabel.Text = beacon.ProximityUuid.AsString ();
 			cell.DetailTextLabel.Text = String.Format ("Major: {0}  Minor: {1}  Acc: {2:0.00}m",

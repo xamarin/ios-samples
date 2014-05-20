@@ -1,16 +1,16 @@
 using System;
 using System.IO;
-using System.Drawing;
+using CoreGraphics;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Threading;
 
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreImage;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreImage;
+
+using Foundation;
+using UIKit;
 
 namespace AsyncDownloadImage
 {
@@ -100,7 +100,7 @@ namespace AsyncDownloadImage
 
 			//Resizing image is time costing, using async to avoid blocking the UI thread
 			UIImage image = null;
-			SizeF imageViewSize = imageView.Frame.Size;
+			CGSize imageViewSize = imageView.Frame.Size;
 	
 			infoLabel.Text = "Resizing Image...";
 			await Task.Run( () => { image = UIImage.FromFile(localPath).Scale(imageViewSize); } );
