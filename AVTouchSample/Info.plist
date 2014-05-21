@@ -5,18 +5,18 @@
 	<key>CFBundleDisplayName</key>
 	<string>AV Touch</string>
 	<key>CFBundleIconFiles</key>
-    	<array>
-        	<string>Resources/icon-57.png</string>
-        	<string>Resources/icon-114.png</string>
-        	<string>Resources/icon-72.png</string>
-        	<string>Resources/icon-144.png</string>
-        	<string>Resources/icon-29.png</string>
-        	<string>Resources/icon-58.png</string>
-        	<string>Resources/icon-50.png</string>
-        	<string>Resources/icon-100.png</string>
-    	</array>
+	<array>
+		<string>Resources/icon-57.png</string>
+		<string>Resources/icon-114.png</string>
+		<string>Resources/icon-72.png</string>
+		<string>Resources/icon-144.png</string>
+		<string>Resources/icon-29.png</string>
+		<string>Resources/icon-58.png</string>
+		<string>Resources/icon-50.png</string>
+		<string>Resources/icon-100.png</string>
+	</array>
 	<key>MinimumOSVersion</key>
-	<string>3.0</string>
+	<string>5.0</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UIDeviceFamily</key>

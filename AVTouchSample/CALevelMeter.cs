@@ -1,9 +1,9 @@
 
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.AVFoundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using AVFoundation;
+using UIKit;
+using CoreGraphics;
 using System.Collections.Generic;
 
 namespace avTouch
@@ -34,7 +34,7 @@ namespace avTouch
 			LayoutSublevelMeters ();
 		}
 		
-		public CALevelMeter (RectangleF frame) : base (frame)
+		public CALevelMeter (CGRect frame) : base (frame)
 		{
 			LayoutSublevelMeters ();
 		}
@@ -47,23 +47,23 @@ namespace avTouch
 			sublevelMeters.Clear ();
 			vertical = Frame.Size.Width < Frame.Size.Height;
 			
-			RectangleF totalRect;
+			CGRect totalRect;
 			if (vertical)
-				totalRect = new RectangleF (0, 0, Frame.Size.Width + 2, Frame.Size.Height);
+				totalRect = new CGRect (0, 0, Frame.Size.Width + 2, Frame.Size.Height);
 			else
-				totalRect = new RectangleF (0, 0, Frame.Size.Width, Frame.Size.Height + 2);
+				totalRect = new CGRect (0, 0, Frame.Size.Width, Frame.Size.Height + 2);
 			
 			for (int i = 0; i < channelNumbers.Length; i++){
-				RectangleF fr;
+				CGRect fr;
 				
 				if (vertical)
-					fr = new RectangleF (
+					fr = new CGRect (
 				 		(float) totalRect.X + ((float) i) / channelNumbers.Length * totalRect.Width,
 					    totalRect.Y,
 						(float) (1f / channelNumbers.Length) * totalRect.Width - 2,
 					    totalRect.Height);
 				else
-					fr = new RectangleF (
+					fr = new CGRect (
 					    totalRect.X,
 					    (float) totalRect.Y + ((float) i) / channelNumbers.Length * totalRect.Height,
 					    totalRect.Width,
@@ -173,7 +173,7 @@ namespace avTouch
 				
 				if (player != null){
 					player.MeteringEnabled = true;
-					if (player.NumberOfChannels != channelNumbers.Length){
+					if ((nint)player.NumberOfChannels != channelNumbers.Length){
 						if (player.NumberOfChannels < 2)
 							ChannelNumbers = new int [] {0};
 						else

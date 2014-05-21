@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using Foundation;
+using UIKit;
+
+using CoreGraphics;
 using System.Collections.Generic;
 
 namespace avTouch
@@ -51,7 +51,7 @@ namespace avTouch
 			Vertical = Frame.Width < Frame.Height;
 		}
 
-		public LevelMeter (RectangleF frame) : base (frame)
+		public LevelMeter (CGRect frame) : base (frame)
 		{
 			MeterInit ();
 		}
@@ -70,11 +70,11 @@ namespace avTouch
 			return val;
 		}
 
-		public override void Draw (RectangleF rectB)
+		public override void Draw (CGRect rectB)
 		{
 			CGColorSpace cs = null;
 			CGContext ctx = null;
-			RectangleF bds;
+			CGRect bds;
 			
 			using (ctx = UIGraphics.GetCurrentContext ()) {
 				using (cs = CGColorSpace.CreateDeviceRGB ()) {
@@ -86,7 +86,7 @@ namespace avTouch
 					} else {
 						ctx.TranslateCTM (0, Bounds.Height);
 						ctx.RotateCTM (-(float)Math.PI / 2);
-						bds = new RectangleF (0, 0, Bounds.Height, Bounds.Width);
+						bds = new CGRect (0, 0, Bounds.Height, Bounds.Width);
 					}
 			
 					ctx.SetFillColorSpace (cs);
@@ -103,7 +103,7 @@ namespace avTouch
 						foreach (var thisTresh in ColorThresholds) {
 							var val = Math.Min (thisTresh.MaxValue, Level);
 					
-							var rect = new RectangleF (0, bds.Height * currentTop, bds.Width, bds.Height * (val - currentTop));
+							var rect = new CGRect (0, bds.Height * currentTop, bds.Width, bds.Height * (val - currentTop));
 							thisTresh.Color.SetColor ();
 							ctx.FillRect (rect);
 					
@@ -122,7 +122,7 @@ namespace avTouch
 						float insetAmount, lightVSpace;
 						int peakLight = -1;
 				
-						lightVSpace = bds.Height / (float)NumLights;
+						lightVSpace = (float)(bds.Height / NumLights);
 						if (lightVSpace < 4)
 							insetAmount = 0;
 						else if (lightVSpace < 8)
@@ -139,7 +139,7 @@ namespace avTouch
 						for (int light_i = 0; light_i < NumLights; light_i++) {
 							float lightMaxVal = (light_i + 1) / (float)NumLights;
 							float lightIntensity;
-							RectangleF lightRect;
+							CGRect lightRect;
 							UIColor lightColor;
 					
 							if (light_i == peakLight)
@@ -161,7 +161,7 @@ namespace avTouch
 								}
 							}
 					
-							lightRect = new RectangleF (0, bds.Height * light_i / (float)NumLights,
+							lightRect = new CGRect (0, bds.Height * light_i / (float)NumLights,
 								bds.Width, bds.Height * (1f / NumLights));
 							lightRect.Inset (insetAmount, insetAmount);
 					
