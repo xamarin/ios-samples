@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.EventKit;
+using EventKit;
 
 namespace Calendars
 {

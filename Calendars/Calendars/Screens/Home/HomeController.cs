@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
+using UIKit;
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.EventKit;
+using Foundation;
+using EventKit;
 
 namespace Calendars.Screens.Home
 {
@@ -82,8 +82,8 @@ namespace Calendars.Screens.Home
 		{
 			// create a new EKEventEditViewController. This controller is built in an allows
 			// the user to create a new, or edit an existing event.
-			MonoTouch.EventKitUI.EKEventEditViewController eventController = 
-				new MonoTouch.EventKitUI.EKEventEditViewController ();
+			EventKitUI.EKEventEditViewController eventController = 
+				new EventKitUI.EKEventEditViewController ();
 
 			// set the controller's event store - it needs to know where/how to save the event
 			eventController.EventStore = App.Current.EventStore;
@@ -116,8 +116,8 @@ namespace Calendars.Screens.Home
 
 			// create a new EKEventEditViewController. This controller is built in an allows
 			// the user to create a new, or edit an existing event.
-			MonoTouch.EventKitUI.EKEventEditViewController eventController = 
-				new MonoTouch.EventKitUI.EKEventEditViewController ();
+			EventKitUI.EKEventEditViewController eventController = 
+				new EventKitUI.EKEventEditViewController ();
 
 			// set the controller's event store - it needs to know where/how to save the event
 			eventController.EventStore = App.Current.EventStore;
@@ -132,19 +132,19 @@ namespace Calendars.Screens.Home
 		}
 
 		// our delegate for the create new event controller.
-		protected class CreateEventEditViewDelegate : MonoTouch.EventKitUI.EKEventEditViewDelegate
+		protected class CreateEventEditViewDelegate : EventKitUI.EKEventEditViewDelegate
 		{
 			// we need to keep a reference to the controller so we can dismiss it
-			protected MonoTouch.EventKitUI.EKEventEditViewController eventController;
+			protected EventKitUI.EKEventEditViewController eventController;
 
-			public CreateEventEditViewDelegate (MonoTouch.EventKitUI.EKEventEditViewController eventController)
+			public CreateEventEditViewDelegate (EventKitUI.EKEventEditViewController eventController)
 			{
 				// save our controller reference
 				this.eventController = eventController;
 			}
 
 			// completed is called when a user eith
-			public override void Completed (MonoTouch.EventKitUI.EKEventEditViewController controller, EKEventEditViewAction action)
+			public override void Completed (EventKitUI.EKEventEditViewController controller, EventKitUI.EKEventEditViewAction action)
 			{
 				eventController.DismissViewController (true, null);
 
@@ -154,11 +154,11 @@ namespace Calendars.Screens.Home
 				// modify the event and then resave if you'd like. 
 				switch ( action ) {
 
-				case EKEventEditViewAction.Canceled:
+				case EventKitUI.EKEventEditViewAction.Canceled:
 					break;
-				case EKEventEditViewAction.Deleted:
+				case EventKitUI.EKEventEditViewAction.Deleted:
 					break;
-				case EKEventEditViewAction.Saved:
+				case EventKitUI.EKEventEditViewAction.Saved:
 					// if you wanted to modify the event you could do so here, and then
 					// save:
 					//App.Current.EventStore.SaveEvent ( controller.Event, )
