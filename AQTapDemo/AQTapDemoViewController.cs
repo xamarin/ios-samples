@@ -30,8 +30,8 @@
 using System;
 using System.Drawing;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace AQTapDemo
 {
@@ -50,6 +50,7 @@ namespace AQTapDemo
 			const string STATION_URL_STRING = "http://1661.live.streamtheworld.com:80/CBC_R3_WEB_SC";
 			player = new CCFWebRadioPlayer (new NSUrl (STATION_URL_STRING));
 			stationURLLabel.Text = player.StationURL.AbsoluteString;
+			ResetPitch ();
 			player.Start ();
 		}
 

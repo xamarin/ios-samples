@@ -21,7 +21,7 @@
 		<string>Icon-Small-40@2x</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>3.0</string>
+	<string>5.0</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>UIDeviceFamily</key>

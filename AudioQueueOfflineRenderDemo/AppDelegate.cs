@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-using MonoTouch;
-using MonoTouch.AVFoundation;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.Dialog;
-using MonoTouch.AudioToolbox;
-using MonoTouch.AudioUnit;
 
-using MonoTouch.CoreFoundation;
+using AVFoundation;
+using Foundation;
+using UIKit;
+using MonoTouch.Dialog;
+using AudioToolbox;
+using AudioUnit;
+
+using CoreFoundation;
 
 using AudioFileID = System.IntPtr;
 
@@ -157,7 +157,7 @@ namespace AudioQueueOfflineRenderDemo
 			using (var audioFile = AudioFile.Open (sourceUrl, AudioFilePermission.Read, (AudioFileType) 0)) {
 				dataFormat = audioFile.StreamBasicDescription;
 				
-				using (var queue = new OutputAudioQueue (dataFormat, CFRunLoop.Current, CFRunLoop.CFRunLoopCommonModes)) {
+				using (var queue = new OutputAudioQueue (dataFormat, CFRunLoop.Current, CFRunLoop.ModeCommon)) {
 					queue.OutputCompleted += (sender, e) => 
 					{
 						HandleOutput (audioFile, queue, buffer, ref packetsToRead, ref currentPacket, ref done, ref flushed, ref packetDescs);
@@ -232,8 +232,7 @@ namespace AudioQueueOfflineRenderDemo
 							
 							ts += writeFrames;
 						}
-					
-						CFRunLoop.Current.RunInMode (CFRunLoop.CFDefaultRunLoopMode, 1, false);
+						CFRunLoop.Current.RunInMode (CFRunLoop.ModeDefault, 1, false);
 					}
 				}
 			}

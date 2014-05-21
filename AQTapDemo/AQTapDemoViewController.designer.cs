@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace AQTapDemo
 {
@@ -12,19 +12,19 @@ namespace AQTapDemo
 	partial class AQTapDemoViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UISlider pitchSlider { get; set; }
+		UIKit.UISlider pitchSlider { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel stationURLLabel { get; set; }
+		UIKit.UILabel stationURLLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel pitchLabel { get; set; }
+		UIKit.UILabel pitchLabel { get; set; }
 
 		[Action ("handlePitchSliderValueChanged:")]
-		partial void handlePitchSliderValueChanged (MonoTouch.Foundation.NSObject sender);
+		partial void handlePitchSliderValueChanged (Foundation.NSObject sender);
 
 		[Action ("handleResetTo1Tapped:")]
-		partial void handleResetTo1Tapped (MonoTouch.Foundation.NSObject sender);
+		partial void handleResetTo1Tapped (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

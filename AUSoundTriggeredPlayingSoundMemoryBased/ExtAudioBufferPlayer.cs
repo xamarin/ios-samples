@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-using MonoTouch.AudioToolbox;
-using MonoTouch.CoreFoundation;
-using MonoTouch.AudioUnit;
+using AudioToolbox;
+using CoreFoundation;
+using AudioUnit;
 using System.Runtime.InteropServices;
 
 namespace AUSoundTriggeredPlayingSoundMemoryBased
@@ -17,7 +17,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 		const int _sampleRate = 44100;
 
 		AudioComponent _audioComponent;
-		AudioUnit _audioUnit;
+		AudioUnit.AudioUnit _audioUnit;
 		ExtAudioFile _extAudioFile;
 		AudioBuffers _buffer;
 		AudioStreamBasicDescription _srcFormat;
@@ -164,7 +164,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 			_audioComponent = AudioComponent.FindComponent (AudioTypeOutput.Remote);
 
 			// creating an audio unit instance
-			_audioUnit = new AudioUnit (_audioComponent);
+			_audioUnit = new AudioUnit.AudioUnit (_audioComponent);
 
 			// turning on microphone
 			_audioUnit.SetEnableIO (true,

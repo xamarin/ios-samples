@@ -28,10 +28,10 @@
 //
 
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.AudioToolbox;
-using MonoTouch.CoreFoundation;
-using MonoTouch.AudioUnit;
+using Foundation;
+using AudioToolbox;
+using CoreFoundation;
+using AudioUnit;
 using System.Diagnostics;
 
 namespace AQTapDemo
@@ -59,8 +59,10 @@ namespace AQTapDemo
 		OutputAudioQueue audioQueue;
 		AudioQueueProcessingTap aqTap;
 		IntPtr preRenderData;
-		AudioUnit genericOutputUnit;
-		AudioUnit effectUnit;
+
+	
+		AudioUnit.AudioUnit genericOutputUnit;
+		AudioUnit.AudioUnit effectUnit;
 		AUGraph auGraph;
 
 		int totalPacketsReceived;
@@ -68,6 +70,7 @@ namespace AQTapDemo
 		public CCFWebRadioPlayer (NSUrl stationURL)
 		{
 			this.StationURL = stationURL;
+			Console.WriteLine ("URL: " + stationURL);
 		}
 
 		public NSUrl StationURL { get; private set; }
@@ -76,7 +79,7 @@ namespace AQTapDemo
 		{
 			if (effectUnit == null)
 				return;
-
+			Console.WriteLine ("Setting parameter PitchPitch: "+value);
 			effectUnit.SetParameter (AudioUnitParameterType.NewTimePitchPitch, value, AudioUnitScopeType.Global);
 		}
 
@@ -202,6 +205,7 @@ namespace AQTapDemo
 			AudioUnitRenderActionFlags action_flags = 0;
 
 			var res = genericOutputUnit.Render (ref action_flags, renderTimeStamp, 0, numberOfFrames, data);
+			Console.WriteLine (res);
 			if (res != AudioUnitStatus.NoError)
 				throw new ApplicationException ();
 

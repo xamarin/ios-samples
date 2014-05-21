@@ -30,9 +30,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AudioToolbox;
+using Foundation;
+using UIKit;
+using AudioToolbox;
 using System.Diagnostics;
 using System.Threading;
 

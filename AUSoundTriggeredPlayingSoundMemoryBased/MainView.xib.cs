@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace AUSoundTriggeredPlayingSoundMemoryBased
 {
@@ -43,7 +43,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 		{
 			base.ViewDidLoad ();
      
-			var url = MonoTouch.CoreFoundation.CFUrl.FromFile ("loop_stereo.aif");
+			var url = CoreFoundation.CFUrl.FromFile ("loop_stereo.aif");
 			_player = new ExtAudioBufferPlayer (url);
 
 			// setting audio session

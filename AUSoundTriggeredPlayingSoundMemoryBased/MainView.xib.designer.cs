@@ -11,25 +11,25 @@
 namespace AUSoundTriggeredPlayingSoundMemoryBased {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("MainView")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("MainView")]
 	public partial class MainView {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt__playButton;
+		private UIKit.UIButton __mt__playButton;
 		
-		private MonoTouch.UIKit.UIButton __mt__stopButton;
+		private UIKit.UIButton __mt__stopButton;
 		
-		private MonoTouch.UIKit.UISlider __mt__slider;
+		private UIKit.UISlider __mt__slider;
 		
-		private MonoTouch.UIKit.UILabel __mt__signalLevelLabel;
+		private UIKit.UILabel __mt__signalLevelLabel;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -38,10 +38,10 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("_playButton")]
-		private MonoTouch.UIKit.UIButton _playButton {
+		[Foundation.Connect("_playButton")]
+		private UIKit.UIButton _playButton {
 			get {
-				this.__mt__playButton = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("_playButton")));
+				this.__mt__playButton = ((UIKit.UIButton)(this.GetNativeField("_playButton")));
 				return this.__mt__playButton;
 			}
 			set {
@@ -50,10 +50,10 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("_stopButton")]
-		private MonoTouch.UIKit.UIButton _stopButton {
+		[Foundation.Connect("_stopButton")]
+		private UIKit.UIButton _stopButton {
 			get {
-				this.__mt__stopButton = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("_stopButton")));
+				this.__mt__stopButton = ((UIKit.UIButton)(this.GetNativeField("_stopButton")));
 				return this.__mt__stopButton;
 			}
 			set {
@@ -62,10 +62,10 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("_slider")]
-		private MonoTouch.UIKit.UISlider _slider {
+		[Foundation.Connect("_slider")]
+		private UIKit.UISlider _slider {
 			get {
-				this.__mt__slider = ((MonoTouch.UIKit.UISlider)(this.GetNativeField("_slider")));
+				this.__mt__slider = ((UIKit.UISlider)(this.GetNativeField("_slider")));
 				return this.__mt__slider;
 			}
 			set {
@@ -74,10 +74,10 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("_signalLevelLabel")]
-		private MonoTouch.UIKit.UILabel _signalLevelLabel {
+		[Foundation.Connect("_signalLevelLabel")]
+		private UIKit.UILabel _signalLevelLabel {
 			get {
-				this.__mt__signalLevelLabel = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("_signalLevelLabel")));
+				this.__mt__signalLevelLabel = ((UIKit.UILabel)(this.GetNativeField("_signalLevelLabel")));
 				return this.__mt__signalLevelLabel;
 			}
 			set {
