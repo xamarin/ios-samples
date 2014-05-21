@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Threading;
 
 namespace Example_BackgroundExecution.Screens.iPhone
@@ -45,7 +45,7 @@ namespace Example_BackgroundExecution.Screens.iPhone
 		public void DoSomething ()
 		{
 			// register our background task
-			int taskID = UIApplication.SharedApplication.BeginBackgroundTask ( () => { this.BackgroundTaskExpiring (); });
+			nint taskID = UIApplication.SharedApplication.BeginBackgroundTask ( () => { this.BackgroundTaskExpiring (); });
 
 			Console.WriteLine ("Starting background task " + taskID.ToString ());
 			

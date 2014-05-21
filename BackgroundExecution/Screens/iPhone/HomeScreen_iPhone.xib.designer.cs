@@ -11,19 +11,19 @@
 namespace Example_BackgroundExecution.Screens.iPhone {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("HomeScreen_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("HomeScreen_iPhone")]
 	public partial class HomeScreen_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnStartLongRunningTask;
+		private UIKit.UIButton __mt_btnStartLongRunningTask;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_BackgroundExecution.Screens.iPhone {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnStartLongRunningTask")]
-		private MonoTouch.UIKit.UIButton btnStartLongRunningTask {
+		[Foundation.Connect("btnStartLongRunningTask")]
+		private UIKit.UIButton btnStartLongRunningTask {
 			get {
-				this.__mt_btnStartLongRunningTask = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnStartLongRunningTask")));
+				this.__mt_btnStartLongRunningTask = ((UIKit.UIButton)(this.GetNativeField("btnStartLongRunningTask")));
 				return this.__mt_btnStartLongRunningTask;
 			}
 			set {
