@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.SpriteKit;
-using MonoTouch.UIKit;
+using SpriteKit;
+using UIKit;
 
 namespace ButtonTapper3000 {
 

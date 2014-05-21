@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.GameKit;
-using MonoTouch.SpriteKit;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using GameKit;
+using SpriteKit;
+using UIKit;
 
 namespace ButtonTapper3000 {
 
@@ -15,47 +15,47 @@ namespace ButtonTapper3000 {
 		SKLabelNode playChallengeButton;
 		SKLabelNode challengeFriendsButton;
 
-		public MainMenu (SizeF size) : base (size)
+		public MainMenu (CGSize size) : base (size)
 		{
 			var title = new SKLabelNode ("GillSans-Bold") {
 				Text = "Button Tapper",
 				FontSize = 30f,
-				Position = new PointF (FrameMidX, FrameMidY + 60)
+				Position = new CGPoint (FrameMidX, FrameMidY + 60)
 			};
 
 			startButton = new SKLabelNode ("GillSans-Bold") {
 				Text = "Start Game",
 				FontSize = 18,
 				FontColor = ButtonColor,
-				Position = new PointF (FrameMidX, FrameMidY)
+				Position = new CGPoint (FrameMidX, FrameMidY)
 			};
 
 			gameCenterButton = new SKLabelNode ("GillSans-Bold") {
 				Text = "Game Center",
 				FontSize = 18,
 				FontColor = ButtonColor,
-				Position = new PointF (FrameMidX, FrameMidY - 60)
+				Position = new CGPoint (FrameMidX, FrameMidY - 60)
 			};
 
 			gameStatsButton = new SKLabelNode ("GillSans-Bold") {
 				Text = "Game Stats",
 				FontSize = 18,
 				FontColor = ButtonColor,
-				Position = new PointF (FrameMidX, FrameMidY - 120)
+				Position = new CGPoint (FrameMidX, FrameMidY - 120)
 			};
 
 			challengeFriendsButton = new SKLabelNode ("GillSans-Bold") {
 				Text = "Challenge Friends",
 				FontSize = 18,
 				FontColor = ButtonColor,
-				Position = new PointF (FrameMidX, FrameMidY - 180)
+				Position = new CGPoint (FrameMidX, FrameMidY - 180)
 			};
 
 			playChallengeButton = new SKLabelNode ("GillSans-Bold") {
 				Text = "Play Challenge",
 				FontSize = 18,
 				FontColor = ButtonColor,
-				Position = new PointF (FrameMidX, FrameMidY - 240)
+				Position = new CGPoint (FrameMidX, FrameMidY - 240)
 			};
 
 			SetupChallenge ();
@@ -163,7 +163,7 @@ namespace ButtonTapper3000 {
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
 			foreach (var touch in touches) {
-				PointF location = (touch as UITouch).LocationInNode (this);
+				CGPoint location = (touch as UITouch).LocationInNode (this);
 				if (startButton.Frame.Contains (location)) {
 					PresentScene (new GameSetupMenu (View.Bounds.Size));
 				} else if (gameCenterButton.Frame.Contains (location)) {

@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.SpriteKit;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using SpriteKit;
+using UIKit;
 
 namespace ButtonTapper3000 {
 
@@ -9,28 +9,28 @@ namespace ButtonTapper3000 {
 
 		SKLabelNode doneButton;
 
-		public ResultsScreen (SizeF size) : base (size)
+		public ResultsScreen (CGSize size) : base (size)
 		{
 			var timeLabel = new SKLabelNode ("GillSans-Bold") {
 				Text = "Time: " + GameInfo.GameTimeInSeconds,
 				FontSize = 24,
-				Position = new PointF (FrameMidX, FrameMidY + 120)
+				Position = new CGPoint (FrameMidX, FrameMidY + 120)
 			};
 			var modeLabel = new SKLabelNode ("GillSans-Bold") {
 				Text = "Mode: " + GameInfo.GameMode,
 				FontSize = 24,
-				Position = new PointF (FrameMidX, FrameMidY + 60)
+				Position = new CGPoint (FrameMidX, FrameMidY + 60)
 			};
 			var scoreLabel = new SKLabelNode ("GillSans-Bold") {
 				Text = "Score: " + GameInfo.CurrentTaps,
 				FontSize = 30,
-				Position = new PointF (FrameMidX, FrameMidY)
+				Position = new CGPoint (FrameMidX, FrameMidY)
 			};
 			doneButton = new SKLabelNode ("GillSans-Bold") {
 				Text = "Done",
 				FontSize = 24,
 				FontColor = ButtonColor,
-				Position = new PointF (FrameMidX, FrameMidY - 90)
+				Position = new CGPoint (FrameMidX, FrameMidY - 90)
 			};
 			AddChild (timeLabel);
 			AddChild (modeLabel);
@@ -38,10 +38,10 @@ namespace ButtonTapper3000 {
 			AddChild (doneButton);
 		}
 
-		public override void TouchesBegan (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesBegan (Foundation.NSSet touches, UIEvent evt)
 		{
 			foreach (var touch in touches) {
-				PointF location = (touch as UITouch).LocationInNode (this);
+				CGPoint location = (touch as UITouch).LocationInNode (this);
 				if (doneButton.ContainsPoint (location))
 					PresentScene (new MainMenu (View.Bounds.Size));
 			}

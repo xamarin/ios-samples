@@ -1,11 +1,11 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Threading.Tasks;
-using MonoTouch.CoreText;
-using MonoTouch.Foundation;
-using MonoTouch.GameKit;
-using MonoTouch.SpriteKit;
-using MonoTouch.UIKit;
+using CoreText;
+using Foundation;
+using GameKit;
+using SpriteKit;
+using UIKit;
 
 namespace ButtonTapper3000 {
 
@@ -27,7 +27,7 @@ namespace ButtonTapper3000 {
 
 		Random rand;
 
-		public MainGame (SizeF size) : base (size)
+		public MainGame (CGSize size) : base (size)
 		{
 			rand = new Random ();
 
@@ -49,19 +49,19 @@ namespace ButtonTapper3000 {
 				Text = "Tap Me!",
 				FontSize = 18,
 				FontColor = ButtonColor,
-				Position = new PointF (FrameMidX, FrameMidY)
+				Position = new CGPoint (FrameMidX, FrameMidY)
 			};
 
 			clicksLabel = new SKLabelNode ("AvenirNext-Bold") {
 				Text = GameInfo.CurrentTaps.ToString (),
 				FontSize = 45,
-				Position = new PointF (FrameMidX, FrameMidY - 120)
+				Position = new CGPoint (FrameMidX, FrameMidY - 120)
 			};
 
 			timerLabel = new SKLabelNode ("HelveticaNeue-CondensedBlack") {
 				Text = GameInfo.CurrentTicks.ToString (),
 				FontSize = 45,
-				Position = new PointF (FrameMidX, FrameMidY + 120)
+				Position = new CGPoint (FrameMidX, FrameMidY + 120)
 			};
 
 			AddChild (button);
@@ -80,7 +80,7 @@ namespace ButtonTapper3000 {
 					if (GameInfo.GameMode == GameMode.Hard) {
 						int x = rand.Next (100) - 50;
 						int y = rand.Next (100) - 50;
-						button.Position = new PointF (FrameMidX + x, FrameMidY + y);
+						button.Position = new CGPoint (FrameMidX + x, FrameMidY + y);
 					}
 				}
 			}
@@ -160,7 +160,7 @@ namespace ButtonTapper3000 {
 
 				int playedGameTypesBitField;
 				using (NSUserDefaults defaults = NSUserDefaults.StandardUserDefaults) {
-					playedGameTypesBitField = defaults.IntForKey ("playedGameTypes") | (int) gameType;
+					playedGameTypesBitField = (int) defaults.IntForKey ("playedGameTypes") | (int) gameType;
 					defaults.SetInt (playedGameTypesBitField, "playedGameTypes");
 					defaults.Synchronize ();
 				}
