@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace AVCompositionDebugVieweriOS
@@ -16,22 +16,22 @@ namespace AVCompositionDebugVieweriOS
 		AVCompositionDebugVieweriOS.APLCompositionDebugView compositionDebugView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel currentTimeLabel { get; set; }
+		UIKit.UILabel currentTimeLabel { get; set; }
 
 		[Outlet]
 		AVCompositionDebugVieweriOS.APLPlayerView playerView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem playPauseButton { get; set; }
+		UIKit.UIBarButtonItem playPauseButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider scrubber { get; set; }
+		UIKit.UISlider scrubber { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIToolbar toolbar { get; set; }
+		UIKit.UIToolbar toolbar { get; set; }
 
 		[Action ("Click:")]
-		partial void Click (MonoTouch.UIKit.UIBarButtonItem sender);
+		partial void Click (UIKit.UIBarButtonItem sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
