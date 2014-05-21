@@ -326,7 +326,7 @@ namespace AVCompositionDebugVieweriOS
 		private void UpdateTimeLabel ()
 		{
 			double secondes = Player.CurrentTime.Seconds;
-			Console.WriteLine (secondes);
+			//Console.WriteLine (secondes);
 			if (double.IsInfinity (secondes)) 
 				secondes = 0;
 

@@ -203,6 +203,7 @@ namespace AVCompositionDebugVieweriOS
 
 			if (compositionTracks != null) {
 				DrawCompositionTracks (bannerRect, rowRect, ref runningTop);
+				Console.WriteLine ("Will Draw Marker");
 				DrawMarker (rowRect, rect.Y);
 			}
 
@@ -312,6 +313,8 @@ namespace AVCompositionDebugVieweriOS
 
 		private void DrawMarker (CGRect rowRect, nfloat position)
 		{
+			if (Player == null)
+				return;
 			if (Layer.Sublayers != null) {
 				Layer.Sublayers = new CALayer[0];
 			}
