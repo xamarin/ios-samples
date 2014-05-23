@@ -1,10 +1,10 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.CoreAnimation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreAnimation;
+
+using Foundation;
+using UIKit;
 
 namespace CustomPropertyAnimation
 {
@@ -138,24 +138,24 @@ namespace CustomPropertyAnimation
 			//Console.WriteLine (this.Bounds.Width+"   "+ this.Bounds.Height);
 
 
-			PointF centerPoint = new PointF (this.Bounds.Width / 2, this.Bounds.Height / 2);
+			CGPoint centerPoint = new CGPoint (this.Bounds.Width / 2, this.Bounds.Height / 2);
 			CGColor glowColor = new UIColor (Color).ColorWithAlpha (0.85f).CGColor;
 			double innerRadius = (Radius - Thickness) > 0 ? Radius - Thickness : 0;
 	
 			// Outer circle
-			context.AddEllipseInRect (new RectangleF (centerPoint.X - (float) Radius,
+			context.AddEllipseInRect (new CGRect (centerPoint.X - (float) Radius,
 			                                        centerPoint.Y - (float) Radius,
 			                                        (float) Radius * 2,
 			                                        (float) Radius * 2));
 			// Inner circle
-			context.AddEllipseInRect (new RectangleF (centerPoint.X - (float) innerRadius,
+			context.AddEllipseInRect (new CGRect (centerPoint.X - (float) innerRadius,
 			                                        centerPoint.Y - (float) innerRadius,
 			                                        (float) innerRadius * 2,
 			                                        (float) innerRadius * 2));
 			
 			// Fill in circle
 			context.SetFillColor (Color);
-			context.SetShadowWithColor (SizeF.Empty, 10.0f, glowColor);
+			context.SetShadow (CGSize.Empty, 10.0f, glowColor);
 			context.EOFillPath();
 		}
 	}
