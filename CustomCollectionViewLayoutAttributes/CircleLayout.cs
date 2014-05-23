@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.CoreAnimation;
-using MonoTouch.UIKit;
-using MonoTouch.ObjCRuntime;
+using CoreGraphics;
+using Foundation;
+using CoreAnimation;
+using UIKit;
+using ObjCRuntime;
 
 namespace SimpleCollectionView
 {
 	public class CircleData {
-		public int CellCount = 20;
-		public float Radius;
-		public float ItemSize = 70.0f;
-		public PointF Center;
+		public nint CellCount = 20;
+		public nfloat Radius;
+		public nfloat ItemSize = 70.0f;
+		public CGPoint Center;
 	}
 
 	public class CircleLayout : UICollectionViewLayout
@@ -31,20 +31,20 @@ namespace SimpleCollectionView
 		{
 			base.PrepareLayout ();
 
-			SizeF size = CollectionView.Frame.Size;
+			CGSize size = CollectionView.Frame.Size;
 
 			data.CellCount = CollectionView.NumberOfItemsInSection (0);
-			data.Center = new PointF (size.Width / 2.0f, size.Height / 2.0f);
-			data.Radius = Math.Min (size.Width, size.Height) / 2.5f;	
+			data.Center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
+			data.Radius = (nfloat)Math.Min (size.Width, size.Height) / 2.5f;	
 		}
 			
-		public override SizeF CollectionViewContentSize {
+		public override CGSize CollectionViewContentSize {
 			get {
 				return CollectionView.Frame.Size;
 			}
 		}
 
-        public override bool ShouldInvalidateLayoutForBoundsChange (RectangleF newBounds)
+        public override bool ShouldInvalidateLayoutForBoundsChange (CGRect newBounds)
         {
             return true;
         }
@@ -55,17 +55,17 @@ namespace SimpleCollectionView
 			// use the workaround here: https://bugzilla.xamarin.com/show_bug.cgi?id=10877#c6
 			var attributes = CustomCollectionViewLayoutAttributes.CreateForCell<CustomCollectionViewLayoutAttributes> (path);
 
-			attributes.Size = new SizeF (data.ItemSize, data.ItemSize);
+			attributes.Size = new CGSize (data.ItemSize, data.ItemSize);
 
 			// Create a random value around 1.0f
 			attributes.Distance = 1.0f + ((float) random.NextDouble () - 0.5f) / 5.0f;
-			attributes.Row = path.Row;
+			attributes.Row = (int)path.Row;
 			attributes.Data = data;
 
 			return attributes;
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (RectangleF rect)
+		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			var attributes = new UICollectionViewLayoutAttributes [data.CellCount];
 

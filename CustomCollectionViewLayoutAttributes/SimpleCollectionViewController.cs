@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using Foundation;
+
 
 namespace SimpleCollectionView
 {
@@ -38,13 +38,13 @@ namespace SimpleCollectionView
                 var pinchPoint = tapRecognizer.LocationInView (CollectionView);
 				var tappedCellPath = GetIndexPathsForVisibleItems (pinchPoint);
                 if (tappedCellPath != null) {
-					animals.RemoveAt (tappedCellPath.Row);
+					animals.RemoveAt ((int)tappedCellPath.Row);
 					CollectionView.DeleteItems (new NSIndexPath[] { tappedCellPath });
                 }
             }
         }
 
-		public NSIndexPath GetIndexPathsForVisibleItems (PointF touchPoint)
+		public NSIndexPath GetIndexPathsForVisibleItems (CGPoint touchPoint)
 		{
 			for (int i = 0; i < CollectionView.VisibleCells.Length; i++) {
 				if (CollectionView.VisibleCells [i].Frame.Contains (touchPoint))
@@ -54,16 +54,16 @@ namespace SimpleCollectionView
 			return null;
 		}
 
-        public override int GetItemsCount (UICollectionView collectionView, int section)
+		public override nint GetItemsCount (UICollectionView collectionView, nint section)
         {
             return animals.Count;
         }
 
-        public override UICollectionViewCell GetCell (UICollectionView collectionView, MonoTouch.Foundation.NSIndexPath indexPath)
+        public override UICollectionViewCell GetCell (UICollectionView collectionView, Foundation.NSIndexPath indexPath)
         {
             var animalCell = (AnimalCell) collectionView.DequeueReusableCell (animalCellId, indexPath);
 
-            var animal = animals [indexPath.Row];
+			var animal = animals [(int)indexPath.Row];
             animalCell.Image = animal.Image;
 
             return animalCell;
@@ -75,7 +75,7 @@ namespace SimpleCollectionView
         UIImageView imageView;
 
         [Export ("initWithFrame:")]
-        public AnimalCell (System.Drawing.RectangleF frame) : base (frame)
+        public AnimalCell (CoreGraphics.CGRect frame) : base (frame)
         {
             BackgroundView = new UIView { BackgroundColor = UIColor.Orange };
 
@@ -104,10 +104,10 @@ namespace SimpleCollectionView
 			var attributes = layoutAttributes as CustomCollectionViewLayoutAttributes;
 			if (attributes != null) {
 				var data = attributes.Data;
-				attributes.Center = new PointF (data.Center.X + data.Radius * attributes.Distance * (float) Math.Cos (2 * attributes.Row * Math.PI / data.CellCount),
+				attributes.Center = new CGPoint (data.Center.X + data.Radius * attributes.Distance * (float) Math.Cos (2 * attributes.Row * Math.PI / data.CellCount),
 				                                data.Center.Y + data.Radius * attributes.Distance * (float) Math.Sin (2 * attributes.Row * Math.PI / data.CellCount));
 
-				if (!float.IsNaN (attributes.Center.X) && !float.IsNaN (attributes.Center.Y) &&
+				if (!nfloat.IsNaN (attributes.Center.X) && !nfloat.IsNaN (attributes.Center.Y) &&
 					UIDevice.CurrentDevice.CheckSystemVersion(7, 0))
 					Center = attributes.Center;
 			}
