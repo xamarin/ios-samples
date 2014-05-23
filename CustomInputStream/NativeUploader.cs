@@ -1,7 +1,7 @@
 using System;
 
 using System.Collections.Generic;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace InputStreamTest
 {
@@ -98,7 +98,7 @@ namespace InputStreamTest
 			Action<string> success_callback;
 			Action<string> failure_callback;
 			NSMutableData data;
-			int status_code;
+			nint status_code;
 
 			public NativeUrlDelegate (Action<string> success, Action<string> failure)
 			{
