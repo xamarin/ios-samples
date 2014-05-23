@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{45DE0DDE-7B52-4063-95E7-5D24CAA0733D}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,7 +16,7 @@
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
     <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;XAMCORE_2_0;ARCH_64</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
@@ -25,6 +25,7 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchUseArmv7>false</MtouchUseArmv7>
+    <MtouchExtraArgs>--registrar:static --nofastsim --override-abi x86_64</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -63,11 +64,13 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
+    <Reference Include="Xamarin.iOS">
+      <HintPath>\Developer\MonoTouch\usr\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="System.Data" />
-    <Reference Include="MonoTouch.Dialog">
-      <HintPath>ReferencedAssemblies\MonoTouch\MonoTouch.Dialog.dll</HintPath>
+    <Reference Include="MonoTouch.Dialog-1">
+      <HintPath>\Developer\MonoTouch\usr\lib\mono\Xamarin.iOS\MonoTouch.Dialog-1.dll</HintPath>
     </Reference>
     <Reference Include="Vici.CoolStorage.MT">
       <HintPath>ReferencedAssemblies\ViciCoolStorage\Vici.CoolStorage.MT.dll</HintPath>

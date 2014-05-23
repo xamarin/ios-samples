@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Data;
 using System.IO;
 using SQLite;
@@ -114,9 +114,8 @@ namespace Xamarin.Screens.SQLiteNet
 			
 			public TableSource (List<Person> items) : base() { this.items = items; }
 			
-			public override int NumberOfSections (UITableView tableView) { return 1; }
-			
-			public override int RowsInSection (UITableView tableview, int section) { return this.items.Count; }
+			public override nint NumberOfSections (UITableView tableView) { return 1; }
+			public override nint RowsInSection (UITableView tableview, nint section) { return this.items.Count; }
 			
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
@@ -124,7 +123,7 @@ namespace Xamarin.Screens.SQLiteNet
 				cell = tableView.DequeueReusableCell ("item");
 				if(cell == null) 
 					cell = new UITableViewCell(UITableViewCellStyle.Default, "item");
-				cell.TextLabel.Text = this.items[indexPath.Row].FirstName + " " + this.items[indexPath.Row].LastName;
+				cell.TextLabel.Text = this.items[(int)indexPath.Row].FirstName + " " + this.items[(int)indexPath.Row].LastName;
 				return cell;
 			}
 			

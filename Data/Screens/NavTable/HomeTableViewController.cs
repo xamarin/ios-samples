@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using MonoTouch.UIKit;
+using UIKit;
 using MonoTouch.Dialog;
 using System.Collections.Generic;
 using Xamarin.Code;
