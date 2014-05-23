@@ -11,6 +11,13 @@ namespace ManualStoryboard
 
 		public MainViewController (IntPtr handle) : base (handle)
 		{
+
+		}
+
+		public override void AwakeFromNib ()
+		{
+			// Called when loaded from xib or storyboard.
+
 			this.Initialize ();
 		}
 
