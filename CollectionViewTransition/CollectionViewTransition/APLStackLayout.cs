@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+
+using Foundation;
+using UIKit;
 
 namespace CollectionViewTransition {
 
@@ -20,10 +20,10 @@ namespace CollectionViewTransition {
 
 		public override void PrepareLayout ()
 		{
-			SizeF size = CollectionView.Bounds.Size;
-			PointF center = new PointF (size.Width / 2.0f, size.Height / 2.0f);
+			CGSize size = CollectionView.Bounds.Size;
+			CGPoint center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
 
-			int itemCount = CollectionView.NumberOfItemsInSection (0);
+			int itemCount = (int) CollectionView.NumberOfItemsInSection (0);
 
 			if (attributesArray == null) 
 				attributesArray = new List<UICollectionViewLayoutAttributes> (itemCount);
@@ -48,7 +48,7 @@ namespace CollectionViewTransition {
 				float angle = angles [angleIndex];
 				var path = NSIndexPath.FromItemSection (i, 0);
 				UICollectionViewLayoutAttributes attributes = UICollectionViewLayoutAttributes.CreateForCell (path);
-				attributes.Size = new SizeF (150, 200);
+				attributes.Size = new CGSize (150, 200);
 				attributes.Center = center;
 				attributes.Transform = CGAffineTransform.MakeRotation (angle);
 				attributes.Alpha = (i > stackCount) ? 0.0f : 1.0f;
@@ -63,16 +63,16 @@ namespace CollectionViewTransition {
 			attributesArray = null;
 		}
 
-		public override SizeF CollectionViewContentSize {
+		public override CGSize CollectionViewContentSize {
 			get { return CollectionView.Bounds.Size; }
 		}
 
 		public override UICollectionViewLayoutAttributes LayoutAttributesForItem (NSIndexPath indexPath)
 		{
-			return attributesArray [indexPath.Item];
+			return attributesArray [(int)indexPath.Item];
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (RectangleF rect)
+		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			return attributesArray.ToArray ();
 		}

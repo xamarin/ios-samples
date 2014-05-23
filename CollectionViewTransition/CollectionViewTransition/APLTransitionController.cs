@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace CollectionViewTransition {
 
@@ -12,7 +12,7 @@ namespace CollectionViewTransition {
 		UINavigationController navigationController;
 		IUIViewControllerContextTransitioning context;
 		float initialPinchDistance;
-		PointF initialPinchPoint;
+		CGPoint initialPinchPoint;
 
 		public APLTransitionController (UICollectionView view, UINavigationController controller)
 		{
@@ -25,13 +25,13 @@ namespace CollectionViewTransition {
 
 		public UINavigationControllerOperation NavigationOperation { get; set; }
 
-		void InteractionBegan (PointF point)
+		void InteractionBegan (CGPoint point)
 		{
 			UIViewController viewController = ((APLCollectionViewController)navigationController.TopViewController).NextViewControllerAtPoint (point);
 			if (viewController != null) {
 				navigationController.PushViewController (viewController, true);
 			} else {
-				navigationController.PopViewControllerAnimated (true);
+				navigationController.PopViewController (true);
 			}
 		}
 
@@ -84,11 +84,11 @@ namespace CollectionViewTransition {
 			if (sender.NumberOfTouches < 2)
 				return;
 
-			PointF point1 = sender.LocationOfTouch (0, sender.View);
-			PointF point2 = sender.LocationOfTouch (1, sender.View);
+			CGPoint point1 = sender.LocationOfTouch (0, sender.View);
+			CGPoint point2 = sender.LocationOfTouch (1, sender.View);
 			float distance = (float) Math.Sqrt ((point1.X - point2.X) * (point1.X - point2.X) +
 			                                    (point1.Y - point2.Y) * (point1.Y - point2.Y));
-			PointF point = sender.LocationInView (sender.View);
+			CGPoint point = sender.LocationInView (sender.View);
 
 			if (sender.State == UIGestureRecognizerState.Began) {
 				if (HasActiveInteraction)
@@ -106,14 +106,14 @@ namespace CollectionViewTransition {
 
 			switch (sender.State) {
 			case UIGestureRecognizerState.Changed:
-				float offsetX = point.X - initialPinchPoint.X;
-				float offsetY = point.Y - initialPinchPoint.Y;
+				float offsetX = (float) (point.X - initialPinchPoint.X);
+				float offsetY = (float) (point.Y - initialPinchPoint.Y);
 				float distanceDelta = distance - initialPinchDistance;
 
 				if (NavigationOperation == UINavigationControllerOperation.Pop)
 					distanceDelta = -distanceDelta;
 
-				SizeF size = collectionView.Bounds.Size;
+				CGSize size = collectionView.Bounds.Size;
 				float dimension = (float)Math.Sqrt (size.Width * size.Width + size.Height * size.Height);
 				float progress = (float) Math.Max (Math.Min (distanceDelta / dimension, 1.0), 0.0);
 				Update (progress, new UIOffset (offsetX, offsetY));

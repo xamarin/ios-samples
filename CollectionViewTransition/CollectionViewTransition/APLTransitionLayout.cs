@@ -1,6 +1,6 @@
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace CollectionViewTransition {
 
@@ -16,8 +16,8 @@ namespace CollectionViewTransition {
 		public void SetTransitionProgress (float transitionProgress)
 		{
 			base.TransitionProgress = transitionProgress;
-			float offsetH = GetValueForAnimatedKey ("offsetH");
-			float offsetV = GetValueForAnimatedKey ("offsetV");
+			float offsetH = (float)GetValueForAnimatedKey ("offsetH");
+			float offsetV = (float)GetValueForAnimatedKey ("offsetV");
 			Offset = new UIOffset (offsetH, offsetV);
 		}
 
@@ -28,12 +28,12 @@ namespace CollectionViewTransition {
 			Offset = offset;
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (RectangleF rect)
+		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			UICollectionViewLayoutAttributes[] attributes = base.LayoutAttributesForElementsInRect (rect);
 			foreach (var attribute in attributes) {
-				PointF center = attribute.Center;
-				attribute.Center = new PointF (center.X + Offset.Horizontal, center.Y + Offset.Vertical);
+				CGPoint center = attribute.Center;
+				attribute.Center = new CGPoint (center.X + Offset.Horizontal, center.Y + Offset.Vertical);
 			}
 			return attributes;
 		}
@@ -41,8 +41,8 @@ namespace CollectionViewTransition {
 		public override UICollectionViewLayoutAttributes LayoutAttributesForItem (NSIndexPath indexPath)
 		{
 			UICollectionViewLayoutAttributes attributes = base.LayoutAttributesForItem (indexPath);
-			PointF center = attributes.Center;
-			attributes.Center = new PointF (center.X + Offset.Horizontal, center.Y + Offset.Vertical);
+			CGPoint center = attributes.Center;
+			attributes.Center = new CGPoint (center.X + Offset.Horizontal, center.Y + Offset.Vertical);
 			return attributes;
 		}
 	}
