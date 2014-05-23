@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreMidi;
+using Foundation;
+using UIKit;
+using CoreMidi;
 using MonoTouch.Dialog;
 using System.Threading;
 
@@ -54,8 +54,8 @@ namespace CoreMidiSample
 
 		RootElement MakeHardware ()
 		{
-			int sources = Midi.SourceCount;
-			int destinations = Midi.DestinationCount;
+			int sources = (int)Midi.SourceCount;
+			int destinations = (int)Midi.DestinationCount;
 			
 			return new RootElement ("Endpoints (" + sources + ", " + destinations +")") {
 				new Section ("Sources"){
@@ -75,13 +75,13 @@ namespace CoreMidiSample
 		{
 			return new RootElement ("Devices (" + Midi.DeviceCount + ", " + Midi.ExternalDeviceCount + ")") {
 				new Section ("Internal Devices"){
-					from x in Enumerable.Range (0, Midi.DeviceCount)
+					from x in Enumerable.Range (0, (int)Midi.DeviceCount)
 						let dev = Midi.GetDevice (x)
 						where dev.EntityCount > 0
 						select MakeDevice (dev)
 				},
 				new Section ("External Devices"){
-					from x in Enumerable.Range (0, Midi.ExternalDeviceCount)
+					from x in Enumerable.Range (0, (int)Midi.ExternalDeviceCount)
 						let dev = Midi.GetExternalDevice (x)
 						where dev.EntityCount > 0
 						select (Element) MakeDevice (dev)
@@ -93,16 +93,16 @@ namespace CoreMidiSample
 		{
 			return new RootElement (String.Format ("{2} {0} {1}", dev.Manufacturer, dev.Model, dev.EntityCount)){
 				new Section ("Entities") {
-					from ex in Enumerable.Range (0, dev.EntityCount)
+					from ex in Enumerable.Range (0, (int)dev.EntityCount)
 						let entity = dev.GetEntity (ex)
 						select (Element) new RootElement (entity.Name) {
 							new Section ("Sources"){
-								from sx in Enumerable.Range (0, entity.Sources)
+							from sx in Enumerable.Range (0, (int)entity.Sources)
 									let endpoint = entity.GetSource (sx)
 									select MakeEndpoint (endpoint)
 							},
 							new Section ("Destinations"){
-								from sx in Enumerable.Range (0, entity.Destinations)
+							from sx in Enumerable.Range (0, (int)entity.Destinations)
 									let endpoint = entity.GetDestination (sx)
 									select MakeEndpoint (endpoint)
 							}
