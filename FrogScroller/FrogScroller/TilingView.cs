@@ -1,10 +1,10 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreAnimation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using CoreAnimation;
+
+using Foundation;
+using ObjCRuntime;
+using UIKit;
 
 namespace FrogScroller
 {
@@ -18,8 +18,8 @@ namespace FrogScroller
 
 		string ImageName { get; set; }
 
-		public TilingView (string name, SizeF size) : 
-			base (new RectangleF (PointF.Empty, size))
+		public TilingView (string name, CGSize size) : 
+			base (new CGRect (CGPoint.Empty, size))
 		{
 			ImageName = name;
 			var tiledLayer = (CATiledLayer)this.Layer; 
@@ -29,13 +29,13 @@ namespace FrogScroller
 		// tiling view's contentScaleFactor at 1.0. UIKit will try to set it back to 2.0 on retina displays, which is the
 		// right call in most cases, but since we're backed by a CATiledLayer it will actually cause us to load the
 		// wrong sized tiles.
-		public override float ContentScaleFactor {
+		public override nfloat ContentScaleFactor {
 			set {
 				base.ContentScaleFactor = 1.0f;
 			}
 		}
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			using (var context = UIGraphics.GetCurrentContext ()) {
 
@@ -67,7 +67,7 @@ namespace FrogScroller
 					for (int col = firstCol; col <= lastCol; col++) {
 					 
 						UIImage tile = TileForScale (scale, row, col);
-						var tileRect = new RectangleF (tileSize.Width * col, tileSize.Height * row, tileSize.Width, tileSize.Height);
+						var tileRect = new CGRect (tileSize.Width * col, tileSize.Height * row, tileSize.Width, tileSize.Height);
 						// if the tile would stick outside of our bounds, we need to truncate it so as to avoid
 						// stretching out the partial tiles at the right and bottom edges
 						tileRect.Intersect (this.Bounds);
@@ -77,7 +77,7 @@ namespace FrogScroller
 			}
 		}
 
-		public UIImage TileForScale (float scale, int row, int col)
+		public UIImage TileForScale (nfloat scale, nint row, nint col)
 		{
 			// we use "FromFile" instead of "FromBundle" here because we don't want UIImage to cache our tiles
 			string path = String.Format ("/Image/ImageTiles/{0}_{1}_{2}_{3}.png", ImageName, (int)(scale * 1000), (int)col, (int)row);
