@@ -11,19 +11,19 @@
 namespace FontList.Screens.iPhone.FontViewer {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("FontViewerScreen_iPhone")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("FontViewerScreen_iPhone")]
 	public partial class FontViewerScreen_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UITextView __mt_txtMain;
+		private UIKit.UITextView __mt_txtMain;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace FontList.Screens.iPhone.FontViewer {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("txtMain")]
-		private MonoTouch.UIKit.UITextView txtMain {
+		[Foundation.Connect("txtMain")]
+		private UIKit.UITextView txtMain {
 			get {
-				this.__mt_txtMain = ((MonoTouch.UIKit.UITextView)(this.GetNativeField("txtMain")));
+				this.__mt_txtMain = ((UIKit.UITextView)(this.GetNativeField("txtMain")));
 				return this.__mt_txtMain;
 			}
 			set {

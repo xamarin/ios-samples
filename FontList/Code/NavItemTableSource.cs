@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using System.Reflection;
 
 namespace FontList.Code {
@@ -23,7 +23,7 @@ namespace FontList.Code {
 		/// <summary>
 		/// Called by the TableView to determine how many sections(groups) there are.
 		/// </summary>
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return navItems.Count;
 		}
@@ -31,25 +31,25 @@ namespace FontList.Code {
 		/// <summary>
 		/// Called by the TableView to determine how many cells to create for that particular section.
 		/// </summary>
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return navItems[section].Items.Count;
+			return navItems[(int)section].Items.Count;
 		}
 
 		/// <summary>
 		/// Called by the TableView to retrieve the header text for the particular section(group)
 		/// </summary>
-		public override string TitleForHeader (UITableView tableView, int section)
+		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			return navItems[section].Name;
+			return navItems[(int)section].Name;
 		}
 
 		/// <summary>
 		/// Called by the TableView to retrieve the footer text for the particular section(group)
 		/// </summary>
-		public override string TitleForFooter (UITableView tableView, int section)
+		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			return navItems[section].Footer;
+			return navItems[(int)section].Footer;
 		}
 
 		/// <summary>
@@ -57,7 +57,7 @@ namespace FontList.Code {
 		/// </summary>
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			NavItem navItem = this.navItems[indexPath.Section].Items[indexPath.Row];
+			NavItem navItem = this.navItems[(int)indexPath.Section].Items[(int)indexPath.Row];
 			
 			var cell = tableView.DequeueReusableCell (this.cellIdentifier);
 			if (cell == null) {
@@ -66,7 +66,7 @@ namespace FontList.Code {
 			}
 			
 			//---- set the cell properties
-			cell.TextLabel.Text = this.navItems[indexPath.Section].Items[indexPath.Row].Name;
+			cell.TextLabel.Text = this.navItems[(int)indexPath.Section].Items[(int)indexPath.Row].Name;
 			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
 			
 			if (navItem.Font != null)
@@ -83,7 +83,7 @@ namespace FontList.Code {
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			//---- get a reference to the nav item
-			NavItem navItem = navItems[indexPath.Section].Items[indexPath.Row];
+			NavItem navItem = navItems[(int)indexPath.Section].Items[(int)indexPath.Row];
 			
 			// if the nav item has a proper controller, push it on to the NavigationController
 			// NOTE: we could also raise an event here, to loosely couple this, but isn't neccessary,
