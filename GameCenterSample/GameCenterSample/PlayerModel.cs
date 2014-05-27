@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
-using MonoTouch.GameKit;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
+using GameKit;
 
 namespace GameCenterSample
 {

@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace GameCenterSample
@@ -13,22 +13,22 @@ namespace GameCenterSample
 	partial class MainViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton resetAchievementsButton { get; set; }
+		UIKit.UIButton resetAchievementsButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextField scoreTextField { get; set; }
+		UIKit.UITextField scoreTextField { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton showAchievementsButton { get; set; }
+		UIKit.UIButton showAchievementsButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton showLeaderBoardButton { get; set; }
+		UIKit.UIButton showLeaderBoardButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton submitAchievementButton { get; set; }
+		UIKit.UIButton submitAchievementButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton submitScoreButton { get; set; }
+		UIKit.UIButton submitScoreButton { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
