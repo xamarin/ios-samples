@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using UIKit;
+
+using CoreGraphics;
 
 namespace CoreGraphicsSamples
 {
@@ -12,7 +12,7 @@ namespace CoreGraphicsSamples
 			BackgroundColor = UIColor.White;
 		}
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			base.Draw (rect);
 			
@@ -27,7 +27,7 @@ namespace CoreGraphicsSamples
 				g.SetLineWidth (2.0f);
 				g.SetStrokeColor (UIColor.Green.CGColor);
 				g.SetFillColor (UIColor.Purple.CGColor);
-				g.SetShadowWithColor (new SizeF (5, 5), 0, UIColor.Blue.CGColor);
+				g.SetShadow (new CGSize (5, 5), 0, UIColor.Blue.CGColor);
 			
 				g.SetTextDrawingMode (CGTextDrawingMode.FillStroke);
 				g.SelectFont ("Helvetica", fontSize, CGTextEncoding.MacRoman);

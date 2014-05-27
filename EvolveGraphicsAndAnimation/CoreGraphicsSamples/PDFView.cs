@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
-using MonoTouch.Foundation;
+using UIKit;
+
+using CoreGraphics;
+using Foundation;
 
 namespace CoreGraphicsSamples
 {
@@ -18,7 +18,7 @@ namespace CoreGraphicsSamples
 			pdfDoc = CGPDFDocument.FromFile ("file.pdf");
 		}
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			base.Draw (rect);
 				
@@ -45,7 +45,7 @@ namespace CoreGraphicsSamples
 			//data buffer to hold the PDF
 			NSMutableData data = new NSMutableData ();
 			//create a PDF with empty rectangle, which will configure it for 8.5x11 inches
-			UIGraphics.BeginPDFContext (data, RectangleF.Empty, null);
+			UIGraphics.BeginPDFContext (data, CGRect.Empty, null);
 			//start a PDF page
 			UIGraphics.BeginPDFPage ();       
 			using (CGContext g = UIGraphics.GetCurrentContext ()) {

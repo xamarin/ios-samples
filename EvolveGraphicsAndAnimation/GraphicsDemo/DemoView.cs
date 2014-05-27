@@ -1,16 +1,16 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
-using MonoTouch.CoreAnimation;
+using UIKit;
+
+using CoreGraphics;
+using CoreAnimation;
 
 namespace GraphicsDemo
 {
 	public class DemoView : UIView
 	{
 		CGPath path;
-		PointF initialPoint;
-		PointF latestPoint;
+		CGPoint initialPoint;
+		CGPoint latestPoint;
 
 		CALayer layer;
 
@@ -22,8 +22,8 @@ namespace GraphicsDemo
 
 			//create layer
 			layer = new CALayer ();
-			layer.Bounds = new RectangleF (0, 0, 50, 50);
-			layer.Position = new PointF (50, 50);
+			layer.Bounds = new CGRect (0, 0, 50, 50);
+			layer.Position = new CGPoint (50, 50);
 			layer.Contents = UIImage.FromFile ("monkey.png").CGImage;
 			layer.ContentsGravity = CALayer.GravityResizeAspect;
 			layer.BorderWidth = 1.5f;
@@ -32,7 +32,7 @@ namespace GraphicsDemo
 			layer.BackgroundColor = UIColor.Purple.CGColor;
 		}
 
-		public override void TouchesBegan (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesBegan (Foundation.NSSet touches, UIEvent evt)
 		{
 			base.TouchesBegan (touches, evt);
 
@@ -43,7 +43,7 @@ namespace GraphicsDemo
 			}
 		}
 
-		public override void TouchesMoved (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesMoved (Foundation.NSSet touches, UIEvent evt)
 		{
 			base.TouchesMoved (touches, evt);
 
@@ -55,7 +55,7 @@ namespace GraphicsDemo
 			}
 		}
 
-		public override void TouchesEnded (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesEnded (Foundation.NSSet touches, UIEvent evt)
 		{
 			base.TouchesEnded (touches, evt);
 
@@ -72,7 +72,7 @@ namespace GraphicsDemo
 			layer.AddAnimation (animPosition, "position");
 		}
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			base.Draw (rect);
 
@@ -87,13 +87,13 @@ namespace GraphicsDemo
 
 					//add lines to the touch points
 					if (path.IsEmpty) {
-						path.AddLines (new PointF[]{initialPoint, latestPoint});
+						path.AddLines (new CGPoint[]{initialPoint, latestPoint});
 					} else {
 						path.AddLineToPoint (latestPoint);
 					}
 				
 					//use a dashed line
-					g.SetLineDash (0, new float[]{5, 2});
+					g.SetLineDash (0, new nfloat[]{5, 2});
 									
 					//add geometry to graphics context and draw it
 					g.AddPath (path);		

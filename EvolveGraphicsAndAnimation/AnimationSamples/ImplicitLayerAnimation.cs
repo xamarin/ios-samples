@@ -1,10 +1,10 @@
 
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreAnimation;
+using Foundation;
+using UIKit;
+using CoreAnimation;
 
 namespace AnimationSamples
 {
@@ -21,8 +21,8 @@ namespace AnimationSamples
 			base.ViewDidLoad ();
 
 			layer = new CALayer ();
-			layer.Bounds = new RectangleF (0, 0, 50, 50);
-			layer.Position = new PointF (50, 50);
+			layer.Bounds = new CGRect (0, 0, 50, 50);
+			layer.Position = new CGPoint (50, 50);
 			layer.Contents = UIImage.FromFile ("monkey2.png").CGImage;
 			layer.ContentsGravity = CALayer.GravityResize;
 			layer.BorderWidth = 1.5f;
@@ -37,7 +37,7 @@ namespace AnimationSamples
 
 			CATransaction.Begin ();
 			CATransaction.AnimationDuration = 10;
-			layer.Position = new PointF (50, 400);
+			layer.Position = new CGPoint (50, 400);
 			layer.BorderWidth = 5.0f;
 			layer.BorderColor = UIColor.Red.CGColor;
 			CATransaction.Commit ();

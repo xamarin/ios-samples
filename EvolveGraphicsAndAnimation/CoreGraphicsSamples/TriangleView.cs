@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
-using MonoTouch.UIKit;
+
+using CoreGraphics;
+using UIKit;
 
 namespace CoreGraphicsSamples
 {
@@ -12,7 +12,7 @@ namespace CoreGraphicsSamples
 			BackgroundColor = UIColor.White;
 		}
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			base.Draw (rect);
 			
@@ -27,15 +27,15 @@ namespace CoreGraphicsSamples
 				//create geometry
 				var path = new CGPath ();
 			
-				path.AddLines (new PointF[]{
-				new PointF (100, 200),
-				new PointF (160, 100), 
-				new PointF (220, 200)});
+				path.AddLines (new CGPoint[]{
+				new CGPoint (100, 200),
+				new CGPoint (160, 100), 
+				new CGPoint (220, 200)});
 			
 				path.CloseSubpath ();
 			
 				//use a dashed line
-				g.SetLineDash (0, new float[]{10, 4});
+				g.SetLineDash (0, new nfloat[]{10, 4});
 			
 				//add geometry to graphics context and draw it
 				g.AddPath (path);		
@@ -56,8 +56,8 @@ namespace CoreGraphicsSamples
 					// draw a linear gradient
 					g.DrawLinearGradient (
 					gradient, 
-					new PointF (path.BoundingBox.Left, path.BoundingBox.Top), 
-					new PointF (path.BoundingBox.Right, path.BoundingBox.Bottom), 
+					new CGPoint (path.BoundingBox.Left, path.BoundingBox.Top), 
+					new CGPoint (path.BoundingBox.Right, path.BoundingBox.Bottom), 
 					CGGradientDrawingOptions.DrawsBeforeStartLocation);
 				}
 			}
