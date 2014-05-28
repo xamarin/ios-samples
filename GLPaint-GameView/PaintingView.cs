@@ -1,13 +1,13 @@
 using System;
 using OpenTK.Platform.iPhoneOS;
 using OpenTK.Graphics.ES11;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.OpenGLES;
+using UIKit;
+using Foundation;
+using CoreGraphics;
+using ObjCRuntime;
+using OpenGLES;
 using System.Runtime.InteropServices;
-using MonoTouch.CoreGraphics;
+
 
 namespace GLPaintGameView
 {
@@ -19,11 +19,11 @@ namespace GLPaintGameView
 		public const float Luminosity = 0.75f;
 		public const float Saturation = 1.0f;
 
-		uint brushTexture, drawingTexture, drawingFramebuffer;
+		uint brushTexture, drawingTexture;
 		bool firstTouch;
 
-		PointF Location;
-		PointF PreviousLocation;
+		CGPoint Location;
+		CGPoint PreviousLocation;
 		
 		[Export ("layerClass")]
 		public static Class LayerClass ()
@@ -31,7 +31,7 @@ namespace GLPaintGameView
 			return iPhoneOSGameView.GetLayerClass ();
 		}
 
-		public PaintingView (RectangleF frame)
+		public PaintingView (CGRect frame)
 			: base (frame)
 		{
 			LayerRetainsBacking = true;
@@ -41,19 +41,19 @@ namespace GLPaintGameView
 			MakeCurrent();
 
 			var brushImage = UIImage.FromFile ("Particle.png").CGImage;
-			var width = brushImage.Width;
-			var height = brushImage.Height;
+			int width = (int)brushImage.Width;
+			int height = (int)brushImage.Height;
 			if (brushImage != null) {
-				IntPtr brushData = Marshal.AllocHGlobal (width * height * 4);
+				IntPtr brushData = Marshal.AllocHGlobal ((int)(width * height * 4));
 				if (brushData == IntPtr.Zero)
 					throw new OutOfMemoryException ();
 				try {
 					using (var brushContext = new CGBitmapContext (brushData,
-							width, width, 8, width * 4, brushImage.ColorSpace, CGImageAlphaInfo.PremultipliedLast)) {
-						brushContext.DrawImage (new RectangleF (0.0f, 0.0f, (float) width, (float) height), brushImage);
+						(int)(nint)width, (int)(nint)width, 8, width * 4, brushImage.ColorSpace, CGImageAlphaInfo.PremultipliedLast)) {
+						brushContext.DrawImage (new CGRect (0.0f, 0.0f,  width, height), brushImage);
 					}
 
-					GL.GenTextures (1, ref brushTexture);
+					GL.GenTextures (1, out brushTexture);
 					GL.BindTexture (All.Texture2D, brushTexture);
 					GL.TexImage2D (All.Texture2D, 0, (int) All.Rgba, width, height, 0, All.Rgba, All.UnsignedByte, brushData);
 				}
@@ -67,7 +67,7 @@ namespace GLPaintGameView
 			}
 			GL.Disable (All.Dither);
 			GL.MatrixMode (All.Projection);
-			GL.Ortho (0, frame.Width, 0, frame.Height, -1, 1);
+			GL.Ortho (0, (float)frame.Width, 0, (float)frame.Height, -1, 1);
 			GL.MatrixMode (All.Modelview);
 			GL.Enable (All.Texture2D);
 			GL.EnableClientState (All.VertexArray);
@@ -90,19 +90,18 @@ namespace GLPaintGameView
 
 		public void Erase ()
 		{
-			GL.Clear ((uint) All.ColorBufferBit);
-
+			GL.Clear (ClearBufferMask.ColorBufferBit);
 			SwapBuffers ();
 		}
 
-		float[] vertexBuffer;
+		nfloat[] vertexBuffer;
 		int vertexMax = 64;
 
-		private void RenderLineFromPoint (PointF start, PointF end)
+		private void RenderLineFromPoint (CGPoint start, CGPoint end)
 		{
 			int vertexCount = 0;
 			if (vertexBuffer == null) {
-				vertexBuffer = new float [vertexMax * 2];
+				vertexBuffer = new nfloat [vertexMax * 2];
 			}
 			var count = Math.Max (Math.Ceiling (Math.Sqrt ((end.X - start.X) * (end.X - start.X) + (end.Y - start.Y) * (end.Y - start.Y)) / BrushPixelStep),
 					1);
@@ -111,8 +110,9 @@ namespace GLPaintGameView
 					vertexMax *= 2;
 					Array.Resize (ref vertexBuffer, vertexMax * 2);
 				}
-				vertexBuffer [2 * vertexCount + 0] = start.X + (end.X - start.X) * (float) i / (float) count;
-				vertexBuffer [2 * vertexCount + 1] = start.Y + (end.Y - start.Y) * (float) i / (float) count;
+				Console.WriteLine(start.X+" "+start.Y+" - "+end.X+" "+end.Y);
+				vertexBuffer [2 * vertexCount + 0] = start.X + (end.X - start.X) * (nfloat) i / (nfloat) count;
+				vertexBuffer [2 * vertexCount + 1] = start.Y + (end.Y - start.Y) * (nfloat) i / (nfloat) count;
 			}
 			GL.VertexPointer (2, All.Float, 0, vertexBuffer);
 			GL.DrawArrays (All.Points, 0, vertexCount);
@@ -125,7 +125,7 @@ namespace GLPaintGameView
 		[Export ("playback")]
 		void Playback ()
 		{
-			PointF [] points = ShakeMe.Data [dataofs];
+			CGPoint [] points = ShakeMe.Data [dataofs];
 
 			for (int i = 0; i < points.Length - 1; i++)
 				RenderLineFromPoint (points [i], points [i + 1]);
@@ -136,7 +136,7 @@ namespace GLPaintGameView
 			}
 		}
 
-		public override void TouchesBegan (MonoTouch.Foundation.NSSet touches, MonoTouch.UIKit.UIEvent e)
+		public override void TouchesBegan (Foundation.NSSet touches, UIKit.UIEvent e)
 		{
 			var bounds = Bounds;
 			var touch = (UITouch) e.TouchesForView (this).AnyObject;
@@ -145,7 +145,7 @@ namespace GLPaintGameView
 			Location.Y = bounds.Height - Location.Y;
 		}
 
-		public override void TouchesMoved (MonoTouch.Foundation.NSSet touches, MonoTouch.UIKit.UIEvent e)
+		public override void TouchesMoved (Foundation.NSSet touches, UIKit.UIEvent e)
 		{
 			var bounds = Bounds;
 			var touch = (UITouch) e.TouchesForView (this).AnyObject;
@@ -164,7 +164,7 @@ namespace GLPaintGameView
 			RenderLineFromPoint (PreviousLocation, Location);
 		}
 
-		public override void TouchesEnded (MonoTouch.Foundation.NSSet touches, MonoTouch.UIKit.UIEvent e)
+		public override void TouchesEnded (Foundation.NSSet touches, UIKit.UIEvent e)
 		{
 			var bounds = Bounds;
 			var touch = (UITouch) e.TouchesForView (this).AnyObject;
@@ -176,7 +176,7 @@ namespace GLPaintGameView
 			}
 		}
 
-		public override void TouchesCancelled (MonoTouch.Foundation.NSSet touches, MonoTouch.UIKit.UIEvent e)
+		public override void TouchesCancelled (Foundation.NSSet touches, UIKit.UIEvent e)
 		{
 		}
 	}

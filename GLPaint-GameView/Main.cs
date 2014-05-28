@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation	;
+using UIKit;
+using CoreGraphics;
 using OpenTK.Graphics.ES11;
 
 namespace GLPaintGameView
@@ -42,12 +42,12 @@ namespace GLPaintGameView
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			RectangleF rect = UIScreen.MainScreen.ApplicationFrame;
+			CGRect rect = UIScreen.MainScreen.ApplicationFrame;
 
 			window.BackgroundColor = UIColor.Black;
 
 			//Create the OpenGL drawing view and add it to the window
-			drawingView = new PaintingView (new RectangleF (rect.Location, rect.Size));
+			drawingView = new PaintingView (new CGRect (rect.Location, rect.Size));
 			window.AddSubview (drawingView);
 
 			// Create a segmented control so that the user can choose the brush color.
@@ -67,7 +67,7 @@ namespace GLPaintGameView
 			var segmentedControl = new UISegmentedControl (images);
 
 			// Compute a rectangle that is positioned correctly for the segmented control you'll use as a brush color palette
-			var frame = new RectangleF (rect.X + LeftMarginPadding, rect.Height - PaletteHeight - TopMarginPadding,
+			var frame = new CGRect (rect.X + LeftMarginPadding, rect.Height - PaletteHeight - TopMarginPadding,
 				rect.Width - (LeftMarginPadding + RightMarginPadding), PaletteHeight);
 			segmentedControl.Frame = frame;
 			// When the user chooses a color, the method changeBrushColor: is called.
