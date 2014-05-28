@@ -94,14 +94,14 @@ namespace GLPaintGameView
 			SwapBuffers ();
 		}
 
-		nfloat[] vertexBuffer;
+		float[] vertexBuffer;
 		int vertexMax = 64;
 
 		private void RenderLineFromPoint (CGPoint start, CGPoint end)
 		{
 			int vertexCount = 0;
 			if (vertexBuffer == null) {
-				vertexBuffer = new nfloat [vertexMax * 2];
+				vertexBuffer = new float [vertexMax * 2];
 			}
 			var count = Math.Max (Math.Ceiling (Math.Sqrt ((end.X - start.X) * (end.X - start.X) + (end.Y - start.Y) * (end.Y - start.Y)) / BrushPixelStep),
 					1);
@@ -110,9 +110,13 @@ namespace GLPaintGameView
 					vertexMax *= 2;
 					Array.Resize (ref vertexBuffer, vertexMax * 2);
 				}
-				Console.WriteLine(start.X+" "+start.Y+" - "+end.X+" "+end.Y);
-				vertexBuffer [2 * vertexCount + 0] = start.X + (end.X - start.X) * (nfloat) i / (nfloat) count;
-				vertexBuffer [2 * vertexCount + 1] = start.Y + (end.Y - start.Y) * (nfloat) i / (nfloat) count;
+				float startX, startY, endX, endY;
+				startX = (float)start.X;
+				endX = (float)end.X;
+				endY = (float)end.Y;
+				startY = (float)start.Y;
+				vertexBuffer [2 * vertexCount + 0] = startX + (endX - startX) * (float) i / (float) count;
+				vertexBuffer [2 * vertexCount + 1] = startY + (endY - startY) * (float) i / (float) count;
 			}
 			GL.VertexPointer (2, All.Float, 0, vertexBuffer);
 			GL.DrawArrays (All.Points, 0, vertexCount);
