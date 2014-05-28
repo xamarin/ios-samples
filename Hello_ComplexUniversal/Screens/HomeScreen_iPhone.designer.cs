@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace Hello_ComplexUniversal.Screens
 {
@@ -12,9 +12,9 @@ namespace Hello_ComplexUniversal.Screens
 	partial class HomeScreen_iPhone
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnOne { get; set; }
+		UIKit.UIButton btnOne { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblOutput { get; set; }
+		UIKit.UILabel lblOutput { get; set; }
 	}
 }
