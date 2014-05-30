@@ -26,10 +26,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace ImageProtocol
 {
@@ -48,11 +48,10 @@ namespace ImageProtocol
 		}
 
 		[Export ("initWithRequest:cachedResponse:client:")]
-		public ImageProtocol (NSUrlRequest request, NSCachedUrlResponse cachedResponse, NSUrlProtocolClient client) 
+		public ImageProtocol (NSUrlRequest request, NSCachedUrlResponse cachedResponse, INSUrlProtocolClient client) 
 			: base (request, cachedResponse, client)
 		{
 		}
-
 		public override void StartLoading ()
 		{
 			var value = Request.Url.Path.Substring (1);
@@ -77,10 +76,10 @@ namespace ImageProtocol
 		{
 			NSString text = new NSString (string.IsNullOrEmpty (value) ? " " : value);
 			UIFont font = UIFont.SystemFontOfSize (20);
-			SizeF size = text.StringSize (font);
+			CGSize size = text.StringSize (font);
 			UIGraphics.BeginImageContextWithOptions (size, false, 0.0f);
 			UIColor.Red.SetColor ();
-			text.DrawString (new PointF (0, 0), font);
+			text.DrawString (new CGPoint (0, 0), font);
 			UIImage image = UIGraphics.GetImageFromCurrentImageContext ();
 			UIGraphics.EndImageContext ();
 			

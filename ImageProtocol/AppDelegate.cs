@@ -26,10 +26,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace ImageProtocol
 {
@@ -43,7 +43,7 @@ namespace ImageProtocol
 		public override bool FinishedLaunching (UIApplication application, NSDictionary options)
 		{
 			// Register our custom url protocol
-			NSUrlProtocol.RegisterClass (new MonoTouch.ObjCRuntime.Class (typeof (ImageProtocol)));
+			NSUrlProtocol.RegisterClass (new ObjCRuntime.Class (typeof (ImageProtocol)));
 
 			controller = new UIViewController ();
 
@@ -53,7 +53,7 @@ namespace ImageProtocol
 				AutoresizingMask = UIViewAutoresizing.All
 			};
 			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0))
-				web.Frame = new RectangleF (0, 20, 
+				web.Frame = new CGRect (0, 20, 
 				                            UIScreen.MainScreen.Bounds.Width,
 				                            UIScreen.MainScreen.Bounds.Height - 20);
 			else
