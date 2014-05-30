@@ -1,15 +1,15 @@
 //	
 // This sample shows how to use the two Http stacks in MonoTouch:
 // The System.Net.WebRequest.
-// The MonoTouch.Foundation.NSMutableUrlRequest
+// The Foundation.NSMutableUrlRequest
 //
 
 using System;
 using System.IO;
 using System.Linq;
 using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Linq;

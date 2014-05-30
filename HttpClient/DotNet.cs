@@ -8,7 +8,7 @@
 
 using System;
 using System.Net;
-using MonoTouch.Foundation;
+using Foundation;
 using System.Security.Cryptography.X509Certificates;
 using System.Diagnostics;
 
