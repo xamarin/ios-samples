@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.AudioToolbox;
+using Foundation;
+using AudioToolbox;
 
 namespace LowLevelGLPaint
 {
