@@ -27,8 +27,8 @@
 using System;
 using System.Drawing;
 using System.Linq;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Net;
@@ -95,18 +95,18 @@ namespace LazyTableImages {
 				Controller.TableView.ReloadData ();
 			}
 			
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
 			
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				return Controller.Apps.Count;
 			}
 			
 			// Customize the appearance of table view cells.
-			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 			{
 				UITableViewCell cell;
 				// If the list is empty, put in a 'loading' entry
@@ -130,7 +130,7 @@ namespace LazyTableImages {
 				// Set the tag of each cell to the index of the App that
 				// it's displaying. This allows us to directly match a cell
 				// with an item when we're updating the Image
-				var app = Controller.Apps [indexPath.Row];
+				var app = Controller.Apps [(int)indexPath.Row];
 				cell.Tag = indexPath.Row;
 				cell.TextLabel.Text = app.Name;
 				cell.DetailTextLabel.Text = app.Artist;
