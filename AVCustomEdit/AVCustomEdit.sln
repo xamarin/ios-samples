@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVCustomEdit", "AVCustomEdit\AVCustomEdit.csproj", "{B086E3A5-1D26-4F87-B908-2521E3091A2D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Debug|iPhone.Build.0 = Debug|iPhone
+		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Release|iPhone.ActiveCfg = Release|iPhone
+		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Release|iPhone.Build.0 = Release|iPhone
+		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = AVCustomEdit\AVCustomEdit.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.TabsToSpaces = False
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal
