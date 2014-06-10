@@ -4,6 +4,7 @@
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
+using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.CodeDom.Compiler;
@@ -14,12 +15,12 @@ namespace UIImageEffects
 	partial class ViewController
 	{
 		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UILabel effectLabel { get; set; }
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UILabel effectLabel { get; set; }
 
 		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UIImageView imageView { get; set; }
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIImageView imageView { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
