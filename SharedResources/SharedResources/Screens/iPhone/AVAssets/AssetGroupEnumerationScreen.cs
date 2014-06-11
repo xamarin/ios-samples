@@ -64,6 +64,8 @@ namespace Example_SharedResources.Screens.iPhone.AVAssets
 					AssetEnumerationScreen assetScreen = new AssetEnumerationScreen (e.Group.Name, assetGroups[e.Group]);
 					NavigationController.PushViewController (assetScreen, true);
 				};
+
+				TableView.ReloadData ();
 			}
 		}
 		
