@@ -2,20 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	 <key>CFBundleIconFiles</key>
-    <array>
-        <string>Resources/icon-57.png</string>
-        <string>Resources/icon-114.png</string>
-        <string>Resources/icon-72.png</string>
-        <string>Resources/icon-144.png</string>
-        <string>Resources/icon-29.png</string>
-        <string>Resources/icon-58.png</string>
-        <string>Resources/icon-50.png</string>
-        <string>Resources/icon-100.png</string>
-    </array>
-	<key>CFBundleDisplayName</key>
-	<string>Touch Cells</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Resources/icon-57.png</string>
+		<string>Resources/icon-114.png</string>
+		<string>Resources/icon-72.png</string>
+		<string>Resources/icon-144.png</string>
+		<string>Resources/icon-29.png</string>
+		<string>Resources/icon-58.png</string>
+		<string>Resources/icon-50.png</string>
+		<string>Resources/icon-100.png</string>
+	</array>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
+	<key>CFBundleDisplayName</key>
+	<string>MonoDevelopTouchCells</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.MonoDevelopTouchCells</string>
+	<key>MinimumOSVersion</key>
+	<string>5.0</string>
 </dict>
 </plist>
