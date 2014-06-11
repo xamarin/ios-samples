@@ -32,7 +32,8 @@ namespace OpenGLES20Example
 			GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int) All.Nearest);
 			GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int) All.Nearest);
 
-			string extension = Path.GetExtension (filename);
+			//TODO Remove the Substring method if you don't support iOS versions prior to iOS 6.
+			string extension = Path.GetExtension (filename).Substring(1);
 			string baseFilename = Path.GetFileNameWithoutExtension (filename);
 
 			string path = NSBundle.MainBundle.PathForResource (baseFilename, extension);
