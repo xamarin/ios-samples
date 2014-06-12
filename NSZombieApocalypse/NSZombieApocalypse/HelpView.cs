@@ -17,10 +17,10 @@ namespace NSZombieApocalypse
 
 		public HelpView (RectangleF frame): base(frame)
 		{
-			BackgroundColor = UIColor.Clear;
+			BackgroundColor = UIColor.White;
 			Layer.CornerRadius = 8;
 
-			var closeFrame = new RectangleF (20, frame.Size.Height - 140, 80, 80);
+			var closeFrame = new RectangleF (10, frame.Size.Height - 140, 80, 80);
 			var closeView = new SymbolMarkView (closeFrame);
 			closeView.TouchUpInside += async (s, e) => await Hide ();
 			AddSubview (closeView);
@@ -39,7 +39,7 @@ namespace NSZombieApocalypse
 			AddSubview (label);
 			label.AccessibilityTraits = UIAccessibilityTrait.Header;
 
-			var nextFrame = new RectangleF (frame.Size.Width - 100, frame.Size.Height - 140, 80, 80);
+			var nextFrame = new RectangleF (frame.Size.Width - 90, frame.Size.Height - 140, 80, 80);
 			nextButton = new SymbolMarkView (nextFrame);
 			nextButton.TouchUpInside += (s, e) => NextSlide ();
 			AddSubview (nextButton);
