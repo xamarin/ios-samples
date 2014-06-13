@@ -50,7 +50,7 @@ namespace HandlingRotation {
 		protected void DetermineCurrentDevice ()
 		{
 			// figure out the current device type
-			if (UIScreen.MainScreen.Bounds.Height == 1024 || UIScreen.MainScreen.Bounds.Width == 1024) {
+			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad) {
 				CurrentDevice = DeviceType.iPad;
 			} else {
 				CurrentDevice = DeviceType.iPhone;
