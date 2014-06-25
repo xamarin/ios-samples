@@ -83,7 +83,7 @@ namespace MapCallouts
 		{
 			GotoLocation ();
 			RemoveAllAnnotations ();
-			mapView.AddAnnotation (mapAnnotations);
+			mapView.AddAnnotations (mapAnnotations);
 		}
 		
 		partial void bridgeAction (Foundation.NSObject sender)
