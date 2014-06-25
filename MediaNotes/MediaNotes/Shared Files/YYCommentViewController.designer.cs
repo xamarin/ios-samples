@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MediaNotes
 {
@@ -12,22 +12,22 @@ namespace MediaNotes
 	partial class YYCommentViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UITextView textView { get; set; }
+		UIKit.UITextView textView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem shareButton { get; set; }
+		UIKit.UIBarButtonItem shareButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIToolbar toolbar { get; set; }
+		UIKit.UIToolbar toolbar { get; set; }
 
 		[Action ("enableTextEditing:")]
-		partial void enableTextEditing (MonoTouch.UIKit.UIBarButtonItem sender);
+		partial void enableTextEditing (UIKit.UIBarButtonItem sender);
 
 		[Action ("share:")]
-		partial void share (MonoTouch.UIKit.UIBarButtonItem sender);
+		partial void share (UIKit.UIBarButtonItem sender);
 
 		[Action ("shootPicture:")]
-		partial void shootPicture (MonoTouch.UIKit.UIBarButtonItem sender);
+		partial void shootPicture (UIKit.UIBarButtonItem sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

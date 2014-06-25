@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MediaNotes
 {
@@ -12,25 +12,25 @@ namespace MediaNotes
 	partial class PhotoViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIToolbar toolbar { get; set; }
+		UIKit.UIToolbar toolbar { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIView placeHolderView { get; set; }
+		UIKit.UIView placeHolderView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIActivityIndicatorView placeHolderActivityView { get; set; }
+		UIKit.UIActivityIndicatorView placeHolderActivityView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel placeHolderLabel { get; set; }
+		UIKit.UILabel placeHolderLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView photoImageView { get; set; }
+		UIKit.UIImageView photoImageView { get; set; }
 
 		[Action ("NextPhoto:")]
-		partial void NextPhoto (MonoTouch.UIKit.UIBarButtonItem sender);
+		partial void NextPhoto (UIKit.UIBarButtonItem sender);
 
 		[Action ("PreviousPhoto:")]
-		partial void PreviousPhoto (MonoTouch.UIKit.UIBarButtonItem sender);
+		partial void PreviousPhoto (UIKit.UIBarButtonItem sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

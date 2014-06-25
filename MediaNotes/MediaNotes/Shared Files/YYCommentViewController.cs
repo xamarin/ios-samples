@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
+using Foundation;
+using UIKit;
+
 
 namespace MediaNotes
 {
@@ -115,7 +115,7 @@ namespace MediaNotes
 			Console.WriteLine (textView.Text);
 		}
 
-		partial void enableTextEditing (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial void enableTextEditing (UIKit.UIBarButtonItem sender)
 		{
 			if (textView.Editable) {
 				setEditing(false);
@@ -127,7 +127,7 @@ namespace MediaNotes
 			}
 		}
 
-		partial void share (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial void share (UIKit.UIBarButtonItem sender)
 		{
 			if(shareController == null){
 				List<UIImage> items = associatedObject.ItemsForSharing();
@@ -150,7 +150,7 @@ namespace MediaNotes
 				}
 		}
 
-		partial void shootPicture (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial void shootPicture (UIKit.UIBarButtonItem sender)
 		{
 			UIImagePickerController picker = new UIImagePickerController();
 

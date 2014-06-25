@@ -4,10 +4,10 @@
 #define OVERRIDE_SUPPORTED_ORIENTATIONS
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 		
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 		
 namespace MediaNotes
 {
@@ -89,7 +89,7 @@ namespace MediaNotes
 		}
 				
 # if USE_AUTOLAYOUT
-		float GetStatusBarHeight (UIApplication app)
+		nfloat GetStatusBarHeight (UIApplication app)
 		{
 			if (app.StatusBarOrientation == UIInterfaceOrientation.LandscapeLeft || app.StatusBarOrientation == UIInterfaceOrientation.LandscapeRight)
 				return app.StatusBarFrame.Size.Width;
@@ -98,7 +98,7 @@ namespace MediaNotes
 				
 		public override void UpdateViewConstraints ()
 		{
-			float toolbarVerticalOffset = WantsFullScreenLayout ? GetStatusBarHeight (UIApplication.SharedApplication) : 0;
+			nfloat toolbarVerticalOffset = WantsFullScreenLayout ? GetStatusBarHeight (UIApplication.SharedApplication) : 0;
 					
 			if (toolbarTopConstraint == null) {
 				var tconstraint2 = NSLayoutConstraint.Create (toolbar, NSLayoutAttribute.Top, NSLayoutRelation.Equal,
@@ -221,7 +221,7 @@ namespace MediaNotes
 			}
 		}
 				
-		partial void NextPhoto (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial void NextPhoto (UIKit.UIBarButtonItem sender)
 		{       
 			datasource.ProceedToNextItem ();
 
@@ -241,7 +241,7 @@ namespace MediaNotes
 			}
 		}
 				
-		partial  void PreviousPhoto (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial  void PreviousPhoto (UIKit.UIBarButtonItem sender)
 		{
 			datasource.ProceedToPreviousItem ();
 			if (currentPhotoUrl != null) {
