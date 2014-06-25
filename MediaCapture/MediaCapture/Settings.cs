@@ -125,7 +125,6 @@ namespace MediaCapture
 			}
 
 			camera = NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.Camera.ToString()) == 0 ? CameraType.FrontFacing : CameraType.RearFacing;
-			//camera = CameraType.FrontFacing;
 			ImageCaptureEnabled = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.ImageCaptureEnabled.ToString() );
 			AudioCaptureEnabled = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.AudioCaptureEnabled.ToString() );
 			VideoCaptureEnabled = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.VideoCaptureEnabled.ToString() );
