@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.CoreLocation;
-using MonoTouch.Foundation;
+using CoreLocation;
+using Foundation;
 using MonoTouch.Dialog;
-using MonoTouch.MapKit;
-using MonoTouch.UIKit;
+using MapKit;
+using UIKit;
 
 using System.Threading.Tasks;
 
@@ -91,7 +91,7 @@ namespace MapKitSearch {
 				results.Add (mi);
 				var element = new StyledStringElement (mi.Name, mi.PhoneNumber, UITableViewCellStyle.Subtitle);
 				element.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-				element.Tapped += () => { results [element.IndexPath.Row].OpenInMaps (); };
+				element.Tapped += () => { results [(int)element.IndexPath.Row].OpenInMaps (); };
 				section.Add (element);
 			}
 
