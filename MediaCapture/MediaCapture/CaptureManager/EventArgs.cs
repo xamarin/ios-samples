@@ -11,8 +11,8 @@
 // Enhancements, suggestions and bug reports can be sent to steve.millar@infinitekdev.com
 //
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace MediaCapture
 {

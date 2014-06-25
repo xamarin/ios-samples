@@ -12,15 +12,15 @@
 //
 using System;
 using System.Collections.Concurrent;
-using System.Drawing;
+using CoreGraphics;
 using System.IO;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreVideo;
-using MonoTouch.CoreMedia;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreFoundation;
+using Foundation;
+using UIKit;
+using AVFoundation;
+using CoreVideo;
+using CoreMedia;
+
+using CoreFoundation;
 using System.Runtime.InteropServices;
 
 namespace MediaCapture
@@ -340,13 +340,13 @@ namespace MediaCapture
 			
 			// create a VideoDataOutput and add it to the capture session
 			frameGrabberOutput = new AVCaptureVideoDataOutput();
-			frameGrabberOutput.VideoSettings = new AVVideoSettings (CVPixelFormatType.CV32BGRA);
+			frameGrabberOutput.CompressedVideoSetting = new AVVideoSettingsCompressed ();
 			
 			// set up the output queue and delegate
-			queue = new MonoTouch.CoreFoundation.DispatchQueue ("captureQueue");
+			queue = new CoreFoundation.DispatchQueue ("captureQueue");
 			videoFrameSampler = new VideoFrameSamplerDelegate();
-			frameGrabberOutput.SetSampleBufferDelegateAndQueue (videoFrameSampler, queue);
-			
+			frameGrabberOutput.SetSampleBufferDelegateQueue (videoFrameSampler, queue);
+
 			// subscribe to from capture events
 			videoFrameSampler.CaptureError += new EventHandler<CaptureErrorEventArgs>( handleImageCaptureError );
 			videoFrameSampler.ImageCaptured += new EventHandler<ImageCaptureEventArgs>( handleImageCaptured );

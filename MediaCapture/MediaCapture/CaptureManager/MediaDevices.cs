@@ -11,10 +11,10 @@
 // Enhancements, suggestions and bug reports can be sent to steve.millar@infinitekdev.com
 //
 using System;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreVideo;
-using MonoTouch.CoreMedia;
-using MonoTouch.Foundation;
+using AVFoundation;
+using CoreVideo;
+using CoreMedia;
+using Foundation;
 
 namespace MediaCapture
 {

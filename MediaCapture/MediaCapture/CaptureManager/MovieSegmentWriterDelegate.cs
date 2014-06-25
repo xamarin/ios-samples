@@ -13,15 +13,15 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Text;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreVideo;
-using MonoTouch.CoreMedia;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreFoundation;
+using Foundation;
+using UIKit;
+using AVFoundation;
+using CoreVideo;
+using CoreMedia;
+
+using CoreFoundation;
 using System.Runtime.InteropServices;
 
 namespace MediaCapture

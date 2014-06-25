@@ -12,7 +12,7 @@
 //
 using System;
 using System.IO;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MediaCapture
 {
@@ -123,13 +123,16 @@ namespace MediaCapture
 				NSUserDefaults.StandardUserDefaults.SetBool( true, SettingsNames.HaveSettingsBeenLoadedBefore.ToString() );
 				Save ();
 			}
-			
-			camera = (CameraType) NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.Camera.ToString() );
+
+			camera = NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.Camera.ToString()) == 0 ? CameraType.FrontFacing : CameraType.RearFacing;
+			//camera = CameraType.FrontFacing;
 			ImageCaptureEnabled = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.ImageCaptureEnabled.ToString() );
 			AudioCaptureEnabled = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.AudioCaptureEnabled.ToString() );
 			VideoCaptureEnabled = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.VideoCaptureEnabled.ToString() );
-			CaptureResolution = (Resolution) NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.CaptureResolution.ToString() );
-			MaxMovieDurationInSeconds = NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.MaxMovieDurationInSeconds.ToString() );
+			//CaptureResolution = (Resolution) NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.CaptureResolution.ToString() );
+			CaptureResolution = Resolution.High;
+			//MaxMovieDurationInSeconds = NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.MaxMovieDurationInSeconds.ToString() );
+			MaxMovieDurationInSeconds = 60;
 			AutoRecordNextMovie = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.AutoRecordNextMovie.ToString() );
 			SaveCapturedImagesToPhotoLibrary = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.SaveCapturedImagesToPhotoLibrary.ToString() );
 			SaveCapturedImagesToMyDocuments = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.SaveCapturedImagesToMyDocuments.ToString() );

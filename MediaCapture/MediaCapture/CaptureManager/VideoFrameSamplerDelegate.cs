@@ -11,14 +11,14 @@
 // Enhancements, suggestions and bug reports can be sent to steve.millar@infinitekdev.com
 //
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreVideo;
-using MonoTouch.CoreMedia;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreFoundation;
+using CoreGraphics;
+using Foundation;
+using UIKit;
+using AVFoundation;
+using CoreVideo;
+using CoreMedia;
+
+using CoreFoundation;
 using System.Runtime.InteropServices;
 
 namespace MediaCapture
@@ -91,9 +91,9 @@ namespace MediaCapture
 				
 				// Get the number of bytes per row for the pixel buffer
 				var baseAddress = pixelBuffer.BaseAddress;
-				int bytesPerRow = pixelBuffer.BytesPerRow;
-				int width = pixelBuffer.Width;
-				int height = pixelBuffer.Height;
+				int bytesPerRow = (int)pixelBuffer.BytesPerRow;
+				int width = (int)pixelBuffer.Width;
+				int height = (int)pixelBuffer.Height;
 				var flags = CGBitmapFlags.PremultipliedFirst | CGBitmapFlags.ByteOrder32Little;
 				
 				// Create a CGImage on the RGB colorspace from the configured parameter above
