@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace MonoDevelopTouchCells
 {
@@ -11,7 +11,7 @@ namespace MonoDevelopTouchCells
 		{
 		}
 		
-		public override void RowSelected (MonoTouch.UIKit.UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override void RowSelected (UIKit.UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			CustomCell cell = tableView.CellAt(indexPath) as CustomCell;
 			
@@ -22,7 +22,7 @@ namespace MonoDevelopTouchCells
 			tableView.DeselectRow(indexPath, true);
 		}
 
-		public override void AccessoryButtonTapped (MonoTouch.UIKit.UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override void AccessoryButtonTapped (UIKit.UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			CustomCell cell = tableView.CellAt(indexPath) as CustomCell;
 			

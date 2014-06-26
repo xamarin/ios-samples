@@ -11,21 +11,21 @@
 namespace MonoDevelopTouchCells {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("DetailViewController")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("DetailViewController")]
 	public partial class DetailViewController {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIImageView __mt_checkedImage;
+		private UIKit.UIImageView __mt_checkedImage;
 		
-		private MonoTouch.UIKit.UILabel __mt_itemTitle;
+		private UIKit.UILabel __mt_itemTitle;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace MonoDevelopTouchCells {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("checkedImage")]
-		private MonoTouch.UIKit.UIImageView checkedImage {
+		[Foundation.Connect("checkedImage")]
+		private UIKit.UIImageView checkedImage {
 			get {
-				this.__mt_checkedImage = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("checkedImage")));
+				this.__mt_checkedImage = ((UIKit.UIImageView)(this.GetNativeField("checkedImage")));
 				return this.__mt_checkedImage;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace MonoDevelopTouchCells {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("itemTitle")]
-		private MonoTouch.UIKit.UILabel itemTitle {
+		[Foundation.Connect("itemTitle")]
+		private UIKit.UILabel itemTitle {
 			get {
-				this.__mt_itemTitle = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("itemTitle")));
+				this.__mt_itemTitle = ((UIKit.UILabel)(this.GetNativeField("itemTitle")));
 				return this.__mt_itemTitle;
 			}
 			set {

@@ -1,8 +1,8 @@
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 
 namespace MonoDevelopTouchCells
 {
@@ -31,7 +31,7 @@ namespace MonoDevelopTouchCells
 			
 			// cell's check button
 			CheckButton = new UIButton () {
-				Frame = RectangleF.Empty,
+				Frame = CGRect.Empty,
 				VerticalAlignment = UIControlContentVerticalAlignment.Center,
 				HorizontalAlignment = UIControlContentHorizontalAlignment.Center,
 				BackgroundColor = this.BackgroundColor,
@@ -45,7 +45,7 @@ namespace MonoDevelopTouchCells
 		{
 			base.LayoutSubviews ();
 			
-			this.TextLabel.Frame = new RectangleF (
+			this.TextLabel.Frame = new CGRect (
 				this.ContentView.Bounds.Left + 40f, 
 				8f, 
 				this.ContentView.Bounds.Width, 
@@ -54,7 +54,7 @@ namespace MonoDevelopTouchCells
 			// layout the check button image
 			UIImage checkedImage = UIImage.FromFile ("images/checked.png");
 			
-			CheckButton.Frame = new RectangleF (
+			CheckButton.Frame = new CGRect (
 				this.ContentView.Bounds.Left + 10f, 
 				12f, 
 				checkedImage.Size.Width, 

@@ -11,21 +11,21 @@
 namespace MonoDevelopTouchCells {
 	
 	
-	// Base type probably should be MonoTouch.Foundation.NSObject or subclass
-	[MonoTouch.Foundation.Register("AppDelegate")]
+	// Base type probably should be Foundation.NSObject or subclass
+	[Foundation.Register("AppDelegate")]
 	public partial class AppDelegate {
 		
-		private MonoTouch.UIKit.UIWindow __mt_window;
+		private UIKit.UIWindow __mt_window;
 		
-		private MonoTouch.UIKit.UITableView __mt_myTableView;
+		private UIKit.UITableView __mt_myTableView;
 		
-		private MonoTouch.UIKit.UINavigationController __mt_navigationController;
+		private UIKit.UINavigationController __mt_navigationController;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("window")]
-		private MonoTouch.UIKit.UIWindow window {
+		[Foundation.Connect("window")]
+		private UIKit.UIWindow window {
 			get {
-				this.__mt_window = ((MonoTouch.UIKit.UIWindow)(this.GetNativeField("window")));
+				this.__mt_window = ((UIKit.UIWindow)(this.GetNativeField("window")));
 				return this.__mt_window;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace MonoDevelopTouchCells {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("myTableView")]
-		private MonoTouch.UIKit.UITableView myTableView {
+		[Foundation.Connect("myTableView")]
+		private UIKit.UITableView myTableView {
 			get {
-				this.__mt_myTableView = ((MonoTouch.UIKit.UITableView)(this.GetNativeField("myTableView")));
+				this.__mt_myTableView = ((UIKit.UITableView)(this.GetNativeField("myTableView")));
 				return this.__mt_myTableView;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace MonoDevelopTouchCells {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("navigationController")]
-		private MonoTouch.UIKit.UINavigationController navigationController {
+		[Foundation.Connect("navigationController")]
+		private UIKit.UINavigationController navigationController {
 			get {
-				this.__mt_navigationController = ((MonoTouch.UIKit.UINavigationController)(this.GetNativeField("navigationController")));
+				this.__mt_navigationController = ((UIKit.UINavigationController)(this.GetNativeField("navigationController")));
 				return this.__mt_navigationController;
 			}
 			set {
