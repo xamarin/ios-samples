@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
-using MonoTouch.Foundation;
-using MonoTouch.AudioUnit;
-using MonoTouch.CoreFoundation;
-using MonoTouch.AudioToolbox;
+using Foundation;
+using AudioUnit;
+using CoreFoundation;
+using AudioToolbox;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
@@ -24,7 +24,7 @@ namespace MultichannelMixer
 		CFUrl[] sourceURL;
 		SoundBuffer[] soundBuffer;
 		bool playing;
-		AudioUnit mixer;
+		AudioUnit.AudioUnit mixer;
 
 		public MultichannelMixerController ()
 		{

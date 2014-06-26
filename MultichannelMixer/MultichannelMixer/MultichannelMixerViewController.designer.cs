@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace MultichannelMixer
@@ -13,34 +13,34 @@ namespace MultichannelMixer
 	partial class MultichannelMixerViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UISwitch bus0switch { get; set; }
+		UIKit.UISwitch bus0switch { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider bus0VolumeSlider { get; set; }
+		UIKit.UISlider bus0VolumeSlider { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISwitch bus1switch { get; set; }
+		UIKit.UISwitch bus1switch { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider bus1VolumeSlider { get; set; }
+		UIKit.UISlider bus1VolumeSlider { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider outputVolumeSlider { get; set; }
+		UIKit.UISlider outputVolumeSlider { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton startButton { get; set; }
+		UIKit.UIButton startButton { get; set; }
 
 		[Action ("doSomethingAction:")]
-		partial void doSomethingAction (MonoTouch.Foundation.NSObject sender);
+		partial void doSomethingAction (Foundation.NSObject sender);
 
 		[Action ("enableInput:")]
-		partial void enableInput (MonoTouch.Foundation.NSObject sender);
+		partial void enableInput (Foundation.NSObject sender);
 
 		[Action ("setInputVolume:")]
-		partial void setInputVolume (MonoTouch.Foundation.NSObject sender);
+		partial void setInputVolume (Foundation.NSObject sender);
 
 		[Action ("setOutputVolume:")]
-		partial void setOutputVolume (MonoTouch.Foundation.NSObject sender);
+		partial void setOutputVolume (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
