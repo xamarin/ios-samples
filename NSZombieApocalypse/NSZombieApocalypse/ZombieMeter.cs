@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
+using UIKit;
+using Foundation;
+
 
 namespace NSZombieApocalypse
 {
@@ -21,13 +21,13 @@ namespace NSZombieApocalypse
 
 		UILabel label;
 
-		public ZombieMeter (RectangleF frame) : base (frame)
+		public ZombieMeter (CGRect frame) : base (frame)
 		{
 			BackgroundColor = UIColor.Clear;
 			Layer.CornerRadius = 8;
 			ZombieLevel = 0;
 
-			label = new UILabel (new RectangleF (0, 0, frame.Size.Width, 0));
+			label = new UILabel (new CGRect (0, 0, frame.Size.Width, 0));
 			label.TextAlignment = UITextAlignment.Center;
 			label.Text = "Zombie Meter";
 			label.Font = UIFont.FromName ("Helvetica", 24);
@@ -35,7 +35,7 @@ namespace NSZombieApocalypse
 			AddSubview (label);
 			label.SizeToFit ();
 			var labelFrame = label.Frame;
-			label.Frame = new RectangleF (labelFrame.X, labelFrame.Y, frame.Size.Width, labelFrame.Size.Height);
+			label.Frame = new CGRect (labelFrame.X, labelFrame.Y, frame.Size.Width, labelFrame.Size.Height);
 
 		}
 
@@ -57,12 +57,12 @@ namespace NSZombieApocalypse
 			}
 		}
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
-			float pad = 20;
-			float numberOfMeters = 10;
-			float meterSpacing = 5;
-			float yOrigin = label.Frame.GetMaxY () + 10;
+			nfloat pad = 20;
+			nfloat numberOfMeters = 10;
+			nfloat meterSpacing = 5;
+			nfloat yOrigin = label.Frame.GetMaxY () + 10;
 
 			UIBezierPath background = UIBezierPath.FromRoundedRect (rect, 8);
 			UIColor.White.SetFill ();
@@ -70,7 +70,7 @@ namespace NSZombieApocalypse
 
 			UIColor.Black.SetStroke ();
 
-			RectangleF meter = new RectangleF (
+			CGRect meter = new CGRect (
 				pad, 
 				yOrigin, 
 				rect.Size.Width - pad * 2, 
@@ -96,14 +96,14 @@ namespace NSZombieApocalypse
 					float diff = (level - k);
 					if (diff > 0 && diff < 1) {
 
-						RectangleF smallerRect = meter;
-						smallerRect = new RectangleF (
+						CGRect smallerRect = meter;
+						smallerRect = new CGRect (
 							smallerRect.X, 
 							smallerRect.Y + smallerRect.Size.Height - ((smallerRect.Size.Height) * diff), 
 							smallerRect.Size.Width, 
 							(smallerRect.Size.Height) * diff
 						);
-						var smallerPath = UIBezierPath.FromRoundedRect (smallerRect, UIRectCorner.BottomLeft | UIRectCorner.BottomRight, new SizeF (2, 2));	
+						var smallerPath = UIBezierPath.FromRoundedRect (smallerRect, UIRectCorner.BottomLeft | UIRectCorner.BottomRight, new CGSize (2, 2));	
 						smallerPath.Fill ();
 					
 					} else {

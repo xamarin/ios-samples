@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.UIKit;
+using CoreGraphics;
+
+using UIKit;
 
 namespace NSZombieApocalypse
 {
@@ -14,7 +14,7 @@ namespace NSZombieApocalypse
 		public event TrackingContinuedEventHandler TrackingContinuedEvent;
 		public event TrackingEndedEventHandler TrackingEndedEvent;
 
-		public ButtonView (RectangleF frame):base (frame)
+		public ButtonView (CGRect frame):base (frame)
 		{
 			imageView = new UIImageView (UIImage.FromBundle ("buttonView.png"));
 			AddSubview (imageView);
@@ -24,9 +24,9 @@ namespace NSZombieApocalypse
 			MultipleTouchEnabled = true;
 		}
 
-		public static SizeF ButtonSize {
+		public static CGSize ButtonSize {
 			get {
-				SizeF size = UIImage.FromBundle ("buttonView.png").Size;
+				CGSize size = UIImage.FromBundle ("buttonView.png").Size;
 				size.Height += 20;
 				size.Width += 60;
 				return size;
@@ -101,10 +101,10 @@ namespace NSZombieApocalypse
 
 		public override void LayoutSubviews ()
 		{
-			RectangleF frame = Bounds;
-			var newFrame = new RectangleF (Bounds.X, frame.Size.Height - 20, Bounds.Width, 20);
+			CGRect frame = Bounds;
+			var newFrame = new CGRect (Bounds.X, frame.Size.Height - 20, Bounds.Width, 20);
 			labelView.Frame = newFrame.Integral ();
-			RectangleF imageFrame = imageView.Frame;
+			CGRect imageFrame = imageView.Frame;
 			imageFrame.X = (newFrame.Size.Width - imageFrame.Size.Width) / 2;
 			imageView.Frame = imageFrame.Integral ();
 		}
@@ -113,7 +113,7 @@ namespace NSZombieApocalypse
 		{
 			if (labelView == null) {
 
-				labelView = new UILabel (RectangleF.Empty);
+				labelView = new UILabel (CGRect.Empty);
 				labelView.BackgroundColor = UIColor.Clear;
 				labelView.Font = UIFont.FromName ("HelveticaNeue", 18);
 				labelView.TextColor = UIColor.Black;

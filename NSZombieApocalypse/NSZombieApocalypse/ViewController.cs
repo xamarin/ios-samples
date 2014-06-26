@@ -1,16 +1,16 @@
 using System;
 using System.Timers;
 using System.Threading;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreFoundation;
-using MonoTouch.Foundation;
-using MonoTouch.CoreAnimation;
-using MonoTouch.CoreImage;
+using UIKit;
+
+using CoreFoundation;
+using Foundation;
+using CoreAnimation;
+using CoreImage;
 using System.Threading.Tasks;
-using MonoTouch.ObjCRuntime;
+using ObjCRuntime;
 
 namespace NSZombieApocalypse
 {
@@ -53,8 +53,8 @@ namespace NSZombieApocalypse
 
 		public override void ViewWillAppear (bool animated)
 		{
-			RectangleF frame = View.Frame;
-			frame = new RectangleF (frame.X, frame.Y, frame.Size.Height + 20, frame.Size.Width);
+			CGRect frame = View.Frame;
+			frame = new CGRect (frame.X, frame.Y, frame.Size.Height + 20, frame.Size.Width);
 			View.Frame = frame;
 
 			frame = View.Frame;
@@ -63,20 +63,20 @@ namespace NSZombieApocalypse
 			backGround.Alpha = 0.34f;
 			View.AddSubview (backGround);
 
-			var miniPadFrame = new RectangleF (350, 50, 0, 0);
+			var miniPadFrame = new CGRect (350, 50, 0, 0);
 			miniPadView = new MiniPadView (miniPadFrame);
 			View.AddSubview (miniPadView);
 
-			var meterFrame = new RectangleF (miniPadView.Frame.GetMaxX (), miniPadFrame.Y, 200, miniPadView.Frame.Size.Height);
+			var meterFrame = new CGRect (miniPadView.Frame.GetMaxX (), miniPadFrame.Y, 200, miniPadView.Frame.Size.Height);
 			meterView = new ZombieMeter (meterFrame);
 			View.AddSubview (meterView);
 
-			var statusFrame = new RectangleF (100, frame.Size.Height - 350, frame.Size.Width - 100, 100);
+			var statusFrame = new CGRect (100, frame.Size.Height - 350, frame.Size.Width - 100, 100);
 			statusView = new StatusView (statusFrame);
 			View.AddSubview (statusView);
 			statusView.Status = "Loading";
 
-			var buttonsFrame = new RectangleF (100, statusFrame.GetMaxY () + 20, frame.Size.Width - 100, 230);
+			var buttonsFrame = new CGRect (100, statusFrame.GetMaxY () + 20, frame.Size.Width - 100, 230);
 			buttonsView = new ButtonCollectionView (buttonsFrame) {
 				ShouldGroupAccessibilityChildren = true
 			};
@@ -85,7 +85,7 @@ namespace NSZombieApocalypse
 			buttonsView.ButtonFinishedEvent += ButtonFinished;
 			View.AddSubview (buttonsView);
 
-			var questionFrame = new RectangleF (10, statusFrame.GetMaxY () + 110, 80, 80);
+			var questionFrame = new CGRect (10, statusFrame.GetMaxY () + 110, 80, 80);
 			var questionView = new SymbolMarkView (questionFrame) {
 				AccessibilityLabel = "Help"
 			};
@@ -260,7 +260,7 @@ namespace NSZombieApocalypse
 
 		void updateScoreForDroppedButton (ButtonView button)
 		{
-			ButtonType buttonType = (ButtonType)button.Tag;
+			ButtonType buttonType = (ButtonType)(float)button.Tag;
 			float change = 0;
 			switch (buttonType) {
 			case ButtonType.Free:
@@ -298,7 +298,7 @@ namespace NSZombieApocalypse
 
 		public void ButtonDragged (ButtonView button, UITouch location)
 		{
-			PointF point = location.LocationInView (miniPadView);
+			CGPoint point = location.LocationInView (miniPadView);
 			if (miniPadView.PointInside (point, null)) {
 				if (!buttonDraggedToPad) {
 					CATransaction.Begin ();
@@ -333,7 +333,7 @@ namespace NSZombieApocalypse
 			buttonDraggedToPad = false;
 			miniPadView.Layer.BorderWidth = 0;
 
-			PointF point = location.LocationInView (miniPadView);
+			CGPoint point = location.LocationInView (miniPadView);
 			if (miniPadView.PointInside (point, null)) {
 				updateScoreForDroppedButton (button);
 				UIView.Animate (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (10f * (float)Math.PI / 180), async () => {
@@ -349,8 +349,8 @@ namespace NSZombieApocalypse
 			var popTime = new DispatchTime (DispatchTime.Now, (long)(delayInSeconds * NSEC_PER_SEC));
 			DispatchQueue.MainQueue.DispatchAfter (popTime, async () => {
 				await UIView.AnimateAsync (0.35f, () => {
-					RectangleF bounds = trackingView.Bounds;
-					bounds.Size = new SizeF (10, 10);
+					CGRect bounds = trackingView.Bounds;
+					bounds.Size = new CGSize (10, 10);
 					trackingView.Bounds = bounds;
 				});
 				trackingView.RemoveFromSuperview ();

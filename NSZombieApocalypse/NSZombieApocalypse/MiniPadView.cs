@@ -1,15 +1,15 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
-using MonoTouch.AudioToolbox;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreFoundation;
-using MonoTouch.AudioUnit;
-using MonoTouch.Foundation;
+using UIKit;
+using AudioToolbox;
+
+using CoreFoundation;
+using AudioUnit;
+using Foundation;
 using MonoTouch.Dialog;
-using MonoTouch.AVFoundation;
+using AVFoundation;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,10 +20,10 @@ namespace NSZombieApocalypse
 		AVAudioPlayer newZombieSound, removeZombieSound;
 		List <WalkingDead> zombies;
 
-		public MiniPadView (RectangleF frame): base(frame)
+		public MiniPadView (CGRect frame): base(frame)
 		{
 			var image = UIImage.FromBundle ("iPadImage.png");
-			Frame = new RectangleF (Frame.Location, image.Size);
+			Frame = new CGRect (Frame.Location, image.Size);
 
 			ClipsToBounds = false;
 			var imageView = new UIImageView (image);
@@ -58,7 +58,7 @@ namespace NSZombieApocalypse
 		public void AddZombie ()
 		{
 			float chrome = 50;
-			var frame = new RectangleF (chrome, Frame.Size.Height - 160 - chrome, 80, 200);
+			var frame = new CGRect (chrome, Frame.Size.Height - 160 - chrome, 80, 200);
 			var dead = new WalkingDead (frame);
 			dead.WalkingDeadDidDisassemble += WalkingDeadDidDisassemble;
 			zombies.Add (dead);

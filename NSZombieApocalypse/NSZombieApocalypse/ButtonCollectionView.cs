@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreLocation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+
+using CoreLocation;
+using UIKit;
 
 namespace NSZombieApocalypse
 {
@@ -31,7 +31,7 @@ namespace NSZombieApocalypse
 		
 		}
 
-		public ButtonCollectionView (RectangleF frame) : base(frame)
+		public ButtonCollectionView (CGRect frame) : base(frame)
 		{
 			Layer.BorderColor = UIColor.Black.CGColor;
 			Layer.BorderWidth = 1;
@@ -39,7 +39,7 @@ namespace NSZombieApocalypse
 			BackgroundColor = UIColor.White.ColorWithAlpha (0.75f);
 
 			for (int k = 0; k < (int) ButtonType.Count; k++) {
-				var button = new ButtonView (RectangleF.Empty);
+				var button = new ButtonView (CGRect.Empty);
 				AddSubview (button);			
 				button.TrackingStartedEvent += TrackingStarted;
 				button.TrackingContinuedEvent += TrackingContinued;
@@ -86,15 +86,15 @@ namespace NSZombieApocalypse
 			UIGraphics.EndImageContext ();
 
 			if (trackingImageView == null) {
-				trackingImageView = new UIImageView (RectangleF.Empty);
+				trackingImageView = new UIImageView (CGRect.Empty);
 				Superview.AddSubview (trackingImageView);
 				trackingImageView.Alpha = 0.5f;
 			}
 
 			trackingImageView.Image = image;
 			trackingImageView.SizeToFit ();
-			RectangleF frame = trackingImageView.Frame;
-			var newFrame = new RectangleF (Superview.ConvertPointFromView (button.Frame.Location, this), frame.Size);
+			CGRect frame = trackingImageView.Frame;
+			var newFrame = new CGRect (Superview.ConvertPointFromView (button.Frame.Location, this), frame.Size);
 			trackingImageView.Frame = newFrame;
 			if (ButtonSelectedEvent != null)
 				ButtonSelectedEvent (button);
@@ -102,10 +102,10 @@ namespace NSZombieApocalypse
 
 		public void TrackingContinued (ButtonView button, UITouch location)
 		{
-			PointF point = location.LocationInView (Superview);
-			RectangleF frame = trackingImageView.Frame;
-			var newPoint = new PointF (point.X - button.Frame.Size.Width / 2, point.Y - button.Frame.Size.Height / 2);
-			var newFrame = new RectangleF (newPoint, frame.Size);
+			CGPoint point = location.LocationInView (Superview);
+			CGRect frame = trackingImageView.Frame;
+			var newPoint = new CGPoint (point.X - button.Frame.Size.Width / 2, point.Y - button.Frame.Size.Height / 2);
+			var newFrame = new CGRect (newPoint, frame.Size);
 			trackingImageView.Frame = newFrame;
 			if (ButtonDraggedEvent != null)
 				ButtonDraggedEvent (button, location);
@@ -124,11 +124,11 @@ namespace NSZombieApocalypse
 
 			UIView[] subviews = this.Subviews;
 			int count = 0;
-			RectangleF bounds = Bounds;
-			SizeF buttonSize = ButtonView.ButtonSize;
-			float xPad = (bounds.Size.Width - (buttonSize.Width * 3)) / 4;
-			float yPad = (bounds.Size.Height - (buttonSize.Height * 2)) / 3;
-			float x = xPad, y = 5;
+			CGRect bounds = Bounds;
+			CGSize buttonSize = ButtonView.ButtonSize;
+			nfloat xPad = (bounds.Size.Width - (buttonSize.Width * 3)) / 4;
+			nfloat yPad = (bounds.Size.Height - (buttonSize.Height * 2)) / 3;
+			nfloat x = xPad, y = 5;
 			foreach (var subview in subviews) {
 				if (count > 0 && count % 3 == 0) {
 					x = xPad;
@@ -136,7 +136,7 @@ namespace NSZombieApocalypse
 				}
 				count++;
 			
-				var frame = new RectangleF (x, y, buttonSize.Width, buttonSize.Height);
+				var frame = new CGRect (x, y, buttonSize.Width, buttonSize.Height);
 				subview.Frame = frame.Integral ();
 				x += buttonSize.Width + xPad;
 

@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.ObjCRuntime;
+using CoreGraphics;
+using UIKit;
+using Foundation;
+
+using ObjCRuntime;
 using System.Threading.Tasks;
 
 namespace NSZombieApocalypse
@@ -15,19 +15,19 @@ namespace NSZombieApocalypse
 
 		public event  HelpDidCloseHandler HelpDidClose;
 
-		public HelpView (RectangleF frame): base(frame)
+		public HelpView (CGRect frame): base(frame)
 		{
 			BackgroundColor = UIColor.Clear;
 			Layer.CornerRadius = 8;
 
-			var closeFrame = new RectangleF (20, frame.Size.Height - 140, 80, 80);
+			var closeFrame = new CGRect (20, frame.Size.Height - 140, 80, 80);
 			var closeView = new SymbolMarkView (closeFrame);
 			closeView.TouchUpInside += async (s, e) => await Hide ();
 			AddSubview (closeView);
 			closeView.Symbol = "X";
 			closeView.AccessibilityLabel = "Close";
 
-			var label = new UILabel (new RectangleF (0, 20, frame.Size.Width, 40));
+			var label = new UILabel (new CGRect (0, 20, frame.Size.Width, 40));
 			label.Font = UIFont.FromName ("HelveticaNeue-Italic", 82);
 			label.Text = "NSZombieApocalypse";
 			label.BackgroundColor = UIColor.Clear;
@@ -39,15 +39,15 @@ namespace NSZombieApocalypse
 			AddSubview (label);
 			label.AccessibilityTraits = UIAccessibilityTrait.Header;
 
-			var nextFrame = new RectangleF (frame.Size.Width - 100, frame.Size.Height - 140, 80, 80);
+			var nextFrame = new CGRect (frame.Size.Width - 100, frame.Size.Height - 140, 80, 80);
 			nextButton = new SymbolMarkView (nextFrame);
 			nextButton.TouchUpInside += (s, e) => NextSlide ();
 			AddSubview (nextButton);
 			nextButton.Symbol = "->";
 			nextButton.AccessibilityLabel = "Next";
 
-			float width = frame.Size.Width * 0.6f;
-			var textViewFrame = new RectangleF (
+			nfloat width = frame.Size.Width * 0.6f;
+			var textViewFrame = new CGRect (
 				200 + ((frame.Size.Width - 200) - width) / 2, 
 				label.Frame.GetMaxY () + 30, 
 				width,
@@ -60,7 +60,7 @@ namespace NSZombieApocalypse
 			textView.Text = NSBundle.MainBundle.LocalizedString ("helpText1", null, "Strings");
 
 			var imageView = new UIImageView (UIImage.FromBundle ("smaller-zombie1.png"));
-			var imageFrame = new RectangleF (label.Frame.X - 20, textViewFrame.Y, imageView.Frame.Width, imageView.Frame.Height);
+			var imageFrame = new CGRect (label.Frame.X - 20, textViewFrame.Y, imageView.Frame.Width, imageView.Frame.Height);
 			imageView.Frame = imageFrame;
 			AddSubview (imageView);
 
@@ -87,7 +87,7 @@ namespace NSZombieApocalypse
 
 		public async Task Hide ()
 		{
-			RectangleF frame = Frame;
+			CGRect frame = Frame;
 			frame.Y = -frame.Size.Height;
 			await UIView.AnimateAsync (.35, () => {
 				Frame = frame;
@@ -95,17 +95,17 @@ namespace NSZombieApocalypse
 			HelpDidClose (this);
 		}
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			rect.Height -= 40;
 			UIColor.White.SetFill ();
-			var path = UIBezierPath.FromRoundedRect (rect, UIRectCorner.BottomRight | UIRectCorner.BottomLeft, new SizeF (8, 8));
+			var path = UIBezierPath.FromRoundedRect (rect, UIRectCorner.BottomRight | UIRectCorner.BottomLeft, new CGSize (8, 8));
 			path.Fill ();
 		}
 
 		public void Show ()
 		{
-			RectangleF frame = Frame;
+			CGRect frame = Frame;
 			frame.Y = 0;
 			UIView.Animate (.35, () => {
 				Frame = frame;});
