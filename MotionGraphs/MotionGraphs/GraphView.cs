@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreAnimation;
+using CoreGraphics;
+using UIKit;
+using Foundation;
+using CoreGraphics;
+using CoreAnimation;
 
 namespace MotionGraphs
 {
@@ -21,7 +21,7 @@ namespace MotionGraphs
 	[Register ("GraphView")]
 	public class GraphView : UIView
 	{
-		PointF kSegmentInitialPosition = new PointF (14.0f, 56.0f);
+		CGPoint kSegmentInitialPosition = new CGPoint (14.0f, 56.0f);
 
 		List<GraphViewSegment> segments { get; set; }
 
@@ -33,7 +33,7 @@ namespace MotionGraphs
 		{
 			// Create the text view and add it as a subview. We keep a weak reference
 			// to that view afterwards for laying out the segment layers.
-			text = new GraphTextView (new RectangleF (0.0f, 0.0f, 32.0f, 112.0f));
+			text = new GraphTextView (new CGRect (0.0f, 0.0f, 32.0f, 112.0f));
 			AddSubview (text);
 
 			// Create a mutable array to store segments, which is required by -addSegment
@@ -54,7 +54,7 @@ namespace MotionGraphs
 			CommonInit ();
 		}
 
-		public GraphView (RectangleF frame) : base (frame)
+		public GraphView (CGRect frame) : base (frame)
 		{
 			CommonInit ();
 		}
@@ -67,14 +67,14 @@ namespace MotionGraphs
 		public static CGColor CreateDeviceGrayColor (float w, float a)
 		{
 			using (var gray = CGColorSpace.CreateDeviceGray ()) {
-				return new CGColor (gray, new float[] { w, a });
+				return new CGColor (gray, new nfloat[] { w, a });
 			}
 		}
 
 		public static CGColor CreateDeviceRGBColor (float r, float g, float b, float a)
 		{
 			using (var rgb = CGColorSpace.CreateDeviceRGB ()) {
-				return new CGColor (rgb, new float [] { r, g, b, a });
+				return new CGColor (rgb, new nfloat [] { r, g, b, a });
 			}
 		}
 
@@ -126,7 +126,7 @@ namespace MotionGraphs
 			// After adding a new data point, we need to advance the x-position of all the segment layers by 1 to
 			// create the illusion that the graph is advancing.
 			foreach (GraphViewSegment gSegment in segments) {
-				PointF position = gSegment.Layer.Position;
+				CGPoint position = gSegment.Layer.Position;
 				position.X += 1.0f;
 				gSegment.Layer.Position = position;
 			}
@@ -171,14 +171,14 @@ namespace MotionGraphs
 		}
 		// The graph view itself exists only to draw the background and gridlines. All other content is drawn either into
 		// the GraphTextView or into a layer managed by a GraphViewSegment.
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			using (var context = UIGraphics.GetCurrentContext ()) {
 				//Fill in the background			
 				context.SetFillColor (GraphBackgroundColour ());
 				context.FillRect (Bounds);
 
-				float width = Bounds.Size.Width;
+				float width = (float)Bounds.Size.Width;
 				context.TranslateCTM (0.0f, 56.0f);
 
 				//Draw the grid lines
@@ -195,7 +195,7 @@ namespace MotionGraphs
 		// the segment is filled.
 		class GraphTextView : UIView
 		{
-			public GraphTextView (RectangleF rect) : base (rect)
+			public GraphTextView (CGRect rect) : base (rect)
 			{
 			}
 
@@ -203,10 +203,10 @@ namespace MotionGraphs
 
 			void DrawLabel (string label, float pos)
 			{
-				DrawString (label, new RectangleF (2, pos, 24, 16), systemFont, UILineBreakMode.WordWrap, UITextAlignment.Right);
+				DrawString (label, new CGRect (2, pos, 24, 16), systemFont, UILineBreakMode.WordWrap, UITextAlignment.Right);
 			}
 
-			public override void Draw (RectangleF rect)
+			public override void Draw (CGRect rect)
 			{
 				using (var context = UIGraphics.GetCurrentContext ()) {
 			
@@ -245,7 +245,7 @@ namespace MotionGraphs
 			{
 				Layer = new CALayer ();
 				Layer.Delegate = new LayerDelegate (this);
-				Layer.Bounds = new RectangleF (0.0f, -56.0f, 32.0f, 112.0f);
+				Layer.Bounds = new CGRect (0.0f, -56.0f, 32.0f, 112.0f);
 				Layer.Opaque = true;
 				index = 33;
 			}
@@ -270,7 +270,7 @@ namespace MotionGraphs
 				return index == 0;
 			}
 
-			public bool IsVisibleInRect (RectangleF r)
+			public bool IsVisibleInRect (CGRect r)
 			{
 				// Returns true if the layer for this segment is visible in the given rect.
 				return r.IntersectsWith (Layer.Frame);
@@ -312,7 +312,7 @@ namespace MotionGraphs
 					DrawGridLines (context, 0.0f, 32.0f);
 					
 					//Draw the graph
-					PointF[] lines = new PointF[64];
+					CGPoint[] lines = new CGPoint[64];
 					int i;
 										
 					//X

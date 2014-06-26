@@ -1,8 +1,8 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.CoreMotion;
-using MonoTouch.UIKit;
+using Foundation;
+using CoreMotion;
+using UIKit;
 
 using MotionGraphs;
 

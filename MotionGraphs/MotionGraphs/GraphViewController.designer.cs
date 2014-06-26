@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MotionGraphs
 {
@@ -12,34 +12,34 @@ namespace MotionGraphs
 	partial class GraphViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel primaryGraphLabel { get; set; }
+		UIKit.UILabel primaryGraphLabel { get; set; }
 
 		[Outlet]
 		MotionGraphs.GraphView primaryGraph { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel UpdateIntervalLabel { get; set; }
+		UIKit.UILabel UpdateIntervalLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISegmentedControl SegmentedControl { get; set; }
+		UIKit.UISegmentedControl SegmentedControl { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel xLabel { get; set; }
+		UIKit.UILabel xLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel yLabel { get; set; }
+		UIKit.UILabel yLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel zLabel { get; set; }
+		UIKit.UILabel zLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider UpdateIntervalSlider { get; set; }
+		UIKit.UISlider UpdateIntervalSlider { get; set; }
 
 		[Action ("OnSliderValueChanged:")]
-		partial void OnSliderValueChanged (MonoTouch.UIKit.UISlider sender);
+		partial void OnSliderValueChanged (UIKit.UISlider sender);
 
 		[Action ("SegmentedControlDidChanged:")]
-		partial void SegmentedControlDidChanged (MonoTouch.UIKit.UISegmentedControl sender);
+		partial void SegmentedControlDidChanged (UIKit.UISegmentedControl sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

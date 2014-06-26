@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
-using MonoTouch.CoreMotion;
-using MonoTouch.UIKit;
+using Foundation;
+using CoreMotion;
+using UIKit;
 
 namespace MotionGraphs
 {
@@ -85,11 +85,11 @@ namespace MotionGraphs
 
 		partial void SegmentedControlDidChanged (UISegmentedControl sender)
 		{
-			GraphView newView = graphs [sender.SelectedSegment];
+			GraphView newView = graphs [(int)sender.SelectedSegment];
 			primaryGraph.RemoveFromSuperview ();
 			View.AddSubview (newView);
 			primaryGraph = newView;
-			primaryGraphLabel.Text = graphTitles [sender.SelectedSegment];
+			primaryGraphLabel.Text = graphTitles [(int)sender.SelectedSegment];
 		}
 
 		public void SetLabelValueX (double x, double y, double z)
@@ -150,7 +150,7 @@ namespace MotionGraphs
 						graphs [(int)DeviceMotionGraphType.Gravity].AddX (motion.Gravity.X, motion.Gravity.Y, motion.Gravity.Z);
 						graphs [(int)DeviceMotionGraphType.UserAcceleration].AddX (motion.UserAcceleration.X, motion.UserAcceleration.Y, motion.UserAcceleration.Z);
 					   
-						switch ((DeviceMotionGraphType) SegmentedControl.SelectedSegment) {
+						switch ((DeviceMotionGraphType) (int)SegmentedControl.SelectedSegment) {
 						case DeviceMotionGraphType.Attitude:
 							SetLabelValueRoll (motion.Attitude.Roll, motion.Attitude.Pitch, motion.Attitude.Yaw);
 							break;
@@ -166,7 +166,7 @@ namespace MotionGraphs
 						}	
 					});
 				}
-				primaryGraphLabel.Text = graphTitles [SegmentedControl.SelectedSegment]; 
+				primaryGraphLabel.Text = graphTitles [(int)SegmentedControl.SelectedSegment]; 
 				break;
 			}		
 			UpdateIntervalLabel.Text = updateInterval.ToString ();
