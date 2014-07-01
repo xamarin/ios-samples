@@ -1,6 +1,6 @@
 using System;
 using OpenTK;
-using MonoTouch.UIKit;
+using UIKit;
 using OpenTK.Graphics.ES20;
 
 namespace PerVertexDirectionalLighting
@@ -279,8 +279,8 @@ namespace PerVertexDirectionalLighting
 			modelViewMatrix = GLCommon.Matrix3DMultiply (translationMatrix, rotationMatrix);
 
 			GLCommon.Matrix3DSetPerspectiveProjectionWithFieldOfView (ref projectionMatrix, 45.0f, 0.1f, 100.0f,
-			                                                          View.Frame.Size.Width /
-			                                                          View.Frame.Size.Height);
+				(float)View.Frame.Size.Width /
+				(float)View.Frame.Size.Height);
 
 			matrix = GLCommon.Matrix3DMultiply (projectionMatrix, modelViewMatrix);
 			GL.UniformMatrix4 (matrixUniform, 1, false, matrix);

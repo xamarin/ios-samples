@@ -1,13 +1,13 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using OpenTK;
-using MonoTouch.OpenGLES;
-using MonoTouch.GLKit;
+using OpenGLES;
+using GLKit;
 using MonoTouch;
 using OpenTK.Graphics.ES20;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
-using MonoTouch.Foundation;
+
+using CoreGraphics;
+using Foundation;
 
 namespace GLKBaseEffectDrawingTexture
 {
