@@ -13,27 +13,16 @@ namespace WayUp
 			UIApplication.Main (args);
 		}
 	}
-	
-	// The name AppDelegate is referenced in the MainWindow.xib file.
+
 	public partial class WhichWayIsUpAppDelegate : UIApplicationDelegate
 	{
-		
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			// If you have defined a view, add it here:
-			// window.AddSubview (navigationController.View);
-		
-			window.AddSubview(crateViewController.View);
-			
+			window.RootViewController = crateViewController;
 			window.MakeKeyAndVisible ();
 	
 			return true;
-		}
-	
-		// This method is required in iPhoneOS 3.0
-		public override void OnActivated (UIApplication application)
-		{
 		}
 	}
 	
@@ -41,12 +30,10 @@ namespace WayUp
 
 		public CrateViewController (IntPtr handle) : base (handle) {}
 
-		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+		public override bool ShouldAutorotate ()
 		{
 			return true;
 		}
 	}
-	
-	
 }
 
