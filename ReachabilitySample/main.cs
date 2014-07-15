@@ -162,7 +162,7 @@ namespace reachability {
 
 		static void Main (string[] args)
 		{
-			UIApplication.Main (args, null, null);
+			UIApplication.Main (args, null, (string)null);
 		}
 	}
 }

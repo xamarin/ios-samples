@@ -13,7 +13,7 @@ namespace MonoTouch {
 		{
 			// It will load the main UI as specified in the
 			// Info.plist file (MainWindow.nib)
-			UIApplication.Main (args, null, null);
+			UIApplication.Main (args, null, (string)null);
 		}
 	}
 }
