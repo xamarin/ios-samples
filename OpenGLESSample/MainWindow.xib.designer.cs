@@ -11,19 +11,19 @@
 namespace OpenGLESSample {
 	
 	
-	// Base type probably should be MonoTouch.Foundation.NSObject or subclass
-	[MonoTouch.Foundation.Register("OpenGLESSampleAppDelegate")]
+	// Base type probably should be Foundation.NSObject or subclass
+	[Foundation.Register("OpenGLESSampleAppDelegate")]
 	public partial class OpenGLESSampleAppDelegate {
 		
-		private MonoTouch.UIKit.UIWindow __mt_window;
+		private UIKit.UIWindow __mt_window;
 		
 		private EAGLView __mt_glView;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("window")]
-		private MonoTouch.UIKit.UIWindow window {
+		[Foundation.Connect("window")]
+		private UIKit.UIWindow window {
 			get {
-				this.__mt_window = ((MonoTouch.UIKit.UIWindow)(this.GetNativeField("window")));
+				this.__mt_window = ((UIKit.UIWindow)(this.GetNativeField("window")));
 				return this.__mt_window;
 			}
 			set {
@@ -32,7 +32,7 @@ namespace OpenGLESSample {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("glView")]
+		[Foundation.Connect("glView")]
 		private EAGLView glView {
 			get {
 				this.__mt_glView = ((EAGLView)(this.GetNativeField("glView")));
@@ -45,8 +45,8 @@ namespace OpenGLESSample {
 		}
 	}
 	
-	// Base type probably should be MonoTouch.UIKit.UIView or subclass
-	[MonoTouch.Foundation.Register("EAGLView")]
+	// Base type probably should be UIKit.UIView or subclass
+	[Foundation.Register("EAGLView")]
 	public partial class EAGLView {
 	}
 }

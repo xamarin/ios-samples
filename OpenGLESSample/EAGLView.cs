@@ -1,12 +1,12 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.CoreAnimation;
+using UIKit;
+using CoreAnimation;
 using OpenTK.Platform.iPhoneOS;
-using MonoTouch.Foundation;
+using Foundation;
 using OpenTK.Graphics;
-using MonoTouch.OpenGLES;
+using OpenGLES;
 using OpenTK.Graphics.ES11;
-using MonoTouch.ObjCRuntime;
+using ObjCRuntime;
 
 namespace OpenGLESSample
 {
@@ -92,8 +92,8 @@ namespace OpenGLESSample
 		
 		bool CreateFrameBuffer ()
 		{
-			GL.Oes.GenFramebuffers (1, ref ViewFrameBuffer);
-			GL.Oes.GenRenderbuffers (1, ref ViewRenderBuffer);
+			GL.Oes.GenFramebuffers (1, out ViewFrameBuffer);
+			GL.Oes.GenRenderbuffers (1, out ViewRenderBuffer);
 	
 			GL.Oes.BindFramebuffer (All.FramebufferOes, ViewFrameBuffer);
 			GL.Oes.BindRenderbuffer (All.RenderbufferOes, ViewRenderBuffer);
@@ -103,11 +103,11 @@ namespace OpenGLESSample
 				All.RenderbufferOes,
 				ViewRenderBuffer);
 	
-			GL.Oes.GetRenderbufferParameter (All.RenderbufferOes, All.RenderbufferWidthOes, ref BackingWidth);
-			GL.Oes.GetRenderbufferParameter (All.RenderbufferOes, All.RenderbufferHeightOes, ref BackingHeight);
+			GL.Oes.GetRenderbufferParameter (All.RenderbufferOes, All.RenderbufferWidthOes, out BackingWidth);
+			GL.Oes.GetRenderbufferParameter (All.RenderbufferOes, All.RenderbufferHeightOes, out BackingHeight);
 	
 			if (UseDepthBuffer) {
-				GL.Oes.GenRenderbuffers (1, ref DepthRenderBuffer);
+				GL.Oes.GenRenderbuffers (1, out DepthRenderBuffer);
 				GL.Oes.BindRenderbuffer (All.RenderbufferOes, DepthRenderBuffer);
 				GL.Oes.RenderbufferStorage (All.RenderbufferOes, All.DepthComponent16Oes, BackingWidth, BackingHeight);
 				GL.Oes.FramebufferRenderbuffer (All.FramebufferOes, All.DepthAttachmentOes, All.RenderbufferOes, DepthRenderBuffer);
@@ -134,7 +134,7 @@ namespace OpenGLESSample
 	
 		public void StartAnimation ()
 		{
-			AnimationTimer = NSTimer.CreateRepeatingScheduledTimer (TimeSpan.FromSeconds (AnimationInterval), () => DrawView ());
+			AnimationTimer = NSTimer.CreateRepeatingScheduledTimer (TimeSpan.FromSeconds (AnimationInterval), (d) => DrawView ());
 		}
 	
 		public void StopAnimation ()
