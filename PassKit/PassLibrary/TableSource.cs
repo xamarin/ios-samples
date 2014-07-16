@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
-using MonoTouch.PassKit;
+using PassKit;
 
 namespace PassLibrary {
 
@@ -28,7 +28,7 @@ namespace PassLibrary {
 		/// <summary>
 		/// Called by the TableView to determine how many cells to create for that particular section.
 		/// </summary>
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return tableItems.Length;
 		}
@@ -57,7 +57,7 @@ namespace PassLibrary {
 		/// <summary>
 		/// Called by the TableView to get the actual UITableViewCell to render for the particular row
 		/// </summary>
-		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			// request a recycled cell to save memory
 			UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);

@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace PassLibrary {
 	public class Application {
@@ -27,8 +27,8 @@ namespace PassLibrary {
 						
 			iPhoneHome = new HomeScreen();
 			iPhoneHome.Title = "Pass Library";
-			iPhoneHome.View.Frame = new System.Drawing.RectangleF(0
-						, UIApplication.SharedApplication.StatusBarFrame.Height
+			iPhoneHome.View.Frame = new CoreGraphics.CGRect(0
+				, (float)UIApplication.SharedApplication.StatusBarFrame.Height
 						, UIScreen.MainScreen.ApplicationFrame.Width
 						, UIScreen.MainScreen.ApplicationFrame.Height);
 
