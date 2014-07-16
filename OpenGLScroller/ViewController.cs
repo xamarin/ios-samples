@@ -1,14 +1,14 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
 using OpenTK.Graphics.ES20;
 using OpenTK;
 
-using MonoTouch.OpenGLES;
-using MonoTouch.CoreAnimation;
-using MonoTouch.Foundation;
-using MonoTouch.GLKit;
-using MonoTouch.UIKit;
+using OpenGLES;
+using CoreAnimation;
+using Foundation;
+using GLKit;
+using UIKit;
 
 namespace OpenGLScroller
 {
