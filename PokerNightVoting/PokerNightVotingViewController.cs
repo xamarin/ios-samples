@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-using MonoTouch.EventKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.EventKitUI;
+using EventKit;
+using Foundation;
+using UIKit;
+using EventKitUI;
 using MonoTouch.Dialog;
 
 namespace PokerNightVoting
@@ -53,10 +53,10 @@ namespace PokerNightVoting
 		public EKEvent EventAtIndexPath (NSIndexPath indexPath)
 		{
 			// Given an index path from our table view, figure out which event is at that path
-			var date = model.EventDates.ElementAt (indexPath.Section);
+			var date = model.EventDates.ElementAt ((int)indexPath.Section);
 			var eventsWithStartDate = model.eventDateToEventsDictionary [date];
 
-			return eventsWithStartDate.ElementAt (indexPath.Row);
+			return eventsWithStartDate.ElementAt ((int)indexPath.Row);
 		}
 
 		string GetCaption (int section)
@@ -120,7 +120,7 @@ namespace PokerNightVoting
 			}
 		}
 
-		partial void addTime (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial void addTime (UIKit.UIBarButtonItem sender)
 		{
 			// Show the EKEventEditViewController
 			var controller = new EKEventEditViewController ();
@@ -149,7 +149,7 @@ namespace PokerNightVoting
 			PresentViewController (controller, true, null);
 		}
 
-		partial void showCalendarChooser (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial void showCalendarChooser (UIKit.UIBarButtonItem sender)
 		{
 			// Show the EKCalendarChooser
 			var calendarChooser = new EKCalendarChooser (EKCalendarChooserSelectionStyle.Single, 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-using MonoTouch.Foundation;
-using MonoTouch.EventKit;
-using MonoTouch.CoreFoundation;
+using Foundation;
+using EventKit;
+using CoreFoundation;
 
 namespace PokerNightVoting
 {
