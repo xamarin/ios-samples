@@ -21,5 +21,9 @@
 	<string>com.xamarin.MonoDevelopTouchCells</string>
 	<key>MinimumOSVersion</key>
 	<string>5.0</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
 </dict>
 </plist>

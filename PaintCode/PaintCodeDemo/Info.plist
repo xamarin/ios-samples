@@ -27,5 +27,7 @@
 	<string>PaintCode</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.PaintCode</string>
 </dict>
 </plist>
