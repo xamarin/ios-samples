@@ -14,5 +14,9 @@
 	<string>com.xamarin.mapkitsearch</string>
 	<key>MinimumOSVersion</key>
 	<string>6.1</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
 </dict>
 </plist>
