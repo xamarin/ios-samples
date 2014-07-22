@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using OpenTK.Graphics;
 using OpenTK.Graphics.ES20;
-using MonoTouch.GLKit;
-using MonoTouch.OpenGLES;
-using MonoTouch.Foundation;
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreMedia;
-using MonoTouch.UIKit;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreVideo;
+using GLKit;
+using OpenGLES;
+using Foundation;
+using CoreFoundation;
+using CoreMedia;
+using UIKit;
+using AVFoundation;
+using CoreVideo;
 
 namespace GLCameraRipple
 {
@@ -22,7 +22,7 @@ namespace GLCameraRipple
 		GLKView glkView;
 		RippleModel ripple;
 		int meshFactor;
-		Size size;
+		CGSize size;
 
 		//
 		// OpenGL components
@@ -148,10 +148,11 @@ namespace GLCameraRipple
 			// Create the output device
 			var dataOutput = new AVCaptureVideoDataOutput () {
 				AlwaysDiscardsLateVideoFrames = true,
+
 				
 				// YUV 420, use "BiPlanar" to split the Y and UV planes in two separate blocks of 
 				// memory, then we can index 0 to get the Y and 1 for the UV planes in the frame decoding
-				VideoSettings = new AVVideoSettings (CVPixelFormatType.CV420YpCbCr8BiPlanarFullRange)
+				//VideoSettings = new AVVideoSettings (CVPixelFormatType.CV420YpCbCr8BiPlanarFullRange)
 			};
 					
 			dataOutputDelegate = new DataOutputDelegate (this);
@@ -160,7 +161,7 @@ namespace GLCameraRipple
 			// This dispatches the video frames into the main thread, because the OpenGL
 			// code is accessing the data synchronously.
 			//
-			dataOutput.SetSampleBufferDelegateAndQueue (dataOutputDelegate, DispatchQueue.MainQueue);
+			dataOutput.SetSampleBufferDelegateQueue (dataOutputDelegate, DispatchQueue.MainQueue);
 			session.AddOutput (dataOutput);
 			session.CommitConfiguration ();
 			session.StartRunning ();
@@ -266,7 +267,7 @@ namespace GLCameraRipple
 			  
 		void SetupRipple (int width, int height)
 		{			
-			ripple = new RippleModel (size, meshFactor, 5, new Size (width, height));
+			ripple = new RippleModel (size, meshFactor, 5, new CGSize (width, height));
 			SetupBuffers ();
 		}
 		
@@ -289,12 +290,12 @@ namespace GLCameraRipple
 				container.videoTextureCache.Flush (CVOptionFlags.None);
 			}
 		
-			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, MonoTouch.CoreMedia.CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
+			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CoreMedia.CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
 			{
 				try {
 					using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer){	
-						int width = pixelBuffer.Width;
-						int height = pixelBuffer.Height;
+						int width = (int)pixelBuffer.Width;
+						int height = (int)pixelBuffer.Height;
 					
 						if (container.ripple == null || width != textureWidth || height != textureHeight){
 							textureWidth = width;

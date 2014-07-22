@@ -1,13 +1,13 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Runtime.InteropServices;
-using MonoTouch.CoreFoundation;
+using CoreFoundation;
 
 namespace GLCameraRipple
 {
 	public class RippleModel
 	{
-		Size screenSize;
+		CGSize screenSize;
 		int poolHeight, poolWidth;
 		int touchRadius, meshFactor;
 		
@@ -28,17 +28,17 @@ namespace GLCameraRipple
 		unsafe float *rippleTexCoords;
 		unsafe ushort *rippleIndicies;    
 		
-		public RippleModel (Size screenSize, int meshFactor, int touchRadius, Size textureSize)
+		public RippleModel (CGSize screenSize, int meshFactor, int touchRadius, CGSize textureSize)
 		{
 			Console.WriteLine ("New RippleModel");
 			this.screenSize = screenSize;
 			this.meshFactor = meshFactor;
 			this.touchRadius = touchRadius;
-			poolWidth = screenSize.Width/meshFactor;
-			poolHeight = screenSize.Height/meshFactor;
+			poolWidth = (int)screenSize.Width/meshFactor;
+			poolHeight = (int)screenSize.Height/meshFactor;
         
 			if ((float)screenSize.Height/screenSize.Width < (float)textureSize.Width/textureSize.Height){
-				texCoordFactorS = (float)(textureSize.Height*screenSize.Height)/(screenSize.Width*textureSize.Width);            
+				texCoordFactorS = (float)((textureSize.Height*screenSize.Height)/(screenSize.Width*textureSize.Width));            
 				texCoordOffsetS = (1 - texCoordFactorS)/2f;
 				
 				texCoordFactorT = 1;
@@ -47,7 +47,7 @@ namespace GLCameraRipple
 				texCoordFactorS = 1;
 				texCoordOffsetS = 0;            
 				
-				texCoordFactorT = (float)(screenSize.Width*textureSize.Width)/(textureSize.Height*screenSize.Height);
+				texCoordFactorT = (float)((screenSize.Width*textureSize.Width)/(textureSize.Height*screenSize.Height));
 				texCoordOffsetT = (1 - texCoordFactorT)/2f;
 			}
 			
@@ -223,7 +223,7 @@ namespace GLCameraRipple
 			rippleDest = tmp;
 		}
 
-		public void InitiateRippleAtLocation (PointF location)
+		public void InitiateRippleAtLocation (CGPoint location)
 		{
 			int xIndex = (int)((location.X / screenSize.Width) * poolWidth);
 			int yIndex = (int) ((location.Y / screenSize.Height) * poolHeight);
