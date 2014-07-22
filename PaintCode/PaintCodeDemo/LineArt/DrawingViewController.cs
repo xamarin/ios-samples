@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace PaintCode
 {
@@ -21,14 +21,14 @@ namespace PaintCode
 			View.BackgroundColor = UIColor.White;
 
 			drawing = new DrawingView ();
-			float statusBarHeight = UIDevice.CurrentDevice.CheckSystemVersion (7,0) ?
+			nfloat statusBarHeight = UIDevice.CurrentDevice.CheckSystemVersion (7,0) ?
 				UIApplication.SharedApplication.StatusBarFrame.Height : 0f;
-			drawing.Frame = new System.Drawing.RectangleF (0, statusBarHeight, 320, 640 - statusBarHeight);
+			drawing.Frame = new CoreGraphics.CGRect (0, statusBarHeight, 320, 640 - statusBarHeight);
 			
 			View.AddSubview (drawing);
 			
 			
-			text = new UITextView (new RectangleF (10, 150 + statusBarHeight, 300, 300 - statusBarHeight));
+			text = new UITextView (new CGRect (10, 150 + statusBarHeight, 300, 300 - statusBarHeight));
 			text.Font = UIFont.SystemFontOfSize (14f);
 			text.Editable = false;
 			text.Text = "Xamarin Shapes Example\n\n"+

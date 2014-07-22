@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace PaintCode
 {
@@ -36,7 +36,7 @@ namespace PaintCode
 			lineart = new DrawingViewController ();
 			
 			news = new NewsDialogViewController ();
-//			news.View.Frame = new System.Drawing.RectangleF (0
+//			news.View.Frame = new CoreGraphics.CGRect (0
 //						, UIApplication.SharedApplication.StatusBarFrame.Height
 //						, UIScreen.MainScreen.ApplicationFrame.Width
 //						, UIScreen.MainScreen.ApplicationFrame.Height);

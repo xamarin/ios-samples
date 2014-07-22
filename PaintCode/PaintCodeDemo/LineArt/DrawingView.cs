@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
+using UIKit;
+using CoreGraphics;
+
+using Foundation;
 
 namespace PaintCode
 {
@@ -19,7 +19,7 @@ namespace PaintCode
 			BackgroundColor = UIColor.White;
 		}
 			
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			base.Draw (rect);
 
@@ -42,19 +42,19 @@ namespace PaintCode
 						UIColor.Black.CGColor,
 						UIColor.White.CGColor
 					};
-					var newGradientLocations = new float [] { 0, 1 };
+					var newGradientLocations = new nfloat [] { 0, 1 };
 					var newGradient = new CGGradient (colorSpace, newGradientColors, newGradientLocations);
 					var calendarGradientColors = new CGColor [] {
 						UIColor.DarkGray.CGColor,
 						UIColor.FromRGBA (0.72f, 0.72f, 0.72f, 1.00f).CGColor,
 						UIColor.White.CGColor
 					};
-					var calendarGradientLocations = new float [] { 0, 0.26f, 0.26f };
+					var calendarGradientLocations = new nfloat [] { 0, 0.26f, 0.26f };
 					var calendarGradient = new CGGradient (colorSpace, calendarGradientColors, calendarGradientLocations);
 
 //// Shadow Declarations
 					var shadow = UIColor.DarkGray.CGColor;
-					var shadowOffset = new SizeF (2, 2);
+					var shadowOffset = new CGSize (2, 2);
 					var shadowBlurRadius = 2;
 
 //// Abstracted Graphic Attributes
@@ -65,7 +65,7 @@ namespace PaintCode
 
 
 //// Oval 11 Drawing
-					var oval11Path = UIBezierPath.FromOval (new RectangleF (256.5f, 46.5f, 13, 14));
+					var oval11Path = UIBezierPath.FromOval (new CGRect (256.5f, 46.5f, 13, 14));
 					lightBrown.SetFill ();
 					oval11Path.Fill ();
 
@@ -75,7 +75,7 @@ namespace PaintCode
 
 
 //// Oval 12 Drawing
-					var oval12Path = UIBezierPath.FromOval (new RectangleF (280.5f, 46.5f, 13, 14));
+					var oval12Path = UIBezierPath.FromOval (new CGRect (280.5f, 46.5f, 13, 14));
 					lightBrown.SetFill ();
 					oval12Path.Fill ();
 
@@ -85,12 +85,12 @@ namespace PaintCode
 
 
 //// Rounded Rectangle Drawing
-					var roundedRectanglePath = UIBezierPath.FromRoundedRect (new RectangleF (8.5f, 60.5f, 37, 36), 4);
+					var roundedRectanglePath = UIBezierPath.FromRoundedRect (new CGRect (8.5f, 60.5f, 37, 36), 4);
 					context.SaveState ();
-					context.SetShadowWithColor (shadowOffset, shadowBlurRadius, shadow);
+					context.SetShadow (shadowOffset, shadowBlurRadius, shadow);
 					context.BeginTransparencyLayer (null);
 					roundedRectanglePath.AddClip ();
-					context.DrawLinearGradient (calendarGradient, new PointF (27, 96.5f), new PointF (27, 60.5f), 0);
+					context.DrawLinearGradient (calendarGradient, new CGPoint (27, 96.5f), new CGPoint (27, 60.5f), 0);
 					context.EndTransparencyLayer ();
 					context.RestoreState ();
 
@@ -101,15 +101,15 @@ namespace PaintCode
 
 //// Rounded Rectangle 3 Drawing
 					UIBezierPath roundedRectangle3Path = new UIBezierPath ();
-					roundedRectangle3Path.MoveTo (new PointF (9, 91.2f));
-					roundedRectangle3Path.AddCurveToPoint (new PointF (12.56f, 95), new PointF (9, 93.3f), new PointF (10.32f, 95));
-					roundedRectangle3Path.AddLineTo (new PointF (40.94f, 95));
-					roundedRectangle3Path.AddCurveToPoint (new PointF (45, 91.2f), new PointF (43.18f, 95), new PointF (45, 93.3f));
-					roundedRectangle3Path.AddLineTo (new PointF (45, 87));
-					roundedRectangle3Path.AddCurveToPoint (new PointF (43.42f, 85.5f), new PointF (45, 84.9f), new PointF (45.66f, 85.5f));
-					roundedRectangle3Path.AddLineTo (new PointF (10.94f, 85.5f));
-					roundedRectangle3Path.AddCurveToPoint (new PointF (9, 87), new PointF (8.7f, 85.5f), new PointF (9, 84.9f));
-					roundedRectangle3Path.AddLineTo (new PointF (9, 91.2f));
+					roundedRectangle3Path.MoveTo (new CGPoint (9, 91.2f));
+					roundedRectangle3Path.AddCurveToPoint (new CGPoint (12.56f, 95), new CGPoint (9, 93.3f), new CGPoint (10.32f, 95));
+					roundedRectangle3Path.AddLineTo (new CGPoint (40.94f, 95));
+					roundedRectangle3Path.AddCurveToPoint (new CGPoint (45, 91.2f), new CGPoint (43.18f, 95), new CGPoint (45, 93.3f));
+					roundedRectangle3Path.AddLineTo (new CGPoint (45, 87));
+					roundedRectangle3Path.AddCurveToPoint (new CGPoint (43.42f, 85.5f), new CGPoint (45, 84.9f), new CGPoint (45.66f, 85.5f));
+					roundedRectangle3Path.AddLineTo (new CGPoint (10.94f, 85.5f));
+					roundedRectangle3Path.AddCurveToPoint (new CGPoint (9, 87), new CGPoint (8.7f, 85.5f), new CGPoint (9, 84.9f));
+					roundedRectangle3Path.AddLineTo (new CGPoint (9, 91.2f));
 					roundedRectangle3Path.ClosePath ();
 					UIColor.Red.SetFill ();
 					roundedRectangle3Path.Fill ();
@@ -117,7 +117,7 @@ namespace PaintCode
 
 
 //// Month Drawing
-					var monthRect = new RectangleF (10, 84, 34, 15);
+					var monthRect = new CGRect (10, 84, 34, 15);
 					UIColor.White.SetFill ();
 					new NSString (monthContent).DrawString (
 						monthRect,
@@ -128,13 +128,13 @@ namespace PaintCode
 
 
 //// Day Drawing
-					var dayRect = new RectangleF (0, 58, 54, 31);
+					var dayRect = new CGRect (0, 58, 54, 31);
 					UIColor.Black.SetFill ();
 					new NSString (dayContent).DrawString (dayRect, dayFont, UILineBreakMode.WordWrap, UITextAlignment.Center);
 
 
 //// Text Drawing
-					var textRect = new RectangleF (54, 60, 75, 38);
+					var textRect = new CGRect (54, 60, 75, 38);
 					UIColor.Black.SetFill ();
 					new NSString (textContent).DrawString (
 						textRect,
@@ -146,16 +146,16 @@ namespace PaintCode
 
 //// Star Drawing
 					UIBezierPath starPath = new UIBezierPath ();
-					starPath.MoveTo (new PointF (31, 14.5f));
-					starPath.AddLineTo (new PointF (26.24f, 21.45f));
-					starPath.AddLineTo (new PointF (18.16f, 23.83f));
-					starPath.AddLineTo (new PointF (23.3f, 30.5f));
-					starPath.AddLineTo (new PointF (23.06f, 38.92f));
-					starPath.AddLineTo (new PointF (31, 36.1f));
-					starPath.AddLineTo (new PointF (38.94f, 38.92f));
-					starPath.AddLineTo (new PointF (38.7f, 30.5f));
-					starPath.AddLineTo (new PointF (43.84f, 23.83f));
-					starPath.AddLineTo (new PointF (35.76f, 21.45f));
+					starPath.MoveTo (new CGPoint (31, 14.5f));
+					starPath.AddLineTo (new CGPoint (26.24f, 21.45f));
+					starPath.AddLineTo (new CGPoint (18.16f, 23.83f));
+					starPath.AddLineTo (new CGPoint (23.3f, 30.5f));
+					starPath.AddLineTo (new CGPoint (23.06f, 38.92f));
+					starPath.AddLineTo (new CGPoint (31, 36.1f));
+					starPath.AddLineTo (new CGPoint (38.94f, 38.92f));
+					starPath.AddLineTo (new CGPoint (38.7f, 30.5f));
+					starPath.AddLineTo (new CGPoint (43.84f, 23.83f));
+					starPath.AddLineTo (new CGPoint (35.76f, 21.45f));
 					starPath.ClosePath ();
 					gold.SetFill ();
 					starPath.Fill ();
@@ -167,10 +167,10 @@ namespace PaintCode
 
 //// Blue blob Drawing
 					UIBezierPath blueBlobPath = new UIBezierPath ();
-					blueBlobPath.MoveTo (new PointF (256.5f, 16.5f));
-					blueBlobPath.AddCurveToPoint (new PointF (240.5f, 41.5f), new PointF (235.5f, 37.5f), new PointF (217.53f, 41.55f));
-					blueBlobPath.AddCurveToPoint (new PointF (265.5f, 30.5f), new PointF (263.47f, 41.45f), new PointF (265.5f, 30.5f));
-					blueBlobPath.AddCurveToPoint (new PointF (256.5f, 16.5f), new PointF (265.5f, 30.5f), new PointF (277.5f, -4.5f));
+					blueBlobPath.MoveTo (new CGPoint (256.5f, 16.5f));
+					blueBlobPath.AddCurveToPoint (new CGPoint (240.5f, 41.5f), new CGPoint (235.5f, 37.5f), new CGPoint (217.53f, 41.55f));
+					blueBlobPath.AddCurveToPoint (new CGPoint (265.5f, 30.5f), new CGPoint (263.47f, 41.45f), new CGPoint (265.5f, 30.5f));
+					blueBlobPath.AddCurveToPoint (new CGPoint (256.5f, 16.5f), new CGPoint (265.5f, 30.5f), new CGPoint (277.5f, -4.5f));
 					blueBlobPath.ClosePath ();
 					blueBlobPath.MiterLimit = 2;
 					blueBlobPath.LineJoinStyle = CGLineJoin.Round;
@@ -183,12 +183,12 @@ namespace PaintCode
 
 
 //// Button Drawing
-					var buttonPath = UIBezierPath.FromRoundedRect (new RectangleF (54.5f, 10.5f, 163, 31), 4);
+					var buttonPath = UIBezierPath.FromRoundedRect (new CGRect (54.5f, 10.5f, 163, 31), 4);
 					context.SaveState ();
 					buttonPath.AddClip ();
 					context.DrawRadialGradient (newGradient,
-						new PointF (100.39f, 55.13f), 7.84f,
-						new PointF (136, 26), 86.67f,
+						new CGPoint (100.39f, 55.13f), 7.84f,
+						new CGPoint (136, 26), 86.67f,
 						CGGradientDrawingOptions.DrawsBeforeStartLocation | CGGradientDrawingOptions.DrawsAfterEndLocation);
 					context.RestoreState ();
 
@@ -198,7 +198,7 @@ namespace PaintCode
 
 
 //// Smiley face Drawing
-					var smileyFacePath = UIBezierPath.FromOval (new RectangleF (159.5f, 49.5f, 47, 47));
+					var smileyFacePath = UIBezierPath.FromOval (new CGRect (159.5f, 49.5f, 47, 47));
 					gold.SetFill ();
 					smileyFacePath.Fill ();
 
@@ -208,7 +208,7 @@ namespace PaintCode
 
 
 //// Oval 2 Drawing
-					var oval2Path = UIBezierPath.FromOval (new RectangleF (169.5f, 64.5f, 8, 8));
+					var oval2Path = UIBezierPath.FromOval (new CGRect (169.5f, 64.5f, 8, 8));
 					UIColor.Black.SetFill ();
 					oval2Path.Fill ();
 
@@ -218,7 +218,7 @@ namespace PaintCode
 
 
 //// Oval 3 Drawing
-					var oval3Path = UIBezierPath.FromOval (new RectangleF (188.5f, 64.5f, 8, 8));
+					var oval3Path = UIBezierPath.FromOval (new CGRect (188.5f, 64.5f, 8, 8));
 					UIColor.Black.SetFill ();
 					oval3Path.Fill ();
 
@@ -229,16 +229,16 @@ namespace PaintCode
 
 //// Bezier 2 Drawing
 					UIBezierPath bezier2Path = new UIBezierPath ();
-					bezier2Path.MoveTo (new PointF (172.5f, 80.5f));
-					bezier2Path.AddCurveToPoint (new PointF (185.5f, 85.5f), new PointF (177.75f, 85), new PointF (182.04f, 86.03f));
-					bezier2Path.AddCurveToPoint (new PointF (194.5f, 79.5f), new PointF (191.27f, 84.62f), new PointF (194.5f, 79.5f));
+					bezier2Path.MoveTo (new CGPoint (172.5f, 80.5f));
+					bezier2Path.AddCurveToPoint (new CGPoint (185.5f, 85.5f), new CGPoint (177.75f, 85), new CGPoint (182.04f, 86.03f));
+					bezier2Path.AddCurveToPoint (new CGPoint (194.5f, 79.5f), new CGPoint (191.27f, 84.62f), new CGPoint (194.5f, 79.5f));
 					UIColor.Black.SetStroke ();
 					bezier2Path.LineWidth = 2;
 					bezier2Path.Stroke ();
 
 
 //// Oval 5 Drawing
-					var oval5Path = UIBezierPath.FromOval (new RectangleF (256.5f, 52.5f, 36, 33));
+					var oval5Path = UIBezierPath.FromOval (new CGRect (256.5f, 52.5f, 36, 33));
 					lightBrown.SetFill ();
 					oval5Path.Fill ();
 
@@ -248,7 +248,7 @@ namespace PaintCode
 
 
 //// Oval 6 Drawing
-					var oval6Path = UIBezierPath.FromOval (new RectangleF (262.5f, 59.5f, 10, 19));
+					var oval6Path = UIBezierPath.FromOval (new CGRect (262.5f, 59.5f, 10, 19));
 					UIColor.White.SetFill ();
 					oval6Path.Fill ();
 
@@ -258,7 +258,7 @@ namespace PaintCode
 
 
 //// Oval 7 Drawing
-					var oval7Path = UIBezierPath.FromOval (new RectangleF (275.5f, 59.5f, 10, 19));
+					var oval7Path = UIBezierPath.FromOval (new CGRect (275.5f, 59.5f, 10, 19));
 					UIColor.White.SetFill ();
 					oval7Path.Fill ();
 
@@ -268,7 +268,7 @@ namespace PaintCode
 
 
 //// Oval 9 Drawing
-					var oval9Path = UIBezierPath.FromOval (new RectangleF (264.5f, 68.5f, 6, 5));
+					var oval9Path = UIBezierPath.FromOval (new CGRect (264.5f, 68.5f, 6, 5));
 					UIColor.Black.SetFill ();
 					oval9Path.Fill ();
 
@@ -278,7 +278,7 @@ namespace PaintCode
 
 
 //// Oval 10 Drawing
-					var oval10Path = UIBezierPath.FromOval (new RectangleF (277.5f, 68.5f, 6, 5));
+					var oval10Path = UIBezierPath.FromOval (new CGRect (277.5f, 68.5f, 6, 5));
 					UIColor.Black.SetFill ();
 					oval10Path.Fill ();
 
@@ -288,7 +288,7 @@ namespace PaintCode
 
 
 //// Oval 4 Drawing
-					var oval4Path = UIBezierPath.FromOval (new RectangleF (250.5f, 70.5f, 47, 24));
+					var oval4Path = UIBezierPath.FromOval (new CGRect (250.5f, 70.5f, 47, 24));
 					lightBrown.SetFill ();
 					oval4Path.Fill ();
 
@@ -298,7 +298,7 @@ namespace PaintCode
 
 
 //// Oval 8 Drawing
-					var oval8Path = UIBezierPath.FromOval (new RectangleF (267.5f, 77.5f, 9, 4));
+					var oval8Path = UIBezierPath.FromOval (new CGRect (267.5f, 77.5f, 9, 4));
 					UIColor.Black.SetFill ();
 					oval8Path.Fill ();
 
@@ -309,8 +309,8 @@ namespace PaintCode
 
 //// Bezier 5 Drawing
 					UIBezierPath bezier5Path = new UIBezierPath ();
-					bezier5Path.MoveTo (new PointF (270.5f, 81.5f));
-					bezier5Path.AddCurveToPoint (new PointF (267.5f, 88.5f), new PointF (269.5f, 85.5f), new PointF (267.5f, 88.5f));
+					bezier5Path.MoveTo (new CGPoint (270.5f, 81.5f));
+					bezier5Path.AddCurveToPoint (new CGPoint (267.5f, 88.5f), new CGPoint (269.5f, 85.5f), new CGPoint (267.5f, 88.5f));
 					UIColor.Black.SetStroke ();
 					bezier5Path.LineWidth = 1;
 					bezier5Path.Stroke ();
@@ -318,8 +318,8 @@ namespace PaintCode
 
 //// Bezier 6 Drawing
 					UIBezierPath bezier6Path = new UIBezierPath ();
-					bezier6Path.MoveTo (new PointF (272.5f, 81.5f));
-					bezier6Path.AddLineTo (new PointF (274.5f, 87.5f));
+					bezier6Path.MoveTo (new CGPoint (272.5f, 81.5f));
+					bezier6Path.AddLineTo (new CGPoint (274.5f, 87.5f));
 					UIColor.Black.SetStroke ();
 					bezier6Path.LineWidth = 1;
 					bezier6Path.Stroke ();
