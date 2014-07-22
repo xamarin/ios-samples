@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace PrintBanner {
 
@@ -43,16 +43,16 @@ namespace PrintBanner {
 				NSString str = new NSString (textField.Text);
 				UIStringAttributes attributes = new UIStringAttributes ();
 				attributes.Font = font;
-				SizeF size = str.GetSizeUsingAttributes (attributes);
+				CGSize size = str.GetSizeUsingAttributes (attributes);
 
-				float approximateFontPointPerScreenPoint = font.PointSize / size.Height;
+				nfloat approximateFontPointPerScreenPoint = font.PointSize / size.Height;
 
 				// Create a new font using a size  that will fill the width of the paper 
-				font = SelectFont (paper.PrintableRect.Size.Width * approximateFontPointPerScreenPoint);
+				font = SelectFont ((float)(paper.PrintableRect.Size.Width * approximateFontPointPerScreenPoint));
 
 				// Calculate the height and width of the text with the final font size
 				attributes.Font = font;
-				SizeF finalTextSize = str.GetSizeUsingAttributes (attributes);
+				CGSize finalTextSize = str.GetSizeUsingAttributes (attributes);
 
 				// Set the UISimpleTextFormatter font to the font with the size calculated
 				textformatter.Font = font;
@@ -60,10 +60,10 @@ namespace PrintBanner {
 				// Calculate the margins of the roll. Roll printers may have unprintable areas
 			    // before and after the cut.  We must add this to our cut length to ensure the
 			    // printable area has enough room for our text.
-				float lengthOfMargins = paper.PaperSize.Height - paper.PrintableRect.Size.Height;
+				nfloat lengthOfMargins = paper.PaperSize.Height - paper.PrintableRect.Size.Height;
 
 				// The cut length is the width of the text, plus margins, plus some padding 
-				return finalTextSize.Width + lengthOfMargins + paper.PrintableRect.Size.Width * PaddingFactor;
+				return (float)(finalTextSize.Width + lengthOfMargins + paper.PrintableRect.Size.Width * PaddingFactor);
 			};
 
 			UIPrintInfo printInfo = UIPrintInfo.PrintInfo;

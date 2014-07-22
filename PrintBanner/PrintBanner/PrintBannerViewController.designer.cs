@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace PrintBanner
@@ -14,19 +14,19 @@ namespace PrintBanner
 	{
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UISegmentedControl colorSelection { get; set; }
+		UIKit.UISegmentedControl colorSelection { get; set; }
 
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UISegmentedControl fontSelection { get; set; }
+		UIKit.UISegmentedControl fontSelection { get; set; }
 
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UIButton printButton { get; set; }
+		UIKit.UIButton printButton { get; set; }
 
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UITextField textField { get; set; }
+		UIKit.UITextField textField { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
