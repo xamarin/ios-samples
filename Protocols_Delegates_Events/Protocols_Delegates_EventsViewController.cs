@@ -1,9 +1,9 @@
 using System;
 using System.Drawing;
-using MonoTouch.CoreLocation;
-using MonoTouch.Foundation;
-using MonoTouch.MapKit;
-using MonoTouch.UIKit;
+using CoreLocation;
+using Foundation;
+using MapKit;
+using UIKit;
 
 namespace Protocols_Delegates_Events
 {
