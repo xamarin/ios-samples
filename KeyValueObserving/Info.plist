@@ -21,5 +21,13 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
+	<key>CFBundleDisplayName</key>
+	<string>KeyValueObserving</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.KeyValueObserving</string>
 </dict>
 </plist>
