@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace PrivacyPrompts
@@ -13,19 +13,19 @@ namespace PrivacyPrompts
 	partial class PrivacyDetailViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton checkAccessButton { get; set; }
+		UIKit.UIButton checkAccessButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton requestAccessButton { get; set; }
+		UIKit.UIButton requestAccessButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel titleLabel { get; set; }
+		UIKit.UILabel titleLabel { get; set; }
 
 		[Action ("tappedCheckAccessButton:")]
-		partial void tappedCheckAccessButton (MonoTouch.Foundation.NSObject sender);
+		partial void tappedCheckAccessButton (Foundation.NSObject sender);
 
 		[Action ("tappedRequestAccessButton:")]
-		partial void tappedRequestAccessButton (MonoTouch.Foundation.NSObject sender);
+		partial void tappedRequestAccessButton (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

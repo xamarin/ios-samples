@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MonoTouch.AVFoundation;
-using MonoTouch.Accounts;
-using MonoTouch.AdSupport;
-using MonoTouch.AddressBook;
-using MonoTouch.AssetsLibrary;
-using MonoTouch.CoreBluetooth;
-using MonoTouch.CoreLocation;
-using MonoTouch.EventKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using AVFoundation;
+using Accounts;
+using AdSupport;
+using AddressBook;
+using AssetsLibrary;
+using CoreBluetooth;
+using CoreLocation;
+using EventKit;
+using Foundation;
+using UIKit;
 
 namespace PrivacyPrompts {
 
@@ -47,7 +47,7 @@ namespace PrivacyPrompts {
 			PrivacyDetailViewController viewController = 
 				segue.DestinationViewController as PrivacyDetailViewController;
 
-			DataClass selected = (DataClass)TableView.IndexPathForSelectedRow.Row;
+			DataClass selected = (DataClass)(int)TableView.IndexPathForSelectedRow.Row;
 			viewController.Title = selected.ToString ();
 
 			switch (selected) {
@@ -126,7 +126,7 @@ namespace PrivacyPrompts {
 			}
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return 1 + (int) DataClass.Advertising;
 		}
@@ -134,7 +134,7 @@ namespace PrivacyPrompts {
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			UITableViewCell cell = tableView.DequeueReusableCell ("BasicCell");
-			cell.TextLabel.Text = ((DataClass) indexPath.Row).ToString ();
+			cell.TextLabel.Text = ((DataClass) (int)indexPath.Row).ToString ();
 			return cell;
 		}
 
@@ -292,7 +292,7 @@ namespace PrivacyPrompts {
 
 		public void RequestMicrophoneAccess (bool usePermissionAPI)
 		{
-			AVAudioSession audioSession = new AVAudioSession ();
+			AVAudioSession audioSession = new AVAudioSession (null);
 			if (!usePermissionAPI) {
 				NSError error;
 				audioSession.SetCategory (AVAudioSession.CategoryRecord, out error);
