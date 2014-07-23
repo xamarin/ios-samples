@@ -23,5 +23,13 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>CoreMidiSample</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.CoreMidiSample</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
 </dict>
 </plist>
