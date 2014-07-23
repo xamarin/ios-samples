@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using Foundation;
+using UIKit;
+
+using CoreGraphics;
 
 namespace QuartzSample
 {
@@ -12,7 +12,7 @@ namespace QuartzSample
 	{
 		public abstract void DrawInContext (CGContext context);
 					       
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			using (var ctxt = UIGraphics.GetCurrentContext ()) {
 				DrawInContext ( ctxt );
@@ -94,7 +94,7 @@ namespace QuartzSample
 			scrollView.ZoomScale = 1.0f;
 	
 			quartzView.Frame = scrollView.Bounds;
-			scrollView.ContentSize = new SizeF (scrollView.Bounds.Width, scrollView.Bounds.Height);
+			scrollView.ContentSize = new CGSize (scrollView.Bounds.Width, scrollView.Bounds.Height);
 		}
 		
 		[Export ("viewForZoomingInScrollView:")]

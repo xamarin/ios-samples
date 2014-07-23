@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using Foundation;
+using CoreGraphics;
+
 using QuartzSample;
 
 public class GradientDrawingView : QuartzView {
@@ -11,7 +11,7 @@ public class GradientDrawingView : QuartzView {
 	public GradientDrawingView () : base ()
 	{
 		using (var rgb = CGColorSpace.CreateDeviceRGB()){
-			float [] colors =
+			nfloat [] colors =
 				{
 					204f / 255f, 224f / 255f, 244f / 255f, 10f,
 					29f / 255f, 156f / 255f, 215f / 255f, 10f,
@@ -22,54 +22,54 @@ public class GradientDrawingView : QuartzView {
 	}
 
 	// Returns an appropriate starting point for the demonstration of a linear gradient
-	static PointF demoLGStart (RectangleF bounds)
+	static CGPoint demoLGStart (CGRect bounds)
 	{
-		return new PointF  (bounds.X, bounds.Y + bounds.Height * 0.25f);
+		return new CGPoint  (bounds.X, bounds.Y + bounds.Height * 0.25f);
 	}
 	
 	// Returns an appropriate ending point for the demonstration of a linear gradient
-	PointF demoLGEnd(RectangleF bounds)
+	CGPoint demoLGEnd(CGRect bounds)
 	{
-		return new PointF  (bounds.X, bounds.Y + bounds.Height * 0.75f);
+		return new CGPoint  (bounds.X, bounds.Y + bounds.Height * 0.75f);
 	}
 	
 	// Returns the center point for for the demonstration of the radial gradient
-	PointF demoRGCenter(RectangleF bounds)
+	CGPoint demoRGCenter(CGRect bounds)
 	{
-		return new PointF  (bounds.X + bounds.Width/2, bounds.Y + bounds.Height/2);
+		return new CGPoint  (bounds.X + bounds.Width/2, bounds.Y + bounds.Height/2);
 	}
 	
 	// Returns an appropriate inner radius for the demonstration of the radial gradient
-	float demoRGInnerRadius(RectangleF bounds)
+	nfloat demoRGInnerRadius(CGRect bounds)
 	{
-		float r = bounds.Width < bounds.Height ? bounds.Width : bounds.Height;
+		nfloat r = bounds.Width < bounds.Height ? bounds.Width : bounds.Height;
 		return r * 0.125f;
 	}
 	
 	// Returns an appropriate outer radius for the demonstration of the radial gradient
-	float demoRGOuterRadius(RectangleF bounds)
+	nfloat demoRGOuterRadius(CGRect bounds)
 	{
-		float r = bounds.Width < bounds.Height ? bounds.Width : bounds.Height;
+		nfloat r = bounds.Width < bounds.Height ? bounds.Width : bounds.Height;
 		return r * 0.5f;
 	}
 	
 	public override void DrawInContext (CGContext context)
 	{
 		// The clipping rects we plan to use, which also defines the location and span of each gradient
-		var clips = new RectangleF [] 
+		var clips = new CGRect [] 
 		{
-			new RectangleF(10, 30, 60, 90),
-			new RectangleF(90, 30, 60, 90),
-			new RectangleF(170, 30, 60, 90),
-			new RectangleF(250, 30, 60, 90),
-			new RectangleF(30, 140, 120, 120),
-			new RectangleF(170, 140, 120, 120),
-			new RectangleF(30, 280, 120, 120),
-			new RectangleF(170, 280, 120, 120),
+			new CGRect(10, 30, 60, 90),
+			new CGRect(90, 30, 60, 90),
+			new CGRect(170, 30, 60, 90),
+			new CGRect(250, 30, 60, 90),
+			new CGRect(30, 140, 120, 120),
+			new CGRect(170, 140, 120, 120),
+			new CGRect(30, 280, 120, 120),
+			new CGRect(170, 280, 120, 120),
 		};
 
 		// Linear Gradients
-		PointF start, end;
+		CGPoint start, end;
 		
 		// Clip to area to draw the gradient, and draw it. Since we are clipping, we save the graphics state
 		// so that we can revert to the previous larger area.
@@ -114,7 +114,7 @@ public class GradientDrawingView : QuartzView {
 		
 		// Radial Gradients
 		
-		float startRadius, endRadius;
+		nfloat startRadius, endRadius;
 	
 		// Clip to area to draw the gradient, and draw it. Since we are clipping, we save the graphics state
 		// so that we can revert to the previous larger area.
@@ -161,7 +161,7 @@ public class GradientDrawingView : QuartzView {
 		
 		// Show the clipping areas
 		context.SetLineWidth(2);
-		context.SetRGBStrokeColor(1, 0, 0, 1);
+		context.SetStrokeColor(1, 0, 0, 1);
 		context.AddRects(clips);
 		context.StrokePath();
 	}	
@@ -176,21 +176,21 @@ public class PatternDrawingView : QuartzView {
 	static void DrawColored (CGContext context)
 	{
 		// Dark Blue
-		context.SetRGBFillColor(29 / 255f, 156 / 255f, 215 / 255f, 10);
-		context.FillRect(new RectangleF(0, 0, 8, 8));
-		context.FillRect(new RectangleF(8, 8, 8, 8));
+		context.SetFillColor(29 / 255f, 156 / 255f, 215 / 255f, 10);
+		context.FillRect(new CGRect(0, 0, 8, 8));
+		context.FillRect(new CGRect(8, 8, 8, 8));
 		
 		// Light Blue
-		context.SetRGBFillColor(204 / 255f, 224 / 255f, 244 / 255f, 10);
-		context.FillRect(new RectangleF(8, 0, 8, 8));
-		context.FillRect(new RectangleF(0, 8, 8, 8));
+		context.SetFillColor(204 / 255f, 224 / 255f, 244 / 255f, 10);
+		context.FillRect(new CGRect(8, 0, 8, 8));
+		context.FillRect(new CGRect(0, 8, 8, 8));
 	}
 	
 	// Uncolored patterns take their color from the given context
 	static void DrawUncolored (CGContext context)
 	{
-		context.FillRect(new RectangleF(0, 0, 8, 8));
-		context.FillRect(new RectangleF(8, 8, 8, 8));
+		context.FillRect(new CGRect(0, 0, 8, 8));
+		context.FillRect(new CGRect(8, 8, 8, 8));
 	}
 	
 	public PatternDrawingView () : base () {
@@ -198,7 +198,7 @@ public class PatternDrawingView : QuartzView {
 		// First we need to create a CGPattern that specifies the qualities of our pattern.
 		
 		using (var coloredPattern = new CGPattern (
-			       new RectangleF(0, 0, 16, 16), // the pattern coordinate space, drawing is clipped to this rectangle
+			       new CGRect(0, 0, 16, 16), // the pattern coordinate space, drawing is clipped to this rectangle
 			       CGAffineTransform.MakeIdentity (), // a transform on the pattern coordinate space used before it is drawn.
 			       16, 16, // the spacing (horizontal, vertical) of the pattern - how far to move after drawing each cell
 			       CGPatternTiling.NoDistortion,
@@ -213,14 +213,14 @@ public class PatternDrawingView : QuartzView {
 				// Since this pattern is colored, we'll create a CGColor for it to make drawing it easier and more efficient.
 				// From here on, the colored pattern is referenced entirely via the associated CGColor rather than the
 				// originally created CGPatternRef.
-				coloredPatternColor = new CGColor (coloredPatternColorSpace, coloredPattern, new float [] { alpha });
+				coloredPatternColor = new CGColor (coloredPatternColorSpace, coloredPattern, new nfloat [] { alpha });
 			}
 		}
 		
 		// Uncolored Pattern setup
 		// As above, we create a CGPattern that specifies the qualities of our pattern
 		uncoloredPattern = new CGPattern (
-			new RectangleF(0, 0, 16, 16), // coordinate space
+			new CGRect(0, 0, 16, 16), // coordinate space
 			CGAffineTransform.MakeIdentity (), // transform
 			16, 16, // spacing
 			CGPatternTiling.NoDistortion,
@@ -238,12 +238,12 @@ public class PatternDrawingView : QuartzView {
 	{
 		// Draw the colored pattern. Since we have a CGColorRef for this pattern, we just set
 		// that color current and draw.
-		context.SetFillColorWithColor(coloredPatternColor);
-		context.FillRect(new RectangleF(10, 10, 90, 90));
+		context.SetFillColor(coloredPatternColor);
+		context.FillRect(new CGRect(10, 10, 90, 90));
 		
 		// You can also stroke with a pattern.
-		context.SetStrokeColorWithColor(coloredPatternColor);
-		context.StrokeRectWithWidth(new RectangleF(120, 10, 90, 90), 8);
+		context.SetStrokeColor(coloredPatternColor);
+		context.StrokeRectWithWidth(new CGRect(120, 10, 90, 90), 8);
 		
 		// Since we aren't encapsulating our pattern in a CGColor for the uncolored pattern case, setup requires two steps.
 		// First you have to set the context's current colorspace (fill or stroke) to a pattern colorspace,
@@ -252,23 +252,23 @@ public class PatternDrawingView : QuartzView {
 
 	
 		// Next you set the pattern and the color that you want the pattern to draw with.
-		var color1 = new float [] {1, 0, 0, 1};
+		var color1 = new nfloat [] {1, 0, 0, 1};
 		context.SetFillPattern(uncoloredPattern, color1);
 		// And finally you draw!
-		context.FillRect(new RectangleF(10, 120, 90, 90));
+		context.FillRect(new CGRect(10, 120, 90, 90));
 
 		// As long as the current colorspace is a pattern colorspace, you are free to change the pattern or pattern color
-		var color2 = new float [] {0, 1, 0, 1};
+		var color2 = new nfloat [] {0, 1, 0, 1};
 		context.SetFillPattern(uncoloredPattern, color2);
-		context.FillRect(new RectangleF(10, 230, 90, 90));
+		context.FillRect(new CGRect(10, 230, 90, 90));
 
 		// And of course, just like the colored case, you can stroke with a pattern as well.
 		context.SetStrokeColorSpace(uncoloredPatternColorSpace);
 		context.SetStrokePattern(uncoloredPattern, color1);
-		context.StrokeRectWithWidth(new RectangleF(120, 120, 90, 90), 8);
+		context.StrokeRectWithWidth(new CGRect(120, 120, 90, 90), 8);
 		// As long as the current colorspace is a pattern colorspace, you are free to change the pattern or pattern color
 		context.SetStrokePattern(uncoloredPattern, color2);
-		context.StrokeRectWithWidth(new RectangleF(120, 230, 90, 90), 8);
+		context.StrokeRectWithWidth(new CGRect(120, 230, 90, 90), 8);
 
 	}	
 }

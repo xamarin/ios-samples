@@ -1,15 +1,15 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using Foundation;
+using CoreGraphics;
+
 using QuartzSample;
 
 public class LineDrawingView : QuartzView {
 	public override void DrawInContext (CGContext context)
 	{
 		// Draw lines with a white stroke color
-		context.SetRGBStrokeColor (1f, 1f, 1f, 1f);
+		context.SetStrokeColor (1f, 1f, 1f, 1f);
 
 		// Draw them with a 2.0 stroke width so they are more visible
 		context.SetLineWidth (2);
@@ -19,25 +19,25 @@ public class LineDrawingView : QuartzView {
 		context.StrokePath ();
 
 		// Draw connected sequence of lines
-		var points = new PointF [] {
-			new PointF (10, 90),
-			new PointF (70, 60),
-			new PointF (130, 90),
-			new PointF (190, 60),
-			new PointF (250, 90),
-			new PointF (310, 60)
+		var points = new CGPoint [] {
+			new CGPoint (10, 90),
+			new CGPoint (70, 60),
+			new CGPoint (130, 90),
+			new CGPoint (190, 60),
+			new CGPoint (250, 90),
+			new CGPoint (310, 60)
 		};
 		
 		context.AddLines (points);
 		context.StrokePath ();
 
-		var segments = new PointF [] {
-			new PointF (10, 150),
-			new PointF (70, 120),
-			new PointF (130, 150),
-			new PointF (190, 120),
-			new PointF (250, 150),
-			new PointF (310, 120),
+		var segments = new CGPoint [] {
+			new CGPoint (10, 150),
+			new CGPoint (70, 120),
+			new CGPoint (130, 150),
+			new CGPoint (190, 120),
+			new CGPoint (250, 150),
+			new CGPoint (310, 120),
 		};
 
 		// Bulk call to stroke a sequence of line segments
@@ -49,7 +49,7 @@ public class LineDrawingView : QuartzView {
 public class LineWidthDrawingView : QuartzView {
 	public override void DrawInContext (CGContext context)
 	{
-		context.SetRGBStrokeColor (1, 1, 1, 1f);
+		context.SetStrokeColor (1, 1, 1, 1f);
 		
 		// Draw lines with a stroke width from 1-10
 		for (int i = 1; i <= 10; ++i) {
@@ -65,7 +65,7 @@ public class LineWidthDrawingView : QuartzView {
 		context.AddLineToPoint (310, 245.5f);
 		context.StrokePath ();
 	
-		context.SetRGBStrokeColor (1, 0, 0, 1);
+		context.SetStrokeColor (1, 0, 0, 1);
 		context.SetLineWidth (3);
 		context.MoveTo (10, 245.5f);
 		context.AddLineToPoint (310, 245.5f);
@@ -77,7 +77,7 @@ public class LineCapJoinDrawingView : QuartzView {
 	public override void DrawInContext (CGContext context)
 	{
 		// Drawing lines with a white stroke color
-		context.SetRGBStrokeColor(1, 1, 1, 1);
+		context.SetStrokeColor(1, 1, 1, 1);
 		
 		// Preserve the current drawing state
 		context.SaveState();
@@ -137,7 +137,7 @@ public class LineCapJoinDrawingView : QuartzView {
 		context.RestoreState();
 	
 		// Demonstrate where the path that generated each line is
-		context.SetRGBStrokeColor(1, 0, 0, 1);
+		context.SetStrokeColor(1, 0, 0, 1);
 		context.SetLineWidth(3);
 		context.MoveTo(40, 30);
 		context.AddLineToPoint(280, 30);
@@ -162,7 +162,7 @@ public class LineDashDrawingView : QuartzView {
 	public override void DrawInContext (CGContext context)
 	{
 		// Drawing lines with a white stroke color
-		context.SetRGBStrokeColor(1, 1, 1, 1);
+		context.SetStrokeColor(1, 1, 1, 1);
 		// Draw them with a 2 stroke width so they are a bit more visible.
 		context.SetLineWidth(2);
 		
@@ -171,7 +171,7 @@ public class LineDashDrawingView : QuartzView {
 		// when count==2, we get length 10 drawn, length 10 skipped, etc
 		// when count==3, we get 10 drawn, 10 skipped, 20 draw, 10 skipped, 10 drawn, 20 skipped, etc
 		// and so on
-		float [] dash1 = new float [] {10, 10, 20, 30, 50};
+		nfloat [] dash1 = new nfloat [] {10, 10, 20, 30, 50};
 		
 		// Different dash lengths
 		for(int i = 2; i <= 5; ++i)
@@ -187,13 +187,13 @@ public class LineDashDrawingView : QuartzView {
 		// phase=6 starts 6 points in, so we draw 4, skip 10, draw 20, skip 20, draw 10, skip 10, etc.
 		// phase=12 stats us 12 points in, so we skip 8, draw 20, skip 20, draw 10, skip 10, etc.
 		// and so on.
-		float [] dash2 = {10, 10, 20, 20};
+		nfloat [] dash2 = {10, 10, 20, 20};
 	
 		// Different dash phases
 		for(int i = 0; i < 10; ++i)
 		{
-			context.SetLineDash((float) i * 6, dash2, 4);
-			context.MoveTo(10, (float) (i + 6) * 20);
+			context.SetLineDash((nfloat) i * 6, dash2, 4);
+			context.MoveTo(10, (nfloat) (i + 6) * 20);
 			context.AddLineToPoint(310, (float)(i + 6) * 20);
 			context.StrokePath();
 		}

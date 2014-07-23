@@ -11,19 +11,19 @@
 namespace QuartzSample {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("QuartzViewController")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("QuartzViewController")]
 	public partial class QuartzViewController {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIScrollView __mt_scrollView;
+		private UIKit.UIScrollView __mt_scrollView;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace QuartzSample {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("scrollView")]
-		private MonoTouch.UIKit.UIScrollView scrollView {
+		[Foundation.Connect("scrollView")]
+		private UIKit.UIScrollView scrollView {
 			get {
-				this.__mt_scrollView = ((MonoTouch.UIKit.UIScrollView)(this.GetNativeField("scrollView")));
+				this.__mt_scrollView = ((UIKit.UIScrollView)(this.GetNativeField("scrollView")));
 				return this.__mt_scrollView;
 			}
 			set {

@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using Foundation;
+using CoreGraphics;
+
 using System.IO;
 using QuartzSample;
 
@@ -17,7 +17,7 @@ public class ImageDrawingView : QuartzView {
 	
 	public override void DrawInContext (CGContext context)
 	{
-		var imageRect = new RectangleF (8, 8, 64, 64);
+		var imageRect = new CGRect (8, 8, 64, 64);
 		
 		// Note: The images are actually drawn upside down because Quartz image drawing expects
 		// the coordinate system to have the origin in the lower-left corner, but a UIView
@@ -34,7 +34,7 @@ public class ImageDrawingView : QuartzView {
 		// filling the entire view, we'll clip the view to the rect below. This rect extends
 		// past the region of the view, but since the view's rectangle has already been applied as a clip
 		// to our drawing area, it will be intersected with this rect to form the final clipping area
-		context.ClipToRect(new RectangleF (0, 80, Bounds.Width, Bounds.Height));
+		context.ClipToRect(new CGRect (0, 80, Bounds.Width, Bounds.Height));
 		
 		// The origin of the image rect works similarly to the phase parameter for SetLineDash and
 		// SetPatternPhase and specifies where in the coordinate system the "first" image is drawn.
@@ -44,12 +44,12 @@ public class ImageDrawingView : QuartzView {
 		context.DrawTiledImage (imageRect, image);
 		
 		// Highlight the "first" image from the DrawTiledImage call.
-		context.SetRGBFillColor (1, 0, 0, 0.5f);
+		context.SetFillColor (1, 0, 0, 0.5f);
 		context.FillRect (imageRect);
 		
 		// And stroke the clipped area
 		context.SetLineWidth (3);
-		context.SetRGBStrokeColor (1, 0, 0, 1);
+		context.SetStrokeColor (1, 0, 0, 1);
 		context.StrokeRect (context.GetClipBoundingBox ());
 	}
 }

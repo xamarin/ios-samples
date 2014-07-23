@@ -11,21 +11,21 @@
 namespace QuartzSample {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("QuartzBlendingViewController")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("QuartzBlendingViewController")]
 	public partial class QuartzBlendingViewController {
 		
-		private MonoTouch.UIKit.UIScrollView __mt_scrollView;
+		private UIKit.UIScrollView __mt_scrollView;
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIPickerView __mt_picker;
+		private UIKit.UIPickerView __mt_picker;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("scrollView")]
-		private MonoTouch.UIKit.UIScrollView scrollView {
+		[Foundation.Connect("scrollView")]
+		private UIKit.UIScrollView scrollView {
 			get {
-				this.__mt_scrollView = ((MonoTouch.UIKit.UIScrollView)(this.GetNativeField("scrollView")));
+				this.__mt_scrollView = ((UIKit.UIScrollView)(this.GetNativeField("scrollView")));
 				return this.__mt_scrollView;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace QuartzSample {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace QuartzSample {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("picker")]
-		private MonoTouch.UIKit.UIPickerView picker {
+		[Foundation.Connect("picker")]
+		private UIKit.UIPickerView picker {
 			get {
-				this.__mt_picker = ((MonoTouch.UIKit.UIPickerView)(this.GetNativeField("picker")));
+				this.__mt_picker = ((UIKit.UIPickerView)(this.GetNativeField("picker")));
 				return this.__mt_picker;
 			}
 			set {

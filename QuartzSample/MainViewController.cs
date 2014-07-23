@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace QuartzSample
 {
@@ -54,12 +54,12 @@ namespace QuartzSample
 				this.mvc = mvc;
 			}
 			
-			public override int RowsInSection (UITableView tableView, int section)
+			public override nint RowsInSection (UITableView tableView, nint section)
 			{
 				return mvc.controllers.Length;
 			}
 	
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
