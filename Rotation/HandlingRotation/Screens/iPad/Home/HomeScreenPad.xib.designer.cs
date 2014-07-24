@@ -11,23 +11,23 @@
 namespace HandlingRotation.Screens.iPad.Home {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("HomeScreenPad")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("HomeScreenPad")]
 	public partial class HomeScreenPad {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnMethod1;
+		private UIKit.UIButton __mt_btnMethod1;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnMethod2;
+		private UIKit.UIButton __mt_btnMethod2;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnMethod3;
+		private UIKit.UIButton __mt_btnMethod3;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -36,10 +36,10 @@ namespace HandlingRotation.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnMethod1")]
-		private MonoTouch.UIKit.UIButton btnMethod1 {
+		[Foundation.Connect("btnMethod1")]
+		private UIKit.UIButton btnMethod1 {
 			get {
-				this.__mt_btnMethod1 = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnMethod1")));
+				this.__mt_btnMethod1 = ((UIKit.UIButton)(this.GetNativeField("btnMethod1")));
 				return this.__mt_btnMethod1;
 			}
 			set {
@@ -48,10 +48,10 @@ namespace HandlingRotation.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnMethod2")]
-		private MonoTouch.UIKit.UIButton btnMethod2 {
+		[Foundation.Connect("btnMethod2")]
+		private UIKit.UIButton btnMethod2 {
 			get {
-				this.__mt_btnMethod2 = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnMethod2")));
+				this.__mt_btnMethod2 = ((UIKit.UIButton)(this.GetNativeField("btnMethod2")));
 				return this.__mt_btnMethod2;
 			}
 			set {
@@ -60,10 +60,10 @@ namespace HandlingRotation.Screens.iPad.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnMethod3")]
-		private MonoTouch.UIKit.UIButton btnMethod3 {
+		[Foundation.Connect("btnMethod3")]
+		private UIKit.UIButton btnMethod3 {
 			get {
-				this.__mt_btnMethod3 = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnMethod3")));
+				this.__mt_btnMethod3 = ((UIKit.UIButton)(this.GetNativeField("btnMethod3")));
 				return this.__mt_btnMethod3;
 			}
 			set {

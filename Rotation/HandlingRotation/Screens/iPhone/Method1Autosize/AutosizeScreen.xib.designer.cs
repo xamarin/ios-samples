@@ -11,19 +11,19 @@
 namespace HandlingRotation.Screens.iPhone.Method1Autosize {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("AutosizeScreen")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("AutosizeScreen")]
 	public partial class AutosizeScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UITableView __mt_tblMain;
+		private UIKit.UITableView __mt_tblMain;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace HandlingRotation.Screens.iPhone.Method1Autosize {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("tblMain")]
-		private MonoTouch.UIKit.UITableView tblMain {
+		[Foundation.Connect("tblMain")]
+		private UIKit.UITableView tblMain {
 			get {
-				this.__mt_tblMain = ((MonoTouch.UIKit.UITableView)(this.GetNativeField("tblMain")));
+				this.__mt_tblMain = ((UIKit.UITableView)(this.GetNativeField("tblMain")));
 				return this.__mt_tblMain;
 			}
 			set {

@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace HandlingRotation.Screens.iPad.Method2MoveControls {
 	public class Controller : UIViewController {
@@ -83,11 +83,11 @@ namespace HandlingRotation.Screens.iPad.Method2MoveControls {
 				case UIInterfaceOrientation.LandscapeRight:
 					
 					// reposition the buttons
-					button1.Frame = new System.Drawing.RectangleF (10, 10, 100, 33);
-					button2.Frame = new System.Drawing.RectangleF (10, 200, 100, 33);
+					button1.Frame = new CoreGraphics.CGRect (10, 10, 100, 33);
+					button2.Frame = new CoreGraphics.CGRect (10, 200, 100, 33);
 					
 					// reposition the image
-					image.Frame = new System.Drawing.RectangleF (240, 25, this.image.Frame.Width, this.image.Frame.Height);
+					image.Frame = new CoreGraphics.CGRect (240, 25, this.image.Frame.Width, this.image.Frame.Height);
 					
 					break;
 				
@@ -96,11 +96,11 @@ namespace HandlingRotation.Screens.iPad.Method2MoveControls {
 				case UIInterfaceOrientation.PortraitUpsideDown:
 					
 					// reposition the buttons
-					button1.Frame = new System.Drawing.RectangleF (10, 10, 100, 33);
-					button2.Frame = new System.Drawing.RectangleF (200, 10, 100, 33);
+					button1.Frame = new CoreGraphics.CGRect (10, 10, 100, 33);
+					button2.Frame = new CoreGraphics.CGRect (200, 10, 100, 33);
 					
 					// reposition the image
-					image.Frame = new System.Drawing.RectangleF (20, 150, this.image.Frame.Width, this.image.Frame.Height);
+					image.Frame = new CoreGraphics.CGRect (20, 150, this.image.Frame.Width, this.image.Frame.Height);
 					
 					break;
 			}

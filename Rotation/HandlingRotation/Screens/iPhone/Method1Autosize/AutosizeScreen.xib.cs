@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace HandlingRotation.Screens.iPhone.Method1Autosize {
 	public partial class AutosizeScreen : UIViewController {
@@ -103,7 +103,7 @@ namespace HandlingRotation.Screens.iPhone.Method1Autosize {
 			}
 			
 			// set the cell properties
-			cell.TextLabel.Text = this.tableItems[indexPath.Row];
+			cell.TextLabel.Text = this.tableItems[(int)indexPath.Row];
 			
 			// return the cell
 			return cell;
