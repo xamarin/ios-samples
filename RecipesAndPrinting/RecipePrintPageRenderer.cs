@@ -25,12 +25,12 @@
 // 
 
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace RecipesAndPrinting
 {
@@ -55,9 +55,9 @@ namespace RecipesAndPrinting
 		
 		// Calculate the content area based on the printableRect, that is, the area in which
 		// the printer can print content. a.k.a the imageable area of the paper.
-		RectangleF ContentArea {
+		CGRect ContentArea {
 			get {
-				RectangleF r = PrintableRect;
+				CGRect r = PrintableRect;
 				r.Height -= HeaderHeight + FooterHeight;
 				r.Y += HeaderHeight;
 				return r;
@@ -77,7 +77,7 @@ namespace RecipesAndPrinting
 		// provided by those formatters. 
 		//
 		// Therefore, setup the formatters, and ask super to count the pages.
-		public override int NumberOfPages {
+		public override nint NumberOfPages {
 			get {
 				PrintFormatters = new UIPrintFormatter [0];
 				SetupPrintFormatters ();
@@ -89,9 +89,9 @@ namespace RecipesAndPrinting
 		// a UIMarkupTextPrintFormatter and add that formatter to the printing job.
 		void SetupPrintFormatters ()
 		{
-			RectangleF contentArea = ContentArea;
-			float previousFormatterMaxY = contentArea.Top;
-			int page = 0;
+			CGRect contentArea = ContentArea;
+			nfloat previousFormatterMaxY = contentArea.Top;
+			nint page = 0;
 			
 			foreach (Recipe recipe in recipes) {
 				string html = recipe.HtmlRepresentation;
@@ -115,14 +115,14 @@ namespace RecipesAndPrinting
 				AddPrintFormatter (formatter, page);
 				
 				page = formatter.StartPage + formatter.PageCount - 1;
-				
+
 				previousFormatterMaxY = formatter.RectangleForPage (page).Bottom;
 			}
 		}
 		
 		// Custom UIPrintPageRenderer's may override this class to draw a custom print page header. 
 		// To illustrate that, this class sets the date in the header.
-		public override void DrawHeaderForPage (int index, RectangleF headerRect)
+		public override void DrawHeaderForPage (nint index, CGRect headerRect)
 		{
 			NSDateFormatter dateFormatter = new NSDateFormatter ();
 			dateFormatter.DateFormat = "MMMM d, yyyy 'at' h:mm a";
@@ -134,7 +134,7 @@ namespace RecipesAndPrinting
 			dateString.Dispose ();
 		}
 		
-		public override void DrawFooterForPage (int index, RectangleF footerRect)
+		public override void DrawFooterForPage (nint index, CGRect footerRect)
 		{
 			NSString footer = new NSString (string.Format ("Page {0} of {1}", index - pageRange.Location + 1, pageRange.Length));
 			footer.DrawString (footerRect, SystemFont, UILineBreakMode.Clip, UITextAlignment.Center);
@@ -147,13 +147,13 @@ namespace RecipesAndPrinting
 		// We do this to intermix/overlay our custom drawing onto the recipe presentation.
 		// We draw the upper portion of the recipe presentation by hand (image, title, desc), 
 		// and the bottom portion is drawn via the UIMarkupTextPrintFormatter.
-		public override void DrawPrintFormatterForPage (UIPrintFormatter printFormatter, int page)
+		public override void DrawPrintFormatterForPage (UIPrintFormatter printFormatter, nint page)
 		{
 			base.DrawPrintFormatterForPage (printFormatter, page);
 			
 			// To keep our custom drawing in sync with the printFormatter, base our drawing
 			// on the formatters rect.
-			RectangleF rect = printFormatter.RectangleForPage (page);
+			CGRect rect = printFormatter.RectangleForPage (page);
 			
 			// Use a bezier path to draw the borders.
 			// We may potentially choose not to draw either the top or bottom line
@@ -169,7 +169,7 @@ namespace RecipesAndPrinting
 				rect.Y -= RecipeInfoHeight;
 				
 				border.MoveTo (rect.Location);
-				border.AddLineTo (new PointF (rect.Right, rect.Top));
+				border.AddLineTo (new CGPoint (rect.Right, rect.Top));
 				
 				Recipe recipe = recipeFormatterMap[printFormatter];
 				
@@ -179,14 +179,14 @@ namespace RecipesAndPrinting
 			
 			// Draw the left border
 			border.MoveTo (rect.Location);
-			border.AddLineTo (new PointF (rect.Left, rect.Bottom));
+			border.AddLineTo (new CGPoint (rect.Left, rect.Bottom));
 			
 			// Draw the right border
-			border.MoveTo (new PointF (rect.Right, rect.Top));
-			border.AddLineTo (new PointF (rect.Right, rect.Bottom));
+			border.MoveTo (new CGPoint (rect.Right, rect.Top));
+			border.AddLineTo (new CGPoint (rect.Right, rect.Bottom));
 			
 			if (page == printFormatter.StartPage + printFormatter.PageCount - 1)
-				border.AddLineTo (new PointF (rect.Left, rect.Bottom));
+				border.AddLineTo (new CGPoint (rect.Left, rect.Bottom));
 			
 			// Set the UIColor to be used by the current graphics context, and then stroke 
 			// stroke the current path that is defined by the border bezier path.
@@ -196,36 +196,36 @@ namespace RecipesAndPrinting
 		
 		// Custom code to draw upper portion of the recipe presentation (image, title, desc).
 		// The argument rect is the full size of the recipe presentation.
-		void DrawRecipe (Recipe recipe, RectangleF rect)
+		void DrawRecipe (Recipe recipe, CGRect rect)
 		{
 			DrawRecipeImage (recipe.Image, rect);
 			DrawRecipeName (recipe.Name, rect);
 			DrawRecipeInfo (recipe.AggregatedInfo, rect);
 		}
 		
-		void DrawRecipeImage (UIImage image, RectangleF rect)
+		void DrawRecipeImage (UIImage image, CGRect rect)
 		{
 			// Create a new rect based on the size of the header area
-			RectangleF imageRect = RectangleF.Empty;
+			CGRect imageRect = CGRect.Empty;
 			
 			// Scale the image to fit in the infoRect
-			float maxImageDimension = RecipeInfoHeight - Padding * 2;
-			float largestImageDimension = Math.Max (image.Size.Width, image.Size.Height);
-			float scale = maxImageDimension / largestImageDimension;
+			nfloat maxImageDimension = RecipeInfoHeight - Padding * 2;
+			nfloat largestImageDimension = (nfloat)Math.Max (image.Size.Width, image.Size.Height);
+			nfloat scale = maxImageDimension / largestImageDimension;
 			
-			imageRect.Size = new SizeF (image.Size.Width * scale, image.Size.Height * scale);
+			imageRect.Size = new CGSize (image.Size.Width * scale, image.Size.Height * scale);
 
 			// Place the image rect at the x,y defined by the argument rect
-			imageRect.Location = new PointF (rect.Left + Padding, rect.Top + Padding);
+			imageRect.Location = new CGPoint (rect.Left + Padding, rect.Top + Padding);
 			
 			// Ask the image to draw in the image rect
 			image.Draw (imageRect);
 		}
 		
 		// Custom drawing code to put the recipe name in the title section of the recipe presentation's header.
-		void DrawRecipeName (string name, RectangleF rect)
+		void DrawRecipeName (string name, CGRect rect)
 		{
-			RectangleF nameRect = RectangleF.Empty;
+			CGRect nameRect = CGRect.Empty;
 			nameRect.X = rect.Left + RecipeInfoHeight;
 			nameRect.Y = rect.Top + Padding;
 			nameRect.Width = rect.Width - RecipeInfoHeight;
@@ -240,9 +240,9 @@ namespace RecipesAndPrinting
 		
 		// Custom drawing code to put the recipe recipe description, and prep time 
 		// in the title section of the recipe presentation's header.
-		void DrawRecipeInfo (string info, RectangleF rect)
+		void DrawRecipeInfo (string info, CGRect rect)
 		{
-			RectangleF infoRect = RectangleF.Empty;
+			CGRect infoRect = CGRect.Empty;
 			infoRect.X = rect.Left + RecipeInfoHeight;
 			infoRect.Y = rect.Top + TitleSize * 2;
 			infoRect.Width = rect.Width - RecipeInfoHeight;

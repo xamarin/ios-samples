@@ -27,8 +27,8 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace RecipesAndPrinting
 {
@@ -104,12 +104,12 @@ namespace RecipesAndPrinting
 				get { return controller.recipes.Recipes; }
 			}
 			
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
 			
-			public override int RowsInSection (UITableView tableView, int section)
+			public override nint RowsInSection (UITableView tableView, nint section)
 			{
 				return Recipes.Length;
 			}
