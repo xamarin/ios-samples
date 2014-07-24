@@ -1,9 +1,9 @@
 using System;
 using System.Net;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.SystemConfiguration;
-using MonoTouch.CoreFoundation;
+using Foundation;
+using UIKit;
+using SystemConfiguration;
+using CoreFoundation;
 
 public enum NetworkStatus {
 	NotReachable,
@@ -70,7 +70,7 @@ public static class Reachability {
 	{
 		if (adHocWiFiNetworkReachability == null){
 			adHocWiFiNetworkReachability = new NetworkReachability (new IPAddress (new byte [] {169,254,0,0}));
-			adHocWiFiNetworkReachability.SetCallback (OnChange);
+			adHocWiFiNetworkReachability.SetNotification (OnChange);
 			adHocWiFiNetworkReachability.Schedule (CFRunLoop.Current, CFRunLoop.ModeDefault);
 		}
 		
@@ -85,7 +85,7 @@ public static class Reachability {
 	{
 		if (defaultRouteReachability == null){
 			defaultRouteReachability = new NetworkReachability (new IPAddress (0));
-			defaultRouteReachability.SetCallback (OnChange);
+			defaultRouteReachability.SetNotification (OnChange);
 			defaultRouteReachability.Schedule (CFRunLoop.Current, CFRunLoop.ModeDefault);
 		}
 		if (!defaultRouteReachability.TryGetFlags (out flags))
@@ -106,7 +106,7 @@ public static class Reachability {
 			// this only happens when you create NetworkReachability from a hostname
 			reachable = remoteHostReachability.TryGetFlags (out flags);
 			
-			remoteHostReachability.SetCallback (OnChange);
+			remoteHostReachability.SetNotification (OnChange);
 			remoteHostReachability.Schedule (CFRunLoop.Current, CFRunLoop.ModeDefault);
 		} else
 			reachable = remoteHostReachability.TryGetFlags (out flags);			

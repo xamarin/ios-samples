@@ -11,21 +11,21 @@
 namespace reachability {
 	
 	
-	// Base type probably should be MonoTouch.Foundation.NSObject or subclass
-	[MonoTouch.Foundation.Register("ReachabilityAppDelegate")]
+	// Base type probably should be Foundation.NSObject or subclass
+	[Foundation.Register("ReachabilityAppDelegate")]
 	public partial class ReachabilityAppDelegate {
 		
-		private MonoTouch.UIKit.UIWindow __mt_window;
+		private UIKit.UIWindow __mt_window;
 		
-		private MonoTouch.UIKit.UIView __mt_contentView;
+		private UIKit.UIView __mt_contentView;
 		
-		private MonoTouch.UIKit.UILabel __mt_summaryLabel;
+		private UIKit.UILabel __mt_summaryLabel;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("window")]
-		private MonoTouch.UIKit.UIWindow window {
+		[Foundation.Connect("window")]
+		private UIKit.UIWindow window {
 			get {
-				this.__mt_window = ((MonoTouch.UIKit.UIWindow)(this.GetNativeField("window")));
+				this.__mt_window = ((UIKit.UIWindow)(this.GetNativeField("window")));
 				return this.__mt_window;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace reachability {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("contentView")]
-		private MonoTouch.UIKit.UIView contentView {
+		[Foundation.Connect("contentView")]
+		private UIKit.UIView contentView {
 			get {
-				this.__mt_contentView = ((MonoTouch.UIKit.UIView)(this.GetNativeField("contentView")));
+				this.__mt_contentView = ((UIKit.UIView)(this.GetNativeField("contentView")));
 				return this.__mt_contentView;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace reachability {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("summaryLabel")]
-		private MonoTouch.UIKit.UILabel summaryLabel {
+		[Foundation.Connect("summaryLabel")]
+		private UIKit.UILabel summaryLabel {
 			get {
-				this.__mt_summaryLabel = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("summaryLabel")));
+				this.__mt_summaryLabel = ((UIKit.UILabel)(this.GetNativeField("summaryLabel")));
 				return this.__mt_summaryLabel;
 			}
 			set {
