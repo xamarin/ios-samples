@@ -1,14 +1,14 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-using MonoTouch.MapKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreLocation;
+using MapKit;
+using Foundation;
+using UIKit;
+
+using CoreLocation;
 
 namespace RegionDefiner
 {
@@ -26,7 +26,7 @@ namespace RegionDefiner
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			SizeF containerSize = View.Bounds.Size;
+			CGSize containerSize = View.Bounds.Size;
 			
 			mainMapView = new MKMapView () {
 				UserInteractionEnabled = true,
@@ -38,10 +38,10 @@ namespace RegionDefiner
 				AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth,
 			};
 			toolbar.SizeToFit ();
-			SizeF toolbarSize = toolbar.Bounds.Size;
+			CGSize toolbarSize = toolbar.Bounds.Size;
 			
-			toolbar.Frame = new RectangleF (0, containerSize.Height - toolbarSize.Height, containerSize.Width, toolbarSize.Height);
-			mainMapView.Frame = new RectangleF (0, 0, containerSize.Width, containerSize.Height - toolbarSize.Height);
+			toolbar.Frame = new CGRect (0, containerSize.Height - toolbarSize.Height, containerSize.Width, toolbarSize.Height);
+			mainMapView.Frame = new CGRect (0, 0, containerSize.Width, containerSize.Height - toolbarSize.Height);
 			
 			var resetButton = new UIBarButtonItem ("Reset", UIBarButtonItemStyle.Bordered, removePins);
 			var flexibleSpace = new UIBarButtonItem (UIBarButtonSystemItem.FlexibleSpace, null, null);
@@ -64,17 +64,17 @@ namespace RegionDefiner
 		public void setUpGesture ()
 		{
 			longPress = new UILongPressGestureRecognizer ();
-			longPress.AddTarget (this, new MonoTouch.ObjCRuntime.Selector ("HandleLongPress:"));
+			longPress.AddTarget (this, new ObjCRuntime.Selector ("HandleLongPress:"));
 			longPress.Delegate = new GestureDelegate ();
 			View.AddGestureRecognizer (longPress);
 			
 		}
 		
-		[MonoTouch.Foundation.Export("HandleLongPress:")]
+		[Foundation.Export("HandleLongPress:")]
 		public void handleLongPress (UILongPressGestureRecognizer recognizer)
 		{
 			if (recognizer.State == UIGestureRecognizerState.Began) {
-				PointF longPressPoint = recognizer.LocationInView (mainMapView);
+				CGPoint longPressPoint = recognizer.LocationInView (mainMapView);
 				dropPinAtPoint (longPressPoint);
 			}
 		}
@@ -88,7 +88,7 @@ namespace RegionDefiner
 			mainMapView.AddOverlay (Polygon);			
 		}
 		
-		public void dropPinAtPoint (PointF pointToConvert)
+		public void dropPinAtPoint (CGPoint pointToConvert)
 		{
 			CLLocationCoordinate2D convertedPoint = mainMapView.ConvertPoint (pointToConvert, mainMapView);
 			String pinTitle = String.Format ("Pin Number {0}", itemsArray.Count);

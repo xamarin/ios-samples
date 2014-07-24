@@ -1,10 +1,10 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.MapKit;
-using MonoTouch.CoreLocation;
+using Foundation;
+using UIKit;
+using MapKit;
+using CoreLocation;
 
 namespace RegionDefiner
 {
