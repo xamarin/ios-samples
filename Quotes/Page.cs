@@ -5,9 +5,9 @@ using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreText;
+using Foundation;
+using UIKit;
+using CoreText;
 
 namespace Quotes
 {
@@ -17,8 +17,8 @@ namespace Quotes
 		public List<XElement> Paragraphs { get; set; }
 
 		public string Title { get; set; }
-		public int SelectedParagraph { get; set; }
-		public float LineHeight { get; set; }
+		public nint SelectedParagraph { get; set; }
+		public nfloat LineHeight { get; set; }
 
 		public Page (string title, List<XElement> paragraphs)
 		{
@@ -71,7 +71,7 @@ namespace Quotes
 				                                   ligatures: NSLigatureType.None,
 				                                   kerning: 10,
 				                                   underlineStyle: NSUnderlineStyle.Single,
-				                                   shadow: new NSShadow () { ShadowColor = UIColor.Red, ShadowOffset = new System.Drawing.SizeF (5, 5) },
+				                                   shadow: new NSShadow () { ShadowColor = UIColor.Red, ShadowOffset = new CoreGraphics.CGSize (5, 5) },
 												   strokeWidth: 5
 #endif
 				);

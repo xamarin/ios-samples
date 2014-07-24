@@ -27,6 +27,7 @@
     <AssemblyName>Quotes</AssemblyName>
     <MtouchI18n>
     </MtouchI18n>
+    <MtouchExtraArgs>--registrar:static --nofastsim --override-abi x86_64</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -103,7 +104,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="monotouch" />
+    <Reference Include="Xamarin.iOS">
+    	<HintPath>\Developer\MonoTouch\usr\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

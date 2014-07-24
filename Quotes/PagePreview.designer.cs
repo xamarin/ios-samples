@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace Quotes
 {
@@ -12,10 +12,10 @@ namespace Quotes
 	partial class PagePreview
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIImageView pageImageView { get; set; }
+		UIKit.UIImageView pageImageView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel textLabel { get; set; }
+		UIKit.UILabel textLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

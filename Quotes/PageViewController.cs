@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Quotes
 {
@@ -38,24 +38,24 @@ namespace Quotes
 			}
 		}
 
-		partial void ParagraphSelected (MonoTouch.UIKit.UILongPressGestureRecognizer sender)
+		partial void ParagraphSelected (UIKit.UILongPressGestureRecognizer sender)
 		{
 			pageView.SelectParagraphAtPosition (sender.LocationInView (pageView), 
-			                                    sender.State == MonoTouch.UIKit.UIGestureRecognizerState.Ended);
+			                                    sender.State == UIKit.UIGestureRecognizerState.Ended);
 		}
 		
-		partial void DrawingModeToggled (MonoTouch.UIKit.UISwipeGestureRecognizer sender)
+		partial void DrawingModeToggled (UIKit.UISwipeGestureRecognizer sender)
 		{
 			pageView.UnstyledDrawing = !pageView.UnstyledDrawing;
 			pageView.UpdatePage ();
 		}
 		
-		partial void MenuDismissed (MonoTouch.UIKit.UITapGestureRecognizer sender)
+		partial void MenuDismissed (UIKit.UITapGestureRecognizer sender)
 		{
-			pageView.SelectParagraphAtPosition (new System.Drawing.PointF (-100.0f, -100.0f), false);
+			pageView.SelectParagraphAtPosition (new CoreGraphics.CGPoint (-100.0f, -100.0f), false);
 		}
 	
-		partial void LineHeightChanged (MonoTouch.UIKit.UISlider sender)
+		partial void LineHeightChanged (UIKit.UISlider sender)
 		{
 			pageView.SetLineHeight (sender.Value);
 		}

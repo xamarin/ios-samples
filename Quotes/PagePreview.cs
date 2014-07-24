@@ -1,11 +1,11 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.UIKit;
-using MonoTouch.CoreFoundation;
-using MonoTouch.Foundation;
-using MonoTouch.CoreText;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using CoreFoundation;
+using Foundation;
+using CoreText;
+
 
 namespace Quotes
 {
@@ -30,7 +30,7 @@ namespace Quotes
 				cellPage = value;
 
 				var textShadow = new NSShadow () {
-					ShadowOffset = new SizeF (3, 3),
+					ShadowOffset = new CGSize (3, 3),
 					ShadowBlurRadius = 2
 				};
 
