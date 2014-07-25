@@ -11,21 +11,21 @@
 namespace Example_SharedResources.Screens.iPhone.Photos {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("CustomCameraViewScreen")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("CustomCameraViewScreen")]
 	public partial class CustomCameraViewScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnTakePhoto;
+		private UIKit.UIButton __mt_btnTakePhoto;
 		
-		private MonoTouch.UIKit.UIImageView __mt_imgPhoto;
+		private UIKit.UIImageView __mt_imgPhoto;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace Example_SharedResources.Screens.iPhone.Photos {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnTakePhoto")]
-		private MonoTouch.UIKit.UIButton btnTakePhoto {
+		[Foundation.Connect("btnTakePhoto")]
+		private UIKit.UIButton btnTakePhoto {
 			get {
-				this.__mt_btnTakePhoto = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnTakePhoto")));
+				this.__mt_btnTakePhoto = ((UIKit.UIButton)(this.GetNativeField("btnTakePhoto")));
 				return this.__mt_btnTakePhoto;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace Example_SharedResources.Screens.iPhone.Photos {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("imgPhoto")]
-		private MonoTouch.UIKit.UIImageView imgPhoto {
+		[Foundation.Connect("imgPhoto")]
+		private UIKit.UIImageView imgPhoto {
 			get {
-				this.__mt_imgPhoto = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("imgPhoto")));
+				this.__mt_imgPhoto = ((UIKit.UIImageView)(this.GetNativeField("imgPhoto")));
 				return this.__mt_imgPhoto;
 			}
 			set {

@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace Example_SharedResources.Screens.iPhone.Photos
 {
@@ -67,7 +67,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 				imagePicker.FinishedPickingMedia += Handle_imagePickerhandleFinishedPickingMedia;
 				imagePicker.Canceled += (sender,evt) => {
 					Console.WriteLine ("picker cancelled");
-					imagePicker.DismissModalViewControllerAnimated (true);
+					imagePicker.DismissModalViewController (true);
 				};
 				
 				// show the picker
@@ -182,7 +182,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 			}
 			
 			// dismiss the picker
-			imagePicker.DismissModalViewControllerAnimated (true);
+			imagePicker.DismissModalViewController (true);
 		}
 		
 		// Fills the table with a list of available features
@@ -267,7 +267,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 			public override void Canceled (UIImagePickerController picker)
 			{
 				Console.WriteLine ("picker cancelled");
-				picker.DismissModalViewControllerAnimated (true);
+				picker.DismissModalViewController (true);
 			}
 						
 			public override void FinishedPickingMedia (UIImagePickerController picker, NSDictionary info)
@@ -315,7 +315,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 //					// get the cropping, if any
 //					try
 //					{
-//						RectangleF cropRectangle = info[UIImagePickerController.CropRect] as RectangleF;
+//						CGRect cropRectangle = info[UIImagePickerController.CropRect] as CGRect;
 //						if(cropRectangle != null)
 //						{
 //							// do something with the crop rectangle
@@ -344,7 +344,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 				}
 				
 				// dismiss the picker
-				picker.DismissModalViewControllerAnimated (true);
+				picker.DismissModalViewController (true);
 			}			
 		}
 
@@ -385,14 +385,14 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 				this.features = features;
 			}
 			
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return features.Count;
 			}
 			
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
-				return features [section].Features.Count;
+				return features [(int)section].Features.Count;
 			}
 			
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -401,18 +401,18 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 				if (cell == null)
 					cell = new UITableViewCell (UITableViewCellStyle.Value1, "FeatureCell");
 				
-				cell.TextLabel.Text = features [indexPath.Section].Features [indexPath.Row].Name;
-				cell.DetailTextLabel.Text = features [indexPath.Section].Features [indexPath.Row].IsAvailable.ToString ();
+				cell.TextLabel.Text = features [(int)indexPath.Section].Features [(int)indexPath.Row].Name;
+				cell.DetailTextLabel.Text = features [(int)indexPath.Section].Features [(int)indexPath.Row].IsAvailable.ToString ();
 				cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 				return cell;
 			}
 			
-			public override string TitleForHeader (UITableView tableView, int section)
+			public override string TitleForHeader (UITableView tableView, nint section)
 			{
-				return features [section].Name;
+				return features [(int)section].Name;
 			}
 			
-			public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+			public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 			{
 				return 35;
 			}

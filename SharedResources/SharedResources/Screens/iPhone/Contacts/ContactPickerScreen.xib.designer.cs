@@ -11,25 +11,25 @@
 namespace Example_SharedResources.Screens.iPhone.Contacts {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("ContactPickerScreen")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("ContactPickerScreen")]
 	public partial class ContactPickerScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnChooseContact;
+		private UIKit.UIButton __mt_btnChooseContact;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblFirstName;
+		private UIKit.UILabel __mt_lblFirstName;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblLastName;
+		private UIKit.UILabel __mt_lblLastName;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnViewSelectedContact;
+		private UIKit.UIButton __mt_btnViewSelectedContact;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -38,10 +38,10 @@ namespace Example_SharedResources.Screens.iPhone.Contacts {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnChooseContact")]
-		private MonoTouch.UIKit.UIButton btnChooseContact {
+		[Foundation.Connect("btnChooseContact")]
+		private UIKit.UIButton btnChooseContact {
 			get {
-				this.__mt_btnChooseContact = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnChooseContact")));
+				this.__mt_btnChooseContact = ((UIKit.UIButton)(this.GetNativeField("btnChooseContact")));
 				return this.__mt_btnChooseContact;
 			}
 			set {
@@ -50,10 +50,10 @@ namespace Example_SharedResources.Screens.iPhone.Contacts {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblFirstName")]
-		private MonoTouch.UIKit.UILabel lblFirstName {
+		[Foundation.Connect("lblFirstName")]
+		private UIKit.UILabel lblFirstName {
 			get {
-				this.__mt_lblFirstName = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblFirstName")));
+				this.__mt_lblFirstName = ((UIKit.UILabel)(this.GetNativeField("lblFirstName")));
 				return this.__mt_lblFirstName;
 			}
 			set {
@@ -62,10 +62,10 @@ namespace Example_SharedResources.Screens.iPhone.Contacts {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblLastName")]
-		private MonoTouch.UIKit.UILabel lblLastName {
+		[Foundation.Connect("lblLastName")]
+		private UIKit.UILabel lblLastName {
 			get {
-				this.__mt_lblLastName = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblLastName")));
+				this.__mt_lblLastName = ((UIKit.UILabel)(this.GetNativeField("lblLastName")));
 				return this.__mt_lblLastName;
 			}
 			set {
@@ -74,10 +74,10 @@ namespace Example_SharedResources.Screens.iPhone.Contacts {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnViewSelectedContact")]
-		private MonoTouch.UIKit.UIButton btnViewSelectedContact {
+		[Foundation.Connect("btnViewSelectedContact")]
+		private UIKit.UIButton btnViewSelectedContact {
 			get {
-				this.__mt_btnViewSelectedContact = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnViewSelectedContact")));
+				this.__mt_btnViewSelectedContact = ((UIKit.UIButton)(this.GetNativeField("btnViewSelectedContact")));
 				return this.__mt_btnViewSelectedContact;
 			}
 			set {

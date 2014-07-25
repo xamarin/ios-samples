@@ -2,10 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AddressBookUI;
-using MonoTouch.AddressBook;
+using Foundation;
+using UIKit;
+using AddressBookUI;
+using AddressBook;
 
 namespace Example_SharedResources.Screens.iPhone.Contacts
 {
@@ -62,14 +62,14 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 				NavigationController.PresentModalViewController(addressBookPicker, true);
 				
 				// when cancel is clicked, dismiss the controller
-				addressBookPicker.Cancelled += (sender, eventArgs) => { NavigationController.DismissModalViewControllerAnimated(true); };
+				addressBookPicker.Cancelled += (sender, eventArgs) => { NavigationController.DismissModalViewController(true); };
 				
 				// when a contact is chosen, populate the page with details and dismiss the controller
 				addressBookPicker.SelectPerson += (object sender, ABPeoplePickerSelectPersonEventArgs args) => {
 					selectedPerson = args.Person;
 					lblFirstName.Text = selectedPerson.FirstName;
 					lblLastName.Text = selectedPerson.LastName;
-					NavigationController.DismissModalViewControllerAnimated(true);
+					NavigationController.DismissModalViewController(true);
 				};
 			};
 			

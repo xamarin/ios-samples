@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.AssetsLibrary;
-using MonoTouch.Foundation;
+using UIKit;
+using AssetsLibrary;
+using Foundation;
 using System.Collections.Generic;
 
 namespace Example_SharedResources.Screens.iPhone.AVAssets
@@ -98,16 +98,16 @@ namespace Example_SharedResources.Screens.iPhone.AVAssets
 			
 			public AssetGroupTableSource(List<ALAssetsGroup> groups) { this.groups = groups; }
 			
-			public override int NumberOfSections (UITableView tableView) { return 1; }
+			public override nint NumberOfSections (UITableView tableView) { return 1; }
 			
-			public override int RowsInSection (UITableView tableview, int section) { return groups.Count; }
+			public override nint RowsInSection (UITableView tableview, nint section) { return groups.Count; }
 			
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				UITableViewCell cell = tableView.DequeueReusableCell ("AlbumCell");
 				if(cell == null)
 					cell = new UITableViewCell (UITableViewCellStyle.Default, "AlbumCell");
-				cell.TextLabel.Text = groups[indexPath.Row].Name;
+				cell.TextLabel.Text = groups[(int)indexPath.Row].Name;
 				return cell;
 			}
 			
@@ -116,7 +116,7 @@ namespace Example_SharedResources.Screens.iPhone.AVAssets
 				// raise our event
 				var handler = GroupSelected;
 				if (handler != null)
-					handler (this, new GroupSelectedEventArgs (groups[indexPath.Row]));
+					handler (this, new GroupSelectedEventArgs (groups[(int)indexPath.Row]));
 			}
 		
 			public class GroupSelectedEventArgs : EventArgs

@@ -11,33 +11,33 @@
 namespace Example_SharedResources.Screens.iPhone.Contacts {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("AddressBookScreen")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("AddressBookScreen")]
 	public partial class AddressBookScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnAddPhoneNumber;
+		private UIKit.UIButton __mt_btnAddPhoneNumber;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnSaveChanges;
+		private UIKit.UIButton __mt_btnSaveChanges;
 		
-		private MonoTouch.UIKit.UITableView __mt_tblPhoneNumbers;
+		private UIKit.UITableView __mt_tblPhoneNumbers;
 		
-		private MonoTouch.UIKit.UITextField __mt_txtFirstName;
+		private UIKit.UITextField __mt_txtFirstName;
 		
-		private MonoTouch.UIKit.UITextField __mt_txtLastName;
+		private UIKit.UITextField __mt_txtLastName;
 		
-		private MonoTouch.UIKit.UITextField __mt_txtPhoneLabel;
+		private UIKit.UITextField __mt_txtPhoneLabel;
 		
-		private MonoTouch.UIKit.UITextField __mt_txtPhoneNumber;
+		private UIKit.UITextField __mt_txtPhoneNumber;
 		
-		private MonoTouch.UIKit.UIScrollView __mt_scrlMain;
+		private UIKit.UIScrollView __mt_scrlMain;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace Example_SharedResources.Screens.iPhone.Contacts {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnAddPhoneNumber")]
-		private MonoTouch.UIKit.UIButton btnAddPhoneNumber {
+		[Foundation.Connect("btnAddPhoneNumber")]
+		private UIKit.UIButton btnAddPhoneNumber {
 			get {
-				this.__mt_btnAddPhoneNumber = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnAddPhoneNumber")));
+				this.__mt_btnAddPhoneNumber = ((UIKit.UIButton)(this.GetNativeField("btnAddPhoneNumber")));
 				return this.__mt_btnAddPhoneNumber;
 			}
 			set {
@@ -58,10 +58,10 @@ namespace Example_SharedResources.Screens.iPhone.Contacts {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnSaveChanges")]
-		private MonoTouch.UIKit.UIButton btnSaveChanges {
+		[Foundation.Connect("btnSaveChanges")]
+		private UIKit.UIButton btnSaveChanges {
 			get {
-				this.__mt_btnSaveChanges = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnSaveChanges")));
+				this.__mt_btnSaveChanges = ((UIKit.UIButton)(this.GetNativeField("btnSaveChanges")));
 				return this.__mt_btnSaveChanges;
 			}
 			set {
@@ -70,10 +70,10 @@ namespace Example_SharedResources.Screens.iPhone.Contacts {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("tblPhoneNumbers")]
-		private MonoTouch.UIKit.UITableView tblPhoneNumbers {
+		[Foundation.Connect("tblPhoneNumbers")]
+		private UIKit.UITableView tblPhoneNumbers {
 			get {
-				this.__mt_tblPhoneNumbers = ((MonoTouch.UIKit.UITableView)(this.GetNativeField("tblPhoneNumbers")));
+				this.__mt_tblPhoneNumbers = ((UIKit.UITableView)(this.GetNativeField("tblPhoneNumbers")));
 				return this.__mt_tblPhoneNumbers;
 			}
 			set {
@@ -82,10 +82,10 @@ namespace Example_SharedResources.Screens.iPhone.Contacts {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("txtFirstName")]
-		private MonoTouch.UIKit.UITextField txtFirstName {
+		[Foundation.Connect("txtFirstName")]
+		private UIKit.UITextField txtFirstName {
 			get {
-				this.__mt_txtFirstName = ((MonoTouch.UIKit.UITextField)(this.GetNativeField("txtFirstName")));
+				this.__mt_txtFirstName = ((UIKit.UITextField)(this.GetNativeField("txtFirstName")));
 				return this.__mt_txtFirstName;
 			}
 			set {
@@ -94,10 +94,10 @@ namespace Example_SharedResources.Screens.iPhone.Contacts {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("txtLastName")]
-		private MonoTouch.UIKit.UITextField txtLastName {
+		[Foundation.Connect("txtLastName")]
+		private UIKit.UITextField txtLastName {
 			get {
-				this.__mt_txtLastName = ((MonoTouch.UIKit.UITextField)(this.GetNativeField("txtLastName")));
+				this.__mt_txtLastName = ((UIKit.UITextField)(this.GetNativeField("txtLastName")));
 				return this.__mt_txtLastName;
 			}
 			set {
@@ -106,10 +106,10 @@ namespace Example_SharedResources.Screens.iPhone.Contacts {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("txtPhoneLabel")]
-		private MonoTouch.UIKit.UITextField txtPhoneLabel {
+		[Foundation.Connect("txtPhoneLabel")]
+		private UIKit.UITextField txtPhoneLabel {
 			get {
-				this.__mt_txtPhoneLabel = ((MonoTouch.UIKit.UITextField)(this.GetNativeField("txtPhoneLabel")));
+				this.__mt_txtPhoneLabel = ((UIKit.UITextField)(this.GetNativeField("txtPhoneLabel")));
 				return this.__mt_txtPhoneLabel;
 			}
 			set {
@@ -118,10 +118,10 @@ namespace Example_SharedResources.Screens.iPhone.Contacts {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("txtPhoneNumber")]
-		private MonoTouch.UIKit.UITextField txtPhoneNumber {
+		[Foundation.Connect("txtPhoneNumber")]
+		private UIKit.UITextField txtPhoneNumber {
 			get {
-				this.__mt_txtPhoneNumber = ((MonoTouch.UIKit.UITextField)(this.GetNativeField("txtPhoneNumber")));
+				this.__mt_txtPhoneNumber = ((UIKit.UITextField)(this.GetNativeField("txtPhoneNumber")));
 				return this.__mt_txtPhoneNumber;
 			}
 			set {
@@ -130,10 +130,10 @@ namespace Example_SharedResources.Screens.iPhone.Contacts {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("scrlMain")]
-		private MonoTouch.UIKit.UIScrollView scrlMain {
+		[Foundation.Connect("scrlMain")]
+		private UIKit.UIScrollView scrlMain {
 			get {
-				this.__mt_scrlMain = ((MonoTouch.UIKit.UIScrollView)(this.GetNativeField("scrlMain")));
+				this.__mt_scrlMain = ((UIKit.UIScrollView)(this.GetNativeField("scrlMain")));
 				return this.__mt_scrlMain;
 			}
 			set {

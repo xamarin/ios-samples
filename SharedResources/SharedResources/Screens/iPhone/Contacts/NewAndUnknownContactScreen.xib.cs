@@ -2,10 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AddressBook;
-using MonoTouch.AddressBookUI;
+using Foundation;
+using UIKit;
+using AddressBook;
+using AddressBookUI;
 
 namespace Example_SharedResources.Screens.iPhone.Contacts
 {
@@ -77,7 +77,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 					}
 					
 					// pop the controller off the stack
-					NavigationController.PopViewControllerAnimated (true);
+					NavigationController.PopViewController (true);
 				};
 			};
 			

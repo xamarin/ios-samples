@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using CoreGraphics;
+
 
 namespace Example_SharedResources.Screens.iPhone.Photos
 {
@@ -10,7 +10,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		#region -= constructors =-
 
 		public CameraOverlayView() : base() { Initialize(); }
-		public CameraOverlayView (RectangleF frame) : base(frame) { Initialize(); }
+		public CameraOverlayView (CGRect frame) : base(frame) { Initialize(); }
 		
 		protected void Initialize()
 		{
@@ -20,7 +20,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		#endregion
 		
 		// rect changes depending on if the whole view is being redrawn, or just a section
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			Console.WriteLine ("Draw() Called");
 			base.Draw (rect);
@@ -42,17 +42,17 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		
 		protected void DrawStars (CGContext context)
 		{
-			context.SetRGBFillColor (1f, 0f, 0f, 1f);
+			context.SetFillColor (1f, 0f, 0f, 1f);
 
 			// save state so that as we translate (move the origin around, 
 			// it goes back to normal when we restore)
-			context.SetRGBFillColor (0f, 0f, 0.329f, 1.0f);
+			context.SetFillColor (0f, 0f, 0.329f, 1.0f);
 			context.SaveState ();
 			context.TranslateCTM (30, 300);
 			DrawStar (context, 30);
 			context.RestoreState ();
 
-			context.SetRGBFillColor (1f, 0f, 0f, 1f);
+			context.SetFillColor (1f, 0f, 0f, 1f);
 			context.SaveState ();
 			context.TranslateCTM (120, 200);
 			DrawStar (context, 30);

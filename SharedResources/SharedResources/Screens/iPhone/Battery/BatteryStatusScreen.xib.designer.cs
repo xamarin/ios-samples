@@ -11,21 +11,21 @@
 namespace Example_SharedResources.Screens.iPhone.Battery {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("BatteryStatusScreen")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("BatteryStatusScreen")]
 	public partial class BatteryStatusScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIProgressView __mt_barBatteryLevel;
+		private UIKit.UIProgressView __mt_barBatteryLevel;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblBatteryState;
+		private UIKit.UILabel __mt_lblBatteryState;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace Example_SharedResources.Screens.iPhone.Battery {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("barBatteryLevel")]
-		private MonoTouch.UIKit.UIProgressView barBatteryLevel {
+		[Foundation.Connect("barBatteryLevel")]
+		private UIKit.UIProgressView barBatteryLevel {
 			get {
-				this.__mt_barBatteryLevel = ((MonoTouch.UIKit.UIProgressView)(this.GetNativeField("barBatteryLevel")));
+				this.__mt_barBatteryLevel = ((UIKit.UIProgressView)(this.GetNativeField("barBatteryLevel")));
 				return this.__mt_barBatteryLevel;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace Example_SharedResources.Screens.iPhone.Battery {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblBatteryState")]
-		private MonoTouch.UIKit.UILabel lblBatteryState {
+		[Foundation.Connect("lblBatteryState")]
+		private UIKit.UILabel lblBatteryState {
 			get {
-				this.__mt_lblBatteryState = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblBatteryState")));
+				this.__mt_lblBatteryState = ((UIKit.UILabel)(this.GetNativeField("lblBatteryState")));
 				return this.__mt_lblBatteryState;
 			}
 			set {

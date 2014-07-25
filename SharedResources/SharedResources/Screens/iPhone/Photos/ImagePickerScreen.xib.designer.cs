@@ -11,25 +11,25 @@
 namespace Example_SharedResources.Screens.iPhone.Photos {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("ImagePickerScreen")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("ImagePickerScreen")]
 	public partial class ImagePickerScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UITableView __mt_tblFeatures;
+		private UIKit.UITableView __mt_tblFeatures;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnChoosePhoto;
+		private UIKit.UIButton __mt_btnChoosePhoto;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnTakePhoto;
+		private UIKit.UIButton __mt_btnTakePhoto;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnPhotoRoll;
+		private UIKit.UIButton __mt_btnPhotoRoll;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -38,10 +38,10 @@ namespace Example_SharedResources.Screens.iPhone.Photos {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("tblFeatures")]
-		private MonoTouch.UIKit.UITableView tblFeatures {
+		[Foundation.Connect("tblFeatures")]
+		private UIKit.UITableView tblFeatures {
 			get {
-				this.__mt_tblFeatures = ((MonoTouch.UIKit.UITableView)(this.GetNativeField("tblFeatures")));
+				this.__mt_tblFeatures = ((UIKit.UITableView)(this.GetNativeField("tblFeatures")));
 				return this.__mt_tblFeatures;
 			}
 			set {
@@ -50,10 +50,10 @@ namespace Example_SharedResources.Screens.iPhone.Photos {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnChoosePhoto")]
-		private MonoTouch.UIKit.UIButton btnChoosePhoto {
+		[Foundation.Connect("btnChoosePhoto")]
+		private UIKit.UIButton btnChoosePhoto {
 			get {
-				this.__mt_btnChoosePhoto = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnChoosePhoto")));
+				this.__mt_btnChoosePhoto = ((UIKit.UIButton)(this.GetNativeField("btnChoosePhoto")));
 				return this.__mt_btnChoosePhoto;
 			}
 			set {
@@ -62,10 +62,10 @@ namespace Example_SharedResources.Screens.iPhone.Photos {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnTakePhoto")]
-		private MonoTouch.UIKit.UIButton btnTakePhoto {
+		[Foundation.Connect("btnTakePhoto")]
+		private UIKit.UIButton btnTakePhoto {
 			get {
-				this.__mt_btnTakePhoto = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnTakePhoto")));
+				this.__mt_btnTakePhoto = ((UIKit.UIButton)(this.GetNativeField("btnTakePhoto")));
 				return this.__mt_btnTakePhoto;
 			}
 			set {
@@ -74,10 +74,10 @@ namespace Example_SharedResources.Screens.iPhone.Photos {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnPhotoRoll")]
-		private MonoTouch.UIKit.UIButton btnPhotoRoll {
+		[Foundation.Connect("btnPhotoRoll")]
+		private UIKit.UIButton btnPhotoRoll {
 			get {
-				this.__mt_btnPhotoRoll = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnPhotoRoll")));
+				this.__mt_btnPhotoRoll = ((UIKit.UIButton)(this.GetNativeField("btnPhotoRoll")));
 				return this.__mt_btnPhotoRoll;
 			}
 			set {

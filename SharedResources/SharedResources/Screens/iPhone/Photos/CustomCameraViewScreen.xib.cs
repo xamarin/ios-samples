@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_SharedResources.Screens.iPhone.Photos
 {
@@ -61,7 +61,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 					// show the camera controls
 					imagePicker.ShowsCameraControls = true;
 			
-					//UILabel overlay = new UILabel (new System.Drawing.RectangleF (20, 100, 200, 30));
+					//UILabel overlay = new UILabel (new CoreGraphics.CGRect (20, 100, 200, 30));
 					//overlay.Text = "This is an overlay";
 				
 					//imagePicker.CameraOverlayView = overlay;
@@ -93,7 +93,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 			public override void Canceled (UIImagePickerController picker)
 			{
 				Console.WriteLine ("picker cancelled");
-				picker.DismissModalViewControllerAnimated (true);
+				picker.DismissModalViewController (true);
 			}
 						
 			public override void FinishedPickingMedia (UIImagePickerController picker, NSDictionary info)
@@ -144,7 +144,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 //					// get the cropping, if any
 //					try
 //					{
-//						RectangleF cropRectangle = (RectangleF)info[UIImagePickerController.CropRect];
+//						CGRect cropRectangle = (CGRect)info[UIImagePickerController.CropRect];
 //						if(cropRectangle != null)
 //						{
 //							// do something with the crop rectangle
@@ -165,7 +165,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 				
 				
 				// dismiss the picker
-				picker.DismissModalViewControllerAnimated (true);
+				picker.DismissModalViewController (true);
 			}			
 		}
 	}

@@ -11,19 +11,19 @@
 namespace Example_SharedResources.Screens.iPhone.Accelerometer {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("ShakeScreen")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("ShakeScreen")]
 	public partial class ShakeScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblShakeStatus;
+		private UIKit.UILabel __mt_lblShakeStatus;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_SharedResources.Screens.iPhone.Accelerometer {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblShakeStatus")]
-		private MonoTouch.UIKit.UILabel lblShakeStatus {
+		[Foundation.Connect("lblShakeStatus")]
+		private UIKit.UILabel lblShakeStatus {
 			get {
-				this.__mt_lblShakeStatus = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblShakeStatus")));
+				this.__mt_lblShakeStatus = ((UIKit.UILabel)(this.GetNativeField("lblShakeStatus")));
 				return this.__mt_lblShakeStatus;
 			}
 			set {

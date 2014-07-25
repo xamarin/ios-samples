@@ -11,19 +11,19 @@
 namespace Example_SharedResources.Screens.iPhone.FileSystem {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("FileSystemInfo")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("FileSystemInfo")]
 	public partial class FileSystemInfo {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblAppHomeDir;
+		private UIKit.UILabel __mt_lblAppHomeDir;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_SharedResources.Screens.iPhone.FileSystem {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblAppHomeDir")]
-		private MonoTouch.UIKit.UILabel lblAppHomeDir {
+		[Foundation.Connect("lblAppHomeDir")]
+		private UIKit.UILabel lblAppHomeDir {
 			get {
-				this.__mt_lblAppHomeDir = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblAppHomeDir")));
+				this.__mt_lblAppHomeDir = ((UIKit.UILabel)(this.GetNativeField("lblAppHomeDir")));
 				return this.__mt_lblAppHomeDir;
 			}
 			set {

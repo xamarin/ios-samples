@@ -11,21 +11,21 @@
 namespace Example_SharedResources.Screens.iPhone.Network {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("ActivityIndicatorScreen")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("ActivityIndicatorScreen")]
 	public partial class ActivityIndicatorScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UISwitch __mt_swtchActivityIndicator1;
+		private UIKit.UISwitch __mt_swtchActivityIndicator1;
 		
-		private MonoTouch.UIKit.UISwitch __mt_swtchActivityIndicator2;
+		private UIKit.UISwitch __mt_swtchActivityIndicator2;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace Example_SharedResources.Screens.iPhone.Network {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("swtchActivityIndicator1")]
-		private MonoTouch.UIKit.UISwitch swtchActivityIndicator1 {
+		[Foundation.Connect("swtchActivityIndicator1")]
+		private UIKit.UISwitch swtchActivityIndicator1 {
 			get {
-				this.__mt_swtchActivityIndicator1 = ((MonoTouch.UIKit.UISwitch)(this.GetNativeField("swtchActivityIndicator1")));
+				this.__mt_swtchActivityIndicator1 = ((UIKit.UISwitch)(this.GetNativeField("swtchActivityIndicator1")));
 				return this.__mt_swtchActivityIndicator1;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace Example_SharedResources.Screens.iPhone.Network {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("swtchActivityIndicator2")]
-		private MonoTouch.UIKit.UISwitch swtchActivityIndicator2 {
+		[Foundation.Connect("swtchActivityIndicator2")]
+		private UIKit.UISwitch swtchActivityIndicator2 {
 			get {
-				this.__mt_swtchActivityIndicator2 = ((MonoTouch.UIKit.UISwitch)(this.GetNativeField("swtchActivityIndicator2")));
+				this.__mt_swtchActivityIndicator2 = ((UIKit.UISwitch)(this.GetNativeField("swtchActivityIndicator2")));
 				return this.__mt_swtchActivityIndicator2;
 			}
 			set {

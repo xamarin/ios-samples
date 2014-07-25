@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.AssetsLibrary;
-using MonoTouch.Foundation;
+using UIKit;
+using AssetsLibrary;
+using Foundation;
 using System.Collections.Generic;
 
 namespace Example_SharedResources.Screens.iPhone.AVAssets
@@ -42,9 +42,9 @@ namespace Example_SharedResources.Screens.iPhone.AVAssets
 			
 			public AssetsDataSource (List<ALAsset> items) { this.items = items; }
 			
-			public override int NumberOfSections (UITableView tableView) { return 1; }
+			public override nint NumberOfSections (UITableView tableView) { return 1; }
 			
-			public override int RowsInSection (UITableView tableview, int section) 
+			public override nint RowsInSection (UITableView tableview, nint section) 
 			{ 
 				return items.Count; 
 			}
@@ -56,11 +56,11 @@ namespace Example_SharedResources.Screens.iPhone.AVAssets
 					cell = new UITableViewCell (UITableViewCellStyle.Subtitle, "AssetCell");
 				
 				// set the text
-				cell.TextLabel.Text = items[indexPath.Row].AssetType.ToString ();
-				cell.DetailTextLabel.Text = items[indexPath.Row].Date.ToString ();
+				cell.TextLabel.Text = items[(int)indexPath.Row].AssetType.ToString ();
+				cell.DetailTextLabel.Text = items[(int)indexPath.Row].Date.ToString ();
 				// set the image
-				if(items[indexPath.Row].Thumbnail != null)
-					cell.ImageView.Image = UIImage.FromImage(items[indexPath.Row].Thumbnail);
+				if(items[(int)indexPath.Row].Thumbnail != null)
+					cell.ImageView.Image = UIImage.FromImage(items[(int)indexPath.Row].Thumbnail);
 				
 				return cell;
 			}

@@ -11,23 +11,23 @@
 namespace Example_SharedResources.Screens.iPhone.Accelerometer {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("XYZDataScreen")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("XYZDataScreen")]
 	public partial class XYZDataScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblX;
+		private UIKit.UILabel __mt_lblX;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblY;
+		private UIKit.UILabel __mt_lblY;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblZ;
+		private UIKit.UILabel __mt_lblZ;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -36,10 +36,10 @@ namespace Example_SharedResources.Screens.iPhone.Accelerometer {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblX")]
-		private MonoTouch.UIKit.UILabel lblX {
+		[Foundation.Connect("lblX")]
+		private UIKit.UILabel lblX {
 			get {
-				this.__mt_lblX = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblX")));
+				this.__mt_lblX = ((UIKit.UILabel)(this.GetNativeField("lblX")));
 				return this.__mt_lblX;
 			}
 			set {
@@ -48,10 +48,10 @@ namespace Example_SharedResources.Screens.iPhone.Accelerometer {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblY")]
-		private MonoTouch.UIKit.UILabel lblY {
+		[Foundation.Connect("lblY")]
+		private UIKit.UILabel lblY {
 			get {
-				this.__mt_lblY = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblY")));
+				this.__mt_lblY = ((UIKit.UILabel)(this.GetNativeField("lblY")));
 				return this.__mt_lblY;
 			}
 			set {
@@ -60,10 +60,10 @@ namespace Example_SharedResources.Screens.iPhone.Accelerometer {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblZ")]
-		private MonoTouch.UIKit.UILabel lblZ {
+		[Foundation.Connect("lblZ")]
+		private UIKit.UILabel lblZ {
 			get {
-				this.__mt_lblZ = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblZ")));
+				this.__mt_lblZ = ((UIKit.UILabel)(this.GetNativeField("lblZ")));
 				return this.__mt_lblZ;
 			}
 			set {
