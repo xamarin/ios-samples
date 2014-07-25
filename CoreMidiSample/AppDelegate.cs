@@ -119,10 +119,10 @@ namespace CoreMidiSample
 					new StringElement ("Driver Owner", endpoint.DriverOwner),
 					new StringElement ("Manufacturer", endpoint.Manufacturer),
 					new StringElement ("MaxSysExSpeed", endpoint.MaxSysExSpeed.ToString ()),
-					new StringElement ("Network Session", endpoint.IsNetworkSession ? "yes" : "no"),
-					new StringElement ("Offline", endpoint.Offline ? "yes" : "no"),
+					new StringElement ("Network Session", endpoint.IsNetworkSession ? "yes" : "no")
 				})
 			};
+			try { s.Add (new StringElement ("Offline", endpoint.Offline ? "yes" : "no")); } catch {}
 			try { s.Add (new StringElement ("Receive Channels", endpoint.ReceiveChannels.ToString ())); } catch {}
 			try { s.Add (new StringElement ("Transmit Channels", endpoint.TransmitChannels.ToString ())); } catch {}
 			return root;
