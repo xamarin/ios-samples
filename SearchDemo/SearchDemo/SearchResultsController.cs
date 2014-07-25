@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Drawing;
 
 namespace SearchDemo
@@ -68,7 +68,7 @@ namespace SearchDemo
                 this.controller = controller;
             }
 
-            public override int RowsInSection (UITableView tableView, int section)
+            public override nint RowsInSection (UITableView tableView, nint section)
             {
                 return controller.searchResults.Count;
             }
@@ -83,14 +83,14 @@ namespace SearchDemo
                         cellId
                     );
                 
-                cell.TextLabel.Text = controller.searchResults [indexPath.Row].Title;
+				cell.TextLabel.Text = controller.searchResults [(int)indexPath.Row].Title;
                 
                 return cell;
             }
 
             public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
             {
-                var vc = new SearchItemViewController (){Item = controller.searchResults [indexPath.Row]};
+				var vc = new SearchItemViewController (){Item = controller.searchResults [(int)indexPath.Row]};
                 controller.NavigationController.PushViewController (vc, true);
             }
         }

@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace SearchDemo
 {
@@ -12,7 +12,7 @@ namespace SearchDemo
 	partial class SearchItemViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIWebView webView { get; set; }
+		UIKit.UIWebView webView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

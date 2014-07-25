@@ -5,7 +5,7 @@ using System.Net;
 using System.Linq;
 using System.Json;
 using System.Web;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace SearchDemo
 {
