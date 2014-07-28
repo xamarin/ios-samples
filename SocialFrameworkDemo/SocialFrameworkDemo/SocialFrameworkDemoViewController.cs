@@ -1,9 +1,9 @@
 using System;
 using System.Drawing;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.Social;
+using Foundation;
+using UIKit;
+using Social;
 
 namespace SocialFrameworkDemo
 {
