@@ -26,8 +26,8 @@
 
 using System;
 using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using System.Collections.Generic;
 
 namespace SimpleDrillDown {
@@ -67,18 +67,18 @@ namespace SimpleDrillDown {
 			}
 			
 			// Customize the number of sections in the table view.
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
 			
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				return Plays.Count;
 			}
 			
 			// Customize the appearance of table view cells.
-			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 			{
 				string cellIdentifier = "Cell";
 				var cell = tableView.DequeueReusableCell (cellIdentifier);
@@ -88,14 +88,14 @@ namespace SimpleDrillDown {
 				}
 				
 				// Set the title of the play as the text.
-				cell.TextLabel.Text = Plays [indexPath.Row].Title;
+				cell.TextLabel.Text = Plays [(int)indexPath.Row].Title;
 				return cell;
 			}
 
 			public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 			{
 				// Update the PlayView with the information from the selected play
-				PlayView.Play = Plays [indexPath.Row];
+				PlayView.Play = Plays [(int)indexPath.Row];
 				
 				// Make the PlayView the active View.
 				controller.NavigationController.PushViewController (PlayView, true);
