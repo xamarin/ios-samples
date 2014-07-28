@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.ObjCRuntime;
+using UIKit;
+using Foundation;
+using CoreGraphics;
+using ObjCRuntime;
 
 namespace SimpleCollectionView
 {
@@ -34,21 +34,21 @@ namespace SimpleCollectionView
 			};
 		}
 
-        public override int NumberOfSections (UICollectionView collectionView)
+        public override nint NumberOfSections (UICollectionView collectionView)
         {
             return 1;
         }
 
-        public override int GetItemsCount (UICollectionView collectionView, int section)
+        public override nint GetItemsCount (UICollectionView collectionView, nint section)
         {
             return animals.Count;
         }
 
-        public override UICollectionViewCell GetCell (UICollectionView collectionView, MonoTouch.Foundation.NSIndexPath indexPath)
+        public override UICollectionViewCell GetCell (UICollectionView collectionView, Foundation.NSIndexPath indexPath)
         {
             var animalCell = (AnimalCell)collectionView.DequeueReusableCell (animalCellId, indexPath);
 
-            var animal = animals [indexPath.Row];
+			var animal = animals [(int)indexPath.Row];
 
             animalCell.Image = animal.Image;
 
@@ -90,12 +90,12 @@ namespace SimpleCollectionView
             return true;
         }
 
-        public override bool CanPerformAction (UICollectionView collectionView, MonoTouch.ObjCRuntime.Selector action, NSIndexPath indexPath, NSObject sender)
+        public override bool CanPerformAction (UICollectionView collectionView, ObjCRuntime.Selector action, NSIndexPath indexPath, NSObject sender)
         {
             return true;
         }
 
-        public override void PerformAction (UICollectionView collectionView, MonoTouch.ObjCRuntime.Selector action, NSIndexPath indexPath, NSObject sender)
+        public override void PerformAction (UICollectionView collectionView, ObjCRuntime.Selector action, NSIndexPath indexPath, NSObject sender)
         {
             Console.WriteLine ("code to perform action");
         }
@@ -144,7 +144,7 @@ namespace SimpleCollectionView
         UIImageView imageView;
 
         [Export ("initWithFrame:")]
-        public AnimalCell (System.Drawing.RectangleF frame) : base (frame)
+        public AnimalCell (CoreGraphics.CGRect frame) : base (frame)
         {
             BackgroundView = new UIView{BackgroundColor = UIColor.Orange};
 
@@ -184,9 +184,9 @@ namespace SimpleCollectionView
         }
 
         [Export ("initWithFrame:")]
-        public Header (System.Drawing.RectangleF frame) : base (frame)
+        public Header (CoreGraphics.CGRect frame) : base (frame)
         {
-            label = new UILabel (){Frame = new System.Drawing.RectangleF (0,0,300,50), BackgroundColor = UIColor.Yellow};
+            label = new UILabel (){Frame = new CoreGraphics.CGRect (0,0,300,50), BackgroundColor = UIColor.Yellow};
             AddSubview (label);
         }
     }

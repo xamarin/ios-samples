@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace SimpleCollectionView
 {
@@ -24,7 +24,7 @@ namespace SimpleCollectionView
 
             // Flow Layout
             flowLayout = new UICollectionViewFlowLayout (){
-                HeaderReferenceSize = new System.Drawing.SizeF (100, 100),
+                HeaderReferenceSize = new CoreGraphics.CGSize (100, 100),
                 SectionInset = new UIEdgeInsets (20,20,20,20),
                 ScrollDirection = UICollectionViewScrollDirection.Vertical,
 				MinimumInteritemSpacing = 50, // minimum spacing between cells
@@ -33,7 +33,7 @@ namespace SimpleCollectionView
 
             // Line Layout
             lineLayout = new LineLayout (){
-                HeaderReferenceSize = new System.Drawing.SizeF (160, 100),
+                HeaderReferenceSize = new CoreGraphics.CGSize (160, 100),
                 ScrollDirection = UICollectionViewScrollDirection.Horizontal
             };
 

@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.CoreAnimation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using CoreAnimation;
+using UIKit;
 
 namespace SimpleCollectionView
 {
 	public class CircleLayout : UICollectionViewLayout
 	{
 		const float ItemSize = 70.0f;
-		int cellCount = 20;
-		float radius;
-		PointF center;
+		nint cellCount = 20;
+		nfloat radius;
+		CGPoint center;
 
 		static NSString myDecorationViewId = new NSString ("MyDecorationView");
 
@@ -25,19 +25,19 @@ namespace SimpleCollectionView
 		{
 			base.PrepareLayout ();
 
-			SizeF size = CollectionView.Frame.Size;
+			CGSize size = CollectionView.Frame.Size;
 			cellCount = CollectionView.NumberOfItemsInSection (0);
-			center = new PointF (size.Width / 2.0f, size.Height / 2.0f);
-			radius = Math.Min (size.Width, size.Height) / 2.5f;	
+			center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
+			radius = (nfloat)Math.Min (size.Width, size.Height) / 2.5f;	
 		}
 			
-		public override SizeF CollectionViewContentSize {
+		public override CGSize CollectionViewContentSize {
 			get {
 				return CollectionView.Frame.Size;
 			}
 		}
 
-        public override bool ShouldInvalidateLayoutForBoundsChange (RectangleF newBounds)
+        public override bool ShouldInvalidateLayoutForBoundsChange (CGRect newBounds)
         {
             return true;
         }
@@ -45,13 +45,13 @@ namespace SimpleCollectionView
 		public override UICollectionViewLayoutAttributes LayoutAttributesForItem (NSIndexPath path)
 		{
 			UICollectionViewLayoutAttributes attributes = UICollectionViewLayoutAttributes.CreateForCell (path);
-			attributes.Size = new SizeF (ItemSize, ItemSize);
-			attributes.Center = new PointF (center.X + radius * (float)Math.Cos (2 * path.Row * Math.PI / cellCount),
+			attributes.Size = new CGSize (ItemSize, ItemSize);
+			attributes.Center = new CGPoint (center.X + radius * (float)Math.Cos (2 * path.Row * Math.PI / cellCount),
 			                                center.Y + radius * (float)Math.Sin (2 * path.Row * Math.PI / cellCount));
 			return attributes;
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (RectangleF rect)
+		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			var attributes = new UICollectionViewLayoutAttributes [cellCount + 1];
 
@@ -74,7 +74,7 @@ namespace SimpleCollectionView
 	public class MyDecorationView : UICollectionReusableView
 	{
 		[Export ("initWithFrame:")]
-		public MyDecorationView (System.Drawing.RectangleF frame) : base (frame)
+		public MyDecorationView (CoreGraphics.CGRect frame) : base (frame)
 		{
 			BackgroundColor = UIColor.Red;
 		}

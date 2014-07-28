@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace SimpleCollectionView
 {
@@ -11,7 +11,7 @@ namespace SimpleCollectionView
         {
         }
 
-        public override bool ShouldInvalidateLayoutForBoundsChange (RectangleF newBounds)
+        public override bool ShouldInvalidateLayoutForBoundsChange (CGRect newBounds)
         {
             return true;
         }
@@ -21,12 +21,12 @@ namespace SimpleCollectionView
             return base.LayoutAttributesForItem (path);
         }
 
-        public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (RectangleF rect)
+        public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
         {
             return base.LayoutAttributesForElementsInRect (rect);
         }
 
-//        public override SizeF CollectionViewContentSize {
+//        public override CGSize CollectionViewContentSize {
 //            get {
 //                return CollectionView.Bounds.Size;
 //            }       

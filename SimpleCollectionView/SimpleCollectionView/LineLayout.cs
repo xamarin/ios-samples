@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreAnimation;
+using CoreGraphics;
+using Foundation;
+using UIKit;
+
+using CoreAnimation;
 
 namespace SimpleCollectionView
 {
@@ -15,28 +15,28 @@ namespace SimpleCollectionView
 		
 		public LineLayout ()
 		{	
-			ItemSize = new SizeF (ITEM_SIZE, ITEM_SIZE);
+			ItemSize = new CGSize (ITEM_SIZE, ITEM_SIZE);
 			ScrollDirection = UICollectionViewScrollDirection.Horizontal;
             SectionInset = new UIEdgeInsets (400,0,400,0);
 			MinimumLineSpacing = 50.0f;		
 		}
 
-		public override bool ShouldInvalidateLayoutForBoundsChange (RectangleF newBounds)
+		public override bool ShouldInvalidateLayoutForBoundsChange (CGRect newBounds)
 		{
 			return true;
 		}
 		
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (RectangleF rect)
+		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			var array = base.LayoutAttributesForElementsInRect (rect);
-            var visibleRect = new RectangleF (CollectionView.ContentOffset, CollectionView.Bounds.Size);
+            var visibleRect = new CGRect (CollectionView.ContentOffset, CollectionView.Bounds.Size);
 						
 			foreach (var attributes in array) {
 				if (attributes.Frame.IntersectsWith (rect)) {
-					float distance = visibleRect.GetMidX () - attributes.Center.X;
-					float normalizedDistance = distance / ACTIVE_DISTANCE;
+					nfloat distance = visibleRect.GetMidX () - attributes.Center.X;
+					nfloat normalizedDistance = distance / ACTIVE_DISTANCE;
 					if (Math.Abs (distance) < ACTIVE_DISTANCE) {
-						float zoom = 1 + ZOOM_FACTOR * (1 - Math.Abs (normalizedDistance));
+						nfloat zoom = (nfloat)(1 + ZOOM_FACTOR * (1 - Math.Abs (normalizedDistance)));
 						attributes.Transform3D = CATransform3D.MakeScale (zoom, zoom, 1.0f);
 						attributes.ZIndex = 1;											
 					}
@@ -45,19 +45,19 @@ namespace SimpleCollectionView
 			return array;
 		}
 		
-		public override PointF TargetContentOffset (PointF proposedContentOffset, PointF scrollingVelocity)
+		public override CGPoint TargetContentOffset (CGPoint proposedContentOffset, CGPoint scrollingVelocity)
 		{
-			float offSetAdjustment = float.MaxValue;
-			float horizontalCenter = (float)(proposedContentOffset.X + (this.CollectionView.Bounds.Size.Width / 2.0));
-			RectangleF targetRect = new RectangleF (proposedContentOffset.X, 0.0f, this.CollectionView.Bounds.Size.Width, this.CollectionView.Bounds.Size.Height);
+			nfloat offSetAdjustment = float.MaxValue;
+			nfloat horizontalCenter = (float)(proposedContentOffset.X + (this.CollectionView.Bounds.Size.Width / 2.0));
+			CGRect targetRect = new CGRect (proposedContentOffset.X, 0.0f, this.CollectionView.Bounds.Size.Width, this.CollectionView.Bounds.Size.Height);
 			var array = base.LayoutAttributesForElementsInRect (targetRect);
 			foreach (var layoutAttributes in array) {
-				float itemHorizontalCenter = layoutAttributes.Center.X;
+				nfloat itemHorizontalCenter = layoutAttributes.Center.X;
 				if (Math.Abs (itemHorizontalCenter - horizontalCenter) < Math.Abs (offSetAdjustment)) {
 					offSetAdjustment = itemHorizontalCenter - horizontalCenter;
 				}
 			}
-            return new PointF (proposedContentOffset.X + offSetAdjustment, proposedContentOffset.Y);
+            return new CGPoint (proposedContentOffset.X + offSetAdjustment, proposedContentOffset.Y);
 		}
 
 	}
