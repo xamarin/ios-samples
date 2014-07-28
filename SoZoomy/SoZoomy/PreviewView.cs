@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
-using MonoTouch.AVFoundation;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using AVFoundation;
+using Foundation;
+using ObjCRuntime;
+using UIKit;
 
 namespace SoZoomy
 {
@@ -22,7 +22,7 @@ namespace SoZoomy
 		{
 		}
 
-		public PreviewView (RectangleF frame) : base (frame)
+		public PreviewView (CGRect frame) : base (frame)
 		{
 		}
 */

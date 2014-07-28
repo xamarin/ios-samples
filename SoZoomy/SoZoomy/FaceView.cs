@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 
 namespace SoZoomy
 {
@@ -15,12 +15,12 @@ namespace SoZoomy
 			ExclusiveTouch = true;
 		}
 
-		public FaceView (RectangleF frame) : base (frame)
+		public FaceView (CGRect frame) : base (frame)
 		{
 			ExclusiveTouch = true;
 		}
 
-		public override void TouchesEnded (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesEnded (Foundation.NSSet touches, UIEvent evt)
 		{
 			if (Bounds.Contains ((touches.AnyObject as UITouch).LocationInView (this))) {
 				base.TouchesEnded (touches, evt);

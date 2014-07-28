@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace SoZoomy
@@ -13,19 +13,19 @@ namespace SoZoomy
 	partial class ViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton memeButton { get; set; }
+		UIKit.UIButton memeButton { get; set; }
 
 		[Outlet]
 		SoZoomy.PreviewView previewView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider slider { get; set; }
+		UIKit.UISlider slider { get; set; }
 
 		[Action ("meme:")]
-		partial void meme (MonoTouch.Foundation.NSObject sender);
+		partial void meme (Foundation.NSObject sender);
 
 		[Action ("sliderChanged:")]
-		partial void sliderChanged (MonoTouch.Foundation.NSObject sender);
+		partial void sliderChanged (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
