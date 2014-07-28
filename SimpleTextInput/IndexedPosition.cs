@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
 using System.Text;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreText;
+using Foundation;
+using UIKit;
+using ObjCRuntime;
+
+using CoreText;
 
 namespace SimpleTextInput
 {

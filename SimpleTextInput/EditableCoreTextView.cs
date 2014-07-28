@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
 using System.Text;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreText;
+using Foundation;
+using UIKit;
+using ObjCRuntime;
+
+using CoreText;
 
 namespace SimpleTextInput
 {
@@ -26,7 +26,7 @@ namespace SimpleTextInput
 		public delegate void ViewWillEditDelegate (EditableCoreTextView editableCoreTextView);
 		public event ViewWillEditDelegate ViewWillEdit;
 		
-		public EditableCoreTextView (RectangleF frame)
+		public EditableCoreTextView (CGRect frame)
 			: base (frame)
 		{
 			// Add tap gesture recognizer to let the user enter editing mode
@@ -94,7 +94,7 @@ namespace SimpleTextInput
 			} else {
 				// Already in editing mode, set insertion point (via selectedTextRange)
 				// Find and update insertion point in underlying SimpleCoreTextView
-				int index = textView.ClosestIndex (tap.LocationInView (textView));
+				nint index = textView.ClosestIndex (tap.LocationInView (textView));
 				textView.MarkedTextRange = new NSRange (NSRange.NotFound, 0);
 				textView.SelectedTextRange = new NSRange (index, 0);
 			}
@@ -129,7 +129,8 @@ namespace SimpleTextInput
 		string TextInRange (UITextRange range)
 		{
 			IndexedRange r = (IndexedRange) range;
-			return text.ToString ().Substring (r.Range.Location, r.Range.Length);
+	
+			return text.ToString ().Substring ((int)r.Range.Location, (int)r.Range.Length);
 		}
 
 		// UITextInput required method - called by text system to replace the given
@@ -150,8 +151,8 @@ namespace SimpleTextInput
 			}
 			
 			// Now replace characters in text storage
-			this.text.Remove (r.Range.Location, r.Range.Length);
-			this.text.Insert (r.Range.Location, text);
+			this.text.Remove ((int)r.Range.Location, (int)r.Range.Length);
+			this.text.Insert ((int)r.Range.Location, text);
 			
 			// Update underlying SimpleCoreTextView
 			textView.Text = this.text.ToString ();
@@ -194,20 +195,20 @@ namespace SimpleTextInput
 			
 			if (markedTextRange.Location != NSRange.NotFound) {
 				// Replace characters in text storage and update markedText range length
-				text.Remove (markedTextRange.Location, markedTextRange.Length);
-				text.Insert (markedTextRange.Location, markedText);
+				text.Remove ((int)markedTextRange.Location, (int)markedTextRange.Length);
+				text.Insert ((int)markedTextRange.Location, markedText);
 				markedTextRange.Length = markedText.Length;
 			} else if (selectedNSRange.Length > 0) {
 				// There currently isn't a marked text range, but there is a selected range,
 				// so replace text storage at selected range and update markedTextRange.
-				text.Remove (selectedNSRange.Location, selectedNSRange.Length);
-				text.Insert (selectedNSRange.Location, markedText);
+				text.Remove ((int)selectedNSRange.Location, (int)selectedNSRange.Length);
+				text.Insert ((int)selectedNSRange.Location, markedText);
 				markedTextRange.Location = selectedNSRange.Location;
 				markedTextRange.Length = markedText.Length;
 			} else {
 				// There currently isn't marked or selected text ranges, so just insert
 				// given text into storage and update markedTextRange.
-				text.Insert (selectedNSRange.Location, markedText);
+				text.Insert ((int)selectedNSRange.Location, markedText);
 				markedTextRange.Location = selectedNSRange.Location;
 				markedTextRange.Length = markedText.Length;
 		    }
@@ -372,7 +373,7 @@ namespace SimpleTextInput
 		{
 			// Note that this sample assumes LTR text direction
 			IndexedRange r = (IndexedRange) range;
-			int pos = r.Range.Location;
+			nint pos = r.Range.Location;
 			
 			// For this sample, we just return the extent of the given range if the
 			// given direction is "forward" in a LTR context (UITextLayoutDirectionRight
@@ -390,7 +391,7 @@ namespace SimpleTextInput
 			
 			// Return text position using our UITextPosition implementation.
 			// Note that position is not currently checked against document range.
-			return IndexedPosition.GetPosition (pos);
+			return IndexedPosition.GetPosition ((int)pos);
 		}
 
 		// UITextInput protocol required method - Return a text range from a given text position 
@@ -438,7 +439,7 @@ namespace SimpleTextInput
 		// UITextInput protocol required method - Return the first rectangle that encloses 
 		// a range of text in a document.
 		[Export ("firstRectForRange:")]
-		RectangleF FirstRect (UITextRange range)
+		CGRect FirstRect (UITextRange range)
 		{
 			// FIXME: the Objective-C code doesn't get a null range
 			// This is the reason why we don't get the autocorrection suggestions
@@ -446,7 +447,7 @@ namespace SimpleTextInput
 			// Possibly due to http://bugzilla.xamarin.com/show_bug.cgi?id=265
 			IndexedRange r = (IndexedRange) (range ?? IndexedRange.GetRange (new NSRange (0, 1)));
 			// Use underlying SimpleCoreTextView to get rect for range
-			RectangleF rect = textView.FirstRect (r.Range);
+			CGRect rect = textView.FirstRect (r.Range);
 			// Convert rect to our view coordinates
 			return ConvertRectFromView (rect, textView);
 		}
@@ -454,7 +455,7 @@ namespace SimpleTextInput
 		// UITextInput protocol required method - Return a rectangle used to draw the caret
 		// at a given insertion point.
 		[Export ("caretRectForPosition:")]
-		RectangleF CaretRect (UITextPosition position)
+		CGRect CaretRect (UITextPosition position)
 		{
 			// FIXME: the Objective-C code doesn't get a null position
 			// This is the reason why we don't get the autocorrection suggestions
@@ -462,7 +463,7 @@ namespace SimpleTextInput
 			// Possibly due to http://bugzilla.xamarin.com/show_bug.cgi?id=265
 			IndexedPosition pos = (IndexedPosition) (position ?? IndexedPosition.GetPosition (0));
 			// Get caret rect from underlying SimpleCoreTextView
-			RectangleF rect = textView.CaretRect (pos.Index);
+			CGRect rect = textView.CaretRect (pos.Index);
 			// Convert rect to our view coordinates
 			return ConvertRectFromView (rect, textView);
 		}
@@ -476,7 +477,7 @@ namespace SimpleTextInput
 		// UITextInput protocol required method - Return the position in a document that 
 		// is closest to a specified point. 
 		[Export ("closestPositionToPoint:")]
-		UITextPosition ClosestPosition (PointF point)
+		UITextPosition ClosestPosition (CGPoint point)
 		{
 			// Not implemented in this sample.  Could utilize underlying 
 			// SimpleCoreTextView:closestIndexToPoint:point
@@ -486,7 +487,7 @@ namespace SimpleTextInput
 		// UITextInput protocol required method - Return the position in a document that 
 		// is closest to a specified point in a given range.
 		[Export ("closestPositionToPoint:withinRange:")]
-		UITextPosition ClosestPosition (PointF point, UITextRange range)
+		UITextPosition ClosestPosition (CGPoint point, UITextRange range)
 		{
 			// Not implemented in this sample.  Could utilize underlying 
 			// SimpleCoreTextView:closestIndexToPoint:point
@@ -496,7 +497,7 @@ namespace SimpleTextInput
 		// UITextInput protocol required method - Return the character or range of 
 		// characters that is at a given point in a document.
 		[Export ("characterRangeAtPoint:")]
-		UITextRange CharacterRange (PointF point)
+		UITextRange CharacterRange (CGPoint point)
 		{
 			// Not implemented in this sample.  Could utilize underlying 
 			// SimpleCoreTextView:closestIndexToPoint:point
@@ -534,20 +535,20 @@ namespace SimpleTextInput
 			// these ranges and acts accordingly.
 			if (markedTextRange.Location != NSRange.NotFound) {
 				// There is marked text -- replace marked text with user-entered text
-				this.text.Remove (markedTextRange.Location, markedTextRange.Length);
-				this.text.Insert (markedTextRange.Location, text);
+				this.text.Remove ((int)markedTextRange.Location, (int)markedTextRange.Length);
+				this.text.Insert ((int)markedTextRange.Location, text);
 				selectedNSRange.Location = markedTextRange.Location + text.Length;
 				selectedNSRange.Length = 0;
 				markedTextRange = new NSRange (NSRange.NotFound, 0);
 			} else if (selectedNSRange.Length > 0) {
 				// Replace selected text with user-entered text
-				this.text.Remove (selectedNSRange.Location, selectedNSRange.Length);
-				this.text.Insert (selectedNSRange.Location, text);
+				this.text.Remove ((int)selectedNSRange.Location, (int)selectedNSRange.Length);
+				this.text.Insert ((int)selectedNSRange.Location, text);
 				selectedNSRange.Length = 0;
 				selectedNSRange.Location += text.Length;
 			} else {
 				// Insert user-entered text at current insertion point
-				this.text.Insert (selectedNSRange.Location, text);
+				this.text.Insert ((int)selectedNSRange.Location, text);
 				selectedNSRange.Location += text.Length;
 			}
 			
@@ -571,19 +572,19 @@ namespace SimpleTextInput
 			// these ranges and acts accordingly.
 			if (markedTextRange.Location != NSRange.NotFound) {
 				// There is marked text, so delete it
-				text.Remove (markedTextRange.Location, markedTextRange.Length);
+				text.Remove ((int)markedTextRange.Location, (int)markedTextRange.Length);
 				selectedNSRange.Location = markedTextRange.Location;
 				selectedNSRange.Length = 0;
 				markedTextRange = new NSRange (NSRange.NotFound, 0);
 			} else if (selectedNSRange.Length > 0) {
 				// Delete the selected text
-				text.Remove (selectedNSRange.Location, selectedNSRange.Length);
+				text.Remove ((int)selectedNSRange.Location, (int)selectedNSRange.Length);
 				selectedNSRange.Length = 0;
 			} else if (selectedNSRange.Location > 0) {
 				// Delete one char of text at the current insertion point
 				selectedNSRange.Location--;
 				selectedNSRange.Length = 1;
-				text.Remove (selectedNSRange.Location, selectedNSRange.Length);
+				text.Remove ((int)selectedNSRange.Location, (int)selectedNSRange.Length);
 				selectedNSRange.Length = 0;
 			}
 			

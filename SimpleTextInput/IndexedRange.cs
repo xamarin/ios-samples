@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
 using System.Text;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreText;
+using Foundation;
+using UIKit;
+using ObjCRuntime;
+
+using CoreText;
 
 namespace SimpleTextInput
 {
@@ -28,13 +28,13 @@ namespace SimpleTextInput
 		
 		public override UITextPosition start {
 			get {
-				return IndexedPosition.GetPosition (Range.Location);
+				return IndexedPosition.GetPosition ((int)Range.Location);
 			}
 		}
 		
 		public override UITextPosition end {
 			get {
-				return IndexedPosition.GetPosition (Range.Location + Range.Length);
+				return IndexedPosition.GetPosition ((int)(Range.Location + Range.Length));
 			}
 		}
 		
