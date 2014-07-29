@@ -2,11 +2,11 @@ using System;
 using System.Drawing;
 using System.Collections.Generic;
 
-using MonoTouch.UIKit;
-using MonoTouch.GLKit;
-using MonoTouch.CoreMotion;
-using MonoTouch.Foundation;
-using MonoTouch.OpenGLES;
+using UIKit;
+using GLKit;
+using CoreMotion;
+using Foundation;
+using OpenGLES;
 
 using OpenTK.Graphics.ES20;
 using OpenTK;
@@ -243,7 +243,7 @@ namespace Stars
 
 			var r = dm.Attitude.RotationMatrix;
 
-			float aspect = Math.Abs (View.Bounds.Size.Width / View.Bounds.Size.Height);
+			float aspect = (float)Math.Abs (View.Bounds.Size.Width / View.Bounds.Size.Height);
 			var projectionMatrix = Matrix4.CreatePerspectiveFieldOfView (MathHelper.DegreesToRadians (65.0f), aspect, NearZ, FarZ);
 
 			Matrix4 baseModelViewMatrix = new Matrix4 ((float) r.m11, (float) r.m21, (float) r.m31, 0,
