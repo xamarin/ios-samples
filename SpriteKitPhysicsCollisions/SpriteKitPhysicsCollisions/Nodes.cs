@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.SpriteKit;
-using MonoTouch.UIKit;
+using CoreGraphics;
+
+using Foundation;
+using SpriteKit;
+using UIKit;
 
 namespace SpriteKitPhysicsCollisions {
 
@@ -20,7 +20,7 @@ namespace SpriteKitPhysicsCollisions {
 
 		const float defaultSize = 18f;
 
-		public AsteroidNode (PointF initialPosition, float size = defaultSize)
+		public AsteroidNode (CGPoint initialPosition, float size = defaultSize)
 		{
 			var path = new CGPath ();
 			path.AddArc (0, 0, size, 0, (float)Math.PI * 2f, true);
@@ -41,7 +41,7 @@ namespace SpriteKitPhysicsCollisions {
 
 		const float defaultSize = 64f;
 
-		public PlanetNode (PointF initialPosition, float size = defaultSize)
+		public PlanetNode (CGPoint initialPosition, float size = defaultSize)
 		{
 			var path = new CGPath ();
 			path.AddArc (0, 0, size, 0, (float)Math.PI * 2f, true);
@@ -69,7 +69,7 @@ namespace SpriteKitPhysicsCollisions {
 		public ArchiveBasedNode (IntPtr template) : base (template)
 		{
 			// calling the base .ctor with the Handle of the Copy will add an extra Retain
-			Release ();
+			//Release ();
 		}
 	}
 
@@ -90,7 +90,7 @@ namespace SpriteKitPhysicsCollisions {
 			template.PhysicsBody = body;
 		}
 
-		public MissileNode (SKNode target, PointF initialPosition) : base ((template as NSObject).Copy ().Handle)
+		public MissileNode (SKNode target, CGPoint initialPosition) : base ((template as NSObject).Copy ().Handle)
 		{
 			TargetNode = target;
 			Position = initialPosition;
@@ -103,7 +103,7 @@ namespace SpriteKitPhysicsCollisions {
 
 		static SKEmitterNode template = UnarchiveNode ("explosion", "sks");
 
-		public ExplosionNode (SKNode target, PointF initialPosition, double duration = defaultDuration) : 
+		public ExplosionNode (SKNode target, CGPoint initialPosition, double duration = defaultDuration) : 
 			base ((template as NSObject).Copy ().Handle)
 		{
 			TargetNode = target;
@@ -142,7 +142,7 @@ namespace SpriteKitPhysicsCollisions {
 		static ExhaustNode ()
 		{
 			template = UnarchiveNode ("exhaust", "sks");
-			template.Position = new PointF (0f, -40f);
+			template.Position = new CGPoint (0f, -40f);
 			template.Name = "exhaust";
 			template.ParticleAlpha = IdleAlpha;
 		}

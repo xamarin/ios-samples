@@ -1,7 +1,7 @@
 using System;
-//using MonoTouch.Foundation;
-using MonoTouch.SpriteKit;
-using MonoTouch.UIKit;
+//using Foundation;
+using SpriteKit;
+using UIKit;
 
 namespace SpriteKitPhysicsCollisions {
 

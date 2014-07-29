@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.SpriteKit;
-using MonoTouch.UIKit;
+using CoreGraphics;
+
+using Foundation;
+using SpriteKit;
+using UIKit;
 
 namespace SpriteKitPhysicsCollisions {
 
@@ -15,31 +15,31 @@ namespace SpriteKitPhysicsCollisions {
 		const float shipChunkMinimumSpeed = 300f;
 		const float shipChunkMaximumSpeed = 750f;
 
-		float shipChunkDispersion = 30f;
-		int numberOfChunks = 30;
-		float removeShipTime = 0.35f;
+		nfloat shipChunkDispersion = 30f;
+		nint numberOfChunks = 30;
+		nfloat removeShipTime = 0.35f;
 
-		float mainEngineThrust = 0.12f;
-		float reverseThrust = 0.03f;
-		float lateralThrust = 0.01f;
-		float firingInterval = 0.1f;
-		float missileLaunchDistance = 45f;
-		float missileLaunchImpulse = 0.5f;
+		nfloat mainEngineThrust = 0.12f;
+		nfloat reverseThrust = 0.03f;
+		nfloat lateralThrust = 0.01f;
+		nfloat firingInterval = 0.1f;
+		nfloat missileLaunchDistance = 45f;
+		nfloat missileLaunchImpulse = 0.5f;
 
 		ExhaustNode exhaustNode;
 		SKEmitterNode visibleDamageNode;
-		float engineEngagedAlpha;
+		nfloat engineEngagedAlpha;
 		double timeLastFiredMissile;
 	
-		int health;
+		nint health;
 
 		static Random rand = new Random ();
-		static float myRand (float low, float high)
+		static nfloat myRand (nfloat low, nfloat high)
 		{
 			return (float)rand.NextDouble () * (high - low) + low;
 		}
 
-		public ShipSprite (PointF initialPosition)
+		public ShipSprite (CGPoint initialPosition)
 			: base (NSBundle.MainBundle.PathForResource ("spaceship", "png"))
 		{
 			CGPath boundingPath = new CGPath ();
@@ -105,9 +105,9 @@ namespace SpriteKitPhysicsCollisions {
 		void Explode ()
 		{
 			for (int i = 0; i < numberOfChunks; i++) {
-				float angle = myRand (0, (float) Math.PI * 2);
-				float speed = myRand (shipChunkMinimumSpeed, shipChunkMaximumSpeed);
-				var position = new PointF (myRand (Position.X - shipChunkDispersion, Position.Y + shipChunkDispersion),
+				nfloat angle = myRand (0, (nfloat) Math.PI * 2);
+				nfloat speed = myRand (shipChunkMinimumSpeed, shipChunkMaximumSpeed);
+				var position = new CGPoint (myRand (Position.X - shipChunkDispersion, Position.Y + shipChunkDispersion),
 				                           myRand (Position.Y - shipChunkDispersion, Position.Y + shipChunkDispersion));
 				var explosion = new ExplosionNode (Scene, position);
 				var body = SKPhysicsBody.BodyWithCircleOfRadius (0.25f);
@@ -125,13 +125,13 @@ namespace SpriteKitPhysicsCollisions {
 			));
 		}
 
-		public float ShipOrientation {
+		public nfloat ShipOrientation {
 			get {
 				return ZRotation + (float)Math.PI / 2;
 			}
 		}
 
-		public float ShipExhaustAngle {
+		public nfloat ShipExhaustAngle {
 			get {
 				return ZRotation - (float)Math.PI / 2;
 			}
@@ -139,7 +139,7 @@ namespace SpriteKitPhysicsCollisions {
 
 		public void ActivateMainEngine ()
 		{
-			float shipDirection = ShipOrientation;
+			nfloat shipDirection = ShipOrientation;
 			PhysicsBody.ApplyImpulse (new CGVector (mainEngineThrust * (float) Math.Cos (shipDirection),
 				mainEngineThrust * (float) Math.Sin (shipDirection)));
 			ExhaustNode.ParticleAlpha = engineEngagedAlpha;
@@ -175,11 +175,11 @@ namespace SpriteKitPhysicsCollisions {
 			if (timeSinceLastFired > firingInterval) {
 				timeLastFiredMissile = currentTime;
 				// avoid duplicating costly math ops
-				float shipDirection = ShipOrientation;
-				float cos = (float) Math.Cos (shipDirection);
-				float sin = (float) Math.Sin (shipDirection);
+				nfloat shipDirection = ShipOrientation;
+				nfloat cos = (nfloat) Math.Cos (shipDirection);
+				nfloat sin = (nfloat) Math.Sin (shipDirection);
 
-				var position = new PointF (Position.X + missileLaunchDistance * cos,
+				var position = new CGPoint (Position.X + missileLaunchDistance * cos,
 					Position.Y + missileLaunchDistance * sin);
 				SKNode missile = new MissileNode (this, position);
 				Scene.AddChild (missile);
