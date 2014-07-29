@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.SpriteKit;
-using MonoTouch.UIKit;
+using CoreGraphics;
+
+using Foundation;
+using SpriteKit;
+using UIKit;
 
 namespace SpriteTour {
 
@@ -19,7 +19,7 @@ namespace SpriteTour {
 			AddAnchorGrid ();
 			AddAnimatedAnchor ();
 			Scene.AddDescription ("The dots mark the actual position of each sprite node", 
-				new PointF (Scene.Frame.GetMidX (), 100));
+				new CGPoint (Scene.Frame.GetMidX (), 100));
 		}
 
 		void AddAnchorGrid ()
@@ -28,8 +28,8 @@ namespace SpriteTour {
 				for (int y = 0; y <= 4; y++) {
 					SKSpriteNode sprite = new SKSpriteNode ("Art/rocket.png") {
 						Scale = 0.25f,
-						AnchorPoint = new PointF (0.25f * x, 0.25f * y),
-						Position = new PointF (Scene.Frame.GetMidX () - 400 + 100 * x, 
+						AnchorPoint = new CGPoint (0.25f * x, 0.25f * y),
+						Position = new CGPoint (Scene.Frame.GetMidX () - 400 + 100 * x, 
 						                       Scene.Frame.GetMidY () - 200 + 100 * y)
 					};
 					Scene.AddChild (sprite);
@@ -55,8 +55,8 @@ namespace SpriteTour {
 		void AddAnimatedAnchor ()
 		{
 			SKSpriteNode animatedSprite = new SKSpriteNode ("Art/rocket.png") {
-				Position = new PointF (Scene.Frame.GetMidX () + 200, Scene.Frame.GetMidY ()),
-				AnchorPoint = PointF.Empty
+				Position = new CGPoint (Scene.Frame.GetMidX () + 200, Scene.Frame.GetMidY ()),
+				AnchorPoint = CGPoint.Empty
 			};
 			Scene.AddChild (animatedSprite);
 			AddAnchorDotToSprite (animatedSprite);
@@ -67,19 +67,19 @@ namespace SpriteTour {
 		SKAction NewAnimateAnchorAction ()
 		{
 			SKAction moveAnchorRight = SKAction.CustomActionWithDuration (1.0f, (node, elapsedTime) => {
-				(node as SKSpriteNode).AnchorPoint = new PointF (elapsedTime, 0.0f);
+				(node as SKSpriteNode).AnchorPoint = new CGPoint (elapsedTime, 0.0f);
 			});
 
 			SKAction moveAnchorUp = SKAction.CustomActionWithDuration (1.0f, (node, elapsedTime) => {
-				(node as SKSpriteNode).AnchorPoint = new PointF (1.0f, elapsedTime);
+				(node as SKSpriteNode).AnchorPoint = new CGPoint (1.0f, elapsedTime);
 			});
 
 			SKAction moveAnchorLeft = SKAction.CustomActionWithDuration (1.0f, (node, elapsedTime) => {
-				(node as SKSpriteNode).AnchorPoint = new PointF(1.0f - elapsedTime, 1.0f);
+				(node as SKSpriteNode).AnchorPoint = new CGPoint(1.0f - elapsedTime, 1.0f);
 			});
 
 			SKAction moveAnchorDown = SKAction.CustomActionWithDuration (1.0f, (node, elapsedTime) => {
-				(node as SKSpriteNode).AnchorPoint = new PointF (0.0f, 1.0f - elapsedTime);
+				(node as SKSpriteNode).AnchorPoint = new CGPoint (0.0f, 1.0f - elapsedTime);
 			});
 
 			var sequence = SKAction.Sequence (moveAnchorRight, moveAnchorUp, moveAnchorLeft, moveAnchorDown);

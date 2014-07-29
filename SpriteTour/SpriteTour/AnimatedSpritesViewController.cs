@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.SpriteKit;
+using CoreGraphics;
+
+using Foundation;
+using SpriteKit;
 
 namespace SpriteTour {
 
@@ -19,7 +19,7 @@ namespace SpriteTour {
 			SKTexture[] walkFrames = LoadFrames ("Art/warrior_walk_", 28);
 
 			SKSpriteNode sprite = new SKSpriteNode (walkFrames [0]) {
-				Position = new PointF (Scene.Frame.GetMidX (), Scene.Frame.GetMidY ())
+				Position = new CGPoint (Scene.Frame.GetMidX (), Scene.Frame.GetMidY ())
 			};
 			Scene.AddChild (sprite);
 
@@ -28,7 +28,7 @@ namespace SpriteTour {
 			sprite.RunAction (SKAction.RepeatActionForever (animation));
 
 			Scene.AddDescription ("This sprite is animating through a series of texture images.",
-				new PointF (Scene.Frame.GetMidX (), 100));
+				new CGPoint (Scene.Frame.GetMidX (), 100));
 		}
 
 		SKTexture [] LoadFrames (string baseImageName, int frameCount)
