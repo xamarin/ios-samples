@@ -1,11 +1,11 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AVFoundation;
+using CoreGraphics;
+using Foundation;
+using UIKit;
+using AVFoundation;
 using System.Diagnostics;
 using System.IO;
-using MonoTouch.CoreFoundation;
+using CoreFoundation;
 
 namespace Sound
 {
@@ -153,7 +153,7 @@ namespace Sound
 
 			var audioSettings = new AudioSettings() {
 				SampleRate = 44100.0f, 
-				Format = MonoTouch.AudioToolbox.AudioFormatType.MPEG4AAC,
+				Format = AudioToolbox.AudioFormatType.MPEG4AAC,
 				NumberChannels = 1,
 				AudioQuality = AVAudioQuality.High
 			};
