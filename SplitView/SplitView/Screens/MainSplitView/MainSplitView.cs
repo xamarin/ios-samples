@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.CoreFoundation;
+using UIKit;
+using CoreFoundation;
 
 namespace Example_SplitView.Screens.MainSplitView
 {

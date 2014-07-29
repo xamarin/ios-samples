@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Collections.Generic;
 
 namespace Example_SplitView.Screens.MasterView
@@ -58,15 +58,15 @@ namespace Example_SplitView.Screens.MasterView
 				this.parentController = parentController;
 			}
 			
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{ return 1; }
 			
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				return Items.Count;
 			}
 			
-			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 			{
 				// declare vars 
 				UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);
@@ -74,15 +74,15 @@ namespace Example_SplitView.Screens.MasterView
 				if (cell == null)
 					cell = new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
 				// set the item text 
-				cell.TextLabel.Text = Items[indexPath.Row];
+				cell.TextLabel.Text = Items[(int)indexPath.Row];
 				
 				return cell;
 			}
 			
-			public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			public override void RowSelected (UITableView tableView, Foundation.NSIndexPath indexPath)
 			{
 				if (parentController.RowClicked != null)
-					parentController.RowClicked (this, new RowClickedEventArgs(Items[indexPath.Row]));
+					parentController.RowClicked (this, new RowClickedEventArgs(Items[(int)indexPath.Row]));
 			}
 		}
 	}

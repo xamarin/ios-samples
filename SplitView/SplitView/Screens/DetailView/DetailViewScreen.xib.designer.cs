@@ -11,21 +11,21 @@
 namespace Example_SplitView.Screens.DetailView {
 	
 	
-	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("DetailViewScreen")]
+	// Base type probably should be UIKit.UIViewController or subclass
+	[Foundation.Register("DetailViewScreen")]
 	public partial class DetailViewScreen {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblItemNumber;
+		private UIKit.UILabel __mt_lblItemNumber;
 		
-		private MonoTouch.UIKit.UIToolbar __mt_tlbrTop;
+		private UIKit.UIToolbar __mt_tlbrTop;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -34,10 +34,10 @@ namespace Example_SplitView.Screens.DetailView {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblItemNumber")]
-		private MonoTouch.UIKit.UILabel lblItemNumber {
+		[Foundation.Connect("lblItemNumber")]
+		private UIKit.UILabel lblItemNumber {
 			get {
-				this.__mt_lblItemNumber = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblItemNumber")));
+				this.__mt_lblItemNumber = ((UIKit.UILabel)(this.GetNativeField("lblItemNumber")));
 				return this.__mt_lblItemNumber;
 			}
 			set {
@@ -46,10 +46,10 @@ namespace Example_SplitView.Screens.DetailView {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("tlbrTop")]
-		private MonoTouch.UIKit.UIToolbar tlbrTop {
+		[Foundation.Connect("tlbrTop")]
+		private UIKit.UIToolbar tlbrTop {
 			get {
-				this.__mt_tlbrTop = ((MonoTouch.UIKit.UIToolbar)(this.GetNativeField("tlbrTop")));
+				this.__mt_tlbrTop = ((UIKit.UIToolbar)(this.GetNativeField("tlbrTop")));
 				return this.__mt_tlbrTop;
 			}
 			set {
