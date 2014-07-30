@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreText;
+using Foundation;
+using UIKit;
+using CoreText;
 
 namespace TextKitDemo
 {
@@ -35,7 +35,7 @@ namespace TextKitDemo
 
 		public static DemoModel GetDemo (NSIndexPath indexPath)
 		{
-			return Demos[indexPath.Row];
+			return Demos[(int)indexPath.Row];
 		}
 
 		public NSAttributedString GetAttributedText ()

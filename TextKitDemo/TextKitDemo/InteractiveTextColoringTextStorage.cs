@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreText;
+using Foundation;
+using UIKit;
+using CoreText;
 
 namespace TextKitDemo
 {
@@ -27,7 +27,7 @@ namespace TextKitDemo
 			}
 		}
 
-		public override IntPtr LowLevelGetAttributes (int location, out NSRange effectiveRange)
+		public override IntPtr LowLevelGetAttributes (nint location, out NSRange effectiveRange)
 		{
 			return backingStore.LowLevelGetAttributes (location, out effectiveRange);
 		}
@@ -55,8 +55,8 @@ namespace TextKitDemo
 				return;
 
 			var searchRange = new NSRange (0,Value.Length);
-			int startLoc = Value.Substring (0, changeRange.Location).LastIndexOfAny (" \n\t.".ToCharArray ());
-			int endLoc = Value.Substring (changeRange.Location + changeRange.Length).IndexOfAny (" \n\t.".ToCharArray ());
+			nint startLoc = Value.Substring (0, (int)changeRange.Location).LastIndexOfAny (" \n\t.".ToCharArray ());
+			nint endLoc = Value.Substring ((int)(changeRange.Location + changeRange.Length)).IndexOfAny (" \n\t.".ToCharArray ());
 			if(startLoc != -1)
 				searchRange.Location = startLoc;
 			if (endLoc != -1)
@@ -64,17 +64,17 @@ namespace TextKitDemo
 			else
 				searchRange.Length = searchRange.Length - searchRange.Location;
 
-			searchRange.Location = Math.Min (searchRange.Location, changeRange.Location);
-			searchRange.Length = Math.Max (searchRange.Length, changeRange.Length);
+			searchRange.Location = (nint)Math.Min (searchRange.Location, changeRange.Location);
+			searchRange.Length = (nint)Math.Max (searchRange.Length, changeRange.Length);
 			ApplyTokenAttributes (searchRange);
 		}
 
 		void ApplyTokenAttributes (NSRange searchRange)
 		{
 			NSDictionary attributesForToken = Tokens ["DefaultTokenName"];
-			int startPos = searchRange.Location;
+			nint startPos = searchRange.Location;
 
-			string text = backingStore.Value.Substring (searchRange.Location,searchRange.Length);
+			string text = backingStore.Value.Substring ((int)searchRange.Location,(int)searchRange.Length);
 			int nextSpace = text.IndexOfAny (" \n\t.".ToCharArray ());
 			int lastPos = 0;
 			string token;

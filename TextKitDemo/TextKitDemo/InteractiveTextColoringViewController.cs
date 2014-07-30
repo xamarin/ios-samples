@@ -1,10 +1,10 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreText;
+using Foundation;
+using UIKit;
+using CoreText;
 
 namespace TextKitDemo
 {
@@ -23,12 +23,12 @@ namespace TextKitDemo
 		{
 			base.ViewDidLoad ();
 			textStorage = new InteractiveTextColoringTextStorage ();
-			RectangleF newTextViewRect = View.Bounds;
+			CGRect newTextViewRect = View.Bounds;
 			newTextViewRect.X += 8;
 			newTextViewRect.Width -= 16;
 
 			var layoutManager = new NSLayoutManager ();
-			var container = new NSTextContainer (new SizeF (newTextViewRect.Size.Width, float.MaxValue));
+			var container = new NSTextContainer (new CGSize (newTextViewRect.Size.Width, float.MaxValue));
 			container.WidthTracksTextView = true;
 
 			layoutManager.AddTextContainer (container);
