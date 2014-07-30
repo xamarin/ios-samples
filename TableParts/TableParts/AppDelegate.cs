@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace Example_TableParts
 {
@@ -18,7 +18,7 @@ namespace Example_TableParts
 
 			// create the home screen and modify it's frame
 			iPhoneHome = new Example_TableParts.Screens.iPhone.Home.HomeScreen();
-			iPhoneHome.View.Frame = new System.Drawing.RectangleF(0, UIApplication.SharedApplication.StatusBarFrame.Height, UIScreen.MainScreen.ApplicationFrame.Width, UIScreen.MainScreen.ApplicationFrame.Height);
+			iPhoneHome.View.Frame = new CoreGraphics.CGRect(0, UIApplication.SharedApplication.StatusBarFrame.Height, UIScreen.MainScreen.ApplicationFrame.Width, UIScreen.MainScreen.ApplicationFrame.Height);
 			
 			window.RootViewController = iPhoneHome;
 			

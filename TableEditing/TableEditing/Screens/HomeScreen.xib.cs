@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using TableEditing.Code;
 
 namespace TableEditing.Screens {

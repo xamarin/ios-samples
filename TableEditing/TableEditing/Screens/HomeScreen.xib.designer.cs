@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace TableEditing.Screens
 {
@@ -12,13 +12,13 @@ namespace TableEditing.Screens
 	partial class HomeScreen
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem btnEdit { get; set; }
+		UIKit.UIBarButtonItem btnEdit { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITableView tblMain { get; set; }
+		UIKit.UITableView tblMain { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem btnDone { get; set; }
+		UIKit.UIBarButtonItem btnDone { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

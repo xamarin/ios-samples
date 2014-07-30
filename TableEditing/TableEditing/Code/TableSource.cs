@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace TableEditing.Code {
 	/// <summary>
@@ -23,7 +23,7 @@ namespace TableEditing.Code {
 		/// <summary>
 		/// Called by the TableView to determine how many sections(groups) there are.
 		/// </summary>
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return tableItems.Count;
 		}
@@ -31,25 +31,25 @@ namespace TableEditing.Code {
 		/// <summary>
 		/// Called by the TableView to determine how many cells to create for that particular section.
 		/// </summary>
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return tableItems[section].Items.Count;
+			return tableItems[(int)section].Items.Count;
 		}
 
 		/// <summary>
 		/// Called by the TableView to retrieve the header text for the particular section(group)
 		/// </summary>
-		public override string TitleForHeader (UITableView tableView, int section)
+		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			return tableItems[section].Name;
+			return tableItems[(int)section].Name;
 		}
 
 		/// <summary>
 		/// Called by the TableView to retrieve the footer text for the particular section(group)
 		/// </summary>
-		public override string TitleForFooter (UITableView tableView, int section)
+		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			return tableItems[section].Footer;
+			return tableItems[(int)section].Footer;
 		}
 		
 		#endregion
@@ -59,7 +59,7 @@ namespace TableEditing.Code {
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			new UIAlertView("Row Selected"
-				, tableItems[indexPath.Section].Items[indexPath.Row].Heading, null, "OK", null).Show();
+				, tableItems[(int)indexPath.Section].Items[(int)indexPath.Row].Heading, null, "OK", null).Show();
 		}
 		
 		public override void RowDeselected (UITableView tableView, NSIndexPath indexPath)
@@ -120,20 +120,20 @@ namespace TableEditing.Code {
 		/// <summary>
 		/// Should be called CommitEditingAction or something, is called when a user initiates a specific editing event
 		/// </summary>
-		public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, Foundation.NSIndexPath indexPath)
 		{
 			switch (editingStyle)
 			{
 				case UITableViewCellEditingStyle.Delete:
 					//---- remove the item from the underlying data source
-					tableItems[indexPath.Section].Items.RemoveAt (indexPath.Row);
+					tableItems[(int)indexPath.Section].Items.RemoveAt ((int)indexPath.Row);
 					//---- delete the row from the table
 					tableView.DeleteRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
 					break;
 				
 				case UITableViewCellEditingStyle.Insert:
 					//---- create a new item and add it to our underlying data
-					tableItems[indexPath.Section].Items.Insert (indexPath.Row, new TableItem ("(inserted)"));
+					tableItems[(int)indexPath.Section].Items.Insert ((int)indexPath.Row, new TableItem ("(inserted)"));
 					//---- insert a new row in the table
 					tableView.InsertRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
 					break;
@@ -150,8 +150,8 @@ namespace TableEditing.Code {
 		public override void MoveRow (UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath)
 		{
 			//---- get a reference to the item
-			var item = tableItems[sourceIndexPath.Section].Items[sourceIndexPath.Row];
-			int deleteAt = sourceIndexPath.Row;
+			var item = tableItems[(int)sourceIndexPath.Section].Items[(int)sourceIndexPath.Row];
+			nint deleteAt = sourceIndexPath.Row;
 			
 			//---- if we're moving within the same section, and we're inserting it before
 			if ((sourceIndexPath.Section == destinationIndexPath.Section) && (destinationIndexPath.Row < sourceIndexPath.Row))
@@ -161,10 +161,10 @@ namespace TableEditing.Code {
 			}
 			
 			//---- copy the item to the new location
-			tableItems[destinationIndexPath.Section].Items.Insert (destinationIndexPath.Row, item);
+			tableItems[(int)destinationIndexPath.Section].Items.Insert ((int)destinationIndexPath.Row, item);
 			
 			//---- remove from the old
-			tableItems[sourceIndexPath.Section].Items.RemoveAt (deleteAt);
+			tableItems[(int)sourceIndexPath.Section].Items.RemoveAt ((int)deleteAt);
 			
 		}
 		
@@ -207,18 +207,18 @@ namespace TableEditing.Code {
 		/// <summary>
 		/// Called by the TableView to get the actual UITableViewCell to render for the particular section and row
 		/// </summary>
-		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			//---- declare vars
 			UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);
-			TableItem item = tableItems[indexPath.Section].Items[indexPath.Row];
+			TableItem item = tableItems[(int)indexPath.Section].Items[(int)indexPath.Row];
 			
 			//---- if there are no cells to reuse, create a new one
 			if (cell == null)
 				cell = new UITableViewCell (item.CellStyle, cellIdentifier); 
 			
 			//---- set the item text
-			cell.TextLabel.Text = tableItems[indexPath.Section].Items[indexPath.Row].Heading;
+			cell.TextLabel.Text = tableItems[(int)indexPath.Section].Items[(int)indexPath.Row].Heading;
 			
 			//---- if it's a cell style that supports a subheading, set it
 			if(item.CellStyle == UITableViewCellStyle.Subtitle 
