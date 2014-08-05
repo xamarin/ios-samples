@@ -3,14 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableParts", "TableParts\TableParts.csproj", "{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}"
 EndProject
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "TablePartsFS", "TablePartsFS\TablePartsFS.fsproj", "{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
 		Release|iPhoneSimulator = Release|iPhoneSimulator
 		Debug|iPhone = Debug|iPhone
 		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.Ad-Hoc|iPhone.ActiveCfg = Debug|iPhone
+		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.Ad-Hoc|iPhone.Build.0 = Debug|iPhone
+		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.AppStore|iPhone.ActiveCfg = Debug|iPhone
+		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.AppStore|iPhone.Build.0 = Debug|iPhone
 		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.Debug|iPhone.Build.0 = Debug|iPhone
 		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
@@ -19,8 +27,20 @@ Global
 		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.Release|iPhone.Build.0 = Release|iPhone
 		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}.Debug|iPhone.Build.0 = Debug|iPhone
+		{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}.Release|iPhone.ActiveCfg = Release|iPhone
+		{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}.Release|iPhone.Build.0 = Release|iPhone
+		{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{ABF7D8BA-BF6F-4D0E-B330-15405C1E55A0}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = TableParts\TableParts.csproj
+		StartupItem = TablePartsFS\TablePartsFS.fsproj
 	EndGlobalSection
 EndGlobal
