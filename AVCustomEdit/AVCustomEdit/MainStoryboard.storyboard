@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="64">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Player View Controller-->
+        <scene sceneID="63">
+            <objects>
+                <viewController id="64" customClass="PlayerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="65">
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="dMF-K1-Sws">
+                                <rect key="frame" x="-3" y="276" width="570" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <barButtonItem systemItem="play" id="HOB-PP-3UB">
+                                        <connections>
+                                            <action selector="togglePlayPause:" destination="64" id="370"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="9Zj-cl-VbD">
+                                        <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="oEO-gT-r2P">
+                                            <rect key="frame" x="42" y="5" width="168" height="34"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="beginScrubbing:" destination="64" eventType="touchDown" id="365"/>
+                                                <action selector="endScrubbing:" destination="64" eventType="touchCancel" id="366"/>
+                                                <action selector="endScrubbing:" destination="64" eventType="touchUpInside" id="367"/>
+                                                <action selector="endScrubbing:" destination="64" eventType="touchUpOutside" id="368"/>
+                                                <action selector="scrub:" destination="64" eventType="valueChanged" id="369"/>
+                                            </connections>
+                                        </slider>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="68"/>
+                                    <barButtonItem title="Transition" id="70">
+                                        <connections>
+                                            <segue destination="90" kind="modal" identifier="Transition" id="FXO-CA-qDp"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Export" id="75">
+                                        <connections>
+                                            <action selector="exportToMovie:" destination="64" id="374"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="240"/>
+                                </items>
+                            </toolbar>
+                            <view contentMode="scaleToFill" id="83" customClass="PlayerView">
+                                <rect key="frame" x="-1" y="20" width="569" height="255"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" progress="0.5" id="361">
+                                        <rect key="frame" x="166" y="247" width="150" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U69-c1-S53">
+                                <rect key="frame" x="221" y="287" width="62" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="currentTimeLabel" destination="U69-c1-S53" id="name-outlet-U69-c1-S53"/>
+                        <outlet property="exportButton" destination="75" id="name-outlet-75"/>
+                        <outlet property="exportProgressView" destination="361" id="name-outlet-361"/>
+                        <outlet property="gestureRecognizer" destination="373" id="name-outlet-373"/>
+                        <outlet property="playPauseButton" destination="HOB-PP-3UB" id="name-outlet-HOB-PP-3UB"/>
+                        <outlet property="playerView" destination="83" id="s8j-Pv-pQ1"/>
+                        <outlet property="scrubber" destination="oEO-gT-r2P" id="name-outlet-oEO-gT-r2P"/>
+                        <outlet property="toolBar" destination="dMF-K1-Sws" id="i53-z0-8ml"/>
+                        <outlet property="transitionButton" destination="70" id="name-outlet-70"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="66" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="373"/>
+            </objects>
+            <point key="canvasLocation" x="-914" y="-408"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="89">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="90" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="93">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="294" kind="relationship" relationship="rootViewController" id="310"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="94" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-560" y="160"/>
+        </scene>
+        <!--Transition Type Controller - Transition Type-->
+        <scene sceneID="293">
+            <objects>
+                <tableViewController id="294" customClass="TransitionTypeController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="295">
+                        <rect key="frame" x="0.0" y="64" width="568" height="256"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <sections>
+                            <tableViewSection headerTitle="Section-1" id="321">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" textLabel="340" style="IBUITableViewCellStyleDefault" id="322">
+                                        <rect key="frame" x="0.0" y="22" width="568" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="322" id="Pnh-ey-78t">
+                                            <rect key="frame" x="0.0" y="0.0" width="568" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Diagonal Wipe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="340">
+                                                    <rect key="frame" x="15" y="0.0" width="538" height="43"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" textLabel="356" style="IBUITableViewCellStyleDefault" id="323">
+                                        <rect key="frame" x="0.0" y="66" width="568" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="323" id="A5s-Uj-1yJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="568" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="left" text="Cross Dissolve" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="356">
+                                                    <rect key="frame" x="15" y="0.0" width="538" height="43"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="294" id="296"/>
+                            <outlet property="delegate" destination="294" id="297"/>
+                        </connections>
+                    </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" title="Transition Type" id="309">
+                        <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="378">
+                            <connections>
+                                <action selector="TransitionSelected:" destination="294" id="gBS-xF-lRK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="crossDissolveCell" destination="323" id="name-outlet-323"/>
+                        <outlet property="diagonalWipeCell" destination="322" id="name-outlet-322"/>
+                        <outlet property="tableView" destination="295" id="name-outlet-295"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="299" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-87" y="-321"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
