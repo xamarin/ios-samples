@@ -27,15 +27,12 @@
 //
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AudioToolbox;
 using System.Diagnostics;
 using System.Threading;
 using MonoTouch.AVFoundation;
+using MonoTouch.Foundation;
+using MonoTouch.UIKit;
 
 namespace AudioConverterFileConverter
 {
@@ -90,13 +87,14 @@ namespace AudioConverterFileConverter
                 Debug.WriteLine("Session interrupted");
                 ThreadStateBeginInterruption();
             };
-            session.EndInterruption += delegate
+            session.EndInterruption += (object sender, EventArgs e) =>
             {
                 Debug.WriteLine("Session resumed");
-                Debug.Print(AVAudioSessionInterruptionType.Ended.ToString());
                 session.SetActive(true);
                 ThreadStateEndInterruption();
             };
+
+            int routes = session.InputNumberOfChannels;
 
             // our default category -- we change this for conversion and playback appropriately
             try
@@ -107,14 +105,13 @@ namespace AudioConverterFileConverter
             {
                 Debug.Print("ERROR: Cannot change audio session category");
             }
-
-            AudioSession.AudioRouteChanged += delegate(object sender, AudioSessionRouteChangeEventArgs e)
+                
+            session.InputAvailabilityChanged += (object sender, AVStatusEventArgs e) =>
             {
-                var gg = e.PreviousInputRoute;
-
-                //Debug.Print ("Audio route change: {0}", e.Reason);
-                Debug.Print("Old route: {0}", e.PreviousOutputRoutes[0]);
-                Debug.Print("New route: {0}", e.CurrentOutputRoutes[0]);
+                var sess = sender as AVAudioSession;
+                Debug.Print("Old route: {0}", routes);
+                Debug.Print("New route: {0}", sess.InputNumberOfChannels);
+                routes = sess.InputNumberOfChannels;
             };
 
             session.SetActive(true);
