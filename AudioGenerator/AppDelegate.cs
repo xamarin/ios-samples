@@ -12,7 +12,6 @@ namespace tone
     {
         double sampleRate;
         const int numBuffers = 3;
-        bool alternate;
         private NSError error;
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
