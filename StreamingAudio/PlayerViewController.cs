@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using System.Net;
@@ -7,199 +6,221 @@ using MonoTouch.AudioToolbox;
 using System.IO;
 using System.Threading;
 using System.Diagnostics;
+using MonoTouch.AVFoundation;
 
 namespace StreamingAudio
 {
-	public partial class PlayerViewController : UIViewController
-	{
-		private NSTimer updatingTimer;
-		private StreamingPlayback player;
-		public Action<string> ErrorOccurred;
+    public partial class PlayerViewController : UIViewController
+    {
+        private NSTimer updatingTimer;
+        private StreamingPlayback player;
+        private NSError error;
 
-		public string SourceUrl { get; private set; }
+        public Action<string> ErrorOccurred;
 
-		public PlayerOption PlayerOption { get; private set; }
+        public string SourceUrl { get; private set; }
 
-		public bool IsPlaying { get; private set; }
+        public PlayerOption PlayerOption { get; private set; }
 
-		public PlayerViewController (PlayerOption playerOption, string sourceUrl) : base ("PlayerViewController", null)
-		{
-			PlayerOption = playerOption;
-			SourceUrl = sourceUrl;
-		}
+        public bool IsPlaying { get; private set; }
 
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
 
-			this.View = View;
-			volumeSlider.TouchUpInside += SetVolume;
-			playPauseButton.TouchUpInside += PlayPauseButtonClickHandler;
-		}
+        public PlayerViewController(PlayerOption playerOption, string sourceUrl) : base("PlayerViewController", null)
+        {
+            PlayerOption = playerOption;
+            SourceUrl = sourceUrl;
+        }
 
-		private void SetVolume (object sender, EventArgs e)
-		{
-			if (player == null)
-				return;
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
 
-			player.Volume = volumeSlider.Value;
-		}
+            this.View = View;
+            volumeSlider.TouchUpInside += SetVolume;
+            playPauseButton.TouchUpInside += PlayPauseButtonClickHandler;
+        }
 
-		public override void ViewWillAppear (bool animated)
-		{
-			base.ViewWillAppear (animated);
-			Title = PlayerOption == PlayerOption.Stream ? "Stream " : "Stream & Save";
-			playPauseButton.TitleLabel.Text = "Pause";
-			timeLabel.Text = string.Empty; 
+        private void SetVolume(object sender, EventArgs e)
+        {
+            if (player == null)
+                return;
 
-			AudioSession.Initialize ();
-			StartPlayback ();
-			IsPlaying = true;
-		}
+            player.Volume = volumeSlider.Value;
+        }
 
-		public override void ViewDidDisappear (bool animated)
-		{
-			base.ViewDidDisappear (animated);
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            Title = PlayerOption == PlayerOption.Stream ? "Stream " : "Stream & Save";
+            playPauseButton.TitleLabel.Text = "Pause";
+            timeLabel.Text = string.Empty; 
 
-			if(updatingTimer != null)
-				updatingTimer.Invalidate ();
+            // Create a shared intance session & check
+            var session = AVAudioSession.SharedInstance();
+            if (session == null)
+            {
+                var alert = new UIAlertView("Playback error", "Unable to playback stream", null, "Cancel");
+                alert.Show();
+                alert.Clicked += (object sender, UIButtonEventArgs e) => alert.DismissWithClickedButtonIndex(0, true);
+            }
+            else
+            {
+                StartPlayback();
+                IsPlaying = true;
 
-			if (player != null) {
-				player.FlushAndClose ();
-				player = null;
-			}
-		}
+                // Set up the session for playback category
+                session.SetCategory(new NSString("AVAudioSessionCategoryPlayback"), AVAudioSessionCategoryOptions.DefaultToSpeaker, out error);
+                session.OverrideOutputAudioPort(AVAudioSessionPortOverride.Speaker, out error);
+            }
+        }
 
-		private void PlayPauseButtonClickHandler (object sender, EventArgs e)
-		{
-			if (player == null)
-				return;
+        public override void ViewDidDisappear(bool animated)
+        {
+            base.ViewDidDisappear(animated);
 
-			if (IsPlaying)
-				player.Pause ();
-			else
-				player.Play ();
+            if (updatingTimer != null)
+                updatingTimer.Invalidate();
 
-			var title = IsPlaying ? "Play" : "Pause";
-			playPauseButton.SetTitle (title, UIControlState.Normal);
-			playPauseButton.SetTitle (title, UIControlState.Selected);
-			IsPlaying = !IsPlaying;
-		}
+            if (player != null)
+            {
+                player.FlushAndClose();
+                player = null;
+            }
+        }
 
-		private void StartPlayback ()
-		{
-			PreparePlayback ();
-			try {
-				var request = (HttpWebRequest)WebRequest.Create (SourceUrl);
-				request.BeginGetResponse (StreamDownloadedHandler, request);
-			} catch (Exception e) {
-				string.Format ("Error: {0}", e.ToString ());
-			}
-		}
+        private void PlayPauseButtonClickHandler(object sender, EventArgs e)
+        {
+            if (player == null)
+                return;
 
-		private void RaiseErrorOccurredEvent (string message)
-		{
-			if (ErrorOccurred != null)
-				ErrorOccurred (message);
-		}
+            if (IsPlaying)
+                player.Pause();
+            else
+                player.Play();
 
-		private void PreparePlayback ()
-		{
-			//The following line prevents the audio from stopping when the device autolocks
-			if (!UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
-				AudioSession.Category = AudioSessionCategory.MediaPlayback;
-				AudioSession.RoutingOverride = AudioSessionRoutingOverride.Speaker;
-			}
-		}
+            var title = IsPlaying ? "Play" : "Pause";
+            playPauseButton.SetTitle(title, UIControlState.Normal);
+            playPauseButton.SetTitle(title, UIControlState.Selected);
+            IsPlaying = !IsPlaying;
+        }
 
-		private void StreamDownloadedHandler (IAsyncResult result)
-		{
-			var buffer = new byte [8192];
-			int l = 0;
-			int inputStreamLength;
-			double sampleRate = 0;
+        private void StartPlayback()
+        {
+            try
+            {
+                var request = (HttpWebRequest)WebRequest.Create(SourceUrl);
+                request.BeginGetResponse(StreamDownloadedHandler, request);
+            }
+            catch (Exception e)
+            {
+                string.Format("Error: {0}", e.ToString());
+            }
+        }
 
-			Stream inputStream;
-			AudioQueueTimeline timeline = null;
+        private void RaiseErrorOccurredEvent(string message)
+        {
+            if (ErrorOccurred != null)
+                ErrorOccurred(message);
+        }
 
-			var request = result.AsyncState as HttpWebRequest;
-			try {
-				var response = request.EndGetResponse (result);
-				var responseStream = response.GetResponseStream ();
+        private void StreamDownloadedHandler(IAsyncResult result)
+        {
+            var buffer = new byte [8192];
+            int l = 0;
+            int inputStreamLength;
+            double sampleRate = 0;
 
-				if (PlayerOption == PlayerOption.StreamAndSave)
-					inputStream = GetQueueStream (responseStream);
-				else
-					inputStream = responseStream;
+            Stream inputStream;
+            AudioQueueTimeline timeline = null;
 
-				using (player = new StreamingPlayback ()) {
-					player.OutputReady += delegate {
-						timeline = player.OutputQueue.CreateTimeline ();
-						sampleRate = player.OutputQueue.SampleRate;
-					};
+            var request = result.AsyncState as HttpWebRequest;
+            try
+            {
+                var response = request.EndGetResponse(result);
+                var responseStream = response.GetResponseStream();
 
-					InvokeOnMainThread (delegate {
-						if (updatingTimer != null)
-							updatingTimer.Invalidate ();
+                if (PlayerOption == PlayerOption.StreamAndSave)
+                    inputStream = GetQueueStream(responseStream);
+                else
+                    inputStream = responseStream;
 
-						updatingTimer = NSTimer.CreateRepeatingScheduledTimer (0.5, () => RepeatingAction (timeline, sampleRate));
-					});
+                using (player = new StreamingPlayback())
+                {
+                    player.OutputReady += delegate
+                    {
+                        timeline = player.OutputQueue.CreateTimeline();
+                        sampleRate = player.OutputQueue.SampleRate;
+                    };
 
-					while ((inputStreamLength = inputStream.Read (buffer, 0, buffer.Length)) != 0 && player != null) {
-						l += inputStreamLength;
-						player.ParseBytes (buffer, inputStreamLength, false, l == (int)response.ContentLength);
+                    InvokeOnMainThread(delegate
+                    {
+                        if (updatingTimer != null)
+                            updatingTimer.Invalidate();
 
-						InvokeOnMainThread (delegate {
-							progressBar.Progress = l / (float)response.ContentLength;
-						});
-					}
-				}
+                        updatingTimer = NSTimer.CreateRepeatingScheduledTimer(0.5, () => RepeatingAction(timeline, sampleRate));
+                    });
 
-			} catch (Exception e) {
-				RaiseErrorOccurredEvent ("Error fetching response stream\n" + e);
-				Debug.WriteLine (e);
-				InvokeOnMainThread (delegate {
-					if (NavigationController != null)
-						NavigationController.PopToRootViewController (true);
-				});
-			}
-		}
+                    while ((inputStreamLength = inputStream.Read(buffer, 0, buffer.Length)) != 0 && player != null)
+                    {
+                        l += inputStreamLength;
+                        player.ParseBytes(buffer, inputStreamLength, false, l == (int)response.ContentLength);
 
-		private void RepeatingAction (AudioQueueTimeline timeline, double sampleRate)
-		{
-			var queue = player.OutputQueue;
-			if (queue == null || timeline == null)
-				return;
+                        InvokeOnMainThread(delegate
+                        {
+                            progressBar.Progress = l / (float)response.ContentLength;
+                        });
+                    }
+                }
 
-			bool disc = false;
-			var time = new AudioTimeStamp ();
-			queue.GetCurrentTime (timeline, ref time, ref disc);
+            }
+            catch (Exception e)
+            {
+                RaiseErrorOccurredEvent("Error fetching response stream\n" + e);
+                Debug.WriteLine(e);
+                InvokeOnMainThread(delegate
+                {
+                    if (NavigationController != null)
+                        NavigationController.PopToRootViewController(true);
+                });
+            }
+        }
 
-			playbackTime.Text = FormatTime (time.SampleTime / sampleRate);
-		}
+        private void RepeatingAction(AudioQueueTimeline timeline, double sampleRate)
+        {
+            var queue = player.OutputQueue;
+            if (queue == null || timeline == null)
+                return;
 
-		private string FormatTime (double time)
-		{
-			double minutes = time / 60;
-			double seconds = time % 60;
+            bool disc = false;
+            var time = new AudioTimeStamp();
+            queue.GetCurrentTime(timeline, ref time, ref disc);
 
-			return String.Format ("{0}:{1:D2}", (int)minutes, (int)seconds);
-		}
+            playbackTime.Text = FormatTime(time.SampleTime / sampleRate);
+        }
 
-		private Stream GetQueueStream (Stream responseStream)
-		{
-			var queueStream = new QueueStream (Environment.GetFolderPath (Environment.SpecialFolder.Personal) + "/copy.mp3");
-			var t = new Thread ((x) => {
-				var tbuf = new byte [8192];
-				int count;
+        private string FormatTime(double time)
+        {
+            double minutes = time / 60;
+            double seconds = time % 60;
 
-				while ((count = responseStream.Read (tbuf, 0, tbuf.Length)) != 0)
-					queueStream.Push (tbuf, 0, count);
+            return String.Format("{0}:{1:D2}", (int)minutes, (int)seconds);
+        }
 
-			});
-			t.Start ();
-			return queueStream;
-		}
-	}
+        private Stream GetQueueStream(Stream responseStream)
+        {
+            var queueStream = new QueueStream(Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/copy.mp3");
+            var t = new Thread((x) =>
+            {
+                var tbuf = new byte [8192];
+                int count;
+
+                while ((count = responseStream.Read(tbuf, 0, tbuf.Length)) != 0)
+                    queueStream.Push(tbuf, 0, count);
+
+            });
+            t.Start();
+            return queueStream;
+        }
+    }
 }
 
