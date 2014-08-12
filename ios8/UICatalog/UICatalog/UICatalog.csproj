@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{7C3AC6A1-1082-4EA6-B2C0-8203729030DF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>UICatalog</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>UICatalog</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>i386</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchLink>None</MtouchLink>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <BuildIpa>true</BuildIpa>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <ConsolePause>false</ConsolePause>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewControllers\ActivityIndicatorViewController.cs" />
+    <Compile Include="ViewControllers\ActivityIndicatorViewController.designer.cs">
+      <DependentUpon>ActivityIndicatorViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\AlertControllerViewController.cs" />
+    <Compile Include="ViewControllers\AlertControllerViewController.designer.cs">
+      <DependentUpon>AlertControllerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\ButtonViewController.cs" />
+    <Compile Include="ViewControllers\ButtonViewController.designer.cs">
+      <DependentUpon>ButtonViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\DatePickerController.cs" />
+    <Compile Include="ViewControllers\DatePickerController.designer.cs">
+      <DependentUpon>DatePickerController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\ImageViewController.cs" />
+    <Compile Include="ViewControllers\ImageViewController.designer.cs">
+      <DependentUpon>ImageViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\PageControlViewController.cs" />
+    <Compile Include="ViewControllers\PageControlViewController.designer.cs">
+      <DependentUpon>PageControlViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\PickerViewController.cs" />
+    <Compile Include="ViewControllers\PickerViewController.designer.cs">
+      <DependentUpon>PickerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\ProgressViewController.cs" />
+    <Compile Include="ViewControllers\ProgressViewController.designer.cs">
+      <DependentUpon>ProgressViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\SegmentedControlViewController.cs" />
+    <Compile Include="ViewControllers\SegmentedControlViewController.designer.cs">
+      <DependentUpon>SegmentedControlViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\SliderViewController.cs" />
+    <Compile Include="ViewControllers\SliderViewController.designer.cs">
+      <DependentUpon>SliderViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\StepperViewController.cs" />
+    <Compile Include="ViewControllers\StepperViewController.designer.cs">
+      <DependentUpon>StepperViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\SwitchViewController.cs" />
+    <Compile Include="ViewControllers\SwitchViewController.designer.cs">
+      <DependentUpon>SwitchViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\TextFieldViewController.cs" />
+    <Compile Include="ViewControllers\TextFieldViewController.designer.cs">
+      <DependentUpon>TextFieldViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\TextViewController.cs" />
+    <Compile Include="ViewControllers\TextViewController.designer.cs">
+      <DependentUpon>TextViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\WebViewController.cs" />
+    <Compile Include="ViewControllers\WebViewController.designer.cs">
+      <DependentUpon>WebViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIColor.cs" />
+    <Compile Include="LocalizationExtension.cs" />
+    <Compile Include="ViewControllers\Toolbar View Controllers\DefaultToolbarViewController.cs" />
+    <Compile Include="ViewControllers\Toolbar View Controllers\DefaultToolbarViewController.designer.cs">
+      <DependentUpon>DefaultToolbarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Toolbar View Controllers\TintedToolbarViewController.cs" />
+    <Compile Include="ViewControllers\Toolbar View Controllers\TintedToolbarViewController.designer.cs">
+      <DependentUpon>TintedToolbarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Toolbar View Controllers\CustomToolbarViewController.cs" />
+    <Compile Include="ViewControllers\Toolbar View Controllers\CustomToolbarViewController.designer.cs">
+      <DependentUpon>CustomToolbarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Search\SearchBar\CustomSearchBarViewController.cs" />
+    <Compile Include="ViewControllers\Search\SearchBar\CustomSearchBarViewController.designer.cs">
+      <DependentUpon>CustomSearchBarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Search\SearchBar\DefaultSearchBarViewController.cs" />
+    <Compile Include="ViewControllers\Search\SearchBar\DefaultSearchBarViewController.designer.cs">
+      <DependentUpon>DefaultSearchBarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Search\SearchControllers\SearchBarEmbeddedInNavigationBarViewController.cs" />
+    <Compile Include="ViewControllers\Search\SearchControllers\SearchBarEmbeddedInNavigationBarViewController.designer.cs">
+      <DependentUpon>SearchBarEmbeddedInNavigationBarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Search\SearchControllers\SearchPresentOverNavigationBarViewController.cs" />
+    <Compile Include="ViewControllers\Search\SearchControllers\SearchPresentOverNavigationBarViewController.designer.cs">
+      <DependentUpon>SearchPresentOverNavigationBarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Search\SearchControllers\SearchShowResultsInSourceViewController.cs" />
+    <Compile Include="ViewControllers\Search\SearchControllers\SearchShowResultsInSourceViewController.designer.cs">
+      <DependentUpon>SearchShowResultsInSourceViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Search\SearchControllers\Base\SearchControllerBaseViewController.cs" />
+    <Compile Include="ViewControllers\Search\SearchControllers\Base\SearchResultsViewController.cs" />
+    <Compile Include="ViewControllers\Search\SearchControllers\UISearchResultsUpdatingWrapper.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Images.xcassets\" />
+    <Folder Include="ViewControllers\" />
+    <Folder Include="Resources\en.lproj\" />
+    <Folder Include="ViewControllers\Toolbar View Controllers\" />
+    <Folder Include="ViewControllers\Search\" />
+    <Folder Include="ViewControllers\Search\SearchControllers\" />
+    <Folder Include="ViewControllers\Search\SearchControllers\Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\bookmark_icon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\bookmark_icon.imageset\bookmark_icon_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\bookmark_icon.imageset\bookmark_icon_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\bookmark_icon_highlighted.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\bookmark_icon_highlighted.imageset\bookmark_icon_highlighted_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\bookmark_icon_highlighted.imageset\bookmark_icon_highlighted_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\checkmark_icon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\checkmark_icon.imageset\checkmark_icon_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\checkmark_icon.imageset\checkmark_icon_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\image_animal_1.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\image_animal_1.imageset\image_animal_5.png" />
+    <ImageAsset Include="Resources\Images.xcassets\image_animal_2.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\image_animal_2.imageset\image_animal_2.png" />
+    <ImageAsset Include="Resources\Images.xcassets\image_animal_3.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\image_animal_3.imageset\image_animal_3.png" />
+    <ImageAsset Include="Resources\Images.xcassets\image_animal_4.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\image_animal_4.imageset\image_animal_4.png" />
+    <ImageAsset Include="Resources\Images.xcassets\image_animal_5.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\image_animal_5.imageset\image_animal_1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\search_bar_background.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\search_bar_background.imageset\search_bar_bg_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\search_bar_background.imageset\search_bar_bg_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\search_icon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\search_icon.imageset\search_icon_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\search_icon.imageset\search_icon_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\slider_blue_track.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\slider_blue_track.imageset\slider_blue_track_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\slider_blue_track.imageset\slider_blue_track_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\slider_green_track.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\slider_green_track.imageset\slider_green_track_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\slider_green_track.imageset\slider_green_track_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\slider_thumb.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\slider_thumb.imageset\slider_thumb_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\slider_thumb.imageset\slider_thumb_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_and_segment_background.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_and_segment_background.imageset\stepper_and_segment_background_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_and_segment_background.imageset\stepper_and_segment_background_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_and_segment_background_disabled.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_and_segment_background_disabled.imageset\stepper_and_segment_background_disabled_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_and_segment_background_disabled.imageset\stepper_and_segment_background_disabled_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_and_segment_background_highlighted.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_and_segment_background_highlighted.imageset\stepper_and_segment_background_highlighted_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_and_segment_background_highlighted.imageset\stepper_and_segment_background_highlighted_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_and_segment_segment_divider.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_and_segment_segment_divider.imageset\stepper_and_segment_segment_divider_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_and_segment_segment_divider.imageset\stepper_and_segment_segment_divider_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_decrement.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_decrement.imageset\decrement_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_decrement.imageset\decrement_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_increment.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_increment.imageset\increment_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_increment.imageset\increment_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_increment_disabled.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_increment_disabled.imageset\increment_disabled_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_increment_disabled.imageset\increment_disabled_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_increment_highlighted.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_increment_highlighted.imageset\increment_highlighted_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\stepper_increment_highlighted.imageset\increment_highlighted_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\text_field_background.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\text_field_background.imageset\text_field_background_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\text_field_background.imageset\text_field_background_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\text_field_purple_right_view.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\text_field_purple_right_view.imageset\text_field_purple_right_view_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\text_field_purple_right_view.imageset\text_field_purple_right_view_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\text_view_attachment.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\text_view_attachment.imageset\text_view_attachment_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\text_view_attachment.imageset\text_view_attachment_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\toolbar_background.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\toolbar_background.imageset\toolbar_background_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\toolbar_background.imageset\toolbar_background_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\tools_icon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\tools_icon.imageset\tools_icon_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\tools_icon.imageset\tools_icon_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\x_icon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\x_icon.imageset\x_icon_1x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\x_icon.imageset\x_icon_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Spotlight-40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-60%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Spotlight-40.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-50.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-50%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-72.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-72%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-76%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Portrait~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Portrait%402x~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Landscape~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Landscape%402x~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\en.lproj\Localizable.strings" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+</Project>

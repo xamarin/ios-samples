@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloGoodbye", "HelloGoodbye\HelloGoodbye.csproj", "{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}.Debug|iPhone.Build.0 = Debug|iPhone
+		{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}.Release|iPhone.ActiveCfg = Release|iPhone
+		{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}.Release|iPhone.Build.0 = Release|iPhone
+		{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{8C23CAD5-67D8-4332-85E0-BCAD8D26472B}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = HelloGoodbye\HelloGoodbye.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.TabsToSpaces = False
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.IndentSwitchBody = True
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal

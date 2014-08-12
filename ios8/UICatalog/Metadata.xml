@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>ee804c5e-abe0-403d-88a0-d33344261eee</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>User Interface, Getting Started</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+</SampleMetadata>
