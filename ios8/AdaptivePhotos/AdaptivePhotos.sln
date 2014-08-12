@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdaptivePhotos", "AdaptivePhotos\AdaptivePhotos.csproj", "{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}.Release|iPhone.Build.0 = Release|iPhone
+		{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C480C75A-B0C6-40EF-AEF9-2CF836477BFC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = AdaptivePhotos\AdaptivePhotos.csproj
+	EndGlobalSection
+EndGlobal
