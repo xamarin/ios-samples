@@ -23,7 +23,7 @@ namespace UICatalog
 
 			// Create the search controller and make it perform the results updating.
 			_searchController = new UISearchController (searchResultsController);
-			_searchController.SearchResultsUpdater = new UISearchResultsUpdatingWrapper (searchResultsController);
+			_searchController.SetSearchResultsUpdater (searchResultsController.UpdateSearchResultsForSearchController);
 			_searchController.HidesNavigationBarDuringPresentation = false;
 
 			// Configure the search controller's search bar. For more information on how to configure

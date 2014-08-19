@@ -25,7 +25,7 @@ namespace UICatalog
 
 			// TODO: parameter must be null https://trello.com/c/SibgrTuB
 			_searchController = new UISearchController (new UIViewController());
-			_searchController.SearchResultsUpdater = new UISearchResultsUpdatingWrapper (this);
+			_searchController.SetSearchResultsUpdater (UpdateSearchResultsForSearchController);
 			_searchController.DimsBackgroundDuringPresentation = false;
 
 			// Make sure the that the search bar is visible within the navigation bar.
