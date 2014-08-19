@@ -20,11 +20,10 @@ namespace UICatalog
 		{
 			base.ViewDidLoad ();
 
-			// Create the search controller, but we'll make sure that this AAPLSearchShowResultsInSourceViewController
+			// Create the search controller, but we'll make sure that this SearchShowResultsInSourceViewController
 			// performs the results updating.
 
-			// TODO: parameter must be null https://trello.com/c/SibgrTuB
-			_searchController = new UISearchController (new UIViewController());
+			_searchController = new UISearchController ((UIViewController)null);
 			_searchController.SetSearchResultsUpdater (UpdateSearchResultsForSearchController);
 			_searchController.DimsBackgroundDuringPresentation = false;
 
