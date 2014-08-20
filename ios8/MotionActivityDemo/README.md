@@ -1,8 +1,10 @@
-# MotionActivityDemo: Integrating Motion Activity into your app
+MotionActivityDemo: Integrating Motion Activity into your app
+=============================================================
 
-This projects shows an example of using both historical and live data from the CoreMotion MotionActivity and Step Counting APIs.  The data is then presented in app laying out a daily diary of a user's motion activity.
+This projects shows an example of using both historical and live data from the `CoreMotion` `MotionActivity` and Step Counting APIs. The data is then presented in app laying out a daily diary of a user's motion activity.
 
-# Author
-Copyright (C) 2014 Apple Inc. All rights reserved.
+Author
+------
 
-Ported to Xamarin.iOS by Timothy Risi
+Copyright (C) 2014 Apple Inc. All rights reserved.  
+Ported to Xamarin.iOS by Timothy Risi.
