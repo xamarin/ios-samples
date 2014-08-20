@@ -1,0 +1,27 @@
+# Version: 7.9.4.12 (905096f)
+# [first argument, ignore] # /Users/olegoid/Projects/private-samples/ios8/BracketStripes/BracketStripes/bin/iPhoneSimulator/Debug/mtouch.exe
+/Developer/MonoTouch/usr/bin/mtouch \
+	-sdkroot \
+	/Applications/Xcode6-Beta5.app/Contents/Developer \
+	--cache \
+	/Users/olegoid/Projects/private-samples/ios8/BracketStripes/BracketStripes/obj/iPhoneSimulator/Debug/mtouch-cache \
+	--nomanifest \
+	--nosign \
+	-sim \
+	/Users/olegoid/Projects/private-samples/ios8/BracketStripes/BracketStripes/bin/iPhoneSimulator/Debug/BracketStripes.app \
+	-r \
+	/Developer/MonoTouch/usr/lib/mono/2.1/System.dll \
+	-r \
+	/Developer/MonoTouch/usr/lib/mono/2.1/System.Xml.dll \
+	-r \
+	/Developer/MonoTouch/usr/lib/mono/2.1/System.Core.dll \
+	-r \
+	/Developer/MonoTouch/usr/lib/mono/2.1/monotouch.dll \
+	-debug \
+	-nolink \
+	-sdk \
+	8.0 \
+	-targetver \
+	8.0 \
+	--abi=i386 \
+	/Users/olegoid/Projects/private-samples/ios8/BracketStripes/BracketStripes/bin/iPhoneSimulator/Debug/BracketStripes.exe \

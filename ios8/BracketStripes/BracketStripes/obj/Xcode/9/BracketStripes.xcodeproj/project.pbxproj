@@ -1,0 +1,242 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		37AF1E150000000000000000 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B402AB30000000000000000 /* UIKit.framework */; };
+		1944C1480000000000000000 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CD5CDE60000000000000000 /* MapKit.framework */; };
+		2E7829E00000000000000000 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3209367E0000000000000000 /* Foundation.framework */; };
+		21E30C290000000000000000 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 257418C70000000000000000 /* CoreGraphics.framework */; };
+		C5ACD4400000000000000000 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEBD9E200000000000000000 /* Default-568h@2x.png */; };
+		218E35DC0000000000000000 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 251F427A0000000000000000 /* Info.plist */; };
+		FB8F6C600000000000000000 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 134A03640000000000000000 /* Entitlements.plist */; };
+		3DE3B7B00000000000000000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 174C44E00000000000000000 /* Main.storyboard */; };
+		1A3939840000000000000000 /* .DS_Store in Resources */ = {isa = PBXBuildFile; fileRef = 1DCA46220000000000000000 /* .DS_Store */; };
+		383DD0190000000000000000 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 3BCEDCB70000000000000000 /* AppDelegate.h */; };
+		164266AE0000000000000000 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19D3734C0000000000000000 /* AppDelegate.m */; };
+		10CF62330000000000000000 /* CapturePreviewView.h in Sources */ = {isa = PBXBuildFile; fileRef = 14606ED10000000000000000 /* CapturePreviewView.h */; };
+		7CB511A00000000000000000 /* CapturePreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5DB800000000000000000 /* CapturePreviewView.m */; };
+		27B1DF8C0000000000000000 /* CameraViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 2B42EC2A0000000000000000 /* CameraViewController.h */; };
+		205CE3340000000000000000 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23EDEFD20000000000000000 /* CameraViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		24A480E00000000000000000 /* BracketStripes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "BracketStripes.app"; path = "BracketStripes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B402AB30000000000000000 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "UIKit.framework"; path = "System/Library/Frameworks/UIKit.framework"; sourceTree = SDKROOT; };
+		1CD5CDE60000000000000000 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "MapKit.framework"; path = "System/Library/Frameworks/MapKit.framework"; sourceTree = SDKROOT; };
+		3209367E0000000000000000 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Foundation.framework"; path = "System/Library/Frameworks/Foundation.framework"; sourceTree = SDKROOT; };
+		257418C70000000000000000 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreGraphics.framework"; path = "System/Library/Frameworks/CoreGraphics.framework"; sourceTree = SDKROOT; };
+		FEBD9E200000000000000000 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		251F427A0000000000000000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info.plist"; path = "Info.plist"; sourceTree = "<group>"; };
+		134A03640000000000000000 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Entitlements.plist"; path = "Entitlements.plist"; sourceTree = "<group>"; };
+		174C44E00000000000000000 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Main.storyboard"; path = "Main.storyboard"; sourceTree = "<group>"; };
+		1DCA46220000000000000000 /* .DS_Store */ = {isa = PBXFileReference; name = ".DS_Store"; path = ".DS_Store"; sourceTree = "<group>"; };
+		3BCEDCB70000000000000000 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppDelegate.h"; path = "AppDelegate.h"; sourceTree = "<group>"; };
+		19D3734C0000000000000000 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate.m"; path = "AppDelegate.m"; sourceTree = "<group>"; };
+		14606ED10000000000000000 /* CapturePreviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CapturePreviewView.h"; path = "CapturePreviewView.h"; sourceTree = "<group>"; };
+		B5C5DB800000000000000000 /* CapturePreviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CapturePreviewView.m"; path = "CapturePreviewView.m"; sourceTree = "<group>"; };
+		2B42EC2A0000000000000000 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CameraViewController.h"; path = "CameraViewController.h"; sourceTree = "<group>"; };
+		23EDEFD20000000000000000 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CameraViewController.m"; path = "CameraViewController.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3289E3F10000000000000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37AF1E150000000000000000 /* UIKit.framework in Frameworks */,
+				1944C1480000000000000000 /* MapKit.framework in Frameworks */,
+				2E7829E00000000000000000 /* Foundation.framework in Frameworks */,
+				21E30C290000000000000000 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		12A3557F0000000000000000 = {
+			isa = PBXGroup;
+			children = (
+				3D3D09CB0000000000000000 /* BracketStripes */,
+				1D567B590000000000000000 /* Frameworks */,
+				7F02FA500000000000000000 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7F02FA500000000000000000 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24A480E00000000000000000 /* BracketStripes.app */,
+			);
+			name = "Products";
+			sourceTree = "<group>";
+		};
+		1D567B590000000000000000 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B402AB30000000000000000 /* UIKit.framework */,
+				1CD5CDE60000000000000000 /* MapKit.framework */,
+				3209367E0000000000000000 /* Foundation.framework */,
+				257418C70000000000000000 /* CoreGraphics.framework */,
+			);
+			name = "Frameworks";
+			sourceTree = "<group>";
+		};
+		3D3D09CB0000000000000000 /* BracketStripes */ = {
+			isa = PBXGroup;
+			children = (
+				1DCA46220000000000000000 /* .DS_Store */,
+				3BCEDCB70000000000000000 /* AppDelegate.h */,
+				2B42EC2A0000000000000000 /* CameraViewController.h */,
+				14606ED10000000000000000 /* CapturePreviewView.h */,
+				FEBD9E200000000000000000 /* Default-568h@2x.png */,
+				134A03640000000000000000 /* Entitlements.plist */,
+				251F427A0000000000000000 /* Info.plist */,
+				174C44E00000000000000000 /* Main.storyboard */,
+				18245E8B0000000000000000 /* Supporting Files */,
+			);
+			name = "BracketStripes";
+			sourceTree = "<group>";
+		};
+		18245E8B0000000000000000 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				19D3734C0000000000000000 /* AppDelegate.m */,
+				23EDEFD20000000000000000 /* CameraViewController.m */,
+				B5C5DB800000000000000000 /* CapturePreviewView.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3A8F857E0000000000000000 /* BracketStripes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 379722340000000000000000 /* Build configuration list for PBXNativeTarget "BracketStripes" */;
+			buildPhases = (
+				20B4A4DB0000000000000000 /* Sources */,
+				3289E3F10000000000000000 /* Frameworks */,
+				99F446600000000000000000 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BracketStripes";
+			productName = "BracketStripes";
+			productReference = 24A480E00000000000000000 /* BracketStripes.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E13D95500000000000000000 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 2CE3FC5A0000000000000000 /* Build configuration list for PBXProject "BracketStripes" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 12A3557F0000000000000000;
+			productRefGroup = 7F02FA500000000000000000 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3A8F857E0000000000000000 /* BracketStripes */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		99F446600000000000000000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5ACD4400000000000000000 /* Default-568h@2x.png in Resources */,
+				218E35DC0000000000000000 /* Info.plist in Resources */,
+				FB8F6C600000000000000000 /* Entitlements.plist in Resources */,
+				3DE3B7B00000000000000000 /* Main.storyboard in Resources */,
+				1A3939840000000000000000 /* .DS_Store in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		20B4A4DB0000000000000000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				383DD0190000000000000000 /* AppDelegate.h in Sources */,
+				164266AE0000000000000000 /* AppDelegate.m in Sources */,
+				10CF62330000000000000000 /* CapturePreviewView.h in Sources */,
+				7CB511A00000000000000000 /* CapturePreviewView.m in Sources */,
+				27B1DF8C0000000000000000 /* CameraViewController.h in Sources */,
+				205CE3340000000000000000 /* CameraViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2E602DFF0000000000000000 /* MonoTouch */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				SDKROOT = iphoneos;
+			};
+			name = MonoTouch;
+		};
+		2230D6800000000000000000 /* MonoTouch */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				PRODUCT_NAME = "BracketStripes";
+				WRAPPER_EXTENSION = app;
+			};
+			name = MonoTouch;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2CE3FC5A0000000000000000 /* Build configuration list for PBXProject "BracketStripes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E602DFF0000000000000000 /* MonoTouch */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = MonoTouch;
+		};
+		379722340000000000000000 /* Build configuration list for PBXNativeTarget "BracketStripes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2230D6800000000000000000 /* MonoTouch */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = MonoTouch;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E13D95500000000000000000 /* Project object */;
+}
