@@ -28,5 +28,7 @@
 	<array>
 		<integer>1</integer>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.QuartzSample</string>
 </dict>
 </plist>
