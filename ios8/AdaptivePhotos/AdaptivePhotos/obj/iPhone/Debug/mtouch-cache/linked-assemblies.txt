@@ -1,0 +1,5 @@
+/Users/olegoid/Projects/monotouch-samples/ios8/AdaptivePhotos/AdaptivePhotos/obj/iPhone/Debug/mtouch-cache/Link/monotouch.dll
+/Users/olegoid/Projects/monotouch-samples/ios8/AdaptivePhotos/AdaptivePhotos/obj/iPhone/Debug/mtouch-cache/Link/System.dll
+/Users/olegoid/Projects/monotouch-samples/ios8/AdaptivePhotos/AdaptivePhotos/obj/iPhone/Debug/mtouch-cache/Link/mscorlib.dll
+/Users/olegoid/Projects/monotouch-samples/ios8/AdaptivePhotos/AdaptivePhotos/obj/iPhone/Debug/mtouch-cache/Link/AdaptivePhotos.exe
+/Users/olegoid/Projects/monotouch-samples/ios8/AdaptivePhotos/AdaptivePhotos/obj/iPhone/Debug/mtouch-cache/Link/System.Core.dll

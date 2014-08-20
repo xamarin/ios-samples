@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BracketStripes", "BracketStripes\BracketStripes.csproj", "{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}.Debug|iPhone.Build.0 = Debug|iPhone
+		{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}.Release|iPhone.ActiveCfg = Release|iPhone
+		{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}.Release|iPhone.Build.0 = Release|iPhone
+		{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{1FDF5CD3-44A0-46ED-9E65-AD4DD1ADED0F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = BracketStripes\BracketStripes.csproj
+	EndGlobalSection
+EndGlobal
