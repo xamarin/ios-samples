@@ -6,7 +6,7 @@ This sample shows how to use bracketing API in AVFoundation. App's code demonstr
 Build Requirements
 ------------------
 
-Building this sample requires Xcode 5.0 and iOS 8.0 SDK or later, iPhone with iOS8 or later
+Building this sample requires Xcode 6.0 and iOS 8.0 SDK or later, iPhone with iOS8 or later
 
 Author
 ------ 
