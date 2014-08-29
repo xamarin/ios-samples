@@ -1,0 +1,3 @@
+/Users/olegoid/Projects/private-samples/ios8/KeychainTouchID/KeychainTouchID/obj/iPhone/Debug/mtouch-cache/Link/monotouch.dll
+/Users/olegoid/Projects/private-samples/ios8/KeychainTouchID/KeychainTouchID/obj/iPhone/Debug/mtouch-cache/Link/mscorlib.dll
+/Users/olegoid/Projects/private-samples/ios8/KeychainTouchID/KeychainTouchID/obj/iPhone/Debug/mtouch-cache/Link/KeychainTouchID.exe
