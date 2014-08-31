@@ -43,6 +43,7 @@ namespace KeychainTouchID
 		public static string AUTH_TO_UPDATE = "Authenticate to update your password";
 		public static string UPDATED_SECRET_PASSWORD_TEXT = "UPDATED_SECRET_PASSWORD_TEXT";
 		public static string SECRET_PASSWORD_TEXT = "SECRET_PASSWORD_TEXT";
+		public static string USER_CANCELED_ACTION = "User canceled action";
 	}
 }
 

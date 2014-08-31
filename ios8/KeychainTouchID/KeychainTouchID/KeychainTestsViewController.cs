@@ -78,7 +78,8 @@ namespace KeychainTouchID
 			DispatchQueue.MainQueue.DispatchAsync (() => {
 				SecStatusCode status;
 				NSData resultData = SecKeyChain.QueryAsData (securityRecord, false, out status);
-				var result = new NSString (resultData, NSStringEncoding.UTF8);
+
+				var result = resultData != null ? new NSString (resultData, NSStringEncoding.UTF8) : Text.USER_CANCELED_ACTION;
 
 				var sb = new StringBuilder ();
 				sb.AppendFormat (Text.SEC_ITEM_COPY_MATCHING_STATUS, status.GetDescription ());
