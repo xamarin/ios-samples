@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageInverter", "ImageInverter\ImageInverter.csproj", "{C8A740CA-AB05-45FE-803B-8109F906B6FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageInverterExt", "ImageInverterExt\ImageInverterExt.csproj", "{EE44D852-1122-431E-9EEC-D9B6F2C73A87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8A740CA-AB05-45FE-803B-8109F906B6FC}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{C8A740CA-AB05-45FE-803B-8109F906B6FC}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{C8A740CA-AB05-45FE-803B-8109F906B6FC}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{C8A740CA-AB05-45FE-803B-8109F906B6FC}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{C8A740CA-AB05-45FE-803B-8109F906B6FC}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C8A740CA-AB05-45FE-803B-8109F906B6FC}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C8A740CA-AB05-45FE-803B-8109F906B6FC}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C8A740CA-AB05-45FE-803B-8109F906B6FC}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C8A740CA-AB05-45FE-803B-8109F906B6FC}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C8A740CA-AB05-45FE-803B-8109F906B6FC}.Release|iPhone.Build.0 = Release|iPhone
+		{C8A740CA-AB05-45FE-803B-8109F906B6FC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C8A740CA-AB05-45FE-803B-8109F906B6FC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{EE44D852-1122-431E-9EEC-D9B6F2C73A87}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{EE44D852-1122-431E-9EEC-D9B6F2C73A87}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{EE44D852-1122-431E-9EEC-D9B6F2C73A87}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{EE44D852-1122-431E-9EEC-D9B6F2C73A87}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{EE44D852-1122-431E-9EEC-D9B6F2C73A87}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{EE44D852-1122-431E-9EEC-D9B6F2C73A87}.Debug|iPhone.Build.0 = Debug|iPhone
+		{EE44D852-1122-431E-9EEC-D9B6F2C73A87}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{EE44D852-1122-431E-9EEC-D9B6F2C73A87}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{EE44D852-1122-431E-9EEC-D9B6F2C73A87}.Release|iPhone.ActiveCfg = Release|iPhone
+		{EE44D852-1122-431E-9EEC-D9B6F2C73A87}.Release|iPhone.Build.0 = Release|iPhone
+		{EE44D852-1122-431E-9EEC-D9B6F2C73A87}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{EE44D852-1122-431E-9EEC-D9B6F2C73A87}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ImageInverter\ImageInverter.csproj
+	EndGlobalSection
+EndGlobal

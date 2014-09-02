@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6205" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Hyo-bC-r3h">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6198"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="EgK-NM-SRa">
+            <objects>
+                <navigationController id="Hyo-bC-r3h" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lwU-8H-0b0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="MT2-uu-Ah0" kind="relationship" relationship="rootViewController" id="UcE-Aa-qGD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4l6-Ts-8YX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="303" y="380"/>
+        </scene>
+        <!--Image Inverter-->
+        <scene sceneID="zVP-v8-BlH">
+            <objects>
+                <viewController id="MT2-uu-Ah0" customClass="ImageShareViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7aG-60-WDW"/>
+                        <viewControllerLayoutGuide type="bottom" id="ysG-2m-RVn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EgW-3l-cJw">
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njb-Oo-Vdf">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="fhk-JU-5EK"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="action" id="u4K-CT-WLN">
+                                        <connections>
+                                            <action selector="share:" destination="MT2-uu-Ah0" id="4jf-lM-uzS"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_in_app.png" translatesAutoresizingMaskIntoConstraints="NO" id="Xre-fA-0Vd">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Xre-fA-0Vd" secondAttribute="trailing" id="EFh-e6-Gkd"/>
+                            <constraint firstItem="Xre-fA-0Vd" firstAttribute="leading" secondItem="EgW-3l-cJw" secondAttribute="leading" id="HE8-Rz-2az"/>
+                            <constraint firstAttribute="trailing" secondItem="njb-Oo-Vdf" secondAttribute="trailing" id="P8d-Vo-Kg7"/>
+                            <constraint firstItem="Xre-fA-0Vd" firstAttribute="top" secondItem="7aG-60-WDW" secondAttribute="bottom" id="Zec-gQ-RmB"/>
+                            <constraint firstItem="njb-Oo-Vdf" firstAttribute="top" secondItem="Xre-fA-0Vd" secondAttribute="bottom" id="aqW-rS-APv"/>
+                            <constraint firstItem="njb-Oo-Vdf" firstAttribute="leading" secondItem="EgW-3l-cJw" secondAttribute="leading" id="eSC-vA-YAf"/>
+                            <constraint firstItem="ysG-2m-RVn" firstAttribute="top" secondItem="njb-Oo-Vdf" secondAttribute="bottom" id="yEZ-zT-hqj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Image Inverter" id="JQa-Xb-3g5"/>
+                    <connections>
+                        <outlet property="imageView" destination="Xre-fA-0Vd" id="Ymq-lP-CCW"/>
+                        <outlet property="shareItem" destination="u4K-CT-WLN" id="Yxz-lA-CCW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6nd-k8-doG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="684" y="380"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="image_in_app.png" width="244" height="366"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4">
+            <size key="portraitSize" width="320" height="568"/>
+            <size key="landscapeSize" width="568" height="320"/>
+        </simulatedScreenMetrics>
+    </simulatedMetricsContainer>
+</document>
