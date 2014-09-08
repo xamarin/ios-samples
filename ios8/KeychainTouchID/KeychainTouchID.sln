@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeychainTouchID", "KeychainTouchID\KeychainTouchID.csproj", "{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}.Debug|iPhone.Build.0 = Debug|iPhone
+		{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}.Release|iPhone.ActiveCfg = Release|iPhone
+		{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}.Release|iPhone.Build.0 = Release|iPhone
+		{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = KeychainTouchID\KeychainTouchID.csproj
+	EndGlobalSection
+EndGlobal
