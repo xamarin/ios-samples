@@ -1,9 +1,9 @@
 ﻿using System;
-using MonoTouch.Foundation;
+using Foundation;
 using System.Collections.Generic;
-using MonoTouch.CoreMotion;
-using MonoTouch.CoreFoundation;
-using MonoTouch.UIKit;
+using CoreMotion;
+using CoreFoundation;
+using UIKit;
 using System.Threading.Tasks;
 using System.Linq;
 
@@ -175,7 +175,7 @@ namespace MotionActivityDemo
 				try {
 					var pedometerData = await pedometer.QueryPedometerDataAsync (significantActivity.StartDate, significantActivity.EndDate);
 
-					significantActivity.StepCounts = pedometerData.NumberOfSteps.IntValue;
+					significantActivity.StepCounts = pedometerData.NumberOfSteps.Int32Value;
 				} catch {
 					Console.WriteLine ("Error, unable to retrieve step counts for range {0}, {1}", significantActivity.StartDate.SecondsSinceReferenceDate, significantActivity.EndDate.SecondsSinceReferenceDate);
 				}
@@ -256,7 +256,7 @@ namespace MotionActivityDemo
 			try {
 				await pedometer.QueryPedometerDataAsync (now, now);
 				return true;
-			} catch (Exception e) {
+			} catch (Exception) {
 				return false;
 			}
 		}
@@ -270,7 +270,7 @@ namespace MotionActivityDemo
 
 				var pedometerData = await pedometer.QueryPedometerDataAsync (startDate, endDate);
 
-				StepCounts = pedometerData.NumberOfSteps.IntValue;
+				StepCounts = pedometerData.NumberOfSteps.Int32Value;
 			} catch (Exception e) {
 				Console.WriteLine (e.Message);
 			}
@@ -280,7 +280,7 @@ namespace MotionActivityDemo
 		{
 			pedometer.StartPedometerUpdates (NSDate.Now, ((pedometerData, error) => {
 				DispatchQueue.MainQueue.DispatchAsync (() => {
-					handler (pedometerData.NumberOfSteps.IntValue);
+					handler (pedometerData.NumberOfSteps.Int32Value);
 				});
 			}));
 		}

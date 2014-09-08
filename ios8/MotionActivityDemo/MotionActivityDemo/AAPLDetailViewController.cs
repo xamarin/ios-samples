@@ -2,8 +2,8 @@
 
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Threading.Tasks;
 
 namespace MotionActivityDemo
@@ -68,19 +68,19 @@ namespace MotionActivityDemo
 				Title = detailItem.Description;
 		}
 
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return 3;
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			if (section == 0)
 				return detailItem.IsToday ? 5 : 4;
 			if (section == 1)
 				return 1;
 			if (section == 2)
-				return activityDataManager.SignificantActivities.Count;
+				return (nint)activityDataManager.SignificantActivities.Count;
 			return 0;
 		}
 
@@ -123,7 +123,7 @@ namespace MotionActivityDemo
 			return cell;
 		}
 
-		public override string TitleForHeader (UITableView tableView, int section)
+		public override string TitleForHeader (UITableView tableView, nint section)
 		{
 			switch (section) {
 			case 0:

@@ -1,4 +1,0 @@
-monotouch_release_managed_ref
-monotouch_create_managed_ref
-xamarin_get_block_descriptor
-monotouch_log

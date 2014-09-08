@@ -2,10 +2,10 @@
 
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Collections.Generic;
-using MonoTouch.CoreFoundation;
+using CoreFoundation;
 using System.Threading.Tasks;
 
 namespace MotionActivityDemo
@@ -58,12 +58,12 @@ namespace MotionActivityDemo
 				new UIAlertView ("M7 not available", "No activity or step counting is available", null, "Cancel", null).Show ();
 		}
 
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return 1;
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return motionActivityQueries.Count;
 		}
