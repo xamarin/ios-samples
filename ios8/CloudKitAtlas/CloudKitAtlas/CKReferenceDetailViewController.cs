@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Collections.Generic;
-using MonoTouch.CloudKit;
+using CloudKit;
 
 namespace CloudKitAtlas
 {
@@ -12,8 +12,8 @@ namespace CloudKitAtlas
 
 		public string ParentRecordName { get; set; }
 
-		private const string ReferenceSubItemRecordType = "ReferenceSubItems";
-		private List<CKRecord> records;
+		const string ReferenceSubItemRecordType = "ReferenceSubItems";
+		List<CKRecord> records;
 
 		public CKReferenceDetailViewController (IntPtr handle) : base (handle)
 		{
@@ -52,9 +52,9 @@ namespace CloudKitAtlas
 			}
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return records.Count;
+			return (nint)records.Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)

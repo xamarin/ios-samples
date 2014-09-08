@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace CloudKitAtlas
@@ -13,13 +13,13 @@ namespace CloudKitAtlas
 	partial class CKAssetViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIImageView assetPreview { get; set; }
+		UIKit.UIImageView assetPreview { get; set; }
 
 		[Action ("DownloadPhoto:")]
-		partial void DownloadPhoto (MonoTouch.Foundation.NSObject sender);
+		partial void DownloadPhoto (Foundation.NSObject sender);
 
 		[Action ("TakePhoto:")]
-		partial void TakePhoto (MonoTouch.Foundation.NSObject sender);
+		partial void TakePhoto (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

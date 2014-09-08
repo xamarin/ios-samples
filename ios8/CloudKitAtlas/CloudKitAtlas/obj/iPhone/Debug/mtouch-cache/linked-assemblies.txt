@@ -1,5 +1,0 @@
-/Users/olegoid/Projects/monotouch-samples/CloudKitAtlas/CloudKitAtlas/obj/iPhone/Debug/mtouch-cache/Link/monotouch.dll
-/Users/olegoid/Projects/monotouch-samples/CloudKitAtlas/CloudKitAtlas/obj/iPhone/Debug/mtouch-cache/Link/System.dll
-/Users/olegoid/Projects/monotouch-samples/CloudKitAtlas/CloudKitAtlas/obj/iPhone/Debug/mtouch-cache/Link/CloudKitAtlas.exe
-/Users/olegoid/Projects/monotouch-samples/CloudKitAtlas/CloudKitAtlas/obj/iPhone/Debug/mtouch-cache/Link/mscorlib.dll
-/Users/olegoid/Projects/monotouch-samples/CloudKitAtlas/CloudKitAtlas/obj/iPhone/Debug/mtouch-cache/Link/System.Core.dll

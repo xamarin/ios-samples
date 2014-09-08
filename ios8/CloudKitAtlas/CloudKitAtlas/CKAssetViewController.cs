@@ -1,9 +1,9 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreFoundation;
+using Foundation;
+using UIKit;
+using CoreFoundation;
 using System.Drawing;
-using MonoTouch.CloudKit;
+using CloudKit;
 
 namespace CloudKitAtlas
 {
@@ -11,7 +11,7 @@ namespace CloudKitAtlas
 	{
 		public CloudManager CloudManager { get; set; }
 
-		private string assetRecordName;
+		string assetRecordName;
 
 		public CKAssetViewController (IntPtr handle) : base (handle)
 		{

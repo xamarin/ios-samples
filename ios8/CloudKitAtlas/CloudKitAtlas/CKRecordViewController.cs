@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.MapKit;
-using MonoTouch.CoreLocation;
+using Foundation;
+using UIKit;
+using MapKit;
+using CoreLocation;
 using System.Linq;
 
 namespace CloudKitAtlas
@@ -11,9 +11,9 @@ namespace CloudKitAtlas
 	{
 		public CloudManager CloudManager { get; set; }
 
-		private MKPointAnnotation pin;
-		private CLLocation currentLocation;
-		private CLLocationManager locationManager;
+		MKPointAnnotation pin;
+		CLLocation currentLocation;
+		CLLocationManager locationManager;
 
 		public CKRecordViewController (IntPtr handle) : base (handle)
 		{
@@ -46,7 +46,7 @@ namespace CloudKitAtlas
 			locationManager.LocationsUpdated -= OnLocationsUpdated;
 		}
 
-		async partial void SaveRecord (MonoTouch.UIKit.UIButton sender)
+		async partial void SaveRecord (UIKit.UIButton sender)
 		{
 			if (nameTextField.Text.Length < 1) {
 				nameTextField.ResignFirstResponder ();
@@ -72,7 +72,7 @@ namespace CloudKitAtlas
 			PresentViewController (alert, true, null);
 		}
 
-		private void OnLocationsUpdated (object sender, CLLocationsUpdatedEventArgs e)
+		void OnLocationsUpdated (object sender, CLLocationsUpdatedEventArgs e)
 		{
 			currentLocation = e.Locations.LastOrDefault ();
 

@@ -1,12 +1,12 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.MapKit;
-using MonoTouch.CoreLocation;
+using Foundation;
+using UIKit;
+using MapKit;
+using CoreLocation;
 using System.Linq;
 using System.Collections.Generic;
-using MonoTouch.CloudKit;
-using MonoTouch.ObjCRuntime;
+using CloudKit;
+using ObjCRuntime;
 
 namespace CloudKitAtlas
 {
@@ -14,10 +14,10 @@ namespace CloudKitAtlas
 	{
 		public CloudManager CloudManager { get; set; }
 
-		private MKPointAnnotation pin;
-		private CLLocation currentLocation;
-		private CLLocationManager locationManager;
-		private List<CKRecord> results;
+		MKPointAnnotation pin;
+		CLLocation currentLocation;
+		CLLocationManager locationManager;
+		List<CKRecord> results;
 
 		public LocationQueryViewController (IntPtr handle) : base (handle)
 		{
@@ -62,9 +62,9 @@ namespace CloudKitAtlas
 			});
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return results.Count;
+			return (nint)results.Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -76,7 +76,7 @@ namespace CloudKitAtlas
 			return cell;
 		}
 
-		private void OnLocationsUpdated (object sender, CLLocationsUpdatedEventArgs e)
+		void OnLocationsUpdated (object sender, CLLocationsUpdatedEventArgs e)
 		{
 			currentLocation = e.Locations.LastOrDefault ();
 
