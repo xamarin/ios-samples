@@ -154,8 +154,8 @@ namespace HelloGoodbye
 
 		private void UpdatePhotoConstraint()
 		{
-			SizeF size = _photo.Image.Size;
-			float ratio = size.Height / size.Width;
+			CGSize size = _photo.Image.Size;
+			nfloat ratio = size.Height / size.Width;
 			_photoAspectRatioConstraint.Constant = ratio * PhotoWidth;
 		}
 	}

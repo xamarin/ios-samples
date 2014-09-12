@@ -40,8 +40,8 @@ namespace HelloGoodbye
 
 			var matches = new List<Person> ();
 
-			for (int i = 0; i < serializedMatches.Count; i++) {
-				var sMatch = serializedMatches.GetItem<NSDictionary> (i);
+			for (nuint i = 0; i < serializedMatches.Count; i++) {
+				var sMatch = serializedMatches.GetItem<NSDictionary> ((nint)i);
 				Person match = Person.PersonFromDictionary (sMatch);
 				matches.Add (match);
 			}
