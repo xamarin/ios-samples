@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtensionsDemo", "ExtensionsDemo\ExtensionsDemo.csproj", "{DCAD2FEF-45A2-472E-9965-4A4D19A40607}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvolveCountdownWidget", "EvolveCountdownWidget\EvolveCountdownWidget.csproj", "{F5A2AFB6-44BB-4041-8369-37DA18233CE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCAD2FEF-45A2-472E-9965-4A4D19A40607}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{DCAD2FEF-45A2-472E-9965-4A4D19A40607}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{DCAD2FEF-45A2-472E-9965-4A4D19A40607}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{DCAD2FEF-45A2-472E-9965-4A4D19A40607}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{DCAD2FEF-45A2-472E-9965-4A4D19A40607}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{DCAD2FEF-45A2-472E-9965-4A4D19A40607}.Debug|iPhone.Build.0 = Debug|iPhone
+		{DCAD2FEF-45A2-472E-9965-4A4D19A40607}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{DCAD2FEF-45A2-472E-9965-4A4D19A40607}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{DCAD2FEF-45A2-472E-9965-4A4D19A40607}.Release|iPhone.ActiveCfg = Release|iPhone
+		{DCAD2FEF-45A2-472E-9965-4A4D19A40607}.Release|iPhone.Build.0 = Release|iPhone
+		{DCAD2FEF-45A2-472E-9965-4A4D19A40607}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{DCAD2FEF-45A2-472E-9965-4A4D19A40607}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{F5A2AFB6-44BB-4041-8369-37DA18233CE4}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{F5A2AFB6-44BB-4041-8369-37DA18233CE4}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{F5A2AFB6-44BB-4041-8369-37DA18233CE4}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{F5A2AFB6-44BB-4041-8369-37DA18233CE4}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{F5A2AFB6-44BB-4041-8369-37DA18233CE4}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{F5A2AFB6-44BB-4041-8369-37DA18233CE4}.Debug|iPhone.Build.0 = Debug|iPhone
+		{F5A2AFB6-44BB-4041-8369-37DA18233CE4}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{F5A2AFB6-44BB-4041-8369-37DA18233CE4}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{F5A2AFB6-44BB-4041-8369-37DA18233CE4}.Release|iPhone.ActiveCfg = Release|iPhone
+		{F5A2AFB6-44BB-4041-8369-37DA18233CE4}.Release|iPhone.Build.0 = Release|iPhone
+		{F5A2AFB6-44BB-4041-8369-37DA18233CE4}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{F5A2AFB6-44BB-4041-8369-37DA18233CE4}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ExtensionsDemo\ExtensionsDemo.csproj
+		description = Example Container App for developing App Extensions in Xamarin.iOS
+		version = 01.00
+	EndGlobalSection
+EndGlobal

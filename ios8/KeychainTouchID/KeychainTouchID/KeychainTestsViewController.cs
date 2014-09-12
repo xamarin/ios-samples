@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.CoreFoundation;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.Security;
-using MonoTouch.UIKit;
+using CoreFoundation;
+using Foundation;
+using ObjCRuntime;
+using Security;
+using UIKit;
 using System.Text;
 
 namespace KeychainTouchID
@@ -38,12 +38,12 @@ namespace KeychainTouchID
 
 		public override void ViewDidLayoutSubviews ()
 		{
-			float height = Math.Min (View.Bounds.Size.Height, tableView.ContentSize.Height);
+			var height = (nfloat)Math.Min (View.Bounds.Size.Height, tableView.ContentSize.Height);
 			dynamicViewHeight.Constant = height;
 			View.LayoutIfNeeded ();
 		}
 
-		private void AddItemAsync ()
+		void AddItemAsync ()
 		{
 			var secObject = new SecAccessControl (SecAccessible.WhenPasscodeSetThisDeviceOnly, SecAccessControlCreateFlags.UserPresence);
 
@@ -55,7 +55,7 @@ namespace KeychainTouchID
 
 			var securityRecord = new SecRecord (SecKind.GenericPassword) {
 				Service = Text.SERVICE_NAME,
-				ValueData = new NSString (Text.SECRET_PASSWORD_TEXT).DataUsingEncoding (NSStringEncoding.UTF8),
+				ValueData = new NSString (Text.SECRET_PASSWORD_TEXT).Encode (NSStringEncoding.UTF8),
 				UseNoAuthenticationUI = true,
 				AccessControl = secObject
 			};
@@ -68,7 +68,7 @@ namespace KeychainTouchID
 			});
 		}
 
-		private void CopyMatchingAsync ()
+		void CopyMatchingAsync ()
 		{
 			var securityRecord = new SecRecord (SecKind.GenericPassword) {
 				Service = Text.SERVICE_NAME,
@@ -88,7 +88,7 @@ namespace KeychainTouchID
 			});
 		}
 
-		private void UpdateItemAsync ()
+		void UpdateItemAsync ()
 		{
 			var securityRecord = new SecRecord (SecKind.GenericPassword) {
 				Service = Text.SERVICE_NAME,
@@ -96,7 +96,7 @@ namespace KeychainTouchID
 			};
 
 			var recordUpdates = new SecRecord (SecKind.Identity) {
-				ValueData = new NSString (Text.UPDATED_SECRET_PASSWORD_TEXT).DataUsingEncoding (NSStringEncoding.UTF8),
+				ValueData = new NSString (Text.UPDATED_SECRET_PASSWORD_TEXT).Encode (NSStringEncoding.UTF8),
 			};
 
 			DispatchQueue.MainQueue.DispatchAsync (() => {
@@ -107,7 +107,7 @@ namespace KeychainTouchID
 			});
 		}
 
-		private void DeleteItemAsync ()
+		void DeleteItemAsync ()
 		{
 			var securityRecord = new SecRecord (SecKind.GenericPassword) {
 				Service = Text.SERVICE_NAME

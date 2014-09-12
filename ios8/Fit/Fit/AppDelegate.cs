@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.HealthKit;
+using Foundation;
+using UIKit;
+using HealthKit;
 
 namespace Fit
 {
@@ -45,7 +45,6 @@ namespace Fit
 		{
 			HealthStore = new HKHealthStore ();
 			SetupHealthStoreForTabBarControllers ();
-
 			return true;
 		}
 

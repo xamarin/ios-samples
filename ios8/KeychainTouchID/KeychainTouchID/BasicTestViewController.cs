@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using MonoTouch.CoreFoundation;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreFoundation;
+using Foundation;
+using UIKit;
 
 namespace KeychainTouchID
 {
@@ -30,9 +30,9 @@ namespace KeychainTouchID
 		}
 
 		[Export ("tableView:numberOfRowsInSection:")]
-		public int RowsInSection (UITableView tableview, int section)
+		public nint RowsInSection (UITableView tableview, nint section)
 		{
-			return Tests.Count;
+			return (nint)Tests.Count;
 		}
 
 		[Export ("tableView:titleForHeaderInSection:")]
@@ -67,7 +67,7 @@ namespace KeychainTouchID
 			return cell;
 		}
 
-		private Test GetTestForIndexPath (NSIndexPath indexPath)
+		Test GetTestForIndexPath (NSIndexPath indexPath)
 		{
 			if (indexPath.Section > 0 || indexPath.Row >= Tests.Count)
 				return null;

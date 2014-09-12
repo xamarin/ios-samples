@@ -1,11 +1,12 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class TintedToolbarViewController : UIViewController
+	[Register ("TintedToolbarViewController")]
+	public class TintedToolbarViewController : UIViewController
 	{
 		[Outlet]
 		private UIToolbar Toolbar { get; set; }

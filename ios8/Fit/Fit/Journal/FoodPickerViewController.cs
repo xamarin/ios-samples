@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Fit
 {
@@ -49,9 +49,9 @@ namespace Fit
 			});
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return (int)FoodItems.Count;
+			return (nint)FoodItems.Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -70,7 +70,7 @@ namespace Fit
 			SelectedFoodItem = FoodItems.GetItem<FoodItem> (indexPathForSelectedRow.Row);
 			((JournalViewController)NavigationController.ViewControllers [NavigationController.ViewControllers.Length - 2]).
 				AddFoodItem (SelectedFoodItem);
-			NavigationController.PopViewControllerAnimated (true);
+			NavigationController.PopViewController (true);
 		}
 	}
 }

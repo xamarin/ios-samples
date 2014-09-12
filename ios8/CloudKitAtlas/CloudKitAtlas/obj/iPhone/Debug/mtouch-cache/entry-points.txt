@@ -1,6 +1,0 @@
-monotouch_release_managed_ref
-monotouch_create_managed_ref
-xamarin_get_block_descriptor
-monotouch_IntPtr_objc_msgSend_IntPtr
-monotouch_IntPtr_objc_msgSendSuper_IntPtr
-monotouch_log

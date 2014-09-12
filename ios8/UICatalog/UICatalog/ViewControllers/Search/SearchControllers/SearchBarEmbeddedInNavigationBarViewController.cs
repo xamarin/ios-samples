@@ -1,11 +1,12 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class SearchBarEmbeddedInNavigationBarViewController : SearchControllerBaseViewController
+	[Register ("SearchBarEmbeddedInNavigationBarViewController")]
+	public class SearchBarEmbeddedInNavigationBarViewController : SearchControllerBaseViewController
 	{
 		private UISearchController _searchController;
 

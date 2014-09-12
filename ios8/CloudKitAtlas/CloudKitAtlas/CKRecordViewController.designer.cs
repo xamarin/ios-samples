@@ -5,8 +5,8 @@
 // Manual changes to this file will not be maintained.
 //
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.CodeDom.Compiler;
 
 namespace CloudKitAtlas
@@ -16,7 +16,7 @@ namespace CloudKitAtlas
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		MonoTouch.MapKit.MKMapView map { get; set; }
+		MapKit.MKMapView map { get; set; }
 
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]

@@ -1,13 +1,13 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CloudKit;
+using Foundation;
+using UIKit;
+using CloudKit;
 
 namespace CloudKitAtlas
 {
 	public partial class MasterViewController : UITableViewController
 	{
-		private CloudManager cloudManager;
+		CloudManager cloudManager;
 
 		public MasterViewController (IntPtr handle) : base (handle)
 		{

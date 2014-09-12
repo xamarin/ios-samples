@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
-using MonoTouch.HealthKit;
-using MonoTouch.UIKit;
+using Foundation;
+using HealthKit;
+using UIKit;
 
 namespace Fit
 {
@@ -80,7 +80,7 @@ namespace Fit
 			NSDateComponents ageComponents = NSCalendar.CurrentCalendar.Components (NSCalendarUnit.Year, dateOfBirth, now,
 				                                 NSCalendarOptions.WrapCalendarComponents);
 
-			int usersAge = ageComponents.Year;
+			nint usersAge = ageComponents.Year;
 
 			ageHeightValueLabel.Text = string.Format ("{0} years", usersAge);
 		}

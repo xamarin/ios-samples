@@ -5,8 +5,8 @@
 // Manual changes to this file will not be maintained.
 //
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.CodeDom.Compiler;
 
 namespace Fit
@@ -15,13 +15,13 @@ namespace Fit
 	partial class EnergyViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel consumedEnergyValueLabel { get; set; }
+		UIKit.UILabel consumedEnergyValueLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel netEnergyValueLabel { get; set; }
+		UIKit.UILabel netEnergyValueLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel simulatedBurntEnergyValueLabel { get; set; }
+		UIKit.UILabel simulatedBurntEnergyValueLabel { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{

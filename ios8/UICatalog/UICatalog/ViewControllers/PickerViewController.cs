@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class PickerViewController : UIViewController
+	[Register ("PickerViewController")]
+	public class PickerViewController : UIViewController
 	{
 		private enum ColorComponent {
 			Red,

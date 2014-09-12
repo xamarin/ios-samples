@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
-using MonoTouch.LocalAuthentication;
-using MonoTouch.UIKit;
+using Foundation;
+using LocalAuthentication;
+using UIKit;
 
 namespace KeychainTouchID
 {
@@ -34,12 +34,12 @@ namespace KeychainTouchID
 
 		public override void ViewDidLayoutSubviews ()
 		{
-			float height = Math.Min (View.Bounds.Size.Height, tableView.ContentSize.Height);
+			var height = (nfloat)Math.Min (View.Bounds.Size.Height, tableView.ContentSize.Height);
 			dynamicViewHeight.Constant = height;
 			View.LayoutIfNeeded ();
 		}
 
-		private void CanEvaluatePolicy ()
+		void CanEvaluatePolicy ()
 		{
 			var context = new LAContext ();
 			string message = string.Empty;
@@ -50,13 +50,13 @@ namespace KeychainTouchID
 			PrintResult (textView, message);
 		}
 
-		private void EvaluatePolicy ()
+		void EvaluatePolicy ()
 		{
 			var context = new LAContext ();
 			context.EvaluatePolicy (LAPolicy.DeviceOwnerAuthenticationWithBiometrics, Text.UNLOCK_ACCESS_TO_LOCKED_FATURE, HandleLAContextReplyHandler);
 		}
 
-		private void HandleLAContextReplyHandler (bool success, NSError error)
+		void HandleLAContextReplyHandler (bool success, NSError error)
 		{
 			string message = success ? Text.EVALUATE_POLICY_SUCCESS : string.Format (Text.EVALUATE_POLICY_WITH_ERROR, error.LocalizedDescription);
 			PrintResult (textView, message);

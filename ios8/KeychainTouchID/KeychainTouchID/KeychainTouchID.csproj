@@ -3,8 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{5E798FAF-8BEE-4DE7-BED0-16B6701804F4}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{859CE049-3F52-49BA-AC58-0F2DF4CFDACF}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>KeychainTouchID</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
@@ -22,6 +22,9 @@
     <MtouchLink>None</MtouchLink>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>x86_64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -32,6 +35,9 @@
     <MtouchLink>None</MtouchLink>
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>x86_64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,6 +51,9 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -55,6 +64,9 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>full</DebugType>
@@ -83,11 +95,7 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\auth%402x.png" />
-    <BundleResource Include="Resources\keychain%402x.png" />
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -96,33 +104,40 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="LocalAuthenticationTestsViewController.cs" />
-    <Compile Include="LocalAuthenticationTestsViewController.designer.cs">
-      <DependentUpon>LocalAuthenticationTestsViewController.cs</DependentUpon>
-    </Compile>
+    <Compile Include="BasicTestViewController.cs" />
     <Compile Include="KeychainTestsViewController.cs" />
     <Compile Include="KeychainTestsViewController.designer.cs">
       <DependentUpon>KeychainTestsViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="BasicTestViewController.cs" />
+    <Compile Include="LocalAuthenticationTestsViewController.cs" />
+    <Compile Include="LocalAuthenticationTestsViewController.designer.cs">
+      <DependentUpon>LocalAuthenticationTestsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SecStatusCodeExtensions.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Text.cs" />
-    <Compile Include="SecStatusCodeExtensions.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <InterfaceDefinition Include="KeychainStoryboard.storyboard" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\auth%402x.png" />
+    <BundleResource Include="Resources\keychain%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CoreAuthenticationKeychain-120.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CoreAuthenticationKeychain-29-1.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CoreAuthenticationKeychain-58-1.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CoreAuthenticationKeychain-80-1.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CoreAuthenticationKeychain-120.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CoreAuthenticationKeychain-76.png" />
-    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CoreAuthenticationKeychain-80-1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="KeychainStoryboard.storyboard" />
   </ItemGroup>
 </Project>

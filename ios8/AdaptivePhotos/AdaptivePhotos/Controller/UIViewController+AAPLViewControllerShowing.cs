@@ -1,7 +1,7 @@
 ﻿using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
+using UIKit;
+using Foundation;
+using ObjCRuntime;
 using System.Reflection;
 
 namespace AdaptivePhotos
@@ -40,17 +40,17 @@ namespace AdaptivePhotos
 			}
 		}
 
-		public virtual AAPLPhoto Aapl_containedPhoto (AAPLPhoto photo)
+		public virtual Photo Aapl_containedPhoto (Photo photo)
 		{
 			return null;
 		}
 
-		public virtual bool Aapl_containsPhoto (AAPLPhoto photo)
+		public virtual bool Aapl_containsPhoto (Photo photo)
 		{
 			return false;
 		}
 
-		public AAPLPhoto Aapl_currentVisibleDetailPhotoWithSender ()
+		public Photo Aapl_currentVisibleDetailPhotoWithSender ()
 		{
 			var selector = new Selector ("Aapl_currentVisibleDetailPhotoWithSender");
 			UIViewController target = this.GetTargetViewControllerForAction (selector, this);
@@ -58,7 +58,7 @@ namespace AdaptivePhotos
 			if (target != null) {
 				var type = target.GetType ();
 				MethodInfo method = type.GetMethod ("Aapl_currentVisibleDetailPhotoWithSender");
-				return (AAPLPhoto)method.Invoke (target, new object[] { });
+				return (Photo)method.Invoke (target, new object[] { });
 			} else {
 				return null;
 			}
@@ -95,12 +95,12 @@ namespace AdaptivePhotos
 			}
 		}
 
-		public virtual AAPLPhoto Aapl_containedPhoto (AAPLPhoto photo)
+		public virtual Photo Aapl_containedPhoto (Photo photo)
 		{
 			return null;
 		}
 
-		public virtual bool Aapl_containsPhoto (AAPLPhoto photo)
+		public virtual bool Aapl_containsPhoto (Photo photo)
 		{
 			return false;
 		}

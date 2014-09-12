@@ -1,11 +1,12 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class PageControlViewController : UIViewController
+	[Register ("PageControlViewController")]
+	public class PageControlViewController : UIViewController
 	{
 		// Colors that correspond to the selected page. Used as the background color for "colorView".
 		private readonly UIColor[] _colors = new UIColor[]{

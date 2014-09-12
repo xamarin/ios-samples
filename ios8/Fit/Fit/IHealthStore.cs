@@ -1,5 +1,5 @@
 ﻿using System;
-using MonoTouch.HealthKit;
+using HealthKit;
 
 namespace Fit
 {

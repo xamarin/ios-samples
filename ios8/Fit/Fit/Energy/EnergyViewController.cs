@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.HealthKit;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
+using Foundation;
+using HealthKit;
+using ObjCRuntime;
+using UIKit;
 
 namespace Fit
 {

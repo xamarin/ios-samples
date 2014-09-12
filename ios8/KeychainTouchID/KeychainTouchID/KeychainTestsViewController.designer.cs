@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace KeychainTouchID
@@ -13,13 +13,13 @@ namespace KeychainTouchID
 	partial class KeychainTestsViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.NSLayoutConstraint dynamicViewHeight { get; set; }
+		UIKit.NSLayoutConstraint dynamicViewHeight { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITableView tableView { get; set; }
+		UIKit.UITableView tableView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextView textView { get; set; }
+		UIKit.UITextView textView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

@@ -2,11 +2,12 @@
 
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
+	[Register ("SearchPresentOverNavigationBarViewController")]
 	public partial class SearchPresentOverNavigationBarViewController : SearchControllerBaseViewController
 	{
 		private UISearchController _searchController;

@@ -4,8 +4,6 @@
 <dict>
 	<key>CFBundleDisplayName</key>
 	<string>AdaptivePhotos</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.your-company.AdaptivePhotos</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>

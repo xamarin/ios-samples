@@ -1,11 +1,12 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class DatePickerController : UIViewController
+	[Register ("DatePickerController")]
+	public class DatePickerController : UIViewController
 	{
 		[Outlet]
 		private UIDatePicker DatePicker { get; set; }

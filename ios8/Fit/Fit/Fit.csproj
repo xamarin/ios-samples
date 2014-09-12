@@ -3,8 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{FECE766B-6329-468F-9DE0-24347D251F4C}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{B88941AB-E2F3-48DA-9957-022D7DDFDC05}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>Fit</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
@@ -22,6 +22,9 @@
     <MtouchLink>None</MtouchLink>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>x86_64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -32,6 +35,9 @@
     <MtouchLink>None</MtouchLink>
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>x86_64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,12 +51,11 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <IpaPackageName>
-    </IpaPackageName>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
     <CodesignProvision>2e699358-10cd-4395-9012-9439e838f5a9</CodesignProvision>
+    <MtouchExtraArgs>--override-abi armv7,arm64</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -61,6 +66,9 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>full</DebugType>
@@ -89,7 +97,7 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -98,23 +106,23 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Age, Height, and Weight\ProfileViewController.cs" />
-    <Compile Include="Age, Height, and Weight\ProfileViewController.designer.cs" />
-    <Compile Include="Energy\EnergyViewController.cs" />
-    <Compile Include="Energy\EnergyViewController.designer.cs" />
-    <Compile Include="IHealthStore.cs" />
     <Compile Include="Journal\FoodItem.cs" />
     <Compile Include="Journal\FoodPickerViewController.cs" />
     <Compile Include="Journal\FoodPickerViewController.designer.cs" />
     <Compile Include="Journal\JournalViewController.cs" />
     <Compile Include="Journal\JournalViewController.designer.cs" />
+    <Compile Include="Energy\EnergyViewController.cs" />
+    <Compile Include="Energy\EnergyViewController.designer.cs" />
+    <Compile Include="Age, Height, and Weight\ProfileViewController.cs" />
+    <Compile Include="Age, Height, and Weight\ProfileViewController.designer.cs" />
+    <Compile Include="IHealthStore.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Age, Height, and Weight\" />
-    <Folder Include="Energy\" />
     <Folder Include="Journal\" />
+    <Folder Include="Energy\" />
+    <Folder Include="Age, Height, and Weight\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon_energyburn%402x.png" />

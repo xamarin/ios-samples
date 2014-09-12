@@ -1,11 +1,12 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreText;
+using Foundation;
+using UIKit;
+using CoreText;
 
 namespace UICatalog
 {
+	[Register ("ButtonViewController")]
 	public partial class ButtonViewController : UITableViewController
 	{
 		[Outlet]

@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CloudKit;
+using Foundation;
+using UIKit;
+using CloudKit;
 
 namespace CloudKitAtlas
 {
@@ -30,7 +30,7 @@ namespace CloudKitAtlas
 			}
 		}
 
-		private void DiscoveredUserInfo (CKDiscoveredUserInfo user)
+		void DiscoveredUserInfo (CKDiscoveredUserInfo user)
 		{
 			if (user == null)
 				name.Text = "Anonymous";

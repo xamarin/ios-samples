@@ -1,12 +1,14 @@
 using System;
 using System.Drawing;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace UICatalog
 {
-	public partial class TextFieldViewController : UITableViewController
+	[Register ("TextFieldViewController")]
+	public class TextFieldViewController : UITableViewController
 	{
 		[Outlet]
 		private UITextField TextField { get; set;}
@@ -86,7 +88,7 @@ namespace UICatalog
 			// to purple.
 			var purpleImage = UIImage.FromBundle ("text_field_purple_right_view");
 			var purpleImageButton = new UIButton (UIButtonType.Custom);
-			purpleImageButton.Bounds = new RectangleF (PointF.Empty, purpleImage.Size);
+			purpleImageButton.Bounds = new CGRect (PointF.Empty, purpleImage.Size);
 			purpleImageButton.ImageEdgeInsets = new UIEdgeInsets (top: 0, left: 0, bottom: 0, right: 5);
 			purpleImageButton.SetImage (purpleImage, UIControlState.Normal);
 			purpleImageButton.TouchUpInside += OnCustomTextFieldPurpleButtonClicked;

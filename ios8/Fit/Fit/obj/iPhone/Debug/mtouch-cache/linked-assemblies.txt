@@ -1,4 +1,0 @@
-/Users/olegoid/Projects/monotouch-samples/Fit/Fit/obj/iPhone/Debug/mtouch-cache/Link/monotouch.dll
-/Users/olegoid/Projects/monotouch-samples/Fit/Fit/obj/iPhone/Debug/mtouch-cache/Link/System.dll
-/Users/olegoid/Projects/monotouch-samples/Fit/Fit/obj/iPhone/Debug/mtouch-cache/Link/Fit.exe
-/Users/olegoid/Projects/monotouch-samples/Fit/Fit/obj/iPhone/Debug/mtouch-cache/Link/mscorlib.dll
