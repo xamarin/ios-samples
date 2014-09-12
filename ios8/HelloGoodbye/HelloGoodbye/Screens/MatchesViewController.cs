@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.ObjCRuntime;
+using UIKit;
+using Foundation;
+using CoreGraphics;
+using ObjCRuntime;
 
 namespace HelloGoodbye
 {

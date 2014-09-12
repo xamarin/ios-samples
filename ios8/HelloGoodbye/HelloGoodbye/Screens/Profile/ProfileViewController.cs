@@ -1,12 +1,10 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreText;
-using System.Drawing;
-
-
+using UIKit;
+using Foundation;
+using CoreText;
 
 namespace HelloGoodbye
 {

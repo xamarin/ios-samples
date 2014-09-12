@@ -1,7 +1,8 @@
 ﻿using System;
-
-using MonoTouch.UIKit;
 using System.Drawing;
+
+using UIKit;
+using CoreGraphics;
 
 namespace HelloGoodbye
 {
