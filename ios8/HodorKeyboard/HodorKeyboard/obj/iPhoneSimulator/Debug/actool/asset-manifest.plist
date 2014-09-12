@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.apple.actool.compilation-results</key>
+	<dict>
+		<key>output-files</key>
+		<array>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons29x29.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons29x29@2x.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons40x40@2x.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons57x57.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons57x57@2x.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons60x60@2x.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons29x29~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons29x29@2x~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons40x40~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons40x40@2x~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons50x50~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons50x50@2x~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons72x72~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons72x72@2x~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons76x76~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/AppIcons76x76@2x~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage-700@2x.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage-700-568h@2x.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage-700-Portrait~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage-700-Landscape~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage-700-Portrait@2x~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage-700-Landscape@2x~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage@2x.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage-568h@2x.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage-Portrait~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage-Landscape~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage-Portrait@2x~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/LaunchImage-Landscape@2x~ipad.png</string>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/obj/iPhoneSimulator/Debug/actool/partial-info.plist</string>
+		</array>
+	</dict>
+	<key>com.apple.actool.document.notices</key>
+	<array>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./AppIcons.appiconset/[iphone][57x57][1x]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>57x57 app icons only apply to iPhone apps targeting releases of iOS prior to 7.0</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./AppIcons.appiconset/[iphone][57x57][2x]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>57x57@2x app icons only apply to iPhone apps targeting releases of iOS prior to 7.0</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./AppIcons.appiconset/[ipad][50x50][1x]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>50x50 iPad spotlight icons only apply to iPad apps targeting releases of iOS prior to 7.0</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./AppIcons.appiconset/[ipad][50x50][2x]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>50x50 iPad spotlight icons only apply to iPad apps targeting releases of iOS prior to 7.0</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./AppIcons.appiconset/[ipad][72x72][1x]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>72x72 app icons only apply to iPad apps targeting releases of iOS prior to 7.0</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./AppIcons.appiconset/[ipad][72x72][2x]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>72x72@2x app icons only apply to iPad apps targeting releases of iOS prior to 7.0</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./LaunchImage.launchimage/[iphone][][1x][portrait][full-screen][]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>This launch image only applies to iOS 6.x and prior but the minimum deployment is 7.0 or later.</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./LaunchImage.launchimage/[iphone][][2x][portrait][full-screen][]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>This launch image only applies to iOS 6.x and prior but the minimum deployment is 7.0 or later.</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./LaunchImage.launchimage/[iphone][retina4][2x][portrait][full-screen][]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>This launch image only applies to iOS 6.x and prior but the minimum deployment is 7.0 or later.</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./LaunchImage.launchimage/[ipad][][1x][portrait][full-screen][]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>This launch image only applies to iOS 6.x and prior but the minimum deployment is 7.0 or later.</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./LaunchImage.launchimage/[ipad][][1x][landscape][full-screen][]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>This launch image only applies to iOS 6.x and prior but the minimum deployment is 7.0 or later.</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./LaunchImage.launchimage/[ipad][][2x][portrait][full-screen][]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>This launch image only applies to iOS 6.x and prior but the minimum deployment is 7.0 or later.</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./LaunchImage.launchimage/[ipad][][2x][landscape][full-screen][]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>This launch image only applies to iOS 6.x and prior but the minimum deployment is 7.0 or later.</string>
+			<key>type</key>
+			<string>Inapplicable Content</string>
+		</dict>
+	</array>
+	<key>com.apple.actool.document.warnings</key>
+	<array>
+		<dict>
+			<key>affected-items</key>
+			<array>
+				<string>./AppIcons.appiconset/[][][][Icon-Small-40@2x.png]</string>
+			</array>
+			<key>catalog</key>
+			<string>/Users/Vince/Desktop/HodorKeyboard/HodorKeyboard/Resources/Images.xcassets</string>
+			<key>message</key>
+			<string>The app icon set "AppIcons" has an unassigned image.</string>
+			<key>type</key>
+			<string>Ambiguous Content</string>
+		</dict>
+	</array>
+</dict>
+</plist>
