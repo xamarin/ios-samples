@@ -10,10 +10,10 @@ namespace HelloGoodbye
 {
 	public class MatchesViewController : PhotoBackgroundViewController
 	{
-		private const float HelloGoodbyeVerticalMargin = 5f;
-		private const float SwipeAnimationDuration = 0.5f;
-		private const float ZoomAnimationDuration = 0.3f;
-		private const float FadeAnimationDuration = 0.3f;
+		const float HelloGoodbyeVerticalMargin = 5f;
+		const float SwipeAnimationDuration = 0.5f;
+		const float ZoomAnimationDuration = 0.3f;
+		const float FadeAnimationDuration = 0.3f;
 
 		private CardView _cardView;
 		private UIView _swipeInstructionsView;

@@ -9,8 +9,8 @@ namespace HelloGoodbye
 {
 	public class StartViewController : PhotoBackgroundViewController
 	{
-		private const float ButtonToButtonVerticalSpacing = 10;
-		private const float LogoPadding = 30;
+		const float ButtonToButtonVerticalSpacing = 10;
+		const float LogoPadding = 30;
 
 		public StartViewController ()
 		{

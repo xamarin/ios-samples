@@ -7,10 +7,10 @@ namespace HelloGoodbye
 {
 	public class Person
 	{
-		private const string PhotoKey = "photo";
-		private const string AgeKey = "age";
-		private const string HobbiesKey = "hobbies";
-		private const string ElevatorPitchKey = "elevatorPitch";
+		const string PhotoKey = "photo";
+		const string AgeKey = "age";
+		const string HobbiesKey = "hobbies";
+		const string ElevatorPitchKey = "elevatorPitch";
 
 		public UIImage Photo { get; set; }
 		public int Age { get; set; }
