@@ -1,10 +1,11 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
+	[Register ("DefaultSearchBarViewController")]
 	public partial class DefaultSearchBarViewController : UIViewController
 	{
 		[Outlet]

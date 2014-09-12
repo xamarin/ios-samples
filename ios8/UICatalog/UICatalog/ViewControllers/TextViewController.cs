@@ -1,12 +1,14 @@
 using System;
 using System.Drawing;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace UICatalog
 {
-	public partial class TextViewController : UIViewController
+	[Register ("TextViewController")]
+	public class TextViewController : UIViewController
 	{
 		[Outlet]
 		private UITextView TextView { get; set; }
@@ -110,7 +112,7 @@ namespace UICatalog
 			var img = UIImage.FromBundle ("text_view_attachment");
 			var textAttachment = new NSTextAttachment {
 				Image = img,
-				Bounds = new RectangleF(PointF.Empty, img.Size),
+				Bounds = new CGRect(PointF.Empty, img.Size),
 			};
 
 			var textAttachmentString = NSAttributedString.CreateFrom (textAttachment);

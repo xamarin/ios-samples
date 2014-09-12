@@ -1,11 +1,12 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class CustomToolbarViewController : UIViewController
+	[Register ("CustomToolbarViewController")]
+	public class CustomToolbarViewController : UIViewController
 	{
 		[Outlet]
 		private UIToolbar Toolbar { get; set; }

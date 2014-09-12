@@ -1,11 +1,12 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class SliderViewController : UITableViewController
+	[Register ("SliderViewController")]
+	public class SliderViewController : UITableViewController
 	{
 		[Outlet]
 		private UISlider DefaultSlider { get; set; }

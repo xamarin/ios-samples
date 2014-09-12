@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{7C3AC6A1-1082-4EA6-B2C0-8203729030DF}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>UICatalog</RootNamespace>
@@ -19,12 +19,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <MtouchI18n>
-    </MtouchI18n>
-    <MtouchArch>i386</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -33,6 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
@@ -45,15 +44,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7s, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <IpaPackageName>
-    </IpaPackageName>
-    <MtouchLink>None</MtouchLink>
-    <MtouchI18n>
-    </MtouchI18n>
-    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -62,6 +56,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7s, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
@@ -72,6 +67,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7s, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <BuildIpa>true</BuildIpa>
     <CodesignProvision>Automatic:AdHoc</CodesignProvision>
@@ -83,16 +79,17 @@
     <OutputPath>bin\iPhone\AppStore</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7s, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -102,104 +99,34 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="ViewControllers\ActivityIndicatorViewController.cs" />
-    <Compile Include="ViewControllers\ActivityIndicatorViewController.designer.cs">
-      <DependentUpon>ActivityIndicatorViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\AlertControllerViewController.cs" />
-    <Compile Include="ViewControllers\AlertControllerViewController.designer.cs">
-      <DependentUpon>AlertControllerViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\ButtonViewController.cs" />
-    <Compile Include="ViewControllers\ButtonViewController.designer.cs">
-      <DependentUpon>ButtonViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\DatePickerController.cs" />
-    <Compile Include="ViewControllers\DatePickerController.designer.cs">
-      <DependentUpon>DatePickerController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\ImageViewController.cs" />
-    <Compile Include="ViewControllers\ImageViewController.designer.cs">
-      <DependentUpon>ImageViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\PageControlViewController.cs" />
-    <Compile Include="ViewControllers\PageControlViewController.designer.cs">
-      <DependentUpon>PageControlViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\PickerViewController.cs" />
-    <Compile Include="ViewControllers\PickerViewController.designer.cs">
-      <DependentUpon>PickerViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\ProgressViewController.cs" />
-    <Compile Include="ViewControllers\ProgressViewController.designer.cs">
-      <DependentUpon>ProgressViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\SegmentedControlViewController.cs" />
-    <Compile Include="ViewControllers\SegmentedControlViewController.designer.cs">
-      <DependentUpon>SegmentedControlViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\SliderViewController.cs" />
-    <Compile Include="ViewControllers\SliderViewController.designer.cs">
-      <DependentUpon>SliderViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\StepperViewController.cs" />
-    <Compile Include="ViewControllers\StepperViewController.designer.cs">
-      <DependentUpon>StepperViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\SwitchViewController.cs" />
-    <Compile Include="ViewControllers\SwitchViewController.designer.cs">
-      <DependentUpon>SwitchViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\TextFieldViewController.cs" />
-    <Compile Include="ViewControllers\TextFieldViewController.designer.cs">
-      <DependentUpon>TextFieldViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\TextViewController.cs" />
-    <Compile Include="ViewControllers\TextViewController.designer.cs">
-      <DependentUpon>TextViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\WebViewController.cs" />
-    <Compile Include="ViewControllers\WebViewController.designer.cs">
-      <DependentUpon>WebViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="UIColor.cs" />
     <Compile Include="LocalizationExtension.cs" />
     <Compile Include="ViewControllers\Toolbar View Controllers\DefaultToolbarViewController.cs" />
-    <Compile Include="ViewControllers\Toolbar View Controllers\DefaultToolbarViewController.designer.cs">
-      <DependentUpon>DefaultToolbarViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\Toolbar View Controllers\TintedToolbarViewController.cs" />
-    <Compile Include="ViewControllers\Toolbar View Controllers\TintedToolbarViewController.designer.cs">
-      <DependentUpon>TintedToolbarViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\Toolbar View Controllers\CustomToolbarViewController.cs" />
-    <Compile Include="ViewControllers\Toolbar View Controllers\CustomToolbarViewController.designer.cs">
-      <DependentUpon>CustomToolbarViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\Search\SearchBar\CustomSearchBarViewController.cs" />
-    <Compile Include="ViewControllers\Search\SearchBar\CustomSearchBarViewController.designer.cs">
-      <DependentUpon>CustomSearchBarViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\Search\SearchBar\DefaultSearchBarViewController.cs" />
-    <Compile Include="ViewControllers\Search\SearchBar\DefaultSearchBarViewController.designer.cs">
-      <DependentUpon>DefaultSearchBarViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\Search\SearchControllers\SearchBarEmbeddedInNavigationBarViewController.cs" />
-    <Compile Include="ViewControllers\Search\SearchControllers\SearchBarEmbeddedInNavigationBarViewController.designer.cs">
-      <DependentUpon>SearchBarEmbeddedInNavigationBarViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\Search\SearchControllers\SearchPresentOverNavigationBarViewController.cs" />
-    <Compile Include="ViewControllers\Search\SearchControllers\SearchPresentOverNavigationBarViewController.designer.cs">
-      <DependentUpon>SearchPresentOverNavigationBarViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\Search\SearchControllers\SearchShowResultsInSourceViewController.cs" />
-    <Compile Include="ViewControllers\Search\SearchControllers\SearchShowResultsInSourceViewController.designer.cs">
-      <DependentUpon>SearchShowResultsInSourceViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewControllers\Search\SearchControllers\Base\SearchControllerBaseViewController.cs" />
     <Compile Include="ViewControllers\Search\SearchControllers\Base\SearchResultsViewController.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Resources\Images.xcassets\" />

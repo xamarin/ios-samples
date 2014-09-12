@@ -1,11 +1,12 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class SwitchViewController : UITableViewController
+	[Register ("SwitchViewController")]
+	public class SwitchViewController : UITableViewController
 	{
 		[Outlet]
 		private UISwitch DefaultSwitch { get; set; }

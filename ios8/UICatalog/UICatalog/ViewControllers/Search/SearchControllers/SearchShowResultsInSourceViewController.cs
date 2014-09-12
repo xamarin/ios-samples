@@ -2,12 +2,13 @@
 
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class SearchShowResultsInSourceViewController : SearchResultsViewController
+	[Register ("SearchShowResultsInSourceViewController")]
+	public class SearchShowResultsInSourceViewController : SearchResultsViewController
 	{
 		private UISearchController _searchController;
 

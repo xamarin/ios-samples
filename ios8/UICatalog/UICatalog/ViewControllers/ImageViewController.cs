@@ -1,10 +1,11 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
+	[Register ("ImageViewController")]
 	public partial class ImageViewController : UIViewController
 	{
 		public ImageViewController (IntPtr handle)

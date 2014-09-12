@@ -1,11 +1,12 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class AlertControllerViewController : UITableViewController
+	[Register ("AlertControllerViewController")]
+	public class AlertControllerViewController : UITableViewController
 	{
 		private UIAlertAction secureTextAlertAction;
 

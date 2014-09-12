@@ -1,12 +1,13 @@
 using System;
-
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
 using System.Collections.Generic;
+
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class StepperViewController : UITableViewController
+	[Register ("StepperViewController")]
+	public class StepperViewController : UITableViewController
 	{
 		[Outlet]
 		private UIStepper DefaultStepper { get; set; }
