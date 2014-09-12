@@ -10,8 +10,26 @@ namespace UICatalog
 	{
 		private UIAlertAction secureTextAlertAction;
 
+		// Alert style alerts.
+		Action[] actionMap;
+
+		// Action sheet style alerts.
+		Action<UIView>[] actionSheetMap;
+
 		public AlertControllerViewController (IntPtr handle) : base (handle)
 		{
+			actionMap = new Action[] {
+				ShowSimpleAlert,
+				ShowOkayCancelAlert,
+				ShowOtherAlert,
+				ShowTextEntryAlert,
+				ShowSecureTextEntryAlert
+			};
+
+			actionSheetMap = new Action<UIView>[] {
+				ShowOkayCancelActionSheet,
+				ShowOtherActionSheet
+			};
 		}
 
 		// Show an alert with an "Okay" button.
@@ -72,14 +90,14 @@ namespace UICatalog
 
 				// Create the actions.
 			var cancelAction = UIAlertAction.Create (cancelButtonTitle, UIAlertActionStyle.Cancel, alertAction => {
-				Console.WriteLine ("The \"Other\" alert's cancel action occured.");
+				Console.WriteLine ("The 'Other' alert's cancel action occured.");
 			});
 			var otherButtonOneAction = UIAlertAction.Create (otherButtonTitleOne, UIAlertActionStyle.Default, alertAction => {
-				Console.WriteLine ("The \"Other\" alert's other button one action occured.");
+				Console.WriteLine ("The 'Other' alert's other button one action occured.");
 			});
 
 			var otherButtonTwoAction = UIAlertAction.Create (otherButtonTitleTwo, UIAlertActionStyle.Default, alertAction => {
-				Console.WriteLine ("The \"Other\" alert's other button two action occured.");
+				Console.WriteLine ("The 'Other' alert's other button two action occured.");
 			});
 
 			// Add the actions.
@@ -107,11 +125,11 @@ namespace UICatalog
 
 			// Create the actions.
 			var cancelAction = UIAlertAction.Create (cancelButtonTitle, UIAlertActionStyle.Cancel, alertAction => {
-				Console.WriteLine ("The \"Text Entry\" alert's cancel action occured.");
+				Console.WriteLine ("The 'Text Entry' alert's cancel action occured.");
 			});
 
 			var otherAction = UIAlertAction.Create (otherButtonTitle, UIAlertActionStyle.Default, alertAction => {
-				Console.WriteLine ("The \"Text Entry\" alert's other action occured.");
+				Console.WriteLine ("The 'Text Entry' alert's other action occured.");
 			});
 
 			// Add the actions.
@@ -148,12 +166,12 @@ namespace UICatalog
 
 			// Create the actions.
 			var cancelAction = UIAlertAction.Create (cancelButtonTitle, UIAlertActionStyle.Cancel, alertAction => {
-				Console.WriteLine ("The \"Secure Text Entry\" alert's cancel action occured.");
+				Console.WriteLine ("The 'Secure Text Entry' alert's cancel action occured.");
 				removeTextFieldObserver();
 			});
 				
 			var otherAction = UIAlertAction.Create (otherButtonTitle, UIAlertActionStyle.Default, alertAction => {
-				Console.WriteLine ("The \"Secure Text Entry\" alert's other action occured.");
+				Console.WriteLine ("The 'Secure Text Entry' alert's other action occured.");
 				removeTextFieldObserver ();
 			}); 
 
@@ -171,7 +189,7 @@ namespace UICatalog
 		}
 
 		// Show a dialog with an "Okay" and "Cancel" button.
-		private void ShowOkayCancelActionSheet()
+		private void ShowOkayCancelActionSheet(UIView sourceView)
 		{
 			var cancelButtonTitle = "Cancel".Localize ();
 			var destructiveButtonTitle = "OK".Localize ();
@@ -179,23 +197,24 @@ namespace UICatalog
 			var alertController = UIAlertController.Create (null, null, UIAlertControllerStyle.ActionSheet);
 
 			// Create the actions.
-			var cancelAction = UIAlertAction.Create (cancelButtonTitle, UIAlertActionStyle.Cancel, _ => {
-				Console.WriteLine ("The \"Okay/Cancel\" alert action sheet's cancel action occured.");
+			var cancelAction = UIAlertAction.Create (cancelButtonTitle, UIAlertActionStyle.Default, _ => {
+				Console.WriteLine ("The 'Okay-Cancel' alert action sheet's cancel action occured.");
 			});
 
 			var destructiveAction = UIAlertAction.Create (destructiveButtonTitle, UIAlertActionStyle.Destructive, _ => {
-				Console.WriteLine ("The \"Okay/Cancel\" alert action sheet's destructive action occured.");
+				Console.WriteLine ("The 'Okay-Cancel' alert action sheet's destructive action occured.");
 			});
 
 			// Add the actions.
 			alertController.AddAction (cancelAction);
 			alertController.AddAction (destructiveAction);
+			SetupPopover (alertController, sourceView);
 
 			PresentViewController (alertController, true, null);
 		}
 
 		// Show a dialog with two custom buttons.
-		private void ShowOtherActionSheet()
+		private void ShowOtherActionSheet(UIView sourceView)
 		{
 			var destructiveButtonTitle = "Destructive Choice".Localize ();
 			var otherButtonTitle = "Safe Choice".Localize ();
@@ -204,18 +223,28 @@ namespace UICatalog
 
 			// Create the actions.
 			var destructiveAction = UIAlertAction.Create (destructiveButtonTitle, UIAlertActionStyle.Destructive, _ => {
-				Console.WriteLine ("The \"Other\" alert action sheet's destructive action occured.");
+				Console.WriteLine ("The 'Other' alert action sheet's destructive action occured.");
 			});
 
 			var otherAction = UIAlertAction.Create (otherButtonTitle, UIAlertActionStyle.Default, _ => {
-				Console.WriteLine ("The \"Other\" alert action sheet's other action occured.");
+				Console.WriteLine ("The 'Other' alert action sheet's other action occured.");
 			});
 
 			// Add the actions.
 			alertController.AddAction (destructiveAction);
 			alertController.AddAction (otherAction);
+			SetupPopover (alertController, sourceView);
 
 			PresentViewController (alertController, true, null);
+		}
+
+		static void SetupPopover (UIAlertController alertController, UIView sourceView)
+		{
+			var popover = alertController.PopoverPresentationController;
+			if (popover != null) {
+				popover.SourceView = sourceView;
+				popover.SourceRect = sourceView.Bounds;
+			}
 		}
 
 		private void HandleTextFieldTextDidChangeNotification(NSNotification notification)
@@ -233,24 +262,16 @@ namespace UICatalog
 		{
 			// A matrix of closures that should be invoked based on which table view cell is
 			// tapped (index by section, row).
-			Action[][] actionMap = new Action[][] {
-				// Alert style alerts.
-				new Action[] {
-					ShowSimpleAlert,
-					ShowOkayCancelAlert,
-					ShowOtherAlert,
-					ShowTextEntryAlert,
-					ShowSecureTextEntryAlert
-				},
-				// Action sheet style alerts.
-				new Action[] {
-					ShowOkayCancelActionSheet,
-					ShowOtherActionSheet
-				}
-			};
+			bool simpleAlert = indexPath.Section == 0;
 
-			var action = actionMap [indexPath.Section] [indexPath.Row];
-			action ();
+			if (simpleAlert) {
+				var action = actionMap [indexPath.Row];
+				action ();
+			} else {
+				var action = actionSheetMap [indexPath.Row];
+				action (tableView.CellAt(indexPath));
+			}
+
 			tableView.DeselectRow (indexPath, animated: true);
 		}
 	}
