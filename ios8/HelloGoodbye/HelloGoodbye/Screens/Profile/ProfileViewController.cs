@@ -1,12 +1,10 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreText;
-using System.Drawing;
-
-
+using UIKit;
+using Foundation;
+using CoreText;
 
 namespace HelloGoodbye
 {
@@ -29,13 +27,13 @@ namespace HelloGoodbye
 		private NSLayoutConstraint _cardRevealConstraint;
 		private bool _cardWasRevealedBeforePan;
 
-		private bool IsCardRevealed {
+		bool IsCardRevealed {
 			get {
 				return _cardRevealConstraint.Constant < 0;
 			}
 		}
 
-		private float CardHeight {
+		nfloat CardHeight {
 			get {
 				return _cardView.Frame.Height;
 			}
@@ -237,15 +235,15 @@ namespace HelloGoodbye
 					break;
 
 				case UIGestureRecognizerState.Changed:
-					float cardHeight = CardHeight;
-					float cardRevealConstant = gestureRecognizer.TranslationInView (View).Y;
+					nfloat cardHeight = CardHeight;
+					nfloat cardRevealConstant = gestureRecognizer.TranslationInView (View).Y;
 					if (_cardWasRevealedBeforePan) {
 						cardRevealConstant += -1 * cardHeight;
 					}
 						// Never let the card tab move off screen
-					cardRevealConstant = Math.Min (0f, cardRevealConstant);
+					cardRevealConstant = NMath.Min (0, cardRevealConstant);
 						// Never let the card have a gap below it
-					cardRevealConstant = Math.Max (-1 * cardHeight, cardRevealConstant);
+					cardRevealConstant = NMath.Max (-1 * cardHeight, cardRevealConstant);
 					_cardRevealConstraint.Constant = cardRevealConstant;
 					break;
 
