@@ -1,12 +1,10 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by Xamarin Studio to store outlets and
+// actions made in the UI designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
-using System;
 using Foundation;
-using UIKit;
 using System.CodeDom.Compiler;
 
 namespace CloudKitAtlas
@@ -15,27 +13,21 @@ namespace CloudKitAtlas
 	partial class CKReferenceViewController
 	{
 		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton AddButton { get; set; }
+		UIKit.UIButton AddButton { get; set; }
 
 		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UITextField nameTextField { get; set; }
-
-		[Action ("add:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void add (UIButton sender);
+		UIKit.UITextField nameTextField { get; set; }
 
 		[Action ("Add:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void Add (UIButton sender);
-
+		partial void Add (UIKit.UIButton sender);
+		
 		void ReleaseDesignerOutlets ()
 		{
 			if (AddButton != null) {
 				AddButton.Dispose ();
 				AddButton = null;
 			}
+
 			if (nameTextField != null) {
 				nameTextField.Dispose ();
 				nameTextField = null;
