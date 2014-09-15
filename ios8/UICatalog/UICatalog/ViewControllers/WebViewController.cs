@@ -1,11 +1,12 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class WebViewController : UIViewController
+	[Register ("WebViewController")]
+	public class WebViewController : UIViewController
 	{
 		[Outlet]
 		private UIWebView WebView { get; set; }

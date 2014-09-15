@@ -1,11 +1,12 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class ActivityIndicatorViewController : UITableViewController
+	[Register ("ActivityIndicatorViewController")]
+	public class ActivityIndicatorViewController : UITableViewController
 	{
 		[Outlet]
 		private UIActivityIndicatorView grayStyleActivityIndicatorView { get ; set; }

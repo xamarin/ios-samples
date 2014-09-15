@@ -1,7 +1,7 @@
 ﻿using System;
 
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace UICatalog
 {

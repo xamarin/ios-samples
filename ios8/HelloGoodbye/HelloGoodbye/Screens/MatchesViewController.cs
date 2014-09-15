@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.ObjCRuntime;
+using UIKit;
+using Foundation;
+using CoreGraphics;
+using ObjCRuntime;
 
 namespace HelloGoodbye
 {
 	public class MatchesViewController : PhotoBackgroundViewController
 	{
-		private const float HelloGoodbyeVerticalMargin = 5f;
-		private const float SwipeAnimationDuration = 0.5f;
-		private const float ZoomAnimationDuration = 0.3f;
-		private const float FadeAnimationDuration = 0.3f;
+		const float HelloGoodbyeVerticalMargin = 5f;
+		const float SwipeAnimationDuration = 0.5f;
+		const float ZoomAnimationDuration = 0.3f;
+		const float FadeAnimationDuration = 0.3f;
 
 		private CardView _cardView;
 		private UIView _swipeInstructionsView;
@@ -40,8 +40,8 @@ namespace HelloGoodbye
 
 			var matches = new List<Person> ();
 
-			for (int i = 0; i < serializedMatches.Count; i++) {
-				var sMatch = serializedMatches.GetItem<NSDictionary> (i);
+			for (nuint i = 0; i < serializedMatches.Count; i++) {
+				var sMatch = serializedMatches.GetItem<NSDictionary> ((nint)i);
 				Person match = Person.PersonFromDictionary (sMatch);
 				matches.Add (match);
 			}

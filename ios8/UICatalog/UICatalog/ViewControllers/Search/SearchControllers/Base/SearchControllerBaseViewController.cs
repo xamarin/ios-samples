@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace UICatalog
 {
@@ -50,12 +50,12 @@ namespace UICatalog
 			TableView.ReloadData ();
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return _visibleResults.Length;
 		}
 
-		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			UITableViewCell cell = tableView.DequeueReusableCell(kTableViewCellIdentifier, indexPath);
 			cell.TextLabel.Text = _visibleResults[indexPath.Row];

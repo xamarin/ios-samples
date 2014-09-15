@@ -1,11 +1,12 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class CustomSearchBarViewController : UIViewController
+	[Register ("CustomSearchBarViewController")]
+	public class CustomSearchBarViewController : UIViewController
 	{
 		[Outlet]
 		private UISearchBar SearchBar { get; set; }

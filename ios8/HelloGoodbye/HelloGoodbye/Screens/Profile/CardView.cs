@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Drawing;
-
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
 using System.Collections.Generic;
+
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace HelloGoodbye
 {
@@ -153,8 +154,8 @@ namespace HelloGoodbye
 
 		private void UpdatePhotoConstraint()
 		{
-			SizeF size = _photo.Image.Size;
-			float ratio = size.Height / size.Width;
+			CGSize size = _photo.Image.Size;
+			nfloat ratio = size.Height / size.Width;
 			_photoAspectRatioConstraint.Constant = ratio * PhotoWidth;
 		}
 	}

@@ -43,8 +43,8 @@ UICatalog demonstrates how to configure and customize the following controls:
 Build/Runtime Requirements 
 --------------------------
 
-* Building this sample requires Xcode 5.0 and iOS 7.0 SDK. 
-* Running the sample requires iOS 7.0 or later.
+* Building this sample requires Xcode 6.0 and iOS 8.0 SDK. 
+* Running the sample requires iOS 8.0 or later.
  
 Author 
 ------

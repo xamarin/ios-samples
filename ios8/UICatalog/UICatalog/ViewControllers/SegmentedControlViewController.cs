@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
-	public partial class SegmentedControlViewController : UITableViewController
+	[Register ("SegmentedControlViewController")]
+	public class SegmentedControlViewController : UITableViewController
 	{
 		[Outlet]
 		private UISegmentedControl DefaultSegmentedControl { get; set; }

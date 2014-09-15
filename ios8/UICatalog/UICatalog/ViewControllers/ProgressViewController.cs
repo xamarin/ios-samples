@@ -3,11 +3,12 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace UICatalog
 {
+	[Register ("ProgressViewController")]
 	public partial class ProgressViewController : UITableViewController
 	{
 		private const int MaxProgress = 100;

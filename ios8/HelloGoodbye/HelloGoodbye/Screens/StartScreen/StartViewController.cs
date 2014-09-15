@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
+using UIKit;
+using Foundation;
+using ObjCRuntime;
 
 namespace HelloGoodbye
 {
 	public class StartViewController : PhotoBackgroundViewController
 	{
-		private const float ButtonToButtonVerticalSpacing = 10;
-		private const float LogoPadding = 30;
+		const float ButtonToButtonVerticalSpacing = 10;
+		const float LogoPadding = 30;
 
 		public StartViewController ()
 		{
