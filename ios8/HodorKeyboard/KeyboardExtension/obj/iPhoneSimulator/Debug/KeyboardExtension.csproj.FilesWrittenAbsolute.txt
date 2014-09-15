@@ -1,6 +1,0 @@
-/Users/Vince/Desktop/HodorKeyboard/KeyboardExtension/obj/iPhoneSimulator/Debug/Xamarin.iOS,Version=v1.0.AssemblyAttribute.cs
-/Users/Vince/Desktop/HodorKeyboard/KeyboardExtension/obj/iPhoneSimulator/Debug/
-/Users/Vince/Desktop/HodorKeyboard/KeyboardExtension/bin/iPhoneSimulator/Debug/KeyboardExtension.exe.mdb
-/Users/Vince/Desktop/HodorKeyboard/KeyboardExtension/bin/iPhoneSimulator/Debug/KeyboardExtension.exe
-/Users/Vince/Desktop/HodorKeyboard/KeyboardExtension/obj/iPhoneSimulator/Debug/KeyboardExtension.exe
-/Users/Vince/Desktop/HodorKeyboard/KeyboardExtension/obj/iPhoneSimulator/Debug/KeyboardExtension.exe.mdb
