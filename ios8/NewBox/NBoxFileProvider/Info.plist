@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>NBoxFileProvider</string>
+	<key>CFBundleExecutable</key>
+	<string>NBoxFileProvider</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.NewBox.NBoxFileProvider</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>NBoxFileProvider</string>
+	<key>CFBundlePackageType</key>
+	<string>XPC!</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionFileProviderDocumentGroup</key>
+		<string>group.com.xamarin.NewBox.security</string>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.fileprovider-nonui</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>FileProvider</string>
+	</dict>
+</dict>
+</plist>
