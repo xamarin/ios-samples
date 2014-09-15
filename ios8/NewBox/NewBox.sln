@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewBox", "NewBox\NewBox.csproj", "{E464186F-FD62-4017-BDC5-C88DC56929BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBox", "NBox\NBox.csproj", "{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBoxFileProvider", "NBoxFileProvider\NBoxFileProvider.csproj", "{A75F050F-431A-4C16-B9CD-9CDEF716F619}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A75F050F-431A-4C16-B9CD-9CDEF716F619}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{A75F050F-431A-4C16-B9CD-9CDEF716F619}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{A75F050F-431A-4C16-B9CD-9CDEF716F619}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{A75F050F-431A-4C16-B9CD-9CDEF716F619}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{A75F050F-431A-4C16-B9CD-9CDEF716F619}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{A75F050F-431A-4C16-B9CD-9CDEF716F619}.Debug|iPhone.Build.0 = Debug|iPhone
+		{A75F050F-431A-4C16-B9CD-9CDEF716F619}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{A75F050F-431A-4C16-B9CD-9CDEF716F619}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{A75F050F-431A-4C16-B9CD-9CDEF716F619}.Release|iPhone.ActiveCfg = Release|iPhone
+		{A75F050F-431A-4C16-B9CD-9CDEF716F619}.Release|iPhone.Build.0 = Release|iPhone
+		{A75F050F-431A-4C16-B9CD-9CDEF716F619}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{A75F050F-431A-4C16-B9CD-9CDEF716F619}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}.Debug|iPhone.Build.0 = Debug|iPhone
+		{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}.Release|iPhone.ActiveCfg = Release|iPhone
+		{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}.Release|iPhone.Build.0 = Release|iPhone
+		{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{CE9BEEA8-4AE1-42DE-A857-CC4A8AD8E00C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{E464186F-FD62-4017-BDC5-C88DC56929BF}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{E464186F-FD62-4017-BDC5-C88DC56929BF}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{E464186F-FD62-4017-BDC5-C88DC56929BF}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{E464186F-FD62-4017-BDC5-C88DC56929BF}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{E464186F-FD62-4017-BDC5-C88DC56929BF}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{E464186F-FD62-4017-BDC5-C88DC56929BF}.Debug|iPhone.Build.0 = Debug|iPhone
+		{E464186F-FD62-4017-BDC5-C88DC56929BF}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E464186F-FD62-4017-BDC5-C88DC56929BF}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E464186F-FD62-4017-BDC5-C88DC56929BF}.Release|iPhone.ActiveCfg = Release|iPhone
+		{E464186F-FD62-4017-BDC5-C88DC56929BF}.Release|iPhone.Build.0 = Release|iPhone
+		{E464186F-FD62-4017-BDC5-C88DC56929BF}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E464186F-FD62-4017-BDC5-C88DC56929BF}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = NewBox\NewBox.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.TabsToSpaces = False
+		$1.inheritsSet = VisualStudio
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal
