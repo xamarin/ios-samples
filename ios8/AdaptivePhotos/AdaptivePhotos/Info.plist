@@ -50,5 +50,7 @@
 		<string>Icon-Small-40</string>
 		<string>Icon-Small-40@2x</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.AdaptivePhotos</string>
 </dict>
 </plist>
