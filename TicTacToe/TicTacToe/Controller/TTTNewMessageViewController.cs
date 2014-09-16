@@ -50,26 +50,21 @@ namespace TicTacToe
 			};
 			view.AddSubview (messageTextView);
 
-			NSDictionary views = NSDictionary.FromObjectsAndKeys (
-				new NSObject[] { postButton, cancelButton, messageTextView },
-				new NSString[] { new NSString ("postButton"),
-				new NSString ("cancelButton"),
-				new NSString ("messageTextView")
-			}
-			);
-
-			baseView.AddConstraints (NSLayoutConstraint.FromVisualFormat (
-				"|-8-[messageTextView]-8-|", (NSLayoutFormatOptions)0, null, views)
-			);
-			baseView.AddConstraints (NSLayoutConstraint.FromVisualFormat (
-				"|-8-[cancelButton]->=20-[postButton]-8-|", (NSLayoutFormatOptions)0, null, views)
-			);
-			baseView.AddConstraints (NSLayoutConstraint.FromVisualFormat (
-				"V:|-8-[messageTextView]-[cancelButton]-8-|", (NSLayoutFormatOptions)0, null, views)
-			);
-			baseView.AddConstraints (NSLayoutConstraint.FromVisualFormat (
-				"V:|-8-[messageTextView]-[postButton]-8-|", (NSLayoutFormatOptions)0, null, views)
-			);
+			baseView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("|-8-[messageTextView]-8-|",
+				(NSLayoutFormatOptions)0,
+				"messageTextView", messageTextView));
+			baseView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("|-8-[cancelButton]->=20-[postButton]-8-|",
+				(NSLayoutFormatOptions)0,
+				"cancelButton", cancelButton,
+				"postButton", postButton));
+			baseView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-8-[messageTextView]-[cancelButton]-8-|",
+				(NSLayoutFormatOptions)0,
+				"messageTextView", messageTextView,
+				"cancelButton", cancelButton));
+			baseView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-8-[messageTextView]-[postButton]-8-|",
+				(NSLayoutFormatOptions)0,
+				"messageTextView", messageTextView,
+				"postButton", postButton));
 
 			View = baseView;
 		}
