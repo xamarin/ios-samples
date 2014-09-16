@@ -98,44 +98,44 @@ namespace AdaptivePhotos
 		void SetupConstraints ()
 		{
 			backgroundView.TranslatesAutoresizingMaskIntoConstraints = false;
-			NSDictionary views = NSDictionary.FromObjectAndKey (backgroundView, new NSString ("backgroundView"));
-			var constraints = NSLayoutConstraint.FromVisualFormat ("|[backgroundView]|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views);
-			AddConstraints (constraints);
-			constraints = NSLayoutConstraint.FromVisualFormat ("V:|[backgroundView]|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views);
-			AddConstraints (constraints);
+
+			AddConstraints (NSLayoutConstraint.FromVisualFormat ("|[backgroundView]|",
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"backgroundView", backgroundView));
+
+			AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|[backgroundView]|",
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"backgroundView", backgroundView));
 
 			UIImageView lastImageView = null;
 			for (nint i = 0; i < (nint)ImageViews.Count; i++) {
 				var imageView = ImageViews.GetItem <UIImageView> (i);
 				imageView.TranslatesAutoresizingMaskIntoConstraints = false;
 
-				NSDictionary currentImageViews = null;
+				AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-4-[imageView]-4-|",
+					NSLayoutFormatOptions.DirectionLeadingToTrailing,
+					"imageView", imageView));
 
-				if (lastImageView != null) {
-					currentImageViews = NSDictionary.FromObjectsAndKeys (new object[] { imageView, lastImageView }, 
-						new string[] { "imageView", "lastImageView" });
-				} else {
-					currentImageViews = NSDictionary.FromObjectAndKey (imageView, new NSString ("imageView"));
-				}
-
-				constraints = NSLayoutConstraint.FromVisualFormat ("V:|-4-[imageView]-4-|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, currentImageViews);
-				AddConstraints (constraints);
 				AddConstraint (NSLayoutConstraint.Create (imageView, NSLayoutAttribute.Width, NSLayoutRelation.Equal, 
 					imageView, NSLayoutAttribute.Height, 1.0f, 0.0f));
 
 				if (lastImageView != null) {
-					constraints = NSLayoutConstraint.FromVisualFormat ("[lastImageView][imageView(==lastImageView)]", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, currentImageViews);
+					AddConstraints (NSLayoutConstraint.FromVisualFormat ("[lastImageView][imageView(==lastImageView)]",
+						NSLayoutFormatOptions.DirectionLeadingToTrailing,
+						"lastImageView", lastImageView,
+						"imageView", imageView));
 				} else {
-					constraints = NSLayoutConstraint.FromVisualFormat ("|-4-[imageView]", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, currentImageViews);
+					AddConstraints (NSLayoutConstraint.FromVisualFormat ("|-4-[imageView]",
+						NSLayoutFormatOptions.DirectionLeadingToTrailing,
+						"imageView", imageView));
 				}
 
-				AddConstraints (constraints);
 				lastImageView = imageView;
 			}
-				
-			NSDictionary actualImageViews = NSDictionary.FromObjectAndKey (lastImageView, new NSString ("lastImageView"));
-			constraints = NSLayoutConstraint.FromVisualFormat ("[lastImageView]-4-|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, actualImageViews);
-			AddConstraints (constraints);
+
+			AddConstraints (NSLayoutConstraint.FromVisualFormat ("[lastImageView]-4-|",
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"lastImageView", lastImageView));
 		}
 	}
 }

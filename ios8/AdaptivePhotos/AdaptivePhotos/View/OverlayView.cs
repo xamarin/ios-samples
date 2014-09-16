@@ -48,12 +48,14 @@ namespace AdaptivePhotos
 			backgroundView.TranslatesAutoresizingMaskIntoConstraints = false;
 			Add (backgroundView);
 
-			var views = NSDictionary.FromObjectAndKey (backgroundView, new NSString ("backgroundView"));
-			var constraints = NSLayoutConstraint.FromVisualFormat ("|[backgroundView]|", 
-				                  NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views);
+			var constraints = NSLayoutConstraint.FromVisualFormat ("|[backgroundView]|",
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"backgroundView", backgroundView);
 			AddConstraints (constraints);
+
 			constraints = NSLayoutConstraint.FromVisualFormat ("V:|[backgroundView]|", 
-				NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views);
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"backgroundView", backgroundView);
 			AddConstraints (constraints);
 
 			label = new UILabel ();

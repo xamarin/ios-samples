@@ -56,33 +56,36 @@ namespace AdaptivePhotos
 
 			UpdatePhoto ();
 
-			var views = NSDictionary.FromObjectsAndKeys (
-	            new object[] { imageView, ratingControl, overlayButton },
-	            new object[] { "imageView", "ratingControl", "overlayButton" }
-            );
-
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("|[imageView]|",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views));
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"imageView", imageView));
 
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|[imageView]|",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views));
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"imageView", imageView));
 
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("[ratingControl]-|",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views));
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"ratingControl", ratingControl));
 
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("[overlayButton]-|",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views));
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"overlayButton", overlayButton));
 
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:[overlayButton]-[ratingControl]-|",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views));
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"overlayButton", overlayButton,
+				"ratingControl", ratingControl));
 
 			var constraints = new List<NSLayoutConstraint> ();
 
 			constraints.AddRange (NSLayoutConstraint.FromVisualFormat ("|-(>=20)-[ratingControl]",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views));
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"ratingControl", ratingControl));
 
 			constraints.AddRange (NSLayoutConstraint.FromVisualFormat ("|-(>=20)-[overlayButton]",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views));
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"overlayButton", overlayButton));
 
 			foreach (var constraint in constraints)
 				constraint.Priority = (int)UILayoutPriority.Required - 1;

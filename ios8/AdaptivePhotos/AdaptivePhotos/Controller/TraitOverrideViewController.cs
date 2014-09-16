@@ -55,11 +55,10 @@ namespace AdaptivePhotos
 						var view = viewController.View;
 						view.TranslatesAutoresizingMaskIntoConstraints = false;
 						View.Add (view);
-						NSDictionary views = NSDictionary.FromObjectAndKey (view, new NSString ("view"));
 						View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("|[view]|", 
-							NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views));
+							NSLayoutFormatOptions.DirectionLeadingToTrailing, "view", view));
 						View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|[view]|", 
-							NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views));
+							NSLayoutFormatOptions.DirectionLeadingToTrailing, "view", view));
 						viewController.DidMoveToParentViewController (this);
 
 						UpdateForcedTraitCollection ();
