@@ -42,23 +42,21 @@ namespace TicTacToe
 
 			float topHeight = UIApplication.SharedApplication.StatusBarFrame.Size.Height +
 				NavigationController.NavigationBar.Frame.Size.Height;
-			NSDictionary bindings = NSDictionary.FromObjectAndKey (gameView, new NSString ("gameView"));
-			NSDictionary metrics = NSDictionary.FromObjectsAndKeys (
-				new NSObject[] { new NSNumber (topHeight + Margin),
-				new NSNumber (Margin), new NSNumber (Margin)
-			},
-				new NSString [] { 
-				new NSString ("topHeight"), 
-				new NSString ("bottomHeight"),
-				new NSString ("margin")
-			});
 
-			view.AddConstraints (NSLayoutConstraint.FromVisualFormat (
-				"|-margin-[gameView]-margin-|", (NSLayoutFormatOptions)0,
-				metrics, bindings));
-			view.AddConstraints (NSLayoutConstraint.FromVisualFormat (
-				"V:|-topHeight-[gameView]-bottomHeight-|", (NSLayoutFormatOptions)0,
-				metrics, bindings));
+			var mTopHeight = new NSNumber (topHeight + Margin);
+			var mBottomHeight = new NSNumber (Margin);
+			var mMargin = new NSNumber (Margin);
+
+			view.AddConstraints (NSLayoutConstraint.FromVisualFormat ("|-margin-[gameView]-margin-|",
+				(NSLayoutFormatOptions)0,
+				"margin", mMargin,
+				"gameView", gameView));
+
+			view.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-topHeight-[gameView]-bottomHeight-|",
+				(NSLayoutFormatOptions)0,
+				"topHeight", mTopHeight,
+				"gameView", gameView,
+				"bottomHeight", mBottomHeight));
 
 			View = view;
 		}

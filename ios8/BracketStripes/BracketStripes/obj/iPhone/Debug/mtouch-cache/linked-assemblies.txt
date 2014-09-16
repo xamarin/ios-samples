@@ -1,4 +1,0 @@
-/Users/olegoid/Projects/private-samples/ios8/BracketStripes/BracketStripes/obj/iPhone/Debug/mtouch-cache/Link/monotouch.dll
-/Users/olegoid/Projects/private-samples/ios8/BracketStripes/BracketStripes/obj/iPhone/Debug/mtouch-cache/Link/System.dll
-/Users/olegoid/Projects/private-samples/ios8/BracketStripes/BracketStripes/obj/iPhone/Debug/mtouch-cache/Link/BracketStripes.exe
-/Users/olegoid/Projects/private-samples/ios8/BracketStripes/BracketStripes/obj/iPhone/Debug/mtouch-cache/Link/mscorlib.dll
