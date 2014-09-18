@@ -114,14 +114,14 @@ namespace AdaptivePhotos
 
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:|[topLayoutGuide]-[nameLabel]-[conversationsLabel]-[photosLabel]",
 					NSLayoutFormatOptions.DirectionLeadingToTrailing,
-					"topLayoutGuide", TopLayoutGuide,
+					"topLayoutGuide", ObjCRuntime.Runtime.GetNSObject(TopLayoutGuide.Handle),
 					"nameLabel", NameLabel,
 					"conversationsLabel", ConversationsLabel,
 					"photosLabel", PhotosLabel));
 
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:|[topLayoutGuide][imageView]|",
 					NSLayoutFormatOptions.DirectionLeadingToTrailing,
-					"topLayoutGuide", TopLayoutGuide,
+					"topLayoutGuide", ObjCRuntime.Runtime.GetNSObject(TopLayoutGuide.Handle),
 					"imageView", ImageView));
 
 				newConstraints.Add (NSLayoutConstraint.Create (ImageView, NSLayoutAttribute.Width, NSLayoutRelation.Equal, 
@@ -145,7 +145,7 @@ namespace AdaptivePhotos
 
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:[topLayoutGuide]-[nameLabel]-[conversationsLabel]-[photosLabel]-20-[imageView]|",
 					NSLayoutFormatOptions.DirectionLeadingToTrailing,
-					"TopLayoutGuide", TopLayoutGuide,
+					"topLayoutGuide", ObjCRuntime.Runtime.GetNSObject(TopLayoutGuide.Handle),
 					"nameLabel", NameLabel,
 					"conversationsLabel", ConversationsLabel,
 					"photosLabel", PhotosLabel,
