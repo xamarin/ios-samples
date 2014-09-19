@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>4fbc7a89-cbc0-496a-85f5-5be69fcca74d</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>Device Features,Maps & Location, iOS8</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<Gallery>true</Gallery>
+	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+</SampleMetadata>
