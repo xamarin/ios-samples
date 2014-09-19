@@ -1,0 +1,242 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		18E627150000000000000000 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C7733B30000000000000000 /* UIKit.framework */; };
+		3A7BCA480000000000000000 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0CD6E60000000000000000 /* MapKit.framework */; };
+		FAF32E000000000000000000 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13403F7E0000000000000000 /* Foundation.framework */; };
+		31A152900000000000000000 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AB21C700000000000000000 /* CoreGraphics.framework */; };
+		30E33D570000000000000000 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 347449F50000000000000000 /* Info.plist */; };
+		616A5EF00000000000000000 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A7B28D00000000000000000 /* Entitlements.plist */; };
+		344166D90000000000000000 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37D273770000000000000000 /* MainStoryboard_iPhone.storyboard */; };
+		226C27C30000000000000000 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25FD34610000000000000000 /* MainStoryboard_iPad.storyboard */; };
+		20574CCA0000000000000000 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23E859680000000000000000 /* Images.xcassets */; };
+		29F11BDD0000000000000000 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 2D82287B0000000000000000 /* AppDelegate.h */; };
+		7F5B27200000000000000000 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B86BF1000000000000000000 /* AppDelegate.m */; };
+		1D291B0A0000000000000000 /* GameViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 20BA27A80000000000000000 /* GameViewController.h */; };
+		142509F10000000000000000 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B6168F0000000000000000 /* GameViewController.m */; };
+		19652B500000000000000000 /* GameView.h in Sources */ = {isa = PBXBuildFile; fileRef = 1CF637EE0000000000000000 /* GameView.h */; };
+		3769C1E50000000000000000 /* GameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFACE830000000000000000 /* GameView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3E27BE210000000000000000 /* MetalBasic3D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "MetalBasic3D.app"; path = "MetalBasic3D.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C7733B30000000000000000 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "UIKit.framework"; path = "System/Library/Frameworks/UIKit.framework"; sourceTree = SDKROOT; };
+		3E0CD6E60000000000000000 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "MapKit.framework"; path = "System/Library/Frameworks/MapKit.framework"; sourceTree = SDKROOT; };
+		13403F7E0000000000000000 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Foundation.framework"; path = "System/Library/Frameworks/Foundation.framework"; sourceTree = SDKROOT; };
+		6AB21C700000000000000000 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreGraphics.framework"; path = "System/Library/Frameworks/CoreGraphics.framework"; sourceTree = SDKROOT; };
+		347449F50000000000000000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info.plist"; path = "Info.plist"; sourceTree = "<group>"; };
+		9A7B28D00000000000000000 /* Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Entitlements.plist"; path = "Entitlements.plist"; sourceTree = "<group>"; };
+		37D273770000000000000000 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "MainStoryboard_iPhone.storyboard"; path = "MainStoryboard_iPhone.storyboard"; sourceTree = "<group>"; };
+		25FD34610000000000000000 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "MainStoryboard_iPad.storyboard"; path = "MainStoryboard_iPad.storyboard"; sourceTree = "<group>"; };
+		23E859680000000000000000 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Images.xcassets"; path = "Images.xcassets"; sourceTree = "<group>"; };
+		2D82287B0000000000000000 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AppDelegate.h"; path = "AppDelegate.h"; sourceTree = "<group>"; };
+		B86BF1000000000000000000 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "AppDelegate.m"; path = "AppDelegate.m"; sourceTree = "<group>"; };
+		20BA27A80000000000000000 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GameViewController.h"; path = "GameViewController.h"; sourceTree = "<group>"; };
+		17B6168F0000000000000000 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "GameViewController.m"; path = "GameViewController.m"; sourceTree = "<group>"; };
+		1CF637EE0000000000000000 /* GameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GameView.h"; path = "GameView.h"; sourceTree = "<group>"; };
+		3AFACE830000000000000000 /* GameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "GameView.m"; path = "GameView.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2E675A040000000000000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18E627150000000000000000 /* UIKit.framework in Frameworks */,
+				3A7BCA480000000000000000 /* MapKit.framework in Frameworks */,
+				FAF32E000000000000000000 /* Foundation.framework in Frameworks */,
+				31A152900000000000000000 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E80CB9200000000000000000 = {
+			isa = PBXGroup;
+			children = (
+				391A7FDE0000000000000000 /* MetalBasic3D */,
+				1933F16C0000000000000000 /* Frameworks */,
+				3CDA5B800000000000000000 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3CDA5B800000000000000000 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E27BE210000000000000000 /* MetalBasic3D.app */,
+			);
+			name = "Products";
+			sourceTree = "<group>";
+		};
+		1933F16C0000000000000000 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1C7733B30000000000000000 /* UIKit.framework */,
+				3E0CD6E60000000000000000 /* MapKit.framework */,
+				13403F7E0000000000000000 /* Foundation.framework */,
+				6AB21C700000000000000000 /* CoreGraphics.framework */,
+			);
+			name = "Frameworks";
+			sourceTree = "<group>";
+		};
+		391A7FDE0000000000000000 /* MetalBasic3D */ = {
+			isa = PBXGroup;
+			children = (
+				2D82287B0000000000000000 /* AppDelegate.h */,
+				9A7B28D00000000000000000 /* Entitlements.plist */,
+				1CF637EE0000000000000000 /* GameView.h */,
+				20BA27A80000000000000000 /* GameViewController.h */,
+				23E859680000000000000000 /* Images.xcassets */,
+				347449F50000000000000000 /* Info.plist */,
+				25FD34610000000000000000 /* MainStoryboard_iPad.storyboard */,
+				37D273770000000000000000 /* MainStoryboard_iPhone.storyboard */,
+				9D7AA4F00000000000000000 /* Supporting Files */,
+			);
+			name = "MetalBasic3D";
+			sourceTree = "<group>";
+		};
+		9D7AA4F00000000000000000 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B86BF1000000000000000000 /* AppDelegate.m */,
+				3AFACE830000000000000000 /* GameView.m */,
+				17B6168F0000000000000000 /* GameViewController.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3DC1F7E90000000000000000 /* MetalBasic3D */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 337498470000000000000000 /* Build configuration list for PBXNativeTarget "MetalBasic3D" */;
+			buildPhases = (
+				1C921AEE0000000000000000 /* Sources */,
+				2E675A040000000000000000 /* Frameworks */,
+				57CBA7900000000000000000 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MetalBasic3D";
+			productName = "MetalBasic3D";
+			productReference = 3E27BE210000000000000000 /* MetalBasic3D.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		330ED20F0000000000000000 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 28C1726D0000000000000000 /* Build configuration list for PBXProject "MetalBasic3D" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E80CB9200000000000000000;
+			productRefGroup = 3CDA5B800000000000000000 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3DC1F7E90000000000000000 /* MetalBasic3D */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		57CBA7900000000000000000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30E33D570000000000000000 /* Info.plist in Resources */,
+				616A5EF00000000000000000 /* Entitlements.plist in Resources */,
+				344166D90000000000000000 /* MainStoryboard_iPhone.storyboard in Resources */,
+				226C27C30000000000000000 /* MainStoryboard_iPad.storyboard in Resources */,
+				20574CCA0000000000000000 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1C921AEE0000000000000000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29F11BDD0000000000000000 /* AppDelegate.h in Sources */,
+				7F5B27200000000000000000 /* AppDelegate.m in Sources */,
+				1D291B0A0000000000000000 /* GameViewController.h in Sources */,
+				142509F10000000000000000 /* GameViewController.m in Sources */,
+				19652B500000000000000000 /* GameView.h in Sources */,
+				3769C1E50000000000000000 /* GameView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DE8223E00000000000000000 /* MonoTouch */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				SDKROOT = iphoneos;
+			};
+			name = MonoTouch;
+		};
+		1E0E4C930000000000000000 /* MonoTouch */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				PRODUCT_NAME = "MetalBasic3D";
+				WRAPPER_EXTENSION = app;
+			};
+			name = MonoTouch;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		28C1726D0000000000000000 /* Build configuration list for PBXProject "MetalBasic3D" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE8223E00000000000000000 /* MonoTouch */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = MonoTouch;
+		};
+		337498470000000000000000 /* Build configuration list for PBXNativeTarget "MetalBasic3D" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E0E4C930000000000000000 /* MonoTouch */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = MonoTouch;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 330ED20F0000000000000000 /* Project object */;
+}
