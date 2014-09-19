@@ -54,8 +54,6 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
-    <CodesignProvision>2e699358-10cd-4395-9012-9439e838f5a9</CodesignProvision>
-    <MtouchExtraArgs>--override-abi armv7,arm64</MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
