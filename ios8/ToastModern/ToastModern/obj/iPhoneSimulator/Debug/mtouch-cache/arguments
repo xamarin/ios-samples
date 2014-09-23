@@ -1,0 +1,29 @@
+# Version: 8.0.0.60 (b26679f)
+# [first argument, ignore] # /Users/olegoid/Projects/ToastModern/ToastModern/mtouch.exe
+/Library/Frameworks/Xamarin.iOS.framework/Versions/8.0.0.60/bin/mtouch \
+	--cache \
+	obj/iPhoneSimulator/Debug/mtouch-cache \
+	--nomanifest \
+	--nosign \
+	--sim \
+	bin/iPhoneSimulator/Debug/ToastModern.app \
+	--debug \
+	--nolink \
+	--sdkroot \
+	/Applications/Xcode.app/Contents/Developer \
+	--sdk \
+	8.0 \
+	--targetver \
+	8.0 \
+	--abi=i386,x86_64 \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Xml.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/Xamarin.iOS.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Core.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/mscorlib.dll \
+	/Users/olegoid/Projects/ToastModern/ToastModern/bin/iPhoneSimulator/Debug//ToastModern.exe \
