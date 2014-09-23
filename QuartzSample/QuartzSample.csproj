@@ -24,9 +24,10 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
     <ConsolePause>False</ConsolePause>
-    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchArch>i386</MtouchArch>
     <MtouchI18n>
     </MtouchI18n>
+    <MtouchExtraArgs> </MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -36,7 +37,10 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <ConsolePause>False</ConsolePause>
-    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchExtraArgs> </MtouchExtraArgs>
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>True</DebugSymbols>
@@ -50,7 +54,6 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARMv7</MtouchArch>
-    <MtouchExtraArgs> </MtouchExtraArgs>
     <BuildIpa>false</BuildIpa>
     <IpaPackageName>
     </IpaPackageName>
@@ -65,7 +68,10 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchArch>ARMv6</MtouchArch>
+    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchExtraArgs> </MtouchExtraArgs>
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -106,6 +112,7 @@
     <InterfaceDefinition Include="QuartzBlendingViewController.xib" xmlns="" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <Content Include="Images\Demo.png" />
     <Content Include="Images\QuartzImageDrawing.pdf" />
