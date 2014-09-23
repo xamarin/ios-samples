@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>04971fd0-fcba-46b0-bdf7-084d9a339482</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Device Features, Graphics, Games, iOS8</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+        <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+</SampleMetadata>
