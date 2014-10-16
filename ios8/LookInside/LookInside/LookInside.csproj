@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{6E9764A2-CD8C-4E08-8012-1AC0A1371920}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>LookInside</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>LookInside</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <BuildIpa>true</BuildIpa>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="RootViewController.cs" />
+    <Compile Include="PhotoCollectionViewCell.cs" />
+    <Compile Include="OverlayViewController.cs" />
+    <Compile Include="OverlayVibrantLabel.cs" />
+    <Compile Include="PresentationControllers\CoolPresentationController.cs" />
+    <Compile Include="PresentationControllers\OverlayPresentationController.cs" />
+    <Compile Include="Transitioner\OverlayTransitioningDelegate.cs" />
+    <Compile Include="Transitioner\OverlayAnimatedTransitioning.cs" />
+    <Compile Include="Transitioner\CoolTransitioningDelegate.cs" />
+    <Compile Include="Transitioner\CoolAnimatedTransitioning.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\Images.xcassets\" />
+    <Folder Include="Resources\Images.xcassets\AppIcon.appiconset\" />
+    <Folder Include="Resources\Images.xcassets\LaunchImage.launchimage\" />
+    <Folder Include="PresentationControllers\" />
+    <Folder Include="Transitioner\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\Photos\0.imageset\DSC_1132.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\1.imageset\DSC_0001.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\10.imageset\DSC_0081.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\11.imageset\IMG_6792.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\12.imageset\DSC_0098.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\13.imageset\DSC_0124.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\14.imageset\DSC_0137.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\15.imageset\DSC_0141.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\16.imageset\DSC_0152.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\17.imageset\IMG_6878.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\18.imageset\DSC_0164.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\19.imageset\DSC_0167.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\2.imageset\DSC_0004 2.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\20.imageset\DSC_0169.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\21.imageset\IMG_6953.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\22.imageset\DSC_0213.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\23.imageset\DSC_0228.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\24.imageset\DSC_0238.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\25.imageset\DSC_0244.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\26.imageset\DSC_0246.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\27.imageset\IMG_7058.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\28.imageset\DSC_0300.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\29.imageset\DSC_0323.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\3.imageset\DSC_0004.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\30.imageset\IMG_7060.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\31.imageset\DSC_0019.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\32.imageset\DSC_0095.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\33.imageset\DSC_0158.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\34.imageset\DSC_0209.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\35.imageset\DSC_0274.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\36.imageset\DSC_0335.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\4.imageset\DSC_0011.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\5.imageset\IMG_6777.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\6.imageset\DSC_0024.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\7.imageset\DSC_0029.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\8.imageset\DSC_0050.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\9.imageset\DSC_0081 2.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\BigFlower.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\BigFlower.imageset\large_flower%402x-1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BigFlower.imageset\large_flower%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Carl.imageset\Carl-1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Carl.imageset\Carl.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Carl.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Image.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\JaguarH.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\JaguarH.imageset\panther_strip_horizontal-1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\JaguarH.imageset\panther_strip_horizontal.png" />
+    <ImageAsset Include="Resources\Images.xcassets\JaguarV.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\JaguarV.imageset\panther_strip_vertical-1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\JaguarV.imageset\panther_strip_vertical.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LittleFlower.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\LittleFlower.imageset\small_flower%402x-1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LittleFlower.imageset\small_flower%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\0.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\1.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\10.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\11.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\12.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\13.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\14.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\15.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\16.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\17.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\18.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\19.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\2.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\20.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\21.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\22.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\23.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\24.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\25.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\26.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\27.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\28.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\29.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\3.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\30.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\31.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\32.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\33.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\34.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\35.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\36.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\4.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\5.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\6.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\7.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\8.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Photos\9.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-60%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-72.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-72%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-76%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-50.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-50%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Spotlight-40.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Spotlight-40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Landscape%402x~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Landscape~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Portrait%402x~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Portrait~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default%402x.png" />
+  </ItemGroup>
+</Project>
