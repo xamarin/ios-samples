@@ -167,7 +167,6 @@ namespace CloudCaptions
 			// Creates post record type and initizalizes all of its values
 			CKRecord newRecord = new CKRecord (Post.RecordType);
 			newRecord [Post.FontKey] = (NSString)ImageLabel.Font.Name;
-			// TODO: https://trello.com/c/wEJdLrtO RecordId -> Id
 			newRecord [Post.ImageRefKey] = new CKReference (ImageRecord.Record.RecordId, CKReferenceAction.DeleteSelf);
 			newRecord [Post.TextKey] = (NSString)HiddenText.Text;
 			string[] tags = TagField.Text.ToLower ().Split (new char[]{ ' ' }, StringSplitOptions.RemoveEmptyEntries);
@@ -180,8 +179,7 @@ namespace CloudCaptions
 			CKRecord[] recordsToSave = ImageRecord.IsOnServer
 				? new CKRecord[] { newRecord }
 				: new CKRecord[] { newRecord, ImageRecord.Record };
-			// TODO: https://trello.com/c/A9T8Spyp second param is null
-			CKModifyRecordsOperation saveOp = new CKModifyRecordsOperation (recordsToSave, new CKRecordID[0]);
+			CKModifyRecordsOperation saveOp = new CKModifyRecordsOperation (recordsToSave, null);
 			saveOp.PerRecordProgress = (CKRecord record, double progress) => {
 				// Image record type is probably going to take the longest to upload. Reflect it's progress in the progress bar
 				if (record.RecordType == Image.RecordType)
