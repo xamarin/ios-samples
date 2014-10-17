@@ -104,7 +104,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Controller\UIViewController+AAPLViewControllerShowing.cs" />
     <Compile Include="Model\Conversation.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Photo.cs" />
@@ -116,6 +115,7 @@
     <Compile Include="Controller\ProfileViewController.cs" />
     <Compile Include="View\OverlayView.cs" />
     <Compile Include="View\RatingControl.cs" />
+    <Compile Include="Controller\UIViewController+ViewControllerShowing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

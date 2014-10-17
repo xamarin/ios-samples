@@ -12,52 +12,52 @@ namespace AdaptivePhotos
 		{
 		}
 
-		public bool Aapl_willShowingViewControllerPushWithSender ()
+		public bool WillShowingViewControllerPushWithSender ()
 		{
-			var selector = new Selector ("Aapl_willShowingViewControllerPushWithSender");
+			var selector = new Selector ("WillShowingViewControllerPushWithSender");
 			var target = this.GetTargetViewControllerForAction (selector, this);
 
 			if (target != null) {
 				var type = target.GetType ();
-				MethodInfo method = type.GetMethod ("Aapl_willShowingDetailViewControllerPushWithSender");
+				MethodInfo method = type.GetMethod ("WillShowingDetailViewControllerPushWithSender");
 				return (bool)method.Invoke (target, new object[] { });
 			} else {
 				return false;
 			}
 		}
 
-		public bool Aapl_willShowingDetailViewControllerPushWithSender ()
+		public bool WillShowingDetailViewControllerPushWithSender ()
 		{
-			var selector = new Selector ("Aapl_willShowingDetailViewControllerPushWithSender");
+			var selector = new Selector ("WillShowingDetailViewControllerPushWithSender");
 			var target = this.GetTargetViewControllerForAction (selector, this);
 
 			if (target != null) {
 				var type = target.GetType ();
-				MethodInfo method = type.GetMethod ("Aapl_willShowingDetailViewControllerPushWithSender");
+				MethodInfo method = type.GetMethod ("WillShowingDetailViewControllerPushWithSender");
 				return (bool)method.Invoke (target, new object[] { });
 			} else {
 				return false;
 			}
 		}
 
-		public virtual Photo Aapl_containedPhoto (Photo photo)
+		public virtual Photo ContainedPhoto (Photo photo)
 		{
 			return null;
 		}
 
-		public virtual bool Aapl_containsPhoto (Photo photo)
+		public virtual bool ContainsPhoto (Photo photo)
 		{
 			return false;
 		}
 
-		public Photo Aapl_currentVisibleDetailPhotoWithSender ()
+		public Photo CurrentVisibleDetailPhotoWithSender ()
 		{
-			var selector = new Selector ("Aapl_currentVisibleDetailPhotoWithSender");
+			var selector = new Selector ("CurrentVisibleDetailPhotoWithSender");
 			UIViewController target = this.GetTargetViewControllerForAction (selector, this);
 
 			if (target != null) {
 				var type = target.GetType ();
-				MethodInfo method = type.GetMethod ("Aapl_currentVisibleDetailPhotoWithSender");
+				MethodInfo method = type.GetMethod ("CurrentVisibleDetailPhotoWithSender");
 				return (Photo)method.Invoke (target, new object[] { });
 			} else {
 				return null;
@@ -67,40 +67,40 @@ namespace AdaptivePhotos
 
 	public class CustomViewController : UIViewController
 	{
-		public bool Aapl_willShowingViewControllerPushWithSender ()
+		public bool WillShowingViewControllerPushWithSender ()
 		{
-			var selector = new Selector ("Aapl_willShowingViewControllerPushWithSender");
+			var selector = new Selector ("WillShowingViewControllerPushWithSender");
 			var target = this.GetTargetViewControllerForAction (selector, this);
 
 			if (target != null) {
 				var type = target.GetType ();
-				MethodInfo method = type.GetMethod ("Aapl_willShowingDetailViewControllerPushWithSender");
+				MethodInfo method = type.GetMethod ("WillShowingDetailViewControllerPushWithSender");
 				return (bool)method.Invoke (target, new object[] { });
 			} else {
 				return false;
 			}
 		}
 
-		public bool Aapl_willShowingDetailViewControllerPushWithSender ()
+		public bool WillShowingDetailViewControllerPushWithSender ()
 		{
-			var selector = new Selector ("Aapl_willShowingDetailViewControllerPushWithSender");
+			var selector = new Selector ("WillShowingDetailViewControllerPushWithSender");
 			var target = this.GetTargetViewControllerForAction (selector, this);
 
 			if (target != null) {
 				var type = target.GetType ();
-				MethodInfo method = type.GetMethod ("Aapl_willShowingDetailViewControllerPushWithSender");
+				MethodInfo method = type.GetMethod ("WillShowingDetailViewControllerPushWithSender");
 				return (bool)method.Invoke (target, new object[] { });
 			} else {
 				return false;
 			}
 		}
 
-		public virtual Photo Aapl_containedPhoto (Photo photo)
+		public virtual Photo ContainedPhoto (Photo photo)
 		{
 			return null;
 		}
 
-		public virtual bool Aapl_containsPhoto (Photo photo)
+		public virtual bool ContainsPhoto (Photo photo)
 		{
 			return false;
 		}
@@ -112,8 +112,8 @@ namespace AdaptivePhotos
 		{
 		}
 
-		[Export ("Aapl_willShowingViewControllerPushWithSender")]
-		public bool Aapl_willShowingDetailViewControllerPushWithSender ()
+		[Export ("WillShowingViewControllerPushWithSender")]
+		public bool WillShowingDetailViewControllerPushWithSender ()
 		{
 			return true;
 		}
@@ -121,19 +121,19 @@ namespace AdaptivePhotos
 
 	public class CustomSplitViewController : UISplitViewController
 	{
-		[Export ("Aapl_willShowingViewControllerPushWithSender")]
-		public bool Aapl_willShowingViewControllerPushWithSender ()
+		[Export ("WillShowingViewControllerPushWithSender")]
+		public bool WillShowingViewControllerPushWithSender ()
 		{
 			return false;
 		}
 
-		[Export ("Aapl_willShowingDetailViewControllerPushWithSender")]
-		public bool Aapl_willShowingDetailViewControllerPushWithSender ()
+		[Export ("WillShowingDetailViewControllerPushWithSender")]
+		public bool WillShowingDetailViewControllerPushWithSender ()
 		{
 			if (this.Collapsed) {
 				var target = this.ViewControllers [this.ViewControllers.Length - 1];
 				var type = target.GetType ();
-				MethodInfo method = type.GetMethod ("Aapl_willShowingDetailViewControllerPushWithSender");
+				MethodInfo method = type.GetMethod ("WillShowingDetailViewControllerPushWithSender");
 				return (bool)method.Invoke (target, new object[] { });
 			} else {
 				return false;

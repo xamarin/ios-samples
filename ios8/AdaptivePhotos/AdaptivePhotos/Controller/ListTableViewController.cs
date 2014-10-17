@@ -7,7 +7,7 @@ namespace AdaptivePhotos
 {
 	public class ListTableViewController : CustomTableViewController
 	{
-		readonly NSString AAPLListTableViewControllerCellIdentifier = new NSString ("Cell");
+		readonly NSString ListTableViewControllerCellIdentifier = new NSString ("Cell");
 
 		public User User { get; set; }
 
@@ -21,7 +21,7 @@ namespace AdaptivePhotos
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), AAPLListTableViewControllerCellIdentifier);
+			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), ListTableViewControllerCellIdentifier);
 			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("showDetailTargetDidChange:"), 
 				UIViewController.ShowDetailTargetDidChangeNotification, null);
 			ClearsSelectionOnViewWillAppear = false;
@@ -37,9 +37,9 @@ namespace AdaptivePhotos
 			foreach (var indexPath in TableView.IndexPathsForSelectedRows) {
 				bool pushes = false;
 				if (ShouldShowConversationViewForIndexPath (indexPath)) {
-					pushes = this.Aapl_willShowingViewControllerPushWithSender ();
+					pushes = this.WillShowingViewControllerPushWithSender ();
 				} else {
-					pushes = this.Aapl_willShowingDetailViewControllerPushWithSender ();
+					pushes = this.WillShowingDetailViewControllerPushWithSender ();
 				}
 
 				if (pushes)
@@ -47,7 +47,7 @@ namespace AdaptivePhotos
 			}
 		}
 
-		public override bool Aapl_containsPhoto (Photo photo)
+		public override bool ContainsPhoto (Photo photo)
 		{
 			return true;
 		}
@@ -68,16 +68,16 @@ namespace AdaptivePhotos
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			return TableView.DequeueReusableCell (AAPLListTableViewControllerCellIdentifier, indexPath);
+			return TableView.DequeueReusableCell (ListTableViewControllerCellIdentifier, indexPath);
 		}
 
 		public override void WillDisplay (UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)
 		{
 			bool pushes = false;
 			if (ShouldShowConversationViewForIndexPath (indexPath)) {
-				pushes = this.Aapl_willShowingViewControllerPushWithSender ();
+				pushes = this.WillShowingViewControllerPushWithSender ();
 			} else {
-				pushes = this.Aapl_willShowingDetailViewControllerPushWithSender ();
+				pushes = this.WillShowingDetailViewControllerPushWithSender ();
 			}
 
 			cell.Accessory = pushes ? UITableViewCellAccessory.DisclosureIndicator : UITableViewCellAccessory.None;
