@@ -129,7 +129,7 @@ namespace PhotoFilterExtension
 			AVAssetWriterInput input = AVAssetWriterInput.Create (audioTrack.MediaType, (AudioSettings)null);
 			_assetWriter.AddInput (input);
 
-			// Create and save an instance of AAPLRWSampleBufferChannel,
+			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
 			_audioSampleBufferChannel = new ReadWriteSampleBufferChannel (output, input, false);
 		}
@@ -178,7 +178,7 @@ namespace PhotoFilterExtension
 			input.Transform = videoTrack.PreferredTransform;
 			_assetWriter.AddInput (input);
 
-			// Create and save an instance of AAPLRWSampleBufferChannel,
+			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
 			_videoSampleBufferChannel = new ReadWriteSampleBufferChannel (output, input, true);
 			*/
