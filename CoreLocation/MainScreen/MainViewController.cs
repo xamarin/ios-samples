@@ -65,10 +65,12 @@ namespace Example_CoreLocation
 					UpdateLocation (mainScreen, e.Locations [e.Locations.Length - 1]);
 				};
 			} else {
+				#pragma warning disable 618  
 				// this won't be called on iOS 6 (deprecated)
 				iPhoneLocationManager.UpdatedLocation += (object sender, CLLocationUpdatedEventArgs e) => {
 					UpdateLocation (mainScreen, e.NewLocation);
 				};
+				#pragma warning restore 618
 			}
 
             //iOS 8 requires you to manually request authorization now - Note the Info.plist file has a new key called requestWhenInUseAuthorization added to.
@@ -133,8 +135,8 @@ namespace Example_CoreLocation
 			{
 				ms = mainScreen;
 			}
-			
-			// called for iOS5.x and earlier
+
+			[Obsolete("called for iOS5.x and earlier")]
 			public override void UpdatedLocation (CLLocationManager manager, CLLocation newLocation, CLLocation oldLocation)
 			{
 				MainViewController.UpdateLocation (ms, newLocation);
