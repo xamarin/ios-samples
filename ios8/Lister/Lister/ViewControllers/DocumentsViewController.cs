@@ -472,7 +472,6 @@ namespace Lister
 			var title = "iCloud needed";
 			var message = "For this sample you need enable iCloud Drive and restart app";
 			UIAlertController cloudController = UIAlertController.Create (title, message, UIAlertControllerStyle.Alert);
-			// TODO: https://trello.com/c/S2kNVjwb
 			cloudController.AddAction (UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, null));
 
 			PresentViewController (cloudController, true, null);
