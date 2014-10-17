@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 
 namespace MotionActivityDemo
 {
-	public partial class AAPLMasterViewController : UITableViewController
+	public partial class MasterViewController : UITableViewController
 	{
 		ActivityDataManager dataManager;
 		List<MotionActivityQuery> motionActivityQueries;
 
 		NSObject observer;
 
-		public AAPLMasterViewController (IntPtr handle) : base (handle)
+		public MasterViewController (IntPtr handle) : base (handle)
 		{
 		}
 
@@ -87,7 +87,7 @@ namespace MotionActivityDemo
 			if (segue.Identifier == "showDetail") {
 				var indexPath = TableView.IndexPathForSelectedRow;
 				MotionActivityQuery query = motionActivityQueries [indexPath.Row];
-				(segue.DestinationViewController as AAPLDetailViewController).SetDetailItem (query);
+				(segue.DestinationViewController as DetailViewController).SetDetailItem (query);
 			}
 		}
 	}

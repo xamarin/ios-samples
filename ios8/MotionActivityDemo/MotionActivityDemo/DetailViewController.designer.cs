@@ -9,8 +9,8 @@ using System.CodeDom.Compiler;
 
 namespace MotionActivityDemo
 {
-	[Register ("AAPLMasterViewController")]
-	partial class AAPLMasterViewController
+	[Register ("DetailViewController")]
+	partial class DetailViewController
 	{
 		
 		void ReleaseDesignerOutlets ()

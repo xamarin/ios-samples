@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MotionActivityDemo
 {
-	public partial class AAPLDetailViewController : UITableViewController
+	public partial class DetailViewController : UITableViewController
 	{
 		ActivityDataManager activityDataManager;
 		NSDateFormatter dateFormatter;
@@ -17,7 +17,7 @@ namespace MotionActivityDemo
 
 		MotionActivityQuery detailItem;
 
-		public AAPLDetailViewController (IntPtr handle) : base (handle)
+		public DetailViewController (IntPtr handle) : base (handle)
 		{
 			dateFormatter = new NSDateFormatter ();
 			dateFormatter.DateFormat = NSDateFormatter.GetDateFormatFromTemplate ("HH:mm", 0, NSLocale.CurrentLocale);
