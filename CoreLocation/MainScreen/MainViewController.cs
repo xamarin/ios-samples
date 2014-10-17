@@ -70,6 +70,12 @@ namespace Example_CoreLocation
 					UpdateLocation (mainScreen, e.NewLocation);
 				};
 			}
+
+            //iOS 8 requires you to manually request authorization now - Note the Info.plist file has a new key called requestWhenInUseAuthorization added to.
+		    if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+		    {
+		        iPhoneLocationManager.RequestWhenInUseAuthorization();
+		    }
 			
 			// handle the updated heading method and update the UI
 			iPhoneLocationManager.UpdatedHeading += (object sender, CLHeadingUpdatedEventArgs e) => {
