@@ -8,8 +8,8 @@ namespace AdaptivePhotos
 {
 	public class RatingControl : UIControl
 	{
-		readonly nint AAPLRatingControlMinimumRating = 0;
-		readonly nint AAPLRatingControlMaximumRating = 4;
+		readonly nint ratingControlMinimumRating = 0;
+		readonly nint ratingControlMaximumRating = 4;
 
 		nint currentrating;
 		UIVisualEffectView backgroundView;
@@ -40,14 +40,14 @@ namespace AdaptivePhotos
 
 		public RatingControl ()
 		{
-			Rating = AAPLRatingControlMinimumRating;
+			Rating = ratingControlMinimumRating;
 			var blurredEffect = UIBlurEffect.FromStyle (UIBlurEffectStyle.Light);
 			backgroundView = new UIVisualEffectView (blurredEffect);
 			backgroundView.ContentView.BackgroundColor = UIColor.FromWhiteAlpha (0.7f, 0.3f);
 			Add (backgroundView);
 
 			var imageViews = new NSMutableArray ();
-			for (nint rating = AAPLRatingControlMinimumRating; rating <= AAPLRatingControlMaximumRating; rating++) {
+			for (nint rating = ratingControlMinimumRating; rating <= ratingControlMaximumRating; rating++) {
 				UIImageView imageView = new UIImageView ();
 				imageView.UserInteractionEnabled = true;
 
@@ -78,7 +78,7 @@ namespace AdaptivePhotos
 		void UpdateImageViews ()
 		{
 			for (nint i = 0; i < (nint)ImageViews.Count; i++)
-				ImageViews.GetItem <UIImageView> (i).Highlighted = (i + AAPLRatingControlMinimumRating <= Rating);
+				ImageViews.GetItem <UIImageView> (i).Highlighted = (i + ratingControlMinimumRating <= Rating);
 		}
 
 		void UpdateRatingWithTouches (NSSet touches, UIEvent evt)
@@ -89,7 +89,7 @@ namespace AdaptivePhotos
 
 			for (nint i = 0; i < (nint)ImageViews.Count; i++) {
 				if (ImageViews.GetItem<UIView> (i) == touchedView) {
-					Rating = AAPLRatingControlMinimumRating + i;
+					Rating = ratingControlMinimumRating + i;
 					SendActionForControlEvents (UIControlEvent.ValueChanged);
 				}
 			}

@@ -44,7 +44,7 @@ namespace AdaptivePhotos
 			public override bool CollapseSecondViewController (UISplitViewController splitViewController,
 			                                                   UIViewController secondaryViewController, UIViewController primaryViewController)
 			{
-				Photo photo = ((CustomViewController)secondaryViewController).Aapl_containedPhoto (null);
+				Photo photo = ((CustomViewController)secondaryViewController).ContainedPhoto (null);
 				if (photo == null) {
 					return true;
 				}
@@ -53,7 +53,7 @@ namespace AdaptivePhotos
 					var viewControllers = new List<UIViewController> ();
 					foreach (var controller in ((UINavigationController)primaryViewController).ViewControllers) {
 						var type = controller.GetType ();
-						MethodInfo method = type.GetMethod ("Aapl_containsPhoto");
+						MethodInfo method = type.GetMethod ("ContainsPhoto");
 
 						if ((bool)method.Invoke (controller, new object[] { null })) {
 							viewControllers.Add (controller);
@@ -72,7 +72,7 @@ namespace AdaptivePhotos
 				if (primaryViewController.GetType () == typeof(CustomNavigationController)) {
 					foreach (var controller in ((CustomNavigationController)primaryViewController).ViewControllers) {
 						var type = controller.GetType ();
-						MethodInfo method = type.GetMethod ("Aapl_containedPhoto");
+						MethodInfo method = type.GetMethod ("ContainedPhoto");
 
 						if (method.Invoke (controller, new object[] { null }) != null) {
 							return null;

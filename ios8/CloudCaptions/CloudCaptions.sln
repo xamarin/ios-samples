@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudCaptions", "CloudCaptions\CloudCaptions.csproj", "{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}.Debug|iPhone.Build.0 = Debug|iPhone
+		{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}.Release|iPhone.ActiveCfg = Release|iPhone
+		{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}.Release|iPhone.Build.0 = Release|iPhone
+		{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{D21CE158-9D35-439E-84A6-2BF5A09DBE6B}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CloudCaptions\CloudCaptions.csproj
+	EndGlobalSection
+EndGlobal

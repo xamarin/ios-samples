@@ -80,14 +80,13 @@ namespace Footprint
 			EastSouthDistance rect = FetchRect (fromAnchorMKPoint, MKMapPoint.FromCoordinate (coordinate));
 
 			// Convert the east-south anchor point distance to pixels (still in east-south)
-			// TODO: https://trello.com/c/aL7pN9yI
 			var scaleTransform = CGAffineTransform.MakeScale (PixelsPerMeter, PixelsPerMeter);
-			CGPoint pixelsXYInEastSouth = ApplyTransform (new CGPoint (rect.East, rect.South), scaleTransform);
+			CGPoint pixelsXYInEastSouth = scaleTransform.TransformPoint (new CGPoint (rect.East, rect.South));
 
 			// Rotate the east-south distance to be relative to floorplan horizontal
 			// This gives us an xy distance in pixels from the anchor point.
 			var rotateTransform = CGAffineTransform.MakeRotation (radiansRotated);
-			CGPoint xy = ApplyTransform (pixelsXYInEastSouth, rotateTransform);
+			CGPoint xy = rotateTransform.TransformPoint (pixelsXYInEastSouth);
 
 			// From Anchor point may not be top letf corner.
 			// however, we need the pixels from the (0, 0) of the floorplan
@@ -114,14 +113,6 @@ namespace Footprint
 		static nfloat Hypot (nfloat x, nfloat y)
 		{
 			return NMath.Sqrt (x * x + y * y);
-		}
-
-		static CGPoint ApplyTransform (CGPoint point, CGAffineTransform t)
-		{
-			CGPoint p = new CGPoint ();
-			p.X = t.xx * point.X + t.xy * point.Y + t.x0;
-			p.Y = t.yx * point.X + t.yy * point.Y + t.y0;
-			return p;
 		}
 	}
 }

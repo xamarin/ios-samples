@@ -93,7 +93,7 @@ namespace AdaptivePhotos
 			View.AddConstraints (constraints.ToArray ());
 		}
 
-		public override Photo Aapl_containedPhoto (Photo photo)
+		public override Photo ContainedPhoto (Photo photo)
 		{
 			return Photo;
 		}
