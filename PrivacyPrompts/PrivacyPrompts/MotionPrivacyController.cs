@@ -1,9 +1,10 @@
 ﻿using System;
-using CoreMotion;
+using MonoTouch.CoreMotion;
 using System.Threading.Tasks;
-using Foundation;
-using UIKit;
-using CoreGraphics;
+using MonoTouch.Foundation;
+using MonoTouch.UIKit;
+using MonoTouch.CoreGraphics;
+using System.Drawing;
 
 namespace PrivacyPrompts
 {
@@ -21,7 +22,7 @@ namespace PrivacyPrompts
 		string motionStatus;
 		UILabel stepsMessage;
 
-		public MotionPrivacyController () : base(null, null)
+		public MotionPrivacyController () 
 		{
 			this.CheckAccess = CheckMotionAccess;
 			this.RequestAccess = RequestMotionAccess;
@@ -30,7 +31,7 @@ namespace PrivacyPrompts
 
 		void AddStepsMessage()
 		{
-			stepsMessage = new UILabel (CGRect.Empty);
+			stepsMessage = new UILabel (RectangleF.Empty);
 			stepsMessage.TranslatesAutoresizingMaskIntoConstraints = false;
 			stepsMessage.Lines = 0;
 			stepsMessage.Font = UIFont.SystemFontOfSize (UIFont.SmallSystemFontSize);
@@ -77,7 +78,7 @@ namespace PrivacyPrompts
 					if(error != null && error.Code == (int) CMError.MotionActivityNotAuthorized)
 					{
 						motionStatus = "Not Authorized";
-						InvokeOnMainThread(() => accessStatus.Text = motionStatus);
+						UpdateStatus();
 					}
 					else
 					{
@@ -85,7 +86,7 @@ namespace PrivacyPrompts
 						var stepMsg = String.Format("You have taken {0} steps in the past 24 hours", steps);
 						InvokeOnMainThread(() => {
 							stepsMessage.Text = stepMsg;
-							accessStatus.Text = motionStatus;
+							UpdateStatus();
 						});
 					}
 				}));

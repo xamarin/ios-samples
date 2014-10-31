@@ -1,9 +1,10 @@
 ﻿using System;
-using CoreLocation;
-using UIKit;
-using CoreGraphics;
-using MapKit;
-using Foundation;
+using MonoTouch.CoreLocation;
+using MonoTouch.UIKit;
+using MonoTouch.CoreGraphics;
+using MonoTouch.MapKit;
+using MonoTouch.Foundation;
+using System.Drawing;
 
 namespace PrivacyPrompts
 {
@@ -13,7 +14,7 @@ namespace PrivacyPrompts
 		UILabel locationMessage;
 		MKMapView mapView;
 
-		public LocationPrivacyViewController () : base(null, null)
+		public LocationPrivacyViewController ()
 		{
 			CheckAccess = LocationAccessStatus;
 			RequestAccess = RequestLocationServicesAuthorization;
@@ -52,7 +53,7 @@ namespace PrivacyPrompts
 
 		void AddLocationMessage()
 		{
-			locationMessage = new UILabel (CGRect.Empty);
+			locationMessage = new UILabel (RectangleF.Empty);
 			locationMessage.TranslatesAutoresizingMaskIntoConstraints = false;
 			locationMessage.Lines = 0;
 			locationMessage.Font = UIFont.SystemFontOfSize (UIFont.SmallSystemFontSize);
@@ -86,7 +87,6 @@ namespace PrivacyPrompts
 			this.View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:[locationMessage]-[mapView]-|", NSLayoutFormatOptions.AlignAllCenterX, null, dict));
 			this.View.AddConstraints (new[] {
 				NSLayoutConstraint.Create (locationMessage, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, titleLabel, NSLayoutAttribute.CenterX, 1, 0),
-				NSLayoutConstraint.Create (locationMessage, NSLayoutAttribute.Top, NSLayoutRelation.Equal, locationMessage, NSLayoutAttribute.Bottom, 1, 40),
 			});
 		}
 

@@ -1,23 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AVFoundation;
-using Accounts;
-using AdSupport;
-using AddressBook;
-using AssetsLibrary;
-using CoreBluetooth;
-using CoreLocation;
-using EventKit;
-using Foundation;
-using UIKit;
+using MonoTouch.AVFoundation;
+using MonoTouch.Accounts;
+using MonoTouch.AdSupport;
+using MonoTouch.AddressBook;
+using MonoTouch.AssetsLibrary;
+using MonoTouch.CoreBluetooth;
+using MonoTouch.CoreLocation;
+using MonoTouch.EventKit;
+using MonoTouch.Foundation;
+using MonoTouch.UIKit;
 
 namespace PrivacyPrompts
 {
 
 	public class NotificationsPrivacyController : PrivacyDetailViewController
 	{
-		public NotificationsPrivacyController() : base(null, null)
+		public NotificationsPrivacyController() 
 		{
 			CheckAccess = CheckNotificationsAccess;
 			RequestAccess = RequestNotificationsAccess;
@@ -27,7 +27,7 @@ namespace PrivacyPrompts
 			 is called. In this example, we've hooked that up to an event
 			*/
 			var appDelegate = UIApplication.SharedApplication.Delegate as AppDelegate;
-			appDelegate.NotificationsRegistered += (_) => accessStatus.Text = CheckAccess ();
+			appDelegate.NotificationsRegistered += (_) => UpdateStatus();
 
 
 		}
