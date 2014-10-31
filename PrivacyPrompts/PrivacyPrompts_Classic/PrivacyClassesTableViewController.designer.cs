@@ -5,8 +5,8 @@
 // Manual changes to this file will not be maintained.
 //
 using System;
-using Foundation;
-using UIKit;
+using MonoTouch.Foundation;
+using MonoTouch.UIKit;
 using System.CodeDom.Compiler;
 
 namespace PrivacyPrompts

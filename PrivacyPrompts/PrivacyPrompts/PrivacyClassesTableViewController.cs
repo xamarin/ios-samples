@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MonoTouch.AVFoundation;
-using MonoTouch.Accounts;
-using MonoTouch.AdSupport;
-using MonoTouch.AddressBook;
-using MonoTouch.AssetsLibrary;
-using MonoTouch.CoreBluetooth;
-using MonoTouch.CoreLocation;
-using MonoTouch.EventKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using AVFoundation;
+using Accounts;
+using AdSupport;
+using AddressBook;
+using AssetsLibrary;
+using CoreBluetooth;
+using CoreLocation;
+using EventKit;
+using Foundation;
+using UIKit;
 
 namespace PrivacyPrompts {
 
@@ -18,12 +18,15 @@ namespace PrivacyPrompts {
 
 		public enum DataClass {
 			Location,
+			Notifications,
 			Calendars,
 			Contacts,
 			Photos,
+			Video,
 			Reminders,
 			Microphone,
 			Bluetooth,
+			Motion,
 			Facebook,
 			Twitter,
 			SinaWeibo,
@@ -42,91 +45,7 @@ namespace PrivacyPrompts {
 		{
 		}
 
-		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
-		{
-			PrivacyDetailViewController viewController = 
-				segue.DestinationViewController as PrivacyDetailViewController;
-
-			DataClass selected = (DataClass)TableView.IndexPathForSelectedRow.Row;
-			viewController.Title = selected.ToString ();
-
-			switch (selected) {
-			case DataClass.Location:
-				viewController.CheckAccess = delegate {
-					CheckLocationServicesAuthorizationStatus (CLLocationManager.Status);
-				};
-				viewController.RequestAccess = RequestLocationServicesAuthorization;
-				break;
-			case DataClass.Contacts:
-				viewController.CheckAccess = CheckAddressBookAccess;
-				viewController.RequestAccess = RequestAddressBookAccess;
-				break;
-			case DataClass.Calendars:
-				viewController.CheckAccess = delegate {
-					CheckEventStoreAccess (EKEntityType.Event);
-				};
-				viewController.RequestAccess = delegate {
-					RequestEventStoreAccess (EKEntityType.Event);
-				};
-				break;
-			case DataClass.Reminders:
-				viewController.CheckAccess = delegate {
-					CheckEventStoreAccess (EKEntityType.Reminder);
-				};
-				viewController.RequestAccess = delegate {
-					RequestEventStoreAccess (EKEntityType.Reminder);
-				};
-				break;
-			case DataClass.Photos:
-				viewController.CheckAccess = CheckPhotosAuthorizationStatus;
-				viewController.RequestAccess = delegate {
-					RequestPhotoAccess (false);
-					RequestPhotoAccess (true);
-				};
-				break;
-			case DataClass.Microphone:
-				viewController.CheckAccess = null;
-				viewController.RequestAccess = delegate {
-					RequestMicrophoneAccess (true);
-					RequestMicrophoneAccess (false);
-				};
-				break;
-			case DataClass.Bluetooth:
-				viewController.CheckAccess = CheckBluetoothAccess;
-				viewController.RequestAccess = RequestBluetoothAccess;
-				break;
-			case DataClass.Facebook:
-				viewController.CheckAccess = delegate {
-					CheckSocialAccountAuthorizationStatus (ACAccountType.Facebook);
-				};
-				viewController.RequestAccess = RequestFacebookAccess;
-				break;
-			case DataClass.Twitter:
-				viewController.CheckAccess = delegate {
-					CheckSocialAccountAuthorizationStatus (ACAccountType.Twitter);
-				};
-				viewController.RequestAccess = RequestTwitterAccess;
-				break;
-			case DataClass.SinaWeibo:
-				viewController.CheckAccess = delegate {
-					CheckSocialAccountAuthorizationStatus (ACAccountType.SinaWeibo);
-				};
-				viewController.RequestAccess = RequestSinaWeiboAccess;
-				break;
-			case DataClass.TencentWeibo:
-				viewController.CheckAccess = delegate {
-					CheckSocialAccountAuthorizationStatus (ACAccountType.TencentWeibo);
-				};
-				viewController.RequestAccess = RequestTencentWeiboAccess;
-				break;
-			case DataClass.Advertising:
-				viewController.CheckAccess = AdvertisingIdentifierStatus;
-				viewController.RequestAccess = null;
-				break;
-			}
-		}
-
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return 1 + (int) DataClass.Advertising;
 		}
@@ -140,66 +59,109 @@ namespace PrivacyPrompts {
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			PerformSegue ("serviceSegue", this);
-		}
+			PrivacyDetailViewController viewController = null;
 
-		#region Location methods
-
-		public void CheckLocationServicesAuthorizationStatus (CLAuthorizationStatus status)
-		{
-			switch (status) {
-			case CLAuthorizationStatus.NotDetermined:
-				ShowAlert (DataClass.Location, "not determined");
+			DataClass selected = (DataClass)TableView.IndexPathForSelectedRow.Row;
+			switch (selected) {
+			case DataClass.Location:
+				viewController = new LocationPrivacyViewController ();
 				break;
-			case CLAuthorizationStatus.Restricted:
-				ShowAlert (DataClass.Location, "restricted");
+			case DataClass.Contacts:
+				viewController = new PrivacyDetailViewController (
+					CheckAddressBookAccess, 
+					RequestAddressBookAccess
+				);
 				break;
-			case CLAuthorizationStatus.Denied:
-				ShowAlert (DataClass.Location, "denied");
+			case DataClass.Calendars:
+				viewController = new PrivacyDetailViewController(
+					() => CheckEventStoreAccess (EKEntityType.Event),
+					() => RequestEventStoreAccess (EKEntityType.Event)
+				);
 				break;
-			case CLAuthorizationStatus.Authorized:
-				ShowAlert (DataClass.Location, "granted");
+			case DataClass.Reminders:
+				viewController = new PrivacyDetailViewController (
+					() => CheckEventStoreAccess (EKEntityType.Reminder),
+					() => RequestEventStoreAccess (EKEntityType.Reminder)
+				);
 				break;
+			case DataClass.Photos:
+				viewController = new PrivacyDetailViewController (
+					CheckPhotosAuthorizationStatus,
+					() => { 
+						RequestPhotoAccess(false);
+						RequestPhotoAccess(true);
+					}
+				);
+				break;
+			case DataClass.Microphone:
+				viewController = new PrivacyDetailViewController (
+					() => { return "Not determined"; },
+					() => {
+						RequestMicrophoneAccess (true);
+						RequestMicrophoneAccess (false);
+					}
+				);
+				break;
+			case DataClass.Bluetooth:
+				viewController = new PrivacyDetailViewController (
+					CheckBluetoothAccess, 
+					RequestBluetoothAccess
+				);
+				break;
+			case DataClass.Facebook:
+				viewController = new PrivacyDetailViewController (
+					() => CheckSocialAccountAuthorizationStatus (ACAccountType.Facebook),
+					RequestFacebookAccess
+				);
+				break;
+			case DataClass.Twitter:
+				viewController = new PrivacyDetailViewController (
+					() => CheckSocialAccountAuthorizationStatus (ACAccountType.Twitter),
+					RequestTwitterAccess
+				);
+				break;
+			case DataClass.SinaWeibo:
+				viewController = new PrivacyDetailViewController (
+					() => CheckSocialAccountAuthorizationStatus (ACAccountType.SinaWeibo),
+					RequestSinaWeiboAccess
+				);
+				break;
+			case DataClass.TencentWeibo:
+				viewController = new PrivacyDetailViewController (
+					() => CheckSocialAccountAuthorizationStatus (ACAccountType.TencentWeibo),
+					RequestTencentWeiboAccess
+				);
+				break;
+			case DataClass.Advertising:
+				viewController = new PrivacyDetailViewController (
+					AdvertisingIdentifierStatus,
+					() => {
+					}
+				);
+				break;
+			case DataClass.Video:
+				viewController = new VideoCaptureViewController ();
+				break;
+			case DataClass.Motion:
+				viewController = new MotionPrivacyController ();
+				break;
+			case DataClass.Notifications:
+				viewController = new NotificationsPrivacyController ();
+				break;
+		 	default:
+				throw new ArgumentOutOfRangeException();
 			}
+			viewController.Title = selected.ToString ();
+
+			NavigationController.PushViewController (viewController, true);
 		}
 
-		public void RequestLocationServicesAuthorization ()
-		{
-			locationManager = new CLLocationManager ();
-			locationManager.Failed += delegate {
-				locationManager.StopUpdatingLocation ();
-			};
-			locationManager.LocationsUpdated += delegate {
-				locationManager.StopUpdatingLocation ();
-			};
-			locationManager.AuthorizationChanged += delegate (object sender, CLAuthorizationChangedEventArgs e) {
-				CheckLocationServicesAuthorizationStatus (e.Status);
-			};
-			locationManager.StartUpdatingLocation ();
-		}
-
-		#endregion
 
 		#region Contacts methods
 
-		public void CheckAddressBookAccess ()
+		public string CheckAddressBookAccess ()
 		{
-			ABAuthorizationStatus status = ABAddressBook.GetAuthorizationStatus ();
-
-			switch (status) {
-			case ABAuthorizationStatus.NotDetermined:
-				ShowAlert (DataClass.Contacts, "not determined");
-				break;
-			case ABAuthorizationStatus.Restricted:
-				ShowAlert (DataClass.Contacts, "restricted");
-				break;
-			case ABAuthorizationStatus.Denied:
-				ShowAlert (DataClass.Contacts, "denied");
-				break;
-			case ABAuthorizationStatus.Authorized:
-				ShowAlert (DataClass.Contacts, "granted");
-				break;
-			}
+			return ABAddressBook.GetAuthorizationStatus ().ToString ();
 		}
 
 		public void RequestAddressBookAccess ()
@@ -218,24 +180,9 @@ namespace PrivacyPrompts {
 
 		#region EventStore methods
 
-		public void CheckEventStoreAccess (EKEntityType type)
+		public string CheckEventStoreAccess (EKEntityType type)
 		{
-			EKAuthorizationStatus status = EKEventStore.GetAuthorizationStatus (type);
-			DataClass dc = type == EKEntityType.Event ? DataClass.Calendars : DataClass.Reminders;
-			switch (status) {
-			case EKAuthorizationStatus.NotDetermined:
-				ShowAlert (dc, "not determined");
-				break;
-			case EKAuthorizationStatus.Restricted:
-				ShowAlert (dc, "restricted");
-				break;
-			case EKAuthorizationStatus.Denied:
-				ShowAlert (dc, "denied");
-				break;
-			case EKAuthorizationStatus.Authorized:
-				ShowAlert (dc, "granted");
-				break;
-			}
+			return EKEventStore.GetAuthorizationStatus (type).ToString();
 		}
 
 		public void RequestEventStoreAccess (EKEntityType type)
@@ -253,22 +200,9 @@ namespace PrivacyPrompts {
 
 		#region Photos methods
 
-		public void CheckPhotosAuthorizationStatus ()
+		public string CheckPhotosAuthorizationStatus ()
 		{
-			switch (ALAssetsLibrary.AuthorizationStatus) {
-			case ALAuthorizationStatus.NotDetermined:
-				ShowAlert (DataClass.Photos, "not determined");
-				break;
-			case ALAuthorizationStatus.Restricted:
-				ShowAlert (DataClass.Photos, "restricted");
-				break;
-			case ALAuthorizationStatus.Denied:
-				ShowAlert (DataClass.Photos, "denied");
-				break;
-			case ALAuthorizationStatus.Authorized:
-				ShowAlert (DataClass.Photos, "granted");
-				break;
-			}
+			return ALAssetsLibrary.AuthorizationStatus.ToString ();
 		}
 
 		public void RequestPhotoAccess (bool useImagePicker)
@@ -292,7 +226,7 @@ namespace PrivacyPrompts {
 
 		public void RequestMicrophoneAccess (bool usePermissionAPI)
 		{
-			AVAudioSession audioSession = new AVAudioSession ();
+			AVAudioSession audioSession = AVAudioSession.SharedInstance();
 			if (!usePermissionAPI) {
 				NSError error;
 				audioSession.SetCategory (AVAudioSession.CategoryRecord, out error);
@@ -307,23 +241,13 @@ namespace PrivacyPrompts {
 
 		#region Bluetooth methods
 
-		public void CheckBluetoothAccess ()
+		public string CheckBluetoothAccess ()
 		{
 			if (cbManager == null)
 				cbManager = new CBCentralManager ();
 
 			CBCentralManagerState state = cbManager.State;
-			switch (state) {
-			case CBCentralManagerState.Unknown:
-				ShowAlert (DataClass.Bluetooth, "unknown");
-				break;
-			case CBCentralManagerState.Unauthorized:
-				ShowAlert (DataClass.Bluetooth, "denied");
-				break;
-			default:
-				ShowAlert (DataClass.Bluetooth, "granted");
-				break;
-			}
+			return state.ToString ();
 		}
 
 		public void RequestBluetoothAccess ()
@@ -344,7 +268,7 @@ namespace PrivacyPrompts {
 
 		#region Social methods
 
-		public void CheckSocialAccountAuthorizationStatus (NSString accountTypeIdentifier)
+		public string CheckSocialAccountAuthorizationStatus (NSString accountTypeIdentifier)
 		{
 			if (accountStore == null)
 				accountStore = new ACAccountStore ();
@@ -362,7 +286,7 @@ namespace PrivacyPrompts {
 			else
 				dataClass = DataClass.TencentWeibo;
 
-			ShowAlert (dataClass, socialAccount.AccessGranted ? "granted" : "denied");
+			return socialAccount.AccessGranted ? "granted" : "denied";
 		}
 
 		public void RequestFacebookAccess ()
@@ -423,11 +347,11 @@ namespace PrivacyPrompts {
 
 		#region Advertising
 
-		public void AdvertisingIdentifierStatus ()
+		public string AdvertisingIdentifierStatus ()
 		{
-			ShowAlert (DataClass.Advertising, 
+			return 
 			           ASIdentifierManager.SharedManager.IsAdvertisingTrackingEnabled ?
-			           "granted" : "denied");
+			           "granted" : "denied";
 		}
 
 		#endregion

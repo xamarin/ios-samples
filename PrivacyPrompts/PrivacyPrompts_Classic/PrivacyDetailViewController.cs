@@ -1,11 +1,22 @@
 using System;
-using Foundation;
-using UIKit;
-using CoreGraphics;
+using MonoTouch.Foundation;
+using MonoTouch.UIKit;
+using MonoTouch.CoreGraphics;
+using System.Drawing;
+using MonoTouch.AddressBook;
+using MonoTouch.EventKit;
+using MonoTouch.AssetsLibrary;
+using MonoTouch.AVFoundation;
+using MonoTouch.CoreBluetooth;
+using MonoTouch.Accounts;
+using MonoTouch.AdSupport;
+using MonoTouch.CoreLocation;
 
-namespace PrivacyPrompts {
+namespace PrivacyPrompts
+{
 
-	public class PrivacyDetailViewController : UIViewController	{
+	public class PrivacyDetailViewController : UIViewController
+	{
 
 		protected Func<String> CheckAccess;
 		protected Action RequestAccess;
@@ -14,18 +25,19 @@ namespace PrivacyPrompts {
 		protected UILabel accessStatus;
 		protected UIButton requestAccessButton;
 
-		public PrivacyDetailViewController (Func<String> checkAccess, Action requestAccess) 
+		static ACAccountStore accountStore;
+		static CBCentralManager cbManager;
+
+		public PrivacyDetailViewController ()
 		{
-			this.CheckAccess = checkAccess;
-			this.RequestAccess = requestAccess;
 		}
 
-		public void AddBaseElements(UIView mainView)
+		public void AddBaseElements (UIView mainView)
 		{
-			titleLabel = new UILabel (CGRect.Empty);
+			titleLabel = new UILabel (RectangleF.Empty);
 			titleLabel.TextAlignment = UITextAlignment.Center;
 
-			accessStatus = new UILabel (CGRect.Empty);
+			accessStatus = new UILabel (RectangleF.Empty);
 			accessStatus.TextAlignment = UITextAlignment.Center;
 
 			requestAccessButton = UIButton.FromType (UIButtonType.RoundedRect);
@@ -75,11 +87,72 @@ namespace PrivacyPrompts {
 			this.View.BackgroundColor = UIColor.White;
 
 			titleLabel.Text = Title;
-			titleLabel.Text = "Title";
 			accessStatus.Text = "Indeterminate";
 			requestAccessButton.SetTitle ("Request access", UIControlState.Normal);
 
 			accessStatus.Text = CheckAccess ();
+		}
+
+		protected void UpdateStatus()
+		{
+			InvokeOnMainThread (() => accessStatus.Text = CheckAccess ());
+		}
+
+		public static PrivacyDetailViewController CreateFor (DataClass selected)
+		{
+			PrivacyDetailViewController viewController = null;
+
+			switch (selected) {
+			case DataClass.Location:
+				viewController = new LocationPrivacyViewController ();
+				break;
+			case DataClass.Notifications:
+				viewController = new NotificationsPrivacyController ();
+				break;
+			case DataClass.Calendars:
+				viewController = new EKEntityPrivacyController (EKEntityType.Event);
+				break;
+			case DataClass.Reminders:
+				viewController = new EKEntityPrivacyController (EKEntityType.Reminder);
+				break;
+			case DataClass.Contacts:
+				viewController = new AddressBookPrivacyController ();
+				break;
+			case DataClass.Photos:
+				viewController = new PhotoPrivacyController ();
+				break;
+			case DataClass.Video:
+				viewController = new VideoCapturePrivacyController ();
+				break;
+			case DataClass.Microphone:
+				viewController = new MicrophonePrivacyController ();
+				break;
+			case DataClass.Bluetooth:
+				viewController = new BluetoothPrivacyController ();
+				break;
+			case DataClass.Motion:
+				viewController = new MotionPrivacyController ();
+				break;
+			case DataClass.Facebook:
+				viewController = new SocialNetworkPrivacyController (ACAccountType.Facebook);
+				break;
+			case DataClass.Twitter:
+				viewController = new SocialNetworkPrivacyController (ACAccountType.Twitter);
+				break;
+			case DataClass.SinaWeibo:
+				viewController = new SocialNetworkPrivacyController (ACAccountType.SinaWeibo);
+				break;
+			case DataClass.TencentWeibo:
+				viewController = new SocialNetworkPrivacyController (ACAccountType.TencentWeibo);
+				break;
+			case DataClass.Advertising:
+				viewController = new AdvertisingPrivacyController ();
+				break;
+			default:
+				throw new ArgumentOutOfRangeException ();
+			}
+			viewController.Title = selected.ToString ();
+			return viewController;
 		}
 	}
 }
