@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace AppPrefs
 {
@@ -77,8 +77,8 @@ namespace AppPrefs
 				LoadDefaultValues ();
 			FirstName = NSUserDefaults.StandardUserDefaults.StringForKey (firstNameKey);
 			LastName = NSUserDefaults.StandardUserDefaults.StringForKey (lastNameKey);
-			TextColor = (TextColors)NSUserDefaults.StandardUserDefaults.IntForKey (nameColorKey);
-			BackgroundColor = (BackgroundColors)NSUserDefaults.StandardUserDefaults.IntForKey (backgroundColorKey);
+			TextColor = (TextColors)(int)NSUserDefaults.StandardUserDefaults.IntForKey (nameColorKey);
+			BackgroundColor = (BackgroundColors)(int)NSUserDefaults.StandardUserDefaults.IntForKey (backgroundColorKey);
 		}
 	}
 }
