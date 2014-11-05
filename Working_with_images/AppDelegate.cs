@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Working_with_images
 {
@@ -40,7 +40,7 @@ namespace Working_with_images
             controller.View.BackgroundColor = UIColor.White;
             
             label = new UILabel();
-            label.Frame = new System.Drawing.RectangleF(10 ,10, UIScreen.MainScreen.Bounds.Width, 50);
+            label.Frame = new CoreGraphics.CGRect(10 ,10, UIScreen.MainScreen.Bounds.Width, 50);
             label.Text = "Hello, Working with Images";
             
             controller.View.AddSubview(label);
