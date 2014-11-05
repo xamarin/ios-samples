@@ -1,9 +1,9 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AudioToolbox;
-using MonoTouch.AVFoundation;
+using Foundation;
+using UIKit;
+using AudioToolbox;
+using AVFoundation;
 
 namespace tone
 {
