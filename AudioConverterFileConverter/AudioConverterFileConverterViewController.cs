@@ -27,15 +27,15 @@
 //
 
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AudioToolbox;
+using Foundation;
+using UIKit;
+using AudioToolbox;
 using System.Linq;
-using MonoTouch.CoreFoundation;
+using CoreFoundation;
 using System.Diagnostics;
-using MonoTouch.AVFoundation;
+using AVFoundation;
 using System.Runtime.InteropServices;
 
 namespace AudioConverterFileConverter

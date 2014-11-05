@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace AudioConverterFileConverter
 {
@@ -12,25 +12,25 @@ namespace AudioConverterFileConverter
 	partial class AudioConverterFileConverterViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UISegmentedControl outputFormatSelector { get; set; }
+		UIKit.UISegmentedControl outputFormatSelector { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISegmentedControl outputSampleRateSelector { get; set; }
+		UIKit.UISegmentedControl outputSampleRateSelector { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton startButton { get; set; }
+		UIKit.UIButton startButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel fileInfo { get; set; }
+		UIKit.UILabel fileInfo { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIActivityIndicatorView activityIndicator { get; set; }
+		UIKit.UIActivityIndicatorView activityIndicator { get; set; }
 
 		[Action ("segmentedControllerValueChanged:")]
-		partial void segmentedControllerValueChanged (MonoTouch.UIKit.UISegmentedControl sender);
+		partial void segmentedControllerValueChanged (UIKit.UISegmentedControl sender);
 
 		[Action ("convertButtonPressed:")]
-		partial void convertButtonPressed (MonoTouch.Foundation.NSObject sender);
+		partial void convertButtonPressed (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

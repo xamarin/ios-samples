@@ -30,9 +30,9 @@ using System;
 
 using System.Diagnostics;
 using System.Threading;
-using MonoTouch.AVFoundation;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using AVFoundation;
+using Foundation;
+using UIKit;
 
 namespace AudioConverterFileConverter
 {
@@ -94,7 +94,7 @@ namespace AudioConverterFileConverter
                 ThreadStateEndInterruption();
             };
 
-            int routes = session.InputNumberOfChannels;
+			int routes = (int)session.InputNumberOfChannels;
 
             // our default category -- we change this for conversion and playback appropriately
             try
@@ -111,7 +111,7 @@ namespace AudioConverterFileConverter
                 var sess = sender as AVAudioSession;
                 Debug.Print("Old route: {0}", routes);
                 Debug.Print("New route: {0}", sess.InputNumberOfChannels);
-                routes = sess.InputNumberOfChannels;
+				routes = (int)sess.InputNumberOfChannels;
             };
 
             session.SetActive(true);
