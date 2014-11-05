@@ -1,7 +1,7 @@
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace Transitioning_To_Xcode_4
 {
@@ -40,7 +40,7 @@ namespace Transitioning_To_Xcode_4
 		/// <summary>
 		/// This is our common action handler. Two buttons call this via an action method.
 		/// </summary>
-		partial void actnButtonClick (MonoTouch.Foundation.NSObject sender)
+		partial void actnButtonClick (Foundation.NSObject sender)
 		{
 			this.lblOutput.Text = "Action button " +  ((UIButton)sender).CurrentTitle + " clicked.";
 		}
