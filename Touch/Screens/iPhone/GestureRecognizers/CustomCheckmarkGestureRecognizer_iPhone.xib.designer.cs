@@ -12,18 +12,18 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("CustomCheckmarkGestureRecognizer_iPhone")]
+	[Foundation.Register("CustomCheckmarkGestureRecognizer_iPhone")]
 	public partial class CustomCheckmarkGestureRecognizer_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIImageView __mt_imgCheckmark;
+		private UIKit.UIImageView __mt_imgCheckmark;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("imgCheckmark")]
-		private MonoTouch.UIKit.UIImageView imgCheckmark {
+		[Foundation.Connect("imgCheckmark")]
+		private UIKit.UIImageView imgCheckmark {
 			get {
-				this.__mt_imgCheckmark = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("imgCheckmark")));
+				this.__mt_imgCheckmark = ((UIKit.UIImageView)(this.GetNativeField("imgCheckmark")));
 				return this.__mt_imgCheckmark;
 			}
 			set {

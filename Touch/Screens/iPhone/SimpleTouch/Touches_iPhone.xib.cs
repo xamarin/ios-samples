@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_Touch.Screens.iPhone.SimpleTouch
 {
@@ -99,9 +99,9 @@ namespace Example_Touch.Screens.iPhone.SimpleTouch
 				if (touchStartedInside) {
 					
 					// move the shape
-					float offsetX = touch.PreviousLocationInView (View).X - touch.LocationInView(View).X;
-					float offsetY = touch.PreviousLocationInView (View).Y - touch.LocationInView(View).Y;
-					imgDragMe.Frame = new System.Drawing.RectangleF (new PointF (imgDragMe.Frame.X - offsetX, imgDragMe.Frame.Y - offsetY), imgDragMe.Frame.Size);
+					nfloat offsetX = touch.PreviousLocationInView (View).X - touch.LocationInView(View).X;
+					nfloat offsetY = touch.PreviousLocationInView (View).Y - touch.LocationInView(View).Y;
+					imgDragMe.Frame = new CGRect (new CGPoint (imgDragMe.Frame.X - offsetX, imgDragMe.Frame.Y - offsetY), imgDragMe.Frame.Size);
 				}
 			}
 		}

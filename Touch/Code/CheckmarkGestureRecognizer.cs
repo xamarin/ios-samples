@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 
 namespace Example_Touch.Code
 {
@@ -8,14 +8,14 @@ namespace Example_Touch.Code
 	{
 		// declarations
 		protected bool strokeUp = false;
-		protected PointF midpoint = PointF.Empty;
+		protected CGPoint midpoint = CGPoint.Empty;
 		
 		public CheckmarkGestureRecognizer () { }
 		
 		/// <summary>
 		/// Is called when the fingers touch the screen.
 		/// </summary>
-		public override void TouchesBegan (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesBegan (Foundation.NSSet touches, UIEvent evt)
 		{
 			base.TouchesBegan (touches, evt);
 			
@@ -29,7 +29,7 @@ namespace Example_Touch.Code
 		/// <summary>
 		/// Called when the fingers move
 		/// </summary>
-		public override void TouchesMoved (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesMoved (Foundation.NSSet touches, UIEvent evt)
 		{
 			base.TouchesMoved (touches, evt);
 			
@@ -37,8 +37,8 @@ namespace Example_Touch.Code
 			if(base.State != UIGestureRecognizerState.Failed) {
 				
 				// get the current and previous touch point
-				PointF newPoint = (touches.AnyObject as UITouch).LocationInView (View);
-				PointF previousPoint = (touches.AnyObject as UITouch).PreviousLocationInView (View);
+				CGPoint newPoint = (touches.AnyObject as UITouch).LocationInView (View);
+				CGPoint previousPoint = (touches.AnyObject as UITouch).PreviousLocationInView (View);
 				
 				// if we're not already on the upstroke
 				if(!strokeUp) {
@@ -63,7 +63,7 @@ namespace Example_Touch.Code
 		/// <summary>
 		/// Called when the fingers lift off the screen
 		/// </summary>
-		public override void TouchesEnded (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesEnded (Foundation.NSSet touches, UIEvent evt)
 		{
 			base.TouchesEnded (touches, evt);
 			//
@@ -76,7 +76,7 @@ namespace Example_Touch.Code
 		/// <summary>
 		/// Called when the touches are cancelled due to a phone call, etc.
 		/// </summary>
-		public override void TouchesCancelled (MonoTouch.Foundation.NSSet touches, UIEvent evt)
+		public override void TouchesCancelled (Foundation.NSSet touches, UIEvent evt)
 		{
 			base.TouchesCancelled (touches, evt);
 			// we fail the recognizer so that there isn't unexpected behavior 
@@ -92,7 +92,7 @@ namespace Example_Touch.Code
 			base.Reset ();
 			
 			strokeUp = false;
-			midpoint = PointF.Empty;
+			midpoint = CGPoint.Empty;
 		}	
 	}
 }

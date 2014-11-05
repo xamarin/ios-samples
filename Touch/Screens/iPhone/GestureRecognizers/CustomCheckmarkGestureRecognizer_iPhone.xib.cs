@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using Example_Touch.Code;
-using MonoTouch.ObjCRuntime;
+using ObjCRuntime;
 
 namespace Example_Touch.Screens.iPhone.GestureRecognizers
 {

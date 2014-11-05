@@ -12,26 +12,26 @@ namespace Example_Touch.Screens.iPhone.SimpleTouch {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("Touches_iPhone")]
+	[Foundation.Register("Touches_iPhone")]
 	public partial class Touches_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIImageView __mt_imgDragMe;
+		private UIKit.UIImageView __mt_imgDragMe;
 		
-		private MonoTouch.UIKit.UIImageView __mt_imgTouchMe;
+		private UIKit.UIImageView __mt_imgTouchMe;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblTouchStatus;
+		private UIKit.UILabel __mt_lblTouchStatus;
 		
-		private MonoTouch.UIKit.UIImageView __mt_imgTapMe;
+		private UIKit.UIImageView __mt_imgTapMe;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblNumberOfFingers;
+		private UIKit.UILabel __mt_lblNumberOfFingers;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -40,10 +40,10 @@ namespace Example_Touch.Screens.iPhone.SimpleTouch {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("imgDragMe")]
-		private MonoTouch.UIKit.UIImageView imgDragMe {
+		[Foundation.Connect("imgDragMe")]
+		private UIKit.UIImageView imgDragMe {
 			get {
-				this.__mt_imgDragMe = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("imgDragMe")));
+				this.__mt_imgDragMe = ((UIKit.UIImageView)(this.GetNativeField("imgDragMe")));
 				return this.__mt_imgDragMe;
 			}
 			set {
@@ -52,10 +52,10 @@ namespace Example_Touch.Screens.iPhone.SimpleTouch {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("imgTouchMe")]
-		private MonoTouch.UIKit.UIImageView imgTouchMe {
+		[Foundation.Connect("imgTouchMe")]
+		private UIKit.UIImageView imgTouchMe {
 			get {
-				this.__mt_imgTouchMe = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("imgTouchMe")));
+				this.__mt_imgTouchMe = ((UIKit.UIImageView)(this.GetNativeField("imgTouchMe")));
 				return this.__mt_imgTouchMe;
 			}
 			set {
@@ -64,10 +64,10 @@ namespace Example_Touch.Screens.iPhone.SimpleTouch {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblTouchStatus")]
-		private MonoTouch.UIKit.UILabel lblTouchStatus {
+		[Foundation.Connect("lblTouchStatus")]
+		private UIKit.UILabel lblTouchStatus {
 			get {
-				this.__mt_lblTouchStatus = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblTouchStatus")));
+				this.__mt_lblTouchStatus = ((UIKit.UILabel)(this.GetNativeField("lblTouchStatus")));
 				return this.__mt_lblTouchStatus;
 			}
 			set {
@@ -76,10 +76,10 @@ namespace Example_Touch.Screens.iPhone.SimpleTouch {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("imgTapMe")]
-		private MonoTouch.UIKit.UIImageView imgTapMe {
+		[Foundation.Connect("imgTapMe")]
+		private UIKit.UIImageView imgTapMe {
 			get {
-				this.__mt_imgTapMe = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("imgTapMe")));
+				this.__mt_imgTapMe = ((UIKit.UIImageView)(this.GetNativeField("imgTapMe")));
 				return this.__mt_imgTapMe;
 			}
 			set {
@@ -88,10 +88,10 @@ namespace Example_Touch.Screens.iPhone.SimpleTouch {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblNumberOfFingers")]
-		private MonoTouch.UIKit.UILabel lblNumberOfFingers {
+		[Foundation.Connect("lblNumberOfFingers")]
+		private UIKit.UILabel lblNumberOfFingers {
 			get {
-				this.__mt_lblNumberOfFingers = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblNumberOfFingers")));
+				this.__mt_lblNumberOfFingers = ((UIKit.UILabel)(this.GetNativeField("lblNumberOfFingers")));
 				return this.__mt_lblNumberOfFingers;
 			}
 			set {

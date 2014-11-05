@@ -12,22 +12,22 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("GestureRecognizers_iPhone")]
+	[Foundation.Register("GestureRecognizers_iPhone")]
 	public partial class GestureRecognizers_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIImageView __mt_imgDragMe;
+		private UIKit.UIImageView __mt_imgDragMe;
 		
-		private MonoTouch.UIKit.UIImageView __mt_imgTapMe;
+		private UIKit.UIImageView __mt_imgTapMe;
 		
-		private MonoTouch.UIKit.UILabel __mt_lblGestureStatus;
+		private UIKit.UILabel __mt_lblGestureStatus;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -36,10 +36,10 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("imgDragMe")]
-		private MonoTouch.UIKit.UIImageView imgDragMe {
+		[Foundation.Connect("imgDragMe")]
+		private UIKit.UIImageView imgDragMe {
 			get {
-				this.__mt_imgDragMe = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("imgDragMe")));
+				this.__mt_imgDragMe = ((UIKit.UIImageView)(this.GetNativeField("imgDragMe")));
 				return this.__mt_imgDragMe;
 			}
 			set {
@@ -48,10 +48,10 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("imgTapMe")]
-		private MonoTouch.UIKit.UIImageView imgTapMe {
+		[Foundation.Connect("imgTapMe")]
+		private UIKit.UIImageView imgTapMe {
 			get {
-				this.__mt_imgTapMe = ((MonoTouch.UIKit.UIImageView)(this.GetNativeField("imgTapMe")));
+				this.__mt_imgTapMe = ((UIKit.UIImageView)(this.GetNativeField("imgTapMe")));
 				return this.__mt_imgTapMe;
 			}
 			set {
@@ -60,10 +60,10 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("lblGestureStatus")]
-		private MonoTouch.UIKit.UILabel lblGestureStatus {
+		[Foundation.Connect("lblGestureStatus")]
+		private UIKit.UILabel lblGestureStatus {
 			get {
-				this.__mt_lblGestureStatus = ((MonoTouch.UIKit.UILabel)(this.GetNativeField("lblGestureStatus")));
+				this.__mt_lblGestureStatus = ((UIKit.UILabel)(this.GetNativeField("lblGestureStatus")));
 				return this.__mt_lblGestureStatus;
 			}
 			set {

@@ -12,22 +12,22 @@ namespace Example_Touch.Screens.iPhone.Home {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("Home_iPhone")]
+	[Foundation.Register("Home_iPhone")]
 	public partial class Home_iPhone {
 		
-		private MonoTouch.UIKit.UIView __mt_view;
+		private UIKit.UIView __mt_view;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnGestureRecognizers;
+		private UIKit.UIButton __mt_btnGestureRecognizers;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnTouch;
+		private UIKit.UIButton __mt_btnTouch;
 		
-		private MonoTouch.UIKit.UIButton __mt_btnCustomGestureRecognizer;
+		private UIKit.UIButton __mt_btnCustomGestureRecognizer;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				this.__mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				this.__mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return this.__mt_view;
 			}
 			set {
@@ -36,10 +36,10 @@ namespace Example_Touch.Screens.iPhone.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnGestureRecognizers")]
-		private MonoTouch.UIKit.UIButton btnGestureRecognizers {
+		[Foundation.Connect("btnGestureRecognizers")]
+		private UIKit.UIButton btnGestureRecognizers {
 			get {
-				this.__mt_btnGestureRecognizers = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnGestureRecognizers")));
+				this.__mt_btnGestureRecognizers = ((UIKit.UIButton)(this.GetNativeField("btnGestureRecognizers")));
 				return this.__mt_btnGestureRecognizers;
 			}
 			set {
@@ -48,10 +48,10 @@ namespace Example_Touch.Screens.iPhone.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnTouch")]
-		private MonoTouch.UIKit.UIButton btnTouch {
+		[Foundation.Connect("btnTouch")]
+		private UIKit.UIButton btnTouch {
 			get {
-				this.__mt_btnTouch = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnTouch")));
+				this.__mt_btnTouch = ((UIKit.UIButton)(this.GetNativeField("btnTouch")));
 				return this.__mt_btnTouch;
 			}
 			set {
@@ -60,10 +60,10 @@ namespace Example_Touch.Screens.iPhone.Home {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnCustomGestureRecognizer")]
-		private MonoTouch.UIKit.UIButton btnCustomGestureRecognizer {
+		[Foundation.Connect("btnCustomGestureRecognizer")]
+		private UIKit.UIButton btnCustomGestureRecognizer {
 			get {
-				this.__mt_btnCustomGestureRecognizer = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnCustomGestureRecognizer")));
+				this.__mt_btnCustomGestureRecognizer = ((UIKit.UIButton)(this.GetNativeField("btnCustomGestureRecognizer")));
 				return this.__mt_btnCustomGestureRecognizer;
 			}
 			set {
