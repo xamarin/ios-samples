@@ -25,11 +25,11 @@
 //
 
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.MapKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreLocation;
+using CoreGraphics;
+using UIKit;
+using MapKit;
+using Foundation;
+using CoreLocation;
 
 namespace WeatherMap
 {
@@ -83,7 +83,7 @@ namespace WeatherMap
 				
 				// Get and set our new list of WeatherForecastAnnotations
 				annotations = weatherServer.GetForecastAnnotations (mapView.Region, 4);
-				mapView.AddAnnotation (annotations);
+				mapView.AddAnnotations (annotations);
 			};
 			
 			mapView.GetViewForAnnotation += GetWeatherAnnotationView;
