@@ -23,11 +23,11 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.CoreAnimation;
+using Foundation;
+using CoreAnimation;
 
 namespace ViewTransitions
 {
@@ -84,7 +84,7 @@ namespace ViewTransitions
 			transition.Duration = 0.75;
 	
 			// using the ease in/out timing function
-			transition.TimingFunction = CAMediaTimingFunction.FromName (CAMediaTimingFunction.EaseInEaseOut.ToString ());
+			transition.TimingFunction = CAMediaTimingFunction.FromName (CAMediaTimingFunction.EaseInEaseOut);
 		
 			// Now to set the type of transition
 			int rnd = random.Next (types.Length);
