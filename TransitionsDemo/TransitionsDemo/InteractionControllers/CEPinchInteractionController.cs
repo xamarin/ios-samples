@@ -1,16 +1,16 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.Foundation;
-using System.Drawing;
+using UIKit;
+using ObjCRuntime;
+using Foundation;
+using CoreGraphics;
 
 namespace TransitionsDemo.InteractionControllers
 {
 	public class CEPinchInteractionController : CEBaseInteractionController
 	{
-		private float startScale;
+		private nfloat startScale;
 
-		public override float CompletionSpeed {
+		public override nfloat CompletionSpeed {
 			get {
 				return 1 - PercentComplete;
 			}
@@ -58,7 +58,7 @@ namespace TransitionsDemo.InteractionControllers
 		private void TrackGestureChaged (UIPinchGestureRecognizer pinchGestureRecognizer)
 		{
 			// compute the current pinch fraction
-			float fraction = 1f - pinchGestureRecognizer.Scale / startScale;
+			float fraction = (float)(1f - pinchGestureRecognizer.Scale / startScale);
 			shouldCompleteTransition = (fraction > 0.5);
 			UpdateInteractiveTransition (fraction);
 		}
@@ -72,7 +72,7 @@ namespace TransitionsDemo.InteractionControllers
 
 			// perform the required operation
 			if (operation == CEInteractionOperation.Pop) {
-				viewController.NavigationController.PopViewControllerAnimated (true);
+				viewController.NavigationController.PopViewController (true);
 			} else {
 				viewController.DismissViewController (true, null);
 			}
