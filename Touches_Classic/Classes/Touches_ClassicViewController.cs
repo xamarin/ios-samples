@@ -25,10 +25,10 @@
 // THE SOFTWARE.
 
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace Touches_Classic
 {
@@ -75,10 +75,10 @@ namespace Touches_Classic
 				touchInfoLabel.Text = string.Format ("{0} taps", numTaps);
 				if (numTaps == 2 && piecesOnTop) {
 					// recieved double tap -> align the three pieces diagonal.
-					firstImage.Center = new PointF (padding + firstImage.Frame.Width / 2f,
+					firstImage.Center = new CGPoint (padding + firstImage.Frame.Width / 2f,
 						touchInfoLabel.Frame.Bottom + padding + firstImage.Frame.Height / 2f);
-					secondImage.Center = new PointF (View.Bounds.Width / 2f, View.Bounds.Height / 2f);
-					thirdImage.Center = new PointF (View.Bounds.Width - thirdImage.Frame.Width / 2f - padding,
+					secondImage.Center = new CGPoint (View.Bounds.Width / 2f, View.Bounds.Height / 2f);
+					thirdImage.Center = new CGPoint (View.Bounds.Width - thirdImage.Frame.Width / 2f - padding,
 						touchInstructionLabel.Frame.Top - thirdImage.Frame.Height);
 					touchInstructionLabel.Text = "";
 				}
@@ -93,7 +93,7 @@ namespace Touches_Classic
 		}
 		
 		// Checks which image the point is in & performs the opening animation (which makes the image a bit larger)
-		void DispatchTouchAtPoint (PointF touchPoint)
+		void DispatchTouchAtPoint (CGPoint touchPoint)
 		{
 			if (firstImage.Frame.Contains (touchPoint))
 				AnimateTouchDownAtPoint (firstImage, touchPoint);
@@ -123,7 +123,7 @@ namespace Touches_Classic
 		}
 			
 		// Checks to see which view is touch point is in and sets the center of the moved view to the new position.
-		void DispatchTouchEvent (UIView theView, PointF touchPoint)
+		void DispatchTouchEvent (UIView theView, CGPoint touchPoint)
 		{
 			if (firstImage.Frame.Contains (touchPoint))
 				firstImage.Center = touchPoint;
@@ -142,7 +142,7 @@ namespace Touches_Classic
 		}
 		
 		// Puts back the images to their original size
-		void DispatchTouchEndEvent (UIView theView, PointF touchPoint)
+		void DispatchTouchEndEvent (UIView theView, CGPoint touchPoint)
 		{
 			if (firstImage.Frame.Contains (touchPoint))
 				AnimateTouchUpAtPoint (firstImage, touchPoint);
@@ -176,21 +176,21 @@ namespace Touches_Classic
 		const double SHRINK_ANIMATION_DURATION_SECONDS = 0.15;
 		
 		// Scales up a image slightly
-		void AnimateTouchDownAtPoint (UIImageView theView, PointF touchPoint)
+		void AnimateTouchDownAtPoint (UIImageView theView, CGPoint touchPoint)
 		{
 			theView.AnimationDuration = GROW_ANIMATION_DURATION_SECONDS;
-			theView.Transform = MonoTouch.CoreGraphics.CGAffineTransform.MakeScale (1.2f, 1.2f);
+			theView.Transform = CoreGraphics.CGAffineTransform.MakeScale (1.2f, 1.2f);
 		}
 		
 		// Scales down a image slightly
-		void AnimateTouchUpAtPoint (UIImageView theView, PointF touchPoint)
+		void AnimateTouchUpAtPoint (UIImageView theView, CGPoint touchPoint)
 		{
 			// Set the center to the touch position
 			theView.Center = touchPoint;
 			
 			// Resets the transformation
 			theView.AnimationDuration = SHRINK_ANIMATION_DURATION_SECONDS;
-			theView.Transform = MonoTouch.CoreGraphics.CGAffineTransform.MakeIdentity ();
+			theView.Transform = CoreGraphics.CGAffineTransform.MakeIdentity ();
 		}
 		#endregion
 	}
