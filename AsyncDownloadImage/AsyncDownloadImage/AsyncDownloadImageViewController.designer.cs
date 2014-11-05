@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace AsyncDownloadImage
 {
@@ -12,19 +12,19 @@ namespace AsyncDownloadImage
 	partial class AsyncDownloadImageViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton clickButton { get; set; }
+		UIKit.UIButton clickButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton downloadButton { get; set; }
+		UIKit.UIButton downloadButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIProgressView downloadProgress { get; set; }
+		UIKit.UIProgressView downloadProgress { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView imageView { get; set; }
+		UIKit.UIImageView imageView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel infoLabel { get; set; }
+		UIKit.UILabel infoLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
