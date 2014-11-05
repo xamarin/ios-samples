@@ -25,12 +25,12 @@
 // THE SOFTWARE.
 
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using Foundation;
+using ObjCRuntime;
+using CoreGraphics;
 
 namespace Touches_GestureRecognizers
 {
@@ -134,7 +134,7 @@ namespace Touches_GestureRecognizers
 				var locationInView = gestureRecognizer.LocationInView (image);
 				var locationInSuperview = gestureRecognizer.LocationInView (image.Superview);
 				
-				image.Layer.AnchorPoint = new PointF (locationInView.X / image.Bounds.Size.Width, locationInView.Y / image.Bounds.Size.Height);
+				image.Layer.AnchorPoint = new CGPoint (locationInView.X / image.Bounds.Size.Width, locationInView.Y / image.Bounds.Size.Height);
 				image.Center = locationInSuperview;
 			}
 		}
@@ -143,13 +143,13 @@ namespace Touches_GestureRecognizers
 		[Export("ResetImage:")]
 		void ResetImage (UIMenuController controller)
 		{
-			var mid = new PointF ((imageForReset.Bounds.Left + imageForReset.Bounds.Right) / 2, (imageForReset.Bounds.Top + imageForReset.Bounds.Bottom) / 2);
+			var mid = new CGPoint ((imageForReset.Bounds.Left + imageForReset.Bounds.Right) / 2, (imageForReset.Bounds.Top + imageForReset.Bounds.Bottom) / 2);
 			var locationInSuperview = imageForReset.ConvertPointToView (mid, imageForReset.Superview);
-			imageForReset.Layer.AnchorPoint = new PointF (0.5f, 0.5f);
+			imageForReset.Layer.AnchorPoint = new CGPoint (0.5f, 0.5f);
 			imageForReset.Center =locationInSuperview;
 			
 			UIView.BeginAnimations (null, IntPtr.Zero);
-			imageForReset.Transform = MonoTouch.CoreGraphics.CGAffineTransform.MakeIdentity ();
+			imageForReset.Transform = CoreGraphics.CGAffineTransform.MakeIdentity ();
 			UIView.CommitAnimations ();
 		}
 
@@ -169,9 +169,9 @@ namespace Touches_GestureRecognizers
 			var image = gestureRecognizer.View;
 			if (gestureRecognizer.State == UIGestureRecognizerState.Began || gestureRecognizer.State == UIGestureRecognizerState.Changed) {
 				var translation = gestureRecognizer.TranslationInView (View);
-				image.Center = new PointF (image.Center.X + translation.X, image.Center.Y + translation.Y);
+				image.Center = new CGPoint (image.Center.X + translation.X, image.Center.Y + translation.Y);
 				// Reset the gesture recognizer's translation to {0, 0} - the next callback will get a delta from the current position.
-				gestureRecognizer.SetTranslation (PointF.Empty, image);
+				gestureRecognizer.SetTranslation (CGPoint.Empty, image);
 			}
 		}
 			
@@ -208,7 +208,7 @@ namespace Touches_GestureRecognizers
 				var location = gestureRecognizer.LocationInView (gestureRecognizer.View);
 				BecomeFirstResponder ();
 				menuController.MenuItems = new [] { resetMenuItem };
-				menuController.SetTargetRect (new RectangleF (location.X, location.Y, 0, 0), gestureRecognizer.View);
+				menuController.SetTargetRect (new CGRect (location.X, location.Y, 0, 0), gestureRecognizer.View);
 				menuController.MenuVisible = true;
 //				menuController.Animated = true;
 				imageForReset = gestureRecognizer.View;
