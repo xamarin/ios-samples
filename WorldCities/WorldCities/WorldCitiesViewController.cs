@@ -23,14 +23,14 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 using System.Collections.Generic;
-using MonoTouch.MapKit;
-using MonoTouch.CoreLocation;
-using MonoTouch.ObjCRuntime;
+using MapKit;
+using CoreLocation;
+using ObjCRuntime;
 
 namespace WorldCities
 {
@@ -49,20 +49,20 @@ namespace WorldCities
 				ChooseWorldCity ();
 		}
 		
-		partial void SelectorChanged (MonoTouch.Foundation.NSObject sender)
+		partial void SelectorChanged (Foundation.NSObject sender)
 		{
 			var segmented = sender as UISegmentedControl;
 			if (segmented == null)
 				return;
 			switch (segmented.SelectedSegment) {
 			case 1:
-				MapView.MapType = MonoTouch.MapKit.MKMapType.Satellite;
+				MapView.MapType = MapKit.MKMapType.Satellite;
 				break;
 			case 2:
-				MapView.MapType = MonoTouch.MapKit.MKMapType.Hybrid;
+				MapView.MapType = MapKit.MKMapType.Hybrid;
 				break;
 			default:
-				MapView.MapType = MonoTouch.MapKit.MKMapType.Standard;
+				MapView.MapType = MapKit.MKMapType.Standard;
 				break;
 			}
 		}
