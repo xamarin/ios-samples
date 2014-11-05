@@ -28,10 +28,10 @@
 //
 
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.AudioToolbox;
-using MonoTouch.CoreFoundation;
-using MonoTouch.AudioUnit;
+using Foundation;
+using AudioToolbox;
+using CoreFoundation;
+using AudioUnit;
 using System.Diagnostics;
 
 namespace AQTapDemo
@@ -59,8 +59,8 @@ namespace AQTapDemo
 		OutputAudioQueue audioQueue;
 		AudioQueueProcessingTap aqTap;
 		IntPtr preRenderData;
-		AudioUnit genericOutputUnit;
-		AudioUnit effectUnit;
+		AudioUnit.AudioUnit genericOutputUnit;
+		AudioUnit.AudioUnit effectUnit;
 		AUGraph auGraph;
 
 		int totalPacketsReceived;
