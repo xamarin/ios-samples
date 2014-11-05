@@ -1,11 +1,11 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Collections.Generic;
 using System.Linq;
-using System.Drawing;
-using MonoTouch.CoreAnimation;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
+using CoreGraphics;
+using CoreAnimation;
+using Foundation;
+using ObjCRuntime;
 
 namespace TicTacToe
 {
@@ -78,23 +78,23 @@ namespace TicTacToe
 		{
 			if (gestureRecognizer.State == UIGestureRecognizerState.Recognized &&
 				DidSelect != null) {
-				PointF point = gestureRecognizer.LocationInView (this);
-				RectangleF bounds = Bounds;
+				CGPoint point = gestureRecognizer.LocationInView (this);
+				CGRect bounds = Bounds;
 
-				PointF normalizedPoint = point;
+				CGPoint normalizedPoint = point;
 				normalizedPoint.X -= bounds.X + bounds.Size.Width / 2;
 				normalizedPoint.X *= 3 / bounds.Size.Width;
 				normalizedPoint.X = (float)Math.Round (normalizedPoint.X);
 				normalizedPoint.X = (float)Math.Max (normalizedPoint.X, -1);
 				normalizedPoint.X = (float)Math.Min (normalizedPoint.X, 1);
-				TTTMoveXPosition xPosition = (TTTMoveXPosition)normalizedPoint.X;
+				TTTMoveXPosition xPosition = (TTTMoveXPosition)(int)normalizedPoint.X;
 
 				normalizedPoint.Y -= bounds.Y + bounds.Size.Height / 2;
 				normalizedPoint.Y *= 3 / bounds.Size.Height;
 				normalizedPoint.Y = (float)Math.Round (normalizedPoint.Y);
 				normalizedPoint.Y = (float)Math.Max (normalizedPoint.Y, -1);
 				normalizedPoint.Y = (float)Math.Min (normalizedPoint.Y, 1);
-				TTTMoveYPosition yPosition = (TTTMoveYPosition)normalizedPoint.Y;
+				TTTMoveYPosition yPosition = (TTTMoveYPosition)(int)normalizedPoint.Y;
 
 				if (CanSelect == null || CanSelect (this, xPosition, yPosition))
 					DidSelect (this, xPosition, yPosition);
@@ -115,10 +115,10 @@ namespace TicTacToe
 			return moveView;
 		}
 
-		PointF pointForPosition (TTTMoveXPosition xPosition, TTTMoveYPosition yPosition)
+		CGPoint pointForPosition (TTTMoveXPosition xPosition, TTTMoveYPosition yPosition)
 		{
-			RectangleF bounds = Bounds;
-			PointF point = new PointF (bounds.X + bounds.Size.Width / 2,
+			CGRect bounds = Bounds;
+			CGPoint point = new CGPoint (bounds.X + bounds.Size.Width / 2,
 			                           bounds.Y + bounds.Size.Height / 2);
 			point.X += (int)xPosition * bounds.Size.Width / 3;
 			point.Y += (int)yPosition * bounds.Size.Height / 3;
@@ -137,7 +137,7 @@ namespace TicTacToe
 				moveView.SizeToFit ();
 				moveView.Alpha = 1f;
 			} else {
-				moveView.Bounds = new RectangleF (0, 0, 0, 0);
+				moveView.Bounds = new CGRect (0, 0, 0, 0);
 				moveView.Alpha = 0f;
 			}
 		}
@@ -202,17 +202,17 @@ namespace TicTacToe
 		{
 			base.LayoutSubviews ();
 
-			RectangleF bounds = Bounds;
+			CGRect bounds = Bounds;
 			for (int i = 0; i < horizontalLineViews.Length; i++) {
 				UIView view = horizontalLineViews [i];
-				view.Bounds = new RectangleF (0, 0, bounds.Size.Width, LineWidth);
-				view.Center = new PointF (bounds.X + bounds.Size.Width / 2,
+				view.Bounds = new CGRect (0, 0, bounds.Size.Width, LineWidth);
+				view.Center = new CGPoint (bounds.X + bounds.Size.Width / 2,
 				                          (float)Math.Round (bounds.Size.Height * (i + 1) / 3));
 			}
 			for (int i = 0; i < verticalLineViews.Length; i++) {
 				UIView view = verticalLineViews [i];
-				view.Bounds = new RectangleF (0, 0, LineWidth, bounds.Size.Height);
-				view.Center = new PointF ((float)Math.Round (bounds.Size.Width * (i + 1) / 3),
+				view.Bounds = new CGRect (0, 0, LineWidth, bounds.Size.Height);
+				view.Center = new CGPoint ((float)Math.Round (bounds.Size.Width * (i + 1) / 3),
 				                          bounds.Y + bounds.Size.Height / 2);
 			}
 			UpdateGameState ();

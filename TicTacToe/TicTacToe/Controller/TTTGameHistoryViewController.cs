@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.Foundation;
+using UIKit;
+using CoreGraphics;
+using Foundation;
 
 namespace TicTacToe
 {
@@ -17,11 +17,11 @@ namespace TicTacToe
 		{
 			Title = "Game";
 
-			ratingControl = new TTTRatingControl (new RectangleF (0, 0, 150, 30));
+			ratingControl = new TTTRatingControl (new CGRect (0, 0, 150, 30));
 			ratingControl.ValueChanged += changeRating;
 			NavigationItem.TitleView = ratingControl;
 
-			NSNotificationCenter.DefaultCenter.AddObserver (TTTProfile.IconDidChangeNotification,
+			NSNotificationCenter.DefaultCenter.AddObserver ((NSString)TTTProfile.IconDidChangeNotification,
 			                                                iconDidChange);
 		}
 
@@ -40,7 +40,7 @@ namespace TicTacToe
 			view.AddSubview (gameView);
 			gameView.Game = Game;
 
-			float topHeight = UIApplication.SharedApplication.StatusBarFrame.Size.Height +
+			nfloat topHeight = UIApplication.SharedApplication.StatusBarFrame.Size.Height +
 				NavigationController.NavigationBar.Frame.Size.Height;
 
 			var mTopHeight = new NSNumber (topHeight + Margin);

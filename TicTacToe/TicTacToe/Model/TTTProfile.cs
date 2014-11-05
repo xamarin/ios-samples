@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Linq;
