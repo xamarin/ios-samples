@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.CoreLocation;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreLocation;
+using Foundation;
+using UIKit;
 
 namespace AirLocate {
 
@@ -60,7 +60,7 @@ namespace AirLocate {
 				locationManager.StopRangingBeacons (region);
 		}
 
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			// skip empty groups
 			int sections = 0;
@@ -85,17 +85,17 @@ namespace AirLocate {
 			return -1;
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return beacons [GetNonEmptySection (section)].Count;
+			return beacons [GetNonEmptySection ((int)section)].Count;
 		}
 
-		public override string TitleForHeader (UITableView tableView, int section)
+		public override string TitleForHeader (UITableView tableView, nint section)
 		{
 			if (NumberOfSections (tableView) == 0)
 				return null;
 
-			return ((CLProximity) GetNonEmptySection (section)).ToString ();
+			return ((CLProximity) GetNonEmptySection ((int)section)).ToString ();
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
