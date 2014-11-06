@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace Example_TableParts
 {
@@ -24,7 +24,7 @@ namespace Example_TableParts
 		/// <summary>
 		/// Called by the TableView to determine how many sections(groups) there are.
 		/// </summary>
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return tableItems.Count;
 		}
@@ -32,25 +32,25 @@ namespace Example_TableParts
 		/// <summary>
 		/// Called by the TableView to determine how many cells to create for that particular section.
 		/// </summary>
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return tableItems[section].Items.Count;
+			return tableItems[(int)section].Items.Count;
 		}
 
 		/// <summary>
 		/// Called by the TableView to retrieve the header text for the particular section(group)
 		/// </summary>
-		public override string TitleForHeader (UITableView tableView, int section)
+		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			return tableItems[section].Name;
+			return tableItems[(int)section].Name;
 		}
 
 		/// <summary>
 		/// Called by the TableView to retrieve the footer text for the particular section(group)
 		/// </summary>
-		public override string TitleForFooter (UITableView tableView, int section)
+		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			return tableItems[section].Footer;
+			return tableItems[(int)section].Footer;
 		}
 		
 		#endregion	
@@ -73,7 +73,7 @@ namespace Example_TableParts
 		/// <summary>
 		/// Called by the TableView to get the actual UITableViewCell to render for the particular section and row
 		/// </summary>
-		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			Console.WriteLine ("Calling Get Cell, isEditing:" + tableView.Editing);
 			
