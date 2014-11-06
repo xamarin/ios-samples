@@ -1,12 +1,12 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections.Generic;
 
-using MonoTouch.UIKit;
-using MonoTouch.GLKit;
-using MonoTouch.CoreMotion;
-using MonoTouch.Foundation;
-using MonoTouch.OpenGLES;
+using UIKit;
+using GLKit;
+using CoreMotion;
+using Foundation;
+using OpenGLES;
 
 using OpenTK.Graphics.ES20;
 using OpenTK;
@@ -129,7 +129,7 @@ namespace Stars
 			isDeviceMotionAvailable = motionManager.DeviceMotionAvailable;
 
 			// the label for roll, pitch and yaw reading
-			rpyLabel = new UILabel (new Rectangle (0, 0, (int) UIScreen.MainScreen.Bounds.Size.Width, 30));
+			rpyLabel = new UILabel (new CGRect (0, 0, (int) UIScreen.MainScreen.Bounds.Size.Width, 30));
 
 			rpyLabel.BackgroundColor = UIColor.Clear;
 			rpyLabel.TextColor = UIColor.White;
@@ -242,8 +242,7 @@ namespace Stars
 				return;
 
 			var r = dm.Attitude.RotationMatrix;
-
-			float aspect = Math.Abs (View.Bounds.Size.Width / View.Bounds.Size.Height);
+			float aspect = (float)Math.Abs (View.Bounds.Size.Width / View.Bounds.Size.Height);
 			var projectionMatrix = Matrix4.CreatePerspectiveFieldOfView (MathHelper.DegreesToRadians (65.0f), aspect, NearZ, FarZ);
 
 			Matrix4 baseModelViewMatrix = new Matrix4 ((float) r.m11, (float) r.m21, (float) r.m31, 0,
