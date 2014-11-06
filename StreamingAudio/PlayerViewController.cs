@@ -1,12 +1,12 @@
-﻿using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using System;
+using Foundation;
+using UIKit;
 using System.Net;
-using MonoTouch.AudioToolbox;
+using AudioToolbox;
 using System.IO;
 using System.Threading;
 using System.Diagnostics;
-using MonoTouch.AVFoundation;
+using AVFoundation;
 
 namespace StreamingAudio
 {
@@ -157,7 +157,7 @@ namespace StreamingAudio
                         if (updatingTimer != null)
                             updatingTimer.Invalidate();
 
-                        updatingTimer = NSTimer.CreateRepeatingScheduledTimer(0.5, () => RepeatingAction(timeline, sampleRate));
+                        updatingTimer = NSTimer.CreateRepeatingScheduledTimer(0.5, (timer) => RepeatingAction(timeline, sampleRate));
                     });
 
                     while ((inputStreamLength = inputStream.Read(buffer, 0, buffer.Length)) != 0 && player != null)

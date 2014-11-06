@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace StreamingAudio
@@ -13,19 +13,19 @@ namespace StreamingAudio
 	partial class PlayerViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel playbackTime { get; set; }
+		UIKit.UILabel playbackTime { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton playPauseButton { get; set; }
+		UIKit.UIButton playPauseButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIProgressView progressBar { get; set; }
+		UIKit.UIProgressView progressBar { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel timeLabel { get; set; }
+		UIKit.UILabel timeLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider volumeSlider { get; set; }
+		UIKit.UISlider volumeSlider { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

@@ -1,5 +1,5 @@
-﻿using System;
-using MonoTouch.AudioToolbox;
+using System;
+using AudioToolbox;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
