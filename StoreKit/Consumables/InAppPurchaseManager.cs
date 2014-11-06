@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.StoreKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using StoreKit;
+using Foundation;
+using UIKit;
 
 namespace Consumables {
 	public class InAppPurchaseManager : SKProductsRequestDelegate {
@@ -14,7 +14,7 @@ namespace Consumables {
 		SKProductsRequest productsRequest;
 		CustomPaymentObserver theObserver;
 
-		public static NSAction Done {get;set;}
+		public static Action Done {get;set;}
 
 		public InAppPurchaseManager ()
 		{

@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.StoreKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using StoreKit;
+using Foundation;
+using UIKit;
 
 namespace Consumables {
 	public static class SKProductExtension {

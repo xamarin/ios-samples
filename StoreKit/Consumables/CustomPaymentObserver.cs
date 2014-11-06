@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using MonoTouch.StoreKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using StoreKit;
+using Foundation;
+using UIKit;
 
 namespace Consumables {
 	internal class CustomPaymentObserver : SKPaymentTransactionObserver {

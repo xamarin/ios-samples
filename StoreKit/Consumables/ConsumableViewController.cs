@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.StoreKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using StoreKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace Consumables {
 	public class ConsumableViewController : UIViewController {
@@ -24,19 +24,19 @@ namespace Consumables {
 		/// String.Format(Buy, "price"); // "Buy {0}"
 		/// </summary>
 		string Buy {
-			get {return MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("Buy {0}", "Buy {0}");}
+			get {return Foundation.NSBundle.MainBundle.LocalizedString ("Buy {0}", "Buy {0}");}
 		}
 		/// <summary>
 		/// String.Format(Balance, "balance"); // "{0} monkey credits"
 		/// </summary>
 		string Balance {
-			get {return MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("{0} monkey credits", "{0} monkey credits");}
+			get {return Foundation.NSBundle.MainBundle.LocalizedString ("{0} monkey credits", "{0} monkey credits");}
 		}
 		/// <summary>
 		/// No placeholders
 		/// </summary>
 		string Footer {
-			get {return MonoTouch.Foundation.NSBundle.MainBundle.LocalizedString ("Notice how you can keep buying the same items over and over. That's what makes these products 'consumable'.", "Notice how you can keep buying the same items over and over. That's what makes these products 'consumable'.");}
+			get {return Foundation.NSBundle.MainBundle.LocalizedString ("Notice how you can keep buying the same items over and over. That's what makes these products 'consumable'.", "Notice how you can keep buying the same items over and over. That's what makes these products 'consumable'.");}
 		}
 		#endregion
 
@@ -67,20 +67,20 @@ namespace Consumables {
 			buy10Button.SetTitle ("Buy...", UIControlState.Normal);
 			buy10Button.Enabled = false;
 
-			buy5Title = new UILabel(new RectangleF(10, 10, 300, 30));
+			buy5Title = new UILabel(new CGRect(10, 10, 300, 30));
 			buy5Title.Font = UIFont.BoldSystemFontOfSize(18f);
-			buy5Description = new UILabel(new RectangleF(10, 40, 300, 30));
-			buy5Button.Frame = new RectangleF(10, 80, 200, 40);
+			buy5Description = new UILabel(new CGRect(10, 40, 300, 30));
+			buy5Button.Frame = new CGRect(10, 80, 200, 40);
 
-			buy10Title = new UILabel(new RectangleF(10, 140, 300, 30));
+			buy10Title = new UILabel(new CGRect(10, 140, 300, 30));
 			buy10Title.Font = UIFont.BoldSystemFontOfSize(18f);
-			buy10Description = new UILabel(new RectangleF(10, 170, 300, 30));
-			buy10Button.Frame = new RectangleF(10, 210, 200, 40);
+			buy10Description = new UILabel(new CGRect(10, 170, 300, 30));
+			buy10Button.Frame = new CGRect(10, 210, 200, 40);
 
-			balanceLabel = new UILabel(new Rectangle(10, 280, 300, 40));
+			balanceLabel = new UILabel(new CGRect(10, 280, 300, 40));
 			balanceLabel.Font = UIFont.BoldSystemFontOfSize(24f);
 			
-			infoLabel = new UILabel(new RectangleF(10, 340, 300, 80));
+			infoLabel = new UILabel(new CGRect(10, 340, 300, 80));
 			infoLabel.Lines = 3;
 			infoLabel.Text = Footer;
 	
