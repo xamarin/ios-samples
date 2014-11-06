@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace AUSoundTriggeredPlayingSoundMemoryBased
 {
