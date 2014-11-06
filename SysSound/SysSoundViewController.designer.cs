@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace SysSound
 {
@@ -12,12 +12,12 @@ namespace SysSound
 	partial class SysSoundViewController
 	{
 		[Action ("playSystemSound:")]
-		partial void playSystemSound (MonoTouch.Foundation.NSObject sender);
+		partial void playSystemSound (Foundation.NSObject sender);
 
 		[Action ("playAlertSound:")]
-		partial void playAlertSound (MonoTouch.Foundation.NSObject sender);
+		partial void playAlertSound (Foundation.NSObject sender);
 
 		[Action ("vibrate:")]
-		partial void vibrate (MonoTouch.Foundation.NSObject sender);
+		partial void vibrate (Foundation.NSObject sender);
 	}
 }

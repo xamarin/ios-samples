@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace SysSound {
 	
@@ -37,7 +37,7 @@ namespace SysSound {
 			
 			// window.AddSubview (navigationController.View);
 			this._SysSoundViewController = new SysSoundViewController();
-			this._SysSoundViewController.View.Frame = new RectangleF(0.0f, 20.0f, 320.0f, 460.0f);
+			this._SysSoundViewController.View.Frame = new CGRect(0.0f, 20.0f, 320.0f, 460.0f);
 			this.window.AddSubview(this._SysSoundViewController.View);
 			
 			// make the window visible

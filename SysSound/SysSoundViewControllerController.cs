@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using SysSound.Extensions;
-using MonoTouch.AudioToolbox;
+using AudioToolbox;
 
 namespace SysSound {
 	
