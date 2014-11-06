@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace SpriteKitPhysicsCollisions
@@ -13,7 +13,7 @@ namespace SpriteKitPhysicsCollisions
 	partial class SpriteKitPhysicsCollisionsViewController
 	{
 		[Outlet]
-		MonoTouch.SpriteKit.SKView skView { get; set; }
+		SpriteKit.SKView skView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
