@@ -1,9 +1,9 @@
-﻿using System;
-using System.Drawing;
+using System;
+using CoreGraphics;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace StoryboardTable
 {
@@ -53,14 +53,14 @@ namespace StoryboardTable
 		{
 			var oldTask = chores.Find(t => t.Id == chore.Id);
 			oldTask = chore;
-			NavigationController.PopViewControllerAnimated(true);
+			NavigationController.PopViewController(true);
 		}
 
 		public void DeleteTask (Chore chore) 
 		{
 			var oldTask = chores.Find(t => t.Id == chore.Id);
 			chores.Remove (oldTask);
-			NavigationController.PopViewControllerAnimated(true);
+			NavigationController.PopViewController(true);
 		}
 
 		public override void DidReceiveMemoryWarning ()

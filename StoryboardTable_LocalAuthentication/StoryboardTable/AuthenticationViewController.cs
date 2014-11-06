@@ -1,9 +1,9 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.CodeDom.Compiler;
-using MonoTouch.LocalAuthentication;
-using MonoTouch.Security;
+using LocalAuthentication;
+using Security;
 
 namespace StoryboardTable
 {
