@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.StoreKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using StoreKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace NonConsumables {
 	public class NonConsumableViewController : UIViewController {
@@ -52,31 +52,31 @@ namespace NonConsumables {
 			sepiaButton.SetTitle ("Buy...", UIControlState.Normal);
 			sepiaButton.Enabled = false;
 
-			greyscaleTitle = new UILabel(new RectangleF(10, 5, 300, 30));
+			greyscaleTitle = new UILabel(new CGRect(10, 5, 300, 30));
 			greyscaleTitle.Font = UIFont.BoldSystemFontOfSize(18f);
-			greyscaleDescription = new UILabel(new RectangleF(10, 30, 300, 30));
-			greyscaleButton.Frame = new RectangleF(10, 65, 180, 40);
+			greyscaleDescription = new UILabel(new CGRect(10, 30, 300, 30));
+			greyscaleButton.Frame = new CGRect(10, 65, 180, 40);
 
-			sepiaTitle = new UILabel(new RectangleF(10, 110, 300, 30));
+			sepiaTitle = new UILabel(new CGRect(10, 110, 300, 30));
 			sepiaTitle.Font = UIFont.BoldSystemFontOfSize(18f);
-			sepiaDescription = new UILabel(new RectangleF(10, 135, 300, 30));
-			sepiaButton.Frame = new RectangleF(10, 170, 180, 40);
+			sepiaDescription = new UILabel(new CGRect(10, 135, 300, 30));
+			sepiaButton.Frame = new CGRect(10, 170, 180, 40);
 			
 			clearButton = UIButton.FromType (UIButtonType.RoundedRect);
 			clearButton.SetTitle ("Clear Filter", UIControlState.Normal);
-			clearButton.Frame = new RectangleF(10, 215, 180, 40);
+			clearButton.Frame = new CGRect(10, 215, 180, 40);
 			clearButton.TouchUpInside += (sender, args) =>{
 				testFilterImage.Image = UIImage.FromFile (testImagePath);
 			};
 
 			restoreButton = UIButton.FromType (UIButtonType.RoundedRect);
 			restoreButton.SetTitle ("Restore", UIControlState.Normal);
-			restoreButton.Frame = new RectangleF(200, 215, 110, 40);
+			restoreButton.Frame = new CGRect(200, 215, 110, 40);
 			
-			testFilterImage = new UIImageView(new Rectangle(10, 265, 300, 100));
+			testFilterImage = new UIImageView(new CGRect(10, 265, 300, 100));
 			testFilterImage.Image = UIImage.FromFile (testImagePath);
 			
-			infoLabel = new UILabel(new RectangleF(10, 370, 300, 80));
+			infoLabel = new UILabel(new CGRect(10, 370, 300, 80));
 			infoLabel.Lines = 3;
 			infoLabel.Text = "Notice how you can only purchase each product once. After that the transaction can't be charged again.";
 	
