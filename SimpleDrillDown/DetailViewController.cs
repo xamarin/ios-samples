@@ -25,10 +25,10 @@
 // THE SOFTWARE.
 
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace SimpleDrillDown {
 
@@ -48,7 +48,7 @@ namespace SimpleDrillDown {
 			// Refresh the data before the view appears and ensure
 			// it is scrolled to the top
 			TableView.ReloadData ();
-			TableView.ContentOffset = new PointF (0, 0);
+			TableView.ContentOffset = new CGPoint (0, 0);
 			Title = Play.Title;
 		}
 		
@@ -61,13 +61,13 @@ namespace SimpleDrillDown {
 			}
 			
 			// Customize the number of sections in the table view.
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				// One section for the Date, Genre and then Characters.
 				return 3;
 			}
 			
-			public override string TitleForHeader (UITableView tableView, int section)
+			public override string TitleForHeader (UITableView tableView, nint section)
 			{
 				if (section == 0) {
 					return "Date";
@@ -78,7 +78,7 @@ namespace SimpleDrillDown {
 				}
 			}
 			
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				// Date and Genre sections have one entry
 				if (section == 0 || section == 1)
@@ -88,7 +88,7 @@ namespace SimpleDrillDown {
 			}
 			
 			// Customize the appearance of table view cells.
-			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				string cellIdentifier = "Cell";
 				var cell = tableView.DequeueReusableCell (cellIdentifier);

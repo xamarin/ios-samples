@@ -25,9 +25,9 @@
 // THE SOFTWARE.
 
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using CoreGraphics;
+using UIKit;
+using Foundation;
 using System.Collections.Generic;
 
 namespace SimpleDrillDown {
@@ -67,18 +67,18 @@ namespace SimpleDrillDown {
 			}
 			
 			// Customize the number of sections in the table view.
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
 			
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				return Plays.Count;
 			}
 			
 			// Customize the appearance of table view cells.
-			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				string cellIdentifier = "Cell";
 				var cell = tableView.DequeueReusableCell (cellIdentifier);
