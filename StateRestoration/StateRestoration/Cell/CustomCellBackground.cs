@@ -7,13 +7,13 @@ namespace StateRestoration
 {
 	public class CustomCellBackground : UIView
 	{
-		private CustomCellBackground(RectangleF frame) : base(frame)
+		CustomCellBackground (RectangleF frame) : base (frame)
 		{
 			BackgroundColor = UIColor.White;
 			Layer.CornerRadius = 5;
 		}
 
-		public static UIView CreateCustomCellBackground(RectangleF frame)
+		public static UIView CreateCustomCellBackground (RectangleF frame)
 		{
 			return new CustomCellBackground (frame);
 		}

@@ -8,7 +8,7 @@ namespace StateRestoration
 {
 	public partial class FilterViewController : UIViewController
 	{
-		public ImageFilter  filter;
+		public ImageFilter filter;
 
 		public FilterViewController (IntPtr handle)
 			: base (handle)
@@ -19,19 +19,19 @@ namespace StateRestoration
 		{
 			base.ViewDidLoad ();
 
-			ActiveSwitch.ValueChanged += HandleValueChanged;;
+			ActiveSwitch.ValueChanged += HandleValueChanged;
 			Slider.ValueChanged += SetFilterValue;
 			Update ();
 		}
 
-		void Update()
+		void Update ()
 		{
 			ActiveSwitch.On = filter.Active;
 			Slider.Enabled = filter.Active;
 			Slider.Value = filter.Value;
 		}
 
-		void SetFilterValue(object sender, EventArgs e)
+		void SetFilterValue (object sender, EventArgs e)
 		{
 			filter.Value = Slider.Value;
 			filter.Dirty = true;

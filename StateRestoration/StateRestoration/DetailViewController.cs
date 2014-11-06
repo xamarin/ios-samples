@@ -33,9 +33,10 @@ namespace StateRestoration
 		UIPinchGestureRecognizer pinchGestureRecognizer;
 
 		public string ImageIdentifier { get; set; }
+
 		public DataSource DataSource { get; set; }
 
-		static DetailViewController()
+		static DetailViewController ()
 		{
 			// TODO: remove workaround after fixing https://bugzilla.xamarin.com/show_bug.cgi?id=24016
 			var objRestorationProtocol = GetProtocol ("UIObjectRestoration");
@@ -73,7 +74,7 @@ namespace StateRestoration
 			SetImageViewConstraints (UIApplication.SharedApplication.StatusBarOrientation);
 		}
 
-		void TryAddDoubleTapGesture()
+		void TryAddDoubleTapGesture ()
 		{
 			if (doubleTapGestureRecognizer != null)
 				return;
@@ -84,7 +85,7 @@ namespace StateRestoration
 			imageView.AddGestureRecognizer (doubleTapGestureRecognizer);
 		}
 
-		void TryAddTapGetsture()
+		void TryAddTapGetsture ()
 		{
 			if (tapGestureRecognizer != null)
 				return;
@@ -97,7 +98,7 @@ namespace StateRestoration
 			imageView.AddGestureRecognizer (tapGestureRecognizer);
 		}
 
-		void TryAddPinchGesture()
+		void TryAddPinchGesture ()
 		{
 			if (pinchGestureRecognizer != null)
 				return;
@@ -119,10 +120,10 @@ namespace StateRestoration
 			imageView.Transform = newTransform;
 			lastScale = recognizer.Scale;
 		}
-	
+
 		public override void WillRotate (UIInterfaceOrientation toInterfaceOrientation, double duration)
 		{
-			if (imageView.Transform.IsIdentity) 
+			if (imageView.Transform.IsIdentity)
 				SetImageViewConstraints (toInterfaceOrientation);
 
 			if (toInterfaceOrientation.IsLandscape () && !statusBarHidden)
@@ -143,7 +144,7 @@ namespace StateRestoration
 			filterViewController.filter = GetImageFilter (filterKey);
 		}
 
-		string MapToFilterKey(string segueIdentifier)
+		string MapToFilterKey (string segueIdentifier)
 		{
 			switch (segueIdentifier) {
 				case "showBlurInfo":
@@ -155,7 +156,7 @@ namespace StateRestoration
 			}
 		}
 
-		ImageFilter GetImageFilter(string key)
+		ImageFilter GetImageFilter (string key)
 		{
 			filters = filters ?? new Dictionary<string, ImageFilter> ();
 
@@ -168,14 +169,14 @@ namespace StateRestoration
 			return filter;
 		}
 
-		static ImageFilter CreateFilter(string key, bool useDefault)
+		static ImageFilter CreateFilter (string key, bool useDefault)
 		{
 			ImageFilter filter = CreateFilterFrom (key, useDefault);
 			Register (filter, key);
 			return filter;
 		}
 
-		static ImageFilter CreateFilterFrom(string key, bool useDefault)
+		static ImageFilter CreateFilterFrom (string key, bool useDefault)
 		{
 			switch (key) {
 				case blurFilterKey:
@@ -187,17 +188,17 @@ namespace StateRestoration
 			}
 		}
 
-		static void Register(ImageFilter filter, string key)
+		static void Register (ImageFilter filter, string key)
 		{
 			UIApplication.RegisterObjectForStateRestoration (filter, key);
 			filter.RestorationType = typeof(DetailViewController);
 		}
 
-		void OnDoubleTapGesture(UITapGestureRecognizer tapGesture)
+		void OnDoubleTapGesture (UITapGestureRecognizer tapGesture)
 		{
 			UIView.Animate (1.0f, () => {
 				if (imageView.Transform.IsIdentity) {
-					imageView.Transform = CreateScaleTransform(imageView.Transform);
+					imageView.Transform = CreateScaleTransform (imageView.Transform);
 				} else {
 					imageView.Transform = CGAffineTransform.MakeIdentity ();
 					lastScale = defaultScale;
@@ -206,7 +207,7 @@ namespace StateRestoration
 			});
 		}
 
-		CGAffineTransform CreateScaleTransform(CGAffineTransform currentTransform)
+		CGAffineTransform CreateScaleTransform (CGAffineTransform currentTransform)
 		{
 			var flip = UIApplication.SharedApplication.StatusBarOrientation.IsLandscape ();
 			var scale = flip ? 2.0f : 2.5f;
@@ -215,7 +216,7 @@ namespace StateRestoration
 			return currentTransform;
 		}
 
-		void UpdateImage()
+		void UpdateImage ()
 		{
 			try {
 				TryInitializeImage ();
@@ -230,7 +231,7 @@ namespace StateRestoration
 			ApplyFilters ();
 		}
 
-		void TryInitializeImage()
+		void TryInitializeImage ()
 		{
 			// already initialized
 			if (image != null)
@@ -246,7 +247,7 @@ namespace StateRestoration
 			imageView.Image = image;
 		}
 
-		void ApplyFilters()
+		void ApplyFilters ()
 		{
 			var blurFilter = GetFilter<BlurFilter> (blurFilterKey);
 			var modifyFilter = GetFilter<ModifyFilter> (modifyFilterKey);
@@ -271,19 +272,19 @@ namespace StateRestoration
 			MarkAsNotDirty (modifyFilter);
 		}
 
-		T GetFilter<T>(string key) where T : ImageFilter
+		T GetFilter<T> (string key) where T : ImageFilter
 		{
 			ImageFilter f;
 			filters.TryGetValue (key, out f);
 			return (T)f;
 		}
 
-		bool IsAnyDirty(params ImageFilter[] filters)
+		bool IsAnyDirty (params ImageFilter[] filters)
 		{
 			return filters.Where (f => f != null).Any (f => f.Dirty);
 		}
 
-		CIImage Apply(CIImage input, BlurFilter filter)
+		CIImage Apply (CIImage input, BlurFilter filter)
 		{
 			var f = new CIGaussianBlur () {
 				Image = input,
@@ -292,7 +293,7 @@ namespace StateRestoration
 			return f.OutputImage;
 		}
 
-		CIImage Apply(CIImage input, ModifyFilter filter)
+		CIImage Apply (CIImage input, ModifyFilter filter)
 		{
 			var f = new CISepiaTone () {
 				Image = input,
@@ -301,14 +302,14 @@ namespace StateRestoration
 			return f.OutputImage;
 		}
 
-		UIImage CreateImage(CIImage img)
+		UIImage CreateImage (CIImage img)
 		{
 			CIContext context = CreateContext ();
 			CGImage cgImage = context.CreateCGImage (img, img.Extent);
 			return new UIImage (cgImage);
 		}
 
-		CIContext CreateContext()
+		CIContext CreateContext ()
 		{
 			var options = new CIContextOptions {
 				UseSoftwareRenderer = false
@@ -316,7 +317,7 @@ namespace StateRestoration
 			return CIContext.FromOptions (options);
 		}
 
-		void MarkAsNotDirty(ImageFilter filter)
+		void MarkAsNotDirty (ImageFilter filter)
 		{
 			if (filter != null)
 				filter.Dirty = false;
@@ -334,7 +335,7 @@ namespace StateRestoration
 			AnimateBars (animationDuration, newHiddenValue);
 		}
 
-		void AnimateBars(float animationDuration, bool hidden)
+		void AnimateBars (float animationDuration, bool hidden)
 		{
 			UIView.Animate (animationDuration, () => {
 				float alpha = hidden ? 0.0f : 1.0f;
@@ -357,7 +358,7 @@ namespace StateRestoration
 			});
 		}
 
-		void SetImageViewConstraints(UIInterfaceOrientation orientation)
+		void SetImageViewConstraints (UIInterfaceOrientation orientation)
 		{
 			bool flip = orientation.IsLandscape ();
 			var bounds = UIScreen.MainScreen.Bounds;
@@ -400,19 +401,19 @@ namespace StateRestoration
 			TryEncodeBarsVisibility (coder);
 		}
 
-		void TryEncodeFilters(NSCoder coder)
+		void TryEncodeFilters (NSCoder coder)
 		{
 			if (filters == null)
 				return;
 
-			var nativeDict = new NSMutableDictionary();
+			var nativeDict = new NSMutableDictionary ();
 			foreach (var key in filters.Keys)
 				nativeDict [key] = filters [key];
 
 			coder.Encode (nativeDict, imageFiltersKey);
 		}
 
-		void TryEncodeBarsVisibility(NSCoder coder)
+		void TryEncodeBarsVisibility (NSCoder coder)
 		{
 			if (UIApplication.SharedApplication.StatusBarOrientation == UIInterfaceOrientation.Portrait)
 				coder.Encode (toolBar.Hidden, barsHiddenKey);
@@ -428,7 +429,7 @@ namespace StateRestoration
 			TryDecodeBarsVisibility (coder);
 		}
 
-		void TryDecodeFilters(NSCoder coder)
+		void TryDecodeFilters (NSCoder coder)
 		{
 			if (!coder.ContainsKey (imageFiltersKey))
 				return;
@@ -441,14 +442,14 @@ namespace StateRestoration
 
 			var blurFilter = (ImageFilter)filtersNS [blurFilterKey];
 			if (blurFilter != null)
-				filters[blurFilterKey] = blurFilter;
+				filters [blurFilterKey] = blurFilter;
 
 			var modifyFilter = (ImageFilter)filtersNS [modifyFilterKey];
 			if (modifyFilter != null)
 				filters [modifyFilterKey] = modifyFilter;
 		}
 
-		void TryDecodeBarsVisibility(NSCoder coder)
+		void TryDecodeBarsVisibility (NSCoder coder)
 		{
 			bool hidden = coder.DecodeBool (barsHiddenKey);
 			if (hidden)

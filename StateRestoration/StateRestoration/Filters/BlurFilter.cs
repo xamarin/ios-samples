@@ -16,8 +16,8 @@ namespace StateRestoration
 			}
 		}
 
-		public BlurFilter(bool useDefaultState)
-			: base(useDefaultState)
+		public BlurFilter (bool useDefaultState)
+			: base (useDefaultState)
 		{
 			if (useDefaultState)
 				BlurRadius = 0.5f;
@@ -32,8 +32,8 @@ namespace StateRestoration
 		public override void DecodeRestorableState (NSCoder coder)
 		{
 			base.DecodeRestorableState (coder);
-			if(coder.ContainsKey(BlurRadiusKey))
-				BlurRadius = coder.DecodeFloat(BlurRadiusKey);
+			if (coder.ContainsKey (BlurRadiusKey))
+				BlurRadius = coder.DecodeFloat (BlurRadiusKey);
 		}
 	}
 }

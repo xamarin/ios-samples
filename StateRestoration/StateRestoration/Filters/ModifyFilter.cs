@@ -16,8 +16,8 @@ namespace StateRestoration
 			}
 		}
 
-		public ModifyFilter(bool useDefaultState)
-			: base(useDefaultState)
+		public ModifyFilter (bool useDefaultState)
+			: base (useDefaultState)
 		{
 			if (useDefaultState)
 				Intensity = 0.5f;
@@ -32,8 +32,8 @@ namespace StateRestoration
 		public override void DecodeRestorableState (NSCoder coder)
 		{
 			base.DecodeRestorableState (coder);
-			if(coder.ContainsKey(IntensityKey))
-				Intensity = coder.DecodeFloat(IntensityKey);
+			if (coder.ContainsKey (IntensityKey))
+				Intensity = coder.DecodeFloat (IntensityKey);
 		}
 	}
 }

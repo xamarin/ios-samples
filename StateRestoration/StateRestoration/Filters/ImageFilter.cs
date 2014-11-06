@@ -11,10 +11,13 @@ namespace StateRestoration
 		const string ActiveKey = "kImageFilterActiveKey";
 
 		public bool Active { get; set; }
+
 		public bool Dirty { get; set; }
+
 		public float Value { get; set; }
 
 		Class restorationClass;
+
 		public override Class ObjectRestorationClass {
 			get {
 				return restorationClass = restorationClass ?? new Class (RestorationType);

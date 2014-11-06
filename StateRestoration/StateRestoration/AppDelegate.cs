@@ -11,10 +11,7 @@ namespace StateRestoration
 	{
 		DataSource dataSource;
 
-		public override UIWindow Window {
-			get;
-			set;
-		}
+		public override UIWindow Window { get; set; }
 
 		public override bool WillFinishLaunching (UIApplication application, NSDictionary launchOptions)
 		{
@@ -24,11 +21,11 @@ namespace StateRestoration
 
 			UIApplication.RegisterObjectForStateRestoration (dataSource, "DataSource");
 
-			var navigationController = (UINavigationController) Window.RootViewController;
+			var navigationController = (UINavigationController)Window.RootViewController;
 			navigationController.NavigationBar.BarStyle = UIBarStyle.Black;
 			navigationController.NavigationBar.Translucent = true;
 
-			var viewController =(CollectionViewController) navigationController.ViewControllers [0];
+			var viewController = (CollectionViewController)navigationController.ViewControllers [0];
 			viewController.DataSource = dataSource;
 
 			Window.MakeKeyAndVisible ();

@@ -43,14 +43,14 @@ namespace StateRestoration
 			SelectedBackgroundView = CustomCellBackground.CreateCustomCellBackground (Frame);
 		}
 
-		void UpdateLabelColor()
+		void UpdateLabelColor ()
 		{
 			labelColor = Label.TextColor;
 			Label.TextColor = UIColor.Black;
 			SetNeedsDisplay ();
 		}
 
-		void ResetLabelColor()
+		void ResetLabelColor ()
 		{
 			if (labelColor != null)
 				Label.TextColor = labelColor;

@@ -24,7 +24,7 @@ namespace StateRestoration
 			ClearsSelectionOnViewWillAppear = false;
 		}
 
-		public void AdjustContentInsetForLegacy () 
+		public void AdjustContentInsetForLegacy ()
 		{
 			CollectionView.ContentInset = new UIEdgeInsets (64f, 0f, 0f, 0f);
 		}
@@ -66,7 +66,7 @@ namespace StateRestoration
 				PrepareForSegue ((DetailViewController)segue.DestinationViewController);
 		}
 
-		void PrepareForSegue(DetailViewController detailViewController)
+		void PrepareForSegue (DetailViewController detailViewController)
 		{
 			NSIndexPath selectedIndexPath = CollectionView.GetIndexPathsForSelectedItems () [0];
 

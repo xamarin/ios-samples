@@ -22,7 +22,7 @@ namespace StateRestoration
 			return 32;
 		}
 
-		public string GetIdentifier(NSIndexPath indexPath)
+		public string GetIdentifier (NSIndexPath indexPath)
 		{
 			string identifier = indexPath.Row.ToString ();
 			return identifier;
@@ -30,11 +30,11 @@ namespace StateRestoration
 
 		public string GetTitle (string identifier)
 		{
-			string title = string.IsNullOrEmpty(identifier) ? null : (NSString)data[identifier];
+			string title = string.IsNullOrEmpty (identifier) ? null : (NSString)data [identifier];
 			return title ?? "Image";
 		}
 
-		public UIImage GetThumbnail(string identifier)
+		public UIImage GetThumbnail (string identifier)
 		{
 			if (identifier == null)
 				return null;
@@ -43,7 +43,7 @@ namespace StateRestoration
 			return UIImage.FromFile (path);
 		}
 
-		public UIImage GetFullImage(string identifier)
+		public UIImage GetFullImage (string identifier)
 		{
 			if (identifier == null)
 				return null;
@@ -52,13 +52,13 @@ namespace StateRestoration
 			return UIImage.FromFile (path);
 		}
 
-		static string GetThumbPath(string identifier)
+		static string GetThumbPath (string identifier)
 		{
 			string fileName = Path.ChangeExtension (identifier, "JPG");
 			return Path.Combine ("Images/thumb", fileName);
 		}
 
-		static string GetFullImgPath(string identifier)
+		static string GetFullImgPath (string identifier)
 		{
 			identifier = string.Format ("{0}_full", identifier);
 			string fileName = Path.ChangeExtension (identifier, "JPG");
