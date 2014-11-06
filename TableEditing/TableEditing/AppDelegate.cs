@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using CoreGraphics;
+using UIKit;
+using Foundation;
 
 namespace TableEditing {
 	[Register("AppDelegate")]
@@ -35,7 +35,7 @@ namespace TableEditing {
 						
 			//---- create the home screen
 			iPhoneHome = new TableEditing.Screens.HomeScreen();
-			iPhoneHome.View.Frame = new RectangleF 
+			iPhoneHome.View.Frame = new CGRect 
 				(0, UIApplication.SharedApplication.StatusBarFrame.Height,
 				 UIScreen.MainScreen.ApplicationFrame.Width,
 				 UIScreen.MainScreen.ApplicationFrame.Height);
