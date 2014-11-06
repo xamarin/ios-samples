@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace TextKitDemo
@@ -13,16 +13,16 @@ namespace TextKitDemo
 	partial class PersonViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UITextView descriptionTextView { get; set; }
+		UIKit.UITextView descriptionTextView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView imageView { get; set; }
+		UIKit.UIImageView imageView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel labelView { get; set; }
+		UIKit.UILabel labelView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextView shortDescriptionTextView { get; set; }
+		UIKit.UITextView shortDescriptionTextView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
