@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace SocialFrameworkDemo
 {
@@ -12,19 +12,19 @@ namespace SocialFrameworkDemo
 	partial class SocialFrameworkDemoViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton twitterRequestButton { get; set; }
+		UIKit.UIButton twitterRequestButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton facebookRequestButton { get; set; }
+		UIKit.UIButton facebookRequestButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton twitterButton { get; set; }
+		UIKit.UIButton twitterButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton facebookButton { get; set; }
+		UIKit.UIButton facebookButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextView resultsTextView { get; set; }
+		UIKit.UITextView resultsTextView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
