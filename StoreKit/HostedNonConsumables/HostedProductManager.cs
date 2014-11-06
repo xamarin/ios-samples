@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.CoreImage;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreImage;
+using Foundation;
+using UIKit;
 
 namespace NonConsumables {
 	// WARNING: this is a trivial example of tracking non-consumable

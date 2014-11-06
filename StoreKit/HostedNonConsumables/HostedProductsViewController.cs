@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.StoreKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using StoreKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 /*
 Prices will appear in the iOS Simulator, but downloads cannot be tested except on a real device
@@ -57,26 +57,26 @@ namespace NonConsumables {
 			hostedFilesystemButton.SetTitle ("Buy...", UIControlState.Normal);
 			hostedFilesystemButton.Enabled = false;
 
-			hostedImagesTitle = new UILabel(new RectangleF(10, 5, 300, 30));
+			hostedImagesTitle = new UILabel(new CGRect(10, 5, 300, 30));
 			hostedImagesTitle.Font = UIFont.BoldSystemFontOfSize(18f);
-			hostedImagesDescription = new UILabel(new RectangleF(10, 30, 300, 30));
-			hostedImagesButton.Frame = new RectangleF(10, 65, 180, 40);
+			hostedImagesDescription = new UILabel(new CGRect(10, 30, 300, 30));
+			hostedImagesButton.Frame = new CGRect(10, 65, 180, 40);
 
-			hostedFilesystemTitle = new UILabel(new RectangleF(10, 110, 300, 30));
+			hostedFilesystemTitle = new UILabel(new CGRect(10, 110, 300, 30));
 			hostedFilesystemTitle.Font = UIFont.BoldSystemFontOfSize(18f);
-			hostedFilesystemDescription = new UILabel(new RectangleF(10, 135, 300, 30));
-			hostedFilesystemButton.Frame = new RectangleF(10, 170, 180, 40);
+			hostedFilesystemDescription = new UILabel(new CGRect(10, 135, 300, 30));
+			hostedFilesystemButton.Frame = new CGRect(10, 170, 180, 40);
 
 
 			restoreButton = UIButton.FromType (UIButtonType.RoundedRect);
 			restoreButton.SetTitle ("Restore", UIControlState.Normal);
-			restoreButton.Frame = new RectangleF(200, 170, 110, 40);
+			restoreButton.Frame = new CGRect(200, 170, 110, 40);
 
-			bookTextDisplay = new UITextView(new RectangleF(10, 215, 300, 200));
+			bookTextDisplay = new UITextView(new CGRect(10, 215, 300, 200));
 			bookTextDisplay.Text = "";
 			bookTextDisplay.ScrollEnabled = true;
 			bookTextDisplay.Editable = false;
-			bookIcon = new UIImageView(new RectangleF(240, 210, 60, 60));
+			bookIcon = new UIImageView(new CGRect(240, 210, 60, 60));
 
 
 			View.AddSubview (hostedImagesButton);
