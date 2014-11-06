@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivacyPrompts", "PrivacyPrompts.csproj", "{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}.Debug|iPhone.Build.0 = Debug|iPhone
+		{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}.Release|iPhone.ActiveCfg = Release|iPhone
+		{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}.Release|iPhone.Build.0 = Release|iPhone
+		{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E3B6A99F-A346-4F75-8FE1-0F6FC39647EC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = PrivacyPrompts.csproj
+	EndGlobalSection
+EndGlobal
