@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace SimpleBackgroundTransfer
@@ -13,16 +13,16 @@ namespace SimpleBackgroundTransfer
 	partial class SimpleBackgroundTransferViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem crashButton { get; set; }
+		UIKit.UIBarButtonItem crashButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView imageView { get; set; }
+		UIKit.UIImageView imageView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIProgressView progressView { get; set; }
+		UIKit.UIProgressView progressView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem startButton { get; set; }
+		UIKit.UIBarButtonItem startButton { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
