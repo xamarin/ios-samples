@@ -1,17 +1,9 @@
-FSSceneKit City
-----------
-This sample shows how to create a randomly generated city using the [SceneKit API](http://api.xamarin.com/?link=N%3aMonoTouch.SceneKit) and is written in F&#35;.
+Handling Rotation
+=================
 
-Core concepts include:
+This sample demonstrates how to handle user-interface layout changes when an iOS device is rotated.
 
-- General F&#35; and iOS technique.
-- Composing an [`SCNScene`](http://api.xamarin.com/?link=T%3aMonoTouch.SceneKit.SCNScene).
-- Texturing geometry with [`SCNMaterial`](http://api.xamarin.com/?link=T%3aMonoTouch.SceneKit.SCNMaterial).
-- Lighting with [`SCNMaterial`](http://api.xamarin.com/?link=T%3aMonoTouch.SceneKit.SCNLight) ([Ambient](http://api.xamarin.com/?link=P%3aMonoTouch.SceneKit.SCNLightType.Ambient), in particular).
-- Setting the [camera's](http://api.xamarin.com/?link=T%3aMonoTouch.SceneKit.SCNCamera) target with an [`SCNLookAtConstraint`](http://api.xamarin.com/?link=T%3aMonoTouch.SceneKit.SCNLookAtConstraint)
+The sample has separate examples for iPhone and iPad devices.
 
-###Author
-Joel Martinez
+The code was written and testing on iOS 5. Apple made some changes to rotation handling in iOS 6 - the sample is yet to be updated to reflect those changes.
 
-###Content
-This sample uses [textures](http://www.sketchuptexture.com/p/buildings.html) under the `Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported` license.

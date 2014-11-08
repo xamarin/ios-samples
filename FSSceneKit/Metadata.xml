@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>e212f681-20ed-4be4-9529-a5877fe864e0</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Advanced</Level>
+	<Tags>FSharp, SceneKit, iOS8, Graphics</Tags>
+	<Gallery>true</Gallery>
+	<Brief>This sample shows how to create a randomly generated city using the [SceneKit API](http://api.xamarin.com/?link=N%3aMonoTouch.SceneKit) and is written in F&#35;.</Brief>
+</SampleMetadata>

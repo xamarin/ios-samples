@@ -3,16 +3,22 @@
 open System
 open System.IO
 open System.Linq
+open FSharp.Data
 open MonoTouch.UIKit
 open MonoTouch.Foundation
 open MonoTouch.SceneKit
 open MonoTouch.CoreAnimation
+open System.Drawing
+open MonoTouch.CoreMotion
 
 [<Register("FSSceneKitViewController")>]
 type FSSceneKitViewController() = 
     inherit UIViewController()
+ 
+    let piover2 = float32(Math.PI) / 2.f
 
-    let building width length height posx posy (scene:SCNScene) (rnd:Random) =
+    //Creates a building of specified dimensions, randomly textured. Adds it to the scene.
+    let building width length height posx posy (scene:SCNNode) (rnd:Random) =
         let boxNode = new SCNNode ()
         boxNode.Geometry <- new SCNBox(
             Width = width, 
@@ -22,9 +28,8 @@ type FSSceneKitViewController() =
         )
         boxNode.Position <- new SCNVector3(posx, height/2.0F, posy)
 
-        scene.RootNode.AddChildNode (boxNode)
-
-        let buildings = ["Content/building1.jpg";"Content/building2.jpg";"Content/building3.jpg"]
+        scene.AddChildNode (boxNode)
+        let buildings = ["Content/building1.jpg"; "Content/building2.jpg"; "Content/building3.jpg"]
         let material = new SCNMaterial ()
         material.Diffuse.Contents <- UIImage.FromFile (buildings.[rnd.Next(buildings.Length)])
         material.Diffuse.ContentsTransform <- SCNMatrix4.Scale ( new SCNVector3(width,height,1.F))
@@ -38,91 +43,109 @@ type FSSceneKitViewController() =
         material.LocksAmbientWithDiffuse <- true
 
         boxNode.Geometry.FirstMaterial <- material
+        boxNode
+
+    //Returns a float32 in the specified range
+    let random (min, max, (rnd:Random)) =
+        float32 (rnd.Next(min, max))
+
+    //Creates a node with a camera in the specified location. Adds it to the scene.
+    let buildCamera (scene : SCNNode) loc =
+        let c = new SCNNode()
+        c.Camera <- new SCNCamera()
+        scene.AddChildNode (c)
+        c.Position <- loc
+        c
+
+    //Sets basic options on the specified view
+    let configView (view : SCNView) scene =
+        view.ClipsToBounds <- true
+        view.Scene <- scene
+        view.AllowsCameraControl <- false
+        view.ShowsStatistics <- false
+        view.BackgroundColor <- UIColor.FromRGB(52, 152, 219)
+        view
+
+    //For gaze tracking
+    member val motion = new CMMotionManager() with get
 
     override this.ViewDidLoad () =
-
         let scene = new SCNScene ()
 
-        //Positions everyone        
-        let rnd = new Random()
+        //Positions everyone!
+        let rnd = new Random();
 
-        let random (min, max, clamp) =
-            let num = float32 ((float (rnd.Next(min, max))) * rnd.NextDouble())
-            match clamp with
-            | false -> num
-            | _ -> match num with
-                | i when i < 1.0F -> 1.0F
-                | _ -> num
+        let worldNode = new SCNNode()
 
-        List.map (fun i -> 
-            (building 
-                (random (2, 5, true)) 
-                (random (2, 5, true)) 
-                (random (2, 10, true)) 
-                (random (-20, 20, false)) 
-                (random (-20, 20, false))
-                scene 
-                rnd)) [0..200] |> ignore
-        
+        worldNode.Transform <- SCNMatrix4.CreateRotationX (piover2)
+
+        scene.RootNode.AddChildNode worldNode
+
+        let bs = List.map (fun i -> (building 
+                                    (random (1, 5, rnd)) 
+                                    (random (1, 5, rnd)) 
+                                    (random (1, 10, rnd)) 
+                                    (random (-50, 50, rnd)) 
+                                    (random (-50, 50, rnd))
+                                    worldNode 
+                                    rnd)) [0..200] 
 
         //Lights!
         let lightNode = new SCNNode()
         lightNode.Light <- new SCNLight ()
         lightNode.Light.LightType <- SCNLightType.Omni
         lightNode.Position <- new SCNVector3 (30.0F, 20.0F, 60.0F)
-        scene.RootNode.AddChildNode (lightNode)
+        worldNode.AddChildNode (lightNode)
  
         let ambientLightNode = new SCNNode ()
         ambientLightNode.Light <- new SCNLight ()
         ambientLightNode.Light.LightType <- SCNLightType.Ambient
         ambientLightNode.Light.Color <- UIColor.DarkGray
-        scene.RootNode.AddChildNode (ambientLightNode)
+        worldNode.AddChildNode (ambientLightNode)
  
-        //Camera!
-        let cameraNode = new SCNNode ()
-        cameraNode.Camera <- new SCNCamera ()
-        scene.RootNode.AddChildNode (cameraNode)
-        cameraNode.Position <- new SCNVector3 (0.0F, 10.0F, 20.0F)
+         //Cameras!
+        let camNode = new SCNNode()
+        camNode.Position <- new SCNVector3 (0.0F, 0.0F, 9.0F)
+        scene.RootNode.AddChildNode camNode
+        let leftCameraNode = buildCamera camNode (new SCNVector3 (0.0F, 0.0F, 00.0F))
 
-        let targetNode = new SCNNode ()
-        targetNode.Position <- new SCNVector3 (00.0F, 1.5F, 0.0F);
-        scene.RootNode.AddChildNode (targetNode)
+        let rightCameraNode = buildCamera camNode (new SCNVector3 (0.02F, 0.0F, 0.0F))
 
-        let lc = SCNLookAtConstraint.Create (targetNode);
-        cameraNode.Constraints <- [lc].ToArray().Cast<SCNConstraint>().ToArray()
- 
-        let scnView = new SCNView(UIScreen.MainScreen.Bounds)
-        scnView.Scene <- scene
-        scnView.AllowsCameraControl <- true
-        scnView.ShowsStatistics <- true
-        scnView.BackgroundColor <- UIColor.FromRGB (52, 152, 219)
- 
-        let floorNode = new SCNNode ()
-        floorNode.Geometry <- new SCNPlane(
-            Height=40.0F,
-            Width=40.0F
-        )
-        floorNode.Position <- SCNVector3.Zero
 
-        let pi2 = Math.PI / 2.0
-        floorNode.Orientation <- SCNQuaternion.FromAxisAngle(SCNVector3.UnitX, float32 (0.0 - pi2))
+        //Configure views
+        let outer = new UIView(UIScreen.MainScreen.Bounds)
 
-        scene.RootNode.AddChildNode (floorNode)
+        let ss = 
+            [
+                new RectangleF(new PointF(0.0f, 0.0f), new SizeF(float32 UIScreen.MainScreen.Bounds.Width / 2.0f - 1.0F, UIScreen.MainScreen.Bounds.Height));
+                new RectangleF(new PointF(float32 UIScreen.MainScreen.Bounds.Width / 2.0f + 1.0F, 0.0f), new SizeF(UIScreen.MainScreen.Bounds.Width / 2.0f - 1.0F, UIScreen.MainScreen.Bounds.Height));
+            ]
+            |> List.map (fun r -> new SCNView(r))
+            |> List.map (fun s -> outer.AddSubview(configView s scene); s)
 
-        let material = new SCNMaterial ()
-        material.Diffuse.Contents <- UIImage.FromFile ("Content/road.jpg")
-        material.Diffuse.ContentsTransform <- SCNMatrix4.Scale ( new SCNVector3(10.F,10.F,1.F))
-        material.Diffuse.MinificationFilter <- SCNFilterMode.Linear
-        material.Diffuse.MagnificationFilter <- SCNFilterMode.Linear
-        material.Diffuse.MipFilter <- SCNFilterMode.Linear
-        material.Diffuse.WrapS <- SCNWrapMode.Repeat
-        material.Diffuse.WrapT <- SCNWrapMode.Repeat
-        material.Specular.Contents <- UIColor.Gray
 
-        floorNode.Geometry.FirstMaterial <- material
+        //Place cameras (which are displaced in X, to produce 3D)
+        ss.Head.PointOfView <- leftCameraNode
+        ss.Tail.Head.PointOfView <- rightCameraNode
 
-        this.View <- scnView
-        
+        //Action!
+        let rr = CMAttitudeReferenceFrame.XArbitraryCorrectedZVertical
+        this.motion.DeviceMotionUpdateInterval <- float (1.0f / 30.0f)
+        this.motion.StartDeviceMotionUpdates (rr,NSOperationQueue.CurrentQueue, (fun d e ->
+
+            let a = this.motion.DeviceMotion.Attitude;
+
+            let q = a.Quaternion
+
+            let dq = new SCNQuaternion(float32 q.x, float32 q.y, float32 q.z, float32 q.w)
+            let dqz = SCNQuaternion.Multiply (dq, SCNQuaternion.FromAxisAngle(SCNVector3.UnitZ, piover2))
+
+            camNode.Orientation <- dqz
+
+            ()
+        ))
+
+        this.View <- outer
  
 [<Register ("AppDelegate")>]
 type AppDelegate () =
@@ -130,7 +153,6 @@ type AppDelegate () =
  
     let mutable window:UIWindow = null
 
-    // This method is invoked when the application is ready to run.
     override this.FinishedLaunching (app, options) =
         window <- new UIWindow (UIScreen.MainScreen.Bounds)
         window.RootViewController <- new FSSceneKitViewController()
