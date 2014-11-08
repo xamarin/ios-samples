@@ -1,9 +1,19 @@
-Handling Rotation
-=================
+SceneKit F# "Oculus Thrift" (Google Cardboard) Edition
+======================================================
 
-This sample demonstrates how to handle user-interface layout changes when an iOS device is rotated.
+Extends [F# Scene Kit](https://github.com/xamarin/monotouch-samples/tree/master/FSSceneKit) for stereoscopic viewing with
+Google Cardboard. 
 
-The sample has separate examples for iPhone and iPad devices.
+Core concepts include:
 
-The code was written and testing on iOS 5. Apple made some changes to rotation handling in iOS 6 - the sample is yet to be updated to reflect those changes.
+- General F&#35; and iOS technique.
+- Using multiple [`SCNView`](http://api.xamarin.com/?link=T%3aMonoTouch.SceneKit.SCNView) objects to render the same [`SCNScene`](http://api.xamarin.com/?link=T%3aMonoTouch.SceneKit.SCNScene).
+- Using the [`SCNView.PointOfView`](http://api.xamarin.com/?link=P%3aMonoTouch.SceneKit.SCNView.PointOfView) property to allow multiple cameras 
+- Tracking gaze-view using iOS' Core Motion and quaternion math.
 
+###Author
+Joel Martinez
+Larry O'Brien
+
+###Content
+This sample uses [textures](http://www.sketchuptexture.com/p/buildings.html) under the `Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported` license.
