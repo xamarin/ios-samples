@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.CoreData;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
+using CoreData;
+using Foundation;
+using ObjCRuntime;
 
 namespace ThreadedCoreData
 {

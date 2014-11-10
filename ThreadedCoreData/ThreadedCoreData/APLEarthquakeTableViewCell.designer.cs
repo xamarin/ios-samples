@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace ThreadedCoreData
@@ -12,16 +12,16 @@ namespace ThreadedCoreData
 	partial class APLEarthquakeTableViewCell
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel dateLabel { get; set; }
+		UIKit.UILabel dateLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel locationLabel { get; set; }
+		UIKit.UILabel locationLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView magnitudeImage { get; set; }
+		UIKit.UIImageView magnitudeImage { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel magnitudeLabel { get; set; }
+		UIKit.UILabel magnitudeLabel { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

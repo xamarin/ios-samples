@@ -1,10 +1,10 @@
 using System;
 using System.Json;
-using MonoTouch.Foundation;
-using MonoTouch.CoreData;
+using Foundation;
+using CoreData;
 using System.Collections.Generic;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
+using ObjCRuntime;
+using UIKit;
 using System.Linq;
 
 namespace ThreadedCoreData
@@ -146,8 +146,9 @@ namespace ThreadedCoreData
 				fetchRequest.Predicate = NSPredicate.FromFormat (@"date < %@", new NSObject[] { twoWeeksAgo });
 
 				var olderEarthquakes = NSArray.FromObjects (managedObjectContext.ExecuteFetchRequest (fetchRequest, out error));
-				
-				for (int i = 0; i < olderEarthquakes.Count; i++) {
+
+				// HACK: Had to parse this nuint (olderEarthquakes.Count) to int because of this error: Error CS0034: Operator `<' is ambiguous on operands of type `int' and `System.nuint' (CS0034) (ThreadedCoreData)
+				for (int i = 0; i < (int)olderEarthquakes.Count; i++) {
 					managedObjectContext.DeleteObject (olderEarthquakes.GetItem<ManagedEarthquake> (i));
 				}
 
