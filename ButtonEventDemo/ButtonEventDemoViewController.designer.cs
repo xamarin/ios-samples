@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace ButtonEventDemo
 {
@@ -12,9 +12,9 @@ namespace ButtonEventDemo
 	partial class ButtonEventDemoViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton aButton { get; set; }
+		UIKit.UIButton aButton { get; set; }
 
 		[Action ("HandleButtonTouch:")]
-		partial void HandleButtonTouch (MonoTouch.Foundation.NSObject sender);
+		partial void HandleButtonTouch (Foundation.NSObject sender);
 	}
 }
