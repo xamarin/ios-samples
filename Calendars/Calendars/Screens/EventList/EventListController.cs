@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
+using UIKit;
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.EventKit;
+using Foundation;
+using EventKit;
 
 namespace Calendars.Screens.EventList
 {
