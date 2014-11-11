@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace HandlingRotation.Screens.iPhone.Method3SwapViews {
 	public class Controller : UIViewController {
