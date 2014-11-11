@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreAnimation;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using CoreAnimation;
+using Foundation;
+using UIKit;
 
 namespace CollectionViewTransition {
 
@@ -11,7 +11,7 @@ namespace CollectionViewTransition {
 		public static readonly NSString Key = new NSString ("APLCollectionViewCell");
 
 		[Export ("initWithFrame:")]
-		public APLCollectionViewCell (RectangleF frame) : base (frame)
+		public APLCollectionViewCell (CGRect frame) : base (frame)
 		{
 			BackgroundColor = UIColor.Cyan;
 			ImageView = new UIImageView (Bounds);
