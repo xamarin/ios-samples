@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace SimpleBackgroundFetch
 {
@@ -68,12 +68,12 @@ namespace SimpleBackgroundFetch
 				get { return objects; }
 			}
 			// Customize the number of sections in the table view.
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
 
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				return objects.Count;
 			}
@@ -87,7 +87,7 @@ namespace SimpleBackgroundFetch
 				return cell;
 			}
 
-			public override bool CanEditRow (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			public override bool CanEditRow (UITableView tableView, NSIndexPath indexPath)
 			{
 				// Return false if you do not want the specified item to be editable.
 				return true;
