@@ -1,13 +1,13 @@
 using System;
 
-using MonoTouch.MapKit;
-using MonoTouch.UIKit;
+using MapKit;
+using UIKit;
 
 namespace RegionDefiner
 {
 	public class MapDelegate : MKMapViewDelegate
 	{
-		public override MKOverlayView GetViewForOverlay (MKMapView mapView, MonoTouch.Foundation.NSObject overlay)
+		public override MKOverlayView GetViewForOverlay (MKMapView mapView, Foundation.NSObject overlay)
 		{
 			if (RegionDefinerViewController.PolygonView != null && RegionDefinerViewController.PolygonView.Polygon == RegionDefinerViewController.Polygon) 
 				return RegionDefinerViewController.PolygonView;
