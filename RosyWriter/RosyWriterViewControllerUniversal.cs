@@ -1,10 +1,10 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreVideo;
-using MonoTouch.AVFoundation;
+using Foundation;
+using UIKit;
+using CoreVideo;
+using AVFoundation;
 
 namespace RosyWriter
 {
@@ -30,7 +30,8 @@ namespace RosyWriter
 		{
 		}
 
-	    void UpdateLabels ()
+		// HACK: Updated method to match delegate in NSTimer.CreateRepeatingScheduledTimer()
+		void UpdateLabels (NSTimer time)
 		{
 			if (shouldShowStats) {
 				frameRateLabel.Text = String.Format ("{0:F} FPS", videoProcessor.VideoFrameRate);
@@ -67,9 +68,10 @@ namespace RosyWriter
 		{
 			const float labelWidth = 200.0F;
 			const float labelHeight = 40.0F;
-			float xPosition = previewView.Bounds.Size.Width - labelWidth - 10;
+			// HACK: Change this float into an nfloat
+			nfloat xPosition = previewView.Bounds.Size.Width - labelWidth - 10;
 			
-			var label = new UILabel (new RectangleF (xPosition, yPosition, labelWidth, labelHeight)) {
+			var label = new UILabel (new CGRect (xPosition, yPosition, labelWidth, labelHeight)) {
 				Font = UIFont.SystemFontOfSize (36F),
 				LineBreakMode = UILineBreakMode.WordWrap,
 				TextAlignment = UITextAlignment.Right,
@@ -164,7 +166,8 @@ namespace RosyWriter
 				
 				// Make sure we have time to finish saving the movie if the app is backgrounded during recording
 				if (UIDevice.CurrentDevice.IsMultitaskingSupported)
-					backgroundRecordingID = UIApplication.SharedApplication.BeginBackgroundTask (() => {});
+					// HACK: Cast nint to int
+					backgroundRecordingID = (int)UIApplication.SharedApplication.BeginBackgroundTask (() => {});
 			});
 		}
 		
@@ -224,14 +227,14 @@ namespace RosyWriter
 
 			notificationCenter.AddObserver (UIApplication.DidBecomeActiveNotification, OnApplicationDidBecomeActive);
 			
-			oglView = new RosyWriterPreviewWindow(RectangleF.Empty);
+			oglView = new RosyWriterPreviewWindow(CGRect.Empty);
 			
 			// Our interface is always in portrait
 			oglView.Transform = videoProcessor.TransformFromCurrentVideoOrientationToOrientation(AVCaptureVideoOrientation.Portrait);
 				
-			RectangleF bounds = previewView.ConvertRectToView(previewView.Bounds, oglView);
+			CGRect bounds = previewView.ConvertRectToView(previewView.Bounds, oglView);
 			oglView.Bounds = bounds;
-			oglView.Center = new PointF(previewView.Bounds.Size.Width / 2.0F, previewView.Bounds.Size.Height / 2.0F);
+			oglView.Center = new CGPoint(previewView.Bounds.Size.Width / 2.0F, previewView.Bounds.Size.Height / 2.0F);
 			
 			previewView.AddSubview(oglView);
 			

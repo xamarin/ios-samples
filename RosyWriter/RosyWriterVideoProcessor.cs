@@ -1,19 +1,19 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.IO;
 using System.Runtime.InteropServices;
 using MonoTouch;
-using MonoTouch.AVFoundation;
-using MonoTouch.AssetsLibrary;
-using MonoTouch.AudioToolbox;
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreMedia;
-using MonoTouch.CoreVideo;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
+using AVFoundation;
+using AssetsLibrary;
+using AudioToolbox;
+using CoreFoundation;
+using CoreGraphics;
+using CoreMedia;
+using CoreVideo;
+using Foundation;
+using ObjCRuntime;
+using UIKit;
 
 namespace RosyWriter
 {
@@ -22,16 +22,16 @@ namespace RosyWriter
 	public class RosyWriterVideoProcessor : NSObject, IAVCaptureVideoDataOutputSampleBufferDelegate, IAVCaptureAudioDataOutputSampleBufferDelegate
 	{
 		public double VideoFrameRate{ get; private set; }
-		public SizeF VideoDimensions { get; private set; }
+		public CGSize VideoDimensions { get; private set; }
 		public uint VideoType { get; private set; }
 		public AVCaptureVideoOrientation ReferenceOrientation { get; set; }
 		public bool IsRecording { get; private set; }
 	
-		public event NSAction RecordingDidStart;
-		public event NSAction RecordingWillStop;
-		public event NSAction RecordingDidStop;
+		public event Action RecordingDidStart;
+		public event Action RecordingWillStop;
+		public event Action RecordingDidStop;
 		public event Action<CVImageBuffer> PixelBufferReadyForDisplay;
-		public event NSAction RecordingWillStart;
+		public event Action RecordingWillStart;
 		
 		const int BYTES_PER_PIXEL = 4;
 		AVCaptureSession captureSession;
@@ -317,7 +317,11 @@ namespace RosyWriter
 			// alwaysDiscardsLateVideoFrames property to NO.
 			var videoOut = new AVCaptureVideoDataOutput {
 				AlwaysDiscardsLateVideoFrames = true,
-				VideoSettings = new AVVideoSettings (CVPixelFormatType.CV32BGRA)
+				// HACK: Change VideoSettings to WeakVideoSettings, and AVVideoSettings to CVPixelBufferAttributes
+				// VideoSettings = new AVVideoSettings (CVPixelFormatType.CV32BGRA)
+				WeakVideoSettings = new CVPixelBufferAttributes () {
+					PixelFormatType = CVPixelFormatType.CV32BGRA
+				}.Dictionary
 			};
 			
 			// Create a DispatchQueue for the Video Processing
@@ -417,7 +421,10 @@ namespace RosyWriter
 		[Export ("captureOutput:didOutputSampleBuffer:fromConnection:")]
 		public virtual void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
 		{
-			CMFormatDescription formatDescription = sampleBuffer.GetFormatDescription ();
+			// HACK: Change CMSampleBuffer.GetFormatDescription() to CMSampleBuffer.GetVideoFormatDescription()
+			// HACK Change CMFormatDescription to CMVideoFormatDescription
+			// CMFormatDescription formatDescription = sampleBuffer.GetFormatDescription ();
+			CMVideoFormatDescription formatDescription = sampleBuffer.GetVideoFormatDescription ();
 
 			if (connection == videoConnection) {
 				// Get framerate
@@ -426,7 +433,9 @@ namespace RosyWriter
 					
 				// Get frame dimensions (for onscreen display)
 				if (VideoDimensions.IsEmpty)
-					VideoDimensions = formatDescription.GetVideoPresentationDimensions (true, false);
+					// HACK: Change GetVideoPresentationDimensions() to GetPresentationDimensions()
+					// VideoDimensions = formatDescription.GetVideoPresentationDimensions (true, false);
+					VideoDimensions = formatDescription.GetPresentationDimensions (true, false);
 					
 				// Get the buffer type
 				if (VideoType == 0)
@@ -494,12 +503,13 @@ namespace RosyWriter
 				CompleteBufferUse (sampleBuffer);
 			});	
 		}
-
-		public bool SetupAssetWriterVideoInput (CMFormatDescription currentFormatDescription)
+		// HACK: Change CMFormatDescription to CMVideoFormatDescription
+		public bool SetupAssetWriterVideoInput (CMVideoFormatDescription currentFormatDescription)
 		{
 			//Console.WriteLine ("Setting up Video Asset Writer");
 			float bitsPerPixel;
-			var dimensions = currentFormatDescription.VideoDimensions;
+			// HACK: Change VideoDimensions to Dimensions, as this type was changed to CMVideoFormatDescription
+			var dimensions = currentFormatDescription.Dimensions;
 			int numPixels = dimensions.Width * dimensions.Height;
 			int bitsPerSecond; 
 			
@@ -536,7 +546,8 @@ namespace RosyWriter
 				);
 			
 			if (assetWriter.CanApplyOutputSettings (videoCompressionSettings, AVMediaType.Video)){
-				assetWriterVideoIn = new AVAssetWriterInput (AVMediaType.Video, videoCompressionSettings);
+				// HACK: Change NSDictionary into AVVideoSettingsCompressed created using that NSDictionary (videoCompressionSettings)
+				assetWriterVideoIn = new AVAssetWriterInput (AVMediaType.Video, new AVVideoSettingsCompressed( videoCompressionSettings));
 				assetWriterVideoIn.ExpectsMediaDataInRealTime = true;
 				assetWriterVideoIn.Transform = TransformFromCurrentVideoOrientationToOrientation (ReferenceOrientation);
 				
@@ -583,7 +594,8 @@ namespace RosyWriter
 				});
 
 			if (assetWriter.CanApplyOutputSettings (audioCompressionSettings, AVMediaType.Audio)){
-				assetWriterAudioIn = new AVAssetWriterInput (AVMediaType.Audio, audioCompressionSettings);
+				// HACK: Change NSDictionary into AudioSettings created using that NSDictionary (audioCompressionSettings)
+				assetWriterAudioIn = new AVAssetWriterInput (AVMediaType.Audio, new AudioSettings(audioCompressionSettings));
 				assetWriterAudioIn.ExpectsMediaDataInRealTime = true;
 
 				if (assetWriter.CanAddInput (assetWriterAudioIn))
@@ -620,9 +632,10 @@ namespace RosyWriter
 			using (var pixelBuffer = imageBuffer as CVPixelBuffer)
 			{
 				pixelBuffer.Lock (CVOptionFlags.None);
-				
-				int bufferWidth = pixelBuffer.Width;
-				int bufferHeight = pixelBuffer.Height;
+
+				//HACK: Cast nint to int
+				int bufferWidth = (int)pixelBuffer.Width;
+				int bufferHeight = (int)pixelBuffer.Height;
 				// offset by one to de-green the BGRA array (green is second)
 				byte* pixelPtr = (byte*)pixelBuffer.BaseAddress.ToPointer () + 1;
 				
