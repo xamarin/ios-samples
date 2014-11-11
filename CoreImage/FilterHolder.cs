@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.CoreImage;
-using MonoTouch.ObjCRuntime;
+using CoreImage;
+using ObjCRuntime;
 using System.Reflection;
 
 namespace coreimage
