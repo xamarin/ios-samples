@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreFoundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using CoreFoundation;
+using UIKit;
 
 namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 {
@@ -17,7 +17,7 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 			base.ViewDidLoad ();
 
 			View.BackgroundColor = UIColor.White;
-			var mainFrame = new RectangleF (0f, 44f, View.Frame.Width, View.Frame.Height - 44f);
+			var mainFrame = new CGRect (0f, 44f, View.Frame.Width, View.Frame.Height - 44f);
 			
 			transitionViewController = new TransitionViewController ();
 			transitionViewController.View.Frame = mainFrame;

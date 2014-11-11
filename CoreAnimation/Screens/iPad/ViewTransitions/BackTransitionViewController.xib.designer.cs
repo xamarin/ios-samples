@@ -12,18 +12,18 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions {
 	
 	
 	// Base type probably should be MonoTouch.UIKit.UIViewController or subclass
-	[MonoTouch.Foundation.Register("BackTransitionViewController")]
+	[Foundation.Register("BackTransitionViewController")]
 	public partial class BackTransitionViewController {
 		
-		private MonoTouch.UIKit.UIView _mt_view;
+		private UIKit.UIView _mt_view;
 		
-		private MonoTouch.UIKit.UIButton _mt_btnBack;
+		private UIKit.UIButton _mt_btnBack;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("view")]
-		private MonoTouch.UIKit.UIView view {
+		[Foundation.Connect("view")]
+		private UIKit.UIView view {
 			get {
-				 _mt_view = ((MonoTouch.UIKit.UIView)(this.GetNativeField("view")));
+				 _mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return  _mt_view;
 			}
 			set {
@@ -32,10 +32,10 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("btnBack")]
-		private MonoTouch.UIKit.UIButton btnBack {
+		[Foundation.Connect("btnBack")]
+		private UIKit.UIButton btnBack {
 			get {
-				 _mt_btnBack = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("btnBack")));
+				 _mt_btnBack = ((UIKit.UIButton)(this.GetNativeField("btnBack")));
 				return  _mt_btnBack;
 			}
 			set {

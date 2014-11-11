@@ -6,10 +6,12 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{98F6ED66-B4E9-45F2-948E-5DCF19E18B24}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>Example_CoreAnimation</RootNamespace>
     <AssemblyName>Example_CoreAnimation</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -61,9 +63,8 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Screens\" />
     <Folder Include="Code\" />
@@ -129,12 +130,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Screens\iPad\BasicUIViewAnimation\BasicUIViewAnimationScreen.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPad\CustomizableAnimationViewer\CustomizableAnimationViewerScreen.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPad\ViewTransitions\TransitionViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPad\ViewTransitions\BackTransitionViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPad\LayerAnimation\LayerAnimationScreen.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPad\LayerAnimation\ImplicitAnimationScreen.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPad\BasicUIViewAnimation\BasicUIViewAnimationScreen.xib" />
+    <InterfaceDefinition Include="Screens\iPad\CustomizableAnimationViewer\CustomizableAnimationViewerScreen.xib" />
+    <InterfaceDefinition Include="Screens\iPad\ViewTransitions\TransitionViewController.xib" />
+    <InterfaceDefinition Include="Screens\iPad\ViewTransitions\BackTransitionViewController.xib" />
+    <InterfaceDefinition Include="Screens\iPad\LayerAnimation\LayerAnimationScreen.xib" />
+    <InterfaceDefinition Include="Screens\iPad\LayerAnimation\ImplicitAnimationScreen.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon-72.png" />
@@ -157,4 +158,5 @@
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

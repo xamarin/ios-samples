@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreAnimation;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreAnimation;
+using CoreGraphics;
+using CoreGraphics;
 
 namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 {
@@ -42,7 +42,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 				keyFrameAnimation.TimingFunction = CAMediaTimingFunction.FromName (CAMediaTimingFunction.EaseInEaseOut);
 				
 				imgToAnimate.Layer.AddAnimation (keyFrameAnimation, "MoveImage");
-				imgToAnimate.Layer.Position = new PointF (700f, 900f);
+				imgToAnimate.Layer.Position = new CGPoint (700f, 900f);
 			};
 		}
 		
@@ -51,13 +51,13 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 		protected void CreatePath()
 		{
 			// define our path
-			var curve1StartPoint = new PointF (56f, 104f);
-			var curve1ControlPoint1 = new PointF (50f, 250f);
-			var curve1ControlPoint2 = new PointF (220f, 450f);
-			var curve1EndPoint = new PointF (384f, 450f);
-			var curve2ControlPoint1 = new PointF (500f, 450f);
-			var curve2ControlPoint2 = new PointF (700f, 650f);
-			var curve2EndPoint = new PointF (700f, 900f);
+			var curve1StartPoint = new CGPoint (56f, 104f);
+			var curve1ControlPoint1 = new CGPoint (50f, 250f);
+			var curve1ControlPoint2 = new CGPoint (220f, 450f);
+			var curve1EndPoint = new CGPoint (384f, 450f);
+			var curve2ControlPoint1 = new CGPoint (500f, 450f);
+			var curve2ControlPoint2 = new CGPoint (700f, 650f);
+			var curve2EndPoint = new CGPoint (700f, 900f);
 			animationPath.MoveToPoint (curve1StartPoint.X, curve1StartPoint.Y);
 			animationPath.AddCurveToPoint (curve1ControlPoint1.X, curve1ControlPoint1.Y,
 										   curve1ControlPoint2.X, curve1ControlPoint2.Y,
@@ -74,7 +74,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 		protected void DrawPathAsBackground ()
 		{
 			// create our offscreen bitmap context
-			var bitmapSize = new SizeF (View.Frame.Size);
+			var bitmapSize = new CGSize (View.Frame.Size);
 			using (var context = new CGBitmapContext (
 				       IntPtr.Zero,
 				       (int)bitmapSize.Width, (int)bitmapSize.Height, 8,

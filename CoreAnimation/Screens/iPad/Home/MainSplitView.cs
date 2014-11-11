@@ -1,10 +1,10 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using System.Reflection;
 using Example_CoreAnimation.Screens.iPad.NavTable;
 using Example_CoreAnimation.Code.NavigationTable;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.Foundation;
+using ObjCRuntime;
+using Foundation;
 
 namespace Example_CoreAnimation.Screens.iPad.Home
 {

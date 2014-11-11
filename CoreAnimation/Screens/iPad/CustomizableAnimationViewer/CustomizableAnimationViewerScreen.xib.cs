@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.ObjCRuntime;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using ObjCRuntime;
+using CoreGraphics;
 
 namespace Example_CoreAnimation.Screens.iPad.CustomizableAnimationViewer
 {
@@ -61,12 +61,12 @@ namespace Example_CoreAnimation.Screens.iPad.CustomizableAnimationViewer
 				
 				// move the image one way or the other
 				if (imgToAnimate.Frame.Y == 214) {
-					imgToAnimate.Frame = new RectangleF (
-						new PointF (imgToAnimate.Frame.X, imgToAnimate.Frame.Y + 400),
+					imgToAnimate.Frame = new CGRect (
+						new CGPoint (imgToAnimate.Frame.X, imgToAnimate.Frame.Y + 400),
 						imgToAnimate.Frame.Size);
 				} else {
-					imgToAnimate.Frame = new RectangleF (
-						new PointF (imgToAnimate.Frame.X, imgToAnimate.Frame.Y - 400),
+					imgToAnimate.Frame = new CGRect (
+						new CGPoint (imgToAnimate.Frame.X, imgToAnimate.Frame.Y - 400),
 						imgToAnimate.Frame.Size);
 				}
 				
