@@ -2,11 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AddressBook;
-using MonoTouch.AddressBookUI;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using AddressBook;
+using AddressBookUI;
+using CoreGraphics;
 
 namespace Example_SharedResources.Screens.iPhone.Contacts
 {
@@ -27,7 +27,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 		/// <summary>
 		/// Used to resize the scroll view to allow for keyboard
 		/// </summary>
-		RectangleF contentViewSize = RectangleF.Empty;
+		CGRect contentViewSize = CGRect.Empty;
 
 		ABAddressBook addressBook;
 
@@ -207,7 +207,8 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 				ABMutableMultiValue<string> phones = contact.GetPhones ().ToMutableMultiValue ();
 				
 				// loop backwards and delete the phone number
-				for (int i = phones.Count - 1; i >= 0; i--) {
+				// HACK: Cast nint to int
+				for (int i = (int)phones.Count - 1; i >= 0; i--) {
 					if (phones [i].Identifier == phoneNumberID)
 						phones.RemoveAt (i);
 				}
@@ -240,7 +241,8 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 					ABMutableMultiValue<string> phones = contact.GetPhones ().ToMutableMultiValue ();
 
 					// remove all phones data
-					for (int i = phones.Count - 1; i >= 0; i--) {
+					// HACK: Cast nint to int
+					for (int i = (int)phones.Count - 1; i >= 0; i--) {
 						phones.RemoveAt (i);
 					}
 
@@ -299,14 +301,16 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 			
 			// wire up the cancelled event to dismiss the picker
 			addressBookPicker.Cancelled += (sender, eventArgs) => {
-				NavigationController.DismissModalViewControllerAnimated (true);
+				// HACK: NavigationController.DismissModalViewControllerAnimated to NavigationController.DismissModalViewController
+				NavigationController.DismissModalViewController (true);
 			};
 			
 			// when a contact is chosen, populate the page and then dismiss the picker
 			addressBookPicker.SelectPerson += (object sender, ABPeoplePickerSelectPersonEventArgs args) => {
 				PopulatePage (args.Person);				
 				EnableTextFields (true);
-				NavigationController.DismissModalViewControllerAnimated (true);			
+				// HACK: NavigationController.DismissModalViewControllerAnimated to NavigationController.DismissModalViewController
+				NavigationController.DismissModalViewController(true);			
 			};
 		}
 
@@ -361,12 +365,12 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 				}
 			}
 
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
 
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				return phoneNumbers.Count;
 			}
@@ -436,8 +440,8 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 		protected class EditablePhoneTableCell : UITableViewCell
 		{
 			// label and phone number text boxes
-			public UITextField txtLabel = new UITextField (new RectangleF (10, 5, 110, 33));
-			public UITextField txtPhoneNumber = new UITextField (new RectangleF (130, 5, 140, 33));
+			public UITextField txtLabel = new UITextField (new CGRect (10, 5, 110, 33));
+			public UITextField txtPhoneNumber = new UITextField (new CGRect (130, 5, 140, 33));
 
 			// properties
 			public string PhoneLabel { get { return txtLabel.Text; } set { txtLabel.Text = value; } }
@@ -483,9 +487,9 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 			if (openOrClose == "Open") {
 				Console.WriteLine ("Keyboard opening");
 				// declare vars
-				RectangleF kbdFrame = UIKeyboard.BoundsFromNotification (n); 
+				CGRect kbdFrame = UIKeyboard.BoundsFromNotification (n); 
 				double animationDuration = UIKeyboard.AnimationDurationFromNotification (n); 
-				RectangleF newFrame = contentViewSize;
+				CGRect newFrame = contentViewSize;
 				// resize our frame depending on whether the keyboard pops in or out 
 				newFrame.Height -= kbdFrame.Height;
 				// apply the size change

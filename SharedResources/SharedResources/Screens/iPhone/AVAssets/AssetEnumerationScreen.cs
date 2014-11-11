@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.AssetsLibrary;
-using MonoTouch.Foundation;
+using UIKit;
+using AssetsLibrary;
+using Foundation;
 using System.Collections.Generic;
 
 namespace Example_SharedResources.Screens.iPhone.AVAssets
@@ -42,9 +42,9 @@ namespace Example_SharedResources.Screens.iPhone.AVAssets
 			
 			public AssetsDataSource (List<ALAsset> items) { this.items = items; }
 			
-			public override int NumberOfSections (UITableView tableView) { return 1; }
+			public override nint NumberOfSections (UITableView tableView) { return 1; }
 			
-			public override int RowsInSection (UITableView tableview, int section) 
+			public override nint RowsInSection (UITableView tableview, nint section) 
 			{ 
 				return items.Count; 
 			}

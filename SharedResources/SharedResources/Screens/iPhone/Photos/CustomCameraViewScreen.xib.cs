@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_SharedResources.Screens.iPhone.Photos
 {
@@ -93,7 +93,8 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 			public override void Canceled (UIImagePickerController picker)
 			{
 				Console.WriteLine ("picker cancelled");
-				picker.DismissModalViewControllerAnimated (true);
+				// HACK: NavigationController.DismissModalViewControllerAnimated to NavigationController.DismissModalViewController
+				picker.DismissModalViewController (true);
 			}
 						
 			public override void FinishedPickingMedia (UIImagePickerController picker, NSDictionary info)
@@ -165,7 +166,8 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 				
 				
 				// dismiss the picker
-				picker.DismissModalViewControllerAnimated (true);
+				// HACK: NavigationController.DismissModalViewControllerAnimated to NavigationController.DismissModalViewController
+				picker.DismissModalViewController (true);
 			}			
 		}
 	}
