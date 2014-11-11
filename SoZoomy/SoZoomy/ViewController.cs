@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreAnimation;
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreMedia;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using AVFoundation;
+using CoreAnimation;
+using CoreFoundation;
+using CoreMedia;
+using Foundation;
+using UIKit;
 
 namespace SoZoomy
 {
@@ -56,7 +56,9 @@ namespace SoZoomy
 			updateCameraSelection ();
 			CALayer rootLayer = previewView.Layer;
 			rootLayer.MasksToBounds = true;
-			(previewView.Layer as AVCaptureVideoPreviewLayer).VideoGravity = AVLayerVideoGravity.ResizeAspectFill.ToString ();
+			// HACK: Remove .ToString() for AVLayerVideoGravity
+			// (previewView.Layer as AVCaptureVideoPreviewLayer).VideoGravity = AVLayerVideoGravity.ResizeAspectFill.ToString();
+			(previewView.Layer as AVCaptureVideoPreviewLayer).VideoGravity = AVLayerVideoGravity.ResizeAspectFill;
 			previewView.Layer.BackgroundColor = UIColor.Black.CGColor;
 
 			setupAVFoundationFaceDetection ();
@@ -184,7 +186,8 @@ namespace SoZoomy
 			CATransaction.SetValueForKey (NSObject.FromObject (true), (NSString) (CATransaction.DisableActions.ToString ()));
 
 			foreach (var face in faces) {
-				int faceId = (face as AVMetadataFaceObject).FaceID;
+				// HACK: int faceId = (face as AVMetadataFaceObject).FaceID;
+				int faceId = (int)(face as AVMetadataFaceObject).FaceID;
 				unseen.Remove (faceId);
 				seen.Add (faceId);
 
@@ -218,7 +221,9 @@ namespace SoZoomy
 
 			if (lockedFaceID != null) {
 				FaceView view = faceViews [lockedFaceID.GetValueOrDefault ()];
-				float size = (float)Math.Max (view.Frame.Size.Width, view.Frame.Size.Height) / device.VideoZoomFactor;
+				// HACK: Cast resulting nfloat to float
+				// float size = (float)Math.Max (view.Frame.Size.Width, view.Frame.Size.Height) / device.VideoZoomFactor;
+				float size = (float)(Math.Max (view.Frame.Size.Width, view.Frame.Size.Height) / device.VideoZoomFactor);
 				float zoomDelta = lockedFaceSize / size;
 				float lockTime = (float)(CATransition.CurrentMediaTime () - this.lockTime);
 				float zoomRate = (float)(Math.Log (zoomDelta) / lockTime);
@@ -232,7 +237,9 @@ namespace SoZoomy
 		void TouchCallBack (int faceId, FaceView view)
 		{
 			lockedFaceID = faceId;
-			lockedFaceSize = Math.Max (view.Frame.Size.Width, view.Frame.Size.Height) / device.VideoZoomFactor;
+			// HACK: Cast double to float
+			// lockedFaceSize = Math.Max (view.Frame.Size.Width, view.Frame.Size.Height) / device.VideoZoomFactor;
+			lockedFaceSize = (float)(Math.Max (view.Frame.Size.Width, view.Frame.Size.Height) / device.VideoZoomFactor);
 			lockTime = CATransition.CurrentMediaTime ();
 
 			UIView.BeginAnimations (null, IntPtr.Zero);
@@ -270,15 +277,18 @@ namespace SoZoomy
 					clearLockedFace ();
 				else {
 					UITouch touch = (UITouch)touches.AnyObject;
-					PointF point = touch.LocationInView (previewView);
+					CGPoint point = touch.LocationInView (previewView);
 					point = (previewView.Layer as AVCaptureVideoPreviewLayer).CaptureDevicePointOfInterestForPoint (point);
 
 					if (device.FocusPointOfInterestSupported)
 						device.FocusPointOfInterest = point;
 					if (device.ExposurePointOfInterestSupported)
 						device.ExposurePointOfInterest = point;
-					if (device.IsFocusModeSupported (AVCaptureFocusMode.ModeAutoFocus))
-						device.FocusMode = AVCaptureFocusMode.ModeAutoFocus;
+					// HACK: Change AVCaptureFocusMode.ModeAutoFocus to AVCaptureFocusMode.AutoFocus
+					// if (device.IsFocusModeSupported (AVCaptureFocusMode.ModeAutoFocus))
+					// 			device.FocusMode = AVCaptureFocusMode.ModeAutoFocus;
+					if (device.IsFocusModeSupported (AVCaptureFocusMode.AutoFocus))
+						device.FocusMode = AVCaptureFocusMode.AutoFocus;
 				}
 			}
 
@@ -291,7 +301,9 @@ namespace SoZoomy
 				return;
 
 			if (context == VideoZoomFactorContext) {
-				setZoomSliderValue (device.VideoZoomFactor);
+				// HACK: Cast nfloat to float
+				// setZoomSliderValue (device.VideoZoomFactor);
+				setZoomSliderValue ((float)device.VideoZoomFactor);
 				memeButton.Enabled = (device.VideoZoomFactor > 1);
 			} else if (context == VideoZoomRampingContext) {
 				slider.Enabled = device.RampingVideoZoom;
@@ -337,8 +349,8 @@ namespace SoZoomy
 			memeEffect.Seek (CMTime.Zero);
 			memeEffect.Play ();
 			NSObject.CancelPreviousPerformRequest (this);
-			PerformSelector (new MonoTouch.ObjCRuntime.Selector ("flash"), null, MEME_FLASH_DELAY);
-			PerformSelector (new MonoTouch.ObjCRuntime.Selector ("startZoom:"), NSNumber.FromFloat (getZoomSliderValue ()), MEME_ZOOM_DELAY);
+			PerformSelector (new ObjCRuntime.Selector ("flash"), null, MEME_FLASH_DELAY);
+			PerformSelector (new ObjCRuntime.Selector ("startZoom:"), NSNumber.FromFloat (getZoomSliderValue ()), MEME_ZOOM_DELAY);
 			device.VideoZoomFactor = 1;
 			foreach (var faceId in faceViews.Keys) {
 				FaceView view = faceViews [faceId];
