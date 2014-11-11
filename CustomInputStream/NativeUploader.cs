@@ -1,7 +1,7 @@
 using System;
 
 using System.Collections.Generic;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace InputStreamTest
 {
@@ -121,7 +121,7 @@ namespace InputStreamTest
 					return;
 				}
 				
-				status_code = http_response.StatusCode;
+				status_code = (int)http_response.StatusCode;
 				Console.WriteLine ("Status code of result:   '{0}'", status_code);
 			}
 			

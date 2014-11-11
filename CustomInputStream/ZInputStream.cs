@@ -1,8 +1,8 @@
 using System;
 using System.Runtime.InteropServices;
 
-using MonoTouch.CoreFoundation;
-using MonoTouch.Foundation;
+using CoreFoundation;
+using Foundation;
 
 namespace InputStreamTest
 {
@@ -41,7 +41,7 @@ namespace InputStreamTest
 			return total_length > read_length;
 		}
 	
-		public override int Read (IntPtr buffer, uint len) 
+		public override nint Read (IntPtr buffer, nuint len) 
 		{
 			int actual = Math.Min ((int) len, (int) (total_length - read_length));
 			
@@ -58,12 +58,18 @@ namespace InputStreamTest
 			
 			return actual;
 		}
+
+		protected override bool GetBuffer (out IntPtr buffer, out nuint len)
+		{
+		    // Just call the base implemention (which will return false)
+			return base.GetBuffer (out buffer, out len);
+		}
 		
-		protected unsafe override bool GetBuffer (out IntPtr buffer, out uint len)
+	/*	protected  override bool GetBuffer(out IntPtr buffer, out uint len)
 		{
 			// Just call the base implemention (which will return false)
 			return base.GetBuffer (out buffer, out len);
-		}
+		}*/
 		
 		protected override bool SetCFClientFlags (CFStreamEventType inFlags, IntPtr inCallback, IntPtr inContextPtr)
 		{
