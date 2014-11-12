@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace FileSystem
 {
@@ -20,30 +20,30 @@ namespace FileSystem
 			
 			// Create the buttons and TextView to run the sample code
 			btnFiles = UIButton.FromType(UIButtonType.RoundedRect);
-			btnFiles.Frame = new RectangleF(10,10,145,50);
+			btnFiles.Frame = new CGRect(10,10,145,50);
 			btnFiles.SetTitle("Open 'ReadMe.txt'", UIControlState.Normal);
 
 			btnDirectories = UIButton.FromType(UIButtonType.RoundedRect);
-			btnDirectories.Frame = new RectangleF(10,70,145,50);
+			btnDirectories.Frame = new CGRect(10,70,145,50);
 			btnDirectories.SetTitle("List Directories", UIControlState.Normal);
 			
 			btnXml = UIButton.FromType(UIButtonType.RoundedRect);
-			btnXml.Frame = new RectangleF(165,10,145,50);
+			btnXml.Frame = new CGRect(165,10,145,50);
 			btnXml.SetTitle("Open 'Test.xml'", UIControlState.Normal);
 
 			btnAll = UIButton.FromType(UIButtonType.RoundedRect);
-			btnAll.Frame = new RectangleF(165,70,145,50);
+			btnAll.Frame = new CGRect(165,70,145,50);
 			btnAll.SetTitle("List All", UIControlState.Normal);
 			
 			btnWrite = UIButton.FromType(UIButtonType.RoundedRect);
-			btnWrite.Frame = new RectangleF(10,130,145,50);
+			btnWrite.Frame = new CGRect(10,130,145,50);
 			btnWrite.SetTitle("Write File", UIControlState.Normal);
 
 			btnDirectory = UIButton.FromType(UIButtonType.RoundedRect);
-			btnDirectory.Frame = new RectangleF(165,130,145,50);
+			btnDirectory.Frame = new CGRect(165,130,145,50);
 			btnDirectory.SetTitle("Create Directory", UIControlState.Normal);
 
-			txtView = new UITextView(new RectangleF(10, 190, 300, 250));
+			txtView = new UITextView(new CGRect(10, 190, 300, 250));
 			txtView.Editable = false;
 			txtView.ScrollEnabled = true;
 			
