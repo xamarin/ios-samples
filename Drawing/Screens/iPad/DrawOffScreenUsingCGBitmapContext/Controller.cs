@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using CoreGraphics;
+using CoreGraphics;
 
 namespace Example_Drawing.Screens.iPad.DrawOffScreenUsingCGBitmapContext
 {
@@ -22,7 +22,7 @@ namespace Example_Drawing.Screens.iPad.DrawOffScreenUsingCGBitmapContext
 			// no data
 			IntPtr data = IntPtr.Zero;
 			// size
-			SizeF bitmapSize = new SizeF (200, 300);
+			CGSize bitmapSize = new CGSize (200, 300);
 			//View.Frame.Size;
 			// 32bit RGB (8bits * 4components (aRGB) = 32bit)
 			int bitsPerComponent = 8;
