@@ -6,10 +6,12 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0181730D-31E9-4DCA-8C52-6455A0963E1C}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>FontList</RootNamespace>
     <AssemblyName>Example_Fonts</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -70,9 +72,8 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Application.cs" />
@@ -109,8 +110,8 @@
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Screens\iPhone\FontViewer\FontViewerScreen_iPhone.xib" xmlns="" />
-    <InterfaceDefinition Include="Screens\iPad\FontViewer\FontViewerScreen_iPad.xib" xmlns="" />
+    <InterfaceDefinition Include="Screens\iPhone\FontViewer\FontViewerScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\iPad\FontViewer\FontViewerScreen_iPad.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon-72.png" />
@@ -133,4 +134,5 @@
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
