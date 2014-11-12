@@ -25,10 +25,10 @@
 // 
 
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace RecipesAndPrinting
 {
@@ -48,23 +48,23 @@ namespace RecipesAndPrinting
 		
 		public RecipeTableViewCell (UITableViewCellStyle style, NSString identifier) : base (style, identifier)
 		{
-			imageView = new UIImageView (RectangleF.Empty);
+			imageView = new UIImageView (CGRect.Empty);
 			ContentView.AddSubview (imageView);
 			
-			descriptionLabel = new UILabel (RectangleF.Empty);
+			descriptionLabel = new UILabel (CGRect.Empty);
 			descriptionLabel.Font = UIFont.SystemFontOfSize (12.0f);
 			descriptionLabel.TextColor = UIColor.DarkGray;
 			descriptionLabel.HighlightedTextColor = UIColor.White;
 			ContentView.AddSubview (descriptionLabel);
 			
-			prepTimeLabel = new UILabel (RectangleF.Empty);
+			prepTimeLabel = new UILabel (CGRect.Empty);
 			prepTimeLabel.TextAlignment = UITextAlignment.Right;
 			prepTimeLabel.Font = UIFont.SystemFontOfSize (12.0f);
 			prepTimeLabel.TextColor = UIColor.Black;
 			prepTimeLabel.HighlightedTextColor = UIColor.White;
 			ContentView.AddSubview (prepTimeLabel);
 			
-			nameLabel = new UILabel (RectangleF.Empty);
+			nameLabel = new UILabel (CGRect.Empty);
 			nameLabel.Font = UIFont.BoldSystemFontOfSize (14.0f);
 			nameLabel.TextColor = UIColor.Black;
 			nameLabel.HighlightedTextColor = UIColor.White;
@@ -85,39 +85,39 @@ namespace RecipesAndPrinting
 			}
 		}
 		
-		RectangleF ImageViewFrame {
+		CGRect ImageViewFrame {
 			get {
 				if (Editing) {
-					return new RectangleF (EditingInset, 0.0f, ImageSize, ImageSize);
+					return new CGRect (EditingInset, 0.0f, ImageSize, ImageSize);
 				} else {
-					return new RectangleF (0.0f, 0.0f, ImageSize, ImageSize);
+					return new CGRect (0.0f, 0.0f, ImageSize, ImageSize);
 				}
 			}
 		}
 		
-		RectangleF NameLabelFrame {
+		CGRect NameLabelFrame {
 			get {
 				if (Editing) {
-					return new RectangleF (ImageSize + EditingInset + TextLeftMargin, 4.0f, ContentView.Bounds.Width - ImageSize - EditingInset - TextLeftMargin, 16.0f);
+					return new CGRect (ImageSize + EditingInset + TextLeftMargin, 4.0f, ContentView.Bounds.Width - ImageSize - EditingInset - TextLeftMargin, 16.0f);
 				} else {
-					return new RectangleF (ImageSize + TextLeftMargin, 4.0f, ContentView.Bounds.Width - ImageSize - TextLeftMargin - PrepTimeWidth, 16.0f);
+					return new CGRect (ImageSize + TextLeftMargin, 4.0f, ContentView.Bounds.Width - ImageSize - TextLeftMargin - PrepTimeWidth, 16.0f);
 				}
 			}
 		}
 
-		RectangleF DescriptionLabelFrame {
+		CGRect DescriptionLabelFrame {
 			get {
 				if (Editing) {
-					return new RectangleF (ImageSize + EditingInset + TextLeftMargin, 22.0f, ContentView.Bounds.Width - ImageSize - EditingInset - TextLeftMargin, 16.0f);
+					return new CGRect (ImageSize + EditingInset + TextLeftMargin, 22.0f, ContentView.Bounds.Width - ImageSize - EditingInset - TextLeftMargin, 16.0f);
 				} else {
-					return new RectangleF (ImageSize + TextLeftMargin, 22.0f, ContentView.Bounds.Width - ImageSize - TextLeftMargin, 16.0f);
+					return new CGRect (ImageSize + TextLeftMargin, 22.0f, ContentView.Bounds.Width - ImageSize - TextLeftMargin, 16.0f);
 				}
 			}
 		}
 
-		RectangleF PrepTimeLabelFrame {
+		CGRect PrepTimeLabelFrame {
 			get {
-				return new RectangleF (ContentView.Bounds.Width - PrepTimeWidth - TextRightMargin, 4.0f, PrepTimeWidth, 16.0f);
+				return new CGRect (ContentView.Bounds.Width - PrepTimeWidth - TextRightMargin, 4.0f, PrepTimeWidth, 16.0f);
 			}
 		}
 		

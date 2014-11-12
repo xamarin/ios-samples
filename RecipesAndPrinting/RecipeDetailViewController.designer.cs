@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace RecipesAndPrinting
 {
@@ -12,15 +12,15 @@ namespace RecipesAndPrinting
 	partial class RecipeDetailViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIView tableHeaderView { get; set; }
+		UIKit.UIView tableHeaderView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton photoButton { get; set; }
+		UIKit.UIButton photoButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel nameLabel { get; set; }
+		UIKit.UILabel nameLabel { get; set; }
 
 		[Action ("ShowPhoto:")]
-		partial void ShowPhoto (MonoTouch.Foundation.NSObject sender);
+		partial void ShowPhoto (Foundation.NSObject sender);
 	}
 }

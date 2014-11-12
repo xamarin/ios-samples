@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace RecipesAndPrinting
 {
@@ -12,9 +12,9 @@ namespace RecipesAndPrinting
 	partial class InstructionsViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UITextView instructionsText { get; set; }
+		UIKit.UITextView instructionsText { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel nameLabel { get; set; }
+		UIKit.UILabel nameLabel { get; set; }
 	}
 }

@@ -25,11 +25,11 @@
 // 
 
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace RecipesAndPrinting
 {
@@ -71,12 +71,12 @@ namespace RecipesAndPrinting
 				get { return controller.Recipe; }
 			}
 			
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return (int) RecipeSection.TotalSections;
 			}
 			
-			public override string TitleForHeader (UITableView tableView, int section)
+			public override string TitleForHeader (UITableView tableView, nint section)
 			{
 				if (section == (int) RecipeSection.Instructions)
 					return "Instructions";
@@ -84,9 +84,10 @@ namespace RecipesAndPrinting
 				return null;
 			}
 			
-			public override int RowsInSection (UITableView tableView, int section)
+			public override nint RowsInSection (UITableView tableView, nint section)
 			{
-				switch ((RecipeSection) section) {
+				// HACK: Cast nint to int
+				switch ((RecipeSection)(int)section) {
 				case RecipeSection.Instructions: return 1;
 				case RecipeSection.Ingredients: return Recipe.Ingredients.Length;
 				default: return 0;
@@ -96,13 +97,13 @@ namespace RecipesAndPrinting
 			UITableViewCell GetIngredientsCellAtIndex (UITableView tableView, int index)
 			{
 				UITableViewCell cell = tableView.DequeueReusableCell (IngredientsCellId);
-				RectangleF computedFrame;
+				CGRect computedFrame;
 				UILabel amountLabel;
 				
 				if (cell == null) {
 					cell = new UITableViewCell (UITableViewCellStyle.Default, IngredientsCellId);
 					
-					amountLabel = new UILabel (RectangleF.Empty);
+					amountLabel = new UILabel (CGRect.Empty);
 					amountLabel.AutoresizingMask = UIViewAutoresizing.FlexibleLeftMargin;
 					amountLabel.TextColor = UIColor.FromRGBA (50.0f / 255.0f, 79.0f / 255.0f, 133.0f / 255.0f, 1.0f);
 					amountLabel.TextAlignment = UITextAlignment.Right;
@@ -118,11 +119,12 @@ namespace RecipesAndPrinting
 				cell.TextLabel.Text = Recipe.Ingredients[index].Name;
 				amountLabel.Text = Recipe.Ingredients[index].Amount;   
 				
-				SizeF desiredSize = amountLabel.SizeThatFits (new SizeF (160.0f, 32.0f));
-				float midY = (cell.ContentView.Bounds.Y + cell.ContentView.Bounds.Height) / 2.0f;
-				float maxX = cell.ContentView.Bounds.Right;
+				CGSize desiredSize = amountLabel.SizeThatFits (new CGSize (160.0f, 32.0f));
+				// HACK: Change float to nfloat
+				nfloat midY = (cell.ContentView.Bounds.Y + cell.ContentView.Bounds.Height) / 2.0f;
+				nfloat maxX = cell.ContentView.Bounds.Right;
 				
-				computedFrame = new RectangleF (new PointF (maxX - desiredSize.Width - 10.0f, midY - desiredSize.Height / 2.0f), desiredSize);
+				computedFrame = new CGRect (new CGPoint (maxX - desiredSize.Width - 10.0f, midY - desiredSize.Height / 2.0f), desiredSize);
 				amountLabel.Frame = computedFrame;
 				
 				return cell;
