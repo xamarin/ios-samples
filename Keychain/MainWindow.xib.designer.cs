@@ -12,16 +12,16 @@ namespace Keychain {
 	
 	
 	// Base type probably should be MonoTouch.Foundation.NSObject or subclass
-	[MonoTouch.Foundation.Register("AppDelegate")]
+	[Foundation.Register("AppDelegate")]
 	public partial class AppDelegate {
 		
-		private MonoTouch.UIKit.UIWindow __mt_window;
+		private UIKit.UIWindow __mt_window;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("window")]
-		private MonoTouch.UIKit.UIWindow window {
+		[Foundation.Connect("window")]
+		private UIKit.UIWindow window {
 			get {
-				this.__mt_window = ((MonoTouch.UIKit.UIWindow)(this.GetNativeField("window")));
+				this.__mt_window = ((UIKit.UIWindow)(this.GetNativeField("window")));
 				return this.__mt_window;
 			}
 			set {
