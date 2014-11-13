@@ -25,10 +25,10 @@
 // THE SOFTWARE.
 
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Net;
@@ -95,18 +95,18 @@ namespace LazyTableImages {
 				Controller.TableView.ReloadData ();
 			}
 			
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
 			
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				return Controller.Apps.Count;
 			}
 			
 			// Customize the appearance of table view cells.
-			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				UITableViewCell cell;
 				// If the list is empty, put in a 'loading' entry
