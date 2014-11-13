@@ -25,7 +25,7 @@
 // THE SOFTWARE.
 
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace LazyTableImages {
 
