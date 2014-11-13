@@ -12,22 +12,22 @@ namespace HttpClient {
 	
 	
 	// Base type probably should be MonoTouch.Foundation.NSObject or subclass
-	[MonoTouch.Foundation.Register("AppDelegate")]
+	[Foundation.Register("AppDelegate")]
 	public partial class AppDelegate {
 		
-		private MonoTouch.UIKit.UIWindow __mt_window;
+		private UIKit.UIWindow __mt_window;
 		
-		private MonoTouch.UIKit.UIButton __mt_button1;
+		private UIKit.UIButton __mt_button1;
 		
-		private MonoTouch.UIKit.UITableView __mt_stack;
+		private UIKit.UITableView __mt_stack;
 		
-		private MonoTouch.UIKit.UINavigationController __mt_navigationController;
+		private UIKit.UINavigationController __mt_navigationController;
 		
 		#pragma warning disable 0169
-		[MonoTouch.Foundation.Connect("window")]
-		private MonoTouch.UIKit.UIWindow window {
+		[Foundation.Connect("window")]
+		private UIKit.UIWindow window {
 			get {
-				this.__mt_window = ((MonoTouch.UIKit.UIWindow)(this.GetNativeField("window")));
+				this.__mt_window = ((UIKit.UIWindow)(this.GetNativeField("window")));
 				return this.__mt_window;
 			}
 			set {
@@ -36,10 +36,10 @@ namespace HttpClient {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("button1")]
-		private MonoTouch.UIKit.UIButton button1 {
+		[Foundation.Connect("button1")]
+		private UIKit.UIButton button1 {
 			get {
-				this.__mt_button1 = ((MonoTouch.UIKit.UIButton)(this.GetNativeField("button1")));
+				this.__mt_button1 = ((UIKit.UIButton)(this.GetNativeField("button1")));
 				return this.__mt_button1;
 			}
 			set {
@@ -48,10 +48,10 @@ namespace HttpClient {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("stack")]
-		private MonoTouch.UIKit.UITableView stack {
+		[Foundation.Connect("stack")]
+		private UIKit.UITableView stack {
 			get {
-				this.__mt_stack = ((MonoTouch.UIKit.UITableView)(this.GetNativeField("stack")));
+				this.__mt_stack = ((UIKit.UITableView)(this.GetNativeField("stack")));
 				return this.__mt_stack;
 			}
 			set {
@@ -60,10 +60,10 @@ namespace HttpClient {
 			}
 		}
 		
-		[MonoTouch.Foundation.Connect("navigationController")]
-		private MonoTouch.UIKit.UINavigationController navigationController {
+		[Foundation.Connect("navigationController")]
+		private UIKit.UINavigationController navigationController {
 			get {
-				this.__mt_navigationController = ((MonoTouch.UIKit.UINavigationController)(this.GetNativeField("navigationController")));
+				this.__mt_navigationController = ((UIKit.UINavigationController)(this.GetNativeField("navigationController")));
 				return this.__mt_navigationController;
 			}
 			set {

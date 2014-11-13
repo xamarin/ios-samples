@@ -7,9 +7,9 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Linq;
@@ -114,10 +114,10 @@ namespace HttpClient
 
 			InvokeOnMainThread (delegate {
 				var view = new UIViewController ();
-				var label = new UILabel (new RectangleF (20, 20, 300, 80)){
+				var label = new UILabel (new CGRect (20, 20, 300, 80)){
 					Text = "The HTML returned by the server:"
 				};
-				var tv = new UITextView (new RectangleF (20, 100, 300, 400)){
+				var tv = new UITextView (new CGRect (20, 100, 300, 400)){
 					Text = reader.ReadToEnd ()
 				};
 				view.Add (label);

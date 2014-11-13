@@ -1,7 +1,7 @@
 
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace HttpClient
 {
@@ -28,12 +28,12 @@ namespace HttpClient
 			}
 		}
 		
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return 1;
 		}
 		
-		public override int RowsInSection (UITableView tableView, int section)
+		public override nint RowsInSection (UITableView tableView, nint section)
 		{
 			return source.Length;
 		}

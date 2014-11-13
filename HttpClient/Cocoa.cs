@@ -8,8 +8,8 @@
 //
 using System;
 using System.IO;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.Runtime.InteropServices;
 
 namespace HttpClient
@@ -35,7 +35,7 @@ namespace HttpClient
 		// Collect all the data
 		public override void ReceivedData (NSUrlConnection connection, NSData data)
 		{
-			byte [] nb = new byte [result.Length + data.Length];
+			byte [] nb = new byte [(int)result.Length + (int)data.Length];
 			result.CopyTo (nb, 0);
 			Marshal.Copy (data.Bytes, nb, result.Length, (int) data.Length);
 			result = nb;
