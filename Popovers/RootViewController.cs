@@ -1,19 +1,19 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Popovers
 {
 	class TableSource : UITableViewSource {
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return 1;
 		}
 		
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return 10;
 		}	
@@ -52,7 +52,7 @@ namespace Popovers
 		{
 			base.ViewDidLoad ();
 			ClearsSelectionOnViewWillAppear = false;
-			ContentSizeForViewInPopover = new SizeF (320, 600);
+			ContentSizeForViewInPopover = new CGSize (320, 600);
 			TableView.Source = new TableSource ();
 		}
 		

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Popovers
 {
@@ -99,11 +99,11 @@ namespace Popovers
 			
 			var content = new PopoverContentViewController ();
 			DetailViewPopover = new UIPopoverController (content);
-			DetailViewPopover.PopoverContentSize = new SizeF (320, 320);
+			DetailViewPopover.PopoverContentSize = new CGSize (320, 320);
 			DetailViewPopover.DidDismiss += delegate { LastTappedButton = null; };
 			
 			BarButtonItemPopover = new UIPopoverController (content);
-			BarButtonItemPopover.PopoverContentSize = new SizeF (320, 320);
+			BarButtonItemPopover.PopoverContentSize = new CGSize (320, 320);
 			BarButtonItemPopover.DidDismiss += delegate { LastTappedButton = null; };
 
 		}
@@ -153,17 +153,17 @@ namespace Popovers
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			if (toInterfaceOrientation == UIInterfaceOrientation.Portrait || toInterfaceOrientation == UIInterfaceOrientation.PortraitUpsideDown) {
-				Button1.Frame = new RectangleF (20, 64, 160, 160);
-				Button2.Frame = new RectangleF (588, 64, 160, 160);
-				Button3.Frame = new RectangleF (304, 422, 160, 160);
-				Button4.Frame = new RectangleF (20, 824, 160, 160);
-				Button5.Frame = new RectangleF (588, 824, 160, 160);
+				Button1.Frame = new CGRect (20, 64, 160, 160);
+				Button2.Frame = new CGRect (588, 64, 160, 160);
+				Button3.Frame = new CGRect (304, 422, 160, 160);
+				Button4.Frame = new CGRect (20, 824, 160, 160);
+				Button5.Frame = new CGRect (588, 824, 160, 160);
 			} else {
-				Button1.Frame = new RectangleF (20, 64, 160, 160);
-				Button2.Frame = new RectangleF(524, 64, 160, 160);
-				Button3.Frame = new RectangleF (272, 311, 160, 160);
-				Button4.Frame = new RectangleF (20, 568, 160, 160);
-				Button5.Frame = new RectangleF (524, 568, 160, 160);
+				Button1.Frame = new CGRect (20, 64, 160, 160);
+				Button2.Frame = new CGRect(524, 64, 160, 160);
+				Button3.Frame = new CGRect (272, 311, 160, 160);
+				Button4.Frame = new CGRect (20, 568, 160, 160);
+				Button5.Frame = new CGRect (524, 568, 160, 160);
 			}
 			return true;
 		}

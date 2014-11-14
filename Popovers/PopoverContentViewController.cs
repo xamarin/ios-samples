@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Popovers
 {
@@ -22,7 +22,7 @@ namespace Popovers
 		{
 			base.ViewDidLoad ();
 		
-			var label = new UILabel (new RectangleF (0, 0, 320, 320));
+			var label = new UILabel (new CGRect (0, 0, 320, 320));
 			label.Text = "POP!";
 			label.Font = UIFont.BoldSystemFontOfSize (100);
 			label.TextAlignment = UITextAlignment.Center;
