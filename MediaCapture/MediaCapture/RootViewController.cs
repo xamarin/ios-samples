@@ -13,8 +13,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace MediaCapture
 {
@@ -50,9 +50,9 @@ namespace MediaCapture
 			PushViewController( mediaCaptureViewController, true );
 		}
 		
-		public override UIViewController PopViewControllerAnimated (bool animated)
+		public override UIViewController PopViewController (bool animated)
 		{
-			UIViewController controller = base.PopViewControllerAnimated (animated);
+			UIViewController controller = base.PopViewController (animated);
 			onViewControllerPopped( controller );
 			return controller;
 		}

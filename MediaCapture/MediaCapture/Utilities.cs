@@ -13,8 +13,8 @@
 using System;
 using System.Text;
 using System.IO;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace MediaCapture
 {

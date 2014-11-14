@@ -12,14 +12,14 @@
 //
 using System;
 using System.Linq;
-using System.Drawing;
+using CoreGraphics;
 using System.Text;
 using System.IO;
 using System.Collections.Concurrent;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MonoTouch.Dialog;
-using MonoTouch.MediaPlayer;
+using MediaPlayer;
 
 namespace MediaCapture
 {
@@ -103,7 +103,7 @@ namespace MediaCapture
 		private void layoutViews()
 		{
 			// calculate the working area for the view(s)
-			RectangleF workingRect = this.View.Frame;
+			CGRect workingRect = this.View.Frame;
 			workingRect.Height = workingRect.Height - mainToolBar.Frame.Height;
 			
 			// figure out padding and sizes
@@ -121,7 +121,7 @@ namespace MediaCapture
 				textViewHeight = (int)(workingRect.Height * heightPercentage);
 				textViewXOffset = (int)(workingRect.Width * paddingPercent);
 				textViewYOffset = (int)(workingRect.Height * paddingPercent);
-				textView.Frame = new RectangleF( textViewXOffset, textViewYOffset, textViewWidth, textViewHeight );
+				textView.Frame = new CGRect( textViewXOffset, textViewYOffset, textViewWidth, textViewHeight );
 	
 				// lay out image view (if visible) on the botom
 				if ( settings.ImageCaptureEnabled == true )
@@ -130,12 +130,12 @@ namespace MediaCapture
 					int height = (int)(workingRect.Height * heightPercentage);
 					int xOffset = (int)(workingRect.Width * paddingPercent);
 					int yOffset = (2 * textViewYOffset) + textViewHeight;
-					imageView.Frame = new RectangleF( xOffset, yOffset, width, height );
+					imageView.Frame = new CGRect( xOffset, yOffset, width, height );
 					this.imageView.Hidden = false;
 				}
 				else
 				{
-					imageView.Frame = new RectangleF( 0,0,0,0 );
+					imageView.Frame = new CGRect( 0,0,0,0 );
 					this.imageView.Hidden = true;
 				}
 			}
@@ -149,7 +149,7 @@ namespace MediaCapture
 				textViewHeight = (int)(workingRect.Height * heightPercentage);
 				textViewXOffset = (int)(workingRect.Width * paddingPercent);
 				textViewYOffset = (int)(workingRect.Height * paddingPercent);
-				textView.Frame = new RectangleF( textViewXOffset, textViewYOffset, textViewWidth, textViewHeight );
+				textView.Frame = new CGRect( textViewXOffset, textViewYOffset, textViewWidth, textViewHeight );
 	
 				// lay out image view (if visible) to the right
 				if ( settings.ImageCaptureEnabled == true )
@@ -158,12 +158,12 @@ namespace MediaCapture
 					int height = (int)(workingRect.Height * heightPercentage);
 					int xOffset = (2 * textViewXOffset) + textViewWidth;
 					int yOffset = (int)(workingRect.Height * paddingPercent);   
-					imageView.Frame = new RectangleF( xOffset, yOffset, width, height );
+					imageView.Frame = new CGRect( xOffset, yOffset, width, height );
 					this.imageView.Hidden = false;
 				}
 				else
 				{
-					imageView.Frame = new RectangleF( 0,0,0,0 );
+					imageView.Frame = new CGRect( 0,0,0,0 );
 					this.imageView.Hidden = true;
 				}
 			}
@@ -233,7 +233,7 @@ namespace MediaCapture
 		{
 			if ( textView == null )
 			{
-				textView = new UITextView ( new RectangleF(1,1,1,1) );
+				textView = new UITextView ( new CGRect(1,1,1,1) );
 				textView.Font = UIFont.FromName("Courier", 16);
 				textView.ScrollEnabled = true;
 				textView.Editable = false;
@@ -246,7 +246,7 @@ namespace MediaCapture
 		{
 			if ( imageView == null )
 			{
-				imageView = new UIImageView ( new RectangleF(1,1,1,1) );
+				imageView = new UIImageView ( new CGRect(1,1,1,1) );
 				imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
 				this.View.AddSubview (imageView);				
 			}

@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MediaCapture
 {
@@ -12,16 +12,16 @@ namespace MediaCapture
 	partial class MediaCaptureViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIToolbar mainToolBar { get; set; }
+		UIKit.UIToolbar mainToolBar { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem buttonSettings { get; set; }
+		UIKit.UIBarButtonItem buttonSettings { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem buttonStartStop { get; set; }
+		UIKit.UIBarButtonItem buttonStartStop { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem buttonBrowse { get; set; }
+		UIKit.UIBarButtonItem buttonBrowse { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

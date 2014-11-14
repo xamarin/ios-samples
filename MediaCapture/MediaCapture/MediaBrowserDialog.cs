@@ -14,8 +14,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace MediaCapture
 {
