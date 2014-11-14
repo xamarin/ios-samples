@@ -7,7 +7,7 @@ namespace AdaptivePhotos
 {
 	public class ConversationViewController : CustomTableViewController
 	{
-		readonly NSString AAPLListTableViewControllerCellIdentifier = new NSString ("Cell");
+		readonly NSString ListTableViewControllerCellIdentifier = new NSString ("Cell");
 
 		public Conversation Conversation { get; set; }
 
@@ -19,7 +19,7 @@ namespace AdaptivePhotos
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), AAPLListTableViewControllerCellIdentifier);
+			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), ListTableViewControllerCellIdentifier);
 			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("showDetailTargetDidChange:"), 
 				UIViewController.ShowDetailTargetDidChangeNotification, null);
 		}
@@ -33,12 +33,12 @@ namespace AdaptivePhotos
 				return;
 
 			foreach (var indexPath in TableView.IndexPathsForSelectedRows) {
-				bool indexPathPushes = this.Aapl_willShowingDetailViewControllerPushWithSender ();
+				bool indexPathPushes = this.WillShowingDetailViewControllerPushWithSender ();
 				if (indexPathPushes)
 					TableView.DeselectRow (indexPath, true);
 			}
 
-			Photo visiblePhoto = this.Aapl_currentVisibleDetailPhotoWithSender ();
+			Photo visiblePhoto = this.CurrentVisibleDetailPhotoWithSender ();
 			if (visiblePhoto != null) {
 				foreach (var indexPath in TableView.IndexPathsForVisibleRows) {
 					Photo photo = PhotoForIndexPath (indexPath);
@@ -48,7 +48,7 @@ namespace AdaptivePhotos
 			}
 		}
 
-		public override bool Aapl_containsPhoto (Photo photo)
+		public override bool ContainsPhoto (Photo photo)
 		{
 			for (nint i = 0; i < (nint)Conversation.Photos.Count; i++) {
 				if (Conversation.Photos.GetItem<Photo> (i) == photo)
@@ -79,12 +79,12 @@ namespace AdaptivePhotos
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			return TableView.DequeueReusableCell (AAPLListTableViewControllerCellIdentifier, indexPath);
+			return TableView.DequeueReusableCell (ListTableViewControllerCellIdentifier, indexPath);
 		}
 
 		public override void WillDisplay (UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)
 		{
-			bool pushes = this.Aapl_willShowingDetailViewControllerPushWithSender ();
+			bool pushes = this.WillShowingDetailViewControllerPushWithSender ();
 
 			if (pushes) {
 				cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;

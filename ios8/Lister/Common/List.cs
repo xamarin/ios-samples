@@ -173,7 +173,7 @@ namespace Common
 				this.items.Remove (item);
 		}
 
-		// Toggles an item's completion state and moves the item to the appropriate index. The normalized from/to indexes are returned in the AAPLListOperationInfo struct.
+		// Toggles an item's completion state and moves the item to the appropriate index. The normalized from/to indexes are returned in the ListOperationInfo struct.
 		public ListOperationInfo ToggleItem(ListItem item, int preferredDestinationIndex)
 		{
 			int fromIndex = items.IndexOf (item);

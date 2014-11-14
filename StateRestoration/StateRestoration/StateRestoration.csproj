@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2B793F1E-6F5D-49BC-AD5B-52775B1F2449}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>StateRestoration</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>StateRestoration</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchDebug>true</MtouchDebug>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
+    <IpaPackageName>
+    </IpaPackageName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <BuildIpa>true</BuildIpa>
+    <ConsolePause>false</ConsolePause>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <ConsolePause>false</ConsolePause>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Cell\" />
+    <Folder Include="Filters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="CollectionViewController.cs" />
+    <Compile Include="CollectionViewController.designer.cs">
+      <DependentUpon>CollectionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailViewController.cs" />
+    <Compile Include="DetailViewController.designer.cs">
+      <DependentUpon>DetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterViewController.cs" />
+    <Compile Include="FilterViewController.designer.cs">
+      <DependentUpon>FilterViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSource.cs" />
+    <Compile Include="Cell\CollectionCell.cs" />
+    <Compile Include="Cell\CollectionCell.designer.cs">
+      <DependentUpon>CollectionCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cell\CustomCellBackground.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="Filters\ImageFilter.cs" />
+    <Compile Include="Filters\BlurFilter.cs" />
+    <Compile Include="Filters\ModifyFilter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="MainStoryboard.storyboard" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Icon-72.png" />
+    <BundleResource Include="Resources\Icon-Small.png" />
+    <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-50.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\Data.plist" />
+    <BundleResource Include="Resources\Images\full\0_full.JPG" />
+    <BundleResource Include="Resources\Images\full\1_full.JPG" />
+    <BundleResource Include="Resources\Images\full\10_full.JPG" />
+    <BundleResource Include="Resources\Images\full\11_full.JPG" />
+    <BundleResource Include="Resources\Images\full\12_full.JPG" />
+    <BundleResource Include="Resources\Images\full\13_full.JPG" />
+    <BundleResource Include="Resources\Images\full\14_full.JPG" />
+    <BundleResource Include="Resources\Images\full\15_full.JPG" />
+    <BundleResource Include="Resources\Images\full\16_full.JPG" />
+    <BundleResource Include="Resources\Images\full\17_full.JPG" />
+    <BundleResource Include="Resources\Images\full\18_full.JPG" />
+    <BundleResource Include="Resources\Images\full\19_full.JPG" />
+    <BundleResource Include="Resources\Images\full\2_full.JPG" />
+    <BundleResource Include="Resources\Images\full\20_full.JPG" />
+    <BundleResource Include="Resources\Images\full\21_full.JPG" />
+    <BundleResource Include="Resources\Images\full\22_full.JPG" />
+    <BundleResource Include="Resources\Images\full\23_full.JPG" />
+    <BundleResource Include="Resources\Images\full\24_full.JPG" />
+    <BundleResource Include="Resources\Images\full\25_full.JPG" />
+    <BundleResource Include="Resources\Images\full\26_full.JPG" />
+    <BundleResource Include="Resources\Images\full\27_full.JPG" />
+    <BundleResource Include="Resources\Images\full\28_full.JPG" />
+    <BundleResource Include="Resources\Images\full\29_full.JPG" />
+    <BundleResource Include="Resources\Images\full\3_full.JPG" />
+    <BundleResource Include="Resources\Images\full\30_full.JPG" />
+    <BundleResource Include="Resources\Images\full\31_full.JPG" />
+    <BundleResource Include="Resources\Images\full\4_full.JPG" />
+    <BundleResource Include="Resources\Images\full\5_full.JPG" />
+    <BundleResource Include="Resources\Images\full\6_full.JPG" />
+    <BundleResource Include="Resources\Images\full\7_full.JPG" />
+    <BundleResource Include="Resources\Images\full\8_full.JPG" />
+    <BundleResource Include="Resources\Images\full\9_full.JPG" />
+    <BundleResource Include="Resources\Images\thumb\0.JPG" />
+    <BundleResource Include="Resources\Images\thumb\1.JPG" />
+    <BundleResource Include="Resources\Images\thumb\10.JPG" />
+    <BundleResource Include="Resources\Images\thumb\11.JPG" />
+    <BundleResource Include="Resources\Images\thumb\12.JPG" />
+    <BundleResource Include="Resources\Images\thumb\13.JPG" />
+    <BundleResource Include="Resources\Images\thumb\14.JPG" />
+    <BundleResource Include="Resources\Images\thumb\15.JPG" />
+    <BundleResource Include="Resources\Images\thumb\16.JPG" />
+    <BundleResource Include="Resources\Images\thumb\17.JPG" />
+    <BundleResource Include="Resources\Images\thumb\18.JPG" />
+    <BundleResource Include="Resources\Images\thumb\19.JPG" />
+    <BundleResource Include="Resources\Images\thumb\2.JPG" />
+    <BundleResource Include="Resources\Images\thumb\20.JPG" />
+    <BundleResource Include="Resources\Images\thumb\21.JPG" />
+    <BundleResource Include="Resources\Images\thumb\22.JPG" />
+    <BundleResource Include="Resources\Images\thumb\23.JPG" />
+    <BundleResource Include="Resources\Images\thumb\24.JPG" />
+    <BundleResource Include="Resources\Images\thumb\25.JPG" />
+    <BundleResource Include="Resources\Images\thumb\26.JPG" />
+    <BundleResource Include="Resources\Images\thumb\27.JPG" />
+    <BundleResource Include="Resources\Images\thumb\28.JPG" />
+    <BundleResource Include="Resources\Images\thumb\29.JPG" />
+    <BundleResource Include="Resources\Images\thumb\3.JPG" />
+    <BundleResource Include="Resources\Images\thumb\30.JPG" />
+    <BundleResource Include="Resources\Images\thumb\31.JPG" />
+    <BundleResource Include="Resources\Images\thumb\4.JPG" />
+    <BundleResource Include="Resources\Images\thumb\5.JPG" />
+    <BundleResource Include="Resources\Images\thumb\6.JPG" />
+    <BundleResource Include="Resources\Images\thumb\7.JPG" />
+    <BundleResource Include="Resources\Images\thumb\8.JPG" />
+    <BundleResource Include="Resources\Images\thumb\9.JPG" />
+  </ItemGroup>
+</Project>

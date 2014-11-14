@@ -49,7 +49,6 @@ namespace CloudCaptions
 			try {
 				CKRecord record = await publicDB.FetchRecordAsync (recordID);
 				Post postThatFiredPush = new Post(record);
-				// TODO: is null correct?
 				postThatFiredPush.LoadImage(null, TableView.ReloadData);
 				postManager.LoadNewPosts(postThatFiredPush);
 			} catch(NSErrorException ex) {

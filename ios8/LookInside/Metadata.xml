@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
 <ID>c5c55ab2-a24b-40ab-8e05-c73467170217</ID>
 <IsFullApplication>false</IsFullApplication>
 <Level>Beginning</Level>
@@ -5,3 +7,4 @@
 <SupportedPlatforms>iOS</SupportedPlatforms>
 <Gallery>true</Gallery>
 <MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+</SampleMetadata>

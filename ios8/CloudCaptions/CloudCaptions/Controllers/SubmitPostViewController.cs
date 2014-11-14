@@ -144,7 +144,7 @@ namespace CloudCaptions
 		[Export ("cancelPost:")]
 		void CancelPost (NSObject sender)
 		{
-			// Hides the keyboards and then returns back to AAPLSubmitPostViewController
+			// Hides the keyboards and then returns back to SubmitPostViewController
 			HiddenText.EndEditing (true);
 			TagField.EndEditing (true);
 			DismissViewController (true, null);

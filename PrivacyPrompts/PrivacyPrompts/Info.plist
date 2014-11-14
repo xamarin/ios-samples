@@ -14,9 +14,9 @@
 	<string>7.0</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
-	<key>XSLaunchImageAssets</key>
-	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackTranslucent</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This string is stored in the info.plist file.</string>
 </dict>
 </plist>
