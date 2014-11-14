@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace MonoDevelopTouchCells
 {
@@ -14,12 +14,12 @@ namespace MonoDevelopTouchCells
 			this.Data = new List<Item>(data);
 		}
 		
-		public override int RowsInSection (UITableView tableView, int section)
+		public override nint RowsInSection (UITableView tableView, nint section)
 		{
 			return this.Data.Count;
 		}
 		
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return 1;
 		}
