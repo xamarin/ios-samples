@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace MTGKTapper
@@ -13,31 +13,31 @@ namespace MTGKTapper
 	partial class MTGKTapperViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel currentScoreTextField { get; set; }
+		UIKit.UILabel currentScoreTextField { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel globalHighestScoreTextField { get; set; }
+		UIKit.UILabel globalHighestScoreTextField { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton incrementScoreButton { get; set; }
+		UIKit.UIButton incrementScoreButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel playerBestScoreTextField { get; set; }
+		UIKit.UILabel playerBestScoreTextField { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton resetButton { get; set; }
+		UIKit.UIButton resetButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton selectLeaderBoardButton { get; set; }
+		UIKit.UIButton selectLeaderBoardButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton showAchievementButton { get; set; }
+		UIKit.UIButton showAchievementButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton showLeaderboardButton { get; set; }
+		UIKit.UIButton showLeaderboardButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton submitScoreButton { get; set; }
+		UIKit.UIButton submitScoreButton { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
