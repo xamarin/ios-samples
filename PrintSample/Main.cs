@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace print
 {
@@ -21,7 +21,7 @@ namespace print
 		{
 			window.MakeKeyAndVisible ();
 			var button = UIButton.FromType (UIButtonType.RoundedRect);
-			button.Frame = new RectangleF (100, 100, 120, 60);
+			button.Frame = new CGRect (100, 100, 120, 60);
 			button.SetTitle ("Print", UIControlState.Normal);
 			button.TouchDown += delegate {
 				Print ();

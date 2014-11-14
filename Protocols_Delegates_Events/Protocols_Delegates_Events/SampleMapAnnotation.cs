@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.CoreLocation;
-using MonoTouch.MapKit;
+using CoreLocation;
+using MapKit;
 
 namespace Protocols_Delegates_Events
 {
