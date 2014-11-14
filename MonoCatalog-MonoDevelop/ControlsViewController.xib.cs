@@ -3,9 +3,9 @@
 //
 
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace MonoCatalog {
 	
@@ -29,17 +29,17 @@ namespace MonoCatalog {
 				this.cvc = cvc;
 			}
 	
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return cvc.samples.Length;
 			}
 	
-			public override string TitleForHeader (UITableView tableView, int section)
+			public override string TitleForHeader (UITableView tableView, nint section)
 			{
 				return cvc.samples [section].Title;
 			}
 	
-			public override int RowsInSection (UITableView tableView, int section)
+			public override nint RowsInSection (UITableView tableView, nint section)
 			{
 				return 2;
 			}
@@ -85,7 +85,7 @@ namespace MonoCatalog {
 		}
 	
 		class TableDelegate : UITableViewDelegate {
-			public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+			public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 			{
 				// First row is always 50 pixes, second row 38
 				return indexPath.Row == 0 ? 50f : 38f;
@@ -102,7 +102,7 @@ namespace MonoCatalog {
 	
 		UIControl SwitchControl ()
 		{
-			var sw = new UISwitch (new RectangleF (198f, 12f, 94f, 27f)){
+			var sw = new UISwitch (new CGRect (198f, 12f, 94f, 27f)){
 				BackgroundColor = UIColor.Clear,
 				Tag = kViewTag
 			};
@@ -115,7 +115,7 @@ namespace MonoCatalog {
 		
 		UIControl SliderControl ()
 		{
-			var slider = new UISlider (new RectangleF (174f, 12f, 120f, 7f)){
+			var slider = new UISlider (new CGRect (174f, 12f, 120f, 7f)){
 				BackgroundColor = UIColor.Clear,
 				MinValue = 0f,
 				MaxValue = 100f,
@@ -132,7 +132,7 @@ namespace MonoCatalog {
 	
 		UIControl CustomSliderControl ()
 		{
-			var cslider = new UISlider (new RectangleF (174f, 12f, 120f, 7f)){
+			var cslider = new UISlider (new CGRect (174f, 12f, 120f, 7f)){
 				BackgroundColor = UIColor.Clear,
 				MinValue = 0f,
 				MaxValue = 100f,
@@ -159,7 +159,7 @@ namespace MonoCatalog {
 	
 		UIControl PageControl ()
 		{
-			var page = new UIPageControl (new RectangleF (120f, 14f, 178f, 20f)){
+			var page = new UIPageControl (new CGRect (120f, 14f, 178f, 20f)){
 				BackgroundColor = UIColor.Gray,
 				Pages = 10,
 				Tag = kViewTag
@@ -174,7 +174,7 @@ namespace MonoCatalog {
 	
 		UIView ProgressIndicator ()
 		{
-			var pind = new UIActivityIndicatorView (new RectangleF (265f, 12f, 40f, 40f)){
+			var pind = new UIActivityIndicatorView (new CGRect (265f, 12f, 40f, 40f)){
 				ActivityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray,
 				AutoresizingMask = UIViewAutoresizing.FlexibleLeftMargin |
 					UIViewAutoresizing.FlexibleRightMargin |
@@ -191,7 +191,7 @@ namespace MonoCatalog {
 	
 		UIView ProgressBar ()
 		{
-			return new UIProgressView (new RectangleF (126f, 20f, 160f, 24f)){
+			return new UIProgressView (new CGRect (126f, 20f, 160f, 24f)){
 				Style = UIProgressViewStyle.Default,
 				Progress = 0.5f,
 				Tag = kViewTag

@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.AddressBookUI;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using AddressBookUI;
+using Foundation;
+using UIKit;
 
 namespace MonoCatalog
 {
@@ -47,7 +47,7 @@ namespace MonoCatalog
 				identifier.Text = "";
 				e.Continue = selectProperty.On;
 				if (!e.Continue)
-					DismissModalViewControllerAnimated (true);
+					DismissModalViewController (true);
 			};
 			p.PerformAction += (o, e) => {
 				Console.Error.WriteLine ("# perform action; person={0}", e.Person);
@@ -58,7 +58,7 @@ namespace MonoCatalog
 				identifier.Text = e.Identifier.HasValue ? e.Identifier.ToString () : "";
 				e.Continue = performAction.On;
 				if (!e.Continue)
-					DismissModalViewControllerAnimated (true);
+					DismissModalViewController (true);
 			};
 			p.Cancelled += (o, e) => {
 				Console.Error.WriteLine ("# select Person cancelled.");
@@ -67,12 +67,12 @@ namespace MonoCatalog
 				lastName.Text   = "";
 				property.Text   = "";
 				identifier.Text = "";
-				DismissModalViewControllerAnimated (true);
+				DismissModalViewController (true);
 			};
 			return p;
 		}
 	
-		partial void showPicker (MonoTouch.UIKit.UIButton sender)
+		partial void showPicker (UIKit.UIButton sender)
 		{
 			Console.Error.WriteLine ("# Select Contacts pushed!");
 			PresentModalViewController (GetPicker (), true);

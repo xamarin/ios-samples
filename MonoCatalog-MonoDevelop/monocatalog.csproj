@@ -6,10 +6,12 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B757F754-E31A-4EBD-BDBD-0B86875D78DB}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <AssemblyName>monocatalog</AssemblyName>
     <RootNamespace>MonoCatalog</RootNamespace>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>True</DebugSymbols>
@@ -66,9 +68,9 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
     <Reference Include="Mono.Data.Sqlite" />
     <Reference Include="System.Data" />
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow.xib.designer.cs">
@@ -165,23 +167,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
-    <InterfaceDefinition Include="AlertsViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="ButtonsViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="ControlsViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="ImagesViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="SegmentViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="TextFieldController.xib" xmlns="" />
-    <InterfaceDefinition Include="TextViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="ToolbarViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="TransitionViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="WebViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="PickerViewController.xib" xmlns="" />
-    <InterfaceDefinition Include="SearchBarController.xib" xmlns="" />
-    <InterfaceDefinition Include="AddressBookController.xib" xmlns="" />
-    <InterfaceDefinition Include="MonoDataSqlite.xib" xmlns="" />
+    <InterfaceDefinition Include="MainWindow.xib" />
+    <InterfaceDefinition Include="AlertsViewController.xib" />
+    <InterfaceDefinition Include="ButtonsViewController.xib" />
+    <InterfaceDefinition Include="ControlsViewController.xib" />
+    <InterfaceDefinition Include="ImagesViewController.xib" />
+    <InterfaceDefinition Include="SegmentViewController.xib" />
+    <InterfaceDefinition Include="TextFieldController.xib" />
+    <InterfaceDefinition Include="TextViewController.xib" />
+    <InterfaceDefinition Include="ToolbarViewController.xib" />
+    <InterfaceDefinition Include="TransitionViewController.xib" />
+    <InterfaceDefinition Include="WebViewController.xib" />
+    <InterfaceDefinition Include="PickerViewController.xib" />
+    <InterfaceDefinition Include="SearchBarController.xib" />
+    <InterfaceDefinition Include="AddressBookController.xib" />
+    <InterfaceDefinition Include="MonoDataSqlite.xib" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
@@ -241,4 +242,5 @@
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

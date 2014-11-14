@@ -1,9 +1,9 @@
 //
 // C# port of the textview sample
 //
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 using System;
 
 namespace MonoCatalog {
@@ -55,7 +55,7 @@ namespace MonoCatalog {
 				UIView.CommitAnimations ();
 				});
 	
-			obs2 = NSNotificationCenter.DefaultCenter.AddObserver ("UIKeyboardWillHideNotification", delegate (NSNotification n){
+						obs2 = NSNotificationCenter.DefaultCenter.AddObserver (new NSString("UIKeyboardWillHideNotification"), delegate (NSNotification n){
 				var kbdRect = UIKeyboard.BoundsFromNotification (n);
 				var duration = UIKeyboard.AnimationDurationFromNotification (n);
 				var frame = View.Frame;

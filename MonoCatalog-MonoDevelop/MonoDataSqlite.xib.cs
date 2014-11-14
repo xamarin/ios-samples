@@ -1,11 +1,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.IO;
 using Mono.Data.Sqlite;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace MonoCatalog
 {
@@ -39,7 +39,7 @@ namespace MonoCatalog
 			//
 			// Override to provide the sizing of the rows in our table
 			//
-			public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+			public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 			{
 				if (indexPath.Section == 0)
 					return 70f;
@@ -74,12 +74,12 @@ namespace MonoCatalog
 				base.Dispose (disposing);
 			}
 
-			public override int NumberOfSections (UITableView tableView)
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return Sections.Length;
 			}
 
-			public override string TitleForHeader (UITableView tableView, int section)
+			public override string TitleForHeader (UITableView tableView, nint section)
 			{
 				return Sections [section].Title;
 			}
@@ -109,7 +109,7 @@ namespace MonoCatalog
 				}
 				var lblKey = new UILabel () {
 					BaselineAdjustment = UIBaselineAdjustment.AlignCenters,
-					Frame              = new RectangleF (10f, 0f, 70f, 31f),
+					Frame              = new CGRect (10f, 0f, 70f, 31f),
 					Tag                = kKeyTag << 1,
 					Text               = "Key: ",
 					TextAlignment      = UITextAlignment.Right,
@@ -117,14 +117,14 @@ namespace MonoCatalog
 				var key = new UITextField () {
 					BorderStyle        = UITextBorderStyle.Bezel,
 					ClearButtonMode    = UITextFieldViewMode.WhileEditing,
-					Frame              = new RectangleF (80f, 1f, 170f, 31f),
+					Frame              = new CGRect (80f, 1f, 170f, 31f),
 					Placeholder        = "Key",
 					Tag                = kKeyTag,
 					AccessibilityLabel = "Key"
 				};
 				var lblValue = new UILabel () {
 					BaselineAdjustment = UIBaselineAdjustment.AlignCenters,
-					Frame              = new RectangleF (10f, 37f, 70f, 31f),
+					Frame              = new CGRect (10f, 37f, 70f, 31f),
 					Tag                = kValueTag << 1,
 					Text               = "Value: ",
 					TextAlignment      = UITextAlignment.Right,
@@ -132,7 +132,7 @@ namespace MonoCatalog
 				var value = new UITextField () {
 					BorderStyle        = UITextBorderStyle.Bezel,
 					ClearButtonMode    = UITextFieldViewMode.WhileEditing,
-					Frame              = new RectangleF (80f, 38f, 170f, 31f),
+					Frame              = new CGRect (80f, 38f, 170f, 31f),
 					Placeholder        = "Value",
 					Tag                = kValueTag,
 					AccessibilityLabel = "Value"
@@ -140,7 +140,7 @@ namespace MonoCatalog
 				var add = UIButton.FromType (UIButtonType.ContactAdd);
 				add.HorizontalAlignment = UIControlContentHorizontalAlignment.Center;
 				add.VerticalAlignment   = UIControlContentVerticalAlignment.Center;
-				add.Frame               = new RectangleF (255, 0, 40f, 70f);
+				add.Frame               = new CGRect (255, 0, 40f, 70f);
 				add.SetTitle ("Add", UIControlState.Normal);
 				add.TouchUpInside += (o, e) => {
 					WithCommand (c => {
@@ -199,8 +199,8 @@ namespace MonoCatalog
 				Func<string, int, bool, UILabel> createLabel = (v, t, left) => {
 					var label = new UILabel ();
 					label.Frame = left
-						? new System.Drawing.RectangleF (10f, 1f, width-10, 40)
-						: new System.Drawing.RectangleF (width, 1f, width-30, 40);
+						? new CGRect (10f, 1f, width-10, 40)
+						: new CGRect (width, 1f, width-30, 40);
 					label.Text = v;
 					label.TextAlignment = left
 						? UITextAlignment.Left
@@ -214,7 +214,7 @@ namespace MonoCatalog
 				return cell;
 			}
 
-			public override int RowsInSection (UITableView tableview, int section)
+			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				if (section == 0)
 					return 1;

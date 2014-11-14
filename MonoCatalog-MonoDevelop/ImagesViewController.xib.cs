@@ -2,8 +2,8 @@
 // Images sample port to C#/MonoTouch
 //
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace MonoCatalog {
 	
