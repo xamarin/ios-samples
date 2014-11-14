@@ -1,7 +1,7 @@
-using MonoTouch.UIKit;
+using UIKit;
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.MediaPlayer;
+using Foundation;
+using MediaPlayer;
 
 namespace MoviePlaybackSample
 {
