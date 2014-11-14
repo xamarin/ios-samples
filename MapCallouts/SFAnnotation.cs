@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.MapKit;
-using MonoTouch.CoreLocation;
+using Foundation;
+using UIKit;
+using MapKit;
+using CoreLocation;
 
 namespace MapCallouts
 {
@@ -17,7 +17,7 @@ namespace MapCallouts
 		public override string Title { get { return "San Francisco"; } }
 		public override string Subtitle { get { return "Founded: June 29, 1776"; } }
 
-		public override MonoTouch.CoreLocation.CLLocationCoordinate2D Coordinate {
+		public override CoreLocation.CLLocationCoordinate2D Coordinate {
 			get {
 				CLLocationCoordinate2D theCoordinate;
 				theCoordinate.Latitude = 37.786996;
