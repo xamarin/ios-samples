@@ -1,10 +1,10 @@
 using System;
 using OpenTK.Platform.iPhoneOS;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.CoreAnimation;
+using Foundation;
+using ObjCRuntime;
+using CoreAnimation;
 using OpenTK;
-using MonoTouch.OpenGLES;
+using OpenGLES;
 using OpenTK.Graphics.ES11;
 
 namespace OpenGLESSampleGameView
