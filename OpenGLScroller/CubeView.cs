@@ -1,14 +1,14 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
 using OpenTK.Graphics.ES20;
 using OpenTK;
 
-using MonoTouch.OpenGLES;
-using MonoTouch.CoreAnimation;
-using MonoTouch.Foundation;
-using MonoTouch.GLKit;
-using MonoTouch.UIKit;
+using OpenGLES;
+using CoreAnimation;
+using Foundation;
+using GLKit;
+using UIKit;
 
 namespace OpenGLScroller
 {
@@ -102,30 +102,30 @@ namespace OpenGLScroller
 		CubeInfo deltas = new CubeInfo (0.02f, 0.018f, 0.016f, 0.01f, 0.02f, 0.03f, 0.01f, 0.0f);
 
 		double timeOfLastRenderedFrame;
-		public PointF scrollOffset;
+		public CGPoint scrollOffset;
 
 		GLKBaseEffect effect;
 		Random gen = new Random();
 
-		public CubeView (RectangleF frame) : base (frame)
+		public CubeView (CGRect frame) : base (frame)
 		{
 			SetupGL ();
 		}
 
-		public Rectangle ScrollableFrame {
+		public CGRect ScrollableFrame {
 			get {
-				return new Rectangle (0, 30, 320, (int)ScrollerHeight);
+				return new CGRect (0, 30, 320, (int)ScrollerHeight);
 			}
 		}
 
-		public Size ScrollableContentSize {
+		public CGSize ScrollableContentSize {
 			get {
 				float width = NumLittleCubes * LittleCubeWidth;
-				return new Size ((int)width, (int)ScrollerHeight);
+				return new CGSize ((int)width, (int)ScrollerHeight);
 			}
 		}
 
-		public PointF GetScrollOffset (PointF offset)
+		public CGPoint GetScrollOffset (CGPoint offset)
 		{
 			float fractionalPart = offset.X % LittleCubeWidth;
 
@@ -141,7 +141,7 @@ namespace OpenGLScroller
 		}
 
 
-		public override RectangleF Frame {
+		public override CGRect Frame {
 			get {
 				return base.Frame;
 			}
@@ -156,7 +156,7 @@ namespace OpenGLScroller
 			}
 		}
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			UpdateCubes ();
 
@@ -193,34 +193,34 @@ namespace OpenGLScroller
 			GL.DrawArrays (BeginMode.Triangles, 0, 36);
 		}
 
-		public override void TouchesBegan (NSSet touches, MonoTouch.UIKit.UIEvent evt)
+		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
 			base.TouchesBegan (touches, evt);
 		}
 
-		public override void TouchesMoved (NSSet touches, MonoTouch.UIKit.UIEvent evt)
+		public override void TouchesMoved (NSSet touches, UIEvent evt)
 		{
 			base.TouchesMoved (touches, evt);
 		}
 
-		public override void TouchesCancelled (NSSet touches, MonoTouch.UIKit.UIEvent evt)
+		public override void TouchesCancelled (NSSet touches, UIEvent evt)
 		{
 			base.TouchesCancelled (touches, evt);
 		}
 
-		public override void TouchesEnded (NSSet touches, MonoTouch.UIKit.UIEvent evt)
+		public override void TouchesEnded (NSSet touches, UIEvent evt)
 		{
 			var touch = (UITouch) touches.AnyObject;
 			if (touch.TapCount == 1) {
-				var endTouch = new PointF (touch.LocationInView (this).X, touch.LocationInView (this).Y);
+				var endTouch = new CGPoint (touch.LocationInView (this).X, touch.LocationInView (this).Y);
 				HandleTapAtPoint (endTouch);
 			}
 		}
 
-		public void HandleTapAtPoint (PointF point)
+		public void HandleTapAtPoint (CGPoint point)
 		{
-			var bigCubeRect = new RectangleF (70, 210, 180, 180);
-			RectangleF scrollviewRect = ScrollableFrame;
+			var bigCubeRect = new CGRect (70, 210, 180, 180);
+			CGRect scrollviewRect = ScrollableFrame;
 
 			if (bigCubeRect.Contains (point.X, point.Y)) {
 				HandleBigCubeTap ();
