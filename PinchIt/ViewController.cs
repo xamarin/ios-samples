@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace PinchIt
 {
@@ -24,7 +24,7 @@ namespace PinchIt
 			CollectionView.AddGestureRecognizer (pinchRecognizer);
 		}
 
-		public override int GetItemsCount (UICollectionView collectionView, int section)
+		public override nint GetItemsCount (UICollectionView collectionView, nint section)
 		{
 			return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad ? 63 : 12;
 		}
@@ -40,11 +40,11 @@ namespace PinchIt
 
 			switch (sender.State) {
 			case UIGestureRecognizerState.Began:
-				PointF initialPinchPoint = sender.LocationInView (CollectionView);
+				CGPoint initialPinchPoint = sender.LocationInView (CollectionView);
 				pinchLayout.pinchedCellPath = CollectionView.IndexPathForItemAtPoint (initialPinchPoint);
 				break;
 			case UIGestureRecognizerState.Changed:
-				pinchLayout.setPinchedCellScale (sender.Scale);
+				pinchLayout.setPinchedCellScale ((float)sender.Scale);
 				pinchLayout.setPinchedCellCenter (sender.LocationInView (CollectionView));
 				break;
 			default:

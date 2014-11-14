@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
 
-using MonoTouch.EventKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.EventKitUI;
+using EventKit;
+using Foundation;
+using UIKit;
+using EventKitUI;
 using MonoTouch.Dialog;
 
 namespace PokerNightVoting
@@ -120,7 +120,7 @@ namespace PokerNightVoting
 			}
 		}
 
-		partial void addTime (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial void addTime (UIKit.UIBarButtonItem sender)
 		{
 			// Show the EKEventEditViewController
 			var controller = new EKEventEditViewController ();
@@ -149,7 +149,7 @@ namespace PokerNightVoting
 			PresentViewController (controller, true, null);
 		}
 
-		partial void showCalendarChooser (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial void showCalendarChooser (UIKit.UIBarButtonItem sender)
 		{
 			// Show the EKCalendarChooser
 			var calendarChooser = new EKCalendarChooser (EKCalendarChooserSelectionStyle.Single, 
