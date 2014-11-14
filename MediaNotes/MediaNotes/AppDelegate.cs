@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.UIKit;
-using MonoTouch.AssetsLibrary;
+using Foundation;
+using CoreFoundation;
+using CoreGraphics;
+using UIKit;
+using AssetsLibrary;
 
 namespace MediaNotes
 {

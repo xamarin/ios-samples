@@ -4,10 +4,10 @@
 #define OVERRIDE_SUPPORTED_ORIENTATIONS
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 		
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 		
 namespace MediaNotes
 {
@@ -92,8 +92,8 @@ namespace MediaNotes
 		float GetStatusBarHeight (UIApplication app)
 		{
 			if (app.StatusBarOrientation == UIInterfaceOrientation.LandscapeLeft || app.StatusBarOrientation == UIInterfaceOrientation.LandscapeRight)
-				return app.StatusBarFrame.Size.Width;
-			return app.StatusBarFrame.Size.Height;
+				return (float) app.StatusBarFrame.Size.Width;
+			return (float) app.StatusBarFrame.Size.Height;
 		}
 				
 		public override void UpdateViewConstraints ()
@@ -221,7 +221,7 @@ namespace MediaNotes
 			}
 		}
 				
-		partial void NextPhoto (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial void NextPhoto (UIKit.UIBarButtonItem sender)
 		{       
 			datasource.ProceedToNextItem ();
 
@@ -241,7 +241,7 @@ namespace MediaNotes
 			}
 		}
 				
-		partial  void PreviousPhoto (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial  void PreviousPhoto (UIKit.UIBarButtonItem sender)
 		{
 			datasource.ProceedToPreviousItem ();
 			if (currentPhotoUrl != null) {
