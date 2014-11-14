@@ -1,12 +1,12 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using UIKit;
 
 namespace NSZombieApocalypse
 {
 	public class BodyPart : UIView
 	{
-		public BodyPart (RectangleF frame) : base (frame)
+		public BodyPart (CGRect frame) : base (frame)
 		{
 			BackgroundColor = UIColor.Clear;
 			ClipsToBounds = false;

@@ -1,6 +1,6 @@
 using System;
 using OpenTK;
-using MonoTouch.UIKit;
+using UIKit;
 using OpenTK.Graphics.ES20;
 
 namespace OpenGLES20Example

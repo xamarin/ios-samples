@@ -1,10 +1,10 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.OpenGLES;
+using Foundation;
+using UIKit;
+using OpenGLES;
 using OpenTK.Graphics.ES20;
-using MonoTouch.CoreAnimation;
-using MonoTouch.ObjCRuntime;
+using CoreAnimation;
+using ObjCRuntime;
 
 namespace PerVertexDirectionalLighting
 {
