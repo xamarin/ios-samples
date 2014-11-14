@@ -1,11 +1,11 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Net;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.SystemConfiguration;
-using MonoTouch.CoreFoundation;
+using CoreGraphics;
+using Foundation;
+using UIKit;
+using SystemConfiguration;
+using CoreFoundation;
 
 namespace reachability {
 	public partial class ReachabilityAppDelegate : UIApplicationDelegate {
@@ -33,7 +33,7 @@ namespace reachability {
 
 		void AddTable ()
 		{
-			RectangleF tableFrame = UIScreen.MainScreen.ApplicationFrame;
+			CGRect tableFrame = UIScreen.MainScreen.ApplicationFrame;
 	            
 			tableView = new UITableView (tableFrame, UITableViewStyle.Grouped) {
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
@@ -68,17 +68,17 @@ namespace reachability {
 				return null;
 			}
 
-			public override int RowsInSection (UITableView view, int section)
+			public override nint RowsInSection (UITableView view, nint section)
 			{
 				return 1;
 			}
 
-			public override int NumberOfSections (UITableView view)
+			public override nint NumberOfSections (UITableView view)
 			{
 				return 3;
 			}
 
-			public override string TitleForHeader (UITableView view, int section)
+			public override string TitleForHeader (UITableView view, nint section)
 			{
 				switch (section) {
 				case 0:

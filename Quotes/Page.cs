@@ -5,9 +5,9 @@ using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreText;
+using Foundation;
+using UIKit;
+using CoreText;
 
 namespace Quotes
 {
@@ -24,7 +24,7 @@ namespace Quotes
 		{
 			Title = title;
 			Paragraphs = paragraphs;
-			SelectedParagraph = NSRange.NotFound;
+			SelectedParagraph = (int) NSRange.NotFound;
 			LineHeight = 25.0f;
 		}
 

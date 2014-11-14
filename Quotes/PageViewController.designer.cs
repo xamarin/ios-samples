@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace Quotes
 {
@@ -15,16 +15,16 @@ namespace Quotes
 		Quotes.PageView pageView { get; set; }
 
 		[Action ("ParagraphSelected:")]
-		partial void ParagraphSelected (MonoTouch.UIKit.UILongPressGestureRecognizer sender);
+		partial void ParagraphSelected (UIKit.UILongPressGestureRecognizer sender);
 
 		[Action ("DrawingModeToggled:")]
-		partial void DrawingModeToggled (MonoTouch.UIKit.UISwipeGestureRecognizer sender);
+		partial void DrawingModeToggled (UIKit.UISwipeGestureRecognizer sender);
 
 		[Action ("MenuDismissed:")]
-		partial void MenuDismissed (MonoTouch.UIKit.UITapGestureRecognizer sender);
+		partial void MenuDismissed (UIKit.UITapGestureRecognizer sender);
 
 		[Action ("LineHeightChanged:")]
-		partial void LineHeightChanged (MonoTouch.UIKit.UISlider sender);
+		partial void LineHeightChanged (UIKit.UISlider sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
