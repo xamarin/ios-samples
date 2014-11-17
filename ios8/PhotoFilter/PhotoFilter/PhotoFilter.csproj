@@ -146,7 +146,6 @@
       <Project>{471A8DEB-36A3-4C68-BA97-59846C1A50C0}</Project>
       <Name>PhotoFilterExtension</Name>
       <IsAppExtension>True</IsAppExtension>
-      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
 </Project>
