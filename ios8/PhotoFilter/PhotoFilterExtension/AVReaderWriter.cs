@@ -142,11 +142,9 @@ namespace PhotoFilterExtension
 				return;
 
 			// Decompress to ARGB with the asset reader
-			// TODO: https://trello.com/c/Kvzxo86W. Set kCVPixelBufferIOSurfacePropertiesKey to empty dictionary
-			//														(id)kCVPixelBufferIOSurfacePropertiesKey : @{}
 			var decompSettings = new AVVideoSettingsUncompressed {
 				PixelFormatType = CVPixelFormatType.CV32BGRA,
-				AllocateWithIOSurface = true
+				AllocateWithIOSurface = null
 			};
 			AVAssetReaderOutput output = new AVAssetReaderTrackOutput(videoTrack, decompSettings);
 			_assetReader.AddOutput (output);
