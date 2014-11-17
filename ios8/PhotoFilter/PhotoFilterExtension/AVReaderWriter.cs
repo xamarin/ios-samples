@@ -10,6 +10,7 @@ using Foundation;
 using CoreMedia;
 using CoreVideo;
 using CoreFoundation;
+using CoreGraphics;
 
 namespace PhotoFilterExtension
 {
@@ -135,8 +136,6 @@ namespace PhotoFilterExtension
 
 		private void SetupAssetReaserWriterForVideo (AVAssetTrack videoTrack)
 		{
-			throw new NotImplementedException("64 bit");
-			/*
 			if (videoTrack == null)
 				return;
 
@@ -149,11 +148,10 @@ namespace PhotoFilterExtension
 			assetReader.AddOutput (output);
 
 			// Get the format description of the track, to fill in attributes of the video stream that we don't want to change
-			CMFormatDescription formatDescription = videoTrack.FormatDescriptions.FirstOrDefault ();
-
+			var formatDescription = (CMVideoFormatDescription)videoTrack.FormatDescriptions.FirstOrDefault ();
 			// Grab track dimensions from format description
-			SizeF trackDimensions = formatDescription != null
-				? formatDescription.GetVideoPresentationDimensions (false, false)
+			CGSize trackDimensions = formatDescription != null
+				? formatDescription.GetPresentationDimensions(false, false)
 				: videoTrack.NaturalSize;
 
 			// Grab clean aperture, pixel aspect ratio from format description
@@ -171,14 +169,13 @@ namespace PhotoFilterExtension
 				Height = (int)trackDimensions.Height,
 				CodecSettings = compressionSettings
 			};
-			AVAssetWriterInput input = AVAssetWriterInput.FromType (videoTrack.MediaType, videoSettings.Dictionary);
+			AVAssetWriterInput input = new AVAssetWriterInput (videoTrack.MediaType, videoSettings);
 			input.Transform = videoTrack.PreferredTransform;
 			assetWriter.AddInput (input);
 
 			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
 			videoSampleBufferChannel = new ReadWriteSampleBufferChannel (output, input, true);
-			*/
 		}
 
 		private AVVideoCodecSettings CreateCodecSettingsFor(NSDictionary cleanAperture, NSDictionary aspectRatio)
