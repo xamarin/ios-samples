@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreMedia;
-using MonoTouch.Foundation;
+using AVFoundation;
+using CoreMedia;
+using Foundation;
 
 
 namespace AVCustomEdit

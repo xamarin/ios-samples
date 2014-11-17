@@ -1,12 +1,12 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreVideo;
-using MonoTouch.CoreMedia;
-using MonoTouch.CoreGraphics;
+using Foundation;
+using AVFoundation;
+using CoreFoundation;
+using CoreVideo;
+using CoreMedia;
+using CoreGraphics;
 
 namespace AVCustomEdit
 {
@@ -148,7 +148,7 @@ namespace AVCustomEdit
 
 			if (renderContextDidChange) {
 				var renderSize = renderContext.Size;
-				var destinationSize = new SizeF (dstPixels.Width, dstPixels.Height);
+				var destinationSize = new CGSize (dstPixels.Width, dstPixels.Height);
 				var renderContextTransform = new CGAffineTransform (renderSize.Width / 2, 0, 0, renderSize.Height / 2, renderSize.Width / 2, renderSize.Height / 2);
 				var destinationTransform = new CGAffineTransform (2 / destinationSize.Width, 0, 0, 2 / destinationSize.Height, -1, -1);
 				var normalizedRenderTransform = CGAffineTransform.Multiply( CGAffineTransform.Multiply(renderContextTransform, renderContext.RenderTransform), destinationTransform);

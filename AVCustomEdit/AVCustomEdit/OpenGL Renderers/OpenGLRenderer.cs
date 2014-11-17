@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.OpenGLES;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreVideo;
+using Foundation;
+using OpenGLES;
+using CoreGraphics;
+using CoreVideo;
 using OpenTK.Graphics.ES20;
 
 namespace AVCustomEdit
@@ -65,7 +65,7 @@ namespace AVCustomEdit
 
 			// CVOpenGLTextureCacheCreateTextureFromImage will create GL texture optimally from CVPixelBufferRef.
 			// UV
-			lumaTexture = VideoTextureCache.TextureFromImage (pixelBuffer, true, All.RedExt, pixelBuffer.Width, pixelBuffer.Height, All.RedExt, DataType.UnsignedByte, 0, out err);
+			lumaTexture = VideoTextureCache.TextureFromImage (pixelBuffer, true, All.RedExt, (int)pixelBuffer.Width,(int) pixelBuffer.Height, All.RedExt, DataType.UnsignedByte, 0, out err);
 			if (lumaTexture == null || err != CVReturn.Success)
 				Console.Error.WriteLine ("Error at creating luma texture using CVOpenGLESTextureCacheCreateTextureFromImage: " + err.ToString ());
 
@@ -87,7 +87,7 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 	// UV
 	var height = pixelBuffer.GetHeightOfPlane (1);
 	var width = pixelBuffer.GetWidthOfPlane (1);
-	chromaTexture = VideoTextureCache.TextureFromImage (pixelBuffer, true, All.RgExt, width, height, All.RgExt, DataType.UnsignedByte, 1, out err);
+			chromaTexture = VideoTextureCache.TextureFromImage (pixelBuffer, true, All.RgExt, (int)width, (int)height, All.RgExt, DataType.UnsignedByte, 1, out err);
 
 	if (chromaTexture == null || err != CVReturn.Success)
 		Console.Error.WriteLine ("Error at creating chroma texture using CVOpenGLESTextureCacheCreateTextureFromImage: " + err.ToString ());
@@ -97,7 +97,7 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 
 		public virtual void RenderPixelBuffer(CVPixelBuffer destinationPixelBuffer, CVPixelBuffer foregroundPixelBuffer, CVPixelBuffer backgroundPixelBuffer, float tween)
 		{
-			DoesNotRecognizeSelector (new MonoTouch.ObjCRuntime.Selector ("_cmd"));
+			DoesNotRecognizeSelector (new ObjCRuntime.Selector ("_cmd"));
 		}
 
 		public void SetupOffScreenRenderContext()

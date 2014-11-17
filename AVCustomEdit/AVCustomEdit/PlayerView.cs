@@ -2,10 +2,10 @@
 
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AVFoundation;
-using MonoTouch.ObjCRuntime;
+using Foundation;
+using UIKit;
+using AVFoundation;
+using ObjCRuntime;
 
 namespace AVCustomEdit
 {

@@ -3,14 +3,14 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreMedia;
+using Foundation;
+using UIKit;
+using AVFoundation;
+using CoreFoundation;
+using CoreMedia;
 using System.Threading.Tasks;
 using System.IO;
-using MonoTouch.AssetsLibrary;
+using AssetsLibrary;
 
 namespace AVCustomEdit
 {
@@ -290,7 +290,7 @@ namespace AVCustomEdit
 			double duration = playerItemDuration;
 
 			if (!Double.IsInfinity (duration)) {
-				float width = scrubber.Bounds.Width;
+				float width = (float)scrubber.Bounds.Width;
 				double interval = 0.5 * duration / width;
 
 				if (interval > 1.0)
@@ -503,7 +503,7 @@ namespace AVCustomEdit
 				});
 			});
 
-			progressTimer = NSTimer.CreateRepeatingTimer (0.5, () => updateProgress (progressTimer));
+			progressTimer = NSTimer.CreateRepeatingTimer (0.5, (d) => updateProgress (progressTimer));
 			NSRunLoop.Current.AddTimer (progressTimer, NSRunLoopMode.Default);
 		}
 

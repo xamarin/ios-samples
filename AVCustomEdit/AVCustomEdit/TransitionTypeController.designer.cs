@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace AVCustomEdit
@@ -13,16 +13,16 @@ namespace AVCustomEdit
 	partial class TransitionTypeController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UITableViewCell crossDissolveCell { get; set; }
+		UIKit.UITableViewCell crossDissolveCell { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITableViewCell diagonalWipeCell { get; set; }
+		UIKit.UITableViewCell diagonalWipeCell { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITableView tableView { get; set; }
+		UIKit.UITableView tableView { get; set; }
 
 		[Action ("TransitionSelected:")]
-		partial void TransitionSelected (MonoTouch.Foundation.NSObject sender);
+		partial void TransitionSelected (Foundation.NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

@@ -1,6 +1,6 @@
-﻿using System;
-using System.Drawing;
-using MonoTouch.OpenGLES;
+using System;
+using CoreGraphics;
+using OpenGLES;
 using OpenTK.Graphics.ES20;
 
 namespace AVCustomEdit
@@ -10,7 +10,7 @@ namespace AVCustomEdit
 		const int ForegroundTrack = 0;
 		const int BackgroundTrack = 1;
 
-		PointF diagonalEnd1,
+		CGPoint diagonalEnd1,
 			diagonalEnd2;
 
 		public DiagonalWipeRenderer () : base ()
@@ -35,26 +35,26 @@ namespace AVCustomEdit
 			 */
 
 			if (tween <= 0.5f) { // The expectation here is that in half the timeRange of the transition we reach the diagonal of the frame
-				diagonalEnd1 = new PointF (1f - tween * 4f, -1f);
-				diagonalEnd2 = new PointF (1f, -1f + tween * 4f);
+				diagonalEnd1 = new CGPoint (1f - tween * 4f, -1f);
+				diagonalEnd2 = new CGPoint (1f, -1f + tween * 4f);
 
-				vertexCoordinates [6] = diagonalEnd2.X;
-				vertexCoordinates [7] = diagonalEnd2.Y;
-				vertexCoordinates [8] = diagonalEnd1.X;
-				vertexCoordinates [9] = diagonalEnd1.Y;
+				vertexCoordinates [6] = (float)diagonalEnd2.X;
+				vertexCoordinates [7] = (float)diagonalEnd2.Y;
+				vertexCoordinates [8] = (float)diagonalEnd1.X;
+				vertexCoordinates [9] = (float)diagonalEnd1.Y;
 			} else if (tween > 0.5f && tween < 1f) {
 				if (trackID == ForegroundTrack) {
-					diagonalEnd1 = new PointF (-1f, -1 + (tween - 0.5f) * 4f);
-					diagonalEnd2 = new PointF (1f - (tween - 0.5f) * 4f, 1f);
+					diagonalEnd1 = new CGPoint (-1f, -1 + (tween - 0.5f) * 4f);
+					diagonalEnd2 = new CGPoint (1f - (tween - 0.5f) * 4f, 1f);
 
-					vertexCoordinates [2] = diagonalEnd2.X;
-					vertexCoordinates [3] = diagonalEnd2.Y;
-					vertexCoordinates [4] = diagonalEnd1.X;
-					vertexCoordinates [5] = diagonalEnd1.Y;
-					vertexCoordinates [6] = diagonalEnd1.X;
-					vertexCoordinates [7] = diagonalEnd1.Y;
-					vertexCoordinates [8] = diagonalEnd1.X;
-					vertexCoordinates [9] = diagonalEnd1.Y;
+					vertexCoordinates [2] = (float)diagonalEnd2.X;
+					vertexCoordinates [3] = (float)diagonalEnd2.Y;
+					vertexCoordinates [4] = (float)diagonalEnd1.X;
+					vertexCoordinates [5] = (float)diagonalEnd1.Y;
+					vertexCoordinates [6] = (float)diagonalEnd1.X;
+					vertexCoordinates [7] = (float)diagonalEnd1.Y;
+					vertexCoordinates [8] = (float)diagonalEnd1.X;
+					vertexCoordinates [9] = (float)diagonalEnd1.Y;
 				} else if (trackID == BackgroundTrack) {
 					vertexCoordinates [4] = 1f;
 					vertexCoordinates [5] = 1f;
@@ -62,12 +62,12 @@ namespace AVCustomEdit
 					vertexCoordinates [7] = -1f;
 				}
 			} else if (tween >= 1f) {
-				diagonalEnd1 = new PointF (1f, -1f);
-				diagonalEnd2 = new PointF (1f, -1f);
+				diagonalEnd1 = new CGPoint (1f, -1f);
+				diagonalEnd2 = new CGPoint (1f, -1f);
 			}
 		}
 
-		public override void RenderPixelBuffer (MonoTouch.CoreVideo.CVPixelBuffer destinationPixelBuffer, MonoTouch.CoreVideo.CVPixelBuffer foregroundPixelBuffer, MonoTouch.CoreVideo.CVPixelBuffer backgroundPixelBuffer, float tween)
+		public override void RenderPixelBuffer (CoreVideo.CVPixelBuffer destinationPixelBuffer, CoreVideo.CVPixelBuffer foregroundPixelBuffer, CoreVideo.CVPixelBuffer backgroundPixelBuffer, float tween)
 		{
 			EAGLContext.SetCurrentContext (CurrentContext);
 
@@ -87,8 +87,8 @@ namespace AVCustomEdit
 
 			// Set the render transformq
 			float[] preferredRenderTransform = {
-				RenderTransform.xx, RenderTransform.xy, RenderTransform.x0, 0.0f,
-				RenderTransform.yx, RenderTransform.yy, RenderTransform.y0, 0.0f,
+				(float)RenderTransform.xx,(float) RenderTransform.xy, (float)RenderTransform.x0, 0.0f,
+				(float)RenderTransform.yx, (float)RenderTransform.yy, (float)RenderTransform.y0, 0.0f,
 				0.0f, 				0.0f, 				1.0f, 				0.0f,
 				0.0f,				0.0f,				0.0f,				1.0f
 			};
@@ -97,7 +97,7 @@ namespace AVCustomEdit
 
 			GL.BindFramebuffer (FramebufferTarget.Framebuffer, (int)OffscreenBufferHandle);
 
-			GL.Viewport (0, 0, destinationPixelBuffer.GetWidthOfPlane (0), destinationPixelBuffer.GetHeightOfPlane (0));
+			GL.Viewport (0, 0, (int)destinationPixelBuffer.GetWidthOfPlane (0), (int)destinationPixelBuffer.GetHeightOfPlane (0));
 
 			// Y planes of foreground and background frame are used to render the Y plane of the destination frame
 			GL.ActiveTexture (TextureUnit.Texture0);
@@ -129,7 +129,7 @@ namespace AVCustomEdit
 				destChromaTexture.Dispose ();
 
 				// Periodic texture cache flush every frame
-				VideoTextureCache.Flush (MonoTouch.CoreVideo.CVOptionFlags.None);
+				VideoTextureCache.Flush (CoreVideo.CVOptionFlags.None);
 
 				EAGLContext.SetCurrentContext (null);
 			}
@@ -167,8 +167,8 @@ namespace AVCustomEdit
 			GL.DrawArrays (BeginMode.TriangleStrip, 0, 5);
 
 			float[] quadVertexData2 = {
-				diagonalEnd2.X, diagonalEnd2.Y,
-				diagonalEnd1.X, diagonalEnd1.Y,
+				(float)diagonalEnd2.X, (float)diagonalEnd2.Y,
+				(float)diagonalEnd1.X, (float)diagonalEnd1.Y,
 				1.0f, -1.0f,
 				1.0f, -1.0f,
 				1.0f, -1.0f,
@@ -215,7 +215,7 @@ namespace AVCustomEdit
 			GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)All.ClampToEdge);
 			GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)All.ClampToEdge);
 
-			GL.Viewport (0, 0, destinationPixelBuffer.GetWidthOfPlane (1), destinationPixelBuffer.GetHeightOfPlane (1));
+			GL.Viewport (0, 0,(int) destinationPixelBuffer.GetWidthOfPlane (1), (int)destinationPixelBuffer.GetHeightOfPlane (1));
 
 			// Attach the destination texture as a color attachment to the off screen frame buffer
 			GL.FramebufferTexture2D (FramebufferTarget.Framebuffer, FramebufferSlot.ColorAttachment0, destChromaTexture.Target,
@@ -233,7 +233,7 @@ namespace AVCustomEdit
 				destChromaTexture.Dispose ();
 
 				// Periodic texture cache flush every frame
-				VideoTextureCache.Flush (MonoTouch.CoreVideo.CVOptionFlags.None);
+				VideoTextureCache.Flush (CoreVideo.CVOptionFlags.None);
 
 				EAGLContext.SetCurrentContext (null);
 			}
@@ -271,7 +271,7 @@ namespace AVCustomEdit
 			destChromaTexture.Dispose ();
 
 			// Periodic texture cache flush every frame
-			VideoTextureCache.Flush (MonoTouch.CoreVideo.CVOptionFlags.None);
+			VideoTextureCache.Flush (CoreVideo.CVOptionFlags.None);
 
 			EAGLContext.SetCurrentContext (null);
 		}

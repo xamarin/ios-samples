@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.CoreMedia;
-using MonoTouch.AVFoundation;
+using Foundation;
+using CoreMedia;
+using AVFoundation;
 
 namespace AVCustomEdit
 {
@@ -220,9 +220,9 @@ namespace AVCustomEdit
 			//Set CustomVideoCompositorClass based on the Compositor user selected.
 
 			if (TransitionType == TransitionTypeController.DiagonalWipeTransition) {
-				videoComposition.CustomVideoCompositorClass = new MonoTouch.ObjCRuntime.Class (typeof(DiagonalWipeCompositor));
+				videoComposition.CustomVideoCompositorClass = new ObjCRuntime.Class (typeof(DiagonalWipeCompositor));
 			} else {
-				videoComposition.CustomVideoCompositorClass = new MonoTouch.ObjCRuntime.Class (typeof(CrossDissolveCompositor));
+				videoComposition.CustomVideoCompositorClass = new ObjCRuntime.Class (typeof(CrossDissolveCompositor));
 			}
 
 			buildTransitionComposition (composition, videoComposition);
