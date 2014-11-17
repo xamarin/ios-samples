@@ -146,7 +146,7 @@ namespace PhotoFilterExtension
 				AllocateWithIOSurface = null
 			};
 			AVAssetReaderOutput output = new AVAssetReaderTrackOutput(videoTrack, decompSettings);
-			_assetReader.AddOutput (output);
+			assetReader.AddOutput (output);
 
 			// Get the format description of the track, to fill in attributes of the video stream that we don't want to change
 			CMFormatDescription formatDescription = videoTrack.FormatDescriptions.FirstOrDefault ();
@@ -173,11 +173,11 @@ namespace PhotoFilterExtension
 			};
 			AVAssetWriterInput input = AVAssetWriterInput.FromType (videoTrack.MediaType, videoSettings.Dictionary);
 			input.Transform = videoTrack.PreferredTransform;
-			_assetWriter.AddInput (input);
+			assetWriter.AddInput (input);
 
 			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
-			_videoSampleBufferChannel = new ReadWriteSampleBufferChannel (output, input, true);
+			videoSampleBufferChannel = new ReadWriteSampleBufferChannel (output, input, true);
 			*/
 		}
 
