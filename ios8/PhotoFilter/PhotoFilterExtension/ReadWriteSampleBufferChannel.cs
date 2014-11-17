@@ -11,14 +11,14 @@ namespace PhotoFilterExtension
 {
 	public class ReadWriteSampleBufferChannel
 	{
-		private bool _useAdaptor;
-		private bool _finished;
-		private AVAssetWriterInput _assetWriterInput;
-		private AVAssetReaderOutput _assetReaderOutput;
-		private AVAssetWriterInputPixelBufferAdaptor _adaptor;
-		private DispatchQueue _serializationQueue;
+		bool _useAdaptor;
+		bool _finished;
+		AVAssetWriterInput _assetWriterInput;
+		AVAssetReaderOutput _assetReaderOutput;
+		AVAssetWriterInputPixelBufferAdaptor _adaptor;
+		DispatchQueue _serializationQueue;
 
-		private TaskCompletionSource<object> _completionSource;
+		TaskCompletionSource<object> _completionSource;
 
 		public ReadWriteSampleBufferChannel (AVAssetReaderOutput localAssetReaderOutput,
 			AVAssetWriterInput localAssetWriterInput,

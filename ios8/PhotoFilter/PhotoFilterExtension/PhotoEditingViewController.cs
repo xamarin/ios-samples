@@ -18,21 +18,21 @@ namespace PhotoFilterExtension
 {
 	public partial class PhotoEditingViewController : UIViewController, IPHContentEditingController, IUICollectionViewDelegate, IUICollectionViewDataSource
 	{
-		private const string kFilterInfoFilterNameKey = "filterName";
-		private const string kFilterInfoDisplayNameKey = "displayName";
-		private const string kFilterInfoPreviewImageKey = "previewImage";
+		const string kFilterInfoFilterNameKey = "filterName";
+		const string kFilterInfoDisplayNameKey = "displayName";
+		const string kFilterInfoPreviewImageKey = "previewImage";
 
-		private static readonly NSString PhotoFilterReuseId = new NSString ("PhotoFilterCell");
+		static readonly NSString PhotoFilterReuseId = new NSString ("PhotoFilterCell");
 
-		private PHContentEditingInput contentEditingInput;
+		PHContentEditingInput contentEditingInput;
 
-		private FilterInfo[] availableFilterInfos;
-		private string selectedFilterName;
-		private string initialFilterName;
+		FilterInfo[] availableFilterInfos;
+		string selectedFilterName;
+		string initialFilterName;
 
-		private UIImage inputImage;
-		private CIFilter ciFilter;
-		private CIContext ciContext;
+		UIImage inputImage;
+		CIFilter ciFilter;
+		CIContext ciContext;
 
 		public PhotoEditingViewController (IntPtr handle) : base (handle)
 		{

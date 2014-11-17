@@ -18,20 +18,19 @@ namespace PhotoFilterExtension
 		// In production – your should extract interface from PhotoEditingViewController (ex IAVReaderWriterDelegate)
 		public PhotoEditingViewController Delegate { get; set; }
 
-		private AVAsset asset;
-		private CMTimeRange timeRange;
-		private NSUrl outputURL;
+		AVAsset asset;
+		CMTimeRange timeRange;
+		NSUrl outputURL;
 
-		private Action<float>    progressProc;
-		private Action<NSError>  completionProc;
+		Action<float> progressProc;
+		Action<NSError> completionProc;
 
 		CancellationTokenSource cancellationTokenSrc;
 
-		private AVAssetReader assetReader;
-		private AVAssetWriter assetWriter;
-		private ReadWriteSampleBufferChannel audioSampleBufferChannel;
-		private ReadWriteSampleBufferChannel videoSampleBufferChannel;
-
+		AVAssetReader assetReader;
+		AVAssetWriter assetWriter;
+		ReadWriteSampleBufferChannel audioSampleBufferChannel;
+		ReadWriteSampleBufferChannel videoSampleBufferChannel;
 
 		public AVReaderWriter (AVAsset asset)
 		{

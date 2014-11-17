@@ -7,9 +7,9 @@ namespace PhotoFilterExtension
 {
 	public class FilterInfo
 	{
-		private const string filterNameKey = "filterName";
-		private const string displayNameKey = "displayName";
-		private const string previewImageKey = "previewImage";
+		const string filterNameKey = "filterName";
+		const string displayNameKey = "displayName";
+		const string previewImageKey = "previewImage";
 
 		public string FilterName { get; set; }
 		public string DisplayName { get; set; }
@@ -26,9 +26,9 @@ namespace PhotoFilterExtension
 
 		public void FillFrom(NSDictionary storage)
 		{
-			FilterName = (string)(NSString)storage [filterNameKey];
-			DisplayName = (string)(NSString)storage [displayNameKey];
-			PreviewImage = (string)(NSString)storage [previewImageKey];
+			FilterName = (NSString)storage [filterNameKey];
+			DisplayName = (NSString)storage [displayNameKey];
+			PreviewImage = (NSString)storage [previewImageKey];
 		}
 	}
 }
