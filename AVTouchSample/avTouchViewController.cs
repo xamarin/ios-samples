@@ -2,9 +2,9 @@
 using System;
 using System.IO;
 using System.Collections;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.AVFoundation;
+using UIKit;
+using Foundation;
+using AVFoundation;
 
 namespace avTouch
 {
