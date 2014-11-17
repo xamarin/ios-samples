@@ -6,7 +6,7 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{EE2C853D-36AF-4FDB-B1AD-8E90477E2198};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{471A8DEB-36A3-4C68-BA97-59846C1A50C0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>PhotoFilter</RootNamespace>
+    <RootNamespace>PhotoFilterExtension</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -57,12 +57,11 @@
     <MtouchProfiling>true</MtouchProfiling>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <AssemblyName>TmpPhotoEditingExt</AssemblyName>
+    <AssemblyName>PhotoFilterExtension</AssemblyName>
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
-    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -71,7 +70,7 @@
     <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <AssemblyName>TmpPhotoEditingExt</AssemblyName>
+    <AssemblyName>PhotoFilterExtension</AssemblyName>
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>
@@ -87,7 +86,7 @@
     <BuildIpa>true</BuildIpa>
     <CodesignProvision>Automatic:AdHoc</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
-    <AssemblyName>TmpPhotoEditingExt</AssemblyName>
+    <AssemblyName>PhotoFilterExtension</AssemblyName>
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>
@@ -102,7 +101,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
-    <AssemblyName>TmpPhotoEditingExt</AssemblyName>
+    <AssemblyName>PhotoFilterExtension</AssemblyName>
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>
