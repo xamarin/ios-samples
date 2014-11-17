@@ -18,41 +18,41 @@ namespace PhotoFilterExtension
 		// In production – your should extract interface from PhotoEditingViewController (ex IAVReaderWriterDelegate)
 		public PhotoEditingViewController Delegate { get; set; }
 
-		private AVAsset _asset;
-		private CMTimeRange _timeRange;
-		private NSUrl _outputURL;
+		private AVAsset asset;
+		private CMTimeRange timeRange;
+		private NSUrl outputURL;
 
-		private Action<float>    _progressProc;
-		private Action<NSError>  _completionProc;
+		private Action<float>    progressProc;
+		private Action<NSError>  completionProc;
 
-		CancellationTokenSource _cancellationTokenSrc;
+		CancellationTokenSource cancellationTokenSrc;
 
-		private AVAssetReader _assetReader;
-		private AVAssetWriter _assetWriter;
-		private ReadWriteSampleBufferChannel _audioSampleBufferChannel;
-		private ReadWriteSampleBufferChannel _videoSampleBufferChannel;
+		private AVAssetReader assetReader;
+		private AVAssetWriter assetWriter;
+		private ReadWriteSampleBufferChannel audioSampleBufferChannel;
+		private ReadWriteSampleBufferChannel videoSampleBufferChannel;
 
 
 		public AVReaderWriter (AVAsset asset)
 		{
-			_asset = asset;
-			_cancellationTokenSrc = new CancellationTokenSource ();
+			this.asset = asset;
+			cancellationTokenSrc = new CancellationTokenSource ();
 		}
 
 		public void WriteToUrl(NSUrl localOutputURL, Action<float> progress, Action<NSError> completion)
 		{
-			_outputURL = localOutputURL;
+			outputURL = localOutputURL;
 
-			AVAsset localAsset = _asset;
+			AVAsset localAsset = asset;
 
-			_completionProc = completion;
-			_progressProc = progress;
+			completionProc = completion;
+			progressProc = progress;
 
 			// Dispatch the setup work with _cancellationTokenSrc, to ensure this work can be cancelled
 			localAsset.LoadValuesTaskAsync (new string[] { "tracks", "duration" }).ContinueWith(_ => {
 				// Since we are doing these things asynchronously, the user may have already cancelled on the main thread.
 				// In that case, simply return from this block
-				_cancellationTokenSrc.Token.ThrowIfCancellationRequested();
+				cancellationTokenSrc.Token.ThrowIfCancellationRequested();
 
 				bool success = true;
 				NSError localError = null;
@@ -63,7 +63,7 @@ namespace PhotoFilterExtension
 				if(!success)
 					throw new NSErrorException(localError);
 
-				_timeRange = new CMTimeRange {
+				timeRange = new CMTimeRange {
 					Start = CMTime.Zero,
 					Duration = localAsset.Duration
 				};
@@ -77,7 +77,7 @@ namespace PhotoFilterExtension
 				StartReadingAndWriting();
 
 				return localError;
-			}, _cancellationTokenSrc.Token).ContinueWith(prevTask => {
+			}, cancellationTokenSrc.Token).ContinueWith(prevTask => {
 				switch(prevTask.Status) {
 					case TaskStatus.Canceled:
 						ReadingAndWritingDidFinish(false, null);
@@ -95,17 +95,17 @@ namespace PhotoFilterExtension
 
 		private void SetupReaderAndWriter()
 		{
-			AVAsset localAsset = _asset;
-			NSUrl localOutputURL = _outputURL;
+			AVAsset localAsset = asset;
+			NSUrl localOutputURL = outputURL;
 			NSError error = null;
 
 			// Create asset reader and asset writer
-			_assetReader = new AVAssetReader (localAsset, out error);
-			if (_assetReader == null)
+			assetReader = new AVAssetReader (localAsset, out error);
+			if (assetReader == null)
 				throw new NSErrorException(error);
 
-			_assetWriter = new AVAssetWriter (localOutputURL, AVFileType.QuickTimeMovie, out error);
-			if (_assetWriter == null)
+			assetWriter = new AVAssetWriter (localOutputURL, AVFileType.QuickTimeMovie, out error);
+			if (assetWriter == null)
 				throw new NSErrorException(error);
 
 			// Create asset reader outputs and asset writer inputs for the first audio track and first video track of the asset
@@ -124,14 +124,14 @@ namespace PhotoFilterExtension
 
 			// Decompress to Linear PCM with the asset reader
 			AVAssetReaderOutput output = AVAssetReaderTrackOutput.Create (audioTrack, (AudioSettings)null);
-			_assetReader.AddOutput (output);
+			assetReader.AddOutput (output);
 
 			AVAssetWriterInput input = AVAssetWriterInput.Create (audioTrack.MediaType, (AudioSettings)null);
-			_assetWriter.AddInput (input);
+			assetWriter.AddInput (input);
 
 			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
-			_audioSampleBufferChannel = new ReadWriteSampleBufferChannel (output, input, false);
+			audioSampleBufferChannel = new ReadWriteSampleBufferChannel (output, input, false);
 		}
 
 		private void SetupAssetReaserWriterForVideo (AVAssetTrack videoTrack)
@@ -199,35 +199,35 @@ namespace PhotoFilterExtension
 		private void StartReadingAndWriting()
 		{
 			// Instruct the asset reader and asset writer to get ready to do work
-			if (!_assetReader.StartReading ())
-				throw new NSErrorException (_assetReader.Error);
+			if (!assetReader.StartReading ())
+				throw new NSErrorException (assetReader.Error);
 
-			if (!_assetWriter.StartWriting())
-				throw new NSErrorException (_assetWriter.Error);
+			if (!assetWriter.StartWriting())
+				throw new NSErrorException (assetWriter.Error);
 
 			// Start a sample-writing session
-			_assetWriter.StartSessionAtSourceTime (_timeRange.Start);
+			assetWriter.StartSessionAtSourceTime (timeRange.Start);
 
 			// Only set audio handler(obj-c delegate) for audio-only assets, else let the video channel drive progress
-			AVReaderWriter audioHandler = _videoSampleBufferChannel == null ? this : null;
-			var audioTask = StartReadingAsync (_audioSampleBufferChannel, audioHandler);
-			var videoTask = StartReadingAsync (_videoSampleBufferChannel, this);
+			AVReaderWriter audioHandler = videoSampleBufferChannel == null ? this : null;
+			var audioTask = StartReadingAsync (audioSampleBufferChannel, audioHandler);
+			var videoTask = StartReadingAsync (videoSampleBufferChannel, this);
 
 			// Set up a callback for when the sample writing is finished
 			Task.WhenAll (audioTask, videoTask).ContinueWith (_ => {
-				if (_cancellationTokenSrc.Token.IsCancellationRequested) {
-					_assetReader.CancelReading ();
-					_assetWriter.CancelWriting ();
+				if (cancellationTokenSrc.Token.IsCancellationRequested) {
+					assetReader.CancelReading ();
+					assetWriter.CancelWriting ();
 					throw new OperationCanceledException();
 				}
 
-				if (_assetReader.Status != AVAssetReaderStatus.Failed) {
-					_assetWriter.FinishWriting (() => {
-						bool success = _assetWriter.Status == AVAssetWriterStatus.Completed;
-						ReadingAndWritingDidFinish (success, _assetWriter.Error);
+				if (assetReader.Status != AVAssetReaderStatus.Failed) {
+					assetWriter.FinishWriting (() => {
+						bool success = assetWriter.Status == AVAssetWriterStatus.Completed;
+						ReadingAndWritingDidFinish (success, assetWriter.Error);
 					});
 				}
-			}, _cancellationTokenSrc.Token);
+			}, cancellationTokenSrc.Token);
 		}
 
 		// TODO: where called in original sample
@@ -249,29 +249,29 @@ namespace PhotoFilterExtension
 		{
 			if (!success)
 			{
-				_assetReader.CancelReading ();
-				_assetWriter.CancelWriting ();
+				assetReader.CancelReading ();
+				assetWriter.CancelWriting ();
 			}
 
 			// Tear down ivars
-			_assetReader.Dispose ();
-			_assetReader = null;
+			assetReader.Dispose ();
+			assetReader = null;
 
-			_assetWriter.Dispose ();
-			_assetWriter = null;
+			assetWriter.Dispose ();
+			assetWriter = null;
 
-			_audioSampleBufferChannel = null;
-			_videoSampleBufferChannel = null;
-			_cancellationTokenSrc = null;
+			audioSampleBufferChannel = null;
+			videoSampleBufferChannel = null;
+			cancellationTokenSrc = null;
 
-			_completionProc(error);
+			completionProc(error);
 		}
 
 		public void DidReadSampleBuffer (ReadWriteSampleBufferChannel sampleBufferChannel, CMSampleBuffer sampleBuffer)
 		{
 			// Calculate progress (scale of 0.0 to 1.0)
-			double progress = AVReaderWriter.ProgressOfSampleBufferInTimeRange(sampleBuffer, _timeRange);
-			_progressProc((float)progress * 100);
+			double progress = AVReaderWriter.ProgressOfSampleBufferInTimeRange(sampleBuffer, timeRange);
+			progressProc((float)progress * 100);
 
 			// Grab the pixel buffer from the sample buffer, if possible
 			CVImageBuffer imageBuffer = sampleBuffer.GetImageBuffer ();
@@ -286,8 +286,8 @@ namespace PhotoFilterExtension
 			CVPixelBuffer sampleBufferForWrite)
 		{
 			// Calculate progress (scale of 0.0 to 1.0)
-			double progress = AVReaderWriter.ProgressOfSampleBufferInTimeRange(sampleBuffer, _timeRange);
-			_progressProc((float)progress * 100);
+			double progress = AVReaderWriter.ProgressOfSampleBufferInTimeRange(sampleBuffer, timeRange);
+			progressProc((float)progress * 100);
 
 			// Grab the pixel buffer from the sample buffer, if possible
 			CVImageBuffer imageBuffer = sampleBuffer.GetImageBuffer ();
