@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.CoreMedia;
-using MonoTouch.AVFoundation;
-using System.Drawing;
+using Foundation;
+using CoreMedia;
+using AVFoundation;
+using CoreGraphics;
 
 namespace AVCompositionDebugVieweriOS
 {
@@ -181,7 +181,7 @@ namespace AVCompositionDebugVieweriOS
 				return;
 			}
 
-			SizeF videoSize = Clips [0].NaturalSize;
+			CGSize videoSize = Clips [0].NaturalSize;
 			var composition1 = AVMutableComposition.Create ();
 			var videoComposition1 = AVMutableVideoComposition.Create ();
 			var audioMix = AVMutableAudioMix.Create ();

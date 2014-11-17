@@ -6,8 +6,8 @@
 //
 using System.CodeDom.Compiler;
 
-using MonoTouch.AVFoundation;
-using MonoTouch.Foundation;
+using AVFoundation;
+using Foundation;
 
 namespace AVCompositionDebugVieweriOS
 {
