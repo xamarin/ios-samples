@@ -48,7 +48,7 @@ namespace PhotoFilterExtension
 			completionProc = completion;
 			progressProc = progress;
 
-			// Dispatch the setup work with _cancellationTokenSrc, to ensure this work can be cancelled
+			// Dispatch the setup work with cancellationTokenSrc, to ensure this work can be cancelled
 			localAsset.LoadValuesTaskAsync (new string[] { "tracks", "duration" }).ContinueWith(_ => {
 				// Since we are doing these things asynchronously, the user may have already cancelled on the main thread.
 				// In that case, simply return from this block
@@ -204,7 +204,7 @@ namespace PhotoFilterExtension
 			// Start a sample-writing session
 			assetWriter.StartSessionAtSourceTime (timeRange.Start);
 
-			// Only set audio handler(obj-c delegate) for audio-only assets, else let the video channel drive progress
+			// Only set audio handler for audio-only assets, else let the video channel drive progress
 			AVReaderWriter audioHandler = videoSampleBufferChannel == null ? this : null;
 			var audioTask = StartReadingAsync (audioSampleBufferChannel, audioHandler);
 			var videoTask = StartReadingAsync (videoSampleBufferChannel, this);

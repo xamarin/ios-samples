@@ -11,12 +11,12 @@ namespace PhotoFilterExtension
 {
 	public class ReadWriteSampleBufferChannel
 	{
-		bool _useAdaptor;
-		bool _finished;
-		AVAssetWriterInput _assetWriterInput;
-		AVAssetReaderOutput _assetReaderOutput;
-		AVAssetWriterInputPixelBufferAdaptor _adaptor;
-		DispatchQueue _serializationQueue;
+		bool useAdaptor;
+		bool finished;
+		AVAssetWriterInput assetWriterInput;
+		AVAssetReaderOutput assetReaderOutput;
+		AVAssetWriterInputPixelBufferAdaptor adaptor;
+		DispatchQueue serializationQueue;
 
 		TaskCompletionSource<object> _completionSource;
 
@@ -24,28 +24,28 @@ namespace PhotoFilterExtension
 			AVAssetWriterInput localAssetWriterInput,
 			bool useAdaptor)
 		{
-			_assetReaderOutput = localAssetReaderOutput;
-			_assetWriterInput = localAssetWriterInput;
-			_useAdaptor = useAdaptor;
+			assetReaderOutput = localAssetReaderOutput;
+			assetWriterInput = localAssetWriterInput;
+			this.useAdaptor = useAdaptor;
 
-			if (_useAdaptor) {
+			if (useAdaptor) {
 				var adaptorAttrs = new CVPixelBufferAttributes {
 					PixelFormatType = CVPixelFormatType.CV32BGRA
 				};
-				_adaptor = AVAssetWriterInputPixelBufferAdaptor.FromInput (localAssetWriterInput, adaptorAttrs.Dictionary);
+				adaptor = AVAssetWriterInputPixelBufferAdaptor.FromInput (localAssetWriterInput, adaptorAttrs.Dictionary);
 			}
 
-			_serializationQueue = new DispatchQueue ("ReadWriteSampleBufferChannel queue");
+			serializationQueue = new DispatchQueue ("ReadWriteSampleBufferChannel queue");
 		}
 
 		private void CompleteTaskIfNecessary()
 		{
 			// Set state to mark that we no longer need to call the completion handler, grab the completion handler, and clear out the ivar
-			bool oldFinished = _finished;
-			_finished = true;
+			bool oldFinished = finished;
+			finished = true;
 
 			if (!oldFinished) {
-				_assetWriterInput.MarkAsFinished ();  // let the asset writer know that we will not be appending any more samples to this input
+				assetWriterInput.MarkAsFinished ();  // let the asset writer know that we will not be appending any more samples to this input
 				_completionSource.SetResult (null);
 			}
 		}
@@ -57,31 +57,31 @@ namespace PhotoFilterExtension
 
 			_completionSource = completionSource;
 
-			_assetWriterInput.RequestMediaData (_serializationQueue, () => {
-				if (_finished)
+			assetWriterInput.RequestMediaData (serializationQueue, () => {
+				if (finished)
 					return;
 
 				bool completedOrFailed = false;
 
 				// Read samples in a loop as long as the asset writer input is ready
-				while (_assetWriterInput.ReadyForMoreMediaData && !completedOrFailed) {
+				while (assetWriterInput.ReadyForMoreMediaData && !completedOrFailed) {
 					bool success;
-					using (CMSampleBuffer sampleBuffer = _assetReaderOutput.CopyNextSampleBuffer ()) {
+					using (CMSampleBuffer sampleBuffer = assetReaderOutput.CopyNextSampleBuffer ()) {
 						// TODO: https://trello.com/c/4YM7lofd
 						if (sampleBuffer == null || !sampleBuffer.IsValid || handler == null) {
 							completedOrFailed = true;
 							break;
 						}
 
-						if (_adaptor != null) {
+						if (adaptor != null) {
 							CMTime presentationTime = sampleBuffer.PresentationTimeStamp;
-							using (CVPixelBuffer writerBuffer = _adaptor.PixelBufferPool.CreatePixelBuffer ()) {
+							using (CVPixelBuffer writerBuffer = adaptor.PixelBufferPool.CreatePixelBuffer ()) {
 								handler.DidReadAndWriteSampleBuffer (this, sampleBuffer, writerBuffer);
-								success = _adaptor.AppendPixelBufferWithPresentationTime (writerBuffer, presentationTime);
+								success = adaptor.AppendPixelBufferWithPresentationTime (writerBuffer, presentationTime);
 							}
 						} else {
 							handler.DidReadSampleBuffer (this, sampleBuffer);
-							success = _assetWriterInput.AppendSampleBuffer (sampleBuffer);
+							success = assetWriterInput.AppendSampleBuffer (sampleBuffer);
 						}
 					}
 					completedOrFailed = !success;
