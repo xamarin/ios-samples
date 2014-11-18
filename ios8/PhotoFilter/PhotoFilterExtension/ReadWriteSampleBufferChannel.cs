@@ -67,9 +67,10 @@ namespace PhotoFilterExtension
 				while (_assetWriterInput.ReadyForMoreMediaData && !completedOrFailed) {
 					bool success;
 					using (CMSampleBuffer sampleBuffer = _assetReaderOutput.CopyNextSampleBuffer ()) {
-						if (sampleBuffer == null) {
+						// TODO: https://trello.com/c/4YM7lofd
+						if (sampleBuffer == null || !sampleBuffer.IsValid || handler == null) {
 							completedOrFailed = true;
-							continue;
+							break;
 						}
 
 						if (_adaptor != null) {
