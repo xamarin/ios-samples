@@ -11,14 +11,13 @@ namespace PhotoFilterExtension
 {
 	public class ReadWriteSampleBufferChannel
 	{
-		bool useAdaptor;
 		bool finished;
 		AVAssetWriterInput assetWriterInput;
 		AVAssetReaderOutput assetReaderOutput;
 		AVAssetWriterInputPixelBufferAdaptor adaptor;
 		DispatchQueue serializationQueue;
 
-		TaskCompletionSource<object> _completionSource;
+		TaskCompletionSource<object> completionSource;
 
 		public ReadWriteSampleBufferChannel (AVAssetReaderOutput localAssetReaderOutput,
 			AVAssetWriterInput localAssetWriterInput,
@@ -26,7 +25,6 @@ namespace PhotoFilterExtension
 		{
 			assetReaderOutput = localAssetReaderOutput;
 			assetWriterInput = localAssetWriterInput;
-			this.useAdaptor = useAdaptor;
 
 			if (useAdaptor) {
 				var adaptorAttrs = new CVPixelBufferAttributes {
@@ -46,16 +44,16 @@ namespace PhotoFilterExtension
 
 			if (!oldFinished) {
 				assetWriterInput.MarkAsFinished ();  // let the asset writer know that we will not be appending any more samples to this input
-				_completionSource.SetResult (null);
+				completionSource.SetResult (null);
 			}
 		}
 
 		public void StartWithAsync (TaskCompletionSource<object> completionSource, AVReaderWriter handler)
 		{
-			if (_completionSource != null)
+			if (completionSource != null)
 				throw new InvalidProgramException ();
 
-			_completionSource = completionSource;
+			this.completionSource = completionSource;
 
 			assetWriterInput.RequestMediaData (serializationQueue, () => {
 				if (finished)
@@ -94,7 +92,7 @@ namespace PhotoFilterExtension
 
 		public void Cancel()
 		{
-			_completionSource.Task.ContinueWith (_ => CompleteTaskIfNecessary ());
+			completionSource.Task.ContinueWith (_ => CompleteTaskIfNecessary ());
 		}
 	}
 }
