@@ -34,6 +34,12 @@ namespace PhotoFilterExtension
 		CIFilter ciFilter;
 		CIContext ciContext;
 
+		string BundleId {
+			get {
+				return NSBundle.MainBundle.BundleIdentifier;
+			}
+		}
+
 		public PhotoEditingViewController (IntPtr handle) : base (handle)
 		{
 			UIApplication.CheckForIllegalCrossThreadCalls = false;
@@ -101,7 +107,7 @@ namespace PhotoFilterExtension
 		{
 			// Inspect the adjustmentData to determine whether your extension can work with past edits.
 			// (Typically, you use its formatIdentifier and formatVersion properties to do this.)
-			bool result = adjustmentData.FormatIdentifier == "com.your-company.PhotoFilter";
+			bool result = adjustmentData.FormatIdentifier == BundleId;
 			result &= adjustmentData.FormatVersion == "1.0";
 			return result;
 		}
@@ -153,7 +159,7 @@ namespace PhotoFilterExtension
 
 			// Adjustment data
 			NSData archivedData = NSKeyedArchiver.ArchivedDataWithRootObject ((NSString)selectedFilterName);
-			PHAdjustmentData adjustmentData = new PHAdjustmentData ("com.your-company.PhotoFilter", "1.0",
+			PHAdjustmentData adjustmentData = new PHAdjustmentData (BundleId, "1.0",
 				                                  archivedData);
 			contentEditingOutput.AdjustmentData = adjustmentData;
 
