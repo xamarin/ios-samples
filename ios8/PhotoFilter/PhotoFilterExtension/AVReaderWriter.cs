@@ -226,9 +226,6 @@ namespace PhotoFilterExtension
 			}, cancellationTokenSrc.Token);
 		}
 
-		// TODO: where called in original sample
-		// - (void)cancel:(id)sender
-
 		private Task StartReadingAsync (ReadWriteSampleBufferChannel channel)
 		{
 			if (channel == null)
@@ -244,7 +241,7 @@ namespace PhotoFilterExtension
 				assetWriter.CancelWriting ();
 			}
 
-			// Tear down ivars
+			// Tear down
 			assetReader.Dispose ();
 			assetReader = null;
 
