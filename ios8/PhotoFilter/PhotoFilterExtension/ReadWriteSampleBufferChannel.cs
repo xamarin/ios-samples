@@ -50,8 +50,10 @@ namespace PhotoFilterExtension
 
 		public void StartWithAsync (TaskCompletionSource<object> completionSource, AVReaderWriter handler)
 		{
-			if (completionSource != null)
+			if (this.completionSource != null) {
+				Console.WriteLine ("this.completionSource is not null");
 				throw new InvalidProgramException ();
+			}
 
 			this.completionSource = completionSource;
 
