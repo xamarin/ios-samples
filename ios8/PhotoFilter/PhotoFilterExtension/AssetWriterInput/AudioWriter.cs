@@ -7,7 +7,7 @@ namespace PhotoFilterExtension
 	public class AudioWriter : AssetWriterInput
 	{
 		public AudioWriter (AVAssetWriterInput writerInput)
-			: base(writerInput)
+			: base (writerInput)
 		{
 		}
 

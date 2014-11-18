@@ -47,7 +47,7 @@ namespace PhotoFilterExtension
 			return completionSource.Task;
 		}
 
-		void AdjustMediaData()
+		void AdjustMediaData ()
 		{
 			assetWriter.Input.RequestMediaData (serializationQueue, () => {
 				// Read samples in a loop as long as the asset writer input is ready
@@ -67,13 +67,13 @@ namespace PhotoFilterExtension
 			});
 		}
 
-		public void Cancel()
+		public void Cancel ()
 		{
 			if (IsStarted)
 				CompleteTask ();
 		}
 
-		private void CompleteTask()
+		private void CompleteTask ()
 		{
 			if (!finished) {
 				assetWriter.Input.MarkAsFinished ();  // let the asset writer know that we will not be appending any more samples to this input

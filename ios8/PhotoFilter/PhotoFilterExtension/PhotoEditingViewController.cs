@@ -121,16 +121,16 @@ namespace PhotoFilterExtension
 
 			// Load input image
 			switch (contentEditingInput.MediaType) {
-			case PHAssetMediaType.Image:
-				inputImage = contentEditingInput.DisplaySizeImage;
-				break;
+				case PHAssetMediaType.Image:
+					inputImage = contentEditingInput.DisplaySizeImage;
+					break;
 
-			case PHAssetMediaType.Video:
-				inputImage = ImageFor (contentEditingInput.AvAsset, 0);
-				break;
+				case PHAssetMediaType.Video:
+					inputImage = ImageFor (contentEditingInput.AvAsset, 0);
+					break;
 
-			default:
-				break;
+				default:
+					break;
 			}
 
 			// Load adjustment data, if any
@@ -159,40 +159,39 @@ namespace PhotoFilterExtension
 
 			// Adjustment data
 			NSData archivedData = NSKeyedArchiver.ArchivedDataWithRootObject ((NSString)selectedFilterName);
-			PHAdjustmentData adjustmentData = new PHAdjustmentData (BundleId, "1.0",
-				                                  archivedData);
+			PHAdjustmentData adjustmentData = new PHAdjustmentData (BundleId, "1.0", archivedData);
 			contentEditingOutput.AdjustmentData = adjustmentData;
 
 			switch (contentEditingInput.MediaType) {
-			case PHAssetMediaType.Image:
-				{
-					// Get full size image
-					NSUrl url = contentEditingInput.FullSizeImageUrl;
-					CIImageOrientation orientation = contentEditingInput.FullSizeImageOrientation;
+				case PHAssetMediaType.Image:
+					{
+						// Get full size image
+						NSUrl url = contentEditingInput.FullSizeImageUrl;
+						CIImageOrientation orientation = contentEditingInput.FullSizeImageOrientation;
 
-					// Generate rendered JPEG data
-					UIImage image = UIImage.FromFile (url.Path);
-					image = TransformImage (image, orientation);
-					NSData renderedJPEGData = image.AsJPEG (0.9f);
+						// Generate rendered JPEG data
+						UIImage image = UIImage.FromFile (url.Path);
+						image = TransformImage (image, orientation);
+						NSData renderedJPEGData = image.AsJPEG (0.9f);
 
-					// Save JPEG data
-					NSError error = null;
-					bool success = renderedJPEGData.Save (contentEditingOutput.RenderedContentUrl, NSDataWritingOptions.Atomic, out error);
-					if (success) {
-						completionHandler (contentEditingOutput);
-					} else {
-						Console.WriteLine ("An error occured: {0}", error);
-						completionHandler (null);
+						// Save JPEG data
+						NSError error = null;
+						bool success = renderedJPEGData.Save (contentEditingOutput.RenderedContentUrl, NSDataWritingOptions.Atomic, out error);
+						if (success) {
+							completionHandler (contentEditingOutput);
+						} else {
+							Console.WriteLine ("An error occured: {0}", error);
+							completionHandler (null);
+						}
+						break;
 					}
-					break;
-				}
 
-			case PHAssetMediaType.Video:
-				{
-					AVReaderWriter avReaderWriter = new AVReaderWriter (contentEditingInput.AvAsset, this);
+				case PHAssetMediaType.Video:
+					{
+						AVReaderWriter avReaderWriter = new AVReaderWriter (contentEditingInput.AvAsset, this);
 
-					// Save filtered video
-					avReaderWriter.WriteToUrl (contentEditingOutput.RenderedContentUrl, error => {
+						// Save filtered video
+						avReaderWriter.WriteToUrl (contentEditingOutput.RenderedContentUrl, error => {
 							if (error == null) {
 								completionHandler (contentEditingOutput);
 								return;
@@ -200,11 +199,11 @@ namespace PhotoFilterExtension
 							Console.WriteLine ("An error occured: {0}", error);
 							completionHandler (null);
 						});
-					break;
-				}
+						break;
+					}
 
-			default:
-				break;
+				default:
+					break;
 			}
 		}
 
@@ -339,24 +338,24 @@ namespace PhotoFilterExtension
 		private CIImageOrientation Convert (UIImageOrientation imageOrientation)
 		{
 			switch (imageOrientation) {
-			case  UIImageOrientation.Up:
-				return CIImageOrientation.TopLeft;
-			case UIImageOrientation.Down:
-				return CIImageOrientation.BottomRight;
-			case UIImageOrientation.Left:
-				return CIImageOrientation.LeftBottom;
-			case UIImageOrientation.Right:
-				return CIImageOrientation.RightTop;
-			case UIImageOrientation.UpMirrored:
-				return CIImageOrientation.TopRight;
-			case UIImageOrientation.DownMirrored:
-				return CIImageOrientation.BottomLeft;
-			case UIImageOrientation.LeftMirrored:
-				return CIImageOrientation.LeftTop;
-			case UIImageOrientation.RightMirrored:
-				return CIImageOrientation.RightBottom;
-			default:
-				throw new NotImplementedException ();
+				case  UIImageOrientation.Up:
+					return CIImageOrientation.TopLeft;
+				case UIImageOrientation.Down:
+					return CIImageOrientation.BottomRight;
+				case UIImageOrientation.Left:
+					return CIImageOrientation.LeftBottom;
+				case UIImageOrientation.Right:
+					return CIImageOrientation.RightTop;
+				case UIImageOrientation.UpMirrored:
+					return CIImageOrientation.TopRight;
+				case UIImageOrientation.DownMirrored:
+					return CIImageOrientation.BottomLeft;
+				case UIImageOrientation.LeftMirrored:
+					return CIImageOrientation.LeftTop;
+				case UIImageOrientation.RightMirrored:
+					return CIImageOrientation.RightBottom;
+				default:
+					throw new NotImplementedException ();
 			}
 		}
 

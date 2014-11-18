@@ -43,7 +43,7 @@ namespace PhotoFilterExtension
 			cancellationTokenSrc = new CancellationTokenSource ();
 		}
 
-		public void WriteToUrl(NSUrl localOutputURL, Action<NSError> completion)
+		public void WriteToUrl (NSUrl localOutputURL, Action<NSError> completion)
 		{
 			outputURL = localOutputURL;
 
@@ -52,19 +52,19 @@ namespace PhotoFilterExtension
 			completionProc = completion;
 
 			// Dispatch the setup work with cancellationTokenSrc, to ensure this work can be cancelled
-			localAsset.LoadValuesTaskAsync (new string[] { "tracks", "duration" }).ContinueWith(_ => {
+			localAsset.LoadValuesTaskAsync (new string[] { "tracks", "duration" }).ContinueWith (_ => {
 				// Since we are doing these things asynchronously, the user may have already cancelled on the main thread.
 				// In that case, simply return from this block
-				cancellationTokenSrc.Token.ThrowIfCancellationRequested();
+				cancellationTokenSrc.Token.ThrowIfCancellationRequested ();
 
 				bool success = true;
 				NSError localError = null;
 
-				success = localAsset.StatusOfValue("tracks", out localError) == AVKeyValueStatus.Loaded &&
-				          localAsset.StatusOfValue("duration", out localError) == AVKeyValueStatus.Loaded;
+				success = localAsset.StatusOfValue ("tracks", out localError) == AVKeyValueStatus.Loaded &&
+				localAsset.StatusOfValue ("duration", out localError) == AVKeyValueStatus.Loaded;
 
-				if(!success)
-					throw new NSErrorException(localError);
+				if (!success)
+					throw new NSErrorException (localError);
 
 				timeRange = new CMTimeRange {
 					Start = CMTime.Zero,
@@ -72,22 +72,22 @@ namespace PhotoFilterExtension
 				};
 
 				// AVAssetWriter does not overwrite files for us, so remove the destination file if it already exists
-				if (File.Exists(localOutputURL.Path))
-					File.Delete(localOutputURL.Path);
+				if (File.Exists (localOutputURL.Path))
+					File.Delete (localOutputURL.Path);
 
 				// Set up the AVAssetReader and AVAssetWriter, then begin writing samples or flag an error
-				SetupReaderAndWriter();
-				StartReadingAndWriting();
+				SetupReaderAndWriter ();
+				StartReadingAndWriting ();
 
 				return localError;
-			}, cancellationTokenSrc.Token).ContinueWith(prevTask => {
-				switch(prevTask.Status) {
+			}, cancellationTokenSrc.Token).ContinueWith (prevTask => {
+				switch (prevTask.Status) {
 					case TaskStatus.Canceled:
-						ReadingAndWritingDidFinish(false, null);
+						ReadingAndWritingDidFinish (false, null);
 						break;
 
 					case TaskStatus.Faulted:
-						ReadingAndWritingDidFinish(false, ((NSErrorException)prevTask.Exception.InnerException).Error);
+						ReadingAndWritingDidFinish (false, ((NSErrorException)prevTask.Exception.InnerException).Error);
 						break;
 
 					default:
@@ -96,7 +96,7 @@ namespace PhotoFilterExtension
 			});
 		}
 
-		private void SetupReaderAndWriter()
+		private void SetupReaderAndWriter ()
 		{
 			AVAsset localAsset = asset;
 			NSUrl localOutputURL = outputURL;
@@ -105,11 +105,11 @@ namespace PhotoFilterExtension
 			// Create asset reader and asset writer
 			assetReader = new AVAssetReader (localAsset, out error);
 			if (assetReader == null)
-				throw new NSErrorException(error);
+				throw new NSErrorException (error);
 
 			assetWriter = new AVAssetWriter (localOutputURL, AVFileType.QuickTimeMovie, out error);
 			if (assetWriter == null)
-				throw new NSErrorException(error);
+				throw new NSErrorException (error);
 
 			// Create asset reader outputs and asset writer inputs for the first audio track and first video track of the asset
 			// Grab first audio track and first video track, if the asset has them
@@ -120,7 +120,7 @@ namespace PhotoFilterExtension
 			SetupAssetReaserWriterForVideo (videoTrack);
 		}
 
-		private void SetupAssetReaderWriterForAudio(AVAssetTrack audioTrack)
+		private void SetupAssetReaderWriterForAudio (AVAssetTrack audioTrack)
 		{
 			if (audioTrack == null)
 				return;
@@ -134,7 +134,7 @@ namespace PhotoFilterExtension
 
 			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
-			audioSampleBufferChannel = new ReadWriteSampleBufferChannel (output, new AudioWriter(input));
+			audioSampleBufferChannel = new ReadWriteSampleBufferChannel (output, new AudioWriter (input));
 		}
 
 		private void SetupAssetReaserWriterForVideo (AVAssetTrack videoTrack)
@@ -147,14 +147,14 @@ namespace PhotoFilterExtension
 				PixelFormatType = CVPixelFormatType.CV32BGRA,
 				AllocateWithIOSurface = null
 			};
-			AVAssetReaderOutput output = new AVAssetReaderTrackOutput(videoTrack, decompSettings);
+			AVAssetReaderOutput output = new AVAssetReaderTrackOutput (videoTrack, decompSettings);
 			assetReader.AddOutput (output);
 
 			// Get the format description of the track, to fill in attributes of the video stream that we don't want to change
 			var formatDescription = (CMVideoFormatDescription)videoTrack.FormatDescriptions.FirstOrDefault ();
 			// Grab track dimensions from format description
 			CGSize trackDimensions = formatDescription != null
-				? formatDescription.GetPresentationDimensions(false, false)
+				? formatDescription.GetPresentationDimensions (false, false)
 				: videoTrack.NaturalSize;
 
 			// Grab clean aperture, pixel aspect ratio from format description
@@ -181,27 +181,26 @@ namespace PhotoFilterExtension
 			videoSampleBufferChannel = new ReadWriteSampleBufferChannel (output, new VideoWriter (input, transformer));
 		}
 
-		private AVVideoCodecSettings CreateCodecSettingsFor(NSDictionary cleanAperture, NSDictionary aspectRatio)
+		private AVVideoCodecSettings CreateCodecSettingsFor (NSDictionary cleanAperture, NSDictionary aspectRatio)
 		{
 			if (cleanAperture == null && aspectRatio == null)
 				return null;
 
-			var compressionSettings = new AVVideoCodecSettings
-			{
+			var compressionSettings = new AVVideoCodecSettings {
 				VideoCleanAperture = cleanAperture != null ? new AVVideoCleanApertureSettings (cleanAperture) : null,
-				PixelAspectRatio = aspectRatio != null ? new AVVideoPixelAspectRatioSettings (aspectRatio): null
+				PixelAspectRatio = aspectRatio != null ? new AVVideoPixelAspectRatioSettings (aspectRatio) : null
 			};
 
 			return compressionSettings;
 		}
 
-		private void StartReadingAndWriting()
+		private void StartReadingAndWriting ()
 		{
 			// Instruct the asset reader and asset writer to get ready to do work
 			if (!assetReader.StartReading ())
 				throw new NSErrorException (assetReader.Error);
 
-			if (!assetWriter.StartWriting())
+			if (!assetWriter.StartWriting ())
 				throw new NSErrorException (assetWriter.Error);
 
 			// Start a sample-writing session
@@ -215,7 +214,7 @@ namespace PhotoFilterExtension
 				if (cancellationTokenSrc.Token.IsCancellationRequested) {
 					assetReader.CancelReading ();
 					assetWriter.CancelWriting ();
-					throw new OperationCanceledException();
+					throw new OperationCanceledException ();
 				}
 
 				if (assetReader.Status != AVAssetReaderStatus.Failed) {
@@ -230,7 +229,7 @@ namespace PhotoFilterExtension
 		// TODO: where called in original sample
 		// - (void)cancel:(id)sender
 
-		private Task StartReadingAsync(ReadWriteSampleBufferChannel channel)
+		private Task StartReadingAsync (ReadWriteSampleBufferChannel channel)
 		{
 			if (channel == null)
 				return Task.FromResult<object> (null);
@@ -238,10 +237,9 @@ namespace PhotoFilterExtension
 				return channel.StartTransformationAsync ();
 		}
 
-		private void ReadingAndWritingDidFinish(bool success, NSError error)
+		private void ReadingAndWritingDidFinish (bool success, NSError error)
 		{
-			if (!success)
-			{
+			if (!success) {
 				assetReader.CancelReading ();
 				assetWriter.CancelWriting ();
 			}
@@ -257,7 +255,7 @@ namespace PhotoFilterExtension
 			videoSampleBufferChannel = null;
 			cancellationTokenSrc = null;
 
-			completionProc(error);
+			completionProc (error);
 		}
 	}
 }

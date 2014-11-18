@@ -8,7 +8,7 @@ namespace PhotoFilterExtension
 	{
 		public AVAssetWriterInput Input { get; private set; }
 
-		public AssetWriterInput(AVAssetWriterInput writerInput)
+		public AssetWriterInput (AVAssetWriterInput writerInput)
 		{
 			if (writerInput == null)
 				throw new ArgumentNullException ("writerInput");

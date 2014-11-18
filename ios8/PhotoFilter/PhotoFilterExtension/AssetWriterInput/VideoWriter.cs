@@ -11,7 +11,7 @@ namespace PhotoFilterExtension
 		readonly AVAssetWriterInputPixelBufferAdaptor adaptor;
 
 		public VideoWriter (AVAssetWriterInput writerInput, IVideoTransformer transformer)
-			: base(writerInput)
+			: base (writerInput)
 		{
 			if (transformer == null)
 				throw new ArgumentNullException ("transformer");

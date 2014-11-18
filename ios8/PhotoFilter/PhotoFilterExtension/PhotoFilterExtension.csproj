@@ -113,7 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="AudioVideo\" />
     <Folder Include="AssetWriterInput\" />
   </ItemGroup>
   <ItemGroup>
