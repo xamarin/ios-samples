@@ -64,11 +64,8 @@ namespace PhotoFilterExtension
 			effectView.TranslatesAutoresizingMaskIntoConstraints = false;
 			View.InsertSubviewAbove (effectView, BackgroundImageView);
 
-			var views = NSDictionary.FromObjectAndKey (effectView, new NSString ("effectView"));
-			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|[effectView]|",
-				(NSLayoutFormatOptions)0, null, views));
-			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|[effectView]|",
-				(NSLayoutFormatOptions)0, null, views));
+			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|[effectView]|", (NSLayoutFormatOptions)0, "effectView", effectView));
+			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|[effectView]|", (NSLayoutFormatOptions)0, "effectView", effectView));
 		}
 
 		private void FetchAvailableFilters ()
