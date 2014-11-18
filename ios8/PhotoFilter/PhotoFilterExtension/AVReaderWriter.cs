@@ -202,9 +202,8 @@ namespace PhotoFilterExtension
 			// Start a sample-writing session
 			assetWriter.StartSessionAtSourceTime (timeRange.Start);
 
-			// Only set audio handler for audio-only assets, else let the video channel drive progress
-			var audioTask = StartReadingAsync (audioSampleBufferChannel, this);
-			var videoTask = StartReadingAsync (videoSampleBufferChannel, this);
+			Task audioTask = StartReadingAsync (audioSampleBufferChannel);
+			Task videoTask = StartReadingAsync (videoSampleBufferChannel);
 
 			// Set up a callback for when the sample writing is finished
 			Task.WhenAll (audioTask, videoTask).ContinueWith (_ => {
@@ -226,16 +225,12 @@ namespace PhotoFilterExtension
 		// TODO: where called in original sample
 		// - (void)cancel:(id)sender
 
-		private Task StartReadingAsync(ReadWriteSampleBufferChannel channel, AVReaderWriter handler)
+		private Task StartReadingAsync(ReadWriteSampleBufferChannel channel)
 		{
-			var completionSrc = new TaskCompletionSource<object> ();
-
 			if (channel == null)
-				completionSrc.SetResult (null);
+				return Task.FromResult<object> (null);
 			else
-				channel.StartWithAsync (completionSrc, handler);
-
-			return completionSrc.Task;
+				return channel.Start (this);
 		}
 
 		private void ReadingAndWritingDidFinish(bool success, NSError error)
