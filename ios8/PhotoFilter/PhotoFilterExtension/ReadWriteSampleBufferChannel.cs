@@ -48,12 +48,10 @@ namespace PhotoFilterExtension
 			}
 		}
 
-		public void StartWithAsync (TaskCompletionSource<object> completionSource, AVReaderWriter handler)
+		public void StartWithAsync (TaskCompletionSource<object> completionSource, AVReaderWriter mediaTransformer)
 		{
-			if (this.completionSource != null) {
-				Console.WriteLine ("this.completionSource is not null");
+			if (this.completionSource != null)
 				throw new InvalidProgramException ();
-			}
 
 			this.completionSource = completionSource;
 
@@ -68,20 +66,12 @@ namespace PhotoFilterExtension
 					bool success;
 					using (CMSampleBuffer sampleBuffer = assetReaderOutput.CopyNextSampleBuffer ()) {
 						// TODO: https://trello.com/c/4YM7lofd
-						if (sampleBuffer == null || !sampleBuffer.IsValid || handler == null) {
+						if (sampleBuffer == null || !sampleBuffer.IsValid || mediaTransformer == null) {
 							completedOrFailed = true;
 							break;
 						}
 
-						if (adaptor != null) {
-							CMTime presentationTime = sampleBuffer.PresentationTimeStamp;
-							using (CVPixelBuffer writerBuffer = adaptor.PixelBufferPool.CreatePixelBuffer ()) {
-								handler.DidReadAndWriteSampleBuffer (this, sampleBuffer, writerBuffer);
-								success = adaptor.AppendPixelBufferWithPresentationTime (writerBuffer, presentationTime);
-							}
-						} else {
-							success = assetWriterInput.AppendSampleBuffer (sampleBuffer);
-						}
+						success = (adaptor == null) ? Append(sampleBuffer) : Append(sampleBuffer, mediaTransformer);
 					}
 					completedOrFailed = !success;
 				}
@@ -89,6 +79,21 @@ namespace PhotoFilterExtension
 				if (completedOrFailed)
 					CompleteTaskIfNecessary ();
 			});
+		}
+
+		bool Append(CMSampleBuffer sampleBuffer)
+		{
+			return assetWriterInput.AppendSampleBuffer (sampleBuffer);
+		}
+
+		bool Append(CMSampleBuffer sampleBuffer, AVReaderWriter mediaTransformer)
+		{
+			CMTime presentationTime = sampleBuffer.PresentationTimeStamp;
+
+			using (CVPixelBuffer writerBuffer = adaptor.PixelBufferPool.CreatePixelBuffer ()) {
+				mediaTransformer.Transform (sampleBuffer, writerBuffer);
+				return adaptor.AppendPixelBufferWithPresentationTime (writerBuffer, presentationTime);
+			}
 		}
 
 		public void Cancel()

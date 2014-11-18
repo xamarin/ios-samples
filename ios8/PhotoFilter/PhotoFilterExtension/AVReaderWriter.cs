@@ -260,15 +260,18 @@ namespace PhotoFilterExtension
 			completionProc(error);
 		}
 
-		public void DidReadAndWriteSampleBuffer (ReadWriteSampleBufferChannel sampleBufferChannel,
-			CMSampleBuffer sampleBuffer,
-			CVPixelBuffer sampleBufferForWrite)
+		public void Transform (CMSampleBuffer input, CVPixelBuffer output)
 		{
+			if (input == null)
+				throw new ArgumentNullException ("input");
+			if (output == null)
+				throw new ArgumentNullException ("output");
+
 			// Grab the pixel buffer from the sample buffer, if possible
-			using (CVImageBuffer imageBuffer = sampleBuffer.GetImageBuffer ()) {
+			using (CVImageBuffer imageBuffer = input.GetImageBuffer ()) {
 				var pixelBuffer = (CVPixelBuffer)imageBuffer;
 				if (pixelBuffer != null)
-					Delegate.AdjustPixelBuffer (pixelBuffer, sampleBufferForWrite);
+					Delegate.AdjustPixelBuffer (pixelBuffer, output);
 			}
 		}
 	}
