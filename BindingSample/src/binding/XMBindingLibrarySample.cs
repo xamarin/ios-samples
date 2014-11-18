@@ -18,9 +18,9 @@ namespace XMBindingLibrarySample
 {
 	using System;
 	using System.Drawing;
-	using MonoTouch.Foundation;
-	using MonoTouch.UIKit;
-	using MonoTouch.ObjCRuntime;
+	using Foundation;
+	using UIKit;
+	using ObjCRuntime;
 
 	public delegate void XMUtilityCallback (NSString message);
 
@@ -49,10 +49,10 @@ namespace XMBindingLibrarySample
 		// and each argument are suffxed with a colon.
 		
 		[Export("add:and:")]
-		int Add(int operandUn, int operandDeux);
+		nint Add(nint operandUn, nint operandDeux);
 		
 		[Export("multiply:and")]
-		int Multiply(int operandUn, int operandDeux);
+		nint Multiply(nint operandUn, nint operandDeux);
 
 		[Export("setCallback:")]
 		void SetCallback(XMUtilityCallback callback);
