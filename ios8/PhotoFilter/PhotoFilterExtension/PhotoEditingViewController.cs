@@ -172,7 +172,7 @@ namespace PhotoFilterExtension
 
 					// Generate rendered JPEG data
 					UIImage image = UIImage.FromFile (url.Path);
-					image = TransformeImage (image, orientation);
+					image = TransformImage (image, orientation);
 					NSData renderedJPEGData = image.AsJPEG (0.9f);
 
 					// Save JPEG data
@@ -252,7 +252,7 @@ namespace PhotoFilterExtension
 			FilterPreviewView.Image = transformedImage;
 		}
 
-		private UIImage TransformeImage (UIImage image, CIImageOrientation orientation)
+		private UIImage TransformImage (UIImage image, CIImageOrientation orientation)
 		{
 			CIImage inputImage = CIImage.FromCGImage (image.CGImage);
 			inputImage = inputImage.CreateWithOrientation (orientation);
