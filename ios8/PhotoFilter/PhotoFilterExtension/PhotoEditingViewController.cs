@@ -191,10 +191,7 @@ namespace PhotoFilterExtension
 					avReaderWriter.Delegate = this;
 
 					// Save filtered video
-					avReaderWriter.WriteToUrl (contentEditingOutput.RenderedContentUrl,
-						progress => {
-						},
-						error => {
+					avReaderWriter.WriteToUrl (contentEditingOutput.RenderedContentUrl, error => {
 							if (error == null) {
 								completionHandler (contentEditingOutput);
 								return;

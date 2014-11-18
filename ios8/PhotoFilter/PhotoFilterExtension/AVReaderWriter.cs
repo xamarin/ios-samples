@@ -23,7 +23,6 @@ namespace PhotoFilterExtension
 		CMTimeRange timeRange;
 		NSUrl outputURL;
 
-		Action<float> progressProc;
 		Action<NSError> completionProc;
 
 		CancellationTokenSource cancellationTokenSrc;
@@ -39,14 +38,13 @@ namespace PhotoFilterExtension
 			cancellationTokenSrc = new CancellationTokenSource ();
 		}
 
-		public void WriteToUrl(NSUrl localOutputURL, Action<float> progress, Action<NSError> completion)
+		public void WriteToUrl(NSUrl localOutputURL, Action<NSError> completion)
 		{
 			outputURL = localOutputURL;
 
 			AVAsset localAsset = asset;
 
 			completionProc = completion;
-			progressProc = progress;
 
 			// Dispatch the setup work with cancellationTokenSrc, to ensure this work can be cancelled
 			localAsset.LoadValuesTaskAsync (new string[] { "tracks", "duration" }).ContinueWith(_ => {
@@ -205,8 +203,7 @@ namespace PhotoFilterExtension
 			assetWriter.StartSessionAtSourceTime (timeRange.Start);
 
 			// Only set audio handler for audio-only assets, else let the video channel drive progress
-			AVReaderWriter audioHandler = videoSampleBufferChannel == null ? this : null;
-			var audioTask = StartReadingAsync (audioSampleBufferChannel, audioHandler);
+			var audioTask = StartReadingAsync (audioSampleBufferChannel, this);
 			var videoTask = StartReadingAsync (videoSampleBufferChannel, this);
 
 			// Set up a callback for when the sample writing is finished
@@ -263,44 +260,16 @@ namespace PhotoFilterExtension
 			completionProc(error);
 		}
 
-		public void DidReadSampleBuffer (ReadWriteSampleBufferChannel sampleBufferChannel, CMSampleBuffer sampleBuffer)
-		{
-			// Calculate progress (scale of 0.0 to 1.0)
-			double progress = AVReaderWriter.ProgressOfSampleBufferInTimeRange(sampleBuffer, timeRange);
-			progressProc((float)progress * 100);
-
-			// Grab the pixel buffer from the sample buffer, if possible
-			CVImageBuffer imageBuffer = sampleBuffer.GetImageBuffer ();
-
-			var pixelBuffer = imageBuffer as CVPixelBuffer;
-			if (pixelBuffer != null)
-				Delegate.AdjustPixelBuffer (pixelBuffer, null); // TODO: problem in original sample. No method
-		}
-
 		public void DidReadAndWriteSampleBuffer (ReadWriteSampleBufferChannel sampleBufferChannel,
 			CMSampleBuffer sampleBuffer,
 			CVPixelBuffer sampleBufferForWrite)
 		{
-			// Calculate progress (scale of 0.0 to 1.0)
-			double progress = AVReaderWriter.ProgressOfSampleBufferInTimeRange(sampleBuffer, timeRange);
-			progressProc((float)progress * 100);
-
 			// Grab the pixel buffer from the sample buffer, if possible
 			using (CVImageBuffer imageBuffer = sampleBuffer.GetImageBuffer ()) {
 				var pixelBuffer = (CVPixelBuffer)imageBuffer;
 				if (pixelBuffer != null)
 					Delegate.AdjustPixelBuffer (pixelBuffer, sampleBufferForWrite);
 			}
-		}
-
-		private static double ProgressOfSampleBufferInTimeRange(CMSampleBuffer sampleBuffer, CMTimeRange timeRange)
-		{
-			CMTime progressTime = sampleBuffer.PresentationTimeStamp;
-			progressTime = progressTime - timeRange.Start;
-			CMTime sampleDuration = sampleBuffer.Duration;
-			if (sampleDuration.IsNumeric)
-				progressTime = progressTime + sampleDuration;
-			return progressTime.Seconds / timeRange.Duration.Seconds;
 		}
 	}
 }

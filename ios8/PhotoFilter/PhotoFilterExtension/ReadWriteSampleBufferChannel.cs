@@ -80,7 +80,6 @@ namespace PhotoFilterExtension
 								success = adaptor.AppendPixelBufferWithPresentationTime (writerBuffer, presentationTime);
 							}
 						} else {
-							handler.DidReadSampleBuffer (this, sampleBuffer);
 							success = assetWriterInput.AppendSampleBuffer (sampleBuffer);
 						}
 					}
