@@ -16,7 +16,7 @@ using CoreMedia;
 
 namespace PhotoFilterExtension
 {
-	public partial class PhotoEditingViewController : UIViewController, IPHContentEditingController, IUICollectionViewDelegate, IUICollectionViewDataSource
+	public partial class PhotoEditingViewController : UIViewController, IPHContentEditingController, IUICollectionViewDelegate, IUICollectionViewDataSource, IVideoTransformer
 	{
 		const string kFilterInfoFilterNameKey = "filterName";
 		const string kFilterInfoDisplayNameKey = "displayName";
@@ -188,7 +188,7 @@ namespace PhotoFilterExtension
 				{
 					// Get AV asset
 					AVReaderWriter avReaderWriter = new AVReaderWriter (contentEditingInput.AvAsset);
-					avReaderWriter.Delegate = this;
+					avReaderWriter.Transformer = this;
 
 					// Save filtered video
 					avReaderWriter.WriteToUrl (contentEditingOutput.RenderedContentUrl, error => {

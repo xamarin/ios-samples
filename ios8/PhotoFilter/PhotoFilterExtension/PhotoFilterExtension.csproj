@@ -113,6 +113,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="AudioVideo\" />
+    <Folder Include="AssetWriterInput\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -126,6 +128,10 @@
       <DependentUpon>PhotoEditingViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ReadWriteSampleBufferChannel.cs" />
+    <Compile Include="IVideoTransformer.cs" />
+    <Compile Include="AssetWriterInput\AudioWriter.cs" />
+    <Compile Include="AssetWriterInput\VideoWriter.cs" />
+    <Compile Include="AssetWriterInput\AssetWriterInput.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.AppExtension.CSharp.targets" />
   <ItemGroup>

@@ -16,8 +16,7 @@ namespace PhotoFilterExtension
 {
 	public class AVReaderWriter
 	{
-		// In production – your should extract interface from PhotoEditingViewController (ex IAVReaderWriterDelegate)
-		public PhotoEditingViewController Delegate { get; set; }
+		public IVideoTransformer Transformer { get; set; }
 
 		AVAsset asset;
 		CMTimeRange timeRange;
@@ -129,7 +128,7 @@ namespace PhotoFilterExtension
 
 			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
-			audioSampleBufferChannel = new ReadWriteSampleBufferChannel (output, input, false);
+			audioSampleBufferChannel = new ReadWriteSampleBufferChannel (output, new AudioWriter(input));
 		}
 
 		private void SetupAssetReaserWriterForVideo (AVAssetTrack videoTrack)
@@ -173,7 +172,7 @@ namespace PhotoFilterExtension
 
 			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
-			videoSampleBufferChannel = new ReadWriteSampleBufferChannel (output, input, true);
+			videoSampleBufferChannel = new ReadWriteSampleBufferChannel (output, new VideoWriter (input, Transformer));
 		}
 
 		private AVVideoCodecSettings CreateCodecSettingsFor(NSDictionary cleanAperture, NSDictionary aspectRatio)
@@ -230,7 +229,7 @@ namespace PhotoFilterExtension
 			if (channel == null)
 				return Task.FromResult<object> (null);
 			else
-				return channel.Start (this);
+				return channel.StartTransformationAsync ();
 		}
 
 		private void ReadingAndWritingDidFinish(bool success, NSError error)
@@ -254,21 +253,5 @@ namespace PhotoFilterExtension
 
 			completionProc(error);
 		}
-
-		public void Transform (CMSampleBuffer input, CVPixelBuffer output)
-		{
-			if (input == null)
-				throw new ArgumentNullException ("input");
-			if (output == null)
-				throw new ArgumentNullException ("output");
-
-			// Grab the pixel buffer from the sample buffer, if possible
-			using (CVImageBuffer imageBuffer = input.GetImageBuffer ()) {
-				var pixelBuffer = (CVPixelBuffer)imageBuffer;
-				if (pixelBuffer != null)
-					Delegate.AdjustPixelBuffer (pixelBuffer, output);
-			}
-		}
 	}
 }
-
