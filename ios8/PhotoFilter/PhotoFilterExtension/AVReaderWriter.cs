@@ -16,9 +16,9 @@ namespace PhotoFilterExtension
 {
 	public class AVReaderWriter
 	{
-		public IVideoTransformer Transformer { get; set; }
+		readonly IVideoTransformer transformer;
+		readonly AVAsset asset;
 
-		AVAsset asset;
 		CMTimeRange timeRange;
 		NSUrl outputURL;
 
@@ -31,9 +31,15 @@ namespace PhotoFilterExtension
 		ReadWriteSampleBufferChannel audioSampleBufferChannel;
 		ReadWriteSampleBufferChannel videoSampleBufferChannel;
 
-		public AVReaderWriter (AVAsset asset)
+		public AVReaderWriter (AVAsset asset, IVideoTransformer transformer)
 		{
+			if (asset == null)
+				throw new ArgumentNullException ("asset");
+			if (transformer == null)
+				throw new ArgumentNullException ("transformer");
+
 			this.asset = asset;
+			this.transformer = transformer;
 			cancellationTokenSrc = new CancellationTokenSource ();
 		}
 
@@ -172,7 +178,7 @@ namespace PhotoFilterExtension
 
 			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
-			videoSampleBufferChannel = new ReadWriteSampleBufferChannel (output, new VideoWriter (input, Transformer));
+			videoSampleBufferChannel = new ReadWriteSampleBufferChannel (output, new VideoWriter (input, transformer));
 		}
 
 		private AVVideoCodecSettings CreateCodecSettingsFor(NSDictionary cleanAperture, NSDictionary aspectRatio)

@@ -186,9 +186,7 @@ namespace PhotoFilterExtension
 
 			case PHAssetMediaType.Video:
 				{
-					// Get AV asset
-					AVReaderWriter avReaderWriter = new AVReaderWriter (contentEditingInput.AvAsset);
-					avReaderWriter.Transformer = this;
+					AVReaderWriter avReaderWriter = new AVReaderWriter (contentEditingInput.AvAsset, this);
 
 					// Save filtered video
 					avReaderWriter.WriteToUrl (contentEditingOutput.RenderedContentUrl, error => {
