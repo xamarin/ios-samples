@@ -48,6 +48,7 @@ namespace PhotoFilterExtension
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+			Console.WriteLine ("Hello from Photo Extension");
 
 			// Setup collection view
 			CollectionView.AlwaysBounceHorizontal = true;
@@ -271,12 +272,11 @@ namespace PhotoFilterExtension
 
 		public void AdjustPixelBuffer (CVPixelBuffer inputBuffer, CVPixelBuffer outputBuffer)
 		{
-			CIImage img = CIImage.FromImageBuffer (inputBuffer);
-
-			ciFilter.SetValueForKey (img, CIFilterInputKey.Image);
-			img = ciFilter.OutputImage;
-
-			ciContext.Render (img, outputBuffer);
+			using (CIImage img = CIImage.FromImageBuffer (inputBuffer)) {
+				ciFilter.Image = img;
+				using (var outImg = ciFilter.OutputImage)
+					ciContext.Render (outImg, outputBuffer);
+			}
 		}
 
 		#endregion

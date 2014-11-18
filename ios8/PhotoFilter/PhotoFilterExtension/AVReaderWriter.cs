@@ -286,11 +286,11 @@ namespace PhotoFilterExtension
 			progressProc((float)progress * 100);
 
 			// Grab the pixel buffer from the sample buffer, if possible
-			CVImageBuffer imageBuffer = sampleBuffer.GetImageBuffer ();
-			var pixelBuffer = imageBuffer as CVPixelBuffer;
-
-			if (pixelBuffer != null)
-				Delegate.AdjustPixelBuffer (pixelBuffer, sampleBufferForWrite);
+			using (CVImageBuffer imageBuffer = sampleBuffer.GetImageBuffer ()) {
+				var pixelBuffer = (CVPixelBuffer)imageBuffer;
+				if (pixelBuffer != null)
+					Delegate.AdjustPixelBuffer (pixelBuffer, sampleBufferForWrite);
+			}
 		}
 
 		private static double ProgressOfSampleBufferInTimeRange(CMSampleBuffer sampleBuffer, CMTimeRange timeRange)
