@@ -79,7 +79,7 @@ namespace Lister
 			if (PrimaryViewController.TopViewController == PrimaryViewController.ViewControllers[0]) {
 				// If no list is on the stack, fill the detail area with an empty controller.
 				UIStoryboard storyboard = UIStoryboard.FromName (MainStoryboardName, null);
-				UIViewController emptyViewController = storyboard.InstantiateViewController (MainStoryboardEmptyViewControllerIdentifier);
+				UIViewController emptyViewController = (UIViewController)storyboard.InstantiateViewController (MainStoryboardEmptyViewControllerIdentifier);
 
 				return emptyViewController;
 			}

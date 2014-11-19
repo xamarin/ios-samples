@@ -59,7 +59,7 @@ namespace ListerKit
 
 				if (success) {
 					var attributes = new NSFileAttributes {
-						ExtensionHidden = true
+						FileExtensionHidden = true
 					};
 					fileManager.SetAttributes (attributes, dst.Path);
 					Console.WriteLine ("Moved file: {0} to: {1}.", src.AbsoluteString, dst.AbsoluteString);

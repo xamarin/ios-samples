@@ -54,7 +54,7 @@ namespace Common
 		{
 			NSArray array = (NSArray)coder.DecodeObject (ListEncodingItemsKey);
 			for (nuint i = 0; i < array.Count; i++)
-				items.Add (array.GetItem<ListItem> (i));
+				items.Add (array.GetItem<ListItem> ((nint)i));
 
 			Color = (ListColor)coder.DecodeInt (ListEncodingColorKey);
 		}

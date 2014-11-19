@@ -393,7 +393,7 @@ namespace Lister
 			if (SplitViewController.Collapsed) {
 				NavigationController.PopViewController (true);
 			} else {
-				UIViewController emptyViewController = Storyboard.InstantiateViewController (EmptyViewControllerStoryboardIdentifier);
+				UIViewController emptyViewController = (UIViewController)Storyboard.InstantiateViewController (EmptyViewControllerStoryboardIdentifier);
 				SplitViewController.ShowDetailViewController (emptyViewController, null);
 			}
 
