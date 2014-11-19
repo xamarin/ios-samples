@@ -320,6 +320,9 @@ namespace PhotoFilterExtension
 
 		private void UpdateSelectionForCell (UICollectionViewCell cell)
 		{
+			if (cell == null)
+				return;
+
 			bool isSelected = cell.Selected;
 
 			UIImageView imageView = (UIImageView)cell.ViewWithTag (999);
