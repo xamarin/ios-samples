@@ -36,7 +36,7 @@ namespace PhotoFilterExtension
 			serializationQueue = new DispatchQueue ("ReadWriteSampleBufferChannel queue");
 		}
 
-		public Task StartTransformationAsync ()
+		public Task StartAsync ()
 		{
 			if (IsStarted)
 				throw new InvalidProgramException ();

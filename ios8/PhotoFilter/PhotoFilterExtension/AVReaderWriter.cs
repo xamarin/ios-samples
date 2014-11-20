@@ -200,8 +200,8 @@ namespace PhotoFilterExtension
 			// Start a sample-writing session
 			assetWriter.StartSessionAtSourceTime (timeRange.Start);
 
-			Task audioTask = StartReadingAsync (audioSampleBufferChannel);
-			Task videoTask = StartReadingAsync (videoSampleBufferChannel);
+			Task audioTask = Start (audioSampleBufferChannel);
+			Task videoTask = Start (videoSampleBufferChannel);
 
 			// Set up a callback for when the sample writing is finished
 			Task.WhenAll (audioTask, videoTask).ContinueWith (_ => {
@@ -220,7 +220,7 @@ namespace PhotoFilterExtension
 			}, cancellationTokenSrc.Token);
 		}
 
-		private Task StartReadingAsync (ReadWriteSampleBufferChannel channel)
+		private Task Start (ReadWriteSampleBufferChannel channel)
 		{
 			if (channel == null)
 				return Task.FromResult<object> (null);
