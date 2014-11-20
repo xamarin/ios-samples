@@ -181,16 +181,19 @@ namespace PhotoFilterExtension
 
 			initialFilterName = null;
 
+			contentEditingInput.Dispose ();
+			contentEditingInput = null;
+
 			inputImage.Dispose ();
 			inputImage = null;
 
-			ciFilter.Image.Dispose ();
-			ciFilter.Image = null;
-			ciFilter.Dispose ();
-			ciFilter = null;
+			TryDisposeFilterInput ();
+			TryDisposeFilter ();
 
 			BackgroundImageView.Image.Dispose ();
 			BackgroundImageView.Image = null;
+
+			TryDisposeFilterPreviewImg ();
 		}
 
 		PHAdjustmentData CreateAdjustmentData()
@@ -273,11 +276,8 @@ namespace PhotoFilterExtension
 
 		void UpdateFilter ()
 		{
-			if (ciFilter != null) {
-				if (ciFilter.Image != null)
-					ciFilter.Image.Dispose ();
-				ciFilter.Dispose ();
-			}
+			TryDisposeFilterInput ();
+			TryDisposeFilter ();
 			ciFilter = CIFilter.FromName (selectedFilterName);
 
 			CIImageOrientation orientation = Convert (inputImage.Orientation);
@@ -289,8 +289,7 @@ namespace PhotoFilterExtension
 		{
 			using (CIImage outputImage = ciFilter.OutputImage) {
 				using (CGImage cgImage = ciContext.CreateCGImage (outputImage, outputImage.Extent)) {
-					if (FilterPreviewView.Image != null)
-						FilterPreviewView.Image.Dispose ();
+					TryDisposeFilterPreviewImg ();
 					FilterPreviewView.Image = UIImage.FromImage (cgImage);
 				}
 			}
@@ -298,8 +297,7 @@ namespace PhotoFilterExtension
 
 		UIImage TransformImage (UIImage image, CIImageOrientation orientation)
 		{
-			ciFilter.Image.Dispose ();
-
+			TryDisposeFilterInput ();
 			using (CIImage inputImage = CIImage.FromCGImage (image.CGImage)) {
 				using (CIImage imageWithOrientation = inputImage.CreateWithOrientation (orientation)) {
 					ciFilter.Image = imageWithOrientation;
@@ -423,6 +421,39 @@ namespace PhotoFilterExtension
 		}
 
 		#endregion
+
+		void TryDisposeFilterInput()
+		{
+			if (ciFilter == null)
+				return;
+
+			if (ciFilter.Image == null)
+				return;
+
+			ciFilter.Image.Dispose ();
+			ciFilter.Image = null;
+		}
+
+		void TryDisposeFilter()
+		{
+			if (ciFilter == null)
+				return;
+
+			ciFilter.Dispose ();
+			ciFilter = null;
+		}
+
+		void TryDisposeFilterPreviewImg()
+		{
+			if (FilterPreviewView == null)
+				return;
+
+			if (FilterPreviewView.Image == null)
+				return;
+
+			FilterPreviewView.Image.Dispose ();
+			FilterPreviewView.Image = null;
+		}
 	}
 }
 

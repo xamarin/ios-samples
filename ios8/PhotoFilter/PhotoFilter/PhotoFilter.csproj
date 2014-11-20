@@ -56,7 +56,6 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
-    <CodesignProvision>b6200948-2ac1-4893-8373-aa17b1e188f7</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <Optimize>true</Optimize>
