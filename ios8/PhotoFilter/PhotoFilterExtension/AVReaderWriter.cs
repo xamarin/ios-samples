@@ -19,7 +19,6 @@ namespace PhotoFilterExtension
 		readonly IVideoTransformer transformer;
 		readonly AVAsset asset;
 
-		CMTimeRange timeRange;
 		NSUrl outputURL;
 
 		Action<NSError> completionProc;
@@ -46,29 +45,25 @@ namespace PhotoFilterExtension
 		public void WriteToUrl (NSUrl localOutputURL, Action<NSError> completion)
 		{
 			outputURL = localOutputURL;
-
-			AVAsset localAsset = asset;
-
 			completionProc = completion;
 
 			// Dispatch the setup work with cancellationTokenSrc, to ensure this work can be cancelled
-			localAsset.LoadValuesTaskAsync (new string[] { "tracks", "duration" }).ContinueWith (_ => {
+			asset.LoadValuesTaskAsync (new string[] { "tracks", "duration" }).ContinueWith (_ => {
 				// Since we are doing these things asynchronously, the user may have already cancelled on the main thread.
 				// In that case, simply return from this block
 				cancellationTokenSrc.Token.ThrowIfCancellationRequested ();
 
-				bool success = true;
 				NSError localError = null;
 
-				success = localAsset.StatusOfValue ("tracks", out localError) == AVKeyValueStatus.Loaded &&
-				localAsset.StatusOfValue ("duration", out localError) == AVKeyValueStatus.Loaded;
-
-				if (!success)
+				if(asset.StatusOfValue ("tracks", out localError) != AVKeyValueStatus.Loaded)
 					throw new NSErrorException (localError);
 
-				timeRange = new CMTimeRange {
+				if(asset.StatusOfValue ("duration", out localError) != AVKeyValueStatus.Loaded)
+					throw new NSErrorException (localError);
+
+				var timeRange = new CMTimeRange {
 					Start = CMTime.Zero,
-					Duration = localAsset.Duration
+					Duration = asset.Duration
 				};
 
 				// AVAssetWriter does not overwrite files for us, so remove the destination file if it already exists
@@ -77,9 +72,7 @@ namespace PhotoFilterExtension
 
 				// Set up the AVAssetReader and AVAssetWriter, then begin writing samples or flag an error
 				SetupReaderAndWriter ();
-				StartReadingAndWriting ();
-
-				return localError;
+				StartReadingAndWriting (timeRange);
 			}, cancellationTokenSrc.Token).ContinueWith (prevTask => {
 				switch (prevTask.Status) {
 					case TaskStatus.Canceled:
@@ -98,23 +91,21 @@ namespace PhotoFilterExtension
 
 		private void SetupReaderAndWriter ()
 		{
-			AVAsset localAsset = asset;
-			NSUrl localOutputURL = outputURL;
 			NSError error = null;
 
 			// Create asset reader and asset writer
-			assetReader = new AVAssetReader (localAsset, out error);
+			assetReader = AVAssetReader.FromAsset (asset, out error);
 			if (assetReader == null)
 				throw new NSErrorException (error);
 
-			assetWriter = new AVAssetWriter (localOutputURL, AVFileType.QuickTimeMovie, out error);
+			assetWriter = AVAssetWriter.FromUrl (outputURL, AVFileType.QuickTimeMovie, out error);
 			if (assetWriter == null)
 				throw new NSErrorException (error);
 
 			// Create asset reader outputs and asset writer inputs for the first audio track and first video track of the asset
 			// Grab first audio track and first video track, if the asset has them
-			AVAssetTrack audioTrack = localAsset.TracksWithMediaType (AVMediaType.Audio).FirstOrDefault ();
-			AVAssetTrack videoTrack = localAsset.TracksWithMediaType (AVMediaType.Video).FirstOrDefault ();
+			AVAssetTrack audioTrack = asset.TracksWithMediaType (AVMediaType.Audio).FirstOrDefault ();
+			AVAssetTrack videoTrack = asset.TracksWithMediaType (AVMediaType.Video).FirstOrDefault ();
 
 			SetupAssetReaderWriterForAudio (audioTrack);
 			SetupAssetReaserWriterForVideo (videoTrack);
@@ -126,11 +117,14 @@ namespace PhotoFilterExtension
 				return;
 
 			// Decompress to Linear PCM with the asset reader
+			// To read the media data from a specific asset track in the format in which it was stored, pass null to the settings parameter.
 			AVAssetReaderOutput output = AVAssetReaderTrackOutput.Create (audioTrack, (AudioSettings)null);
-			assetReader.AddOutput (output);
+			if (assetReader.CanAddOutput (output))
+				assetReader.AddOutput (output);
 
 			AVAssetWriterInput input = AVAssetWriterInput.Create (audioTrack.MediaType, (AudioSettings)null);
-			assetWriter.AddInput (input);
+			if (assetWriter.CanAddInput (input))
+				assetWriter.AddInput (input);
 
 			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
@@ -194,7 +188,7 @@ namespace PhotoFilterExtension
 			return compressionSettings;
 		}
 
-		private void StartReadingAndWriting ()
+		private void StartReadingAndWriting (CMTimeRange timeRange)
 		{
 			// Instruct the asset reader and asset writer to get ready to do work
 			if (!assetReader.StartReading ())
