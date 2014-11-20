@@ -90,7 +90,7 @@ namespace PhotoFilterExtension
 				CompleteTask ();
 		}
 
-		private void CompleteTask ()
+		void CompleteTask ()
 		{
 			if (!finished) {
 				writerInput.MarkAsFinished ();  // let the asset writer know that we will not be appending any more samples to this input

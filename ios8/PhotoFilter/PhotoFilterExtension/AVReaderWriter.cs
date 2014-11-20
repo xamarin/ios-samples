@@ -89,7 +89,7 @@ namespace PhotoFilterExtension
 			});
 		}
 
-		private void SetupReaderAndWriter ()
+		void SetupReaderAndWriter ()
 		{
 			NSError error = null;
 
@@ -111,7 +111,7 @@ namespace PhotoFilterExtension
 			SetupAssetReaserWriterForVideo (videoTrack);
 		}
 
-		private void SetupAssetReaderWriterForAudio (AVAssetTrack audioTrack)
+		void SetupAssetReaderWriterForAudio (AVAssetTrack audioTrack)
 		{
 			if (audioTrack == null)
 				return;
@@ -131,7 +131,7 @@ namespace PhotoFilterExtension
 			audioSampleBufferChannel = new AudioChannel(output, input);
 		}
 
-		private void SetupAssetReaserWriterForVideo (AVAssetTrack videoTrack)
+		void SetupAssetReaserWriterForVideo (AVAssetTrack videoTrack)
 		{
 			if (videoTrack == null)
 				return;
@@ -175,7 +175,7 @@ namespace PhotoFilterExtension
 			videoSampleBufferChannel = new VideoChannel (output, input, transformer);
 		}
 
-		private AVVideoCodecSettings CreateCodecSettingsFor (NSDictionary cleanAperture, NSDictionary aspectRatio)
+		AVVideoCodecSettings CreateCodecSettingsFor (NSDictionary cleanAperture, NSDictionary aspectRatio)
 		{
 			if (cleanAperture == null && aspectRatio == null)
 				return null;
@@ -188,7 +188,7 @@ namespace PhotoFilterExtension
 			return compressionSettings;
 		}
 
-		private void StartReadingAndWriting (CMTimeRange timeRange)
+		void StartReadingAndWriting (CMTimeRange timeRange)
 		{
 			// Instruct the asset reader and asset writer to get ready to do work
 			if (!assetReader.StartReading ())
@@ -220,7 +220,7 @@ namespace PhotoFilterExtension
 			}, cancellationTokenSrc.Token);
 		}
 
-		private Task Start (ReadWriteSampleBufferChannel channel)
+		Task Start (ReadWriteSampleBufferChannel channel)
 		{
 			if (channel == null)
 				return Task.FromResult<object> (null);
@@ -228,7 +228,7 @@ namespace PhotoFilterExtension
 				return channel.StartAsync ();
 		}
 
-		private void ReadingAndWritingDidFinish (bool success, NSError error)
+		void ReadingAndWritingDidFinish (bool success, NSError error)
 		{
 			if (!success) {
 				assetReader.CancelReading ();

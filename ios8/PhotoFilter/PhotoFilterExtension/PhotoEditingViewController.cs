@@ -74,7 +74,7 @@ namespace PhotoFilterExtension
 			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|[effectView]|", (NSLayoutFormatOptions)0, "effectView", effectView));
 		}
 
-		private void FetchAvailableFilters ()
+		void FetchAvailableFilters ()
 		{
 			// Load the available filters
 			string plist = NSBundle.MainBundle.PathForResource ("Filters", "plist");
@@ -229,7 +229,7 @@ namespace PhotoFilterExtension
 
 		#region Image Filtering
 
-		private void UpdateFilter ()
+		void UpdateFilter ()
 		{
 			ciFilter = CIFilter.FromName (selectedFilterName);
 
@@ -240,7 +240,7 @@ namespace PhotoFilterExtension
 			ciFilter.Image = inputImage;
 		}
 
-		private void UpdateFilterPreview ()
+		void UpdateFilterPreview ()
 		{
 			CIImage outputImage = ciFilter.OutputImage;
 
@@ -251,7 +251,7 @@ namespace PhotoFilterExtension
 			FilterPreviewView.Image = transformedImage;
 		}
 
-		private UIImage TransformImage (UIImage image, CIImageOrientation orientation)
+		UIImage TransformImage (UIImage image, CIImageOrientation orientation)
 		{
 			CIImage inputImage = CIImage.FromCGImage (image.CGImage);
 			inputImage = inputImage.CreateWithOrientation (orientation);
@@ -318,7 +318,7 @@ namespace PhotoFilterExtension
 			UpdateSelectionForCell (collectionView.CellForItem (indexPath));
 		}
 
-		private void UpdateSelectionForCell (UICollectionViewCell cell)
+		void UpdateSelectionForCell (UICollectionViewCell cell)
 		{
 			if (cell == null)
 				return;
@@ -338,7 +338,7 @@ namespace PhotoFilterExtension
 		#region Utilities
 
 		// Returns the EXIF/TIFF orientation value corresponding to the given UIImageOrientation value.
-		private CIImageOrientation Convert (UIImageOrientation imageOrientation)
+		CIImageOrientation Convert (UIImageOrientation imageOrientation)
 		{
 			switch (imageOrientation) {
 				case  UIImageOrientation.Up:
@@ -362,7 +362,7 @@ namespace PhotoFilterExtension
 			}
 		}
 
-		private UIImage ImageFor (AVAsset avAsset, double time)
+		UIImage ImageFor (AVAsset avAsset, double time)
 		{
 			AVAssetImageGenerator imageGenerator = AVAssetImageGenerator.FromAsset (avAsset);
 			imageGenerator.AppliesPreferredTrackTransform = true;
