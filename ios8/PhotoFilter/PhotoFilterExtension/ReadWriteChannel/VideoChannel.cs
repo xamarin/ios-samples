@@ -1,17 +1,17 @@
 ﻿using System;
-using CoreMedia;
-using CoreVideo;
 using AVFoundation;
+using CoreVideo;
+using CoreMedia;
 
 namespace PhotoFilterExtension
 {
-	public class VideoWriter : AssetWriterInput
+	public class VideoChannel : ReadWriteSampleBufferChannel
 	{
 		readonly IVideoTransformer transformer;
 		readonly AVAssetWriterInputPixelBufferAdaptor adaptor;
 
-		public VideoWriter (AVAssetWriterInput writerInput, IVideoTransformer transformer)
-			: base (writerInput)
+		public VideoChannel (AVAssetReaderOutput readerOutput, AVAssetWriterInput writerInput, IVideoTransformer transformer)
+			: base(readerOutput, writerInput)
 		{
 			if (transformer == null)
 				throw new ArgumentNullException ("transformer");
@@ -21,10 +21,10 @@ namespace PhotoFilterExtension
 			var adaptorAttrs = new CVPixelBufferAttributes {
 				PixelFormatType = CVPixelFormatType.CV32BGRA
 			};
-			adaptor = new AVAssetWriterInputPixelBufferAdaptor (writerInput, adaptorAttrs);
+			adaptor = new AVAssetWriterInputPixelBufferAdaptor (WriterInput, adaptorAttrs);
 		}
 
-		public override bool Append (CMSampleBuffer sampleBuffer)
+		protected override bool Append (CMSampleBuffer sampleBuffer)
 		{
 			CMTime presentationTime = sampleBuffer.PresentationTimeStamp;
 
@@ -41,3 +41,4 @@ namespace PhotoFilterExtension
 		}
 	}
 }
+

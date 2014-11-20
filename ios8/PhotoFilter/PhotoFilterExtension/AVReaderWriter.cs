@@ -128,7 +128,7 @@ namespace PhotoFilterExtension
 
 			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
-			audioSampleBufferChannel = new ReadWriteSampleBufferChannel (output, new AudioWriter (input));
+			audioSampleBufferChannel = new AudioChannel(output, input);
 		}
 
 		private void SetupAssetReaserWriterForVideo (AVAssetTrack videoTrack)
@@ -172,7 +172,7 @@ namespace PhotoFilterExtension
 
 			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
-			videoSampleBufferChannel = new ReadWriteSampleBufferChannel (output, new VideoWriter (input, transformer));
+			videoSampleBufferChannel = new VideoChannel (output, input, transformer);
 		}
 
 		private AVVideoCodecSettings CreateCodecSettingsFor (NSDictionary cleanAperture, NSDictionary aspectRatio)
@@ -225,7 +225,7 @@ namespace PhotoFilterExtension
 			if (channel == null)
 				return Task.FromResult<object> (null);
 			else
-				return channel.StartTransformationAsync ();
+				return channel.StartAsync ();
 		}
 
 		private void ReadingAndWritingDidFinish (bool success, NSError error)

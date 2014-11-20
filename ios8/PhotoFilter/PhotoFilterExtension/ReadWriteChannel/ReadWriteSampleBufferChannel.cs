@@ -9,10 +9,22 @@ using CoreMedia;
 
 namespace PhotoFilterExtension
 {
-	public class ReadWriteSampleBufferChannel
+	public abstract class ReadWriteSampleBufferChannel
 	{
 		readonly AVAssetReaderOutput readerOutput;
-		readonly AssetWriterInput assetWriter;
+		protected AVAssetReaderOutput ReaderOutput {
+			get {
+				return readerOutput;
+			}
+		}
+
+		readonly AVAssetWriterInput writerInput;
+		protected AVAssetWriterInput WriterInput {
+			get {
+				return writerInput;
+			}
+		}
+
 		readonly DispatchQueue serializationQueue;
 
 		bool finished;
@@ -24,7 +36,7 @@ namespace PhotoFilterExtension
 			}
 		}
 
-		public ReadWriteSampleBufferChannel (AVAssetReaderOutput readerOutput, AssetWriterInput writerInput)
+		public ReadWriteSampleBufferChannel (AVAssetReaderOutput readerOutput, AVAssetWriterInput writerInput)
 		{
 			if (readerOutput == null)
 				throw new ArgumentNullException ("readerOutput");
@@ -32,7 +44,8 @@ namespace PhotoFilterExtension
 				throw new ArgumentNullException ("writerInput");
 
 			this.readerOutput = readerOutput;
-			this.assetWriter = writerInput;
+			this.writerInput = writerInput;
+
 			serializationQueue = new DispatchQueue ("ReadWriteSampleBufferChannel queue");
 		}
 
@@ -49,23 +62,27 @@ namespace PhotoFilterExtension
 
 		void AdjustMediaData ()
 		{
-			assetWriter.Input.RequestMediaData (serializationQueue, () => {
+			writerInput.RequestMediaData (serializationQueue, () => {
+				if(finished)
+					return;
+
+				bool shouldContinue = true;
+
 				// Read samples in a loop as long as the asset writer input is ready
-				while (assetWriter.Input.ReadyForMoreMediaData) {
+				while (writerInput.ReadyForMoreMediaData && shouldContinue) {
 					using (CMSampleBuffer sampleBuffer = readerOutput.CopyNextSampleBuffer ()) {
 						// TODO: https://trello.com/c/4YM7lofd
-						if (sampleBuffer == null || !sampleBuffer.IsValid)
-							break;
-
-						bool success = assetWriter.Append (sampleBuffer);
-						if (!success)
-							break;
+						bool isBufferValid = sampleBuffer != null && sampleBuffer.IsValid;
+						shouldContinue = isBufferValid ? Append (sampleBuffer) : false;
 					}
 				}
 
-				CompleteTask ();
+				if(!shouldContinue)
+					CompleteTask ();
 			});
 		}
+
+		protected abstract bool Append(CMSampleBuffer sampleBuffer);
 
 		public void Cancel ()
 		{
@@ -76,7 +93,7 @@ namespace PhotoFilterExtension
 		private void CompleteTask ()
 		{
 			if (!finished) {
-				assetWriter.Input.MarkAsFinished ();  // let the asset writer know that we will not be appending any more samples to this input
+				writerInput.MarkAsFinished ();  // let the asset writer know that we will not be appending any more samples to this input
 				completionSource.SetResult (null);
 			}
 			finished = true;
