@@ -13,6 +13,7 @@ using CoreImage;
 using CoreGraphics;
 using CoreVideo;
 using CoreMedia;
+using System.Threading.Tasks;
 
 namespace PhotoFilterExtension
 {
@@ -166,34 +167,39 @@ namespace PhotoFilterExtension
 			PHContentEditingOutput contentEditingOutput = new PHContentEditingOutput (contentEditingInput);
 			contentEditingOutput.AdjustmentData = CreateAdjustmentData ();
 
+			Task assetWork = null;
 			switch (contentEditingInput.MediaType) {
 				case PHAssetMediaType.Image:
-					FinishPhotoEditing (completionHandler);
+					assetWork = FinishPhotoEditing (completionHandler);
 					break;
 
 				case PHAssetMediaType.Video:
-					FinishVideoEditing (completionHandler);
+					assetWork = FinishVideoEditing (completionHandler);
 					break;
 
 				default:
 					throw new NotImplementedException ();
 			}
 
-			initialFilterName = null;
+			assetWork.ContinueWith (_ => {
+				InvokeOnMainThread(()=> {
+					initialFilterName = null;
 
-			contentEditingInput.Dispose ();
-			contentEditingInput = null;
+					TryDisposeContentInputImage();
+					TryDisposeContentInput();
 
-			inputImage.Dispose ();
-			inputImage = null;
+					inputImage.Dispose ();
+					inputImage = null;
 
-			TryDisposeFilterInput ();
-			TryDisposeFilter ();
+					TryDisposeFilterInput ();
+					TryDisposeFilter ();
 
-			BackgroundImageView.Image.Dispose ();
-			BackgroundImageView.Image = null;
+					BackgroundImageView.Image.Dispose ();
+					BackgroundImageView.Image = null;
 
-			TryDisposeFilterPreviewImg ();
+					TryDisposeFilterPreviewImg ();
+				});
+			});
 		}
 
 		PHAdjustmentData CreateAdjustmentData()
@@ -202,7 +208,7 @@ namespace PhotoFilterExtension
 			return new PHAdjustmentData (BundleId, "1.0", archivedData);
 		}
 
-		void FinishPhotoEditing(Action<PHContentEditingOutput> completionHandler)
+		Task FinishPhotoEditing(Action<PHContentEditingOutput> completionHandler)
 		{
 			PHContentEditingOutput contentEditingOutput = CreateOutput ();
 
@@ -224,16 +230,18 @@ namespace PhotoFilterExtension
 							Console.WriteLine ("An error occured: {0}", error);
 
 						completionHandler (output);
+						return Task.FromResult<object> (null); // inform that we may safely clean up any data
 					}
 				}
 			}
 		}
 
-		void FinishVideoEditing(Action<PHContentEditingOutput> completionHandler)
+		Task FinishVideoEditing(Action<PHContentEditingOutput> completionHandler)
 		{
 			PHContentEditingOutput contentEditingOutput = CreateOutput ();
 			AVReaderWriter avReaderWriter = new AVReaderWriter (contentEditingInput.AvAsset, this);
 
+			var tcs = new TaskCompletionSource<object> ();
 			// Save filtered video
 			avReaderWriter.WriteToUrl (contentEditingOutput.RenderedContentUrl, error => {
 				bool success = error == null;
@@ -241,7 +249,10 @@ namespace PhotoFilterExtension
 				if(!success)
 					Console.WriteLine ("An error occured: {0}", error);
 				completionHandler (output);
+				tcs.SetResult(null);  // inform that we may safely clean up any data
 			});
+
+			return tcs.Task;
 		}
 
 		PHContentEditingOutput CreateOutput()
@@ -281,8 +292,10 @@ namespace PhotoFilterExtension
 			ciFilter = CIFilter.FromName (selectedFilterName);
 
 			CIImageOrientation orientation = Convert (inputImage.Orientation);
-			using (CIImage ciInputImage = CIImage.FromCGImage (inputImage.CGImage))
-				ciFilter.Image = ciInputImage.CreateWithOrientation (orientation);
+			using (CGImage cgImage = inputImage.CGImage) {
+				using (CIImage ciInputImage = CIImage.FromCGImage (cgImage))
+					ciFilter.Image = ciInputImage.CreateWithOrientation (orientation);
+			}
 		}
 
 		void UpdateFilterPreview ()
@@ -453,6 +466,26 @@ namespace PhotoFilterExtension
 
 			FilterPreviewView.Image.Dispose ();
 			FilterPreviewView.Image = null;
+		}
+
+		void TryDisposeContentInputImage()
+		{
+			if (contentEditingInput == null)
+				return;
+
+			if (contentEditingInput.DisplaySizeImage == null)
+				return;
+
+			contentEditingInput.DisplaySizeImage.Dispose ();
+		}
+
+		void TryDisposeContentInput()
+		{
+			if (contentEditingInput == null)
+				return;
+
+			contentEditingInput.Dispose ();
+			contentEditingInput = null;
 		}
 	}
 }
