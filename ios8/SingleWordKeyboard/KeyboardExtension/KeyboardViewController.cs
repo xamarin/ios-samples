@@ -39,12 +39,9 @@ namespace KeyboardExtension
 
 			View.AddSubview (nextKeyboardButton);
 
-			var nextKeyboardButtonLeftSideConstraint = NSLayoutConstraint.Create (nextKeyboardButton, NSLayoutAttribute.Left, NSLayoutRelation.Equal, View, NSLayoutAttribute.Left, 1, 10);
-			var nextKeyboardButtonBottomConstraint = NSLayoutConstraint.Create (nextKeyboardButton, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, View, NSLayoutAttribute.Bottom, 1, 0);
-			View.AddConstraints (new [] {
-				nextKeyboardButtonLeftSideConstraint,
-				nextKeyboardButtonBottomConstraint
-			});
+			var left = NSLayoutConstraint.Create (nextKeyboardButton, NSLayoutAttribute.Left, NSLayoutRelation.Equal, View, NSLayoutAttribute.Left, 1, 10);
+			var bottom = NSLayoutConstraint.Create (nextKeyboardButton, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, View, NSLayoutAttribute.Bottom, 1, 0);
+			View.AddConstraints (new [] { left, bottom });
 		}
 
 		void OnNextKeyboard (object sender, EventArgs e)
@@ -66,12 +63,9 @@ namespace KeyboardExtension
 
 			View.AddSubview (mainButton);
 
-			var mainButtonCenterXSideConstraint = NSLayoutConstraint.Create (mainButton, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, View, NSLayoutAttribute.CenterX, 1.0f, 0.0f);
-			var mainButtonCenterYsConstraint = NSLayoutConstraint.Create (mainButton, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, View, NSLayoutAttribute.CenterY, 1.0f, 0.0f);
-			View.AddConstraints (new [] {
-				mainButtonCenterXSideConstraint,
-				mainButtonCenterYsConstraint
-			});
+			var x = NSLayoutConstraint.Create (mainButton, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, View, NSLayoutAttribute.CenterX, 1, 0);
+			var y = NSLayoutConstraint.Create (mainButton, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, View, NSLayoutAttribute.CenterY, 1, 0);
+			View.AddConstraints (new [] { x, y });
 		}
 
 		void PrintWord (object sender, EventArgs e)
