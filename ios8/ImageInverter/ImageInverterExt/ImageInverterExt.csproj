@@ -121,4 +121,10 @@
   <ItemGroup>
     <InterfaceDefinition Include="MainInterface.storyboard" />
   </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-60%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-76%402x.png" />
+  </ItemGroup>
 </Project>
