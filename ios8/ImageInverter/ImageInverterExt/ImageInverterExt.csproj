@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{EE2C853D-36AF-4FDB-B1AD-8E90477E2198};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{EE44D852-1122-431E-9EEC-D9B6F2C73A87}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>ImageInverterExt</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>ImageInverterExt</AssemblyName>
@@ -108,10 +108,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Main.cs" />
     <Compile Include="ImageInverterViewController.cs" />
     <Compile Include="ImageInverterViewController.designer.cs">
       <DependentUpon>ImageInverterViewController.cs</DependentUpon>
