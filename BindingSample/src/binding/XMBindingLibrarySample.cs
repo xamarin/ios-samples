@@ -51,7 +51,7 @@ namespace XMBindingLibrarySample
 		[Export("add:and:")]
 		nint Add(nint operandUn, nint operandDeux);
 		
-		[Export("multiply:and")]
+		[Export("multiply:and:")]
 		nint Multiply(nint operandUn, nint operandDeux);
 
 		[Export("setCallback:")]

@@ -68,10 +68,10 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="XMBindingLibrary">
       <HintPath>..\..\..\binding\XMBindingLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
