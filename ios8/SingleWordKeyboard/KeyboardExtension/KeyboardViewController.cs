@@ -8,7 +8,7 @@ namespace KeyboardExtension
 {
 	public partial class KeyboardViewController : UIInputViewController
 	{
-		private const String SingleWord = "SingleWord";
+		const String SingleWord = "SingleWord";
 
 		UIButton nextKeyboardButton;
 		UIButton mainButton;
@@ -60,7 +60,8 @@ namespace KeyboardExtension
 		private void SetupMainButton ()
 		{
 			mainButton = new UIButton (UIButtonType.System);
-			mainButton.TitleLabel.Font = UIFont.SystemFontOfSize (80);
+			var fontSize = UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad ? 80 : 60;
+			mainButton.TitleLabel.Font = UIFont.SystemFontOfSize (fontSize);
 
 			mainButton.SetTitle (SingleWord, UIControlState.Normal);
 			mainButton.SizeToFit ();
