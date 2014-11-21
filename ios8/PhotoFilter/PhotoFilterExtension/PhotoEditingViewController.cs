@@ -13,6 +13,7 @@ using CoreImage;
 using CoreGraphics;
 using CoreVideo;
 using CoreMedia;
+using System.Threading.Tasks;
 
 namespace PhotoFilterExtension
 {
@@ -134,14 +135,7 @@ namespace PhotoFilterExtension
 			}
 
 			// Load adjustment data, if any
-			try {
-				PHAdjustmentData adjustmentData = contentEditingInput.AdjustmentData;
-				if (adjustmentData != null)
-					selectedFilterName = (string)(NSString)NSKeyedUnarchiver.UnarchiveObject (adjustmentData.Data);
-			} catch (Exception exception) {
-				Console.WriteLine ("Exception decoding adjustment data: {0}", exception);
-			}
-
+			selectedFilterName = FetchAdjustmentFilterName (contentEditingInput);
 			if (string.IsNullOrWhiteSpace (selectedFilterName))
 				selectedFilterName = "CISepiaTone";
 
@@ -153,58 +147,120 @@ namespace PhotoFilterExtension
 			BackgroundImageView.Image = placeholderImage;
 		}
 
+		static string FetchAdjustmentFilterName(PHContentEditingInput contentEditingInput)
+		{
+			string filterName = null;
+
+			try {
+				PHAdjustmentData adjustmentData = contentEditingInput.AdjustmentData;
+				if (adjustmentData != null)
+					filterName = (NSString)NSKeyedUnarchiver.UnarchiveObject (adjustmentData.Data);
+			} catch (Exception exception) {
+				Console.WriteLine ("Exception decoding adjustment data: {0}", exception);
+			}
+
+			return filterName;
+		}
+
 		public void FinishContentEditing (Action<PHContentEditingOutput> completionHandler)
 		{
 			PHContentEditingOutput contentEditingOutput = new PHContentEditingOutput (contentEditingInput);
+			contentEditingOutput.AdjustmentData = CreateAdjustmentData ();
 
-			// Adjustment data
-			NSData archivedData = NSKeyedArchiver.ArchivedDataWithRootObject ((NSString)selectedFilterName);
-			PHAdjustmentData adjustmentData = new PHAdjustmentData (BundleId, "1.0", archivedData);
-			contentEditingOutput.AdjustmentData = adjustmentData;
-
+			Task assetWork = null;
 			switch (contentEditingInput.MediaType) {
 				case PHAssetMediaType.Image:
-					{
-						// Get full size image
-						NSUrl url = contentEditingInput.FullSizeImageUrl;
-						CIImageOrientation orientation = contentEditingInput.FullSizeImageOrientation;
+					assetWork = FinishPhotoEditing (completionHandler);
+					break;
 
-						// Generate rendered JPEG data
-						UIImage image = UIImage.FromFile (url.Path);
-						image = TransformImage (image, orientation);
-						NSData renderedJPEGData = image.AsJPEG (0.9f);
+				case PHAssetMediaType.Video:
+					assetWork = FinishVideoEditing (completionHandler);
+					break;
+
+				default:
+					throw new NotImplementedException ();
+			}
+
+			assetWork.ContinueWith (_ => {
+				InvokeOnMainThread(()=> {
+					initialFilterName = null;
+
+					TryDisposeContentInputImage();
+					TryDisposeContentInput();
+
+					inputImage.Dispose ();
+					inputImage = null;
+
+					TryDisposeFilterInput ();
+					TryDisposeFilter ();
+
+					BackgroundImageView.Image.Dispose ();
+					BackgroundImageView.Image = null;
+
+					TryDisposeFilterPreviewImg ();
+				});
+			});
+		}
+
+		PHAdjustmentData CreateAdjustmentData()
+		{
+			NSData archivedData = NSKeyedArchiver.ArchivedDataWithRootObject ((NSString)selectedFilterName);
+			return new PHAdjustmentData (BundleId, "1.0", archivedData);
+		}
+
+		Task FinishPhotoEditing(Action<PHContentEditingOutput> completionHandler)
+		{
+			PHContentEditingOutput contentEditingOutput = CreateOutput ();
+
+			// Get full size image
+			NSUrl url = contentEditingInput.FullSizeImageUrl;
+			CIImageOrientation orientation = contentEditingInput.FullSizeImageOrientation;
+
+			// Generate rendered JPEG data
+			using (UIImage image = UIImage.FromFile (url.Path)) {
+				using (UIImage transformedImage = TransformImage (image, orientation)) {
+					using (NSData renderedJPEGData = transformedImage.AsJPEG (0.9f)) {
 
 						// Save JPEG data
 						NSError error = null;
 						bool success = renderedJPEGData.Save (contentEditingOutput.RenderedContentUrl, NSDataWritingOptions.Atomic, out error);
-						if (success) {
-							completionHandler (contentEditingOutput);
-						} else {
+						PHContentEditingOutput output = success ? contentEditingOutput : null;
+
+						if (!success)
 							Console.WriteLine ("An error occured: {0}", error);
-							completionHandler (null);
-						}
-						break;
+
+						completionHandler (output);
+						return Task.FromResult<object> (null); // inform that we may safely clean up any data
 					}
-
-				case PHAssetMediaType.Video:
-					{
-						AVReaderWriter avReaderWriter = new AVReaderWriter (contentEditingInput.AvAsset, this);
-
-						// Save filtered video
-						avReaderWriter.WriteToUrl (contentEditingOutput.RenderedContentUrl, error => {
-							if (error == null) {
-								completionHandler (contentEditingOutput);
-								return;
-							}
-							Console.WriteLine ("An error occured: {0}", error);
-							completionHandler (null);
-						});
-						break;
-					}
-
-				default:
-					break;
+				}
 			}
+		}
+
+		Task FinishVideoEditing(Action<PHContentEditingOutput> completionHandler)
+		{
+			PHContentEditingOutput contentEditingOutput = CreateOutput ();
+			AVReaderWriter avReaderWriter = new AVReaderWriter (contentEditingInput.AvAsset, this);
+
+			var tcs = new TaskCompletionSource<object> ();
+			// Save filtered video
+			avReaderWriter.WriteToUrl (contentEditingOutput.RenderedContentUrl, error => {
+				bool success = error == null;
+				PHContentEditingOutput output = success ? contentEditingOutput : null;
+				if(!success)
+					Console.WriteLine ("An error occured: {0}", error);
+				completionHandler (output);
+				tcs.SetResult(null);  // inform that we may safely clean up any data
+			});
+
+			return tcs.Task;
+		}
+
+		PHContentEditingOutput CreateOutput()
+		{
+			PHContentEditingOutput contentEditingOutput = new PHContentEditingOutput (contentEditingInput);
+			contentEditingOutput.AdjustmentData = CreateAdjustmentData ();
+
+			return contentEditingOutput;
 		}
 
 		public void CancelContentEditing ()
@@ -231,36 +287,39 @@ namespace PhotoFilterExtension
 
 		void UpdateFilter ()
 		{
+			TryDisposeFilterInput ();
+			TryDisposeFilter ();
 			ciFilter = CIFilter.FromName (selectedFilterName);
 
-			var inputImage = CIImage.FromCGImage (this.inputImage.CGImage);
-			CIImageOrientation orientation = Convert (this.inputImage.Orientation);
-			inputImage = inputImage.CreateWithOrientation (orientation);
-
-			ciFilter.Image = inputImage;
+			CIImageOrientation orientation = Convert (inputImage.Orientation);
+			using (CGImage cgImage = inputImage.CGImage) {
+				using (CIImage ciInputImage = CIImage.FromCGImage (cgImage))
+					ciFilter.Image = ciInputImage.CreateWithOrientation (orientation);
+			}
 		}
 
 		void UpdateFilterPreview ()
 		{
-			CIImage outputImage = ciFilter.OutputImage;
-
-			UIImage transformedImage;
-			using (CGImage cgImage = ciContext.CreateCGImage (outputImage, outputImage.Extent))
-				transformedImage = UIImage.FromImage (cgImage);
-
-			FilterPreviewView.Image = transformedImage;
+			using (CIImage outputImage = ciFilter.OutputImage) {
+				using (CGImage cgImage = ciContext.CreateCGImage (outputImage, outputImage.Extent)) {
+					TryDisposeFilterPreviewImg ();
+					FilterPreviewView.Image = UIImage.FromImage (cgImage);
+				}
+			}
 		}
 
 		UIImage TransformImage (UIImage image, CIImageOrientation orientation)
 		{
-			CIImage inputImage = CIImage.FromCGImage (image.CGImage);
-			inputImage = inputImage.CreateWithOrientation (orientation);
-
-			ciFilter.SetValueForKey (inputImage, CIFilterInputKey.Image);
-			CIImage outputImage = ciFilter.OutputImage;
-
-			using (CGImage cgImage = ciContext.CreateCGImage (outputImage, outputImage.Extent))
-				return UIImage.FromImage (cgImage);
+			TryDisposeFilterInput ();
+			using (CIImage inputImage = CIImage.FromCGImage (image.CGImage)) {
+				using (CIImage imageWithOrientation = inputImage.CreateWithOrientation (orientation)) {
+					ciFilter.Image = imageWithOrientation;
+					using (CIImage outputImage = ciFilter.OutputImage) {
+						using (CGImage cgImage = ciContext.CreateCGImage (outputImage, outputImage.Extent))
+							return UIImage.FromImage (cgImage);
+					}
+				}
+			}
 		}
 
 		#endregion
@@ -271,7 +330,7 @@ namespace PhotoFilterExtension
 		{
 			using (CIImage img = CIImage.FromImageBuffer (inputBuffer)) {
 				ciFilter.Image = img;
-				using (var outImg = ciFilter.OutputImage)
+				using (CIImage outImg = ciFilter.OutputImage)
 					ciContext.Render (outImg, outputBuffer);
 			}
 		}
@@ -375,6 +434,59 @@ namespace PhotoFilterExtension
 		}
 
 		#endregion
+
+		void TryDisposeFilterInput()
+		{
+			if (ciFilter == null)
+				return;
+
+			if (ciFilter.Image == null)
+				return;
+
+			ciFilter.Image.Dispose ();
+			ciFilter.Image = null;
+		}
+
+		void TryDisposeFilter()
+		{
+			if (ciFilter == null)
+				return;
+
+			ciFilter.Dispose ();
+			ciFilter = null;
+		}
+
+		void TryDisposeFilterPreviewImg()
+		{
+			if (FilterPreviewView == null)
+				return;
+
+			if (FilterPreviewView.Image == null)
+				return;
+
+			FilterPreviewView.Image.Dispose ();
+			FilterPreviewView.Image = null;
+		}
+
+		void TryDisposeContentInputImage()
+		{
+			if (contentEditingInput == null)
+				return;
+
+			if (contentEditingInput.DisplaySizeImage == null)
+				return;
+
+			contentEditingInput.DisplaySizeImage.Dispose ();
+		}
+
+		void TryDisposeContentInput()
+		{
+			if (contentEditingInput == null)
+				return;
+
+			contentEditingInput.Dispose ();
+			contentEditingInput = null;
+		}
 	}
 }
 
