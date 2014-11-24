@@ -90,8 +90,7 @@ namespace CloudCaptions
 
 			string selectButton = "Select from CloudKit";
 			UIAlertAction selectExisting = UIAlertAction.Create (selectButton, UIAlertActionStyle.Default, action => {
-				// TODO: second param mast be null https://trello.com/c/PRQIGaTd
-				PerformSegue("selectExisting", new NSObject());
+				PerformSegue("selectExisting", null);
 			});
 
 			UIAlertAction cancel = UIAlertAction.Create ("Cancel", UIAlertActionStyle.Cancel, null);

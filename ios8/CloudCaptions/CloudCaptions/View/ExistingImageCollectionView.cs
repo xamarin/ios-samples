@@ -91,7 +91,7 @@ namespace CloudCaptions
 		{
 			// returns the recordID of the item in imageRecords at the given index
 			Image img = imageRecords[index.Row];
-			return img.Record.RecordId;
+			return img.Record.Id;
 		}
 	}
 }

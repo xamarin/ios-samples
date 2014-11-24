@@ -19,20 +19,18 @@ namespace CloudCaptions
 				this.controller = controller;
 			}
 
-			// TODO: https://trello.com/c/4LvjAiN8
-			public override int GetComponentCount (UIPickerView picker)
+			public override nint GetComponentCount (UIPickerView picker)
 			{
 				return 1;
 			}
 
-			// TODO: https://trello.com/c/4LvjAiN8
-			public override int GetRowsInComponent (UIPickerView picker, int component)
+			public override nint GetRowsInComponent (UIPickerView picker, nint component)
 			{
 				// One row for each font in the familyNames array
 				return UIFont.FamilyNames.Length;
 			}
 
-			public override UIView GetView (UIPickerView picker, int row, int component, UIView view)
+			public override UIView GetView (UIPickerView picker, nint row, nint component, UIView view)
 			{
 				// Sets each item in pickerview as the name of each font with its typeface in its own font
 				// (e.g. Helvetica appears in Helvetica, Courier New appears in Courier New
@@ -45,13 +43,13 @@ namespace CloudCaptions
 				return fontLabel;
 			}
 
-			public override float GetRowHeight (UIPickerView picker, int component)
+			public override nfloat GetRowHeight (UIPickerView picker, nint component)
 			{
 				// This method sets the height of each row in the pickerView
 				return 35;
 			}
 
-			public override void Selected (UIPickerView picker, int row, int component)
+			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
 				// Sets the imageLabel font to the selected font
 				string fontName = UIFont.FamilyNames [row];
@@ -84,7 +82,7 @@ namespace CloudCaptions
 		[Outlet ("postButton")]
 		UIBarButtonItem PostButton { get; set; }
 
-		UIPickerViewModel source;
+		UIPickerViewModel model;
 
 		public SubmitPostViewController (IntPtr handle)
 			: base (handle)
@@ -100,8 +98,8 @@ namespace CloudCaptions
 			ImageView.Image = ImageRecord.FullImage;
 
 			// sets up font picker and picks a random font
-			source = new PickerViewModel (this);
-			FontPicker.Source = source;
+			model = new PickerViewModel (this);
+			FontPicker.Model = model;
 			var randomFont = (new Random ()).Next () % UIFont.FamilyNames.Length;
 			FontPicker.Select (randomFont, 0, false);
 
@@ -167,8 +165,7 @@ namespace CloudCaptions
 			// Creates post record type and initizalizes all of its values
 			CKRecord newRecord = new CKRecord (Post.RecordType);
 			newRecord [Post.FontKey] = (NSString)ImageLabel.Font.Name;
-			// TODO: https://trello.com/c/wEJdLrtO RecordId -> Id
-			newRecord [Post.ImageRefKey] = new CKReference (ImageRecord.Record.RecordId, CKReferenceAction.DeleteSelf);
+			newRecord [Post.ImageRefKey] = new CKReference (ImageRecord.Record.Id, CKReferenceAction.DeleteSelf);
 			newRecord [Post.TextKey] = (NSString)HiddenText.Text;
 			string[] tags = TagField.Text.ToLower ().Split (new char[]{ ' ' }, StringSplitOptions.RemoveEmptyEntries);
 			newRecord [Post.TagsKey] = NSArray.FromObjects (tags);

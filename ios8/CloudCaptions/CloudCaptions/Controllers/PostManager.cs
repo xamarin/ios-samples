@@ -259,7 +259,7 @@ namespace CloudCaptions
 		void OnLoadNewPostFetchRecord(CKRecord record, List<Post> newPosts, ref Post lastRecordInOperation)
 		{
 			// If the record we just fetched doesn't match recordIDs to any item in our newPosts array, let's make an Post and add it
-			var matchingRecord = newPosts.FindIndex (p => p.PostRecord.RecordId.Equals(record.RecordId));
+			var matchingRecord = newPosts.FindIndex (p => p.PostRecord.Id.Equals(record.Id));
 			if (matchingRecord == -1) {
 				Post fetchedPost = new Post (record);
 				newPosts.Add (fetchedPost);
