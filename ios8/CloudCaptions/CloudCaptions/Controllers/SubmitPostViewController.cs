@@ -82,7 +82,7 @@ namespace CloudCaptions
 		[Outlet ("postButton")]
 		UIBarButtonItem PostButton { get; set; }
 
-		UIPickerViewModel source;
+		UIPickerViewModel model;
 
 		public SubmitPostViewController (IntPtr handle)
 			: base (handle)
@@ -98,8 +98,8 @@ namespace CloudCaptions
 			ImageView.Image = ImageRecord.FullImage;
 
 			// sets up font picker and picks a random font
-			source = new PickerViewModel (this);
-			FontPicker.Source = source;
+			model = new PickerViewModel (this);
+			FontPicker.Model = model;
 			var randomFont = (new Random ()).Next () % UIFont.FamilyNames.Length;
 			FontPicker.Select (randomFont, 0, false);
 
@@ -165,8 +165,7 @@ namespace CloudCaptions
 			// Creates post record type and initizalizes all of its values
 			CKRecord newRecord = new CKRecord (Post.RecordType);
 			newRecord [Post.FontKey] = (NSString)ImageLabel.Font.Name;
-			// TODO: https://trello.com/c/wEJdLrtO RecordId -> Id
-			newRecord [Post.ImageRefKey] = new CKReference (ImageRecord.Record.RecordId, CKReferenceAction.DeleteSelf);
+			newRecord [Post.ImageRefKey] = new CKReference (ImageRecord.Record.Id, CKReferenceAction.DeleteSelf);
 			newRecord [Post.TextKey] = (NSString)HiddenText.Text;
 			string[] tags = TagField.Text.ToLower ().Split (new char[]{ ' ' }, StringSplitOptions.RemoveEmptyEntries);
 			newRecord [Post.TagsKey] = NSArray.FromObjects (tags);
