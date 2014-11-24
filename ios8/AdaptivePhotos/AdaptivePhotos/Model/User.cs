@@ -17,7 +17,7 @@ namespace AdaptivePhotos
 			var conversationDictionaries = (NSArray)dictionary.ObjectForKey (new NSString ("conversations"));
 			var conversations = new NSMutableArray (conversationDictionaries.Count);
 
-			for (nint i = 0; i < (nint)conversationDictionaries.Count; i++) {
+			for (nuint i = 0; i < conversationDictionaries.Count; i++) {
 				var conversation = Conversation.ConversationWithDictionary (conversationDictionaries.GetItem<NSDictionary> (i));
 				conversations.Add (conversation);
 			}

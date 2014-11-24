@@ -25,7 +25,7 @@ namespace AdaptivePhotos
 		string PhotosText {
 			get {
 				nuint photosCount = 0;
-				for (nint i = 0; i < (nint)User.Conversations.Count; i++)
+				for (nuint i = 0; i < User.Conversations.Count; i++)
 					photosCount += User.Conversations.GetItem <Conversation> (i).Photos.Count;
 
 				return string.Format ("{0} photos", photosCount);
@@ -114,14 +114,14 @@ namespace AdaptivePhotos
 
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:|[topLayoutGuide]-[nameLabel]-[conversationsLabel]-[photosLabel]",
 					NSLayoutFormatOptions.DirectionLeadingToTrailing,
-					"topLayoutGuide", ObjCRuntime.Runtime.GetNSObject(TopLayoutGuide.Handle),
+					"topLayoutGuide", TopLayoutGuide,
 					"nameLabel", NameLabel,
 					"conversationsLabel", ConversationsLabel,
 					"photosLabel", PhotosLabel));
 
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:|[topLayoutGuide][imageView]|",
 					NSLayoutFormatOptions.DirectionLeadingToTrailing,
-					"topLayoutGuide", ObjCRuntime.Runtime.GetNSObject(TopLayoutGuide.Handle),
+					"topLayoutGuide", TopLayoutGuide,
 					"imageView", ImageView));
 
 				newConstraints.Add (NSLayoutConstraint.Create (ImageView, NSLayoutAttribute.Width, NSLayoutRelation.Equal, 
@@ -145,7 +145,7 @@ namespace AdaptivePhotos
 
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:[topLayoutGuide]-[nameLabel]-[conversationsLabel]-[photosLabel]-20-[imageView]|",
 					NSLayoutFormatOptions.DirectionLeadingToTrailing,
-					"topLayoutGuide", ObjCRuntime.Runtime.GetNSObject(TopLayoutGuide.Handle),
+					"topLayoutGuide", TopLayoutGuide,
 					"nameLabel", NameLabel,
 					"conversationsLabel", ConversationsLabel,
 					"photosLabel", PhotosLabel,
