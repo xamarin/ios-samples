@@ -304,21 +304,10 @@ namespace Lister
 
 		void PrintMetadataItem(NSMetadataItem item)
 		{
-			// TODO: https://trello.com/c/3Uw6WFkC
-			NSString path = (NSString)item.ValueForAttribute (NSMetadataQuery.ItemPathKey);
-			NSString display = (NSString)item.ValueForAttribute (NSMetadataQuery.ItemDisplayNameKey);
-			NSUrl url = (NSUrl)item.ValueForAttribute(NSMetadataQuery.ItemURLKey);
-			NSString name = (NSString)item.ValueForAttribute (NSMetadataQuery.ItemFSNameKey);
-			NSNumber downloaded = (NSNumber)item.ValueForAttribute (NSMetadataQuery.UbiquitousItemIsDownloadedKey);
-			NSNumber downloading = (NSNumber)item.ValueForAttribute (NSMetadataQuery.UbiquitousItemIsDownloadingKey);
-			NSNumber uploaded = (NSNumber)item.ValueForAttribute (NSMetadataQuery.UbiquitousItemIsUploadedKey);
-			NSNumber uploading = (NSNumber)item.ValueForAttribute (NSMetadataQuery.UbiquitousItemIsUploadingKey);
-			NSDate createData = (NSDate)item.ValueForAttribute (NSMetadataQuery.ItemFSCreationDateKey);
-			NSDate updateDate = (NSDate)item.ValueForAttribute (NSMetadataQuery.ItemFSContentChangeDateKey);
-//			NSNumber hasConflicts = item.ValueForAttribute (NSMetadataQuery.UbiquitousItemHasUnresolvedConflictsKey);
-
 			Console.WriteLine ("path={0}, display={1}, url={2}, name={3}, downloaded={4}, downloading={5}, uploaded={6}, uploading={7}, createData={8}, updateDate={9},",
-				path, display, url, name, downloaded, downloading, uploaded, uploading, createData, updateDate);
+				item.Path, item.DisplayName, item.Url, item.FileSystemName, item.UbiquitousItemIsUploaded,
+				item.UbiquitousItemIsUploading, item.UbiquitousItemIsUploaded, item.UbiquitousItemIsUploading,
+				item.FileSystemCreationDate, item.FileSystemContentChangeDate);
 		}
 
 		void StartMetadataQuery()
