@@ -57,7 +57,7 @@ namespace Fit
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = TableView.DequeueReusableCell (CellIdentifier, indexPath);
-			var foodItem = FoodItems.GetItem<FoodItem> (indexPath.Row);
+			var foodItem = FoodItems.GetItem<FoodItem> ((nuint)indexPath.Row);
 
 			cell.TextLabel.Text = foodItem.Name;
 			cell.DetailTextLabel.Text = EnergyFormatter.StringFromJoules (foodItem.Joules);
@@ -67,7 +67,7 @@ namespace Fit
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			NSIndexPath indexPathForSelectedRow = TableView.IndexPathForSelectedRow;
-			SelectedFoodItem = FoodItems.GetItem<FoodItem> (indexPathForSelectedRow.Row);
+			SelectedFoodItem = FoodItems.GetItem<FoodItem> ((nuint)indexPathForSelectedRow.Row);
 			((JournalViewController)NavigationController.ViewControllers [NavigationController.ViewControllers.Length - 2]).
 				AddFoodItem (SelectedFoodItem);
 			NavigationController.PopViewController (true);

@@ -111,7 +111,7 @@ namespace Fit
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = TableView.DequeueReusableCell (CellReuseIdentifier, indexPath);
-			var foodItem = FoodItems.GetItem<FoodItem> (indexPath.Row);
+			var foodItem = FoodItems.GetItem<FoodItem> ((nuint)indexPath.Row);
 			cell.TextLabel.Text = foodItem.Name;
 			cell.DetailTextLabel.Text = EnergyFormatter.StringFromValue (foodItem.Joules, NSEnergyFormatterUnit.Joule);
 			return cell;
