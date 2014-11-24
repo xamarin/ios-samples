@@ -50,7 +50,7 @@ namespace AdaptivePhotos
 
 		public override bool ContainsPhoto (Photo photo)
 		{
-			for (nint i = 0; i < (nint)Conversation.Photos.Count; i++) {
+			for (nuint i = 0; i < Conversation.Photos.Count; i++) {
 				if (Conversation.Photos.GetItem<Photo> (i) == photo)
 					return true;
 			}
@@ -69,7 +69,7 @@ namespace AdaptivePhotos
 
 		Photo PhotoForIndexPath (NSIndexPath indexPath)
 		{
-			return Conversation.Photos.GetItem<Photo> (indexPath.Item);
+			return Conversation.Photos.GetItem<Photo> ((nuint)indexPath.Item);
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)

@@ -25,7 +25,7 @@ namespace AdaptivePhotos
 		string PhotosText {
 			get {
 				nuint photosCount = 0;
-				for (nint i = 0; i < (nint)User.Conversations.Count; i++)
+				for (nuint i = 0; i < User.Conversations.Count; i++)
 					photosCount += User.Conversations.GetItem <Conversation> (i).Photos.Count;
 
 				return string.Format ("{0} photos", photosCount);
