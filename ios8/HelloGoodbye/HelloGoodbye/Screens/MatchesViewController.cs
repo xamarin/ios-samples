@@ -41,7 +41,7 @@ namespace HelloGoodbye
 			var matches = new List<Person> ();
 
 			for (nuint i = 0; i < serializedMatches.Count; i++) {
-				var sMatch = serializedMatches.GetItem<NSDictionary> ((nint)i);
+				var sMatch = serializedMatches.GetItem<NSDictionary> (i);
 				Person match = Person.PersonFromDictionary (sMatch);
 				matches.Add (match);
 			}
