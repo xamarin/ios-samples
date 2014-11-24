@@ -90,7 +90,7 @@ namespace MetalImageProcessing
 			computeEncoder.SetComputePipelineState (kernel);
 			computeEncoder.SetTexture (mpInTexture.MetalTexture, 0);
 			computeEncoder.SetTexture (outTexture, 1);
-			computeEncoder.SispatchThreadgroups (localCount, workgroupSize);
+			computeEncoder.DispatchThreadgroups (localCount, workgroupSize);
 			computeEncoder.EndEncoding ();
 		}
 
