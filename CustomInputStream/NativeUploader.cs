@@ -94,7 +94,7 @@ namespace InputStreamTest
 			return request;
 		}
 		
-		private class NativeUrlDelegate : NSUrlConnectionDelegate {
+		private class NativeUrlDelegate : NSUrlConnectionDataDelegate {
 			Action<string> success_callback;
 			Action<string> failure_callback;
 			NSMutableData data;
