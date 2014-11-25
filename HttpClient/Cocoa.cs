@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 namespace HttpClient
 {
 	
-	public class Cocoa : NSUrlConnectionDelegate
+	public class Cocoa : NSUrlConnectionDataDelegate
 	{
 		AppDelegate ad;
 		byte [] result;
