@@ -30,7 +30,7 @@ namespace AudioQueueOfflineRenderDemo
 		{
 			dvc = new DialogViewController (new RootElement ("Audio Queue Offline Render Demo") {
 				new Section ("Audio Queue Offline Render Demo") {
-				(element = new StyledStringElement ("Render audio", RenderAudioAsync) { Alignment = UITextAlignment.Center }),
+					(element = new StyledStringElement ("Render audio", RenderAudioAsync) { Alignment = UITextAlignment.Center }),
 				}
 			});
 			
@@ -42,16 +42,15 @@ namespace AudioQueueOfflineRenderDemo
 			
 			return true;
 		}
-		
+
 		void SetCaption (string caption)
 		{
-			BeginInvokeOnMainThread (() =>
-			{
+			BeginInvokeOnMainThread (() => {
 				element.Caption = caption;
 				dvc.ReloadData ();
 			});
 		}
-		
+
 		void RenderAudioAsync ()
 		{
 			CFUrl sourceUrl = CFUrl.FromFile (NSBundle.MainBundle.PathForResource ("composeaudio", "mp3"));
@@ -63,26 +62,22 @@ namespace AudioQueueOfflineRenderDemo
 			busy = true;
 			SetCaption ("Rendering...");
 			
-			var thread = new System.Threading.Thread (() =>
-			{
+			var thread = new System.Threading.Thread (() => {
 				try {
 					RenderAudio (sourceUrl, destinationUrl);
 				} catch (Exception ex) {
 					Console.WriteLine (ex);
 				}
-				BeginInvokeOnMainThread (() =>
-				{
+				BeginInvokeOnMainThread (() => {
 					SetCaption ("Playing...");
 
-					using (var playUrl = new NSUrl (destinationUrl.Handle)) {
+					using (var playUrl = new NSUrl (destinationUrl.FileSystemPath)) {
 						player = AVAudioPlayer.FromUrl (playUrl);
 					}
 					
 					player.Play ();
-					player.FinishedPlaying += (sender, e) =>
-					{
-						BeginInvokeOnMainThread (() =>
-						{
+					player.FinishedPlaying += (sender, e) => {
+						BeginInvokeOnMainThread (() => {
 							player.Dispose ();
 							player = null;
 							SetCaption ("Render audio");
@@ -101,7 +96,7 @@ namespace AudioQueueOfflineRenderDemo
 			const int minBufferSize = 0x4000;
 			
 			if (desc.FramesPerPacket > 0) {
-				bufferSize = (int) (desc.SampleRate / desc.FramesPerPacket * seconds * maxPacketSize);
+				bufferSize = (int)(desc.SampleRate / desc.FramesPerPacket * seconds * maxPacketSize);
 			} else {
 				bufferSize = maxBufferSize > maxPacketSize ? maxBufferSize : maxPacketSize;
 			}
@@ -114,8 +109,8 @@ namespace AudioQueueOfflineRenderDemo
 			
 			packetCount = bufferSize / maxPacketSize;
 		}
-		
-		unsafe static void HandleOutput (AudioFile audioFile, AudioQueue queue, AudioQueueBuffer *audioQueueBuffer, ref int packetsToRead, ref long currentPacket, ref bool done, ref bool flushed, ref AudioStreamPacketDescription [] packetDescriptions)
+
+		unsafe static void HandleOutput (AudioFile audioFile, AudioQueue queue, AudioQueueBuffer*audioQueueBuffer, ref int packetsToRead, ref long currentPacket, ref bool done, ref bool flushed, ref AudioStreamPacketDescription[] packetDescriptions)
 		{
 			int bytes;
 			int packets;
@@ -124,12 +119,12 @@ namespace AudioQueueOfflineRenderDemo
 				return;
 			
 			packets = packetsToRead;
-			bytes = (int) audioQueueBuffer->AudioDataBytesCapacity;
+			bytes = (int)audioQueueBuffer->AudioDataBytesCapacity;
 
 			packetDescriptions = audioFile.ReadPacketData (false, currentPacket, ref packets, audioQueueBuffer->AudioData, ref bytes);
 			
 			if (packets > 0) {
-				audioQueueBuffer->AudioDataByteSize = (uint) bytes;
+				audioQueueBuffer->AudioDataByteSize = (uint)bytes;
 				queue.EnqueueBuffer (audioQueueBuffer, packetDescriptions);
 				currentPacket += packets;
 			} else {
@@ -142,24 +137,23 @@ namespace AudioQueueOfflineRenderDemo
 				done = true;
 			}
 		}
-		
+
 		unsafe static void RenderAudio (CFUrl sourceUrl, CFUrl destinationUrl)
 		{
 			AudioStreamBasicDescription dataFormat;
-			AudioQueueBuffer *buffer = null;
+			AudioQueueBuffer* buffer = null;
 			long currentPacket = 0;
 			int packetsToRead = 0;
-			AudioStreamPacketDescription [] packetDescs = null;
+			AudioStreamPacketDescription[] packetDescs = null;
 			bool flushed = false;
 			bool done = false;
 			int bufferSize;
 			
-			using (var audioFile = AudioFile.Open (sourceUrl, AudioFilePermission.Read, (AudioFileType) 0)) {
+			using (var audioFile = AudioFile.Open (sourceUrl, AudioFilePermission.Read, (AudioFileType)0)) {
 				dataFormat = audioFile.StreamBasicDescription;
 				
 				using (var queue = new OutputAudioQueue (dataFormat, CFRunLoop.Current, CFRunLoop.ModeCommon)) {
-					queue.OutputCompleted += (sender, e) => 
-					{
+					queue.BufferCompleted += (sender, e) => {
 						HandleOutput (audioFile, queue, buffer, ref packetsToRead, ref currentPacket, ref done, ref flushed, ref packetDescs);
 					};
 					
@@ -185,13 +179,13 @@ namespace AudioQueueOfflineRenderDemo
 					queue.AllocateBuffer (bufferSize, out buffer);
 					
 					// prepare the capture format
-					var captureFormat = AudioStreamBasicDescription.CreateLinearPCM (dataFormat.SampleRate, (uint) dataFormat.ChannelsPerFrame, 32);
+					var captureFormat = AudioStreamBasicDescription.CreateLinearPCM (dataFormat.SampleRate, (uint)dataFormat.ChannelsPerFrame, 32);
 					captureFormat.BytesPerFrame = captureFormat.BytesPerPacket = dataFormat.ChannelsPerFrame * 4;
 
 					queue.SetOfflineRenderFormat (captureFormat, audioFile.ChannelLayout);
 					
 					// prepare the target format
-					var dstFormat = AudioStreamBasicDescription.CreateLinearPCM (dataFormat.SampleRate, (uint) dataFormat.ChannelsPerFrame);
+					var dstFormat = AudioStreamBasicDescription.CreateLinearPCM (dataFormat.SampleRate, (uint)dataFormat.ChannelsPerFrame);
 
 					using (var captureFile = ExtAudioFile.CreateWithUrl (destinationUrl, AudioFileType.CAF, dstFormat, AudioFileFlags.EraseFlags)) {
 						captureFile.ClientDataFormat = captureFormat;
@@ -199,10 +193,10 @@ namespace AudioQueueOfflineRenderDemo
 						int captureBufferSize = bufferSize / 2;
 						AudioBuffers captureABL = new AudioBuffers (1);
 						
-						AudioQueueBuffer *captureBuffer;
+						AudioQueueBuffer* captureBuffer;
 						queue.AllocateBuffer (captureBufferSize, out captureBuffer);
 						
-						captureABL[0] = new AudioBuffer () {
+						captureABL [0] = new AudioBuffer () {
 							Data = captureBuffer->AudioData,
 							NumberChannels = captureFormat.ChannelsPerFrame
 						};
@@ -219,13 +213,13 @@ namespace AudioQueueOfflineRenderDemo
 							
 							queue.RenderOffline (ts, captureBuffer, reqFrames);
 
-							captureABL.SetData (0, captureBuffer->AudioData, (int) captureBuffer->AudioDataByteSize);
-							var writeFrames = captureABL[0].DataByteSize / captureFormat.BytesPerFrame;
+							captureABL.SetData (0, captureBuffer->AudioData, (int)captureBuffer->AudioDataByteSize);
+							var writeFrames = captureABL [0].DataByteSize / captureFormat.BytesPerFrame;
 							
 							// Console.WriteLine ("ts: {0} AudioQueueOfflineRender: req {1} frames / {2} bytes, got {3} frames / {4} bytes", 
-							//	ts, reqFrames, captureBufferSize, writeFrames, captureABL.Buffers [0].DataByteSize);
+							// ts, reqFrames, captureBufferSize, writeFrames, captureABL.Buffers [0].DataByteSize);
 							
-							captureFile.WriteAsync ((uint) writeFrames, captureABL);
+							captureFile.WriteAsync ((uint)writeFrames, captureABL);
 							
 							if (flushed)
 								break;
