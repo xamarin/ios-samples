@@ -9,14 +9,14 @@ namespace GameCenterSample
 	public partial class MainViewController : UIViewController
 	{
 
-		public GKNotificationHandler authenticatedHandler;
+		public Action<NSError> authenticatedHandler;
 		public PlayerModel player;
 		string currentPlayerID;
 		int achievementsPercentageComplete = 0;
 
 		public MainViewController () : base ("MainViewController", null)
 		{
-			authenticatedHandler = new GKNotificationHandler (delegate(NSError error) {
+			authenticatedHandler = new Action<NSError> ((error) => {
 				if (GKLocalPlayer.LocalPlayer.Authenticated) {
 					//Switching Users
 					if(currentPlayerID != null || currentPlayerID != GKLocalPlayer.LocalPlayer.PlayerID)
@@ -32,7 +32,6 @@ namespace GameCenterSample
 						GKLocalPlayer.LocalPlayer.Authenticate (authenticatedHandler);
 					};
 					alert.Show ();
-
 				}
 			});
 		}
