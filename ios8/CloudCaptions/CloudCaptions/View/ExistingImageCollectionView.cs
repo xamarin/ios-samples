@@ -39,7 +39,6 @@ namespace CloudCaptions
 			}
 		}
 
-		// TODO: https://trello.com/c/gOg7lMzy
 		static readonly NSString cellReuseIdentifier = new NSString("imageCell");
 
 		List<Image> imageRecords;
