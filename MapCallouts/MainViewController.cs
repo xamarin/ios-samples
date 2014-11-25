@@ -5,7 +5,6 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using MapKit;
-using CoreGraphics;
 
 namespace MapCallouts
 {
@@ -16,7 +15,7 @@ namespace MapCallouts
 			City,
 			Bridge,
 		}
-		
+
 		MKAnnotation[] mapAnnotations;
 		DetailViewController detailViewController;
 		
@@ -28,7 +27,7 @@ namespace MapCallouts
 		{
 			detailViewController = new DetailViewController ();
 		}
-		
+
 		void GotoLocation ()
 		{
 			MKCoordinateRegion newRegion;
@@ -39,7 +38,7 @@ namespace MapCallouts
 		
 			mapView.SetRegion (newRegion, true);
 		}
-		
+
 		public override void ViewDidAppear (bool animated)
 		{
 			base.ViewDidAppear (animated);
@@ -55,14 +54,14 @@ namespace MapCallouts
 			NavigationItem.BackBarButtonItem = temporaryBarButtonItem;
 			
 			mapAnnotations = new MKAnnotation [2];
-			mapAnnotations [(int) AnnotationIndex.City] = new SFAnnotation ();
-			mapAnnotations [(int) AnnotationIndex.Bridge] = new BridgeAnnotation ();
+			mapAnnotations [(int)AnnotationIndex.City] = new SFAnnotation ();
+			mapAnnotations [(int)AnnotationIndex.Bridge] = new BridgeAnnotation ();
 			
 			GotoLocation ();
 			
 			base.ViewDidLoad ();
 		}
-		
+
 		public override void ViewDidUnload ()
 		{
 			mapView = null;
@@ -71,35 +70,35 @@ namespace MapCallouts
 			
 			base.ViewDidUnload ();
 		}
-		
+
 		void RemoveAllAnnotations ()
 		{
 			foreach (var obj in mapView.Annotations) {
-				mapView.RemoveAnnotation ((MKAnnotation) obj);
+				mapView.RemoveAnnotation ((MKAnnotation)obj);
 			}
 		}
-		
+
 		partial void allAction (Foundation.NSObject sender)
 		{
 			GotoLocation ();
 			RemoveAllAnnotations ();
 			mapView.AddAnnotations (mapAnnotations);
 		}
-		
+
 		partial void bridgeAction (Foundation.NSObject sender)
 		{
 			GotoLocation ();
 			RemoveAllAnnotations ();
-			mapView.AddAnnotation (mapAnnotations [(int) AnnotationIndex.Bridge]);
+			mapView.AddAnnotation (mapAnnotations [(int)AnnotationIndex.Bridge]);
 		}
-		
+
 		partial void cityAction (Foundation.NSObject sender)
 		{
 			GotoLocation ();
 			RemoveAllAnnotations ();
-			mapView.AddAnnotation (mapAnnotations [(int) AnnotationIndex.City]);
+			mapView.AddAnnotation (mapAnnotations [(int)AnnotationIndex.City]);
 		}
-		
+
 		void showDetails ()
 		{
 			NavigationController.PushViewController (detailViewController, true);
@@ -108,8 +107,9 @@ namespace MapCallouts
 		// We need to store the pinviews we create somewhere
 		// the managed garbage collector can see them, otherwise
 		// the GC will collect them too early.
-		List<object> pinViews = new List<object> ();
-		MKAnnotationView GetViewForAnnotation (MKMapView mapView, NSObject annotation)
+		List<UIView> pinViews = new List<UIView> ();
+
+		MKAnnotationView GetViewForAnnotation (MKMapView mapView, IMKAnnotation annotation)
 		{
 			// if it's the user location, just return nil.
 			if (annotation is MKUserLocation)
@@ -119,7 +119,7 @@ namespace MapCallouts
 			//
 			if (annotation is BridgeAnnotation) { // for Golden Gate Bridge
 				const string BridgeAnnotationIdentifier = "bridgeAnnotationIdentifier";
-				MKPinAnnotationView pinView = (MKPinAnnotationView) mapView.DequeueReusableAnnotation (BridgeAnnotationIdentifier);
+				MKPinAnnotationView pinView = (MKPinAnnotationView)mapView.DequeueReusableAnnotation (BridgeAnnotationIdentifier);
 				if (pinView == null) {
 					MKPinAnnotationView customPinView = new MKPinAnnotationView (annotation, BridgeAnnotationIdentifier);
 					customPinView.PinColor = MKPinAnnotationColor.Purple;
@@ -137,7 +137,7 @@ namespace MapCallouts
 				return pinView;
 			} else if (annotation is SFAnnotation) { // for City of San Francisco
 				const string SFAnnotationIdentifier = "SFAnnotationIdentifier";
-				MKAnnotationView pinView = (MKAnnotationView) mapView.DequeueReusableAnnotation (SFAnnotationIdentifier);
+				MKAnnotationView pinView = (MKAnnotationView)mapView.DequeueReusableAnnotation (SFAnnotationIdentifier);
 				if (pinView == null) {
 					MKAnnotationView annotationView = new MKAnnotationView (annotation, SFAnnotationIdentifier);
 					annotationView.CanShowCallout = true;
