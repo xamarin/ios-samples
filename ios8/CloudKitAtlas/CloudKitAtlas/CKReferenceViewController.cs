@@ -56,7 +56,7 @@ namespace CloudKitAtlas
 			var record = records [indexPath.Row];
 
 			var detail = segue.DestinationViewController as CKReferenceDetailViewController;
-			detail.ParentRecordName = record.RecordId.RecordName;
+			detail.ParentRecordName = record.Id.RecordName;
 			detail.CloudManager = CloudManager;
 		}
 

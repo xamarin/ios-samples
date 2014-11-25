@@ -114,7 +114,7 @@ namespace CloudKitAtlas
 		public async Task DeleteAsync (CKRecord record)
 		{
 			try {
-				await publicDatabase.DeleteRecordAsync (record.RecordId);
+				await publicDatabase.DeleteRecordAsync (record.Id);
 				Console.WriteLine ("Successfuly deleted record!");
 			} catch (Exception e) {
 				Console.WriteLine ("An error occured: {0}", e.Message);
