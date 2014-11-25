@@ -200,7 +200,7 @@ namespace Example_Drawing.Screens.iPad.Transformations
 				
 				// draw a vertical tick every 20 pixels
 				float yPos = 20;
-				int numberOfVerticalTicks = ((context.Height / 20) - 1);
+				nint numberOfVerticalTicks = ((context.Height / 20) - 1);
 				for (int i = 0; i < numberOfVerticalTicks; i++) {
 					
 					// draw the layer
@@ -231,7 +231,7 @@ namespace Example_Drawing.Screens.iPad.Transformations
 				
 				// draw a horizontal tick every 20 pixels
 				float xPos = 20;
-				int numberOfHorizontalTicks = ((context.Width / 20) - 1);
+				nint numberOfHorizontalTicks = ((context.Width / 20) - 1);
 				for (int i = 0; i < numberOfHorizontalTicks; i++) {
 					
 					context.DrawLayer (horizontalTickLayer, new CGPoint (xPos, 0));

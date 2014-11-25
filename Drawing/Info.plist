@@ -19,8 +19,6 @@
 		<string>Icon-Small-40</string>
 		<string>Icon-Small-40@2x</string>
 	</array>
-	<key>MinimumOSVersion</key>
-	<string>4.3</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>2</integer>
@@ -30,5 +28,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>MinimumOSVersion</key>
+	<string>5.1.1</string>
 </dict>
 </plist>
