@@ -38,7 +38,7 @@ namespace AQTapDemo
 {
 	public class CCFWebRadioPlayer
 	{
-		class ConnectionDelegate : NSUrlConnectionDelegate
+		class ConnectionDelegate : NSUrlConnectionDataDelegate
 		{
 			AudioFileStream audioFileStream;
 
@@ -109,7 +109,7 @@ namespace AQTapDemo
 			}
 
 			audioQueue = new OutputAudioQueue (dataFormat);
-			audioQueue.OutputCompleted += HandleOutputCompleted;
+			audioQueue.BufferCompleted += HandleBufferCompleted;
 
 			AudioQueueStatus status;
 			aqTap = audioQueue.CreateProcessingTap (TapProc, AudioQueueProcessingTapFlags.PreEffects, out status);
@@ -181,7 +181,7 @@ namespace AQTapDemo
 				throw new ApplicationException ();
 		}
 
-		void HandleOutputCompleted (object sender, OutputCompletedEventArgs e)
+		void HandleBufferCompleted (object sender, BufferCompletedEventArgs e)
 		{
 			audioQueue.FreeBuffer (e.IntPtrBuffer);
 		}
