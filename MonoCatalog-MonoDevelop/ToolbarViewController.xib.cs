@@ -156,33 +156,33 @@ namespace MonoCatalog {
 				this.tvc = tvc;
 			}
 			
-			public override void Selected (UIPickerView picker, int row, int component)
+			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
 				tvc.currentSystemItem = (UIBarButtonSystemItem) (int)picker.SelectedRowInComponent (0);
 				tvc.CreateToolbarItems ();
 			}
 	
-			public override string GetTitle (UIPickerView picker, int row, int component)
+			public override string GetTitle (UIPickerView picker, nint row, nint component)
 			{
 				return pickerViewArray [row];
 			}
 	
-			public override float GetComponentWidth (UIPickerView picker, int component)
+			public override nfloat GetComponentWidth (UIPickerView picker, nint component)
 			{
 				return 240f;
 			}
 	
-			public override float GetRowHeight (UIPickerView picker, int component)
+			public override nfloat GetRowHeight (UIPickerView picker, nint component)
 			{
 				return 40f;
 			}
 	
-			public override int GetRowsInComponent (UIPickerView pickerView, int component)
+			public override nint GetRowsInComponent (UIPickerView pickerView, nint component)
 			{
 				return pickerViewArray.Length;
 			}
 	
-			public override int GetComponentCount (UIPickerView v)
+			public override nint GetComponentCount (UIPickerView v)
 			{
 				return 1;
 			}

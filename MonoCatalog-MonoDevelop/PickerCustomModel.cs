@@ -5,6 +5,7 @@ using Foundation;
 using UIKit;
 using System.Collections.Generic;
 using CoreGraphics;
+using System;
 
 public class CustomView : UIView {
 	const float MAIN_FONT_SIZE = 18.0f;
@@ -16,15 +17,14 @@ public class CustomView : UIView {
 	}
 
 	public override void Draw (CGRect rect) {
-		float yCoord = (float)(Bounds.Size.Height - Image.Size.Height) / 2;
+		nfloat yCoord = (Bounds.Size.Height - Image.Size.Height) / 2f;
 		CGPoint point = new CGPoint (10.0f, yCoord);
 
 		Image.Draw (point);
 
-		yCoord = (float)(Bounds.Size.Height - MAIN_FONT_SIZE) / 2;
+		yCoord = (Bounds.Size.Height - MAIN_FONT_SIZE) / 2f;
 		point = new CGPoint (10.0f + Image.Size.Width + 10.0f, yCoord);
-
-		DrawString (Title, point, UIFont.SystemFontOfSize (MAIN_FONT_SIZE) );
+		Title.DrawString (point, UIFont.SystemFontOfSize (MAIN_FONT_SIZE));
 	}
 
 	public string Title { get; set; }
@@ -47,23 +47,23 @@ public class CustomPickerModel : UIPickerViewModel {
 		views.Add (new CustomView (empty) { Title = "Evening", Image = UIImage.FromFile ("images/6-12PM.png") });
 	}
 
-	public override float GetComponentWidth (UIPickerView pickerView, int component) {
+	public override nfloat GetComponentWidth (UIPickerView pickerView, nint component) {
 		return CustomView.Width;
 	}
 	
-	public override float GetRowHeight (UIPickerView pickerView, int component) {
+	public override nfloat GetRowHeight (UIPickerView pickerView, nint component) {
 		return CustomView.Height;
 	}
 	
-	public override int GetRowsInComponent (UIPickerView pickerView, int component) {
+	public override nint GetRowsInComponent (UIPickerView pickerView, nint component) {
 		return views.Count;
 	}
 	
-	public override int GetComponentCount (UIPickerView pickerView) {
+	public override nint GetComponentCount (UIPickerView pickerView) {
 		return 1;
 	}
 
-	public override UIView GetView (UIPickerView pickerView, int row, int component, UIView view) {
-		return views[row];
+	public override UIView GetView (UIPickerView pickerView, nint row, nint component, UIView view) {
+				return views[(int)row];
 	}
 }

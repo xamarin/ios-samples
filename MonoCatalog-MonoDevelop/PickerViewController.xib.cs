@@ -203,17 +203,17 @@ namespace MonoCatalog {
 				this.pvc = pvc;
 			}
 			
-			public override int GetComponentCount (UIPickerView v)
+			public override nint GetComponentCount (UIPickerView v)
 			{
 				return 2;
 			}
 	
-			public override int GetRowsInComponent (UIPickerView pickerView, int component)
+			public override nint GetRowsInComponent (UIPickerView pickerView, nint component)
 			{
 				return names.Length;
 			}
 	
-			public override string GetTitle (UIPickerView picker, int row, int component)
+			public override string GetTitle (UIPickerView picker, nint row, nint component)
 			{
 				if (component == 0)
 					return names [row];
@@ -221,14 +221,14 @@ namespace MonoCatalog {
 					return row.ToString ();
 			}
 	
-			public override void Selected (UIPickerView picker, int row, int component)
+			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
 				pvc.label.Text = String.Format ("{0} - {1}",
 							    names [picker.SelectedRowInComponent (0)],
 							    picker.SelectedRowInComponent (1));
 			}
 			
-			public override float GetComponentWidth (UIPickerView picker, int component)
+			public override nfloat GetComponentWidth (UIPickerView picker, nint component)
 			{
 				if (component == 0)
 					return 240f;
@@ -236,7 +236,7 @@ namespace MonoCatalog {
 					return 40f;
 			}
 	
-			public override float GetRowHeight (UIPickerView picker, int component)
+			public override nfloat GetRowHeight (UIPickerView picker, nint component)
 			{
 				return 40f;
 			}
