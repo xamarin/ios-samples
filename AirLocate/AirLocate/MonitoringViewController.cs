@@ -3,10 +3,10 @@ using Foundation;
 using CoreLocation;
 using UIKit;
 
-namespace AirLocate {
-
-	public partial class MonitoringViewController : UITableViewController {
-
+namespace AirLocate
+{
+	public partial class MonitoringViewController : UITableViewController
+	{
 		bool enabled;
 		NSUuid uuid;
 		NSNumber major;
@@ -32,7 +32,7 @@ namespace AirLocate {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			CLBeaconRegion region = (CLBeaconRegion) locationManger.MonitoredRegions.AnyObject;
+			CLBeaconRegion region = (CLBeaconRegion)locationManger.MonitoredRegions.AnyObject;
 			enabled = (region != null);
 			if (enabled) {
 				uuid = region.ProximityUuid;
@@ -122,7 +122,7 @@ namespace AirLocate {
 						locationManger.StartMonitoring (region);				
 					} 
 				} else {
-					var region = (CLBeaconRegion) locationManger.MonitoredRegions.AnyObject;
+					var region = (CLBeaconRegion)locationManger.MonitoredRegions.AnyObject;
 					if (region != null)
 						locationManger.StopMonitoring (region);
 				}

@@ -3,11 +3,11 @@ using CoreLocation;
 using Foundation;
 using UIKit;
 
-namespace AirLocate {
-
+namespace AirLocate
+{
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate {
-
+	public partial class AppDelegate : UIApplicationDelegate
+	{
 		CLLocationManager locationManager;
 
 		public override UIWindow Window {

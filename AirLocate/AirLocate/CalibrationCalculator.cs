@@ -5,31 +5,32 @@ using CoreFoundation;
 using CoreLocation;
 using Foundation;
 
-namespace AirLocate {
-
-	public class CalibrationCompletedEventArgs : EventArgs {
-
+namespace AirLocate
+{
+	public class CalibrationCompletedEventArgs : EventArgs
+	{
 		public int MeasurePower { get; set; }
+
 		public NSError Error { get; set; }
 	}
 
-	public class CalibrationProgressEventArgs : EventArgs {
-
+	public class CalibrationProgressEventArgs : EventArgs
+	{
 		public float PercentComplete { get; set; }
 	}
 
-	public class CalibrationCancelledError : NSError {
-
+	public class CalibrationCancelledError : NSError
+	{
 		static NSString ErrorDomain = new NSString (Defaults.Identifier);
 
-		public CalibrationCancelledError () : 
+		public CalibrationCancelledError () :
 			base (ErrorDomain, 2, new NSDictionary ("Calibration was cancelled", NSError.LocalizedDescriptionKey))
 		{
 		}
 	}
 
-	public class CalibrationCalculator {
-
+	public class CalibrationCalculator
+	{
 		static NSString Rssi = new NSString ("rssi");
 
 		CLLocationManager locationManager;
@@ -79,7 +80,7 @@ namespace AirLocate {
 				ProgressHandler = handler;
 
 				locationManager.StartRangingBeacons (region);
-				timer = NSTimer.CreateTimer (20.0f,(r)=> {
+				timer = NSTimer.CreateTimer (20.0f, (r) => {
 					locationManager.StopRangingBeacons (region);
 
 					DispatchQueue.DefaultGlobalQueue.DispatchAsync (new Action (delegate {
@@ -106,12 +107,12 @@ namespace AirLocate {
 								});
 								float power = 0;
 								int number = 0;
-								int outlierPadding = (int) (allBeacons.Count * 0.1f);
+								int outlierPadding = (int)(allBeacons.Count * 0.1f);
 								for (int k = outlierPadding; k < allBeacons.Count - (outlierPadding * 2); k++) {
-									power += ((NSNumber) allBeacons[k].ValueForKey (Rssi)).FloatValue;
-									number ++;
+									power += ((NSNumber)allBeacons [k].ValueForKey (Rssi)).FloatValue;
+									number++;
 								}
-								measuredPower = (int) power/number;
+								measuredPower = (int)power / number;
 							}
 						}
 

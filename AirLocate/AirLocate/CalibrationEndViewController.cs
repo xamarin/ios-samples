@@ -2,10 +2,10 @@ using System;
 using CoreGraphics;
 using UIKit;
 
-namespace AirLocate {
-
-	public class CalibrationEndViewController : UIViewController {
-
+namespace AirLocate
+{
+	public class CalibrationEndViewController : UIViewController
+	{
 		int measured_power;
 
 		public CalibrationEndViewController (int measuredPower)

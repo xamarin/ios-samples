@@ -5,11 +5,11 @@ using CoreLocation;
 using Foundation;
 using UIKit;
 
-namespace AirLocate {
-
-	public partial class CalibrationBeginViewController : UITableViewController {
-
-		List<CLBeacon> [] beacons;
+namespace AirLocate
+{
+	public partial class CalibrationBeginViewController : UITableViewController
+	{
+		List<CLBeacon>[] beacons;
 		CLLocationManager locationManager;
 		List<CLBeaconRegion> rangedRegions;
 		bool inProgress;
@@ -31,8 +31,11 @@ namespace AirLocate {
 		}
 
 		List<CLBeacon> Unknowns { get; set; }
+
 		List<CLBeacon> Immediates { get; set; }
+
 		List<CLBeacon> Nears { get; set; }
+
 		List<CLBeacon> Fars { get; set; }
 
 		public override void ViewDidLoad ()
@@ -63,7 +66,7 @@ namespace AirLocate {
 		public override void ViewWillDisappear (bool animated)
 		{
 			// Cancel calibration (if it was started) and stop ranging when the view goes away.
-			if(inProgress)
+			if (inProgress)
 				calculator.CancelCalibration ();
 
 			StopRangingAllRegions ();
@@ -112,7 +115,7 @@ namespace AirLocate {
 			if (((section == 0) && inProgress) || (NumberOfSections (tableView) == 0))
 				return null;
 
-			return ((CLProximity) GetNonEmptySection ((int)section)).ToString ();
+			return ((CLProximity)GetNonEmptySection ((int)section)).ToString ();
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -173,7 +176,7 @@ namespace AirLocate {
 			StopRangingAllRegions ();
 			// And we'll start the calibration process.
 			calculator = new CalibrationCalculator (region, CompletionHandler);
-			calculator.PerformCalibration ((sender,e) => {
+			calculator.PerformCalibration ((sender, e) => {
 				progressBar.SetProgress (e.PercentComplete, true);
 			});
 

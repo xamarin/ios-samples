@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using Foundation;
 
-namespace AirLocate {
-
-	public static class Defaults {
-
+namespace AirLocate
+{
+	public static class Defaults
+	{
 		static NSUuid[] supportedProximityUuids;
 		static NSNumber defaultPower;
 

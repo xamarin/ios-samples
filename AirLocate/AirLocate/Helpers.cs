@@ -2,9 +2,10 @@ using System;
 using CoreLocation;
 using Foundation;
 
-namespace AirLocate {
-
-	public static class Helpers {
+namespace AirLocate
+{
+	public static class Helpers
+	{
 
 		// create the CLBeaconRegion using the right contructor, returns null if input is invalid (no exceptions)
 		public static CLBeaconRegion CreateRegion (NSUuid uuid, NSNumber major, NSNumber minor)
