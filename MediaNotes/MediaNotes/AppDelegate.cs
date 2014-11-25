@@ -73,7 +73,7 @@ namespace MediaNotes
 					string groupName = group.Name;
 					if (groupName.StartsWith (PNALBUM_PREFIX)) {
 						group.SetAssetsFilter (ALAssetsFilter.AllPhotos);
-						group.Enumerate ((ALAsset asset, int index, ref bool st) => {
+						group.Enumerate ((ALAsset asset, nint index, ref bool st) => {
 							int notfound = Int32.MaxValue;
 							if (asset != null && index != notfound) {
 								photoAssets.Add (asset);
