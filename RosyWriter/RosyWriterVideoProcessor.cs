@@ -451,9 +451,7 @@ namespace RosyWriter
 #if DEBUG
 						// Record the current sampleBuffer.ClassHandle
 						// Then run another iteration and on the next one, print the ClassHandle
-						// TODO: https://trello.com/c/3cjmSze7
-						CFType cfType = new CFType();
-						Console.WriteLine ("The type is {0}", cfType.GetDescription(j.Handle));
+						Console.WriteLine ("The type is {0}", j.ToString());
 #endif
 						return;
 					}
