@@ -7,8 +7,8 @@ namespace TicTacToe
 {
 	public class TTTMessageServer
 	{
-		public const string DidAddMessagesNotification = "DidAddMessagesNotification";
-		public static readonly NSString AddedMessageIndexesUserInfoKey = new NSString("AddedMessageIndexesUserInfoKey");
+		public static readonly NSString DidAddMessagesNotification = (NSString)"DidAddMessagesNotification";
+		public static readonly NSString AddedMessageIndexesUserInfoKey = (NSString)"AddedMessageIndexesUserInfoKey";
 		List<TTTMessage> messages;
 		List<TTTMessage> favoriteMessages;
 

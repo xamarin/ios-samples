@@ -20,8 +20,7 @@ namespace TicTacToe
 			TabBarItem.SelectedImage = UIImage.FromBundle ("messagesTabSelected");
 
 			NavigationItem.RightBarButtonItem = new UIBarButtonItem (UIBarButtonSystemItem.Compose, NewMessage);
-			NSNotificationCenter.DefaultCenter.AddObserver ((NSString)TTTMessageServer.DidAddMessagesNotification,
-			                                                DidAddMessages);
+			NSNotificationCenter.DefaultCenter.AddObserver (TTTMessageServer.DidAddMessagesNotification, DidAddMessages);
 
 			NavigationItem.LeftBarButtonItem = new UIBarButtonItem (new UIImage (), UIBarButtonItemStyle.Plain, Favorite);
 			UpdateFavoriteButton ();
