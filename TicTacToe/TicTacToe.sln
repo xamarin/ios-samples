@@ -34,14 +34,5 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = TicTacToe\TicTacToe.csproj
-		Policies = $0
-		$0.TextStylePolicy = $1
-		$1.inheritsSet = Mono
-		$1.inheritsScope = text/plain
-		$1.scope = text/x-csharp
-		$0.CSharpFormattingPolicy = $2
-		$2.inheritsSet = Mono
-		$2.inheritsScope = text/x-csharp
-		$2.scope = text/x-csharp
 	EndGlobalSection
 EndGlobal
