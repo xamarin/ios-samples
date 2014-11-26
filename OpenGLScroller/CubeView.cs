@@ -127,7 +127,7 @@ namespace OpenGLScroller
 
 		public CGPoint GetScrollOffset (CGPoint offset)
 		{
-			float fractionalPart = offset.X % LittleCubeWidth;
+			nfloat fractionalPart = offset.X % LittleCubeWidth;
 
 			bool roundDown = fractionalPart < (LittleCubeWidth / 2);
 
@@ -148,7 +148,7 @@ namespace OpenGLScroller
 			set {
 				base.Frame = value;
 
-				float aspect = Math.Abs (Bounds.Size.Width / Bounds.Size.Height);
+				float aspect = (float)Math.Abs (Bounds.Size.Width / Bounds.Size.Height);
 				
 				Matrix4 projectionMatrix = Matrix4.CreatePerspectiveFieldOfView (MathHelper.DegreesToRadians (65), aspect, 0.1f, 100);
 				if (effect != null)
@@ -170,7 +170,7 @@ namespace OpenGLScroller
 				var cube = littleCube [i];
 
 				var translationX = ((i - 1) * UnitLittleCubeWidth) - (scrollOffset.X * UnitLittleCubeWidth / LittleCubeWidth);
-				var cubeMatrix = Matrix4.CreateTranslation (translationX, 2.8f, -7);
+				var cubeMatrix = Matrix4.CreateTranslation ((float)translationX, 2.8f, -7);
 				cubeMatrix = Matrix4.Mult (Matrix4.CreateFromAxisAngle (new Vector3 (cube.XAxis, cube.YAxis, cube.ZAxis), cube.RotationRadians), cubeMatrix);
 
 				effect.Light0.DiffuseColor = new Vector4 (cube.Red, cube.Green, cube.Blue, 1.0f);
