@@ -13,7 +13,20 @@ namespace TicTacToe
 		TTTProfile profile;
 		TTTMessage selectedMessage;
 
-		public TTTMessagesViewController () : base (UITableViewStyle.Plain)
+		UIImage FavoriteImage {
+			get {
+				return UIImage.FromBundle ("favorite").ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
+			}
+		}
+
+		UIImage UnselectedFavoriteImage {
+			get {
+				return UIImage.FromBundle ("favoriteUnselected");
+			}
+		}
+
+		public TTTMessagesViewController ()
+			: base (UITableViewStyle.Plain)
 		{
 			Title = "Messages";
 			TabBarItem.Image = UIImage.FromBundle ("messagesTab");
@@ -42,7 +55,7 @@ namespace TicTacToe
 
 		void NewMessage (object sender, EventArgs e)
 		{
-			TTTNewMessageViewController controller = new TTTNewMessageViewController ();
+			var controller = new TTTNewMessageViewController ();
 			controller.Profile = profile;
 			controller.PresentFromViewController (this);
 		}
@@ -62,15 +75,10 @@ namespace TicTacToe
 
 		void UpdateFavoriteButton ()
 		{
-			bool fav = false;
-			if (selectedMessage != null)
-				fav = TTTMessageServer.SharedMessageServer.IsFavoriteMessage (selectedMessage);
+			bool isFavorite = selectedMessage != null
+			                  && TTTMessageServer.SharedMessageServer.IsFavoriteMessage (selectedMessage);
 
-			UIImage image;
-			if (fav)
-				image = UIImage.FromBundle ("favorite").ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
-			else
-				image = UIImage.FromBundle ("favoriteUnselected");
+			UIImage image = isFavorite ? FavoriteImage : UnselectedFavoriteImage;
 
 			NavigationItem.LeftBarButtonItem.Image = image;
 			NavigationItem.LeftBarButtonItem.Enabled = (selectedMessage != null);
