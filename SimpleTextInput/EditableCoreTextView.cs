@@ -18,7 +18,7 @@ namespace SimpleTextInput
 	public class EditableCoreTextView : UIView
 	{
 		StringBuilder text = new StringBuilder ();
-		UITextInputStringTokenizer tokenizer;
+		IUITextInputTokenizer tokenizer;
 		SimpleCoreTextView textView;
 		NSDictionary markedTextStyle;
 		IUITextInputDelegate inputDelegate;
@@ -39,7 +39,7 @@ namespace SimpleTextInput
 			AddGestureRecognizer (tap);
         
 			// Create our tokenizer and text storage
-			tokenizer = new UITextInputStringTokenizer (this);
+			tokenizer = new UITextInputStringTokenizer ();
 
 			// Create and set up our SimpleCoreTextView that will do the drawing
 			textView = new SimpleCoreTextView (Bounds.Inset (5, 5));
@@ -358,7 +358,7 @@ namespace SimpleTextInput
 		// different behavior than this system-provided tokenizer, you can create a custom 
 		// tokenizer that adopts the UITextInputTokenizer protocol.
 		[Export ("tokenizer")]
-		UITextInputTokenizer Tokenizer {
+		IUITextInputTokenizer Tokenizer {
 			get { 
 				return tokenizer; 
 			}
