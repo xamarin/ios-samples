@@ -413,11 +413,6 @@ namespace RosyWriter
 		
 		#region AVCapture[Audio|Video]DataOutputSampleBufferDelegate
 
-#if DEBUG
-		[DllImportAttribute (Constants.CoreFoundationLibrary)]
-		extern static IntPtr CFCopyDescription (IntPtr obj);
-#endif
-
 		[Export ("captureOutput:didOutputSampleBuffer:fromConnection:")]
 		public virtual void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
 		{
@@ -449,14 +444,16 @@ namespace RosyWriter
 					
 				//var writeBuffer = sampleBuffer.Duplicate ();
 				InvokeOnMainThread (() => {
-					var j = previewBufferQueue.Dequeue ();
+					INativeObject j = previewBufferQueue.Dequeue ();
 			
 					var sbuf = j as CMSampleBuffer;
 					if (sbuf == null) {
 #if DEBUG
 						// Record the current sampleBuffer.ClassHandle
 						// Then run another iteration and on the next one, print the ClassHandle
-						Console.WriteLine ("The type is {0}", new NSString (CFCopyDescription (j.Handle)));
+						// TODO: https://trello.com/c/3cjmSze7
+						CFType cfType = new CFType();
+						Console.WriteLine ("The type is {0}", cfType.GetDescription(j.Handle));
 #endif
 						return;
 					}
