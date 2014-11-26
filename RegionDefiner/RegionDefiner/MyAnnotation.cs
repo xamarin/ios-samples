@@ -10,12 +10,13 @@ namespace RegionDefiner
 {
 	public class MyAnnotation : MKAnnotation
 	{
+		CLLocationCoordinate2D coordinate;
 		string title;
 		string subtitle ;
 
-		public MyAnnotation (CLLocationCoordinate2D coordinate, string _title, string _subtitle)
+		public MyAnnotation (CLLocationCoordinate2D coordinateToSet, string _title, string _subtitle)
 		{
-			Coordinate = coordinate;
+			coordinate = coordinateToSet;
 			title = _title;
 			subtitle = _subtitle;
 		}
@@ -32,7 +33,11 @@ namespace RegionDefiner
 			}
 		}
 
-		public override CLLocationCoordinate2D Coordinate { get; set; }
+		public override CLLocationCoordinate2D Coordinate {
+			get {
+				return coordinate;
+			}
+		}
 	}
 }
 
