@@ -2,6 +2,7 @@ using System;
 using UIKit;
 using Foundation;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TicTacToe
 {
@@ -18,9 +19,9 @@ namespace TicTacToe
 			TabBarItem.SelectedImage = UIImage.FromBundle ("messagesTabSelected");
 
 			NavigationItem.RightBarButtonItem = new UIBarButtonItem (
-				UIBarButtonSystemItem.Compose, newMessage);
+				UIBarButtonSystemItem.Compose, NewMessage);
 			NSNotificationCenter.DefaultCenter.AddObserver ((NSString)TTTMessageServer.DidAddMessagesNotification,
-			                                                didAddMessages);
+			                                                DidAddMessages);
 
 			NavigationItem.LeftBarButtonItem = 
 				new UIBarButtonItem (new UIImage (), UIBarButtonItemStyle.Plain, favorite);
@@ -42,25 +43,20 @@ namespace TicTacToe
 			                                     cellIdentifier);
 		}
 
-		void newMessage (object sender, EventArgs e)
+		void NewMessage (object sender, EventArgs e)
 		{
 			TTTNewMessageViewController controller = new TTTNewMessageViewController ();
 			controller.Profile = Profile;
 			controller.PresentFromViewController (this);
 		}
 
-		void didAddMessages (NSNotification notification)
+		void DidAddMessages (NSNotification notification)
 		{
-			NSArray addedIndexes =
-				(NSArray)notification.UserInfo.ObjectForKey (new NSString (TTTMessageServer.AddedMessageIndexesUserInfoKey));
-			List<NSIndexPath> addedIndexPaths = new List<NSIndexPath> ();
-
-			for (uint i = 0; i < addedIndexes.Count; i++) {
-				NSNumber indexValue = new NSNumber (addedIndexes.ValueAt (i));
-				NSIndexPath indexPath = NSIndexPath.FromRowSection (indexValue.NIntValue, 0);
-				addedIndexPaths.Add (indexPath);
-			}
-			TableView.InsertRows (addedIndexPaths.ToArray (), UITableViewRowAnimation.Automatic);
+			var addedIndexes = (NSArray)notification.UserInfo [TTTMessageServer.AddedMessageIndexesUserInfoKey];
+			var paths = NSArray.FromArray<NSNumber> (addedIndexes)
+				.Select (num => NSIndexPath.FromRowSection (num.NIntValue, 0))
+				.ToArray ();
+			TableView.InsertRows (paths, UITableViewRowAnimation.Automatic);
 		}
 
 		void favorite (object sender, EventArgs e)
@@ -106,7 +102,7 @@ namespace TicTacToe
 
 			if (messageCell.ReplyButton == null) {
 				UIButton replyButton = UIButton.FromType (UIButtonType.System);
-				replyButton.TouchUpInside += newMessage;
+				replyButton.TouchUpInside += NewMessage;
 				replyButton.SetImage (UIImage.FromBundle ("reply"), UIControlState.Normal);
 				replyButton.SizeToFit ();
 				messageCell.ReplyButton = replyButton;

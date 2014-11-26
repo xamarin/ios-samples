@@ -8,7 +8,7 @@ namespace TicTacToe
 	public class TTTMessageServer
 	{
 		public const string DidAddMessagesNotification = "DidAddMessagesNotification";
-		public const string AddedMessageIndexesUserInfoKey = "AddedMessageIndexesUserInfoKey";
+		public static readonly NSString AddedMessageIndexesUserInfoKey = new NSString("AddedMessageIndexesUserInfoKey");
 		List<TTTMessage> messages;
 		List<TTTMessage> favoriteMessages;
 
@@ -71,11 +71,8 @@ namespace TicTacToe
 			int messageIndex = 0;
 			messages.Insert (0, message);
 
-			NSDictionary userInfo = 
-				NSDictionary.FromObjectAndKey (NSArray.FromNSObjects (new NSNumber (messageIndex)),
-			                                new NSString (AddedMessageIndexesUserInfoKey));
-			NSNotificationCenter.DefaultCenter.PostNotificationName (DidAddMessagesNotification,
-			                                                         null, userInfo);
+			NSDictionary userInfo = new NSDictionary (AddedMessageIndexesUserInfoKey, NSArray.FromNSObjects (new NSNumber (messageIndex)));
+			NSNotificationCenter.DefaultCenter.PostNotificationName (DidAddMessagesNotification, null, userInfo);
 			WriteMessages ();
 		}
 
