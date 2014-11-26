@@ -47,7 +47,7 @@ namespace SpriteKitPhysicsCollisions
 			BackgroundColor = UIColor.Black;
 			ScaleMode = SKSceneScaleMode.AspectFit;
 
-			var body = SKPhysicsBody.BodyWithEdgeLoopFromRect (Frame);
+			var body = SKPhysicsBody.CreateEdgeLoop (Frame);
 			body.CategoryBitMask = Category.Edge;
 			body.CollisionBitMask = 0;
 			body.ContactTestBitMask = 0;

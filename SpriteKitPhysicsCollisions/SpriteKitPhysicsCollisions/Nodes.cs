@@ -29,7 +29,7 @@ namespace SpriteKitPhysicsCollisions {
 			FillColor = UIColor.Brown;
 			Position = initialPosition;
 			// use a local variable to avoid multiple virtual call to the `PhysicsBody` property
-			var body = SKPhysicsBody.BodyWithCircleOfRadius (size);
+			var body = SKPhysicsBody.CreateCircularBody (size);
 			body.CategoryBitMask = Category.Asteroid;
 			body.CollisionBitMask = Category.Ship | Category.Asteroid | Category.Edge;
 			body.ContactTestBitMask = Category.Planet;
@@ -50,7 +50,7 @@ namespace SpriteKitPhysicsCollisions {
 			FillColor = UIColor.Green;
 			Position = initialPosition;
 			// use a local variable to avoid multiple virtual call to the `PhysicsBody` property
-			var body = SKPhysicsBody.BodyWithCircleOfRadius (size);
+			var body = SKPhysicsBody.CreateCircularBody (size);
 			body.CategoryBitMask = Category.Planet;
 			body.CollisionBitMask = Category.Planet | Category.Edge;
 			body.ContactTestBitMask = 0;
@@ -83,7 +83,7 @@ namespace SpriteKitPhysicsCollisions {
 		{
 			template = UnarchiveNode ("missile", "sks");
 			// use a local variable to avoid multiple virtual call to the `PhysicsBody` property
-			var body = SKPhysicsBody.BodyWithCircleOfRadius (defaultSize);
+			var body = SKPhysicsBody.CreateCircularBody (defaultSize);
 			body.CategoryBitMask = Category.Missile;
 			body.ContactTestBitMask = Category.Ship | Category.Asteroid | Category.Planet | Category.Edge;
 			body.CollisionBitMask = 0;
