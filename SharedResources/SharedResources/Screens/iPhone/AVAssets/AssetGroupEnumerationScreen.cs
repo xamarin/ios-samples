@@ -72,7 +72,7 @@ namespace Example_SharedResources.Screens.iPhone.AVAssets
 		/// <summary>
 		/// A simple asset enumerator that adds the asset to our asset list
 		/// </summary>
-		protected void AssetEnumerator (ALAsset asset, int index, ref bool stop)
+		protected void AssetEnumerator (ALAsset asset, nint index, ref bool stop)
 		{
 		    // when the enumeration is completed, this method is invoked with group set to null
 			if(asset != null) {
