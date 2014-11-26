@@ -42,8 +42,8 @@ namespace PerVertexDirectionalLighting
 			if (image == null)
 				return;
 
-			int width = image.CGImage.Width;
-			int height = image.CGImage.Height;
+			nint width = image.CGImage.Width;
+			nint height = image.CGImage.Height;
 
 			CGColorSpace colorSpace = CGColorSpace.CreateDeviceRGB ();
 			byte [] imageData = new byte[height * width * 4];
@@ -56,7 +56,7 @@ namespace PerVertexDirectionalLighting
 			context.ClearRect (new CGRect (0, 0, width, height));
 			context.DrawImage (new CGRect (0, 0, width, height), image.CGImage);
 
-			GL.TexImage2D (TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, width, height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, imageData);
+			GL.TexImage2D (TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, (int)width, (int)height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, imageData);
 			context.Dispose ();
 		}
 
