@@ -8,7 +8,7 @@ namespace TicTacToe
 
 		public MessageEvenArg (params nint[] indexes)
 		{
-			Indexes = Indexes;
+			Indexes = indexes;
 		}
 
 		public MessageEvenArg ()
