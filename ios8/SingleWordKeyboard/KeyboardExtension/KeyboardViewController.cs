@@ -73,12 +73,12 @@ namespace KeyboardExtension
 			TextDocumentProxy.InsertText (SingleWord);
 		}
 
-		public override void TextWillChange (NSObject textInput)
+		public override void TextWillChange (IUITextInput textInput)
 		{
 			// The app is about to change the document's contents. Perform any preparation here.
 		}
 
-		public override void TextDidChange (NSObject textInput)
+		public override void TextDidChange (IUITextInput textInput)
 		{
 			// The app has just changed the document's contents, the document context has been updated.
 			var isDark = TextDocumentProxy.KeyboardAppearance == UIKeyboardAppearance.Dark;
