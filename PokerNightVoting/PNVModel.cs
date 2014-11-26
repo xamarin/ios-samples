@@ -94,7 +94,7 @@ namespace PokerNightVoting
 				var yesterday = DateTime.Now - TimeSpan.FromDays (1);
 				var twoMonthsInFuture = DateTime.Now + TimeSpan.FromDays (60);
 
-				var predicate = EventStore.PredicateForEvents (yesterday, twoMonthsInFuture, null);
+				var predicate = EventStore.PredicateForEvents ((NSDate)yesterday, (NSDate)twoMonthsInFuture, null);
 				var allEvents = EventStore.EventsMatching (predicate);
 
 				if (allEvents == null)
