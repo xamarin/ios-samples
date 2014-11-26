@@ -8,9 +8,10 @@ namespace TicTacToe
 {
 	public class TTTMessagesViewController : UITableViewController
 	{
-		public TTTProfile Profile;
+		readonly NSString cellIdentifier = new NSString ("Cell");
+
+		TTTProfile profile;
 		TTTMessage selectedMessage;
-		NSString cellIdentifier = new NSString ("Cell");
 
 		public TTTMessagesViewController () : base (UITableViewStyle.Plain)
 		{
@@ -18,20 +19,18 @@ namespace TicTacToe
 			TabBarItem.Image = UIImage.FromBundle ("messagesTab");
 			TabBarItem.SelectedImage = UIImage.FromBundle ("messagesTabSelected");
 
-			NavigationItem.RightBarButtonItem = new UIBarButtonItem (
-				UIBarButtonSystemItem.Compose, NewMessage);
+			NavigationItem.RightBarButtonItem = new UIBarButtonItem (UIBarButtonSystemItem.Compose, NewMessage);
 			NSNotificationCenter.DefaultCenter.AddObserver ((NSString)TTTMessageServer.DidAddMessagesNotification,
 			                                                DidAddMessages);
 
-			NavigationItem.LeftBarButtonItem = 
-				new UIBarButtonItem (new UIImage (), UIBarButtonItemStyle.Plain, favorite);
-			updateFavoriteButton ();
+			NavigationItem.LeftBarButtonItem = new UIBarButtonItem (new UIImage (), UIBarButtonItemStyle.Plain, Favorite);
+			UpdateFavoriteButton ();
 		}
 
 		public static UIViewController FromProfile (TTTProfile profile, string profilePath)
 		{
 			TTTMessagesViewController controller = new TTTMessagesViewController ();
-			controller.Profile = profile;
+			controller.profile = profile;
 			UINavigationController navController = new UINavigationController (controller);
 			return navController;
 		}
@@ -39,14 +38,13 @@ namespace TicTacToe
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			TableView.RegisterClassForCellReuse (typeof(TTTMessageTableViewCell),
-			                                     cellIdentifier);
+			TableView.RegisterClassForCellReuse (typeof(TTTMessageTableViewCell), cellIdentifier);
 		}
 
 		void NewMessage (object sender, EventArgs e)
 		{
 			TTTNewMessageViewController controller = new TTTNewMessageViewController ();
-			controller.Profile = Profile;
+			controller.Profile = profile;
 			controller.PresentFromViewController (this);
 		}
 
@@ -59,14 +57,14 @@ namespace TicTacToe
 			TableView.InsertRows (paths, UITableViewRowAnimation.Automatic);
 		}
 
-		void favorite (object sender, EventArgs e)
+		void Favorite (object sender, EventArgs e)
 		{
 			bool fav = !TTTMessageServer.SharedMessageServer.IsFavoriteMessage (selectedMessage);
 			TTTMessageServer.SharedMessageServer.SetFavorite (fav, selectedMessage);
-			updateFavoriteButton ();
+			UpdateFavoriteButton ();
 		}
 
-		void updateFavoriteButton ()
+		void UpdateFavoriteButton ()
 		{
 			bool fav = false;
 			if (selectedMessage != null)
@@ -83,6 +81,7 @@ namespace TicTacToe
 		}
 
 		#region Table View
+
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return TTTMessageServer.SharedMessageServer.NumberOfMessages;
@@ -132,29 +131,29 @@ namespace TicTacToe
 				selectedMessage = message;
 				cell.SetShowReplyButton (true);
 			}
-			updateFavoriteButton ();
+			UpdateFavoriteButton ();
 		}
 		#endregion
 	}
 
 	public class TTTMessageTableViewCell : UITableViewCell
 	{
-		public UIButton ReplyButton;
-		public bool ShowReplyButton;
+		bool showReplyButton;
 
-		public TTTMessageTableViewCell (IntPtr handle) : base (handle)
+		public UIButton ReplyButton { get; set; }
+
+		public TTTMessageTableViewCell (IntPtr handle)
+			: base (handle)
 		{
 		}
 
 		public void SetShowReplyButton (bool value)
 		{
-			if (ShowReplyButton != value) {
-				ShowReplyButton = value;
-				if (ShowReplyButton)
-					AccessoryView = ReplyButton;
-				else
-					AccessoryView = null;
-			}
+			if (showReplyButton == value)
+				return;
+
+			showReplyButton = value;
+			AccessoryView = showReplyButton ? ReplyButton : null;
 		}
 	}
 }
