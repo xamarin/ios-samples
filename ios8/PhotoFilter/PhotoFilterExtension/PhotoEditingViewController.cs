@@ -81,10 +81,10 @@ namespace PhotoFilterExtension
 			string plist = NSBundle.MainBundle.PathForResource ("Filters", "plist");
 			var rawFiltersData = NSArray.FromFile (plist);
 
-			int count = (int)rawFiltersData.Count;
+			nuint count = rawFiltersData.Count;
 			availableFilterInfos = new FilterInfo[count];
 
-			for (int i = 0; i < count; i++)
+			for (nuint i = 0; i < count; i++)
 				availableFilterInfos [i] = new FilterInfo (rawFiltersData.GetItem<NSDictionary> (i));
 		}
 
