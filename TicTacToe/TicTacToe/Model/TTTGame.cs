@@ -28,7 +28,7 @@ namespace TicTacToe
 
 		public TTTGame ()
 		{
-			Date = NSDate.Now;
+			Date = DateTime.Now;
 			Moves = new List<TTTMove> ();
 		}
 
