@@ -7,7 +7,7 @@ namespace RegionDefiner
 {
 	public class MapDelegate : MKMapViewDelegate
 	{
-		public override MKOverlayView GetViewForOverlay (MKMapView mapView, Foundation.NSObject overlay)
+		public override MKOverlayView GetViewForOverlay (MKMapView mapView, IMKOverlay overlay)
 		{
 			if (RegionDefinerViewController.PolygonView != null && RegionDefinerViewController.PolygonView.Polygon == RegionDefinerViewController.Polygon) 
 				return RegionDefinerViewController.PolygonView;

@@ -10,16 +10,26 @@ namespace Protocols_Delegates_Events
     /// </summary>
     public class SampleMapAnnotation : MKAnnotation
     {
+		CLLocationCoordinate2D coordinate;
         string _title;
         
-        public SampleMapAnnotation (CLLocationCoordinate2D coordinate)
+        public SampleMapAnnotation (CLLocationCoordinate2D coordinateToSet)
         {
-            Coordinate = coordinate;
+			coordinate = coordinateToSet;
             _title = "Sample";
         }
-        
-        public override CLLocationCoordinate2D Coordinate { get; set; }
-        
+
+		public override CLLocationCoordinate2D Coordinate {
+			get {
+				return coordinate;
+			}
+		}
+
+		public override void SetCoordinate (CLLocationCoordinate2D coordinateToSet)
+		{
+			coordinate = coordinateToSet;
+		}
+
         public override string Title {
             get {
                 return _title;
