@@ -89,12 +89,12 @@ namespace SoZoomy
 			metadataOutput.SetDelegate (metaDataObjectDelegate, DispatchQueue.MainQueue);
 			session.AddOutput (metadataOutput);
 
-			if (!metadataOutput.AvailableMetadataObjectTypes.Contains (AVMetadataObject.TypeFace)) {
+			if (metadataOutput.AvailableMetadataObjectTypes != AVMetadataObjectType.Face) {
 				teardownAVFoundationFaceDetection ();
 				return;
 			}
 
-			metadataOutput.MetadataObjectTypes = new NSString[] { AVMetadataObject.TypeFace };
+			metadataOutput.MetadataObjectTypes = AVMetadataObjectType.Face;
 			updateAVFoundationFaceDetection ();
 		}
 

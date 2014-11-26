@@ -52,7 +52,7 @@ namespace WeatherMap
 			// Release any cached data, images, etc that aren't in use.
 		}
 		
-		MKAnnotationView GetWeatherAnnotationView (MKMapView map, NSObject annotation)
+		MKAnnotationView GetWeatherAnnotationView (MKMapView map, IMKAnnotation annotation)
 		{
 			MKAnnotationView annotationView = mapView.DequeueReusableAnnotation ("annotationViewID");
 			

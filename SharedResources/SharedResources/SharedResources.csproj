@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{7624AE01-3981-42DC-AA85-9D88A2CF6840}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -24,7 +24,8 @@
     <MtouchDebug>True</MtouchDebug>
     <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchUseArmv7>false</MtouchUseArmv7>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -35,7 +36,8 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchUseArmv7>false</MtouchUseArmv7>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -49,7 +51,8 @@
     <MtouchDebug>True</MtouchDebug>
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchUseArmv7>false</MtouchUseArmv7>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -60,7 +63,8 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchUseArmv7>false</MtouchUseArmv7>
   </PropertyGroup>
   <ItemGroup>

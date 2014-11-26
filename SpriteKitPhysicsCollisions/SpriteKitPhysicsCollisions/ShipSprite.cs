@@ -59,7 +59,7 @@ namespace SpriteKitPhysicsCollisions {
 			};
 			ship.AddChild (shipOverlayShape);
 #endif
-			var body = SKPhysicsBody.BodyWithPolygonFromPath (boundingPath);
+			var body = SKPhysicsBody.CreateBodyFromPath (boundingPath);
 			body.CategoryBitMask = Category.Ship;
 			body.CollisionBitMask = Category.Ship | Category.Asteroid | Category.Planet | Category.Edge; 
 			body.ContactTestBitMask = body.CollisionBitMask;
@@ -110,7 +110,7 @@ namespace SpriteKitPhysicsCollisions {
 				var position = new CGPoint (myRand ((float)Position.X - shipChunkDispersion, (float)Position.Y + shipChunkDispersion),
 					(nfloat)myRand ((float)Position.Y - shipChunkDispersion, (float)Position.Y + shipChunkDispersion));
 				var explosion = new ExplosionNode (Scene, position);
-				var body = SKPhysicsBody.BodyWithCircleOfRadius (0.25f);
+				var body = SKPhysicsBody.CreateCircularBody (0.25f);
 				body.CollisionBitMask = 0;
 				body.ContactTestBitMask = 0;
 				body.CategoryBitMask = 0;

@@ -26,11 +26,11 @@ namespace TransitionsDemo.InteractionControllers
 
 		private void PrepareGestureRecognizerInView (UIView view)
 		{
-			gestureRecognizer = new UIPanGestureRecognizer (this, new Selector ("HandleGesture"));
+			gestureRecognizer = new UIPanGestureRecognizer (this, new Selector ("HandleGesture:"));
 			view.AddGestureRecognizer (gestureRecognizer);
 		}
 
-		[Export("HandleGesture")]
+		[Export("HandleGesture:")]
 		public void HandleGesture (UIPanGestureRecognizer gestureRecognizer)
 		{
 			CGPoint translation = gestureRecognizer.TranslationInView (gestureRecognizer.View.Superview);

@@ -9,7 +9,7 @@ namespace TransitionsDemo
 {
 	public partial class ViewController : UIViewController, IUIViewControllerTransitioningDelegate
 	{
-		private static int colorIndex = 0;
+		private static nuint colorIndex = 0;
 		private NSArray colors;
 
 		[Export ("initWithCoder:")]
@@ -24,8 +24,7 @@ namespace TransitionsDemo
 			                                UIColor.Green, UIColor.Blue, UIColor.Purple);
 
 			View.BackgroundColor = colors.GetItem<UIColor> (colorIndex);
-			colorIndex = (int)((colorIndex + 1) % (int)colors.Count);
-
+			colorIndex = (colorIndex + 1) % colors.Count;
 		}
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
