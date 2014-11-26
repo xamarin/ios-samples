@@ -203,7 +203,7 @@ namespace MotionGraphs
 
 			void DrawLabel (string label, float pos)
 			{
-				DrawString (label, new CGRect (2, pos, 24, 16), systemFont, UILineBreakMode.WordWrap, UITextAlignment.Right);
+				label.DrawString (new CGRect (2, pos, 24, 16), systemFont, UILineBreakMode.WordWrap, UITextAlignment.Right);
 			}
 
 			public override void Draw (CGRect rect)
