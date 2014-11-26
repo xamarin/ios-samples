@@ -30,13 +30,12 @@ using System.Reflection;
 using UIKit;
 using MapKit;
 using Foundation;
-using CoreGraphics;
 
 namespace WeatherMap
 {
 	public class WeatherAnnotationView : MKAnnotationView
 	{
-		public WeatherAnnotationView (NSObject annotation, string reuseIdentifier) : base (annotation, reuseIdentifier)
+		public WeatherAnnotationView (IMKAnnotation annotation, string reuseIdentifier) : base (annotation, reuseIdentifier)
 		{
 			CGRect frame = Frame;
 			frame.Size = new CGSize (60.0f, 85.0f);
@@ -44,24 +43,6 @@ namespace WeatherMap
 			
 			BackgroundColor = UIColor.Clear;
 			CenterOffset = new CGPoint (30.0f, 42.0f);
-		}
-
-		public override NSObject Annotation {
-			get {
-				return base.Annotation;
-			}
-			
-			set {
-				base.Annotation = value;
-				
-				// this annotation view has custom drawing code.  So when we reuse an annotation view
-				// (through MapView's delegate "dequeueReusableAnnoationViewWithIdentifier" which returns non-nil)
-				// we need to have it redraw the new annotation data.
-				//
-				// for any other custom annotation view which has just contains a simple image, this won't be needed
-				//
-				SetNeedsDisplay ();
-			}
 		}
 
 		public override void Draw (CGRect rect)

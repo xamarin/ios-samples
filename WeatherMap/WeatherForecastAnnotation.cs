@@ -58,10 +58,6 @@ namespace WeatherMap
 			get {
 				return new CLLocationCoordinate2D (Forecast.Latitude, Forecast.Longitude);
 			}
-			
-			set {
-				throw new NotSupportedException ();
-			}
 		}
 	}
 }
