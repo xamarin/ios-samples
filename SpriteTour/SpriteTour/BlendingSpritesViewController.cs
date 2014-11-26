@@ -1,6 +1,5 @@
 using System;
 using CoreGraphics;
-using CoreGraphics;
 using Foundation;
 using UIKit;
 using SpriteKit;
@@ -31,7 +30,7 @@ namespace SpriteTour {
 				new CGPoint (Scene.Frame.GetMidX (), 100));
 
 			Scene.RunAction (SKAction.RepeatActionForever (SKAction.Sequence (
-				SKAction.RunBlock (AddLight),
+				SKAction.Run (AddLight),
 				SKAction.WaitForDuration (0.5f, 0.1f)
 			)));
 		}
@@ -48,9 +47,10 @@ namespace SpriteTour {
 			SKSpriteNode sprite = new SKSpriteNode ("Art/spark.png") {
 				Position = GetRandomPosition (),
 				BlendMode = SKBlendMode.Add,
-				Alpha = 0.5f,
-				Scale = 2.0f
+				Alpha = 0.5f
 			};
+
+			sprite.SetScale (2f);
 			Scene.AddChild (sprite);
 		}
 	}

@@ -1,6 +1,5 @@
 using System;
 using CoreGraphics;
-using CoreGraphics;
 using Foundation;
 using SpriteKit;
 using UIKit;
@@ -19,9 +18,8 @@ namespace SpriteTour {
 		{
 			base.CreateSceneContents ();
 
-			template = new SKSpriteNode ("Art/rocket.png") {
-				Scale = 0.5f
-			};
+			template = new SKSpriteNode ("Art/rocket.png");
+			template.SetScale (0.5f);
 
 			AddBlendFactorLabels ();
 
