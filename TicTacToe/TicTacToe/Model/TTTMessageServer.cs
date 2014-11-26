@@ -8,7 +8,7 @@ namespace TicTacToe
 	public class TTTMessageServer
 	{
 		public event EventHandler<MessageEvenArg> MessagesAdded;
-		public static readonly NSString AddedMessageIndexesUserInfoKey = (NSString)"AddedMessageIndexesUserInfoKey";
+
 		List<TTTMessage> messages;
 		List<TTTMessage> favoriteMessages;
 
