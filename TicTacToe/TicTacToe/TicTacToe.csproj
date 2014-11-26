@@ -114,6 +114,7 @@
     <Compile Include="Controller\TTTProfileViewController.cs" />
     <Compile Include="Controller\TTTHistoryListViewController.cs" />
     <Compile Include="Controller\TTTGameHistoryViewController.cs" />
+    <Compile Include="Model\MessageEvenArg.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\backIndicator.png" />

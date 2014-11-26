@@ -20,7 +20,7 @@ namespace TicTacToe
 			TabBarItem.SelectedImage = UIImage.FromBundle ("messagesTabSelected");
 
 			NavigationItem.RightBarButtonItem = new UIBarButtonItem (UIBarButtonSystemItem.Compose, NewMessage);
-			NSNotificationCenter.DefaultCenter.AddObserver (TTTMessageServer.DidAddMessagesNotification, DidAddMessages);
+			TTTMessageServer.SharedMessageServer.MessagesAdded += OnMessagesAdded;
 
 			NavigationItem.LeftBarButtonItem = new UIBarButtonItem (new UIImage (), UIBarButtonItemStyle.Plain, Favorite);
 			UpdateFavoriteButton ();
@@ -47,12 +47,9 @@ namespace TicTacToe
 			controller.PresentFromViewController (this);
 		}
 
-		void DidAddMessages (NSNotification notification)
+		void OnMessagesAdded (object sender, MessageEvenArg e)
 		{
-			var addedIndexes = (NSArray)notification.UserInfo [TTTMessageServer.AddedMessageIndexesUserInfoKey];
-			var paths = NSArray.FromArray<NSNumber> (addedIndexes)
-				.Select (num => NSIndexPath.FromRowSection (num.NIntValue, 0))
-				.ToArray ();
+			NSIndexPath[] paths = e.Indexes.Select (index => NSIndexPath.FromRowSection (index, 0)).ToArray ();
 			TableView.InsertRows (paths, UITableViewRowAnimation.Automatic);
 		}
 
