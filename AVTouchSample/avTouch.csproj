@@ -86,8 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.png" />
-    <Content Include="icon.png" />
-    <Content Include="sample.m4a" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -121,6 +119,8 @@
     <BundleResource Include="Resources\sound_meter_glare.png" />
     <BundleResource Include="Resources\volume_down.png" />
     <BundleResource Include="Resources\volume_up.png" />
+    <BundleResource Include="Resources\sample.m4a" />
+    <BundleResource Include="Resources\icon.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
