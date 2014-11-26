@@ -41,7 +41,7 @@ namespace NewBox
 
 					if (success) {
 						var attributes = new NSFileAttributes {
-							FileExtensionHidden = true
+							ExtensionHidden = true
 						};
 						fileManager.SetAttributes (attributes, dst.Path);
 						Console.WriteLine ("Copied file: {0} to: {1}.", src.AbsoluteString, dst.AbsoluteString);
