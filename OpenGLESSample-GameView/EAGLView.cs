@@ -59,7 +59,7 @@ namespace OpenGLESSampleGameView
 			GL.Rotate (3.0f, 0.0f, 0.0f, 1.0f);
 			
 			GL.ClearColor (0.5f, 0.5f, 0.5f, 1.0f);
-			GL.Clear ((uint) All.ColorBufferBit);
+			GL.Clear (ClearBufferMask.ColorBufferBit);
 	
 			GL.VertexPointer (2, All.Float, 0, squareVertices);
 			GL.EnableClientState (All.VertexArray);
