@@ -81,18 +81,18 @@ namespace UIImageEffects
 
 				var effectInBuffer = new vImageBuffer () {
 					Data = effectInContext.Data,
-					Width = effectInContext.Width,
-					Height = effectInContext.Height,
-					BytesPerRow = effectInContext.BytesPerRow
+					Width = (int)effectInContext.Width,
+					Height = (int)effectInContext.Height,
+					BytesPerRow =(int) effectInContext.BytesPerRow
 				};
 
 				UIGraphics.BeginImageContextWithOptions (image.Size, false, UIScreen.MainScreen.Scale);
 				var effectOutContext = UIGraphics.GetCurrentContext ().AsBitmapContext () as CGBitmapContext;				
 				var effectOutBuffer = new vImageBuffer () {
 					Data = effectOutContext.Data,
-					Width = effectOutContext.Width,
-					Height = effectOutContext.Height,
-					BytesPerRow = effectOutContext.BytesPerRow
+					Width = (int)effectOutContext.Width,
+					Height = (int)effectOutContext.Height,
+					BytesPerRow = (int)effectOutContext.BytesPerRow
 				};
 
 				if (hasBlur) {
