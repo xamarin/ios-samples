@@ -4,10 +4,11 @@ using Foundation;
 
 namespace BackgroundExecution
 {
+	[Register("HomeScreen")]
 	public partial class HomeScreen
 	{
 		[Outlet]
-		UIButton btnStartLongRunningTask { get; set; }
+		UIButton BtnStartLongRunningTask { get; set; }
 	}
 }
 
