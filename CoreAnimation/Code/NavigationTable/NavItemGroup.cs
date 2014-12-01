@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace Example_CoreAnimation.Code.NavigationTable
+namespace CoreAnimationExample
 {
 	/// <summary>
 	/// A group that contains table items
 	/// </summary>
 	public class NavItemGroup
 	{
+		List<NavItem> items = new List<NavItem> ();
+
 		public string Name { get; set; }
 
 		public string Footer { get; set; }
@@ -16,8 +18,6 @@ namespace Example_CoreAnimation.Code.NavigationTable
 			get { return  items; }
 			set { items = value; }
 		}
-
-		protected List<NavItem> items = new List<NavItem> ();
 
 		public NavItemGroup ()
 		{
@@ -29,4 +29,3 @@ namespace Example_CoreAnimation.Code.NavigationTable
 		}
 	}
 }
-

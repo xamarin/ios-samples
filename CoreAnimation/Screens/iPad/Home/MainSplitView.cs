@@ -1,28 +1,26 @@
 using System;
-using UIKit;
 using System.Reflection;
-using Example_CoreAnimation.Screens.iPad.NavTable;
-using Example_CoreAnimation.Code.NavigationTable;
+using UIKit;
 using ObjCRuntime;
 using Foundation;
 
-namespace Example_CoreAnimation.Screens.iPad.Home
+namespace CoreAnimationExample
 {
 	public class MainSplitView : UISplitViewController
 	{
-		private MasterNavTableViewController masterViewController;
-		private UIViewController detailViewController;
-		private Selector toggleMasterVisible;
+		MasterNavTableViewController masterViewController;
+		UIViewController detailViewController;
+		Selector toggleMasterVisible;
 
-		private bool MasterViewHidden { get; set; }
+		bool MasterViewHidden { get; set; }
 
 		public MainSplitView () : base ()
 		{
 			MasterViewHidden = true;
 
 			// create our master and detail views
-			masterViewController = new Screens.iPad.NavTable.MasterNavTableViewController ();
-			detailViewController = new Screens.iPad.BasicUIViewAnimation.BasicUIViewAnimationScreen ();
+			masterViewController = new MasterNavTableViewController ();
+			detailViewController = new BasicUIViewAnimationScreen ();
 
 			// create an array of controllers from them and then assign it to the 
 			// controllers property
@@ -64,7 +62,7 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 			base.WillRotate (toInterfaceOrientation, duration);
 		}
 
-		protected void HandleRowClicked (RowClickedEventArgs e)
+		void HandleRowClicked (RowClickedEventArgs e)
 		{
 			Console.WriteLine ("Changing Screens");
 			(detailViewController as IDetailView).ContentsButtonClicked -= ContentsButtonClickHandler;
@@ -124,14 +122,14 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 			(detailViewController as IDetailView).ContentsButtonClicked += ContentsButtonClickHandler;
 		}
 
-		private void ContentsButtonClickHandler (object sender, EventArgs e)
+		void ContentsButtonClickHandler (object sender, EventArgs e)
 		{
 			MasterViewHidden = false;
 			ToogleMasterViewVisibility (InterfaceOrientation);
 			MasterViewHidden = true;
 		}
 
-		private void ToogleMasterViewVisibility (UIInterfaceOrientation interfaceOrientation)
+		void ToogleMasterViewVisibility (UIInterfaceOrientation interfaceOrientation)
 		{
 			ShouldHideViewController.Invoke (this, masterViewController, interfaceOrientation);
 			PerformSelector (toggleMasterVisible, null, 0);

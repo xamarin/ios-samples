@@ -5,7 +5,7 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_CoreAnimation.Screens.iPad.BasicUIViewAnimation
+namespace CoreAnimationExample
 {
 	public partial class BasicUIViewAnimationScreen : UIViewController, IDetailView
 	{
@@ -32,7 +32,7 @@ namespace Example_CoreAnimation.Screens.iPad.BasicUIViewAnimation
 						imgToAnimate.Frame = new CGRect (
 							imgToAnimate.Frame.X, imgToAnimate.Frame.Y - 400,
 							imgToAnimate.Frame.Size.Width, imgToAnimate.Frame.Size.Height);
-					}					
+					}
 				});
 			};
 		}

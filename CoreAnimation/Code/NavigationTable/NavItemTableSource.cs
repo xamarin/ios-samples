@@ -4,17 +4,18 @@ using UIKit;
 using Foundation;
 using System.Reflection;
 
-namespace Example_CoreAnimation.Code.NavigationTable
+namespace CoreAnimationExample
 {
 	/// <summary>
 	/// Combined DataSource and Delegate for our UITableView
 	/// </summary>
 	public class NavItemTableSource : UITableViewSource
 	{
+		static readonly NSString cellIdentifier = (NSString)"NavTableCellView";
+
 		public event EventHandler<RowClickedEventArgs> RowClicked;
 
-		protected List<NavItemGroup> navItems;
-		private string cellIdentifier = "NavTableCellView";
+		List<NavItemGroup> navItems;
 
 		public NavItemTableSource (List<NavItemGroup> items)
 		{
@@ -54,24 +55,23 @@ namespace Example_CoreAnimation.Code.NavigationTable
 		}
 
 		/// <summary>
-		/// Called by the TableView to actually build each cell. 
+		/// Called by the TableView to actually build each cell.
 		/// </summary>
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			// declare vars
 			NavItem navItem = navItems [indexPath.Section].Items [indexPath.Row];
-			UIImage navIcon = null;
-			
+
 			var cell = tableView.DequeueReusableCell (cellIdentifier);
 			if (cell == null) {
 				cell = new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
 				cell.Tag = Environment.TickCount;
 			}
-			
+
 			// set the cell properties
 			cell.TextLabel.Text = navItems [indexPath.Section].Items [indexPath.Row].Name;
 			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-						
+
 			// return the cell
 			return cell;
 		}
@@ -83,7 +83,7 @@ namespace Example_CoreAnimation.Code.NavigationTable
 		{
 			// get a reference to the nav item
 			NavItem navItem = navItems [indexPath.Section].Items [indexPath.Row];
-			
+
 			if (RowClicked != null)
 				RowClicked (this, new RowClickedEventArgs (navItem));
 		}

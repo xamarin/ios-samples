@@ -6,13 +6,13 @@ using UIKit;
 using CoreAnimation;
 using CoreGraphics;
 
-namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
+namespace CoreAnimationExample
 {
 	public partial class ImplicitAnimationScreen : UIViewController, IDetailView
 	{
 		public event EventHandler ContentsButtonClicked;
 
-		protected CALayer imgLayer;
+		CALayer imgLayer;
 
 		#region Constructors
 
@@ -37,11 +37,11 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 		void Initialize ()
 		{
 			Console.WriteLine ("Creating Layer");
-			
+
 			// create our layer and set it's frame
 			imgLayer = CreateLayerFromImage ();
 			imgLayer.Frame = new CGRect (200, 70, 114, 114);
-			
+
 			// add the layer to the layer tree so that it's visible
 			View.Layer.AddSublayer (imgLayer);
 		}
@@ -51,7 +51,7 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			btnContents.TouchUpInside += (sender, e) => {
 				if (ContentsButtonClicked != null)
 					ContentsButtonClicked (sender, e);
@@ -71,15 +71,15 @@ namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 
 		// Ways to create a CALayer
 		// Method 1: create a layer from an image
-		protected CALayer CreateLayerFromImage ()
+		CALayer CreateLayerFromImage ()
 		{
 			var layer = new CALayer ();
 			layer.Contents = UIImage.FromBundle ("icon-114.png").CGImage;
-			return layer;			
+			return layer;
 		}
 
 		// Method 2: create a layer and assign a custom delegate that performs the drawing
-		protected CALayer CreateLayerWithDelegate ()
+		CALayer CreateLayerWithDelegate ()
 		{
 			var layer = new CALayer ();
 			layer.Delegate = new LayerDelegate ();

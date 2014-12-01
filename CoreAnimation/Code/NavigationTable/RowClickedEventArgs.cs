@@ -1,6 +1,6 @@
 using System;
 
-namespace Example_CoreAnimation.Code.NavigationTable
+namespace CoreAnimationExample
 {
 	public class RowClickedEventArgs : EventArgs
 	{

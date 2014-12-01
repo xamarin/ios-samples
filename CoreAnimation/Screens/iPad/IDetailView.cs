@@ -1,6 +1,7 @@
 using System;
 using UIKit;
-namespace Example_CoreAnimation.Screens.iPad
+
+namespace CoreAnimationExample
 {
 	public interface IDetailView
 	{

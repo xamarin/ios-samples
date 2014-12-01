@@ -7,7 +7,7 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
+namespace CoreAnimationExample
 {
 	[Register ("LayerAnimationScreen")]
 	partial class LayerAnimationScreen
