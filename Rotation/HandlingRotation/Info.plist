@@ -24,7 +24,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Rotation</string>
 	<key>MinimumOSVersion</key>
-	<string>5.0</string>
+	<string>5.1.1</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>icon-57</string>
