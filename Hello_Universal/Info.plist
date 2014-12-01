@@ -33,11 +33,11 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>MinimumOSVersion</key>
-	<string>4.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>Hello_Universal</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.Hello_Universal</string>
+	<key>MinimumOSVersion</key>
+	<string>5.1.1</string>
 </dict>
 </plist>
