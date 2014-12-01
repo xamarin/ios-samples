@@ -1,7 +1,6 @@
 using System;
 using CoreGraphics;
 using System.Net;
-using CoreGraphics;
 using Foundation;
 using UIKit;
 using SystemConfiguration;
