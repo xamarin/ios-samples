@@ -12,7 +12,6 @@ using OpenGLES;
 namespace LowLevelGLPaint
 {
 	public class EAGLView : UIView {
-		All _format;
 		All _depthFormat;
 		bool _autoResize;
 		iPhoneOSGraphicsContext _context;
@@ -45,7 +44,7 @@ namespace LowLevelGLPaint
 				new NSObject [] {NSNumber.FromBoolean (true),           EAGLColorFormat.RGBA8},
 				new NSObject [] {EAGLDrawableProperty.RetainedBacking,  EAGLDrawableProperty.ColorFormat}
 			);
-			_format = format;
+
 			_depthFormat = depth;
 
 			_context = (iPhoneOSGraphicsContext) ((IGraphicsContextInternal) GraphicsContext.CurrentContext).Implementation;
