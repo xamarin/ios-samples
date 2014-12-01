@@ -6,7 +6,6 @@ using Foundation;
 using UIKit;
 using CoreAnimation;
 using CoreGraphics;
-using CoreGraphics;
 
 namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
 {

@@ -16,19 +16,14 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 				switch (sgmntTransitionType.SelectedSegment) {
 				case 0:
 					return UIViewAnimationOptions.TransitionCurlDown;
-					break;
 				case 1:
 					return UIViewAnimationOptions.TransitionCurlUp;
-					break;
 				case 2:
 					return UIViewAnimationOptions.TransitionFlipFromLeft;
-					break;
 				case 3:
 					return UIViewAnimationOptions.TransitionFlipFromRight;
-					break;
 				default:
 					return UIViewAnimationOptions.TransitionCurlDown;
-					break;
 				}
 			}
 		}
