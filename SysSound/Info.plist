@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>MinimumOSVersion</key>
-	<string>4.2</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -25,5 +23,15 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>MinimumOSVersion</key>
+	<string>5.1.1</string>
+	<key>CFBundleDisplayName</key>
+	<string>SysSound</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.your-company.syssound</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 </dict>
 </plist>
