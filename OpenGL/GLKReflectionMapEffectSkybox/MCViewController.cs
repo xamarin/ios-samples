@@ -6,7 +6,6 @@ using GLKit;
 using MonoTouch;
 using OpenTK.Graphics.ES20;
 using CoreGraphics;
-using CoreGraphics;
 using Foundation;
 
 namespace GLKReflectionMapEffectSkybox
