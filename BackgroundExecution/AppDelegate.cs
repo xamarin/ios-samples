@@ -1,7 +1,9 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
+
 using UIKit;
 using Foundation;
-using System.Threading;
 
 namespace BackgroundExecution
 {
@@ -59,26 +61,20 @@ namespace BackgroundExecution
 			//UIApplication.SharedApplication.SetKeepAliveTimout(600, () => { /* keep alive handler code*/ });
 
 			// register a long running task, and then start it on a new thread so that this method can return
-			int taskID = (int)UIApplication.SharedApplication.BeginBackgroundTask (() => {
-			});
-			Thread task = new Thread (new ThreadStart (() => {
-				FinishLongRunningTask (taskID);
-			}));
-			task.Start ();
+			var taskID = UIApplication.SharedApplication.BeginBackgroundTask (null);
+			Task.Factory.StartNew (() => FinishLongRunningTask (taskID));
 		}
 
-		protected void FinishLongRunningTask (int taskID)
+		void FinishLongRunningTask (nint taskID)
 		{
-			Console.WriteLine ("Starting task " + taskID.ToString ());
+			Console.WriteLine ("Starting task {0}", taskID);
+			Console.WriteLine ("Background time remaining: {0}", UIApplication.SharedApplication.BackgroundTimeRemaining);
 
-			Console.WriteLine ("Background time remaining: " + UIApplication.SharedApplication.BackgroundTimeRemaining.ToString ());
+			// sleep for 15 seconds to simulate a long running task
+			Thread.Sleep (15000);
 
-			// sleep for 5 seconds to simulate a long running task
-			Thread.Sleep (5000);
-
-			Console.WriteLine ("Task " + taskID.ToString () + " finished");
-
-			Console.WriteLine ("Background time remaining: " + UIApplication.SharedApplication.BackgroundTimeRemaining.ToString ());
+			Console.WriteLine ("Task {0} finished", taskID);
+			Console.WriteLine ("Background time remaining: {0}", UIApplication.SharedApplication.BackgroundTimeRemaining);
 
 			// call our end task
 			UIApplication.SharedApplication.EndBackgroundTask (taskID);

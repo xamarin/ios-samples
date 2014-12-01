@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Foundation;
-using UIKit;
 using System.Threading;
 using System.Threading.Tasks;
+
+using UIKit;
+using Foundation;
 
 namespace BackgroundExecution
 {
@@ -44,16 +45,14 @@ namespace BackgroundExecution
 		void DoSomething ()
 		{
 			// register our background task
-			int taskID = (int)UIApplication.SharedApplication.BeginBackgroundTask (() => {
-				BackgroundTaskExpiring ();
-			});
+			var taskID = UIApplication.SharedApplication.BeginBackgroundTask (BackgroundTaskExpiring);
 
-			Console.WriteLine ("Starting background task " + taskID.ToString ());
+			Console.WriteLine ("Starting background task {0}", taskID);
 
 			// sleep for five seconds
 			Thread.Sleep (5000);
 
-			Console.WriteLine ("Background task " + taskID.ToString () + " completed.");
+			Console.WriteLine ("Background task {0} completed.", taskID);
 
 			// mark our background task as complete
 			UIApplication.SharedApplication.EndBackgroundTask (taskID);
