@@ -46,12 +46,9 @@ namespace StreamingAudio
 			NavigationController.PushViewController (playerViewController, true);
 		}
 
-		void HandleError (string message)
+		void HandleError (object sender, ErrorArg e)
 		{
-			InvokeOnMainThread (delegate {
-				statusLabel.Text = message;
-			});
+			InvokeOnMainThread (() => statusLabel.Text = e.Description);
 		}
 	}
 }
-

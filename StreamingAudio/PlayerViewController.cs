@@ -15,7 +15,7 @@ namespace StreamingAudio
 		NSTimer updatingTimer;
 		StreamingPlayback player;
 
-		public Action<string> ErrorOccurred;
+		public event EventHandler<ErrorArg> ErrorOccurred;
 
 		public string SourceUrl { get; private set; }
 
@@ -111,8 +111,9 @@ namespace StreamingAudio
 
 		void RaiseErrorOccurredEvent (string message)
 		{
-			if (ErrorOccurred != null)
-				ErrorOccurred (message);
+			var handler = ErrorOccurred;
+			if (handler != null)
+				handler (this, new ErrorArg { Description = message });
 		}
 
 		void StreamDownloadedHandler (IAsyncResult result)
