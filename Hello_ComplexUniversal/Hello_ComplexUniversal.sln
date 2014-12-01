@@ -21,6 +21,6 @@ Global
 		{0E42ADD6-34AD-49EA-BCEC-013A12CD04D5}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Hello_ComplexUniversal\Hello_ComplexUniversal.csproj
+		StartupItem = Hello_ComplexUniversal.csproj
 	EndGlobalSection
 EndGlobal
