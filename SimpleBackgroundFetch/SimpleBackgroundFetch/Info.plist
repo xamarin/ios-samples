@@ -11,7 +11,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
 	<key>MinimumOSVersion</key>
-	<string>5.0</string>
+	<string>5.1.1</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -22,5 +22,11 @@
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.examples.simplebackgroundfetch</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>MainStoryboard</string>
 </dict>
 </plist>
