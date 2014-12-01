@@ -273,7 +273,7 @@ namespace StreamingAudio
 					OutputReady (OutputQueue);
 
 				currentByteCount = 0;
-				OutputQueue.OutputCompleted += HandleOutputQueueOutputCompleted;
+				OutputQueue.BufferCompleted += HandleBufferCompleted;
 				outputBuffers = new List<AudioBuffer> ();
 
 				for (int i = 0; i < MaxBufferCount; i++) {
@@ -294,7 +294,7 @@ namespace StreamingAudio
 		/// <summary>
 		/// Is called when a buffer is completly read and can be freed up
 		/// </summary>
-		private void HandleOutputQueueOutputCompleted (object sender, OutputCompletedEventArgs e)
+		void HandleBufferCompleted (object sender, BufferCompletedEventArgs e)
 		{
 			queuedBufferCount--;
 			IntPtr buf = e.IntPtrBuffer;
@@ -317,5 +317,3 @@ namespace StreamingAudio
 		}
 	}
 }
-
-
