@@ -69,7 +69,7 @@ namespace OpenGLESSample
 			GL.Rotate (3.0f, 0.0f, 0.0f, 1.0f);
 			
 			GL.ClearColor (0.5f, 0.5f, 0.5f, 1.0f);
-			GL.Clear ((uint) All.ColorBufferBit);
+			GL.Clear (ClearBufferMask.ColorBufferBit);
 	
 			GL.VertexPointer (2, All.Float, 0, squareVertices);
 			GL.EnableClientState (All.VertexArray);
@@ -105,13 +105,7 @@ namespace OpenGLESSample
 	
 			GL.Oes.GetRenderbufferParameter (All.RenderbufferOes, All.RenderbufferWidthOes, out BackingWidth);
 			GL.Oes.GetRenderbufferParameter (All.RenderbufferOes, All.RenderbufferHeightOes, out BackingHeight);
-	
-			if (UseDepthBuffer) {
-				GL.Oes.GenRenderbuffers (1, out DepthRenderBuffer);
-				GL.Oes.BindRenderbuffer (All.RenderbufferOes, DepthRenderBuffer);
-				GL.Oes.RenderbufferStorage (All.RenderbufferOes, All.DepthComponent16Oes, BackingWidth, BackingHeight);
-				GL.Oes.FramebufferRenderbuffer (All.FramebufferOes, All.DepthAttachmentOes, All.RenderbufferOes, DepthRenderBuffer);
-			}
+
 			if (GL.Oes.CheckFramebufferStatus (All.FramebufferOes) != All.FramebufferCompleteOes) {
 				Console.Error.WriteLine("failed to make complete framebuffer object {0}",
 					GL.Oes.CheckFramebufferStatus (All.FramebufferOes));
