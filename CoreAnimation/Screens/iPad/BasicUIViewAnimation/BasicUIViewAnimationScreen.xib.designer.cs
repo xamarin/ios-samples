@@ -7,7 +7,7 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace Example_CoreAnimation.Screens.iPad.BasicUIViewAnimation
+namespace CoreAnimationExample
 {
 	[Register ("BasicUIViewAnimationScreen")]
 	partial class BasicUIViewAnimationScreen

@@ -6,7 +6,7 @@ using UIKit;
 using CoreAnimation;
 using CoreGraphics;
 
-namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
+namespace CoreAnimationExample
 {
 	public partial class ImplicitAnimationScreen : UIViewController, IDetailView
 	{

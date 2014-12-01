@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Example_CoreAnimation.Code.NavigationTable
+namespace CoreAnimationExample
 {
 	/// <summary>
 	/// A group that contains table items

@@ -7,7 +7,7 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace Example_CoreAnimation.Screens.iPad.CustomizableAnimationViewer
+namespace CoreAnimationExample
 {
 	[Register ("CustomizableAnimationViewerScreen")]
 	partial class CustomizableAnimationViewerScreen

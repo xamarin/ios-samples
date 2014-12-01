@@ -1,7 +1,7 @@
 using System;
 using UIKit;
 
-namespace Example_CoreAnimation.Code.NavigationTable
+namespace CoreAnimationExample
 {
 	/// <summary>
 	/// 

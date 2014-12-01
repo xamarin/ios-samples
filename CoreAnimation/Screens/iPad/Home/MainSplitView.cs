@@ -1,12 +1,10 @@
 using System;
-using UIKit;
 using System.Reflection;
-using Example_CoreAnimation.Screens.iPad.NavTable;
-using Example_CoreAnimation.Code.NavigationTable;
+using UIKit;
 using ObjCRuntime;
 using Foundation;
 
-namespace Example_CoreAnimation.Screens.iPad.Home
+namespace CoreAnimationExample
 {
 	public class MainSplitView : UISplitViewController
 	{
@@ -21,8 +19,8 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 			MasterViewHidden = true;
 
 			// create our master and detail views
-			masterViewController = new Screens.iPad.NavTable.MasterNavTableViewController ();
-			detailViewController = new Screens.iPad.BasicUIViewAnimation.BasicUIViewAnimationScreen ();
+			masterViewController = new MasterNavTableViewController ();
+			detailViewController = new BasicUIViewAnimationScreen ();
 
 			// create an array of controllers from them and then assign it to the 
 			// controllers property

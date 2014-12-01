@@ -6,7 +6,7 @@ using UIKit;
 using ObjCRuntime;
 using CoreGraphics;
 
-namespace Example_CoreAnimation.Screens.iPad.CustomizableAnimationViewer
+namespace CoreAnimationExample
 {
 	public partial class CustomizableAnimationViewerScreen : UIViewController, IDetailView
 	{

@@ -3,7 +3,7 @@ using CoreGraphics;
 using CoreFoundation;
 using UIKit;
 
-namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
+namespace CoreAnimationExample
 {
 	public class Controller : UIViewController, IDetailView
 	{

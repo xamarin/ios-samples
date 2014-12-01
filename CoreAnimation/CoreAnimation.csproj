@@ -8,7 +8,7 @@
     <ProjectGuid>{98F6ED66-B4E9-45F2-948E-5DCF19E18B24}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Example_CoreAnimation</RootNamespace>
+    <RootNamespace>CoreAnimationExample</RootNamespace>
     <AssemblyName>Example_CoreAnimation</AssemblyName>
     <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>

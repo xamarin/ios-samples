@@ -5,7 +5,7 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_CoreAnimation.Screens.iPad.BasicUIViewAnimation
+namespace CoreAnimationExample
 {
 	public partial class BasicUIViewAnimationScreen : UIViewController, IDetailView
 	{

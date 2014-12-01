@@ -7,7 +7,7 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
+namespace CoreAnimationExample
 {
 	[Register ("TransitionViewController")]
 	partial class TransitionViewController

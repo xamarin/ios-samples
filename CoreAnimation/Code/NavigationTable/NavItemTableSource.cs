@@ -4,7 +4,7 @@ using UIKit;
 using Foundation;
 using System.Reflection;
 
-namespace Example_CoreAnimation.Code.NavigationTable
+namespace CoreAnimationExample
 {
 	/// <summary>
 	/// Combined DataSource and Delegate for our UITableView

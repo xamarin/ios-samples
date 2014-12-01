@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
+namespace CoreAnimationExample
 {
 	public partial class BackTransitionViewController : UIViewController
 	{

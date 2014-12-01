@@ -1,9 +1,9 @@
 using System;
-using UIKit;
 using System.Collections.Generic;
-using Example_CoreAnimation.Code.NavigationTable;
 
-namespace Example_CoreAnimation.Screens.iPad.NavTable
+using UIKit;
+
+namespace CoreAnimationExample
 {
 	public class MasterNavTableViewController : UITableViewController
 	{
@@ -24,11 +24,11 @@ namespace Example_CoreAnimation.Screens.iPad.NavTable
 			// create the navigation items
 			var navGroup = new NavItemGroup ("UIView Animations");
 			navGroup.Items = new List<NavItem> () {
-				new NavItem ("Basic Animation", "", typeof(BasicUIViewAnimation.BasicUIViewAnimationScreen)),
-				new NavItem ("Animation Customizer", "", typeof(CustomizableAnimationViewer.CustomizableAnimationViewerScreen)),
-				new NavItem ("Transitions", "", typeof(ViewTransitions.Controller)),
-				new NavItem ("Implicit Layer Animation", "", typeof(LayerAnimation.ImplicitAnimationScreen)),
-				new NavItem ("Explicit Layer Animation", "", typeof(LayerAnimation.LayerAnimationScreen))
+				new NavItem ("Basic Animation", "", typeof(BasicUIViewAnimationScreen)),
+				new NavItem ("Animation Customizer", "", typeof(CustomizableAnimationViewerScreen)),
+				new NavItem ("Transitions", "", typeof(Controller)),
+				new NavItem ("Implicit Layer Animation", "", typeof(ImplicitAnimationScreen)),
+				new NavItem ("Explicit Layer Animation", "", typeof(LayerAnimationScreen))
 			};
 
 			navItems.Add (navGroup);
