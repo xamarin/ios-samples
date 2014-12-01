@@ -4,7 +4,6 @@ using System.Threading;
 using CoreGraphics;
 using System.Collections.Generic;
 using UIKit;
-using CoreGraphics;
 using CoreFoundation;
 using Foundation;
 using CoreAnimation;
@@ -357,7 +356,6 @@ namespace NSZombieApocalypse
 			});
 		}
 
-		[Obsolete ("Deprecated in iOS6. Replace it with both GetSupportedInterfaceOrientations and PreferredInterfaceOrientationForPresentation")]
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return toInterfaceOrientation == UIInterfaceOrientation.LandscapeLeft || toInterfaceOrientation == UIInterfaceOrientation.LandscapeRight;
