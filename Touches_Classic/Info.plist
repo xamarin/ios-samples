@@ -17,8 +17,6 @@
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.Touches_Classic</string>
-	<key>MinimumOSVersion</key>
-	<string>5.2</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -29,5 +27,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>MinimumOSVersion</key>
+	<string>5.1.1</string>
 </dict>
 </plist>
