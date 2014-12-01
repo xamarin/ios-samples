@@ -15,13 +15,13 @@ namespace CoreAnimationExample {
 	[Foundation.Register("BackTransitionViewController")]
 	public partial class BackTransitionViewController {
 		
-		private UIKit.UIView _mt_view;
+		UIKit.UIView _mt_view;
 		
-		private UIKit.UIButton _mt_btnBack;
+		UIKit.UIButton _mt_btnBack;
 		
 		#pragma warning disable 0169
 		[Foundation.Connect("view")]
-		private UIKit.UIView view {
+		UIKit.UIView view {
 			get {
 				 _mt_view = ((UIKit.UIView)(this.GetNativeField("view")));
 				return  _mt_view;
@@ -33,7 +33,7 @@ namespace CoreAnimationExample {
 		}
 		
 		[Foundation.Connect("btnBack")]
-		private UIKit.UIButton btnBack {
+		UIKit.UIButton btnBack {
 			get {
 				 _mt_btnBack = ((UIKit.UIButton)(this.GetNativeField("btnBack")));
 				return  _mt_btnBack;

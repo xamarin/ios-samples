@@ -13,8 +13,8 @@ namespace CoreAnimationExample
 	{
 		public event EventHandler<RowClickedEventArgs> RowClicked;
 
-		protected List<NavItemGroup> navItems;
-		private string cellIdentifier = "NavTableCellView";
+		List<NavItemGroup> navItems;
+		string cellIdentifier = "NavTableCellView";
 
 		public NavItemTableSource (List<NavItemGroup> items)
 		{

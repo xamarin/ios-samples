@@ -8,6 +8,8 @@ namespace CoreAnimationExample
 	/// </summary>
 	public class NavItemGroup
 	{
+		List<NavItem> items = new List<NavItem> ();
+
 		public string Name { get; set; }
 
 		public string Footer { get; set; }
@@ -16,8 +18,6 @@ namespace CoreAnimationExample
 			get { return  items; }
 			set { items = value; }
 		}
-
-		protected List<NavItem> items = new List<NavItem> ();
 
 		public NavItemGroup ()
 		{
@@ -29,4 +29,3 @@ namespace CoreAnimationExample
 		}
 	}
 }
-

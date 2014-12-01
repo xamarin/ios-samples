@@ -8,11 +8,11 @@ namespace CoreAnimationExample
 {
 	public class MainSplitView : UISplitViewController
 	{
-		private MasterNavTableViewController masterViewController;
-		private UIViewController detailViewController;
-		private Selector toggleMasterVisible;
+		MasterNavTableViewController masterViewController;
+		UIViewController detailViewController;
+		Selector toggleMasterVisible;
 
-		private bool MasterViewHidden { get; set; }
+		bool MasterViewHidden { get; set; }
 
 		public MainSplitView () : base ()
 		{
@@ -62,7 +62,7 @@ namespace CoreAnimationExample
 			base.WillRotate (toInterfaceOrientation, duration);
 		}
 
-		protected void HandleRowClicked (RowClickedEventArgs e)
+		void HandleRowClicked (RowClickedEventArgs e)
 		{
 			Console.WriteLine ("Changing Screens");
 			(detailViewController as IDetailView).ContentsButtonClicked -= ContentsButtonClickHandler;
@@ -122,14 +122,14 @@ namespace CoreAnimationExample
 			(detailViewController as IDetailView).ContentsButtonClicked += ContentsButtonClickHandler;
 		}
 
-		private void ContentsButtonClickHandler (object sender, EventArgs e)
+		void ContentsButtonClickHandler (object sender, EventArgs e)
 		{
 			MasterViewHidden = false;
 			ToogleMasterViewVisibility (InterfaceOrientation);
 			MasterViewHidden = true;
 		}
 
-		private void ToogleMasterViewVisibility (UIInterfaceOrientation interfaceOrientation)
+		void ToogleMasterViewVisibility (UIInterfaceOrientation interfaceOrientation)
 		{
 			ShouldHideViewController.Invoke (this, masterViewController, interfaceOrientation);
 			PerformSelector (toggleMasterVisible, null, 0);

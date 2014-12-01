@@ -13,8 +13,8 @@ namespace CoreAnimationExample
 	{
 		public event EventHandler ContentsButtonClicked;
 
-		private CGPath animationPath;
-		private UIImageView backgroundImage;
+		CGPath animationPath;
+		UIImageView backgroundImage;
 		
 		public override void ViewDidLoad ()
 		{
@@ -47,7 +47,7 @@ namespace CoreAnimationExample
 		
 		// Creates the path that we'll use to animate on. Once the path is created, it calls
 		// DrawPathAsBackground to draw the path on the screen.
-		protected void CreatePath()
+		void CreatePath()
 		{
 			// define our path
 			var curve1StartPoint = new CGPoint (56f, 104f);
@@ -70,7 +70,7 @@ namespace CoreAnimationExample
 		}
 		
 		// Draws our animation path on the background image, just to show it
-		protected void DrawPathAsBackground ()
+		void DrawPathAsBackground ()
 		{
 			// create our offscreen bitmap context
 			var bitmapSize = new CGSize (View.Frame.Size);

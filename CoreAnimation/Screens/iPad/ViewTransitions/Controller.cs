@@ -9,8 +9,8 @@ namespace CoreAnimationExample
 	{
 		public event EventHandler ContentsButtonClicked;
 
-		private TransitionViewController transitionViewController;
-		private BackTransitionViewController backViewController;
+		TransitionViewController transitionViewController;
+		BackTransitionViewController backViewController;
 
 		public override void ViewDidLoad ()
 		{

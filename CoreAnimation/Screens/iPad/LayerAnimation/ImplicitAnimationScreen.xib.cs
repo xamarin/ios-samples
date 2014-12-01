@@ -12,7 +12,7 @@ namespace CoreAnimationExample
 	{
 		public event EventHandler ContentsButtonClicked;
 
-		protected CALayer imgLayer;
+		CALayer imgLayer;
 
 		#region Constructors
 
@@ -71,7 +71,7 @@ namespace CoreAnimationExample
 
 		// Ways to create a CALayer
 		// Method 1: create a layer from an image
-		protected CALayer CreateLayerFromImage ()
+		CALayer CreateLayerFromImage ()
 		{
 			var layer = new CALayer ();
 			layer.Contents = UIImage.FromBundle ("icon-114.png").CGImage;
@@ -79,7 +79,7 @@ namespace CoreAnimationExample
 		}
 
 		// Method 2: create a layer and assign a custom delegate that performs the drawing
-		protected CALayer CreateLayerWithDelegate ()
+		CALayer CreateLayerWithDelegate ()
 		{
 			var layer = new CALayer ();
 			layer.Delegate = new LayerDelegate ();

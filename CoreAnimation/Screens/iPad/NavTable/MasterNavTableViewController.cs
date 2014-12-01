@@ -9,8 +9,8 @@ namespace CoreAnimationExample
 	{
 		public event EventHandler<RowClickedEventArgs> RowClicked;
 
-		private List<NavItemGroup> navItems;
-		private NavItemTableSource tableSource;
+		List<NavItemGroup> navItems;
+		NavItemTableSource tableSource;
 
 		public MasterNavTableViewController () : base (UITableViewStyle.Grouped)
 		{
