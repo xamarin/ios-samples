@@ -77,25 +77,20 @@
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Application.cs" />
-    <Compile Include="Screens\iPhone\HomeScreen.xib.cs">
-      <DependentUpon>HomeScreen_iPhone.xib</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\iPhone\HomeScreen.xib.designer.cs">
-      <DependentUpon>HomeScreen_iPhone.xib</DependentUpon>
+    <Compile Include="Screens\HomeScreen.cs" />
+    <Compile Include="Screens\HomeScreen.xib.designer.cs">
+      <DependentUpon>HomeScreen.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Code\" />
     <Folder Include="Screens\" />
-    <Folder Include="Images\" />
-    <Folder Include="Screens\iPhone\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Screens\iPhone\HomeScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\HomeScreen_iPhone.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon-29.png" />
