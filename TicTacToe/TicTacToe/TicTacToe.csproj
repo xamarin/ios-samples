@@ -53,7 +53,7 @@
     </IpaPackageName>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
     <BuildIpa>true</BuildIpa>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -114,6 +114,7 @@
     <Compile Include="Controller\TTTProfileViewController.cs" />
     <Compile Include="Controller\TTTHistoryListViewController.cs" />
     <Compile Include="Controller\TTTGameHistoryViewController.cs" />
+    <Compile Include="Model\MessageEvenArg.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\backIndicator.png" />

@@ -63,7 +63,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">images/sound_meter_background.png</string>
+							<string key="NSResourceName">sound_meter_background.png</string>
 						</object>
 					</object>
 					<object class="IBUIView" id="544780062">
@@ -164,7 +164,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">images/volume_down.png</string>
+							<string key="NSResourceName">volume_down.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="596049103">
@@ -177,7 +177,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">images/volume_up.png</string>
+							<string key="NSResourceName">volume_up.png</string>
 						</object>
 					</object>
 					<object class="IBUIToolbar" id="570549170">
@@ -214,7 +214,7 @@
 								</object>
 								<object class="NSCustomResource" key="IBUIHighlightedImage" id="384982964">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">images/rewind.png</string>
+									<string key="NSResourceName">rewind.png</string>
 								</object>
 								<reference key="IBUIDisabledImage" ref="384982964"/>
 								<reference key="IBUISelectedImage" ref="384982964"/>
@@ -239,7 +239,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="584139103"/>
 								<object class="NSCustomResource" key="IBUIHighlightedImage" id="300183811">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">images/play.png</string>
+									<string key="NSResourceName">play.png</string>
 								</object>
 								<reference key="IBUIDisabledImage" ref="300183811"/>
 								<reference key="IBUISelectedImage" ref="300183811"/>
@@ -264,13 +264,13 @@
 								<reference key="IBUINormalTitleShadowColor" ref="584139103"/>
 								<object class="NSCustomResource" key="IBUIHighlightedImage" id="384715260">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">images/forward.png</string>
+									<string key="NSResourceName">forward.png</string>
 								</object>
 								<reference key="IBUIDisabledImage" ref="384715260"/>
 								<reference key="IBUISelectedImage" ref="384715260"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">images/forward.png</string>
+									<string key="NSResourceName">forward.png</string>
 								</object>
 							</object>
 						</object>
@@ -322,7 +322,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">images/sound_meter_glare.png</string>
+							<string key="NSResourceName">sound_meter_glare.png</string>
 						</object>
 					</object>
 				</object>

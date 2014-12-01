@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{39F57FAA-67B1-4686-9D42-377DFC6DE989}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -24,7 +24,8 @@
     <ExtraMtouchArgs>-debug</ExtraMtouchArgs>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -32,7 +33,8 @@
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -45,7 +47,9 @@
     <WarningLevel>4</WarningLevel>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -82,20 +86,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.png" />
-    <Content Include="icon.png" />
-    <Content Include="images\pause.png" />
-    <Content Include="images\play.png" />
-    <Content Include="images\play_hi.png" />
-    <Content Include="images\rewind.png" />
-    <Content Include="images\sound_meter_background.png" />
-    <Content Include="images\sound_meter_glare.png" />
-    <Content Include="images\volume_down.png" />
-    <Content Include="images\volume_up.png" />
-    <Content Include="sample.m4a" />
-    <Content Include="images\forward.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="images\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +110,17 @@
     <BundleResource Include="Resources\icon-114.png" />
     <BundleResource Include="Resources\icon-144.png" />
     <BundleResource Include="Resources\icon-72.png" />
+    <BundleResource Include="Resources\forward.png" />
+    <BundleResource Include="Resources\pause.png" />
+    <BundleResource Include="Resources\play.png" />
+    <BundleResource Include="Resources\play_hi.png" />
+    <BundleResource Include="Resources\rewind.png" />
+    <BundleResource Include="Resources\sound_meter_background.png" />
+    <BundleResource Include="Resources\sound_meter_glare.png" />
+    <BundleResource Include="Resources\volume_down.png" />
+    <BundleResource Include="Resources\volume_up.png" />
+    <BundleResource Include="Resources\sample.m4a" />
+    <BundleResource Include="Resources\icon.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
