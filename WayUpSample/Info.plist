@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>MinimumOSVersion</key>
-	<string>3.0</string>
+	<string>5.2</string>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>CFBundleIconFiles</key>

@@ -4,11 +4,13 @@ using System.IO;
 using Foundation;
 using UIKit;
 
-namespace TableEditing.Code {
+namespace TableEditing.Code
+{
 	/// <summary>
 	/// Combined DataSource and Delegate for our UITableView
 	/// </summary>
-	public class TableSource : UITableViewSource {
+	public class TableSource : UITableViewSource
+	{
 		//---- declare vars
 		List<TableItemGroup> tableItems;
 		string cellIdentifier = "TableCell";
@@ -17,9 +19,9 @@ namespace TableEditing.Code {
 		{
 			this.tableItems = items;
 		}
-		
+
 		#region -= data binding/display methods =-
-		
+
 		/// <summary>
 		/// Called by the TableView to determine how many sections(groups) there are.
 		/// </summary>
@@ -33,7 +35,7 @@ namespace TableEditing.Code {
 		/// </summary>
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return tableItems[(int)section].Items.Count;
+			return tableItems [(int)section].Items.Count;
 		}
 
 		/// <summary>
@@ -41,7 +43,7 @@ namespace TableEditing.Code {
 		/// </summary>
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			return tableItems[(int)section].Name;
+			return tableItems [(int)section].Name;
 		}
 
 		/// <summary>
@@ -49,33 +51,33 @@ namespace TableEditing.Code {
 		/// </summary>
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			return tableItems[(int)section].Footer;
+			return tableItems [(int)section].Footer;
 		}
-		
+
 		#endregion
-	
+
 		#region -= user interaction methods =-
-		
+
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			new UIAlertView("Row Selected"
-				, tableItems[indexPath.Section].Items[indexPath.Row].Heading, null, "OK", null).Show();
+			new UIAlertView ("Row Selected"
+				, tableItems [indexPath.Section].Items [indexPath.Row].Heading, null, "OK", null).Show ();
 		}
-		
+
 		public override void RowDeselected (UITableView tableView, NSIndexPath indexPath)
 		{
-			Console.WriteLine("Row " + indexPath.Row.ToString() + " deselected");	
+			Console.WriteLine ("Row " + indexPath.Row.ToString () + " deselected");
 		}
-		
+
 		public override void AccessoryButtonTapped (UITableView tableView, NSIndexPath indexPath)
 		{
-			Console.WriteLine("Accessory for Section, " + indexPath.Section.ToString() + " and Row, " + indexPath.Row.ToString() + " tapped");
+			Console.WriteLine ("Accessory for Section, " + indexPath.Section.ToString () + " and Row, " + indexPath.Row.ToString () + " tapped");
 		}
-			
+
 		#endregion
-		
+
 		#region -= editing methods =-
-		
+
 		/// <summary>
 		/// Called by the table view to determine whether or not the row is editable
 		/// </summary>
@@ -91,7 +93,7 @@ namespace TableEditing.Code {
 		{
 			return true;
 		}
-		
+
 		/// <summary>
 		/// Called by the table view to determine whether the editing control should be an insert
 		/// or a delete.
@@ -100,15 +102,13 @@ namespace TableEditing.Code {
 		{
 			// WARNING: SPECIAL HANDLING HERE FOR THE SECOND ROW
 			// ALSO MEANS SWIPE-TO-DELETE DOESN'T WORK ON THAT ROW
-			if (indexPath.Section == 0 && indexPath.Row == 1)
-			{
+			if (indexPath.Section == 0 && indexPath.Row == 1) {
 				return UITableViewCellEditingStyle.Insert;
-			} else
-			{
+			} else {
 				return UITableViewCellEditingStyle.Delete;
 			}
 		}
-		
+
 		/// <summary>
 		/// Custom text for delete button
 		/// </summary>
@@ -122,52 +122,50 @@ namespace TableEditing.Code {
 		/// </summary>
 		public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
 		{
-			switch (editingStyle)
-			{
+			switch (editingStyle) {
 				case UITableViewCellEditingStyle.Delete:
 					//---- remove the item from the underlying data source
-					tableItems[indexPath.Section].Items.RemoveAt (indexPath.Row);
+					tableItems [indexPath.Section].Items.RemoveAt (indexPath.Row);
 					//---- delete the row from the table
 					tableView.DeleteRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
 					break;
-				
+
 				case UITableViewCellEditingStyle.Insert:
 					//---- create a new item and add it to our underlying data
-					tableItems[indexPath.Section].Items.Insert (indexPath.Row, new TableItem ("(inserted)"));
+					tableItems [indexPath.Section].Items.Insert (indexPath.Row, new TableItem ("(inserted)"));
 					//---- insert a new row in the table
 					tableView.InsertRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
 					break;
-				
+
 				case UITableViewCellEditingStyle.None:
 					Console.WriteLine ("CommitEditingStyle:None called");
 					break;
 			}
 		}
-		
+
 		/// <summary>
 		/// called by the table view when a row is moved.
 		/// </summary>
 		public override void MoveRow (UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath)
 		{
 			//---- get a reference to the item
-			var item = tableItems[sourceIndexPath.Section].Items[sourceIndexPath.Row];
+			var item = tableItems [sourceIndexPath.Section].Items [sourceIndexPath.Row];
 			int deleteAt = sourceIndexPath.Row;
-			
+
 			//---- if we're moving within the same section, and we're inserting it before
-			if ((sourceIndexPath.Section == destinationIndexPath.Section) && (destinationIndexPath.Row < sourceIndexPath.Row))
-			{
+			if ((sourceIndexPath.Section == destinationIndexPath.Section) && (destinationIndexPath.Row < sourceIndexPath.Row)) {
 				//---- add one to where we delete, because we're increasing the index by inserting
 				deleteAt = sourceIndexPath.Row + 1;
 			}
-			
+
 			//---- copy the item to the new location
-			tableItems[destinationIndexPath.Section].Items.Insert (destinationIndexPath.Row, item);
-			
+			tableItems [destinationIndexPath.Section].Items.Insert (destinationIndexPath.Row, item);
+
 			//---- remove from the old
-			tableItems[sourceIndexPath.Section].Items.RemoveAt (deleteAt);
-			
+			tableItems [sourceIndexPath.Section].Items.RemoveAt (deleteAt);
+
 		}
-		
+
 		/// <summary>
 		/// Called manually when the table goes into edit mode
 		/// </summary>
@@ -175,16 +173,16 @@ namespace TableEditing.Code {
 		{
 			//---- start animations
 			tableView.BeginUpdates ();
-			
+
 			//---- insert a new row in the table
 			tableView.InsertRows (new NSIndexPath[] { NSIndexPath.FromRowSection (1, 1) }, UITableViewRowAnimation.Fade);
 			//---- create a new item and add it to our underlying data
-			tableItems[1].Items.Insert (1, new TableItem ());
-			
+			tableItems [1].Items.Insert (1, new TableItem ());
+
 			//---- end animations
 			tableView.EndUpdates ();
 		}
-		
+
 		/// <summary>
 		/// Called manually when the table leaves edit mode
 		/// </summary>
@@ -193,17 +191,17 @@ namespace TableEditing.Code {
 			//---- start animations
 			tableView.BeginUpdates ();
 			//---- remove our row from the underlying data
-			tableItems[1].Items.RemoveAt (1);
+			tableItems [1].Items.RemoveAt (1);
 			//---- remove the row from the table
 			tableView.DeleteRows (new NSIndexPath[] { NSIndexPath.FromRowSection (1, 1) }, UITableViewRowAnimation.Fade);
 			//---- finish animations
 			tableView.EndUpdates ();
 		}
 
-		
-		
+
+
 		#endregion
-		
+
 		/// <summary>
 		/// Called by the TableView to get the actual UITableViewCell to render for the particular section and row
 		/// </summary>
@@ -211,32 +209,33 @@ namespace TableEditing.Code {
 		{
 			//---- declare vars
 			UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);
-			TableItem item = tableItems[indexPath.Section].Items[indexPath.Row];
-			
+			TableItem item = tableItems [indexPath.Section].Items [indexPath.Row];
+
 			//---- if there are no cells to reuse, create a new one
 			if (cell == null)
-				cell = new UITableViewCell (item.CellStyle, cellIdentifier); 
-			
+				cell = new UITableViewCell (item.CellStyle, cellIdentifier);
+
 			//---- set the item text
-			cell.TextLabel.Text = tableItems[indexPath.Section].Items[indexPath.Row].Heading;
-			
+			cell.TextLabel.Text = tableItems [indexPath.Section].Items [indexPath.Row].Heading;
+
 			//---- if it's a cell style that supports a subheading, set it
-			if(item.CellStyle == UITableViewCellStyle.Subtitle 
+			if (item.CellStyle == UITableViewCellStyle.Subtitle
 			   || item.CellStyle == UITableViewCellStyle.Value1
-			   || item.CellStyle == UITableViewCellStyle.Value2)
-			{ cell.DetailTextLabel.Text = item.SubHeading; }
-			
-			//---- if the item has a valid image, and it's not the contact style (doesn't support images)
-			if(!string.IsNullOrEmpty(item.ImageName) && item.CellStyle != UITableViewCellStyle.Value2)
-			{
-				if(File.Exists(item.ImageName))
-				{ cell.ImageView.Image = UIImage.FromBundle(item.ImageName); }
+			   || item.CellStyle == UITableViewCellStyle.Value2) {
+				cell.DetailTextLabel.Text = item.SubHeading;
 			}
-			
+
+			//---- if the item has a valid image, and it's not the contact style (doesn't support images)
+			if (!string.IsNullOrEmpty (item.ImageName) && item.CellStyle != UITableViewCellStyle.Value2) {
+				if (File.Exists (item.ImageName)) {
+					cell.ImageView.Image = UIImage.FromBundle (item.ImageName);
+				}
+			}
+
 			//---- set the accessory
 			cell.Accessory = item.CellAccessory;
-			
+
 			return cell;
-		}	
+		}
 	}
 }
