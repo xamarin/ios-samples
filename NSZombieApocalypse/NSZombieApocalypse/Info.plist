@@ -11,8 +11,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>MinimumOSVersion</key>
-	<string>3.2</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon-72</string>
@@ -29,5 +27,7 @@
 	<string>ZombieApocalypse</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.zombieapocalypse</string>
+	<key>MinimumOSVersion</key>
+	<string>5.1.1</string>
 </dict>
 </plist>
