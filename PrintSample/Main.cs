@@ -14,7 +14,7 @@ namespace print
 			UIApplication.Main (args);
 		}
 	}
-	
+
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
@@ -35,24 +35,24 @@ namespace print
 			var printInfo = UIPrintInfo.PrintInfo;
 			printInfo.OutputType = UIPrintInfoOutputType.General;
 			printInfo.JobName = "My first Print Job";
-			
+
 			var textFormatter = new UISimpleTextPrintFormatter ("Once upon a time...") {
 				StartPage = 0,
 				ContentInsets = new UIEdgeInsets (72, 72, 72, 72),
 				MaximumContentWidth = 6 * 72,
 			};
-			
+
 			var printer = UIPrintInteractionController.SharedPrintController;
 			printer.PrintInfo = printInfo;
 			printer.PrintFormatter = textFormatter;
 			printer.ShowsPageRange = true;
 			printer.Present (true, (handler, completed, err) => {
-				if (!completed && err != null){
+				if (!completed && err != null) {
 					Console.WriteLine ("error");
 				}
 			});
 		}
-		
+
 		public override void OnActivated (UIApplication application)
 		{
 		}
