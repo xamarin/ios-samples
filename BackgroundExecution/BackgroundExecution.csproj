@@ -78,7 +78,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="Screens\HomeScreen.cs" />
-    <Compile Include="Screens\HomeScreen.xib.designer.cs">
+    <Compile Include="Screens\HomeScreen.designer.cs">
       <DependentUpon>HomeScreen.cs</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -90,7 +90,7 @@
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Screens\HomeScreen_iPhone.xib" />
+    <InterfaceDefinition Include="Screens\HomeScreen.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon-29.png" />

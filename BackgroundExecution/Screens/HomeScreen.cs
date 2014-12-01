@@ -23,7 +23,7 @@ namespace BackgroundExecution
 		{
 		}
 
-		public HomeScreen () : base ("HomeScreen_iPhone", null)
+		public HomeScreen () : base ("HomeScreen", null)
 		{
 		}
 
