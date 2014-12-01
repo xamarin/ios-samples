@@ -6,25 +6,25 @@ using Foundation;
 using UIKit;
 using System.Threading;
 
-namespace Example_BackgroundExecution.Screens.iPhone
+namespace BackgroundExecution
 {
-	public partial class HomeScreen_iPhone : UIViewController
+	public partial class HomeScreen : UIViewController
 	{
 		#region Constructors
 
 		// The IntPtr and initWithCoder constructors are required for items that need 
 		// to be able to be created from a xib rather than from managed code
 
-		public HomeScreen_iPhone (IntPtr handle) : base(handle)
+		public HomeScreen (IntPtr handle) : base(handle)
 		{
 		}
 
 		[Export("initWithCoder:")]
-		public HomeScreen_iPhone (NSCoder coder) : base(coder)
+		public HomeScreen (NSCoder coder) : base(coder)
 		{
 		}
 
-		public HomeScreen_iPhone () : base("HomeScreen_iPhone", null)
+		public HomeScreen () : base("HomeScreen_iPhone", null)
 		{
 		}
 

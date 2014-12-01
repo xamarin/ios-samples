@@ -1,7 +1,7 @@
 using System;
 using UIKit;
 
-namespace Example_BackgroundExecution
+namespace BackgroundExecution
 {
 	public class Application
 	{
