@@ -61,7 +61,7 @@ namespace tone
             // Output callback: invoked when the audio system is done with the
             // buffer, this implementation merely recycles it.
             //
-            queue.OutputCompleted += (object sender, OutputCompletedEventArgs e) =>
+			queue.BufferCompleted += (object sender, BufferCompletedEventArgs e) =>
             {
                 if (alternate)
                 {
