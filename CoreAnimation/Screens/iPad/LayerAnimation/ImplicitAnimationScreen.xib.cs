@@ -37,11 +37,11 @@ namespace CoreAnimationExample
 		void Initialize ()
 		{
 			Console.WriteLine ("Creating Layer");
-			
+
 			// create our layer and set it's frame
 			imgLayer = CreateLayerFromImage ();
 			imgLayer.Frame = new CGRect (200, 70, 114, 114);
-			
+
 			// add the layer to the layer tree so that it's visible
 			View.Layer.AddSublayer (imgLayer);
 		}
@@ -51,7 +51,7 @@ namespace CoreAnimationExample
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			btnContents.TouchUpInside += (sender, e) => {
 				if (ContentsButtonClicked != null)
 					ContentsButtonClicked (sender, e);
@@ -75,7 +75,7 @@ namespace CoreAnimationExample
 		{
 			var layer = new CALayer ();
 			layer.Contents = UIImage.FromBundle ("icon-114.png").CGImage;
-			return layer;			
+			return layer;
 		}
 
 		// Method 2: create a layer and assign a custom delegate that performs the drawing

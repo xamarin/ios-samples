@@ -32,7 +32,7 @@ namespace CoreAnimationExample
 						imgToAnimate.Frame = new CGRect (
 							imgToAnimate.Frame.X, imgToAnimate.Frame.Y - 400,
 							imgToAnimate.Frame.Size.Width, imgToAnimate.Frame.Size.Height);
-					}					
+					}
 				});
 			};
 		}

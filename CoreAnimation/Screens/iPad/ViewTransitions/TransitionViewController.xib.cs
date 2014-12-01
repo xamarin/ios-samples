@@ -9,21 +9,22 @@ namespace CoreAnimationExample
 	public partial class TransitionViewController : UIViewController
 	{
 		public Action ContentsClicked;
+
 		public event EventHandler<EventArgs> TransitionClicked;
 
 		public UIViewAnimationOptions SelectedTransition {
 			get {
 				switch (sgmntTransitionType.SelectedSegment) {
-				case 0:
-					return UIViewAnimationOptions.TransitionCurlDown;
-				case 1:
-					return UIViewAnimationOptions.TransitionCurlUp;
-				case 2:
-					return UIViewAnimationOptions.TransitionFlipFromLeft;
-				case 3:
-					return UIViewAnimationOptions.TransitionFlipFromRight;
-				default:
-					return UIViewAnimationOptions.TransitionCurlDown;
+					case 0:
+						return UIViewAnimationOptions.TransitionCurlDown;
+					case 1:
+						return UIViewAnimationOptions.TransitionCurlUp;
+					case 2:
+						return UIViewAnimationOptions.TransitionFlipFromLeft;
+					case 3:
+						return UIViewAnimationOptions.TransitionFlipFromRight;
+					default:
+						return UIViewAnimationOptions.TransitionCurlDown;
 				}
 			}
 		}
@@ -47,7 +48,7 @@ namespace CoreAnimationExample
 		public void SetToolbarVisibility (UIInterfaceOrientation interfaceOrientation)
 		{
 			toolbar.Hidden = interfaceOrientation == UIInterfaceOrientation.LandscapeLeft ||
-			                 interfaceOrientation == UIInterfaceOrientation.LandscapeRight;
+			interfaceOrientation == UIInterfaceOrientation.LandscapeRight;
 		}
 	}
 }

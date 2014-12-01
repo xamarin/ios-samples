@@ -4,7 +4,7 @@ using Foundation;
 
 namespace CoreAnimationExample
 {
-	[Register("AppDelegate")]
+	[Register ("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
 		UIWindow window;
@@ -15,10 +15,10 @@ namespace CoreAnimationExample
 			// create our window
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.MakeKeyAndVisible ();
-			
+
 			// instantiate our main split view controller
 			splitView = new MainSplitView ();
-			
+
 			window.RootViewController = splitView;
 			return true;
 		}

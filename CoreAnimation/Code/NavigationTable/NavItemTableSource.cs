@@ -11,10 +11,11 @@ namespace CoreAnimationExample
 	/// </summary>
 	public class NavItemTableSource : UITableViewSource
 	{
+		static readonly NSString cellIdentifier = (NSString)"NavTableCellView";
+
 		public event EventHandler<RowClickedEventArgs> RowClicked;
 
 		List<NavItemGroup> navItems;
-		string cellIdentifier = "NavTableCellView";
 
 		public NavItemTableSource (List<NavItemGroup> items)
 		{
@@ -54,7 +55,7 @@ namespace CoreAnimationExample
 		}
 
 		/// <summary>
-		/// Called by the TableView to actually build each cell. 
+		/// Called by the TableView to actually build each cell.
 		/// </summary>
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
@@ -66,11 +67,11 @@ namespace CoreAnimationExample
 				cell = new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
 				cell.Tag = Environment.TickCount;
 			}
-			
+
 			// set the cell properties
 			cell.TextLabel.Text = navItems [indexPath.Section].Items [indexPath.Row].Name;
 			cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-						
+
 			// return the cell
 			return cell;
 		}
@@ -82,7 +83,7 @@ namespace CoreAnimationExample
 		{
 			// get a reference to the nav item
 			NavItem navItem = navItems [indexPath.Section].Items [indexPath.Row];
-			
+
 			if (RowClicked != null)
 				RowClicked (this, new RowClickedEventArgs (navItem));
 		}

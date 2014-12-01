@@ -1,5 +1,6 @@
 using System;
 using UIKit;
+
 namespace CoreAnimationExample
 {
 	public interface IDetailView
