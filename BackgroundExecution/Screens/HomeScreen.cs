@@ -4,6 +4,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace BackgroundExecution
 {
@@ -33,21 +34,18 @@ namespace BackgroundExecution
 		{
 			base.ViewDidLoad ();
 
-			this.Title = "Background Execution";
+			Title = "Background Execution";
 
-			this.btnStartLongRunningTask.TouchUpInside += (s, e) => {
-				ThreadStart ts = new ThreadStart (() => {
-					this.DoSomething ();
-				});
-				ts.Invoke ();
+			BtnStartLongRunningTask.TouchUpInside += (s, e) => {
+				Task.Factory.StartNew(DoSomething);
 			};
 		}
 
-		public void DoSomething ()
+		void DoSomething ()
 		{
 			// register our background task
 			int taskID = (int)UIApplication.SharedApplication.BeginBackgroundTask (() => {
-				this.BackgroundTaskExpiring ();
+				BackgroundTaskExpiring ();
 			});
 
 			Console.WriteLine ("Starting background task " + taskID.ToString ());
