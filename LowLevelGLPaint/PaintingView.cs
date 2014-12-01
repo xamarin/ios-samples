@@ -7,7 +7,6 @@ using OpenTK.Platform;
 using CoreAnimation;
 using OpenTK.Graphics.ES11;
 using UIKit;
-using CoreGraphics;
 
 namespace LowLevelGLPaint
 {
@@ -26,7 +25,7 @@ namespace LowLevelGLPaint
 		CGPoint PreviousLocation;
 		
 		[Export ("layerClass")]
-		public static Class LayerClass ()
+		public static new Class LayerClass ()
 		{
 			return new Class (typeof (CAEAGLLayer));
 		}
@@ -90,7 +89,7 @@ namespace LowLevelGLPaint
 
 		public void Erase ()
 		{
-			GL.Clear ((uint) All.ColorBufferBit);
+			GL.Clear (ClearBufferMask.ColorBufferBit);
 
 			SwapBuffers ();
 		}
