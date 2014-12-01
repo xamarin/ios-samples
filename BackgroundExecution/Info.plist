@@ -20,7 +20,7 @@
 		<string>Icon-Small-40@2x</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>3.0</string>
+	<string>5.1.1</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
@@ -29,5 +29,15 @@
 	<array>
 		<integer>1</integer>
 	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.your-company.multitasking</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 </dict>
 </plist>
