@@ -1,7 +1,6 @@
 using System;
 using CoreGraphics;
 using Foundation;
-using CoreGraphics;
 using UIKit;
 using System.Threading.Tasks;
 

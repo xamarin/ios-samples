@@ -4,7 +4,6 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using UIKit;
 using AudioToolbox;
-using CoreGraphics;
 using CoreFoundation;
 using AudioUnit;
 using Foundation;

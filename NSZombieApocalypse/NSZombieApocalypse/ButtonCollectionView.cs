@@ -1,7 +1,5 @@
 using System;
 using CoreGraphics;
-using CoreGraphics;
-using CoreLocation;
 using UIKit;
 
 namespace NSZombieApocalypse
