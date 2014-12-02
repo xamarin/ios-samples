@@ -124,6 +124,9 @@ namespace FrogScroller
 
 		public void DisplayImage (UIImage image)
 		{
+			if (image == null)
+				throw new ArgumentNullException ("image");
+
 			if (zoomView != null) {
 				zoomView.RemoveFromSuperview ();
 				zoomView = null;
@@ -241,8 +244,8 @@ namespace FrogScroller
 
 		public static UIImage ImageAtIndex (int index)
 		{
-			var imageName = ImageNameAtIndex (index);
-			var fullImage = string.Format ("/Image/FullImages/{0}", imageName);
+			string imageName = ImageNameAtIndex (index);
+			string fullImage = string.Format ("Image/FullImages/{0}", imageName);
 			return UIImage.FromBundle (fullImage + ".jpg");
 		}
 
