@@ -1,4 +1,3 @@
-#define TILE_IMAGES
 using System;
 using System.Collections.Generic;
 using CoreGraphics;
@@ -15,9 +14,7 @@ namespace FrogScroller
 	{
 		CGSize _imageSize;
 		UIImageView zoomView; // if tiling this contains a very low-res placeholder image. otherwise it contains the full image.
-#if TILE_IMAGES
 		TilingView tilingView;
-#endif
 		CGPoint _pointToCenterAfterResize;
 		float _scaleToRestoreAfterResize;
 		int _index;
@@ -58,10 +55,8 @@ namespace FrogScroller
 			}
 			set {
 				_index = value;
-#if TILE_IMAGES
 				DisplayTiledImageNamed (ImageNameAtIndex (_index), ImageSizeAtIndex (_index));
 				DisplayImage (ImageAtIndex (_index));
-#endif
 			}
 		}
 
@@ -101,8 +96,6 @@ namespace FrogScroller
 		}
 
 		// - Configure scrollView to display new image (tiled or not)
- #if TILE_IMAGES
-
 		public void DisplayTiledImageNamed (string imageName, CGSize image_Size)
 		{
 			//clear views for the previous image
@@ -144,8 +137,6 @@ namespace FrogScroller
 			this.AddSubview (zoomView);
 			ConfigureForImageSize (image.Size);
 		}
-
-#endif
 
 		public void ConfigureForImageSize (CGSize imageSize)
 		{
