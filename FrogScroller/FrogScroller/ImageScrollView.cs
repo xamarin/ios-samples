@@ -232,7 +232,8 @@ namespace FrogScroller
 				return data;
 
 			try {
-				using (TextReader reader = new StreamReader ("Image/ImageDetails.xml")) {
+				string path = Path.Combine("Image", "ImageDetails.xml");
+				using (TextReader reader = new StreamReader (path)) {
 					XmlSerializer serializer = new XmlSerializer (typeof (List<ImageDetails>));
 					data = (List<ImageDetails>) serializer.Deserialize (reader);
 				}
@@ -252,8 +253,11 @@ namespace FrogScroller
 		public static UIImage ImageAtIndex (int index)
 		{
 			string imageName = ImageNameAtIndex (index);
-			string fullImage = string.Format ("Image/FullImages/{0}", imageName);
-			return UIImage.FromBundle (fullImage + ".jpg");
+			string imageNameWithExt = Path.ChangeExtension (imageName, "jpg");
+			string fullImage = Path.Combine ("Image", "FullImages", imageNameWithExt);
+
+			UIImage img = UIImage.FromBundle (fullImage);
+			return img;
 		}
 
 		public static string ImageNameAtIndex (int index)
@@ -270,8 +274,12 @@ namespace FrogScroller
 
 		public static UIImage PlaceholderImageNamed (string name)
 		{
-			var placeholderImage = String.Format ("/Image/PlaceholderImages/{0}_Placeholder", name);
-			return UIImage.FromBundle (placeholderImage + ".png");
+			string placeholderName = string.Format ("{0}_Placeholder", name);
+			string placeholderNameWithExt = Path.ChangeExtension (placeholderName, "png");
+			string fullName = Path.Combine ("Image", "PlaceholderImages", placeholderNameWithExt);
+
+			UIImage img = UIImage.FromBundle (fullName);
+			return img;
 		}
 	}
 }
