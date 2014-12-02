@@ -18,24 +18,24 @@ namespace HelloGoodbye
 		const float PreviewTabHorizontalPadding = 30;
 		const float CardRevealAnimationDuration = 0.3f;
 
-		Person _person;
-		UILabel _ageValueLabel;
-		UITextField _hobbiesField;
-		UITextField _elevatorPitchField;
-		UIImageView _previewTab;
-		CardView _cardView;
-		NSLayoutConstraint _cardRevealConstraint;
-		bool _cardWasRevealedBeforePan;
+		Person person;
+		UILabel ageValueLabel;
+		UITextField hobbiesField;
+		UITextField elevatorPitchField;
+		UIImageView previewTab;
+		CardView cardView;
+		NSLayoutConstraint cardRevealConstraint;
+		bool cardWasRevealedBeforePan;
 
 		bool IsCardRevealed {
 			get {
-				return _cardRevealConstraint.Constant < 0;
+				return cardRevealConstraint.Constant < 0;
 			}
 		}
 
 		nfloat CardHeight {
 			get {
-				return _cardView.Frame.Height;
+				return cardView.Frame.Height;
 			}
 		}
 
@@ -45,7 +45,7 @@ namespace HelloGoodbye
 			BackgroundImage = UIImage.FromBundle ("girl-bg.jpg");
 
 			// Create the model.  If we had a backing service, this model would pull data from the user's account settings.
-			_person = new Person {
+			person = new Person {
 				Photo = UIImage.FromBundle("girl.jpg"),
 				Age = 37,
 				Hobbies = "Music, swing dance, wine",
@@ -62,8 +62,8 @@ namespace HelloGoodbye
 
 			UIView overlayView = AddOverlayViewToView (containerView, constraints);
 			UIView[] ageControls = AddAgeControlsToView (overlayView, constraints);
-			_hobbiesField = AddTextFieldWithName ("Hobbies".LocalizedString ("The user's hobbies"), _person.Hobbies, overlayView, ageControls, constraints);
-			_elevatorPitchField = AddTextFieldWithName ("Elevator Pitch".LocalizedString ("The user's elevator pitch for finding a partner"), _person.ElevatorPitch, overlayView, new UIView[] { _hobbiesField }, constraints);
+			hobbiesField = AddTextFieldWithName ("Hobbies".LocalizedString ("The user's hobbies"), person.Hobbies, overlayView, ageControls, constraints);
+			elevatorPitchField = AddTextFieldWithName ("Elevator Pitch".LocalizedString ("The user's elevator pitch for finding a partner"), person.ElevatorPitch, overlayView, new UIView[] { hobbiesField }, constraints);
 
 			AddCardAndPreviewTab (constraints);
 			containerView.AddConstraints (constraints.ToArray());
@@ -129,14 +129,14 @@ namespace HelloGoodbye
 			overlayView.AddSubview (ageTitleLabel);
 
 			AgeSlider ageSlider = new AgeSlider {
-				Value = _person.Age,
+				Value = person.Age,
 				TranslatesAutoresizingMaskIntoConstraints = false,
 			};
 			ageSlider.ValueChanged += OnAgeUpdate;
 			overlayView.AddSubview (ageSlider);
 
 			// Display the current age next to the slider
-			_ageValueLabel = AddAgeValueLabelToView (overlayView);
+			ageValueLabel = AddAgeValueLabelToView (overlayView);
 			UpdateAgeValueLabelFromSlider (ageSlider);
 
 //			// Position the age title and value side by side, within the overlay view
@@ -144,11 +144,11 @@ namespace HelloGoodbye
 			constraints.Add (NSLayoutConstraint.Create (ageTitleLabel, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, overlayView, NSLayoutAttribute.Leading, 1f, StyleUtilities.ContentHorizontalMargin));
 			constraints.Add (NSLayoutConstraint.Create (ageSlider, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, ageTitleLabel, NSLayoutAttribute.Trailing, 1f, LabelControlMinimumSpacing));
 			constraints.Add (NSLayoutConstraint.Create (ageSlider, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, ageTitleLabel, NSLayoutAttribute.CenterY, 1f, 0f));
-			constraints.Add (NSLayoutConstraint.Create (_ageValueLabel, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, ageSlider, NSLayoutAttribute.Trailing, 1f, LabelControlMinimumSpacing));
-			constraints.Add (NSLayoutConstraint.Create (_ageValueLabel, NSLayoutAttribute.FirstBaseline, NSLayoutRelation.Equal, ageTitleLabel, NSLayoutAttribute.FirstBaseline, 1f, 0f));
-			constraints.Add (NSLayoutConstraint.Create (_ageValueLabel, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, overlayView, NSLayoutAttribute.Trailing, 1f, -1 * StyleUtilities.ContentHorizontalMargin));
+			constraints.Add (NSLayoutConstraint.Create (ageValueLabel, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, ageSlider, NSLayoutAttribute.Trailing, 1f, LabelControlMinimumSpacing));
+			constraints.Add (NSLayoutConstraint.Create (ageValueLabel, NSLayoutAttribute.FirstBaseline, NSLayoutRelation.Equal, ageTitleLabel, NSLayoutAttribute.FirstBaseline, 1f, 0f));
+			constraints.Add (NSLayoutConstraint.Create (ageValueLabel, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, overlayView, NSLayoutAttribute.Trailing, 1f, -1 * StyleUtilities.ContentHorizontalMargin));
 
-			return new UIView[]{ ageTitleLabel, ageSlider, _ageValueLabel };
+			return new UIView[]{ ageTitleLabel, ageSlider, ageValueLabel };
 		}
 
 		UILabel AddAgeValueLabelToView(UIView overlayView)
@@ -163,13 +163,13 @@ namespace HelloGoodbye
 		void UpdateAgeValueLabelFromSlider(AgeSlider ageSlider)
 		{
 			NSNumber number = NSNumber.FromFloat (ageSlider.Value);
-			_ageValueLabel.Text = NSNumberFormatter.LocalizedStringFromNumbernumberStyle (number, NSNumberFormatterStyle.Decimal);
+			ageValueLabel.Text = NSNumberFormatter.LocalizedStringFromNumbernumberStyle (number, NSNumberFormatterStyle.Decimal);
 		}
 
 		void AddCardAndPreviewTab(List<NSLayoutConstraint> constraints)
 		{
-			_previewTab = AddPreviewTab ();
-			_previewTab.TranslatesAutoresizingMaskIntoConstraints = false;
+			previewTab = AddPreviewTab ();
+			previewTab.TranslatesAutoresizingMaskIntoConstraints = false;
 
 			PreviewLabel previewLabel = AddPreviewLabel ();
 			previewLabel.TranslatesAutoresizingMaskIntoConstraints = false;
@@ -178,20 +178,20 @@ namespace HelloGoodbye
 			cardView.TranslatesAutoresizingMaskIntoConstraints = false;
 
 			// Pin the tab to the bottom center of the screen
-			_cardRevealConstraint = NSLayoutConstraint.Create (_previewTab, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, View, NSLayoutAttribute.Bottom, 1f, 0f);
-			constraints.Add (_cardRevealConstraint);
-			constraints.Add(NSLayoutConstraint.Create(_previewTab, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, View, NSLayoutAttribute.CenterX, 1f, 0f));
+			cardRevealConstraint = NSLayoutConstraint.Create (previewTab, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, View, NSLayoutAttribute.Bottom, 1f, 0f);
+			constraints.Add (cardRevealConstraint);
+			constraints.Add(NSLayoutConstraint.Create(previewTab, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, View, NSLayoutAttribute.CenterX, 1f, 0f));
 			// Center the preview label within the tab
-			constraints.Add(NSLayoutConstraint.Create (previewLabel, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, _previewTab, NSLayoutAttribute.Leading, 1f, PreviewTabHorizontalPadding));
-			constraints.Add (NSLayoutConstraint.Create (previewLabel, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, _previewTab, NSLayoutAttribute.Trailing, 1f, -PreviewTabHorizontalPadding));
-			constraints.Add (NSLayoutConstraint.Create (previewLabel, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, _previewTab, NSLayoutAttribute.CenterY, 1f, 0f));
+			constraints.Add(NSLayoutConstraint.Create (previewLabel, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, previewTab, NSLayoutAttribute.Leading, 1f, PreviewTabHorizontalPadding));
+			constraints.Add (NSLayoutConstraint.Create (previewLabel, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, previewTab, NSLayoutAttribute.Trailing, 1f, -PreviewTabHorizontalPadding));
+			constraints.Add (NSLayoutConstraint.Create (previewLabel, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, previewTab, NSLayoutAttribute.CenterY, 1f, 0f));
 
 			// Pin the top of the card to the bottom of the tab
-			constraints.Add (NSLayoutConstraint.Create (cardView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, _previewTab, NSLayoutAttribute.Bottom, 1f, 0f));
-			constraints.Add (NSLayoutConstraint.Create (cardView, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, _previewTab, NSLayoutAttribute.CenterX, 1f, 0f));
+			constraints.Add (NSLayoutConstraint.Create (cardView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, previewTab, NSLayoutAttribute.Bottom, 1f, 0f));
+			constraints.Add (NSLayoutConstraint.Create (cardView, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, previewTab, NSLayoutAttribute.CenterX, 1f, 0f));
 
 			// Ensure that the card fits within the view
-			constraints.Add (NSLayoutConstraint.Create (_cardView, NSLayoutAttribute.Width, NSLayoutRelation.LessThanOrEqual, View, NSLayoutAttribute.Width, 1f, 0f));
+			constraints.Add (NSLayoutConstraint.Create (cardView, NSLayoutAttribute.Width, NSLayoutRelation.LessThanOrEqual, View, NSLayoutAttribute.Width, 1f, 0f));
 		}
 
 		UIImageView AddPreviewTab()
@@ -231,32 +231,32 @@ namespace HelloGoodbye
 		{
 			switch (gestureRecognizer.State) {
 				case UIGestureRecognizerState.Began:
-					_cardWasRevealedBeforePan = IsCardRevealed;
+					cardWasRevealedBeforePan = IsCardRevealed;
 					break;
 
 				case UIGestureRecognizerState.Changed:
 					nfloat cardHeight = CardHeight;
 					nfloat cardRevealConstant = gestureRecognizer.TranslationInView (View).Y;
-					if (_cardWasRevealedBeforePan) {
+					if (cardWasRevealedBeforePan) {
 						cardRevealConstant += -1 * cardHeight;
 					}
 						// Never let the card tab move off screen
 					cardRevealConstant = NMath.Min (0, cardRevealConstant);
 						// Never let the card have a gap below it
 					cardRevealConstant = NMath.Max (-1 * cardHeight, cardRevealConstant);
-					_cardRevealConstraint.Constant = cardRevealConstant;
+					cardRevealConstraint.Constant = cardRevealConstant;
 					break;
 
 				case UIGestureRecognizerState.Ended:
 				// Card was closer to the bottom of the screen
-					if (_cardRevealConstraint.Constant > (-0.5 * CardHeight))
+					if (cardRevealConstraint.Constant > (-0.5 * CardHeight))
 						DismissCard ();
 					else
 						RevealCard ();
 					break;
 
 				case UIGestureRecognizerState.Cancelled:
-					if (_cardWasRevealedBeforePan)
+					if (cardWasRevealedBeforePan)
 						RevealCard ();
 					else
 						DismissCard ();
@@ -269,7 +269,7 @@ namespace HelloGoodbye
 			View.LayoutIfNeeded ();
 
 			UIView.Animate (CardRevealAnimationDuration, () => {
-				_cardRevealConstraint.Constant = -1 * CardHeight;
+				cardRevealConstraint.Constant = -1 * CardHeight;
 				View.LayoutIfNeeded ();
 			}, () => {
 				UIAccessibility.PostNotification(UIAccessibilityPostNotification.LayoutChanged, null);
@@ -281,7 +281,7 @@ namespace HelloGoodbye
 			View.LayoutIfNeeded ();
 
 			UIView.Animate (CardRevealAnimationDuration, () => {
-				_cardRevealConstraint.Constant = 0f;
+				cardRevealConstraint.Constant = 0f;
 				View.LayoutIfNeeded ();
 			}, () => {
 				UIAccessibility.PostNotification (UIAccessibilityPostNotification.LayoutChanged, null);
@@ -307,9 +307,8 @@ namespace HelloGoodbye
 
 		CardView AddCardView()
 		{
-			CardView cardView = new CardView();
-			cardView.Update (_person);
-			_cardView = cardView;
+			cardView = new CardView();
+			cardView.Update (person);
 			View.AddSubview (cardView);
 
 			return cardView;
@@ -326,10 +325,10 @@ namespace HelloGoodbye
 			UpdateAgeValueLabelFromSlider (ageSlider);
 
 			// Update the model
-			_person.Age = age;
+			person.Age = age;
 
 			// Update the card view with the new data
-			_cardView.Update (_person);
+			cardView.Update (person);
 		}
 
 		#region UITextFieldDelegate
@@ -348,21 +347,21 @@ namespace HelloGoodbye
 			NavigationItem.RightBarButtonItem = null;
 
 			// Update the model
-			if (textField == _hobbiesField)
-				_person.Hobbies = textField.Text;
-			else if (textField == _elevatorPitchField)
-				_person.ElevatorPitch = textField.Text;
+			if (textField == hobbiesField)
+				person.Hobbies = textField.Text;
+			else if (textField == elevatorPitchField)
+				person.ElevatorPitch = textField.Text;
 
 			// Update the card view with the new data
-			_cardView.Update(_person);
+			cardView.Update(person);
 		}
 		#endregion
 
 		void DoneButtonPressed(object sender, EventArgs args)
 		{
 			// End editing on whichever text field is first responder
-			_hobbiesField.ResignFirstResponder ();
-			_elevatorPitchField.ResignFirstResponder ();
+			hobbiesField.ResignFirstResponder ();
+			elevatorPitchField.ResignFirstResponder ();
 		}
 	}
 }

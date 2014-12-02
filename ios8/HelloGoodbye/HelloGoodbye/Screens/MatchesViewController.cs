@@ -15,21 +15,21 @@ namespace HelloGoodbye
 		const float ZoomAnimationDuration = 0.3f;
 		const float FadeAnimationDuration = 0.3f;
 
-		CardView _cardView;
-		UIView _swipeInstructionsView;
-		UIView _allMatchesViewedExplanatoryView;
+		CardView cardView;
+		UIView swipeInstructionsView;
+		UIView allMatchesViewedExplanatoryView;
 
-		NSLayoutConstraint[] _cardViewVerticalConstraints;
+		NSLayoutConstraint[] cardViewVerticalConstraints;
 
-		List<Person> _matches;
-		int _currentMatchIndex;
+		List<Person> matches;
+		int currentMatchIndex;
 
-		UIAccessibilityCustomAction _helloAction;
-		UIAccessibilityCustomAction _goodbyeAction;
+		UIAccessibilityCustomAction helloAction;
+		UIAccessibilityCustomAction goodbyeAction;
 
 		Person CurrentMatch {
 			get {
-				return _currentMatchIndex < _matches.Count ? _matches [_currentMatchIndex] : null;
+				return currentMatchIndex < matches.Count ? matches [currentMatchIndex] : null;
 			}
 		}
 
@@ -38,7 +38,7 @@ namespace HelloGoodbye
 			string path = NSBundle.MainBundle.PathForResource ("matches", "plist");
 			NSArray serializedMatches = NSArray.FromFile (path);
 
-			var matches = new List<Person> ();
+			matches = new List<Person> ();
 
 			for (nuint i = 0; i < serializedMatches.Count; i++) {
 				var sMatch = serializedMatches.GetItem<NSDictionary> (i);
@@ -47,7 +47,6 @@ namespace HelloGoodbye
 			}
 
 			Title = "Matches".LocalizedString("Title of the matches page");
-			_matches = matches;
 
 			BackgroundImage = UIImage.FromBundle ("dessert.jpg");
 		}
@@ -60,21 +59,21 @@ namespace HelloGoodbye
 			var constraints = new List<NSLayoutConstraint> ();
 
 			// Show instructions for how to say hello and goodbye
-			_swipeInstructionsView = AddSwipeInstructionsToContainerView (containerView, constraints);
+			swipeInstructionsView = AddSwipeInstructionsToContainerView (containerView, constraints);
 
 			// Add a dummy view to center the card between the explanatory view and the bottom layout guide
-			UIView dummyView = AddDummyViewToContainerView (containerView, _swipeInstructionsView, BottomLayoutGuide, constraints);
+			UIView dummyView = AddDummyViewToContainerView (containerView, swipeInstructionsView, BottomLayoutGuide, constraints);
 
 			// Create and add the card
 			CardView cardView = AddCardViewToView (containerView);
 
 			// Define the vertical positioning of the card
 			// These constraints will be removed when the card animates off screen
-			_cardViewVerticalConstraints = new NSLayoutConstraint[] {
+			cardViewVerticalConstraints = new NSLayoutConstraint[] {
 				NSLayoutConstraint.Create (cardView, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, dummyView, NSLayoutAttribute.CenterY, 1f, 0f),
-				NSLayoutConstraint.Create (cardView, NSLayoutAttribute.Top, NSLayoutRelation.GreaterThanOrEqual, _swipeInstructionsView, NSLayoutAttribute.Bottom, 1f, HelloGoodbyeVerticalMargin)
+				NSLayoutConstraint.Create (cardView, NSLayoutAttribute.Top, NSLayoutRelation.GreaterThanOrEqual, swipeInstructionsView, NSLayoutAttribute.Bottom, 1f, HelloGoodbyeVerticalMargin)
 			};
-			constraints.AddRange (_cardViewVerticalConstraints);
+			constraints.AddRange (cardViewVerticalConstraints);
 
 			// Ensure that the card is centered horizontally within the container view, and doesn't exceed its width
 			constraints.AddRange (new NSLayoutConstraint[] {
@@ -84,7 +83,7 @@ namespace HelloGoodbye
 			});
 
 			// When the matches run out, we'll show this message
-			_allMatchesViewedExplanatoryView = AddAllMatchesViewExplanatoryViewToContainerView (containerView, constraints);
+			allMatchesViewedExplanatoryView = AddAllMatchesViewExplanatoryViewToContainerView (containerView, constraints);
 			containerView.AddConstraints (constraints.ToArray());
 		}
 
@@ -108,43 +107,43 @@ namespace HelloGoodbye
 
 		CardView AddCardViewToView(UIView containerView)
 		{
-			CardView cardView = new CardView ();
-			cardView.Update (CurrentMatch);
-			cardView.TranslatesAutoresizingMaskIntoConstraints = false;
-			_cardView = cardView;
-			containerView.AddSubview (cardView);
+			CardView cv = new CardView ();
+			cv.Update (CurrentMatch);
+			cv.TranslatesAutoresizingMaskIntoConstraints = false;
+			this.cardView = cv;
+			containerView.AddSubview (cv);
 
 			UISwipeGestureRecognizer swipeUpRecognizer = new UISwipeGestureRecognizer(HandleSwipeUp);
 			swipeUpRecognizer.Direction = UISwipeGestureRecognizerDirection.Up;
-			cardView.AddGestureRecognizer (swipeUpRecognizer);
+			cv.AddGestureRecognizer (swipeUpRecognizer);
 
 			UISwipeGestureRecognizer swipeDownRecognizer = new UISwipeGestureRecognizer (HandleSwipeDown);
 			swipeDownRecognizer.Direction = UISwipeGestureRecognizerDirection.Down;
-			cardView.AddGestureRecognizer (swipeDownRecognizer);
+			cv.AddGestureRecognizer (swipeDownRecognizer);
 
 			string sayHelloName = "Say hello".LocalizedString (@"Accessibility action to say hello");
-			_helloAction = new UIAccessibilityCustomAction (sayHelloName, SayHello);
+			helloAction = new UIAccessibilityCustomAction (sayHelloName, SayHello);
 
 			string sayGoodbyeName = "Say goodbye".LocalizedString ("Accessibility action to say goodbye");
-			_goodbyeAction = new UIAccessibilityCustomAction (sayGoodbyeName, SayGoodbye);
+			goodbyeAction = new UIAccessibilityCustomAction (sayGoodbyeName, SayGoodbye);
 
-			UIView[] elements = NSArray.FromArray<UIView> ((NSArray)cardView.GetAccessibilityElements ());
+			UIView[] elements = NSArray.FromArray<UIView> ((NSArray)cv.GetAccessibilityElements ());
 			foreach (UIView element in elements)
-				element.AccessibilityCustomActions = new UIAccessibilityCustomAction[] { _helloAction, _goodbyeAction };
+				element.AccessibilityCustomActions = new UIAccessibilityCustomAction[] { helloAction, goodbyeAction };
 
-			return cardView;
+			return cv;
 		}
 
 		void HandleSwipeUp(UISwipeGestureRecognizer gestureRecognizer)
 		{
 			if (gestureRecognizer.State == UIGestureRecognizerState.Recognized)
-				SayHello (_helloAction);
+				SayHello (helloAction);
 		}
 
 		void HandleSwipeDown(UISwipeGestureRecognizer gestureRecognizer)
 		{
 			if (gestureRecognizer.State == UIGestureRecognizerState.Recognized)
-				SayGoodbye (_goodbyeAction);
+				SayGoodbye (goodbyeAction);
 		}
 
 		UIView AddAllMatchesViewExplanatoryViewToContainerView(UIView containerView, List<NSLayoutConstraint> constraints)
@@ -188,11 +187,11 @@ namespace HelloGoodbye
 		void AnimateCardsForHello(bool forHello)
 		{
 			AnimateCardOffScreenToTop (forHello, () => {
-				_currentMatchIndex++;
+				currentMatchIndex++;
 				Person nextMatch = CurrentMatch;
 				if (nextMatch != null) {
 					// Show the next match's profile in the card
-					_cardView.Update (nextMatch);
+					cardView.Update (nextMatch);
 
 					// Ensure that the view's layout is up to date before we animate it
 					View.LayoutIfNeeded ();
@@ -206,12 +205,12 @@ namespace HelloGoodbye
 					}
 				} else {
 					// Hide the card
-					_cardView.Hidden = true;
+					cardView.Hidden = true;
 
 					// Fade in the "Stay tuned for more matches" blurb
 					UIView.Animate (FadeAnimationDuration, () => {
-						_swipeInstructionsView.Alpha = 0f;
-						_allMatchesViewedExplanatoryView.Alpha = 1f;
+						swipeInstructionsView.Alpha = 0f;
+						allMatchesViewedExplanatoryView.Alpha = 1f;
 					});
 				}
 
@@ -221,17 +220,17 @@ namespace HelloGoodbye
 
 		void FadeCardIntoView()
 		{
-			_cardView.Alpha = 0f;
+			cardView.Alpha = 0f;
 			UIView.Animate (FadeAnimationDuration, () => {
-				_cardView.Alpha = 1f;
+				cardView.Alpha = 1f;
 			});
 		}
 
 		void ZoomCardIntoView()
 		{
-			_cardView.Transform = CGAffineTransform.MakeScale(0f, 0f);
+			cardView.Transform = CGAffineTransform.MakeScale(0f, 0f);
 			UIView.Animate (ZoomAnimationDuration, () => {
-				_cardView.Transform = CGAffineTransform.MakeIdentity ();
+				cardView.Transform = CGAffineTransform.MakeIdentity ();
 			});
 		}
 
@@ -239,21 +238,21 @@ namespace HelloGoodbye
 		{
 			NSLayoutConstraint offScreenConstraint = null;
 			if (toTop)
-				offScreenConstraint = NSLayoutConstraint.Create (_cardView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, View, NSLayoutAttribute.Top, 1f, 0f);
+				offScreenConstraint = NSLayoutConstraint.Create (cardView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, View, NSLayoutAttribute.Top, 1f, 0f);
 			else
-				offScreenConstraint = NSLayoutConstraint.Create (_cardView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, View, NSLayoutAttribute.Bottom, 1f, 0f);
+				offScreenConstraint = NSLayoutConstraint.Create (cardView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, View, NSLayoutAttribute.Bottom, 1f, 0f);
 
 			View.LayoutIfNeeded ();
 
 			UIView.Animate (SwipeAnimationDuration, () => {
 				// Slide the card off screen
-				View.RemoveConstraints (_cardViewVerticalConstraints);
+				View.RemoveConstraints (cardViewVerticalConstraints);
 				View.AddConstraint (offScreenConstraint);
 				View.LayoutIfNeeded ();
 			}, () => {
 				// Bring the card back into view
 				View.RemoveConstraint (offScreenConstraint);
-				View.AddConstraints (_cardViewVerticalConstraints);
+				View.AddConstraints (cardViewVerticalConstraints);
 
 				if (completion != null)
 					completion ();

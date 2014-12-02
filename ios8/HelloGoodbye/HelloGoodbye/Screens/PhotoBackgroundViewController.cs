@@ -8,22 +8,22 @@ namespace HelloGoodbye
 {
 	public class PhotoBackgroundViewController : UIViewController
 	{
-		UIImageView _backgroundView;
-		UIView _containerView;
+		UIImageView backgroundView;
+		UIView containerView;
 
-		UIImage _backgroundImage;
+		UIImage backgroundImage;
 		public UIImage BackgroundImage {
 			get {
-				return _backgroundImage;
+				return backgroundImage;
 			}
 			set {
 				if (value == null)
 					throw new ArgumentNullException ("value");
 
-				_backgroundImage = value;
+				backgroundImage = value;
 
-				if(_backgroundView != null)
-					_backgroundView.Image = _backgroundImage;
+				if(backgroundView != null)
+					backgroundView.Image = backgroundImage;
 			}
 		}
 
@@ -33,12 +33,12 @@ namespace HelloGoodbye
 
 		public override void LoadView ()
 		{
-			_containerView = new UIView {
-				(_backgroundView = new UIImageView (BackgroundImage))
+			containerView = new UIView {
+				(backgroundView = new UIImageView (BackgroundImage))
 			};
 
-			_containerView.ClipsToBounds = true;
-			View = _containerView;
+			containerView.ClipsToBounds = true;
+			View = containerView;
 		}
 
 		public override void ViewWillLayoutSubviews ()
@@ -46,7 +46,7 @@ namespace HelloGoodbye
 			base.ViewWillLayoutSubviews ();
 
 			CGRect bounds = View.Bounds;
-			CGSize imageSize = _backgroundView.Image.Size;
+			CGSize imageSize = backgroundView.Image.Size;
 			nfloat imageAspectRatio = imageSize.Width / imageSize.Height;
 			nfloat viewAspectRatio = bounds.Width / bounds.Height;
 
@@ -54,12 +54,12 @@ namespace HelloGoodbye
 				// Let the background run off the top and bottom of the screen, so it fills the width
 				var scaledSize = new CGSize (bounds.Width, bounds.Width / imageAspectRatio);
 				var location = new CGPoint (0, (bounds.Height - scaledSize.Height) / 2f);
-				_backgroundView.Frame = new CGRect (location, scaledSize);
+				backgroundView.Frame = new CGRect (location, scaledSize);
 			} else {
 				// Let the background run off the left and right of the screen, so it fills the height
 				var scaledSize = new CGSize (imageAspectRatio * bounds.Height, bounds.Height);
 				var location = new CGPoint ((bounds.Width - scaledSize.Width) / 2f, 0);
-				_backgroundView.Frame = new CGRect (location, scaledSize);
+				backgroundView.Frame = new CGRect (location, scaledSize);
 			}
 		}
 	}
