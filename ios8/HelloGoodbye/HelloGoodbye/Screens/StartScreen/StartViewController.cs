@@ -80,7 +80,7 @@ namespace HelloGoodbye
 			containerView.AddConstraints (constraints.ToArray());
 		}
 
-		private UIView AddDummyViewToContainerView(UIView containerView, INativeObject topItem, INativeObject bottomItem, List<NSLayoutConstraint> constraints)
+		UIView AddDummyViewToContainerView(UIView containerView, INativeObject topItem, INativeObject bottomItem, List<NSLayoutConstraint> constraints)
 		{
 			UIView dummyView = new UIView {
 				TranslatesAutoresizingMaskIntoConstraints = false
@@ -99,7 +99,7 @@ namespace HelloGoodbye
 			return dummyView;
 		}
 
-		private UIButton CreateButton(string titleKey, string titleComment, EventHandler handler)
+		UIButton CreateButton(string titleKey, string titleComment, EventHandler handler)
 		{
 			UIButton button = StyleUtilities.CreateOverlayRoundedRectButton ();
 			button.SetTitle (titleKey.LocalizedString (titleComment), UIControlState.Normal);
@@ -108,13 +108,13 @@ namespace HelloGoodbye
 			return button;
 		}
 
-		private void ShowProfile (object sender, EventArgs e)
+		void ShowProfile (object sender, EventArgs e)
 		{
 			ProfileViewController profileViewController = new ProfileViewController ();
 			NavigationController.PushViewController (profileViewController, true);
 		}
 
-		private void ShowMatches (object sender, EventArgs e)
+		void ShowMatches (object sender, EventArgs e)
 		{
 			MatchesViewController matchesViewController = new MatchesViewController ();
 			NavigationController.PushViewController (matchesViewController, true);
