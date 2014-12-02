@@ -4,6 +4,7 @@ using CoreAnimation;
 using Foundation;
 using ObjCRuntime;
 using UIKit;
+using System.IO;
 
 namespace FrogScroller
 {
@@ -79,8 +80,11 @@ namespace FrogScroller
 		public UIImage TileForScale (float scale, int row, int col)
 		{
 			// we use "FromFile" instead of "FromBundle" here because we don't want UIImage to cache our tiles
-			string path = String.Format ("/Image/ImageTiles/{0}_{1}_{2}_{3}.png", ImageName, (int)(scale * 1000), (int)col, (int)row);
-			return UIImage.FromFile (path);
+			string tileNameWithExt = string.Format ("{0}_{1}_{2}_{3}.png", ImageName, (int)(scale * 1000), col, row);
+			string tilePath = Path.Combine ("Image", "ImageTiles", tileNameWithExt);
+
+			UIImage img = UIImage.FromFile (tilePath);
+			return img;
 		}
 	}
 }

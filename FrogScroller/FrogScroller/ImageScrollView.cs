@@ -12,12 +12,15 @@ namespace FrogScroller
 {
 	public class ImageScrollView : UIScrollView
 	{
+		// turn on to use tiled images, if off, we use whole images
+		bool TileImagesMode = true;
+
 		CGSize _imageSize;
 		// if tiling this contains a very low-res placeholder image. otherwise it contains the full image.
 		UIImageView zoomView;
 		TilingView tilingView;
 		CGPoint _pointToCenterAfterResize;
-		float _scaleToRestoreAfterResize;
+		nfloat _scaleToRestoreAfterResize;
 		int _index;
 
 		public static int ImageCount {
@@ -57,21 +60,23 @@ namespace FrogScroller
 			}
 			set {
 				_index = value;
-				DisplayTiledImageNamed (ImageNameAtIndex (_index), ImageSizeAtIndex (_index));
-				DisplayImage (ImageAtIndex (_index));
+
+				if(TileImagesMode)
+					DisplayTiledImageNamed (ImageNameAtIndex (_index), ImageSizeAtIndex (_index));
+				else
+					DisplayImage (ImageAtIndex (_index));
 			}
 		}
 
 		public ImageScrollView ()
 		{
-		}
-
-		public ImageScrollView (CGRect frame) : base (frame)
-		{
 			ShowsVerticalScrollIndicator = false;
 			ShowsHorizontalScrollIndicator = false;
 			BouncesZoom = true;
 			DecelerationRate = UIScrollView.DecelerationRateFast;
+
+			// Return the view to use when zooming
+			ViewForZoomingInScrollView = (sv) => zoomView;
 		}
 
 		public override void LayoutSubviews ()
@@ -106,23 +111,20 @@ namespace FrogScroller
 				zoomView = null;
 				tilingView = null;
 			}
-			this.ZoomScale = 1.0f;
+			ZoomScale = 1.0f;
 
 			//make views to display the new image
 			zoomView = new UIImageView (new CGRect (CGPoint.Empty, image_Size)) {
 				Image = PlaceholderImageNamed (imageName)
 			};
 
-			this.AddSubview (zoomView);
+			AddSubview (zoomView);
 			tilingView = new TilingView (imageName, image_Size) {
 				Frame = zoomView.Bounds
 			};
 
 			zoomView.AddSubview (tilingView);
 			ConfigureForImageSize (image_Size);
-
-			// Return the view to use when zooming
-			ViewForZoomingInScrollView = (sv) => zoomView;
 		}
 
 		public void DisplayImage (UIImage image)
@@ -133,10 +135,11 @@ namespace FrogScroller
 			if (zoomView != null) {
 				zoomView.RemoveFromSuperview ();
 				zoomView = null;
-				this.ZoomScale = 1.0f;
+				ZoomScale = 1.0f;
 			}
+
 			zoomView = new UIImageView (image);
-			this.AddSubview (zoomView);
+			AddSubview (zoomView);
 			ConfigureForImageSize (image.Size);
 		}
 
@@ -145,7 +148,7 @@ namespace FrogScroller
 			_imageSize = imageSize;
 			ContentSize = imageSize;
 			SetMaxMinZoomScalesForCurrentBounds ();
-			ZoomScale = this.MinimumZoomScale;
+			ZoomScale = MinimumZoomScale;
 		}
 
 		public void SetMaxMinZoomScalesForCurrentBounds ()
@@ -159,17 +162,17 @@ namespace FrogScroller
 			//fill width if the image and phone are both portrait or both landscape; otherwise take smaller scale
 			bool imagePortrait = _imageSize.Height > _imageSize.Width;
 			bool phonePortrait = boundsSize.Height > boundsSize.Width;
-			double minScale = (imagePortrait == phonePortrait ? xScale : Math.Min (xScale, yScale));
+			var minScale = (nfloat)(imagePortrait == phonePortrait ? xScale : NMath.Min (xScale, yScale));
 
 			//on high resolution screens we have double the pixel density, so we will be seeing every pixel if we limit the maximum zoom scale to 0.5
-			float maxScale = 1.0f / (float)UIScreen.MainScreen.Scale;
+			nfloat maxScale = 1 / UIScreen.MainScreen.Scale;
 
-			if (minScale > maxScale) {
+			if (minScale > maxScale)
 				minScale = maxScale;
-			}
+
 			// don't let minScale exceed maxScale. (If the image is smaller than the screen, we don't want to force it to be zoomed.)
-			this.MaximumZoomScale = maxScale;
-			this.MinimumZoomScale = (nfloat)minScale;
+			MaximumZoomScale = maxScale;
+			MinimumZoomScale = minScale;
 		}
 
 		// Methods called during rotation to preserve the zoomScale and the visible portion of the image
@@ -177,9 +180,9 @@ namespace FrogScroller
 		// Rotation support
 		public void PrepareToResize ()
 		{
-			var boundsCenter = new CGPoint (Bounds.Width / 2, Bounds.Height / 2);
-			_pointToCenterAfterResize = this.ConvertPointToView (boundsCenter, zoomView);
-			_scaleToRestoreAfterResize = (float)this.ZoomScale;
+			var boundsCenter = new CGPoint (Bounds.GetMidX(), Bounds.GetMidY());
+			_pointToCenterAfterResize = ConvertPointToView (boundsCenter, zoomView);
+			_scaleToRestoreAfterResize = ZoomScale;
 			// If we're at the minimum zoom scale, preserve that by returning 0, which will be converted to the minimum
 			// allowable scale when the scale is restored.
 			if (_scaleToRestoreAfterResize <= this.MinimumZoomScale + float.Epsilon)
@@ -191,19 +194,19 @@ namespace FrogScroller
 			SetMaxMinZoomScalesForCurrentBounds ();
 
 			//Step 1: restore zoom scale, first making sure it is within the allowable range;
-			ZoomScale = (nfloat)Math.Min (MaximumZoomScale, Math.Max (this.MinimumZoomScale, _scaleToRestoreAfterResize));
+			ZoomScale = NMath.Min (MaximumZoomScale, NMath.Max (MinimumZoomScale, _scaleToRestoreAfterResize));
 
 			// Step 2: restore center point, first making sure it is within the allowable range.
 			// 2a: convert our desired center point back to our own coordinate space
 			var boundsCenter = this.ConvertPointFromView (_pointToCenterAfterResize, zoomView);
 			// 2b: calculate the content offset that would yield that center point
-			CGPoint offset = new CGPoint (boundsCenter.X - this.Bounds.Size.Width / 2.0f, boundsCenter.Y - this.Bounds.Size.Height / 2.0f);
+			CGPoint offset = new CGPoint (boundsCenter.X - Bounds.Size.Width / 2.0f, boundsCenter.Y - Bounds.Size.Height / 2.0f);
 			// 2c: restore offset, adjusted to be within the allowable range
 			CGPoint maxOffset = MaximumContentOffset ();
 			CGPoint minOffset = MinimumContentOffset ();
-			offset.X = (nfloat)Math.Max (minOffset.X, Math.Min (maxOffset.X, offset.X));
-			offset.Y = (nfloat)Math.Max (minOffset.Y, Math.Min (maxOffset.Y, offset.Y));
-			this.ContentOffset = offset;
+			offset.X = NMath.Max (minOffset.X, NMath.Min (maxOffset.X, offset.X));
+			offset.Y = NMath.Max (minOffset.Y, NMath.Min (maxOffset.Y, offset.Y));
+			ContentOffset = offset;
 		}
 
 		public CGPoint MaximumContentOffset ()
