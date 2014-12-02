@@ -23,7 +23,7 @@ namespace ThreadedCoreData
 		public APLParseOperation (NSData data, NSPersistentStoreCoordinator persistentStoreCoordinator)
 		{
 			dateFormatter = new NSDateFormatter () {
-				DateFormat = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'",
+				DateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'",
 				TimeZone = NSTimeZone.LocalTimeZone,
 				Locale = NSLocale.FromLocaleIdentifier ("en_US_POSIX")
 			};
@@ -116,7 +116,7 @@ namespace ThreadedCoreData
 
 			foreach (var earthquake in earthquakes) {
 				var arguments = new NSObject[] { earthquake.Location, earthquake.Date };
-				fetchRequest.Predicate = NSPredicate.FromFormat (@"location = %@ AND date = %@", arguments);
+				fetchRequest.Predicate = NSPredicate.FromFormat ("location = %@ AND date = %@", arguments);
 				var fetchedItems = NSArray.FromNSObjects (managedObjectContext.ExecuteFetchRequest (fetchRequest, out error));
 
 				if (fetchedItems.Count == 0) {
@@ -143,7 +143,7 @@ namespace ThreadedCoreData
 
 				// use the same fetchrequest instance but switch back to NSManagedObjectResultType
 				fetchRequest.ResultType = NSFetchRequestResultType.ManagedObject;
-				fetchRequest.Predicate = NSPredicate.FromFormat (@"date < %@", new NSObject[] { twoWeeksAgo });
+				fetchRequest.Predicate = NSPredicate.FromFormat ("date < %@", new NSObject[] { twoWeeksAgo });
 
 				var olderEarthquakes = NSArray.FromObjects (managedObjectContext.ExecuteFetchRequest (fetchRequest, out error));
 

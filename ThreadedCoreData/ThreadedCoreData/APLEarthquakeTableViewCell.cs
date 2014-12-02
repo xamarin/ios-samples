@@ -19,7 +19,7 @@ namespace ThreadedCoreData
 				} else {
 					dateFormatter = new NSDateFormatter () {
 						TimeZone = NSTimeZone.LocalTimeZone,
-						DateFormat = @"MMM dd, yyyy, hh:mm:ss a"
+						DateFormat = "MMM dd, yyyy, hh:mm:ss a"
 					};
 				}
 
