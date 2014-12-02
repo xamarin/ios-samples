@@ -11,20 +11,6 @@ using UIKit;
 
 namespace FrogScroller
 {
-	// Class to hold FrogImage properties.
-	public class ImageDetails
-	{
-		public float Height;
-		public string Name;
-		public float Width;
-
-		public CGSize Size {
-			get {
-				return new CGSize (Width, Height);
-			}
-		}
-	}
-
 	public class ImageScrollView : UIScrollView
 	{
 		CGSize _imageSize;
@@ -283,7 +269,7 @@ namespace FrogScroller
 				Console.WriteLine (e);
 			}
 
-			return data;
+			return result;
 		}
 	}
 }
