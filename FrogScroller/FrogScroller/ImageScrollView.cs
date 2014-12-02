@@ -35,8 +35,51 @@ namespace FrogScroller
 		CGPoint _pointToCenterAfterResize;
 		float _scaleToRestoreAfterResize;
 		int _index;
-		
-		public ImageScrollView () : base ()
+
+		public static int ImageCount {
+			get {
+				return ImageData.Count;
+			}
+		}
+
+		static List<ImageDetails> data;
+		static List<ImageDetails> ImageData {
+			get {
+				data = data ?? FetchImageData ();
+				return data;
+			}
+		}
+
+		public override CGRect Frame {
+			get {
+				return base.Frame;
+			}
+			set {
+				bool sizeChanging = Frame.Size != value.Size;
+				if (sizeChanging) 
+					PrepareToResize ();					
+
+				base.Frame = value;
+
+				if (sizeChanging) 
+					RecoverFromResizing ();
+			}
+		}
+
+		public int Index {
+			get { 
+				return _index;
+			}
+			set {
+				_index = value;
+#if TILE_IMAGES
+				DisplayTiledImageNamed (ImageNameAtIndex (_index), ImageSizeAtIndex (_index));
+				DisplayImage (ImageAtIndex (_index));
+#endif
+			}
+		}
+
+		public ImageScrollView ()
 		{
 		}
 
@@ -48,20 +91,7 @@ namespace FrogScroller
 			DecelerationRate = UIScrollView.DecelerationRateFast;
 		}
 
-		public int Index {
-			get { 
-				return _index;
-			}
-			set {
-				_index = value;
-#if TILE_IMAGES
-				DisplayTiledImageNamed (ImageNameAtIndex (_index), ImageSizeAtIndex (_index));
- 				DisplayImage (ImageAtIndex (_index));
-#endif
-			}
-		}
-
-  		public override void LayoutSubviews ()
+		public override void LayoutSubviews ()
 		{
 			base.LayoutSubviews ();
 
@@ -84,24 +114,9 @@ namespace FrogScroller
 			zoomView.Frame = frameToCenter;
 		}
 
-		public override CGRect Frame {
-			get {
-				return base.Frame;
-			}
-			set {
-				bool sizeChanging = Frame.Size != value.Size;
-				if (sizeChanging) 
-					PrepareToResize ();					
-
-				base.Frame = value;
-				
-				if (sizeChanging) 
-					RecoverFromResizing ();
-			}
-		}
-
 		// - Configure scrollView to display new image (tiled or not)
  #if TILE_IMAGES
+
 		public void DisplayTiledImageNamed (string imageName, CGSize image_Size)
 		{
 			//clear views for the previous image
@@ -143,6 +158,7 @@ namespace FrogScroller
 			this.AddSubview (zoomView);
 			ConfigureForImageSize (image.Size);
 		}
+
 #endif
 
 		public void ConfigureForImageSize (CGSize imageSize)
@@ -223,34 +239,7 @@ namespace FrogScroller
 			return CGPoint.Empty;
 		}
 
-		static List<ImageDetails> data;
-
-		// Method to Deserialize ImageDetails
-		static List<ImageDetails> ImageData ()
-		{
-			if (data != null)
-				return data;
-
-			try {
-				string path = Path.Combine("Image", "ImageDetails.xml");
-				using (TextReader reader = new StreamReader (path)) {
-					XmlSerializer serializer = new XmlSerializer (typeof (List<ImageDetails>));
-					data = (List<ImageDetails>) serializer.Deserialize (reader);
-				}
-			} catch (XmlException e) {
-				Console.WriteLine (e.ToString ());
-				data = null;
-			}
-			return data;
-		}
-
-		public static int ImageCount {
-			get {
-				return ImageData ().Count;
-			}
-		}
-
-		public static UIImage ImageAtIndex (int index)
+		static UIImage ImageAtIndex (int index)
 		{
 			string imageName = ImageNameAtIndex (index);
 			string imageNameWithExt = Path.ChangeExtension (imageName, "jpg");
@@ -260,19 +249,17 @@ namespace FrogScroller
 			return img;
 		}
 
-		public static string ImageNameAtIndex (int index)
+		static string ImageNameAtIndex (int index)
 		{
-			List<ImageDetails> _name = ImageData ();
-			return _name [index].Name;
+			return ImageData [index].Name;
 		}
 
-		public static CGSize ImageSizeAtIndex (int index)
+		static CGSize ImageSizeAtIndex (int index)
 		{
-			List<ImageDetails> details = ImageData ();
-			return details [index].Size;
+			return ImageData [index].Size;
 		}
 
-		public static UIImage PlaceholderImageNamed (string name)
+		static UIImage PlaceholderImageNamed (string name)
 		{
 			string placeholderName = string.Format ("{0}_Placeholder", name);
 			string placeholderNameWithExt = Path.ChangeExtension (placeholderName, "png");
@@ -280,6 +267,23 @@ namespace FrogScroller
 
 			UIImage img = UIImage.FromBundle (fullName);
 			return img;
+		}
+
+		static List<ImageDetails> FetchImageData ()
+		{
+			List<ImageDetails> result = null;
+			string path = Path.Combine ("Image", "ImageDetails.xml");
+
+			try {
+				using (TextReader reader = new StreamReader (path)) {
+					XmlSerializer serializer = new XmlSerializer (typeof(List<ImageDetails>));
+					result = (List<ImageDetails>)serializer.Deserialize (reader);
+				}
+			} catch (XmlException e) {
+				Console.WriteLine (e);
+			}
+
+			return data;
 		}
 	}
 }
