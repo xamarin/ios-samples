@@ -13,7 +13,8 @@ namespace FrogScroller
 	public class ImageScrollView : UIScrollView
 	{
 		CGSize _imageSize;
-		UIImageView zoomView; // if tiling this contains a very low-res placeholder image. otherwise it contains the full image.
+		// if tiling this contains a very low-res placeholder image. otherwise it contains the full image.
+		UIImageView zoomView;
 		TilingView tilingView;
 		CGPoint _pointToCenterAfterResize;
 		float _scaleToRestoreAfterResize;
@@ -26,6 +27,7 @@ namespace FrogScroller
 		}
 
 		static List<ImageDetails> data;
+
 		static List<ImageDetails> ImageData {
 			get {
 				data = data ?? FetchImageData ();
@@ -39,18 +41,18 @@ namespace FrogScroller
 			}
 			set {
 				bool sizeChanging = Frame.Size != value.Size;
-				if (sizeChanging) 
-					PrepareToResize ();					
+				if (sizeChanging)
+					PrepareToResize ();
 
 				base.Frame = value;
 
-				if (sizeChanging) 
+				if (sizeChanging)
 					RecoverFromResizing ();
 			}
 		}
 
 		public int Index {
-			get { 
+			get {
 				return _index;
 			}
 			set {
@@ -90,7 +92,7 @@ namespace FrogScroller
 			if (frameToCenter.Size.Height < boundsSize.Height)
 				frameToCenter.Y = (boundsSize.Height - frameToCenter.Size.Height) / 2;
 			else
-				frameToCenter.Y = 0;			
+				frameToCenter.Y = 0;
 
 			zoomView.Frame = frameToCenter;
 		}
@@ -105,13 +107,13 @@ namespace FrogScroller
 				tilingView = null;
 			}
 			this.ZoomScale = 1.0f;
-		
-	    	//make views to display the new image
+
+			//make views to display the new image
 			zoomView = new UIImageView (new CGRect (CGPoint.Empty, image_Size)) {
 				Image = PlaceholderImageNamed (imageName)
 			};
 
-			this.AddSubview(zoomView);
+			this.AddSubview (zoomView);
 			tilingView = new TilingView (imageName, image_Size) {
 				Frame = zoomView.Bounds
 			};
@@ -153,7 +155,7 @@ namespace FrogScroller
 			//calculate min/max zoomscale
 			nfloat xScale = boundsSize.Width / _imageSize.Width; //scale needed to perfectly fit the image width-wise
 			nfloat yScale = boundsSize.Height / _imageSize.Height; //scale needed to perfectly fit the image height-wise
-				     
+
 			//fill width if the image and phone are both portrait or both landscape; otherwise take smaller scale
 			bool imagePortrait = _imageSize.Height > _imageSize.Width;
 			bool phonePortrait = boundsSize.Height > boundsSize.Width;
@@ -165,13 +167,13 @@ namespace FrogScroller
 			if (minScale > maxScale) {
 				minScale = maxScale;
 			}
-			// don't let minScale exceed maxScale. (If the image is smaller than the screen, we don't want to force it to be zoomed.) 
+			// don't let minScale exceed maxScale. (If the image is smaller than the screen, we don't want to force it to be zoomed.)
 			this.MaximumZoomScale = maxScale;
 			this.MinimumZoomScale = (nfloat)minScale;
 		}
-		
-   		// Methods called during rotation to preserve the zoomScale and the visible portion of the image
-		
+
+		// Methods called during rotation to preserve the zoomScale and the visible portion of the image
+
 		// Rotation support
 		public void PrepareToResize ()
 		{
@@ -191,7 +193,7 @@ namespace FrogScroller
 			//Step 1: restore zoom scale, first making sure it is within the allowable range;
 			ZoomScale = (nfloat)Math.Min (MaximumZoomScale, Math.Max (this.MinimumZoomScale, _scaleToRestoreAfterResize));
 
-			// Step 2: restore center point, first making sure it is within the allowable range.			
+			// Step 2: restore center point, first making sure it is within the allowable range.
 			// 2a: convert our desired center point back to our own coordinate space
 			var boundsCenter = this.ConvertPointFromView (_pointToCenterAfterResize, zoomView);
 			// 2b: calculate the content offset that would yield that center point
@@ -199,11 +201,11 @@ namespace FrogScroller
 			// 2c: restore offset, adjusted to be within the allowable range
 			CGPoint maxOffset = MaximumContentOffset ();
 			CGPoint minOffset = MinimumContentOffset ();
-			offset.X = (nfloat) Math.Max (minOffset.X, Math.Min (maxOffset.X, offset.X));
-			offset.Y = (nfloat) Math.Max (minOffset.Y, Math.Min (maxOffset.Y, offset.Y));
+			offset.X = (nfloat)Math.Max (minOffset.X, Math.Min (maxOffset.X, offset.X));
+			offset.Y = (nfloat)Math.Max (minOffset.Y, Math.Min (maxOffset.Y, offset.Y));
 			this.ContentOffset = offset;
 		}
-	    
+
 		public CGPoint MaximumContentOffset ()
 		{
 			CGSize contentSize = ContentSize;

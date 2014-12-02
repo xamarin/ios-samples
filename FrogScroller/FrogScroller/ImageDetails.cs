@@ -9,7 +9,9 @@ namespace FrogScroller
 	public class ImageDetails
 	{
 		public float Height { get; set; }
+
 		public string Name { get; set; }
+
 		public float Width { get; set; }
 
 		public CGSize Size {
