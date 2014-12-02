@@ -1,15 +1,17 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace QuartzSample
 {
 
-	public partial class MainViewController : UITableViewController {
+	public partial class MainViewController : UITableViewController
+	{
 	
-		QuartzViewController [] controllers;
+		QuartzViewController[] controllers;
 
-		public MainViewController (IntPtr b) : base (b) {
+		public MainViewController (IntPtr b) : base (b)
+		{
 			controllers = new QuartzViewController [] {
 				new QuartzViewController (() => new LineDrawingView (), "Lines", "LineDrawingView (linedrawing.cs)"),
 				new QuartzViewController (() => new LineWidthDrawingView (), "Stroke Width", "LineWidthDrawingView (linedrawing.cs)"),
@@ -26,14 +28,14 @@ namespace QuartzSample
 				new QuartzBlendingViewController (() => new QuartzBlendingView (), "Blending", "QuartzBlendingView (blend.cs)")
 			};
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			TableView.DataSource = new DataSource (this);
 			TableView.Delegate = new TableDelegate (this);
 		}
-		
+
 		public override void ViewWillAppear (bool animated)
 		{
 			// Deselect the current row
@@ -45,25 +47,26 @@ namespace QuartzSample
 		//
 		// The data source for our TableView
 		//
-		class DataSource : UITableViewDataSource {
+		class DataSource : UITableViewDataSource
+		{
 			static NSString kCellIdentifier = new NSString ("MyIdentifier");
 			MainViewController mvc;
-			
+
 			public DataSource (MainViewController mvc)
 			{
 				this.mvc = mvc;
 			}
-			
-			public override int RowsInSection (UITableView tableView, int section)
+
+			public override nint RowsInSection (UITableView tableView, nint section)
 			{
 				return mvc.controllers.Length;
 			}
-	
-			public override int NumberOfSections (UITableView tableView)
+
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return 1;
 			}
-				
+
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				var cell = tableView.DequeueReusableCell (kCellIdentifier);
@@ -83,14 +86,15 @@ namespace QuartzSample
 		//
 		// This class receives notifications that happen on the UITableView
 		//
-		class TableDelegate : UITableViewDelegate {
+		class TableDelegate : UITableViewDelegate
+		{
 			MainViewController mvc;
-			
+
 			public TableDelegate (MainViewController mvc)
 			{
 				this.mvc = mvc;
 			}
-			
+
 			public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 			{
 				var cont = mvc.controllers [indexPath.Row];

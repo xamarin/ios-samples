@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using QuartzSample;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using CoreGraphics;
 
 namespace QuartzSample
 {
@@ -103,11 +102,11 @@ namespace QuartzSample
 			picker.Select ((int) qbv.BlendMode, 2, false);
 		}
 		
-		static float LuminanceForColor (UIColor color)
+		static nfloat LuminanceForColor (UIColor color)
 		{
 			CGColor cgcolor = color.CGColor;
 			var components = cgcolor.Components;
-			float luminance = 0;
+			nfloat luminance = 0;
 			
 			switch (cgcolor.ColorSpace.Model){
 			case CGColorSpaceModel.Monochrome:
@@ -134,8 +133,8 @@ namespace QuartzSample
 		// Simple comparison function that sorts the two (presumed) UIColors according to their luminance value.
 		static int ColorSortByLuminance (UIColor color1,  UIColor color2)
 		{
-			float luminance1 = LuminanceForColor(color1);
-			float luminance2 = LuminanceForColor(color2);
+			nfloat luminance1 = LuminanceForColor(color1);
+			nfloat luminance2 = LuminanceForColor(color2);
 	
 			if (luminance1 == luminance2) 
 				return 0;
@@ -155,18 +154,18 @@ namespace QuartzSample
 				this.parent = parent;
 			}
 			
-			public override int GetComponentCount (UIPickerView picker){
+			public override nint GetComponentCount (UIPickerView picker){
 				return 3;
 			}
 	
-			public override int GetRowsInComponent (UIPickerView picker, int component)
+			public override nint GetRowsInComponent (UIPickerView picker, nint component)
 			{
 				if (component == 0 || component == 1)
 					return Colors.Length;
 				return BlendModes.Length;
 			}
 	
-			public override float GetComponentWidth (UIPickerView picker, int component)
+			public override nfloat GetComponentWidth (UIPickerView picker, nint component)
 			{
 				if (component == 0 || component == 1)
 					return 48f;
@@ -176,20 +175,20 @@ namespace QuartzSample
 			const int kColorTag = 1;
 			const int kLabelTag = 1;
 				
-			public override UIView GetView (UIPickerView picker, int row, int component, UIView view)
+			public override UIView GetView (UIPickerView picker, nint row, nint component, UIView view)
 			{
 				var size = picker.RowSizeForComponent (component);
 				
 				if (component == 0 || component == 1){
 					if (view == null || view.Tag != kColorTag){
-						view = new UIView (new RectangleF (0, 0, size.Width-4, size.Height-4)){
+						view = new UIView (new CGRect (0, 0, size.Width-4, size.Height-4)){
 							Tag = kColorTag
 						};
 					}
 					view.BackgroundColor = Colors [row];
 				} else {
 					if (view == null || view.Tag != kLabelTag){
-						view = new UILabel (new RectangleF (0, 0, size.Width-4, size.Height-4)){
+						view = new UILabel (new CGRect (0, 0, size.Width-4, size.Height-4)){
 							Tag = kLabelTag,
 							Opaque = false,
 							BackgroundColor = UIColor.Clear
@@ -203,12 +202,12 @@ namespace QuartzSample
 				return view;
 			}
 	
-			public override void Selected (UIPickerView picker, int row, int component)
+			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
 				var qbv = (QuartzBlendingView) parent.quartzView;
 				qbv.DestinationColor = Colors [picker.SelectedRowInComponent (0)];
 				qbv.SourceColor = Colors [picker.SelectedRowInComponent (1)];
-				qbv.BlendMode = (CGBlendMode) picker.SelectedRowInComponent (2);
+				qbv.BlendMode = (CGBlendMode) (int)picker.SelectedRowInComponent (2);
 				qbv.SetNeedsDisplay ();
 			}
 		}
@@ -228,22 +227,22 @@ namespace QuartzSample
 		public override void DrawInContext (CGContext context)
 		{
 			// Start with a background whose color we don't use in the demo
-			context.SetGrayFillColor (0.2f, 1);
+			context.SetFillColor (0.2f, 1);
 			context.FillRect (Bounds);
 	
 			// We want to just lay down the background without any blending so we use the Copy mode rather than Normal
 			context.SetBlendMode(CGBlendMode.Copy);
 						
 			// Draw a rect with the "background" color - this is the "Destination" for the blending formulas
-			context.SetFillColorWithColor (DestinationColor.CGColor);
-			context.FillRect(new RectangleF (110, 20, 100, 100));
+			context.SetFillColor (DestinationColor.CGColor);
+			context.FillRect(new CGRect (110, 20, 100, 100));
 			
 			// Set up our blend mode
 			context.SetBlendMode (BlendMode);
 			
 			// And draw a rect with the "foreground" color - this is the "Source" for the blending formulas
-			context.SetFillColorWithColor (SourceColor.CGColor);
-			context.FillRect (new RectangleF (60, 45, 200, 50));
+			context.SetFillColor (SourceColor.CGColor);
+			context.FillRect (new CGRect (60, 45, 200, 50));
 		}
 	}
 }
