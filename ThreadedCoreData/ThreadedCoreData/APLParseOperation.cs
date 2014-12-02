@@ -147,10 +147,8 @@ namespace ThreadedCoreData
 
 				var olderEarthquakes = NSArray.FromObjects (managedObjectContext.ExecuteFetchRequest (fetchRequest, out error));
 
-				// HACK: Had to parse this nuint (olderEarthquakes.Count) to int because of this error: Error CS0034: Operator `<' is ambiguous on operands of type `int' and `System.nuint' (CS0034) (ThreadedCoreData)
-				for (int i = 0; i < (int)olderEarthquakes.Count; i++) {
+				for (nuint i = 0; i < olderEarthquakes.Count; i++)
 					managedObjectContext.DeleteObject (olderEarthquakes.GetItem<ManagedEarthquake> (i));
-				}
 
 				if (managedObjectContext.HasChanges) {
 					if (!managedObjectContext.Save (out error))
