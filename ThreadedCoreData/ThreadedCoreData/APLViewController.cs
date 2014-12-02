@@ -13,15 +13,15 @@ namespace ThreadedCoreData
 {
 	public partial class APLViewController : UITableViewController
 	{
-		private NSManagedObjectContext managedObjectContext;
-		private NSFetchedResultsController fetchedResultsController;
-		private FecthResultsControllerDelegate fecthResultsControllerDelegate;
-		private NSPersistentStoreCoordinator persistentStoreCoordinator;
-		private NSManagedObjectModel managedObjectModel;
-		private UIBarButtonItem activityIndicator;
-		private NSOperationQueue parseQueue;
+		NSManagedObjectContext managedObjectContext;
+		NSFetchedResultsController fetchedResultsController;
+		FecthResultsControllerDelegate fecthResultsControllerDelegate;
+		NSPersistentStoreCoordinator persistentStoreCoordinator;
+		NSManagedObjectModel managedObjectModel;
+		UIBarButtonItem activityIndicator;
+		NSOperationQueue parseQueue;
 
-		private string ApplicationDocumentsDirectory {
+		string ApplicationDocumentsDirectory {
 			get {
 				string[] directories = NSSearchPath.GetDirectories (NSSearchPathDirectory.DocumentDirectory, 
 				                                                    NSSearchPathDomain.User, true);
@@ -33,7 +33,7 @@ namespace ThreadedCoreData
 			}
 		}
 
-		private NSManagedObjectModel ManagedObjectModel {
+		NSManagedObjectModel ManagedObjectModel {
 			get {
 				if (managedObjectModel != null)
 					return managedObjectModel;
@@ -45,7 +45,7 @@ namespace ThreadedCoreData
 			}
 		}
 
-		private  NSManagedObjectContext ManagedObjectContext {
+		NSManagedObjectContext ManagedObjectContext {
 			get {
 				if (managedObjectContext != null)
 					return managedObjectContext;
@@ -61,7 +61,7 @@ namespace ThreadedCoreData
 			}
 		}
 
-		private NSPersistentStoreCoordinator PersistentStoreCoordinator {
+		NSPersistentStoreCoordinator PersistentStoreCoordinator {
 			get {
 				if (persistentStoreCoordinator != null)
 					return persistentStoreCoordinator;
@@ -81,7 +81,7 @@ namespace ThreadedCoreData
 			}
 		}
 
-		private NSFetchedResultsController FetchedResultsController {
+		NSFetchedResultsController FetchedResultsController {
 			get {
 				if (fetchedResultsController == null) {
 					var fetchRequest = new NSFetchRequest ();
@@ -212,14 +212,14 @@ namespace ThreadedCoreData
 			NavigationItem.RightBarButtonItem = null;
 		}
 
-		private NSError ComposeError (string message, string domain, int statusCode)
+		NSError ComposeError (string message, string domain, int statusCode)
 		{
 			var errorMessage = new NSString (message); 
 			var userInfo = NSDictionary.FromObjectAndKey (errorMessage, NSError.LocalizedDescriptionKey);
 			return new NSError (new NSString (domain), statusCode, userInfo);
 		}
 
-		private void RequestCompletionHandler (NSUrlResponse responce, NSData data, NSError error)
+		void RequestCompletionHandler (NSUrlResponse responce, NSData data, NSError error)
 		{
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 			if (error != null) {

@@ -13,12 +13,12 @@ namespace ThreadedCoreData
 	{
 		public const string EarthquakesErrorNotificationName = "EarthquakeErrorNotif";
 		public const string EarthquakesMessageErrorKey = "EarthquakesMsgErrorKey";
-		private const int MaximumNumberOfEarthquakesToParse = 50;
-		private const int SizeOfEarthquakesBatch = 10;
-		private NSPersistentStoreCoordinator sharedPSC;
-		private NSManagedObjectContext managedObjectContext;
-		private NSData earthquakeData;
-		private NSDateFormatter dateFormatter;
+		const int MaximumNumberOfEarthquakesToParse = 50;
+		const int SizeOfEarthquakesBatch = 10;
+		NSPersistentStoreCoordinator sharedPSC;
+		NSManagedObjectContext managedObjectContext;
+		NSData earthquakeData;
+		NSDateFormatter dateFormatter;
 
 		public APLParseOperation (NSData data, NSPersistentStoreCoordinator persistentStoreCoordinator)
 		{
@@ -43,7 +43,7 @@ namespace ThreadedCoreData
 			Parse (earthquakeData);
 		}
 
-		private void Parse (NSData data)
+		void Parse (NSData data)
 		{
 			try {
 				var earthquakes = new List<Earthquake> ();
@@ -100,7 +100,7 @@ namespace ThreadedCoreData
 			NSNotificationCenter.DefaultCenter.PostNotificationName (EarthquakesErrorNotificationName, this, userInfo);
 		}
 
-		private void AddEarthquakesToList (List<Earthquake> earthquakes)
+		void AddEarthquakesToList (List<Earthquake> earthquakes)
 		{
 			var entity = NSEntityDescription.EntityForName ("Earthquake", managedObjectContext);
 			var fetchRequest = new NSFetchRequest ();
