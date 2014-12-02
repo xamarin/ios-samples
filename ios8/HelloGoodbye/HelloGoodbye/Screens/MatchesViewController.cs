@@ -15,19 +15,19 @@ namespace HelloGoodbye
 		const float ZoomAnimationDuration = 0.3f;
 		const float FadeAnimationDuration = 0.3f;
 
-		private CardView _cardView;
-		private UIView _swipeInstructionsView;
-		private UIView _allMatchesViewedExplanatoryView;
+		CardView _cardView;
+		UIView _swipeInstructionsView;
+		UIView _allMatchesViewedExplanatoryView;
 
-		private NSLayoutConstraint[] _cardViewVerticalConstraints;
+		NSLayoutConstraint[] _cardViewVerticalConstraints;
 
-		private List<Person> _matches;
-		private int _currentMatchIndex;
+		List<Person> _matches;
+		int _currentMatchIndex;
 
-		private UIAccessibilityCustomAction _helloAction;
-		private UIAccessibilityCustomAction _goodbyeAction;
+		UIAccessibilityCustomAction _helloAction;
+		UIAccessibilityCustomAction _goodbyeAction;
 
-		private Person CurrentMatch {
+		Person CurrentMatch {
 			get {
 				return _currentMatchIndex < _matches.Count ? _matches [_currentMatchIndex] : null;
 			}
@@ -88,7 +88,7 @@ namespace HelloGoodbye
 			containerView.AddConstraints (constraints.ToArray());
 		}
 
-		private UIView AddDummyViewToContainerView(UIView containerView, INativeObject topItem, INativeObject bottomItem, List<NSLayoutConstraint> constraints)
+		UIView AddDummyViewToContainerView(UIView containerView, INativeObject topItem, INativeObject bottomItem, List<NSLayoutConstraint> constraints)
 		{
 			UIView dummyView = new UIView{
 				TranslatesAutoresizingMaskIntoConstraints = false
@@ -106,7 +106,7 @@ namespace HelloGoodbye
 			return dummyView;
 		}
 
-		private CardView AddCardViewToView(UIView containerView)
+		CardView AddCardViewToView(UIView containerView)
 		{
 			CardView cardView = new CardView ();
 			cardView.Update (CurrentMatch);
@@ -135,19 +135,19 @@ namespace HelloGoodbye
 			return cardView;
 		}
 
-		private void HandleSwipeUp(UISwipeGestureRecognizer gestureRecognizer)
+		void HandleSwipeUp(UISwipeGestureRecognizer gestureRecognizer)
 		{
 			if (gestureRecognizer.State == UIGestureRecognizerState.Recognized)
 				SayHello (_helloAction);
 		}
 
-		private void HandleSwipeDown(UISwipeGestureRecognizer gestureRecognizer)
+		void HandleSwipeDown(UISwipeGestureRecognizer gestureRecognizer)
 		{
 			if (gestureRecognizer.State == UIGestureRecognizerState.Recognized)
 				SayGoodbye (_goodbyeAction);
 		}
 
-		private UIView AddAllMatchesViewExplanatoryViewToContainerView(UIView containerView, List<NSLayoutConstraint> constraints)
+		UIView AddAllMatchesViewExplanatoryViewToContainerView(UIView containerView, List<NSLayoutConstraint> constraints)
 		{
 			UIView overlayView = AddOverlayViewToContainerView (containerView);
 
@@ -173,19 +173,19 @@ namespace HelloGoodbye
 			return overlayView;
 		}
 
-		private bool SayHello(UIAccessibilityCustomAction customAction)
+		bool SayHello(UIAccessibilityCustomAction customAction)
 		{
 			AnimateCardsForHello (true);
 			return true;
 		}
 
-		private bool SayGoodbye(UIAccessibilityCustomAction customAction)
+		bool SayGoodbye(UIAccessibilityCustomAction customAction)
 		{
 			AnimateCardsForHello (false);
 			return true;
 		}
 
-		private void AnimateCardsForHello(bool forHello)
+		void AnimateCardsForHello(bool forHello)
 		{
 			AnimateCardOffScreenToTop (forHello, () => {
 				_currentMatchIndex++;
@@ -219,7 +219,7 @@ namespace HelloGoodbye
 			});
 		}
 
-		private void FadeCardIntoView()
+		void FadeCardIntoView()
 		{
 			_cardView.Alpha = 0f;
 			UIView.Animate (FadeAnimationDuration, () => {
@@ -227,7 +227,7 @@ namespace HelloGoodbye
 			});
 		}
 
-		private void ZoomCardIntoView()
+		void ZoomCardIntoView()
 		{
 			_cardView.Transform = CGAffineTransform.MakeScale(0f, 0f);
 			UIView.Animate (ZoomAnimationDuration, () => {
@@ -235,7 +235,7 @@ namespace HelloGoodbye
 			});
 		}
 
-		private void AnimateCardOffScreenToTop(bool toTop, Action completion)
+		void AnimateCardOffScreenToTop(bool toTop, Action completion)
 		{
 			NSLayoutConstraint offScreenConstraint = null;
 			if (toTop)
@@ -260,7 +260,7 @@ namespace HelloGoodbye
 			});
 		}
 
-		private UIView AddSwipeInstructionsToContainerView(UIView containerView, List<NSLayoutConstraint>constraints)
+		UIView AddSwipeInstructionsToContainerView(UIView containerView, List<NSLayoutConstraint>constraints)
 		{
 			UIView overlayView = AddOverlayViewToContainerView (containerView);
 
@@ -288,7 +288,7 @@ namespace HelloGoodbye
 			return overlayView;
 		}
 
-		private UIView AddOverlayViewToContainerView(UIView containerView)
+		UIView AddOverlayViewToContainerView(UIView containerView)
 		{
 			UIView overlayView = new UIView {
 				BackgroundColor = StyleUtilities.OverlayColor,

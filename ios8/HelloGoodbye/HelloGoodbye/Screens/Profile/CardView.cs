@@ -10,23 +10,23 @@ namespace HelloGoodbye
 {
 	public class CardView : UIView, IUIAccessibilityContainer
 	{
-		private const float PhotoWidth = 80;
-		private const float BorderWidth = 5;
-		private const float HorizontalPadding = 20;
-		private const float VerticalPadding = 20;
-		private const float InterItemHorizontalSpacing = 30;
-		private const float InterItemVerticalSpacing = 10;
-		private const float TitleValueSpacing = 0;
+		const float PhotoWidth = 80;
+		const float BorderWidth = 5;
+		const float HorizontalPadding = 20;
+		const float VerticalPadding = 20;
+		const float InterItemHorizontalSpacing = 30;
+		const float InterItemVerticalSpacing = 10;
+		const float TitleValueSpacing = 0;
 
-		private UIView _backgroundView;
-		private UIImageView _photo;
-		private UILabel _ageTitleLabel;
-		private UILabel _ageValueLabel;
-		private UILabel _hobbiesTitleLabel;
-		private UILabel _hobbiesValueLabel;
-		private UILabel _elevatorPitchTitleLabel;
-		private UILabel _elevatorPitchValueLabel;
-		private NSLayoutConstraint _photoAspectRatioConstraint;
+		UIView _backgroundView;
+		UIImageView _photo;
+		UILabel _ageTitleLabel;
+		UILabel _ageValueLabel;
+		UILabel _hobbiesTitleLabel;
+		UILabel _hobbiesValueLabel;
+		UILabel _elevatorPitchTitleLabel;
+		UILabel _elevatorPitchValueLabel;
+		NSLayoutConstraint _photoAspectRatioConstraint;
 
 		public CardView ()
 		{
@@ -42,7 +42,7 @@ namespace HelloGoodbye
 			AddAllConstraints ();
 		}
 
-		private void AddProfileViews()
+		void AddProfileViews()
 		{
 			_photo = new UIImageView {
 				IsAccessibilityElement = true,
@@ -83,7 +83,7 @@ namespace HelloGoodbye
 			));
 		}
 
-		private void AddAllConstraints()
+		void AddAllConstraints()
 		{
 			var constraints = new List<NSLayoutConstraint> ();
 
@@ -152,7 +152,7 @@ namespace HelloGoodbye
 			_elevatorPitchValueLabel.Text = person.ElevatorPitch;
 		}
 
-		private void UpdatePhotoConstraint()
+		void UpdatePhotoConstraint()
 		{
 			CGSize size = _photo.Image.Size;
 			nfloat ratio = size.Height / size.Width;

@@ -10,22 +10,22 @@ namespace HelloGoodbye
 {
 	public class ProfileViewController : PhotoBackgroundViewController
 	{
-		private const float LabelControlMinimumSpacing = 20;
-		private const float MinimumVerticalSpacingBetweenRows = 20;
-		private const float PreviewTabMinimumWidth = 80;
-		private const float PreviewTabHeight = 30;
-		private const float PreviewTabCornerRadius = 10;
-		private const float PreviewTabHorizontalPadding = 30;
-		private const float CardRevealAnimationDuration = 0.3f;
+		const float LabelControlMinimumSpacing = 20;
+		const float MinimumVerticalSpacingBetweenRows = 20;
+		const float PreviewTabMinimumWidth = 80;
+		const float PreviewTabHeight = 30;
+		const float PreviewTabCornerRadius = 10;
+		const float PreviewTabHorizontalPadding = 30;
+		const float CardRevealAnimationDuration = 0.3f;
 
-		private Person _person;
-		private UILabel _ageValueLabel;
-		private UITextField _hobbiesField;
-		private UITextField _elevatorPitchField;
-		private UIImageView _previewTab;
-		private CardView _cardView;
-		private NSLayoutConstraint _cardRevealConstraint;
-		private bool _cardWasRevealedBeforePan;
+		Person _person;
+		UILabel _ageValueLabel;
+		UITextField _hobbiesField;
+		UITextField _elevatorPitchField;
+		UIImageView _previewTab;
+		CardView _cardView;
+		NSLayoutConstraint _cardRevealConstraint;
+		bool _cardWasRevealedBeforePan;
 
 		bool IsCardRevealed {
 			get {
@@ -69,7 +69,7 @@ namespace HelloGoodbye
 			containerView.AddConstraints (constraints.ToArray());
 		}
 
-		private UIView AddOverlayViewToView (UIView containerView, List<NSLayoutConstraint> constraints)
+		UIView AddOverlayViewToView (UIView containerView, List<NSLayoutConstraint> constraints)
 		{
 			UIView overlayView = new UIView {
 				BackgroundColor = StyleUtilities.OverlayColor,
@@ -88,7 +88,7 @@ namespace HelloGoodbye
 			return overlayView;
 		}
 
-		private UITextField AddTextFieldWithName (string name, string text, UIView overlayView, IEnumerable<UIView> previousRowItems, List<NSLayoutConstraint> constraints)
+		UITextField AddTextFieldWithName (string name, string text, UIView overlayView, IEnumerable<UIView> previousRowItems, List<NSLayoutConstraint> constraints)
 		{
 			UILabel titleLabel = StyleUtilities.CreateStandardLabel ();
 			titleLabel.Text = name;
@@ -122,7 +122,7 @@ namespace HelloGoodbye
 			return valueField;
 		}
 
-		private UIView[] AddAgeControlsToView(UIView overlayView, List<NSLayoutConstraint> constraints)
+		UIView[] AddAgeControlsToView(UIView overlayView, List<NSLayoutConstraint> constraints)
 		{
 			UILabel ageTitleLabel = StyleUtilities.CreateStandardLabel ();
 			ageTitleLabel.Text = "Your age".LocalizedString ("The user's age");
@@ -151,7 +151,7 @@ namespace HelloGoodbye
 			return new UIView[]{ ageTitleLabel, ageSlider, _ageValueLabel };
 		}
 
-		private UILabel AddAgeValueLabelToView(UIView overlayView)
+		UILabel AddAgeValueLabelToView(UIView overlayView)
 		{
 			UILabel ageValueLabel = StyleUtilities.CreateStandardLabel ();
 			ageValueLabel.IsAccessibilityElement = false;
@@ -160,13 +160,13 @@ namespace HelloGoodbye
 			return ageValueLabel;
 		}
 
-		private void UpdateAgeValueLabelFromSlider(AgeSlider ageSlider)
+		void UpdateAgeValueLabelFromSlider(AgeSlider ageSlider)
 		{
 			NSNumber number = NSNumber.FromFloat (ageSlider.Value);
 			_ageValueLabel.Text = NSNumberFormatter.LocalizedStringFromNumbernumberStyle (number, NSNumberFormatterStyle.Decimal);
 		}
 
-		private void AddCardAndPreviewTab(List<NSLayoutConstraint> constraints)
+		void AddCardAndPreviewTab(List<NSLayoutConstraint> constraints)
 		{
 			_previewTab = AddPreviewTab ();
 			_previewTab.TranslatesAutoresizingMaskIntoConstraints = false;
@@ -194,7 +194,7 @@ namespace HelloGoodbye
 			constraints.Add (NSLayoutConstraint.Create (_cardView, NSLayoutAttribute.Width, NSLayoutRelation.LessThanOrEqual, View, NSLayoutAttribute.Width, 1f, 0f));
 		}
 
-		private UIImageView AddPreviewTab()
+		UIImageView AddPreviewTab()
 		{
 			UIImage previewTabBackgroundImage = CreatePreviewTabBackgroundImage ();
 			UIImageView previewTab = new UIImageView(previewTabBackgroundImage);
@@ -206,7 +206,7 @@ namespace HelloGoodbye
 			return previewTab;
 		}
 
-		private UIImage CreatePreviewTabBackgroundImage()
+		UIImage CreatePreviewTabBackgroundImage()
 		{
 			// The preview tab should be flat on the bottom, and have rounded corners on top.
 			var size = new SizeF (PreviewTabMinimumWidth, PreviewTabHeight);
@@ -227,7 +227,7 @@ namespace HelloGoodbye
 			return previewTabBackgroundImage;
 		}
 
-		private void DidSlidePreviewTab(UIPanGestureRecognizer gestureRecognizer)
+		void DidSlidePreviewTab(UIPanGestureRecognizer gestureRecognizer)
 		{
 			switch (gestureRecognizer.State) {
 				case UIGestureRecognizerState.Began:
@@ -264,7 +264,7 @@ namespace HelloGoodbye
 			}
 		}
 
-		private void RevealCard()
+		void RevealCard()
 		{
 			View.LayoutIfNeeded ();
 
@@ -276,7 +276,7 @@ namespace HelloGoodbye
 			});
 		}
 
-		private void DismissCard()
+		void DismissCard()
 		{
 			View.LayoutIfNeeded ();
 
@@ -288,7 +288,7 @@ namespace HelloGoodbye
 			});
 		}
 
-		private PreviewLabel AddPreviewLabel()
+		PreviewLabel AddPreviewLabel()
 		{
 			PreviewLabel previewLabel = new PreviewLabel();
 			previewLabel.ActivatePreviewLabel += DidActivatePreviewLabel;
@@ -305,7 +305,7 @@ namespace HelloGoodbye
 				RevealCard ();
 		}
 
-		private CardView AddCardView()
+		CardView AddCardView()
 		{
 			CardView cardView = new CardView();
 			cardView.Update (_person);
@@ -315,7 +315,7 @@ namespace HelloGoodbye
 			return cardView;
 		}
 
-		private void OnAgeUpdate (object sender, EventArgs e)
+		void OnAgeUpdate (object sender, EventArgs e)
 		{
 			var ageSlider = (AgeSlider)sender;
 			// Turn the value into a valid age
@@ -358,7 +358,7 @@ namespace HelloGoodbye
 		}
 		#endregion
 
-		private void DoneButtonPressed(object sender, EventArgs args)
+		void DoneButtonPressed(object sender, EventArgs args)
 		{
 			// End editing on whichever text field is first responder
 			_hobbiesField.ResignFirstResponder ();

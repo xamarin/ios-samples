@@ -8,10 +8,10 @@ namespace HelloGoodbye
 {
 	public class PhotoBackgroundViewController : UIViewController
 	{
-		private UIImageView _backgroundView;
-		private UIView _containerView;
+		UIImageView _backgroundView;
+		UIView _containerView;
 
-		private UIImage _backgroundImage;
+		UIImage _backgroundImage;
 		public UIImage BackgroundImage {
 			get {
 				return _backgroundImage;
