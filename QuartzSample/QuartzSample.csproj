@@ -72,11 +72,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-<<<<<<< HEAD
-    <MtouchArch>ARMv7</MtouchArch>
-=======
     <MtouchArch>ARMv7, ARM64</MtouchArch>
->>>>>>> fix arch
     <MtouchExtraArgs>
     </MtouchExtraArgs>
     <MtouchI18n>
