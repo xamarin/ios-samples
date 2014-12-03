@@ -38,6 +38,7 @@
     </MtouchI18n>
     <AssemblyName>CoreLocation</AssemblyName>
     <MtouchSdkVersion>4.0</MtouchSdkVersion>
+    <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>True</DebugSymbols>
@@ -55,6 +56,7 @@
     </IpaPackageName>
     <AssemblyName>Example_CoreLocation</AssemblyName>
     <MtouchSdkVersion>4.0</MtouchSdkVersion>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -67,6 +69,7 @@
     </MtouchI18n>
     <AssemblyName>Example_CoreLocation</AssemblyName>
     <MtouchSdkVersion>4.0</MtouchSdkVersion>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

@@ -39,7 +39,7 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchSdkVersion>5.1</MtouchSdkVersion>
-    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchArch>i386</MtouchArch>
     <AssemblyName>FontList</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -71,7 +71,7 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchSdkVersion>5.1</MtouchSdkVersion>
-    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
     <AssemblyName>Example_Fonts</AssemblyName>
   </PropertyGroup>
   <ItemGroup>

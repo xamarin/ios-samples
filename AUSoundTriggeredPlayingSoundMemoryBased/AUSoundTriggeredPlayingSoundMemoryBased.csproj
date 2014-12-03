@@ -28,7 +28,7 @@
     </MtouchI18n>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <MtouchSdkVersion>6.0</MtouchSdkVersion>
-    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -42,6 +42,7 @@
     <MtouchSdkVersion>3.2</MtouchSdkVersion>
     <MtouchI18n>
     </MtouchI18n>
+    <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>True</DebugSymbols>
@@ -58,6 +59,7 @@
     <MtouchSdkVersion>4.2</MtouchSdkVersion>
     <MtouchI18n>
     </MtouchI18n>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -71,6 +73,7 @@
     <MtouchSdkVersion>4.0</MtouchSdkVersion>
     <MtouchI18n>
     </MtouchI18n>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
