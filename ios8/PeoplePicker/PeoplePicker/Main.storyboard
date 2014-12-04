@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6119.3" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="8YX-ce-x5E">
+    <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6123.3"/>
+    </dependencies>
+    <scenes>
+        <!--Person Picker View Controller - Sample 1-->
+        <scene sceneID="W3I-pn-N6e">
+            <objects>
+                <viewController title="Sample 1" id="CZ4-MO-1fc" customClass="PersonPickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="s9W-kb-ARv"/>
+                        <viewControllerLayoutGuide type="bottom" id="dtj-EO-iXF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2VE-Yg-loa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="IWP-Kx-qdW">
+                                <rect key="frame" x="20" y="347" width="280" height="114"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DLU-Mt-yny">
+                                <rect key="frame" x="117" y="269" width="86" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Show Picker">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showPicker:" destination="CZ4-MO-1fc" eventType="touchUpInside" id="UST-xS-N0d"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="This sample picks a person." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="10" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Zhg-ve-WU7">
+                                <rect key="frame" x="20" y="120" width="280" height="18"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zhg-ve-WU7" firstAttribute="leading" secondItem="2VE-Yg-loa" secondAttribute="leading" constant="20" symbolic="YES" id="JQj-gp-vk2"/>
+                            <constraint firstAttribute="trailing" secondItem="Zhg-ve-WU7" secondAttribute="trailing" constant="20" symbolic="YES" id="eHs-J5-0HT"/>
+                            <constraint firstItem="Zhg-ve-WU7" firstAttribute="top" secondItem="s9W-kb-ARv" secondAttribute="bottom" constant="100" id="uOu-xX-xa8"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="1" image="contact" id="u1e-5L-l1D"/>
+                    <connections>
+                        <outlet property="resultLabel" destination="IWP-Kx-qdW" id="Y9k-U6-bpp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qh2-T1-AhA" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="671" y="-149"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Vex-rW-GRa">
+            <objects>
+                <tabBarController id="8YX-ce-x5E" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="JQR-rB-NYL">
+                        <rect key="frame" x="0.0" y="431" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="CZ4-MO-1fc" kind="relationship" relationship="viewControllers" id="SUk-Ux-ee1"/>
+                        <segue destination="0KX-Xy-97G" kind="relationship" relationship="viewControllers" id="ctg-HF-0Gd"/>
+                        <segue destination="epa-8M-Jh7" kind="relationship" relationship="viewControllers" id="cWv-PP-brw"/>
+                        <segue destination="3KL-0V-tp8" kind="relationship" relationship="viewControllers" id="ji4-Ae-UfP"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="180"/>
+        </scene>
+        <!--Email Picker View Controller - Sample 2-->
+        <scene sceneID="zRg-XH-uGE">
+            <objects>
+                <viewController title="Sample 2" id="0KX-Xy-97G" customClass="EmailPickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4SQ-JG-NTu"/>
+                        <viewControllerLayoutGuide type="bottom" id="jgS-9r-A7v"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wdM-0l-3rB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="J1H-FY-iH6">
+                                <rect key="frame" x="20" y="347" width="280" height="114"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Aw-Nn-Frc">
+                                <rect key="frame" x="117" y="269" width="86" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Show Picker">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showPicker:" destination="0KX-Xy-97G" eventType="touchUpInside" id="lxT-sV-dPi"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" minimumFontSize="10" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Qfm-8T-DLY">
+                                <rect key="frame" x="20" y="120" width="280" height="87"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <string key="text">This sample picks a person
+with an email address.
+
+Persons without an email address
+cannot be selected.</string>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Qfm-8T-DLY" secondAttribute="trailing" constant="20" symbolic="YES" id="Hle-lu-yaF"/>
+                            <constraint firstItem="Qfm-8T-DLY" firstAttribute="top" secondItem="4SQ-JG-NTu" secondAttribute="bottom" constant="100" id="QpH-ic-fv9"/>
+                            <constraint firstItem="Qfm-8T-DLY" firstAttribute="leading" secondItem="wdM-0l-3rB" secondAttribute="leading" constant="20" symbolic="YES" id="lgl-Ta-ZmH"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="2" image="contact" id="zRk-yl-JFP"/>
+                    <connections>
+                        <outlet property="resultLabel" destination="J1H-FY-iH6" id="l9O-M9-feA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hO4-nx-MV1" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1107" y="-149"/>
+        </scene>
+        <!--8or7 Person Picker View Controller - Sample 3-->
+        <scene sceneID="bDM-To-eL8">
+            <objects>
+                <viewController title="Sample 3" id="epa-8M-Jh7" customClass="CompatiblePersonPickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gmP-Ca-dGg"/>
+                        <viewControllerLayoutGuide type="bottom" id="QrK-yc-BB9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mFP-UO-Rwj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="MKR-HF-syz">
+                                <rect key="frame" x="20" y="347" width="280" height="114"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B3M-av-68n">
+                                <rect key="frame" x="117" y="269" width="86" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Show Picker">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showPicker:" destination="epa-8M-Jh7" eventType="touchUpInside" id="5U7-YI-64j"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="10" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="QMu-UR-TFz">
+                                <rect key="frame" x="20" y="120" width="280" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <string key="text">This sample picks a person
+on a device running iOS 8.0 or earlier.</string>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QMu-UR-TFz" firstAttribute="leading" secondItem="mFP-UO-Rwj" secondAttribute="leading" constant="20" symbolic="YES" id="60U-mi-djU"/>
+                            <constraint firstItem="QMu-UR-TFz" firstAttribute="top" secondItem="gmP-Ca-dGg" secondAttribute="bottom" constant="100" id="qbA-P5-7jq"/>
+                            <constraint firstAttribute="trailing" secondItem="QMu-UR-TFz" secondAttribute="trailing" constant="20" symbolic="YES" id="rs2-Sc-5Dn"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="3" image="contact" id="sE2-YJ-uGX"/>
+                    <connections>
+                        <outlet property="resultLabel" destination="MKR-HF-syz" id="s3d-7U-PeH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gsy-Vq-zGH" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1547" y="-149"/>
+        </scene>
+        <!--8or7 Email Picker View Controller - Sample 4-->
+        <scene sceneID="Ceh-tq-VXE">
+            <objects>
+                <viewController title="Sample 4" id="3KL-0V-tp8" customClass="CompatibleEmailPickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RRx-JE-vZy"/>
+                        <viewControllerLayoutGuide type="bottom" id="RHq-eU-v0F"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SEx-ba-sVK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Me-Kk-viK">
+                                <rect key="frame" x="117" y="269" width="86" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Show Picker">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showPicker:" destination="3KL-0V-tp8" eventType="touchUpInside" id="d2w-Qt-0yX"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="gC9-cy-VlK">
+                                <rect key="frame" x="20" y="346" width="280" height="114"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" minimumFontSize="10" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="RTY-OM-9O3">
+                                <rect key="frame" x="20" y="120" width="280" height="104"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <string key="text">This sample picks a person
+with an email address
+on a device running iOS 8.0 or earlier.
+
+Persons without an email address
+cannot be selected.</string>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RTY-OM-9O3" firstAttribute="top" secondItem="RRx-JE-vZy" secondAttribute="bottom" constant="100" id="NkU-5L-Cbd"/>
+                            <constraint firstAttribute="trailing" secondItem="RTY-OM-9O3" secondAttribute="trailing" constant="20" symbolic="YES" id="Ton-fI-Exj"/>
+                            <constraint firstItem="RTY-OM-9O3" firstAttribute="leading" secondItem="SEx-ba-sVK" secondAttribute="leading" constant="20" symbolic="YES" id="uQ9-eQ-4gD"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="4" image="contact" id="RIS-g1-ojI"/>
+                    <connections>
+                        <outlet property="resultLabel" destination="gC9-cy-VlK" id="lym-tp-5pT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W1x-ud-S3c" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1963" y="-149"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="contact" width="32" height="32"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
