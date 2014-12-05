@@ -1,13 +1,13 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 using System.Collections.Generic;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreAnimation;
-using MonoTouch.CoreText;
-using MonoTouch.ObjCRuntime;
+using AVFoundation;
+using CoreAnimation;
+using CoreText;
+using ObjCRuntime;
 using System.Threading;
 
 namespace QRchestra
@@ -31,18 +31,18 @@ namespace QRchestra
 			}
 		}
 
-		CGPath createPathForPoints (NSDictionary[] points)
+		CGPath createPathForPoints (CGPoint[] points)
 		{
 			CGPath path = new CGPath ();
-			PointF point;
+			CGPoint point;
 
 			if (points.Length > 0) {
-				points [0].ToPoint (out point);
+				point = points [0];
 				path.MoveToPoint (point);
 
 				int i = 1;
 				while (i < points.Length) {
-					points [i].ToPoint (out point);
+					point = points [i];
 					path.AddLineToPoint (point);
 					i++;
 				}
@@ -66,7 +66,7 @@ namespace QRchestra
 
 			previewLayer = new AVCaptureVideoPreviewLayer (sessionManager.CaptureSession) {
 				Frame = previewView.Bounds,
-				LayerVideoGravity = AVLayerVideoGravity.ResizeAspectFill
+				VideoGravity = AVLayerVideoGravity.ResizeAspectFill
 			};
 
 			if (previewLayer.Connection != null && previewLayer.Connection.SupportsVideoOrientation)
@@ -87,7 +87,7 @@ namespace QRchestra
 
 		partial void handleTap (UIGestureRecognizer recognizer)
 		{
-			PointF tapPoint = recognizer.LocationInView (previewView);
+			CGPoint tapPoint = recognizer.LocationInView (previewView);
 			focus (tapPoint);
 			expose (tapPoint);
 		}
@@ -110,29 +110,29 @@ namespace QRchestra
 			PresentViewController (controller, true, null);
 		}
 
-		void focus (PointF point)
+		void focus (CGPoint point)
 		{
-			PointF convertedFocusPoint = previewLayer.CaptureDevicePointOfInterestForPoint (point);
+			CGPoint convertedFocusPoint = previewLayer.CaptureDevicePointOfInterestForPoint (point);
 			sessionManager.AutoFocus (convertedFocusPoint);
 		}
 
-		void expose (PointF point)
+		void expose (CGPoint point)
 		{
-			PointF convertedExposurePoint = previewLayer.CaptureDevicePointOfInterestForPoint (point);
+			CGPoint convertedExposurePoint = previewLayer.CaptureDevicePointOfInterestForPoint (point);
 			sessionManager.Expose (convertedExposurePoint);
 		}
 
 		void resetFocusAndExposure ()
 		{
-			var pointOfInterest = new PointF (0.5f, 0.5f);
+			var pointOfInterest = new CGPoint (0.5f, 0.5f);
 
 			sessionManager.AutoFocus (pointOfInterest);
 			sessionManager.Expose (pointOfInterest);
-			sessionManager.FocusMode = AVCaptureFocusMode.ModeContinuousAutoFocus;
+			sessionManager.FocusMode = AVCaptureFocusMode.ContinuousAutoFocus;
 		}
 
-		[Export("step")]
-		void step ()
+		[Export("step:")]
+		void step (NSTimer timer)
 		{
 			if (sessionManager.Barcodes == null || sessionManager.Barcodes.Count < 1)
 				return;

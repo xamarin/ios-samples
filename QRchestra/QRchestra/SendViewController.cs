@@ -1,11 +1,11 @@
-using System.Drawing;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using UIKit;
 using System.Collections.Generic;
-using MonoTouch.CoreAnimation;
-using MonoTouch.Foundation;
+using CoreAnimation;
+using Foundation;
 using System;
-using MonoTouch.CoreImage;
-using MonoTouch.CoreGraphics;
+using CoreImage;
+using CoreGraphics;
 
 namespace QRchestra
 {
@@ -24,7 +24,7 @@ namespace QRchestra
 
 		public SendViewController () : base ("SendViewController", null)
 		{
-			PreferredContentSize = new SizeF (320f, 480f);
+			PreferredContentSize = new CGSize (320f, 480f);
 		}
 
 		public override void ViewDidLoad ()
@@ -69,11 +69,11 @@ namespace QRchestra
 		UIImage machineReadableCodeFromMessage (string message)
 		{
 			var mrcFilter = CIFilter.FromName ("CIQRCodeGenerator");
-			NSData messageData = new NSString (message).DataUsingEncoding (NSStringEncoding.UTF8);
+			NSData messageData = NSData.FromString (new NSString (message), NSStringEncoding.UTF8);
 			mrcFilter.SetValueForKey (messageData, (NSString)"inputMessage");
 
 			var barcodeCIImage = (CIImage)mrcFilter.ValueForKey ((NSString)"outputImage");
-			RectangleF extent = barcodeCIImage.Extent;
+			CGRect extent = barcodeCIImage.Extent;
 
 			CGImage barcodeCGImage = CIContext.CreateCGImage (barcodeCIImage, extent);
 			UIImage image = new UIImage (barcodeCGImage);

@@ -1,11 +1,11 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.AudioUnit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreFoundation;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreMidi;
-using MonoTouch.AudioToolbox;
+using UIKit;
+using AudioUnit;
+using Foundation;
+using CoreFoundation;
+using AVFoundation;
+using CoreMidi;
+using AudioToolbox;
 
 namespace QRchestra
 {
@@ -22,8 +22,8 @@ namespace QRchestra
 
 		double graphSampleRate;
 		AUGraph processingGraph;
-		AudioUnit samplerUnit;
-		AudioUnit ioUnit;
+		AudioUnit.AudioUnit samplerUnit;
+		AudioUnit.AudioUnit ioUnit;
 
 		public Synth ()
 		{
