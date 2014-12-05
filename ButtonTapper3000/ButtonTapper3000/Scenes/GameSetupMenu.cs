@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.SpriteKit;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using SpriteKit;
+using UIKit;
 
 namespace ButtonTapper3000 {
 
@@ -13,50 +13,50 @@ namespace ButtonTapper3000 {
 		SKLabelNode startButton;
 		SKLabelNode backButton;
 	
-		public GameSetupMenu (SizeF size) : base (size)
+		public GameSetupMenu (CGSize size) : base (size)
 		{
 			SKLabelNode timeLabel = new SKLabelNode ("GillSans-Bold") {
 				Text = "Time",
 				FontSize = 24,
-				Position = new PointF (FrameMidX, FrameMidY + 70)
+				Position = new CGPoint (FrameMidX, FrameMidY + 70)
 			};
 
 			SKLabelNode time15Button = new SKLabelNode ("GillSans-Bold") {
 				Text = "15",
 				FontSize = 14,
 				FontColor = UnselectedColor,
-				Position = new PointF (FrameMidX - 40, FrameMidY + 40)
+				Position = new CGPoint (FrameMidX - 40, FrameMidY + 40)
 			};
 			SKLabelNode time30Button = new SKLabelNode ("GillSans-Bold") {
 				Text = "30",
 				FontSize = 14,
 				FontColor = UnselectedColor,
-				Position = new PointF (FrameMidX, FrameMidY + 40)
+				Position = new CGPoint (FrameMidX, FrameMidY + 40)
 			};
 			SKLabelNode time45Button = new SKLabelNode ("GillSans-Bold") {
 				Text = "45",
 				FontSize = 14,
 				FontColor = UnselectedColor,
-				Position = new PointF (FrameMidX + 40, FrameMidY + 40)
+				Position = new CGPoint (FrameMidX + 40, FrameMidY + 40)
 			};
 			timeLabels = new SKLabelNode[] { time15Button, time30Button, time45Button };
 
 			SKLabelNode modeLabel = new SKLabelNode ("GillSans-Bold") {
 				Text = "Mode",
 				FontSize = 24,
-				Position = new PointF (FrameMidX, FrameMidY)
+				Position = new CGPoint (FrameMidX, FrameMidY)
 			};
 			SKLabelNode modeEasyButton = new SKLabelNode ("GillSans-Bold") {
 				Text = "Easy",
 				FontSize = 14,
 				FontColor = UnselectedColor,
-				Position = new PointF (FrameMidX - 40, FrameMidY - 40)
+				Position = new CGPoint (FrameMidX - 40, FrameMidY - 40)
 			};
 			SKLabelNode modeHardButton = new SKLabelNode ("GillSans-Bold") {
 				Text = "Hard",
 				FontSize = 14,
 				FontColor = UnselectedColor,
-				Position = new PointF (FrameMidX + 40, FrameMidY - 40)
+				Position = new CGPoint (FrameMidX + 40, FrameMidY - 40)
 			};
 			modeLabels = new [] { modeEasyButton, modeHardButton };
 
@@ -64,13 +64,13 @@ namespace ButtonTapper3000 {
 				Text = "Start!",
 				FontSize = 30,
 				FontColor = ButtonColor,
-				Position = new PointF (FrameMidX, FrameMidY - 100)
+				Position = new CGPoint (FrameMidX, FrameMidY - 100)
 			};
 			backButton = new SKLabelNode ("GillSans-Bold") {
 				Text = "Back",
 				FontSize = 18,
 				FontColor = ButtonColor,
-				Position = new PointF (FrameMidX, FrameMidY - 200)
+				Position = new CGPoint (FrameMidX, FrameMidY - 200)
 			};
 
 			timeLabels [(int)GameInfo.GameTime].FontColor = SelectedColor;
@@ -107,7 +107,7 @@ namespace ButtonTapper3000 {
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
 			foreach (var touch in touches) {
-				PointF location = (touch as UITouch).LocationInNode (this);
+				CGPoint location = (touch as UITouch).LocationInNode (this);
 
 				for (int i = 0; i < (int)GameTime.Max; i++) {
 					if (timeLabels [i].ContainsPoint (location)) {
