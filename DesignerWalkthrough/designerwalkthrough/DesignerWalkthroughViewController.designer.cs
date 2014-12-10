@@ -11,22 +11,18 @@ using System.CodeDom.Compiler;
 
 namespace DesignerWalkthrough
 {
-	[Register ("MonkeyController")]
-	partial class MonkeyController
+	[Register ("DesignerWalkthroughViewController")]
+	partial class DesignerWalkthroughViewController
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton backButton { get; set; }
-
-		[Action ("Clicked:")]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void Clicked (UIButton sender);
+		UIButton monkeyButton { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (backButton != null) {
-				backButton.Dispose ();
-				backButton = null;
+			if (monkeyButton != null) {
+				monkeyButton.Dispose ();
+				monkeyButton = null;
 			}
 		}
 	}

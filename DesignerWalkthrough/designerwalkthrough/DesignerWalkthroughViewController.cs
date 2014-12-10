@@ -1,15 +1,15 @@
 ﻿using System;
+using System.Drawing;
 
 using Foundation;
 using UIKit;
 
 namespace DesignerWalkthrough
 {
-	public partial class MainViewController : UIViewController
+	public partial class DesignerWalkthroughViewController : UIViewController
 	{
-		public MainViewController (IntPtr handle) : base (handle)
+		public DesignerWalkthroughViewController (IntPtr handle) : base (handle)
 		{
-			// Custom initialization
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -50,10 +50,6 @@ namespace DesignerWalkthrough
 		}
 
 		#endregion
-
-		partial void showInfo (NSObject sender)
-		{
-		}
 	}
 }
 

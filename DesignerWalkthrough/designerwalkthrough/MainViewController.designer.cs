@@ -1,12 +1,10 @@
-// WARNING
+﻿// WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by MonoDevelop to store outlets and
+// actions made in the Xcode designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
-using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace DesignerWalkthrough
@@ -14,16 +12,13 @@ namespace DesignerWalkthrough
 	[Register ("MainViewController")]
 	partial class MainViewController
 	{
-		[Outlet]
+		[Action ("showInfo:")]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UIButton monkeyButton { get; set; }
+		partial void showInfo (Foundation.NSObject sender);
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (monkeyButton != null) {
-				monkeyButton.Dispose ();
-				monkeyButton = null;
-			}
 		}
 	}
 }
+
