@@ -91,7 +91,6 @@
     <Compile Include="GLCommon.cs" />
     <Compile Include="GLProgram.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Shader.vsh" />
     <BundleResource Include="Resources\DieTexture.png" />

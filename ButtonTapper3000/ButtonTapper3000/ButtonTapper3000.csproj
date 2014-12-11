@@ -107,7 +107,6 @@
     <Compile Include="Scenes\ResultsScreen.cs" />
     <Compile Include="ViewController.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Resources\Default-Portrait~ipad.png" />
     <BundleResource Include="Resources\Default-Portrait%402x~ipad.png" />
