@@ -129,7 +129,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
