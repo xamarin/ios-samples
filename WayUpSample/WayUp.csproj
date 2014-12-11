@@ -72,7 +72,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="Images\crate.png" />
     <Content Include="Images\Icon.png" />

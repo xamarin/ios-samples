@@ -78,7 +78,6 @@
     <Compile Include="GlossyButton\GlossyButton.cs" />
     <Compile Include="GlossyButton\GlossyButtonViewController.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="LineArt\" />
     <Folder Include="Calendar\" />

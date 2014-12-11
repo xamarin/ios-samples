@@ -83,7 +83,6 @@
     <Compile Include="Screens\HelloWorldScreen.cs" />
     <Compile Include="Screens\HelloUniverseScreen.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Screens\" />
     <Folder Include="Resources\" />

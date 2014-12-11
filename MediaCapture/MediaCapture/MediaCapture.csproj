@@ -89,7 +89,6 @@
     <InterfaceDefinition Include="MediaCaptureViewController_iPhone.xib" />
     <InterfaceDefinition Include="MediaCaptureViewController_iPad.xib" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="CaptureManager\" />
     <Folder Include="Resources\" />

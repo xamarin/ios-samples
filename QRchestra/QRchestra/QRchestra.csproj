@@ -107,7 +107,6 @@
     <Compile Include="SessionManager.cs" />
     <Compile Include="Synth.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="ReceiveViewController.xib" />
     <InterfaceDefinition Include="SendViewController.xib" />
