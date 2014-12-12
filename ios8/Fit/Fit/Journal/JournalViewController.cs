@@ -86,7 +86,7 @@ namespace Fit
 
 			var now = NSDate.Now;
 
-			var metadata = NSDictionary.FromObjectAndKey (new NSString (item.Name), HKMetadataKey.FoodType);
+			var metadata = new NSDictionary (HKMetadataKey.FoodType, item.Name);
 			var caloriesSample = HKQuantitySample.FromType (quantityType, quantity, now, now, metadata);
 
 			HealthStore.SaveObject (caloriesSample, (success, error) => {
