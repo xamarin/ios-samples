@@ -98,8 +98,7 @@ namespace GLKReflectionMapEffectSkybox
 			};
 
 			NSError error;
-			NSDictionary options = NSDictionary.FromObjectAndKey (NSNumber.FromBoolean (false),
-			                                                      GLKTextureLoader.OriginBottomLeft);
+			NSDictionary options = new NSDictionary (GLKTextureLoader.OriginBottomLeft, false);
 
 			cubemap = GLKTextureLoader.CubeMapFromFiles (cubeMapFiles, options, out error);
 

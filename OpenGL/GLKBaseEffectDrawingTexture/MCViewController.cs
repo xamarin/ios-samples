@@ -79,8 +79,7 @@ namespace GLKBaseEffectDrawingTexture
 			string path = NSBundle.MainBundle.PathForResource ("monkey", "png");
 
 			NSError error;
-			NSDictionary options = NSDictionary.FromObjectAndKey (NSNumber.FromBoolean (true),
-			                                                      GLKTextureLoader.OriginBottomLeft);
+			NSDictionary options = new NSDictionary (GLKTextureLoader.OriginBottomLeft, true);
 
 			texture = GLKTextureLoader.FromFile (path, options, out error);
 
