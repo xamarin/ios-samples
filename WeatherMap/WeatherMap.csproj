@@ -81,6 +81,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="WeatherMapViewController.xib" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="WeatherIcons\" />
     <Folder Include="Resources\" />

@@ -106,6 +106,7 @@
       <DependentUpon>PreviewView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="ViewController_iPhone.xib" />
     <InterfaceDefinition Include="ViewController_iPad.xib" />

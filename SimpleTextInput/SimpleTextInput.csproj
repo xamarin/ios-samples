@@ -78,6 +78,7 @@
     <InterfaceDefinition Include="SimpleTextInputViewController_iPhone.xib" />
     <InterfaceDefinition Include="SimpleTextInputViewController_iPad.xib" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>

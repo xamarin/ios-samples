@@ -74,6 +74,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="ZoomingPdfViewerViewController.xib" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="Tamarin.pdf" />
   </ItemGroup>

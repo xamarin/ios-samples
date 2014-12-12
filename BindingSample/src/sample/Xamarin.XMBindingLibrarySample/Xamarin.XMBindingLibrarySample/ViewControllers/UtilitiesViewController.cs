@@ -16,9 +16,9 @@
 using System;
 using System.Linq;
 using MonoTouch.Dialog;
-using Foundation;
+using MonoTouch.Foundation;
 using XMBindingLibrarySample;
-using UIKit;
+using MonoTouch.UIKit;
 
 namespace Xamarin.XMBindingLibrarySample
 {

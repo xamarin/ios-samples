@@ -71,6 +71,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Expense.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>

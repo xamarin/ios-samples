@@ -88,6 +88,7 @@
     <Compile Include="Monkey.cs" />
     <Compile Include="MCViewController.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Resources\cubemap1.png" />
     <BundleResource Include="Resources\cubemap2.png" />

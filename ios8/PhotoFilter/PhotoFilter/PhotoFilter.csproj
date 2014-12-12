@@ -143,7 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PhotoFilterExtension\PhotoFilterExtension.csproj">
-      <Project>{471A8DEB-36A3-4C68-BA97-59846C1A50C0}</Project>
+      <Project>{7033D21B-D62E-4EF6-813E-346BAF40E738}</Project>
       <Name>PhotoFilterExtension</Name>
       <IsAppExtension>True</IsAppExtension>
     </ProjectReference>

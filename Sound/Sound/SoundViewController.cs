@@ -3,7 +3,6 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.AVFoundation;
 using System.Diagnostics;
-using System.IO;
 
 namespace Sound
 {
@@ -37,20 +36,9 @@ namespace Sound
             // start recording wireup
             this.StartRecordingButton.TouchUpInside += (sender, e) =>
             {
-				Console.WriteLine("Begin Recording");
+                Console.WriteLine("Begin Recording");
 
                 var session = AVAudioSession.SharedInstance();
-
-
-				// added for iOS privacy permission requests
-				if (UIDevice.CurrentDevice.CheckSystemVersion (8,0)) {
-					Console.WriteLine ("Request access in iOS 8");
-					session.RequestRecordPermission (delegate(bool granted) {
-						Console.WriteLine ("Permission: " + granted);
-						InvokeOnMainThread (() => RecordingStatusLabel.Text = granted ? "iOS8 granted" : "iOS8 denied");
-					});
-				}
-
 
                 NSError error = null;
                 session.SetCategory(AVAudioSession.CategoryRecord, out error);
@@ -159,7 +147,7 @@ namespace Sound
         {
             //Declare string for application temp path and tack on the file extension
             string fileName = string.Format("Myfile{0}.aac", DateTime.Now.ToString("yyyyMMddHHmmss"));
-			string tempRecording = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), fileName);
+            string tempRecording = NSBundle.MainBundle.BundlePath + "/../tmp/" + fileName;
 
             Console.WriteLine(tempRecording);
             this.audioFilePath = NSUrl.FromFilename(tempRecording);

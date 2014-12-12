@@ -8,9 +8,20 @@ namespace SingleWordKeyboard
 {
 	public partial class SingleWordKeyboardViewController : UIViewController
 	{
-		public SingleWordKeyboardViewController (IntPtr handle)
-			: base (handle)
+		static bool UserInterfaceIdiomIsPhone {
+			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
+		}
+
+		public SingleWordKeyboardViewController (IntPtr handle) : base (handle)
 		{
+		}
+
+		public override void DidReceiveMemoryWarning ()
+		{
+			// Releases the view if it doesn't have a superview.
+			base.DidReceiveMemoryWarning ();
+			
+			// Release any cached data, images, etc that aren't in use.
 		}
 
 		#region View lifecycle

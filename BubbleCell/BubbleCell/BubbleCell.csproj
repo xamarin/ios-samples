@@ -70,6 +70,7 @@
     <Compile Include="Bubble.cs" />
     <Compile Include="ChatViewController.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="green.png" />
     <Content Include="grey.png" />

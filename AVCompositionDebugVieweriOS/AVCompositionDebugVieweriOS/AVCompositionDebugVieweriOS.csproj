@@ -111,6 +111,7 @@
     <Compile Include="APLCompositionTrackSegmentInfo.cs" />
     <Compile Include="APLVideoCompositionStageInfo.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="Main_iPad.storyboard" />
   </ItemGroup>

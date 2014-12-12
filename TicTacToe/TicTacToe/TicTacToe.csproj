@@ -113,6 +113,7 @@
     <Compile Include="Controller\TTTHistoryListViewController.cs" />
     <Compile Include="Controller\TTTGameHistoryViewController.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Resources\backIndicator.png" />
     <BundleResource Include="Resources\backIndicator%402x.png" />

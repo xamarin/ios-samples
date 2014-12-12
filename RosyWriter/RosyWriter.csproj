@@ -96,6 +96,7 @@
     <InterfaceDefinition Include="RosyWriterViewControllerUniversal_iPhone.xib" />
     <InterfaceDefinition Include="RosyWriterViewControllerUniversal_iPad.xib" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Shaders\" />
     <Folder Include="Resources\" />

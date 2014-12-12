@@ -78,6 +78,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="RootViewController.xib" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Images\" />
     <Folder Include="Resources\" />

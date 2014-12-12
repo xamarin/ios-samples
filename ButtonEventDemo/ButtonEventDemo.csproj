@@ -73,6 +73,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="ButtonEventDemoViewController.xib" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>

@@ -80,6 +80,7 @@
     <InterfaceDefinition Include="DetailViewController.xib" />
     <InterfaceDefinition Include="MainViewController.xib" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="SFIcon.png" />
   </ItemGroup>

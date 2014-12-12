@@ -104,6 +104,7 @@
     <Compile Include="StarsViewController.cs" />
     <Compile Include="StarsAppDelegate.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="README.md" />

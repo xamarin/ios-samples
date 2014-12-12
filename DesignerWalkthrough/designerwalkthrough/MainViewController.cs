@@ -1,7 +1,6 @@
-﻿using System;
-
-using Foundation;
-using UIKit;
+﻿using MonoTouch.UIKit;
+using System;
+using MonoTouch.Foundation;
 
 namespace DesignerWalkthrough
 {
@@ -51,9 +50,6 @@ namespace DesignerWalkthrough
 
 		#endregion
 
-		partial void showInfo (NSObject sender)
-		{
-		}
 	}
 }
 

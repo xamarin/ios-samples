@@ -7,13 +7,13 @@ namespace PhotoFilterExtension
 	partial class PhotoEditingViewController
 	{
 		[Outlet("collectionView")]
-		UICollectionView CollectionView { get; set; }
+		private UICollectionView CollectionView { get; set; }
 
 		[Outlet("filterPreviewView")]
-		UIImageView FilterPreviewView { get; set; }
+		private UIImageView FilterPreviewView { get; set; }
 
 		[Outlet("backgroundImageView")]
-		UIImageView BackgroundImageView { get; set; }
+		private UIImageView BackgroundImageView { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{

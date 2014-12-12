@@ -88,4 +88,5 @@
     <Compile Include="MCViewController.cs" />
     <Compile Include="Monkey.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -76,6 +76,7 @@
       <HintPath>ReferencedAssemblies\ViciCoolStorage\Vici.Core.MT.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Screens\" />
     <Folder Include="Code\" />

@@ -12,7 +12,7 @@ namespace Common
 		const string StorageOptionUserDefaultsKey = "StorageOptionUserDefaultsKey";
 		const string StoredUbiquityIdentityTokenKey = "UbiquityIdentityTokenKey";
 
-		public static readonly string ListerFileExtension = "lister";
+		public static readonly string ListerFileExtension = @"lister";
 
 		public event EventHandler StorageOptionChanged;
 
@@ -106,8 +106,9 @@ namespace Common
 
 			bool currentTokenNullStoredNonNull = currentToken == null && storedToken != null;
 			bool storedTokenNullCurrentNonNull = storedToken == null && currentToken != null;
+			// TODO: https://trello.com/c/GRr8o909
 			bool currentNotEqualStored = currentToken != null && storedToken != null
-			                             && !currentToken.Equals (storedToken);
+				                      && !IsTokensEquals(currentToken, storedToken);
 
 			if (currentTokenNullStoredNonNull || storedTokenNullCurrentNonNull || currentNotEqualStored) {
 				StoreUbiquityIdentityToken ();
@@ -144,6 +145,14 @@ namespace Common
 				storedToken = NSKeyedUnarchiver.UnarchiveObject (tokenArchive);
 
 			return storedToken;
+		}
+
+		bool IsTokensEquals(NSObject token1, NSObject token2)
+		{
+			var data1 = (NSData)token1;
+			var data2 = (NSData)token2;
+
+			return data1.ToArray ().SequenceEqual (data2.ToArray ());
 		}
 
 		#endregion

@@ -15,9 +15,9 @@
 using System;
 using MonoTouch.Dialog;
 using XMBindingLibrarySample;
-using UIKit;
-using Foundation;
-using CoreGraphics;
+using MonoTouch.UIKit;
+using MonoTouch.Foundation;
+using System.Drawing;
 
 namespace Xamarin.XMBindingLibrarySample
 {
@@ -52,7 +52,7 @@ namespace Xamarin.XMBindingLibrarySample
 			_CustomView.Name = @"Anuj";
 			
 			// The instance method uses a frame calculation.
-			_CustomView.Frame = new CGRect(10, 25, 200, 200);
+			_CustomView.Frame = new RectangleF(10, 25, 200, 200);
 			
 			// The instance method we bound.
 			_CustomView.CustomizeViewWithText(string.Format(@"Yo {0}, I hurd you like bindings! MonoTouch makes it super easy with BTOUCH. Try it out!", 

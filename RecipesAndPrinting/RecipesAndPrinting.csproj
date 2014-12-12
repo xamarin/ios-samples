@@ -85,6 +85,7 @@
     <Compile Include="RecipePrintPageRenderer.cs" />
     <Compile Include="AppDelegate.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="DetailHeaderView.xib" />
     <InterfaceDefinition Include="RecipeInstructionsView.xib" />

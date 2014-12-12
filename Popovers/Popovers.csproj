@@ -83,6 +83,7 @@
     <InterfaceDefinition Include="en.lproj\DetailView.xib" />
     <InterfaceDefinition Include="en.lproj\MainWindow.xib" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>

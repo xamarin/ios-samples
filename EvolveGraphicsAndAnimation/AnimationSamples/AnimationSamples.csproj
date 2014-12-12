@@ -123,6 +123,7 @@
     <InterfaceDefinition Include="ImplicitLayerAnimation.xib" />
     <InterfaceDefinition Include="ExplicitLayerAnimation.xib" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="monkey1.png" />

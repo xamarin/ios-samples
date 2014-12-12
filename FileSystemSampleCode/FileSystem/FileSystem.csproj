@@ -74,6 +74,7 @@
     <Compile Include="SampleCode.cs" />
     <Compile Include="TestData\TestXml.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="TestData\" />
     <Folder Include="Resources\" />

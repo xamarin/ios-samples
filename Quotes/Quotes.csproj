@@ -123,6 +123,7 @@
       <DependentUpon>PagePreview.cs</DependentUpon>
     </Compile>
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Pages\" />
     <Folder Include="Resources\" />

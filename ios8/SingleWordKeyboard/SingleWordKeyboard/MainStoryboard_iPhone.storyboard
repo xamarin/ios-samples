@@ -17,35 +17,21 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="9" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" editable="NO">
-                                <rect key="frame" x="20" y="50" width="280" height="186"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="9" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center">
+                                <rect key="frame" x="39" y="103" width="242" height="186"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <string key="text">This application provides you and app extension keyboard. To enable it, please go to Settings &gt; General &gt; Keyboard and add a new keyboard. You will see the Single Word Keyboard. Now each time you see the keyboard, you can click on the globe that allows you to go to the next keyboard and start using the Single Word Keyboard.</string>
-                                <constraints>
-                                    <constraint firstItem="9" firstAttribute="height" constant="186" id="21"/>
-                                </constraints>
                             </textView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="" borderStyle="roundedRect" minimumFontSize="17" id="5" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center">
-                                <rect key="frame" x="20" y="266" width="280" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="" borderStyle="roundedRect" minimumFontSize="17" id="5" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center">
+                                <rect key="frame" x="20" y="403" width="280" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <constraints>
-                                    <constraint firstItem="5" firstAttribute="height" constant="30" id="20"/>
-                                </constraints>
                             </textField>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="9" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="30" id="13"/>
-                            <constraint firstItem="9" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="14"/>
-                            <constraint firstItem="kh9-bI-dsS" firstAttribute="trailing" secondItem="9" secondAttribute="trailing" constant="20" id="15"/>
-                            <constraint firstItem="5" firstAttribute="top" secondItem="9" secondAttribute="bottom" constant="30" id="16"/>
-                            <constraint firstItem="kh9-bI-dsS" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="20" id="17"/>
-                            <constraint firstItem="5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="18"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

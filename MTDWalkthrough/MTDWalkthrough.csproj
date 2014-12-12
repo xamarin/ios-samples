@@ -70,6 +70,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Task.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>

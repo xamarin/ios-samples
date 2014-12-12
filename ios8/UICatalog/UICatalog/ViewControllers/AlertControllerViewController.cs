@@ -83,7 +83,7 @@ namespace UICatalog
 			var title = "A Short Title is Best".Localize ();
 			var message = "A message should be a short, complete sentence.".Localize ();
 			var cancelButtonTitle = "Cancel".Localize ();
-			var otherButtonTitleOne = "Choice One".Localize ();
+			var otherButtonTitleOne = "Coice One".Localize ();
 			var otherButtonTitleTwo = "Choice Two".Localize ();
 
 			var alertController = UIAlertController.Create (title, message, UIAlertControllerStyle.Alert);

@@ -79,6 +79,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Settings.bundle\" />
     <Folder Include="Settings.bundle\en.lproj\" />

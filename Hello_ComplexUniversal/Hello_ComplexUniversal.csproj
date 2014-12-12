@@ -78,6 +78,7 @@
     <InterfaceDefinition Include="Screens\HomeScreen_iPad.xib" />
     <InterfaceDefinition Include="Screens\HomeScreen_iPhone.xib" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Screens\" />
     <Folder Include="Resources\" />

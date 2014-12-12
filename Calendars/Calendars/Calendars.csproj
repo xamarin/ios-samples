@@ -110,6 +110,7 @@
     <Compile Include="App.cs" />
     <Compile Include="Screens\EventList\EventListController.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
     <ITunesArtwork Include="Resources\iTunesArtwork%402x" />

@@ -96,6 +96,7 @@
     <Compile Include="LineLayout.cs" />
     <Compile Include="GridLayout.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="monkey.png" />
     <Content Include="placeholder.png" />

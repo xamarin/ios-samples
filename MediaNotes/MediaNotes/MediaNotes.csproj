@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="AppDelegate.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="PhotoNotes\" />
     <Folder Include="Shared Files\" />

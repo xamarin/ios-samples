@@ -94,6 +94,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="ProductViewController.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>

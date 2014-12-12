@@ -80,6 +80,7 @@
     <Compile Include="HostedProductsViewController.cs" />
     <Compile Include="HostedProductManager.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>

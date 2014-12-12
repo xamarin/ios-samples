@@ -71,6 +71,7 @@
     <Compile Include="Classes\AppDelegate.cs" />
     <Compile Include="OtherSources\Main.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Classes\" />
     <Folder Include="Images\" />

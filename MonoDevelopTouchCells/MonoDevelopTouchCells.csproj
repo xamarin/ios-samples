@@ -73,6 +73,7 @@
     <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
     <InterfaceDefinition Include="DetailViewController.xib" xmlns="" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="images\checked.png" />
     <Content Include="images\unchecked.png" />

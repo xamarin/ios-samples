@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="Extensions\NSBundleExtensions.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="SysSoundViewController.xib" />
   </ItemGroup>

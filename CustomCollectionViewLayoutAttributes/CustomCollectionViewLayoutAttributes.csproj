@@ -92,6 +92,7 @@
     <Compile Include="SimpleCollectionViewController.cs" />
     <Compile Include="Animals.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="monkey.png" />
     <Content Include="placeholder.png" />

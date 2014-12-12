@@ -16,7 +16,7 @@
 		<string>Resources/icon-100.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.Touches_Classic</string>
+	<string>Touches_Classic</string>
 	<key>MinimumOSVersion</key>
 	<string>4.2</string>
 	<key>UIDeviceFamily</key>

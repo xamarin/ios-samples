@@ -113,6 +113,7 @@
     <Compile Include="WalkingDead.cs" />
     <Compile Include="ZombieMeter.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Resources\background.png" />
     <BundleResource Include="Resources\buttonView.png" />

@@ -81,6 +81,7 @@
     <Compile Include="CustomPaymentObserver.cs" />
     <Compile Include="CreditManager.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="ja.lproj\" />
     <Folder Include="Resources\" />

@@ -70,6 +70,7 @@
       <DependentUpon>Transitioning_To_Xcode_4ViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="Transitioning_To_Xcode_4ViewController.xib" />
   </ItemGroup>

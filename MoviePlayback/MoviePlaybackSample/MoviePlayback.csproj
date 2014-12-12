@@ -83,6 +83,7 @@
     <InterfaceDefinition Include="MoviePlaybackSampleViewController_iPhone.xib" />
     <InterfaceDefinition Include="MoviePlaybackSampleViewController_iPad.xib" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Movies\" />

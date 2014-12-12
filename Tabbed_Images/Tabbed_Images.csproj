@@ -86,6 +86,7 @@
     <Content Include="Images\second.png" />
     <Content Include="Images\second%402x.png" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>

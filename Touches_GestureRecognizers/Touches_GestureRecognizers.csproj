@@ -70,6 +70,7 @@
     <Compile Include="Other Sources\Main.cs" />
     <Compile Include="Classes\Touches_GestureRecognizersViewController.cs" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Classes\" />
     <Folder Include="Other Sources\" />

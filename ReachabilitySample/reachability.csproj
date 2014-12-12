@@ -73,6 +73,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="Network.png" />
     <Content Include="Airport.png" />

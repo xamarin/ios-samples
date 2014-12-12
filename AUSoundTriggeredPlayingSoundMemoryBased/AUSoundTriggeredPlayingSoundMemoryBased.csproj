@@ -94,6 +94,7 @@
     <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
     <InterfaceDefinition Include="MainView.xib" xmlns="" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <Content Include="loop_stereo.aif">

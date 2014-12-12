@@ -89,6 +89,7 @@
   <ItemGroup>
     <None Include="Info.plist" />
   </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="Main_iPhone.storyboard" />
   </ItemGroup>

@@ -13,20 +13,9 @@
       "idiom": "iphone"
     },
     {
-      "size": "29x29",
-      "scale": "3x",
-      "idiom": "iphone"
-    },
-    {
       "filename": "Icon-Spotlight-40@2x.png",
       "size": "40x40",
       "scale": "2x",
-      "idiom": "iphone"
-    },
-    {
-      "filename": "Icon-60@2x.png",
-      "size": "40x40",
-      "scale": "3x",
       "idiom": "iphone"
     },
     {
@@ -45,11 +34,6 @@
       "filename": "Icon-60@2x.png",
       "size": "60x60",
       "scale": "2x",
-      "idiom": "iphone"
-    },
-    {
-      "size": "60x60",
-      "scale": "3x",
       "idiom": "iphone"
     },
     {
@@ -111,11 +95,6 @@
       "size": "76x76",
       "scale": "2x",
       "idiom": "ipad"
-    },
-    {
-      "size": "120x120",
-      "scale": "1x",
-      "idiom": "car"
     }
   ],
   "info": {
