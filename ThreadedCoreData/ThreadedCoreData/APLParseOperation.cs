@@ -85,8 +85,7 @@ namespace ThreadedCoreData
 
 			} catch (Exception e) {
 				Console.WriteLine (e.StackTrace + e.Message);
-				var userInfo = NSDictionary.FromObjectAndKey (new NSString ("Error while parsing GeoJSON"), 
-				                                              NSError.LocalizedDescriptionKey);
+				var userInfo = new NSDictionary (NSError.LocalizedDescriptionKey, "Error while parsing GeoJSON");
 
 				var parsingError = new NSError (new NSString (), 0, userInfo);
 				InvokeOnMainThread (new Selector ("HandleEarthquakesError:"), parsingError);
@@ -96,7 +95,7 @@ namespace ThreadedCoreData
 		[Export("HandleEarthquakesError:")]
 		public void HandleEarthquakesError (NSError parserError)
 		{
-			var userInfo = NSDictionary.FromObjectAndKey (parserError, new NSString (EarthquakesMessageErrorKey));
+			var userInfo = new NSDictionary (EarthquakesMessageErrorKey, parserError);
 			NSNotificationCenter.DefaultCenter.PostNotificationName (EarthquakesErrorNotificationName, this, userInfo);
 		}
 

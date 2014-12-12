@@ -215,7 +215,7 @@ namespace ThreadedCoreData
 		NSError ComposeError (string message, string domain, int statusCode)
 		{
 			var errorMessage = new NSString (message); 
-			var userInfo = NSDictionary.FromObjectAndKey (errorMessage, NSError.LocalizedDescriptionKey);
+			var userInfo = new NSDictionary (NSError.LocalizedDescriptionKey, errorMessage);
 			return new NSError (new NSString (domain), statusCode, userInfo);
 		}
 
@@ -230,8 +230,7 @@ namespace ThreadedCoreData
 					var parseOperation = new APLParseOperation (data, PersistentStoreCoordinator);
 					parseQueue.AddOperation (parseOperation);
 				} else {
-					var errorString = new NSString ("Problems with connection.");
-					var userInfo = NSDictionary.FromObjectAndKey (errorString, NSError.LocalizedDescriptionKey);
+					var userInfo = new NSDictionary(NSError.LocalizedDescriptionKey, "Problems with connection.");
 					var reportError = new NSError (new NSString ("HTTP"), httpResponse.StatusCode, userInfo);
 					HandleError (reportError);
 				}
