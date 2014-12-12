@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreMedia;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using AVFoundation;
+using CoreMedia;
+using Foundation;
+using UIKit;
 using System.Collections.Generic;
 
 namespace BracketStripes
@@ -34,13 +34,13 @@ namespace BracketStripes
 		{
 			BackgroundColor = UIColor.White;
 
-			scrollView = new UIScrollView (RectangleF.Empty) {
+			scrollView = new UIScrollView (CGRect.Empty) {
 				WeakDelegate = this
 			};
 
 			AddSubview (scrollView);
 
-			imageView = new UIImageView (RectangleF.Empty);
+			imageView = new UIImageView (CGRect.Empty);
 			scrollView.AddSubview (imageView);
 		}
 
@@ -62,7 +62,7 @@ namespace BracketStripes
 			scrollView.ContentSize = image.Size;
 
 			if (image != null) {
-				float aspect = image.Size.Width / image.Size.Height;
+				nfloat aspect = image.Size.Width / image.Size.Height;
 
 				if (aspect * Bounds.Size.Height > Bounds.Size.Width)
 					scrollView.ZoomScale = scrollView.MinimumZoomScale = Bounds.Size.Width / image.Size.Width;
@@ -78,9 +78,9 @@ namespace BracketStripes
 		{
 			UIImage resultImage = null;
 
-			var newSize = new SizeF (view.Size.Width / 2, view.Size.Height / 2);
+			var newSize = new CGSize (view.Size.Width / 2, view.Size.Height / 2);
 			UIGraphics.BeginImageContext (newSize);
-			view.Draw (new RectangleF (0, 0, newSize.Width, newSize.Height));
+			view.Draw (new CGRect (0, 0, newSize.Width, newSize.Height));
 			resultImage = UIGraphics.GetImageFromCurrentImageContext ();
 			UIGraphics.EndImageContext ();
 
@@ -90,7 +90,7 @@ namespace BracketStripes
 		private void CenterImageInScrollView ()
 		{
 			var boundsSize = scrollView.Bounds.Size;
-			RectangleF frameToCenter = imageView.Frame;
+			CGRect frameToCenter = imageView.Frame;
 
 			if (frameToCenter.Size.Width < boundsSize.Width)
 				frameToCenter.X = ((int)boundsSize.Width - frameToCenter.Size.Width) / 2;
