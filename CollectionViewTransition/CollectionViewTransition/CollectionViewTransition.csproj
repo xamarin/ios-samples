@@ -103,7 +103,6 @@
     <Compile Include="APLCollectionViewController.cs" />
     <Compile Include="APLTransitionController.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Images\sa0.jpg" />
     <BundleResource Include="Images\sa1.jpg" />

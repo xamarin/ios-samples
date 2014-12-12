@@ -107,7 +107,6 @@
     <Compile Include="CubeView.cs" />
     <Compile Include="ViewController.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Screenshots\" />
     <Folder Include="Resources\" />

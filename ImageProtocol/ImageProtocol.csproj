@@ -98,7 +98,6 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="ImageProtocol.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="test.html" />
   </ItemGroup>

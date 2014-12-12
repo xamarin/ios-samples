@@ -83,7 +83,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="WorldCities\MainStoryboard.storyboard" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="CityList.plist" />
   </ItemGroup>

@@ -3,9 +3,12 @@
 *.swp
 *.DS_Store
 *.nib
+*.suo
+*/Thumbs.db
 
 */bin/*
 */obj/*
 */*/bin/*
 */*/obj/*
-*/Thumbs.db
+*/*/*/bin/*
+*/*/*/obj/*

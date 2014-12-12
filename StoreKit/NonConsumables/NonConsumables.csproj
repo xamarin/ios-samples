@@ -79,7 +79,6 @@
     <Compile Include="NonConsumableViewController.cs" />
     <Compile Include="PhotoFilterManager.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="Images\PhotoFilterTest1.jpg" />
     <Content Include="Images\PhotoFilterTest2.jpg" />

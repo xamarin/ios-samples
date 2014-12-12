@@ -146,7 +146,7 @@
       <Name>ListerKit</Name>
     </ProjectReference>
     <ProjectReference Include="..\ListerToday\ListerToday.csproj">
-      <Project>{DC2E8C8F-509A-4846-ABEF-345F82F92833}</Project>
+      <Project>{4CCF271B-CF2F-4ABA-A9F5-DE94EEED5E42}</Project>
       <Name>ListerToday</Name>
       <IsAppExtension>True</IsAppExtension>
     </ProjectReference>

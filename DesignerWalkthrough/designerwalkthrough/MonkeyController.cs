@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.CodeDom.Compiler;
 
 namespace DesignerWalkthrough
@@ -9,6 +9,7 @@ namespace DesignerWalkthrough
 	{
 		public MonkeyController (IntPtr handle) : base (handle)
 		{
+			Console.Write ('a');
 		}
 
 		partial void Clicked (UIButton sender)

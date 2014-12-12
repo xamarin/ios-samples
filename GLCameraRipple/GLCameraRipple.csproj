@@ -76,7 +76,6 @@
     <Compile Include="RippleViewController.cs" />
     <Compile Include="Ripple.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Shaders\" />
     <Folder Include="Resources\" />
