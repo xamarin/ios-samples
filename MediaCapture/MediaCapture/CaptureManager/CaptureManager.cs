@@ -340,8 +340,7 @@ namespace MediaCapture
 			
 			// create a VideoDataOutput and add it to the capture session
 			frameGrabberOutput = new AVCaptureVideoDataOutput();
-			frameGrabberOutput.CompressedVideoSetting = new AVVideoSettingsCompressed ();
-			
+			frameGrabberOutput.WeakVideoSettings = new CVPixelBufferAttributes () { PixelFormatType = CVPixelFormatType.CV32BGRA }.Dictionary;
 			// set up the output queue and delegate
 			queue = new CoreFoundation.DispatchQueue ("captureQueue");
 			videoFrameSampler = new VideoFrameSamplerDelegate();
