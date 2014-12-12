@@ -4,7 +4,7 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
 namespace BracketStripes
@@ -13,19 +13,19 @@ namespace BracketStripes
 	partial class CameraViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UISegmentedControl bracketModeControl { get; set; }
+		UIKit.UISegmentedControl bracketModeControl { get; set; }
 
 		[Outlet]
 		BracketStripes.CapturePreviewView cameraPreviewView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton cameraShutterButton { get; set; }
+		UIKit.UIButton cameraShutterButton { get; set; }
 
 		[Action ("BracketChangeDidChange:")]
-		partial void BracketChangeDidChange (MonoTouch.Foundation.NSObject sender);
+		partial void BracketChangeDidChange (Foundation.NSObject sender);
 
 		[Action ("CameraShutterDidPress:")]
-		partial void CameraShutterDidPress (MonoTouch.UIKit.UIButton sender);
+		partial void CameraShutterDidPress (UIKit.UIButton sender);
 		
 		void ReleaseDesignerOutlets ()
 		{

@@ -1,44 +1,44 @@
 using System;
-using System.Drawing;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreMedia;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
+using AVFoundation;
+using CoreMedia;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 using System.Collections.Generic;
-using MonoTouch.ImageIO;
-using MonoTouch.CoreVideo;
+using ImageIO;
+using CoreVideo;
 using System.Diagnostics;
 
 namespace BracketStripes
 {
 	public class StripedImage : NSObject
 	{
-		private Size imageSize;
-		private Size stripeSize;
+		private CGSize imageSize;
+		private CGSize stripeSize;
 		private int stride;
 		private int stripeIndex;
 		private CGBitmapContext renderContext;
 
-		public StripedImage (Size size, int stripWidth, int stride)
+		public StripedImage (CGSize size, int stripWidth, int stride)
 		{
 			imageSize = size;
 			this.stride = stride;
-			stripeSize = new Size (stripWidth, size.Height);
+			stripeSize = new CGSize (stripWidth, size.Height);
 
 			PrepareImage (size);
 		}
 
-		private void PrepareImage (Size size)
+		private void PrepareImage (CGSize size)
 		{
-			int bitsPerComponent = 8;
-			int width = size.Width;
-			int paddedWidth = (width + 15);
-			int bytesPerPixel = 4;
-			int bytesPerRow = paddedWidth * bytesPerPixel;
+			nint bitsPerComponent = 8;
+			nint width = (nint)size.Width;
+			nint paddedWidth = (width + 15);
+			nint bytesPerPixel = 4;
+			nint bytesPerRow = paddedWidth * bytesPerPixel;
 
 			using (var colorSpace = CGColorSpace.CreateDeviceRGB ()) {
-				renderContext = new CGBitmapContext (null, size.Width, size.Height, bitsPerComponent, bytesPerRow, colorSpace, CGImageAlphaInfo.PremultipliedFirst);
+				renderContext = new CGBitmapContext (null, (nint)size.Width, (nint)size.Height, bitsPerComponent, bytesPerRow, colorSpace, CGImageAlphaInfo.PremultipliedFirst);
 			}
 		}
 
@@ -48,10 +48,10 @@ namespace BracketStripes
 			stopwatch.Start();
 
 			using (var image = CreateImage (sampleBuffer)) {
-				var imageRect = new Rectangle (0, 0, image.Width, image.Height);
+				var imageRect = new CGRect (0, 0, image.Width, image.Height);
 
-				var maskRects = new List<RectangleF> ();
-				var maskRect = new Rectangle (stripeSize.Width * stripeIndex, 0, stripeSize.Width, stripeSize.Height);
+				var maskRects = new List<CGRect> ();
+				var maskRect = new CGRect (stripeSize.Width * stripeIndex, 0, stripeSize.Width, stripeSize.Height);
 
 				while (maskRect.X < imageSize.Width) {
 					maskRects.Add (maskRect);
@@ -72,7 +72,7 @@ namespace BracketStripes
 
 		public UIImage ImageWithOrientation (UIImageOrientation orientation)
 		{
-			float scale = UIScreen.MainScreen.Scale;
+			nfloat scale = UIScreen.MainScreen.Scale;
 			UIImage image = null;
 
 			using (CGImage cgImage = renderContext.ToImage ()) {
@@ -92,7 +92,7 @@ namespace BracketStripes
 		{
 			CGImage image = null;
 
-			CMFormatDescription formatDescription = sampleBuffer.GetFormatDescription ();
+			CMVideoFormatDescription formatDescription = sampleBuffer.GetVideoFormatDescription ();
 			var subType = formatDescription.MediaSubType;
 			CMBlockBuffer blockBuffer = sampleBuffer.GetDataBuffer ();
 
