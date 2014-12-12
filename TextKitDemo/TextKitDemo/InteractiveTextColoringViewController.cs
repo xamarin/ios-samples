@@ -43,9 +43,9 @@ namespace TextKitDemo
 			View.Add (newTextView);
 
 			var tokens = new Dictionary<string, NSDictionary> ();
-			tokens.Add ("Alice", NSDictionary.FromObjectAndKey (UIColor.Red, UIStringAttributeKey.ForegroundColor));
-			tokens.Add ("Rabbit", NSDictionary.FromObjectAndKey (UIColor.Orange, UIStringAttributeKey.ForegroundColor));
-			tokens.Add ("DefaultTokenName", NSDictionary.FromObjectAndKey (UIColor.Black, UIStringAttributeKey.ForegroundColor));
+			tokens.Add ("Alice", new NSDictionary (UIStringAttributeKey.ForegroundColor, UIColor.Red));
+			tokens.Add ("Rabbit", new NSDictionary (UIStringAttributeKey.ForegroundColor, UIColor.Orange));
+			tokens.Add ("DefaultTokenName", new NSDictionary (UIStringAttributeKey.ForegroundColor, UIColor.Black));
 			textStorage.Tokens = tokens;
 
 			SetText ();

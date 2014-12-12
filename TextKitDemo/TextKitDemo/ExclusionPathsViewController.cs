@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 using Foundation;
 using UIKit;
-using CoreGraphics;
 
 namespace TextKitDemo
 {
