@@ -64,35 +64,21 @@ namespace AVCustomEdit
 
 		public override NSDictionary SourcePixelBufferAttributes ()
 		{
-			return NSDictionary.FromObjectsAndKeys (
-				new [] {
-					NSNumber.FromUInt32((UInt32)CVPixelFormatType.CV420YpCbCr8BiPlanarVideoRange), 
-					NSNumber.FromBoolean(true)
-				}, new [] {
-					CVPixelBuffer.PixelFormatTypeKey, 
-					CVPixelBuffer.OpenGLESCompatibilityKey, 
-				}
-			);
+			return new NSDictionary (CVPixelBuffer.PixelFormatTypeKey, CVPixelFormatType.CV420YpCbCr8BiPlanarVideoRange,
+				CVPixelBuffer.OpenGLESCompatibilityKey, true);
 		}
 
 		public override NSDictionary RequiredPixelBufferAttributesForRenderContext ()
 		{
-			return NSDictionary.FromObjectsAndKeys (
-				new [] {
-					NSNumber.FromUInt32 ((UInt32)CVPixelFormatType.CV420YpCbCr8BiPlanarVideoRange), 
-					NSNumber.FromBoolean (true)
-				}, new [] {
-					CVPixelBuffer.PixelFormatTypeKey,
-					CVPixelBuffer.OpenGLESCompatibilityKey
-				}
-			);
+			return new NSDictionary (CVPixelBuffer.PixelFormatTypeKey, CVPixelFormatType.CV420YpCbCr8BiPlanarVideoRange,
+				CVPixelBuffer.OpenGLESCompatibilityKey, true);
 		}
 
 		public override void RenderContextChanged (AVVideoCompositionRenderContext newRenderContext)
 		{
 			renderContextQueue.DispatchSync (() => {
 				renderContext = newRenderContext;
-				renderContextDidChange = true;			
+				renderContextDidChange = true;
 			});
 		}
 
