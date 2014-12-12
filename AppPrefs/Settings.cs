@@ -35,41 +35,35 @@ namespace AppPrefs
 		{
 			var settingsDict = new NSDictionary (NSBundle.MainBundle.PathForResource ("Settings.bundle/Root.plist", null));
 			
-			var prefSpecifierArray = settingsDict[(NSString)"PreferenceSpecifiers"] as NSArray;
+			var prefSpecifierArray = settingsDict["PreferenceSpecifiers"] as NSArray;
 			
 			foreach (var prefItem in NSArray.FromArray<NSDictionary> (prefSpecifierArray)) {
-				var key = prefItem[(NSString)"Key"] as NSString;
+				var key = (NSString)prefItem["Key"];
 				if (key == null)
 					continue;
-				var val = prefItem[(NSString)"DefaultValue"];
+
+				var val = prefItem["DefaultValue"];
 				switch (key.ToString ()) {
-				case firstNameKey:
-					FirstName = val.ToString ();
-					break;
-				case lastNameKey:
-					LastName = val.ToString ();
-					break;
-				case nameColorKey:
-					TextColor =  (TextColors)((NSNumber)val).Int32Value;
-					break;
-				case backgroundColorKey:
-					BackgroundColor =  (BackgroundColors)((NSNumber)val).Int32Value;
-					break;
+					case firstNameKey:
+						FirstName = val.ToString ();
+						break;
+					case lastNameKey:
+						LastName = val.ToString ();
+						break;
+					case nameColorKey:
+						TextColor = (TextColors)((NSNumber)val).Int32Value;
+						break;
+					case backgroundColorKey:
+						BackgroundColor = (BackgroundColors)((NSNumber)val).Int32Value;
+						break;
 				}
 			}
-			var appDefaults = NSDictionary.FromObjectsAndKeys (new object[] {
-					new NSString (FirstName),
-					new NSString (LastName),
-					new NSNumber ((int)TextColor),
-					new NSNumber ((int)BackgroundColor)
-				},
-				new object [] { firstNameKey, lastNameKey, nameColorKey, backgroundColorKey }
-			);
-			
+			var appDefaults = new NSDictionary (firstNameKey, FirstName, lastNameKey, LastName, nameColorKey, (int)TextColor, backgroundColorKey, (int)BackgroundColor);
+
 			NSUserDefaults.StandardUserDefaults.RegisterDefaults (appDefaults);
 			NSUserDefaults.StandardUserDefaults.Synchronize ();
 		}
-		
+
 		public static void SetupByPreferences ()
 		{
 			var testValue = NSUserDefaults.StandardUserDefaults.StringForKey (firstNameKey);
