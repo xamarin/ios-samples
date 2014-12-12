@@ -4,6 +4,7 @@
 *.DS_Store
 *.nib
 *.suo
+*/Thumbs.db
 
 */bin/*
 */obj/*
