@@ -6,7 +6,6 @@ using AVFoundation;
 using CoreFoundation;
 using CoreVideo;
 using CoreMedia;
-using CoreGraphics;
 
 namespace AVCustomEdit
 {
