@@ -172,7 +172,7 @@ namespace BracketStripes
 
 			if (captureDevice == null) {
 				string message = "Error message back camera - not found";
-				string title = "Error title back camera - not found";
+				string title = "Error";
 				ShowErrorMessage (message, title);
 				return;
 			}
@@ -183,7 +183,7 @@ namespace BracketStripes
 				Console.WriteLine ("This error should be handled appropriately in your app -- obtain device input: {0}", error);
 
 				string message = "Error message back camera - can't open.";
-				string title = "Error title for back camera - can't open.";
+				string title = "Error";
 				ShowErrorMessage (message, title);
 				return;
 			}
@@ -192,7 +192,7 @@ namespace BracketStripes
 			stillImageOutput = new AVCaptureStillImageOutput ();
 
 			//Or instead of JPEG, we can use one of the following pixel formats: BGRA, 420f output
-			stillImageOutput.OutputSettings = NSDictionary.FromObjectAndKey (AVVideo.CodecJPEG, AVVideo.CodecKey);
+			stillImageOutput.OutputSettings = new NSDictionary (AVVideo.CodecKey, AVVideo.CodecJPEG);
 			captureSession.AddOutput (stillImageOutput);
 			cameraPreviewView.ConfigureCaptureSession (captureSession, stillImageOutput);
 			captureSession.SessionPreset = AVCaptureSession.PresetPhoto;
