@@ -77,7 +77,6 @@
     <InterfaceDefinition Include="Hello_UniversalViewController_iPhone.xib" />
     <InterfaceDefinition Include="Hello_UniversalViewController_iPad.xib" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>

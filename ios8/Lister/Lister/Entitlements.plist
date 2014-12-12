@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
 	<array>
-		<string>iCloud.com.your-company.Lister</string>
+		<string>iCloud.com.xamarin.Lister</string>
 	</array>
 	<key>com.apple.developer.icloud-services</key>
 	<array>

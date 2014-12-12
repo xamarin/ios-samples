@@ -118,7 +118,6 @@
     <Compile Include="QueueStream.cs" />
     <Compile Include="StreamingPlayback.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="MainViewController.xib" />
     <InterfaceDefinition Include="PlayerViewController.xib" />

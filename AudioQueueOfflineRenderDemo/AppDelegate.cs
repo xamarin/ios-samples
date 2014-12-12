@@ -130,6 +130,8 @@ namespace AudioQueueOfflineRenderDemo
 			
 			if (packets > 0) {
 				audioQueueBuffer->AudioDataByteSize = (uint) bytes;
+				if (packetDescriptions.Length > packets)
+					Array.Resize (ref packetDescriptions, packets);
 				queue.EnqueueBuffer (audioQueueBuffer, packetDescriptions);
 				currentPacket += packets;
 			} else {

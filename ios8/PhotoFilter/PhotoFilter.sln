@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoFilter", "PhotoFilter\PhotoFilter.csproj", "{2B2D17A8-BA6D-49C8-97D6-C2D53DD7CF4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoFilterExtension", "PhotoFilterExtension\PhotoFilterExtension.csproj", "{7033D21B-D62E-4EF6-813E-346BAF40E738}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoFilterExtension", "PhotoFilterExtension\PhotoFilterExtension.csproj", "{471A8DEB-36A3-4C68-BA97-59846C1A50C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,20 +27,17 @@ Global
 		{2B2D17A8-BA6D-49C8-97D6-C2D53DD7CF4F}.Release|iPhone.Build.0 = Release|iPhone
 		{2B2D17A8-BA6D-49C8-97D6-C2D53DD7CF4F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{2B2D17A8-BA6D-49C8-97D6-C2D53DD7CF4F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{7033D21B-D62E-4EF6-813E-346BAF40E738}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{7033D21B-D62E-4EF6-813E-346BAF40E738}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{7033D21B-D62E-4EF6-813E-346BAF40E738}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{7033D21B-D62E-4EF6-813E-346BAF40E738}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{7033D21B-D62E-4EF6-813E-346BAF40E738}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{7033D21B-D62E-4EF6-813E-346BAF40E738}.Debug|iPhone.Build.0 = Debug|iPhone
-		{7033D21B-D62E-4EF6-813E-346BAF40E738}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{7033D21B-D62E-4EF6-813E-346BAF40E738}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{7033D21B-D62E-4EF6-813E-346BAF40E738}.Release|iPhone.ActiveCfg = Release|iPhone
-		{7033D21B-D62E-4EF6-813E-346BAF40E738}.Release|iPhone.Build.0 = Release|iPhone
-		{7033D21B-D62E-4EF6-813E-346BAF40E738}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{7033D21B-D62E-4EF6-813E-346BAF40E738}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = PhotoFilter\PhotoFilter.csproj
+		{471A8DEB-36A3-4C68-BA97-59846C1A50C0}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{471A8DEB-36A3-4C68-BA97-59846C1A50C0}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{471A8DEB-36A3-4C68-BA97-59846C1A50C0}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{471A8DEB-36A3-4C68-BA97-59846C1A50C0}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{471A8DEB-36A3-4C68-BA97-59846C1A50C0}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{471A8DEB-36A3-4C68-BA97-59846C1A50C0}.Debug|iPhone.Build.0 = Debug|iPhone
+		{471A8DEB-36A3-4C68-BA97-59846C1A50C0}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{471A8DEB-36A3-4C68-BA97-59846C1A50C0}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{471A8DEB-36A3-4C68-BA97-59846C1A50C0}.Release|iPhone.ActiveCfg = Release|iPhone
+		{471A8DEB-36A3-4C68-BA97-59846C1A50C0}.Release|iPhone.Build.0 = Release|iPhone
+		{471A8DEB-36A3-4C68-BA97-59846C1A50C0}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{471A8DEB-36A3-4C68-BA97-59846C1A50C0}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 EndGlobal

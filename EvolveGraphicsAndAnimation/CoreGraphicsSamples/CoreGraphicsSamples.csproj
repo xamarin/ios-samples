@@ -78,7 +78,6 @@
     <Compile Include="DrawnImageView.cs" />
     <Compile Include="CoreGraphicsSamplesViewController.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Default-568h%402x.png" />
     <BundleResource Include="MyImage.png" />

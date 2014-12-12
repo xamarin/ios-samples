@@ -5,8 +5,8 @@
 // Manual changes to this file will not be maintained.
 //
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.CodeDom.Compiler;
 
 namespace DesignerWalkthrough
@@ -15,11 +15,11 @@ namespace DesignerWalkthrough
 	partial class MonkeyController
 	{
 		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UIButton backButton { get; set; }
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UIButton backButton { get; set; }
 
 		[Action ("Clicked:")]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		partial void Clicked (UIButton sender);
 
 		void ReleaseDesignerOutlets ()

@@ -259,7 +259,6 @@ namespace CloudCaptions
 		void OnLoadNewPostFetchRecord(CKRecord record, List<Post> newPosts, ref Post lastRecordInOperation)
 		{
 			// If the record we just fetched doesn't match recordIDs to any item in our newPosts array, let's make an Post and add it
-			// TODO: Equals works ??? https://trello.com/c/RuwA7hRS
 			var matchingRecord = newPosts.FindIndex (p => p.PostRecord.RecordId.Equals(record.RecordId));
 			if (matchingRecord == -1) {
 				Post fetchedPost = new Post (record);

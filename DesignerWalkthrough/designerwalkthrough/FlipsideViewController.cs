@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+
+using Foundation;
+using UIKit;
 
 namespace DesignerWalkthrough
 {
@@ -9,7 +10,6 @@ namespace DesignerWalkthrough
 	{
 		public FlipsideViewController (IntPtr handle) : base (handle)
 		{
-
 		}
 
 		public override void DidReceiveMemoryWarning ()
@@ -27,12 +27,6 @@ namespace DesignerWalkthrough
 			base.ViewDidLoad ();
 			
 			// Perform any additional setup after loading the view, typically from a nib.
-		}
-
-		//Hides the status bar 
-		public override bool PrefersStatusBarHidden ()
-		{		
-			return true;
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -59,7 +53,7 @@ namespace DesignerWalkthrough
 
 		partial void done (UIBarButtonItem sender)
 		{
-			this.DismissViewController(true, null);
+			DismissViewController (true, null);
 			
 			if (Done != null)
 				Done (this, EventArgs.Empty);

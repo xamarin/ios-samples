@@ -181,7 +181,6 @@
     <InterfaceDefinition Include="AddressBookController.xib" xmlns="" />
     <InterfaceDefinition Include="MonoDataSqlite.xib" xmlns="" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>

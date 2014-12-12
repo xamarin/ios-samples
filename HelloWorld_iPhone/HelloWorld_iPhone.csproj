@@ -75,7 +75,6 @@
       <DependentUpon>HelloWorld_iPhoneViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="HelloWorld_iPhoneViewController.xib" />
   </ItemGroup>

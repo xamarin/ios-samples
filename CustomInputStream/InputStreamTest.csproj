@@ -82,7 +82,6 @@
     <Compile Include="NativeUploader.cs" />
     <Compile Include="ZInputStream.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>

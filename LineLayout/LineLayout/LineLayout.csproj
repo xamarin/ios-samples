@@ -95,7 +95,6 @@
     <Compile Include="LineLayout.cs" />
     <Compile Include="LineLayoutViewController.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
