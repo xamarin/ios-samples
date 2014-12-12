@@ -6,7 +6,6 @@ using System.Text;
 using Foundation;
 using UIKit;
 using ObjCRuntime;
-using CoreGraphics;
 using CoreText;
 
 namespace SimpleTextInput
@@ -510,7 +509,7 @@ namespace SimpleTextInput
 		NSDictionary TextStyling (UITextPosition position, UITextStorageDirection direction)
 		{
 			// This sample assumes all text is single-styled, so this is easy.
-			return NSDictionary.FromObjectAndKey (textView.Font, CTStringAttributeKey.Font);
+			return new NSDictionary (CTStringAttributeKey.Font, textView.Font);
 		}
 #endregion
 #region UIKeyInput methods

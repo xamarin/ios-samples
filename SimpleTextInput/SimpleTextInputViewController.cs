@@ -2,7 +2,6 @@ using UIKit;
 using CoreGraphics;
 using System;
 using Foundation;
-using CoreGraphics;
 
 namespace SimpleTextInput
 {

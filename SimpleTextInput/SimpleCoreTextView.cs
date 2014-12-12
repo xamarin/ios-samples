@@ -7,7 +7,6 @@ using Foundation;
 using UIKit;
 using ObjCRuntime;
 using CoreText;
-using CoreGraphics;
 
 namespace SimpleTextInput
 {

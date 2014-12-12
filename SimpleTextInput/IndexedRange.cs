@@ -6,7 +6,6 @@ using System.Text;
 using Foundation;
 using UIKit;
 using ObjCRuntime;
-using CoreGraphics;
 using CoreText;
 
 namespace SimpleTextInput
