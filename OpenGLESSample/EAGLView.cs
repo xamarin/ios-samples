@@ -33,16 +33,16 @@ namespace OpenGLESSample
 		{
 			CAEAGLLayer eaglLayer = (CAEAGLLayer) Layer;
 			eaglLayer.Opaque = true;
-			eaglLayer.DrawableProperties = NSDictionary.FromObjectsAndKeys (
-				new NSObject []{NSNumber.FromBoolean(false),          EAGLColorFormat.RGBA8},
-				new NSObject []{EAGLDrawableProperty.RetainedBacking, EAGLDrawableProperty.ColorFormat}
+			eaglLayer.DrawableProperties = new NSDictionary (
+				EAGLDrawableProperty.RetainedBacking, false,
+				EAGLDrawableProperty.ColorFormat, EAGLColorFormat.RGBA8
 			);
 			Context = (iPhoneOSGraphicsContext) ((IGraphicsContextInternal) GraphicsContext.CurrentContext).Implementation;
-			
+
 			Context.MakeCurrent(null);
 			AnimationInterval = 1.0 / 60.0;
 		}
-	
+
 		void DrawView ()
 		{
 			float[] squareVertices = {
