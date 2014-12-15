@@ -1,14 +1,13 @@
 using System;
-using System.Collections.Generic;
-using CoreGraphics;
 using System.IO;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using MonoTouch;
+
+using CoreGraphics;
 using AVFoundation;
 using AssetsLibrary;
 using AudioToolbox;
 using CoreFoundation;
-using CoreGraphics;
 using CoreMedia;
 using CoreVideo;
 using Foundation;
@@ -513,33 +512,16 @@ namespace RosyWriter
 			
 			bitsPerSecond = (int) (numPixels * bitsPerPixel);
 			
-			NSDictionary videoCompressionSettings = NSDictionary.FromObjectsAndKeys (
-				new NSObject[] 
-				{   // The Compression Settings Values
-					AVVideo.CodecH264,
-					NSNumber.FromInt32 (dimensions.Width),
-					NSNumber.FromInt32 (dimensions.Height),
-					NSDictionary.FromObjectsAndKeys (
-						new object[] 
-						{	// Compression Property Values
-							NSNumber.FromInt32 (bitsPerSecond),
-							NSNumber.FromInt32 (30)
-						},
-						new object[]
-						{	// Compression Property Keys
-							AVVideo.AverageBitRateKey,
-							AVVideo.MaxKeyFrameIntervalKey
-						})
-				},
-				new NSObject[]
-				{	// The Compression Settings Keys
-					AVVideo.CodecKey,
-					AVVideo.WidthKey,
-					AVVideo.HeightKey,
-					AVVideo.CompressionPropertiesKey
-				}
-				);
-			
+			NSDictionary videoCompressionSettings = new NSDictionary (
+				AVVideo.CodecKey, AVVideo.CodecH264,
+				AVVideo.WidthKey, dimensions.Width,
+				AVVideo.HeightKey,dimensions.Height,
+				AVVideo.CompressionPropertiesKey, new NSDictionary(
+					AVVideo.AverageBitRateKey, bitsPerSecond,
+					AVVideo.MaxKeyFrameIntervalKey, 30
+				)
+			);
+
 			if (assetWriter.CanApplyOutputSettings (videoCompressionSettings, AVMediaType.Video)){
 				// HACK: Change NSDictionary into AVVideoSettingsCompressed created using that NSDictionary (videoCompressionSettings)
 				assetWriterVideoIn = new AVAssetWriterInput (AVMediaType.Video, new AVVideoSettingsCompressed( videoCompressionSettings));
@@ -570,23 +552,13 @@ namespace RosyWriter
 			var currentChannelLayout = currentFormatDescription.AudioChannelLayout;
 			var currentChannelLayoutData = currentChannelLayout == null ? new NSData () : currentChannelLayout.AsData ();
 
-			NSDictionary audioCompressionSettings = NSDictionary.FromObjectsAndKeys (
-				new NSObject[]
-				{ 
-					NSNumber.FromInt32 ((int)AudioFormatType.MPEG4AAC), 
-					NSNumber.FromDouble (currentASBD.SampleRate),
-					NSNumber.FromInt32 (64000),
-					NSNumber.FromInt32 (currentASBD.ChannelsPerFrame),
-					currentChannelLayoutData
-				},
-				new NSObject[]
-				{ 
-					AVAudioSettings.AVFormatIDKey,
-					AVAudioSettings.AVSampleRateKey,
-					AVAudioSettings.AVEncoderBitRateKey,
-					AVAudioSettings.AVNumberOfChannelsKey,
-					new NSString("AVChannelLayoutKey") //AVAudioSettings.AVChannelLayoutKey,
-				});
+			NSDictionary audioCompressionSettings = new NSDictionary (
+				AVAudioSettings.AVFormatIDKey, AudioFormatType.MPEG4AAC,
+				AVAudioSettings.AVSampleRateKey, currentASBD.SampleRate,
+				AVAudioSettings.AVEncoderBitRateKey, 64000,
+				AVAudioSettings.AVNumberOfChannelsKey, currentASBD.ChannelsPerFrame,
+				AVAudioSettings.AVChannelLayoutKey, currentChannelLayoutData
+			);
 
 			if (assetWriter.CanApplyOutputSettings (audioCompressionSettings, AVMediaType.Audio)){
 				// HACK: Change NSDictionary into AudioSettings created using that NSDictionary (audioCompressionSettings)

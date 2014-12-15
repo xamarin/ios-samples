@@ -35,17 +35,17 @@ namespace RosyWriter
 			// Initialize OpenGL ES 2
 			var eagleLayer = (CAEAGLLayer)Layer;
 			eagleLayer.Opaque = true;
-			eagleLayer.DrawableProperties = NSDictionary.FromObjectsAndKeys (
-				new object[] { NSNumber.FromBoolean (false), EAGLColorFormat.RGBA8  },
-				new object[] { EAGLDrawableProperty.RetainedBacking, EAGLDrawableProperty.ColorFormat }
+			eagleLayer.DrawableProperties = new NSDictionary (
+				EAGLDrawableProperty.RetainedBacking, false,
+				EAGLDrawableProperty.ColorFormat, EAGLColorFormat.RGBA8
 			);
-			
+
 			Context = new EAGLContext (EAGLRenderingAPI.OpenGLES2);
-			
+
 			if (!EAGLContext.SetCurrentContext (Context))
 				throw new ApplicationException ("Could not set EAGLContext");
 		}
-	
+
 		[Export ("layerClass")]
 		public static Class LayerClass ()
 		{
