@@ -14,7 +14,7 @@ namespace TransitionsDemo
 	{
 		[Action ("doneButtonPresses:")]
 		partial void doneButtonPresses (UIKit.UIBarButtonItem sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

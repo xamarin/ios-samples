@@ -17,7 +17,7 @@ namespace TableSearch
 
 		[Outlet("year")]
 		UIKit.UILabel Year { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (Year != null) {

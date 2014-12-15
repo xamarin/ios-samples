@@ -12,7 +12,7 @@ namespace ButtonTapper3000 {
 		SKLabelNode [] modeLabels;
 		SKLabelNode startButton;
 		SKLabelNode backButton;
-	
+
 		public GameSetupMenu (CGSize size) : base (size)
 		{
 			SKLabelNode timeLabel = new SKLabelNode ("GillSans-Bold") {

@@ -33,7 +33,7 @@ namespace NSZombieApocalypse
 			label.TextAlignment = UITextAlignment.Center;
 			label.SizeToFit ();
 			var labelFrame = label.Frame;
-			labelFrame.X = (frame.Size.Width - labelFrame.Size.Width) / 2; 
+			labelFrame.X = (frame.Size.Width - labelFrame.Size.Width) / 2;
 			label.Frame = labelFrame;
 			AddSubview (label);
 			label.AccessibilityTraits = UIAccessibilityTrait.Header;
@@ -47,8 +47,8 @@ namespace NSZombieApocalypse
 
 			float width = (float) frame.Size.Width * 0.6f;
 			var textViewFrame = new CGRect (
-				200 + ((frame.Size.Width - 200) - width) / 2, 
-				label.Frame.GetMaxY () + 30, 
+				200 + ((frame.Size.Width - 200) - width) / 2,
+				label.Frame.GetMaxY () + 30,
 				width,
 				frame.Size.Height * 0.6f
 			);

@@ -12,7 +12,7 @@ namespace TextKitDemo
 	[Register ("CollectionViewController")]
 	partial class CollectionViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

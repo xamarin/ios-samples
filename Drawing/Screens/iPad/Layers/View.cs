@@ -18,21 +18,21 @@ namespace Example_Drawing.Screens.iPad.Layers
 		{
 			Console.WriteLine ("Draw() Called");
 			base.Draw (rect);
-			
+
 			using (CGContext context = UIGraphics.GetCurrentContext ()) {
-				
+
 				CGAffineTransform affineTransform = context.GetCTM ();
 				//affineTransform.Scale (1, -1);
 				affineTransform.Translate (1, -1);
 				context.ConcatCTM (affineTransform);
-				
+
 				// fill the background with white
 				// set fill color
 				UIColor.White.SetFill ();
 				//context.SetRGBFillColor (1, 1, 1, 1f);
 				// paint
 				context.FillRect (rect);
-				
+
 				CGPoint[] myStarPoints = { new CGPoint (5f, 5f)
 					, new CGPoint (10f, 15f), new CGPoint (10f, 15f)
 					, new CGPoint (15f, 5f), new CGPoint (15f, 5f)
@@ -40,7 +40,7 @@ namespace Example_Drawing.Screens.iPad.Layers
 					, new CGPoint (2.5f, 11f), new CGPoint (2.5f, 11f)
 					, new CGPoint (16.5f, 11f), new CGPoint (16.5f, 11f)
 					, new CGPoint (5f, 5f) };
-				
+
 				// create the layer
 				using (CGLayer starLayer = CGLayer.Create (context, rect.Size)) {
 					// set fill to blue
@@ -51,9 +51,9 @@ namespace Example_Drawing.Screens.iPad.Layers
 					// draw the layer onto our screen
 					float starYPos = 5;
 					float starXPos = 5;
-					
+
 					for (int row = 0; row < 50; row++) {
-						
+
 						// reset the x position for each row
 						starXPos = 5;
 						//

@@ -7,7 +7,7 @@ namespace QuartzSample
 
 	public partial class MainViewController : UITableViewController
 	{
-	
+
 		QuartzViewController[] controllers;
 
 		public MainViewController (IntPtr b) : base (b)
@@ -40,10 +40,10 @@ namespace QuartzSample
 		{
 			// Deselect the current row
 			TableView.DeselectRow (TableView.IndexPathForSelectedRow, false);
-	
+
 			UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.Default;
 		}
-		
+
 		//
 		// The data source for our TableView
 		//
@@ -72,13 +72,13 @@ namespace QuartzSample
 				var cell = tableView.DequeueReusableCell (kCellIdentifier);
 				if (cell == null)
 					cell = new UITableViewCell (UITableViewCellStyle.Subtitle, kCellIdentifier);
-	
+
 				var vc = mvc.controllers [indexPath.Row];
 				cell.TextLabel.Text = vc.DemoTitle;
 				cell.DetailTextLabel.Text = vc.DemoInfo;
 				cell.DetailTextLabel.AdjustsFontSizeToFitWidth = true;
 				cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-	
+
 				return cell;
 			}
 		}

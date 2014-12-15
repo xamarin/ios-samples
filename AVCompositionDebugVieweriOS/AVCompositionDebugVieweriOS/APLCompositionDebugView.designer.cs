@@ -12,7 +12,7 @@ namespace AVCompositionDebugVieweriOS
 	[Register ("APLCompositionDebugView")]
 	partial class APLCompositionDebugView
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

@@ -26,7 +26,7 @@ namespace BracketStripes
 
 		[Action ("CameraShutterDidPress:")]
 		partial void CameraShutterDidPress (UIKit.UIButton sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (bracketModeControl != null) {

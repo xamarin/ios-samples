@@ -25,7 +25,7 @@ namespace StoryboardTable
 				detailDescriptionLabel.Dispose ();
 				detailDescriptionLabel = null;
 			}
-			
+
 			if (toolbar != null) {
 				toolbar.Dispose ();
 				toolbar = null;

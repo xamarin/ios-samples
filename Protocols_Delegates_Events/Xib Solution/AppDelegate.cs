@@ -6,8 +6,8 @@ using MonoTouch.UIKit;
 
 namespace Protocols_Delegates_Events
 {
-    // The UIApplicationDelegate for the application. This class is responsible for launching the 
-    // User Interface of the application, as well as listening (and optionally responding) to 
+    // The UIApplicationDelegate for the application. This class is responsible for launching the
+    // User Interface of the application, as well as listening (and optionally responding) to
     // application events from iOS.
     [Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
@@ -17,7 +17,7 @@ namespace Protocols_Delegates_Events
         Protocols_Delegates_EventsViewController viewController;
 
         //
-        // This method is invoked when the application has loaded and is ready to run. In this 
+        // This method is invoked when the application has loaded and is ready to run. In this
         // method you should instantiate the window, load the UI into it and then make the window
         // visible.
         //
@@ -26,11 +26,11 @@ namespace Protocols_Delegates_Events
         public override bool FinishedLaunching (UIApplication app, NSDictionary options)
         {
             window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
+
             viewController = new Protocols_Delegates_EventsViewController ("Protocols_Delegates_EventsViewController", null);
             window.RootViewController = viewController;
             window.MakeKeyAndVisible ();
-			
+
             return true;
         }
     }

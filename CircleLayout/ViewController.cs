@@ -14,11 +14,11 @@ namespace CircleLayout
 		public ViewController (UICollectionViewLayout layout) : base (layout)
 		{
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			CollectionView.RegisterClassForCell (typeof(Cell), cellClass);
 			CollectionView.AddGestureRecognizer (new UITapGestureRecognizer (HandleTapGesture));
 			CollectionView.ReloadData ();
@@ -45,19 +45,19 @@ namespace CircleLayout
 		{
 			if (sender.State != UIGestureRecognizerState.Ended)
 				return;
-			
+
 			CGPoint initialPinchPoint = sender.LocationInView (CollectionView);
 			NSIndexPath tappedCellPath = CollectionView.IndexPathForItemAtPoint (initialPinchPoint);
-			
+
 			if (tappedCellPath != null) {
 				cellCount--;
-				
+
 				CollectionView.PerformBatchUpdates (delegate {
 						CollectionView.DeleteItems (new NSIndexPath [] { tappedCellPath });
 					}, null);
 			} else {
 				cellCount++;
-				
+
 				CollectionView.PerformBatchUpdates (delegate {
 						CollectionView.InsertItems (new NSIndexPath[] {
 								NSIndexPath.FromItemSection (0, 0)

@@ -20,7 +20,7 @@ namespace KeychainTouchID
 
 		[Outlet]
 		UIKit.UITextView textView { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (tableView != null) {

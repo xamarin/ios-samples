@@ -23,8 +23,8 @@ namespace DynamicsCatalog {
 			var attachmentOffset = new UIOffset (-25.0f, -25.0f);
 
 			/*
-    		 By default, an attachment behavior uses the center of a view. By using a small offset, 
-    		 we get a more interesting effect which will cause the view to have rotation movement 
+    		 By default, an attachment behavior uses the center of a view. By using a small offset,
+    		 we get a more interesting effect which will cause the view to have rotation movement
     		 when dragging the attachment.
     		*/
 			var attachmentBehavior = new UIAttachmentBehavior (square, attachmentOffset, squareCenterPoint);

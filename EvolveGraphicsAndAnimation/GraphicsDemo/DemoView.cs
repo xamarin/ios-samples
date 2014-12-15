@@ -37,7 +37,7 @@ namespace GraphicsDemo
 			base.TouchesBegan (touches, evt);
 
 			UITouch touch = touches.AnyObject as UITouch;
-			
+
 			if (touch != null) {
 				initialPoint = touch.LocationInView (this);
 			}
@@ -48,7 +48,7 @@ namespace GraphicsDemo
 			base.TouchesMoved (touches, evt);
 
 			UITouch touch = touches.AnyObject as UITouch;
-			
+
 			if (touch != null) {
 				latestPoint = touch.LocationInView (this);
 				SetNeedsDisplay ();
@@ -80,7 +80,7 @@ namespace GraphicsDemo
 
 				//get graphics context
 				using(CGContext g = UIGraphics.GetCurrentContext ()){
-						
+
 					//set up drawing attributes
 					g.SetLineWidth (2);
 					UIColor.Red.SetStroke ();
@@ -91,15 +91,15 @@ namespace GraphicsDemo
 					} else {
 						path.AddLineToPoint (latestPoint);
 					}
-				
+
 					//use a dashed line
 					g.SetLineDash (0, new nfloat[]{5, 2});
-									
+
 					//add geometry to graphics context and draw it
-					g.AddPath (path);		
+					g.AddPath (path);
 					g.DrawPath (CGPathDrawingMode.Stroke);
 				}
 			}
-		}	           
+		}
 	}
 }

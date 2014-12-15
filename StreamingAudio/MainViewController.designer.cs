@@ -23,7 +23,7 @@ namespace StreamingAudio
 
 		[Outlet]
 		UIKit.UITextField urlTextbox { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (streamAndPlayButton != null) {

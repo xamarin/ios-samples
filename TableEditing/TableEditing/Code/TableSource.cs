@@ -198,8 +198,6 @@ namespace TableEditing.Code
 			tableView.EndUpdates ();
 		}
 
-
-
 		#endregion
 
 		/// <summary>

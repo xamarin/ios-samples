@@ -98,7 +98,7 @@ namespace AVCustomEdit
 						asyncVideoCompositionRequest.FinishWithError(error);
 					}
 
-				}		
+				}
 			});
 		}
 
@@ -117,7 +117,6 @@ namespace AVCustomEdit
 			CMTime elapsed = CMTime.Subtract (time, range.Start);
 			return elapsed.Seconds / range.Duration.Seconds;
 		}
-
 
 		CVPixelBuffer newRenderedPixelBufferForRequest (AVAsynchronousVideoCompositionRequest request, out NSError error )
 		{

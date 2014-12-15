@@ -13,7 +13,7 @@ namespace MoviePlaybackSample
 	{
 		[Outlet]
 		UIKit.UIButton playMovieButton { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (playMovieButton != null) {

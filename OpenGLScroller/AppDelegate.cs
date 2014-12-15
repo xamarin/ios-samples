@@ -15,7 +15,7 @@ namespace OpenGLScroller
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.RootViewController = new ViewController();
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 	}

@@ -19,7 +19,7 @@ namespace MapCallouts
 				CLLocationCoordinate2D theCoordinate;
 				theCoordinate.Latitude = 37.810000;
 				theCoordinate.Longitude = -122.477989;
-				return theCoordinate; 
+				return theCoordinate;
 			}
 		}
 	}

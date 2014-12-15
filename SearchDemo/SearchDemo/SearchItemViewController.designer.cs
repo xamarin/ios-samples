@@ -13,7 +13,7 @@ namespace SearchDemo
 	{
 		[Outlet]
 		UIKit.UIWebView webView { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (webView != null) {

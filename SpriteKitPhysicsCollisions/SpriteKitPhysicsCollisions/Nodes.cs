@@ -103,7 +103,7 @@ namespace SpriteKitPhysicsCollisions {
 
 		static SKEmitterNode template = UnarchiveNode ("explosion", "sks");
 
-		public ExplosionNode (SKNode target, CGPoint initialPosition, double duration = defaultDuration) : 
+		public ExplosionNode (SKNode target, CGPoint initialPosition, double duration = defaultDuration) :
 			base ((template as NSObject).Copy ().Handle)
 		{
 			TargetNode = target;

@@ -20,7 +20,7 @@ namespace EvolveCountdownWidget
 
 		[Outlet]
 		UIKit.UILabel WidgetTitle { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (WidgetImage != null) {

@@ -13,27 +13,27 @@ namespace CoreTelephonyDemo
 		CTCallCenter callCenter;
 		string carrierName;
 		CTCall[] calls = new CTCall [0];
-		
+
 		public CoreTelephonyDemoViewController ()
 			: base ("CoreTelephonyDemoViewController", null)
 		{
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			this.Title = "Core Telephony Info";
 			this.TableView.AllowsSelection = false;
 			this.TableView.DataSource = new TableViewDataSource (this);
-			
+
 			networkInfo = new CTTelephonyNetworkInfo ();
 			callCenter = new CTCallCenter ();
 			callCenter.CallEventHandler += CallEvent;
 			carrierName = networkInfo.SubscriberCellularProvider == null ? null : networkInfo.SubscriberCellularProvider.CarrierName;
 			networkInfo.CellularProviderUpdatedEventHandler += ProviderUpdatedEvent;
 		}
-		
+
 		private void ProviderUpdatedEvent (CTCarrier carrier)
 		{
 			CoreFoundation.DispatchQueue.MainQueue.DispatchSync (() =>
@@ -42,7 +42,7 @@ namespace CoreTelephonyDemo
 				TableView.ReloadData ();
 			});
 		}
-		
+
 		private void CallEvent (CTCall inCTCall)
 		{
 			CoreFoundation.DispatchQueue.MainQueue.DispatchSync (() =>
@@ -61,45 +61,45 @@ namespace CoreTelephonyDemo
 				TableView.ReloadData ();
 			});
 		}
-		
+
 		public override void ViewDidUnload ()
 		{
 			base.ViewDidUnload ();
-			
+
 			// Release any retained subviews of the main view.
 			// e.g. myOutlet = null;
 			networkInfo.CellularProviderUpdatedEventHandler -= ProviderUpdatedEvent;
 			callCenter.CallEventHandler -= CallEvent;
 		}
-		
+
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return true;
 		}
-		
+
 		enum SectionIndex {
 			CurrentCall = 0,
 			CallCenter,
 			Carrier,
 			Count,
 		}
-		
+
 		enum SectionRow {
 			CurrentCall = 1,
 			CallCenter = 1,
 			Carrier = 1,
 			Count,
 		}
-		
+
 		class TableViewDataSource : UITableViewDataSource {
 			CoreTelephonyDemoViewController controller;
 			List<UITableViewCell> table_cells = new List<UITableViewCell> ();
-			
+
 			public TableViewDataSource (CoreTelephonyDemoViewController controller)
 			{
 				this.controller = controller;
 			}
-			
+
 			#region implemented abstract members of MonoTouch.UIKit.UITableViewDataSource
 			public override nint RowsInSection (UITableView tableView, nint section)
 			{
@@ -114,34 +114,34 @@ namespace CoreTelephonyDemo
 					return 1;
 				}
 			}
-			
+
 			string GetCallState (string callState)
 			{
 				switch (callState) {
-				case "CTCallStateDialing": 
+				case "CTCallStateDialing":
 					return "Dialing";
-				case "CTCallStateIncoming": 
+				case "CTCallStateIncoming":
 					return "Incoming";
 				case "CTCallStateConnected":
 					return "Connected";
-				case "CTCallStateDisconnected": 
+				case "CTCallStateDisconnected":
 					return "Disconnected";
 				default:
 					return callState;
 				}
 			}
-			
+
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				UITableViewCell cell;
 				string cellText = string.Empty;
-				
+
 				cell = tableView.DequeueReusableCell ("Cell");
 				if (cell == null) {
 					cell = new UITableViewCell (UITableViewCellStyle.Default, "Cell");
 					table_cells.Add (cell);
 				}
-				
+
 				switch ((SectionIndex) indexPath.Section) {
 				case SectionIndex.CurrentCall:
 					if (controller.calls.Length > 0) {
@@ -167,27 +167,27 @@ namespace CoreTelephonyDemo
 					}
 					break;
 				}
-				
+
 				cell.TextLabel.Text = cellText;
 				return cell;
 			}
 			#endregion
-			
+
 			public override nint NumberOfSections (UITableView tableView)
 			{
 				return (int) SectionIndex.Count;
 			}
-			
+
 			public override string TitleForHeader (UITableView tableView, nint section)
 			{
 				switch ((SectionIndex) (int)section) {
-				case SectionIndex.CurrentCall: 
+				case SectionIndex.CurrentCall:
 					return "Current call";
-				case SectionIndex.CallCenter: 
+				case SectionIndex.CallCenter:
 					return "Call center";
 				case SectionIndex.Carrier:
 					return "Carrier";
-				default: 
+				default:
 					return null;
 				}
 			}

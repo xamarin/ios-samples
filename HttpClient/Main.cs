@@ -1,4 +1,4 @@
-//	
+//
 // This sample shows how to use the two Http stacks in MonoTouch:
 // The System.Net.WebRequest.
 // The MonoTouch.Foundation.NSMutableUrlRequest
@@ -30,12 +30,12 @@ namespace HttpClient
 		{
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 		}
-		
+
 		public static void Done ()
 		{
-			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;	
+			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 		}
-			
+
 	}
 
 	// The name AppDelegate is referenced in the MainWindow.xib file.
@@ -45,7 +45,7 @@ namespace HttpClient
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window.AddSubview (navigationController.View);
-			
+
 			button1.TouchDown += Button1TouchDown;
 			TableViewSelector.Configure (this.stack, new string [] {
 				"http  - WebRequest",
@@ -53,9 +53,9 @@ namespace HttpClient
 				"http  - NSUrlConnection",
 				"http  - HttpClient/CFNetwork"
 			});
-			                   
+
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 
@@ -64,16 +64,16 @@ namespace HttpClient
 			// Do not queue more than one request
 			if (UIApplication.SharedApplication.NetworkActivityIndicatorVisible)
 				return;
-			
+
 			switch (stack.SelectedRow ()){
 			case 0:
 				new DotNet (this).HttpSample ();
 				break;
-			
+
 			case 1:
 				new DotNet (this).HttpSecureSample ();
 				break;
-				
+
 			case 2:
 				new Cocoa (this).HttpSample ();
 				break;
@@ -83,9 +83,9 @@ namespace HttpClient
 				break;
 			}
 		}
-/*		
+/*
 		public void RenderRssStream (Stream stream)
-		{	
+		{
 			var doc = XDocument.Load (new XmlTextReader (stream));
 			var items = doc.XPathSelectElements ("./rss/channel/item/title");
 
@@ -96,18 +96,18 @@ namespace HttpClient
 			InvokeOnMainThread (delegate {
 				var table = new UITableViewController ();
 				navigationController.PushViewController (table, true);
-				
-				// Put the data on a string [] so we can use our existing 
+
+				// Put the data on a string [] so we can use our existing
 				// UITableView renderer for strings.
 				string [] entries = new string [items.Count ()];
 				int i = 0;
 				foreach (var e in items)
 					entries [i++] = e.Value;
-				
+
 				TableViewSelector.Configure (table.View as UITableView, entries);
 			});
 		}
-*/		
+*/
 		public void RenderStream (Stream stream)
 		{
 			var reader = new System.IO.StreamReader (stream);
@@ -122,15 +122,15 @@ namespace HttpClient
 				};
 				view.Add (label);
 				view.Add (tv);
-					
-				if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) { 
+
+				if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
 					view.EdgesForExtendedLayout = UIRectEdge.None;
 				}
 
 				navigationController.PushViewController (view, true);
-			});			
+			});
 		}
-		
+
 		// This method is required in iPhoneOS 3.0
 		public override void OnActivated (UIApplication application)
 		{

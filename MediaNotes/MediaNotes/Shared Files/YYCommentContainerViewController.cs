@@ -1,6 +1,6 @@
 #define USE_AUTOLAYOUT
 #define ENABLE_KEYBOARD_AVOIDANCE
-#define ENABLE_LAYOUT_SUBVIEWS 
+#define ENABLE_LAYOUT_SUBVIEWS
 #define ENABLE_WILL_ROTATE_ADJUSTMENT
 using System;
 using CoreGraphics;
@@ -14,9 +14,9 @@ namespace MediaNotes
 	{
 		public YYCommentContainerView (IntPtr ptr) : base (ptr)
 		{
-		
+
 		}
-		
+
 		[Export ("requiresConstraintBasedLayout")]
 		static bool Requires ()
 		{
@@ -53,13 +53,13 @@ namespace MediaNotes
 		{
 
 			YYCommentViewController controller = commentViewController;
-			   
+
 			if (contentController.Equals (controller.associatedObject))
 				return controller;
 			else
 				return null;
 		}
-	
+
 		public override string Title {
 			get {
 				return contentController.Title;
@@ -130,7 +130,7 @@ namespace MediaNotes
 				commentViewController.BeginAppearanceTransition (false, true);
 				UIView.Animate (0.5f, () => {
 					commentView.Alpha = 0.5f;
-				}, () => { 
+				}, () => {
 					commentView.RemoveFromSuperview ();
 					commentViewController.EndAppearanceTransition ();
 					commentViewController.RemoveFromParentViewController ();
@@ -154,7 +154,7 @@ namespace MediaNotes
 				});
 			}
 		}
-# if (!USE_AUTOLAYOUT && ENABLE_LAYOUT_SUBVIEWS)	
+# if (!USE_AUTOLAYOUT && ENABLE_LAYOUT_SUBVIEWS)
 
 		public override void ViewWillLayoutSubviews ()
 		{
@@ -235,7 +235,7 @@ namespace MediaNotes
 			if (observersregistered == false) {
 				NSNotificationCenter.DefaultCenter.AddObserver (this, new ObjCRuntime.Selector ("KeyBoardWillShow"), UIKeyboard.WillShowNotification, null);
 				NSNotificationCenter.DefaultCenter.AddObserver (this, new ObjCRuntime.Selector ("KeyBoardWillHide"), UIKeyboard.WillHideNotification, null);
-			} 		
+			}
 #  endif
 		}
 
@@ -251,7 +251,6 @@ namespace MediaNotes
 			observersregistered = false;
 # endif
 		}
-
 
 # if ENABLE_KEYBOARD_AVOIDANCE
 

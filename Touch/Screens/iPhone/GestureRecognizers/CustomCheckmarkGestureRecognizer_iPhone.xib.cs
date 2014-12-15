@@ -12,10 +12,10 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers
 	{
 		CheckmarkGestureRecognizer checkmarkGesture;
 		protected bool isChecked = false;
-		
+
 		#region Constructors
 
-		// The IntPtr and initWithCoder constructors are required for items that need 
+		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
 		public CustomCheckmarkGestureRecognizer_iPhone (IntPtr handle) : base(handle)
@@ -37,18 +37,18 @@ namespace Example_Touch.Screens.iPhone.GestureRecognizers
 		void Initialize ()
 		{
 		}
-		
+
 		#endregion
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			imgCheckmark.Image = UIImage.FromBundle ("Images/CheckBox_Start.png");
-			
+
 			WireUpCheckmarkGestureRecognizer();
 		}
-		
+
 		protected void WireUpCheckmarkGestureRecognizer()
 		{
 			// create the recognizer

@@ -7,7 +7,7 @@ using System.IO;
 using PassKit;
 
 /*
- NOTE: Be sure to check the Entitlements.plist - you must enter your TeamID with the 
+ NOTE: Be sure to check the Entitlements.plist - you must enter your TeamID with the
  PassTypeIDs that you have created on the iOS Provisioning Portal, and ensure that your
  Provisioning Profiles for testing/deploying this app have PassKit enabled.
  */
@@ -28,7 +28,7 @@ namespace PassLibrary {
 		NSObject noteCenter;
 
 		public HomeScreen ()
-		{	
+		{
 		}
 
 		public override void ViewDidLoad ()
@@ -72,7 +72,7 @@ namespace PassLibrary {
 						table.Source = new TableSource (passlist, library);
 						table.ReloadData ();
 					});
-				}, library);  // IMPORTANT: must pass the library in 
+				}, library);  // IMPORTANT: must pass the library in
 			} else {
 				Console.WriteLine ("No Pass Kit - must be an iPad");
 				addPassButton.SetTitleColor (UIColor.LightGray, UIControlState.Disabled);
@@ -149,21 +149,20 @@ namespace PassLibrary {
 		void HandleReplaceTouchUpInside (object sender, EventArgs e)
 		{
 			if (PKPassLibrary.IsAvailable) {
-			
+
 				var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 				var newFilePath = Path.Combine (documentsPath, "CouponBanana2.pkpass");
 				var builtInPassPath = Path.Combine (System.Environment.CurrentDirectory, "CouponBanana2.pkpass");
 				if (!System.IO.File.Exists(newFilePath))
 					System.IO.File.Copy (builtInPassPath, newFilePath);
-				
+
 				NSData nsdata;
 				using ( FileStream oStream = File.Open (newFilePath, FileMode.Open ) ) {
 					nsdata = NSData.FromStream ( oStream );
 				}
-				
+
 				var err = new NSError(new NSString("42"), -42);
 				var newPass = new PKPass(nsdata,out err);
-
 
 				bool alreadyExists = library.Contains (newPass);
 

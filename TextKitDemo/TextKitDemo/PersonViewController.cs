@@ -35,7 +35,7 @@ namespace TextKitDemo
 			imageView.Layer.MasksToBounds = true;
 			imageView.Layer.CornerRadius = imageView.Bounds.Size.Width / 2.0f;
 		}
-		
+
 		public override void PreferredContentSizeChanged ()
 		{
 			labelView.Font = UIFont.GetPreferredFontForTextStyle (labelView.Font.FontDescriptor.FontAttributes.TextStyle);

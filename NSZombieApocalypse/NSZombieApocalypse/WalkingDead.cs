@@ -38,7 +38,7 @@ namespace NSZombieApocalypse
 				path.LineWidth = 2;
 				path.Fill ();
 				path.Stroke ();
-			
+
 				UIBezierPath rightEye, leftEye, mouth = new UIBezierPath ();
 				if (MovingRight) {
 					rightEye = UIBezierPath.FromArc (new CGPoint (rect.GetMidX () - 5, rect.Y + 15), 4, 0, 180, true);
@@ -52,14 +52,14 @@ namespace NSZombieApocalypse
 
 					mouth.MoveTo (new CGPoint (rect.GetMidX (), rect.Y + 30));
 					mouth.AddLineTo (new CGPoint (rect.GetMidX () - 13, rect.Y + 30));
-				
+
 				}
 				rightEye.LineWidth = 2;
 				rightEye.Stroke ();
-			
+
 				leftEye.LineWidth = 2;
 				leftEye.Stroke ();
-			
+
 				mouth.LineWidth = 2;
 				mouth.Stroke ();
 			}
@@ -115,7 +115,7 @@ namespace NSZombieApocalypse
 				CGRect bodyFrame = body.Frame;
 				float legWidth = (float)rect.Size.Width / 3;
 				UIBezierPath path = UIBezierPath.FromRoundedRect (new CGRect (30, bodyFrame.GetMaxY () - 5, legWidth, (rect.Size.Height) * .25f), UIRectCorner.TopRight | UIRectCorner.BottomRight, new CGSize (3, 3));
-		
+
 				UIColor.Black.SetColor ();
 				path.LineWidth = 2;
 				UIColor.White.SetFill ();
@@ -169,7 +169,7 @@ namespace NSZombieApocalypse
 				UIBezierPath path = new UIBezierPath ();
 				path.LineCapStyle = CGLineCap.Round;
 				CGRect headFrame = head.Frame;
-			
+
 				if (!MovingRight) {
 					rect.X -= 20;
 					path.MoveTo (new CGPoint (rect.GetMidX () + 20, headFrame.GetMaxY () + 10));
@@ -179,12 +179,12 @@ namespace NSZombieApocalypse
 					path.MoveTo (new CGPoint (rect.GetMidX () - 20, headFrame.GetMaxY () + 10));
 					path.AddLineTo (new CGPoint (rect.GetMidX () - 20 - rect.Size.Width / 6, headFrame.GetMaxY () + 10));
 					path.AddLineTo (new CGPoint (rect.GetMidX () - 20 - rect.Size.Width / 6 - 10, headFrame.GetMaxY () + 10 + 20));
-				
+
 				}
 				UIColor.Black.SetStroke ();
 				path.LineWidth = 12;
 				path.Stroke ();
-			
+
 				UIColor.White.SetStroke ();
 				path.LineWidth = 8;
 				path.Stroke ();
@@ -251,9 +251,9 @@ namespace NSZombieApocalypse
 			startedWalking = NSDate.Now.SecondsSinceReferenceDate;
 			startedWalkingX = (float)Frame.X;
 			UIView.Animate (10, 0, UIViewAnimationOptions.AllowUserInteraction, () => {
-				if (!animated) 
+				if (!animated)
 					return;
-				
+
 				if (!walkingForward)
 					TurnAround ();
 
@@ -261,7 +261,7 @@ namespace NSZombieApocalypse
 				frame.X = superviewFrame.Size.Width - frame.Size.Width - 50;
 				Frame = frame;
 			}, () => {
-				if (!animated) 
+				if (!animated)
 					return;
 
 				TurnAround ();
@@ -271,7 +271,7 @@ namespace NSZombieApocalypse
 				CGRect frame = Frame;
 				frame.X = 50;
 				UIView.Animate (10, 0, UIViewAnimationOptions.AllowUserInteraction, () => {
-					Frame = frame;}, 
+					Frame = frame;},
 				                () => {
 					Walk ();
 				});
@@ -317,7 +317,7 @@ namespace NSZombieApocalypse
 			}, async () => {
 				if (!animated)
 					return;
-			
+
 				await UIView.AnimateAsync (1.75, () => {
 					rightArm.Transform = CGAffineTransform.MakeIdentity ();
 					leftArm.Transform = CGAffineTransform.MakeIdentity ();
@@ -331,7 +331,7 @@ namespace NSZombieApocalypse
 		{
 			if (!animated)
 				return;
-			
+
 			float legRotation = (float)(Math.PI / 4 * .35);
 			UIView.Animate (2.5, () => {
 				rightLeg.Transform = CGAffineTransform.MakeRotation (legRotation);
@@ -339,7 +339,7 @@ namespace NSZombieApocalypse
 			}, async () => {
 				if (!animated)
 					return;
-				
+
 				await UIView.AnimateAsync (2.5, () => {
 					rightLeg.Transform = CGAffineTransform.MakeRotation (-legRotation);
 					leftLeg.Transform = CGAffineTransform.MakeRotation (legRotation);
@@ -375,5 +375,4 @@ namespace NSZombieApocalypse
 		public delegate void DidDisassembleHandler (WalkingDead walkingdead);
 	}
 }
-		
 

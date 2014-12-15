@@ -23,7 +23,7 @@ namespace SimpleBackgroundTransfer
 
 		[Outlet]
 		UIKit.UIBarButtonItem startButton { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (crashButton != null) {

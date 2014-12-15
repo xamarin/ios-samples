@@ -50,7 +50,7 @@ namespace MetalImageProcessing
 		public CGRect Bounds {
 			get {
 				return bounds;
-			} 
+			}
 
 			set {
 				bounds = value;

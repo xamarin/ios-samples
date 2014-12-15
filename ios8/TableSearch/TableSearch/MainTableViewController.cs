@@ -120,7 +120,7 @@ namespace TableSearch
 				double price = Double.MinValue;
 				Double.TryParse (item, out price);
 
-				IEnumerable<Product> query = 
+				IEnumerable<Product> query =
 					from p in products
 					where p.Title.IndexOf (item, StringComparison.OrdinalIgnoreCase) >= 0
 					|| p.IntroPrice == price

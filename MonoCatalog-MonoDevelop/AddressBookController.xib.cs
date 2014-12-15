@@ -16,7 +16,7 @@ namespace MonoCatalog
 		public AddressBookController () : base ("AddressBookController", null)
 		{
 		}
-	
+
 		protected override void Dispose (bool disposing)
 		{
 			if (p != null) {
@@ -31,7 +31,7 @@ namespace MonoCatalog
 			base.ViewDidLoad ();
 			NavigationController.NavigationBar.Translucent = false;
 		}
-	
+
 		ABPeoplePickerNavigationController GetPicker ()
 		{
 			if (p != null)
@@ -71,7 +71,7 @@ namespace MonoCatalog
 			};
 			return p;
 		}
-	
+
 		partial void showPicker (UIKit.UIButton sender)
 		{
 			Console.Error.WriteLine ("# Select Contacts pushed!");

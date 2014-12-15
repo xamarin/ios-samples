@@ -64,9 +64,9 @@ namespace SoZoomy
 			setupAVFoundationFaceDetection ();
 
 			if (device != null) {
-				device.AddObserver (this, (NSString) "videoZoomFactor", (NSKeyValueObservingOptions)0, 
+				device.AddObserver (this, (NSString) "videoZoomFactor", (NSKeyValueObservingOptions)0,
 				                    VideoZoomFactorContext);
-				device.AddObserver (this, (NSString) "rampingVideoZoom", (NSKeyValueObservingOptions)0, 
+				device.AddObserver (this, (NSString) "rampingVideoZoom", (NSKeyValueObservingOptions)0,
 				                    VideoZoomRampingContext);
 			}
 
@@ -340,7 +340,7 @@ namespace SoZoomy
 
 		public override void WillRotate (UIInterfaceOrientation toInterfaceOrientation, double duration)
 		{
-			(previewView.Layer as AVCaptureVideoPreviewLayer).Connection.VideoOrientation = 
+			(previewView.Layer as AVCaptureVideoPreviewLayer).Connection.VideoOrientation =
 				(AVCaptureVideoOrientation)toInterfaceOrientation;
 		}
 

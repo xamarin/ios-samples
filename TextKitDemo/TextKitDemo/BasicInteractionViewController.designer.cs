@@ -15,7 +15,7 @@ namespace TextKitDemo
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
 		UIKit.UITextView textView { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (textView != null) {

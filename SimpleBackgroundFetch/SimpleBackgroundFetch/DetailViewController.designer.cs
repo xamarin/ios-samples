@@ -12,17 +12,17 @@ namespace SimpleBackgroundFetch
 	{
 		[Outlet]
 		UIKit.UILabel detailDescriptionLabel { get; set; }
-		
+
 		[Outlet]
 		UIKit.UIToolbar toolbar { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (detailDescriptionLabel != null) {
 				detailDescriptionLabel.Dispose ();
 				detailDescriptionLabel = null;
 			}
-			
+
 			if (toolbar != null) {
 				toolbar.Dispose ();
 				toolbar = null;

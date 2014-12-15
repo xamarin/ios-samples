@@ -77,7 +77,7 @@ namespace GLKReflectionMapEffectSkybox
 
 			GL.GenBuffers (1, out vertexBuffer);
 			GL.BindBuffer (BufferTarget.ArrayBuffer, vertexBuffer);
-			GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr) (Monkey.MeshVertexData.Length * sizeof (float)), 
+			GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr) (Monkey.MeshVertexData.Length * sizeof (float)),
 			               Monkey.MeshVertexData, BufferUsage.StaticDraw);
 
 			GL.EnableVertexAttribArray ((int) GLKVertexAttrib.Position);
@@ -88,7 +88,7 @@ namespace GLKReflectionMapEffectSkybox
 			GL.VertexAttribPointer ((int) GLKVertexAttrib.Normal, 3, VertexAttribPointerType.Float,
 			                        false, 6 * sizeof(float), 12);
 
-			string[] cubeMapFiles = { 
+			string[] cubeMapFiles = {
 				NSBundle.MainBundle.PathForResource ("cubemap1", "png"),
 				NSBundle.MainBundle.PathForResource ("cubemap2", "png"),
 				NSBundle.MainBundle.PathForResource ("cubemap3", "png"),
@@ -112,7 +112,7 @@ namespace GLKReflectionMapEffectSkybox
 		{
 			float aspect = (float)Math.Abs (View.Bounds.Size.Width / View.Bounds.Size.Height);
 
-			Matrix4 projectionMatrix = 
+			Matrix4 projectionMatrix =
 				Matrix4.CreatePerspectiveFieldOfView ((float) (Math.PI * 65f / 180.0f),
 				                                      aspect, 0.1f, 100.0f);
 

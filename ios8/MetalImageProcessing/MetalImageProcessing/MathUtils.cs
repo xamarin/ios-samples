@@ -18,7 +18,7 @@ namespace MetalImageProcessing
 		public static Matrix4 Translate (Vector3 t)
 		{
 			Matrix4 m = Matrix4.Identity;
-			m.M41 = t.X; 
+			m.M41 = t.X;
 			m.M42 = t.Y;
 			m.M43 = t.Z;
 			return m;
@@ -170,7 +170,7 @@ namespace MetalImageProcessing
 			Vector4 S = Vector4.Zero;
 
 			P.X = 2.0f * sLength;
-			Q.Y = 2.0f * sHeight; 
+			Q.Y = 2.0f * sHeight;
 			R.Z = sDepth;
 			S.Z = -near * sDepth;
 			S.W = 1.0f;
@@ -201,7 +201,7 @@ namespace MetalImageProcessing
 			S.Y = -sHeight * (top + bottom);
 			S.Z = -sDepth * near;
 			S.W = 1.0f;
-		
+
 			return MakeResultMatrix (P, Q, R, S);
 		}
 

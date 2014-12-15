@@ -71,10 +71,10 @@ namespace NSZombieApocalypse
 		}
 
 		public void RemoveZombie ()
-		{ 
+		{
 			WalkingDead zombie = zombies.Last ();
 
-			if (zombie != null) { 
+			if (zombie != null) {
 				zombies.Remove (zombie);
 				zombie.Disassemble ();
 			}

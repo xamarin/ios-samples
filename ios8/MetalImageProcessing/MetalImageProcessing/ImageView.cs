@@ -95,7 +95,7 @@ namespace MetalImageProcessing
 			}
 			return renderPassDescriptor;
 		}
-			
+
 		public override void MovedToWindow ()
 		{
 			ContentScaleFactor = Window.Screen.NativeScale;

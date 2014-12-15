@@ -22,7 +22,7 @@ namespace OpenGLScroller
 		int vertexArray;
 		int vertexBuffer;
 
-		float[] gCubeVertexData = 
+		float[] gCubeVertexData =
 		{
 			// Data layout for each line below is:
 			// positionX, positionY, positionZ,     normalX, normalY, normalZ,
@@ -32,35 +32,35 @@ namespace OpenGLScroller
 			0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
 			0.5f, 0.5f, -0.5f,         1.0f, 0.0f, 0.0f,
 			0.5f, 0.5f, 0.5f,          1.0f, 0.0f, 0.0f,
-			
+
 			0.5f, 0.5f, -0.5f,         0.0f, 1.0f, 0.0f,
 			-0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
 			0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
 			0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
 			-0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
 			-0.5f, 0.5f, 0.5f,         0.0f, 1.0f, 0.0f,
-			
+
 			-0.5f, 0.5f, -0.5f,        -1.0f, 0.0f, 0.0f,
 			-0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
 			-0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
 			-0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
 			-0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
 			-0.5f, -0.5f, 0.5f,        -1.0f, 0.0f, 0.0f,
-			
+
 			-0.5f, -0.5f, -0.5f,       0.0f, -1.0f, 0.0f,
 			0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
 			-0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
 			-0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
 			0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
 			0.5f, -0.5f, 0.5f,         0.0f, -1.0f, 0.0f,
-			
+
 			0.5f, 0.5f, 0.5f,          0.0f, 0.0f, 1.0f,
 			-0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
 			0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
 			0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
 			-0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
 			-0.5f, -0.5f, 0.5f,        0.0f, 0.0f, 1.0f,
-			
+
 			0.5f, -0.5f, -0.5f,        0.0f, 0.0f, -1.0f,
 			-0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
 			0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
@@ -71,15 +71,15 @@ namespace OpenGLScroller
 
 		struct CubeInfo
 		{
-			public float Red;		
+			public float Red;
 			public float Green;
-			public float Blue;		
-			public float XAxis;		
+			public float Blue;
+			public float XAxis;
 			public float YAxis;
 			public float ZAxis;
 			public float Speed;
 			public float RotationRadians;
-			
+
 			public CubeInfo (float r, float g, float b, float x, float y, float z, float s, float rr)
 			{
 				Red = r;
@@ -140,7 +140,6 @@ namespace OpenGLScroller
 			return offset;
 		}
 
-
 		public override CGRect Frame {
 			get {
 				return base.Frame;
@@ -149,7 +148,7 @@ namespace OpenGLScroller
 				base.Frame = value;
 
 				float aspect = (float)Math.Abs (Bounds.Size.Width / Bounds.Size.Height);
-				
+
 				Matrix4 projectionMatrix = Matrix4.CreatePerspectiveFieldOfView (MathHelper.DegreesToRadians (65), aspect, 0.1f, 100);
 				if (effect != null)
 					effect.Transform.ProjectionMatrix = projectionMatrix;
@@ -242,7 +241,6 @@ namespace OpenGLScroller
 			littleCube [index] = bigCube;
 		}
 
-
 		public void SetupGL ()
 		{
 			Context = new EAGLContext (EAGLRenderingAPI.OpenGLES2);
@@ -262,13 +260,13 @@ namespace OpenGLScroller
 			GL.BindBuffer (BufferTarget.ArrayBuffer, vertexBuffer);
 
 			GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr) (gCubeVertexData.Length * sizeof (float)), gCubeVertexData, BufferUsage.StaticDraw);
-			
+
 			GL.EnableVertexAttribArray ((int) GLKVertexAttrib.Position);
 			GL.VertexAttribPointer ((int) GLKVertexAttrib.Position, 3, VertexAttribPointerType.Float, false, 24, 0);
-			
+
 			GL.EnableVertexAttribArray ((int) GLKVertexAttrib.Normal);
 			GL.VertexAttribPointer ((int) GLKVertexAttrib.Normal, 3, VertexAttribPointerType.Float, false, 24, 12);
-			
+
 			GL.Oes.BindVertexArray (0);
 
 			RandomizeBigCube ();

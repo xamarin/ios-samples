@@ -15,7 +15,7 @@ namespace AppPrefs
 		Blue,
 		Pattern
 	};
-	
+
 	/// <summary>
 	/// This class manages the system settings.
 	/// </summary>
@@ -25,18 +25,18 @@ namespace AppPrefs
 		public static string LastName { get; private set;}
 		public static TextColors TextColor { get; private set;}
 		public static BackgroundColors BackgroundColor { get; private set;}
-		
+
 		const string firstNameKey = "firstNameKey";
 		const string lastNameKey = "lastNameKey";
 		const string nameColorKey = "nameColorKey";
 		const string backgroundColorKey = "backgroundColorKey";
-		
+
 		static void LoadDefaultValues ()
 		{
 			var settingsDict = new NSDictionary (NSBundle.MainBundle.PathForResource ("Settings.bundle/Root.plist", null));
-			
+
 			var prefSpecifierArray = settingsDict["PreferenceSpecifiers"] as NSArray;
-			
+
 			foreach (var prefItem in NSArray.FromArray<NSDictionary> (prefSpecifierArray)) {
 				var key = (NSString)prefItem["Key"];
 				if (key == null)

@@ -50,15 +50,15 @@ public class CustomPickerModel : UIPickerViewModel {
 	public override float GetComponentWidth (UIPickerView pickerView, int component) {
 		return CustomView.Width;
 	}
-	
+
 	public override float GetRowHeight (UIPickerView pickerView, int component) {
 		return CustomView.Height;
 	}
-	
+
 	public override int GetRowsInComponent (UIPickerView pickerView, int component) {
 		return views.Count;
 	}
-	
+
 	public override int GetComponentCount (UIPickerView pickerView) {
 		return 1;
 	}

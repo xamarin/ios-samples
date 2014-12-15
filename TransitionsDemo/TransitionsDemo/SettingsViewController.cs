@@ -72,15 +72,15 @@ namespace TransitionsDemo
 			object currentTransition;
 
 			if (indexPath.Section < 2) {
-				currentTransition = indexPath.Section == 0 ? 
+				currentTransition = indexPath.Section == 0 ?
 					AppDelegate.NavigationControllerAnimationController : AppDelegate.SettingsAnimationController;
 			} else {
-				currentTransition = (indexPath.Section == 2) ? 
+				currentTransition = (indexPath.Section == 2) ?
 					AppDelegate.NavigationControllerInteractionController : AppDelegate.SettingsInteractionController;
 			}
 
 			string transitionClassName = ClassToTransitionName (currentTransition);
-			cell.Accessory = transitionClassName == transitionName ? 
+			cell.Accessory = transitionClassName == transitionName ?
 				UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
 		}
 

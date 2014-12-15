@@ -12,7 +12,7 @@ namespace TransitionsDemo
 	[Register ("NavigationController")]
 	partial class NavigationController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

@@ -26,7 +26,7 @@ namespace PinchIt
 
 			window.RootViewController = (new ViewController (pinchLayout));
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 	}

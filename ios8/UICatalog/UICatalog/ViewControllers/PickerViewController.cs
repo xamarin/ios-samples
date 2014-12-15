@@ -130,7 +130,7 @@ namespace UICatalog
 				case ColorComponent.Blue:
 					blueColorComponent = value;
 					break;
-			
+
 				default:
 					throw new InvalidOperationException ("Invalid row/component combination for picker view.");
 			}
@@ -181,7 +181,7 @@ namespace UICatalog
 
 				case ColorComponent.Green:
 					return "Green color component value".Localize ();
-			
+
 				case ColorComponent.Blue:
 					return "Blue color component value".Localize ();
 

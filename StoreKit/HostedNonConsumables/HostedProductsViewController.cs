@@ -13,7 +13,6 @@ http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Concept
 NOTE: Store Kit can be tested in the iOS Simulator, except for hosted content downloads.
 */
 
-
 namespace NonConsumables {
 	public class HostedProductsViewController : UIViewController {
 		public static string hostedImagesProductId = "com.xamarin.storekit.hosted.monotouchimages",   //"com.xamarin.storekitdoc.monotouchimages",
@@ -27,16 +26,16 @@ namespace NonConsumables {
 		bool pricesLoaded = false;
 		bool hostedImagesPurchased, hostedFilesystemPurchased;
 		NSObject priceObserver, requestObserver;
-		
+
 		InAppPurchaseManager iap;
-		
+
 		public HostedProductsViewController () : base()
 		{
 			// two products for sale on this page
 			products = new List<string>() {hostedImagesProductId, hostedFilesystemProductId};
 			iap = new InAppPurchaseManager();
 		}
-	
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -67,7 +66,6 @@ namespace NonConsumables {
 			hostedFilesystemDescription = new UILabel(new CGRect(10, 135, 300, 30));
 			hostedFilesystemButton.Frame = new CGRect(10, 170, 180, 40);
 
-
 			restoreButton = UIButton.FromType (UIButtonType.RoundedRect);
 			restoreButton.SetTitle ("Restore", UIControlState.Normal);
 			restoreButton.Frame = new CGRect(200, 170, 110, 40);
@@ -78,17 +76,16 @@ namespace NonConsumables {
 			bookTextDisplay.Editable = false;
 			bookIcon = new UIImageView(new CGRect(240, 210, 60, 60));
 
-
 			View.AddSubview (hostedImagesButton);
 			View.AddSubview (hostedImagesTitle);
 			View.AddSubview (hostedImagesDescription);
-			View.AddSubview (hostedFilesystemButton);			
+			View.AddSubview (hostedFilesystemButton);
 			View.AddSubview (hostedFilesystemTitle);
 			View.AddSubview (hostedFilesystemDescription);
 			View.AddSubview (restoreButton);
 			View.AddSubview (bookTextDisplay);
 			View.AddSubview (bookIcon);
-			#endregion	
+			#endregion
 
 			hostedImagesButton.TouchUpInside += (sender, e) => {
 				if (hostedImagesPurchased) {
@@ -98,7 +95,7 @@ namespace NonConsumables {
 					// initiate payment
 					iap.PurchaseProduct (hostedImagesProductId);
 				}
-			};	
+			};
 			hostedFilesystemButton.TouchUpInside += (sender, e) => {
 				if (hostedFilesystemPurchased) {
 					// paid for, therefore allow access
@@ -107,7 +104,7 @@ namespace NonConsumables {
 					// initiate payment
 					iap.PurchaseProduct (hostedFilesystemProductId);
 				}
-			};	
+			};
 			restoreButton.TouchUpInside += (sender, e) => {
 				iap.Restore();
 			};
@@ -116,14 +113,14 @@ namespace NonConsumables {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear(animated);
-			
+
 			// setup the observer to wait for prices to come back from StoreKit <- AppStore
-			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerProductsFetchedNotification, 
+			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerProductsFetchedNotification,
 			(notification) => {
 				var info = notification.UserInfo;
 				var NSimagesProductId = new NSString(hostedImagesProductId);
 				var NSfilesystemProductId = new NSString(hostedFilesystemProductId);
-		
+
 				if (info == null) {
 					// if info is null, probably NO valid prices returned, therefore it doesn't exist at all
 					hostedImagesDescription.Text = "check iTunes connect setup";
@@ -136,12 +133,12 @@ namespace NonConsumables {
 						pricesLoaded = true;
 
 						var product = (SKProduct) info.ObjectForKey(NSimagesProductId);
-						
+
 						Console.WriteLine("Product id: " + product.ProductIdentifier);
 						Console.WriteLine("Product title: " + product.LocalizedTitle);
 						Console.WriteLine("Product description: " + product.LocalizedDescription);
 						Console.WriteLine("Product price: " + product.Price);
-						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());	
+						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
 						Console.WriteLine("Product downloadable: " + product.Downloadable);	// iOS6
 						Console.WriteLine("Product version:      " + product.DownloadContentVersion);    // iOS6
 						if (product.DownloadContentLengths != null)
@@ -157,7 +154,7 @@ namespace NonConsumables {
 						pricesLoaded = true;
 
 						var product = (SKProduct) info.ObjectForKey(NSfilesystemProductId);
-						
+
 						Console.WriteLine("Product id: " + product.ProductIdentifier);
 						Console.WriteLine("Product title: " + product.LocalizedTitle);
 						Console.WriteLine("Product description: " + product.LocalizedDescription);
@@ -175,7 +172,7 @@ namespace NonConsumables {
 					}
 				}
 			});
-			
+
 			// only if we can make payments, request the prices
 			if (iap.CanMakePayments()) {
 				// now go get prices, if we don't have them already
@@ -189,15 +186,15 @@ namespace NonConsumables {
 			// update the buttons before displaying, to reflect past purchases
 			UpdateButtons ();
 
-			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerTransactionSucceededNotification, 
+			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerTransactionSucceededNotification,
 			(notification) => {
 				// update the buttons after a successful purchase
 				UpdateButtons ();
 			});
 
-			requestObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerRequestFailedNotification, 
+			requestObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerRequestFailedNotification,
 			                                                                 (notification) => {
-				// TODO: 
+				// TODO:
 				Console.WriteLine ("Request Failed");
 				hostedImagesButton.SetTitle ("Network down?", UIControlState.Disabled);
 				hostedFilesystemButton.SetTitle ("Network down?", UIControlState.Disabled);

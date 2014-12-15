@@ -38,7 +38,7 @@ namespace MTGKTapper
 
 		[Outlet]
 		UIKit.UIButton submitScoreButton { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (currentScoreTextField != null) {

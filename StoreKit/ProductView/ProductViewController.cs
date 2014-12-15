@@ -7,7 +7,7 @@ using CoreGraphics;
 
 // Helpful devforums post
 // https://devforums.apple.com/message/723619
-// 
+//
 // iBooks
 // http://itunes.apple.com/us/app/ibooks/id364709193?mt=8
 // MWC
@@ -24,11 +24,11 @@ using CoreGraphics;
 namespace ProductView {
 
 	/// <summary>
-	/// Shows buttons that demonstrate the SKStoreProductViewController that 
+	/// Shows buttons that demonstrate the SKStoreProductViewController that
 	/// lets users buy something from iTunes or the AppStore or the iBookstore
 	/// *within* your app (ie. doesn't switch over to AppStore/iTunes/iBooks).
-	/// 
-	/// Includes some buttons the demonstrate the 'old way' of linking to 
+	///
+	/// Includes some buttons the demonstrate the 'old way' of linking to
 	/// products to purchase/download, using OpenUrl(). This is what you have
 	/// to do in iOS5 and earlier (if you need to support it).
 	/// </summary>
@@ -43,7 +43,7 @@ namespace ProductView {
 		public ProductViewController () : base()
 		{
 		}
-	
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -56,7 +56,7 @@ namespace ProductView {
 			viewButton.Frame = new CGRect(10, 10, 200, 40);
 			viewButton.TouchUpInside += (sender, e) => {
 				Buy(364709193); // iBooks
-			};	
+			};
 			Add (viewButton);
 
 			view2Button = UIButton.FromType (UIButtonType.RoundedRect);
@@ -64,7 +64,7 @@ namespace ProductView {
 			view2Button.Frame = new CGRect(10, 60, 200, 40);
 			view2Button.TouchUpInside += (sender, e) => {
 				Buy(496963922); // MWC
-			};	
+			};
 			Add (view2Button);
 
 			view3Button = UIButton.FromType (UIButtonType.RoundedRect);
@@ -72,18 +72,18 @@ namespace ProductView {
 			view3Button.Frame = new CGRect(10, 110, 200, 40);
 			view3Button.TouchUpInside += (sender, e) => {
 				Buy(553243272); // timomatic
-			};	
+			};
 			Add (view3Button);
-		
+
 			view4Button = UIButton.FromType (UIButtonType.RoundedRect);
 			view4Button.SetTitle ("Read Kangaroo Book", UIControlState.Normal);
 			view4Button.Frame = new CGRect(10, 160, 200, 40);
 			view4Button.TouchUpInside += (sender, e) => {
 				Buy(510970593); // Dot
-			};	
+			};
 			Add (view4Button);
 
-			#region The Old Way	
+			#region The Old Way
 			infoLabel = new UILabel(new CGRect(10, 220, 300, 40));
 			infoLabel.Text = "The Old Way (OpenUrl) exits your app";
 
@@ -138,7 +138,7 @@ namespace ProductView {
 			var productViewController = new SKStoreProductViewController ();
 			productViewController.Finished += (sender, err) => {
 				Console.WriteLine ("ProductViewDelegate Finished");
-				
+
 				// Apple's docs says to use this
 				this.DismissModalViewController (true);
 			};
@@ -149,7 +149,7 @@ namespace ProductView {
 					PresentModalViewController (productViewController, true);
 				} else {
 					Console.WriteLine (" failed ");
-					if (err != null) 
+					if (err != null)
 						Console.WriteLine (" with error " + err);
 				}
 			});

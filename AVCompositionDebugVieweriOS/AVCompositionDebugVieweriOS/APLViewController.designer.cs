@@ -32,7 +32,7 @@ namespace AVCompositionDebugVieweriOS
 
 		[Action ("Click:")]
 		partial void Click (UIKit.UIBarButtonItem sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (compositionDebugView != null) {

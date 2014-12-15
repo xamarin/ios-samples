@@ -11,7 +11,7 @@ namespace ToastModern
 		public Action<NSSet> OnTouchMove;
 		public Action<NSSet> OnTouchUp;
 
-		public CGPoint Position { 
+		public CGPoint Position {
 			get {
 				CGPoint center = Center;
 				CGSize size = Size;
@@ -24,7 +24,7 @@ namespace ToastModern
 			}
 		}
 
-		public nfloat X { 
+		public nfloat X {
 			get {
 				return Position.X;
 			}
@@ -34,7 +34,7 @@ namespace ToastModern
 			}
 		}
 
-		public nfloat Y { 
+		public nfloat Y {
 			get {
 				return Position.Y;
 			}
@@ -44,7 +44,7 @@ namespace ToastModern
 			}
 		}
 
-		public CGSize Size { 
+		public CGSize Size {
 			get {
 				return Bounds.Size;
 			}
@@ -57,20 +57,20 @@ namespace ToastModern
 			}
 		}
 
-		public nfloat Width { 
+		public nfloat Width {
 			get {
 				return Bounds.Size.Width;
-			} 
+			}
 
 			set {
 				Size = new CGSize (value, Bounds.Size.Height);
-			} 
+			}
 		}
 
-		public nfloat Height { 
+		public nfloat Height {
 			get {
 				return Bounds.Size.Height;
-			} 
+			}
 
 			set {
 				Size = new CGSize (Bounds.Size.Width, value);

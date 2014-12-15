@@ -152,7 +152,7 @@ namespace ButtonTapper3000 {
 			};
 
 			UIViewController challengeController = score.ChallengeComposeController (
-				GKLocalPlayer.LocalPlayer.Friends, "Beat it!", 
+				GKLocalPlayer.LocalPlayer.Friends, "Beat it!",
 				delegate (UIViewController composeController, bool didIssueChallenge, string[] sentPlayerIDs) {
 					AppDelegate.Shared.ViewController.DismissViewController (true, null);
 				}

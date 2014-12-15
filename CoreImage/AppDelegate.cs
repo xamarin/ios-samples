@@ -20,17 +20,17 @@ namespace coreimage
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		/// <summary>
-		/// "Flower" © 2012 Milica Sekulic, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/ 
+		/// "Flower" © 2012 Milica Sekulic, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/
 		/// </summary>
 		CIImage flower = CIImage.FromCGImage (UIImage.FromFile ("flower.png").CGImage);
-		
+
 		/// <summary>
-		/// "Sunrise near Atkeison Plateau" © 2012 Charles Atkeison, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/ 
+		/// "Sunrise near Atkeison Plateau" © 2012 Charles Atkeison, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/
 		/// </summary>
 		CIImage clouds = CIImage.FromCGImage (UIImage.FromFile ("clouds.jpg").CGImage);
-		
+
 		/// <summary>
-		/// "canon" © 2012 cuatrok77 hernandez, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/ 
+		/// "canon" © 2012 cuatrok77 hernandez, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/
 		/// </summary>
 		CIImage heron = CIImage.FromCGImage (UIImage.FromFile ("heron.jpg").CGImage);
 
@@ -71,7 +71,7 @@ namespace coreimage
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			app.StatusBarHidden = true;
-			 
+
 			InitList ();
 
 			var root = new RootElement ("Effects");
@@ -128,7 +128,7 @@ namespace coreimage
 			"Geometry Adjust",
 			"Gradients",
 			"Halftone Effect",
-			"Sharpen", 
+			"Sharpen",
 			"Stylize",
 			"Tile Effect",
 			"Transition",
@@ -281,7 +281,7 @@ namespace coreimage
 				new FilterHolder ("FlashTransition", sectionList [12], 6, typeof(CIFlashTransition), FlashTransition),
 				new FilterHolder ("ModTransition", sectionList [12], 6, typeof(CIModTransition), ModTransition),
 				new FilterHolder ("SwipeTransition", sectionList [12], 6, typeof(CISwipeTransition), SwipeTransition),
-			};  
+			};
 
 			int maxVer = 5;
 			while (UIDevice.CurrentDevice.CheckSystemVersion (++maxVer, 0))
@@ -297,10 +297,10 @@ namespace coreimage
 		//
 		public CIImage Crop (CIFilter input)
 		{
-			return new CICrop () { 
+			return new CICrop () {
 				Image = input.OutputImage,
-				Rectangle = new CIVector (0, 0, window.Bounds.Width, window.Bounds.Height) 
-			}.OutputImage;			
+				Rectangle = new CIVector (0, 0, window.Bounds.Width, window.Bounds.Height)
+			}.OutputImage;
 		}
 
 		public UIViewController Demo (Func<CIImage> makeDemo)
@@ -312,7 +312,7 @@ namespace coreimage
 			imageView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			v.View.AutosizesSubviews = true;
 			v.View.AddSubview (imageView);
-			
+
 			var output = makeDemo ();
 			var context = CIContext.FromOptions (null);
 			var result = context.CreateCGImage (output, output.Extent);
@@ -344,7 +344,6 @@ namespace coreimage
 
 		#endregion
 
-
 		#region CICategoryColorAdjustment
 
 		/// <summary>
@@ -360,7 +359,7 @@ namespace coreimage
 			var bVector = new CIVector (0F, 0F, .75F); // Multiple the Blue Vectoer by .75 (s.b = dot(s, bVector))
 			var aVector = new CIVector (0F, 0F, 0F, 1.25F); // Multiple the Alpha values by 1.25 (s.a = dot(s, bVector))
 			var biasVector = new CIVector (0, 1, 0, 0); // A Bias to be Added to each Color Vector (s = s + bias)
-			
+
 			var colorMatrix = new CIColorMatrix () {
 				Image = flower,
 				RVector = rVector,
@@ -369,7 +368,7 @@ namespace coreimage
 				AVector = aVector,
 				BiasVector = biasVector
 			};
-			
+
 			return colorMatrix.OutputImage;
 		}
 
@@ -405,7 +404,6 @@ namespace coreimage
 			return color_clamp.OutputImage;
 		}
 
-
 		/// <summary>
 		/// Adjusts saturation, brightness, and contrast values.
 		/// </summary>
@@ -420,7 +418,7 @@ namespace coreimage
 				Saturation = 1.2F, // Min: -1 Max: 1
 				Contrast = 3.1F // Min: 0 Max: 4
 			};
-			
+
 			return colorCtrls.OutputImage;
 		}
 
@@ -436,7 +434,7 @@ namespace coreimage
 				Image = flower,
 				Angle = 1F // Default is 0
 			};
-			
+
 			return hueAdjust.OutputImage;
 		}
 
@@ -453,7 +451,7 @@ namespace coreimage
 				Neutral = new CIVector (6500, 0), // Default [6500, 0]
 				TargetNeutral = new CIVector (4000, 0), // Default [6500, 0]
 			};
-			
+
 			return temperatureAdjust.OutputImage;
 		}
 
@@ -470,7 +468,7 @@ namespace coreimage
 			var point2 = new CIVector (.3F, .15F); // Default [.3 .15]
 			var point3 = new CIVector (.6F, .6F); // Default [.75 .75]
 			var point4 = new CIVector (1.1F, 1F); // Default [1 1]
-			
+
 			var toneCurve = new CIToneCurve () {
 				Image = flower,
 				Point0 = point0,
@@ -479,7 +477,7 @@ namespace coreimage
 				Point3 = point3,
 				Point4 = point4,
 			};
-			
+
 			return toneCurve.OutputImage;
 		}
 
@@ -492,7 +490,7 @@ namespace coreimage
 				Image = flower,
 				Amount = -1.0F // Default 0
 			};
-			
+
 			return vibrance.OutputImage;
 		}
 
@@ -506,7 +504,7 @@ namespace coreimage
 				Intensity = 2F,
 				Radius = 10F,
 			};
-			
+
 			return vignette.OutputImage;
 		}
 
@@ -538,7 +536,7 @@ namespace coreimage
 				Image = flower,
 				Color = new CIColor (new CGColor (255F, 0, 187F)) // A Magenta Color
 			};
-			
+
 			return whitePointAdjust.OutputImage;
 		}
 
@@ -651,7 +649,7 @@ namespace coreimage
 			var invert = new CIColorInvert () {
 				Image = flower
 			};
-			
+
 			return invert.OutputImage;
 		}
 
@@ -683,7 +681,7 @@ namespace coreimage
 				Color = inputColor,
 				Intensity = 1F, // Default 1
 			};
-			
+
 			return monoChrome.OutputImage;
 		}
 
@@ -716,7 +714,7 @@ namespace coreimage
 				Color0 = color0,
 				Color1 = color1
 			};
-			
+
 			return falseColor.OutputImage;
 		}
 
@@ -875,7 +873,7 @@ namespace coreimage
 				Image = flower,
 				Power = 3F, // Default value: 0.75
 			};
-			
+
 			return gammaAdjust.OutputImage;
 		}
 
@@ -894,14 +892,14 @@ namespace coreimage
 			var centerVector = new CIVector (100, 100); // Default is [150 150]
 			var color1 = CIColor.FromRgba (1, 0, 1, 1);
 			var color0 = CIColor.FromRgba (0, 1, 1, 1);
-				
+
 			var gaussGradient = new CIGaussianGradient () {
 				Center = centerVector,
 				Color0 = color0,
 				Color1 = color1,
 				Radius = 280f // Default is 300
 			};
-			
+
 			return Crop (gaussGradient);
 		}
 
@@ -921,7 +919,7 @@ namespace coreimage
 				Color0 = new CIColor (UIColor.Red),
 				Color1 = new CIColor (UIColor.Blue)
 			};
-			
+
 			return Crop (linearGrad);
 		}
 
@@ -941,7 +939,7 @@ namespace coreimage
 				Color0 = new CIColor (new CGColor (0, 255F, 0)), // Green
 				Color1 = new CIColor (new CGColor (0, 0, 0)) // Black
 			};
-			
+
 			return Crop (radGradient);
 		}
 
@@ -1075,12 +1073,12 @@ namespace coreimage
 		{
 			// Create an AffineTransform to Skew the Image
 			var transform = new CGAffineTransform (1F, .5F, .5F, 1F, 0F, 0F);
-			
+
 			var affineTransform = new CIAffineTransform () {
 				Image = flower,
 				Transform = transform
 			};
-			
+
 			return affineTransform.OutputImage;
 		}
 
@@ -1096,7 +1094,7 @@ namespace coreimage
 				Image = flower,
 				EV = 2F // Default value: 0.50 Minimum: 0.00 Maximum: 0.00 Slider minimum: -10.00 Slider maximum: 10.00 Identity: 0.00
 			};
-			
+
 			return exposureAdjust.OutputImage;
 		}
 
@@ -1158,11 +1156,10 @@ namespace coreimage
 				Image = heron,
 				Angle = Convert.ToSingle (Math.PI / 4.0) // Change by 45 degrees = pi/4 Radians.
 			};
-			
+
 			return straightFilter.OutputImage;
 		}
 
-		
 		#endregion
 
 		#region CICategoryCompositeOperation
@@ -1179,7 +1176,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds,
 			};
-			
+
 			return addComp.OutputImage;
 		}
 
@@ -1195,7 +1192,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return colorBlend.OutputImage;
 		}
 
@@ -1211,7 +1208,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return colorBurn.OutputImage;
 		}
 
@@ -1227,7 +1224,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds,
 			};
-			
+
 			return colorDodgeBlend.OutputImage;
 		}
 
@@ -1243,7 +1240,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return darkenBlend.OutputImage;
 		}
 
@@ -1259,7 +1256,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return differenceBlend.OutputImage;
 		}
 
@@ -1275,7 +1272,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return exclusionBlend.OutputImage;
 		}
 
@@ -1291,7 +1288,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return hardLightBlend.OutputImage;
 		}
 
@@ -1307,7 +1304,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return hueBlend.OutputImage;
 		}
 
@@ -1323,7 +1320,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return lightenBlend.OutputImage;
 		}
 
@@ -1339,7 +1336,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return luminosityBlend.OutputImage;
 		}
 
@@ -1355,7 +1352,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return maxComposite.OutputImage;
 		}
 
@@ -1371,7 +1368,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return minComposite.OutputImage;
 		}
 
@@ -1387,7 +1384,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return multiBlend.OutputImage;
 		}
 
@@ -1403,7 +1400,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return multiComposite.OutputImage;
 		}
 
@@ -1419,7 +1416,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return overlayBlend.OutputImage;
 		}
 
@@ -1432,10 +1429,10 @@ namespace coreimage
 		public CIImage SaturationBlendMode ()
 		{
 			var saturationBlend = new CISaturationBlendMode () {
-				Image = heron, 
+				Image = heron,
 				BackgroundImage = clouds,
 			};
-			
+
 			return saturationBlend.OutputImage;
 		}
 
@@ -1451,7 +1448,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return screenBlend.OutputImage;
 		}
 
@@ -1467,7 +1464,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return softLightBlend.OutputImage;
 		}
 
@@ -1483,7 +1480,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds,
 			};
-			
+
 			return sourceAtopComposite.OutputImage;
 		}
 
@@ -1499,7 +1496,7 @@ namespace coreimage
 				Image = clouds, // This image will be Cropped
 				BackgroundImage = heron
 			};
-			
+
 			return sourceComposite.OutputImage;
 		}
 
@@ -1515,7 +1512,7 @@ namespace coreimage
 				Image = clouds, // This Image will be Cropped
 				BackgroundImage = heron
 			};
-			
+
 			return sourceOutComposite.OutputImage;
 		}
 
@@ -1531,7 +1528,7 @@ namespace coreimage
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return sourceOverComposite.OutputImage;
 		}
 
@@ -1669,7 +1666,7 @@ namespace coreimage
 		/// </returns>
 		public CIImage CheckerboardGenerator ()
 		{
-			// Color 1 
+			// Color 1
 			var c0 = CIColor.FromRgb (1, 0, 0);
 			var c1 = CIColor.FromRgb (0, 1, 0);
 			var checker = new CICheckerboardGenerator () {
@@ -1678,7 +1675,7 @@ namespace coreimage
 				Center = new CIVector (new nfloat[] { 10, 10 }), // Default [80 80]
 				Sharpness = 1F // Default 1
 			};
-			
+
 			return Crop (checker);
 		}
 
@@ -1693,7 +1690,7 @@ namespace coreimage
 			var colorGen = new CIConstantColorGenerator () {
 				Color = new CIColor (UIColor.Blue)
 			};
-			
+
 			return Crop (colorGen);
 		}
 
@@ -1748,7 +1745,7 @@ namespace coreimage
 				Color1 = new CIColor (UIColor.Red),
 				Width = 10,
 			};
-			
+
 			return Crop (stripeGen);
 		}
 
@@ -2141,7 +2138,7 @@ namespace coreimage
 		CIImage DisintegrateWithMaskTransition ()
 		{
 			var transition = new CIDisintegrateWithMaskTransition () {
-				Image = clouds, 
+				Image = clouds,
 				TargetImage = flower,
 				Mask = xamarinCheck
 			};

@@ -47,7 +47,6 @@ namespace PrivacyPrompts
 			accessStatus.TranslatesAutoresizingMaskIntoConstraints = false;
 			requestAccessButton.TranslatesAutoresizingMaskIntoConstraints = false;
 
-
 			// View-level constraints to set constant size values
 			titleLabel.AddConstraints (new [] {
 				NSLayoutConstraint.Create (titleLabel, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 14),

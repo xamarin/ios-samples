@@ -28,7 +28,6 @@ namespace Footprint
 		nfloat displayScale;
 		CGPoint displayOffset;
 
-
 		public MainViewController (IntPtr handle)
 			: base (handle)
 		{

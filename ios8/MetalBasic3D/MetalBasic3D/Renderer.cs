@@ -30,47 +30,47 @@ namespace MetalBasic3D
 		const float depth = 1f;
 
 		float[] cubeVertexData = new float [216] {
-			width, -height, depth,   0.0f, -1.0f,  0.0f,  
-			-width, -height, depth,   0.0f, -1.0f, 0.0f,  
+			width, -height, depth,   0.0f, -1.0f,  0.0f,
+			-width, -height, depth,   0.0f, -1.0f, 0.0f,
 			-width, -height, -depth,   0.0f, -1.0f,  0.0f,
-			width, -height, -depth,  0.0f, -1.0f,  0.0f,  
-			width, -height, depth,   0.0f, -1.0f,  0.0f,  
+			width, -height, -depth,  0.0f, -1.0f,  0.0f,
+			width, -height, depth,   0.0f, -1.0f,  0.0f,
 			-width, -height, -depth,   0.0f, -1.0f,  0.0f,
 
 			width, height, depth,    1.0f, 0.0f,  0.0f,
-			width, -height, depth,   1.0f,  0.0f,  0.0f,  
-			width, -height, -depth,  1.0f,  0.0f,  0.0f,  
+			width, -height, depth,   1.0f,  0.0f,  0.0f,
+			width, -height, -depth,  1.0f,  0.0f,  0.0f,
 			width, height, -depth,   1.0f, 0.0f,  0.0f,
 			width, height, depth,    1.0f, 0.0f,  0.0f,
-			width, -height, -depth,  1.0f,  0.0f,  0.0f,  
+			width, -height, -depth,  1.0f,  0.0f,  0.0f,
 
 			-width, height, depth,    0.0f, 1.0f,  0.0f,
 			width, height, depth,    0.0f, 1.0f,  0.0f,
 			width, height, -depth,   0.0f, 1.0f,  0.0f,
-			-width, height, -depth,   0.0f, 1.0f,  0.0f,  
+			-width, height, -depth,   0.0f, 1.0f,  0.0f,
 			-width, height, depth,    0.0f, 1.0f,  0.0f,
 			width, height, -depth,   0.0f, 1.0f,  0.0f,
 
-			-width, -height, depth,  -1.0f,  0.0f, 0.0f,  
+			-width, -height, depth,  -1.0f,  0.0f, 0.0f,
 			-width, height, depth,   -1.0f, 0.0f,  0.0f,
-			-width, height, -depth,  -1.0f, 0.0f,  0.0f,  
+			-width, height, -depth,  -1.0f, 0.0f,  0.0f,
 			-width, -height, -depth,  -1.0f,  0.0f,  0.0f,
-			-width, -height, depth,  -1.0f,  0.0f, 0.0f,  
+			-width, -height, depth,  -1.0f,  0.0f, 0.0f,
 			-width, height, -depth,  -1.0f, 0.0f,  0.0f,
 
-			width, height,  depth,  0.0f, 0.0f,  1.0f,    
-			-width, height,  depth,  0.0f, 0.0f,  1.0f,   
-			-width, -height, depth,   0.0f,  0.0f, 1.0f,  
-			-width, -height, depth,   0.0f,  0.0f, 1.0f,  
-			width, -height, depth,   0.0f,  0.0f,  1.0f,  
-			width, height,  depth,  0.0f, 0.0f,  1.0f,    
+			width, height,  depth,  0.0f, 0.0f,  1.0f,
+			-width, height,  depth,  0.0f, 0.0f,  1.0f,
+			-width, -height, depth,   0.0f,  0.0f, 1.0f,
+			-width, -height, depth,   0.0f,  0.0f, 1.0f,
+			width, -height, depth,   0.0f,  0.0f,  1.0f,
+			width, height,  depth,  0.0f, 0.0f,  1.0f,
 
-			width, -height, -depth,  0.0f,  0.0f, -1.0f,  
+			width, -height, -depth,  0.0f,  0.0f, -1.0f,
 			-width, -height, -depth,   0.0f,  0.0f, -1.0f,
-			-width, height, -depth,  0.0f, 0.0f, -1.0f,   
-			width, height, -depth,  0.0f, 0.0f, -1.0f,    
-			width, -height, -depth,  0.0f,  0.0f, -1.0f,  
-			-width, height, -depth,  0.0f, 0.0f, -1.0f 
+			-width, height, -depth,  0.0f, 0.0f, -1.0f,
+			width, height, -depth,  0.0f, 0.0f, -1.0f,
+			width, -height, -depth,  0.0f,  0.0f, -1.0f,
+			-width, height, -depth,  0.0f, 0.0f, -1.0f
 		};
 
 		MTLPixelFormat depthPixelFormat;
@@ -241,7 +241,7 @@ namespace MetalBasic3D
 				FragmentFunction = fragmentProgram,
 				DepthAttachmentPixelFormat = depthPixelFormat
 			};
-				
+
 			pipelineStateDescriptor.ColorAttachments [0].PixelFormat = MTLPixelFormat.BGRA8Unorm;
 
 			NSError error;

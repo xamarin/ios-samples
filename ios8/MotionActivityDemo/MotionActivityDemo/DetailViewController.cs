@@ -110,7 +110,7 @@ namespace MotionActivityDemo
 				cell.DetailTextLabel.Text = (activityDataManager.StepCounts + currentSteps).ToString ();
 			} else if (indexPath.Section == 2) {
 				var activity = activityDataManager.SignificantActivities [indexPath.Row];
-				cell.TextLabel.Text = String.Format ("{0} ({1} - {2})", 
+				cell.TextLabel.Text = String.Format ("{0} ({1} - {2})",
 					ActivityDataManager.ActivityTypeToString (activity.ActivityType),
 					dateFormatter.StringFor (activity.StartDate),
 					dateFormatter.StringFor (activity.EndDate));

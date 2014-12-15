@@ -46,10 +46,10 @@ namespace AVCompositionDebugVieweriOS
 			if (composition != null)
 				ProcessComposition (composition);
 
-			if (videoComposition != null) 
+			if (videoComposition != null)
 				ProcessVideoComposition (videoComposition);
 
-			if (audioMix != null) 
+			if (audioMix != null)
 				ProcessAudioMix (audioMix);
 		}
 
@@ -92,7 +92,7 @@ namespace AVCompositionDebugVieweriOS
 						    CMTime.Compare (timeRange.Start, CMTime.Zero) == 1) {
 							ramp.Add (new CGPoint ((float)timeRange.Start.Seconds, startOpacity));
 						}
-						
+
 						CMTime endTime = CMTime.Add (timeRange.Start, timeRange.Duration);
 						ramp.Add (new CGPoint ((float)endTime.Seconds, endOpacity));
 						startTime = CMTime.Add (timeRange.Start, timeRange.Duration);
@@ -121,7 +121,7 @@ namespace AVCompositionDebugVieweriOS
 				List<CGPoint> ramp = new List<CGPoint> ();
 
 				CMTime startTime = CMTime.Zero;
-				float startVolume = 1f; 
+				float startVolume = 1f;
 				float endVolume = 1f;
 				CMTimeRange timeRange = new CMTimeRange ();
 
@@ -208,7 +208,7 @@ namespace AVCompositionDebugVieweriOS
 			if (videoCompositionStages != null)
 				DrawVideoCompositionTracks (bannerRect, rowRect, ref runningTop);
 
-			if (audioMixTracks != null) 
+			if (audioMixTracks != null)
 				DrawAudioMixTracks (bannerRect, rowRect, ref runningTop);
 		}
 
@@ -384,8 +384,8 @@ namespace AVCompositionDebugVieweriOS
 
 				foreach (string layerName in stage.LayerNames) {
 					CGRect bufferRect = layerRect;
-					int intValueOfName; 
-					Int32.TryParse (layerName, out intValueOfName); 
+					int intValueOfName;
+					Int32.TryParse (layerName, out intValueOfName);
 					if (intValueOfName % 2 == 1) {
 						context.SetFillColor (0.55f, 0.02f, 0.02f, 1.00f); // darker red
 						context.SetStrokeColor (0.87f, 0.10f, 0.10f, 1.00f); // brighter red
@@ -393,11 +393,11 @@ namespace AVCompositionDebugVieweriOS
 						context.SetFillColor (0.00f, 0.40f, 0.76f, 1.00f); // darker blue
 						context.SetStrokeColor (0.00f, 0.67f, 1.00f, 1.00f); // brighter blue
 					}
-			
+
 					context.SetLineWidth (2f);
 					bufferRect = bufferRect.Inset (2f, 3f);
 					context.AddRect (bufferRect);
-					context.DrawPath (CGPathDrawingMode.FillStroke);	
+					context.DrawPath (CGPathDrawingMode.FillStroke);
 
 					context.SetFillColor (0.00f, 0.00f, 0.00f, 1.00f); // white
 					DrawVerticallyCenteredInRect (layerName, bufferRect);
@@ -450,8 +450,8 @@ namespace AVCompositionDebugVieweriOS
 			context.SetFillColor (1.00f, 1.00f, 1.00f, 1.00f);
 			NSString title = new NSString (text);
 			rect.Y += rect.Height / 2f - UIFont.PreferredCaption1.xHeight;
-			title.DrawString (rect, UIFont.PreferredCaption1, 
-			                  UILineBreakMode.CharacterWrap, 
+			title.DrawString (rect, UIFont.PreferredCaption1,
+			                  UILineBreakMode.CharacterWrap,
 			                  UITextAlignment.Center);
 		}
 

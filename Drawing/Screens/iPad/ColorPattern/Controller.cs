@@ -8,7 +8,7 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 	public class Controller : UIViewController
 	{
 		UIImageView imageView;
-			
+
 		#region -= constructors =-
 
 		public Controller () : base() { }
@@ -18,16 +18,16 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// set the background color of the view to white
 			View.BackgroundColor = UIColor.White;
-			
-			// instantiate a new image view that takes up the whole screen and add it to 
+
+			// instantiate a new image view that takes up the whole screen and add it to
 			// the view hierarchy
 			CGRect imageViewFrame = new CGRect (0, -NavigationController.NavigationBar.Frame.Height, View.Frame.Width, View.Frame.Height);
 			imageView = new UIImageView (imageViewFrame);
 			View.AddSubview (imageView);
-			
+
 			// create our offscreen bitmap context
 			// size
 			CGSize bitmapSize = new CGSize (View.Frame.Size);
@@ -35,30 +35,30 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 									      (int)bitmapSize.Width, (int)bitmapSize.Height, 8,
 									      (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
 									      CGImageAlphaInfo.PremultipliedFirst)) {
-				
+
 				// declare vars
 				CGRect patternRect = new CGRect (0, 0, 16, 16);
-				
+
 				// set the color space of our fill to be the patter colorspace
 				context.SetFillColorSpace (CGColorSpace.CreatePattern (null));
-				
+
 				// create a new pattern
 				CGPattern pattern = new CGPattern (patternRect,
 								   CGAffineTransform.MakeRotation (.3f), 16, 16, CGPatternTiling.NoDistortion,
 								   true, DrawPolkaDotPattern);
-				
+
 				// set our fill as our pattern, color doesn't matter because the pattern handles it
 				context.SetFillPattern (pattern, new nfloat[] { 1 });
-				
+
 				// fill the entire view with that pattern
 				context.FillRect (imageView.Frame);
-					
+
 				// output the drawing to the view
 				imageView.Image = UIImage.FromImage (context.ToImage ());
 			}
 		}
-		
-		// This is our pattern callback. it's called by coregraphics to create 
+
+		// This is our pattern callback. it's called by coregraphics to create
 		// the pattern base.
 		protected void DrawPolkaDotPattern (CGContext context)
 		{
@@ -66,7 +66,7 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 			context.FillEllipseInRect (new CGRect (4, 4, 8, 8));
 		}
 
-		// This is a slightly more complicated draw pattern, but using it is just 
+		// This is a slightly more complicated draw pattern, but using it is just
 		// as easy as the previous one. To use this one, simply change "DrawPolkaDotPattern"
 		// in line 54 above to "DrawStarPattern"
 		protected void DrawStarPattern (CGContext context)
@@ -76,10 +76,10 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 			// 144º
 			float theta = 2 * (float)Math.PI * (2f / 5f);
 			float radius = starDiameter / 2;
-			
+
 			// move up and over
 			context.TranslateCTM (starDiameter / 2, starDiameter / 2);
-			
+
 			context.MoveTo (0, radius);
 			for (int i = 1; i < 5; i++) {
 				context.AddLineToPoint (radius * (float)Math.Sin (i * theta), radius * (float)Math.Cos (i * theta));
@@ -89,6 +89,6 @@ namespace Example_Drawing.Screens.iPad.ColorPattern
 			context.ClosePath ();
 			context.FillPath ();
 		}
-		
+
 	}
 }

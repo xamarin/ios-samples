@@ -16,7 +16,7 @@ namespace Stars
 
 			window.RootViewController = new StarsViewController();
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 

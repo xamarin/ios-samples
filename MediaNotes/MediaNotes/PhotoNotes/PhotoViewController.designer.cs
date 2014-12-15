@@ -31,7 +31,7 @@ namespace MediaNotes
 
 		[Action ("PreviousPhoto:")]
 		partial void PreviousPhoto (UIKit.UIBarButtonItem sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (toolbar != null) {

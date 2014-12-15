@@ -52,7 +52,7 @@ namespace CollectionViewTransition {
 			context = transitionContext;
 			var fromVC = (UICollectionViewController) context.GetViewControllerForKey (UITransitionContext.FromViewControllerKey);
 			var toVC = (UICollectionViewController) context.GetViewControllerForKey (UITransitionContext.ToViewControllerKey);
-			transitionLayout = (APLTransitionLayout) fromVC.CollectionView.StartInteractiveTransition (toVC.Layout, 
+			transitionLayout = (APLTransitionLayout) fromVC.CollectionView.StartInteractiveTransition (toVC.Layout,
 				delegate (bool finished, bool completed)  {
 				context.CompleteTransition (completed);
 				collectionView.WeakDelegate = completed ? toVC : fromVC;
@@ -119,7 +119,7 @@ namespace CollectionViewTransition {
 				}
 
 				if (HasActiveInteraction) {
-					if (sender.State == UIGestureRecognizerState.Changed) { 
+					if (sender.State == UIGestureRecognizerState.Changed) {
 						// update the progress of the transtition as the user continues to pinch
 						float offsetX = (float)point.X - (float)initialPinchPoint.X;
 						float offsetY = (float)point.Y - (float)initialPinchPoint.Y;

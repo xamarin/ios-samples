@@ -49,23 +49,23 @@ namespace OpenGLScroller
 		{
 			return UIStatusBarStyle.LightContent;
 		}
-		
+
 		void Scrolled (object sender, EventArgs ea)
 		{
 			CubeView.scrollOffset = scrollView.ContentOffset;
 		}
-		
+
 		void DraggingStarted (object sender, EventArgs ea)
 		{
 			StartDisplayLinkIfNeeded ();
 		}
-		
+
 		 void DraggingEnded (object sender, DraggingEventArgs ea)
 		{
 			if (!ea.Decelerate)
 				StopDisplayLink ();
 		}
-		
+
 		void DecelerationEnded (object sender, EventArgs ea)
 		{
 			StopDisplayLink ();
@@ -75,8 +75,8 @@ namespace OpenGLScroller
 		{
 			if (displayLink == null) {
 				displayLink = CADisplayLink.Create (() => CubeView.Display ());
-				displayLink.AddToRunLoop (NSRunLoop.Main, NSRunLoop.UITrackingRunLoopMode); 
-			}	
+				displayLink.AddToRunLoop (NSRunLoop.Main, NSRunLoop.UITrackingRunLoopMode);
+			}
 		}
 
 		void StopDisplayLink ()

@@ -19,7 +19,7 @@ namespace PrivacyPrompts
 	{
 		string micAccessText = "Not determined";
 
-		public MicrophonePrivacyController() 
+		public MicrophonePrivacyController()
 		{
 			CheckAccess = CheckMicAccess;
 			RequestAccess = RequestMicAccess;
@@ -52,6 +52,5 @@ namespace PrivacyPrompts
 			}
 		}
 	}
-
 
 }

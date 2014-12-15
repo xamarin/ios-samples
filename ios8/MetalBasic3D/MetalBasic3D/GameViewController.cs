@@ -26,10 +26,10 @@ namespace MetalBasic3D
 
 		public double TimeSinceLastDraw { get; set; }
 
-		public bool Paused { 
+		public bool Paused {
 			get {
 				return gameLoopPaused;
-			} 
+			}
 
 			set {
 				if (gameLoopPaused == value)

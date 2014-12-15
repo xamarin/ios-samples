@@ -12,7 +12,7 @@ namespace SpriteTour
 	[Register ("ColorizedSpritesViewController")]
 	partial class ColorizedSpritesViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

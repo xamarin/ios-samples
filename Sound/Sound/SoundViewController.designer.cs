@@ -25,7 +25,7 @@ namespace Sound
 
 		[Outlet]
 		UIKit.UILabel LengthOfRecordingLabel { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (StartRecordingButton != null) {

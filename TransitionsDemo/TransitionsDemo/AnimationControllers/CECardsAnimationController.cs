@@ -8,8 +8,8 @@ namespace TransitionsDemo.AnimationControllers
 {
 	public class CECardsAnimationController : CEReversibleAnimationController
 	{
-		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext, 
-		                                        UIViewController fromViewController, UIViewController toViewController, 
+		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
+		                                        UIViewController fromViewController, UIViewController toViewController,
 		                                        UIView fromView, UIView toView)
 		{
 			if (Reverse) {
@@ -19,8 +19,8 @@ namespace TransitionsDemo.AnimationControllers
 			}
 		}
 
-		private void ExecuteReverseAnimation (IUIViewControllerContextTransitioning transitionContext, 
-		                                      UIViewController fromViewController, UIViewController toViewController, 
+		private void ExecuteReverseAnimation (IUIViewControllerContextTransitioning transitionContext,
+		                                      UIViewController fromViewController, UIViewController toViewController,
 		                                      UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
@@ -66,8 +66,8 @@ namespace TransitionsDemo.AnimationControllers
 			});
 		}
 
-		private void ExecuteForwardAnimation (IUIViewControllerContextTransitioning transitionContext, 
-		                                      UIViewController fromViewController, UIViewController toViewController, 
+		private void ExecuteForwardAnimation (IUIViewControllerContextTransitioning transitionContext,
+		                                      UIViewController fromViewController, UIViewController toViewController,
 		                                      UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
@@ -93,7 +93,7 @@ namespace TransitionsDemo.AnimationControllers
 				});
 
 				UIView.AddKeyframeWithRelativeStartTime (0.6, 0.2, () => {
-					toView.Frame = new CGRect (toView.Frame.X, containerView.Frame.Y - 30f, 
+					toView.Frame = new CGRect (toView.Frame.X, containerView.Frame.Y - 30f,
 					                               toView.Frame.Width, toView.Frame.Height);
 				});
 

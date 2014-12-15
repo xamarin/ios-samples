@@ -117,9 +117,9 @@ namespace AirLocate
 						}
 
 						DispatchQueue.MainQueue.DispatchAsync (delegate {
-							CalibrationCompletionHandler (this, new CalibrationCompletedEventArgs () { 
+							CalibrationCompletionHandler (this, new CalibrationCompletedEventArgs () {
 								MeasurePower = measuredPower,
-								Error = error 
+								Error = error
 							});
 						});
 

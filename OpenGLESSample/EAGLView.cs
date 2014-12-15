@@ -10,7 +10,7 @@ using ObjCRuntime;
 
 namespace OpenGLESSample
 {
-	public partial class EAGLView : UIView 
+	public partial class EAGLView : UIView
 	{
 		int BackingWidth;
 		int BackingHeight;
@@ -19,15 +19,15 @@ namespace OpenGLESSample
 		uint DepthRenderBuffer;
 		NSTimer AnimationTimer;
 		internal double AnimationInterval;
-	
+
 		const bool UseDepthBuffer = false;
-	
+
 		[Export ("layerClass")]
 		public static Class LayerClass ()
 		{
 			return new Class (typeof (CAEAGLLayer));
 		}
-	
+
 		[Export ("initWithCoder:")]
 		public EAGLView (NSCoder coder) : base (coder)
 		{
@@ -48,7 +48,7 @@ namespace OpenGLESSample
 			float[] squareVertices = {
 				-0.5f, -0.5f,
 				0.5f, -0.5f,
-				-0.5f, 0.5f, 
+				-0.5f, 0.5f,
 				0.5f, 0.5f,
 			};
 			byte[] squareColors = {
@@ -57,31 +57,31 @@ namespace OpenGLESSample
 				0,     0,    0,  0,
 				255,   0,  255, 255,
 			};
-	
+
 			Context.MakeCurrent(null);
 			GL.Oes.BindFramebuffer (All.FramebufferOes, ViewFrameBuffer);
 			GL.Viewport (0, 0, BackingWidth, BackingHeight);
-	
+
 			GL.MatrixMode (All.Projection);
 			GL.LoadIdentity ();
 			GL.Ortho (-1.0f, 1.0f, -1.5f, 1.5f, -1.0f, 1.0f);
 			GL.MatrixMode (All.Modelview);
 			GL.Rotate (3.0f, 0.0f, 0.0f, 1.0f);
-			
+
 			GL.ClearColor (0.5f, 0.5f, 0.5f, 1.0f);
 			GL.Clear (ClearBufferMask.ColorBufferBit);
-	
+
 			GL.VertexPointer (2, All.Float, 0, squareVertices);
 			GL.EnableClientState (All.VertexArray);
 			GL.ColorPointer (4, All.UnsignedByte, 0, squareColors);
 			GL.EnableClientState (All.ColorArray);
-			
+
 			GL.DrawArrays (All.TriangleStrip, 0, 4);
-	
+
 			GL.Oes.BindRenderbuffer (All.RenderbufferOes, ViewRenderBuffer);
 			Context.EAGLContext.PresentRenderBuffer ((uint) All.RenderbufferOes);
 		}
-	
+
 		public override void LayoutSubviews ()
 		{
 			Context.MakeCurrent(null);
@@ -89,12 +89,12 @@ namespace OpenGLESSample
 			CreateFrameBuffer ();
 			DrawView ();
 		}
-		
+
 		bool CreateFrameBuffer ()
 		{
 			GL.Oes.GenFramebuffers (1, out ViewFrameBuffer);
 			GL.Oes.GenRenderbuffers (1, out ViewRenderBuffer);
-	
+
 			GL.Oes.BindFramebuffer (All.FramebufferOes, ViewFrameBuffer);
 			GL.Oes.BindRenderbuffer (All.RenderbufferOes, ViewRenderBuffer);
 			Context.EAGLContext.RenderBufferStorage ((uint) All.RenderbufferOes, (CAEAGLLayer) Layer);
@@ -102,7 +102,7 @@ namespace OpenGLESSample
 				All.ColorAttachment0Oes,
 				All.RenderbufferOes,
 				ViewRenderBuffer);
-	
+
 			GL.Oes.GetRenderbufferParameter (All.RenderbufferOes, All.RenderbufferWidthOes, out BackingWidth);
 			GL.Oes.GetRenderbufferParameter (All.RenderbufferOes, All.RenderbufferHeightOes, out BackingHeight);
 
@@ -112,36 +112,36 @@ namespace OpenGLESSample
 			}
 			return true;
 		}
-	
+
 		void DestroyFrameBuffer ()
 		{
 			GL.Oes.DeleteFramebuffers (1, ref ViewFrameBuffer);
 			ViewFrameBuffer = 0;
 			GL.Oes.DeleteRenderbuffers (1, ref ViewRenderBuffer);
 			ViewRenderBuffer = 0;
-	
+
 			if (DepthRenderBuffer != 0) {
 				GL.Oes.DeleteRenderbuffers (1, ref DepthRenderBuffer);
 				DepthRenderBuffer = 0;
 			}
 		}
-	
+
 		public void StartAnimation ()
 		{
 			AnimationTimer = NSTimer.CreateRepeatingScheduledTimer (TimeSpan.FromSeconds (AnimationInterval), (d) => DrawView ());
 		}
-	
+
 		public void StopAnimation ()
 		{
 			AnimationTimer = null;
 		}
-	
+
 		public void SetAnimationTimer (NSTimer timer)
 		{
 			AnimationTimer.Invalidate ();
 			AnimationTimer = timer;
 		}
-	
+
 		public void SetAnimationInterval (double interval)
 		{
 			AnimationInterval = interval;

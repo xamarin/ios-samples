@@ -10,7 +10,7 @@ namespace TransitionsDemo.InteractionControllers
 		Tab
 	}
 
-	public class CEBaseInteractionController : UIPercentDrivenInteractiveTransition 
+	public class CEBaseInteractionController : UIPercentDrivenInteractiveTransition
 	{
 		protected bool shouldCompleteTransition;
 		protected UIViewController viewController;

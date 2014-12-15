@@ -13,7 +13,7 @@ namespace coreimage
 	{
 		[Action ("showInfo:")]
 		partial void showInfo (MonoTouch.Foundation.NSObject sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

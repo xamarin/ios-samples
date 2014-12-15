@@ -12,7 +12,6 @@ namespace MapCallouts
 		public DetailViewController () : base ("DetailViewController", null)
 		{
 		}
-		
-		
+
 	}
 }

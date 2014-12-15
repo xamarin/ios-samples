@@ -79,7 +79,7 @@ namespace StreamingAudio
 		}
 
 		protected override void Dispose (bool disposing)
-		{	
+		{
 			if (disposing) {
 				readStream.Close ();
 				readStream.Dispose ();

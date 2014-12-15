@@ -30,7 +30,7 @@ namespace SpriteKitPhysicsCollisions {
 		SKEmitterNode visibleDamageNode;
 		float engineEngagedAlpha;
 		double timeLastFiredMissile;
-	
+
 		int health;
 
 		static Random rand = new Random ();
@@ -61,7 +61,7 @@ namespace SpriteKitPhysicsCollisions {
 #endif
 			var body = SKPhysicsBody.CreateBodyFromPath (boundingPath);
 			body.CategoryBitMask = Category.Ship;
-			body.CollisionBitMask = Category.Ship | Category.Asteroid | Category.Planet | Category.Edge; 
+			body.CollisionBitMask = Category.Ship | Category.Asteroid | Category.Planet | Category.Edge;
 			body.ContactTestBitMask = body.CollisionBitMask;
 			body.LinearDamping = 0;
 			body.AngularDamping = 0.5f;

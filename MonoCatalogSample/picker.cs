@@ -10,11 +10,11 @@ public partial class PickerViewController : UIViewController  {
 	UIPickerView myPickerView, customPickerView;
 	UIDatePicker datePickerView;
 	UILabel label;
-	
+
 	public PickerViewController () : base ("PickerViewController", null)
 	{
 	}
-	
+
 	public override void ViewDidLoad ()
 	{
 		base.ViewDidLoad ();
@@ -53,7 +53,7 @@ public partial class PickerViewController : UIViewController  {
 		NavigationController.NavigationBar.BarStyle = UIBarStyle.Default;
 		UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.Default;
 	}
-	
+
 	RectangleF PickerFrameWithSize (SizeF size)
 	{
 		var screenRect = UIScreen.MainScreen.ApplicationFrame;
@@ -71,13 +71,13 @@ public partial class PickerViewController : UIViewController  {
 		picker.Hidden = false;
 		currentPicker = picker;
 	}
-	
+
 #region Hooks from Interface Builder
 	[Export ("togglePickers:")]
 	public void TogglePickers (UISegmentedControl sender)
 	{
 		switch (sender.SelectedSegment){
-		case 0: 
+		case 0:
 			pickerStyleSegmentedControl.Hidden = true;
 			segmentLabel.Hidden = true;
 			ShowPicker (myPickerView);
@@ -106,15 +106,15 @@ public partial class PickerViewController : UIViewController  {
 		case 0: // time
 			datePickerView.Mode = UIDatePickerMode.Time;
 			break;
-			
+
 		case 1: // date
 			datePickerView.Mode = UIDatePickerMode.Date;
 			break;
-			
+
 		case 2: // date & time
 			datePickerView.Mode = UIDatePickerMode.DateAndTime;
 			break;
-			
+
 		case 3: // counter
 			datePickerView.Mode = UIDatePickerMode.CountDownTimer;
 			break;
@@ -125,7 +125,7 @@ public partial class PickerViewController : UIViewController  {
 		Console.WriteLine ("Date is: {0} {1} {2}", NSDate.Now.ToString (), ((NSDate) DateTime.Now).ToString (), DateTime.Now);
 	}
 #endregion
-	
+
 #region Custom picker
 	public void CreateCustomPicker ()
 	{
@@ -140,7 +140,7 @@ public partial class PickerViewController : UIViewController  {
 	}
 
 #endregion
-	
+
 #region Date picker
 	public void CreateDatePicker ()
 	{
@@ -155,7 +155,7 @@ public partial class PickerViewController : UIViewController  {
 #endregion
 
 #region People picker
-	
+
 	void CreatePicker ()
 	{
 		//
@@ -188,7 +188,7 @@ public partial class PickerViewController : UIViewController  {
 		public PeopleModel (PickerViewController pvc) {
 			this.pvc = pvc;
 		}
-		
+
 		public override int GetComponentCount (UIPickerView v)
 		{
 			return 2;
@@ -213,7 +213,7 @@ public partial class PickerViewController : UIViewController  {
 						    names [picker.SelectedRowInComponent (0)],
 						    picker.SelectedRowInComponent (1));
 		}
-		
+
 		public override float GetComponentWidth (UIPickerView picker, int component)
 		{
 			if (component == 0)

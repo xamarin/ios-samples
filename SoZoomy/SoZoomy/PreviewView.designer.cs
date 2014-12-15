@@ -12,7 +12,7 @@ namespace SoZoomy
 	[Register("PreviewView")]
 	partial class PreviewView
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

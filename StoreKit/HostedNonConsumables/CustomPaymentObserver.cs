@@ -7,7 +7,7 @@ using UIKit;
 namespace NonConsumables {
 	internal class CustomPaymentObserver : SKPaymentTransactionObserver {
 		private InAppPurchaseManager theManager;
-		
+
 		public CustomPaymentObserver(InAppPurchaseManager manager)
 		{
 			theManager = manager;
@@ -76,7 +76,7 @@ namespace NonConsumables {
 			    }
 			}
 		}
-		
+
 		public override void PaymentQueueRestoreCompletedTransactionsFinished (SKPaymentQueue queue)
 		{
 			// Restore succeeded

@@ -16,7 +16,7 @@ namespace StateRestoration
 
 		[Outlet]
 		MonoTouch.UIKit.UISlider Slider { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (ActiveSwitch != null) {

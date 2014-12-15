@@ -14,8 +14,8 @@ namespace TransitionsDemo.AnimationControllers
 		{
 		}
 
-		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext, 
-		                                        UIViewController fromViewController, UIViewController toViewController, 
+		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
+		                                        UIViewController fromViewController, UIViewController toViewController,
 		                                        UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
@@ -93,7 +93,7 @@ namespace TransitionsDemo.AnimationControllers
 
 			var shadowView = new UIView (viewWithShadow.Bounds);
 
-			var colors = new CGColor[] { 
+			var colors = new CGColor[] {
 				UIColor.FromWhiteAlpha(0f, 0f).CGColor,
 				UIColor.FromWhiteAlpha(0f, 0.5f).CGColor
 			};

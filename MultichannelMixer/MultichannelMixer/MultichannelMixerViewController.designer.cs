@@ -41,7 +41,7 @@ namespace MultichannelMixer
 
 		[Action ("setOutputVolume:")]
 		partial void setOutputVolume (Foundation.NSObject sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (bus0switch != null) {

@@ -20,7 +20,7 @@ namespace CoreAnimationExample
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// create the navigation items
 			var navGroup = new NavItemGroup ("UIView Animations");
 			navGroup.Items = new List<NavItem> () {
@@ -35,10 +35,10 @@ namespace CoreAnimationExample
 
 			// create a table source from our nav items
 			tableSource = new NavItemTableSource (navItems);
-			
+
 			// set the source on the table to our data source
 			base.TableView.Source = tableSource;
-			
+
 			tableSource.RowClicked += (sender, e) => {
 				if (RowClicked != null)
 					RowClicked (sender, e);

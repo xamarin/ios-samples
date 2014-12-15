@@ -29,7 +29,7 @@ namespace GameCenterSample
 
 		[Outlet]
 		UIKit.UIButton submitScoreButton { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (scoreTextField != null) {

@@ -29,7 +29,7 @@ namespace Fit
 
 		[Outlet]
 		UIKit.UILabel weightValueLabel { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (ageUnitLabel != null) {

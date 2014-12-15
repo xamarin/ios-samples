@@ -9,7 +9,7 @@ namespace RegionDefiner
 	{
 		public override MKOverlayView GetViewForOverlay (MKMapView mapView, IMKOverlay overlay)
 		{
-			if (RegionDefinerViewController.PolygonView != null && RegionDefinerViewController.PolygonView.Polygon == RegionDefinerViewController.Polygon) 
+			if (RegionDefinerViewController.PolygonView != null && RegionDefinerViewController.PolygonView.Polygon == RegionDefinerViewController.Polygon)
 				return RegionDefinerViewController.PolygonView;
 
 			RegionDefinerViewController.Polygon = overlay as MKPolygon;
@@ -23,7 +23,4 @@ namespace RegionDefiner
 		}
 	}
 }
-
-
-
 

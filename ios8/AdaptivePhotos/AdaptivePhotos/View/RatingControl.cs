@@ -26,7 +26,7 @@ namespace AdaptivePhotos
 					currentrating = value;
 					UpdateImageViews ();
 				}
-			} 
+			}
 		}
 
 		public override bool IsAccessibilityElement {
@@ -116,7 +116,7 @@ namespace AdaptivePhotos
 					NSLayoutFormatOptions.DirectionLeadingToTrailing,
 					"imageView", imageView));
 
-				AddConstraint (NSLayoutConstraint.Create (imageView, NSLayoutAttribute.Width, NSLayoutRelation.Equal, 
+				AddConstraint (NSLayoutConstraint.Create (imageView, NSLayoutAttribute.Width, NSLayoutRelation.Equal,
 					imageView, NSLayoutAttribute.Height, 1.0f, 0.0f));
 
 				if (lastImageView != null) {

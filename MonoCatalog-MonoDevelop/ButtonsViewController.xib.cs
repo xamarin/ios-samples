@@ -10,7 +10,6 @@ using CoreGraphics;
 namespace MonoCatalog
 {
 
-
 	public partial class ButtonsViewController : UITableViewController
 	{
 
@@ -180,7 +179,6 @@ namespace MonoCatalog
 			// To support reusable cells
 			return button;
 		}
-
 
 		UIButton InfoDarkButtonType ()
 		{

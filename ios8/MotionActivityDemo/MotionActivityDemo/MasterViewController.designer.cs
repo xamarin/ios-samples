@@ -12,7 +12,7 @@ namespace MotionActivityDemo
 	[Register ("MasterViewController")]
 	partial class MasterViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

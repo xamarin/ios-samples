@@ -17,7 +17,7 @@ namespace PrivacyPrompts {
 			UIApplication.Main (args, null, "AppDelegate");
 		}
 
-#region Notifications 
+#region Notifications
 		//This is used to respond to Notifications permissions (see NotificationsPrivacyController.cs)
 		public event Action<UIUserNotificationSettings> NotificationsRegistered;
 

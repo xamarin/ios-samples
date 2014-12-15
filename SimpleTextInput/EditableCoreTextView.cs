@@ -21,10 +21,10 @@ namespace SimpleTextInput
 		SimpleCoreTextView textView;
 		NSDictionary markedTextStyle;
 		IUITextInputDelegate inputDelegate;
-		
+
 		public delegate void ViewWillEditDelegate (EditableCoreTextView editableCoreTextView);
 		public event ViewWillEditDelegate ViewWillEdit;
-		
+
 		public EditableCoreTextView (CGRect frame)
 			: base (frame)
 		{
@@ -36,7 +36,7 @@ namespace SimpleTextInput
 				}
 			};
 			AddGestureRecognizer (tap);
-        
+
 			// Create our tokenizer and text storage
 			tokenizer = new UITextInputStringTokenizer ();
 
@@ -58,10 +58,10 @@ namespace SimpleTextInput
 			textView = null;
 			base.Dispose (disposing);
 		}
-		
+
 #region Custom user interaction
 
-		// UIResponder protocol override - our view can become first responder to 
+		// UIResponder protocol override - our view can become first responder to
 		// receive user text input
 		public override bool CanBecomeFirstResponder {
 			get {
@@ -69,8 +69,8 @@ namespace SimpleTextInput
 			}
 		}
 
-		// UIResponder protocol override - called when our view is being asked to resign 
-		// first responder state (in this sample by using the "Done" button)  
+		// UIResponder protocol override - called when our view is being asked to resign
+		// first responder state (in this sample by using the "Done" button)
 		public override bool ResignFirstResponder ()
 		{
 			textView.IsEditing = false;
@@ -99,7 +99,7 @@ namespace SimpleTextInput
 			}
 		}
 #endregion
-		
+
 #region UITextInput methods
 		[Export ("inputDelegate")]
 		public IUITextInputDelegate InputDelegate {
@@ -110,7 +110,7 @@ namespace SimpleTextInput
 				inputDelegate = value;
 			}
 		}
-		
+
 		[Export ("markedTextStyle")]
 		public NSDictionary MarkedTextStyle {
 			get {
@@ -120,7 +120,7 @@ namespace SimpleTextInput
 				markedTextStyle = value;
 			}
 		}
-		
+
 #region UITextInput - Replacing and Returning Text
 		// UITextInput required method - called by text system to get the string for
 		// a given range in the text storage
@@ -141,17 +141,17 @@ namespace SimpleTextInput
 			// Determine if replaced range intersects current selection range
 			// and update selection range if so.
 			if (r.Range.Location + r.Range.Length <= selectedNSRange.Location) {
-				// This is the easy case. 
+				// This is the easy case.
 				selectedNSRange.Location -= (r.Range.Length - text.Length);
 			} else {
 				// Need to also deal with overlapping ranges.  Not addressed
 				// in this simplified sample.
 			}
-			
+
 			// Now replace characters in text storage
 			this.text.Remove ((int)r.Range.Location, (int)r.Range.Length);
 			this.text.Insert ((int)r.Range.Location, text);
-			
+
 			// Update underlying SimpleCoreTextView
 			textView.Text = this.text.ToString ();
 			textView.SelectedTextRange = selectedNSRange;
@@ -180,17 +180,17 @@ namespace SimpleTextInput
 			}
 		}
 
-		// UITextInput required method - Insert the provided text and marks it to indicate 
-		// that it is part of an active input session. 
+		// UITextInput required method - Insert the provided text and marks it to indicate
+		// that it is part of an active input session.
 		[Export ("setMarkedText:selectedRange:")]
 		void SetMarkedText (string markedText, NSRange selectedRange)
 		{
 			NSRange selectedNSRange = textView.SelectedTextRange;
 			NSRange markedTextRange = textView.MarkedTextRange;
-			
+
 			if (markedText == null)
 				markedText = string.Empty;
-			
+
 			if (markedTextRange.Location != NSRange.NotFound) {
 				// Replace characters in text storage and update markedText range length
 				text.Remove ((int)markedTextRange.Location, (int)markedTextRange.Length);
@@ -210,27 +210,26 @@ namespace SimpleTextInput
 				markedTextRange.Location = selectedNSRange.Location;
 				markedTextRange.Length = markedText.Length;
 		    }
-				
-				
+
 			// Updated selected text range and underlying SimpleCoreTextView
 			selectedNSRange = new NSRange (selectedRange.Location + markedTextRange.Location, selectedRange.Length);
 			textView.Text = text.ToString ();
 			textView.MarkedTextRange = markedTextRange;
 			textView.SelectedTextRange = selectedNSRange;
 		}
-		
+
 		// UITextInput required method - Unmark the currently marked text.
 		[Export ("unmarkText")]
-		void UnmarkText () 
+		void UnmarkText ()
 		{
 		    NSRange markedTextRange = textView.MarkedTextRange;
-		    
+
 		    if (markedTextRange.Location == NSRange.NotFound)
 		        return;
-		
+
 			// unmark the underlying SimpleCoreTextView.markedTextRange
 		    markedTextRange.Location = NSRange.NotFound;
-		    textView.MarkedTextRange = markedTextRange;    
+		    textView.MarkedTextRange = markedTextRange;
 
 		}
 #endregion
@@ -239,7 +238,7 @@ namespace SimpleTextInput
 		// UITextInput beginningOfDocument property accessor override
 		[Export ("beginningOfDocument")]
 		IndexedPosition BeginningOfDocument {
-			get { 
+			get {
 				// For this sample, the document always starts at index 0 and is the full
 				// length of the text storage
 				return IndexedPosition.GetPosition (0);
@@ -249,10 +248,10 @@ namespace SimpleTextInput
 		// UITextInput endOfDocument property accessor override
 		[Export ("endOfDocument")]
 		IndexedPosition EndOfDocument {
-			get { 
+			get {
 				// For this sample, the document always starts at index 0 and is the full
 				// length of the text storage
-				return IndexedPosition.GetPosition (text.Length); 
+				return IndexedPosition.GetPosition (text.Length);
 			}
 		}
 
@@ -267,8 +266,8 @@ namespace SimpleTextInput
 			NSRange range = new NSRange (Math.Min (@from.Index, @to.Index), Math.Abs (to.Index - @from.Index));
 			return IndexedRange.GetRange (range);
 		}
-		
-		// UITextInput protocol required method - Returns the text position at a given offset 
+
+		// UITextInput protocol required method - Returns the text position at a given offset
 		// from another text position using our implementation of UITextPosition
 		[Export ("positionFromPosition:offset:")]
 		IndexedPosition GetPosition (UITextPosition position, int offset)
@@ -279,11 +278,11 @@ namespace SimpleTextInput
 			// Verify position is valid in document
 			if (end > text.Length || end < 0)
 				return null;
-			
+
 			return IndexedPosition.GetPosition (end);
 		}
 
-		// UITextInput protocol required method - Returns the text position at a given offset 
+		// UITextInput protocol required method - Returns the text position at a given offset
 		// in a specified direction from another text position using our implementation of
 		// UITextPosition.
 		[Export ("positionFromPosition:inDirection:offset:")]
@@ -292,7 +291,7 @@ namespace SimpleTextInput
 			// Note that this sample assumes LTR text direction
 			IndexedPosition pos = (IndexedPosition) position;
 			int newPos = pos.Index;
-			
+
 			switch (direction) {
 			case UITextLayoutDirection.Right:
 				newPos += offset;
@@ -305,28 +304,28 @@ namespace SimpleTextInput
 				// This sample does not support vertical text directions
 				break;
 			}
-			
+
 			// Verify new position valid in document
-			
+
 			if (newPos < 0)
 				newPos = 0;
-			
+
 			if (newPos > text.Length)
 				newPos = text.Length;
-			
+
 			return IndexedPosition.GetPosition (newPos);
 		}
 #endregion
 #region UITextInput - Evaluating Text Positions
 
-		// UITextInput protocol required method - Return how one text position compares to another 
-		// text position.  
+		// UITextInput protocol required method - Return how one text position compares to another
+		// text position.
 		[Export ("comparePosition:toPosition:")]
 		NSComparisonResult ComparePosition (UITextPosition position, UITextPosition other)
 		{
 			IndexedPosition pos = (IndexedPosition) position;
 			IndexedPosition o = (IndexedPosition) other;
-			
+
 			// For this sample, we simply compare position index values
 			if (pos.Index == o.Index) {
 				return NSComparisonResult.Same;
@@ -336,8 +335,8 @@ namespace SimpleTextInput
 				return NSComparisonResult.Descending;
 			}
 		}
-		
-		// UITextInput protocol required method - Return the number of visible characters 
+
+		// UITextInput protocol required method - Return the number of visible characters
 		// between one text position and another text position.
 		[Export ("offsetFromPosition:toPosition:")]
 		int GetOffset (IndexedPosition @from, IndexedPosition toPosition)
@@ -349,22 +348,22 @@ namespace SimpleTextInput
 
 		// UITextInput tokenizer property accessor override
 		//
-		// An input tokenizer is an object that provides information about the granularity 
-		// of text units by implementing the UITextInputTokenizer protocol.  Standard units 
-		// of granularity include characters, words, lines, and paragraphs. In most cases, 
-		// you may lazily create and assign an instance of a subclass of 
-		// UITextInputStringTokenizer for this purpose, as this sample does. If you require 
-		// different behavior than this system-provided tokenizer, you can create a custom 
+		// An input tokenizer is an object that provides information about the granularity
+		// of text units by implementing the UITextInputTokenizer protocol.  Standard units
+		// of granularity include characters, words, lines, and paragraphs. In most cases,
+		// you may lazily create and assign an instance of a subclass of
+		// UITextInputStringTokenizer for this purpose, as this sample does. If you require
+		// different behavior than this system-provided tokenizer, you can create a custom
 		// tokenizer that adopts the UITextInputTokenizer protocol.
 		[Export ("tokenizer")]
 		IUITextInputTokenizer Tokenizer {
-			get { 
-				return tokenizer; 
+			get {
+				return tokenizer;
 			}
 		}
 #endregion
 #region UITextInput - Text Layout, writing direction and position related methods
-		// UITextInput protocol method - Return the text position that is at the farthest 
+		// UITextInput protocol method - Return the text position that is at the farthest
 		// extent in a given layout direction within a range of text.
 		[Export ("positionWithinRange:farthestInDirection:")]
 		IndexedPosition GetPosition (UITextRange range, UITextLayoutDirection direction)
@@ -372,7 +371,7 @@ namespace SimpleTextInput
 			// Note that this sample assumes LTR text direction
 			IndexedRange r = (IndexedRange) range;
 			int pos = (int)r.Range.Location;
-			
+
 			// For this sample, we just return the extent of the given range if the
 			// given direction is "forward" in a LTR context (UITextLayoutDirectionRight
 			// or UITextLayoutDirectionDown), otherwise we return just the range position
@@ -386,13 +385,13 @@ namespace SimpleTextInput
 				pos = (int)(r.Range.Location + r.Range.Length);
 				break;
 			}
-			
+
 			// Return text position using our UITextPosition implementation.
 			// Note that position is not currently checked against document range.
 			return IndexedPosition.GetPosition (pos);
 		}
 
-		// UITextInput protocol required method - Return a text range from a given text position 
+		// UITextInput protocol required method - Return a text range from a given text position
 		// to its farthest extent in a certain direction of layout.
 		[Export ("characterRangeByExtendingPosition:inDirection:")]
 		IndexedRange GetCharacterRange (UITextPosition position, UITextLayoutDirection direction)
@@ -400,7 +399,7 @@ namespace SimpleTextInput
 			// Note that this sample assumes LTR text direction
 			IndexedPosition pos = (IndexedPosition) position;
 			NSRange result = new NSRange (pos.Index, 1);
-			
+
 			switch (direction) {
 			case UITextLayoutDirection.Up:
 			case UITextLayoutDirection.Left:
@@ -411,13 +410,13 @@ namespace SimpleTextInput
 				result = new NSRange (pos.Index, 1);
 				break;
 			}
-			
+
 			// Return range using our UITextRange implementation
 			// Note that range is not currently checked against document range.
 			return IndexedRange.GetRange (result);
 		}
 
-		// UITextInput protocol required method - Return the base writing direction for 
+		// UITextInput protocol required method - Return the base writing direction for
 		// a position in the text going in a specified text direction.
 		[Export ("baseWritingDirectionForPosition:inDirection:")]
 		UITextWritingDirection GetBaseWritingDirection (UITextPosition position, UITextStorageDirection direction)
@@ -425,7 +424,7 @@ namespace SimpleTextInput
 			return UITextWritingDirection.LeftToRight;
 		}
 
-		// UITextInput protocol required method - Set the base writing direction for a 
+		// UITextInput protocol required method - Set the base writing direction for a
 		// given range of text in a document.
 		[Export ("setBaseWritingDirection:forRange:")]
 		void SetBaseWritingDirection (UITextWritingDirection writingDirection, UITextRange range)
@@ -434,7 +433,7 @@ namespace SimpleTextInput
 		}
 #endregion
 #region UITextInput - Geometry methods
-		// UITextInput protocol required method - Return the first rectangle that encloses 
+		// UITextInput protocol required method - Return the first rectangle that encloses
 		// a range of text in a document.
 		[Export ("firstRectForRange:")]
 		CGRect FirstRect (UITextRange range)
@@ -449,7 +448,7 @@ namespace SimpleTextInput
 			// Convert rect to our view coordinates
 			return ConvertRectFromView (rect, textView);
 		}
-		
+
 		// UITextInput protocol required method - Return a rectangle used to draw the caret
 		// at a given insertion point.
 		[Export ("caretRectForPosition:")]
@@ -471,39 +470,39 @@ namespace SimpleTextInput
 		// is no implemented mechanic for letting user select text via touches.  There
 		// is a wide variety of approaches for this (gestures, drag rects, etc) and
 		// any approach chosen will depend greatly on the design of the application.
-		
-		// UITextInput protocol required method - Return the position in a document that 
-		// is closest to a specified point. 
+
+		// UITextInput protocol required method - Return the position in a document that
+		// is closest to a specified point.
 		[Export ("closestPositionToPoint:")]
 		UITextPosition ClosestPosition (CGPoint point)
 		{
-			// Not implemented in this sample.  Could utilize underlying 
+			// Not implemented in this sample.  Could utilize underlying
 			// SimpleCoreTextView:closestIndexToPoint:point
 			return null;
 		}
 
-		// UITextInput protocol required method - Return the position in a document that 
+		// UITextInput protocol required method - Return the position in a document that
 		// is closest to a specified point in a given range.
 		[Export ("closestPositionToPoint:withinRange:")]
 		UITextPosition ClosestPosition (CGPoint point, UITextRange range)
 		{
-			// Not implemented in this sample.  Could utilize underlying 
+			// Not implemented in this sample.  Could utilize underlying
 			// SimpleCoreTextView:closestIndexToPoint:point
 			return null;
 		}
 
-		// UITextInput protocol required method - Return the character or range of 
+		// UITextInput protocol required method - Return the character or range of
 		// characters that is at a given point in a document.
 		[Export ("characterRangeAtPoint:")]
 		UITextRange CharacterRange (CGPoint point)
 		{
-			// Not implemented in this sample.  Could utilize underlying 
+			// Not implemented in this sample.  Could utilize underlying
 			// SimpleCoreTextView:closestIndexToPoint:point
 			return null;
 		}
 #endregion
 #region UITextInput - Returning Text Styling Information
-		// UITextInput protocol method - Return a dictionary with properties that specify 
+		// UITextInput protocol method - Return a dictionary with properties that specify
 		// how text is to be style at a certain location in a document.
 		[Export ("textStylingAtPosition:inDirection:")]
 		NSDictionary TextStyling (UITextPosition position, UITextStorageDirection direction)
@@ -513,13 +512,13 @@ namespace SimpleTextInput
 		}
 #endregion
 #region UIKeyInput methods
-		// UIKeyInput required method - A Boolean value that indicates whether the text-entry 
+		// UIKeyInput required method - A Boolean value that indicates whether the text-entry
 		// objects have any text.
 		[Export ("hasText")]
 		bool HasText {
 			get { return text.Length > 0; }
 		}
-		
+
 		// UIKeyInput required method - Insert a character into the displayed text.
 		// Called by the text system when the user has entered simple text
 		[Export ("insertText:")]
@@ -527,7 +526,7 @@ namespace SimpleTextInput
 		{
 			NSRange selectedNSRange = textView.SelectedTextRange;
 			NSRange markedTextRange = textView.MarkedTextRange;
-			
+
 			// Note: While this sample does not provide a way for the user to
 			// create marked or selected text, the following code still checks for
 			// these ranges and acts accordingly.
@@ -549,7 +548,7 @@ namespace SimpleTextInput
 				this.text.Insert ((int)selectedNSRange.Location, text);
 				selectedNSRange.Location += text.Length;
 			}
-			
+
 			// Update underlying SimpleCoreTextView
 			textView.Text = this.text.ToString ();
 			textView.MarkedTextRange = markedTextRange;
@@ -564,7 +563,7 @@ namespace SimpleTextInput
 		{
 			NSRange selectedNSRange = textView.SelectedTextRange;
 			NSRange markedTextRange = textView.MarkedTextRange;
-			
+
 			// Note: While this sample does not provide a way for the user to
 			// create marked or selected text, the following code still checks for
 			// these ranges and acts accordingly.
@@ -585,7 +584,7 @@ namespace SimpleTextInput
 				text.Remove ((int)selectedNSRange.Location, (int)selectedNSRange.Length);
 				selectedNSRange.Length = 0;
 			}
-			
+
 			// Update underlying SimpleCoreTextView
 			textView.Text = text.ToString ();
 			textView.MarkedTextRange = markedTextRange;

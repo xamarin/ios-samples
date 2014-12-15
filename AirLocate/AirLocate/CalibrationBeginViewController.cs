@@ -130,10 +130,10 @@ namespace AirLocate
 					cell = new UITableViewCell (UITableViewCellStyle.Default, identifier) {
 						SelectionStyle = UITableViewCellSelectionStyle.None
 					};
-				
+
 					progressBar.Center = new CGPoint (cell.Center.X, 17.0f);
 					cell.ContentView.AddSubview (progressBar);
-				
+
 					UILabel label = new UILabel (new CGRect (0.0f, 0.0f, 300.0f, 15.0f)) {
 						AutoresizingMask = UIViewAutoresizing.FlexibleMargins,
 						BackgroundColor = UIColor.Clear,
@@ -191,7 +191,7 @@ namespace AirLocate
 				if (View.Window != null) {
 					var message = e.Error.UserInfo [NSError.LocalizedDescriptionKey].ToString ();
 					new UIAlertView ("Unable to calibrate device", message, null, "OK", null).Show ();
-					StartRangingAllRegions ();		
+					StartRangingAllRegions ();
 				}
 			} else {
 				endViewController = new CalibrationEndViewController (e.MeasurePower);

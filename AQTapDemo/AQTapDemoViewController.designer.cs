@@ -25,7 +25,7 @@ namespace AQTapDemo
 
 		[Action ("handleResetTo1Tapped:")]
 		partial void handleResetTo1Tapped (Foundation.NSObject sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (pitchSlider != null) {

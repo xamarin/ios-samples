@@ -27,10 +27,10 @@ namespace SimpleCollectionView
 
             CollectionView.RegisterClassForCell (typeof(AnimalCell), animalCellId);
             CollectionView.RegisterClassForSupplementaryView (typeof(Header), UICollectionElementKindSection.Header, headerId);
-        
+
 			// add a custom menu item
-			UIMenuController.SharedMenuController.MenuItems = new UIMenuItem[] { 
-				new UIMenuItem ("Custom", new Selector ("custom:")) 
+			UIMenuController.SharedMenuController.MenuItems = new UIMenuItem[] {
+				new UIMenuItem ("Custom", new Selector ("custom:"))
 			};
 		}
 
@@ -106,7 +106,7 @@ namespace SimpleCollectionView
 				return true;
 			}
 		}
-		
+
 		public override bool CanPerform (Selector action, NSObject withSender)
 		{
 			if (action == new Selector ("custom"))
@@ -136,7 +136,7 @@ namespace SimpleCollectionView
                     lineLayout.SectionInset  = new UIEdgeInsets (220, 0.0f, 200, 0.0f);
             }
         }
-       
+
     }
 
     public class AnimalCell : UICollectionViewCell
@@ -190,6 +190,6 @@ namespace SimpleCollectionView
             AddSubview (label);
         }
     }
-    
+
 }
 

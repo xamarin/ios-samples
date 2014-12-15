@@ -40,7 +40,7 @@ namespace GameCenterSample
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -69,9 +69,6 @@ namespace GameCenterSample
 			// Return true for supported orientations
 			return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
 		}
-
-
-
 
 		void resetAchievementsButtonHandleTouchUpInside (object sender, EventArgs e)
 		{
@@ -102,8 +99,6 @@ namespace GameCenterSample
 			player.submitAchievement (achievement);
 		}
 
-
-
 		void submitScoreHandleTouchUpInside (object sender, EventArgs e)
 		{
 			if (!GKLocalPlayer.LocalPlayer.Authenticated) {
@@ -111,7 +106,6 @@ namespace GameCenterSample
 				GKLocalPlayer.LocalPlayer.Authenticate (authenticatedHandler);
 				return;
 			}
-
 
 			GKScore submitScore = new GKScore ("leaderboard");
 			submitScore.Init ();
@@ -143,7 +137,6 @@ namespace GameCenterSample
 			this.PresentViewController (leaderboardViewController, true, null);
 		}
 
-
 		void showAchievementsHandleTouchUpInside (object sender, EventArgs e)
 		{
 
@@ -158,7 +151,6 @@ namespace GameCenterSample
 			};
 			this.PresentViewController(achievementViewController, true, null);
 		}
-
 
 	}
 }

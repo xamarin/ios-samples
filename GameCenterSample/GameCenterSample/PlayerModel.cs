@@ -16,7 +16,6 @@ namespace GameCenterSample
 		NSMutableArray storedScores;
 		NSMutableDictionary storedAchievements;
 
-
 		public PlayerModel ()
 		{
 			string id = GKLocalPlayer.LocalPlayer.PlayerID;
@@ -26,9 +25,9 @@ namespace GameCenterSample
 		}
 
 		/* ************************************************************************
-		 * 
+		 *
 		 * Scores
-		 * 
+		 *
 		 * *************************************************************************
 		*/
 
@@ -105,9 +104,9 @@ namespace GameCenterSample
 		}
 
 		/* ************************************************************************
-		 * 
+		 *
 		 * Achivements
-		 * 
+		 *
 		 * *************************************************************************
 		*/
 

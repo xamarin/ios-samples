@@ -16,7 +16,7 @@ namespace Consumables {
 		bool pricesLoaded = false;
 
 		NSObject priceObserver, succeededObserver, failedObserver, requestObserver;
-		
+
 		InAppPurchaseManager iap;
 
 		#region localized strings
@@ -46,7 +46,7 @@ namespace Consumables {
 			products = new List<string>() { Buy5ProductId, Buy10ProductId };
 			iap = new InAppPurchaseManager();
 		}
-	
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -79,35 +79,35 @@ namespace Consumables {
 
 			balanceLabel = new UILabel(new CGRect(10, 280, 300, 40));
 			balanceLabel.Font = UIFont.BoldSystemFontOfSize(24f);
-			
+
 			infoLabel = new UILabel(new CGRect(10, 340, 300, 80));
 			infoLabel.Lines = 3;
 			infoLabel.Text = Footer;
-	
-			View.AddSubview (buy5Button);			
+
+			View.AddSubview (buy5Button);
 			View.AddSubview (buy5Title);
 			View.AddSubview (buy5Description);
-			View.AddSubview (buy10Button);			
+			View.AddSubview (buy10Button);
 			View.AddSubview (buy10Title);
 			View.AddSubview (buy10Description);
 			View.AddSubview (balanceLabel);
 			View.AddSubview (infoLabel);
-			#endregion	
+			#endregion
 
 			buy5Button.TouchUpInside += (sender, e) => {
 				iap.PurchaseProduct (Buy5ProductId);
-			};	
+			};
 			buy10Button.TouchUpInside += (sender, e) => {
 				iap.PurchaseProduct (Buy10ProductId);
-			};		
+			};
 		}
 
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear(animated);
-			
+
 			// setup the observer to wait for prices to come back from StoreKit <- AppStore
-			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerProductsFetchedNotification, 
+			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerProductsFetchedNotification,
 			(notification) => {
 				var info = notification.UserInfo;
 				if (info == null) return;
@@ -119,12 +119,12 @@ namespace Consumables {
 					pricesLoaded = true;
 
 					var product = (SKProduct) info.ObjectForKey(NSBuy5ProductId);
-					
+
 					Console.WriteLine("Product id: " + product.ProductIdentifier);
 					Console.WriteLine("Product title: " + product.LocalizedTitle);
 					Console.WriteLine("Product description: " + product.LocalizedDescription);
 					Console.WriteLine("Product price: " + product.Price);
-					Console.WriteLine("Product l10n price: " + product.LocalizedPrice());	
+					Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
 
 					buy5Button.Enabled = true;
 					buy5Title.Text = product.LocalizedTitle;
@@ -135,12 +135,12 @@ namespace Consumables {
 					pricesLoaded = true;
 
 					var product = (SKProduct) info.ObjectForKey(NSBuy10ProductId);
-					
+
 					Console.WriteLine("Product id: " + product.ProductIdentifier);
 					Console.WriteLine("Product title: " + product.LocalizedTitle);
 					Console.WriteLine("Product description: " + product.LocalizedDescription);
 					Console.WriteLine("Product price: " + product.Price);
-					Console.WriteLine("Product l10n price: " + product.LocalizedPrice());	
+					Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
 
 					buy10Button.Enabled = true;
 					buy10Title.Text = product.LocalizedTitle;
@@ -148,7 +148,7 @@ namespace Consumables {
 					buy10Button.SetTitle(String.Format (Buy, product.LocalizedPrice()), UIControlState.Normal);
 				}
 			});
-				
+
 			// only if we can make payments, request the prices
 			if (iap.CanMakePayments()) {
 				// now go get prices, if we don't have them already
@@ -162,19 +162,19 @@ namespace Consumables {
 
 			balanceLabel.Text = String.Format (Balance, CreditManager.Balance());// + " monkey credits";
 
-			succeededObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerTransactionSucceededNotification, 
+			succeededObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerTransactionSucceededNotification,
 			(notification) => {
 				balanceLabel.Text = String.Format (Balance, CreditManager.Balance());// + " monkey credits";
 			});
-			failedObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerTransactionFailedNotification, 
+			failedObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerTransactionFailedNotification,
 			(notification) => {
-				// TODO: 
+				// TODO:
 				Console.WriteLine ("Transaction Failed");
 			});
 
-			requestObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerRequestFailedNotification, 
+			requestObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerRequestFailedNotification,
 			                                                                 (notification) => {
-				// TODO: 
+				// TODO:
 				Console.WriteLine ("Request Failed");
 				buy5Button.SetTitle ("Network down?", UIControlState.Disabled);
 				buy10Button.SetTitle ("Network down?", UIControlState.Disabled);

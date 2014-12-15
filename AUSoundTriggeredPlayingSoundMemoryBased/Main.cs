@@ -16,8 +16,8 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 
 	// The name AppDelegate is referenced in the MainWindow.xib file.
 	public partial class AppDelegate : UIApplicationDelegate
-	{        
-        MainView _ctr;        
+	{
+        MainView _ctr;
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -26,7 +26,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
             _ctr = new  MainView();
             window.AddSubview(_ctr.View);
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 

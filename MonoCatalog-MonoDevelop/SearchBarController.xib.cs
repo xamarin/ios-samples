@@ -6,26 +6,26 @@ using UIKit;
 using CoreGraphics;
 
 namespace MonoCatalog {
-	
+
 	public partial class SearchBarController : UIViewController {
 		UISearchBar bar;
-	
+
 		class SearchDelegate : UISearchBarDelegate {
 			public override void SearchButtonClicked (UISearchBar bar)
 			{
 				bar.ResignFirstResponder ();
 			}
-	
+
 			public override void CancelButtonClicked (UISearchBar bar)
 			{
 				bar.ResignFirstResponder ();
 			}
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			Title = "Search Bar";
 			NavigationController.NavigationBar.Translucent = false;
 			View.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
@@ -36,6 +36,6 @@ namespace MonoCatalog {
 			};
 			View.AddSubview (bar);
 		}
-		
+
 	}
 }

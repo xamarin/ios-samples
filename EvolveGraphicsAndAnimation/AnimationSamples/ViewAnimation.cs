@@ -22,7 +22,7 @@ namespace AnimationSamples
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			imgView = new UIImageView (new CGRect (0, 0, 100, 100));
 			imgView.ContentMode = UIViewContentMode.ScaleAspectFit;
 			img = UIImage.FromFile ("monkey3.png");
@@ -32,8 +32,8 @@ namespace AnimationSamples
 			pt = imgView.Center;
 
 			UIView.Animate (
-				duration: 2, 
-				delay: 0, 
+				duration: 2,
+				delay: 0,
 				options: UIViewAnimationOptions.CurveEaseInOut | UIViewAnimationOptions.Autoreverse,
 				animation: () => {
 					imgView.Center = new CGPoint (View.Bounds.GetMaxX () - imgView.Frame.Width / 2, pt.Y);},

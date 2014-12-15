@@ -50,9 +50,9 @@ namespace AVCompositionDebugVieweriOS
 
 				description = String.Format ("{0:0.0} - {1:0.0}: {2}", startTime.Seconds, endTime.Seconds, url);
 
-				if (MediaType == AVMediaType.Video) 
+				if (MediaType == AVMediaType.Video)
 					description += "(v)";
-				else if (MediaType == AVMediaType.Audio) 
+				else if (MediaType == AVMediaType.Audio)
 					description += "(a)";
 				else
 					description += String.Format ("({0})", MediaType);

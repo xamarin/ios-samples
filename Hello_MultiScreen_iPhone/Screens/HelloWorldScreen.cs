@@ -13,7 +13,6 @@ namespace Hello_MultiScreen_iPhone
 		{
 			this.Title = "World!";
 		}
-		
-		
+
 	}
 }

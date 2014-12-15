@@ -8,7 +8,7 @@ namespace PrivacyPrompts
 	{
 		ABAddressBook addressBook;
 
-		public AddressBookPrivacyController () 
+		public AddressBookPrivacyController ()
 		{
 			CheckAccess = CheckAddressBookAccess;
 			RequestAccess = RequestAddressBookAccess;

@@ -25,7 +25,7 @@ namespace CollectionViewTransition {
 
 			int itemCount = (int)CollectionView.NumberOfItemsInSection (0);
 
-			if (attributesArray == null) 
+			if (attributesArray == null)
 				attributesArray = new List<UICollectionViewLayoutAttributes> (itemCount);
 
 			angles.Clear ();

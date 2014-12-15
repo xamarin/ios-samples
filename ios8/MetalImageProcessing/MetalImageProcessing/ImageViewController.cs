@@ -21,10 +21,10 @@ namespace MetalImageProcessing
 		NSObject didEnterBackgroundObserver;
 		NSObject willEnterForegroundObserver;
 
-		bool Paused { 
+		bool Paused {
 			get {
 				return gameLoopPaused;
-			} 
+			}
 
 			set {
 				if (gameLoopPaused == value)

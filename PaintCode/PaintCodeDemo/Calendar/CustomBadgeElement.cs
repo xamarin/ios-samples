@@ -31,9 +31,7 @@ namespace PaintCode
 		{
 			UIGraphics.BeginImageContext (new CGSize (42, 42));
 
-			
 			// ------------- START PAINTCODE ----------------
-
 
 //// Abstracted Graphic Attributes
 			var textContent = bigText;
@@ -60,7 +58,6 @@ namespace PaintCode
 					var dropShadowOffset = new CGSize (2, 2);
 					var dropShadowBlurRadius = 1;
 
-
 //// Rounded Rectangle Drawing
 					var roundedRectanglePath = UIBezierPath.FromRoundedRect (new CGRect (1.5f, 1.5f, 38, 38), 4);
 					context.SaveState ();
@@ -75,26 +72,20 @@ namespace PaintCode
 					roundedRectanglePath.LineWidth = 1;
 					roundedRectanglePath.Stroke ();
 
-
 //// Rounded Rectangle 2 Drawing
 					var roundedRectangle2Path = UIBezierPath.FromRoundedRect (new CGRect (2, 28, 37, 11), UIRectCorner.BottomLeft | UIRectCorner.BottomRight, new CGSize (4, 4));
 					dateRed.SetFill ();
 					roundedRectangle2Path.Fill ();
-
-
 
 //// Text Drawing
 					var textRect = new CGRect (2, 0, 37, 28);
 					UIColor.Black.SetFill ();
 					new NSString (textContent).DrawString (textRect, UIFont.FromName ("Helvetica-Bold", 24), UILineBreakMode.WordWrap, UITextAlignment.Center);
 
-
 //// Text 2 Drawing
 					var text2Rect = new CGRect (2, 27, 37, 15);
 					UIColor.White.SetFill ();
 					new NSString (text2Content).DrawString (text2Rect, UIFont.FromName ("HelveticaNeue-Bold", 9), UILineBreakMode.WordWrap, UITextAlignment.Center);
-
-
 
 					// ------------- END PAINTCODE ----------------
 
@@ -103,7 +94,6 @@ namespace PaintCode
 					return converted;
 				}
 			}
-
 
 		}
 	}

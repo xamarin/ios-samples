@@ -45,7 +45,6 @@ namespace MTGKTapper
 			}));
 		}
 
-
 		public void submitAchievement (string identifier, double percentComplete, string achievementName)
 		{
 			if (earnedAchievementCache == null) {

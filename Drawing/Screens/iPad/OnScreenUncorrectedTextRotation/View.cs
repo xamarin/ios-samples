@@ -18,10 +18,10 @@ namespace Example_Drawing.Screens.iPad.OnScreenUncorrectedTextRotation
 		{
 			Console.WriteLine ("Draw() Called");
 			base.Draw (rect);
-			
+
 			// get a reference to the context
 			using (CGContext context = UIGraphics.GetCurrentContext ()) {
-				
+
 				// declare vars
 				ShowCenteredTextAtPoint (context, 384, 400, "Hello World!", 60);
 			}

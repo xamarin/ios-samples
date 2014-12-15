@@ -12,7 +12,7 @@ namespace PrivacyPrompts
 	Note: Accessing motion activity requires your project to have an entitlements.plist file
 
 	There is no API that allows you to directly check for access. Instead, you have to use
-	the technique illustrated here: perform a query and check for an error of type 
+	the technique illustrated here: perform a query and check for an error of type
 	CMError.MotionActivityNotAuthorized
 
 	 */
@@ -22,7 +22,7 @@ namespace PrivacyPrompts
 		string motionStatus;
 		UILabel stepsMessage;
 
-		public MotionPrivacyController () 
+		public MotionPrivacyController ()
 		{
 			this.CheckAccess = CheckMotionAccess;
 			this.RequestAccess = RequestMotionAccess;
@@ -62,7 +62,6 @@ namespace PrivacyPrompts
 			accessStatus.Text = motionStatus;
 		}
 
-
 		string CheckMotionAccess()
 		{
 			return motionStatus;
@@ -91,7 +90,6 @@ namespace PrivacyPrompts
 					}
 				}));
 		}
-
 
 	}
 }

@@ -17,7 +17,7 @@ namespace SpriteTour {
 			base.CreateSceneContents ();
 			AddAnchorGrid ();
 			AddAnimatedAnchor ();
-			Scene.AddDescription ("The dots mark the actual position of each sprite node", 
+			Scene.AddDescription ("The dots mark the actual position of each sprite node",
 				new CGPoint (Scene.Frame.GetMidX (), 100));
 		}
 
@@ -27,7 +27,7 @@ namespace SpriteTour {
 				for (int y = 0; y <= 4; y++) {
 					SKSpriteNode sprite = new SKSpriteNode ("Art/rocket.png") {
 						AnchorPoint = new CGPoint (0.25f * x, 0.25f * y),
-						Position = new CGPoint (Scene.Frame.GetMidX () - 400 + 100 * x, 
+						Position = new CGPoint (Scene.Frame.GetMidX () - 400 + 100 * x,
 						                       Scene.Frame.GetMidY () - 200 + 100 * y)
 					};
 					sprite.SetScale (0.25f);

@@ -25,7 +25,7 @@ namespace Quotes
 
 		[Action ("LineHeightChanged:")]
 		partial void LineHeightChanged (UIKit.UISlider sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (pageView != null) {

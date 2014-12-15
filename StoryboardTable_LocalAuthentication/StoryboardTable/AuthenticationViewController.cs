@@ -29,7 +29,6 @@ namespace StoryboardTable
 			NSError AuthError;
 			var localizedReason = new NSString("To add a new chore");
 
-
 			//Use canEvaluatePolicy method to test if device is TouchID enabled
 			//Use the LocalAuthentication Policy DeviceOwnerAuthenticationWithBiometrics
 			if (context.CanEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, out AuthError)){
@@ -54,27 +53,7 @@ namespace StoryboardTable
 			};
 		}
 
-
 	}
-		
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

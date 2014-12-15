@@ -14,7 +14,6 @@ namespace PrivacyPrompts
 			RequestAccess = () => RequestEventStoreAccess (entityType);
 		}
 
-
 		string CheckEventStoreAccess (EKEntityType type)
 		{
 			return EKEventStore.GetAuthorizationStatus (type).ToString ();

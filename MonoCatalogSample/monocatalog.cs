@@ -34,7 +34,7 @@ public partial class MainViewController : UITableViewController {
 			Controller = controller;
 		}
 	}
-	
+
 	Sample [] samples;
 
 	//
@@ -42,18 +42,17 @@ public partial class MainViewController : UITableViewController {
 	//
 	public MainViewController (IntPtr p) : base (p) {}
 
-	
 	//
 	// The data source for our TableView
 	//
 	class DataSource : UITableViewDataSource {
 		MainViewController mvc;
-		
+
 		public DataSource (MainViewController mvc)
 		{
 			this.mvc = mvc;
 		}
-		
+
 		public override int RowsInSection (UITableView tableView, int section)
 		{
 			return mvc.samples.Length;
@@ -76,21 +75,21 @@ public partial class MainViewController : UITableViewController {
 	//
 	class TableDelegate : UITableViewDelegate {
 		MainViewController mvc;
-		
+
 		public TableDelegate (MainViewController mvc)
 		{
 			this.mvc = mvc;
 		}
-		
+
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			Console.WriteLine ("MonoCatalog: Row selected {0}", indexPath.Row);
-			
+
 			var cont = mvc.samples [indexPath.Row].Controller;
 			mvc.NavigationController.PushViewController (cont, true);
 		}
 	}
-	
+
 	public override void ViewDidLoad ()
 	{
 		base.ViewDidLoad ();
@@ -110,13 +109,13 @@ public partial class MainViewController : UITableViewController {
 			new Sample ("Toolbar", new ToolbarViewController ()),
 			new Sample ("Web", new WebViewController ())
 		};
-		
+
 		TableView.Delegate = new TableDelegate (this);
 		TableView.DataSource = new DataSource (this);
 
 		NavigationItem.BackBarButtonItem = new UIBarButtonItem () { Title = "Back" };
 	}
-	
+
 }
 
 //
@@ -148,5 +147,5 @@ class Demo {
 		// It will load the main UI as specified in the
 		// Info.plist file (MainWindow.nib)
 		UIApplication.Main (args, null, null);
-	}		
+	}
 }

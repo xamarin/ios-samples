@@ -34,8 +34,8 @@ namespace DynamicsCatalog {
 
 			View.AddGestureRecognizer (new UITapGestureRecognizer ((gesture) => {
 				/*
-	    		 Tapping will change the angle and magnitude of the impulse. 
-	    		 To visually show the impulse vector on screen, a red line representing 
+	    		 Tapping will change the angle and magnitude of the impulse.
+	    		 To visually show the impulse vector on screen, a red line representing
 	    		 the angle and magnitude of this vector is briefly drawn.
 	    		 */
 				CGPoint p = gesture.LocationInView (View);

@@ -8,11 +8,11 @@ using CoreGraphics;
 using MonoTouch;
 
 namespace MonoCatalog {
-	
+
 	public partial class SegmentViewController : UIViewController {
-	
+
 		public SegmentViewController () : base ("SegmentViewController", null) {}
-		
+
 		UILabel MakeLabel (string title, CGRect frame)
 		{
 			return new UILabel (frame) {
@@ -23,20 +23,20 @@ namespace MonoCatalog {
 				BackgroundColor = UIColor.Clear
 			};
 		}
-	
+
 		const float lHeight = 20f;
-		
+
 		void CreateControls ()
 		{
 			var items = new string [] { "Check", "Search", "Tools" };
-			
+
 			float yPlacement = 20f;
 			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0))
 				yPlacement += 44f;
 
 			View.AddSubview (MakeLabel ("UISegmentedControl", new CGRect (20f, yPlacement, View.Bounds.Width - 40f, lHeight)));
 			yPlacement += 40f;
-			
+
 			var segmentedControl = new UISegmentedControl (new object [] {
 					UIImage.FromFile ("images/segment_check.png"),
 					UIImage.FromFile ("images/segment_search.png"),
@@ -48,10 +48,10 @@ namespace MonoCatalog {
 			};
 			View.AddSubview (segmentedControl);
 			yPlacement += 60f;
-			
+
 			View.AddSubview (MakeLabel ("UISegmentedControlStyleBordered", new CGRect (20f, yPlacement, View.Bounds.Width - 40f, lHeight)));
 			yPlacement += 40f;
-	
+
 			segmentedControl = new UISegmentedControl (items){
 				Frame = new CGRect (20f, yPlacement, View.Bounds.Width - 40f, 40f),
 				ControlStyle = UISegmentedControlStyle.Bordered,
@@ -63,7 +63,7 @@ namespace MonoCatalog {
 			};
 			View.AddSubview (segmentedControl);
 			yPlacement += 60f;
-			
+
 			View.AddSubview (MakeLabel ("UISegmentedControlStyleBar", new CGRect (20f, yPlacement, View.Bounds.Width - 40f, lHeight)));
 			yPlacement += 40f;
 			segmentedControl = new UISegmentedControl (items){
@@ -74,7 +74,7 @@ namespace MonoCatalog {
 			};
 			View.AddSubview (segmentedControl);
 			yPlacement += 60f;
-			
+
 			View.AddSubview (MakeLabel ("UISegmentedControlStyleBar (tinted)", new CGRect (20f, yPlacement, View.Bounds.Width - 40f, lHeight)));
 			yPlacement += 40f;
 			segmentedControl = new UISegmentedControl (items){
@@ -87,7 +87,7 @@ namespace MonoCatalog {
 			View.AddSubview (segmentedControl);
 			yPlacement += 60f;
 		}
-	
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

@@ -4,7 +4,7 @@
 // transfers.
 //
 // It does not show all of the methods that could be
-// overwritten for finer control though. 
+// overwritten for finer control though.
 //
 using System;
 using System.IO;
@@ -14,18 +14,18 @@ using System.Runtime.InteropServices;
 
 namespace HttpClient
 {
-	
+
 	public class Cocoa : NSUrlConnectionDataDelegate
 	{
 		AppDelegate ad;
 		byte [] result;
-		
+
 		public Cocoa (AppDelegate ad)
 		{
 			this.ad = ad;
 			result = new byte [0];
 		}
-		
+
 		public void HttpSample ()
 		{
 			var req = new NSUrlRequest (new NSUrl (Application.WisdomUrl), NSUrlRequestCachePolicy.ReloadIgnoringCacheData, 10);
@@ -40,7 +40,7 @@ namespace HttpClient
 			Marshal.Copy (data.Bytes, nb, result.Length, (int) data.Length);
 			result = nb;
 		}
-		
+
 		public override void FinishedLoading (NSUrlConnection connection)
 		{
 			Application.Done ();

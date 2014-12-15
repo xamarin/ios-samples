@@ -33,7 +33,7 @@ namespace MTGKTapper
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -41,7 +41,6 @@ namespace MTGKTapper
 		{
 			base.ViewDidLoad ();
 
-			
 			// Perform any additional setup after loading the view, typically from a nib.
 			initGameCenter ();
 
@@ -117,7 +116,6 @@ namespace MTGKTapper
 			// Return true for supported orientations
 			return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
 		}
-
 
 		void initGameCenter ()
 		{

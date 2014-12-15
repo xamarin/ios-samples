@@ -12,7 +12,7 @@ namespace SpriteTour
 	[Register ("BlendingSpritesViewController")]
 	partial class BlendingSpritesViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

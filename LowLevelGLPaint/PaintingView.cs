@@ -23,7 +23,7 @@ namespace LowLevelGLPaint
 
 		CGPoint Location;
 		CGPoint PreviousLocation;
-		
+
 		[Export ("layerClass")]
 		public static new Class LayerClass ()
 		{

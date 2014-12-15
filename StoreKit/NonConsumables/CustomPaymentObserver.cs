@@ -2,7 +2,6 @@ using System;
 using StoreKit;
 using Foundation;
 
-
 namespace NonConsumables
 {
     internal class CustomPaymentObserver : SKPaymentTransactionObserver

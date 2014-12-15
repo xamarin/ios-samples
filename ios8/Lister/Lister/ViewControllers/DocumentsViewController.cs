@@ -455,7 +455,6 @@ namespace Lister
 			PresentViewController (storageController, true, null);
 		}
 
-
 		void NeedCloudAlert()
 		{
 			var title = "iCloud needed";

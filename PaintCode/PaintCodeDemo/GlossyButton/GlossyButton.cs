@@ -11,7 +11,7 @@ namespace PaintCode
 	/// http://paintcodeapp.com/examples.html
 	/// </summary>
 	/// <remarks>
-	/// This implementation only deals with Normal and Pressed states. 
+	/// This implementation only deals with Normal and Pressed states.
 	/// There is no handling for the Disabled state.
 	/// </remarks>
 	public class GlossyButton : UIButton
@@ -20,7 +20,7 @@ namespace PaintCode
 		public UIColor NormalColor;
 
 		/// <summary>
-		/// Invoked when the user touches 
+		/// Invoked when the user touches
 		/// </summary>
 		public event Action<GlossyButton> Tapped;
 
@@ -35,7 +35,7 @@ namespace PaintCode
 		/// <summary>
 		/// Whether the button is rendered enabled or not.
 		/// </summary>
-		public override bool Enabled { 
+		public override bool Enabled {
 			get {
 				return base.Enabled;
 			}
@@ -77,10 +77,9 @@ namespace PaintCode
 		{
 			using (var context = UIGraphics.GetCurrentContext ()) {
 				var bounds = Bounds;
-			
+
 				//UIColor background = Enabled ? isPressed ? HighlightedColor : NormalColor : DisabledColor;
-			
-			
+
 				UIColor buttonColor = NormalColor; //UIColor.FromRGBA (0.00f, 0.37f, 0.89f, 1.00f);
 				var buttonColorRGBA = new nfloat[4];
 				buttonColor.GetRGBA (
@@ -90,7 +89,7 @@ namespace PaintCode
 					out buttonColorRGBA [3]
 				);
 				if (isPressed) {
-					// Get the Hue Saturation Brightness Alpha copy of the color				
+					// Get the Hue Saturation Brightness Alpha copy of the color
 					var buttonColorHSBA = new nfloat[4];
 					buttonColor.GetHSBA (
 						out buttonColorHSBA [0],
@@ -109,17 +108,13 @@ namespace PaintCode
 						out buttonColorRGBA [3]
 					);
 				}
-			
-				
+
 				using (var colorSpace = CGColorSpace.CreateDeviceRGB ()) {
-				
-				
+
 					//// Abstracted Graphic Attributes
-					var textContent = this.Title (UIControlState.Normal); //"STOP";			
+					var textContent = this.Title (UIControlState.Normal); //"STOP";
 					var font = UIFont.SystemFontOfSize (18);
 					// ------------- START PAINTCODE -------------
-
-
 
 //// Color Declarations
 					UIColor frameColorTop = UIColor.FromRGBA (0.20f, 0.20f, 0.20f, 1.00f);
@@ -161,9 +156,6 @@ namespace PaintCode
 					var buttonShadowOffset = new CGSize (0, isPressed ? 0 : 2);		// ADDED this code after PaintCode
 					var buttonShadowBlurRadius = isPressed ? 2 : 3;					// ADDED this code after PaintCode
 
-
-
-
 //// outerFrame Drawing
 					var outerFramePath = UIBezierPath.FromRoundedRect (new CGRect (2.5f, 1.5f, 120, 32), 8);
 					context.SaveState ();
@@ -175,7 +167,6 @@ namespace PaintCode
 					UIColor.Black.SetStroke ();
 					outerFramePath.LineWidth = 1;
 					outerFramePath.Stroke ();
-
 
 //// innerFrame Drawing
 					var innerFramePath = UIBezierPath.FromRoundedRect (new CGRect (5.5f, 4.5f, 114, 26), 5);
@@ -218,15 +209,12 @@ namespace PaintCode
 					innerFramePath.LineWidth = 1;
 					innerFramePath.Stroke ();
 
-
 //// Rounded Rectangle Drawing
 					var roundedRectanglePath = UIBezierPath.FromRoundedRect (new CGRect (8, 6, 109, 9), 4);
 					context.SaveState ();
 					roundedRectanglePath.AddClip ();
 					context.DrawLinearGradient (glossyGradient, new CGPoint (62.5f, 6), new CGPoint (62.5f, 15), 0);
 					context.RestoreState ();
-
-
 
 //// Text Drawing
 					var textRect = new CGRect (18, 6, 90, 28);

@@ -15,7 +15,7 @@ namespace GLCameraRipple
 				RootViewController = new RippleViewController ()
 			};
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 

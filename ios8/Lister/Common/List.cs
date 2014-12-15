@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UIKit;
 using Foundation;
 
-
 namespace Common
 {
 	[Register("List")]
@@ -34,7 +33,6 @@ namespace Common
 				return items [index];
 			}
 		}
-
 
 		public List ()
 		{

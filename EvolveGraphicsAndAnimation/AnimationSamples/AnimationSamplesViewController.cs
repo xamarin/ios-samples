@@ -11,7 +11,7 @@ namespace AnimationSamples
 		public AnimationSamplesViewController () : base ("AnimationSamplesViewController", null)
 		{
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -28,32 +28,30 @@ namespace AnimationSamples
 
 				#region demo view transition
 //				DemoViewTransition vc3 = new DemoViewTransition();
-//				
+//
 //				PresentViewController (vc3, true, null);
 				#endregion
 
 				#region demo view animation
 //				ViewAnimation vc4 = new ViewAnimation();
-//				
+//
 //				PresentViewController (vc4, true, null);
 				#endregion
 
 				#region demo implecit layer animation
 //				var vc5 = new ImplicitLayerAnimation();
-//				
+//
 //				PresentViewController (vc5, true, null);
 				#endregion
 
 				#region demo explicit layer animation
 //				var vc6 = new ExplicitLayerAnimation();
-//				
+//
 //				PresentViewController (vc6, true, null);
 				#endregion
 			};
 		}
 
-
-	
 	}
 }
 

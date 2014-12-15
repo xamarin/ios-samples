@@ -108,7 +108,7 @@ namespace MultichannelMixer
 			// now that we've set everything up we can initialize the graph, this will also validate the connections
 			if (graph.Initialize () != AUGraphError.OK)
 				throw new ApplicationException ();
-		}			
+		}
 
 		// load up audio data from the demo files into mSoundBuffer.data used in the render proc
 		void LoadFiles ()

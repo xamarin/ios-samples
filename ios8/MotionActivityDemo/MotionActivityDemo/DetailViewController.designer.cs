@@ -12,7 +12,7 @@ namespace MotionActivityDemo
 	[Register ("DetailViewController")]
 	partial class DetailViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

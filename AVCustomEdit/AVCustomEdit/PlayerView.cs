@@ -11,7 +11,7 @@ namespace AVCustomEdit
 {
 	public partial class PlayerView : UIView
 	{
-		public AVPlayer player 
+		public AVPlayer player
 		{
 			get{
 				return (this.Layer as AVPlayerLayer).Player;

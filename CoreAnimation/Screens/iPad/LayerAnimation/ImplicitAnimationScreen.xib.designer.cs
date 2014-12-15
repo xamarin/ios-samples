@@ -17,7 +17,7 @@ namespace CoreAnimationExample
 
 		[Outlet]
 		UIKit.UIButton btnContents { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (btnAnimate != null) {

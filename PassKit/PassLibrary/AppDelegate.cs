@@ -19,12 +19,12 @@ namespace PassLibrary {
 		protected UIWindow window;
 		UINavigationController navigation;
 		HomeScreen iPhoneHome;
-		
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.MakeKeyAndVisible ();
-						
+
 			iPhoneHome = new HomeScreen();
 			iPhoneHome.Title = "Pass Library";
 			iPhoneHome.View.Frame = new CoreGraphics.CGRect(0
@@ -36,7 +36,6 @@ namespace PassLibrary {
 			navigation.PushViewController (iPhoneHome,false);
 			window.RootViewController = navigation;
 
-			
 			return true;
 		}
 	}

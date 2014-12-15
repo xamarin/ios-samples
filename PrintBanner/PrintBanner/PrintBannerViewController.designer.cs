@@ -27,7 +27,7 @@ namespace PrintBanner
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
 		UIKit.UITextField textField { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (textField != null) {

@@ -26,7 +26,7 @@ namespace NSZombieApocalypse
 
 		public ButtonCollectionView () : base()
 		{
-		
+
 		}
 
 		public ButtonCollectionView (CGRect frame) : base(frame)
@@ -38,13 +38,13 @@ namespace NSZombieApocalypse
 
 			for (int k = 0; k < (int) ButtonType.Count; k++) {
 				var button = new ButtonView (CGRect.Empty);
-				AddSubview (button);			
+				AddSubview (button);
 				button.TrackingStartedEvent += TrackingStarted;
 				button.TrackingContinuedEvent += TrackingContinued;
 				button.TrackingEndedEvent += TrackingEnded;
 				button.Tag = k;
 				button.SetLabel (ButtonLabelForType ((ButtonType)k));
-						
+
 			}
 
 		}
@@ -107,7 +107,7 @@ namespace NSZombieApocalypse
 			trackingImageView.Frame = newFrame;
 			if (ButtonDraggedEvent != null)
 				ButtonDraggedEvent (button, location);
-		
+
 		}
 
 		public void  TrackingEnded (ButtonView button, UITouch location)
@@ -133,7 +133,7 @@ namespace NSZombieApocalypse
 					y += (float)buttonSize.Height + yPad;
 				}
 				count++;
-			
+
 				var frame = new CGRect (x, y, buttonSize.Width, buttonSize.Height);
 				subview.Frame = frame.Integral ();
 				x += (float)buttonSize.Width + xPad;

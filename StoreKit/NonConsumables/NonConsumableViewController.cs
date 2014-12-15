@@ -9,7 +9,7 @@ namespace NonConsumables {
 	public class NonConsumableViewController : UIViewController {
 		public static string greyscaleProductId = "com.xamarin.storekit.testing.greyscale",
 			   sepiaProductId = "com.xamarin.storekit.testing.sepia";
-		
+
 		string testImagePath = "Images/PhotoFilterTest2.jpg";
 		UIButton greyscaleButton, sepiaButton, clearButton, restoreButton;
 		UILabel greyscaleTitle, greyscaleDescription, sepiaTitle, sepiaDescription, infoLabel;
@@ -18,16 +18,16 @@ namespace NonConsumables {
 		bool pricesLoaded = false;
 		bool greyscalePurchased, sepiaPurchased;
 		NSObject priceObserver, requestObserver;
-		
+
 		InAppPurchaseManager iap;
-		
+
 		public NonConsumableViewController () : base()
 		{
 			// two products for sale on this page
 			products = new List<string>() {greyscaleProductId, sepiaProductId};
 			iap = new InAppPurchaseManager();
 		}
-	
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -61,7 +61,7 @@ namespace NonConsumables {
 			sepiaTitle.Font = UIFont.BoldSystemFontOfSize(18f);
 			sepiaDescription = new UILabel(new CGRect(10, 135, 300, 30));
 			sepiaButton.Frame = new CGRect(10, 170, 180, 40);
-			
+
 			clearButton = UIButton.FromType (UIButtonType.RoundedRect);
 			clearButton.SetTitle ("Clear Filter", UIControlState.Normal);
 			clearButton.Frame = new CGRect(10, 215, 180, 40);
@@ -72,25 +72,25 @@ namespace NonConsumables {
 			restoreButton = UIButton.FromType (UIButtonType.RoundedRect);
 			restoreButton.SetTitle ("Restore", UIControlState.Normal);
 			restoreButton.Frame = new CGRect(200, 215, 110, 40);
-			
+
 			testFilterImage = new UIImageView(new CGRect(10, 265, 300, 100));
 			testFilterImage.Image = UIImage.FromFile (testImagePath);
-			
+
 			infoLabel = new UILabel(new CGRect(10, 370, 300, 80));
 			infoLabel.Lines = 3;
 			infoLabel.Text = "Notice how you can only purchase each product once. After that the transaction can't be charged again.";
-	
-			View.AddSubview (greyscaleButton);			
+
+			View.AddSubview (greyscaleButton);
 			View.AddSubview (greyscaleTitle);
 			View.AddSubview (greyscaleDescription);
-			View.AddSubview (sepiaButton);			
+			View.AddSubview (sepiaButton);
 			View.AddSubview (sepiaTitle);
 			View.AddSubview (sepiaDescription);
 			View.AddSubview (testFilterImage);
 			View.AddSubview (clearButton);
 			View.AddSubview (restoreButton);
 			View.AddSubview (infoLabel);
-			#endregion	
+			#endregion
 
 			greyscaleButton.TouchUpInside += (sender, e) => {
 				if (greyscalePurchased) {
@@ -100,7 +100,7 @@ namespace NonConsumables {
 					// initiate payment
 					iap.PurchaseProduct (greyscaleProductId);
 				}
-			};	
+			};
 			sepiaButton.TouchUpInside += (sender, e) => {
 				if (sepiaPurchased) {
 					// paid for, therefore allow access
@@ -109,7 +109,7 @@ namespace NonConsumables {
 					// initiate payment
 					iap.PurchaseProduct (sepiaProductId);
 				}
-			};	
+			};
 			restoreButton.TouchUpInside += (sender, e) => {
 				iap.Restore();
 			};
@@ -118,14 +118,14 @@ namespace NonConsumables {
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear(animated);
-			
+
 			// setup the observer to wait for prices to come back from StoreKit <- AppStore
-			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerProductsFetchedNotification, 
+			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerProductsFetchedNotification,
 			(notification) => {
 				var info = notification.UserInfo;
 				var NSgreyscaleProductId = new NSString(greyscaleProductId);
 				var NSsepiaProductId = new NSString(sepiaProductId);
-				
+
 				if (info == null) {
 					// if info is null, probably NO valid prices returned, therefore it doesn't exist at all
 					greyscaleDescription.Text = "check iTunes connect setup";
@@ -138,12 +138,12 @@ namespace NonConsumables {
 						pricesLoaded = true;
 
 						var product = (SKProduct) info.ObjectForKey(NSgreyscaleProductId);
-						
+
 						Console.WriteLine("Product id: " + product.ProductIdentifier);
 						Console.WriteLine("Product title: " + product.LocalizedTitle);
 						Console.WriteLine("Product description: " + product.LocalizedDescription);
 						Console.WriteLine("Product price: " + product.Price);
-						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());	
+						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
 
 						greyscaleButton.Enabled = true;
 						greyscaleTitle.Text = product.LocalizedTitle;
@@ -155,12 +155,12 @@ namespace NonConsumables {
 						pricesLoaded = true;
 
 						var product = (SKProduct) info.ObjectForKey(NSsepiaProductId);
-						
+
 						Console.WriteLine("Product id: " + product.ProductIdentifier);
 						Console.WriteLine("Product title: " + product.LocalizedTitle);
 						Console.WriteLine("Product description: " + product.LocalizedDescription);
 						Console.WriteLine("Product price: " + product.Price);
-						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());	
+						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
 
 						sepiaButton.Enabled = true;
 						sepiaTitle.Text = product.LocalizedTitle;
@@ -169,7 +169,7 @@ namespace NonConsumables {
 					}
 				}
 			});
-			
+
 			// only if we can make payments, request the prices
 			if (iap.CanMakePayments()) {
 				// now go get prices, if we don't have them already
@@ -183,15 +183,15 @@ namespace NonConsumables {
 			// update the buttons before displaying, to reflect past purchases
 			UpdateButtons ();
 
-			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerTransactionSucceededNotification, 
+			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerTransactionSucceededNotification,
 			(notification) => {
 				// update the buttons after a successful purchase
 				UpdateButtons ();
 			});
 
-			requestObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerRequestFailedNotification, 
+			requestObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerRequestFailedNotification,
 			                                                                 (notification) => {
-				// TODO: 
+				// TODO:
 				Console.WriteLine ("Request Failed");
 				greyscaleButton.SetTitle ("Network down?", UIControlState.Disabled);
 				sepiaButton.SetTitle ("Network down?", UIControlState.Disabled);

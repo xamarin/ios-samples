@@ -10,11 +10,11 @@ namespace Xamarin.Screens.ViciCoolStorage
 	public class Person : CSObject<Person, int>
 	{
 		public Person () { }
-		
+
 		public int ID { get { return (int)GetField ("PersonID"); } }
 		public string FirstName { get { return (string)GetField ("FirstName"); } set { SetField ("FirstName",value); } }
 		public string LastName { get { return (string)GetField ("LastName"); } set { SetField ("LastName",value); } }
 	}
-	
+
 }
 

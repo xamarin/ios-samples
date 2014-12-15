@@ -20,7 +20,7 @@ namespace CloudKitAtlas
 
 		[Action ("SaveRecord:")]
 		partial void SaveRecord (UIKit.UIButton sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (map != null) {

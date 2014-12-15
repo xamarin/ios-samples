@@ -7,7 +7,7 @@ namespace PrivacyPrompts
 	//Custom PrivacyDetailViewController demonstrating async AVCaptureDevice permissions
 	public class VideoCapturePrivacyController : PrivacyDetailViewController
 	{
-		public VideoCapturePrivacyController () 
+		public VideoCapturePrivacyController ()
 		{
 			CheckAccess = CameraAccessStatus;
 			RequestAccess = RequestCameraAccess;
@@ -22,7 +22,7 @@ namespace PrivacyPrompts
 		protected void RequestCameraAccess()
 		{
 			//But inside, use an async lambda to request permission...
-			Task.Run( async () => 
+			Task.Run( async () =>
 				{
 					var _ = await AVCaptureDevice.RequestAccessForMediaTypeAsync (AVMediaType.Video);
 					//...But the continuation is on a background thread, so use InvokeOnMainThread to update the UI

@@ -12,7 +12,7 @@ namespace MetalImageProcessing
 	[Register ("ImageViewController")]
 	partial class ImageViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

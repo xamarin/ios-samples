@@ -25,7 +25,7 @@ namespace SocialFrameworkDemo
 
 		[Outlet]
 		UIKit.UITextView resultsTextView { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (twitterRequestButton != null) {

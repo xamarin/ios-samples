@@ -22,7 +22,7 @@ namespace MediaNotes
 		{
 			toolBarIsvisible = true;
 		}
-	
+
 		public override void ViewDidLoad ()
 		{
 			// Perform any additional setup after loading the view, typically from a nib.
@@ -79,7 +79,6 @@ namespace MediaNotes
 			//	                                   this,cmd));
 		}
 
-
 		public void TextViewDidEndEditing (UITextView textView)
 		{
 			if (!Comment ().Equals(textView.Text)){
@@ -89,7 +88,7 @@ namespace MediaNotes
 		}
 
 		//YYCommentViewController API
-		
+
 		public void ShowToolbar (bool show, bool animated, float duration)
 		{
 			UIView.Animate (.5, () => {
@@ -110,7 +109,7 @@ namespace MediaNotes
 		{
 			if (obj != associatedObject) {
 				associatedObject = obj;
-			} 
+			}
 			textView.Text = obj.AssociatedComment();
 			Console.WriteLine (textView.Text);
 		}
@@ -138,7 +137,7 @@ namespace MediaNotes
 						itemsForSharing [i] = items [i];
 				}
 				itemsForSharing [i] = new NSString (Comment ());
-			
+
 			UIActivityViewController activityController = new UIActivityViewController(itemsForSharing, null);
 			shareController = new UIPopoverController(activityController);
 			shareController.Delegate = new MyDelegate(this);

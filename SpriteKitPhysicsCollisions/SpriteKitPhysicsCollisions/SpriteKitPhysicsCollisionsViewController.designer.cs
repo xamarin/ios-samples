@@ -14,7 +14,7 @@ namespace SpriteKitPhysicsCollisions
 	{
 		[Outlet]
 		SpriteKit.SKView skView { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (skView != null) {

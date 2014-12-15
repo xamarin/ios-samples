@@ -28,7 +28,7 @@ namespace PinchIt
 
 			foreach (var cellAttributes in array)
 				applyPinchToLayoutAttributes (cellAttributes);
-			
+
 			return array;
 		}
 

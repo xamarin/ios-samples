@@ -47,10 +47,10 @@ namespace MetalTexturedQuad
 
 		public nfloat Aspect  { get; set; }
 
-		public CGRect Bounds { 
+		public CGRect Bounds {
 			get {
 				return bounds;
-			} 
+			}
 
 			set {
 				bounds = value;

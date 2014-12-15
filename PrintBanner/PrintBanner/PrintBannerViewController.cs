@@ -19,7 +19,7 @@ namespace PrintBanner {
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			textField.EditingDidEndOnExit += (sender, e) => {
 				textField.ResignFirstResponder ();
 			};
@@ -37,7 +37,7 @@ namespace PrintBanner {
 
 			controller.CutLengthForPaper = delegate (UIPrintInteractionController printController, UIPrintPaper paper) {
 				// Create a font with arbitrary size so that you can calculate the approximate
-  				// font points per screen point for the height of the text. 
+  				// font points per screen point for the height of the text.
 				UIFont font = textformatter.Font;
 
 				NSString str = new NSString (textField.Text);
@@ -47,7 +47,7 @@ namespace PrintBanner {
 
 				nfloat approximateFontPointPerScreenPoint = font.PointSize / size.Height;
 
-				// Create a new font using a size  that will fill the width of the paper 
+				// Create a new font using a size  that will fill the width of the paper
 				font = SelectFont ((float)(paper.PrintableRect.Size.Width * approximateFontPointPerScreenPoint));
 
 				// Calculate the height and width of the text with the final font size
@@ -62,7 +62,7 @@ namespace PrintBanner {
 			    // printable area has enough room for our text.
 				nfloat lengthOfMargins = paper.PaperSize.Height - paper.PrintableRect.Size.Height;
 
-				// The cut length is the width of the text, plus margins, plus some padding 
+				// The cut length is the width of the text, plus margins, plus some padding
 				return finalTextSize.Width + lengthOfMargins + paper.PrintableRect.Size.Width * PaddingFactor;
 			};
 

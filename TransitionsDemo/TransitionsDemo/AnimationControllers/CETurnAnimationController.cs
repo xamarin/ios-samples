@@ -21,8 +21,8 @@ namespace TransitionsDemo.AnimationControllers
 			TurnDiresction = CEDirection.Vertical;
 		}
 
-		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext, 
-		                                        UIViewController fromViewController, UIViewController toViewController, 
+		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
+		                                        UIViewController fromViewController, UIViewController toViewController,
 		                                        UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;

@@ -23,14 +23,13 @@ namespace PaintCode
 				UIApplication.SharedApplication.StatusBarFrame.Height : 0f;
 			button = new GlossyButton (new CGRect (30, 30 + statusBarHeight, 130, 38));
 			button.SetTitle ("Stop!", UIControlState.Normal);
-			
+
 			button.Tapped += (obj) => {
 				new UIAlertView ("Tapped", "Button tapped", null, "OK", null).Show ();
 			};
-			
+
 			View.AddSubview (button);
-			
-			
+
 			text = new UITextView (new CGRect (10, 100 + statusBarHeight , 300, 300 - statusBarHeight));
 			text.Font = UIFont.SystemFontOfSize (14f);
 			text.Editable = false;

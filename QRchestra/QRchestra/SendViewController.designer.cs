@@ -42,7 +42,7 @@ namespace QRchestra
 
 		[Action ("handleTap:")]
 		partial void handleTap (UITapGestureRecognizer sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (keyImageView1 != null) {

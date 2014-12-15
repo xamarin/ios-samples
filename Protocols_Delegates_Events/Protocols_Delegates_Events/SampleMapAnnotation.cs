@@ -12,7 +12,7 @@ namespace Protocols_Delegates_Events
     {
 		CLLocationCoordinate2D coordinate;
         string _title;
-        
+
         public SampleMapAnnotation (CLLocationCoordinate2D coordinateToSet)
         {
 			coordinate = coordinateToSet;
@@ -33,7 +33,7 @@ namespace Protocols_Delegates_Events
         public override string Title {
             get {
                 return _title;
-            }            
+            }
         }
     }
 }

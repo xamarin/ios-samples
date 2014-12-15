@@ -17,11 +17,10 @@ namespace AnimationSamples
 		{
 		}
 
-		
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			layer = new CALayer ();
 			layer.Bounds = new CGRect (0, 0, 50, 50);
 			layer.Position = new CGPoint (50, 50);
@@ -29,7 +28,7 @@ namespace AnimationSamples
 			layer.ContentsGravity = CALayer.GravityResize;
 			layer.BorderWidth = 1.5f;
 			layer.BorderColor = UIColor.Green.CGColor;
-			
+
 			View.Layer.AddSublayer (layer);
 		}
 

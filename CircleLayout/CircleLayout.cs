@@ -28,7 +28,7 @@ namespace CircleLayout
 			center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
 			radius = (int)Math.Min (size.Width, size.Height) / 2.5f;
 		}
-			
+
 		public override CGSize CollectionViewContentSize {
 			get {
 				return CollectionView.Frame.Size;
@@ -52,7 +52,7 @@ namespace CircleLayout
 				NSIndexPath indexPath = NSIndexPath.FromItemSection (i, 0);
 				attributes [i] = LayoutAttributesForItem (indexPath);
 			}
-		
+
 			return attributes;
 		}
 #if false
@@ -63,7 +63,7 @@ namespace CircleLayout
 			var attributes = LayoutAttributesForItem (itemIndexPath);
 			attributes.Alpha = 0;
 			attributes.Center = new PointF (center.X, center.Y);
-				
+
 			return attributes;
 		}
 
@@ -73,7 +73,7 @@ namespace CircleLayout
 			attributes.Alpha = 0;
 			attributes.Center = new PointF (center.X, center.Y);
 			attributes.Transform3D = CATransform3D.MakeScale (0.1f, 0.1f, 1);
-				
+
 			return attributes;
 		}
 #endif

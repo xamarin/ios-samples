@@ -12,7 +12,7 @@ namespace AVCustomEdit
 	[Register ("PlayerView")]
 	partial class PlayerView
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

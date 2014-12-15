@@ -12,7 +12,7 @@ namespace SceneKitVehicle
 	[Register ("GameView")]
 	partial class GameView
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

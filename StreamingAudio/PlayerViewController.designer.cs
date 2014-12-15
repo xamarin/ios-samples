@@ -26,7 +26,7 @@ namespace StreamingAudio
 
 		[Outlet]
 		UIKit.UISlider volumeSlider { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (playPauseButton != null) {

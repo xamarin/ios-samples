@@ -23,7 +23,7 @@ namespace StateRestoration
 
 		[Action ("share:")]
 		partial void Share (MonoTouch.Foundation.NSObject sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (imageView != null) {

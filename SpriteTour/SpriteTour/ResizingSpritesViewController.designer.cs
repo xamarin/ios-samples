@@ -12,7 +12,7 @@ namespace SpriteTour
 	[Register ("ResizingSpritesViewController")]
 	partial class ResizingSpritesViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

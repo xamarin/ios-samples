@@ -100,7 +100,7 @@ namespace NSZombieApocalypse
 		[Export("voiceOverFinished:")]
 		void voiceOverFinished (NSObject notification)
 		{
-			isVoiceOverSpeaking = false; 
+			isVoiceOverSpeaking = false;
 		}
 
 		void pause ()
@@ -177,7 +177,7 @@ namespace NSZombieApocalypse
 				return "An object was retained too many times (6MB)";
 			case TimerEvent.StagnantReleasePool:
 				return  "Your release pools stopped draining! (23MB)";
-			} 
+			}
 			return "";
 		}
 
@@ -219,7 +219,7 @@ namespace NSZombieApocalypse
 		{
 			if (paused)
 				return;
-			
+
 			TimerEvent eventType = nextZombieEvent ();
 			statusView.Status = stringForZombieEvent (eventType);
 			meterView.ZombieLevel = meterView.ZombieLevel + zombieFactorForEvent (eventType);
@@ -338,7 +338,7 @@ namespace NSZombieApocalypse
 				UIView.Animate (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (10f * (float)Math.PI / 180), async () => {
 					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (-10f * (float)Math.PI / 180));
 					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (10f * (float)Math.PI / 180));
-					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (-10f * (float)Math.PI / 180)); 
+					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (-10f * (float)Math.PI / 180));
 					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (0));
 				});
 			}

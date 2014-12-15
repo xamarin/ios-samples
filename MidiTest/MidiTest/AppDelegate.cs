@@ -11,7 +11,7 @@ namespace MidiTest
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		UIWindow window;
-			
+
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			var label = new UILabel (new CGRect (20, 100, 300, 80)) {

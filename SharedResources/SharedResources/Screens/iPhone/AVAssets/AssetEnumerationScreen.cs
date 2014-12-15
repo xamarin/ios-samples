@@ -12,26 +12,24 @@ namespace Example_SharedResources.Screens.iPhone.AVAssets
 		string groupName = string.Empty;
 		List<ALAsset> assets = null;
 		AssetsDataSource dataSource = null;
-				
+
 		public AssetEnumerationScreen (string groupName, List<ALAsset> assets)
 		{
 			this.groupName = groupName;
 			this.assets = assets;
 		}
-		
-				
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// set the title
 			Title = groupName;
-			
+
 			// create our table source
 			dataSource = new AssetsDataSource(assets);
 			TableView.Source = dataSource;
 		}
-
 
 		/// <summary>
 		/// Simple data source to display the assets
@@ -39,33 +37,33 @@ namespace Example_SharedResources.Screens.iPhone.AVAssets
 		protected class AssetsDataSource : UITableViewSource
 		{
 			protected List<ALAsset> items;
-			
+
 			public AssetsDataSource (List<ALAsset> items) { this.items = items; }
-			
+
 			public override nint NumberOfSections (UITableView tableView) { return 1; }
-			
-			public override nint RowsInSection (UITableView tableview, nint section) 
-			{ 
-				return items.Count; 
+
+			public override nint RowsInSection (UITableView tableview, nint section)
+			{
+				return items.Count;
 			}
-			
+
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				UITableViewCell cell = tableView.DequeueReusableCell ("AssetCell");
-				if(cell == null) 
+				if(cell == null)
 					cell = new UITableViewCell (UITableViewCellStyle.Subtitle, "AssetCell");
-				
+
 				// set the text
 				cell.TextLabel.Text = items[indexPath.Row].AssetType.ToString ();
 				cell.DetailTextLabel.Text = items[indexPath.Row].Date.ToString ();
 				// set the image
 				if(items[indexPath.Row].Thumbnail != null)
 					cell.ImageView.Image = UIImage.FromImage(items[indexPath.Row].Thumbnail);
-				
+
 				return cell;
 			}
 		}
-		
+
 	}
 }
 

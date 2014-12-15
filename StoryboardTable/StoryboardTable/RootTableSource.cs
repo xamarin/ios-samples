@@ -1,7 +1,6 @@
 using System;
 using UIKit;
 
-
 namespace StoryboardTable
 {
 	public class RootTableSource : UITableViewSource {
@@ -12,7 +11,7 @@ namespace StoryboardTable
 
 		public RootTableSource (Chore[] items)
 		{
-			tableItems = items; 
+			tableItems = items;
 		}
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
@@ -20,11 +19,11 @@ namespace StoryboardTable
 		}
 		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			// in a Storyboard, Dequeue will ALWAYS return a cell, 
+			// in a Storyboard, Dequeue will ALWAYS return a cell,
 			UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);
 			// now set the properties as normal
 			cell.TextLabel.Text = tableItems[indexPath.Row].Name;
-			if (tableItems[indexPath.Row].Done) 
+			if (tableItems[indexPath.Row].Done)
 				cell.Accessory = UITableViewCellAccessory.Checkmark;
 			else
 				cell.Accessory = UITableViewCellAccessory.None;

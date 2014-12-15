@@ -10,20 +10,20 @@ namespace PaintCode
 	/// http://paintcodeapp.com/examples.html
 	/// </summary>
 	/// <remarks>
-	/// This implementation only deals with Normal and Pressed states. 
+	/// This implementation only deals with Normal and Pressed states.
 	/// There is no handling for the Disabled state.
 	/// </remarks>
 	public class BlueButton : UIButton {
-		
+
 		bool isPressed;
-		
+
 		public UIColor NormalColor;
-		
+
 		/// <summary>
-		/// Invoked when the user touches 
+		/// Invoked when the user touches
 		/// </summary>
 		public event Action<BlueButton> Tapped;
-				
+
 		/// <summary>
 		/// Creates a new instance of the GlassButton using the specified dimensions
 		/// </summary>
@@ -35,7 +35,7 @@ namespace PaintCode
 		/// <summary>
 		/// Whether the button is rendered enabled or not.
 		/// </summary>
-		public override bool Enabled { 
+		public override bool Enabled {
 			get {
 				return base.Enabled;
 			}
@@ -44,14 +44,14 @@ namespace PaintCode
 				SetNeedsDisplay ();
 			}
 		}
-		
+
 		public override bool BeginTracking (UITouch uitouch, UIEvent uievent)
 		{
 			SetNeedsDisplay ();
 			isPressed = true;
 			return base.BeginTracking (uitouch, uievent);
 		}
-		
+
 		public override void EndTracking (UITouch uitouch, UIEvent uievent)
 		{
 			if (isPressed && Enabled){
@@ -62,7 +62,7 @@ namespace PaintCode
 			SetNeedsDisplay ();
 			base.EndTracking (uitouch, uievent);
 		}
-		
+
 		public override bool ContinueTracking (UITouch uitouch, UIEvent uievent)
 		{
 			var touch = uievent.AllTouches.AnyObject as UITouch;
@@ -72,15 +72,14 @@ namespace PaintCode
 				isPressed = false;
 			return base.ContinueTracking (uitouch, uievent);
 		}
-		
+
 		public override void Draw (CGRect rect)
 		{
 			using (var context = UIGraphics.GetCurrentContext ()) {
 				var bounds = Bounds;
-			
+
 				//UIColor background = Enabled ? isPressed ? HighlightedColor : NormalColor : DisabledColor;
-			
-			
+
 				UIColor buttonColor = NormalColor; //UIColor.FromRGBA (0.00f, 0.37f, 0.89f, 1.00f);
 				var buttonColorRGBA = new nfloat[4];
 				buttonColor.GetRGBA (
@@ -90,7 +89,7 @@ namespace PaintCode
 					out buttonColorRGBA [3]
 				);
 				if (isPressed) {
-					// Get the Hue Saturation Brightness Alpha copy of the color				
+					// Get the Hue Saturation Brightness Alpha copy of the color
 					var buttonColorHSBA = new nfloat[4];
 					buttonColor.GetHSBA (
 						out buttonColorHSBA [0],
@@ -109,12 +108,9 @@ namespace PaintCode
 						out buttonColorRGBA [3]
 					);
 				}
-			
-				
+
 				using (var colorSpace = CGColorSpace.CreateDeviceRGB ()) {
-				
-				
-				
+
 					// ------------- START PAINTCODE -------------
 
 //// Color Declarations
@@ -122,7 +118,6 @@ namespace PaintCode
 					UIColor bottomColorDown = UIColor.FromRGBA (0.21f, 0.21f, 0.21f, 1.00f);
 					UIColor upColorInner = UIColor.FromRGBA (0.17f, 0.18f, 0.20f, 1.00f);
 					UIColor bottomColorInner = UIColor.FromRGBA (0.98f, 0.98f, 0.99f, 1.00f);
-
 
 					UIColor buttonFlareUpColor = UIColor.FromRGBA (
 						                            (buttonColorRGBA [0] * 0.3f + 0.7f),
@@ -188,10 +183,8 @@ namespace PaintCode
 					var buttonInnerShadowBlurRadius = 5;
 					var buttonOuterShadow = UIColor.Black.CGColor;
 					var buttonOuterShadowOffset = new CGSize (0, 2);
-				
-				
-					var buttonOuterShadowBlurRadius = isPressed ? 2 : 5;	// ADDED this code after PaintCode
 
+					var buttonOuterShadowBlurRadius = isPressed ? 2 : 5;	// ADDED this code after PaintCode
 
 //// outerOval Drawing
 					var outerOvalPath = UIBezierPath.FromOval (new CGRect (5, 5, 63, 63));
@@ -203,8 +196,6 @@ namespace PaintCode
 					context.EndTransparencyLayer ();
 					context.RestoreState ();
 
-
-
 //// overlayOval Drawing
 					var overlayOvalPath = UIBezierPath.FromOval (new CGRect (5, 5, 63, 63));
 					context.SaveState ();
@@ -215,16 +206,12 @@ namespace PaintCode
 						CGGradientDrawingOptions.DrawsBeforeStartLocation | CGGradientDrawingOptions.DrawsAfterEndLocation);
 					context.RestoreState ();
 
-
-
 //// innerOval Drawing
 					var innerOvalPath = UIBezierPath.FromOval (new CGRect (12, 12, 49, 49));
 					context.SaveState ();
 					innerOvalPath.AddClip ();
 					context.DrawLinearGradient (ringInnerGradient, new CGPoint (36.5f, 12), new CGPoint (36.5f, 61), 0);
 					context.RestoreState ();
-
-
 
 //// buttonOval Drawing
 					var buttonOvalPath = UIBezierPath.FromOval (new CGRect (14, 13, 46, 46));
@@ -264,16 +251,12 @@ namespace PaintCode
 					}
 					context.RestoreState ();
 
-
-
-
 //// flareOval Drawing
 					var flareOvalPath = UIBezierPath.FromOval (new CGRect (22, 14, 29, 15));
 					context.SaveState ();
 					flareOvalPath.AddClip ();
 					context.DrawLinearGradient (buttonFlareGradient, new CGPoint (36.5f, 14), new CGPoint (36.5f, 29), 0);
 					context.RestoreState ();
-
 
 					// ------------- END PAINTCODE -------------
 				}

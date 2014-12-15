@@ -26,7 +26,7 @@ namespace Stars
 		Vector3[] star = new Vector3 [NumStars];
 		int[] perm = new int [NumStars];
 
-		static readonly float[] gCubeVertexData = 
+		static readonly float[] gCubeVertexData =
 		{
 			// Data layout for each line below is:
 			// positionX, positionY, positionZ,     normalX, normalY, normalZ,
@@ -36,35 +36,35 @@ namespace Stars
 			0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
 			0.5f, 0.5f, -0.5f,         1.0f, 0.0f, 0.0f,
 			0.5f, 0.5f, 0.5f,          1.0f, 0.0f, 0.0f,
-			
+
 			0.5f, 0.5f, -0.5f,         0.0f, 1.0f, 0.0f,
 			-0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
 			0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
 			0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
 			-0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
 			-0.5f, 0.5f, 0.5f,         0.0f, 1.0f, 0.0f,
-			
+
 			-0.5f, 0.5f, -0.5f,        -1.0f, 0.0f, 0.0f,
 			-0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
 			-0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
 			-0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
 			-0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
 			-0.5f, -0.5f, 0.5f,        -1.0f, 0.0f, 0.0f,
-			
+
 			-0.5f, -0.5f, -0.5f,       0.0f, -1.0f, 0.0f,
 			0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
 			-0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
 			-0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
 			0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
 			0.5f, -0.5f, 0.5f,         0.0f, -1.0f, 0.0f,
-			
+
 			0.5f, 0.5f, 0.5f,          0.0f, 0.0f, 1.0f,
 			-0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
 			0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
 			0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
 			-0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
 			-0.5f, -0.5f, 0.5f,        0.0f, 0.0f, 1.0f,
-			
+
 			0.5f, -0.5f, -0.5f,        0.0f, 0.0f, -1.0f,
 			-0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
 			0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
@@ -177,7 +177,6 @@ namespace Stars
 			return true;
 		}
 
-
 		public void setupGL ()
 		{
 			EAGLContext.SetCurrentContext (context);
@@ -255,9 +254,9 @@ namespace Stars
 			for (int i = 0; i < NumCubes; i++) {
 				var effect = effects [i];
 				effect.Transform.ProjectionMatrix = projectionMatrix;
-				var modelViewMatrix = Matrix4.Identity; 
+				var modelViewMatrix = Matrix4.Identity;
 
-				modelViewMatrix = Matrix4.Mult (modelViewMatrix, Matrix4.CreateTranslation ((float) perm [i] * 5.0f + 10.0f, (float) i, 0)); 
+				modelViewMatrix = Matrix4.Mult (modelViewMatrix, Matrix4.CreateTranslation ((float) perm [i] * 5.0f + 10.0f, (float) i, 0));
 				modelViewMatrix = Matrix4.Mult (modelViewMatrix, Matrix4.CreateFromAxisAngle (new Vector3 (0, 0, 1), (float) (2 * Math.PI * i / (float) NumCubes)));
 				modelViewMatrix = Matrix4.Mult (Matrix4.CreateFromAxisAngle (new Vector3 (1, 1, 1), rotation), modelViewMatrix);
 
@@ -279,13 +278,13 @@ namespace Stars
 
 			rotation += (float) TimeSinceLastUpdate * 0.8f;
 
-			rpyLabel.Text = String.Format ("roll: {0}° pitch: {1}° yaw: {2}°", 
+			rpyLabel.Text = String.Format ("roll: {0}° pitch: {1}° yaw: {2}°",
 			                               String.Format("{0:0.#}", dm.Attitude.Roll * RadiansToDegrees),
-			                               String.Format("{0:0.#}", dm.Attitude.Pitch * RadiansToDegrees), 
+			                               String.Format("{0:0.#}", dm.Attitude.Pitch * RadiansToDegrees),
 			                               String.Format("{0:0.#}", dm.Attitude.Yaw * RadiansToDegrees));
 			//...now we can print out coordinates
 		}
-		 
+
 		public void Draw (object sender, GLKViewDrawEventArgs args)
 		{
 			if (!isDeviceMotionAvailable)

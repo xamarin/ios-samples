@@ -48,7 +48,7 @@ namespace SimpleCollectionView
 
             window.RootViewController = simpleCollectionViewController;
             window.MakeKeyAndVisible ();
-            
+
             return true;
         }
     }

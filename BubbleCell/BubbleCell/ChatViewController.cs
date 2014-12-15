@@ -6,7 +6,7 @@
 // The code to automatically grow the text that is being entered
 // comes from AcaniChat, licensed under the MIT X11 license
 // from https://github.com/acani/AcaniChat
-// 
+//
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,27 +25,27 @@ namespace BubbleCell
 		UITextView entry;
 		UIImageView chatBar;
 		UIButton sendButton;
-		
+
 		const float messageFontSize = 16f;
 		const float maxContentHeight = 84f;
 		const int entryHeight = 40;
 		nfloat previousContentHeight;
-		
+
 		NSObject showObserver, hideObserver;
-		
+
 		public ChatViewController (RootElement root)
 		{
 			this.root = root;
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			NavigationController.NavigationBar.Translucent = false;
 			var bounds = View.Bounds;
-			
+
 			var backgroundColor =  new UIColor (0.859f, 0.866f, 0.929f, 1);
-			
+
 			View.BackgroundColor = backgroundColor;
 			//
 			// Add the bubble chat interface
@@ -57,11 +57,11 @@ namespace BubbleCell
 			};
 			View.AddSubview (discussionHost);
 
-			discussion = new DialogViewController (UITableViewStyle.Plain, root, true);	
+			discussion = new DialogViewController (UITableViewStyle.Plain, root, true);
 			discussionHost.AddSubview (discussion.View);
 			discussion.View.BackgroundColor = backgroundColor;
-			
-			// 
+
+			//
 			// Add styled entry
 			//
 			chatBar = new UIImageView (new CGRect (0, bounds.Height-entryHeight, bounds.Width, entryHeight)) {
@@ -71,7 +71,7 @@ namespace BubbleCell
 				UserInteractionEnabled = true
 			};
 			View.AddSubview (chatBar);
-			
+
 			entry = new UITextView (new CGRect (10, 9, 234, 22)) {
 				ContentSize = new CGSize (234, 22),
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
@@ -82,7 +82,7 @@ namespace BubbleCell
 				DataDetectorTypes = UIDataDetectorType.All,
 				BackgroundColor = UIColor.Clear,
 			};
-			
+
 			// Fix a scrolling glitch
 			entry.ShouldChangeText = (textView, range, text) => {
 				entry.ContentInset = new UIEdgeInsets (0, 0, 3, 0);
@@ -90,15 +90,15 @@ namespace BubbleCell
 			};
 			previousContentHeight = entry.ContentSize.Height;
 			chatBar.AddSubview (entry);
-			
-			// 
+
+			//
 			// The send button
 			//
 			sendButton = UIButton.FromType (UIButtonType.Custom);
 			sendButton.ClearsContextBeforeDrawing = false;
 			sendButton.Frame = new CGRect (chatBar.Frame.Width - 70, 8, 64, 26);
 			sendButton.AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleLeftMargin;
-			
+
 			var sendBackground = UIImage.FromFile ("SendButton.png");
 			sendButton.SetBackgroundImage (sendBackground, UIControlState.Normal);
 			sendButton.SetBackgroundImage (sendBackground, UIControlState.Disabled);
@@ -109,18 +109,18 @@ namespace BubbleCell
 			sendButton.AddTarget (SendMessage, UIControlEvent.TouchUpInside);
 			DisableSend ();
 			chatBar.AddSubview (sendButton);
-			                     
+
 			//
 			// Listen to keyboard notifications to animate
 			//
 			showObserver = UIKeyboard.Notifications.ObserveWillShow (PlaceKeyboard);
 			hideObserver = UIKeyboard.Notifications.ObserveWillHide (PlaceKeyboard);
-			
+
 			ScrollToBottom (false);
 			// Track changes in the entry to resize the view accordingly
 			entry.Changed += HandleEntryChanged;
 		}
-		
+
 		public override void ViewDidUnload ()
 		{
 			showObserver.Dispose ();
@@ -133,21 +133,21 @@ namespace BubbleCell
 
 			base.ViewDidUnload ();
 		}
-		
+
 		void EnableSend ()
 		{
 			sendButton.Enabled = true;
 			sendButton.TitleLabel.Alpha = 1;
 		}
-		
+
 		void DisableSend ()
 		{
 			sendButton.Enabled = false;
 			sendButton.TitleLabel.Alpha = 0.5f;
 		}
-		
+
 		bool side;
-		
+
 		// Just show messages alternating
 		void SendMessage (object sender, EventArgs args)
 		{
@@ -156,7 +156,7 @@ namespace BubbleCell
 			entry.Text = "";
 			ScrollToBottom (true);
 		}
-		
+
 		//
 		// Resizes the UITextView based on the current text
 		//
@@ -186,49 +186,49 @@ namespace BubbleCell
 				}
 				AdjustEntry ();
 			}
-			if (entry.Text != "") 
+			if (entry.Text != "")
 				EnableSend ();
 			else
 				DisableSend ();
-			
+
 			previousContentHeight = contentHeight;
-			
+
 		}
-		
+
 		// Resizes the chat bar to the specified height
 		void SetChatBarHeight (nfloat height)
 		{
 			var chatFrame = discussion.View.Frame;
 			chatFrame.Height = View.Frame.Height-height;
 			discussion.View.Frame = chatFrame;
-			
+
 			UIView.BeginAnimations ("");
 			UIView.SetAnimationDuration (.3);
 			discussion.View.Frame = chatFrame;
 			chatBar.Frame = new CGRect (chatBar.Frame.X, chatFrame.Height, chatFrame.Width, height);
 			UIView.CommitAnimations ();
 		}
-		
+
 		// Sets the default height
 		void ResetChatBarHeight ()
 		{
 			SetChatBarHeight (entryHeight);
 		}
-		
+
 		// Sets the maximum height
 		void ExpandChatBarHeight ()
 		{
 			SetChatBarHeight (94);
 		}
-		
+
 		// Adjusts the UITextView after an update
 		void AdjustEntry ()
 		{
 			// This fixes a rendering glitch
 			entry.ContentOffset = new CGPoint (0, 6);
 		}
-		
-		// 
+
+		//
 		// Custom layout: when our discussionHost changes, so does the discussion's view
 		//
 		public override void ViewDidLayoutSubviews ()
@@ -236,8 +236,8 @@ namespace BubbleCell
 			base.ViewDidLayoutSubviews ();
 			discussion.View.Frame = discussionHost.Frame;
 		}
-		
-		// 
+
+		//
 		// When the keyboard appears, animate the new position for the entry
 		// and scroll the chat to the bottom
 		//
@@ -251,11 +251,11 @@ namespace BubbleCell
 				viewFrame.Height = endRelative.Y;
 				View.Frame = viewFrame;
 			} UIView.CommitAnimations ();
-			
+
 			ScrollToBottom (true);
 			AdjustEntry ();
 		}
-		
+
 		void ScrollToBottom (bool animated)
 		{
 			int row = discussion.Root [0].Elements.Count-1;
@@ -263,7 +263,7 @@ namespace BubbleCell
 				return;
 			discussion.TableView.ScrollToRow (NSIndexPath.FromRowSection (row, 0), UITableViewScrollPosition.Bottom, true);
 		}
-		
+
 		public override bool AutomaticallyForwardAppearanceAndRotationMethodsToChildViewControllers {
 			get {
 				return true;

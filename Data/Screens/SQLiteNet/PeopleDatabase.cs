@@ -11,26 +11,26 @@ namespace Xamarin.Screens.SQLiteNet
 	public class PeopleDatabase : SQLiteConnection
 	{
 
-		// Creates a new PeopelDatabase. if the database doesn't exist, it will 
+		// Creates a new PeopelDatabase. if the database doesn't exist, it will
 		// create the database and all the tables
 		public PeopleDatabase (string path) : base (path)
 		{
 			// create the tables
 			CreateTable<Person> ();
 		}
-		
+
 		public IEnumerable<Person> GetPeople ()
 		{
 			return (from i in this.Table<Person> () select i);
 		}
-		
+
 		public Person GetPerson (int id)
 		{
 			return (from i in Table<Person> ()
 				where i.ID == id
 				select i).FirstOrDefault ();
 		}
-		
+
 		public int AddPerson (Person item)
 		{
 			return Insert (item);
