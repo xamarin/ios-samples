@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using StoreKit;
 using Foundation;
 using UIKit;
+using System.Linq;
 
-namespace Consumables {
-	public class InAppPurchaseManager : SKProductsRequestDelegate {
-		public static NSString InAppPurchaseManagerProductsFetchedNotification = new NSString("InAppPurchaseManagerProductsFetchedNotification");
-		public static NSString InAppPurchaseManagerTransactionFailedNotification  = new NSString("InAppPurchaseManagerTransactionFailedNotification");
-		public static NSString InAppPurchaseManagerTransactionSucceededNotification  = new NSString("InAppPurchaseManagerTransactionSucceededNotification");
-		public static NSString InAppPurchaseManagerRequestFailedNotification = new NSString("InAppPurchaseManagerRequestFailedNotification");
+namespace Consumables
+{
+	public class InAppPurchaseManager : SKProductsRequestDelegate
+	{
+		public static readonly NSString InAppPurchaseManagerProductsFetchedNotification = new NSString("InAppPurchaseManagerProductsFetchedNotification");
+		public static readonly NSString InAppPurchaseManagerTransactionFailedNotification  = new NSString("InAppPurchaseManagerTransactionFailedNotification");
+		public static readonly NSString InAppPurchaseManagerTransactionSucceededNotification  = new NSString("InAppPurchaseManagerTransactionSucceededNotification");
+		public static readonly NSString InAppPurchaseManagerRequestFailedNotification = new NSString("InAppPurchaseManagerRequestFailedNotification");
 
 		SKProductsRequest productsRequest;
 		CustomPaymentObserver theObserver;
-
-		public static Action Done {get;set;}
 
 		public InAppPurchaseManager ()
 		{
@@ -34,11 +35,8 @@ namespace Consumables {
 		// request multiple products at once
 		public void RequestProductData (List<string> productIds)
 		{
-			var array = new NSString[productIds.Count];
-			for (var i = 0; i < productIds.Count; i++) {
-				array[i] = new NSString(productIds[i]);
-			}
-		 	NSSet productIdentifiers = NSSet.MakeNSObjectSet<NSString>(array);			
+			NSString[] array = productIds.Select (pId => (NSString)pId).ToArray();
+			NSSet productIdentifiers = NSSet.MakeNSObjectSet<NSString>(array);
 
 			//set up product request for in-app purchase
 			productsRequest  = new SKProductsRequest(productIdentifiers);
@@ -50,21 +48,13 @@ namespace Consumables {
 		{
 			SKProduct[] products = response.Products;
 
-			NSDictionary userInfo = null;
-			if (products.Length > 0) {
-				NSObject[] productIdsArray = new NSObject[response.Products.Length];
-				NSObject[] productsArray = new NSObject[response.Products.Length];
-				for (int i = 0; i < response.Products.Length; i++) {
-					productIdsArray[i] = new NSString(response.Products[i].ProductIdentifier);
-					productsArray[i] = response.Products[i];
-				}
-				userInfo = NSDictionary.FromObjectsAndKeys (productsArray, productIdsArray);
-			}
-			NSNotificationCenter.DefaultCenter.PostNotificationName(InAppPurchaseManagerProductsFetchedNotification,this,userInfo);
+			NSMutableDictionary userInfo = new NSMutableDictionary ();
+			for (int i = 0; i < products.Length; i++)
+				userInfo.Add ((NSString)products [i].ProductIdentifier, products [i]);
+			NSNotificationCenter.DefaultCenter.PostNotificationName (InAppPurchaseManagerProductsFetchedNotification, this, userInfo);
 
-			foreach (string invalidProductId in response.InvalidProducts) {
-				Console.WriteLine("Invalid product id: " + invalidProductId );
-			}
+			foreach (string invalidProductId in response.InvalidProducts)
+				Console.WriteLine ("Invalid product id: {0}", invalidProductId);
 		}
 
 		public void PurchaseProduct(string appStoreProductId)
@@ -93,21 +83,19 @@ namespace Consumables {
 		public void FailedTransaction (SKPaymentTransaction transaction)
 		{
 			//SKErrorPaymentCancelled == 2
-			if (transaction.Error.Code == 2) // user cancelled
-				Console.WriteLine("User CANCELLED FailedTransaction Code=" + transaction.Error.Code + " " + transaction.Error.LocalizedDescription);
-			else // error!
-				Console.WriteLine("FailedTransaction Code=" + transaction.Error.Code + " " + transaction.Error.LocalizedDescription);
-			
+			string errorDescription = transaction.Error.Code == 2 ? "User CANCELLED FailedTransaction" : "FailedTransaction";
+			Console.WriteLine("{0} Code={1} {2}", errorDescription, transaction.Error.Code, transaction.Error.LocalizedDescription);
+
 			FinishTransaction(transaction,false);
 		}
 		public void FinishTransaction(SKPaymentTransaction transaction, bool wasSuccessful)
 		{
-			Console.WriteLine("FinishTransaction " + wasSuccessful);
+			Console.WriteLine ("FinishTransaction {0}", wasSuccessful);
 			// remove the transaction from the payment queue.
 			SKPaymentQueue.DefaultQueue.FinishTransaction(transaction);		// THIS IS IMPORTANT - LET'S APPLE KNOW WE'RE DONE !!!!
-			
+
 			using (var pool = new NSAutoreleasePool()) {
-				NSDictionary userInfo = NSDictionary.FromObjectsAndKeys(new NSObject[] {transaction},new NSObject[] { new NSString("transaction")});
+				NSDictionary userInfo = new NSDictionary ("transaction", transaction);
 				if (wasSuccessful) {
 					// send out a notification that we’ve finished the transaction
 					NSNotificationCenter.DefaultCenter.PostNotificationName(InAppPurchaseManagerTransactionSucceededNotification,this,userInfo);
@@ -123,9 +111,9 @@ namespace Consumables {
 		/// </summary>
 		public override void RequestFailed (SKRequest request, NSError error)
 		{
-			Console.WriteLine (" ** InAppPurchaseManager RequestFailed() " + error.LocalizedDescription);
+			Console.WriteLine (" ** InAppPurchaseManager RequestFailed() {0}", error.LocalizedDescription);
 			using (var pool = new NSAutoreleasePool()) {
-				NSDictionary userInfo = NSDictionary.FromObjectsAndKeys(new NSObject[] {error},new NSObject[] {new NSString("error")});
+				NSDictionary userInfo = new NSDictionary ("error", error);
 				// send out a notification for the failed transaction
 				NSNotificationCenter.DefaultCenter.PostNotificationName(InAppPurchaseManagerRequestFailedNotification,this,userInfo);
 			}
