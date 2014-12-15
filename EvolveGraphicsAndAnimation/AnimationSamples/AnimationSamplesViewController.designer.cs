@@ -13,7 +13,7 @@ namespace AnimationSamples
 	{
 		[Outlet]
 		UIKit.UIButton TransitionButton { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (TransitionButton != null) {

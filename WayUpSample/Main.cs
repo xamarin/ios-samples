@@ -21,11 +21,11 @@ namespace WayUp
 		{
 			window.RootViewController = crateViewController;
 			window.MakeKeyAndVisible ();
-	
+
 			return true;
 		}
 	}
-	
+
 	public partial class CrateViewController : UIViewController {
 
 		public CrateViewController (IntPtr handle) : base (handle) {}

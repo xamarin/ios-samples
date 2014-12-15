@@ -3,7 +3,6 @@ using AVFoundation;
 using CoreMedia;
 using Foundation;
 
-
 namespace AVCustomEdit
 {
 	public class CustomVideoCompositionInstruction : AVVideoCompositionInstruction

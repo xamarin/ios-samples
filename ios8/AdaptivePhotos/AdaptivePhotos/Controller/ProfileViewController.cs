@@ -40,7 +40,7 @@ namespace AdaptivePhotos
 
 		UILabel PhotosLabel { get; set; }
 
-		public  User User { 
+		public  User User {
 			get {
 				return user;
 			}
@@ -124,7 +124,7 @@ namespace AdaptivePhotos
 					"topLayoutGuide", TopLayoutGuide,
 					"imageView", ImageView));
 
-				newConstraints.Add (NSLayoutConstraint.Create (ImageView, NSLayoutAttribute.Width, NSLayoutRelation.Equal, 
+				newConstraints.Add (NSLayoutConstraint.Create (ImageView, NSLayoutAttribute.Width, NSLayoutRelation.Equal,
 					View, NSLayoutAttribute.Width, 0.5f, 0.0f));
 			} else {
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("|[imageView]|",

@@ -65,7 +65,7 @@ namespace SpriteTour {
 			animatedSprite.Position = new CGPoint (925, 384);
 
 			Scene.AddChild (animatedSprite);
-			Scene.AddDescription ("Animated Color Blending", 
+			Scene.AddDescription ("Animated Color Blending",
 			                      new CGPoint (animatedSprite.Position.X, animatedSprite.Position.Y - 90));
 
 			animatedSprite.RunAction (SKAction.RepeatActionForever (SKAction.Sequence (

@@ -22,7 +22,7 @@ namespace ThreadedCoreData
 
 		[Outlet]
 		UIKit.UILabel magnitudeLabel { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (locationLabel != null) {

@@ -19,7 +19,7 @@ namespace TableEditing.Screens
 
 		[Outlet]
 		UIKit.UIBarButtonItem btnDone { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (btnEdit != null) {

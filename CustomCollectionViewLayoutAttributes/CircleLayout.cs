@@ -21,7 +21,7 @@ namespace SimpleCollectionView
 		CircleData data = new CircleData ();
 
 		[Export("layoutAttributesClass")]
-		public static new Class LayoutAttributesClass {	
+		public static new Class LayoutAttributesClass {
 			get {
 				return new Class (typeof (CustomCollectionViewLayoutAttributes));
 			}
@@ -35,9 +35,9 @@ namespace SimpleCollectionView
 
 			data.CellCount = (int)CollectionView.NumberOfItemsInSection (0);
 			data.Center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
-			data.Radius = (int)Math.Min (size.Width, size.Height) / 2.5f;	
+			data.Radius = (int)Math.Min (size.Width, size.Height) / 2.5f;
 		}
-			
+
 		public override CGSize CollectionViewContentSize {
 			get {
 				return CollectionView.Frame.Size;
@@ -82,20 +82,20 @@ namespace SimpleCollectionView
 	{
 		public int Row { get; set; }
 		public CircleData Data { get; set; }
-		// "distance from center" multiplier.	
+		// "distance from center" multiplier.
 		public float Distance { get; set; }
-		
+
 		public override NSObject Copy ()
 		{
 			// We must override Copy since iOS will try to clone objects using the NSCopying protocol.
 			var obj = base.Copy () as CustomCollectionViewLayoutAttributes;
-			
+
 			if (obj != null) {
 				obj.Row = Row;
 				obj.Data = Data;
 				obj.Distance = Distance;
 			}
-			
+
 			return obj;
 		}
 	}

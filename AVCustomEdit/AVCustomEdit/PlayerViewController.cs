@@ -68,7 +68,7 @@ namespace AVCustomEdit
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-		
+
 			gestureRecognizer.ShouldReceiveTouch = ShouldReceiveTouch;
 			gestureRecognizer.AddTarget (() => { HandleTapGesture (gestureRecognizer); });
 
@@ -113,7 +113,6 @@ namespace AVCustomEdit
 			Player.Pause();
 			removeTimeObserverFromPlayer ();
 		}
-
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
@@ -161,7 +160,7 @@ namespace AVCustomEdit
 			InvokeOnMainThread(delegate{
 				synchronizeWithEditor();
 			});
-			
+
 		}
 
 		void loadAsset(AVAsset asset, string[] assetKeysToLoad, DispatchGroup dispatchGroup)
@@ -210,7 +209,7 @@ namespace AVCustomEdit
 
 				if (PlayerItem != null) {
 					this.PlayerItem.SeekingWaitsForVideoCompositionRendering = true;
-					this.PlayerItem.AddObserver (this, status, NSKeyValueObservingOptions.New| 
+					this.PlayerItem.AddObserver (this, status, NSKeyValueObservingOptions.New|
 						NSKeyValueObservingOptions.Initial, StatusObservationContext.Handle);
 					observer = NSNotificationCenter.DefaultCenter.AddObserver (AVPlayerItem.DidPlayToEndTimeNotification, (notification) => {
 						Console.WriteLine("Seek Zero = true");
@@ -222,7 +221,7 @@ namespace AVCustomEdit
 				Player.ReplaceCurrentItemWithPlayerItem (playerItem);
 			}
 		}
-					
+
 		[Export("playerItemEnded:")]
 		void playerItemEnded (NSObject obj)
 		{
@@ -385,7 +384,7 @@ namespace AVCustomEdit
 		void updateProgress(NSTimer timer)
 		{
 			var session = timer.UserInfo as AVAssetExportSession;
-			if (session.Status == AVAssetExportSessionStatus.Exporting) 
+			if (session.Status == AVAssetExportSessionStatus.Exporting)
 				exportProgressView.Progress = session.Progress;
 		}
 
@@ -488,7 +487,6 @@ namespace AVCustomEdit
 			Editor.BuildCompositionObjects (false);
 
 			var session = Editor.AssetExportSession (AVAssetExportSession.PresetMediumQuality);
-
 
 			var documents = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
 			var filePath = Path.Combine (documents, "..", "tmp", "ExportedProject.mov");

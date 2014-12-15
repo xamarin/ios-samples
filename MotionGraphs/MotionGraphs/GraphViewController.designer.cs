@@ -40,7 +40,7 @@ namespace MotionGraphs
 
 		[Action ("SegmentedControlDidChanged:")]
 		partial void SegmentedControlDidChanged (UIKit.UISegmentedControl sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (primaryGraphLabel != null) {

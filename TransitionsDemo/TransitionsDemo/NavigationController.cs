@@ -17,13 +17,13 @@ namespace TransitionsDemo
 		}
 
 		[Export ("navigationController:animationControllerForOperation:fromViewController:toViewController:")]
-		public IUIViewControllerAnimatedTransitioning GetAnimationControllerForOperation (UINavigationController navigationController, 
-		                                                                                  UINavigationControllerOperation operation, 
-		                                                                                  UIViewController fromViewController, 
+		public IUIViewControllerAnimatedTransitioning GetAnimationControllerForOperation (UINavigationController navigationController,
+		                                                                                  UINavigationControllerOperation operation,
+		                                                                                  UIViewController fromViewController,
 		                                                                                  UIViewController toViewController)
 		{
 			if (AppDelegate.NavigationControllerInteractionController != null) {
-				AppDelegate.NavigationControllerInteractionController.WireToViewController (toViewController, 
+				AppDelegate.NavigationControllerInteractionController.WireToViewController (toViewController,
 				                                                                            CEInteractionOperation.Pop);
 			}
 

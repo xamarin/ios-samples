@@ -31,7 +31,7 @@ namespace AirLocate
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
 		UIKit.UITextField uuidTextField { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (majorTextField != null) {

@@ -315,7 +315,7 @@ namespace SceneKitVehicle
 
 			scene.PhysicsWorld.AddBehavior (joint);
 
-			joint = SCNPhysicsBallSocketJoint.Create (wagon1.PhysicsBody, 
+			joint = SCNPhysicsBallSocketJoint.Create (wagon1.PhysicsBody,
 				new SCNVector3 (wmax.X + 0.1f, wmin.Y, 0f),
 				wagon2.PhysicsBody,
 				new SCNVector3 (wmin.X - 0.1f, wmin.Y, 0f)

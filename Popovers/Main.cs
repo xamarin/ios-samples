@@ -7,7 +7,7 @@ using UIKit;
 namespace Popovers
 {
 	public class Application
-	{		
+	{
 		/// <summary>
 		/// This is the main entry point of the application.
 		/// </summary>

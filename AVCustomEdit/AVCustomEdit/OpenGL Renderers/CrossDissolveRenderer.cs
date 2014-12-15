@@ -5,7 +5,6 @@ using CoreGraphics;
 using CoreVideo;
 using OpenTK.Graphics.ES20;
 
-
 namespace AVCustomEdit
 {
 	public class CrossDissolveRenderer : OpenGLRenderer
@@ -36,7 +35,6 @@ namespace AVCustomEdit
 					0.0f, 				0.0f, 				1.0f, 				0.0f,
 					0.0f, 				0.0f, 				0.0f, 				1.0f,
 				};
-
 
 				GL.UniformMatrix4 (Uniforms [(int)Uniform.Render_Transform_Y], 1, false, preferredRenderTransform);
 
@@ -112,7 +110,7 @@ namespace AVCustomEdit
 
 				GL.VertexAttribPointer ((int)Attrib.TexCoord_Y, 2, VertexAttribPointerType.Float, false, 0, quadTextureData1);
 				GL.EnableVertexAttribArray ((int)Attrib.TexCoord_Y);
-				        
+
 				// Blend function to draw the background frame
 				GL.BlendColor (0, 0, 0, tween);
 				GL.BlendFunc (BlendingFactorSrc.ConstantAlpha, BlendingFactorDest.OneMinusConstantAlpha);

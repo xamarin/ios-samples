@@ -12,7 +12,7 @@ namespace AirLocate
 	[Register ("MenuViewController")]
 	partial class MenuViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

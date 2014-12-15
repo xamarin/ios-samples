@@ -9,7 +9,7 @@ namespace AdaptivePhotos
 	{
 		Photo photo;
 
-		public Photo Photo { 
+		public Photo Photo {
 			get {
 				return photo;
 			}

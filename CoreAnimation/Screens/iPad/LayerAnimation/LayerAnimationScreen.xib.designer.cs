@@ -20,7 +20,7 @@ namespace CoreAnimationExample
 
 		[Outlet]
 		UIKit.UIImageView imgToAnimate { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (btnAnimate != null) {

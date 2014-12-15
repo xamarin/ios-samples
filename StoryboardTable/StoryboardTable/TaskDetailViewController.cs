@@ -3,7 +3,6 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-
 namespace StoryboardTable
 {
 	partial class TaskDetailViewController : UITableViewController
@@ -13,7 +12,7 @@ namespace StoryboardTable
 
 		public TaskDetailViewController (IntPtr handle) : base (handle)
 		{
-				
+
 		}
 
 		// when displaying, set-up the properties

@@ -70,7 +70,7 @@ namespace StreamingAudio
 		}
 
 		/// <summary>
-		/// Defines the maximum Number of Buffers to use, the count can only change after Reset is called or the 
+		/// Defines the maximum Number of Buffers to use, the count can only change after Reset is called or the
 		/// StreamingPlayback is freshly instantiated
 		/// </summary>
 		public int MaxBufferCount {
@@ -229,7 +229,7 @@ namespace StreamingAudio
 		/// Enqueue the active buffer to the OutputQueue
 		/// </summary>
 		void EnqueueBuffer ()
-		{			
+		{
 			currentBuffer.IsInUse = true;
 			OutputQueue.EnqueueBuffer (currentBuffer.Buffer, currentBuffer.CurrentOffset, currentBuffer.PacketDescriptions.ToArray ());
 			queuedBufferCount++;

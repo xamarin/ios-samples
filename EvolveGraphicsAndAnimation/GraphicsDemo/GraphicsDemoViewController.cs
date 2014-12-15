@@ -21,7 +21,7 @@ namespace GraphicsDemo
 			demo = new DemoView{Frame = UIScreen.MainScreen.Bounds};
 			View = demo;
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

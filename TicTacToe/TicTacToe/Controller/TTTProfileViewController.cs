@@ -209,7 +209,7 @@ namespace TicTacToe
 			};
 			UIEdgeInsets capInsets = new UIEdgeInsets (6f, 6f, 6f, 6f);
 			SegmentedControl.SetBackgroundImage (
-				UIImage.FromBundle ("segmentBackground").CreateResizableImage (capInsets), 
+				UIImage.FromBundle ("segmentBackground").CreateResizableImage (capInsets),
 				UIControlState.Normal, UIBarMetrics.Default);
 			SegmentedControl.SetBackgroundImage (
 				UIImage.FromBundle ("segmentBackgroundHighlighted").CreateResizableImage (capInsets),
@@ -223,12 +223,12 @@ namespace TicTacToe
 
 			UIView containerView = new UIView (SegmentedControl.Frame) {
 				Frame = ContentView.Bounds,
-				AutoresizingMask = 
+				AutoresizingMask =
 				UIViewAutoresizing.FlexibleWidth |
 				UIViewAutoresizing.FlexibleHeight
 			};
 			containerView.AddSubview (SegmentedControl);
-	
+
 			ContentView.AddSubview (containerView);
 		}
 	}

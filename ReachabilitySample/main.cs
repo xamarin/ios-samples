@@ -12,13 +12,13 @@ namespace reachability {
 		NetworkStatus remoteHostStatus, internetStatus, localWifiStatus;
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-		{	
+		{
 			AddTable ();
 			UpdateStatus ();
 			Reachability.ReachabilityChanged += (object sender, EventArgs e) =>  { UpdateStatus (); };
-		
+
 			window.MakeKeyAndVisible ();
-	
+
 			return true;
 		}
 
@@ -33,17 +33,17 @@ namespace reachability {
 		void AddTable ()
 		{
 			CGRect tableFrame = UIScreen.MainScreen.ApplicationFrame;
-	            
+
 			tableView = new UITableView (tableFrame, UITableViewStyle.Grouped) {
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
 				RowHeight = 44.0f,
 				SeparatorStyle = UITableViewCellSeparatorStyle.None,
 				SectionHeaderHeight = 28.0f,
 				ScrollEnabled = false,
-				
+
 				Source = new DataSource (this),
 			};
-	                                    
+
 			contentView.InsertSubviewBelow (tableView, summaryLabel);
 			contentView.BringSubviewToFront (summaryLabel);
 			tableView.ReloadData ();
@@ -103,7 +103,7 @@ namespace reachability {
 					label.TextColor = UIColor.DarkGray;
 					label.TextAlignment = UITextAlignment.Left;
 				}
-	            
+
 				var row = indexPath.Row;
 				string text = "";
 				UIImage image = null;
@@ -140,7 +140,7 @@ namespace reachability {
 						break;
 					}
 					break;
-				case 2: 
+				case 2:
 					switch (parent.localWifiStatus) {
 					case NetworkStatus.NotReachable:
 						text = "Access not available";

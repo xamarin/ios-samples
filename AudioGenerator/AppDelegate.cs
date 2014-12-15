@@ -23,8 +23,7 @@ namespace tone
             var session = AVAudioSession.SharedInstance();
             session.SetCategory(new NSString("AVAudioSessionCategoryPlayback"), AVAudioSessionCategoryOptions.DefaultToSpeaker, out error);
 
-
-            // 
+            //
             // Format description, we generate LinearPCM as short integers
             //
             sampleRate = session.SampleRate;
@@ -36,17 +35,17 @@ namespace tone
                 BitsPerChannel = 16,
                 ChannelsPerFrame = 1,
                 BytesPerFrame = 2,
-                BytesPerPacket = 2, 
+                BytesPerPacket = 2,
                 FramesPerPacket = 1,
             };
 
-            // 
+            //
             // Create an output queue
             //
             var queue = new OutputAudioQueue(format);
-            var bufferByteSize = (sampleRate > 16000) ? 2176 : 512; // 40.5 Hz : 31.25 Hz 
+            var bufferByteSize = (sampleRate > 16000) ? 2176 : 512; // 40.5 Hz : 31.25 Hz
 
-            // 
+            //
             // Create three buffers, generate a tone, and output the tones
             //
             var buffers = new AudioQueueBuffer* [numBuffers];
@@ -76,7 +75,6 @@ namespace tone
             queue.Start();
             return true;
         }
-
 
         // Configuration options for the audio output
         const float outputFrequency = 220;
@@ -110,13 +108,13 @@ namespace tone
             double max16bit = Int16.MaxValue;
             int i;
             short* p = (short*)buffer->AudioData;
-				
+
             for (i = 0; i < sampleCount; i++)
             {
                 x = i * sd * outputFrequency;
                 switch (outputWaveForm)
                 {
-                    case WaveForm.Sine: 
+                    case WaveForm.Sine:
                         y = Math.Sin(x * 2.0 * Math.PI);
                         break;
                     case WaveForm.Triangle:
@@ -140,7 +138,7 @@ namespace tone
                 }
                 p[i] = (short)(y * max16bit * amp);
             }
-			
+
             buffer->AudioDataByteSize = sampleCount * 2;
         }
 

@@ -51,7 +51,7 @@ namespace TicTacToe
 
 		string profilePath {
 			get {
-				return Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), 
+				return Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments),
 				                            "Profile.ttt");
 			}
 		}

@@ -40,7 +40,7 @@ namespace PrivacyPrompts
 			locationManager.AuthorizationChanged += delegate (object sender, CLAuthorizationChangedEventArgs e) {
 				accessStatus.Text = e.Status.ToString();
 				if (e.Status == CLAuthorizationStatus.AuthorizedWhenInUse)
-				{	
+				{
 					mapView.ShowsUserLocation = true;
 					locationManager.StartUpdatingLocation ();
 				}
@@ -108,7 +108,7 @@ namespace PrivacyPrompts
 
 		void RequestLocationServicesAuthorization ()
 		{
-			//Also note that info.plist has the NSLocationWhenInUseUsageDescription key 
+			//Also note that info.plist has the NSLocationWhenInUseUsageDescription key
 			//This call is asynchronous
 			locationManager.RequestWhenInUseAuthorization ();
 		}

@@ -18,7 +18,7 @@ namespace AVCustomEdit
 		public int[] Uniforms = new int[(int)Uniform.Num_Uniforms];
 
 		string vertShaderSource = "attribute vec4 position; \n" +
-			"attribute vec2 texCoord; \n" + 
+			"attribute vec2 texCoord; \n" +
 				"uniform mat4 renderTransform; \n"+
 				"varying vec2 texCoordVarying; \n"+
 				"void main() \n"+
@@ -38,7 +38,7 @@ namespace AVCustomEdit
 		    "{ \n"+
 				"gl_FragColor.rg = texture2D(SamplerUV, texCoordVarying).rg; \n"+
 		    "}";
-			
+
 		public OpenGLRenderer () : base()
 		{
 			CurrentContext = new EAGLContext (EAGLRenderingAPI.OpenGLES2);
@@ -231,7 +231,7 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 			}
 
 			return true;
-		} 
+		}
 
 		bool linkProgram(int program)
 		{
@@ -280,18 +280,18 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 
 	public enum Uniform
 	{
-		Y, 
-		UV, 
-		Render_Transform_Y, 
-		Render_Transform_UV, 
+		Y,
+		UV,
+		Render_Transform_Y,
+		Render_Transform_UV,
 		Num_Uniforms
 	}
 
 	public enum Attrib{
-		Vertex_Y, 
-		TexCoord_Y, 
-		Vertex_UV, 
-		TexCoord_UV, 
+		Vertex_Y,
+		TexCoord_Y,
+		Vertex_UV,
+		TexCoord_UV,
 		Num_Attributes
 	}
 

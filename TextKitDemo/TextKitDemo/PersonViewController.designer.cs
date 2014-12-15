@@ -23,7 +23,7 @@ namespace TextKitDemo
 
 		[Outlet]
 		UIKit.UITextView shortDescriptionTextView { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (imageView != null) {

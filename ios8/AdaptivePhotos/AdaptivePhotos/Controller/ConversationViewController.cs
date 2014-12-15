@@ -20,14 +20,13 @@ namespace AdaptivePhotos
 		{
 			base.ViewDidLoad ();
 			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), ListTableViewControllerCellIdentifier);
-			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("showDetailTargetDidChange:"), 
+			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("showDetailTargetDidChange:"),
 				UIViewController.ShowDetailTargetDidChangeNotification, null);
 		}
 
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-
 
 			if (TableView.IndexPathsForSelectedRows == null)
 				return;

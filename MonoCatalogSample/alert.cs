@@ -38,7 +38,7 @@ public partial class AlertsViewController : UITableViewController {
 			new AlertSample ("UIAlertView", "Show Customized ", "alert.cs: AlertOtherAction ()"),
 		};
 	}
-		
+
 	public override void ViewDidLoad ()
 	{
 		base.ViewDidLoad ();
@@ -83,7 +83,7 @@ public partial class AlertsViewController : UITableViewController {
 
 		actionSheet.ShowInView (View);
 	}
-	
+
 	void AlertSimpleAction ()
 	{
 		using (var alert = new UIAlertView ("UIAlertView", "<Alert Message>", null, "OK", null))
@@ -100,14 +100,14 @@ public partial class AlertsViewController : UITableViewController {
 	{
 		using (var alert = new UIAlertView ("UIAlertView", "<Alert Message>", null, "Cancel", "Button1", "Button2"))
 		       alert.Show ();
-		
+
 	}
-       
+
 #region Delegates for the table
 	class DataSource : UITableViewDataSource {
 		static NSString kDisplayCell_ID = new NSString ("AlertCellID");
 		static NSString kSourceCell_ID = new NSString ("SourceCellID");
-		
+
 		public override int NumberOfSections (UITableView tableView)
 		{
 			return samples.Length;
@@ -154,12 +154,12 @@ public partial class AlertsViewController : UITableViewController {
 
 	class TableDelegate : UITableViewDelegate {
 		AlertsViewController avc;
-		
+
 		public TableDelegate (AlertsViewController avc)
 		{
 			this.avc = avc;
 		}
-			
+
 		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			return indexPath.Row == 0 ? 50f : 22f;
@@ -178,19 +178,19 @@ public partial class AlertsViewController : UITableViewController {
 				case 1:
 					avc.DialogOkCancelAction ();
 					break;
-					
+
 				case 2:
 					avc.DialogOtherAction ();
 					break;
-					
+
 				case 3:
 					avc.AlertSimpleAction ();
 					break;
-					
+
 				case 4:
 					avc.AlertOkCancelAction ();
 					break;
-					
+
 				case 5:
 					avc.AlertOtherAction ();
 					break;

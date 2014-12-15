@@ -20,16 +20,16 @@ namespace Consumables
 		public InAppPurchaseManager ()
 		{
 			theObserver = new CustomPaymentObserver(this);
-			
+
 			// Call this once upon startup of in-app-purchase activities
 			// This also kicks off the TransactionObserver which handles the various communications
 			SKPaymentQueue.DefaultQueue.AddTransactionObserver(theObserver);
 		}
-		
+
 		// Verify that the iTunes account can make this purchase for this application
 		public bool CanMakePayments()
 		{
-			return SKPaymentQueue.CanMakePayments;	
+			return SKPaymentQueue.CanMakePayments;
 		}
 
 		// request multiple products at once
@@ -77,7 +77,7 @@ namespace Consumables
 				CreditManager.Add(10); // 10 * qty
 			else
 				Console.WriteLine ("Shouldn't happen, there are only two products");
-			
+
 			FinishTransaction(transaction, true);
 		}
 		public void FailedTransaction (SKPaymentTransaction transaction)

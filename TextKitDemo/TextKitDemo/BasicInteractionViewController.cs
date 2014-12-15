@@ -6,7 +6,7 @@ using UIKit;
 namespace TextKitDemo
 {
 	/*
-	 * Provides the basic interaction (respond to tapping on the apple.com url and 
+	 * Provides the basic interaction (respond to tapping on the apple.com url and
 	 * updating the font size in response to changes in the UI).
 	 */
 	public partial class BasicInteractionViewController : TextViewController

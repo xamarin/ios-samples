@@ -6,7 +6,7 @@ using Foundation;
 using UIKit;
 
 namespace MonoTouch {
-	
+
 	class Application
 	{
 		static void Main (string [] args)

@@ -57,12 +57,12 @@ namespace AVCompositionDebugVieweriOS
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			Editor = new SimpleEditor ();
 
 			transitionType = 1;
 			transitionDuration = 2.0f;
-			
+
 			SetupEditingAndPlayback ();
 			SetupScrubber ();
 			playPauseButton.Clicked += PlayButtonClicked;
@@ -126,7 +126,7 @@ namespace AVCompositionDebugVieweriOS
 
 			ScrubIsInFlight = true;
 
-			Player.Seek (CMTime.FromSeconds (time, NSEC_PER_SEC), 
+			Player.Seek (CMTime.FromSeconds (time, NSEC_PER_SEC),
 			             CMTime.FromSeconds (tolerance, NSEC_PER_SEC),
 			             CMTime.FromSeconds (tolerance, NSEC_PER_SEC),
 			             HandleScrubToSliderValueComplete
@@ -256,7 +256,7 @@ namespace AVCompositionDebugVieweriOS
 				if (playerItem.Status == AVPlayerItemStatus.ReadyToPlay) {
 					AddTimeObserverToPlayer ();
 				} else if (playerItem.Status == AVPlayerItemStatus.Failed) {
-					Console.WriteLine (playerItem.Error.LocalizedDescription);				
+					Console.WriteLine (playerItem.Error.LocalizedDescription);
 				}
 			} else {
 				base.ObserveValue (keyPath, ofObject, change, context);
@@ -307,9 +307,9 @@ namespace AVCompositionDebugVieweriOS
 					interval = 1.0;
 				}
 
-				timeObserver = Player.AddPeriodicTimeObserver (CMTime.FromSeconds (interval, NSEC_PER_SEC), 
+				timeObserver = Player.AddPeriodicTimeObserver (CMTime.FromSeconds (interval, NSEC_PER_SEC),
 				                                               DispatchQueue.MainQueue,
-				                                               delegate {	
+				                                               delegate {
 					UpdateScrubber ();
 					UpdateTimeLabel ();
 				});
@@ -328,7 +328,7 @@ namespace AVCompositionDebugVieweriOS
 		{
 			double secondes = Player.CurrentTime.Seconds;
 			Console.WriteLine (secondes);
-			if (double.IsInfinity (secondes)) 
+			if (double.IsInfinity (secondes))
 				secondes = 0;
 
 			int secondsInt = (int)Math.Round (secondes);
@@ -346,13 +346,13 @@ namespace AVCompositionDebugVieweriOS
 			if (!double.IsInfinity (duration)) {
 				double time = Player.CurrentTime.Seconds;
 				scrubber.Value = (float)(time / duration);
-			} else 
+			} else
 				scrubber.Value = 0.0f;
 		}
 
 		private void SynchronizePlayerWithEditor ()
 		{
-			if (Player == null) 
+			if (Player == null)
 				return;
 
 			AVPlayerItem playerItem = Editor.PlayerItem;
@@ -368,7 +368,7 @@ namespace AVCompositionDebugVieweriOS
 
 				if (PlayerItem != null) {
 					PlayerItem.SeekingWaitsForVideoCompositionRendering = true;
-					PlayerItem.AddObserver (this, new NSString ("status"), NSKeyValueObservingOptions.New | NSKeyValueObservingOptions.Initial, 
+					PlayerItem.AddObserver (this, new NSString ("status"), NSKeyValueObservingOptions.New | NSKeyValueObservingOptions.Initial,
 					                        AVCustomEditPlayerViewControllerStatusObservationContext.Handle);
 
 					playToEndObserver = AVPlayerItem.Notifications.ObserveDidPlayToEndTime (PlayToEndNotificationHandler);
@@ -409,7 +409,7 @@ namespace AVCompositionDebugVieweriOS
 				Console.WriteLine ("Seeked to Zero");
 				seekToZeroBeforePlaying = false;
 				Player.Play ();
-			} else 
+			} else
 				Console.WriteLine ("Seek to Zero Failed");
 		}
 
@@ -417,7 +417,7 @@ namespace AVCompositionDebugVieweriOS
 		{
 			List<AVAsset> validClips = new List<AVAsset> ();
 			foreach (AVAsset asset in Clips) {
-				if (asset != null) 
+				if (asset != null)
 					validClips.Add (asset);
 			}
 

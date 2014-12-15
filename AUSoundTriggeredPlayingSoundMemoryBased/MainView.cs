@@ -18,7 +18,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-     
+
             var url = CFUrl.FromFile("loop_stereo.aif");
             _player = new ExtAudioBufferPlayer(url);
 
@@ -36,18 +36,18 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
                         long pos = _player.CurrentPosition;
                         _slider.Value = pos;
                         _signalLevelLabel.Text = _player.SignalLevel.ToString("0.00E0");
-                    }                    
+                    }
                 }
             );
 
-            NSRunLoop.Current.AddTimer(_timer, NSRunLoopMode.Default);            
+            NSRunLoop.Current.AddTimer(_timer, NSRunLoopMode.Default);
         }
 
         void _slider_ValueChanged(object sender, EventArgs e)
         {
-            _isTimerAvailable = false; 
-            _player.CurrentPosition = (long)_slider.Value;     
-            _isTimerAvailable = true;             
+            _isTimerAvailable = false;
+            _player.CurrentPosition = (long)_slider.Value;
+            _isTimerAvailable = true;
         }
     }
 }

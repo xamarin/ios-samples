@@ -46,9 +46,9 @@ namespace MidiTest
 			processingGraph.Open ();
 
 			processingGraph.ConnnectNodeInput (
-				sourceNode: samplerNode, 
-				sourceOutputNumber: 0, 
-				destNode: ioNode, 
+				sourceNode: samplerNode,
+				sourceOutputNumber: 0,
+				destNode: ioNode,
 				destInputNumber: 0);
 
 			samplerUnit = processingGraph.GetNodeInfo (samplerNode);
@@ -129,7 +129,7 @@ namespace MidiTest
 					default:
 						throw new NotImplementedException ();
 					}
-						
+
 					samplerUnit.MusicDeviceMIDIEvent ((uint)midiStatus, (uint)note, (uint)velocity);
 
 					label.InvokeOnMainThread (delegate {

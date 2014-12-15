@@ -12,7 +12,7 @@ namespace OpenGLES20Example
 	{
 		int backingWidth;
 		int backingHeight;
-		uint frameBuffer; 
+		uint frameBuffer;
 		uint renderBuffer;
 		uint depthBuffer;
 

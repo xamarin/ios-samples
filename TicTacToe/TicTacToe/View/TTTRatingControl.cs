@@ -13,7 +13,7 @@ namespace TicTacToe
 
 		public int Rating {
 			get { return rating; }
-			set {	
+			set {
 				rating = value;
 				updateButtonImages ();
 			}

@@ -9,15 +9,15 @@ namespace WorldCities
 	public partial class WorldCitiesListController : UIViewController
 	{
 		const string MoveToMapSegueName = "MoveToMap";
-		
+
 		List<WorldCity> cityList = new List<WorldCity> ();
-		
+
 		public WorldCity SelectedCity { get; set; }
-		
+
 		public WorldCitiesListController (IntPtr handle) : base (handle)
 		{
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -28,15 +28,15 @@ namespace WorldCities
 					double.Parse (city[(NSString)"latitudeKey"].ToString ()),
 					double.Parse (city[(NSString)"longitudeKey"].ToString ())));
 			}
-			
+
 			TableView.Source = new MyTableViewDelegate (this);
 		}
-		
+
 		public override void ViewDidAppear (bool animated)
 		{
 			base.ViewDidAppear (animated);
 		}
-		
+
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			base.PrepareForSegue (segue, sender);
@@ -45,21 +45,21 @@ namespace WorldCities
 				view.SelectedCity = SelectedCity;
 			}
 		}
-		
+
 		class MyTableViewDelegate : UITableViewSource
 		{
 			WorldCitiesListController controller;
-			
+
 			public MyTableViewDelegate (WorldCitiesListController controller)
 			{
 				this.controller = controller;
 			}
-			
+
 			public override nint RowsInSection (UITableView tableview, nint section)
 			{
-				return controller.cityList.Count; 
+				return controller.cityList.Count;
 			}
-			
+
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				const string cellName = "Cell";
@@ -73,7 +73,7 @@ namespace WorldCities
 				cell.DetailTextLabel.Text = string.Format ("{0} {1}", city.Latitude, city.Longitude);
 				return cell;
 			}
-			
+
 			public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 			{
 				controller.SelectedCity = controller.cityList [indexPath.Row];

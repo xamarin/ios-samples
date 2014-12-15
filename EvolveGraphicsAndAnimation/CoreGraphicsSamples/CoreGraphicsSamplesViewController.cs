@@ -10,11 +10,11 @@ namespace CoreGraphicsSamples
 		TriangleView triangleView;
 //		DrawnImageView drawnImageView;
 //		PDFView pdfView;
-        
+
 		public CoreGraphicsSamplesViewController ()
 		{
 		}
-        
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

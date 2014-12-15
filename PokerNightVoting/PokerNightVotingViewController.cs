@@ -11,7 +11,7 @@ using MonoTouch.Dialog;
 
 namespace PokerNightVoting
 {
-	public partial class PokerNightVotingViewController : DialogViewController 
+	public partial class PokerNightVotingViewController : DialogViewController
 	{
 		public PNVModel model { get; set; }
 
@@ -30,7 +30,7 @@ namespace PokerNightVoting
 			// Start listening for changes
 			model.StartBoradcastingModelChangedNotificaitons ();
 			NSNotificationCenter.DefaultCenter.AddObserver (model.PNVModelChangedNotification, delegate {
-				RefreshView (); 
+				RefreshView ();
 			});
 
 			// Fetch the poker events
@@ -63,8 +63,8 @@ namespace PokerNightVoting
 		{
 			var now = DateTime.Now;
 			var evnt = model.EventDates.ElementAt (section);
-			
-			if (now.Day == evnt.Day && now.Month == evnt.Month && now.Year == evnt.Year) 
+
+			if (now.Day == evnt.Day && now.Month == evnt.Month && now.Year == evnt.Year)
 				return "Today";
 
 			return evnt.Date.ToShortDateString ();
@@ -98,14 +98,14 @@ namespace PokerNightVoting
 						var controller = new EKEventViewController ();
 						controller.Event = EventAtIndexPath (entry.IndexPath);
 						controller.AllowsEditing = true;
-						controller.Completed += (object sender, EKEventViewEventArgs e) => 
+						controller.Completed += (object sender, EKEventViewEventArgs e) =>
 						{
 							model.FetchPokerEvents ();
 						};
-						
+
 						NavigationController.PushViewController (controller, true);
 					};
-				
+
 					entry.Accessory = UITableViewCellAccessory.DetailDisclosureButton;
 
 					entry.AccessoryTapped += delegate {
@@ -125,7 +125,7 @@ namespace PokerNightVoting
 			// Show the EKEventEditViewController
 			var controller = new EKEventEditViewController ();
 			controller.EventStore = model.EventStore;
-			controller.Completed += (object obj, EKEventEditEventArgs e) => 
+			controller.Completed += (object obj, EKEventEditEventArgs e) =>
 			{
 				DismissViewController (true, null);
 
@@ -152,25 +152,25 @@ namespace PokerNightVoting
 		partial void showCalendarChooser (UIKit.UIBarButtonItem sender)
 		{
 			// Show the EKCalendarChooser
-			var calendarChooser = new EKCalendarChooser (EKCalendarChooserSelectionStyle.Single, 
+			var calendarChooser = new EKCalendarChooser (EKCalendarChooserSelectionStyle.Single,
 			                                                           EKCalendarChooserDisplayStyle.WritableCalendarsOnly,
 			                                                           model.EventStore);
 			calendarChooser.ShowsDoneButton = true;
 			calendarChooser.ShowsCancelButton = false;
-			calendarChooser.SelectionChanged += (object obj, EventArgs e) => 
+			calendarChooser.SelectionChanged += (object obj, EventArgs e) =>
 			{
 				// Called whenever the selection is changed by the user
 				model.SelectedCalendar = (EKCalendar) calendarChooser.SelectedCalendars.AnyObject;
 				Title = model.SelectedCalendar.Title;
 			};
-			calendarChooser.Finished += (object obj, EventArgs e) => 
+			calendarChooser.Finished += (object obj, EventArgs e) =>
 			{
 				// These are called when the corresponding button is pressed to dismiss the
 				// controller. It is up to the recipient to dismiss the chooser.
 				model.FetchPokerEvents ();
 				DismissViewController (true, null);
 			};
-			calendarChooser.SelectionChanged += (object obj, EventArgs e) => 
+			calendarChooser.SelectionChanged += (object obj, EventArgs e) =>
 			{
 				// Update our events, since the selected calendar may have changed.
 				model.SelectedCalendar = (EKCalendar) calendarChooser.SelectedCalendars.AnyObject;

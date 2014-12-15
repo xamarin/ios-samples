@@ -20,9 +20,9 @@ namespace AdaptivePhotos
 			label.Font = UIFont.PreferredHeadline;
 			view.AddSubview (label);
 
-			view.AddConstraint (NSLayoutConstraint.Create (label, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, 
+			view.AddConstraint (NSLayoutConstraint.Create (label, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal,
 				view, NSLayoutAttribute.CenterX, 1.0f, 0.0f));
-			view.AddConstraint (NSLayoutConstraint.Create (label, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, 
+			view.AddConstraint (NSLayoutConstraint.Create (label, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal,
 				view, NSLayoutAttribute.CenterY, 1.0f, 0.0f));
 
 			View = view;

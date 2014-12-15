@@ -12,7 +12,7 @@ namespace TransitionsDemo
 	[Register ("ViewController")]
 	partial class ViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

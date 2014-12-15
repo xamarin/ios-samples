@@ -16,12 +16,12 @@ namespace Example_SplitView
 			// create our window
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.MakeKeyAndVisible ();
-			
+
 			// instantiate our main split view controller
 			splitView = new Screens.MainSplitView.MainSplitView ();
-			
+
 			window.RootViewController = splitView;
-			
+
 			//
 			return true;
 		}

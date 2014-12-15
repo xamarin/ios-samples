@@ -22,7 +22,7 @@ namespace MediaCapture
 
 		[Outlet]
 		UIKit.UIBarButtonItem buttonBrowse { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (mainToolBar != null) {

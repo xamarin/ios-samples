@@ -47,7 +47,7 @@ namespace ThreadedCoreData
 		{
 			try {
 				var earthquakes = new List<Earthquake> ();
-			
+
 				var dump = JsonValue.Parse (NSString.FromData (data, NSStringEncoding.UTF8)) as JsonObject;
 				JsonValue featureCollection = dump ["features"];
 
@@ -57,7 +57,7 @@ namespace ThreadedCoreData
 
 					var earthquake = featureCollection [i] as JsonObject;
 					JsonValue earthquakeProperties = earthquake ["properties"];
-					currentEarthquake.Magnitude = NSNumber.FromFloat ((float)earthquakeProperties ["mag"]); 
+					currentEarthquake.Magnitude = NSNumber.FromFloat ((float)earthquakeProperties ["mag"]);
 					currentEarthquake.USGSWebLink = new NSString ((string)earthquakeProperties ["url"]);
 					currentEarthquake.Location = new NSString ((string)earthquakeProperties ["place"]);
 
@@ -108,7 +108,7 @@ namespace ThreadedCoreData
 			var date = (NSPropertyDescription)entity.PropertiesByName.ValueForKey (new NSString ("date"));
 			var location = (NSPropertyDescription)entity.PropertiesByName.ValueForKey (new NSString ("location"));
 
-			fetchRequest.PropertiesToFetch = new NSPropertyDescription[] { date, location }; 
+			fetchRequest.PropertiesToFetch = new NSPropertyDescription[] { date, location };
 			fetchRequest.ResultType = NSFetchRequestResultType.DictionaryResultType;
 
 			NSError error;

@@ -81,9 +81,9 @@ namespace MapKitSearch {
 			}
 			catch(Exception e){
 				return;
-			}	
-			if (response == null)			
-				return;	
+			}
+			if (response == null)
+				return;
 
 			var section = new Section ("Search Results for " + what);
 			results.Clear ();

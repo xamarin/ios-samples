@@ -23,7 +23,7 @@ namespace AVCustomEdit
 
 		[Action ("TransitionSelected:")]
 		partial void TransitionSelected (Foundation.NSObject sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (crossDissolveCell != null) {

@@ -34,7 +34,7 @@ namespace DynamicsCatalog {
 				Frequency = 1.0f,
 				Damping = 0.1f
 			};
-		
+
 			redSquare.Center = attachmentBehavior.AnchorPoint;
 			blueSquare.Center = new CGPoint (50.0f, 50.0f);
 

@@ -9,12 +9,12 @@ namespace NSZombieApocalypse
 	{
 		float zombieLevel;
 		public float ZombieLevel {
-			get { 
+			get {
 				return zombieLevel;
 			}
 			set {
 				zombieLevel = Math.Max (0, value);
-				this.SetNeedsDisplay (); 
+				this.SetNeedsDisplay ();
 			}
 		}
 
@@ -70,9 +70,9 @@ namespace NSZombieApocalypse
 			UIColor.Black.SetStroke ();
 
 			CGRect meter = new CGRect (
-				pad, 
-				yOrigin, 
-				rect.Size.Width - pad * 2, 
+				pad,
+				yOrigin,
+				rect.Size.Width - pad * 2,
 				(rect.Size.Height - yOrigin - (numberOfMeters * meterSpacing)) / numberOfMeters
 			);
 
@@ -97,14 +97,14 @@ namespace NSZombieApocalypse
 
 						CGRect smallerRect = meter;
 						smallerRect = new CGRect (
-							smallerRect.X, 
-							smallerRect.Y + smallerRect.Size.Height - ((smallerRect.Size.Height) * diff), 
-							smallerRect.Size.Width, 
+							smallerRect.X,
+							smallerRect.Y + smallerRect.Size.Height - ((smallerRect.Size.Height) * diff),
+							smallerRect.Size.Width,
 							(smallerRect.Size.Height) * diff
 						);
-						var smallerPath = UIBezierPath.FromRoundedRect (smallerRect, UIRectCorner.BottomLeft | UIRectCorner.BottomRight, new CGSize (2, 2));	
+						var smallerPath = UIBezierPath.FromRoundedRect (smallerRect, UIRectCorner.BottomLeft | UIRectCorner.BottomRight, new CGSize (2, 2));
 						smallerPath.Fill ();
-					
+
 					} else {
 						path.Fill ();
 					}

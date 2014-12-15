@@ -23,7 +23,7 @@ namespace ThreadedCoreData
 
 		string ApplicationDocumentsDirectory {
 			get {
-				string[] directories = NSSearchPath.GetDirectories (NSSearchPathDirectory.DocumentDirectory, 
+				string[] directories = NSSearchPath.GetDirectories (NSSearchPathDirectory.DocumentDirectory,
 				                                                    NSSearchPathDomain.User, true);
 				if (directories.Length != 0) {
 					return directories [directories.Length - 1];
@@ -55,7 +55,7 @@ namespace ThreadedCoreData
 				};
 
 				NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("MergeChanges:"),
-				                                                NSManagedObjectContext.DidSaveNotification, null); 
+				                                                NSManagedObjectContext.DidSaveNotification, null);
 
 				return managedObjectContext;
 			}
@@ -72,11 +72,11 @@ namespace ThreadedCoreData
 				persistentStoreCoordinator = new NSPersistentStoreCoordinator (ManagedObjectModel);
 
 				NSError error;
-				persistentStoreCoordinator.AddPersistentStoreWithType (NSPersistentStoreCoordinator.SQLiteStoreType, 
+				persistentStoreCoordinator.AddPersistentStoreWithType (NSPersistentStoreCoordinator.SQLiteStoreType,
 				                                                       null, storeUrl, null, out error);
 				if (error != null)
 					Console.WriteLine (string.Format ("Unresolved error {0}", error.LocalizedDescription));
-			
+
 				return persistentStoreCoordinator;
 			}
 		}
@@ -90,7 +90,7 @@ namespace ThreadedCoreData
 
 					fetchRequest.SortDescriptors = new  NSSortDescriptor[] { new NSSortDescriptor ("date", false) };
 
-					fetchedResultsController = new NSFetchedResultsController (fetchRequest, ManagedObjectContext, null, null);	
+					fetchedResultsController = new NSFetchedResultsController (fetchRequest, ManagedObjectContext, null, null);
 					fetchedResultsController.Delegate = fecthResultsControllerDelegate;
 
 					NSError error;
@@ -111,14 +111,14 @@ namespace ThreadedCoreData
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-		
+
 			fecthResultsControllerDelegate = new FecthResultsControllerDelegate () {
 				TableView = TableView
 			};
 
 			var feedURLString = new NSString ("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson");
 			var earthquakeURLRequest = NSUrlRequest.FromUrl (new NSUrl (feedURLString));
-			NSUrlConnection.SendAsynchronousRequest (earthquakeURLRequest, NSOperationQueue.MainQueue, RequestCompletionHandler); 
+			NSUrlConnection.SendAsynchronousRequest (earthquakeURLRequest, NSOperationQueue.MainQueue, RequestCompletionHandler);
 
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 			parseQueue = new NSOperationQueue ();
@@ -137,7 +137,7 @@ namespace ThreadedCoreData
 		public override void ObserveValue (NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
 		{
 			if (ofObject == parseQueue && keyPath == "operationCount") {
-				if (parseQueue.OperationCount == 0) 
+				if (parseQueue.OperationCount == 0)
 					InvokeOnMainThread (new Selector ("HideActivityIndicator"), null);
 			} else {
 				base.ObserveValue (keyPath, ofObject, change, context);
@@ -179,7 +179,7 @@ namespace ThreadedCoreData
 		[Export("MergeChanges:")]
 		public void MergeChanges (NSNotification notification)
 		{
-			if (notification.Object != ManagedObjectContext) 
+			if (notification.Object != ManagedObjectContext)
 				InvokeOnMainThread (new Selector ("UpdateMainContext:"), notification);
 		}
 
@@ -214,7 +214,7 @@ namespace ThreadedCoreData
 
 		NSError ComposeError (string message, string domain, int statusCode)
 		{
-			var errorMessage = new NSString (message); 
+			var errorMessage = new NSString (message);
 			var userInfo = new NSDictionary (NSError.LocalizedDescriptionKey, errorMessage);
 			return new NSError (new NSString (domain), statusCode, userInfo);
 		}

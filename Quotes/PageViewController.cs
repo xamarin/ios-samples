@@ -18,7 +18,7 @@ namespace Quotes
 
 			pageView.SetPage (controllerPage);
 
-			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) { 
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
 				this.EdgesForExtendedLayout = UIRectEdge.None;
 			}
 		}
@@ -40,21 +40,21 @@ namespace Quotes
 
 		partial void ParagraphSelected (UIKit.UILongPressGestureRecognizer sender)
 		{
-			pageView.SelectParagraphAtPosition (sender.LocationInView (pageView), 
+			pageView.SelectParagraphAtPosition (sender.LocationInView (pageView),
 			                                    sender.State == UIKit.UIGestureRecognizerState.Ended);
 		}
-		
+
 		partial void DrawingModeToggled (UIKit.UISwipeGestureRecognizer sender)
 		{
 			pageView.UnstyledDrawing = !pageView.UnstyledDrawing;
 			pageView.UpdatePage ();
 		}
-		
+
 		partial void MenuDismissed (UIKit.UITapGestureRecognizer sender)
 		{
 			pageView.SelectParagraphAtPosition (new CGPoint (-100.0f, -100.0f), false);
 		}
-	
+
 		partial void LineHeightChanged (UIKit.UISlider sender)
 		{
 			pageView.SetLineHeight (sender.Value);

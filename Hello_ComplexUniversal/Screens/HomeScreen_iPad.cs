@@ -12,11 +12,11 @@ namespace Hello_ComplexUniversal.Screens
 		public HomeScreen_iPad () : base ("HomeScreen_iPad", null)
 		{
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			this.btnOne.TouchUpInside += (sender, e) => {
 				this.lblOutput.Text = "Button 1 Clicked";
 			};
@@ -27,6 +27,6 @@ namespace Hello_ComplexUniversal.Screens
 				this.lblOutput.Text = "Button 3 Clicked";
 			};
 		}
-		
+
 	}
 }

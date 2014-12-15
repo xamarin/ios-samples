@@ -18,15 +18,15 @@ namespace CoreMidiSample
 		MidiClient client;
 		MidiPort outputPort, inputPort;
 		Section hardwareSection;
-		
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.MakeKeyAndVisible ();
-			
+
 			Midi.Restart ();
 			SetupMidi ();
-			
+
 			dvc = new DialogViewController (MakeRoot ());
 			window.RootViewController = new UINavigationController (dvc);
 			return true;
@@ -43,7 +43,7 @@ namespace CoreMidiSample
 					(Element)MakeDevices (),
 				}),
 				new Section ("Send"){
-					new StringElement ("Send Note", SendNote)	
+					new StringElement ("Send Note", SendNote)
 				},
 				new Section ("Commands"){
 					new StringElement ("Rescan", delegate { ReloadDevices (); }),
@@ -56,7 +56,7 @@ namespace CoreMidiSample
 		{
 			int sources = (int)Midi.SourceCount;
 			int destinations = (int)Midi.DestinationCount;
-			
+
 			return new RootElement ("Endpoints (" + sources + ", " + destinations +")") {
 				new Section ("Sources"){
 					from x in Enumerable.Range (0, sources)
@@ -70,7 +70,7 @@ namespace CoreMidiSample
 				}
 			};
 		}
-		
+
 		RootElement MakeDevices ()
 		{
 			return new RootElement ("Devices (" + Midi.DeviceCount + ", " + Midi.ExternalDeviceCount + ")") {
@@ -110,7 +110,7 @@ namespace CoreMidiSample
 				}
 			};
 		}
-		
+
 		Element MakeEndpoint (MidiEndpoint endpoint)
 		{
 			Section s;
@@ -127,7 +127,7 @@ namespace CoreMidiSample
 			try { s.Add (new StringElement ("Transmit Channels", endpoint.TransmitChannels.ToString ())); } catch {}
 			return root;
 		}
-		
+
 		void ReloadDevices ()
 		{
 			BeginInvokeOnMainThread (delegate {
@@ -137,16 +137,16 @@ namespace CoreMidiSample
 				hardwareSection.Add ((Element)MakeDevices ());
 			});
 		}
-		
+
 		Random rand = new Random ();
-		
+
 		void SendNote ()
 		{
 			for (int i = 0; i < Midi.DestinationCount; i++){
 				var endpoint = MidiEndpoint.GetDestination (i);
-				
+
 				var note = (byte) (rand.Next () % 127);
-				
+
 				// play note
 				outputPort.Send (endpoint, new MidiPacket [] { new MidiPacket (0, new byte [] { 0x90, note, 127 })});
 				Thread.Sleep (300);
@@ -154,8 +154,8 @@ namespace CoreMidiSample
 				outputPort.Send (endpoint, new MidiPacket [] { new MidiPacket (0, new byte [] { 0x80, note, 0 })});
 			}
 		}
-		
-		// 
+
+		//
 		// Creates a MidiClient which is our way of communicating with the
 		// CoreMidi stack
 		//
@@ -163,7 +163,7 @@ namespace CoreMidiSample
 		{
 			client = new MidiClient ("CoreMidiSample MIDI CLient");
 			client.ObjectAdded += delegate(object sender, ObjectAddedOrRemovedEventArgs e) {
-				
+
 			};
 			client.ObjectAdded += delegate { ReloadDevices (); };
 			client.ObjectRemoved += delegate { ReloadDevices (); };
@@ -176,14 +176,14 @@ namespace CoreMidiSample
 			client.SerialPortOwnerChanged += delegate {
 				Console.WriteLine ("Serial port changed");
 			};
-			
+
 			outputPort = client.CreateOutputPort ("CoreMidiSample Output Port");
 			inputPort = client.CreateInputPort ("CoreMidiSample Input Port");
 			inputPort.MessageReceived += delegate(object sender, MidiPacketsEventArgs e) {
 				Console.WriteLine ("Got {0} packets", e.Packets.Length);
 			};
-			ConnectExistingDevices ();	
-			
+			ConnectExistingDevices ();
+
 			var session = MidiNetworkSession.DefaultSession;
 			if (session != null){
 				session.Enabled = true;
@@ -199,7 +199,7 @@ namespace CoreMidiSample
 					Console.WriteLine ("Failed to connect");
 			}
 		}
-		
+
 		static void Main (string[] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");

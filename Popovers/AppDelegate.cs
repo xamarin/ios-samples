@@ -20,7 +20,7 @@ namespace Popovers
 
 		[Outlet]
 		public DetailViewController DetailViewController { get; set; }
-		
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			SplitViewController.WillHideViewController += DetailViewController.WillHideViewController;

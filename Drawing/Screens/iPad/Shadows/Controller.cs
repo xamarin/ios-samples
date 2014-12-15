@@ -18,16 +18,16 @@ namespace Example_Drawing.Screens.iPad.Shadows
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// set the background color of the view to white
 			View.BackgroundColor = UIColor.White;
-			
-			// instantiate a new image view that takes up the whole screen and add it to 
+
+			// instantiate a new image view that takes up the whole screen and add it to
 			// the view hierarchy
 			CGRect imageViewFrame = new CGRect (0, -NavigationController.NavigationBar.Frame.Height, View.Frame.Width, View.Frame.Height);
 			imageView = new UIImageView (imageViewFrame);
 			View.AddSubview (imageView);
-			
+
 			// create our offscreen bitmap context
 			// size
 			CGSize bitmapSize = new CGSize (View.Frame.Size);
@@ -43,7 +43,7 @@ namespace Example_Drawing.Screens.iPad.Shadows
 				context.FillRect (new CGRect (100, 600, 300, 250));
 				// 4) restore the graphics state
 				context.RestoreState ();
-				
+
 				//==== create a color shadow
 				// 1) save graphics state
 				context.SaveState ();
@@ -56,8 +56,7 @@ namespace Example_Drawing.Screens.iPad.Shadows
 				context.ShowTextAtPoint (150, 200, text, text.Length);
 				// 4) restore the graphics state
 				context.RestoreState ();
-				
-				
+
 				// output the drawing to the view
 				imageView.Image = UIImage.FromImage (context.ToImage ());
 			}

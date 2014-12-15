@@ -139,13 +139,13 @@ namespace MotionGraphs
 		GraphViewSegment AddSegment ()
 		{
 			// Create a new segment and add it to the segments array.
-			GraphViewSegment segment = new GraphViewSegment (); 
+			GraphViewSegment segment = new GraphViewSegment ();
 			segments.Insert (0, segment);
 			//Ensure that newly added segment layers are placed after the text view's layer so that the text view
 			// always renders above the segment layer.
 			Layer.InsertSublayerBelow (segment.Layer, text.Layer);
 			// Console.WriteLine (this.Layer.InsertSublayerBelow (segment.layer, text.Layer));
-			// Position it properly 
+			// Position it properly
 			//segment.layer.Position = kSegmentInitialPosition;
 			segment.Layer.Position = kSegmentInitialPosition;
 			return segment;
@@ -174,7 +174,7 @@ namespace MotionGraphs
 		public override void Draw (CGRect rect)
 		{
 			using (var context = UIGraphics.GetCurrentContext ()) {
-				//Fill in the background			
+				//Fill in the background
 				context.SetFillColor (GraphBackgroundColour ());
 				context.FillRect (Bounds);
 
@@ -209,21 +209,21 @@ namespace MotionGraphs
 			public override void Draw (CGRect rect)
 			{
 				using (var context = UIGraphics.GetCurrentContext ()) {
-			
-					//Fill in the background			
+
+					//Fill in the background
 					context.SetFillColor (GraphBackgroundColour ());
 					context.FillRect (Bounds);
-					context.TranslateCTM (0.0f, 56.0f);		
-			
-					//Draw the gridlines			
+					context.TranslateCTM (0.0f, 56.0f);
+
+					//Draw the gridlines
 					DrawGridLines (context, 26.0f, 6.0f);
-			
-					//Draw the text			
-					UIColor.White.SetColor ();			
+
+					//Draw the text
+					UIColor.White.SetColor ();
 					DrawLabel ("+3.0", -56.0f);
 					DrawLabel ("+2.0", -40.0f);
 					DrawLabel ("+1.0", -24.0f);
-					DrawLabel ("0.0", -8.0f);                      
+					DrawLabel ("0.0", -8.0f);
 					DrawLabel ("-1.0", 8.0f);
 					DrawLabel ("-2.0", 24.0f);
 					DrawLabel ("-3.0", 40.0f);
@@ -289,7 +289,7 @@ namespace MotionGraphs
 					Layer.SetNeedsDisplay ();
 				}
 				// And return if we are now full or not (really just avoids needing to call isFull after adding a value).
-				return index == 0;				
+				return index == 0;
 			}
 
 			class LayerDelegate : CALayerDelegate
@@ -298,7 +298,7 @@ namespace MotionGraphs
 
 				public LayerDelegate (GraphViewSegment parent)
 				{
-					_parent = parent; 
+					_parent = parent;
 				}
 
 				public override void DrawLayer (CALayer layer, CGContext context)
@@ -307,16 +307,16 @@ namespace MotionGraphs
 					//GraphView gView = new GraphView ();
 					context.SetFillColor (GraphBackgroundColour ());
 					context.FillRect (layer.Bounds);
-					
+
 					// Draw the grid lines
 					DrawGridLines (context, 0.0f, 32.0f);
-					
+
 					//Draw the graph
 					CGPoint[] lines = new CGPoint[64];
 					int i;
-										
+
 					//X
-					for (i = 0; i < 32; ++i) {	   
+					for (i = 0; i < 32; ++i) {
 						lines [i * 2].X = i;
 						lines [i * 2].Y = ((float)(_parent.xhistory [i] * (-1)) * 16.0f);
 						lines [(i * 2 + 1)].X = i + 1;
@@ -325,13 +325,13 @@ namespace MotionGraphs
 
 					context.SetStrokeColor (GraphXColor ());
 					context.StrokeLineSegments (lines);
-				
+
 					//Y
 					for (i = 0; i < 32; ++i) {
 						lines [i * 2].Y = ((float)(_parent.yhistory [i] * (-1)) * 16.0f);
 						lines [(i * 2 + 1)].Y = ((float)(_parent.yhistory [i + 1] * (-1)) * 16.0f);
 					}
-					
+
 					context.SetStrokeColor (GraphYColor ());
 					context.StrokeLineSegments (lines);
 
@@ -340,7 +340,7 @@ namespace MotionGraphs
 						lines [i * 2].Y = ((float)(_parent.zhistory [i] * (-1)) * 16.0f);
 						lines [(i * 2 + 1)].Y = ((float)(_parent.zhistory [i + 1] * (-1)) * 16.0f);
 					}
-					
+
 					context.SetStrokeColor (GraphZColor ());
 					context.StrokeLineSegments (lines);
 				}

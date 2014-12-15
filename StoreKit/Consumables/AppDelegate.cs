@@ -25,9 +25,9 @@ namespace Consumables {
 		{
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
+
 			viewController = new ConsumableViewController();
-			
+
 			navigationController = new UINavigationController();
 			navigationController.PushViewController (viewController, false);
 
@@ -37,7 +37,7 @@ namespace Consumables {
 
 			// make the window visible
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 	}

@@ -14,12 +14,12 @@ namespace NSZombieApocalypse
 
 		public  bool movingright ;
 		public bool MovingRight {
-			get { 
+			get {
 				return movingright;
 			}
 			set {
 				movingright = value;
-				SetNeedsDisplay (); 				
+				SetNeedsDisplay ();
 			}
 		}
 	}

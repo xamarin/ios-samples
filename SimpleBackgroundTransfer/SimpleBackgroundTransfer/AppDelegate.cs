@@ -6,7 +6,7 @@ namespace SimpleBackgroundTransfer {
 
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate {
-	
+
 		public Action BackgroundSessionCompletionHandler { get; set; }
 
 		public override UIWindow Window { get; set; }

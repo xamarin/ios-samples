@@ -12,7 +12,7 @@ namespace coreimage
 	{
 		[Action ("done:")]
 		partial void done (MonoTouch.UIKit.UIBarButtonItem sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

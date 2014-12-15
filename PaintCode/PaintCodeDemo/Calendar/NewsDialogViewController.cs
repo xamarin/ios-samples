@@ -20,7 +20,7 @@ namespace PaintCode
 
 			var section = new Section ();
 			// creates the rows using MT.Dialog
-			
+
 			foreach (var item in newsItems) {
 				var published = item.Item1;
 				var image = CustomBadgeElement.MakeCalendarBadge (

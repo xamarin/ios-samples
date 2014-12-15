@@ -7,7 +7,7 @@ using UIKit;
 
 namespace TextKitDemo
 {
-	/* 
+	/*
 	 * Implements the ExclusionPaths view, which shows how a bezier can be used
 	 * to alter the flow of the rendered text.
 	 */

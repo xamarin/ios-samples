@@ -90,7 +90,7 @@ namespace SpriteKitPhysicsCollisions
 				AttackTarget (secondBody, firstBody.Node);
 
 			if ((firstBody.CategoryBitMask & Category.Ship) != 0) {
-				if (contact.CollisionImpulse > collisionDamageThreshold && 
+				if (contact.CollisionImpulse > collisionDamageThreshold &&
 				    (secondBody.CategoryBitMask & Category.Edge) == 0) {
 
 					int damage = (int) (contact.CollisionImpulse / collisionDamageThreshold);

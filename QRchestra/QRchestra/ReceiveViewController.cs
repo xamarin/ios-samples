@@ -144,7 +144,7 @@ namespace QRchestra
 				if (barcodeTimer != null)
 					barcodeTimer.Invalidate ();
 				barcodeTimer = NSTimer.CreateScheduledTimer (0.5, this, new Selector ("removeDetectedBarcodeUI"), null, false);
-				var transformedBarcode = 
+				var transformedBarcode =
 					(AVMetadataMachineReadableCodeObject)previewLayer.GetTransformedMetadataObject (barcode);
 				CGPath barcodeBoundary = createPathForPoints (transformedBarcode.Corners);
 

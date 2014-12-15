@@ -16,7 +16,7 @@ namespace StateRestoration
 
 		[Outlet]
 		public MonoTouch.UIKit.UILabel Label { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (ImageView != null) {

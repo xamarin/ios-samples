@@ -50,14 +50,14 @@ namespace QRchestra
 
 			cd.ComponentType = AudioComponentType.MusicDevice;
 			cd.ComponentSubType = (int)AudioTypeMusicDevice.Sampler; //0x73616d70;
-		
+
 			samplerNode = processingGraph.AddNode (cd);
 
 			cd.ComponentType = AudioComponentType.Output;
 			cd.ComponentSubType = (int)AudioTypeOutput.Remote; //0x72696f63;
 
 			ioNode = processingGraph.AddNode (cd);
-		
+
 			processingGraph.Open ();
 
 			result = processingGraph.ConnnectNodeInput (samplerNode, 0, ioNode, 0);
@@ -95,7 +95,7 @@ namespace QRchestra
 				result = (int)graph.Start ();
 				if (result != (int)AUGraphError.OK)
 					throw new Exception ("Unable to start audio processing graph.  Error code: " + result);
-		
+
 //				TODO: CAShow
 				Console.WriteLine (graph);
 			}

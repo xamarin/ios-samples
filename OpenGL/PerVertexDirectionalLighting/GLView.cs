@@ -12,7 +12,7 @@ namespace PerVertexDirectionalLighting
 	{
 		int backingWidth;
 		int backingHeight;
-		uint frameBuffer; 
+		uint frameBuffer;
 		uint renderBuffer;
 		uint depthBuffer;
 

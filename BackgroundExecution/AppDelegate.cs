@@ -32,7 +32,7 @@ namespace BackgroundExecution
 			if (UIDevice.CurrentDevice.IsMultitaskingSupported) {
 				// code here to change your app's behavior
 			}
-				
+
 			return true;
 		}
 

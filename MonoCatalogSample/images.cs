@@ -56,8 +56,8 @@ public partial class ImagesViewController : UIViewController {
 	public override void ViewWillAppear (bool animated)
 	{
 		imageView.StartAnimating ();
-		
-		// for aesthetic reasons (the background is black), make the nav bar black for this particular page                                  
+
+		// for aesthetic reasons (the background is black), make the nav bar black for this particular page
 		NavigationController.NavigationBar.BarStyle = UIBarStyle.Black;
 		UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
 	}

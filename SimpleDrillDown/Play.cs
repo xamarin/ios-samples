@@ -1,21 +1,21 @@
-// 
+//
 // Play.cs
-//  
+//
 // Author:
 //       Alan McGovern <alan@xamarin.com>
-// 
+//
 // Copyright 2011, Xamarin Inc.
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -34,7 +34,7 @@ namespace SimpleDrillDown {
 		public DateTime Date { get; set; }
 		public string Genre { get; set; }
 		public string Title { get; set; }
-		
+
 		public static List <Play> CreateDemoPlays ()
 		{
 			var plays = new List<Play> ();
@@ -65,14 +65,14 @@ namespace SimpleDrillDown {
 				Date = new DateTime (1597, 1, 1),
 				Characters = new List<string> { "Archbishop Scroop", "Blunt", "Carrier", "Chamberlain", "Earl of Douglas", "Earl of Northumberland", "Earl of Westmoreland", "Earl of Worcester", "Edward Poins", "Falstaff", "First Carrier", "First Traveller", "Francis", "Gadshill", "Glendower", "Henry IV", "Henry V", "Hostess Quickly", "Hotspur (Henry Percy)", "Lady Percy", "Lord Bardolph", "Messenger", "Mortimer", "Ostler", "Peto", "Prince John, of Lancaster", "Second Carrier", "Servant", "Sheriff", "Sir Michael", "Vernon", "Vintner" }
 			});
-			
+
 			plays.Add (new Play {
 				Title = "The Tempest",
 				Genre = "Comedy",
 				Date = new DateTime (1611, 1, 1),
 				Characters = new List<string> { "Adrian", "Alonso", "Antonio", "Ariel", "Boatswain", "Caliban", "Ceres", "Ferdinand", "Francisco", "Gonzalo", "Iris", "Juno", "Master", "Miranda", "Prospero", "Sebastian", "Stephano", "Trinculo" }
 			});
-			
+
 			return plays;
 		}
 	}

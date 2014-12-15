@@ -18,11 +18,11 @@ namespace FileSystem
 			// Sample code from the article
 			var text = System.IO.File.ReadAllText("TestData/ReadMe.txt");
 			Console.WriteLine(text);
-			
+
 			// Output to app UITextView
 			display.Text = text;
 		}
-		
+
 		public static void ReadDirectories(UITextView display)
 		{
 			display.Text = "";
@@ -32,7 +32,7 @@ namespace FileSystem
 			foreach (var directory in directories) {
 				Console.WriteLine(directory);
 			}
-			
+
 			// Output to app UITextView
 			foreach (var directory in directories) {
 				display.Text += directory + Environment.NewLine;
@@ -48,7 +48,7 @@ namespace FileSystem
 			foreach (var entry in fileOrDirectory) {
 				Console.WriteLine(entry);
 			}
-			
+
 			// Output to app UITextView
 			foreach (var entry in fileOrDirectory) {
 				display.Text += entry + Environment.NewLine;
@@ -78,7 +78,7 @@ namespace FileSystem
 				Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
 			var filename = Path.Combine (documents, "Write.txt");
 			File.WriteAllText(filename, "Write this text into a file!");
-			
+
 			// Output to app UITextView
 			display.Text = "Text was written to a file." + Environment.NewLine
 						+ "-----------------" + Environment.NewLine

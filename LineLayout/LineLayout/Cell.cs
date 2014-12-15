@@ -9,10 +9,10 @@ namespace LineLayout
 	public partial class Cell : UICollectionViewCell
 	{
 		public UILabel Label { get; private set; }
-		
+
 		[Export("initWithFrame:")]
 		public Cell (CGRect frame) : base (frame)
-		{   
+		{
 			Label = new UILabel (new CGRect (CGPoint.Empty, frame.Size)) {
 				AutoresizingMask = UIViewAutoresizing.FlexibleHeight|UIViewAutoresizing.FlexibleWidth,
 				TextAlignment = UITextAlignment.Center,

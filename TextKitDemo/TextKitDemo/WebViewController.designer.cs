@@ -26,7 +26,7 @@ namespace TextKitDemo
 
 		[Outlet]
 		public UIKit.UIWebView webView { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (backwardButton != null) {

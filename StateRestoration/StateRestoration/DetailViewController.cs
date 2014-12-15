@@ -9,7 +9,6 @@ using MonoTouch.CoreImage;
 using MonoTouch.ObjCRuntime;
 using System.Linq;
 
-
 namespace StateRestoration
 {
 	public partial class DetailViewController : UIViewController

@@ -15,7 +15,6 @@ namespace CloudCaptions
 
 		UIVisualEffectView blurSubview;
 
-
 		public ExistingImageCollectionViewCell (IntPtr handle)
 			: base (handle)
 		{

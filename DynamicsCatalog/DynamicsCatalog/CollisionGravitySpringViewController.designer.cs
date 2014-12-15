@@ -23,7 +23,7 @@ namespace DynamicsCatalog
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
 		UIKit.UIView square { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (redSquare != null) {

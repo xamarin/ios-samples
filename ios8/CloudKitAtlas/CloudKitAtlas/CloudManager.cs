@@ -23,7 +23,7 @@ namespace CloudKitAtlas
 		CKContainer container;
 		CKDatabase publicDatabase;
 
-		public bool Subscribed { 
+		public bool Subscribed {
 			get {
 				return NSUserDefaults.StandardUserDefaults.ValueForKey (new NSString("subscriptionID")) != null;
 			}

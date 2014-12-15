@@ -51,9 +51,9 @@ namespace TicTacToe
 				newLineView (),
 				newLineView ()
 			};
-			verticalLineViews = new UIView[] { 
-				newLineView (), 
-				newLineView () 
+			verticalLineViews = new UIView[] {
+				newLineView (),
+				newLineView ()
 			};
 			updateGridColor ();
 

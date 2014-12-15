@@ -119,8 +119,8 @@ namespace AirLocate
 						region.NotifyOnEntry = notifyOnEntry;
 						region.NotifyOnExit = notifyOnExit;
 						region.NotifyEntryStateOnDisplay = notifyOnDisplay;
-						locationManger.StartMonitoring (region);				
-					} 
+						locationManger.StartMonitoring (region);
+					}
 				} else {
 					var region = (CLBeaconRegion)locationManger.MonitoredRegions.AnyObject;
 					if (region != null)

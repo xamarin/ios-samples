@@ -18,9 +18,9 @@ namespace Example_TableParts
 		{
 			tableItems = items;
 		}
-		
+
 		#region data binding/display methods
-		
+
 		/// <summary>
 		/// Called by the TableView to determine how many sections(groups) there are.
 		/// </summary>
@@ -52,23 +52,23 @@ namespace Example_TableParts
 		{
 			return tableItems[(int)section].Footer;
 		}
-		
-		#endregion	
-				
+
+		#endregion
+
 		#region user interaction methods
-		
+
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			new UIAlertView ("Row Selected"
 				, tableItems[indexPath.Section].Items[indexPath.Row], null, "OK", null).Show ();
 		}
-		
+
 		public override void RowDeselected (UITableView tableView, NSIndexPath indexPath)
 		{
-			Console.WriteLine ("Row " + indexPath.Row.ToString () + " deselected");	
+			Console.WriteLine ("Row " + indexPath.Row.ToString () + " deselected");
 		}
-		
-		#endregion	
+
+		#endregion
 
 		/// <summary>
 		/// Called by the TableView to get the actual UITableViewCell to render for the particular section and row
@@ -76,17 +76,17 @@ namespace Example_TableParts
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			Console.WriteLine ("Calling Get Cell, isEditing:" + tableView.Editing);
-			
+
 			//---- declare vars
 			UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);
-			
+
 			//---- if there are no cells to reuse, create a new one
 			if (cell == null)
 				cell = new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
-			
+
 			//---- set the item text
 			cell.TextLabel.Text = tableItems[indexPath.Section].Items[indexPath.Row];
-			
+
 			return cell;
 		}
 	}

@@ -12,7 +12,7 @@ namespace TextKitDemo
 	 */
 	public class InteractiveTextColoringTextStorage : NSTextStorage
 	{
-		public Dictionary<string, NSDictionary> Tokens; 
+		public Dictionary<string, NSDictionary> Tokens;
 		NSMutableAttributedString backingStore;
 		bool dynamicTextNeedsUpdate;
 

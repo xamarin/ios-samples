@@ -12,7 +12,7 @@ namespace AirLocate
 	[Register ("RangingViewController")]
 	partial class RangingViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

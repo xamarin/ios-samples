@@ -1,16 +1,16 @@
 //
 // Copyright (c) 2009-2010 Krueger Systems, Inc.
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -79,7 +79,7 @@ namespace SQLite
 				throw SQLiteException.New (r, "Could not open database file: " + DatabasePath);
 			}
 			_open = true;
-			
+
 			BusyTimeout = TimeSpan.FromSeconds (0.1);
 		}
 
@@ -132,7 +132,7 @@ namespace SQLite
 		/// The type whose mapping to the database is returned.
 		/// </param>
 		/// <returns>
-		/// The mapping represents the schema of the columns of the database and contains 
+		/// The mapping represents the schema of the columns of the database and contains
 		/// methods to set and get properties of objects.
 		/// </returns>
 		public TableMapping GetMapping (Type type)
@@ -160,7 +160,7 @@ namespace SQLite
 		public int CreateTable<T> ()
 		{
 			var ty = typeof(T);
-			
+
 			if (_tables == null) {
 				_tables = new Dictionary<string, TableMapping> ();
 			}
@@ -170,12 +170,12 @@ namespace SQLite
 				_tables.Add (ty.FullName, map);
 			}
 			var query = "create table \"" + map.TableName + "\"(\n";
-			
+
 			var decls = map.Columns.Select (p => Orm.SqlDecl (p));
 			var decl = string.Join (",\n", decls.ToArray ());
 			query += decl;
 			query += ")";
-			
+
 			var count = 0;
 
 			try {
@@ -184,7 +184,7 @@ namespace SQLite
 			}
 			catch (SQLiteException) {
 			}
-			
+
 			if (count == 0) {
 				// Table already exists, migrate it
 				MigrateTable (map);
@@ -195,7 +195,7 @@ namespace SQLite
 				var q = string.Format ("create index if not exists \"{0}\" on \"{1}\"(\"{2}\")", indexName, map.TableName, p.Name);
 				count += Execute (q);
 			}
-			
+
 			return count;
 		}
 
@@ -217,11 +217,11 @@ namespace SQLite
 		void MigrateTable (TableMapping map)
 		{
 			var query = "pragma table_info(\"" + map.TableName + "\")";
-			
+
 			var existingCols = Query<TableInfo> (query);
 
 			var toBeAdded = new List<TableMapping.Column> ();
-			
+
 			foreach (var p in map.Columns) {
 				var found = false;
 				foreach (var c in existingCols) {
@@ -233,7 +233,7 @@ namespace SQLite
 					toBeAdded.Add (p);
 				}
 			}
-			
+
 			foreach (var p in toBeAdded) {
 				var addCol = "alter table \"" + map.TableName + "\" add column " + Orm.SqlDecl (p);
 				Execute (addCol);
@@ -287,7 +287,7 @@ namespace SQLite
 		public int Execute (string query, params object[] args)
 		{
 			var cmd = CreateCommand (query, args);
-			
+
 			if (TimeExecution) {
 				if (_sw == null) {
 					_sw = new System.Diagnostics.Stopwatch ();
@@ -295,15 +295,15 @@ namespace SQLite
 				_sw.Reset ();
 				_sw.Start ();
 			}
-			
+
 			int r = cmd.ExecuteNonQuery ();
-			
+
 			if (TimeExecution) {
 				_sw.Stop ();
 				_elapsedMilliseconds += _sw.ElapsedMilliseconds;
 				Console.WriteLine ("Finished in {0} ms ({1:0.0} s total)", _sw.ElapsedMilliseconds, _elapsedMilliseconds / 1000.0);
 			}
-			
+
 			return r;
 		}
 
@@ -516,23 +516,23 @@ namespace SQLite
 			if (obj == null || objType == null) {
 				return 0;
 			}
-			
+
 			var map = GetMapping (objType);
-			
+
 			var cols = map.InsertColumns;
 			var vals = new object[cols.Length];
 			for (var i = 0; i < vals.Length; i++) {
 				vals [i] = cols [i].GetValue (obj);
 			}
-			
+
 			var insertCmd = map.GetInsertCommand (this, extra);
 			var count = insertCmd.ExecuteNonQuery (vals);
-			
+
 			if (map.HasAutoIncPK) {
 				var id = SQLite3.LastInsertRowid (Handle);
 				map.SetAutoIncPK (obj, id);
 			}
-			
+
 			return count;
 		}
 
@@ -560,15 +560,15 @@ namespace SQLite
 			if (obj == null || objType == null) {
 				return 0;
 			}
-			
+
 			var map = GetMapping (objType);
-			
+
 			var pk = map.PK;
-			
+
 			if (pk == null) {
 				throw new NotSupportedException ("Cannot update " + map.TableName + ": it has no PK");
 			}
-			
+
 			var cols = from p in map.Columns
 				where p != pk
 				select p;
@@ -687,7 +687,7 @@ namespace SQLite
 					PK = c;
 				}
 			}
-			
+
 			HasAutoIncPK = _autoPk != null;
 		}
 
@@ -800,7 +800,7 @@ namespace SQLite
 		public static string SqlDecl (TableMapping.Column p)
 		{
 			string decl = "\"" + p.Name + "\" " + SqlType (p) + " ";
-			
+
 			if (p.IsPK) {
 				decl += "primary key ";
 			}
@@ -813,7 +813,7 @@ namespace SQLite
 			if (!string.IsNullOrEmpty (p.Collation)) {
 				decl += "collate " + p.Collation + " ";
 			}
-			
+
 			return decl;
 		}
 
@@ -898,7 +898,7 @@ namespace SQLite
 			if (_conn.Trace) {
 				Console.WriteLine ("Executing: " + this);
 			}
-			
+
 			var r = SQLite3.Result.OK;
 			var stmt = Prepare ();
 			r = SQLite3.Step (stmt);
@@ -924,18 +924,18 @@ namespace SQLite
 			if (_conn.Trace) {
 				Console.WriteLine ("Executing Query: " + this);
 			}
-			
+
 			var r = new List<T> ();
-			
+
 			var stmt = Prepare ();
-			
+
 			var cols = new TableMapping.Column[SQLite3.ColumnCount (stmt)];
-			
+
 			for (int i = 0; i < cols.Length; i++) {
 				var name = Marshal.PtrToStringUni (SQLite3.ColumnName16 (stmt, i));
 				cols [i] = map.FindColumn (name);
 			}
-			
+
 			while (SQLite3.Step (stmt) == SQLite3.Result.Row) {
 				var obj = Activator.CreateInstance (map.MappedType);
 				for (int i = 0; i < cols.Length; i++) {
@@ -947,7 +947,7 @@ namespace SQLite
 				}
 				r.Add ((T)obj);
 			}
-			
+
 			Finalize (stmt);
 			return r;
 		}
@@ -957,16 +957,16 @@ namespace SQLite
 			if (_conn.Trace) {
 				Console.WriteLine ("Executing Query: " + this);
 			}
-			
+
 			T val = default(T);
-			
+
 			var stmt = Prepare ();
 			if (SQLite3.Step (stmt) == SQLite3.Result.Row) {
 				var colType = SQLite3.ColumnType (stmt, 0);
 				val = (T)ReadCol (stmt, 0, colType, typeof(T));
 			}
 			Finalize (stmt);
-			
+
 			return val;
 		}
 
@@ -1336,7 +1336,7 @@ namespace SQLite
 				throw new NotSupportedException ("Expression is NULL");
 			} else if (expr is BinaryExpression) {
 				var bin = (BinaryExpression)expr;
-				
+
 				var leftr = CompileExpr (bin.Left, queryArgs);
 				var rightr = CompileExpr (bin.Right, queryArgs);
 
@@ -1350,16 +1350,16 @@ namespace SQLite
 					text = "(" + leftr.CommandText + " " + GetSqlName(bin) + " " + rightr.CommandText + ")";
 				return new CompileResult { CommandText = text };
 			} else if (expr.NodeType == ExpressionType.Call) {
-				
+
 				var call = (MethodCallExpression)expr;
 				var args = new CompileResult[call.Arguments.Count];
-				
+
 				for (var i = 0; i < args.Length; i++) {
 					args [i] = CompileExpr (call.Arguments [i], queryArgs);
 				}
-				
+
 				var sqlCall = "";
-				
+
 				if (call.Method.Name == "Like" && args.Length == 2) {
 					sqlCall = "(" + args [0].CommandText + " like " + args [1].CommandText + ")";
 				} else if (call.Method.Name == "Contains" && args.Length == 2) {
@@ -1368,7 +1368,7 @@ namespace SQLite
 					sqlCall = call.Method.Name.ToLower () + "(" + string.Join (",", args.Select (a => a.CommandText).ToArray ()) + ")";
 				}
 				return new CompileResult { CommandText = sqlCall };
-				
+
 			} else if (expr.NodeType == ExpressionType.Constant) {
 				var c = (ConstantExpression)expr;
 				queryArgs.Add (c.Value);
@@ -1386,7 +1386,7 @@ namespace SQLite
 				};
 			} else if (expr.NodeType == ExpressionType.MemberAccess) {
 				var mem = (MemberExpression)expr;
-				
+
 				if (mem.Expression.NodeType == ExpressionType.Parameter) {
 					//
 					// This is a column of our table, output just the column name
@@ -1404,22 +1404,22 @@ namespace SQLite
 						}
 						obj = r.Value;
 					}
-					
+
 					//
 					// Get the member value
 					//
 					object val = null;
-					
+
 					if (mem.Member.MemberType == MemberTypes.Property) {
 						var m = (PropertyInfo)mem.Member;
-						val = m.GetValue (obj, null);						
+						val = m.GetValue (obj, null);
 					} else if (mem.Member.MemberType == MemberTypes.Field) {
 						var m = (FieldInfo)mem.Member;
-						val = m.GetValue (obj);						
+						val = m.GetValue (obj);
 					} else {
 						throw new NotSupportedException ("MemberExpr: " + mem.Member.MemberType.ToString ());
 					}
-					
+
 					//
 					// Work special magic for enumerables
 					//
@@ -1491,10 +1491,10 @@ namespace SQLite
 				throw new System.NotSupportedException ("Cannot get SQL for: " + n.ToString ());
 			}
 		}
-		
+
 		public int Count ()
 		{
-			return GenerateCommand("count(*)").ExecuteScalar<int> ();			
+			return GenerateCommand("count(*)").ExecuteScalar<int> ();
 		}
 
 		public IEnumerator<T> GetEnumerator ()
@@ -1663,5 +1663,5 @@ namespace SQLite
 			Null = 5
 		}
 	}
-	
+
 }

@@ -31,7 +31,7 @@ namespace AudioConverterFileConverter
 
 		[Action ("convertButtonPressed:")]
 		partial void convertButtonPressed (Foundation.NSObject sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (outputFormatSelector != null) {

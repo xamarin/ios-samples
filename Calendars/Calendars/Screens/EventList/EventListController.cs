@@ -26,14 +26,14 @@ namespace Calendars.Screens.EventList
 			if (events == null) {
 				section = new Section () { new StringElement ("No calendar events") };
 			} else {
-				section = new Section () { 
+				section = new Section () {
 					from items in this.events
 						select ( Element ) new StringElement ( items.Title )
 				};
-			} 
+			}
 			itemListRoot.Add (section);
 			// set our element root
-			this.InvokeOnMainThread ( () => { this.Root = itemListRoot; } ); 
+			this.InvokeOnMainThread ( () => { this.Root = itemListRoot; } );
 		}
 	}
 }

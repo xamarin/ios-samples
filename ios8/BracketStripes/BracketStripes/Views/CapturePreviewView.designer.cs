@@ -12,7 +12,7 @@ namespace BracketStripes
 	[Register ("CapturePreviewView")]
 	partial class CapturePreviewView
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

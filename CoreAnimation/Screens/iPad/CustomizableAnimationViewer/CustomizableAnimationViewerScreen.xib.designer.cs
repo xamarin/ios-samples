@@ -35,7 +35,7 @@ namespace CoreAnimationExample
 
 		[Outlet]
 		UIKit.UITextField txtRepeateCount { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (btnStart != null) {

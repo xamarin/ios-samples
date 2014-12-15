@@ -26,7 +26,7 @@ namespace SoZoomy
 
 		[Action ("sliderChanged:")]
 		partial void sliderChanged (Foundation.NSObject sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (memeButton != null) {

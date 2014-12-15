@@ -17,8 +17,8 @@ namespace FileSystem
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			var v = new FileSystemViewController();
-			
-			window = new UIWindow (UIScreen.MainScreen.Bounds);	
+
+			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.BackgroundColor = UIColor.White;
 			window.Bounds = UIScreen.MainScreen.Bounds;
 			window.AddSubview(v.View);

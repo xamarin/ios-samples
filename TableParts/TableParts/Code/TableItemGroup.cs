@@ -9,9 +9,9 @@ namespace Example_TableParts
 	public class TableItemGroup
 	{
 		public string Name { get; set; }
-	
+
 		public string Footer { get; set; }
-	
+
 		public List<string> Items
 		{
 			get { return items; }

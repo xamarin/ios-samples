@@ -24,7 +24,7 @@ namespace OpenGLES20Example
 			window.MakeKeyAndVisible ();
 
 			(root.View as GLView).StartAnimation ();
-			
+
 			return true;
 		}
 	}

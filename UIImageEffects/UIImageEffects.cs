@@ -87,7 +87,7 @@ namespace UIImageEffects
 				};
 
 				UIGraphics.BeginImageContextWithOptions (image.Size, false, UIScreen.MainScreen.Scale);
-				var effectOutContext = UIGraphics.GetCurrentContext ().AsBitmapContext () as CGBitmapContext;				
+				var effectOutContext = UIGraphics.GetCurrentContext ().AsBitmapContext () as CGBitmapContext;
 				var effectOutBuffer = new vImageBuffer () {
 					Data = effectOutContext.Data,
 					Width = (int)effectOutContext.Width,

@@ -14,7 +14,7 @@ namespace TransitionsDemo.InteractionControllers
 			}
 		}
 
-		public override void WireToViewController (UIKit.UIViewController viewController, 
+		public override void WireToViewController (UIKit.UIViewController viewController,
 		                                           CEInteractionOperation operation)
 		{
 			this.operation = operation;
@@ -55,7 +55,7 @@ namespace TransitionsDemo.InteractionControllers
 				InteractionInProgress = true;
 				viewController.NavigationController.PopViewController (true);
 			} else if (operation == CEInteractionOperation.Tab) {
-				if (rightToLeftSwipe && 
+				if (rightToLeftSwipe &&
 					viewController.TabBarController.SelectedIndex < viewController.TabBarController.ViewControllers.Length - 1) {
 					InteractionInProgress = true;
 					viewController.TabBarController.SelectedIndex++;

@@ -28,7 +28,7 @@ namespace MediaNotes
 
 		[Action ("shootPicture:")]
 		partial void shootPicture (UIKit.UIBarButtonItem sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (textView != null) {

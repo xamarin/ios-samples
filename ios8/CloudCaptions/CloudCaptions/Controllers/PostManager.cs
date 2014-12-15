@@ -28,7 +28,6 @@ namespace CloudCaptions
 		public UIRefreshControl RefreshControl { get; set; }
 		public List<Post> PostCells { get; private set; }
 
-
 		CKDatabase PublicDB {
 			get {
 				return CKContainer.DefaultContainer.PublicCloudDatabase;

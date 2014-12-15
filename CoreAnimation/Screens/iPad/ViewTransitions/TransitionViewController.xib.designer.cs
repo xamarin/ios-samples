@@ -23,7 +23,7 @@ namespace CoreAnimationExample
 
 		[Outlet]
 		UIKit.UIToolbar toolbar { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (btnContents != null) {

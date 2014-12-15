@@ -18,7 +18,7 @@ namespace Example_Drawing.Screens.iPad.DrawOffScreenUsingCGBitmapContext
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// no data
 			IntPtr data = IntPtr.Zero;
 			// size
@@ -32,17 +32,14 @@ namespace Example_Drawing.Screens.iPad.DrawOffScreenUsingCGBitmapContext
 			CGColorSpace colorSpace = CGColorSpace.CreateDeviceRGB ();
 			// aRGB
 			CGImageAlphaInfo alphaType = CGImageAlphaInfo.PremultipliedFirst;
-			
-			
+
 			using (CGBitmapContext context = new CGBitmapContext (data
 				, (int)bitmapSize.Width, (int)bitmapSize.Height, bitsPerComponent
 				, bytesPerRow, colorSpace, alphaType)) {
-				
+
 				// draw whatever here.
 			}
-			
-			
-			
+
 		}
 	}
 }

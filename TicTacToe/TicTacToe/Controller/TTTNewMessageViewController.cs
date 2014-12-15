@@ -94,7 +94,7 @@ namespace TicTacToe
 			UIView.Animate (0.3f, delegate {
 				View.Alpha = 0f;
 				currentMessageSourceWindow.TintAdjustmentMode = UIViewTintAdjustmentMode.Automatic;
-			}, 
+			},
 			                delegate {
 				currentMessageWindow = null;
 				currentMessageSourceWindow.MakeKeyAndVisible ();

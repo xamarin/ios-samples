@@ -16,7 +16,7 @@ namespace GLPaintGameView
 			UIApplication.Main (args);
 		}
 	}
-	
+
 	// The name AppDelegate is referenced in the MainWindow.xib file.
 	public partial class AppDelegate : UIApplicationDelegate
 	{
@@ -38,7 +38,7 @@ namespace GLPaintGameView
 		DateTime lastTime;
 
 		PaintingView drawingView;
-		
+
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -88,7 +88,6 @@ namespace GLPaintGameView
 			// Set the color using OpenGL
 			GL.Color4 (r, g, b, PaintingView.BrushOpacity);
 
-			
 			// Look in the Info.plist file and you'll see the status bar is hidden
 			// Set the style to black so it matches the background of the application
 			app.SetStatusBarStyle (UIStatusBarStyle.Default, false);
@@ -98,18 +97,18 @@ namespace GLPaintGameView
 			//Configure and enable the accelerometer
 			UIAccelerometer.SharedAccelerometer.UpdateInterval = 1.0f / AccelerometerFrequency;
 			UIAccelerometer.SharedAccelerometer.Acceleration += OnAccelerated;
-			
+
 			//Show the window
 			window.MakeKeyAndVisible ();
-	
+
 			return true;
 		}
-	
+
 		// This method is required in iPhoneOS 3.0
 		public override void OnActivated (UIApplication application)
 		{
 		}
-		
+
 		static void HslToRgb (float h, float s, float l, out float r, out float g, out float b)
 		{
 			// Check for saturation. If there isn't any just return the luminance value for each, which results in gray.
@@ -157,7 +156,7 @@ namespace GLPaintGameView
 			g = temp [1];
 			b = temp [2];
 		}
-		
+
 		private void ChangeBrushColor (object sender, EventArgs e)
 		{
 			selectSound.Play ();
@@ -181,7 +180,7 @@ namespace GLPaintGameView
 			myAccelerometer [2] = e.Acceleration.Z * FilteringFactor + myAccelerometer [2] * (1.0 - FilteringFactor);
 #endif
 
-			// Odd; ObjC always uses myAccelerometer[0], while 
+			// Odd; ObjC always uses myAccelerometer[0], while
 			// I'd expect myAccelerometer[0 .. 2]
 			var x = e.Acceleration.X - myAccelerometer [0];
 			var y = e.Acceleration.Y - myAccelerometer [0];

@@ -13,7 +13,7 @@ namespace TicTacToe
 
 		public int Count {
 			get { return count; }
-			set { 
+			set {
 				if (count != value) {
 					CGRect oldRect = rectForCount (count);
 					count = value;
@@ -40,7 +40,7 @@ namespace TicTacToe
 				if ((n + 1) % LineGroupCount == 0) {
 					UIBezierPath path = new UIBezierPath ();
 					path.MoveTo (
-						new CGPoint (x + 0.5f * LineWidth, 
+						new CGPoint (x + 0.5f * LineWidth,
 					             bounds.Top + 0.5f * LineWidth));
 					path.AddLineTo (
 						new CGPoint (x + 0.5f * LineWidth + LineGroupCount * LineMargin,

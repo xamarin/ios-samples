@@ -64,9 +64,9 @@ namespace Quotes
 			}
 		}
 		/*
-		 * Render the page here: we assume we are already in a normalized coordinate system which maps 
+		 * Render the page here: we assume we are already in a normalized coordinate system which maps
 		 * 	our standard aspect ratio (3:4) to (1:1)
-		 * The reason why we do this is to reuse the same drawing code for both the preview and the 
+		 * The reason why we do this is to reuse the same drawing code for both the preview and the
 		 * 	full screen; for full screen rendering, we map the whole view, whereas the preview maps
 		 * 	the whole preview image to a quarter of the page.
 		 * */
@@ -89,7 +89,7 @@ namespace Quotes
 					if (UnstyledDrawing) {
 
 						var text = new NSString (page.StringForParagraph (p));
-	
+
 						var font = UIFont.FromName ("HoeflerText-Regular", 24);
 
 						// draw text with the old legacy path, setting the font color to black.

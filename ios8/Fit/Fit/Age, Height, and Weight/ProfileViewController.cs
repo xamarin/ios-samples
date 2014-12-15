@@ -103,7 +103,7 @@ namespace Fit
 					usersHeight = mostRecentQuantity.GetDoubleValue (heightUnit);
 				}
 
-				InvokeOnMainThread (delegate {  
+				InvokeOnMainThread (delegate {
 					heightValueLabel.Text = numberFormatter.StringFromNumber (new NSNumber (usersHeight));
 				});
 			});
@@ -121,13 +121,13 @@ namespace Fit
 				}
 
 				double usersWeight = 0.0;
-					
+
 				if (mostRecentQuantity != null) {
 					var weightUnit = HKUnit.Pound;
 					usersWeight = mostRecentQuantity.GetDoubleValue (weightUnit);
 				}
 
-				InvokeOnMainThread (delegate {  
+				InvokeOnMainThread (delegate {
 					weightValueLabel.Text = numberFormatter.StringFromNumber (new NSNumber (usersWeight));
 				});
 			}

@@ -35,7 +35,7 @@ namespace AdaptivePhotos
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.RootViewController = traitController;
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 

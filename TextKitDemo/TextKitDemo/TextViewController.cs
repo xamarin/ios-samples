@@ -23,7 +23,6 @@ namespace TextKitDemo
 		{
 			base.ViewDidAppear (animated);
 
-
 			if (notification != null)
 				notification.Dispose ();
 			notification = UIApplication.Notifications.ObserveContentSizeCategoryChanged (delegate {

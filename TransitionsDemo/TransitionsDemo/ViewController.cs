@@ -20,7 +20,7 @@ namespace TransitionsDemo
 
 		public override void ViewDidLoad ()
 		{
-			colors = NSArray.FromNSObjects (UIColor.Red, UIColor.Orange, UIColor.Yellow, 
+			colors = NSArray.FromNSObjects (UIColor.Red, UIColor.Orange, UIColor.Yellow,
 			                                UIColor.Green, UIColor.Blue, UIColor.Purple);
 
 			View.BackgroundColor = colors.GetItem<UIColor> (colorIndex);
@@ -38,12 +38,12 @@ namespace TransitionsDemo
 		}
 
 		[Export ("animationControllerForPresentedController:presentingController:sourceController:")]
-		public IUIViewControllerAnimatedTransitioning PresentingController (UIViewController presented, 
-		                                                                    UIViewController presenting, 
+		public IUIViewControllerAnimatedTransitioning PresentingController (UIViewController presented,
+		                                                                    UIViewController presenting,
 		                                                                    UIViewController source)
 		{
 			if (AppDelegate.SettingsInteractionController != null) {
-				AppDelegate.SettingsInteractionController.WireToViewController (presented, 
+				AppDelegate.SettingsInteractionController.WireToViewController (presented,
 				                                                                CEInteractionOperation.Dismiss);
 			}
 

@@ -21,7 +21,7 @@ namespace QRchestra
 
 		[Action ("showInfo:")]
 		partial void showInfo (Foundation.NSObject sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (previewView != null) {

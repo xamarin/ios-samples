@@ -13,7 +13,7 @@ namespace SearchDemo
         public SearchItemViewController () : base ("SearchItemViewController", null)
         {
         }
-        
+
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();

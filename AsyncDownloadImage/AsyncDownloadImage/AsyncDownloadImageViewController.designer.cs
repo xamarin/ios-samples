@@ -25,7 +25,7 @@ namespace AsyncDownloadImage
 
 		[Outlet]
 		UIKit.UILabel infoLabel { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (clickButton != null) {

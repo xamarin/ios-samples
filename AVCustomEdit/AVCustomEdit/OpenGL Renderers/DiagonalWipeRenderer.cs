@@ -21,7 +21,7 @@ namespace AVCustomEdit
 		{
 			/*
 			 diagonalEnd1 and diagonalEnd2 represent the endpoints of a line which partitions the frame on screen into the two parts.
-			 
+
 			 diagonalEnd1
 			 ------------X-----------
 			 |			 			|
@@ -29,9 +29,9 @@ namespace AVCustomEdit
 			 |						|
 			 |						|
 			 ------------------------
-			 
+
 			 The below conditionals, use the tween factor as a measure to determine the size of the foreground and background quads.
-			 
+
 			 */
 
 			if (tween <= 0.5f) { // The expectation here is that in half the timeRange of the transition we reach the diagonal of the frame
@@ -118,7 +118,7 @@ namespace AVCustomEdit
 				destLumaTexture.Target, destLumaTexture.Name, 0);
 
 			if (GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer) != FramebufferErrorCode.FramebufferComplete) {
-				Console.WriteLine ("Failed to make complete frmaebuffer object: " + 
+				Console.WriteLine ("Failed to make complete frmaebuffer object: " +
 					GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer).ToString ());
 
 				foregroundLumaTexture.Dispose ();
@@ -144,7 +144,7 @@ namespace AVCustomEdit
 				1.0f, -1.0f,
 				1.0f, -1.0f,
 			};
-			// Compute the vertex data for the foreground frame at this instructionLerp 
+			// Compute the vertex data for the foreground frame at this instructionLerp
 			quadVertexCoordinates (ref quadVertexData1, ForegroundTrack, tween);
 
 			// texture data varies from 0 -> 1, whereas vertex data varies from -1 -> 1

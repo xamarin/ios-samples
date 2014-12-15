@@ -29,7 +29,7 @@ namespace SimpleCollectionView
 //        public override SizeF CollectionViewContentSize {
 //            get {
 //                return CollectionView.Bounds.Size;
-//            }       
+//            }
 //        }
     }
 }

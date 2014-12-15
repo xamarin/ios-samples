@@ -20,7 +20,7 @@ namespace GLKBaseEffectDrawing
 			window.RootViewController = controller;
 
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 	}

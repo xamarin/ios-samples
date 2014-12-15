@@ -12,7 +12,7 @@ namespace PinchIt
 		UILabel label;
 
 		[Export ("initWithFrame:")]
-		public Cell (CGRect frame) : base (frame)	
+		public Cell (CGRect frame) : base (frame)
 		{
 			label = new UILabel (new CGRect (CGPoint.Empty, frame.Size)) {
 				AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth,

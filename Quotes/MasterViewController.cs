@@ -50,7 +50,7 @@ namespace Quotes
 			Title = "Pages";
 		}
 
-		/* Create a collection view with a flow layout. Set up the cell, and assign it to 
+		/* Create a collection view with a flow layout. Set up the cell, and assign it to
 		 * our base CollectionView property.
 		  */
 		public override void LoadView ()
@@ -89,7 +89,7 @@ namespace Quotes
 			var pvc = new PageViewController ();
 
 			pvc.controllerPage = pages.ElementAt (indexPath.Row);
-	
+
 			NavigationController.PushViewController (pvc, true);
 		}
 	}

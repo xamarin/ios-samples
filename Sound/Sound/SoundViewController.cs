@@ -29,10 +29,10 @@ namespace Sound
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-			
+
             this.RecordingStatusLabel.Text = "";
             this.LengthOfRecordingLabel.Text = "";
-			
+
             // start recording wireup
             this.StartRecordingButton.TouchUpInside += (sender, e) =>
             {
@@ -54,7 +54,7 @@ namespace Sound
                     Console.WriteLine(error);
                     return;
                 }
-				
+
                 if (!PrepareAudioRecording())
                 {
                     RecordingStatusLabel.Text = "Error preparing";
@@ -66,7 +66,7 @@ namespace Sound
                     RecordingStatusLabel.Text = "Error preparing";
                     return;
                 }
-				
+
                 this.stopwatch = new Stopwatch();
                 this.stopwatch.Start();
                 this.LengthOfRecordingLabel.Text = "";
@@ -75,12 +75,12 @@ namespace Sound
                 this.StopRecordingButton.Enabled = true;
                 this.PlayRecordedSoundButton.Enabled = false;
             };
-			
+
             // stop recording wireup
             this.StopRecordingButton.TouchUpInside += (sender, e) =>
             {
                 this.recorder.Stop();
-				
+
                 this.LengthOfRecordingLabel.Text = string.Format("{0:hh\\:mm\\:ss}", this.stopwatch.Elapsed);
                 this.stopwatch.Stop();
                 this.RecordingStatusLabel.Text = "";
@@ -88,13 +88,13 @@ namespace Sound
                 this.StopRecordingButton.Enabled = false;
                 this.PlayRecordedSoundButton.Enabled = true;
             };
-			
+
             observer = NSNotificationCenter.DefaultCenter.AddObserver(AVPlayerItem.DidPlayToEndTimeNotification, delegate (NSNotification n)
             {
                 player.Dispose();
                 player = null;
             });
-			
+
             // play recorded sound wireup
             this.PlayRecordedSoundButton.TouchUpInside += (sender, e) =>
             {
@@ -102,7 +102,7 @@ namespace Sound
                 {
                     Console.WriteLine("Playing Back Recording " + this.audioFilePath.ToString());
 
-                    // The following line prevents the audio from stopping 
+                    // The following line prevents the audio from stopping
                     // when the device autolocks. will also make sure that it plays, even
                     // if the device is in mute
                     NSError error = null;
@@ -112,7 +112,7 @@ namespace Sound
                         throw new Exception(error.DebugDescription);
                     }
                     //AudioSession.Category = AudioSessionCategory.MediaPlayback;
-					
+
                     this.player = new AVPlayer(this.audioFilePath);
                     this.player.Play();
                 }
@@ -127,14 +127,14 @@ namespace Sound
         public override void ViewDidUnload()
         {
             NSNotificationCenter.DefaultCenter.RemoveObserver(observer);
-			
+
             base.ViewDidUnload();
-			
+
             // Clear any references to subviews of the main view in order to
             // allow the Garbage Collector to collect them sooner.
             //
             // e.g. myOutlet.Dispose (); myOutlet = null;
-			
+
             ReleaseDesignerOutlets();
         }
 
@@ -154,7 +154,7 @@ namespace Sound
 
             var audioSettings = new AudioSettings()
             {
-                SampleRate = 44100.0f, 
+                SampleRate = 44100.0f,
                 Format = AudioToolbox.AudioFormatType.MPEG4AAC,
                 NumberChannels = 1,
                 AudioQuality = AVAudioQuality.High

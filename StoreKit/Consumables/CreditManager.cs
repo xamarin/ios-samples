@@ -7,7 +7,7 @@ namespace Consumables {
 	// should be encrypted and possibly even managed remotely
 	// on your server (with a strategy for offline use).
 	// NSUserDefaults are EASY for iOS users to edit with a little bit of knowledge,
-	// plus this value is backed-up and restored to other iOS devices so the 
+	// plus this value is backed-up and restored to other iOS devices so the
 	// user could easily be spending them twice or something, or worse if they delete
 	// the app before backing up, they'd lose the credits altogether!
 	// Basically, this is ONLY intended as a demo of the StoreKit code,
@@ -19,7 +19,7 @@ namespace Consumables {
 		{
 			monkeyCredits = NSUserDefaults.StandardUserDefaults.IntForKey(defaultKey);
 		}
-		
+
 		public static int Balance() {
 			NSUserDefaults.StandardUserDefaults.Synchronize ();
 			return (int)NSUserDefaults.StandardUserDefaults.IntForKey(defaultKey);
@@ -31,7 +31,7 @@ namespace Consumables {
 		}
 		public static bool Spend (int lessDollars) {
 			if (monkeyCredits >= lessDollars) {
-				monkeyCredits -= lessDollars;	
+				monkeyCredits -= lessDollars;
 				NSUserDefaults.StandardUserDefaults.SetInt(monkeyCredits, defaultKey);
 				NSUserDefaults.StandardUserDefaults.Synchronize ();
 				return true;

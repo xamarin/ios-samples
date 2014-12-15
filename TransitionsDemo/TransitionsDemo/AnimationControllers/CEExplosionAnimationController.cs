@@ -13,15 +13,15 @@ namespace TransitionsDemo.AnimationControllers
 		{
 		}
 
-		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext, 
-		                                        UIViewController fromViewController, UIViewController toViewController, 
+		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
+		                                        UIViewController fromViewController, UIViewController toViewController,
 		                                        UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
 			containerView.AddSubview (toView);
 			containerView.SendSubviewToBack (toView);
 
-			var size = toView.Frame.Size; 
+			var size = toView.Frame.Size;
 			var snapshots = new List<UIView> ();
 
 			float xFactor = 10f;
@@ -30,7 +30,7 @@ namespace TransitionsDemo.AnimationControllers
 			for (nfloat x = 0; x < size.Width; x += size.Width / xFactor) {
 				for (nfloat y = 0; y < size.Height; y += size.Height / yFactor) {
 					var snapshotRegion = new CGRect (x, y, size.Width / xFactor, size.Height / yFactor);
-					UIView snapshot = fromView.ResizableSnapshotView (snapshotRegion, false, UIEdgeInsets.Zero); 
+					UIView snapshot = fromView.ResizableSnapshotView (snapshotRegion, false, UIEdgeInsets.Zero);
 
 					snapshot.Frame = snapshotRegion;
 					containerView.AddSubview (snapshot);

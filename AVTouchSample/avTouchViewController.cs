@@ -37,18 +37,18 @@ namespace avTouch
 			playBtnBg = UIImage.FromFile ("play.png").StretchableImage (12, 0);
 			pauseBtnBg = UIImage.FromFile ("pause.png").StretchableImage (12, 0);
 			_playButton.SetImage (playBtnBg, UIControlState.Normal);
-			
+
 			_duration.AdjustsFontSizeToFitWidth = true;
 			_currentTime.AdjustsFontSizeToFitWidth = true;
 			_progressBar.MinValue = 0;
-			
+
 			var fileUrl = NSBundle.MainBundle.PathForResource ("sample", "m4a");
 			player = AVAudioPlayer.FromUrl (new NSUrl (fileUrl, false));
-			
+
 			player.FinishedPlaying += delegate(object sender, AVStatusEventArgs e) {
 				if (!e.Status)
 					Console.WriteLine ("Did not complete successfully");
-				    
+
 				player.CurrentTime = 0;
 				UpdateViewForPlayerState ();
 			};
@@ -75,10 +75,10 @@ namespace avTouch
 		public void UpdateViewForPlayerState ()
 		{
 			UpdateCurrentTime ();
-			
+
 			if (update_timer != null)
 				update_timer.Invalidate ();
-			
+
 			if (player.Playing) {
 				_playButton.SetImage (pauseBtnBg, UIControlState.Normal);
 				_lvlMeter_in.Player = player;
@@ -117,7 +117,7 @@ namespace avTouch
 		{
 			if (ffwTimer != null)
 				return;
-			
+
 			ffwTimer = NSTimer.CreateRepeatingScheduledTimer (SkipTime, delegate {
 				player.CurrentTime += SkipTimeSeconds;
 				UpdateCurrentTime ();
@@ -132,7 +132,6 @@ namespace avTouch
 			ffwTimer = null;
 		}
 
-
 		partial void volumeSliderMoved (UISlider sender)
 		{
 			player.Volume = sender.Value;
@@ -141,7 +140,7 @@ namespace avTouch
 		partial void rewButtonReleased (UIButton sender)
 		{
 			if (rewTimer == null)
-				return;			
+				return;
 			rewTimer.Invalidate ();
 			rewTimer = null;
 		}
@@ -150,7 +149,7 @@ namespace avTouch
 		{
 			if (rewTimer != null)
 				return;
-			
+
 			rewTimer = NSTimer.CreateRepeatingScheduledTimer (SkipTime, delegate {
 				player.CurrentTime -= SkipTimeSeconds;
 				UpdateCurrentTime ();

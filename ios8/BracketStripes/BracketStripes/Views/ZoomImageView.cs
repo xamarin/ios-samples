@@ -57,7 +57,7 @@ namespace BracketStripes
 		private void PerformSizing ()
 		{
 			scrollView.ZoomScale = scrollView.MinimumZoomScale = scrollView.MaximumZoomScale = 1f;
-	
+
 			var image = imageView.Image;
 			scrollView.ContentSize = image.Size;
 

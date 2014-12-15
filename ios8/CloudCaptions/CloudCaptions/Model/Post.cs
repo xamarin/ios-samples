@@ -33,7 +33,7 @@ namespace CloudCaptions
 			// Fetches the imageRecord this post record references in its ImageRefKey.
 			// Only fetches the values associated with the keys passed in to the NSArray
 			var imgRecordId = ((CKReference)PostRecord[ImageRefKey]).RecordId;
-			CKFetchRecordsOperation imageOp = new CKFetchRecordsOperation (new CKRecordID[]{ 
+			CKFetchRecordsOperation imageOp = new CKFetchRecordsOperation (new CKRecordID[]{
 				imgRecordId
 			});
 			imageOp.DesiredKeys = keys;

@@ -70,7 +70,7 @@ namespace coreimage
 
 						var resultImageTask = Task.Factory.StartNew (() => {
 							var output = filter.Callback ();
-							
+
 							using (var result = context.CreateCGImage (output, output.Extent)) {
 								return UIImage.FromImage (result);
 							}
@@ -102,7 +102,7 @@ namespace coreimage
 		}
 
 		protected string ImagePath (string imageName)
-		{	
+		{
 			var fileName = Path.Combine (ImageDirectory (), imageName);
 			fileName = Path.ChangeExtension (fileName, ".png");
 

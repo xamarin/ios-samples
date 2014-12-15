@@ -15,7 +15,7 @@ namespace AnimationSamples
 		public ImplicitLayerAnimation () : base ("ImplicitLayerAnimation", null)
 		{
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

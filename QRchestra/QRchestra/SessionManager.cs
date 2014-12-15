@@ -15,7 +15,7 @@ namespace QRchestra
 
 		public AVCaptureSession CaptureSession { get; set; }
 		public List<AVMetadataObject> Barcodes { get; set; }
-		
+
 		DispatchQueue delegateCallbackQueue;
 		DispatchQueue sessionQueue;
 
@@ -80,11 +80,11 @@ namespace QRchestra
 
 			NSNotificationCenter.DefaultCenter.AddObserver (null, captureSessionNotification, CaptureSession);
 
-			applicationWillEnterForegroundNotificationObserver = 
+			applicationWillEnterForegroundNotificationObserver =
 				NSNotificationCenter.DefaultCenter.AddObserver (UIApplication.WillEnterForegroundNotification.ToString (),
 			                                                    UIApplication.SharedApplication,
 					NSOperationQueue.CurrentQueue, delegate(NSNotification notification) {
-				applicationWillEnterForeground ();                                          	
+				applicationWillEnterForeground ();
 			});
 
 			videoDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Video);
@@ -192,7 +192,7 @@ namespace QRchestra
 			pipelineRunningTask = 0;
 		}
 
-		public void DidOutputMetadataObjects (AVCaptureOutput captureOutput, 
+		public void DidOutputMetadataObjects (AVCaptureOutput captureOutput,
 		                               AVMetadataObject[] metadataObjects,
 		                               AVCaptureConnection connection)
 		{
@@ -301,7 +301,7 @@ namespace QRchestra
 		class MetadataObjectsDelegate : AVCaptureMetadataOutputObjectsDelegate
 		{
 			public Action<AVCaptureMetadataOutput, AVMetadataObject[], AVCaptureConnection> DidOutputMetadataObjectsAction;
-		
+
 			public override void DidOutputMetadataObjects (AVCaptureMetadataOutput captureOutput, AVMetadataObject[] metadataObjects, AVCaptureConnection connection)
 			{
 				if (DidOutputMetadataObjectsAction != null)

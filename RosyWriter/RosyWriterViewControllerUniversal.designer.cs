@@ -16,7 +16,7 @@ namespace RosyWriter
 
 		[Outlet]
 		UIKit.UIBarButtonItem btnRecord { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (previewView != null) {

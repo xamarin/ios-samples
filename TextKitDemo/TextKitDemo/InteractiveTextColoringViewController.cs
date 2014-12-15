@@ -34,7 +34,6 @@ namespace TextKitDemo
 			layoutManager.AddTextContainer (container);
 			textStorage.AddLayoutManager (layoutManager);
 
-
 			var newTextView = new UITextView (newTextViewRect, container);
 			newTextView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
 			newTextView.ScrollEnabled  = true;

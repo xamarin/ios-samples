@@ -9,7 +9,7 @@ using System.Drawing;
 public partial class TransitionViewController : UIViewController {
 
 	public TransitionViewController () : base ("TransitionViewController", null) {}
-	
+
 	const float kImageHeight = 200f;
 	const float kImageWidth = 250f;
 	const float kTransitionDuration = 0.75f;
@@ -17,7 +17,7 @@ public partial class TransitionViewController : UIViewController {
 
 	UIImageView mainView, flipToView;
 	UIView containerView;
-	
+
 	public override void ViewDidLoad ()
 	{
 		Title = "Transition";
@@ -27,11 +27,11 @@ public partial class TransitionViewController : UIViewController {
 
 		mainView = new UIImageView (new RectangleF (0, 0, kImageWidth, kImageHeight)){
 			Image = UIImage.FromFile ("scene1.jpg")
-		};					
+		};
 		containerView.AddSubview (mainView);
 
 		flipToView = new UIImageView (new RectangleF (0, 0, kImageWidth, kImageHeight)){
-			Image = UIImage.FromFile ("scene2.jpg")				
+			Image = UIImage.FromFile ("scene2.jpg")
 		};
 	}
 
@@ -52,7 +52,7 @@ public partial class TransitionViewController : UIViewController {
 		}
 		UIView.CommitAnimations ();
 	}
-	
+
 	partial void curlAction (UIBarButtonItem sender)
 	{
 		UIView.BeginAnimations (null, IntPtr.Zero);

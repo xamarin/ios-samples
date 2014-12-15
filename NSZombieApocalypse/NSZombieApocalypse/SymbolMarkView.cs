@@ -6,7 +6,7 @@ namespace NSZombieApocalypse
 {
 	public class SymbolMarkView :UIButton
 	{
-		UILabel label; 
+		UILabel label;
 
 		string symbol;
 		public string Symbol {

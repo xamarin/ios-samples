@@ -49,7 +49,7 @@ namespace ToastModern
 
 			var postNavBar = new Layer (screen);
 			postNavBar.LoadImage ("postNavBar.png");
-			postNavBar.Y = -postNavBar.Height; 
+			postNavBar.Y = -postNavBar.Height;
 
 			OnTouchUp = (touches) => {
 				// get position of touch

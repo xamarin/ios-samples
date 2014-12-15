@@ -18,14 +18,13 @@ namespace PaintCode
 		{
 			BackgroundColor = UIColor.White;
 		}
-			
+
 		public override void Draw (CGRect rect)
 		{
 			base.Draw (rect);
 
 			// ------------- START PAINTCODE ----------------
-			
-			
+
 			//// General Declarations
 			using (var colorSpace = CGColorSpace.CreateDeviceRGB ()) {
 				using (var context = UIGraphics.GetCurrentContext ()) {
@@ -63,7 +62,6 @@ namespace PaintCode
 					var dayFont = UIFont.FromName ("Helvetica-Bold", 24);
 					var textContent = "News Headline";
 
-
 //// Oval 11 Drawing
 					var oval11Path = UIBezierPath.FromOval (new CGRect (256.5f, 46.5f, 13, 14));
 					lightBrown.SetFill ();
@@ -73,7 +71,6 @@ namespace PaintCode
 					oval11Path.LineWidth = 1;
 					oval11Path.Stroke ();
 
-
 //// Oval 12 Drawing
 					var oval12Path = UIBezierPath.FromOval (new CGRect (280.5f, 46.5f, 13, 14));
 					lightBrown.SetFill ();
@@ -82,7 +79,6 @@ namespace PaintCode
 					UIColor.Black.SetStroke ();
 					oval12Path.LineWidth = 1;
 					oval12Path.Stroke ();
-
 
 //// Rounded Rectangle Drawing
 					var roundedRectanglePath = UIBezierPath.FromRoundedRect (new CGRect (8.5f, 60.5f, 37, 36), 4);
@@ -97,7 +93,6 @@ namespace PaintCode
 					UIColor.DarkGray.SetStroke ();
 					roundedRectanglePath.LineWidth = 1;
 					roundedRectanglePath.Stroke ();
-
 
 //// Rounded Rectangle 3 Drawing
 					UIBezierPath roundedRectangle3Path = new UIBezierPath ();
@@ -114,8 +109,6 @@ namespace PaintCode
 					UIColor.Red.SetFill ();
 					roundedRectangle3Path.Fill ();
 
-
-
 //// Month Drawing
 					var monthRect = new CGRect (10, 84, 34, 15);
 					UIColor.White.SetFill ();
@@ -126,12 +119,10 @@ namespace PaintCode
 						UITextAlignment.Center
 					);
 
-
 //// Day Drawing
 					var dayRect = new CGRect (0, 58, 54, 31);
 					UIColor.Black.SetFill ();
 					new NSString (dayContent).DrawString (dayRect, dayFont, UILineBreakMode.WordWrap, UITextAlignment.Center);
-
 
 //// Text Drawing
 					var textRect = new CGRect (54, 60, 75, 38);
@@ -142,7 +133,6 @@ namespace PaintCode
 						UILineBreakMode.WordWrap,
 						UITextAlignment.Left
 					);
-
 
 //// Star Drawing
 					UIBezierPath starPath = new UIBezierPath ();
@@ -164,7 +154,6 @@ namespace PaintCode
 					starPath.LineWidth = 1;
 					starPath.Stroke ();
 
-
 //// Blue blob Drawing
 					UIBezierPath blueBlobPath = new UIBezierPath ();
 					blueBlobPath.MoveTo (new CGPoint (256.5f, 16.5f));
@@ -181,7 +170,6 @@ namespace PaintCode
 					blueBlobPath.LineWidth = 1;
 					blueBlobPath.Stroke ();
 
-
 //// Button Drawing
 					var buttonPath = UIBezierPath.FromRoundedRect (new CGRect (54.5f, 10.5f, 163, 31), 4);
 					context.SaveState ();
@@ -196,7 +184,6 @@ namespace PaintCode
 					buttonPath.LineWidth = 1;
 					buttonPath.Stroke ();
 
-
 //// Smiley face Drawing
 					var smileyFacePath = UIBezierPath.FromOval (new CGRect (159.5f, 49.5f, 47, 47));
 					gold.SetFill ();
@@ -205,7 +192,6 @@ namespace PaintCode
 					UIColor.Black.SetStroke ();
 					smileyFacePath.LineWidth = 1;
 					smileyFacePath.Stroke ();
-
 
 //// Oval 2 Drawing
 					var oval2Path = UIBezierPath.FromOval (new CGRect (169.5f, 64.5f, 8, 8));
@@ -216,7 +202,6 @@ namespace PaintCode
 					oval2Path.LineWidth = 1;
 					oval2Path.Stroke ();
 
-
 //// Oval 3 Drawing
 					var oval3Path = UIBezierPath.FromOval (new CGRect (188.5f, 64.5f, 8, 8));
 					UIColor.Black.SetFill ();
@@ -225,7 +210,6 @@ namespace PaintCode
 					UIColor.Black.SetStroke ();
 					oval3Path.LineWidth = 1;
 					oval3Path.Stroke ();
-
 
 //// Bezier 2 Drawing
 					UIBezierPath bezier2Path = new UIBezierPath ();
@@ -236,7 +220,6 @@ namespace PaintCode
 					bezier2Path.LineWidth = 2;
 					bezier2Path.Stroke ();
 
-
 //// Oval 5 Drawing
 					var oval5Path = UIBezierPath.FromOval (new CGRect (256.5f, 52.5f, 36, 33));
 					lightBrown.SetFill ();
@@ -245,7 +228,6 @@ namespace PaintCode
 					UIColor.Black.SetStroke ();
 					oval5Path.LineWidth = 1;
 					oval5Path.Stroke ();
-
 
 //// Oval 6 Drawing
 					var oval6Path = UIBezierPath.FromOval (new CGRect (262.5f, 59.5f, 10, 19));
@@ -256,7 +238,6 @@ namespace PaintCode
 					oval6Path.LineWidth = 1;
 					oval6Path.Stroke ();
 
-
 //// Oval 7 Drawing
 					var oval7Path = UIBezierPath.FromOval (new CGRect (275.5f, 59.5f, 10, 19));
 					UIColor.White.SetFill ();
@@ -265,7 +246,6 @@ namespace PaintCode
 					UIColor.Black.SetStroke ();
 					oval7Path.LineWidth = 1;
 					oval7Path.Stroke ();
-
 
 //// Oval 9 Drawing
 					var oval9Path = UIBezierPath.FromOval (new CGRect (264.5f, 68.5f, 6, 5));
@@ -276,7 +256,6 @@ namespace PaintCode
 					oval9Path.LineWidth = 1;
 					oval9Path.Stroke ();
 
-
 //// Oval 10 Drawing
 					var oval10Path = UIBezierPath.FromOval (new CGRect (277.5f, 68.5f, 6, 5));
 					UIColor.Black.SetFill ();
@@ -285,7 +264,6 @@ namespace PaintCode
 					UIColor.Black.SetStroke ();
 					oval10Path.LineWidth = 1;
 					oval10Path.Stroke ();
-
 
 //// Oval 4 Drawing
 					var oval4Path = UIBezierPath.FromOval (new CGRect (250.5f, 70.5f, 47, 24));
@@ -296,7 +274,6 @@ namespace PaintCode
 					oval4Path.LineWidth = 1;
 					oval4Path.Stroke ();
 
-
 //// Oval 8 Drawing
 					var oval8Path = UIBezierPath.FromOval (new CGRect (267.5f, 77.5f, 9, 4));
 					UIColor.Black.SetFill ();
@@ -306,7 +283,6 @@ namespace PaintCode
 					oval8Path.LineWidth = 1;
 					oval8Path.Stroke ();
 
-
 //// Bezier 5 Drawing
 					UIBezierPath bezier5Path = new UIBezierPath ();
 					bezier5Path.MoveTo (new CGPoint (270.5f, 81.5f));
@@ -314,7 +290,6 @@ namespace PaintCode
 					UIColor.Black.SetStroke ();
 					bezier5Path.LineWidth = 1;
 					bezier5Path.Stroke ();
-
 
 //// Bezier 6 Drawing
 					UIBezierPath bezier6Path = new UIBezierPath ();
@@ -324,11 +299,9 @@ namespace PaintCode
 					bezier6Path.LineWidth = 1;
 					bezier6Path.Stroke ();
 
-
-
 				}
 			}
-			
+
 			// ------------- END PAINTCODE ----------------
 		}
 	}

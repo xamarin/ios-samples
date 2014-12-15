@@ -21,11 +21,11 @@ namespace NonConsumables {
 			theObserver = new CustomPaymentObserver(this);
 			SKPaymentQueue.DefaultQueue.AddTransactionObserver(theObserver);
 		}
-		
+
 		// Verify that the iTunes account can make this purchase for this application
 		public bool CanMakePayments()
 		{
-			return SKPaymentQueue.CanMakePayments;	
+			return SKPaymentQueue.CanMakePayments;
 		}
 
 		// request multiple products at once
@@ -35,7 +35,7 @@ namespace NonConsumables {
 			for (var i = 0; i < productIds.Count; i++) {
 				array[i] = new NSString(productIds[i]);
 			}
-		 	NSSet productIdentifiers = NSSet.MakeNSObjectSet<NSString>(array);			
+		 	NSSet productIdentifiers = NSSet.MakeNSObjectSet<NSString>(array);
 
 			//set up product request for in-app purchase
 			productsRequest  = new SKProductsRequest(productIdentifiers);
@@ -59,7 +59,7 @@ namespace NonConsumables {
 		public void PurchaseProduct(string appStoreProductId)
 		{
 			Console.WriteLine("PurchaseProduct " + appStoreProductId);
-			SKPayment payment = SKPayment.PaymentWithProduct (appStoreProductId);	
+			SKPayment payment = SKPayment.PaymentWithProduct (appStoreProductId);
 			SKPaymentQueue.DefaultQueue.AddPayment (payment);
 		}
 		public void CompleteTransaction (SKPaymentTransaction transaction)
@@ -86,7 +86,7 @@ namespace NonConsumables {
 				Console.WriteLine("User CANCELLED FailedTransaction Code=" + transaction.Error.Code + " " + transaction.Error.LocalizedDescription);
 			else // error!
 				Console.WriteLine("FailedTransaction Code=" + transaction.Error.Code + " " + transaction.Error.LocalizedDescription);
-			
+
 			FinishTransaction(transaction,false);
 		}
 		public void FinishTransaction(SKPaymentTransaction transaction, bool wasSuccessful)
@@ -94,7 +94,7 @@ namespace NonConsumables {
 			Console.WriteLine("FinishTransaction " + wasSuccessful);
 			// remove the transaction from the payment queue.
 			SKPaymentQueue.DefaultQueue.FinishTransaction(transaction);		// THIS IS IMPORTANT - LET'S APPLE KNOW WE'RE DONE !!!!
-			
+
 			using (var pool = new NSAutoreleasePool()) {
 				NSDictionary userInfo = new NSDictionary ("transaction", transaction);
 				if (wasSuccessful) {
@@ -121,14 +121,14 @@ namespace NonConsumables {
 		}
 
 		/// <summary>
-		/// Restore any transactions that occurred for this Apple ID, either on 
+		/// Restore any transactions that occurred for this Apple ID, either on
 		/// this device or any other logged in with that account.
 		/// </summary>
 		public void Restore()
 		{
 			Console.WriteLine (" ** InAppPurchaseManager Restore()");
 			// theObserver will be notified of when the restored transactions start arriving <- AppStore
-			SKPaymentQueue.DefaultQueue.RestoreCompletedTransactions();			
+			SKPaymentQueue.DefaultQueue.RestoreCompletedTransactions();
 		}
 	}
 }

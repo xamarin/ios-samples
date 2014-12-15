@@ -39,7 +39,7 @@ public static class Reachability
         using (var r = new NetworkReachability(host))
         {
             NetworkReachabilityFlags flags;
-			
+
             if (r.TryGetFlags(out flags))
             {
                 return IsReachableWithoutRequiringConnection(flags);
@@ -61,7 +61,7 @@ public static class Reachability
         if (h != null)
             h(null, EventArgs.Empty);
     }
-	
+
     //
     // Returns true if it is possible to reach the AdHoc WiFi network
     // and optionally provides extra network reachability flags as the
@@ -77,7 +77,7 @@ public static class Reachability
             adHocWiFiNetworkReachability.SetNotification(OnChange);
             adHocWiFiNetworkReachability.Schedule(CFRunLoop.Current, CFRunLoop.ModeDefault);
         }
-		
+
         return adHocWiFiNetworkReachability.TryGetFlags(out flags) && IsReachableWithoutRequiringConnection(flags);
     }
 
@@ -100,7 +100,7 @@ public static class Reachability
     {
         NetworkReachabilityFlags flags;
         bool reachable;
-		
+
         if (remoteHostReachability == null)
         {
             remoteHostReachability = new NetworkReachability(HostName);
@@ -108,22 +108,22 @@ public static class Reachability
             // Need to probe before we queue, or we wont get any meaningful values
             // this only happens when you create NetworkReachability from a hostname
             reachable = remoteHostReachability.TryGetFlags(out flags);
-			
+
             remoteHostReachability.SetNotification(OnChange);
             remoteHostReachability.Schedule(CFRunLoop.Current, CFRunLoop.ModeDefault);
         }
         else
-            reachable = remoteHostReachability.TryGetFlags(out flags);			
-		
+            reachable = remoteHostReachability.TryGetFlags(out flags);
+
         if (!reachable)
             return NetworkStatus.NotReachable;
 
         if (!IsReachableWithoutRequiringConnection(flags))
             return NetworkStatus.NotReachable;
-		
+
         if ((flags & NetworkReachabilityFlags.IsWWAN) != 0)
             return NetworkStatus.ReachableViaCarrierDataNetwork;
-				
+
         return NetworkStatus.ReachableViaWiFiNetwork;
     }
 

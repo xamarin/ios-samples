@@ -20,7 +20,7 @@ namespace RegionDefiner
 			title = _title;
 			subtitle = _subtitle;
 		}
-	
+
 		public override string Title {
 			get {
 				return title;

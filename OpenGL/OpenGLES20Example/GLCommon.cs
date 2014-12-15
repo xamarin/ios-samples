@@ -169,7 +169,7 @@ namespace OpenGLES20Example
 			return result;
 		}
 
-		public static void Matrix3DSetOrthoProjection (ref float[] matrix, float left, float right, float bottom, 
+		public static void Matrix3DSetOrthoProjection (ref float[] matrix, float left, float right, float bottom,
 		                                   float top, float near, float far)
 		{
 			matrix [1] = matrix [2] = matrix [3] = matrix [4] = matrix [6] = 0.0f;
@@ -202,7 +202,7 @@ namespace OpenGLES20Example
 		                                                                    float near, float far, float aspectRatio)
 		{
 			float size = near * (float)Math.Tan (radiansFromDegrees (fieldOfVision) / 2.0f);
-			Matrix3DSetFrustumProjection (ref matrix, -size, size, -size / aspectRatio, 
+			Matrix3DSetFrustumProjection (ref matrix, -size, size, -size / aspectRatio,
 			                              size / aspectRatio, near, far);
 		}
 	}

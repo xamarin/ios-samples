@@ -13,10 +13,10 @@
 // distribute, sublicense, and/or sell copies of the Software, and to
 // permit persons to whom the Software is furnished to do so, subject to
 // the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 // MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -65,7 +65,7 @@ namespace AudioConverterFileConverter
         private AVAudioSession session;
 
         // class-level declarations
-		
+
         public override UIWindow Window
         {
             get;
@@ -105,7 +105,7 @@ namespace AudioConverterFileConverter
             {
                 Debug.Print("ERROR: Cannot change audio session category");
             }
-                
+
             session.InputAvailabilityChanged += (object sender, AVStatusEventArgs e) =>
             {
                 var sess = sender as AVAudioSession;
@@ -117,7 +117,7 @@ namespace AudioConverterFileConverter
             session.SetActive(true);
             return true;
         }
-		
+
         // This method is invoked when the application is about to move from active to inactive state.
         // OpenGL applications should use this method to pause.
         public override void OnResignActivation(UIApplication application)
@@ -139,7 +139,7 @@ namespace AudioConverterFileConverter
         {
         }
 
-        /// This method is called when the application is about to terminate. Save data, if needed. 
+        /// This method is called when the application is about to terminate. Save data, if needed.
         public override void WillTerminate(UIApplication application)
         {
         }
@@ -163,7 +163,7 @@ namespace AudioConverterFileConverter
                 if (State == State.Paused)
                 {
                     State = State.Running;
-				
+
                     StateChanged.Set();
                 }
             }
@@ -186,13 +186,13 @@ namespace AudioConverterFileConverter
             lock (StateLock)
             {
                 Debug.Assert(State != State.Done);
-			
+
                 while (State == State.Paused)
                 {
                     StateChanged.WaitOne();
                     wasInterrupted = true;
                 }
-			
+
                 // we must be running or something bad has happened
                 Debug.Assert(State == State.Running);
             }

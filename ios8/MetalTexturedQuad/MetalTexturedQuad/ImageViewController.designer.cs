@@ -12,7 +12,7 @@ namespace MetalTexturedQuad
 	[Register ("ImageViewController")]
 	partial class ImageViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

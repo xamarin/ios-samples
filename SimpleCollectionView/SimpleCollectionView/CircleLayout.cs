@@ -28,9 +28,9 @@ namespace SimpleCollectionView
 			CGSize size = CollectionView.Frame.Size;
 			cellCount = (int)CollectionView.NumberOfItemsInSection (0);
 			center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
-			radius = (float)Math.Min (size.Width, size.Height) / 2.5f;	
+			radius = (float)Math.Min (size.Width, size.Height) / 2.5f;
 		}
-			
+
 		public override CGSize CollectionViewContentSize {
 			get {
 				return CollectionView.Frame.Size;
@@ -70,7 +70,7 @@ namespace SimpleCollectionView
 		}
 
 	}
-	
+
 	public class MyDecorationView : UICollectionReusableView
 	{
 		[Export ("initWithFrame:")]

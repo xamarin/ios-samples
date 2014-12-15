@@ -14,7 +14,7 @@ namespace TextKitDemo
 			Layer.CornerRadius = 5;
 
 			UIApplication.Notifications.ObserveContentSizeCategoryChanged (delegate {
-				CalculateAndSetFonts (); 
+				CalculateAndSetFonts ();
 			});
 		}
 

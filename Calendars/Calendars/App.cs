@@ -26,12 +26,11 @@ namespace Calendars
 		}
 		protected EKEventStore eventStore;
 
-
 		static App ()
 		{
 			current = new App();
 		}
-		protected App () 
+		protected App ()
 		{
 			eventStore = new EKEventStore ( );
 		}

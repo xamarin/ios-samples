@@ -16,7 +16,7 @@ namespace Quotes
 
 		[Outlet]
 		UIKit.UILabel textLabel { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (pageImageView != null) {

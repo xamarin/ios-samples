@@ -14,7 +14,7 @@ namespace TextKitDemo
 	{
 		[Outlet]
 		UIKit.UITextView textView { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (textView != null) {

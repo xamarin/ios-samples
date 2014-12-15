@@ -109,7 +109,6 @@ namespace Lister
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 		}
 
-
 		public override void ViewWillDisappear (bool animated)
 		{
 			base.ViewWillDisappear (animated);

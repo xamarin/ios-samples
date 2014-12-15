@@ -86,13 +86,13 @@ namespace Calendars.Screens.Home
 		}
 
 		/// <summary>
-		/// A convenience method that requests access to the appropriate calendar and 
-		/// shows an alert if access is not granted, otherwise executes the completion 
+		/// A convenience method that requests access to the appropriate calendar and
+		/// shows an alert if access is not granted, otherwise executes the completion
 		/// method.
 		/// </summary>
 		protected void RequestAccess (EKEntityType type, Action completion)
 		{
-			App.Current.EventStore.RequestAccess (type, 
+			App.Current.EventStore.RequestAccess (type,
 				(bool granted, NSError e) => {
 					InvokeOnMainThread (() => {
 						if (granted)
@@ -110,7 +110,7 @@ namespace Calendars.Screens.Home
 		{
 			// create a new EKEventEditViewController. This controller is built in an allows
 			// the user to create a new, or edit an existing event.
-			EventKitUI.EKEventEditViewController eventController = 
+			EventKitUI.EKEventEditViewController eventController =
 				new EventKitUI.EKEventEditViewController ();
 
 			// set the controller's event store - it needs to know where/how to save the event
@@ -130,8 +130,8 @@ namespace Calendars.Screens.Home
 		protected void LaunchModifyEvent ()
 		{
 			// first we need to create an event it so we have one that we know exists
-			// in a real world scenario, we'd likely either a) be modifying an event that 
-			// we found via a query, or 2) we'd do like this, in which we'd automatically 
+			// in a real world scenario, we'd likely either a) be modifying an event that
+			// we found via a query, or 2) we'd do like this, in which we'd automatically
 			// populate the event data, like for say a dr. appt. reminder, or something
 			EKEvent newEvent = EKEvent.FromStore (App.Current.EventStore);
 			// set the alarm for 10 minutes from now
@@ -144,7 +144,7 @@ namespace Calendars.Screens.Home
 
 			// create a new EKEventEditViewController. This controller is built in an allows
 			// the user to create a new, or edit an existing event.
-			EventKitUI.EKEventEditViewController eventController = 
+			EventKitUI.EKEventEditViewController eventController =
 				new EventKitUI.EKEventEditViewController ();
 
 			// set the controller's event store - it needs to know where/how to save the event
@@ -177,9 +177,9 @@ namespace Calendars.Screens.Home
 				eventController.DismissViewController (true, null);
 
 				// action tells you what the user did in the dialog, so you can optionally
-				// do things based on what their action was. additionally, you can get the 
-				// Event from the controller.Event property, so for instance, you could 
-				// modify the event and then resave if you'd like. 
+				// do things based on what their action was. additionally, you can get the
+				// Event from the controller.Event property, so for instance, you could
+				// modify the event and then resave if you'd like.
 				switch (action) {
 
 				case EventKitUI.EKEventEditViewAction.Canceled:

@@ -15,7 +15,7 @@ namespace Example_Drawing.Screens.iPad.HitTesting
 		{
 			Console.WriteLine ("LoadView() Called");
 			base.LoadView ();
-			
+
 			View = new View ();
 			View.BackgroundColor = UIColor.White;
 		}

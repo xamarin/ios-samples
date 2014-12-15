@@ -114,7 +114,7 @@ namespace ButtonTapper3000 {
 
 			if (GameInfo.GameTime == GameTime.Fifteen) {
 				if (GameInfo.GameMode == GameMode.Easy) {
-					gameTypeString = "15secondseasymode";	
+					gameTypeString = "15secondseasymode";
 					gameType = GameTypePlayed.Easy15;
 				} else if (GameInfo.GameMode == GameMode.Hard) {
 					gameTypeString = "15secondshardmode";

@@ -15,7 +15,7 @@ namespace Example_Drawing.Screens.iPad.DrawRectVsPath
 		{
 			Console.WriteLine ("LoadView() Called");
 			base.LoadView ();
-			
+
 			View = new View ();
 		}
 
