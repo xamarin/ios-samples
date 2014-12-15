@@ -159,6 +159,9 @@ namespace MediaNotes
 
 		public string AssociatedComment ()
 		{
+			if (currentPhotoUrl == null)
+				return string.Empty;
+
 			string comment;
 			if (photoMap.TryGetValue (currentPhotoUrl, out comment))
 				Console.WriteLine ("Found comment");
