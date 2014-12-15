@@ -313,11 +313,12 @@ namespace AVCustomEdit
 
 		public override void ObserveValue (NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
 		{
+			var ch = new NSObservedChange (change);
 			if (context == RateObservationContext.Handle) {
 				//TODO: need debug here.
-				float newRate = ((NSNumber)change.ObjectForKey (NSObject.ChangeNewKey)).FloatValue;
-				var oldRateNum = change.ObjectForKey (NSObject.ChangeOldKey);
-				if (oldRateNum.GetType () == typeof(NSNumber) && newRate != ((NSNumber)oldRateNum).FloatValue) {
+				float newRate = ((NSNumber)ch.NewValue).FloatValue;
+				NSNumber oldRateNum = (NSNumber)ch.OldValue;
+				if (oldRateNum != null && newRate != oldRateNum.FloatValue) {
 					playing = (newRate != 0.0f || playRateToRestore != 0.0f);
 					updatePlayPauseButton ();
 					updateScrubber ();
@@ -331,7 +332,7 @@ namespace AVCustomEdit
 					   its duration can be fetched from the item. */
 					addTimeObserverToPlayer ();
 				} else if (playerItem.Status == AVPlayerItemStatus.Failed) {
-					reportError (playerItem.Error);				
+					reportError (playerItem.Error);
 				}
 			} else {
 				base.ObserveValue (keyPath, ofObject, change, context);
