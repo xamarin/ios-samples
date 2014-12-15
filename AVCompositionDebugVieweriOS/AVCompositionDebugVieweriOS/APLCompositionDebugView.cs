@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using CoreGraphics;
 using AVFoundation;
 using CoreAnimation;
-using CoreGraphics;
 using CoreMedia;
 using Foundation;
 using ObjCRuntime;

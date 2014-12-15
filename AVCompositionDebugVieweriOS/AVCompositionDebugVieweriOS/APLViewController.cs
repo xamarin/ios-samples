@@ -242,10 +242,11 @@ namespace AVCompositionDebugVieweriOS
 
 		public override void ObserveValue (NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
 		{
+			var ch = new NSObservedChange (change);
 			if (context == AVCustomEditPlayerViewControllerRateObservationContext.Handle) {
-				float newRate = ((NSNumber)change.ObjectForKey (NSObject.ChangeNewKey)).FloatValue;
-				var oldRateNum = change.ObjectForKey (NSObject.ChangeOldKey);
-				if (oldRateNum.GetType () == typeof(NSNumber) && newRate != ((NSNumber)oldRateNum).FloatValue) {
+				float newRate = ((NSNumber)ch.NewValue).FloatValue;
+				NSNumber oldRateNum = (NSNumber)ch.OldValue;
+				if (oldRateNum != null && newRate != oldRateNum.FloatValue) {
 					UpdatePlayPauseButton ();
 					UpdateScrubber ();
 					UpdateTimeLabel ();

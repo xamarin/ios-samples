@@ -17,7 +17,12 @@ namespace AVCompositionDebugVieweriOS
 
 		public string MediaType { get; set; }
 
-		public string Description { get; set; }
+		readonly string description;
+		public override string Description {
+			get {
+				return description;
+			}
+		}
 
 		public APLCompositionTrackSegmentInfo (AVCompositionTrackSegment segment, string mediaType)
 		{
@@ -30,7 +35,7 @@ namespace AVCompositionDebugVieweriOS
 			MediaType = mediaType;
 
 			NSString url = new NSString (segment.SourceUrl != null ? segment.SourceUrl.AbsoluteString : string.Empty);
-			Description = GetDescription (url.LastPathComponent);
+			description = GetDescription (url.LastPathComponent);
 		}
 
 		private string GetDescription (string lastPathComponent)
