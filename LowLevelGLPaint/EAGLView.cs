@@ -40,9 +40,9 @@ namespace LowLevelGLPaint
 		public EAGLView (CGRect frame, All format, All depth, bool retained) : base (frame)
 		{
 			CAEAGLLayer eaglLayer = (CAEAGLLayer) Layer;
-			eaglLayer.DrawableProperties = NSDictionary.FromObjectsAndKeys (
-				new NSObject [] {NSNumber.FromBoolean (true),           EAGLColorFormat.RGBA8},
-				new NSObject [] {EAGLDrawableProperty.RetainedBacking,  EAGLDrawableProperty.ColorFormat}
+			eaglLayer.DrawableProperties = new NSDictionary (
+				EAGLDrawableProperty.RetainedBacking, true,
+				EAGLDrawableProperty.ColorFormat, EAGLColorFormat.RGBA8
 			);
 
 			_depthFormat = depth;
