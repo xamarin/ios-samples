@@ -9,25 +9,13 @@ namespace NBoxFileProvider
 	[Register ("FileProvider")]
 	public class FileProvider : NSFileProviderExtension
 	{
-		public NSFileCoordinator FileCoordinator {
-			get;
-			private set;
-		}
-
 		public FileProvider ()
 		{
 			Console.WriteLine ("FileProvider ctor");
+
+			// ensure that the DocumentStorageUrl actually exists
 			NSError error;
-
-			FileCoordinator = new NSFileCoordinator ();
-			FileCoordinator.PurposeIdentifier = ProviderIdentifier;
-
-			FileCoordinator.CoordinateWrite (DocumentStorageUrl, 0, out error, (newUrl) => {
-				NSError err;
-
-				// ensure that the DocumentStorageUrl actually exists
-				NSFileManager.DefaultManager.CreateDirectory (newUrl, true, null, out err);
-			});
+			NSFileManager.DefaultManager.CreateDirectory (DocumentStorageUrl, true, null, out error);
 		}
 
 		public override void ProvidePlaceholderAtUrl (NSUrl url, Action<NSError> completionHandler)
@@ -36,18 +24,12 @@ namespace NBoxFileProvider
 
 			var fileName = Path.GetFileName (url.Path);
 			var placeholder = NSFileProviderExtension.GetPlaceholderUrl (DocumentStorageUrl.Append (fileName, false));
-			NSError error;
 
-			// TODO: get file size for file at <url> from model
+			// get file size for file at <url> from model
+			NSError err = null;
 
-			FileCoordinator.CoordinateWrite (placeholder, 0, out error, (newUrl) => {
-				NSError err = null;
-
-				var metadata = new NSMutableDictionary ();
-				metadata.Add (NSUrl.FileSizeKey, new NSNumber (0));
-
-				NSFileProviderExtension.WritePlaceholder (placeholder, metadata, ref err);
-			});
+			var metadata = new NSDictionary (NSUrl.FileSizeKey, 0);
+			NSFileProviderExtension.WritePlaceholder (placeholder, metadata, ref err);
 
 			if (completionHandler != null)
 				completionHandler (null);
@@ -55,7 +37,7 @@ namespace NBoxFileProvider
 
 		public override void StartProvidingItemAtUrl (NSUrl url, Action<NSError> completionHandler)
 		{
-			Console.WriteLine ("FileProvider StartProvidingItemAtUrl");
+			Console.WriteLine ("FileProvider StartProvidingItemAtUrl {0}", url);
 
 			// When this method is called, your extension should begin to download,
 			// create, or otherwise make a local file ready for use.
@@ -63,44 +45,32 @@ namespace NBoxFileProvider
 			// If any errors occur during this process, pass the error to the completion handler.
 			// The system then passes the error back to the original coordinated read.
 
-			NSError error, fileError = null;
+			NSError fileError = null;
 
 			string str = "These are the contents of the file";
 			NSData fileData = ((NSString)str).Encode (NSStringEncoding.UTF8);
 
-			Console.WriteLine ("FileProvider before CoordinateWrite url {0}", url);
-			FileCoordinator.CoordinateWrite (url, 0, out error, (newUrl) => {
-				Console.WriteLine ("before data save");
-				fileData.Save (newUrl, 0, out fileError);
-				Console.WriteLine ("data saved");
-			});
-			Console.WriteLine ("FileProvider after CoordinateWrite");
-			Console.WriteLine ("FileProvider CoordinateWrite error {0}", error);
+			fileData.Save (url, NSDataWritingOptions.Atomic, out fileError);
+			Console.WriteLine ("FileProvider atomic save error {0}", fileError);
 
-			completionHandler (error ?? fileError);
+			completionHandler (fileError);
 		}
 
 		public override void ItemChangedAtUrl (NSUrl url)
 		{
-			Console.WriteLine ("FileProvider ItemChangedAtUrl");
+			Console.WriteLine ("FileProvider ItemChangedAtUrl {0}", url);
 			// Called at some point after the file has changed; the provider may then trigger an upload
-
-			// TODO: mark file at <url> as needing an update in the model; kick off update process
-			Console.WriteLine ("Item changed at URL {0}", url);
+			// mark file at <url> as needing an update in the model; kick off update process
 		}
 
 		public override void StopProvidingItemAtUrl (NSUrl url)
 		{
-			Console.WriteLine ("FileProvider StopProvidingItemAtUrl");
+			Console.WriteLine ("FileProvider StopProvidingItemAtUrl {0}", url);
 			// Called after the last claim to the file has been released. At this point, it is safe for the file provider to remove the content file.
 			// Care should be taken that the corresponding placeholder file stays behind after the content file has been deleted.
+
 			NSError err;
-
-			FileCoordinator.CoordinateWrite (url, NSFileCoordinatorWritingOptions.ForDeleting, out err, (newUrl) => {
-				NSError error;
-				NSFileManager.DefaultManager.Remove (newUrl, out error);
-			});
-
+			NSFileManager.DefaultManager.Remove (url, out err);
 			ProvidePlaceholderAtUrl (url, null);
 		}
 	}
