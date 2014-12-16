@@ -9,6 +9,7 @@ namespace NewBox
 	[Register ("MainViewController")]
 	public class MainViewController : UIViewController
 	{
+		bool documentMovedOrExported = false;
 		NSUrl documentURL;
 		string[] allowedUTIs;
 
@@ -173,35 +174,128 @@ namespace NewBox
 		public void ImportFromDocPicker(UIButton sender)
 		{
 			UIDocumentPickerViewController vc = new UIDocumentPickerViewController (allowedUTIs, UIDocumentPickerMode.Import);
-			SetupDelegateThenPresent (vc);
+			vc.WasCancelled += OnPickerCancel;
+			vc.DidPickDocument += DidPickDocumentForImport;
+
+			PresentViewController (vc, true, ()=> {
+				vc.WasCancelled -= OnPickerCancel;
+				vc.DidPickDocument -= DidPickDocumentForImport;
+			});
+		}
+
+		void DidPickDocumentForImport (object sender, UIDocumentPickedEventArgs e)
+		{
+			// The url refers to a copy of the selected document.
+			// This document is a temporary file.
+			// It remains available only until your application terminates.
+			// To keep a permanent copy, you must move this file to a permanent location inside your sandbox.
+			NSUrl temporaryFileUrl = e.Url;
+			PrintFileContent (temporaryFileUrl);
+		}
+
+		[Export("exportToDocPicker:")]
+		public void ExportToDocPicker(UIButton sender)
+		{
+			if (documentMovedOrExported) {
+				TryShowFileNotExistsError ();
+				return;
+			}
+
+			UIDocumentPickerViewController vc = new UIDocumentPickerViewController (documentURL, UIDocumentPickerMode.ExportToService);
+			vc.WasCancelled += OnPickerCancel;
+			vc.DidPickDocument += DidPickDocumentForExport;
+
+			PresentViewController (vc, true, ()=> {
+				vc.WasCancelled -= OnPickerCancel;
+				vc.DidPickDocument -= DidPickDocumentForExport;
+			});
+		}
+
+		void DidPickDocumentForExport (object sender, UIDocumentPickedEventArgs e)
+		{
+			// The URL refers to the new copy of the exported document at the selected destination.
+			// This URL refers to a file outside your app’s sandbox.
+			// You cannot access this copy; the URL is passed only to indicate success.
+			NSUrl url = e.Url;
+			Console.WriteLine ("{0} exported to new location outside your app’s sandbox {1}", documentURL, url);
+			documentMovedOrExported = true;
 		}
 
 		[Export("openDocPicker:")]
 		public void OpenDocPicker(UIButton sender)
 		{
 			UIDocumentPickerViewController vc = new UIDocumentPickerViewController (allowedUTIs, UIDocumentPickerMode.Open);
-			SetupDelegateThenPresent (vc);
+			vc.WasCancelled += OnPickerCancel;
+			vc.DidPickDocument += DidPickDocumentForOpen;
+			PresentViewController (vc, true, ()=> {
+				vc.WasCancelled -= OnPickerCancel;
+				vc.DidPickDocument -= DidPickDocumentForOpen;
+			});
 		}
 
-		[Export("exportToDocPicker:")]
-		public void ExportToDocPicker(UIButton sender)
+		void DidPickDocumentForOpen (object sender, UIDocumentPickedEventArgs e)
 		{
-			UIDocumentPickerViewController vc = new UIDocumentPickerViewController (documentURL, UIDocumentPickerMode.ExportToService);
-			SetupDelegateThenPresent (vc);
+			// The url refers to the selected document.
+			// The provided url is a security-scoped URL referring to a file outside your app’s sandbox.
+			// For more information on working with external, security-scoped URLs, see Requirements in Document Picker Programming Guide
+			// https://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/DocumentPickerProgrammingGuide/AccessingDocuments/AccessingDocuments.html#//apple_ref/doc/uid/TP40014451-CH2-SW3
+			var securityScopedUrl = e.Url;
+			PrintOutsideFileContent (securityScopedUrl);
 		}
 
 		[Export("moveToDocPicker:")]
 		private void MoveToDocPicker(UIButton sender)
 		{
+			if (documentMovedOrExported) {
+				TryShowFileNotExistsError ();
+				return;
+			}
+
 			UIDocumentPickerViewController vc = new UIDocumentPickerViewController (documentURL, UIDocumentPickerMode.MoveToService);
-			SetupDelegateThenPresent (vc);
+			vc.WasCancelled += OnPickerCancel;
+			vc.DidPickDocument += DidPickDocumentForMove;
+			PresentViewController (vc, true, ()=> {
+				vc.WasCancelled -= OnPickerCancel;
+				vc.DidPickDocument -= DidPickDocumentForMove;
+			});
 		}
 
-		private void SetupDelegateThenPresent(UIDocumentPickerViewController docPickerViewController)
+		void DidPickDocumentForMove (object sender, UIDocumentPickedEventArgs e)
 		{
-			docPickerViewController.WasCancelled += OnPickerCancel;
-			docPickerViewController.DidPickDocument += OnDocumentPicked;
-			PresentViewController (docPickerViewController, true, null);
+			// The URL refers to the document’s new location.
+			// The provided URL is a security-scoped URL referring to a file outside your app’s sandbox.
+			// For more information on working with external, security-scoped URLs, see Requirements in Document Picker Programming Guide.
+			// https://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/DocumentPickerProgrammingGuide/AccessingDocuments/AccessingDocuments.html#//apple_ref/doc/uid/TP40014451-CH2-SW3
+			NSUrl securityScopedUrl = e.Url;
+			PrintOutsideFileContent (securityScopedUrl);
+			documentMovedOrExported = true;
+		}
+
+		void PrintOutsideFileContent(NSUrl securityScopedUrl)
+		{
+			if (!securityScopedUrl.StartAccessingSecurityScopedResource ())
+				return;
+
+			PrintFileContent (securityScopedUrl);
+
+			securityScopedUrl.StopAccessingSecurityScopedResource ();
+		}
+
+		void PrintFileContent(NSUrl url)
+		{
+			NSData data = null;
+			NSError error = null;
+			NSFileCoordinator fileCoordinator = new NSFileCoordinator ();
+			fileCoordinator.CoordinateRead (url, (NSFileCoordinatorReadingOptions)0, out error, newUrl => {
+				data = NSData.FromUrl(newUrl);
+			});
+
+			if (error != null) {
+				Console.WriteLine ("CoordinateRead error {0}", error);
+			} else {
+				Console.WriteLine ("File name: {0}", url.LastPathComponent);
+				Console.WriteLine (data);
+			}
 		}
 
 		#endregion
@@ -288,29 +382,35 @@ namespace NewBox
 
 		void OnDocumentPicked (object sender, UIDocumentPickedEventArgs e)
 		{
-			Console.WriteLine ("OnDocumentPicked called");
-			bool startAccessingWorked = e.Url.StartAccessingSecurityScopedResource ();
+			Console.WriteLine ("OnDocumentPicked {0}", e.Url);
+			if (!e.Url.StartAccessingSecurityScopedResource ())
+				return;
 
-			NSUrl ubiquityURL = NSFileManager.DefaultManager.GetUrlForUbiquityContainer (null);
-			Console.WriteLine ("ubiquityURL {0}", ubiquityURL);
-			Console.WriteLine ("start {0}", startAccessingWorked);
+			NSData data = null;
+			NSError error = null;
+			NSFileCoordinator fileCoordinator = new NSFileCoordinator ();
+			fileCoordinator.CoordinateRead (e.Url, (NSFileCoordinatorReadingOptions)0, out error, newUrl => {
+				data = NSData.FromUrl(newUrl);
+			});
 
-			// TODO: This should work but doesn't
-//			NSFileCoordinator fileCoordinator = new NSFileCoordinator ();
-//			NSError error = null;
-//			Console.WriteLine ("MainViewController before CoordinateRead {0}", e.Url);
-//			fileCoordinator.CoordinateRead (e.Url, (NSFileCoordinatorReadingOptions)0, out error, newUrl => {
-//				Console.WriteLine ("MainViewController inside CoordinateRead");
-//				NSData data = NSData.FromUrl(newUrl);
-//				Console.WriteLine ("error {0}", error);
-//				Console.WriteLine ("data {0}", data);
-//			});
-//			Console.WriteLine ("MainViewController after CoordinateRead error {0}", error);
+			if (error != null) {
+				Console.WriteLine ("CoordinateRead error {0}", error);
+			} else {
+				Console.WriteLine ("File name: {0}", e.Url.LastPathComponent);
+				Console.WriteLine (data);
+			}
 
 			e.Url.StopAccessingSecurityScopedResource ();
 		}
 
 		#endregion
+
+		void TryShowFileNotExistsError()
+		{
+			UIAlertController alert = UIAlertController.Create (documentURL.LastPathComponent, "File doesn't exist. Maybe you moved or Exported it earlier. Re run the app", UIAlertControllerStyle.Alert);
+			alert.AddAction (UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, null));
+			PresentViewController (alert, true, null);
+		}
 
 		void Unsibscribe(UIDocumentMenuViewController menu)
 		{
@@ -325,4 +425,3 @@ namespace NewBox
 		}
 	}
 }
-

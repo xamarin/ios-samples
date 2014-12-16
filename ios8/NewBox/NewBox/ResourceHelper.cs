@@ -11,7 +11,7 @@ namespace NewBox
 	{
 		public static async Task<NSUrl> CopyResourceToCloud()
 		{
-			var bundleFileUrl = NSBundle.MainBundle.GetUrlForResource ("Logo", "png");
+			var bundleFileUrl = NSBundle.MainBundle.GetUrlForResource ("TextDocument", "txt");
 			var cloudFileUrl = GetCloudUrlFor (bundleFileUrl);
 
 			// We can't just move file from bunlde folder to iCloud container (will produce error: operation is not permited)
