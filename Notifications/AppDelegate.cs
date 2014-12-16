@@ -58,7 +58,15 @@ namespace Example_Notifications
 			UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
 			// register for remote notifications
 			UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
-			
+
+			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
+				var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes (
+					UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
+				);
+
+				app.RegisterUserNotificationSettings (notificationSettings);
+			}
+
 			//
 			return true;
 		}
