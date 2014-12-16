@@ -9,7 +9,6 @@ namespace NewBox
 	[Register ("MainViewController")]
 	public class MainViewController : UIViewController
 	{
-		bool documentMovedOrExported = false;
 		NSUrl documentURL;
 		string[] allowedUTIs;
 
@@ -165,7 +164,8 @@ namespace NewBox
 			};
 			#endregion
 
-			documentURL = await ResourceHelper.CopyResourceToCloud ();
+			var bundleFileUrl = NSBundle.MainBundle.GetUrlForResource ("TextDocument", "txt");
+			documentURL = await ResourceHelper.CopyToDocumentsDirectoryAsync (bundleFileUrl);
 		}
 
 		#region Document picker's actions
@@ -176,11 +176,7 @@ namespace NewBox
 			UIDocumentPickerViewController vc = new UIDocumentPickerViewController (allowedUTIs, UIDocumentPickerMode.Import);
 			vc.WasCancelled += OnPickerCancel;
 			vc.DidPickDocument += DidPickDocumentForImport;
-
-			PresentViewController (vc, true, ()=> {
-				vc.WasCancelled -= OnPickerCancel;
-				vc.DidPickDocument -= DidPickDocumentForImport;
-			});
+			PresentViewController (vc, true, null);
 		}
 
 		void DidPickDocumentForImport (object sender, UIDocumentPickedEventArgs e)
@@ -196,19 +192,14 @@ namespace NewBox
 		[Export("exportToDocPicker:")]
 		public void ExportToDocPicker(UIButton sender)
 		{
-			if (documentMovedOrExported) {
-				TryShowFileNotExistsError ();
+			if (TryShowFileNotExistsError ())
 				return;
-			}
 
 			UIDocumentPickerViewController vc = new UIDocumentPickerViewController (documentURL, UIDocumentPickerMode.ExportToService);
 			vc.WasCancelled += OnPickerCancel;
 			vc.DidPickDocument += DidPickDocumentForExport;
 
-			PresentViewController (vc, true, ()=> {
-				vc.WasCancelled -= OnPickerCancel;
-				vc.DidPickDocument -= DidPickDocumentForExport;
-			});
+			PresentViewController (vc, true, null);
 		}
 
 		void DidPickDocumentForExport (object sender, UIDocumentPickedEventArgs e)
@@ -218,7 +209,6 @@ namespace NewBox
 			// You cannot access this copy; the URL is passed only to indicate success.
 			NSUrl url = e.Url;
 			Console.WriteLine ("{0} exported to new location outside your app’s sandbox {1}", documentURL, url);
-			documentMovedOrExported = true;
 		}
 
 		[Export("openDocPicker:")]
@@ -227,10 +217,7 @@ namespace NewBox
 			UIDocumentPickerViewController vc = new UIDocumentPickerViewController (allowedUTIs, UIDocumentPickerMode.Open);
 			vc.WasCancelled += OnPickerCancel;
 			vc.DidPickDocument += DidPickDocumentForOpen;
-			PresentViewController (vc, true, ()=> {
-				vc.WasCancelled -= OnPickerCancel;
-				vc.DidPickDocument -= DidPickDocumentForOpen;
-			});
+			PresentViewController (vc, true, null);
 		}
 
 		void DidPickDocumentForOpen (object sender, UIDocumentPickedEventArgs e)
@@ -246,18 +233,13 @@ namespace NewBox
 		[Export("moveToDocPicker:")]
 		private void MoveToDocPicker(UIButton sender)
 		{
-			if (documentMovedOrExported) {
-				TryShowFileNotExistsError ();
+			if (TryShowFileNotExistsError ())
 				return;
-			}
 
 			UIDocumentPickerViewController vc = new UIDocumentPickerViewController (documentURL, UIDocumentPickerMode.MoveToService);
 			vc.WasCancelled += OnPickerCancel;
 			vc.DidPickDocument += DidPickDocumentForMove;
-			PresentViewController (vc, true, ()=> {
-				vc.WasCancelled -= OnPickerCancel;
-				vc.DidPickDocument -= DidPickDocumentForMove;
-			});
+			PresentViewController (vc, true, null);
 		}
 
 		void DidPickDocumentForMove (object sender, UIDocumentPickedEventArgs e)
@@ -268,7 +250,6 @@ namespace NewBox
 			// https://developer.apple.com/library/ios/documentation/FileManagement/Conceptual/DocumentPickerProgrammingGuide/AccessingDocuments/AccessingDocuments.html#//apple_ref/doc/uid/TP40014451-CH2-SW3
 			NSUrl securityScopedUrl = e.Url;
 			PrintOutsideFileContent (securityScopedUrl);
-			documentMovedOrExported = true;
 		}
 
 		void PrintOutsideFileContent(NSUrl securityScopedUrl)
@@ -373,55 +354,26 @@ namespace NewBox
 
 		#endregion
 
-		#region Document picker's handlers
-
 		void OnPickerCancel (object sender, EventArgs e)
 		{
 			Console.WriteLine ("Cancel pick document");
 		}
 
-		void OnDocumentPicked (object sender, UIDocumentPickedEventArgs e)
+		bool TryShowFileNotExistsError()
 		{
-			Console.WriteLine ("OnDocumentPicked {0}", e.Url);
-			if (!e.Url.StartAccessingSecurityScopedResource ())
-				return;
+			if (NSFileManager.DefaultManager.FileExists (documentURL.Path))
+				return false;
 
-			NSData data = null;
-			NSError error = null;
-			NSFileCoordinator fileCoordinator = new NSFileCoordinator ();
-			fileCoordinator.CoordinateRead (e.Url, (NSFileCoordinatorReadingOptions)0, out error, newUrl => {
-				data = NSData.FromUrl(newUrl);
-			});
-
-			if (error != null) {
-				Console.WriteLine ("CoordinateRead error {0}", error);
-			} else {
-				Console.WriteLine ("File name: {0}", e.Url.LastPathComponent);
-				Console.WriteLine (data);
-			}
-
-			e.Url.StopAccessingSecurityScopedResource ();
-		}
-
-		#endregion
-
-		void TryShowFileNotExistsError()
-		{
 			UIAlertController alert = UIAlertController.Create (documentURL.LastPathComponent, "File doesn't exist. Maybe you moved or Exported it earlier. Re run the app", UIAlertControllerStyle.Alert);
 			alert.AddAction (UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, null));
 			PresentViewController (alert, true, null);
+			return true;
 		}
 
 		void Unsibscribe(UIDocumentMenuViewController menu)
 		{
 			menu.WasCancelled -= OnPickerSelectionCancel;
 			menu.DidPickDocumentPicker -= OnPickerPicked;
-		}
-
-		void Unsibscribe(UIDocumentPickerViewController picker)
-		{
-			picker.WasCancelled -= OnPickerCancel;
-			picker.DidPickDocument -= OnDocumentPicked;
 		}
 	}
 }
