@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +33,8 @@ namespace Example_Notifications.Screens.iPhone.Home
 				UILocalNotification notification = new UILocalNotification ();
 
 				//---- set the fire date (the date time in which it will fire)
-				notification.FireDate = (NSDate)DateTime.Now.AddSeconds (15);
+				var fireDate = DateTime.Now.AddSeconds (60);
+				notification.FireDate = (NSDate)fireDate;
 
 				//---- configure the alert stuff
 				notification.AlertAction = "View Alert";
