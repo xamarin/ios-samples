@@ -3,6 +3,7 @@ using System.Drawing;
 
 using Foundation;
 using UIKit;
+using System.Text;
 
 namespace NBox
 {
@@ -32,7 +33,22 @@ namespace NBox
 			//  If you do not provide a File Provider extension, it returns null
 			Console.WriteLine ("DocumentStorageUrl={0}", DocumentStorageUrl);
 
+			FillMovedImportedList ();
 			SetupMoveExportButton (mode);
+		}
+
+		void FillMovedImportedList()
+		{
+			NSError error;
+			string[] files = NSFileManager.DefaultManager.GetDirectoryContent (DocumentStorageUrl.Path, out error);
+
+			var sb = new StringBuilder ();
+			foreach (var f in files)
+				sb.AppendFormat ("* {0}", f);
+
+			Console.WriteLine ("before MovedImportedList.Text = sb.ToString ();");
+			MovedImportedList.Text = sb.ToString ();
+			Console.WriteLine ("after MovedImportedList.Text = sb.ToString ();");
 		}
 
 		void SetupMoveExportButton(UIDocumentPickerMode mode)
@@ -61,9 +77,11 @@ namespace NBox
 
 		void ShowMoveExportButton(string title)
 		{
+			Console.WriteLine ("enter ShowMoveExportButton");
 			MoveExportBtn.Hidden = false;
 			MoveExportBtn.Enabled = true;
 			MoveExportBtn.SetTitle (title, UIControlState.Normal);
+			Console.WriteLine ("exit ShowMoveExportButton");
 		}
 
 		partial void OpenDocument (NSObject sender)
