@@ -42,13 +42,14 @@ namespace NBox
 			NSError error;
 			string[] files = NSFileManager.DefaultManager.GetDirectoryContent (DocumentStorageUrl.Path, out error);
 
+			int number = 1;
 			var sb = new StringBuilder ();
 			foreach (var f in files)
-				sb.AppendFormat ("* {0}", f);
+				sb.AppendFormat ("{0}. {1}", number++, f);
 
-			Console.WriteLine ("before MovedImportedList.Text = sb.ToString ();");
+			Console.WriteLine ("Moved or Imported:");
+			Console.WriteLine (sb);
 			MovedImportedList.Text = sb.ToString ();
-			Console.WriteLine ("after MovedImportedList.Text = sb.ToString ();");
 		}
 
 		void SetupMoveExportButton(UIDocumentPickerMode mode)
@@ -77,11 +78,9 @@ namespace NBox
 
 		void ShowMoveExportButton(string title)
 		{
-			Console.WriteLine ("enter ShowMoveExportButton");
 			MoveExportBtn.Hidden = false;
 			MoveExportBtn.Enabled = true;
 			MoveExportBtn.SetTitle (title, UIControlState.Normal);
-			Console.WriteLine ("exit ShowMoveExportButton");
 		}
 
 		partial void OpenDocument (NSObject sender)
@@ -99,10 +98,19 @@ namespace NBox
 
 		partial void OnExportMoveClicked(NSObject sender)
 		{
-			Console.WriteLine ("OpenDocumentMoveExportClicked");
-			var storeUrl = DocumentStorageUrl.Append(OriginalUrl.LastPathComponent, false);
+			Console.WriteLine ("DocumentPickerViewController MoveExportClicked");
+
+			// Export/Move Document Picker mode:
+			// Before calling DismissGrantingAccess method, copy the file to the selected destination.
+			// Your extensions also need to track the file and make sure it is synced to your server (if needed).
+			// After the copy is complete, call DismissGrantingAccess method, and provide the URL to the new copy
+
+			NSError error;
+			var destinationUrl = DocumentStorageUrl.Append(OriginalUrl.LastPathComponent, false);
+			NSFileManager.DefaultManager.Copy(OriginalUrl.Path, destinationUrl.Path, out error);
+
 			// Provide here a destination Url
-			DismissGrantingAccess(storeUrl);
+			DismissGrantingAccess(destinationUrl);
 		}
 	}
 }

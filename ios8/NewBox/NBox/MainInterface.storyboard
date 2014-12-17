@@ -38,7 +38,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbZ-Y6-eyD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbZ-Y6-eyD">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -78,9 +78,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="350" height="400"/>
                     <connections>
-                        <outlet property="MoveExportBtn" destination="3" id="name-outlet-3"/>
-                        <outlet property="movedImportedList" destination="AbZ-Y6-eyD" id="Tbe-DU-jDl"/>
-                        <outlet property="view" destination="AbZ-Y6-eyD" id="r4e-Md-PWv"/>
+                        <outlet property="MoveExportBtn" destination="3" id="3in-6p-45f"/>
+                        <outlet property="MovedImportedList" destination="AbZ-Y6-eyD" id="Tlq-uU-WS8"/>
+                        <outlet property="view" destination="3" id="vv9-r6-BcI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UoZ-ya-W3e" userLabel="First Responder" sceneMemberID="firstResponder"/>
