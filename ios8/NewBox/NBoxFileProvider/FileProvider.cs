@@ -45,15 +45,15 @@ namespace NBoxFileProvider
 			// If any errors occur during this process, pass the error to the completion handler.
 			// The system then passes the error back to the original coordinated read.
 
-			NSError fileError = null;
-
 			string str = "These are the contents of the file";
 			NSData fileData = ((NSString)str).Encode (NSStringEncoding.UTF8);
 
-			fileData.Save (url, NSDataWritingOptions.Atomic, out fileError);
-			Console.WriteLine ("FileProvider atomic save error {0}", fileError);
+			NSError error = null;
+			fileData.Save (url, NSDataWritingOptions.Atomic, out error);
+			if(error != null)
+				Console.WriteLine ("FileProvider atomic save error {0}", error);
 
-			completionHandler (fileError);
+			completionHandler (error);
 		}
 
 		public override void ItemChangedAtUrl (NSUrl url)

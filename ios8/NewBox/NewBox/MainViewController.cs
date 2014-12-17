@@ -300,6 +300,9 @@ namespace NewBox
 		[Export("exportToDocMenu:")]
 		public void ExportToDocMenu(UIButton sender)
 		{
+			if (TryShowFileNotExistsError ())
+				return;
+
 			UIDocumentMenuViewController vc = new UIDocumentMenuViewController (documentURL, UIDocumentPickerMode.ExportToService);
 			SetupDelegateThenPresent (vc, sender);
 		}
@@ -307,6 +310,9 @@ namespace NewBox
 		[Export("moveToDocMenu:")]
 		public void MoveToDocMenu(UIButton sender)
 		{
+			if (TryShowFileNotExistsError ())
+				return;
+
 			UIDocumentMenuViewController vc = new UIDocumentMenuViewController (documentURL, UIDocumentPickerMode.MoveToService);
 			SetupDelegateThenPresent (vc, sender);
 		}
@@ -348,8 +354,27 @@ namespace NewBox
 			var menu = (UIDocumentMenuViewController)sender;
 			Unsibscribe (menu);
 
-			e.DocumentPicker.WasCancelled += OnPickerCancel;
-			PresentViewController (e.DocumentPicker, true, null);
+			var documentPicker = e.DocumentPicker;
+			documentPicker.WasCancelled += OnPickerCancel;
+			switch (documentPicker.DocumentPickerMode) {
+				case UIDocumentPickerMode.Import:
+					documentPicker.DidPickDocument += DidPickDocumentForImport;
+					break;
+
+				case UIDocumentPickerMode.Open:
+					documentPicker.DidPickDocument += DidPickDocumentForOpen;
+					break;
+
+				case UIDocumentPickerMode.ExportToService:
+					documentPicker.DidPickDocument += DidPickDocumentForExport;
+					break;
+
+				case UIDocumentPickerMode.MoveToService:
+					documentPicker.DidPickDocument += DidPickDocumentForMove;
+					break;
+			}
+
+			PresentViewController (documentPicker, true, null);
 		}
 
 		#endregion
