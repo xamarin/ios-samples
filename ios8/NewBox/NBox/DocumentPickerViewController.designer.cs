@@ -6,7 +6,6 @@
 //
 using Foundation;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace NBox
 {
@@ -14,10 +13,10 @@ namespace NBox
 	partial class DocumentPickerViewController
 	{
 		[Outlet]
-		UILabel MovedImportedList { get; set; }
+		UIKit.UILabel MovedImportedList { get; set; }
 
-		[Export("MoveExportBtn")]
-		public UIButton MoveExportBtn { get; set; }
+		[Outlet]
+		UIKit.UIButton MoveExportBtn { get; set; }
 
 		[Action ("OnExportMoveClicked:")]
 		partial void OnExportMoveClicked (Foundation.NSObject sender);
@@ -27,6 +26,11 @@ namespace NBox
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (MoveExportBtn != null) {
+				MoveExportBtn.Dispose ();
+				MoveExportBtn = null;
+			}
+
 			if (MovedImportedList != null) {
 				MovedImportedList.Dispose ();
 				MovedImportedList = null;
