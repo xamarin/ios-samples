@@ -41,6 +41,10 @@ namespace NBox
 		{
 			NSError error;
 			string[] files = NSFileManager.DefaultManager.GetDirectoryContent (DocumentStorageUrl.Path, out error);
+			if (error != null) {
+				Console.WriteLine ("GetDirectoryContent error: {0}", error);
+				return;
+			}
 
 			int number = 1;
 			var sb = new StringBuilder ();
