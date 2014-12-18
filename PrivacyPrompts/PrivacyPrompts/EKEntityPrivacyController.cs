@@ -1,6 +1,6 @@
-﻿using System;
-using MonoTouch.EventKit;
-using MonoTouch.Foundation;
+using System;
+using EventKit;
+using Foundation;
 
 namespace PrivacyPrompts
 {

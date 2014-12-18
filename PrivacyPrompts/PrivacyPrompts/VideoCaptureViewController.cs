@@ -1,5 +1,5 @@
-﻿using System;
-using MonoTouch.AVFoundation;
+using System;
+using AVFoundation;
 using System.Threading.Tasks;
 
 namespace PrivacyPrompts

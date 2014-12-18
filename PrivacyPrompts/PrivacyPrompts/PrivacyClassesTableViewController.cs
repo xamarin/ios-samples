@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MonoTouch.AVFoundation;
-using MonoTouch.Accounts;
-using MonoTouch.AdSupport;
-using MonoTouch.AddressBook;
-using MonoTouch.AssetsLibrary;
-using MonoTouch.CoreBluetooth;
-using MonoTouch.CoreLocation;
-using MonoTouch.EventKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using AVFoundation;
+using Accounts;
+using AdSupport;
+using AddressBook;
+using AssetsLibrary;
+using CoreBluetooth;
+using CoreLocation;
+using EventKit;
+using Foundation;
+using UIKit;
 
 namespace PrivacyPrompts {
 
@@ -19,7 +19,7 @@ namespace PrivacyPrompts {
 		{
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return 1 + (int) DataClass.Advertising;
 		}

@@ -1,6 +1,6 @@
-﻿using System;
-using MonoTouch.Accounts;
-using MonoTouch.Foundation;
+using System;
+using Accounts;
+using Foundation;
 
 namespace PrivacyPrompts
 {

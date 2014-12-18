@@ -1,10 +1,10 @@
-﻿using System;
-using MonoTouch.CoreMotion;
+using System;
+using CoreMotion;
 using System.Threading.Tasks;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
+using CoreGraphics;
 
 namespace PrivacyPrompts
 {
@@ -31,7 +31,7 @@ namespace PrivacyPrompts
 
 		void AddStepsMessage()
 		{
-			stepsMessage = new UILabel (RectangleF.Empty);
+			stepsMessage = new UILabel (CGRect.Empty);
 			stepsMessage.TranslatesAutoresizingMaskIntoConstraints = false;
 			stepsMessage.Lines = 0;
 			stepsMessage.Font = UIFont.SystemFontOfSize (UIFont.SmallSystemFontSize);
