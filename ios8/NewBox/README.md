@@ -19,9 +19,8 @@ Document Provider extension consists in two parts: Document picker extension and
 
 Setup
 -----
-You need to setup an Application ID with App Groups and iCloud. Then you need to generate a provisioning profile linked to the newly created AppID.
-TODO: Provide a link when the official doc will be available.
-To setup AppID, App Groups, Provisioning profiles please look at ...
+You need to setup an Application IDs with App Groups and iCloud. Then you need to generate a provisioning profile linked to the newly created AppID.
+To setup AppIDs, App Groups, Provisioning profiles please look at [this introduction]
 
 iOS 8.0 provides a single and built-in iCloud storage provider. The goal of this sample is to add an other storage provider.
 
@@ -41,7 +40,7 @@ Open/Import documents from iCloud document provider with Document Picker
 * Run the NewBox app.
 * Choose `Open` or `Import`.
 * Choose a file and tap on it. `UIDocumentViewController` will be dismissed.
-* Look at the console output to see the results.
+* Look at the device's console output to see the results (file content).
 
 Export/Move documents to iCloud document provider with Document Picker
 ------------
@@ -54,13 +53,11 @@ Export/Move documents to iCloud document provider with Document Picker
 
 Open/Import documents from NBox file provider extension
 -------------------------------------------------------
-This section contains known issues. Look at known issues for details.
-
 * Run the NewBox app.
 * Choose `Open/Import`.
 * Enable your extension. Tap on `Locations` then `More ...`. Enable extension. Tap `Done`.
 * Choose `Open`/`Import` again. Tap on "Locations" and choose your extension.
-* Tap on `Untitled.txt` button.
+* Tap on `Untitled.txt` button. At this point file provider will provide a file for you.
 * Look at the console output.
 
 Export/Move document to NBox file provider extension
@@ -70,11 +67,11 @@ Export/Move document to NBox file provider extension
 * Enable your extension. Tap on `Locations` then `More ...`. Enable extension. Tap `Done`.
 * Choose `Export/Move` again. Tap on `Locations` choose your extension.
 * Tap on `Export/Move to this location` button.
-* Look at the console output. You will see output from callback handler, but the actual document will not be exported/moved (this require additional steps from you as a developer).
+* Go to NBox user interface again and you will see the imported file.
 
-Known issues
-------------
-By design you must be able to see document's content when you `Open` or `Import` it. However the Apple's sample blows up. You can find the chunk of commented code inside `OnDocumentPicked` method within `NewBox` project. Because of this you will see only console's messages from `OnDocumentPicked` method.
+Note
+----
+Don't use `NSFileCoordinator` inside your app extension. Apple provide an [explanation](https://developer.apple.com/library/ios/technotes/tn2408/_index.html#//apple_ref/doc/uid/DTS40014939)
 
 Build Requirements
 ------------------
@@ -97,3 +94,5 @@ Ported to Xamarin.iOS by Rustam Zaitov.
 [Document Picker Programming Guide]:https://developer.apple.com/library/prerelease/ios/documentation/FileManagement/Conceptual/DocumentPickerProgrammingGuide/AccessingDocuments/AccessingDocuments.html
 
 [iOS Dev Center]:https://developer.apple.com/devcenter/ios/index.action
+
+[this introduction]:http://developer.xamarin.com/guides/ios/platform_features/introduction_to_the_document_picker/
