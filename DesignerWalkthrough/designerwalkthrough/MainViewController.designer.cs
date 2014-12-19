@@ -5,8 +5,8 @@
 // Manual changes to this file will not be maintained.
 //
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.CodeDom.Compiler;
 
 namespace DesignerWalkthrough
@@ -16,7 +16,7 @@ namespace DesignerWalkthrough
 	{
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UIButton monkeyButton { get; set; }
+		UIKit.UIButton monkeyButton { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{

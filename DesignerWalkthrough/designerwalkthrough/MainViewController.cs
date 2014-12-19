@@ -1,6 +1,6 @@
-﻿using MonoTouch.UIKit;
+using UIKit;
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace DesignerWalkthrough
 {
