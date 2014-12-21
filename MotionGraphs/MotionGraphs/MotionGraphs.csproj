@@ -99,7 +99,6 @@
     </Compile>
     <Compile Include="GraphView.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="GraphViewController.xib" />
   </ItemGroup>

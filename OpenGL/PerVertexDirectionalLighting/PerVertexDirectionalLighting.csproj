@@ -91,7 +91,6 @@
     <Compile Include="GLView.cs" />
     <Compile Include="GLViewController.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Shader.fsh" />
     <BundleResource Include="Shader.vsh" />

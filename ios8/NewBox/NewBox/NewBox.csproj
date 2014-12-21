@@ -104,8 +104,8 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\TestUIDocument_0.txt" />
     <BundleResource Include="Resources\Logo.png" />
+    <BundleResource Include="Resources\TextDocument.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

@@ -70,7 +70,6 @@
     <Compile Include="Classes\AppDelegate.cs" />
     <Compile Include="Other Sources\Main.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="Images\image1.png" />
     <Content Include="Images\image2.png" />

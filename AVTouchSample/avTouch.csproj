@@ -78,7 +78,6 @@
     <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
     <InterfaceDefinition Include="avTouchViewController.xib" xmlns="" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="Default.png" />
     <Content Include="icon.png" />

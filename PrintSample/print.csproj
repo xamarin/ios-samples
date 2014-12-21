@@ -75,7 +75,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" xmlns="" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>

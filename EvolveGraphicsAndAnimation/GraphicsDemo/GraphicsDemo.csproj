@@ -98,7 +98,6 @@
     <Compile Include="GraphicsDemoViewController.cs" />
     <Compile Include="DemoView.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="monkey.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />

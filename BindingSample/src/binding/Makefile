@@ -3,7 +3,7 @@ XBUILD=/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild
 PROJECT_ROOT=XMBindingLibrarySample
 PROJECT=$(PROJECT_ROOT)/XMBindingLibrarySample.xcodeproj
 TARGET=XMBindingLibrarySample
-BTOUCH=/Developer/MonoTouch/usr/bin/btouch
+BTOUCH=/Developer/MonoTouch/usr/bin/btouch-native
 
 
 all: XMBindingLibrary.dll
@@ -24,7 +24,7 @@ libXMBindingLibrarySampleUniversal.a: libXMBindingLibrarySample-armv7.a libXMBin
 	lipo -create -output $@ $^
 
 XMBindingLibrary.dll: AssemblyInfo.cs XMBindingLibrarySample.cs extras.cs libXMBindingLibrarySampleUniversal.a
-	$(BTOUCH) -unsafe -out:$@ XMBindingLibrarySample.cs -x=AssemblyInfo.cs -x=extras.cs --link-with=libXMBindingLibrarySampleUniversal.a,libXMBindingLibrarySampleUniversal.a
+	$(BTOUCH) -unsafe --new-style -out:$@ XMBindingLibrarySample.cs -x=AssemblyInfo.cs -x=extras.cs --link-with=libXMBindingLibrarySampleUniversal.a,libXMBindingLibrarySampleUniversal.a
 
 clean:
 	-rm -f *.a *.dll

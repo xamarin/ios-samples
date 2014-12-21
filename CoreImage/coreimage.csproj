@@ -81,7 +81,6 @@
     <Compile Include="FilterHolder.cs" />
     <Compile Include="VisitFilterViewController.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="flower.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

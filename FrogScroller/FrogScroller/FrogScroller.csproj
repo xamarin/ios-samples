@@ -99,7 +99,6 @@
     <Compile Include="ImageScrollView.cs" />
     <Compile Include="ImageViewController.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Content Include="Image\ImageDetails.xml" />
     <Content Include="Image\FullImages\CuriousFrog.jpg" />

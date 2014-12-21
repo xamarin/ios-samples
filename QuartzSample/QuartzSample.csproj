@@ -10,7 +10,8 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>QuartzSample</RootNamespace>
     <AssemblyName>QuartzSample</AssemblyName>
-    <MtouchExtraArgs> -gcc_flags "-framework CFNetwork -framework CoreGraphics -force_load /Users/Chris/github/QualityAssurance/Automation/Calabash/calabash.framework/calabash -lstdc++"   -gcc_flags "-framework CFNetwork -framework CoreGraphics -force_load /Users/Chris/github/QualityAssurance/Automation/Calabash/calabash.framework/calabash -lstdc++"</MtouchExtraArgs>
+    <MtouchExtraArgs>
+    </MtouchExtraArgs>
     <BuildIpa>true</BuildIpa>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -111,7 +112,6 @@
     <InterfaceDefinition Include="QuartzViewController.xib" xmlns="" />
     <InterfaceDefinition Include="QuartzBlendingViewController.xib" xmlns="" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <Content Include="Images\Demo.png" />

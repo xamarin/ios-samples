@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreMedia;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using AVFoundation;
+using CoreMedia;
+using Foundation;
+using UIKit;
 
 namespace BracketStripes
 {
@@ -15,7 +15,7 @@ namespace BracketStripes
 		private AVCaptureDevice captureDevice;
 		private AVCaptureDeviceFormat captureDeviceFormat;
 		private AVCaptureStillImageOutput stillImageOutput;
-		private uint maxBracketCount;
+		private nuint maxBracketCount;
 		private List<AVCaptureBracketedStillImageSettings> bracketSettings;
 		private StripedImage imageStripes;
 		private ImageViewController imageViewController;
@@ -35,10 +35,10 @@ namespace BracketStripes
 			get {
 				var brackets = new List <AVCaptureBracketedStillImageSettings> ();
 
-				int fixedBracketCount = 3;
+				nuint fixedBracketCount = 3;
 				var biasValues = new float[] { -2f, 0f, 2f };
 
-				for (int index = 0; index < Math.Min (fixedBracketCount, maxBracketCount); index++) {
+				for (nuint index = 0; index < Math.Min (fixedBracketCount, maxBracketCount); index++) {
 					float biasValue = biasValues [index];
 					brackets.Add (AVCaptureAutoExposureBracketedStillImageSettings.Create (biasValue));
 				}
@@ -57,11 +57,11 @@ namespace BracketStripes
 				Console.WriteLine ("Camera device Duration range: [{0}, {1}]",
 					captureDeviceFormat.MinExposureDuration.Seconds, captureDeviceFormat.MaxExposureDuration.Seconds);
 
-				int fixedBracketCount = 3;
+				nuint fixedBracketCount = 3;
 				var ISOValues = new float[] { 50f, 60f, 500f };
 				var durationSecondsValues = new float[] { 0.25f, 0.05f, 0.005f };
 
-				for (int index = 0; index < Math.Min (fixedBracketCount, maxBracketCount); index++) {
+				for (nuint index = 0; index < Math.Min (fixedBracketCount, maxBracketCount); index++) {
 					float ISO = (float)Clamp (ISOValues [index], captureDeviceFormat.MinISO, captureDeviceFormat.MaxISO);
 					double durationSeconds = Clamp (durationSecondsValues [index],
 						                         captureDeviceFormat.MinExposureDuration.Seconds, captureDeviceFormat.MaxExposureDuration.Seconds);
@@ -91,7 +91,7 @@ namespace BracketStripes
 			});
 		}
 
-		partial void CameraShutterDidPress (MonoTouch.UIKit.UIButton sender)
+		partial void CameraShutterDidPress (UIKit.UIButton sender)
 		{
 			if (!captureSession.Running)
 				return;
@@ -217,12 +217,13 @@ namespace BracketStripes
 				break;
 			}
 
-			Size dimensions = captureDevice.ActiveFormat.FormatDescription.VideoDimensions;
+			CMVideoDimensions dimesnions = captureDevice.ActiveFormat.HighResolutionStillImageDimensions;
+			var dimensions = new CGSize (dimesnions.Width, dimesnions.Height);
 
 			if (imageStripes != null)
 				imageStripes.Dispose ();
 
-			imageStripes = new StripedImage (dimensions, dimensions.Width / 12, (int)bracketSettings.Count);
+			imageStripes = new StripedImage (dimensions, (int)dimensions.Width / 12, (int)bracketSettings.Count);
 			Console.WriteLine ("Warming brackets: {0}", bracketSettings.Count);
 			AVCaptureConnection connection = stillImageOutput.ConnectionFromMediaType (AVMediaType.Video);
 			stillImageOutput.PrepareToCaptureStillImageBracket (connection, bracketSettings.ToArray (), (success, error) => {

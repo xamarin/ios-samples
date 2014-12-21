@@ -38,7 +38,7 @@
     if(self.isCustomized == false && [message length] > 0) {
         
         UITextView *txtView = [[UITextView alloc] init];
-        txtView.textAlignment = UITextAlignmentCenter;
+        txtView.textAlignment = NSTextAlignmentCenter;
         txtView.textColor = [UIColor blueColor];
         txtView.frame = CGRectMake(self.frame.origin.x, ((self.frame.origin.y / 2) - 25), self.frame.size.width, 100);
 //        txtView.lineBreakMode = UILineBreakModeWordWrap;

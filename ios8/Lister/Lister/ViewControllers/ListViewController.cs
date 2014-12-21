@@ -393,8 +393,7 @@ namespace Lister
 			if (SplitViewController.Collapsed) {
 				NavigationController.PopViewController (true);
 			} else {
-				// TODO: unnecessary cast https://trello.com/c/7SNAREch
-				var emptyViewController = (UIViewController)Storyboard.InstantiateViewController (EmptyViewControllerStoryboardIdentifier);
+				UIViewController emptyViewController = (UIViewController)Storyboard.InstantiateViewController (EmptyViewControllerStoryboardIdentifier);
 				SplitViewController.ShowDetailViewController (emptyViewController, null);
 			}
 
