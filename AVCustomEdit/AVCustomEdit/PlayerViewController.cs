@@ -183,11 +183,13 @@ namespace AVCustomEdit
 					Console.Error.WriteLine("Asset is not composable");
 					dispatchGroup.Leave();
 				}
-				Clips.Add(asset);
-				ClipTimeRanges.Add(NSValue.FromCMTimeRange(new CMTimeRange(){
-					Start =  CMTime.FromSeconds(0, 1),
-					Duration =  CMTime.FromSeconds(5,1)
-				}));
+				lock (Clips) {
+					Clips.Add(asset);
+					ClipTimeRanges.Add(NSValue.FromCMTimeRange(new CMTimeRange(){
+						Start =  CMTime.FromSeconds(0, 1),
+						Duration =  CMTime.FromSeconds(5,1)
+					}));
+				}
 				dispatchGroup.Leave();
 			});
 		}
