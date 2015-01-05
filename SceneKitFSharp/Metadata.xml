@@ -3,7 +3,7 @@
 	<ID>632735be-f0d2-4881-b131-fffa2aba9c87</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>Device Features, Graphics, Games, iOS8, FSharp</Tags>
+	<Tags>Device Features, FSharp, Graphics, Games, iOS8, SceneKit</Tags>
 	<Gallery>true</Gallery>
 	<LicenseRequirement>Starter</LicenseRequirement>
 </SampleMetadata>

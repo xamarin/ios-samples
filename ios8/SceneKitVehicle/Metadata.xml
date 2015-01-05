@@ -3,7 +3,7 @@
 	<ID>04971fd0-fcba-46b0-bdf7-084d9a339482</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
-	<Tags>Device Features, Graphics, Games, iOS8</Tags>
+	<Tags>Device Features, Graphics, Games, iOS8, SceneKit</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
         <LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
