@@ -53,18 +53,19 @@ namespace Example_Notifications
 				}
 			}
 
-			//==== register for remote notifications and get the device token
-			// set what kind of notification types we want
-			UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
-			// register for remote notifications
-			UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
-
 			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
 				var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes (
-					UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
-				);
+					                           UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null
+				                           );
 
 				app.RegisterUserNotificationSettings (notificationSettings);
+				app.RegisterForRemoteNotifications ();
+			} else {
+				//==== register for remote notifications and get the device token
+				// set what kind of notification types we want
+				UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge;
+				// register for remote notifications
+				UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
 			}
 
 			return true;
