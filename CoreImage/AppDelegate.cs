@@ -77,6 +77,7 @@ namespace coreimage
 			var byIOSSection = new Section ("By iOS Version");
 			root.Add (byIOSSection);
 
+			AddVersionRoot (byIOSSection, "iOS 8", 8);
 			AddVersionRoot (byIOSSection, "iOS 7", 7);
 			AddVersionRoot (byIOSSection, "iOS 6", 6);
 			AddVersionRoot (byIOSSection, "iOS 5", 5);
@@ -126,159 +127,166 @@ namespace coreimage
 			"Geometry Adjust",
 			"Gradients",
 			"Halftone Effect",
+			"Reductions",
 			"Sharpen", 
 			"Stylize",
 			"Tile Effect",
-			"Transition",
+			"Transition"
 		};
+
 		FilterHolder[] masterList;
 
 		void InitList ()
 		{
 			masterList = new [] {
 				// Blur
-				new FilterHolder ("GaussianBlur", sectionList[0], 6, typeof (CIGaussianBlur), GaussianBlur),
+				new FilterHolder ("GaussianBlur", "Blur", 6, typeof (CIGaussianBlur), GaussianBlur),
 
 				// Color Adjustment
-				new FilterHolder ("ColorClamp", sectionList[1], 7, typeof (CIColorClamp), ColorClamp),
-				new FilterHolder ("ColorControls", sectionList[1], 5, typeof (CIColorControls), ColorControls),
-				new FilterHolder ("ColorMatrix", sectionList[1], 5, typeof (CIColorMatrix), ColorMatrix),
-				new FilterHolder ("ColorPolynomial", sectionList[1], 7, typeof (CIColorPolynomial), ColorPolynomial),
-				new FilterHolder ("ExposureAdjust", sectionList[1], 5, typeof (CIExposureAdjust), ExposureAdjust),
-				new FilterHolder ("GammaAdjust", sectionList[1], 5, typeof (CIGammaAdjust), GammaAdjust),
-				new FilterHolder ("HueAdjust", sectionList[1], 5, typeof (CIHueAdjust), HueAdjust),
-				new FilterHolder ("LinearToSRGBToneCurve", sectionList[1], 7, typeof (CILinearToSRGBToneCurve), LinearToSRGBToneCurve),
-				new FilterHolder ("SRGBToneCurveToLinear", sectionList[1], 7, typeof (CISRGBToneCurveToLinear), SRGBToneCurveToLinear),
-				new FilterHolder ("TemperatureAndTint", sectionList[1], 5, typeof (CITemperatureAndTint), TemperatureAndTint),
-				new FilterHolder ("ToneCurve", sectionList[1], 5, typeof (CIToneCurve), ToneCurve),
-				new FilterHolder ("Vibrance", sectionList[1], 5, typeof (CIVibrance), Vibrance),
-				new FilterHolder ("WhitePointAdjust", sectionList[1], 5, typeof (CIWhitePointAdjust), WhitePointAdjust),
+				new FilterHolder ("ColorClamp", "Color Adjustment", 7, typeof (CIColorClamp), ColorClamp),
+				new FilterHolder ("ColorControls", "Color Adjustment", 5, typeof (CIColorControls), ColorControls),
+				new FilterHolder ("ColorMatrix", "Color Adjustment", 5, typeof (CIColorMatrix), ColorMatrix),
+				new FilterHolder ("ColorPolynomial", "Color Adjustment", 7, typeof (CIColorPolynomial), ColorPolynomial),
+				new FilterHolder ("ExposureAdjust", "Color Adjustment", 5, typeof (CIExposureAdjust), ExposureAdjust),
+				new FilterHolder ("GammaAdjust", "Color Adjustment", 5, typeof (CIGammaAdjust), GammaAdjust),
+				new FilterHolder ("HueAdjust", "Color Adjustment", 5, typeof (CIHueAdjust), HueAdjust),
+				new FilterHolder ("LinearToSRGBToneCurve", "Color Adjustment", 7, typeof (CILinearToSRGBToneCurve), LinearToSRGBToneCurve),
+				new FilterHolder ("SRGBToneCurveToLinear", "Color Adjustment", 7, typeof (CISRGBToneCurveToLinear), SRGBToneCurveToLinear),
+				new FilterHolder ("TemperatureAndTint", "Color Adjustment", 5, typeof (CITemperatureAndTint), TemperatureAndTint),
+				new FilterHolder ("ToneCurve", "Color Adjustment", 5, typeof (CIToneCurve), ToneCurve),
+				new FilterHolder ("Vibrance", "Color Adjustment", 5, typeof (CIVibrance), Vibrance),
+				new FilterHolder ("WhitePointAdjust", "Color Adjustment", 5, typeof (CIWhitePointAdjust), WhitePointAdjust),
 
 				// Color Effect
-				new FilterHolder ("ColorCrossPolynomial", sectionList[2], 7, typeof (CIColorCrossPolynomial), ColorCrossPolynomial),
-				new FilterHolder ("ColorCube", sectionList[2], 5, typeof (CIColorCube), ColorCube),
-				new FilterHolder ("ColorCubeWithColorSpace", sectionList[2], 7, typeof (CIColorCubeWithColorSpace), ColorCubeWithColorSpace),
-				new FilterHolder ("ColorInvert", sectionList[2], 5, typeof (CIColorInvert), ColorInvert),
-				new FilterHolder ("ColorMap", sectionList[2], 6, typeof (CIColorMap), ColorMap),
-				new FilterHolder ("ColorMonochrome", sectionList[2], 5, typeof (CIColorMonochrome), ColorMonochrome),
-				new FilterHolder ("ColorPosterize", sectionList[2], 6, typeof (CIColorPosterize), ColorPosterize),
-				new FilterHolder ("FalseColor", sectionList[2], 5, typeof (CIFalseColor), FalseColor),
-				new FilterHolder ("MaskToAlpha", sectionList[2], 6, typeof (CIMaskToAlpha), MaskToAlpha),
-				new FilterHolder ("MaximumComponent", sectionList[2], 6, typeof (CIMaximumComponent), MaximumComponent),
-				new FilterHolder ("MinimumComponent", sectionList[2], 6, typeof (CIMinimumComponent), MinimumComponent),
-				new FilterHolder ("PhotoEffectChrome", sectionList[2], 7, typeof (CIPhotoEffectChrome), PhotoEffectChrome),
-				new FilterHolder ("PhotoEffectFade", sectionList[2], 7, typeof (CIPhotoEffectFade), PhotoEffectFade),
-				new FilterHolder ("PhotoEffectInstant", sectionList[2], 7, typeof (CIPhotoEffectInstant), PhotoEffectInstant),
-				new FilterHolder ("PhotoEffectMono", sectionList[2], 7, typeof (CIPhotoEffectMono), PhotoEffectMono),
-				new FilterHolder ("PhotoEffectNoir", sectionList[2], 7, typeof (CIPhotoEffectNoir), PhotoEffectNoir),
-				new FilterHolder ("PhotoEffectProcess", sectionList[2], 7, typeof (CIPhotoEffectProcess), PhotoEffectProcess),
-				new FilterHolder ("PhotoEffectTonal", sectionList[2], 7, typeof (CIPhotoEffectTonal), PhotoEffectTonal),
-				new FilterHolder ("PhotoEffectTransfer", sectionList[2], 7, typeof (CIPhotoEffectTransfer), PhotoEffectTransfer),
-				new FilterHolder ("SepiaTone", sectionList[2], 5, typeof (CISepiaTone), SepiaTone),
-				new FilterHolder ("Vignette", sectionList[2], 5, typeof (CIVignette), Vignette),
-				new FilterHolder ("VignetteEffect", sectionList[2], 7, typeof (CIVignetteEffect), VignetteEffect),
+				new FilterHolder ("ColorCrossPolynomial", "Color Effect", 7, typeof (CIColorCrossPolynomial), ColorCrossPolynomial),
+				new FilterHolder ("ColorCube", "Color Effect", 5, typeof (CIColorCube), ColorCube),
+				new FilterHolder ("ColorCubeWithColorSpace", "Color Effect", 7, typeof (CIColorCubeWithColorSpace), ColorCubeWithColorSpace),
+				new FilterHolder ("ColorInvert", "Color Effect", 5, typeof (CIColorInvert), ColorInvert),
+				new FilterHolder ("ColorMap", "Color Effect", 6, typeof (CIColorMap), ColorMap),
+				new FilterHolder ("ColorMonochrome", "Color Effect", 5, typeof (CIColorMonochrome), ColorMonochrome),
+				new FilterHolder ("ColorPosterize", "Color Effect", 6, typeof (CIColorPosterize), ColorPosterize),
+				new FilterHolder ("FalseColor", "Color Effect", 5, typeof (CIFalseColor), FalseColor),
+				new FilterHolder ("MaskToAlpha", "Color Effect", 6, typeof (CIMaskToAlpha), MaskToAlpha),
+				new FilterHolder ("MaximumComponent", "Color Effect", 6, typeof (CIMaximumComponent), MaximumComponent),
+				new FilterHolder ("MinimumComponent", "Color Effect", 6, typeof (CIMinimumComponent), MinimumComponent),
+				new FilterHolder ("PhotoEffectChrome", "Color Effect", 7, typeof (CIPhotoEffectChrome), PhotoEffectChrome),
+				new FilterHolder ("PhotoEffectFade", "Color Effect", 7, typeof (CIPhotoEffectFade), PhotoEffectFade),
+				new FilterHolder ("PhotoEffectInstant", "Color Effect", 7, typeof (CIPhotoEffectInstant), PhotoEffectInstant),
+				new FilterHolder ("PhotoEffectMono", "Color Effect", 7, typeof (CIPhotoEffectMono), PhotoEffectMono),
+				new FilterHolder ("PhotoEffectNoir", "Color Effect", 7, typeof (CIPhotoEffectNoir), PhotoEffectNoir),
+				new FilterHolder ("PhotoEffectProcess", "Color Effect", 7, typeof (CIPhotoEffectProcess), PhotoEffectProcess),
+				new FilterHolder ("PhotoEffectTonal", "Color Effect", 7, typeof (CIPhotoEffectTonal), PhotoEffectTonal),
+				new FilterHolder ("PhotoEffectTransfer", "Color Effect", 7, typeof (CIPhotoEffectTransfer), PhotoEffectTransfer),
+				new FilterHolder ("SepiaTone", "Color Effect", 5, typeof (CISepiaTone), SepiaTone),
+				new FilterHolder ("Vignette", "Color Effect", 5, typeof (CIVignette), Vignette),
+				new FilterHolder ("VignetteEffect", "Color Effect", 7, typeof (CIVignetteEffect), VignetteEffect),
 
 				// Composite Operation
-				new FilterHolder ("AdditionCompositing", sectionList[3], 5, typeof (CIAdditionCompositing), AdditionCompositing),
-				new FilterHolder ("ColorBlendMode", sectionList[3], 5, typeof (CIColorBlendMode), ColorBlendMode),
-				new FilterHolder ("ColorBurnBlendMode", sectionList[3], 5, typeof (CIColorBurnBlendMode), ColorBurnBlendMode),
-				new FilterHolder ("ColorDodgeBlendMode", sectionList[3], 5, typeof (CIColorDodgeBlendMode), ColorDodgeBlendMode),
-				new FilterHolder ("DarkenBlendMode", sectionList[3], 5, typeof (CIDarkenBlendMode), DarkenBlendMode),
-				new FilterHolder ("DifferenceBlendMode", sectionList[3], 5, typeof (CIDifferenceBlendMode), DifferenceBlendMode),
-				new FilterHolder ("ExclusionBlendMode", sectionList[3], 5, typeof (CIExclusionBlendMode), ExclusionBlendMode),
-				new FilterHolder ("HardLightBlendMode", sectionList[3], 5, typeof (CIHardLightBlendMode), HardLightBlendMode),
-				new FilterHolder ("HueBlendMode", sectionList[3], 5, typeof (CIHueBlendMode), HueBlendMode),
-				new FilterHolder ("LightenBlendMode", sectionList[3], 5, typeof (CILightenBlendMode), LightenBlendMode),
-				new FilterHolder ("LuminosityBlendMode", sectionList[3], 5, typeof (CILuminosityBlendMode), LuminosityBlendMode),
-				new FilterHolder ("MaximumCompositing", sectionList[3], 5, typeof (CIMaximumCompositing), MaximumCompositing),
-				new FilterHolder ("MinimumCompositing", sectionList[3], 5, typeof (CIMinimumCompositing), MinimumCompositing),
-				new FilterHolder ("MultiplyBlendMode", sectionList[3], 5, typeof (CIMultiplyBlendMode), MultiplyBlendMode),
-				new FilterHolder ("MultiplyCompositing", sectionList[3], 5, typeof (CIMultiplyCompositing), MultiplyCompositing),
-				new FilterHolder ("OverlayBlendMode", sectionList[3], 5, typeof (CIOverlayBlendMode), OverlayBlendMode),
-				new FilterHolder ("SaturationBlendMode", sectionList[3], 5, typeof (CISaturationBlendMode), SaturationBlendMode),
-				new FilterHolder ("ScreenBlendMode", sectionList[3], 5, typeof (CIScreenBlendMode), ScreenBlendMode),
-				new FilterHolder ("SoftLightBlendMode", sectionList[3], 5, typeof (CISoftLightBlendMode), SoftLightBlendMode),
-				new FilterHolder ("SourceAtopCompositing", sectionList[3], 5, typeof (CISourceAtopCompositing), SourceAtopCompositing),
-				new FilterHolder ("SourceInCompositing", sectionList[3], 5, typeof (CISourceInCompositing), SourceInCompositing),
-				new FilterHolder ("SourceOutCompositing", sectionList[3], 5, typeof (CISourceOutCompositing), SourceOutCompositing),
-				new FilterHolder ("SourceOverCompositing", sectionList[3], 5, typeof (CISourceOverCompositing), SourceOverCompositing),
+				new FilterHolder ("AdditionCompositing", "Composite Operation", 5, typeof (CIAdditionCompositing), AdditionCompositing),
+				new FilterHolder ("ColorBlendMode", "Composite Operation", 5, typeof (CIColorBlendMode), ColorBlendMode),
+				new FilterHolder ("ColorBurnBlendMode", "Composite Operation", 5, typeof (CIColorBurnBlendMode), ColorBurnBlendMode),
+				new FilterHolder ("ColorDodgeBlendMode", "Composite Operation", 5, typeof (CIColorDodgeBlendMode), ColorDodgeBlendMode),
+				new FilterHolder ("DarkenBlendMode", "Composite Operation", 5, typeof (CIDarkenBlendMode), DarkenBlendMode),
+				new FilterHolder ("DifferenceBlendMode", "Composite Operation", 5, typeof (CIDifferenceBlendMode), DifferenceBlendMode),
+				new FilterHolder ("ExclusionBlendMode", "Composite Operation", 5, typeof (CIExclusionBlendMode), ExclusionBlendMode),
+				new FilterHolder ("HardLightBlendMode", "Composite Operation", 5, typeof (CIHardLightBlendMode), HardLightBlendMode),
+				new FilterHolder ("HueBlendMode", "Composite Operation", 5, typeof (CIHueBlendMode), HueBlendMode),
+				new FilterHolder ("LightenBlendMode", "Composite Operation", 5, typeof (CILightenBlendMode), LightenBlendMode),
+				new FilterHolder ("LuminosityBlendMode", "Composite Operation", 5, typeof (CILuminosityBlendMode), LuminosityBlendMode),
+				new FilterHolder ("MaximumCompositing", "Composite Operation", 5, typeof (CIMaximumCompositing), MaximumCompositing),
+				new FilterHolder ("MinimumCompositing", "Composite Operation", 5, typeof (CIMinimumCompositing), MinimumCompositing),
+				new FilterHolder ("MultiplyBlendMode", "Composite Operation", 5, typeof (CIMultiplyBlendMode), MultiplyBlendMode),
+				new FilterHolder ("MultiplyCompositing", "Composite Operation", 5, typeof (CIMultiplyCompositing), MultiplyCompositing),
+				new FilterHolder ("OverlayBlendMode", "Composite Operation", 5, typeof (CIOverlayBlendMode), OverlayBlendMode),
+				new FilterHolder ("SaturationBlendMode", "Composite Operation", 5, typeof (CISaturationBlendMode), SaturationBlendMode),
+				new FilterHolder ("ScreenBlendMode", "Composite Operation", 5, typeof (CIScreenBlendMode), ScreenBlendMode),
+				new FilterHolder ("SoftLightBlendMode", "Composite Operation", 5, typeof (CISoftLightBlendMode), SoftLightBlendMode),
+				new FilterHolder ("SourceAtopCompositing", "Composite Operation", 5, typeof (CISourceAtopCompositing), SourceAtopCompositing),
+				new FilterHolder ("SourceInCompositing", "Composite Operation", 5, typeof (CISourceInCompositing), SourceInCompositing),
+				new FilterHolder ("SourceOutCompositing", "Composite Operation", 5, typeof (CISourceOutCompositing), SourceOutCompositing),
+				new FilterHolder ("SourceOverCompositing", "Composite Operation", 5, typeof (CISourceOverCompositing), SourceOverCompositing),
 
 				// Distortions
-				new FilterHolder ("BumpDistortion", sectionList[4], 6, typeof (CIBumpDistortion), BumpDistortion),
-				new FilterHolder ("BumpDistortionLinear", sectionList[4], 6, typeof (CIBumpDistortionLinear), BumpDistortionLinear),
-				new FilterHolder ("CircleSplashDistortion", sectionList[4], 6, typeof (CICircleSplashDistortion), CircleSplashDistortion),
-				new FilterHolder ("HoleDistortion", sectionList[4], 6, typeof (CIHoleDistortion), HoleDistortion),
-				new FilterHolder ("LightTunnel", sectionList[4], 6, typeof (CILightTunnel), LightTunnel),
-				new FilterHolder ("PinchDistortion", sectionList[4], 6, typeof (CIPinchDistortion), PinchDistortion),
-				new FilterHolder ("TwirlDistortion", sectionList[4], 6, typeof (CITwirlDistortion), TwirlDistortion),
-				new FilterHolder ("VortexDistortion", sectionList[4], 6, typeof (CIVortexDistortion), VortexDistortion),
+				new FilterHolder ("BumpDistortion", "Distortions", 6, typeof (CIBumpDistortion), BumpDistortion),
+				new FilterHolder ("BumpDistortionLinear", "Distortions", 6, typeof (CIBumpDistortionLinear), BumpDistortionLinear),
+				new FilterHolder ("CircleSplashDistortion", "Distortions", 6, typeof (CICircleSplashDistortion), CircleSplashDistortion),
+				new FilterHolder ("HoleDistortion", "Distortions", 6, typeof (CIHoleDistortion), HoleDistortion),
+				new FilterHolder ("LightTunnel", "Distortions", 6, typeof (CILightTunnel), LightTunnel),
+				new FilterHolder ("PinchDistortion", "Distortions", 6, typeof (CIPinchDistortion), PinchDistortion),
+				new FilterHolder ("TwirlDistortion", "Distortions", 6, typeof (CITwirlDistortion), TwirlDistortion),
+				new FilterHolder ("VortexDistortion", "Distortions", 6, typeof (CIVortexDistortion), VortexDistortion),
 
 				// Generators
-				new FilterHolder ("CheckerboardGenerator", sectionList[5], 5, typeof (CICheckerboardGenerator), CheckerboardGenerator),
-				new FilterHolder ("ConstantColorGenerator", sectionList[5], 5, typeof (CIConstantColorGenerator), ConstantColorGenerator),
-				new FilterHolder ("QRCodeGenerator", sectionList[5], 7, typeof (CIQRCodeGenerator), QRCodeGenerator),
-				new FilterHolder ("RandomGenerator", sectionList[5], 6, typeof (CIRandomGenerator), RandomGenerator),
-				new FilterHolder ("StarShineGenerator", sectionList[5], 6, typeof (CIStarShineGenerator), StarShineGenerator),
-				new FilterHolder ("StripesGenerator", sectionList[5], 5, typeof (CIStripesGenerator), StripesGenerator),
+				new FilterHolder ("CheckerboardGenerator", "Generators", 5, typeof (CICheckerboardGenerator), CheckerboardGenerator),
+				new FilterHolder ("ConstantColorGenerator", "Generators", 5, typeof (CIConstantColorGenerator), ConstantColorGenerator),
+				new FilterHolder ("QRCodeGenerator", "Generators", 7, typeof (CIQRCodeGenerator), QRCodeGenerator),
+				new FilterHolder ("RandomGenerator", "Generators", 6, typeof (CIRandomGenerator), RandomGenerator),
+				new FilterHolder ("StarShineGenerator", "Generators", 6, typeof (CIStarShineGenerator), StarShineGenerator),
+				new FilterHolder ("StripesGenerator", "Generators", 5, typeof (CIStripesGenerator), StripesGenerator),
 
 				// Geometry Adjust
-				new FilterHolder ("AffineTransform", sectionList[6], 5, typeof (CIAffineTransform), AffineTransform),
-				new FilterHolder ("Crop", sectionList[6], 5, typeof (CICrop), Crop),
-				new FilterHolder ("LanczosScaleTransform", sectionList[6], 6, typeof (CILanczosScaleTransform), LanczosScaleTransform),
-				new FilterHolder ("PerspectiveTransform", sectionList[6], 6, typeof (CIPerspectiveTransform), PerspectiveTransform),
-				new FilterHolder ("PerspectiveTransformWithExtent", sectionList[6], 6, typeof (CIPerspectiveTransformWithExtent), PerspectiveTransformWithExtent),
-				new FilterHolder ("StraightenFilter", sectionList[6], 5, typeof (CIStraightenFilter), StraightenFilter),
+				new FilterHolder ("AffineTransform", "Geoometry Adjust", 5, typeof (CIAffineTransform), AffineTransform),
+				new FilterHolder ("Crop", "Geoometry Adjust", 5, typeof (CICrop), Crop),
+				new FilterHolder ("LanczosScaleTransform", "Geoometry Adjust", 6, typeof (CILanczosScaleTransform), LanczosScaleTransform),
+				new FilterHolder ("PerspectiveTransform", "Geoometry Adjust", 6, typeof (CIPerspectiveTransform), PerspectiveTransform),
+				new FilterHolder ("PerspectiveTransformWithExtent", "Geoometry Adjust", 6, typeof (CIPerspectiveTransformWithExtent), PerspectiveTransformWithExtent),
+				new FilterHolder ("StraightenFilter", "Geoometry Adjust", 5, typeof (CIStraightenFilter), StraightenFilter),
 
 				// Gradients
-				new FilterHolder ("GaussianGradient", sectionList[7], 5, typeof (CIGaussianGradient), GaussianGradient),
-				new FilterHolder ("LinearGradient", sectionList[7], 5, typeof (CILinearGradient), LinearGradient),
-				new FilterHolder ("RadialGradient", sectionList[7], 5, typeof (CIRadialGradient), RadialGradient),
-				new FilterHolder ("SmoothLinearGradient", sectionList[7], 6, typeof (CISmoothLinearGradient), SmoothLinearGradient),
+				new FilterHolder ("GaussianGradient", "Gradients", 5, typeof (CIGaussianGradient), GaussianGradient),
+				new FilterHolder ("LinearGradient", "Gradients", 5, typeof (CILinearGradient), LinearGradient),
+				new FilterHolder ("RadialGradient", "Gradients", 5, typeof (CIRadialGradient), RadialGradient),
+				new FilterHolder ("SmoothLinearGradient", "Gradients", 6, typeof (CISmoothLinearGradient), SmoothLinearGradient),
 
 				// Halftone Effect
-				new FilterHolder ("CircularScreen", sectionList[8], 6, typeof (CICircularScreen), CircularScreen),
-				new FilterHolder ("DotScreen", sectionList[8], 6, typeof (CIDotScreen), DotScreen),
-				new FilterHolder ("HatchedScreen", sectionList[8], 6, typeof (CIHatchedScreen), HatchedScreen),
-				new FilterHolder ("LineScreen", sectionList[8], 6, typeof (CILineScreen), LineScreen),
+				new FilterHolder ("CircularScreen", "Halftone Effect", 6, typeof (CICircularScreen), CircularScreen),
+				new FilterHolder ("DotScreen", "Halftone Effect", 6, typeof (CIDotScreen), DotScreen),
+				new FilterHolder ("HatchedScreen", "Halftone Effect", 6, typeof (CIHatchedScreen), HatchedScreen),
+				new FilterHolder ("LineScreen", "Halftone Effect", 6, typeof (CILineScreen), LineScreen),
+
+				// Reduction Calculations
+				new FilterHolder ("AreaHistogram", "Reductions", 8, typeof (CIAreaHistogram), AreaHistogram),
+				new FilterHolder ("Histogram Display", "Reductions", 8, typeof (CIHistogramDisplayFilter), AreaHistogram),
 
 				// Sharpen
-				new FilterHolder ("SharpenLuminance", sectionList[9], 6, typeof (CISharpenLuminance), SharpenLuminance),
-				new FilterHolder ("UnsharpMask", sectionList[9], 6, typeof (CIUnsharpMask), UnsharpMask),
+				new FilterHolder ("SharpenLuminance", "Sharpen", 6, typeof (CISharpenLuminance), SharpenLuminance),
+				new FilterHolder ("UnsharpMask", "Sharpen", 6, typeof (CIUnsharpMask), UnsharpMask),
 
 				// Stylize
-				new FilterHolder ("BlendWithAlphaMask", sectionList[10], 7, typeof (CIBlendWithAlphaMask), BlendWithAlphaMask),
-				new FilterHolder ("BlendWithMask", sectionList[10], 6, typeof (CIBlendWithMask), BlendWithMask),
-				new FilterHolder ("Bloom", sectionList[10], 6, typeof (CIBloom), Bloom),
-				new FilterHolder ("Convolution3X3", sectionList[10], 7, typeof (CIConvolution3X3), Convolution3X3),
-				new FilterHolder ("Convolution5X5", sectionList[10], 7, typeof (CIConvolution5X5), Convolution5X5),
-				new FilterHolder ("Convolution9Horizontal", sectionList[10], 7, typeof (CIConvolution9Horizontal), Convolution9Horizontal),
-				new FilterHolder ("Convolution9Vertical", sectionList[10], 7, typeof (CIConvolution9Vertical), Convolution9Vertical),
-				new FilterHolder ("Gloom", sectionList[10], 6, typeof (CIGloom), Gloom),
-				new FilterHolder ("HighlightShadowAdjust", sectionList[10], 5, typeof (CIHighlightShadowAdjust), HighlightShadowAdjust),
-				new FilterHolder ("Pixellate", sectionList[10], 6, typeof (CIPixellate), Pixellate),
+				new FilterHolder ("BlendWithAlphaMask", "Stylize", 7, typeof (CIBlendWithAlphaMask), BlendWithAlphaMask),
+				new FilterHolder ("BlendWithMask", "Stylize", 6, typeof (CIBlendWithMask), BlendWithMask),
+				new FilterHolder ("Bloom", "Stylize", 6, typeof (CIBloom), Bloom),
+				new FilterHolder ("Convolution3X3", "Stylize", 7, typeof (CIConvolution3X3), Convolution3X3),
+				new FilterHolder ("Convolution5X5", "Stylize", 7, typeof (CIConvolution5X5), Convolution5X5),
+				new FilterHolder ("Convolution9Horizontal", "Stylize", 7, typeof (CIConvolution9Horizontal), Convolution9Horizontal),
+				new FilterHolder ("Convolution9Vertical", "Stylize", 7, typeof (CIConvolution9Vertical), Convolution9Vertical),
+				new FilterHolder ("Gloom", "Stylize", 6, typeof (CIGloom), Gloom),
+				new FilterHolder ("HighlightShadowAdjust", "Stylize", 5, typeof (CIHighlightShadowAdjust), HighlightShadowAdjust),
+				new FilterHolder ("Pixellate", "Stylize", 6, typeof (CIPixellate), Pixellate),
 
 				// Tile Effect
-				new FilterHolder ("AffineClamp", sectionList[11], 6, typeof (CIAffineClamp), AffineClamp),
-				new FilterHolder ("AffineTile", sectionList[11], 6, typeof (CIAffineTile), AffineTile),
-				new FilterHolder ("EightfoldReflectedTile", sectionList[11], 6, typeof (CIEightfoldReflectedTile), EightfoldReflectedTile),
-				new FilterHolder ("FourfoldReflectedTile", sectionList[11], 6, typeof (CIFourfoldReflectedTile), FourfoldReflectedTile),
-				new FilterHolder ("FourfoldRotatedTile", sectionList[11], 6, typeof (CIFourfoldRotatedTile), FourfoldRotatedTile),
-				new FilterHolder ("FourfoldTranslatedTile", sectionList[11], 6, typeof (CIFourfoldTranslatedTile), FourfoldTranslatedTile),
-				new FilterHolder ("GlideReflectedTile", sectionList[11], 6, typeof (CIGlideReflectedTile), GlideReflectedTile),
-				new FilterHolder ("PerspectiveTile", sectionList[11], 6, typeof (CIPerspectiveTile), PerspectiveTile),
-				new FilterHolder ("SixfoldReflectedTile", sectionList[11], 6, typeof (CISixfoldReflectedTile), SixfoldReflectedTile),
-				new FilterHolder ("SixfoldRotatedTile", sectionList[11], 6, typeof (CISixfoldRotatedTile), SixfoldRotatedTile),
-				new FilterHolder ("TriangleKaleidoscope", sectionList[11], 6, typeof (CITriangleKaleidoscope), TriangleKaleidoscope),
-				new FilterHolder ("TwelvefoldReflectedTile", sectionList[11], 6, typeof (CITwelvefoldReflectedTile), TwelvefoldReflectedTile),
+				new FilterHolder ("AffineClamp", "Tile Effect", 6, typeof (CIAffineClamp), AffineClamp),
+				new FilterHolder ("AffineTile", "Tile Effect", 6, typeof (CIAffineTile), AffineTile),
+				new FilterHolder ("EightfoldReflectedTile", "Tile Effect", 6, typeof (CIEightfoldReflectedTile), EightfoldReflectedTile),
+				new FilterHolder ("FourfoldReflectedTile", "Tile Effect", 6, typeof (CIFourfoldReflectedTile), FourfoldReflectedTile),
+				new FilterHolder ("FourfoldRotatedTile", "Tile Effect", 6, typeof (CIFourfoldRotatedTile), FourfoldRotatedTile),
+				new FilterHolder ("FourfoldTranslatedTile", "Tile Effect", 6, typeof (CIFourfoldTranslatedTile), FourfoldTranslatedTile),
+				new FilterHolder ("GlideReflectedTile", "Tile Effect", 6, typeof (CIGlideReflectedTile), GlideReflectedTile),
+				new FilterHolder ("PerspectiveTile", "Tile Effect", 6, typeof (CIPerspectiveTile), PerspectiveTile),
+				new FilterHolder ("SixfoldReflectedTile", "Tile Effect", 6, typeof (CISixfoldReflectedTile), SixfoldReflectedTile),
+				new FilterHolder ("SixfoldRotatedTile", "Tile Effect", 6, typeof (CISixfoldRotatedTile), SixfoldRotatedTile),
+				new FilterHolder ("TriangleKaleidoscope", "Tile Effect", 6, typeof (CITriangleKaleidoscope), TriangleKaleidoscope),
+				new FilterHolder ("TwelvefoldReflectedTile", "Tile Effect", 6, typeof (CITwelvefoldReflectedTile), TwelvefoldReflectedTile),
 
 				// Transition
-				new FilterHolder ("BarsSwipeTransition", sectionList[12], 6, typeof (CIBarsSwipeTransition), BarsSwipeTransition),
-				new FilterHolder ("CopyMachineTransition", sectionList[12], 6, typeof (CICopyMachineTransition), CopyMachineTransition),
-				new FilterHolder ("DisintegrateWithMaskTransition", sectionList[12], 6, typeof (CIDisintegrateWithMaskTransition), DisintegrateWithMaskTransition),
-				new FilterHolder ("DissolveTransition", sectionList[12], 6, typeof (CIDissolveTransition), DissolveTransition),
-				new FilterHolder ("FlashTransition", sectionList[12], 6, typeof (CIFlashTransition), FlashTransition),
-				new FilterHolder ("ModTransition", sectionList[12], 6, typeof (CIModTransition), ModTransition),
-				new FilterHolder ("SwipeTransition", sectionList[12], 6, typeof (CISwipeTransition), SwipeTransition),
+				new FilterHolder ("AccordionFoldTransition", "Transition", 8, typeof(CIAccordionFoldTransition), AccordionFoldTransition),
+				new FilterHolder ("BarsSwipeTransition", "Transition", 6, typeof (CIBarsSwipeTransition), BarsSwipeTransition),
+				new FilterHolder ("CopyMachineTransition", "Transition", 6, typeof (CICopyMachineTransition), CopyMachineTransition),
+				new FilterHolder ("DisintegrateWithMaskTransition", "Transition", 6, typeof (CIDisintegrateWithMaskTransition), DisintegrateWithMaskTransition),
+				new FilterHolder ("DissolveTransition", "Transition", 6, typeof (CIDissolveTransition), DissolveTransition),
+				new FilterHolder ("FlashTransition", "Transition", 6, typeof (CIFlashTransition), FlashTransition),
+				new FilterHolder ("ModTransition", "Transition", 6, typeof (CIModTransition), ModTransition),
+				new FilterHolder ("SwipeTransition", "Transition", 6, typeof (CISwipeTransition), SwipeTransition),
 			};  
 
 			int maxVer = 5;
@@ -1804,6 +1812,28 @@ namespace coreimage
 			return Crop (stripeGen);
 		}
 		#endregion
+
+		#region CICategoryReduction
+		CIImage AreaHistogram ()
+		{
+			var histogram = new CIAreaHistogram () {
+				Image = heron, 
+				Extent = new CIVector(new RectangleF(0, 0, 567, 267)),
+				Count = 256, 
+				Scale = 25.0f
+
+			};
+					
+			//Pass 1-D histogram to CIHistogramDisplayFilter for display
+			var histogramDisplay = new CIHistogramDisplayFilter () {
+				Image = histogram.OutputImage,
+			};
+			return histogramDisplay.OutputImage;
+
+		}
+
+
+		#endregion
 	
 		#region CICategoryStylize
 
@@ -2154,6 +2184,20 @@ namespace coreimage
 
 		#region CICategoryTransition
 
+		///<summary>
+		/// Animates a transition by creating an accordion-fold effect on the source image.
+		/// </summary>
+		/// <returns>The altered image.</returns>
+		CIImage AccordionFoldTransition ()
+		{
+			var transition = new CIAccordionFoldTransition () {
+				Image = heron,
+				TargetImage = clouds,
+				Time = 0.8f
+			};
+			return transition.OutputImage;
+		}
+
 		/// <summary>
 		/// Animates a transition by moving a bar over the source image.
 		/// </summary>
@@ -2269,6 +2313,8 @@ namespace coreimage
 		#endregion
 
 		#endregion
+
+
 	}
 
 }
