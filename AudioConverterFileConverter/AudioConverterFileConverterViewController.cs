@@ -293,10 +293,8 @@ namespace AudioConverterFileConverter
             }
         }
 
-        bool DoConvertFile(CFUrl sourceURL, NSUrl destinationURL, AudioFormatType outputFormat, double outputSampleRate)
+        bool DoConvertFile(CFUrl sourceURL, NSUrl destinationURL, AudioFormatType outputFormatType, double outputSampleRate)
         {
-            AudioStreamBasicDescription dstFormat = new AudioStreamBasicDescription();
-
             // in this sample we should never be on the main thread here
             Debug.Assert(!NSThread.IsMain);
 
@@ -306,17 +304,17 @@ namespace AudioConverterFileConverter
             Debug.WriteLine("DoConvertFile");
 
             // get the source file
-            var sourceFile = AudioFile.Open(sourceURL, AudioFilePermission.Read);
+            AudioFile sourceFile = AudioFile.Open(sourceURL, AudioFilePermission.Read);
 
-            // get the source data format
             var srcFormat = (AudioStreamBasicDescription)sourceFile.DataFormat;
+			var dstFormat = new AudioStreamBasicDescription();
 
             // setup the output file format
             dstFormat.SampleRate = (outputSampleRate == 0 ? srcFormat.SampleRate : outputSampleRate); // set sample rate
-            if (outputFormat == AudioFormatType.LinearPCM)
+            if (outputFormatType == AudioFormatType.LinearPCM)
             {
-                // if the output format is PC create a 16-bit int PCM file format description as an example
-                dstFormat.Format = outputFormat;
+                // if the output format is PCM create a 16-bit int PCM file format description as an example
+				dstFormat.Format = AudioFormatType.LinearPCM;
                 dstFormat.ChannelsPerFrame = srcFormat.ChannelsPerFrame;
                 dstFormat.BitsPerChannel = 16;
                 dstFormat.BytesPerPacket = dstFormat.BytesPerFrame = 2 * dstFormat.ChannelsPerFrame;
@@ -326,14 +324,14 @@ namespace AudioConverterFileConverter
             else
             {
                 // compressed format - need to set at least format, sample rate and channel fields for kAudioFormatProperty_FormatInfo
-                dstFormat.Format = outputFormat;
-                dstFormat.ChannelsPerFrame = (outputFormat == AudioFormatType.iLBC ? 1 : srcFormat.ChannelsPerFrame); // for iLBC num channels must be 1
+                dstFormat.Format = outputFormatType;
+                dstFormat.ChannelsPerFrame = (outputFormatType == AudioFormatType.iLBC ? 1 : srcFormat.ChannelsPerFrame); // for iLBC num channels must be 1
 
                 // use AudioFormat API to fill out the rest of the description
-                var fie = AudioStreamBasicDescription.GetFormatInfo(ref dstFormat);
-                if (fie != AudioFormatError.None)
+				AudioFormatError afe = AudioStreamBasicDescription.GetFormatInfo(ref dstFormat);
+                if (afe != AudioFormatError.None)
                 {
-                    Debug.Print("Cannot create destination format {0:x}", fie);
+                    Debug.Print("Cannot create destination format {0:x}", afe);
 
                     AppDelegate.ThreadStateSetDone();
                     return false;
@@ -398,7 +396,7 @@ namespace AudioConverterFileConverter
             var destinationFile = AudioFile.Create(destinationURL, AudioFileType.CAF, dstFormat, AudioFileFlags.EraseFlags);
 
             // set up source buffers and data proc info struct
-            afio = new AudioFileIO(32768);
+            afio = new AudioFileIO(32 * 1024); // 32Kb
             afio.SourceFile = sourceFile;
             afio.SrcFormat = srcFormat;
 
@@ -425,7 +423,7 @@ namespace AudioConverterFileConverter
 
             // set up output buffers
             int outputSizePerPacket = dstFormat.BytesPerPacket; // this will be non-zero if the format is CBR
-            const int theOutputBufSize = 32768;
+            const int theOutputBufSize = 32 * 1024; // 32Kb
             var outputBuffer = Marshal.AllocHGlobal(theOutputBufSize);
             AudioStreamPacketDescription[] outputPacketDescriptions = null;
 
@@ -560,12 +558,10 @@ namespace AudioConverterFileConverter
             int outNumBytes = 16384;
 
             // modified for iOS7 (ReadPackets depricated)
-            var res = afio.SourceFile.ReadPacketData(false, afio.SrcFilePos, ref numberDataPackets, afio.SrcBuffer, ref outNumBytes);
+			afio.PacketDescriptions = afio.SourceFile.ReadPacketData(false, afio.SrcFilePos, ref numberDataPackets, afio.SrcBuffer, ref outNumBytes);
 
-            if (res.Length == 0)
-            {
-                throw new ApplicationException(res.ToString());
-            }
+			if (afio.PacketDescriptions.Length == 0)
+				throw new ApplicationException(afio.PacketDescriptions.ToString());
 
             // advance input file packet position
             afio.SrcFilePos += numberDataPackets;
@@ -575,16 +571,7 @@ namespace AudioConverterFileConverter
 
             // don't forget the packet descriptions if required
             if (dataPacketDescription != null)
-            {
-                if (afio.PacketDescriptions != null)
-                {
-                    dataPacketDescription = afio.PacketDescriptions;
-                }
-                else
-                {
-                    dataPacketDescription = null;
-                }
-            }
+                dataPacketDescription = afio.PacketDescriptions;
 
             return AudioConverterError.None;
         }
