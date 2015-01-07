@@ -236,13 +236,13 @@ namespace AudioConverterFileConverter
             activityIndicator.StartAnimating();
 
             // run audio file code in a background thread
-            InvokeInBackground(convertAudio);
+            InvokeInBackground(ConvertAudio);
         }
 
         static bool IsAACHardwareEncoderAvailable()
         {
-            var encoders = AudioFormatAvailability.GetEncoders(AudioFormatType.MPEG4AAC);
-            return encoders.Any(l => l.SubType == AudioFormatType.MPEG4AAC && l.IsHardwareCodec);
+            AudioClassDescription[] encoders = AudioFormatAvailability.GetEncoders(AudioFormatType.MPEG4AAC);
+            return encoders.Any(l => l.SubType == AudioFormatType.MPEG4AAC);
         }
 
         static void UpdateFormatInfo(UILabel label, NSUrl fileURL)
@@ -262,13 +262,13 @@ namespace AudioConverterFileConverter
                 fileName, asbd.Format, asbd.SampleRate, asbd.ChannelsPerFrame);
         }
 
-        void updateUI()
+        void UpdateUI()
         {
             startButton.Enabled = true;
             UpdateFormatInfo(fileInfo, sourceURL);
         }
 
-        void convertAudio()
+        void ConvertAudio()
         {
             var success = DoConvertFile(sourceURL, destinationURL, outputFormat, sampleRate);
 
@@ -285,7 +285,7 @@ namespace AudioConverterFileConverter
                     NSError error;
                     fm.Remove(destinationFilePath, out error);
                 }
-                BeginInvokeOnMainThread(updateUI);
+                BeginInvokeOnMainThread(UpdateUI);
             }
             else
             {
@@ -671,34 +671,34 @@ namespace AudioConverterFileConverter
             if (player == null)
             {
                 Debug.Print("AVAudioPlayer failed: {0}", error);
-                updateUI();
+                UpdateUI();
                 return;
             }
 
             player.DecoderError += delegate
             {
                 Debug.WriteLine("DecoderError");
-                updateUI();
+                UpdateUI();
             };
 
             player.BeginInterruption += delegate
             {
                 Debug.WriteLine("BeginInterruption");
                 player.Stop();
-                updateUI();
+                UpdateUI();
             };
 
             player.FinishedPlaying += delegate(object sender, AVStatusEventArgs e)
             {
                 Debug.WriteLine("FinishedPlaying");
-                updateUI();
+                UpdateUI();
                 player = null;
             };
 
             if (!player.Play())
             {
                 Debug.WriteLine("ERROR: Cannot play the file");
-                updateUI();
+                UpdateUI();
                 player = null;
             }
         }
