@@ -8,14 +8,14 @@ namespace AdaptivePhotos
 {
 	public class RatingControl : UIControl
 	{
-		readonly nuint ratingControlMinimumRating = 0;
-		readonly nuint ratingControlMaximumRating = 4;
+		const int ratingControlMinimumRating = 0;
+		const int ratingControlMaximumRating = 4;
 
-		nuint currentrating;
 		UIVisualEffectView backgroundView;
 
 		NSArray ImageViews { get; set; }
 
+		nuint currentrating;
 		public nuint Rating {
 			get {
 				return currentrating;
@@ -47,7 +47,7 @@ namespace AdaptivePhotos
 			Add (backgroundView);
 
 			var imageViews = new NSMutableArray ();
-			for (nuint rating = ratingControlMinimumRating; rating <= ratingControlMaximumRating; rating++) {
+			for (int rating = ratingControlMinimumRating; rating <= ratingControlMaximumRating; rating++) {
 				UIImageView imageView = new UIImageView ();
 				imageView.UserInteractionEnabled = true;
 
