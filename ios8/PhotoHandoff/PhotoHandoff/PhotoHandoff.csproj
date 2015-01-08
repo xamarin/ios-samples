@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{477A564C-5254-4246-B281-58CC4DEA9850}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>PhotoHandoff</RootNamespace>
+    <IPhoneResourcePrefix>Resources;Resources\images;Resources\images\full;Resources\images\thumb</IPhoneResourcePrefix>
+    <AssemblyName>PhotoHandoff</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <BuildIpa>true</BuildIpa>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="CollectionView\Cell.cs" />
+    <Compile Include="CollectionView\CustomCellBackground.cs" />
+    <Compile Include="CollectionView\CollectionViewController.cs" />
+    <Compile Include="DetailViewController.cs" />
+    <Compile Include="DataSource.cs" />
+    <Compile Include="Filtering\FilterViewController.cs" />
+    <Compile Include="Filtering\ImageFilter.cs" />
+    <Compile Include="Filtering\BlurFilter.cs" />
+    <Compile Include="Filtering\ModifyFilter.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="UserInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="CollectionView\" />
+    <Folder Include="Filtering\" />
+    <Folder Include="Resources\Images.xcassets\" />
+    <Folder Include="Resources\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-60%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-72.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-72%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-76%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-50.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-50%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Spotlight-40.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Spotlight-40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Landscape%402x~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Landscape~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Portrait%402x~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Portrait~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\images\Data.plist" />
+    <BundleResource Include="Resources\images\full\0_full.JPG" />
+    <BundleResource Include="Resources\images\full\10_full.JPG" />
+    <BundleResource Include="Resources\images\full\11_full.JPG" />
+    <BundleResource Include="Resources\images\full\12_full.JPG" />
+    <BundleResource Include="Resources\images\full\13_full.JPG" />
+    <BundleResource Include="Resources\images\full\14_full.JPG" />
+    <BundleResource Include="Resources\images\full\15_full.JPG" />
+    <BundleResource Include="Resources\images\full\16_full.JPG" />
+    <BundleResource Include="Resources\images\full\17_full.JPG" />
+    <BundleResource Include="Resources\images\full\18_full.JPG" />
+    <BundleResource Include="Resources\images\full\19_full.JPG" />
+    <BundleResource Include="Resources\images\full\1_full.JPG" />
+    <BundleResource Include="Resources\images\full\20_full.JPG" />
+    <BundleResource Include="Resources\images\full\21_full.JPG" />
+    <BundleResource Include="Resources\images\full\22_full.JPG" />
+    <BundleResource Include="Resources\images\full\23_full.JPG" />
+    <BundleResource Include="Resources\images\full\24_full.JPG" />
+    <BundleResource Include="Resources\images\full\25_full.JPG" />
+    <BundleResource Include="Resources\images\full\26_full.JPG" />
+    <BundleResource Include="Resources\images\full\27_full.JPG" />
+    <BundleResource Include="Resources\images\full\28_full.JPG" />
+    <BundleResource Include="Resources\images\full\29_full.JPG" />
+    <BundleResource Include="Resources\images\full\2_full.JPG" />
+    <BundleResource Include="Resources\images\full\30_full.JPG" />
+    <BundleResource Include="Resources\images\full\31_full.JPG" />
+    <BundleResource Include="Resources\images\full\3_full.JPG" />
+    <BundleResource Include="Resources\images\full\4_full.JPG" />
+    <BundleResource Include="Resources\images\full\5_full.JPG" />
+    <BundleResource Include="Resources\images\full\6_full.JPG" />
+    <BundleResource Include="Resources\images\full\7_full.JPG" />
+    <BundleResource Include="Resources\images\full\8_full.JPG" />
+    <BundleResource Include="Resources\images\full\9_full.JPG" />
+    <BundleResource Include="Resources\images\thumb\0.JPG" />
+    <BundleResource Include="Resources\images\thumb\1.JPG" />
+    <BundleResource Include="Resources\images\thumb\10.JPG" />
+    <BundleResource Include="Resources\images\thumb\11.JPG" />
+    <BundleResource Include="Resources\images\thumb\12.JPG" />
+    <BundleResource Include="Resources\images\thumb\13.JPG" />
+    <BundleResource Include="Resources\images\thumb\14.JPG" />
+    <BundleResource Include="Resources\images\thumb\15.JPG" />
+    <BundleResource Include="Resources\images\thumb\16.JPG" />
+    <BundleResource Include="Resources\images\thumb\17.JPG" />
+    <BundleResource Include="Resources\images\thumb\18.JPG" />
+    <BundleResource Include="Resources\images\thumb\19.JPG" />
+    <BundleResource Include="Resources\images\thumb\2.JPG" />
+    <BundleResource Include="Resources\images\thumb\21.JPG" />
+    <BundleResource Include="Resources\images\thumb\22.JPG" />
+    <BundleResource Include="Resources\images\thumb\23.JPG" />
+    <BundleResource Include="Resources\images\thumb\24.JPG" />
+    <BundleResource Include="Resources\images\thumb\25.JPG" />
+    <BundleResource Include="Resources\images\thumb\26.JPG" />
+    <BundleResource Include="Resources\images\thumb\27.JPG" />
+    <BundleResource Include="Resources\images\thumb\28.JPG" />
+    <BundleResource Include="Resources\images\thumb\29.JPG" />
+    <BundleResource Include="Resources\images\thumb\3.JPG" />
+    <BundleResource Include="Resources\images\thumb\30.JPG" />
+    <BundleResource Include="Resources\images\thumb\31.JPG" />
+    <BundleResource Include="Resources\images\thumb\4.JPG" />
+    <BundleResource Include="Resources\images\thumb\5.JPG" />
+    <BundleResource Include="Resources\images\thumb\6.JPG" />
+    <BundleResource Include="Resources\images\thumb\7.JPG" />
+    <BundleResource Include="Resources\images\thumb\8.JPG" />
+    <BundleResource Include="Resources\images\thumb\9.JPG" />
+    <BundleResource Include="Resources\images\thumb\20.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="MainStoryboard.storyboard" />
+  </ItemGroup>
+</Project>
