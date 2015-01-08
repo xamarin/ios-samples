@@ -40,6 +40,9 @@ namespace coreimage
 
 		CIImage xamarinCheck = CIImage.FromCGImage (UIImage.FromFile ("XamarinCheck.png").CGImage);
 
+		CIImage texture = CIImage.FromCGImage (UIImage.FromFile ("texture.png").CGImage);
+
+
 		UIWindow window;
 
 		#region UIApplicationDelegate Methods
@@ -188,9 +191,12 @@ namespace coreimage
 				new FilterHolder ("ColorDodgeBlendMode", "Composite Operation", 5, typeof (CIColorDodgeBlendMode), ColorDodgeBlendMode),
 				new FilterHolder ("DarkenBlendMode", "Composite Operation", 5, typeof (CIDarkenBlendMode), DarkenBlendMode),
 				new FilterHolder ("DifferenceBlendMode", "Composite Operation", 5, typeof (CIDifferenceBlendMode), DifferenceBlendMode),
+				new FilterHolder ("DivideBlendMode", "Composite Operation", 8, typeof (CIDivideBlendMode), DivideBlendMode),
 				new FilterHolder ("ExclusionBlendMode", "Composite Operation", 5, typeof (CIExclusionBlendMode), ExclusionBlendMode),
 				new FilterHolder ("HardLightBlendMode", "Composite Operation", 5, typeof (CIHardLightBlendMode), HardLightBlendMode),
 				new FilterHolder ("HueBlendMode", "Composite Operation", 5, typeof (CIHueBlendMode), HueBlendMode),
+				new FilterHolder ("LinearBurnBlendMode", "Composite Operation", 8, typeof(CILinearBurnBlendMode), LinearBurnBlendMode),
+				new FilterHolder ("LinearDodgeBlendMode", "Composite Operation", 8, typeof(CILinearDodgeBlendMode), LinearDodgeBlendMode),
 				new FilterHolder ("LightenBlendMode", "Composite Operation", 5, typeof (CILightenBlendMode), LightenBlendMode),
 				new FilterHolder ("LuminosityBlendMode", "Composite Operation", 5, typeof (CILuminosityBlendMode), LuminosityBlendMode),
 				new FilterHolder ("MaximumCompositing", "Composite Operation", 5, typeof (CIMaximumCompositing), MaximumCompositing),
@@ -198,6 +204,7 @@ namespace coreimage
 				new FilterHolder ("MultiplyBlendMode", "Composite Operation", 5, typeof (CIMultiplyBlendMode), MultiplyBlendMode),
 				new FilterHolder ("MultiplyCompositing", "Composite Operation", 5, typeof (CIMultiplyCompositing), MultiplyCompositing),
 				new FilterHolder ("OverlayBlendMode", "Composite Operation", 5, typeof (CIOverlayBlendMode), OverlayBlendMode),
+				new FilterHolder ("PinLightBlendMode", "Composite Operation", 8, typeof (CIPinLightBlendMode), PinLightBlendMode),
 				new FilterHolder ("SaturationBlendMode", "Composite Operation", 5, typeof (CISaturationBlendMode), SaturationBlendMode),
 				new FilterHolder ("ScreenBlendMode", "Composite Operation", 5, typeof (CIScreenBlendMode), ScreenBlendMode),
 				new FilterHolder ("SoftLightBlendMode", "Composite Operation", 5, typeof (CISoftLightBlendMode), SoftLightBlendMode),
@@ -205,11 +212,13 @@ namespace coreimage
 				new FilterHolder ("SourceInCompositing", "Composite Operation", 5, typeof (CISourceInCompositing), SourceInCompositing),
 				new FilterHolder ("SourceOutCompositing", "Composite Operation", 5, typeof (CISourceOutCompositing), SourceOutCompositing),
 				new FilterHolder ("SourceOverCompositing", "Composite Operation", 5, typeof (CISourceOverCompositing), SourceOverCompositing),
+				new FilterHolder ("SubtractBlendMode", "Composite Operation", 8, typeof (CISubtractBlendMode), SubtractBlendMode),
 
 				// Distortions
 				new FilterHolder ("BumpDistortion", "Distortions", 6, typeof (CIBumpDistortion), BumpDistortion),
 				new FilterHolder ("BumpDistortionLinear", "Distortions", 6, typeof (CIBumpDistortionLinear), BumpDistortionLinear),
 				new FilterHolder ("CircleSplashDistortion", "Distortions", 6, typeof (CICircleSplashDistortion), CircleSplashDistortion),
+				new FilterHolder ("GlassDistortion", "Distortions", 8, typeof (CIGlassDistortion), GlassDistortion),
 				new FilterHolder ("HoleDistortion", "Distortions", 6, typeof (CIHoleDistortion), HoleDistortion),
 				new FilterHolder ("LightTunnel", "Distortions", 6, typeof (CILightTunnel), LightTunnel),
 				new FilterHolder ("PinchDistortion", "Distortions", 6, typeof (CIPinchDistortion), PinchDistortion),
@@ -217,6 +226,7 @@ namespace coreimage
 				new FilterHolder ("VortexDistortion", "Distortions", 6, typeof (CIVortexDistortion), VortexDistortion),
 
 				// Generators
+				new FilterHolder ("AztecCodeGenerator", "Generators", 8, typeof (CIAztecCodeGenerator), AztecCodeGenerator),
 				new FilterHolder ("CheckerboardGenerator", "Generators", 5, typeof (CICheckerboardGenerator), CheckerboardGenerator),
 				new FilterHolder ("ConstantColorGenerator", "Generators", 5, typeof (CIConstantColorGenerator), ConstantColorGenerator),
 				new FilterHolder ("QRCodeGenerator", "Generators", 7, typeof (CIQRCodeGenerator), QRCodeGenerator),
@@ -225,12 +235,13 @@ namespace coreimage
 				new FilterHolder ("StripesGenerator", "Generators", 5, typeof (CIStripesGenerator), StripesGenerator),
 
 				// Geometry Adjust
-				new FilterHolder ("AffineTransform", "Geoometry Adjust", 5, typeof (CIAffineTransform), AffineTransform),
-				new FilterHolder ("Crop", "Geoometry Adjust", 5, typeof (CICrop), Crop),
-				new FilterHolder ("LanczosScaleTransform", "Geoometry Adjust", 6, typeof (CILanczosScaleTransform), LanczosScaleTransform),
-				new FilterHolder ("PerspectiveTransform", "Geoometry Adjust", 6, typeof (CIPerspectiveTransform), PerspectiveTransform),
-				new FilterHolder ("PerspectiveTransformWithExtent", "Geoometry Adjust", 6, typeof (CIPerspectiveTransformWithExtent), PerspectiveTransformWithExtent),
-				new FilterHolder ("StraightenFilter", "Geoometry Adjust", 5, typeof (CIStraightenFilter), StraightenFilter),
+				new FilterHolder ("AffineTransform", "Geometry Adjust", 5, typeof (CIAffineTransform), AffineTransform),
+				new FilterHolder ("Crop", "Geometry Adjust", 5, typeof (CICrop), Crop),
+				new FilterHolder ("LanczosScaleTransform", "Geometry Adjust", 6, typeof (CILanczosScaleTransform), LanczosScaleTransform),
+				new FilterHolder ("PerspectiveCorrection", "Geometry Adjust", 8, typeof (CIPerspectiveCorrection), PerspectiveCorrection),
+				new FilterHolder ("PerspectiveTransform", "Geometry Adjust", 6, typeof (CIPerspectiveTransform), PerspectiveTransform),
+				new FilterHolder ("PerspectiveTransformWithExtent", "Geometry Adjust", 6, typeof (CIPerspectiveTransformWithExtent), PerspectiveTransformWithExtent),
+				new FilterHolder ("StraightenFilter", "Geometry Adjust", 5, typeof (CIStraightenFilter), StraightenFilter),
 
 				// Gradients
 				new FilterHolder ("GaussianGradient", "Gradients", 5, typeof (CIGaussianGradient), GaussianGradient),
@@ -1149,6 +1160,18 @@ namespace coreimage
 			return lanczos_scale_transform.OutputImage;
 		}
 
+		///<summary>
+		/// </summary>
+		/// <returns>The altered image</returns>
+		CIImage PerspectiveCorrection ()
+		{
+			var transform = new CIPerspectiveCorrection () {
+				Image = heron
+			};
+
+			return transform.OutputImage;
+		}
+
 		/// <summary>
 		/// Applies a transform the simulates perspective.
 		/// </summary>
@@ -1304,6 +1327,19 @@ namespace coreimage
 			
 			return differenceBlend.OutputImage;
 		}
+
+		///<summary>
+		/// Divides the source image sample color by the background image sample color
+		/// </summary>
+		/// <returns>The composite image</returns>
+		public CIImage DivideBlendMode ()
+		{
+			var divideBlend = new CIDivideBlendMode () {
+				Image = heron,
+				BackgroundImage = clouds
+			};
+			return divideBlend.OutputImage;
+		}
 		
 		/// <summary>
 		/// Produces an effect similar to that produced by the CIDifferenceBlendMode filter but with lower contrast.
@@ -1355,6 +1391,35 @@ namespace coreimage
 			
 			return hueBlend.OutputImage;
 		}
+
+		///<summary>
+		/// Darkens the Input image based on the color of the background image
+		/// </summary>
+		/// <returns>The composite image</returns>
+		public CIImage LinearBurnBlendMode()
+		{
+			var filter = new CILinearBurnBlendMode () {
+				Image = heron,
+				BackgroundImage = clouds
+			};
+
+			return filter.OutputImage;
+		}
+
+		///<summary>
+		/// Lightens the Input image based on the color of the background image
+		/// </summary>
+		/// <returns>The composite image</returns>
+		public CIImage LinearDodgeBlendMode()
+		{
+			var filter = new CILinearDodgeBlendMode () {
+				Image = heron,
+				BackgroundImage = clouds
+			};
+
+			return filter.OutputImage;
+
+		}
 		
 		/// <summary>
 		/// Creates composite image samples by choosing the lighter samples (either from the source image or the background).
@@ -1388,6 +1453,16 @@ namespace coreimage
 			};
 			
 			return luminosityBlend.OutputImage;
+		}
+
+		public CIImage PinLightBlendMode ()
+		{
+			var transform = new CIPinLightBlendMode () {
+				Image = heron,
+				BackgroundImage = clouds
+			};
+
+			return transform.OutputImage;
 		}
 		
 		/// <summary>
@@ -1593,6 +1668,22 @@ namespace coreimage
 			
 			return sourceOverComposite.OutputImage;
 		}
+
+		///<summary>
+		/// Subtracts the background image pixels from those in the foreground image
+		/// </summary>
+		/// <returns>The altered image</returns>
+		public CIImage SubtractBlendMode ()
+		{
+			var subtractBlendMode = new CISubtractBlendMode () {
+				Image = heron,
+				BackgroundImage = clouds
+			};
+
+			return subtractBlendMode.OutputImage;
+		}
+
+
 		#endregion
 
 		#region CICategoryDistortionEffect
@@ -1646,6 +1737,20 @@ namespace coreimage
 			};
 
 			return Crop (distortion);
+		}
+
+		///<summary>
+		/// Distorts the image as if being viewed through glass, textured according to an input texture map
+		/// </summary>
+		/// <returns>The altered image</returns>
+		CIImage GlassDistortion ()
+		{
+			var distortion = new CIGlassDistortion () {
+				Image = heron,
+				Texture = texture,
+				Scale = 500.0f
+			};
+			return distortion.OutputImage;
 		}
 
 		/// <summary>
@@ -1717,6 +1822,19 @@ namespace coreimage
 		#endregion
 		
 		#region CICategoryGenerator
+		/// <summary>
+		/// Generates an Aztec code pattern
+		/// </summary>
+		/// <returns>An image containing an Aztec code</returns>
+		public CIImage AztecCodeGenerator ()
+		{
+			var generator = new CIAztecCodeGenerator () {
+				Message = NSData.FromString ("http://xamarin.com"),
+			};
+			return generator.OutputImage;
+		}
+
+
 		/// <summary>
 		/// Generates a checkerboard pattern.
 		/// </summary>
