@@ -148,7 +148,7 @@ namespace CloudCaptions
 
 				case Error.Ignore:
 					isLoadingBatch = false;
-					RefreshControl.EndRefreshing ();
+					DispatchQueue.MainQueue.DispatchAsync (RefreshControl.EndRefreshing);
 					Console.WriteLine ("Error: {0}", operationError.Description);
 					break;
 
