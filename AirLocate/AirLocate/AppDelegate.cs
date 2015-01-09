@@ -18,6 +18,7 @@ namespace AirLocate {
 		public override void FinishedLaunching (UIApplication application)
 		{
 			locationManager = new CLLocationManager ();
+            locationManager.RequestWhenInUseAuthorization ();
 
 			// A user can transition in or out of a region while the application is not running.
 			// When this happens CoreLocation will launch the application momentarily, call this delegate method
