@@ -15,7 +15,17 @@ namespace AVCompositionDebugVieweriOS
 
 		public int TransitionType { get; set; }
 		public CMTime TransitionDuration { get; set; }
-		public AVMutableComposition Composition { get; set; }
+		AVMutableComposition composition;
+		public AVMutableComposition Composition {
+			get {
+				if (composition == null)
+					composition = AVMutableComposition.Create ();
+				return composition;
+			}
+			set {
+				composition = value;
+			}
+		}
 		public AVMutableVideoComposition VideoComposition { get; set; }
 		public AVMutableAudioMix AudioMix { get; set; }
 
