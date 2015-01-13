@@ -28,9 +28,8 @@ namespace SimpleCollectionView
             CollectionView.RegisterClassForCell (typeof(AnimalCell), animalCellId);
             CollectionView.RegisterClassForSupplementaryView (typeof(Header), UICollectionElementKindSection.Header, headerId);
 
-			// add a custom menu item
 			UIMenuController.SharedMenuController.MenuItems = new UIMenuItem[] {
-				new UIMenuItem ("Custom", new Selector ("custom:"))
+				new UIMenuItem ("Custom", new Selector ("custom"))
 			};
 		}
 
@@ -91,13 +90,17 @@ namespace SimpleCollectionView
         }
 
         public override bool CanPerformAction (UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender)
-        {
-            return true;
+		{
+			// Selector should be the same as what's in the custom UIMenuItem
+			if (action == new Selector ("custom"))
+				return true;
+			else
+				return false;
         }
 
         public override void PerformAction (UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender)
         {
-            Console.WriteLine ("code to perform action");
+			System.Diagnostics.Debug.WriteLine ("code to perform action");
         }
 
 		// CanBecomeFirstResponder and CanPerform are needed for a custom menu item to appear
@@ -107,21 +110,13 @@ namespace SimpleCollectionView
 			}
 		}
 
-		public override bool CanPerform (Selector action, NSObject withSender)
+		/*public override bool CanPerform (Selector action, NSObject withSender)
 		{
 			if (action == new Selector ("custom"))
 				return true;
 			else
 				return false;
-		}
-
-		// System provided cut, copy and paste will be sent to PerformAction method above, but any custom menu items
-		// must have their assocatied actions implementated explicitly
-		[Export("custom")]
-		void Custom()
-		{
-			Console.WriteLine ("custom");
-		}
+		}*/
 
         public override void WillRotate (UIInterfaceOrientation toInterfaceOrientation, double duration)
         {
@@ -167,6 +162,22 @@ namespace SimpleCollectionView
                 imageView.Image = value;
             }
         }
+
+		[Export("custom")]
+		void Custom()
+		{
+			// Put all your custom menu behavior code here
+			Console.WriteLine ("custom in the cell");
+		}
+
+
+		public override bool CanPerform (Selector action, NSObject withSender)
+		{
+			if (action == new Selector ("custom"))
+				return true;
+			else
+				return false;
+		}
     }
 
     public class Header : UICollectionReusableView
