@@ -121,7 +121,7 @@ namespace MultichannelMixer
 				using (var file = ExtAudioFile.OpenUrl (sourceURL [i])) {
 
 					var clientFormat = file.FileDataFormat;
-					clientFormat.FormatFlags = AudioStreamBasicDescription.AudioFormatFlagsAudioUnitCanonical;
+					clientFormat.FormatFlags = AudioStreamBasicDescription.AudioFormatFlagsNativeFloat;
 					clientFormat.ChannelsPerFrame = 1;
 					clientFormat.FramesPerPacket = 1;
 					clientFormat.BitsPerChannel = 8 * sizeof (int);
