@@ -183,7 +183,7 @@ namespace AVCompositionDebugVieweriOS
 				rowHeight = Math.Min (rowHeight, maxRowHeight);
 			}
 
-			float runningTop = (float) rect.Y;
+			float runningTop = (float)rect.Y;
 			var bannerRect = rect;
 			bannerRect.Height = BannerHeight;
 			bannerRect.Y = runningTop;
@@ -193,7 +193,7 @@ namespace AVCompositionDebugVieweriOS
 
 			rowRect.X += LeftInsetToMatchTimeSlider;
 			rowRect.Width -= (LeftInsetToMatchTimeSlider + RightInsetToMatchTimeSlider);
-			compositionRectWidth =(float) rowRect.Size.Width;
+			compositionRectWidth = (float)rowRect.Size.Width;
 
 			if (duration.Seconds != 0)
 				scaledDurationToWidth = compositionRectWidth / (float)duration.Seconds;
@@ -252,7 +252,7 @@ namespace AVCompositionDebugVieweriOS
 					segmentRect.X += segmentRect.Width;
 				}
 
-				runningTop +=(float)rowRect.Height;
+				runningTop += (float)rowRect.Height;
 			}
 			runningTop += GapAfterRows;
 		}
@@ -293,7 +293,7 @@ namespace AVCompositionDebugVieweriOS
 					pointInRow.Y = rampRect.Y + (0.9f - 0.8f * timeVolumePoint.Y) * rampRect.Height;
 
 					pointInRow.X = (float)Math.Max (pointInRow.X, rampRect.GetMinX ());
-					pointInRow.X = (float) Math.Min (pointInRow.X, rampRect.GetMaxX ());
+					pointInRow.X = (float)Math.Min (pointInRow.X, rampRect.GetMaxX ());
 
 					if (firstPoint) {
 						context.MoveTo (pointInRow.X, pointInRow.Y);
@@ -353,13 +353,14 @@ namespace AVCompositionDebugVieweriOS
 			scrubbingAnimation.Duration = duration.Seconds;
 			scrubbingAnimation.FillMode = CAFillMode.Both;
 			timeMarkerRedBandLayer.AddAnimation (scrubbingAnimation, null);
-
-			Console.WriteLine ("Duration in  seconds - " + Player.CurrentItem.Asset.Duration.Seconds);
-			var syncLayer = new AVSynchronizedLayer () {
-				PlayerItem = Player.CurrentItem,
-			};
-			syncLayer.AddSublayer (timeMarkerRedBandLayer);
-			Layer.AddSublayer (syncLayer);
+			if (Player != null) {
+				Console.WriteLine ("Duration in  seconds - " + Player.CurrentItem.Asset.Duration.Seconds);
+				var syncLayer = new AVSynchronizedLayer () {
+					PlayerItem = Player.CurrentItem,
+				};
+				syncLayer.AddSublayer (timeMarkerRedBandLayer);
+				Layer.AddSublayer (syncLayer);
+			}
 		}
 
 		private void DrawVideoCompositionTracks (CGRect bannerRect, CGRect rowRect, ref float runningTop)
@@ -370,7 +371,7 @@ namespace AVCompositionDebugVieweriOS
 			var compositionTitle = new NSString ("AVComposition");
 			compositionTitle.DrawString (bannerRect, UIFont.PreferredCaption1);
 
-			runningTop += (float) bannerRect.Height;
+			runningTop += (float)bannerRect.Height;
 			rowRect.Y = runningTop;
 			CGRect stageRect = rowRect;
 
@@ -451,8 +452,8 @@ namespace AVCompositionDebugVieweriOS
 			NSString title = new NSString (text);
 			rect.Y += rect.Height / 2f - UIFont.PreferredCaption1.xHeight;
 			title.DrawString (rect, UIFont.PreferredCaption1,
-			                  UILineBreakMode.CharacterWrap,
-			                  UITextAlignment.Center);
+				UILineBreakMode.CharacterWrap,
+				UITextAlignment.Center);
 		}
 
 		private int GetNumberOfRows ()
