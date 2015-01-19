@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.CoreLocation;
-using MonoTouch.Foundation;
+using CoreLocation;
+using Foundation;
 using MonoTouch.Dialog;
-using MonoTouch.MapKit;
-using MonoTouch.UIKit;
+using MapKit;
+using UIKit;
 
 using System.Threading.Tasks;
 
@@ -81,9 +81,9 @@ namespace MapKitSearch {
 			}
 			catch(Exception e){
 				return;
-			}	
-			if (response == null)			
-				return;	
+			}
+			if (response == null)
+				return;
 
 			var section = new Section ("Search Results for " + what);
 			results.Clear ();

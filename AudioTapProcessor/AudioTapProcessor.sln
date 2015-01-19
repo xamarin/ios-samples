@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioTapProcessor", "AudioTapProcessor\AudioTapProcessor.csproj", "{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}.Release|iPhone.Build.0 = Release|iPhone
+		{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FD3EF68F-ECEB-4FE1-BE5B-71C1971FD0DC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = AudioTapProcessor\AudioTapProcessor.csproj
+	EndGlobalSection
+EndGlobal

@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace CollectionViewTransition {
 
@@ -13,13 +13,13 @@ namespace CollectionViewTransition {
 
 		public override void ItemSelected (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			NavigationController.PushViewController (NextViewControllerAtPoint (PointF.Empty), true);
+			NavigationController.PushViewController (NextViewControllerAtPoint (CGPoint.Empty), true);
 		}
 
-		public override UICollectionViewController NextViewControllerAtPoint (PointF p)
+		public override UICollectionViewController NextViewControllerAtPoint (CGPoint p)
 		{
 			UICollectionViewFlowLayout grid = new UICollectionViewFlowLayout () {
-				ItemSize = new SizeF (75.0f, 75.0f),
+				ItemSize = new CGSize (75.0f, 75.0f),
 				SectionInset = new UIEdgeInsets (10.0f, 10.0f, 10.0f, 10.0f)
 			};
 			return new APLGridCollectionViewController (grid) {

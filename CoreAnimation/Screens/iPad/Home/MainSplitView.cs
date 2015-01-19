@@ -1,41 +1,39 @@
 using System;
-using MonoTouch.UIKit;
 using System.Reflection;
-using Example_CoreAnimation.Screens.iPad.NavTable;
-using Example_CoreAnimation.Code.NavigationTable;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.Foundation;
+using UIKit;
+using ObjCRuntime;
+using Foundation;
 
-namespace Example_CoreAnimation.Screens.iPad.Home
+namespace CoreAnimationExample
 {
 	public class MainSplitView : UISplitViewController
 	{
-		private MasterNavTableViewController masterViewController;
-		private UIViewController detailViewController;
-		private Selector toggleMasterVisible;
+		MasterNavTableViewController masterViewController;
+		UIViewController detailViewController;
+		Selector toggleMasterVisible;
 
-		private bool MasterViewHidden { get; set; }
+		bool MasterViewHidden { get; set; }
 
 		public MainSplitView () : base ()
 		{
 			MasterViewHidden = true;
 
 			// create our master and detail views
-			masterViewController = new Screens.iPad.NavTable.MasterNavTableViewController ();
-			detailViewController = new Screens.iPad.BasicUIViewAnimation.BasicUIViewAnimationScreen ();
+			masterViewController = new MasterNavTableViewController ();
+			detailViewController = new BasicUIViewAnimationScreen ();
 
-			// create an array of controllers from them and then assign it to the 
+			// create an array of controllers from them and then assign it to the
 			// controllers property
 			ViewControllers = new UIViewController[] { masterViewController,  detailViewController };
-			
-			// in this example, i expose an event on the master view called RowClicked, and i listen 
-			// for it in here, and then call a method on the detail view to update. this class thereby 
+
+			// in this example, i expose an event on the master view called RowClicked, and i listen
+			// for it in here, and then call a method on the detail view to update. this class thereby
 			// becomes the defacto controller for the screen (both views).
 			masterViewController.RowClicked += (sender, e) => {
 				HandleRowClicked (e);
 			};
-			
-			// when the master view controller is hid (portrait mode), we add a button to 
+
+			// when the master view controller is hid (portrait mode), we add a button to
 			// the detail view that when clicked will show the master view in a popover controller
 			WillHideViewController += (sender, e) => {
 				toggleMasterVisible = e.BarButtonItem.Action;
@@ -64,7 +62,7 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 			base.WillRotate (toInterfaceOrientation, duration);
 		}
 
-		protected void HandleRowClicked (RowClickedEventArgs e)
+		void HandleRowClicked (RowClickedEventArgs e)
 		{
 			Console.WriteLine ("Changing Screens");
 			(detailViewController as IDetailView).ContentsButtonClicked -= ContentsButtonClickHandler;
@@ -81,7 +79,7 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 			} else {
 				if (e.Item.ControllerType != null) {
 					ConstructorInfo ctor = null;
-					
+
 					// if the nav item has constructor aguments
 					if (e.Item.ControllerConstructorArgs.Length > 0) {
 						// look for the constructor
@@ -90,11 +88,11 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 						// search for the default constructor
 						ctor = e.Item.ControllerType.GetConstructor (System.Type.EmptyTypes);
 					}
-					
+
 					// if we found the constructor
 					if (ctor != null) {
 						UIViewController instance = null;
-						
+
 						if (e.Item.ControllerConstructorArgs.Length > 0) {
 							// instance the view controller
 							instance = ctor.Invoke (e.Item.ControllerConstructorArgs) as UIViewController;
@@ -102,11 +100,11 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 							// instance the view controller
 							instance = ctor.Invoke (null) as UIViewController;
 						}
-						
+
 						if (instance != null) {
 							// save the object
 							e.Item.Controller = instance;
-							
+
 							// push the view controller onto the stack
 							UIView.BeginAnimations ("DetailViewPush");
 							detailViewController = e.Item.Controller;
@@ -124,14 +122,14 @@ namespace Example_CoreAnimation.Screens.iPad.Home
 			(detailViewController as IDetailView).ContentsButtonClicked += ContentsButtonClickHandler;
 		}
 
-		private void ContentsButtonClickHandler (object sender, EventArgs e)
+		void ContentsButtonClickHandler (object sender, EventArgs e)
 		{
 			MasterViewHidden = false;
 			ToogleMasterViewVisibility (InterfaceOrientation);
 			MasterViewHidden = true;
 		}
 
-		private void ToogleMasterViewVisibility (UIInterfaceOrientation interfaceOrientation)
+		void ToogleMasterViewVisibility (UIInterfaceOrientation interfaceOrientation)
 		{
 			ShouldHideViewController.Invoke (this, masterViewController, interfaceOrientation);
 			PerformSelector (toggleMasterVisible, null, 0);

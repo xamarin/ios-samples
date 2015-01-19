@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.SpriteKit;
+using CoreGraphics;
+using UIKit;
+using SpriteKit;
 
 namespace SpriteTour {
 
@@ -41,7 +41,7 @@ namespace SpriteTour {
 
 		protected virtual void CreateSceneContents ()
 		{
-			Scene = new SKScene (new SizeF (1024, 768)) {
+			Scene = new SKScene (new CGSize (1024, 768)) {
 				BackgroundColor = UIColor.Black,
 				ScaleMode = SKSceneScaleMode.AspectFit
 			};

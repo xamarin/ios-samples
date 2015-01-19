@@ -1,10 +1,9 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.OpenGLES;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreVideo;
+using Foundation;
+using OpenGLES;
+using CoreGraphics;
+using CoreVideo;
 using OpenTK.Graphics.ES20;
-
 
 namespace AVCustomEdit
 {
@@ -14,7 +13,7 @@ namespace AVCustomEdit
 		{
 		}
 
-		public override void RenderPixelBuffer (MonoTouch.CoreVideo.CVPixelBuffer destinationPixelBuffer, MonoTouch.CoreVideo.CVPixelBuffer foregroundPixelBuffer, MonoTouch.CoreVideo.CVPixelBuffer backgroundPixelBuffer, float tween)
+		public override void RenderPixelBuffer (CoreVideo.CVPixelBuffer destinationPixelBuffer, CoreVideo.CVPixelBuffer foregroundPixelBuffer, CoreVideo.CVPixelBuffer backgroundPixelBuffer, float tween)
 		{
 			EAGLContext.SetCurrentContext (CurrentContext);
 			if (foregroundPixelBuffer != null || backgroundPixelBuffer != null) {
@@ -31,17 +30,16 @@ namespace AVCustomEdit
 
 				// Set the render transform
 				float[] preferredRenderTransform = {
-					RenderTransform.xx, RenderTransform.xy, RenderTransform.x0, 0.0f,
-					RenderTransform.yx, RenderTransform.yy, RenderTransform.y0, 0.0f,
+					(float)RenderTransform.xx, (float)RenderTransform.xy, (float)RenderTransform.x0, 0.0f,
+					(float)RenderTransform.yx, (float)RenderTransform.yy,(float)RenderTransform.y0, 0.0f,
 					0.0f, 				0.0f, 				1.0f, 				0.0f,
 					0.0f, 				0.0f, 				0.0f, 				1.0f,
 				};
 
-
 				GL.UniformMatrix4 (Uniforms [(int)Uniform.Render_Transform_Y], 1, false, preferredRenderTransform);
 
 				GL.BindFramebuffer (FramebufferTarget.Framebuffer, OffscreenBufferHandle);
-				GL.Viewport (0, 0, destinationPixelBuffer.Width, destinationPixelBuffer.Height);
+				GL.Viewport (0, 0, (int)destinationPixelBuffer.Width, (int)destinationPixelBuffer.Height);
 
 				GL.ActiveTexture (TextureUnit.Texture0);
 				GL.BindTexture (foregroundLumaTexture.Target, foregroundLumaTexture.Name);
@@ -112,7 +110,7 @@ namespace AVCustomEdit
 
 				GL.VertexAttribPointer ((int)Attrib.TexCoord_Y, 2, VertexAttribPointerType.Float, false, 0, quadTextureData1);
 				GL.EnableVertexAttribArray ((int)Attrib.TexCoord_Y);
-				        
+
 				// Blend function to draw the background frame
 				GL.BlendColor (0, 0, 0, tween);
 				GL.BlendFunc (BlendingFactorSrc.ConstantAlpha, BlendingFactorDest.OneMinusConstantAlpha);
@@ -139,7 +137,7 @@ namespace AVCustomEdit
 				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)All.ClampToEdge);
 				GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)All.ClampToEdge);
 
-				GL.Viewport (0, 0, destinationPixelBuffer.Width, destinationPixelBuffer.Height);
+				GL.Viewport (0, 0, (int)destinationPixelBuffer.Width, (int)destinationPixelBuffer.Height);
 
 				// Attach the destination texture as a color attachment to the off screen frame buffer
 				GL.FramebufferTexture2D (FramebufferTarget.Framebuffer, FramebufferSlot.ColorAttachment0, destChromaTexture.Target, destChromaTexture.Name, 0);

@@ -1,7 +1,7 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace FrogScroller
 {
@@ -16,7 +16,7 @@ namespace FrogScroller
 
 		public static ImageViewController ImageViewControllerForPageIndex (int pageIndex)
 		{
-			return pageIndex >= 0 && pageIndex < ImageScrollView.ImageCount ? 
+			return pageIndex >= 0 && pageIndex < ImageScrollView.ImageCount ?
 				new ImageViewController (pageIndex) : null;
 		}
 
@@ -26,7 +26,7 @@ namespace FrogScroller
 				Index = PageIndex,
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
 			};
-			
+
 			this.View = scrollView;
 		}
 	}

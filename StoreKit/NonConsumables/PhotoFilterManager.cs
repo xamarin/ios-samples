@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.CoreImage;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreImage;
+using Foundation;
+using UIKit;
 
 namespace NonConsumables {
 	// WARNING: this is a trivial example of tracking non-consumable
@@ -20,8 +20,8 @@ namespace NonConsumables {
 		/// </summary>
 		/// <remarks>
 		/// This is inherently insecure and easily manipulated by end-users,
-		/// effectively bypassing the payment mechanism (assuming a little bit 
-		/// of technical knowledge). 
+		/// effectively bypassing the payment mechanism (assuming a little bit
+		/// of technical knowledge).
 		/// </remarks>
 		public static void Purchase (string productId) {
 			var key = new NSString(productId);
@@ -34,14 +34,14 @@ namespace NonConsumables {
 		}
 
 		/// <summary>
-		/// Purchaseable feature. This function can't be called until the 
+		/// Purchaseable feature. This function can't be called until the
 		/// user has purchased the Sepia Filter in-app product.
 		/// </summary>
 		public static void ApplySepia(string imagePath, UIImageView imgview)
-		{	
+		{
 			var uiimage = UIImage.FromFile (imagePath);
 			var ciimage = new CIImage (uiimage);
-			
+
 			var sepia = new CISepiaTone();
 			sepia.Image = ciimage;
 			sepia.Intensity = 0.8f;
@@ -54,14 +54,14 @@ namespace NonConsumables {
 			imgview.Image = ui;
 		}
 		/// <summary>
-		/// Purchaseable feature. This function can't be called until the 
+		/// Purchaseable feature. This function can't be called until the
 		/// user has purchased the Greyscale Filter in-app product.
 		/// </summary>
 		public static void ApplyGreyscale(string imagePath, UIImageView imgview)
-		{	
+		{
 			var uiimage = UIImage.FromFile (imagePath);
 			var ciimage = new CIImage (uiimage);
-			
+
 			var greyscale = new CIColorControls();
 			greyscale.Image = ciimage;
 			greyscale.Saturation = 0f;

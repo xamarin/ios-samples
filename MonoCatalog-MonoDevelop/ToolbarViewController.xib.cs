@@ -1,15 +1,15 @@
 //
 // Port of the toolbar sample to C#
 //
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System;
-using System.Drawing;
+using CoreGraphics;
 
 namespace MonoCatalog {
-	
+
 	public partial class ToolbarViewController : UIViewController {
-	
+
 		UIBarButtonSystemItem currentSystemItem;
 		UIToolbar toolbar;
 		static string [] pickerViewArray = {
@@ -37,9 +37,9 @@ namespace MonoCatalog {
 			"Undo",
 			"Redo"
 		};
-		
+
 		public ToolbarViewController () : base ("ToolbarViewController", null) {}
-	
+
 		//
 		// This is the general callback that we give to buttons to show how to hook events up
 		// this could have been an anonymous delegate if desired.
@@ -48,45 +48,45 @@ namespace MonoCatalog {
 		{
 			Console.WriteLine ("I am the action");
 		}
-		
+
 		void CreateToolbarItems ()
 		{
 			// The order is mapped one to one to the UIBarButtonItemStyle
-			var style = (UIBarButtonItemStyle) buttonItemStyleSegControl.SelectedSegment;
-				
+						var style = (UIBarButtonItemStyle)(int) buttonItemStyleSegControl.SelectedSegment;
+
 			var systemItem = new UIBarButtonItem (currentSystemItem, Action){
 				Style = style
 			};
-	
+
 			var flexItem = new UIBarButtonItem (UIBarButtonSystemItem.FlexibleSpace);
-	
+
 			var infoItem = new UIBarButtonItem (UIImage.FromFile ("images/segment_tools.png"), style, Action);
-	
+
 			var customItem = new UIBarButtonItem ("Item", style, Action);
-	
+
 			toolbar.Items = new UIBarButtonItem [] { systemItem, flexItem, customItem, infoItem };
 		}
-	
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-	
+
 			Title = "Toolbar";
-	
+
 			NavigationController.NavigationBar.Translucent = false;
 			View.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
 			toolbar = new UIToolbar() {
 				BarStyle = UIBarStyle.Default
 			};
 			toolbar.SizeToFit ();
-			float toolbarHeight = toolbar.Frame.Height;
+						float toolbarHeight = (float)toolbar.Frame.Height;
 			var mainViewBounds = View.Bounds;
-			toolbar.Frame = new RectangleF (mainViewBounds.X, (float)(mainViewBounds.Y + mainViewBounds.Height - toolbarHeight * 2 + 2),
+			toolbar.Frame = new CGRect (mainViewBounds.X, (float)(mainViewBounds.Y + mainViewBounds.Height - toolbarHeight * 2 + 2),
 							mainViewBounds.Width, toolbarHeight);
 			View.AddSubview (toolbar);
 			currentSystemItem = UIBarButtonSystemItem.Done;
 			CreateToolbarItems ();
-	
+
 			systemButtonPicker.Model = new ItemPickerModel (this);
 		}
 
@@ -97,44 +97,44 @@ namespace MonoCatalog {
 			barStyleSegControl.AccessibilityLabel = "BarStyle";
 			buttonItemStyleSegControl.AccessibilityLabel = "BarButtonStyle";
 		}
-		
+
 		partial void toggleStyle (UISegmentedControl sender)
 		{
 			var style = UIBarButtonItemStyle.Plain;
-	
+
 			switch (sender.SelectedSegment){
-			case 0: 
+			case 0:
 				style = UIBarButtonItemStyle.Plain;
 				break;
-			case 1: 
+			case 1:
 				style = UIBarButtonItemStyle.Bordered;
 				break;
-			case 2: 
+			case 2:
 				style = UIBarButtonItemStyle.Done;
 				break;
 			}
 			foreach (var item in toolbar.Items)
 				item.Style = style;
 		}
-	
+
 		partial void toggleBarStyle (UISegmentedControl sender)
 		{
 			switch (sender.SelectedSegment){
 			case 0:
 				toolbar.BarStyle = UIBarStyle.Default;
 				break;
-				
+
 			case 1:
 				toolbar.BarStyle = UIBarStyle.Black;
 				break;
-				
+
 			case 2:
 				toolbar.BarStyle = UIBarStyle.BlackTranslucent;
 				break;
 			}
-			
+
 		}
-	
+
 		partial void toggleTintColor (UISwitch sender)
 		{
 			if (sender.On){
@@ -147,42 +147,42 @@ namespace MonoCatalog {
 				barStyleSegControl.Alpha  = 1.0f;
 			}
 		}
-	
+
 		public class ItemPickerModel : UIPickerViewModel {
 			ToolbarViewController tvc;
-			
+
 			public ItemPickerModel (ToolbarViewController tvc)
 			{
 				this.tvc = tvc;
 			}
-			
-			public override void Selected (UIPickerView picker, int row, int component)
+
+			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
-				tvc.currentSystemItem = (UIBarButtonSystemItem) picker.SelectedRowInComponent (0);
+				tvc.currentSystemItem = (UIBarButtonSystemItem) (int)picker.SelectedRowInComponent (0);
 				tvc.CreateToolbarItems ();
 			}
-	
-			public override string GetTitle (UIPickerView picker, int row, int component)
+
+			public override string GetTitle (UIPickerView picker, nint row, nint component)
 			{
 				return pickerViewArray [row];
 			}
-	
-			public override float GetComponentWidth (UIPickerView picker, int component)
+
+			public override nfloat GetComponentWidth (UIPickerView picker, nint component)
 			{
 				return 240f;
 			}
-	
-			public override float GetRowHeight (UIPickerView picker, int component)
+
+			public override nfloat GetRowHeight (UIPickerView picker, nint component)
 			{
 				return 40f;
 			}
-	
-			public override int GetRowsInComponent (UIPickerView pickerView, int component)
+
+			public override nint GetRowsInComponent (UIPickerView pickerView, nint component)
 			{
 				return pickerViewArray.Length;
 			}
-	
-			public override int GetComponentCount (UIPickerView v)
+
+			public override nint GetComponentCount (UIPickerView v)
 			{
 				return 1;
 			}

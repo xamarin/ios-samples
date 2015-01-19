@@ -1,7 +1,7 @@
-﻿using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using System;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 using System.Threading.Tasks;
 
 namespace Controls
@@ -16,7 +16,7 @@ namespace Controls
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -42,7 +42,6 @@ namespace Controls
 				//				UIAlertView alert = new UIAlertView ("Title", "The message", null, "OK", null);
 				//				alert.Show();
 
-
 				// TWO BUTTON ALERT
 				//				UIAlertView alert = new UIAlertView ("Alert Title", "Choose from two buttons", null, "OK", new string[] {"Cancel"});
 				//				alert.Clicked += (s, b) => {
@@ -51,10 +50,9 @@ namespace Controls
 				//				};
 				//				alert.Show();
 
-
 				// THREE BUTTON ALERT
 				UIAlertView alert = new UIAlertView () {
-					Title = "custom buttons alert", 
+					Title = "custom buttons alert",
 					Message = "this alert has custom buttons"
 				};
 				alert.AddButton ("OK");
@@ -69,7 +67,6 @@ namespace Controls
 				textfield1.ResignFirstResponder ();
 				textview1.ResignFirstResponder ();
 			};
-			
 
 				// SLIDER
 				slider1.MinValue = -1;
@@ -84,8 +81,8 @@ namespace Controls
 				switch1.On = true;
 
 			//DISMISS KEYBOARD ON RETURN BUTTON PRESS.
-			this.textfield1.ShouldReturn += (textField) => { 
-				textField.ResignFirstResponder(); 
+			this.textfield1.ShouldReturn += (textField) => {
+				textField.ResignFirstResponder();
 				return true;
 			};
 
@@ -104,13 +101,13 @@ namespace Controls
 			textfield1.ResignFirstResponder ();
 			textview1.ResignFirstResponder();
 
-			new UIAlertView("Button2 touched", "This method was declared as an event, which creates an [Action] in the designer.cs file", 
+			new UIAlertView("Button2 touched", "This method was declared as an event, which creates an [Action] in the designer.cs file",
 				null, "Cancel", null)
 				.Show();
 		}
 
 		//
-		// Async/Await example 
+		// Async/Await example
 		//
 		async partial void button3_TouchUpInside (UIButton sender)
 		{
@@ -129,8 +126,7 @@ namespace Controls
 
 			await Task.Delay(1000);
 
-
-			new UIAlertView("Async method complete", "This method contained async awaits", 
+			new UIAlertView("Async method complete", "This method contained async awaits",
 				null, "Cancel", null)
 				.Show();
 

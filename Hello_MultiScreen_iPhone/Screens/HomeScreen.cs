@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Hello_MultiScreen_iPhone
 {
@@ -10,16 +10,16 @@ namespace Hello_MultiScreen_iPhone
 	{
 		HelloWorldScreen helloWorldScreen;
 		HelloUniverseScreen helloUniverseScreen;
-		
+
 		//loads the HomeScreen.xib file and connects it to this object
 		public HomeScreen () : base ("HomeScreen", null)
 		{
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-		
+
 			//---- when the hello world button is clicked
 			this.btnHelloWorld.TouchUpInside += (sender, e) => {
 				//---- instantiate a new hello world screen, if it's null (it may not be null if they've navigated
@@ -28,16 +28,16 @@ namespace Hello_MultiScreen_iPhone
 				//---- push our hello world screen onto the navigation controller and pass a true so it navigates
 				this.NavigationController.PushViewController(this.helloWorldScreen, true);
 			};
-			
+
 			//---- same thing, but for the hello universe screen
 			this.btnHelloUniverse.TouchUpInside += (sender, e) => {
 				if(this.helloUniverseScreen == null) { this.helloUniverseScreen = new HelloUniverseScreen(); }
 				this.NavigationController.PushViewController(this.helloUniverseScreen, true);
 			};
 		}
-		
+
 		/// <summary>
-		/// Is called when the view is about to appear on the screen. We use this method to hide the 
+		/// Is called when the view is about to appear on the screen. We use this method to hide the
 		/// navigation bar.
 		/// </summary>
 		public override void ViewWillAppear (bool animated)
@@ -45,7 +45,7 @@ namespace Hello_MultiScreen_iPhone
 			base.ViewWillAppear (animated);
 			this.NavigationController.SetNavigationBarHidden (true, animated);
 		}
-		
+
 		/// <summary>
 		/// Is called when the another view will appear and this one will be hidden. We use this method
 		/// to show the navigation bar again.

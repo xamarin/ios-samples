@@ -1,16 +1,16 @@
 using System;
 using System.IO;
-using System.Drawing;
+using CoreGraphics;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Threading;
 
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreImage;
+using CoreGraphics;
+using CoreImage;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace AsyncDownloadImage
 {
@@ -34,7 +34,7 @@ namespace AsyncDownloadImage
 		{
 			base.ViewDidLoad ();
 
-			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) { 
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
 				this.EdgesForExtendedLayout = UIRectEdge.None;
 			}
 			this.downloadButton.SetTitleColor (UIColor.Blue, UIControlState.Normal);
@@ -66,7 +66,6 @@ namespace AsyncDownloadImage
 			var url = new Uri ("http://photojournal.jpl.nasa.gov/jpeg/PIA15416.jpg");
 			byte[] bytes = null;
 
-
 			webClient.DownloadProgressChanged += HandleDownloadProgressChanged;
 
 			this.downloadButton.SetTitle ("Cancel",UIControlState.Normal);
@@ -86,7 +85,7 @@ namespace AsyncDownloadImage
 				Console.WriteLine (e.ToString());
 				return;
 			}
-			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);	
+			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 			string localFilename = "downloaded.png";
  			string localPath = Path.Combine (documentsPath, localFilename);
 			infoLabel.Text = "Download Complete";
@@ -97,11 +96,10 @@ namespace AsyncDownloadImage
 
 			Console.WriteLine("localPath:"+localPath);
 
-
 			//Resizing image is time costing, using async to avoid blocking the UI thread
 			UIImage image = null;
-			SizeF imageViewSize = imageView.Frame.Size;
-	
+			CGSize imageViewSize = imageView.Frame.Size;
+
 			infoLabel.Text = "Resizing Image...";
 			await Task.Run( () => { image = UIImage.FromFile(localPath).Scale(imageViewSize); } );
 			Console.WriteLine ("Loaded!");
@@ -110,14 +108,11 @@ namespace AsyncDownloadImage
 
 			infoLabel.Text = "Click Dowload button to download the image";
 
-
 			this.downloadButton.TouchUpInside -= cancelDownload;
 			this.downloadButton.TouchUpInside += downloadAsync;
 			this.downloadButton.SetTitle ("Download", UIControlState.Normal);
 			this.downloadProgress.Progress = 0.0f;
 		}
-
-
 
 		void HandleDownloadProgressChanged (object sender, DownloadProgressChangedEventArgs e)
 		{
@@ -144,7 +139,6 @@ namespace AsyncDownloadImage
 			                 , null).Show();
 			infoLabel.Text = "Click Dowload button to download the image";
 		}
-
 
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{

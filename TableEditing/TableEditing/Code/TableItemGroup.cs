@@ -1,21 +1,23 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
+using UIKit;
 
-namespace TableEditing.Code {
+namespace TableEditing.Code
+{
 	/// <summary>
 	/// A group that contains table items
 	/// </summary>
-	public class TableItemGroup {
+	public class TableItemGroup
+	{
 		public string Name { get; set; }
-	
+
 		public string Footer { get; set; }
-	
-		public List<TableItem> Items
-		{
+
+		public List<TableItem> Items {
 			get { return items; }
 			set { items = value; }
 		}
+
 		List<TableItem> items = new List<TableItem> ();
 	}
 }

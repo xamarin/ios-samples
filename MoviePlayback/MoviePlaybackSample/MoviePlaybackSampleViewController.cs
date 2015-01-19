@@ -1,7 +1,7 @@
-using MonoTouch.UIKit;
+using UIKit;
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.MediaPlayer;
+using Foundation;
+using MediaPlayer;
 
 namespace MoviePlaybackSample
 {
@@ -22,43 +22,43 @@ namespace MoviePlaybackSample
 
         public override void ViewDidLoad()
         {
-			
+
             base.ViewDidLoad();
 
             //Button Events
             playMovieButton.TouchUpInside += delegate
             {
-			
+
                 try
                 {
                     //Set already instantiated MPMoviePlayerController to playback from Movies/file.m4v
                     mp = new MPMoviePlayerController(NSUrl.FromFilename("Movies/file.m4v"));
-					
+
                     //enable AirPlay
                     mp.AllowsAirPlay = true;
-					
+
                     //Add the MPMoviePlayerController View
                     this.View.AddSubview(mp.View);
-					
+
                     //set the view to be full screen and show animated
                     mp.SetFullscreen(true, true);
 
                     //Disable the pinch-to-zoom gesture
                     mp.ControlStyle = MPMovieControlStyle.Fullscreen;
-			
+
                     //MPMoviePlayer must be set to PrepareToPlay before playback
                     mp.PrepareToPlay();
-					
+
                     //Play Movie
                     mp.Play();
                 }
                 catch
                 {
                     Console.WriteLine("There was a problem playing back Video");
-                }		
-				
+                }
+
             };
-						
+
         }
 
         [Obsolete]

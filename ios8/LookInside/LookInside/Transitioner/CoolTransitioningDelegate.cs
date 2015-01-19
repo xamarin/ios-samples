@@ -20,10 +20,7 @@ namespace LookInside
 			return presentationController;
 		}
 
-		public override IUIViewControllerAnimatedTransitioning PresentingController (
-			UIViewController presented,
-			UIViewController presenting,
-			UIViewController source)
+		public override IUIViewControllerAnimatedTransitioning GetAnimationControllerForPresentedController (UIViewController presented, UIViewController presenting, UIViewController source)
 		{
 			present = present ?? new CoolAnimatedTransitioning {
 				IsPresentation = true

@@ -1,7 +1,7 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace LineLayout
 {
@@ -15,7 +15,7 @@ namespace LineLayout
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.RootViewController = new LineLayoutViewController (new LineLayout ());
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 

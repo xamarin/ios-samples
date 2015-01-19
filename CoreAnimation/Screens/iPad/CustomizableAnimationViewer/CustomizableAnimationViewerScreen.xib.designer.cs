@@ -4,38 +4,38 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
-namespace Example_CoreAnimation.Screens.iPad.CustomizableAnimationViewer
+namespace CoreAnimationExample
 {
 	[Register ("CustomizableAnimationViewerScreen")]
 	partial class CustomizableAnimationViewerScreen
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnContents { get; set; }
+		UIKit.UIButton btnContents { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnStart { get; set; }
+		UIKit.UIButton btnStart { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView imgToAnimate { get; set; }
+		UIKit.UIImageView imgToAnimate { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISegmentedControl sgmtCurves { get; set; }
+		UIKit.UISegmentedControl sgmtCurves { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider sldrDelay { get; set; }
+		UIKit.UISlider sldrDelay { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider sldrDuration { get; set; }
+		UIKit.UISlider sldrDuration { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISwitch swtchAutoReverse { get; set; }
+		UIKit.UISwitch swtchAutoReverse { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UITextField txtRepeateCount { get; set; }
-		
+		UIKit.UITextField txtRepeateCount { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (btnStart != null) {

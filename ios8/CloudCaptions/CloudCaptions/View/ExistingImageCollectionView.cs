@@ -39,7 +39,6 @@ namespace CloudCaptions
 			}
 		}
 
-		// TODO: https://trello.com/c/gOg7lMzy
 		static readonly NSString cellReuseIdentifier = new NSString("imageCell");
 
 		List<Image> imageRecords;
@@ -91,7 +90,7 @@ namespace CloudCaptions
 		{
 			// returns the recordID of the item in imageRecords at the given index
 			Image img = imageRecords[index.Row];
-			return img.Record.RecordId;
+			return img.Record.Id;
 		}
 	}
 }

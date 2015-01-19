@@ -1,21 +1,21 @@
-// 
+//
 // WorldCitiesViewController.cs
-//  
+//
 // Author:
 //       Mike Krüger <mkrueger@xamarin.com>
-// 
+//
 // Copyright (c) 2011 Xamarin Inc. (http://xamarin.com)
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,14 +23,14 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 using System.Collections.Generic;
-using MonoTouch.MapKit;
-using MonoTouch.CoreLocation;
-using MonoTouch.ObjCRuntime;
+using MapKit;
+using CoreLocation;
+using ObjCRuntime;
 
 namespace WorldCities
 {
@@ -41,32 +41,32 @@ namespace WorldCities
 		public WorldCitiesViewController (IntPtr handle) : base (handle)
 		{
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			if (SelectedCity != null)
 				ChooseWorldCity ();
 		}
-		
-		partial void SelectorChanged (MonoTouch.Foundation.NSObject sender)
+
+		partial void SelectorChanged (Foundation.NSObject sender)
 		{
 			var segmented = sender as UISegmentedControl;
 			if (segmented == null)
 				return;
 			switch (segmented.SelectedSegment) {
 			case 1:
-				MapView.MapType = MonoTouch.MapKit.MKMapType.Satellite;
+				MapView.MapType = MapKit.MKMapType.Satellite;
 				break;
 			case 2:
-				MapView.MapType = MonoTouch.MapKit.MKMapType.Hybrid;
+				MapView.MapType = MapKit.MKMapType.Hybrid;
 				break;
 			default:
-				MapView.MapType = MonoTouch.MapKit.MKMapType.Standard;
+				MapView.MapType = MapKit.MKMapType.Standard;
 				break;
 			}
 		}
-		
+
 		[Export("AnimateToWorld")]
 		void AnimateToWorld ()
 		{
@@ -76,7 +76,7 @@ namespace WorldCities
 				new MKCoordinateSpan (90, 90));
 			MapView.SetRegion (zoomOut, true);
 		}
-		
+
 		[Export("AnimateToPlace")]
 		void AnimateToPlace ()
 		{
@@ -85,7 +85,7 @@ namespace WorldCities
 				new MKCoordinateSpan (0.4, 0.4));
 			MapView.SetRegion (region, true);
 		}
-		
+
 		void ChooseWorldCity ()
 		{
 			var aPlace = SelectedCity;
@@ -98,7 +98,7 @@ namespace WorldCities
 				PerformSelector (new Selector ("AnimateToPlace"), null, 0.3f);
 			}
 		}
-		
+
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			// Return true for supported orientations

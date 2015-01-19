@@ -1,9 +1,9 @@
 //
 // how to capture still images, video and audio using iOS AVFoundation and the AVCAptureSession
-// 
+//
 // This sample handles all of the low-level AVFoundation and capture graph setup required to capture and save media.  This code also exposes the
 // capture, configuration and notification capabilities in a more '.Netish' way of programming.  The client code will not need to deal with threads, delegate classes
-// buffer management, or objective-C data types but instead will create .NET objects and handle standard .NET events.  The underlying iOS concepts and classes are detailed in 
+// buffer management, or objective-C data types but instead will create .NET objects and handle standard .NET events.  The underlying iOS concepts and classes are detailed in
 // the iOS developer online help (TP40010188-CH5-SW2).
 //
 // https://developer.apple.com/library/mac/#documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/04_MediaCapture.html#//apple_ref/doc/uid/TP40010188-CH5-SW2
@@ -13,21 +13,21 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Text;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreVideo;
-using MonoTouch.CoreMedia;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreFoundation;
+using Foundation;
+using UIKit;
+using AVFoundation;
+using CoreVideo;
+using CoreMedia;
+using CoreGraphics;
+using CoreFoundation;
 using System.Runtime.InteropServices;
 
 namespace MediaCapture
 {
-	public class MovieSegmentWriterDelegate : AVCaptureFileOutputRecordingDelegate 
-	{ 	
+	public class MovieSegmentWriterDelegate : AVCaptureFileOutputRecordingDelegate
+	{
 		#region events
 		public EventHandler<MovieSegmentRecordingStartedEventArgs> MovieSegmentRecordingStarted;
 		private void onMovieSegmentRecordingStarted( string path )
@@ -53,7 +53,7 @@ namespace MediaCapture
 			{
 				try
 				{
-					MovieSegmentRecordingCompleteEventArgs args = new MovieSegmentRecordingCompleteEventArgs();	
+					MovieSegmentRecordingCompleteEventArgs args = new MovieSegmentRecordingCompleteEventArgs();
 					args.Path = path;
 					args.Length = length;
 					args.ErrorOccured = errorOccurred;
@@ -64,7 +64,7 @@ namespace MediaCapture
 				}
 			}
 		}
-		
+
 		public EventHandler<CaptureErrorEventArgs> CaptureError;
 		private void onCaptureError( string errorMessage )
 		{
@@ -72,7 +72,7 @@ namespace MediaCapture
 			{
 				try
 				{
-					CaptureErrorEventArgs args = new CaptureErrorEventArgs();	
+					CaptureErrorEventArgs args = new CaptureErrorEventArgs();
 					args.ErrorMessage = errorMessage;
 					CaptureError(this, args);
 				}
@@ -82,11 +82,11 @@ namespace MediaCapture
 			}
 		}
 		#endregion
-		
+
 		public override void DidStartRecording
 		(
-			AVCaptureFileOutput captureOutput, 
-			NSUrl outputFileUrl, 
+			AVCaptureFileOutput captureOutput,
+			NSUrl outputFileUrl,
 			NSObject[] connections
 		)
 		{
@@ -96,9 +96,9 @@ namespace MediaCapture
 
 		public override void FinishedRecording
 		(
-			AVCaptureFileOutput captureOutput, 
-			NSUrl outputFileUrl, 
-			NSObject[] connections, 
+			AVCaptureFileOutput captureOutput,
+			NSUrl outputFileUrl,
+			NSObject[] connections,
 			NSError nsError
 		)
 		{
@@ -112,12 +112,12 @@ namespace MediaCapture
 				onCaptureError( errorMessage );
 			}
 		}
-		
+
 		private void finishedRecordingInternal
 		(
-			AVCaptureFileOutput captureOutput, 
-			NSUrl outputFileUrl, 
-			NSObject[] connections, 
+			AVCaptureFileOutput captureOutput,
+			NSUrl outputFileUrl,
+			NSObject[] connections,
 			NSError nsError
 		)
 		{
@@ -129,16 +129,16 @@ namespace MediaCapture
 				// note that a correctly recorded file calls the delegate with an error code even
 				// though this is not (always) an actual error.  We have to check the code to know for sure.
 				var userInfo = nsError.UserInfo;
-				
+
 				// handle recording stoppage due to file size limit
 				if ( ( userInfo.Keys.Length == 3 ) && ( nsError.Code == -11811 ) )
 				{
 					var k0 = userInfo.Keys[0];
 					var v0 = userInfo.Values[0];
-					
+
 					int segmentLength;
-					if ( ( k0.ToString() != "AVErrorFileSizeKey" ) || 
-						 ( int.TryParse( v0.ToString(), out segmentLength ) == false )  || 
+					if ( ( k0.ToString() != "AVErrorFileSizeKey" ) ||
+						 ( int.TryParse( v0.ToString(), out segmentLength ) == false )  ||
 						 ( segmentLength == 0) )
 					{
 						onMovieSegmentRecordingComplete( null, 0, true );
@@ -153,7 +153,7 @@ namespace MediaCapture
 				else if ( ( userInfo.Keys.Length == 3 ) && ( nsError.Code == -11810 ) )
 				{
 					var k0 = userInfo.Keys[0];
-					
+
 					if ( k0.ToString() != "AVErrorTimeKey" )
 					{
 						onMovieSegmentRecordingComplete( null, 0, true );
@@ -185,12 +185,8 @@ namespace MediaCapture
 				}
 			}
 		}
-		
-		
-		
-		
+
 	}
-	
-		
+
 }
 

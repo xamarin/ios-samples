@@ -1,6 +1,6 @@
 using System;
 using OpenTK.Graphics.ES20;
-using MonoTouch.Foundation;
+using Foundation;
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +10,7 @@ namespace PerVertexDirectionalLighting
 	public class GLProgram
 	{
 		int program,
-			vertShader, 
+			vertShader,
 			fragShader;
 
 		List<string> attributes;
@@ -48,7 +48,7 @@ namespace PerVertexDirectionalLighting
 
 			return status == (int) All.True;
 		}
- 
+
 		public void AddAttribute (string attributeName)
 		{
 			if (!attributes.Contains (attributeName)) {

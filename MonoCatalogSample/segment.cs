@@ -9,7 +9,7 @@ using System.Drawing;
 public partial class SegmentViewController : UIViewController {
 
 	public SegmentViewController () : base ("SegmentViewController", null) {}
-	
+
 	UILabel MakeLabel (string title, RectangleF frame)
 	{
 		return new UILabel (frame) {
@@ -22,16 +22,16 @@ public partial class SegmentViewController : UIViewController {
 	}
 
 	const float lHeight = 20f;
-	
+
 	void CreateControls ()
 	{
 		var items = new string [] { "Check", "Search", "Tools" };
-		
+
 		float yPlacement = 20f;
-		
+
 		View.AddSubview (MakeLabel ("UISegmentedControl", new RectangleF (20f, yPlacement, View.Bounds.Width - 40f, lHeight)));
 		yPlacement += 40f;
-		
+
 		var segmentedControl = new UISegmentedControl (new object [] {
 				UIImage.FromFile ("segment_check.png"),
 				UIImage.FromFile ("segment_search.png"),
@@ -42,7 +42,7 @@ public partial class SegmentViewController : UIViewController {
 		};
 		View.AddSubview (segmentedControl);
 		yPlacement += 60f;
-		
+
 		View.AddSubview (MakeLabel ("UISegmentedControlStyleBordered", new RectangleF (20f, yPlacement, View.Bounds.Width - 40f, lHeight)));
 		yPlacement += 40f;
 
@@ -56,7 +56,7 @@ public partial class SegmentViewController : UIViewController {
 		};
 		View.AddSubview (segmentedControl);
 		yPlacement += 60f;
-		
+
 		View.AddSubview (MakeLabel ("UISegmentedControlStyleBar", new RectangleF (20f, yPlacement, View.Bounds.Width - 40f, lHeight)));
 		yPlacement += 40f;
 		segmentedControl = new UISegmentedControl (items){
@@ -66,7 +66,7 @@ public partial class SegmentViewController : UIViewController {
 		};
 		View.AddSubview (segmentedControl);
 		yPlacement += 60f;
-		
+
 		View.AddSubview (MakeLabel ("UISegmentedControlStyleBar (tinted)", new RectangleF (20f, yPlacement, View.Bounds.Width - 40f, lHeight)));
 		yPlacement += 40f;
 		segmentedControl = new UISegmentedControl (items){

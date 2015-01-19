@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using MonoTouch.Dialog;
 using System.Collections.Generic;
 
@@ -20,7 +20,7 @@ namespace PaintCode
 
 			var section = new Section ();
 			// creates the rows using MT.Dialog
-			
+
 			foreach (var item in newsItems) {
 				var published = item.Item1;
 				var image = CustomBadgeElement.MakeCalendarBadge (

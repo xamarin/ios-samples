@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.SpriteKit;
-using MonoTouch.UIKit;
+using SpriteKit;
+using UIKit;
 
 namespace ButtonTapper3000 {
 
@@ -10,7 +10,7 @@ namespace ButtonTapper3000 {
 		{
 			View = new SKView ();
 
-			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) { 
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
 				this.EdgesForExtendedLayout = UIRectEdge.None;
 			}
 		}

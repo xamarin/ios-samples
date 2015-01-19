@@ -21,7 +21,7 @@ public partial class ButtonsViewController : UITableViewController {
 		ButtonsViewController bvc;
 		static NSString kDisplayCell_ID = new NSString ("DisplayCellID");
 		static NSString kSourceCell_ID = new NSString ("SourceCellID");
-		
+
 		public DataSource (ButtonsViewController bvc)
 		{
 			this.bvc = bvc;
@@ -53,7 +53,7 @@ public partial class ButtonsViewController : UITableViewController {
 					cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 				} else {
 					// The cell is being recycled, remove the old content
-					
+
 					UIView viewToRemove = cell.ContentView.ViewWithTag (kViewTag);
 					if (viewToRemove != null)
 						viewToRemove.RemoveFromSuperview ();
@@ -67,7 +67,7 @@ public partial class ButtonsViewController : UITableViewController {
 					cell = new UITableViewCell (UITableViewCellStyle.Default, kSourceCell_ID);
 					cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 					var label = cell.TextLabel;
-					
+
 					label.Opaque = false;
 					label.TextAlignment = UITextAlignment.Center;
 					label.TextColor = UIColor.Gray;
@@ -100,7 +100,7 @@ public partial class ButtonsViewController : UITableViewController {
 
 	// For tagging our embedded controls at cell recylce time.
 	const int kViewTag = 1;
-	
+
 	//
 	// Utility function that configures the various buttons that we create
 	//
@@ -122,16 +122,16 @@ public partial class ButtonsViewController : UITableViewController {
 		button.SetBackgroundImage (newImage, UIControlState.Normal);
 		var newPressedImage = image.StretchableImage (12, 0);
 		button.SetBackgroundImage (newPressedImage, UIControlState.Highlighted);
-		
+
 		button.Tag = kViewTag;   // To support reusable cells
 
 		button.TouchDown += delegate {
 			Console.WriteLine ("The button has been touched");
 		};
-		
+
 		return button;
 	}
-	
+
 	UIButton GrayButton ()
 	{
 		var background = UIImage.FromFile ("whiteButton.png");
@@ -170,11 +170,10 @@ public partial class ButtonsViewController : UITableViewController {
 		button.Frame = new RectangleF (250f, 8f, 25f, 25f);
 		button.BackgroundColor = UIColor.Clear;
 		button.SetTitle ("Detail Disclosure", UIControlState.Normal);
-		
+
 		button.Tag = kViewTag;   // To support reusable cells
 		return button;
 	}
-
 
 	UIButton InfoDarkButtonType ()
 	{
@@ -182,7 +181,7 @@ public partial class ButtonsViewController : UITableViewController {
 		button.Frame = new RectangleF (250, 8f, 25f, 25f);
 		button.BackgroundColor = UIColor.Clear;
 		button.SetTitle ("Detail Disclosure", UIControlState.Normal);
-		
+
 		button.Tag = kViewTag;   // To support reusable cells
 		return button;
 	}
@@ -208,7 +207,7 @@ public partial class ButtonsViewController : UITableViewController {
 		button.Tag = kViewTag;   // To support reusable cells
 		return button;
 	}
-	
+
 	struct ButtonSample {
 		public string Title, Label, Source;
 		public UIButton Button;
@@ -244,5 +243,4 @@ public partial class ButtonsViewController : UITableViewController {
 		TableView.Delegate = new TableDelegate ();
 	}
 
-	
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using MonoTouch.AudioToolbox;
+using System;
+using AudioToolbox;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,23 +25,24 @@ namespace StreamingAudio
 	/// </summary>
 	public class StreamingPlayback : IDisposable
 	{
-		public OutputAudioQueue OutputQueue;
-		// the AudioToolbox decoder
-		private AudioFileStream fileStream;
-		private int bufferSize = 128 * 1024;
-		private List<AudioBuffer> outputBuffers;
-		private AudioBuffer currentBuffer;
-		// Maximum buffers
-		private int maxBufferCount = 4;
-		// Keep track of all queued up buffers, so that we know that the playback finished
-		private int queuedBufferCount = 0;
-		// Current Filestream Position - if we don't keep track we don't know when to push the last uncompleted buffer
-		private long currentByteCount = 0;
-		//Used to trigger a dump of the last buffer.
-		private bool lastPacket;
-
 		public event EventHandler Finished;
 		public event Action<OutputAudioQueue> OutputReady;
+
+		// the AudioToolbox decoder
+		AudioFileStream fileStream;
+		int bufferSize = 128 * 1024;
+		List<AudioBuffer> outputBuffers;
+		AudioBuffer currentBuffer;
+		// Maximum buffers
+		int maxBufferCount = 4;
+		// Keep track of all queued up buffers, so that we know that the playback finished
+		int queuedBufferCount = 0;
+		// Current Filestream Position - if we don't keep track we don't know when to push the last uncompleted buffer
+		long currentByteCount = 0;
+		//Used to trigger a dump of the last buffer.
+		bool lastPacket;
+
+		public OutputAudioQueue OutputQueue;
 
 		public bool Started  { get; private set; }
 
@@ -69,7 +70,7 @@ namespace StreamingAudio
 		}
 
 		/// <summary>
-		/// Defines the maximum Number of Buffers to use, the count can only change after Reset is called or the 
+		/// Defines the maximum Number of Buffers to use, the count can only change after Reset is called or the
 		/// StreamingPlayback is freshly instantiated
 		/// </summary>
 		public int MaxBufferCount {
@@ -185,7 +186,7 @@ namespace StreamingAudio
 		/// Saving the decoded Packets to our active Buffer, if the Buffer is full queue it into the OutputQueue
 		/// and wait until another buffer gets freed up
 		/// </summary>
-		private void AudioPacketDecoded (object sender, PacketReceivedEventArgs args)
+		void AudioPacketDecoded (object sender, PacketReceivedEventArgs args)
 		{
 			foreach (var p in args.PacketDescriptions) {
 				currentByteCount += p.DataByteSize;
@@ -227,8 +228,8 @@ namespace StreamingAudio
 		/// <summary>
 		/// Enqueue the active buffer to the OutputQueue
 		/// </summary>
-		private void EnqueueBuffer ()
-		{			
+		void EnqueueBuffer ()
+		{
 			currentBuffer.IsInUse = true;
 			OutputQueue.EnqueueBuffer (currentBuffer.Buffer, currentBuffer.CurrentOffset, currentBuffer.PacketDescriptions.ToArray ());
 			queuedBufferCount++;
@@ -249,7 +250,7 @@ namespace StreamingAudio
 			}
 		}
 
-		private void StartQueueIfNeeded ()
+		void StartQueueIfNeeded ()
 		{
 			if (Started)
 				return;
@@ -260,7 +261,7 @@ namespace StreamingAudio
 		/// <summary>
 		/// When a AudioProperty in the fed packets is found this callback is called
 		/// </summary>
-		private void AudioPropertyFound (object sender, PropertyFoundEventArgs args)
+		void AudioPropertyFound (object sender, PropertyFoundEventArgs args)
 		{
 			if (args.Property == AudioFileStreamProperty.ReadyToProducePackets) {
 				Started = false;
@@ -273,7 +274,7 @@ namespace StreamingAudio
 					OutputReady (OutputQueue);
 
 				currentByteCount = 0;
-				OutputQueue.OutputCompleted += HandleOutputQueueOutputCompleted;
+				OutputQueue.BufferCompleted += HandleBufferCompleted;
 				outputBuffers = new List<AudioBuffer> ();
 
 				for (int i = 0; i < MaxBufferCount; i++) {
@@ -294,7 +295,7 @@ namespace StreamingAudio
 		/// <summary>
 		/// Is called when a buffer is completly read and can be freed up
 		/// </summary>
-		private void HandleOutputQueueOutputCompleted (object sender, OutputCompletedEventArgs e)
+		void HandleBufferCompleted (object sender, BufferCompletedEventArgs e)
 		{
 			queuedBufferCount--;
 			IntPtr buf = e.IntPtrBuffer;
@@ -317,5 +318,3 @@ namespace StreamingAudio
 		}
 	}
 }
-
-

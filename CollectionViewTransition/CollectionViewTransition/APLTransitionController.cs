@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace CollectionViewTransition {
 
@@ -12,7 +12,7 @@ namespace CollectionViewTransition {
 		UINavigationController navigationController;
 		IUIViewControllerContextTransitioning context;
 		float initialPinchDistance;
-		PointF initialPinchPoint;
+		CGPoint initialPinchPoint;
 
 		public APLTransitionController (UICollectionView view, UINavigationController controller)
 		{
@@ -27,13 +27,13 @@ namespace CollectionViewTransition {
 
 		// required method for view controller transitions, called when the system needs to set up
 		// the interactive portions of a view controller transition and start the animations
-		void InteractionBegan (PointF point)
+		void InteractionBegan (CGPoint point)
 		{
 			UIViewController viewController = ((APLCollectionViewController)navigationController.TopViewController).NextViewControllerAtPoint (point);
 			if (viewController != null) {
 				navigationController.PushViewController (viewController, true);
 			} else {
-				navigationController.PopViewControllerAnimated (true);
+				navigationController.PopViewController(true);
 			}
 		}
 
@@ -52,7 +52,7 @@ namespace CollectionViewTransition {
 			context = transitionContext;
 			var fromVC = (UICollectionViewController) context.GetViewControllerForKey (UITransitionContext.FromViewControllerKey);
 			var toVC = (UICollectionViewController) context.GetViewControllerForKey (UITransitionContext.ToViewControllerKey);
-			transitionLayout = (APLTransitionLayout) fromVC.CollectionView.StartInteractiveTransition (toVC.Layout, 
+			transitionLayout = (APLTransitionLayout) fromVC.CollectionView.StartInteractiveTransition (toVC.Layout,
 				delegate (bool finished, bool completed)  {
 				context.CompleteTransition (completed);
 				collectionView.WeakDelegate = completed ? toVC : fromVC;
@@ -102,9 +102,9 @@ namespace CollectionViewTransition {
 				EndInteraction (false);
 			} else if (sender.NumberOfTouches == 2) {
 				// here we expect two finger touch
-				PointF point = sender.LocationInView (sender.View); // get the main touch point
-				PointF point1 = sender.LocationOfTouch (0, sender.View); // return the locations of each gesture’s touches in the local coordinate system of a given view
-				PointF point2 = sender.LocationOfTouch (1, sender.View);
+				CGPoint point = sender.LocationInView (sender.View); // get the main touch point
+				CGPoint point1 = sender.LocationOfTouch (0, sender.View); // return the locations of each gesture’s touches in the local coordinate system of a given view
+				CGPoint point2 = sender.LocationOfTouch (1, sender.View);
 				float distance = (float)Math.Sqrt ((point1.X - point2.X) * (point1.X - point2.X) +
 				                (point1.Y - point2.Y) * (point1.Y - point2.Y));
 
@@ -119,17 +119,17 @@ namespace CollectionViewTransition {
 				}
 
 				if (HasActiveInteraction) {
-					if (sender.State == UIGestureRecognizerState.Changed) { 
+					if (sender.State == UIGestureRecognizerState.Changed) {
 						// update the progress of the transtition as the user continues to pinch
-						float offsetX = point.X - initialPinchPoint.X;
-						float offsetY = point.Y - initialPinchPoint.Y;
+						float offsetX = (float)point.X - (float)initialPinchPoint.X;
+						float offsetY = (float)point.Y - (float)initialPinchPoint.Y;
 
 						float distanceDelta = distance - initialPinchDistance;
 
 						if (NavigationOperation == UINavigationControllerOperation.Pop)
 							distanceDelta = -distanceDelta;
 
-						SizeF size = collectionView.Bounds.Size;
+						CGSize size = collectionView.Bounds.Size;
 						float dimension = (float)Math.Sqrt (size.Width * size.Width + size.Height * size.Height);
 						float progress = (float)Math.Max (Math.Min (distanceDelta / dimension, 1.0), 0.0);
 

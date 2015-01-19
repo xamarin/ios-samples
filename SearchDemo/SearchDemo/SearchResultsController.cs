@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace SearchDemo
 {
@@ -24,16 +24,16 @@ namespace SearchDemo
 
             Title = "Bing Search Demo ";
             TableView.Source = new TableSource (this);
-            
+
             searchBar = new UISearchBar ();
             searchBar.Placeholder = "Enter Search Text";
             searchBar.SizeToFit ();
             searchBar.AutocorrectionType = UITextAutocorrectionType.No;
             searchBar.AutocapitalizationType = UITextAutocapitalizationType.None;
             searchBar.SearchButtonClicked += (sender, e) => {
-                Search (); 
+                Search ();
             };
-            
+
             TableView.TableHeaderView = searchBar;
         }
 
@@ -49,7 +49,7 @@ namespace SearchDemo
         {
             this.InvokeOnMainThread (delegate {
                 if (results != null) {
-                    searchResults = results;    
+                    searchResults = results;
                     TableView.ReloadData ();
                 } else {
                     new UIAlertView ("", "Could not retrieve results", null, "OK").Show ();
@@ -68,7 +68,7 @@ namespace SearchDemo
                 this.controller = controller;
             }
 
-            public override int RowsInSection (UITableView tableView, int section)
+            public override nint RowsInSection (UITableView tableView, nint section)
             {
                 return controller.searchResults.Count;
             }
@@ -76,15 +76,15 @@ namespace SearchDemo
             public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
             {
                 UITableViewCell cell = tableView.DequeueReusableCell (cellId);
-                
+
                 if (cell == null)
                     cell = new UITableViewCell (
                         UITableViewCellStyle.Default,
                         cellId
                     );
-                
+
                 cell.TextLabel.Text = controller.searchResults [indexPath.Row].Title;
-                
+
                 return cell;
             }
 
@@ -96,5 +96,4 @@ namespace SearchDemo
         }
     }
 }
-
 

@@ -1,9 +1,8 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Accelerate;
+using UIKit;
+using Accelerate;
 using System.Diagnostics;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
 
 namespace UIImageEffects
 {
@@ -34,15 +33,15 @@ namespace UIImageEffects
 		{
 			const float EffectColorAlpha = 0.6f;
 			var effectColor = tintColor;
-			float alpha;
+			nfloat alpha;
 			var componentCount = tintColor.CGColor.NumberOfComponents;
 			if (componentCount == 2) {
-				float white;
+				nfloat white;
 				if (tintColor.GetWhite (out white, out alpha))
 					effectColor = UIColor.FromWhiteAlpha (white, EffectColorAlpha);
 			} else {
 				try {
-					float r, g, b;
+					nfloat r, g, b;
 					tintColor.GetRGBA (out r, out g, out b, out alpha);
 					effectColor = UIColor.FromRGBA (r, g, b, EffectColorAlpha);
 				} catch {
@@ -66,7 +65,7 @@ namespace UIImageEffects
 				return null;
 			}
 
-			var imageRect = new RectangleF (PointF.Empty, image.Size);
+			var imageRect = new CGRect (CGPoint.Empty, image.Size);
 			var effectImage = image;
 
 			bool hasBlur = blurRadius > float.Epsilon;
@@ -82,18 +81,18 @@ namespace UIImageEffects
 
 				var effectInBuffer = new vImageBuffer () {
 					Data = effectInContext.Data,
-					Width = effectInContext.Width,
-					Height = effectInContext.Height,
-					BytesPerRow = effectInContext.BytesPerRow
+					Width = (int)effectInContext.Width,
+					Height = (int)effectInContext.Height,
+					BytesPerRow =(int) effectInContext.BytesPerRow
 				};
 
 				UIGraphics.BeginImageContextWithOptions (image.Size, false, UIScreen.MainScreen.Scale);
-				var effectOutContext = UIGraphics.GetCurrentContext ().AsBitmapContext () as CGBitmapContext;				
+				var effectOutContext = UIGraphics.GetCurrentContext ().AsBitmapContext () as CGBitmapContext;
 				var effectOutBuffer = new vImageBuffer () {
 					Data = effectOutContext.Data,
-					Width = effectOutContext.Width,
-					Height = effectOutContext.Height,
-					BytesPerRow = effectOutContext.BytesPerRow
+					Width = (int)effectOutContext.Width,
+					Height = (int)effectOutContext.Height,
+					BytesPerRow = (int)effectOutContext.BytesPerRow
 				};
 
 				if (hasBlur) {

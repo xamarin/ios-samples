@@ -20,7 +20,7 @@ namespace CloudKitAtlas
 
 		[Action ("TakePhoto:")]
 		partial void TakePhoto (Foundation.NSObject sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (assetPreview != null) {

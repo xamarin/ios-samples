@@ -19,11 +19,11 @@ public partial class SearchBarController : UIViewController {
 			bar.ResignFirstResponder ();
 		}
 	}
-	
+
 	public override void ViewDidLoad ()
 	{
 		base.ViewDidLoad ();
-		
+
 		Title = "Search Bar";
 		View.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
 		var f = new RectangleF (0f, 0f, View.Bounds.Width, 44f);
@@ -33,5 +33,5 @@ public partial class SearchBarController : UIViewController {
 		};
 		View.AddSubview (bar);
 	}
-	
+
 }

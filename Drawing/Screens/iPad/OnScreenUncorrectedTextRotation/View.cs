@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
+using CoreGraphics;
 
 namespace Example_Drawing.Screens.iPad.OnScreenUncorrectedTextRotation
 {
@@ -14,14 +14,14 @@ namespace Example_Drawing.Screens.iPad.OnScreenUncorrectedTextRotation
 		#endregion
 
 		// rect changes depending on if the whole view is being redrawn, or just a section
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			Console.WriteLine ("Draw() Called");
 			base.Draw (rect);
-			
+
 			// get a reference to the context
 			using (CGContext context = UIGraphics.GetCurrentContext ()) {
-				
+
 				// declare vars
 				ShowCenteredTextAtPoint (context, 384, 400, "Hello World!", 60);
 			}

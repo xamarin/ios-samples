@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace MediaNotes
 {
@@ -22,7 +22,7 @@ namespace MediaNotes
 		{
 			toolBarIsvisible = true;
 		}
-	
+
 		public override void ViewDidLoad ()
 		{
 			// Perform any additional setup after loading the view, typically from a nib.
@@ -79,7 +79,6 @@ namespace MediaNotes
 			//	                                   this,cmd));
 		}
 
-
 		public void TextViewDidEndEditing (UITextView textView)
 		{
 			if (!Comment ().Equals(textView.Text)){
@@ -89,7 +88,7 @@ namespace MediaNotes
 		}
 
 		//YYCommentViewController API
-		
+
 		public void ShowToolbar (bool show, bool animated, float duration)
 		{
 			UIView.Animate (.5, () => {
@@ -110,12 +109,12 @@ namespace MediaNotes
 		{
 			if (obj != associatedObject) {
 				associatedObject = obj;
-			} 
+			}
 			textView.Text = obj.AssociatedComment();
 			Console.WriteLine (textView.Text);
 		}
 
-		partial void enableTextEditing (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial void enableTextEditing (UIKit.UIBarButtonItem sender)
 		{
 			if (textView.Editable) {
 				setEditing(false);
@@ -127,7 +126,7 @@ namespace MediaNotes
 			}
 		}
 
-		partial void share (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial void share (UIKit.UIBarButtonItem sender)
 		{
 			if(shareController == null){
 				List<UIImage> items = associatedObject.ItemsForSharing();
@@ -138,7 +137,7 @@ namespace MediaNotes
 						itemsForSharing [i] = items [i];
 				}
 				itemsForSharing [i] = new NSString (Comment ());
-			
+
 			UIActivityViewController activityController = new UIActivityViewController(itemsForSharing, null);
 			shareController = new UIPopoverController(activityController);
 			shareController.Delegate = new MyDelegate(this);
@@ -150,7 +149,7 @@ namespace MediaNotes
 				}
 		}
 
-		partial void shootPicture (MonoTouch.UIKit.UIBarButtonItem sender)
+		partial void shootPicture (UIKit.UIBarButtonItem sender)
 		{
 			UIImagePickerController picker = new UIImagePickerController();
 

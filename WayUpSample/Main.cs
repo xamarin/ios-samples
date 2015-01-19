@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace WayUp
 {
@@ -21,11 +21,11 @@ namespace WayUp
 		{
 			window.RootViewController = crateViewController;
 			window.MakeKeyAndVisible ();
-	
+
 			return true;
 		}
 	}
-	
+
 	public partial class CrateViewController : UIViewController {
 
 		public CrateViewController (IntPtr handle) : base (handle) {}

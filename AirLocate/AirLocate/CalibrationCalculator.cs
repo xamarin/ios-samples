@@ -1,35 +1,36 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreLocation;
-using MonoTouch.Foundation;
+using CoreFoundation;
+using CoreLocation;
+using Foundation;
 
-namespace AirLocate {
-
-	public class CalibrationCompletedEventArgs : EventArgs {
-
+namespace AirLocate
+{
+	public class CalibrationCompletedEventArgs : EventArgs
+	{
 		public int MeasurePower { get; set; }
+
 		public NSError Error { get; set; }
 	}
 
-	public class CalibrationProgressEventArgs : EventArgs {
-
+	public class CalibrationProgressEventArgs : EventArgs
+	{
 		public float PercentComplete { get; set; }
 	}
 
-	public class CalibrationCancelledError : NSError {
-
+	public class CalibrationCancelledError : NSError
+	{
 		static NSString ErrorDomain = new NSString (Defaults.Identifier);
 
-		public CalibrationCancelledError () : 
+		public CalibrationCancelledError () :
 			base (ErrorDomain, 2, new NSDictionary ("Calibration was cancelled", NSError.LocalizedDescriptionKey))
 		{
 		}
 	}
 
-	public class CalibrationCalculator {
-
+	public class CalibrationCalculator
+	{
 		static NSString Rssi = new NSString ("rssi");
 
 		CLLocationManager locationManager;
@@ -79,10 +80,10 @@ namespace AirLocate {
 				ProgressHandler = handler;
 
 				locationManager.StartRangingBeacons (region);
-				timer = NSTimer.CreateTimer (20.0f, new NSAction (delegate {
+				timer = NSTimer.CreateTimer (20.0f, (r) => {
 					locationManager.StopRangingBeacons (region);
 
-					DispatchQueue.DefaultGlobalQueue.DispatchAsync (new NSAction (delegate {
+					DispatchQueue.DefaultGlobalQueue.DispatchAsync (new Action (delegate {
 						NSError error = null;
 						List<CLBeacon> allBeacons = new List<CLBeacon> ();
 						int measuredPower = 0;
@@ -106,26 +107,26 @@ namespace AirLocate {
 								});
 								float power = 0;
 								int number = 0;
-								int outlierPadding = (int) (allBeacons.Count * 0.1f);
+								int outlierPadding = (int)(allBeacons.Count * 0.1f);
 								for (int k = outlierPadding; k < allBeacons.Count - (outlierPadding * 2); k++) {
-									power += ((NSNumber) allBeacons[k].ValueForKey (Rssi)).FloatValue;
-									number ++;
+									power += ((NSNumber)allBeacons [k].ValueForKey (Rssi)).FloatValue;
+									number++;
 								}
-								measuredPower = (int) power/number;
+								measuredPower = (int)power / number;
 							}
 						}
 
 						DispatchQueue.MainQueue.DispatchAsync (delegate {
-							CalibrationCompletionHandler (this, new CalibrationCompletedEventArgs () { 
+							CalibrationCompletionHandler (this, new CalibrationCompletedEventArgs () {
 								MeasurePower = measuredPower,
-								Error = error 
+								Error = error
 							});
 						});
 
 						isCalibrating = false;
 						rangedBeacons.Clear ();
 					}));
-				}));
+				});
 				NSRunLoop.Current.AddTimer (timer, NSRunLoopMode.Default);
 			}
 		}

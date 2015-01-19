@@ -1,24 +1,24 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreFoundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using CoreFoundation;
+using UIKit;
 
-namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
+namespace CoreAnimationExample
 {
 	public class Controller : UIViewController, IDetailView
 	{
 		public event EventHandler ContentsButtonClicked;
 
-		private TransitionViewController transitionViewController;
-		private BackTransitionViewController backViewController;
+		TransitionViewController transitionViewController;
+		BackTransitionViewController backViewController;
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
 			View.BackgroundColor = UIColor.White;
-			var mainFrame = new RectangleF (0f, 44f, View.Frame.Width, View.Frame.Height - 44f);
-			
+			var mainFrame = new CGRect (0f, 44f, View.Frame.Width, View.Frame.Height - 44f);
+
 			transitionViewController = new TransitionViewController ();
 			transitionViewController.View.Frame = mainFrame;
 			backViewController = new BackTransitionViewController ();
@@ -28,7 +28,7 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 
 			transitionViewController.SetToolbarVisibility (InterfaceOrientation);
 			transitionViewController.TransitionClicked += (s, e) => {
-				UIView.Transition(transitionViewController.View, backViewController.View, 0.75,
+				UIView.Transition (transitionViewController.View, backViewController.View, 0.75,
 					transitionViewController.SelectedTransition, null);
 			};
 
@@ -37,9 +37,9 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 					ContentsButtonClicked (null, null);
 				}
 			};
-			
+
 			backViewController.BackClicked += (s, e) => {
-				UIView.Transition(backViewController.View, transitionViewController.View, 0.75,
+				UIView.Transition (backViewController.View, transitionViewController.View, 0.75,
 					transitionViewController.SelectedTransition, null);
 			};
 		}

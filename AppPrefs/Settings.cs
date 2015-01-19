@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace AppPrefs
 {
@@ -15,7 +15,7 @@ namespace AppPrefs
 		Blue,
 		Pattern
 	};
-	
+
 	/// <summary>
 	/// This class manages the system settings.
 	/// </summary>
@@ -25,51 +25,45 @@ namespace AppPrefs
 		public static string LastName { get; private set;}
 		public static TextColors TextColor { get; private set;}
 		public static BackgroundColors BackgroundColor { get; private set;}
-		
+
 		const string firstNameKey = "firstNameKey";
 		const string lastNameKey = "lastNameKey";
 		const string nameColorKey = "nameColorKey";
 		const string backgroundColorKey = "backgroundColorKey";
-		
+
 		static void LoadDefaultValues ()
 		{
 			var settingsDict = new NSDictionary (NSBundle.MainBundle.PathForResource ("Settings.bundle/Root.plist", null));
-			
-			var prefSpecifierArray = settingsDict[(NSString)"PreferenceSpecifiers"] as NSArray;
-			
+
+			var prefSpecifierArray = settingsDict["PreferenceSpecifiers"] as NSArray;
+
 			foreach (var prefItem in NSArray.FromArray<NSDictionary> (prefSpecifierArray)) {
-				var key = prefItem[(NSString)"Key"] as NSString;
+				var key = (NSString)prefItem["Key"];
 				if (key == null)
 					continue;
-				var val = prefItem[(NSString)"DefaultValue"];
+
+				var val = prefItem["DefaultValue"];
 				switch (key.ToString ()) {
-				case firstNameKey:
-					FirstName = val.ToString ();
-					break;
-				case lastNameKey:
-					LastName = val.ToString ();
-					break;
-				case nameColorKey:
-					TextColor =  (TextColors)((NSNumber)val).Int32Value;
-					break;
-				case backgroundColorKey:
-					BackgroundColor =  (BackgroundColors)((NSNumber)val).Int32Value;
-					break;
+					case firstNameKey:
+						FirstName = val.ToString ();
+						break;
+					case lastNameKey:
+						LastName = val.ToString ();
+						break;
+					case nameColorKey:
+						TextColor = (TextColors)((NSNumber)val).Int32Value;
+						break;
+					case backgroundColorKey:
+						BackgroundColor = (BackgroundColors)((NSNumber)val).Int32Value;
+						break;
 				}
 			}
-			var appDefaults = NSDictionary.FromObjectsAndKeys (new object[] {
-					new NSString (FirstName),
-					new NSString (LastName),
-					new NSNumber ((int)TextColor),
-					new NSNumber ((int)BackgroundColor)
-				},
-				new object [] { firstNameKey, lastNameKey, nameColorKey, backgroundColorKey }
-			);
-			
+			var appDefaults = new NSDictionary (firstNameKey, FirstName, lastNameKey, LastName, nameColorKey, (int)TextColor, backgroundColorKey, (int)BackgroundColor);
+
 			NSUserDefaults.StandardUserDefaults.RegisterDefaults (appDefaults);
 			NSUserDefaults.StandardUserDefaults.Synchronize ();
 		}
-		
+
 		public static void SetupByPreferences ()
 		{
 			var testValue = NSUserDefaults.StandardUserDefaults.StringForKey (firstNameKey);
@@ -77,8 +71,8 @@ namespace AppPrefs
 				LoadDefaultValues ();
 			FirstName = NSUserDefaults.StandardUserDefaults.StringForKey (firstNameKey);
 			LastName = NSUserDefaults.StandardUserDefaults.StringForKey (lastNameKey);
-			TextColor = (TextColors)NSUserDefaults.StandardUserDefaults.IntForKey (nameColorKey);
-			BackgroundColor = (BackgroundColors)NSUserDefaults.StandardUserDefaults.IntForKey (backgroundColorKey);
+			TextColor = (TextColors)(int)NSUserDefaults.StandardUserDefaults.IntForKey (nameColorKey);
+			BackgroundColor = (BackgroundColors)(int)NSUserDefaults.StandardUserDefaults.IntForKey (backgroundColorKey);
 		}
 	}
 }

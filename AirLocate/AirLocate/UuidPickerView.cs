@@ -1,10 +1,11 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
-namespace AirLocate {
-	
-	public class UuidPickerView : UIPickerView {
+namespace AirLocate
+{
+	public class UuidPickerView : UIPickerView
+	{
 
 		public UuidPickerView (UITextField uuidTextField)
 		{
@@ -13,7 +14,8 @@ namespace AirLocate {
 			Model = new UuidPickerViewModel (uuidTextField);
 		}
 
-		class UuidPickerViewModel : UIPickerViewModel {
+		class UuidPickerViewModel : UIPickerViewModel
+		{
 
 			UITextField field;
 
@@ -22,24 +24,24 @@ namespace AirLocate {
 				field = uuidTextField;
 			}
 
-			public override void Selected (UIPickerView picker, int row, int component)
+			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
-				field.Text = Defaults.SupportedProximityUuids [row].AsString ();
+				field.Text = Defaults.SupportedProximityUuids [(int)row].AsString ();
 			}
 
-			public override int GetRowsInComponent (UIPickerView picker, int component)
+			public override nint GetRowsInComponent (UIPickerView picker, nint component)
 			{
 				return Defaults.SupportedProximityUuids.Count;
 			}
 
-			public override int GetComponentCount (UIPickerView picker)
+			public override nint GetComponentCount (UIPickerView picker)
 			{
 				return 1;
 			}
 
-			public override string GetTitle (UIPickerView picker, int row, int component)
+			public override string GetTitle (UIPickerView picker, nint row, nint component)
 			{
-				return Defaults.SupportedProximityUuids [row].AsString ();
+				return Defaults.SupportedProximityUuids [(int)row].AsString ();
 			}
 		}
 	}

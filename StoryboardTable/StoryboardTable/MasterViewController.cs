@@ -1,9 +1,9 @@
-﻿using System;
-using System.Drawing;
+using System;
+using CoreGraphics;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace StoryboardTable
 {
@@ -36,7 +36,7 @@ namespace StoryboardTable
 			}
 		}
 
-		public void CreateTask () 
+		public void CreateTask ()
 		{
 			// first, add the task to the underlying data
 			var newId = chores[chores.Count - 1].Id + 1;
@@ -53,21 +53,21 @@ namespace StoryboardTable
 		{
 			var oldTask = chores.Find(t => t.Id == chore.Id);
 			oldTask = chore;
-			NavigationController.PopViewControllerAnimated(true);
+			NavigationController.PopViewController(true);
 		}
 
-		public void DeleteTask (Chore chore) 
+		public void DeleteTask (Chore chore)
 		{
 			var oldTask = chores.Find(t => t.Id == chore.Id);
 			chores.Remove (oldTask);
-			NavigationController.PopViewControllerAnimated(true);
+			NavigationController.PopViewController(true);
 		}
 
 		public override void DidReceiveMemoryWarning ()
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -82,7 +82,6 @@ namespace StoryboardTable
 				CreateTask ();
 			};
 		}
-			
 
 		public override void ViewWillAppear (bool animated)
 		{
@@ -123,7 +122,7 @@ namespace StoryboardTable
 //			public IList<object> Objects {
 //				get { return objects; }
 //			}
-//				
+//
 //
 //			// Customize the number of sections in the table view.
 //			public override int NumberOfSections (UITableView tableView)
@@ -179,7 +178,6 @@ namespace StoryboardTable
 //			}
 //			*/
 //		}
-
 
 	}
 }

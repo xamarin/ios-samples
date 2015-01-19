@@ -1,15 +1,15 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreAnimation;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using CoreAnimation;
+using Foundation;
+using UIKit;
 
 namespace TransitionsDemo.AnimationControllers
 {
 	public class CECardsAnimationController : CEReversibleAnimationController
 	{
-		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext, 
-		                                        UIViewController fromViewController, UIViewController toViewController, 
+		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
+		                                        UIViewController fromViewController, UIViewController toViewController,
 		                                        UIView fromView, UIView toView)
 		{
 			if (Reverse) {
@@ -19,8 +19,8 @@ namespace TransitionsDemo.AnimationControllers
 			}
 		}
 
-		private void ExecuteReverseAnimation (IUIViewControllerContextTransitioning transitionContext, 
-		                                      UIViewController fromViewController, UIViewController toViewController, 
+		private void ExecuteReverseAnimation (IUIViewControllerContextTransitioning transitionContext,
+		                                      UIViewController fromViewController, UIViewController toViewController,
 		                                      UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
@@ -33,12 +33,12 @@ namespace TransitionsDemo.AnimationControllers
 
 			containerView.InsertSubviewAbove (toView, fromView);
 
-			RectangleF frameOffScreen = containerView.Frame;
+			CGRect frameOffScreen = containerView.Frame;
 			frameOffScreen.Y = containerView.Frame.Height;
 
 			CATransform3D transform = GetFirstTransform ();
 
-			NSAction animations = () => {
+			Action animations = () => {
 
 				// push the from- view off the bottom of the screen
 				UIView.AddKeyframeWithRelativeStartTime (0.0, 0.5, () => {
@@ -66,14 +66,14 @@ namespace TransitionsDemo.AnimationControllers
 			});
 		}
 
-		private void ExecuteForwardAnimation (IUIViewControllerContextTransitioning transitionContext, 
-		                                      UIViewController fromViewController, UIViewController toViewController, 
+		private void ExecuteForwardAnimation (IUIViewControllerContextTransitioning transitionContext,
+		                                      UIViewController fromViewController, UIViewController toViewController,
 		                                      UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
 
 			// positions the to- view off the bottom of the sceen
-			RectangleF offScreenFrame = containerView.Frame;
+			CGRect offScreenFrame = containerView.Frame;
 			offScreenFrame.Y = containerView.Frame.Height;
 			toView.Frame = offScreenFrame;
 
@@ -82,7 +82,7 @@ namespace TransitionsDemo.AnimationControllers
 			CATransform3D firstTransform = GetFirstTransform ();
 			CATransform3D secondTrsnaform = GetSecondTransform (fromView);
 
-			NSAction animations = () => {
+			Action animations = () => {
 				UIView.AddKeyframeWithRelativeStartTime (0.0, 0.4, () => {
 					fromView.Layer.Transform = firstTransform;
 					fromView.Alpha = 0.6f;
@@ -93,7 +93,7 @@ namespace TransitionsDemo.AnimationControllers
 				});
 
 				UIView.AddKeyframeWithRelativeStartTime (0.6, 0.2, () => {
-					toView.Frame = new RectangleF (toView.Frame.X, containerView.Frame.Y - 30f, 
+					toView.Frame = new CGRect (toView.Frame.X, containerView.Frame.Y - 30f,
 					                               toView.Frame.Width, toView.Frame.Height);
 				});
 

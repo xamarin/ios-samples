@@ -1,18 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using MonoTouch.Dialog;
-using System.Drawing;
-using MonoTouch.CoreText;
+using CoreGraphics;
+using CoreText;
 
 namespace ios7fonts
 {
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
-		const string lorem = 
+		const string lorem =
 			"\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ";
 
 		DialogViewController dialog;
@@ -40,28 +40,27 @@ namespace ios7fonts
 				                 new UIFontFeature ((CTFontFeatureCharacterAlternatives.Selector)1));
 
 			var newDesc = font.FontDescriptor.CreateWithAttributes (attributes);
-			return UIFont.FromDescriptor (newDesc, 40);	
+			return UIFont.FromDescriptor (newDesc, 40);
 		}
 
 		public UIFont ResizeProportional (UIFont font)
 		{
 			var attributes = new UIFontAttributes (new UIFontFeature (CTFontFeatureNumberSpacing.Selector.ProportionalNumbers));
 			var newDesc = font.FontDescriptor.CreateWithAttributes (attributes);
-			return UIFont.FromDescriptor (newDesc, 40);	
+			return UIFont.FromDescriptor (newDesc, 40);
 		}
 
 		public UIFont ResizeAlternative (UIFont font)
 		{
 			var attributes = new UIFontAttributes (new UIFontFeature ((CTFontFeatureCharacterAlternatives.Selector)1));
 			var newDesc = font.FontDescriptor.CreateWithAttributes (attributes);
-			return UIFont.FromDescriptor (newDesc, 40);	
+			return UIFont.FromDescriptor (newDesc, 40);
 		}
 
 		public UIFont Resize (UIFont font)
 		{
-			return UIFont.FromDescriptor (font.FontDescriptor, 40);	
+			return UIFont.FromDescriptor (font.FontDescriptor, 40);
 		}
-
 
 		RootElement MakeFonts ()
 		{
@@ -123,8 +122,8 @@ namespace ios7fonts
 			window.RootViewController = nav;
 			window.MakeKeyAndVisible ();
 
-			UIApplication.Notifications.ObserveContentSizeCategoryChanged (delegate { 
-				dialog.Root = MakeFonts (); 
+			UIApplication.Notifications.ObserveContentSizeCategoryChanged (delegate {
+				dialog.Root = MakeFonts ();
 				nav.PopToRootViewController (false);
 			});
 			return true;

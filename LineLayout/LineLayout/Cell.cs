@@ -1,19 +1,19 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace LineLayout
 {
 	public partial class Cell : UICollectionViewCell
 	{
 		public UILabel Label { get; private set; }
-		
+
 		[Export("initWithFrame:")]
-		public Cell (RectangleF frame) : base (frame)
-		{   
-			Label = new UILabel (new RectangleF (PointF.Empty, frame.Size)) {
+		public Cell (CGRect frame) : base (frame)
+		{
+			Label = new UILabel (new CGRect (CGPoint.Empty, frame.Size)) {
 				AutoresizingMask = UIViewAutoresizing.FlexibleHeight|UIViewAutoresizing.FlexibleWidth,
 				TextAlignment = UITextAlignment.Center,
 				Font = UIFont.BoldSystemFontOfSize (50f),

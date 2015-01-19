@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.SpriteKit;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using CoreGraphics;
+using Foundation;
+using SpriteKit;
+using UIKit;
 
 namespace SpriteKitPhysicsCollisions {
 
@@ -30,7 +30,7 @@ namespace SpriteKitPhysicsCollisions {
 		SKEmitterNode visibleDamageNode;
 		float engineEngagedAlpha;
 		double timeLastFiredMissile;
-	
+
 		int health;
 
 		static Random rand = new Random ();
@@ -39,7 +39,7 @@ namespace SpriteKitPhysicsCollisions {
 			return (float)rand.NextDouble () * (high - low) + low;
 		}
 
-		public ShipSprite (PointF initialPosition)
+		public ShipSprite (CGPoint initialPosition)
 			: base (NSBundle.MainBundle.PathForResource ("spaceship", "png"))
 		{
 			CGPath boundingPath = new CGPath ();
@@ -59,9 +59,9 @@ namespace SpriteKitPhysicsCollisions {
 			};
 			ship.AddChild (shipOverlayShape);
 #endif
-			var body = SKPhysicsBody.BodyWithPolygonFromPath (boundingPath);
+			var body = SKPhysicsBody.CreateBodyFromPath (boundingPath);
 			body.CategoryBitMask = Category.Ship;
-			body.CollisionBitMask = Category.Ship | Category.Asteroid | Category.Planet | Category.Edge; 
+			body.CollisionBitMask = Category.Ship | Category.Asteroid | Category.Planet | Category.Edge;
 			body.ContactTestBitMask = body.CollisionBitMask;
 			body.LinearDamping = 0;
 			body.AngularDamping = 0.5f;
@@ -74,7 +74,7 @@ namespace SpriteKitPhysicsCollisions {
 			get {
 				if (exhaustNode == null) {
 					var emitter = new ExhaustNode (Scene);
-					engineEngagedAlpha = emitter.ParticleAlpha;
+					engineEngagedAlpha = (float)emitter.ParticleAlpha;
 					AddChild (emitter);
 					exhaustNode = emitter;
 				}
@@ -107,10 +107,10 @@ namespace SpriteKitPhysicsCollisions {
 			for (int i = 0; i < numberOfChunks; i++) {
 				float angle = myRand (0, (float) Math.PI * 2);
 				float speed = myRand (shipChunkMinimumSpeed, shipChunkMaximumSpeed);
-				var position = new PointF (myRand (Position.X - shipChunkDispersion, Position.Y + shipChunkDispersion),
-				                           myRand (Position.Y - shipChunkDispersion, Position.Y + shipChunkDispersion));
+				var position = new CGPoint (myRand ((float)Position.X - shipChunkDispersion, (float)Position.Y + shipChunkDispersion),
+					(nfloat)myRand ((float)Position.Y - shipChunkDispersion, (float)Position.Y + shipChunkDispersion));
 				var explosion = new ExplosionNode (Scene, position);
-				var body = SKPhysicsBody.BodyWithCircleOfRadius (0.25f);
+				var body = SKPhysicsBody.CreateCircularBody (0.25f);
 				body.CollisionBitMask = 0;
 				body.ContactTestBitMask = 0;
 				body.CategoryBitMask = 0;
@@ -127,13 +127,13 @@ namespace SpriteKitPhysicsCollisions {
 
 		public float ShipOrientation {
 			get {
-				return ZRotation + (float)Math.PI / 2;
+				return (float)ZRotation + (float)Math.PI / 2;
 			}
 		}
 
 		public float ShipExhaustAngle {
 			get {
-				return ZRotation - (float)Math.PI / 2;
+				return (float)ZRotation - (float)Math.PI / 2;
 			}
 		}
 
@@ -179,7 +179,7 @@ namespace SpriteKitPhysicsCollisions {
 				float cos = (float) Math.Cos (shipDirection);
 				float sin = (float) Math.Sin (shipDirection);
 
-				var position = new PointF (Position.X + missileLaunchDistance * cos,
+				var position = new CGPoint (Position.X + missileLaunchDistance * cos,
 					Position.Y + missileLaunchDistance * sin);
 				SKNode missile = new MissileNode (this, position);
 				Scene.AddChild (missile);

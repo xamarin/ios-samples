@@ -1,23 +1,23 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
-using MonoTouch.AddressBook;
-using MonoTouch.EventKit;
-using MonoTouch.AssetsLibrary;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreBluetooth;
-using MonoTouch.Accounts;
-using MonoTouch.AdSupport;
-using MonoTouch.CoreLocation;
+using Foundation;
+using UIKit;
+using CoreGraphics;
+using CoreGraphics;
+using AddressBook;
+using EventKit;
+using AssetsLibrary;
+using AVFoundation;
+using CoreBluetooth;
+using Accounts;
+using AdSupport;
+using CoreLocation;
 
 namespace PrivacyPrompts
 {
 
 	public class AdvertisingPrivacyController : PrivacyDetailViewController
 	{
-	
+
 		public AdvertisingPrivacyController()
 		{
 			CheckAccess = CheckAdvertisingAccess;
@@ -28,7 +28,7 @@ namespace PrivacyPrompts
 
 		string CheckAdvertisingAccess ()
 		{
-			return 
+			return
 				ASIdentifierManager.SharedManager.IsAdvertisingTrackingEnabled ?
 				"granted" : "denied";
 		}

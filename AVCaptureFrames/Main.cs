@@ -7,15 +7,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreVideo;
-using MonoTouch.CoreMedia;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
+using Foundation;
+using UIKit;
+using AVFoundation;
+using CoreVideo;
+using CoreMedia;
+using CoreGraphics;
 
-using MonoTouch.CoreFoundation;
+using CoreFoundation;
 using System.Runtime.InteropServices;
 
 namespace avcaptureframes
@@ -35,10 +35,10 @@ namespace avcaptureframes
 		AVCaptureSession session;
 		OutputRecorder outputRecorder;
 		DispatchQueue queue;
-		
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			ImageView = new UIImageView (new RectangleF (20, 20, 280, 280));
+			ImageView = new UIImageView (new CGRect (20, 20, 280, 280));
 			ImageView.ContentMode = UIViewContentMode.ScaleAspectFill;
 
 			vc = new UIViewController ();
@@ -49,11 +49,11 @@ namespace avcaptureframes
 			window.BackgroundColor = UIColor.Black;
 
 			if (!SetupCaptureSession ())
-				window.AddSubview (new UILabel (new RectangleF (20, 20, 200, 60)) { Text = "No input device" });
-			
+				window.AddSubview (new UILabel (new CGRect (20, 20, 200, 60)) { Text = "No input device" });
+
 			return true;
 		}
-		
+
 		bool SetupCaptureSession ()
 		{
 			// configure the capture session for low resolution, change this if your code
@@ -61,7 +61,7 @@ namespace avcaptureframes
 			session = new AVCaptureSession () {
 				SessionPreset = AVCaptureSession.PresetMedium
 			};
-			
+
 			// create a device input and attach it to the session
 			var captureDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Video);
 			if (captureDevice == null){
@@ -81,59 +81,59 @@ namespace avcaptureframes
 				captureDevice.ActiveVideoMinFrameDuration = new CMTime (1,15);
 			captureDevice.UnlockForConfiguration();
 
-
 			var input = AVCaptureDeviceInput.FromDevice (captureDevice);
 			if (input == null){
 				Console.WriteLine ("No input - this won't work on the simulator, try a physical device");
 				return false;
 			}
 			session.AddInput (input);
-			
+
 			// create a VideoDataOutput and add it to the sesion
 			var output = new AVCaptureVideoDataOutput () {
-				VideoSettings = new AVVideoSettings (CVPixelFormatType.CV32BGRA),
+				WeakVideoSettings = new CVPixelBufferAttributes () {
+								    PixelFormatType = CVPixelFormatType.CV32BGRA
+								     }.Dictionary,
 			};
 
-
 			// configure the output
-			queue = new MonoTouch.CoreFoundation.DispatchQueue ("myQueue");
+			queue = new CoreFoundation.DispatchQueue ("myQueue");
 			outputRecorder = new OutputRecorder ();
 			output.SetSampleBufferDelegate (outputRecorder, queue);
 			session.AddOutput (output);
-			
+
 			session.StartRunning ();
 			return true;
 		}
-		
+
 		public override void OnActivated (UIApplication application)
 		{
 		}
-		
-		public class OutputRecorder : AVCaptureVideoDataOutputSampleBufferDelegate { 	
+
+		public class OutputRecorder : AVCaptureVideoDataOutputSampleBufferDelegate {
 			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
 			{
 				try {
 					var image = ImageFromSampleBuffer (sampleBuffer);
-	
+
 					// Do something with the image, we just stuff it in our main view.
 					AppDelegate.ImageView.BeginInvokeOnMainThread (delegate {
 						AppDelegate.ImageView.Image = image;
 						AppDelegate.ImageView.Transform = CGAffineTransform.MakeRotation((float)Math.PI/2);
 
 					});
-			
+
 					//
 					// Although this looks innocent "Oh, he is just optimizing this case away"
 					// this is incredibly important to call on this callback, because the AVFoundation
 					// has a fixed number of buffers and if it runs out of free buffers, it will stop
-					// delivering frames. 
-					//	
+					// delivering frames.
+					//
 					sampleBuffer.Dispose ();
 				} catch (Exception e){
 					Console.WriteLine (e);
 				}
 			}
-			
+
 			UIImage ImageFromSampleBuffer (CMSampleBuffer sampleBuffer)
 			{
 				// Get the CoreVideo image
@@ -142,9 +142,9 @@ namespace avcaptureframes
 					pixelBuffer.Lock (0);
 					// Get the number of bytes per row for the pixel buffer
 					var baseAddress = pixelBuffer.BaseAddress;
-					int bytesPerRow = pixelBuffer.BytesPerRow;
-					int width = pixelBuffer.Width;
-					int height = pixelBuffer.Height;
+					int bytesPerRow = (int) pixelBuffer.BytesPerRow;
+					int width = (int) pixelBuffer.Width;
+					int height = (int) pixelBuffer.Height;
 					var flags = CGBitmapFlags.PremultipliedFirst | CGBitmapFlags.ByteOrder32Little;
 					// Create a CGImage on the RGB colorspace from the configured parameter above
 					using (var cs = CGColorSpace.CreateDeviceRGB ())

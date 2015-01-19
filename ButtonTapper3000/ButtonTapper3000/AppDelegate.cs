@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.GameKit;
-using MonoTouch.UIKit;
+using Foundation;
+using GameKit;
+using UIKit;
 
 namespace ButtonTapper3000 {
 
@@ -35,7 +35,7 @@ namespace ButtonTapper3000 {
 					return;
 				navigationController.PresentViewController (viewController, true, null);
 			};
-		
+
 			Window.RootViewController = navigationController;
 			Window.MakeKeyAndVisible ();
 			return true;

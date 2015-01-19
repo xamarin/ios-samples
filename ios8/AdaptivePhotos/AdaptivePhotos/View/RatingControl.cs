@@ -8,15 +8,15 @@ namespace AdaptivePhotos
 {
 	public class RatingControl : UIControl
 	{
-		readonly nint ratingControlMinimumRating = 0;
-		readonly nint ratingControlMaximumRating = 4;
+		const int ratingControlMinimumRating = 0;
+		const int ratingControlMaximumRating = 4;
 
-		nint currentrating;
 		UIVisualEffectView backgroundView;
 
 		NSArray ImageViews { get; set; }
 
-		public nint Rating {
+		nuint currentrating;
+		public nuint Rating {
 			get {
 				return currentrating;
 			}
@@ -26,7 +26,7 @@ namespace AdaptivePhotos
 					currentrating = value;
 					UpdateImageViews ();
 				}
-			} 
+			}
 		}
 
 		public override bool IsAccessibilityElement {
@@ -47,7 +47,7 @@ namespace AdaptivePhotos
 			Add (backgroundView);
 
 			var imageViews = new NSMutableArray ();
-			for (nint rating = ratingControlMinimumRating; rating <= ratingControlMaximumRating; rating++) {
+			for (int rating = ratingControlMinimumRating; rating <= ratingControlMaximumRating; rating++) {
 				UIImageView imageView = new UIImageView ();
 				imageView.UserInteractionEnabled = true;
 
@@ -77,7 +77,7 @@ namespace AdaptivePhotos
 
 		void UpdateImageViews ()
 		{
-			for (nint i = 0; i < (nint)ImageViews.Count; i++)
+			for (nuint i = 0; i < ImageViews.Count; i++)
 				ImageViews.GetItem <UIImageView> (i).Highlighted = (i + ratingControlMinimumRating <= Rating);
 		}
 
@@ -87,7 +87,7 @@ namespace AdaptivePhotos
 			CGPoint position = touch.LocationInView (this);
 			UIView touchedView = HitTest (position, evt);
 
-			for (nint i = 0; i < (nint)ImageViews.Count; i++) {
+			for (nuint i = 0; i < ImageViews.Count; i++) {
 				if (ImageViews.GetItem<UIView> (i) == touchedView) {
 					Rating = ratingControlMinimumRating + i;
 					SendActionForControlEvents (UIControlEvent.ValueChanged);
@@ -108,7 +108,7 @@ namespace AdaptivePhotos
 				"backgroundView", backgroundView));
 
 			UIImageView lastImageView = null;
-			for (nint i = 0; i < (nint)ImageViews.Count; i++) {
+			for (nuint i = 0; i < ImageViews.Count; i++) {
 				var imageView = ImageViews.GetItem <UIImageView> (i);
 				imageView.TranslatesAutoresizingMaskIntoConstraints = false;
 
@@ -116,7 +116,7 @@ namespace AdaptivePhotos
 					NSLayoutFormatOptions.DirectionLeadingToTrailing,
 					"imageView", imageView));
 
-				AddConstraint (NSLayoutConstraint.Create (imageView, NSLayoutAttribute.Width, NSLayoutRelation.Equal, 
+				AddConstraint (NSLayoutConstraint.Create (imageView, NSLayoutAttribute.Width, NSLayoutRelation.Equal,
 					imageView, NSLayoutAttribute.Height, 1.0f, 0.0f));
 
 				if (lastImageView != null) {

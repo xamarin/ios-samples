@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace RegionDefiner
 {
@@ -13,11 +13,11 @@ namespace RegionDefiner
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
+
 			viewController = new RegionDefinerViewController ();
 			window.RootViewController = viewController;
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 

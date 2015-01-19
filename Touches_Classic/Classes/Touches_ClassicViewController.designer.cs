@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace Touches_Classic
 {
@@ -12,24 +12,24 @@ namespace Touches_Classic
 	partial class Touches_ClassicViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel touchPhaseLabel { get; set; }
+		UIKit.UILabel touchPhaseLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel touchTrackingLabel { get; set; }
+		UIKit.UILabel touchTrackingLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel touchInfoLabel { get; set; }
+		UIKit.UILabel touchInfoLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel touchInstructionLabel { get; set; }
+		UIKit.UILabel touchInstructionLabel { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView firstImage { get; set; }
+		UIKit.UIImageView firstImage { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView secondImage { get; set; }
+		UIKit.UIImageView secondImage { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView thirdImage { get; set; }
+		UIKit.UIImageView thirdImage { get; set; }
 	}
 }

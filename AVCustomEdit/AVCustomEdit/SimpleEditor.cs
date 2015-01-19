@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.CoreMedia;
-using MonoTouch.AVFoundation;
+using Foundation;
+using CoreMedia;
+using AVFoundation;
 
 namespace AVCustomEdit
 {
@@ -93,7 +93,7 @@ namespace AVCustomEdit
 				// (Note: this arithmetic falls apart if timeRangeInAsset.duration < 2 * transitionDuration.)
 				nextClipStartTime = CMTime.Add (nextClipStartTime, timeRangeInAsset.Duration);
 				nextClipStartTime = CMTime.Subtract (nextClipStartTime, transitionDuration);
-			
+
 				// Remember the time range for the transition to the next item.
 
 				if(i + 1 < clipsCount)
@@ -102,7 +102,7 @@ namespace AVCustomEdit
 						Start  = nextClipStartTime,
 						Duration = transitionDuration
 					};
-			
+
 				}
 			}
 
@@ -131,7 +131,7 @@ namespace AVCustomEdit
 					var videoInstruction = new CustomVideoCompositionInstruction (compositionVideoTracks [alternatingIndex].TrackID, passThroughTimeRanges [i]);
 					instructions.Add (videoInstruction);
 
-				} 
+				}
 				else {
 					// Pass through clip i.
 					var passThroughInstruction = AVMutableVideoCompositionInstruction.Create () as AVMutableVideoCompositionInstruction;
@@ -216,13 +216,12 @@ namespace AVCustomEdit
 
 			videoComposition = AVMutableVideoComposition.Create ();
 
-
 			//Set CustomVideoCompositorClass based on the Compositor user selected.
 
 			if (TransitionType == TransitionTypeController.DiagonalWipeTransition) {
-				videoComposition.CustomVideoCompositorClass = new MonoTouch.ObjCRuntime.Class (typeof(DiagonalWipeCompositor));
+				videoComposition.CustomVideoCompositorClass = new ObjCRuntime.Class (typeof(DiagonalWipeCompositor));
 			} else {
-				videoComposition.CustomVideoCompositorClass = new MonoTouch.ObjCRuntime.Class (typeof(CrossDissolveCompositor));
+				videoComposition.CustomVideoCompositorClass = new ObjCRuntime.Class (typeof(CrossDissolveCompositor));
 			}
 
 			buildTransitionComposition (composition, videoComposition);

@@ -1,8 +1,8 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.CoreMotion;
-using MonoTouch.UIKit;
+using Foundation;
+using CoreMotion;
+using UIKit;
 
 using MotionGraphs;
 
@@ -24,7 +24,7 @@ namespace MotionGraphs
 
 		public CMMotionManager SharedManager {
 			get {
-				if (motion_manager == null) 
+				if (motion_manager == null)
 					motion_manager = new CMMotionManager ();
 				return motion_manager;
 			}
@@ -33,11 +33,11 @@ namespace MotionGraphs
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
+
 			UITabBarController tabBarController = new UITabBarController ();
 			tabBarController.SetViewControllers (new UIViewController[] {
-				new GraphViewController ("Accelerometer", MotionDataType.AccelerometerData), 
-				new GraphViewController ("Gyro", MotionDataType.GyroData), 
+				new GraphViewController ("Accelerometer", MotionDataType.AccelerometerData),
+				new GraphViewController ("Gyro", MotionDataType.GyroData),
 				new GraphViewController ("DeviceMotion", MotionDataType.DeviceMotion)
 			}, true);
 

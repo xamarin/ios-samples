@@ -5,7 +5,7 @@ using System.Net;
 using System.Linq;
 using System.Json;
 using System.Web;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace SearchDemo
 {
@@ -16,7 +16,7 @@ namespace SearchDemo
         const string AZURE_KEY = "Enter API key here";
 
         static SynchronizerDelegate sync;
-        
+
         public Bing (SynchronizerDelegate sync)
         {
             Bing.sync = sync;
@@ -41,11 +41,11 @@ namespace SearchDemo
 
                     var response = httpRes.GetResponseStream ();
                     var json = (JsonObject)JsonObject.Load (response);
-            
+
                     var results = (from result in (JsonArray)json ["d"] ["results"]
-                                let jResult = result as JsonObject 
+                                let jResult = result as JsonObject
                                 select new SearchItem { Title = jResult["Title"], Url = jResult["Url"] }).ToList ();
-               
+
                     if (sync != null)
                         sync (results);
                 }

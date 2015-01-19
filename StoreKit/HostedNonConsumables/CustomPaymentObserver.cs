@@ -1,13 +1,13 @@
 using System;
 using System.Linq;
-using MonoTouch.StoreKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using StoreKit;
+using Foundation;
+using UIKit;
 
 namespace NonConsumables {
 	internal class CustomPaymentObserver : SKPaymentTransactionObserver {
 		private InAppPurchaseManager theManager;
-		
+
 		public CustomPaymentObserver(InAppPurchaseManager manager)
 		{
 			theManager = manager;
@@ -76,7 +76,7 @@ namespace NonConsumables {
 			    }
 			}
 		}
-		
+
 		public override void PaymentQueueRestoreCompletedTransactionsFinished (SKPaymentQueue queue)
 		{
 			// Restore succeeded

@@ -1,13 +1,12 @@
 using System;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.Foundation;
+using ObjCRuntime;
+using Foundation;
 using System.Runtime.InteropServices;
-using System.Drawing;
+using CoreGraphics;
 using OpenTK.Platform;
-using MonoTouch.CoreAnimation;
+using CoreAnimation;
 using OpenTK.Graphics.ES11;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
+using UIKit;
 
 namespace LowLevelGLPaint
 {
@@ -22,35 +21,35 @@ namespace LowLevelGLPaint
 		uint brushTexture, drawingTexture, drawingFramebuffer;
 		bool firstTouch;
 
-		PointF Location;
-		PointF PreviousLocation;
-		
+		CGPoint Location;
+		CGPoint PreviousLocation;
+
 		[Export ("layerClass")]
-		public static Class LayerClass ()
+		public static new Class LayerClass ()
 		{
 			return new Class (typeof (CAEAGLLayer));
 		}
 
-		public PaintingView (RectangleF frame)
+		public PaintingView (CGRect frame)
 			: base (frame, All.Rgb565Oes, 0, true)
 		{
 			SetCurrentContext ();
 			var brushImage = UIImage.FromFile ("Particle.png").CGImage;
-			var width = brushImage.Width;
-			var height = brushImage.Height;
+			var width = (int)brushImage.Width;
+			var height = (int)brushImage.Height;
 			if (brushImage != null) {
 				IntPtr brushData = Marshal.AllocHGlobal (width * height * 4);
 				if (brushData == IntPtr.Zero)
 					throw new OutOfMemoryException ();
 				try {
 					using (var brushContext = new CGBitmapContext (brushData,
-							width, width, 8, width * 4, brushImage.ColorSpace, CGImageAlphaInfo.PremultipliedLast)) {
-						brushContext.DrawImage (new RectangleF (0.0f, 0.0f, (float) width, (float) height), brushImage);
+						(int)width, width, 8, width * 4, brushImage.ColorSpace, CGImageAlphaInfo.PremultipliedLast)) {
+						brushContext.DrawImage (new CGRect (0.0f, 0.0f, (float) width, (float) height), brushImage);
 					}
 
-					GL.GenTextures (1, ref brushTexture);
+					GL.GenTextures (1, out brushTexture);
 					GL.BindTexture (All.Texture2D, brushTexture);
-					GL.TexImage2D (All.Texture2D, 0, (int) All.Rgba, width, height, 0, All.Rgba, All.UnsignedByte, brushData);
+					GL.TexImage2D (All.Texture2D, 0, (int) All.Rgba, (int)width, height, 0, All.Rgba, All.UnsignedByte, brushData);
 				}
 				finally {
 					Marshal.FreeHGlobal (brushData);
@@ -62,7 +61,7 @@ namespace LowLevelGLPaint
 			}
 			GL.Disable (All.Dither);
 			GL.MatrixMode (All.Projection);
-			GL.Ortho (0, frame.Width, 0, frame.Height, -1, 1);
+			GL.Ortho (0, (float)frame.Width, 0, (float)frame.Height, -1, 1);
 			GL.MatrixMode (All.Modelview);
 			GL.Enable (All.Texture2D);
 			GL.EnableClientState (All.VertexArray);
@@ -90,19 +89,19 @@ namespace LowLevelGLPaint
 
 		public void Erase ()
 		{
-			GL.Clear ((uint) All.ColorBufferBit);
+			GL.Clear (ClearBufferMask.ColorBufferBit);
 
 			SwapBuffers ();
 		}
 
-		float[] vertexBuffer;
+		nfloat[] vertexBuffer;
 		int vertexMax = 64;
 
-		private void RenderLineFromPoint (PointF start, PointF end)
+		private void RenderLineFromPoint (CGPoint start, CGPoint end)
 		{
 			int vertexCount = 0;
 			if (vertexBuffer == null) {
-				vertexBuffer = new float [vertexMax * 2];
+				vertexBuffer = new nfloat [vertexMax * 2];
 			}
 			var count = Math.Max (Math.Ceiling (Math.Sqrt ((end.X - start.X) * (end.X - start.X) + (end.Y - start.Y) * (end.Y - start.Y)) / BrushPixelStep),
 					1);
@@ -125,7 +124,7 @@ namespace LowLevelGLPaint
 		[Export ("playback")]
 		void Playback ()
 		{
-			PointF [] points = ShakeMe.Data [dataofs];
+			CGPoint [] points = ShakeMe.Data [dataofs];
 
 			for (int i = 0; i < points.Length - 1; i++)
 				RenderLineFromPoint (points [i], points [i + 1]);
@@ -136,7 +135,7 @@ namespace LowLevelGLPaint
 			}
 		}
 
-		public override void TouchesBegan (MonoTouch.Foundation.NSSet touches, MonoTouch.UIKit.UIEvent e)
+		public override void TouchesBegan (NSSet touches, UIEvent e)
 		{
 			var bounds = Bounds;
 			var touch = (UITouch) e.TouchesForView (this).AnyObject;
@@ -145,7 +144,7 @@ namespace LowLevelGLPaint
 			Location.Y = bounds.Height - Location.Y;
 		}
 
-		public override void TouchesMoved (MonoTouch.Foundation.NSSet touches, MonoTouch.UIKit.UIEvent e)
+		public override void TouchesMoved (NSSet touches, UIEvent e)
 		{
 			var bounds = Bounds;
 			var touch = (UITouch) e.TouchesForView (this).AnyObject;
@@ -164,7 +163,7 @@ namespace LowLevelGLPaint
 			RenderLineFromPoint (PreviousLocation, Location);
 		}
 
-		public override void TouchesEnded (MonoTouch.Foundation.NSSet touches, MonoTouch.UIKit.UIEvent e)
+		public override void TouchesEnded (NSSet touches, UIEvent e)
 		{
 			var bounds = Bounds;
 			var touch = (UITouch) e.TouchesForView (this).AnyObject;
@@ -176,7 +175,7 @@ namespace LowLevelGLPaint
 			}
 		}
 
-		public override void TouchesCancelled (MonoTouch.Foundation.NSSet touches, MonoTouch.UIKit.UIEvent e)
+		public override void TouchesCancelled (NSSet touches, UIEvent e)
 		{
 		}
 	}

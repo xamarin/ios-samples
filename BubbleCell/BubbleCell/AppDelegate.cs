@@ -1,21 +1,21 @@
 //
-// Sample shows how to use MonoTouch.Dialog to create an iPhone SMS-like 
+// Sample shows how to use MonoTouch.Dialog to create an iPhone SMS-like
 // display of conversations
 //
 // Author:
-//   Miguel de Icaza 
+//   Miguel de Icaza
 //
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Dialog;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.MapKit;
+using Foundation;
+using UIKit;
+using CoreGraphics;
+using MapKit;
 
 namespace BubbleCell {
-	
+
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
@@ -25,7 +25,7 @@ namespace BubbleCell {
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}
-		
+
 		UIViewController MakeChat (string title)
 		{
 			var chatContent = new RootElement (title) {
@@ -37,7 +37,7 @@ namespace BubbleCell {
 			};
 			return new ChatViewController (chatContent);
 		}
-		
+
 		UIViewController MakeOptions ()
 		{
 			var options = new DialogViewController (new RootElement ("Options") {
@@ -48,7 +48,7 @@ namespace BubbleCell {
 			});
 			return new UINavigationController (options);
 		}
-		
+
 		UIViewController MakeLogin ()
 		{
 			var login = new EntryElement ("Login", "Type 'Root'", "");
@@ -59,11 +59,11 @@ namespace BubbleCell {
 				pass.FetchValue ();
 				if (login.Value == "Root" && pass.Value == "Root"){
 					NSUserDefaults.StandardUserDefaults.SetBool (true, "loggedIn");
-					
+
 					window.RootViewController.PresentViewController (MakeOptions (), true, delegate {});
 				}
 			});
-			
+
 			return new DialogViewController (new RootElement ("Login"){
 				new Section ("Enter login and password"){
 					login, pass,
@@ -73,20 +73,20 @@ namespace BubbleCell {
 				}
 			});
 		}
-		
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			UIViewController main;
-			
+
 			if (NSUserDefaults.StandardUserDefaults.BoolForKey ("xloggedIn"))
 				main = MakeOptions ();
-			else 
+			else
 				main = MakeLogin ();
-			
+
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.RootViewController = main;
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 	}

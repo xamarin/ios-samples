@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoHandoff", "PhotoHandoff\PhotoHandoff.csproj", "{477A564C-5254-4246-B281-58CC4DEA9850}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{477A564C-5254-4246-B281-58CC4DEA9850}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{477A564C-5254-4246-B281-58CC4DEA9850}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{477A564C-5254-4246-B281-58CC4DEA9850}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{477A564C-5254-4246-B281-58CC4DEA9850}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{477A564C-5254-4246-B281-58CC4DEA9850}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{477A564C-5254-4246-B281-58CC4DEA9850}.Debug|iPhone.Build.0 = Debug|iPhone
+		{477A564C-5254-4246-B281-58CC4DEA9850}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{477A564C-5254-4246-B281-58CC4DEA9850}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{477A564C-5254-4246-B281-58CC4DEA9850}.Release|iPhone.ActiveCfg = Release|iPhone
+		{477A564C-5254-4246-B281-58CC4DEA9850}.Release|iPhone.Build.0 = Release|iPhone
+		{477A564C-5254-4246-B281-58CC4DEA9850}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{477A564C-5254-4246-B281-58CC4DEA9850}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = PhotoHandoff\PhotoHandoff.csproj
+	EndGlobalSection
+EndGlobal

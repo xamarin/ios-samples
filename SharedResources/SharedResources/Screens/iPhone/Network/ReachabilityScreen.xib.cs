@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_SharedResources.Screens.iPhone.Network
 {
@@ -11,7 +11,7 @@ namespace Example_SharedResources.Screens.iPhone.Network
 	{
 		#region Constructors
 
-		// The IntPtr and initWithCoder constructors are required for items that need 
+		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
 		public ReachabilityScreen (IntPtr handle) : base(handle)
@@ -33,7 +33,7 @@ namespace Example_SharedResources.Screens.iPhone.Network
 		void Initialize ()
 		{
 		}
-		
+
 		#endregion
 	}
 }

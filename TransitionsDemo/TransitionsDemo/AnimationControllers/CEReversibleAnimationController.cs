@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace TransitionsDemo.AnimationControllers
 {
@@ -31,8 +31,8 @@ namespace TransitionsDemo.AnimationControllers
 			return Duration;
 		}
 
-		public virtual void AnimateTransition (IUIViewControllerContextTransitioning transitionContext, 
-		                                      UIViewController fromViewController, UIViewController toViewController, 
+		public virtual void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
+		                                      UIViewController fromViewController, UIViewController toViewController,
 		                                      UIView fromView, UIView toView)
 		{
 		}

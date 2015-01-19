@@ -1,9 +1,9 @@
 
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace AnimationSamples
 {
@@ -16,7 +16,7 @@ namespace AnimationSamples
 		{
 
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -26,7 +26,7 @@ namespace AnimationSamples
 				ContentMode = UIViewContentMode.ScaleAspectFit
 			};
 			View.AddSubview (view1);
-			
+
 			view2 = new UIImageView (UIImage.FromFile ("monkey2.png")) {
 				Frame = View.Frame,
 				ContentMode = UIViewContentMode.ScaleAspectFit
@@ -34,7 +34,7 @@ namespace AnimationSamples
 
 			view1.UserInteractionEnabled = true;
 
-			view1.AddGestureRecognizer (new UITapGestureRecognizer (() => { 
+			view1.AddGestureRecognizer (new UITapGestureRecognizer (() => {
 				UIView.Transition (
 					fromView: view1,
 					toView: view2,
@@ -43,8 +43,6 @@ namespace AnimationSamples
 					completion: () => { Console.WriteLine ("transition complete"); });
 			}));
 
-
-		    
 		}
 	}
 }

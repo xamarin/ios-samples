@@ -24,7 +24,7 @@
     <MtouchDebug>true</MtouchDebug>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -37,7 +37,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,7 +53,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -66,7 +66,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>full</DebugType>
@@ -79,6 +79,7 @@
     <BuildIpa>true</BuildIpa>
     <CodesignProvision>Automatic:AdHoc</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>full</DebugType>
@@ -90,6 +91,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <ConsolePause>false</ConsolePause>
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -106,13 +108,21 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Journal\FoodItem.cs" />
     <Compile Include="Journal\FoodPickerViewController.cs" />
-    <Compile Include="Journal\FoodPickerViewController.designer.cs" />
+    <Compile Include="Journal\FoodPickerViewController.designer.cs">
+      <DependentUpon>FoodPickerViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Journal\JournalViewController.cs" />
-    <Compile Include="Journal\JournalViewController.designer.cs" />
+    <Compile Include="Journal\JournalViewController.designer.cs">
+      <DependentUpon>JournalViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Energy\EnergyViewController.cs" />
-    <Compile Include="Energy\EnergyViewController.designer.cs" />
+    <Compile Include="Energy\EnergyViewController.designer.cs">
+      <DependentUpon>EnergyViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Age, Height, and Weight\ProfileViewController.cs" />
-    <Compile Include="Age, Height, and Weight\ProfileViewController.designer.cs" />
+    <Compile Include="Age, Height, and Weight\ProfileViewController.designer.cs">
+      <DependentUpon>ProfileViewController.cs</DependentUpon>
+    </Compile>
     <Compile Include="IHealthStore.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 
 namespace PaintCode
 {
@@ -19,19 +19,18 @@ namespace PaintCode
 
 			View.BackgroundColor = UIColor.White;
 
-			float statusBarHeight = UIDevice.CurrentDevice.CheckSystemVersion (7,0) ?
+			nfloat statusBarHeight = UIDevice.CurrentDevice.CheckSystemVersion (7,0) ?
 				UIApplication.SharedApplication.StatusBarFrame.Height : 0f;
-			button = new GlossyButton (new RectangleF (30, 30 + statusBarHeight, 130, 38));
+			button = new GlossyButton (new CGRect (30, 30 + statusBarHeight, 130, 38));
 			button.SetTitle ("Stop!", UIControlState.Normal);
-			
+
 			button.Tapped += (obj) => {
 				new UIAlertView ("Tapped", "Button tapped", null, "OK", null).Show ();
 			};
-			
+
 			View.AddSubview (button);
-			
-			
-			text = new UITextView (new RectangleF (10, 100 + statusBarHeight , 300, 300 - statusBarHeight));
+
+			text = new UITextView (new CGRect (10, 100 + statusBarHeight , 300, 300 - statusBarHeight));
 			text.Font = UIFont.SystemFontOfSize (14f);
 			text.Editable = false;
 			text.Text = "PaintCode GlossyButton Example\n\n"

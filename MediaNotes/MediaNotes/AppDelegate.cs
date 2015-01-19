@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.UIKit;
-using MonoTouch.AssetsLibrary;
+using Foundation;
+using CoreFoundation;
+using CoreGraphics;
+using UIKit;
+using AssetsLibrary;
 
 namespace MediaNotes
 {
@@ -17,8 +17,8 @@ namespace MediaNotes
 		}
 	}
 
-	// The UIApplicationDelegate for the application. This class is responsible for launching the 
-	// User Interface of the application, as well as listening (and optionally responding) to 
+	// The UIApplicationDelegate for the application. This class is responsible for launching the
+	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
@@ -34,7 +34,7 @@ namespace MediaNotes
 		const int PHOTO_ASSETS_CAPACITY = 50;
 		string PNALBUM_PREFIX = "WWDC2012";
 		//
-		// This method is invoked when the application has loaded and is ready to run. In this 
+		// This method is invoked when the application has loaded and is ready to run. In this
 		// method you should instantiate the window, load the UI into it and then make the window
 		// visible.
 		//
@@ -69,11 +69,11 @@ namespace MediaNotes
 			assetsLibrary.Enumerate (ALAssetsGroupType.Album, ( ALAssetsGroup group, ref bool stop) => {
 
 				if (group != null) {
-				
+
 					string groupName = group.Name;
 					if (groupName.StartsWith (PNALBUM_PREFIX)) {
 						group.SetAssetsFilter (ALAssetsFilter.AllPhotos);
-						group.Enumerate ((ALAsset asset, int index, ref bool st) => {
+						group.Enumerate ((ALAsset asset, nint index, ref bool st) => {
 							int notfound = Int32.MaxValue;
 							if (asset != null && index != notfound) {
 								photoAssets.Add (asset);
@@ -86,7 +86,7 @@ namespace MediaNotes
 						});
 					}
 				}
-				
+
 				if (syncContentController) {
 					syncContentController = false;
 					DispatchQueue.MainQueue.DispatchAsync (() => {
@@ -115,7 +115,7 @@ namespace MediaNotes
 			currentPhotoImage = UIImage.FromImage (imageRef);
 			currentPhotoIndex = index;
 		}
-		  
+
 		public class MyDatasource : PNDataSourceProtocol
 		{
 			public void ProceedToNextItem ()

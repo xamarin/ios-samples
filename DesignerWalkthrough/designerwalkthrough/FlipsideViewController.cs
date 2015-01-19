@@ -1,7 +1,7 @@
-﻿using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using System;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace DesignerWalkthrough
 {
@@ -16,7 +16,7 @@ namespace DesignerWalkthrough
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -25,13 +25,13 @@ namespace DesignerWalkthrough
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
-		//Hides the status bar 
+		//Hides the status bar
 		public override bool PrefersStatusBarHidden ()
-		{		
+		{
 			return true;
 		}
 
@@ -60,7 +60,7 @@ namespace DesignerWalkthrough
 		partial void done (UIBarButtonItem sender)
 		{
 			this.DismissViewController(true, null);
-			
+
 			if (Done != null)
 				Done (this, EventArgs.Empty);
 		}

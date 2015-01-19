@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace avTouch
 {
@@ -21,10 +21,10 @@ namespace avTouch
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			
+
 			window.AddSubview (viewController.View);
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 

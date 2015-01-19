@@ -10,10 +10,10 @@ namespace AdaptivePhotos
 	{
 		UILabel label;
 
-		public string Text { 
+		public string Text {
 			get {
 				return label.Text;
-			} 
+			}
 
 			set {
 				label.Text = value;
@@ -53,7 +53,7 @@ namespace AdaptivePhotos
 				"backgroundView", backgroundView);
 			AddConstraints (constraints);
 
-			constraints = NSLayoutConstraint.FromVisualFormat ("V:|[backgroundView]|", 
+			constraints = NSLayoutConstraint.FromVisualFormat ("V:|[backgroundView]|",
 				NSLayoutFormatOptions.DirectionLeadingToTrailing,
 				"backgroundView", backgroundView);
 			AddConstraints (constraints);
@@ -62,9 +62,9 @@ namespace AdaptivePhotos
 			label.TranslatesAutoresizingMaskIntoConstraints = false;
 			Add (label);
 
-			AddConstraint (NSLayoutConstraint.Create (label, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, 
+			AddConstraint (NSLayoutConstraint.Create (label, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal,
 				backgroundView, NSLayoutAttribute.CenterX, 1.0f, 0.0f));
-			AddConstraint (NSLayoutConstraint.Create (label, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, 
+			AddConstraint (NSLayoutConstraint.Create (label, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal,
 				backgroundView, NSLayoutAttribute.CenterY, 1.0f, 0.0f));
 		}
 

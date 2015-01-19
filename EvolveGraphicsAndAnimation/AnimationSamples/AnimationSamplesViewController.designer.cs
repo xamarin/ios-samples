@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace AnimationSamples
 {
@@ -12,8 +12,8 @@ namespace AnimationSamples
 	partial class AnimationSamplesViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton TransitionButton { get; set; }
-		
+		UIKit.UIButton TransitionButton { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (TransitionButton != null) {

@@ -1,14 +1,14 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
 using OpenTK.Graphics.ES20;
 using OpenTK;
 
-using MonoTouch.OpenGLES;
-using MonoTouch.CoreAnimation;
-using MonoTouch.Foundation;
-using MonoTouch.GLKit;
-using MonoTouch.UIKit;
+using OpenGLES;
+using CoreAnimation;
+using Foundation;
+using GLKit;
+using UIKit;
 
 namespace OpenGLScroller
 {
@@ -22,7 +22,7 @@ namespace OpenGLScroller
 		int vertexArray;
 		int vertexBuffer;
 
-		float[] gCubeVertexData = 
+		float[] gCubeVertexData =
 		{
 			// Data layout for each line below is:
 			// positionX, positionY, positionZ,     normalX, normalY, normalZ,
@@ -32,35 +32,35 @@ namespace OpenGLScroller
 			0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
 			0.5f, 0.5f, -0.5f,         1.0f, 0.0f, 0.0f,
 			0.5f, 0.5f, 0.5f,          1.0f, 0.0f, 0.0f,
-			
+
 			0.5f, 0.5f, -0.5f,         0.0f, 1.0f, 0.0f,
 			-0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
 			0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
 			0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
 			-0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
 			-0.5f, 0.5f, 0.5f,         0.0f, 1.0f, 0.0f,
-			
+
 			-0.5f, 0.5f, -0.5f,        -1.0f, 0.0f, 0.0f,
 			-0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
 			-0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
 			-0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
 			-0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
 			-0.5f, -0.5f, 0.5f,        -1.0f, 0.0f, 0.0f,
-			
+
 			-0.5f, -0.5f, -0.5f,       0.0f, -1.0f, 0.0f,
 			0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
 			-0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
 			-0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
 			0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
 			0.5f, -0.5f, 0.5f,         0.0f, -1.0f, 0.0f,
-			
+
 			0.5f, 0.5f, 0.5f,          0.0f, 0.0f, 1.0f,
 			-0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
 			0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
 			0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
 			-0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
 			-0.5f, -0.5f, 0.5f,        0.0f, 0.0f, 1.0f,
-			
+
 			0.5f, -0.5f, -0.5f,        0.0f, 0.0f, -1.0f,
 			-0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
 			0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
@@ -71,15 +71,15 @@ namespace OpenGLScroller
 
 		struct CubeInfo
 		{
-			public float Red;		
+			public float Red;
 			public float Green;
-			public float Blue;		
-			public float XAxis;		
+			public float Blue;
+			public float XAxis;
 			public float YAxis;
 			public float ZAxis;
 			public float Speed;
 			public float RotationRadians;
-			
+
 			public CubeInfo (float r, float g, float b, float x, float y, float z, float s, float rr)
 			{
 				Red = r;
@@ -102,32 +102,32 @@ namespace OpenGLScroller
 		CubeInfo deltas = new CubeInfo (0.02f, 0.018f, 0.016f, 0.01f, 0.02f, 0.03f, 0.01f, 0.0f);
 
 		double timeOfLastRenderedFrame;
-		public PointF scrollOffset;
+		public CGPoint scrollOffset;
 
 		GLKBaseEffect effect;
 		Random gen = new Random();
 
-		public CubeView (RectangleF frame) : base (frame)
+		public CubeView (CGRect frame) : base (frame)
 		{
 			SetupGL ();
 		}
 
-		public Rectangle ScrollableFrame {
+		public CGRect ScrollableFrame {
 			get {
-				return new Rectangle (0, 30, 320, (int)ScrollerHeight);
+				return new CGRect (0, 30, 320, (int)ScrollerHeight);
 			}
 		}
 
-		public Size ScrollableContentSize {
+		public CGSize ScrollableContentSize {
 			get {
 				float width = NumLittleCubes * LittleCubeWidth;
-				return new Size ((int)width, (int)ScrollerHeight);
+				return new CGSize ((int)width, (int)ScrollerHeight);
 			}
 		}
 
-		public PointF GetScrollOffset (PointF offset)
+		public CGPoint GetScrollOffset (CGPoint offset)
 		{
-			float fractionalPart = offset.X % LittleCubeWidth;
+			nfloat fractionalPart = offset.X % LittleCubeWidth;
 
 			bool roundDown = fractionalPart < (LittleCubeWidth / 2);
 
@@ -140,23 +140,22 @@ namespace OpenGLScroller
 			return offset;
 		}
 
-
-		public override RectangleF Frame {
+		public override CGRect Frame {
 			get {
 				return base.Frame;
 			}
 			set {
 				base.Frame = value;
 
-				float aspect = Math.Abs (Bounds.Size.Width / Bounds.Size.Height);
-				
+				float aspect = (float)Math.Abs (Bounds.Size.Width / Bounds.Size.Height);
+
 				Matrix4 projectionMatrix = Matrix4.CreatePerspectiveFieldOfView (MathHelper.DegreesToRadians (65), aspect, 0.1f, 100);
 				if (effect != null)
 					effect.Transform.ProjectionMatrix = projectionMatrix;
 			}
 		}
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			UpdateCubes ();
 
@@ -170,7 +169,7 @@ namespace OpenGLScroller
 				var cube = littleCube [i];
 
 				var translationX = ((i - 1) * UnitLittleCubeWidth) - (scrollOffset.X * UnitLittleCubeWidth / LittleCubeWidth);
-				var cubeMatrix = Matrix4.CreateTranslation (translationX, 2.8f, -7);
+				var cubeMatrix = Matrix4.CreateTranslation ((float)translationX, 2.8f, -7);
 				cubeMatrix = Matrix4.Mult (Matrix4.CreateFromAxisAngle (new Vector3 (cube.XAxis, cube.YAxis, cube.ZAxis), cube.RotationRadians), cubeMatrix);
 
 				effect.Light0.DiffuseColor = new Vector4 (cube.Red, cube.Green, cube.Blue, 1.0f);
@@ -193,34 +192,34 @@ namespace OpenGLScroller
 			GL.DrawArrays (BeginMode.Triangles, 0, 36);
 		}
 
-		public override void TouchesBegan (NSSet touches, MonoTouch.UIKit.UIEvent evt)
+		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
 			base.TouchesBegan (touches, evt);
 		}
 
-		public override void TouchesMoved (NSSet touches, MonoTouch.UIKit.UIEvent evt)
+		public override void TouchesMoved (NSSet touches, UIEvent evt)
 		{
 			base.TouchesMoved (touches, evt);
 		}
 
-		public override void TouchesCancelled (NSSet touches, MonoTouch.UIKit.UIEvent evt)
+		public override void TouchesCancelled (NSSet touches, UIEvent evt)
 		{
 			base.TouchesCancelled (touches, evt);
 		}
 
-		public override void TouchesEnded (NSSet touches, MonoTouch.UIKit.UIEvent evt)
+		public override void TouchesEnded (NSSet touches, UIEvent evt)
 		{
 			var touch = (UITouch) touches.AnyObject;
 			if (touch.TapCount == 1) {
-				var endTouch = new PointF (touch.LocationInView (this).X, touch.LocationInView (this).Y);
+				var endTouch = new CGPoint (touch.LocationInView (this).X, touch.LocationInView (this).Y);
 				HandleTapAtPoint (endTouch);
 			}
 		}
 
-		public void HandleTapAtPoint (PointF point)
+		public void HandleTapAtPoint (CGPoint point)
 		{
-			var bigCubeRect = new RectangleF (70, 210, 180, 180);
-			RectangleF scrollviewRect = ScrollableFrame;
+			var bigCubeRect = new CGRect (70, 210, 180, 180);
+			CGRect scrollviewRect = ScrollableFrame;
 
 			if (bigCubeRect.Contains (point.X, point.Y)) {
 				HandleBigCubeTap ();
@@ -242,7 +241,6 @@ namespace OpenGLScroller
 			littleCube [index] = bigCube;
 		}
 
-
 		public void SetupGL ()
 		{
 			Context = new EAGLContext (EAGLRenderingAPI.OpenGLES2);
@@ -262,13 +260,13 @@ namespace OpenGLScroller
 			GL.BindBuffer (BufferTarget.ArrayBuffer, vertexBuffer);
 
 			GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr) (gCubeVertexData.Length * sizeof (float)), gCubeVertexData, BufferUsage.StaticDraw);
-			
+
 			GL.EnableVertexAttribArray ((int) GLKVertexAttrib.Position);
 			GL.VertexAttribPointer ((int) GLKVertexAttrib.Position, 3, VertexAttribPointerType.Float, false, 24, 0);
-			
+
 			GL.EnableVertexAttribArray ((int) GLKVertexAttrib.Normal);
 			GL.VertexAttribPointer ((int) GLKVertexAttrib.Normal, 3, VertexAttribPointerType.Float, false, 24, 12);
-			
+
 			GL.Oes.BindVertexArray (0);
 
 			RandomizeBigCube ();

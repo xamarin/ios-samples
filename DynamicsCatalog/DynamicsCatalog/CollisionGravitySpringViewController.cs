@@ -1,6 +1,6 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using UIKit;
 
 namespace DynamicsCatalog {
 
@@ -28,15 +28,15 @@ namespace DynamicsCatalog {
 				((UIView)e.DynamicItem).BackgroundColor = UIColor.Gray;
 			};
 
-			var squareCenterPoint = new PointF (square.Center.X, square.Center.Y - 100);
+			var squareCenterPoint = new CGPoint (square.Center.X, square.Center.Y - 100);
 
 			var attachmentBehavior = new UIAttachmentBehavior (square, squareCenterPoint) {
 				Frequency = 1.0f,
 				Damping = 0.1f
 			};
-		
+
 			redSquare.Center = attachmentBehavior.AnchorPoint;
-			blueSquare.Center = new PointF (50.0f, 50.0f);
+			blueSquare.Center = new CGPoint (50.0f, 50.0f);
 
 			Animator = new UIDynamicAnimator (View);
 			Animator.AddBehaviors (attachmentBehavior, gravityBehavior, collisionBehavior);

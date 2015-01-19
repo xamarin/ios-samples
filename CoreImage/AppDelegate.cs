@@ -1,16 +1,16 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreImage;
-using MonoTouch.ObjCRuntime;
+using Foundation;
+using UIKit;
+using CoreImage;
+using ObjCRuntime;
 
 using System.Collections.Generic;
 using MonoTouch.Dialog;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -20,17 +20,17 @@ namespace coreimage
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		/// <summary>
-		/// "Flower" © 2012 Milica Sekulic, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/ 
+		/// "Flower" © 2012 Milica Sekulic, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/
 		/// </summary>
 		CIImage flower = CIImage.FromCGImage (UIImage.FromFile ("flower.png").CGImage);
-		
+
 		/// <summary>
-		/// "Sunrise near Atkeison Plateau" © 2012 Charles Atkeison, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/ 
+		/// "Sunrise near Atkeison Plateau" © 2012 Charles Atkeison, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/
 		/// </summary>
 		CIImage clouds = CIImage.FromCGImage (UIImage.FromFile ("clouds.jpg").CGImage);
-		
+
 		/// <summary>
-		/// "canon" © 2012 cuatrok77 hernandez, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/ 
+		/// "canon" © 2012 cuatrok77 hernandez, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/
 		/// </summary>
 		CIImage heron = CIImage.FromCGImage (UIImage.FromFile ("heron.jpg").CGImage);
 
@@ -67,10 +67,11 @@ namespace coreimage
 				}
 			}
 		}
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			app.StatusBarHidden = true;
-			 
+
 			InitList ();
 
 			var root = new RootElement ("Effects");
@@ -105,7 +106,7 @@ namespace coreimage
 			var testingSection = new Section ("Testing");
 			root.Add (testingSection);
 
-			testingSection.Add (new RootElement("Show All Filters", (x) => new VisitFilterViewController (masterList)));
+			testingSection.Add (new RootElement ("Show All Filters", (x) => new VisitFilterViewController (masterList)));
 
 			window = new UIWindow (UIScreen.MainScreen.Bounds) {
 				RootViewController = new UINavigationController (new DialogViewController (root))
@@ -114,9 +115,10 @@ namespace coreimage
 
 			return true;
 		}
+
 		#endregion
 
-		string [] sectionList = new [] {
+		string[] sectionList = new [] {
 			"Blur",
 			"Color Adjustment",
 			"Color Effect",
@@ -126,7 +128,7 @@ namespace coreimage
 			"Geometry Adjust",
 			"Gradients",
 			"Halftone Effect",
-			"Sharpen", 
+			"Sharpen",
 			"Stylize",
 			"Tile Effect",
 			"Transition",
@@ -137,166 +139,168 @@ namespace coreimage
 		{
 			masterList = new [] {
 				// Blur
-				new FilterHolder ("GaussianBlur", sectionList[0], 6, typeof (CIGaussianBlur), GaussianBlur),
+				new FilterHolder ("GaussianBlur", sectionList [0], 6, typeof(CIGaussianBlur), GaussianBlur),
 
 				// Color Adjustment
-				new FilterHolder ("ColorClamp", sectionList[1], 7, typeof (CIColorClamp), ColorClamp),
-				new FilterHolder ("ColorControls", sectionList[1], 5, typeof (CIColorControls), ColorControls),
-				new FilterHolder ("ColorMatrix", sectionList[1], 5, typeof (CIColorMatrix), ColorMatrix),
-				new FilterHolder ("ColorPolynomial", sectionList[1], 7, typeof (CIColorPolynomial), ColorPolynomial),
-				new FilterHolder ("ExposureAdjust", sectionList[1], 5, typeof (CIExposureAdjust), ExposureAdjust),
-				new FilterHolder ("GammaAdjust", sectionList[1], 5, typeof (CIGammaAdjust), GammaAdjust),
-				new FilterHolder ("HueAdjust", sectionList[1], 5, typeof (CIHueAdjust), HueAdjust),
-				new FilterHolder ("LinearToSRGBToneCurve", sectionList[1], 7, typeof (CILinearToSRGBToneCurve), LinearToSRGBToneCurve),
-				new FilterHolder ("SRGBToneCurveToLinear", sectionList[1], 7, typeof (CISRGBToneCurveToLinear), SRGBToneCurveToLinear),
-				new FilterHolder ("TemperatureAndTint", sectionList[1], 5, typeof (CITemperatureAndTint), TemperatureAndTint),
-				new FilterHolder ("ToneCurve", sectionList[1], 5, typeof (CIToneCurve), ToneCurve),
-				new FilterHolder ("Vibrance", sectionList[1], 5, typeof (CIVibrance), Vibrance),
-				new FilterHolder ("WhitePointAdjust", sectionList[1], 5, typeof (CIWhitePointAdjust), WhitePointAdjust),
+				new FilterHolder ("ColorClamp", sectionList [1], 7, typeof(CIColorClamp), ColorClamp),
+				new FilterHolder ("ColorControls", sectionList [1], 5, typeof(CIColorControls), ColorControls),
+				new FilterHolder ("ColorMatrix", sectionList [1], 5, typeof(CIColorMatrix), ColorMatrix),
+				new FilterHolder ("ColorPolynomial", sectionList [1], 7, typeof(CIColorPolynomial), ColorPolynomial),
+				new FilterHolder ("ExposureAdjust", sectionList [1], 5, typeof(CIExposureAdjust), ExposureAdjust),
+				new FilterHolder ("GammaAdjust", sectionList [1], 5, typeof(CIGammaAdjust), GammaAdjust),
+				new FilterHolder ("HueAdjust", sectionList [1], 5, typeof(CIHueAdjust), HueAdjust),
+				new FilterHolder ("LinearToSRGBToneCurve", sectionList [1], 7, typeof(CILinearToSRGBToneCurve), LinearToSRGBToneCurve),
+				new FilterHolder ("SRGBToneCurveToLinear", sectionList [1], 7, typeof(CISRGBToneCurveToLinear), SRGBToneCurveToLinear),
+				new FilterHolder ("TemperatureAndTint", sectionList [1], 5, typeof(CITemperatureAndTint), TemperatureAndTint),
+				new FilterHolder ("ToneCurve", sectionList [1], 5, typeof(CIToneCurve), ToneCurve),
+				new FilterHolder ("Vibrance", sectionList [1], 5, typeof(CIVibrance), Vibrance),
+				new FilterHolder ("WhitePointAdjust", sectionList [1], 5, typeof(CIWhitePointAdjust), WhitePointAdjust),
 
 				// Color Effect
-				new FilterHolder ("ColorCrossPolynomial", sectionList[2], 7, typeof (CIColorCrossPolynomial), ColorCrossPolynomial),
-				new FilterHolder ("ColorCube", sectionList[2], 5, typeof (CIColorCube), ColorCube),
-				new FilterHolder ("ColorCubeWithColorSpace", sectionList[2], 7, typeof (CIColorCubeWithColorSpace), ColorCubeWithColorSpace),
-				new FilterHolder ("ColorInvert", sectionList[2], 5, typeof (CIColorInvert), ColorInvert),
-				new FilterHolder ("ColorMap", sectionList[2], 6, typeof (CIColorMap), ColorMap),
-				new FilterHolder ("ColorMonochrome", sectionList[2], 5, typeof (CIColorMonochrome), ColorMonochrome),
-				new FilterHolder ("ColorPosterize", sectionList[2], 6, typeof (CIColorPosterize), ColorPosterize),
-				new FilterHolder ("FalseColor", sectionList[2], 5, typeof (CIFalseColor), FalseColor),
-				new FilterHolder ("MaskToAlpha", sectionList[2], 6, typeof (CIMaskToAlpha), MaskToAlpha),
-				new FilterHolder ("MaximumComponent", sectionList[2], 6, typeof (CIMaximumComponent), MaximumComponent),
-				new FilterHolder ("MinimumComponent", sectionList[2], 6, typeof (CIMinimumComponent), MinimumComponent),
-				new FilterHolder ("PhotoEffectChrome", sectionList[2], 7, typeof (CIPhotoEffectChrome), PhotoEffectChrome),
-				new FilterHolder ("PhotoEffectFade", sectionList[2], 7, typeof (CIPhotoEffectFade), PhotoEffectFade),
-				new FilterHolder ("PhotoEffectInstant", sectionList[2], 7, typeof (CIPhotoEffectInstant), PhotoEffectInstant),
-				new FilterHolder ("PhotoEffectMono", sectionList[2], 7, typeof (CIPhotoEffectMono), PhotoEffectMono),
-				new FilterHolder ("PhotoEffectNoir", sectionList[2], 7, typeof (CIPhotoEffectNoir), PhotoEffectNoir),
-				new FilterHolder ("PhotoEffectProcess", sectionList[2], 7, typeof (CIPhotoEffectProcess), PhotoEffectProcess),
-				new FilterHolder ("PhotoEffectTonal", sectionList[2], 7, typeof (CIPhotoEffectTonal), PhotoEffectTonal),
-				new FilterHolder ("PhotoEffectTransfer", sectionList[2], 7, typeof (CIPhotoEffectTransfer), PhotoEffectTransfer),
-				new FilterHolder ("SepiaTone", sectionList[2], 5, typeof (CISepiaTone), SepiaTone),
-				new FilterHolder ("Vignette", sectionList[2], 5, typeof (CIVignette), Vignette),
-				new FilterHolder ("VignetteEffect", sectionList[2], 7, typeof (CIVignetteEffect), VignetteEffect),
+				new FilterHolder ("ColorCrossPolynomial", sectionList [2], 7, typeof(CIColorCrossPolynomial), ColorCrossPolynomial),
+				new FilterHolder ("ColorCube", sectionList [2], 5, typeof(CIColorCube), ColorCube),
+				new FilterHolder ("ColorCubeWithColorSpace", sectionList [2], 7, typeof(CIColorCubeWithColorSpace), ColorCubeWithColorSpace),
+				new FilterHolder ("ColorInvert", sectionList [2], 5, typeof(CIColorInvert), ColorInvert),
+				new FilterHolder ("ColorMap", sectionList [2], 6, typeof(CIColorMap), ColorMap),
+				new FilterHolder ("ColorMonochrome", sectionList [2], 5, typeof(CIColorMonochrome), ColorMonochrome),
+				new FilterHolder ("ColorPosterize", sectionList [2], 6, typeof(CIColorPosterize), ColorPosterize),
+				new FilterHolder ("FalseColor", sectionList [2], 5, typeof(CIFalseColor), FalseColor),
+				new FilterHolder ("MaskToAlpha", sectionList [2], 6, typeof(CIMaskToAlpha), MaskToAlpha),
+				new FilterHolder ("MaximumComponent", sectionList [2], 6, typeof(CIMaximumComponent), MaximumComponent),
+				new FilterHolder ("MinimumComponent", sectionList [2], 6, typeof(CIMinimumComponent), MinimumComponent),
+				new FilterHolder ("PhotoEffectChrome", sectionList [2], 7, typeof(CIPhotoEffectChrome), PhotoEffectChrome),
+				new FilterHolder ("PhotoEffectFade", sectionList [2], 7, typeof(CIPhotoEffectFade), PhotoEffectFade),
+				new FilterHolder ("PhotoEffectInstant", sectionList [2], 7, typeof(CIPhotoEffectInstant), PhotoEffectInstant),
+				new FilterHolder ("PhotoEffectMono", sectionList [2], 7, typeof(CIPhotoEffectMono), PhotoEffectMono),
+				new FilterHolder ("PhotoEffectNoir", sectionList [2], 7, typeof(CIPhotoEffectNoir), PhotoEffectNoir),
+				new FilterHolder ("PhotoEffectProcess", sectionList [2], 7, typeof(CIPhotoEffectProcess), PhotoEffectProcess),
+				new FilterHolder ("PhotoEffectTonal", sectionList [2], 7, typeof(CIPhotoEffectTonal), PhotoEffectTonal),
+				new FilterHolder ("PhotoEffectTransfer", sectionList [2], 7, typeof(CIPhotoEffectTransfer), PhotoEffectTransfer),
+				new FilterHolder ("SepiaTone", sectionList [2], 5, typeof(CISepiaTone), SepiaTone),
+				new FilterHolder ("Vignette", sectionList [2], 5, typeof(CIVignette), Vignette),
+				new FilterHolder ("VignetteEffect", sectionList [2], 7, typeof(CIVignetteEffect), VignetteEffect),
 
 				// Composite Operation
-				new FilterHolder ("AdditionCompositing", sectionList[3], 5, typeof (CIAdditionCompositing), AdditionCompositing),
-				new FilterHolder ("ColorBlendMode", sectionList[3], 5, typeof (CIColorBlendMode), ColorBlendMode),
-				new FilterHolder ("ColorBurnBlendMode", sectionList[3], 5, typeof (CIColorBurnBlendMode), ColorBurnBlendMode),
-				new FilterHolder ("ColorDodgeBlendMode", sectionList[3], 5, typeof (CIColorDodgeBlendMode), ColorDodgeBlendMode),
-				new FilterHolder ("DarkenBlendMode", sectionList[3], 5, typeof (CIDarkenBlendMode), DarkenBlendMode),
-				new FilterHolder ("DifferenceBlendMode", sectionList[3], 5, typeof (CIDifferenceBlendMode), DifferenceBlendMode),
-				new FilterHolder ("ExclusionBlendMode", sectionList[3], 5, typeof (CIExclusionBlendMode), ExclusionBlendMode),
-				new FilterHolder ("HardLightBlendMode", sectionList[3], 5, typeof (CIHardLightBlendMode), HardLightBlendMode),
-				new FilterHolder ("HueBlendMode", sectionList[3], 5, typeof (CIHueBlendMode), HueBlendMode),
-				new FilterHolder ("LightenBlendMode", sectionList[3], 5, typeof (CILightenBlendMode), LightenBlendMode),
-				new FilterHolder ("LuminosityBlendMode", sectionList[3], 5, typeof (CILuminosityBlendMode), LuminosityBlendMode),
-				new FilterHolder ("MaximumCompositing", sectionList[3], 5, typeof (CIMaximumCompositing), MaximumCompositing),
-				new FilterHolder ("MinimumCompositing", sectionList[3], 5, typeof (CIMinimumCompositing), MinimumCompositing),
-				new FilterHolder ("MultiplyBlendMode", sectionList[3], 5, typeof (CIMultiplyBlendMode), MultiplyBlendMode),
-				new FilterHolder ("MultiplyCompositing", sectionList[3], 5, typeof (CIMultiplyCompositing), MultiplyCompositing),
-				new FilterHolder ("OverlayBlendMode", sectionList[3], 5, typeof (CIOverlayBlendMode), OverlayBlendMode),
-				new FilterHolder ("SaturationBlendMode", sectionList[3], 5, typeof (CISaturationBlendMode), SaturationBlendMode),
-				new FilterHolder ("ScreenBlendMode", sectionList[3], 5, typeof (CIScreenBlendMode), ScreenBlendMode),
-				new FilterHolder ("SoftLightBlendMode", sectionList[3], 5, typeof (CISoftLightBlendMode), SoftLightBlendMode),
-				new FilterHolder ("SourceAtopCompositing", sectionList[3], 5, typeof (CISourceAtopCompositing), SourceAtopCompositing),
-				new FilterHolder ("SourceInCompositing", sectionList[3], 5, typeof (CISourceInCompositing), SourceInCompositing),
-				new FilterHolder ("SourceOutCompositing", sectionList[3], 5, typeof (CISourceOutCompositing), SourceOutCompositing),
-				new FilterHolder ("SourceOverCompositing", sectionList[3], 5, typeof (CISourceOverCompositing), SourceOverCompositing),
+				new FilterHolder ("AdditionCompositing", sectionList [3], 5, typeof(CIAdditionCompositing), AdditionCompositing),
+				new FilterHolder ("ColorBlendMode", sectionList [3], 5, typeof(CIColorBlendMode), ColorBlendMode),
+				new FilterHolder ("ColorBurnBlendMode", sectionList [3], 5, typeof(CIColorBurnBlendMode), ColorBurnBlendMode),
+				new FilterHolder ("ColorDodgeBlendMode", sectionList [3], 5, typeof(CIColorDodgeBlendMode), ColorDodgeBlendMode),
+				new FilterHolder ("DarkenBlendMode", sectionList [3], 5, typeof(CIDarkenBlendMode), DarkenBlendMode),
+				new FilterHolder ("DifferenceBlendMode", sectionList [3], 5, typeof(CIDifferenceBlendMode), DifferenceBlendMode),
+				new FilterHolder ("ExclusionBlendMode", sectionList [3], 5, typeof(CIExclusionBlendMode), ExclusionBlendMode),
+				new FilterHolder ("HardLightBlendMode", sectionList [3], 5, typeof(CIHardLightBlendMode), HardLightBlendMode),
+				new FilterHolder ("HueBlendMode", sectionList [3], 5, typeof(CIHueBlendMode), HueBlendMode),
+				new FilterHolder ("LightenBlendMode", sectionList [3], 5, typeof(CILightenBlendMode), LightenBlendMode),
+				new FilterHolder ("LuminosityBlendMode", sectionList [3], 5, typeof(CILuminosityBlendMode), LuminosityBlendMode),
+				new FilterHolder ("MaximumCompositing", sectionList [3], 5, typeof(CIMaximumCompositing), MaximumCompositing),
+				new FilterHolder ("MinimumCompositing", sectionList [3], 5, typeof(CIMinimumCompositing), MinimumCompositing),
+				new FilterHolder ("MultiplyBlendMode", sectionList [3], 5, typeof(CIMultiplyBlendMode), MultiplyBlendMode),
+				new FilterHolder ("MultiplyCompositing", sectionList [3], 5, typeof(CIMultiplyCompositing), MultiplyCompositing),
+				new FilterHolder ("OverlayBlendMode", sectionList [3], 5, typeof(CIOverlayBlendMode), OverlayBlendMode),
+				new FilterHolder ("SaturationBlendMode", sectionList [3], 5, typeof(CISaturationBlendMode), SaturationBlendMode),
+				new FilterHolder ("ScreenBlendMode", sectionList [3], 5, typeof(CIScreenBlendMode), ScreenBlendMode),
+				new FilterHolder ("SoftLightBlendMode", sectionList [3], 5, typeof(CISoftLightBlendMode), SoftLightBlendMode),
+				new FilterHolder ("SourceAtopCompositing", sectionList [3], 5, typeof(CISourceAtopCompositing), SourceAtopCompositing),
+				new FilterHolder ("SourceInCompositing", sectionList [3], 5, typeof(CISourceInCompositing), SourceInCompositing),
+				new FilterHolder ("SourceOutCompositing", sectionList [3], 5, typeof(CISourceOutCompositing), SourceOutCompositing),
+				new FilterHolder ("SourceOverCompositing", sectionList [3], 5, typeof(CISourceOverCompositing), SourceOverCompositing),
 
 				// Distortions
-				new FilterHolder ("BumpDistortion", sectionList[4], 6, typeof (CIBumpDistortion), BumpDistortion),
-				new FilterHolder ("BumpDistortionLinear", sectionList[4], 6, typeof (CIBumpDistortionLinear), BumpDistortionLinear),
-				new FilterHolder ("CircleSplashDistortion", sectionList[4], 6, typeof (CICircleSplashDistortion), CircleSplashDistortion),
-				new FilterHolder ("HoleDistortion", sectionList[4], 6, typeof (CIHoleDistortion), HoleDistortion),
-				new FilterHolder ("LightTunnel", sectionList[4], 6, typeof (CILightTunnel), LightTunnel),
-				new FilterHolder ("PinchDistortion", sectionList[4], 6, typeof (CIPinchDistortion), PinchDistortion),
-				new FilterHolder ("TwirlDistortion", sectionList[4], 6, typeof (CITwirlDistortion), TwirlDistortion),
-				new FilterHolder ("VortexDistortion", sectionList[4], 6, typeof (CIVortexDistortion), VortexDistortion),
+				new FilterHolder ("BumpDistortion", sectionList [4], 6, typeof(CIBumpDistortion), BumpDistortion),
+				new FilterHolder ("BumpDistortionLinear", sectionList [4], 6, typeof(CIBumpDistortionLinear), BumpDistortionLinear),
+				new FilterHolder ("CircleSplashDistortion", sectionList [4], 6, typeof(CICircleSplashDistortion), CircleSplashDistortion),
+				new FilterHolder ("HoleDistortion", sectionList [4], 6, typeof(CIHoleDistortion), HoleDistortion),
+				new FilterHolder ("LightTunnel", sectionList [4], 6, typeof(CILightTunnel), LightTunnel),
+				new FilterHolder ("PinchDistortion", sectionList [4], 6, typeof(CIPinchDistortion), PinchDistortion),
+				new FilterHolder ("TwirlDistortion", sectionList [4], 6, typeof(CITwirlDistortion), TwirlDistortion),
+				new FilterHolder ("VortexDistortion", sectionList [4], 6, typeof(CIVortexDistortion), VortexDistortion),
 
 				// Generators
-				new FilterHolder ("CheckerboardGenerator", sectionList[5], 5, typeof (CICheckerboardGenerator), CheckerboardGenerator),
-				new FilterHolder ("ConstantColorGenerator", sectionList[5], 5, typeof (CIConstantColorGenerator), ConstantColorGenerator),
-				new FilterHolder ("QRCodeGenerator", sectionList[5], 7, typeof (CIQRCodeGenerator), QRCodeGenerator),
-				new FilterHolder ("RandomGenerator", sectionList[5], 6, typeof (CIRandomGenerator), RandomGenerator),
-				new FilterHolder ("StarShineGenerator", sectionList[5], 6, typeof (CIStarShineGenerator), StarShineGenerator),
-				new FilterHolder ("StripesGenerator", sectionList[5], 5, typeof (CIStripesGenerator), StripesGenerator),
+				new FilterHolder ("CheckerboardGenerator", sectionList [5], 5, typeof(CICheckerboardGenerator), CheckerboardGenerator),
+				new FilterHolder ("ConstantColorGenerator", sectionList [5], 5, typeof(CIConstantColorGenerator), ConstantColorGenerator),
+				new FilterHolder ("QRCodeGenerator", sectionList [5], 7, typeof(CIQRCodeGenerator), QRCodeGenerator),
+				new FilterHolder ("RandomGenerator", sectionList [5], 6, typeof(CIRandomGenerator), RandomGenerator),
+				new FilterHolder ("StarShineGenerator", sectionList [5], 6, typeof(CIStarShineGenerator), StarShineGenerator),
+				new FilterHolder ("StripesGenerator", sectionList [5], 5, typeof(CIStripesGenerator), StripesGenerator),
 
 				// Geometry Adjust
-				new FilterHolder ("AffineTransform", sectionList[6], 5, typeof (CIAffineTransform), AffineTransform),
-				new FilterHolder ("Crop", sectionList[6], 5, typeof (CICrop), Crop),
-				new FilterHolder ("LanczosScaleTransform", sectionList[6], 6, typeof (CILanczosScaleTransform), LanczosScaleTransform),
-				new FilterHolder ("PerspectiveTransform", sectionList[6], 6, typeof (CIPerspectiveTransform), PerspectiveTransform),
-				new FilterHolder ("PerspectiveTransformWithExtent", sectionList[6], 6, typeof (CIPerspectiveTransformWithExtent), PerspectiveTransformWithExtent),
-				new FilterHolder ("StraightenFilter", sectionList[6], 5, typeof (CIStraightenFilter), StraightenFilter),
+				new FilterHolder ("AffineTransform", sectionList [6], 5, typeof(CIAffineTransform), AffineTransform),
+				new FilterHolder ("Crop", sectionList [6], 5, typeof(CICrop), Crop),
+				new FilterHolder ("LanczosScaleTransform", sectionList [6], 6, typeof(CILanczosScaleTransform), LanczosScaleTransform),
+				new FilterHolder ("PerspectiveTransform", sectionList [6], 6, typeof(CIPerspectiveTransform), PerspectiveTransform),
+				new FilterHolder ("PerspectiveTransformWithExtent", sectionList [6], 6, typeof(CIPerspectiveTransformWithExtent), PerspectiveTransformWithExtent),
+				new FilterHolder ("StraightenFilter", sectionList [6], 5, typeof(CIStraightenFilter), StraightenFilter),
 
 				// Gradients
-				new FilterHolder ("GaussianGradient", sectionList[7], 5, typeof (CIGaussianGradient), GaussianGradient),
-				new FilterHolder ("LinearGradient", sectionList[7], 5, typeof (CILinearGradient), LinearGradient),
-				new FilterHolder ("RadialGradient", sectionList[7], 5, typeof (CIRadialGradient), RadialGradient),
-				new FilterHolder ("SmoothLinearGradient", sectionList[7], 6, typeof (CISmoothLinearGradient), SmoothLinearGradient),
+				new FilterHolder ("GaussianGradient", sectionList [7], 5, typeof(CIGaussianGradient), GaussianGradient),
+				new FilterHolder ("LinearGradient", sectionList [7], 5, typeof(CILinearGradient), LinearGradient),
+				new FilterHolder ("RadialGradient", sectionList [7], 5, typeof(CIRadialGradient), RadialGradient),
+				new FilterHolder ("SmoothLinearGradient", sectionList [7], 6, typeof(CISmoothLinearGradient), SmoothLinearGradient),
 
 				// Halftone Effect
-				new FilterHolder ("CircularScreen", sectionList[8], 6, typeof (CICircularScreen), CircularScreen),
-				new FilterHolder ("DotScreen", sectionList[8], 6, typeof (CIDotScreen), DotScreen),
-				new FilterHolder ("HatchedScreen", sectionList[8], 6, typeof (CIHatchedScreen), HatchedScreen),
-				new FilterHolder ("LineScreen", sectionList[8], 6, typeof (CILineScreen), LineScreen),
+				new FilterHolder ("CircularScreen", sectionList [8], 6, typeof(CICircularScreen), CircularScreen),
+				new FilterHolder ("DotScreen", sectionList [8], 6, typeof(CIDotScreen), DotScreen),
+				new FilterHolder ("HatchedScreen", sectionList [8], 6, typeof(CIHatchedScreen), HatchedScreen),
+				new FilterHolder ("LineScreen", sectionList [8], 6, typeof(CILineScreen), LineScreen),
 
 				// Sharpen
-				new FilterHolder ("SharpenLuminance", sectionList[9], 6, typeof (CISharpenLuminance), SharpenLuminance),
-				new FilterHolder ("UnsharpMask", sectionList[9], 6, typeof (CIUnsharpMask), UnsharpMask),
+				new FilterHolder ("SharpenLuminance", sectionList [9], 6, typeof(CISharpenLuminance), SharpenLuminance),
+				new FilterHolder ("UnsharpMask", sectionList [9], 6, typeof(CIUnsharpMask), UnsharpMask),
 
 				// Stylize
-				new FilterHolder ("BlendWithAlphaMask", sectionList[10], 7, typeof (CIBlendWithAlphaMask), BlendWithAlphaMask),
-				new FilterHolder ("BlendWithMask", sectionList[10], 6, typeof (CIBlendWithMask), BlendWithMask),
-				new FilterHolder ("Bloom", sectionList[10], 6, typeof (CIBloom), Bloom),
-				new FilterHolder ("Convolution3X3", sectionList[10], 7, typeof (CIConvolution3X3), Convolution3X3),
-				new FilterHolder ("Convolution5X5", sectionList[10], 7, typeof (CIConvolution5X5), Convolution5X5),
-				new FilterHolder ("Convolution9Horizontal", sectionList[10], 7, typeof (CIConvolution9Horizontal), Convolution9Horizontal),
-				new FilterHolder ("Convolution9Vertical", sectionList[10], 7, typeof (CIConvolution9Vertical), Convolution9Vertical),
-				new FilterHolder ("Gloom", sectionList[10], 6, typeof (CIGloom), Gloom),
-				new FilterHolder ("HighlightShadowAdjust", sectionList[10], 5, typeof (CIHighlightShadowAdjust), HighlightShadowAdjust),
-				new FilterHolder ("Pixellate", sectionList[10], 6, typeof (CIPixellate), Pixellate),
+				new FilterHolder ("BlendWithAlphaMask", sectionList [10], 7, typeof(CIBlendWithAlphaMask), BlendWithAlphaMask),
+				new FilterHolder ("BlendWithMask", sectionList [10], 6, typeof(CIBlendWithMask), BlendWithMask),
+				new FilterHolder ("Bloom", sectionList [10], 6, typeof(CIBloom), Bloom),
+				new FilterHolder ("Convolution3X3", sectionList [10], 7, typeof(CIConvolution3X3), Convolution3X3),
+				new FilterHolder ("Convolution5X5", sectionList [10], 7, typeof(CIConvolution5X5), Convolution5X5),
+				new FilterHolder ("Convolution9Horizontal", sectionList [10], 7, typeof(CIConvolution9Horizontal), Convolution9Horizontal),
+				new FilterHolder ("Convolution9Vertical", sectionList [10], 7, typeof(CIConvolution9Vertical), Convolution9Vertical),
+				new FilterHolder ("Gloom", sectionList [10], 6, typeof(CIGloom), Gloom),
+				new FilterHolder ("HighlightShadowAdjust", sectionList [10], 5, typeof(CIHighlightShadowAdjust), HighlightShadowAdjust),
+				new FilterHolder ("Pixellate", sectionList [10], 6, typeof(CIPixellate), Pixellate),
 
 				// Tile Effect
-				new FilterHolder ("AffineClamp", sectionList[11], 6, typeof (CIAffineClamp), AffineClamp),
-				new FilterHolder ("AffineTile", sectionList[11], 6, typeof (CIAffineTile), AffineTile),
-				new FilterHolder ("EightfoldReflectedTile", sectionList[11], 6, typeof (CIEightfoldReflectedTile), EightfoldReflectedTile),
-				new FilterHolder ("FourfoldReflectedTile", sectionList[11], 6, typeof (CIFourfoldReflectedTile), FourfoldReflectedTile),
-				new FilterHolder ("FourfoldRotatedTile", sectionList[11], 6, typeof (CIFourfoldRotatedTile), FourfoldRotatedTile),
-				new FilterHolder ("FourfoldTranslatedTile", sectionList[11], 6, typeof (CIFourfoldTranslatedTile), FourfoldTranslatedTile),
-				new FilterHolder ("GlideReflectedTile", sectionList[11], 6, typeof (CIGlideReflectedTile), GlideReflectedTile),
-				new FilterHolder ("PerspectiveTile", sectionList[11], 6, typeof (CIPerspectiveTile), PerspectiveTile),
-				new FilterHolder ("SixfoldReflectedTile", sectionList[11], 6, typeof (CISixfoldReflectedTile), SixfoldReflectedTile),
-				new FilterHolder ("SixfoldRotatedTile", sectionList[11], 6, typeof (CISixfoldRotatedTile), SixfoldRotatedTile),
-				new FilterHolder ("TriangleKaleidoscope", sectionList[11], 6, typeof (CITriangleKaleidoscope), TriangleKaleidoscope),
-				new FilterHolder ("TwelvefoldReflectedTile", sectionList[11], 6, typeof (CITwelvefoldReflectedTile), TwelvefoldReflectedTile),
+				new FilterHolder ("AffineClamp", sectionList [11], 6, typeof(CIAffineClamp), AffineClamp),
+				new FilterHolder ("AffineTile", sectionList [11], 6, typeof(CIAffineTile), AffineTile),
+				new FilterHolder ("EightfoldReflectedTile", sectionList [11], 6, typeof(CIEightfoldReflectedTile), EightfoldReflectedTile),
+				new FilterHolder ("FourfoldReflectedTile", sectionList [11], 6, typeof(CIFourfoldReflectedTile), FourfoldReflectedTile),
+				new FilterHolder ("FourfoldRotatedTile", sectionList [11], 6, typeof(CIFourfoldRotatedTile), FourfoldRotatedTile),
+				new FilterHolder ("FourfoldTranslatedTile", sectionList [11], 6, typeof(CIFourfoldTranslatedTile), FourfoldTranslatedTile),
+				new FilterHolder ("GlideReflectedTile", sectionList [11], 6, typeof(CIGlideReflectedTile), GlideReflectedTile),
+				new FilterHolder ("PerspectiveTile", sectionList [11], 6, typeof(CIPerspectiveTile), PerspectiveTile),
+				new FilterHolder ("SixfoldReflectedTile", sectionList [11], 6, typeof(CISixfoldReflectedTile), SixfoldReflectedTile),
+				new FilterHolder ("SixfoldRotatedTile", sectionList [11], 6, typeof(CISixfoldRotatedTile), SixfoldRotatedTile),
+				new FilterHolder ("TriangleKaleidoscope", sectionList [11], 6, typeof(CITriangleKaleidoscope), TriangleKaleidoscope),
+				new FilterHolder ("TwelvefoldReflectedTile", sectionList [11], 6, typeof(CITwelvefoldReflectedTile), TwelvefoldReflectedTile),
 
 				// Transition
-				new FilterHolder ("BarsSwipeTransition", sectionList[12], 6, typeof (CIBarsSwipeTransition), BarsSwipeTransition),
-				new FilterHolder ("CopyMachineTransition", sectionList[12], 6, typeof (CICopyMachineTransition), CopyMachineTransition),
-				new FilterHolder ("DisintegrateWithMaskTransition", sectionList[12], 6, typeof (CIDisintegrateWithMaskTransition), DisintegrateWithMaskTransition),
-				new FilterHolder ("DissolveTransition", sectionList[12], 6, typeof (CIDissolveTransition), DissolveTransition),
-				new FilterHolder ("FlashTransition", sectionList[12], 6, typeof (CIFlashTransition), FlashTransition),
-				new FilterHolder ("ModTransition", sectionList[12], 6, typeof (CIModTransition), ModTransition),
-				new FilterHolder ("SwipeTransition", sectionList[12], 6, typeof (CISwipeTransition), SwipeTransition),
-			};  
+				new FilterHolder ("BarsSwipeTransition", sectionList [12], 6, typeof(CIBarsSwipeTransition), BarsSwipeTransition),
+				new FilterHolder ("CopyMachineTransition", sectionList [12], 6, typeof(CICopyMachineTransition), CopyMachineTransition),
+				new FilterHolder ("DisintegrateWithMaskTransition", sectionList [12], 6, typeof(CIDisintegrateWithMaskTransition), DisintegrateWithMaskTransition),
+				new FilterHolder ("DissolveTransition", sectionList [12], 6, typeof(CIDissolveTransition), DissolveTransition),
+				new FilterHolder ("FlashTransition", sectionList [12], 6, typeof(CIFlashTransition), FlashTransition),
+				new FilterHolder ("ModTransition", sectionList [12], 6, typeof(CIModTransition), ModTransition),
+				new FilterHolder ("SwipeTransition", sectionList [12], 6, typeof(CISwipeTransition), SwipeTransition),
+			};
 
 			int maxVer = 5;
-			while (UIDevice.CurrentDevice.CheckSystemVersion (++maxVer, 0));
+			while (UIDevice.CurrentDevice.CheckSystemVersion (++maxVer, 0))
+				;
 
 			masterList = masterList.Where (l => l.MajorVersion < maxVer).ToArray ();
-		}           
-		
+		}
+
 		#region Helper Methods
-		// 
+
+		//
 		// Utility function used by pure-output generation filters
 		//
 		public CIImage Crop (CIFilter input)
 		{
-			return new CICrop () { 
+			return new CICrop () {
 				Image = input.OutputImage,
-				Rectangle = new CIVector (0, 0, window.Bounds.Width, window.Bounds.Height) 
-			}.OutputImage;			
+				Rectangle = new CIVector (0, 0, window.Bounds.Width, window.Bounds.Height)
+			}.OutputImage;
 		}
 
 		public UIViewController Demo (Func<CIImage> makeDemo)
@@ -308,7 +312,7 @@ namespace coreimage
 			imageView.AutoresizingMask = UIViewAutoresizing.FlexibleDimensions;
 			v.View.AutosizesSubviews = true;
 			v.View.AddSubview (imageView);
-			
+
 			var output = makeDemo ();
 			var context = CIContext.FromOptions (null);
 			var result = context.CreateCGImage (output, output.Extent);
@@ -319,7 +323,7 @@ namespace coreimage
 		}
 
 		#endregion
-		
+
 		#region Filter Methods
 
 		#region CICategoryBlur
@@ -330,8 +334,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage GaussianBlur ()
 		{
-			var gaussian_blur = new CIGaussianBlur ()
-			{
+			var gaussian_blur = new CIGaussianBlur () {
 				Image = clouds,
 				Radius = 3f,
 			};
@@ -341,24 +344,23 @@ namespace coreimage
 
 		#endregion
 
-
 		#region CICategoryColorAdjustment
+
 		/// <summary>
 		/// Multiplies source color values and adds a bias factor to each color component.
 		/// </summary>
 		/// <returns>
 		/// The altered Image
 		/// </returns>
-		public CIImage ColorMatrix()
+		public CIImage ColorMatrix ()
 		{
 			var rVector = new CIVector (.5F, 0F, 0F); // Multiple the Red Values by .5 (s.r = dot(s, rVector))
 			var gVector = new CIVector (0F, 1.5F, 0F); // Multiple the Green Vector by 1.5 (s.g = dot(s, gVector))
 			var bVector = new CIVector (0F, 0F, .75F); // Multiple the Blue Vectoer by .75 (s.b = dot(s, bVector))
 			var aVector = new CIVector (0F, 0F, 0F, 1.25F); // Multiple the Alpha values by 1.25 (s.a = dot(s, bVector))
 			var biasVector = new CIVector (0, 1, 0, 0); // A Bias to be Added to each Color Vector (s = s + bias)
-			
-			var colorMatrix = new CIColorMatrix ()
-			{
+
+			var colorMatrix = new CIColorMatrix () {
 				Image = flower,
 				RVector = rVector,
 				GVector = gVector,
@@ -366,7 +368,7 @@ namespace coreimage
 				AVector = aVector,
 				BiasVector = biasVector
 			};
-			
+
 			return colorMatrix.OutputImage;
 		}
 
@@ -374,15 +376,14 @@ namespace coreimage
 		/// Applies a Color Polynomial to each pixel of of an image.
 		/// </summary>
 		/// <returns>The altered image.</returns>
-		public CIImage ColorPolynomial()
+		public CIImage ColorPolynomial ()
 		{
-			var color_polynomial = new CIColorPolynomial ()
-			{
+			var color_polynomial = new CIColorPolynomial () {
 				Image = flower,
-				RedCoefficients = new CIVector   (0, 0, 0,   .4f),
+				RedCoefficients = new CIVector (0, 0, 0, .4f),
 				GreenCoefficients = new CIVector (0, 0, .5f, .8f),
-				BlueCoefficients = new CIVector  (0, 0, .5f, 1),
-				AlphaCoefficients = new CIVector (0, 1, 1,   1),
+				BlueCoefficients = new CIVector (0, 0, .5f, 1),
+				AlphaCoefficients = new CIVector (0, 1, 1, 1),
 			};
 
 			return color_polynomial.OutputImage;
@@ -394,8 +395,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage ColorClamp ()
 		{
-			var color_clamp = new CIColorClamp ()
-			{
+			var color_clamp = new CIColorClamp () {
 				Image = flower,
 				InputMinComponents = new CIVector (.1f, 0f, .1f, 0),
 				InputMaxComponents = new CIVector (.6f, 1f, .6f, 1),
@@ -403,7 +403,6 @@ namespace coreimage
 
 			return color_clamp.OutputImage;
 		}
-
 
 		/// <summary>
 		/// Adjusts saturation, brightness, and contrast values.
@@ -413,68 +412,64 @@ namespace coreimage
 		/// </returns>
 		public CIImage ColorControls ()
 		{
-			var colorCtrls = new CIColorControls ()
-			{
+			var colorCtrls = new CIColorControls () {
 				Image = flower,
 				Brightness = .5F, // Min: 0 Max: 2
 				Saturation = 1.2F, // Min: -1 Max: 1
 				Contrast = 3.1F // Min: 0 Max: 4
 			};
-			
+
 			return colorCtrls.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Changes the overall hue, or tint, of the source pixels.
 		/// </summary>
 		/// <returns>
 		/// The Altered Image.
 		/// </returns>
-		public CIImage HueAdjust()
+		public CIImage HueAdjust ()
 		{
-			var hueAdjust = new CIHueAdjust()
-			{
+			var hueAdjust = new CIHueAdjust () {
 				Image = flower,
 				Angle = 1F // Default is 0
 			};
-			
+
 			return hueAdjust.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Adapts the reference white point for an image.
 		/// </summary>
 		/// <returns>
 		/// The Color Adjusted Image
 		/// </returns>
-		public CIImage TemperatureAndTint()
+		public CIImage TemperatureAndTint ()
 		{
-			var temperatureAdjust = new CITemperatureAndTint()
-			{
+			var temperatureAdjust = new CITemperatureAndTint () {
 				Image = flower,
-				Neutral = new CIVector(6500, 0), // Default [6500, 0]
-				TargetNeutral = new CIVector(4000, 0), // Default [6500, 0]
+				Neutral = new CIVector (6500, 0), // Default [6500, 0]
+				TargetNeutral = new CIVector (4000, 0), // Default [6500, 0]
 			};
-			
+
 			return temperatureAdjust.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Adjusts tone response of the R, G, and B channels of an image.
 		/// </summary>
 		/// <returns>
 		/// The adjusted image
 		/// </returns>
-		public CIImage ToneCurve()
+		public CIImage ToneCurve ()
 		{
-			var point0 = new CIVector(0,0); // Default [0 0]
-			var point1 = new CIVector(.1F, .5F); // Default [.25 .25]
-			var point2 = new CIVector(.3F, .15F); // Default [.3 .15]
-			var point3 = new CIVector(.6F, .6F); // Default [.75 .75]
-			var point4 = new CIVector(1.1F, 1F); // Default [1 1]
-			
-			var toneCurve = new CIToneCurve()
-			{
+			var point0 = new CIVector (0, 0); // Default [0 0]
+			var point1 = new CIVector (.1F, .5F); // Default [.25 .25]
+			var point2 = new CIVector (.3F, .15F); // Default [.3 .15]
+			var point3 = new CIVector (.6F, .6F); // Default [.75 .75]
+			var point4 = new CIVector (1.1F, 1F); // Default [1 1]
+
+			var toneCurve = new CIToneCurve () {
 				Image = flower,
 				Point0 = point0,
 				Point1 = point1,
@@ -482,36 +477,34 @@ namespace coreimage
 				Point3 = point3,
 				Point4 = point4,
 			};
-			
+
 			return toneCurve.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Adjusts the saturation of an image while keeping pleasing skin tones.
 		/// </summary>
-		public CIImage Vibrance()
+		public CIImage Vibrance ()
 		{
-			var vibrance = new CIVibrance()
-			{
+			var vibrance = new CIVibrance () {
 				Image = flower,
 				Amount = -1.0F // Default 0
 			};
-			
+
 			return vibrance.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Add a reduction of an image's brightness or saturation at the periphery compared to the image center.
 		/// </summary>
-		public CIImage Vignette()
+		public CIImage Vignette ()
 		{
-			var vignette = new CIVignette()
-			{
+			var vignette = new CIVignette () {
 				Image = flower,
 				Intensity = 2F,
 				Radius = 10F,
 			};
-			
+
 			return vignette.OutputImage;
 		}
 
@@ -519,39 +512,38 @@ namespace coreimage
 		/// Reduces the brightness around the specified point.
 		/// </summary>
 		/// <returns>The adjusted image.</returns>
-		public CIImage VignetteEffect()
+		public CIImage VignetteEffect ()
 		{
-			var vignette_effect = new CIVignetteEffect()
-			{
+			var vignette_effect = new CIVignetteEffect () {
 				Image = flower,
 				Center = new CIVector (flower.Extent.Width * .3f, flower.Extent.Width * .35f),
 				Intensity = .6f,
-				Radius = flower.Extent.Width * .20f,
+				Radius = (float)flower.Extent.Width * .20f,
 			};
 
 			return vignette_effect.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Adjusts the reference white point for an image and maps all colors in the source using the new reference.
 		/// </summary>
 		/// <returns>
 		/// The Color Adjusted Image
 		/// </returns>
-		public CIImage WhitePointAdjust()
+		public CIImage WhitePointAdjust ()
 		{
-			var whitePointAdjust = new CIWhitePointAdjust()
-			{
+			var whitePointAdjust = new CIWhitePointAdjust () {
 				Image = flower,
-				Color = new CIColor(new CGColor(255F, 0, 187F)) // A Magenta Color
+				Color = new CIColor (new CGColor (255F, 0, 187F)) // A Magenta Color
 			};
-			
+
 			return whitePointAdjust.OutputImage;
 		}
+
 		#endregion
-		
+
 		#region CICategoryColorEffect
-		
+
 		/// <summary>
 		/// Applies a Sepia Filter to an Image.
 		/// </summary>
@@ -575,13 +567,13 @@ namespace coreimage
 		{
 			var color_cross_polynomial = new CIColorCrossPolynomial () {
 				Image = flower,
-				RedCoefficients = new CIVector (new float []{1, 0, 0, 0, 0, 0, 0, 0, 0, 0}),
-				GreenCoefficients = new CIVector (new float []{0, 1, 0, 0, 0, 0, 0, 0, 0, 0}),
-				BlueCoefficients = new CIVector (new float []{1, 0, 1, 0, -20, 0, 0, 0, 0, 0}),
+				RedCoefficients = new CIVector (new nfloat []{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 }),
+				GreenCoefficients = new CIVector (new nfloat []{ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 }),
+				BlueCoefficients = new CIVector (new nfloat []{ 1, 0, 1, 0, -20, 0, 0, 0, 0, 0 }),
 			};
 			return color_cross_polynomial.OutputImage;
 		}
-			
+
 		/// <summary>
 		/// Uses a three-dimensional color table to transform the source image pixels.
 		/// </summary>
@@ -590,7 +582,7 @@ namespace coreimage
 		/// </returns>
 		public unsafe CIImage ColorCube ()
 		{
-			float [] color_cube_data = {
+			float[] color_cube_data = {
 				0, 0, 0, 1,
 				.1f, 0, 1, 1,
 				0, 1, 0, 1,
@@ -602,11 +594,10 @@ namespace coreimage
 			};
 
 			var byteArray = new byte[color_cube_data.Length * 4];
-			Buffer.BlockCopy(color_cube_data, 0, byteArray, 0, byteArray.Length);
+			Buffer.BlockCopy (color_cube_data, 0, byteArray, 0, byteArray.Length);
 			var data = NSData.FromArray (byteArray);
 
-			var color_cube = new CIColorCube ()
-			{
+			var color_cube = new CIColorCube () {
 				Image = flower,
 				CubeDimension = 2,
 				CubeData = data
@@ -621,7 +612,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		public CIImage ColorCubeWithColorSpace ()
 		{
-			float [] color_cube_data = {
+			float[] color_cube_data = {
 				0, 0, 0, 1,
 				.1f, 0, 1, 1,
 				0, 1, 0, 1,
@@ -633,7 +624,7 @@ namespace coreimage
 			};
 
 			var byteArray = new byte[color_cube_data.Length * 4];
-			Buffer.BlockCopy(color_cube_data, 0, byteArray, 0, byteArray.Length);
+			Buffer.BlockCopy (color_cube_data, 0, byteArray, 0, byteArray.Length);
 			var data = NSData.FromArray (byteArray);
 
 			using (var cs = CGColorSpace.CreateDeviceRGB ()) {
@@ -655,11 +646,10 @@ namespace coreimage
 		/// </returns>
 		public CIImage ColorInvert ()
 		{
-			var invert = new CIColorInvert ()
-			{
+			var invert = new CIColorInvert () {
 				Image = flower
 			};
-			
+
 			return invert.OutputImage;
 		}
 
@@ -669,15 +659,14 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage ColorMap ()
 		{
-			var color_map = new CIColorMap ()
-			{
+			var color_map = new CIColorMap () {
 				Image = flower,
 				GradientImage = flower
 			};
 
 			return color_map.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Remaps colors so they fall within shades of a single color.
 		/// </summary>
@@ -687,13 +676,12 @@ namespace coreimage
 		public CIImage ColorMonochrome ()
 		{
 			var inputColor = new CIColor (new CGColor (100F, 0F, 100F)); // Make it Purple R + B = Purple
-			var monoChrome = new CIColorMonochrome ()
-			{
+			var monoChrome = new CIColorMonochrome () {
 				Image = flower,
 				Color = inputColor,
 				Intensity = 1F, // Default 1
 			};
-			
+
 			return monoChrome.OutputImage;
 		}
 
@@ -710,7 +698,7 @@ namespace coreimage
 
 			return posterize.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Maps luminance to a color ramp of two colors.
 		/// </summary>
@@ -721,13 +709,12 @@ namespace coreimage
 		{
 			var color0 = new CIColor (new CGColor (255F, 251F, 0F)); // A Yellowish Color
 			var color1 = new CIColor (new CGColor (51F, 0F, 255F)); // A Purplish Color
-			var falseColor = new CIFalseColor ()
-			{
+			var falseColor = new CIFalseColor () {
 				Image = flower,
 				Color0 = color0,
 				Color1 = color1
 			};
-			
+
 			return falseColor.OutputImage;
 		}
 
@@ -737,8 +724,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage MaskToAlpha ()
 		{
-			var masktoalpha = new CIMaskToAlpha ()
-			{
+			var masktoalpha = new CIMaskToAlpha () {
 				Image = heron
 			};
 
@@ -751,8 +737,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage MaximumComponent ()
 		{
-			var maximumcomponent = new CIMaximumComponent ()
-			{
+			var maximumcomponent = new CIMaximumComponent () {
 				Image = flower
 			};
 
@@ -765,8 +750,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage MinimumComponent ()
 		{
-			var minimumcomponent = new CIMinimumComponent ()
-			{
+			var minimumcomponent = new CIMinimumComponent () {
 				Image = flower
 			};
 
@@ -779,8 +763,7 @@ namespace coreimage
 		/// <returns>The altered inmage.</returns>
 		CIImage PhotoEffectChrome ()
 		{
-			var photo_effect_chrome = new CIPhotoEffectChrome ()
-			{
+			var photo_effect_chrome = new CIPhotoEffectChrome () {
 				Image = flower
 			};
 
@@ -793,8 +776,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage PhotoEffectFade ()
 		{
-			var photo_effect_fade = new CIPhotoEffectFade ()
-			{
+			var photo_effect_fade = new CIPhotoEffectFade () {
 				Image = flower
 			};
 
@@ -807,78 +789,72 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage PhotoEffectInstant ()
 		{
-			var photo_effect_instant = new CIPhotoEffectInstant ()
-			{
+			var photo_effect_instant = new CIPhotoEffectInstant () {
 				Image = flower
 			};
 
 			return photo_effect_instant.OutputImage;
 		}
-				
+
 		/// <summary>
 		/// Produces a low-contrast black-and-white image.
 		/// </summary>
 		/// <returns>The altered image.</returns>
 		CIImage PhotoEffectMono ()
 		{
-			var photo_effect_mono = new CIPhotoEffectMono ()
-			{
+			var photo_effect_mono = new CIPhotoEffectMono () {
 				Image = flower
 			};
 
 			return photo_effect_mono.OutputImage;
 		}
-				
+
 		/// <summary>
 		/// Produces a high-contrast black-and-white image.
 		/// </summary>
 		/// <returns>The altered image.</returns>
 		CIImage PhotoEffectNoir ()
 		{
-			var photo_effect_noir = new CIPhotoEffectNoir ()
-			{
+			var photo_effect_noir = new CIPhotoEffectNoir () {
 				Image = flower
 			};
 
 			return photo_effect_noir.OutputImage;
 		}
-				
+
 		/// <summary>
 		/// Produces a vintage look with exagerrated cool colors.
 		/// </summary>
 		/// <returns>The altered image.</returns>
 		CIImage PhotoEffectProcess ()
 		{
-			var photo_effect_process = new CIPhotoEffectProcess ()
-			{
+			var photo_effect_process = new CIPhotoEffectProcess () {
 				Image = flower
 			};
 
 			return photo_effect_process.OutputImage;
 		}
-				
+
 		/// <summary>
 		/// Produces a black-and-white image with minimal contrast changes.
 		/// </summary>
 		/// <returns>The altered image.</returns>
 		CIImage PhotoEffectTonal ()
 		{
-			var photo_effect_tonal = new CIPhotoEffectTonal ()
-			{
+			var photo_effect_tonal = new CIPhotoEffectTonal () {
 				Image = flower
 			};
 
 			return photo_effect_tonal.OutputImage;
 		}
-				
+
 		/// <summary>
 		/// Produces a vintage look with exagerrated warm colors.
 		/// </summary>
 		/// <returns>The altered image.</returns>
 		CIImage PhotoEffectTransfer ()
 		{
-			var photo_effect_transfer = new CIPhotoEffectTransfer ()
-			{
+			var photo_effect_transfer = new CIPhotoEffectTransfer () {
 				Image = flower
 			};
 
@@ -893,17 +869,18 @@ namespace coreimage
 		/// </returns>
 		public CIImage GammaAdjust ()
 		{
-			var gammaAdjust = new CIGammaAdjust ()
-			{
+			var gammaAdjust = new CIGammaAdjust () {
 				Image = flower,
 				Power = 3F, // Default value: 0.75
 			};
-			
+
 			return gammaAdjust.OutputImage;
 		}
+
 		#endregion
-		
+
 		#region CategoryGradient
+
 		/// <summary>
 		/// Generates a gradient that varies from one color to another using a Gaussian distribution.
 		/// </summary>
@@ -915,57 +892,54 @@ namespace coreimage
 			var centerVector = new CIVector (100, 100); // Default is [150 150]
 			var color1 = CIColor.FromRgba (1, 0, 1, 1);
 			var color0 = CIColor.FromRgba (0, 1, 1, 1);
-				
-			var gaussGradient = new CIGaussianGradient ()
-			{
+
+			var gaussGradient = new CIGaussianGradient () {
 				Center = centerVector,
 				Color0 = color0,
 				Color1 = color1,
 				Radius = 280f // Default is 300
 			};
-			
+
 			return Crop (gaussGradient);
 		}
-		
+
 		/// <summary>
 		/// Generates a gradient that varies along a linear axis between two defined endpoints.
 		/// </summary>
 		/// <returns>
 		/// The gradient.
 		/// </returns>
-		public CIImage LinearGradient()
+		public CIImage LinearGradient ()
 		{
-			var point0 = new CIVector(0, 0); // Default [0 0]
-			var point1 = new CIVector(250, 250); // Default [200 200]
-			var linearGrad = new CILinearGradient()
-			{
+			var point0 = new CIVector (0, 0); // Default [0 0]
+			var point1 = new CIVector (250, 250); // Default [200 200]
+			var linearGrad = new CILinearGradient () {
 				Point0 = point0,
 				Point1 = point1,
 				Color0 = new CIColor (UIColor.Red),
 				Color1 = new CIColor (UIColor.Blue)
 			};
-			
+
 			return Crop (linearGrad);
 		}
-		
+
 		/// <summary>
 		/// Generates a gradient that varies radially between two circles having the same center.
 		/// </summary>
 		/// <returns>
 		/// The gradient.
 		/// </returns>
-		public CIImage RadialGradient()
+		public CIImage RadialGradient ()
 		{
-			var center = new CIVector(100, 100); // Default [150 150]
-			var radGradient = new CIRadialGradient()
-			{
+			var center = new CIVector (100, 100); // Default [150 150]
+			var radGradient = new CIRadialGradient () {
 				Center = center,
 				Radius0 = 10F, // Default 5
 				Radius1 = 150F, // Default 100
-				Color0 = new CIColor(new CGColor(0, 255F, 0)), // Green
-				Color1 = new CIColor(new CGColor(0, 0, 0)) // Black
+				Color0 = new CIColor (new CGColor (0, 255F, 0)), // Green
+				Color1 = new CIColor (new CGColor (0, 0, 0)) // Black
 			};
-			
+
 			return Crop (radGradient);
 		}
 
@@ -975,10 +949,9 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage SmoothLinearGradient ()
 		{
-			var point0 = new CIVector(0, 0); // Default [0 0]
-			var point1 = new CIVector(250, 250); // Default [200 200]
-			var linearGrad = new CISmoothLinearGradient()
-			{
+			var point0 = new CIVector (0, 0); // Default [0 0]
+			var point1 = new CIVector (250, 250); // Default [200 200]
+			var linearGrad = new CISmoothLinearGradient () {
 				Point0 = point0,
 				Point1 = point1,
 				Color0 = new CIColor (UIColor.Red),
@@ -1054,8 +1027,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage SharpenLuminance ()
 		{
-			var sharpen = new CISharpenLuminance ()
-			{
+			var sharpen = new CISharpenLuminance () {
 				Image = heron
 			};
 
@@ -1068,8 +1040,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage UnsharpMask ()
 		{
-			var unsharp_mask = new CIUnsharpMask ()
-			{
+			var unsharp_mask = new CIUnsharpMask () {
 				Image = heron
 			};
 
@@ -1077,8 +1048,9 @@ namespace coreimage
 		}
 
 		#endregion
-		
+
 		#region CICategoryGeometryAdjustment
+
 		/// <summary>
 		/// Applies a crop to an image.
 		/// </summary>
@@ -1090,7 +1062,7 @@ namespace coreimage
 			};
 			return crop.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Applies an affine transform to an image
 		/// </summary>
@@ -1101,16 +1073,15 @@ namespace coreimage
 		{
 			// Create an AffineTransform to Skew the Image
 			var transform = new CGAffineTransform (1F, .5F, .5F, 1F, 0F, 0F);
-			
-			var affineTransform = new CIAffineTransform ()
-			{
+
+			var affineTransform = new CIAffineTransform () {
 				Image = flower,
 				Transform = transform
 			};
-			
+
 			return affineTransform.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Adjusts the exposure setting for an image similar to the way you control exposure for a camera when you change the F-stop.
 		/// </summary>
@@ -1119,12 +1090,11 @@ namespace coreimage
 		/// </returns>
 		public CIImage ExposureAdjust ()
 		{
-			var exposureAdjust = new CIExposureAdjust ()
-			{
+			var exposureAdjust = new CIExposureAdjust () {
 				Image = flower,
 				EV = 2F // Default value: 0.50 Minimum: 0.00 Maximum: 0.00 Slider minimum: -10.00 Slider maximum: 10.00 Identity: 0.00
 			};
-			
+
 			return exposureAdjust.OutputImage;
 		}
 
@@ -1168,33 +1138,32 @@ namespace coreimage
 				BottomRight = new CIVector (extent.Right - 70, extent.Top - 20),
 				TopLeft = new CIVector (extent.Left - 70, extent.Bottom - 20),
 				TopRight = new CIVector (extent.Right + 70, extent.Bottom + 20),
-				Extent = new CIVector (new float [] {extent.X + 100, extent.Y + 100, extent.Width - 100, extent.Height - 100})
+				Extent = new CIVector (new nfloat [] { extent.X + 100, extent.Y + 100, extent.Width - 100, extent.Height - 100 })
 			};
 
 			return perspective_transform_with_extent.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Rotates the source image by the specified angle in radians.
 		/// </summary>
 		/// <returns>
 		/// The filtered Image
 		/// </returns>
-		public CIImage StraightenFilter()
+		public CIImage StraightenFilter ()
 		{
-			var straightFilter = new CIStraightenFilter()
-			{
+			var straightFilter = new CIStraightenFilter () {
 				Image = heron,
-				Angle = Convert.ToSingle(Math.PI / 4.0) // Change by 45 degrees = pi/4 Radians.
+				Angle = Convert.ToSingle (Math.PI / 4.0) // Change by 45 degrees = pi/4 Radians.
 			};
-			
+
 			return straightFilter.OutputImage;
 		}
-		
-		
+
 		#endregion
-		
+
 		#region CICategoryCompositeOperation
+
 		/// <summary>
 		/// Adds color components to achieve a brightening effect.
 		/// </summary>
@@ -1203,15 +1172,14 @@ namespace coreimage
 		/// </returns>
 		public CIImage AdditionCompositing ()
 		{
-			var addComp = new CIAdditionCompositing ()
-			{
+			var addComp = new CIAdditionCompositing () {
 				Image = heron,
 				BackgroundImage = clouds,
 			};
-			
+
 			return addComp.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Uses the luminance values of the background with the hue and saturation values of the source image.
 		/// </summary>
@@ -1220,32 +1188,30 @@ namespace coreimage
 		/// </returns>
 		public CIImage ColorBlendMode ()
 		{
-			var colorBlend = new CIColorBlendMode ()
-			{
+			var colorBlend = new CIColorBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return colorBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Darkens the background image samples to reflect the source image samples.
 		/// </summary>
 		/// <returns>
 		/// The composite image
 		/// </returns>
-		public CIImage ColorBurnBlendMode()
+		public CIImage ColorBurnBlendMode ()
 		{
-			var colorBurn = new CIColorBurnBlendMode()
-			{
+			var colorBurn = new CIColorBurnBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return colorBurn.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Brightens the background image samples to reflect the source image samples.
 		/// </summary>
@@ -1254,32 +1220,30 @@ namespace coreimage
 		/// </returns>
 		public CIImage ColorDodgeBlendMode ()
 		{
-			var colorDodgeBlend = new CIColorDodgeBlendMode ()
-			{
+			var colorDodgeBlend = new CIColorDodgeBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds,
 			};
-			
+
 			return colorDodgeBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Creates composite image samples by choosing the darker samples (from either the source image or the background).
 		/// </summary>
 		/// <returns>
 		/// The composite Image
 		/// </returns>
-		public CIImage DarkenBlendMode()
+		public CIImage DarkenBlendMode ()
 		{
-			var darkenBlend = new CIDarkenBlendMode()
-			{
+			var darkenBlend = new CIDarkenBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return darkenBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Subtracts either the source image sample color from the background image sample color, or the reverse, depending on which sample has the greater brightness value.
 		/// </summary>
@@ -1288,15 +1252,14 @@ namespace coreimage
 		/// </returns>
 		public CIImage DifferenceBlendMode ()
 		{
-			var differenceBlend = new CIDifferenceBlendMode ()
-			{
+			var differenceBlend = new CIDifferenceBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return differenceBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Produces an effect similar to that produced by the CIDifferenceBlendMode filter but with lower contrast.
 		/// </summary>
@@ -1305,15 +1268,14 @@ namespace coreimage
 		/// </returns>
 		public CIImage ExclusionBlendMode ()
 		{
-			var exclusionBlend = new CIExclusionBlendMode ()
-			{
+			var exclusionBlend = new CIExclusionBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return exclusionBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Either multiplies or screens colors, depending on the source image sample color.
 		/// </summary>
@@ -1322,80 +1284,75 @@ namespace coreimage
 		/// </returns>
 		public CIImage HardLightBlendMode ()
 		{
-			var hardLightBlend = new CIHardLightBlendMode ()
-			{
+			var hardLightBlend = new CIHardLightBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return hardLightBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Uses the luminance and saturation values of the background with the hue of the source image.
 		/// </summary>
 		/// <returns>
 		/// The composite Image
 		/// </returns>
-		public CIImage HueBlendMode()
+		public CIImage HueBlendMode ()
 		{
-			var hueBlend = new CIHueBlendMode()
-			{
+			var hueBlend = new CIHueBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return hueBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Creates composite image samples by choosing the lighter samples (either from the source image or the background).
 		/// </summary>
 		/// <returns>
 		/// The composite Image
 		/// </returns>
-		public CIImage LightenBlendMode()
+		public CIImage LightenBlendMode ()
 		{
-			var lightenBlend = new CILightenBlendMode()
-			{
+			var lightenBlend = new CILightenBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return lightenBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Uses the hue and saturation of the background with the luminance of the source image.
 		/// </summary>
 		/// <returns>
 		/// The composite image
 		/// </returns>
-		public CIImage LuminosityBlendMode()
+		public CIImage LuminosityBlendMode ()
 		{
-			var luminosityBlend = new CILuminosityBlendMode()
-			{
+			var luminosityBlend = new CILuminosityBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return luminosityBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Computes the maximum value, by color component, of two input images and creates an output image using the maximum values.
 		/// </summary>
 		/// <returns>
 		/// The composite image.
 		/// </returns>
-		public CIImage MaximumCompositing()
+		public CIImage MaximumCompositing ()
 		{
-			var maxComposite = new CIMaximumCompositing()
-			{
+			var maxComposite = new CIMaximumCompositing () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return maxComposite.OutputImage;
 		}
 
@@ -1405,189 +1362,180 @@ namespace coreimage
 		/// <returns>
 		/// The composite image
 		/// </returns>
-		public CIImage MinimumCompositing()
+		public CIImage MinimumCompositing ()
 		{
-			var minComposite = new CIMinimumCompositing()
-			{
+			var minComposite = new CIMinimumCompositing () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return minComposite.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Multiplies the source image samples with the background image samples.
 		/// </summary>
 		/// <returns>
 		/// The composite image
 		/// </returns>
-		public CIImage MultiplyBlendMode()
+		public CIImage MultiplyBlendMode ()
 		{
-			var multiBlend = new CIMultiplyBlendMode()
-			{
+			var multiBlend = new CIMultiplyBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return multiBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Multiplies the color component of two input images and creates an output image using the multiplied values.
 		/// </summary>
 		/// <returns>
 		/// The composite image
 		/// </returns>
-		public CIImage MultiplyCompositing()
+		public CIImage MultiplyCompositing ()
 		{
-			var multiComposite = new CIMultiplyCompositing()
-			{
+			var multiComposite = new CIMultiplyCompositing () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return multiComposite.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Overlaies the blend mode.
 		/// </summary>
 		/// <returns>
 		/// The blend mode.
 		/// </returns>
-		public CIImage OverlayBlendMode()
+		public CIImage OverlayBlendMode ()
 		{
-			var overlayBlend = new CIOverlayBlendMode()
-			{
+			var overlayBlend = new CIOverlayBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return overlayBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Saturations the blend mode.
 		/// </summary>
 		/// <returns>
 		/// The composite image.
 		/// </returns>
-		public CIImage SaturationBlendMode()
+		public CIImage SaturationBlendMode ()
 		{
-			var saturationBlend = new CISaturationBlendMode()
-			{
-				Image = heron, 
+			var saturationBlend = new CISaturationBlendMode () {
+				Image = heron,
 				BackgroundImage = clouds,
 			};
-			
+
 			return saturationBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Multiplies the inverse of the source image samples with the inverse of the background image samples.
 		/// </summary>
 		/// <returns>
 		/// The composite image
 		/// </returns>
-		public CIImage ScreenBlendMode()
+		public CIImage ScreenBlendMode ()
 		{
-			var screenBlend = new CIScreenBlendMode()
-			{
+			var screenBlend = new CIScreenBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return screenBlend.OutputImage;
 		}
-	
+
 		/// <summary>
 		/// Either darkens or lightens colors, depending on the source image sample color.
 		/// </summary>
 		/// <returns>
 		/// The Composite Image.
 		/// </returns>
-		public CIImage SoftLightBlendMode()
+		public CIImage SoftLightBlendMode ()
 		{
-			var softLightBlend = new CISoftLightBlendMode()
-			{
+			var softLightBlend = new CISoftLightBlendMode () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return softLightBlend.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Places the source image over the background image, then uses the luminance of the background image to determine what to show.
 		/// </summary>
 		/// <returns>
 		/// The Composite Image
 		/// </returns>
-		public CIImage SourceAtopCompositing()
+		public CIImage SourceAtopCompositing ()
 		{
-			var sourceAtopComposite = new CISourceAtopCompositing()
-			{
+			var sourceAtopComposite = new CISourceAtopCompositing () {
 				Image = heron,
 				BackgroundImage = clouds,
 			};
-			
+
 			return sourceAtopComposite.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Uses the second image to define what to leave in the source image, effectively cropping the image.
 		/// </summary>
 		/// <returns>
 		/// The composite image
 		/// </returns>
-		public CIImage SourceInCompositing()
+		public CIImage SourceInCompositing ()
 		{
-			var sourceComposite = new CISourceInCompositing()
-			{
+			var sourceComposite = new CISourceInCompositing () {
 				Image = clouds, // This image will be Cropped
 				BackgroundImage = heron
 			};
-			
+
 			return sourceComposite.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Uses the second image to define what to take out of the first image.
 		/// </summary>
 		/// <returns>
 		/// The composite image
 		/// </returns>
-		public CIImage SourceOutCompositing()
+		public CIImage SourceOutCompositing ()
 		{
-			var sourceOutComposite = new CISourceOutCompositing()
-			{
+			var sourceOutComposite = new CISourceOutCompositing () {
 				Image = clouds, // This Image will be Cropped
 				BackgroundImage = heron
 			};
-			
+
 			return sourceOutComposite.OutputImage;
 		}
-		
+
 		/// <summary>
 		/// Places the second image over the first.
 		/// </summary>
 		/// <returns>
 		/// The composite Image
 		/// </returns>
-		public CIImage SourceOverCompositing()
+		public CIImage SourceOverCompositing ()
 		{
-			var sourceOverComposite = new CISourceOverCompositing()
-			{
+			var sourceOverComposite = new CISourceOverCompositing () {
 				Image = heron,
 				BackgroundImage = clouds
 			};
-			
+
 			return sourceOverComposite.OutputImage;
 		}
+
 		#endregion
 
 		#region CICategoryDistortionEffect
+
 		/// <summary>
 		/// Distorts the image around a convex or concave bump.
 		/// </summary>
@@ -1599,8 +1547,8 @@ namespace coreimage
 
 			var bump_distortion = new CIBumpDistortion () {
 				Image = xamarinCheck,
-				Center = new CIVector (width/2f, height/2f),
-				Radius = .4f * height,
+				Center = new CIVector (width / 2f, height / 2f),
+				Radius = .4f * (float)height,
 				Scale = .5f
 			};
 
@@ -1619,7 +1567,7 @@ namespace coreimage
 			var bump_distortion_linear = new CIBumpDistortionLinear () {
 				Image = xamarinCheck,
 				Center = new CIVector (width * .5f, height * .5f),
-				Radius = .4f * height,
+				Radius = .4f * (float)height,
 				Scale = .5f,
 				Angle = (float)Math.PI * .5f
 			};
@@ -1707,8 +1655,9 @@ namespace coreimage
 		}
 
 		#endregion
-		
+
 		#region CICategoryGenerator
+
 		/// <summary>
 		/// Generates a checkerboard pattern.
 		/// </summary>
@@ -1717,20 +1666,19 @@ namespace coreimage
 		/// </returns>
 		public CIImage CheckerboardGenerator ()
 		{
-			// Color 1 
+			// Color 1
 			var c0 = CIColor.FromRgb (1, 0, 0);
 			var c1 = CIColor.FromRgb (0, 1, 0);
-			var checker = new CICheckerboardGenerator ()
-			{
+			var checker = new CICheckerboardGenerator () {
 				Color0 = c0,
 				Color1 = c1,
-				Center = new CIVector (new float[] { 10 , 10 }), // Default [80 80]
+				Center = new CIVector (new nfloat[] { 10, 10 }), // Default [80 80]
 				Sharpness = 1F // Default 1
 			};
-			
+
 			return Crop (checker);
 		}
-		
+
 		/// <summary>
 		/// Generates a solid color.
 		/// </summary>
@@ -1739,11 +1687,10 @@ namespace coreimage
 		/// </returns>
 		public CIImage ConstantColorGenerator ()
 		{
-			var colorGen = new CIConstantColorGenerator ()
-			{
+			var colorGen = new CIConstantColorGenerator () {
 				Color = new CIColor (UIColor.Blue)
 			};
-			
+
 			return Crop (colorGen);
 		}
 
@@ -1753,8 +1700,7 @@ namespace coreimage
 		/// <returns>An image with the code.</returns>
 		CIImage QRCodeGenerator ()
 		{
-			var qr_code_generator = new CIQRCodeGenerator () 
-			{
+			var qr_code_generator = new CIQRCodeGenerator () {
 				Message = NSData.FromString ("http://xamarin.com"),
 				CorrectionLevel = "M",
 			};
@@ -1784,27 +1730,27 @@ namespace coreimage
 
 			return Crop (generator);
 		}
-		
+
 		/// <summary>
 		/// Generates a stripe pattern.
 		/// </summary>
 		/// <returns>
 		/// The generated pattern.
 		/// </returns>
-		public CIImage StripesGenerator()
+		public CIImage StripesGenerator ()
 		{
-			var stripeGen = new CIStripesGenerator()
-			{
-				Center = new CIVector(150, 100), // Default [150 150]
+			var stripeGen = new CIStripesGenerator () {
+				Center = new CIVector (150, 100), // Default [150 150]
 				Color0 = new CIColor (UIColor.Blue),
 				Color1 = new CIColor (UIColor.Red),
 				Width = 10,
 			};
-			
+
 			return Crop (stripeGen);
 		}
+
 		#endregion
-	
+
 		#region CICategoryStylize
 
 		/// <summary>
@@ -1858,10 +1804,11 @@ namespace coreimage
 		{
 			var convolution_3X3 = new CIConvolution3X3 () {
 				Image = heron,
-				Weights = new CIVector (new float [] {
+				Weights = new CIVector (new nfloat [] {
 					0, -1, 0,
 					-1, 5, -1,
-					0, -1, 0}),
+					0, -1, 0
+				}),
 				Bias = 0,
 			};
 
@@ -1876,12 +1823,13 @@ namespace coreimage
 		{
 			var convolution_5X5 = new CIConvolution5X5 () {
 				Image = heron,
-				Weights = new CIVector (new float [] {
+				Weights = new CIVector (new nfloat [] {
 					.5f, 0, 0, 0, 0,
 					0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0,
 					0, 0, 0, 0, 0,
-					0, 0, 0, 0, .5f}),
+					0, 0, 0, 0, .5f
+				}),
 				Bias = 0,
 			};
 
@@ -1896,7 +1844,7 @@ namespace coreimage
 		{
 			var convolution_9_horizontal = new CIConvolution9Horizontal () {
 				Image = heron,
-				Weights = new CIVector (new float [] {1, -1, 1, 0, 1, 0, -1, 1, -1}),
+				Weights = new CIVector (new nfloat [] { 1, -1, 1, 0, 1, 0, -1, 1, -1 }),
 			};
 
 			return convolution_9_horizontal.OutputImage;
@@ -1910,7 +1858,7 @@ namespace coreimage
 		{
 			var convolution_9_vertical = new CIConvolution9Vertical () {
 				Image = heron,
-				Weights = new CIVector (new float [] {1, -1, 1, 0, 1, 0, -1, 1, -1}),
+				Weights = new CIVector (new nfloat [] { 1, -1, 1, 0, 1, 0, -1, 1, -1 }),
 			};
 
 			return convolution_9_vertical.OutputImage;
@@ -1963,8 +1911,7 @@ namespace coreimage
 		/// </returns>
 		public CIImage HighlightShadowAdjust ()
 		{
-			var shadowAdjust = new CIHighlightShadowAdjust ()
-			{
+			var shadowAdjust = new CIHighlightShadowAdjust () {
 				Image = flower,
 				HighlightAmount = .75F, // Default is 1
 				ShadowAmount = 1.5F // Default is 0
@@ -2160,8 +2107,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage BarsSwipeTransition ()
 		{
-			var transition = new CIBarsSwipeTransition ()
-			{
+			var transition = new CIBarsSwipeTransition () {
 				Image = heron,
 				TargetImage = clouds,
 				Time = 0.5f
@@ -2176,8 +2122,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage CopyMachineTransition ()
 		{
-			var transition = new CICopyMachineTransition ()
-			{
+			var transition = new CICopyMachineTransition () {
 				Image = heron,
 				TargetImage = clouds,
 				Time = 0.5f
@@ -2192,9 +2137,8 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage DisintegrateWithMaskTransition ()
 		{
-			var transition = new CIDisintegrateWithMaskTransition ()
-			{
-				Image = clouds, 
+			var transition = new CIDisintegrateWithMaskTransition () {
+				Image = clouds,
 				TargetImage = flower,
 				Mask = xamarinCheck
 			};
@@ -2208,8 +2152,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage DissolveTransition ()
 		{
-			var transition = new CIDissolveTransition ()
-			{
+			var transition = new CIDissolveTransition () {
 				Image = heron,
 				TargetImage = clouds,
 				Time = 0.5f
@@ -2224,8 +2167,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage FlashTransition ()
 		{
-			var transition = new CIFlashTransition ()
-			{
+			var transition = new CIFlashTransition () {
 				Image = heron,
 				TargetImage = clouds,
 				Time = 0.8f
@@ -2240,8 +2182,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage ModTransition ()
 		{
-			var transition = new CIModTransition ()
-			{
+			var transition = new CIModTransition () {
 				Image = heron,
 				TargetImage = clouds,
 				Time = 0.5f
@@ -2256,8 +2197,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		CIImage SwipeTransition ()
 		{
-			var swipe_transition = new CISwipeTransition ()
-			{
+			var swipe_transition = new CISwipeTransition () {
 				Image = heron,
 				TargetImage = clouds,
 				Time = 0.8f

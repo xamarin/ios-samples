@@ -1,23 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using MonoTouch.AVFoundation;
-using MonoTouch.Accounts;
-using MonoTouch.AdSupport;
-using MonoTouch.AddressBook;
-using MonoTouch.AssetsLibrary;
-using MonoTouch.CoreBluetooth;
-using MonoTouch.CoreLocation;
-using MonoTouch.EventKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using AVFoundation;
+using Accounts;
+using AdSupport;
+using AddressBook;
+using AssetsLibrary;
+using CoreBluetooth;
+using CoreLocation;
+using EventKit;
+using Foundation;
+using UIKit;
 
 namespace PrivacyPrompts
 {
 
 	public class NotificationsPrivacyController : PrivacyDetailViewController
 	{
-		public NotificationsPrivacyController() 
+		public NotificationsPrivacyController()
 		{
 			CheckAccess = CheckNotificationsAccess;
 			RequestAccess = RequestNotificationsAccess;
@@ -28,7 +28,6 @@ namespace PrivacyPrompts
 			*/
 			var appDelegate = UIApplication.SharedApplication.Delegate as AppDelegate;
 			appDelegate.NotificationsRegistered += (_) => UpdateStatus();
-
 
 		}
 
@@ -48,7 +47,6 @@ namespace PrivacyPrompts
 			//Asynch
 			UIApplication.SharedApplication.RegisterUserNotificationSettings (settings);
 
-
 		}
 
 		public override void ViewDidLoad ()
@@ -59,7 +57,7 @@ namespace PrivacyPrompts
 
 			accessStatus.RemoveConstraints (accessStatus.GetConstraintsAffectingLayout (UILayoutConstraintAxis.Vertical));
 			accessStatus.AddConstraint (NSLayoutConstraint.Create (accessStatus, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 72));
-			
+
 		}
 	}
 

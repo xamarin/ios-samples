@@ -1,6 +1,6 @@
 using System;
 using OpenTK;
-using MonoTouch.UIKit;
+using UIKit;
 using OpenTK.Graphics.ES20;
 
 namespace OpenGLES20Example
@@ -65,65 +65,65 @@ namespace OpenGLES20Example
 			Vector3[] vertices =
 			{
 				new Vector3 { X = -0.276385f, Y = -0.850640f, Z = -0.447215f },
-				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f},  
-				new Vector3 { X = 0.723600f, Y = -0.525720f, Z = -0.447215f}, 
-				new Vector3 { X = 0.723600f, Y = -0.525720f, Z = -0.447215f}, 
-				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f},  
-				new Vector3 { X = 0.723600f, Y = 0.525720f, Z = -0.447215f},  
-				new Vector3 { X = -0.894425f, Y = 0.000000f, Z = -0.447215f}, 
-				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f},  
+				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f},
+				new Vector3 { X = 0.723600f, Y = -0.525720f, Z = -0.447215f},
+				new Vector3 { X = 0.723600f, Y = -0.525720f, Z = -0.447215f},
+				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f},
+				new Vector3 { X = 0.723600f, Y = 0.525720f, Z = -0.447215f},
+				new Vector3 { X = -0.894425f, Y = 0.000000f, Z = -0.447215f},
+				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f},
 				new Vector3 { X = -0.276385f, Y = -0.850640f, Z = -0.447215f},
-				new Vector3 { X = -0.276385f, Y = 0.850640f, Z = -0.447215f}, 
-				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f},  
-				new Vector3 { X = -0.894425f, Y = 0.000000f, Z = -0.447215f}, 
-				new Vector3 { X = 0.723600f, Y = 0.525720f, Z = -0.447215f},  
-				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f},  
-				new Vector3 { X = -0.276385f, Y = 0.850640f, Z = -0.447215f}, 
-				new Vector3 { X = 0.723600f, Y = -0.525720f, Z = -0.447215f}, 
-				new Vector3 { X = 0.723600f, Y = 0.525720f, Z = -0.447215f},  
-				new Vector3 { X = 0.894425f, Y = 0.000000f, Z = 0.447215f}, 	 
+				new Vector3 { X = -0.276385f, Y = 0.850640f, Z = -0.447215f},
+				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f},
+				new Vector3 { X = -0.894425f, Y = 0.000000f, Z = -0.447215f},
+				new Vector3 { X = 0.723600f, Y = 0.525720f, Z = -0.447215f},
+				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f},
+				new Vector3 { X = -0.276385f, Y = 0.850640f, Z = -0.447215f},
+				new Vector3 { X = 0.723600f, Y = -0.525720f, Z = -0.447215f},
+				new Vector3 { X = 0.723600f, Y = 0.525720f, Z = -0.447215f},
+				new Vector3 { X = 0.894425f, Y = 0.000000f, Z = 0.447215f},
 				new Vector3 { X = -0.276385f, Y = -0.850640f, Z = -0.447215f},
-				new Vector3 { X = 0.723600f, Y = -0.525720f, Z = -0.447215f}, 
-				new Vector3 { X = 0.276385f, Y = -0.850640f, Z = 0.447215f},  
-				new Vector3 { X = -0.894425f, Y = 0.000000f, Z = -0.447215f}, 
+				new Vector3 { X = 0.723600f, Y = -0.525720f, Z = -0.447215f},
+				new Vector3 { X = 0.276385f, Y = -0.850640f, Z = 0.447215f},
+				new Vector3 { X = -0.894425f, Y = 0.000000f, Z = -0.447215f},
 				new Vector3 { X = -0.276385f, Y = -0.850640f, Z = -0.447215f},
-				new Vector3 { X = -0.723600f, Y = -0.525720f, Z = 0.447215f}, 
-				new Vector3 { X = -0.276385f, Y = 0.850640f, Z = -0.447215f}, 
-				new Vector3 { X = -0.894425f, Y = 0.000000f, Z = -0.447215f}, 
-				new Vector3 { X = -0.723600f, Y = 0.525720f, Z = 0.447215f},  
-				new Vector3 { X = 0.723600f, Y = 0.525720f, Z = -0.447215f},  
-				new Vector3 { X = -0.276385f, Y = 0.850640f, Z = -0.447215f}, 
-				new Vector3 { X = 0.276385f, Y = 0.850640f, Z = 0.447215f}, 	 
-				new Vector3 { X = 0.894425f, Y = 0.000000f, Z = 0.447215f}, 	 
-				new Vector3 { X = 0.276385f, Y = -0.850640f, Z = 0.447215f},  
-				new Vector3 { X = 0.723600f, Y = -0.525720f, Z = -0.447215f}, 
-				new Vector3 { X = 0.276385f, Y = -0.850640f, Z = 0.447215f},  
-				new Vector3 { X = -0.723600f, Y = -0.525720f, Z = 0.447215f}, 
+				new Vector3 { X = -0.723600f, Y = -0.525720f, Z = 0.447215f},
+				new Vector3 { X = -0.276385f, Y = 0.850640f, Z = -0.447215f},
+				new Vector3 { X = -0.894425f, Y = 0.000000f, Z = -0.447215f},
+				new Vector3 { X = -0.723600f, Y = 0.525720f, Z = 0.447215f},
+				new Vector3 { X = 0.723600f, Y = 0.525720f, Z = -0.447215f},
+				new Vector3 { X = -0.276385f, Y = 0.850640f, Z = -0.447215f},
+				new Vector3 { X = 0.276385f, Y = 0.850640f, Z = 0.447215f},
+				new Vector3 { X = 0.894425f, Y = 0.000000f, Z = 0.447215f},
+				new Vector3 { X = 0.276385f, Y = -0.850640f, Z = 0.447215f},
+				new Vector3 { X = 0.723600f, Y = -0.525720f, Z = -0.447215f},
+				new Vector3 { X = 0.276385f, Y = -0.850640f, Z = 0.447215f},
+				new Vector3 { X = -0.723600f, Y = -0.525720f, Z = 0.447215f},
 				new Vector3 { X = -0.276385f, Y = -0.850640f, Z = -0.447215f},
-				new Vector3 { X = -0.723600f, Y = -0.525720f, Z = 0.447215f}, 
-				new Vector3 { X = -0.723600f, Y = 0.525720f, Z = 0.447215f},  
-				new Vector3 { X = -0.894425f, Y = 0.000000f, Z = -0.447215f}, 
-				new Vector3 { X = -0.723600f, Y = 0.525720f, Z = 0.447215f},  
-				new Vector3 { X = 0.276385f, Y = 0.850640f, Z = 0.447215f}, 	 
-				new Vector3 { X = -0.276385f, Y = 0.850640f, Z = -0.447215f}, 
-				new Vector3 { X = 0.276385f, Y = 0.850640f, Z = 0.447215f}, 	 
-				new Vector3 { X = 0.894425f, Y = 0.000000f, Z = 0.447215f}, 	 
-				new Vector3 { X = 0.723600f, Y = 0.525720f, Z = -0.447215f},  
-				new Vector3 { X = 0.276385f, Y = -0.850640f, Z = 0.447215f},  
-				new Vector3 { X = 0.894425f, Y = 0.000000f, Z = 0.447215f}, 	 
-				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = 1.000000f}, 	 
-				new Vector3 { X = -0.723600f, Y = -0.525720f, Z = 0.447215f}, 
-				new Vector3 { X = 0.276385f, Y = -0.850640f, Z = 0.447215f},  
-				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = 1.000000f}, 	 
-				new Vector3 { X = -0.723600f, Y = 0.525720f, Z = 0.447215f},  
-				new Vector3 { X = -0.723600f, Y = -0.525720f, Z = 0.447215f}, 
-				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = 1.000000f}, 	 
-				new Vector3 { X = 0.276385f, Y = 0.850640f, Z = 0.447215f}, 	 
-				new Vector3 { X = -0.723600f, Y = 0.525720f, Z = 0.447215f},  
-				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = 1.000000f}, 	 
-				new Vector3 { X = 0.894425f, Y = 0.000000f, Z = 0.447215f}, 	 
-				new Vector3 { X = 0.276385f, Y = 0.850640f, Z = 0.447215f}, 	 
-				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = 1.000000f}, 
+				new Vector3 { X = -0.723600f, Y = -0.525720f, Z = 0.447215f},
+				new Vector3 { X = -0.723600f, Y = 0.525720f, Z = 0.447215f},
+				new Vector3 { X = -0.894425f, Y = 0.000000f, Z = -0.447215f},
+				new Vector3 { X = -0.723600f, Y = 0.525720f, Z = 0.447215f},
+				new Vector3 { X = 0.276385f, Y = 0.850640f, Z = 0.447215f},
+				new Vector3 { X = -0.276385f, Y = 0.850640f, Z = -0.447215f},
+				new Vector3 { X = 0.276385f, Y = 0.850640f, Z = 0.447215f},
+				new Vector3 { X = 0.894425f, Y = 0.000000f, Z = 0.447215f},
+				new Vector3 { X = 0.723600f, Y = 0.525720f, Z = -0.447215f},
+				new Vector3 { X = 0.276385f, Y = -0.850640f, Z = 0.447215f},
+				new Vector3 { X = 0.894425f, Y = 0.000000f, Z = 0.447215f},
+				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = 1.000000f},
+				new Vector3 { X = -0.723600f, Y = -0.525720f, Z = 0.447215f},
+				new Vector3 { X = 0.276385f, Y = -0.850640f, Z = 0.447215f},
+				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = 1.000000f},
+				new Vector3 { X = -0.723600f, Y = 0.525720f, Z = 0.447215f},
+				new Vector3 { X = -0.723600f, Y = -0.525720f, Z = 0.447215f},
+				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = 1.000000f},
+				new Vector3 { X = 0.276385f, Y = 0.850640f, Z = 0.447215f},
+				new Vector3 { X = -0.723600f, Y = 0.525720f, Z = 0.447215f},
+				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = 1.000000f},
+				new Vector3 { X = 0.894425f, Y = 0.000000f, Z = 0.447215f},
+				new Vector3 { X = 0.276385f, Y = 0.850640f, Z = 0.447215f},
+				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = 1.000000f},
 			};
 
 			TextureCoord[] textureCoordinates =
@@ -194,7 +194,7 @@ namespace OpenGLES20Example
 			GL.Clear (ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 			if (program != null)
 				program.Use ();
-			
+
 			GL.VertexAttribPointer (positionAttribute, 3, VertexAttribPointerType.Float, false, 0, vertices);
 			GL.EnableVertexAttribArray (positionAttribute);
 
@@ -207,8 +207,7 @@ namespace OpenGLES20Example
 			modelViewMatrix = GLCommon.Matrix3DMultiply (translationMatrix, rotationMatrix);
 
 			GLCommon.Matrix3DSetPerspectiveProjectionWithFieldOfView (ref projectionMatrix, 45.0f, 0.1f, 100.0f,
-			                                                          View.Frame.Size.Width /
-			                                                          View.Frame.Size.Height);
+				(float)(View.Frame.Size.Width / View.Frame.Size.Height));
 
 			matrix = GLCommon.Matrix3DMultiply (projectionMatrix, modelViewMatrix);
 			GL.UniformMatrix4 (matrixUniform, 1, false, matrix);

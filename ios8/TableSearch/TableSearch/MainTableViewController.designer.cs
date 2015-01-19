@@ -12,7 +12,7 @@ namespace TableSearch
 	[Register ("MainTableViewController")]
 	partial class MainTableViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

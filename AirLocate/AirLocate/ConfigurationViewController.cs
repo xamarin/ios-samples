@@ -1,21 +1,21 @@
 using System;
-using MonoTouch.CoreBluetooth;
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreLocation;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreBluetooth;
+using CoreFoundation;
+using CoreLocation;
+using Foundation;
+using UIKit;
 
-namespace AirLocate {
-
-	class PeripheralManagerDelegate : CBPeripheralManagerDelegate {
-
+namespace AirLocate
+{
+	class PeripheralManagerDelegate : CBPeripheralManagerDelegate
+	{
 		public override void StateUpdated (CBPeripheralManager peripheral)
 		{
 		}
 	}
 
-	public partial class ConfigurationViewController : UITableViewController {
-
+	public partial class ConfigurationViewController : UITableViewController
+	{
 		bool enabled;
 		NSUuid uuid;
 		NSNumber major;
@@ -111,7 +111,7 @@ namespace AirLocate {
 					peripheralManager.StopAdvertising ();
 				}
 
-				NavigationController.PopViewControllerAnimated (true);
+				NavigationController.PopViewController (true);
 			});
 
 			NavigationItem.RightBarButtonItem = saveButton;

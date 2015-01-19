@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace DynamicsCatalog {
 
@@ -14,7 +14,7 @@ namespace DynamicsCatalog {
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-		
+
 			var gravityBehavior = new UIGravityBehavior (square);
 
 			var collisionBehavior = new UICollisionBehavior (square) {

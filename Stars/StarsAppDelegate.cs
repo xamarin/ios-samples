@@ -1,7 +1,7 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Stars
 {
@@ -16,7 +16,7 @@ namespace Stars
 
 			window.RootViewController = new StarsViewController();
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 

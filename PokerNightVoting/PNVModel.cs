@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-using MonoTouch.Foundation;
-using MonoTouch.EventKit;
-using MonoTouch.CoreFoundation;
+using Foundation;
+using EventKit;
+using CoreFoundation;
 
 namespace PokerNightVoting
 {
@@ -45,7 +45,7 @@ namespace PokerNightVoting
 				FetchPokerEvents ();
 			}, EventStore);
 		}
-		
+
 		public void StopBroadcastingModelChangedNotifications ()
 		{
 			NSNotificationCenter.DefaultCenter.RemoveObserver (this);
@@ -94,20 +94,20 @@ namespace PokerNightVoting
 				var yesterday = DateTime.Now - TimeSpan.FromDays (1);
 				var twoMonthsInFuture = DateTime.Now + TimeSpan.FromDays (60);
 
-				var predicate = EventStore.PredicateForEvents (yesterday, twoMonthsInFuture, null);
+				var predicate = EventStore.PredicateForEvents ((NSDate)yesterday, (NSDate)twoMonthsInFuture, null);
 				var allEvents = EventStore.EventsMatching (predicate);
 
 				if (allEvents == null)
 					return;
 
 				var result = allEvents.Where (evt => evt.Title == DefaultEventTitle);
-			
+
 				// update our internal data structures
 				UpdateDataStructuresWithMatchingEvents (result);
 
 				// notify the UI (on the main thread) that our model has changed
 				BeginInvokeOnMainThread (delegate {
-					NSNotificationCenter.DefaultCenter.PostNotificationName (PNVModelChangedNotification, this); 
+					NSNotificationCenter.DefaultCenter.PostNotificationName (PNVModelChangedNotification, this);
 				});
 			});
 		}
@@ -159,46 +159,46 @@ namespace PokerNightVoting
 			NSError err;
 			bool success = EventStore.SaveEvent (e, EKSpan.FutureEvents, true, out err);
 
-			if (!success) 
+			if (!success)
 				Console.WriteLine ("There was an error saving a new event: " + err);
 		}
 
 		public int EventNumberOfVotes (EKEvent evt)
 		{
-			if (evt.Notes == null || evt.Notes == "") 
+			if (evt.Notes == null || evt.Notes == "")
 				return 0;
 			return int.Parse (evt.Notes);
 		}
-		
+
 		public void EventSetNumberOfVotes (EKEvent evt, int newVote)
 		{
 			// Since vote count is stored in notes, only allow voting if the notes field is empty or only contains the vote count,
 			// so that we don't accidentally delete important data in the notes field.
-			if (evt.Notes == null || evt.Notes == "" || newVote == EventNumberOfVotes (evt) + 1) 
+			if (evt.Notes == null || evt.Notes == "" || newVote == EventNumberOfVotes (evt) + 1)
 				evt.Notes = newVote.ToString ();
 		}
-		
+
 		// Increases the vote count
 		public void IncreaseVoteOnEvent (EKEvent e)
 		{
 			// We will not overwrite the notes field if it cannot be parsed as an int.
-			if (AreNotesInteger (e)) { 
+			if (AreNotesInteger (e)) {
 				int numVotes = EventNumberOfVotes (e);
 				EventSetNumberOfVotes (e, numVotes + 1);
 			}
-			
+
 			// Save the event since we modified the notes field.
 			NSError err;
 			bool success = EventStore.SaveEvent (e, EKSpan.ThisEvent, true, out err);
-			
-			if (!success) 
+
+			if (!success)
 				Console.WriteLine ("There was an error updating the vote count on an event: " + err);
 		}
 
 		public bool AreNotesInteger (EKEvent e)
 		{
 			try {
-				if (e.Notes != null) 
+				if (e.Notes != null)
 					int.Parse (e.Notes);
 				return true;
 

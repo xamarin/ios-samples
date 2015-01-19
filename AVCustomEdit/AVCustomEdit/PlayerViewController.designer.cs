@@ -4,8 +4,8 @@
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.CodeDom.Compiler;
 
 namespace AVCustomEdit
@@ -15,19 +15,19 @@ namespace AVCustomEdit
 	{
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UILabel currentTimeLabel { get; set; }
+		UIKit.UILabel currentTimeLabel { get; set; }
 
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UIBarButtonItem exportButton { get; set; }
+		UIKit.UIBarButtonItem exportButton { get; set; }
 
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UIProgressView exportProgressView { get; set; }
+		UIKit.UIProgressView exportProgressView { get; set; }
 
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UITapGestureRecognizer gestureRecognizer { get; set; }
+		UIKit.UITapGestureRecognizer gestureRecognizer { get; set; }
 
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
@@ -35,19 +35,19 @@ namespace AVCustomEdit
 
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UIBarButtonItem playPauseButton { get; set; }
+		UIKit.UIBarButtonItem playPauseButton { get; set; }
 
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UISlider scrubber { get; set; }
+		UIKit.UISlider scrubber { get; set; }
 
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UIToolbar toolBar { get; set; }
+		UIKit.UIToolbar toolBar { get; set; }
 
 		[Outlet]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		MonoTouch.UIKit.UIBarButtonItem transitionButton { get; set; }
+		UIKit.UIBarButtonItem transitionButton { get; set; }
 
 		[Action ("beginScrubbing:")]
 		[GeneratedCodeAttribute ("iOS Designer", "1.0")]

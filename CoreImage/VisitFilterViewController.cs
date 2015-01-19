@@ -1,10 +1,10 @@
 using System;
 using System.IO;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.CoreImage;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
+using CoreGraphics;
+using UIKit;
+using CoreImage;
+using Foundation;
+using ObjCRuntime;
 using System.Threading.Tasks;
 
 namespace coreimage
@@ -12,11 +12,14 @@ namespace coreimage
 	class VisitFilterViewController : UIViewController
 	{
 		protected UIImageView ImageView { get; set; }
+
 		protected UIBarButtonItem BarButton { get; set; }
+
 		protected FilterHolder [] FilterList { get; set; }
+
 		protected bool ShouldStop { get; set; }
 
-		public VisitFilterViewController (FilterHolder [] filterList)
+		public VisitFilterViewController (FilterHolder[] filterList)
 		{
 			FilterList = filterList;
 			ShouldStop = false;
@@ -49,7 +52,7 @@ namespace coreimage
 		{
 			base.ViewWillDisappear (animated);
 			ShouldStop = true;
-		} 
+		}
 
 		protected virtual async Task VisitFiltersWithAction ()
 		{
@@ -59,24 +62,23 @@ namespace coreimage
 
 				using (var context = CIContext.FromOptions (null)) {
 
-					foreach(var filter in FilterList)
-					{
+					foreach (var filter in FilterList) {
 						Title = filter.Name;
 
-						if (ShouldStop) 
+						if (ShouldStop)
 							break;
 
-						var resultImageTask = Task.Factory.StartNew ( () =>{
+						var resultImageTask = Task.Factory.StartNew (() => {
 							var output = filter.Callback ();
-							
-								using (var result = context.CreateCGImage (output, output.Extent)) {
-									return UIImage.FromImage (result);
+
+							using (var result = context.CreateCGImage (output, output.Extent)) {
+								return UIImage.FromImage (result);
 							}
 						});
 
 						var resultImage = await resultImageTask;
 
-						if (ShouldStop) 
+						if (ShouldStop)
 							break;
 
 						if (ImageView.Image != null)
@@ -88,29 +90,29 @@ namespace coreimage
 					}
 				}
 
-			}
-			finally {
+			} finally {
 				BarButton.Enabled = true;
 			}
 		}
 
-		protected string ImageDirectory()
+		protected string ImageDirectory ()
 		{
-			var directory = Path.Combine(Directory.GetCurrentDirectory(), "TestImages");
+			var directory = Path.Combine (Directory.GetCurrentDirectory (), "TestImages");
 			return directory;
 		}
 
-		protected string ImagePath(string imageName)
-		{	
-			var fileName = Path.Combine (ImageDirectory(), imageName);
-			fileName = Path.ChangeExtension(fileName, ".png");
+		protected string ImagePath (string imageName)
+		{
+			var fileName = Path.Combine (ImageDirectory (), imageName);
+			fileName = Path.ChangeExtension (fileName, ".png");
 
 			return fileName;
 		}
 
 		protected virtual async Task PerformActionOnTestImage (UIImage image, FilterHolder filterHolder)
 		{
-			await Task.Factory.StartNew (() => {});
+			await Task.Factory.StartNew (() => {
+			});
 		}
 	}
 }

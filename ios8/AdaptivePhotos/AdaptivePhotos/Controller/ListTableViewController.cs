@@ -22,7 +22,7 @@ namespace AdaptivePhotos
 		{
 			base.ViewDidLoad ();
 			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), ListTableViewControllerCellIdentifier);
-			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("showDetailTargetDidChange:"), 
+			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("showDetailTargetDidChange:"),
 				UIViewController.ShowDetailTargetDidChangeNotification, null);
 			ClearsSelectionOnViewWillAppear = false;
 		}
@@ -96,7 +96,7 @@ namespace AdaptivePhotos
 				controller.Title = conversation.Name;
 				ShowViewController (controller, this);
 			} else {
-				var photo = conversation.Photos.GetItem <Photo> ((nint)conversation.Photos.Count - 1);
+				var photo = conversation.Photos.GetItem <Photo> (conversation.Photos.Count - 1);
 				var controller = new PhotoViewController {
 					Photo = photo,
 					Title = conversation.Name
@@ -133,7 +133,7 @@ namespace AdaptivePhotos
 
 		Conversation ConversationForIndexPath (NSIndexPath indexPath)
 		{
-			return User.Conversations.GetItem<Conversation> (indexPath.Item);
+			return User.Conversations.GetItem<Conversation> ((nuint)indexPath.Item);
 		}
 	}
 }

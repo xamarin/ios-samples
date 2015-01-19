@@ -8,12 +8,12 @@ using System.Collections;
 //
 // Import the MonoTouch namespaces
 //
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace MonoCatalog {
-	
+
 	//
 	// MainViewController: this class is instantiated by MonoTouch
 	// when the MainWindow.nib file is loaded.   It is the UITableViewController
@@ -29,38 +29,37 @@ namespace MonoCatalog {
 		struct Sample {
 			public string Title;
 			public UIViewController Controller;
-	
+
 			public Sample (string title, UIViewController controller)
 			{
 				Title = title;
 				Controller = controller;
 			}
 		}
-		
+
 		Sample [] samples;
-	
+
 		//
 		// Constructor invoked from the NIB loader
 		//
 		public MainViewController (IntPtr p) : base (p) {}
-	
-		
+
 		//
 		// The data source for our TableView
 		//
 		class DataSource : UITableViewDataSource {
 			MainViewController mvc;
-			
+
 			public DataSource (MainViewController mvc)
 			{
 				this.mvc = mvc;
 			}
-			
-			public override int RowsInSection (UITableView tableView, int section)
+
+			public override nint RowsInSection (UITableView tableView, nint section)
 			{
 				return mvc.samples.Length;
 			}
-	
+
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				var cell = tableView.DequeueReusableCell (kCellIdentifier);
@@ -72,27 +71,27 @@ namespace MonoCatalog {
 				return cell;
 			}
 		}
-	
+
 		//
 		// This class receives notifications that happen on the UITableView
 		//
 		class TableDelegate : UITableViewDelegate {
 			MainViewController mvc;
-			
+
 			public TableDelegate (MainViewController mvc)
 			{
 				this.mvc = mvc;
 			}
-			
+
 			public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 			{
 				Console.WriteLine ("MonoCatalog: Row selected {0}", indexPath.Row);
-				
+
 				var cont = mvc.samples [indexPath.Row].Controller;
 				mvc.NavigationController.PushViewController (cont, true);
 			}
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -116,12 +115,12 @@ namespace MonoCatalog {
 
 			TableView.Delegate = new TableDelegate (this);
 			TableView.DataSource = new DataSource (this);
-	
+
 			NavigationItem.BackBarButtonItem = new UIBarButtonItem () { Title = "Back" };
 		}
-		
+
 	}
-	
+
 	//
 	// The name AppDelegate is referenced in the MainWindow.xib file.
 	//
@@ -133,10 +132,10 @@ namespace MonoCatalog {
 		{
 			window.AddSubview (navigationController.View);
 			window.MakeKeyAndVisible ();
-	
+
 			return true;
 		}
-	
+
 		//
 		// This method is required in iPhoneOS 3.0
 		//

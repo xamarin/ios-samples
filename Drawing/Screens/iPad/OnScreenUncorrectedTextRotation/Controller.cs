@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace Example_Drawing.Screens.iPad.OnScreenUncorrectedTextRotation
 {
@@ -11,19 +11,19 @@ namespace Example_Drawing.Screens.iPad.OnScreenUncorrectedTextRotation
 		public Controller () : base() { }
 
 		#endregion
-		
+
 		public override void LoadView ()
 		{
 			View = new View ();
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// set the background color of the view to white
-			View.BackgroundColor = UIColor.White;			
-		}		
+			View.BackgroundColor = UIColor.White;
+		}
 	}
 }
 

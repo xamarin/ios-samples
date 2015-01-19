@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 
 namespace TicTacToe
 {
@@ -13,41 +13,41 @@ namespace TicTacToe
 
 		public int Count {
 			get { return count; }
-			set { 
+			set {
 				if (count != value) {
-					RectangleF oldRect = rectForCount (count);
+					CGRect oldRect = rectForCount (count);
 					count = value;
-					RectangleF newRect = rectForCount (count);
-					RectangleF dirtyRect = RectangleF.Union (oldRect, newRect);
+					CGRect newRect = rectForCount (count);
+					CGRect dirtyRect = CGRect.Union (oldRect, newRect);
 					SetNeedsDisplayInRect (dirtyRect);
 				}
 			}
 		}
 
-		public TTTCountView (RectangleF frame) : base (frame)
+		public TTTCountView (CGRect frame) : base (frame)
 		{
 			Opaque = false;
 		}
 
-		public override void Draw (RectangleF rect)
+		public override void Draw (CGRect rect)
 		{
 			TintColor.SetColor ();
-			RectangleF bounds = Bounds;
-			float x = bounds.Right - LineWidth;
+			CGRect bounds = Bounds;
+			float x = (float)bounds.Right - LineWidth;
 
 			for (int n = 0; n < Count; n++) {
 				x -= LineMargin;
 				if ((n + 1) % LineGroupCount == 0) {
 					UIBezierPath path = new UIBezierPath ();
 					path.MoveTo (
-						new PointF (x + 0.5f * LineWidth, 
+						new CGPoint (x + 0.5f * LineWidth,
 					             bounds.Top + 0.5f * LineWidth));
 					path.AddLineTo (
-						new PointF (x + 0.5f * LineWidth + LineGroupCount * LineMargin,
+						new CGPoint (x + 0.5f * LineWidth + LineGroupCount * LineMargin,
 					             bounds.Bottom - 0.5f * LineWidth));
 					path.Stroke ();
 				} else {
-					RectangleF lineRect = bounds;
+					CGRect lineRect = bounds;
 					lineRect.X = x;
 					lineRect.Width = LineWidth;
 					UIGraphics.RectFill (lineRect);
@@ -55,10 +55,10 @@ namespace TicTacToe
 			}
 		}
 
-		RectangleF rectForCount (int count)
+		CGRect rectForCount (int count)
 		{
-			RectangleF bounds = Bounds;
-			RectangleF rect = bounds;
+			CGRect bounds = Bounds;
+			CGRect rect = bounds;
 			rect.Width = LineWidth + LineMargin * count;
 			rect.X += bounds.Size.Width - rect.Size.Width;
 			return rect;

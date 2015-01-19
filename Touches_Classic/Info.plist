@@ -16,9 +16,7 @@
 		<string>Resources/icon-100.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>Touches_Classic</string>
-	<key>MinimumOSVersion</key>
-	<string>4.2</string>
+	<string>com.xamarin.Touches_Classic</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -29,5 +27,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>MinimumOSVersion</key>
+	<string>5.1.1</string>
 </dict>
 </plist>

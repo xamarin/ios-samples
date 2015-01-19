@@ -96,7 +96,7 @@ namespace CloudKitAtlas
 					return;
 
 				spinner.RemoveFromSuperview ();
-				assetRecordName = record.RecordId.RecordName;
+				assetRecordName = record.Id.RecordName;
 
 				var alert = new UIAlertView ( "CloudKitAtlas", "Successfully Uploaded", null, "OK", null);
 				alert.Show ();

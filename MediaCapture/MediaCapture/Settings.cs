@@ -1,9 +1,9 @@
 //
 // how to capture still images, video and audio using iOS AVFoundation and the AVCAptureSession
-// 
+//
 // This sample handles all of the low-level AVFoundation and capture graph setup required to capture and save media.  This code also exposes the
 // capture, configuration and notification capabilities in a more '.Netish' way of programming.  The client code will not need to deal with threads, delegate classes
-// buffer management, or objective-C data types but instead will create .NET objects and handle standard .NET events.  The underlying iOS concepts and classes are detailed in 
+// buffer management, or objective-C data types but instead will create .NET objects and handle standard .NET events.  The underlying iOS concepts and classes are detailed in
 // the iOS developer online help (TP40010188-CH5-SW2).
 //
 // https://developer.apple.com/library/mac/#documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/04_MediaCapture.html#//apple_ref/doc/uid/TP40010188-CH5-SW2
@@ -12,7 +12,7 @@
 //
 using System;
 using System.IO;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace MediaCapture
 {
@@ -31,52 +31,51 @@ namespace MediaCapture
 			SaveCapturedImagesToPhotoLibrary,
 			SaveCapturedImagesToMyDocuments,
 		}
-	
+
 		private CameraType camera = CameraType.FrontFacing;
-		public CameraType Camera 
+		public CameraType Camera
 		{
 			get
 			{
-				return camera;	
+				return camera;
 			}
 			set
 			{
-				camera = value;	
+				camera = value;
 			}
 		}
-		
-		
+
 		private Resolution captureResolution = Resolution.Medium;
-		public Resolution CaptureResolution 
+		public Resolution CaptureResolution
 		{
 			get
 			{
-				return captureResolution;	
+				return captureResolution;
 			}
 			set
 			{
-				captureResolution = value;	
+				captureResolution = value;
 			}
 		}
-		
+
 		private bool imageCaptureEnabled = true;
-		public bool ImageCaptureEnabled 
-		{ 
+		public bool ImageCaptureEnabled
+		{
 			get
 			{
-				return imageCaptureEnabled;	
+				return imageCaptureEnabled;
 			}
 			set
 			{
-				imageCaptureEnabled = value;	
+				imageCaptureEnabled = value;
 			}
 		}
-		
+
 		public bool AudioCaptureEnabled { get; set; }
 		public bool VideoCaptureEnabled { get; set; }
 		public bool SaveCapturedImagesToPhotoLibrary { get; set; }
 		public bool SaveCapturedImagesToMyDocuments { get; set; }
-	
+
 		private int imageSaveIntervalInSeconds = 5;
 		public int ImageSaveIntervalInSeconds
 		{
@@ -85,35 +84,35 @@ namespace MediaCapture
 				return imageSaveIntervalInSeconds;
 			}
 		}
-		
+
 		// seconds (0 or negative number means no limit)
 		private int maxMovieDurationInSeconds = 60;
 		public int MaxMovieDurationInSeconds
 		{
 			get
 			{
-				return maxMovieDurationInSeconds;	
+				return maxMovieDurationInSeconds;
 			}
 			set
 			{
-				maxMovieDurationInSeconds = value;	
+				maxMovieDurationInSeconds = value;
 			}
 		}
-		
+
 		// whether or not to automatically start recording a new movie once the max duration is reached and recording is forcibly stopped
 		private bool autoRecordNextMovie = false;
 		public bool AutoRecordNextMovie
 		{
 			get
 			{
-				return autoRecordNextMovie;	
+				return autoRecordNextMovie;
 			}
 			set
 			{
-				autoRecordNextMovie = value;	
+				autoRecordNextMovie = value;
 			}
 		}
-			
+
 		public void Load()
 		{
 			bool isFirstSettingsLoad = (NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.HaveSettingsBeenLoadedBefore.ToString() ) == false);
@@ -123,18 +122,20 @@ namespace MediaCapture
 				NSUserDefaults.StandardUserDefaults.SetBool( true, SettingsNames.HaveSettingsBeenLoadedBefore.ToString() );
 				Save ();
 			}
-			
-			camera = (CameraType) NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.Camera.ToString() );
+
+			camera =  NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.Camera.ToString()) == 0 ? CameraType.FrontFacing : CameraType.RearFacing ;
 			ImageCaptureEnabled = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.ImageCaptureEnabled.ToString() );
 			AudioCaptureEnabled = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.AudioCaptureEnabled.ToString() );
 			VideoCaptureEnabled = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.VideoCaptureEnabled.ToString() );
-			CaptureResolution = (Resolution) NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.CaptureResolution.ToString() );
-			MaxMovieDurationInSeconds = NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.MaxMovieDurationInSeconds.ToString() );
+			//CaptureResolution = (Resolution) NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.CaptureResolution.ToString() );
+			CaptureResolution = Resolution.High;
+			//MaxMovieDurationInSeconds = NSUserDefaults.StandardUserDefaults.IntForKey( SettingsNames.MaxMovieDurationInSeconds.ToString() );
+			MaxMovieDurationInSeconds = 60;
 			AutoRecordNextMovie = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.AutoRecordNextMovie.ToString() );
 			SaveCapturedImagesToPhotoLibrary = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.SaveCapturedImagesToPhotoLibrary.ToString() );
 			SaveCapturedImagesToMyDocuments = NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.SaveCapturedImagesToMyDocuments.ToString() );
 		}
-		
+
 		public void Save()
 		{
 			NSUserDefaults.StandardUserDefaults.SetInt( (int)camera, SettingsNames.Camera.ToString() );
@@ -149,7 +150,7 @@ namespace MediaCapture
 
 			NSUserDefaults.StandardUserDefaults.Synchronize();
 		}
-		
+
 		private static string createDirectoryIfNeeded( string directory )
 		{
 			if (Directory.Exists(directory) == false)
@@ -158,7 +159,7 @@ namespace MediaCapture
 			}
 			return directory;
 		}
-		
+
 		private static string myDocuments = null;
 		public static string MyDocuments
 		{
@@ -171,7 +172,7 @@ namespace MediaCapture
 				return myDocuments;
 			}
 		}
-		
+
 		private static string configDirectory = null;
 		public static string ConfigDirectory
 		{
@@ -211,9 +212,6 @@ namespace MediaCapture
 			}
 		}
 
-	
-		
-		
 	}
 }
 

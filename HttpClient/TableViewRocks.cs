@@ -1,43 +1,43 @@
 
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace HttpClient
 {
-			
+
 	class StringDataSource : UITableViewDataSource {
 		static NSString kDefaultCell_ID = new NSString ("f");
 		string [] source;
 		UITableView tableView;
-		
+
 		public StringDataSource (UITableView tableView, string [] source)
 		{
 			this.source = source;
 			this.tableView = tableView;
 		}
-		
+
 		public string [] Source {
 			get {
 				return source;
 			}
-			
+
 			set {
 				source = value;
 				tableView.ReloadData ();
 			}
 		}
-		
-		public override int NumberOfSections (UITableView tableView)
+
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return 1;
 		}
-		
-		public override int RowsInSection (UITableView tableView, int section)
+
+		public override nint RowsInSection (UITableView tableView, nint section)
 		{
 			return source.Length;
 		}
-		
+
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = tableView.DequeueReusableCell (kDefaultCell_ID);
@@ -47,15 +47,15 @@ namespace HttpClient
 				};
 				cell.IndentationWidth = 30f;
 			}
-					
+
 			cell.TextLabel.Text = source [indexPath.Row];
 			return cell;
-		}			
+		}
 	}
-	
+
 	public class StringDelegate : UITableViewDelegate {
 		internal int selected;
-		
+
 		public StringDelegate ()
 		{
 		}
@@ -78,7 +78,7 @@ namespace HttpClient
 			tableView.Delegate = new StringDelegate ();
 			tableView.SelectRow (NSIndexPath.FromRowSection (0, 0), true, UITableViewScrollPosition.None);
 		}
-		
+
 		public static int SelectedRow (this UITableView tableView)
 		{
 			var d = tableView.Delegate as StringDelegate;
@@ -87,6 +87,5 @@ namespace HttpClient
 			return d.selected;
 		}
 	}
-	
-	
+
 }

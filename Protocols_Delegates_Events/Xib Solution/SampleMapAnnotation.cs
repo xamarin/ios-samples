@@ -11,19 +11,19 @@ namespace Protocols_Delegates_Events
     public class SampleMapAnnotation : MKAnnotation
     {
         string _title;
-        
+
         public SampleMapAnnotation (CLLocationCoordinate2D coordinate)
         {
             Coordinate = coordinate;
             _title = "Sample";
         }
-        
+
         public override CLLocationCoordinate2D Coordinate { get; set; }
-        
+
         public override string Title {
             get {
                 return _title;
-            }            
+            }
         }
     }
 }

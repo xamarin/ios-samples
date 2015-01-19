@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Hello_MultiScreen_iPhone
 {
@@ -13,7 +13,6 @@ namespace Hello_MultiScreen_iPhone
 		{
 			this.Title = "World!";
 		}
-		
-		
+
 	}
 }

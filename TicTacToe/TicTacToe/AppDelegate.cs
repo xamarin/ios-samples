@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.IO;
 
 namespace TicTacToe
@@ -43,7 +43,7 @@ namespace TicTacToe
 
 			window.MakeKeyAndVisible ();
 
-			NSNotificationCenter.DefaultCenter.AddObserver (TTTProfile.IconDidChangeNotification,
+			NSNotificationCenter.DefaultCenter.AddObserver ((NSString)TTTProfile.IconDidChangeNotification,
 			                                                iconDidChange);
 
 			return true;
@@ -51,7 +51,7 @@ namespace TicTacToe
 
 		string profilePath {
 			get {
-				return Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments), 
+				return Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments),
 				                            "Profile.ttt");
 			}
 		}

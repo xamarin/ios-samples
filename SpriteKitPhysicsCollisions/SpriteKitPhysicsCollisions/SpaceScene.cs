@@ -1,9 +1,9 @@
 using System;
-using MonoTouch.SpriteKit;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
+using SpriteKit;
+using CoreGraphics;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace SpriteKitPhysicsCollisions
 {
@@ -30,7 +30,7 @@ namespace SpriteKitPhysicsCollisions
 			return (float)rand.NextDouble () * (high - low) + low;
 		}
 
-		public SpaceScene (SizeF size) : base (size)
+		public SpaceScene (CGSize size) : base (size)
 		{
 		}
 
@@ -47,7 +47,7 @@ namespace SpriteKitPhysicsCollisions
 			BackgroundColor = UIColor.Black;
 			ScaleMode = SKSceneScaleMode.AspectFit;
 
-			var body = SKPhysicsBody.BodyWithEdgeLoopFromRect (Frame);
+			var body = SKPhysicsBody.CreateEdgeLoop (Frame);
 			body.CategoryBitMask = Category.Edge;
 			body.CollisionBitMask = 0;
 			body.ContactTestBitMask = 0;
@@ -56,11 +56,11 @@ namespace SpriteKitPhysicsCollisions
 			PhysicsWorld.Gravity = new CGVector (0, 0);
 			PhysicsWorld.ContactDelegate = new PhysicsDelegate (DidBeginContact);
 
-			controlledShip = new ShipSprite (new PointF (100, 300));
+			controlledShip = new ShipSprite (new CGPoint (100, 300));
 			AddChild (controlledShip);
-			AddChild (new ShipSprite (new PointF (200, 300)));
-			AddChild (new AsteroidNode (new PointF (100, 200)));
-			AddChild (new PlanetNode (new PointF (300, 100)));
+			AddChild (new ShipSprite (new CGPoint (200, 300)));
+			AddChild (new AsteroidNode (new CGPoint (100, 200)));
+			AddChild (new PlanetNode (new CGPoint (300, 100)));
 		}
 
 		void AttackTarget (SKPhysicsBody target, SKNode missile)
@@ -90,7 +90,7 @@ namespace SpriteKitPhysicsCollisions
 				AttackTarget (secondBody, firstBody.Node);
 
 			if ((firstBody.CategoryBitMask & Category.Ship) != 0) {
-				if (contact.CollisionImpulse > collisionDamageThreshold && 
+				if (contact.CollisionImpulse > collisionDamageThreshold &&
 				    (secondBody.CategoryBitMask & Category.Edge) == 0) {
 
 					int damage = (int) (contact.CollisionImpulse / collisionDamageThreshold);

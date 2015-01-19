@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace WorldCities
 {
@@ -12,9 +12,9 @@ namespace WorldCities
 	partial class WorldCitiesViewController
 	{
 		[Outlet]
-		MonoTouch.MapKit.MKMapView MapView { get; set; }
+		MapKit.MKMapView MapView { get; set; }
 
 		[Action ("SelectorChanged:")]
-		partial void SelectorChanged (MonoTouch.Foundation.NSObject sender);
+		partial void SelectorChanged (Foundation.NSObject sender);
 	}
 }

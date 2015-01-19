@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.CoreImage;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreImage;
+using Foundation;
+using UIKit;
 
 namespace NonConsumables {
 	// WARNING: this is a trivial example of tracking non-consumable
@@ -20,8 +20,8 @@ namespace NonConsumables {
 		/// </summary>
 		/// <remarks>
 		/// This is inherently insecure and easily manipulated by end-users,
-		/// effectively bypassing the payment mechanism (assuming a little bit 
-		/// of technical knowledge). 
+		/// effectively bypassing the payment mechanism (assuming a little bit
+		/// of technical knowledge).
 		/// </remarks>
 		public static void Purchase (string productId) {
 			var key = new NSString(productId);
@@ -34,12 +34,12 @@ namespace NonConsumables {
 		}
 
 		/// <summary>
-		/// Purchaseable feature. This function can't be called until the 
+		/// Purchaseable feature. This function can't be called until the
 		/// user has purchased AND downloaded the hosted in-app product.
 		/// </summary>
 		/// <param name="productId">The content is stored in a directory named with the productId</param>
 		public static void Read (string productId, UITextView view, UIImageView icon)
-		{	
+		{
 			// determine the path to the content
 			var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 			var targetfolder = System.IO.Path.Combine (documentsPath, productId);

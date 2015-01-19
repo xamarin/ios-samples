@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_Notifications.Screens.iPhone.DeviceToken
 {
@@ -11,7 +11,7 @@ namespace Example_Notifications.Screens.iPhone.DeviceToken
 	{
 		#region Constructors
 
-		// The IntPtr and initWithCoder constructors are required for items that need 
+		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
 		public GetDeviceTokenScreen (IntPtr handle) : base(handle)
@@ -33,13 +33,13 @@ namespace Example_Notifications.Screens.iPhone.DeviceToken
 		void Initialize ()
 		{
 		}
-		
+
 		#endregion
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			this.lblToken.Text = ((AppDelegate)UIApplication.SharedApplication.Delegate).DeviceToken;
 		}
 	}

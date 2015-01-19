@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 
 namespace StoryboardTable {
 
 	/// <summary>
 	/// Represents a Chore.
 	/// </summary>
-	/// 
+	///
 	public class Chore {
 
 		public Chore ()

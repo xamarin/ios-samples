@@ -133,10 +133,9 @@ namespace HelloGoodbye
 			button.SetBackgroundImage (CreateOverlayRoundedRectImage (), UIControlState.Normal);
 			button.ContentEdgeInsets = new UIEdgeInsets (kButtonVerticalContentInset, kButtonHorizontalContentInset, kButtonVerticalContentInset, kButtonHorizontalContentInset);
 			return button;
-
 		}
 
-		private static UIImage CreateOverlayRoundedRectImage()
+		static UIImage CreateOverlayRoundedRectImage()
 		{
 			UIImage roundedRectImage = null;
 			SizeF imageSize = new SizeF(2 * kOverlayCornerRadius, 2 * kOverlayCornerRadius);
@@ -153,6 +152,5 @@ namespace HelloGoodbye
 
 			return roundedRectImage;
 		}
-
 	}
 }

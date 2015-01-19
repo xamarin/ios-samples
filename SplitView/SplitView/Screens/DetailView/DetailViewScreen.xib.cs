@@ -2,16 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_SplitView.Screens.DetailView
 {
 	public partial class DetailViewScreen : UIViewController
 	{
-	
+
 		/// <summary>
-		/// The text for the item number label. I expose this to show a way 
+		/// The text for the item number label. I expose this to show a way
 		/// you can communicate between master and detail view.
 		/// </summary>
 		public string Text
@@ -22,7 +22,7 @@ namespace Example_SplitView.Screens.DetailView
 
 		#region Constructors
 
-		// The IntPtr and initWithCoder constructors are required for controllers that need 
+		// The IntPtr and initWithCoder constructors are required for controllers that need
 		// to be able to be created from a xib rather than from managed code
 
 		public DetailViewScreen (IntPtr handle) : base(handle)
@@ -44,11 +44,11 @@ namespace Example_SplitView.Screens.DetailView
 		void Initialize ()
 		{
 		}
-		
+
 		#endregion
-		
+
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
@@ -56,19 +56,19 @@ namespace Example_SplitView.Screens.DetailView
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		public void AddContentsButton (UIBarButtonItem button)
 		{
 			button.Title = "Contents";
 			tlbrTop.SetItems (new UIBarButtonItem[] { button }, false );
 		}
-		
+
 		public void RemoveContentsButton ()
 		{
 			tlbrTop.SetItems (new UIBarButtonItem[0], false);
 		}
-		
+
 	}
 }
 

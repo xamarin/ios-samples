@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
-using MonoTouch.Foundation;
+using UIKit;
+using CoreGraphics;
+using Foundation;
 
 namespace TicTacToe
 {
@@ -23,7 +23,7 @@ namespace TicTacToe
 			UIView baseView = new UIView ();
 			baseView.BackgroundColor = UIColor.FromWhiteAlpha (0f, .15f);
 
-			UIView view = new UIView (new RectangleF (-100f, -50f, 240f, 120f)) {
+			UIView view = new UIView (new CGRect (-100f, -50f, 240f, 120f)) {
 				AutoresizingMask = UIViewAutoresizing.FlexibleLeftMargin |
 				UIViewAutoresizing.FlexibleBottomMargin |
 				UIViewAutoresizing.FlexibleTopMargin |
@@ -94,7 +94,7 @@ namespace TicTacToe
 			UIView.Animate (0.3f, delegate {
 				View.Alpha = 0f;
 				currentMessageSourceWindow.TintAdjustmentMode = UIViewTintAdjustmentMode.Automatic;
-			}, 
+			},
 			                delegate {
 				currentMessageWindow = null;
 				currentMessageSourceWindow.MakeKeyAndVisible ();

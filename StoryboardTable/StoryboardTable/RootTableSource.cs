@@ -1,6 +1,5 @@
-﻿using System;
-using MonoTouch.UIKit;
-
+using System;
+using UIKit;
 
 namespace StoryboardTable
 {
@@ -12,19 +11,19 @@ namespace StoryboardTable
 
 		public RootTableSource (Chore[] items)
 		{
-			tableItems = items; 
+			tableItems = items;
 		}
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return tableItems.Length;
 		}
-		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
-			// in a Storyboard, Dequeue will ALWAYS return a cell, 
+			// in a Storyboard, Dequeue will ALWAYS return a cell,
 			UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);
 			// now set the properties as normal
 			cell.TextLabel.Text = tableItems[indexPath.Row].Name;
-			if (tableItems[indexPath.Row].Done) 
+			if (tableItems[indexPath.Row].Done)
 				cell.Accessory = UITableViewCellAccessory.Checkmark;
 			else
 				cell.Accessory = UITableViewCellAccessory.None;

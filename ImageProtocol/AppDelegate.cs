@@ -1,21 +1,21 @@
-// 
+//
 // AppDelegate.cs
-//  
+//
 // Author:
 //       Rolf Bjarne Kvinge (rolf@xamarin.com)
-// 
+//
 // Copyright 2012, Xamarin Inc.
-// 
+//
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 // IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 // FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,10 +26,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace ImageProtocol
 {
@@ -43,7 +43,7 @@ namespace ImageProtocol
 		public override bool FinishedLaunching (UIApplication application, NSDictionary options)
 		{
 			// Register our custom url protocol
-			NSUrlProtocol.RegisterClass (new MonoTouch.ObjCRuntime.Class (typeof (ImageProtocol)));
+			NSUrlProtocol.RegisterClass (new ObjCRuntime.Class (typeof (ImageProtocol)));
 
 			controller = new UIViewController ();
 
@@ -53,7 +53,7 @@ namespace ImageProtocol
 				AutoresizingMask = UIViewAutoresizing.All
 			};
 			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0))
-				web.Frame = new RectangleF (0, 20, 
+				web.Frame = new CGRect (0, 20,
 				                            UIScreen.MainScreen.Bounds.Width,
 				                            UIScreen.MainScreen.Bounds.Height - 20);
 			else
@@ -62,7 +62,7 @@ namespace ImageProtocol
 
 			controller.View.AutosizesSubviews = true;
 			controller.View.AddSubview (web);
-			
+
 			web.LoadRequest (NSUrlRequest.FromUrl (NSUrl.FromFilename (NSBundle.MainBundle.PathForResource ("test", "html"))));
 
 			window = new UIWindow (UIScreen.MainScreen.Bounds);

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 
 namespace MidiTest
 {
@@ -11,10 +11,10 @@ namespace MidiTest
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		UIWindow window;
-			
+
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			var label = new UILabel (new RectangleF (20, 100, 300, 80)) {
+			var label = new UILabel (new CGRect (20, 100, 300, 80)) {
 				Text = "Playing back",
 				TextColor = UIColor.Black
 			};

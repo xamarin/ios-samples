@@ -3,8 +3,11 @@
 *.swp
 *.DS_Store
 *.nib
+*.suo
 
 */bin/*
 */obj/*
 */*/bin/*
 */*/obj/*
+*/*/*/bin/*
+*/*/*/obj/*

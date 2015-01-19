@@ -22,15 +22,15 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="center" image="Images/YellowSquare.png" id="8">
+                <imageView userInteractionEnabled="NO" contentMode="center" image="YellowSquare.png" id="8">
                     <rect key="frame" x="10" y="100" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="center" image="Images/CyanSquare.png" id="10">
+                <imageView userInteractionEnabled="NO" contentMode="center" image="CyanSquare.png" id="10">
                     <rect key="frame" x="110" y="193" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="center" image="Images/MagentaSquare.png" id="11">
+                <imageView userInteractionEnabled="NO" contentMode="center" image="MagentaSquare.png" id="11">
                     <rect key="frame" x="210" y="290" width="100" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                 </imageView>
@@ -68,8 +68,8 @@
         </view>
     </objects>
     <resources>
-        <image name="Images/CyanSquare.png" width="100" height="100"/>
-        <image name="Images/MagentaSquare.png" width="100" height="100"/>
-        <image name="Images/YellowSquare.png" width="100" height="100"/>
+        <image name="CyanSquare.png" width="100" height="100"/>
+        <image name="MagentaSquare.png" width="100" height="100"/>
+        <image name="YellowSquare.png" width="100" height="100"/>
     </resources>
 </document>

@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.OpenGLES;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreVideo;
+using Foundation;
+using OpenGLES;
+using CoreGraphics;
+using CoreVideo;
 using OpenTK.Graphics.ES20;
 
 namespace AVCustomEdit
@@ -18,7 +18,7 @@ namespace AVCustomEdit
 		public int[] Uniforms = new int[(int)Uniform.Num_Uniforms];
 
 		string vertShaderSource = "attribute vec4 position; \n" +
-			"attribute vec2 texCoord; \n" + 
+			"attribute vec2 texCoord; \n" +
 				"uniform mat4 renderTransform; \n"+
 				"varying vec2 texCoordVarying; \n"+
 				"void main() \n"+
@@ -38,7 +38,7 @@ namespace AVCustomEdit
 		    "{ \n"+
 				"gl_FragColor.rg = texture2D(SamplerUV, texCoordVarying).rg; \n"+
 		    "}";
-			
+
 		public OpenGLRenderer () : base()
 		{
 			CurrentContext = new EAGLContext (EAGLRenderingAPI.OpenGLES2);
@@ -65,7 +65,7 @@ namespace AVCustomEdit
 
 			// CVOpenGLTextureCacheCreateTextureFromImage will create GL texture optimally from CVPixelBufferRef.
 			// UV
-			lumaTexture = VideoTextureCache.TextureFromImage (pixelBuffer, true, All.RedExt, pixelBuffer.Width, pixelBuffer.Height, All.RedExt, DataType.UnsignedByte, 0, out err);
+			lumaTexture = VideoTextureCache.TextureFromImage (pixelBuffer, true, All.RedExt, (int)pixelBuffer.Width,(int) pixelBuffer.Height, All.RedExt, DataType.UnsignedByte, 0, out err);
 			if (lumaTexture == null || err != CVReturn.Success)
 				Console.Error.WriteLine ("Error at creating luma texture using CVOpenGLESTextureCacheCreateTextureFromImage: " + err.ToString ());
 
@@ -87,7 +87,7 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 	// UV
 	var height = pixelBuffer.GetHeightOfPlane (1);
 	var width = pixelBuffer.GetWidthOfPlane (1);
-	chromaTexture = VideoTextureCache.TextureFromImage (pixelBuffer, true, All.RgExt, width, height, All.RgExt, DataType.UnsignedByte, 1, out err);
+			chromaTexture = VideoTextureCache.TextureFromImage (pixelBuffer, true, All.RgExt, (int)width, (int)height, All.RgExt, DataType.UnsignedByte, 1, out err);
 
 	if (chromaTexture == null || err != CVReturn.Success)
 		Console.Error.WriteLine ("Error at creating chroma texture using CVOpenGLESTextureCacheCreateTextureFromImage: " + err.ToString ());
@@ -97,7 +97,7 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 
 		public virtual void RenderPixelBuffer(CVPixelBuffer destinationPixelBuffer, CVPixelBuffer foregroundPixelBuffer, CVPixelBuffer backgroundPixelBuffer, float tween)
 		{
-			DoesNotRecognizeSelector (new MonoTouch.ObjCRuntime.Selector ("_cmd"));
+			DoesNotRecognizeSelector (new ObjCRuntime.Selector ("_cmd"));
 		}
 
 		public void SetupOffScreenRenderContext()
@@ -231,7 +231,7 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 			}
 
 			return true;
-		} 
+		}
 
 		bool linkProgram(int program)
 		{
@@ -280,18 +280,18 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 
 	public enum Uniform
 	{
-		Y, 
-		UV, 
-		Render_Transform_Y, 
-		Render_Transform_UV, 
+		Y,
+		UV,
+		Render_Transform_Y,
+		Render_Transform_UV,
 		Num_Uniforms
 	}
 
 	public enum Attrib{
-		Vertex_Y, 
-		TexCoord_Y, 
-		Vertex_UV, 
-		TexCoord_UV, 
+		Vertex_Y,
+		TexCoord_Y,
+		Vertex_UV,
+		TexCoord_UV,
 		Num_Attributes
 	}
 

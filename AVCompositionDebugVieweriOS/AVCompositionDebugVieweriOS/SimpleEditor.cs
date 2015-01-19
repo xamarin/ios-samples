@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.CoreMedia;
-using MonoTouch.AVFoundation;
-using System.Drawing;
+using Foundation;
+using CoreMedia;
+using AVFoundation;
+using CoreGraphics;
 
 namespace AVCompositionDebugVieweriOS
 {
@@ -15,7 +15,17 @@ namespace AVCompositionDebugVieweriOS
 
 		public int TransitionType { get; set; }
 		public CMTime TransitionDuration { get; set; }
-		public AVMutableComposition Composition { get; set; }
+		AVMutableComposition composition;
+		public AVMutableComposition Composition {
+			get {
+				if (composition == null)
+					composition = AVMutableComposition.Create ();
+				return composition;
+			}
+			set {
+				composition = value;
+			}
+		}
 		public AVMutableVideoComposition VideoComposition { get; set; }
 		public AVMutableAudioMix AudioMix { get; set; }
 
@@ -25,7 +35,7 @@ namespace AVCompositionDebugVieweriOS
 				AVPlayerItem playerItem = AVPlayerItem.FromAsset (Composition);
  				playerItem.VideoComposition = VideoComposition;
 				playerItem.AudioMix = AudioMix;
-		
+
 				return playerItem;
 			}
 		}
@@ -52,7 +62,7 @@ namespace AVCompositionDebugVieweriOS
 					transitionDuration = CMTime.GetMinimum(transitionDuration,halfClipDuration);
 				}
 			}
-		
+
 			// Add two video tracks and two audio tracks.
 			var compositionVideoTracks = new AVMutableCompositionTrack [] {
 				composition.AddMutableTrack (AVMediaType.Video, 0),
@@ -95,7 +105,7 @@ namespace AVCompositionDebugVieweriOS
 				timeRange.Duration = timeRangeInAsset.Duration;
 				passThroughTimeRanges [i] = timeRange;
 
-				if (i > 0) 
+				if (i > 0)
 				{
 					passThroughTimeRanges[i].Start = CMTime.Add(passThroughTimeRanges[i].Start,transitionDuration);
 					passThroughTimeRanges[i].Duration = CMTime.Subtract(passThroughTimeRanges[i].Duration,transitionDuration);
@@ -110,16 +120,16 @@ namespace AVCompositionDebugVieweriOS
 				// (Note: this arithmetic falls apart if timeRangeInAsset.duration < 2 * transitionDuration.)
 				nextClipStartTime = CMTime.Add (nextClipStartTime, timeRangeInAsset.Duration);
 				nextClipStartTime = CMTime.Subtract (nextClipStartTime, transitionDuration);
-			
+
 				// Remember the time range for the transition to the next item
 				if(i + 1 < clipsCount)
 				{
-					transitionTimeRanges [i] = new CMTimeRange () 
+					transitionTimeRanges [i] = new CMTimeRange ()
 					{
 						Start  = nextClipStartTime,
 						Duration = transitionDuration
 					};
-			
+
 				}
 			}
 
@@ -127,7 +137,7 @@ namespace AVCompositionDebugVieweriOS
 			List<AVMutableAudioMixInputParameters> trackMixArray = new List<AVMutableAudioMixInputParameters> ();
 
 			// Set up the video composition if we are to perform crossfade transitions between clips.
-			for (int i = 0; i < clipsCount; i++) 
+			for (int i = 0; i < clipsCount; i++)
 			{
 				int alternatingIndex = i % 2;
 				AVMutableVideoCompositionInstruction passThroughInstructions = AVMutableVideoCompositionInstruction.Create () as AVMutableVideoCompositionInstruction;
@@ -138,22 +148,21 @@ namespace AVCompositionDebugVieweriOS
 				passThroughInstructions.LayerInstructions = new AVVideoCompositionLayerInstruction[] { passThroughLayerInstructions };
 				instructions.Add (passThroughInstructions);
 
-				if (i + 1 < clipsCount) 
+				if (i + 1 < clipsCount)
 				{
 					var transitionInstruction = AVMutableVideoCompositionInstruction.Create () as AVMutableVideoCompositionInstruction;
 					transitionInstruction.TimeRange = transitionTimeRanges [i];
 					var fromLayer = AVMutableVideoCompositionLayerInstruction.FromAssetTrack (compositionVideoTracks [alternatingIndex]);
 					var toLayer = AVMutableVideoCompositionLayerInstruction.FromAssetTrack (compositionVideoTracks [1 - alternatingIndex]);
 
-
 					// Fade in the toLayer by setting a ramp from 0.0 to 1.0.
 					toLayer.SetOpacityRamp (0.0f, 1.0f, transitionTimeRanges [i]);
-					transitionInstruction.LayerInstructions = new AVVideoCompositionLayerInstruction[] 
+					transitionInstruction.LayerInstructions = new AVVideoCompositionLayerInstruction[]
 					{
 						toLayer,
 						fromLayer,
 					};
-					instructions.Add(transitionInstruction); 
+					instructions.Add(transitionInstruction);
 
 					// Add AudioMix to fade in the volume ramps
 					var trackMix = AVMutableAudioMixInputParameters.FromTrack(compositionAudioTracks[0]);
@@ -173,7 +182,7 @@ namespace AVCompositionDebugVieweriOS
 
 		public void BuildCompositionObjects(Boolean playBack)
 		{
-			if (Clips == null || Clips.Count == 0) 
+			if (Clips == null || Clips.Count == 0)
 			{
 				Composition = null;
 				VideoComposition = null;
@@ -181,7 +190,7 @@ namespace AVCompositionDebugVieweriOS
 				return;
 			}
 
-			SizeF videoSize = Clips [0].NaturalSize;
+			CGSize videoSize = Clips [0].NaturalSize;
 			var composition1 = AVMutableComposition.Create ();
 			var videoComposition1 = AVMutableVideoComposition.Create ();
 			var audioMix = AVMutableAudioMix.Create ();
@@ -189,7 +198,7 @@ namespace AVCompositionDebugVieweriOS
 			composition1.NaturalSize = videoSize;
 
 			BuildTransitionComposition (composition1, videoComposition1, audioMix);
-			if (videoComposition1 != null) 
+			if (videoComposition1 != null)
 			{
 				videoComposition1.FrameDuration = new CMTime (1, 30);
 				videoComposition1.RenderSize = videoSize;

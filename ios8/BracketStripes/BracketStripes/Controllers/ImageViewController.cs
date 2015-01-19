@@ -1,9 +1,9 @@
 using System;
-using System.Drawing;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreMedia;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using AVFoundation;
+using CoreMedia;
+using Foundation;
+using UIKit;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 

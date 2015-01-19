@@ -1,10 +1,10 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
-using MonoTouch.CoreAnimation;
-using MonoTouch.Foundation;
+using CoreGraphics;
+using UIKit;
+using CoreAnimation;
+using Foundation;
 using System.Collections.Generic;
-using MonoTouch.CoreGraphics;
+using CoreGraphics;
 
 namespace TransitionsDemo.AnimationControllers
 {
@@ -14,8 +14,8 @@ namespace TransitionsDemo.AnimationControllers
 		{
 		}
 
-		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext, 
-		                                        UIViewController fromViewController, UIViewController toViewController, 
+		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
+		                                        UIViewController fromViewController, UIViewController toViewController,
 		                                        UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
@@ -45,13 +45,13 @@ namespace TransitionsDemo.AnimationControllers
 			flippedSectionOfToViewShadow.Alpha = 1f;
 
 			// change the anchor point so that the view rotate around the correct edge
-			UpdateAnchorPointAndOffset (new PointF (Reverse ? 0f : 1f, 0.5f), flippedSectionOfFromView);
-			UpdateAnchorPointAndOffset (new PointF (Reverse ? 1f : 0f, 0.5f), flippedSectionOfToView);
+			UpdateAnchorPointAndOffset (new CGPoint (Reverse ? 0f : 1f, 0.5f), flippedSectionOfFromView);
+			UpdateAnchorPointAndOffset (new CGPoint (Reverse ? 1f : 0f, 0.5f), flippedSectionOfToView);
 
 			flippedSectionOfToView.Layer.Transform = Rotate (Reverse ? (float)Math.PI / 2 : -(float)Math.PI / 2);
 			double duration = TransitionDuration (transitionContext);
 
-			NSAction animations = () => {
+			Action animations = () => {
 				UIView.AddKeyframeWithRelativeStartTime (0.0, 0.5, () => {
 					flippedSectionOfFromView.Layer.Transform = Rotate (Reverse ? -(float)Math.PI / 2 : (float)Math.PI / 2);
 					flippedSectionOfFromViewShadow.Alpha = 1f;
@@ -93,7 +93,7 @@ namespace TransitionsDemo.AnimationControllers
 
 			var shadowView = new UIView (viewWithShadow.Bounds);
 
-			var colors = new CGColor[] { 
+			var colors = new CGColor[] {
 				UIColor.FromWhiteAlpha(0f, 0f).CGColor,
 				UIColor.FromWhiteAlpha(0f, 0.5f).CGColor
 			};
@@ -103,8 +103,8 @@ namespace TransitionsDemo.AnimationControllers
 				Colors =  colors
 			};
 
-			gradient.StartPoint = new PointF (reverse ? 0f : 1f, 0f);
-			gradient.EndPoint = new PointF (reverse ? 1f : 0f, 0f);
+			gradient.StartPoint = new CGPoint (reverse ? 0f : 1f, 0f);
+			gradient.EndPoint = new CGPoint (reverse ? 1f : 0f, 0f);
 			shadowView.Layer.InsertSublayer (gradient, 1);
 
 			view.Frame = view.Bounds;
@@ -117,12 +117,12 @@ namespace TransitionsDemo.AnimationControllers
 		private List<UIView> CreateSnapshots (UIView view, bool afterScreenUpdates)
 		{
 			UIView containerView = view.Superview;
-			var snapshotRegion = new RectangleF (0, 0, view.Frame.Size.Width / 2, view.Frame.Size.Height);
+			var snapshotRegion = new CGRect (0, 0, view.Frame.Size.Width / 2, view.Frame.Size.Height);
 			UIView leftHandView = view.ResizableSnapshotView (snapshotRegion, afterScreenUpdates, UIEdgeInsets.Zero);
 			leftHandView.Frame = snapshotRegion;
 			containerView.AddSubview (leftHandView);
 
-			snapshotRegion = new RectangleF (view.Frame.Size.Width / 2, 0, view.Frame.Size.Width / 2, view.Frame.Size.Height);
+			snapshotRegion = new CGRect (view.Frame.Size.Width / 2, 0, view.Frame.Size.Width / 2, view.Frame.Size.Height);
 			UIView rightHandView = view.ResizableSnapshotView (snapshotRegion, afterScreenUpdates, UIEdgeInsets.Zero);
 			rightHandView.Frame = snapshotRegion;
 			containerView.AddSubview (rightHandView);
@@ -132,11 +132,11 @@ namespace TransitionsDemo.AnimationControllers
 			return new List<UIView> () { leftHandView, rightHandView };
 		}
 
-		private void UpdateAnchorPointAndOffset (PointF anchorPoint, UIView view)
+		private void UpdateAnchorPointAndOffset (CGPoint anchorPoint, UIView view)
 		{
 			view.Layer.AnchorPoint = anchorPoint;
-			float newX = view.Frame.X + (anchorPoint.X - 0.5f) * view.Frame.Width;
-			view.Frame = new RectangleF (newX, view.Frame.Y, view.Frame.Width, view.Frame.Height);
+			float newX = (float)(view.Frame.X + (anchorPoint.X - 0.5f) * view.Frame.Width);
+			view.Frame = new CGRect (newX, view.Frame.Y, view.Frame.Width, view.Frame.Height);
 		}
 
 		private CATransform3D Rotate (float angle)

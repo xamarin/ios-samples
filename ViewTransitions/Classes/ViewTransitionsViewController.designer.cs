@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace ViewTransitions
 {
@@ -12,9 +12,9 @@ namespace ViewTransitions
 	partial class ViewTransitionsViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIView imageView { get; set; }
+		UIKit.UIView imageView { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem nextTransitionButton { get; set; }
+		UIKit.UIBarButtonItem nextTransitionButton { get; set; }
 	}
 }

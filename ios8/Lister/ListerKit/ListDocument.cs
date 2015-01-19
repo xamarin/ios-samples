@@ -29,15 +29,9 @@ namespace ListerKit
 				return true;
 			}
 
-			outError = new NSError (NSError.CocoaErrorDomain, (int)NSCocoaError.FileReadCorruptFile, NSDictionary.FromObjectsAndKeys (
-				new NSObject[] {
-					(NSString)"Could not read file",
-					(NSString)"File was in an invalid format"
-				},
-				new NSObject[] {
-					NSError.LocalizedDescriptionKey,
-					NSError.LocalizedFailureReasonErrorKey
-				}
+			outError = new NSError (NSError.CocoaErrorDomain, (int)NSCocoaError.FileReadCorruptFile, new NSDictionary (
+				NSError.LocalizedDescriptionKey, "Could not read file",
+				NSError.LocalizedFailureReasonErrorKey, "File was in an invalid format"
 			));
 
 			return false;
@@ -51,15 +45,9 @@ namespace ListerKit
 			if (serializedList != null)
 				return serializedList;
 
-			outError = new NSError (NSError.CocoaErrorDomain, (int)NSCocoaError.FileReadUnknown, NSDictionary.FromObjectsAndKeys (
-				new NSObject[] {
-					(NSString)"Could not save file",
-					(NSString)"An unexpected error occured"
-				},
-				new NSObject[] {
-					NSError.LocalizedDescriptionKey,
-					NSError.LocalizedFailureReasonErrorKey
-				}
+			outError = new NSError (NSError.CocoaErrorDomain, (int)NSCocoaError.FileReadUnknown, new NSDictionary (
+				NSError.LocalizedDescriptionKey, "Could not save file",
+				NSError.LocalizedFailureReasonErrorKey, "An unexpected error occured"
 			));
 
 			return null;

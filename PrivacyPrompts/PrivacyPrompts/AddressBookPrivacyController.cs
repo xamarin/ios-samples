@@ -1,6 +1,6 @@
-﻿using System;
-using MonoTouch.AddressBook;
-using MonoTouch.Foundation;
+using System;
+using AddressBook;
+using Foundation;
 
 namespace PrivacyPrompts
 {
@@ -8,7 +8,7 @@ namespace PrivacyPrompts
 	{
 		ABAddressBook addressBook;
 
-		public AddressBookPrivacyController () 
+		public AddressBookPrivacyController ()
 		{
 			CheckAccess = CheckAddressBookAccess;
 			RequestAccess = RequestAddressBookAccess;

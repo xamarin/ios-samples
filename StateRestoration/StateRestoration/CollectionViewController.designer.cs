@@ -11,7 +11,7 @@ namespace StateRestoration
 	[Register ("CollectionViewController")]
 	partial class CollectionViewController
 	{
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 		}

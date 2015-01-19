@@ -4,9 +4,9 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace QRchestra
 {
@@ -14,14 +14,14 @@ namespace QRchestra
 	partial class ReceiveViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIView previewView { get; set; }
+		UIKit.UIView previewView { get; set; }
 
 		[Action ("handleTap:")]
 		partial void handleTap (UIGestureRecognizer recognizer);
 
 		[Action ("showInfo:")]
-		partial void showInfo (MonoTouch.Foundation.NSObject sender);
-		
+		partial void showInfo (Foundation.NSObject sender);
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (previewView != null) {

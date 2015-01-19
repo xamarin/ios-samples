@@ -21,7 +21,7 @@ public partial class ControlsViewController : UITableViewController {
 		ControlsViewController cvc;
 		static NSString kDisplayCell_ID = new NSString ("DisplayCellID");
 		static NSString kSourceCell_ID = new NSString ("SourceCellID");
-		
+
 		public DataSource (ControlsViewController cvc)
 		{
 			this.cvc = cvc;
@@ -53,7 +53,7 @@ public partial class ControlsViewController : UITableViewController {
 					cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 				} else {
 					// The cell is being recycled, remove the old content
-					
+
 					UIView viewToRemove = cell.ContentView.ViewWithTag (kViewTag);
 					if (viewToRemove != null)
 						viewToRemove.RemoveFromSuperview ();
@@ -67,7 +67,7 @@ public partial class ControlsViewController : UITableViewController {
 					cell = new UITableViewCell (UITableViewCellStyle.Default, kSourceCell_ID);
 					cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 					var label = cell.TextLabel;
-					
+
 					label.Opaque = false;
 					label.TextAlignment = UITextAlignment.Center;
 					label.TextColor = UIColor.Gray;
@@ -110,7 +110,7 @@ public partial class ControlsViewController : UITableViewController {
 		};
 		return sw;
 	}
-	
+
 	UIControl SliderControl ()
 	{
 		var slider = new UISlider (new RectangleF (174f, 12f, 120f, 7f)){
@@ -137,7 +137,7 @@ public partial class ControlsViewController : UITableViewController {
 			Value = 50f,
 			Tag = kViewTag
 		};
-		
+
 		var left = UIImage.FromFile ("orangeslide.png");
 		left = left.StretchableImage (10, 0);
 		var right = UIImage.FromFile ("yellowslide.png");
@@ -146,7 +146,7 @@ public partial class ControlsViewController : UITableViewController {
 		cslider.SetThumbImage (UIImage.FromFile ("slider_ball.png"), UIControlState.Normal);
 		cslider.SetMinTrackImage (left, UIControlState.Normal);
 		cslider.SetMaxTrackImage (right, UIControlState.Normal);
-		
+
 		cslider.ValueChanged += delegate {
 			Console.WriteLine ("New value {0}", cslider.Value);
 		};
@@ -181,7 +181,7 @@ public partial class ControlsViewController : UITableViewController {
 
 		pind.StartAnimating ();
 		pind.SizeToFit ();
-		
+
 		return pind;
 	}
 
@@ -193,7 +193,7 @@ public partial class ControlsViewController : UITableViewController {
 			Tag = kViewTag
 		};
 	}
-		
+
 	struct ControlSample {
 		public string Title, Label, Source;
 		public UIView Control;
@@ -227,5 +227,4 @@ public partial class ControlsViewController : UITableViewController {
 		TableView.Delegate = new TableDelegate ();
 	}
 
-	
 }

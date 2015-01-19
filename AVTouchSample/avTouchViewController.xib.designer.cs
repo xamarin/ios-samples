@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace avTouch
 {
@@ -19,52 +19,52 @@ namespace avTouch
 	partial class avTouchController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton _playButton { get; set; }
+		UIKit.UIButton _playButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton _rewButton { get; set; }
+		UIKit.UIButton _rewButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton _ffwButton { get; set; }
+		UIKit.UIButton _ffwButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel _currentTime { get; set; }
+		UIKit.UILabel _currentTime { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel _duration { get; set; }
+		UIKit.UILabel _duration { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider _volumeSlider { get; set; }
+		UIKit.UISlider _volumeSlider { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider _progressBar { get; set; }
+		UIKit.UISlider _progressBar { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel _fileName { get; set; }
+		UIKit.UILabel _fileName { get; set; }
 
 		[Outlet]
 		avTouch.CALevelMeter _lvlMeter_in { get; set; }
 
 		[Action ("volumeSliderMoved:")]
-		partial void volumeSliderMoved (MonoTouch.UIKit.UISlider sender);
+		partial void volumeSliderMoved (UIKit.UISlider sender);
 
 		[Action ("progressSliderMoved:")]
-		partial void progressSliderMoved (MonoTouch.UIKit.UISlider sender);
+		partial void progressSliderMoved (UIKit.UISlider sender);
 
 		[Action ("playButtonPressed:")]
-		partial void playButtonPressed (MonoTouch.UIKit.UIButton sender);
+		partial void playButtonPressed (UIKit.UIButton sender);
 
 		[Action ("ffwButtonReleased:")]
-		partial void ffwButtonReleased (MonoTouch.UIKit.UIButton sender);
+		partial void ffwButtonReleased (UIKit.UIButton sender);
 
 		[Action ("rewButtonReleased:")]
-		partial void rewButtonReleased (MonoTouch.UIKit.UIButton sender);
+		partial void rewButtonReleased (UIKit.UIButton sender);
 
 		[Action ("rewButtonPressed:")]
-		partial void rewButtonPressed (MonoTouch.UIKit.UIButton sender);
+		partial void rewButtonPressed (UIKit.UIButton sender);
 
 		[Action ("ffwButtonPressed:")]
-		partial void ffwButtonPressed (MonoTouch.UIKit.UIButton sender);
+		partial void ffwButtonPressed (UIKit.UIButton sender);
 	}
 
 	[Register ("CALevelMeter")]

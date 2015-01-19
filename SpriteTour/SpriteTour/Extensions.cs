@@ -1,12 +1,12 @@
 using System;
-using System.Drawing;
-using MonoTouch.SpriteKit;
+using CoreGraphics;
+using SpriteKit;
 
 namespace SpriteTour {
 
 	public static class SpriteKitExtensions {
 
-		public static SKLabelNode AddDescription (this SKNode self, string description, PointF position)
+		public static SKLabelNode AddDescription (this SKNode self, string description, CGPoint position)
 		{
 			SKLabelNode label = new SKLabelNode ("Helvetica") {
 				Text = description,

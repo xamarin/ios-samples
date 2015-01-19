@@ -18,7 +18,7 @@ namespace CloudKitAtlas
 
 			subscriptionSwitch.On = CloudManager.Subscribed;
 		}
-			
+
 		partial void SubscriptionPreferenceUpdated (UISwitch sender)
 		{
 			if (sender.On) {

@@ -10,14 +10,14 @@ public partial class TextFieldController : UITableViewController {
 
 	public TextFieldController () : base ("TextFieldController", null) {
 	}
-	
+
 	const int kViewTag = 1;
-	
+
 	class DataSource : UITableViewDataSource {
 		TextFieldController tvc;
 		static NSString kDisplayCell_ID = new NSString ("CellTextField_ID");
 		static NSString kSourceCell_ID = new NSString ("SourceCell_ID");
-		
+
 		public DataSource (TextFieldController tvc)
 		{
 			this.tvc = tvc;
@@ -62,7 +62,7 @@ public partial class TextFieldController : UITableViewController {
 					cell = new UITableViewCell (UITableViewCellStyle.Default, kSourceCell_ID);
 					cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 					var label = cell.TextLabel;
-					
+
 					label.Opaque = false;
 					label.TextAlignment = UITextAlignment.Center;
 					label.TextColor = UIColor.Gray;
@@ -90,7 +90,7 @@ public partial class TextFieldController : UITableViewController {
 		tf.ResignFirstResponder ();
 		return true;
 	}
-	
+
 	UITextField TextFieldNormal ()
 	{
 		return new UITextField (new RectangleF (30f, 8f, 260f, 30f)){
@@ -143,7 +143,6 @@ public partial class TextFieldController : UITableViewController {
 		};
 	}
 
-
 	UITextField TextFieldLeftView ()
 	{
 		return new UITextField (new RectangleF (30f, 8f, 260f, 30f)){
@@ -158,12 +157,12 @@ public partial class TextFieldController : UITableViewController {
 			ClearButtonMode = UITextFieldViewMode.WhileEditing,
 			Tag = kViewTag,
 			ShouldReturn = DoReturn,
-			
+
 			LeftView = new UIImageView (UIImage.FromFile ("segment_check.png")),
 			LeftViewMode = UITextFieldViewMode.Always
 		};
 	}
-	
+
 	struct TextFieldSample {
 		public string Title, Source;
 		public UITextField View;

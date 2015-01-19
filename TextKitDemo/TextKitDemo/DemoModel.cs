@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreText;
+using Foundation;
+using UIKit;
+using CoreText;
 
 namespace TextKitDemo
 {
@@ -71,4 +71,3 @@ namespace TextKitDemo
 	}
 }
 
- 

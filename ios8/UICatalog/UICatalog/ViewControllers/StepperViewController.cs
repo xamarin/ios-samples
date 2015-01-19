@@ -82,7 +82,7 @@ namespace UICatalog
 			var stepper = (UIStepper)sender;
 
 			// A mapping from a stepper to its associated label.
-			var stepperMapping = new Dictionary<UIStepper, UILabel> { 
+			var stepperMapping = new Dictionary<UIStepper, UILabel> {
 				{ DefaultStepper, DefaultStepperLabel },
 				{ TintedStepper, TintedStepperLabel },
 				{ CustomStepper, CustomStepperLabel }

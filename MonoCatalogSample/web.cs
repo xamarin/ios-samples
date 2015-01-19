@@ -9,7 +9,7 @@ using System.Drawing;
 
 public partial class WebViewController : UIViewController {
 	UIWebView web;
-	
+
 	// Load our definition from the NIB file
 	public WebViewController () : base ("WebViewController", null)
 	{
@@ -21,12 +21,12 @@ public partial class WebViewController : UIViewController {
 		web.Delegate = null;
 		UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 	}
-	
+
 	public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 	{
 		return true;
 	}
-	
+
 	public override void ViewDidLoad ()
 	{
 		Title = "Web";
@@ -51,7 +51,7 @@ public partial class WebViewController : UIViewController {
 		};
 		View.AddSubview (web);
 
-		// Delegate = new 
+		// Delegate = new
 		var urlField = new UITextField (new RectangleF (20f, 10f, View.Bounds.Width - (20f * 2f), 30f)){
 			BorderStyle = UITextBorderStyle.Bezel,
 			TextColor = UIColor.Black,
@@ -74,7 +74,7 @@ public partial class WebViewController : UIViewController {
 		};
 
 		View.AddSubview (urlField);
-		
+
 		web.LoadRequest (NSUrlRequest.FromUrl (new NSUrl ("http://www.mono-project.com")));
 	}
 }

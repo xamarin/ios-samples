@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Popovers
 {
@@ -10,7 +10,7 @@ namespace Popovers
 	public partial class AppDelegate : UIApplicationDelegate
 	{
  		[Outlet]
-		public UIWindow Window { get; set; }
+		public override UIWindow Window { get; set; }
 
 		[Outlet]
 		public UISplitViewController SplitViewController { get; set; }
@@ -20,7 +20,7 @@ namespace Popovers
 
 		[Outlet]
 		public DetailViewController DetailViewController { get; set; }
-		
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			SplitViewController.WillHideViewController += DetailViewController.WillHideViewController;

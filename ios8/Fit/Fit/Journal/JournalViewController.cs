@@ -86,7 +86,7 @@ namespace Fit
 
 			var now = NSDate.Now;
 
-			var metadata = NSDictionary.FromObjectAndKey (new NSString (item.Name), HKMetadataKey.FoodType);
+			var metadata = new NSDictionary (HKMetadataKey.FoodType, item.Name);
 			var caloriesSample = HKQuantitySample.FromType (quantityType, quantity, now, now, metadata);
 
 			HealthStore.SaveObject (caloriesSample, (success, error) => {
@@ -111,7 +111,7 @@ namespace Fit
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = TableView.DequeueReusableCell (CellReuseIdentifier, indexPath);
-			var foodItem = FoodItems.GetItem<FoodItem> (indexPath.Row);
+			var foodItem = FoodItems.GetItem<FoodItem> ((nuint)indexPath.Row);
 			cell.TextLabel.Text = foodItem.Name;
 			cell.DetailTextLabel.Text = EnergyFormatter.StringFromValue (foodItem.Joules, NSEnergyFormatterUnit.Joule);
 			return cell;

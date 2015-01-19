@@ -17,7 +17,7 @@ namespace CloudKitAtlas
 
 		[Action ("SubscriptionPreferenceUpdated:")]
 		partial void SubscriptionPreferenceUpdated (UIKit.UISwitch sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (subscriptionSwitch != null) {

@@ -14,10 +14,10 @@
 // distribute, sublicense, and/or sell copies of the Software, and to
 // permit persons to whom the Software is furnished to do so, subject to
 // the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 // MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -28,17 +28,17 @@
 //
 
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.AudioToolbox;
-using MonoTouch.CoreFoundation;
-using MonoTouch.AudioUnit;
+using Foundation;
+using AudioToolbox;
+using CoreFoundation;
+using AudioUnit;
 using System.Diagnostics;
 
 namespace AQTapDemo
 {
 	public class CCFWebRadioPlayer
 	{
-		class ConnectionDelegate : NSUrlConnectionDelegate
+		class ConnectionDelegate : NSUrlConnectionDataDelegate
 		{
 			AudioFileStream audioFileStream;
 
@@ -59,8 +59,8 @@ namespace AQTapDemo
 		OutputAudioQueue audioQueue;
 		AudioQueueProcessingTap aqTap;
 		IntPtr preRenderData;
-		AudioUnit genericOutputUnit;
-		AudioUnit effectUnit;
+		AudioUnit.AudioUnit genericOutputUnit;
+		AudioUnit.AudioUnit effectUnit;
 		AUGraph auGraph;
 
 		int totalPacketsReceived;
@@ -100,7 +100,7 @@ namespace AQTapDemo
 				return;
 			}
 
-			if (args.Property != AudioFileStreamProperty.ReadyToProducePackets) 
+			if (args.Property != AudioFileStreamProperty.ReadyToProducePackets)
 				return;
 
 			if (audioQueue != null) {
@@ -109,7 +109,7 @@ namespace AQTapDemo
 			}
 
 			audioQueue = new OutputAudioQueue (dataFormat);
-			audioQueue.OutputCompleted += HandleOutputCompleted;
+			audioQueue.BufferCompleted += HandleBufferCompleted;
 
 			AudioQueueStatus status;
 			aqTap = audioQueue.CreateProcessingTap (TapProc, AudioQueueProcessingTapFlags.PreEffects, out status);
@@ -181,7 +181,7 @@ namespace AQTapDemo
 				throw new ApplicationException ();
 		}
 
-		void HandleOutputCompleted (object sender, OutputCompletedEventArgs e)
+		void HandleBufferCompleted (object sender, BufferCompletedEventArgs e)
 		{
 			audioQueue.FreeBuffer (e.IntPtrBuffer);
 		}

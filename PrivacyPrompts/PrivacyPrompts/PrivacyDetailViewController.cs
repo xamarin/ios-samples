@@ -1,16 +1,16 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
-using MonoTouch.AddressBook;
-using MonoTouch.EventKit;
-using MonoTouch.AssetsLibrary;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreBluetooth;
-using MonoTouch.Accounts;
-using MonoTouch.AdSupport;
-using MonoTouch.CoreLocation;
+using Foundation;
+using UIKit;
+using CoreGraphics;
+using CoreGraphics;
+using AddressBook;
+using EventKit;
+using AssetsLibrary;
+using AVFoundation;
+using CoreBluetooth;
+using Accounts;
+using AdSupport;
+using CoreLocation;
 
 namespace PrivacyPrompts
 {
@@ -34,10 +34,10 @@ namespace PrivacyPrompts
 
 		public void AddBaseElements (UIView mainView)
 		{
-			titleLabel = new UILabel (RectangleF.Empty);
+			titleLabel = new UILabel (CGRect.Empty);
 			titleLabel.TextAlignment = UITextAlignment.Center;
 
-			accessStatus = new UILabel (RectangleF.Empty);
+			accessStatus = new UILabel (CGRect.Empty);
 			accessStatus.TextAlignment = UITextAlignment.Center;
 
 			requestAccessButton = UIButton.FromType (UIButtonType.RoundedRect);
@@ -46,7 +46,6 @@ namespace PrivacyPrompts
 			titleLabel.TranslatesAutoresizingMaskIntoConstraints = false;
 			accessStatus.TranslatesAutoresizingMaskIntoConstraints = false;
 			requestAccessButton.TranslatesAutoresizingMaskIntoConstraints = false;
-
 
 			// View-level constraints to set constant size values
 			titleLabel.AddConstraints (new [] {

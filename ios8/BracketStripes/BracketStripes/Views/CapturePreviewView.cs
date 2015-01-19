@@ -1,7 +1,7 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AVFoundation;
+using Foundation;
+using UIKit;
+using AVFoundation;
 
 namespace BracketStripes
 {
@@ -25,7 +25,7 @@ namespace BracketStripes
 			}
 
 			previewLayer = new AVCaptureVideoPreviewLayer (captureSession) {
-				VideoGravity = AVPlayerLayer.GravityResizeAspect,
+				VideoGravity = AVLayerVideoGravity.ResizeAspect,
 				Frame = Bounds
 			};
 
@@ -39,7 +39,8 @@ namespace BracketStripes
 		public override void ObserveValue (NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
 		{
 			if ((ofObject == CaptureOutput) && (keyPath == capturingStillImageKeypath)) {
-				var value = (NSNumber)change [NSObject.ChangeNewKey];
+				var ch = new NSObservedChange (change);
+				var value = (NSNumber)ch.NewValue;
 				AnimateVisualShutter (value.BoolValue);
 				return;
 			}

@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 using System.Collections.Generic;
 
 namespace TicTacToe
@@ -28,7 +28,7 @@ namespace TicTacToe
 
 		public TTTGame ()
 		{
-			Date = NSDate.Now;
+			Date = DateTime.Now;
 			Moves = new List<TTTMove> ();
 		}
 
@@ -50,7 +50,7 @@ namespace TicTacToe
 			TTTMove move = new TTTMove (currentPlayer, xPosition, yPosition);
 			Moves.Add (move);
 
-			currentPlayer = currentPlayer == TTTMovePlayer.Me ? 
+			currentPlayer = currentPlayer == TTTMovePlayer.Me ?
 				TTTMovePlayer.Enemy : TTTMovePlayer.Me;
 
 			updateGameResult ();
@@ -115,7 +115,7 @@ namespace TicTacToe
 		}
 
 		bool GetWinningPlayer (out TTTMovePlayer player, out TTTMoveXPosition startXPosition,
-		                       out TTTMoveYPosition startYPosition, out TTTMoveXPosition endXPosition, 
+		                       out TTTMoveYPosition startYPosition, out TTTMoveXPosition endXPosition,
 		                       out TTTMoveYPosition endYPosition, TTTMoveXPosition xPosition)
 		{
 			TTTMoveXPosition[] xPositions = new TTTMoveXPosition[TTTMove.SidePositionsCount];
@@ -187,7 +187,7 @@ namespace TicTacToe
 					return hasWinner;
 			}
 
-			hasWinner = GetWinningPlayer (out player, out startXPosition, out startYPosition, 
+			hasWinner = GetWinningPlayer (out player, out startXPosition, out startYPosition,
 			                              out endXPosition, out endYPosition, 1);
 			if (hasWinner)
 				return hasWinner;

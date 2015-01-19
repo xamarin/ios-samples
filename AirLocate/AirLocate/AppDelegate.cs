@@ -1,13 +1,13 @@
 using System;
-using MonoTouch.CoreLocation;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreLocation;
+using Foundation;
+using UIKit;
 
-namespace AirLocate {
-
+namespace AirLocate
+{
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate {
-
+	public partial class AppDelegate : UIApplicationDelegate
+	{
 		CLLocationManager locationManager;
 
 		public override UIWindow Window {
@@ -34,7 +34,7 @@ namespace AirLocate {
 
 					// If the application is in the foreground, it will get called back to ReceivedLocalNotification
 					// If its not, iOS will display the notification to the user.
-					UIApplication.SharedApplication.PresentLocationNotificationNow (notification);
+					UIApplication.SharedApplication.PresentLocalNotificationNow (notification);
 				}
 			};
 		}
@@ -53,4 +53,4 @@ namespace AirLocate {
 		}
 	}
 }
-	
+

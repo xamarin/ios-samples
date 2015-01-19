@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace AppPrefs
 {
 	/// <summary>
-	/// The UIApplicationDelegate for the application. This class is responsible for launching the 
-	/// User Interface of the application, as well as listening (and optionally responding) to 
+	/// The UIApplicationDelegate for the application. This class is responsible for launching the
+	/// User Interface of the application, as well as listening (and optionally responding) to
 	/// application events from iOS.
 	/// </summary>
 	[Register ("AppDelegate")]
@@ -24,9 +24,9 @@ namespace AppPrefs
 			observer = NSNotificationCenter.DefaultCenter.AddObserver ((NSString)"NSUserDefaultsDidChangeNotification", DefaultsChanged);
 			DefaultsChanged (null);
 		}
-		
+
 		/// <summary>
-		/// This method is called when the application is about to terminate. Save data, if needed. 
+		/// This method is called when the application is about to terminate. Save data, if needed.
 		/// </summary>
 		/// <seealso cref="DidEnterBackground"/>
 		public override void WillTerminate (UIApplication application)
@@ -36,7 +36,7 @@ namespace AppPrefs
 				observer = null;
 			}
 		}
-		
+
 		void DefaultsChanged (NSNotification obj)
 		{
 			Settings.SetupByPreferences ();

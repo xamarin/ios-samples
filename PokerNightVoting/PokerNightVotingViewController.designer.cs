@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace PokerNightVoting
 {
@@ -12,16 +12,16 @@ namespace PokerNightVoting
 	partial class PokerNightVotingViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem calendarsButton { get; set; }
+		UIKit.UIBarButtonItem calendarsButton { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIBarButtonItem addEventButton { get; set; }
+		UIKit.UIBarButtonItem addEventButton { get; set; }
 
 		[Action ("showCalendarChooser:")]
-		partial void showCalendarChooser (MonoTouch.UIKit.UIBarButtonItem sender);
+		partial void showCalendarChooser (UIKit.UIBarButtonItem sender);
 
 		[Action ("addTime:")]
-		partial void addTime (MonoTouch.UIKit.UIBarButtonItem sender);
+		partial void addTime (UIKit.UIBarButtonItem sender);
 
 		void ReleaseDesignerOutlets ()
 		{

@@ -4,23 +4,23 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
-namespace Example_CoreAnimation.Screens.iPad.LayerAnimation
+namespace CoreAnimationExample
 {
 	[Register ("LayerAnimationScreen")]
 	partial class LayerAnimationScreen
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnAnimate { get; set; }
+		UIKit.UIButton btnAnimate { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnContents { get; set; }
+		UIKit.UIButton btnContents { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIImageView imgToAnimate { get; set; }
-		
+		UIKit.UIImageView imgToAnimate { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (btnAnimate != null) {

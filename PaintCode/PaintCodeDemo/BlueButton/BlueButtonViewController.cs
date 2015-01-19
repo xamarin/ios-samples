@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 
 namespace PaintCode
 {
@@ -19,18 +19,17 @@ namespace PaintCode
 
 			View.BackgroundColor = UIColor.White;
 
-			float statusBarHeight = UIDevice.CurrentDevice.CheckSystemVersion (7,0) ?
+			nfloat statusBarHeight = UIDevice.CurrentDevice.CheckSystemVersion (7,0) ?
 				UIApplication.SharedApplication.StatusBarFrame.Height : 0f;
-			button = new BlueButton (new RectangleF (10, 10 + statusBarHeight, 120, 120 - statusBarHeight));
-			
+			button = new BlueButton (new CGRect (10, 10 + statusBarHeight, 120, 120 - statusBarHeight));
+
 			button.Tapped += (obj) => {
 				new UIAlertView ("Tapped", "Button tapped", null, "OK", null).Show ();
 			};
-			
+
 			View.AddSubview (button);
-			
-			
-			text = new UITextView (new RectangleF (10, 100 + statusBarHeight, 300, 300 - statusBarHeight));
+
+			text = new UITextView (new CGRect (10, 100 + statusBarHeight, 300, 300 - statusBarHeight));
 			text.Font = UIFont.SystemFontOfSize (14f);
 			text.Editable = false;
 			text.Text = "PaintCode BlueButton Example\n\n"
@@ -38,7 +37,7 @@ namespace PaintCode
 				+ "Draw() method override, some color/style properties are tweaked in code "
 				+ "to create the TouchDown effect.";
 			View.AddSubview (text);
-			
+
 		}
 	}
 }

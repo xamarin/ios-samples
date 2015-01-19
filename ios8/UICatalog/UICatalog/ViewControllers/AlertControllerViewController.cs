@@ -83,7 +83,7 @@ namespace UICatalog
 			var title = "A Short Title is Best".Localize ();
 			var message = "A message should be a short, complete sentence.".Localize ();
 			var cancelButtonTitle = "Cancel".Localize ();
-			var otherButtonTitleOne = "Coice One".Localize ();
+			var otherButtonTitleOne = "Choice One".Localize ();
 			var otherButtonTitleTwo = "Choice Two".Localize ();
 
 			var alertController = UIAlertController.Create (title, message, UIAlertControllerStyle.Alert);
@@ -146,7 +146,7 @@ namespace UICatalog
 			var message = "A message should be a short, complete sentence.".Localize ();
 			var cancelButtonTitle = "Cancel".Localize ();
 			var otherButtonTitle = "OK".Localize ();
-			
+
 			var alertController = UIAlertController.Create (title, message, UIAlertControllerStyle.Alert);
 
 			NSObject observer = null;
@@ -169,11 +169,11 @@ namespace UICatalog
 				Console.WriteLine ("The 'Secure Text Entry' alert's cancel action occured.");
 				removeTextFieldObserver();
 			});
-				
+
 			var otherAction = UIAlertAction.Create (otherButtonTitle, UIAlertActionStyle.Default, alertAction => {
 				Console.WriteLine ("The 'Secure Text Entry' alert's other action occured.");
 				removeTextFieldObserver ();
-			}); 
+			});
 
 			// The text field initially has no text in the text field, so we'll disable it.
 			otherAction.Enabled = false;

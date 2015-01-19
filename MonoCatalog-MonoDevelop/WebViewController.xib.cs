@@ -3,32 +3,32 @@
 //
 
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace MonoCatalog {
-	
+
 	public partial class WebViewController : UIViewController {
 		UIWebView web;
-		
+
 		// Load our definition from the NIB file
 		public WebViewController () : base ("WebViewController", null)
 		{
 		}
-	
+
 		public override void ViewWillDisappear (bool animated)
 		{
 			web.StopLoading ();
 			web.Delegate = null;
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 		}
-		
+
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return true;
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			Title = "Web";
@@ -36,7 +36,7 @@ namespace MonoCatalog {
 			var webFrame = UIScreen.MainScreen.ApplicationFrame;
 			webFrame.Y += 25f;
 			webFrame.Height -= 40f;
-	
+
 			web = new UIWebView (webFrame) {
 				BackgroundColor = UIColor.White,
 				ScalesPageToFit = true,
@@ -53,9 +53,9 @@ namespace MonoCatalog {
 				web.LoadHtmlString (String.Format ("<html><center><font size=+5 color='red'>An error occurred:<br>{0}</font></center></html>", args.Error.LocalizedDescription), null);
 			};
 			View.AddSubview (web);
-	
-			// Delegate = new 
-			var urlField = new UITextField (new RectangleF (20f, 10f, View.Bounds.Width - (20f * 2f), 30f)){
+
+			// Delegate = new
+			var urlField = new UITextField (new CGRect (20f, 10f, View.Bounds.Width - (20f * 2f), 30f)){
 				BorderStyle = UITextBorderStyle.Bezel,
 				TextColor = UIColor.Black,
 				Placeholder = "<enter a URL>",
@@ -68,16 +68,16 @@ namespace MonoCatalog {
 				AutocorrectionType = UITextAutocorrectionType.No,
 				ClearButtonMode = UITextFieldViewMode.Always
 			};
-	
+
 			urlField.ShouldReturn = delegate (UITextField field){
 				field.ResignFirstResponder ();
 				web.LoadRequest (NSUrlRequest.FromUrl (new NSUrl (field.Text)));
-	
+
 				return true;
 			};
-	
+
 			View.AddSubview (urlField);
-			
+
 			web.LoadRequest (NSUrlRequest.FromUrl (new NSUrl ("http://ios.xamarin.com/")));
 		}
 	}

@@ -14,6 +14,6 @@ namespace Xamarin.Screens.SQLiteNet
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 	}
-	
+
 }
 

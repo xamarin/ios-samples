@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Tabbed_Images
 {
 	/// <summary>
-	/// The UIApplicationDelegate for the application. This class is responsible for launching the 
-	/// User Interface of the application, as well as listening (and optionally responding) to 
+	/// The UIApplicationDelegate for the application. This class is responsible for launching the
+	/// User Interface of the application, as well as listening (and optionally responding) to
 	/// application events from iOS.
 	/// </summary>
 	[Register ("AppDelegate")]
@@ -17,9 +17,9 @@ namespace Tabbed_Images
 		// class-level declarations
 		UIWindow window;
 		UITabBarController tabBarController;
-		
+
 		/// <summary>
-		/// This method is invoked when the application has loaded and is ready to run. In this 
+		/// This method is invoked when the application has loaded and is ready to run. In this
 		/// method you should instantiate the window, load the UI into it and then make the window
 		/// visible.
 		/// </summary>
@@ -30,7 +30,7 @@ namespace Tabbed_Images
 		{
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
+
 			UIViewController viewController1, viewController2;
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
 				viewController1 = new FirstViewController ("FirstViewController_iPhone", null);
@@ -44,10 +44,10 @@ namespace Tabbed_Images
 				viewController1,
 				viewController2,
 			};
-			
+
 			window.RootViewController = tabBarController;
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 	}

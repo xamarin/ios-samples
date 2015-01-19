@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.ObjCRuntime;
+using UIKit;
+using Foundation;
+using CoreGraphics;
+using ObjCRuntime;
 
 namespace SimpleCollectionView
 {
@@ -27,24 +27,23 @@ namespace SimpleCollectionView
 
             CollectionView.RegisterClassForCell (typeof(AnimalCell), animalCellId);
             CollectionView.RegisterClassForSupplementaryView (typeof(Header), UICollectionElementKindSection.Header, headerId);
-        
-			// add a custom menu item
-			UIMenuController.SharedMenuController.MenuItems = new UIMenuItem[] { 
-				new UIMenuItem ("Custom", new Selector ("custom:")) 
+
+			UIMenuController.SharedMenuController.MenuItems = new UIMenuItem[] {
+				new UIMenuItem ("Custom", new Selector ("custom"))
 			};
 		}
 
-        public override int NumberOfSections (UICollectionView collectionView)
+        public override nint NumberOfSections (UICollectionView collectionView)
         {
             return 1;
         }
 
-        public override int GetItemsCount (UICollectionView collectionView, int section)
+        public override nint GetItemsCount (UICollectionView collectionView, nint section)
         {
             return animals.Count;
         }
 
-        public override UICollectionViewCell GetCell (UICollectionView collectionView, MonoTouch.Foundation.NSIndexPath indexPath)
+        public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
         {
             var animalCell = (AnimalCell)collectionView.DequeueReusableCell (animalCellId, indexPath);
 
@@ -90,14 +89,18 @@ namespace SimpleCollectionView
             return true;
         }
 
-        public override bool CanPerformAction (UICollectionView collectionView, MonoTouch.ObjCRuntime.Selector action, NSIndexPath indexPath, NSObject sender)
-        {
-            return true;
+        public override bool CanPerformAction (UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender)
+		{
+			// Selector should be the same as what's in the custom UIMenuItem
+			if (action == new Selector ("custom"))
+				return true;
+			else
+				return false;
         }
 
-        public override void PerformAction (UICollectionView collectionView, MonoTouch.ObjCRuntime.Selector action, NSIndexPath indexPath, NSObject sender)
+        public override void PerformAction (UICollectionView collectionView, Selector action, NSIndexPath indexPath, NSObject sender)
         {
-            Console.WriteLine ("code to perform action");
+			System.Diagnostics.Debug.WriteLine ("code to perform action");
         }
 
 		// CanBecomeFirstResponder and CanPerform are needed for a custom menu item to appear
@@ -106,22 +109,14 @@ namespace SimpleCollectionView
 				return true;
 			}
 		}
-		
-		public override bool CanPerform (Selector action, NSObject withSender)
+
+		/*public override bool CanPerform (Selector action, NSObject withSender)
 		{
 			if (action == new Selector ("custom"))
 				return true;
 			else
 				return false;
-		}
-
-		// System provided cut, copy and paste will be sent to PerformAction method above, but any custom menu items
-		// must have their assocatied actions implementated explicitly
-		[Export("custom")]
-		void Custom()
-		{
-			Console.WriteLine ("custom");
-		}
+		}*/
 
         public override void WillRotate (UIInterfaceOrientation toInterfaceOrientation, double duration)
         {
@@ -136,7 +131,7 @@ namespace SimpleCollectionView
                     lineLayout.SectionInset  = new UIEdgeInsets (220, 0.0f, 200, 0.0f);
             }
         }
-       
+
     }
 
     public class AnimalCell : UICollectionViewCell
@@ -144,7 +139,7 @@ namespace SimpleCollectionView
         UIImageView imageView;
 
         [Export ("initWithFrame:")]
-        public AnimalCell (System.Drawing.RectangleF frame) : base (frame)
+        public AnimalCell (CGRect frame) : base (frame)
         {
             BackgroundView = new UIView{BackgroundColor = UIColor.Orange};
 
@@ -167,6 +162,22 @@ namespace SimpleCollectionView
                 imageView.Image = value;
             }
         }
+
+		[Export("custom")]
+		void Custom()
+		{
+			// Put all your custom menu behavior code here
+			Console.WriteLine ("custom in the cell");
+		}
+
+
+		public override bool CanPerform (Selector action, NSObject withSender)
+		{
+			if (action == new Selector ("custom"))
+				return true;
+			else
+				return false;
+		}
     }
 
     public class Header : UICollectionReusableView
@@ -184,12 +195,12 @@ namespace SimpleCollectionView
         }
 
         [Export ("initWithFrame:")]
-        public Header (System.Drawing.RectangleF frame) : base (frame)
+        public Header (CGRect frame) : base (frame)
         {
-            label = new UILabel (){Frame = new System.Drawing.RectangleF (0,0,300,50), BackgroundColor = UIColor.Yellow};
+            label = new UILabel (){Frame = new CGRect (0,0,300,50), BackgroundColor = UIColor.Yellow};
             AddSubview (label);
         }
     }
-    
+
 }
 

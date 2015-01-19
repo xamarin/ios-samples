@@ -1,15 +1,17 @@
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using System.CodeDom.Compiler;
 using System;
+using System.CodeDom.Compiler;
+
+using UIKit;
+using Foundation;
 
 namespace UIImageEffects
 {
 	partial class ViewController : UIViewController
 	{
+		const string DidFirstRunKey = "DidFirstRun";
+
 		UIImage image;
 		int imageIndex;
-		const string DidFirstRunKey = "DidFirstRun";
 
 		public ViewController (IntPtr handle) : base (handle)
 		{
@@ -24,13 +26,13 @@ namespace UIImageEffects
 			base.ViewDidLoad ();
 
 			image = UIImage.FromBundle ("DisplayImage");
-			updateImage (null);
+			UpdateImage (null);
 
-			showAlertForFirstRun ();
+			ShowAlertForFirstRun ();
 		}
 
 		[Export("updateImage:")]
-		void updateImage (UITapGestureRecognizer recognizer)
+		void UpdateImage (UITapGestureRecognizer recognizer)
 		{
 			if (imageIndex > 4)
 				imageIndex = 0;
@@ -72,7 +74,7 @@ namespace UIImageEffects
 			imageIndex++;
 		}
 
-		void showAlertForFirstRun ()
+		void ShowAlertForFirstRun ()
 		{
 			var userDefaults = NSUserDefaults.StandardUserDefaults;
 			bool didFirstRun = userDefaults.BoolForKey (DidFirstRunKey);

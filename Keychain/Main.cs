@@ -8,9 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.Security;
+using Foundation;
+using UIKit;
+using Security;
 
 namespace Keychain
 {
@@ -26,7 +26,7 @@ namespace Keychain
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		UIViewController viewController;
-		
+
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -35,14 +35,14 @@ namespace Keychain
 					var rec = new SecRecord (SecKind.GenericPassword){
 						Generic = NSData.FromString ("foo")
 					};
-			
+
 					SecStatusCode res;
 					var match = SecKeyChain.QueryAsRecord (rec, out res);
 					if (res == SecStatusCode.Success)
 						DisplayMessage ("Key found, password is: {0}", match.ValueData);
 					else
 						DisplayMessage ("Key not found: {0}", res);
-					
+
 					var s = new SecRecord (SecKind.GenericPassword) {
 						Label = "Item Label",
 						Description = "Item description",
@@ -52,18 +52,18 @@ namespace Keychain
 						ValueData = NSData.FromString ("my-secret-password"),
 						Generic = NSData.FromString ("foo")
 					};
-					
+
 					var err = SecKeyChain.Add (s);
-					
+
 					if (err != SecStatusCode.Success && err != SecStatusCode.DuplicateItem)
 						DisplayMessage ("Error adding record: {0}", err);
 				});
 			});
-						
+
 			viewController = new UIViewController ();
 			window.RootViewController = viewController;
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 
@@ -71,7 +71,7 @@ namespace Keychain
 		public override void OnActivated (UIApplication application)
 		{
 		}
-		
+
 		void DisplayMessage (string message, params object[] format)
 		{
 			new UIAlertView ("Keychain", string.Format (message, format), null, "OK", null).Show ();

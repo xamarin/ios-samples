@@ -3,7 +3,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace SimpleBackgroundFetch
 {
@@ -11,18 +11,18 @@ namespace SimpleBackgroundFetch
 	partial class DetailViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UILabel detailDescriptionLabel { get; set; }
-		
+		UIKit.UILabel detailDescriptionLabel { get; set; }
+
 		[Outlet]
-		MonoTouch.UIKit.UIToolbar toolbar { get; set; }
-		
+		UIKit.UIToolbar toolbar { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (detailDescriptionLabel != null) {
 				detailDescriptionLabel.Dispose ();
 				detailDescriptionLabel = null;
 			}
-			
+
 			if (toolbar != null) {
 				toolbar.Dispose ();
 				toolbar = null;

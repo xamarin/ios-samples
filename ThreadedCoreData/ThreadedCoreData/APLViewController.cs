@@ -2,10 +2,10 @@
 using System;
 using System.Collections.Generic;
 using MonoTouch;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreData;
-using MonoTouch.ObjCRuntime;
+using Foundation;
+using UIKit;
+using CoreData;
+using ObjCRuntime;
 using System.Text;
 using System.Reflection;
 
@@ -13,17 +13,17 @@ namespace ThreadedCoreData
 {
 	public partial class APLViewController : UITableViewController
 	{
-		private NSManagedObjectContext managedObjectContext;
-		private NSFetchedResultsController fetchedResultsController;
-		private FecthResultsControllerDelegate fecthResultsControllerDelegate;
-		private NSPersistentStoreCoordinator persistentStoreCoordinator;
-		private NSManagedObjectModel managedObjectModel;
-		private UIBarButtonItem activityIndicator;
-		private NSOperationQueue parseQueue;
+		NSManagedObjectContext managedObjectContext;
+		NSFetchedResultsController fetchedResultsController;
+		FecthResultsControllerDelegate fecthResultsControllerDelegate;
+		NSPersistentStoreCoordinator persistentStoreCoordinator;
+		NSManagedObjectModel managedObjectModel;
+		UIBarButtonItem activityIndicator;
+		NSOperationQueue parseQueue;
 
-		private string ApplicationDocumentsDirectory {
+		string ApplicationDocumentsDirectory {
 			get {
-				string[] directories = NSSearchPath.GetDirectories (NSSearchPathDirectory.DocumentDirectory, 
+				string[] directories = NSSearchPath.GetDirectories (NSSearchPathDirectory.DocumentDirectory,
 				                                                    NSSearchPathDomain.User, true);
 				if (directories.Length != 0) {
 					return directories [directories.Length - 1];
@@ -33,7 +33,7 @@ namespace ThreadedCoreData
 			}
 		}
 
-		private NSManagedObjectModel ManagedObjectModel {
+		NSManagedObjectModel ManagedObjectModel {
 			get {
 				if (managedObjectModel != null)
 					return managedObjectModel;
@@ -45,7 +45,7 @@ namespace ThreadedCoreData
 			}
 		}
 
-		private  NSManagedObjectContext ManagedObjectContext {
+		NSManagedObjectContext ManagedObjectContext {
 			get {
 				if (managedObjectContext != null)
 					return managedObjectContext;
@@ -55,13 +55,13 @@ namespace ThreadedCoreData
 				};
 
 				NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("MergeChanges:"),
-				                                                NSManagedObjectContext.DidSaveNotification, null); 
+				                                                NSManagedObjectContext.DidSaveNotification, null);
 
 				return managedObjectContext;
 			}
 		}
 
-		private NSPersistentStoreCoordinator PersistentStoreCoordinator {
+		NSPersistentStoreCoordinator PersistentStoreCoordinator {
 			get {
 				if (persistentStoreCoordinator != null)
 					return persistentStoreCoordinator;
@@ -72,16 +72,16 @@ namespace ThreadedCoreData
 				persistentStoreCoordinator = new NSPersistentStoreCoordinator (ManagedObjectModel);
 
 				NSError error;
-				persistentStoreCoordinator.AddPersistentStoreWithType (NSPersistentStoreCoordinator.SQLiteStoreType, 
+				persistentStoreCoordinator.AddPersistentStoreWithType (NSPersistentStoreCoordinator.SQLiteStoreType,
 				                                                       null, storeUrl, null, out error);
 				if (error != null)
 					Console.WriteLine (string.Format ("Unresolved error {0}", error.LocalizedDescription));
-			
+
 				return persistentStoreCoordinator;
 			}
 		}
 
-		private NSFetchedResultsController FetchedResultsController {
+		NSFetchedResultsController FetchedResultsController {
 			get {
 				if (fetchedResultsController == null) {
 					var fetchRequest = new NSFetchRequest ();
@@ -90,7 +90,7 @@ namespace ThreadedCoreData
 
 					fetchRequest.SortDescriptors = new  NSSortDescriptor[] { new NSSortDescriptor ("date", false) };
 
-					fetchedResultsController = new NSFetchedResultsController (fetchRequest, ManagedObjectContext, null, null);	
+					fetchedResultsController = new NSFetchedResultsController (fetchRequest, ManagedObjectContext, null, null);
 					fetchedResultsController.Delegate = fecthResultsControllerDelegate;
 
 					NSError error;
@@ -111,21 +111,22 @@ namespace ThreadedCoreData
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-		
+
 			fecthResultsControllerDelegate = new FecthResultsControllerDelegate () {
 				TableView = TableView
 			};
 
 			var feedURLString = new NSString ("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson");
 			var earthquakeURLRequest = NSUrlRequest.FromUrl (new NSUrl (feedURLString));
-			NSUrlConnection.SendAsynchronousRequest (earthquakeURLRequest, NSOperationQueue.MainQueue, RequestCompletionHandler); 
+			NSUrlConnection.SendAsynchronousRequest (earthquakeURLRequest, NSOperationQueue.MainQueue, RequestCompletionHandler);
 
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 			parseQueue = new NSOperationQueue ();
 			parseQueue.AddObserver (this, new NSString ("operationCount"), NSKeyValueObservingOptions.New, IntPtr.Zero);
 
-			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("EarthquakesError:"), APLParseOperation.EarthquakesErrorNotificationName, null);
-			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("LocaleChanged:"), NSLocale.CurrentLocaleDidChangeNotification, null);
+			//HACK: Parsed strings to NSString
+			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("EarthquakesError:"), (NSString)APLParseOperation.EarthquakesErrorNotificationName, null);
+			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("LocaleChanged:"), (NSString)NSLocale.CurrentLocaleDidChangeNotification, null);
 
 			var spinner = new UIActivityIndicatorView (UIActivityIndicatorViewStyle.White);
 			spinner.StartAnimating ();
@@ -136,24 +137,25 @@ namespace ThreadedCoreData
 		public override void ObserveValue (NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
 		{
 			if (ofObject == parseQueue && keyPath == "operationCount") {
-				if (parseQueue.OperationCount == 0) 
+				if (parseQueue.OperationCount == 0)
 					InvokeOnMainThread (new Selector ("HideActivityIndicator"), null);
 			} else {
 				base.ObserveValue (keyPath, ofObject, change, context);
 			}
 		}
 
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return FetchedResultsController.Sections.Length;
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			int numberOfRows = 0;
 
+			// HACK: Parsed the Count to int
 			if (FetchedResultsController.Sections.Length > 0)
-				numberOfRows = FetchedResultsController.Sections [section].Count;
+				numberOfRows = (int)FetchedResultsController.Sections [section].Count;
 
 			return numberOfRows;
 		}
@@ -177,7 +179,7 @@ namespace ThreadedCoreData
 		[Export("MergeChanges:")]
 		public void MergeChanges (NSNotification notification)
 		{
-			if (notification.Object != ManagedObjectContext) 
+			if (notification.Object != ManagedObjectContext)
 				InvokeOnMainThread (new Selector ("UpdateMainContext:"), notification);
 		}
 
@@ -210,14 +212,14 @@ namespace ThreadedCoreData
 			NavigationItem.RightBarButtonItem = null;
 		}
 
-		private NSError ComposeError (string message, string domain, int statusCode)
+		NSError ComposeError (string message, string domain, int statusCode)
 		{
-			var errorMessage = new NSString (message); 
-			var userInfo = NSDictionary.FromObjectAndKey (errorMessage, NSError.LocalizedDescriptionKey);
+			var errorMessage = new NSString (message);
+			var userInfo = new NSDictionary (NSError.LocalizedDescriptionKey, errorMessage);
 			return new NSError (new NSString (domain), statusCode, userInfo);
 		}
 
-		private void RequestCompletionHandler (NSUrlResponse responce, NSData data, NSError error)
+		void RequestCompletionHandler (NSUrlResponse responce, NSData data, NSError error)
 		{
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 			if (error != null) {
@@ -228,8 +230,7 @@ namespace ThreadedCoreData
 					var parseOperation = new APLParseOperation (data, PersistentStoreCoordinator);
 					parseQueue.AddOperation (parseOperation);
 				} else {
-					var errorString = new NSString ("Problems with connection.");
-					var userInfo = NSDictionary.FromObjectAndKey (errorString, NSError.LocalizedDescriptionKey);
+					var userInfo = new NSDictionary(NSError.LocalizedDescriptionKey, "Problems with connection.");
 					var reportError = new NSError (new NSString ("HTTP"), httpResponse.StatusCode, userInfo);
 					HandleError (reportError);
 				}

@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreText;
+using UIKit;
+using Foundation;
+using CoreGraphics;
+using CoreText;
 
 namespace Quotes
 {
@@ -14,13 +14,13 @@ namespace Quotes
 	{
 		Page page;
 		public bool UnstyledDrawing;
-		RectangleF[] paragraphBounds;
+		CGRect[] paragraphBounds;
 
 		public PageView (IntPtr handle) : base (handle)
 		{
 		}
 
-		public PageView (RectangleF rect) : base (rect)
+		public PageView (CGRect rect) : base (rect)
 		{
 		}
 
@@ -64,16 +64,16 @@ namespace Quotes
 			}
 		}
 		/*
-		 * Render the page here: we assume we are already in a normalized coordinate system which maps 
+		 * Render the page here: we assume we are already in a normalized coordinate system which maps
 		 * 	our standard aspect ratio (3:4) to (1:1)
-		 * The reason why we do this is to reuse the same drawing code for both the preview and the 
+		 * The reason why we do this is to reuse the same drawing code for both the preview and the
 		 * 	full screen; for full screen rendering, we map the whole view, whereas the preview maps
 		 * 	the whole preview image to a quarter of the page.
 		 * */
-		public RectangleF [] RenderPage (Page page, SizeF size, bool unstyledDrawing)
+		public CGRect [] RenderPage (Page page, CGSize size, bool unstyledDrawing)
 		{
-			var pageRect = new RectangleF (0, 0, size.Width, size.Height);
-			var paragraphBounds = new RectangleF [page.Paragraphs.Count];
+			var pageRect = new CGRect (0, 0, size.Width, size.Height);
+			var paragraphBounds = new CGRect [page.Paragraphs.Count];
 
 			using (var ctxt = UIGraphics.GetCurrentContext ()) {
 				// fill background
@@ -84,12 +84,12 @@ namespace Quotes
 
 				int i = 0;
 				foreach (var p in page.Paragraphs) {
-					var bounds = new RectangleF (pageRect.X, pageRect.Y, 0, 0);
+					var bounds = new CGRect (pageRect.X, pageRect.Y, 0, 0);
 
 					if (UnstyledDrawing) {
 
 						var text = new NSString (page.StringForParagraph (p));
-	
+
 						var font = UIFont.FromName ("HoeflerText-Regular", 24);
 
 						// draw text with the old legacy path, setting the font color to black.
@@ -117,10 +117,10 @@ namespace Quotes
 			}
 		}
 
-		public void SelectParagraphAtPosition (PointF position, bool shouldShowMenu)
+		public void SelectParagraphAtPosition (CGPoint position, bool shouldShowMenu)
 		{
-			page.SelectedParagraph = NSRange.NotFound;
-			var bounds = RectangleF.Empty;
+			page.SelectedParagraph = (int)NSRange.NotFound;
+			var bounds = CGRect.Empty;
 
 			for (int i = 0; i < paragraphBounds.Length; i++) {
 				bounds = paragraphBounds [i];
@@ -143,14 +143,14 @@ namespace Quotes
 			UpdatePage ();
 		}
 
-		public UIImage RenderPagePreview (Page page, SizeF size)
+		public UIImage RenderPagePreview (Page page, CGSize size)
 		{
 			UIGraphics.BeginImageContextWithOptions (size, true, 0.0f);
 
 			var scale = CGAffineTransform.MakeScale (0.5f, 0.5f);
 			UIGraphics.GetCurrentContext ().ConcatCTM (scale);
 
-			RenderPage (page, new SizeF (1024, 768), false);
+			RenderPage (page, new CGSize (1024, 768), false);
 
 			var ret = UIGraphics.GetImageFromCurrentImageContext ();
 
@@ -159,7 +159,7 @@ namespace Quotes
 			return ret;
 		}
 
-		public UIImage RenderPageWithSize (SizeF size)
+		public UIImage RenderPageWithSize (CGSize size)
 		{
 			UIGraphics.BeginImageContextWithOptions (size, true, 0.0f);
 

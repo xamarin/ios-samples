@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.GameKit;
+using GameKit;
 
 namespace ButtonTapper3000 {
 

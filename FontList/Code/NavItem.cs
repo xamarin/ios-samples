@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace FontList.Code {
 
@@ -9,23 +9,23 @@ namespace FontList.Code {
 		/// The name of the nav item, shows up as the label
 		/// </summary>
 		public string Name { get; set; }
-		
+
 		/// <summary>
-		/// The UIViewController that the nav item opens. Use this property if you 
+		/// The UIViewController that the nav item opens. Use this property if you
 		/// wanted to early instantiate the controller when the nav table is built out,
-		/// otherwise just set the Type property and it will lazy-instantiate when the 
+		/// otherwise just set the Type property and it will lazy-instantiate when the
 		/// nav item is clicked on.
 		/// </summary>
 		public UIViewController Controller { get; set; }
-		
+
 		/// <summary>
 		/// Path to the image to show in the nav item
 		/// </summary>
 		public string ImagePath { get; set; }
-		
+
 		/// <summary>
-		/// The Type of the UIViewController. Set this to the type and leave the Controller 
-		/// property empty to lazy-instantiate the ViewController when the nav item is 
+		/// The Type of the UIViewController. Set this to the type and leave the Controller
+		/// property empty to lazy-instantiate the ViewController when the nav item is
 		/// clicked.
 		/// </summary>
 		public Type ControllerType { get; set; }
@@ -34,9 +34,9 @@ namespace FontList.Code {
 		/// The font used to display the item.
 		/// </summary>
 		public UIFont Font { get; set; }
-		
+
 		/// <summary>
-		/// a list of the constructor args (if neccesary) for the controller. use this in 
+		/// a list of the constructor args (if neccesary) for the controller. use this in
 		/// conjunction with ControllerType if lazy-creating controllers.
 		/// </summary>
 		public object[] ControllerConstructorArgs
@@ -45,7 +45,7 @@ namespace FontList.Code {
 			set
 			{
 				controllerConstructorArgs = value;
-				
+
 				controllerConstructorTypes = new Type[this.controllerConstructorArgs.Length];
 				for(int i = 0; i < this.controllerConstructorArgs.Length; i++)
 				{
@@ -54,7 +54,7 @@ namespace FontList.Code {
 			}
 		}
 		protected object[] controllerConstructorArgs = new object[] {};
-		
+
 		/// <summary>
 		/// The types of constructor args.
 		/// </summary>
@@ -63,18 +63,16 @@ namespace FontList.Code {
 			get { return this.controllerConstructorTypes; }
 		}
 		protected Type[] controllerConstructorTypes = Type.EmptyTypes;
-	
 
-		
 		public NavItem ()
 		{
 		}
-		
+
 		public NavItem (string name) : this()
 		{
 			Name = name;
 		}
-		
+
 		public NavItem (string name, UIViewController controller) : this(name)
 		{
 			Controller = controller;
@@ -89,7 +87,7 @@ namespace FontList.Code {
 		{
 			ControllerConstructorArgs = controllerConstructorArgs;
 		}
-		
+
 		public NavItem (string name, UIViewController controller, string imagePath) : this(name, controller)
 		{
 			ImagePath = imagePath;

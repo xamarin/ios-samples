@@ -4,26 +4,26 @@
 // actions made in the UI designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 using System.CodeDom.Compiler;
 
-namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
+namespace CoreAnimationExample
 {
 	[Register ("TransitionViewController")]
 	partial class TransitionViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnContents { get; set; }
+		UIKit.UIButton btnContents { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnTransition { get; set; }
+		UIKit.UIButton btnTransition { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISegmentedControl sgmntTransitionType { get; set; }
+		UIKit.UISegmentedControl sgmntTransitionType { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UIToolbar toolbar { get; set; }
-		
+		UIKit.UIToolbar toolbar { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (btnContents != null) {

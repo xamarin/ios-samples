@@ -46,7 +46,7 @@ namespace Fit
 
 				var success = await HealthStore.RequestAuthorizationToShareAsync (DataTypesToWrite, DataTypesToRead);
 
-				if (!success) {
+				if (!success.Item1) {
 					Console.WriteLine ("You didn't allow HealthKit to access these read/write data types. " +
 					"In your app, try to handle this error gracefully when a user decides not to provide access. " +
 					"If you're using a simulator, try it on a device.");
@@ -103,7 +103,7 @@ namespace Fit
 					usersHeight = mostRecentQuantity.GetDoubleValue (heightUnit);
 				}
 
-				InvokeOnMainThread (delegate {  
+				InvokeOnMainThread (delegate {
 					heightValueLabel.Text = numberFormatter.StringFromNumber (new NSNumber (usersHeight));
 				});
 			});
@@ -121,13 +121,13 @@ namespace Fit
 				}
 
 				double usersWeight = 0.0;
-					
+
 				if (mostRecentQuantity != null) {
 					var weightUnit = HKUnit.Pound;
 					usersWeight = mostRecentQuantity.GetDoubleValue (weightUnit);
 				}
 
-				InvokeOnMainThread (delegate {  
+				InvokeOnMainThread (delegate {
 					weightValueLabel.Text = numberFormatter.StringFromNumber (new NSNumber (usersWeight));
 				});
 			}
@@ -137,7 +137,7 @@ namespace Fit
 		void FetchMostRecentData (HKQuantityType quantityType, Action <HKQuantity, NSError> completion)
 		{
 			var timeSortDescriptor = new NSSortDescriptor (HKSample.SortIdentifierEndDate, false);
-			var query = new HKSampleQuery (quantityType, new NSPredicate (IntPtr.Zero), 1, new NSSortDescriptor[] { timeSortDescriptor }, 
+			var query = new HKSampleQuery (quantityType, null, 1, new NSSortDescriptor[] { timeSortDescriptor },
 				            (HKSampleQuery resultQuery, HKSample[] results, NSError error) => {
 					if (completion != null && error != null) {
 						completion (null, error);

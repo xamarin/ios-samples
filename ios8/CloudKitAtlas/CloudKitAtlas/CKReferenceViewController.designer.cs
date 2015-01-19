@@ -20,7 +20,7 @@ namespace CloudKitAtlas
 
 		[Action ("Add:")]
 		partial void Add (UIKit.UIButton sender);
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (AddButton != null) {

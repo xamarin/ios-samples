@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace TicTacToe
 {
@@ -21,7 +21,7 @@ namespace TicTacToe
 		}
 
 		#region Table View
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return Profile.Games.Count;
 		}

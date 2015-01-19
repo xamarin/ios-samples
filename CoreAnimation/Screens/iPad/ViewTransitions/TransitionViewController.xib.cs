@@ -1,34 +1,30 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
-namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
+namespace CoreAnimationExample
 {
 	public partial class TransitionViewController : UIViewController
 	{
 		public Action ContentsClicked;
+
 		public event EventHandler<EventArgs> TransitionClicked;
 
 		public UIViewAnimationOptions SelectedTransition {
 			get {
 				switch (sgmntTransitionType.SelectedSegment) {
-				case 0:
-					return UIViewAnimationOptions.TransitionCurlDown;
-					break;
-				case 1:
-					return UIViewAnimationOptions.TransitionCurlUp;
-					break;
-				case 2:
-					return UIViewAnimationOptions.TransitionFlipFromLeft;
-					break;
-				case 3:
-					return UIViewAnimationOptions.TransitionFlipFromRight;
-					break;
-				default:
-					return UIViewAnimationOptions.TransitionCurlDown;
-					break;
+					case 0:
+						return UIViewAnimationOptions.TransitionCurlDown;
+					case 1:
+						return UIViewAnimationOptions.TransitionCurlUp;
+					case 2:
+						return UIViewAnimationOptions.TransitionFlipFromLeft;
+					case 3:
+						return UIViewAnimationOptions.TransitionFlipFromRight;
+					default:
+						return UIViewAnimationOptions.TransitionCurlDown;
 				}
 			}
 		}
@@ -52,7 +48,7 @@ namespace Example_CoreAnimation.Screens.iPad.ViewTransitions
 		public void SetToolbarVisibility (UIInterfaceOrientation interfaceOrientation)
 		{
 			toolbar.Hidden = interfaceOrientation == UIInterfaceOrientation.LandscapeLeft ||
-			                 interfaceOrientation == UIInterfaceOrientation.LandscapeRight;
+			interfaceOrientation == UIInterfaceOrientation.LandscapeRight;
 		}
 	}
 }

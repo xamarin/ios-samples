@@ -1,8 +1,7 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using System.CodeDom.Compiler;
-
 
 namespace StoryboardTable
 {
@@ -13,7 +12,7 @@ namespace StoryboardTable
 
 		public TaskDetailViewController (IntPtr handle) : base (handle)
 		{
-				
+
 		}
 
 		// when displaying, set-up the properties

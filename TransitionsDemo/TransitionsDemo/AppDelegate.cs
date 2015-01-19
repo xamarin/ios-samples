@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 using TransitionsDemo.AnimationControllers;
 using TransitionsDemo.InteractionControllers;
 
 namespace TransitionsDemo
 {
-	// The UIApplicationDelegate for the application. This class is responsible for launching the 
-	// User Interface of the application, as well as listening (and optionally responding) to 
+	// The UIApplicationDelegate for the application. This class is responsible for launching the
+	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
@@ -22,24 +22,24 @@ namespace TransitionsDemo
 		private static CEBaseInteractionController settingsInteractionController;
 		private static CEBaseInteractionController navigationControllerInteractionController;
 
-		public static CEReversibleAnimationController SettingsAnimationController { 
+		public static CEReversibleAnimationController SettingsAnimationController {
 			get {
 				return settingsAnimationController;
 			}
 
 			set {
 				settingsAnimationController = value;
-			} 
+			}
 		}
 
-		public static CEReversibleAnimationController NavigationControllerAnimationController { 
+		public static CEReversibleAnimationController NavigationControllerAnimationController {
 			get {
 				return navigationControllerAnimationController;
 			}
 
 			set {
 				navigationControllerAnimationController = value;
-			} 
+			}
 		}
 
 		public static CEBaseInteractionController NavigationControllerInteractionController {
@@ -49,8 +49,8 @@ namespace TransitionsDemo
 
 			set {
 				navigationControllerInteractionController = value;
-			} 
-		
+			}
+
 		}
 
 		public static CEBaseInteractionController SettingsInteractionController {
@@ -60,7 +60,7 @@ namespace TransitionsDemo
 
 			set {
 				settingsInteractionController = value;
-			} 
+			}
 
 		}
 		// This method is invoked when the application is about to move from active to inactive state.
@@ -80,7 +80,7 @@ namespace TransitionsDemo
 		{
 		}
 
-		/// This method is called when the application is about to terminate. Save data, if needed. 
+		/// This method is called when the application is about to terminate. Save data, if needed.
 		public override void WillTerminate (UIApplication application)
 		{
 		}

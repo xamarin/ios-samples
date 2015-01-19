@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
-using MonoTouch.CoreGraphics;
-using MonoTouch.SpriteKit;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using CoreGraphics;
+using SpriteKit;
+using UIKit;
 
 namespace ButtonTapper3000 {
 
@@ -18,7 +18,7 @@ namespace ButtonTapper3000 {
 
 		SKTransition transition;
 
-		public BasicScene (SizeF size) : base (size)
+		public BasicScene (CGSize size) : base (size)
 		{
 			ScaleMode = SKSceneScaleMode.AspectFill;
 
@@ -30,8 +30,8 @@ namespace ButtonTapper3000 {
 			ButtonColor = UIColor.FromRGBA (1f, 1f, 0f, 1f);
 			InfoColor = UIColor.FromRGBA (1f, 1f, 1f, 1f);
 
-			FrameMidX = Frame.GetMidX ();
-			FrameMidY = Frame.GetMidY ();
+			FrameMidX = (float)Frame.GetMidX ();
+			FrameMidY = (float)Frame.GetMidY ();
 
 			transition = SKTransition.MoveInWithDirection (SKTransitionDirection.Up, 0.5);
 		}

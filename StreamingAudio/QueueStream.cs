@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Threading;
 using System.IO;
@@ -7,11 +7,11 @@ namespace StreamingAudio
 {
 	public class QueueStream : Stream
 	{
-		private Stream writeStream;
-		private Stream readStream;
-		private long size;
-		private bool done;
-		private object plock = new object ();
+		Stream writeStream;
+		Stream readStream;
+		long size;
+		bool done;
+		object plock = new object ();
 
 		public QueueStream (string storage)
 		{
@@ -79,7 +79,7 @@ namespace StreamingAudio
 		}
 
 		protected override void Dispose (bool disposing)
-		{	
+		{
 			if (disposing) {
 				readStream.Close ();
 				readStream.Dispose ();

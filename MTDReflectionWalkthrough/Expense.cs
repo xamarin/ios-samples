@@ -9,7 +9,7 @@ namespace MTDReflectionWalkthrough
 		Lodging,
 		Books
 	}
-	
+
 	public class Expense
 	{
 		[Section("Expense Entry")]
@@ -17,7 +17,7 @@ namespace MTDReflectionWalkthrough
 		[Entry("Enter expense name")]
 		public string Name;
 		[Section("Expense Details")]
-  
+
 		[Caption("Description")]
 		[Entry]
 		public string Details;

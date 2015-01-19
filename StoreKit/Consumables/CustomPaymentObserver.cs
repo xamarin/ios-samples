@@ -1,18 +1,18 @@
 using System;
 using System.Linq;
-using MonoTouch.StoreKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using StoreKit;
+using Foundation;
+using UIKit;
 
 namespace Consumables {
 	internal class CustomPaymentObserver : SKPaymentTransactionObserver {
 		private InAppPurchaseManager theManager;
-		
+
 		public CustomPaymentObserver(InAppPurchaseManager manager)
 		{
 			theManager = manager;
 		}
-		
+
 		// called when the transaction status is updated
 		public override void UpdatedTransactions (SKPaymentQueue queue, SKPaymentTransaction[] transactions)
 		{
@@ -36,7 +36,7 @@ namespace Consumables {
 			    }
 			}
 		}
-		
+
 		public override void PaymentQueueRestoreCompletedTransactionsFinished(SKPaymentQueue queue)
 		{
 			throw new NotImplementedException("Consumable product purchases do not get Restored, so this is not implemented in this sample.");

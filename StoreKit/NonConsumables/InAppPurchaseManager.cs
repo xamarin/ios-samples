@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using MonoTouch.StoreKit;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using StoreKit;
+using Foundation;
+using UIKit;
 
 namespace NonConsumables {
 	public class InAppPurchaseManager : SKProductsRequestDelegate {
@@ -14,18 +14,18 @@ namespace NonConsumables {
 		SKProductsRequest productsRequest;
 		CustomPaymentObserver theObserver;
 
-		public static NSAction Done {get;set;}
+		public static Action Done {get;set;}
 
 		public InAppPurchaseManager ()
 		{
 			theObserver = new CustomPaymentObserver(this);
 			SKPaymentQueue.DefaultQueue.AddTransactionObserver(theObserver);
 		}
-		
+
 		// Verify that the iTunes account can make this purchase for this application
 		public bool CanMakePayments()
 		{
-			return SKPaymentQueue.CanMakePayments;	
+			return SKPaymentQueue.CanMakePayments;
 		}
 
 		// request multiple products at once
@@ -35,7 +35,7 @@ namespace NonConsumables {
 			for (var i = 0; i < productIds.Count; i++) {
 				array[i] = new NSString(productIds[i]);
 			}
-		 	NSSet productIdentifiers = NSSet.MakeNSObjectSet<NSString>(array);			
+		 	NSSet productIdentifiers = NSSet.MakeNSObjectSet<NSString>(array);
 
 			//set up product request for in-app purchase
 			productsRequest  = new SKProductsRequest(productIdentifiers);
@@ -47,16 +47,9 @@ namespace NonConsumables {
 		{
 			SKProduct[] products = response.Products;
 
-			NSDictionary userInfo = null;
-			if (products.Length > 0) {
-				NSObject[] productIdsArray = new NSObject[response.Products.Length];
-				NSObject[] productsArray = new NSObject[response.Products.Length];
-				for (int i = 0; i < response.Products.Length; i++) {
-					productIdsArray[i] = new NSString(response.Products[i].ProductIdentifier);
-					productsArray[i] = response.Products[i];
-				}
-				userInfo = NSDictionary.FromObjectsAndKeys (productsArray, productIdsArray);
-			}
+			NSMutableDictionary userInfo = new NSMutableDictionary ();
+			for (int i = 0; i < products.Length; i++)
+				userInfo.Add ((NSString)products [i].ProductIdentifier, products [i]);
 			NSNotificationCenter.DefaultCenter.PostNotificationName(InAppPurchaseManagerProductsFetchedNotification,this,userInfo);
 
 			foreach (string invalidProductId in response.InvalidProducts) {
@@ -66,7 +59,7 @@ namespace NonConsumables {
 		public void PurchaseProduct(string appStoreProductId)
 		{
 			Console.WriteLine("PurchaseProduct " + appStoreProductId);
-			SKPayment payment = SKPayment.PaymentWithProduct (appStoreProductId);	
+			SKPayment payment = SKPayment.PaymentWithProduct (appStoreProductId);
 			SKPaymentQueue.DefaultQueue.AddPayment (payment);
 		}
 		public void CompleteTransaction (SKPaymentTransaction transaction)
@@ -93,7 +86,7 @@ namespace NonConsumables {
 				Console.WriteLine("User CANCELLED FailedTransaction Code=" + transaction.Error.Code + " " + transaction.Error.LocalizedDescription);
 			else // error!
 				Console.WriteLine("FailedTransaction Code=" + transaction.Error.Code + " " + transaction.Error.LocalizedDescription);
-			
+
 			FinishTransaction(transaction,false);
 		}
 		public void FinishTransaction(SKPaymentTransaction transaction, bool wasSuccessful)
@@ -101,9 +94,9 @@ namespace NonConsumables {
 			Console.WriteLine("FinishTransaction " + wasSuccessful);
 			// remove the transaction from the payment queue.
 			SKPaymentQueue.DefaultQueue.FinishTransaction(transaction);		// THIS IS IMPORTANT - LET'S APPLE KNOW WE'RE DONE !!!!
-			
+
 			using (var pool = new NSAutoreleasePool()) {
-				NSDictionary userInfo = NSDictionary.FromObjectsAndKeys(new NSObject[] {transaction},new NSObject[] {new NSString("transaction")});
+				NSDictionary userInfo = new NSDictionary ("transaction", transaction);
 				if (wasSuccessful) {
 					// send out a notification that we’ve finished the transaction
 					NSNotificationCenter.DefaultCenter.PostNotificationName(InAppPurchaseManagerTransactionSucceededNotification,this,userInfo);
@@ -121,21 +114,21 @@ namespace NonConsumables {
 		{
 			Console.WriteLine (" ** InAppPurchaseManager RequestFailed() " + error.LocalizedDescription);
 			using (var pool = new NSAutoreleasePool()) {
-				NSDictionary userInfo = NSDictionary.FromObjectsAndKeys(new NSObject[] {error},new NSObject[] {new NSString("error")});
+				NSDictionary userInfo = new NSDictionary ("error", error);
 				// send out a notification for the failed transaction
 				NSNotificationCenter.DefaultCenter.PostNotificationName(InAppPurchaseManagerRequestFailedNotification,this,userInfo);
 			}
 		}
 
 		/// <summary>
-		/// Restore any transactions that occurred for this Apple ID, either on 
+		/// Restore any transactions that occurred for this Apple ID, either on
 		/// this device or any other logged in with that account.
 		/// </summary>
 		public void Restore()
 		{
 			Console.WriteLine (" ** InAppPurchaseManager Restore()");
 			// theObserver will be notified of when the restored transactions start arriving <- AppStore
-			SKPaymentQueue.DefaultQueue.RestoreCompletedTransactions();			
+			SKPaymentQueue.DefaultQueue.RestoreCompletedTransactions();
 		}
 	}
 }

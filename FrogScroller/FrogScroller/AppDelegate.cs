@@ -1,7 +1,7 @@
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace FrogScroller
 {
@@ -20,15 +20,15 @@ namespace FrogScroller
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
-			viewController = new UIPageViewController(UIPageViewControllerTransitionStyle.Scroll, 
-			                                          UIPageViewControllerNavigationOrientation.Horizontal,
-			                                          UIPageViewControllerSpineLocation.None, 20f);
+			viewController = new UIPageViewController (UIPageViewControllerTransitionStyle.Scroll,
+				UIPageViewControllerNavigationOrientation.Horizontal,
+				UIPageViewControllerSpineLocation.None, 20f);
 
 			// kick things off by making the first page
 			ImageViewController pageZero = ImageViewController.ImageViewControllerForPageIndex (0);
 			viewController.SetViewControllers (new UIViewController[] { pageZero },
-			                                       UIPageViewControllerNavigationDirection.Forward,
-			                                       false, null);
+				UIPageViewControllerNavigationDirection.Forward,
+				false, null);
 			viewController.DataSource = new MyDataSource ();
 			window.RootViewController = viewController;
 			// make the window visible
@@ -38,19 +38,19 @@ namespace FrogScroller
 		}
 
 		//DataSource PageIndexing
-		class MyDataSource : UIPageViewControllerDataSource {
-			
-			public override UIViewController GetPreviousViewController (UIPageViewController pageViewController, 
+		class MyDataSource : UIPageViewControllerDataSource
+		{
+			public override UIViewController GetPreviousViewController (UIPageViewController pageViewController,
 			                                                            UIViewController referenceViewController)
 			{
-				int index = ((ImageViewController) referenceViewController).PageIndex;
-				return (ImageViewController)ImageViewController.ImageViewControllerForPageIndex(index - 1);
+				int index = ((ImageViewController)referenceViewController).PageIndex;
+				return (ImageViewController)ImageViewController.ImageViewControllerForPageIndex (index - 1);
 			}
-			
-			public override UIViewController GetNextViewController (UIPageViewController pageViewController, 
+
+			public override UIViewController GetNextViewController (UIPageViewController pageViewController,
 			                                                        UIViewController referenceViewController)
 			{
-				int index = ((ImageViewController) referenceViewController).PageIndex;
+				int index = ((ImageViewController)referenceViewController).PageIndex;
 				return (ImageViewController)ImageViewController.ImageViewControllerForPageIndex (index + 1);
 			}
 		}

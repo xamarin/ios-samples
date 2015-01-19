@@ -1,7 +1,7 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace ThreadedCoreData
 {
@@ -10,16 +10,16 @@ namespace ThreadedCoreData
 	{
 		public static readonly NSString Key = new NSString ("EarthquakeCellID");
 		public static readonly UINib Nib;
-		private NSDateFormatter dateFormatter;
+		NSDateFormatter dateFormatter;
 
-		private NSDateFormatter DateFormatter {
+		NSDateFormatter DateFormatter {
 			get {
 				if (dateFormatter != null) {
 					return dateFormatter;
 				} else {
 					dateFormatter = new NSDateFormatter () {
 						TimeZone = NSTimeZone.LocalTimeZone,
-						DateFormat = @"MMM dd, yyyy, hh:mm:ss a"
+						DateFormat = "MMM dd, yyyy, hh:mm:ss a"
 					};
 				}
 
@@ -49,7 +49,7 @@ namespace ThreadedCoreData
 			magnitudeImage.Image = ImageForMagnitude (earthquake.Magnitude.FloatValue);
 		}
 
-		private UIImage ImageForMagnitude (float magnitude)
+		UIImage ImageForMagnitude (float magnitude)
 		{
 			if (magnitude >= 5.0f) {
 				return UIImage.FromFile ("Images/5.0.png");

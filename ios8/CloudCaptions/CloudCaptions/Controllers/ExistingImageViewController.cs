@@ -158,7 +158,7 @@ namespace CloudCaptions
 			}
 
 			// If we have a cursor, continue where we left off, otherwise set up new query
-			CKQueryOperation queryOp = null; 
+			CKQueryOperation queryOp = null;
 			if (imageCursor != null) {
 				queryOp = new CKQueryOperation (imageCursor);
 			} else {

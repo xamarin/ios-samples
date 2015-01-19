@@ -30,7 +30,7 @@ namespace Fit
 
 		public HKHealthStore HealthStore  { get; set; }
 
-		public double SimulatedBurntEnergy { 
+		public double SimulatedBurntEnergy {
 			get {
 				return simulatedBurntEnergy;
 			}
@@ -41,7 +41,7 @@ namespace Fit
 			}
 		}
 
-		public double ConsumedEnergy { 
+		public double ConsumedEnergy {
 			get {
 				return consumedEnergy;
 			}
@@ -52,7 +52,7 @@ namespace Fit
 			}
 		}
 
-		public double NetEnergy { 
+		public double NetEnergy {
 			get {
 				return netEnergy;
 			}
@@ -79,7 +79,7 @@ namespace Fit
 		{
 			RefreshControl.BeginRefreshing ();
 			FetchMostRecentData ((totalJoulesConsumed, error) => {
-				InvokeOnMainThread (delegate {  
+				InvokeOnMainThread (delegate {
 					SimulatedBurntEnergy = new Random ().Next (0, 300000);
 					ConsumedEnergy = totalJoulesConsumed;
 					NetEnergy = consumedEnergy - simulatedBurntEnergy;
@@ -110,7 +110,7 @@ namespace Fit
 					if (completionHandler != null)
 						completionHandler (totalCalories.GetDoubleValue (HKUnit.Joule), error);
 			});
-				
+
 			HealthStore.ExecuteQuery (query);
 		}
 	}

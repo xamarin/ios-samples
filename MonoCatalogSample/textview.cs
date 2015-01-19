@@ -9,11 +9,11 @@ using System;
 public partial class TextViewController : UIViewController {
 	UITextView textView;
 	NSObject obs1, obs2;
-	
+
 	public override void ViewDidLoad ()
 	{
 		base.ViewDidLoad ();
-		
+
 		Title = "Text View";
 		textView = new UITextView (View.Frame){
 			TextColor = UIColor.Black,
@@ -34,7 +34,7 @@ public partial class TextViewController : UIViewController {
 				});
 			NavigationItem.RightBarButtonItem = saveItem;
 		};
-		
+
 		View.AddSubview (textView);
 	}
 

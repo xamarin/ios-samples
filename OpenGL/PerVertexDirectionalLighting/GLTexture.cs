@@ -1,12 +1,12 @@
 using System;
 using OpenTK.Graphics.ES20;
-using MonoTouch.OpenGLES;
+using OpenGLES;
 using System.IO;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreImage;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreImage;
+using CoreGraphics;
+using CoreGraphics;
 
 namespace PerVertexDirectionalLighting
 {
@@ -42,8 +42,8 @@ namespace PerVertexDirectionalLighting
 			if (image == null)
 				return;
 
-			int width = image.CGImage.Width;
-			int height = image.CGImage.Height;
+			nint width = image.CGImage.Width;
+			nint height = image.CGImage.Height;
 
 			CGColorSpace colorSpace = CGColorSpace.CreateDeviceRGB ();
 			byte [] imageData = new byte[height * width * 4];
@@ -53,10 +53,10 @@ namespace PerVertexDirectionalLighting
 			context.TranslateCTM (0, height);
 			context.ScaleCTM (1, -1);
 			colorSpace.Dispose ();
-			context.ClearRect (new RectangleF (0, 0, width, height));
-			context.DrawImage (new RectangleF (0, 0, width, height), image.CGImage);
+			context.ClearRect (new CGRect (0, 0, width, height));
+			context.DrawImage (new CGRect (0, 0, width, height), image.CGImage);
 
-			GL.TexImage2D (TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, width, height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, imageData);
+			GL.TexImage2D (TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, (int)width, (int)height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, imageData);
 			context.Dispose ();
 		}
 

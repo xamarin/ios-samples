@@ -19,13 +19,20 @@
 	<string>com.xamarin.SplitView</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>MinimumOSVersion</key>
-	<string>4.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>2</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>MinimumOSVersion</key>
+	<string>5.1.1</string>
+	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>

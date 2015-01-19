@@ -1,25 +1,26 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.MapKit;
-using MonoTouch.CoreLocation;
+using Foundation;
+using UIKit;
+using MapKit;
+using CoreLocation;
 
 namespace RegionDefiner
 {
 	public class MyAnnotation : MKAnnotation
 	{
+		CLLocationCoordinate2D coordinate;
 		string title;
 		string subtitle ;
 
-		public MyAnnotation (CLLocationCoordinate2D coordinate, string _title, string _subtitle)
+		public MyAnnotation (CLLocationCoordinate2D coordinateToSet, string _title, string _subtitle)
 		{
-			Coordinate = coordinate;
+			coordinate = coordinateToSet;
 			title = _title;
 			subtitle = _subtitle;
 		}
-	
+
 		public override string Title {
 			get {
 				return title;
@@ -32,7 +33,11 @@ namespace RegionDefiner
 			}
 		}
 
-		public override CLLocationCoordinate2D Coordinate { get; set; }
+		public override CLLocationCoordinate2D Coordinate {
+			get {
+				return coordinate;
+			}
+		}
 	}
 }
 

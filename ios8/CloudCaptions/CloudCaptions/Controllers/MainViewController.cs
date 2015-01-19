@@ -49,7 +49,6 @@ namespace CloudCaptions
 			try {
 				CKRecord record = await publicDB.FetchRecordAsync (recordID);
 				Post postThatFiredPush = new Post(record);
-				// TODO: is null correct?
 				postThatFiredPush.LoadImage(null, TableView.ReloadData);
 				postManager.LoadNewPosts(postThatFiredPush);
 			} catch(NSErrorException ex) {
@@ -91,8 +90,7 @@ namespace CloudCaptions
 
 			string selectButton = "Select from CloudKit";
 			UIAlertAction selectExisting = UIAlertAction.Create (selectButton, UIAlertActionStyle.Default, action => {
-				// TODO: second param mast be null https://trello.com/c/PRQIGaTd
-				PerformSegue("selectExisting", new NSObject());
+				PerformSegue("selectExisting", null);
 			});
 
 			UIAlertAction cancel = UIAlertAction.Create ("Cancel", UIAlertActionStyle.Cancel, null);

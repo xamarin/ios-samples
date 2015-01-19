@@ -2,8 +2,8 @@
 
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace AVCustomEdit
 {
@@ -45,7 +45,7 @@ namespace AVCustomEdit
 			this.tableView.Delegate = new TableViewDelegate (this);
 		}
 
-		partial void TransitionSelected (MonoTouch.Foundation.NSObject sender)
+		partial void TransitionSelected (Foundation.NSObject sender)
 		{
 			TransitionTypePicked (CurrentTransition);
 		}

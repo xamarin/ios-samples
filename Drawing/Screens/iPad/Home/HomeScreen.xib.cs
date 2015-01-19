@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_Drawing.Screens.iPad.Home
 {
@@ -11,7 +11,7 @@ namespace Example_Drawing.Screens.iPad.Home
 	{
 		#region Constructors
 
-		// The IntPtr and initWithCoder constructors are required for controllers that need 
+		// The IntPtr and initWithCoder constructors are required for controllers that need
 		// to be able to be created from a xib rather than from managed code
 
 		public HomeScreen (IntPtr handle) : base(handle) { }
@@ -22,11 +22,11 @@ namespace Example_Drawing.Screens.iPad.Home
 		public HomeScreen () : base("HomeScreen", null) { }
 
 		#endregion
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			btnDrawRectVsPath.TouchUpInside += delegate {
 				NavigationController.PushViewController (new DrawRectVsPath.Controller (), true);
 			};
@@ -40,12 +40,12 @@ namespace Example_Drawing.Screens.iPad.Home
 				NavigationController.PushViewController (new CoordinatesOnScreen.Controller (), true);
 			};
 			btnOffScreenCoords.TouchUpInside += delegate {
-				NavigationController.PushViewController (new CoordinatesOffScreen.Controller (), true); 
+				NavigationController.PushViewController (new CoordinatesOffScreen.Controller (), true);
 			};
 			btnOnScreenUncorrectedText.TouchUpInside += delegate {
 				NavigationController.PushViewController (new OnScreenUncorrectedTextRotation.Controller (), true);
 			};
-			btnImage.TouchUpInside += delegate { 
+			btnImage.TouchUpInside += delegate {
 				NavigationController.PushViewController (new Images.Controller (), true);
 			};
 			btnOffScreenFlag.TouchUpInside += delegate {
@@ -57,8 +57,8 @@ namespace Example_Drawing.Screens.iPad.Home
 			btnPatterns.TouchUpInside += delegate {
 				NavigationController.PushViewController (new ColorPattern.Controller (), true);
 			};
-			btnStencilPattern.TouchUpInside += delegate { 
-				NavigationController.PushViewController (new StencilPattern.Controller (), true); 
+			btnStencilPattern.TouchUpInside += delegate {
+				NavigationController.PushViewController (new StencilPattern.Controller (), true);
 			};
 			btnShadows.TouchUpInside += delegate {
 				NavigationController.PushViewController (new Shadows.Controller (), true);
@@ -72,10 +72,9 @@ namespace Example_Drawing.Screens.iPad.Home
 			btnTransformations.TouchUpInside += delegate {
 				NavigationController.PushViewController (new Transformations.Controller (), true);
 			};
-			
+
 		}
-		
-		
+
 	}
 }
 

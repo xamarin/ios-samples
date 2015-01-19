@@ -2,49 +2,49 @@
 // Textfields sample ported to C#
 //
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace MonoCatalog {
-	
+
 	public partial class TextFieldController : UITableViewController {
-	
+
 		public TextFieldController () : base ("TextFieldController", null) {
 		}
-		
+
 		const int kViewTag = 1;
-		
+
 		class DataSource : UITableViewDataSource {
 			TextFieldController tvc;
 			static NSString kDisplayCell_ID = new NSString ("CellTextField_ID");
 			static NSString kSourceCell_ID = new NSString ("SourceCell_ID");
-			
+
 			public DataSource (TextFieldController tvc)
 			{
 				this.tvc = tvc;
 			}
-	
-			public override int NumberOfSections (UITableView tableView)
+
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return tvc.samples.Length;
 			}
-	
-			public override string TitleForHeader (UITableView tableView, int section)
+
+			public override string TitleForHeader (UITableView tableView, nint section)
 			{
 				return tvc.samples [section].Title;
 			}
-	
-			public override int RowsInSection (UITableView tableView, int section)
+
+			public override nint RowsInSection (UITableView tableView, nint section)
 			{
 				return 2;
 			}
-	
+
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				UITableViewCell cell = null;
 				int row = indexPath.Row;
-	
+
 				if (row == 0){
 					cell = tableView.DequeueReusableCell (kDisplayCell_ID);
 					if (cell == null){
@@ -64,7 +64,7 @@ namespace MonoCatalog {
 						cell = new UITableViewCell (UITableViewCellStyle.Default, kSourceCell_ID);
 						cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 						var label = cell.TextLabel;
-						
+
 						label.Opaque = false;
 						label.TextAlignment = UITextAlignment.Center;
 						label.TextColor = UIColor.Gray;
@@ -74,28 +74,28 @@ namespace MonoCatalog {
 					}
 					cell.TextLabel.Text = tvc.samples [indexPath.Section].Source;
 				}
-	
+
 				return cell;
 			}
 		}
-	
+
 		class TableDelegate : UITableViewDelegate {
 			// Override to provide the sizing of the rows in our table
-			public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+			public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 			{
 				return indexPath.Row == 0 ? 50f : 22f;
 			}
 		}
-	
+
 		bool DoReturn (UITextField tf)
 		{
 			tf.ResignFirstResponder ();
 			return true;
 		}
-		
+
 		UITextField TextFieldNormal ()
 		{
-			return new UITextField (new RectangleF (30f, 8f, 260f, 30f)){
+			return new UITextField (new CGRect (30f, 8f, 260f, 30f)){
 				BorderStyle = UITextBorderStyle.Bezel,
 				TextColor = UIColor.Black,
 				Font = UIFont.SystemFontOfSize (17f),
@@ -110,10 +110,10 @@ namespace MonoCatalog {
 				AccessibilityLabel = "Normal"
 			};
 		}
-	
+
 		UITextField TextFieldRounded ()
 		{
-			return new UITextField (new RectangleF (30f, 8f, 260f, 30f)){
+			return new UITextField (new CGRect (30f, 8f, 260f, 30f)){
 				BorderStyle = UITextBorderStyle.RoundedRect,
 				TextColor = UIColor.Black,
 				Font = UIFont.SystemFontOfSize (17f),
@@ -128,10 +128,10 @@ namespace MonoCatalog {
 				AccessibilityLabel = "Rounded"
 			};
 		}
-	
+
 		UITextField TextFieldSecure ()
 		{
-			return new UITextField (new RectangleF (30f, 8f, 260f, 30f)){
+			return new UITextField (new CGRect (30f, 8f, 260f, 30f)){
 				BorderStyle = UITextBorderStyle.Bezel,
 				TextColor = UIColor.Black,
 				Font = UIFont.SystemFontOfSize (17f),
@@ -147,11 +147,10 @@ namespace MonoCatalog {
 				AccessibilityLabel = "Secure"
 			};
 		}
-	
-	
+
 		UITextField TextFieldLeftView ()
 		{
-			return new UITextField (new RectangleF (30f, 8f, 260f, 30f)){
+			return new UITextField (new CGRect (30f, 8f, 260f, 30f)){
 				BorderStyle = UITextBorderStyle.Bezel,
 				TextColor = UIColor.Black,
 				Font = UIFont.SystemFontOfSize (17f),
@@ -168,11 +167,11 @@ namespace MonoCatalog {
 				AccessibilityLabel = "LeftView"
 			};
 		}
-		
+
 		struct TextFieldSample {
 			public string Title, Source;
 			public UITextField View;
-	
+
 			public TextFieldSample (string t, string s, UITextField b)
 			{
 				Title = t;
@@ -180,21 +179,21 @@ namespace MonoCatalog {
 				View = b;
 			}
 		}
-	
+
 		TextFieldSample [] samples;
-	
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			Title = "Text Field";
-	
+
 			samples = new TextFieldSample [] {
 				new TextFieldSample ("UITextField", "textfield.cs: TextFieldNormal()", TextFieldNormal ()),
 				new TextFieldSample ("UITextField Rounded", "textfield.cs: TextFieldRounded ()", TextFieldRounded ()),
 				new TextFieldSample ("UITextField Secure", "textfield.cs: TextFieldSecure ()", TextFieldSecure ()),
 				new TextFieldSample ("UITextField (with LeftView)", "textfield.cs: TextFieldLeftView ()", TextFieldLeftView ()),
 			};
-	
+
 			TableView.DataSource = new DataSource (this);
 			TableView.Delegate = new TableDelegate ();
 			Editing = false;

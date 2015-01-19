@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UIKit;
 using Foundation;
 
-
 namespace Common
 {
 	[Register("List")]
@@ -35,7 +34,6 @@ namespace Common
 			}
 		}
 
-
 		public List ()
 		{
 			items = new List<ListItem> ();
@@ -54,7 +52,7 @@ namespace Common
 		{
 			NSArray array = (NSArray)coder.DecodeObject (ListEncodingItemsKey);
 			for (nuint i = 0; i < array.Count; i++)
-				items.Add (array.GetItem<ListItem> ((nint)i));
+				items.Add (array.GetItem<ListItem> (i));
 
 			Color = (ListColor)coder.DecodeInt (ListEncodingColorKey);
 		}

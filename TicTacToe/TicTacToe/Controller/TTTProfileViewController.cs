@@ -1,9 +1,9 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using System.Collections.Generic;
-using System.Drawing;
-using MonoTouch.ObjCRuntime;
+using CoreGraphics;
+using ObjCRuntime;
 
 namespace TicTacToe
 {
@@ -54,7 +54,7 @@ namespace TicTacToe
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			int rowCount = TableView.NumberOfRowsInSection ((int)Section.Statistics);
+			int rowCount = (int)TableView.NumberOfRowsInSection ((nint)(int)Section.Statistics);
 			List<NSIndexPath> indexPaths = new List<NSIndexPath> ();
 
 			for (int row = 0; row < rowCount; row++)
@@ -65,16 +65,16 @@ namespace TicTacToe
 
 		public void ChangeIcon (object sender, EventArgs e)
 		{
-			Profile.Icon = (TTTProfileIcon)((UISegmentedControl)sender).SelectedSegment;
+			Profile.Icon = (TTTProfileIcon)(int)((UISegmentedControl)sender).SelectedSegment;
 		}
 
 		#region Table View
-		public override int NumberOfSections (UITableView tableView)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return (int)Section.Count;
 		}
 
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			switch (section) {
 			case (int)Section.Icon:
@@ -145,7 +145,7 @@ namespace TicTacToe
 			}
 		}
 
-		public override string TitleForHeader (UITableView tableView, int section)
+		public override string TitleForHeader (UITableView tableView, nint section)
 		{
 			if (section == (int)Section.Statistics)
 				return "Statistics";
@@ -153,7 +153,7 @@ namespace TicTacToe
 			return null;
 		}
 
-		public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			if (indexPath.Section == (int)Section.Icon)
 				return 100f;
@@ -203,13 +203,13 @@ namespace TicTacToe
 				ImageWithRenderingMode (UIImageRenderingMode.AlwaysOriginal);
 
 			SegmentedControl = new UISegmentedControl (new object[] { x, o }) {
-				Frame = new RectangleF (UIScreen.MainScreen.Bounds.Width / 2 - 120, 0, 240, 80),
+				Frame = new CGRect (UIScreen.MainScreen.Bounds.Width / 2 - 120, 0, 240, 80),
 				AutoresizingMask = UIViewAutoresizing.FlexibleTopMargin |
 					UIViewAutoresizing.FlexibleBottomMargin
 			};
 			UIEdgeInsets capInsets = new UIEdgeInsets (6f, 6f, 6f, 6f);
 			SegmentedControl.SetBackgroundImage (
-				UIImage.FromBundle ("segmentBackground").CreateResizableImage (capInsets), 
+				UIImage.FromBundle ("segmentBackground").CreateResizableImage (capInsets),
 				UIControlState.Normal, UIBarMetrics.Default);
 			SegmentedControl.SetBackgroundImage (
 				UIImage.FromBundle ("segmentBackgroundHighlighted").CreateResizableImage (capInsets),
@@ -223,12 +223,12 @@ namespace TicTacToe
 
 			UIView containerView = new UIView (SegmentedControl.Frame) {
 				Frame = ContentView.Bounds,
-				AutoresizingMask = 
+				AutoresizingMask =
 				UIViewAutoresizing.FlexibleWidth |
 				UIViewAutoresizing.FlexibleHeight
 			};
 			containerView.AddSubview (SegmentedControl);
-	
+
 			ContentView.AddSubview (containerView);
 		}
 	}
@@ -241,7 +241,7 @@ namespace TicTacToe
 		public TTTProfileStatisticsTableViewCell (UITableViewCellStyle style, string reuseIdentifier) :
 			base (style, reuseIdentifier)
 		{
-			CountView = new TTTCountView (new RectangleF (0, 0, 160, 20));
+			CountView = new TTTCountView (new CGRect (0, 0, 160, 20));
 			AccessoryView = CountView;
 		}
 	}

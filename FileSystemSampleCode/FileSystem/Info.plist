@@ -24,8 +24,6 @@
 	<string>com.xamarin.samples.filesystem</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>MinimumOSVersion</key>
-	<string>3.1</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -40,5 +38,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>MinimumOSVersion</key>
+	<string>5.1.1</string>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array/>
 </dict>
 </plist>

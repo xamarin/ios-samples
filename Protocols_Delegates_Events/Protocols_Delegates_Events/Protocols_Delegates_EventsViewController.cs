@@ -1,9 +1,9 @@
-﻿using System;
-using System.Drawing;
-using MonoTouch.CoreLocation;
-using MonoTouch.Foundation;
-using MonoTouch.MapKit;
-using MonoTouch.UIKit;
+using System;
+using CoreGraphics;
+using CoreLocation;
+using Foundation;
+using MapKit;
+using UIKit;
 
 namespace Protocols_Delegates_Events
 {
@@ -24,7 +24,7 @@ namespace Protocols_Delegates_Events
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 		#endregion
@@ -33,7 +33,7 @@ namespace Protocols_Delegates_Events
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			//Exmaple 1 - Using Strongly tryped delegate
 			//set the map's delegate
 			_mapDelegate = new SampleMapDelegate ();
@@ -44,17 +44,17 @@ namespace Protocols_Delegates_Events
 
 			//Exmaple 3 - Using .NET event
 			/*map.DidSelectAnnotationView += (s,e) => {
-                
+
                 var sampleAnnotation = e.View.Annotation as SampleMapAnnotation;
-                
+
                 if (sampleAnnotation != null) {
-                    
+
                     //demo accessing the coordinate of the selected annotation to zoom in on it
                     mapView.Region = MKCoordinateRegion.FromDistance (sampleAnnotation.Coordinate, 500, 500);
-                    
+
                     //demo accessing the title of the selected annotation
                     Console.WriteLine ("{0} was tapped", sampleAnnotation.Title);
-                }     
+                }
             };*/
 
 			//an arbitrary coordinate used for demonstration here

@@ -24,7 +24,7 @@
 		<integer>1</integer>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>5.0</string>
+	<string>5.1.1</string>
 	<key>CFBundleDisplayName</key>
 	<string>SimpleDrillDown</string>
 	<key>CFBundleIdentifier</key>

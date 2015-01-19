@@ -1,10 +1,10 @@
-﻿using System;
-using MonoTouch.CoreMotion;
+using System;
+using CoreMotion;
 using System.Threading.Tasks;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
+using CoreGraphics;
 
 namespace PrivacyPrompts
 {
@@ -12,7 +12,7 @@ namespace PrivacyPrompts
 	Note: Accessing motion activity requires your project to have an entitlements.plist file
 
 	There is no API that allows you to directly check for access. Instead, you have to use
-	the technique illustrated here: perform a query and check for an error of type 
+	the technique illustrated here: perform a query and check for an error of type
 	CMError.MotionActivityNotAuthorized
 
 	 */
@@ -22,7 +22,7 @@ namespace PrivacyPrompts
 		string motionStatus;
 		UILabel stepsMessage;
 
-		public MotionPrivacyController () 
+		public MotionPrivacyController ()
 		{
 			this.CheckAccess = CheckMotionAccess;
 			this.RequestAccess = RequestMotionAccess;
@@ -31,7 +31,7 @@ namespace PrivacyPrompts
 
 		void AddStepsMessage()
 		{
-			stepsMessage = new UILabel (RectangleF.Empty);
+			stepsMessage = new UILabel (CGRect.Empty);
 			stepsMessage.TranslatesAutoresizingMaskIntoConstraints = false;
 			stepsMessage.Lines = 0;
 			stepsMessage.Font = UIFont.SystemFontOfSize (UIFont.SmallSystemFontSize);
@@ -62,7 +62,6 @@ namespace PrivacyPrompts
 			accessStatus.Text = motionStatus;
 		}
 
-
 		string CheckMotionAccess()
 		{
 			return motionStatus;
@@ -91,7 +90,6 @@ namespace PrivacyPrompts
 					}
 				}));
 		}
-
 
 	}
 }

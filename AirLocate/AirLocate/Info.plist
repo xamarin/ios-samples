@@ -25,5 +25,7 @@
 		<string>Icon-Small@2x</string>
 		<string>Icon-Small-50</string>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>AirLocate</string>
 </dict>
 </plist>

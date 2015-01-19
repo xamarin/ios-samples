@@ -1,9 +1,9 @@
 //
 // how to capture still images, video and audio using iOS AVFoundation and the AVCAptureSession
-// 
+//
 // This sample handles all of the low-level AVFoundation and capture graph setup required to capture and save media.  This code also exposes the
 // capture, configuration and notification capabilities in a more '.Netish' way of programming.  The client code will not need to deal with threads, delegate classes
-// buffer management, or objective-C data types but instead will create .NET objects and handle standard .NET events.  The underlying iOS concepts and classes are detailed in 
+// buffer management, or objective-C data types but instead will create .NET objects and handle standard .NET events.  The underlying iOS concepts and classes are detailed in
 // the iOS developer online help (TP40010188-CH5-SW2).
 //
 // https://developer.apple.com/library/mac/#documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/04_MediaCapture.html#//apple_ref/doc/uid/TP40010188-CH5-SW2
@@ -13,8 +13,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace MediaCapture
 {
@@ -40,8 +40,6 @@ namespace MediaCapture
 			// log the unhandled exception.  It will be shown to the user the next time the app runs.
 			Utilities.LogUnhandledException(e.ExceptionObject as Exception);
 		}
-		
-		
-		
+
 	}
 }

@@ -13,10 +13,10 @@
 // distribute, sublicense, and/or sell copies of the Software, and to
 // permit persons to whom the Software is furnished to do so, subject to
 // the following conditions:
-// 
+//
 // The above copyright notice and this permission notice shall be
 // included in all copies or substantial portions of the Software.
-// 
+//
 // THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 // MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -27,15 +27,15 @@
 //
 
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AudioToolbox;
+using Foundation;
+using UIKit;
+using AudioToolbox;
 using System.Linq;
-using MonoTouch.CoreFoundation;
+using CoreFoundation;
 using System.Diagnostics;
-using MonoTouch.AVFoundation;
+using AVFoundation;
 using System.Runtime.InteropServices;
 
 namespace AudioConverterFileConverter
@@ -87,7 +87,7 @@ namespace AudioConverterFileConverter
         {
             // Releases the view if it doesn't have a superview.
             base.DidReceiveMemoryWarning();
-			
+
             // Release any cached data, images, etc that aren't in use.
         }
 
@@ -99,7 +99,7 @@ namespace AudioConverterFileConverter
 
             UIImage greenImage = new UIImage("green_button.png").StretchableImage(12, 0);
             UIImage redImage = new UIImage("red_button.png").StretchableImage(12, 0);
-			
+
             startButton.SetBackgroundImage(greenImage, UIControlState.Normal);
             startButton.SetBackgroundImage(redImage, UIControlState.Disabled);
 
@@ -236,13 +236,13 @@ namespace AudioConverterFileConverter
             activityIndicator.StartAnimating();
 
             // run audio file code in a background thread
-            InvokeInBackground(convertAudio);
+            InvokeInBackground(ConvertAudio);
         }
 
         static bool IsAACHardwareEncoderAvailable()
         {
-            var encoders = AudioFormatAvailability.GetEncoders(AudioFormatType.MPEG4AAC);
-            return encoders.Any(l => l.SubType == AudioFormatType.MPEG4AAC && l.IsHardwareCodec);
+            AudioClassDescription[] encoders = AudioFormatAvailability.GetEncoders(AudioFormatType.MPEG4AAC);
+            return encoders.Any(l => l.SubType == AudioFormatType.MPEG4AAC);
         }
 
         static void UpdateFormatInfo(UILabel label, NSUrl fileURL)
@@ -262,16 +262,16 @@ namespace AudioConverterFileConverter
                 fileName, asbd.Format, asbd.SampleRate, asbd.ChannelsPerFrame);
         }
 
-        void updateUI()
+        void UpdateUI()
         {
             startButton.Enabled = true;
             UpdateFormatInfo(fileInfo, sourceURL);
         }
 
-        void convertAudio()
-        {    
+        void ConvertAudio()
+        {
             var success = DoConvertFile(sourceURL, destinationURL, outputFormat, sampleRate);
-		
+
             BeginInvokeOnMainThread(delegate
             {
                 activityIndicator.StopAnimating();
@@ -285,7 +285,7 @@ namespace AudioConverterFileConverter
                     NSError error;
                     fm.Remove(destinationFilePath, out error);
                 }
-                BeginInvokeOnMainThread(updateUI);
+                BeginInvokeOnMainThread(UpdateUI);
             }
             else
             {
@@ -293,30 +293,28 @@ namespace AudioConverterFileConverter
             }
         }
 
-        bool DoConvertFile(CFUrl sourceURL, NSUrl destinationURL, AudioFormatType outputFormat, double outputSampleRate)
+        bool DoConvertFile(CFUrl sourceURL, NSUrl destinationURL, AudioFormatType outputFormatType, double outputSampleRate)
         {
-            AudioStreamBasicDescription dstFormat = new AudioStreamBasicDescription();
-
             // in this sample we should never be on the main thread here
             Debug.Assert(!NSThread.IsMain);
 
             // transition thread state to State::Running before continuing
             AppDelegate.ThreadStateSetRunning();
-			
+
             Debug.WriteLine("DoConvertFile");
 
             // get the source file
-            var sourceFile = AudioFile.Open(sourceURL, AudioFilePermission.Read);
-			
-            // get the source data format
+            AudioFile sourceFile = AudioFile.Open(sourceURL, AudioFilePermission.Read);
+
             var srcFormat = (AudioStreamBasicDescription)sourceFile.DataFormat;
+			var dstFormat = new AudioStreamBasicDescription();
 
             // setup the output file format
             dstFormat.SampleRate = (outputSampleRate == 0 ? srcFormat.SampleRate : outputSampleRate); // set sample rate
-            if (outputFormat == AudioFormatType.LinearPCM)
+            if (outputFormatType == AudioFormatType.LinearPCM)
             {
-                // if the output format is PC create a 16-bit int PCM file format description as an example
-                dstFormat.Format = outputFormat;
+                // if the output format is PCM create a 16-bit int PCM file format description as an example
+				dstFormat.Format = AudioFormatType.LinearPCM;
                 dstFormat.ChannelsPerFrame = srcFormat.ChannelsPerFrame;
                 dstFormat.BitsPerChannel = 16;
                 dstFormat.BytesPerPacket = dstFormat.BytesPerFrame = 2 * dstFormat.ChannelsPerFrame;
@@ -326,14 +324,14 @@ namespace AudioConverterFileConverter
             else
             {
                 // compressed format - need to set at least format, sample rate and channel fields for kAudioFormatProperty_FormatInfo
-                dstFormat.Format = outputFormat;
-                dstFormat.ChannelsPerFrame = (outputFormat == AudioFormatType.iLBC ? 1 : srcFormat.ChannelsPerFrame); // for iLBC num channels must be 1
-				
+                dstFormat.Format = outputFormatType;
+                dstFormat.ChannelsPerFrame = (outputFormatType == AudioFormatType.iLBC ? 1 : srcFormat.ChannelsPerFrame); // for iLBC num channels must be 1
+
                 // use AudioFormat API to fill out the rest of the description
-                var fie = AudioStreamBasicDescription.GetFormatInfo(ref dstFormat);
-                if (fie != AudioFormatError.None)
+				AudioFormatError afe = AudioStreamBasicDescription.GetFormatInfo(ref dstFormat);
+                if (afe != AudioFormatError.None)
                 {
-                    Debug.Print("Cannot create destination format {0:x}", fie);
+                    Debug.Print("Cannot create destination format {0:x}", afe);
 
                     AppDelegate.ThreadStateSetDone();
                     return false;
@@ -393,12 +391,12 @@ namespace AudioConverterFileConverter
                 canResumeFromInterruption = false;
                 Debug.Print("CanResumeFromInterruption: {0}", e.Message);
             }
-			
-            // create the destination file 
+
+            // create the destination file
             var destinationFile = AudioFile.Create(destinationURL, AudioFileType.CAF, dstFormat, AudioFileFlags.EraseFlags);
 
             // set up source buffers and data proc info struct
-            afio = new AudioFileIO(32768);
+            afio = new AudioFileIO(32 * 1024); // 32Kb
             afio.SourceFile = sourceFile;
             afio.SrcFormat = srcFormat;
 
@@ -412,7 +410,7 @@ namespace AudioConverterFileConverter
 
                 // how many packets can we read for our buffer size?
                 afio.NumPacketsPerRead = afio.SrcBufferSize / afio.SrcSizePerPacket;
-				
+
                 // allocate memory for the PacketDescription structures describing the layout of each packet
                 afio.PacketDescriptions = new AudioStreamPacketDescription [afio.NumPacketsPerRead];
             }
@@ -425,7 +423,7 @@ namespace AudioConverterFileConverter
 
             // set up output buffers
             int outputSizePerPacket = dstFormat.BytesPerPacket; // this will be non-zero if the format is CBR
-            const int theOutputBufSize = 32768;
+            const int theOutputBufSize = 32 * 1024; // 32Kb
             var outputBuffer = Marshal.AllocHGlobal(theOutputBufSize);
             AudioStreamPacketDescription[] outputPacketDescriptions = null;
 
@@ -438,10 +436,10 @@ namespace AudioConverterFileConverter
                 outputPacketDescriptions = new AudioStreamPacketDescription [theOutputBufSize / outputSizePerPacket];
             }
             int numOutputPackets = theOutputBufSize / outputSizePerPacket;
-			
+
             // if the destination format has a cookie, get it and set it on the output file
             WriteCookie(converter, destinationFile);
-			
+
             // write destination channel layout
             if (srcFormat.ChannelsPerFrame > 2)
             {
@@ -467,7 +465,7 @@ namespace AudioConverterFileConverter
 
                 // this will block if we're interrupted
                 var wasInterrupted = AppDelegate.ThreadStatePausedCheck();
-				
+
                 if (wasInterrupted && !canResumeFromInterruption)
                 {
                     // this is our interruption termination condition
@@ -507,9 +505,9 @@ namespace AudioConverterFileConverter
 
                 // advance output file packet position
                 outputFilePos += ioOutputDataPackets;
-					
+
                 if (dstFormat.FramesPerPacket != 0)
-                { 
+                {
                     // the format has constant frames per packet
                     totalOutputFrames += (ioOutputDataPackets * dstFormat.FramesPerPacket);
                 }
@@ -530,10 +528,10 @@ namespace AudioConverterFileConverter
                 if (dstFormat.BitsPerChannel == 0)
                 {
                     // our output frame count should jive with
-                    Debug.Print("Total number of output frames counted: {0}", totalOutputFrames); 
+                    Debug.Print("Total number of output frames counted: {0}", totalOutputFrames);
                     WritePacketTableInfo(converter, destinationFile);
                 }
-					
+
                 // write the cookie again - sometimes codecs will update cookies at the end of a conversion
                 WriteCookie(converter, destinationFile);
             }
@@ -555,36 +553,25 @@ namespace AudioConverterFileConverter
             int maxPackets = afio.SrcBufferSize / afio.SrcSizePerPacket;
             if (numberDataPackets > maxPackets)
                 numberDataPackets = maxPackets;
-			
+
             // read from the file
             int outNumBytes = 16384;
 
             // modified for iOS7 (ReadPackets depricated)
-            var res = afio.SourceFile.ReadPacketData(false, afio.SrcFilePos, ref numberDataPackets, afio.SrcBuffer, ref outNumBytes);
+			afio.PacketDescriptions = afio.SourceFile.ReadPacketData(false, afio.SrcFilePos, ref numberDataPackets, afio.SrcBuffer, ref outNumBytes);
 
-            if (res.Length == 0)
-            {
-                throw new ApplicationException(res.ToString());
-            }
+			if (afio.PacketDescriptions.Length == 0)
+				throw new ApplicationException(afio.PacketDescriptions.ToString());
 
             // advance input file packet position
             afio.SrcFilePos += numberDataPackets;
-			
+
             // put the data pointer into the buffer list
             data.SetData(0, afio.SrcBuffer, outNumBytes);
 
             // don't forget the packet descriptions if required
             if (dataPacketDescription != null)
-            {
-                if (afio.PacketDescriptions != null)
-                {
-                    dataPacketDescription = afio.PacketDescriptions;
-                }
-                else
-                {
-                    dataPacketDescription = null;
-                }
-            }
+                dataPacketDescription = afio.PacketDescriptions;
 
             return AudioConverterError.None;
         }
@@ -617,7 +604,7 @@ namespace AudioConverterFileConverter
                 destinationFile.MagicCookie = cookie;
             }
         }
-		
+
         // Write output channel layout to destination file
         static void WriteDestinationChannelLayout(AudioConverter converter, AudioFile sourceFile, AudioFile destinationFile)
         {
@@ -658,7 +645,7 @@ namespace AudioConverterFileConverter
             // get the total number of frames from the output file
             long totalFrames = pti.ValidFrames + pti.PrimingFrames + pti.RemainderFrames;
             Debug.WriteLine("Total number of frames from output file: {0}", totalFrames);
-						
+
             pti.PrimingFrames = primeInfo.LeadingFrames;
             pti.RemainderFrames = primeInfo.TrailingFrames;
             pti.ValidFrames = totalFrames - pti.PrimingFrames - pti.RemainderFrames;
@@ -671,7 +658,7 @@ namespace AudioConverterFileConverter
         void playAudio()
         {
             Debug.WriteLine("Playing converted audio...");
-			
+
             UpdateFormatInfo(fileInfo, destinationURL);
             startButton.SetTitle("Playing Output File...", UIControlState.Disabled);
 
@@ -684,34 +671,34 @@ namespace AudioConverterFileConverter
             if (player == null)
             {
                 Debug.Print("AVAudioPlayer failed: {0}", error);
-                updateUI();
+                UpdateUI();
                 return;
-            } 
+            }
 
             player.DecoderError += delegate
             {
                 Debug.WriteLine("DecoderError");
-                updateUI();
+                UpdateUI();
             };
 
             player.BeginInterruption += delegate
             {
                 Debug.WriteLine("BeginInterruption");
                 player.Stop();
-                updateUI();
+                UpdateUI();
             };
 
             player.FinishedPlaying += delegate(object sender, AVStatusEventArgs e)
             {
                 Debug.WriteLine("FinishedPlaying");
-                updateUI();
+                UpdateUI();
                 player = null;
             };
 
             if (!player.Play())
             {
                 Debug.WriteLine("ERROR: Cannot play the file");
-                updateUI();
+                UpdateUI();
                 player = null;
             }
         }

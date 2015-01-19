@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace Example_Drawing.Screens.iPad.TouchDrawing
 {
@@ -15,7 +15,7 @@ namespace Example_Drawing.Screens.iPad.TouchDrawing
 		{
 			Console.WriteLine ("LoadView() Called");
 			base.LoadView ();
-			
+
 			View = new View ();
 			View.BackgroundColor = UIColor.White;
 		}
@@ -23,8 +23,7 @@ namespace Example_Drawing.Screens.iPad.TouchDrawing
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
-			
+
 		}
 	}
 }

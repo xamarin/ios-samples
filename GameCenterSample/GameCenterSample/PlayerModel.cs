@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-using MonoTouch.Foundation;
-using MonoTouch.GameKit;
-using MonoTouch.UIKit;
+using Foundation;
+using GameKit;
+using UIKit;
 
 namespace GameCenterSample
 {
@@ -16,19 +16,18 @@ namespace GameCenterSample
 		NSMutableArray storedScores;
 		NSMutableDictionary storedAchievements;
 
-
 		public PlayerModel ()
 		{
 			string id = GKLocalPlayer.LocalPlayer.PlayerID;
-			storedScoresFilename = id.Substring(id.IndexOf(":")+1)+"storedScores.plist";
-			storedAchievementsFilename = id.Substring(id.IndexOf(":")+1)+"storedAchievements.plist";
+			storedScoresFilename = id.Substring (id.IndexOf (":") + 1) + "storedScores.plist";
+			storedAchievementsFilename = id.Substring (id.IndexOf (":") + 1) + "storedAchievements.plist";
 
 		}
 
 		/* ************************************************************************
-		 * 
+		 *
 		 * Scores
-		 * 
+		 *
 		 * *************************************************************************
 		*/
 
@@ -40,38 +39,32 @@ namespace GameCenterSample
 		}
 
 		// Attempt to resubmit the scoress
-		public void resubmitSotredScores()
+		public void resubmitSotredScores ()
 		{
 
-			if (GKLocalPlayer.LocalPlayer.Authenticated && storedScores.Count != 0) 
-			{
-				int index =(int) storedScores.Count - 1;
-				while (index >=0) 
-				{
-					GKScore score = new GKScore (storedScores.ValueAt ((uint)index));
+			if (GKLocalPlayer.LocalPlayer.Authenticated && storedScores.Count != 0) {
+				nuint index = storedScores.Count - 1;
+				while (index >= 0) {
+					var score = storedScores.GetItem<GKScore> (index);
 					score.ShouldSetDefaultLeaderboard = true;
 					if (score == null)
 						return;
-					score.ReportScore (new GKNotificationHandler( (error) => 
-					{
-						if(error == null)
-						{
-							new UIAlertView ("Score Submitted", "Score submitted successfully ", null, "OK", null).Show();
-						}
-						else
-						{
-							this.storeScore(score);
-							new UIAlertView ("Score Stored", "Score Stored ", null, "OK", null).Show();
+					score.ReportScore (new Action<NSError> ((error) => {
+						if (error == null) {
+							new UIAlertView ("Score Submitted", "Score submitted successfully ", null, "OK", null).Show ();
+						} else {
+							this.storeScore (score);
+							new UIAlertView ("Score Stored", "Score Stored ", null, "OK", null).Show ();
 						}
 					}));
-					storedScores.RemoveObject(index);
-					index --;
+					storedScores.RemoveObject ((nint)index);
+					index--;
 				}
 			}
 		}
 
 		//Save stored scores to file
-		public void writeStoredScore()
+		public void writeStoredScore ()
 		{
 			NSError err;
 			NSData archivedScore = NSKeyedArchiver.ArchivedDataWithRootObject (storedScores);
@@ -81,66 +74,57 @@ namespace GameCenterSample
 
 		}
 		// Load stored scores from disk
-		public void loadStoredScores()
+		public void loadStoredScores ()
 		{
-			NSArray unarchivedObj = (NSArray) NSKeyedUnarchiver.UnarchiveFile (this.storedScoresFilename);
-			if (unarchivedObj != null) 
-			{
-				storedScores = (NSMutableArray) unarchivedObj;
+			NSArray unarchivedObj = (NSArray)NSKeyedUnarchiver.UnarchiveFile (this.storedScoresFilename);
+			if (unarchivedObj != null) {
+				storedScores = (NSMutableArray)unarchivedObj;
 				this.resubmitSotredScores ();
-			} else 
-			{
+			} else {
 				storedScores = new NSMutableArray ();
 			}
 		}
 
 		// Attemp to submit a score. On an error store it for a later time
-		public void submitScore(GKScore score)
+		public void submitScore (GKScore score)
 		{
-			if (GKLocalPlayer.LocalPlayer.Authenticated) 
-			{
+			if (GKLocalPlayer.LocalPlayer.Authenticated) {
 				if (score == null)
 					return;
-				score.ReportScore (new GKNotificationHandler( (error) => 
-				{
-					//if(error == null|| (error.Code ==null && error.Domain == null))
-					if(error == null)
-					{
-						this.resubmitSotredScores();
-						new UIAlertView ("Score Submitted", "Score submitted successfully ", null, "OK", null).Show();
-					}
-					else
-					{
-						this.storeScore(score);
-						new UIAlertView ("Score Stored", "Score Stored ", null, "OK", null).Show();
+				score.ReportScore (new Action<NSError> ((error) => {
+					if (error == null) {
+						this.resubmitSotredScores ();
+						new UIAlertView ("Score Submitted", "Score submitted successfully ", null, "OK", null).Show ();
+					} else {
+						this.storeScore (score);
+						new UIAlertView ("Score Stored", "Score Stored ", null, "OK", null).Show ();
 					}
 				}));
 			}
 		}
 
 		/* ************************************************************************
-		 * 
+		 *
 		 * Achivements
-		 * 
+		 *
 		 * *************************************************************************
 		*/
 
-		// Create an entry for an achievement that hasn't been submitted to the server 
-		void storeAchievement(GKAchievement achievement)
+		// Create an entry for an achievement that hasn't been submitted to the server
+		void storeAchievement (GKAchievement achievement)
 		{
-			GKAchievement currentStorage = (GKAchievement) storedAchievements.ValueForKey (new NSString(achievement.Identifier));
+			GKAchievement currentStorage = (GKAchievement)storedAchievements.ValueForKey (new NSString (achievement.Identifier));
 
 			if (currentStorage == null) {
-				storedAchievements.Add(new NSString(achievement.Identifier),achievement);
-			}
-			else if (currentStorage.PercentComplete < achievement.PercentComplete) {
+				storedAchievements.Add (new NSString (achievement.Identifier), achievement);
+			} else if (currentStorage.PercentComplete < achievement.PercentComplete) {
 				storedAchievements.SetValueForKey (achievement, new NSString (achievement.Identifier));
 				this.writeStoredAchievements ();
 			}
 		}
 
 		// store achievements to disk to submit at a later time.
-		void writeStoredAchievements()
+		void writeStoredAchievements ()
 		{
 			NSError err;
 			NSData archivedScore = NSKeyedArchiver.ArchivedDataWithRootObject (storedAchievements);
@@ -151,14 +135,14 @@ namespace GameCenterSample
 		}
 
 		// Submit an achievement to the server and store if submission fails
-		public void submitAchievement(GKAchievement achievement)
+		public void submitAchievement (GKAchievement achievement)
 		{
 			if (achievement != null) {
 				//submit the achievement
-				achievement.ReportAchievement (new GKNotificationHandler ((error) => {
+				achievement.ReportAchievement (new Action<NSError> ((error) => {
 					if (error == null) {
-						if (storedAchievements.ContainsKey (new NSString(achievement.Identifier)))
-							storedAchievements.Remove (new NSString(achievement.Identifier));
+						if (storedAchievements.ContainsKey (new NSString (achievement.Identifier)))
+							storedAchievements.Remove (new NSString (achievement.Identifier));
 						new UIAlertView ("Achievement Submitted", "Achievement submitted successfully ", null, "OK", null).Show ();
 					} else {
 						this.storeAchievement (achievement);
@@ -169,38 +153,35 @@ namespace GameCenterSample
 		}
 
 		// Load stored achievements and attempt to submit them
-		public void loadSotredAchievements()
+		public void loadSotredAchievements ()
 		{
-			if (storedAchievements == null) 
-			{
+			if (storedAchievements == null) {
 
-				NSMutableDictionary unarchivedObj = (NSMutableDictionary) NSKeyedUnarchiver.UnarchiveFile (this.storedAchievementsFilename);
-				if (unarchivedObj != null) 
-				{
+				NSMutableDictionary unarchivedObj = (NSMutableDictionary)NSKeyedUnarchiver.UnarchiveFile (this.storedAchievementsFilename);
+				if (unarchivedObj != null) {
 					this.resubmitStoredAchievements ();
-				} else 
-				{
+				} else {
 					storedAchievements = new NSMutableDictionary ();
 				}
 			}
 		}
 
-		// Try to submit all stored achievements to update any achievements that were not successful. 
-		public void resubmitStoredAchievements()
+		// Try to submit all stored achievements to update any achievements that were not successful.
+		public void resubmitStoredAchievements ()
 		{
 			if (storedAchievements != null) {
 				foreach (NSString key in storedAchievements.Keys) {
-					GKAchievement achievement = (GKAchievement) storedAchievements.ObjectForKey (key);
+					GKAchievement achievement = (GKAchievement)storedAchievements.ObjectForKey (key);
 					this.submitAchievement (achievement);
 				}
 			}
 		}
 
-		// Reset all the achievements for local player 
-		public void resetAchievements()
+		// Reset all the achievements for local player
+		public void resetAchievements ()
 		{
-			GKAchievement.ResetAchivements (new GKNotificationHandler (delegate(NSError error) {
-				if(error == null)
+			GKAchievement.ResetAchivements (new Action<NSError> (delegate(NSError error) {
+				if (error == null)
 					new UIAlertView ("Achievement reset", "Achievement reset successfully", null, "OK", null).Show ();
 				else
 					new UIAlertView ("Reset failed", "Reset failed because: " + error, null, "OK", null).Show ();

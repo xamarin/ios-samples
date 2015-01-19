@@ -79,9 +79,8 @@ namespace CloudKitAtlas
 			if (pin != null)
 				return;
 
-			pin = new MKPointAnnotation {
-				Coordinate = currentLocation.Coordinate
-			};
+			pin = new MKPointAnnotation ();
+			pin.SetCoordinate (currentLocation.Coordinate);
 
 			map.AddAnnotation (pin);
 			map.ShowAnnotations (new [] { pin }, false);

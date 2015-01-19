@@ -1,6 +1,6 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using UIKit;
 
 namespace NSZombieApocalypse
 {
@@ -16,7 +16,7 @@ namespace NSZombieApocalypse
 			}
 		}
 
-		public StatusView (RectangleF frame) : base (frame)
+		public StatusView (CGRect frame) : base (frame)
 		{
 
 			Layer.BorderColor = UIColor.Black.CGColor;
@@ -24,7 +24,7 @@ namespace NSZombieApocalypse
 			Layer.CornerRadius = 8;
 
 			BackgroundColor = UIColor.White.ColorWithAlpha (0.75f);
-			label = new UILabel (new RectangleF (0, 0, frame.Size.Width, frame.Size.Height));
+			label = new UILabel (new CGRect (0, 0, frame.Size.Width, frame.Size.Height));
 			label.Lines = 0;
 			label.TextAlignment = UITextAlignment.Center;
 			AddSubview (label);

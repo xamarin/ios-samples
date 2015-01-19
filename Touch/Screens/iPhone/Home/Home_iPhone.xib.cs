@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_Touch.Screens.iPhone.Home
 {
@@ -12,10 +12,10 @@ namespace Example_Touch.Screens.iPhone.Home
 		GestureRecognizers.GestureRecognizers_iPhone gestureScreen;
 		GestureRecognizers.CustomCheckmarkGestureRecognizer_iPhone customGestureScreen;
 		SimpleTouch.Touches_iPhone touchScreen;
-		
+
 		#region Constructors
 
-		// The IntPtr and initWithCoder constructors are required for items that need 
+		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
 		public Home_iPhone (IntPtr handle) : base(handle)
@@ -37,15 +37,15 @@ namespace Example_Touch.Screens.iPhone.Home
 		void Initialize ()
 		{
 		}
-		
+
 		#endregion
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			this.Title = "Working with Touch";
-			
+
 			this.btnTouch.TouchUpInside += (s, e) => {
 				if (touchScreen == null)
 					touchScreen = new Example_Touch.Screens.iPhone.SimpleTouch.Touches_iPhone ();

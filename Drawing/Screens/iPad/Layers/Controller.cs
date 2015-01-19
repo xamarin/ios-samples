@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace Example_Drawing.Screens.iPad.Layers
 {
@@ -15,15 +15,14 @@ namespace Example_Drawing.Screens.iPad.Layers
 		{
 			Console.WriteLine ("LoadView() Called");
 			base.LoadView ();
-			
+
 			View = new View ();
 		}
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
-			
+
 		}
 	}
 }

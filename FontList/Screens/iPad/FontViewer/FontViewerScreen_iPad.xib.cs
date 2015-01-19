@@ -2,18 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace FontList.Screens.iPad.FontViewer
 {
 	public partial class FontViewerScreen_iPad : UIViewController
 	{
 		UIFont displayFont;
-		
+
 		#region Constructors
 
-		// The IntPtr and initWithCoder constructors are required for controllers that need 
+		// The IntPtr and initWithCoder constructors are required for controllers that need
 		// to be able to be created from a xib rather than from managed code
 
 		public FontViewerScreen_iPad (IntPtr handle) : base(handle)
@@ -36,20 +36,20 @@ namespace FontList.Screens.iPad.FontViewer
 		void Initialize ()
 		{
 		}
-		
+
 		#endregion
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			Title = displayFont.Name;
-			
+
 			txtMain.Editable = true;
 			txtMain.Font = displayFont;
 			txtMain.Editable = false;
 		}
-		
+
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return true;

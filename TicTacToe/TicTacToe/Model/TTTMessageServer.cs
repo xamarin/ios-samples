@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,8 +7,8 @@ namespace TicTacToe
 {
 	public class TTTMessageServer
 	{
-		public const string DidAddMessagesNotification = "DidAddMessagesNotification";
-		public const string AddedMessageIndexesUserInfoKey = "AddedMessageIndexesUserInfoKey";
+		public event EventHandler<MessageEvenArg> MessagesAdded;
+
 		List<TTTMessage> messages;
 		List<TTTMessage> favoriteMessages;
 
@@ -68,14 +68,12 @@ namespace TicTacToe
 
 		public void AddMessage (TTTMessage message)
 		{
-			int messageIndex = 0;
 			messages.Insert (0, message);
 
-			NSDictionary userInfo = 
-				NSDictionary.FromObjectAndKey (NSArray.FromNSObjects (new NSNumber (messageIndex)),
-			                                new NSString (AddedMessageIndexesUserInfoKey));
-			NSNotificationCenter.DefaultCenter.PostNotificationName (DidAddMessagesNotification,
-			                                                         null, userInfo);
+			var handler = MessagesAdded;
+			if (handler != null)
+				handler (this, new MessageEvenArg (0));
+
 			WriteMessages ();
 		}
 

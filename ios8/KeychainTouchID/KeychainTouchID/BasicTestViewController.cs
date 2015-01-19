@@ -40,7 +40,7 @@ namespace KeychainTouchID
 		{
 			return Text.SELECT_TEST;
 		}
-			
+
 		[Export ("tableView:didSelectRowAtIndexPath:")]
 		public void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
@@ -51,7 +51,7 @@ namespace KeychainTouchID
 
 			tableView.DeselectRow (indexPath, true);
 		}
-			
+
 		[Export ("tableView:cellForRowAtIndexPath:")]
 		public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{

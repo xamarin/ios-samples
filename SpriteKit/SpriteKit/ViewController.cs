@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.SpriteKit;
+using UIKit;
+using SpriteKit;
 
 namespace SpriteKit
 {

@@ -1,12 +1,11 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 using OpenTK;
-using MonoTouch.OpenGLES;
-using MonoTouch.GLKit;
+using OpenGLES;
+using GLKit;
 using MonoTouch;
 using OpenTK.Graphics.ES20;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using CoreGraphics;
 
 namespace GLKBaseEffectDrawing
 {
@@ -70,7 +69,7 @@ namespace GLKBaseEffectDrawing
 
 			GL.GenBuffers (1, out vertexBuffer);
 			GL.BindBuffer (BufferTarget.ArrayBuffer, vertexBuffer);
-			GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr)(Monkey.MeshVertexData.Length * sizeof(float)), 
+			GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr)(Monkey.MeshVertexData.Length * sizeof(float)),
 			               Monkey.MeshVertexData, BufferUsage.StaticDraw);
 
 			GL.EnableVertexAttribArray ((int) GLKVertexAttrib.Position);
@@ -88,7 +87,7 @@ namespace GLKBaseEffectDrawing
 		{
 			float aspect = (float)Math.Abs (View.Bounds.Size.Width / View.Bounds.Size.Height);
 
-			Matrix4 projectionMatrix = 
+			Matrix4 projectionMatrix =
 				Matrix4.CreatePerspectiveFieldOfView ((float) (Math.PI * 65f / 180.0f),
 			                                       aspect, 0.1f, 100.0f);
 

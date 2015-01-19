@@ -1,30 +1,28 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.CoreFoundation;
+using UIKit;
+using CoreFoundation;
 
 namespace Example_SplitView.Screens.MainSplitView
 {
 	public class MainSplitView : UISplitViewController
-	{		
+	{
 		protected Screens.MasterView.MasterTableView masterView;
 		protected Screens.DetailView.DetailViewScreen detailView;
-		
+
 		public MainSplitView () : base()
 		{
 			// create our master and detail views
 			masterView = new Screens.MasterView.MasterTableView ();
 			detailView = new Screens.DetailView.DetailViewScreen ();
 
-
-			
-			// in this example, i expose an event on the master view called RowClicked, and i listen 
-			// for it in here, and then call a method on the detail view to update. this class thereby 
+			// in this example, i expose an event on the master view called RowClicked, and i listen
+			// for it in here, and then call a method on the detail view to update. this class thereby
 			// becomes the defacto controller for the screen (both views).
 			masterView.RowClicked += (object sender, MasterView.MasterTableView.RowClickedEventArgs e) => {
 				detailView.Text = e.Item;
 			};
-			
-			// when the master view controller is hid (portrait mode), we add a button to 
+
+			// when the master view controller is hid (portrait mode), we add a button to
 			// the detail view that when clicked will show the master view in a popover controller
 			this.WillHideViewController += (object sender, UISplitViewHideEventArgs e) => {
 				detailView.AddContentsButton(e.BarButtonItem);
@@ -45,7 +43,7 @@ namespace Example_SplitView.Screens.MainSplitView
 			// ALWAYS SET THIS LAST (since iOS5.1)
 			// https://bugzilla.xamarin.com/show_bug.cgi?id=3803
 			// http://spouliot.wordpress.com/2012/03/26/events-vs-objective-c-delegates/
-			// create an array of controllers from them and then assign it to the 
+			// create an array of controllers from them and then assign it to the
 			// controllers property
 			ViewControllers = new UIViewController[] { masterView, detailView };
 		}

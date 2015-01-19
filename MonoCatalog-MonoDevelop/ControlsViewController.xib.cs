@@ -3,14 +3,14 @@
 //
 
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using System.Drawing;
+using UIKit;
+using Foundation;
+using CoreGraphics;
 
 namespace MonoCatalog {
-	
+
 	public partial class ControlsViewController : UITableViewController {
-	
+
 		//
 		// This datasource describes how the UITableView should render the
 		// contents.   We have a number of sections determined by the
@@ -23,31 +23,31 @@ namespace MonoCatalog {
 			ControlsViewController cvc;
 			static NSString kDisplayCell_ID = new NSString ("DisplayCellID");
 			static NSString kSourceCell_ID = new NSString ("SourceCellID");
-			
+
 			public DataSource (ControlsViewController cvc)
 			{
 				this.cvc = cvc;
 			}
-	
-			public override int NumberOfSections (UITableView tableView)
+
+			public override nint NumberOfSections (UITableView tableView)
 			{
 				return cvc.samples.Length;
 			}
-	
-			public override string TitleForHeader (UITableView tableView, int section)
+
+			public override string TitleForHeader (UITableView tableView, nint section)
 			{
 				return cvc.samples [section].Title;
 			}
-	
-			public override int RowsInSection (UITableView tableView, int section)
+
+			public override nint RowsInSection (UITableView tableView, nint section)
 			{
 				return 2;
 			}
-	
+
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
 				UITableViewCell cell;
-	
+
 				if (indexPath.Row == 0){
 					cell = tableView.DequeueReusableCell (kDisplayCell_ID);
 					if (cell == null){
@@ -55,7 +55,7 @@ namespace MonoCatalog {
 						cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 					} else {
 						// The cell is being recycled, remove the old content
-						
+
 						UIView viewToRemove = cell.ContentView.ViewWithTag (kViewTag);
 						if (viewToRemove != null)
 							viewToRemove.RemoveFromSuperview ();
@@ -69,7 +69,7 @@ namespace MonoCatalog {
 						cell = new UITableViewCell (UITableViewCellStyle.Default, kSourceCell_ID);
 						cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 						var label = cell.TextLabel;
-						
+
 						label.Opaque = false;
 						label.TextAlignment = UITextAlignment.Center;
 						label.TextColor = UIColor.Gray;
@@ -79,30 +79,30 @@ namespace MonoCatalog {
 					}
 					cell.TextLabel.Text = cvc.samples [indexPath.Section].Source;
 				}
-	
+
 				return cell;
 			}
 		}
-	
+
 		class TableDelegate : UITableViewDelegate {
-			public override float GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+			public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 			{
 				// First row is always 50 pixes, second row 38
 				return indexPath.Row == 0 ? 50f : 38f;
 			}
 		}
-	
+
 		// Load our definition from the NIB file
 		public ControlsViewController () : base ("ControlsViewController", null)
 		{
 		}
-	
+
 		// For tagging our embedded controls at cell recylce time.
 		const int kViewTag = 1;
-	
+
 		UIControl SwitchControl ()
 		{
-			var sw = new UISwitch (new RectangleF (198f, 12f, 94f, 27f)){
+			var sw = new UISwitch (new CGRect (198f, 12f, 94f, 27f)){
 				BackgroundColor = UIColor.Clear,
 				Tag = kViewTag
 			};
@@ -112,10 +112,10 @@ namespace MonoCatalog {
 			};
 			return sw;
 		}
-		
+
 		UIControl SliderControl ()
 		{
-			var slider = new UISlider (new RectangleF (174f, 12f, 120f, 7f)){
+			var slider = new UISlider (new CGRect (174f, 12f, 120f, 7f)){
 				BackgroundColor = UIColor.Clear,
 				MinValue = 0f,
 				MaxValue = 100f,
@@ -129,10 +129,10 @@ namespace MonoCatalog {
 			};
 			return slider;
 		}
-	
+
 		UIControl CustomSliderControl ()
 		{
-			var cslider = new UISlider (new RectangleF (174f, 12f, 120f, 7f)){
+			var cslider = new UISlider (new CGRect (174f, 12f, 120f, 7f)){
 				BackgroundColor = UIColor.Clear,
 				MinValue = 0f,
 				MaxValue = 100f,
@@ -141,40 +141,40 @@ namespace MonoCatalog {
 				Tag = kViewTag,
 				AccessibilityLabel = "CustomSlider"
 			};
-			
+
 			var left = UIImage.FromFile ("images/orangeslide.png");
 			left = left.StretchableImage (10, 0);
 			var right = UIImage.FromFile ("images/yellowslide.png");
 			right = right.StretchableImage (10, 0);
-	
+
 			cslider.SetThumbImage (UIImage.FromFile ("images/slider_ball.png"), UIControlState.Normal);
 			cslider.SetMinTrackImage (left, UIControlState.Normal);
 			cslider.SetMaxTrackImage (right, UIControlState.Normal);
-			
+
 			cslider.ValueChanged += delegate {
 				Console.WriteLine ("New value {0}", cslider.Value);
 			};
 			return cslider;
 		}
-	
+
 		UIControl PageControl ()
 		{
-			var page = new UIPageControl (new RectangleF (120f, 14f, 178f, 20f)){
+			var page = new UIPageControl (new CGRect (120f, 14f, 178f, 20f)){
 				BackgroundColor = UIColor.Gray,
 				Pages = 10,
 				Tag = kViewTag
 			};
-	
+
 			page.TouchUpInside += delegate {
 				Console.WriteLine ("Current page: {0}", page.CurrentPage);
 			};
-	
+
 			return page;
 		}
-	
+
 		UIView ProgressIndicator ()
 		{
-			var pind = new UIActivityIndicatorView (new RectangleF (265f, 12f, 40f, 40f)){
+			var pind = new UIActivityIndicatorView (new CGRect (265f, 12f, 40f, 40f)){
 				ActivityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray,
 				AutoresizingMask = UIViewAutoresizing.FlexibleLeftMargin |
 					UIViewAutoresizing.FlexibleRightMargin |
@@ -182,26 +182,26 @@ namespace MonoCatalog {
 					UIViewAutoresizing.FlexibleBottomMargin,
 				Tag = kViewTag
 			};
-	
+
 			pind.StartAnimating ();
 			pind.SizeToFit ();
-			
+
 			return pind;
 		}
-	
+
 		UIView ProgressBar ()
 		{
-			return new UIProgressView (new RectangleF (126f, 20f, 160f, 24f)){
+			return new UIProgressView (new CGRect (126f, 20f, 160f, 24f)){
 				Style = UIProgressViewStyle.Default,
 				Progress = 0.5f,
 				Tag = kViewTag
 			};
 		}
-			
+
 		struct ControlSample {
 			public string Title, Label, Source;
 			public UIView Control;
-	
+
 			public ControlSample (string t, string l, string s, UIView c)
 			{
 				Title = t;
@@ -210,14 +210,14 @@ namespace MonoCatalog {
 				Control = c;
 			}
 		}
-	
+
 		ControlSample [] samples;
-	
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			Title = "Controls";
-	
+
 			samples = new ControlSample [] {
 				new ControlSample ("UISwitch", "Standard Switch", "controls.cs: SwitchControl ()", SwitchControl ()),
 				new ControlSample ("UISlider", "Standard Slider", "controls.cs: SliderControl ()", SliderControl ()),
@@ -226,11 +226,10 @@ namespace MonoCatalog {
 				new ControlSample ("UIActivityIndicatorView", "Style Gray", "controls.cs: ProgressIndicator ()", ProgressIndicator ()),
 				new ControlSample ("UIProgressView", "Style Default", "controls.cs: ProgressBar ()", ProgressBar ()),
 			};
-	
+
 			TableView.DataSource = new DataSource (this);
 			TableView.Delegate = new TableDelegate ();
 		}
-	
-		
+
 	}
 }

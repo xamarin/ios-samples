@@ -1,6 +1,6 @@
 using System;
-using System.Drawing;
-using MonoTouch.UIKit;
+using CoreGraphics;
+using UIKit;
 
 namespace DynamicsCatalog {
 
@@ -19,19 +19,19 @@ namespace DynamicsCatalog {
 			var collisionBehavior = new UICollisionBehavior (square);
 			collisionBehavior.TranslatesReferenceBoundsIntoBoundary = true;
 
-			var squareCenterPoint = new PointF (square.Center.X, square.Center.Y - 100);
+			var squareCenterPoint = new CGPoint (square.Center.X, square.Center.Y - 100);
 			var attachmentOffset = new UIOffset (-25.0f, -25.0f);
 
 			/*
-    		 By default, an attachment behavior uses the center of a view. By using a small offset, 
-    		 we get a more interesting effect which will cause the view to have rotation movement 
+    		 By default, an attachment behavior uses the center of a view. By using a small offset,
+    		 we get a more interesting effect which will cause the view to have rotation movement
     		 when dragging the attachment.
     		*/
 			var attachmentBehavior = new UIAttachmentBehavior (square, attachmentOffset, squareCenterPoint);
 
 			// Show visually the attachment points
 			redSquare.Center = attachmentBehavior.AnchorPoint;
-			blueSquare.Center = new PointF (25.0f, 25.0f);
+			blueSquare.Center = new CGPoint (25.0f, 25.0f);
 
 			Animator = new UIDynamicAnimator (View);
 			Animator.AddBehavior (attachmentBehavior);

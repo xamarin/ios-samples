@@ -1,37 +1,31 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
+using Foundation;
 
 namespace MonoDevelopTouchCells
 {
 
 	public class TableViewDelegate : UITableViewDelegate
 	{
+		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		{
+			CustomCell cell = tableView.CellAt (indexPath) as CustomCell;
 
-		public TableViewDelegate ()
-		{
-		}
-		
-		public override void RowSelected (MonoTouch.UIKit.UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
-		{
-			CustomCell cell = tableView.CellAt(indexPath) as CustomCell;
-			
 			if (cell != null) {
-				cell.CheckButtonTouchDown(null, null);
+				cell.CheckButtonTouchDown (null, null);
 			}
-			
-			tableView.DeselectRow(indexPath, true);
+
+			tableView.DeselectRow (indexPath, true);
 		}
 
-		public override void AccessoryButtonTapped (MonoTouch.UIKit.UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override void AccessoryButtonTapped (UITableView tableView, NSIndexPath indexPath)
 		{
-			CustomCell cell = tableView.CellAt(indexPath) as CustomCell;
-			
+			CustomCell cell = tableView.CellAt (indexPath) as CustomCell;
+
 			if (cell != null) {
 				AppDelegate ad = (AppDelegate)UIApplication.SharedApplication.Delegate;
-				ad.ShowDetail(cell);
+				ad.ShowDetail (cell);
 			}
 		}
-
-		
 	}
 }

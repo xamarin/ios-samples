@@ -1,10 +1,10 @@
 using System;
 using System.Json;
-using MonoTouch.Foundation;
-using MonoTouch.CoreData;
+using Foundation;
+using CoreData;
 using System.Collections.Generic;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
+using ObjCRuntime;
+using UIKit;
 using System.Linq;
 
 namespace ThreadedCoreData
@@ -13,17 +13,17 @@ namespace ThreadedCoreData
 	{
 		public const string EarthquakesErrorNotificationName = "EarthquakeErrorNotif";
 		public const string EarthquakesMessageErrorKey = "EarthquakesMsgErrorKey";
-		private const int MaximumNumberOfEarthquakesToParse = 50;
-		private const int SizeOfEarthquakesBatch = 10;
-		private NSPersistentStoreCoordinator sharedPSC;
-		private NSManagedObjectContext managedObjectContext;
-		private NSData earthquakeData;
-		private NSDateFormatter dateFormatter;
+		const int MaximumNumberOfEarthquakesToParse = 50;
+		const int SizeOfEarthquakesBatch = 10;
+		NSPersistentStoreCoordinator sharedPSC;
+		NSManagedObjectContext managedObjectContext;
+		NSData earthquakeData;
+		NSDateFormatter dateFormatter;
 
 		public APLParseOperation (NSData data, NSPersistentStoreCoordinator persistentStoreCoordinator)
 		{
 			dateFormatter = new NSDateFormatter () {
-				DateFormat = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'",
+				DateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'",
 				TimeZone = NSTimeZone.LocalTimeZone,
 				Locale = NSLocale.FromLocaleIdentifier ("en_US_POSIX")
 			};
@@ -43,11 +43,11 @@ namespace ThreadedCoreData
 			Parse (earthquakeData);
 		}
 
-		private void Parse (NSData data)
+		void Parse (NSData data)
 		{
 			try {
 				var earthquakes = new List<Earthquake> ();
-			
+
 				var dump = JsonValue.Parse (NSString.FromData (data, NSStringEncoding.UTF8)) as JsonObject;
 				JsonValue featureCollection = dump ["features"];
 
@@ -57,7 +57,7 @@ namespace ThreadedCoreData
 
 					var earthquake = featureCollection [i] as JsonObject;
 					JsonValue earthquakeProperties = earthquake ["properties"];
-					currentEarthquake.Magnitude = NSNumber.FromFloat ((float)earthquakeProperties ["mag"]); 
+					currentEarthquake.Magnitude = NSNumber.FromFloat ((float)earthquakeProperties ["mag"]);
 					currentEarthquake.USGSWebLink = new NSString ((string)earthquakeProperties ["url"]);
 					currentEarthquake.Location = new NSString ((string)earthquakeProperties ["place"]);
 
@@ -85,8 +85,7 @@ namespace ThreadedCoreData
 
 			} catch (Exception e) {
 				Console.WriteLine (e.StackTrace + e.Message);
-				var userInfo = NSDictionary.FromObjectAndKey (new NSString ("Error while parsing GeoJSON"), 
-				                                              NSError.LocalizedDescriptionKey);
+				var userInfo = new NSDictionary (NSError.LocalizedDescriptionKey, "Error while parsing GeoJSON");
 
 				var parsingError = new NSError (new NSString (), 0, userInfo);
 				InvokeOnMainThread (new Selector ("HandleEarthquakesError:"), parsingError);
@@ -96,11 +95,11 @@ namespace ThreadedCoreData
 		[Export("HandleEarthquakesError:")]
 		public void HandleEarthquakesError (NSError parserError)
 		{
-			var userInfo = NSDictionary.FromObjectAndKey (parserError, new NSString (EarthquakesMessageErrorKey));
+			var userInfo = new NSDictionary (EarthquakesMessageErrorKey, parserError);
 			NSNotificationCenter.DefaultCenter.PostNotificationName (EarthquakesErrorNotificationName, this, userInfo);
 		}
 
-		private void AddEarthquakesToList (List<Earthquake> earthquakes)
+		void AddEarthquakesToList (List<Earthquake> earthquakes)
 		{
 			var entity = NSEntityDescription.EntityForName ("Earthquake", managedObjectContext);
 			var fetchRequest = new NSFetchRequest ();
@@ -109,14 +108,14 @@ namespace ThreadedCoreData
 			var date = (NSPropertyDescription)entity.PropertiesByName.ValueForKey (new NSString ("date"));
 			var location = (NSPropertyDescription)entity.PropertiesByName.ValueForKey (new NSString ("location"));
 
-			fetchRequest.PropertiesToFetch = new NSPropertyDescription[] { date, location }; 
+			fetchRequest.PropertiesToFetch = new NSPropertyDescription[] { date, location };
 			fetchRequest.ResultType = NSFetchRequestResultType.DictionaryResultType;
 
 			NSError error;
 
 			foreach (var earthquake in earthquakes) {
 				var arguments = new NSObject[] { earthquake.Location, earthquake.Date };
-				fetchRequest.Predicate = NSPredicate.FromFormat (@"location = %@ AND date = %@", arguments);
+				fetchRequest.Predicate = NSPredicate.FromFormat ("location = %@ AND date = %@", arguments);
 				var fetchedItems = NSArray.FromNSObjects (managedObjectContext.ExecuteFetchRequest (fetchRequest, out error));
 
 				if (fetchedItems.Count == 0) {
@@ -143,13 +142,12 @@ namespace ThreadedCoreData
 
 				// use the same fetchrequest instance but switch back to NSManagedObjectResultType
 				fetchRequest.ResultType = NSFetchRequestResultType.ManagedObject;
-				fetchRequest.Predicate = NSPredicate.FromFormat (@"date < %@", new NSObject[] { twoWeeksAgo });
+				fetchRequest.Predicate = NSPredicate.FromFormat ("date < %@", new NSObject[] { twoWeeksAgo });
 
 				var olderEarthquakes = NSArray.FromObjects (managedObjectContext.ExecuteFetchRequest (fetchRequest, out error));
-				
-				for (int i = 0; i < olderEarthquakes.Count; i++) {
+
+				for (nuint i = 0; i < olderEarthquakes.Count; i++)
 					managedObjectContext.DeleteObject (olderEarthquakes.GetItem<ManagedEarthquake> (i));
-				}
 
 				if (managedObjectContext.HasChanges) {
 					if (!managedObjectContext.Save (out error))

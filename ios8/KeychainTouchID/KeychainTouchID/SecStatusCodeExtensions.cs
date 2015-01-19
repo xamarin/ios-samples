@@ -28,6 +28,6 @@ namespace KeychainTouchID
 
 			return description;
 		}
-	}   
+	}
 }
 

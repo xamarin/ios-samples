@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace Example_Drawing.Screens.iPad.DrawRectVsPath
 {
@@ -15,7 +15,7 @@ namespace Example_Drawing.Screens.iPad.DrawRectVsPath
 		{
 			Console.WriteLine ("LoadView() Called");
 			base.LoadView ();
-			
+
 			View = new View ();
 		}
 

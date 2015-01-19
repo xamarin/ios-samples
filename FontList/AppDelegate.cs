@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace FontList {
 	[Register("AppDelegate")]
@@ -20,13 +20,13 @@ namespace FontList {
 			// create our window
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.MakeKeyAndVisible ();
-			
+
 			// are we running an iPhone or an iPad?
 			DetermineCurrentDevice ();
 
 			// instantiate our main navigatin controller and add it's view to the window
 			mainNavController = new UINavigationController ();
-			
+
 			switch (CurrentDevice)
 			{
 				case DeviceType.iPhone:
@@ -35,7 +35,7 @@ namespace FontList {
 					mainNavController.PushViewController (home, false);
 					break;
 			}
-			
+
 			window.RootViewController = mainNavController;
 
 			return true;

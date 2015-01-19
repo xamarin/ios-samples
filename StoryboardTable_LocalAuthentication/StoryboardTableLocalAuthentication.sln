@@ -26,7 +26,4 @@ Global
 		{18B5A016-BE3C-468A-8D88-7CD4F12E4A7E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{18B5A016-BE3C-468A-8D88-7CD4F12E4A7E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = StoryboardTable\StoryboardTable.csproj
-	EndGlobalSection
 EndGlobal

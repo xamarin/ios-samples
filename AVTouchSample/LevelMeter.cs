@@ -1,8 +1,7 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using System.Drawing;
+using Foundation;
+using UIKit;
+using CoreGraphics;
 using System.Collections.Generic;
 
 namespace avTouch
@@ -51,7 +50,7 @@ namespace avTouch
 			Vertical = Frame.Width < Frame.Height;
 		}
 
-		public LevelMeter (RectangleF frame) : base (frame)
+		public LevelMeter (CGRect frame) : base (frame)
 		{
 			MeterInit ();
 		}
@@ -70,15 +69,15 @@ namespace avTouch
 			return val;
 		}
 
-		public override void Draw (RectangleF rectB)
+		public override void Draw (CGRect rectB)
 		{
 			CGColorSpace cs = null;
 			CGContext ctx = null;
-			RectangleF bds;
-			
+			CGRect bds;
+
 			using (ctx = UIGraphics.GetCurrentContext ()) {
 				using (cs = CGColorSpace.CreateDeviceRGB ()) {
-			
+
 					if (Vertical) {
 						ctx.TranslateCTM (0, Bounds.Height);
 						ctx.ScaleCTM (1, -1);
@@ -86,32 +85,32 @@ namespace avTouch
 					} else {
 						ctx.TranslateCTM (0, Bounds.Height);
 						ctx.RotateCTM (-(float)Math.PI / 2);
-						bds = new RectangleF (0, 0, Bounds.Height, Bounds.Width);
+						bds = new CGRect (0, 0, Bounds.Height, Bounds.Width);
 					}
-			
+
 					ctx.SetFillColorSpace (cs);
 					ctx.SetStrokeColorSpace (cs);
-			
+
 					if (NumLights == 0) {
 						float currentTop = 0;
-				
+
 						if (BgColor != null) {
 							BgColor.SetColor ();
 							ctx.FillRect (bds);
 						}
-				
+
 						foreach (var thisTresh in ColorThresholds) {
 							var val = Math.Min (thisTresh.MaxValue, Level);
-					
-							var rect = new RectangleF (0, bds.Height * currentTop, bds.Width, bds.Height * (val - currentTop));
+
+							var rect = new CGRect (0, bds.Height * currentTop, bds.Width, bds.Height * (val - currentTop));
 							thisTresh.Color.SetColor ();
 							ctx.FillRect (rect);
-					
+
 							if (Level < thisTresh.MaxValue)
 								break;
 							currentTop = val;
 						}
-				
+
 						if (BorderColor != null) {
 							BorderColor.SetColor ();
 							bds.Inflate (-0.5f, -0.5f);
@@ -121,27 +120,27 @@ namespace avTouch
 						float lightMinVal = 0;
 						float insetAmount, lightVSpace;
 						int peakLight = -1;
-				
-						lightVSpace = bds.Height / (float)NumLights;
+
+						lightVSpace = (float)bds.Height / (float)NumLights;
 						if (lightVSpace < 4)
 							insetAmount = 0;
 						else if (lightVSpace < 8)
 							insetAmount = 0.5f;
 						else
 							insetAmount = 1;
-				
+
 						if (PeakLevel > 0) {
-							peakLight = (int)(PeakLevel * NumLights); 
+							peakLight = (int)(PeakLevel * NumLights);
 							if (peakLight >= NumLights)
 								peakLight = NumLights - 1;
 						}
-				
+
 						for (int light_i = 0; light_i < NumLights; light_i++) {
 							float lightMaxVal = (light_i + 1) / (float)NumLights;
 							float lightIntensity;
-							RectangleF lightRect;
+							CGRect lightRect;
 							UIColor lightColor;
-					
+
 							if (light_i == peakLight)
 								lightIntensity = 1;
 							else {
@@ -160,16 +159,16 @@ namespace avTouch
 									lightColor = nextTresh.Color;
 								}
 							}
-					
-							lightRect = new RectangleF (0, bds.Height * light_i / (float)NumLights,
+
+							lightRect = new CGRect (0, bds.Height * light_i / (float)NumLights,
 								bds.Width, bds.Height * (1f / NumLights));
 							lightRect.Inset (insetAmount, insetAmount);
-					
+
 							if (BgColor != null) {
 								BgColor.SetColor ();
 								ctx.FillRect (lightRect);
 							}
-					
+
 							//Console.WriteLine ("Got: {0} {1}", lightColor, UIColor.Red);
 							//lightColor = UIColor.Red;
 							if (lightIntensity == 1) {
@@ -178,17 +177,17 @@ namespace avTouch
 								ctx.FillRect (lightRect);
 							} else if (lightIntensity > 0) {
 								using (var clr = new CGColor (lightColor.CGColor, lightIntensity)) {
-									ctx.SetFillColor (clr); 
-									ctx.FillRect (lightRect); 
-								}						
+									ctx.SetFillColor (clr);
+									ctx.FillRect (lightRect);
+								}
 							}
-					
+
 							if (BorderColor != null) {
 								BorderColor.SetColor ();
 								lightRect.Inset (0.5f, 0.5f);
 								ctx.StrokeRect (lightRect);
 							}
-					
+
 							lightMinVal = lightMaxVal;
 						}
 					}

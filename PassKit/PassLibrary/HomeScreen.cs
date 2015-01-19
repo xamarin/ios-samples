@@ -1,13 +1,13 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 using System.Collections.Generic;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 using System.IO;
-using MonoTouch.PassKit;
+using PassKit;
 
 /*
- NOTE: Be sure to check the Entitlements.plist - you must enter your TeamID with the 
+ NOTE: Be sure to check the Entitlements.plist - you must enter your TeamID with the
  PassTypeIDs that you have created on the iOS Provisioning Portal, and ensure that your
  Provisioning Profiles for testing/deploying this app have PassKit enabled.
  */
@@ -28,7 +28,7 @@ namespace PassLibrary {
 		NSObject noteCenter;
 
 		public HomeScreen ()
-		{	
+		{
 		}
 
 		public override void ViewDidLoad ()
@@ -36,7 +36,7 @@ namespace PassLibrary {
 			base.ViewDidLoad ();
 			View.BackgroundColor = UIColor.White;
 
-			table = new UITableView (new RectangleF (0, 110, View.Bounds.Width, View.Bounds.Height - 120));
+			table = new UITableView (new CGRect (0, 110, View.Bounds.Width, View.Bounds.Height - 120));
 			table.AutoresizingMask = UIViewAutoresizing.All;
 
 			refreshButton = UIButton.FromType (UIButtonType.RoundedRect);
@@ -72,7 +72,7 @@ namespace PassLibrary {
 						table.Source = new TableSource (passlist, library);
 						table.ReloadData ();
 					});
-				}, library);  // IMPORTANT: must pass the library in 
+				}, library);  // IMPORTANT: must pass the library in
 			} else {
 				Console.WriteLine ("No Pass Kit - must be an iPad");
 				addPassButton.SetTitleColor (UIColor.LightGray, UIControlState.Disabled);
@@ -80,15 +80,15 @@ namespace PassLibrary {
 			}
 
 			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
-				refreshButton.Frame = new RectangleF (230, 114, 80, 40);
-				addPassButton.Frame = new RectangleF (10, 114, 80, 40);
-				replacePassButton.Frame = new RectangleF (100, 114, 80, 40);
-				passLibraryAvailableLabel.Frame = new RectangleF (10, 69, 300, 40);
+				refreshButton.Frame = new CGRect (230, 114, 80, 40);
+				addPassButton.Frame = new CGRect (10, 114, 80, 40);
+				replacePassButton.Frame = new CGRect (100, 114, 80, 40);
+				passLibraryAvailableLabel.Frame = new CGRect (10, 69, 300, 40);
 			} else {
-				refreshButton.Frame = new RectangleF (230, 50, 80, 40);
-				addPassButton.Frame = new RectangleF (10, 50, 80, 40);
-				replacePassButton.Frame = new RectangleF (100, 50, 80, 40);
-				passLibraryAvailableLabel.Frame = new RectangleF (10, 5, 300, 40);
+				refreshButton.Frame = new CGRect (230, 50, 80, 40);
+				addPassButton.Frame = new CGRect (10, 50, 80, 40);
+				replacePassButton.Frame = new CGRect (100, 50, 80, 40);
+				passLibraryAvailableLabel.Frame = new CGRect (10, 5, 300, 40);
 			}
 
 			Add (table);
@@ -149,21 +149,20 @@ namespace PassLibrary {
 		void HandleReplaceTouchUpInside (object sender, EventArgs e)
 		{
 			if (PKPassLibrary.IsAvailable) {
-			
+
 				var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 				var newFilePath = Path.Combine (documentsPath, "CouponBanana2.pkpass");
 				var builtInPassPath = Path.Combine (System.Environment.CurrentDirectory, "CouponBanana2.pkpass");
 				if (!System.IO.File.Exists(newFilePath))
 					System.IO.File.Copy (builtInPassPath, newFilePath);
-				
+
 				NSData nsdata;
 				using ( FileStream oStream = File.Open (newFilePath, FileMode.Open ) ) {
 					nsdata = NSData.FromStream ( oStream );
 				}
-				
+
 				var err = new NSError(new NSString("42"), -42);
 				var newPass = new PKPass(nsdata,out err);
-
 
 				bool alreadyExists = library.Contains (newPass);
 

@@ -1,6 +1,6 @@
-﻿using System;
-using MonoTouch.EventKit;
-using MonoTouch.Foundation;
+using System;
+using EventKit;
+using Foundation;
 
 namespace PrivacyPrompts
 {
@@ -13,7 +13,6 @@ namespace PrivacyPrompts
 			CheckAccess = () => CheckEventStoreAccess (entityType);
 			RequestAccess = () => RequestEventStoreAccess (entityType);
 		}
-
 
 		string CheckEventStoreAccess (EKEntityType type)
 		{

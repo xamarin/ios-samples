@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 
-using MonoTouch.AudioToolbox;
-using MonoTouch.CoreFoundation;
-using MonoTouch.AudioUnit;
+using AudioToolbox;
+using CoreFoundation;
+using AudioUnit;
 using System.Runtime.InteropServices;
-using MonoTouch.AVFoundation;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using AVFoundation;
+using UIKit;
+using Foundation;
 
 namespace AUSoundTriggeredPlayingSoundMemoryBased
 {
@@ -19,7 +19,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
         const int _sampleRate = 44100;
 
         AudioComponent _audioComponent;
-        AudioUnit _audioUnit;
+		AudioUnit.AudioUnit _audioUnit;
         ExtAudioFile _extAudioFile;
         AudioBuffers _buffer;
         AudioStreamBasicDescription _srcFormat;
@@ -42,7 +42,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
                 long frame = value;
                 frame = Math.Min(frame, _totalFrames);
                 frame = Math.Max(frame, 0);
-                _currentFrame = (uint)frame;                
+                _currentFrame = (uint)frame;
             }
             get
             {
@@ -88,25 +88,25 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
                         _signalLevel += diff / 1000f;
                     else
                         _signalLevel += diff / 10000f;
-                    
+
                     diff = Math.Abs(diff);
-                    
+
                     // sound triger detection
                     if (_triggered <= 0 && diff > _threshold)
                     {
                         _triggered = _playingDuration;
                     }
                 }
-            }                        
+            }
 
             // playing sound
             unsafe
             {
                 var outLPtr = (int*)outL.ToPointer();
-                var outRPtr = (int*)outR.ToPointer();                
-                
+                var outRPtr = (int*)outR.ToPointer();
+
                 for (int i = 0; i < numberFrames; i++)
-                {                    
+                {
                     _triggered = Math.Max(0, _triggered - 1);
 
                     if (_triggered <= 0)
@@ -124,7 +124,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
                         {
                             _currentFrame = 0;
                         }
-                        
+
                         ++_currentFrame;
                         *outLPtr++ = buf0[_currentFrame];
                         *outRPtr++ = buf1[_currentFrame];
@@ -187,13 +187,13 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
             }
             session.SetActive(true);
             session.SetCategory(AVAudioSessionCategory.PlayAndRecord);
-            session.SetPreferredIOBufferDuration(0.005, out error);    
+            session.SetPreferredIOBufferDuration(0.005, out error);
 
-            // Getting AudioComponent Remote output 
+            // Getting AudioComponent Remote output
             _audioComponent = AudioComponent.FindComponent(AudioTypeOutput.Remote);
 
             // creating an audio unit instance
-            _audioUnit = new AudioUnit(_audioComponent);
+            _audioUnit = new AudioUnit.AudioUnit(_audioComponent);
 
             // turning on microphone
             _audioUnit.SetEnableIO(true,
@@ -202,10 +202,10 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
             );
 
             // setting audio format
-            _audioUnit.SetAudioFormat(_dstFormat, 
-                AudioUnitScopeType.Input, 
+            _audioUnit.SetAudioFormat(_dstFormat,
+                AudioUnitScopeType.Input,
                 0 // Remote Output
-            );  
+            );
 
             var format = AudioStreamBasicDescription.CreateLinearPCM(_sampleRate, bitsPerChannel: 32);
             format.FormatFlags = AudioStreamBasicDescription.AudioFormatFlagsNativeFloat;
@@ -220,9 +220,9 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 
         public void Dispose()
         {
-            _audioUnit.Stop(); 
+            _audioUnit.Stop();
             _audioUnit.Dispose();
-            _extAudioFile.Dispose();            
+            _extAudioFile.Dispose();
         }
     }
 }

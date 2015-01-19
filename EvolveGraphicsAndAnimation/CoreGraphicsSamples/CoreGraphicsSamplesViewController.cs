@@ -1,7 +1,7 @@
-using MonoTouch.UIKit;
-using System.Drawing;
+using UIKit;
+using CoreGraphics;
 using System;
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace CoreGraphicsSamples
 {
@@ -10,11 +10,11 @@ namespace CoreGraphicsSamples
 		TriangleView triangleView;
 //		DrawnImageView drawnImageView;
 //		PDFView pdfView;
-        
+
 		public CoreGraphicsSamplesViewController ()
 		{
 		}
-        
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

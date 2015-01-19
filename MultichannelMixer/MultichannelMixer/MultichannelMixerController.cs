@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Diagnostics;
-using MonoTouch.Foundation;
-using MonoTouch.AudioUnit;
-using MonoTouch.CoreFoundation;
-using MonoTouch.AudioToolbox;
+using Foundation;
+using AudioUnit;
+using CoreFoundation;
+using AudioToolbox;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
@@ -24,7 +24,7 @@ namespace MultichannelMixer
 		CFUrl[] sourceURL;
 		SoundBuffer[] soundBuffer;
 		bool playing;
-		AudioUnit mixer;
+		AudioUnit.AudioUnit mixer;
 
 		public MultichannelMixerController ()
 		{
@@ -108,7 +108,7 @@ namespace MultichannelMixer
 			// now that we've set everything up we can initialize the graph, this will also validate the connections
 			if (graph.Initialize () != AUGraphError.OK)
 				throw new ApplicationException ();
-		}			
+		}
 
 		// load up audio data from the demo files into mSoundBuffer.data used in the render proc
 		void LoadFiles ()
@@ -121,7 +121,7 @@ namespace MultichannelMixer
 				using (var file = ExtAudioFile.OpenUrl (sourceURL [i])) {
 
 					var clientFormat = file.FileDataFormat;
-					clientFormat.FormatFlags = AudioStreamBasicDescription.AudioFormatFlagsAudioUnitCanonical;
+					clientFormat.FormatFlags = AudioStreamBasicDescription.AudioFormatFlagsNativeFloat;
 					clientFormat.ChannelsPerFrame = 1;
 					clientFormat.FramesPerPacket = 1;
 					clientFormat.BitsPerChannel = 8 * sizeof (int);

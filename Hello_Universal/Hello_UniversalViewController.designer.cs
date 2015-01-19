@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace Hello_Universal
 {
@@ -12,9 +12,9 @@ namespace Hello_Universal
 	partial class Hello_UniversalViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UIButton btnClickMe { get; set; }
+		UIKit.UIButton btnClickMe { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UILabel lblOutput { get; set; }
+		UIKit.UILabel lblOutput { get; set; }
 	}
 }

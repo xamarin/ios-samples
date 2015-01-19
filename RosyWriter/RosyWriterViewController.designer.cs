@@ -16,7 +16,7 @@ namespace RosyWriter
 
 		[Outlet]
 		MonoTouch.UIKit.UIBarButtonItem btnRecord { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (viewPreview != null) {

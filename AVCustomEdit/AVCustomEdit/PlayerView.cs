@@ -2,16 +2,16 @@
 
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AVFoundation;
-using MonoTouch.ObjCRuntime;
+using Foundation;
+using UIKit;
+using AVFoundation;
+using ObjCRuntime;
 
 namespace AVCustomEdit
 {
 	public partial class PlayerView : UIView
 	{
-		public AVPlayer player 
+		public AVPlayer player
 		{
 			get{
 				return (this.Layer as AVPlayerLayer).Player;

@@ -1,105 +1,98 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
-namespace Example_CoreAnimation.Code.NavigationTable
+namespace CoreAnimationExample
 {
-	/// <summary>
-	/// 
-	/// </summary>
 	public class NavItem
 	{
-		 
-		#region  declarations 
-		
+
+		#region  declarations
+
 		/// <summary>
 		/// The name of the nav item, shows up as the label
 		/// </summary>
-		public string Name
-		{
+		string name;
+
+		public string Name {
 			get { return name; }
 			set { name = value; }
 		}
-		protected string name;
-		
+
 		/// <summary>
-		/// The UIViewController that the nav item opens. Use this property if you 
+		/// The UIViewController that the nav item opens. Use this property if you
 		/// wanted to early instantiate the controller when the nav table is built out,
-		/// otherwise just set the Type property and it will lazy-instantiate when the 
+		/// otherwise just set the Type property and it will lazy-instantiate when the
 		/// nav item is clicked on.
 		/// </summary>
-		public UIViewController Controller
-		{
+		UIViewController controller;
+
+		public UIViewController Controller {
 			get { return controller; }
 			set { controller = value; }
 		}
-		protected UIViewController controller;
-		
+
 		/// <summary>
 		/// Path to the image to show in the nav item
 		/// </summary>
-		public string ImagePath
-		{
+		string imagePath;
+
+		public string ImagePath {
 			get { return imagePath; }
 			set { imagePath = value; }
 		}
-		protected string imagePath;
-		
+
 		/// <summary>
-		/// The Type of the UIViewController. Set this to the type and leave the Controller 
-		/// property empty to lazy-instantiate the ViewController when the nav item is 
+		/// The Type of the UIViewController. Set this to the type and leave the Controller
+		/// property empty to lazy-instantiate the ViewController when the nav item is
 		/// clicked.
 		/// </summary>
-		public Type ControllerType
-		{
+		Type controllerType;
+
+		public Type ControllerType {
 			get { return controllerType; }
 			set { controllerType = value; }
 		}
-		protected Type controllerType;
-		
+
 		/// <summary>
-		/// a list of the constructor args (if neccesary) for the controller. use this in 
+		/// a list of the constructor args (if neccesary) for the controller. use this in
 		/// conjunction with ControllerType if lazy-creating controllers.
 		/// </summary>
-		public object[] ControllerConstructorArgs
-		{
+		object[] controllerConstructorArgs = new object[] { };
+
+		public object[] ControllerConstructorArgs {
 			get { return controllerConstructorArgs; }
-			set
-			{
+			set {
 				controllerConstructorArgs = value;
-				
+
 				controllerConstructorTypes = new Type[controllerConstructorArgs.Length];
-				for(int i = 0; i <  controllerConstructorArgs.Length; i++) {
-					 controllerConstructorTypes[i] =  controllerConstructorArgs[i].GetType();
+				for (int i = 0; i < controllerConstructorArgs.Length; i++) {
+					controllerConstructorTypes [i] = controllerConstructorArgs [i].GetType ();
 				}
 			}
 		}
-		protected object[] controllerConstructorArgs = new object[] {};
-		
+
 		/// <summary>
 		/// The types of constructor args.
 		/// </summary>
-		public Type[] ControllerConstructorTypes
-		{
+		Type[] controllerConstructorTypes = Type.EmptyTypes;
+
+		public Type[] ControllerConstructorTypes {
 			get { return  controllerConstructorTypes; }
 		}
-		protected Type[] controllerConstructorTypes = Type.EmptyTypes;
-	
-		#endregion
-		
-		 
 
-		 
-		#region  constructors 
-		
+		#endregion
+
+		#region  constructors
+
 		public NavItem ()
 		{
 		}
-		
+
 		public NavItem (string name) : this ()
 		{
 			this.name = name;
 		}
-		
+
 		public NavItem (string name, UIViewController controller) : this (name)
 		{
 			this.controller = controller;
@@ -114,7 +107,7 @@ namespace Example_CoreAnimation.Code.NavigationTable
 		{
 			this.ControllerConstructorArgs = controllerConstructorArgs;
 		}
-		
+
 		public NavItem (string name, UIViewController controller, string imagePath) : this (name, controller)
 		{
 			this.imagePath = imagePath;
@@ -131,6 +124,6 @@ namespace Example_CoreAnimation.Code.NavigationTable
 		}
 
 		#endregion
-		 
+
 	}
 }

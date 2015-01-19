@@ -1,16 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
-using MonoTouch.PassKit;
+using PassKit;
 
 namespace PassLibrary {
 
 	/// <summary>
 	/// Display the list of passes installed on this device, and allowed to be viewed
-	/// by virtue of the Entitlements and Provisioning Profile (ie only passes from 
+	/// by virtue of the Entitlements and Provisioning Profile (ie only passes from
 	/// our Team ID).
 	/// </summary>
 	public class TableSource : UITableViewSource {
@@ -18,28 +18,28 @@ namespace PassLibrary {
 		PKPassLibrary library;
 
 		protected string cellIdentifier = "TableCell";
-	
+
 		public TableSource (PKPass[] items, PKPassLibrary library)
 		{
 			tableItems = items;
 			this.library = library;
 		}
-	
+
 		/// <summary>
 		/// Called by the TableView to determine how many cells to create for that particular section.
 		/// </summary>
-		public override int RowsInSection (UITableView tableview, int section)
+		public override nint RowsInSection (UITableView tableview, nint section)
 		{
 			return tableItems.Length;
 		}
-		
+
 		/// <summary>
 		/// Called when a row is touched
 		/// </summary>
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			var pass = tableItems[indexPath.Row];
-			string passInfo = 
+			string passInfo =
 					"Desc:" + pass.LocalizedDescription
 					+ "\nOrg:" + pass.OrganizationName
 					//+ "\nDebug:" + pass.DebugDescription
@@ -53,11 +53,11 @@ namespace PassLibrary {
 				,passInfo , null, "OK", null).Show();
 			tableView.DeselectRow (indexPath, true);
 		}
-		
+
 		/// <summary>
 		/// Called by the TableView to get the actual UITableViewCell to render for the particular row
 		/// </summary>
-		public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			// request a recycled cell to save memory
 			UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);
@@ -65,7 +65,7 @@ namespace PassLibrary {
 			if (cell == null)
 				cell = new UITableViewCell (UITableViewCellStyle.Subtitle, cellIdentifier);
 
-			cell.ImageView.Image = tableItems[indexPath.Row].Icon; 
+			cell.ImageView.Image = tableItems[indexPath.Row].Icon;
 			cell.TextLabel.Text = tableItems[indexPath.Row].LocalizedDescription;
 			cell.DetailTextLabel.Text = tableItems[indexPath.Row].LocalizedName;
 

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using CoreGraphics;
 using System.Linq;
 using System.IO;
 using System.Xml;
@@ -8,8 +8,8 @@ using System.Xml.Linq;
 using System.Xml.XPath;
 using System.Text.RegularExpressions;
 
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace Quotes
 {
@@ -50,14 +50,14 @@ namespace Quotes
 			Title = "Pages";
 		}
 
-		/* Create a collection view with a flow layout. Set up the cell, and assign it to 
+		/* Create a collection view with a flow layout. Set up the cell, and assign it to
 		 * our base CollectionView property.
 		  */
 		public override void LoadView ()
 		{
 			var layout = new UICollectionViewFlowLayout ();
 			layout.MinimumInteritemSpacing = 20;
-			layout.ItemSize = new SizeF (200.0f, 290.0f);
+			layout.ItemSize = new CGSize (200.0f, 290.0f);
 
 			var collectionView = new UICollectionView (UIScreen.MainScreen.ApplicationFrame, layout);
 
@@ -70,7 +70,7 @@ namespace Quotes
 			CollectionView = collectionView;
 		}
 
-		public override int GetItemsCount (UICollectionView collectionView, int section)
+		public override nint GetItemsCount (UICollectionView collectionView, nint section)
 		{
 			return pages.Count;
 		}
@@ -89,7 +89,7 @@ namespace Quotes
 			var pvc = new PageViewController ();
 
 			pvc.controllerPage = pages.ElementAt (indexPath.Row);
-	
+
 			NavigationController.PushViewController (pvc, true);
 		}
 	}

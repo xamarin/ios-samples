@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.CoreAnimation;
-using MonoTouch.UIKit;
-using MonoTouch.ObjCRuntime;
+using CoreGraphics;
+using Foundation;
+using CoreAnimation;
+using UIKit;
+using ObjCRuntime;
 
 namespace SimpleCollectionView
 {
@@ -12,7 +12,7 @@ namespace SimpleCollectionView
 		public int CellCount = 20;
 		public float Radius;
 		public float ItemSize = 70.0f;
-		public PointF Center;
+		public CGPoint Center;
 	}
 
 	public class CircleLayout : UICollectionViewLayout
@@ -21,7 +21,7 @@ namespace SimpleCollectionView
 		CircleData data = new CircleData ();
 
 		[Export("layoutAttributesClass")]
-		public static new Class LayoutAttributesClass {	
+		public static new Class LayoutAttributesClass {
 			get {
 				return new Class (typeof (CustomCollectionViewLayoutAttributes));
 			}
@@ -31,20 +31,20 @@ namespace SimpleCollectionView
 		{
 			base.PrepareLayout ();
 
-			SizeF size = CollectionView.Frame.Size;
+			CGSize size = CollectionView.Frame.Size;
 
-			data.CellCount = CollectionView.NumberOfItemsInSection (0);
-			data.Center = new PointF (size.Width / 2.0f, size.Height / 2.0f);
-			data.Radius = Math.Min (size.Width, size.Height) / 2.5f;	
+			data.CellCount = (int)CollectionView.NumberOfItemsInSection (0);
+			data.Center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
+			data.Radius = (int)Math.Min (size.Width, size.Height) / 2.5f;
 		}
-			
-		public override SizeF CollectionViewContentSize {
+
+		public override CGSize CollectionViewContentSize {
 			get {
 				return CollectionView.Frame.Size;
 			}
 		}
 
-        public override bool ShouldInvalidateLayoutForBoundsChange (RectangleF newBounds)
+        public override bool ShouldInvalidateLayoutForBoundsChange (CGRect newBounds)
         {
             return true;
         }
@@ -55,7 +55,7 @@ namespace SimpleCollectionView
 			// use the workaround here: https://bugzilla.xamarin.com/show_bug.cgi?id=10877#c6
 			var attributes = CustomCollectionViewLayoutAttributes.CreateForCell<CustomCollectionViewLayoutAttributes> (path);
 
-			attributes.Size = new SizeF (data.ItemSize, data.ItemSize);
+			attributes.Size = new CGSize (data.ItemSize, data.ItemSize);
 
 			// Create a random value around 1.0f
 			attributes.Distance = 1.0f + ((float) random.NextDouble () - 0.5f) / 5.0f;
@@ -65,7 +65,7 @@ namespace SimpleCollectionView
 			return attributes;
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (RectangleF rect)
+		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			var attributes = new UICollectionViewLayoutAttributes [data.CellCount];
 
@@ -82,20 +82,20 @@ namespace SimpleCollectionView
 	{
 		public int Row { get; set; }
 		public CircleData Data { get; set; }
-		// "distance from center" multiplier.	
+		// "distance from center" multiplier.
 		public float Distance { get; set; }
-		
+
 		public override NSObject Copy ()
 		{
 			// We must override Copy since iOS will try to clone objects using the NSCopying protocol.
 			var obj = base.Copy () as CustomCollectionViewLayoutAttributes;
-			
+
 			if (obj != null) {
 				obj.Row = Row;
 				obj.Data = Data;
 				obj.Distance = Distance;
 			}
-			
+
 			return obj;
 		}
 	}

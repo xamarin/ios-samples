@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace SearchDemo
 {
@@ -13,7 +13,7 @@ namespace SearchDemo
         public SearchItemViewController () : base ("SearchItemViewController", null)
         {
         }
-        
+
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();

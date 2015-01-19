@@ -1,10 +1,10 @@
-﻿using System;
-using MonoTouch.CoreLocation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using MonoTouch.MapKit;
-using MonoTouch.Foundation;
-using System.Drawing;
+using System;
+using CoreLocation;
+using UIKit;
+using CoreGraphics;
+using MapKit;
+using Foundation;
+using CoreGraphics;
 
 namespace PrivacyPrompts
 {
@@ -40,7 +40,7 @@ namespace PrivacyPrompts
 			locationManager.AuthorizationChanged += delegate (object sender, CLAuthorizationChangedEventArgs e) {
 				accessStatus.Text = e.Status.ToString();
 				if (e.Status == CLAuthorizationStatus.AuthorizedWhenInUse)
-				{	
+				{
 					mapView.ShowsUserLocation = true;
 					locationManager.StartUpdatingLocation ();
 				}
@@ -53,7 +53,7 @@ namespace PrivacyPrompts
 
 		void AddLocationMessage()
 		{
-			locationMessage = new UILabel (RectangleF.Empty);
+			locationMessage = new UILabel (CGRect.Empty);
 			locationMessage.TranslatesAutoresizingMaskIntoConstraints = false;
 			locationMessage.Lines = 0;
 			locationMessage.Font = UIFont.SystemFontOfSize (UIFont.SmallSystemFontSize);
@@ -108,7 +108,7 @@ namespace PrivacyPrompts
 
 		void RequestLocationServicesAuthorization ()
 		{
-			//Also note that info.plist has the NSLocationWhenInUseUsageDescription key 
+			//Also note that info.plist has the NSLocationWhenInUseUsageDescription key
 			//This call is asynchronous
 			locationManager.RequestWhenInUseAuthorization ();
 		}

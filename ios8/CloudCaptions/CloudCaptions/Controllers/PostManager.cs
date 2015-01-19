@@ -28,7 +28,6 @@ namespace CloudCaptions
 		public UIRefreshControl RefreshControl { get; set; }
 		public List<Post> PostCells { get; private set; }
 
-
 		CKDatabase PublicDB {
 			get {
 				return CKContainer.DefaultContainer.PublicCloudDatabase;
@@ -149,7 +148,7 @@ namespace CloudCaptions
 
 				case Error.Ignore:
 					isLoadingBatch = false;
-					RefreshControl.EndRefreshing ();
+					DispatchQueue.MainQueue.DispatchAsync (RefreshControl.EndRefreshing);
 					Console.WriteLine ("Error: {0}", operationError.Description);
 					break;
 
@@ -259,8 +258,7 @@ namespace CloudCaptions
 		void OnLoadNewPostFetchRecord(CKRecord record, List<Post> newPosts, ref Post lastRecordInOperation)
 		{
 			// If the record we just fetched doesn't match recordIDs to any item in our newPosts array, let's make an Post and add it
-			// TODO: Equals works ??? https://trello.com/c/RuwA7hRS
-			var matchingRecord = newPosts.FindIndex (p => p.PostRecord.RecordId.Equals(record.RecordId));
+			var matchingRecord = newPosts.FindIndex (p => p.PostRecord.Id.Equals(record.Id));
 			if (matchingRecord == -1) {
 				Post fetchedPost = new Post (record);
 				newPosts.Add (fetchedPost);

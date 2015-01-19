@@ -1,7 +1,7 @@
-﻿using System;
-using MonoTouch.AssetsLibrary;
-using MonoTouch.UIKit;
-using MonoTouch.Photos;
+using System;
+using AssetsLibrary;
+using UIKit;
+using Photos;
 
 namespace PrivacyPrompts
 {

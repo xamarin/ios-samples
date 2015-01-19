@@ -2,18 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace FontList.Screens.iPhone.FontViewer
 {
 	public partial class FontViewerScreen_iPhone : UIViewController
 	{
 		UIFont displayFont;
-		
+
 		#region Constructors
 
-		// The IntPtr and initWithCoder constructors are required for items that need 
+		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
 		public FontViewerScreen_iPhone (IntPtr handle) : base(handle)
@@ -36,20 +36,20 @@ namespace FontList.Screens.iPhone.FontViewer
 		void Initialize ()
 		{
 		}
-		
+
 		#endregion
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			Title = displayFont.Name;
 
 			txtMain.Editable = true;
 			txtMain.Font = displayFont;
 			txtMain.Editable = false;
 		}
-		
+
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			return true;

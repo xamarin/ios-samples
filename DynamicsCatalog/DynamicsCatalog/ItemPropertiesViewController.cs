@@ -1,5 +1,5 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace DynamicsCatalog {
 
@@ -15,9 +15,9 @@ namespace DynamicsCatalog {
 		{
 			base.ViewDidLoad ();
 			/*
-     			We want to show collisions between views and boundaries with different 
-     			elasticities, we thus associate the two views to gravity and collision 
-     			behaviors. We will only change the restitution parameter for one of 
+     			We want to show collisions between views and boundaries with different
+     			elasticities, we thus associate the two views to gravity and collision
+     			behaviors. We will only change the restitution parameter for one of
      			these views.
      		*/
 			var gravityBehavior = new UIGravityBehavior (square1, square2);
@@ -35,7 +35,7 @@ namespace DynamicsCatalog {
 			var propertiesBehavior = new UIDynamicItemBehavior (square2) {
 				Elasticity = 0.5f
 			};
-	
+
 			Animator = new UIDynamicAnimator (View);
 			Animator.AddBehaviors (gravityBehavior, collisionBehavior, propertiesBehavior);
 		}

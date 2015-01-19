@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
+using UIKit;
+using Foundation;
 
 namespace TransitionsDemo.AnimationControllers
 {
@@ -10,8 +10,8 @@ namespace TransitionsDemo.AnimationControllers
 		{
 		}
 
-		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext, 
-		                                        UIViewController fromViewController, UIViewController toViewController, 
+		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
+		                                        UIViewController fromViewController, UIViewController toViewController,
 		                                        UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
@@ -19,7 +19,7 @@ namespace TransitionsDemo.AnimationControllers
 			containerView.SendSubviewToBack (toView);
 
 			double duration = TransitionDuration (transitionContext);
-			NSAction animation = () => {
+			Action animation = () => {
 				fromView.Alpha = 0f;
 			};
 

@@ -3,14 +3,14 @@
 using System;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.AVFoundation;
-using MonoTouch.CoreFoundation;
-using MonoTouch.CoreMedia;
+using Foundation;
+using UIKit;
+using AVFoundation;
+using CoreFoundation;
+using CoreMedia;
 using System.Threading.Tasks;
 using System.IO;
-using MonoTouch.AssetsLibrary;
+using AssetsLibrary;
 
 namespace AVCustomEdit
 {
@@ -68,7 +68,7 @@ namespace AVCustomEdit
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-		
+
 			gestureRecognizer.ShouldReceiveTouch = ShouldReceiveTouch;
 			gestureRecognizer.AddTarget (() => { HandleTapGesture (gestureRecognizer); });
 
@@ -113,7 +113,6 @@ namespace AVCustomEdit
 			Player.Pause();
 			removeTimeObserverFromPlayer ();
 		}
-
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
@@ -161,7 +160,7 @@ namespace AVCustomEdit
 			InvokeOnMainThread(delegate{
 				synchronizeWithEditor();
 			});
-			
+
 		}
 
 		void loadAsset(AVAsset asset, string[] assetKeysToLoad, DispatchGroup dispatchGroup)
@@ -210,7 +209,7 @@ namespace AVCustomEdit
 
 				if (PlayerItem != null) {
 					this.PlayerItem.SeekingWaitsForVideoCompositionRendering = true;
-					this.PlayerItem.AddObserver (this, status, NSKeyValueObservingOptions.New| 
+					this.PlayerItem.AddObserver (this, status, NSKeyValueObservingOptions.New|
 						NSKeyValueObservingOptions.Initial, StatusObservationContext.Handle);
 					observer = NSNotificationCenter.DefaultCenter.AddObserver (AVPlayerItem.DidPlayToEndTimeNotification, (notification) => {
 						Console.WriteLine("Seek Zero = true");
@@ -222,7 +221,7 @@ namespace AVCustomEdit
 				Player.ReplaceCurrentItemWithPlayerItem (playerItem);
 			}
 		}
-					
+
 		[Export("playerItemEnded:")]
 		void playerItemEnded (NSObject obj)
 		{
@@ -290,7 +289,7 @@ namespace AVCustomEdit
 			double duration = playerItemDuration;
 
 			if (!Double.IsInfinity (duration)) {
-				float width = scrubber.Bounds.Width;
+				float width = (float)scrubber.Bounds.Width;
 				double interval = 0.5 * duration / width;
 
 				if (interval > 1.0)
@@ -313,11 +312,12 @@ namespace AVCustomEdit
 
 		public override void ObserveValue (NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
 		{
+			var ch = new NSObservedChange (change);
 			if (context == RateObservationContext.Handle) {
 				//TODO: need debug here.
-				float newRate = ((NSNumber)change.ObjectForKey (NSObject.ChangeNewKey)).FloatValue;
-				var oldRateNum = change.ObjectForKey (NSObject.ChangeOldKey);
-				if (oldRateNum.GetType () == typeof(NSNumber) && newRate != ((NSNumber)oldRateNum).FloatValue) {
+				float newRate = ((NSNumber)ch.NewValue).FloatValue;
+				NSNumber oldRateNum = (NSNumber)ch.OldValue;
+				if (oldRateNum != null && newRate != oldRateNum.FloatValue) {
 					playing = (newRate != 0.0f || playRateToRestore != 0.0f);
 					updatePlayPauseButton ();
 					updateScrubber ();
@@ -331,7 +331,7 @@ namespace AVCustomEdit
 					   its duration can be fetched from the item. */
 					addTimeObserverToPlayer ();
 				} else if (playerItem.Status == AVPlayerItemStatus.Failed) {
-					reportError (playerItem.Error);				
+					reportError (playerItem.Error);
 				}
 			} else {
 				base.ObserveValue (keyPath, ofObject, change, context);
@@ -384,7 +384,7 @@ namespace AVCustomEdit
 		void updateProgress(NSTimer timer)
 		{
 			var session = timer.UserInfo as AVAssetExportSession;
-			if (session.Status == AVAssetExportSessionStatus.Exporting) 
+			if (session.Status == AVAssetExportSessionStatus.Exporting)
 				exportProgressView.Progress = session.Progress;
 		}
 
@@ -488,7 +488,6 @@ namespace AVCustomEdit
 
 			var session = Editor.AssetExportSession (AVAssetExportSession.PresetMediumQuality);
 
-
 			var documents = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
 			var filePath = Path.Combine (documents, "..", "tmp", "ExportedProject.mov");
 			if (File.Exists (filePath))
@@ -503,7 +502,7 @@ namespace AVCustomEdit
 				});
 			});
 
-			progressTimer = NSTimer.CreateRepeatingTimer (0.5, () => updateProgress (progressTimer));
+			progressTimer = NSTimer.CreateRepeatingTimer (0.5, (d) => updateProgress (progressTimer));
 			NSRunLoop.Current.AddTimer (progressTimer, NSRunLoopMode.Default);
 		}
 

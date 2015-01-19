@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace TextKitDemo
 {
@@ -22,7 +22,6 @@ namespace TextKitDemo
 		public override void ViewDidAppear (bool animated)
 		{
 			base.ViewDidAppear (animated);
-
 
 			if (notification != null)
 				notification.Dispose ();

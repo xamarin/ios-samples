@@ -1,20 +1,13 @@
 using System;
-using MonoTouch.UIKit;
+using UIKit;
 
-namespace Example_BackgroundExecution
+namespace BackgroundExecution
 {
 	public class Application
 	{
 		public static void Main (string[] args)
 		{
-			try
-			{
-				UIApplication.Main (args, null, "AppDelegate");
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine (e.ToString ());
-			}
+			UIApplication.Main (args, null, "AppDelegate");
 		}
 	}
 }

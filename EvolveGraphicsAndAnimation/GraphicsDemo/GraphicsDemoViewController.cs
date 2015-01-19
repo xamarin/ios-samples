@@ -1,8 +1,8 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace GraphicsDemo
 {
@@ -21,7 +21,7 @@ namespace GraphicsDemo
 			demo = new DemoView{Frame = UIScreen.MainScreen.Bounds};
 			View = demo;
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

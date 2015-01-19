@@ -1,11 +1,11 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.UIKit;
-using MonoTouch.CoreFoundation;
-using MonoTouch.Foundation;
-using MonoTouch.CoreText;
-using MonoTouch.CoreGraphics;
+using UIKit;
+using CoreFoundation;
+using Foundation;
+using CoreText;
+using CoreGraphics;
 
 namespace Quotes
 {
@@ -21,7 +21,7 @@ namespace Quotes
 		public PagePreview ()
 		{
 		}
-		
+
 		public Page Page {
 			get {
 				return cellPage;
@@ -30,7 +30,7 @@ namespace Quotes
 				cellPage = value;
 
 				var textShadow = new NSShadow () {
-					ShadowOffset = new SizeF (3, 3),
+					ShadowOffset = new CGSize (3, 3),
 					ShadowBlurRadius = 2
 				};
 
@@ -61,7 +61,7 @@ namespace Quotes
 			}
 			set {
 				base.Highlighted = value;
-				
+
 				if (value) {
 					textLabel.Layer.CornerRadius = 7.5f;
 					textLabel.BackgroundColor = UIColor.FromHSBA (0.6f, 0.6f, 0.7f, 1);
@@ -71,10 +71,10 @@ namespace Quotes
 				}
 			}
 		}
-		
+
 		public void DoSomeWorkThatTakesLong ()
 		{
-			// we don't have anything to do. Simulate a long-running task by calling sleep. 
+			// we don't have anything to do. Simulate a long-running task by calling sleep.
 			// That is okay here because we are in a demo and not running on the main thread.
 			NSThread.SleepFor (2.0);
 		}

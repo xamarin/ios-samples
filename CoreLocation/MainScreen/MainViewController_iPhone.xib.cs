@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace Example_CoreLocation.MainScreen
 {
@@ -11,7 +11,7 @@ namespace Example_CoreLocation.MainScreen
 	{
 		#region Constructors
 
-		// The IntPtr and initWithCoder constructors are required for controllers that need 
+		// The IntPtr and initWithCoder constructors are required for controllers that need
 		// to be able to be created from a xib rather than from managed code
 
 		public MainViewController_iPhone (IntPtr handle) : base(handle)
@@ -33,9 +33,9 @@ namespace Example_CoreLocation.MainScreen
 		void Initialize ()
 		{
 		}
-		
+
 		#endregion
-		
+
 		public UILabel LblAltitude
 		{
 			get { return this.lblAltitude; }
@@ -68,7 +68,6 @@ namespace Example_CoreLocation.MainScreen
 		{
 			get { return this.lblDistanceToParis; }
 		}
-		
-		
+
 	}
 }

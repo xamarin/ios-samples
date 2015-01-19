@@ -12,7 +12,6 @@ namespace NSZombieApocalypse
 		{
 		}
 
-
 		public override void Draw (RectangleF rect)
 		{
 			rect = RectangleF.Inflate (rect, 4, 4);
@@ -47,9 +46,7 @@ namespace NSZombieApocalypse
 			mouth.LineWidth = 2;
 			mouth.Stroke ();
 
-
 		}
-	
 
 	}
 }

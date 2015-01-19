@@ -1,16 +1,16 @@
 using System;
-using System.Drawing;
+using CoreGraphics;
 
-using MonoTouch.UIKit;
-using MonoTouch.Foundation;
-using MonoTouch.CoreAnimation;
+using UIKit;
+using Foundation;
+using CoreAnimation;
 
 namespace PinchIt
 {
 	public class PinchLayout : UICollectionViewFlowLayout
 	{
 		float pinchedCellScale;
-		PointF pinchedCellCenter ;
+		CGPoint pinchedCellCenter ;
 		public NSIndexPath pinchedCellPath { get; set; }
 
 		public void applyPinchToLayoutAttributes (UICollectionViewLayoutAttributes layoutAttributes)
@@ -22,13 +22,13 @@ namespace PinchIt
 			}
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (RectangleF rect)
+		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			var array = base.LayoutAttributesForElementsInRect (rect);
 
 			foreach (var cellAttributes in array)
 				applyPinchToLayoutAttributes (cellAttributes);
-			
+
 			return array;
 		}
 
@@ -47,7 +47,7 @@ namespace PinchIt
 			InvalidateLayout();
 		}
 
-		public void setPinchedCellCenter (PointF origin)
+		public void setPinchedCellCenter (CGPoint origin)
 		{
 			pinchedCellCenter = origin;
 			InvalidateLayout();

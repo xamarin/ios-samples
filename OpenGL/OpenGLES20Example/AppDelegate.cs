@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace OpenGLES20Example
 {
@@ -24,7 +24,7 @@ namespace OpenGLES20Example
 			window.MakeKeyAndVisible ();
 
 			(root.View as GLView).StartAnimation ();
-			
+
 			return true;
 		}
 	}

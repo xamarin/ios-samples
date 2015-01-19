@@ -6,7 +6,6 @@ using MonoTouch.UIKit;
 using System;
 using System.Drawing;
 
-
 public partial class ToolbarViewController : UIViewController {
 
 	UIBarButtonSystemItem currentSystemItem;
@@ -36,7 +35,7 @@ public partial class ToolbarViewController : UIViewController {
 		"Undo",
 		"Redo"
 	};
-	
+
 	public ToolbarViewController () : base ("ToolbarViewController", null) {}
 
 	//
@@ -47,12 +46,12 @@ public partial class ToolbarViewController : UIViewController {
 	{
 		Console.WriteLine ("I am the action");
 	}
-	
+
 	void CreateToolbarItems ()
 	{
 		// The order is mapped one to one to the UIBarButtonItemStyle
 		var style = (UIBarButtonItemStyle) buttonItemStyleSegControl.SelectedSegment;
-			
+
 		var systemItem = new UIBarButtonItem (currentSystemItem, Action){
 			Style = style
 		};
@@ -87,19 +86,19 @@ public partial class ToolbarViewController : UIViewController {
 
 		systemButtonPicker.Model = new ItemPickerModel (this);
 	}
-	
+
 	partial void toggleStyle (UISegmentedControl sender)
 	{
 		var style = UIBarButtonItemStyle.Plain;
 
 		switch (sender.SelectedSegment){
-		case 0: 
+		case 0:
 			style = UIBarButtonItemStyle.Plain;
 			break;
-		case 1: 
+		case 1:
 			style = UIBarButtonItemStyle.Bordered;
 			break;
-		case 2: 
+		case 2:
 			style = UIBarButtonItemStyle.Done;
 			break;
 		}
@@ -113,17 +112,17 @@ public partial class ToolbarViewController : UIViewController {
 		case 0:
 			toolbar.BarStyle = UIBarStyle.Default;
 			break;
-			
+
 		case 1:
 			toolbar.BarStyle = UIBarStyle.Black;
 			break;
-			
+
 		case 2:
 			toolbar.BarStyle = UIBarStyle.Black;
 			toolbar.Translucent = true;
 			break;
 		}
-		
+
 	}
 
 	partial void toggleTintColor (UISwitch sender)
@@ -141,12 +140,12 @@ public partial class ToolbarViewController : UIViewController {
 
 	public class ItemPickerModel : UIPickerViewModel {
 		ToolbarViewController tvc;
-		
+
 		public ItemPickerModel (ToolbarViewController tvc)
 		{
 			this.tvc = tvc;
 		}
-		
+
 		public override void Selected (UIPickerView picker, int row, int component)
 		{
 			tvc.currentSystemItem = (UIBarButtonSystemItem) picker.SelectedRowInComponent (0);

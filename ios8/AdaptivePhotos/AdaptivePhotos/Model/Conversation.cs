@@ -14,7 +14,7 @@ namespace AdaptivePhotos
 			var photoValues = (NSArray)dictionary.ObjectForKey (new NSString ("photos"));
 			var photos = new NSMutableArray (photoValues.Count);
 
-			for (nint i = 0; i < (nint)photoValues.Count; i++) {
+			for (nuint i = 0; i < photoValues.Count; i++) {
 				var photo = Photo.PhotoWithDictionary (photoValues.GetItem <NSDictionary> (i));
 				photos.Add (photo);
 			}

@@ -1,6 +1,6 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace GLCameraRipple
 {
@@ -15,7 +15,7 @@ namespace GLCameraRipple
 				RootViewController = new RippleViewController ()
 			};
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 
