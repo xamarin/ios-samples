@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KannadaKeyboard", "KannadaKeyboard\KannadaKeyboard.csproj", "{625E73F9-0E9B-440B-B394-9470EC57AA36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KannadaKeyboardCompanion", "KannadaKeyboardCompanion\KannadaKeyboardCompanion.csproj", "{32C85188-8563-40DB-B59B-750F2D5A0157}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32C85188-8563-40DB-B59B-750F2D5A0157}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{32C85188-8563-40DB-B59B-750F2D5A0157}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{32C85188-8563-40DB-B59B-750F2D5A0157}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{32C85188-8563-40DB-B59B-750F2D5A0157}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{32C85188-8563-40DB-B59B-750F2D5A0157}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{32C85188-8563-40DB-B59B-750F2D5A0157}.Debug|iPhone.Build.0 = Debug|iPhone
+		{32C85188-8563-40DB-B59B-750F2D5A0157}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{32C85188-8563-40DB-B59B-750F2D5A0157}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{32C85188-8563-40DB-B59B-750F2D5A0157}.Release|iPhone.ActiveCfg = Release|iPhone
+		{32C85188-8563-40DB-B59B-750F2D5A0157}.Release|iPhone.Build.0 = Release|iPhone
+		{32C85188-8563-40DB-B59B-750F2D5A0157}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{32C85188-8563-40DB-B59B-750F2D5A0157}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{625E73F9-0E9B-440B-B394-9470EC57AA36}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{625E73F9-0E9B-440B-B394-9470EC57AA36}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{625E73F9-0E9B-440B-B394-9470EC57AA36}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{625E73F9-0E9B-440B-B394-9470EC57AA36}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{625E73F9-0E9B-440B-B394-9470EC57AA36}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{625E73F9-0E9B-440B-B394-9470EC57AA36}.Debug|iPhone.Build.0 = Debug|iPhone
+		{625E73F9-0E9B-440B-B394-9470EC57AA36}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{625E73F9-0E9B-440B-B394-9470EC57AA36}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{625E73F9-0E9B-440B-B394-9470EC57AA36}.Release|iPhone.ActiveCfg = Release|iPhone
+		{625E73F9-0E9B-440B-B394-9470EC57AA36}.Release|iPhone.Build.0 = Release|iPhone
+		{625E73F9-0E9B-440B-B394-9470EC57AA36}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{625E73F9-0E9B-440B-B394-9470EC57AA36}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal
