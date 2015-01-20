@@ -51,7 +51,7 @@ a commit, to ensure that all samples are good to go.
                                                                                                                   
                                              
 Samples Submission Guidelines
------------------------------
+=============================
 
 ## Galleries
 
