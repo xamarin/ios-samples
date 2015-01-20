@@ -5,6 +5,8 @@
 *.nib
 *.suo
 
+packages/
+
 */bin/*
 */obj/*
 */*/bin/*
