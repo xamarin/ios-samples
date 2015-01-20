@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{D73F8E79-B4DD-4AB0-A767-D9FA3E2FE740};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{5B20EB20-E020-467C-9FC6-F1AE95CDC4E6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>WatchApp</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>WatchApp</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Interface.storyboard" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.WatchApp.CSharp.targets" />
+  <ItemGroup>
+    <ImageAsset Include="Images.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\Bus0.imageset\Bus0%402x.png" />
+    <ImageAsset Include="Images.xcassets\Bus0.imageset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\Bus1.imageset\Bus1%402x.png" />
+    <ImageAsset Include="Images.xcassets\Bus1.imageset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\Bus2.imageset\Bus2%402x.png" />
+    <ImageAsset Include="Images.xcassets\Bus2.imageset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\Bus3.imageset\Bus3%402x.png" />
+    <ImageAsset Include="Images.xcassets\Bus3.imageset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\Bus4.imageset\Bus4%402x.png" />
+    <ImageAsset Include="Images.xcassets\Bus4.imageset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\Bus5.imageset\Bus5%402x.png" />
+    <ImageAsset Include="Images.xcassets\Bus5.imageset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\Laugh.imageset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\Laugh.imageset\Laugh%402x.png" />
+    <ImageAsset Include="Images.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Images.xcassets\LocationMarker.imageset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\LocationMarker.imageset\LocationMarker%402x.png" />
+    <ImageAsset Include="Images.xcassets\Whale.imageset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\Whale.imageset\Whale%402x.png" />
+    <ImageAsset Include="Images.xcassets\Worry.imageset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\Worry.imageset\Worry%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\WatchkitExtension\ButtonDetailController.cs">
+      <Link>ButtonDetailController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\ButtonDetailController.designer.cs">
+      <Link>ButtonDetailController.designer.cs</Link>
+      <DependentUpon>ButtonDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\ControllerDetailController.cs">
+      <Link>ControllerDetailController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\ControllerDetailController.designer.cs">
+      <Link>ControllerDetailController.designer.cs</Link>
+      <DependentUpon>ControllerDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\DeviceDetailController.cs">
+      <Link>DeviceDetailController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\DeviceDetailController.designer.cs">
+      <Link>DeviceDetailController.designer.cs</Link>
+      <DependentUpon>DeviceDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\ImageDetailController.cs">
+      <Link>ImageDetailController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\ImageDetailController.designer.cs">
+      <Link>ImageDetailController.designer.cs</Link>
+      <DependentUpon>ImageDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\LabelDetailController.cs">
+      <Link>LabelDetailController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\LabelDetailController.designer.cs">
+      <Link>LabelDetailController.designer.cs</Link>
+      <DependentUpon>LabelDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\MapDetailController.cs">
+      <Link>MapDetailController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\MapDetailController.designer.cs">
+      <Link>MapDetailController.designer.cs</Link>
+      <DependentUpon>MapDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\PageController.cs">
+      <Link>PageController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\PageController.designer.cs">
+      <Link>PageController.designer.cs</Link>
+      <DependentUpon>PageController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\SliderDetailController.cs">
+      <Link>SliderDetailController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\SliderDetailController.designer.cs">
+      <Link>SliderDetailController.designer.cs</Link>
+      <DependentUpon>SliderDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\SwitchDetailController.cs">
+      <Link>SwitchDetailController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\SwitchDetailController.designer.cs">
+      <Link>SwitchDetailController.designer.cs</Link>
+      <DependentUpon>SwitchDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\TextInputController.cs">
+      <Link>TextInputController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\TextInputController.designer.cs">
+      <Link>TextInputController.designer.cs</Link>
+      <DependentUpon>TextInputController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\Glance\GlanceController.cs">
+      <Link>GlanceController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\Glance\GlanceController.designer.cs">
+      <Link>GlanceController.designer.cs</Link>
+      <DependentUpon>GlanceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\Initital Interface Controller\ElementRowController.cs">
+      <Link>ElementRowController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\Initital Interface Controller\ElementRowController.designer.cs">
+      <Link>ElementRowController.designer.cs</Link>
+      <DependentUpon>ElementRowController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\Initital Interface Controller\InterfaceController.cs">
+      <Link>InterfaceController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\Initital Interface Controller\InterfaceController.designer.cs">
+      <Link>InterfaceController.designer.cs</Link>
+      <DependentUpon>InterfaceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\Table Detail Controller\TableDetailController.cs">
+      <Link>TableDetailController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\Table Detail Controller\TableDetailController.designer.cs">
+      <Link>TableDetailController.designer.cs</Link>
+      <DependentUpon>TableDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\Table Detail Controller\TableRowController.cs">
+      <Link>TableRowController.cs</Link>
+    </Compile>
+    <Compile Include="..\WatchkitExtension\Table Detail Controller\TableRowController.designer.cs">
+      <Link>TableRowController.designer.cs</Link>
+      <DependentUpon>TableRowController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>
