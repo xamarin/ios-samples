@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApp", "GpsWatch\MainApp.csproj", "{5FC2F843-AB41-4E21-826A-4843B88BF8F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchApp", "WatchApp\WatchApp.csproj", "{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchAppExtension", "WatchAppExtension\WatchAppExtension.csproj", "{C503F263-396E-4F96-B7CD-9EA9726B11BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}.Debug|iPhone.Build.0 = Debug|iPhone
+		{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}.Release|iPhone.ActiveCfg = Release|iPhone
+		{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}.Release|iPhone.Build.0 = Release|iPhone
+		{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{447DDC3C-AFD1-480F-B1D3-E8B9ED0DBA62}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{5FC2F843-AB41-4E21-826A-4843B88BF8F9}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{5FC2F843-AB41-4E21-826A-4843B88BF8F9}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{5FC2F843-AB41-4E21-826A-4843B88BF8F9}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{5FC2F843-AB41-4E21-826A-4843B88BF8F9}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{5FC2F843-AB41-4E21-826A-4843B88BF8F9}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{5FC2F843-AB41-4E21-826A-4843B88BF8F9}.Debug|iPhone.Build.0 = Debug|iPhone
+		{5FC2F843-AB41-4E21-826A-4843B88BF8F9}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{5FC2F843-AB41-4E21-826A-4843B88BF8F9}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{5FC2F843-AB41-4E21-826A-4843B88BF8F9}.Release|iPhone.ActiveCfg = Release|iPhone
+		{5FC2F843-AB41-4E21-826A-4843B88BF8F9}.Release|iPhone.Build.0 = Release|iPhone
+		{5FC2F843-AB41-4E21-826A-4843B88BF8F9}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{5FC2F843-AB41-4E21-826A-4843B88BF8F9}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{C503F263-396E-4F96-B7CD-9EA9726B11BA}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{C503F263-396E-4F96-B7CD-9EA9726B11BA}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{C503F263-396E-4F96-B7CD-9EA9726B11BA}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{C503F263-396E-4F96-B7CD-9EA9726B11BA}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{C503F263-396E-4F96-B7CD-9EA9726B11BA}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C503F263-396E-4F96-B7CD-9EA9726B11BA}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C503F263-396E-4F96-B7CD-9EA9726B11BA}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C503F263-396E-4F96-B7CD-9EA9726B11BA}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C503F263-396E-4F96-B7CD-9EA9726B11BA}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C503F263-396E-4F96-B7CD-9EA9726B11BA}.Release|iPhone.Build.0 = Release|iPhone
+		{C503F263-396E-4F96-B7CD-9EA9726B11BA}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C503F263-396E-4F96-B7CD-9EA9726B11BA}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal
