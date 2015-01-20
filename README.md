@@ -24,17 +24,17 @@ The Apache License 2.0 applies to all samples in this repository.
    See the License for the specific language governing permissions and
    limitations under the License.
 
-Layout
-------
+Samples Layout
+==============
 
 iOS 8 samples
-=============
+-------------
 Starting with iOS 8, we started adding samples that showcase specific features 
 introduced in a release into a directory for the release.   So all the new
 iOS 8 feature samples live in the ios8 directory.
 
 WatchKit
-========
+--------
 WatchKit samples are in the ios8 directory, there are a couple of them
 
 * ios8/WatchKitCatalog: contains a sample that shows all the UI elements available in WatchKit
