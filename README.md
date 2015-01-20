@@ -35,12 +35,12 @@ iOS 8 feature samples live in the ios8 directory.
 
 WatchKit
 --------
-WatchKit samples are in the ios8 directory, there are a couple of them
+WatchKit samples are in the WatchKit directory, there are a couple of them
 
-* ios8/WatchKitCatalog: contains a sample that shows all the UI elements available in WatchKit
-* ios8/GpsWatch: Sample GPS app for your watch
-* ios8/watchtables: Sample app used by our tutorials to show some elements of building WatchKit apps
-* 
+* WatchKit/WatchKitCatalog: contains a sample that shows all the UI elements available in WatchKit
+* WatchKit/GpsWatch: Sample GPS app for your watch
+* WatchKit/WatchTables: Sample app used by our tutorials to show some elements of building WatchKit apps
+
 Contributing
 ------------
 
