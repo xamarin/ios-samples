@@ -6,7 +6,7 @@ Kannada Keyboard
 The sample solution has two projects:
 
 1. `KannadaKeyboard` - Extension project contains keyboard layout and code to manage input methods
-2. `KannadaKeyboardCompanion` - Companion project for keyboard extension. We can have instructions, setting and anyother information related to extensions
+2. `KannadaKeyboardCompanion` - Companion project for keyboard extension. We can have instructions, setting and any other information related to extensions
 
 Authors
 ---
