@@ -94,7 +94,7 @@ However, because the sample galleries are powered by the github sample repos, ea
     * **Minimum License Requirement** - Starter, Indie, Business, or Enterprise: denotes the license that a user has to have in order to build/run the sample.
 
     * **Tags**: a list of relevant tags for the app. These are:
-    	* **User Interface**
+    * **User Interface**
 		* **Data**
 		* **Games**
 		* **Graphics** (CoreDrawing, Animation, OpenGL...)
@@ -109,6 +109,13 @@ However, because the sample galleries are powered by the github sample repos, ea
 		* **Touch**
 		* **Getting Started**
 		* **Async**
+    * **Extension**
+    * **iOS8**
+    * **Watch**
+    * **Keyboard**
+    * **SceneKit**
+    * **FSharp**
+
 
 
     * **SupportedPlatforms**: this is only for cross plat samples. It's a comma-separated list, and the valid values are iOS, Android, and Windows.
