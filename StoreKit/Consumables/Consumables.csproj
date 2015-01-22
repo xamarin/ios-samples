@@ -84,6 +84,9 @@
     <Compile Include="ConsumableViewController.cs" />
     <Compile Include="CustomPaymentObserver.cs" />
     <Compile Include="CreditManager.cs" />
+    <Compile Include="..\SharedCode\PurchaseManager.cs">
+      <Link>PurchaseManager.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ja.lproj\" />

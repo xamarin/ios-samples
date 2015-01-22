@@ -1,19 +1,17 @@
 using System;
 using System.Collections.Generic;
-using StoreKit;
+using System.Linq;
+
 using Foundation;
 using UIKit;
-using System.Linq;
+using StoreKit;
+
+using Purchase;
 
 namespace NonConsumables
 {
-	public class InAppPurchaseManager : SKProductsRequestDelegate
+	public class InAppPurchaseManager : PurchaseManager
 	{
-		public static NSString InAppPurchaseManagerProductsFetchedNotification = new NSString("InAppPurchaseManagerProductsFetchedNotification");
-		public static NSString InAppPurchaseManagerTransactionFailedNotification = new NSString("InAppPurchaseManagerTransactionFailedNotification");
-		public static NSString InAppPurchaseManagerTransactionSucceededNotification = new NSString("InAppPurchaseManagerTransactionSucceededNotification");
-		public static NSString InAppPurchaseManagerRequestFailedNotification = new NSString("InAppPurchaseManagerRequestFailedNotification");
-
 		SKProductsRequest productsRequest;
 		CustomPaymentObserver theObserver;
 

@@ -1,19 +1,17 @@
 using System;
 using System.Collections.Generic;
-using StoreKit;
+using System.Linq;
+
 using Foundation;
 using UIKit;
-using System.Linq;
+using StoreKit;
+
+using Purchase;
 
 namespace Consumables
 {
-	public class InAppPurchaseManager : SKProductsRequestDelegate
+	public class InAppPurchaseManager : PurchaseManager
 	{
-		public static readonly NSString InAppPurchaseManagerProductsFetchedNotification = new NSString("InAppPurchaseManagerProductsFetchedNotification");
-		public static readonly NSString InAppPurchaseManagerTransactionFailedNotification  = new NSString("InAppPurchaseManagerTransactionFailedNotification");
-		public static readonly NSString InAppPurchaseManagerTransactionSucceededNotification  = new NSString("InAppPurchaseManagerTransactionSucceededNotification");
-		public static readonly NSString InAppPurchaseManagerRequestFailedNotification = new NSString("InAppPurchaseManagerRequestFailedNotification");
-
 		SKProductsRequest productsRequest;
 		CustomPaymentObserver theObserver;
 

@@ -91,6 +91,9 @@
     <Compile Include="CustomPaymentObserver.cs" />
     <Compile Include="NonConsumableViewController.cs" />
     <Compile Include="PhotoFilterManager.cs" />
+    <Compile Include="..\SharedCode\PurchaseManager.cs">
+      <Link>PurchaseManager.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\PhotoFilterTest1.jpg" />
