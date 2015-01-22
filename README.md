@@ -103,7 +103,7 @@ However, because the sample galleries are powered by the github sample repos, ea
 		* **Device Features** (NFC, Accelerometer, Compass, Magnemometer, Bluetooth, RFID)
 		* **Cloud** (Web Services, Networking, etc.)
 		* **Backgrounding**
-		* **Maps & Location**
+		* **Maps + Location**
 		* **Binding + Interop** (Projections)
 		* **Notifications**
 		* **Touch**
