@@ -3,9 +3,9 @@
 	<ID>79B4968A-E8B0-4C04-BD76-D51AEE4F2149</ID>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Begginer</Level>
-	<Tags>Keyboard, Extension, User Interface</Tags>
+	<Tags>iOS8, Keyboard, Extension, User Interface</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
-    <LicenseRequirement>Starter</LicenseRequirement>
-    <Brief>Kannada Keyboard is a keyboard extension for the iOS. It enables users to use Kannada script throughout the OS</Brief>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Brief>Kannada Keyboard is a keyboard extension for the iOS. It enables users to use Kannada script throughout the OS</Brief>
 	<Gallery>true</Gallery>
 </SampleMetadata>
