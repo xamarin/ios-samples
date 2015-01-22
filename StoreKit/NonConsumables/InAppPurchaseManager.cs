@@ -11,7 +11,6 @@ namespace NonConsumables
 {
 	public class InAppPurchaseManager : PurchaseManager
 	{
-		SKProductsRequest productsRequest;
 		CustomPaymentObserver theObserver;
 
 		public static Action Done {get;set;}
@@ -38,9 +37,9 @@ namespace NonConsumables
 		 	NSSet productIdentifiers = NSSet.MakeNSObjectSet<NSString>(array);
 
 			//set up product request for in-app purchase
-			productsRequest  = new SKProductsRequest(productIdentifiers);
-			productsRequest.Delegate = this; // SKProductsRequestDelegate.ReceivedResponse
-			productsRequest.Start();
+			ProductsRequest  = new SKProductsRequest(productIdentifiers);
+			ProductsRequest.Delegate = this; // SKProductsRequestDelegate.ReceivedResponse
+			ProductsRequest.Start();
 		}
 		// received response to RequestProductData - with price,title,description info
 		public override void ReceivedResponse (SKProductsRequest request, SKProductsResponse response)
