@@ -109,12 +109,12 @@ However, because the sample galleries are powered by the github sample repos, ea
 		* **Touch**
 		* **Getting Started**
 		* **Async**
-    * **Extension**
-    * **iOS8**
-    * **Watch**
-    * **Keyboard**
-    * **SceneKit**
-    * **FSharp**
+		* **Extension**
+		* **iOS8**
+		* **Watch**
+		* **Keyboard**
+		* **SceneKit**
+		* **FSharp**
 
 
 
