@@ -80,12 +80,14 @@
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="InAppPurchaseManager.cs" />
-    <Compile Include="SKProductExtension.cs" />
     <Compile Include="ConsumableViewController.cs" />
     <Compile Include="CustomPaymentObserver.cs" />
     <Compile Include="CreditManager.cs" />
     <Compile Include="..\SharedCode\PurchaseManager.cs">
       <Link>PurchaseManager.cs</Link>
+    </Compile>
+    <Compile Include="..\SharedCode\SKProductExtension.cs">
+      <Link>SKProductExtension.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>
