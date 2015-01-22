@@ -120,46 +120,30 @@ namespace Consumables
 
 			// setup the observer to wait for prices to come back from StoreKit <- AppStore
 			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerProductsFetchedNotification,
-			(notification) => {
-				var info = notification.UserInfo;
-				if (info == null) return;
+				(notification) => {
+					var info = notification.UserInfo;
+					if (info == null)
+						return;
 
-				var NSBuy5ProductId = new NSString(Buy5ProductId);
-				var NSBuy10ProductId = new NSString(Buy10ProductId);
+					var NSBuy5ProductId = new NSString (Buy5ProductId);
 
-				if (info.ContainsKey(NSBuy5ProductId)) {
-					pricesLoaded = true;
+					if (info.ContainsKey (NSBuy5ProductId)) {
+						pricesLoaded = true;
 
-					var product = (SKProduct) info.ObjectForKey(NSBuy5ProductId);
+						var product = (SKProduct)info [NSBuy5ProductId];
+						Print (product);
+						SetVisualState (buy5Button, buy5Title, buy5Description, product);
+					}
 
-					Console.WriteLine("Product id: " + product.ProductIdentifier);
-					Console.WriteLine("Product title: " + product.LocalizedTitle);
-					Console.WriteLine("Product description: " + product.LocalizedDescription);
-					Console.WriteLine("Product price: " + product.Price);
-					Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
+					var NSBuy10ProductId = new NSString (Buy10ProductId);
+					if (info.ContainsKey (NSBuy10ProductId)) {
+						pricesLoaded = true;
 
-					buy5Button.Enabled = true;
-					buy5Title.Text = product.LocalizedTitle;
-					buy5Description.Text = product.LocalizedDescription;
-					buy5Button.SetTitle(String.Format (Buy, product.LocalizedPrice()), UIControlState.Normal);
-				}
-				if (info.ContainsKey(NSBuy10ProductId)) {
-					pricesLoaded = true;
-
-					var product = (SKProduct) info.ObjectForKey(NSBuy10ProductId);
-
-					Console.WriteLine("Product id: " + product.ProductIdentifier);
-					Console.WriteLine("Product title: " + product.LocalizedTitle);
-					Console.WriteLine("Product description: " + product.LocalizedDescription);
-					Console.WriteLine("Product price: " + product.Price);
-					Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
-
-					buy10Button.Enabled = true;
-					buy10Title.Text = product.LocalizedTitle;
-					buy10Description.Text = product.LocalizedDescription;
-					buy10Button.SetTitle(String.Format (Buy, product.LocalizedPrice()), UIControlState.Normal);
-				}
-			});
+						var product = (SKProduct)info [NSBuy10ProductId];
+						Print (product);
+						SetVisualState (buy10Button, buy10Title, buy10Description, product);
+					}
+				});
 
 			// only if we can make payments, request the prices
 			if (iap.CanMakePayments()) {
@@ -192,6 +176,7 @@ namespace Consumables
 				buy10Button.SetTitle ("Network down?", UIControlState.Disabled);
 			});
 		}
+
 		public override void ViewWillDisappear (bool animated)
 		{
 			// remove the observer when the view isn't visible
@@ -201,6 +186,24 @@ namespace Consumables
 			NSNotificationCenter.DefaultCenter.RemoveObserver (requestObserver);
 
 			base.ViewWillDisappear (animated);
+		}
+
+		void Print(SKProduct product)
+		{
+			Console.WriteLine("Product id: {0}", product.ProductIdentifier);
+			Console.WriteLine("Product title: {0}", product.LocalizedTitle);
+			Console.WriteLine("Product description: {0}", product.LocalizedDescription);
+			Console.WriteLine("Product price: {0}", product.Price);
+			Console.WriteLine("Product l10n price: {0}", product.LocalizedPrice());
+		}
+
+		void SetVisualState(UIButton buyBtn, UILabel title, UILabel description, SKProduct product)
+		{
+			buyBtn.Enabled = true;
+			buyBtn.SetTitle(String.Format (Buy, product.LocalizedPrice()), UIControlState.Normal);
+
+			title.Text = product.LocalizedTitle;
+			description.Text = product.LocalizedDescription;
 		}
 	}
 }
