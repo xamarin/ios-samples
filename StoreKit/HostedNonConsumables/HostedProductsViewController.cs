@@ -125,62 +125,37 @@ namespace NonConsumables
 
 			// setup the observer to wait for prices to come back from StoreKit <- AppStore
 			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerProductsFetchedNotification,
-			(notification) => {
-				var info = notification.UserInfo;
-				var NSimagesProductId = new NSString(hostedImagesProductId);
-				var NSfilesystemProductId = new NSString(hostedFilesystemProductId);
+				(notification) => {
+					var info = notification.UserInfo;
+					var NSimagesProductId = new NSString (hostedImagesProductId);
+					var NSfilesystemProductId = new NSString (hostedFilesystemProductId);
 
-				if (info == null) {
-					// if info is null, probably NO valid prices returned, therefore it doesn't exist at all
-					hostedImagesDescription.Text = "check iTunes connect setup";
-					hostedFilesystemDescription.Text = "check iTunes connect setup";
-					hostedImagesButton.SetTitle("invalid product id", UIControlState.Disabled);
-					hostedFilesystemButton.SetTitle("invalid product id", UIControlState.Disabled);
-				} else {
+					if (info == null) {
+						// if info is null, probably NO valid prices returned, therefore it doesn't exist at all
+						hostedImagesDescription.Text = "check iTunes connect setup";
+						hostedFilesystemDescription.Text = "check iTunes connect setup";
+						hostedImagesButton.SetTitle ("invalid product id", UIControlState.Disabled);
+						hostedFilesystemButton.SetTitle ("invalid product id", UIControlState.Disabled);
+						return;
+					}
+
 					// we only update the button with a price if the user hasn't already purchased it
-					if (!hostedImagesPurchased && info.ContainsKey(NSimagesProductId)) {
+					if (!hostedImagesPurchased && info.ContainsKey (NSimagesProductId)) {
 						pricesLoaded = true;
 
-						SKProduct product = (SKProduct) info.ObjectForKey(NSimagesProductId);
-
-						Console.WriteLine("Product id: " + product.ProductIdentifier);
-						Console.WriteLine("Product title: " + product.LocalizedTitle);
-						Console.WriteLine("Product description: " + product.LocalizedDescription);
-						Console.WriteLine("Product price: " + product.Price);
-						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
-						Console.WriteLine("Product downloadable: " + product.Downloadable);	// iOS6
-						Console.WriteLine("Product version:      " + product.DownloadContentVersion);    // iOS6
-						if (product.DownloadContentLengths != null)
-							Console.WriteLine("Product length:       " + product.DownloadContentLengths[0]); // iOS6
-
-						hostedImagesButton.Enabled = true;
-						hostedImagesTitle.Text = product.LocalizedTitle;
-						hostedImagesDescription.Text = product.LocalizedDescription;
-						hostedImagesButton.SetTitle("Buy " + product.LocalizedPrice(), UIControlState.Normal);
+						var product = (SKProduct)info [NSimagesProductId];
+						Print (product);
+						SetVisualState(hostedImagesButton, hostedImagesTitle, hostedImagesDescription, product);
 					}
 					// we only update the button with a price if the user hasn't already purchased it
-					if (!hostedFilesystemPurchased && info.ContainsKey(NSfilesystemProductId)) {
+					if (!hostedFilesystemPurchased && info.ContainsKey (NSfilesystemProductId)) {
 						pricesLoaded = true;
 
-						var product = (SKProduct) info.ObjectForKey(NSfilesystemProductId);
-
-						Console.WriteLine("Product id: " + product.ProductIdentifier);
-						Console.WriteLine("Product title: " + product.LocalizedTitle);
-						Console.WriteLine("Product description: " + product.LocalizedDescription);
-						Console.WriteLine("Product price: " + product.Price);
-						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
-						Console.WriteLine("Product downloadable: " + product.Downloadable); // iOS6
-						Console.WriteLine("Product version:      " + product.DownloadContentVersion);    // iOS6
-						if (product.DownloadContentLengths != null)
-							Console.WriteLine("Product length:       " + product.DownloadContentLengths[0]); // iOS6
-
-						hostedFilesystemButton.Enabled = true;
-						hostedFilesystemTitle.Text = product.LocalizedTitle;
-						hostedFilesystemDescription.Text = product.LocalizedDescription;
-						hostedFilesystemButton.SetTitle("Buy " + product.LocalizedPrice(), UIControlState.Normal);
+						var product = (SKProduct)info[NSfilesystemProductId];
+						Print (product);
+						SetVisualState(hostedFilesystemButton, hostedFilesystemTitle, hostedFilesystemDescription, product);
 					}
-				}
-			});
+				});
 
 			// only if we can make payments, request the prices
 			if (iap.CanMakePayments()) {
@@ -231,6 +206,28 @@ namespace NonConsumables
 			NSNotificationCenter.DefaultCenter.RemoveObserver (requestObserver);
 
 			base.ViewWillDisappear (animated);
+		}
+
+		void Print(SKProduct product)
+		{
+			Console.WriteLine("Product id: {0}", product.ProductIdentifier);
+			Console.WriteLine("Product title: {0}", product.LocalizedTitle);
+			Console.WriteLine("Product description: {0}", product.LocalizedDescription);
+			Console.WriteLine("Product price: {0}", product.Price);
+			Console.WriteLine("Product l10n price: {0}", product.LocalizedPrice());
+			Console.WriteLine("Product downloadable: {0}", product.Downloadable);	// iOS6
+			Console.WriteLine("Product version: {0}", product.DownloadContentVersion);    // iOS6
+			if (product.DownloadContentLengths != null)
+				Console.WriteLine("Product length: {0}", product.DownloadContentLengths[0]); // iOS6
+		}
+
+		void SetVisualState(UIButton button, UILabel title, UILabel description, SKProduct product)
+		{
+			button.Enabled = true;
+			button.SetTitle (string.Format ("Buy {0}", product.LocalizedPrice ()), UIControlState.Normal);
+
+			title.Text = product.LocalizedTitle;
+			description.Text = product.LocalizedDescription;
 		}
 	}
 }
