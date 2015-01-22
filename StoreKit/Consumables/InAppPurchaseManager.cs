@@ -21,17 +21,5 @@ namespace Consumables
 			else
 				Console.WriteLine ("Shouldn't happen, there are only two products");
 		}
-
-		/// <summary>
-		/// Probably could not connect to the App Store (network unavailable?)
-		/// </summary>
-		public override void RequestFailed (SKRequest request, NSError error)
-		{
-			Console.WriteLine (" ** InAppPurchaseManager RequestFailed() {0}", error.LocalizedDescription);
-
-			// send out a notification for the failed transaction
-			NSDictionary userInfo = new NSDictionary ("error", error);
-			NSNotificationCenter.DefaultCenter.PostNotificationName (InAppPurchaseManagerRequestFailedNotification, this, userInfo);
-		}
 	}
 }

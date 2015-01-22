@@ -29,19 +29,6 @@ namespace NonConsumables
 		}
 
 		/// <summary>
-		/// Probably could not connect to the App Store (network unavailable?)
-		/// </summary>
-		public override void RequestFailed (SKRequest request, NSError error)
-		{
-			Console.WriteLine (" ** InAppPurchaseManager RequestFailed() " + error.LocalizedDescription);
-			using (var pool = new NSAutoreleasePool()) {
-				NSDictionary userInfo = new NSDictionary ("error", error);
-				// send out a notification for the failed transaction
-				NSNotificationCenter.DefaultCenter.PostNotificationName(InAppPurchaseManagerRequestFailedNotification,this,userInfo);
-			}
-		}
-
-		/// <summary>
 		/// Restore any transactions that occurred for this Apple ID, either on
 		/// this device or any other logged in with that account.
 		/// </summary>
