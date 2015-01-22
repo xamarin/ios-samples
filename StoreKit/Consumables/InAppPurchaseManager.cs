@@ -21,5 +21,10 @@ namespace Consumables
 			else
 				Console.WriteLine ("Shouldn't happen, there are only two products");
 		}
+
+		public override void RestoreTransaction (SKPaymentTransaction transaction)
+		{
+			throw new InvalidProgramException ("Can't restore transaction");
+		}
 	}
 }

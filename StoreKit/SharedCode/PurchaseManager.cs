@@ -99,5 +99,31 @@ namespace Purchase
 			NSDictionary userInfo = new NSDictionary ("error", error);
 			NSNotificationCenter.DefaultCenter.PostNotificationName (InAppPurchaseManagerRequestFailedNotification, this, userInfo);
 		}
+
+		/// <summary>
+		/// Restore any transactions that occurred for this Apple ID, either on
+		/// this device or any other logged in with that account.
+		/// </summary>
+		public void Restore()
+		{
+			Console.WriteLine (" ** Restore **");
+			// theObserver will be notified of when the restored transactions start arriving <- AppStore
+			SKPaymentQueue.DefaultQueue.RestoreCompletedTransactions();
+		}
+
+		public virtual void RestoreTransaction (SKPaymentTransaction transaction)
+		{
+			// Restored Transactions always have an 'original transaction' attached
+			Console.WriteLine("RestoreTransaction {0}; OriginalTransaction {1}",transaction.TransactionIdentifier, transaction.OriginalTransaction.TransactionIdentifier);
+			string productId = transaction.OriginalTransaction.Payment.ProductIdentifier;
+			// Register the purchase, so it is remembered for next time
+			RestoreTransaction (productId);
+			FinishTransaction(transaction, true);
+		}
+
+		protected virtual void RestoreTransaction (string productId)
+		{
+
+		}
 	}
 }
