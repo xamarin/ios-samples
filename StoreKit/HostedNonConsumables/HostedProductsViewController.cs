@@ -5,6 +5,7 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
+using SharedCode;
 /*
 Prices will appear in the iOS Simulator, but downloads cannot be tested except on a real device
 
@@ -13,10 +14,12 @@ http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Concept
 NOTE: Store Kit can be tested in the iOS Simulator, except for hosted content downloads.
 */
 
-namespace NonConsumables {
-	public class HostedProductsViewController : UIViewController {
-		public static string hostedImagesProductId = "com.xamarin.storekit.hosted.monotouchimages",   //"com.xamarin.storekitdoc.monotouchimages",
-		hostedFilesystemProductId = "com.xamarin.storekit.hosted.monotouchfilesystem";                //"com.xamarin.storekitdoc.monotouchfilesystem";
+namespace NonConsumables
+{
+	public class HostedProductsViewController : UIViewController
+	{
+		public static string hostedImagesProductId = "com.xamarin.storekit.hosted.monotouchimages";   //"com.xamarin.storekitdoc.monotouchimages",
+		public static string hostedFilesystemProductId = "com.xamarin.storekit.hosted.monotouchfilesystem";                //"com.xamarin.storekitdoc.monotouchfilesystem";
 
 		UIButton hostedImagesButton, hostedFilesystemButton, restoreButton;
 		UILabel hostedImagesTitle, hostedImagesDescription, hostedFilesystemTitle, hostedFilesystemDescription;
@@ -138,7 +141,7 @@ namespace NonConsumables {
 					if (!hostedImagesPurchased && info.ContainsKey(NSimagesProductId)) {
 						pricesLoaded = true;
 
-						var product = (SKProduct) info.ObjectForKey(NSimagesProductId);
+						SKProduct product = (SKProduct) info.ObjectForKey(NSimagesProductId);
 
 						Console.WriteLine("Product id: " + product.ProductIdentifier);
 						Console.WriteLine("Product title: " + product.LocalizedTitle);

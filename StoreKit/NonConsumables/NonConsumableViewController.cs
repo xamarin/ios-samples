@@ -1,14 +1,19 @@
 using System;
 using System.Collections.Generic;
+
+using UIKit;
 using StoreKit;
 using Foundation;
-using UIKit;
 using CoreGraphics;
 
-namespace NonConsumables {
-	public class NonConsumableViewController : UIViewController {
-		public static string greyscaleProductId = "com.xamarin.storekit.testing.greyscale",
-			   sepiaProductId = "com.xamarin.storekit.testing.sepia";
+using SharedCode;
+
+namespace NonConsumables
+{
+	public class NonConsumableViewController : UIViewController
+	{
+		public static string greyscaleProductId = "com.xamarin.storekit.testing.greyscale";
+		public static string sepiaProductId = "com.xamarin.storekit.testing.sepia";
 
 		string testImagePath = "Images/PhotoFilterTest2.jpg";
 		UIButton greyscaleButton, sepiaButton, clearButton, restoreButton;
@@ -129,7 +134,7 @@ namespace NonConsumables {
 			// setup the observer to wait for prices to come back from StoreKit <- AppStore
 			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerProductsFetchedNotification,
 			(notification) => {
-				var info = notification.UserInfo;
+				NSDictionary info = notification.UserInfo;
 				var NSgreyscaleProductId = new NSString(greyscaleProductId);
 				var NSsepiaProductId = new NSString(sepiaProductId);
 

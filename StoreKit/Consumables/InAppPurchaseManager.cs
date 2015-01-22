@@ -6,7 +6,7 @@ using UIKit;
 using Foundation;
 using StoreKit;
 
-using Purchase;
+using SharedCode;
 
 namespace Consumables
 {

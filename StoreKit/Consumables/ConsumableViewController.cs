@@ -1,14 +1,19 @@
 using System;
 using System.Collections.Generic;
+
+using UIKit;
 using StoreKit;
 using Foundation;
-using UIKit;
 using CoreGraphics;
 
-namespace Consumables {
-	public class ConsumableViewController : UIViewController {
-		public static string Buy5ProductId = "com.xamarin.storekit.testing.consume5credits",
-			   Buy10ProductId = "com.xamarin.storekit.testing.consume10credits";
+using SharedCode;
+
+namespace Consumables
+{
+	public class ConsumableViewController : UIViewController
+	{
+		public static string Buy5ProductId = "com.xamarin.storekit.testing.consume5credits";
+		public static string Buy10ProductId = "com.xamarin.storekit.testing.consume10credits";
 
 		UIButton buy5Button, buy10Button;
 		UILabel buy5Title, buy5Description, buy10Title, buy10Description, balanceLabel, infoLabel;
@@ -41,7 +46,7 @@ namespace Consumables {
 		}
 		#endregion
 
-		public ConsumableViewController () : base()
+		public ConsumableViewController ()
 		{
 			// two products for sale on this page
 			products = new List<string>() { Buy5ProductId, Buy10ProductId };

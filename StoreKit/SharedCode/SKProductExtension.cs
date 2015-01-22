@@ -3,7 +3,7 @@ using StoreKit;
 using Foundation;
 using UIKit;
 
-namespace Consumables
+namespace SharedCode
 {
 	public static class SKProductExtension
 	{

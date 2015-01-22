@@ -6,7 +6,7 @@ using UIKit;
 using StoreKit;
 using Foundation;
 
-namespace Purchase
+namespace SharedCode
 {
 	public abstract class PurchaseManager : SKProductsRequestDelegate
 	{
