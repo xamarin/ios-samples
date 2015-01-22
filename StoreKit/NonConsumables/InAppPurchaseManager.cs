@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using UIKit;
 using Foundation;
@@ -21,26 +22,6 @@ namespace NonConsumables
 			SKPaymentQueue.DefaultQueue.AddTransactionObserver(theObserver);
 		}
 
-		// Verify that the iTunes account can make this purchase for this application
-		public bool CanMakePayments()
-		{
-			return SKPaymentQueue.CanMakePayments;
-		}
-
-		// request multiple products at once
-		public void RequestProductData (List<string> productIds)
-		{
-			var array = new NSString[productIds.Count];
-			for (var i = 0; i < productIds.Count; i++) {
-				array[i] = new NSString(productIds[i]);
-			}
-		 	NSSet productIdentifiers = NSSet.MakeNSObjectSet<NSString>(array);
-
-			//set up product request for in-app purchase
-			ProductsRequest  = new SKProductsRequest(productIdentifiers);
-			ProductsRequest.Delegate = this; // SKProductsRequestDelegate.ReceivedResponse
-			ProductsRequest.Start();
-		}
 		// received response to RequestProductData - with price,title,description info
 		public override void ReceivedResponse (SKProductsRequest request, SKProductsResponse response)
 		{

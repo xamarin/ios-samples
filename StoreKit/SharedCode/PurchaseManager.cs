@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
-using StoreKit;
+using System.Linq;
 
 using UIKit;
+using StoreKit;
 using Foundation;
 
 namespace Purchase
@@ -15,5 +16,23 @@ namespace Purchase
 		public static readonly NSString InAppPurchaseManagerRequestFailedNotification = new NSString("InAppPurchaseManagerRequestFailedNotification");
 
 		protected SKProductsRequest ProductsRequest { get; set; }
+
+		// Verify that the iTunes account can make this purchase for this application
+		public bool CanMakePayments()
+		{
+			return SKPaymentQueue.CanMakePayments;
+		}
+
+		// request multiple products at once
+		public void RequestProductData (List<string> productIds)
+		{
+			NSString[] array = productIds.Select (pId => (NSString)pId).ToArray();
+			NSSet productIdentifiers = NSSet.MakeNSObjectSet<NSString>(array);
+
+			//set up product request for in-app purchase
+			ProductsRequest  = new SKProductsRequest(productIdentifiers);
+			ProductsRequest.Delegate = this; // SKProductsRequestDelegate.ReceivedResponse
+			ProductsRequest.Start();
+		}
 	}
 }

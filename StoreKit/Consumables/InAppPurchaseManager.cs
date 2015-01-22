@@ -23,24 +23,6 @@ namespace Consumables
 			SKPaymentQueue.DefaultQueue.AddTransactionObserver(theObserver);
 		}
 
-		// Verify that the iTunes account can make this purchase for this application
-		public bool CanMakePayments()
-		{
-			return SKPaymentQueue.CanMakePayments;
-		}
-
-		// request multiple products at once
-		public void RequestProductData (List<string> productIds)
-		{
-			NSString[] array = productIds.Select (pId => (NSString)pId).ToArray();
-			NSSet productIdentifiers = NSSet.MakeNSObjectSet<NSString>(array);
-
-			//set up product request for in-app purchase
-			ProductsRequest  = new SKProductsRequest(productIdentifiers);
-			ProductsRequest.Delegate = this; // SKProductsRequestDelegate.ReceivedResponse
-			ProductsRequest.Start();
-		}
-
 		public override void ReceivedResponse (SKProductsRequest request, SKProductsResponse response)
 		{
 			SKProduct[] products = response.Products;
