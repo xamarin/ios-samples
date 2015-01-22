@@ -27,13 +27,19 @@ namespace NonConsumables {
 		bool hostedImagesPurchased, hostedFilesystemPurchased;
 		NSObject priceObserver, requestObserver;
 
+		CustomPaymentObserver theObserver;
 		InAppPurchaseManager iap;
 
-		public HostedProductsViewController () : base()
+		public HostedProductsViewController ()
 		{
 			// two products for sale on this page
 			products = new List<string>() {hostedImagesProductId, hostedFilesystemProductId};
 			iap = new InAppPurchaseManager();
+			theObserver = new CustomPaymentObserver(iap);
+
+			// Call this once upon startup of in-app-purchase activities
+			// This also kicks off the TransactionObserver which handles the various communications
+			SKPaymentQueue.DefaultQueue.AddTransactionObserver(theObserver);
 		}
 
 		public override void ViewDidLoad ()

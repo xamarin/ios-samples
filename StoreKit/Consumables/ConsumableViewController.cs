@@ -17,6 +17,7 @@ namespace Consumables {
 
 		NSObject priceObserver, succeededObserver, failedObserver, requestObserver;
 
+		CustomPaymentObserver theObserver;
 		InAppPurchaseManager iap;
 
 		#region localized strings
@@ -44,7 +45,13 @@ namespace Consumables {
 		{
 			// two products for sale on this page
 			products = new List<string>() { Buy5ProductId, Buy10ProductId };
+
 			iap = new InAppPurchaseManager();
+			theObserver = new CustomPaymentObserver(iap);
+
+			// Call this once upon startup of in-app-purchase activities
+			// This also kicks off the TransactionObserver which handles the various communications
+			SKPaymentQueue.DefaultQueue.AddTransactionObserver(theObserver);
 		}
 
 		public override void ViewDidLoad ()

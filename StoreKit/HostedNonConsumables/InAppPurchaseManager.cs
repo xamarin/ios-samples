@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using Foundation;
 using UIKit;
+using Foundation;
 using StoreKit;
 
 using Purchase;
@@ -12,37 +12,10 @@ namespace NonConsumables
 {
 	public class InAppPurchaseManager : PurchaseManager
 	{
-		CustomPaymentObserver theObserver;
-
-		public InAppPurchaseManager ()
+		protected override void CompleteTransaction (string productId)
 		{
-			theObserver = new CustomPaymentObserver(this);
-
-			// Call this once upon startup of in-app-purchase activities
-			// This also kicks off the TransactionObserver which handles the various communications
-			SKPaymentQueue.DefaultQueue.AddTransactionObserver(theObserver);
-		}
-
-		// received response to RequestProductData - with price,title,description info
-		public override void ReceivedResponse (SKProductsRequest request, SKProductsResponse response)
-		{
-			SKProduct[] products = response.Products;
-
-			NSMutableDictionary userInfo = new NSMutableDictionary ();
-			for (int i = 0; i < products.Length; i++)
-				userInfo.Add ((NSString)products [i].ProductIdentifier, products [i]);
-			NSNotificationCenter.DefaultCenter.PostNotificationName(InAppPurchaseManagerProductsFetchedNotification,this,userInfo);
-
-			foreach (string invalidProductId in response.InvalidProducts) {
-				Console.WriteLine("Invalid product id: " + invalidProductId );
-			}
-		}
-
-		public void PurchaseProduct(string appStoreProductId)
-		{
-			Console.WriteLine("PurchaseProduct " + appStoreProductId);
-			SKPayment payment = SKPayment.PaymentWithProduct (appStoreProductId);
-			SKPaymentQueue.DefaultQueue.AddPayment (payment);
+			// Register the purchase, so it is remembered for next time
+			HostedProductManager.Purchase(productId);
 		}
 
 		/// <summary>
@@ -75,15 +48,6 @@ namespace NonConsumables
 			CompleteTransaction (download.Transaction); // so it gets 'finished'
 		}
 
-		public void CompleteTransaction (SKPaymentTransaction transaction)
-		{
-			Console.WriteLine ("CompleteTransaction " + transaction.TransactionIdentifier);
-			var productId = transaction.Payment.ProductIdentifier;
-			// Register the purchase, so it is remembered for next time
-			HostedProductManager.Purchase(productId);
-
-			FinishTransaction (transaction, true);
-		}
 		public void RestoreTransaction (SKPaymentTransaction transaction)
 		{
 			// Restored Transactions always have an 'original transaction' attached
@@ -93,33 +57,6 @@ namespace NonConsumables
 			HostedProductManager.Purchase(productId); // it's as though it was purchased again
 
 			FinishTransaction(transaction, true);
-		}
-		public void FailedTransaction (SKPaymentTransaction transaction)
-		{
-			//SKErrorPaymentCancelled == 2
-			if (transaction.Error.Code == 2) // user cancelled
-				Console.WriteLine("User CANCELLED FailedTransaction Code=" + transaction.Error.Code + " " + transaction.Error.LocalizedDescription);
-			else // error!
-				Console.WriteLine("FailedTransaction Code=" + transaction.Error.Code + " " + transaction.Error.LocalizedDescription);
-
-			FinishTransaction(transaction,false);
-		}
-		public void FinishTransaction(SKPaymentTransaction transaction, bool wasSuccessful)
-		{
-			Console.WriteLine("FinishTransaction " + wasSuccessful);
-			// remove the transaction from the payment queue.
-			SKPaymentQueue.DefaultQueue.FinishTransaction(transaction);		// THIS IS IMPORTANT - LET'S APPLE KNOW WE'RE DONE !!!!
-
-			using (var pool = new NSAutoreleasePool()) {
-				NSDictionary userInfo = new NSDictionary ("transaction", transaction);
-				if (wasSuccessful) {
-					// send out a notification that we’ve finished the transaction
-					NSNotificationCenter.DefaultCenter.PostNotificationName(InAppPurchaseManagerTransactionSucceededNotification,this,userInfo);
-				} else {
-					// send out a notification for the failed transaction
-					NSNotificationCenter.DefaultCenter.PostNotificationName(InAppPurchaseManagerTransactionFailedNotification,this,userInfo);
-				}
-			}
 		}
 
 		/// <summary>
