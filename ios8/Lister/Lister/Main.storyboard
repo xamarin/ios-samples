@@ -8,14 +8,14 @@
         <!--List View Controller-->
         <scene sceneID="52u-Vw-Iz5">
             <objects>
-                <tableViewController storyboardIdentifier="listViewController" id="ZKr-bB-CnJ" customClass="AAPLListViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="listViewController" id="ZKr-bB-CnJ" customClass="ListViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5lg-xs-Lkb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="listItemCell" id="nbH-uO-Ceu" customClass="AAPLListItemCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="listItemCell" id="nbH-uO-Ceu" customClass="ListItemCell">
                                 <rect key="frame" x="0.0" y="86" width="703" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nbH-uO-Ceu" id="uCk-XQ-eSM">
@@ -30,7 +30,7 @@
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         </textField>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FnN-vI-QmQ" customClass="AAPLCheckBox">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FnN-vI-QmQ" customClass="CheckBox">
                                             <rect key="frame" x="12" y="8" width="27" height="27"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -59,49 +59,49 @@
                                     <outlet property="textField" destination="iFY-Yj-iv0" id="ZJz-7y-nPe"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell tag="-1" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="listColorCell" id="srj-AI-Wyb" customClass="AAPLListColorCell">
+                            <tableViewCell tag="-1" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="listColorCell" id="srj-AI-Wyb" customClass="ListColorCell">
                                 <rect key="frame" x="0.0" y="86" width="703" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="-1" contentMode="center" tableViewCell="srj-AI-Wyb" id="y3j-hE-R8Y">
                                     <rect key="frame" x="0.0" y="0.0" width="703" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzS-ZF-ycs" customClass="AAPLColorTappableView">
+                                        <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzS-ZF-ycs" customClass="ColorTappableView">
                                             <rect key="frame" x="560" y="0.0" width="40" height="43"/>
                                             <color key="backgroundColor" red="0.95294117649999999" green="0.41960784309999999" blue="0.42745098040000001" alpha="1" colorSpace="deviceRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="vzN-vk-sum"/>
                                             </constraints>
                                         </view>
-                                        <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXc-nW-vsQ" customClass="AAPLColorTappableView">
+                                        <view tag="4" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bXc-nW-vsQ" customClass="ColorTappableView">
                                             <rect key="frame" x="520" y="0.0" width="40" height="43"/>
                                             <color key="backgroundColor" red="0.95686274510000002" green="0.62352941179999999" blue="0.25490196079999999" alpha="1" colorSpace="deviceRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="fbc-Fx-PUo"/>
                                             </constraints>
                                         </view>
-                                        <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cj6-XA-fST" customClass="AAPLColorTappableView">
+                                        <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cj6-XA-fST" customClass="ColorTappableView">
                                             <rect key="frame" x="480" y="0.0" width="40" height="43"/>
                                             <color key="backgroundColor" red="0.94901960780000005" green="0.87450980389999999" blue="0.2470588235" alpha="1" colorSpace="deviceRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="4Ug-X0-WlA"/>
                                             </constraints>
                                         </view>
-                                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tkh-8r-aJm" customClass="AAPLColorTappableView">
+                                        <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tkh-8r-aJm" customClass="ColorTappableView">
                                             <rect key="frame" x="440" y="0.0" width="40" height="43"/>
                                             <color key="backgroundColor" red="0.70588235290000001" green="0.83529411760000005" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="GZ0-qQ-s2v"/>
                                             </constraints>
                                         </view>
-                                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Bd-Yk-Hnb" customClass="AAPLColorTappableView">
+                                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Bd-Yk-Hnb" customClass="ColorTappableView">
                                             <rect key="frame" x="401" y="0.0" width="40" height="43"/>
                                             <color key="backgroundColor" red="0.43921568630000002" green="0.70196078429999997" blue="0.87450980389999999" alpha="1" colorSpace="deviceRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="mKx-Ki-azh"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d73-Af-1LI" customClass="AAPLColorTappableView">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d73-Af-1LI" customClass="ColorTappableView">
                                             <rect key="frame" x="361" y="0.0" width="40" height="43"/>
                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -164,14 +164,14 @@
         <!--Lister-->
         <scene sceneID="GnO-ja-aze">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="6kF-aG-b93" customClass="AAPLListDocumentsViewController" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="6kF-aG-b93" customClass="ListDocumentsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="u2U-wX-Toj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="listDocumentCell" id="Say-zA-jjM" customClass="AAPLListCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="listDocumentCell" id="Say-zA-jjM" customClass="ListCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Say-zA-jjM" id="670-3D-VmB">
@@ -234,7 +234,7 @@
         <!--New List Document Controller-->
         <scene sceneID="dIQ-OX-AgE">
             <objects>
-                <viewController id="A6c-cj-pOH" customClass="AAPLNewListDocumentController" sceneMemberID="viewController">
+                <viewController id="A6c-cj-pOH" customClass="NewListDocumentController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vBg-Bw-YNV"/>
                         <viewControllerLayoutGuide type="bottom" id="HSB-bp-F0N"/>
