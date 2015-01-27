@@ -24,11 +24,12 @@ namespace ListerKit
 			}
 		}
 
-		[Outlet("checked")]
 		public bool Checked {
+			[Export("checked")]
 			get {
 				return CheckBoxLayer.Checked;
 			}
+			[Export("setChecked")]
 			set {
 				CheckBoxLayer.Checked = value;
 				UIAccessibility.PostNotification (UIAccessibilityPostNotification.LayoutChanged, null);
