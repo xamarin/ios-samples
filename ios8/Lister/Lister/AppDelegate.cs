@@ -16,6 +16,8 @@ namespace Lister
 		const string MainStoryboardName = "Main";
 		const string MainStoryboardEmptyViewControllerIdentifier = "emptyViewController";
 
+		NSObject subscribtionToken;
+
 		public override UIWindow Window { get; set; }
 
 		UISplitViewController SplitViewController {
@@ -35,15 +37,26 @@ namespace Lister
 			Console.WriteLine (IntPtr.Size);
 			Console.WriteLine ("FinishedLaunching");
 
+			subscribtionToken = NSFileManager.Notifications.ObserveUbiquityIdentityDidChange (OnUbiquityIdentityChanged);
+
 			AppConfig.SharedAppConfiguration.RunHandlerOnFirstLaunch(()=> {
 				ListCoordinator.SharedListCoordinator.CopyInitialDocuments();
 			});
 
-			var splitViewController = (UISplitViewController)Window.RootViewController;
-			splitViewController.PreferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible;
-			splitViewController.WeakDelegate = this;
+			SplitViewController.WeakDelegate = this;
+			SplitViewController.PreferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible;
+
+			// Configure the detail controller in the `UISplitViewController` at the root of the view hierarchy.
+			var navigationController = (UINavigationController)SplitViewController.ViewControllers.Last ();
+			var navItem = navigationController.TopViewController.NavigationItem;
+			navItem.LeftBarButtonItem = SplitViewController.DisplayModeButtonItem;
+			navItem.LeftItemsSupplementBackButton = true;
 
 			return true;
+		}
+
+		void OnUbiquityIdentityChanged(object sender, NSNotificationEventArgs e)
+		{
 		}
 
 		#region UISplitViewControllerDelegate
