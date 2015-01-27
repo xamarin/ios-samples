@@ -32,6 +32,12 @@ namespace Lister
 			}
 		}
 
+		ListViewController ListViewController {
+			get {
+				return (ListViewController)PrimaryViewController.ViewControllers [0];
+			}
+		}
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			Console.WriteLine (IntPtr.Size);
@@ -52,6 +58,21 @@ namespace Lister
 			navItem.LeftBarButtonItem = SplitViewController.DisplayModeButtonItem;
 			navItem.LeftItemsSupplementBackButton = true;
 
+			return true;
+		}
+
+		public override void OnActivated (UIApplication application)
+		{
+			SetupUserStoragePreferences ();
+		}
+
+		public override bool ContinueUserActivity (UIApplication application, NSUserActivity userActivity, UIApplicationRestorationHandler completionHandler)
+		{
+			// Lister only supports a single user activity type; if you support more than one the type is available from the userActivity parameter.
+			if (completionHandler == null || ListViewController == null)
+				return false;
+
+			completionHandler (new NSObject[]{ ListViewController });
 			return true;
 		}
 
@@ -107,6 +128,15 @@ namespace Lister
 			navigationViewController.Toolbar.TintColor = tintColor;
 
 			return navigationViewController;
+		}
+
+		#endregion
+
+		#region User Storage Preferences
+
+		void SetupUserStoragePreferences()
+		{
+			throw new NotImplementedException ();
 		}
 
 		#endregion
