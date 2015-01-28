@@ -10,7 +10,11 @@ This sample requires Xcode 6.0 or later and iOS 8.0 SDK
 
 Runtime
 ------------------
-device with iOS 8 or later and A7 chip
+Device with iOS 8 or later and A7 chip
+
+Refs
+----
+[Original sample](https://developer.apple.com/library/prerelease/ios/samplecode/MetalTexturedQuad/Introduction/Intro.html)
 
 Author
 ------ 
