@@ -58,10 +58,13 @@ namespace AQTapDemo
 		AudioStreamBasicDescription dataFormat;
 		OutputAudioQueue audioQueue;
 		AudioQueueProcessingTap aqTap;
-		IntPtr preRenderData;
 		AudioUnit.AudioUnit genericOutputUnit;
 		AudioUnit.AudioUnit effectUnit;
+		AudioUnit.AudioUnit convertToEffectUnit;
+		AudioUnit.AudioUnit convertFromEffectUnit;
 		AUGraph auGraph;
+		readonly IntPtr[] preRenderData = new IntPtr[20];
+		AudioTimeStamp renderTimeStamp;
 
 		int totalPacketsReceived;
 
@@ -104,7 +107,7 @@ namespace AQTapDemo
 				return;
 
 			if (audioQueue != null) {
-				// TODO: Dispose
+				// TODO: dispose old queue and its tap
 				throw new NotImplementedException ();
 			}
 
@@ -131,20 +134,20 @@ namespace AQTapDemo
 
 			auGraph = new AUGraph ();
 			auGraph.Open ();
-			var effectNode = auGraph.AddNode (AudioComponentDescription.CreateConverter (AudioTypeConverter.NewTimePitch));
+			int effectNode = auGraph.AddNode (AudioComponentDescription.CreateConverter (AudioTypeConverter.NewTimePitch));
 			effectUnit = auGraph.GetNodeInfo (effectNode);
 
-			var convertToEffectNode = auGraph.AddNode (AudioComponentDescription.CreateConverter (AudioTypeConverter.AU));
-			var convertToEffectUnit = auGraph.GetNodeInfo (convertToEffectNode);
+			int convertToEffectNode = auGraph.AddNode (AudioComponentDescription.CreateConverter (AudioTypeConverter.AU));
+			convertToEffectUnit = auGraph.GetNodeInfo (convertToEffectNode);
 
-			var convertFromEffectNode = auGraph.AddNode (AudioComponentDescription.CreateConverter (AudioTypeConverter.AU));
-			var convertFromEffectUnit = auGraph.GetNodeInfo (convertFromEffectNode);
+			int convertFromEffectNode = auGraph.AddNode (AudioComponentDescription.CreateConverter (AudioTypeConverter.AU));
+			convertFromEffectUnit = auGraph.GetNodeInfo (convertFromEffectNode);
 
-			var genericOutputNode = auGraph.AddNode (AudioComponentDescription.CreateOutput (AudioTypeOutput.Generic));
+			int genericOutputNode = auGraph.AddNode (AudioComponentDescription.CreateOutput (AudioTypeOutput.Generic));
 			genericOutputUnit = auGraph.GetNodeInfo (genericOutputNode);
 
 			// set the format conversions throughout the graph
-			var effectFormat = effectUnit.GetAudioFormat (AudioUnitScopeType.Output);
+			AudioStreamBasicDescription effectFormat = effectUnit.GetAudioFormat (AudioUnitScopeType.Output);
 			var tapFormat = aqTap.ProcessingFormat;
 
 			convertToEffectUnit.SetAudioFormat (tapFormat, AudioUnitScopeType.Input);
@@ -168,9 +171,20 @@ namespace AQTapDemo
 				throw new ApplicationException ();
 
 			// connect the nodes
-			auGraph.ConnnectNodeInput (convertToEffectNode, 0, effectNode, 0);
-			auGraph.ConnnectNodeInput (effectNode, 0, convertFromEffectNode, 0);
-			auGraph.ConnnectNodeInput (convertFromEffectNode, 0, genericOutputNode, 0);
+			AUGraphError err = auGraph.ConnnectNodeInput (convertToEffectNode, 0, effectNode, 0);
+			if (err != AUGraphError.OK)
+				throw new InvalidOperationException ();
+
+			err = auGraph.ConnnectNodeInput (effectNode, 0, convertFromEffectNode, 0);
+			if (err != AUGraphError.OK)
+				throw new InvalidOperationException ();
+
+			err = auGraph.ConnnectNodeInput (convertFromEffectNode, 0, genericOutputNode, 0);
+			if (err != AUGraphError.OK)
+				throw new InvalidOperationException ();
+
+			renderTimeStamp.SampleTime = 0;
+			renderTimeStamp.Flags = AudioTimeStamp.AtsFlags.SampleTimeValid;
 
 			// set up the callback into the first convert unit
 			if (convertToEffectUnit.SetRenderCallback (ConvertInputRenderCallback, AudioUnitScopeType.Global) != AudioUnitStatus.NoError)
@@ -186,38 +200,40 @@ namespace AQTapDemo
 			audioQueue.FreeBuffer (e.IntPtrBuffer);
 		}
 
-		uint TapProc (AudioQueueProcessingTap audioQueueTap, uint numberOfFrames, ref AudioTimeStamp timeStamp, ref AudioQueueProcessingTapFlags flags, AudioBuffers data)
+		uint TapProc (AudioQueueProcessingTap audioQueueTap, uint inNumberOfFrames, ref AudioTimeStamp timeStamp, ref AudioQueueProcessingTapFlags flags, AudioBuffers data)
 		{
-			AudioQueueProcessingTapFlags source_flags;
-			uint source_frames;
+			AudioQueueProcessingTapFlags sourceFlags;
+			uint sourceFrames;
 
-			if (audioQueueTap.GetSourceAudio (numberOfFrames, ref timeStamp, out source_flags, out source_frames, data) != AudioQueueStatus.Ok)
+			if (audioQueueTap.GetSourceAudio (inNumberOfFrames, ref timeStamp, out sourceFlags, out sourceFrames, data) != AudioQueueStatus.Ok)
 				throw new ApplicationException ();
 
-			preRenderData = data [0].Data;
-			data.SetData (0, IntPtr.Zero);
+			for (int channel = 0; channel < data.Count; channel++) {
+				preRenderData[channel] = data [channel].Data;
+				data.SetData (channel, IntPtr.Zero);
+			}
 
-			var renderTimeStamp = new AudioTimeStamp ();
 			renderTimeStamp.Flags = AudioTimeStamp.AtsFlags.SampleTimeValid;
-			AudioUnitRenderActionFlags action_flags = 0;
+			AudioUnitRenderActionFlags actionFlags = 0;
 
-			var res = genericOutputUnit.Render (ref action_flags, renderTimeStamp, 0, numberOfFrames, data);
+			AudioUnitStatus res = genericOutputUnit.Render (ref actionFlags, renderTimeStamp, 0, inNumberOfFrames, data);
 			if (res != AudioUnitStatus.NoError)
 				throw new ApplicationException ();
 
-			return source_frames;
+			return sourceFrames;
 		}
 
 		AudioUnitStatus ConvertInputRenderCallback (AudioUnitRenderActionFlags actionFlags, AudioTimeStamp timeStamp, uint busNumber, uint numberFrames, AudioBuffers data)
 		{
-			data.SetData (0, preRenderData);
+			renderTimeStamp.SampleTime += numberFrames;
+			for (int channel = 0; channel < data.Count; channel++) {
+				data.SetData (channel, preRenderData [channel]);
+			}
 			return AudioUnitStatus.NoError;
 		}
 
 		void StreamPacketsProc (object sender, PacketReceivedEventArgs args)
 		{
-			//Debug.WriteLine ("{0} packets", args.PacketDescriptions.Length);
-
 			unsafe {
 				AudioQueueBuffer* buffer;
 				if (audioQueue.AllocateBuffer (args.Bytes, out buffer) != AudioQueueStatus.Ok)

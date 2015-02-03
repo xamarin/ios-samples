@@ -21,10 +21,10 @@ namespace AQTapDemo
 		UIKit.UILabel pitchLabel { get; set; }
 
 		[Action ("handlePitchSliderValueChanged:")]
-		partial void handlePitchSliderValueChanged (Foundation.NSObject sender);
+		partial void HandlePitchSliderValueChanged (Foundation.NSObject sender);
 
 		[Action ("handleResetTo1Tapped:")]
-		partial void handleResetTo1Tapped (Foundation.NSObject sender);
+		partial void HandleResetToDefault (Foundation.NSObject sender);
 
 		void ReleaseDesignerOutlets ()
 		{
