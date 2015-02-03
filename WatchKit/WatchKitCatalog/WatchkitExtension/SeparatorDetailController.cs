@@ -10,6 +10,7 @@ using Foundation;
 
 namespace WatchkitExtension
 {
+	[Register ("SeparatorDetailController")]
 	public class SeparatorDetailController : WKInterfaceController
 	{
 		public SeparatorDetailController ()

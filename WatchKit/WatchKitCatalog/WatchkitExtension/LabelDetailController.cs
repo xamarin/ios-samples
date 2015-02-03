@@ -14,13 +14,12 @@ namespace WatchkitExtension
 	{
 		public LabelDetailController ()
 		{
-			// Custom fonts must be added to the Watch app target and referenced in the Watch app's Info.plist.
-			var attributedString = new NSAttributedString ("Custom Font", new UIStringAttributes {
-				Font = UIFont.FromName("Menlo", 12f)
-			});
-
-			customFontLabel.SetAttributedText (attributedString);
 			coloredLabel.SetTextColor (UIColor.Purple);
+
+			var attrString = new NSAttributedString ("Ultralight Label", new UIStringAttributes {
+				Font = UIFont.SystemFontOfSize (16f, UIFontWeight.UltraLight)
+			});
+			ultralightLabel.SetAttributedText (attrString);
 
 			var components = new NSDateComponents {
 				Day = 10,

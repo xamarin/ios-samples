@@ -96,7 +96,6 @@
     <ImageAsset Include="Images.xcassets\Bus5.imageset\Contents.json" />
     <ImageAsset Include="Images.xcassets\Laugh.imageset\Contents.json" />
     <ImageAsset Include="Images.xcassets\Laugh.imageset\Laugh%402x.png" />
-    <ImageAsset Include="Images.xcassets\LaunchImage.launchimage\Contents.json" />
     <ImageAsset Include="Images.xcassets\LocationMarker.imageset\Contents.json" />
     <ImageAsset Include="Images.xcassets\LocationMarker.imageset\LocationMarker%402x.png" />
     <ImageAsset Include="Images.xcassets\Whale.imageset\Contents.json" />

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6724" systemVersion="14B25" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3735"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
     </dependencies>
     <scenes>
         <!--Catalog-->
@@ -145,9 +145,11 @@
                                 <action selector="switchAction:" destination="Hq4-MZ-jxL" id="xbv-rH-qP2"/>
                             </connections>
                         </switch>
+                        <switch width="1" alignment="left" value="YES" title="Colored Switch" id="fpP-jm-K0a"/>
                         <switch alignment="left" value="YES" enabled="NO" title="Disabled" id="jjD-Zy-Mfy"/>
                     </items>
                     <connections>
+                        <outlet property="coloredSwitch" destination="fpP-jm-K0a" id="MVD-UV-sjh"/>
                         <outlet property="offSwitch" destination="hOE-Dd-e6Q" id="LxH-Xe-qHT"/>
                     </connections>
                 </controller>
@@ -219,8 +221,11 @@
                         <label alignment="center" text="Footnote" textAlignment="center" id="nnx-ym-7ds">
                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                         </label>
-                        <label alignment="center" text="Custom Font" textAlignment="center" id="w2e-ua-LI5"/>
                         <label alignment="center" text="Colored Label" textAlignment="center" id="ic6-01-abF"/>
+                        <label alignment="center" text="Semibold Label" id="GFy-YS-ekY">
+                            <fontDescription key="font" type="system" weight="semibold" pointSize="16"/>
+                        </label>
+                        <label alignment="center" text="Label" id="ifE-9Y-cY3"/>
                         <dateLabel alignment="center" minimumScaleFactor="0.0" id="Dqk-xg-uyY">
                             <dateFormatterStyle key="dateStyle" none="YES" medium="YES"/>
                             <dateFormatterStyle key="timeStyle" none="YES" short="YES"/>
@@ -233,8 +238,8 @@
                     </items>
                     <connections>
                         <outlet property="coloredLabel" destination="ic6-01-abF" id="WDE-TA-4O3"/>
-                        <outlet property="customFontLabel" destination="w2e-ua-LI5" id="vKS-t2-uBR"/>
                         <outlet property="timer" destination="2YG-3i-leu" id="CHz-N7-TEO"/>
+                        <outlet property="ultralightLabel" destination="ifE-9Y-cY3" id="K0k-jv-tlN"/>
                     </connections>
                 </controller>
             </objects>

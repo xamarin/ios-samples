@@ -9,6 +9,7 @@ using WatchKit;
 
 namespace WatchkitExtension
 {
+	[Register ("NotificationController")]
 	public class NotificationController : WKUserNotificationInterfaceController
 	{
 		public NotificationController (IntPtr handle) : base (handle)

@@ -188,7 +188,6 @@
     <ImageAsset Include="Images.xcassets\42mm-Walkway.imageset\Contents.json" />
     <ImageAsset Include="Images.xcassets\Bumblebee.imageset\Bumblebee%402x.png" />
     <ImageAsset Include="Images.xcassets\Bumblebee.imageset\Contents.json" />
-    <ImageAsset Include="Images.xcassets\.DS_Store" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WatchApp\WatchApp.csproj">

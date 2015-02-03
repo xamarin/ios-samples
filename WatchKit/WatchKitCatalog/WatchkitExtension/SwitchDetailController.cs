@@ -15,6 +15,9 @@ namespace WatchkitExtension
 		public SwitchDetailController ()
 		{
 			offSwitch.SetOn (false);
+
+			coloredSwitch.SetColor (UIColor.Blue);
+			coloredSwitch.SetTitle ("Blue Switch");
 		}
 
 		public override void WillActivate ()

@@ -11,6 +11,7 @@ using Foundation;
 
 namespace WatchkitExtension
 {
+	[Register ("GroupDetailController")]
 	public class GroupDetailController : WKInterfaceController
 	{
 		public GroupDetailController ()

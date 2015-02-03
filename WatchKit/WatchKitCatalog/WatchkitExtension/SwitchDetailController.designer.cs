@@ -1,4 +1,4 @@
-﻿// WARNING
+// WARNING
 //
 // This file has been generated automatically by Xamarin Studio to store outlets and
 // actions made in the UI designer. If it is removed, they will be lost.
@@ -13,6 +13,9 @@ namespace WatchkitExtension
 	partial class SwitchDetailController
 	{
 		[Outlet]
+		WatchKit.WKInterfaceSwitch coloredSwitch { get; set; }
+
+		[Outlet]
 		WatchKit.WKInterfaceSwitch offSwitch { get; set; }
 
 		[Action ("switchAction:")]
@@ -23,6 +26,11 @@ namespace WatchkitExtension
 			if (offSwitch != null) {
 				offSwitch.Dispose ();
 				offSwitch = null;
+			}
+
+			if (coloredSwitch != null) {
+				coloredSwitch.Dispose ();
+				coloredSwitch = null;
 			}
 		}
 	}
