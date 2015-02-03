@@ -39,13 +39,7 @@ namespace AQTapDemo
 	{
 		CCFWebRadioPlayer player;
 
-		// TODO: add storyboard and remove default ctor
 		public AQTapDemoViewController ()
-		{
-		}
-
-		public AQTapDemoViewController (IntPtr handle)
-			: base(handle)
 		{
 		}
 
