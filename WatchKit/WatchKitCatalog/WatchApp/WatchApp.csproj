@@ -82,7 +82,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.WatchApp.CSharp.targets" />
   <ItemGroup>
-    <ImageAsset Include="Images.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Images.xcassets\Bus0.imageset\Bus0%402x.png" />
     <ImageAsset Include="Images.xcassets\Bus0.imageset\Contents.json" />
     <ImageAsset Include="Images.xcassets\Bus1.imageset\Bus1%402x.png" />
@@ -104,112 +103,12 @@
     <ImageAsset Include="Images.xcassets\Whale.imageset\Whale%402x.png" />
     <ImageAsset Include="Images.xcassets\Worry.imageset\Contents.json" />
     <ImageAsset Include="Images.xcassets\Worry.imageset\Worry%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\WatchkitExtension\ButtonDetailController.cs">
-      <Link>ButtonDetailController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\ButtonDetailController.designer.cs">
-      <Link>ButtonDetailController.designer.cs</Link>
-      <DependentUpon>ButtonDetailController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\ControllerDetailController.cs">
-      <Link>ControllerDetailController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\ControllerDetailController.designer.cs">
-      <Link>ControllerDetailController.designer.cs</Link>
-      <DependentUpon>ControllerDetailController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\DeviceDetailController.cs">
-      <Link>DeviceDetailController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\DeviceDetailController.designer.cs">
-      <Link>DeviceDetailController.designer.cs</Link>
-      <DependentUpon>DeviceDetailController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\ImageDetailController.cs">
-      <Link>ImageDetailController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\ImageDetailController.designer.cs">
-      <Link>ImageDetailController.designer.cs</Link>
-      <DependentUpon>ImageDetailController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\LabelDetailController.cs">
-      <Link>LabelDetailController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\LabelDetailController.designer.cs">
-      <Link>LabelDetailController.designer.cs</Link>
-      <DependentUpon>LabelDetailController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\MapDetailController.cs">
-      <Link>MapDetailController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\MapDetailController.designer.cs">
-      <Link>MapDetailController.designer.cs</Link>
-      <DependentUpon>MapDetailController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\PageController.cs">
-      <Link>PageController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\PageController.designer.cs">
-      <Link>PageController.designer.cs</Link>
-      <DependentUpon>PageController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\SliderDetailController.cs">
-      <Link>SliderDetailController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\SliderDetailController.designer.cs">
-      <Link>SliderDetailController.designer.cs</Link>
-      <DependentUpon>SliderDetailController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\SwitchDetailController.cs">
-      <Link>SwitchDetailController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\SwitchDetailController.designer.cs">
-      <Link>SwitchDetailController.designer.cs</Link>
-      <DependentUpon>SwitchDetailController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\TextInputController.cs">
-      <Link>TextInputController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\TextInputController.designer.cs">
-      <Link>TextInputController.designer.cs</Link>
-      <DependentUpon>TextInputController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\Glance\GlanceController.cs">
-      <Link>GlanceController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\Glance\GlanceController.designer.cs">
-      <Link>GlanceController.designer.cs</Link>
-      <DependentUpon>GlanceController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\Initital Interface Controller\ElementRowController.cs">
-      <Link>ElementRowController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\Initital Interface Controller\ElementRowController.designer.cs">
-      <Link>ElementRowController.designer.cs</Link>
-      <DependentUpon>ElementRowController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\Initital Interface Controller\InterfaceController.cs">
-      <Link>InterfaceController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\Initital Interface Controller\InterfaceController.designer.cs">
-      <Link>InterfaceController.designer.cs</Link>
-      <DependentUpon>InterfaceController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\Table Detail Controller\TableDetailController.cs">
-      <Link>TableDetailController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\Table Detail Controller\TableDetailController.designer.cs">
-      <Link>TableDetailController.designer.cs</Link>
-      <DependentUpon>TableDetailController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\Table Detail Controller\TableRowController.cs">
-      <Link>TableRowController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchkitExtension\Table Detail Controller\TableRowController.designer.cs">
-      <Link>TableRowController.designer.cs</Link>
-      <DependentUpon>TableRowController.cs</DependentUpon>
-    </Compile>
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-29%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-29%403x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-40%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-44%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-86%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-98%402x.png" />
   </ItemGroup>
 </Project>

@@ -1,31 +1,26 @@
 {
   "images": [
     {
-      "filename": "Icon-29.png",
       "size": "29x29",
       "scale": "1x",
       "idiom": "iphone"
     },
     {
-      "filename": "Icon-29@2x.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "Icon-29@3x.png",
       "size": "29x29",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "Icon-40@2x.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "Icon-40@3x.png",
       "size": "40x40",
       "scale": "3x",
       "idiom": "iphone"
@@ -41,37 +36,31 @@
       "idiom": "iphone"
     },
     {
-      "filename": "Icon-60@2x.png",
       "size": "60x60",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "Icon-60@3x.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "Icon-29.png",
       "size": "29x29",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-29@2x.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-40.png",
       "size": "40x40",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-40@2x.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "ipad"
@@ -97,13 +86,11 @@
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-76.png",
       "size": "76x76",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-76@2x.png",
       "size": "76x76",
       "scale": "2x",
       "idiom": "ipad"
@@ -124,18 +111,21 @@
     },
     {
       "role": "companionSettings",
+      "filename": "29@2x.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "watch"
     },
     {
       "role": "companionSettings",
+      "filename": "29@3x.png",
       "size": "29.3x29.3",
       "scale": "3x",
       "idiom": "watch"
     },
     {
       "role": "appLauncher",
+      "filename": "40@2x.png",
       "size": "40x40",
       "subtype": "38mm",
       "scale": "2x",
@@ -143,6 +133,7 @@
     },
     {
       "role": "appLauncher",
+      "filename": "44@2x.png",
       "size": "44x44",
       "subtype": "42mm",
       "scale": "2x",
@@ -150,6 +141,7 @@
     },
     {
       "role": "quickLook",
+      "filename": "86@2x.png",
       "size": "86x86",
       "subtype": "38mm",
       "scale": "2x",
@@ -157,6 +149,7 @@
     },
     {
       "role": "quickLook",
+      "filename": "98@2x.png",
       "size": "98x98",
       "subtype": "42mm",
       "scale": "2x",
