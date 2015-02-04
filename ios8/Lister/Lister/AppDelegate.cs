@@ -148,9 +148,31 @@ namespace Lister
 
 		#endregion
 
-		#region User Storage Preferences
-
 		void SetupUserStoragePreferences()
+		{
+			StorageState storageState = AppConfig.SharedAppConfiguration.StorageState;
+
+			// Check to see if the account has changed since the last time the method was called. If it has, let the
+			// user know that their documents have changed. If they've already chosen local storage (i.e. not iCloud),
+			// don't notify them since there's no impact.
+
+			if (storageState.AccountDidChange) {
+				NotifyUserOfAccountChange (storageState);
+				// Return early. State resolution will take place after the user acknowledges the change.
+				return;
+			}
+
+			ResolveStateForUserStorageState (storageState);
+		}
+
+		void ResolveStateForUserStorageState(StorageState storageState)
+		{
+			throw new NotImplementedException ();
+		}
+
+		#region Alerts
+
+		void NotifyUserOfAccountChange(StorageState state)
 		{
 			throw new NotImplementedException ();
 		}
