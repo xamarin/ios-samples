@@ -167,7 +167,22 @@ namespace Lister
 
 		void ResolveStateForUserStorageState(StorageState storageState)
 		{
-			throw new NotImplementedException ();
+			if (storageState.CloudAvailable) {
+				bool changedToLocal = storageState.StorageOption == StorageType.Local && storageState.AccountDidChange;
+				if (storageState.StorageOption == StorageType.NotSet || changedToLocal) // iCloud is available, but we need to ask the user what they prefer.
+					PromptUserForStorageOption ();
+				else // The user has already selected a specific storage option. Set up the lists controller to use that storage option.
+					ConfigureListsController (storageState.AccountDidChange, null);
+			} else {
+				// iCloud is not available, so we'll reset the storage option and configure the lists controller. The
+				// next time that the user signs in with an iCloud account, he or she can change provide their desired
+				// storage option.
+
+				if (storageState.StorageOption != StorageType.NotSet)
+					AppConfig.SharedAppConfiguration.StorageOption = StorageType.NotSet;
+
+				ConfigureListsController (storageState.AccountDidChange, null);
+			}
 		}
 
 		#region Alerts
@@ -177,6 +192,16 @@ namespace Lister
 			throw new NotImplementedException ();
 		}
 
+		void PromptUserForStorageOption()
+		{
+			throw new NotImplementedException ();
+		}
+
 		#endregion
+
+		void ConfigureListsController(bool accountChanged, Action storageOptionChangeHandler)
+		{
+
+		}
 	}
 }
