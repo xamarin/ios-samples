@@ -10,8 +10,8 @@ namespace ListerKit
 	[Register("List")]
 	public class List : NSObject, ICloneable, INSCoding
 	{
-		const string ListEncodingItemsKey = "items";
-		const string ListEncodingColorKey = "color";
+		const string ItemsKey = "items";
+		const string ColorKey = "color";
 
 		List<ListItem> items;
 		public ListColor Color { get; set; }
@@ -35,14 +35,13 @@ namespace ListerKit
 		}
 
 		public List ()
+			: this(new ListItem[0], ListColor.Gray)
 		{
-			items = new List<ListItem> ();
 		}
 
 		public List(IEnumerable<ListItem> items, ListColor color)
-			: this()
 		{
-			this.items.AddRange (items);
+			this.items = new List<ListItem> (items);
 			Color = color;
 		}
 
@@ -50,19 +49,32 @@ namespace ListerKit
 		public List(NSCoder coder)
 			: this()
 		{
-			NSArray array = (NSArray)coder.DecodeObject (ListEncodingItemsKey);
+			NSArray array = (NSArray)coder.DecodeObject (ItemsKey);
 			for (nuint i = 0; i < array.Count; i++)
 				items.Add (array.GetItem<ListItem> (i));
 
-			Color = (ListColor)coder.DecodeInt (ListEncodingColorKey);
+			Color = (ListColor)coder.DecodeInt (ColorKey);
 		}
 
 		[Export ("encodeWithCoder:")]
 		public void EncodeTo (NSCoder coder)
 		{
 			NSArray array = NSArray.FromNSObjects (items.ToArray());
-			coder.Encode (array, ListEncodingItemsKey);
-			coder.Encode((int)Color, ListEncodingColorKey);
+			coder.Encode (array, ItemsKey);
+			coder.Encode((int)Color, ColorKey);
+		}
+
+		// TODO: make invocation test
+		public override bool IsEqual (NSObject anObject)
+		{
+			if (anObject == null)
+				return false;
+
+			if (anObject.GetType () != typeof(List))
+				return false;
+
+			List second = (List)anObject;
+			return Enumerable.SequenceEqual (items, second.items);
 		}
 
 		public int IndexOfItem(ListItem item)
