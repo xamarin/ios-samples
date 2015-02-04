@@ -43,6 +43,8 @@ namespace Lister
 
 		public DocumentsViewController MasterController { get; set; }
 
+		public ListsController ListsController { get; set; }
+
 		NSObject docStateChangeToken;
 
 		UIStringAttributes textAttributes;

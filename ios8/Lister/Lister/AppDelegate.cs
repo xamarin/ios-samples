@@ -38,7 +38,7 @@ namespace Lister
 			}
 		}
 
-		UIViewController ListsController { get; set; }
+		ListsController ListsController { get; set; }
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
@@ -240,7 +240,21 @@ namespace Lister
 
 		void ConfigureListsController(bool accountChanged, Action storageOptionChangeHandler)
 		{
+			// The current controller is correct. There is no need to reconfigure it.
+			if (ListsController != null && !accountChanged)
+				return;
 
+			if (ListsController == null) {
+				// There is currently no lists controller. Configure an appropriate one for the current configuration.
+				ListsController = AppConfig.SharedAppConfiguration.ListsControllerForCurrentConfigurationWithPathExtension (AppConfig.ListerFileExtension, storageOptionChangeHandler);
+
+				// Ensure that this controller is passed along to the `AAPLListDocumentsViewController`.
+				ListViewController.ListsController = ListsController;
+				ListsController.StartSearching ();
+			} else if (accountChanged) {
+				// A lists controller is configured; however, it needs to have its coordinator updated based on the account change. 
+				ListsController.ListCoordinator = AppConfig.SharedAppConfiguration.ListsCoordinatorForCurrentConfigurationWithPathExtension (AppConfig.ListerFileExtension, storageOptionChangeHandler);
+			}
 		}
 	}
 }

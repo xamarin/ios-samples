@@ -3,6 +3,7 @@ using System.IO;
 
 using Foundation;
 using System.Linq;
+using UIKit;
 
 namespace Common
 {
@@ -91,6 +92,16 @@ namespace Common
 				defaults.SetBool (false, FirstLaunchUserDefaultsKey);
 				firstLaunchHandler();
 			}
+		}
+
+		public UIViewController ListsControllerForCurrentConfigurationWithPathExtension (string listerFileExtension, Action storageOptionChangeHandler)
+		{
+			throw new NotImplementedException ();
+		}
+
+		public ListCoordinator ListsCoordinatorForCurrentConfigurationWithPathExtension (string listerFileExtension, Action storageOptionChangeHandler)
+		{
+			throw new NotImplementedException ();
 		}
 
 		#region Identity
