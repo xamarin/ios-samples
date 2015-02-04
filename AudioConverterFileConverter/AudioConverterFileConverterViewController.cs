@@ -560,7 +560,7 @@ namespace AudioConverterFileConverter
             // modified for iOS7 (ReadPackets depricated)
 			afio.PacketDescriptions = afio.SourceFile.ReadPacketData(false, afio.SrcFilePos, ref numberDataPackets, afio.SrcBuffer, ref outNumBytes);
 
-			if (afio.PacketDescriptions.Length == 0)
+			if (afio.PacketDescriptions.Length == 0 && numberDataPackets > 0)
 				throw new ApplicationException(afio.PacketDescriptions.ToString());
 
             // advance input file packet position
