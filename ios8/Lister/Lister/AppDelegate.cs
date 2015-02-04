@@ -189,7 +189,25 @@ namespace Lister
 
 		void NotifyUserOfAccountChange(StorageState state)
 		{
-			throw new NotImplementedException ();
+			// Copy a 'Today' list from the bundle to the local documents directory if a 'Today' list doesn't exist.
+			// This provides more context for the user than no lists and ensures the user always has a 'Today' list (a
+			// design choice made in Lister).
+
+			if (!state.CloudAvailable)
+				ListUtilities.CopyTodayList ();
+
+			string title = "iCloud Sign Out";
+			string message = "You have signed out of the iCloud account previously used to store documents. Sign back in to access those documents.";
+			string okActionTitle = "OK";
+
+			UIAlertController signedOutController = UIAlertController.Create (title, message, UIAlertControllerStyle.Alert);
+
+			UIAlertAction action = UIAlertAction.Create (okActionTitle, UIAlertActionStyle.Cancel, _ => {
+				ResolveStateForUserStorageState (state);
+			});
+			signedOutController.AddAction(action);
+
+			ListViewController.PresentViewController(signedOutController, true, null);
 		}
 
 		void PromptUserForStorageOption()

@@ -36,12 +36,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Storage\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ListDocument.cs" />
     <Compile Include="ListCoordinator.cs" />
     <Compile Include="CheckBox.cs" />
+    <Compile Include="Storage\ListUtilities.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
