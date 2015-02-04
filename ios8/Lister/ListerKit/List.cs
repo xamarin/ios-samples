@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UIKit;
 using Foundation;
 
-namespace Common
+namespace ListerKit
 {
 	[Register("List")]
 	public class List : NSObject, ICloneable, INSCoding

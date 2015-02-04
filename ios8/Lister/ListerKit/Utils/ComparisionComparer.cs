@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Common
+namespace ListerKit
 {
 	public class ComparisionComparer<T> : Comparer<T>
 	{

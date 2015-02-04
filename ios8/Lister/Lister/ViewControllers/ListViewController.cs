@@ -2,12 +2,10 @@
 
 using UIKit;
 using Foundation;
-
-using Common;
-using ListerKit;
-using NotificationCenter;
-using System.Drawing;
 using CoreGraphics;
+using NotificationCenter;
+
+using ListerKit;
 
 namespace Lister
 {

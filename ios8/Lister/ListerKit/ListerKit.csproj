@@ -45,12 +45,17 @@
     <Compile Include="CheckBox.cs" />
     <Compile Include="Storage\ListUtilities.cs" />
     <Compile Include="Storage\ListsController.cs" />
+    <Compile Include="CheckBoxLayer.cs" />
+    <Compile Include="List.cs" />
+    <Compile Include="ListItem.cs" />
+    <Compile Include="ListOperationInfo.cs" />
+    <Compile Include="Utils\ComparisionComparer.cs" />
+    <Compile Include="Colors\AppColors.cs" />
+    <Compile Include="Colors\ListColor.cs" />
+    <Compile Include="Configuration\AppConfig.cs" />
+    <Compile Include="Configuration\StorageState.cs" />
+    <Compile Include="Configuration\StorageType.cs" />
+    <Compile Include="Presenters\ListPresenting.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

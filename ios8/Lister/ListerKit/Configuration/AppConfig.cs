@@ -5,7 +5,7 @@ using Foundation;
 using System.Linq;
 using UIKit;
 
-namespace Common
+namespace ListerKit
 {
 	public class AppConfig : NSObject
 	{
@@ -94,7 +94,7 @@ namespace Common
 			}
 		}
 
-		public UIViewController ListsControllerForCurrentConfigurationWithPathExtension (string listerFileExtension, Action storageOptionChangeHandler)
+		public ListsController ListsControllerForCurrentConfigurationWithPathExtension (string listerFileExtension, Action storageOptionChangeHandler)
 		{
 			throw new NotImplementedException ();
 		}

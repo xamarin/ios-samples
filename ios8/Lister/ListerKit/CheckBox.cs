@@ -4,8 +4,6 @@ using UIKit;
 using Foundation;
 using ObjCRuntime;
 
-using Common;
-
 namespace ListerKit
 {
 	[Register("CheckBox")]

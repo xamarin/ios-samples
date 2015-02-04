@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lister", "Lister\Lister.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListerKit", "ListerKit\ListerKit.csproj", "{6DB5CB09-C2DA-414B-A216-FA14CEEED91C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListerToday", "ListerToday\ListerToday.csproj", "{4CCF271B-CF2F-4ABA-A9F5-DE94EEED5E42}"
 EndProject
 Global
@@ -43,18 +41,6 @@ Global
 		{4CCF271B-CF2F-4ABA-A9F5-DE94EEED5E42}.Release|iPhone.Build.0 = Release|iPhone
 		{4CCF271B-CF2F-4ABA-A9F5-DE94EEED5E42}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{4CCF271B-CF2F-4ABA-A9F5-DE94EEED5E42}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
-		{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
-		{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}.AppStore|iPhone.ActiveCfg = Release|Any CPU
-		{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}.AppStore|iPhone.Build.0 = Release|Any CPU
-		{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}.Release|iPhone.Build.0 = Release|Any CPU
-		{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{5FE2B2BC-6C40-4C8B-A501-7BDA2BBA291F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{6DB5CB09-C2DA-414B-A216-FA14CEEED91C}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
 		{6DB5CB09-C2DA-414B-A216-FA14CEEED91C}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
 		{6DB5CB09-C2DA-414B-A216-FA14CEEED91C}.AppStore|iPhone.ActiveCfg = Release|Any CPU
@@ -67,8 +53,5 @@ Global
 		{6DB5CB09-C2DA-414B-A216-FA14CEEED91C}.Release|iPhone.Build.0 = Release|Any CPU
 		{6DB5CB09-C2DA-414B-A216-FA14CEEED91C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{6DB5CB09-C2DA-414B-A216-FA14CEEED91C}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Lister\Lister.csproj
 	EndGlobalSection
 EndGlobal

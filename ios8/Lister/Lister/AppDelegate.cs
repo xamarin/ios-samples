@@ -5,7 +5,6 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-using Common;
 using ListerKit;
 
 namespace Lister

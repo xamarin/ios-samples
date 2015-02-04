@@ -6,7 +6,6 @@ using System.Threading;
 using UIKit;
 using Foundation;
 
-using Common;
 using ListerKit;
 
 namespace Lister

@@ -1,7 +1,7 @@
 ﻿using System;
 using UIKit;
 
-namespace Common
+namespace ListerKit
 {
 	public static class AppColors
 	{

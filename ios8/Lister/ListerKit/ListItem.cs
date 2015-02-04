@@ -2,7 +2,7 @@
 
 using Foundation;
 
-namespace Common
+namespace ListerKit
 {
 	[Register("ListItem")]
 	public class ListItem: NSObject, ICloneable, INSCoding

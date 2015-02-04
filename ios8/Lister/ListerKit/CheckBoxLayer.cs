@@ -6,7 +6,7 @@ using CoreAnimation;
 using Foundation;
 using CoreGraphics;
 
-namespace Common
+namespace ListerKit
 {
 	public class CheckBoxLayer : CALayer
 	{

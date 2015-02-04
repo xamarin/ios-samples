@@ -3,8 +3,6 @@
 using UIKit;
 using Foundation;
 
-using Common;
-
 namespace ListerKit
 {
 	public class ListDocument : UIDocument

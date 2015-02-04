@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Drawing;
-
-using NotificationCenter;
-using Foundation;
-using UIKit;
-
-using Common;
-using ListerKit;
 using System.Collections.Generic;
+
+using UIKit;
+using Foundation;
 using CoreGraphics;
+using NotificationCenter;
+
+using ListerKit;
 
 namespace ListerToday
 {

@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using UIKit;
 using Foundation;
 
-using Common;
 using ListerKit;
-using System.Threading.Tasks;
 
 namespace Lister
 {
