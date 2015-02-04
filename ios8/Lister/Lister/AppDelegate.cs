@@ -80,6 +80,8 @@ namespace Lister
 
 		void OnUbiquityIdentityChanged(object sender, NSNotificationEventArgs e)
 		{
+			PrimaryViewController.PopViewController (true);
+			SetupUserStoragePreferences ();
 		}
 
 		#region UISplitViewControllerDelegate
