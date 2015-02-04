@@ -38,6 +38,8 @@ namespace Lister
 			}
 		}
 
+		UIViewController ListsController { get; set; }
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			Console.WriteLine (IntPtr.Size);
@@ -91,17 +93,23 @@ namespace Lister
 		[Export ("splitViewController:collapseSecondaryViewController:ontoPrimaryViewController:")]
 		public bool CollapseSecondViewController (UISplitViewController splitViewController, UIViewController secondaryViewController, UIViewController primaryViewController)
 		{
-			splitViewController.PreferredDisplayMode = UISplitViewControllerDisplayMode.Automatic;
+			// In a regular width size class, Lister displays a split view controller with a navigation controller
+			// displayed in both the master and detail areas.
+			// If there's a list that's currently selected, it should be on top of the stack when collapsed.
+			// Ensuring that the navigation bar takes on the appearance of the selected list requires the
+			// transfer of the configuration of the navigation controller that was shown in the detail area.
 
-			// If there's a list that's currently selected in separated mode and we want to show it in collapsed mode, we'll transfer over the view controller's settings.
 			var secondaryNavigationController = secondaryViewController as UINavigationController;
 			if (secondaryNavigationController != null) {
-				UIStringAttributes textAttributes = secondaryNavigationController.NavigationBar.TitleTextAttributes;
-				PrimaryViewController.NavigationBar.TitleTextAttributes = textAttributes;
-				PrimaryViewController.NavigationBar.TintColor = secondaryNavigationController.NavigationBar.TintColor;
-				PrimaryViewController.Toolbar.TintColor = secondaryNavigationController.Toolbar.TintColor;
+				var top = secondaryNavigationController.TopViewController as ListViewController;
+				if (top != null) {
+					UIStringAttributes textAttributes = secondaryNavigationController.NavigationBar.TitleTextAttributes;
+					PrimaryViewController.NavigationBar.TitleTextAttributes = textAttributes;
+					PrimaryViewController.NavigationBar.TintColor = secondaryNavigationController.NavigationBar.TintColor;
+					PrimaryViewController.Toolbar.TintColor = secondaryNavigationController.Toolbar.TintColor;
 
-				PrimaryViewController.ShowDetailViewController (secondaryNavigationController.TopViewController, null);
+					return false;
+				}
 			}
 
 			return true;
