@@ -118,24 +118,30 @@ namespace Lister
 		[Export ("splitViewController:separateSecondaryViewControllerFromPrimaryViewController:")]
 		public UIViewController SeparateSecondaryViewController (UISplitViewController splitViewController, UIViewController primaryViewController)
 		{
-			if (PrimaryViewController.TopViewController == PrimaryViewController.ViewControllers[0]) {
-				// If no list is on the stack, fill the detail area with an empty controller.
-				UIStoryboard storyboard = UIStoryboard.FromName (MainStoryboardName, null);
-				UIViewController emptyViewController = (UIViewController)storyboard.InstantiateViewController (MainStoryboardEmptyViewControllerIdentifier);
+			// In this delegate method, the reverse of the collapsing procedure described above needs to be
+			// carried out if a list is being displayed. The appropriate controller to display in the detail area
+			// should be returned. If not, the standard behavior is obtained by returning null.
+			var secondaryVC = PrimaryViewController.TopViewController as UINavigationController;
+			if (secondaryVC != null) {
+				var listViewController = secondaryVC.TopViewController as ListViewController;
+				if (listViewController != null) {
+					PrimaryViewController.PopViewController(false);
 
-				return emptyViewController;
+					// Obtain the `textAttributes` and `tintColor` to setup the separated navigation controller.
+					var textAttributes = listViewController.TextAttributes;
+					UIColor tintColor = AppColors.ColorFrom (listViewController.Document.ListPresenter.Color);
+
+					// Transfer the settings for the `navigationBar` and the `toolbar` to the detail navigation controller.
+					secondaryVC.NavigationBar.TitleTextAttributes = textAttributes;
+					secondaryVC.NavigationBar.TintColor = tintColor;
+					secondaryVC.Toolbar.TintColor = tintColor;
+
+					listViewController.NavigationItem.LeftBarButtonItem = SplitViewController.DisplayModeButtonItem;
+					return secondaryVC;
+				}
 			}
 
-			UIStringAttributes textAttributes = PrimaryViewController.NavigationBar.TitleTextAttributes;
-			UIColor tintColor = PrimaryViewController.NavigationBar.TintColor;
-			UIViewController poppedViewController = PrimaryViewController.PopViewController (false);
-
-			UINavigationController navigationViewController = new UINavigationController (poppedViewController);
-			navigationViewController.NavigationBar.TitleTextAttributes = textAttributes;
-			navigationViewController.NavigationBar.TintColor = tintColor;
-			navigationViewController.Toolbar.TintColor = tintColor;
-
-			return navigationViewController;
+			return null;
 		}
 
 		#endregion

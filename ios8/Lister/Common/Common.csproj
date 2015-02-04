@@ -38,6 +38,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Common\" />
     <Folder Include="Utils\" />
+    <Folder Include="Presenters\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="ListItem.cs" />
     <Compile Include="ListOperationInfo.cs" />
     <Compile Include="Utils\ComparisionComparer.cs" />
+    <Compile Include="Presenters\ListPresenting.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -13,6 +13,9 @@ namespace ListerKit
 
 		public List List { get; set; }
 
+		// TODO: impl
+		public ListPresenting ListPresenter { get; private set; }
+
 		public ListDocument (NSUrl url)
 			: base(url)
 		{

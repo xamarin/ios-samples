@@ -24,18 +24,20 @@ namespace Lister
 		static readonly NSString ListItemCellIdentifier = new NSString("listItemCell");
 		static readonly NSString ListColorCellIdentifier = new NSString("listColorCell");
 
-		ListDocument document;
+		// TODO: verify
+		public ListDocument Document { get; private set; }
+
 		UIBarButtonItem[] listToolbarItems;
 
 		public NSUrl DocumentURL {
 			get {
-				return document.FileUrl;
+				return Document.FileUrl;
 			}
 		}
 
 		List List {
 			get {
-				return document.List;
+				return Document.List;
 			}
 		}
 
@@ -44,11 +46,11 @@ namespace Lister
 		NSObject docStateChangeToken;
 
 		UIStringAttributes textAttributes;
-		UIStringAttributes TextAttributes {
+		public UIStringAttributes TextAttributes {
 			get {
 				return textAttributes;
 			}
-			set {
+			private set {
 				textAttributes = value;
 
 				if(IsViewLoaded)
@@ -91,14 +93,14 @@ namespace Lister
 
 			// TODO: use strong type subscribtion version https://trello.com/c/1RyX6cJL
 			docStateChangeToken = NSNotificationCenter.DefaultCenter.AddObserver (UIDocument.StateChangedNotification,
-				HandleDocumentStateChangedNotification, document);
+				HandleDocumentStateChangedNotification, Document);
 		}
 
 		async void UpdateList ()
 		{
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 
-			var success = await document.OpenAsync ();
+			var success = await Document.OpenAsync ();
 			if (!success) {
 				// In your app you should handle this gracefully.
 				Console.WriteLine ("Couldn't open document: {0}.", DocumentURL.AbsoluteString);
@@ -113,8 +115,8 @@ namespace Lister
 		{
 			base.ViewWillDisappear (animated);
 
-			if(document != null)
-				document.Close (null);
+			if(Document != null)
+				Document.Close (null);
 
 			// Unsibscribe from UIDocument.StateChangedNotification
 			if(docStateChangeToken != null)
@@ -132,13 +134,13 @@ namespace Lister
 		{
 			await listInfo.FetchInfoAsync ();
 
-			if (document != null) {
-				document.DocumentDeleted -= OnListDocumentWasDeleted;
-				document.Close (null);
+			if (Document != null) {
+				Document.DocumentDeleted -= OnListDocumentWasDeleted;
+				Document.Close (null);
 			}
 
-			document = new ListDocument(listInfo.Url);
-			document.DocumentDeleted += OnListDocumentWasDeleted;
+			Document = new ListDocument(listInfo.Url);
+			Document.DocumentDeleted += OnListDocumentWasDeleted;
 
 			NavigationItem.Title = listInfo.Name;
 
@@ -154,7 +156,7 @@ namespace Lister
 
 		void HandleDocumentStateChangedNotification(NSNotification notification)
 		{
-			UIDocumentState state = document.DocumentState;
+			UIDocumentState state = Document.DocumentState;
 
 			if ((state & UIDocumentState.InConflict) != 0)
 				ResolveConflicts ();
@@ -182,7 +184,7 @@ namespace Lister
 			// If moving out of edit mode, notify observers about the list color and trigger a save.
 			if (!editing) {
 				// Notify the document of a change.
-				document.UpdateChangeCount (UIDocumentChangeKind.Done);
+				Document.UpdateChangeCount (UIDocumentChangeKind.Done);
 
 				MasterController.UpdateDocumentColor (DocumentURL, List.Color);
 
@@ -201,7 +203,7 @@ namespace Lister
 		{
 			// Don't show anything if the document hasn't been loaded.
 			// We show the items in a list, plus a separate row that lets users enter a new item.
-			return document == null || List == null ? 0 : List.Count + 1;
+			return Document == null || List == null ? 0 : List.Count + 1;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -263,7 +265,7 @@ namespace Lister
 			TriggerNewDataForWidget ();
 
 			// Notify the document of a change.
-			document.UpdateChangeCount (UIDocumentChangeKind.Done);
+			Document.UpdateChangeCount (UIDocumentChangeKind.Done);
 		}
 
 		public override void MoveRow (UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath)
@@ -272,7 +274,7 @@ namespace Lister
 			List.MoveItem (item, destinationIndexPath.Row - 1);
 
 			// Notify the document of a change.
-			document.UpdateChangeCount (UIDocumentChangeKind.Done);
+			Document.UpdateChangeCount (UIDocumentChangeKind.Done);
 		}
 
 		#endregion
@@ -330,7 +332,7 @@ namespace Lister
 					TriggerNewDataForWidget ();
 
 					// Notify the document of a change.
-					document.UpdateChangeCount (UIDocumentChangeKind.Done);
+					Document.UpdateChangeCount (UIDocumentChangeKind.Done);
 				}
 			} else if (textField.Text.Length > 0) {
 				// Adds the item to the top of the list.
@@ -352,7 +354,7 @@ namespace Lister
 				TriggerNewDataForWidget ();
 
 				// Notify the document of a change.
-				document.UpdateChangeCount (UIDocumentChangeKind.Done);
+				Document.UpdateChangeCount (UIDocumentChangeKind.Done);
 			}
 		}
 
@@ -423,7 +425,7 @@ namespace Lister
 				TriggerNewDataForWidget ();
 
 				// notify the document that we've made a change
-				document.UpdateChangeCount (UIDocumentChangeKind.Done);
+				Document.UpdateChangeCount (UIDocumentChangeKind.Done);
 			}
 		}
 
@@ -445,7 +447,7 @@ namespace Lister
 		{
 			string todayDocumentName = AppConfig.SharedAppConfiguration.TodayDocumentName;
 
-			if (document.LocalizedName != todayDocumentName)
+			if (Document.LocalizedName != todayDocumentName)
 				return;
 
 			// You can use hardcoded value for widget bundle identifier
