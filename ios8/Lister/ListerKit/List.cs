@@ -77,6 +77,7 @@ namespace ListerKit
 			return Enumerable.SequenceEqual (items, second.items);
 		}
 
+		/*
 		public int IndexOfItem(ListItem item)
 		{
 			return items.IndexOf (item);
@@ -236,6 +237,7 @@ namespace ListerKit
 		}
 
 		#endregion
+		*/
 	}
 }
 
