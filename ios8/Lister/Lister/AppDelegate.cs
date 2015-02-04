@@ -196,9 +196,9 @@ namespace Lister
 			if (!state.CloudAvailable)
 				ListUtilities.CopyTodayList ();
 
-			string title = "iCloud Sign Out";
-			string message = "You have signed out of the iCloud account previously used to store documents. Sign back in to access those documents.";
-			string okActionTitle = "OK";
+			var title = "iCloud Sign Out";
+			var message = "You have signed out of the iCloud account previously used to store documents. Sign back in to access those documents.";
+			var okActionTitle = "OK";
 
 			UIAlertController signedOutController = UIAlertController.Create (title, message, UIAlertControllerStyle.Alert);
 
@@ -212,7 +212,28 @@ namespace Lister
 
 		void PromptUserForStorageOption()
 		{
-			throw new NotImplementedException ();
+			var title = "Choose Storage Option";
+			var message = "Do you want to store documents in iCloud or only on this device?";
+			var localOnlyActionTitle = "Local Only";
+			var cloudActionTitle = "iCloud";
+
+			UIAlertController storageController = UIAlertController.Create (title, message, UIAlertControllerStyle.Alert);
+
+			UIAlertAction localOption = UIAlertAction.Create (localOnlyActionTitle, UIAlertActionStyle.Default, _ => {
+				AppConfig.SharedAppConfiguration.StorageOption = StorageType.Local;
+				ConfigureListsController (true, null);
+			});
+			storageController.AddAction (localOption);
+
+			UIAlertAction cloudOption = UIAlertAction.Create (cloudActionTitle, UIAlertActionStyle.Default, _ => {
+				AppConfig.SharedAppConfiguration.StorageOption = StorageType.Cloud;
+
+				ConfigureListsController (true, null);
+				ListUtilities.MigrateLocalListsToCloud ();
+			});
+			storageController.AddAction (cloudOption);
+
+			ListViewController.PresentViewController (storageController, true, null);
 		}
 
 		#endregion

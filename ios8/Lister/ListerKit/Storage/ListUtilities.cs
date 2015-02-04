@@ -8,6 +8,11 @@ namespace ListerKit
 		{
 			throw new NotImplementedException ();
 		}
+
+		public static void MigrateLocalListsToCloud ()
+		{
+			throw new NotImplementedException ();
+		}
 	}
 }
 
