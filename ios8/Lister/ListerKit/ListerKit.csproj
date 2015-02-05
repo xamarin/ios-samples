@@ -55,8 +55,8 @@
     <Compile Include="Configuration\AppConfig.cs" />
     <Compile Include="Configuration\StorageState.cs" />
     <Compile Include="Configuration\StorageType.cs" />
-    <Compile Include="Presenters\ListPresenting.cs" />
     <Compile Include="Presenters\ListPresenterAlgorithms.cs" />
+    <Compile Include="Presenters\IListPresenter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
