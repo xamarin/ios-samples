@@ -18,7 +18,7 @@ namespace WatchkitExtension
 
 			boundsLabel.SetText (bounds.ToString ());
 			scaleLabel.SetText (scale.ToString ());
-			preferredContentSizeLabel.SetText (WKInterfaceDevice.CurrentDevice.PreferredContentSizeCategory);
+			preferredContentSizeLabel.SetText (WKInterfaceDevice.CurrentDevice.PreferredContentSizeCategory.ToString());
 		}
 
 		public override void WillActivate ()
