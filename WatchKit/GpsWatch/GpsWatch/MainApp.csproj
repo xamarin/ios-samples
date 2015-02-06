@@ -56,7 +56,6 @@
     <MtouchDebug>true</MtouchDebug>
     <MtouchI18n>
     </MtouchI18n>
-    <CodesignProvision>b6200948-2ac1-4893-8373-aa17b1e188f7</CodesignProvision>
     <IpaPackageName>
     </IpaPackageName>
   </PropertyGroup>
