@@ -60,6 +60,7 @@
     <Compile Include="Presenters\ListPresenterUtilities.cs" />
     <Compile Include="Presenters\ListColorUpdateAction.cs" />
     <Compile Include="Presenters\IListPresenterDelegate.cs" />
+    <Compile Include="Presenters\BatchChangeKind.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
