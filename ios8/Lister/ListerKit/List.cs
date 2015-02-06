@@ -8,7 +8,7 @@ using Foundation;
 namespace ListerKit
 {
 	[Register("List")]
-	public class List : NSObject, ICloneable, INSCoding
+	public class List : NSObject, INSCoding
 	{
 		const string ItemsKey = "items";
 		const string ColorKey = "color";
@@ -75,6 +75,15 @@ namespace ListerKit
 
 			List second = (List)anObject;
 			return Enumerable.SequenceEqual (items, second.items);
+		}
+
+		public override int GetHashCode ()
+		{
+			int hash = 0;
+			foreach (var item in items)
+				hash ^= item.GetHashCode ();
+
+			return hash;
 		}
 
 		/*

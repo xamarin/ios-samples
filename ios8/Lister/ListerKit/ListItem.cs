@@ -71,7 +71,12 @@ namespace ListerKit
 				return false;
 
 			ListItem second = (ListItem)anObject;
-			return UID = second.UID;
+			return UID == second.UID;
+		}
+
+		public override int GetHashCode ()
+		{
+			return UID.GetHashCode ();
 		}
 
 		public override string ToString ()

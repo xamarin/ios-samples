@@ -71,5 +71,23 @@ namespace ListerKit
 		/// </summary>
 		/// <returns>The copy of presented list items.</returns>
 		List[] GetPresentedListItems();
+
+		// TODO: add compound event
+		void RaiseItemRemoved(ListItem removedItem, int atIndex);
+
+		// TODO: add compound event
+		void RaiseItemInserted(ListItem insertedItem, int atIndex);
+
+		// TODO: add compound event
+		void RaiseItemUpdated(ListItem updatedItem, int atIndex);
+
+		// TODO: add compound event
+		void RaiseWillChangeListLayout(bool isInitialLayout);
+
+		// TODO: add compound event
+		void RaiseDidChangeListLayout(bool isInitialLayout);
+
+
+		void RaiseDidUpdateListColorWithColor(ListColor color);
 	}
 }

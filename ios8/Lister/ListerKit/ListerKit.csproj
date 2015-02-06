@@ -58,6 +58,7 @@
     <Compile Include="Presenters\ListPresenterAlgorithms.cs" />
     <Compile Include="Presenters\IListPresenter.cs" />
     <Compile Include="Presenters\ListPresenterUtilities.cs" />
+    <Compile Include="Presenters\ListColorUpdateAction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
