@@ -13,24 +13,24 @@ namespace ListerKit
 		const string ItemsKey = "items";
 		const string ColorKey = "color";
 
-		List<ListItem> items;
+		public List<ListItem> Items { get; private set; }
 		public ListColor Color { get; set; }
 
 		public bool IsEmpty {
 			get {
-				return items.Count == 0;
+				return Items.Count == 0;
 			}
 		}
 
 		public int Count {
 			get {
-				return items.Count;
+				return Items.Count;
 			}
 		}
 
 		public ListItem this[int index] {
 			get {
-				return items [index];
+				return Items [index];
 			}
 		}
 
@@ -41,7 +41,7 @@ namespace ListerKit
 
 		public List(IEnumerable<ListItem> items, ListColor color)
 		{
-			this.items = new List<ListItem> (items);
+			this.Items = new List<ListItem> (items);
 			Color = color;
 		}
 
@@ -51,7 +51,7 @@ namespace ListerKit
 		{
 			NSArray array = (NSArray)coder.DecodeObject (ItemsKey);
 			for (nuint i = 0; i < array.Count; i++)
-				items.Add (array.GetItem<ListItem> (i));
+				Items.Add (array.GetItem<ListItem> (i));
 
 			Color = (ListColor)coder.DecodeInt (ColorKey);
 		}
@@ -59,7 +59,7 @@ namespace ListerKit
 		[Export ("encodeWithCoder:")]
 		public void EncodeTo (NSCoder coder)
 		{
-			NSArray array = NSArray.FromNSObjects (items.ToArray());
+			NSArray array = NSArray.FromNSObjects (Items.ToArray());
 			coder.Encode (array, ItemsKey);
 			coder.Encode((int)Color, ColorKey);
 		}
@@ -74,13 +74,13 @@ namespace ListerKit
 				return false;
 
 			List second = (List)anObject;
-			return Enumerable.SequenceEqual (items, second.items);
+			return Enumerable.SequenceEqual (Items, second.Items);
 		}
 
 		public override int GetHashCode ()
 		{
 			int hash = 0;
-			foreach (var item in items)
+			foreach (var item in Items)
 				hash ^= item.GetHashCode ();
 
 			return hash;

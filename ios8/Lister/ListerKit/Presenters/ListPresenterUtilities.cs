@@ -20,7 +20,7 @@ namespace ListerKit
 				// IndexOf will call ListItem.Equals and ListItem.GetHashCode
 				int oldIndex = initialListItems.IndexOf (item);
 				initialListItems.RemoveAt (oldIndex);
-				listPresenter.RaiseItemRemoved (item, oldIndex);
+				listPresenter.Delegate.DidRemoveListItem (listPresenter, item, oldIndex);
 			}
 		}
 
@@ -30,17 +30,17 @@ namespace ListerKit
 			for (int index = 0; index < listItemsToInsert.Count; index++) {
 				var insertItem = listItemsToInsert [index];
 				initialListItems.Insert (index, insertItem);
-				listPresenter.RaiseItemInserted (insertItem, index);
+				listPresenter.Delegate.DidInsertListItem(listPresenter, insertItem, index);
 			}
 		}
 
 		// TODO: Rename
-		public static void UpdateListItemsWithListItemsForListPresenter(IListPresenter listPresenter, List<ListItem> presentedListItems, List<ListItem> newUpdatedListItems)
+		public static void UpdateListItemsWithListItemsForListPresenter(IListPresenter listPresenter, IList<ListItem> presentedListItems, IEnumerable<ListItem> newUpdatedListItems)
 		{
 			foreach (var newlyUpdated in newUpdatedListItems) {
 				int index = presentedListItems.IndexOf (newlyUpdated);
 				presentedListItems [index] = newlyUpdated;
-				listPresenter.RaiseItemUpdated (newlyUpdated, index);
+				listPresenter.Delegate.DidUpdateListItem(listPresenter, newlyUpdated, index);
 			}
 		}
 
@@ -51,14 +51,14 @@ namespace ListerKit
 				return false;
 
 			bool? isInitialLayout = IsInitialLayout (listColorUpdateAction);
-			if(isInitialLayout.HasValue)
-				listPresenter.RaiseWillChangeListLayout (isInitialLayout.Value);
+			if (isInitialLayout.HasValue)
+				listPresenter.Delegate.WillChangeListLayout (listPresenter, isInitialLayout.Value);
 
 			presentedList.Color = newColor;
-			listPresenter.RaiseDidUpdateListColorWithColor (newColor);
+			listPresenter.Delegate.DidUpdateListColorWithColor (listPresenter, newColor);
 
-			if(isInitialLayout.HasValue)
-				listPresenter.RaiseDidChangeListLayout (isInitialLayout.Value);
+			if (isInitialLayout.HasValue)
+				listPresenter.Delegate.DidChangeListLayout (listPresenter, isInitialLayout.Value);
 
 			return true;
 		}

@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+
+using Foundation;
 
 namespace ListerKit
 {
@@ -21,10 +25,150 @@ namespace ListerKit
 	/// of these methods trigger calls to the delegate to be notified about inserted list items, removed list
 	/// items, updated list items, etc.
 	/// </summary>
-	public class IncompleteListItemsPresenter
+	public class IncompleteListItemsPresenter : IListPresenter
 	{
+		public IListPresenterDelegate Delegate {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
+
+		// The internal storage for the list that we're presenting. By default, it's an empty list.
+		List list;
+
+		// Flag to see whether or not the first SetList call should trigger a batch reload.
+		bool isInitialList;
+		List<ListItem> presentedListItems;
+
+		public ListColor Color {
+			get {
+				return list.Color;
+			}
+			set {
+				ListPresenterUtilities.UpdateListColorForListPresenterIfDifferent (this, list, value, ListColorUpdateAction.SendDelegateChangeLayoutCallsForNonInitialLayout);
+			}
+		}
+
+		public List ArchiveableList {
+			get {
+				return list;
+			}
+		}
+
+		public int Count {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
+
+		public bool IsEmpty {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
+
 		public IncompleteListItemsPresenter ()
 		{
+			list = new List();
+			isInitialList = true;
+			presentedListItems = new List<ListItem> ();
+		}
+
+		public void SetList (List newList)
+		{
+			if (isInitialList) {
+				isInitialList = false;
+				list = newList;
+
+				presentedListItems = newList.Items.Where (item => !item.IsComplete).ToList ();
+				Delegate.DidRefreshCompleteLayout (this);
+				return;
+			}
+
+			// First find all the differences between the lists that we want to reflect in the presentation
+			// of the list: removed list items that were incomplete, inserted list items that are incomplete, presented list items
+			// that are toggled, and presented list items whose text has changed. Note that although we'll gradually
+			// update presentedListItems to reflect the changes we find, we also want to save the latest state of
+			// the list (i.e. the `newList` parameter) as the underlying storage of the list. Since we'll be presenting
+			// the same list either way, it's better not to change the underlying list representation unless we need
+			// to. Keep in mind, however, that all of the list items in presentedListItems should also be in `list.items`.
+			// In short, once we modify `presentedListItems` with all of the changes, we need to also update `list.items`
+			// to contain all of the list items that were unchanged (this can be done by replacing the new list item
+			// representation by the old representation of the list item). Once that happens, all of the presentation
+			// logic carries on as normal.
+
+			List oldList = newList;
+
+			IList<ListItem> newRemovedPresentedListItems = ListPresenterAlgorithms.FindRemovedListItemsFromInitialListItemsToChangedListItems(presentedListItems, newList.Items);
+			IList<ListItem> newInsertedIncompleteListItems = ListPresenterAlgorithms.FindInsertedListItemsFromInitialListItemsToChangedListItems (presentedListItems, newList.Items, listItem => {
+				return !listItem.IsComplete;
+			});
+			var newPresentedToggledListItems = ListPresenterAlgorithms.FindToggledListItemsFromInitialListItemsToChangedListItems(presentedListItems, newList.Items);
+			var newPresentedListItemsWithUpdatedText = ListPresenterAlgorithms.FindListItemsWithUpdatedTextFromInitialListItemsToChangedListItems(presentedListItems, newList.Items);
+
+			var listItemsBatchChangeKind = ListPresenterAlgorithms.ListItemsBatchChangeKindForChanges(newRemovedPresentedListItems, newInsertedIncompleteListItems, newPresentedToggledListItems, newPresentedListItemsWithUpdatedText);
+
+			// If no changes occured we'll ignore the update.
+			if (listItemsBatchChangeKind == BatchChangeKind.None && oldList.Color == newList.Color)
+				return;
+
+			// Start performing changes to the presentation of the list.
+			Delegate.WillChangeListLayout(this, true);
+
+			// Remove the list items from the presented list items that were removed somewhere else.
+			if (newRemovedPresentedListItems.Count > 0)
+				ListPresenterUtilities.RemoveListItemsFromListItemsWithListPresenter(this, presentedListItems, newRemovedPresentedListItems);
+
+			// Insert the incomplete list items into the presented list items that were inserted elsewhere.
+			if (newInsertedIncompleteListItems.Count > 0)
+				ListPresenterUtilities.InsertListItemsIntoListItemsWithListPresenter(this, presentedListItems, newInsertedIncompleteListItems);
+
+			// For all of the list items whose content has changed elsewhere, we need to update the list items in place.
+			// Since the `IncompleteListItemsPresenter` keeps toggled list items in place, we only need to perform one
+			// update for list items that have a different completion state and text. We'll batch both of these changes
+			// into a single update.
+
+			if (newPresentedToggledListItems.Count > 0 || newPresentedListItemsWithUpdatedText.Count > 0) {
+				// Find the unique list of list items that are updated.
+				var hs = new HashSet<ListItem> (newPresentedToggledListItems);
+				hs.UnionWith (newPresentedListItemsWithUpdatedText);
+				ListPresenterUtilities.UpdateListItemsWithListItemsForListPresenter(this, presentedListItems, hs);
+			}
+
+			// At this point the presented list items have been updated. As mentioned before, to ensure that we're
+			// consistent about how we persist the updated list, we'll just use new the new list as the underlying
+			// model. To do that we'll need to update the new list's unchanged list items with the list items that
+			// are stored in the visual list items. i.e. We need to make sure that any references to list items in 
+			// `presentedListItems` are reflected in the new list's items.
+
+			list = newList;
+
+			// Obtain the presented list items that were unchanged. We need to update the new list to reference the old list items.
+			var unchangedPresentedListItems = presentedListItems.Where (item => {
+				return !newRemovedPresentedListItems.Contains (item) &&
+				!newInsertedIncompleteListItems.Contains (item) &&
+				!newPresentedToggledListItems.Contains (item) &&
+				!newPresentedListItemsWithUpdatedText.Contains (item);
+			}).ToArray ();
+
+			ListPresenterAlgorithms.ReplaceAnyEqualUnchangedNewListItemsWithPreviousUnchangedListItems (list.Items, unchangedPresentedListItems);
+
+			// Even though the old list's color will change if there's a difference between the old list's color and
+			// the new list's color, the delegate only cares about this change in reference to what it already knows.
+			// Because the delegate hasn't seen a color change yet, the update (if it happens) is ok.
+
+			ListPresenterUtilities.UpdateListColorForListPresenterIfDifferent (this, oldList, newList.Color, ListColorUpdateAction.DontSendDelegateChangeLayoutCalls);
+			Delegate.DidChangeListLayout (this, true);
+		}
+
+		/// <summary>
+		/// A cached array of the list items that should be presented. When the presenter initially has its underlying <c>List</c>
+		/// set, the <c>GetPresentedListItems</c> is set to all of the incomplete list items. As list items are toggled, <c>GetPresentedListItems</c>
+		/// may not only contain incomplete list items.
+		/// </summary>
+		public List[] GetPresentedListItems ()
+		{
+			throw new NotImplementedException ();
 		}
 	}
 }

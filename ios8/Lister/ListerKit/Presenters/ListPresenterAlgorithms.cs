@@ -13,7 +13,7 @@ namespace ListerKit
 		/// <summary>
 		/// Returns an array of <c>ListItem</c> objects in <c>initialListItems</c> that don't exist in <c>changedListItems</c>.
 		/// </summary>
-		public static ListItem[] FindRemovedListItemsFromInitialListItemsToChangedListItems(ListItem[] initialListItems, ListItem[] changedListItems)
+		public static IList<ListItem> FindRemovedListItemsFromInitialListItemsToChangedListItems(IList<ListItem> initialListItems, IList<ListItem> changedListItems)
 		{
 			return initialListItems.Where (item => changedListItems.Contains (item)).ToArray ();
 		}
@@ -25,7 +25,7 @@ namespace ListerKit
 		/// <param name="initialListItems">Initial list items.</param>
 		/// <param name="changedListItems">Changed list items.</param>
 		/// <param name="filterHandlerOrNil">Filter predicate or null.</param>
-		static ListItem[] FindInsertedListItemsFromInitialListItemsToChangedListItems(ListItem[] initialListItems, ListItem[] changedListItems, Func<ListItem, bool> filterOrNull)
+		public static IList<ListItem> FindInsertedListItemsFromInitialListItemsToChangedListItems(IList<ListItem> initialListItems, IList<ListItem> changedListItems, Func<ListItem, bool> filterOrNull)
 		{
 			IEnumerable<ListItem> filtered = changedListItems.Except (initialListItems);
 
@@ -39,7 +39,7 @@ namespace ListerKit
 		/// Returns an array of <c>ListItem objects in <c>changed</c> whose completion state changed from <c>initial</c>
 		/// relative to `changed`.
 		/// </summary>
-		public static ListItem[] FindToggledListItemsFromInitialListItemsToChangedListItems(ListItem[] initial, ListItem[] changed)
+		public static IList<ListItem> FindToggledListItemsFromInitialListItemsToChangedListItems(ListItem[] initial, ListItem[] changed)
 		{
 			return IntersectThenFilter (initial, changed, (f, s) => f.IsComplete != s.IsComplete).ToArray ();
 		}
@@ -48,7 +48,7 @@ namespace ListerKit
 		/// Returns an array of <c>ListItem</c> objects in </c>changed</c> whose text changed from <c>initial</c>
 		/// relative to <c>changed</c>.
 		/// </summary>
-		public static ListItem[] FindListItemsWithUpdatedTextFromInitialListItemsToChangedListItems(IEnumerable<ListItem> initial, IEnumerable<ListItem> changed)
+		public static IList<ListItem> FindListItemsWithUpdatedTextFromInitialListItemsToChangedListItems(IEnumerable<ListItem> initial, IEnumerable<ListItem> changed)
 		{
 			return IntersectThenFilter (initial, changed, (f, s) => f.Text != s.Text).ToArray ();
 		}

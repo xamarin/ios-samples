@@ -28,6 +28,8 @@ namespace ListerKit
 	/// </summary>
 	public interface IListPresenter
 	{
+		IListPresenterDelegate Delegate { get; }
+
 		/// <summary>
 		/// The color of the presented list. If the new color is different from the old color, the consuber should be
 		/// notified through the ColorChanged event.
@@ -45,7 +47,7 @@ namespace ListerKit
 		/// <summary>
 		/// A convenience property that should return the equivalent of GetPresentedListItems().Length.
 		/// </summary>
-		int Cout { get; }
+		int Count { get; }
 
 		/// <summary>
 		/// A convenience property that should return whether or not there are any presented list items.
@@ -71,23 +73,5 @@ namespace ListerKit
 		/// </summary>
 		/// <returns>The copy of presented list items.</returns>
 		List[] GetPresentedListItems();
-
-		// TODO: add compound event
-		void RaiseItemRemoved(ListItem removedItem, int atIndex);
-
-		// TODO: add compound event
-		void RaiseItemInserted(ListItem insertedItem, int atIndex);
-
-		// TODO: add compound event
-		void RaiseItemUpdated(ListItem updatedItem, int atIndex);
-
-		// TODO: add compound event
-		void RaiseWillChangeListLayout(bool isInitialLayout);
-
-		// TODO: add compound event
-		void RaiseDidChangeListLayout(bool isInitialLayout);
-
-
-		void RaiseDidUpdateListColorWithColor(ListColor color);
 	}
 }
