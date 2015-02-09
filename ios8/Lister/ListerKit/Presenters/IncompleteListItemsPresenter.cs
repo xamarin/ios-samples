@@ -57,13 +57,13 @@ namespace ListerKit
 
 		public int Count {
 			get {
-				throw new NotImplementedException ();
+				return presentedListItems.Count;
 			}
 		}
 
 		public bool IsEmpty {
 			get {
-				throw new NotImplementedException ();
+				return presentedListItems.Count == 0;
 			}
 		}
 
@@ -159,6 +159,39 @@ namespace ListerKit
 
 			ListPresenterUtilities.UpdateListColorForListPresenterIfDifferent (this, oldList, newList.Color, ListColorUpdateAction.DontSendDelegateChangeLayoutCalls);
 			Delegate.DidChangeListLayout (this, true);
+		}
+
+		public void ToggleListItem(ListItem listItem)
+		{
+			if (!presentedListItems.Contains (listItem))
+				throw new InvalidProgramException ("The list item must already be in the presented list items.");
+
+			Delegate.WillChangeListLayout (this, false);
+
+			listItem.IsComplete = !listItem.IsComplete;
+
+			int currentIndex = presentedListItems.IndexOf (listItem);
+			Delegate.DidUpdateListItem (this, listItem, currentIndex);
+			Delegate.DidChangeListLayout (this, false);
+		}
+
+		public void UpdatePresentedListItems(bool completionState)
+		{
+			var presentedListItemsNotMatchingCompletionState = presentedListItems.Where(item => item.IsComplete != completionState).ToArray();
+
+			// If there are no list items that match the completion state, it's a no op.
+			if (presentedListItemsNotMatchingCompletionState.Length == 0)
+				return;
+
+			Delegate.WillChangeListLayout (this, false);
+
+			foreach (ListItem listItem in presentedListItemsNotMatchingCompletionState) {
+				listItem.IsComplete = !listItem.IsComplete;
+				int indexOfListItem = presentedListItems.IndexOf (listItem);
+				Delegate.DidUpdateListItem (this, listItem, indexOfListItem);
+			}
+
+			Delegate.DidChangeListLayout (this, false);
 		}
 
 		/// <summary>

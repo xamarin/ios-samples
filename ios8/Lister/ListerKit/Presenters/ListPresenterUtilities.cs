@@ -1,21 +1,37 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace ListerKit
 {
 	public static class ListPresenterUtilities
 	{
+		class ListItemComparer : IComparer<ListItem>
+		{
+			readonly Comparison<ListItem> comparision;
+
+			public ListItemComparer(Comparison<ListItem> comparision)
+			{
+				this.comparision = comparision;
+			}
+
+			public int Compare (ListItem x, ListItem y)
+			{
+				return comparision (x, y);
+			}
+		}
+
 		// TODO: Rename
 		// TODO: maybe listItemsToRemove should be arrays ?
-		public static void RemoveListItemsFromListItemsWithListPresenter(IListPresenter listPresenter, List<ListItem> initialListItems, List<ListItem> listItemsToRemove)
+		public static void RemoveListItemsFromListItemsWithListPresenter(IListPresenter listPresenter, IList<ListItem> initialListItems, IList<ListItem> listItemsToRemove)
 		{
 			// TODO: why we need to sort items before remove ???
 			// TODO: should I make a copy of listItemsToRemove before sort ???
-			listItemsToRemove.Sort ((lhs, rhs) => {
-				return initialListItems.IndexOf(lhs) - initialListItems.IndexOf(rhs);
-			});
+			var ordered = listItemsToRemove.OrderBy (item=> item, new ListItemComparer ((lhs, rhs) => {
+				return initialListItems.IndexOf (lhs) - initialListItems.IndexOf (rhs);
+			}));
 
-			foreach (var item in listItemsToRemove) {
+			foreach (var item in ordered) {
 				// Use the index of the list item to remove in the current list's list items.
 				// IndexOf will call ListItem.Equals and ListItem.GetHashCode
 				int oldIndex = initialListItems.IndexOf (item);
@@ -25,7 +41,7 @@ namespace ListerKit
 		}
 
 		// TODO: Rename
-		public static void InsertListItemsIntoListItemsWithListPresenter(IListPresenter listPresenter, List<ListItem> initialListItems, List<ListItem> listItemsToInsert)
+		public static void InsertListItemsIntoListItemsWithListPresenter(IListPresenter listPresenter, IList<ListItem> initialListItems, IList<ListItem> listItemsToInsert)
 		{
 			for (int index = 0; index < listItemsToInsert.Count; index++) {
 				var insertItem = listItemsToInsert [index];

@@ -39,7 +39,7 @@ namespace ListerKit
 		/// Returns an array of <c>ListItem objects in <c>changed</c> whose completion state changed from <c>initial</c>
 		/// relative to `changed`.
 		/// </summary>
-		public static IList<ListItem> FindToggledListItemsFromInitialListItemsToChangedListItems(ListItem[] initial, ListItem[] changed)
+		public static IList<ListItem> FindToggledListItemsFromInitialListItemsToChangedListItems(IEnumerable<ListItem> initial, IEnumerable<ListItem> changed)
 		{
 			return IntersectThenFilter (initial, changed, (f, s) => f.IsComplete != s.IsComplete).ToArray ();
 		}
