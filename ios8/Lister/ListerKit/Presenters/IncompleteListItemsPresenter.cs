@@ -38,7 +38,13 @@ namespace ListerKit
 
 		// Flag to see whether or not the first SetList call should trigger a batch reload.
 		bool isInitialList;
-		List<ListItem> presentedListItems;
+
+		/// <summary>
+		/// A cached array of the list items that should be presented. When the presenter initially has its underlying <c>List</c>
+		/// set, the <c>presentedListItems</c> is set to all of the incomplete list items. As list items are toggled, <c>presentedListItems</c>
+		/// may not only contain incomplete list items.
+		/// </summary>
+		public List<ListItem> PresentedListItems { get; private set; }
 
 		public ListColor Color {
 			get {
@@ -57,13 +63,13 @@ namespace ListerKit
 
 		public int Count {
 			get {
-				return presentedListItems.Count;
+				return PresentedListItems.Count;
 			}
 		}
 
 		public bool IsEmpty {
 			get {
-				return presentedListItems.Count == 0;
+				return PresentedListItems.Count == 0;
 			}
 		}
 
@@ -71,7 +77,7 @@ namespace ListerKit
 		{
 			list = new List();
 			isInitialList = true;
-			presentedListItems = new List<ListItem> ();
+			PresentedListItems = new List<ListItem> ();
 		}
 
 		public void SetList (List newList)
@@ -80,7 +86,7 @@ namespace ListerKit
 				isInitialList = false;
 				list = newList;
 
-				presentedListItems = newList.Items.Where (item => !item.IsComplete).ToList ();
+				PresentedListItems = newList.Items.Where (item => !item.IsComplete).ToList ();
 				Delegate.DidRefreshCompleteLayout (this);
 				return;
 			}
@@ -99,12 +105,12 @@ namespace ListerKit
 
 			List oldList = newList;
 
-			IList<ListItem> newRemovedPresentedListItems = ListPresenterAlgorithms.FindRemovedListItemsFromInitialListItemsToChangedListItems(presentedListItems, newList.Items);
-			IList<ListItem> newInsertedIncompleteListItems = ListPresenterAlgorithms.FindInsertedListItemsFromInitialListItemsToChangedListItems (presentedListItems, newList.Items, listItem => {
+			IList<ListItem> newRemovedPresentedListItems = ListPresenterAlgorithms.FindRemovedListItemsFromInitialListItemsToChangedListItems(PresentedListItems, newList.Items);
+			IList<ListItem> newInsertedIncompleteListItems = ListPresenterAlgorithms.FindInsertedListItemsFromInitialListItemsToChangedListItems (PresentedListItems, newList.Items, listItem => {
 				return !listItem.IsComplete;
 			});
-			var newPresentedToggledListItems = ListPresenterAlgorithms.FindToggledListItemsFromInitialListItemsToChangedListItems(presentedListItems, newList.Items);
-			var newPresentedListItemsWithUpdatedText = ListPresenterAlgorithms.FindListItemsWithUpdatedTextFromInitialListItemsToChangedListItems(presentedListItems, newList.Items);
+			var newPresentedToggledListItems = ListPresenterAlgorithms.FindToggledListItemsFromInitialListItemsToChangedListItems(PresentedListItems, newList.Items);
+			var newPresentedListItemsWithUpdatedText = ListPresenterAlgorithms.FindListItemsWithUpdatedTextFromInitialListItemsToChangedListItems(PresentedListItems, newList.Items);
 
 			var listItemsBatchChangeKind = ListPresenterAlgorithms.ListItemsBatchChangeKindForChanges(newRemovedPresentedListItems, newInsertedIncompleteListItems, newPresentedToggledListItems, newPresentedListItemsWithUpdatedText);
 
@@ -117,11 +123,11 @@ namespace ListerKit
 
 			// Remove the list items from the presented list items that were removed somewhere else.
 			if (newRemovedPresentedListItems.Count > 0)
-				ListPresenterUtilities.RemoveListItemsFromListItemsWithListPresenter(this, presentedListItems, newRemovedPresentedListItems);
+				ListPresenterUtilities.RemoveListItemsFromListItemsWithListPresenter(this, PresentedListItems, newRemovedPresentedListItems);
 
 			// Insert the incomplete list items into the presented list items that were inserted elsewhere.
 			if (newInsertedIncompleteListItems.Count > 0)
-				ListPresenterUtilities.InsertListItemsIntoListItemsWithListPresenter(this, presentedListItems, newInsertedIncompleteListItems);
+				ListPresenterUtilities.InsertListItemsIntoListItemsWithListPresenter(this, PresentedListItems, newInsertedIncompleteListItems);
 
 			// For all of the list items whose content has changed elsewhere, we need to update the list items in place.
 			// Since the `IncompleteListItemsPresenter` keeps toggled list items in place, we only need to perform one
@@ -132,7 +138,7 @@ namespace ListerKit
 				// Find the unique list of list items that are updated.
 				var hs = new HashSet<ListItem> (newPresentedToggledListItems);
 				hs.UnionWith (newPresentedListItemsWithUpdatedText);
-				ListPresenterUtilities.UpdateListItemsWithListItemsForListPresenter(this, presentedListItems, hs);
+				ListPresenterUtilities.UpdateListItemsWithListItemsForListPresenter(this, PresentedListItems, hs);
 			}
 
 			// At this point the presented list items have been updated. As mentioned before, to ensure that we're
@@ -144,7 +150,7 @@ namespace ListerKit
 			list = newList;
 
 			// Obtain the presented list items that were unchanged. We need to update the new list to reference the old list items.
-			var unchangedPresentedListItems = presentedListItems.Where (item => {
+			var unchangedPresentedListItems = PresentedListItems.Where (item => {
 				return !newRemovedPresentedListItems.Contains (item) &&
 				!newInsertedIncompleteListItems.Contains (item) &&
 				!newPresentedToggledListItems.Contains (item) &&
@@ -163,21 +169,21 @@ namespace ListerKit
 
 		public void ToggleListItem(ListItem listItem)
 		{
-			if (!presentedListItems.Contains (listItem))
+			if (!PresentedListItems.Contains (listItem))
 				throw new InvalidProgramException ("The list item must already be in the presented list items.");
 
 			Delegate.WillChangeListLayout (this, false);
 
 			listItem.IsComplete = !listItem.IsComplete;
 
-			int currentIndex = presentedListItems.IndexOf (listItem);
+			int currentIndex = PresentedListItems.IndexOf (listItem);
 			Delegate.DidUpdateListItem (this, listItem, currentIndex);
 			Delegate.DidChangeListLayout (this, false);
 		}
 
 		public void UpdatePresentedListItems(bool completionState)
 		{
-			var presentedListItemsNotMatchingCompletionState = presentedListItems.Where(item => item.IsComplete != completionState).ToArray();
+			var presentedListItemsNotMatchingCompletionState = PresentedListItems.Where(item => item.IsComplete != completionState).ToArray();
 
 			// If there are no list items that match the completion state, it's a no op.
 			if (presentedListItemsNotMatchingCompletionState.Length == 0)
@@ -187,21 +193,11 @@ namespace ListerKit
 
 			foreach (ListItem listItem in presentedListItemsNotMatchingCompletionState) {
 				listItem.IsComplete = !listItem.IsComplete;
-				int indexOfListItem = presentedListItems.IndexOf (listItem);
+				int indexOfListItem = PresentedListItems.IndexOf (listItem);
 				Delegate.DidUpdateListItem (this, listItem, indexOfListItem);
 			}
 
 			Delegate.DidChangeListLayout (this, false);
-		}
-
-		/// <summary>
-		/// A cached array of the list items that should be presented. When the presenter initially has its underlying <c>List</c>
-		/// set, the <c>GetPresentedListItems</c> is set to all of the incomplete list items. As list items are toggled, <c>GetPresentedListItems</c>
-		/// may not only contain incomplete list items.
-		/// </summary>
-		public List[] GetPresentedListItems ()
-		{
-			throw new NotImplementedException ();
 		}
 	}
 }

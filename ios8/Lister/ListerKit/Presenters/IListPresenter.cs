@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ListerKit
 {
@@ -71,7 +72,6 @@ namespace ListerKit
 		/// The presented list items that should be displayed in order. Implementations of the IListPresenter interface can
 		/// decide not to show all of the list items within a list.
 		/// </summary>
-		/// <returns>The copy of presented list items.</returns>
-		List[] GetPresentedListItems();
+		List<ListItem> PresentedListItems { get; }
 	}
 }
