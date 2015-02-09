@@ -49,8 +49,8 @@ WatchKit Catalog demonstrates how to configure and customize the following contr
 Build/Runtime Requirements 
 --------------------------
 
-* Xcode 6.2 Beta4 (6C107a) or newer.
-* Xamarin.iOS 8.7.0.121 or newer.
+* Xcode 6.2 Beta5 (6C121) or newer.
+* Xamarin.iOS 8.7.1.20 or newer.
  
 Author 
 ------
