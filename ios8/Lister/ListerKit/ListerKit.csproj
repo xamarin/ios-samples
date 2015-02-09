@@ -37,6 +37,8 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Storage\" />
+    <Folder Include="Presenters\Helpers\" />
+    <Folder Include="Presenters\Implementations\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,13 +57,13 @@
     <Compile Include="Configuration\AppConfig.cs" />
     <Compile Include="Configuration\StorageState.cs" />
     <Compile Include="Configuration\StorageType.cs" />
-    <Compile Include="Presenters\ListPresenterAlgorithms.cs" />
     <Compile Include="Presenters\IListPresenter.cs" />
-    <Compile Include="Presenters\ListPresenterUtilities.cs" />
     <Compile Include="Presenters\ListColorUpdateAction.cs" />
     <Compile Include="Presenters\IListPresenterDelegate.cs" />
     <Compile Include="Presenters\BatchChangeKind.cs" />
-    <Compile Include="Presenters\IncompleteListItemsPresenter.cs" />
+    <Compile Include="Presenters\Helpers\ListPresenterAlgorithms.cs" />
+    <Compile Include="Presenters\Helpers\ListPresenterUtilities.cs" />
+    <Compile Include="Presenters\Implementations\IncompleteListItemsPresenter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
