@@ -35,7 +35,7 @@ namespace WatchkitExtension
 			using (var d = new NSDictionary ("controllerName", "imageDetailController", 
 				"detailInfo", "This is some more detailed information to pass.")) {
 				// Use Handoff to route the wearer to the image detail controller when the Glance is tapped.
-				UpdateUserActivity ("com.example.apple-samplecode.WatchKit-Catalog", d, null);
+				UpdateUserActivity ("com.example.apple-samplecode.WatchKit-Catalog", d);
 			}
 		}
 
