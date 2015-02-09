@@ -167,6 +167,12 @@ namespace ListerKit
 			Delegate.DidChangeListLayout (this, true);
 		}
 
+		/// <summary>
+		/// Toggles listItem within the list. This method keeps the list item in the same place, but it toggles the
+		/// completion state of the list item. Toggling a list item will call the delegate's
+		/// DidUpdateListItem method.
+		/// </summary>
+		/// <param name="listItem">The list item to toggle</param>
 		public void ToggleListItem(ListItem listItem)
 		{
 			if (!PresentedListItems.Contains (listItem))
@@ -181,6 +187,12 @@ namespace ListerKit
 			Delegate.DidChangeListLayout (this, false);
 		}
 
+		/// <summary>
+		/// Sets all of the presented list item's completion states to completionState. This method does not move the
+		/// list items around whatsoever. Changing the completion state on all of the list items will call the
+		/// delegate's DidUpdateListItem method for each list item that has been updated.
+ 		/// </summary>
+		/// <param name="completionState">The value that all presented list item instances should have as their IsComplete property.</param>
 		public void UpdatePresentedListItems(bool completionState)
 		{
 			var presentedListItemsNotMatchingCompletionState = PresentedListItems.Where(item => item.IsComplete != completionState).ToArray();
