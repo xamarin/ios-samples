@@ -9,3 +9,7 @@ Author
 ------
 
 Created with Xamarin.iOS by Craig Dunn
+
+*watch screenshots use [Bezel](http://infinitapps.com/bezel/) courtesy of [infinitapps](http://infinitapps.com/)* :)
+
+*watch bezel art courtesy of [Max Rudberg](http://blog.maxrudberg.com/post/110056879433/apple-watch-bezels-for-bezel)*

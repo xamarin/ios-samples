@@ -107,36 +107,4 @@
     <InterfaceDefinition Include="Interface.storyboard" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.WatchApp.CSharp.targets" />
-  <ItemGroup>
-    <Compile Include="..\WatchTablesExtension\GlanceController.cs">
-      <Link>GlanceController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchTablesExtension\GlanceController.designer.cs">
-      <Link>GlanceController.designer.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchTablesExtension\InterfaceController.cs">
-      <Link>InterfaceController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchTablesExtension\InterfaceController.designer.cs">
-      <Link>InterfaceController.designer.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchTablesExtension\NotificationController.cs">
-      <Link>NotificationController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchTablesExtension\NotificationController.designer.cs">
-      <Link>NotificationController.designer.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchTablesExtension\RowController.cs">
-      <Link>RowController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchTablesExtension\RowController.designer.cs">
-      <Link>RowController.designer.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchTablesExtension\Table2InterfaceController.cs">
-      <Link>Table2InterfaceController.cs</Link>
-    </Compile>
-    <Compile Include="..\WatchTablesExtension\Table2InterfaceController.designer.cs">
-      <Link>Table2InterfaceController.designer.cs</Link>
-    </Compile>
-  </ItemGroup>
 </Project>

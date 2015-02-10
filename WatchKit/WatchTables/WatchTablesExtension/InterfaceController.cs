@@ -55,7 +55,7 @@ namespace WatchTablesExtension
 		void LoadTableRows ()
 		{
 			myTable.SetNumberOfRows ((nint)rows.Count, "default");
-			myTable.SetRowTypes (new [] {"default", "type1", "type2"});
+			//myTable.SetRowTypes (new [] {"default", "type1", "type2", "default", "default"});
 			// Create all of the table rows.
 			for (var i = 0; i < rows.Count; i++) {
 				var elementRow = (RowController)myTable.GetRowController (i);
