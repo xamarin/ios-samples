@@ -1,11 +1,12 @@
 ﻿using System;
 using Foundation;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ListerKit
 {
 	// TODO: add comments
-	public class AllListItemsPresenter : IListPresenter
+	public class AllListItemsPresenter : NSObject, IListPresenter
 	{
 		/// The internal storage for the list that we're presenting. By default, it's an empty list.
 		List list;
@@ -162,7 +163,109 @@ namespace ListerKit
 
 		#endregion
 
-		IList<ListItem> ReorderedListItemsFromListItems(IList<ListItem> listItems)
+		int IndexOfFirstCompletedItem()
+		{
+			for (int i = 0; i < PresentedListItems.Count; i++) {
+				if (PresentedListItems [i].IsComplete)
+					return i;
+			}
+			return -1;
+		}
+
+		void InsertListItem(ListItem listItem)
+		{
+			Delegate.WillChangeListLayout (this, false);
+
+			UnsafeInsertListItem (listItem);
+
+			Delegate.DidChangeListLayout (this, false);
+
+			// Undo
+			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).RemoveListItem(listItem);
+
+			// TODO: https://trello.com/c/V0IXnqGU
+			undoManager.SetActionname ("Remove");
+		}
+
+		void InsertListItems(IEnumerable<ListItem> listItems)
+		{
+			if (!listItems.Any ())
+				return;
+
+			Delegate.WillChangeListLayout (this, false);
+
+			foreach (var listItem in listItems)
+				UnsafeInsertListItem (listItem);
+
+			Delegate.DidChangeListLayout (this, false);
+
+			// Undo
+			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).RemoveListItems(listItems);
+
+			// TODO: https://trello.com/c/V0IXnqGU
+			undoManager.SetActionname ("Remove");
+		}
+
+		void RemoveListItem (ListItem listItem)
+		{
+			int listItemIndex = PresentedListItems.IndexOf (listItem);
+
+			if (listItemIndex == -1)
+				throw new InvalidProgramException ("To remove a list item, it must already be in the list.");
+
+			Delegate.WillChangeListLayout (this, false);
+
+			list.Items.RemoveAt (listItemIndex);
+
+			Delegate.DidRemoveListItem (this, listItem, listItemIndex);
+
+			Delegate.DidChangeListLayout (this, false);
+
+			// Undo
+			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget (this))
+				.InsertListItemsForUndo (new ListItem[]{ listItem }, new int[]{ listItemIndex });
+
+			// TODO: https://trello.com/c/V0IXnqGU
+			undoManager.SetActionname ("Remove");
+		}
+
+		void RemoveListItems (IEnumerable<ListItem> listItemsToRemove)
+		{
+			if (!listItemsToRemove.Any ())
+				return;
+
+			// We're going to store the indexes of the list items that will be removed in an array.
+			// We do that so that when we insert the same list items back in for undo, we don't need
+			// to worry about insertion order (since it will just be the opposite of insertion order).
+
+			var removedIndexes = new List<int> ();
+
+			var map = new Dictionary<ListItem, int> ();
+			for (int i = 0; i < PresentedListItems.Count; i++)
+				map [PresentedListItems [i]] = i;
+
+			foreach (ListItem listItem in listItemsToRemove) {
+				int listItemIndex;
+				if (!map.TryGetValue (listItem, out listItemIndex))
+					throw new InvalidProgramException ("List items to remove must already be in the list.");
+
+				list.Items.RemoveAt (listItemIndex);
+				Delegate.DidRemoveListItem (this, listItem, listItemIndex);
+				removedIndexes.Add (listItemIndex);
+			}
+
+			Delegate.DidChangeListLayout (this, false);
+
+			// Undo
+			var reverseListItemsToRemove = listItemsToRemove.Reverse ().ToArray ();
+			var reverseRemovedIndexes = removedIndexes.Reverse ().ToArray ();
+			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget (this)).InsertListItemsForUndo (reverseListItemsToRemove, reverseRemovedIndexes);
+
+			// TODO: https://trello.com/c/V0IXnqGU
+			undoManager.SetActionname ("Remove");
+		}
+
+		List<ListItem> ReorderedListItemsFromListItems(IList<ListItem> listItems)
 		{
 			throw new NotImplementedException ();
 //			NSPredicate *incompleteListItemsPredicate = [NSPredicate predicateWithFormat:@"isComplete = NO"];
@@ -203,6 +306,14 @@ namespace ListerKit
 //			return fromIndex;
 		}
 
+		#region Undo Helper Methods
+
+		void InsertListItemsForUndo (ListItem[] arr, int[] arr2)
+		{
+			throw new NotImplementedException ();
+		}
+
+		#endregion
 
 	}
 }

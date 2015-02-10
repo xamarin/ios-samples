@@ -13,7 +13,7 @@ namespace ListerKit
 		const string ItemsKey = "items";
 		const string ColorKey = "color";
 
-		public List<ListItem> Items { get; private set; }
+		public List<ListItem> Items { get; set; }
 		public ListColor Color { get; set; }
 
 		public bool IsEmpty {
