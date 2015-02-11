@@ -19,7 +19,9 @@ Now you need to fix some files:
 * `CouponBanana2.pass/pass.json` – fix `passTypeIdentifier` and `teamIdentifier`
 
 At this point you are ready to generate pass package. For sample we provide simpe util which create package for you. Go to terminal and run:
-```cd path/to/PassLibrary/sample
+
+```
+cd path/to/PassLibrary/sample
 ./signpass -p CouponBanana2.pass/ -c "Certificate_Common_Name"
 ```
 
