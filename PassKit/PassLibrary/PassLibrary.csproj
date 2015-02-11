@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="CouponBanana2.pass\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -115,6 +116,11 @@
     <BundleResource Include="Resources\icon-57.png" />
     <BundleResource Include="Resources\icon-58.png" />
     <BundleResource Include="Resources\icon-72.png" />
+    <BundleResource Include="CouponBanana2.pass\icon.png" />
+    <BundleResource Include="CouponBanana2.pass\icon%402x.png" />
+    <BundleResource Include="CouponBanana2.pass\logo.png" />
+    <BundleResource Include="CouponBanana2.pass\logo%402x.png" />
+    <BundleResource Include="CouponBanana2.pass\pass.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
