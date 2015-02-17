@@ -1,5 +1,7 @@
 ﻿using System;
+
 using UIKit;
+using AppColor = UIKit.UIColor;
 
 namespace ListerKit
 {
@@ -12,7 +14,7 @@ namespace ListerKit
 		public static readonly UIColor OrangeColor = UIColor.FromRGBA (0.96f, 0.63f, 0.20f, 1);
 		public static readonly UIColor RedColor = UIColor.FromRGBA (0.96f, 0.42f, 0.42f, 1);
 
-		public static UIColor ColorFrom(ListColor colorType)
+		public static AppColor ColorFrom(ListColor colorType)
 		{
 			switch (colorType) {
 				case ListColor.Gray:

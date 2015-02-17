@@ -13,6 +13,7 @@ namespace ListerKit
 		const string StorageOptionUserDefaultsKey = "StorageOptionUserDefaultsKey";
 		const string StoredUbiquityIdentityTokenKey = "UbiquityIdentityTokenKey";
 
+		public static readonly string UserActivityListColorUserInfoKey = "listColor";
 		public static readonly string ListerFileExtension = "lister";
 
 		public event EventHandler StorageOptionChanged;

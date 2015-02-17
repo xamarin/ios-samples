@@ -39,10 +39,10 @@
     <Folder Include="Storage\" />
     <Folder Include="Presenters\Helpers\" />
     <Folder Include="Presenters\Implementations\" />
+    <Folder Include="UI\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ListDocument.cs" />
     <Compile Include="ListCoordinator.cs" />
     <Compile Include="CheckBox.cs" />
     <Compile Include="Storage\ListUtilities.cs" />
@@ -69,6 +69,8 @@
     <Compile Include="Storage\IListCoordinator.cs" />
     <Compile Include="Storage\IListCoordinatorDelegate.cs" />
     <Compile Include="Storage\IListsControllerDelegate.cs" />
+    <Compile Include="Storage\ListDocument.cs" />
+    <Compile Include="Storage\IListDocumentDelegate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
