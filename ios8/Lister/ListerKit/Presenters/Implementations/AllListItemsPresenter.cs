@@ -318,6 +318,19 @@ namespace ListerKit
 			undoManager.SetActionname ("Move");
 		}
 
+		// TODO: Rename to Toggle
+		void ToggleListItem(ListItem listItem)
+		{
+			Delegate.WillChangeListLayout (this, false);
+			int fromIndex = UnsafeToggleListItem (listItem);
+			Delegate.DidChangeListLayout (this, false);
+
+			// Undo
+			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).ToggleListItemForUndo(listItem, fromIndex);
+			undoManager.SetActionname ("Toggle");
+		}
+
+
 		List<ListItem> ReorderedListItemsFromListItems(IList<ListItem> listItems)
 		{
 			throw new NotImplementedException ();
@@ -378,6 +391,28 @@ namespace ListerKit
 		}
 
 		#region Undo Helper Methods
+
+		void ToggleListItemForUndo(ListItem listItem, int previousIndex)
+		{
+			if (!PresentedListItems.Contains (listItem))
+				throw new InvalidProgramException ("The list item should already be in the list if it's going to be toggled.");
+
+			Delegate.WillChangeListLayout (this, false);
+
+			// Move the list item.
+			int fromIndex = UnsafeMoveListItem(listItem, previousIndex);
+
+			// Update the list item's state.
+			listItem.IsComplete = !listItem.IsComplete;
+
+			Delegate.DidUpdateListItem (this, listItem, previousIndex);
+			Delegate.DidChangeListLayout (this, false);
+
+			// Undo
+			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).ToggleListItemForUndo(listItem, fromIndex);
+			undoManager.SetActionname ("Toggle");
+		}
+
 
 		void InsertListItemsForUndo (ListItem[] arr, IList<int> arr2)
 		{
