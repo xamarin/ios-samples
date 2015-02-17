@@ -33,7 +33,6 @@ namespace Lister
 		public ListItemCell(IntPtr handle)
 			: base(handle)
 		{
-
 		}
 
 		public override void PrepareForReuse ()
