@@ -66,6 +66,8 @@
     <Compile Include="Presenters\Implementations\IncompleteListItemsPresenter.cs" />
     <Compile Include="Presenters\Implementations\AllListItemsPresenter.cs" />
     <Compile Include="Storage\ListInfo.cs" />
+    <Compile Include="Storage\IListCoordinator.cs" />
+    <Compile Include="Storage\IListCoordinatorDelegate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
