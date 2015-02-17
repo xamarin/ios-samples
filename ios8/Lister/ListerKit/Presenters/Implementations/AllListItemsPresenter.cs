@@ -14,15 +14,57 @@ namespace ListerKit
 		// Flag to see whether or not the first SetList call should trigger a batch reload.
 		bool isInitialList;
 
-		public NSUndoManager undoManager { get; set; }
+		public NSUndoManager UndoManager { get; set; }
+
+		public IListPresenterDelegate Delegate { get; set; }
+
+		public ListColor Color {
+			get {
+				return list.Color;
+			}
+			set {
+				ListColor oldColor = Color;
+
+				bool different = ListPresenterUtilities.UpdateListColorForListPresenterIfDifferent (this, list, Color, ListColorUpdateAction.SendDelegateChangeLayoutCallsForNonInitialLayout);
+
+				// Register the undo color operation with the old color if the list's color was changed.
+				if (!different)
+					return;
+
+				((IListPresenter)UndoManager.PrepareWithInvocationTarget (this)).Color = oldColor;
+				UndoManager.SetActionname ("Change Color");
+			}
+		}
+
+		public List ArchiveableList {
+			get {
+				return list;
+			}
+		}
+
+		public int Count {
+			get {
+				return list.Count;
+			}
+		}
+
+		public bool IsEmpty {
+			get {
+				return list.Count == 0;
+			}
+		}
+
+		public List<ListItem> PresentedListItems {
+			get {
+				return list.Items;
+			}
+		}
 
 		public AllListItemsPresenter ()
 		{
 			list = new List ();
 			isInitialList = true;
 		}
-
-		#region IListPresenter implementation
 
 		public void SetList (List newList)
 		{
@@ -60,7 +102,7 @@ namespace ListerKit
 
 			if (listItemsBatchChangeKind == BatchChangeKind.None) {
 				if (oldList.Color != newList.Color) {
-					undoManager.RemoveAllActions (this);
+					UndoManager.RemoveAllActions (this);
 					ListPresenterUtilities.UpdateListColorForListPresenterIfDifferent (this, list, newList.Color, ListColorUpdateAction.SendDelegateChangeLayoutCallsForInitialLayout);
 				}
 				return;
@@ -69,7 +111,7 @@ namespace ListerKit
 			// Check to see if there was more than one kind of unique group of changes, or if there were multiple toggled /
 			// inserted list items that we don't handle.
 			if (listItemsBatchChangeKind == BatchChangeKind.Multiple || newToggledListItems.Count > 1 || newInsertedListItems.Count > 1) {
-				undoManager.RemoveAllActions (this);
+				UndoManager.RemoveAllActions (this);
 
 				list = newList;
 				newList.Items = ReorderedListItemsFromListItems (newList.Items);
@@ -80,7 +122,7 @@ namespace ListerKit
 
 			// At this point we know that we have changes that are uniquely identifiable: e.g. one inserted list item,
 			// one toggled list item, multiple removed list items, or multiple list items whose text has been updated.
-			undoManager.RemoveAllActions(this);
+			UndoManager.RemoveAllActions(this);
 			Delegate.WillChangeListLayout (this, true);
 
 			// Make the changes based on the unique change kind.
@@ -113,56 +155,6 @@ namespace ListerKit
 			Delegate.DidChangeListLayout (this, true);
 		}
 
-		public IListPresenterDelegate Delegate {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
-
-		public ListColor Color {
-			get {
-				return list.Color;
-			}
-			set {
-				ListColor oldColor = Color;
-
-				bool different = ListPresenterUtilities.UpdateListColorForListPresenterIfDifferent (this, list, Color, ListColorUpdateAction.SendDelegateChangeLayoutCallsForNonInitialLayout);
-
-				// Register the undo color operation with the old color if the list's color was changed.
-				if (!different)
-					return;
-
-				((IListPresenter)undoManager.PrepareWithInvocationTarget (this)).Color = oldColor;
-				undoManager.SetActionname ("Change Color");
-			}
-		}
-
-		public List ArchiveableList {
-			get {
-				return list;
-			}
-		}
-
-		public int Count {
-			get {
-				return list.Count;
-			}
-		}
-
-		public bool IsEmpty {
-			get {
-				return list.Count == 0;
-			}
-		}
-
-		public List<ListItem> PresentedListItems {
-			get {
-				return list.Items;
-			}
-		}
-
-		#endregion
-
 		int IndexOfFirstCompletedItem()
 		{
 			for (int i = 0; i < PresentedListItems.Count; i++) {
@@ -181,10 +173,10 @@ namespace ListerKit
 			Delegate.DidChangeListLayout (this, false);
 
 			// Undo
-			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).RemoveListItem(listItem);
+			((AllListItemsPresenter)UndoManager.PrepareWithInvocationTarget(this)).RemoveListItem(listItem);
 
 			// TODO: https://trello.com/c/V0IXnqGU
-			undoManager.SetActionname ("Remove");
+			UndoManager.SetActionname ("Remove");
 		}
 
 		void InsertListItems(IEnumerable<ListItem> listItems)
@@ -200,10 +192,10 @@ namespace ListerKit
 			Delegate.DidChangeListLayout (this, false);
 
 			// Undo
-			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).RemoveListItems(listItems);
+			((AllListItemsPresenter)UndoManager.PrepareWithInvocationTarget(this)).RemoveListItems(listItems);
 
 			// TODO: https://trello.com/c/V0IXnqGU
-			undoManager.SetActionname ("Remove");
+			UndoManager.SetActionname ("Remove");
 		}
 
 		void RemoveListItem (ListItem listItem)
@@ -222,11 +214,11 @@ namespace ListerKit
 			Delegate.DidChangeListLayout (this, false);
 
 			// Undo
-			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget (this))
+			((AllListItemsPresenter)UndoManager.PrepareWithInvocationTarget (this))
 				.InsertListItemsForUndo (new ListItem[]{ listItem }, new int[]{ listItemIndex });
 
 			// TODO: https://trello.com/c/V0IXnqGU
-			undoManager.SetActionname ("Remove");
+			UndoManager.SetActionname ("Remove");
 		}
 
 		void RemoveListItems (IEnumerable<ListItem> listItemsToRemove)
@@ -259,10 +251,10 @@ namespace ListerKit
 			// Undo
 			var reverseListItemsToRemove = listItemsToRemove.Reverse ().ToArray ();
 			removedIndexes.Reverse ();
-			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget (this)).InsertListItemsForUndo (reverseListItemsToRemove, removedIndexes);
+			((AllListItemsPresenter)UndoManager.PrepareWithInvocationTarget (this)).InsertListItemsForUndo (reverseListItemsToRemove, removedIndexes);
 
 			// TODO: https://trello.com/c/V0IXnqGU
-			undoManager.SetActionname ("Remove");
+			UndoManager.SetActionname ("Remove");
 		}
 
 		void Update(ListItem listItem, string newText)
@@ -282,8 +274,8 @@ namespace ListerKit
 			Delegate.DidChangeListLayout (this, false);
 
 			// Undo
-			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).Update(listItem, oldText);
-			undoManager.SetActionname ("Text Change");
+			((AllListItemsPresenter)UndoManager.PrepareWithInvocationTarget(this)).Update(listItem, oldText);
+			UndoManager.SetActionname ("Text Change");
 		}
 
 		bool CanMove(ListItem listItem, int toIndex)
@@ -313,9 +305,9 @@ namespace ListerKit
 			Delegate.DidChangeListLayout (this, false);
 
 			// Undo
-			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).MoveListItem(listItem, fromIndex);
+			((AllListItemsPresenter)UndoManager.PrepareWithInvocationTarget(this)).MoveListItem(listItem, fromIndex);
 
-			undoManager.SetActionname ("Move");
+			UndoManager.SetActionname ("Move");
 		}
 
 		// TODO: Rename to Toggle
@@ -326,8 +318,8 @@ namespace ListerKit
 			Delegate.DidChangeListLayout (this, false);
 
 			// Undo
-			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).ToggleListItemForUndo(listItem, fromIndex);
-			undoManager.SetActionname ("Toggle");
+			((AllListItemsPresenter)UndoManager.PrepareWithInvocationTarget(this)).ToggleListItemForUndo(listItem, fromIndex);
+			UndoManager.SetActionname ("Toggle");
 		}
 
 		void UpdatePresentedListItemsToCompletionState(bool completionState)
@@ -344,61 +336,53 @@ namespace ListerKit
 
 		List<ListItem> ReorderedListItemsFromListItems(IList<ListItem> listItems)
 		{
-			throw new NotImplementedException ();
-//			NSPredicate *incompleteListItemsPredicate = [NSPredicate predicateWithFormat:@"isComplete = NO"];
-//			NSPredicate *completeListItemsPredicate = [NSPredicate predicateWithFormat:@"isComplete = YES"];
-//
-//			NSArray *incompleteListItems = [listItems filteredArrayUsingPredicate:incompleteListItemsPredicate];
-//			NSArray *completeListItems = [listItems filteredArrayUsingPredicate:completeListItemsPredicate];
-//
-//			return [incompleteListItems arrayByAddingObjectsFromArray:completeListItems];
-		}
+			IEnumerable<ListItem> incompleteListItems = listItems.Where(item => !item.IsComplete);
+			IEnumerable<ListItem> completeListItems = listItems.Where (item => item.IsComplete);
 
+			return incompleteListItems.Concat (completeListItems).ToList ();
+		}
 
 		void UnsafeInsertListItem(ListItem listItem)
 		{
-			throw new NotImplementedException ();
-//			NSAssert(![self.presentedListItems containsObject:listItem], @"A list item was requested to be added that is already in the list.");
-//
-//			NSInteger indexToInsertListItem = listItem.isComplete ? self.count : 0;
-//
-//			[[self.list mutableArrayValueForKey:@"items"] insertObject:listItem atIndex:indexToInsertListItem];
-//
-//			[self.delegate listPresenter:self didInsertListItem:listItem atIndex:indexToInsertListItem];
+			if (PresentedListItems.Contains (listItem))
+				throw new InvalidProgramException ("A list item was requested to be added that is already in the list.");
+
+			int indexToInsertListItem = listItem.IsComplete ? Count : 0;
+
+			list.Items.Insert (indexToInsertListItem, listItem);
+			Delegate.DidInsertListItem (this, listItem, indexToInsertListItem);
 		}
 
 		int UnsafeMoveListItem(ListItem listItem, int toIndex)
 		{
-			throw new NotImplementedException ();
-//			NSInteger fromIndex = [self.presentedListItems indexOfObject:listItem];
-//
-//			NSAssert(fromIndex != NSNotFound, @"A list item can only be moved if it already exists in the presented list items.");
-//
-//			NSMutableArray *listItems = [self.list mutableArrayValueForKey:@"items"];
-//
-//			[listItems removeObjectAtIndex:fromIndex];
-//			[listItems insertObject:listItem atIndex:toIndex];
-//
-//			[self.delegate listPresenter:self didMoveListItem:listItem fromIndex:fromIndex toIndex:toIndex];
-//
-//			return fromIndex;
-		}
+			int fromIndex = PresentedListItems.IndexOf (listItem);
 
+			if (fromIndex == -1)
+				throw new InvalidProgramException ("A list item can only be moved if it already exists in the presented list items.");
+
+			var listItems = list.Items;
+
+			listItems.RemoveAt (fromIndex);
+			listItems.Insert (toIndex, listItem);
+
+			Delegate.DidMoveListItem (this, listItem, fromIndex, toIndex);
+			return fromIndex;
+		}
 
 		int UnsafeToggleListItem(ListItem listItem)
 		{
-			throw new NotImplementedException ();
-//			NSAssert([self.presentedListItems containsObject:listItem], @"A list item can only be toggled if it already exists in the list.");
-//
-//			// Move the list item.
-//			NSInteger targetIndex = listItem.isComplete ? 0 : self.count - 1;
-//			NSInteger fromIndex = [self unsafeMoveListItem:listItem toIndex:targetIndex];
-//
-//			// Update the list item's state.
-//			listItem.complete = !listItem.isComplete;
-//			[self.delegate listPresenter:self didUpdateListItem:listItem atIndex:targetIndex];
-//
-//			return fromIndex;
+			if (!PresentedListItems.Contains (listItem))
+				throw new InvalidProgramException ("A list item can only be toggled if it already exists in the list.");
+
+			// Move the list item.
+			int targetIndex = listItem.IsComplete ? 0 : Count - 1;
+			int fromIndex = UnsafeMoveListItem (listItem, targetIndex);
+
+			// Update the list item's state.
+			listItem.IsComplete = !listItem.IsComplete;
+			Delegate.DidUpdateListItem (this, listItem, targetIndex);
+
+			return fromIndex;
 		}
 
 		#region Undo Helper Methods
@@ -420,8 +404,8 @@ namespace ListerKit
 			Delegate.DidChangeListLayout (this, false);
 
 			// Undo
-			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).ToggleListItemForUndo(listItem, fromIndex);
-			undoManager.SetActionname ("Toggle");
+			((AllListItemsPresenter)UndoManager.PrepareWithInvocationTarget(this)).ToggleListItemForUndo(listItem, fromIndex);
+			UndoManager.SetActionname ("Toggle");
 		}
 
 		void InsertListItemsForUndo (IList<ListItem> listItemsToInsert, IList<int> indexes)
@@ -443,8 +427,8 @@ namespace ListerKit
 			Delegate.DidChangeListLayout (this, false);
 
 			// Undo
-			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget (this)).RemoveListItems (listItemsToInsert);
-			undoManager.SetActionname ("Remove");
+			((AllListItemsPresenter)UndoManager.PrepareWithInvocationTarget (this)).RemoveListItems (listItemsToInsert);
+			UndoManager.SetActionname ("Remove");
 		}
 
 		void ToggleListItemsWithoutMoving(IEnumerable<ListItem> listItems, string undoActionName)
@@ -460,8 +444,8 @@ namespace ListerKit
 			Delegate.DidChangeListLayout (this, false);
 
 			// Undo
-			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).ToggleListItemsWithoutMoving(listItems, undoActionName);
-			undoManager.SetActionname (undoActionName);
+			((AllListItemsPresenter)UndoManager.PrepareWithInvocationTarget(this)).ToggleListItemsWithoutMoving(listItems, undoActionName);
+			UndoManager.SetActionname (undoActionName);
 		}
 
 		#endregion

@@ -29,7 +29,7 @@ namespace ListerKit
 	/// </summary>
 	public interface IListPresenter
 	{
-		IListPresenterDelegate Delegate { get; }
+		IListPresenterDelegate Delegate { get; set; }
 
 		/// <summary>
 		/// The color of the presented list. If the new color is different from the old color, the consuber should be

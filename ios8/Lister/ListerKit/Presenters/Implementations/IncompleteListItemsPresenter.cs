@@ -27,11 +27,7 @@ namespace ListerKit
 	/// </summary>
 	public class IncompleteListItemsPresenter : IListPresenter
 	{
-		public IListPresenterDelegate Delegate {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
+		public IListPresenterDelegate Delegate { get; set; }
 
 		// The internal storage for the list that we're presenting. By default, it's an empty list.
 		List list;
@@ -213,4 +209,3 @@ namespace ListerKit
 		}
 	}
 }
-
