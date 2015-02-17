@@ -119,10 +119,11 @@
     <Compile Include="Model\IListInfoProvider.cs" />
     <Compile Include="ViewControllers\ListViewController.cs" />
     <Compile Include="Views\ListCell.cs" />
-    <Compile Include="Views\ListColorCell.cs" />
     <Compile Include="Views\ListItemCell.cs" />
     <Compile Include="ViewControllers\DocumentsViewController.cs" />
     <Compile Include="ViewControllers\NewDocumentController.cs" />
+    <Compile Include="Views\ListColorCell\IListColorCellDelegate.cs" />
+    <Compile Include="Views\ListColorCell\ListColorCell.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -131,6 +132,7 @@
     <Folder Include="ViewControllers\" />
     <Folder Include="Views\" />
     <Folder Include="Resources\Images.xcassets\" />
+    <Folder Include="Views\ListColorCell\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ListerKit\ListerKit.csproj">

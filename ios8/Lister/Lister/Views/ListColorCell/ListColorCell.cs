@@ -30,9 +30,9 @@ namespace Lister
 		[Outlet("red")]
 		UIView Red { get; set; }
 
-		public ListViewController ViewController { get; set; }
-
 		public ListColor SelectedColor { get; private set; }
+
+		public IListColorCellDelegate Delegate { get; set; }
 
 		public ListColorCell (IntPtr handle)
 			: base(handle)
@@ -59,8 +59,7 @@ namespace Lister
 			// If the user tapped on a color (identified by its tag), notify the delegate.
 			ListColor color = (ListColor)(int)view.Tag;
 			SelectedColor = color;
-			ViewController.OnListColorCellDidChangeSelectedColor (SelectedColor);
+			Delegate.DidChangeSelectedColor(this);
 		}
 	}
 }
-
