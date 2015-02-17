@@ -258,8 +258,8 @@ namespace ListerKit
 
 			// Undo
 			var reverseListItemsToRemove = listItemsToRemove.Reverse ().ToArray ();
-			var reverseRemovedIndexes = removedIndexes.Reverse ().ToArray ();
-			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget (this)).InsertListItemsForUndo (reverseListItemsToRemove, reverseRemovedIndexes);
+			removedIndexes.Reverse ();
+			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget (this)).InsertListItemsForUndo (reverseListItemsToRemove, removedIndexes);
 
 			// TODO: https://trello.com/c/V0IXnqGU
 			undoManager.SetActionname ("Remove");
@@ -268,7 +268,7 @@ namespace ListerKit
 		void Update(ListItem listItem, string newText)
 		{
 			int listItemIndex = PresentedListItems.IndexOf (listItem);
-			if (listItem == -1)
+			if (listItemIndex == -1)
 				throw new InvalidProgramException ("A list item can only be updated if it already exists in the list.");
 
 			// If the text is the same, it's a no op.
@@ -286,6 +286,22 @@ namespace ListerKit
 			undoManager.SetActionname ("Text Change");
 		}
 
+		bool CanMove(ListItem listItem, int toIndex)
+		{
+			if (!PresentedListItems.Contains (listItem))
+				return false;
+
+			int indexOfFirstCompletedItem = IndexOfFirstCompletedItem ();
+
+			if (indexOfFirstCompletedItem != -1) {
+				if (listItem.IsComplete)
+					return toIndex >= indexOfFirstCompletedItem && toIndex <= Count;
+				else
+					return toIndex >= 0 && toIndex < indexOfFirstCompletedItem;
+			}
+
+			return !listItem.IsComplete && toIndex >= 0 && toIndex <= Count;
+		}
 
 		List<ListItem> ReorderedListItemsFromListItems(IList<ListItem> listItems)
 		{
@@ -330,7 +346,7 @@ namespace ListerKit
 
 		#region Undo Helper Methods
 
-		void InsertListItemsForUndo (ListItem[] arr, int[] arr2)
+		void InsertListItemsForUndo (ListItem[] arr, IList<int> arr2)
 		{
 			throw new NotImplementedException ();
 		}
