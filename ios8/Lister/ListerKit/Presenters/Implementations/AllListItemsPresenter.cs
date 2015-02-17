@@ -303,6 +303,21 @@ namespace ListerKit
 			return !listItem.IsComplete && toIndex >= 0 && toIndex <= Count;
 		}
 
+		void MoveListItem(ListItem listItem, int toIndex)
+		{
+			if (!CanMove (listItem, toIndex))
+				throw new InvalidProgramException ("An item can only be moved if it passed a \"can move\" test.");
+
+			Delegate.WillChangeListLayout (this, false);
+			int fromIndex = UnsafeMoveListItem (listItem, toIndex);
+			Delegate.DidChangeListLayout (this, false);
+
+			// Undo
+			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).MoveListItem(listItem, fromIndex);
+
+			undoManager.SetActionname ("Move");
+		}
+
 		List<ListItem> ReorderedListItemsFromListItems(IList<ListItem> listItems)
 		{
 			throw new NotImplementedException ();
@@ -327,6 +342,24 @@ namespace ListerKit
 //
 //			[self.delegate listPresenter:self didInsertListItem:listItem atIndex:indexToInsertListItem];
 		}
+
+		int UnsafeMoveListItem(ListItem listItem, int toIndex)
+		{
+			throw new NotImplementedException ();
+//			NSInteger fromIndex = [self.presentedListItems indexOfObject:listItem];
+//
+//			NSAssert(fromIndex != NSNotFound, @"A list item can only be moved if it already exists in the presented list items.");
+//
+//			NSMutableArray *listItems = [self.list mutableArrayValueForKey:@"items"];
+//
+//			[listItems removeObjectAtIndex:fromIndex];
+//			[listItems insertObject:listItem atIndex:toIndex];
+//
+//			[self.delegate listPresenter:self didMoveListItem:listItem fromIndex:fromIndex toIndex:toIndex];
+//
+//			return fromIndex;
+		}
+
 
 		int UnsafeToggleListItem(ListItem listItem)
 		{
