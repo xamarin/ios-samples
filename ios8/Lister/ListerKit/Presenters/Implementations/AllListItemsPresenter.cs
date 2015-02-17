@@ -330,6 +330,17 @@ namespace ListerKit
 			undoManager.SetActionname ("Toggle");
 		}
 
+		void UpdatePresentedListItemsToCompletionState(bool completionState)
+		{
+			var presentedListItemsNotMatchingCompletionState = PresentedListItems.Where (item => item.IsComplete != completionState);
+
+			// If there are no list items that match the completion state, it's a no op.
+			if (!presentedListItemsNotMatchingCompletionState.Any())
+				return;
+
+			string undoActionName = completionState ? "Complete All" : "Incomplete All";
+			ToggleListItemsWithoutMoving (presentedListItemsNotMatchingCompletionState, undoActionName);
+		}
 
 		List<ListItem> ReorderedListItemsFromListItems(IList<ListItem> listItems)
 		{
@@ -413,10 +424,26 @@ namespace ListerKit
 			undoManager.SetActionname ("Toggle");
 		}
 
-
 		void InsertListItemsForUndo (ListItem[] arr, IList<int> arr2)
 		{
 			throw new NotImplementedException ();
+		}
+
+		void ToggleListItemsWithoutMoving(IEnumerable<ListItem> listItems, string undoActionName)
+		{
+			Delegate.WillChangeListLayout (this, false);
+
+			foreach (ListItem listItem in listItems) {
+				listItem.IsComplete = !listItem.IsComplete;
+				int updatedIndex = PresentedListItems.IndexOf (listItem);
+				Delegate.DidUpdateListItem (this, listItem, updatedIndex);
+			}
+
+			Delegate.DidChangeListLayout (this, false);
+
+			// Undo
+			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).ToggleListItemsWithoutMoving(listItems, undoActionName);
+			undoManager.SetActionname (undoActionName);
 		}
 
 		#endregion
