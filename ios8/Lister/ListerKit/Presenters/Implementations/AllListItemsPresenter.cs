@@ -265,6 +265,28 @@ namespace ListerKit
 			undoManager.SetActionname ("Remove");
 		}
 
+		void Update(ListItem listItem, string newText)
+		{
+			int listItemIndex = PresentedListItems.IndexOf (listItem);
+			if (listItem == -1)
+				throw new InvalidProgramException ("A list item can only be updated if it already exists in the list.");
+
+			// If the text is the same, it's a no op.
+			if (listItem.Text == newText)
+				return;
+
+			string oldText = listItem.Text;
+			Delegate.WillChangeListLayout (this, false);
+			listItem.Text = newText;
+			Delegate.DidUpdateListItem (this, listItem, listItemIndex);
+			Delegate.DidChangeListLayout (this, false);
+
+			// Undo
+			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget(this)).Update(listItem, oldText);
+			undoManager.SetActionname ("Text Change");
+		}
+
+
 		List<ListItem> ReorderedListItemsFromListItems(IList<ListItem> listItems)
 		{
 			throw new NotImplementedException ();
