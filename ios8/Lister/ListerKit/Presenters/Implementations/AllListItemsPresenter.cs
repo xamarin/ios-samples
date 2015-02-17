@@ -424,9 +424,27 @@ namespace ListerKit
 			undoManager.SetActionname ("Toggle");
 		}
 
-		void InsertListItemsForUndo (ListItem[] arr, IList<int> arr2)
+		void InsertListItemsForUndo (IList<ListItem> listItemsToInsert, IList<int> indexes)
 		{
-			throw new NotImplementedException ();
+			if (listItemsToInsert.Count != indexes.Count)
+				throw new InvalidOperationException ("`listItems` must have as many elements as `indexes`.");
+
+			Delegate.WillChangeListLayout (this, false);
+
+			List<ListItem> listItems = list.Items;
+			for (int i = 0; i < listItemsToInsert.Count; i++) {
+				// Get the index that we need to insert `listItem` into.
+				var insertionIndex = indexes [i];
+				var listItemToInsert = listItemsToInsert [i];
+				listItems.Insert (insertionIndex, listItemToInsert);
+				Delegate.DidInsertListItem (this, listItemToInsert, insertionIndex);
+			}
+
+			Delegate.DidChangeListLayout (this, false);
+
+			// Undo
+			((AllListItemsPresenter)undoManager.PrepareWithInvocationTarget (this)).RemoveListItems (listItemsToInsert);
+			undoManager.SetActionname ("Remove");
 		}
 
 		void ToggleListItemsWithoutMoving(IEnumerable<ListItem> listItems, string undoActionName)
