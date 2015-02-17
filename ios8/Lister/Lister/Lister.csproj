@@ -116,7 +116,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Model\ListInfo.cs" />
     <Compile Include="Model\IListInfoProvider.cs" />
     <Compile Include="ViewControllers\ListViewController.cs" />
     <Compile Include="Views\ListCell.cs" />

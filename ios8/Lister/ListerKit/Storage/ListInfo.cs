@@ -4,10 +4,9 @@ using System.Threading.Tasks;
 using UIKit;
 using Foundation;
 
-using ListerKit;
-
-namespace Lister
+namespace ListerKit
 {
+	// TODO: add comments
 	public class ListInfo : IEquatable<ListInfo>
 	{
 		public ListColor? Color { get; set; }
