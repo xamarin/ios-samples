@@ -3,67 +3,52 @@ using System.Threading.Tasks;
 
 using UIKit;
 using Foundation;
+using CoreFoundation;
+using System.IO;
 
 namespace ListerKit
 {
 	// TODO: add comments
 	public class ListInfo : IEquatable<ListInfo>
 	{
+		DispatchQueue fetchQueue;
+
 		public ListColor? Color { get; set; }
 
 		public NSUrl Url { get; private set; }
 
-		public string Name { get; set; }
-
-		public bool IsLoaded {
+		public string Name {
 			get {
-				return !string.IsNullOrEmpty (Name) && Color.HasValue;
+				string displayName = NSFileManager.DefaultManager.DisplayName (Url.Path);
+				return Path.GetFileNameWithoutExtension (displayName);
 			}
 		}
 
 		public ListInfo(NSUrl url)
 		{
 			Url = url;
-			Name = string.Empty;
+			fetchQueue = new DispatchQueue ("fetch queue");
 		}
 
-		public Task FetchInfoAsync()
+		void FetchInfoWithCompletionHandler(Action completionHandler)
 		{
-			var tcs = new TaskCompletionSource<object> ();
+			if (completionHandler == null)
+				throw new ArgumentNullException ("completionHandler is null");
 
-			if (IsLoaded)
-				tcs.SetResult (null);
-			else
-				FetchInfo (tcs);
+			fetchQueue.DispatchAsync (() => {
+				// If the color hasn't been set yet, the info hasn't been fetched.
+				if(Color.HasValue) {
+					completionHandler();
+					return;
+				}
 
-			return tcs.Task;
-		}
-
-		async void FetchInfo(TaskCompletionSource<object> tcs)
-		{
-			ListDocument document = new ListDocument (Url);
-
-			bool success = await document.OpenAsync ();
-			if (success) {
-				Color = document.List.Color;
-				Name = document.LocalizedName;
-
-				tcs.SetResult (null);
-				document.Close(null);
-			} else {
-				tcs.SetException (new InvalidOperationException ("Your attempt to open the document failed."));
-			}
-		}
-
-		public void CreateAndSaveWithCompletionHandler(UIOperationHandler completionHandler)
-		{
-			List list = new List ();
-			list.Color = Color.Value;
-
-			ListDocument document = new ListDocument (Url);
-			document.List = list;
-
-			document.Save (Url, UIDocumentSaveOperation.ForCreating, completionHandler);
+				ListUtilities.ReadListAtUrl(Url, (list, error) => {
+					fetchQueue.DispatchAsync(()=> {
+						Color = list != null ? list.Color : ListColor.Gray;
+						completionHandler();
+					});
+				});
+			});
 		}
 
 		// look how to override Equals http://msdn.microsoft.com/en-us/library/336aedhh(v=vs.100).aspx

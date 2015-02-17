@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Foundation;
+
 namespace ListerKit
 {
 	public static class ListUtilities
@@ -10,6 +12,11 @@ namespace ListerKit
 		}
 
 		public static void MigrateLocalListsToCloud ()
+		{
+			throw new NotImplementedException ();
+		}
+
+		public static void ReadListAtUrl(NSUrl url, Action<List, NSError> completionHandler)
 		{
 			throw new NotImplementedException ();
 		}
