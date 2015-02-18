@@ -4,53 +4,48 @@ using UIKit;
 using Foundation;
 
 using ListerKit;
+using System.Text;
 
 namespace Lister
 {
-	[Register("NewDocumentController")]
+	[Register ("NewDocumentController")]
 	public class NewDocumentController : UIViewController, IUITextFieldDelegate
 	{
-		[Outlet("grayButton")]
+		[Outlet ("grayButton")]
 		UIButton GrayButton { get; set; }
 
-		[Outlet("blueButton")]
+		[Outlet ("blueButton")]
 		UIButton BlueButton { get; set; }
 
-		[Outlet("greenButton")]
+		[Outlet ("greenButton")]
 		UIButton GreenButton { get; set; }
 
-		[Outlet("yellowButton")]
+		[Outlet ("yellowButton")]
 		UIButton YellowButton { get; set; }
 
-		[Outlet("orangeButton")]
+		[Outlet ("orangeButton")]
 		UIButton OrangeButton { get; set; }
 
-		[Outlet("redButton")]
+		[Outlet ("redButton")]
 		UIButton RedButton { get; set; }
 
-		[Outlet("saveButton")]
+		[Outlet ("saveButton")]
 		UIBarButtonItem SaveButton { get; set; }
 
-		[Outlet("toolbar")]
+		[Outlet ("toolbar")]
 		UIToolbar Toolbar { get; set; }
 
-		[Outlet("titleLabel")]
+		[Outlet ("titleLabel")]
 		UILabel TitleLabel { get; set; }
 
+		[Outlet ("nameField")]
+		UITextField NameField { get; set; }
+
 		UIButton selectedButton;
-
-		NSUrl FileUrl {
-			get {
-				return string.IsNullOrWhiteSpace(selectedTitle)
-						? null
-						: ListCoordinator.SharedListCoordinator.DocumentURLForName (selectedTitle);
-			}
-		}
-
 		ListColor selectedColor;
 		string selectedTitle;
 
-		public DocumentsViewController MasterController { get; set; }
+		public ListsController ListsController { get; set; }
 
 		public NewDocumentController (IntPtr handle)
 			: base (handle)
@@ -59,20 +54,27 @@ namespace Lister
 
 		#region UITextFieldDelegate
 
+		[Export ("textField:shouldChangeCharactersInRange:replacementString:")]
+		public bool ShouldChangeCharacters (UITextField textField, NSRange range, string replacementString)
+		{
+			var sb = new StringBuilder (textField.Text);
+			sb.Remove ((int)range.Location, (int)range.Length);
+			sb.Insert ((int)range.Location, replacementString);
+			UpdateForProposedListName (sb.ToString ());
+
+			return true;
+		}
+
 		[Export ("textFieldDidEndEditing:")]
 		public void EditingEnded (UITextField textField)
 		{
-			var isValidName = ListCoordinator.SharedListCoordinator.IsValidDocumentName (textField.Text);
-			if (isValidName) {
-				SaveButton.Enabled = true;
-				selectedTitle = textField.Text;
-			}
+			UpdateForProposedListName (textField.Text);
 		}
 
 		[Export ("textFieldShouldReturn:")]
 		public bool ShouldReturn (UITextField textField)
 		{
-			textField.ResignFirstResponder();
+			textField.ResignFirstResponder ();
 			return true;
 		}
 
@@ -80,49 +82,68 @@ namespace Lister
 
 		#region IBActions
 
-		[Export("pickColor:")]
-		public void PickColor(UIButton sender)
+		[Export ("pickColor:")]
+		public void PickColor (UIButton sender)
 		{
+			// The user is choosing a color, resign first responder on the text field, if necessary.
+			if (NameField.IsFirstResponder)
+				NameField.ResignFirstResponder ();
+
 			// Use the button's tag to determine the color.
 			selectedColor = (ListColor)(int)sender.Tag;
 
 			// Clear out the previously selected button's border.
-			if(selectedButton != null)
+			if (selectedButton != null)
 				selectedButton.Layer.BorderWidth = 0;
 
 			sender.Layer.BorderWidth = 5f;
 			sender.Layer.BorderColor = UIColor.LightGray.CGColor;
 			selectedButton = sender;
 
-			TitleLabel.TextColor = AppColors.ColorFrom(selectedColor);
-			Toolbar.TintColor = AppColors.ColorFrom(selectedColor);
+			TitleLabel.TextColor = AppColors.ColorFrom (selectedColor);
+			Toolbar.TintColor = AppColors.ColorFrom (selectedColor);
 		}
 
-		[Export("saveAction:")]
-		public void SaveAction(NSObject sender)
+		[Export ("saveAction:")]
+		public void SaveAction (NSObject sender)
 		{
-			ListInfo listInfo = new ListInfo(FileUrl);
-			listInfo.Color = selectedColor;
-			listInfo.Name = selectedTitle;
+			List list = new List {
+				Color = selectedColor
+			};
 
-			listInfo.CreateAndSaveWithCompletionHandler (success => {
-				if (success) {
-					MasterController.OnNewListInfo(listInfo);
-				} else {
-					// In your app, you should handle this error gracefully.
-					Console.WriteLine ("Unable to create new document at URL: {0}", FileUrl.AbsoluteString);
-					throw new InvalidProgramException();
-				}
-				DismissViewController(true, null);
-			});
+			ListsController.CreateListInfoForList (list, selectedTitle);
+			DismissViewController (true, null);
 		}
 
-		[Export("cancelAction:")]
-		public void CancelAction(NSObject sender) {
-			DismissViewController(true, null);
+		[Export ("cancelAction:")]
+		public void CancelAction (NSObject sender)
+		{
+			DismissViewController (true, null);
 		}
 
 		#endregion
+
+		#region Touch Handling
+
+		public override void TouchesBegan (NSSet touches, UIEvent evt)
+		{
+			var touch = (UITouch)evt.AllTouches.AnyObject;
+
+			// The user has tapped outside the text field, resign first responder, if necessary.
+			if (NameField.IsFirstResponder && touch.View != NameField)
+				NameField.ResignFirstResponder ();
+		}
+
+		#endregion
+
+		void UpdateForProposedListName (string name)
+		{
+			if (ListsController.CanCreateListInfoWithName (name)) {
+				SaveButton.Enabled = true;
+				selectedTitle = name;
+			} else {
+				SaveButton.Enabled = false;
+			}
+		}
 	}
 }
-
