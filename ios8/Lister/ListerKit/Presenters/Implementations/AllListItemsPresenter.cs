@@ -164,7 +164,7 @@ namespace ListerKit
 			return -1;
 		}
 
-		void InsertListItem(ListItem listItem)
+		public void InsertListItem(ListItem listItem)
 		{
 			Delegate.WillChangeListLayout (this, false);
 
@@ -198,7 +198,7 @@ namespace ListerKit
 			UndoManager.SetActionname ("Remove");
 		}
 
-		void RemoveListItem (ListItem listItem)
+		public void RemoveListItem (ListItem listItem)
 		{
 			int listItemIndex = PresentedListItems.IndexOf (listItem);
 
@@ -221,7 +221,7 @@ namespace ListerKit
 			UndoManager.SetActionname ("Remove");
 		}
 
-		void RemoveListItems (IEnumerable<ListItem> listItemsToRemove)
+		public void RemoveListItems (IEnumerable<ListItem> listItemsToRemove)
 		{
 			if (!listItemsToRemove.Any ())
 				return;
@@ -257,7 +257,7 @@ namespace ListerKit
 			UndoManager.SetActionname ("Remove");
 		}
 
-		void Update(ListItem listItem, string newText)
+		public void Update(ListItem listItem, string newText)
 		{
 			int listItemIndex = PresentedListItems.IndexOf (listItem);
 			if (listItemIndex == -1)
@@ -278,7 +278,7 @@ namespace ListerKit
 			UndoManager.SetActionname ("Text Change");
 		}
 
-		bool CanMove(ListItem listItem, int toIndex)
+		public bool CanMove(ListItem listItem, int toIndex)
 		{
 			if (!PresentedListItems.Contains (listItem))
 				return false;
@@ -295,7 +295,7 @@ namespace ListerKit
 			return !listItem.IsComplete && toIndex >= 0 && toIndex <= Count;
 		}
 
-		void MoveListItem(ListItem listItem, int toIndex)
+		public void MoveListItem(ListItem listItem, int toIndex)
 		{
 			if (!CanMove (listItem, toIndex))
 				throw new InvalidProgramException ("An item can only be moved if it passed a \"can move\" test.");
@@ -311,7 +311,7 @@ namespace ListerKit
 		}
 
 		// TODO: Rename to Toggle
-		void ToggleListItem(ListItem listItem)
+		public void ToggleListItem(ListItem listItem)
 		{
 			Delegate.WillChangeListLayout (this, false);
 			int fromIndex = UnsafeToggleListItem (listItem);
