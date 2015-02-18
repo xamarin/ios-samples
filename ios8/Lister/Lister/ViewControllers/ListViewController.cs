@@ -13,11 +13,7 @@ namespace Lister
 	[Register ("ListViewController")]
 	public class ListViewController : UITableViewController, IListPresenterDelegate, IListColorCellDelegate, IListDocumentDelegate, IUITextFieldDelegate
 	{
-		//		const string EmptyViewControllerStoryboardIdentifier = "emptyViewController";
-
-		// Notification User Info Keys
-		//		public static readonly NSString ListDidUpdateColorUserInfoKey = new NSString("ListDidUpdateColorUserInfoKey");
-		//		public static readonly NSString ListDidUpdateURLUserInfoKey = new NSString("ListDidUPdateURLUserInfoKey");
+		const string EmptyViewControllerStoryboardIdentifier = "emptyViewController";
 
 		// UITableViewCell Identifiers
 		static readonly NSString ListItemCellIdentifier = new NSString ("listItemCell");
@@ -108,7 +104,7 @@ namespace Lister
 		{
 			base.ViewDidLoad ();
 
-			TableView.RowHeight = 44.0;
+			TableView.RowHeight = 44;
 
 			UpdateInterfaceWithTextAttributes ();
 
@@ -170,7 +166,7 @@ namespace Lister
 
 			TextAttributes = new UIStringAttributes {
 				Font = UIFont.PreferredHeadline,
-				ForegroundColor = AppColors.ColorFrom (listInfo.Color ?? AppColors.GrayColor) 
+				ForegroundColor = AppColors.ColorFrom (listInfo.Color ?? ListColor.Gray)
 			};
 		}
 
@@ -281,7 +277,7 @@ namespace Lister
 			} else if (itemCell != null) {
 				ConfigureListItemCell (itemCell, indexPath.Row);
 			} else {
-				throw ArgumentException ();
+				throw new ArgumentException ();
 			}
 		}
 
@@ -395,7 +391,126 @@ namespace Lister
 
 		#endregion
 
+		#region IListPresenterDelegate implementation
+
+		public void DidRefreshCompleteLayout (IListPresenter presenter)
+		{
+			TextAttributes = new UIStringAttributes {
+				Font = UIFont.PreferredHeadline,
+				ForegroundColor = AppColors.ColorFrom (ListPresenter.Color)
+			};
+
+			TableView.ReloadData ();
+		}
+
+		public void WillChangeListLayout (IListPresenter listPresenter, bool isInitialLayout)
+		{
+			TableView.BeginUpdates ();
+		}
+
+		public void DidInsertListItem (IListPresenter listPresenter, ListItem listItem, int atIndex)
+		{
+			NSIndexPath[] indexPathsForInsertion = new NSIndexPath[]{ NSIndexPath.FromRowSection (atIndex + 1, 0) };
+
+			TableView.InsertRows (indexPathsForInsertion, UITableViewRowAnimation.Fade);
+
+			// Reload the ListItemCell to be configured for the row to create a new list item.
+			if (atIndex == 0) {
+				NSIndexPath[] indexPathsForReloading = new NSIndexPath[]{ NSIndexPath.FromRowSection (0, 0) };
+				TableView.ReloadRows (indexPathsForReloading, UITableViewRowAnimation.Automatic);
+			}
+		}
+
+		public void DidRemoveListItem (IListPresenter listPresenter, ListItem listItem, int atIndex)
+		{
+			NSIndexPath[] indexPathsForRemoval = new NSIndexPath[]{ NSIndexPath.FromRowSection (atIndex + 1, 0) };
+			TableView.DeleteRows (indexPathsForRemoval, UITableViewRowAnimation.Automatic);
+		}
+
+		public void DidUpdateListItem (IListPresenter listPresenter, ListItem listItem, int atIndex)
+		{
+			TableView.EndUpdates ();
+			TableView.BeginUpdates ();
+
+			NSIndexPath indexPath = NSIndexPath.FromRowSection (atIndex + 1, 0);
+			var listItemCell = (ListItemCell)TableView.CellAt (indexPath);
+			ConfigureListItemCell (listItemCell, atIndex + 1);
+		}
+
+		public void DidMoveListItem (IListPresenter listPresenter, ListItem listItem, int fromIndex, int toIndex)
+		{
+			NSIndexPath fromIndexPath = NSIndexPath.FromRowSection (fromIndex + 1, 0);
+			NSIndexPath toIndexPath = NSIndexPath.FromRowSection (toIndex + 1, 0);
+
+			TableView.MoveRow (fromIndexPath, toIndexPath);
+		}
+
+		public void DidUpdateListColorWithColor (IListPresenter listPresenter, ListColor color)
+		{
+			TextAttributes = new UIStringAttributes {
+				Font = UIFont.PreferredHeadline,
+				ForegroundColor = AppColors.ColorFrom (color)
+			};
+		}
+
+		public void DidChangeListLayout (IListPresenter listPresenter, bool isInitialLayout)
+		{
+			TableView.EndUpdates ();
+		}
+
+		#endregion
+
 		#region Convenience
+
+		void UpdateInterfaceWithTextAttributes ()
+		{
+			UINavigationController controller = NavigationController.NavigationController ?? NavigationController;
+
+			controller.NavigationBar.TitleTextAttributes = TextAttributes;
+			controller.NavigationBar.TintColor = TextAttributes.ForegroundColor;
+			controller.Toolbar.TintColor = TextAttributes.ForegroundColor;
+
+			TableView.TintColor = TextAttributes.ForegroundColor;
+		}
+
+		void HideViewControllerAfterListWasDeleted ()
+		{
+			if (SplitViewController != null && SplitViewController.Collapsed) {
+				UINavigationController controller = NavigationController.NavigationController ?? NavigationController;
+				controller.PopViewController (true);
+			} else {
+				UINavigationController emptyViewController = (UINavigationController)Storyboard.InstantiateViewController (EmptyViewControllerStoryboardIdentifier);
+				emptyViewController.TopViewController.NavigationItem.LeftBarButtonItem = SplitViewController.DisplayModeButtonItem;
+
+				SplitViewController.ViewControllers = new UIViewController[] {
+					SplitViewController.ViewControllers [0],
+					emptyViewController
+				};
+			}
+		}
+
+		void ConfigureListItemCell (ListItemCell itemCell, int row)
+		{
+			itemCell.CheckBox.Checked = false;
+			itemCell.CheckBox.Hidden = false;
+
+			itemCell.TextField.Font = UIFont.PreferredBody;
+			itemCell.TextField.Delegate = this;
+			itemCell.TextField.TextColor = UIColor.DarkTextColor;
+			itemCell.TextField.Enabled = true;
+
+			if (row == 0) {
+				// Configure an "Add Item" list item cell.
+				itemCell.TextField.Placeholder = "Add Item";
+				itemCell.TextField.Text = string.Empty;
+				itemCell.CheckBox.Hidden = true;
+			} else {
+				ListItem item = ListPresenter.PresentedListItems [row - 1];
+
+				itemCell.Completed = item.IsComplete;
+				itemCell.TextField.Text = item.Text;
+			}
+		}
 
 		void TriggerNewDataForWidget ()
 		{
@@ -411,36 +526,11 @@ namespace Lister
 			NCWidgetController.GetWidgetController ().SetHasContent (true, widgetBundleId);
 		}
 
-		void UpdateInterfaceWithTextAttributes ()
-		{
-			NavigationController.NavigationBar.TitleTextAttributes = TextAttributes;
-
-			UIColor color = TextAttributes.ForegroundColor;
-			NavigationController.NavigationBar.TintColor = color;
-			NavigationController.Toolbar.TintColor = color;
-			TableView.TintColor = color;
-		}
-
-		void HideViewControllerAfterListWasDeleted ()
-		{
-//			if (self.splitViewController && self.splitViewController.isCollapsed) {
-//				UINavigationController *controller = self.navigationController.navigationController ?: self.navigationController;
-//				[controller popViewControllerAnimated:YES];
-//			}
-//			else {
-//				UINavigationController *emptyViewController = (UINavigationController *)[self.storyboard instantiateViewControllerWithIdentifier:AAPLAppDelegateMainStoryboardEmptyViewControllerIdentifier];
-//				emptyViewController.topViewController.navigationItem.leftBarButtonItem = [self.splitViewController displayModeButtonItem];
-//
-//				self.splitViewController.viewControllers = @[self.splitViewController.viewControllers.firstObject, emptyViewController];
-//			}
-		}
-
-
 		void ResolveConflicts ()
 		{
 			// Any automatic merging logic or presentation of conflict resolution UI should go here.
 			// For this sample, just pick the current version and mark the conflict versions as resolved.
-			NSError error = null;
+			NSError error;
 			NSFileVersion.RemoveOtherVersions (DocumentURL, out error);
 
 			NSFileVersion[] conflictVersions = NSFileVersion.GetUnresolvedConflictVersions (DocumentURL);
@@ -456,67 +546,7 @@ namespace Lister
 			return TableView.IndexPathForRowAtPoint (viewLocation);
 		}
 
-		void ConfigureListItemCell (ListItemCell itemCell, int row)
-		{
-			itemCell.TextField.Font = UIFont.PreferredBody;
-			itemCell.TextField.WeakDelegate = this;
-
-			if (row == 0) {
-				// Configure an "Add Item" list item cell.
-				itemCell.TextField.Placeholder = "Add Item";
-				itemCell.CheckBox.Hidden = true;
-			} else {
-				ListItem item = List [row - 1];
-
-				itemCell.Completed = item.IsComplete;
-				itemCell.TextField.Text = item.Text;
-			}
-		}
-
 		#endregion
 
-		#region IListPresenterDelegate implementation
-
-		public void DidRefreshCompleteLayout (IListPresenter presenter)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public void WillChangeListLayout (IListPresenter listPresenter, bool isInitialLayout)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public void DidInsertListItem (IListPresenter listPresenter, ListItem listItem, int atIndex)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public void DidRemoveListItem (IListPresenter listPresenter, ListItem listItem, int atIndex)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public void DidUpdateListItem (IListPresenter listPresenter, ListItem listItem, int atIndex)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public void DidMoveListItem (IListPresenter listPresenter, ListItem listItem, int fromIndex, int toIndex)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public void DidUpdateListColorWithColor (IListPresenter listPresenter, ListColor color)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public void DidChangeListLayout (IListPresenter listPresenter, bool isInitialLayout)
-		{
-			throw new NotImplementedException ();
-		}
-
-		#endregion
 	}
 }

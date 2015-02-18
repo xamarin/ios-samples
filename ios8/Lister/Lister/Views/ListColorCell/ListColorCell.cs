@@ -30,7 +30,7 @@ namespace Lister
 		[Outlet("red")]
 		UIView Red { get; set; }
 
-		public ListColor SelectedColor { get; private set; }
+		public ListColor SelectedColor { get; set; }
 
 		public IListColorCellDelegate Delegate { get; set; }
 
