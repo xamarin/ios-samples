@@ -22,6 +22,18 @@ namespace ListerKit
 			}
 		}
 
+		public ListInfo this[int index] {
+			get {
+				// Fetch the appropriate list info protected by listInfoQueue.
+				ListInfo listInfo = null;
+				listInfoQueue.DispatchSync (() => {
+					listInfo = listInfos[index];
+				});
+
+				return listInfo;
+			}
+		}
+
 		public IListCoordinator ListCoordinator {
 			get {
 				return listCoordinator;
@@ -69,17 +81,6 @@ namespace ListerKit
 		public void StopSearching ()
 		{
 			listCoordinator.StopQuery ();
-		}
-
-		public ListInfo ObjectAtIndexedSubscript(int index)
-		{
-			// Fetch the appropriate list info protected by listInfoQueue.
-			ListInfo listInfo = null;
-			listInfoQueue.DispatchSync (() => {
-				listInfo = listInfos[index];
-			});
-
-			return listInfo;
 		}
 
 		#region Inserting / Removing / Managing / Updating AAPLListInfo Objects

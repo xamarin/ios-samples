@@ -9,7 +9,7 @@ using System.IO;
 namespace ListerKit
 {
 	// TODO: add comments
-	public class ListInfo : IEquatable<ListInfo>
+	public class ListInfo : NSObject, IEquatable<ListInfo>
 	{
 		DispatchQueue fetchQueue;
 
@@ -30,7 +30,7 @@ namespace ListerKit
 			fetchQueue = new DispatchQueue ("fetch queue");
 		}
 
-		void FetchInfoWithCompletionHandler(Action completionHandler)
+		public void FetchInfoWithCompletionHandler(Action completionHandler)
 		{
 			if (completionHandler == null)
 				throw new ArgumentNullException ("completionHandler is null");

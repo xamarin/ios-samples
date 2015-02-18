@@ -16,6 +16,9 @@ namespace ListerKit
 		public static readonly string UserActivityListColorUserInfoKey = "listColor";
 		public static readonly string ListerFileExtension = "lister";
 
+		// TODO: move to Info.plist. Now it is hard to switch accounts
+		public static readonly string ListerFileUTI = @"com.xamarin.lister";
+
 		public event EventHandler StorageOptionChanged;
 
 		static readonly AppConfig sharedAppConfiguration = new AppConfig();
