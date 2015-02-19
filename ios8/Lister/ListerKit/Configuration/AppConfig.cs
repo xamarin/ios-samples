@@ -108,7 +108,7 @@ namespace ListerKit
 			throw new NotImplementedException ();
 		}
 
-		public ListCoordinator ListsCoordinatorForCurrentConfigurationWithPathExtension (string listerFileExtension, Action storageOptionChangeHandler)
+		public IListCoordinator ListsCoordinatorForCurrentConfigurationWithPathExtension (string listerFileExtension, Action storageOptionChangeHandler)
 		{
 			throw new NotImplementedException ();
 		}

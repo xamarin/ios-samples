@@ -16,7 +16,6 @@ namespace Lister
 		const string MainStoryboardEmptyViewControllerIdentifier = "emptyViewController";
 
 		NSObject subscribtionToken;
-		DocumentsViewController documentsViewController;
 
 		public override UIWindow Window { get; set; }
 
@@ -32,9 +31,9 @@ namespace Lister
 			}
 		}
 
-		ListViewController ListViewController {
+		DocumentsViewController ListDocumentsViewController {
 			get {
-				return (ListViewController)PrimaryViewController.ViewControllers [0];
+				return (DocumentsViewController)PrimaryViewController.ViewControllers [0];
 			}
 		}
 
@@ -47,11 +46,9 @@ namespace Lister
 
 			subscribtionToken = NSFileManager.Notifications.ObserveUbiquityIdentityDidChange (OnUbiquityIdentityChanged);
 
-			AppConfig.SharedAppConfiguration.RunHandlerOnFirstLaunch(()=> {
-				ListCoordinator.SharedListCoordinator.CopyInitialDocuments();
-			});
+			AppConfig.SharedAppConfiguration.RunHandlerOnFirstLaunch (ListUtilities.CopyInitialLists);
 
-			SplitViewController.WeakDelegate = this;
+			SplitViewController.Delegate = this;
 			SplitViewController.PreferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible;
 
 			// Configure the detail controller in the `UISplitViewController` at the root of the view hierarchy.
@@ -71,26 +68,14 @@ namespace Lister
 		public override bool ContinueUserActivity (UIApplication application, NSUserActivity userActivity, UIApplicationRestorationHandler completionHandler)
 		{
 			// Lister only supports a single user activity type; if you support more than one the type is available from the userActivity parameter.
-			if (completionHandler == null || ListViewController == null)
+			if (completionHandler == null || ListDocumentsViewController == null)
 				return false;
 
-			completionHandler (new NSObject[]{ ListViewController });
+			completionHandler (new NSObject[]{ ListDocumentsViewController });
 			return true;
 		}
 
-		void OnUbiquityIdentityChanged(object sender, NSNotificationEventArgs e)
-		{
-			PrimaryViewController.PopViewController (true);
-			SetupUserStoragePreferences ();
-		}
-
 		#region UISplitViewControllerDelegate
-
-		[Export ("targetDisplayModeForActionInSplitViewController:")]
-		public UISplitViewControllerDisplayMode GetTargetDisplayModeForAction (UISplitViewController svc)
-		{
-			return UISplitViewControllerDisplayMode.AllVisible;
-		}
 
 		[Export ("splitViewController:collapseSecondaryViewController:ontoPrimaryViewController:")]
 		public bool CollapseSecondViewController (UISplitViewController splitViewController, UIViewController secondaryViewController, UIViewController primaryViewController)
@@ -148,6 +133,18 @@ namespace Lister
 
 		#endregion
 
+		#region Notifications
+
+		void OnUbiquityIdentityChanged(object sender, NSNotificationEventArgs e)
+		{
+			PrimaryViewController.PopViewController (true);
+			SetupUserStoragePreferences ();
+		}
+
+		#endregion
+
+		#region User Storage Preferences
+
 		void SetupUserStoragePreferences()
 		{
 			StorageState storageState = AppConfig.SharedAppConfiguration.StorageState;
@@ -185,6 +182,8 @@ namespace Lister
 			}
 		}
 
+		#endregion
+
 		#region Alerts
 
 		void NotifyUserOfAccountChange(StorageState state)
@@ -207,7 +206,7 @@ namespace Lister
 			});
 			signedOutController.AddAction(action);
 
-			ListViewController.PresentViewController(signedOutController, true, null);
+			ListDocumentsViewController.PresentViewController(signedOutController, true, null);
 		}
 
 		void PromptUserForStorageOption()
@@ -233,10 +232,12 @@ namespace Lister
 			});
 			storageController.AddAction (cloudOption);
 
-			ListViewController.PresentViewController (storageController, true, null);
+			ListDocumentsViewController.PresentViewController (storageController, true, null);
 		}
 
 		#endregion
+
+		#region Convenience
 
 		void ConfigureListsController(bool accountChanged, Action storageOptionChangeHandler)
 		{
@@ -249,12 +250,14 @@ namespace Lister
 				ListsController = AppConfig.SharedAppConfiguration.ListsControllerForCurrentConfigurationWithPathExtension (AppConfig.ListerFileExtension, storageOptionChangeHandler);
 
 				// Ensure that this controller is passed along to the `AAPLListDocumentsViewController`.
-				ListViewController.ListsController = ListsController;
+				ListDocumentsViewController.ListsController = ListsController;
 				ListsController.StartSearching ();
 			} else if (accountChanged) {
 				// A lists controller is configured; however, it needs to have its coordinator updated based on the account change. 
 				ListsController.ListCoordinator = AppConfig.SharedAppConfiguration.ListsCoordinatorForCurrentConfigurationWithPathExtension (AppConfig.ListerFileExtension, storageOptionChangeHandler);
 			}
 		}
+
+		#endregion
 	}
 }
