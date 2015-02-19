@@ -16,6 +16,7 @@ namespace Lister
 		const string MainStoryboardEmptyViewControllerIdentifier = "emptyViewController";
 
 		NSObject subscribtionToken;
+		DocumentsViewController documentsViewController;
 
 		public override UIWindow Window { get; set; }
 

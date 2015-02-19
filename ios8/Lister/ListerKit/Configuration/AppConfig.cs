@@ -18,6 +18,11 @@ namespace ListerKit
 
 		// TODO: move to Info.plist. Now it is hard to switch accounts
 		public static readonly string ListerFileUTI = @"com.xamarin.lister";
+		public static string ApplicationGroupsPrimary {
+			get {
+				return string.Format ("group.{0}.security", NSBundle.MainBundle.BundleIdentifier);
+			}
+		}
 
 		public event EventHandler StorageOptionChanged;
 
