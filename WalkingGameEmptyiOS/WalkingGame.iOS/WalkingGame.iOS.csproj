@@ -20,8 +20,11 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Distribution: FlatRedBall, LLC (72VAS77RCK)</CodesignKey>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -45,6 +48,9 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignProvision>70389db7-049a-456a-b5f9-f99ecb73f7ca</CodesignProvision>
+    <IpaPackageName>
+    </IpaPackageName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -88,7 +94,7 @@
       <HintPath>..\packages\MonoGame.Binaries.3.2.0\build\MonoTouch\Lidgren.Network.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\packages\MonoGame.Binaries.3.2.0\build\MonoTouch\MonoGame.Framework.dll</HintPath>
+      <HintPath>Libraries\MonoGame.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +104,7 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
+    <None Include="Libraries\MonoGame.Framework.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameMain.cs" />
@@ -109,5 +116,8 @@
       <Project>{54D38409-0B81-4782-85F8-9CAF5EED8417}</Project>
       <Name>WalkingGame</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Libraries\" />
   </ItemGroup>
 </Project>
