@@ -115,11 +115,11 @@
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Content\ball.png" />
     <BundleResource Include="Content\paddle.png" />
+    <BundleResource Include="Content\fonts\arial-22.xnb" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
-    <None Include="Content\fonts\arial-22.xnb" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
