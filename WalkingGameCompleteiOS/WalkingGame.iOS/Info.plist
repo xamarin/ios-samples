@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>WalkingGame.iOS</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.your-company.WalkingGame.iOS</string>
+	<string>com.Company.WalkingGame.iOS</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
