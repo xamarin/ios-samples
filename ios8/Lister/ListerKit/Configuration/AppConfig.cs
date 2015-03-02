@@ -24,7 +24,7 @@ namespace ListerKit
 			}
 		}
 
-		public event EventHandler StorageOptionChanged;
+//		public event EventHandler StorageOptionChanged;
 
 		static readonly AppConfig sharedAppConfiguration = new AppConfig();
 		public static AppConfig SharedAppConfiguration {
@@ -33,22 +33,42 @@ namespace ListerKit
 			}
 		}
 
+		public string TodayDocumentName {
+			get {
+				return "Today";
+			}
+		}
+
+		public string TodayDocumentNameAndExtension {
+			get {
+				return Path.ChangeExtension (TodayDocumentName, ListerFileExtension);
+			}
+		}
+
+		NSUserDefaults ApplicationUserDefaults {
+			get {
+				return new NSUserDefaults (ApplicationGroupsPrimary);
+			}
+		}
+
+		public string DefaultListerDraftName {
+			get {
+				return "List";
+			}
+		}
+
 		StorageType? storageOption;
 		public StorageType StorageOption {
 			get {
 				if (!storageOption.HasValue)
-					storageOption = (StorageType)(int)NSUserDefaults.StandardUserDefaults.IntForKey (StorageOptionUserDefaultsKey);
+					storageOption = (StorageType)(int)ApplicationUserDefaults.IntForKey (StorageOptionUserDefaultsKey);
 
 				return storageOption.Value;
 			}
 			set {
 				if (!storageOption.HasValue || value != storageOption.Value) {
 					storageOption = value;
-					NSUserDefaults.StandardUserDefaults.SetInt ((int)value, StorageOptionUserDefaultsKey);
-
-					var handler = StorageOptionChanged;
-					if (handler != null)
-						handler (this, EventArgs.Empty);
+					ApplicationUserDefaults.SetInt ((int)value, StorageOptionUserDefaultsKey);
 				}
 			}
 		}
@@ -70,56 +90,39 @@ namespace ListerKit
 			}
 		}
 
-		public string TodayDocumentName {
+		bool IsFirstLaunch {
 			get {
-				return "Today";
+				RegisterDefaults();
+				return ApplicationUserDefaults.BoolForKey (FirstLaunchUserDefaultsKey);
+			}
+			set {
+				ApplicationUserDefaults.SetBool (value, FirstLaunchUserDefaultsKey);
 			}
 		}
 
-		public string TodayDocumentNameAndExtension {
-			get {
-				return Path.ChangeExtension (TodayDocumentName, ListerFileExtension);
-			}
-		}
+		void RegisterDefaults ()
+		{
+			NSUserDefaults defaults = ApplicationUserDefaults;
 
-		public string DefaultListerDraftName {
-			get {
-				return "List";
-			}
+			defaults.RegisterDefaults (new NSDictionary (FirstLaunchUserDefaultsKey, true
+#if TARGET_PLATFORM_IPHONE
+				, StorageOptionUserDefaultsKey, (int)StorageType.NotSet
+#endif
+			));
 		}
 
 		public void RunHandlerOnFirstLaunch(Action firstLaunchHandler)
 		{
-			NSUserDefaults defaults = NSUserDefaults.StandardUserDefaults;
-
-			defaults.RegisterDefaults (new NSMutableDictionary {
-				{ (NSString)FirstLaunchUserDefaultsKey, NSObject.FromObject(true) },
-				{ (NSString)StorageOptionUserDefaultsKey, NSObject.FromObject(StorageType.NotSet) }
-			});
-
-			if (defaults.BoolForKey(FirstLaunchUserDefaultsKey)) {
-				defaults.SetBool (false, FirstLaunchUserDefaultsKey);
-				firstLaunchHandler();
+			if (IsFirstLaunch) {
+				IsFirstLaunch = false;
+				firstLaunchHandler ();
 			}
-		}
-
-		public ListsController ListsControllerForCurrentConfigurationWithPathExtension (string listerFileExtension, Action storageOptionChangeHandler)
-		{
-			throw new NotImplementedException ();
-		}
-
-		public IListCoordinator ListsCoordinatorForCurrentConfigurationWithPathExtension (string listerFileExtension, Action storageOptionChangeHandler)
-		{
-			throw new NotImplementedException ();
 		}
 
 		#region Identity
 
 		bool HasUbiquityIdentityChanged()
 		{
-			if (StorageOption != StorageType.Cloud)
-				return false;
-
 			bool hasChanged = false;
 			NSObject currentToken = NSFileManager.DefaultManager.UbiquityIdentityToken;
 			NSObject storedToken = FetchStoredUbiquityIdentityToken ();
@@ -130,28 +133,26 @@ namespace ListerKit
 			                             && !currentToken.Equals (storedToken);
 
 			if (currentTokenNullStoredNonNull || storedTokenNullCurrentNonNull || currentNotEqualStored) {
-				StoreUbiquityIdentityToken ();
+				PersistAccount ();
 				hasChanged = true;
 			}
 
 			return hasChanged;
 		}
 
-		public void StoreUbiquityIdentityToken()
+		void PersistAccount()
 		{
-			NSUserDefaults defaults = NSUserDefaults.StandardUserDefaults;
-			var token = NSFileManager.DefaultManager.UbiquityIdentityToken;
+			NSUserDefaults defaults = ApplicationUserDefaults;
+			NSObject token = NSFileManager.DefaultManager.UbiquityIdentityToken;
 
 			if (token != null) {
-				// the account has changed
-				NSData ubiquityIdentityTokenArchive = NSKeyedArchiver.ArchivedDataWithRootObject (token);
-				defaults [StoredUbiquityIdentityTokenKey] = ubiquityIdentityTokenArchive;
+				// The account has changed.
+				NSData ubiquityIdentityTokenArchive = NSKeyedArchiver.ArchivedDataWithRootObject(token);
+				defaults [StoredUbiquityIdentityTokenKey] = ubiquityIdentityTokenArchive;;
 			} else {
-				// the is no signed-in account
-				defaults.RemoveObject (StoredUbiquityIdentityTokenKey);
+				// There is no signed-in account.
+				defaults.RemoveObject(StoredUbiquityIdentityTokenKey);
 			}
-
-			defaults.Synchronize ();
 		}
 
 		NSObject FetchStoredUbiquityIdentityToken()
@@ -159,7 +160,7 @@ namespace ListerKit
 			NSObject storedToken = null;
 
 			// Determine if the iCloud account associated with this device has changed since the last time the user launched the app.
-			var tokenArchive = (NSData)NSUserDefaults.StandardUserDefaults[StoredUbiquityIdentityTokenKey];
+			var tokenArchive = (NSData)ApplicationUserDefaults[StoredUbiquityIdentityTokenKey];
 			if (tokenArchive != null)
 				storedToken = NSKeyedUnarchiver.UnarchiveObject (tokenArchive);
 
@@ -168,5 +169,27 @@ namespace ListerKit
 
 		#endregion
 
+		#region Conveience Methods
+
+#if TARGET_PLATFORM_IPHONE
+
+		public ListsController ListsControllerForCurrentConfigurationWithPathExtension (string listerFileExtension, Action storageOptionChangeHandler)
+		{
+			// This will be called if the storage option is either Local or NotSet.
+			if (AppConfig.SharedAppConfiguration.StorageOption != StorageType.Cloud) {
+//				return new Local LocalListCoordinator alloc] initWithPathExtension:pathExtension firstQueryUpdateHandler:firstQueryHandler];
+			} else {
+//				return [[AAPLCloudListCoordinator alloc] initWithPathExtension:pathExtension firstQueryUpdateHandler:firstQueryHandler];
+			}
+		}
+
+		public IListCoordinator ListsCoordinatorForCurrentConfigurationWithPathExtension (string listerFileExtension, Action storageOptionChangeHandler)
+		{
+			throw new NotImplementedException ();
+		}
+
+#endif
+
+		#endregion
 	}
 }

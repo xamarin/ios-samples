@@ -15,18 +15,18 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;TARGET_PLATFORM_IPHONE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <DefineConstants>TARGET_PLATFORM_IPHONE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -40,6 +40,7 @@
     <Folder Include="Presenters\Helpers\" />
     <Folder Include="Presenters\Implementations\" />
     <Folder Include="UI\" />
+    <Folder Include="Storage\Coordinators\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +72,8 @@
     <Compile Include="Storage\IListsControllerDelegate.cs" />
     <Compile Include="Storage\ListDocument.cs" />
     <Compile Include="Storage\IListDocumentDelegate.cs" />
+    <Compile Include="Storage\Coordinators\LocalListCoordinator.cs" />
+    <Compile Include="Storage\Coordinators\CloudListCoordinator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
