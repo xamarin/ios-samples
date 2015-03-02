@@ -35,12 +35,12 @@ iOS 8 feature samples live in the ios8 directory.
 
 WatchKit
 --------
-WatchKit samples are in the ios8 directory, there are a couple of them
+WatchKit samples are in the WatchKit directory, there are a couple of them:
 
-* ios8/WatchKitCatalog: contains a sample that shows all the UI elements available in WatchKit
-* ios8/GpsWatch: Sample GPS app for your watch
-* ios8/watchtables: Sample app used by our tutorials to show some elements of building WatchKit apps
-* 
+* [WatchKit/WatchKitCatalog](https://github.com/xamarin/monotouch-samples/tree/master/WatchKit/WatchKitCatalog): contains a sample that shows all the UI elements available in WatchKit.
+* [WatchKit/GpsWatch](https://github.com/xamarin/monotouch-samples/tree/master/WatchKit/GpsWatch): a GPS app for the Apple Watch.
+* [WatchKit/WatchTables](https://github.com/xamarin/monotouch-samples/tree/master/WatchKit/WatchTables): the sample app used in our tutorials to show how to build WatchKit apps.
+
 Contributing
 ------------
 
@@ -57,21 +57,32 @@ Samples Submission Guidelines
 
 We love samples! Application samples show off our platform and provide a great way for people to learn our stuff. And we even promote them as a first-class feature of the docs site. You can find our two sample galleries here:
 
-* [iOS Samples](http://docs.xamarin.com/samples/ios)
+* [Xamarin Forms Samples](http://developer.xamarin.com/samples/xamarin-forms/all/)
 
-* [Android Samples](http://docs.xamarin.com/samples/android)
+* [iOS Samples](http://developer.xamarin.com/samples/ios/all/)
+
+* [Mac Samples](http://developer.xamarin.com/samples/mac/all/)
+
+* [Android Samples](http://developer.xamarin.com/samples/android/all/)
 
 ## Sample GitHub Repositories
 
-These sample galleries are populated by samples in our three sample GitHub repos:
+These sample galleries are populated by samples in our six sample GitHub repos:
+
+* [https://github.com/xamarin/xamarin-forms-samples](https://github.com/xamarin/xamarin-forms-samples)
 
 * [https://github.com/xamarin/mobile-samples](https://github.com/xamarin/mobile-samples)
 
 * [https://github.com/xamarin/monotouch-samples](https://github.com/xamarin/monotouch-samples)
 
+* [https://github.com/xamarin/mac-samples](https://github.com/xamarin/mac-samples)
+
 * [https://github.com/xamarin/monodroid-samples](https://github.com/xamarin/monodroid-samples)
 
-The[ mobile-samples](https://github.com/xamarin/mobile-samples) repository is for samples that are cross-platform.
+* [https://github.com/xamarin/mac-ios-samples](https://github.com/xamarin/mac-ios-samples)
+
+The [mobile-samples](https://github.com/xamarin/mobile-samples) repository is for samples that are cross-platform.
+The [mac-ios-samples](https://github.com/xamarin/mac-ios-samples) repository is for samples that are Mac/iOS only.
 
 ## Sample Requirements
 
@@ -85,16 +96,17 @@ However, because the sample galleries are powered by the github sample repos, ea
 
 * **Metadata** - Finally, it needs a Metadata.xml file ([https://github.com/xamarin/mobile-samples/blob/master/Tasky/Metadata.xml](https://github.com/xamarin/mobile-samples/blob/master/Tasky/Metadata.xml)) that has some information:
 
-    * **ID**: a GUID for the sample. you can generate this in MD under Tools menu : Insert GUID. we need this to key between articles and their associated samples
+    * **ID** - A GUID for the sample. You can generate this in MD under Tools menu : Insert GUID. we need this to key between articles and their associated samples
 
-    * **IsFullApplication** boolean flag (true or false): whether or not this is a full application such as the MWC App, Tasky, etc., or it's just a feature sample, such as, how to use 'x' feature. the basic test here is, if you would submit this to the app store because it's useful, then it's a full app, otherwise it's just a feature sample.
+    * **IsFullApplication** - Boolean flag (true or false): whether or not this is a full application such as the MWC App, Tasky, etc., or it's just a feature sample, such as, how to use 'x' feature. the basic test here is, if you would submit this to the app store because it's useful, then it's a full app, otherwise it's just a feature sample.
+
+    * **Description** - Short description or what your sample does. This allows us to display a nice and clean vignette on the sample page.
 
     * **Level** - Beginning, Intermediate, or Advanced: this is the intended audience level for the sample. only the getting started samples are Beginning, as they are intended for people who are _just_ starting with the platform. most samples are Intermediate, and a few, that dive deep into difficult APIs, should be Advanced.
 
     * **Minimum License Requirement** - Starter, Indie, Business, or Enterprise: denotes the license that a user has to have in order to build/run the sample.
 
     * **Tags**: a list of relevant tags for the app. These are:
-    	* **User Interface**
 		* **Data**
 		* **Games**
 		* **Graphics** (CoreDrawing, Animation, OpenGL...)
@@ -103,13 +115,18 @@ However, because the sample galleries are powered by the github sample repos, ea
 		* **Device Features** (NFC, Accelerometer, Compass, Magnemometer, Bluetooth, RFID)
 		* **Cloud** (Web Services, Networking, etc.)
 		* **Backgrounding**
-		* **Maps & Location**
+		* **Maps + Location**
 		* **Binding + Interop** (Projections)
 		* **Notifications**
 		* **Touch**
 		* **Getting Started**
 		* **Async**
-
+		* **Extension**
+		* **iOS8**
+		* **Watch**
+		* **Keyboard**
+		* **SceneKit**
+		* **FSharp**
 
     * **SupportedPlatforms**: this is only for cross plat samples. It's a comma-separated list, and the valid values are iOS, Android, and Windows.
 

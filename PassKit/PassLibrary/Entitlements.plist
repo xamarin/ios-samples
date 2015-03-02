@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.pass-type-identifiers</key>
 	<array>
-		<string>YOURTEAMID.pass.com.xamarin.coupon.banana</string>
+		<string>$(TeamIdentifierPrefix)pass.com.xamarin.passlibrary</string>
 	</array>
 </dict>
 </plist>

@@ -99,7 +99,7 @@ namespace AudioConverterFileConverter
             // our default category -- we change this for conversion and playback appropriately
             try
             {
-                session.SetCategory(new NSString("AudioSessionCategory.SoloAmbientSound"));
+                session.SetCategory (AVAudioSessionCategory.SoloAmbient);
             }
             catch
             {

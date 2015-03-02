@@ -65,7 +65,7 @@ namespace StreamingAudio
 
 				// Set up the session for playback category
 				NSError error;
-				session.SetCategory (new NSString ("AVAudioSessionCategoryPlayback"), AVAudioSessionCategoryOptions.DefaultToSpeaker, out error);
+				session.SetCategory (AVAudioSessionCategory.Playback, AVAudioSessionCategoryOptions.DefaultToSpeaker);
 				session.OverrideOutputAudioPort (AVAudioSessionPortOverride.Speaker, out error);
 			}
 		}

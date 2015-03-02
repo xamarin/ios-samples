@@ -1,14 +1,19 @@
 using System;
 using System.Collections.Generic;
+
+using UIKit;
 using StoreKit;
 using Foundation;
-using UIKit;
 using CoreGraphics;
 
-namespace NonConsumables {
-	public class NonConsumableViewController : UIViewController {
-		public static string greyscaleProductId = "com.xamarin.storekit.testing.greyscale",
-			   sepiaProductId = "com.xamarin.storekit.testing.sepia";
+using SharedCode;
+
+namespace NonConsumables
+{
+	public class NonConsumableViewController : UIViewController
+	{
+		public static string greyscaleProductId = "com.xamarin.storekit.testing.greyscale";
+		public static string sepiaProductId = "com.xamarin.storekit.testing.sepia";
 
 		string testImagePath = "Images/PhotoFilterTest2.jpg";
 		UIButton greyscaleButton, sepiaButton, clearButton, restoreButton;
@@ -19,13 +24,20 @@ namespace NonConsumables {
 		bool greyscalePurchased, sepiaPurchased;
 		NSObject priceObserver, requestObserver;
 
+		CustomPaymentObserver theObserver;
 		InAppPurchaseManager iap;
 
-		public NonConsumableViewController () : base()
+		public NonConsumableViewController ()
 		{
 			// two products for sale on this page
 			products = new List<string>() {greyscaleProductId, sepiaProductId};
+
 			iap = new InAppPurchaseManager();
+			theObserver = new CustomPaymentObserver(iap);
+
+			// Call this once upon startup of in-app-purchase activities
+			// This also kicks off the TransactionObserver which handles the various communications
+			SKPaymentQueue.DefaultQueue.AddTransactionObserver(theObserver);
 		}
 
 		public override void ViewDidLoad ()
@@ -117,64 +129,47 @@ namespace NonConsumables {
 
 		public override void ViewWillAppear (bool animated)
 		{
-			base.ViewWillAppear(animated);
+			base.ViewWillAppear (animated);
 
 			// setup the observer to wait for prices to come back from StoreKit <- AppStore
 			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerProductsFetchedNotification,
-			(notification) => {
-				var info = notification.UserInfo;
-				var NSgreyscaleProductId = new NSString(greyscaleProductId);
-				var NSsepiaProductId = new NSString(sepiaProductId);
+				(notification) => {
+					NSDictionary info = notification.UserInfo;
+					var NSgreyscaleProductId = new NSString (greyscaleProductId);
+					var NSsepiaProductId = new NSString (sepiaProductId);
 
-				if (info == null) {
-					// if info is null, probably NO valid prices returned, therefore it doesn't exist at all
-					greyscaleDescription.Text = "check iTunes connect setup";
-					sepiaDescription.Text = "check iTunes connect setup";
-					greyscaleButton.SetTitle("invalid product id", UIControlState.Disabled);
-					sepiaButton.SetTitle("invalid product id", UIControlState.Disabled);
-				} else {
+					if (info == null) {
+						// if info is null, probably NO valid prices returned, therefore it doesn't exist at all
+						greyscaleDescription.Text = "check iTunes connect setup";
+						sepiaDescription.Text = "check iTunes connect setup";
+						greyscaleButton.SetTitle ("invalid product id", UIControlState.Disabled);
+						sepiaButton.SetTitle ("invalid product id", UIControlState.Disabled);
+						return;
+					}
+
 					// we only update the button with a price if the user hasn't already purchased it
-					if (!greyscalePurchased && info.ContainsKey(NSgreyscaleProductId)) {
+					if (!greyscalePurchased && info.ContainsKey (NSgreyscaleProductId)) {
 						pricesLoaded = true;
 
-						var product = (SKProduct) info.ObjectForKey(NSgreyscaleProductId);
-
-						Console.WriteLine("Product id: " + product.ProductIdentifier);
-						Console.WriteLine("Product title: " + product.LocalizedTitle);
-						Console.WriteLine("Product description: " + product.LocalizedDescription);
-						Console.WriteLine("Product price: " + product.Price);
-						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
-
-						greyscaleButton.Enabled = true;
-						greyscaleTitle.Text = product.LocalizedTitle;
-						greyscaleDescription.Text = product.LocalizedDescription;
-						greyscaleButton.SetTitle("Buy " + product.LocalizedPrice(), UIControlState.Normal);
+						var product = (SKProduct)info [NSgreyscaleProductId];
+						Print (product);
+						SetVisualState (greyscaleButton, greyscaleTitle, greyscaleDescription, product);
 					}
 					// we only update the button with a price if the user hasn't already purchased it
-					if (!sepiaPurchased && info.ContainsKey(NSsepiaProductId)) {
+					if (!sepiaPurchased && info.ContainsKey (NSsepiaProductId)) {
 						pricesLoaded = true;
 
-						var product = (SKProduct) info.ObjectForKey(NSsepiaProductId);
-
-						Console.WriteLine("Product id: " + product.ProductIdentifier);
-						Console.WriteLine("Product title: " + product.LocalizedTitle);
-						Console.WriteLine("Product description: " + product.LocalizedDescription);
-						Console.WriteLine("Product price: " + product.Price);
-						Console.WriteLine("Product l10n price: " + product.LocalizedPrice());
-
-						sepiaButton.Enabled = true;
-						sepiaTitle.Text = product.LocalizedTitle;
-						sepiaDescription.Text = product.LocalizedDescription;
-						sepiaButton.SetTitle("Buy " + product.LocalizedPrice(), UIControlState.Normal);
+						var product = (SKProduct)info.ObjectForKey (NSsepiaProductId);
+						Print (product);
+						SetVisualState (sepiaButton, sepiaTitle, sepiaDescription, product);
 					}
-				}
-			});
+				});
 
 			// only if we can make payments, request the prices
-			if (iap.CanMakePayments()) {
+			if (iap.CanMakePayments ()) {
 				// now go get prices, if we don't have them already
 				if (!pricesLoaded)
-					iap.RequestProductData(products); // async request via StoreKit -> App Store
+					iap.RequestProductData (products); // async request via StoreKit -> App Store
 			} else {
 				// can't make payments (purchases turned off in Settings?)
 				greyscaleButton.SetTitle ("AppStore disabled", UIControlState.Disabled);
@@ -184,18 +179,18 @@ namespace NonConsumables {
 			UpdateButtons ();
 
 			priceObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerTransactionSucceededNotification,
-			(notification) => {
-				// update the buttons after a successful purchase
-				UpdateButtons ();
-			});
+				(notification) => {
+					// update the buttons after a successful purchase
+					UpdateButtons ();
+				});
 
 			requestObserver = NSNotificationCenter.DefaultCenter.AddObserver (InAppPurchaseManager.InAppPurchaseManagerRequestFailedNotification,
-			                                                                 (notification) => {
-				// TODO:
-				Console.WriteLine ("Request Failed");
-				greyscaleButton.SetTitle ("Network down?", UIControlState.Disabled);
-				sepiaButton.SetTitle ("Network down?", UIControlState.Disabled);
-			});
+				(notification) => {
+					// TODO:
+					Console.WriteLine ("Request Failed");
+					greyscaleButton.SetTitle ("Network down?", UIControlState.Disabled);
+					sepiaButton.SetTitle ("Network down?", UIControlState.Disabled);
+				});
 		}
 
 		void UpdateButtons () {
@@ -219,6 +214,25 @@ namespace NonConsumables {
 			NSNotificationCenter.DefaultCenter.RemoveObserver (requestObserver);
 
 			base.ViewWillDisappear (animated);
+		}
+
+		void Print(SKProduct product)
+		{
+			Console.WriteLine("Product id: {0}", product.ProductIdentifier);
+			Console.WriteLine("Product title: {0}", product.LocalizedTitle);
+			Console.WriteLine("Product description: {0}", product.LocalizedDescription);
+			Console.WriteLine("Product price: {0}", product.Price);
+			Console.WriteLine("Product l10n price: {0}", product.LocalizedPrice());
+		}
+
+		void SetVisualState(UIButton button, UILabel title, UILabel description, SKProduct product)
+		{
+			var btnTitle = string.Format ("Buy {0}", product.LocalizedPrice ());
+			button.Enabled = true;
+			button.SetTitle (btnTitle, UIControlState.Normal);
+
+			title.Text = product.LocalizedTitle;
+			description.Text = product.LocalizedDescription;
 		}
 	}
 }

@@ -77,10 +77,15 @@ namespace InputStreamTest
 			return base.SetCFClientFlags (inFlags, inCallback, inContextPtr);
 		}
 
+		bool notifying = false;
 		[Export ("_scheduleInCFRunLoop:forMode:")]
 		public void ScheduleInCFRunLoop (CFRunLoop runloop, NSString mode)
 		{
+			if (notifying)
+				return;
+			notifying = true;
 			Notify (CFStreamEventType.HasBytesAvailable);
+			notifying = false;
 		}
 
 		[Export ("_unscheduleFromCFRunLoop:forMode:")]
