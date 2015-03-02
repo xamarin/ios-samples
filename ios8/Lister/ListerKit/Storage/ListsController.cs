@@ -140,9 +140,9 @@ namespace ListerKit
 
 		void ProcessContentChangesWithInsertedURLs(IEnumerable<NSUrl> insertedURLs, IEnumerable<NSUrl> removedURLs, IEnumerable<NSUrl> updatedURLs)
 		{
-			var insertedListInfos = ListInfosByMappingURLs (insertedURLs);
-			var removedListInfos = ListInfosByMappingURLs (removedURLs);
-			var updatedListInfos = ListInfosByMappingURLs (updatedURLs);
+			var insertedListInfos = ListInfosByMappingURLs (insertedURLs ?? new NSUrl[0]);
+			var removedListInfos = ListInfosByMappingURLs (removedURLs ?? new NSUrl[0]);
+			var updatedListInfos = ListInfosByMappingURLs (updatedURLs ?? new NSUrl[0]);
 
 			delegateQueue.AddOperation (() => {
 				// Filter out all lists that are already included in the tracked lists.

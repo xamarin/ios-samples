@@ -150,7 +150,7 @@ namespace ListerToday
 
 			// We only expect a single result to be returned by our NSMetadataQuery since we query for a specific file.
 			if (metadataItems.Length == 1) {
-				var url = (NSUrl)metadataItems [0].ValueForAttribute (NSMetadataQuery.ItemURLKey);
+				var url = (NSUrl)metadataItems [0].Url;
 
 				if (document != null)
 					document.Close (null);

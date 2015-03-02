@@ -141,7 +141,7 @@ namespace ListerKit
 			});
 		}
 
-		static void CreateList(List list, NSUrl url, Action<NSError> completionHandler)
+		public static void CreateList(List list, NSUrl url, Action<NSError> completionHandler)
 		{
 			var fileCoordinator = new NSFileCoordinator ();
 
