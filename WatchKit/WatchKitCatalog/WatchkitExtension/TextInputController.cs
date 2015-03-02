@@ -29,7 +29,7 @@ namespace WatchkitExtension
 			PresentTextInputController (new [] { "Yes", "No", "Maybe" }, WKTextInputMode.AllowAnimatedEmoji, delegate(NSArray results) {
 				Console.WriteLine ("Text Input Results: {0}", results);
 
-				if (results.GetItem<NSString> (0) != null) {
+				if (results != null) {
 					// Sends a non-nil result to the parent iOS application.
 					bool didOpenParent = WKInterfaceController.OpenParentApplication (new NSDictionary (new NSString ("TextInput"), results.GetItem<NSString> (0)), delegate(NSDictionary replyInfo, NSError error) {
 						Console.WriteLine ("Reply Info: {0}", replyInfo);

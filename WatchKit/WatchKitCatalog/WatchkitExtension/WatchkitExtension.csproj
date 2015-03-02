@@ -185,12 +185,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.AppExtension.CSharp.targets" />
   <ItemGroup>
-    <ImageAsset Include="Images.xcassets\38mm-Walkway.imageset\38mm-Walkway%402x.png" />
-    <ImageAsset Include="Images.xcassets\38mm-Walkway.imageset\Contents.json" />
-    <ImageAsset Include="Images.xcassets\42mm-Walkway.imageset\42mm-Walkway%402x.png" />
-    <ImageAsset Include="Images.xcassets\42mm-Walkway.imageset\Contents.json" />
-    <ImageAsset Include="Images.xcassets\Bumblebee.imageset\Bumblebee%402x.png" />
-    <ImageAsset Include="Images.xcassets\Bumblebee.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Bumblebee.imageset\Bumblebee%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Bumblebee.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Walkway.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Walkway.imageset\38mm-Walkway%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Walkway.imageset\42mm-Walkway%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WatchApp\WatchApp.csproj">

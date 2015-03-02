@@ -37,9 +37,8 @@ namespace WatchkitExtension
 			// Log what's currently residing in the image cache.
 			Console.WriteLine ("Currently cached images: {0}", WKInterfaceDevice.CurrentDevice.WeakCachedImages);
 
-			bool large = (device.ScreenBounds.Size.Width > 136.0);
-			// Load image inside WatchKit Extension
-			using (var image = UIImage.FromBundle (large ? "42mm-Walkway" : "38mm-Walkway"))
+			// Uses image inside WatchKit Extension bundle.
+			using (var image = UIImage.FromBundle ("Walkway"))
 			using (var png = image.AsPNG ())
 				staticImage.SetImage (png);
 		}
