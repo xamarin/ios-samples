@@ -5,7 +5,8 @@ using Foundation;
 using SpriteKit;
 using UIKit;
 
-namespace SpriteKitPhysicsCollisions {
+namespace SpriteKitPhysicsCollisions
+{
 
 	// an enum [Flag] could be used but would require more casts
 	public static class Category
@@ -61,7 +62,7 @@ namespace SpriteKitPhysicsCollisions {
 
 	public abstract class ArchiveBasedNode : SKEmitterNode {
 
-		static public SKEmitterNode UnarchiveNode (string name, string type)
+		protected static SKEmitterNode UnarchiveNode (string name, string type)
 		{
 			var path = NSBundle.MainBundle.PathForResource (name, type);
 			return (SKEmitterNode) NSKeyedUnarchiver.UnarchiveFile (path);
@@ -71,30 +72,6 @@ namespace SpriteKitPhysicsCollisions {
 		{
 			// calling the base .ctor with the Handle of the Copy will add an extra Retain
 			//Release ();
-		}
-	}
-
-	public class MissileNode : ArchiveBasedNode {
-
-		const float defaultSize = 4f;
-
-		static SKEmitterNode template;
-
-		static MissileNode ()
-		{
-			template = UnarchiveNode ("missile", "sks");
-			// use a local variable to avoid multiple virtual call to the `PhysicsBody` property
-			var body = SKPhysicsBody.CreateCircularBody (defaultSize);
-			body.CategoryBitMask = Category.Missile;
-			body.ContactTestBitMask = Category.Ship | Category.Asteroid | Category.Planet | Category.Edge;
-			body.CollisionBitMask = 0;
-			template.PhysicsBody = body;
-		}
-
-		public MissileNode (SKNode target, CGPoint initialPosition) : base ((template as NSObject).Copy ().Handle)
-		{
-			TargetNode = target;
-			Position = initialPosition;
 		}
 	}
 

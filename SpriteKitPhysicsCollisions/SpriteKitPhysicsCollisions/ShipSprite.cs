@@ -158,18 +158,21 @@ namespace SpriteKitPhysicsCollisions
 		{
 			// Create a bunch of explosion emitters and send them flying in all directions. Then remove the ship from the scene.
 			for (int i = 0; i < numberOfChunks; i++) {
+				SKEmitterNode explosion = NodeFactory.CreateExplosionNode(Scene, shipExplosionDuration);
+
 				float angle = myRand (0, (float) Math.PI * 2);
 				float speed = myRand (shipChunkMinimumSpeed, shipChunkMaximumSpeed);
 				var x = myRand ((float)Position.X - shipChunkDispersion, (float)Position.X + shipChunkDispersion);
 				var y = myRand ((float)Position.Y - shipChunkDispersion, (float)Position.Y + shipChunkDispersion);
-				var position = new CGPoint (x, y);
-				var explosion = new ExplosionNode (Scene, position);
+				explosion.Position = new CGPoint (x, y);
+
 				var body = SKPhysicsBody.CreateCircularBody (0.25f);
 				body.CollisionBitMask = 0;
 				body.ContactTestBitMask = 0;
 				body.CategoryBitMask = 0;
 				body.Velocity = new CGVector ((float) Math.Cos (angle) * speed, (float) Math.Sin (angle) * speed);
 				explosion.PhysicsBody = body;
+
 				Scene.AddChild (explosion);
 			}
 
@@ -181,21 +184,30 @@ namespace SpriteKitPhysicsCollisions
 
 		public float ShipOrientation {
 			get {
+				// The ship art is oriented so that it faces the top of the scene, but Sprite Kit's rotation default is to the right.
+				// This method calculates the ship orientation for use in other calculations.
 				return (float)ZRotation + (float)Math.PI / 2;
 			}
 		}
 
 		public float ShipExhaustAngle {
 			get {
+				// The ship art is oriented so that it faces the top of the scene, but Sprite Kit's rotation default is to the right.
+				// This method calculates the direction for the ship's rear.
 				return (float)ZRotation - (float)Math.PI / 2;
 			}
 		}
 
 		public void ActivateMainEngine ()
 		{
+			// Add flames out the back and apply thrust to the ship.
+
 			float shipDirection = ShipOrientation;
-			PhysicsBody.ApplyImpulse (new CGVector (mainEngineThrust * (float) Math.Cos (shipDirection),
-				mainEngineThrust * (float) Math.Sin (shipDirection)));
+			var dx = mainEngineThrust * (float)Math.Cos (shipDirection);
+			var dy = mainEngineThrust * (float)Math.Sin (shipDirection);
+			PhysicsBody.ApplyForce (new CGVector (dx, dy));
+
+			MakeExhaustNodeIfNeeded ();
 			ExhaustNode.ParticleAlpha = engineEngagedAlpha;
 			ExhaustNode.EmissionAngle = ShipExhaustAngle;
 		}
@@ -209,8 +221,9 @@ namespace SpriteKitPhysicsCollisions
 		public void ReverseThrust ()
 		{
 			double reverseDirection = ShipOrientation + Math.PI;
-			PhysicsBody.ApplyImpulse (new CGVector (reverseThrust * (float) Math.Cos (reverseDirection),
-				reverseThrust * (float) Math.Sin (reverseDirection)));
+			var dx = reverseThrust * (float)Math.Cos (reverseDirection);
+			var dy = reverseThrust * (float)Math.Sin (reverseDirection);
+			PhysicsBody.ApplyForce (new CGVector (dx, dy));
 		}
 
 		public void RotateShipLeft ()
@@ -235,7 +248,8 @@ namespace SpriteKitPhysicsCollisions
 
 				var position = new CGPoint (Position.X + missileLaunchDistance * cos,
 					Position.Y + missileLaunchDistance * sin);
-				SKNode missile = new MissileNode (this, position);
+				SKNode missile = NodeFactory.CreateMissileNode (this);
+				missile.Position = position;
 				Scene.AddChild (missile);
 
 				missile.PhysicsBody.Velocity = PhysicsBody.Velocity;

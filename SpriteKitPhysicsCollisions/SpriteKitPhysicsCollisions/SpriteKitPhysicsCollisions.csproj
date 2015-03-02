@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>10.0.0</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{92B93D87-75D2-4D9C-916D-92698B264230}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -92,6 +92,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Art\" />
+    <Folder Include="Nodes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -104,7 +105,8 @@
     </Compile>
     <Compile Include="ShipSprite.cs" />
     <Compile Include="SpaceScene.cs" />
-    <Compile Include="Nodes.cs" />
+    <Compile Include="Nodes\Nodes.cs" />
+    <Compile Include="Nodes\NodeFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />
