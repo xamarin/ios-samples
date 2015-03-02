@@ -51,6 +51,8 @@ namespace Consumables {
 		{
 			base.ViewDidLoad ();
 
+			EdgesForExtendedLayout = UIRectEdge.None;
+
 			#region UI layout stuff, not relevant to example
 			Title = "Consumable Products";
 			View.BackgroundColor = UIColor.White;
@@ -94,12 +96,8 @@ namespace Consumables {
 			View.AddSubview (infoLabel);
 			#endregion
 
-			buy5Button.TouchUpInside += (sender, e) => {
-				iap.PurchaseProduct (Buy5ProductId);
-			};
-			buy10Button.TouchUpInside += (sender, e) => {
-				iap.PurchaseProduct (Buy10ProductId);
-			};
+			buy5Button.TouchUpInside += (sender, e) => iap.PurchaseProduct (Buy5ProductId);
+			buy10Button.TouchUpInside += (sender, e) => iap.PurchaseProduct (Buy10ProductId);
 		}
 
 		public override void ViewWillAppear (bool animated)
