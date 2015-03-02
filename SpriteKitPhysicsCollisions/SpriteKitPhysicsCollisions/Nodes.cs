@@ -8,7 +8,8 @@ using UIKit;
 namespace SpriteKitPhysicsCollisions {
 
 	// an enum [Flag] could be used but would require more casts
-	public static class Category {
+	public static class Category
+	{
 		public const uint Missile  = 0x1 << 0;
 		public const uint Ship     = 0x1 << 1;
 		public const uint Asteroid = 0x1 << 2;

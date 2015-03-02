@@ -1,39 +1,41 @@
 using System;
 using CoreGraphics;
-using CoreGraphics;
 using Foundation;
 using SpriteKit;
 using UIKit;
 
-namespace SpriteKitPhysicsCollisions {
-
-	public class ShipSprite : SKSpriteNode {
-
+namespace SpriteKitPhysicsCollisions
+{
+	public class ShipSprite : SKSpriteNode
+	{
 		const int startingShipHealth = 10;
 		const int showDamageBelowHealth = 4;
+
+		// Used to configure a ship explosion.
 		const double shipExplosionDuration = 0.6;
 		const float shipChunkMinimumSpeed = 300f;
 		const float shipChunkMaximumSpeed = 750f;
+		const float shipChunkDispersion = 30f;
+		const int numberOfChunks = 30;
+		const float removeShipTime = 0.35f;
 
-		float shipChunkDispersion = 30f;
-		int numberOfChunks = 30;
-		float removeShipTime = 0.35f;
-
+		// Used to control the ship, usually by applying physics forces to the ship.
 		float mainEngineThrust = 0.12f;
 		float reverseThrust = 0.03f;
 		float lateralThrust = 0.01f;
 		float firingInterval = 0.1f;
 		float missileLaunchDistance = 45f;
+		const float engineIdleAlpha = 0.05f;
 		float missileLaunchImpulse = 0.5f;
 
 		ExhaustNode exhaustNode;
 		SKEmitterNode visibleDamageNode;
-		float engineEngagedAlpha;
+		nfloat engineEngagedAlpha;
 		double timeLastFiredMissile;
 
 		int health;
 
-		static Random rand = new Random ();
+		static readonly Random rand = new Random ();
 		static float myRand (float low, float high)
 		{
 			return (float)rand.NextDouble () * (high - low) + low;
@@ -42,14 +44,16 @@ namespace SpriteKitPhysicsCollisions {
 		public ShipSprite (CGPoint initialPosition)
 			: base (NSBundle.MainBundle.PathForResource ("spaceship", "png"))
 		{
-			CGPath boundingPath = new CGPath ();
-			boundingPath.MoveToPoint (-12f, -38f);
-			boundingPath.AddLineToPoint (12f, -38f);
-			boundingPath.AddLineToPoint (9f, 18f);
-			boundingPath.AddLineToPoint (2f, 38f);
-			boundingPath.AddLineToPoint (-2f, 38f);
-			boundingPath.AddLineToPoint (-9f, 18f);
-			boundingPath.AddLineToPoint (-12f, -38f);
+			health = startingShipHealth;
+
+			using (CGPath boundingPath = new CGPath ()) {
+				boundingPath.MoveToPoint (-12f, -38f);
+				boundingPath.AddLineToPoint (12f, -38f);
+				boundingPath.AddLineToPoint (9f, 18f);
+				boundingPath.AddLineToPoint (2f, 38f);
+				boundingPath.AddLineToPoint (-2f, 38f);
+				boundingPath.AddLineToPoint (-9f, 18f);
+				boundingPath.AddLineToPoint (-12f, -38f);
 #if false
 			// Debug overlay
 			SKShapeNode shipOverlayShape = new SKShapeNode () {
@@ -59,14 +63,18 @@ namespace SpriteKitPhysicsCollisions {
 			};
 			ship.AddChild (shipOverlayShape);
 #endif
-			var body = SKPhysicsBody.CreateBodyFromPath (boundingPath);
-			body.CategoryBitMask = Category.Ship;
-			body.CollisionBitMask = Category.Ship | Category.Asteroid | Category.Planet | Category.Edge;
-			body.ContactTestBitMask = body.CollisionBitMask;
-			body.LinearDamping = 0;
-			body.AngularDamping = 0.5f;
+				var body = SKPhysicsBody.CreateBodyFromPath (boundingPath);
+				body.CategoryBitMask = Category.Ship;
+				body.CollisionBitMask = Category.Ship | Category.Asteroid | Category.Planet | Category.Edge;
+				body.ContactTestBitMask = body.CollisionBitMask;
 
-			PhysicsBody = body;
+				// The ship doesn't slow down when it moves forward, but it does slow its angular rotation. In practice,
+				// this feels better for a game.
+				body.LinearDamping = 0;
+				body.AngularDamping = 0.5f;
+
+				PhysicsBody = body;
+			}
 			Position = initialPosition;
 		}
 
@@ -82,33 +90,79 @@ namespace SpriteKitPhysicsCollisions {
 			}
 		}
 
+		void ShowDamage()
+		{
+			// When the ship first shows damage, a damage node is created and added as a child.
+			// If it takes more damage, then the number of particles is increased.
+
+			if (visibleDamageNode == null)
+			{
+				visibleDamageNode = (SKEmitterNode)NSKeyedUnarchiver.UnarchiveFile (NSBundle.MainBundle.PathForResource ("damage", "sks"));
+				visibleDamageNode.Name = @"damaged";
+
+				// Make the scene the target node because the ship is moving around in the scene. Smoke particles
+				// should be spawned based on the ship, but should otherwise exist independently of the ship.
+				visibleDamageNode.TargetNode = Scene;
+
+				AddChild(visibleDamageNode);
+			} else {
+				visibleDamageNode.ParticleBirthRate = visibleDamageNode.ParticleBirthRate * 2;
+			}
+		}
+
+		void MakeExhaustNode()
+		{
+			var emitter = (ExhaustNode)NSKeyedUnarchiver.UnarchiveFile (NSBundle.MainBundle.PathForResource ("exhaust", "sks"));
+
+			// Hard coded position at the back of the ship.
+			emitter.Position = new CGPoint(0, -40);
+			emitter.Name = "exhaust";
+
+			// Make the scene the target node because the ship is moving around in the scene. Exhaust particles
+			// should be spawned based on the ship, but should otherwise exist independently of the ship.
+
+			emitter.TargetNode = Scene;
+
+			// The exhaust node is always emitting particles, but the alpha of the particles is adjusted depending on whether
+			// the engines are engaged or not. This adds a subtle effect when the ship is idling.
+
+			engineEngagedAlpha = emitter.ParticleAlpha;
+			emitter.ParticleAlpha = engineIdleAlpha;
+
+			AddChild (emitter);
+			exhaustNode = emitter;
+		}
+
+		void MakeExhaustNodeIfNeeded()
+		{
+			if (exhaustNode == null)
+				MakeExhaustNode ();
+		}
+
 		public void ApplyDamage (int amount)
 		{
+			// If the ship takes too much damage, blow it up. Otherwise, decrement the health (and show damage if necessary).
 			if (amount >= health) {
-				if (health >= 0) {
+				if (health > 0) {
 					health = 0;
 					Explode ();
 				}
 			} else {
 				health -= amount;
-				if (health < showDamageBelowHealth) {
-					// Show (increasing from none) damage to the ship
-					if (visibleDamageNode == null) {
-						visibleDamageNode = new DamageNode (Scene);
-						AddChild (visibleDamageNode);
-					} else
-						visibleDamageNode.ParticleBirthRate = visibleDamageNode.ParticleBirthRate * 2;
-				}
+				if (health < showDamageBelowHealth)
+					ShowDamage ();
 			}
 		}
 
 		void Explode ()
 		{
+			// Create a bunch of explosion emitters and send them flying in all directions. Then remove the ship from the scene.
 			for (int i = 0; i < numberOfChunks; i++) {
 				float angle = myRand (0, (float) Math.PI * 2);
 				float speed = myRand (shipChunkMinimumSpeed, shipChunkMaximumSpeed);
-				var position = new CGPoint (myRand ((float)Position.X - shipChunkDispersion, (float)Position.Y + shipChunkDispersion),
-					(nfloat)myRand ((float)Position.Y - shipChunkDispersion, (float)Position.Y + shipChunkDispersion));
+				var x = myRand ((float)Position.X - shipChunkDispersion, (float)Position.X + shipChunkDispersion);
+				var y = myRand ((float)Position.Y - shipChunkDispersion, (float)Position.Y + shipChunkDispersion);
+				var position = new CGPoint (x, y);
 				var explosion = new ExplosionNode (Scene, position);
 				var body = SKPhysicsBody.CreateCircularBody (0.25f);
 				body.CollisionBitMask = 0;
