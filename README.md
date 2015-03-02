@@ -35,11 +35,11 @@ iOS 8 feature samples live in the ios8 directory.
 
 WatchKit
 --------
-WatchKit samples are in the WatchKit directory, there are a couple of them
+WatchKit samples are in the WatchKit directory, there are a couple of them:
 
-* WatchKit/WatchKitCatalog: contains a sample that shows all the UI elements available in WatchKit
-* WatchKit/GpsWatch: Sample GPS app for your watch
-* WatchKit/WatchTables: Sample app used by our tutorials to show some elements of building WatchKit apps
+* [WatchKit/WatchKitCatalog](https://github.com/xamarin/monotouch-samples/tree/master/WatchKit/WatchKitCatalog): contains a sample that shows all the UI elements available in WatchKit.
+* [WatchKit/GpsWatch](https://github.com/xamarin/monotouch-samples/tree/master/WatchKit/GpsWatch): a GPS app for the Apple Watch.
+* [WatchKit/WatchTables](https://github.com/xamarin/monotouch-samples/tree/master/WatchKit/WatchTables): the sample app used in our tutorials to show how to build WatchKit apps.
 
 Contributing
 ------------
@@ -57,21 +57,32 @@ Samples Submission Guidelines
 
 We love samples! Application samples show off our platform and provide a great way for people to learn our stuff. And we even promote them as a first-class feature of the docs site. You can find our two sample galleries here:
 
-* [iOS Samples](http://docs.xamarin.com/samples/ios)
+* [Xamarin Forms Samples](http://developer.xamarin.com/samples/xamarin-forms/all/)
 
-* [Android Samples](http://docs.xamarin.com/samples/android)
+* [iOS Samples](http://developer.xamarin.com/samples/ios/all/)
+
+* [Mac Samples](http://developer.xamarin.com/samples/mac/all/)
+
+* [Android Samples](http://developer.xamarin.com/samples/android/all/)
 
 ## Sample GitHub Repositories
 
-These sample galleries are populated by samples in our three sample GitHub repos:
+These sample galleries are populated by samples in our six sample GitHub repos:
+
+* [https://github.com/xamarin/xamarin-forms-samples](https://github.com/xamarin/xamarin-forms-samples)
 
 * [https://github.com/xamarin/mobile-samples](https://github.com/xamarin/mobile-samples)
 
 * [https://github.com/xamarin/monotouch-samples](https://github.com/xamarin/monotouch-samples)
 
+* [https://github.com/xamarin/mac-samples](https://github.com/xamarin/mac-samples)
+
 * [https://github.com/xamarin/monodroid-samples](https://github.com/xamarin/monodroid-samples)
 
-The[ mobile-samples](https://github.com/xamarin/mobile-samples) repository is for samples that are cross-platform.
+* [https://github.com/xamarin/mac-ios-samples](https://github.com/xamarin/mac-ios-samples)
+
+The [mobile-samples](https://github.com/xamarin/mobile-samples) repository is for samples that are cross-platform.
+The [mac-ios-samples](https://github.com/xamarin/mac-ios-samples) repository is for samples that are Mac/iOS only.
 
 ## Sample Requirements
 
