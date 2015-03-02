@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SampleMetadata>
 	<ID>550f37db-55d6-48b6-a1e1-bd9241f97bf5</ID>
+	<Brief>WatchKit Catalog is an exploration of the UI elements available in the WatchKit framework.</Brief>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Beginning</Level>
 	<Tags>User Interface, Watch, iOS8</Tags>
