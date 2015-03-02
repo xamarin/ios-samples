@@ -85,16 +85,17 @@ However, because the sample galleries are powered by the github sample repos, ea
 
 * **Metadata** - Finally, it needs a Metadata.xml file ([https://github.com/xamarin/mobile-samples/blob/master/Tasky/Metadata.xml](https://github.com/xamarin/mobile-samples/blob/master/Tasky/Metadata.xml)) that has some information:
 
-    * **ID**: a GUID for the sample. you can generate this in MD under Tools menu : Insert GUID. we need this to key between articles and their associated samples
+    * **ID** - A GUID for the sample. You can generate this in MD under Tools menu : Insert GUID. we need this to key between articles and their associated samples
 
-    * **IsFullApplication** boolean flag (true or false): whether or not this is a full application such as the MWC App, Tasky, etc., or it's just a feature sample, such as, how to use 'x' feature. the basic test here is, if you would submit this to the app store because it's useful, then it's a full app, otherwise it's just a feature sample.
+    * **IsFullApplication** - Boolean flag (true or false): whether or not this is a full application such as the MWC App, Tasky, etc., or it's just a feature sample, such as, how to use 'x' feature. the basic test here is, if you would submit this to the app store because it's useful, then it's a full app, otherwise it's just a feature sample.
+
+    * **Description** - Short description or what your sample does. This allows us to display a nice and clean vignette on the sample page.
 
     * **Level** - Beginning, Intermediate, or Advanced: this is the intended audience level for the sample. only the getting started samples are Beginning, as they are intended for people who are _just_ starting with the platform. most samples are Intermediate, and a few, that dive deep into difficult APIs, should be Advanced.
 
     * **Minimum License Requirement** - Starter, Indie, Business, or Enterprise: denotes the license that a user has to have in order to build/run the sample.
 
     * **Tags**: a list of relevant tags for the app. These are:
-    * **User Interface**
 		* **Data**
 		* **Games**
 		* **Graphics** (CoreDrawing, Animation, OpenGL...)
@@ -115,8 +116,6 @@ However, because the sample galleries are powered by the github sample repos, ea
 		* **Keyboard**
 		* **SceneKit**
 		* **FSharp**
-
-
 
     * **SupportedPlatforms**: this is only for cross plat samples. It's a comma-separated list, and the valid values are iOS, Android, and Windows.
 
