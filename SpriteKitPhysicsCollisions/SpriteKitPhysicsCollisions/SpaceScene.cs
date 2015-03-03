@@ -1,36 +1,30 @@
 using System;
-using SpriteKit;
-using CoreGraphics;
+
 using UIKit;
+using SpriteKit;
 using Foundation;
 using CoreGraphics;
 
 namespace SpriteKitPhysicsCollisions
 {
-	public class SpaceScene : SKScene
+	public class SpaceScene : SKScene, ISKPhysicsContactDelegate
 	{
-		public enum PlayerActions {
-			Forward = 0,
-			Left = 1,
-			Right = 2,
-			Back = 3,
-			Action = 4,
-		}
-
-		const float collisionDamageThreshold = 3.0f;
+		const float collisionDamageThreshold = 1.0f;
 		const int missileDamage = 1;
 
 		bool[] actions = new bool [5];
 		bool contentCreated;
 		ShipSprite controlledShip;
 
-		static Random rand = new Random ();
+		static readonly Random rand = new Random ();
+
 		static float myRand (float low, float high)
 		{
 			return (float)rand.NextDouble () * (high - low) + low;
 		}
 
-		public SpaceScene (CGSize size) : base (size)
+		public SpaceScene (CGSize size)
+			: base (size)
 		{
 		}
 
@@ -47,6 +41,7 @@ namespace SpriteKitPhysicsCollisions
 			BackgroundColor = UIColor.Black;
 			ScaleMode = SKSceneScaleMode.AspectFit;
 
+			// Give the scene an edge and configure other physics info on the scene.
 			var body = SKPhysicsBody.CreateEdgeLoop (Frame);
 			body.CategoryBitMask = Category.Edge;
 			body.CollisionBitMask = 0;
@@ -54,29 +49,56 @@ namespace SpriteKitPhysicsCollisions
 			PhysicsBody = body;
 
 			PhysicsWorld.Gravity = new CGVector (0, 0);
-			PhysicsWorld.ContactDelegate = new PhysicsDelegate (DidBeginContact);
+			PhysicsWorld.ContactDelegate = this;
 
+			// In this sample, the positions of everything is hard coded. In an actual game, you might implement this in an archive that is loaded from a file.
 			controlledShip = new ShipSprite (new CGPoint (100, 300));
 			AddChild (controlledShip);
+
+			// this ship isn't connected to any controls so it doesn't move, except when it collides with something.
 			AddChild (new ShipSprite (new CGPoint (200, 300)));
+
 			AddChild (new AsteroidNode (new CGPoint (100, 200)));
 			AddChild (new PlanetNode (new CGPoint (300, 100)));
 		}
 
+		#region Physics Handling and Game Logic
+
 		void AttackTarget (SKPhysicsBody target, SKNode missile)
 		{
+			// Only ships take damage from missiles.
 			if ((target.CategoryBitMask & Category.Ship) != 0)
-				(target.Node as ShipSprite).ApplyDamage (missileDamage);
+				((ShipSprite)target.Node).ApplyDamage (missileDamage);
 
-			// Detonate! i.e. add an explostion at missile's position and remove the missile
-			AddChild (new ExplosionNode (this, missile.Position));
+			DetonateMissile (missile);
+		}
+
+		void DetonateMissile(SKNode missile)
+		{
+			SKEmitterNode explosion = new ExplosionNode (this);
+			explosion.Position = missile.Position;
+			AddChild (explosion);
 			missile.RemoveFromParent ();
 		}
 
-		void DidBeginContact (SKPhysicsContact contact)
+		[Export ("didBeginContact:")]
+		public void DidBeginContact (SKPhysicsContact contact)
 		{
+			Console.WriteLine ("DidBeginContact");
+			// Handle contacts between two physics bodies.
+
+			// Contacts are often a double dispatch problem; the effect you want is based
+			// on the type of both bodies in the contact. This sample  solves
+			// this in a brute force way, by checking the types of each. A more complicated
+			// example might use methods on objects to perform the type checking.
+
 			SKPhysicsBody firstBody;
 			SKPhysicsBody secondBody;
+
+			// The contacts can appear in either order, and so normally you'd need to check
+			// each against the other. In this example, the category types are well ordered, so
+			// the code swaps the two bodies if they are out of order. This allows the code
+			// to only test collisions once.
 
 			if (contact.BodyA.CategoryBitMask < contact.BodyB.CategoryBitMask) {
 				firstBody = contact.BodyA;
@@ -86,28 +108,39 @@ namespace SpriteKitPhysicsCollisions
 				secondBody = contact.BodyA;
 			}
 
+			// Missiles attack whatever they hit, then explode.
 			if ((firstBody.CategoryBitMask & Category.Missile) != 0)
 				AttackTarget (secondBody, firstBody.Node);
 
+			// Ships collide and take damage. The collision damage is based on the strength of the collision.
 			if ((firstBody.CategoryBitMask & Category.Ship) != 0) {
-				if (contact.CollisionImpulse > collisionDamageThreshold &&
-				    (secondBody.CategoryBitMask & Category.Edge) == 0) {
-
+				// The edge exists just to keep all gameplay on one screen,
+				// so ships should not take damage when they hit the edge.
+				if (contact.CollisionImpulse > collisionDamageThreshold && (secondBody.CategoryBitMask & Category.Edge) == 0) {
 					int damage = (int) (contact.CollisionImpulse / collisionDamageThreshold);
-					(firstBody.Node as ShipSprite).ApplyDamage (damage);
+					((ShipSprite)firstBody.Node).ApplyDamage (damage);
 
 					if ((secondBody.CategoryBitMask == Category.Ship))
-						(secondBody.Node as ShipSprite).ApplyDamage (damage);
+						((ShipSprite)secondBody.Node).ApplyDamage (damage);
 				}
 			}
 
+			// Asteroids that hit planets are destroyed.
 			if ((firstBody.CategoryBitMask & Category.Asteroid) != 0 &&
-			    (secondBody.CategoryBitMask & Category.Planet) != 0)
+				(secondBody.CategoryBitMask & Category.Planet) != 0)
 				firstBody.Node.RemoveFromParent ();
 		}
 
+		#endregion
+
+		#region Controls and Control Logic
+
 		public override void Update (double currentTime)
 		{
+			// This runs once every frame. Other sorts of logic might run from here. For example,
+			// if the target ship was controlled by the computer, you might run AI from this routine.
+
+			// Use the stored key information to control the ship.
 			if (actions [(int)PlayerActions.Forward])
 				controlledShip.ActivateMainEngine ();
 			else
@@ -126,6 +159,8 @@ namespace SpriteKitPhysicsCollisions
 				controlledShip.AttemptMissileLaunch (currentTime);
 		}
 
+		#endregion
+
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
 			base.TouchesMoved (touches, evt);
@@ -140,11 +175,12 @@ namespace SpriteKitPhysicsCollisions
 			var location = touch.LocationInView (View);
 
 			var deltaX = location.X - controlledShip.Position.X;
-			var deltaY = (480 - location.Y) - controlledShip.Position.Y;
+			var deltaY = (View.Bounds.Height - location.Y) - controlledShip.Position.Y;
+			Console.WriteLine ("dx: {0} dy: {1}", deltaX, deltaY);
 
-			if (Math.Abs (deltaX) < 30 && Math.Abs (deltaY) < 30)
+			if (Math.Abs (deltaX) < 30 && Math.Abs (deltaY) < 30) {
 				actions [(int)PlayerActions.Action] = true;
-			else if (Math.Abs (deltaX) > Math.Abs (deltaY)) {
+			} else if (Math.Abs (deltaX) > Math.Abs (deltaY)) {
 				if (deltaX < 0)
 					actions [(int)PlayerActions.Left] = true;
 				else
@@ -171,7 +207,8 @@ namespace SpriteKitPhysicsCollisions
 			var location = touch.LocationInView (View);
 
 			var deltaX = location.X - controlledShip.Position.X;
-			var deltaY = (480 - location.Y) - controlledShip.Position.Y;
+			var deltaY = (View.Bounds.Height - location.Y) - controlledShip.Position.Y;
+			Console.WriteLine ("dx: {0} dy: {1}", deltaX, deltaY);
 
 			if (Math.Abs (deltaX) < 30 && Math.Abs (deltaY) < 30)
 				actions [(int)PlayerActions.Action] = true;
@@ -197,22 +234,6 @@ namespace SpriteKitPhysicsCollisions
 			actions [(int)PlayerActions.Right] = false;
 			actions [(int)PlayerActions.Forward] = false;
 			actions [(int)PlayerActions.Back] = false;
-		}
-
-		class PhysicsDelegate : SKPhysicsContactDelegate {
-
-			public PhysicsDelegate (Action<SKPhysicsContact> action)
-			{
-				DidBeginContactAction = action;
-			}
-
-			public Action<SKPhysicsContact> DidBeginContactAction;
-
-			public override void DidBeginContact (SKPhysicsContact contact)
-			{
-				if (DidBeginContactAction != null)
-					DidBeginContactAction (contact);
-			}
 		}
 	}
 }

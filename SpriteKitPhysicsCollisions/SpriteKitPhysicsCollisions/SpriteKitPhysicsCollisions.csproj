@@ -105,8 +105,15 @@
     </Compile>
     <Compile Include="ShipSprite.cs" />
     <Compile Include="SpaceScene.cs" />
-    <Compile Include="Nodes\Nodes.cs" />
     <Compile Include="Nodes\NodeFactory.cs" />
+    <Compile Include="PlayerActions.cs" />
+    <Compile Include="Category.cs" />
+    <Compile Include="Nodes\AsteroidNode.cs" />
+    <Compile Include="Nodes\PlanetNode.cs" />
+    <Compile Include="Nodes\ArchiveBasedNode.cs" />
+    <Compile Include="Nodes\ExplosionNode.cs" />
+    <Compile Include="Nodes\DamageNode.cs" />
+    <Compile Include="Nodes\ExhaustNoder.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard.storyboard" />

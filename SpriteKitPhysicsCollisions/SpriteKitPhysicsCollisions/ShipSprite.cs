@@ -20,9 +20,9 @@ namespace SpriteKitPhysicsCollisions
 		const float removeShipTime = 0.35f;
 
 		// Used to control the ship, usually by applying physics forces to the ship.
-		float mainEngineThrust = 0.12f;
-		float reverseThrust = 0.03f;
-		float lateralThrust = 0.01f;
+		float mainEngineThrust = 5f;
+		float reverseThrust = 1f;
+		float lateralThrust = 0.005f;
 		float firingInterval = 0.1f;
 		float missileLaunchDistance = 45f;
 		const float engineIdleAlpha = 0.05f;
@@ -143,7 +143,7 @@ namespace SpriteKitPhysicsCollisions
 		{
 			// If the ship takes too much damage, blow it up. Otherwise, decrement the health (and show damage if necessary).
 			if (amount >= health) {
-				if (health > 0) {
+				if (health >= 0) {
 					health = 0;
 					Explode ();
 				}
@@ -238,6 +238,9 @@ namespace SpriteKitPhysicsCollisions
 
 		public void AttemptMissileLaunch (double currentTime)
 		{
+			if (health <= 0)
+				return;
+
 			double timeSinceLastFired = currentTime - timeLastFiredMissile;
 			if (timeSinceLastFired > firingInterval) {
 				timeLastFiredMissile = currentTime;
