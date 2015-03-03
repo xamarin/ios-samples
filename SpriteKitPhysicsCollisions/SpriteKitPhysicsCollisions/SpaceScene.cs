@@ -84,7 +84,6 @@ namespace SpriteKitPhysicsCollisions
 		[Export ("didBeginContact:")]
 		public void DidBeginContact (SKPhysicsContact contact)
 		{
-			Console.WriteLine ("DidBeginContact");
 			// Handle contacts between two physics bodies.
 
 			// Contacts are often a double dispatch problem; the effect you want is based
@@ -176,7 +175,6 @@ namespace SpriteKitPhysicsCollisions
 
 			var deltaX = location.X - controlledShip.Position.X;
 			var deltaY = (View.Bounds.Height - location.Y) - controlledShip.Position.Y;
-			Console.WriteLine ("dx: {0} dy: {1}", deltaX, deltaY);
 
 			if (Math.Abs (deltaX) < 30 && Math.Abs (deltaY) < 30) {
 				actions [(int)PlayerActions.Action] = true;
@@ -208,7 +206,6 @@ namespace SpriteKitPhysicsCollisions
 
 			var deltaX = location.X - controlledShip.Position.X;
 			var deltaY = (View.Bounds.Height - location.Y) - controlledShip.Position.Y;
-			Console.WriteLine ("dx: {0} dy: {1}", deltaX, deltaY);
 
 			if (Math.Abs (deltaX) < 30 && Math.Abs (deltaY) < 30)
 				actions [(int)PlayerActions.Action] = true;
