@@ -15,7 +15,7 @@ Instructions
 * Download and install your certificate for pass
 
 Now you need to fix some files:  
-* `Entitlements.plist` and `Info.Plist` – fix `BundleIdentifier and `PassTypeIdentifiers`
+* `Entitlements.plist` and `Info.Plist` – fix `BundleIdentifier` and `PassTypeIdentifiers`
 * `CouponBanana2.pass/pass.json` – fix `passTypeIdentifier` and `teamIdentifier`
 
 At this point you are ready to generate pass package. For sample we provide simpe util which create package for you. Go to terminal and run:
