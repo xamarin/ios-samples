@@ -9,8 +9,6 @@ namespace SpriteKitPhysicsCollisions
 	public static class NodeFactory
 	{
 		static readonly nfloat shotSize = 4;
-		static readonly nfloat asteroidSize = 18;
-		static readonly nfloat planetSize = 128;
 
 		static SKEmitterNode UnarchiveEmitterNode (string name)
 		{
@@ -53,5 +51,4 @@ namespace SpriteKitPhysicsCollisions
 			return missile;
 		}
 	}
-
 }
