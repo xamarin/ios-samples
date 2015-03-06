@@ -3,12 +3,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{7CC2FF72-19DA-4AE8-9A79-EC5781A1A4A1}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>WalkingGame.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>WalkingGameiOS</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,6 +53,7 @@
     <CodesignProvision>70389db7-049a-456a-b5f9-f99ecb73f7ca</CodesignProvision>
     <IpaPackageName>
     </IpaPackageName>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -61,6 +64,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>full</DebugType>
@@ -73,6 +77,7 @@
     <BuildIpa>true</BuildIpa>
     <CodesignProvision>Automatic:AdHoc</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
     <DebugType>full</DebugType>
@@ -84,18 +89,19 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <ConsolePause>false</ConsolePause>
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
     <Reference Include="Lidgren.Network">
-      <HintPath>..\packages\MonoGame.Binaries.3.2.0\build\MonoTouch\Lidgren.Network.dll</HintPath>
+      <HintPath>Libraries\Lidgren.Network.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>Libraries\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -103,14 +109,12 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
-    <None Include="packages.config" />
     <None Include="Libraries\MonoGame.Framework.dll" />
+    <None Include="Libraries\Lidgren.Network.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameMain.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
-  <Import Project="..\packages\MonoGame.Binaries.3.2.0\build\MonoTouch\MonoGame.Binaries.targets" Condition="Exists('..\packages\MonoGame.Binaries.3.2.0\build\MonoTouch\MonoGame.Binaries.targets')" />
   <ItemGroup>
     <ProjectReference Include="..\WalkingGame\WalkingGame.csproj">
       <Project>{54D38409-0B81-4782-85F8-9CAF5EED8417}</Project>
@@ -120,4 +124,5 @@
   <ItemGroup>
     <Folder Include="Libraries\" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
