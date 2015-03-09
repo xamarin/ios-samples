@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace StateRestoration
 {
-	public partial class DetailViewController : UIViewController
+	public partial class DetailViewController : UIViewController, IUIObjectRestoration
 	{
 		const string blurFilterKey = "kBlurFilterKey";
 		const string modifyFilterKey = "kModifyFilterKey";
@@ -34,13 +34,6 @@ namespace StateRestoration
 		public string ImageIdentifier { get; set; }
 
 		public DataSource DataSource { get; set; }
-
-		static DetailViewController ()
-		{
-			// TODO: remove workaround after fixing https://bugzilla.xamarin.com/show_bug.cgi?id=24016
-			var objRestorationProtocol = GetProtocol ("UIObjectRestoration");
-			AddProtocol (Class.GetHandle (typeof(DetailViewController)), objRestorationProtocol);
-		}
 
 		public DetailViewController (IntPtr handle)
 			: base (handle)
@@ -460,12 +453,5 @@ namespace StateRestoration
 			base.ApplicationFinishedRestoringState ();
 			UpdateImage ();
 		}
-
-		// TODO: remove workaround after fixing https://bugzilla.xamarin.com/show_bug.cgi?id=24016
-		[DllImport (MonoTouch.Constants.ObjectiveCLibrary, EntryPoint = "class_addProtocol")]
-		static extern bool AddProtocol (IntPtr cls, IntPtr protocol);
-
-		[DllImport (MonoTouch.Constants.ObjectiveCLibrary, EntryPoint = "objc_getProtocol")]
-		static extern IntPtr GetProtocol (string name);
 	}
 }
