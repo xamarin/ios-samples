@@ -1,8 +1,8 @@
 
 using System;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace StateRestoration
 {
@@ -42,7 +42,7 @@ namespace StateRestoration
 			}, null);
 		}
 
-		public override int GetItemsCount (UICollectionView collectionView, int section)
+		public override nint GetItemsCount (UICollectionView collectionView, nint section)
 		{
 			return DataSource.GetItemsCount (section);
 		}

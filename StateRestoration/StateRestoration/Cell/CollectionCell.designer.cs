@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace StateRestoration
 {
@@ -12,10 +12,10 @@ namespace StateRestoration
 	partial class CollectionCell
 	{
 		[Outlet]
-		public MonoTouch.UIKit.UIImageView ImageView { get; set; }
+		public UIKit.UIImageView ImageView { get; set; }
 
 		[Outlet]
-		public MonoTouch.UIKit.UILabel Label { get; set; }
+		public UIKit.UILabel Label { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{

@@ -1,8 +1,8 @@
 using System;
-using MonoTouch.Foundation;
-using MonoTouch.CoreImage;
-using MonoTouch.UIKit;
-using MonoTouch.ObjCRuntime;
+using Foundation;
+using CoreImage;
+using UIKit;
+using ObjCRuntime;
 
 namespace StateRestoration
 {

@@ -1,19 +1,19 @@
-﻿using System;
-using System.Drawing;
+using System;
+using CoreGraphics;
 
-using MonoTouch.UIKit;
+using UIKit;
 
 namespace StateRestoration
 {
 	public class CustomCellBackground : UIView
 	{
-		CustomCellBackground (RectangleF frame) : base (frame)
+		CustomCellBackground (CGRect frame) : base (frame)
 		{
 			BackgroundColor = UIColor.White;
 			Layer.CornerRadius = 5;
 		}
 
-		public static UIView CreateCustomCellBackground (RectangleF frame)
+		public static UIView CreateCustomCellBackground (CGRect frame)
 		{
 			return new CustomCellBackground (frame);
 		}

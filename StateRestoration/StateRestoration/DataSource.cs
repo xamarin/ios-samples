@@ -2,8 +2,8 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace StateRestoration
 {
@@ -17,7 +17,7 @@ namespace StateRestoration
 			data = NSDictionary.FromFile (dataPath);
 		}
 
-		public int GetItemsCount (int section)
+		public nint GetItemsCount (nint section)
 		{
 			return 32;
 		}

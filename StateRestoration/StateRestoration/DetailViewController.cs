@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.CoreGraphics;
-using MonoTouch.CoreImage;
-using MonoTouch.ObjCRuntime;
+using Foundation;
+using UIKit;
+using CoreGraphics;
+using CoreImage;
+using ObjCRuntime;
 using System.Linq;
 
 namespace StateRestoration
@@ -23,7 +23,7 @@ namespace StateRestoration
 		const float defaultScale = 1;
 
 		UIImage image;
-		float lastScale;
+		nfloat lastScale;
 		bool statusBarHidden;
 		Dictionary<string,ImageFilter> filters;
 
@@ -106,7 +106,7 @@ namespace StateRestoration
 				return;
 			}
 
-			float scale = recognizer.Scale / lastScale;
+			nfloat scale = recognizer.Scale / lastScale;
 			var newTransform = imageView.Transform;
 			newTransform.Scale (scale, scale);
 			imageView.Transform = newTransform;

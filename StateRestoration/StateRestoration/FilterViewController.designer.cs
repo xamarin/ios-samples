@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace StateRestoration
 {
@@ -12,10 +12,10 @@ namespace StateRestoration
 	partial class FilterViewController
 	{
 		[Outlet]
-		MonoTouch.UIKit.UISwitch ActiveSwitch { get; set; }
+		UIKit.UISwitch ActiveSwitch { get; set; }
 
 		[Outlet]
-		MonoTouch.UIKit.UISlider Slider { get; set; }
+		UIKit.UISlider Slider { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
