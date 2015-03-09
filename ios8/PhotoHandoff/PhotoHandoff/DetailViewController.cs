@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 namespace PhotoHandoff
 {
 	[Register("DetailViewController")]
-	public class DetailViewController : UIViewController, IUIScrollViewDelegate, IUIPopoverPresentationControllerDelegate
+	public class DetailViewController : UIViewController, IUIScrollViewDelegate, IUIPopoverPresentationControllerDelegate, IUIStateRestoring
 	{
 		const int BlurButtonTag = 1;
 		const int SepiaButtonTag = 2;
@@ -63,13 +63,6 @@ namespace PhotoHandoff
 		public string ImageIdentifier { get; set; }
 
 		public DataSource DataSource { get; set; }
-
-		static DetailViewController()
-		{
-			// TODO: remove workaround after fixing https://bugzilla.xamarin.com/show_bug.cgi?id=24016
-			var objRestorationProtocol = GetProtocol ("UIObjectRestoration");
-			AddProtocol (Class.GetHandle (typeof(DetailViewController)), objRestorationProtocol);
-		}
 
 		public DetailViewController (IntPtr handle)
 			: base(handle)
@@ -710,13 +703,6 @@ namespace PhotoHandoff
 		}
 
 		#endregion
-
-		// TODO: remove workaround after fixing https://bugzilla.xamarin.com/show_bug.cgi?id=24016
-		[DllImport (Constants.ObjectiveCLibrary, EntryPoint = "class_addProtocol")]
-		static extern bool AddProtocol (IntPtr cls, IntPtr protocol);
-
-		[DllImport (Constants.ObjectiveCLibrary, EntryPoint = "objc_getProtocol")]
-		static extern IntPtr GetProtocol (string name);
 	}
 }
 
