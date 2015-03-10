@@ -19,7 +19,7 @@ namespace WatchkitExtension
 			var attrString = new NSAttributedString ("Ultralight Label", new UIStringAttributes {
 				Font = UIFont.SystemFontOfSize (16f, UIFontWeight.UltraLight)
 			});
-			ultralightLabel.SetAttributedText (attrString);
+			ultralightLabel.SetText (attrString);
 
 			var components = new NSDateComponents {
 				Day = 10,
