@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIKitEnhancements", "UIKitEnhancements\UIKitEnhancements.csproj", "{9E180960-C753-48FA-96AF-55C2C27F1914}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E180960-C753-48FA-96AF-55C2C27F1914}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{9E180960-C753-48FA-96AF-55C2C27F1914}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{9E180960-C753-48FA-96AF-55C2C27F1914}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{9E180960-C753-48FA-96AF-55C2C27F1914}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{9E180960-C753-48FA-96AF-55C2C27F1914}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{9E180960-C753-48FA-96AF-55C2C27F1914}.Debug|iPhone.Build.0 = Debug|iPhone
+		{9E180960-C753-48FA-96AF-55C2C27F1914}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{9E180960-C753-48FA-96AF-55C2C27F1914}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{9E180960-C753-48FA-96AF-55C2C27F1914}.Release|iPhone.ActiveCfg = Release|iPhone
+		{9E180960-C753-48FA-96AF-55C2C27F1914}.Release|iPhone.Build.0 = Release|iPhone
+		{9E180960-C753-48FA-96AF-55C2C27F1914}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{9E180960-C753-48FA-96AF-55C2C27F1914}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = UIKitEnhancements\UIKitEnhancements.csproj
+		description = Sample app to show all of the enhancement to UIKit in iOS 8
+		version = 01.00
+	EndGlobalSection
+EndGlobal
