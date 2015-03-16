@@ -1,13 +1,17 @@
 MetalBasic3D
 ====================
 
-This sample is an equivalent for Xcode OpenGL ES template. It shows how to:
+This sample is an equivalent for Xcode OpenGL ES template. It shows
+how to:
+
 * Work with basic Metal classes such as MTLDevice and CAMetalLayer
 * Create vertex buffers and vertex shaders
 * Create fragment shaders
 * Use *.metal files in Xamarin Studio
 
-Additional effects have been added to one of the spinning cubes from the template to demonstrate altering a single object's uniform values per frame while keeping the other constant.  
+Additional effects have been added to one of the spinning cubes from
+the template to demonstrate altering a single object's uniform values
+per frame while keeping the other constant.
 
 Build Requirements
 ------------------

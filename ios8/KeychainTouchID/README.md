@@ -1,12 +1,16 @@
 KeychainTouchID
 ==============
 
-KeychainTouchID sample demonstrates how to add, delete, update and copy Touch ID items to keychain. It also shows how to set custom promts to security dialog and how to use LocalAuthentication to invoke Touch ID verification without keychain.
+KeychainTouchID sample demonstrates how to add, delete, update and
+copy Touch ID items to keychain. It also shows how to set custom
+promts to security dialog and how to use LocalAuthentication to invoke
+Touch ID verification without keychain.
 
 Requirements
 ------------------
 
-This sample requires device with Touch ID and passcode enabled. This sample does not support simulator.
+This sample requires device with Touch ID and passcode enabled. This
+sample does not support simulator.
 
 Build Requirements
 ------------------
