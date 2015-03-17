@@ -121,13 +121,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\KeyboardExtension\KeyboardExtension.csproj">
-      <Project>{59C030C4-8FEE-4CA7-9481-928822073415}</Project>
-      <Name>KeyboardExtension</Name>
-      <IsAppExtension>True</IsAppExtension>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>

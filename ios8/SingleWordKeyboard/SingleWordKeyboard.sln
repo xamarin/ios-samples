@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleWordKeyboard", "SingleWordKeyboard\SingleWordKeyboard.csproj", "{8D86ED3D-E8A8-4B78-BACE-65AAA5A7E2B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardExtension", "KeyboardExtension\KeyboardExtension.csproj", "{59C030C4-8FEE-4CA7-9481-928822073415}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardExtension", "KeyboardExtension\KeyboardExtension.csproj", "{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{59C030C4-8FEE-4CA7-9481-928822073415}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{59C030C4-8FEE-4CA7-9481-928822073415}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{59C030C4-8FEE-4CA7-9481-928822073415}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{59C030C4-8FEE-4CA7-9481-928822073415}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{59C030C4-8FEE-4CA7-9481-928822073415}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{59C030C4-8FEE-4CA7-9481-928822073415}.Debug|iPhone.Build.0 = Debug|iPhone
-		{59C030C4-8FEE-4CA7-9481-928822073415}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{59C030C4-8FEE-4CA7-9481-928822073415}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{59C030C4-8FEE-4CA7-9481-928822073415}.Release|iPhone.ActiveCfg = Release|iPhone
-		{59C030C4-8FEE-4CA7-9481-928822073415}.Release|iPhone.Build.0 = Release|iPhone
-		{59C030C4-8FEE-4CA7-9481-928822073415}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{59C030C4-8FEE-4CA7-9481-928822073415}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}.Debug|iPhone.Build.0 = Debug|iPhone
+		{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}.Release|iPhone.ActiveCfg = Release|iPhone
+		{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}.Release|iPhone.Build.0 = Release|iPhone
+		{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{8D86ED3D-E8A8-4B78-BACE-65AAA5A7E2B6}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
 		{8D86ED3D-E8A8-4B78-BACE-65AAA5A7E2B6}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
 		{8D86ED3D-E8A8-4B78-BACE-65AAA5A7E2B6}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
@@ -39,8 +39,5 @@ Global
 		{8D86ED3D-E8A8-4B78-BACE-65AAA5A7E2B6}.Release|iPhone.Build.0 = Release|iPhone
 		{8D86ED3D-E8A8-4B78-BACE-65AAA5A7E2B6}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{8D86ED3D-E8A8-4B78-BACE-65AAA5A7E2B6}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = SingleWordKeyboard\SingleWordKeyboard.csproj
 	EndGlobalSection
 EndGlobal
