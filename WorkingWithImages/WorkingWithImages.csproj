@@ -123,6 +123,8 @@
     <ImageAsset Include="Resources\Images.xcassets\PurpleMonkey.imageset\Monkey.png" />
     <ImageAsset Include="Resources\Images.xcassets\PurpleMonkey.imageset\Monkey%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\PurpleMonkey.imageset\Monkey%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Monkey.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Monkey.imageset\Monkey_pdf.pdf" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\first.png" />
