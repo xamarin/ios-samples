@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{54D38409-0B81-4782-85F8-9CAF5EED8417}</ProjectGuid>
+    <ProjectGuid>{2AE1BAD2-85EB-4560-A852-732A844F1846}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>WalkingGame</RootNamespace>
     <AssemblyName>WalkingGame</AssemblyName>
@@ -31,10 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Game1.cs" />
-    <Compile Include="CharacterEntity.cs" />
-    <Compile Include="AnimationFrame.cs" />
+    <Compile Include="MainGame.cs" />
     <Compile Include="Animation.cs" />
+    <Compile Include="AnimationFrame.cs" />
+    <Compile Include="CharacterEntity.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

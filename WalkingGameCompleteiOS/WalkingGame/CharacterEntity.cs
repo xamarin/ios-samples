@@ -1,8 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input.Touch; 
-
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace WalkingGame
 {
@@ -21,7 +20,6 @@ namespace WalkingGame
 		Animation standRight;
 
 		Animation currentAnimation; 
-
 
 		public float X
 		{
@@ -81,22 +79,54 @@ namespace WalkingGame
 
 			standRight = new Animation ();
 			standRight.AddFrame (new Rectangle (96, 0, 16, 16), TimeSpan.FromSeconds (.25));
-		} 
+
+		}
+
+		Vector2 GetDesiredVelocityFromInput ()
+		{
+			Vector2 desiredVelocity = new Vector2 ();
+
+			TouchCollection touchCollection = TouchPanel.GetState ();
+
+			if (touchCollection.Count > 0)
+			{
+				desiredVelocity.X = touchCollection [0].Position.X - this.X;
+				desiredVelocity.Y = touchCollection [0].Position.Y - this.Y;
+
+				if (desiredVelocity.X != 0 || desiredVelocity.Y != 0)
+				{
+					desiredVelocity.Normalize ();
+					const float desiredSpeed = 200;
+					desiredVelocity *= desiredSpeed;
+				}
+			}
+
+			return desiredVelocity;
+		}
 
 
-		public void Update(GameTime gameTime)
+		public void Update (GameTime gameTime)
 		{
 			var velocity = GetDesiredVelocityFromInput ();
 
 			this.X += velocity.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
 			this.Y += velocity.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-
-			if (velocity != Vector2.Zero)
+			// We can use the velocity variable to determine if the 
+			// character is moving or standing still
+			bool isMoving = velocity != Vector2.Zero;
+			if (isMoving)
 			{
-				bool movingHorizontally = Math.Abs (velocity.X) > Math.Abs (velocity.Y);
-				if (movingHorizontally)
+				// If the absolute value of the X component
+				// is larger than the absolute value of the Y
+				// component, then that means the character is
+				// moving horizontally:
+				bool isMovingHorizontally = Math.Abs (velocity.X) > Math.Abs (velocity.Y);
+				if (isMovingHorizontally)
 				{
+					// No that we know the character is moving horizontally 
+					// we can check if the velocity is positive (moving right)
+					// or negative (moving left)
 					if (velocity.X > 0)
 					{
 						currentAnimation = walkRight;
@@ -108,6 +138,12 @@ namespace WalkingGame
 				}
 				else
 				{
+					// If the character is not moving horizontally
+					// then it must be moving vertically. The SpriteBatch
+					// class treats positive Y as down, so this defines the
+					// coordinate system for our game. Therefore if
+					// Y is positive then the character is moving down.
+					// Otherwise, the character is moving up.
 					if (velocity.Y > 0)
 					{
 						currentAnimation = walkDown;
@@ -120,8 +156,14 @@ namespace WalkingGame
 			}
 			else
 			{
-				// If the character was walking, we can set the standing animation
-				// according to the walking animation that is playing:
+				// This else statement contains logic for if the
+				// character is standing still.
+				// First we are going to check if the character
+				// is currently playing any walking animations.
+				// If so, then we want to switch to a standing animation.
+				// We want to preserve the direction that the character
+				// is facing so we'll set the corresponding standing
+				// animation according to the walking animation being played.
 				if (currentAnimation == walkRight)
 				{
 					currentAnimation = standRight;
@@ -138,51 +180,24 @@ namespace WalkingGame
 				{
 					currentAnimation = standDown;
 				}
+				// If the character is standing still but is not showing
+				// any animation at all then we'll default to facing down.
 				else if (currentAnimation == null)
 				{
 					currentAnimation = standDown;
 				}
-
-				// if none of the above code hit then the character
-				// is already standing, so no need to change the animation.
 			}
 
 			currentAnimation.Update (gameTime);
-		} 
+		}
 
-
-
-
-		public void Draw(SpriteBatch spriteBatch)
+		public void Draw (SpriteBatch spriteBatch)
 		{
 			Vector2 topLeftOfSprite = new Vector2 (this.X, this.Y);
 			Color tintColor = Color.White;
 			var sourceRectangle = currentAnimation.CurrentRectangle;
 
-			spriteBatch.Draw(characterSheetTexture, topLeftOfSprite, sourceRectangle, Color.White);
-		} 
-
-		Vector2 GetDesiredVelocityFromInput()
-		{
-			Vector2 desiredVelocity = new Vector2 ();
-
-			TouchCollection touchCollection = TouchPanel.GetState();
-
-			if (touchCollection.Count > 0)
-			{
-				desiredVelocity.X = touchCollection [0].Position.X - this.X;
-				desiredVelocity.Y = touchCollection [0].Position.Y - this.Y;
-
-				if (desiredVelocity.X != 0 || desiredVelocity.Y != 0)
-				{
-					desiredVelocity.Normalize();
-					const float desiredSpeed = 200;
-					desiredVelocity *= desiredSpeed;
-				}
-			}
-
-			return desiredVelocity;
-		} 
-
+			spriteBatch.Draw (characterSheetTexture, topLeftOfSprite, sourceRectangle, Color.White);
+		}
 	}
 }
