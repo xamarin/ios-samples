@@ -6,11 +6,7 @@ WatchKit Catalog is an exploration of the UI elements available in the WatchKit 
 Tips
 ----
 
-- Glance and Notification schemes have been created for ease of switching between executables on the fly. In your projects, edit the WatchKit app scheme and change the Executable to the specific executable you'd like to run and debug. You can additionally create additional schemes, as this sample has.
-
-- To debug the Glance or notifications in the iOS Simulator, select the appropriate scheme in the Xcode toolbar and then Build and Run.
-
-- Tapping the Glance will launch the WatchKit app. In GlanceController, -updateUserActivity:userInfo: is called in -willActivate and takes advantage of Handoff to launch the wearer into the image detail controller (ImageDetailController). When the WatchKit app is launched from the Glance, actionForUserActivity:context: is called in InterfaceController. ImageDetailController will be pushed to, as its controller's Identifier string is passed in the userActivity dictionary.
+- Tapping the Glance will launch the WatchKit app. In GlanceController, `UpdateUserActivity ()` is called in `WillActivate ()` and takes advantage of Handoff to launch the wearer into the image detail controller (ImageDetailController). When the WatchKit app is launched from the Glance, `HandleUserActivity ()` is called in InterfaceController. ImageDetailController will be pushed to, as its controller's Identifier string is passed in the userActivity dictionary.
 
 - ButtonDetailController has two examples of how to hide and show UI elements at runtime. First, tapping on button "1" will toggle the hidden property of button "2." When hiding the button, the layout will change to make use of the newly available space. When showing it again, the layout will change to make room for it. The second example is by setting the alpha property of button "2" to 0.0 or 1.0. Tapping on button "3" will toggle this and while button "2" may look invisible, the space it takes up does not change and no layout changes will occur.
 
