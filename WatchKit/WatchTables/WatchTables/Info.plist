@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDisplayName</key>
 	<string>WatchTables</string>
+	<key>CFBundleName</key>
+	<string>WatchTables</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.your-company.WatchTables</string>
 	<key>CFBundleShortVersionString</key>

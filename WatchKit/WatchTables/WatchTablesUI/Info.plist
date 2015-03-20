@@ -29,5 +29,7 @@
 	<string>com.your-company.WatchTablesUI</string>
 	<key>WKWatchKitApp</key>
 	<true/>
+	<key>XSAppIconAssets</key>
+	<string>Images.xcassets/AppIcons.appiconset</string>
 </dict>
 </plist>
