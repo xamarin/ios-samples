@@ -100,15 +100,6 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="Resources\Icon.png" />
-    <BundleResource Include="Resources\Icon%402x.png" />
-    <BundleResource Include="Resources\Icon-60%402x.png" />
-    <BundleResource Include="Resources\Icon-Small.png" />
-    <BundleResource Include="Resources\Icon-Small%402x.png" />
-    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
-    <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="Sounds\tap.aif" />
   </ItemGroup>
   <ItemGroup>
@@ -128,4 +119,32 @@
     <InterfaceDefinition Include="MainStoryboardiPad.storyboard" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\Images.xcassets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-60%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-72.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-72%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-76%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-50.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-50%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Spotlight-40.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Spotlight-40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Landscape%402x~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Landscape~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Portrait%402x~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Portrait~ipad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default.png" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default%402x.png" />
+  </ItemGroup>
 </Project>
