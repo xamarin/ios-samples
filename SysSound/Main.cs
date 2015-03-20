@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace SysSound_iOS
+namespace SysSound
 {
 	public class Application
 	{

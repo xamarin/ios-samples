@@ -7,7 +7,7 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace SysSound_iOS
+namespace SysSound
 {
 	[Register ("MainViewController")]
 	partial class MainViewController

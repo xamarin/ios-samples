@@ -4,7 +4,7 @@ using UIKit;
 using Foundation;
 using AudioToolbox;
 
-namespace SysSound_iOS
+namespace SysSound
 {
 	public partial class MainViewController : UIViewController
 	{
