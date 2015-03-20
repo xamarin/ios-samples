@@ -5,13 +5,13 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>WatchTablesUI</string>
+	<string>WatchTables</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.your-company.WatchTables.watchkitapp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>com.your-company.WatchTablesUI</string>
+	<string>WatchTables</string>
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
@@ -26,10 +26,12 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.your-company.WatchTablesUI</string>
+	<string>com.your-company.WatchTables</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 	<key>XSAppIconAssets</key>
 	<string>Images.xcassets/AppIcons.appiconset</string>
+	<key>MinimumOSVersion</key>
+	<string>8.2</string>
 </dict>
 </plist>
