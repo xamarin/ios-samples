@@ -1,41 +1,38 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by Xamarin Studio to store outlets and
+// actions made in the UI designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
-using System;
 using Foundation;
-using UIKit;
 using System.CodeDom.Compiler;
 
 namespace SysSound_iOS
 {
-	[Register ("SysSound_iOSViewController")]
-	partial class SysSound_iOSViewController
+	[Register ("MainViewController")]
+	partial class MainViewController
 	{
 		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton playAlertButton { get; set; }
+		UIKit.UIButton playAlertButton { get; set; }
 
 		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton playSystemButton { get; set; }
+		UIKit.UIButton playSystemButton { get; set; }
 
 		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIButton VibrateButton { get; set; }
-
+		UIKit.UIButton VibrateButton { get; set; }
+		
 		void ReleaseDesignerOutlets ()
 		{
 			if (playAlertButton != null) {
 				playAlertButton.Dispose ();
 				playAlertButton = null;
 			}
+
 			if (playSystemButton != null) {
 				playSystemButton.Dispose ();
 				playSystemButton = null;
 			}
+
 			if (VibrateButton != null) {
 				VibrateButton.Dispose ();
 				VibrateButton = null;

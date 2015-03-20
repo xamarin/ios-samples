@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="JIh-2P-xGB">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="Eyy-uj-2m5">
+            <objects>
+                <viewController id="JIh-2P-xGB" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Wt-2F-S7y"/>
+                        <viewControllerLayoutGuide type="bottom" id="6pY-dV-Kl5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lDb-Pj-aXB">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5fC-Kv-LBz">
+                                <rect key="frame" x="298" y="408" width="173" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Play System Sound">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSw-ZR-6YS">
+                                <rect key="frame" x="353" y="580" width="62" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Vibrate">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oWS-MF-nko">
+                                <rect key="frame" x="311" y="494" width="147" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Play Alert Sound">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerY" secondItem="oWS-MF-nko" secondAttribute="centerY" id="5Ew-CP-xgl"/>
+                            <constraint firstItem="oWS-MF-nko" firstAttribute="top" secondItem="5fC-Kv-LBz" secondAttribute="bottom" constant="50" id="5Fl-I8-szp"/>
+                            <constraint firstItem="bSw-ZR-6YS" firstAttribute="top" secondItem="oWS-MF-nko" secondAttribute="bottom" constant="50" id="VnW-wR-vwj"/>
+                            <constraint firstAttribute="centerX" secondItem="5fC-Kv-LBz" secondAttribute="centerX" id="ah9-kZ-ly5"/>
+                            <constraint firstAttribute="centerX" secondItem="oWS-MF-nko" secondAttribute="centerX" id="jeC-Z8-XMj"/>
+                            <constraint firstAttribute="centerX" secondItem="bSw-ZR-6YS" secondAttribute="centerX" id="rzj-it-USt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="VibrateButton" destination="bSw-ZR-6YS" id="7ZZ-KQ-DWA"/>
+                        <outlet property="playAlertButton" destination="oWS-MF-nko" id="5g5-YH-rIX"/>
+                        <outlet property="playSystemButton" destination="5fC-Kv-LBz" id="ViB-zE-nDo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nfT-d6-oTF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="402" y="306"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
