@@ -32,5 +32,7 @@
 	</dict>
 	<key>RemoteInterfacePrincipleClass</key>
 	<string>InterfaceController</string>
+	<key>MinimumOSVersion</key>
+	<string>8.2</string>
 </dict>
 </plist>

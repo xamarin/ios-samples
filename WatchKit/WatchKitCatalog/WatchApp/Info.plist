@@ -5,13 +5,13 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>WatchApp</string>
+	<string>WatchKitCatalog</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.WatchKitCatalog.watchkitapp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Watch App</string>
+	<string>WatchKitCatalog</string>
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
@@ -31,5 +31,7 @@
 	<true/>
 	<key>MinimumOSVersion</key>
 	<string>8.2</string>
+	<key>XSAppIconAssets</key>
+	<string>Images.xcassets/AppIcons.appiconset</string>
 </dict>
 </plist>

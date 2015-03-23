@@ -5,13 +5,13 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>WatchApp</string>
+	<string>GpsWatch</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.your-company.gpswatch.watchkitapp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>com.your-company.gpswatch.watchkitapp</string>
+	<string>GpsWatch</string>
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
@@ -29,5 +29,9 @@
 	<string>com.your-company.gpswatch</string>
 	<key>WKWatchKitApp</key>
 	<true/>
+	<key>XSAppIconAssets</key>
+	<string>Images.xcassets/AppIcons.appiconset</string>
+	<key>MinimumOSVersion</key>
+	<string>8.2</string>
 </dict>
 </plist>

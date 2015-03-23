@@ -42,6 +42,8 @@
 	</array>
 	<key>CFBundleDisplayName</key>
 	<string>GpsWatch</string>
+	<key>CFBundleName</key>
+	<string>GpsWatch</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Allow WatchKit app to use your location</string>
 	<key>XSAppIconAssets</key>
