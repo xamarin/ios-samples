@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Fundamentals</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Example of key value observing to track bounds changes.</Brief>
 </SampleMetadata>

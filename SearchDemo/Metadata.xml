@@ -5,4 +5,5 @@
 	<Level>Beginner</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates how to create a master-detail style of application.</Brief>
 </SampleMetadata>

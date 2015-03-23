@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SampleMetadata>
-<ID>c5c55ab2-a24b-40ab-8e05-c73467170217</ID>
-<IsFullApplication>false</IsFullApplication>
-<Level>Beginning</Level>
-<Tags>User Interface, iOS8</Tags>
-<SupportedPlatforms>iOS</SupportedPlatforms>
-<Gallery>true</Gallery>
-<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<ID>c5c55ab2-a24b-40ab-8e05-c73467170217</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>User Interface, iOS8</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<Gallery>true</Gallery>
+	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Brief>Sample shows how to use a custom presentation controller to create a custom view controller presentation.</Brief>
 </SampleMetadata>

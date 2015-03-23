@@ -7,4 +7,5 @@
 	<SupportedPlatforms>iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Shows how to test your ideas quickly to save time and money.</Brief>
 </SampleMetadata>

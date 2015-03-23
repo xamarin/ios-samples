@@ -7,4 +7,5 @@
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<Gallery>true</Gallery>
 	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Brief>Demonstrates how to use UICollectionView, a way to present ordered data to users in a grid-like fashion.</Brief>
 </SampleMetadata>

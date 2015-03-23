@@ -6,4 +6,5 @@
 	<Tags>Media, Graphics, Games</Tags>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>The NSZombieApocalypse is a contrived game that exemplifies how to use the UIAccessibility protocol.</Brief>
 </SampleMetadata>

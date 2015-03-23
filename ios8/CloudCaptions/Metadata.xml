@@ -7,4 +7,5 @@
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<Gallery>true</Gallery>
 	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Brief>This sample shows how to use CloudKit to upload and retrieve CKRecords and associated assets.</Brief>
 </SampleMetadata>

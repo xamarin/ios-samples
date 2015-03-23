@@ -5,6 +5,7 @@
 	<Level>Beginning</Level>
 	<Tags>Platform Features, iOS8</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
-    	<LicenseRequirement>Starter</LicenseRequirement>
+    <LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Show how to create KeyboardExtension to provide a new keyboard for the system.</Brief>
 </SampleMetadata>

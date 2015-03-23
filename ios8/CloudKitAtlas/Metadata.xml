@@ -7,4 +7,5 @@
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>CloudKitAtlas is a sample intended as a quick introduction to CloudKit.</Brief>
 </SampleMetadata>

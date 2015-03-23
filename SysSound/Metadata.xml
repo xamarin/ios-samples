@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Media</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates playing sound via AudioToolkit.</Brief>
 </SampleMetadata>

@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Maps + Location</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Sample shows how to retrieve location, orientation, and velocity data using the Core Location API.</Brief>
 </SampleMetadata>

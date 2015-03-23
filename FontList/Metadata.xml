@@ -5,4 +5,5 @@
 	<Level>Beginner</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Lists the fonts available on the device and shows a preview of each font.</Brief>
 </SampleMetadata>

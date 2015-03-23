@@ -5,4 +5,5 @@
 	<Level>Advanced</Level>
 	<Tags>User Interface, Device Features</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Sample shows displaying items in a table view, allowing the user to dig into detail pages and view photos.</Brief>
 </SampleMetadata>

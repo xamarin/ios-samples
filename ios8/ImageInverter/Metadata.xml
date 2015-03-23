@@ -7,4 +7,5 @@
 	<Gallery>true</Gallery>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Brief>This sample code shows how to use an Action extension with a view controller.</Brief>
 </SampleMetadata>

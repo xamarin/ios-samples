@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Graphics, Games</Tags>
 	<Gallery>true</Gallery>
+	<Brief>A simple example of using OpenGLES with a iPhoneOSGameView in a Xamarin.iOS application.</Brief>
 </SampleMetadata>

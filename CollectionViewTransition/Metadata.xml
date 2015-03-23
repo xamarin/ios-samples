@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-  <ID>0d983872-0414-4261-bc8e-3e91b0c2f828</ID>
-  <IsFullApplication>false</IsFullApplication>
-  <Level>Beginning</Level>
-  <Tags>User Interface, Platform Features</Tags>
-  <LicenseRequirement>Starter</LicenseRequirement>
+	<ID>0d983872-0414-4261-bc8e-3e91b0c2f828</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>User Interface, Platform Features</Tags>
+	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This sample illustrates how to create a custom transition when navigating between two collection views.</Brief>
 </SampleMetadata>

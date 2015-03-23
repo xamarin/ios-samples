@@ -7,4 +7,5 @@
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<Gallery>true</Gallery>
 	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Brief>This sample shows how to use many of the new iOS 7 font features.</Brief>
 </SampleMetadata>

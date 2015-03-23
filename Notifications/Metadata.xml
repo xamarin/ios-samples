@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Notifications</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample illustrates how to work notifications with Apple Push Notification Service.</Brief>
 </SampleMetadata>

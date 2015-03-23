@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Getting Started, User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample serves as an introduction to the primary pattern used in iOS for user interfaces: MVC.</Brief>
 </SampleMetadata>

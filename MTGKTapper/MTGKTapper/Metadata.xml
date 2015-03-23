@@ -6,4 +6,5 @@
 	<Tags>Games</Tags>
     <LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>A sample demonstrating how to enable Game Center support.</Brief>
 </SampleMetadata>

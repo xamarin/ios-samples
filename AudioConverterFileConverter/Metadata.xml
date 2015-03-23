@@ -5,4 +5,5 @@
 	<Level>Advanced</Level>
 	<Tags>Media</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates the use of the Audio Converter API.</Brief>
 </SampleMetadata>

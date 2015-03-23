@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Maps + Location</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample is an example to generate GeoJSON coverage files for use with the Maps routing apps API.</Brief>
 </SampleMetadata>

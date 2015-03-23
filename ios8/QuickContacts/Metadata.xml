@@ -7,4 +7,5 @@
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<Gallery>true</Gallery>
 	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Brief>Demonstrates how to use the Address Book UI controllers.</Brief>
 </SampleMetadata>

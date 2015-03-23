@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface, Data</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample application utilizes the legacy string drawing functions and the new attributed string drawing.</Brief>
 </SampleMetadata>

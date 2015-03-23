@@ -6,4 +6,5 @@
 	<Tags>Games</Tags>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Demonstrates the use of the new GameKit APIs introduced in iOS 7 for Achievements and Leaderboards.</Brief>
 </SampleMetadata>

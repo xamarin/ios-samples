@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Games, Platform Features</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This is the Hello World Sprite kit sample, that ships with iOS 7.</Brief>
 </SampleMetadata>

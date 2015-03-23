@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>An example on how to use Core Animation transitions.</Brief>
 </SampleMetadata>

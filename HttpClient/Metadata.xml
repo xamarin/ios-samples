@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Cloud</Tags>
 	<Gallery>true</Gallery>
+	<Brief>An example on using both the .NET and Objective-C classes to send a web requests.</Brief>
 </SampleMetadata>

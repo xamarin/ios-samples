@@ -6,4 +6,5 @@
 	<Tags>Media</Tags>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Sample detects QR codes and decodes them.</Brief>
 </SampleMetadata>

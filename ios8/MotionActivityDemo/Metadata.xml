@@ -6,4 +6,5 @@
 	<Tags>Device Features, Getting Started, iOS8</Tags>
     <LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Example of using historical and live data with CoreMotion, MotionActivity and Step Counting APIs.</Brief>
 </SampleMetadata>

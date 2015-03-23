@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Sample shows how you can make a table with cells that allow the user to drill further down to a detailed view.</Brief>
 </SampleMetadata>

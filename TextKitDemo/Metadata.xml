@@ -6,4 +6,5 @@
 	<Tags>User Interface</Tags>
     <LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates the flexibility and power of new Text Kit APIs.</Brief>
 </SampleMetadata>

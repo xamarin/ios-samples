@@ -6,4 +6,5 @@
     <Tags>User Interface, iOS8</Tags>
     <LicenseRequirement>Starter</LicenseRequirement>
     <Gallery>true</Gallery>
+    <Brief>Sample demonstrates how to use new UIKit features introduced in iOS 8.</Brief>
 </SampleMetadata>

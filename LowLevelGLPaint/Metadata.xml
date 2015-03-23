@@ -5,4 +5,5 @@
 	<Level>Advanced</Level>
 	<Tags>Graphics, Touch, Games</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Sample shows how to use the low-level OpenGL classes to create a touch painting application.</Brief>
 </SampleMetadata>

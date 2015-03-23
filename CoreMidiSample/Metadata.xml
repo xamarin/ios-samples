@@ -5,4 +5,5 @@
 	<Level>Advanced</Level>
 	<Tags>Media</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample shows the basics of how to probe for the MIDI hardware.</Brief>
 </SampleMetadata>

@@ -6,4 +6,5 @@
 	<Tags>Games, Platform Features</Tags>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This example demostrates physics and collisions between objects when using Sprite Kit.</Brief>
 </SampleMetadata>

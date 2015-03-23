@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Getting Started, User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This is a simple hello world application for iPad.</Brief>
 </SampleMetadata>

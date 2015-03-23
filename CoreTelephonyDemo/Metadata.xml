@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Device Features</Tags>
 	<Gallery>true</Gallery>
+	<Brief>An example showing how to access the users's current call, call center and carrier information.</Brief>
 </SampleMetadata>

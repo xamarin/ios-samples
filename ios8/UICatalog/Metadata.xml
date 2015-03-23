@@ -7,4 +7,5 @@
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Sample is a catalog exhibiting many views and controls in the UIKit framework.</Brief>
 </SampleMetadata>

@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Graphics, Games, Touch</Tags>
 	<Gallery>true</Gallery>
+	<Brief>An example on using the iPhoneOSGameView class with OpenGL to create a touch painting application.</Brief>
 </SampleMetadata>

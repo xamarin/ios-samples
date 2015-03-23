@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>User Interface, Maps + Location</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Sample demonstrates using annotations in MapKit by placing weather forecasts above cities.</Brief>
 </SampleMetadata>

@@ -6,4 +6,5 @@
 	<Tags>User Interface, Platform Features</Tags>
     <LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This Sample demonstrates how to print to a roll-fed AirPrint printer.</Brief>
 </SampleMetadata>

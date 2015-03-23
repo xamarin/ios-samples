@@ -7,4 +7,5 @@
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Sample shows how to use the iOS AudioQueue Processing Taps.</Brief>
 </SampleMetadata>

@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Touch</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample illustrates how to work with touch in iOS.</Brief>
 </SampleMetadata>

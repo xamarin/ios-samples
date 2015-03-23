@@ -7,4 +7,5 @@
     <SupportedPlatforms>iOS</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>A collection of samples for using OpenGL in Xamarin.iOS.</Brief>
 </SampleMetadata>

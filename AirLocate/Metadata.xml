@@ -6,4 +6,5 @@
 	<Tags>Device Features</Tags>
     <LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>AirLocate shows how to use CLLocationManager to monitor and range CLBeaconRegion.</Brief>
 </SampleMetadata>

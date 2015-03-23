@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Cloud</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample illustrates how to register a custom NSUrlProtocol.</Brief>
 </SampleMetadata>

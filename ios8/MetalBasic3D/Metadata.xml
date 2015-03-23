@@ -5,6 +5,7 @@
 	<Level>Beginning</Level>
 	<Tags>Graphics, Getting Started, iOS8</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
-    	<LicenseRequirement>Starter</LicenseRequirement>
+	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This sample is an equivalent for Xcode OpenGL ES template.</Brief>
 </SampleMetadata>

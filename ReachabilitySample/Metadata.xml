@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Cloud</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample shows how to find out what kind of connectivity is available.</Brief>
 </SampleMetadata>

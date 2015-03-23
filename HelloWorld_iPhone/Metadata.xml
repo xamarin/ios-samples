@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Getting Started, User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>A simple hello world sample demonstrating the use of the UIButton and UILabel controls.</Brief>
 </SampleMetadata>

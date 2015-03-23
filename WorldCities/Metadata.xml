@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface, Maps + Location</Tags>
 	<Gallery>true</Gallery>
+	<Brief>A simple example of using the Map Kit API in a Xamarin.iOS application.</Brief>
 </SampleMetadata>

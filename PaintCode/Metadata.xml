@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Graphics, User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample app shows some PaintCode-generated elements.</Brief>
 </SampleMetadata>

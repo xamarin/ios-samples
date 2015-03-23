@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Getting Started, User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This is a simple example demonstrating how to use a C# event on a button press to run a callback.</Brief>
 </SampleMetadata>

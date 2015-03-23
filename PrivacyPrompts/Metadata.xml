@@ -6,4 +6,5 @@
 	<Tags>Platform Features</Tags>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates how to check and request access to classes in the Privacy Settings.</Brief>
 </SampleMetadata>

@@ -5,4 +5,5 @@
   <Level>Advanced</Level>
   <Tags>Media</Tags>
   <Gallery>true</Gallery>
+  <Brief>Demonstrates how to build an Audio Unit Graph connecting a Multichannel Mixer instance to the RemoteIO unit.</Brief>
 </SampleMetadata>

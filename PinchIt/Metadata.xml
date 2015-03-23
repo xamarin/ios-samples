@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample provides an introduction to Collection Views and illustrates the use of a flow layout.</Brief>
 </SampleMetadata>

@@ -7,4 +7,5 @@
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<Gallery>true</Gallery>
 	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Brief>Lister is a productivity sample project which includes iOS app and iOS Today extensions app (Widget).</Brief>
 </SampleMetadata>

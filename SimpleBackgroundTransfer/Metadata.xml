@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-  <ID>f93fc3b4-12d5-4002-96ba-a638b89a2eac</ID>
-  <IsFullApplication>false</IsFullApplication>
-  <Level>Beginning</Level>
-  <Tags>Backgrounding</Tags>
-  <LicenseRequirement>Starter</LicenseRequirement>
+	<ID>f93fc3b4-12d5-4002-96ba-a638b89a2eac</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>Backgrounding</Tags>
+	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Simple app that illustrates how to use background transfers.</Brief>>
 </SampleMetadata>

@@ -6,4 +6,5 @@
 	<Tags>Media, Graphics</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<Gallery>true</Gallery>
+	<Brief>This sample application demonstrates how to use the image filters found in the CoreImage Library.</Brief>
 </SampleMetadata>

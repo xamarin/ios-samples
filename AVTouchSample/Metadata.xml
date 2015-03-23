@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Media, Touch</Tags>
 	<Gallery>true</Gallery>
+	<Brief>An example on using AVFoundation on iOS devices.</Brief>
 </SampleMetadata>

@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface, Touch</Tags>
 	<Gallery>true</Gallery>
+	<Brief>An example on how to handle touches to move multiple objects.</Brief>
 </SampleMetadata>

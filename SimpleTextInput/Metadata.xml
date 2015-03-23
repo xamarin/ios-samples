@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>An example showing how to implement a simple text-editing application using Core Text.</Brief>
 </SampleMetadata>

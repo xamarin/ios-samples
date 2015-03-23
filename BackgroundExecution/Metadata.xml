@@ -5,4 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Backgrounding</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample illustrates how to develop multitasking aware applications in Xamarin.iOS.</Brief>
 </SampleMetadata>

@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Graphics</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample illustrates how to animate custom properties in a CALayer.</Brief>
 </SampleMetadata>

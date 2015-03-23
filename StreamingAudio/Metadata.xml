@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Media, Cloud</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Sample illustrates how to use AudioFileStream to parse an audio stream and play the audio back.</Brief>
 </SampleMetadata>

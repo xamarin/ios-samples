@@ -7,4 +7,5 @@
     <SupportedPlatforms>iOS</SupportedPlatforms>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates the usage of OpenGL in a scroll view.</Brief>
 </SampleMetadata>

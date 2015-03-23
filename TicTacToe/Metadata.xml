@@ -6,4 +6,5 @@
 	<Tags>Games</Tags>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>This sample shows how to customize UIKit controls, tintColor, and renderingMode and build custom controls.</Brief>
 </SampleMetadata>

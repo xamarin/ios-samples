@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
+	<Brief>Sample that demonstrates how to implement swipe-to-delete and edit mode in UITableView.</Brief>
 </SampleMetadata>

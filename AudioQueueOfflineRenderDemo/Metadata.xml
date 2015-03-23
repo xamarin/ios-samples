@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Media</Tags>
 	<Gallery>true</Gallery>
+	<Brief>An example demonstrating the Audio Queue offline rendering API.</Brief>
 </SampleMetadata>

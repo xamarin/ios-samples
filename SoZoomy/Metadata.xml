@@ -6,4 +6,5 @@
 	<Tags>Media, Platform Features</Tags>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>true</Gallery>
+	<Brief>Shows how to use the AVCaptureDevice APIs to zoom with the camera.</Brief>
 </SampleMetadata>

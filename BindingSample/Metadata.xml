@@ -5,4 +5,5 @@
 	<Level>Advanced</Level>
 	<Tags>Binding + Interop</Tags>
 	<Gallery>true</Gallery>
+	<Brief>App shows how to utilize an existing Objective-C library and expose it for use in Xamarin.iOS project.</Brief>
 </SampleMetadata>

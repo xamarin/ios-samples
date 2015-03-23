@@ -5,4 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface, Data</Tags>
 	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates how to interact with Objective-C protocols from C#.</Brief>
 </SampleMetadata>
