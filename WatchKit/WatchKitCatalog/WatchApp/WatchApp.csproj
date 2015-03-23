@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="_WatchKitStub\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -111,5 +112,8 @@
     <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-98%402x.png" />
     <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-27.5%402x.png" />
     <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-24%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="_WatchKitStub\WK" />
   </ItemGroup>
 </Project>
