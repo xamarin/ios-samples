@@ -17,7 +17,6 @@ namespace PrivacyPrompts
 
 	public class PrivacyDetailViewController : UIViewController
 	{
-
 		protected Func<String> CheckAccess;
 		protected Action RequestAccess;
 

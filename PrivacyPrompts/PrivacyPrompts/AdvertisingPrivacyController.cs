@@ -14,16 +14,13 @@ using CoreLocation;
 
 namespace PrivacyPrompts
 {
-
 	public class AdvertisingPrivacyController : PrivacyDetailViewController
 	{
-
 		public AdvertisingPrivacyController()
 		{
 			CheckAccess = CheckAdvertisingAccess;
 			RequestAccess = () => {
 			};
-			this.requestAccessButton.Enabled = false;
 		}
 
 		string CheckAdvertisingAccess ()
