@@ -18,19 +18,13 @@ namespace PrivacyPrompts
 	{
 		string micAccessText = "Not determined";
 
-		public MicrophonePrivacyController()
-		{
-			CheckAccess = CheckMicAccess;
-			RequestAccess = RequestMicAccess;
-		}
-
-		//There is no way to check access prior to showing the dialog
-		string CheckMicAccess()
+		// There is no way to check access prior to showing the dialog
+		protected override string CheckAccess ()
 		{
 			return micAccessText;
 		}
 
-		void RequestMicAccess()
+		protected override void RequestAccess ()
 		{
 			RequestMicrophoneAccess (true);
 			RequestMicrophoneAccess (false);
@@ -44,8 +38,8 @@ namespace PrivacyPrompts
 				audioSession.SetCategory (AVAudioSession.CategoryRecord, out error);
 				UpdateStatus ();
 			} else {
-				audioSession.RequestRecordPermission (delegate(bool granted) {
-					micAccessText = granted ? "granted" : "denied";
+				audioSession.RequestRecordPermission (granted => {
+					micAccessText = string.Format ("Access {0}", granted ? "allowed" : "denied");
 					UpdateStatus();
 				});
 			}

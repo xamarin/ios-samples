@@ -16,29 +16,25 @@ namespace PrivacyPrompts
 
 	public class BluetoothPrivacyController : PrivacyDetailViewController
 	{
-		CBCentralManager cbManager = new CBCentralManager ();
+		readonly CBCentralManager cbManager = new CBCentralManager ();
 
-		public BluetoothPrivacyController()
+		protected override string CheckAccess ()
 		{
-			CheckAccess = CheckBluetoothAccess;
-			RequestAccess = RequestBluetoothAccess;
+			return cbManager.State.ToString ();
 		}
 
-	 	string CheckBluetoothAccess ()
-		{
-			CBCentralManagerState state = cbManager.State;
-			return state.ToString ();
-		}
-
-		void RequestBluetoothAccess ()
+		protected override void RequestAccess ()
 		{
 			if (cbManager.State == CBCentralManagerState.PoweredOn)
 				cbManager.ScanForPeripherals (new CBUUID [0]);
-			else {
-				UIAlertView alert = new UIAlertView ("Error", "Bluetooth must be enabled",
-					null, "Okay", null);
-				alert.Show ();
-			}
+			else
+				ShowError ();
+		}
+
+		void ShowError()
+		{
+			UIAlertView alert = new UIAlertView ("Error", "Bluetooth must be enabled", null, "Okay", null);
+			alert.Show ();
 		}
 	}
 

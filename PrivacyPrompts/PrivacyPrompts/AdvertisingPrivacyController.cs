@@ -15,14 +15,7 @@ namespace PrivacyPrompts
 {
 	public class AdvertisingPrivacyController : PrivacyDetailViewController
 	{
-		public AdvertisingPrivacyController()
-		{
-			CheckAccess = CheckAdvertisingAccess;
-			RequestAccess = () => {
-			};
-		}
-
-		string CheckAdvertisingAccess ()
+		protected override string CheckAccess ()
 		{
 			return
 				ASIdentifierManager.SharedManager.IsAdvertisingTrackingEnabled ?

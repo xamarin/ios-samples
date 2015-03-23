@@ -19,25 +19,26 @@ namespace PrivacyPrompts
 	{
 		public NotificationsPrivacyController()
 		{
-			CheckAccess = CheckNotificationsAccess;
-			RequestAccess = RequestNotificationsAccess;
-
 			/*
 			 After the user interacts with the permissions dialog, AppDelegate.DidRegisterUserNotificationSettings
 			 is called. In this example, we've hooked that up to an event
 			*/
-			var appDelegate = UIApplication.SharedApplication.Delegate as AppDelegate;
-			appDelegate.NotificationsRegistered += (_) => UpdateStatus();
-
+			var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
+			appDelegate.NotificationsRegistered += OnNotificationsRegistered;
 		}
 
-		public string CheckNotificationsAccess()
+		void OnNotificationsRegistered (UIUserNotificationSettings obj)
+		{
+			UpdateStatus();
+		}
+
+		protected override string CheckAccess ()
 		{
 			var settings = UIApplication.SharedApplication.CurrentUserNotificationSettings;
-			return "Allowed types: " + settings.Types.ToString ();
+			return string.Format ("Allowed types: {0}", settings.Types);
 		}
 
-		public void RequestNotificationsAccess()
+		protected override void RequestAccess ()
 		{
 			var settings = UIUserNotificationSettings.GetSettingsForTypes (
 				               UIUserNotificationType.Alert
@@ -53,10 +54,10 @@ namespace PrivacyPrompts
 		{
 			base.ViewDidLoad ();
 
-			accessStatus.Lines = 0;
+			AccessStatus.Lines = 0;
 
-			accessStatus.RemoveConstraints (accessStatus.GetConstraintsAffectingLayout (UILayoutConstraintAxis.Vertical));
-			accessStatus.AddConstraint (NSLayoutConstraint.Create (accessStatus, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 72));
+			AccessStatus.RemoveConstraints (AccessStatus.GetConstraintsAffectingLayout (UILayoutConstraintAxis.Vertical));
+			AccessStatus.AddConstraint (NSLayoutConstraint.Create (AccessStatus, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 72));
 
 		}
 	}

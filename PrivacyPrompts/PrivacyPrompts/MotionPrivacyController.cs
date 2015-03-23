@@ -23,8 +23,6 @@ namespace PrivacyPrompts
 
 		public MotionPrivacyController ()
 		{
-			this.CheckAccess = CheckMotionAccess;
-			this.RequestAccess = RequestMotionAccess;
 			motionStatus = "Indeterminate";
 		}
 
@@ -43,8 +41,8 @@ namespace PrivacyPrompts
 			});
 
 			this.View.AddConstraints (new[] {
-				NSLayoutConstraint.Create (stepsMessage, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, titleLabel, NSLayoutAttribute.CenterX, 1, 0),
-				NSLayoutConstraint.Create (stepsMessage, NSLayoutAttribute.Top, NSLayoutRelation.Equal, requestAccessButton, NSLayoutAttribute.Bottom, 1, 40),
+				NSLayoutConstraint.Create (stepsMessage, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, TitleLabel, NSLayoutAttribute.CenterX, 1, 0),
+				NSLayoutConstraint.Create (stepsMessage, NSLayoutAttribute.Top, NSLayoutRelation.Equal, RequestAccessButton, NSLayoutAttribute.Bottom, 1, 40),
 			});
 		}
 
@@ -56,17 +54,17 @@ namespace PrivacyPrompts
 			var cm = new CMMotionManager ();
 			if (cm.DeviceMotionAvailable == false) {
 				motionStatus = "Not available";
-				requestAccessButton.Enabled = false;
+				RequestAccessButton.Enabled = false;
 			}
-			accessStatus.Text = motionStatus;
+			AccessStatus.Text = motionStatus;
 		}
 
-		string CheckMotionAccess()
+		protected override string CheckAccess ()
 		{
 			return motionStatus;
 		}
 
-		void RequestMotionAccess()
+		protected override void RequestAccess ()
 		{
 			stepCounter = new CMStepCounter ();
 			stepCounter.QueryStepCount(

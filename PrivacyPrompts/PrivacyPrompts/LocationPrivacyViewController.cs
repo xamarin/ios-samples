@@ -15,38 +15,43 @@ namespace PrivacyPrompts
 
 		public LocationPrivacyViewController ()
 		{
-			CheckAccess = LocationAccessStatus;
-			RequestAccess = RequestLocationServicesAuthorization;
-
 			locationManager = new CLLocationManager ();
-			//If previously allowed, start location manager
+
+			// If previously allowed, start location manager
 			if (CLLocationManager.Status == CLAuthorizationStatus.AuthorizedWhenInUse)
-			{
 				locationManager.StartUpdatingLocation();
-			}
 
-			locationManager.Failed += delegate {
-				locationManager.StopUpdatingLocation ();
-			};
-			locationManager.LocationsUpdated += delegate {
-				var loc = locationManager.Location.ToString();
-				locationMessage.Text = loc;
-
-				//MapView
-				MKCoordinateRegion region = new MKCoordinateRegion(locationManager.Location.Coordinate, new MKCoordinateSpan(0.1, 0.1));
-				mapView.SetRegion(region, true);
-			};
-			locationManager.AuthorizationChanged += delegate (object sender, CLAuthorizationChangedEventArgs e) {
-				accessStatus.Text = e.Status.ToString();
-				if (e.Status == CLAuthorizationStatus.AuthorizedWhenInUse)
-				{
-					mapView.ShowsUserLocation = true;
-					locationManager.StartUpdatingLocation ();
-				}
-			};
+			locationManager.Failed += OnFailed;
+			locationManager.LocationsUpdated += OnLocationsUpdated;
+			locationManager.AuthorizationChanged += OnAuthorizationChanged;
 		}
 
-	 	string LocationAccessStatus() {
+		void OnFailed (object sender, NSErrorEventArgs e)
+		{
+			locationManager.StopUpdatingLocation ();
+		}
+
+		void OnLocationsUpdated (object sender, CLLocationsUpdatedEventArgs e)
+		{
+			locationMessage.Text = locationManager.Location.ToString();
+
+			//MapView
+			MKCoordinateRegion region = new MKCoordinateRegion(locationManager.Location.Coordinate, new MKCoordinateSpan(0.1, 0.1));
+			mapView.SetRegion(region, true);
+		}
+
+		void OnAuthorizationChanged (object sender, CLAuthorizationChangedEventArgs e)
+		{
+			AccessStatus.Text = e.Status.ToString();
+			if (e.Status == CLAuthorizationStatus.AuthorizedWhenInUse)
+			{
+				mapView.ShowsUserLocation = true;
+				locationManager.StartUpdatingLocation ();
+			}
+		}
+
+		protected override string CheckAccess ()
+		{
 			return CLLocationManager.Status.ToString ();
 		}
 
@@ -65,8 +70,8 @@ namespace PrivacyPrompts
 			});
 
 			this.View.AddConstraints (new[] {
-				NSLayoutConstraint.Create (locationMessage, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, titleLabel, NSLayoutAttribute.CenterX, 1, 0),
-				NSLayoutConstraint.Create (locationMessage, NSLayoutAttribute.Top, NSLayoutRelation.Equal, requestAccessButton, NSLayoutAttribute.Bottom, 1, 40),
+				NSLayoutConstraint.Create (locationMessage, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, TitleLabel, NSLayoutAttribute.CenterX, 1, 0),
+				NSLayoutConstraint.Create (locationMessage, NSLayoutAttribute.Top, NSLayoutRelation.Equal, RequestAccessButton, NSLayoutAttribute.Bottom, 1, 40),
 			});
 		}
 
@@ -85,7 +90,7 @@ namespace PrivacyPrompts
 			this.View.AddConstraints(NSLayoutConstraint.FromVisualFormat("H:|-[mapView]-|",	NSLayoutFormatOptions.AlignAllTop, null, dict));
 			this.View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:[locationMessage]-[mapView]-|", NSLayoutFormatOptions.AlignAllCenterX, null, dict));
 			this.View.AddConstraints (new[] {
-				NSLayoutConstraint.Create (locationMessage, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, titleLabel, NSLayoutAttribute.CenterX, 1, 0),
+				NSLayoutConstraint.Create (locationMessage, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, TitleLabel, NSLayoutAttribute.CenterX, 1, 0),
 			});
 		}
 
@@ -105,7 +110,7 @@ namespace PrivacyPrompts
 			}
 		}
 
-		void RequestLocationServicesAuthorization ()
+		protected override void RequestAccess ()
 		{
 			//Also note that info.plist has the NSLocationWhenInUseUsageDescription key
 			//This call is asynchronous

@@ -12,10 +12,12 @@ using EventKit;
 using Foundation;
 using UIKit;
 
-namespace PrivacyPrompts {
-
-	public partial class PrivacyClassesTableViewController : UITableViewController {
-		public PrivacyClassesTableViewController (IntPtr handle) : base (handle)
+namespace PrivacyPrompts
+{
+	public partial class PrivacyClassesTableViewController : UITableViewController
+	{
+		public PrivacyClassesTableViewController (IntPtr handle)
+			: base (handle)
 		{
 		}
 

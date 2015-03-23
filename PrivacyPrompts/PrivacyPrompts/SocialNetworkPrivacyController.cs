@@ -8,36 +8,36 @@ namespace PrivacyPrompts
 	{
 		static ACAccountStore accountStore = new ACAccountStore ();
 
+		readonly string socialNetwork;
+
 		public SocialNetworkPrivacyController (string socialNetworkName)
 		{
-			CheckAccess = () => CheckSocialAccountAuthorizationStatus (socialNetworkName);
-			RequestAccess = () => RequestSocialAccountAuthorization (socialNetworkName);
+			socialNetwork = socialNetworkName;
 		}
 
-		public string CheckSocialAccountAuthorizationStatus (string accountTypeIdentifier)
+		protected override string CheckAccess ()
 		{
-			ACAccountType socialAccount = accountStore.FindAccountType (accountTypeIdentifier);
-
+			ACAccountType socialAccount = accountStore.FindAccountType (socialNetwork);
 			return socialAccount.AccessGranted ? "granted" : "denied";
 		}
 
-		void RequestSocialAccountAuthorization (string networkName)
+		protected override void RequestAccess ()
 		{
-			switch (networkName) {
-			case "com.apple.facebook":
-				RequestFacebookAccess ();
-				break;
-			case "com.apple.twitter":
-				RequestTwitterAccess ();
-				break;
-			case "com.apple.sinaweibo":
-				RequestSinaWeiboAccess ();
-				break;
-			case "com.apple.account.tencentweibo":
-				RequestTencentWeiboAccess ();
-				break;
-			default:
-				throw new ArgumentOutOfRangeException ();
+			switch (socialNetwork) {
+				case "com.apple.facebook":
+					RequestFacebookAccess ();
+					break;
+				case "com.apple.twitter":
+					RequestTwitterAccess ();
+					break;
+				case "com.apple.sinaweibo":
+					RequestSinaWeiboAccess ();
+					break;
+				case "com.apple.account.tencentweibo":
+					RequestTencentWeiboAccess ();
+					break;
+				default:
+					throw new ArgumentOutOfRangeException ();
 			}
 		}
 

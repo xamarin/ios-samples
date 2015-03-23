@@ -13,59 +13,55 @@ using CoreLocation;
 
 namespace PrivacyPrompts
 {
-
-	public class PrivacyDetailViewController : UIViewController
+	public abstract class PrivacyDetailViewController : UIViewController
 	{
-		protected Func<String> CheckAccess;
-		protected Action RequestAccess;
-
-		protected UILabel titleLabel;
-		protected UILabel accessStatus;
-		protected UIButton requestAccessButton;
+		protected UILabel TitleLabel { get; private set; }
+		protected UILabel AccessStatus { get; private set; }
+		protected UIButton RequestAccessButton { get; private set; }
 
 		public void AddBaseElements (UIView mainView)
 		{
-			titleLabel = new UILabel (CGRect.Empty);
-			titleLabel.TextAlignment = UITextAlignment.Center;
+			TitleLabel = new UILabel (CGRect.Empty);
+			TitleLabel.TextAlignment = UITextAlignment.Center;
 
-			accessStatus = new UILabel (CGRect.Empty);
-			accessStatus.TextAlignment = UITextAlignment.Center;
+			AccessStatus = new UILabel (CGRect.Empty);
+			AccessStatus.TextAlignment = UITextAlignment.Center;
 
-			requestAccessButton = UIButton.FromType (UIButtonType.RoundedRect);
-			requestAccessButton.TouchUpInside += (s, e) => RequestAccess ();
+			RequestAccessButton = UIButton.FromType (UIButtonType.RoundedRect);
+			RequestAccessButton.TouchUpInside += (s, e) => RequestAccess ();
 
-			titleLabel.TranslatesAutoresizingMaskIntoConstraints = false;
-			accessStatus.TranslatesAutoresizingMaskIntoConstraints = false;
-			requestAccessButton.TranslatesAutoresizingMaskIntoConstraints = false;
+			TitleLabel.TranslatesAutoresizingMaskIntoConstraints = false;
+			AccessStatus.TranslatesAutoresizingMaskIntoConstraints = false;
+			RequestAccessButton.TranslatesAutoresizingMaskIntoConstraints = false;
 
 			// View-level constraints to set constant size values
-			titleLabel.AddConstraints (new [] {
-				NSLayoutConstraint.Create (titleLabel, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 14),
-				NSLayoutConstraint.Create (titleLabel, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 180),
+			TitleLabel.AddConstraints (new [] {
+				NSLayoutConstraint.Create (TitleLabel, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 14),
+				NSLayoutConstraint.Create (TitleLabel, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 180),
 			});
 
-			accessStatus.AddConstraints (new[] {
-				NSLayoutConstraint.Create (accessStatus, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 18),
-				NSLayoutConstraint.Create (accessStatus, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 180),
+			AccessStatus.AddConstraints (new[] {
+				NSLayoutConstraint.Create (AccessStatus, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 18),
+				NSLayoutConstraint.Create (AccessStatus, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 180),
 			});
 
-			requestAccessButton.AddConstraints (new[] {
-				NSLayoutConstraint.Create (requestAccessButton, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 14),
-				NSLayoutConstraint.Create (requestAccessButton, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 180),
+			RequestAccessButton.AddConstraints (new[] {
+				NSLayoutConstraint.Create (RequestAccessButton, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 14),
+				NSLayoutConstraint.Create (RequestAccessButton, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 180),
 			});
-			mainView.AddSubview (titleLabel);
-			mainView.AddSubview (accessStatus);
-			mainView.AddSubview (requestAccessButton);
+			mainView.AddSubview (TitleLabel);
+			mainView.AddSubview (AccessStatus);
+			mainView.AddSubview (RequestAccessButton);
 
 			// Container view-level constraints to set the position of each subview
 			mainView.AddConstraints (new[] {
-				NSLayoutConstraint.Create (titleLabel, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, mainView, NSLayoutAttribute.CenterX, 1, 0),
-				NSLayoutConstraint.Create (titleLabel, NSLayoutAttribute.Top, NSLayoutRelation.Equal, mainView, NSLayoutAttribute.Top, 1, 80),
+				NSLayoutConstraint.Create (TitleLabel, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, mainView, NSLayoutAttribute.CenterX, 1, 0),
+				NSLayoutConstraint.Create (TitleLabel, NSLayoutAttribute.Top, NSLayoutRelation.Equal, mainView, NSLayoutAttribute.Top, 1, 80),
 
-				NSLayoutConstraint.Create (accessStatus, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, titleLabel, NSLayoutAttribute.CenterX, 1, 0),
-				NSLayoutConstraint.Create (accessStatus, NSLayoutAttribute.Top, NSLayoutRelation.Equal, titleLabel, NSLayoutAttribute.Bottom, 1, 40),
-				NSLayoutConstraint.Create (requestAccessButton, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, titleLabel, NSLayoutAttribute.CenterX, 1, 0),
-				NSLayoutConstraint.Create (requestAccessButton, NSLayoutAttribute.Top, NSLayoutRelation.Equal, accessStatus, NSLayoutAttribute.Bottom, 1, 40),
+				NSLayoutConstraint.Create (AccessStatus, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, TitleLabel, NSLayoutAttribute.CenterX, 1, 0),
+				NSLayoutConstraint.Create (AccessStatus, NSLayoutAttribute.Top, NSLayoutRelation.Equal, TitleLabel, NSLayoutAttribute.Bottom, 1, 40),
+				NSLayoutConstraint.Create (RequestAccessButton, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, TitleLabel, NSLayoutAttribute.CenterX, 1, 0),
+				NSLayoutConstraint.Create (RequestAccessButton, NSLayoutAttribute.Top, NSLayoutRelation.Equal, AccessStatus, NSLayoutAttribute.Bottom, 1, 40),
 			});
 		}
 
@@ -76,16 +72,16 @@ namespace PrivacyPrompts
 			AddBaseElements (this.View);
 			this.View.BackgroundColor = UIColor.White;
 
-			titleLabel.Text = Title;
-			accessStatus.Text = "Indeterminate";
-			requestAccessButton.SetTitle ("Request access", UIControlState.Normal);
+			TitleLabel.Text = Title;
+			AccessStatus.Text = "Indeterminate";
+			RequestAccessButton.SetTitle ("Request access", UIControlState.Normal);
 
-			accessStatus.Text = CheckAccess ();
+			AccessStatus.Text = CheckAccess ();
 		}
 
 		protected void UpdateStatus()
 		{
-			InvokeOnMainThread (() => accessStatus.Text = CheckAccess ());
+			InvokeOnMainThread (() => AccessStatus.Text = CheckAccess ());
 		}
 
 		public static PrivacyDetailViewController CreateFor (DataClass selected)
@@ -144,5 +140,11 @@ namespace PrivacyPrompts
 			viewController.Title = selected.ToString ();
 			return viewController;
 		}
+
+		protected virtual void RequestAccess()
+		{
+		}
+
+		protected abstract string CheckAccess();
 	}
 }

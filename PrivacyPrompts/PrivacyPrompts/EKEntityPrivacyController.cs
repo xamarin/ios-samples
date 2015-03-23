@@ -8,24 +8,25 @@ namespace PrivacyPrompts
 	{
 		EKEventStore eventStore = new EKEventStore();
 
+		readonly EKEntityType type;
+
 		public EKEntityPrivacyController (EKEntityType entityType)
 		{
-			CheckAccess = () => CheckEventStoreAccess (entityType);
-			RequestAccess = () => RequestEventStoreAccess (entityType);
+			type = entityType;
 		}
 
-		string CheckEventStoreAccess (EKEntityType type)
+		protected override string CheckAccess ()
 		{
 			return EKEventStore.GetAuthorizationStatus (type).ToString ();
 		}
 
-		public void RequestEventStoreAccess (EKEntityType type)
+		protected override void RequestAccess ()
 		{
-			eventStore.RequestAccess (type, delegate (bool granted, NSError error) {
-				InvokeOnMainThread(() => accessStatus.Text = "Access " + (granted ? "allowed" : "denied"));
+			eventStore.RequestAccess (type, (granted, accessError) => {
+				string text = string.Format ("Access {0}", granted ? "allowed" : "denied");
+				InvokeOnMainThread (() => AccessStatus.Text = text);
 			});
 		}
-
 	}
 }
 

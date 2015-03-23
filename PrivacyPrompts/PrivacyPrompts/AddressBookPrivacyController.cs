@@ -6,31 +6,24 @@ namespace PrivacyPrompts
 {
 	public class AddressBookPrivacyController : PrivacyDetailViewController
 	{
-		ABAddressBook addressBook;
-
-		public AddressBookPrivacyController ()
-		{
-			CheckAccess = CheckAddressBookAccess;
-			RequestAccess = RequestAddressBookAccess;
-		}
-
-		public string CheckAddressBookAccess ()
+		protected override string CheckAccess ()
 		{
 			return ABAddressBook.GetAuthorizationStatus ().ToString ();
 		}
 
-		public void RequestAddressBookAccess ()
+		protected override void RequestAccess ()
 		{
 			NSError error;
-			addressBook = ABAddressBook.Create (out error);
+			ABAddressBook addressBook = ABAddressBook.Create (out error);
 
-			if (addressBook != null) {
-				addressBook.RequestAccess (delegate (bool granted, NSError accessError) {
-					InvokeOnMainThread(() => accessStatus.Text = "Access " + (granted ? "allowed" : "denied"));
-				});
-			}
+			if (addressBook == null)
+				return;
+
+			addressBook.RequestAccess ((granted, accessError) => {
+				string text = string.Format ("Access {0}", granted ? "allowed" : "denied");
+				InvokeOnMainThread (() => AccessStatus.Text = text);
+			});
 		}
-
 	}
 }
 
