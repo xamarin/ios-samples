@@ -4,7 +4,6 @@ namespace PrivacyPrompts
 {
 	public enum DataClass {
 		Location,
-		Notifications,
 		Reminders,
 		Calendars,
 		Contacts,
@@ -17,7 +16,10 @@ namespace PrivacyPrompts
 		Twitter,
 		SinaWeibo,
 		TencentWeibo,
-		Advertising
+		Advertising,
+
+		// iOS8
+		Notifications,
 	}
 }
 

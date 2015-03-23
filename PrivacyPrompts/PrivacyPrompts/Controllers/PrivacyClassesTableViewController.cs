@@ -16,14 +16,36 @@ namespace PrivacyPrompts
 {
 	public partial class PrivacyClassesTableViewController : UITableViewController
 	{
+		List<DataClass> availableItems;
+
 		public PrivacyClassesTableViewController (IntPtr handle)
 			: base (handle)
 		{
+			availableItems = new List<DataClass> () {
+				DataClass.Location,
+				DataClass.Reminders,
+				DataClass.Calendars,
+				DataClass.Contacts,
+				DataClass.Photos,
+				DataClass.Video,
+				DataClass.Microphone,
+				DataClass.Bluetooth,
+				DataClass.Motion,
+				DataClass.Facebook,
+				DataClass.Twitter,
+				DataClass.SinaWeibo,
+				DataClass.TencentWeibo,
+				DataClass.Advertising,
+			};
+
+			// iOS8
+			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0))
+				availableItems.Add (DataClass.Notifications);
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return 1 + (int) DataClass.Advertising;
+			return availableItems.Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -37,7 +59,8 @@ namespace PrivacyPrompts
 		{
 			PrivacyDetailViewController viewController = null;
 
-			DataClass selected = (DataClass)TableView.IndexPathForSelectedRow.Row;
+			int index = TableView.IndexPathForSelectedRow.Row;
+			DataClass selected = availableItems[index];
 
 			viewController = PrivacyDetailViewController.CreateFor (selected);
 			viewController.Title = selected.ToString ();

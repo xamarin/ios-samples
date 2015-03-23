@@ -7,6 +7,9 @@ namespace PrivacyPrompts {
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate {
 
+		// This is used to respond to Notifications permissions (see NotificationsPrivacyController.cs)
+		public event Action<UIUserNotificationSettings> NotificationsRegistered;
+
 		public override UIWindow Window {
 			get;
 			set;
@@ -17,15 +20,11 @@ namespace PrivacyPrompts {
 			UIApplication.Main (args, null, "AppDelegate");
 		}
 
-#region Notifications
-		//This is used to respond to Notifications permissions (see NotificationsPrivacyController.cs)
-		public event Action<UIUserNotificationSettings> NotificationsRegistered;
-
 		public override void DidRegisterUserNotificationSettings (UIApplication application, UIUserNotificationSettings notificationSettings)
 		{
-			NotificationsRegistered (notificationSettings);
+			var handler = NotificationsRegistered;
+			if(handler != null)
+				handler (notificationSettings);
 		}
-
-#endregion
 	}
 }
