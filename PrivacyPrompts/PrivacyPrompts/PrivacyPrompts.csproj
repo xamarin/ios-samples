@@ -98,25 +98,27 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Resources\Images.xcassets\" />
-    <Folder Include="Resources\Images.xcassets\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="LocationPrivacyViewController.cs" />
-    <Compile Include="MotionPrivacyController.cs" />
-    <Compile Include="NotificationsPrivacyController.cs" />
-    <Compile Include="PrivacyClassesTableViewController.cs" />
-    <Compile Include="PrivacyClassesTableViewController.designer.cs" />
-    <Compile Include="PrivacyDetailViewController.cs" />
-    <Compile Include="VideoCaptureViewController.cs" />
     <Compile Include="DataClass.cs" />
-    <Compile Include="PhotoPrivacyController.cs" />
-    <Compile Include="EKEntityPrivacyController.cs" />
-    <Compile Include="AddressBookPrivacyController.cs" />
-    <Compile Include="MicrophonePrivacyController.cs" />
-    <Compile Include="SocialNetworkPrivacyController.cs" />
-    <Compile Include="BluetoothPrivacyController.cs" />
-    <Compile Include="AdvertisingPrivacyController.cs" />
+    <Compile Include="Controllers\AddressBookPrivacyController.cs" />
+    <Compile Include="Controllers\AdvertisingPrivacyController.cs" />
+    <Compile Include="Controllers\BluetoothPrivacyController.cs" />
+    <Compile Include="Controllers\EKEntityPrivacyController.cs" />
+    <Compile Include="Controllers\LocationPrivacyViewController.cs" />
+    <Compile Include="Controllers\MicrophonePrivacyController.cs" />
+    <Compile Include="Controllers\MotionPrivacyController.cs" />
+    <Compile Include="Controllers\NotificationsPrivacyController.cs" />
+    <Compile Include="Controllers\PhotoPrivacyController.cs" />
+    <Compile Include="Controllers\PrivacyClassesTableViewController.cs" />
+    <Compile Include="Controllers\PrivacyClassesTableViewController.designer.cs">
+      <DependentUpon>PrivacyClassesTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PrivacyDetailViewController.cs" />
+    <Compile Include="Controllers\SocialNetworkPrivacyController.cs" />
+    <Compile Include="Controllers\VideoCaptureViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
