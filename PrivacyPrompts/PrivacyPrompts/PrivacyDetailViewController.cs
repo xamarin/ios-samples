@@ -2,7 +2,6 @@ using System;
 using Foundation;
 using UIKit;
 using CoreGraphics;
-using CoreGraphics;
 using AddressBook;
 using EventKit;
 using AssetsLibrary;
@@ -23,13 +22,6 @@ namespace PrivacyPrompts
 		protected UILabel titleLabel;
 		protected UILabel accessStatus;
 		protected UIButton requestAccessButton;
-
-		static ACAccountStore accountStore;
-		static CBCentralManager cbManager;
-
-		public PrivacyDetailViewController ()
-		{
-		}
 
 		public void AddBaseElements (UIView mainView)
 		{

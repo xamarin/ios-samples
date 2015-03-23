@@ -12,11 +12,21 @@
 	<string>MainStoryboard</string>
 	<key>MinimumOSVersion</key>
 	<string>7.0</string>
-	<key>XSAppIconAssets</key>
-	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackTranslucent</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This string is stored in the info.plist file.</string>
+	<key>XSAppIconAssets</key>
+	<string>Resources/Images.xcassets/AppIcon.appiconset</string>
+	<key>XSLaunchImageAssets</key>
+	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
+	<key>CFBundleDisplayName</key>
+	<string>PrivacyPrompts</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.PrivacyPrompts</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 </dict>
 </plist>

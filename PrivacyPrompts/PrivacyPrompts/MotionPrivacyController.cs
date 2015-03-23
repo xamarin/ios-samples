@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Foundation;
 using UIKit;
 using CoreGraphics;
-using CoreGraphics;
 
 namespace PrivacyPrompts
 {

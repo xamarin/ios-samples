@@ -4,7 +4,6 @@ using UIKit;
 using CoreGraphics;
 using MapKit;
 using Foundation;
-using CoreGraphics;
 
 namespace PrivacyPrompts
 {
