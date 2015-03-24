@@ -40,5 +40,9 @@
 	<string>1</string>
 	<key>MinimumOSVersion</key>
 	<string>7.0</string>
+	<key>UIMainStoryboardFile</key>
+	<string>SoundViewControllerIPhone</string>
+	<key>UIMainStoryboardFile~ipad</key>
+	<string>SoundViewControllerIPad</string>
 </dict>
 </plist>

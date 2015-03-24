@@ -83,8 +83,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="SoundViewController_iPhone.xib" />
-    <InterfaceDefinition Include="SoundViewController_iPad.xib" />
+    <InterfaceDefinition Include="SoundViewControllerIPhone.storyboard" />
+    <InterfaceDefinition Include="SoundViewControllerIPad.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

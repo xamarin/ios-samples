@@ -16,14 +16,9 @@ namespace Sound
 		NSUrl audioFilePath;
 		NSObject observer;
 
-		static bool UserInterfaceIdiomIsPhone {
-			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
-		}
-
-		public SoundViewController ()
-			: base (UserInterfaceIdiomIsPhone ? "SoundViewController_iPhone" : "SoundViewController_iPad", null)
+		public SoundViewController (IntPtr handle)
+			: base(handle)
 		{
-
 		}
 
 		public override void ViewDidLoad ()

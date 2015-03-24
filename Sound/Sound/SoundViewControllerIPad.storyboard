@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="Mnq-c5-2ET">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sound View Controller-->
+        <scene sceneID="96J-1g-2vQ">
+            <objects>
+                <viewController id="Mnq-c5-2ET" customClass="SoundViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zyK-ob-Fbo"/>
+                        <viewControllerLayoutGuide type="bottom" id="rx5-Bg-Szc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ppt-vR-Hoi">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording and Playing Sound" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cW5-ED-kDz">
+                                <rect key="frame" x="20" y="70" width="325" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b86-7g-GD4">
+                                <rect key="frame" x="20" y="170" width="138" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Start Recording">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYe-A5-RZg">
+                                <rect key="frame" x="20" y="256" width="138" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Stop Recording">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[status]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZ7-x9-3ch">
+                                <rect key="frame" x="345" y="176" width="64" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[length of recording]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hup-nn-eFD">
+                                <rect key="frame" x="345" y="262" width="176" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3c-he-yD2">
+                                <rect key="frame" x="20" y="342" width="193" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Play Recorded Sound">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="b86-7g-GD4" firstAttribute="leading" secondItem="Ppt-vR-Hoi" secondAttribute="leadingMargin" id="4xV-85-aCA"/>
+                            <constraint firstItem="MYe-A5-RZg" firstAttribute="leading" secondItem="Ppt-vR-Hoi" secondAttribute="leadingMargin" id="6Zt-MH-12f"/>
+                            <constraint firstItem="cW5-ED-kDz" firstAttribute="top" secondItem="zyK-ob-Fbo" secondAttribute="bottom" constant="50" id="7IT-YK-23m"/>
+                            <constraint firstItem="cW5-ED-kDz" firstAttribute="trailing" secondItem="oZ7-x9-3ch" secondAttribute="leading" id="8oQ-Fg-0Oy"/>
+                            <constraint firstItem="cW5-ED-kDz" firstAttribute="trailing" secondItem="hup-nn-eFD" secondAttribute="leading" id="LLn-Mi-CNa"/>
+                            <constraint firstItem="MYe-A5-RZg" firstAttribute="top" secondItem="b86-7g-GD4" secondAttribute="bottom" constant="50" id="bpi-fs-M7f"/>
+                            <constraint firstItem="h3c-he-yD2" firstAttribute="leading" secondItem="Ppt-vR-Hoi" secondAttribute="leadingMargin" id="cCY-Nz-inc"/>
+                            <constraint firstItem="cW5-ED-kDz" firstAttribute="leading" secondItem="Ppt-vR-Hoi" secondAttribute="leadingMargin" id="e6L-mO-BPg"/>
+                            <constraint firstItem="MYe-A5-RZg" firstAttribute="centerY" secondItem="hup-nn-eFD" secondAttribute="centerY" id="odL-l6-4ni"/>
+                            <constraint firstItem="h3c-he-yD2" firstAttribute="top" secondItem="MYe-A5-RZg" secondAttribute="bottom" constant="50" id="pBg-XG-Im8"/>
+                            <constraint firstItem="b86-7g-GD4" firstAttribute="centerY" secondItem="oZ7-x9-3ch" secondAttribute="centerY" id="wBD-D7-wpd"/>
+                            <constraint firstItem="b86-7g-GD4" firstAttribute="top" secondItem="cW5-ED-kDz" secondAttribute="bottom" constant="70" id="wx2-6m-bGQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="LengthOfRecordingLabel" destination="hup-nn-eFD" id="Oem-P6-gis"/>
+                        <outlet property="PlayRecordedSoundButton" destination="h3c-he-yD2" id="1qv-5r-F7H"/>
+                        <outlet property="RecordingStatusLabel" destination="oZ7-x9-3ch" id="nDK-pG-Hbc"/>
+                        <outlet property="StartRecordingButton" destination="b86-7g-GD4" id="do3-Ut-pkd"/>
+                        <outlet property="StopRecordingButton" destination="MYe-A5-RZg" id="Qce-Ua-gO9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9pW-65-ebP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="483" y="530"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="lightContent"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
