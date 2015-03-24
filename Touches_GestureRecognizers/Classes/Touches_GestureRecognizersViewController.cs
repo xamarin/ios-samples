@@ -30,7 +30,6 @@ using System.Linq;
 using UIKit;
 using Foundation;
 using ObjCRuntime;
-using CoreGraphics;
 
 namespace Touches_GestureRecognizers
 {

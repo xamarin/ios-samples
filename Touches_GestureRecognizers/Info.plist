@@ -25,5 +25,13 @@
 	<array>
 		<integer>1</integer>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>Touches</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.touches</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
 </dict>
 </plist>
