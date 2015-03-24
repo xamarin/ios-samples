@@ -3,6 +3,7 @@ using Foundation;
 using UIKit;
 using AVFoundation;
 using System.Diagnostics;
+using System.IO;
 
 namespace Sound
 {
@@ -124,46 +125,29 @@ namespace Sound
             };
         }
 
-        public override void ViewDidUnload()
-        {
-            NSNotificationCenter.DefaultCenter.RemoveObserver(observer);
+		NSUrl CreateOutputUrl()
+		{
+			string fileName = string.Format("Myfile{0}.aac", DateTime.Now.ToString("yyyyMMddHHmmss"));
+			string tempRecording = Path.Combine (Path.GetTempPath (), fileName);
 
-            base.ViewDidUnload();
-
-            // Clear any references to subviews of the main view in order to
-            // allow the Garbage Collector to collect them sooner.
-            //
-            // e.g. myOutlet.Dispose (); myOutlet = null;
-
-            ReleaseDesignerOutlets();
-        }
-
-        public override bool ShouldAutorotateToInterfaceOrientation(UIInterfaceOrientation toInterfaceOrientation)
-        {
-            return true;
-        }
+			return NSUrl.FromFilename(tempRecording);
+		}
 
         bool PrepareAudioRecording()
         {
-            //Declare string for application temp path and tack on the file extension
-            string fileName = string.Format("Myfile{0}.aac", DateTime.Now.ToString("yyyyMMddHHmmss"));
-            string tempRecording = NSBundle.MainBundle.BundlePath + "/../tmp/" + fileName;
+			audioFilePath = CreateOutputUrl ();
 
-            Console.WriteLine(tempRecording);
-            this.audioFilePath = NSUrl.FromFilename(tempRecording);
-
-            var audioSettings = new AudioSettings()
-            {
-                SampleRate = 44100.0f,
-                Format = AudioToolbox.AudioFormatType.MPEG4AAC,
-                NumberChannels = 1,
-                AudioQuality = AVAudioQuality.High
-            };
+			var audioSettings = new AudioSettings {
+				SampleRate = 44100.0f,
+				Format = AudioToolbox.AudioFormatType.MPEG4AAC,
+				NumberChannels = 1,
+				AudioQuality = AVAudioQuality.High
+			};
 
             //Set recorder parameters
             NSError error;
-            recorder = AVAudioRecorder.Create(this.audioFilePath, audioSettings, out error);
-            if ((recorder == null) || (error != null))
+            recorder = AVAudioRecorder.Create(audioFilePath, audioSettings, out error);
+            if (recorder == null || error != null)
             {
                 Console.WriteLine(error);
                 return false;
@@ -177,14 +161,16 @@ namespace Sound
                 return false;
             }
 
-            recorder.FinishedRecording += delegate (object sender, AVStatusEventArgs e)
-            {
-                recorder.Dispose();
-                recorder = null;
-                Console.WriteLine("Done Recording (status: {0})", e.Status);
-            };
+            recorder.FinishedRecording += OnFinishedRecording;
 
             return true;
+        }
+
+        void OnFinishedRecording (object sender, AVStatusEventArgs e)
+        {
+			recorder.Dispose();
+			recorder = null;
+			Console.WriteLine("Done Recording (status: {0})", e.Status);
         }
     }
 }
