@@ -488,8 +488,7 @@ namespace AVCustomEdit
 
 			var session = Editor.AssetExportSession (AVAssetExportSession.PresetMediumQuality);
 
-			var documents = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
-			var filePath = Path.Combine (documents, "..", "tmp", "ExportedProject.mov");
+			var filePath = Path.Combine (Path.GetTempPath(), "ExportedProject.mov");
 			if (File.Exists (filePath))
 				File.Delete (filePath);
 
