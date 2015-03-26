@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="38">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Enter a Phoneword:" lineBreakMode="tailTruncation" minimumFontSize="10" id="3" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="102.5" width="560" height="20.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1-855-Xamarin" borderStyle="roundedRect" minimumFontSize="17" id="4" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="158" width="551" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="239" width="551" height="30"/>
+                                <state key="normal" title="Translate">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="301" width="560" height="30"/>
+                                <state key="normal" title="Call">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="99" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="357" width="560" height="30"/>
+                                <state key="normal" title="Call History">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue id="402" destination="101" kind="show"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="10"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="5" secondAttribute="trailing" constant="29" id="11"/>
+                            <constraint firstItem="6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="17"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="6" secondAttribute="trailing" constant="20" id="18"/>
+                            <constraint firstItem="6" firstAttribute="top" secondItem="5" secondAttribute="centerY" constant="47" id="20"/>
+                            <constraint firstItem="5" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="51" id="21"/>
+                            <constraint firstItem="4" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="35" id="22"/>
+                            <constraint firstItem="4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="23"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="4" secondAttribute="trailing" constant="29" id="24"/>
+                            <constraint firstItem="3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="25"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="20" id="26"/>
+                            <constraint firstItem="6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="16" id="29"/>
+                            <constraint firstItem="99" firstAttribute="top" secondItem="6" secondAttribute="bottom" constant="26" id="318"/>
+                            <constraint firstItem="99" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="319"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="99" secondAttribute="trailing" constant="20" id="320"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="PhoneNumberText" destination="4" id="name-outlet-4"/>
+                        <outlet property="TranslateButton" destination="5" id="name-outlet-5"/>
+                        <outlet property="CallButton" destination="6" id="name-outlet-6"/>
+                        <outlet property="CallHistoryButton" destination="99" id="name-outlet-99"/>
+                    </connections>
+                    <navigationItem title="Phoneword" id="96" key="navigationItem"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="299" y="54"/>
+        </scene>
+        <scene sceneID="37">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="38" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="41">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    </navigationBar>
+                    <connections>
+                        <segue id="97" destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="42" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-372" y="46"/>
+        </scene>
+        <scene sceneID="100">
+            <objects>
+                <tableViewController id="101" sceneMemberID="viewController" customClass="CallHistoryController" title="Call History">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="102">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="105" reuseIdentifier="callHistory">
+                                <rect key="frame" x="0.0" y="22" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="105" id="106">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="101" id="103"/>
+                            <outlet property="delegate" destination="101" id="104"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="107" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1085" y="598"/>
+        </scene>
+    </scenes>
+</document>
