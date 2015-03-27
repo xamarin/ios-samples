@@ -5,5 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>Device Features, User Interface</Tags>
 	<Gallery>true</Gallery>
-	<Brief>This sample demonstrates how to handle user-interface layout changes when an iOS device is rotated.</Brief>
+	<Brief>Shows how to handle user-interface layout changes when device is rotated.</Brief>
 </SampleMetadata>

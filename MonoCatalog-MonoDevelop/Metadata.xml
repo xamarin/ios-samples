@@ -5,5 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>User Interface, Platform Features, Cloud</Tags>
 	<Gallery>true</Gallery>
-	<Brief>A kitchen sink example of common UI elements and APIs used in iOS and how you can use these with Xamarin.iOS.</Brief>
+	<Brief>A kitchen sink example of common UI elements and APIs used with Xamarin.iOS.</Brief>
 </SampleMetadata>

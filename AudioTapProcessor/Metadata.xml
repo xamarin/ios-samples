@@ -7,5 +7,5 @@
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<Gallery>true</Gallery>
 	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
-	<Brief>Sample app that uses the MTAudioProcessingTap in combination with AVFoundation to visualize audio samples.</Brief>
+	<Brief>Sample uses the MTAudioProcessingTap with AVFoundation to visualize audio samples.</Brief>
 </SampleMetadata>

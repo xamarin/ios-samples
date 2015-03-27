@@ -5,5 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
-	<Brief>Enhancing scrollview experience with the use of UIPageViewController, UIScrollView and CATiledLayer.</Brief>
+	<Brief>Enhancing scrollview experience with UIPageViewController, UIScrollView and CATiledLayer.</Brief>
 </SampleMetadata>

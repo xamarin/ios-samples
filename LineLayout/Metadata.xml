@@ -5,5 +5,5 @@
 	<Level>Advanced</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
-	<Brief>This example shows how to implement a document-browser-like-interface as a flow layout subclass</Brief>
+	<Brief>Sample shows how to implement a document-browser-like-interface as a flow layout subclass.</Brief>
 </SampleMetadata>
