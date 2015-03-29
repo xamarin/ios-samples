@@ -7,5 +7,5 @@ There are two seperate folders containing a solution. **Hello.iOS** is the singl
 
 Written By
 ==========
-Amy Burns - For Documentation useage.
+Amy Burns - For Documentation usage.
 
