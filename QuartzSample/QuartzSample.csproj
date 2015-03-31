@@ -30,8 +30,6 @@
     <MtouchArch>i386</MtouchArch>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchExtraArgs>
-    </MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -42,8 +40,6 @@
     <MtouchLink>None</MtouchLink>
     <ConsolePause>False</ConsolePause>
     <MtouchArch>i386</MtouchArch>
-    <MtouchExtraArgs>
-    </MtouchExtraArgs>
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>
@@ -74,8 +70,6 @@
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <MtouchExtraArgs>
-    </MtouchExtraArgs>
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>
@@ -111,6 +105,7 @@
     <Compile Include="QuartzBlendingViewController.xib.designer.cs">
       <DependentUpon>QuartzBlendingViewController.xib</DependentUpon>
     </Compile>
+    <Compile Include="AppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
