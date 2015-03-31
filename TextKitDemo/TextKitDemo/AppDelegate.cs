@@ -11,6 +11,11 @@ namespace TextKitDemo
 	{
 		public override UIWindow Window { get; set; }
 
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
+		{
+			return true;
+		}
+
 		static void Main (string[] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
