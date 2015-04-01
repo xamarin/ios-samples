@@ -79,6 +79,7 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="EAGLView.cs" />
+    <Compile Include="AppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
