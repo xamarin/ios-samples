@@ -1,21 +1,27 @@
-using System;
+﻿using System;
 using CoreGraphics;
-using System.Net;
 using Foundation;
 using UIKit;
-using SystemConfiguration;
-using CoreFoundation;
 
-namespace reachability {
-	public partial class ReachabilityAppDelegate : UIApplicationDelegate {
+namespace reachability
+{
+	public partial class ReachabilityAppDelegate : UIApplicationDelegate
+	{
 		UITableView tableView;
 		NetworkStatus remoteHostStatus, internetStatus, localWifiStatus;
 
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+		static void Main (string[] args)
+		{
+			UIApplication.Main (args, null, (string)null);
+		}
+
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			AddTable ();
 			UpdateStatus ();
-			Reachability.ReachabilityChanged += (object sender, EventArgs e) =>  { UpdateStatus (); };
+			Reachability.ReachabilityChanged += (object sender, EventArgs e) => {
+				UpdateStatus ();
+			};
 
 			window.MakeKeyAndVisible ();
 
@@ -49,7 +55,8 @@ namespace reachability {
 			tableView.ReloadData ();
 		}
 
-		class DataSource : UITableViewSource {
+		class DataSource : UITableViewSource
+		{
 			ReachabilityAppDelegate parent;
 			UIImage imageCarrier, imageWiFi, imageStop;
 
@@ -158,10 +165,6 @@ namespace reachability {
 				return cell;
 			}
 		}
-
-		static void Main (string[] args)
-		{
-			UIApplication.Main (args, null, (string)null);
-		}
 	}
 }
+
