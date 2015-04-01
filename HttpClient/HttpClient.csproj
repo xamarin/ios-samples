@@ -75,6 +75,7 @@
     <Compile Include="DotNet.cs" />
     <Compile Include="Cocoa.cs" />
     <Compile Include="NetHttp.cs" />
+    <Compile Include="AppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
