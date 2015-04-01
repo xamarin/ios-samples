@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.2</string>
+	<string>1.4</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -32,6 +32,6 @@
 	<key>MinimumOSVersion</key>
 	<string>8.2</string>
 	<key>XSAppIconAssets</key>
-	<string>Images.xcassets/AppIcons.appiconset</string>
+	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 </dict>
 </plist>
