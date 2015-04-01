@@ -81,6 +81,7 @@
     <Compile Include="CALevelMeter.cs" />
     <Compile Include="MeterTable.cs" />
     <Compile Include="LevelMeter.cs" />
+    <Compile Include="AppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
