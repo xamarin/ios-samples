@@ -165,6 +165,7 @@
     <Compile Include="MonoDataSqlite.xib.designer.cs">
       <DependentUpon>MonoDataSqlite.xib</DependentUpon>
     </Compile>
+    <Compile Include="AppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />

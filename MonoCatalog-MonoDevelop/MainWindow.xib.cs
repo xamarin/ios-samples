@@ -126,17 +126,6 @@ namespace MonoCatalog {
 	//
 	public partial class AppDelegate : UIApplicationDelegate {
 		//
-		// This method is invoked when the application is ready to run
-		//
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-		{
-			window.AddSubview (navigationController.View);
-			window.MakeKeyAndVisible ();
-
-			return true;
-		}
-
-		//
 		// This method is required in iPhoneOS 3.0
 		//
 		public override void OnActivated (UIApplication application)
