@@ -82,6 +82,7 @@
       <DependentUpon>DetailViewController.xib</DependentUpon>
     </Compile>
     <Compile Include="DataSource.cs" />
+    <Compile Include="AppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
