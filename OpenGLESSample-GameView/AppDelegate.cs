@@ -1,24 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using UIKit;
 using Foundation;
-using UIKit;
 
 namespace OpenGLESSampleGameView
 {
-	public class Application
-	{
-		static void Main (string[] args)
-		{
-			UIApplication.Main (args);
-		}
-	}
-
 	// The name AppDelegate is referenced in the MainWindow.xib file.
 	public partial class OpenGLESSampleAppDelegate : UIApplicationDelegate
 	{
 		// This method is invoked when the application has loaded its UI and its ready to run
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			// If you have defined a view, add it here:
 			// window.AddSubview (navigationController.View);
