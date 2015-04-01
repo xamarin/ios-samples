@@ -62,7 +62,11 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution: Xamarin Inc (7V723M9SQ5)</CodesignKey>
+    <CodesignProvision>8e997b50-40d4-4fb0-8239-53bcbb63c5ab</CodesignProvision>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -103,13 +107,13 @@
     <ImageAsset Include="Images.xcassets\Worry.imageset\Contents.json" />
     <ImageAsset Include="Images.xcassets\Worry.imageset\Worry%402x.png" />
     <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-29%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-29%403x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-40%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-44%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-86%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-98%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-27.5%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-24%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-29x29%403x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-29x29%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-27.5x27.5%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-24x24%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-40x40%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-44x44%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-86x86%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-98x98%402x.png" />
   </ItemGroup>
 </Project>

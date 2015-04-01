@@ -87,8 +87,11 @@
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>Automatic:AppStore</CodesignProvision>
-    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>8e997b50-40d4-4fb0-8239-53bcbb63c5ab</CodesignProvision>
+    <CodesignKey>iPhone Distribution: Xamarin Inc (7V723M9SQ5)</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
