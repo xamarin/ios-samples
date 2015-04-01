@@ -7,13 +7,13 @@
 	<key>CFBundleDisplayName</key>
 	<string>GpsWatch</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.your-company.gpswatch.watchkitapp</string>
+	<string>com.xamarin.gpswatch.watchkitapp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>GpsWatch</string>
 	<key>CFBundlePackageType</key>
-	<string>XPC!</string>
+	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
@@ -26,7 +26,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.your-company.gpswatch</string>
+	<string>com.xamarin.gpswatch</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 	<key>XSAppIconAssets</key>
