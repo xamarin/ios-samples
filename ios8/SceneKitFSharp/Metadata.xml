@@ -6,5 +6,5 @@
 	<Tags>Device Features, Graphics, Games, iOS8, FSharp</Tags>
 	<Gallery>true</Gallery>
 	<LicenseRequirement>Starter</LicenseRequirement>
-	<Brief>Extends [F&#35; Scene Kit](https://github.com/xamarin/monotouch-samples/tree/master/FSSceneKit) for stereoscopic viewing.</Brief>
+	<Brief>Extends F# Scene Kit for stereoscopic viewing with Google Cardboard.</Brief>
 </SampleMetadata>
