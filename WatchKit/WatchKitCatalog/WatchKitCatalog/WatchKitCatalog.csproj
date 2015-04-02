@@ -96,6 +96,7 @@
     </MtouchI18n>
     <IpaPackageName>
     </IpaPackageName>
+    <BuildIpa>true</BuildIpa>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
