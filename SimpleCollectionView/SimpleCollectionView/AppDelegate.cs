@@ -40,9 +40,9 @@ namespace SimpleCollectionView
             // Circle Layout
             circleLayout = new CircleLayout ();
 
-            simpleCollectionViewController = new SimpleCollectionViewController (flowLayout);
+//            simpleCollectionViewController = new SimpleCollectionViewController (flowLayout);
 //            simpleCollectionViewController = new SimpleCollectionViewController (lineLayout);
-//            simpleCollectionViewController = new SimpleCollectionViewController (circleLayout);
+            simpleCollectionViewController = new SimpleCollectionViewController (circleLayout);
 
             simpleCollectionViewController.CollectionView.ContentInset = new UIEdgeInsets (50, 0, 0, 0);
 
