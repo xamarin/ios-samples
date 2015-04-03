@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>cc0f5322-5921-45a7-9fa6-1b7c3e90b068</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Graphics, Media, Backgrounding, Async, iOS8</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>Sample shows how to use VTDecompressionSession to access hardware video decoder.</Brief>
+</SampleMetadata>
