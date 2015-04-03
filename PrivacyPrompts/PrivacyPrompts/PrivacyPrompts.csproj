@@ -119,6 +119,9 @@
     <Compile Include="Controllers\PrivacyDetailViewController.cs" />
     <Compile Include="Controllers\SocialNetworkPrivacyController.cs" />
     <Compile Include="Controllers\VideoCaptureViewController.cs" />
+    <Compile Include="Controllers\PrivacyDetailViewController.designer.cs">
+      <DependentUpon>PrivacyDetailViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />

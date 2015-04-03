@@ -55,6 +55,15 @@ namespace PrivacyPrompts
 			return cell;
 		}
 
+		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+		{
+			NSIndexPath indexPath = TableView.IndexPathForCell ((UITableViewCell)sender);
+			DataClass type = availableItems [indexPath.Row];
+
+			segue.DestinationViewController.Title = type.ToString ();
+		}
+
+		/*
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			PrivacyDetailViewController viewController = null;
@@ -67,5 +76,6 @@ namespace PrivacyPrompts
 
 			NavigationController.PushViewController (viewController, true);
 		}
+		*/
 	}
 }

@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" initialViewController="obP-e3-iKa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="obP-e3-iKa">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
     </dependencies>
     <scenes>
-        <!--Privacy Detail View Controller-->
-        <!--View Controller-->
         <!--Privacy Data Classes-->
         <scene sceneID="fnp-8p-uMQ">
             <objects>
                 <tableViewController id="ibo-fB-sWs" customClass="PrivacyClassesTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="aVX-wW-VOj">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -26,12 +24,13 @@
                                             <rect key="frame" x="10" y="0.0" width="280" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <segue destination="lKj-jS-Arn" kind="push" id="JlK-nY-rlf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -42,12 +41,64 @@
                     </tableView>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Privacy Data Classes" id="4X8-O2-Dv0"/>
-                    <connections>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zsE-fA-BMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="292" y="-435"/>
+        </scene>
+        <!--Privacy Detail View Controller-->
+        <scene sceneID="EFS-2J-YHW">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" id="lKj-jS-Arn" customClass="PrivacyDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gxu-NZ-LHz"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dv4-q6-FNG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wuk-Ou-BV7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Title]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fk1-Jq-a2W">
+                                <rect key="frame" x="137" y="228" width="47" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[access status]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TnP-85-vzh">
+                                <rect key="frame" x="95" y="272" width="131" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbL-Pk-dJE">
+                                <rect key="frame" x="90" y="316" width="141" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Request access">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="cbL-Pk-dJE" secondAttribute="centerX" id="Blg-mf-fme"/>
+                            <constraint firstAttribute="centerX" secondItem="TnP-85-vzh" secondAttribute="centerX" id="XFp-0k-Gia"/>
+                            <constraint firstAttribute="centerY" secondItem="TnP-85-vzh" secondAttribute="centerY" id="cJB-y1-Jvo"/>
+                            <constraint firstItem="TnP-85-vzh" firstAttribute="top" secondItem="Fk1-Jq-a2W" secondAttribute="bottom" constant="20" id="e5A-dg-eb8"/>
+                            <constraint firstItem="cbL-Pk-dJE" firstAttribute="top" secondItem="TnP-85-vzh" secondAttribute="bottom" constant="20" id="qvU-6w-ZgL"/>
+                            <constraint firstAttribute="centerX" secondItem="TnP-85-vzh" secondAttribute="centerX" id="suD-RC-7yk"/>
+                            <constraint firstAttribute="centerX" secondItem="Fk1-Jq-a2W" secondAttribute="centerX" id="u27-Fw-9PT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="lTa-qf-2HG"/>
+                    <connections>
+                        <outlet property="accessStatus" destination="TnP-85-vzh" id="PQP-Ha-Ngp"/>
+                        <outlet property="requestBtn" destination="cbL-Pk-dJE" id="MMY-AV-vsD"/>
+                        <outlet property="titleLbl" destination="Fk1-Jq-a2W" id="A3C-OU-sPX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E0u-ZI-iz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="697" y="-435"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gA7-EQ-mww">
@@ -65,14 +116,10 @@
             </objects>
             <point key="canvasLocation" x="-184" y="-435"/>
         </scene>
-        <!--View Controller-->
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <resources>
-        <image name="Default-568h.png" width="640" height="1136"/>
-    </resources>
 </document>

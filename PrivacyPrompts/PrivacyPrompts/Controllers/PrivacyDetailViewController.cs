@@ -13,70 +13,51 @@ using CoreLocation;
 
 namespace PrivacyPrompts
 {
-	public abstract class PrivacyDetailViewController : UIViewController
+	[Register("PrivacyDetailViewController")]
+	public partial class PrivacyDetailViewController : UIViewController
 	{
-		protected UILabel TitleLabel { get; private set; }
-		protected UILabel AccessStatus { get; private set; }
-		protected UIButton RequestAccessButton { get; private set; }
+		protected UILabel TitleLabel {
+			get {
+				return titleLbl;
+			}
+		}
 
-		public void AddBaseElements (UIView mainView)
+		protected UILabel AccessStatus {
+			get {
+				return accessStatus;
+			}
+		}
+
+		protected UIButton RequestAccessButton {
+			get {
+				return requestBtn;
+			}
+		}
+
+		public PrivacyDetailViewController(IntPtr handle)
+			: base(handle)
 		{
-			TitleLabel = new UILabel (CGRect.Empty);
-			TitleLabel.TextAlignment = UITextAlignment.Center;
+			
+		}
 
-			AccessStatus = new UILabel (CGRect.Empty);
-			AccessStatus.TextAlignment = UITextAlignment.Center;
-
-			RequestAccessButton = UIButton.FromType (UIButtonType.RoundedRect);
-			RequestAccessButton.TouchUpInside += (s, e) => RequestAccess ();
-
-			TitleLabel.TranslatesAutoresizingMaskIntoConstraints = false;
-			AccessStatus.TranslatesAutoresizingMaskIntoConstraints = false;
-			RequestAccessButton.TranslatesAutoresizingMaskIntoConstraints = false;
-
-			// View-level constraints to set constant size values
-			TitleLabel.AddConstraints (new [] {
-				NSLayoutConstraint.Create (TitleLabel, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 14),
-				NSLayoutConstraint.Create (TitleLabel, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 180),
-			});
-
-			AccessStatus.AddConstraints (new[] {
-				NSLayoutConstraint.Create (AccessStatus, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 18),
-				NSLayoutConstraint.Create (AccessStatus, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 180),
-			});
-
-			RequestAccessButton.AddConstraints (new[] {
-				NSLayoutConstraint.Create (RequestAccessButton, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 14),
-				NSLayoutConstraint.Create (RequestAccessButton, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 180),
-			});
-			mainView.AddSubview (TitleLabel);
-			mainView.AddSubview (AccessStatus);
-			mainView.AddSubview (RequestAccessButton);
-
-			// Container view-level constraints to set the position of each subview
-			mainView.AddConstraints (new[] {
-				NSLayoutConstraint.Create (TitleLabel, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, mainView, NSLayoutAttribute.CenterX, 1, 0),
-				NSLayoutConstraint.Create (TitleLabel, NSLayoutAttribute.Top, NSLayoutRelation.Equal, mainView, NSLayoutAttribute.Top, 1, 80),
-
-				NSLayoutConstraint.Create (AccessStatus, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, TitleLabel, NSLayoutAttribute.CenterX, 1, 0),
-				NSLayoutConstraint.Create (AccessStatus, NSLayoutAttribute.Top, NSLayoutRelation.Equal, TitleLabel, NSLayoutAttribute.Bottom, 1, 40),
-				NSLayoutConstraint.Create (RequestAccessButton, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, TitleLabel, NSLayoutAttribute.CenterX, 1, 0),
-				NSLayoutConstraint.Create (RequestAccessButton, NSLayoutAttribute.Top, NSLayoutRelation.Equal, AccessStatus, NSLayoutAttribute.Bottom, 1, 40),
-			});
+		public PrivacyDetailViewController()
+		{
+			throw new InvalidProgramException ();
 		}
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
-			AddBaseElements (this.View);
-			this.View.BackgroundColor = UIColor.White;
+			/*
+			RequestAccessButton.TouchUpInside += (s, e) => RequestAccess ();
 
 			TitleLabel.Text = Title;
 			AccessStatus.Text = "Indeterminate";
 			RequestAccessButton.SetTitle ("Request access", UIControlState.Normal);
 
 			AccessStatus.Text = CheckAccess ();
+			*/
 		}
 
 		protected void UpdateStatus()
@@ -87,13 +68,16 @@ namespace PrivacyPrompts
 		public static PrivacyDetailViewController CreateFor (DataClass selected)
 		{
 			PrivacyDetailViewController viewController = null;
+			UIStoryboard storyboard = UIStoryboard.FromName ("MainStoryboard", null);
 
 			switch (selected) {
 			case DataClass.Location:
-				viewController = new LocationPrivacyViewController ();
+					viewController = (PrivacyDetailViewController)storyboard.InstantiateViewController ("DetailViewController");
+//				viewController = new LocationPrivacyViewController ();
 				break;
-			case DataClass.Notifications:
-				viewController = new NotificationsPrivacyController ();
+				case DataClass.Notifications:
+					viewController = (PrivacyDetailViewController)storyboard.InstantiateViewController ("DetailViewController");
+//					viewController = new NotificationsPrivacyController ();
 				break;
 			case DataClass.Calendars:
 				viewController = new EKEntityPrivacyController (EKEntityType.Event);
@@ -138,6 +122,7 @@ namespace PrivacyPrompts
 				throw new ArgumentOutOfRangeException ();
 			}
 			viewController.Title = selected.ToString ();
+			Console.WriteLine (viewController.Title);
 			return viewController;
 		}
 
@@ -145,6 +130,9 @@ namespace PrivacyPrompts
 		{
 		}
 
-		protected abstract string CheckAccess();
+		protected virtual string CheckAccess()
+		{
+			throw new NotImplementedException ();
+		}
 	}
 }
