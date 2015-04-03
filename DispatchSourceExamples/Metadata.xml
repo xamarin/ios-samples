@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>5dbb1fdd-16f8-4c76-b992-1095e37f80e3</ID>
+    <Brief>Coordination of specific low-level system events.</Brief>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>Platform Features</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+</SampleMetadata>
