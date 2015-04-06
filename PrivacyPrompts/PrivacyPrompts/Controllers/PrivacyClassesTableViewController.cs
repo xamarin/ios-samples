@@ -155,6 +155,8 @@ namespace PrivacyPrompts
 					return new MicrophonePrivacyManager ();
 
 				case DataClass.Bluetooth:
+					return new BluetoothPrivacyManager ();
+
 				case DataClass.Advertising:
 					throw new NotImplementedException ();
 
