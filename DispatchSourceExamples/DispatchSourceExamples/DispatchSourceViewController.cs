@@ -25,6 +25,7 @@ namespace DispatchSourceExamples
 
 		bool dispatchSourceIsInUse;
 		DispatchSource dispatchSource;
+		NSUrl testFileUrl;
 
 		Test CurrentTestInfo { get; set; }
 
@@ -32,8 +33,12 @@ namespace DispatchSourceExamples
 
 		public NSUrl TestFileUrl {
 			get {
-				NSUrl fileURL = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User).First ();
-				return fileURL.Append ("test.txt", false);
+				if (testFileUrl == null) {
+					using (NSUrl fileURL = NSFileManager.DefaultManager.GetUrls (NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User).First ())
+						testFileUrl = fileURL.Append ("test.txt", false);
+				}
+
+				return testFileUrl;
 			}
 		}
 
@@ -99,14 +104,8 @@ namespace DispatchSourceExamples
 
 		public override void ViewDidLayoutSubviews ()
 		{
-			var height = (nfloat)Math.Min (View.Bounds.Size.Height, tableView.ContentSize.Height);
-			dynamicViewHeight.Constant = height;
+			dynamicViewHeight.Constant = NMath.Min (View.Bounds.Size.Height, tableView.ContentSize.Height);
 			View.LayoutIfNeeded ();
-		}
-
-		public override void DidReceiveMemoryWarning ()
-		{
-			base.DidReceiveMemoryWarning ();
 		}
 
 		void PrintResult (UITextView textView, string message)
