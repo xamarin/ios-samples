@@ -47,10 +47,5 @@ namespace PrivacyPrompts
 		{
 			return string.Format ("Allowed types: {0}", NotificationTypes);
 		}
-
-		public void Dispose ()
-		{
-			// nothing to clean up
-		}
 	}
 }

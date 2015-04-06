@@ -149,6 +149,8 @@ namespace PrivacyPrompts
 					return new PhotoPrivacyManager ();
 
 				case DataClass.Video:
+					return new VideoCapturePrivacyManager ();
+
 				case DataClass.Microphone:
 				case DataClass.Bluetooth:
 				case DataClass.Advertising:

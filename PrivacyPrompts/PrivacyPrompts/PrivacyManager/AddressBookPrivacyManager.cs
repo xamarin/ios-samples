@@ -5,7 +5,7 @@ using Foundation;
 
 namespace PrivacyPrompts
 {
-	public class AddressBookPrivacyManager : IPrivacyManager
+	public class AddressBookPrivacyManager : IPrivacyManager, IDisposable
 	{
 		ABAddressBook addressBook;
 

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace PrivacyPrompts
 {
-	public interface IPrivacyManager : IDisposable
+	public interface IPrivacyManager
 	{
 		Task RequestAccess();
 		string CheckAccess();

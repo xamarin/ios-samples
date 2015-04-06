@@ -40,11 +40,5 @@ namespace PrivacyPrompts
 		}
 
 		public IPrivacyManager PrivacyManager { get; set; }
-
-		public override void ViewWillDisappear (bool animated)
-		{
-			base.ViewWillDisappear (animated);
-			PrivacyManager.Dispose ();
-		}
 	}
 }

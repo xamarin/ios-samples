@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PrivacyPrompts
 {
-	public class EKEntityPrivacyManager : IPrivacyManager
+	public class EKEntityPrivacyManager : IPrivacyManager, IDisposable
 	{
 		readonly EKEntityType type;
 		readonly EKEventStore eventStore = new EKEventStore();

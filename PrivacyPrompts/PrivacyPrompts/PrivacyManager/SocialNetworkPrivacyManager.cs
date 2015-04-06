@@ -6,7 +6,7 @@ using Foundation;
 
 namespace PrivacyPrompts
 {
-	public class SocialNetworkPrivacyManager : IPrivacyManager
+	public class SocialNetworkPrivacyManager : IPrivacyManager, IDisposable
 	{
 		readonly ACAccountStore accountStore;
 		readonly NSString socialNetwork;

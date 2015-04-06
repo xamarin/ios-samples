@@ -17,10 +17,6 @@ namespace PrivacyPrompts
 		{
 			return PHPhotoLibrary.AuthorizationStatus.ToString ();
 		}
-
-		public void Dispose ()
-		{
-		}
 	}
 }
 
