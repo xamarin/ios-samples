@@ -122,10 +122,12 @@ namespace PrivacyPrompts
 					throw new NotImplementedException ();
 
 				case DataClass.Reminders:
+					return new EKEntityPrivacyManager (viewController, EKEntityType.Reminder);
+
+				case DataClass.Calendars:
 					return new EKEntityPrivacyManager (viewController, EKEntityType.Event);
 
 				case DataClass.Notifications:
-				case DataClass.Calendars:
 
 				case DataClass.Contacts:
 				case DataClass.Photos:
