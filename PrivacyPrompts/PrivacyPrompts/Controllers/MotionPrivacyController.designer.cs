@@ -12,13 +12,37 @@ namespace PrivacyPrompts
 	partial class MotionPrivacyController
 	{
 		[Outlet]
+		UIKit.UILabel accessStatus { get; set; }
+
+		[Outlet]
+		UIKit.UIButton requestBtn { get; set; }
+
+		[Outlet]
 		UIKit.UILabel StepsLbl { get; set; }
+
+		[Outlet]
+		UIKit.UILabel titleLbl { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (StepsLbl != null) {
 				StepsLbl.Dispose ();
 				StepsLbl = null;
+			}
+
+			if (titleLbl != null) {
+				titleLbl.Dispose ();
+				titleLbl = null;
+			}
+
+			if (accessStatus != null) {
+				accessStatus.Dispose ();
+				accessStatus = null;
+			}
+
+			if (requestBtn != null) {
+				requestBtn.Dispose ();
+				requestBtn = null;
 			}
 		}
 	}

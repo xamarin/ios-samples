@@ -63,11 +63,17 @@ namespace PrivacyPrompts
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
-			var destinationVC = segue.DestinationViewController;
-			destinationVC.Title = currentSelection.ToString ();
+			var vc = segue.DestinationViewController;
+			vc.Title = currentSelection.ToString ();
 
-			var privacyVC = (PrivacyDetailViewController)destinationVC;
-			privacyVC.PrivacyManager = GetPrivacyManagerFor (currentSelection);
+			if (segue.Identifier == DefaultSegueId)
+				Setup ((PrivacyDetailViewController)vc, currentSelection);
+			else if (segue.Identifier == MotionSegueId)
+				Setup ((MotionPrivacyController)vc);
+			else if (segue.Identifier == LocationSegueId)
+				Setup ((LocationPrivacyViewController)vc);
+			else
+				base.PrepareForSegue (segue, sender);
 		}
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
@@ -111,58 +117,77 @@ namespace PrivacyPrompts
 			}
 		}
 
-		IPrivacyManager GetPrivacyManagerFor(DataClass type)
+		void Setup(PrivacyDetailViewController vc, DataClass type)
 		{
+			IPrivacyManager manager = null;
 			switch (type) {
-				case DataClass.Location:
-					throw new NotImplementedException ();
-
-					// TODO: this is another segue
-				case DataClass.Motion:
-					return new SimplePrivacyManager();
-
 				case DataClass.Reminders:
-					return new EKEntityPrivacyManager (EKEntityType.Reminder);
+					manager = new EKEntityPrivacyManager (EKEntityType.Reminder);
+					break;
 
 				case DataClass.Calendars:
-					return new EKEntityPrivacyManager (EKEntityType.Event);
+					manager = new EKEntityPrivacyManager (EKEntityType.Event);
+					break;
 
 				case DataClass.Facebook:
-					return new SocialNetworkPrivacyManager (ACAccountType.Facebook);
+					manager = new SocialNetworkPrivacyManager (ACAccountType.Facebook);
+					break;
 
 				case DataClass.Twitter:
-					return new SocialNetworkPrivacyManager (ACAccountType.Twitter);
+					manager = new SocialNetworkPrivacyManager (ACAccountType.Twitter);
+					break;
 
 				case DataClass.SinaWeibo:
-					return new SocialNetworkPrivacyManager (ACAccountType.SinaWeibo);
+					manager = new SocialNetworkPrivacyManager (ACAccountType.SinaWeibo);
+					break;
 
 				case DataClass.TencentWeibo:
-					return new SocialNetworkPrivacyManager (ACAccountType.TencentWeibo);
+					manager = new SocialNetworkPrivacyManager (ACAccountType.TencentWeibo);
+					break;
 
 				case DataClass.Notifications:
-					return new NotificationsPrivacyManager ((AppDelegate)UIApplication.SharedApplication.Delegate);
+					manager = new NotificationsPrivacyManager ((AppDelegate)UIApplication.SharedApplication.Delegate);
+					break;
 
 				case DataClass.Contacts:
-					return new AddressBookPrivacyManager ();
+					manager = new AddressBookPrivacyManager ();
+					break;
 
 				case DataClass.Photos:
-					return new PhotoPrivacyManager ();
+					manager = new PhotoPrivacyManager ();
+					break;
 
 				case DataClass.Video:
-					return new VideoCapturePrivacyManager ();
+					manager = new VideoCapturePrivacyManager ();
+					break;
 
 				case DataClass.Microphone:
-					return new MicrophonePrivacyManager ();
+					manager = new MicrophonePrivacyManager ();
+					break;
 
 				case DataClass.Bluetooth:
-					return new BluetoothPrivacyManager ();
+					manager = new BluetoothPrivacyManager ();
+					break;
 
 				case DataClass.Advertising:
-					return new AdvertisingPrivacyManager ();
+					manager = new AdvertisingPrivacyManager ();
+					break;
 
 				default:
 					throw new NotImplementedException ();
 			}
+
+			vc.PrivacyManager = manager;
+		}
+
+		void Setup(MotionPrivacyController vc)
+		{
+			vc.PrivacyManager = new MotionPrivacyManager ();
+		}
+
+		void Setup(LocationPrivacyViewController vc)
+		{
+			vc.PrivacyManager = new LocationPrivacyManager ();
 		}
 	}
 }

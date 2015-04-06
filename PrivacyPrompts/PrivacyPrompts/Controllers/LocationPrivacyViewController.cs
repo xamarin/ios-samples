@@ -9,36 +9,50 @@ namespace PrivacyPrompts
 {
 	public partial class LocationPrivacyViewController : UIViewController
 	{
-		public UILabel TitleLabel {
-			get {
-				return titleLbl;
-			}
+		public LocationPrivacyManager PrivacyManager { get; set; }
+
+		public LocationPrivacyViewController(IntPtr handle)
+			: base(handle)
+		{
 		}
 
-		public UILabel AccessStatus {
-			get {
-				return accessStatus;
-			}
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+
+			requestBtn.TouchUpInside += RequestAccessButtonClicked;
+
+			titleLbl.Text = Title;
+			accessStatus.Text = "Indeterminate";
+			requestBtn.SetTitle ("Request access", UIControlState.Normal);
+
+			accessStatus.Text = PrivacyManager.CheckAccess ();
+			locationLbl.Text = string.Empty;
 		}
 
-		public UIButton RequestAccessButton {
-			get {
-				return requestBtn;
-			}
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+			PrivacyManager.LocationChanged += OnLocationChanged;
 		}
 
-		public UILabel LocationLbl {
-			get {
-				return locationLbl;
-			}
+		public override void ViewWillDisappear (bool animated)
+		{
+			PrivacyManager.LocationChanged -= OnLocationChanged;
 		}
 
-		public MKMapView Map {
-			get {
-				return map;
-			}
+		void OnLocationChanged (object sender, EventArgs e)
+		{
+			locationLbl.Text = PrivacyManager.LocationInfo;
+			map.Region = PrivacyManager.Region;
+			map.ShowsUserLocation = true;
 		}
 
-		public IPrivacyManager PrivacyManager { get; set; }
+		async void RequestAccessButtonClicked (object sender, EventArgs e)
+		{
+			await PrivacyManager.RequestAccess ();
+			accessStatus.Text = PrivacyManager.CheckAccess ();
+		}
 	}
 }

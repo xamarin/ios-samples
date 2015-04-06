@@ -132,6 +132,7 @@
       <DependentUpon>MotionPrivacyController.cs</DependentUpon>
     </Compile>
     <Compile Include="PrivacyManager\SimplePrivacyManager.cs" />
+    <Compile Include="PrivacyManager\MotionPrivacyManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />

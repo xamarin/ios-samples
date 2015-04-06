@@ -16,24 +16,6 @@ namespace PrivacyPrompts
 	[Register("PrivacyDetailViewController")]
 	public partial class PrivacyDetailViewController : UIViewController
 	{
-		public UILabel TitleLabel {
-			get {
-				return titleLbl;
-			}
-		}
-
-		public UILabel AccessStatus {
-			get {
-				return accessStatus;
-			}
-		}
-
-		public UIButton RequestAccessButton {
-			get {
-				return requestBtn;
-			}
-		}
-
 		// Dependency Injection via property
 		public IPrivacyManager PrivacyManager { get; set; }
 
@@ -51,88 +33,19 @@ namespace PrivacyPrompts
 		{
 			base.ViewDidLoad ();
 
-			RequestAccessButton.TouchUpInside += RequestAccessButtonClicked;
+			requestBtn.TouchUpInside += RequestAccessButtonClicked;
 
-			TitleLabel.Text = Title;
-			AccessStatus.Text = "Indeterminate";
-			RequestAccessButton.SetTitle ("Request access", UIControlState.Normal);
+			titleLbl.Text = Title;
+			accessStatus.Text = "Indeterminate";
+			requestBtn.SetTitle ("Request access", UIControlState.Normal);
 
-			AccessStatus.Text = PrivacyManager.CheckAccess ();
+			accessStatus.Text = PrivacyManager.CheckAccess ();
 		}
 
 		async void RequestAccessButtonClicked (object sender, EventArgs e)
 		{
 			await PrivacyManager.RequestAccess ();
-			AccessStatus.Text = PrivacyManager.CheckAccess ();
+			accessStatus.Text = PrivacyManager.CheckAccess ();
 		}
-
-		// TODO: Remove this method
-		protected void UpdateStatus()
-		{
-			throw new NotImplementedException ();
-		}
-
-		/*
-		public static PrivacyDetailViewController CreateFor (DataClass selected)
-		{
-			PrivacyDetailViewController viewController = null;
-			UIStoryboard storyboard = UIStoryboard.FromName ("MainStoryboard", null);
-
-			switch (selected) {
-			case DataClass.Location:
-					viewController = (PrivacyDetailViewController)storyboard.InstantiateViewController ("DetailViewController");
-//				viewController = new LocationPrivacyViewController ();
-				break;
-				case DataClass.Notifications:
-					viewController = (PrivacyDetailViewController)storyboard.InstantiateViewController ("DetailViewController");
-//					viewController = new NotificationsPrivacyController ();
-				break;
-			case DataClass.Calendars:
-				viewController = new EKEntityPrivacyController (EKEntityType.Event);
-				break;
-			case DataClass.Reminders:
-				viewController = new EKEntityPrivacyController (EKEntityType.Reminder);
-				break;
-			case DataClass.Contacts:
-				viewController = new AddressBookPrivacyController ();
-				break;
-			case DataClass.Photos:
-				viewController = new PhotoPrivacyController ();
-				break;
-			case DataClass.Video:
-				viewController = new VideoCapturePrivacyController ();
-				break;
-			case DataClass.Microphone:
-				viewController = new MicrophonePrivacyController ();
-				break;
-			case DataClass.Bluetooth:
-				viewController = new BluetoothPrivacyController ();
-				break;
-			case DataClass.Motion:
-				viewController = new MotionPrivacyController ();
-				break;
-			case DataClass.Facebook:
-				viewController = new SocialNetworkPrivacyController (ACAccountType.Facebook);
-				break;
-			case DataClass.Twitter:
-				viewController = new SocialNetworkPrivacyController (ACAccountType.Twitter);
-				break;
-			case DataClass.SinaWeibo:
-				viewController = new SocialNetworkPrivacyController (ACAccountType.SinaWeibo);
-				break;
-			case DataClass.TencentWeibo:
-				viewController = new SocialNetworkPrivacyController (ACAccountType.TencentWeibo);
-				break;
-			case DataClass.Advertising:
-				viewController = new AdvertisingPrivacyController ();
-				break;
-			default:
-				throw new ArgumentOutOfRangeException ();
-			}
-			viewController.Title = selected.ToString ();
-			Console.WriteLine (viewController.Title);
-			return viewController;
-		}
-		*/
 	}
 }

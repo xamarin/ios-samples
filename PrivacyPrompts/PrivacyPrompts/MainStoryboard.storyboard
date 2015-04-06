@@ -67,8 +67,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[access status]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TnP-85-vzh">
-                                <rect key="frame" x="95" y="272" width="131" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[access status]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TnP-85-vzh">
+                                <rect key="frame" x="16" y="272" width="288" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -84,9 +84,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="cbL-Pk-dJE" secondAttribute="centerX" id="Blg-mf-fme"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TnP-85-vzh" secondAttribute="trailing" id="SXt-r2-FGy"/>
                             <constraint firstAttribute="centerX" secondItem="TnP-85-vzh" secondAttribute="centerX" id="XFp-0k-Gia"/>
                             <constraint firstAttribute="centerY" secondItem="TnP-85-vzh" secondAttribute="centerY" id="cJB-y1-Jvo"/>
                             <constraint firstItem="TnP-85-vzh" firstAttribute="top" secondItem="Fk1-Jq-a2W" secondAttribute="bottom" constant="20" id="e5A-dg-eb8"/>
+                            <constraint firstItem="TnP-85-vzh" firstAttribute="leading" secondItem="wuk-Ou-BV7" secondAttribute="leadingMargin" id="qaa-Ll-G3e"/>
                             <constraint firstItem="cbL-Pk-dJE" firstAttribute="top" secondItem="TnP-85-vzh" secondAttribute="bottom" constant="20" id="qvU-6w-ZgL"/>
                             <constraint firstAttribute="centerX" secondItem="TnP-85-vzh" secondAttribute="centerX" id="suD-RC-7yk"/>
                             <constraint firstAttribute="centerX" secondItem="Fk1-Jq-a2W" secondAttribute="centerX" id="u27-Fw-9PT"/>
@@ -116,26 +118,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Title]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsq-ge-J1s">
-                                <rect key="frame" x="137" y="84" width="47" height="24"/>
+                                <rect key="frame" x="137" y="178" width="47" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[access status]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vce-qu-JQ5">
-                                <rect key="frame" x="95" y="128" width="131" height="24"/>
+                                <rect key="frame" x="95" y="222" width="131" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="324-eh-U4c">
-                                <rect key="frame" x="90" y="172" width="141" height="36"/>
+                                <rect key="frame" x="90" y="266" width="141" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Request access">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[steps]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcm-WF-QtT">
-                                <rect key="frame" x="16" y="238" width="288" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[step info]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcm-WF-QtT">
+                                <rect key="frame" x="16" y="332" width="288" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -145,22 +147,22 @@
                         <constraints>
                             <constraint firstItem="Rcm-WF-QtT" firstAttribute="leading" secondItem="bMg-gU-PPX" secondAttribute="leadingMargin" id="2XG-hx-KXZ"/>
                             <constraint firstItem="Rcm-WF-QtT" firstAttribute="top" secondItem="324-eh-U4c" secondAttribute="bottom" constant="30" id="3Br-L0-MEx"/>
+                            <constraint firstAttribute="centerY" secondItem="324-eh-U4c" secondAttribute="centerY" id="DgM-gd-pt1"/>
                             <constraint firstAttribute="centerX" secondItem="324-eh-U4c" secondAttribute="centerX" id="HNj-nD-1SD"/>
                             <constraint firstAttribute="centerX" secondItem="vce-qu-JQ5" secondAttribute="centerX" id="Ms2-Xr-0OR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Rcm-WF-QtT" secondAttribute="trailing" id="cWH-2n-HTs"/>
                             <constraint firstAttribute="centerX" secondItem="Tsq-ge-J1s" secondAttribute="centerX" id="gki-Ym-6oC"/>
                             <constraint firstItem="vce-qu-JQ5" firstAttribute="top" secondItem="Tsq-ge-J1s" secondAttribute="bottom" constant="20" id="hzn-zs-pnE"/>
                             <constraint firstItem="324-eh-U4c" firstAttribute="top" secondItem="vce-qu-JQ5" secondAttribute="bottom" constant="20" id="itk-CL-HON"/>
-                            <constraint firstItem="Tsq-ge-J1s" firstAttribute="top" secondItem="3pM-A6-SNC" secondAttribute="bottom" constant="20" id="mf2-iG-akb"/>
                             <constraint firstAttribute="centerX" secondItem="Rcm-WF-QtT" secondAttribute="centerX" id="vDH-vj-9Cl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sgH-2j-v4x"/>
                     <connections>
                         <outlet property="StepsLbl" destination="Rcm-WF-QtT" id="BV8-1f-XrI"/>
-                        <outlet property="accessStatus" destination="vce-qu-JQ5" id="3Dm-Wa-mpj"/>
-                        <outlet property="requestBtn" destination="324-eh-U4c" id="e8c-kN-Yju"/>
-                        <outlet property="titleLbl" destination="Tsq-ge-J1s" id="WMr-WF-I0i"/>
+                        <outlet property="accessStatus" destination="vce-qu-JQ5" id="KOq-1u-KpI"/>
+                        <outlet property="requestBtn" destination="324-eh-U4c" id="fcE-Pw-Vws"/>
+                        <outlet property="titleLbl" destination="Tsq-ge-J1s" id="PAP-n5-dt8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3M0-c0-JNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

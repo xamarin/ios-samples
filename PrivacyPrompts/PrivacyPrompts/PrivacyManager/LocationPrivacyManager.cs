@@ -2,13 +2,18 @@
 using CoreLocation;
 using Foundation;
 using MapKit;
+using System.Threading.Tasks;
 
 namespace PrivacyPrompts
 {
-	public class LocationPrivacyManager //: IPrivacyManager
+	public class LocationPrivacyManager : IPrivacyManager
 	{
+		public event EventHandler LocationChanged;
+
 		readonly CLLocationManager locationManager;
 		readonly LocationPrivacyViewController viewController;
+
+		TaskCompletionSource<object> tcs;
 
 		public CLLocationManager LocationManager {
 			get {
@@ -16,9 +21,16 @@ namespace PrivacyPrompts
 			}
 		}
 
-		public LocationPrivacyManager (LocationPrivacyViewController vc)
+		public MKCoordinateRegion Region { get; private set; }
+
+		public string LocationInfo {
+			get {
+				return LocationManager.Location.ToString();
+			}
+		}
+
+		public LocationPrivacyManager ()
 		{
-			viewController = vc;
 			locationManager = new CLLocationManager ();
 
 			// If previously allowed, start location manager
@@ -37,27 +49,30 @@ namespace PrivacyPrompts
 
 		void OnLocationsUpdated (object sender, CLLocationsUpdatedEventArgs e)
 		{
-			viewController.LocationLbl.Text = LocationManager.Location.ToString();
+			Region = new MKCoordinateRegion(LocationManager.Location.Coordinate, new MKCoordinateSpan(0.1, 0.1));
 
-			MKCoordinateRegion region = new MKCoordinateRegion(LocationManager.Location.Coordinate, new MKCoordinateSpan(0.1, 0.1));
-			viewController.Map.SetRegion(region, true);
+			var handler = LocationChanged;
+			if (handler != null)
+				handler (this, EventArgs.Empty);
 		}
 
 		void OnAuthorizationChanged (object sender, CLAuthorizationChangedEventArgs e)
 		{
-			viewController.AccessStatus.Text = e.Status.ToString();
 			if (e.Status == CLAuthorizationStatus.AuthorizedWhenInUse)
-			{
-				viewController.Map.ShowsUserLocation = true;
 				LocationManager.StartUpdatingLocation ();
-			}
+
+			if(tcs != null)
+				tcs.SetResult (null);
 		}
 
-		public void RequestAccess ()
+		public Task RequestAccess ()
 		{
 			// Also note that info.plist has the NSLocationWhenInUseUsageDescription key
 			// This call is asynchronous
 			LocationManager.RequestWhenInUseAuthorization ();
+
+			tcs = new TaskCompletionSource<object> ();
+			return tcs.Task;
 		}
 
 		public string CheckAccess ()

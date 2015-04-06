@@ -14,69 +14,34 @@ namespace PrivacyPrompts
 	/// CMError.MotionActivityNotAuthorized
 	/// </summary>
 	[Register("MotionPrivacyController")]
-	public partial class MotionPrivacyController : PrivacyDetailViewController
+	public partial class MotionPrivacyController : UIViewController
 	{
-		CMStepCounter stepCounter;
-		string motionStatus;
+		public MotionPrivacyManager PrivacyManager { get; set; }
 
 		public MotionPrivacyController (IntPtr handle)
 			: base (handle)
 		{
-			
-		}
-
-		public MotionPrivacyController ()
-		{
-			motionStatus = "Indeterminate";
 		}
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
-			StepsLbl.Text = "102 steps";
+			requestBtn.TouchUpInside += RequestAccessButtonClicked;
 
-			/*
-			var cm = new CMMotionManager ();
-			if (cm.DeviceMotionAvailable == false) {
-				motionStatus = "Not available";
-				RequestAccessButton.Enabled = false;
-			}
-			AccessStatus.Text = motionStatus;
-			*/
+			titleLbl.Text = Title;
+			accessStatus.Text = "Indeterminate";
+			requestBtn.SetTitle ("Request access", UIControlState.Normal);
+
+			accessStatus.Text = PrivacyManager.CheckAccess ();
+			StepsLbl.Text = string.Empty;
 		}
 
-		/*
-		protected override string CheckAccess ()
+		async void RequestAccessButtonClicked (object sender, EventArgs e)
 		{
-			return motionStatus;
+			await PrivacyManager.RequestAccess ();
+			accessStatus.Text = PrivacyManager.CheckAccess ();
+			StepsLbl.Text = PrivacyManager.GetCountsInfo ();
 		}
-
-		protected override void RequestAccess ()
-		{
-			stepCounter = new CMStepCounter ();
-			stepCounter.QueryStepCount(
-				NSDate.FromTimeIntervalSinceNow(-60 * 60 * 24),
-				NSDate.Now,
-				NSOperationQueue.MainQueue, ((steps, error) => {
-					if(error != null && error.Code == (int) CMError.MotionActivityNotAuthorized)
-					{
-						motionStatus = "Not Authorized";
-						UpdateStatus();
-					}
-					else
-					{
-						motionStatus = "Available";
-						var stepMsg = String.Format("You have taken {0} steps in the past 24 hours", steps);
-						InvokeOnMainThread(() => {
-							stepsMessage.Text = stepMsg;
-							UpdateStatus();
-						});
-					}
-				}));
-		}
-		*/
-
 	}
 }
-
