@@ -11,7 +11,6 @@ namespace PrivacyPrompts
 		public event EventHandler LocationChanged;
 
 		readonly CLLocationManager locationManager;
-		readonly LocationPrivacyViewController viewController;
 
 		TaskCompletionSource<object> tcs;
 

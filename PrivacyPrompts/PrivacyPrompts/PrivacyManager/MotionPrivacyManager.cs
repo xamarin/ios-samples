@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 using CoreMotion;
 using Foundation;
+using UIKit;
 
 namespace PrivacyPrompts
 {
@@ -12,51 +13,63 @@ namespace PrivacyPrompts
 		string motionStatus = "Indeterminate";
 		nint steps = 0;
 
-		CMMotionManager motionManger = new CMMotionManager ();
-
-		bool IsMotionAvailable {
-			get {
-				return motionManger.DeviceMotionAvailable;
-			}
-		}
+		CMMotionManager motionManger; // before iOS 8.0
+		CMPedometer pedometer; // since iOS 8.0
 
 		public MotionPrivacyManager ()
 		{
-			stepCounter = new CMStepCounter ();
-
-			if (!IsMotionAvailable)
-				motionStatus = "Not available";
+			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
+				pedometer = new CMPedometer ();
+				motionStatus = CMPedometer.IsStepCountingAvailable ? "Available" : "Not available";
+			} else {
+				stepCounter = new CMStepCounter ();
+				motionManger = new CMMotionManager ();
+				motionStatus = motionManger.DeviceMotionAvailable ? "Available" : "Not available";
+			}
 		}
 
 		public Task RequestAccess ()
 		{
-			if (!IsMotionAvailable)
-				return Task.FromResult<object> (null);
-
 			var yesterday = NSDate.FromTimeIntervalSinceNow (-60 * 60 * 24);
 
-			return stepCounter.QueryStepCountAsync (yesterday, NSDate.Now, NSOperationQueue.MainQueue)
-				.ContinueWith (StepQueryContinuation);
+			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
+				if(!CMPedometer.IsStepCountingAvailable)
+					return Task.FromResult<object> (null);
+
+				return pedometer.QueryPedometerDataAsync (yesterday, NSDate.Now)
+					.ContinueWith (PedometrQueryContinuation);
+			} else {
+				if (!motionManger.DeviceMotionAvailable)
+					return Task.FromResult<object> (null);
+
+				return stepCounter.QueryStepCountAsync (yesterday, NSDate.Now, NSOperationQueue.MainQueue)
+					.ContinueWith (StepQueryContinuation);
+			}
+
+		}
+
+		void PedometrQueryContinuation(Task<CMPedometerData> t)
+		{
+			if (t.IsFaulted) {
+				var code = ((NSErrorException)t.Exception.InnerException).Code;
+				if (code == (int)CMError.MotionActivityNotAuthorized)
+					motionStatus = "Not Authorized";
+				return;
+			}
+
+			steps = t.Result.NumberOfSteps.NIntValue;
 		}
 
 		void StepQueryContinuation(Task<nint> t)
 		{
 			if (t.IsFaulted) {
 				var code = ((NSErrorException)t.Exception.InnerException).Code;
-				motionStatus = GetStatusForErrorCode (code);
+				if (code == (int)CMError.MotionActivityNotAuthorized)
+					motionStatus = "Not Authorized";
 				return;
 			}
 
-			motionStatus = "Available";
 			steps = t.Result;
-		}
-
-		string GetStatusForErrorCode(nint code)
-		{
-			if (code == (int)CMError.MotionActivityNotAuthorized)
-				return "Not Authorized";
-			else
-				return "Available";
 		}
 
 		public string CheckAccess ()
