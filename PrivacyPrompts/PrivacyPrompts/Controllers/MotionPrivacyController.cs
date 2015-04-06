@@ -7,56 +7,43 @@ using CoreGraphics;
 
 namespace PrivacyPrompts
 {
-	/*
-	Note: Accessing motion activity requires your project to have an entitlements.plist file
-
-	There is no API that allows you to directly check for access. Instead, you have to use
-	the technique illustrated here: perform a query and check for an error of type
-	CMError.MotionActivityNotAuthorized
-
-	 */
-	public class MotionPrivacyController : PrivacyDetailViewController
+	/// <summary>
+	/// Note: Accessing motion activity requires your project to have an entitlements.plist file
+	/// There is no API that allows you to directly check for access. Instead, you have to use
+	/// the technique illustrated here: perform a query and check for an error of type
+	/// CMError.MotionActivityNotAuthorized
+	/// </summary>
+	[Register("MotionPrivacyController")]
+	public partial class MotionPrivacyController : PrivacyDetailViewController
 	{
 		CMStepCounter stepCounter;
 		string motionStatus;
-		UILabel stepsMessage;
+
+		public MotionPrivacyController (IntPtr handle)
+			: base (handle)
+		{
+			
+		}
 
 		public MotionPrivacyController ()
 		{
 			motionStatus = "Indeterminate";
 		}
 
-		void AddStepsMessage()
-		{
-			stepsMessage = new UILabel (CGRect.Empty);
-			stepsMessage.TranslatesAutoresizingMaskIntoConstraints = false;
-			stepsMessage.Lines = 0;
-			stepsMessage.Font = UIFont.SystemFontOfSize (UIFont.SmallSystemFontSize);
-
-			this.View.AddSubview (stepsMessage);
-
-			stepsMessage.AddConstraints (new [] {
-				NSLayoutConstraint.Create (stepsMessage, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 1, 56),
-				NSLayoutConstraint.Create (stepsMessage, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.Width, 1, 300),
-			});
-
-			this.View.AddConstraints (new[] {
-				NSLayoutConstraint.Create (stepsMessage, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, TitleLabel, NSLayoutAttribute.CenterX, 1, 0),
-				NSLayoutConstraint.Create (stepsMessage, NSLayoutAttribute.Top, NSLayoutRelation.Equal, RequestAccessButton, NSLayoutAttribute.Bottom, 1, 40),
-			});
-		}
-
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			AddStepsMessage ();
 
+			StepsLbl.Text = "102 steps";
+
+			/*
 			var cm = new CMMotionManager ();
 			if (cm.DeviceMotionAvailable == false) {
 				motionStatus = "Not available";
 				RequestAccessButton.Enabled = false;
 			}
 			AccessStatus.Text = motionStatus;
+			*/
 		}
 
 		/*

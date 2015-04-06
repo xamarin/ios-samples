@@ -22,11 +22,6 @@ namespace PrivacyPrompts
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (titleLbl != null) {
-				titleLbl.Dispose ();
-				titleLbl = null;
-			}
-
 			if (accessStatus != null) {
 				accessStatus.Dispose ();
 				accessStatus = null;
@@ -35,6 +30,11 @@ namespace PrivacyPrompts
 			if (requestBtn != null) {
 				requestBtn.Dispose ();
 				requestBtn = null;
+			}
+
+			if (titleLbl != null) {
+				titleLbl.Dispose ();
+				titleLbl = null;
 			}
 		}
 	}

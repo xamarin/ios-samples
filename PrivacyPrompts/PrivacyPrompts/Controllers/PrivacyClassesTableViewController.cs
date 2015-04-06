@@ -17,6 +17,7 @@ namespace PrivacyPrompts
 	public partial class PrivacyClassesTableViewController : UITableViewController
 	{
 		const string LocationSegueId = "LocationSegue";
+		const string MotionSegueId = "MotionSegue";
 		const string DefaultSegueId = "DefaultSegue";
 
 		List<DataClass> availableItems;
@@ -87,9 +88,8 @@ namespace PrivacyPrompts
 				case DataClass.Location:
 					return LocationSegueId;
 
-					// TODO: this is another segue
 				case DataClass.Motion:
-					return DefaultSegueId;
+					return MotionSegueId;
 
 				case DataClass.Notifications:
 				case DataClass.Calendars:
@@ -119,7 +119,7 @@ namespace PrivacyPrompts
 
 					// TODO: this is another segue
 				case DataClass.Motion:
-					throw new NotImplementedException ();
+					return new SimplePrivacyManager();
 
 				case DataClass.Reminders:
 					return new EKEntityPrivacyManager (EKEntityType.Reminder);

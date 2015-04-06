@@ -42,6 +42,7 @@
                     <connections>
                         <segue destination="lKj-jS-Arn" kind="push" identifier="DefaultSegue" id="tcv-jX-Nu4"/>
                         <segue destination="liP-ck-IbI" kind="push" identifier="LocationSegue" id="BNr-2f-gf3"/>
+                        <segue destination="iy1-Fi-L8a" kind="push" identifier="MotionSegue" id="7hz-2K-YKX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zsE-fA-BMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -100,7 +101,71 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E0u-ZI-iz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="726" y="-704"/>
+            <point key="canvasLocation" x="726" y="-826"/>
+        </scene>
+        <!--Motion Privacy Controller-->
+        <scene sceneID="8sG-Id-KJ2">
+            <objects>
+                <viewController id="iy1-Fi-L8a" customClass="MotionPrivacyController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3pM-A6-SNC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Y3M-YW-5fe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bMg-gU-PPX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Title]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsq-ge-J1s">
+                                <rect key="frame" x="137" y="84" width="47" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[access status]" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vce-qu-JQ5">
+                                <rect key="frame" x="95" y="128" width="131" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="324-eh-U4c">
+                                <rect key="frame" x="90" y="172" width="141" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Request access">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[steps]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcm-WF-QtT">
+                                <rect key="frame" x="16" y="238" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Rcm-WF-QtT" firstAttribute="leading" secondItem="bMg-gU-PPX" secondAttribute="leadingMargin" id="2XG-hx-KXZ"/>
+                            <constraint firstItem="Rcm-WF-QtT" firstAttribute="top" secondItem="324-eh-U4c" secondAttribute="bottom" constant="30" id="3Br-L0-MEx"/>
+                            <constraint firstAttribute="centerX" secondItem="324-eh-U4c" secondAttribute="centerX" id="HNj-nD-1SD"/>
+                            <constraint firstAttribute="centerX" secondItem="vce-qu-JQ5" secondAttribute="centerX" id="Ms2-Xr-0OR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rcm-WF-QtT" secondAttribute="trailing" id="cWH-2n-HTs"/>
+                            <constraint firstAttribute="centerX" secondItem="Tsq-ge-J1s" secondAttribute="centerX" id="gki-Ym-6oC"/>
+                            <constraint firstItem="vce-qu-JQ5" firstAttribute="top" secondItem="Tsq-ge-J1s" secondAttribute="bottom" constant="20" id="hzn-zs-pnE"/>
+                            <constraint firstItem="324-eh-U4c" firstAttribute="top" secondItem="vce-qu-JQ5" secondAttribute="bottom" constant="20" id="itk-CL-HON"/>
+                            <constraint firstItem="Tsq-ge-J1s" firstAttribute="top" secondItem="3pM-A6-SNC" secondAttribute="bottom" constant="20" id="mf2-iG-akb"/>
+                            <constraint firstAttribute="centerX" secondItem="Rcm-WF-QtT" secondAttribute="centerX" id="vDH-vj-9Cl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="sgH-2j-v4x"/>
+                    <connections>
+                        <outlet property="StepsLbl" destination="Rcm-WF-QtT" id="BV8-1f-XrI"/>
+                        <outlet property="accessStatus" destination="vce-qu-JQ5" id="3Dm-Wa-mpj"/>
+                        <outlet property="requestBtn" destination="324-eh-U4c" id="e8c-kN-Yju"/>
+                        <outlet property="titleLbl" destination="Tsq-ge-J1s" id="WMr-WF-I0i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3M0-c0-JNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1120" y="-435"/>
         </scene>
         <!--Location Privacy View Controller-->
         <scene sceneID="9z1-iV-G9T">
