@@ -1,9 +1,6 @@
 using System;
-using CoreMotion;
-using System.Threading.Tasks;
-using Foundation;
+
 using UIKit;
-using CoreGraphics;
 
 namespace PrivacyPrompts
 {
@@ -13,7 +10,6 @@ namespace PrivacyPrompts
 	/// the technique illustrated here: perform a query and check for an error of type
 	/// CMError.MotionActivityNotAuthorized
 	/// </summary>
-	[Register("MotionPrivacyController")]
 	public partial class MotionPrivacyController : UIViewController
 	{
 		public MotionPrivacyManager PrivacyManager { get; set; }

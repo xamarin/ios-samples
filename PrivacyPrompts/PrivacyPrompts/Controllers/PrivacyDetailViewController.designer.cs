@@ -9,6 +9,7 @@ using System.CodeDom.Compiler;
 
 namespace PrivacyPrompts
 {
+	[Register("PrivacyDetailViewController")]
 	partial class PrivacyDetailViewController
 	{
 		[Outlet]

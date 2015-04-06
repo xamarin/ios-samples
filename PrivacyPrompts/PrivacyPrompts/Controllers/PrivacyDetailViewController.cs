@@ -1,19 +1,9 @@
 using System;
-using Foundation;
+
 using UIKit;
-using CoreGraphics;
-using AddressBook;
-using EventKit;
-using AssetsLibrary;
-using AVFoundation;
-using CoreBluetooth;
-using Accounts;
-using AdSupport;
-using CoreLocation;
 
 namespace PrivacyPrompts
 {
-	[Register("PrivacyDetailViewController")]
 	public partial class PrivacyDetailViewController : UIViewController
 	{
 		// Dependency Injection via property

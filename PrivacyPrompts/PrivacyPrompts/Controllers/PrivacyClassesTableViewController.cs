@@ -1,16 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using AVFoundation;
-using Accounts;
-using AdSupport;
-using AddressBook;
-using AssetsLibrary;
-using CoreBluetooth;
-using CoreLocation;
-using EventKit;
-using Foundation;
+
 using UIKit;
+using Foundation;
+using EventKit;
+using Accounts;
 
 namespace PrivacyPrompts
 {

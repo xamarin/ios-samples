@@ -9,6 +9,7 @@ using System.CodeDom.Compiler;
 
 namespace PrivacyPrompts
 {
+	[Register("MotionPrivacyController")]
 	partial class MotionPrivacyController
 	{
 		[Outlet]

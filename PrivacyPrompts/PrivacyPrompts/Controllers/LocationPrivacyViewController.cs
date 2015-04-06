@@ -1,9 +1,9 @@
 using System;
-using CoreLocation;
+
 using UIKit;
-using CoreGraphics;
-using MapKit;
 using Foundation;
+using MapKit;
+using CoreLocation;
 
 namespace PrivacyPrompts
 {
