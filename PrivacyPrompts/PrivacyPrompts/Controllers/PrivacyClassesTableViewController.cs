@@ -16,7 +16,12 @@ namespace PrivacyPrompts
 {
 	public partial class PrivacyClassesTableViewController : UITableViewController
 	{
+		const string LocationSegueId = "LocationSegue";
+		const string DefaultSegueId = "DefaultSegue";
+
 		List<DataClass> availableItems;
+
+		DataClass currentSelection;
 
 		public PrivacyClassesTableViewController (IntPtr handle)
 			: base (handle)
@@ -57,25 +62,86 @@ namespace PrivacyPrompts
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
-			NSIndexPath indexPath = TableView.IndexPathForCell ((UITableViewCell)sender);
-			DataClass type = availableItems [indexPath.Row];
+			var destinationVC = segue.DestinationViewController;
+			destinationVC.Title = currentSelection.ToString ();
 
-			segue.DestinationViewController.Title = type.ToString ();
+			var privacyVC = (IPrivacyViewController)destinationVC;
+			privacyVC.PrivacyManager = GetPrivacyManagerFor (currentSelection, privacyVC);
 		}
 
-		/*
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			PrivacyDetailViewController viewController = null;
-
-			int index = TableView.IndexPathForSelectedRow.Row;
-			DataClass selected = availableItems[index];
-
-			viewController = PrivacyDetailViewController.CreateFor (selected);
-			viewController.Title = selected.ToString ();
-
-			NavigationController.PushViewController (viewController, true);
+			currentSelection = GetDataClass (indexPath);
+			string segueId = GetSegueIdFor (currentSelection);
+			PerformSegue (segueId, this);
 		}
-		*/
+
+		DataClass GetDataClass(NSIndexPath indexPath)
+		{
+			return availableItems [indexPath.Row];
+		}
+
+		string GetSegueIdFor(DataClass type)
+		{
+			switch (type) {
+				case DataClass.Location:
+					return LocationSegueId;
+
+					// TODO: this is another segue
+				case DataClass.Motion:
+					return DefaultSegueId;
+
+				case DataClass.Notifications:
+				case DataClass.Calendars:
+				case DataClass.Reminders:
+				case DataClass.Contacts:
+				case DataClass.Photos:
+				case DataClass.Video:
+				case DataClass.Microphone:
+				case DataClass.Bluetooth:
+				case DataClass.Facebook:
+				case DataClass.Twitter:
+				case DataClass.SinaWeibo:
+				case DataClass.TencentWeibo:
+				case DataClass.Advertising:
+					return DefaultSegueId;
+
+				default:
+					throw new NotImplementedException ();
+			}
+		}
+
+		IPrivacyManager GetPrivacyManagerFor(DataClass type, IPrivacyViewController viewController)
+		{
+			switch (type) {
+				case DataClass.Location:
+					throw new NotImplementedException ();
+
+					// TODO: this is another segue
+				case DataClass.Motion:
+					throw new NotImplementedException ();
+
+				case DataClass.Reminders:
+					return new EKEntityPrivacyManager (viewController, EKEntityType.Event);
+
+				case DataClass.Notifications:
+				case DataClass.Calendars:
+
+				case DataClass.Contacts:
+				case DataClass.Photos:
+				case DataClass.Video:
+				case DataClass.Microphone:
+				case DataClass.Bluetooth:
+				case DataClass.Facebook:
+				case DataClass.Twitter:
+				case DataClass.SinaWeibo:
+				case DataClass.TencentWeibo:
+				case DataClass.Advertising:
+					throw new NotImplementedException ();
+
+				default:
+					throw new NotImplementedException ();
+			}
+		}
 	}
 }

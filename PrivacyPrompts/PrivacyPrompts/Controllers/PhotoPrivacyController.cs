@@ -7,6 +7,7 @@ namespace PrivacyPrompts
 {
 	public class PhotoPrivacyController : PrivacyDetailViewController
 	{
+		/*
 		protected override string CheckAccess ()
 		{
 			return PHPhotoLibrary.AuthorizationStatus.ToString ();
@@ -16,6 +17,7 @@ namespace PrivacyPrompts
 		{
 			PHPhotoLibrary.RequestAuthorization (_ => UpdateStatus ());
 		}
+		*/
 	}
 }
 

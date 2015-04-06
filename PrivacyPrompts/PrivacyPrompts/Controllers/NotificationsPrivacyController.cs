@@ -32,6 +32,7 @@ namespace PrivacyPrompts
 			UpdateStatus();
 		}
 
+		/*
 		protected override string CheckAccess ()
 		{
 			var settings = UIApplication.SharedApplication.CurrentUserNotificationSettings;
@@ -49,6 +50,7 @@ namespace PrivacyPrompts
 			UIApplication.SharedApplication.RegisterUserNotificationSettings (settings);
 
 		}
+		*/
 
 		public override void ViewDidLoad ()
 		{

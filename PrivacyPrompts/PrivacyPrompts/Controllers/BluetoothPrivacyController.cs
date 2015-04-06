@@ -18,6 +18,7 @@ namespace PrivacyPrompts
 	{
 		readonly CBCentralManager cbManager = new CBCentralManager ();
 
+		/*
 		protected override string CheckAccess ()
 		{
 			return cbManager.State.ToString ();
@@ -30,6 +31,7 @@ namespace PrivacyPrompts
 			else
 				ShowError ();
 		}
+		*/
 
 		void ShowError()
 		{

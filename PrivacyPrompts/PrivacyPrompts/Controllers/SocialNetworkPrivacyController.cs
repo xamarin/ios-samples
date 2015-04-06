@@ -15,6 +15,7 @@ namespace PrivacyPrompts
 			socialNetwork = socialNetworkName;
 		}
 
+		/*
 		protected override string CheckAccess ()
 		{
 			ACAccountType socialAccount = accountStore.FindAccountType (socialNetwork);
@@ -40,6 +41,7 @@ namespace PrivacyPrompts
 					throw new ArgumentOutOfRangeException ();
 			}
 		}
+		*/
 
 		void RequestFacebookAccess ()
 		{
@@ -51,19 +53,19 @@ namespace PrivacyPrompts
 				"user_about_me"
 			});
 
-			SocialNetworkPrivacyController.accountStore.RequestAccess (facebookAccount, options, (s, e) => CheckAccess ());
+			SocialNetworkPrivacyController.accountStore.RequestAccess (facebookAccount, options, (s, e) => PrivacyManager.CheckAccess ());
 		}
 
 		void RequestTwitterAccess ()
 		{
 			ACAccountType twitterAccount = accountStore.FindAccountType (ACAccountType.Twitter);
-			SocialNetworkPrivacyController.accountStore.RequestAccess (twitterAccount, null, (s, e) => CheckAccess ());
+			SocialNetworkPrivacyController.accountStore.RequestAccess (twitterAccount, null, (s, e) => PrivacyManager.CheckAccess ());
 		}
 
 		void RequestSinaWeiboAccess ()
 		{
 			ACAccountType sinaWeiboAccount = accountStore.FindAccountType (ACAccountType.SinaWeibo);
-			SocialNetworkPrivacyController.accountStore.RequestAccess (sinaWeiboAccount, null, (s, e) => CheckAccess ());
+			SocialNetworkPrivacyController.accountStore.RequestAccess (sinaWeiboAccount, null, (s, e) => PrivacyManager.CheckAccess ());
 		}
 
 		void RequestTencentWeiboAccess ()
@@ -73,7 +75,7 @@ namespace PrivacyPrompts
 			AccountStoreOptions options = new AccountStoreOptions ();
 			options.TencentWeiboAppId = "MY_ID";
 
-			SocialNetworkPrivacyController.accountStore.RequestAccess (tencentWeiboAccount, options, (s, e) => CheckAccess ());
+			SocialNetworkPrivacyController.accountStore.RequestAccess (tencentWeiboAccount, options, (s, e) => PrivacyManager.CheckAccess ());
 		}
 	}
 }

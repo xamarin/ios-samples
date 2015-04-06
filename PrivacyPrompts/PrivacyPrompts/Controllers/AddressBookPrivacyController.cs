@@ -6,6 +6,7 @@ namespace PrivacyPrompts
 {
 	public class AddressBookPrivacyController : PrivacyDetailViewController
 	{
+		/*
 		protected override string CheckAccess ()
 		{
 			return ABAddressBook.GetAuthorizationStatus ().ToString ();
@@ -24,6 +25,7 @@ namespace PrivacyPrompts
 				InvokeOnMainThread (() => AccessStatus.Text = text);
 			});
 		}
+		*/
 	}
 }
 

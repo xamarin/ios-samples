@@ -99,6 +99,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Resources\Images.xcassets\" />
     <Folder Include="Controllers\" />
+    <Folder Include="PrivacyManager\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -106,7 +107,6 @@
     <Compile Include="Controllers\AddressBookPrivacyController.cs" />
     <Compile Include="Controllers\AdvertisingPrivacyController.cs" />
     <Compile Include="Controllers\BluetoothPrivacyController.cs" />
-    <Compile Include="Controllers\EKEntityPrivacyController.cs" />
     <Compile Include="Controllers\LocationPrivacyViewController.cs" />
     <Compile Include="Controllers\MicrophonePrivacyController.cs" />
     <Compile Include="Controllers\MotionPrivacyController.cs" />
@@ -122,6 +122,13 @@
     <Compile Include="Controllers\PrivacyDetailViewController.designer.cs">
       <DependentUpon>PrivacyDetailViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\LocationPrivacyViewController.designer.cs">
+      <DependentUpon>LocationPrivacyViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrivacyManager\IPrivacyManager.cs" />
+    <Compile Include="PrivacyManager\LocationPrivacyManager.cs" />
+    <Compile Include="Controllers\IPrivacyViewController.cs" />
+    <Compile Include="PrivacyManager\EKEntityPrivacyManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />

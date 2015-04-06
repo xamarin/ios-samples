@@ -59,6 +59,7 @@ namespace PrivacyPrompts
 			AccessStatus.Text = motionStatus;
 		}
 
+		/*
 		protected override string CheckAccess ()
 		{
 			return motionStatus;
@@ -87,6 +88,7 @@ namespace PrivacyPrompts
 					}
 				}));
 		}
+		*/
 
 	}
 }

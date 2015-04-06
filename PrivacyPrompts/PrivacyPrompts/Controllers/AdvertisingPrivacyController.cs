@@ -15,12 +15,13 @@ namespace PrivacyPrompts
 {
 	public class AdvertisingPrivacyController : PrivacyDetailViewController
 	{
+		/*
 		protected override string CheckAccess ()
 		{
 			return
 				ASIdentifierManager.SharedManager.IsAdvertisingTrackingEnabled ?
 				"granted" : "denied";
 		}
-
+		*/
 	}
 }

@@ -14,30 +14,32 @@ using CoreLocation;
 namespace PrivacyPrompts
 {
 	[Register("PrivacyDetailViewController")]
-	public partial class PrivacyDetailViewController : UIViewController
+	public partial class PrivacyDetailViewController : UIViewController, IPrivacyViewController
 	{
-		protected UILabel TitleLabel {
+		public UILabel TitleLabel {
 			get {
 				return titleLbl;
 			}
 		}
 
-		protected UILabel AccessStatus {
+		public UILabel AccessStatus {
 			get {
 				return accessStatus;
 			}
 		}
 
-		protected UIButton RequestAccessButton {
+		public UIButton RequestAccessButton {
 			get {
 				return requestBtn;
 			}
 		}
 
+		// Dependency Injection via property
+		public IPrivacyManager PrivacyManager { get; set; }
+
 		public PrivacyDetailViewController(IntPtr handle)
 			: base(handle)
 		{
-			
 		}
 
 		public PrivacyDetailViewController()
@@ -49,22 +51,21 @@ namespace PrivacyPrompts
 		{
 			base.ViewDidLoad ();
 
-			/*
-			RequestAccessButton.TouchUpInside += (s, e) => RequestAccess ();
+			RequestAccessButton.TouchUpInside += (s, e) => PrivacyManager.RequestAccess ();
 
 			TitleLabel.Text = Title;
 			AccessStatus.Text = "Indeterminate";
 			RequestAccessButton.SetTitle ("Request access", UIControlState.Normal);
 
-			AccessStatus.Text = CheckAccess ();
-			*/
+			AccessStatus.Text = PrivacyManager.CheckAccess ();
 		}
 
 		protected void UpdateStatus()
 		{
-			InvokeOnMainThread (() => AccessStatus.Text = CheckAccess ());
+			InvokeOnMainThread (() => AccessStatus.Text = PrivacyManager.CheckAccess ());
 		}
 
+		/*
 		public static PrivacyDetailViewController CreateFor (DataClass selected)
 		{
 			PrivacyDetailViewController viewController = null;
@@ -125,14 +126,6 @@ namespace PrivacyPrompts
 			Console.WriteLine (viewController.Title);
 			return viewController;
 		}
-
-		protected virtual void RequestAccess()
-		{
-		}
-
-		protected virtual string CheckAccess()
-		{
-			throw new NotImplementedException ();
-		}
+		*/
 	}
 }

@@ -18,6 +18,7 @@ namespace PrivacyPrompts
 	{
 		string micAccessText = "Not determined";
 
+		/*
 		// There is no way to check access prior to showing the dialog
 		protected override string CheckAccess ()
 		{
@@ -29,6 +30,7 @@ namespace PrivacyPrompts
 			RequestMicrophoneAccess (true);
 			RequestMicrophoneAccess (false);
 		}
+		*/
 
 		public void RequestMicrophoneAccess (bool usePermissionAPI)
 		{
