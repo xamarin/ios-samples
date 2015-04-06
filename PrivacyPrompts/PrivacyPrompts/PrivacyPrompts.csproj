@@ -117,7 +117,6 @@
       <DependentUpon>PrivacyClassesTableViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Controllers\PrivacyDetailViewController.cs" />
-    <Compile Include="Controllers\SocialNetworkPrivacyController.cs" />
     <Compile Include="Controllers\VideoCaptureViewController.cs" />
     <Compile Include="Controllers\PrivacyDetailViewController.designer.cs">
       <DependentUpon>PrivacyDetailViewController.cs</DependentUpon>
@@ -129,6 +128,7 @@
     <Compile Include="PrivacyManager\LocationPrivacyManager.cs" />
     <Compile Include="Controllers\IPrivacyViewController.cs" />
     <Compile Include="PrivacyManager\EKEntityPrivacyManager.cs" />
+    <Compile Include="PrivacyManager\SocialNetworkPrivacyManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />

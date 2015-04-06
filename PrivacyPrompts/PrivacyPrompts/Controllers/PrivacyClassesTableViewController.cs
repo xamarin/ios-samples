@@ -127,6 +127,18 @@ namespace PrivacyPrompts
 				case DataClass.Calendars:
 					return new EKEntityPrivacyManager (viewController, EKEntityType.Event);
 
+				case DataClass.Facebook:
+					return new SocialNetworkPrivacyManager (ACAccountType.Facebook, viewController);
+
+				case DataClass.Twitter:
+					return new SocialNetworkPrivacyManager (ACAccountType.Twitter, viewController);
+
+				case DataClass.SinaWeibo:
+					return new SocialNetworkPrivacyManager (ACAccountType.SinaWeibo, viewController);
+
+				case DataClass.TencentWeibo:
+					return new SocialNetworkPrivacyManager (ACAccountType.TencentWeibo, viewController);
+
 				case DataClass.Notifications:
 
 				case DataClass.Contacts:
@@ -134,10 +146,6 @@ namespace PrivacyPrompts
 				case DataClass.Video:
 				case DataClass.Microphone:
 				case DataClass.Bluetooth:
-				case DataClass.Facebook:
-				case DataClass.Twitter:
-				case DataClass.SinaWeibo:
-				case DataClass.TencentWeibo:
 				case DataClass.Advertising:
 					throw new NotImplementedException ();
 
