@@ -65,8 +65,8 @@ namespace PrivacyPrompts
 			var destinationVC = segue.DestinationViewController;
 			destinationVC.Title = currentSelection.ToString ();
 
-			var privacyVC = (IPrivacyViewController)destinationVC;
-			privacyVC.PrivacyManager = GetPrivacyManagerFor (currentSelection, privacyVC);
+			var privacyVC = (PrivacyDetailViewController)destinationVC;
+			privacyVC.PrivacyManager = GetPrivacyManagerFor (currentSelection);
 		}
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
@@ -111,7 +111,7 @@ namespace PrivacyPrompts
 			}
 		}
 
-		IPrivacyManager GetPrivacyManagerFor(DataClass type, IPrivacyViewController viewController)
+		IPrivacyManager GetPrivacyManagerFor(DataClass type)
 		{
 			switch (type) {
 				case DataClass.Location:
@@ -122,24 +122,25 @@ namespace PrivacyPrompts
 					throw new NotImplementedException ();
 
 				case DataClass.Reminders:
-					return new EKEntityPrivacyManager (viewController, EKEntityType.Reminder);
+					return new EKEntityPrivacyManager (EKEntityType.Reminder);
 
 				case DataClass.Calendars:
-					return new EKEntityPrivacyManager (viewController, EKEntityType.Event);
+					return new EKEntityPrivacyManager (EKEntityType.Event);
 
 				case DataClass.Facebook:
-					return new SocialNetworkPrivacyManager (ACAccountType.Facebook, viewController);
+					return new SocialNetworkPrivacyManager (ACAccountType.Facebook);
 
 				case DataClass.Twitter:
-					return new SocialNetworkPrivacyManager (ACAccountType.Twitter, viewController);
+					return new SocialNetworkPrivacyManager (ACAccountType.Twitter);
 
 				case DataClass.SinaWeibo:
-					return new SocialNetworkPrivacyManager (ACAccountType.SinaWeibo, viewController);
+					return new SocialNetworkPrivacyManager (ACAccountType.SinaWeibo);
 
 				case DataClass.TencentWeibo:
-					return new SocialNetworkPrivacyManager (ACAccountType.TencentWeibo, viewController);
+					return new SocialNetworkPrivacyManager (ACAccountType.TencentWeibo);
 
 				case DataClass.Notifications:
+					return new NotificationsPrivacyManager ((AppDelegate)UIApplication.SharedApplication.Delegate);
 
 				case DataClass.Contacts:
 				case DataClass.Photos:

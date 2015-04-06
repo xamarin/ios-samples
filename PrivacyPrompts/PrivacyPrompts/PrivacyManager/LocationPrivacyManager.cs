@@ -5,7 +5,7 @@ using MapKit;
 
 namespace PrivacyPrompts
 {
-	public class LocationPrivacyManager : IPrivacyManager
+	public class LocationPrivacyManager //: IPrivacyManager
 	{
 		readonly CLLocationManager locationManager;
 		readonly LocationPrivacyViewController viewController;
@@ -55,8 +55,8 @@ namespace PrivacyPrompts
 
 		public void RequestAccess ()
 		{
-			//Also note that info.plist has the NSLocationWhenInUseUsageDescription key
-			//This call is asynchronous
+			// Also note that info.plist has the NSLocationWhenInUseUsageDescription key
+			// This call is asynchronous
 			LocationManager.RequestWhenInUseAuthorization ();
 		}
 

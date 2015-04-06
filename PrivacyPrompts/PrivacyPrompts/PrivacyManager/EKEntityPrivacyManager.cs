@@ -1,27 +1,26 @@
 ﻿using System;
 using EventKit;
 using Foundation;
+using System.Threading.Tasks;
 
 namespace PrivacyPrompts
 {
 	public class EKEntityPrivacyManager : IPrivacyManager
 	{
-		readonly IPrivacyViewController viewController;
 		readonly EKEntityType type;
 		readonly EKEventStore eventStore = new EKEventStore();
 
-		public EKEntityPrivacyManager (IPrivacyViewController vc, EKEntityType entityType)
+		public EKEntityPrivacyManager (EKEntityType entityType)
 		{
-			viewController = vc;
 			type = entityType;
 		}
 
-		public void RequestAccess ()
+		public Task RequestAccess ()
 		{
-			eventStore.RequestAccess (type, (granted, accessError) => {
-				string text = string.Format ("Access {0}", granted ? "allowed" : "denied");
-				eventStore.InvokeOnMainThread (() => viewController.AccessStatus.Text = text);
-			});
+			var tcs = new TaskCompletionSource<object> ();
+
+			eventStore.RequestAccess (type, (granted, accessError) => tcs.SetResult (null));
+			return tcs.Task;
 		}
 
 		public string CheckAccess ()

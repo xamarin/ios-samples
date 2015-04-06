@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace PrivacyPrompts
 {
 	public interface IPrivacyManager : IDisposable
 	{
-		void RequestAccess();
+		Task RequestAccess();
 		string CheckAccess();
 	}
 }

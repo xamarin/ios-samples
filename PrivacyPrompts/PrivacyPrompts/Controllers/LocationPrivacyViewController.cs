@@ -7,7 +7,7 @@ using Foundation;
 
 namespace PrivacyPrompts
 {
-	public partial class LocationPrivacyViewController : UIViewController, IPrivacyViewController
+	public partial class LocationPrivacyViewController : UIViewController
 	{
 		public UILabel TitleLabel {
 			get {

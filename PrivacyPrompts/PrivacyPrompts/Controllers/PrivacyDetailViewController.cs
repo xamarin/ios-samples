@@ -14,7 +14,7 @@ using CoreLocation;
 namespace PrivacyPrompts
 {
 	[Register("PrivacyDetailViewController")]
-	public partial class PrivacyDetailViewController : UIViewController, IPrivacyViewController
+	public partial class PrivacyDetailViewController : UIViewController
 	{
 		public UILabel TitleLabel {
 			get {
@@ -51,7 +51,7 @@ namespace PrivacyPrompts
 		{
 			base.ViewDidLoad ();
 
-			RequestAccessButton.TouchUpInside += (s, e) => PrivacyManager.RequestAccess ();
+			RequestAccessButton.TouchUpInside += RequestAccessButtonClicked;
 
 			TitleLabel.Text = Title;
 			AccessStatus.Text = "Indeterminate";
@@ -60,9 +60,16 @@ namespace PrivacyPrompts
 			AccessStatus.Text = PrivacyManager.CheckAccess ();
 		}
 
+		async void RequestAccessButtonClicked (object sender, EventArgs e)
+		{
+			await PrivacyManager.RequestAccess ();
+			AccessStatus.Text = PrivacyManager.CheckAccess ();
+		}
+
+		// TODO: Remove this method
 		protected void UpdateStatus()
 		{
-			InvokeOnMainThread (() => AccessStatus.Text = PrivacyManager.CheckAccess ());
+			throw new NotImplementedException ();
 		}
 
 		/*

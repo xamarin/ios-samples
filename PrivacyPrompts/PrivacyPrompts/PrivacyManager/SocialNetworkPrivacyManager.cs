@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+
 using Accounts;
 using Foundation;
 
@@ -8,20 +10,21 @@ namespace PrivacyPrompts
 	{
 		readonly ACAccountStore accountStore;
 		readonly NSString socialNetwork;
-		readonly IPrivacyViewController viewController;
 
-		public SocialNetworkPrivacyManager (NSString socialNetworkName, IPrivacyViewController vc)
+		public SocialNetworkPrivacyManager (NSString socialNetworkName)
 		{
 			socialNetwork = socialNetworkName;
-			viewController = vc;
 			accountStore = new ACAccountStore ();
 		}
 
-		public void RequestAccess ()
+		public Task RequestAccess ()
 		{
 			AccountStoreOptions options = GetOptions ();
 			ACAccountType account = accountStore.FindAccountType (socialNetwork);
-			accountStore.RequestAccess (account, options, RequestCompletionHandler);
+
+			var tcs = new TaskCompletionSource<object> ();
+			accountStore.RequestAccess (account, options, (granted, error) => tcs.SetResult(null));
+			return tcs.Task;
 		}
 
 		AccountStoreOptions GetOptions()
@@ -51,13 +54,6 @@ namespace PrivacyPrompts
 			return new AccountStoreOptions {
 				TencentWeiboAppId = "MY_ID"
 			};
-		}
-
-		void RequestCompletionHandler (bool granted, NSError error)
-		{
-			accountStore.InvokeOnMainThread (() => {
-				viewController.AccessStatus.Text = CheckAccess ();
-			});
 		}
 
 		public string CheckAccess ()

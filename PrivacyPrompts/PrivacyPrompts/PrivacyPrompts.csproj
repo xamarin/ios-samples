@@ -110,7 +110,6 @@
     <Compile Include="Controllers\LocationPrivacyViewController.cs" />
     <Compile Include="Controllers\MicrophonePrivacyController.cs" />
     <Compile Include="Controllers\MotionPrivacyController.cs" />
-    <Compile Include="Controllers\NotificationsPrivacyController.cs" />
     <Compile Include="Controllers\PhotoPrivacyController.cs" />
     <Compile Include="Controllers\PrivacyClassesTableViewController.cs" />
     <Compile Include="Controllers\PrivacyClassesTableViewController.designer.cs">
@@ -126,9 +125,9 @@
     </Compile>
     <Compile Include="PrivacyManager\IPrivacyManager.cs" />
     <Compile Include="PrivacyManager\LocationPrivacyManager.cs" />
-    <Compile Include="Controllers\IPrivacyViewController.cs" />
     <Compile Include="PrivacyManager\EKEntityPrivacyManager.cs" />
     <Compile Include="PrivacyManager\SocialNetworkPrivacyManager.cs" />
+    <Compile Include="PrivacyManager\NotificationsPrivacyManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
