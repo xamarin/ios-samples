@@ -143,6 +143,8 @@ namespace PrivacyPrompts
 					return new NotificationsPrivacyManager ((AppDelegate)UIApplication.SharedApplication.Delegate);
 
 				case DataClass.Contacts:
+					return new AddressBookPrivacyManager ();
+
 				case DataClass.Photos:
 				case DataClass.Video:
 				case DataClass.Microphone:
