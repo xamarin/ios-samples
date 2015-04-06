@@ -104,7 +104,6 @@
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
     <Compile Include="DataClass.cs" />
-    <Compile Include="Controllers\AdvertisingPrivacyController.cs" />
     <Compile Include="Controllers\LocationPrivacyViewController.cs" />
     <Compile Include="Controllers\MotionPrivacyController.cs" />
     <Compile Include="Controllers\PrivacyClassesTableViewController.cs" />
@@ -128,6 +127,7 @@
     <Compile Include="PrivacyManager\VideoCapturePrivacyManager.cs" />
     <Compile Include="PrivacyManager\MicrophonePrivacyManager.cs" />
     <Compile Include="PrivacyManager\BluetoothPrivacyManager.cs" />
+    <Compile Include="PrivacyManager\AdvertisingPrivacyManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />

@@ -158,7 +158,7 @@ namespace PrivacyPrompts
 					return new BluetoothPrivacyManager ();
 
 				case DataClass.Advertising:
-					throw new NotImplementedException ();
+					return new AdvertisingPrivacyManager ();
 
 				default:
 					throw new NotImplementedException ();
