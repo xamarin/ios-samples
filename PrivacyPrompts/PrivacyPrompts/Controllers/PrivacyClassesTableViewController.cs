@@ -146,6 +146,8 @@ namespace PrivacyPrompts
 					return new AddressBookPrivacyManager ();
 
 				case DataClass.Photos:
+					return new PhotoPrivacyManager ();
+
 				case DataClass.Video:
 				case DataClass.Microphone:
 				case DataClass.Bluetooth:
