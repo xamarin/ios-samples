@@ -32,12 +32,12 @@ namespace MonoCatalog {
 		static AlertsViewController ()
 		{
 			samples = new AlertSample [] {
-				new AlertSample ("UIActionSheet", "Show simple", "alert.cs: DialogSimpleAction ()"),
-				new AlertSample ("UIActionSheet", "Show OK Cancel", "alert.cs: DialogOkCancelAction ()"),
-				new AlertSample ("UIActionSheet", "Show Customized", "alert.cs: DialogOtherAction ()"),
-				new AlertSample ("UIAlertView", "Show simple", "alert.cs: AlertSimpleAction ()"),
-				new AlertSample ("UIAlertView", "Show OK Cancel", "alert.cs: AlertOkCancelAction ()"),
-				new AlertSample ("UIAlertView", "Show Customized ", "alert.cs: AlertOtherAction ()"),
+				new AlertSample ("UIActionSheet", "Show simple Dialog", "alert.cs: DialogSimpleAction ()"),
+				new AlertSample ("UIActionSheet", "Show OK Cancel Dialog", "alert.cs: DialogOkCancelAction ()"),
+				new AlertSample ("UIActionSheet", "Show Customized Dialog", "alert.cs: DialogOtherAction ()"),
+				new AlertSample ("UIAlertView", "Show simple Alert", "alert.cs: AlertSimpleAction ()"),
+				new AlertSample ("UIAlertView", "Show OK Cancel Alert", "alert.cs: AlertOkCancelAction ()"),
+				new AlertSample ("UIAlertView", "Show Customized Alert", "alert.cs: AlertOtherAction ()"),
 			};
 		}
 
