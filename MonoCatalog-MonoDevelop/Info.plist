@@ -21,5 +21,7 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>5.1.1</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.monocatalog</string>
 </dict>
 </plist>
