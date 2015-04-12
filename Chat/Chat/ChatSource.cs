@@ -8,7 +8,8 @@ namespace Chat
 {
 	public class ChatSource : UITableViewSource
 	{
-		static readonly NSString CellId = new NSString("ChatCellId");
+		static readonly NSString IncomingCellId = new NSString("Incoming");
+		static readonly NSString OutgoingCellId = new NSString("Outgoing");
 
 		IList<Message> messages;
 
@@ -27,8 +28,7 @@ namespace Chat
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			UITableViewCell cell = tableView.DequeueReusableCell (CellId);
-			cell = cell ?? new UITableViewCell ();
+			var cell = (LeftCell)tableView.DequeueReusableCell (IncomingCellId);
 
 			var msg = messages [indexPath.Row];
 			cell.TextLabel.Text = msg.Text;

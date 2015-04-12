@@ -116,6 +116,13 @@
     </Compile>
     <Compile Include="Message.cs" />
     <Compile Include="ChatSource.cs" />
+    <Compile Include="Cells\LeftCell.cs" />
+    <Compile Include="Cells\LeftCell.designer.cs">
+      <DependentUpon>LeftCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Cells\" />
+  </ItemGroup>
 </Project>

@@ -79,7 +79,7 @@ namespace Chat
 				return;
 
 			var msg = new Message {
-				Type = MessageType.Right,
+				Type = MessageType.Outgoing,
 				Text = text.Trim ()
 			};
 

@@ -4,9 +4,8 @@ namespace Chat
 {
 	public enum MessageType
 	{
-		Left,
-		Right,
-		Date // TODO: add date cell
+		Incoming,
+		Outgoing,
 	}
 
 	public class Message
