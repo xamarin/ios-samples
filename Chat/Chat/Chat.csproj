@@ -114,6 +114,8 @@
     <Compile Include="ChatViewController.designer.cs">
       <DependentUpon>ChatViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Message.cs" />
+    <Compile Include="ChatSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

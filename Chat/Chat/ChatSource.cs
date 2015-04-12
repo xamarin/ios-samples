@@ -6,13 +6,13 @@ using Foundation;
 
 namespace Chat
 {
-	public class ChatDelegate : UITableViewSource
+	public class ChatSource : UITableViewSource
 	{
-		static readonly NSString CellId = "ChatCellId";
+		static readonly NSString CellId = new NSString("ChatCellId");
 
 		IList<Message> messages;
 
-		public ChatDelegate(IList<Message> messages)
+		public ChatSource(IList<Message> messages)
 		{
 			if (messages == null)
 				throw new ArgumentNullException ("messages");
@@ -32,6 +32,8 @@ namespace Chat
 
 			var msg = messages [indexPath.Row];
 			cell.TextLabel.Text = msg.Text;
+
+			return cell;
 		}
 	}
 }
