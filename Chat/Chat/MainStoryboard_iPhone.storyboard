@@ -50,14 +50,14 @@
                                 <rect key="frame" x="0.0" y="20" width="320" height="498"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Incoming" id="bHN-iS-6rr" customClass="LeftCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Incoming" id="bHN-iS-6rr" customClass="IncomingCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bHN-iS-6rr" id="T54-px-dWX">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Message Text]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rp-4j-hbr">
-                                                    <rect key="frame" x="8" y="18" width="115" height="7"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Incoming Message Text]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rp-4j-hbr">
+                                                    <rect key="frame" x="8" y="18" width="191" height="7"/>
                                                     <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -73,6 +73,31 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="MessageText" destination="4rp-4j-hbr" id="Xkp-sF-NmZ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Outgoing" id="9mh-XI-5OU" customClass="OutgoingCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9mh-XI-5OU" id="YKz-rq-py9">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Outgoing Message Text]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5BP-uU-K6K">
+                                                    <rect key="frame" x="111" y="18" width="191" height="7"/>
+                                                    <color key="backgroundColor" red="0.16862745098039217" green="0.46666666666666667" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5BP-uU-K6K" firstAttribute="top" secondItem="YKz-rq-py9" secondAttribute="topMargin" constant="10" id="SIO-WQ-NXe"/>
+                                                <constraint firstItem="5BP-uU-K6K" firstAttribute="width" relation="lessThanOrEqual" secondItem="YKz-rq-py9" secondAttribute="width" multiplier="0.7" id="b4m-pN-Mf2"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="5BP-uU-K6K" secondAttribute="bottom" constant="10" id="hAS-Nu-tzs"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5BP-uU-K6K" secondAttribute="trailing" constant="10" id="lfN-dY-o5N"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="MessageText" destination="5BP-uU-K6K" id="q47-6s-B54"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

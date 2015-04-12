@@ -5,7 +5,7 @@ using Foundation;
 
 namespace Chat
 {
-	public partial class LeftCell : UITableViewCell
+	public partial class OutgoingCell : UITableViewCell
 	{
 		public override UILabel TextLabel {
 			get {
@@ -13,9 +13,10 @@ namespace Chat
 			}
 		}
 
-		public LeftCell (IntPtr handle)
+		public OutgoingCell (IntPtr handle)
 			: base(handle)
 		{
 		}
 	}
 }
+

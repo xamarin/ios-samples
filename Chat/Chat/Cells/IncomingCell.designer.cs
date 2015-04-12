@@ -9,17 +9,14 @@ using System.CodeDom.Compiler;
 
 namespace Chat
 {
-	partial class LeftCell
+	[Register ("IncomingCell")]
+	partial class IncomingCell
 	{
 		[Outlet]
 		UIKit.UILabel MessageText { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
-			if (MessageText != null) {
-				MessageText.Dispose ();
-				MessageText = null;
-			}
 		}
 	}
 }

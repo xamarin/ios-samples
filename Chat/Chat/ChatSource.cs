@@ -28,9 +28,14 @@ namespace Chat
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = (LeftCell)tableView.DequeueReusableCell (IncomingCellId);
-
+			UITableViewCell cell = null;
 			var msg = messages [indexPath.Row];
+
+			if (msg.Type == MessageType.Incoming)
+				cell = tableView.DequeueReusableCell (IncomingCellId);
+			else
+				cell = tableView.DequeueReusableCell (OutgoingCellId);
+
 			cell.TextLabel.Text = msg.Text;
 
 			return cell;
