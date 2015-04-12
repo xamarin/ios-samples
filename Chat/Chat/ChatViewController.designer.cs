@@ -14,12 +14,20 @@ namespace Chat
 	{
 		[Outlet]
 		UIKit.NSLayoutConstraint BottomConstraint { get; set; }
+
+		[Outlet]
+		UIKit.UIButton SendButton { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (BottomConstraint != null) {
 				BottomConstraint.Dispose ();
 				BottomConstraint = null;
+			}
+
+			if (SendButton != null) {
+				SendButton.Dispose ();
+				SendButton = null;
 			}
 		}
 	}

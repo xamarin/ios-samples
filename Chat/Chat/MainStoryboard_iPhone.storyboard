@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Chat View Controller-->
@@ -18,35 +17,43 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5AB-rQ-cHe">
-                                <rect key="frame" x="16" y="518" width="288" height="50"/>
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9s5-K4-3tE">
-                                        <rect key="frame" x="10" y="10" width="268" height="30"/>
+                                        <rect key="frame" x="10" y="10" width="244" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gmO-Xl-znj">
+                                        <rect key="frame" x="264" y="10" width="46" height="30"/>
+                                        <state key="normal" title="Button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="4bm-Wh-9tf"/>
+                                    <constraint firstAttribute="trailing" secondItem="gmO-Xl-znj" secondAttribute="trailing" constant="10" id="9rx-oU-n4h"/>
                                     <constraint firstItem="9s5-K4-3tE" firstAttribute="top" secondItem="5AB-rQ-cHe" secondAttribute="top" constant="10" id="Qft-O9-MCu"/>
+                                    <constraint firstItem="gmO-Xl-znj" firstAttribute="leading" secondItem="9s5-K4-3tE" secondAttribute="trailing" constant="10" id="euT-gK-943"/>
+                                    <constraint firstAttribute="bottom" secondItem="gmO-Xl-znj" secondAttribute="bottom" constant="10" id="fiq-e9-bSb"/>
                                     <constraint firstAttribute="bottom" secondItem="9s5-K4-3tE" secondAttribute="bottom" constant="10" id="nlh-YW-f6B"/>
                                     <constraint firstItem="9s5-K4-3tE" firstAttribute="leading" secondItem="5AB-rQ-cHe" secondAttribute="leading" constant="10" id="pd4-Zd-hcK"/>
-                                    <constraint firstAttribute="trailing" secondItem="9s5-K4-3tE" secondAttribute="trailing" constant="10" id="thB-DJ-SdQ"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5AB-rQ-cHe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="1cb-Iv-RG0"/>
                             <constraint firstItem="2va-98-mOY" firstAttribute="top" secondItem="5AB-rQ-cHe" secondAttribute="bottom" id="auN-MO-VPe"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5AB-rQ-cHe" secondAttribute="trailing" id="yha-t7-vSk"/>
+                            <constraint firstItem="5AB-rQ-cHe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="cSv-z1-AfV"/>
+                            <constraint firstAttribute="trailing" secondItem="5AB-rQ-cHe" secondAttribute="trailing" id="wKV-fK-Bli"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="BottomConstraint" destination="auN-MO-VPe" id="18l-BH-qKE"/>
+                        <outlet property="SendButton" destination="gmO-Xl-znj" id="mNq-iE-tRc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
