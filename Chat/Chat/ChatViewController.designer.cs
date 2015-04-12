@@ -17,6 +17,12 @@ namespace Chat
 
 		[Outlet]
 		UIKit.UIButton SendButton { get; set; }
+
+		[Outlet]
+		UIKit.UITableView TableView { get; set; }
+
+		[Outlet]
+		UIKit.UITextView TextView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -28,6 +34,16 @@ namespace Chat
 			if (SendButton != null) {
 				SendButton.Dispose ();
 				SendButton = null;
+			}
+
+			if (TableView != null) {
+				TableView.Dispose ();
+				TableView = null;
+			}
+
+			if (TextView != null) {
+				TextView.Dispose ();
+				TextView = null;
 			}
 		}
 	}
