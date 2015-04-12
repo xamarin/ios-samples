@@ -43,7 +43,18 @@ namespace Chat
 		void UpdateButtomLayoutConstraint(UIKeyboardEventArgs e)
 		{
 			BottomConstraint.Constant = View.Bounds.GetMaxY () - e.FrameEnd.GetMinY ();
-			View.LayoutIfNeeded ();
+
+			UIViewAnimationCurve curve = e.AnimationCurve;
+			UIView.Animate (e.AnimationDuration, 0, ConvertToAnimationOptions(e.AnimationCurve), ()=> {
+				View.LayoutIfNeeded ();
+			}, null);
+		}
+
+		UIViewAnimationOptions ConvertToAnimationOptions(UIViewAnimationCurve curve)
+		{
+			// Looks like a hack. But it is correct.
+			// UIViewAnimationCurve and UIViewAnimationOptions are shifted by 16 bits
+			return (UIViewAnimationOptions)((int)curve << 16);
 		}
 
 		public override void ViewWillDisappear (bool animated)
