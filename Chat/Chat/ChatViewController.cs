@@ -85,6 +85,7 @@ namespace Chat
 				NSIndexPath.FromRowSection (messages.Count - 1, 0)
 			};
 			TableView.InsertRows(indexPaths, UITableViewRowAnimation.None);
+			TableView.ScrollToRow (indexPaths [0], UITableViewScrollPosition.Bottom, true);
 		}
 
 		public override void ViewWillDisappear (bool animated)
