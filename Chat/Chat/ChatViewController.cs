@@ -26,8 +26,9 @@ namespace Chat
 		{
 			base.ViewDidLoad ();
 
-			SendButton.TouchUpInside += OnSendClicked;
 			chatSrc = new ChatSource (messages);
+			SendButton.TouchUpInside += OnSendClicked;
+			TextView.Changed += OnTextChanged;
 			TableView.Source = chatSrc;
 		}
 
@@ -37,6 +38,8 @@ namespace Chat
 
 			willShowToken = UIKeyboard.Notifications.ObserveWillShow (KeyboardWillShowHandler);
 			willHideToken = UIKeyboard.Notifications.ObserveWillHide (KeyboardWillHideHandler);
+
+			UpdateButtonState ();
 		}
 
 		void KeyboardWillShowHandler (object sender, UIKeyboardEventArgs e)
@@ -68,15 +71,16 @@ namespace Chat
 
 		void OnSendClicked (object sender, EventArgs e)
 		{
-			var text = TextView.Text.Trim ();
-			TextView.Text = string.Empty;
+			var text = TextView.Text;
+			TextView.Text = string.Empty; // this will not generate change text event
+			UpdateButtonState ();
 
-			if (string.IsNullOrEmpty (text))
+			if (string.IsNullOrWhiteSpace (text))
 				return;
 
 			var msg = new Message {
 				Type = MessageType.Right,
-				Text = text
+				Text = text.Trim ()
 			};
 
 			messages.Add (msg);
@@ -86,6 +90,16 @@ namespace Chat
 			};
 			TableView.InsertRows(indexPaths, UITableViewRowAnimation.None);
 			TableView.ScrollToRow (indexPaths [0], UITableViewScrollPosition.Bottom, true);
+		}
+
+		void OnTextChanged (object sender, EventArgs e)
+		{
+			UpdateButtonState ();
+		}
+
+		void UpdateButtonState()
+		{
+			SendButton.Enabled = !string.IsNullOrWhiteSpace (TextView.Text);
 		}
 
 		public override void ViewWillDisappear (bool animated)
