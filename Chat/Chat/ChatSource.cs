@@ -3,6 +3,7 @@
 using UIKit;
 using System.Collections.Generic;
 using Foundation;
+using CoreGraphics;
 
 namespace Chat
 {
@@ -12,6 +13,9 @@ namespace Chat
 		static readonly NSString OutgoingCellId = new NSString("Outgoing");
 
 		IList<Message> messages;
+
+		OutgoingCell outgoingSizingCell;
+		IncomingCell incomingSizingCell;
 
 		public ChatSource(IList<Message> messages)
 		{
@@ -45,13 +49,39 @@ namespace Chat
 		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			Message msg = messages [indexPath.Row];
-			return CellHelper.CellHeightFor (msg);
+			return CalculateHeightFor (msg, tableView);
+		}
+
+		nfloat CalculateHeightFor(Message msg, UITableView tableView)
+		{
+			UITableViewCell cell;
+			switch (msg.Type) {
+				case MessageType.Incoming:
+					incomingSizingCell = incomingSizingCell ?? (IncomingCell)tableView.DequeueReusableCell (IncomingCellId);
+					cell = incomingSizingCell;
+					break;
+
+				case MessageType.Outgoing:
+					outgoingSizingCell = outgoingSizingCell ?? (OutgoingCell)tableView.DequeueReusableCell (OutgoingCellId);
+					cell = outgoingSizingCell;
+					break;
+
+				default:
+					throw new NotImplementedException ();
+			}
+
+			cell.TextLabel.Text = msg.Text;
+
+			cell.SetNeedsLayout ();
+			cell.LayoutIfNeeded ();
+			CGSize size = cell.ContentView.SystemLayoutSizeFittingSize (UIView.UILayoutFittingCompressedSize);
+			return NMath.Ceiling (size.Height);
 		}
 
 		public override nfloat EstimatedHeight (UITableView tableView, NSIndexPath indexPath)
 		{
 			Message msg = messages [indexPath.Row];
-			return CellHelper.CellHeightFor (msg);
+			return CalculateHeightFor (msg, tableView);
 		}
 	}
 }
