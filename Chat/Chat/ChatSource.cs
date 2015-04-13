@@ -53,6 +53,11 @@ namespace Chat
 			return cell;
 		}
 
+		public override NSIndexPath WillSelectRow (UITableView tableView, NSIndexPath indexPath)
+		{
+			return null; // Reserve row selection #CopyMessage
+		}
+
 		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			Message msg = messages [indexPath.Row];
@@ -107,18 +112,10 @@ namespace Chat
 
 			UIMenuController menu = UIMenuController.SharedMenuController;
 			menu.SetTargetRect (gesture.View.Frame, gesture.View.Superview);
-			menu.MenuItems = new UIMenuItem[] {
-				new UIMenuItem { Title = "Copy", Action = new Selector ("messageCopyTextAction:") }
-			};
+//			menu.MenuItems = new UIMenuItem[] {
+//				new UIMenuItem { Title = "Copy", Action = new Selector ("messageCopyTextAction:") }
+//			};
 			menu.SetMenuVisible (true, true);
 		}
-
-		[Export("messageCopyTextAction:")]
-		void messageCopyTextAction(UIMenuController menu)
-		{
-			
-		}
-
 	}
 }
-
