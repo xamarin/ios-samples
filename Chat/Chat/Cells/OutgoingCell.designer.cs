@@ -20,14 +20,14 @@ namespace Chat
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (MessageText != null) {
-				MessageText.Dispose ();
-				MessageText = null;
-			}
-
 			if (BubbleImageView != null) {
 				BubbleImageView.Dispose ();
 				BubbleImageView = null;
+			}
+
+			if (MessageText != null) {
+				MessageText.Dispose ();
+				MessageText = null;
 			}
 		}
 	}

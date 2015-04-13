@@ -29,21 +29,7 @@ namespace Chat
 				Right = (float)26.5
 			};
 
-			bubble = CreateColoredImage (fillColor, mask).CreateResizableImage (cap);
-		}
-
-		UIImage CreateColoredImage(UIColor color, UIImage mask)
-		{
-			var rect = new CGRect (CGPoint.Empty, mask.Size);
-			UIGraphics.BeginImageContextWithOptions (mask.Size, false, mask.CurrentScale);
-			CGContext context = UIGraphics.GetCurrentContext ();
-			mask.DrawAsPatternInRect (rect);
-			context.SetFillColor (color.CGColor);
-			context.SetBlendMode (CGBlendMode.SourceAtop);
-			context.FillRect (rect);
-			UIImage result = UIGraphics.GetImageFromCurrentImageContext ();
-			UIGraphics.EndImageContext ();
-			return result;
+			bubble = CellHelper.CreateColoredImage (fillColor, mask).CreateResizableImage (cap);
 		}
 
 		public override void PrepareForReuse ()

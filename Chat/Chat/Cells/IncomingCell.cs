@@ -15,9 +15,29 @@ namespace Chat
 			}
 		}
 
+		UIImage bubble;
+
 		public IncomingCell (IntPtr handle)
 			: base (handle)
 		{
+			UIImage mask = UIImage.FromBundle ("MessageBubble");
+			mask = new UIImage (mask.CGImage, mask.CurrentScale, UIImageOrientation.UpMirrored);
+
+			var fillColor = UIColor.FromRGB (229, 229, 234);
+			var cap = new UIEdgeInsets {
+				Top = 17,
+				Left = (float)26.5,
+				Bottom = (float)17.5,
+				Right = 21,
+			};
+
+			bubble = CellHelper.CreateColoredImage (fillColor, mask).CreateResizableImage (cap);
+		}
+
+		public override void PrepareForReuse ()
+		{
+			base.PrepareForReuse ();
+			BubbleImageView.Image = bubble;
 		}
 	}
 }
