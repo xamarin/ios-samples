@@ -42,10 +42,10 @@ namespace Chat
 			if (isNew) {
 				var doubleTap = new UITapGestureRecognizer (gesture => ShowMenu (gesture, tableView));
 				doubleTap.NumberOfTapsRequired = 2;
-				cell.BubbleView.AddGestureRecognizer (doubleTap);
+				cell.MessageLbl.AddGestureRecognizer (doubleTap);
 
 				var longPressTap = new UILongPressGestureRecognizer (gesture => ShowMenu (gesture, tableView));
-				cell.BubbleView.AddGestureRecognizer (longPressTap);
+				cell.MessageLbl.AddGestureRecognizer (longPressTap);
 			}
 
 			cell.Message = msg;
@@ -77,7 +77,7 @@ namespace Chat
 			cell.SetNeedsLayout ();
 			cell.LayoutIfNeeded ();
 			CGSize size = cell.ContentView.SystemLayoutSizeFittingSize (UIView.UILayoutFittingCompressedSize);
-			return NMath.Ceiling (size.Height);
+			return NMath.Ceiling (size.Height) + 1;
 		}
 
 		NSString GetReuseId(MessageType msgType)
@@ -101,9 +101,10 @@ namespace Chat
 		{
 			CGPoint location = gesture.LocationInView (tableView);
 			NSIndexPath indexPath = tableView.IndexPathForRowAtPoint (location);
-//			tableView.SelectRow (indexPath, false, UITableViewScrollPosition.None);
+			tableView.SelectRow (indexPath, false, UITableViewScrollPosition.None);
 
-			ChatViewController.Shared.BecomeFirstResponder ();
+			gesture.View.BecomeFirstResponder ();
+
 			UIMenuController menu = UIMenuController.SharedMenuController;
 			menu.SetTargetRect (gesture.View.Frame, gesture.View.Superview);
 			menu.MenuItems = new UIMenuItem[] {

@@ -22,14 +22,14 @@ namespace Chat
 			}
 		}
 
-		public override UIImageView BubbleView {
+		protected override UIImageView BubbleView {
 			get {
 				// from outlet
 				return BubbleImageView;
 			}
 		}
 
-		protected override UILabel MessageLbl {
+		public override CopyableLabel MessageLbl {
 			get {
 				// from outlet
 				return MessageText;

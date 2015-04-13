@@ -16,7 +16,7 @@ namespace Chat
 		UIKit.UIImageView BubbleImageView { get; set; }
 
 		[Outlet]
-		UIKit.UILabel MessageText { get; set; }
+		Chat.CopyableLabel MessageText { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{

@@ -127,6 +127,7 @@
       <DependentUpon>OutgoingCell.cs</DependentUpon>
     </Compile>
     <Compile Include="Cells\BubbleCell.cs" />
+    <Compile Include="Cells\CopyableLabel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
