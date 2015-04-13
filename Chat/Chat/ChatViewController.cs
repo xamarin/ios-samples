@@ -24,7 +24,7 @@ namespace Chat
 				new Message{ Type = MessageType.Outgoing, Text = "You're encountering the side effect of a fantastic new feature in iOS8's Tableviews: Automatic Row Heights" },
 				new Message{ Type = MessageType.Incoming, Text = "Hi!" },
 				new Message{ Type = MessageType.Incoming, Text = "1" },
-				new Message{ Type = MessageType.Incoming, Text = "2" },
+				new Message{ Type = MessageType.Outgoing, Text = "2" },
 				new Message{ Type = MessageType.Incoming, Text = "3" },
 				new Message{ Type = MessageType.Incoming, Text = "4" },
 				new Message{ Type = MessageType.Incoming, Text = "5" },

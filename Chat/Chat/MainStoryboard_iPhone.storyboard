@@ -3,7 +3,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Chat View Controller-->
@@ -56,13 +55,14 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bHN-iS-6rr" id="T54-px-dWX">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIN-Pf-bwk">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIN-Pf-bwk">
                                                     <rect key="frame" x="8" y="10" width="217" height="23"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="800" verticalHuggingPriority="251" ambiguous="YES" text="[Incoming Message Text]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rp-4j-hbr">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="800" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="[Incoming Message Text]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="220" translatesAutoresizingMaskIntoConstraints="NO" id="4rp-4j-hbr">
                                                     <rect key="frame" x="24" y="20" width="192" height="3"/>
+                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -71,7 +71,6 @@
                                                 <constraint firstItem="4rp-4j-hbr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GIN-Pf-bwk" secondAttribute="leading" constant="16" id="2fy-ns-22i"/>
                                                 <constraint firstItem="4rp-4j-hbr" firstAttribute="top" secondItem="GIN-Pf-bwk" secondAttribute="top" constant="10" id="3be-dg-yvH"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="GIN-Pf-bwk" secondAttribute="bottom" constant="2" id="EwW-2t-IRx"/>
-                                                <constraint firstItem="4rp-4j-hbr" firstAttribute="width" secondItem="T54-px-dWX" secondAttribute="width" multiplier="0.6" id="R19-Xw-IP1"/>
                                                 <constraint firstItem="GIN-Pf-bwk" firstAttribute="bottom" secondItem="4rp-4j-hbr" secondAttribute="bottom" constant="10" id="WtX-1E-lAs"/>
                                                 <constraint firstItem="4rp-4j-hbr" firstAttribute="centerX" secondItem="GIN-Pf-bwk" secondAttribute="centerX" constant="3" id="i0s-sw-3KD"/>
                                                 <constraint firstItem="GIN-Pf-bwk" firstAttribute="top" secondItem="T54-px-dWX" secondAttribute="topMargin" constant="2" id="xS9-BK-Uo0"/>
@@ -88,25 +87,28 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9mh-XI-5OU" id="YKz-rq-py9">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uh2-1T-SYq">
-                                                    <rect key="frame" x="88" y="10" width="224" height="23"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uh2-1T-SYq">
+                                                    <rect key="frame" x="95" y="10" width="217" height="23"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="1JU-5i-Dzf"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="50" ambiguous="YES" misplaced="YES" text="[Outgoing Message Text]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5BP-uU-K6K">
-                                                    <rect key="frame" x="102" y="20" width="191" height="3"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="800" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" misplaced="YES" text="[Outgoing Message Text]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="220" translatesAutoresizingMaskIntoConstraints="NO" id="5BP-uU-K6K">
+                                                    <rect key="frame" x="106" y="20" width="191" height="3"/>
+                                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="5BP-uU-K6K" firstAttribute="top" secondItem="uh2-1T-SYq" secondAttribute="top" constant="10" id="0CJ-6I-VnL"/>
                                                 <constraint firstItem="uh2-1T-SYq" firstAttribute="bottom" secondItem="5BP-uU-K6K" secondAttribute="bottom" constant="10" id="29O-yB-fGa"/>
-                                                <constraint firstItem="5BP-uU-K6K" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uh2-1T-SYq" secondAttribute="leading" constant="10" id="3FO-2n-o0s"/>
                                                 <constraint firstItem="uh2-1T-SYq" firstAttribute="top" secondItem="YKz-rq-py9" secondAttribute="topMargin" constant="2" id="3qH-FE-a9Z"/>
-                                                <constraint firstItem="5BP-uU-K6K" firstAttribute="width" relation="lessThanOrEqual" secondItem="YKz-rq-py9" secondAttribute="width" multiplier="0.6" id="4wv-dF-RQa"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="uh2-1T-SYq" secondAttribute="bottom" constant="2" id="9mZ-27-61x"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="uh2-1T-SYq" secondAttribute="trailing" id="N3l-8l-2p0"/>
                                                 <constraint firstItem="5BP-uU-K6K" firstAttribute="centerX" secondItem="uh2-1T-SYq" secondAttribute="centerX" constant="-3" id="O3T-zy-IVl"/>
+                                                <constraint firstItem="5BP-uU-K6K" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="uh2-1T-SYq" secondAttribute="trailing" constant="-16" id="dXu-SY-dGE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
