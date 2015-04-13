@@ -56,11 +56,11 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bHN-iS-6rr" id="T54-px-dWX">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GIN-Pf-bwk">
-                                                    <rect key="frame" x="8" y="10" width="217" height="23"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIN-Pf-bwk">
+                                                    <rect key="frame" x="8" y="10" width="224" height="23"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Incoming Message Text]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rp-4j-hbr">
-                                                    <rect key="frame" x="24" y="20" width="191" height="3"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="800" verticalHuggingPriority="251" ambiguous="YES" text="[Incoming Message Text]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rp-4j-hbr">
+                                                    <rect key="frame" x="28" y="20" width="191" height="3"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -68,12 +68,12 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="GIN-Pf-bwk" firstAttribute="leading" secondItem="T54-px-dWX" secondAttribute="leadingMargin" id="12h-tL-mGP"/>
-                                                <constraint firstItem="4rp-4j-hbr" firstAttribute="leading" secondItem="GIN-Pf-bwk" secondAttribute="leading" constant="16" id="2fy-ns-22i"/>
+                                                <constraint firstItem="4rp-4j-hbr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GIN-Pf-bwk" secondAttribute="leading" constant="16" id="2fy-ns-22i"/>
                                                 <constraint firstItem="4rp-4j-hbr" firstAttribute="top" secondItem="GIN-Pf-bwk" secondAttribute="top" constant="10" id="3be-dg-yvH"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="GIN-Pf-bwk" secondAttribute="bottom" constant="2" id="EwW-2t-IRx"/>
                                                 <constraint firstItem="GIN-Pf-bwk" firstAttribute="bottom" secondItem="4rp-4j-hbr" secondAttribute="bottom" constant="10" id="WtX-1E-lAs"/>
+                                                <constraint firstItem="4rp-4j-hbr" firstAttribute="centerX" secondItem="GIN-Pf-bwk" secondAttribute="centerX" constant="3" id="i0s-sw-3KD"/>
                                                 <constraint firstItem="GIN-Pf-bwk" firstAttribute="width" relation="lessThanOrEqual" secondItem="T54-px-dWX" secondAttribute="width" multiplier="0.7" id="sTa-qg-Vew"/>
-                                                <constraint firstItem="GIN-Pf-bwk" firstAttribute="trailing" secondItem="4rp-4j-hbr" secondAttribute="trailing" constant="10" id="uPY-Er-X0d"/>
                                                 <constraint firstItem="GIN-Pf-bwk" firstAttribute="top" secondItem="T54-px-dWX" secondAttribute="topMargin" constant="2" id="xS9-BK-Uo0"/>
                                             </constraints>
                                         </tableViewCellContentView>
