@@ -7,37 +7,57 @@ using UIKit;
 
 namespace Chat
 {
-	public partial class IncomingCell : UITableViewCell
+	public partial class IncomingCell : BubbleCell
 	{
-		public override UILabel TextLabel {
+		static UIImage bubble;
+		protected override UIImage BubbleImg {
 			get {
+				return bubble;
+			}
+		}
+
+		static UIImage highlightedBubble;
+		protected override UIImage BubbleHighlightedImage {
+			get {
+				return highlightedBubble;
+			}
+		}
+
+		public override UIImageView BubbleView {
+			get {
+				// from outlet
+				return BubbleImageView;
+			}
+		}
+
+		protected override UILabel MessageLbl {
+			get {
+				// from outlet
 				return MessageText;
 			}
 		}
 
-		UIImage bubble;
-
 		public IncomingCell (IntPtr handle)
 			: base (handle)
 		{
-			UIImage mask = UIImage.FromBundle ("MessageBubble");
-			mask = new UIImage (mask.CGImage, mask.CurrentScale, UIImageOrientation.UpMirrored);
+			// TODO: move to static ctor
+			if (bubble == null && highlightedBubble == null) {
+				UIImage mask = UIImage.FromBundle ("MessageBubble");
+				mask = new UIImage (mask.CGImage, mask.CurrentScale, UIImageOrientation.UpMirrored);
 
-			var fillColor = UIColor.FromRGB (229, 229, 234);
-			var cap = new UIEdgeInsets {
-				Top = 17,
-				Left = (float)26.5,
-				Bottom = (float)17.5,
-				Right = 21,
-			};
+				var cap = new UIEdgeInsets {
+					Top = 17,
+					Left = (float)26.5,
+					Bottom = (float)17.5,
+					Right = 21,
+				};
 
-			bubble = CellHelper.CreateColoredImage (fillColor, mask).CreateResizableImage (cap);
-		}
+				var color = UIColor.FromRGB (229, 229, 234);
+				bubble = CreateColoredImage (color, mask).CreateResizableImage (cap);
 
-		public override void PrepareForReuse ()
-		{
-			base.PrepareForReuse ();
-			BubbleImageView.Image = bubble;
+				var highlightedColor = UIColor.FromRGB (206, 206, 210);
+				highlightedBubble = CreateColoredImage (highlightedColor, mask).CreateResizableImage (cap);
+			}
 		}
 	}
 }

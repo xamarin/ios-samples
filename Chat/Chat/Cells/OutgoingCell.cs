@@ -6,37 +6,56 @@ using CoreGraphics;
 
 namespace Chat
 {
-	public partial class OutgoingCell : UITableViewCell
+	public partial class OutgoingCell : BubbleCell
 	{
-		public override UILabel TextLabel {
+		static UIImage bubble;
+		protected override UIImage BubbleImg {
 			get {
+				return bubble;
+			}
+		}
+
+		static UIImage highlightedBubble;
+		protected override UIImage BubbleHighlightedImage {
+			get {
+				return highlightedBubble;
+			}
+		}
+
+		public override UIImageView BubbleView {
+			get {
+				// from outlet
+				return BubbleImageView;
+			}
+		}
+
+		protected override UILabel MessageLbl {
+			get {
+				// from outlet
 				return MessageText;
 			}
 		}
 
-		UIImage bubble;
-
 		public OutgoingCell (IntPtr handle)
 			: base(handle)
 		{
-			UIImage mask = UIImage.FromBundle ("MessageBubble");
+			// TODO: move to static ctor
+			if (bubble == null && highlightedBubble == null) {
+				UIImage mask = UIImage.FromBundle ("MessageBubble");
 
-			var fillColor = UIColor.FromRGB (43, 119, 250);
-			var cap = new UIEdgeInsets {
-				Top = 17,
-				Left = 21,
-				Bottom = (float)17.5,
-				Right = (float)26.5
-			};
+				var cap = new UIEdgeInsets {
+					Top = 17,
+					Left = 21,
+					Bottom = (float)17.5,
+					Right = (float)26.5
+				};
 
-			bubble = CellHelper.CreateColoredImage (fillColor, mask).CreateResizableImage (cap);
-		}
+				var color = UIColor.FromRGB (43, 119, 250);
+				bubble = CreateColoredImage (color, mask).CreateResizableImage (cap);
 
-		public override void PrepareForReuse ()
-		{
-			base.PrepareForReuse ();
-			BubbleImageView.Image = bubble;
+				var highlightedColor = UIColor.FromRGB (32, 96, 200);
+				highlightedBubble = CreateColoredImage (highlightedColor, mask).CreateResizableImage (cap);
+			}
 		}
 	}
 }
-

@@ -4,6 +4,7 @@ using UIKit;
 using System.Collections.Generic;
 using Foundation;
 using CoreGraphics;
+using ObjCRuntime;
 
 namespace Chat
 {
@@ -14,8 +15,7 @@ namespace Chat
 
 		IList<Message> messages;
 
-		OutgoingCell outgoingSizingCell;
-		IncomingCell incomingSizingCell;
+		readonly BubbleCell[] sizingCells; 
 
 		public ChatSource(IList<Message> messages)
 		{
@@ -23,6 +23,7 @@ namespace Chat
 				throw new ArgumentNullException ("messages");
 
 			this.messages = messages;
+			sizingCells = new BubbleCell[2];
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)
@@ -32,16 +33,22 @@ namespace Chat
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			UITableViewCell cell = null;
+			BubbleCell cell = null;
 			Message msg = messages [indexPath.Row];
 
-			if (msg.Type == MessageType.Incoming)
-				cell = tableView.DequeueReusableCell (IncomingCellId);
-			else
-				cell = tableView.DequeueReusableCell (OutgoingCellId);
+			cell = (BubbleCell)tableView.DequeueReusableCell (GetReuseId (msg.Type));
 
-			cell.PrepareForReuse ();
-			cell.TextLabel.Text = msg.Text;
+			bool isNew = cell.Message == null;
+			if (isNew) {
+				var doubleTap = new UITapGestureRecognizer (gesture => ShowMenu (gesture, tableView));
+				doubleTap.NumberOfTapsRequired = 2;
+				cell.BubbleView.AddGestureRecognizer (doubleTap);
+
+				var longPressTap = new UILongPressGestureRecognizer (gesture => ShowMenu (gesture, tableView));
+				cell.BubbleView.AddGestureRecognizer (longPressTap);
+			}
+
+			cell.Message = msg;
 
 			return cell;
 		}
@@ -52,25 +59,20 @@ namespace Chat
 			return CalculateHeightFor (msg, tableView);
 		}
 
+		public override nfloat EstimatedHeight (UITableView tableView, NSIndexPath indexPath)
+		{
+			Message msg = messages [indexPath.Row];
+			return CalculateHeightFor (msg, tableView);
+		}
+
 		nfloat CalculateHeightFor(Message msg, UITableView tableView)
 		{
-			UITableViewCell cell;
-			switch (msg.Type) {
-				case MessageType.Incoming:
-					incomingSizingCell = incomingSizingCell ?? (IncomingCell)tableView.DequeueReusableCell (IncomingCellId);
-					cell = incomingSizingCell;
-					break;
+			var index = (int)msg.Type;
+			BubbleCell cell = sizingCells [index];
+			if (cell == null)
+				cell = sizingCells [index] = (BubbleCell)tableView.DequeueReusableCell (GetReuseId (msg.Type));
 
-				case MessageType.Outgoing:
-					outgoingSizingCell = outgoingSizingCell ?? (OutgoingCell)tableView.DequeueReusableCell (OutgoingCellId);
-					cell = outgoingSizingCell;
-					break;
-
-				default:
-					throw new NotImplementedException ();
-			}
-
-			cell.TextLabel.Text = msg.Text;
+			cell.Message = msg; 
 
 			cell.SetNeedsLayout ();
 			cell.LayoutIfNeeded ();
@@ -78,11 +80,44 @@ namespace Chat
 			return NMath.Ceiling (size.Height);
 		}
 
-		public override nfloat EstimatedHeight (UITableView tableView, NSIndexPath indexPath)
+		NSString GetReuseId(MessageType msgType)
 		{
-			Message msg = messages [indexPath.Row];
-			return CalculateHeightFor (msg, tableView);
+			return msgType == MessageType.Incoming ? IncomingCellId : OutgoingCellId;
 		}
+
+		void ShowMenu(UITapGestureRecognizer tapGesture, UITableView tableView)
+		{
+			if (tapGesture.State == UIGestureRecognizerState.Ended)
+				ShowMenuController (tapGesture, tableView);
+		}
+
+		void ShowMenu(UILongPressGestureRecognizer longPress, UITableView tableView)
+		{
+			if (longPress.State == UIGestureRecognizerState.Began)
+				ShowMenuController (longPress, tableView);
+		}
+
+		void ShowMenuController(UIGestureRecognizer gesture, UITableView tableView)
+		{
+			CGPoint location = gesture.LocationInView (tableView);
+			NSIndexPath indexPath = tableView.IndexPathForRowAtPoint (location);
+//			tableView.SelectRow (indexPath, false, UITableViewScrollPosition.None);
+
+			ChatViewController.Shared.BecomeFirstResponder ();
+			UIMenuController menu = UIMenuController.SharedMenuController;
+			menu.SetTargetRect (gesture.View.Frame, gesture.View.Superview);
+			menu.MenuItems = new UIMenuItem[] {
+				new UIMenuItem { Title = "Copy", Action = new Selector ("messageCopyTextAction:") }
+			};
+			menu.SetMenuVisible (true, true);
+		}
+
+		[Export("messageCopyTextAction:")]
+		void messageCopyTextAction(UIMenuController menu)
+		{
+			
+		}
+
 	}
 }
 
