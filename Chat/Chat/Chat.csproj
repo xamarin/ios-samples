@@ -97,6 +97,8 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\MessageBubble.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\MessageBubble.imageset\MessageBubble%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -128,5 +130,6 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Cells\" />
+    <Folder Include="Resources\Images.xcassets\MessageBubble.imageset\" />
   </ItemGroup>
 </Project>

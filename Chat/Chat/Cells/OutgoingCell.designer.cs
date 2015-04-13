@@ -9,9 +9,12 @@ using System.CodeDom.Compiler;
 
 namespace Chat
 {
-	[Register("OutgoingCell")]
+	[Register ("OutgoingCell")]
 	partial class OutgoingCell
 	{
+		[Outlet]
+		UIKit.UIImageView BubbleImageView { get; set; }
+
 		[Outlet]
 		UIKit.UILabel MessageText { get; set; }
 		
@@ -20,6 +23,11 @@ namespace Chat
 			if (MessageText != null) {
 				MessageText.Dispose ();
 				MessageText = null;
+			}
+
+			if (BubbleImageView != null) {
+				BubbleImageView.Dispose ();
+				BubbleImageView = null;
 			}
 		}
 	}

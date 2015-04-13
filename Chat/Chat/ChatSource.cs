@@ -36,6 +36,7 @@ namespace Chat
 			else
 				cell = tableView.DequeueReusableCell (OutgoingCellId);
 
+			cell.PrepareForReuse ();
 			cell.TextLabel.Text = msg.Text;
 
 			return cell;

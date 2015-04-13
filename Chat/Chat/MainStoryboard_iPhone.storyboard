@@ -81,22 +81,30 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9mh-XI-5OU" id="YKz-rq-py9">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Outgoing Message Text]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5BP-uU-K6K">
-                                                    <rect key="frame" x="111" y="18" width="191" height="7"/>
-                                                    <color key="backgroundColor" red="0.16862745098039217" green="0.46666666666666667" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uh2-1T-SYq">
+                                                    <rect key="frame" x="95" y="8" width="217" height="27"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Outgoing Message Text]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5BP-uU-K6K">
+                                                    <rect key="frame" x="105" y="18" width="191" height="7"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="5BP-uU-K6K" firstAttribute="top" secondItem="YKz-rq-py9" secondAttribute="topMargin" constant="10" id="SIO-WQ-NXe"/>
-                                                <constraint firstItem="5BP-uU-K6K" firstAttribute="width" relation="lessThanOrEqual" secondItem="YKz-rq-py9" secondAttribute="width" multiplier="0.7" id="b4m-pN-Mf2"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="5BP-uU-K6K" secondAttribute="bottom" constant="10" id="hAS-Nu-tzs"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="5BP-uU-K6K" secondAttribute="trailing" constant="10" id="lfN-dY-o5N"/>
+                                                <constraint firstItem="5BP-uU-K6K" firstAttribute="top" secondItem="uh2-1T-SYq" secondAttribute="top" constant="10" id="0CJ-6I-VnL"/>
+                                                <constraint firstItem="uh2-1T-SYq" firstAttribute="bottom" secondItem="5BP-uU-K6K" secondAttribute="bottom" constant="10" id="29O-yB-fGa"/>
+                                                <constraint firstItem="uh2-1T-SYq" firstAttribute="trailing" secondItem="5BP-uU-K6K" secondAttribute="trailing" constant="16" id="3FO-2n-o0s"/>
+                                                <constraint firstItem="uh2-1T-SYq" firstAttribute="top" secondItem="YKz-rq-py9" secondAttribute="topMargin" id="3qH-FE-a9Z"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="uh2-1T-SYq" secondAttribute="bottom" id="9mZ-27-61x"/>
+                                                <constraint firstItem="5BP-uU-K6K" firstAttribute="leading" secondItem="uh2-1T-SYq" secondAttribute="leading" constant="10" id="Ib8-uz-hnI"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="uh2-1T-SYq" secondAttribute="trailing" id="N3l-8l-2p0"/>
+                                                <constraint firstAttribute="centerY" secondItem="uh2-1T-SYq" secondAttribute="centerY" id="P6q-vR-HzU"/>
+                                                <constraint firstItem="uh2-1T-SYq" firstAttribute="width" relation="lessThanOrEqual" secondItem="YKz-rq-py9" secondAttribute="width" multiplier="0.7" id="ja8-XN-4FO"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="BubbleImageView" destination="uh2-1T-SYq" id="rS4-tq-t8p"/>
                                             <outlet property="MessageText" destination="5BP-uU-K6K" id="q47-6s-B54"/>
                                         </connections>
                                     </tableViewCell>
