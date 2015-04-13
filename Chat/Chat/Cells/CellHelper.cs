@@ -2,6 +2,7 @@
 
 using UIKit;
 using CoreGraphics;
+using Foundation;
 
 namespace Chat
 {
@@ -19,6 +20,15 @@ namespace Chat
 			UIImage result = UIGraphics.GetImageFromCurrentImageContext ();
 			UIGraphics.EndImageContext ();
 			return result;
+		}
+
+		public static nfloat CellHeightFor(Message msg)
+		{
+			var attributes = new UIStringAttributes {
+				Font = UIFont.SystemFontOfSize(17)
+			};
+			CGRect size =  ((NSString)msg.Text).GetBoundingRect (new CGSize (220, 0), NSStringDrawingOptions.UsesLineFragmentOrigin, attributes, null);
+			return NMath.Ceiling(size.Height) + 24;
 		}
 	}
 }

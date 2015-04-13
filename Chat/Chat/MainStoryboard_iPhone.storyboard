@@ -70,10 +70,10 @@
                                                 <constraint firstItem="GIN-Pf-bwk" firstAttribute="leading" secondItem="T54-px-dWX" secondAttribute="leadingMargin" id="12h-tL-mGP"/>
                                                 <constraint firstItem="4rp-4j-hbr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GIN-Pf-bwk" secondAttribute="leading" constant="16" id="2fy-ns-22i"/>
                                                 <constraint firstItem="4rp-4j-hbr" firstAttribute="top" secondItem="GIN-Pf-bwk" secondAttribute="top" constant="10" id="3be-dg-yvH"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="GIN-Pf-bwk" secondAttribute="bottom" constant="2" id="EwW-2t-IRx"/>
+                                                <constraint firstAttribute="bottom" secondItem="GIN-Pf-bwk" secondAttribute="bottom" constant="2" id="EwW-2t-IRx"/>
                                                 <constraint firstItem="GIN-Pf-bwk" firstAttribute="bottom" secondItem="4rp-4j-hbr" secondAttribute="bottom" constant="10" id="WtX-1E-lAs"/>
                                                 <constraint firstItem="4rp-4j-hbr" firstAttribute="centerX" secondItem="GIN-Pf-bwk" secondAttribute="centerX" constant="3" id="i0s-sw-3KD"/>
-                                                <constraint firstItem="GIN-Pf-bwk" firstAttribute="top" secondItem="T54-px-dWX" secondAttribute="topMargin" constant="2" id="xS9-BK-Uo0"/>
+                                                <constraint firstItem="GIN-Pf-bwk" firstAttribute="top" secondItem="T54-px-dWX" secondAttribute="top" constant="2" id="xS9-BK-Uo0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -87,7 +87,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9mh-XI-5OU" id="YKz-rq-py9">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uh2-1T-SYq">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uh2-1T-SYq">
                                                     <rect key="frame" x="95" y="10" width="217" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="1JU-5i-Dzf"/>
@@ -104,8 +104,8 @@
                                             <constraints>
                                                 <constraint firstItem="5BP-uU-K6K" firstAttribute="top" secondItem="uh2-1T-SYq" secondAttribute="top" constant="10" id="0CJ-6I-VnL"/>
                                                 <constraint firstItem="uh2-1T-SYq" firstAttribute="bottom" secondItem="5BP-uU-K6K" secondAttribute="bottom" constant="10" id="29O-yB-fGa"/>
-                                                <constraint firstItem="uh2-1T-SYq" firstAttribute="top" secondItem="YKz-rq-py9" secondAttribute="topMargin" constant="2" id="3qH-FE-a9Z"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="uh2-1T-SYq" secondAttribute="bottom" constant="2" id="9mZ-27-61x"/>
+                                                <constraint firstItem="uh2-1T-SYq" firstAttribute="top" secondItem="YKz-rq-py9" secondAttribute="top" constant="2" id="3qH-FE-a9Z"/>
+                                                <constraint firstAttribute="bottom" secondItem="uh2-1T-SYq" secondAttribute="bottom" constant="2" id="9mZ-27-61x"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="uh2-1T-SYq" secondAttribute="trailing" id="N3l-8l-2p0"/>
                                                 <constraint firstItem="5BP-uU-K6K" firstAttribute="centerX" secondItem="uh2-1T-SYq" secondAttribute="centerX" constant="-3" id="O3T-zy-IVl"/>
                                                 <constraint firstItem="5BP-uU-K6K" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="uh2-1T-SYq" secondAttribute="trailing" constant="-16" id="dXu-SY-dGE"/>

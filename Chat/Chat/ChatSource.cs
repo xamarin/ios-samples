@@ -29,7 +29,7 @@ namespace Chat
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			UITableViewCell cell = null;
-			var msg = messages [indexPath.Row];
+			Message msg = messages [indexPath.Row];
 
 			if (msg.Type == MessageType.Incoming)
 				cell = tableView.DequeueReusableCell (IncomingCellId);
@@ -40,6 +40,18 @@ namespace Chat
 			cell.TextLabel.Text = msg.Text;
 
 			return cell;
+		}
+
+		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
+		{
+			Message msg = messages [indexPath.Row];
+			return CellHelper.CellHeightFor (msg);
+		}
+
+		public override nfloat EstimatedHeight (UITableView tableView, NSIndexPath indexPath)
+		{
+			Message msg = messages [indexPath.Row];
+			return CellHelper.CellHeightFor (msg);
 		}
 	}
 }
