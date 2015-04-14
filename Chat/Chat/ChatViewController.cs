@@ -21,6 +21,12 @@ namespace Chat
 		// We need dummy input for keeping keyboard visible during showing menu
 		DummyInput hiddenInput;
 
+		NSIndexPath LastIndexPath {
+			get {
+				return NSIndexPath.FromRowSection (messages.Count - 1, 0);
+			}
+		}
+
 		public ChatViewController (IntPtr handle)
 			: base (handle)
 		{
@@ -91,17 +97,40 @@ namespace Chat
 			UIViewAnimationCurve curve = e.AnimationCurve;
 			UIView.Animate (e.AnimationDuration, 0, ConvertToAnimationOptions (e.AnimationCurve), () => {
 				View.LayoutIfNeeded ();
-				Tuple<nfloat, nfloat> changes = UpdateTableInsets ();
 
 				// Move content with keyboard
+
+				var oldOverlap = CalcContentOverlap();
+				UpdateTableInsets ();
+				var newOverlap = CalcContentOverlap();
+
 				var offset = TableView.ContentOffset;
-				offset.Y += changes.Item1 - changes.Item2;
+				offset.Y += newOverlap - oldOverlap;
+				if(offset.Y < 0)
+					offset.Y = 0;
 				TableView.ContentOffset = offset;
 			}, null);
 		}
 
+		nfloat CalcContentOverlap()
+		{
+			var onScreenHeight = CalcOnScreenContentHeight(); 	// >= 0
+
+			// chat's input view with or without keyboard
+			var obstacleHeight = TableView.ContentInset.Bottom; // >= 0
+
+			var overlap = NMath.Max(onScreenHeight + obstacleHeight - TableView.Frame.Height, 0);
+			return overlap;
+		}
+
+		nfloat CalcOnScreenContentHeight()
+		{
+			// Content which rendered on screen can't be bigger than table's height
+			return NMath.Min (TableView.ContentSize.Height - TableView.ContentOffset.Y, TableView.Frame.Height);
+		}
+
 		// returns changes in ContentInsetY and ContentOffsetY values
-		Tuple<nfloat, nfloat> UpdateTableInsets()
+		void UpdateTableInsets()
 		{
 			UIEdgeInsets oldInset = TableView.ContentInset;
 			CGPoint oldOffset = TableView.ContentOffset;
@@ -113,8 +142,11 @@ namespace Chat
 
 			TableView.ContentInset = newInset; // this may change ContentOffset property implicitly
 			TableView.ScrollIndicatorInsets = newInset;
+		}
 
-			return new Tuple<nfloat, nfloat> (newInset.Bottom - oldInset.Bottom, TableView.ContentOffset.Y - oldOffset.Y);
+		bool IsTableContentOverlapped()
+		{
+			return TableView.ContentSize.Height > TableView.Frame.Height - TableView.ContentInset.Bottom;
 		}
 
 		UIViewAnimationOptions ConvertToAnimationOptions(UIViewAnimationCurve curve)
@@ -141,9 +173,7 @@ namespace Chat
 
 			messages.Add (msg);
 
-			var indexPaths = new NSIndexPath[] {
-				NSIndexPath.FromRowSection (messages.Count - 1, 0)
-			};
+			var indexPaths = new NSIndexPath[] { LastIndexPath };
 			TableView.InsertRows(indexPaths, UITableViewRowAnimation.None);
 			TableView.ScrollToRow (indexPaths [0], UITableViewScrollPosition.Bottom, true);
 		}
