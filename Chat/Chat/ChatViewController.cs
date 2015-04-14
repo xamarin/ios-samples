@@ -55,6 +55,10 @@ namespace Chat
 			chatSrc = new ChatSource (messages, ShowMenu);
 			SendButton.TouchUpInside += OnSendClicked;
 			TextView.Changed += OnTextChanged;
+			TextView.Layer.BorderColor = UIColor.FromRGB (200, 200, 205).CGColor;
+			TextView.Layer.BorderWidth = (float)0.5;
+			TextView.Layer.CornerRadius = 5;
+			TextView.BackgroundColor = UIColor.FromWhiteAlpha (250, 1);
 			TableView.Source = chatSrc;
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 		}
