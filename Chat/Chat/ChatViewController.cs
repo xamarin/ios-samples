@@ -68,12 +68,7 @@ namespace Chat
 			chatInputView = new ChatInputView ();
 
 			SendButton.TouchUpInside += OnSendClicked;
-
 			TextView.Changed += OnTextChanged;
-			TextView.Layer.BorderColor = UIColor.FromRGB (200, 200, 205).CGColor;
-			TextView.Layer.BorderWidth = (float)0.5;
-			TextView.Layer.CornerRadius = 5;
-			TextView.BackgroundColor = UIColor.FromWhiteAlpha (250, 1);
 
 			chatSrc = new ChatSource (messages, ShowMenu);
 			TableView.Source = chatSrc;
@@ -137,8 +132,7 @@ namespace Chat
 
 				var offset = TableView.ContentOffset;
 				offset.Y += newOverlap - oldOverlap;
-				if(offset.Y < 0)
-					offset.Y = 0;
+				offset.Y = NMath.Max(offset.Y, 0);
 				TableView.ContentOffset = offset;
 			}, null);
 		}
@@ -160,7 +154,6 @@ namespace Chat
 			return NMath.Min (TableView.ContentSize.Height - TableView.ContentOffset.Y, TableView.Frame.Height);
 		}
 
-		// returns changes in ContentInsetY and ContentOffsetY values
 		void UpdateTableInsets()
 		{
 			UIEdgeInsets oldInset = TableView.ContentInset;
@@ -206,7 +199,7 @@ namespace Chat
 
 			var indexPaths = new NSIndexPath[] { LastIndexPath };
 			TableView.InsertRows(indexPaths, UITableViewRowAnimation.None);
-			TableView.ScrollToRow (indexPaths [0], UITableViewScrollPosition.Bottom, true);
+			TableView.ScrollToRow (LastIndexPath, UITableViewScrollPosition.Bottom, true);
 		}
 
 		void OnTextChanged (object sender, EventArgs e)
