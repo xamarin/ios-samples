@@ -31,24 +31,15 @@ namespace Chat
 			: base (handle)
 		{
 			messages = new List<Message> () {
-				new Message{ Type = MessageType.Incoming, Text = "You're encountering the side effect of a fantastic new feature in iOS8's Tableviews: Automatic Row Heights" },
-				new Message{ Type = MessageType.Outgoing, Text = "You're encountering the side effect of a fantastic new feature in iOS8's Tableviews: Automatic Row Heights" },
-				new Message{ Type = MessageType.Incoming, Text = "Hi!" },
-				new Message{ Type = MessageType.Incoming, Text = "1" },
-				new Message{ Type = MessageType.Outgoing, Text = "2" },
-				new Message{ Type = MessageType.Incoming, Text = "3" },
-				new Message{ Type = MessageType.Incoming, Text = "4" },
-				new Message{ Type = MessageType.Incoming, Text = "5" },
-				new Message{ Type = MessageType.Incoming, Text = "6" },
-				new Message{ Type = MessageType.Incoming, Text = "7" },
-				new Message{ Type = MessageType.Incoming, Text = "8" },
-				new Message{ Type = MessageType.Incoming, Text = "9" },
-				new Message{ Type = MessageType.Incoming, Text = "10" },
-				new Message{ Type = MessageType.Incoming, Text = "11" },
-				new Message{ Type = MessageType.Incoming, Text = "12" },
-				new Message{ Type = MessageType.Incoming, Text = "13" },
-				new Message{ Type = MessageType.Incoming, Text = "14" },
-				new Message{ Type = MessageType.Incoming, Text = "15" },
+				new Message{ Type = MessageType.Incoming, Text = "Hello!" },
+				new Message{ Type = MessageType.Outgoing, Text = "Hi!" },
+				new Message{ Type = MessageType.Incoming, Text = "Do you know about Xamarin?" },
+				new Message{ Type = MessageType.Outgoing, Text = "Yes! Sure!" },
+				new Message{ Type = MessageType.Incoming, Text = "And what do you think?" },
+				new Message{ Type = MessageType.Outgoing, Text = "I think it is the best way to develop mobile applications." },
+				new Message{ Type = MessageType.Incoming, Text = "Wow :-)" },
+				new Message{ Type = MessageType.Outgoing, Text = "Yep. Check it out\nhttp://Xamarin.com" },
+				new Message{ Type = MessageType.Incoming, Text = "Will do. Thanks" },
 			};
 		}
 
