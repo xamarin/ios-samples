@@ -16,7 +16,7 @@ namespace Chat
 		UIKit.NSLayoutConstraint BottomConstraint { get; set; }
 
 		[Outlet]
-		UIKit.UIView Chat { get; set; }
+		UIKit.UIToolbar Chat { get; set; }
 
 		[Outlet]
 		UIKit.UIButton SendButton { get; set; }
