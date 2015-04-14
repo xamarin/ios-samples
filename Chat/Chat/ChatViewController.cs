@@ -13,6 +13,7 @@ namespace Chat
 	{
 		NSObject willShowToken;
 		NSObject willHideToken;
+		NSObject willHideMenuToken;
 
 		List<Message> messages;
 		ChatSource chatSrc;
@@ -58,6 +59,7 @@ namespace Chat
 			SendButton.TouchUpInside += OnSendClicked;
 			TextView.Changed += OnTextChanged;
 			TableView.Source = chatSrc;
+			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -66,6 +68,7 @@ namespace Chat
 
 			willShowToken = UIKeyboard.Notifications.ObserveWillShow (KeyboardWillShowHandler);
 			willHideToken = UIKeyboard.Notifications.ObserveWillHide (KeyboardWillHideHandler);
+			willHideMenuToken = UIMenuController.Notifications.ObserveWillHideMenu (MenuWillHide);
 
 			UpdateButtonState ();
 		}
@@ -136,6 +139,7 @@ namespace Chat
 
 			willShowToken.Dispose ();
 			willHideToken.Dispose ();
+			willHideMenuToken.Dispose ();
 		}
 
 		[Export("messageCopyTextAction:")]
@@ -174,10 +178,10 @@ namespace Chat
 			menu.SetMenuVisible (true, true);
 		}
 
-		public override bool BecomeFirstResponder ()
+		void MenuWillHide (object sender, NSNotificationEventArgs e)
 		{
-			var result = base.BecomeFirstResponder ();
-			return result;
+			var selected = TableView.IndexPathForSelectedRow;
+			TableView.DeselectRow (selected, false);
 		}
 	}
 
