@@ -21,6 +21,19 @@ namespace Chat
 		// We need dummy input for keeping keyboard visible during showing menu
 		DummyInput hiddenInput;
 
+		ChatInputView chatInputView;
+		UIButton SendButton {
+			get {
+				return chatInputView.SendButton;
+			}
+		}
+
+		UITextView TextView {
+			get {
+				return chatInputView.TextView;
+			}
+		}
+
 		NSIndexPath LastIndexPath {
 			get {
 				return NSIndexPath.FromRowSection (messages.Count - 1, 0);
@@ -52,15 +65,21 @@ namespace Chat
 			};
 			View.AddSubview (hiddenInput);
 
-			chatSrc = new ChatSource (messages, ShowMenu);
+			chatInputView = new ChatInputView ();
+
 			SendButton.TouchUpInside += OnSendClicked;
+
 			TextView.Changed += OnTextChanged;
 			TextView.Layer.BorderColor = UIColor.FromRGB (200, 200, 205).CGColor;
 			TextView.Layer.BorderWidth = (float)0.5;
 			TextView.Layer.CornerRadius = 5;
 			TextView.BackgroundColor = UIColor.FromWhiteAlpha (250, 1);
+
+			chatSrc = new ChatSource (messages, ShowMenu);
 			TableView.Source = chatSrc;
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+
+			UpdateToolbar ();
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -73,6 +92,23 @@ namespace Chat
 
 			UpdateTableInsets ();
 			UpdateButtonState ();
+		}
+
+		void UpdateToolbar ()
+		{
+			chatInputView.TranslatesAutoresizingMaskIntoConstraints = false;
+			Chat.AddSubview (chatInputView);
+
+			var c1 = NSLayoutConstraint.FromVisualFormat ("H:|[chat]|",
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"chat", chatInputView
+			);
+			var c2 = NSLayoutConstraint.FromVisualFormat ("V:|[chat]|",
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"chat", chatInputView
+			);
+			Chat.AddConstraints (c1);
+			Chat.AddConstraints (c2);
 		}
 
 		void KeyboardWillShowHandler (object sender, UIKeyboardEventArgs e)

@@ -19,13 +19,7 @@ namespace Chat
 		UIKit.UIToolbar Chat { get; set; }
 
 		[Outlet]
-		UIKit.UIButton SendButton { get; set; }
-
-		[Outlet]
 		UIKit.UITableView TableView { get; set; }
-
-		[Outlet]
-		UIKit.UITextView TextView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -34,24 +28,14 @@ namespace Chat
 				BottomConstraint = null;
 			}
 
-			if (SendButton != null) {
-				SendButton.Dispose ();
-				SendButton = null;
+			if (Chat != null) {
+				Chat.Dispose ();
+				Chat = null;
 			}
 
 			if (TableView != null) {
 				TableView.Dispose ();
 				TableView = null;
-			}
-
-			if (TextView != null) {
-				TextView.Dispose ();
-				TextView = null;
-			}
-
-			if (Chat != null) {
-				Chat.Dispose ();
-				Chat = null;
 			}
 		}
 	}

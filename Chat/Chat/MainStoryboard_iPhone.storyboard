@@ -90,40 +90,7 @@
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0R-VL-Zim">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" id="sVc-WU-d6Y">
-                                        <view key="customView" contentMode="scaleToFill" id="KaN-id-a6M">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="33"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3L-af-1Fu">
-                                                    <rect key="frame" x="0.0" y="2" width="240" height="29"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                </textView>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="d3L-af-1Fu" secondAttribute="trailing" id="8xq-dt-7w6"/>
-                                                <constraint firstItem="d3L-af-1Fu" firstAttribute="top" secondItem="KaN-id-a6M" secondAttribute="top" constant="2" id="KWC-Bw-ObR"/>
-                                                <constraint firstItem="d3L-af-1Fu" firstAttribute="leading" secondItem="KaN-id-a6M" secondAttribute="leading" id="LTD-zz-ewN"/>
-                                                <constraint firstAttribute="bottom" secondItem="d3L-af-1Fu" secondAttribute="bottom" constant="2" id="ocY-xX-anO"/>
-                                            </constraints>
-                                        </view>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="PNb-d5-2zi">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ql2-lV-URf">
-                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <state key="normal" title="Send">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
-                                    </barButtonItem>
-                                </items>
+                                <items/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -140,9 +107,7 @@
                     <connections>
                         <outlet property="BottomConstraint" destination="h8p-2S-2Fa" id="UZF-Fp-rt0"/>
                         <outlet property="Chat" destination="I0R-VL-Zim" id="8Fp-6C-mzu"/>
-                        <outlet property="SendButton" destination="ql2-lV-URf" id="VeN-LP-NTh"/>
                         <outlet property="TableView" destination="0ka-sN-sOO" id="uxW-0d-AwN"/>
-                        <outlet property="TextView" destination="d3L-af-1Fu" id="rRt-bN-oNC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
