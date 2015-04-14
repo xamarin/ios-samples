@@ -16,6 +16,9 @@ namespace Chat
 		UIKit.NSLayoutConstraint BottomConstraint { get; set; }
 
 		[Outlet]
+		UIKit.UIView Chat { get; set; }
+
+		[Outlet]
 		UIKit.UIButton SendButton { get; set; }
 
 		[Outlet]
@@ -44,6 +47,11 @@ namespace Chat
 			if (TextView != null) {
 				TextView.Dispose ();
 				TextView = null;
+			}
+
+			if (Chat != null) {
+				Chat.Dispose ();
+				Chat = null;
 			}
 		}
 	}

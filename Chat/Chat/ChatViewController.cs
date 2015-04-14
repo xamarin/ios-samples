@@ -70,6 +70,7 @@ namespace Chat
 			willHideToken = UIKeyboard.Notifications.ObserveWillHide (KeyboardWillHideHandler);
 			willHideMenuToken = UIMenuController.Notifications.ObserveWillHideMenu (MenuWillHide);
 
+			UpdateTableInsets ();
 			UpdateButtonState ();
 		}
 
@@ -88,15 +89,39 @@ namespace Chat
 			BottomConstraint.Constant = View.Bounds.GetMaxY () - e.FrameEnd.GetMinY ();
 
 			UIViewAnimationCurve curve = e.AnimationCurve;
-			UIView.Animate (e.AnimationDuration, 0, ConvertToAnimationOptions(e.AnimationCurve), ()=> {
+			UIView.Animate (e.AnimationDuration, 0, ConvertToAnimationOptions (e.AnimationCurve), () => {
 				View.LayoutIfNeeded ();
+				Tuple<nfloat, nfloat> changes = UpdateTableInsets ();
+
+				// Move content with keyboard
+				var offset = TableView.ContentOffset;
+				offset.Y += changes.Item1 - changes.Item2;
+				TableView.ContentOffset = offset;
 			}, null);
+		}
+
+		// returns changes in ContentInsetY and ContentOffsetY values
+		Tuple<nfloat, nfloat> UpdateTableInsets()
+		{
+			UIEdgeInsets oldInset = TableView.ContentInset;
+			CGPoint oldOffset = TableView.ContentOffset;
+
+			nfloat hiddenHeight = TableView.Frame.GetMaxY () - Chat.Frame.GetMinY();
+
+			UIEdgeInsets newInset = oldInset;
+			newInset.Bottom = hiddenHeight;
+
+			TableView.ContentInset = newInset; // this may change ContentOffset property implicitly
+			TableView.ScrollIndicatorInsets = newInset;
+
+			return new Tuple<nfloat, nfloat> (newInset.Bottom - oldInset.Bottom, TableView.ContentOffset.Y - oldOffset.Y);
 		}
 
 		UIViewAnimationOptions ConvertToAnimationOptions(UIViewAnimationCurve curve)
 		{
 			// Looks like a hack. But it is correct.
 			// UIViewAnimationCurve and UIViewAnimationOptions are shifted by 16 bits
+			// http://stackoverflow.com/questions/18870447/how-to-use-the-default-ios7-uianimation-curve/18873820#18873820
 			return (UIViewAnimationOptions)((int)curve << 16);
 		}
 
