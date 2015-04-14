@@ -8,7 +8,7 @@ namespace Chat
 	public abstract class BubbleCell : UITableViewCell
 	{
 		protected abstract UIImageView BubbleView { get; }
-		public abstract CopyableLabel MessageLbl { get; }
+		public abstract UILabel MessageLbl { get; }
 
 		protected abstract UIImage BubbleImg { get; }
 		protected abstract UIImage BubbleHighlightedImage { get; }

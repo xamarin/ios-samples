@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UIKit;
 using Foundation;
 using CoreGraphics;
+using ObjCRuntime;
 
 namespace Chat
 {
@@ -15,6 +16,9 @@ namespace Chat
 
 		List<Message> messages;
 		ChatSource chatSrc;
+
+		// We need dummy input for keeping keyboard visible during showing menu
+		DummyInput hiddenInput;
 
 		public ChatViewController (IntPtr handle)
 			: base (handle)
@@ -45,7 +49,12 @@ namespace Chat
 		{
 			base.ViewDidLoad ();
 
-			chatSrc = new ChatSource (messages);
+			hiddenInput = new DummyInput(this) {
+				Hidden = true
+			};
+			View.AddSubview (hiddenInput);
+
+			chatSrc = new ChatSource (messages, ShowMenu);
 			SendButton.TouchUpInside += OnSendClicked;
 			TextView.Changed += OnTextChanged;
 			TableView.Source = chatSrc;
@@ -127,6 +136,69 @@ namespace Chat
 
 			willShowToken.Dispose ();
 			willHideToken.Dispose ();
+		}
+
+		[Export("messageCopyTextAction:")]
+		internal void CopyMessage(NSObject sender)
+		{
+			var selected = TableView.IndexPathForSelectedRow;
+			Message msg = messages [selected.Row];
+			UIPasteboard.General.String = msg.Text;
+		}
+
+		public override bool CanBecomeFirstResponder {
+			get {
+				return true;
+			}
+		}
+
+		void ShowMenu(UIGestureRecognizer gesture)
+		{
+			CGPoint location = gesture.LocationInView (TableView);
+			NSIndexPath indexPath = TableView.IndexPathForRowAtPoint (location);
+			TableView.SelectRow (indexPath, false, UITableViewScrollPosition.None);
+
+			if (TextView.IsFirstResponder) {
+				hiddenInput.Text = string.Empty;
+				hiddenInput.BecomeFirstResponder ();
+			} else {
+				hiddenInput.BecomeFirstResponder ();
+				BecomeFirstResponder ();
+			}
+
+			UIMenuController menu = UIMenuController.SharedMenuController;
+			menu.SetTargetRect (gesture.View.Frame, gesture.View.Superview);
+			menu.MenuItems = new UIMenuItem[] {
+				new UIMenuItem { Title = "Copy", Action = new Selector ("messageCopyTextAction:") }
+			};
+			menu.SetMenuVisible (true, true);
+		}
+
+		public override bool BecomeFirstResponder ()
+		{
+			var result = base.BecomeFirstResponder ();
+			return result;
+		}
+	}
+
+	public class DummyInput : UITextView
+	{
+		readonly ChatViewController viewController;
+
+		public DummyInput (ChatViewController vc)
+		{
+			viewController = vc;
+		}
+
+		public override bool CanPerform (ObjCRuntime.Selector action, NSObject withSender)
+		{
+			return action.Name == "messageCopyTextAction:";
+		}
+
+		[Export("messageCopyTextAction:")]
+		void CopyMessage(NSObject sender)
+		{
+			viewController.CopyMessage (sender);
 		}
 	}
 }

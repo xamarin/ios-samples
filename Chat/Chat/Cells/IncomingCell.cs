@@ -30,7 +30,7 @@ namespace Chat
 			}
 		}
 
-		public override CopyableLabel MessageLbl {
+		public override UILabel MessageLbl {
 			get {
 				// from outlet
 				return MessageText;

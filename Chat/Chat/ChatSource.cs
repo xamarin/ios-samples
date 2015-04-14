@@ -15,14 +15,16 @@ namespace Chat
 
 		IList<Message> messages;
 
-		readonly BubbleCell[] sizingCells; 
+		readonly BubbleCell[] sizingCells;
+		readonly Action<UIGestureRecognizer> showMenuAction;
 
-		public ChatSource(IList<Message> messages)
+		public ChatSource(IList<Message> messages, Action<UIGestureRecognizer> showMenuAction)
 		{
 			if (messages == null)
 				throw new ArgumentNullException ("messages");
 
 			this.messages = messages;
+			this.showMenuAction = showMenuAction;
 			sizingCells = new BubbleCell[2];
 		}
 
@@ -40,11 +42,11 @@ namespace Chat
 
 			bool isNew = cell.Message == null;
 			if (isNew) {
-				var doubleTap = new UITapGestureRecognizer (gesture => ShowMenu (gesture, tableView));
+				var doubleTap = new UITapGestureRecognizer (ShowMenu);
 				doubleTap.NumberOfTapsRequired = 2;
 				cell.MessageLbl.AddGestureRecognizer (doubleTap);
 
-				var longPressTap = new UILongPressGestureRecognizer (gesture => ShowMenu (gesture, tableView));
+				var longPressTap = new UILongPressGestureRecognizer (ShowMenu);
 				cell.MessageLbl.AddGestureRecognizer (longPressTap);
 			}
 
@@ -90,32 +92,16 @@ namespace Chat
 			return msgType == MessageType.Incoming ? IncomingCellId : OutgoingCellId;
 		}
 
-		void ShowMenu(UITapGestureRecognizer tapGesture, UITableView tableView)
+		void ShowMenu(UITapGestureRecognizer tapGesture)
 		{
-			if (tapGesture.State == UIGestureRecognizerState.Ended)
-				ShowMenuController (tapGesture, tableView);
+			if (tapGesture.State == UIGestureRecognizerState.Ended && showMenuAction != null)
+				showMenuAction (tapGesture);
 		}
 
-		void ShowMenu(UILongPressGestureRecognizer longPress, UITableView tableView)
+		void ShowMenu(UILongPressGestureRecognizer longPress)
 		{
-			if (longPress.State == UIGestureRecognizerState.Began)
-				ShowMenuController (longPress, tableView);
-		}
-
-		void ShowMenuController(UIGestureRecognizer gesture, UITableView tableView)
-		{
-			CGPoint location = gesture.LocationInView (tableView);
-			NSIndexPath indexPath = tableView.IndexPathForRowAtPoint (location);
-			tableView.SelectRow (indexPath, false, UITableViewScrollPosition.None);
-
-			gesture.View.BecomeFirstResponder ();
-
-			UIMenuController menu = UIMenuController.SharedMenuController;
-			menu.SetTargetRect (gesture.View.Frame, gesture.View.Superview);
-//			menu.MenuItems = new UIMenuItem[] {
-//				new UIMenuItem { Title = "Copy", Action = new Selector ("messageCopyTextAction:") }
-//			};
-			menu.SetMenuVisible (true, true);
+			if (longPress.State == UIGestureRecognizerState.Began && showMenuAction != null)
+				showMenuAction (longPress);
 		}
 	}
 }
