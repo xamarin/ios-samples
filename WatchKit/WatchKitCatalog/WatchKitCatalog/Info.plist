@@ -11,11 +11,11 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.6</string>
+	<string>1.18</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>8.2</string>
+	<string>7.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
