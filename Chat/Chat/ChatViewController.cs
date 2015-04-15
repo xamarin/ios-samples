@@ -87,6 +87,11 @@ namespace Chat
 
 			UpdateTableInsets ();
 			UpdateButtonState ();
+		}
+
+		public override void ViewDidAppear (bool animated)
+		{
+			base.ViewDidAppear (animated);
 			AddObservers ();
 		}
 
@@ -101,7 +106,7 @@ namespace Chat
 			CGSize newValue = ((NSValue)change.NewValue).CGSizeValue;
 
 			var dy = newValue.Height - oldValue.Height;
-			// AdjustInputToolbar (dy);
+			AdjustInputToolbar (dy);
 		}
 
 		void AdjustInputToolbar(nfloat change)
