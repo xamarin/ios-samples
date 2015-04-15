@@ -6,6 +6,7 @@ using UIKit;
 using Foundation;
 using CoreGraphics;
 using ObjCRuntime;
+using AudioToolbox;
 
 namespace Chat
 {
@@ -14,6 +15,8 @@ namespace Chat
 		NSObject willShowToken;
 		NSObject willHideToken;
 		NSObject willHideMenuToken;
+
+		SystemSound sentSound;
 
 		List<Message> messages;
 		ChatSource chatSrc;
@@ -324,6 +327,11 @@ namespace Chat
 		{
 			var selected = TableView.IndexPathForSelectedRow;
 			TableView.DeselectRow (selected, false);
+		}
+
+		void PlayMessageSentSound()
+		{
+			throw new NotImplementedException ();
 		}
 	}
 
