@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.18</string>
+	<string>1.20</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -30,7 +30,7 @@
 	<key>WKWatchKitApp</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>8.2</string>
+	<string>8.3</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 </dict>
