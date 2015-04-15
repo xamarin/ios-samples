@@ -97,7 +97,16 @@ namespace Chat
 
 		void AddObservers()
 		{
-			TextView.AddObserver ("contentSize", NSKeyValueObservingOptions.OldNew, OnSizeChanged);
+			TextView.AddObserver(this,"contentSize", NSKeyValueObservingOptions.OldNew, IntPtr.Zero);
+		}
+
+		public override void ObserveValue (NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
+		{
+			if (keyPath == "contentSize") {
+				OnSizeChanged (new NSObservedChange (change));
+			} else {
+				base.ObserveValue (keyPath, ofObject, change, context);
+			}
 		}
 
 		void OnSizeChanged(NSObservedChange change)
@@ -106,12 +115,38 @@ namespace Chat
 			CGSize newValue = ((NSValue)change.NewValue).CGSizeValue;
 
 			var dy = newValue.Height - oldValue.Height;
+			AdjustInputToolbarOnTextViewSizeChanged (dy);
+		}
+
+		void AdjustInputToolbarOnTextViewSizeChanged(nfloat dy)
+		{
+			bool isIncreasing = dy > 0;
+			if (IsInputToolbarHasReachedMaximumHeight () && isIncreasing) {
+				// TODO: scroll to bottom
+				return;
+			}
+
+			nfloat oldY = Chat.Frame.GetMinY ();
+			nfloat newY = oldY - dy;
+			if (newY < TopLayoutGuide.Length)
+				dy = oldY - TopLayoutGuide.Length;
+
 			AdjustInputToolbar (dy);
+		}
+
+		bool IsInputToolbarHasReachedMaximumHeight()
+		{
+			return Chat.Frame.GetMinY () == TopLayoutGuide.Length;
 		}
 
 		void AdjustInputToolbar(nfloat change)
 		{
 			ToolbarHeightConstraint.Constant += change;
+
+			if (ToolbarHeightConstraint.Constant < ChatInputView.ToolbarMinHeight)
+				ToolbarHeightConstraint.Constant = ChatInputView.ToolbarMinHeight;
+
+			Console.WriteLine (ToolbarHeightConstraint.Constant);
 
 			View.SetNeedsUpdateConstraints ();
 			View.LayoutIfNeeded ();
@@ -146,10 +181,10 @@ namespace Chat
 
 		void UpdateButtomLayoutConstraint(UIKeyboardEventArgs e)
 		{
-			BottomConstraint.Constant = View.Bounds.GetMaxY () - e.FrameEnd.GetMinY ();
-
 			UIViewAnimationCurve curve = e.AnimationCurve;
 			UIView.Animate (e.AnimationDuration, 0, ConvertToAnimationOptions (e.AnimationCurve), () => {
+				BottomConstraint.Constant = View.Bounds.GetMaxY () - e.FrameEnd.GetMinY ();
+				View.SetNeedsUpdateConstraints();
 				View.LayoutIfNeeded ();
 
 				// Move content with keyboard
@@ -233,7 +268,6 @@ namespace Chat
 		void OnTextChanged (object sender, EventArgs e)
 		{
 			UpdateButtonState ();
-
 		}
 
 		void UpdateButtonState()

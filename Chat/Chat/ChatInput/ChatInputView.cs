@@ -16,7 +16,7 @@ namespace Chat
 		const float BorderWidth = 0.5f;
 		const float CornerRadius = 5;
 
-		const float ToolbarMinHeight = 44;
+		public static readonly float ToolbarMinHeight = 44;
 
 		public UITextView TextView { get; private set; }
 		public UIButton SendButton { get; private set; }
