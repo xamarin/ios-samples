@@ -24,11 +24,25 @@ namespace Chat
 		public ChatInputView()
 		{
 			TextView = new UITextView ();
+			TextView.Changed += OnTextChanged;
+			TextView.Started += OnTextChanged;
+			TextView.Ended += OnTextChanged;
 			TextView.Layer.BorderColor = InputBorderColor.CGColor;
 			TextView.Layer.BorderWidth = BorderWidth;
 			TextView.Layer.CornerRadius = CornerRadius;
 			TextView.BackgroundColor = InputBackgroundColor;
 			TextView.TranslatesAutoresizingMaskIntoConstraints = false;
+
+			TextView.ScrollIndicatorInsets = new UIEdgeInsets (CornerRadius, 0, CornerRadius, 0);
+			TextView.TextContainerInset = new UIEdgeInsets (4, 2, 4, 2);
+			TextView.ContentInset = new UIEdgeInsets (1, 0, 1, 0);
+			TextView.ScrollEnabled = true;
+			TextView.ScrollsToTop = false;
+			TextView.UserInteractionEnabled = true;
+			TextView.Font = UIFont.SystemFontOfSize (16);
+			TextView.TextAlignment = UITextAlignment.Natural;
+			TextView.ContentMode = UIViewContentMode.Redraw;
+
 
 			SendButton = new UIButton ();
 			SendButton.SetTitle ("Send", UIControlState.Normal);
@@ -44,15 +58,24 @@ namespace Chat
 				"input", TextView,
 				"button", SendButton
 			);
-			var c2 = NSLayoutConstraint.FromVisualFormat ("V:|-[input]-|",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing,
-				"input", TextView
-			);
+//			var c2 = NSLayoutConstraint.FromVisualFormat ("V:|-[input]-|",
+//				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+//				"input", TextView
+//			);
+//			AddConstraints (c2);
+			var top = NSLayoutConstraint.Create(TextView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, this, NSLayoutAttribute.Top, 1, 7);
+			var bot = NSLayoutConstraint.Create(TextView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, this, NSLayoutAttribute.Bottom, 1, -7);
+			AddConstraint (top);
+			AddConstraint (bot);
 			// We want Send button was centered when Toolbar has MinHeight (pin button in this state)
 			var c3 = NSLayoutConstraint.Create(SendButton, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, this, NSLayoutAttribute.Bottom, 1, -ToolbarMinHeight / 2);
 			AddConstraints (c1);
-			AddConstraints (c2);
 			AddConstraint (c3);
+		}
+
+		void OnTextChanged (object sender, EventArgs e)
+		{
+			SetNeedsDisplay ();
 		}
 	}
 }

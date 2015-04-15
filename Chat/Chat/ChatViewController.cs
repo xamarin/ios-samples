@@ -87,6 +87,29 @@ namespace Chat
 
 			UpdateTableInsets ();
 			UpdateButtonState ();
+			AddObservers ();
+		}
+
+		void AddObservers()
+		{
+			TextView.AddObserver ("contentSize", NSKeyValueObservingOptions.OldNew, OnSizeChanged);
+		}
+
+		void OnSizeChanged(NSObservedChange change)
+		{
+			CGSize oldValue = ((NSValue)change.OldValue).CGSizeValue;
+			CGSize newValue = ((NSValue)change.NewValue).CGSizeValue;
+
+			var dy = newValue.Height - oldValue.Height;
+			// AdjustInputToolbar (dy);
+		}
+
+		void AdjustInputToolbar(nfloat change)
+		{
+			ToolbarHeightConstraint.Constant += change;
+
+			View.SetNeedsUpdateConstraints ();
+			View.LayoutIfNeeded ();
 		}
 
 		void UpdateToolbar ()
@@ -205,6 +228,7 @@ namespace Chat
 		void OnTextChanged (object sender, EventArgs e)
 		{
 			UpdateButtonState ();
+
 		}
 
 		void UpdateButtonState()

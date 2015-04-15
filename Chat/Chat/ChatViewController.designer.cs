@@ -20,6 +20,9 @@ namespace Chat
 
 		[Outlet]
 		UIKit.UITableView TableView { get; set; }
+
+		[Outlet]
+		UIKit.NSLayoutConstraint ToolbarHeightConstraint { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
@@ -36,6 +39,11 @@ namespace Chat
 			if (TableView != null) {
 				TableView.Dispose ();
 				TableView = null;
+			}
+
+			if (ToolbarHeightConstraint != null) {
+				ToolbarHeightConstraint.Dispose ();
+				ToolbarHeightConstraint = null;
 			}
 		}
 	}

@@ -90,6 +90,9 @@
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0R-VL-Zim">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="fcT-d0-0if"/>
+                                </constraints>
                                 <items/>
                             </toolbar>
                         </subviews>
@@ -108,6 +111,7 @@
                         <outlet property="BottomConstraint" destination="h8p-2S-2Fa" id="UZF-Fp-rt0"/>
                         <outlet property="Chat" destination="I0R-VL-Zim" id="8Fp-6C-mzu"/>
                         <outlet property="TableView" destination="0ka-sN-sOO" id="uxW-0d-AwN"/>
+                        <outlet property="ToolbarHeightConstraint" destination="fcT-d0-0if" id="JKq-6o-mJT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
