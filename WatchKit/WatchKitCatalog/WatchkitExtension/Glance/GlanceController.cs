@@ -22,7 +22,7 @@ namespace WatchkitExtension
 		{
 			bool large = (WKInterfaceDevice.CurrentDevice.ScreenBounds.Size.Width > 136.0);
 			// Load image inside WatchKit Extension
-			using (var image = UIImage.FromBundle (large ? "42mm-Walkway" : "38mm-Walkway"))
+			using (var image = UIImage.FromBundle ("Walkway"))
 			using (var png = image.AsPNG ())
 				glanceImage.SetImage (png);
 		}
