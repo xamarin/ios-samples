@@ -1,8 +1,7 @@
 using System;
-using System.CodeDom.Compiler;
-
 using Foundation;
 using UIKit;
+using System.CodeDom.Compiler;
 
 namespace DesignerWalkthrough
 {
@@ -14,8 +13,9 @@ namespace DesignerWalkthrough
 
 		partial void Clicked (UIButton sender)
 		{
-			Console.WriteLine ("Back to Main pressed");
-			DismissViewController (true, null);
+			Console.WriteLine("Back to Main pressed");
+			DismissViewController(true, null);
 		}
+
 	}
 }
