@@ -1,7 +1,7 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicsCatalog", "dynamicsCatalog\DynamicsCatalog.csproj", "{9CB04784-625E-4134-842A-F178518AB83E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicsCatalog", "Dynamics_Catalog\DynamicsCatalog.csproj", "{A6CE4BA5-4CF6-4216-B390-2A0289132977}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,20 +13,17 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9CB04784-625E-4134-842A-F178518AB83E}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{9CB04784-625E-4134-842A-F178518AB83E}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{9CB04784-625E-4134-842A-F178518AB83E}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{9CB04784-625E-4134-842A-F178518AB83E}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{9CB04784-625E-4134-842A-F178518AB83E}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{9CB04784-625E-4134-842A-F178518AB83E}.Debug|iPhone.Build.0 = Debug|iPhone
-		{9CB04784-625E-4134-842A-F178518AB83E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{9CB04784-625E-4134-842A-F178518AB83E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{9CB04784-625E-4134-842A-F178518AB83E}.Release|iPhone.ActiveCfg = Release|iPhone
-		{9CB04784-625E-4134-842A-F178518AB83E}.Release|iPhone.Build.0 = Release|iPhone
-		{9CB04784-625E-4134-842A-F178518AB83E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{9CB04784-625E-4134-842A-F178518AB83E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = dynamicsCatalog\DynamicsCatalog.csproj
+		{A6CE4BA5-4CF6-4216-B390-2A0289132977}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{A6CE4BA5-4CF6-4216-B390-2A0289132977}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{A6CE4BA5-4CF6-4216-B390-2A0289132977}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{A6CE4BA5-4CF6-4216-B390-2A0289132977}.AppStore|iPhone.Build.0 = Release|iPhone
+		{A6CE4BA5-4CF6-4216-B390-2A0289132977}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{A6CE4BA5-4CF6-4216-B390-2A0289132977}.Debug|iPhone.Build.0 = Debug|iPhone
+		{A6CE4BA5-4CF6-4216-B390-2A0289132977}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{A6CE4BA5-4CF6-4216-B390-2A0289132977}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{A6CE4BA5-4CF6-4216-B390-2A0289132977}.Release|iPhone.ActiveCfg = Release|iPhone
+		{A6CE4BA5-4CF6-4216-B390-2A0289132977}.Release|iPhone.Build.0 = Release|iPhone
+		{A6CE4BA5-4CF6-4216-B390-2A0289132977}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{A6CE4BA5-4CF6-4216-B390-2A0289132977}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 EndGlobal

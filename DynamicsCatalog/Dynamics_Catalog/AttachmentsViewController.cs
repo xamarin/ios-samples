@@ -16,10 +16,11 @@ namespace DynamicsCatalog {
 		{
 			base.ViewDidLoad ();
 
-			var collisionBehavior = new UICollisionBehavior (square);
-			collisionBehavior.TranslatesReferenceBoundsIntoBoundary = true;
+			var collisionBehavior = new UICollisionBehavior (square) {
+				TranslatesReferenceBoundsIntoBoundary = true
+			};
 
-			var squareCenterPoint = new CGPoint (square.Center.X, square.Center.Y - 100);
+			var squareCenterPoint = new CGPoint (square.Center.X, square.Center.Y - 100.0f);
 			var attachmentOffset = new UIOffset (-25.0f, -25.0f);
 
 			/*
