@@ -59,12 +59,16 @@ namespace CollectionViewTransition {
 
 		public override void InvalidateLayout ()
 		{
-			attributesArray.Clear ();
-			attributesArray = null;
+			if (attributesArray != null) {
+				attributesArray.Clear ();
+				attributesArray = null;
+			}
 		}
 
 		public override CGSize CollectionViewContentSize {
-			get { return CollectionView.Bounds.Size; }
+			get {
+				return CollectionView.Bounds.Size;
+			}
 		}
 
 		public override UICollectionViewLayoutAttributes LayoutAttributesForItem (NSIndexPath indexPath)
