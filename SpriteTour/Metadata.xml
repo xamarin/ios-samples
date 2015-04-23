@@ -6,5 +6,5 @@
 	<Tags>Games, Platform Features</Tags>
 	<LicenseRequirement>Starter</LicenseRequirement>
 	<Gallery>true</Gallery>
-	<Brief>This Sprite Kit example uses multiple scenes to demonstrate different features of the SKSpriteNode class.</Brief>
+	<Brief>Demonstrates different features of the SKSpriteNode class.</Brief>
 </SampleMetadata>

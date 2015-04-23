@@ -5,5 +5,5 @@
 	<Level>Beginning</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
-	<Brief>An example showing the usage of the ShouldAutorotateToInterfaceOrientation method.</Brief>
+	<Brief>Demonstrates how to autorate to interface orientation.</Brief>
 </SampleMetadata>

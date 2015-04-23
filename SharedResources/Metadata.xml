@@ -5,5 +5,5 @@
 	<Level>Intermediate</Level>
 	<Tags>Device Features</Tags>
 	<Gallery>true</Gallery>
-	<Brief>Sample shows how to work with accelerometer, photo/video library, camera, battery status, contacts, file system, and network activity indicator.</Brief>
+	<Brief>Demonstrates how to work with various iOS resources.</Brief>
 </SampleMetadata>
