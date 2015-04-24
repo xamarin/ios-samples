@@ -27,24 +27,26 @@ namespace kvo
 				Lines = 20,
 				BackgroundColor = UIColor.LightGray
 			};
+
 			topController.View.AddSubview (label);
 
 			window = new UIWindow (UIScreen.MainScreen.Bounds) {
 				RootViewController = topController
 			};
+
 			window.MakeKeyAndVisible ();
 
 			//
-			// Observe changes to the topController's View property, in this case, we want to
+			// Observe changes to the main View layer, in this case, we want to
 			// observe changes to the "bounds" property (this is the name of the Objective-C
 			// property).
 			//
 			// The changes observed are delivered to "this", which is expected to override
 			// the "ObserveValue" method.
 			//
-			topController.View.AddObserver (observer: this,
+			topController.View.Layer.AddObserver (observer: this,
 			                                keyPath:  new NSString ("bounds"),
-			                                options:  NSKeyValueObservingOptions.New,
+											options:  NSKeyValueObservingOptions.New,
 			                                context:  IntPtr.Zero);
 			return true;
 		}
