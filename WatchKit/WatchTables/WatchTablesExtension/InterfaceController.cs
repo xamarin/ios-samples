@@ -42,13 +42,9 @@ namespace WatchTablesExtension
 			// This method is called when the watch view controller is no longer visible to the user.
 			Console.WriteLine ("{0} did deactivate", this);
 		}
-
-
+			
 		public override NSObject GetContextForSegue (string segueIdentifier, WKInterfaceTable table, nint rowIndex)
 		{
-			if (segueIdentifier == "secondLevel") {
-				return new NSString (rows[(int)rowIndex]);	
-			}
 			return new NSString (rows[(int)rowIndex]);
 		}
 
