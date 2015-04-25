@@ -20,7 +20,6 @@ namespace WatchkitExtension
 
 		public override void Awake (NSObject context)
 		{
-			bool large = (WKInterfaceDevice.CurrentDevice.ScreenBounds.Size.Width > 136.0);
 			// Load image inside WatchKit Extension
 			using (var image = UIImage.FromBundle ("Walkway"))
 			using (var png = image.AsPNG ())
