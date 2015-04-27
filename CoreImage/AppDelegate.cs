@@ -6,7 +6,6 @@ using ObjCRuntime;
 
 using System.Collections.Generic;
 using MonoTouch.Dialog;
-using CoreGraphics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;

@@ -136,12 +136,6 @@ namespace Example_CoreLocation
 				ms = mainScreen;
 			}
 
-			[Obsolete("called for iOS5.x and earlier")]
-			public override void UpdatedLocation (CLLocationManager manager, CLLocation newLocation, CLLocation oldLocation)
-			{
-				MainViewController.UpdateLocation (ms, newLocation);
-			}
-
 			// called for iOS6 and later
 			public override void LocationsUpdated (CLLocationManager manager, CLLocation[] locations)
 			{

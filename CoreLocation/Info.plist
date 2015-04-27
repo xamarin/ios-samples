@@ -20,8 +20,6 @@
 		<string>Icon-Small-40</string>
 		<string>Icon-60@2x</string>
 	</array>
-	<key>CFBundleVersion</key>
-	<string>1</string>
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>UIDeviceFamily</key>
@@ -41,5 +39,11 @@
 	<string>Getting location for sample application</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.CoreLocation</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
 </dict>
 </plist>

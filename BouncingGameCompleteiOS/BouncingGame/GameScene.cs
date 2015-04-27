@@ -8,7 +8,7 @@ namespace BouncingGame
 		CCLayer mainLayer;
 		CCSprite paddleSprite;
 		CCSprite ballSprite;
-		CCLabelTtf scoreLabel;
+		CCLabel scoreLabel;
 
 		float ballXVelocity;
 		float ballYVelocity;
@@ -34,7 +34,7 @@ namespace BouncingGame
 			ballSprite.PositionY = 600;
 			mainLayer.AddChild (ballSprite);
 
-			scoreLabel = new CCLabelTtf ("Score: 0", "arial", 22);
+			scoreLabel = new CCLabel ("Score: 0", "arial", 22);
 			scoreLabel.PositionX = mainLayer.VisibleBoundsWorldspace.MinX + 20;
 			scoreLabel.PositionY = mainLayer.VisibleBoundsWorldspace.MaxY - 20;
 			scoreLabel.AnchorPoint = CCPoint.AnchorUpperLeft;

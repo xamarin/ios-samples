@@ -19,5 +19,13 @@
 		<string>Icon-60@2x</string>
 		<string>Icon-Small-40@2x</string>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>CollectionViewTransition</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.CollectionViewTransition</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
 </dict>
 </plist>

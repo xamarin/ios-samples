@@ -29,5 +29,13 @@
 		<string>Icon-Small-40</string>
 		<string>Icon-Small-40@2x</string>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>AVCompositionDebugViewer</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.AVCompositionDebugViewer</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
 </dict>
 </plist>

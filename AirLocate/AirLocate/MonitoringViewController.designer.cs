@@ -1,11 +1,13 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Xamarin Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
 using Foundation;
+using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace AirLocate
 {
@@ -13,32 +15,32 @@ namespace AirLocate
 	partial class MonitoringViewController
 	{
 		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		UIKit.UISwitch enabledSwitch { get; set; }
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UISwitch enabledSwitch { get; set; }
 
 		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		UIKit.UITextField majorTextField { get; set; }
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UITextField majorTextField { get; set; }
 
 		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		UIKit.UITextField minorTextField { get; set; }
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UITextField minorTextField { get; set; }
 
 		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		UIKit.UISwitch notifyOnDisplaySwitch { get; set; }
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UISwitch notifyOnDisplaySwitch { get; set; }
 
 		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		UIKit.UISwitch notifyOnEntrySwitch { get; set; }
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UISwitch notifyOnEntrySwitch { get; set; }
 
 		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		UIKit.UISwitch notifyOnExitSwitch { get; set; }
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UISwitch notifyOnExitSwitch { get; set; }
 
 		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		UIKit.UITextField uuidTextField { get; set; }
+		[GeneratedCode ("iOS Designer", "1.0")]
+		UITextField uuidTextField { get; set; }
 
 		void ReleaseDesignerOutlets ()
 		{
@@ -46,35 +48,29 @@ namespace AirLocate
 				enabledSwitch.Dispose ();
 				enabledSwitch = null;
 			}
-
-			if (uuidTextField != null) {
-				uuidTextField.Dispose ();
-				uuidTextField = null;
-			}
-
 			if (majorTextField != null) {
 				majorTextField.Dispose ();
 				majorTextField = null;
 			}
-
 			if (minorTextField != null) {
 				minorTextField.Dispose ();
 				minorTextField = null;
 			}
-
+			if (notifyOnDisplaySwitch != null) {
+				notifyOnDisplaySwitch.Dispose ();
+				notifyOnDisplaySwitch = null;
+			}
 			if (notifyOnEntrySwitch != null) {
 				notifyOnEntrySwitch.Dispose ();
 				notifyOnEntrySwitch = null;
 			}
-
 			if (notifyOnExitSwitch != null) {
 				notifyOnExitSwitch.Dispose ();
 				notifyOnExitSwitch = null;
 			}
-
-			if (notifyOnDisplaySwitch != null) {
-				notifyOnDisplaySwitch.Dispose ();
-				notifyOnDisplaySwitch = null;
+			if (uuidTextField != null) {
+				uuidTextField.Dispose ();
+				uuidTextField = null;
 			}
 		}
 	}

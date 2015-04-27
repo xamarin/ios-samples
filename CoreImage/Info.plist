@@ -23,5 +23,13 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>5.1.1</string>
+	<key>CFBundleDisplayName</key>
+	<string>CoreImage</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.CoreImage</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
 </dict>
 </plist>

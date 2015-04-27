@@ -42,7 +42,7 @@ namespace AVCustomEdit
 		{
 			base.ViewDidLoad ();
 
-			this.tableView.Delegate = new TableViewDelegate (this);
+			this.tableView.Delegate = new TableViewDelegate ();
 		}
 
 		partial void TransitionSelected (Foundation.NSObject sender)
@@ -78,13 +78,6 @@ namespace AVCustomEdit
 
 	public class TableViewDelegate : UITableViewDelegate
 	{
-		TransitionTypeController viewController;
-
-		public TableViewDelegate(TransitionTypeController viewController) : base()
-		{
-			this.viewController = viewController;
-		}
-
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 

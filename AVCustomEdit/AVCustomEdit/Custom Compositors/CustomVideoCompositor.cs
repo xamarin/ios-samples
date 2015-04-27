@@ -42,14 +42,13 @@ namespace AVCustomEdit
 		DispatchQueue renderingQueue;
 		DispatchQueue renderContextQueue;
 		AVVideoCompositionRenderContext renderContext;
-		CVPixelBuffer previousBuffer;
+		//CVPixelBuffer previousBuffer;
 		public OpenGLRenderer oglRender;
 
 		public CustomVideoCompositor (IntPtr handle) : base (handle)
 		{
 			renderingQueue = new DispatchQueue ("com.apple.aplcustomvideocompositor.renderingqueue");
 			renderContextQueue = new DispatchQueue ("com.apple.aplcustomvideocompositor.rendercontextqueue");
-			previousBuffer = null;
 			renderContextDidChange = false;
 		}
 
@@ -57,7 +56,6 @@ namespace AVCustomEdit
 		{
 			renderingQueue = new DispatchQueue ("com.apple.aplcustomvideocompositor.renderingqueue");
 			renderContextQueue = new DispatchQueue ("com.apple.aplcustomvideocompositor.rendercontextqueue");
-			previousBuffer = null;
 			renderContextDidChange = false;
 		}
 

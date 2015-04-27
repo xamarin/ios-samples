@@ -12,8 +12,8 @@ namespace tone
     {
         double sampleRate;
         const int numBuffers = 3;
-        bool alternate;
-        private NSError error;
+        bool alternate = false;
+        NSError error;
 
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
@@ -21,8 +21,11 @@ namespace tone
             // Setup audio system
             //
             var session = AVAudioSession.SharedInstance();
-            session.SetCategory(new NSString("AVAudioSessionCategoryPlayback"), AVAudioSessionCategoryOptions.DefaultToSpeaker, out error);
-
+			session.SetCategory(new NSString("AVAudioSessionCategoryPlayback"), AVAudioSessionCategoryOptions.DefaultToSpeaker, out error);
+			if (error != null) 
+			{
+				Console.WriteLine (error);
+			}
             //
             // Format description, we generate LinearPCM as short integers
             //

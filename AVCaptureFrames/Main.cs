@@ -13,7 +13,6 @@ using UIKit;
 using AVFoundation;
 using CoreVideo;
 using CoreMedia;
-using CoreGraphics;
 
 using CoreFoundation;
 using System.Runtime.InteropServices;
