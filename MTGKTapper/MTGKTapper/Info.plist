@@ -15,5 +15,7 @@
 		<string>Icon-Small</string>
 		<string>Icon-Small@2x</string>
 	</array>
+	<key>MinimumOSVersion</key>
+	<string>6.0</string>
 </dict>
 </plist>
