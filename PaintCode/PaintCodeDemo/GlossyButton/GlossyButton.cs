@@ -1,7 +1,6 @@
 using System;
 using UIKit;
 using CoreGraphics;
-using CoreGraphics;
 using Foundation;
 
 namespace PaintCode
@@ -111,12 +110,13 @@ namespace PaintCode
 
 				using (var colorSpace = CGColorSpace.CreateDeviceRGB ()) {
 
-					//// Abstracted Graphic Attributes
-					var textContent = this.Title (UIControlState.Normal); //"STOP";
-					var font = UIFont.SystemFontOfSize (18);
+					// Abstracted Graphic Attributes
+					// var textContent = this.Title (UIControlState.Normal); //"STOP";
+					// var font = UIFont.SystemFontOfSize (18);
+
 					// ------------- START PAINTCODE -------------
 
-//// Color Declarations
+// Color Declarations
 					UIColor frameColorTop = UIColor.FromRGBA (0.20f, 0.20f, 0.20f, 1.00f);
 					UIColor frameShadowColor = UIColor.FromRGBA (1.00f, 1.00f, 1.00f, 0.40f);
 
@@ -133,7 +133,7 @@ namespace PaintCode
 						                        (buttonColorRGBA [3] * 0.2f + 0.8f)
 					                        );
 
-//// Gradient Declarations
+// Gradient Declarations
 					var glossyGradientColors = new CGColor [] {
 						glossyColorUp.CGColor,
 						glossyColorBottom.CGColor
@@ -141,22 +141,22 @@ namespace PaintCode
 					var glossyGradientLocations = new nfloat [] { 0, 1 };
 					var glossyGradient = new CGGradient (colorSpace, glossyGradientColors, glossyGradientLocations);
 
-//// Shadow Declarations
+// Shadow Declarations
 					var frameInnerShadow = frameShadowColor.CGColor;
 					var frameInnerShadowOffset = new CGSize (0, -0);
-					var frameInnerShadowBlurRadius = 3;
+					const int frameInnerShadowBlurRadius = 3;
 					var buttonInnerShadow = UIColor.Black.CGColor;
 					var buttonInnerShadowOffset = new CGSize (0, -0);
-					var buttonInnerShadowBlurRadius = 12;
+					const int buttonInnerShadowBlurRadius = 12;
 					var textShadow = UIColor.Black.CGColor;
 					var textShadowOffset = new CGSize (0, -0);
-					var textShadowBlurRadius = 1;
+					const int textShadowBlurRadius = 1;
 					var buttonShadow = UIColor.Black.CGColor;
 
 					var buttonShadowOffset = new CGSize (0, isPressed ? 0 : 2);		// ADDED this code after PaintCode
 					var buttonShadowBlurRadius = isPressed ? 2 : 3;					// ADDED this code after PaintCode
 
-//// outerFrame Drawing
+// outerFrame Drawing
 					var outerFramePath = UIBezierPath.FromRoundedRect (new CGRect (2.5f, 1.5f, 120, 32), 8);
 					context.SaveState ();
 					context.SetShadow (buttonShadowOffset, buttonShadowBlurRadius, buttonShadow);
@@ -168,14 +168,14 @@ namespace PaintCode
 					outerFramePath.LineWidth = 1;
 					outerFramePath.Stroke ();
 
-//// innerFrame Drawing
+// innerFrame Drawing
 					var innerFramePath = UIBezierPath.FromRoundedRect (new CGRect (5.5f, 4.5f, 114, 26), 5);
 					context.SaveState ();
 					context.SetShadow (frameInnerShadowOffset, frameInnerShadowBlurRadius, frameInnerShadow);
 					buttonColor.SetFill ();
 					innerFramePath.Fill ();
 
-////// innerFrame Inner Shadow
+// innerFrame Inner Shadow
 					var innerFrameBorderRect = innerFramePath.Bounds;
 					innerFrameBorderRect.Inflate (buttonInnerShadowBlurRadius, buttonInnerShadowBlurRadius);
 					innerFrameBorderRect.Offset (-buttonInnerShadowOffset.Width, -buttonInnerShadowOffset.Height);
@@ -209,21 +209,21 @@ namespace PaintCode
 					innerFramePath.LineWidth = 1;
 					innerFramePath.Stroke ();
 
-//// Rounded Rectangle Drawing
+// Rounded Rectangle Drawing
 					var roundedRectanglePath = UIBezierPath.FromRoundedRect (new CGRect (8, 6, 109, 9), 4);
 					context.SaveState ();
 					roundedRectanglePath.AddClip ();
 					context.DrawLinearGradient (glossyGradient, new CGPoint (62.5f, 6), new CGPoint (62.5f, 15), 0);
 					context.RestoreState ();
 
-//// Text Drawing
-					var textRect = new CGRect (18, 6, 90, 28);
+// Text Drawing
+					// var textRect = new CGRect (18, 6, 90, 28);
 					context.SaveState ();
 					context.SetShadow(textShadowOffset, textShadowBlurRadius, textShadow);
 					glossyColorUp.SetFill ();
 
 					// Use default button-drawn text
-					//new NSString(textContent).DrawString(textRect, font, UILineBreakMode.WordWrap, UITextAlignment.Center);
+					// new NSString(textContent).DrawString(textRect, font, UILineBreakMode.WordWrap, UITextAlignment.Center);
 					context.RestoreState ();
 
 					// ------------- END PAINTCODE -------------

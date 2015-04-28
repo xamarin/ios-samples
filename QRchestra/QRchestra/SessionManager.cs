@@ -19,15 +19,10 @@ namespace QRchestra
 		DispatchQueue delegateCallbackQueue;
 		DispatchQueue sessionQueue;
 
-		List<double> previousSecondTimestamps;
-
 		AVCaptureDeviceInput videoInput;
 		AVCaptureDevice videoDevice;
-		AVCaptureConnection audioConnection;
-		AVCaptureConnection videoConnection;
 
 		bool running;
-		bool startCaptureSessionOnEnteringForeground;
 
 		NSObject applicationWillEnterForegroundNotificationObserver;
 
@@ -39,7 +34,6 @@ namespace QRchestra
 
 		public SessionManager ()
 		{
-			previousSecondTimestamps = new List<double> ();
 			sessionQueue = new DispatchQueue ("com.apple.sample.sessionmanager.capture");
 			pipelineRunningTask = 0;
 		}
@@ -133,9 +127,6 @@ namespace QRchestra
 					NSError error = (NSError)notification.UserInfo [AVCaptureSession.ErrorKey];
 					if (error.Code == (int)AVError.DeviceIsNotAvailableInBackground) {
 						Console.WriteLine ("Device not available in background");
-
-						if (running)
-							startCaptureSessionOnEnteringForeground = true;
 					} else if (error.Code == (int)AVError.MediaServicesWereReset)
 						Console.WriteLine ("Media services were reset");
 					else
@@ -168,7 +159,6 @@ namespace QRchestra
 		void applicationWillEnterForeground ()
 		{
 			sessionQueue.DispatchSync (delegate {
-				startCaptureSessionOnEnteringForeground = false;
 				if (running)
 					CaptureSession.StartRunning ();
 			});

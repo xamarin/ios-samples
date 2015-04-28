@@ -9,7 +9,7 @@ namespace GLCameraRipple
 	{
 		CGSize screenSize;
 		int poolHeight, poolWidth;
-		int touchRadius, meshFactor;
+		int touchRadius;
 
 		float texCoordFactorS;
 		float texCoordOffsetS;
@@ -32,7 +32,6 @@ namespace GLCameraRipple
 		{
 			Console.WriteLine ("New RippleModel");
 			this.screenSize = screenSize;
-			this.meshFactor = meshFactor;
 			this.touchRadius = touchRadius;
 			poolWidth = (int)screenSize.Width/meshFactor;
 			poolHeight =(int) screenSize.Height/meshFactor;

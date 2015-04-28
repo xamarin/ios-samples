@@ -1,5 +1,4 @@
 using System;
-using CoreGraphics;
 
 using CoreAnimation;
 using CoreGraphics;

@@ -25,5 +25,9 @@
 	<array>
 		<integer>1</integer>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>LazyTableImages</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.LazyTableImages</string>
 </dict>
 </plist>

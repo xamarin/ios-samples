@@ -1,5 +1,4 @@
 using System;
-using CoreGraphics;
 using Foundation;
 using UIKit;
 using CoreGraphics;
@@ -14,15 +13,12 @@ namespace QRchestra
 {
 	public partial class ReceiveViewController : UIViewController
 	{
-		UIPopoverController sendPopoverController;
-
 		int barcodeIndex;
 
 		AVCaptureVideoPreviewLayer previewLayer;
 		CALayer barcodeTargetLayer;
 		SessionManager sessionManager;
 		Synth synth;
-		NSTimer stepTimer;
 		NSTimer barcodeTimer;
 
 		public UIColor OverlayColor {
@@ -81,8 +77,6 @@ namespace QRchestra
 
 			synth = new Synth ();
 			synth.LoadPreset (this);
-
-			stepTimer = NSTimer.CreateRepeatingScheduledTimer (0.15, step);
 		}
 
 		partial void handleTap (UIGestureRecognizer recognizer)

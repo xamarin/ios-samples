@@ -193,7 +193,6 @@ namespace MediaNotes
 
 		public void Synchronize (bool initializationSucceeded)
 		{
-			bool finishedp;
 			if (initializationSucceeded == true) {
 
 				placeHolderActivityView.StopAnimating ();

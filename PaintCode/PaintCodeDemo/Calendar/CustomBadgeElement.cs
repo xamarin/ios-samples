@@ -13,7 +13,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UIKit;
 using CoreGraphics;
-using CoreGraphics;
 using Foundation;
 
 namespace PaintCode

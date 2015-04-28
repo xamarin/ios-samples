@@ -34,6 +34,7 @@ using System.Diagnostics;
 using Foundation;
 using UIKit;
 using AVFoundation;
+using System.Threading.Tasks;
 
 namespace MultichannelMixer
 {
@@ -73,7 +74,7 @@ namespace MultichannelMixer
 		{
 		}
 
-		public override async void FinishedLaunching (UIApplication application)
+		public override void FinishedLaunching (UIApplication application)
 		{
 			// Configure the audio session
 			var sessionInstance = AVAudioSession.SharedInstance ();

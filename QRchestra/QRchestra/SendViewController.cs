@@ -1,4 +1,3 @@
-using CoreGraphics;
 using UIKit;
 using System.Collections.Generic;
 using CoreAnimation;
@@ -17,8 +16,6 @@ namespace QRchestra
 		string[] altBank = new [] { "60", "64", "67", "72" };
 		int[] currentBank = new [] { 0, 0, 0, 0 };
 		const int maxNumberOfBanks = 3;
-
-		string machineReadableCodeType;
 
 		List<UIImageView> keyImageViews;
 

@@ -60,25 +60,5 @@ namespace MoviePlaybackSample
             };
 
         }
-
-        [Obsolete]
-        public override void ViewDidUnload()
-        {
-            base.ViewDidUnload();
-        }
-
-        [Obsolete]
-        public override bool ShouldAutorotateToInterfaceOrientation(UIInterfaceOrientation toInterfaceOrientation)
-        {
-            // Return true for supported orientations
-            if (UserInterfaceIdiomIsPhone)
-            {
-                return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
-            }
-            else
-            {
-                return true;
-            }
-        }
     }
 }

@@ -6,7 +6,6 @@ using Foundation;
 using UIKit;
 using CoreImage;
 using CoreGraphics;
-using CoreGraphics;
 
 namespace OpenGLES20Example
 {

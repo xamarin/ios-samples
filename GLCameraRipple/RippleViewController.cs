@@ -47,7 +47,7 @@ namespace GLCameraRipple
 			glkView.DrawInRect += Draw;
 
 			PreferredFramesPerSecond = 60;
-			size = UIScreen.MainScreen.Bounds.Size.ToSize ();
+			size = UIScreen.MainScreen.Bounds.Size.ToRoundedCGSize ();
 			View.ContentScaleFactor = UIScreen.MainScreen.Scale;
 
 			meshFactor = isPad ? 8 : 4;
@@ -62,9 +62,9 @@ namespace GLCameraRipple
 
 		void Draw (object sender, GLKViewDrawEventArgs args)
 		{
-			GL.Clear ((int)All.ColorBufferBit);
+			GL.Clear (ClearBufferMask.ColorBufferBit);
 			if (ripple != null)
-				GL.DrawElements (All.TriangleStrip, ripple.IndexCount, All.UnsignedShort, IntPtr.Zero);
+				GL.DrawElements (BeginMode.TriangleStrip, ripple.IndexCount, DrawElementsType.UnsignedShort, IntPtr.Zero);
 		}
 
 		void ProcessTouches (NSSet touches)
@@ -179,8 +179,8 @@ namespace GLCameraRipple
 			int vertShader, fragShader;
 
 			program = GL.CreateProgram ();
-			if (CompileShader (out vertShader, All.VertexShader, "Shaders/Shader.vsh")){
-				if (CompileShader (out fragShader, All.FragmentShader, "Shaders/Shader.fsh")){
+			if (CompileShader (out vertShader, ShaderType.VertexShader, "Shaders/Shader.vsh")){
+				if (CompileShader (out fragShader, ShaderType.FragmentShader, "Shaders/Shader.fsh")){
 					// Attach shaders
 					GL.AttachShader (program, vertShader);
 					GL.AttachShader (program, fragShader);
@@ -212,7 +212,7 @@ namespace GLCameraRipple
 			return false;
 		}
 
-		bool CompileShader (out int shader, All type, string path)
+		bool CompileShader (out int shader, ShaderType type, string path)
 		{
 			string shaderProgram = System.IO.File.ReadAllText (path);
 			int len = shaderProgram.Length, status = 0;
@@ -220,7 +220,7 @@ namespace GLCameraRipple
 
 			GL.ShaderSource (shader, 1, new string [] { shaderProgram }, ref len);
 			GL.CompileShader (shader);
-			GL.GetShader (shader, All.CompileStatus, ref status);
+			GL.GetShader (shader, ShaderParameter.CompileStatus, out status);
 			if (status == 0){
 				GL.DeleteShader (shader);
 				return false;
@@ -304,7 +304,7 @@ namespace GLCameraRipple
 						CleanupTextures ();
 
 						// Y-plane
-						GL.ActiveTexture (All.Texture0);
+						GL.ActiveTexture(TextureUnit.Texture0);
 						All re = (All) 0x1903; // GL_RED_EXT, RED component from ARB OpenGL extension
 						CVReturn status;
 						lumaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureWidth, textureHeight, re, DataType.UnsignedByte, 0, out status);
@@ -313,12 +313,12 @@ namespace GLCameraRipple
 							Console.WriteLine ("Error creating luma texture: {0}", status);
 							return;
 						}
-						GL.BindTexture ((All)lumaTexture.Target, lumaTexture.Name);
-						GL.TexParameter (All.Texture2D, All.TextureWrapS, (int) All.ClampToEdge);
-						GL.TexParameter (All.Texture2D, All.TextureWrapT, (int) All.ClampToEdge);
+						GL.BindTexture (lumaTexture.Target, lumaTexture.Name);
+						GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int) All.ClampToEdge);
+						GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int) All.ClampToEdge);
 
 						// UV Plane
-						GL.ActiveTexture (All.Texture1);
+						GL.ActiveTexture (TextureUnit.Texture1);
 						re = (All) 0x8227; // GL_RG_EXT, RED GREEN component from ARB OpenGL extension
 						chromaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureWidth/2, textureHeight/2, re, DataType.UnsignedByte, 1, out status);
 
@@ -326,9 +326,9 @@ namespace GLCameraRipple
 							Console.WriteLine ("Error creating chroma texture: {0}", status);
 							return;
 						}
-						GL.BindTexture ((All) chromaTexture.Target, chromaTexture.Name);
-						GL.TexParameter (All.Texture2D, All.TextureWrapS, (int)All.ClampToEdge);
-						GL.TexParameter (All.Texture2D, All.TextureWrapT, (int) All.ClampToEdge);
+						GL.BindTexture (chromaTexture.Target, chromaTexture.Name);
+						GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int) All.ClampToEdge);
+						GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int) All.ClampToEdge);
 					}
 				} finally {
 					sampleBuffer.Dispose ();

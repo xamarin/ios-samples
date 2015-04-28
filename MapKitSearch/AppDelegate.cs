@@ -79,7 +79,7 @@ namespace MapKitSearch {
 				response = await search.StartAsync ();
 
 			}
-			catch(Exception e){
+			catch {
 				return;
 			}
 			if (response == null)

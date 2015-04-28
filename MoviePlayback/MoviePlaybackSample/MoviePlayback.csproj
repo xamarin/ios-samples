@@ -24,10 +24,11 @@
     <ConsolePause>False</ConsolePause>
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>True</MtouchProfiling>
-    <MtouchLink>None</MtouchLink>
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>i386</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>

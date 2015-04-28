@@ -16,8 +16,6 @@ namespace GameCenterSample
 		// class-level declarations
 		UIWindow window;
 		MainViewController viewController;
-		bool gameCenterAuthenticationComplete = false;
-		string currentPlayerID;
 
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this

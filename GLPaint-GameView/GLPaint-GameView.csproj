@@ -52,10 +52,10 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <ConsolePause>False</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <CodesignProvision>71febe6c-0ea4-4c1a-bd9d-af13ead83a0e</CodesignProvision>
     <MtouchProfiling>true</MtouchProfiling>
     <MtouchI18n>
     </MtouchI18n>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>

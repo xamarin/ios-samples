@@ -23,5 +23,11 @@
 	<string>5.1.1</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.monocatalog</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 </dict>
 </plist>

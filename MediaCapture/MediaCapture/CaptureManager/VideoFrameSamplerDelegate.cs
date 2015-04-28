@@ -11,7 +11,6 @@
 // Enhancements, suggestions and bug reports can be sent to steve.millar@infinitekdev.com
 //
 using System;
-using CoreGraphics;
 using Foundation;
 using UIKit;
 using AVFoundation;

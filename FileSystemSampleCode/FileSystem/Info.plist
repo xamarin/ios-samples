@@ -41,6 +41,11 @@
 	<key>MinimumOSVersion</key>
 	<string>5.1.1</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array/>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 </dict>
 </plist>

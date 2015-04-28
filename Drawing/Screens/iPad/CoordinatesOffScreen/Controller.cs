@@ -1,7 +1,6 @@
 using System;
 using UIKit;
 using CoreGraphics;
-using CoreGraphics;
 
 namespace Example_Drawing.Screens.iPad.CoordinatesOffScreen
 {

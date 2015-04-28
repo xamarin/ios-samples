@@ -3,7 +3,7 @@ using OpenTK.Platform.iPhoneOS;
 using OpenTK.Graphics.ES11;
 using UIKit;
 using Foundation;
-using CoreGraphics;
+
 using ObjCRuntime;
 using OpenGLES;
 using System.Runtime.InteropServices;
@@ -20,7 +20,7 @@ namespace GLPaintGameView
 		public const float Luminosity = 0.75f;
 		public const float Saturation = 1.0f;
 
-		uint brushTexture, drawingTexture, drawingFramebuffer;
+		uint brushTexture, drawingTexture;
 		bool firstTouch;
 
 		CGPoint Location;
@@ -90,7 +90,7 @@ namespace GLPaintGameView
 
 		public void Erase ()
 		{
-			GL.Clear ((uint)All.ColorBufferBit);
+			GL.Clear (ClearBufferMask.ColorBufferBit);
 
 			SwapBuffers ();
 		}

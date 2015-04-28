@@ -1,6 +1,5 @@
 using System;
 using CoreGraphics;
-using CoreGraphics;
 using UIKit;
 
 namespace Example_Drawing.Screens.iPad.Layers

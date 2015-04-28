@@ -89,8 +89,6 @@ namespace GameCenterSample
 			}
 
 			//Create the achievement we want to submit.
-			NSString identifier = new NSString ("com.appledts.GameCenterSampleApps.achievement");
-
 			GKAchievement achievement = new GKAchievement ("com.appledts.GameCenterSampleApps.achievement");
 
 			achievementsPercentageComplete += 25;

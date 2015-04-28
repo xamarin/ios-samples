@@ -17,7 +17,6 @@ namespace MidiTest
 	{
 		AUGraph processingGraph;
 		AudioUnit.AudioUnit samplerUnit;
-		AudioUnit.AudioUnit ioUnit;
 
 		MidiClient virtualMidi;
 		MidiEndpoint virtualEndpoint;
@@ -53,7 +52,6 @@ namespace MidiTest
 
 			samplerUnit = processingGraph.GetNodeInfo (samplerNode);
 
-			ioUnit = processingGraph.GetNodeInfo (ioNode);
 
 			return true;
 		}

@@ -29,5 +29,20 @@
 		<integer>1</integer>
 		<integer>2</integer>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>GLPaint-GameView</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.GLPaintGameView</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 </dict>
 </plist>
