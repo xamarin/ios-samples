@@ -7,11 +7,11 @@ namespace Chat
 {
 	public abstract class BubbleCell : UITableViewCell
 	{
-		protected abstract UIImageView BubbleView { get; }
-		public abstract UILabel MessageLbl { get; }
+		public UIImageView BubbleImageView { get; private set; }
+		public UILabel MessageLabel { get; private set; }
 
-		protected abstract UIImage BubbleImg { get; }
-		protected abstract UIImage BubbleHighlightedImage { get; }
+		public UIImage BubbleImage { get; set; }
+		public UIImage BubbleHighlightedImage { get; set; }
 
 		Message msg;
 		public Message Message {
@@ -20,25 +20,46 @@ namespace Chat
 			}
 			set {
 				msg = value;
-				BubbleView.Image = BubbleImg;
-				BubbleView.HighlightedImage = BubbleHighlightedImage;
+				BubbleImageView.Image = BubbleImage;
+				BubbleImageView.HighlightedImage = BubbleHighlightedImage;
 
-				MessageLbl.Text = msg.Text;
+				MessageLabel.Text = msg.Text;
 
-				MessageLbl.UserInteractionEnabled = true;
-				BubbleView.UserInteractionEnabled = false;
+				MessageLabel.UserInteractionEnabled = true;
+				BubbleImageView.UserInteractionEnabled = false;
 			}
 		}
 
 		public BubbleCell (IntPtr handle)
 			: base(handle)
 		{
+			Initialize ();
+		}
+
+		public BubbleCell()
+		{
+			Initialize ();
+		}
+
+		void Initialize()
+		{
+			BubbleImageView = new UIImageView {
+				TranslatesAutoresizingMaskIntoConstraints = false
+			};
+			MessageLabel = new UILabel {
+				TranslatesAutoresizingMaskIntoConstraints = false,
+				Lines = 0,
+				PreferredMaxLayoutWidth = 220
+			};
+
+			ContentView.AddSubview(BubbleImageView);
+			ContentView.AddSubview(MessageLabel);
 		}
 
 		public override void SetSelected (bool selected, bool animated)
 		{
 			base.SetSelected (selected, animated);
-			BubbleView.Highlighted = selected;
+			BubbleImageView.Highlighted = selected;
 		}
 
 		protected static UIImage CreateColoredImage(UIColor color, UIImage mask)
@@ -52,6 +73,21 @@ namespace Chat
 			context.FillRect (rect);
 			UIImage result = UIGraphics.GetImageFromCurrentImageContext ();
 			UIGraphics.EndImageContext ();
+			return result;
+		}
+
+		protected static UIImage CreateBubbleWithBorder(UIImage bubbleImg, UIColor bubbleColor)
+		{
+			bubbleImg = CreateColoredImage (bubbleColor, bubbleImg);
+			CGSize size = bubbleImg.Size;
+
+			UIGraphics.BeginImageContextWithOptions (size, false, 0);
+			var rect = new CGRect (CGPoint.Empty, size);
+			bubbleImg.Draw (rect);
+
+			var result = UIGraphics.GetImageFromCurrentImageContext ();
+			UIGraphics.EndImageContext ();
+
 			return result;
 		}
 	}

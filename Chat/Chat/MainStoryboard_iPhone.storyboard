@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6750" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14E7f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
     </dependencies>
     <scenes>
         <!--Chat View Controller-->
@@ -20,99 +19,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0ka-sN-sOO">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Incoming" id="bHN-iS-6rr" customClass="IncomingCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bHN-iS-6rr" id="T54-px-dWX">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIN-Pf-bwk">
-                                                    <rect key="frame" x="8" y="10" width="217" height="23"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="800" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="[Incoming Message Text]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="220" translatesAutoresizingMaskIntoConstraints="NO" id="4rp-4j-hbr">
-                                                    <rect key="frame" x="24" y="20" width="192" height="3"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="GIN-Pf-bwk" firstAttribute="leading" secondItem="T54-px-dWX" secondAttribute="leadingMargin" id="12h-tL-mGP"/>
-                                                <constraint firstItem="4rp-4j-hbr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GIN-Pf-bwk" secondAttribute="leading" constant="16" id="2fy-ns-22i"/>
-                                                <constraint firstItem="4rp-4j-hbr" firstAttribute="top" secondItem="GIN-Pf-bwk" secondAttribute="top" constant="10" id="3be-dg-yvH"/>
-                                                <constraint firstAttribute="bottom" secondItem="GIN-Pf-bwk" secondAttribute="bottom" constant="2" id="EwW-2t-IRx"/>
-                                                <constraint firstItem="GIN-Pf-bwk" firstAttribute="bottom" secondItem="4rp-4j-hbr" secondAttribute="bottom" constant="10" id="WtX-1E-lAs"/>
-                                                <constraint firstItem="4rp-4j-hbr" firstAttribute="centerX" secondItem="GIN-Pf-bwk" secondAttribute="centerX" constant="3" id="i0s-sw-3KD"/>
-                                                <constraint firstItem="GIN-Pf-bwk" firstAttribute="top" secondItem="T54-px-dWX" secondAttribute="top" constant="2" id="xS9-BK-Uo0"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="BubbleImageView" destination="GIN-Pf-bwk" id="5PO-Bh-EgR"/>
-                                            <outlet property="MessageText" destination="4rp-4j-hbr" id="Xkp-sF-NmZ"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Outgoing" id="9mh-XI-5OU" customClass="OutgoingCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9mh-XI-5OU" id="YKz-rq-py9">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uh2-1T-SYq">
-                                                    <rect key="frame" x="95" y="10" width="217" height="23"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="48" id="1JU-5i-Dzf"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="800" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" misplaced="YES" text="[Outgoing Message Text]" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="220" translatesAutoresizingMaskIntoConstraints="NO" id="5BP-uU-K6K">
-                                                    <rect key="frame" x="106" y="20" width="191" height="3"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="5BP-uU-K6K" firstAttribute="top" secondItem="uh2-1T-SYq" secondAttribute="top" constant="10" id="0CJ-6I-VnL"/>
-                                                <constraint firstItem="uh2-1T-SYq" firstAttribute="bottom" secondItem="5BP-uU-K6K" secondAttribute="bottom" constant="10" id="29O-yB-fGa"/>
-                                                <constraint firstItem="uh2-1T-SYq" firstAttribute="top" secondItem="YKz-rq-py9" secondAttribute="top" constant="2" id="3qH-FE-a9Z"/>
-                                                <constraint firstAttribute="bottom" secondItem="uh2-1T-SYq" secondAttribute="bottom" constant="2" id="9mZ-27-61x"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="uh2-1T-SYq" secondAttribute="trailing" id="N3l-8l-2p0"/>
-                                                <constraint firstItem="5BP-uU-K6K" firstAttribute="centerX" secondItem="uh2-1T-SYq" secondAttribute="centerX" constant="-3" id="O3T-zy-IVl"/>
-                                                <constraint firstItem="5BP-uU-K6K" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="uh2-1T-SYq" secondAttribute="trailing" constant="-16" id="dXu-SY-dGE"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="BubbleImageView" destination="uh2-1T-SYq" id="rS4-tq-t8p"/>
-                                            <outlet property="MessageText" destination="5BP-uU-K6K" id="q47-6s-B54"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0R-VL-Zim">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="fcT-d0-0if"/>
-                                </constraints>
-                                <items/>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2va-98-mOY" firstAttribute="top" secondItem="0ka-sN-sOO" secondAttribute="bottom" id="LxQ-Yp-0SF"/>
-                            <constraint firstAttribute="trailing" secondItem="I0R-VL-Zim" secondAttribute="trailing" id="XjJ-d9-zfN"/>
-                            <constraint firstItem="I0R-VL-Zim" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="eNO-eo-kDU"/>
-                            <constraint firstItem="2va-98-mOY" firstAttribute="top" secondItem="I0R-VL-Zim" secondAttribute="bottom" id="h8p-2S-2Fa"/>
                             <constraint firstItem="0ka-sN-sOO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="sDm-jl-Vpb"/>
                             <constraint firstAttribute="trailing" secondItem="0ka-sN-sOO" secondAttribute="trailing" id="w9N-db-dzl"/>
                             <constraint firstItem="0ka-sN-sOO" firstAttribute="top" secondItem="qMa-aw-bEM" secondAttribute="bottom" id="zuW-mZ-eL6"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="BottomConstraint" destination="h8p-2S-2Fa" id="UZF-Fp-rt0"/>
-                        <outlet property="Chat" destination="I0R-VL-Zim" id="8Fp-6C-mzu"/>
-                        <outlet property="TableView" destination="0ka-sN-sOO" id="uxW-0d-AwN"/>
-                        <outlet property="ToolbarHeightConstraint" destination="fcT-d0-0if" id="JKq-6o-mJT"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

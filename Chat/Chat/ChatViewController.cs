@@ -10,19 +10,20 @@ using AudioToolbox;
 
 namespace Chat
 {
-	public partial class ChatViewController : UIViewController
+	[Register ("ChatViewController")]
+	public class ChatViewController : UIViewController
 	{
 		NSObject willShowToken;
 		NSObject willHideToken;
-		NSObject willHideMenuToken;
-
-		SystemSound sentSound;
 
 		List<Message> messages;
-		ChatSource chatSrc;
+		ChatSource chatSource;
 
-		// We need dummy input for keeping keyboard visible during showing menu
-		DummyInput hiddenInput;
+		UITableView tableView;
+		UIToolbar toolbar;
+
+		NSLayoutConstraint toolbarBottomConstraint;
+		NSLayoutConstraint toolbarHeightConstraint;
 
 		ChatInputView chatInputView;
 		UIButton SendButton {
@@ -34,12 +35,6 @@ namespace Chat
 		UITextView TextView {
 			get {
 				return chatInputView.TextView;
-			}
-		}
-
-		NSIndexPath LastIndexPath {
-			get {
-				return NSIndexPath.FromRowSection (messages.Count - 1, 0);
 			}
 		}
 
@@ -59,25 +54,18 @@ namespace Chat
 			};
 		}
 
+		#region Life cycle
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
-			hiddenInput = new DummyInput(this) {
-				Hidden = true
-			};
-			View.AddSubview (hiddenInput);
-
-			chatInputView = new ChatInputView ();
+			SetUpTableView ();
+			SetUpToolbar ();
 
 			SendButton.TouchUpInside += OnSendClicked;
+			TextView.Started += OnTextViewStarted;
 			TextView.Changed += OnTextChanged;
-
-			chatSrc = new ChatSource (messages, ShowMenu);
-			TableView.Source = chatSrc;
-			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-
-			UpdateToolbar ();
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -86,10 +74,10 @@ namespace Chat
 
 			willShowToken = UIKeyboard.Notifications.ObserveWillShow (KeyboardWillShowHandler);
 			willHideToken = UIKeyboard.Notifications.ObserveWillHide (KeyboardWillHideHandler);
-			willHideMenuToken = UIMenuController.Notifications.ObserveWillHideMenu (MenuWillHide);
 
 			UpdateTableInsets ();
 			UpdateButtonState ();
+			ScrollToBottom (false);
 		}
 
 		public override void ViewDidAppear (bool animated)
@@ -97,6 +85,76 @@ namespace Chat
 			base.ViewDidAppear (animated);
 			AddObservers ();
 		}
+
+		#endregion
+
+		#region Initialization
+
+		void SetUpTableView()
+		{
+			tableView = new UITableView {
+				TranslatesAutoresizingMaskIntoConstraints = false,
+				AllowsSelection = false
+			};
+			tableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
+			tableView.RegisterClassForCellReuse (typeof(IncomingCell), IncomingCell.CellId);
+			tableView.RegisterClassForCellReuse (typeof(OutgoingCell), OutgoingCell.CellId);
+			View.AddSubview (tableView);
+
+			var pinLeft = NSLayoutConstraint.Create (tableView, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, View, NSLayoutAttribute.Leading, 1, 0);
+			View.AddConstraint (pinLeft);
+
+			var pinRight = NSLayoutConstraint.Create (tableView, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, View, NSLayoutAttribute.Trailing, 1, 0);
+			View.AddConstraint (pinRight);
+
+			var pinTop = NSLayoutConstraint.Create (tableView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, TopLayoutGuide, NSLayoutAttribute.Bottom, 1, 0);
+			View.AddConstraint (pinTop);
+
+			var pinBottom = NSLayoutConstraint.Create (tableView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, View, NSLayoutAttribute.Bottom, 1, 0);
+			View.AddConstraint (pinBottom);
+
+			chatSource = new ChatSource (messages);
+			tableView.Source = chatSource;
+		}
+
+		void SetUpToolbar ()
+		{
+			toolbar = new UIToolbar {
+				TranslatesAutoresizingMaskIntoConstraints = false
+			};
+			chatInputView = new ChatInputView {
+				TranslatesAutoresizingMaskIntoConstraints = false
+			};
+
+			View.AddSubview (toolbar);
+
+			var pinLeft = NSLayoutConstraint.Create (toolbar, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, View, NSLayoutAttribute.Leading, 1, 0);
+			View.AddConstraint (pinLeft);
+
+			var pinRight = NSLayoutConstraint.Create (toolbar, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, View, NSLayoutAttribute.Trailing, 1, 0);
+			View.AddConstraint (pinRight);
+
+			toolbarBottomConstraint = NSLayoutConstraint.Create (View, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, toolbar, NSLayoutAttribute.Bottom, 1, 0);
+			View.AddConstraint (toolbarBottomConstraint);
+
+			toolbarHeightConstraint = NSLayoutConstraint.Create (toolbar, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 0, 44);
+			View.AddConstraint (toolbarHeightConstraint);
+
+			toolbar.AddSubview (chatInputView);
+
+			var c1 = NSLayoutConstraint.FromVisualFormat ("H:|[chat_container_view]|",
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"chat_container_view", chatInputView
+			);
+			var c2 = NSLayoutConstraint.FromVisualFormat ("V:|[chat_container_view]|",
+				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				"chat_container_view", chatInputView
+			);
+			toolbar.AddConstraints (c1);
+			toolbar.AddConstraints (c2);
+		}
+
+		#endregion
 
 		void AddObservers()
 		{
@@ -129,7 +187,7 @@ namespace Chat
 				return;
 			}
 
-			nfloat oldY = Chat.Frame.GetMinY ();
+			nfloat oldY = toolbar.Frame.GetMinY ();
 			nfloat newY = oldY - dy;
 			if (newY < TopLayoutGuide.Length)
 				dy = oldY - TopLayoutGuide.Length;
@@ -139,37 +197,18 @@ namespace Chat
 
 		bool IsInputToolbarHasReachedMaximumHeight()
 		{
-			return Chat.Frame.GetMinY () == TopLayoutGuide.Length;
+			return toolbar.Frame.GetMinY () == TopLayoutGuide.Length;
 		}
 
 		void AdjustInputToolbar(nfloat change)
 		{
-			ToolbarHeightConstraint.Constant += change;
+			toolbarHeightConstraint.Constant += change;
 
-			if (ToolbarHeightConstraint.Constant < ChatInputView.ToolbarMinHeight)
-				ToolbarHeightConstraint.Constant = ChatInputView.ToolbarMinHeight;
-
-			Console.WriteLine (ToolbarHeightConstraint.Constant);
+			if (toolbarHeightConstraint.Constant < ChatInputView.ToolbarMinHeight)
+				toolbarHeightConstraint.Constant = ChatInputView.ToolbarMinHeight;
 
 			View.SetNeedsUpdateConstraints ();
 			View.LayoutIfNeeded ();
-		}
-
-		void UpdateToolbar ()
-		{
-			chatInputView.TranslatesAutoresizingMaskIntoConstraints = false;
-			Chat.AddSubview (chatInputView);
-
-			var c1 = NSLayoutConstraint.FromVisualFormat ("H:|[chat]|",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing,
-				"chat", chatInputView
-			);
-			var c2 = NSLayoutConstraint.FromVisualFormat ("V:|[chat]|",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing,
-				"chat", chatInputView
-			);
-			Chat.AddConstraints (c1);
-			Chat.AddConstraints (c2);
 		}
 
 		void KeyboardWillShowHandler (object sender, UIKeyboardEventArgs e)
@@ -186,57 +225,25 @@ namespace Chat
 		{
 			UIViewAnimationCurve curve = e.AnimationCurve;
 			UIView.Animate (e.AnimationDuration, 0, ConvertToAnimationOptions (e.AnimationCurve), () => {
-				BottomConstraint.Constant = View.Bounds.GetMaxY () - e.FrameEnd.GetMinY ();
-				View.SetNeedsUpdateConstraints();
-				View.LayoutIfNeeded ();
-
-				// Move content with keyboard
-
-				var oldOverlap = CalcContentOverlap();
-				UpdateTableInsets ();
-				var newOverlap = CalcContentOverlap();
-
-				var offset = TableView.ContentOffset;
-				offset.Y += newOverlap - oldOverlap;
-				offset.Y = NMath.Max(offset.Y, 0);
-				TableView.ContentOffset = offset;
+				SetToolbarContstraint(e.FrameEnd.Height);
 			}, null);
 		}
 
-		nfloat CalcContentOverlap()
+		void SetToolbarContstraint(nfloat constant)
 		{
-			var onScreenHeight = CalcOnScreenContentHeight(); 	// >= 0
+			toolbarBottomConstraint.Constant = constant;
+			View.SetNeedsUpdateConstraints();
+			View.LayoutIfNeeded ();
 
-			// chat's input view with or without keyboard
-			var obstacleHeight = TableView.ContentInset.Bottom; // >= 0
-
-			var overlap = NMath.Max(onScreenHeight + obstacleHeight - TableView.Frame.Height, 0);
-			return overlap;
-		}
-
-		nfloat CalcOnScreenContentHeight()
-		{
-			// Content which rendered on screen can't be bigger than table's height
-			return NMath.Min (TableView.ContentSize.Height - TableView.ContentOffset.Y, TableView.Frame.Height);
+			UpdateTableInsets ();
 		}
 
 		void UpdateTableInsets()
 		{
-			UIEdgeInsets oldInset = TableView.ContentInset;
-			CGPoint oldOffset = TableView.ContentOffset;
-
-			nfloat hiddenHeight = TableView.Frame.GetMaxY () - Chat.Frame.GetMinY();
-
-			UIEdgeInsets newInset = oldInset;
-			newInset.Bottom = hiddenHeight;
-
-			TableView.ContentInset = newInset; // this may change ContentOffset property implicitly
-			TableView.ScrollIndicatorInsets = newInset;
-		}
-
-		bool IsTableContentOverlapped()
-		{
-			return TableView.ContentSize.Height > TableView.Frame.Height - TableView.ContentInset.Bottom;
+			nfloat bottom = tableView.Frame.GetMaxY () - toolbar.Frame.GetMinY ();
+			UIEdgeInsets insets = new UIEdgeInsets (0, 0, bottom, 0);
+			tableView.ContentInset = insets;
+			tableView.ScrollIndicatorInsets = insets;
 		}
 
 		UIViewAnimationOptions ConvertToAnimationOptions(UIViewAnimationCurve curve)
@@ -262,10 +269,13 @@ namespace Chat
 			};
 
 			messages.Add (msg);
+			tableView.InsertRows (new NSIndexPath[] { NSIndexPath.FromRowSection (messages.Count - 1, 0) }, UITableViewRowAnimation.None);
+			ScrollToBottom (true);
+		}
 
-			var indexPaths = new NSIndexPath[] { LastIndexPath };
-			TableView.InsertRows(indexPaths, UITableViewRowAnimation.None);
-			TableView.ScrollToRow (LastIndexPath, UITableViewScrollPosition.Bottom, true);
+		void OnTextViewStarted (object sender, EventArgs e)
+		{
+			ScrollToBottom (true);
 		}
 
 		void OnTextChanged (object sender, EventArgs e)
@@ -284,75 +294,20 @@ namespace Chat
 
 			willShowToken.Dispose ();
 			willHideToken.Dispose ();
-			willHideMenuToken.Dispose ();
 		}
 
-		[Export("messageCopyTextAction:")]
-		internal void CopyMessage(NSObject sender)
+		void ScrollToBottom (bool animated)
 		{
-			var selected = TableView.IndexPathForSelectedRow;
-			Message msg = messages [selected.Row];
-			UIPasteboard.General.String = msg.Text;
-		}
+			if (tableView.NumberOfSections() == 0)
+				return;
 
-		public override bool CanBecomeFirstResponder {
-			get {
-				return true;
-			}
-		}
+			int items = (int)tableView.NumberOfRowsInSection (0);
+			if (items == 0)
+				return;
 
-		void ShowMenu(UIGestureRecognizer gesture)
-		{
-			CGPoint location = gesture.LocationInView (TableView);
-			NSIndexPath indexPath = TableView.IndexPathForRowAtPoint (location);
-			TableView.SelectRow (indexPath, false, UITableViewScrollPosition.None);
-
-			if (TextView.IsFirstResponder) {
-				hiddenInput.Text = string.Empty;
-				hiddenInput.BecomeFirstResponder ();
-			} else {
-				hiddenInput.BecomeFirstResponder ();
-				BecomeFirstResponder ();
-			}
-
-			UIMenuController menu = UIMenuController.SharedMenuController;
-			menu.SetTargetRect (gesture.View.Frame, gesture.View.Superview);
-			menu.MenuItems = new UIMenuItem[] {
-				new UIMenuItem { Title = "Copy", Action = new Selector ("messageCopyTextAction:") }
-			};
-			menu.SetMenuVisible (true, true);
-		}
-
-		void MenuWillHide (object sender, NSNotificationEventArgs e)
-		{
-			var selected = TableView.IndexPathForSelectedRow;
-			TableView.DeselectRow (selected, false);
-		}
-
-		void PlayMessageSentSound()
-		{
-			throw new NotImplementedException ();
-		}
-	}
-
-	public class DummyInput : UITextView
-	{
-		readonly ChatViewController viewController;
-
-		public DummyInput (ChatViewController vc)
-		{
-			viewController = vc;
-		}
-
-		public override bool CanPerform (ObjCRuntime.Selector action, NSObject withSender)
-		{
-			return action.Name == "messageCopyTextAction:";
-		}
-
-		[Export("messageCopyTextAction:")]
-		void CopyMessage(NSObject sender)
-		{
-			viewController.CopyMessage (sender);
+			int finalRow = (int)NMath.Max (0, tableView.NumberOfRowsInSection (0) - 1);
+			NSIndexPath finalIndexPath = NSIndexPath.FromRowSection (finalRow, 0);
+			tableView.ScrollToRow(finalIndexPath, UITableViewScrollPosition.Top, animated);
 		}
 	}
 }

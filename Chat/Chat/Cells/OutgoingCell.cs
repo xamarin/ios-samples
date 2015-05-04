@@ -6,56 +6,73 @@ using CoreGraphics;
 
 namespace Chat
 {
-	public partial class OutgoingCell : BubbleCell
+	[Register ("OutgoingCell")]
+	public class OutgoingCell : BubbleCell
 	{
-		static UIImage bubble;
-		protected override UIImage BubbleImg {
-			get {
-				return bubble;
-			}
-		}
+		static readonly UIImage normalBubbleImage;
+		static readonly UIImage highlightedBubbleImage;
 
-		static UIImage highlightedBubble;
-		protected override UIImage BubbleHighlightedImage {
-			get {
-				return highlightedBubble;
-			}
-		}
+		public static readonly NSString CellId = new NSString("Outgoing");
 
-		protected override UIImageView BubbleView {
-			get {
-				// from outlet
-				return BubbleImageView;
-			}
-		}
+		static OutgoingCell()
+		{
+			UIImage mask = UIImage.FromBundle ("BubbleOutgoing");
 
-		public override UILabel MessageLbl {
-			get {
-				// from outlet
-				return MessageText;
-			}
+			var cap = new UIEdgeInsets {
+				Top = 17,
+				Left = 21,
+				Bottom = (float)17.5,
+				Right = (float)26.5
+			};
+
+			var normalColor = UIColor.FromRGB(43, 119, 250);
+			var highlightedColor = UIColor.FromRGB (32, 96, 200);
+
+			normalBubbleImage = CreateColoredImage (normalColor, mask).CreateResizableImage (cap);
+			highlightedBubbleImage = CreateColoredImage (highlightedColor, mask).CreateResizableImage (cap);
 		}
 
 		public OutgoingCell (IntPtr handle)
 			: base(handle)
 		{
-			// TODO: move to static ctor
-			if (bubble == null && highlightedBubble == null) {
-				UIImage mask = UIImage.FromBundle ("MessageBubble");
+			Initialize ();
+		}
 
-				var cap = new UIEdgeInsets {
-					Top = 17,
-					Left = 21,
-					Bottom = (float)17.5,
-					Right = (float)26.5
-				};
+		public OutgoingCell()
+		{
+			Initialize ();
+		}
 
-				var color = UIColor.FromRGB (43, 119, 250);
-				bubble = CreateColoredImage (color, mask).CreateResizableImage (cap);
+		void Initialize ()
+		{
+			BubbleHighlightedImage = highlightedBubbleImage;
+			BubbleImage = normalBubbleImage;
 
-				var highlightedColor = UIColor.FromRGB (32, 96, 200);
-				highlightedBubble = CreateColoredImage (highlightedColor, mask).CreateResizableImage (cap);
-			}
+			ContentView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:[bubble]|",
+				(NSLayoutFormatOptions)0, 
+				"bubble", BubbleImageView));
+			ContentView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-2-[bubble]-2-|",
+				(NSLayoutFormatOptions)0,
+				"bubble", BubbleImageView
+			));
+			BubbleImageView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:[bubble(>=48)]",
+				(NSLayoutFormatOptions)0,
+				"bubble", BubbleImageView
+			));
+
+			var vSpaceTop = NSLayoutConstraint.Create (MessageLabel, NSLayoutAttribute.Top, NSLayoutRelation.Equal, BubbleImageView, NSLayoutAttribute.Top, 1, 10);
+			ContentView.AddConstraint (vSpaceTop);
+
+			var vSpaceBottom = NSLayoutConstraint.Create (MessageLabel, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, BubbleImageView, NSLayoutAttribute.Bottom, 1, -10);
+			ContentView.AddConstraint (vSpaceBottom);
+
+			var msgTrailing = NSLayoutConstraint.Create (MessageLabel, NSLayoutAttribute.Trailing, NSLayoutRelation.LessThanOrEqual, BubbleImageView, NSLayoutAttribute.Trailing, 1, -16);
+			ContentView.AddConstraint (msgTrailing);
+
+			var msgCenter = NSLayoutConstraint.Create (MessageLabel, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, BubbleImageView, NSLayoutAttribute.CenterX, 1, -3);
+			ContentView.AddConstraint (msgCenter);
+
+			MessageLabel.TextColor = UIColor.White;
 		}
 	}
 }

@@ -9,6 +9,8 @@
     <RootNamespace>Chat</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>Chat</AssemblyName>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -97,8 +99,10 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\MessageBubble.imageset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\MessageBubble.imageset\MessageBubble%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BubbleIncoming.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\BubbleIncoming.imageset\bubble_regular.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BubbleIncoming.imageset\bubble_regular%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BubbleIncoming.imageset\bubble_regular%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
@@ -113,26 +117,23 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="ChatViewController.cs" />
-    <Compile Include="ChatViewController.designer.cs">
-      <DependentUpon>ChatViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Message.cs" />
     <Compile Include="ChatSource.cs" />
     <Compile Include="Cells\IncomingCell.cs" />
-    <Compile Include="Cells\IncomingCell.designer.cs">
-      <DependentUpon>IncomingCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Cells\OutgoingCell.cs" />
-    <Compile Include="Cells\OutgoingCell.designer.cs">
-      <DependentUpon>OutgoingCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="Cells\BubbleCell.cs" />
     <Compile Include="ChatInput\ChatInputView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Cells\" />
-    <Folder Include="Resources\Images.xcassets\MessageBubble.imageset\" />
     <Folder Include="ChatInput\" />
+    <Folder Include="Resources\Images.xcassets\BubbleIncoming.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Images.xcassets\BubbleOutgoing.imageset\bubble_regular.png" />
+    <BundleResource Include="Resources\Images.xcassets\BubbleOutgoing.imageset\bubble_regular%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\BubbleOutgoing.imageset\bubble_regular%403x.png" />
+    <BundleResource Include="Resources\Images.xcassets\BubbleOutgoing.imageset\Contents.json" />
   </ItemGroup>
 </Project>

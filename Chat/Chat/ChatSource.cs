@@ -16,15 +16,13 @@ namespace Chat
 		IList<Message> messages;
 
 		readonly BubbleCell[] sizingCells;
-		readonly Action<UIGestureRecognizer> showMenuAction;
 
-		public ChatSource(IList<Message> messages, Action<UIGestureRecognizer> showMenuAction)
+		public ChatSource(IList<Message> messages)
 		{
 			if (messages == null)
 				throw new ArgumentNullException ("messages");
 
 			this.messages = messages;
-			this.showMenuAction = showMenuAction;
 			sizingCells = new BubbleCell[2];
 		}
 
@@ -39,25 +37,9 @@ namespace Chat
 			Message msg = messages [indexPath.Row];
 
 			cell = (BubbleCell)tableView.DequeueReusableCell (GetReuseId (msg.Type));
-
-			bool isNew = cell.Message == null;
-			if (isNew) {
-				var doubleTap = new UITapGestureRecognizer (ShowMenu);
-				doubleTap.NumberOfTapsRequired = 2;
-				cell.MessageLbl.AddGestureRecognizer (doubleTap);
-
-				var longPressTap = new UILongPressGestureRecognizer (ShowMenu);
-				cell.MessageLbl.AddGestureRecognizer (longPressTap);
-			}
-
 			cell.Message = msg;
 
 			return cell;
-		}
-
-		public override NSIndexPath WillSelectRow (UITableView tableView, NSIndexPath indexPath)
-		{
-			return null; // Reserve row selection #CopyMessage
 		}
 
 		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
@@ -90,18 +72,6 @@ namespace Chat
 		NSString GetReuseId(MessageType msgType)
 		{
 			return msgType == MessageType.Incoming ? IncomingCellId : OutgoingCellId;
-		}
-
-		void ShowMenu(UITapGestureRecognizer tapGesture)
-		{
-			if (tapGesture.State == UIGestureRecognizerState.Ended && showMenuAction != null)
-				showMenuAction (tapGesture);
-		}
-
-		void ShowMenu(UILongPressGestureRecognizer longPress)
-		{
-			if (longPress.State == UIGestureRecognizerState.Began && showMenuAction != null)
-				showMenuAction (longPress);
 		}
 	}
 }
