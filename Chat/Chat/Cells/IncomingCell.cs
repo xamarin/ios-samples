@@ -20,8 +20,8 @@ namespace Chat
 
 			var cap = new UIEdgeInsets {
 				Top = 17,
-				Left = (float)26.5,
-				Bottom = (float)17.5,
+				Left = (float)26,
+				Bottom = (float)17,
 				Right = 21,
 			};
 

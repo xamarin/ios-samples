@@ -21,8 +21,8 @@ namespace Chat
 			var cap = new UIEdgeInsets {
 				Top = 17,
 				Left = 21,
-				Bottom = (float)17.5,
-				Right = (float)26.5
+				Bottom = (float)17,
+				Right = (float)26
 			};
 
 			var normalColor = UIColor.FromRGB(43, 119, 250);
