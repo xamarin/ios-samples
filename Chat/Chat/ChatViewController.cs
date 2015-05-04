@@ -225,7 +225,9 @@ namespace Chat
 		{
 			UIViewAnimationCurve curve = e.AnimationCurve;
 			UIView.Animate (e.AnimationDuration, 0, ConvertToAnimationOptions (e.AnimationCurve), () => {
-				SetToolbarContstraint(e.FrameEnd.Height);
+				nfloat offsetFromBottom = tableView.Frame.GetMaxY() - e.FrameEnd.GetMinY();
+				offsetFromBottom = NMath.Max(0, offsetFromBottom);
+				SetToolbarContstraint(offsetFromBottom);
 			}, null);
 		}
 
