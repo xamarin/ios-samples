@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalabashSample.iOS-Classic", "CalabashSample.iOS-Classic.csproj", "{66C08497-5CBD-4C38-A37A-C3824948B808}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66C08497-5CBD-4C38-A37A-C3824948B808}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{66C08497-5CBD-4C38-A37A-C3824948B808}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{66C08497-5CBD-4C38-A37A-C3824948B808}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{66C08497-5CBD-4C38-A37A-C3824948B808}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{66C08497-5CBD-4C38-A37A-C3824948B808}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{66C08497-5CBD-4C38-A37A-C3824948B808}.Debug|iPhone.Build.0 = Debug|iPhone
+		{66C08497-5CBD-4C38-A37A-C3824948B808}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{66C08497-5CBD-4C38-A37A-C3824948B808}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{66C08497-5CBD-4C38-A37A-C3824948B808}.Release|iPhone.ActiveCfg = Release|iPhone
+		{66C08497-5CBD-4C38-A37A-C3824948B808}.Release|iPhone.Build.0 = Release|iPhone
+		{66C08497-5CBD-4C38-A37A-C3824948B808}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{66C08497-5CBD-4C38-A37A-C3824948B808}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal
