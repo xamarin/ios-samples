@@ -14,7 +14,9 @@ namespace MetalImageProcessing
 		double timeSinceLastDrawPreviousTime;
 		bool gameLoopPaused;
 		bool firstDrawOccurred;
+		#pragma warning disable 414
 		double timeSinceLastDraw;
+		#pragma warning restore 414
 
 		Renderer renderer;
 
