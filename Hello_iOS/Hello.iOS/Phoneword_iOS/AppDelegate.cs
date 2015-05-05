@@ -1,4 +1,4 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
 namespace Phoneword_iOS
@@ -17,6 +17,7 @@ namespace Phoneword_iOS
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
+Xamarin.Calabash.Start();
 			// Override point for customization after application launch.
 			// If not required for your application you can safely delete this method
 			return true;
