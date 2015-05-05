@@ -23,10 +23,12 @@ namespace PeoplePicker
 		void ShowPicker(NSObject sender)
 		{
 			ABPeoplePickerNavigationController picker = new ABPeoplePickerNavigationController ();
+			#pragma warning disable 618
 			picker.SelectPerson += HandleSelectPerson;
 			picker.SelectPerson2 += HandleSelectPerson2;
 			picker.PerformAction += HandlePerformAction;
 			picker.PerformAction2 += HandlePerformAction2;
+			#pragma warning restore 618
 			picker.Cancelled += HandleCancelled;
 
 			// The people picker will only display the person's name, image and email properties in ABPersonViewController.

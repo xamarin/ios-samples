@@ -22,8 +22,10 @@ namespace PeoplePicker
 		private void ShowPicker(NSObject sender)
 		{
 			ABPeoplePickerNavigationController picker = new ABPeoplePickerNavigationController ();
+			#pragma warning disable 618
 			picker.SelectPerson += HandleSelectPerson;
 			picker.SelectPerson2 += HandleSelectPerson2;
+			#pragma warning restore 618
 			picker.Cancelled += HandleCancelled;
 
 			PresentViewController (picker, true, null);
