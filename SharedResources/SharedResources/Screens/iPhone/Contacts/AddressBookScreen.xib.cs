@@ -305,7 +305,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 			};
 
 			// when a contact is chosen, populate the page and then dismiss the picker
-			addressBookPicker.SelectPerson += (object sender, ABPeoplePickerSelectPersonEventArgs args) => {
+			addressBookPicker.SelectPerson2 += (sender, args) => {
 				PopulatePage (args.Person);
 				EnableTextFields (true);
 				// HACK: NavigationController.DismissModalViewControllerAnimated to NavigationController.DismissModalViewController

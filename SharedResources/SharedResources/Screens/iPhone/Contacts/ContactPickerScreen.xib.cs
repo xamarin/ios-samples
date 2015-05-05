@@ -66,7 +66,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 				addressBookPicker.Cancelled += (sender, eventArgs) => { NavigationController.DismissModalViewController(true); };
 
 				// when a contact is chosen, populate the page with details and dismiss the controller
-				addressBookPicker.SelectPerson += (object sender, ABPeoplePickerSelectPersonEventArgs args) => {
+				addressBookPicker.SelectPerson2 += (sender, args) => {
 					selectedPerson = args.Person;
 					lblFirstName.Text = selectedPerson.FirstName;
 					lblLastName.Text = selectedPerson.LastName;

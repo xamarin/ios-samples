@@ -63,7 +63,6 @@ namespace Example_SharedResources.Code
 		{
 			// declare vars
 			NavItem navItem = navItems[indexPath.Section].Items[indexPath.Row];
-			UIImage navIcon = null;
 
 			var cell = tableView.DequeueReusableCell (this.cellIdentifier);
 			if (cell == null) {

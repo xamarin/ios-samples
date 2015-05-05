@@ -77,7 +77,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 					// show the picker
 					this.NavigationController.PresentModalViewController (imagePicker, true);
 
-				} catch (Exception ex) {
+				} catch {
 					UIAlertView alert = new UIAlertView ("No Camera", "No Camera Detected!", null, "OK", null);
 					alert.Show ();
 				}
@@ -103,8 +103,8 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 				case "public.image":
 					Console.WriteLine ("Image selected");
 					isImage = true;
-					break;
 					Console.WriteLine ("Video selected");
+					break;
 				case "public.video":
 					break;
 				}
