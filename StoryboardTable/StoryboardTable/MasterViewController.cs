@@ -51,8 +51,7 @@ namespace StoryboardTable
 
 		public void SaveTask (Chore chore)
 		{
-			var oldTask = chores.Find(t => t.Id == chore.Id);
-			oldTask = chore;
+			//var oldTask = chores.Find(t => t.Id == chore.Id);
 			NavigationController.PopViewController(true);
 		}
 
