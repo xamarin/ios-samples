@@ -229,9 +229,10 @@ namespace QRchestra
 				Console.WriteLine ("Unable to reactivate the audio session");
 				return;
 			}
-
+			#pragma warning disable 472
 			if ((flags & AVAudioSessionInterruptionFlags.ShouldResume) != null)
 				restartAudioProcessingGraph ();
+			#pragma warning restore 472
 		}
 
 		[Export("inputIsAvailableChanged:")]
