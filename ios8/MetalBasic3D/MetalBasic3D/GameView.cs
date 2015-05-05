@@ -23,7 +23,9 @@ namespace MetalBasic3D
 		bool layerSizeDidUpdate;
 
 		IMTLTexture depthTex;
+		#pragma warning disable 649
 		IMTLTexture stencilTex;
+		#pragma warning restore 649
 		IMTLTexture msaaTex;
 
 		CAMetalLayer metalLayer;
