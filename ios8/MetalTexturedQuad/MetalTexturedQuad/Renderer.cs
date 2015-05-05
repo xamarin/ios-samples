@@ -37,8 +37,10 @@ namespace MetalTexturedQuad
 		Texture mpInTexture;
 		IMTLRenderPipelineState pipelineState;
 
+		#pragma warning disable 649
 		// Dimensions
 		CGSize size;
+		#pragma warning restore 649
 
 		// Viewing matrix is derived from an eye point, a reference point
 		// indicating the center of the scene, and an up vector.
