@@ -5,7 +5,6 @@ using UIKit;
 using CoreFoundation;
 using Foundation;
 using CoreText;
-using CoreGraphics;
 
 namespace Quotes
 {
