@@ -148,7 +148,8 @@ namespace CloudCaptions
 		{
 			try {
 				var subscription = await PublicDB.FetchSubscriptionAsync(SubscriptionID);
-				ResetButton("Unsubscribe");
+				if (subscription != null)
+					ResetButton("Unsubscribe");
 			} catch(NSErrorException ex) {
 				HandleCheckSubscriptionError (ex);
 			}
