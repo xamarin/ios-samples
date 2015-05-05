@@ -7,4 +7,5 @@
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<Gallery>true</Gallery>
 	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Brief>This project shows one way of implementing a bubble-chat rendering similar to the iPhone Messages application</Brief>
 </SampleMetadata>
