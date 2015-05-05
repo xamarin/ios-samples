@@ -9,11 +9,11 @@ namespace Chat
 	{
 		public UIImageView BubbleImageView { get; private set; }
 		public UILabel MessageLabel { get; private set; }
-
 		public UIImage BubbleImage { get; set; }
 		public UIImage BubbleHighlightedImage { get; set; }
 
 		Message msg;
+
 		public Message Message {
 			get {
 				return msg;
@@ -31,17 +31,17 @@ namespace Chat
 		}
 
 		public BubbleCell (IntPtr handle)
-			: base(handle)
+			: base (handle)
 		{
 			Initialize ();
 		}
 
-		public BubbleCell()
+		public BubbleCell ()
 		{
 			Initialize ();
 		}
 
-		void Initialize()
+		void Initialize ()
 		{
 			BubbleImageView = new UIImageView {
 				TranslatesAutoresizingMaskIntoConstraints = false
@@ -52,8 +52,8 @@ namespace Chat
 				PreferredMaxLayoutWidth = 220
 			};
 
-			ContentView.AddSubview(BubbleImageView);
-			ContentView.AddSubview(MessageLabel);
+			ContentView.AddSubview (BubbleImageView);
+			ContentView.AddSubview (MessageLabel);
 		}
 
 		public override void SetSelected (bool selected, bool animated)
@@ -62,7 +62,7 @@ namespace Chat
 			BubbleImageView.Highlighted = selected;
 		}
 
-		protected static UIImage CreateColoredImage(UIColor color, UIImage mask)
+		protected static UIImage CreateColoredImage (UIColor color, UIImage mask)
 		{
 			var rect = new CGRect (CGPoint.Empty, mask.Size);
 			UIGraphics.BeginImageContextWithOptions (mask.Size, false, mask.CurrentScale);
@@ -76,7 +76,7 @@ namespace Chat
 			return result;
 		}
 
-		protected static UIImage CreateBubbleWithBorder(UIImage bubbleImg, UIColor bubbleColor)
+		protected static UIImage CreateBubbleWithBorder (UIImage bubbleImg, UIColor bubbleColor)
 		{
 			bubbleImg = CreateColoredImage (bubbleColor, bubbleImg);
 			CGSize size = bubbleImg.Size;

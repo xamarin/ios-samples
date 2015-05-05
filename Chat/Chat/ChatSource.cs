@@ -10,14 +10,14 @@ namespace Chat
 {
 	public class ChatSource : UITableViewSource
 	{
-		static readonly NSString IncomingCellId = new NSString("Incoming");
-		static readonly NSString OutgoingCellId = new NSString("Outgoing");
+		static readonly NSString IncomingCellId = new NSString ("Incoming");
+		static readonly NSString OutgoingCellId = new NSString ("Outgoing");
 
 		IList<Message> messages;
 
 		readonly BubbleCell[] sizingCells;
 
-		public ChatSource(IList<Message> messages)
+		public ChatSource (IList<Message> messages)
 		{
 			if (messages == null)
 				throw new ArgumentNullException ("messages");
@@ -54,7 +54,7 @@ namespace Chat
 			return CalculateHeightFor (msg, tableView);
 		}
 
-		nfloat CalculateHeightFor(Message msg, UITableView tableView)
+		nfloat CalculateHeightFor (Message msg, UITableView tableView)
 		{
 			var index = (int)msg.Type;
 			BubbleCell cell = sizingCells [index];
@@ -69,7 +69,7 @@ namespace Chat
 			return NMath.Ceiling (size.Height) + 1;
 		}
 
-		NSString GetReuseId(MessageType msgType)
+		NSString GetReuseId (MessageType msgType)
 		{
 			return msgType == MessageType.Incoming ? IncomingCellId : OutgoingCellId;
 		}

@@ -12,16 +12,16 @@ namespace Chat
 		static readonly UIImage normalBubbleImage;
 		static readonly UIImage highlightedBubbleImage;
 
-		public static readonly NSString CellId = new NSString("Incoming");
+		public static readonly NSString CellId = new NSString ("Incoming");
 
-		static IncomingCell()
+		static IncomingCell ()
 		{
 			UIImage mask = UIImage.FromBundle ("BubbleIncoming");
 
 			var cap = new UIEdgeInsets {
 				Top = 17,
-				Left = (float)26,
-				Bottom = (float)17,
+				Left = 26,
+				Bottom = 17,
 				Right = 21,
 			};
 

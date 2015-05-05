@@ -11,7 +11,7 @@ namespace Chat
 		static readonly UIColor ButtonTextColorDisabled = UIColor.FromRGB (142, 142, 147);
 		static readonly UIFont ButtonFont = UIFont.SystemFontOfSize (17, UIFontWeight.Bold);
 
-		static readonly UIColor InputBackgroundColor =  UIColor.FromWhiteAlpha (250, 1);
+		static readonly UIColor InputBackgroundColor = UIColor.FromWhiteAlpha (250, 1);
 		static readonly UIColor InputBorderColor = UIColor.FromRGB (200, 200, 205);
 		const float BorderWidth = 0.5f;
 		const float CornerRadius = 5;
@@ -19,9 +19,10 @@ namespace Chat
 		public static readonly float ToolbarMinHeight = 44;
 
 		public UITextView TextView { get; private set; }
+
 		public UIButton SendButton { get; private set; }
 
-		public ChatInputView()
+		public ChatInputView ()
 		{
 			TextView = new UITextView ();
 			TextView.Changed += OnTextChanged;
@@ -54,21 +55,16 @@ namespace Chat
 			AddSubviews (TextView, SendButton);
 
 			var c1 = NSLayoutConstraint.FromVisualFormat ("H:|-[input]-[button]-|",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				(NSLayoutFormatOptions)0,
 				"input", TextView,
 				"button", SendButton
 			);
-//			var c2 = NSLayoutConstraint.FromVisualFormat ("V:|-[input]-|",
-//				NSLayoutFormatOptions.DirectionLeadingToTrailing,
-//				"input", TextView
-//			);
-//			AddConstraints (c2);
-			var top = NSLayoutConstraint.Create(TextView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, this, NSLayoutAttribute.Top, 1, 7);
-			var bot = NSLayoutConstraint.Create(TextView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, this, NSLayoutAttribute.Bottom, 1, -7);
+			var top = NSLayoutConstraint.Create (TextView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, this, NSLayoutAttribute.Top, 1, 7);
+			var bot = NSLayoutConstraint.Create (TextView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, this, NSLayoutAttribute.Bottom, 1, -7);
 			AddConstraint (top);
 			AddConstraint (bot);
 			// We want Send button was centered when Toolbar has MinHeight (pin button in this state)
-			var c3 = NSLayoutConstraint.Create(SendButton, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, this, NSLayoutAttribute.Bottom, 1, -ToolbarMinHeight / 2);
+			var c3 = NSLayoutConstraint.Create (SendButton, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, this, NSLayoutAttribute.Bottom, 1, -ToolbarMinHeight / 2);
 			AddConstraints (c1);
 			AddConstraint (c3);
 		}

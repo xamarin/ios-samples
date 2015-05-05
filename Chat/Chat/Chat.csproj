@@ -139,12 +139,13 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="ChatViewController.cs" />
-    <Compile Include="Message.cs" />
     <Compile Include="ChatSource.cs" />
     <Compile Include="Cells\IncomingCell.cs" />
     <Compile Include="Cells\OutgoingCell.cs" />
     <Compile Include="Cells\BubbleCell.cs" />
     <Compile Include="ChatInput\ChatInputView.cs" />
+    <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\MessageType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -153,6 +154,7 @@
     <Folder Include="Resources\Images.xcassets\BubbleIncoming.imageset\" />
     <Folder Include="Resources\Images.xcassets\AppIcon.appiconset\" />
     <Folder Include="Resources\Images.xcassets\LaunchImage.launchimage\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Images.xcassets\BubbleOutgoing.imageset\bubble_regular.png" />

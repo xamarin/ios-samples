@@ -26,6 +26,7 @@ namespace Chat
 		NSLayoutConstraint toolbarHeightConstraint;
 
 		ChatInputView chatInputView;
+
 		UIButton SendButton {
 			get {
 				return chatInputView.SendButton;
@@ -90,7 +91,7 @@ namespace Chat
 
 		#region Initialization
 
-		void SetUpTableView()
+		void SetUpTableView ()
 		{
 			tableView = new UITableView {
 				TranslatesAutoresizingMaskIntoConstraints = false,
@@ -143,11 +144,11 @@ namespace Chat
 			toolbar.AddSubview (chatInputView);
 
 			var c1 = NSLayoutConstraint.FromVisualFormat ("H:|[chat_container_view]|",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				(NSLayoutFormatOptions)0,
 				"chat_container_view", chatInputView
 			);
 			var c2 = NSLayoutConstraint.FromVisualFormat ("V:|[chat_container_view]|",
-				NSLayoutFormatOptions.DirectionLeadingToTrailing,
+				(NSLayoutFormatOptions)0,
 				"chat_container_view", chatInputView
 			);
 			toolbar.AddConstraints (c1);
@@ -156,9 +157,9 @@ namespace Chat
 
 		#endregion
 
-		void AddObservers()
+		void AddObservers ()
 		{
-			TextView.AddObserver(this,"contentSize", NSKeyValueObservingOptions.OldNew, IntPtr.Zero);
+			TextView.AddObserver (this, "contentSize", NSKeyValueObservingOptions.OldNew, IntPtr.Zero);
 		}
 
 		public override void ObserveValue (NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
@@ -170,7 +171,7 @@ namespace Chat
 			}
 		}
 
-		void OnSizeChanged(NSObservedChange change)
+		void OnSizeChanged (NSObservedChange change)
 		{
 			CGSize oldValue = ((NSValue)change.OldValue).CGSizeValue;
 			CGSize newValue = ((NSValue)change.NewValue).CGSizeValue;
@@ -179,7 +180,7 @@ namespace Chat
 			AdjustInputToolbarOnTextViewSizeChanged (dy);
 		}
 
-		void AdjustInputToolbarOnTextViewSizeChanged(nfloat dy)
+		void AdjustInputToolbarOnTextViewSizeChanged (nfloat dy)
 		{
 			bool isIncreasing = dy > 0;
 			if (IsInputToolbarHasReachedMaximumHeight () && isIncreasing) {
@@ -195,12 +196,12 @@ namespace Chat
 			AdjustInputToolbar (dy);
 		}
 
-		bool IsInputToolbarHasReachedMaximumHeight()
+		bool IsInputToolbarHasReachedMaximumHeight ()
 		{
 			return toolbar.Frame.GetMinY () == TopLayoutGuide.Length;
 		}
 
-		void AdjustInputToolbar(nfloat change)
+		void AdjustInputToolbar (nfloat change)
 		{
 			toolbarHeightConstraint.Constant += change;
 
@@ -221,26 +222,26 @@ namespace Chat
 			UpdateButtomLayoutConstraint (e);
 		}
 
-		void UpdateButtomLayoutConstraint(UIKeyboardEventArgs e)
+		void UpdateButtomLayoutConstraint (UIKeyboardEventArgs e)
 		{
 			UIViewAnimationCurve curve = e.AnimationCurve;
 			UIView.Animate (e.AnimationDuration, 0, ConvertToAnimationOptions (e.AnimationCurve), () => {
-				nfloat offsetFromBottom = tableView.Frame.GetMaxY() - e.FrameEnd.GetMinY();
-				offsetFromBottom = NMath.Max(0, offsetFromBottom);
-				SetToolbarContstraint(offsetFromBottom);
+				nfloat offsetFromBottom = tableView.Frame.GetMaxY () - e.FrameEnd.GetMinY ();
+				offsetFromBottom = NMath.Max (0, offsetFromBottom);
+				SetToolbarContstraint (offsetFromBottom);
 			}, null);
 		}
 
-		void SetToolbarContstraint(nfloat constant)
+		void SetToolbarContstraint (nfloat constant)
 		{
 			toolbarBottomConstraint.Constant = constant;
-			View.SetNeedsUpdateConstraints();
+			View.SetNeedsUpdateConstraints ();
 			View.LayoutIfNeeded ();
 
 			UpdateTableInsets ();
 		}
 
-		void UpdateTableInsets()
+		void UpdateTableInsets ()
 		{
 			nfloat bottom = tableView.Frame.GetMaxY () - toolbar.Frame.GetMinY ();
 			UIEdgeInsets insets = new UIEdgeInsets (0, 0, bottom, 0);
@@ -248,7 +249,7 @@ namespace Chat
 			tableView.ScrollIndicatorInsets = insets;
 		}
 
-		UIViewAnimationOptions ConvertToAnimationOptions(UIViewAnimationCurve curve)
+		UIViewAnimationOptions ConvertToAnimationOptions (UIViewAnimationCurve curve)
 		{
 			// Looks like a hack. But it is correct.
 			// UIViewAnimationCurve and UIViewAnimationOptions are shifted by 16 bits
@@ -285,7 +286,7 @@ namespace Chat
 			UpdateButtonState ();
 		}
 
-		void UpdateButtonState()
+		void UpdateButtonState ()
 		{
 			SendButton.Enabled = !string.IsNullOrWhiteSpace (TextView.Text);
 		}
@@ -300,7 +301,7 @@ namespace Chat
 
 		void ScrollToBottom (bool animated)
 		{
-			if (tableView.NumberOfSections() == 0)
+			if (tableView.NumberOfSections () == 0)
 				return;
 
 			int items = (int)tableView.NumberOfRowsInSection (0);
@@ -309,7 +310,7 @@ namespace Chat
 
 			int finalRow = (int)NMath.Max (0, tableView.NumberOfRowsInSection (0) - 1);
 			NSIndexPath finalIndexPath = NSIndexPath.FromRowSection (finalRow, 0);
-			tableView.ScrollToRow(finalIndexPath, UITableViewScrollPosition.Top, animated);
+			tableView.ScrollToRow (finalIndexPath, UITableViewScrollPosition.Top, animated);
 		}
 	}
 }

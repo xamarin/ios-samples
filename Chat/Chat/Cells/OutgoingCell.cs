@@ -12,20 +12,20 @@ namespace Chat
 		static readonly UIImage normalBubbleImage;
 		static readonly UIImage highlightedBubbleImage;
 
-		public static readonly NSString CellId = new NSString("Outgoing");
+		public static readonly NSString CellId = new NSString ("Outgoing");
 
-		static OutgoingCell()
+		static OutgoingCell ()
 		{
 			UIImage mask = UIImage.FromBundle ("BubbleOutgoing");
 
 			var cap = new UIEdgeInsets {
 				Top = 17,
 				Left = 21,
-				Bottom = (float)17,
-				Right = (float)26
+				Bottom = 17,
+				Right = 26
 			};
 
-			var normalColor = UIColor.FromRGB(43, 119, 250);
+			var normalColor = UIColor.FromRGB (43, 119, 250);
 			var highlightedColor = UIColor.FromRGB (32, 96, 200);
 
 			normalBubbleImage = CreateColoredImage (normalColor, mask).CreateResizableImage (cap);
@@ -33,12 +33,12 @@ namespace Chat
 		}
 
 		public OutgoingCell (IntPtr handle)
-			: base(handle)
+			: base (handle)
 		{
 			Initialize ();
 		}
 
-		public OutgoingCell()
+		public OutgoingCell ()
 		{
 			Initialize ();
 		}
