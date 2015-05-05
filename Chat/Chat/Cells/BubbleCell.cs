@@ -49,7 +49,7 @@ namespace Chat
 			MessageLabel = new UILabel {
 				TranslatesAutoresizingMaskIntoConstraints = false,
 				Lines = 0,
-				PreferredMaxLayoutWidth = 220
+				PreferredMaxLayoutWidth = 220f
 			};
 
 			ContentView.AddSubview (BubbleImageView);

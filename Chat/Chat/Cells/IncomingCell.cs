@@ -19,10 +19,10 @@ namespace Chat
 			UIImage mask = UIImage.FromBundle ("BubbleIncoming");
 
 			var cap = new UIEdgeInsets {
-				Top = 17,
-				Left = 26,
-				Bottom = 17,
-				Right = 21,
+				Top = 17f,
+				Left = 26f,
+				Bottom = 17f,
+				Right = 21f,
 			};
 
 			var normalColor = UIColor.FromRGB (229, 229, 234);

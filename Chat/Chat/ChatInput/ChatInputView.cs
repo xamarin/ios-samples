@@ -9,14 +9,14 @@ namespace Chat
 	{
 		static readonly UIColor ButtonTextColorNormal = UIColor.FromRGB (1, 122, 255);
 		static readonly UIColor ButtonTextColorDisabled = UIColor.FromRGB (142, 142, 147);
-		static readonly UIFont ButtonFont = UIFont.SystemFontOfSize (17, UIFontWeight.Bold);
+		static readonly UIFont ButtonFont = UIFont.SystemFontOfSize (17f, UIFontWeight.Bold);
 
 		static readonly UIColor InputBackgroundColor = UIColor.FromWhiteAlpha (250, 1);
 		static readonly UIColor InputBorderColor = UIColor.FromRGB (200, 200, 205);
 		const float BorderWidth = 0.5f;
 		const float CornerRadius = 5;
 
-		public static readonly float ToolbarMinHeight = 44;
+		public static readonly float ToolbarMinHeight = 44f;
 
 		public UITextView TextView { get; private set; }
 
@@ -34,13 +34,13 @@ namespace Chat
 			TextView.BackgroundColor = InputBackgroundColor;
 			TextView.TranslatesAutoresizingMaskIntoConstraints = false;
 
-			TextView.ScrollIndicatorInsets = new UIEdgeInsets (CornerRadius, 0, CornerRadius, 0);
-			TextView.TextContainerInset = new UIEdgeInsets (4, 2, 4, 2);
-			TextView.ContentInset = new UIEdgeInsets (1, 0, 1, 0);
+			TextView.ScrollIndicatorInsets = new UIEdgeInsets (CornerRadius, 0f, CornerRadius, 0f);
+			TextView.TextContainerInset = new UIEdgeInsets (4f, 2f, 4f, 2f);
+			TextView.ContentInset = new UIEdgeInsets (1f, 0f, 1f, 0f);
 			TextView.ScrollEnabled = true;
 			TextView.ScrollsToTop = false;
 			TextView.UserInteractionEnabled = true;
-			TextView.Font = UIFont.SystemFontOfSize (16);
+			TextView.Font = UIFont.SystemFontOfSize (16f);
 			TextView.TextAlignment = UITextAlignment.Natural;
 			TextView.ContentMode = UIViewContentMode.Redraw;
 
@@ -59,14 +59,14 @@ namespace Chat
 				"input", TextView,
 				"button", SendButton
 			);
-			var top = NSLayoutConstraint.Create (TextView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, this, NSLayoutAttribute.Top, 1, 7);
-			var bot = NSLayoutConstraint.Create (TextView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, this, NSLayoutAttribute.Bottom, 1, -7);
+			var top = NSLayoutConstraint.Create (TextView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, this, NSLayoutAttribute.Top, 1f, 7f);
+			var bot = NSLayoutConstraint.Create (TextView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, this, NSLayoutAttribute.Bottom, 1f, -7f);
 			AddConstraint (top);
 			AddConstraint (bot);
 			// We want Send button was centered when Toolbar has MinHeight (pin button in this state)
-			var c3 = NSLayoutConstraint.Create (SendButton, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, this, NSLayoutAttribute.Bottom, 1, -ToolbarMinHeight / 2);
+			var c2 = NSLayoutConstraint.Create (SendButton, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, this, NSLayoutAttribute.Bottom, 1f, -ToolbarMinHeight / 2);
 			AddConstraints (c1);
-			AddConstraint (c3);
+			AddConstraint (c2);
 		}
 
 		void OnTextChanged (object sender, EventArgs e)
