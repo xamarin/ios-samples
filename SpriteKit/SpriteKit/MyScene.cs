@@ -1,12 +1,11 @@
 using System;
 using SpriteKit;
 using CoreGraphics;
-using CoreGraphics;
 using UIKit;
 
 namespace SpriteKit
 {
-	public class MyScene : SKScene
+	public sealed class MyScene : SKScene
 	{
 		public MyScene (CGSize size) : base(size)
 		{
