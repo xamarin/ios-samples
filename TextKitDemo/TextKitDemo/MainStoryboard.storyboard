@@ -163,11 +163,11 @@
                                 <rect key="frame" x="5" y="15" width="150" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                    <rect key="frame" x="5" y="15" width="150" height="150"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kpt-wy-KWk">
-                                            <rect key="frame" x="3" y="3" width="144" height="144"/>
+                                            <rect key="frame" x="3" y="3" width="1494" height="1494"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4r-3S-640">
@@ -198,11 +198,11 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ytO-mg-HUO">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ytO-mg-HUO" reuseIdentifier="header">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         </collectionReusableView>
-                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ol5-BG-SkM">
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ol5-BG-SkM" reuseIdentifier="footer">
                             <rect key="frame" x="0.0" y="175" width="320" height="5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         </collectionReusableView>
@@ -297,4 +297,16 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <resources>
+        <image name="Default.png" width="320" height="480"/>
+        <image name="Default-568h.png" width="640" height="1136"/>
+        <image name="Icon.png" width="57" height="57"/>
+        <image name="Icon-72.png" width="72" height="72"/>
+        <image name="Icon-Small.png" width="29" height="29"/>
+        <image name="Icon-Small-50.png" width="50" height="50"/>
+        <image name="johnnyProfilePic.png" width="320" height="320"/>
+        <image name="butterfly.png" width="300" height="300"/>
+        <image name="Icon-60.png" width="120" height="120"/>
+        <image name="Icon-Small-40.png" width="80" height="80"/>
+    </resources>
 </document>
