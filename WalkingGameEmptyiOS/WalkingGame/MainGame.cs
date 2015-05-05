@@ -7,8 +7,6 @@ namespace WalkingGame
 	public class MainGame : Game
 	{
 		GraphicsDeviceManager graphics;
-		SpriteBatch spriteBatch;
-
 		public MainGame()
 		{
 			graphics = new GraphicsDeviceManager(this);
@@ -25,8 +23,7 @@ namespace WalkingGame
 
 		protected override void LoadContent()
 		{
-			// Create a new SpriteBatch, which can be used to draw textures.
-			spriteBatch = new SpriteBatch(GraphicsDevice);
+			
 		} 
 
 
