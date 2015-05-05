@@ -32,7 +32,7 @@ namespace MotionActivityDemo
 			return new MotionActivityQuery (queryStart, queryEnd, offset == 0);
 		}
 
-		public string Description {
+		public string ShortDescription {
 			get {
 				if (IsToday)
 					return "Today";

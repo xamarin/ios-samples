@@ -65,7 +65,7 @@ namespace MotionActivityDemo
 		void configureView ()
 		{
 			if (detailItem != null)
-				Title = detailItem.Description;
+				Title = detailItem.ShortDescription;
 		}
 
 		public override nint NumberOfSections (UITableView tableView)

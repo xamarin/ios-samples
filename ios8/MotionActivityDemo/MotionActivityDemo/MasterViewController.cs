@@ -15,7 +15,9 @@ namespace MotionActivityDemo
 		ActivityDataManager dataManager;
 		List<MotionActivityQuery> motionActivityQueries;
 
+		#pragma warning disable 414
 		NSObject observer;
+		#pragma warning disable 414
 
 		public MasterViewController (IntPtr handle) : base (handle)
 		{
@@ -73,7 +75,7 @@ namespace MotionActivityDemo
 			UITableViewCell cell = tableView.DequeueReusableCell ((NSString)"Cell", indexPath);
 
 			MotionActivityQuery query = motionActivityQueries[indexPath.Row];
-			cell.TextLabel.Text = query.Description;
+			cell.TextLabel.Text = query.ShortDescription;
 			return cell;
 		}
 
@@ -82,12 +84,12 @@ namespace MotionActivityDemo
 			return false;
 		}
 
-		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+		public override async void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			if (segue.Identifier == "showDetail") {
 				var indexPath = TableView.IndexPathForSelectedRow;
 				MotionActivityQuery query = motionActivityQueries [indexPath.Row];
-				(segue.DestinationViewController as DetailViewController).SetDetailItem (query);
+				await (segue.DestinationViewController as DetailViewController).SetDetailItem (query);
 			}
 		}
 	}
