@@ -1,5 +1,4 @@
 using System;
-using CoreGraphics;
 using AVFoundation;
 using CoreMedia;
 using Foundation;
