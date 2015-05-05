@@ -23,5 +23,9 @@
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.TableParts</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
 </dict>
 </plist>
