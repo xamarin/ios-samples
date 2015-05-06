@@ -24,30 +24,30 @@ namespace Chat
 
 		public ChatInputView ()
 		{
-			TextView = new UITextView ();
+			TextView = new UITextView {
+				TranslatesAutoresizingMaskIntoConstraints = false,
+				BackgroundColor = InputBackgroundColor,
+				ScrollIndicatorInsets = new UIEdgeInsets (CornerRadius, 0f, CornerRadius, 0f),
+				TextContainerInset = new UIEdgeInsets (4f, 2f, 4f, 2f),
+				ContentInset = new UIEdgeInsets (1f, 0f, 1f, 0f),
+				ScrollEnabled = true,
+				ScrollsToTop = false,
+				UserInteractionEnabled = true,
+				Font = UIFont.SystemFontOfSize (16f),
+				TextAlignment = UITextAlignment.Natural,
+				ContentMode = UIViewContentMode.Redraw
+			};
 			TextView.Layer.BorderColor = InputBorderColor.CGColor;
 			TextView.Layer.BorderWidth = BorderWidth;
 			TextView.Layer.CornerRadius = CornerRadius;
-			TextView.BackgroundColor = InputBackgroundColor;
-			TextView.TranslatesAutoresizingMaskIntoConstraints = false;
 
-			TextView.ScrollIndicatorInsets = new UIEdgeInsets (CornerRadius, 0f, CornerRadius, 0f);
-			TextView.TextContainerInset = new UIEdgeInsets (4f, 2f, 4f, 2f);
-			TextView.ContentInset = new UIEdgeInsets (1f, 0f, 1f, 0f);
-			TextView.ScrollEnabled = true;
-			TextView.ScrollsToTop = false;
-			TextView.UserInteractionEnabled = true;
-			TextView.Font = UIFont.SystemFontOfSize (16f);
-			TextView.TextAlignment = UITextAlignment.Natural;
-			TextView.ContentMode = UIViewContentMode.Redraw;
-
-
-			SendButton = new UIButton ();
+			SendButton = new UIButton {
+				TranslatesAutoresizingMaskIntoConstraints = false,
+				Font = ButtonFont
+			};
 			SendButton.SetTitle ("Send", UIControlState.Normal);
-			SendButton.Font = ButtonFont;
 			SendButton.SetTitleColor (ButtonTextColorNormal, UIControlState.Normal);
 			SendButton.SetTitleColor (ButtonTextColorDisabled, UIControlState.Disabled);
-			SendButton.TranslatesAutoresizingMaskIntoConstraints = false;
 
 			AddSubviews (TextView, SendButton);
 
