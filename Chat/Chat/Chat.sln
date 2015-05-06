@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat", "Chat.csproj", "{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Debug|iPhone.Build.0 = Debug|iPhone
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Release|iPhone.ActiveCfg = Release|iPhone
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Release|iPhone.Build.0 = Release|iPhone
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal
