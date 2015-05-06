@@ -52,8 +52,7 @@ namespace Chat
 				PreferredMaxLayoutWidth = 220f
 			};
 
-			ContentView.AddSubview (BubbleImageView);
-			ContentView.AddSubview (MessageLabel);
+			ContentView.AddSubviews (BubbleImageView, MessageLabel);
 		}
 
 		public override void SetSelected (bool selected, bool animated)
