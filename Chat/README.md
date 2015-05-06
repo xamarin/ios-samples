@@ -2,7 +2,8 @@ Chat
 ==============
 
 This project shows one way of implementing a bubble-chat rendering similar to the iPhone Messages application.
-The ChatViewController renders the discussion and resizes the input as needed
+The ChatViewController renders the discussion and resizes the input as needed.  
+This is the replacement for **BubbleCell** sample
 
 Build Requirements
 ------------------
