@@ -25,9 +25,6 @@ namespace Chat
 		public ChatInputView ()
 		{
 			TextView = new UITextView ();
-			TextView.Changed += OnTextChanged;
-			TextView.Started += OnTextChanged;
-			TextView.Ended += OnTextChanged;
 			TextView.Layer.BorderColor = InputBorderColor.CGColor;
 			TextView.Layer.BorderWidth = BorderWidth;
 			TextView.Layer.CornerRadius = CornerRadius;
@@ -67,11 +64,6 @@ namespace Chat
 			var c2 = NSLayoutConstraint.Create (SendButton, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, this, NSLayoutAttribute.Bottom, 1f, -ToolbarMinHeight / 2);
 			AddConstraints (c1);
 			AddConstraint (c2);
-		}
-
-		void OnTextChanged (object sender, EventArgs e)
-		{
-			SetNeedsDisplay ();
 		}
 	}
 }
