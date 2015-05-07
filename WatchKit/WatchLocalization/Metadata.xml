@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>6773184a-983d-4b7b-ac2e-20dbebe260a0</ID>
+	<Brief>Sample code for the Xamarin.iOS Watch Kit localization documentation.</Brief>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>iOS8, Watch, User Interface</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<Gallery>true</Gallery>
+	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Description>Sample code for the Xamarin.iOS Watch Kit localization documentation, showing how to support different languages in Apple Watch apps.</Description>
+</SampleMetadata>

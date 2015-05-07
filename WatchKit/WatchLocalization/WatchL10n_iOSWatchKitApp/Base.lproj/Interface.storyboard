@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6221" systemVersion="14A389" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3734"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="" title="L10n">
+                    <items>
+                        <label alignment="left" text="Welcome to WatchKit" id="0" numberOfLines="0">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <imageView alignment="left" id="40" image="gradient" height="16"/>
+                        <label alignment="left" id="1" text="Change the language in the Apple Watch app." numberOfLines="0"/>
+                        <button width="1" alignment="left" title="Hello" id="2">
+                            <connections>
+                                <segue id="37" destination="6" kind="push"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="welcomeLabel" destination="0" id="name-outlet-0"/>
+                        <outlet property="subheading" destination="1" id="name-outlet-1"/>
+                        <outlet property="button" destination="2" id="name-outlet-2"/>
+                        <outlet property="welcomeImage" destination="40" id="name-outlet-40"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Glance Interface Controller-->
+        <scene sceneID="BOz-TT-tkC">
+            <objects>
+                <glanceController spacing="0.0" id="0uZ-2p-rRc" customClass="GlanceController" customModuleProvider="">
+                    <items>
+                        <group alignment="left" id="t8f-Gd-c4y">
+                            <items>
+                                <label alignment="left" text="L10n" id="3">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group alignment="left" id="uCw-4Q-Ouw"/>
+                    </items>
+                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                </glanceController>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="263"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Localized" id="XkS-y5-khE"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="XkS-y5-khE" id="49B-RR-99y"/>
+                        <segue destination="gdX-wl-uQE" kind="relationship" relationship="dynamicNotificationInterface" id="fKh-qV-3T2"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="2" y="500"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="KIl-fV-djm">
+            <objects>
+                <controller id="gdX-wl-uQE" customClass="NotificationController" customModuleProvider="">
+                    <items>
+                        <label alignment="left" text="L10n Notification" id="4" numberOfLines="0">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="296" y="501"/>
+        </scene>
+        <scene sceneID="5">
+            <objects>
+                <controller id="6" identifier="detail" title="Detail" customClass="DetailController">
+                    <items>
+                        <label alignment="left" text="Text from extension" id="39">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <imageView alignment="left" id="41"/>
+                    </items>
+                    <connections>
+                        <outlet property="displayText" destination="39" id="name-outlet-39"/>
+                        <outlet property="displayImage" destination="41" id="name-outlet-41"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="252" y="-2"/>
+        </scene>
+    </scenes>
+</document>
