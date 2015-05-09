@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>d6e051d5-1c88-452b-a4f9-24fcc27ae2a2</ID>
+	<Brief>Sample code for the Xamarin.iOS Watch Kit notifications documentation.</Brief>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>iOS8, Watch, User Interface</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<Gallery>true</Gallery>
+	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Description>Sample code for the Xamarin.iOS Watch Kit notifications documentation, showing how to generate local notifications that appear on the Apple Watch.</Description>
+</SampleMetadata>
