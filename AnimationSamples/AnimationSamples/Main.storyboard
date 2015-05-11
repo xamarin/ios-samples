@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="43">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController" storyboardIdentifier="InitalViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="41" y="108" width="552" height="30"/>
+                                <state key="normal" title="Transition to Second Controller">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="194" width="560" height="30"/>
+                                <state key="normal" title="View Transition Demo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="275" width="560" height="30"/>
+                                <state key="normal" title="View Property Animation Demo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="357" width="560" height="30"/>
+                                <state key="normal" title="Implicit Animations Demo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="460" width="566" height="30"/>
+                                <state key="normal" title="Explicit Animations demo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="108" id="160"/>
+                            <constraint firstItem="3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="41" id="161"/>
+                            <constraint firstItem="3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="17" id="162"/>
+                            <constraint firstItem="4" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="56" id="165"/>
+                            <constraint firstItem="4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="166"/>
+                            <constraint firstItem="4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.0" id="167"/>
+                            <constraint firstItem="5" firstAttribute="top" secondItem="4" secondAttribute="bottom" constant="51" id="168"/>
+                            <constraint firstItem="5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="169"/>
+                            <constraint firstItem="5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.0" id="170"/>
+                            <constraint firstItem="6" firstAttribute="top" secondItem="5" secondAttribute="bottom" constant="52" id="171"/>
+                            <constraint firstItem="6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="172"/>
+                            <constraint firstItem="6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="0.0" id="173"/>
+                            <constraint firstItem="7" firstAttribute="top" secondItem="6" secondAttribute="bottom" constant="73" id="174"/>
+                            <constraint firstItem="7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="175"/>
+                            <constraint firstItem="7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="3" id="176"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="TransitionButton" destination="3" id="name-outlet-3"/>
+                        <outlet property="ViewTransitionButton" destination="4" id="name-outlet-4"/>
+                        <outlet property="ViewAnimationButton" destination="5" id="name-outlet-5"/>
+                        <outlet property="ImplicitButton" destination="6" id="name-outlet-6"/>
+                        <outlet property="ExplicitButton" destination="7" id="name-outlet-7"/>
+                    </connections>
+                    <navigationItem title="Core Animation" id="139" key="navigationItem"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="306" y="2"/>
+        </scene>
+        <scene sceneID="12">
+            <objects>
+                <viewController id="13" sceneMemberID="viewController" customClass="SecondViewController" storyboardIdentifier="SecondViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="10"/>
+                        <viewControllerLayoutGuide type="bottom" id="11"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="14">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedRGB" red="0.49803921568627452" green="0" blue="0.49803921568627452" alpha="1"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Second Controller" lineBreakMode="tailTruncation" minimumFontSize="10" id="17" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center">
+                                <rect key="frame" x="20" y="222" width="560" height="62"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="39"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="0" green="1" blue="1" alpha="1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="17" firstAttribute="leading" secondItem="14" secondAttribute="leading" constant="20" id="195"/>
+                            <constraint firstItem="17" firstAttribute="top" secondItem="10" secondAttribute="bottom" constant="202" id="196"/>
+                            <constraint firstItem="17" firstAttribute="centerX" secondItem="14" secondAttribute="centerX" constant="0.0" id="197"/>
+                            <constraint firstItem="14" firstAttribute="centerY" secondItem="17" secondAttribute="centerY" constant="47" id="198"/>
+                        </constraints>
+                    </view>
+                    <connections/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="15" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="953" y="4"/>
+        </scene>
+        <scene sceneID="42">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="43" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="46">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    </navigationBar>
+                    <connections>
+                        <segue id="140" destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="47" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-326" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="monkey1.png" width="1367" height="2047"/>
+        <image name="monkey2.png" width="478" height="489"/>
+        <image name="monkey3.png" width="137" height="205"/>
+    </resources>
+</document>
