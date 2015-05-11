@@ -1,4 +1,5 @@
 using System;
+
 using Foundation;
 using UIKit;
 
@@ -26,11 +27,13 @@ namespace SimpleBackgroundFetch
 		{
 			UINavigationController navigationController = Window.RootViewController as UINavigationController;
 			UIViewController topViewController = navigationController.TopViewController;
+
 			if (topViewController is RootViewController) {
 				(topViewController as RootViewController).InsertNewObjectForFetch (completionHandler);
 				UIApplication.SharedApplication.ApplicationIconBadgeNumber++;
-			} else
+			} else {
 				completionHandler (UIBackgroundFetchResult.Failed);
+			}
 		}
 
 		public override void WillEnterForeground (UIApplication application)

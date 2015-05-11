@@ -1,6 +1,7 @@
 using System;
-using CoreGraphics;
 using System.Collections.Generic;
+
+using CoreGraphics;
 using Foundation;
 using UIKit;
 
@@ -19,7 +20,6 @@ namespace SimpleBackgroundFetch
 		public void InsertNewObjectForFetch (Action<UIBackgroundFetchResult> completionhandler)
 		{
 			AddNewItem (null, EventArgs.Empty);
-
 			completionhandler (UIBackgroundFetchResult.NewData);
 		}
 
@@ -62,8 +62,11 @@ namespace SimpleBackgroundFetch
 			}
 
 			public IList<object> Objects {
-				get { return objects; }
+				get {
+					return objects;
+				}
 			}
+
 			// Customize the number of sections in the table view.
 			public override nint NumberOfSections (UITableView tableView)
 			{
@@ -95,24 +98,8 @@ namespace SimpleBackgroundFetch
 					// Delete the row from the data source.
 					objects.RemoveAt (indexPath.Row);
 					controller.TableView.DeleteRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
-				} else if (editingStyle == UITableViewCellEditingStyle.Insert) {
-					// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
 				}
 			}
-			/*
-			// Override to support rearranging the table view.
-			public override void MoveRow (UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath)
-			{
-			}
-			*/
-			/*
-			// Override to support conditional rearranging of the table view.
-			public override bool CanMoveRow (UITableView tableView, NSIndexPath indexPath)
-			{
-				// Return false if you do not want the item to be re-orderable.
-				return true;
-			}
-			*/
 		}
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
