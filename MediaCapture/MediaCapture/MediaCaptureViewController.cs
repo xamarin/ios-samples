@@ -57,7 +57,11 @@ namespace MediaCapture
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}
 
-		public MediaCaptureViewController () : base (UserInterfaceIdiomIsPhone ? "MediaCaptureViewController_iPhone" : "MediaCaptureViewController_iPad", null) {}
+		public MediaCaptureViewController ()
+			: base (UserInterfaceIdiomIsPhone ? "MediaCaptureViewController_iPhone" : "MediaCaptureViewController_iPad", null)
+		{
+			
+		}
 
 		public override void ViewDidUnload ()
 		{
@@ -260,7 +264,7 @@ namespace MediaCapture
 				// the layout call is to handle the possibility that settings changed and the image capture view may now
 				// have different visibility
 				LayoutViews();
-				startStopCapture();
+				StartStopCapture();
 			}
 			finally
 			{
@@ -269,7 +273,7 @@ namespace MediaCapture
 			UpdateUI();
 		}
 
-		private void startStopCapture()
+		void StartStopCapture()
 		{
 			if (isCapturing == false)
 			{
@@ -512,23 +516,17 @@ namespace MediaCapture
 		// this method makes sure that the most recently added text is exactly at the bottom of the text view
 		void ScrollMessageViewToEnd()
 		{
-			try
+			// find the number of characters between the end of the text and the previous newline
+			string text = textView.Text.TrimEnd();
+			int index = text.Length - 1;
+			while (index >= 0)
 			{
-				// find the number of characters between the end of the text and the previous newline
-				string text = textView.Text.TrimEnd();
-				int index = text.Length - 1;
-				while (true)
-				{
-					char c = text[index];
-					if ( c == '\r' || c == '\n' )
-						break;
-					index--;
-				}
-				textView.ScrollRangeToVisible( new NSRange( index + 1, 1 ) );
+				char c = text[index];
+				if ( c == '\r' || c == '\n' )
+					break;
+				index--;
 			}
-			catch
-			{
-			}
+			textView.ScrollRangeToVisible( new NSRange( index + 1, 1 ) );
 		}
 	}
 }
