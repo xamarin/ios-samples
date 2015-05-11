@@ -42,7 +42,6 @@ namespace MediaCapture
 
 		// log message
 		UITextView textView = null;
-		ConcurrentQueue<string> messages = new ConcurrentQueue<string>();
 		int textViewXOffset;
 		int textViewYOffset;
 		int textViewWidth;
@@ -407,12 +406,12 @@ namespace MediaCapture
 
 			try
 			{
-				var player = new MPMoviePlayerController();
-				player = new MPMoviePlayerController (NSUrl.FromFilename( args.File ));
-				player.AllowsAirPlay = true;
-				View.AddSubview(player.View);
-				player.SetFullscreen(true, true);
+				var player = new MPMoviePlayerController (NSUrl.FromFilename( args.File ));
+				NavigationController.PushViewController(player, true);
+				player.AllowsAirPlay = false;
 				player.PrepareToPlay();
+//				player.View.Frame = View.Bounds;
+//				View.AddSubview(player.View);
 				player.Play();
 			}
 			catch ( Exception ex )
@@ -496,20 +495,13 @@ namespace MediaCapture
 		// this is a poor man's message logger.  This really should be in a table view but this is just a sample app so ...
 		void LogMessage(string message )
 		{
-			DateTime time = DateTime.Now;
-			string timeText = string.Format ("{0}:{1}:{2}.{3}", time.Hour, time.Minute.ToString().PadLeft(2,'0'), time.Second.ToString().PadLeft(2,'0'), time.Millisecond);
-			string timeStampedMessage = string.Format ("{0}: {1}\r\n", timeText , message.TrimEnd());
-			messages.Enqueue( timeStampedMessage );
+			string timeText = DateTime.Now.ToString("HH:mm:ss.ff");
+			string timeStampedMessage = string.Format ("{0}: {1}{2}", timeText , message.Trim(), Environment.NewLine);
 
-			StringBuilder sb = new StringBuilder();
-			string [] messageArray = messages.ToArray();
-			foreach ( string m in messageArray )
-				sb.Append(m);
-			string text = sb.ToString();
-
-			InvokeOnMainThread(() => {
-				textView.Text = text;
-				ScrollMessageViewToEnd();
+			InvokeOnMainThread (() => {
+				var sb = new StringBuilder (textView.Text).AppendLine (timeStampedMessage);
+				textView.Text = sb.ToString ();
+				ScrollMessageViewToEnd ();
 			});
 		}
 

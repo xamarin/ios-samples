@@ -216,53 +216,34 @@ namespace MediaCapture
 		void BuildActionElements()
 		{
 			deleteMoviesElement = new StringElement("Delete Movies");
-			deleteMoviesElement.Tapped += delegate
-			{
-				try
-				{
-					Directory.Delete( Settings.VideoDataPath, true );
-				}
-				catch
-				{
-				}
+			deleteMoviesElement.Tapped += () => {
+				Directory.Delete( Settings.VideoDataPath, true );
 			};
 
 			deleteImagesElement = new StringElement("Delete Images");
-			deleteImagesElement.Tapped += delegate
-			{
-				try
-				{
-					Directory.Delete( Settings.ImageDataPath, true );
-				}
-				catch
-				{
-				}
+			deleteImagesElement.Tapped += () => {
+				Directory.Delete( Settings.ImageDataPath, true );
 			};
 		}
 
 		public void EnforceDependencies()
 		{
-			try
-			{
-				// image capture save is not relevant if no images are being captured
-				if ( imageCaptureEnabledElement.Value == false )
-				{
-					saveImageGroup.Selected = 0;
-				}
-				saveImageElement.GetActiveCell().UserInteractionEnabled = imageCaptureEnabledElement.Value;
+			// image capture save is not relevant if no images are being captured
+			if ( imageCaptureEnabledElement.Value == false )
+				saveImageGroup.Selected = 0;
 
-				// looped recordings and duration are not relevant unless something is being recorded
-				bool isMediaCaptureEnebled = ( audioCaptureEnabledElement.Value || videoCaptureEnabledElement.Value );
-				if ( isMediaCaptureEnebled == false )
-				{
-					autoRecordNextMovieElement.Value = false;
-				}
-				autoRecordNextMovieElement.GetActiveCell().UserInteractionEnabled = isMediaCaptureEnebled;
-				durationElement.GetActiveCell().UserInteractionEnabled = isMediaCaptureEnebled;
-			}
-			catch
-			{
-			}
+			UITableViewCell activeCell = saveImageElement.GetActiveCell ();
+			if(activeCell == null)
+				return;
+
+			activeCell.UserInteractionEnabled = imageCaptureEnabledElement.Value;
+
+			// looped recordings and duration are not relevant unless something is being recorded
+			bool isMediaCaptureEnebled = ( audioCaptureEnabledElement.Value || videoCaptureEnabledElement.Value );
+			if ( isMediaCaptureEnebled == false )
+				autoRecordNextMovieElement.Value = false;
+			autoRecordNextMovieElement.GetActiveCell().UserInteractionEnabled = isMediaCaptureEnebled;
+			durationElement.GetActiveCell().UserInteractionEnabled = isMediaCaptureEnebled;
 		}
 
 		public Settings ResultSettings {

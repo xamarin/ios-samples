@@ -13,6 +13,7 @@
 using System;
 using System.IO;
 using Foundation;
+using System.Linq;
 
 namespace MediaCapture
 {
@@ -96,6 +97,38 @@ namespace MediaCapture
 			}
 		}
 
+		static NSUrl DocumentsDir {
+			get {
+				return NSFileManager.DefaultManager
+					.GetUrls(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomain.User)
+					.Last();
+			}
+		}
+
+		static string configDirectory = null;
+		public static string ConfigDirectory {
+			get {
+				configDirectory = configDirectory ?? CreateDirectoryIfNeeded (Path.Combine (DocumentsDir.Path, "Config"));
+				return configDirectory;
+			}
+		}
+
+		static string videoDataPath = null;
+		public static string VideoDataPath {
+			get {
+				videoDataPath = videoDataPath ?? CreateDirectoryIfNeeded (Path.Combine (DocumentsDir.Path, "VideoData"));
+				return videoDataPath;
+			}
+		}
+
+		static string imageDataPath = null;
+		public static string ImageDataPath {
+			get {
+				imageDataPath = imageDataPath ?? CreateDirectoryIfNeeded (Path.Combine (DocumentsDir.Path, "ImageData"));
+				return imageDataPath;
+			}
+		}
+
 		public void Load()
 		{
 			bool isFirstSettingsLoad = (NSUserDefaults.StandardUserDefaults.BoolForKey( SettingsNames.HaveSettingsBeenLoadedBefore.ToString() ) == false);
@@ -134,51 +167,16 @@ namespace MediaCapture
 			NSUserDefaults.StandardUserDefaults.Synchronize();
 		}
 
-		static string CreateDirectoryIfNeeded( string directory )
+		static string CreateDirectoryIfNeeded(string directory)
 		{
-			if (Directory.Exists(directory) == false)
-				Directory.CreateDirectory( directory );
+			var fm = NSFileManager.DefaultManager;
+			if (!fm.FileExists (directory)) {
+				NSError error;
+				if(!fm.CreateDirectory (directory, false, (NSFileAttributes)null, out error))
+					Console.WriteLine (error);
+			}
+
 			return directory;
-		}
-
-		static string myDocuments = null;
-		public static string MyDocuments {
-			get {
-				// TODO: This doesn't work on iOS8
-				if ( myDocuments == null )
-					myDocuments = CreateDirectoryIfNeeded( Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) );
-				return myDocuments;
-			}
-		}
-
-		static string configDirectory = null;
-		public static string ConfigDirectory {
-			get {
-				// TODO: This doesn't work on iOS8
-				if ( configDirectory == null )
-					configDirectory = CreateDirectoryIfNeeded( Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Config" ) );
-				return configDirectory;
-			}
-		}
-
-		static string videoDataPath = null;
-		public static string VideoDataPath {
-			get {
-				// TODO: This doesn't work on iOS8
-				if ( videoDataPath == null )
-					videoDataPath = CreateDirectoryIfNeeded( Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "VideoData" ) );
-				return videoDataPath;
-			}
-		}
-
-		static string imageDataPath = null;
-		public static string ImageDataPath {
-			get {
-				// TODO: This doesn't work on iOS8
-				if ( imageDataPath == null )
-					imageDataPath = CreateDirectoryIfNeeded( Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "ImageData" ) );
-				return imageDataPath;
-			}
 		}
 	}
 }
