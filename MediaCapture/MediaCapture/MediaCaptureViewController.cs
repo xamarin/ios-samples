@@ -26,31 +26,31 @@ namespace MediaCapture
 	public partial class MediaCaptureViewController : UIViewController
 	{
 		// settings
-		private DialogViewController settingsController = null;
-		private SettingsDialog settingsDialog = null;
-		private Settings settings = null;
+		DialogViewController settingsController = null;
+		SettingsDialog settingsDialog = null;
+		Settings settings = null;
 
 		// media browsing
-		private DialogViewController browseController = null;
-		private MediaBrowserDialog browseDialog = null;
+		DialogViewController browseController = null;
+		MediaBrowserDialog browseDialog = null;
 
 		// capture
-		private CaptureManager captureManager = null;
-		private bool isCapturing = false;
-		private DateTime captureStartTime;
-		private int nextImageIndex = 1;
+		CaptureManager captureManager = null;
+		bool isCapturing = false;
+		DateTime captureStartTime;
+		int nextImageIndex = 1;
 
 		// log message
-		private UITextView textView = null;
-		private ConcurrentQueue<string> messages = new ConcurrentQueue<string>();
-		private int textViewXOffset;
-		private int textViewYOffset;
-		private int textViewWidth;
-		private int textViewHeight;
+		UITextView textView = null;
+		ConcurrentQueue<string> messages = new ConcurrentQueue<string>();
+		int textViewXOffset;
+		int textViewYOffset;
+		int textViewWidth;
+		int textViewHeight;
 
 		// image previewer
-		private UIImageView imageView = null;
-		private DateTime lastImageWriteTime = DateTime.MinValue;
+		UIImageView imageView = null;
+		DateTime lastImageWriteTime = DateTime.MinValue;
 
 		static bool UserInterfaceIdiomIsPhone
 		{
@@ -68,13 +68,9 @@ namespace MediaCapture
 		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
 		{
 			if (UserInterfaceIdiomIsPhone)
-			{
 				return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
-			}
 			else
-			{
 				return true;
-			}
 		}
 
 		public override void ViewDidLoad ()
@@ -85,22 +81,22 @@ namespace MediaCapture
 			settings = new Settings();
 			settings.Load();
 
-			setupButtons();
-			setupTextView();
-			setupImageView();
-			layoutViews();
+			SetupButtons();
+			SetupTextView();
+			SetupImageView();
+			LayoutViews();
 
 			// subscribe to the popped controller event
-			((RootViewController)NavigationController).ViewControllerPopped += handleViewControllerPopped;
+			((RootViewController)NavigationController).ViewControllerPopped += HandleViewControllerPopped;
 		}
 
 		public override void DidRotate (UIInterfaceOrientation fromInterfaceOrientation)
 		{
 			base.DidRotate (fromInterfaceOrientation);
-			layoutViews();
+			LayoutViews();
 		}
 
-		private void layoutViews()
+		void LayoutViews()
 		{
 			// calculate the working area for the view(s)
 			CGRect workingRect = this.View.Frame;
@@ -169,10 +165,10 @@ namespace MediaCapture
 			}
 
 			// scroll the message text to show mopst recent messages at bottom
-			scrollMessageViewToEnd();
+			ScrollMessageViewToEnd();
 		}
 
-		private bool capturing
+		bool Capturing
 		{
 			get
 			{
@@ -180,12 +176,12 @@ namespace MediaCapture
 			}
 		}
 
-		void handleViewControllerPopped (object sender, RootViewController.ViewControllerPoppedEventArgs e)
+		void HandleViewControllerPopped (object sender, RootViewController.ViewControllerPoppedEventArgs e)
 		{
 			if ( e.Controller == settingsController )
 			{
-				harvestSettings();
-				layoutViews();
+				HarvestSettings();
+				LayoutViews();
 			}
 			else if ( e.Controller == browseController )
 			{
@@ -193,7 +189,7 @@ namespace MediaCapture
 				{
 					// unsubscribe browser events
 					browseDialog.MovieFileSelected -= new EventHandler<FileSelectedEventArgs>( handleMediaFileSelected );
-					browseDialog.ImageFileSelected -= new EventHandler<FileSelectedEventArgs>( handleImageFileSelected );
+					browseDialog.ImageFileSelected -= new EventHandler<FileSelectedEventArgs>( HandleImageFileSelected );
 				}
 				catch
 				{
@@ -201,35 +197,35 @@ namespace MediaCapture
 			}
 		}
 
-		private void updateUI()
+		void UpdateUI()
 		{
 			this.buttonSettings.Enabled = !isCapturing;
 			this.buttonBrowse.Enabled = !isCapturing;
 			this.buttonStartStop.Enabled = !buttonHandlerInProgress;
 		}
 
-		private void setupButtons()
+		void SetupButtons()
 		{
 			buttonSettings.Clicked += (s,e) =>
 			{
-				editSettings();
-				updateUI ();
+				EditSettings();
+				UpdateUI ();
 			};
 
 			buttonStartStop.Clicked += (s,e) =>
 			{
-				startStop();
-				updateUI();
+				StartStop();
+				UpdateUI();
 			};
 
 			buttonBrowse.Clicked += (s,e) =>
 			{
-				browse();
-				updateUI();
+				Browse();
+				UpdateUI();
 			};
 		}
 
-		private void setupTextView()
+		void SetupTextView()
 		{
 			if ( textView == null )
 			{
@@ -242,7 +238,7 @@ namespace MediaCapture
 			}
 		}
 
-		private void setupImageView()
+		void SetupImageView()
 		{
 			if ( imageView == null )
 			{
@@ -252,63 +248,59 @@ namespace MediaCapture
 			}
 		}
 
-		private bool buttonHandlerInProgress = false;
-		private void startStop()
+		bool buttonHandlerInProgress = false;
+		void StartStop()
 		{
 			try
 			{
-				if ( buttonHandlerInProgress == true )
-				{
+				if (buttonHandlerInProgress)
 					return;
-				}
 				buttonHandlerInProgress = true;
 
 				// the layout call is to handle the possibility that settings changed and the image capture view may now
 				// have different visibility
-				layoutViews();
+				LayoutViews();
 				startStopCapture();
 			}
 			finally
 			{
 				buttonHandlerInProgress = false;
 			}
-			updateUI();
+			UpdateUI();
 		}
 
 		private void startStopCapture()
 		{
-			if ( isCapturing == false)
+			if (isCapturing == false)
 			{
 				try
 				{
-					capture();
+					Capture();
 					if ( isCapturing)
-					{
 						buttonStartStop.Title = "Stop";
-					}
 				}
 				catch (Exception ex)
 				{
-					logMessage( string.Format ("Failed to start capture: {0}", ErrorHandling.GetExceptionDetailedText(ex)) );
+					LogMessage( string.Format ("Failed to start capture: {0}", ErrorHandling.GetExceptionDetailedText(ex)) );
 				}
 			}
 			else
 			{
-				stopCapture();
+				StopCapture();
 				buttonStartStop.Title = "Start";
 			}
 		}
 
-		private void browse()
+		void Browse()
 		{
 			browseDialog = new MediaBrowserDialog( Settings.ImageDataPath, Settings.VideoDataPath );
 			browseDialog.MovieFileSelected += new EventHandler<FileSelectedEventArgs>( handleMediaFileSelected );
-			browseDialog.ImageFileSelected += new EventHandler<FileSelectedEventArgs>( handleImageFileSelected );
+			browseDialog.ImageFileSelected += new EventHandler<FileSelectedEventArgs>( HandleImageFileSelected );
 			browseController = new DialogViewController (browseDialog.Menu, true);
 			NavigationController.PushViewController (browseController, true);
 		}
 
-		private void editSettings()
+		void EditSettings()
 		{
 			settingsDialog = new SettingsDialog( settings );
 			settingsController = new DialogViewController (settingsDialog.Menu, true);
@@ -316,7 +308,7 @@ namespace MediaCapture
 			settingsDialog.EnforceDependencies(); // must be called after view controller push
 		}
 
-		private void harvestSettings()
+		void HarvestSettings()
 		{
 			settings = settingsDialog.ResultSettings;
 			settings.Save();
@@ -329,15 +321,15 @@ namespace MediaCapture
 			}
 		}
 
-		private void capture()
+		private void Capture()
 		{
 			// stop capture if it is in progress
-			stopCapture();
+			StopCapture();
 
 			// make sure there is something configured for capture before starting up
 			if ( !settings.AudioCaptureEnabled && !settings.VideoCaptureEnabled && !settings.ImageCaptureEnabled )
 			{
-				logMessage ("No capture devices enabled.  Enable one or more capture types in settings then retry");
+				LogMessage ("No capture devices enabled.  Enable one or more capture types in settings then retry");
 				isCapturing = false;
 				return;
 			}
@@ -347,7 +339,7 @@ namespace MediaCapture
 			nextImageIndex = 1;
 
 			// create new capture manager and subscribe events
-			logMessage("Creating and initializing capture graph");
+			LogMessage("Creating and initializing capture graph");
 			captureManager = new CaptureManager(
 				settings.CaptureResolution,
 				settings.ImageCaptureEnabled,
@@ -359,56 +351,48 @@ namespace MediaCapture
 				settings.AutoRecordNextMovie );
 
 			// subscribe events
-			captureManager.MovieSegmentCaptured += new EventHandler<MovieSegmentCapturedEventArgs>( handleMovieSegmentCaptured );
-			captureManager.CaptureError += new EventHandler<CaptureErrorEventArgs>( handleCaptureError );
-			captureManager.ImageCaptured += new EventHandler<ImageCaptureEventArgs>( handleImageCaptured );
+			captureManager.MovieSegmentCaptured += new EventHandler<MovieSegmentCapturedEventArgs>( HandleMovieSegmentCaptured );
+			captureManager.CaptureError += new EventHandler<CaptureErrorEventArgs>( HandleCaptureError );
+			captureManager.ImageCaptured += new EventHandler<ImageCaptureEventArgs>( HandleImageCaptured );
 
 			string errorMessage = null;
-			logMessage("starting capture ...");
+			LogMessage("starting capture ...");
 			if ( captureManager.StartCapture( out errorMessage ) == false )
 			{
-				logMessage( errorMessage );
+				LogMessage( errorMessage );
 				return;
 			}
 			if ( settings.VideoCaptureEnabled || settings.ImageCaptureEnabled)
-			{
-				logMessage ( string.Format("capture started at {0} resolution", settings.CaptureResolution));
-			}
+				LogMessage ( string.Format("capture started at {0} resolution", settings.CaptureResolution));
 			if ( settings.AudioCaptureEnabled )
-			{
-				logMessage ( string.Format("Capturing audio"));
-			}
+				LogMessage ( string.Format("Capturing audio"));
 			if ( settings.VideoCaptureEnabled )
-			{
-				logMessage ( string.Format("Capturing video"));
-			}
+				LogMessage ( string.Format("Capturing video"));
 			if ( settings.ImageCaptureEnabled )
-			{
-				logMessage ( string.Format("Capturing image samples"));
-			}
+				LogMessage ( string.Format("Capturing image samples"));
 
 			isCapturing = true;
 		}
 
-		private void stopCapture()
+		void StopCapture()
 		{
 			if ( captureManager != null )
 			{
-				logMessage("stopping capture...");
+				LogMessage("stopping capture...");
 				try
 				{
 					captureManager.StopCapture();
 
 					// unsubscribe events
-					captureManager.MovieSegmentCaptured -= new EventHandler<MovieSegmentCapturedEventArgs>( handleMovieSegmentCaptured );
-					captureManager.CaptureError -= new EventHandler<CaptureErrorEventArgs>( handleCaptureError );
-					captureManager.ImageCaptured -= new EventHandler<ImageCaptureEventArgs>( handleImageCaptured );
+					captureManager.MovieSegmentCaptured -= new EventHandler<MovieSegmentCapturedEventArgs>( HandleMovieSegmentCaptured );
+					captureManager.CaptureError -= new EventHandler<CaptureErrorEventArgs>( HandleCaptureError );
+					captureManager.ImageCaptured -= new EventHandler<ImageCaptureEventArgs>( HandleImageCaptured );
 					captureManager = null;
 				}
 				catch
 				{
 				}
-				logMessage("capture stopped");
+				LogMessage("capture stopped");
 			}
 			isCapturing = false;
 		}
@@ -419,10 +403,10 @@ namespace MediaCapture
 
 			try
 			{
-				MPMoviePlayerController player = new MPMoviePlayerController();
+				var player = new MPMoviePlayerController();
 				player = new MPMoviePlayerController (NSUrl.FromFilename( args.File ));
 				player.AllowsAirPlay = true;
-				this.View.AddSubview(player.View);
+				View.AddSubview(player.View);
 				player.SetFullscreen(true, true);
 				player.PrepareToPlay();
 				player.Play();
@@ -430,31 +414,30 @@ namespace MediaCapture
 			catch ( Exception ex )
 			{
 				string message = string.Format ("Error during playback of {0}: {1}", Path.GetFileName(args.File), ErrorHandling.GetExceptionDetailedText(ex) );
-				logMessage( message );
+				LogMessage( message );
 			}
 		}
 
-		private void handleImageFileSelected( object sender, FileSelectedEventArgs args )
+		void HandleImageFileSelected( object sender, FileSelectedEventArgs args )
 		{
 			NavigationController.PopToViewController(this,true);
 			UIImage image = UIImage.FromFile( args.File );
-			this.imageView.Image = image;
+			imageView.Image = image;
 		}
 
-		private void handleMovieSegmentCaptured( object sender, MovieSegmentCapturedEventArgs args )
+		void HandleMovieSegmentCaptured( object sender, MovieSegmentCapturedEventArgs args )
 		{
-			logMessage( string.Format("Media file captured to '{0}'", Path.GetFileName(args.File)) );
+			LogMessage( string.Format("Media file captured to '{0}'", Path.GetFileName(args.File)) );
 		}
 
-		private void handleCaptureError( object sender, CaptureErrorEventArgs args )
+		void HandleCaptureError( object sender, CaptureErrorEventArgs args )
 		{
-			logMessage( args.ErrorMessage );
+			LogMessage( args.ErrorMessage );
 		}
 
-		private void handleImageCaptured( object sender, ImageCaptureEventArgs args )
+		void HandleImageCaptured( object sender, ImageCaptureEventArgs args )
 		{
-			imageView.InvokeOnMainThread (delegate {
-
+			imageView.InvokeOnMainThread (() => {
 				// render image in preview pane
 				imageView.Image = args.Image;
 
@@ -470,30 +453,26 @@ namespace MediaCapture
 						if ( settings.SaveCapturedImagesToPhotoLibrary )
 						{
 							args.Image.SaveToPhotosAlbum(null);
-							logMessage("Captured image saved to photos library");
+							LogMessage("Captured image saved to photos library");
 						}
 						else if ( settings.SaveCapturedImagesToMyDocuments )
 						{
-							string partialPath = getNextImageFileName();
+							string partialPath = GetNextImageFileName();
 							string fullPath = Path.Combine( Settings.ImageDataPath, partialPath );
 							byte[] bytes = args.Image.AsJPEG().ToArray();
 
 							// create directory
 							string directory = Path.GetDirectoryName( fullPath );
 							if ( Directory.Exists( directory ) == false )
-							{
 								Directory.CreateDirectory( directory );
-							}
 							// delete file if it exists already.  this is unlikely but possible if the user starts, stops, and starts the capture
 							// quickly enough to cause the same DateTome-based folder name to be regenerated
 							if ( File.Exists(fullPath) )
-							{
 								File.Delete( fullPath );
-							}
 
 							// write the image to the file
 							File.WriteAllBytes(  fullPath, bytes );
-							logMessage(string.Format ("Captured image saved to '{0}'", partialPath));
+							LogMessage(string.Format ("Captured image saved to '{0}'", partialPath));
 						}
 
 						// update the last capture time
@@ -503,7 +482,7 @@ namespace MediaCapture
 			});
 		}
 
-		private string getNextImageFileName()
+		string GetNextImageFileName()
 		{
 			string directory = captureStartTime.ToString().Replace(":","-").Replace ("/","-").Replace (" ","-").Replace ("\\","-");
 			string fileName = string.Format ("image_{0}", nextImageIndex++);
@@ -511,7 +490,7 @@ namespace MediaCapture
 		}
 
 		// this is a poor man's message logger.  This really should be in a table view but this is just a sample app so ...
-		private void logMessage( string message )
+		void LogMessage(string message )
 		{
 			DateTime time = DateTime.Now;
 			string timeText = string.Format ("{0}:{1}:{2}.{3}", time.Hour, time.Minute.ToString().PadLeft(2,'0'), time.Second.ToString().PadLeft(2,'0'), time.Millisecond);
@@ -521,20 +500,17 @@ namespace MediaCapture
 			StringBuilder sb = new StringBuilder();
 			string [] messageArray = messages.ToArray();
 			foreach ( string m in messageArray )
-			{
 				sb.Append(m);
-			}
 			string text = sb.ToString();
 
-			InvokeOnMainThread(delegate{
+			InvokeOnMainThread(() => {
 				textView.Text = text;
-				scrollMessageViewToEnd();
+				ScrollMessageViewToEnd();
 			});
-
 		}
 
 		// this method makes sure that the most recently added text is exactly at the bottom of the text view
-		private void scrollMessageViewToEnd()
+		void ScrollMessageViewToEnd()
 		{
 			try
 			{
@@ -545,9 +521,7 @@ namespace MediaCapture
 				{
 					char c = text[index];
 					if ( c == '\r' || c == '\n' )
-					{
 						break;
-					}
 					index--;
 				}
 				textView.ScrollRangeToVisible( new NSRange( index + 1, 1 ) );
@@ -556,7 +530,5 @@ namespace MediaCapture
 			{
 			}
 		}
-
 	}
 }
-

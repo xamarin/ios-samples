@@ -20,15 +20,17 @@ namespace MediaCapture
 {
 	public class RootViewController : UINavigationController
 	{
-		private MediaCaptureViewController mediaCaptureViewController;
+		MediaCaptureViewController mediaCaptureViewController;
 
 		#region events
+
 		public class ViewControllerPoppedEventArgs : EventArgs
 		{
 			public UIViewController Controller = null;
 		}
+
 		public event EventHandler<ViewControllerPoppedEventArgs> ViewControllerPopped;
-		private void onViewControllerPopped( UIViewController controller )
+		void OnViewControllerPopped( UIViewController controller )
 		{
 			if ( ViewControllerPopped != null )
 			{
@@ -53,7 +55,7 @@ namespace MediaCapture
 		public override UIViewController PopViewController (bool animated)
 		{
 			UIViewController controller = base.PopViewController (animated);
-			onViewControllerPopped( controller );
+			OnViewControllerPopped( controller );
 			return controller;
 		}
 
@@ -61,7 +63,5 @@ namespace MediaCapture
 		{
 			return true;
 		}
-
 	}
 }
-

@@ -41,9 +41,7 @@ namespace MediaCapture
 		public static string GetNSErrorString (NSError nsError)
 		{
 			if ( nsError == null )
-			{
 				return "No Error Info Available";
-			}
 
 			try
 			{

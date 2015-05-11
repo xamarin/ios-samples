@@ -29,13 +29,13 @@ namespace MediaCapture
 	{
 		#region events
 		public EventHandler<MovieSegmentRecordingStartedEventArgs> MovieSegmentRecordingStarted;
-		private void onMovieSegmentRecordingStarted( string path )
+		void OnMovieSegmentRecordingStarted( string path )
 		{
 			if (  MovieSegmentRecordingStarted != null )
 			{
 				try
 				{
-					MovieSegmentRecordingStartedEventArgs args = new MovieSegmentRecordingStartedEventArgs();
+					var args = new MovieSegmentRecordingStartedEventArgs();
 					args.Path = path;
 					MovieSegmentRecordingStarted( this, args );
 				}
@@ -46,7 +46,7 @@ namespace MediaCapture
 		}
 
 		public EventHandler<MovieSegmentRecordingCompleteEventArgs> MovieSegmentRecordingComplete;
-		private void onMovieSegmentRecordingComplete( string path, int length, bool errorOccurred )
+		void OnMovieSegmentRecordingComplete( string path, int length, bool errorOccurred )
 		{
 			if ( MovieSegmentRecordingComplete != null )
 			{
@@ -65,7 +65,7 @@ namespace MediaCapture
 		}
 
 		public EventHandler<CaptureErrorEventArgs> CaptureError;
-		private void onCaptureError( string errorMessage )
+		void OnCaptureError( string errorMessage )
 		{
 			if ( CaptureError != null )
 			{
@@ -80,17 +80,13 @@ namespace MediaCapture
 				}
 			}
 		}
+
 		#endregion
 
-		public override void DidStartRecording
-		(
-			AVCaptureFileOutput captureOutput,
-			NSUrl outputFileUrl,
-			NSObject[] connections
-		)
+		public override void DidStartRecording (AVCaptureFileOutput captureOutput, NSUrl outputFileUrl, NSObject[] connections)
 		{
 			string path = outputFileUrl.Path;
-			onMovieSegmentRecordingStarted( path );
+			OnMovieSegmentRecordingStarted( path );
 		}
 
 		public override void FinishedRecording
@@ -108,7 +104,7 @@ namespace MediaCapture
 			catch (Exception ex)
 			{
 				string errorMessage = string.Format( "Exception during movie recording finish handler: {0}", ErrorHandling.GetExceptionDetailedText(ex) );
-				onCaptureError( errorMessage );
+				OnCaptureError( errorMessage );
 			}
 		}
 
@@ -140,12 +136,12 @@ namespace MediaCapture
 						 ( int.TryParse( v0.ToString(), out segmentLength ) == false )  ||
 						 ( segmentLength == 0) )
 					{
-						onMovieSegmentRecordingComplete( null, 0, true );
+						OnMovieSegmentRecordingComplete( null, 0, true );
 					}
 					else
 					{
 						string path = outputFileUrl.Path;
-						onMovieSegmentRecordingComplete( path, segmentLength, false );
+						OnMovieSegmentRecordingComplete( path, segmentLength, false );
 					}
 				}
 				// handle recording stoppage due to file duration limit
@@ -155,19 +151,19 @@ namespace MediaCapture
 
 					if ( k0.ToString() != "AVErrorTimeKey" )
 					{
-						onMovieSegmentRecordingComplete( null, 0, true );
+						OnMovieSegmentRecordingComplete( null, 0, true );
 					}
 					else
 					{
 						string path = outputFileUrl.Path;
-						onMovieSegmentRecordingComplete( path, 0, false );
+						OnMovieSegmentRecordingComplete( path, 0, false );
 					}
 				}
 				else
 				{
 					// unexpected error code indicates a real error
 					string errorMessage = string.Format( "Error during movie recording finish handler: {0}", ErrorHandling.GetNSErrorString(nsError) );
-					onCaptureError( errorMessage );
+					OnCaptureError( errorMessage );
 				}
 			}
 			else
@@ -175,17 +171,14 @@ namespace MediaCapture
 				string path = outputFileUrl.Path;
 				if ( File.Exists(path) == true )
 				{
-					onMovieSegmentRecordingComplete( path, 0, false );
+					OnMovieSegmentRecordingComplete( path, 0, false );
 				}
 				else
 				{
 					string errorMessage = string.Format( "file not written: {0}", path );
-					onCaptureError( errorMessage );
+					OnCaptureError( errorMessage );
 				}
 			}
 		}
-
 	}
-
 }
-

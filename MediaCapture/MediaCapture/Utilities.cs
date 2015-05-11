@@ -20,28 +20,22 @@ namespace MediaCapture
 {
 	public static class Utilities
 	{
-		private static string debugDirectory = null;
-		public static string DebugDirectory
-		{
-			get
-			{
+		static string debugDirectory = null;
+		public static string DebugDirectory {
+			get {
 				if ( debugDirectory == null )
 				{
 					string path = Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Logs" );
 					if ( Directory.Exists(path) == false )
-					{
 						Directory.CreateDirectory( path );
-					}
 					debugDirectory = path;
 				}
 				return debugDirectory;
 			}
 		}
 
-		public static string ExceptionLogFilePath
-		{
-			get
-			{
+		public static string ExceptionLogFilePath {
+			get {
 				return Path.Combine( DebugDirectory, "ExceptionLog.txt" );
 			}
 		}
@@ -59,9 +53,7 @@ namespace MediaCapture
 		public static void ShowMessage( String title, string message )
 		{
 			using(var alert = new UIAlertView(title, message, null, "OK", null))
-			{
 				alert.Show();
-			}
 		}
 
 		// this utility API walks the stack of inner exceptions and builds a string containing everything known about the exception and then writes
@@ -89,7 +81,5 @@ namespace MediaCapture
 			}
 			File.WriteAllText( ExceptionLogFilePath, text );
 		}
-
 	}
 }
-

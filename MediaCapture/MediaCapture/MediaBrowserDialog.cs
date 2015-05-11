@@ -19,16 +19,17 @@ using UIKit;
 
 namespace MediaCapture
 {
+	// TODO: rid of MTD
 	public class MediaBrowserDialog
 	{
-		private string rootImagePath = null;
-		private string rootVideoPath = null;
+		string rootImagePath = null;
+		string rootVideoPath = null;
 
-		private RootElement menu = null;
-		private RootElement moviesElement = null;
-		private RootElement imagesElement = null;
+		RootElement menu = null;
+		RootElement moviesElement = null;
+		RootElement imagesElement = null;
 
-		private MediaBrowserDialog(){}
+		MediaBrowserDialog(){}
 
 		public MediaBrowserDialog( string rootImagePath, string rootVideoPath)
 		{
@@ -37,7 +38,7 @@ namespace MediaCapture
 		}
 
 		public EventHandler<FileSelectedEventArgs> MovieFileSelected;
-		private void onMovieFileSelected( string file )
+		void onMovieFileSelected( string file )
 		{
 			if ( MovieFileSelected != null )
 			{
@@ -48,7 +49,7 @@ namespace MediaCapture
 		}
 
 		public EventHandler<FileSelectedEventArgs> ImageFileSelected;
-		private void onImageFileSelected( string file )
+		void onImageFileSelected( string file )
 		{
 			if ( ImageFileSelected != null )
 			{
@@ -58,19 +59,17 @@ namespace MediaCapture
 			}
 		}
 
-		public RootElement Menu
-		{
-			get
-			{
-				return buildRootMenu();
+		public RootElement Menu {
+			get {
+				return BuildRootMenu();
 			}
 		}
 
-		private RootElement buildRootMenu()
+		RootElement BuildRootMenu()
 		{
 			menu = new RootElement ("Recorded Media");
-			moviesElement = buildMoviesElement();
-			imagesElement = buildImagesElement();
+			moviesElement = BuildMoviesElement();
+			imagesElement = BuildImagesElement();
 			Section rootSection = new Section("File Types");
 			rootSection.Add((Element)moviesElement);
 			rootSection.Add((Element)imagesElement);
@@ -78,25 +77,25 @@ namespace MediaCapture
 			return menu;
 		}
 
-		private RootElement buildMoviesElement()
+		RootElement BuildMoviesElement()
 		{
 			RootElement element = new RootElement("Movies");
 			Section section = new Section("Recorded At");
-			section.AddAll( getMediaElements(this.rootVideoPath, MediaFileType.Movie ) );
+			section.AddAll( GetMediaElements(this.rootVideoPath, MediaFileType.Movie ) );
 			element.Add( section );
 			return element;
 		}
 
-		private RootElement buildImagesElement()
+		RootElement BuildImagesElement()
 		{
 			RootElement element = new RootElement("Images");
 			Section section = new Section("Captured At");
-			section.AddAll( getMediaElements(this.rootImagePath, MediaFileType.Image ) );
+			section.AddAll( GetMediaElements(this.rootImagePath, MediaFileType.Image ) );
 			element.Add( section );
 			return element;
 		}
 
-		private RootElement[] getMediaElements( string rootPath, MediaFileType fileType )
+		RootElement[] GetMediaElements( string rootPath, MediaFileType fileType )
 		{
 			List<RootElement> elements = new List<RootElement>();
 			if ( Directory.Exists( rootPath ) )
@@ -120,7 +119,7 @@ namespace MediaCapture
 			return elements.ToArray();
 		}
 
-		private void handleFileElementTap( string file, MediaFileType fileType )
+		void handleFileElementTap( string file, MediaFileType fileType )
 		{
 			if ( fileType == MediaFileType.Movie )
 			{
@@ -161,4 +160,3 @@ namespace MediaCapture
 		public MediaFileType FileType;
 	}
 }
-

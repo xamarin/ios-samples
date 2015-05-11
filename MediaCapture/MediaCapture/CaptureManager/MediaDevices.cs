@@ -20,73 +20,57 @@ namespace MediaCapture
 {
 	public static class MediaDevices
 	{
-		private static AVCaptureDevice frontCamera = null;
-		public static AVCaptureDevice FrontCamera
-		{
-			get
-			{
+		static AVCaptureDevice frontCamera = null;
+		public static AVCaptureDevice FrontCamera {
+			get {
 				if ( frontCamera == null )
-				{
-					frontCamera = getCamera("Front Camera");
-				}
+					frontCamera = GetCamera("Front Camera");
 				return frontCamera;
 			}
 		}
 
-		private static AVCaptureDevice backCamera = null;
+		static AVCaptureDevice backCamera = null;
 		public static AVCaptureDevice BackCamera
 		{
-			get
-			{
+			get {
 				if ( backCamera == null )
-				{
-					backCamera = getCamera("Back Camera");
-				}
+					backCamera = GetCamera("Back Camera");
 				return backCamera;
 			}
 		}
 
-		private static AVCaptureDevice microphone = null;
+		static AVCaptureDevice microphone = null;
 		public static AVCaptureDevice Microphone
 		{
-			get
-			{
+			get {
 				if ( microphone == null )
-				{
-					microphone = getMicrophone();
-				}
+					microphone = GetMicrophone();
 				return microphone;
 			}
 		}
 
 		// TODO - need better method of device detection than localized string
-		private static AVCaptureDevice getCamera( string localizedDeviceName )
+		static AVCaptureDevice GetCamera( string localizedDeviceName )
 		{
 			var devices = AVCaptureDevice.DevicesWithMediaType(AVMediaType.Video);
 			foreach ( AVCaptureDevice device in devices )
 			{
 				if ( string.Compare( device.LocalizedName, localizedDeviceName, true ) == 0 )
-				{
 					return device;
-				}
 			}
 			return null;
 		}
 
 		// TODO - need better method of device detection than localized string
-		private static AVCaptureDevice getMicrophone()
+		static AVCaptureDevice GetMicrophone()
 		{
 			var devices = AVCaptureDevice.DevicesWithMediaType(AVMediaType.Audio);
 			foreach ( AVCaptureDevice device in devices )
 			{
 				if ( device.LocalizedName.ToLower().Contains("microphone") == true )
-				{
 					return device;
-				}
 			}
 			return null;
 		}
-
 	}
 }
-

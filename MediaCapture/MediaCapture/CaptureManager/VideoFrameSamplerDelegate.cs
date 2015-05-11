@@ -25,8 +25,9 @@ namespace MediaCapture
 	public class VideoFrameSamplerDelegate : AVCaptureVideoDataOutputSampleBufferDelegate
 	{
 		#region events
+
 		public EventHandler<ImageCaptureEventArgs> ImageCaptured;
-		private void onImageCaptured( UIImage image )
+		void onImageCaptured( UIImage image )
 		{
 			if ( ImageCaptured != null )
 			{
@@ -38,7 +39,7 @@ namespace MediaCapture
 		}
 
 		public EventHandler<CaptureErrorEventArgs> CaptureError;
-		private void onCaptureError( string errorMessage )
+		void onCaptureError( string errorMessage )
 		{
 			if ( CaptureError != null )
 			{
@@ -53,6 +54,7 @@ namespace MediaCapture
 				}
 			}
 		}
+
 		#endregion
 
 		public override void DidOutputSampleBuffer
@@ -65,7 +67,7 @@ namespace MediaCapture
 			try
 			{
 				// render the image into the debug preview pane
-				UIImage image = getImageFromSampleBuffer(sampleBuffer);
+				UIImage image = GetImageFromSampleBuffer(sampleBuffer);
 
 				// event the capture up
 				onImageCaptured( image );
@@ -80,7 +82,7 @@ namespace MediaCapture
 			}
 		}
 
-		private UIImage getImageFromSampleBuffer (CMSampleBuffer sampleBuffer)
+		UIImage GetImageFromSampleBuffer (CMSampleBuffer sampleBuffer)
 		{
 			// Get the CoreVideo image
 			using (var pixelBuffer = sampleBuffer.GetImageBuffer() as CVPixelBuffer)
@@ -105,7 +107,5 @@ namespace MediaCapture
 				}
 			}
 		}
-
 	}
 }
-

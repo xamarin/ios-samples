@@ -20,65 +20,66 @@ namespace MediaCapture
 {
 	public class SettingsDialog
 	{
-		private Settings settings = null;
-		private RootElement menu = null;
+		Settings settings = null;
+		RootElement menu = null;
 
 		// camera
-		private RadioElement fronCameraElement = null;
-		private RadioElement backCameraElement = null;
-		private RadioGroup cameraGroup = null;
-		private RootElement cameraElement = null;
-		private RadioElement lowResElement = null;
-		private RadioElement mediumResElement = null;
-		private RadioElement highResElement = null;
-		private RadioGroup resolutionGroup = null;
-		private RootElement resolutionElement = null;
+		RadioElement fronCameraElement = null;
+		RadioElement backCameraElement = null;
+		RadioGroup cameraGroup = null;
+		RootElement cameraElement = null;
+		RadioElement lowResElement = null;
+		RadioElement mediumResElement = null;
+		RadioElement highResElement = null;
+		RadioGroup resolutionGroup = null;
+		RootElement resolutionElement = null;
 
 		// still image capture
-		private BooleanElement imageCaptureEnabledElement = null;
-		private RadioElement dontSaveImagesElement = null;
-		private RadioElement saveImagesToPhotoLibraryElement = null;
-		private RadioElement saveImagesToMyDocumentsElement = null;
-		private RadioGroup saveImageGroup = null;
-		private RootElement saveImageElement = null;
+		BooleanElement imageCaptureEnabledElement = null;
+		RadioElement dontSaveImagesElement = null;
+		RadioElement saveImagesToPhotoLibraryElement = null;
+		RadioElement saveImagesToMyDocumentsElement = null;
+		RadioGroup saveImageGroup = null;
+		RootElement saveImageElement = null;
 
 		// media capture
-		private BooleanElement audioCaptureEnabledElement = null;
-		private BooleanElement videoCaptureEnabledElement = null;
-		private BooleanElement autoRecordNextMovieElement = null;
-		private RadioElement noLimitElement = null;
-		private RadioElement oneMinuteLimitElement = null;
-		private RadioElement fiveMinuteLimitElement = null;
-		private RadioElement tenMinuteLimitElement = null;
-		private RadioElement thirtyMinuteLimitElement = null;
-		private RadioGroup durationLimitGroup = null;
-		private RootElement durationElement = null;
+		BooleanElement audioCaptureEnabledElement = null;
+		BooleanElement videoCaptureEnabledElement = null;
+		BooleanElement autoRecordNextMovieElement = null;
+		RadioElement noLimitElement = null;
+		RadioElement oneMinuteLimitElement = null;
+		RadioElement fiveMinuteLimitElement = null;
+		RadioElement tenMinuteLimitElement = null;
+		RadioElement thirtyMinuteLimitElement = null;
+		RadioGroup durationLimitGroup = null;
+		RootElement durationElement = null;
 
 		// actions
-		private StringElement deleteMoviesElement = null;
-		private StringElement deleteImagesElement = null;
+		StringElement deleteMoviesElement = null;
+		StringElement deleteImagesElement = null;
 
-		private SettingsDialog(){}
+		SettingsDialog()
+		{
+			
+		}
 
 		public SettingsDialog( Settings settings )
 		{
 			this.settings = settings;
 		}
 
-		public RootElement Menu
-		{
-			get
-			{
-				return buildSettingsRootMenu();
+		public RootElement Menu {
+			get {
+				return BuildSettingsRootMenu();
 			}
 		}
 
-		private RootElement buildSettingsRootMenu()
+		RootElement BuildSettingsRootMenu()
 		{
-			buildCameraSettingsElements();
-			buildImageCaptureSettingsElements();
-			buildMediaCaptureSettingsElements();
-			buildActionElements();
+			BuildCameraSettingsElements();
+			BuildImageCaptureSettingsElements();
+			BuildMediaCaptureSettingsElements();
+			BuildActionElements();
 
 			menu = new RootElement ("Settings")
 			{
@@ -108,7 +109,7 @@ namespace MediaCapture
 			return menu;
 		}
 
-		private void buildCameraSettingsElements()
+		void BuildCameraSettingsElements()
 		{
 			// camera
 			fronCameraElement = new RadioElement("Front");
@@ -141,7 +142,7 @@ namespace MediaCapture
 			};
 		}
 
-		private void buildImageCaptureSettingsElements()
+		void BuildImageCaptureSettingsElements()
 		{
 			imageCaptureEnabledElement = new BooleanElement("Capture", settings.ImageCaptureEnabled );
 			imageCaptureEnabledElement.ValueChanged += delegate
@@ -155,13 +156,9 @@ namespace MediaCapture
 
 			int index = 0;
 			if ( settings.SaveCapturedImagesToPhotoLibrary )
-			{
 				index = 1;
-			}
 			else if ( settings.SaveCapturedImagesToMyDocuments )
-			{
 				index = 2;
-			}
 			saveImageGroup = new RadioGroup("SaveImagesGroup", index );
 			saveImageElement = new RootElement("Save To", saveImageGroup )
 			{
@@ -174,7 +171,7 @@ namespace MediaCapture
 			};
 		}
 
-		private void buildMediaCaptureSettingsElements()
+		void BuildMediaCaptureSettingsElements()
 		{
 			audioCaptureEnabledElement = new BooleanElement("Record Audio", settings.AudioCaptureEnabled );
 			audioCaptureEnabledElement.ValueChanged += delegate
@@ -216,7 +213,7 @@ namespace MediaCapture
 			};
 		}
 
-		private void buildActionElements()
+		void BuildActionElements()
 		{
 			deleteMoviesElement = new StringElement("Delete Movies");
 			deleteMoviesElement.Tapped += delegate
@@ -268,10 +265,8 @@ namespace MediaCapture
 			}
 		}
 
-		public Settings ResultSettings
-		{
-			get
-			{
+		public Settings ResultSettings {
+			get {
 				Settings retVal = new Settings();
 
 				// camera
@@ -299,10 +294,7 @@ namespace MediaCapture
 				retVal.MaxMovieDurationInSeconds = numSeconds;
 
 				return retVal;
-
 			}
 		}
-
 	}
 }
-

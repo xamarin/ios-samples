@@ -27,87 +27,82 @@ namespace MediaCapture
 	public class CaptureManager
 	{
 		// capture session
-		private AVCaptureSession session = null;
-		private bool isCapturing = false;
-		private bool captureImages = false;
-		private bool captureAudio = false;
-		private bool captureVideo = false;
-		private string movieRecordingDirectory;
-		private CameraType cameraType = CameraType.RearFacing;
-		private Resolution resolution = Resolution.Medium;
+		AVCaptureSession session = null;
+		bool isCapturing = false;
+		bool captureImages = false;
+		bool captureAudio = false;
+		bool captureVideo = false;
+		string movieRecordingDirectory;
+		CameraType cameraType = CameraType.RearFacing;
+		Resolution resolution = Resolution.Medium;
 
 		// camera input objects
-		private AVCaptureDevice videoCaptureDevice = null;
-		private AVCaptureDeviceInput videoInput = null;
+		AVCaptureDevice videoCaptureDevice = null;
+		AVCaptureDeviceInput videoInput = null;
 
 		// microphone input objects
-		private AVCaptureDevice audioCaptureDevice = null;
-		private AVCaptureDeviceInput audioInput = null;
+		AVCaptureDevice audioCaptureDevice = null;
+		AVCaptureDeviceInput audioInput = null;
 
 		// frame grabber objects
-		private AVCaptureVideoDataOutput frameGrabberOutput = null;
-		private VideoFrameSamplerDelegate videoFrameSampler = null;
-		private DispatchQueue queue = null;
+		AVCaptureVideoDataOutput frameGrabberOutput = null;
+		VideoFrameSamplerDelegate videoFrameSampler = null;
+		DispatchQueue queue = null;
 
 		// movie recorder objects
-		private AVCaptureMovieFileOutput movieFileOutput = null;
-		private MovieSegmentWriterDelegate movieSegmentWriter = null;
-		private string currentSegmentFile = null;
-		private DateTime currentSegmentStartedAt;
-		private uint nextMovieIndex = 1;
-		private int movieSegmentDurationInMilliSeconds = 20000;
-		private bool breakMovieIntoSegments = true;
+		AVCaptureMovieFileOutput movieFileOutput = null;
+		MovieSegmentWriterDelegate movieSegmentWriter = null;
+		string currentSegmentFile = null;
+		DateTime currentSegmentStartedAt;
+		uint nextMovieIndex = 1;
+		int movieSegmentDurationInMilliSeconds = 20000;
+		bool breakMovieIntoSegments = true;
 
 		private CaptureManager(){}
 
 		public CaptureManager(
 			Resolution resolution,
-  			bool captureImages,
-		    bool captureAudio,
-		    bool captureVideo,
-		    CameraType cameraType,
-		    string movieRecordingDirectory,
-		    int movieSegmentDurationInMilliSeconds,
-		    bool breakMovieIntoSegments )
+			bool captureImages,
+			bool captureAudio,
+			bool captureVideo,
+			CameraType cameraType,
+			string movieRecordingDirectory,
+			int movieSegmentDurationInMilliSeconds,
+			bool breakMovieIntoSegments )
 		{
 			this.resolution = resolution;
-  			this.captureImages = captureImages;
-		    this.captureAudio = captureAudio;
-		    this.captureVideo = captureVideo;
+			this.captureImages = captureImages;
+			this.captureAudio = captureAudio;
+			this.captureVideo = captureVideo;
 			this.cameraType = cameraType;
 			this.movieSegmentDurationInMilliSeconds = movieSegmentDurationInMilliSeconds;
 			this.breakMovieIntoSegments = breakMovieIntoSegments;
 			if ( captureAudio || captureVideo )
 			{
-			    this.movieRecordingDirectory =  Path.Combine( movieRecordingDirectory, getDateTimeDirectoryName( DateTime.Now ) );
+				this.movieRecordingDirectory =  Path.Combine( movieRecordingDirectory, GetDateTimeDirectoryName( DateTime.Now ) );
 				if ( Directory.Exists( this.movieRecordingDirectory ) == false )
-				{
 					Directory.CreateDirectory( this.movieRecordingDirectory );
-				}
 			}
 		}
 
 		#region events
+
 		public EventHandler<MovieSegmentCapturedEventArgs> MovieSegmentCaptured;
-		private void onMovieSegmentCaptured( MovieSegmentCapturedEventArgs args )
+		void onMovieSegmentCaptured( MovieSegmentCapturedEventArgs args )
 		{
-			if (  MovieSegmentCaptured != null )
-			{
+			if (MovieSegmentCaptured != null)
 				MovieSegmentCaptured( this, args );
-			}
 		}
 
 		public EventHandler<CaptureErrorEventArgs> CaptureError;
-		private void onCaptureError( CaptureErrorEventArgs args )
+		void OnCaptureError( CaptureErrorEventArgs args )
 		{
-			if (  CaptureError != null )
-			{
+			if (CaptureError != null )
 				CaptureError( this, args );
-			}
 		}
 
 		public EventHandler<ImageCaptureEventArgs> ImageCaptured;
-		private void onImageCaptured( ImageCaptureEventArgs args )
+		void OnImageCaptured( ImageCaptureEventArgs args )
 		{
 			if (  ImageCaptured != null )
 			{
@@ -116,30 +111,23 @@ namespace MediaCapture
 		}
 		#endregion
 
-		public int MovieSegmentDurationInMilliSeconds
-		{
-			get
-			{
+		public int MovieSegmentDurationInMilliSeconds {
+			get {
 				return movieSegmentDurationInMilliSeconds;
 			}
 		}
 
-		public bool IsCapturing
-		{
-			get
-			{
+		public bool IsCapturing {
+			get {
 				return this.isCapturing;
 			}
-			set
-			{
+			set {
 				isCapturing = value;
 			}
 		}
 
-		private bool shouldRecord
-		{
-			get
-			{
+		bool ShouldRecord {
+			get {
 				return ( ( this.captureAudio || this.captureVideo ) && ( string.IsNullOrEmpty(this.movieRecordingDirectory) == false ) );
 			}
 		}
@@ -152,20 +140,17 @@ namespace MediaCapture
 				message = "already capturing";
 				return true;
 			}
+
 			isCapturing = true;
-			if ( setupCaptureSessionInternal( out message ) == false )
-			{
+			if (!SetupCaptureSessionInternal(out message))
 				return false;
-			}
 
 			// start the capture
 			session.StartRunning();
 
 			// start recording (if configured)
-			if ( shouldRecord )
-			{
-				startMovieWriter();
-			}
+			if ( ShouldRecord )
+				StartMovieWriter();
 
 			return true;
 		}
@@ -173,35 +158,31 @@ namespace MediaCapture
 		public void StopCapture()
 		{
 			if ( isCapturing == false )
-			{
 				return;
-			}
 
 			isCapturing = false;
 
 			// stop recording
-			if ( shouldRecord )
-			{
-				stopMovieWriter();
-			}
+			if ( ShouldRecord )
+				StopMovieWriter();
 
 			// stop the capture session
 			session.StopRunning();
 
-			unsubscribeDelegateEvents();
+			UnsubscribeDelegateEvents();
 		}
 
-		private void startMovieWriter()
+		void StartMovieWriter()
 		{
 			if ( movieFileOutput == null )
 			{
 				return;
 			}
 
-			startRecordingNextMovieFilename();
+			StartRecordingNextMovieFilename();
 		}
 
-		private void startRecordingNextMovieFilename()
+		void StartRecordingNextMovieFilename()
 		{
 			// generate file name
 			currentSegmentFile = System.IO.Path.Combine( this.movieRecordingDirectory, string.Format("video_{0}.mov", nextMovieIndex++) );
@@ -211,16 +192,14 @@ namespace MediaCapture
 			movieFileOutput.StartRecordingToOutputFile( segmentUrl, movieSegmentWriter);
 		}
 
-		private void stopMovieWriter()
+		void StopMovieWriter()
 		{
 			if ( movieFileOutput == null )
-			{
 				return;
-			}
 			movieFileOutput.StopRecording();
 		}
 
-		private bool setupCaptureSessionInternal( out string errorMessage )
+		bool SetupCaptureSessionInternal( out string errorMessage )
 		{
 			errorMessage = "";
 
@@ -231,9 +210,11 @@ namespace MediaCapture
 				case Resolution.Low:
 					session.SessionPreset = AVCaptureSession.PresetLow;
 					break;
+
 				case Resolution.High:
 					session.SessionPreset = AVCaptureSession.PresetHigh;
 					break;
+
 				case Resolution.Medium:
 				default:
 					session.SessionPreset = AVCaptureSession.PresetMedium;
@@ -243,46 +224,38 @@ namespace MediaCapture
 			// conditionally configure the camera input
 			if ( captureVideo || captureImages)
 			{
-				if ( addCameraInput( out errorMessage ) == false )
-				{
+				if (!AddCameraInput(out errorMessage))
 					return false;
-				}
 			}
 
 			// conditionally configure the microphone input
 			if ( captureAudio )
 			{
-				if ( addAudioInput( out errorMessage ) == false )
-				{
+				if (!AddAudioInput( out errorMessage ))
 					return false;
-				}
 			}
 
 			// conditionally configure the sample buffer output
 			if ( captureImages )
 			{
 				int minimumSampleIntervalInMilliSeconds = captureVideo ? 1000 : 100;
-				if ( addImageSamplerOutput( out errorMessage, minimumSampleIntervalInMilliSeconds ) == false )
-				{
+				if (!AddImageSamplerOutput( out errorMessage, minimumSampleIntervalInMilliSeconds ))
 					return false;
-				}
 			}
 
 			// conditionally configure the movie file output
-			if ( shouldRecord )
+			if ( ShouldRecord )
 			{
-				if ( addMovieFileOutput( out errorMessage ) == false )
-				{
+				if (!AddMovieFileOutput( out errorMessage ))
 					return false;
-				}
 			}
 
 			return true;
 		}
 
-		private bool addCameraInput( out string errorMessage )
+		bool AddCameraInput( out string errorMessage )
 		{
-			errorMessage = "";
+			errorMessage = string.Empty;
 			videoCaptureDevice = this.cameraType == CameraType.FrontFacing ? MediaDevices.FrontCamera : MediaDevices.BackCamera;
 			videoInput = AVCaptureDeviceInput.FromDevice(videoCaptureDevice);
 			if (videoInput == null)
@@ -294,9 +267,9 @@ namespace MediaCapture
 			return true;
 		}
 
-		private bool addAudioInput( out string errorMessage )
+		bool AddAudioInput( out string errorMessage )
 		{
-			errorMessage = "";
+			errorMessage = string.Empty;
 			audioCaptureDevice = MediaDevices.Microphone;
 			audioInput = AVCaptureDeviceInput.FromDevice(audioCaptureDevice);
 			if (audioInput == null)
@@ -308,31 +281,29 @@ namespace MediaCapture
 			return true;
 		}
 
-		private bool addMovieFileOutput( out string errorMessage )
+		bool AddMovieFileOutput( out string errorMessage )
 		{
 			errorMessage = "";
 
 			// create a movie file output and add it to the capture session
 			movieFileOutput = new AVCaptureMovieFileOutput();
 			if ( movieSegmentDurationInMilliSeconds > 0 )
-			{
 				movieFileOutput.MaxRecordedDuration = new CMTime( movieSegmentDurationInMilliSeconds, 1000 );
-			}
 
 			// setup the delegate that handles the writing
 			movieSegmentWriter = new MovieSegmentWriterDelegate();
 
 			// subscribe to the delegate events
-			movieSegmentWriter.MovieSegmentRecordingStarted += new EventHandler<MovieSegmentRecordingStartedEventArgs>( handleMovieSegmentRecordingStarted );
+			movieSegmentWriter.MovieSegmentRecordingStarted += new EventHandler<MovieSegmentRecordingStartedEventArgs>( HandleMovieSegmentRecordingStarted );
 			movieSegmentWriter.MovieSegmentRecordingComplete += new EventHandler<MovieSegmentRecordingCompleteEventArgs>( handleMovieSegmentRecordingComplete );
-			movieSegmentWriter.CaptureError += new EventHandler<CaptureErrorEventArgs>( handleMovieCaptureError );
+			movieSegmentWriter.CaptureError += new EventHandler<CaptureErrorEventArgs>( HandleMovieCaptureError );
 
 			session.AddOutput (movieFileOutput);
 
 			return true;
 		}
 
-		private bool addImageSamplerOutput( out string errorMessage, int minimumSampleIntervalInMilliSeconds )
+		bool AddImageSamplerOutput( out string errorMessage, int minimumSampleIntervalInMilliSeconds )
 		{
 			errorMessage = "";
 
@@ -345,8 +316,8 @@ namespace MediaCapture
 			frameGrabberOutput.SetSampleBufferDelegateQueue (videoFrameSampler, queue);
 
 			// subscribe to from capture events
-			videoFrameSampler.CaptureError += new EventHandler<CaptureErrorEventArgs>( handleImageCaptureError );
-			videoFrameSampler.ImageCaptured += new EventHandler<ImageCaptureEventArgs>( handleImageCaptured );
+			videoFrameSampler.CaptureError += new EventHandler<CaptureErrorEventArgs>( HandleImageCaptureError );
+			videoFrameSampler.ImageCaptured += new EventHandler<ImageCaptureEventArgs>( HandleImageCaptured );
 
 			// add the output to the session
 			session.AddOutput (frameGrabberOutput);
@@ -364,7 +335,7 @@ namespace MediaCapture
 			return true;
 		}
 
-		private void handleMovieSegmentRecordingStarted( object sender, MovieSegmentRecordingStartedEventArgs args )
+		void HandleMovieSegmentRecordingStarted( object sender, MovieSegmentRecordingStartedEventArgs args )
 		{
 			currentSegmentStartedAt = DateTime.Now;
 		}
@@ -381,10 +352,8 @@ namespace MediaCapture
 				captureInfo.File = args.Path;
 
 				// conditionally start recording the next segment
-				if ( args.ErrorOccured == false && breakMovieIntoSegments && isCapturing)
-				{
-					startRecordingNextMovieFilename();
-				}
+				if ( !args.ErrorOccured && breakMovieIntoSegments && isCapturing)
+					StartRecordingNextMovieFilename();
 
 				// raise the capture event to external listeners
 				onMovieSegmentCaptured( captureInfo );
@@ -394,39 +363,39 @@ namespace MediaCapture
 			}
 		}
 
-		private void handleMovieCaptureError(object sender, CaptureErrorEventArgs args )
+		void HandleMovieCaptureError(object sender, CaptureErrorEventArgs args )
 		{
 			// bubble up
-			onCaptureError( args );
+			OnCaptureError( args );
 		}
 
-		private void handleImageCaptured( object sender, ImageCaptureEventArgs args)
+		void HandleImageCaptured( object sender, ImageCaptureEventArgs args)
 		{
 			// bubble up
-			onImageCaptured( args);
+			OnImageCaptured( args);
 		}
 
-		private void handleImageCaptureError( object sender, CaptureErrorEventArgs args )
+		void HandleImageCaptureError( object sender, CaptureErrorEventArgs args )
 		{
 			// bubble up
-			onCaptureError( args );
+			OnCaptureError( args );
 		}
 		#endregion
 
-		private void unsubscribeDelegateEvents()
+		void UnsubscribeDelegateEvents()
 		{
 			try
 			{
 				if ( videoFrameSampler != null )
 				{
-					videoFrameSampler.CaptureError -= new EventHandler<CaptureErrorEventArgs>( handleImageCaptureError );
-					videoFrameSampler.ImageCaptured -= new EventHandler<ImageCaptureEventArgs>( handleImageCaptured );
+					videoFrameSampler.CaptureError -= new EventHandler<CaptureErrorEventArgs>( HandleImageCaptureError );
+					videoFrameSampler.ImageCaptured -= new EventHandler<ImageCaptureEventArgs>( HandleImageCaptured );
 				}
 				if ( movieSegmentWriter != null )
 				{
-					movieSegmentWriter.MovieSegmentRecordingStarted -= new EventHandler<MovieSegmentRecordingStartedEventArgs>( handleMovieSegmentRecordingStarted );
+					movieSegmentWriter.MovieSegmentRecordingStarted -= new EventHandler<MovieSegmentRecordingStartedEventArgs>( HandleMovieSegmentRecordingStarted );
 					movieSegmentWriter.MovieSegmentRecordingComplete -= new EventHandler<MovieSegmentRecordingCompleteEventArgs>( handleMovieSegmentRecordingComplete );
-					movieSegmentWriter.CaptureError -= new EventHandler<CaptureErrorEventArgs>( handleMovieCaptureError );
+					movieSegmentWriter.CaptureError -= new EventHandler<CaptureErrorEventArgs>( HandleMovieCaptureError );
 				}
 			}
 			catch
@@ -434,7 +403,7 @@ namespace MediaCapture
 			}
 		}
 
-		private string getDateTimeDirectoryName( DateTime dateTime )
+		string GetDateTimeDirectoryName( DateTime dateTime )
 		{
 			return dateTime.ToString().Replace(":","-").Replace ("/","-").Replace (" ","-").Replace ("\\","-");
 		}
@@ -453,6 +422,4 @@ namespace MediaCapture
 		FrontFacing,
 		RearFacing
 	}
-
 }
-
