@@ -516,17 +516,8 @@ namespace MediaCapture
 		// this method makes sure that the most recently added text is exactly at the bottom of the text view
 		void ScrollMessageViewToEnd()
 		{
-			// find the number of characters between the end of the text and the previous newline
-			string text = textView.Text.TrimEnd();
-			int index = text.Length - 1;
-			while (index >= 0)
-			{
-				char c = text[index];
-				if ( c == '\r' || c == '\n' )
-					break;
-				index--;
-			}
-			textView.ScrollRangeToVisible( new NSRange( index + 1, 1 ) );
+			if(!string.IsNullOrWhiteSpace(textView.Text))
+				textView.ScrollRangeToVisible( new NSRange( textView.Text.Length - 1, 1 ) );
 		}
 	}
 }
