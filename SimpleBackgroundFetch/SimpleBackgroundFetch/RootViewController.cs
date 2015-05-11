@@ -13,8 +13,7 @@ namespace SimpleBackgroundFetch
 		public RootViewController (IntPtr handle) : base (handle)
 		{
 			Title = NSBundle.MainBundle.LocalizedString ("Master", "Master");
-
-			// Custom initialization
+			TableView.Source = dataSource = new DataSource (this);
 		}
 
 		public void InsertNewObjectForFetch (Action<UIBackgroundFetchResult> completionhandler)
@@ -49,8 +48,6 @@ namespace SimpleBackgroundFetch
 
 			var addButton = new UIBarButtonItem (UIBarButtonSystemItem.Add, AddNewItem);
 			NavigationItem.RightBarButtonItem = addButton;
-
-			TableView.Source = dataSource = new DataSource (this);
 		}
 
 		class DataSource : UITableViewSource
@@ -77,13 +74,12 @@ namespace SimpleBackgroundFetch
 			{
 				return objects.Count;
 			}
+
 			// Customize the appearance of table view cells.
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 			{
-				var cell = (UITableViewCell)tableView.DequeueReusableCell (CellIdentifier, indexPath);
-
+				var cell = new UITableViewCell (UITableViewCellStyle.Default, CellIdentifier);
 				cell.TextLabel.Text = objects [indexPath.Row].ToString ();
-
 				return cell;
 			}
 
