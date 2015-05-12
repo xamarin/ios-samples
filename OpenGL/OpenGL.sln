@@ -83,7 +83,6 @@ Global
 		{F17A7552-709F-4109-AFD2-FE557F0C4CD7}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = PerVertexDirectionalLighting\PerVertexDirectionalLighting.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.inheritsSet = Mono
