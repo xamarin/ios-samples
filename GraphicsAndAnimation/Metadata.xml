@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SampleMetadata>
-	<ID>cff68a6e-544f-4dd3-a732-a5b0d715c9ea</ID>
+    <ID>b69bf71d-4a2f-4bec-9639-6795d97eb5ac</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Intermediate</Level>
 	<Tags>Graphics</Tags>
     <LicenseRequirement>Indie</LicenseRequirement>
 	<Gallery>false</Gallery>
-	<Brief>Animation Samples shows a demo of how to animate your views using Core Animation</Brief>
+	<Brief>Drawing and Animation with Core Animation and Core Graphics.</Brief>
 </SampleMetadata>
