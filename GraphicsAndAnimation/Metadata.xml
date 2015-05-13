@@ -5,6 +5,6 @@
 	<Level>Intermediate</Level>
 	<Tags>Graphics</Tags>
     <LicenseRequirement>Indie</LicenseRequirement>
-	<Gallery>false</Gallery>
+	<Gallery>true</Gallery>
 	<Brief>Drawing and Animation with Core Animation and Core Graphics.</Brief>
 </SampleMetadata>
