@@ -87,10 +87,12 @@
                             <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                         </label>
                         <imageView alignment="left" id="41"/>
+                        <label alignment="left" text="(time)" id="42" numberOfLines="0"/>
                     </items>
                     <connections>
                         <outlet property="displayText" destination="39" id="name-outlet-39"/>
                         <outlet property="displayImage" destination="41" id="name-outlet-41"/>
+                        <outlet property="displayTime" destination="42" id="name-outlet-42"/>
                     </connections>
                 </controller>
             </objects>

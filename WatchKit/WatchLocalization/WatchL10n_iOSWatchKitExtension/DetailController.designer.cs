@@ -22,6 +22,10 @@ namespace WatchL10n_iOSWatchKitExtension
 		[GeneratedCode ("iOS Designer", "1.0")]
 		WatchKit.WKInterfaceLabel displayText { get; set; }
 
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		WatchKit.WKInterfaceLabel displayTime { get; set; }
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (displayImage != null) {
@@ -31,6 +35,10 @@ namespace WatchL10n_iOSWatchKitExtension
 			if (displayText != null) {
 				displayText.Dispose ();
 				displayText = null;
+			}
+			if (displayTime != null) {
+				displayTime.Dispose ();
+				displayTime = null;
 			}
 		}
 	}

@@ -38,6 +38,15 @@ namespace WatchL10n_iOSWatchKitExtension
 				displayImage.SetImage (image);
 			}	
 		
+		
+//			var formatter = new NSDateFormatter ();
+//			formatter.DateStyle = NSDateFormatterStyle.Medium;
+//			formatter.TimeStyle = NSDateFormatterStyle.Long;
+//			formatter.Locale = NSLocale.CurrentLocale;
+//			var localizedDateTime = formatter.StringFor (NSDate.Now);
+
+			var localizedDateTime = NSDateFormatter.ToLocalizedString (NSDate.Now, NSDateFormatterStyle.Long, NSDateFormatterStyle.Short);
+			displayTime.SetText (localizedDateTime);
 		}
 	}
 }
