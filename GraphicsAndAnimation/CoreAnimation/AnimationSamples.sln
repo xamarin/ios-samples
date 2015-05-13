@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimationSamples", "AnimationSamples\AnimationSamples.csproj", "{6272FBB1-73DC-4463-8BB0-E9C0FDE0A283}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimationSamples.UITests", "AnimationSamples.UITests\AnimationSamples.UITests.csproj", "{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -27,17 +25,5 @@ Global
 		{6272FBB1-73DC-4463-8BB0-E9C0FDE0A283}.Release|iPhone.Build.0 = Release|iPhone
 		{6272FBB1-73DC-4463-8BB0-E9C0FDE0A283}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{6272FBB1-73DC-4463-8BB0-E9C0FDE0A283}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}.Release|iPhone.Build.0 = Release|Any CPU
-		{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{F7B2143B-4A36-4F0E-8E41-8C2A54D55150}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
