@@ -148,4 +148,11 @@
     <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Portrait%402x~ipad.png" />
     <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Portrait~ipad.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KeyboardExtension\KeyboardExtension.csproj">
+      <Project>{47384BEA-8AAA-49C6-9D34-6D0118BA8D45}</Project>
+      <Name>KeyboardExtension</Name>
+      <IsAppExtension>True</IsAppExtension>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
