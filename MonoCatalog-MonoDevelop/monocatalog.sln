@@ -20,15 +20,4 @@ Global
 		{B757F754-E31A-4EBD-BDBD-0B86875D78DB}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{B757F754-E31A-4EBD-BDBD-0B86875D78DB}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = monocatalog.csproj
-		Policies = $0
-		$0.TextStylePolicy = $1
-		$1.FileWidth = 120
-		$1.TabWidth = 4
-		$1.NoTabsAfterNonTabs = True
-		$1.inheritsSet = Mono
-		$1.inheritsScope = text/plain
-		$1.scope = text/plain
-	EndGlobalSection
 EndGlobal
