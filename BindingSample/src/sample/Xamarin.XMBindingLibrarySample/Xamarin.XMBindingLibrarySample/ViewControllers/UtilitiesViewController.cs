@@ -24,7 +24,6 @@ namespace Xamarin.XMBindingLibrarySample
 {
 	public class UtilitiesViewController : DialogViewController
 	{
-		XMUtilityCallback callback;
 		XMUtilities Utility;
 		
 		public UtilitiesViewController()
