@@ -39,27 +39,22 @@ namespace MonoCatalog
 
 			p = new ABPeoplePickerNavigationController ();
 			p.SelectPerson += (o, e) => {
-				Console.Error.WriteLine ("# select Person: {0}", e.Person);
-				toString.Text = e.Person.ToString ();
-				firstName.Text = e.Person.FirstName;
-				lastName.Text = e.Person.LastName;
-				property.Text = "";
-				identifier.Text = "";
+				HandlePersonSelection(e.Person);
 				e.Continue = selectProperty.On;
 				if (!e.Continue)
 					DismissModalViewController (true);
 			};
-			
+			p.SelectPerson2 += (sender, e) => {
+				HandlePersonSelection(e.Person);
+			};
+
 			p.PerformAction += (o, e) => {
-				Console.Error.WriteLine ("# perform action; person={0}", e.Person);
-				toString.Text = e.Person.ToString ();
-				firstName.Text = e.Person.FirstName;
-				lastName.Text = e.Person.LastName;
-				property.Text = e.Property.ToString ();
-				identifier.Text = e.Identifier.HasValue ? e.Identifier.ToString () : "";
-				e.Continue = performAction.On;
+				HandlePersonPropertySelection(e.Person, e.Property, e.Identifier);
 				if (!e.Continue)
 					DismissModalViewController (true);
+			};
+			p.PerformAction2 += (sender, e) => {
+				HandlePersonPropertySelection(e.Person, e.Property, e.Identifier);
 			};
 
 			p.Cancelled += (o, e) => {
@@ -78,6 +73,26 @@ namespace MonoCatalog
 		{
 			Console.Error.WriteLine ("# Select Contacts pushed!");
 			PresentModalViewController (GetPicker (), true);
+		}
+
+		void HandlePersonSelection(AddressBook.ABPerson person)
+		{
+			Console.Error.WriteLine ("# select Person: {0}", person);
+			toString.Text = person.ToString ();
+			firstName.Text = person.FirstName;
+			lastName.Text = person.LastName;
+			property.Text = "";
+			identifier.Text = "";
+		}
+
+		void HandlePersonPropertySelection(AddressBook.ABPerson person, AddressBook.ABPersonProperty property, int? id)
+		{
+			Console.Error.WriteLine ("# perform action; person={0}", person);
+			toString.Text = person.ToString ();
+			firstName.Text = person.FirstName;
+			lastName.Text = person.LastName;
+			identifier.Text = id.ToString ();
+			identifier.Text = id.HasValue ? id.ToString () : "";
 		}
 	}
 }
