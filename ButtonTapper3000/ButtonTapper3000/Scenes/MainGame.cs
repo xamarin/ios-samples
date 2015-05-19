@@ -33,7 +33,9 @@ namespace ButtonTapper3000 {
 
 			GameInfo.CurrentTaps = 0;
 
-			gameTimer = NSTimer.CreateScheduledTimer (GameInfo.GameTimeInSeconds, async delegate {
+			gameTimer = NSTimer.CreateScheduledTimer (GameInfo.GameTimeInSeconds, async (t) => {
+				gameTimer.Dispose();
+				gameTimer = null;
 				await TimerDone ();
 			});
 

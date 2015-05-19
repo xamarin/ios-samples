@@ -359,7 +359,7 @@ namespace ButtonTapper3000 {
 			AddChild (scoreLabel);
 		}
 
-		async Task LoadLeaderboardScoresInfo (GKLeaderboard leaderboard)
+		async void LoadLeaderboardScoresInfo (GKLeaderboard leaderboard)
 		{
 			leaderboard.Range = new NSRange (1, 3);
 			leaderboard.TimeScope = GKLeaderboardTimeScope.AllTime;
