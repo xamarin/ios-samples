@@ -5,7 +5,7 @@ namespace AnimationSamples
 {
 	public class DemoViewTransition : UIViewController
 	{
-		public static UIStoryboard MainStoryboard =  UIStoryboard.FromName ("Main", null);
+		static UIStoryboard MainStoryboard =  UIStoryboard.FromName ("Main", null);
 
 		UIView view1;
 		UIView view2;
@@ -21,17 +21,17 @@ namespace AnimationSamples
 
 			view1 = new UIImageView (UIImage.FromFile ("monkey1.png")) {
 				Frame = View.Frame,
-				ContentMode = UIViewContentMode.ScaleAspectFit
+				ContentMode = UIViewContentMode.ScaleAspectFit,
+				UserInteractionEnabled = true
 			};
 			View.AddSubview (view1);
 
 			view2 = new UIImageView (UIImage.FromFile ("monkey2.png")) {
 				Frame = View.Frame,
-				ContentMode = UIViewContentMode.ScaleAspectFit
+				ContentMode = UIViewContentMode.ScaleAspectFit,
+				UserInteractionEnabled = true
 			};
 			View.AddSubview (view1);
-
-			view1.UserInteractionEnabled = true;
 
 			view1.AddGestureRecognizer (new UITapGestureRecognizer (() => { 
 				UIView.Transition (
@@ -42,10 +42,7 @@ namespace AnimationSamples
 					completion: () => { Console.WriteLine ("transition complete"); });
 			}));
 
-			view2.UserInteractionEnabled = true;
-
 			view2.AddGestureRecognizer (new UITapGestureRecognizer (() => {
-
 				ViewController initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
 
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve;

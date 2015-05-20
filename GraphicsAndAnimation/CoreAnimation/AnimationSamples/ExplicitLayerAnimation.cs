@@ -7,9 +7,9 @@ namespace AnimationSamples
 {
 	public class ExplicitLayerAnimation : UIViewController
 	{
+		static UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
 
 		CALayer layer;
-		public static UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
 
 		public ExplicitLayerAnimation ()
 		{
@@ -19,21 +19,20 @@ namespace AnimationSamples
 		{
 			base.ViewDidLoad ();
 			View.BackgroundColor = UIColor.White;
+			View.UserInteractionEnabled = true;
 
-			layer = new CALayer ();
-			layer.Bounds = new CGRect (0, 0, 50, 50);
-			layer.Position = new CGPoint (50, 50);
-			layer.Contents = UIImage.FromFile ("monkey2.png").CGImage;
-			layer.ContentsGravity = CALayer.GravityResize;
-			layer.BorderWidth = 1.5f;
-			layer.BorderColor = UIColor.Green.CGColor;
+			layer = new CALayer {
+				Bounds = new CGRect (0, 0, 50, 50),
+				Position = new CGPoint (50, 50),
+				Contents = UIImage.FromFile ("monkey2.png").CGImage,
+				ContentsGravity = CALayer.GravityResize,
+				BorderWidth = 1.5f,
+				BorderColor = UIColor.Green.CGColor
+			};
 
 			View.Layer.AddSublayer (layer);
 
-			View.UserInteractionEnabled = true;
-
 			View.AddGestureRecognizer (new UITapGestureRecognizer (() => {
-
 				ViewController initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
 
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal;
@@ -59,7 +58,7 @@ namespace AnimationSamples
 			path.AddLines (new CGPoint[]{ fromPt, new CGPoint (50, 300), new CGPoint (200, 50), new CGPoint (200, 300) });
 
 			// create a keyframe animation for the position using the path
-			CAKeyFrameAnimation animPosition = (CAKeyFrameAnimation)CAKeyFrameAnimation.FromKeyPath ("position");
+			CAKeyFrameAnimation animPosition = CAKeyFrameAnimation.FromKeyPath ("position");
 			animPosition.Path = path;
 			animPosition.Duration = 2;
 
@@ -67,10 +66,6 @@ namespace AnimationSamples
 			The "position" key is used to overwrite the implicit animation created
 			 when the layer positino is set above*/
 			layer.AddAnimation (animPosition, "position");
-
 		}
-
-
 	}
 }
-

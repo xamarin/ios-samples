@@ -21,15 +21,12 @@ namespace AnimationSamples
 				vc2.ModalTransitionStyle = UIModalTransitionStyle.PartialCurl;
 
 				PresentViewController(vc2, true, null);
-
 			};
 
 			ViewTransitionButton.TouchUpInside += (object sender, EventArgs e) => {
 				DemoViewTransition vc3 = new DemoViewTransition();
 
-
 				PresentViewController(vc3, true, null);
-
 			};
 
 			ViewAnimationButton.TouchUpInside += (object sender, EventArgs e) => {

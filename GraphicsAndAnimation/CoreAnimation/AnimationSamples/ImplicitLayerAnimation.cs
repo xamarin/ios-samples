@@ -7,8 +7,9 @@ namespace AnimationSamples
 {
 	public class ImplicitLayerAnimation : UIViewController
 	{
+		static UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
+
 		CALayer layer;
-		public static UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
 
 		public ImplicitLayerAnimation ()
 		{
@@ -18,28 +19,26 @@ namespace AnimationSamples
 		{
 			base.ViewDidLoad ();
 			View.BackgroundColor = UIColor.White;
+			View.UserInteractionEnabled = true;
 
-			layer = new CALayer ();
-			layer.Bounds = new CGRect (50, 50, 50, 50);
-			layer.Position = new CGPoint (150, 50);
-			layer.Contents = UIImage.FromFile ("monkey1.png").CGImage;
-			layer.ContentsGravity = CALayer.GravityResize;
-			layer.BorderWidth = 1.5f;
-			layer.BorderColor = UIColor.Green.CGColor;
+			layer = new CALayer {
+				Bounds = new CGRect (50, 50, 50, 50),
+				Position = new CGPoint (150, 50),
+				Contents = UIImage.FromFile ("monkey1.png").CGImage,
+				ContentsGravity = CALayer.GravityResize,
+				BorderWidth = 1.5f,
+				BorderColor = UIColor.Green.CGColor
+			};
 
 			View.Layer.AddSublayer (layer);
 
-			View.UserInteractionEnabled = true;
-
 			View.AddGestureRecognizer (new UITapGestureRecognizer (() => {
-
 				ViewController initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
 
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal;
 
 				PresentViewController(initalViewController, true, null);
 			}));
-
 		}
 
 		public override void ViewDidAppear (bool animated)
@@ -52,8 +51,6 @@ namespace AnimationSamples
 			layer.BorderWidth = 5.0f;
 			layer.BorderColor = UIColor.Red.CGColor;
 			CATransaction.Commit ();
-
 		}
 	}
 }
-
