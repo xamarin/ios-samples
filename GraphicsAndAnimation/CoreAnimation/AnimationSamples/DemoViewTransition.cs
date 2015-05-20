@@ -5,9 +5,10 @@ namespace AnimationSamples
 {
 	public class DemoViewTransition : UIViewController
 	{
+		public static UIStoryboard MainStoryboard =  UIStoryboard.FromName ("Main", null);
+
 		UIView view1;
 		UIView view2;
-		public static UIStoryboard Storyboard =  UIStoryboard.FromName ("Main", null);
 
 		public DemoViewTransition ()
 		{
@@ -45,15 +46,12 @@ namespace AnimationSamples
 
 			view2.AddGestureRecognizer (new UITapGestureRecognizer (() => {
 
-				ViewController initalViewController = (ViewController)Storyboard.InstantiateViewController("InitalViewController");
+				ViewController initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
 
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
 
 				PresentViewController(initalViewController, true, null);
 			}));
-
 		}
-
 	}
 }
-

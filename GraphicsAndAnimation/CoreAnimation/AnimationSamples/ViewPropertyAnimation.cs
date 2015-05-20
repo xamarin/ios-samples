@@ -11,7 +11,7 @@ namespace AnimationSamples
 		UIImageView imgView;
 		UIImage img;
 		UIButton animateButton;
-		public static UIStoryboard Storyboard = UIStoryboard.FromName ("Main", null);
+		public static UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
 
 		public ViewPropertyAnimation ()
 		{
@@ -67,7 +67,7 @@ namespace AnimationSamples
 //						imgView.Center = pt; }
 //				);
 
-				ViewController initalViewController = (ViewController)Storyboard.InstantiateViewController("InitalViewController");
+				ViewController initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
 
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
 

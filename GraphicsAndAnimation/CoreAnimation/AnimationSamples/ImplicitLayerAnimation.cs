@@ -7,10 +7,8 @@ namespace AnimationSamples
 {
 	public class ImplicitLayerAnimation : UIViewController
 	{
-
 		CALayer layer;
-		public static UIStoryboard Storyboard = UIStoryboard.FromName ("Main", null);
-
+		public static UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
 
 		public ImplicitLayerAnimation ()
 		{
@@ -35,7 +33,7 @@ namespace AnimationSamples
 
 			View.AddGestureRecognizer (new UITapGestureRecognizer (() => {
 
-				ViewController initalViewController = (ViewController)Storyboard.InstantiateViewController("InitalViewController");
+				ViewController initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
 
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal;
 
