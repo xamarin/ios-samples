@@ -322,6 +322,14 @@ namespace AudioTapProcessor
 			return processor;
 		}
 
+		protected override void Dispose (bool disposing)
+		{
+			playerTimeObserver.Dispose ();
+			playerItemDidPlayToEndTimeObserver.Dispose ();
+
+			base.Dispose (disposing);
+		}
+
 		static AVAssetTrack FetchFirstAudioTrack (AVPlayer player)
 		{
 			AVAssetTrack[] tracks = player.CurrentItem.Asset.Tracks;
