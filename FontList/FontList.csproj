@@ -38,7 +38,6 @@
     <MtouchLink>None</MtouchLink>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchSdkVersion>5.1</MtouchSdkVersion>
     <MtouchArch>i386</MtouchArch>
     <AssemblyName>FontList</AssemblyName>
   </PropertyGroup>
@@ -70,7 +69,6 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchSdkVersion>5.1</MtouchSdkVersion>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <AssemblyName>Example_Fonts</AssemblyName>
   </PropertyGroup>

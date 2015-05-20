@@ -37,7 +37,6 @@
     <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <MtouchUseArmv7>false</MtouchUseArmv7>
-    <MtouchSdkVersion>3.2</MtouchSdkVersion>
     <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -52,7 +51,6 @@
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseArmv7>false</MtouchUseArmv7>
-    <MtouchSdkVersion>3.2</MtouchSdkVersion>
     <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -64,7 +62,6 @@
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseArmv7>false</MtouchUseArmv7>
-    <MtouchSdkVersion>3.2</MtouchSdkVersion>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <ItemGroup>

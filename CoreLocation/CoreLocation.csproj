@@ -37,7 +37,6 @@
     <MtouchI18n>
     </MtouchI18n>
     <AssemblyName>CoreLocation</AssemblyName>
-    <MtouchSdkVersion>4.0</MtouchSdkVersion>
     <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -68,7 +67,6 @@
     <MtouchI18n>
     </MtouchI18n>
     <AssemblyName>Example_CoreLocation</AssemblyName>
-    <MtouchSdkVersion>4.0</MtouchSdkVersion>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <ItemGroup>

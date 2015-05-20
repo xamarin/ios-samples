@@ -35,7 +35,6 @@
     <WarningLevel>4</WarningLevel>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchSdkVersion>4.0</MtouchSdkVersion>
     <MtouchArch>i386</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -59,7 +58,6 @@
     <WarningLevel>4</WarningLevel>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchSdkVersion>4.0</MtouchSdkVersion>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <ItemGroup>
