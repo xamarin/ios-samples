@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{C9A29251-5429-45BD-86F5-499397CFBD74}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>HomeKitIntro</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>HomeKitIntro</AssemblyName>
+    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchSdkVersion>8.0</MtouchSdkVersion>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchArch>i386</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer: Kevin Mullins (46FB3Q72SJ)</CodesignKey>
+    <IpaPackageName>
+    </IpaPackageName>
+    <CodesignProvision>dd3d40e4-413e-4f2e-bd55-d761dbba1840</CodesignProvision>
+    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <BuildIpa>true</BuildIpa>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <ConsolePause>false</ConsolePause>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\53-house.png" />
+    <BundleResource Include="Resources\53-house%402x.png" />
+    <BundleResource Include="Resources\Default-Landscape%402x~ipad.png" />
+    <BundleResource Include="Resources\Default-Landscape~ipad.png" />
+    <BundleResource Include="Resources\Default-Portrait%402x~ipad.png" />
+    <BundleResource Include="Resources\Default-Portrait~ipad.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Icon-60.png" />
+    <BundleResource Include="Resources\Icon-60%402x.png" />
+    <BundleResource Include="Resources\Icon-72.png" />
+    <BundleResource Include="Resources\Icon-72%402x.png" />
+    <BundleResource Include="Resources\Icon-76.png" />
+    <BundleResource Include="Resources\Icon-76%402x.png" />
+    <BundleResource Include="Resources\Icon-Small-50.png" />
+    <BundleResource Include="Resources\Icon-Small-50%402x.png" />
+    <BundleResource Include="Resources\Icon-Small.png" />
+    <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icon-Spotlight-40.png" />
+    <BundleResource Include="Resources\Icon-Spotlight-40%402x.png" />
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Resources\Logo.png" />
+    <BundleResource Include="Resources\Logo%402x.png" />
+    <BundleResource Include="Resources\NewHouse.png" />
+    <BundleResource Include="Resources\NewHouse%402x.png" />
+    <BundleResource Include="Resources\06-magnify.png" />
+    <BundleResource Include="Resources\06-magnify%402x.png" />
+    <BundleResource Include="Resources\24-circle-north.png" />
+    <BundleResource Include="Resources\24-circle-north%402x.png" />
+    <BundleResource Include="Resources\51-power.png" />
+    <BundleResource Include="Resources\51-power%402x.png" />
+    <BundleResource Include="Resources\54-lock.png" />
+    <BundleResource Include="Resources\54-lock%402x.png" />
+    <BundleResource Include="Resources\61-brightness.png" />
+    <BundleResource Include="Resources\61-brightness%402x.png" />
+    <BundleResource Include="Resources\81-dashboard.png" />
+    <BundleResource Include="Resources\81-dashboard%402x.png" />
+    <BundleResource Include="Resources\HomeKitIntro.entitlements" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="Temp.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="MasterViewController.cs" />
+    <Compile Include="MasterViewController.designer.cs">
+      <DependentUpon>MasterViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddHomeViewController.cs" />
+    <Compile Include="AddHomeViewController.designer.cs">
+      <DependentUpon>AddHomeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\AlertView.cs" />
+    <Compile Include="MasterTabViewController.cs" />
+    <Compile Include="MasterTabViewController.designer.cs">
+      <DependentUpon>MasterTabViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccessoryTableViewController.cs" />
+    <Compile Include="AccessoryTableViewController.designer.cs">
+      <DependentUpon>AccessoryTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccessoryTableSource.cs" />
+    <Compile Include="AccessoryCell.cs" />
+    <Compile Include="AccessoryCell.designer.cs">
+      <DependentUpon>AccessoryCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AvailableViewController.cs" />
+    <Compile Include="AvailableViewController.designer.cs">
+      <DependentUpon>AvailableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AvailableTableViewController.cs" />
+    <Compile Include="AvailableTableViewController.designer.cs">
+      <DependentUpon>AvailableTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AvailableCell.cs" />
+    <Compile Include="AvailableCell.designer.cs">
+      <DependentUpon>AvailableCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AvailableTableSource.cs" />
+    <Compile Include="ServiceTableViewController.cs" />
+    <Compile Include="ServiceTableViewController.designer.cs">
+      <DependentUpon>ServiceTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceTableCell.cs" />
+    <Compile Include="ServiceTableCell.designer.cs">
+      <DependentUpon>ServiceTableCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceTableSource.cs" />
+    <Compile Include="CharacteristicTableViewController.cs" />
+    <Compile Include="CharacteristicTableViewController.designer.cs">
+      <DependentUpon>CharacteristicTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CharacteristicCellSwitch.cs" />
+    <Compile Include="CharacteristicCellSwitch.designer.cs">
+      <DependentUpon>CharacteristicCellSwitch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CharacteristicCellText.cs" />
+    <Compile Include="CharacteristicCellText.designer.cs">
+      <DependentUpon>CharacteristicCellText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CharacteristicCellStepper.cs" />
+    <Compile Include="CharacteristicCellStepper.designer.cs">
+      <DependentUpon>CharacteristicCellStepper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CharacteristicCellSlider.cs" />
+    <Compile Include="CharacteristicCellSlider.designer.cs">
+      <DependentUpon>CharacteristicCellSlider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CharacteristicTableSource.cs" />
+    <Compile Include="Classes\NSObjectConverter.cs" />
+    <Compile Include="CharacteristicCellInfo.cs" />
+    <Compile Include="CharacteristicCellInfo.designer.cs">
+      <DependentUpon>CharacteristicCellInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\CharacteristicDisplayType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="MainStoryboard.storyboard" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ITunesArtwork Include="Resources\iTunesArtwork.png" />
+    <ITunesArtwork Include="Resources\iTunesArtwork%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\" />
+  </ItemGroup>
+</Project>
