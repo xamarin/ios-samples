@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicLaunchScreen", "DynamicLaunchScreen\DynamicLaunchScreen.csproj", "{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}.Release|iPhone.Build.0 = Release|iPhone
+		{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FB9410F2-C27C-4E88-A2BB-AAA291A418C5}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = DynamicLaunchScreen\DynamicLaunchScreen.csproj
+	EndGlobalSection
+EndGlobal

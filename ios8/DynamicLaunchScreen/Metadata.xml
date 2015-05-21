@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>2cbf3de5-5667-4bdf-b3c4-569d0c3594ab</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Platform Features, Size Classes, Storyboards, Auto Layout, iOS8</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>This sample shows how to make Dynamic Launch Screens using a special type of Storyboard for iOS apps.</Brief>
+</SampleMetadata>
