@@ -88,7 +88,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.AppExtension.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\WatchNotifications_iOSWatchKitApp\WatchNotifications_WatchKitApp.csproj">
+    <ProjectReference Include="..\WatchNotifications_WatchKitApp\WatchNotifications_WatchKitApp.csproj">
       <Project>{954DF280-1C91-41EA-84BD-0FFF40F6B918}</Project>
       <Name>WatchNotifications_WatchKitApp</Name>
       <IsWatchApp>True</IsWatchApp>
