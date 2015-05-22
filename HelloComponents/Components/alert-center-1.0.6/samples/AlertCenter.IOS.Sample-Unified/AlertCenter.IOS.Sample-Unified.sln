@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlertCenter.IOS.Sample-Unified", "AlertCenter.IOS.Sample-Unified.csproj", "{A38F18D9-E67B-4059-98B9-D1F4A1113546}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B7DA7F9-7B78-401B-8ABA-F2E9C49F7850}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{1B7DA7F9-7B78-401B-8ABA-F2E9C49F7850}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{1B7DA7F9-7B78-401B-8ABA-F2E9C49F7850}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{1B7DA7F9-7B78-401B-8ABA-F2E9C49F7850}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{1B7DA7F9-7B78-401B-8ABA-F2E9C49F7850}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{1B7DA7F9-7B78-401B-8ABA-F2E9C49F7850}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{1B7DA7F9-7B78-401B-8ABA-F2E9C49F7850}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{1B7DA7F9-7B78-401B-8ABA-F2E9C49F7850}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{1B7DA7F9-7B78-401B-8ABA-F2E9C49F7850}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{1B7DA7F9-7B78-401B-8ABA-F2E9C49F7850}.Release|iPhone.Build.0 = Release|Any CPU
+		{1B7DA7F9-7B78-401B-8ABA-F2E9C49F7850}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{1B7DA7F9-7B78-401B-8ABA-F2E9C49F7850}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{A38F18D9-E67B-4059-98B9-D1F4A1113546}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{A38F18D9-E67B-4059-98B9-D1F4A1113546}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{A38F18D9-E67B-4059-98B9-D1F4A1113546}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{A38F18D9-E67B-4059-98B9-D1F4A1113546}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{A38F18D9-E67B-4059-98B9-D1F4A1113546}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{A38F18D9-E67B-4059-98B9-D1F4A1113546}.Debug|iPhone.Build.0 = Debug|iPhone
+		{A38F18D9-E67B-4059-98B9-D1F4A1113546}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{A38F18D9-E67B-4059-98B9-D1F4A1113546}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{A38F18D9-E67B-4059-98B9-D1F4A1113546}.Release|iPhone.ActiveCfg = Release|iPhone
+		{A38F18D9-E67B-4059-98B9-D1F4A1113546}.Release|iPhone.Build.0 = Release|iPhone
+		{A38F18D9-E67B-4059-98B9-D1F4A1113546}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{A38F18D9-E67B-4059-98B9-D1F4A1113546}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = AlertCenter.IOS.Sample-Unified.csproj
+		version = 1.0.5
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="alert-center">
+  <name>Alert Center</name>
+  <publisher>Code Maker Inc.</publisher>
+  <publisher-url>http://codemaker.net</publisher-url>
+  <version>1.0.6</version>
+  <summary>iOS-style banner notifications for iOS and Android.</summary>
+  <samples>
+    <sample id="AlertCenter.IOS.Sample">
+      <name>iOS Samples</name>
+      <summary>iOS Samples</summary>
+    </sample>
+    <sample id="AlertCenter.Android.Sample">
+      <name>Android Sample</name>
+      <summary>Android Sample</summary>
+    </sample>
+    <sample id="AlertCenter.IOS.Sample-Unified">
+      <name>iOS Unified Samples</name>
+      <summary>iOS Unified Samples</summary>
+    </sample>
+  </samples>
+</component>

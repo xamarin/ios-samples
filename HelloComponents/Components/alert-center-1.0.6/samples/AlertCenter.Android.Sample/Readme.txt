@@ -1,0 +1,1 @@
+The app will require android.permission.SYSTEM_ALERT_WINDOW

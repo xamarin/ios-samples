@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>genre</key>
+	<string>Application</string>
+	<key>bundleVersion</key>
+	<string>1.0</string>
+	<key>itemName</key>
+	<string>AlertCenter.IOS.Sample</string>
+	<key>kind</key>
+	<string>software</string>
+	<key>playlistName</key>
+	<string>AlertCenter.IOS.Sample</string>
+	<key>softwareIconNeedsShine</key>
+	<true/>
+	<key>softwareVersionBundleId</key>
+	<string>com.your-company.AlertCenter.IOS.Sample</string>
+</dict>
+</plist>
