@@ -185,7 +185,7 @@ namespace MidiTest
 
 			sequence.SetMidiEndpoint (virtualEndpoint);
 
-			var presetUrl = CFUrl.FromFile (NSBundle.MainBundle.PathForResource ("gorts_filters", "sf2"));
+			var presetUrl = CFUrl.FromFile (NSBundle.MainBundle.PathForResource ("Gorts_Filters", "sf2"));
 
 			LoadFromDLSOrSoundFont (presetUrl, 10);
 

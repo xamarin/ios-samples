@@ -102,7 +102,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\simpletest.mid" />
-    <BundleResource Include="Resources\gorts_filters.sf2" />
+    <BundleResource Include="Resources\Gorts_Filters.sf2" />
     <BundleResource Include="Resources\Icon%402x.png" />
     <BundleResource Include="Resources\Icon-60%402x.png" />
     <BundleResource Include="Resources\Icon-72.png" />
