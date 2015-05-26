@@ -109,7 +109,6 @@ namespace Stars
 				Console.WriteLine ("Failed to create ES context");
 
 			var view = (GLKView) View;
-			view.DrawInRect += Draw;
 			view.Context = context;
 			view.DrawableDepthFormat = GLKViewDrawableDepthFormat.Format24;
 
@@ -175,6 +174,24 @@ namespace Stars
 		public override bool PrefersStatusBarHidden ()
 		{
 			return true;
+		}
+
+		public override void DrawInRect (GLKView view, CGRect rect)
+		{
+			if (!isDeviceMotionAvailable)
+				return;
+
+			GL.ClearColor (0.0f, 0.0f, 0.0f, 1.0f);
+			GL.Clear (ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+
+			GL.Oes.BindVertexArray (vertexArray);
+
+			// Render the objects with GLKit
+			for (int i = 0; i < (NumCubes + NumStars); i++) {
+				var effect = effects [i];
+				effect.PrepareToDraw();
+				GL.DrawArrays (BeginMode.Triangles, 0, 36);
+			}
 		}
 
 		public void setupGL ()
@@ -283,24 +300,6 @@ namespace Stars
 			                               String.Format("{0:0.#}", dm.Attitude.Pitch * RadiansToDegrees),
 			                               String.Format("{0:0.#}", dm.Attitude.Yaw * RadiansToDegrees));
 			//...now we can print out coordinates
-		}
-
-		public void Draw (object sender, GLKViewDrawEventArgs args)
-		{
-			if (!isDeviceMotionAvailable)
-				return;
-
-			GL.ClearColor (0.0f, 0.0f, 0.0f, 1.0f);
-			GL.Clear (ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-
-			GL.Oes.BindVertexArray (vertexArray);
-
-			// Render the objects with GLKit
-			for (int i = 0; i < (NumCubes + NumStars); i++) {
-				var effect = effects [i];
-				effect.PrepareToDraw();
-				GL.DrawArrays (BeginMode.Triangles, 0, 36);
-			}
 		}
 
 		public void generateRandomPermutation ()
