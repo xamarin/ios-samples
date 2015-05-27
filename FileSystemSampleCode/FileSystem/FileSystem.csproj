@@ -69,6 +69,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -76,10 +79,12 @@
     <Compile Include="FileSystemViewController.cs" />
     <Compile Include="SampleCode.cs" />
     <Compile Include="TestData\TestXml.cs" />
+    <Compile Include="Classes\Account.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TestData\" />
     <Folder Include="Resources\" />
+    <Folder Include="Classes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestData\ReadMe.txt" />
@@ -87,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\icon-72.png" />

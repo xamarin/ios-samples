@@ -13,6 +13,7 @@ namespace FileSystem
 	{
 		UIButton btnFiles, btnDirectories, btnXml, btnAll, btnWrite, btnDirectory;
 		UITextView txtView;
+		bool writeJson = true;
 
 		public override void ViewDidLoad ()
 		{
@@ -65,7 +66,11 @@ namespace FileSystem
 			};
 
 			btnWrite.TouchUpInside += (sender, e) => {
-				SampleCode.WriteFile(txtView);
+				if (writeJson ) {
+					SampleCode.WriteJson(txtView);
+				} else {
+					SampleCode.WriteFile(txtView);
+				}
 			};
 
 			btnDirectory.TouchUpInside += (sender, e) => {

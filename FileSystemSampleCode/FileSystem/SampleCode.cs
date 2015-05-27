@@ -3,6 +3,8 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using UIKit;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace FileSystem
 {
@@ -83,6 +85,28 @@ namespace FileSystem
 			display.Text = "Text was written to a file." + Environment.NewLine
 						+ "-----------------" + Environment.NewLine
 						+ System.IO.File.ReadAllText(filename);
+		}
+
+		public static void WriteJson(UITextView display) {
+
+			// Create a new record
+			var account = new Account(){
+			    Email = "monkey@xamarin.com",
+			    Active = true,
+			    CreatedDate = new DateTime(2015, 5, 27, 0, 0, 0, DateTimeKind.Utc),
+			    Roles = new List<string> {"User", "Admin"}
+			};
+
+			// Serialize object
+			var json = JsonConvert.SerializeObject(account, Newtonsoft.Json.Formatting.Indented);
+
+			// Save to file
+			var documents =	Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
+			var filename = Path.Combine (documents, "account.json");
+			File.WriteAllText(filename, json);
+
+			// Display output
+			display.Text = json;
 		}
 
 		public static void CreateDirectory(UITextView display)
