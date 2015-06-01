@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>BB2DB100-5F0F-44F2-99D4-E414ED71C5AD</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Platform Features, Cloud, Data, iOS8</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<LicenseRequirement>Indie</LicenseRequirement>
+	<Gallery>true</Gallery>
+    <Brief>DocPicker is a sample intended as a quick introduction to using the document Picker in iOS.</Brief>
+</SampleMetadata>
