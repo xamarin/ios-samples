@@ -50,7 +50,7 @@ namespace WatchkitExtension
 		{
 			var rowData = elementsList [(int)rowIndex];
 
-			PushController (rowData ["controllerIdentifier"], null);
+			PushController (rowData ["controllerIdentifier"], (NSObject) null);
 		}
 
 		void LoadTableRows ()
