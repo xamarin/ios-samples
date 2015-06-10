@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayoutWithNavController", "LayoutWithNavController\LayoutWithNavController.csproj", "{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}.Debug|iPhone.Build.0 = Debug|iPhone
+		{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}.Release|iPhone.ActiveCfg = Release|iPhone
+		{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}.Release|iPhone.Build.0 = Release|iPhone
+		{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{CC048781-29C0-4B2E-98A3-965E3DD6C6F7}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = LayoutWithNavController\LayoutWithNavController.csproj
+	EndGlobalSection
+EndGlobal
