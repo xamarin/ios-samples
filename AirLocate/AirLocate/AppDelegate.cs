@@ -19,6 +19,9 @@ namespace AirLocate
 		{
 			locationManager = new CLLocationManager ();
 
+			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
+				locationManager.RequestWhenInUseAuthorization ();
+			}
 			// A user can transition in or out of a region while the application is not running.
 			// When this happens CoreLocation will launch the application momentarily, call this delegate method
 			// and we will let the user know via a local notification.
