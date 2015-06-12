@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>89744C6F-EC17-4F5D-B679-6FB3B1D7E6D1</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>starter</Level>
+	<Tags>Backgrounding</Tags>
+	<Gallery>false</Gallery>
+	<Brief>Sample shows the iOS application lifecycle.</Brief>
+</SampleMetadata>
