@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>D6E74844-24F9-44BA-9B9D-6311A4664E60</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Starter</Level>
+	<Tags>Backgrounding</Tags>
+	<Gallery>false</Gallery>
+	<Brief>Sample shows how to create a well-behaved backgrounding app.</Brief>
+</SampleMetadata>
