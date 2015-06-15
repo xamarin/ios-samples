@@ -50,10 +50,9 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Kevin Mullins (46FB3Q72SJ)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <IpaPackageName>
     </IpaPackageName>
-    <CodesignProvision>dd3d40e4-413e-4f2e-bd55-d761dbba1840</CodesignProvision>
     <MtouchArch>ARMv7</MtouchArch>
     <MtouchI18n>
     </MtouchI18n>
