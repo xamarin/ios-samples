@@ -9,7 +9,7 @@ namespace avTouch
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			window.AddSubview (viewController.View);
+			window.RootViewController = viewController;
 			window.MakeKeyAndVisible ();
 
 			return true;
