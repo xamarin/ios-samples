@@ -29,6 +29,7 @@ namespace avTouch
 			LayoutSublevelMeters ();
 		}
 
+		[Export ("initWithCoder:")]
 		public CALevelMeter (NSCoder coder) : base (coder)
 		{
 			LayoutSublevelMeters ();
