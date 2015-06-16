@@ -58,6 +58,7 @@ namespace MotionGraphs
 			CommonInit ();
 		}
 
+		[Export ("initWithCoder:")]
 		public GraphView (NSCoder coder) : base (coder)
 		{
 			CommonInit ();
