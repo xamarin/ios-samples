@@ -10,6 +10,17 @@ namespace TextKitDemo
 	{
 		public CollectionViewCell (IntPtr handle) : base (handle)
 		{
+			Initialize ();
+		}
+
+		[Export ("initWithCoder:")]
+		public CollectionViewCell (NSCoder coder) : base (coder)
+		{
+			Initialize ();
+		}
+
+		void Initialize ()
+		{
 			BackgroundColor = UIColor.DarkGray;
 			Layer.CornerRadius = 5;
 
