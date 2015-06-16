@@ -43,6 +43,13 @@ namespace Chat
 			Initialize ();
 		}
 
+		[Export ("initWithStyle:reuseIdentifier:")]
+		public OutgoingCell (UITableViewCellStyle style, string reuseIdentifier)
+			: base (style, reuseIdentifier)
+		{
+			Initialize ();
+		}
+
 		void Initialize ()
 		{
 			BubbleHighlightedImage = highlightedBubbleImage;

@@ -2,6 +2,7 @@
 
 using UIKit;
 using CoreGraphics;
+using Foundation;
 
 namespace Chat
 {
@@ -37,6 +38,13 @@ namespace Chat
 		}
 
 		public BubbleCell ()
+		{
+			Initialize ();
+		}
+
+		[Export ("initWithStyle:reuseIdentifier:")]
+		public BubbleCell (UITableViewCellStyle style, string reuseIdentifier)
+			: base (style, reuseIdentifier)
 		{
 			Initialize ();
 		}
