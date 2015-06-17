@@ -28,5 +28,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.FrogScroller</string>
+	<key>CFBundleDisplayName</key>
+	<string>FrogScroller</string>
 </dict>
 </plist>
