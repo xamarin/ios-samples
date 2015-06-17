@@ -30,7 +30,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 			timer = NSTimer.CreateRepeatingTimer (TimeSpan.FromMilliseconds (100),
 				_ => {
 					if (isTimerAvailable) {
-						long pos = player.CurrentPosition;
+						long pos = player.CurrentFrame;
 						_slider.Value = pos;
 						_signalLevelLabel.Text = player.SignalLevel.ToString ("0.00E0");
 					}
@@ -43,7 +43,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
         void OnSliderValueChanged(object sender, EventArgs e)
         {
             isTimerAvailable = false;
-            player.CurrentPosition = (long)_slider.Value;
+            player.CurrentFrame = (long)_slider.Value;
             isTimerAvailable = true;
         }
     }

@@ -14,7 +14,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
     {
 		const float PlayDurarion = 0.5f;
 		const int FramesToPlay = (int) (SampleRate * PlayDurarion);
-        const int Threshold = 100;
+		const int Threshold = 30;
         const int SampleRate = 44100;
 		readonly CFUrl url;
 
@@ -24,21 +24,19 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
         AudioBuffers buffer;
         AudioStreamBasicDescription srcFormat;
         AudioStreamBasicDescription dstFormat;
-        long totalFrames;
-        uint currentFrame;
         int numberOfChannels;
         int triggered;
 
 		public long TotalFrames { get; private set; }
 
-        public long CurrentPosition
+		long currentFrame;
+        public long CurrentFrame
         {
             set
             {
                 long frame = value;
-                frame = Math.Min(frame, totalFrames);
                 frame = Math.Max(frame, 0);
-				currentFrame = (uint)frame;
+				currentFrame = frame % TotalFrames;
             }
             get
             {
@@ -81,16 +79,37 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 
 			// Getting signal level and trigger detection
 			// https://en.wikipedia.org/wiki/Root_mean_square
-			double rms = 0;
 			unsafe {
-				var lPtr = (int*)(void*)outL;
-				for (int i = 0; i < numberFrames; i++)
-					rms += (*lPtr) * (*lPtr);
-			}
-			rms = Math.Sqrt (rms / numberFrames);
-			SignalLevel = rms;
+				AudioBuffer pBuffer = data [0];
+				Int16[] pcm = new Int16[numberFrames];
+				Marshal.Copy (pBuffer.Data, pcm, 0, (int)numberFrames);
 
-			if (triggered <= 0 && rms > Threshold)
+				float rms = 0;
+				for (int j = 0; j < numberFrames; j++) {
+					float v = pcm [j];
+					rms += (v * v) / numberFrames;
+				}
+
+				rms = (float)Math.Sqrt (rms);
+
+				SignalLevel = rms;
+			}
+
+//			double averageSqrSum = 0;
+//			unsafe {
+//				var lPtr = (int*)(void*)outL;
+//				for (int i = 0; i < numberFrames; i++) {
+//					double value = *(lPtr + i);
+//					Console.WriteLine (value);
+//					averageSqrSum += value * value / numberFrames;
+//				}
+//			}
+//			SignalLevel = Math.Sqrt (averageSqrSum);
+//			Console.WriteLine ("SignalLevel: {0}", SignalLevel);
+//			Console.WriteLine ("numberFrames: {0}", numberFrames);
+//			Console.WriteLine ("-------");
+
+			if (triggered <= 0 && SignalLevel > Threshold)
 				triggered = FramesToPlay;
 
 			// playing sound
@@ -105,10 +124,7 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 						var buf0 = (int*)buffer [0].Data;
 						var buf1 = (int*)buffer [numberOfChannels - 1].Data;
 
-						if (currentFrame >= totalFrames)
-							currentFrame = 0;
-
-						++currentFrame;
+						++CurrentFrame;
 						*outLPtr++ = buf0 [currentFrame];
 						*outRPtr++ = buf1 [currentFrame];
 					} else {
@@ -134,20 +150,20 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
             extAudioFile.ClientDataFormat = dstFormat;
 
             // getting total frame
-			totalFrames = extAudioFile.FileLengthFrames;
+			TotalFrames = extAudioFile.FileLengthFrames;
 
             // Allocating AudioBufferList
 			buffer = new AudioBuffers(srcFormat.ChannelsPerFrame);
             for (int i = 0; i < buffer.Count; ++i)
             {
-                int size = (int)(sizeof(int) * totalFrames);
+                int size = (int)(sizeof(int) * TotalFrames);
                 buffer.SetData(i, Marshal.AllocHGlobal(size), size);
             }
 			numberOfChannels = srcFormat.ChannelsPerFrame;
 
             // Reading all frame into the buffer
             ExtAudioFileError status;
-            extAudioFile.Read((uint)totalFrames, buffer, out status);
+            extAudioFile.Read((uint)TotalFrames, buffer, out status);
             if (status != ExtAudioFileError.OK)
                 throw new ApplicationException();
         }
