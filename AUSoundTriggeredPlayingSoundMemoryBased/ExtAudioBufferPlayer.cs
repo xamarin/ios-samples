@@ -12,27 +12,27 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 {
     class ExtAudioBufferPlayer : IDisposable
     {
-        const int _playingDuration = _sampleRate * 2;
+        const int PlayingDuration = SampleRate * 2;
         // 2sec
-        const int _threshold = 100000;
-        readonly CFUrl _url;
-        const int _sampleRate = 44100;
+        const int Threshold = 100000;
+        readonly CFUrl url;
+        const int SampleRate = 44100;
 
-        AudioComponent _audioComponent;
-		AudioUnit.AudioUnit _audioUnit;
-        ExtAudioFile _extAudioFile;
-        AudioBuffers _buffer;
-        AudioStreamBasicDescription _srcFormat;
-        AudioStreamBasicDescription _dstFormat;
-        long _totalFrames;
-        uint _currentFrame;
-        int _numberOfChannels;
-        int _triggered;
-        float _signalLevel;
+        AudioComponent audioComponent;
+		AudioUnit.AudioUnit audioUnit;
+        ExtAudioFile extAudioFile;
+        AudioBuffers buffer;
+        AudioStreamBasicDescription srcFormat;
+        AudioStreamBasicDescription dstFormat;
+        long totalFrames;
+        uint currentFrame;
+        int numberOfChannels;
+        int triggered;
+        float signalLevel;
 
         public long TotalFrames
         {
-            get { return _totalFrames; }
+            get { return totalFrames; }
         }
 
         public long CurrentPosition
@@ -40,189 +40,299 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
             set
             {
                 long frame = value;
-                frame = Math.Min(frame, _totalFrames);
+                frame = Math.Min(frame, totalFrames);
                 frame = Math.Max(frame, 0);
-                _currentFrame = (uint)frame;
+				currentFrame = (uint)frame;
             }
             get
             {
-                return _currentFrame;
+                return currentFrame;
             }
         }
 
         public float SignalLevel
         {
-            get { return _signalLevel; }
+			get { return signalLevel; }
         }
 
         public ExtAudioBufferPlayer(CFUrl url)
         {
-            _url = url;
+			this.url = url;
 
-            prepareExtAudioFile();
-            prepareAudioUnit();
+			AudioSession.Initialize ();
+			AudioSession.Category = AudioSessionCategory.PlayAndRecord; // TODO: we need to play only here
+			AudioSession.Resumed += OnAudioSessionResumed;
+			AudioSession.PreferredHardwareIOBufferDuration = 0.005f;
+
+			// All iPhones and iPads have microphones, but early iPod touches did not
+			if (!AudioSession.AudioInputAvailable) {
+				var noInputAlert = new UIAlertView ("No audio input", "No audio input device is currently attached", null, "Ok");
+				noInputAlert.Show ();
+				return;
+			}
+
+			// Getting the hardware sample rate
+			double hardwareSampleRate = AudioSession.CurrentHardwareSampleRate;
+			Console.WriteLine ("hardwareSampleRate = {0}", hardwareSampleRate);
+
+			// Getting AudioComponent Remote output
+			audioComponent = AudioComponent.FindComponent(AudioTypeOutput.Remote);
+			CheckValue (audioComponent);
+
+			// creating an audio unit instance
+			audioUnit = new AudioUnit.AudioUnit(audioComponent);
+
+			AudioUnitStatus status;
+			status = audioUnit.SetEnableIO(true, AudioUnitScopeType.Input, 1);
+			CheckStatus (status);
+			status = audioUnit.SetEnableIO(true, AudioUnitScopeType.Output, 0);
+			CheckStatus (status);
+
+			dstFormat = new AudioStreamBasicDescription {
+				SampleRate = hardwareSampleRate,
+				Format = AudioFormatType.LinearPCM,
+//				FormatFlags = AudioFormatFlags.IsSignedInteger,
+				FormatFlags = AudioFormatFlags.IsSignedInteger | AudioFormatFlags.IsNonInterleaved,
+				BytesPerPacket = 4,
+				FramesPerPacket = 1,
+				BytesPerFrame = 4,
+				ChannelsPerFrame = 2,
+				BitsPerChannel = 16
+			};
+
+			audioUnit.SetAudioFormat(dstFormat, AudioUnitScopeType.Input, 0);
+			audioUnit.SetAudioFormat(dstFormat, AudioUnitScopeType.Output, 1);
+
+			status = audioUnit.SetRenderCallback(RenderCallback, AudioUnitScopeType.Input, 0);
+			CheckStatus (status);
+
+			audioUnit.Initialize ();
+			audioUnit.Start ();
+
+            PrepareExtAudioFile();
+//            PrepareAudioUnit();
         }
+			
+		void OnAudioSessionResumed (object sender, EventArgs e)
+		{
+			AudioSession.SetActive (true);
+			audioUnit.Initialize ();
+			audioUnit.Start ();
+		}
 
-        AudioUnitStatus _audioUnit_RenderCallback(AudioUnitRenderActionFlags actionFlags, AudioTimeStamp timeStamp, uint busNumber, uint numberFrames, AudioBuffers data)
+        AudioUnitStatus RenderCallback(AudioUnitRenderActionFlags actionFlags, AudioTimeStamp timeStamp, uint busNumber, uint numberFrames, AudioBuffers data)
+		{
+			audioUnit.Render (ref actionFlags, timeStamp, 1, numberFrames, data);
+
+//			int bytesPerChannel = dstFormat.BytesPerFrame / dstFormat.ChannelsPerFrame;
+//			for (int bufCount = 0; bufCount < data.Count; bufCount++) {
+//				AudioBuffer buf = data [bufCount];
+//
+//				int currentFrame = 0;
+//				while (currentFrame < numberFrames) {
+//					// Copy sample to buffer, across all channels
+//					for (int currentChannel = 0; currentChannel < buf.NumberChannels; currentChannel++) {
+//						int offset = currentFrame * dstFormat.BytesPerFrame + currentChannel * bytesPerChannel;
+//
+//						short sample = buf.ReadInt16 (offset);
+//						double tetha = state.SinPhase * Math.PI * 2;
+//						sample = (Int16)(Math.Sin (tetha) * sample);
+//						buf.WriteInt16 (offset, sample);
+//					}
+//
+//					currentFrame++;
+//				}
+//			}
+
+			return AudioUnitStatus.OK;
+			/*
+			// getting microphone input signal
+			audioUnit.Render (ref actionFlags,
+				timeStamp,
+				1, // Remote input
+				numberFrames,
+				data);
+
+			// Getting a pointer to a buffer to be filled
+			IntPtr outL = data [0].Data;
+			IntPtr outR = data [1].Data;
+
+			// Getting signal level and trigger detection
+			unsafe {
+				var outLPtr = (int*)outL.ToPointer ();
+				for (int i = 0; i < numberFrames; i++) {
+					// LPF
+					float diff = Math.Abs (*outLPtr) - signalLevel;
+					if (diff > 0)
+						signalLevel += diff / 1000f;
+					else
+						signalLevel += diff / 10000f;
+
+					diff = Math.Abs (diff);
+
+					// sound triger detection
+					Console.WriteLine ("triggered {0}", triggered);
+					Console.WriteLine ("diff > Threshold {0}", (int)diff > Threshold);
+//					if (triggered <= 0 && diff > Threshold) {
+						Console.WriteLine ("triggered = PlayingDuration");
+						triggered = PlayingDuration;
+//					}
+				}
+			}
+
+			// playing sound
+			unsafe {
+				var outLPtr = (int*)outL.ToPointer ();
+				var outRPtr = (int*)outR.ToPointer ();
+
+				for (int i = 0; i < numberFrames; i++) {
+//					triggered = Math.Max (0, triggered - 1);
+//
+//					if (triggered <= 0) {
+//						// 0-filling
+//						*outLPtr++ = 0;
+//						*outRPtr++ = 0;
+//					} else {
+						var buf0 = (int*)buffer [0].Data;
+						var buf1 = (numberOfChannels == 2) ? (int*)buffer [1].Data : buf0;
+
+						if (currentFrame >= totalFrames)
+							currentFrame = 0;
+
+						++currentFrame;
+						*outLPtr++ = buf0 [currentFrame];
+						*outRPtr++ = buf1 [currentFrame];
+//					}
+				}
+			}
+
+			return AudioUnitStatus.NoError;
+			*/
+		}
+
+        void PrepareExtAudioFile()
         {
-            // getting microphone input signal
-            _audioUnit.Render(ref actionFlags,
-                timeStamp,
-                1, // Remote input
-                numberFrames,
-                data);
+			extAudioFile = ExtAudioFile.OpenUrl(url);
+			CheckValue (extAudioFile, "ExtAudioFile.OpenUrl failed");
 
-            // Getting a pointer to a buffer to be filled
-            IntPtr outL = data[0].Data;
-            IntPtr outR = data[1].Data;
-
-            // Getting signal level and trigger detection
-            unsafe
-            {
-                var outLPtr = (int*)outL.ToPointer();
-                for (int i = 0; i < numberFrames; i++)
-                {
-                    // LPF
-                    float diff = Math.Abs(*outLPtr) - _signalLevel;
-                    if (diff > 0)
-                        _signalLevel += diff / 1000f;
-                    else
-                        _signalLevel += diff / 10000f;
-
-                    diff = Math.Abs(diff);
-
-                    // sound triger detection
-                    if (_triggered <= 0 && diff > _threshold)
-                    {
-                        _triggered = _playingDuration;
-                    }
-                }
-            }
-
-            // playing sound
-            unsafe
-            {
-                var outLPtr = (int*)outL.ToPointer();
-                var outRPtr = (int*)outR.ToPointer();
-
-                for (int i = 0; i < numberFrames; i++)
-                {
-                    _triggered = Math.Max(0, _triggered - 1);
-
-                    if (_triggered <= 0)
-                    {
-                        // 0-filling
-                        *outLPtr++ = 0;
-                        *outRPtr++ = 0;
-                    }
-                    else
-                    {
-                        var buf0 = (int*)_buffer[0].Data;
-                        var buf1 = (_numberOfChannels == 2) ? (int*)_buffer[1].Data : buf0;
-
-                        if (_currentFrame >= _totalFrames)
-                        {
-                            _currentFrame = 0;
-                        }
-
-                        ++_currentFrame;
-                        *outLPtr++ = buf0[_currentFrame];
-                        *outRPtr++ = buf1[_currentFrame];
-                    }
-                }
-            }
-
-            return AudioUnitStatus.NoError;
-        }
-
-        void prepareExtAudioFile()
-        {
-            // Opening Audio File
-            _extAudioFile = ExtAudioFile.OpenUrl(_url);
-
-            // Getting file data format
-            _srcFormat = _extAudioFile.FileDataFormat;
+			srcFormat = extAudioFile.FileDataFormat;
 
             // Setting the channel number of the output format same to the input format
-            _dstFormat = AudioStreamBasicDescription.CreateLinearPCM(channelsPerFrame: (uint)_srcFormat.ChannelsPerFrame, bitsPerChannel: 32);
-            _dstFormat.FormatFlags |= AudioFormatFlags.IsNonInterleaved;
+//			dstFormat = AudioStreamBasicDescription.CreateLinearPCM(channelsPerFrame: (uint)srcFormat.ChannelsPerFrame, bitsPerChannel: 16);
+//            dstFormat.FormatFlags |= AudioFormatFlags.IsNonInterleaved;
 
-            // setting reading format as audio unit cannonical format
-            _extAudioFile.ClientDataFormat = _dstFormat;
+//			Console.WriteLine (dstFormat);
+//			dstFormat = new AudioStreamBasicDescription {
+//				SampleRate = AudioSession.CurrentHardwareSampleRate,
+//				Format = AudioFormatType.LinearPCM,
+//				FormatFlags = AudioFormatFlags.IsSignedInteger | AudioFormatFlags.IsNonInterleaved,
+//				BytesPerPacket = 4,
+//				FramesPerPacket = 1,
+//				BytesPerFrame = 4,
+//				ChannelsPerFrame = 2,
+//				BitsPerChannel = 16
+//			};
+//			Console.WriteLine (dstFormat.SampleRate);
+
+			// This is how you say,“When you convert the data, this is the format I’d like to receive.”
+			// The client data format must be PCM. In other words, you can’t use a single ExtAudioFile to convert between two compressed formats.
+            extAudioFile.ClientDataFormat = dstFormat;
 
             // getting total frame
-            _totalFrames = _extAudioFile.FileLengthFrames;
+			totalFrames = extAudioFile.FileLengthFrames;
 
             // Allocating AudioBufferList
-            _buffer = new AudioBuffers(_srcFormat.ChannelsPerFrame);
-            for (int i = 0; i < _buffer.Count; ++i)
+			buffer = new AudioBuffers(srcFormat.ChannelsPerFrame);
+            for (int i = 0; i < buffer.Count; ++i)
             {
-                int size = (int)(sizeof(uint) * _totalFrames);
-                _buffer.SetData(i, Marshal.AllocHGlobal(size), size);
+                int size = (int)(sizeof(int) * totalFrames);
+                buffer.SetData(i, Marshal.AllocHGlobal(size), size);
             }
-            _numberOfChannels = _srcFormat.ChannelsPerFrame;
+			numberOfChannels = srcFormat.ChannelsPerFrame;
 
             // Reading all frame into the buffer
             ExtAudioFileError status;
-            _extAudioFile.Read((uint)_totalFrames, _buffer, out status);
+            extAudioFile.Read((uint)totalFrames, buffer, out status);
             if (status != ExtAudioFileError.OK)
                 throw new ApplicationException();
         }
 
-        void prepareAudioUnit()
+        void PrepareAudioUnit()
         {
             // Updated for deprecated AudioSession
-            var session = AVAudioSession.SharedInstance();
             NSError error;
+			AudioUnitStatus status;
 
-            if (session == null)
-            {
-                var alert = new UIAlertView("Session error", "Unable to create audio session", null, "Cancel");
-                alert.Show();
-                alert.Clicked += delegate
-                {
-                    alert.DismissWithClickedButtonIndex(0, true);
-                    return;
-                };
-            }
-            session.SetActive(true);
-            session.SetCategory(AVAudioSessionCategory.PlayAndRecord);
-            session.SetPreferredIOBufferDuration(0.005, out error);
+//			error = session.SetCategory(AVAudioSessionCategory.PlayAndRecord);
+//			CheckError (error);
+//
+//			session.SetActive(true);
+//			CheckError (error);
 
             // Getting AudioComponent Remote output
-            _audioComponent = AudioComponent.FindComponent(AudioTypeOutput.Remote);
+			audioComponent = AudioComponent.FindComponent(AudioTypeOutput.Remote);
+			CheckValue (audioComponent);
 
             // creating an audio unit instance
-            _audioUnit = new AudioUnit.AudioUnit(_audioComponent);
+			audioUnit = new AudioUnit.AudioUnit(audioComponent);
 
             // turning on microphone
-            _audioUnit.SetEnableIO(true,
+			status = audioUnit.SetEnableIO(true,
                 AudioUnitScopeType.Input,
                 1 // Remote Input
             );
+			CheckStatus (status);
+
+			status = audioUnit.SetEnableIO(true,
+				AudioUnitScopeType.Output,
+				0 // Remote Input
+			);
+			CheckStatus (status);
+
 
             // setting audio format
-            _audioUnit.SetAudioFormat(_dstFormat,
-                AudioUnitScopeType.Input,
-                0 // Remote Output
+            audioUnit.SetAudioFormat(dstFormat,
+				AudioUnitScopeType.Output,
+                1 // Remote Output
             );
+			CheckStatus (status);
 
-            var format = AudioStreamBasicDescription.CreateLinearPCM(_sampleRate, bitsPerChannel: 32);
-            format.FormatFlags = AudioStreamBasicDescription.AudioFormatFlagsNativeFloat;
-            _audioUnit.SetAudioFormat(format, AudioUnitScopeType.Output, 1);
+//			AudioStreamBasicDescription format = AudioStreamBasicDescription.CreateLinearPCM(SampleRate, bitsPerChannel: 32);
+//            format.FormatFlags = AudioStreamBasicDescription.AudioFormatFlagsNativeFloat;
+			audioUnit.SetAudioFormat(dstFormat, AudioUnitScopeType.Output, 1);
 
             // setting callback method
-            _audioUnit.SetRenderCallback(_audioUnit_RenderCallback, AudioUnitScopeType.Global);
+			status = audioUnit.SetRenderCallback(RenderCallback, AudioUnitScopeType.Input, 0);
+			CheckStatus (status);
 
-            _audioUnit.Initialize();
-            _audioUnit.Start();
+			status = (AudioUnitStatus)audioUnit.Initialize();
+			CheckStatus (status);
+            audioUnit.Start();
         }
+
+		void CheckValue (object value, string message = "")
+		{
+			if (value == null)
+				throw new InvalidProgramException (message);
+		}
+
+		void CheckError (NSError error)
+		{
+			if (error != null)
+				throw new InvalidProgramException (error.Description);
+		}
+
+		void CheckStatus (AudioUnitStatus status)
+		{
+			if (status != AudioUnitStatus.NoError)
+				throw new InvalidProgramException ();
+		}
 
         public void Dispose()
         {
-            _audioUnit.Stop();
-            _audioUnit.Dispose();
-            _extAudioFile.Dispose();
+            audioUnit.Stop();
+            audioUnit.Dispose();
+			extAudioFile.Dispose();
         }
     }
 }
