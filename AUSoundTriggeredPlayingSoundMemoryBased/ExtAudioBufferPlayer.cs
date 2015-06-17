@@ -77,37 +77,14 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 			IntPtr outL = data [0].Data;
 			IntPtr outR = data [1].Data;
 
-			// Getting signal level and trigger detection
+			// Getting signal level
 			// https://en.wikipedia.org/wiki/Root_mean_square
-			unsafe {
-				AudioBuffer pBuffer = data [0];
-				Int16[] pcm = new Int16[numberFrames];
-				Marshal.Copy (pBuffer.Data, pcm, 0, (int)numberFrames);
-
-				float rms = 0;
-				for (int j = 0; j < numberFrames; j++) {
-					float v = pcm [j];
-					rms += (v * v) / numberFrames;
-				}
-
-				rms = (float)Math.Sqrt (rms);
-
-				SignalLevel = rms;
+			float sqrSum = 0;
+			for (int j = 0;  j < numberFrames; j++) {
+				float v = Marshal.ReadInt16(outL, j * sizeof(Int16));
+				sqrSum += (v * v);
 			}
-
-//			double averageSqrSum = 0;
-//			unsafe {
-//				var lPtr = (int*)(void*)outL;
-//				for (int i = 0; i < numberFrames; i++) {
-//					double value = *(lPtr + i);
-//					Console.WriteLine (value);
-//					averageSqrSum += value * value / numberFrames;
-//				}
-//			}
-//			SignalLevel = Math.Sqrt (averageSqrSum);
-//			Console.WriteLine ("SignalLevel: {0}", SignalLevel);
-//			Console.WriteLine ("numberFrames: {0}", numberFrames);
-//			Console.WriteLine ("-------");
+			SignalLevel = (float)Math.Sqrt (sqrSum / numberFrames);
 
 			if (triggered <= 0 && SignalLevel > Threshold)
 				triggered = FramesToPlay;
