@@ -96,6 +96,6 @@
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cow.png" />
+    <BundleResource Include="Resources\cow.png" />
   </ItemGroup>
 </Project>

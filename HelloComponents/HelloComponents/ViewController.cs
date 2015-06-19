@@ -20,7 +20,6 @@ namespace HelloComponents
 				Console.WriteLine ("Moo!");
 				});
 		}
-			
 	}
 }
 
