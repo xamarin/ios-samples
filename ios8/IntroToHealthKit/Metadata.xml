@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>BA8821E2-E79E-4EC2-A84B-16562EA3CD17</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Advanced</Level>
+	<Tags>iOS 8</Tags>
+	<Gallery>false</Gallery>
+	<Brief>A basic example of how to use the HealthKit framework.</Brief>
+</SampleMetadata>
