@@ -16,5 +16,15 @@
 		<string>Icon-Small@2x</string>
 		<string>Icon-Small-40@2x</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>FSScenceKit</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.fsscencekit</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>CFBundleVersion</key>
+	<string>0</string>
+	<key>MinimumOSVersion</key>
+	<string>8.0</string>
 </dict>
 </plist>
