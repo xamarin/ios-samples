@@ -88,17 +88,15 @@ namespace avcaptureframes
 			session.AddInput (input);
 
 			// create a VideoDataOutput and add it to the sesion
-			var output = new AVCaptureVideoDataOutput () {
-				WeakVideoSettings = new CVPixelBufferAttributes () {
-								    PixelFormatType = CVPixelFormatType.CV32BGRA
-								     }.Dictionary,
+			var settings = new CVPixelBufferAttributes {
+				PixelFormatType = CVPixelFormatType.CV32BGRA
 			};
-
-			// configure the output
-			queue = new CoreFoundation.DispatchQueue ("myQueue");
-			outputRecorder = new OutputRecorder ();
-			output.SetSampleBufferDelegate (outputRecorder, queue);
-			session.AddOutput (output);
+			using (var output = new AVCaptureVideoDataOutput { WeakVideoSettings = settings.Dictionary }) {
+				queue = new CoreFoundation.DispatchQueue ("myQueue");
+				outputRecorder = new OutputRecorder ();
+				output.SetSampleBufferDelegate (outputRecorder, queue);
+				session.AddOutput (output);
+			}
 
 			session.StartRunning ();
 			return true;
@@ -108,35 +106,30 @@ namespace avcaptureframes
 		{
 		}
 
-		public class OutputRecorder : AVCaptureVideoDataOutputSampleBufferDelegate {
+		public class OutputRecorder : AVCaptureVideoDataOutputSampleBufferDelegate
+		{
 			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
 			{
 				try {
 					var image = ImageFromSampleBuffer (sampleBuffer);
 
 					// Do something with the image, we just stuff it in our main view.
-					AppDelegate.ImageView.BeginInvokeOnMainThread (delegate {
+					AppDelegate.ImageView.BeginInvokeOnMainThread (()=> {
+						TryDispose(AppDelegate.ImageView.Image);
 						AppDelegate.ImageView.Image = image;
 						AppDelegate.ImageView.Transform = CGAffineTransform.MakeRotation((float)Math.PI/2);
-
 					});
-
-					//
-					// Although this looks innocent "Oh, he is just optimizing this case away"
-					// this is incredibly important to call on this callback, because the AVFoundation
-					// has a fixed number of buffers and if it runs out of free buffers, it will stop
-					// delivering frames.
-					//
-					sampleBuffer.Dispose ();
 				} catch (Exception e){
 					Console.WriteLine (e);
+				} finally {
+					sampleBuffer.Dispose ();
 				}
 			}
 
 			UIImage ImageFromSampleBuffer (CMSampleBuffer sampleBuffer)
 			{
 				// Get the CoreVideo image
-				using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer){
+				using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer) {
 					// Lock the base address
 					pixelBuffer.Lock (0);
 					// Get the number of bytes per row for the pixel buffer
@@ -146,13 +139,21 @@ namespace avcaptureframes
 					int height = (int) pixelBuffer.Height;
 					var flags = CGBitmapFlags.PremultipliedFirst | CGBitmapFlags.ByteOrder32Little;
 					// Create a CGImage on the RGB colorspace from the configured parameter above
-					using (var cs = CGColorSpace.CreateDeviceRGB ())
-					using (var context = new CGBitmapContext (baseAddress,width, height, 8, bytesPerRow, cs, (CGImageAlphaInfo) flags))
-					using (var cgImage = context.ToImage ()){
-						pixelBuffer.Unlock (0);
-						return UIImage.FromImage (cgImage);
+					using (var cs = CGColorSpace.CreateDeviceRGB ()) {
+						using (var context = new CGBitmapContext (baseAddress, width, height, 8, bytesPerRow, cs, (CGImageAlphaInfo)flags)) {
+							using (CGImage cgImage = context.ToImage ()) {
+								pixelBuffer.Unlock (0);
+								return UIImage.FromImage (cgImage);
+							}
+						}
 					}
 				}
+			}
+
+			void TryDispose (IDisposable obj)
+			{
+				if (obj != null)
+					obj.Dispose ();
 			}
 		}
 	}
