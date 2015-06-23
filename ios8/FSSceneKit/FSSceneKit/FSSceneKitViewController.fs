@@ -3,31 +3,31 @@
 open System
 open System.IO
 open System.Linq
-open MonoTouch.UIKit
-open MonoTouch.Foundation
-open MonoTouch.SceneKit
-open MonoTouch.CoreAnimation
+open UIKit
+open Foundation
+open SceneKit
+open CoreAnimation
 
 [<Register("FSSceneKitViewController")>]
 type FSSceneKitViewController() = 
     inherit UIViewController()
 
-    let building width length height posx posy (scene:SCNScene) (rnd:Random) =
+    let building width length height (posx:nfloat) (posy:nfloat) (scene:SCNScene) (rnd:Random) =
         let boxNode = new SCNNode ()
         boxNode.Geometry <- new SCNBox(
             Width = width, 
             Height = height, 
             Length = length, 
-            ChamferRadius = 0.02f
+            ChamferRadius = nfloat 0.02f
         )
-        boxNode.Position <- new SCNVector3(posx, height/2.0F, posy)
+        boxNode.Position <- new SCNVector3(float32 posx, (float32 height)/2.0F, float32 posy)
 
         scene.RootNode.AddChildNode (boxNode)
 
         let buildings = ["Content/building1.jpg";"Content/building2.jpg";"Content/building3.jpg"]
         let material = new SCNMaterial ()
         material.Diffuse.Contents <- UIImage.FromFile (buildings.[rnd.Next(buildings.Length)])
-        material.Diffuse.ContentsTransform <- SCNMatrix4.Scale ( new SCNVector3(width,height,1.F))
+        material.Diffuse.ContentsTransform <- SCNMatrix4.Scale ( new SCNVector3(float32 width, float32 height, 1.F))
         material.Diffuse.WrapS <- SCNWrapMode.Repeat
         material.Diffuse.WrapT <- SCNWrapMode.Repeat
         material.Diffuse.MipFilter <- SCNFilterMode.Linear
@@ -49,10 +49,10 @@ type FSSceneKitViewController() =
         let random (min, max, clamp) =
             let num = float32 ((float (rnd.Next(min, max))) * rnd.NextDouble())
             match clamp with
-            | false -> num
+            | false -> nfloat num
             | _ -> match num with
-                | i when i < 1.0F -> 1.0F
-                | _ -> num
+                   | i when i < 1.0F -> nfloat 1.0F
+                   | _ -> nfloat num
 
         List.map (fun i -> 
             (building 
@@ -99,8 +99,8 @@ type FSSceneKitViewController() =
  
         let floorNode = new SCNNode ()
         floorNode.Geometry <- new SCNPlane(
-            Height=40.0F,
-            Width=40.0F
+            Height=nfloat 40.0F,
+            Width=nfloat 40.0F
         )
         floorNode.Position <- SCNVector3.Zero
 
