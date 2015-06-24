@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>000C04B5-4DDA-4E22-9B70-FD9F56F0DFB3</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Notifications</Tags>
+	<Gallery>true</Gallery>
+	<Brief>This sample illustrates how to use local notifications on iOS.</Brief>
+</SampleMetadata>
