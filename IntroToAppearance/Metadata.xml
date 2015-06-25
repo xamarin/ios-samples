@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>F343BF84-C815-4CB9-9F7A-FCB9C3099C23</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>Graphics</Tags>
+    <LicenseRequirement>starter</LicenseRequirement>
+	<Gallery>false</Gallery>
+	<Brief>This contains a sample demonstrating the use of the Appearance API.</Brief>
+</SampleMetadata>
