@@ -68,10 +68,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="AAPLAppDelegate.cs" />
     <Compile Include="main.cs" />
     <Compile Include="AAPLPreviewView.cs" />
     <Compile Include="AAPLCameraViewController.cs" />
+    <Compile Include="AppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
