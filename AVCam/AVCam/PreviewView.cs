@@ -7,6 +7,7 @@ using ObjCRuntime;
 
 namespace AVCam
 {
+	[Export("AAPLPreviewView")]
 	public class PreviewView : UIView
 	{
 		public static Class LayerClass

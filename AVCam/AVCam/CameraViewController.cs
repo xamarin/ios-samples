@@ -6,6 +6,7 @@ using AVFoundation;
 
 namespace AVCam
 {
+	[Export("AAPLCameraViewController")]
 	public class CameraViewController : UIViewController
 	{
 		public override void ViewDidLoad ()
