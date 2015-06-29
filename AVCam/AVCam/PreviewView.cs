@@ -9,23 +9,23 @@ namespace AVCam
 {
 	public class PreviewView : UIView
 	{
-		public AVCaptureSession session { get; set; }
-
-		public static Class LayerClass ()
+		public static Class LayerClass
 		{
-			// eturn [AVCaptureVideoPreviewLayer class];
+			[Export("layerClass")]
+			get {
+				return new Class (typeof(AVCaptureVideoPreviewLayer));
+			}
 		}
 
-		public AVCaptureSession Session ()
-		{
-			// VCaptureVideoPreviewLayer *previewLayer = (AVCaptureVideoPreviewLayer *)self.layer;
-			// return previewLayer.session;
-		}
-
-		public void SetSession (AVCaptureSession session)
-		{
-			// VCaptureVideoPreviewLayer *previewLayer = (AVCaptureVideoPreviewLayer *)self.layer;
-			// previewLayer.session = session;
+		public AVCaptureSession session {
+			get {
+				var previewLayer = (AVCaptureVideoPreviewLayer)Layer;
+				return previewLayer.Session;
+			}
+			set {
+				var previewLayer = (AVCaptureVideoPreviewLayer)Layer;
+				previewLayer.Session = session;
+			}
 		}
 	}
 }
