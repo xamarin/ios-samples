@@ -4,29 +4,29 @@ using Foundation;
 
 namespace AVCam
 {
-	public class AppDelegate : UIResponder
+	public class AppDelegate : UIApplicationDelegate
 	{
-		public UIWindow window { get; set; }
+		public override UIWindow Window { get; set; }
 
-		public bool ApplicationDidFinishLaunchingWithOptions (UIApplication application, NSDictionary launchOptions)
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			// [UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-			// return YES;
+			UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications ();
+			return true;
 		}
 
-		public void ApplicationWillTerminate (UIApplication application)
+		public override void WillTerminate (UIApplication application)
 		{
-			// [UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+			UIDevice.CurrentDevice.EndGeneratingDeviceOrientationNotifications ();
 		}
 
-		public void ApplicationWillEnterForeground (UIApplication application)
+		public override void WillEnterForeground (UIApplication application)
 		{
-			// [UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+			UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications ();
 		}
 
-		public void ApplicationDidEnterBackground (UIApplication application)
+		public override void DidEnterBackground (UIApplication application)
 		{
-			// [UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+			UIDevice.CurrentDevice.EndGeneratingDeviceOrientationNotifications ();
 		}
 	}
 }
