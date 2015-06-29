@@ -70,8 +70,8 @@
   <ItemGroup>
     <Compile Include="main.cs" />
     <Compile Include="AAPLPreviewView.cs" />
-    <Compile Include="AAPLCameraViewController.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="CameraViewController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />

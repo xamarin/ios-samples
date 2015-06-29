@@ -6,7 +6,7 @@ using AVFoundation;
 
 namespace AVCam
 {
-	public class AAPLCameraViewController : UIViewController
+	public class CameraViewController : UIViewController
 	{
 		public override void ViewDidLoad ()
 		{
@@ -240,7 +240,7 @@ namespace AVCam
 			// }
 		}
 
-		public void ObserveValueForKeyPathOfObjectChangeContext (NSString keyPath, AAPLCameraViewController _object, NSDictionary change, IntPtr context)
+		public void ObserveValueForKeyPathOfObjectChangeContext (NSString keyPath, CameraViewController _object, NSDictionary change, IntPtr context)
 		{
 			// ( context == CapturingStillImageContext ) {
 			// BOOL isCapturingStillImage = [change[NSKeyValueChangeNewKey] boolValue];
@@ -371,7 +371,7 @@ namespace AVCam
 			// }
 		}
 
-		public void ResumeInterruptedSession (AAPLCameraViewController sender)
+		public void ResumeInterruptedSession (CameraViewController sender)
 		{
 			// patch_async( self.sessionQueue, ^{
 			// // The session might fail to start running, e.g., if a phone or FaceTime call is still using audio or video.
@@ -398,7 +398,7 @@ namespace AVCam
 			// }
 		}
 
-		public void ToggleMovieRecording (AAPLCameraViewController sender)
+		public void ToggleMovieRecording (CameraViewController sender)
 		{
 			// f.recordButton.enabled = NO;
 			// dispatch_async( self.sessionQueue, ^{
@@ -429,7 +429,7 @@ namespace AVCam
 			// }
 		}
 
-		public void ChangeCamera (AAPLCameraViewController sender)
+		public void ChangeCamera (CameraViewController sender)
 		{
 			// f.cameraButton.enabled = NO;
 			// self.recordButton.enabled = NO;
@@ -477,7 +477,7 @@ namespace AVCam
 			// }
 		}
 
-		public void SnapStillImage (AAPLCameraViewController sender)
+		public void SnapStillImage (CameraViewController sender)
 		{
 			// patch_async( self.sessionQueue, ^{
 			// AVCaptureConnection *connection = [self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
