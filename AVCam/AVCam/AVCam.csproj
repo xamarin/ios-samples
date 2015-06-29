@@ -68,7 +68,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="main.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="CameraViewController.cs" />
     <Compile Include="PreviewView.cs" />
