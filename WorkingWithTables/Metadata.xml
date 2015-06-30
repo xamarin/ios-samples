@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>ECCEE408-0713-44A6-99A5-72BAC80002E8</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>User Interface</Tags>
+	<Gallery>true</Gallery>
+	<Brief>This collection of samples shows how to use a table in Xamarin.iOS</Brief>
+</SampleMetadata>

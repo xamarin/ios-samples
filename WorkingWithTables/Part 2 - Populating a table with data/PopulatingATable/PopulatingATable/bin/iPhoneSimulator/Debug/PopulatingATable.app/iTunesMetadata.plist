@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>genre</key>
+	<string>Application</string>
+	<key>bundleVersion</key>
+	<string>1.0</string>
+	<key>itemName</key>
+	<string>PopulatingATable</string>
+	<key>kind</key>
+	<string>software</string>
+	<key>playlistName</key>
+	<string>PopulatingATable</string>
+	<key>softwareIconNeedsShine</key>
+	<true/>
+	<key>softwareVersionBundleId</key>
+	<string>com.companyname.populatingatable</string>
+</dict>
+</plist>
