@@ -28,5 +28,11 @@ namespace AVCam
 				previewLayer.Session = value;
 			}
 		}
+
+		public PreviewView (IntPtr handle)
+			: base (handle)
+		{
+			
+		}
 	}
 }

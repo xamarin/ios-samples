@@ -20,38 +20,41 @@ namespace AVCam
 	[Register ("AAPLCameraViewController")]
 	public class CameraViewController : UIViewController, IAVCaptureFileOutputRecordingDelegate
 	{
-		// IBOutlet
+		[Outlet]
 		PreviewView PreviewView { get; set; }
 
+		[Outlet]
 		UILabel CameraUnavailableLabel  { get; set; }
 
+		[Outlet]
 		UIButton ResumeButton { get; set; }
 
+		[Outlet]
 		UIButton RecordButton { get; set; }
 
+		[Outlet]
 		UIButton CameraButton { get; set; }
 
+		[Outlet]
 		UIButton StillButton { get; set; }
 
-		// Session management.
 		DispatchQueue SessionQueue { get; set; }
-
 		AVCaptureSession Session  { get; set; }
-
 		AVCaptureDeviceInput VideoDeviceInput  { get; set; }
-
 		AVCaptureMovieFileOutput MovieFileOutput { get; set; }
-
 		AVCaptureStillImageOutput StillImageOutput { get; set; }
 
-		// Utilities.
 		AVCamSetupResult SetupResult { get; set; }
-		// isSessionRunning
 		bool SessionRunning { get; set; }
 		nint BackgroundRecordingID { get; set; }
 
 		IDisposable subjectSubscriber;
 		List<IDisposable> observers = new List<IDisposable> ();
+
+		public CameraViewController(IntPtr handle)
+			: base (handle)
+		{
+		}
 
 		public override void ViewDidLoad ()
 		{
@@ -101,7 +104,7 @@ namespace AVCam
 			// Setup the capture session.
 			// In general it is not safe to mutate an AVCaptureSession or any of its inputs, outputs, or connections from multiple threads at the same time.
 			// Why not do all of this on the main queue?
-			// Because -[AVCaptureSession startRunning] is a blocking call which can take a long time. We dispatch session setup to the sessionQueue
+			// Because AVCaptureSession.StartRunning is a blocking call which can take a long time. We dispatch session setup to the sessionQueue
 			// so that the main queue isn't blocked, which keeps the UI responsive.
 			SessionQueue.DispatchAsync (() => {
 				if (SetupResult != AVCamSetupResult.Success)
@@ -230,6 +233,9 @@ namespace AVCam
 
 		public override bool ShouldAutorotate ()
 		{
+			if (MovieFileOutput == null)
+				return true;
+
 			return !MovieFileOutput.Recording;
 		}
 
