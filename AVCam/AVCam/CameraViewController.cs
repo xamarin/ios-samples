@@ -49,7 +49,12 @@ namespace AVCam
 		nint BackgroundRecordingID { get; set; }
 
 		IDisposable subjectSubscriber;
-		List<IDisposable> observers = new List<IDisposable> ();
+		IDisposable runningObserver;
+		IDisposable capturingStillObserver;
+		IDisposable recordingObserver;
+		IDisposable runtimeErrorObserver;
+		IDisposable interuptionObserver;
+		IDisposable interuptionEndedObserver;
 
 		public CameraViewController(IntPtr handle)
 			: base (handle)
@@ -157,7 +162,7 @@ namespace AVCam
 					Session.AddOutput (movieFileOutput);
 					AVCaptureConnection connection = movieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
 					if (connection.SupportsVideoStabilization)
-						connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto;
+						connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto; // TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=31518
 					MovieFileOutput = movieFileOutput;
 				} else {
 					Console.WriteLine ("Could not add movie file output to the session");
@@ -257,29 +262,30 @@ namespace AVCam
 
 		void AddObservers ()
 		{
-			throw new NotImplementedException ();
-
-			Session.AddObserver ("running", NSKeyValueObservingOptions.New, OnSessionRunningChanged);
-			StillImageOutput.AddObserver ("capturingStillImage", NSKeyValueObservingOptions.New, OnCapturingStillImageChanged);
-			MovieFileOutput.AddObserver ("recording", NSKeyValueObservingOptions.New, OnRecordingChanged);
+			runningObserver = Session.AddObserver ("running", NSKeyValueObservingOptions.New, OnSessionRunningChanged);
+			capturingStillObserver = StillImageOutput.AddObserver ("capturingStillImage", NSKeyValueObservingOptions.New, OnCapturingStillImageChanged);
+			recordingObserver = MovieFileOutput.AddObserver ("recording", NSKeyValueObservingOptions.New, OnRecordingChanged);
 
 			subjectSubscriber = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureDevice.SubjectAreaDidChangeNotification, SubjectAreaDidChange, VideoDeviceInput.Device);
-			observers.Add (subjectSubscriber);
-			observers.Add (NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.RuntimeErrorNotification, SessionRuntimeError, Session));
+			runtimeErrorObserver = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.RuntimeErrorNotification, SessionRuntimeError, Session);
 
 			// A session can only run when the app is full screen. It will be interrupted in a multi-app layout, introduced in iOS 9.
 			// Add observers to handle these session interruptions
 			// and show a preview is paused message. See the documentation of AVCaptureSession.WasInterruptedNotification for other
 			// interruption reasons.
-			observers.Add (NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.WasInterruptedNotification, SessionWasInterrupted, Session));
-			observers.Add (NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.InterruptionEndedNotification, SessionInterruptionEnded, Session));
+			interuptionObserver = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.WasInterruptedNotification, SessionWasInterrupted, Session);
+			interuptionEndedObserver = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.InterruptionEndedNotification, SessionInterruptionEnded, Session);
 		}
 
 		void RemoveObservers ()
 		{
-			foreach (var o in observers)
-				o.Dispose ();
-			observers.Clear ();
+			subjectSubscriber.Dispose ();
+			runningObserver.Dispose ();
+			capturingStillObserver.Dispose ();
+			recordingObserver.Dispose ();
+			runtimeErrorObserver.Dispose ();
+			interuptionObserver.Dispose ();
+			interuptionEndedObserver.Dispose ();
 		}
 
 		void OnCapturingStillImageChanged (NSObservedChange change)
@@ -537,7 +543,7 @@ namespace AVCam
 						PHPhotoLibrary.RequestAuthorization (status => {
 							if (status == PHAuthorizationStatus.Authorized) {
 								PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
-									throw new NotImplementedException ();
+									// TODO: not bounded
 									// [[PHAssetCreationRequest creationRequestForAsset] addResourceWithType:PHAssetResourceTypePhoto data:imageData options:nil];
 								}, (success, err) => {
 									if (!success)
