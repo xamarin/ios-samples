@@ -1,0 +1,181 @@
+Vegetables,Beet greens
+Vegetables,Bitterleaf
+Vegetables,Bok choy
+Vegetables,Broccoli Rabe
+Vegetables,Brussels sprout
+Vegetables,Cabbage
+Vegetables,Catsear
+Vegetables,Celery
+Vegetables,Celtuce
+Vegetables,Ceylon spinach
+Vegetables,Chard
+Vegetables,Chaya
+Vegetables,Chickweed
+Vegetables,Chicory
+Vegetables,Chinese cabbage
+Vegetables,Chinese Mallow
+Vegetables,Chrysanthemum leaves
+Vegetables,Collard greens
+Vegetables,Corn salad
+Vegetables,Cress
+Vegetables,Dandelion
+Vegetables,Endive
+Vegetables,Epazote
+Vegetables,Fat hen
+Vegetables,Fiddlehead
+Vegetables,Fluted pumpkin
+Vegetables,Garden Rocket
+Vegetables,Golden samphire
+Vegetables,Good King Henry
+Vegetables,Greater Plantain
+Vegetables,Kai-lan
+Vegetables,Kale
+Vegetables,Komatsuna
+Vegetables,Kuka
+Vegetables,Lagos bologi
+Vegetables,Lamb's lettuce
+Vegetables,Land cress
+Vegetables,Lettuce
+Vegetables,Lizard's tail
+Vegetables,Melokhia
+Vegetables,Mizuna greens
+Vegetables,Mustard
+Vegetables,Napa cabbage
+Vegetables,New Zealand Spinach
+Vegetables,Orache
+Vegetables,Pak choy
+Vegetables,Paracress
+Vegetables,Pea sprouts/leaves
+Vegetables,Poke
+Vegetables,Radicchio
+Vegetables,Samphire
+Vegetables,Sea beet
+Vegetables,Sea kale
+Vegetables,Sierra Leone bologi
+Vegetables,Soko
+Vegetables,Sorrel
+Vegetables,Spinach
+Vegetables,Summer purslane
+Vegetables,Swiss chard
+Vegetables,Tatsoi
+Vegetables,Turnip greens
+Vegetables,Watercress
+Vegetables,Water spinach
+Vegetables,Winter purslane
+Vegetables,Yarrow
+Fruits,Avocado
+Fruits,Bell pepper
+Fruits,Bitter melon/Bitter gourd
+Fruits,Courgette
+Fruits,Cucumber
+Fruits,Ivy Gourd
+Fruits,Eggplant/Aubergine/Brinjal
+Fruits,Pumpkin
+Fruits,Squash
+Fruits,Sweet corn aka corn; aka maize
+Fruits,Sweet pepper
+Fruits,Tinda
+Fruits,Tomatillo
+Fruits,Tomato
+Fruits,Winter melon
+Fruits,West Indian gherkin
+Fruits,Zucchini
+Flower Buds,Artichoke
+Flower Buds,Broccoli
+Flower Buds,Cauliflower
+Flower Buds,Courgette flowers
+Flower Buds,Squash blossoms
+Legumes,American groundnut
+Legumes,Azuki bean
+Legumes,Black-eyed pea
+Legumes,Chickpea
+Legumes,Common bean
+Legumes,Drumstick
+Legumes,Dolichos bean
+Legumes,Fava bean
+Legumes,Garbanzo
+Legumes,Green bean
+Legumes,Guar
+Legumes,Gumbo
+Legumes,Horse gram
+Legumes,Indian pea
+Legumes,Lentil
+Legumes,Lima Bean
+Legumes,Moth bean
+Legumes,Mung bean
+Legumes,Okra
+Legumes,Pea
+Legumes,Peanut
+Legumes,Pigeon pea
+Legumes,Ricebean
+Legumes,Runner bean
+Legumes,Snap pea
+Legumes,Snow pea
+Legumes,Soybean
+Legumes,Tarwi
+Legumes,Tepary bean
+Legumes,Urad bean
+Legumes,Velvet bean
+Legumes,Winged bean
+Legumes,Yardlong bean
+Bulbs,Asparagus
+Bulbs,Cardoon
+Bulbs,Celeriac
+Bulbs,Celery
+Bulbs,Elephant Garlic
+Bulbs,Florence fennel
+Bulbs,Garlic
+Bulbs,Kohlrabi
+Bulbs,Kurrat
+Bulbs,Leek
+Bulbs,Lotus root
+Bulbs,Nopal
+Bulbs,Onion
+Bulbs,Spring Onion/Scallion
+Bulbs,Prussian asparagus
+Bulbs,Shallot
+Bulbs,Welsh onion
+Bulbs,Wild leek
+Tubers,Ahipa
+Tubers,Arracacha
+Tubers,Bamboo shoot
+Tubers,Beetroot
+Tubers,Burdock
+Tubers,Broadleaf arrowhead
+Tubers,Camas
+Tubers,Canna
+Tubers,Carrot
+Tubers,Cassava
+Tubers,Chinese artichoke
+Tubers,Daikon
+Tubers,Earthnut pea
+Tubers,Elephant Foot yam
+Tubers,Ensete
+Tubers,Ginger
+Tubers,Gobo
+Tubers,Hamburg parsley
+Tubers,Jerusalem artichoke
+Tubers,Jícama
+Tubers,Manioc
+Tubers,Mooli
+Tubers,Parsnip
+Tubers,Pignut
+Tubers,Plectranthus
+Tubers,Potato
+Tubers,Prairie turnip
+Tubers,Radish
+Tubers,Horseradish
+Tubers,Rutabaga
+Tubers,Salsify
+Tubers,Scorzonera
+Tubers,Skirret
+Tubers,Swede
+Tubers,Sweet Potato or Kumara
+Tubers,Taro
+Tubers,Ti
+Tubers,Tigernut
+Tubers,Turnip
+Tubers,Ulluco
+Tubers,Water chestnut
+Tubers,Yacón
+Tubers,Yam
