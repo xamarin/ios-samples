@@ -7,7 +7,7 @@ using ObjCRuntime;
 
 namespace AVCam
 {
-	[Export("AAPLPreviewView")]
+	[Register("AAPLPreviewView")]
 	public class PreviewView : UIView
 	{
 		public static Class LayerClass
@@ -18,14 +18,14 @@ namespace AVCam
 			}
 		}
 
-		public AVCaptureSession session {
+		public AVCaptureSession Session {
 			get {
 				var previewLayer = (AVCaptureVideoPreviewLayer)Layer;
 				return previewLayer.Session;
 			}
 			set {
 				var previewLayer = (AVCaptureVideoPreviewLayer)Layer;
-				previewLayer.Session = session;
+				previewLayer.Session = value;
 			}
 		}
 	}
