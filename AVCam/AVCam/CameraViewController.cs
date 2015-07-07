@@ -162,7 +162,7 @@ namespace AVCam
 					Session.AddOutput (movieFileOutput);
 					AVCaptureConnection connection = movieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
 					if (connection.SupportsVideoStabilization)
-						connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto; // TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=31518
+						connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto;
 					MovieFileOutput = movieFileOutput;
 				} else {
 					Console.WriteLine ("Could not add movie file output to the session");

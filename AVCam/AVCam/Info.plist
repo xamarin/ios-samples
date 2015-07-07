@@ -43,5 +43,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcon.appiconset</string>
+	<key>CFBundleDisplayName</key>
+	<string>AVCam</string>
 </dict>
 </plist>
