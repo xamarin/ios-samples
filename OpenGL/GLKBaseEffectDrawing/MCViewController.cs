@@ -1,27 +1,20 @@
 using System;
-using UIKit;
+
 using OpenTK;
 using OpenGLES;
 using GLKit;
-using MonoTouch;
 using OpenTK.Graphics.ES20;
 using CoreGraphics;
-using Foundation;
 
 namespace GLKBaseEffectDrawing
 {
-	public class MCViewController : GLKViewController
+	public class MCViewController : GLKViewController, IGLKViewDelegate
 	{
 		float rotation;
 		uint vertexArray;
 		uint vertexBuffer;
 		EAGLContext context;
 		GLKBaseEffect effect;
-
-		public MCViewController ()
-		{
-
-		}
 
 		public override void ViewDidLoad ()
 		{
@@ -32,9 +25,10 @@ namespace GLKBaseEffectDrawing
 			if (context == null)
 				Console.WriteLine ("Failed to create ES context");
 
-			GLKView view = View as GLKView;
+			var view = (GLKView)View;
 			view.Context = context;
 			view.DrawableDepthFormat = GLKViewDrawableDepthFormat.Format24;
+			view.Delegate = this;
 
 			setupGL ();
 		}
@@ -101,7 +95,7 @@ namespace GLKBaseEffectDrawing
 			rotation += (float)TimeSinceLastUpdate * 0.5f;
 		}
 
-		public override void DrawInRect (GLKView view, CGRect rect)
+		public void DrawInRect (GLKView view, CGRect rect)
 		{
 			GL.ClearColor (0.65f, 0.65f, 0.65f, 1f);
 			GL.Clear (ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
