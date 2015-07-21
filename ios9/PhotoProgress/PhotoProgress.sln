@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoProgress", "PhotoProgress\PhotoProgress.csproj", "{C140823E-5464-4DC6-AEA0-F2F0089E1D99}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C140823E-5464-4DC6-AEA0-F2F0089E1D99}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{C140823E-5464-4DC6-AEA0-F2F0089E1D99}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{C140823E-5464-4DC6-AEA0-F2F0089E1D99}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{C140823E-5464-4DC6-AEA0-F2F0089E1D99}.AppStore|iPhone.Build.0 = Release|iPhone
+		{C140823E-5464-4DC6-AEA0-F2F0089E1D99}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C140823E-5464-4DC6-AEA0-F2F0089E1D99}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C140823E-5464-4DC6-AEA0-F2F0089E1D99}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C140823E-5464-4DC6-AEA0-F2F0089E1D99}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C140823E-5464-4DC6-AEA0-F2F0089E1D99}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C140823E-5464-4DC6-AEA0-F2F0089E1D99}.Release|iPhone.Build.0 = Release|iPhone
+		{C140823E-5464-4DC6-AEA0-F2F0089E1D99}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C140823E-5464-4DC6-AEA0-F2F0089E1D99}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal

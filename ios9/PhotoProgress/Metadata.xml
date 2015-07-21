@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>8759e75d-00b6-438e-ac09-66bbed338cf7</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>Backgrounding, Data, iOS9</Tags>
+  <Gallery>true</Gallery>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <Brief>Demonstrates how to create and compose NSProgress objects, and show their progress in UI.</Brief>
+</SampleMetadata>
