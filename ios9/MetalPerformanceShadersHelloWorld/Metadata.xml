@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>9a11a802-b34e-4b5a-a987-1406e051c96e</ID>
+  <IsFullApplication>False</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>Graphics, Platform Features, iOS9</Tags>
+  <Gallery>True</Gallery>
+  <Brief>Demonstrates how easy it is to use the MetalPerformanceShaders framework.</Brief>
+</SampleMetadata>
