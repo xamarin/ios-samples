@@ -108,6 +108,7 @@ However, because the sample galleries are powered by the github sample repos, ea
 
     * **Tags**: a list of relevant tags for the app. These are:
 		* **Data**
+		* **User Interface**
 		* **Games**
 		* **Graphics** (CoreDrawing, Animation, OpenGL...)
 		* **Media** (Video, Sound, recording, photos)
@@ -123,6 +124,7 @@ However, because the sample galleries are powered by the github sample repos, ea
 		* **Async**
 		* **Extension**
 		* **iOS8**
+		* **iOS9**
 		* **Watch**
 		* **Keyboard**
 		* **SceneKit**
