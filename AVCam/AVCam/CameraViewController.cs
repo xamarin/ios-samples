@@ -39,14 +39,20 @@ namespace AVCam
 		UIButton StillButton { get; set; }
 
 		DispatchQueue SessionQueue { get; set; }
+
 		AVCaptureSession Session  { get; set; }
+
 		AVCaptureDeviceInput VideoDeviceInput  { get; set; }
+
 		AVCaptureMovieFileOutput MovieFileOutput { get; set; }
+
 		AVCaptureStillImageOutput StillImageOutput { get; set; }
 
 		AVCamSetupResult SetupResult { get; set; }
+
 		bool SessionRunning { get; set; }
-		nint BackgroundRecordingID { get; set; }
+
+		nint backgroundRecordingID;
 
 		IDisposable subjectSubscriber;
 		IDisposable runningObserver;
@@ -56,7 +62,7 @@ namespace AVCam
 		IDisposable interuptionObserver;
 		IDisposable interuptionEndedObserver;
 
-		public CameraViewController(IntPtr handle)
+		public CameraViewController (IntPtr handle)
 			: base (handle)
 		{
 		}
@@ -115,8 +121,8 @@ namespace AVCam
 				if (SetupResult != AVCamSetupResult.Success)
 					return;
 
-				BackgroundRecordingID = -1;
-				NSError error = null;
+				backgroundRecordingID = -1;
+				NSError error;
 				AVCaptureDevice videoDevice = CameraViewController.CreateDevice (AVMediaType.Video, AVCaptureDevicePosition.Back);
 				AVCaptureDeviceInput videoDeviceInput = AVCaptureDeviceInput.FromDevice (videoDevice, out error);
 				if (videoDeviceInput == null)
@@ -249,9 +255,9 @@ namespace AVCam
 			return UIInterfaceOrientationMask.All;
 		}
 
-		public override void ViewWillTransitionToSize (CGSize size, IUIViewControllerTransitionCoordinator coordinator)
+		public override void ViewWillTransitionToSize (CGSize toSize, IUIViewControllerTransitionCoordinator coordinator)
 		{
-			base.ViewWillTransitionToSize (size, coordinator);
+			base.ViewWillTransitionToSize (toSize, coordinator);
 			// Note that the app delegate controls the device orientation notifications required to use the device orientation.
 			UIDeviceOrientation deviceOrientation = UIDevice.CurrentDevice.Orientation;
 			if (deviceOrientation.IsPortrait () || deviceOrientation.IsLandscape ()) {
@@ -369,7 +375,8 @@ namespace AVCam
 
 			// In iOS 9 and later, the userInfo dictionary contains information on why the session was interrupted.
 			if (UIDevice.CurrentDevice.CheckSystemVersion (9, 0)) {
-//					AVCaptureSessionInterruptionReason reason = [notification.userInfo[AVCaptureSessionInterruptionReasonKey] integerValue];
+				// TODO: not bounded
+//				AVCaptureSessionInterruptionReason reason = null;// [notification.userInfo[AVCaptureSessionInterruptionReasonKey] integerValue];
 //				Console.WriteLine ("Capture session was interrupted with reason {0}", (long)reason );
 //					if ( reason == AVCaptureSessionInterruptionReasonAudioDeviceInUseByAnotherClient ||
 				//			 reason == AVCaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient ) {
@@ -401,24 +408,20 @@ namespace AVCam
 		{
 			Console.WriteLine ("Capture session interruption ended");
 			if (!ResumeButton.Hidden) {
-				UIView.Animate (0.25, () => {
-					ResumeButton.Alpha = 0;
-				}, () => {
-					ResumeButton.Hidden = true;
-				});
+				UIView.AnimateNotify (0.25,
+					() => ResumeButton.Alpha = 0,
+					success => ResumeButton.Hidden = true);
 			}
 			if (!CameraUnavailableLabel.Hidden) {
-				UIView.Animate (0.25, () => {
-					CameraUnavailableLabel.Alpha = 0;
-				}, () => {
-					CameraUnavailableLabel.Hidden = true;
-				});
+				UIView.AnimateNotify (0.25,
+					() => CameraUnavailableLabel.Alpha = 0,
+					success => CameraUnavailableLabel.Hidden = true);
 			}
 		}
 
 		#region Actions
 
-		[Export("resumeInterruptedSession:")]
+		[Export ("resumeInterruptedSession:")]
 		void ResumeInterruptedSession (CameraViewController sender)
 		{
 			SessionQueue.DispatchAsync (() => {
@@ -431,7 +434,7 @@ namespace AVCam
 				SessionRunning = Session.Running;
 				if (!Session.Running) {
 					DispatchQueue.MainQueue.DispatchAsync (() => {
-						string message = "Unable to resume";
+						const string message = "Unable to resume";
 						UIAlertController alertController = UIAlertController.Create ("AVCam", message, UIAlertControllerStyle.Alert);
 						UIAlertAction cancelAction = UIAlertAction.Create ("OK", UIAlertActionStyle.Cancel, null);
 						alertController.AddAction (cancelAction);
@@ -445,21 +448,21 @@ namespace AVCam
 			});
 		}
 
-		[Export("toggleMovieRecording:")]
+		[Export ("toggleMovieRecording:")]
 		void ToggleMovieRecording (CameraViewController sender)
 		{
 			RecordButton.Enabled = false;
 			SessionQueue.DispatchAsync (() => {
 				if (!MovieFileOutput.Recording) {
 					if (UIDevice.CurrentDevice.IsMultitaskingSupported) {
-						// TODO: fix comments
-						// Setup background task. This is needed because the -[captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:]
+						// Setup background task. This is needed because the IAVCaptureFileOutputRecordingDelegate.FinishedRecording
 						// callback is not received until AVCam returns to the foreground unless you request background execution time.
 						// This also ensures that there will be time to write the file to the photo library when AVCam is backgrounded.
-						// To conclude this background execution, -endBackgroundTask is called in
-						// -[captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:] after the recorded file has been saved.
-						BackgroundRecordingID = UIApplication.SharedApplication.BeginBackgroundTask (null);
+						// To conclude this background execution, UIApplication.SharedApplication.EndBackgroundTask is called in
+						// IAVCaptureFileOutputRecordingDelegate.FinishedRecording after the recorded file has been saved.
+						backgroundRecordingID = UIApplication.SharedApplication.BeginBackgroundTask (null);
 					}
+
 					// Update the orientation on the movie file output video connection before starting recording.
 					AVCaptureConnection connection = MovieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
 					AVCaptureVideoPreviewLayer previewLayer = (AVCaptureVideoPreviewLayer)PreviewView.Layer;
@@ -470,7 +473,7 @@ namespace AVCam
 					string outputFileName = NSProcessInfo.ProcessInfo.GloballyUniqueString;
 					string tmpDir = Path.GetTempPath ();
 					string outputFilePath = Path.Combine (tmpDir, outputFileName);
-					outputFileName = Path.ChangeExtension (outputFileName, "mov");
+					outputFilePath = Path.ChangeExtension (outputFilePath, "mov");
 					MovieFileOutput.StartRecordingToOutputFile (new NSUrl (outputFilePath), this);
 				} else {
 					MovieFileOutput.StopRecording ();
@@ -478,7 +481,7 @@ namespace AVCam
 			});
 		}
 
-		[Export("changeCamera:")]
+		[Export ("changeCamera:")]
 		void ChangeCamera (CameraViewController sender)
 		{
 			CameraButton.Enabled = false;
@@ -525,7 +528,7 @@ namespace AVCam
 			});
 		}
 
-		[Export("snapStillImage:")]
+		[Export ("snapStillImage:")]
 		void SnapStillImage (CameraViewController sender)
 		{
 			SessionQueue.DispatchAsync (() => {
@@ -543,8 +546,8 @@ namespace AVCam
 						PHPhotoLibrary.RequestAuthorization (status => {
 							if (status == PHAuthorizationStatus.Authorized) {
 								PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
-									// TODO: not bounded
-									// [[PHAssetCreationRequest creationRequestForAsset] addResourceWithType:PHAssetResourceTypePhoto data:imageData options:nil];
+									var request = PHAssetCreationRequest.CreationRequestForAsset ();
+									request.AddResource (PHAssetResourceType.Photo, imageData, null);
 								}, (success, err) => {
 									if (!success)
 										Console.WriteLine ("Error occurred while saving image to photo library: {0}", err);
@@ -558,7 +561,7 @@ namespace AVCam
 			});
 		}
 
-		[Export("focusAndExposeTap:")]
+		[Export ("focusAndExposeTap:")]
 		void FocusAndExposeTap (UIGestureRecognizer gestureRecognizer)
 		{
 			var location = gestureRecognizer.LocationInView (gestureRecognizer.View);
@@ -572,8 +575,8 @@ namespace AVCam
 
 		public void FinishedRecording (AVCaptureFileOutput captureOutput, NSUrl outputFileUrl, NSObject[] connections, NSError error)
 		{
-			var currentBackgroundRecordingID = BackgroundRecordingID;
-			BackgroundRecordingID = -1;
+			var currentBackgroundRecordingID = backgroundRecordingID;
+			backgroundRecordingID = -1;
 			Action cleanup = () => {
 				NSError err;
 				NSFileManager.DefaultManager.Remove (outputFileUrl, out err);
@@ -584,9 +587,9 @@ namespace AVCam
 			bool success = true;
 			if (error != null) {
 				Console.WriteLine ("Movie file finishing error: {0}", error);
-				// TODO: not bound
-//				success = error.UserInfo[AVErrorRecordingSuccessfullyFinishedKey] boolValue];
+				success = ((NSNumber)error.UserInfo [AVErrorKeys.RecordingSuccessfullyFinished]).BoolValue;
 			}
+
 			if (success) {
 				// Check authorization status.
 				PHPhotoLibrary.RequestAuthorization (status => {
@@ -596,11 +599,10 @@ namespace AVCam
 							// In iOS 9 and later, it's possible to move the file into the photo library without duplicating the file data.
 							// This avoids using double the disk space during save, which can make a difference on devices with limited free disk space.
 							if (UIDevice.CurrentDevice.CheckSystemVersion (9, 0)) {
-								throw new NotImplementedException ();
-//								PHAssetResourceCreationOptions *options = [[PHAssetResourceCreationOptions alloc] init];
-//								options.shouldMoveFile = YES;
-//								PHAssetCreationRequest *changeRequest = [PHAssetCreationRequest creationRequestForAsset];
-//								[changeRequest addResourceWithType:PHAssetResourceTypeVideo fileURL:outputFileURL options:options];
+								var options = new PHAssetResourceCreationOptions ();
+								options.ShouldMoveFile = true;
+								var changeRequest = PHAssetCreationRequest.CreationRequestForAsset ();
+								changeRequest.AddResource (PHAssetResourceType.Video, outputFileUrl, options);
 							} else {
 								PHAssetChangeRequest.FromVideo (outputFileUrl);
 							}
@@ -627,7 +629,7 @@ namespace AVCam
 		{
 			SessionQueue.DispatchAsync (() => {
 				AVCaptureDevice device = VideoDeviceInput.Device;
-				NSError error = null;
+				NSError error;
 				if (device.LockForConfiguration (out error)) {
 					// Setting (Focus/Exposure)PointOfInterest alone does not initiate a (focus/exposure) operation.
 					// Set (Focus/Exposure)Mode to apply the new point of interest.
@@ -650,7 +652,7 @@ namespace AVCam
 		static void SetFlashModeForDevice (AVCaptureFlashMode flashMode, AVCaptureDevice device)
 		{
 			if (device.HasFlash && device.IsFlashModeSupported (flashMode)) {
-				NSError error = null;
+				NSError error;
 				if (device.LockForConfiguration (out error)) {
 					device.FlashMode = flashMode;
 					device.UnlockForConfiguration ();
