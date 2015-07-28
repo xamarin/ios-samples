@@ -41,6 +41,7 @@ namespace UICatalog
 		{
 			DefaultSegmentedControl.Momentary = true;
 			DefaultSegmentedControl.SetEnabled (false, 0);
+			DefaultSegmentedControl.AccessibilityIdentifier = "DEFAULT UISegmentLabel".Localize ();
 			DefaultSegmentedControl.ValueChanged += SelectedSegmentDidChange;
 		}
 
@@ -48,6 +49,7 @@ namespace UICatalog
 		{
 			TintedSegmentedControl.TintColor = ApplicationColors.Blue;
 			TintedSegmentedControl.SelectedSegment = 1;
+			TintedSegmentedControl.AccessibilityIdentifier = "TINTED UISegmentLabel".Localize ();
 			TintedSegmentedControl.ValueChanged += SelectedSegmentDidChange;
 		}
 
@@ -71,6 +73,7 @@ namespace UICatalog
 			}
 
 			CustomSegmentsSegmentedControl.SelectedSegment = 0;
+			CustomSegmentsSegmentedControl.AccessibilityIdentifier = "CUSTOM SEGMENTS UISegmentLabel".Localize ();
 			CustomSegmentsSegmentedControl.ValueChanged += SelectedSegmentDidChange;
 		}
 
@@ -96,6 +99,7 @@ namespace UICatalog
 			};
 			CustomBackgroundSegmentedControl.SetTitleTextAttributes (highlightedTextAttributes, UIControlState.Highlighted);
 
+			CustomBackgroundSegmentedControl.AccessibilityIdentifier = "CUSTOM BACKGROUND UISegmentLabel".Localize ();
 			CustomBackgroundSegmentedControl.ValueChanged += SelectedSegmentDidChange;
 		}
 

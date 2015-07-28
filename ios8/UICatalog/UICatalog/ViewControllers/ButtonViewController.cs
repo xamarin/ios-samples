@@ -44,18 +44,21 @@ namespace UICatalog
 		private void ConfigureSystemTextButton()
 		{
 			SystemTextButton.SetTitle ("Button".Localize (), UIControlState.Normal);
+			SystemTextButton.AccessibilityIdentifier = "SYSTEM (TEXT) UIButton".Localize();
 			SystemTextButton.TouchUpInside += OnButtonClicked;
 		}
 
 		private void ConfigureSystemContactAddButton()
 		{
 			SystemContactAddButton.BackgroundColor = UIColor.Clear;
+			SystemContactAddButton.AccessibilityIdentifier = "SYSTEM (CONTACT ADD) UIButton".Localize();
 			SystemContactAddButton.TouchUpInside += OnButtonClicked;
 		}
 
 		private void ConfigureSystemDetailDisclosureButton()
 		{
 			SystemDetailDisclosureButton.BackgroundColor = UIColor.Clear;
+			SystemDetailDisclosureButton.AccessibilityIdentifier = "SYSTEM (DETAIL DISCLOSURE) UIButton".Localize();
 			SystemDetailDisclosureButton.TouchUpInside += OnButtonClicked;
 		}
 
@@ -68,7 +71,7 @@ namespace UICatalog
 			ImageButton.SetImage (UIImage.FromBundle ("x_icon"), UIControlState.Normal);
 
 			// Add an accessibility label to the image.
-			ImageButton.AccessibilityLabel = "X Button".Localize ();
+			ImageButton.AccessibilityLabel = "IMAGE UIButton".Localize ();
 			ImageButton.TouchUpInside += OnButtonClicked;
 		}
 
@@ -88,6 +91,7 @@ namespace UICatalog
 			var highlightedAttributedTitle = new NSAttributedString ("Button".Localize (), highlightedTitleAttributes);
 			AttributedTextButton.SetAttributedTitle (highlightedAttributedTitle, UIControlState.Highlighted);
 
+			AttributedTextButton.AccessibilityLabel = "ATTRIBUTED TEXT UIButton".Localize ();
 			AttributedTextButton.TouchUpInside += OnButtonClicked;
 		}
 

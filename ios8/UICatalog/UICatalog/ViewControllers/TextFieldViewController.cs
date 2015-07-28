@@ -47,6 +47,7 @@ namespace UICatalog
 			TextField.AutocorrectionType = UITextAutocorrectionType.Yes;
 			TextField.ReturnKeyType = UIReturnKeyType.Done;
 			TextField.ClearButtonMode = UITextFieldViewMode.Never;
+			TextField.AccessibilityIdentifier = "DEFAULT UITextField".Localize ();
 		}
 
 		private void ConfigureTintedTextField()
@@ -57,6 +58,7 @@ namespace UICatalog
 			TintedTextField.Placeholder = "Placeholder text".Localize ();
 			TintedTextField.ReturnKeyType = UIReturnKeyType.Done;
 			TintedTextField.ClearButtonMode = UITextFieldViewMode.Never;
+			TintedTextField.AccessibilityIdentifier = "TINTED UITextField".Localize ();
 		}
 
 		private void ConfigureSecureTextField()
@@ -65,6 +67,7 @@ namespace UICatalog
 			SecureTextField.Placeholder = "Placeholder text".Localize ();
 			SecureTextField.ReturnKeyType = UIReturnKeyType.Done;
 			SecureTextField.ClearButtonMode = UITextFieldViewMode.Always;
+			SecureTextField.AccessibilityIdentifier = "SECURE UITextField".Localize ();
 		}
 
 		// There are many different types of keyboards that you may choose to use.
@@ -75,6 +78,7 @@ namespace UICatalog
 			SpecificKeyboardTextField.KeyboardType = UIKeyboardType.EmailAddress;
 			SpecificKeyboardTextField.Placeholder = "Placeholder text".Localize ();
 			SpecificKeyboardTextField.ReturnKeyType = UIReturnKeyType.Done;
+			SpecificKeyboardTextField.AccessibilityIdentifier = "SPECIFIC KEYWORD UITextField".Localize ();
 		}
 
 		private void ConfigureCustomTextField()
@@ -104,6 +108,7 @@ namespace UICatalog
 			CustomTextField.Placeholder = "Placeholder text".Localize ();
 			CustomTextField.AutocorrectionType = UITextAutocorrectionType.No;
 			CustomTextField.ReturnKeyType = UIReturnKeyType.Done;
+			CustomTextField.AccessibilityIdentifier = "CUSTOM UITextField".Localize ();
 		}
 
 		private void OnCustomTextFieldPurpleButtonClicked(object sender, EventArgs e)
