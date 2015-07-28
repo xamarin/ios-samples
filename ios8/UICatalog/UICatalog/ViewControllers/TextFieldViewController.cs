@@ -78,7 +78,7 @@ namespace UICatalog
 			SpecificKeyboardTextField.KeyboardType = UIKeyboardType.EmailAddress;
 			SpecificKeyboardTextField.Placeholder = "Placeholder text".Localize ();
 			SpecificKeyboardTextField.ReturnKeyType = UIReturnKeyType.Done;
-			SpecificKeyboardTextField.AccessibilityIdentifier = "SPECIFIC KEYWORD UITextField".Localize ();
+			SpecificKeyboardTextField.AccessibilityIdentifier = "SPECIFIC KEYBOARD UITextField".Localize ();
 		}
 
 		private void ConfigureCustomTextField()
