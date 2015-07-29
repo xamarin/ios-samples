@@ -20,7 +20,6 @@
     <ConsolePause>false</ConsolePause>
     <MtouchArch>i386</MtouchArch>
     <MtouchLink>None</MtouchLink>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchProfiling>true</MtouchProfiling>
@@ -38,7 +37,6 @@
     <MtouchArch>i386</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>PhotoFilter</AssemblyName>
     <MtouchI18n>
     </MtouchI18n>
@@ -53,7 +51,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7</MtouchArch>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchProfiling>true</MtouchProfiling>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
@@ -66,7 +63,6 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
@@ -82,7 +78,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <BuildIpa>true</BuildIpa>
     <CodesignProvision>Automatic:AdHoc</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
@@ -98,7 +93,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
     <AssemblyName>PhotoFilterExtension</AssemblyName>
