@@ -20,7 +20,7 @@
 		</dict>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarinqa.iCloudUIDoc</string>
+	<string>com.your-company.iCloudUIDoc</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>MinimumOSVersion</key>
