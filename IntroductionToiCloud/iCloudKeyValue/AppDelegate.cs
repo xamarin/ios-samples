@@ -4,16 +4,21 @@ using UIKit;
 namespace Cloud {
 	[Register ("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate {
-		UIWindow window;
+
+		public override UIWindow Window { get; set; }
+
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			var v = new KeyValueViewController();
+			var viewController = new KeyValueViewController ();
 
-			window = new UIWindow (UIScreen.MainScreen.Bounds);	
-			window.BackgroundColor = UIColor.White;
-			window.Bounds = UIScreen.MainScreen.Bounds;
-			window.AddSubview(v.View);
-            window.MakeKeyAndVisible ();
+			Window = new UIWindow (UIScreen.MainScreen.Bounds) {
+				BackgroundColor = UIColor.White,
+				Bounds = UIScreen.MainScreen.Bounds
+			};
+
+			Window.RootViewController = viewController;
+			Window.MakeKeyAndVisible ();
+
 			return true;
 		}
 	}
