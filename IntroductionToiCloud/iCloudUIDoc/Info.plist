@@ -15,7 +15,7 @@
 			<string>monkeydoc</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.xamarin360.samples.icloud.monkeydoc</string>
+				<string>com.your-company.samples.icloud.monkeydoc</string>
 			</array>
 		</dict>
 	</array>
