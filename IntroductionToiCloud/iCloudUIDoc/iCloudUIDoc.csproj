@@ -28,6 +28,8 @@
     <AssemblyName>iCloud</AssemblyName>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>i386</MtouchArch>
+    <CodesignProvision>0647aabc-9407-4291-bedf-e32b35988f74</CodesignProvision>
+    <CodesignKey>iPhone Developer: Xamarin QA (943YW87293)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -57,14 +59,13 @@
     <BuildIpa>true</BuildIpa>
     <IpaPackageName>
     </IpaPackageName>
-    <MtouchI18n>
-    </MtouchI18n>
     <AssemblyName>iCloudSample</AssemblyName>
     <MtouchLink>Full</MtouchLink>
     <MtouchArch>ARMv7</MtouchArch>
     <CrashReportingApiKey>
     </CrashReportingApiKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>

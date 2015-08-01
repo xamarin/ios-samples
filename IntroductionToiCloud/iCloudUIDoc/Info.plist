@@ -15,12 +15,12 @@
 			<string>monkeydoc</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.xamarin.samples.icloud.monkeydoc</string>
+				<string>com.xamarin360.samples.icloud.monkeydoc</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.samples.icloud</string>
+	<string>com.your-company.iCloudUIDoc</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>MinimumOSVersion</key>
