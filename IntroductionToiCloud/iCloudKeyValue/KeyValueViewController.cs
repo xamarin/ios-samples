@@ -162,7 +162,7 @@ namespace Cloud {
 					foreach (var k in changedKeysList)
 						outputText.Text += String.Format ("\n{0}: {1}", k, store.GetString (k));
 					
-							testText.Text = store.GetString (sharedKeyName);
+					testText.Text = store.GetString (sharedKeyName);
 					localText.Text = store.GetString (UIDevice.CurrentDevice.Name);
 				});
 			});
