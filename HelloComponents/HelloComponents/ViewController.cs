@@ -18,7 +18,7 @@ namespace HelloComponents
 			AlertCenter.Default.PostMessage ("Interrupting cow.", "Interrupting cow who?",
 				UIImage.FromFile ("cow.png"), delegate {
 				Console.WriteLine ("Moo!");
-				});
+			});
 		}
 	}
 }
