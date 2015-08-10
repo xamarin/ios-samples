@@ -22,7 +22,9 @@ namespace MetalPerformanceShadersHelloWorld {
 			metalView = (MTKView)View;
 
 			// Make sure the current device supports MetalPerformanceShaders.
-			if (!metalView.Device.SupportsFeatureSet (MTLFeatureSet.iOS_GPUFamily2_v1))
+			bool? deviceSupportsPerformanceShaders = null;
+			deviceSupportsPerformanceShaders = metalView.Device?.SupportsFeatureSet (MTLFeatureSet.iOS_GPUFamily2_v1);
+			if (!deviceSupportsPerformanceShaders.HasValue || !deviceSupportsPerformanceShaders.Value)
 				return;
 
 			MetalPerformanceShadersDisabledLabel.Hidden = true;
