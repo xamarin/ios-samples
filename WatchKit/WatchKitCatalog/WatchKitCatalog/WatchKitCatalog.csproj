@@ -83,8 +83,8 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <CodesignProvision>ba6dab2b-79e9-4e8b-b0f9-174570093692</CodesignProvision>
-    <CodesignKey>iPhone Distribution: Xamarin Inc (7V723M9SQ5)</CodesignKey>
+    <CodesignProvision>edf32efa-4676-44a5-8c2b-81057c24efc5</CodesignProvision>
+    <CodesignKey>iPhone Distribution: Peter Beaman (ZYWNCWEKU5)</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n>
     </MtouchI18n>

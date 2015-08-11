@@ -58,10 +58,11 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Distribution: Peter Beaman (ZYWNCWEKU5)</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n>
     </MtouchI18n>
+    <CodesignProvision>b6285d65-58c4-4769-868f-08216f9ecb7d</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
