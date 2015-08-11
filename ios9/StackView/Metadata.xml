@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>b54fb0f4-292b-49fd-b524-5b2f10a0b043</ID>
+<IsFullApplication>true</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>iOS9, User Interface</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+  <Brief>Sample demonstrates how to use the new UIStackView control.</Brief>
+</SampleMetadata>
