@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{D7CCCC65-2FEB-4D9C-A9EC-12BDA20402BA}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>AstroLayout</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>AstroLayout</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="AstroViewController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Earth.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Earth.imageset\Earth.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Jupiter.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Jupiter.imageset\Jupiter.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Mars.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Mars.imageset\Mars.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Mercury.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Mercury.imageset\Mercury.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Neptune.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Neptune.imageset\Neptune.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Saturn.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Saturn.imageset\Saturn.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Uranus.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Uranus.imageset\Uranus.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Venus.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Venus.imageset\Venus.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Earth.imageset\Earth%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Earth.imageset\Earth%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Jupiter.imageset\Jupiter%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Jupiter.imageset\Jupiter%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Mars.imageset\Mars%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Mars.imageset\Mars%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Mercury.imageset\Mercury%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Mercury.imageset\Mercury%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Neptune.imageset\Neptune%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Neptune.imageset\Neptune%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Saturn.imageset\Saturn%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Saturn.imageset\Saturn%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Uranus.imageset\Uranus%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Uranus.imageset\Uranus%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Venus.imageset\Venus%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Venus.imageset\Venus%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\AstroLayout~iPad.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\AstroLayout~iPad%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\AstroLayout~iPadSettings.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\AstroLayout~iPadSettings%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\AstroLayout~iPadSpotlight.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\AstroLayout~iPadSpotlight%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\AstroLayout~iPhone%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\AstroLayout~iPhone%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\AstroLayout~iPhoneSettings%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\AstroLayout~iPhoneSettings%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\AstroLayout~iPhoneSpotlight%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\AstroLayout~iPhoneSpotlight%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+</Project>
