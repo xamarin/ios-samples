@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StickyCorners", "StickyCorners\StickyCorners.csproj", "{34376653-8891-40B1-8089-E2E4545A16DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34376653-8891-40B1-8089-E2E4545A16DC}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{34376653-8891-40B1-8089-E2E4545A16DC}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{34376653-8891-40B1-8089-E2E4545A16DC}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{34376653-8891-40B1-8089-E2E4545A16DC}.Debug|iPhone.Build.0 = Debug|iPhone
+		{34376653-8891-40B1-8089-E2E4545A16DC}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{34376653-8891-40B1-8089-E2E4545A16DC}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{34376653-8891-40B1-8089-E2E4545A16DC}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{34376653-8891-40B1-8089-E2E4545A16DC}.Release|Any CPU.Build.0 = Release|iPhone
+		{34376653-8891-40B1-8089-E2E4545A16DC}.Release|iPhone.ActiveCfg = Release|iPhone
+		{34376653-8891-40B1-8089-E2E4545A16DC}.Release|iPhone.Build.0 = Release|iPhone
+		{34376653-8891-40B1-8089-E2E4545A16DC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{34376653-8891-40B1-8089-E2E4545A16DC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal

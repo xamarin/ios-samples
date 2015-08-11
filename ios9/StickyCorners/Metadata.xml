@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>7a2cccd4-ad47-463e-9a09-cdb053bbdd11</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>Platform Features, iOS9</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>Showcases the usage of UIFieldBehavior using UIKit Dynamics.</Brief>
+</SampleMetadata>
