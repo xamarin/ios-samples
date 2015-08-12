@@ -45,11 +45,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="libInfColorPickerSDK.a" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="libInfColorPickerSDK.linkwith.cs">
       <DependentUpon>libInfColorPickerSDK.a</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingNativeLibrary Include="..\..\libInfColorPickerSDK.a">
+      <Link>libInfColorPickerSDK.a</Link>
+    </ObjcBindingNativeLibrary>
   </ItemGroup>
 </Project>
