@@ -23,13 +23,7 @@ namespace PopulatingATable
 			table.AutoresizingMask = UIViewAutoresizing.All;
 			CreateTableItems();
 			Add (table);
-
-//			TableViewDelegate tableDelegate = new TableViewDelegate (this);
-//
-//			table.Delegate = tableDelegate;
-
 		}
-
 
 		void CreateTableItems ()
 		{
@@ -52,32 +46,5 @@ namespace PopulatingATable
 
 			table.Source = source;
 		}
-
-		public override void DidReceiveMemoryWarning ()
-		{
-			base.DidReceiveMemoryWarning ();
-			// Release any cached data, images, etc that aren't in use.
-		}
-
-//		class TableViewDelegate : NSObject, IUITableViewDelegate{
-//
-//			ViewController parent ;
-//
-//			public TableViewDelegate(ViewController parent){
-//				this.parent = parent;
-//			}
-//
-//			[Export ("tableView:didSelectRowAtIndexPath:")]
-//			public void RowSelected (UITableView tableView, NSIndexPath indexPath)
-//			{
-//				var tableSource = (TableSource)parent.table.Source;
-//				UIAlertController okAlertController = UIAlertController.Create ("Row Selected", tableSource.GetTableItem(indexPath), UIAlertControllerStyle.Alert);
-//				okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-//				parent.PresentViewController (okAlertController, true, null);
-//				tableView.DeselectRow (indexPath, true);
-//			}
-//
-//		}
 	}
 }
-

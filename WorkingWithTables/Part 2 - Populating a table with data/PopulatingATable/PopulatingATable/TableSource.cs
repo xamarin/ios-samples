@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 using UIKit;
 using Foundation;
@@ -40,11 +39,6 @@ namespace PopulatingATable
 			tableView.DeselectRow (indexPath, true); // normal iOS behaviour is to remove the blue highlight
 		}
 
-//		public string GetTableItem(NSIndexPath indexPath)
-//		{
-//			return TableItems[indexPath.Row];
-//		}
-
 		/// <summary>
 		/// Called by the TableView to determine how many cells to create for that particular section.
 		/// </summary>
@@ -60,14 +54,11 @@ namespace PopulatingATable
 		{
 			// request a recycled cell to save memory
 			UITableViewCell cell = tableView.DequeueReusableCell (CellIdentifier);
-			string item = tableItems[indexPath.Row];
 
-			//---- if there are no cells to reuse, create a new one
-			if (cell == null)
-			{ cell = new UITableViewCell (UITableViewCellStyle.Default, CellIdentifier); }
+			// if there are no cells to reuse, create a new one
+			cell = cell ?? new UITableViewCell (UITableViewCellStyle.Default, CellIdentifier);
 
-			cell.TextLabel.Text = item;
-			//cell.SeparatorInset = new UIEdgeInsets (50, 50, 50, 50);
+			cell.TextLabel.Text = tableItems[indexPath.Row];
 
 			return cell;
 		}
@@ -78,4 +69,3 @@ namespace PopulatingATable
 		}
 	}
 }
-
