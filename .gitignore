@@ -6,7 +6,7 @@
 *.suo
 
 packages/
-
+[Bb]uild/
 */bin/*
 */obj/*
 */*/bin/*
