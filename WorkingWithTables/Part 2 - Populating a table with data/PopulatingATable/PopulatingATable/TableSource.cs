@@ -1,18 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
+
 using UIKit;
 using Foundation;
 
 namespace PopulatingATable
 {
+	public class RowArgs : EventArgs
+	{
+		public string Content { get; set; }
+	}
+
 	public class TableSource : UITableViewSource
 	{
-		string[] TableItems;
 		const string CellIdentifier = "TableCell";
 
-		
+		public event EventHandler<RowArgs> Selected;
+		readonly string[] tableItems;
+
 		public TableSource (string[] items)
 		{
-			TableItems = items;
+			tableItems = items;
 		}
 
 		/// <summary>
@@ -25,7 +33,10 @@ namespace PopulatingATable
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			new UIAlertView("Row Selected", tableItems[indexPath.Row], null, "OK", null).Show();
+			var handler = Selected;
+			if (handler != null)
+				handler (this, new RowArgs { Content = tableItems [indexPath.Row] });
+
 			tableView.DeselectRow (indexPath, true); // normal iOS behaviour is to remove the blue highlight
 		}
 
@@ -39,7 +50,7 @@ namespace PopulatingATable
 		/// </summary>
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return TableItems.Length;
+			return tableItems.Length;
 		}
 
 		/// <summary>
@@ -49,7 +60,7 @@ namespace PopulatingATable
 		{
 			// request a recycled cell to save memory
 			UITableViewCell cell = tableView.DequeueReusableCell (CellIdentifier);
-			string item = TableItems[indexPath.Row];
+			string item = tableItems[indexPath.Row];
 
 			//---- if there are no cells to reuse, create a new one
 			if (cell == null)
