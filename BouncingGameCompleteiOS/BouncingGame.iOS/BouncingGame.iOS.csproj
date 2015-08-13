@@ -87,22 +87,19 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="box2d">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.4.0.0\lib\Xamarin.iOS10\box2d.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\Xamarin.iOS10\box2d.dll</HintPath>
     </Reference>
     <Reference Include="CocosSharp">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.4.0.0\lib\Xamarin.iOS10\CocosSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.4.0.0\lib\Xamarin.iOS10\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\Xamarin.iOS10\CocosSharp.dll</HintPath>
     </Reference>
     <Reference Include="Lidgren.Network">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.4.0.0\lib\Xamarin.iOS10\Lidgren.Network.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\Xamarin.iOS10\Lidgren.Network.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.4.0.0\lib\Xamarin.iOS10\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\Xamarin.iOS10\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework.Net">
-      <HintPath>..\packages\CocosSharp.PCL.Shared.1.4.0.0\lib\Xamarin.iOS10\MonoGame.Framework.Net.dll</HintPath>
+      <HintPath>..\packages\CocosSharp.PCL.Shared.1.5.0.1\lib\Xamarin.iOS10\MonoGame.Framework.Net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
