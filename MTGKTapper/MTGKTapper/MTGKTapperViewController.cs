@@ -163,7 +163,7 @@ namespace MTGKTapper
 
 		public void updateHighScore ()
 		{
-			currentLeaderBoard.LoadScores (new GKScoresLoadedHandler (delegate(GKScore[] scoreArray, NSError error) {
+			currentLeaderBoard.LoadScores ((scoreArray, error) => {
 				if (error == null) {
 					long personalBest;
 					if (currentLeaderBoard.LocalPlayerScore != null)
@@ -171,14 +171,16 @@ namespace MTGKTapper
 					else
 						personalBest = 0;
 					playerBestScoreTextField.Text = personalBest.ToString ();
-					if (currentLeaderBoard.Scores.Length > 0) {
+					Console.WriteLine (currentLeaderBoard.Title);
+
+					var scores = currentLeaderBoard.Scores;
+					if (scores != null && scores.Length > 0)
 						globalHighestScoreTextField.Text = currentLeaderBoard.Scores [0].Value.ToString ();
-					}
 				} else {
 					playerBestScoreTextField.Text = "Unavailable";
 					globalHighestScoreTextField.Text = "Unavailable";
 				}
-			}));
+			});
 		}
 
 		void checkAchievements ()
