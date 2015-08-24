@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>683edee9-56c7-48a3-a151-7c7583fea187</ID>
+	<Brief>The sample shows a simple "hello world" Watch Kit app that responds to touches on the watch screen.</Brief>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>iOS8, Watch, User Interface, Getting Started</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<Gallery>false</Gallery>
+	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+</SampleMetadata>
