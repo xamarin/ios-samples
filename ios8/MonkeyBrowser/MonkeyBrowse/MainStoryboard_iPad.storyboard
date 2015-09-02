@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <scenes>
+        <!--First View Controller - First-->
+        <scene sceneID="hNz-n2-bh7">
+            <objects>
+                <viewController id="9pv-A4-QxB" customClass="FirstViewController" sceneMemberID="viewController" storyboardIdentifier="FirstViewController" restorationIdentifier="FirstViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b2y-UW-5iJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="l5E-5I-4JB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="50">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="51">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="52">
+                                            <rect key="frame" x="0.0" y="0.0" width="955" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="URL" returnKeyType="done" enablesReturnKeyAutomatically="YES" autocorrectionType="no"/>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem title="Go" id="53"/>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="54">
+                                <rect key="frame" x="0.0" y="65" width="1024" height="643"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                            </webView>
+                            <view contentMode="scaleToFill" id="77" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="65" width="1024" height="88"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedRGB" red="0.792156862745098" green="0.035294117647058823" blue="0.41568627450980394" alpha="1"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="78" hidden="NO" animating="YES">
+                                        <rect key="frame" x="20" y="26" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Continue Browsing..." lineBreakMode="tailTruncation" minimumFontSize="10" id="79" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="65" y="34" width="939" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" colorSpace="calibratedRGB" red="1" green="1" blue="1" alpha="1"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Weather" image="25-weather.png" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="URL" destination="52" id="name-outlet-52"/>
+                        <outlet property="GoButton" destination="53" id="name-outlet-53"/>
+                        <outlet property="WebView" destination="54" id="name-outlet-54"/>
+                        <outlet property="Handoff" destination="77" id="name-outlet-77"/>
+                        <outlet property="BusyText" destination="79" id="name-outlet-79"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3321" y="155"/>
+        </scene>
+        <!--Second View Controller - Second-->
+        <scene sceneID="wg7-f3-ORb">
+            <objects>
+                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" sceneMemberID="viewController" storyboardIdentifier="SecondViewController" restorationIdentifier="SecondViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hvu-M7-LoQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="rbX-Nr-2Ws"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="60">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="61">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="62">
+                                            <rect key="frame" x="0.0" y="0.0" width="955" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="URL" returnKeyType="done" enablesReturnKeyAutomatically="YES" autocorrectionType="no"/>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem title="Go" id="63"/>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="68">
+                                <rect key="frame" x="0.0" y="62" width="1024" height="643"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                            </webView>
+                            <view contentMode="scaleToFill" id="98" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="62" width="1024" height="88"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedRGB" red="0.792156862745098" green="0.035294117647058823" blue="0.41568627450980394" alpha="1"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="99" hidden="NO" animating="YES">
+                                        <rect key="frame" x="20" y="26" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Continue Browsing..." lineBreakMode="tailTruncation" minimumFontSize="10" id="100" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="65" y="34" width="939" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" colorSpace="calibratedRGB" red="1" green="1" blue="1" alpha="1"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Favorite" image="29-heart.png" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="URL" destination="62" id="name-outlet-62"/>
+                        <outlet property="GoButton" destination="63" id="name-outlet-63"/>
+                        <outlet property="WebView" destination="68" id="name-outlet-68"/>
+                        <outlet property="Handoff" destination="98" id="name-outlet-98"/>
+                        <outlet property="BusyText" destination="100" id="name-outlet-100"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3337" y="1268"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="968" width="768" height="56"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="18" kind="relationship" relationship="viewControllers" id="23"/>
+                        <segue destination="28" kind="relationship" relationship="viewControllers" id="33"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2023" y="718"/>
+        </scene>
+        <scene sceneID="17">
+            <objects>
+                <viewController id="18" sceneMemberID="viewController" customClass="ThirdViewController" storyboardIdentifier="ThirdViewController" restorationIdentifier="ThirdViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="15"/>
+                        <viewControllerLayoutGuide type="bottom" id="16"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="19">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="65">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="66">
+                                            <rect key="frame" x="0.0" y="0.0" width="955" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="URL" returnKeyType="done" enablesReturnKeyAutomatically="YES" autocorrectionType="no"/>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem title="Go" id="67"/>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69">
+                                <rect key="frame" x="0.0" y="62" width="1024" height="643"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                            </webView>
+                            <view contentMode="scaleToFill" id="101" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="62" width="1024" height="88"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedRGB" red="0.792156862745098" green="0.035294117647058823" blue="0.41568627450980394" alpha="1"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="102" hidden="NO" animating="YES">
+                                        <rect key="frame" x="20" y="26" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Continue Browsing..." lineBreakMode="tailTruncation" minimumFontSize="10" id="103" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="65" y="34" width="939" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" colorSpace="calibratedRGB" red="1" green="1" blue="1" alpha="1"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
+                        </subviews>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Coffee Break" id="22" image="34-coffee.png"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="URL" destination="66" id="name-outlet-66"/>
+                        <outlet property="GoButton" destination="67" id="name-outlet-67"/>
+                        <outlet property="WebView" destination="69" id="name-outlet-69"/>
+                        <outlet property="Handoff" destination="101" id="name-outlet-101"/>
+                        <outlet property="BusyText" destination="103" id="name-outlet-103"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="20" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3338" y="2092"/>
+        </scene>
+        <scene sceneID="27">
+            <objects>
+                <viewController id="28" sceneMemberID="viewController" customClass="FourthViewController" storyboardIdentifier="FourthViewController" restorationIdentifier="FourthViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="25"/>
+                        <viewControllerLayoutGuide type="bottom" id="26"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="29">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="55">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="56">
+                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="57">
+                                            <rect key="frame" x="0.0" y="0.0" width="955" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="URL" returnKeyType="done" enablesReturnKeyAutomatically="YES" autocorrectionType="no"/>
+                                        </textField>
+                                    </barButtonItem>
+                                    <barButtonItem title="Go" id="58"/>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="59">
+                                <rect key="frame" x="0.0" y="62" width="1024" height="643"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                            </webView>
+                            <view contentMode="scaleToFill" id="95" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="62" width="1024" height="88"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedRGB" red="0.792156862745098" green="0.035294117647058823" blue="0.41568627450980394" alpha="1"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="whiteLarge" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="96" hidden="NO" animating="YES">
+                                        <rect key="frame" x="20" y="26" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Continue Browsing..." lineBreakMode="tailTruncation" minimumFontSize="10" id="97" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="65" y="34" width="939" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" colorSpace="calibratedRGB" red="1" green="1" blue="1" alpha="1"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
+                        </subviews>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Work" id="32" image="37-suitcase.png"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="URL" destination="57" id="name-outlet-57"/>
+                        <outlet property="GoButton" destination="58" id="name-outlet-58"/>
+                        <outlet property="WebView" destination="59" id="name-outlet-59"/>
+                        <outlet property="Handoff" destination="95" id="name-outlet-95"/>
+                        <outlet property="BusyText" destination="97" id="name-outlet-97"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="30" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3320" y="-676"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="first" width="30" height="30"/>
+        <image name="second" width="30" height="30"/>
+        <image name="Default-568h.png" width="640" height="1136"/>
+        <image name="first.png" width="30" height="30"/>
+        <image name="second.png" width="30" height="30"/>
+        <image name="25-weather.png" width="24" height="26"/>
+        <image name="29-heart.png" width="24" height="21"/>
+        <image name="34-coffee.png" width="24" height="26"/>
+        <image name="37-suitcase.png" width="26" height="22"/>
+        <image name="Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
+        <image name="Default-Landscape~ipad.png" width="1024" height="768"/>
+        <image name="Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+        <image name="Default-Portrait~ipad.png" width="768" height="1024"/>
+        <image name="Default.png" width="320" height="480"/>
+        <image name="Icon-60.png" width="60" height="60"/>
+        <image name="Icon-72.png" width="72" height="72"/>
+        <image name="Icon-76.png" width="76" height="76"/>
+        <image name="Icon-Small-50.png" width="50" height="50"/>
+        <image name="Icon-Small.png" width="29" height="29"/>
+        <image name="Icon-Spotlight-40.png" width="40" height="40"/>
+        <image name="Icon.png" width="57" height="57"/>
+        <image name="Logo.png" width="512" height="512"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
+        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>
