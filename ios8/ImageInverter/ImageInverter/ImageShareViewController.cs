@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 
 using Foundation;
 using UIKit;
@@ -21,10 +20,16 @@ namespace ImageInverter
 		{
 		}
 
-		[Action("share:")]
-		public void OnShareClicked(UIBarButtonItem button)
+		[Export ("initWithCoder:")]
+		public ImageShareViewController(NSCoder coder)
+			: base (coder)
 		{
-			UIActivityViewController activityViewController = new UIActivityViewController (new NSObject[] {
+		}
+
+		[Action("share:")]
+		void OnShareClicked(UIBarButtonItem button)
+		{
+			var activityViewController = new UIActivityViewController (new [] {
 				ImageView.Image
 			}, null);
 			var popover = activityViewController.PopoverPresentationController;
@@ -34,8 +39,7 @@ namespace ImageInverter
 
 			// Set a completion handler to handle what the UIActivityViewController returns
 			activityViewController.SetCompletionHandler ((activityType, completed, returnedItems, error) => {
-				if (returnedItems == null
-				   || returnedItems.Length == 0)
+				if (returnedItems == null || returnedItems.Length == 0)
 					return;
 
 				NSExtensionItem extensionItem = returnedItems [0];
