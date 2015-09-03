@@ -4,6 +4,7 @@ using Metal;
 using MetalKit;
 using MetalPerformanceShaders;
 using UIKit;
+using CoreGraphics;
 
 namespace MetalPerformanceShadersHelloWorld {
 	public partial class GameViewController : UIViewController, IMTKViewDelegate, INSCoding {
@@ -62,7 +63,7 @@ namespace MetalPerformanceShadersHelloWorld {
 			NSUrl url = NSBundle.MainBundle.GetUrlForResource ("AnimalImage", "png");
 
 			NSError error;
-			sourceTexture = textureLoader.TextureWithContentsOfUrl (url, null, out error);
+			sourceTexture = textureLoader.FromUrl(url, null, out error);
 		}
 
 		void Render ()
@@ -88,14 +89,14 @@ namespace MetalPerformanceShadersHelloWorld {
 			drawable.Dispose ();
 		}
 
-		public void WillLayout (MTKView view, CoreGraphics.CGSize size)
-		{
-			// Called whenever view changes orientation or layout is changed
-		}
-
 		public void Draw (MTKView view)
 		{
 			Render ();
+		}
+
+		public void DrawableSizeWillChange (MTKView view, CGSize size)
+		{
+			// Called whenever view changes orientation or layout is changed
 		}
 	}
 }
