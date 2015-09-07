@@ -39,7 +39,6 @@ Ported to Xamarin.iOS by Vincent Dondain.
 Other Credits
 --------------
 *Watch screenshots use [Bezel] courtesy of [infinitapps] :)*  
-*Watch bezel art courtesy of [Max Rudberg]*
 
 [Bezel]:http://infinitapps.com/bezel/
 [infinitapps]:http://infinitapps.com/
