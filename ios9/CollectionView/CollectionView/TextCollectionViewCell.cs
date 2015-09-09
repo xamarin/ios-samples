@@ -1,16 +1,17 @@
 using System;
 
-using Foundation;
 using UIKit;
 
-namespace CollectionView
-{
-	public partial class TextCollectionViewCell : UICollectionViewCell
-	{
+namespace CollectionView {
+	public partial class TextCollectionViewCell : UICollectionViewCell {
 		#region Computed Properties
 		public string Title {
-			get { return TextLabel.Text; }
-			set { TextLabel.Text = value; }
+			get {
+				return TextLabel.Text;
+			}
+			set {
+				TextLabel.Text = value;
+			}
 		}
 		#endregion
 

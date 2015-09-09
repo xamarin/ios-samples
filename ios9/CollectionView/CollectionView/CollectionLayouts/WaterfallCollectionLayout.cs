@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+
+using CoreGraphics;
 using Foundation;
 using UIKit;
-using System.Collections.Generic;
-using CoreGraphics;
 
-namespace CollectionView
-{
+namespace CollectionView {
 	/// <summary>
 	/// Waterfall collection layout.
 	/// </summary>
@@ -16,32 +16,31 @@ namespace CollectionView
 	/// Xamarin.iOS by Kevin Mullins.
 	/// </remarks>
 	[Register("WaterfallCollectionLayout")]
-	public class WaterfallCollectionLayout : UICollectionViewLayout
-	{
-		#region Private Variables
-		private int _columnCount = 2;
-		private nfloat _minimumColumnSpacing = 10;
-		private nfloat _minimumInterItemSpacing = 10;
-		private nfloat _headerHeight = 0.0f;
-		private nfloat _footerHeight = 0.0f;
-		private UIEdgeInsets _sectionInset = new UIEdgeInsets(0, 0, 0, 0);
-		private WaterfallCollectionRenderDirection _itemRenderDirection = WaterfallCollectionRenderDirection.ShortestFirst;
-		private Dictionary<nint,UICollectionViewLayoutAttributes> _headersAttributes = new Dictionary<nint, UICollectionViewLayoutAttributes>();
-		private Dictionary<nint,UICollectionViewLayoutAttributes> _footersAttributes = new Dictionary<nint, UICollectionViewLayoutAttributes>();
-		private List<CGRect> _unionRects = new List<CGRect>();
-		private List<nfloat> _columnHeights = new List<nfloat>();
-		private List<UICollectionViewLayoutAttributes> _allItemAttributes = new List<UICollectionViewLayoutAttributes>();
-		private List<List<UICollectionViewLayoutAttributes>> _sectionItemAttributes = new List<List<UICollectionViewLayoutAttributes>>();
-		private nfloat _unionSize = 20;
+	public class WaterfallCollectionLayout : UICollectionViewLayout {
+		#region Variables
+		int columnCount = 2;
+		nfloat minimumColumnSpacing = 10f;
+		nfloat minimumInterItemSpacing = 10f;
+		nfloat unionSize = 20f;
+		nfloat headerHeight = 0f;
+		nfloat footerHeight = 0f;
+		UIEdgeInsets sectionInset = new UIEdgeInsets (0f, 0f, 0f, 0f);
+		WaterfallCollectionRenderDirection itemRenderDirection = WaterfallCollectionRenderDirection.ShortestFirst;
+		Dictionary<nint,UICollectionViewLayoutAttributes> headersAttributes = new Dictionary<nint, UICollectionViewLayoutAttributes> ();
+		Dictionary<nint,UICollectionViewLayoutAttributes> footersAttributes = new Dictionary<nint, UICollectionViewLayoutAttributes> ();
+		List<CGRect> unionRects = new List<CGRect> ();
+		List<nfloat> columnHeights = new List<nfloat> ();
+		List<UICollectionViewLayoutAttributes> allItemAttributes = new List<UICollectionViewLayoutAttributes> ();
+		List<List<UICollectionViewLayoutAttributes>> sectionItemAttributes = new List<List<UICollectionViewLayoutAttributes>> ();
 		#endregion
 
 		#region Computed Properties
 		[Export("ColumnCount")]
 		public int ColumnCount {
-			get { return _columnCount; }
+			get { return columnCount; }
 			set {
 				WillChangeValue ("ColumnCount");
-				_columnCount = value;
+				columnCount = value;
 				DidChangeValue ("ColumnCount");
 
 				InvalidateLayout ();
@@ -50,10 +49,10 @@ namespace CollectionView
 
 		[Export("MinimumColumnSpacing")]
 		public nfloat MinimumColumnSpacing {
-			get { return _minimumColumnSpacing; }
+			get { return minimumColumnSpacing; }
 			set {
 				WillChangeValue ("MinimumColumnSpacing");
-				_minimumColumnSpacing = value;
+				minimumColumnSpacing = value;
 				DidChangeValue ("MinimumColumnSpacing");
 
 				InvalidateLayout ();
@@ -62,10 +61,10 @@ namespace CollectionView
 
 		[Export("MinimumInterItemSpacing")]
 		public nfloat MinimumInterItemSpacing {
-			get { return _minimumInterItemSpacing; }
+			get { return minimumInterItemSpacing; }
 			set {
 				WillChangeValue ("MinimumInterItemSpacing");
-				_minimumInterItemSpacing = value;
+				minimumInterItemSpacing = value;
 				DidChangeValue ("MinimumInterItemSpacing");
 
 				InvalidateLayout ();
@@ -74,10 +73,10 @@ namespace CollectionView
 
 		[Export("HeaderHeight")]
 		public nfloat HeaderHeight {
-			get { return _headerHeight; }
+			get { return headerHeight; }
 			set {
 				WillChangeValue ("HeaderHeight");
-				_headerHeight = value;
+				headerHeight = value;
 				DidChangeValue ("HeaderHeight");
 
 				InvalidateLayout ();
@@ -86,10 +85,10 @@ namespace CollectionView
 
 		[Export("FooterHeight")]
 		public nfloat FooterHeight {
-			get { return _footerHeight; }
+			get { return footerHeight; }
 			set {
 				WillChangeValue ("FooterHeight");
-				_footerHeight = value;
+				footerHeight = value;
 				DidChangeValue ("FooterHeight");
 
 				InvalidateLayout ();
@@ -98,10 +97,10 @@ namespace CollectionView
 
 		[Export("SectionInset")]
 		public UIEdgeInsets SectionInset {
-			get { return _sectionInset; }
+			get { return sectionInset; }
 			set {
 				WillChangeValue ("SectionInset");
-				_sectionInset = value;
+				sectionInset = value;
 				DidChangeValue ("SectionInset");
 
 				InvalidateLayout ();
@@ -110,10 +109,10 @@ namespace CollectionView
 
 		[Export("ItemRenderDirection")]
 		public WaterfallCollectionRenderDirection ItemRenderDirection {
-			get { return _itemRenderDirection; }
+			get { return itemRenderDirection; }
 			set {
 				WillChangeValue ("ItemRenderDirection");
-				_itemRenderDirection = value;
+				itemRenderDirection = value;
 				DidChangeValue ("ItemRenderDirection");
 
 				InvalidateLayout ();
@@ -126,18 +125,10 @@ namespace CollectionView
 		{
 		}
 
-		public WaterfallCollectionLayout(NSCoder coder) : base(coder) {
-
+		public WaterfallCollectionLayout(NSCoder coder) : base(coder)
+		{
 		}
 		#endregion 
-
-		#region Public Methods
-		public nfloat ItemWidthInSectionAtIndex(int section) {
-
-			var width = CollectionView.Bounds.Width - SectionInset.Left - SectionInset.Right;
-			return (nfloat)Math.Floor ((width - ((ColumnCount - 1) * MinimumColumnSpacing)) / ColumnCount);
-		}
-		#endregion
 
 		#region Override Methods
 		public override void PrepareLayout ()
@@ -145,31 +136,28 @@ namespace CollectionView
 			base.PrepareLayout ();
 
 			// Get the number of sections
-			var numberofSections = CollectionView.NumberOfSections();
+			var numberofSections = CollectionView.NumberOfSections ();
 			if (numberofSections == 0)
 				return;
 
 			// Reset collections
-			_headersAttributes.Clear ();
-			_footersAttributes.Clear ();
-			_unionRects.Clear ();
-			_columnHeights.Clear ();
-			_allItemAttributes.Clear ();
-			_sectionItemAttributes.Clear ();
+			headersAttributes.Clear ();
+			footersAttributes.Clear ();
+			unionRects.Clear ();
+			columnHeights.Clear ();
+			allItemAttributes.Clear ();
+			sectionItemAttributes.Clear ();
 
 			// Initialize column heights
-			for (int n = 0; n < ColumnCount; n++) {
-				_columnHeights.Add ((nfloat)0);
-			}
+			for (int n = 0; n < ColumnCount; n++)
+				columnHeights.Add ((nfloat)0);
 
 			// Process all sections
-			nfloat top = 0.0f;
+			nfloat top = 0f;
 			var attributes = new UICollectionViewLayoutAttributes ();
-			var columnIndex = 0;
+			int columnIndex = 0;
+
 			for (nint section = 0; section < numberofSections; ++section) {
-				// Calculate section specific metrics
-				var minimumInterItemSpacing = (MinimumInterItemSpacingForSection == null) ? MinimumColumnSpacing : 
-					MinimumInterItemSpacingForSection (CollectionView, this, section);
 
 				// Calculate widths
 				var width = CollectionView.Bounds.Width - SectionInset.Left - SectionInset.Right;
@@ -182,95 +170,88 @@ namespace CollectionView
 				if (heightHeader > 0) {
 					attributes = UICollectionViewLayoutAttributes.CreateForSupplementaryView (UICollectionElementKindSection.Header, NSIndexPath.FromRowSection (0, section));
 					attributes.Frame = new CGRect (0, top, CollectionView.Bounds.Width, heightHeader);
-					_headersAttributes.Add (section, attributes);
-					_allItemAttributes.Add (attributes);
+					headersAttributes.Add (section, attributes);
+					allItemAttributes.Add (attributes);
 
 					top = attributes.Frame.GetMaxY ();
 				}
 
 				top += SectionInset.Top;
-				for (int n = 0; n < ColumnCount; n++) {
-					_columnHeights [n] = top;
-				}
+				for (int n = 0; n < ColumnCount; n++)
+					columnHeights [n] = top;
 
 				// Calculate Section Items
-				var itemCount = CollectionView.NumberOfItemsInSection(section);
-				List<UICollectionViewLayoutAttributes> itemAttributes = new List<UICollectionViewLayoutAttributes> ();
+				var itemCount = CollectionView.NumberOfItemsInSection (section);
+				var itemAttributes = new List<UICollectionViewLayoutAttributes> ();
 
 				for (nint n = 0; n < itemCount; n++) {
 					var indexPath = NSIndexPath.FromRowSection (n, section);
 					columnIndex = NextColumnIndexForItem (n);
 					var xOffset = SectionInset.Left + (itemWidth + MinimumColumnSpacing) * (nfloat)columnIndex;
-					var yOffset = _columnHeights [columnIndex];
+					var yOffset = columnHeights [columnIndex];
 					var itemSize = (SizeForItem == null) ? new CGSize (0, 0) : SizeForItem (CollectionView, this, indexPath);
 					nfloat itemHeight = 0.0f;
 
-					if (itemSize.Height > 0.0f && itemSize.Width > 0.0f) {
+					if (itemSize.Height > 0.0f && itemSize.Width > 0.0f)
 						itemHeight = (nfloat)Math.Floor (itemSize.Height * itemWidth / itemSize.Width);
-					}
 
 					attributes = UICollectionViewLayoutAttributes.CreateForCell (indexPath);
 					attributes.Frame = new CGRect (xOffset, yOffset, itemWidth, itemHeight);
 					itemAttributes.Add (attributes);
-					_allItemAttributes.Add (attributes);
-					_columnHeights [columnIndex] = attributes.Frame.GetMaxY () + MinimumInterItemSpacing;
+					allItemAttributes.Add (attributes);
+					columnHeights [columnIndex] = attributes.Frame.GetMaxY () + MinimumInterItemSpacing;
 				}
-				_sectionItemAttributes.Add (itemAttributes);
+
+				sectionItemAttributes.Add (itemAttributes);
 
 				// Calculate Section Footer
-				nfloat footerHeight = 0.0f;
-				columnIndex = LongestColumnIndex();
-				top = _columnHeights [columnIndex] - MinimumInterItemSpacing + SectionInset.Bottom;
-				footerHeight = (HeightForFooter == null) ? FooterHeight : HeightForFooter(CollectionView, this, section);
+				columnIndex = LongestColumnIndex ();
+				top = columnHeights [columnIndex] - MinimumInterItemSpacing + SectionInset.Bottom;
+				footerHeight = (HeightForFooter == null) ? FooterHeight : HeightForFooter (CollectionView, this, section);
 
 				if (footerHeight > 0) {
 					attributes = UICollectionViewLayoutAttributes.CreateForSupplementaryView (UICollectionElementKindSection.Footer, NSIndexPath.FromRowSection (0, section));
 					attributes.Frame = new CGRect (0, top, CollectionView.Bounds.Width, footerHeight);
-					_footersAttributes.Add (section, attributes);
-					_allItemAttributes.Add (attributes);
+					footersAttributes.Add (section, attributes);
+					allItemAttributes.Add (attributes);
 					top = attributes.Frame.GetMaxY ();
 				}
 
-				for (int n = 0; n < ColumnCount; n++) {
-					_columnHeights [n] = top;
-				}
+				for (int n = 0; n < ColumnCount; n++)
+					columnHeights [n] = top;
 			}
 
-			var i =0;
-			var attrs = _allItemAttributes.Count;
-			while(i < attrs) {
-				var rect1 = _allItemAttributes [i].Frame;
-				i = (int)Math.Min (i + _unionSize, attrs) - 1;
-				var rect2 = _allItemAttributes [i].Frame;
-				_unionRects.Add (CGRect.Union (rect1, rect2));
+			int i = 0;
+			int attrs = allItemAttributes.Count;
+			while (i < attrs) {
+				var rect1 = allItemAttributes [i].Frame;
+				i = (int)Math.Min (i + unionSize, attrs) - 1;
+				var rect2 = allItemAttributes [i].Frame;
+				unionRects.Add (CGRect.Union (rect1, rect2));
 				i++;
 			}
-
 		}
 
 		public override CGSize CollectionViewContentSize {
 			get {
-				if (CollectionView.NumberOfSections () == 0) {
-					return new CGSize (0, 0);
-				}
+				if (CollectionView.NumberOfSections () == 0)
+					return new CGSize (0f, 0f);
 
 				var contentSize = CollectionView.Bounds.Size;
-				contentSize.Height = _columnHeights [0];
+				contentSize.Height = columnHeights [0];
 				return contentSize;
 			}
 		}
 
 		public override UICollectionViewLayoutAttributes LayoutAttributesForItem (NSIndexPath indexPath)
 		{
-			if (indexPath.Section >= _sectionItemAttributes.Count) {
+			if (indexPath.Section >= sectionItemAttributes.Count)
 				return null;
-			}
 
-			if (indexPath.Item >= _sectionItemAttributes [indexPath.Section].Count) {
+			if (indexPath.Item >= sectionItemAttributes [indexPath.Section].Count)
 				return null;
-			}
 
-			var list = _sectionItemAttributes [indexPath.Section];
+			var list = sectionItemAttributes [indexPath.Section];
 			return list [(int)indexPath.Item];
 		}
 
@@ -280,10 +261,10 @@ namespace CollectionView
 
 			switch (kind) {
 			case "header":
-				attributes = _headersAttributes [indexPath.Section];
+				attributes = headersAttributes [indexPath.Section];
 				break;
 			case "footer":
-				attributes = _footersAttributes [indexPath.Section];
+				attributes = footersAttributes [indexPath.Section];
 				break;
 			}
 
@@ -292,32 +273,30 @@ namespace CollectionView
 
 		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
 		{
-			var begin = 0;
-			var end = _unionRects.Count;
-			List<UICollectionViewLayoutAttributes> attrs = new List<UICollectionViewLayoutAttributes> ();
+			int begin = 0;
+			int end = unionRects.Count;
+			var attrs = new List<UICollectionViewLayoutAttributes> ();
 
 
-			for (int i = 0; i < end; i++) {
-				if (rect.IntersectsWith(_unionRects[i])) {
-					begin = i * (int)_unionSize;
-				}
-			}
+			for (int i = 0; i < end; i++)
+				if (rect.IntersectsWith (unionRects [i]))
+					begin = i * (int)unionSize;
 
 			for (int i = end - 1; i >= 0; i--) {
-				if (rect.IntersectsWith (_unionRects [i])) {
-					end = (int)Math.Min ((i + 1) * (int)_unionSize, _allItemAttributes.Count);
+				if (rect.IntersectsWith (unionRects [i])) {
+					end = Math.Min ((i + 1) * (int)unionSize, allItemAttributes.Count);
 					break;
 				}
 			}
 
 			for (int i = begin; i < end; i++) {
-				var attr = _allItemAttributes [i];
+				var attr = allItemAttributes [i];
 				if (rect.IntersectsWith (attr.Frame)) {
 					attrs.Add (attr);
 				}
 			}
 
-			return attrs.ToArray();
+			return attrs.ToArray ();
 		}
 
 		public override bool ShouldInvalidateLayoutForBoundsChange (CGRect newBounds)
@@ -327,14 +306,15 @@ namespace CollectionView
 		}
 		#endregion
 
-		#region Private Methods
-		private int ShortestColumnIndex() {
-			var index = 0;
-			var shortestHeight = nfloat.MaxValue;
-			var n = 0;
+		#region Methods
+		int ShortestColumnIndex()
+		{
+			int index = 0;
+			nfloat shortestHeight = nfloat.MaxValue;
+			int n = 0;
 
 			// Scan each column for the shortest height
-			foreach (nfloat height in _columnHeights) {
+			foreach (nfloat height in columnHeights) {
 				if (height < shortestHeight) {
 					shortestHeight = height;
 					index = n;
@@ -345,13 +325,14 @@ namespace CollectionView
 			return index;
 		}
 
-		private int LongestColumnIndex() {
-			var index = 0;
-			var longestHeight = nfloat.MinValue;
-			var n = 0;
+		int LongestColumnIndex ()
+		{
+			int index = 0;
+			nfloat longestHeight = nfloat.MinValue;
+			int n = 0;
 
 			// Scan each column for the shortest height
-			foreach (nfloat height in _columnHeights) {
+			foreach (nfloat height in columnHeights) {
 				if (height > longestHeight) {
 					longestHeight = height;
 					index = n;
@@ -362,8 +343,9 @@ namespace CollectionView
 			return index;
 		}
 
-		private int NextColumnIndexForItem(nint item) {
-			var index = 0;
+		int NextColumnIndexForItem (nint item)
+		{
+			int index = 0;
 
 			switch (ItemRenderDirection) {
 			case WaterfallCollectionRenderDirection.ShortestFirst:

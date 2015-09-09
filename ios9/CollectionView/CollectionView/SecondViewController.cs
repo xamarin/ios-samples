@@ -2,8 +2,7 @@
 
 using UIKit;
 
-namespace CollectionView
-{
+namespace CollectionView {
 	/// <summary>
 	/// Second view controller.
 	/// </summary>
@@ -13,8 +12,7 @@ namespace CollectionView
 	/// Ported from http://nshint.io/blog/2015/07/16/uicollectionviews-now-have-easy-reordering/ to
 	/// Xamarin.iOS by Kevin Mullins.
 	/// </remarks>
-	public partial class SecondViewController : UICollectionViewController
-	{
+	public partial class SecondViewController : UICollectionViewController {
 		#region Constructors
 		public SecondViewController (IntPtr handle) : base (handle)
 		{
@@ -24,40 +22,32 @@ namespace CollectionView
 		#region Override Methods
 		public override void ViewDidLoad ()
 		{
-			base.ViewDidLoad ();	
+			base.ViewDidLoad ();
 
 			// Create a custom gesture recognizer
-			var longPressGesture = new UILongPressGestureRecognizer ((gesture) => {
+			var longPressGesture = new UILongPressGestureRecognizer (gesture => {
 
 				// Take action based on state
-				switch(gesture.State) {
+				switch (gesture.State) {
 				case UIGestureRecognizerState.Began:
-					var selectedIndexPath = CollectionView.IndexPathForItemAtPoint(gesture.LocationInView(View));
-					if (selectedIndexPath !=null) {
-						CollectionView.BeginInteractiveMovementForItem(selectedIndexPath);
-					}
+					var selectedIndexPath = CollectionView.IndexPathForItemAtPoint (gesture.LocationInView (View));
+					if (selectedIndexPath != null)
+						CollectionView.BeginInteractiveMovementForItem (selectedIndexPath);
 					break;
 				case UIGestureRecognizerState.Changed:
-					CollectionView.UpdateInteractiveMovementTargetPosition(gesture.LocationInView(View));
+					CollectionView.UpdateInteractiveMovementTargetPosition (gesture.LocationInView (View));
 					break;
 				case UIGestureRecognizerState.Ended:
-					CollectionView.EndInteractiveMovement();
+					CollectionView.EndInteractiveMovement ();
 					break;
 				default:
-					CollectionView.CancelInteractiveMovement();
+					CollectionView.CancelInteractiveMovement ();
 					break;
 				}
-
 			});
 
 			// Add the custom recognizer to the collection view
-			CollectionView.AddGestureRecognizer(longPressGesture);
-		}
-
-		public override void DidReceiveMemoryWarning ()
-		{
-			base.DidReceiveMemoryWarning ();
-			// Release any cached data, images, etc that aren't in use.
+			CollectionView.AddGestureRecognizer (longPressGesture);
 		}
 		#endregion
 	}

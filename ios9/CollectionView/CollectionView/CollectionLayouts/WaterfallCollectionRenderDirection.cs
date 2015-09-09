@@ -1,7 +1,4 @@
-﻿using System;
-
-namespace CollectionView
-{
+﻿namespace CollectionView {
 	/// <summary>
 	/// Waterfall collection render direction.
 	/// </summary>
@@ -11,8 +8,7 @@ namespace CollectionView
 	/// Ported from http://nshint.io/blog/2015/07/16/uicollectionviews-now-have-easy-reordering/ to
 	/// Xamarin.iOS by Kevin Mullins.
 	/// </remarks>
-	public enum WaterfallCollectionRenderDirection
-	{
+	public enum WaterfallCollectionRenderDirection {
 		ShortestFirst,
 		LeftToRight,
 		RightToLeft

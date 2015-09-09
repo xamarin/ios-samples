@@ -1,10 +1,9 @@
 ﻿using System;
+
 using UIKit;
-using System.Collections.Generic;
 using Foundation;
 
-namespace CollectionView
-{
+namespace CollectionView {
 	/// <summary>
 	/// Waterfall collection view.
 	/// </summary>
@@ -15,11 +14,12 @@ namespace CollectionView
 	/// Xamarin.iOS by Kevin Mullins.
 	/// </remarks>
 	[Register("WaterfallCollectionView")]
-	public class WaterfallCollectionView : UICollectionView
-	{
+	public class WaterfallCollectionView : UICollectionView {
 		#region Computed Properties
 		public WaterfallCollectionSource Source {
-			get { return (WaterfallCollectionSource)DataSource; }
+			get {
+				return (WaterfallCollectionSource)DataSource;
+			}
 		}
 		#endregion
 
@@ -35,9 +35,8 @@ namespace CollectionView
 			base.AwakeFromNib ();
 
 			// Initialize
-			DataSource = new WaterfallCollectionSource(this);
-			Delegate = new WaterfallCollectionDelegate(this);
-
+			DataSource = new WaterfallCollectionSource (this);
+			Delegate = new WaterfallCollectionDelegate (this);
 		}
 		#endregion
 	}

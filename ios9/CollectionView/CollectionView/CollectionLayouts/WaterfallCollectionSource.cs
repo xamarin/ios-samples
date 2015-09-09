@@ -1,10 +1,10 @@
 ﻿using System;
-using Foundation;
-using UIKit;
 using System.Collections.Generic;
 
-namespace CollectionView
-{
+using Foundation;
+using UIKit;
+
+namespace CollectionView {
 	/// <summary>
 	/// Waterfall collection data source.
 	/// </summary>
@@ -14,15 +14,16 @@ namespace CollectionView
 	/// Ported from http://nshint.io/blog/2015/07/16/uicollectionviews-now-have-easy-reordering/ to
 	/// Xamarin.iOS by Kevin Mullins.
 	/// </remarks>
-	public class WaterfallCollectionSource : UICollectionViewDataSource
-	{
+	public class WaterfallCollectionSource : UICollectionViewDataSource {
 		#region Private Variables
-		private Random rnd = new Random();
+		Random rnd = new Random();
 		#endregion
 
 		#region Computed Properties
-		public WaterfallCollectionView CollectionView { get; set;}
+		public WaterfallCollectionView CollectionView { get; set; }
+
 		public List<int> Numbers { get; set; } = new List<int> ();
+
 		public List<nfloat> Heights { get; set; } = new List<nfloat> ();
 		#endregion
 
@@ -35,18 +36,20 @@ namespace CollectionView
 			// Init numbers collection
 			for (int n = 0; n < 100; ++n) {
 				Numbers.Add (n);
-				Heights.Add (rnd.Next (0, 100) + 40.0f);
+				Heights.Add (rnd.Next (0, 100) + 40f);
 			}
 		}
 		#endregion
 
 		#region Override Methods
-		public override nint NumberOfSections (UICollectionView collectionView) {
+		public override nint NumberOfSections (UICollectionView collectionView)
+		{
 			// We only have one section
 			return 1;
 		}
 
-		public override nint GetItemsCount (UICollectionView collectionView, nint section) {
+		public override nint GetItemsCount (UICollectionView collectionView, nint section)
+		{
 			// Return the number of items
 			return Numbers.Count;
 		}
@@ -60,7 +63,8 @@ namespace CollectionView
 			return cell;
 		}
 
-		public override bool CanMoveItem (UICollectionView collectionView, NSIndexPath indexPath) {
+		public override bool CanMoveItem (UICollectionView collectionView, NSIndexPath indexPath)
+		{
 			// We can always move items
 			return true;
 		}
