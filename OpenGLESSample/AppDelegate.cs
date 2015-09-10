@@ -9,9 +9,10 @@ namespace OpenGLESSample
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			// If you have defined a view, add it here:
-			// window.AddSubview (navigationController.View);
-
+			var rootViewController = new UIViewController {
+				View = glView
+			};
+			window.RootViewController = rootViewController;
 			glView.AnimationInterval = 1.0 / 60.0;
 			glView.StartAnimation();
 
