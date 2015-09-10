@@ -10,7 +10,7 @@ namespace MonoCatalog
 				//
 				public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 				{
-						window.AddSubview (navigationController.View);
+						window.RootViewController = navigationController.TopViewController;
 						window.MakeKeyAndVisible ();
 
 						return true;
