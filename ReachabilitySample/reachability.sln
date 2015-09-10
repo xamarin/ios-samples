@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "reachability", "reachability.csproj", "{E1356D0A-1572-4157-BD97-05F0B9DA832E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reachability", "Reachability.csproj", "{E1356D0A-1572-4157-BD97-05F0B9DA832E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,8 +19,5 @@ Global
 		{E1356D0A-1572-4157-BD97-05F0B9DA832E}.Release|iPhone.Build.0 = Release|iPhone
 		{E1356D0A-1572-4157-BD97-05F0B9DA832E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{E1356D0A-1572-4157-BD97-05F0B9DA832E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = reachability.csproj
 	EndGlobalSection
 EndGlobal
