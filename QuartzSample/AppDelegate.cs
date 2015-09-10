@@ -13,6 +13,7 @@ namespace QuartzSample
 			// window.AddSubview (navigationController.View);
 
 			navigationController.NavigationBar.BarStyle = UIBarStyle.Default;
+			window.RootViewController = navigationController.ViewControllers [0];
 			window.AddSubview (navigationController.View);
 
 			window.MakeKeyAndVisible ();
