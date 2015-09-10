@@ -9,11 +9,11 @@ namespace OpenGLESSampleGameView
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			// If you have defined a view, add it here:
-			// window.AddSubview (navigationController.View);
-
-			glView.Run(60.0);
-
+			glView.Run (60.0);
+			var rootViewController = new UIViewController {
+				View = glView
+			};
+			window.RootViewController = rootViewController;
 			window.MakeKeyAndVisible ();
 
 			return true;
