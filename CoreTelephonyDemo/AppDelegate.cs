@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Foundation;
 using UIKit;
 
@@ -10,7 +7,7 @@ namespace CoreTelephonyDemo
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
+	public class AppDelegate : UIApplicationDelegate
 	{
 		CoreTelephonyDemoViewController viewController;
 		UIWindow window;
@@ -22,7 +19,7 @@ namespace CoreTelephonyDemo
 			navigationController = new UINavigationController ();
 			viewController = new CoreTelephonyDemoViewController ();
 			navigationController.PushViewController (viewController, true);
-			window.AddSubview (navigationController.View);
+			window.RootViewController = navigationController.TopViewController;
 			window.MakeKeyAndVisible ();
 			return true;
 		}
