@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 using Foundation;
 using UIKit;
 
@@ -17,14 +14,12 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 	// The name AppDelegate is referenced in the MainWindow.xib file.
 	public partial class AppDelegate : UIApplicationDelegate
 	{
-        MainView _ctr;
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			// If you have defined a view, add it here:
 			// window.AddSubview (navigationController.View);
-            _ctr = new  MainView();
-            window.AddSubview(_ctr.View);
+			window.RootViewController = new  MainView ();
 			window.MakeKeyAndVisible ();
 
 			return true;

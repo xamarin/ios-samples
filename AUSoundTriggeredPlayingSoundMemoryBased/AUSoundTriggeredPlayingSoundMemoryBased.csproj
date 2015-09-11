@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchDebug>True</MtouchDebug>
     <ConsolePause>False</ConsolePause>
-    <CodesignKey>iPhone Developer: Рустам Заитов (29D5LNG7M9)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <MtouchArch>ARMv7</MtouchArch>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
