@@ -12,7 +12,7 @@ namespace HttpClient
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			window.RootViewController = navigationController.TopViewController;
+			window.RootViewController = navigationController;
 
 			button1.TouchDown += Button1TouchDown;
 			TableViewSelector.Configure (stack, new [] {

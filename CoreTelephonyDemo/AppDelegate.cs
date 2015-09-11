@@ -19,7 +19,7 @@ namespace CoreTelephonyDemo
 			navigationController = new UINavigationController ();
 			viewController = new CoreTelephonyDemoViewController ();
 			navigationController.PushViewController (viewController, true);
-			window.RootViewController = navigationController.TopViewController;
+			window.RootViewController = navigationController;
 			window.MakeKeyAndVisible ();
 			return true;
 		}

@@ -13,17 +13,12 @@ namespace QuartzSample
 			// window.AddSubview (navigationController.View);
 
 			navigationController.NavigationBar.BarStyle = UIBarStyle.Default;
-			window.RootViewController = navigationController.ViewControllers [0];
+			window.RootViewController = navigationController;
 			window.AddSubview (navigationController.View);
 
 			window.MakeKeyAndVisible ();
 
 			return true;
-		}
-
-		// This method is required in iPhoneOS 3.0
-		public override void OnActivated (UIApplication application)
-		{
 		}
 	}
 }
