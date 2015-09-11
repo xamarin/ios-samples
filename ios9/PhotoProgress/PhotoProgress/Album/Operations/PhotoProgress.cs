@@ -13,7 +13,7 @@ namespace PhotoProgress {
 
 		public void AddChild (PhotoProgress child, int pendingUnitCount)
 		{
-			child.CompletedUnitCountChanged += CompletedUnitCountChanged?.Invoke;
+			child.CompletedUnitCountChanged += (obj, args) => CompletedUnitCountChanged?.Invoke(obj, args);
 			base.AddChild (child, pendingUnitCount);
 		}
 

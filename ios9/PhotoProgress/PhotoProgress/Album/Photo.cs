@@ -34,14 +34,14 @@ namespace PhotoProgress {
 		{
 			PhotoImport = new PhotoImport (imageURL);
 
-			PhotoImport.Progress.CompletedUnitCountChanged += FractionComepletedChanged?.Invoke;
+			PhotoImport.Progress.CompletedUnitCountChanged += (obj, args) => FractionComepletedChanged?.Invoke (obj, args);
 			PhotoImport.Start ((img, error) => {
 				if (img != null)
 					Image = img;
 				else
 					ReportError (error);
 
-				PhotoImport.Progress.CompletedUnitCountChanged -= FractionComepletedChanged?.Invoke;
+				PhotoImport.Progress.CompletedUnitCountChanged -= (obj, args) => FractionComepletedChanged?.Invoke (obj, args);
 				PhotoImport = null;
 				FractionComepletedChanged?.Invoke (null, null);
 			});
