@@ -48,7 +48,10 @@ namespace GLPaintGameView
 
 			//Create the OpenGL drawing view and add it to the window
 			drawingView = new PaintingView (new CGRect (rect.Location, rect.Size));
-			window.AddSubview (drawingView);
+			var viewController = new UIViewController {
+				View = drawingView
+			};
+			window.RootViewController = viewController;
 
 			// Create a segmented control so that the user can choose the brush color.
 			var images = new[] {
