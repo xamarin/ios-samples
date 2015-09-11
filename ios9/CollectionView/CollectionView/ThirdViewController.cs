@@ -37,7 +37,7 @@ namespace CollectionView {
 					}
 					break;
 				case UIGestureRecognizerState.Changed:
-					CollectionView.UpdateInteractiveMovementTargetPosition (gesture.LocationInView (View));
+					CollectionView.UpdateInteractiveMovement (gesture.LocationInView (View));
 					break;
 				case UIGestureRecognizerState.Ended:
 					CollectionView.EndInteractiveMovement ();
