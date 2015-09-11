@@ -12,10 +12,10 @@ namespace HttpClient
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			window.AddSubview (navigationController.View);
+			window.RootViewController = navigationController.TopViewController;
 
 			button1.TouchDown += Button1TouchDown;
-			TableViewSelector.Configure (this.stack, new string [] {
+			TableViewSelector.Configure (stack, new [] {
 				"http  - WebRequest",
 				"https - WebRequest",
 				"http  - NSUrlConnection",
@@ -51,34 +51,10 @@ namespace HttpClient
 				break;
 			}
 		}
-		/*
-		public void RenderRssStream (Stream stream)
-		{
-			var doc = XDocument.Load (new XmlTextReader (stream));
-			var items = doc.XPathSelectElements ("./rss/channel/item/title");
 
-			//
-			// Since this is invoked on a separated thread, make sure that
-			// we call UIKit only from the main thread.
-			//
-			InvokeOnMainThread (delegate {
-				var table = new UITableViewController ();
-				navigationController.PushViewController (table, true);
-
-				// Put the data on a string [] so we can use our existing
-				// UITableView renderer for strings.
-				string [] entries = new string [items.Count ()];
-				int i = 0;
-				foreach (var e in items)
-					entries [i++] = e.Value;
-
-				TableViewSelector.Configure (table.View as UITableView, entries);
-			});
-		}
-*/
 		public void RenderStream (Stream stream)
 		{
-			var reader = new System.IO.StreamReader (stream);
+			var reader = new StreamReader (stream);
 
 			InvokeOnMainThread (delegate {
 				var view = new UIViewController ();
@@ -97,12 +73,6 @@ namespace HttpClient
 
 				navigationController.PushViewController (view, true);
 			});
-		}
-
-		// This method is required in iPhoneOS 3.0
-		public override void OnActivated (UIApplication application)
-		{
-
 		}
 	}
 }
