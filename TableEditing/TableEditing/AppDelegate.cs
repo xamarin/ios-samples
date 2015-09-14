@@ -40,7 +40,9 @@ namespace TableEditing
 				UIScreen.MainScreen.ApplicationFrame.Width,
 				UIScreen.MainScreen.ApplicationFrame.Height);
 
-			window.AddSubview (iPhoneHome.View);
+			var navigationController = new UINavigationController (iPhoneHome);
+			window.RootViewController = navigationController;
+			window.MakeKeyAndVisible ();
 
 			return true;
 		}
