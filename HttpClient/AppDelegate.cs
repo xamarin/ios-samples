@@ -33,19 +33,17 @@ namespace HttpClient
 			if (UIApplication.SharedApplication.NetworkActivityIndicatorVisible)
 				return;
 
+			button1.Enabled = false;
 			switch (stack.SelectedRow ()) {
 			case 0:
 				new DotNet (this).HttpSample ();
 				break;
-
 			case 1:
 				new DotNet (this).HttpSecureSample ();
 				break;
-
 			case 2:
 				new Cocoa (this).HttpSample ();
 				break;
-
 			case 3:
 				await new NetHttp (this).HttpSample ();
 				break;
@@ -57,6 +55,7 @@ namespace HttpClient
 			var reader = new StreamReader (stream);
 
 			InvokeOnMainThread (delegate {
+				button1.Enabled = true;
 				var view = new UIViewController ();
 				var label = new UILabel (new CGRect (20, 20, 300, 80)) {
 					Text = "The HTML returned by the server:"
