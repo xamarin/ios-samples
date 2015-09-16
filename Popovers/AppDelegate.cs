@@ -27,7 +27,7 @@ namespace Popovers
 			SplitViewController.WillShowViewController += DetailViewController.WillShowViewController;
 			SplitViewController.WillPresentViewController += DetailViewController.WillPresentViewController;
 
-			Window.AddSubview (SplitViewController.View);
+			Window.RootViewController = SplitViewController;
 			Window.MakeKeyAndVisible ();
 			return true;
 		}
