@@ -23,7 +23,7 @@ namespace Reachability {
 			// Do we need a connection to reach it?
 			bool noConnectionRequired = (flags & NetworkReachabilityFlags.ConnectionRequired) == 0
 				|| (flags & NetworkReachabilityFlags.IsWWAN) != 0;
-			
+
 			return isReachable && noConnectionRequired;
 		}
 
@@ -133,11 +133,10 @@ namespace Reachability {
 		{
 			NetworkReachabilityFlags flags;
 			if (IsAdHocWiFiNetworkAvailable(out flags))
-				if ((flags & NetworkReachabilityFlags.IsDirect) != 0)
-					return NetworkStatus.ReachableViaWiFiNetwork;
+			if ((flags & NetworkReachabilityFlags.IsDirect) != 0)
+				return NetworkStatus.ReachableViaWiFiNetwork;
 
 			return NetworkStatus.NotReachable;
 		}
 	}
 }
-
