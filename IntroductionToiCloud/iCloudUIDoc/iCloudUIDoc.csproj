@@ -28,8 +28,7 @@
     <AssemblyName>iCloud</AssemblyName>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>i386</MtouchArch>
-    <CodesignProvision>0647aabc-9407-4291-bedf-e32b35988f74</CodesignProvision>
-    <CodesignKey>iPhone Developer: Xamarin QA (943YW87293)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
