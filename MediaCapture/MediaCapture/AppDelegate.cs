@@ -22,13 +22,13 @@ namespace MediaCapture
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		UIWindow window;
-		private RootViewController rootView = null;
+		private RootViewController rootViewController = null;
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			rootView = new RootViewController();
-			window.AddSubview( rootView.View );
+			rootViewController = new RootViewController();
+			window.RootViewController = rootViewController;
 			window.MakeKeyAndVisible ();
 			return true;
 		}
