@@ -31,6 +31,7 @@ using System.Collections.Generic;
 
 using Foundation;
 using UIKit;
+using CoreFoundation;
 
 namespace RecipesAndPrinting
 {
@@ -80,7 +81,6 @@ namespace RecipesAndPrinting
 		// HACK: Changed overridden member int to nint
 		public override nint NumberOfPages {
 			get {
-				PrintFormatters = new UIPrintFormatter [0];
 				SetupPrintFormatters ();
 				return base.NumberOfPages;
 			}
@@ -91,35 +91,36 @@ namespace RecipesAndPrinting
 		void SetupPrintFormatters ()
 		{
 			CGRect contentArea = ContentArea;
-			// HACK: Change float to nfloat
 			nfloat previousFormatterMaxY = contentArea.Top;
-			// HACK: Change int to nint
 			nint page = 0;
 
 			foreach (Recipe recipe in recipes) {
 				string html = recipe.HtmlRepresentation;
 
-				UIMarkupTextPrintFormatter formatter = new UIMarkupTextPrintFormatter (html);
-				recipeFormatterMap.Add (formatter, recipe);
+				// ios9 calls NumberOfPages -> SetupPrintFormatters not from main thread, but UIMarkupTextPrintFormatter is UIKit class (must be accessed from main thread)
+				DispatchQueue.MainQueue.DispatchSync (() => {
+					var formatter = new UIMarkupTextPrintFormatter (html);
+					recipeFormatterMap.Add (formatter, recipe);
 
-				// Make room for the recipe info
-				UIEdgeInsets contentInsets = new UIEdgeInsets (0.0f, 0.0f, 0.0f, 0.0f);
+					// Make room for the recipe info
+					UIEdgeInsets contentInsets = UIEdgeInsets.Zero;
 
-				contentInsets.Top = previousFormatterMaxY + RecipeInfoHeight;
-				if (contentInsets.Top > contentArea.Bottom) {
-					// Move to the next page
-					contentInsets.Top = contentArea.Top + RecipeInfoHeight;
-					page++;
-				}
+					contentInsets.Top = previousFormatterMaxY + RecipeInfoHeight;
+					if (contentInsets.Top > contentArea.Bottom) {
+						// Move to the next page
+						contentInsets.Top = contentArea.Top + RecipeInfoHeight;
+						page++;
+					}
 
-				formatter.ContentInsets = contentInsets;
+					formatter.ContentInsets = contentInsets;
 
-				// Add the formatter to the renderer at the specified page
-				AddPrintFormatter (formatter, page);
+					// Add the formatter to the renderer at the specified page
+					AddPrintFormatter (formatter, page);
 
-				page = formatter.StartPage + formatter.PageCount - 1;
+					page = formatter.StartPage + formatter.PageCount - 1;
 
-				previousFormatterMaxY = formatter.RectangleForPage (page).Bottom;
+					previousFormatterMaxY = formatter.RectangleForPage (page).Bottom;
+				});
 			}
 		}
 

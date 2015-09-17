@@ -52,6 +52,7 @@ namespace RecipesAndPrinting
 		//
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
+			UIApplication.CheckForIllegalCrossThreadCalls = false;
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			// Create the recipes controller object that provides recipe data to the application UI.
