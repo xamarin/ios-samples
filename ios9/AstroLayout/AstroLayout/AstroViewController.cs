@@ -117,28 +117,28 @@ namespace AstroLayout {
 
         void PlanetSizes ()
         {
-			NSLayoutConstraint mercuryHeight = mercury.HeightAnchor.ConstraintEqualToAnchor (earth.HeightAnchor, .38f);
-			NSLayoutConstraint mercuryWidth = mercury.WidthAnchor.ConstraintEqualToAnchor (mercury.HeightAnchor, 1f);
+			NSLayoutConstraint mercuryHeight = mercury.HeightAnchor.ConstraintEqualTo (earth.HeightAnchor, .38f);
+			NSLayoutConstraint mercuryWidth = mercury.WidthAnchor.ConstraintEqualTo (mercury.HeightAnchor, 1f);
 
-			NSLayoutConstraint venusHeight = venus.HeightAnchor.ConstraintEqualToAnchor (earth.HeightAnchor, .95f);
-			NSLayoutConstraint venusWidth = venus.WidthAnchor.ConstraintEqualToAnchor (venus.HeightAnchor, 1f);
+			NSLayoutConstraint venusHeight = venus.HeightAnchor.ConstraintEqualTo (earth.HeightAnchor, .95f);
+			NSLayoutConstraint venusWidth = venus.WidthAnchor.ConstraintEqualTo (venus.HeightAnchor, 1f);
             
-			NSLayoutConstraint marsHeight = mars.HeightAnchor.ConstraintEqualToAnchor (earth.HeightAnchor, .53f);
-			NSLayoutConstraint marsWidth = mars.WidthAnchor.ConstraintEqualToAnchor (mars.HeightAnchor, 1f);
+			NSLayoutConstraint marsHeight = mars.HeightAnchor.ConstraintEqualTo (earth.HeightAnchor, .53f);
+			NSLayoutConstraint marsWidth = mars.WidthAnchor.ConstraintEqualTo (mars.HeightAnchor, 1f);
 
-			NSLayoutConstraint jupiterHeight = jupiter.HeightAnchor.ConstraintEqualToAnchor (earth.HeightAnchor, 11.2f);
-			NSLayoutConstraint jupiterWidth = jupiter.WidthAnchor.ConstraintEqualToAnchor (jupiter.HeightAnchor, 1f);
+			NSLayoutConstraint jupiterHeight = jupiter.HeightAnchor.ConstraintEqualTo (earth.HeightAnchor, 11.2f);
+			NSLayoutConstraint jupiterWidth = jupiter.WidthAnchor.ConstraintEqualTo (jupiter.HeightAnchor, 1f);
 
-			NSLayoutConstraint saturnHeight = saturn.HeightAnchor.ConstraintEqualToAnchor (earth.HeightAnchor, 9.45f);
-			NSLayoutConstraint saturnWidth = saturn.WidthAnchor.ConstraintEqualToAnchor (saturn.HeightAnchor, 1.5f);
+			NSLayoutConstraint saturnHeight = saturn.HeightAnchor.ConstraintEqualTo (earth.HeightAnchor, 9.45f);
+			NSLayoutConstraint saturnWidth = saturn.WidthAnchor.ConstraintEqualTo (saturn.HeightAnchor, 1.5f);
 
-			NSLayoutConstraint uranusHeight = uranus.HeightAnchor.ConstraintEqualToAnchor (earth.HeightAnchor, 4f);
-			NSLayoutConstraint uranusWidth = uranus.WidthAnchor.ConstraintEqualToAnchor (uranus.HeightAnchor, 1f);
+			NSLayoutConstraint uranusHeight = uranus.HeightAnchor.ConstraintEqualTo (earth.HeightAnchor, 4f);
+			NSLayoutConstraint uranusWidth = uranus.WidthAnchor.ConstraintEqualTo (uranus.HeightAnchor, 1f);
             
-			NSLayoutConstraint neptuneHeight = neptune.HeightAnchor.ConstraintEqualToAnchor (earth.HeightAnchor, 3.88f);
-			NSLayoutConstraint neptuneWidth = neptune.HeightAnchor.ConstraintEqualToAnchor (neptune.HeightAnchor, 1f);
+			NSLayoutConstraint neptuneHeight = neptune.HeightAnchor.ConstraintEqualTo (earth.HeightAnchor, 3.88f);
+			NSLayoutConstraint neptuneWidth = neptune.HeightAnchor.ConstraintEqualTo (neptune.HeightAnchor, 1f);
             
-			NSLayoutConstraint earthWidth = earth.WidthAnchor.ConstraintEqualToAnchor (earth.HeightAnchor);
+			NSLayoutConstraint earthWidth = earth.WidthAnchor.ConstraintEqualTo (earth.HeightAnchor);
             
 			mercuryHeight.SetIdentifier ("mercuryHeight");
 			mercuryHeight.SetIdentifier ("mercuryHeight");
@@ -185,7 +185,7 @@ namespace AstroLayout {
 			
 		NSLayoutConstraint CreateCenterXConstraint (UIView planetToCenter, string identifierName)
 		{
-			NSLayoutConstraint newConstraint = planetToCenter.CenterXAnchor.ConstraintEqualToAnchor (View.CenterXAnchor);
+			NSLayoutConstraint newConstraint = planetToCenter.CenterXAnchor.ConstraintEqualTo (View.CenterXAnchor);
 			newConstraint.SetIdentifier (identifierName);
 			return newConstraint;
 		}
@@ -255,14 +255,14 @@ namespace AstroLayout {
 			sharedConstraints.Add (GuideHeightToPlanet (leadingUranusGuide, uranus, "guideHeightToUranus"));
 			sharedConstraints.Add (GuideHeightToPlanet (leadingNeptuneGuide, neptune, "guideHeightToNeptune"));
 
-			mercuryLeadingToTrailing = leadingMercuryGuide.WidthAnchor.ConstraintEqualToAnchor (trailingMercuryGuide.WidthAnchor, .02f);
-			venusLeadingToTrailing = leadingVenusGuide.WidthAnchor.ConstraintEqualToAnchor (trailingVenusGuide.WidthAnchor, .03f);
-			earthLeadingToTrailing = leadingEarthGuide.WidthAnchor.ConstraintEqualToAnchor (trailingEarthGuide.WidthAnchor, .06f);
-			marsLeadingToTrailing = leadingMarsGuide.WidthAnchor.ConstraintEqualToAnchor (trailingMarsGuide.WidthAnchor, .1f);
-			jupiterLeadingToTrailing = leadingJupiterGuide.WidthAnchor.ConstraintEqualToAnchor (trailingJupiterGuide.WidthAnchor, .2f);
-			saturnLeadingToTrailing = leadingSaturnGuide.WidthAnchor.ConstraintEqualToAnchor (trailingSaturnGuide.WidthAnchor, 1f);
-			uranusLeadingToTrailing = leadingUranusGuide.WidthAnchor.ConstraintEqualToAnchor (trailingUranusGuide.WidthAnchor, 2.7f);
-			neptuneLeadingToTrailing = leadingNeptuneGuide.WidthAnchor.ConstraintEqualToAnchor (trailingNeptuneGuide.WidthAnchor, 10f);
+			mercuryLeadingToTrailing = leadingMercuryGuide.WidthAnchor.ConstraintEqualTo (trailingMercuryGuide.WidthAnchor, .02f);
+			venusLeadingToTrailing = leadingVenusGuide.WidthAnchor.ConstraintEqualTo (trailingVenusGuide.WidthAnchor, .03f);
+			earthLeadingToTrailing = leadingEarthGuide.WidthAnchor.ConstraintEqualTo (trailingEarthGuide.WidthAnchor, .06f);
+			marsLeadingToTrailing = leadingMarsGuide.WidthAnchor.ConstraintEqualTo (trailingMarsGuide.WidthAnchor, .1f);
+			jupiterLeadingToTrailing = leadingJupiterGuide.WidthAnchor.ConstraintEqualTo (trailingJupiterGuide.WidthAnchor, .2f);
+			saturnLeadingToTrailing = leadingSaturnGuide.WidthAnchor.ConstraintEqualTo (trailingSaturnGuide.WidthAnchor, 1f);
+			uranusLeadingToTrailing = leadingUranusGuide.WidthAnchor.ConstraintEqualTo (trailingUranusGuide.WidthAnchor, 2.7f);
+			neptuneLeadingToTrailing = leadingNeptuneGuide.WidthAnchor.ConstraintEqualTo (trailingNeptuneGuide.WidthAnchor, 10f);
             
 			mercuryLeadingToTrailing.SetIdentifier ("leadingTrailingAnchorMercury");
 			venusLeadingToTrailing.SetIdentifier ("leadingTrailingAnchorVenus");
@@ -288,7 +288,7 @@ namespace AstroLayout {
 
 		NSLayoutConstraint GuideHeightToPlanet (UILayoutGuide layoutGuide, UIView planet, string identifier)
 		{
-			NSLayoutConstraint guideHeightToPlanet = layoutGuide.HeightAnchor.ConstraintEqualToAnchor (planet.HeightAnchor);
+			NSLayoutConstraint guideHeightToPlanet = layoutGuide.HeightAnchor.ConstraintEqualTo (planet.HeightAnchor);
 			guideHeightToPlanet.SetIdentifier (identifier);
 			return guideHeightToPlanet;
 		}
