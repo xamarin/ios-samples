@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{80818C2B-D6E3-4788-8D51-25A60F6D04D7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>FourInARow</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>FourInARow</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;USE_AI_PLAYER;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DefineConstants>USE_AI_PLAYER;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <DefineConstants>USE_AI_PLAYER;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;USE_AI_PLAYER;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Board.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Move.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Entitlements.plist" />
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\Images.xcassets\AppIcons.appiconset\" />
+    <Folder Include="Resources\Images.xcassets\splash-xamagon.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-app-60%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-app-57.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-app-60%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-app-72.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-app-72%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-app-76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-app-76%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-carplay-120.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-29.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-29%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-29%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-40.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-40%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-50.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-50%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spp-57%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-172.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-196.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-29%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-29%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-44%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-48.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-55.png" />
+    <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
+  </ItemGroup>
+</Project>

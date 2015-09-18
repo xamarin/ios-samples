@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>0fb4f1b8-217f-4dc3-a239-9744cd9c102f</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>Games, iOS9</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>Demonstrates how to use the GKMinmaxStrategist class to implement a computer-controlled opponent.</Brief>
+</SampleMetadata>
