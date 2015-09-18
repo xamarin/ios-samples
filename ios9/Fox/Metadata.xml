@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>65024b1b-eb5d-489a-ace1-3e48fbdf4dea</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>Games, Graphics, Media, iOS9, SceneKit</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <Gallery>true</Gallery>
+  <Brief>Demonstrates how to use SceneKit to build a game level.</Brief>
+</SampleMetadata>
