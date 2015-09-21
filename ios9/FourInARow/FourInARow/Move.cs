@@ -6,18 +6,7 @@ using GameplayKit;
 namespace FourInARow {
 	public class Move : NSObject, IGKGameModelUpdate {
 
-		nint valueBehind;
-
-		public nint Value {
-			[Export ("value")]
-			get {
-				return valueBehind;
-			}
-			[Export ("setValue:")]
-			set {
-				valueBehind = value;
-			}
-		}
+		public nint Value { get; set; }
 
 		public int Column { get; private set; }
 
