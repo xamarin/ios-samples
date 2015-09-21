@@ -1,16 +1,20 @@
+using System;
+
 using Foundation;
 using GameplayKit;
 
 namespace FourInARow {
 	public class Move : NSObject, IGKGameModelUpdate {
 
-		int valueBehind;
-		public int Value {
+		nint valueBehind;
+
+		public nint Value {
+			[Export ("value")]
 			get {
 				return valueBehind;
 			}
 			[Export ("setValue:")]
-			private set {
+			set {
 				valueBehind = value;
 			}
 		}
