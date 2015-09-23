@@ -8,7 +8,7 @@ The app presents a collection view of photos, which will initially be placeholde
 Build Requirements
 ------------------
 
-Building this sample requires Xcode 7.0, iOS 9.0 SDK
+Building this sample requires Xcode 7.0, iOS 9.0 SDK. This sample use new C# 6 features which means that you need IDE with C# 6 support(Xamarin Studio, Visual Studio 2015).
 
 Runtime Requirements
 ------------------
