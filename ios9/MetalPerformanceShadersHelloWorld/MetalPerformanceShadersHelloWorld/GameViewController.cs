@@ -1,10 +1,11 @@
 using CoreAnimation;
+using CoreGraphics;
 using Foundation;
 using Metal;
 using MetalKit;
 using MetalPerformanceShaders;
 using UIKit;
-using CoreGraphics;
+using System;
 
 namespace MetalPerformanceShadersHelloWorld {
 	public partial class GameViewController : UIViewController, IMTKViewDelegate, INSCoding {
@@ -22,10 +23,16 @@ namespace MetalPerformanceShadersHelloWorld {
 		{
 			metalView = (MTKView)View;
 
+			// Set the view to use the default device.
+			metalView.Device = MTLDevice.SystemDefault;
+
 			// Make sure the current device supports MetalPerformanceShaders.
-			bool? deviceSupportsPerformanceShaders = null;
-			deviceSupportsPerformanceShaders = metalView.Device?.SupportsFeatureSet (MTLFeatureSet.iOS_GPUFamily2_v1);
-			if (!deviceSupportsPerformanceShaders.HasValue || !deviceSupportsPerformanceShaders.Value)
+			if (metalView.Device == null)
+				return;
+
+			bool deviceSupportsMPS = MPSKernel.Supports (metalView.Device);
+
+			if (!deviceSupportsMPS)
 				return;
 
 			MetalPerformanceShadersDisabledLabel.Hidden = true;
@@ -36,9 +43,6 @@ namespace MetalPerformanceShadersHelloWorld {
 
 		void SetupMetal ()
 		{
-			// Set the view to use the default device.
-			metalView.Device = MTLDevice.SystemDefault;
-
 			// Create a new command queue.
 			commandQueue = metalView.Device.CreateCommandQueue ();
 		}
@@ -48,7 +52,7 @@ namespace MetalPerformanceShadersHelloWorld {
 			metalView.Delegate = this;
 
 			// Setup the render target, choose values based on your app.
-			metalView.DepthStencilPixelFormat = MTLPixelFormat.Stencil8 | MTLPixelFormat.Depth32Float;
+			metalView.DepthStencilPixelFormat = MTLPixelFormat.Depth32Float_Stencil8;
 
 			// Set up pixel format as your input/output texture.
 			metalView.ColorPixelFormat = MTLPixelFormat.BGRA8Unorm;
@@ -63,7 +67,7 @@ namespace MetalPerformanceShadersHelloWorld {
 			NSUrl url = NSBundle.MainBundle.GetUrlForResource ("AnimalImage", "png");
 
 			NSError error;
-			sourceTexture = textureLoader.FromUrl(url, null, out error);
+			sourceTexture = textureLoader.FromUrl (url, null, out error);
 		}
 
 		void Render ()
