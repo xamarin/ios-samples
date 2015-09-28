@@ -112,19 +112,19 @@ namespace AdaptivePhotos
 					"imageView", ImageView,
 					"photosLabel", PhotosLabel));
 
-				var views1 = new NSMutableDictionary {
-					{ (NSString)"topLayoutGuide", TopLayoutGuide },
-					{ (NSString)"nameLabel", NameLabel },
-					{ (NSString)"conversationsLabel", ConversationsLabel},
-					{ (NSString)"photosLabel", PhotosLabel}
-				};
+				var views1 = NSMutableDictionary.FromObjectsAndKeys (
+					new object[] { TopLayoutGuide, NameLabel, ConversationsLabel, PhotosLabel },
+					new object[] { "topLayoutGuide", "nameLabel", "conversationsLabel", "photosLabel" }
+				);
+
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:|[topLayoutGuide]-[nameLabel]-[conversationsLabel]-[photosLabel]",
 					NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views1));
 
-				var views2 = new NSMutableDictionary {
-					{ (NSString)"topLayoutGuide", TopLayoutGuide },
-					{ (NSString)"imageView", ImageView }
-				};
+				var views2 = NSMutableDictionary.FromObjectsAndKeys (
+					new object[] { TopLayoutGuide, ImageView },
+					new object[] { "topLayoutGuide", "imageView" }
+				);
+
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:|[topLayoutGuide][imageView]|",
 					NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views2));
 
@@ -147,13 +147,11 @@ namespace AdaptivePhotos
 					NSLayoutFormatOptions.DirectionLeadingToTrailing,
 					"photosLabel", PhotosLabel));
 
-				var views3 = new NSMutableDictionary {
-					{ (NSString)"topLayoutGuide", TopLayoutGuide},
-					{ (NSString)"nameLabel", NameLabel},
-					{ (NSString)"conversationsLabel", ConversationsLabel },
-					{ (NSString)"photosLabel", PhotosLabel },
-					{ (NSString)"imageView", ImageView }
-				};
+				var views3 = NSMutableDictionary.FromObjectsAndKeys (
+					new object[] { TopLayoutGuide, NameLabel, ConversationsLabel, PhotosLabel, ImageView },
+					new object[] { "topLayoutGuide", "nameLabel", "conversationsLabel", "photosLabel", "imageView" }
+				);
+
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:[topLayoutGuide]-[nameLabel]-[conversationsLabel]-[photosLabel]-20-[imageView]|",
 					NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views3));
 			}
