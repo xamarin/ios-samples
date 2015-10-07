@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{A45DF6E2-BC42-4975-9FEC-A4C7C90FD837}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>HomeKitCatalog</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>HomeKitCatalog</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Resources\CharacteristicCell.xib" />
+    <InterfaceDefinition Include="Resources\SegmentedControlCharacteristicCell.xib" />
+    <InterfaceDefinition Include="Resources\SliderCharacteristicCell.xib" />
+    <InterfaceDefinition Include="Resources\SwitchCharacteristicCell.xib" />
+    <InterfaceDefinition Include="Resources\TextCharacteristicCell.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewControllers\TabBarController.cs" />
+    <Compile Include="ViewControllers\TabBarController.designer.cs">
+      <DependentUpon>TabBarController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Homes\HomeListConfigurationViewController.cs" />
+    <Compile Include="ViewControllers\Homes\HomeListConfigurationViewController.designer.cs">
+      <DependentUpon>HomeListConfigurationViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\HMCatalogViewController.cs" />
+    <Compile Include="ViewControllers\Homes\HomeStore.cs" />
+    <Compile Include="ViewControllers\Homes\HomeListViewController.cs" />
+    <Compile Include="ViewControllers\Homes\HomeListViewController.designer.cs">
+      <DependentUpon>HomeListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\UITableViewExtensions.cs" />
+    <Compile Include="Utils\UIViewControllerExtensions.cs" />
+    <Compile Include="Utils\Alert.cs" />
+    <Compile Include="ViewControllers\Homes\HomeKitObjectCollection.cs" />
+    <Compile Include="Utils\ArraySotring.cs" />
+    <Compile Include="Utils\HMActionSetExtensions.cs" />
+    <Compile Include="Utils\ListExtensions.cs" />
+    <Compile Include="Utils\HMEventTriggerExtensions.cs" />
+    <Compile Include="ViewControllers\Homes\HomeViewController.cs" />
+    <Compile Include="ViewControllers\Homes\HomeViewController.designer.cs">
+      <DependentUpon>HomeViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Rooms\RoomViewController.cs" />
+    <Compile Include="ViewControllers\Rooms\RoomViewController.designer.cs">
+      <DependentUpon>RoomViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\UIStoryboardSegueExtensions.cs" />
+    <Compile Include="ViewControllers\Zones\AddRoomViewController.cs" />
+    <Compile Include="ViewControllers\Zones\AddRoomViewController.designer.cs">
+      <DependentUpon>AddRoomViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Zones\ZoneViewController.cs" />
+    <Compile Include="ViewControllers\Zones\ZoneViewController.designer.cs">
+      <DependentUpon>ZoneViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\ActionSets\ActionCell.cs" />
+    <Compile Include="ViewControllers\ActionSets\ActionCell.designer.cs">
+      <DependentUpon>ActionCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\HMCharacteristicExtensions.cs" />
+    <Compile Include="ViewControllers\ActionSets\ActionSetCreator.cs" />
+    <Compile Include="ViewControllers\Accessories\AccessoryUpdateController.cs" />
+    <Compile Include="ViewControllers\Accessories\Services\CharacteristicCells\CharacteristicCell.cs" />
+    <Compile Include="ViewControllers\Accessories\Services\CharacteristicCells\ICharacteristicCellDelegate.cs" />
+    <Compile Include="ViewControllers\Accessories\Services\CharacteristicCells\SegmentedControlCharacteristicCell.cs" />
+    <Compile Include="ViewControllers\Accessories\Services\CharacteristicCells\SliderCharacteristicCell.cs" />
+    <Compile Include="ViewControllers\Accessories\Services\CharacteristicCells\SwitchCharacteristicCell.cs" />
+    <Compile Include="ViewControllers\Accessories\Services\CharacteristicCells\TextCharacteristicCell.cs" />
+    <Compile Include="ViewControllers\Accessories\Services\CharacteristicsTableViewDataSource.cs" />
+    <Compile Include="Utils\HMServiceExtensions.cs" />
+    <Compile Include="ViewControllers\Accessories\Services\CharacteristicsViewController.cs" />
+    <Compile Include="ViewControllers\Accessories\Services\CharacteristicsViewController.designer.cs">
+      <DependentUpon>CharacteristicsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Accessories\Services\ServiceCell.cs" />
+    <Compile Include="ViewControllers\Accessories\Services\ServiceCell.designer.cs">
+      <DependentUpon>ServiceCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Accessories\Services\ServicesViewController.cs" />
+    <Compile Include="ViewControllers\Accessories\Services\ServicesViewController.designer.cs">
+      <DependentUpon>ServicesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Accessories\ModifyAccessoryViewController.cs" />
+    <Compile Include="ViewControllers\Accessories\ModifyAccessoryViewController.designer.cs">
+      <DependentUpon>ModifyAccessoryViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Accessories\AccessoryBrowserViewController.cs" />
+    <Compile Include="ViewControllers\Accessories\AccessoryBrowserViewController.designer.cs">
+      <DependentUpon>AccessoryBrowserViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Accessories\ControlsViewController.cs" />
+    <Compile Include="ViewControllers\Accessories\ControlsViewController.designer.cs">
+      <DependentUpon>ControlsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Accessories\ControlsTableViewDataSource.cs" />
+    <Compile Include="ViewControllers\ActionSets\ActionSetViewController.cs" />
+    <Compile Include="ViewControllers\ActionSets\ActionSetViewController.designer.cs">
+      <DependentUpon>ActionSetViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Triggers\Events\EventTriggerCreator.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\EventTriggerViewController.cs" />
+    <Compile Include="ViewControllers\Triggers\Timer\TimerTriggerViewController.cs" />
+    <Compile Include="ViewControllers\Triggers\Timer\TimerTriggerViewController.designer.cs">
+      <DependentUpon>TimerTriggerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Triggers\TriggerCreator.cs" />
+    <Compile Include="ViewControllers\Triggers\TriggerViewController.cs" />
+    <Compile Include="ViewControllers\Triggers\Timer\TimerTriggerCreator.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Conditions\ConditionCell.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Conditions\TimeConditionViewController.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Conditions\TimeConditionViewController.designer.cs">
+      <DependentUpon>TimeConditionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Triggers\Events\Conditions\SegmentedTimeCell.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Conditions\SegmentedTimeCell.designer.cs">
+      <DependentUpon>SegmentedTimeCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Triggers\Events\Conditions\TimePickerCell.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Conditions\TimePickerCell.designer.cs">
+      <DependentUpon>TimePickerCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Triggers\Events\Characteristic\CharacteristicTriggerCreator.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Characteristic\CharacteristicTriggerViewController.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Characteristic\CharacteristicTriggerViewController.designer.cs">
+      <DependentUpon>CharacteristicTriggerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Triggers\Events\Characteristic\CharacteristicSelectionViewController.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Characteristic\CharacteristicSelectionViewController.designer.cs">
+      <DependentUpon>CharacteristicSelectionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Colors.cs" />
+    <Compile Include="Utils\NSPredicateExtensions.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Location\Mapping\MapOverlayView.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Location\Mapping\MapOverlayView.designer.cs">
+      <DependentUpon>MapOverlayView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Triggers\Events\Location\Mapping\MapViewController.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Location\Mapping\MapViewController.designer.cs">
+      <DependentUpon>MapViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Triggers\Events\Location\LocationTriggerCreator.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Location\LocationTriggerViewController.cs" />
+    <Compile Include="ViewControllers\Triggers\Events\Location\LocationTriggerViewController.designer.cs">
+      <DependentUpon>LocationTriggerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Triggers\ServiceGroups\ServiceGroupViewController.cs" />
+    <Compile Include="ViewControllers\Triggers\ServiceGroups\ServiceGroupViewController.designer.cs">
+      <DependentUpon>ServiceGroupViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Triggers\ServiceGroups\AddServicesViewController.cs" />
+    <Compile Include="ViewControllers\Triggers\ServiceGroups\AddServicesViewController.designer.cs">
+      <DependentUpon>AddServicesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\Favorites\FavoritesManager.cs" />
+    <Compile Include="ViewControllers\Favorites\FavoritesViewController.cs" />
+    <Compile Include="ViewControllers\Favorites\FavoritesViewController.designer.cs">
+      <DependentUpon>FavoritesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\HMHomeExtensions.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\ConfigureTabIcon.imageset\Configure.pdf" />
+    <ImageAsset Include="Resources\Images.xcassets\ConfigureTabIcon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\ControlTabIcon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\ControlTabIcon.imageset\Control.pdf" />
+    <ImageAsset Include="Resources\Images.xcassets\FavoritesTabIcon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\FavoritesTabIcon.imageset\FavoriteTabIcon.pdf" />
+    <ImageAsset Include="Resources\Images.xcassets\SelectedConfigureTabIcon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\SelectedConfigureTabIcon.imageset\SelectedConfigureTabIcon.pdf" />
+    <ImageAsset Include="Resources\Images.xcassets\SelectedControlTabIcon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\SelectedControlTabIcon.imageset\SelectedControlTabIcon.pdf" />
+    <ImageAsset Include="Resources\Images.xcassets\SelectedFavoritesTabIcon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\SelectedFavoritesTabIcon.imageset\SelectedFavoriteTabIcon.pdf" />
+    <ImageAsset Include="Resources\Images.xcassets\StarNotFavorite.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\StarNotFavorite.imageset\starios.png" />
+    <ImageAsset Include="Resources\Images.xcassets\StarNotFavorite.imageset\starios%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\StarNotFavorite.imageset\starios%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\StarFavorite.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\StarFavorite.imageset\stariosfilled.png" />
+    <ImageAsset Include="Resources\Images.xcassets\StarFavorite.imageset\stariosfilled%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\StarFavorite.imageset\stariosfilled%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-60%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-60%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-72.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-72%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-76%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-40.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-40%402x-1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-50.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small-50%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small%402x-1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-Small%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\iTunesArtwork.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\iTunesArtwork%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Images.xcassets\splash-xamagon.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon.png" />
+    <BundleResource Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
+    <BundleResource Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewControllers\" />
+    <Folder Include="ViewControllers\Homes\" />
+    <Folder Include="Utils\" />
+    <Folder Include="ViewControllers\Rooms\" />
+    <Folder Include="ViewControllers\Zones\" />
+    <Folder Include="ViewControllers\ActionSets\" />
+    <Folder Include="ViewControllers\Accessories\" />
+    <Folder Include="ViewControllers\Accessories\Services\" />
+    <Folder Include="ViewControllers\Accessories\Services\CharacteristicCells\" />
+    <Folder Include="ViewControllers\Triggers\" />
+    <Folder Include="ViewControllers\Triggers\Events\" />
+    <Folder Include="ViewControllers\Triggers\Timer\" />
+    <Folder Include="ViewControllers\Triggers\Events\Conditions\" />
+    <Folder Include="ViewControllers\Triggers\Events\Characteristic\" />
+    <Folder Include="ViewControllers\Triggers\Events\Location\" />
+    <Folder Include="ViewControllers\Triggers\Events\Location\Mapping\" />
+    <Folder Include="ViewControllers\Triggers\ServiceGroups\" />
+    <Folder Include="ViewControllers\Favorites\" />
+    <Folder Include="Resources\Images.xcassets\StarNotFavorite.imageset\" />
+    <Folder Include="Resources\Images.xcassets\StarFavorite.imageset\" />
+    <Folder Include="Resources\Images.xcassets\AppIcon.appiconset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+</Project>
