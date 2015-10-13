@@ -18,7 +18,7 @@ If you're running this application on an iOS device you will need an Apple Pay c
 
 To ensure the smoothest start with the sample, make sure to update the EmporiumBundlePrefix to a reverse DNS value appropriate for you or your organization. As this app makes use of entitlements, the bundle identifier and many other strings need to be unique. The project has been configured so that you only have to change these values in a few places (Info.plist files) to establish this set of unique values in your situation.
 
-For more information about processing an Apple Pay payment using a payment platform or merchant bank, visit [this link](developer.apple.com/apple-pay).
+For more information about processing an Apple Pay payment using a payment platform or merchant bank, visit [this link](http://developer.apple.com/apple-pay).
 
 Build Requirements
 ------------------
@@ -28,7 +28,7 @@ Xcode 7.0, iOS 9.0 SDK, watchOS 1.0 SDK
 Refs
 ----
 * [Original sample](https://developer.apple.com/library/prerelease/watchos/samplecode/Emporium/Introduction/Intro.html)
-* [Documentation](developer.apple.com/apple-pay)
+* [Documentation](http://developer.apple.com/apple-pay)
 
 Target
 ------
