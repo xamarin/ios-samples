@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>6376b6da-05a0-4642-8e2b-299c5a037ca2</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Platform Features</Tags>
+	<Gallery>true</Gallery>
+	<Brief>Working with touch events and gestures in iOS.</Brief>
+</SampleMetadata>
