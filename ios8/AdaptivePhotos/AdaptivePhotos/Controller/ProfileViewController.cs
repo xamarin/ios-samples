@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Foundation;
+
 using UIKit;
 
 namespace AdaptivePhotos
@@ -112,21 +112,19 @@ namespace AdaptivePhotos
 					"imageView", ImageView,
 					"photosLabel", PhotosLabel));
 
-				var views1 = NSMutableDictionary.FromObjectsAndKeys (
-					new object[] { TopLayoutGuide, NameLabel, ConversationsLabel, PhotosLabel },
-					new object[] { "topLayoutGuide", "nameLabel", "conversationsLabel", "photosLabel" }
-				);
-
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:|[topLayoutGuide]-[nameLabel]-[conversationsLabel]-[photosLabel]",
-					NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views1));
-
-				var views2 = NSMutableDictionary.FromObjectsAndKeys (
-					new object[] { TopLayoutGuide, ImageView },
-					new object[] { "topLayoutGuide", "imageView" }
-				);
+					NSLayoutFormatOptions.DirectionLeadingToTrailing,
+					"topLayoutGuide", TopLayoutGuide,
+					"nameLabel", NameLabel,
+					"conversationsLabel", ConversationsLabel,
+					"photosLabel", PhotosLabel
+				));
 
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:|[topLayoutGuide][imageView]|",
-					NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views2));
+					NSLayoutFormatOptions.DirectionLeadingToTrailing,
+					"topLayoutGuide", TopLayoutGuide,
+					"imageView", ImageView
+				));
 
 				newConstraints.Add (NSLayoutConstraint.Create (ImageView, NSLayoutAttribute.Width, NSLayoutRelation.Equal,
 					View, NSLayoutAttribute.Width, 0.5f, 0.0f));
@@ -147,13 +145,14 @@ namespace AdaptivePhotos
 					NSLayoutFormatOptions.DirectionLeadingToTrailing,
 					"photosLabel", PhotosLabel));
 
-				var views3 = NSMutableDictionary.FromObjectsAndKeys (
-					new object[] { TopLayoutGuide, NameLabel, ConversationsLabel, PhotosLabel, ImageView },
-					new object[] { "topLayoutGuide", "nameLabel", "conversationsLabel", "photosLabel", "imageView" }
-				);
-
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:[topLayoutGuide]-[nameLabel]-[conversationsLabel]-[photosLabel]-20-[imageView]|",
-					NSLayoutFormatOptions.DirectionLeadingToTrailing, null, views3));
+					NSLayoutFormatOptions.DirectionLeadingToTrailing,
+					"topLayoutGuide", TopLayoutGuide,
+					"nameLabel", NameLabel,
+					"conversationsLabel", ConversationsLabel,
+					"photosLabel", PhotosLabel,
+					"imageView", ImageView
+				));
 			}
 
 			if (constraints != null)
