@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.15" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GEe-Ub-y6O">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.12"/>
+    </dependencies>
+    <scenes>
+        <!--Player View Controller-->
+        <scene sceneID="5s4-dQ-up8">
+            <objects>
+                <viewController id="GEe-Ub-y6O" customClass="PlayerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ulq-ZC-Ui6"/>
+                        <viewControllerLayoutGuide type="bottom" id="mFO-uJ-EoM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wss-MD-4ac" customClass="PlayerView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This video is playing in Picture in Picture." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqI-Io-N7C" userLabel="PiPActive Label">
+                                <rect key="frame" x="81" y="277" width="439" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="PYX-g6-xJg"/>
+                                    <constraint firstAttribute="width" constant="439" id="TYb-Ij-C37"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOg-54-JsD">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="play" id="EYp-6d-TQ5">
+                                        <connections>
+                                            <action selector="playPauseButtonWasPressed:" destination="GEe-Ub-y6O" id="mp3-Vc-xFt"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Item" style="plain" id="O8I-Eb-Iet">
+                                        <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="9PR-Qz-6JI">
+                                            <rect key="frame" x="47" y="6.5" width="502" height="31"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="timeSliderDidChange:" destination="GEe-Ub-y6O" eventType="valueChanged" id="4ft-Bd-wxJ"/>
+                                            </connections>
+                                        </slider>
+                                    </barButtonItem>
+                                    <barButtonItem title="PiP" style="plain" id="g0s-UQ-FNz" userLabel="PiPButton">
+                                        <connections>
+                                            <action selector="togglePictureInPictureMode:" destination="GEe-Ub-y6O" id="vsA-jn-Zn9"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="JqI-Io-N7C" firstAttribute="centerX" secondItem="AOg-54-JsD" secondAttribute="centerX" id="1Un-2N-rGV"/>
+                            <constraint firstItem="JqI-Io-N7C" firstAttribute="centerY" secondItem="Wss-MD-4ac" secondAttribute="centerY" id="C2p-aL-rgO"/>
+                            <constraint firstAttribute="trailing" secondItem="AOg-54-JsD" secondAttribute="trailing" id="Cz0-ZQ-rWb"/>
+                            <constraint firstItem="AOg-54-JsD" firstAttribute="leading" secondItem="Wss-MD-4ac" secondAttribute="leading" id="ep6-bJ-bvL"/>
+                            <constraint firstItem="AOg-54-JsD" firstAttribute="bottom" secondItem="mFO-uJ-EoM" secondAttribute="top" id="z4w-e2-Ha9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pictureInPictureActiveLabel" destination="JqI-Io-N7C" id="ylo-SW-l3B"/>
+                        <outlet property="pictureInPictureButton" destination="g0s-UQ-FNz" id="Lv7-VP-vgd"/>
+                        <outlet property="playPauseButton" destination="EYp-6d-TQ5" id="KVN-ON-xOV"/>
+                        <outlet property="timeSlider" destination="9PR-Qz-6JI" id="T3z-e3-0gP"/>
+                        <outlet property="toolbar" destination="AOg-54-JsD" id="Zsg-zc-eum"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Za-3u-h93" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="367" y="292"/>
+        </scene>
+    </scenes>
+</document>
