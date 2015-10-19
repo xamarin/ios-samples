@@ -22,7 +22,7 @@
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <MtouchExtraArgs>--override-abi armv7,arm64</MtouchExtraArgs>
+    <MtouchExtraArgs></MtouchExtraArgs>
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>i386</MtouchArch>
@@ -48,7 +48,7 @@
     <ConsolePause>false</ConsolePause>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchExtraArgs>--override-abi armv7,arm64</MtouchExtraArgs>
+    <MtouchExtraArgs></MtouchExtraArgs>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
