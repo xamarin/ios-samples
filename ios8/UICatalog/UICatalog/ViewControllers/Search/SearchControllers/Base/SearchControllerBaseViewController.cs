@@ -8,12 +8,12 @@ namespace UICatalog
 {
 	public class SearchControllerBaseViewController : UITableViewController
 	{
-		private static readonly NSString kTableViewCellIdentifier = new NSString("searchResultsCell");
+		static readonly NSString kTableViewCellIdentifier = new NSString ("searchResultsCell");
 
-		private string[] _allResults;
-		private string[] _visibleResults;
+		string[] allResults;
+		string[] visibleResults;
 
-		private string _filterString;
+		string filterString;
 
 		public SearchControllerBaseViewController (IntPtr handle)
 			: base (handle)
@@ -24,7 +24,7 @@ namespace UICatalog
 		{
 			base.ViewDidLoad ();
 
-			_allResults = new string[] { "Here's", "to", "the", "crazy", "ones.", "The", "misfits.", "The", "rebels.",
+			allResults = new [] { "Here's", "to", "the", "crazy", "ones.", "The", "misfits.", "The", "rebels.",
 				"The", "troublemakers.", "The", "round", "pegs", "in", "the", "square", "holes.", "The", "ones", "who",
 				"see", "things", "differently.", "They're", "not", "fond", "of", @"rules.", "And", "they", "have", "no",
 				"respect", "for", "the", "status", "quo.", "You", "can", "quote", "them,", "disagree", "with", "them,",
@@ -35,33 +35,32 @@ namespace UICatalog
 				"the", "world,", "are", "the", "ones", "who", "do."
 			};
 
-			_visibleResults = _allResults;
+			visibleResults = allResults;
 		}
 
-		protected void ApplyFilter(string filter)
+		protected void ApplyFilter (string filter)
 		{
-			_filterString = filter;
+			filterString = filter;
 
-			if (string.IsNullOrWhiteSpace(_filterString))
-				_visibleResults = _allResults;
+			if (string.IsNullOrWhiteSpace (filterString))
+				visibleResults = allResults;
 			else
-				_visibleResults = _allResults.Where (s => s.Contains (_filterString)).ToArray ();
+				visibleResults = allResults.Where (s => s.Contains (filterString)).ToArray ();
 
 			TableView.ReloadData ();
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return _visibleResults.Length;
+			return visibleResults.Length;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			UITableViewCell cell = tableView.DequeueReusableCell(kTableViewCellIdentifier, indexPath);
-			cell.TextLabel.Text = _visibleResults[indexPath.Row];
+			UITableViewCell cell = tableView.DequeueReusableCell (kTableViewCellIdentifier, indexPath);
+			cell.TextLabel.Text = visibleResults [indexPath.Row];
 
 			return cell;
 		}
 	}
 }
-

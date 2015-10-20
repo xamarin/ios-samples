@@ -9,10 +9,10 @@ namespace UICatalog
 	public class ActivityIndicatorViewController : UITableViewController
 	{
 		[Outlet]
-		private UIActivityIndicatorView grayStyleActivityIndicatorView { get ; set; }
+		UIActivityIndicatorView grayStyleActivityIndicatorView { get ; set; }
 
 		[Outlet]
-		private UIActivityIndicatorView tintedActivityIndicatorView { get; set; }
+		UIActivityIndicatorView tintedActivityIndicatorView { get; set; }
 
 		public ActivityIndicatorViewController (IntPtr handle) : base (handle)
 		{
@@ -26,14 +26,14 @@ namespace UICatalog
 			ConfigureTintedActivityIndicatorView ();
 		}
 
-		private void ConfigureGrayActivityIndicatorView()
+		void ConfigureGrayActivityIndicatorView ()
 		{
 			grayStyleActivityIndicatorView.ActivityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray;
 			grayStyleActivityIndicatorView.StartAnimating ();
 			grayStyleActivityIndicatorView.HidesWhenStopped = true;
 		}
 
-		private void ConfigureTintedActivityIndicatorView()
+		void ConfigureTintedActivityIndicatorView ()
 		{
 			tintedActivityIndicatorView.ActivityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray;
 			tintedActivityIndicatorView.Color = ApplicationColors.Purple;

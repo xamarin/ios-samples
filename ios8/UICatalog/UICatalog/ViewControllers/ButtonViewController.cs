@@ -2,12 +2,11 @@ using System;
 
 using Foundation;
 using UIKit;
-using CoreText;
 
 namespace UICatalog
 {
 	[Register ("ButtonViewController")]
-	public partial class ButtonViewController : UITableViewController
+	public class ButtonViewController : UITableViewController
 	{
 		[Outlet]
 		UIButton SystemTextButton { get; set; }
@@ -41,28 +40,28 @@ namespace UICatalog
 			ConfigureAttributedTextSystemButton ();
 		}
 
-		private void ConfigureSystemTextButton()
+		void ConfigureSystemTextButton ()
 		{
 			SystemTextButton.SetTitle ("Button".Localize (), UIControlState.Normal);
-			SystemTextButton.AccessibilityIdentifier = "SYSTEM (TEXT) UIButton".Localize();
+			SystemTextButton.AccessibilityIdentifier = "SYSTEM (TEXT) UIButton".Localize ();
 			SystemTextButton.TouchUpInside += OnButtonClicked;
 		}
 
-		private void ConfigureSystemContactAddButton()
+		void ConfigureSystemContactAddButton ()
 		{
 			SystemContactAddButton.BackgroundColor = UIColor.Clear;
-			SystemContactAddButton.AccessibilityIdentifier = "SYSTEM (CONTACT ADD) UIButton".Localize();
+			SystemContactAddButton.AccessibilityIdentifier = "SYSTEM (CONTACT ADD) UIButton".Localize ();
 			SystemContactAddButton.TouchUpInside += OnButtonClicked;
 		}
 
-		private void ConfigureSystemDetailDisclosureButton()
+		void ConfigureSystemDetailDisclosureButton ()
 		{
 			SystemDetailDisclosureButton.BackgroundColor = UIColor.Clear;
-			SystemDetailDisclosureButton.AccessibilityIdentifier = "SYSTEM (DETAIL DISCLOSURE) UIButton".Localize();
+			SystemDetailDisclosureButton.AccessibilityIdentifier = "SYSTEM (DETAIL DISCLOSURE) UIButton".Localize ();
 			SystemDetailDisclosureButton.TouchUpInside += OnButtonClicked;
 		}
 
-		private void ConfigureImageButton()
+		void ConfigureImageButton ()
 		{
 			// Remove the title text.
 			ImageButton.SetTitle ("", UIControlState.Normal);
@@ -75,13 +74,13 @@ namespace UICatalog
 			ImageButton.TouchUpInside += OnButtonClicked;
 		}
 
-		private void ConfigureAttributedTextSystemButton()
+		void ConfigureAttributedTextSystemButton ()
 		{
-			UIStringAttributes attribs = new UIStringAttributes {
+			var attribs = new UIStringAttributes {
 				ForegroundColor = ApplicationColors.Blue,
 				StrikethroughStyle = NSUnderlineStyle.Single,
 			};
-			var titleAttributes = new NSAttributedString ("Button".Localize(), attribs);
+			var titleAttributes = new NSAttributedString ("Button".Localize (), attribs);
 			AttributedTextButton.SetAttributedTitle (titleAttributes, UIControlState.Normal);
 
 			var highlightedTitleAttributes = new UIStringAttributes {
@@ -95,7 +94,7 @@ namespace UICatalog
 			AttributedTextButton.TouchUpInside += OnButtonClicked;
 		}
 
-		private void OnButtonClicked(object sender, EventArgs e)
+		static void OnButtonClicked (object sender, EventArgs e)
 		{
 			Console.WriteLine ("A button was clicked. sender: {0}", sender);
 		}

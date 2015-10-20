@@ -9,13 +9,13 @@ namespace UICatalog
 	public class SliderViewController : UITableViewController
 	{
 		[Outlet]
-		private UISlider DefaultSlider { get; set; }
+		UISlider DefaultSlider { get; set; }
 
 		[Outlet]
-		private UISlider TintedSlider { get; set; }
+		UISlider TintedSlider { get; set; }
 
 		[Outlet]
-		private UISlider CustomSlider { get; set; }
+		UISlider CustomSlider { get; set; }
 
 		public SliderViewController (IntPtr handle) : base (handle)
 		{
@@ -30,7 +30,7 @@ namespace UICatalog
 			ConfigureCustomSlider ();
 		}
 
-		private void ConfigureDefaultSlider()
+		void ConfigureDefaultSlider ()
 		{
 			DefaultSlider.MinValue = 0;
 			DefaultSlider.MaxValue = 100;
@@ -40,7 +40,7 @@ namespace UICatalog
 			DefaultSlider.ValueChanged += OnSliderValueChanged;
 		}
 
-		private void ConfigureTintedSlider()
+		void ConfigureTintedSlider ()
 		{
 			TintedSlider.MinimumTrackTintColor = ApplicationColors.Blue;
 			TintedSlider.MaximumTrackTintColor = ApplicationColors.Purple;
@@ -48,7 +48,7 @@ namespace UICatalog
 			TintedSlider.ValueChanged += OnSliderValueChanged;
 		}
 
-		private void ConfigureCustomSlider()
+		void ConfigureCustomSlider ()
 		{
 			var leftTrackImage = UIImage.FromBundle ("slider_blue_track");
 			CustomSlider.SetMinTrackImage (leftTrackImage, UIControlState.Normal);
@@ -67,7 +67,7 @@ namespace UICatalog
 			CustomSlider.ValueChanged += OnSliderValueChanged;
 		}
 
-		private void OnSliderValueChanged(object sender, EventArgs e)
+		static void OnSliderValueChanged (object sender, EventArgs e)
 		{
 			Console.WriteLine ("A slider changed its value: {0}.", sender);
 		}

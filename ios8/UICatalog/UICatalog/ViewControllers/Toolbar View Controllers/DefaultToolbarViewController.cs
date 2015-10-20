@@ -9,23 +9,23 @@ namespace UICatalog
 	public class DefaultToolbarViewController : UIViewController
 	{
 		[Outlet]
-		private UIToolbar Toolbar { get; set; }
+		UIToolbar Toolbar { get; set; }
 
 		#region Lazy initialization
 
-		private UIBarButtonItem TrashBarButtonItem {
+		UIBarButtonItem TrashBarButtonItem {
 			get {
 				return new UIBarButtonItem (UIBarButtonSystemItem.Trash, OnBarButtonItemClicked);
 			}
 		}
 
-		private UIBarButtonItem FlexibleSpaceBarButtonItem {
+		UIBarButtonItem FlexibleSpaceBarButtonItem {
 			get {
 				return new UIBarButtonItem (UIBarButtonSystemItem.FlexibleSpace);
 			}
 		}
 
-		private UIBarButtonItem CustomTitleBarButtonItem {
+		UIBarButtonItem CustomTitleBarButtonItem {
 			get {
 				return new UIBarButtonItem ("Action".Localize (), UIBarButtonItemStyle.Plain, OnBarButtonItemClicked);
 			}
@@ -45,18 +45,18 @@ namespace UICatalog
 			ConfigureToolbar ();
 		}
 
-		private void ConfigureToolbar()
+		void ConfigureToolbar ()
 		{
-			var toolbarButtonItems = new UIBarButtonItem[] {
+			var toolbarButtonItems = new [] {
 				TrashBarButtonItem,
 				FlexibleSpaceBarButtonItem,
 				CustomTitleBarButtonItem
 			};
 
-			Toolbar.SetItems (toolbarButtonItems, animated: true);
+			Toolbar.SetItems (toolbarButtonItems, true);
 		}
 
-		private void OnBarButtonItemClicked(object sender, EventArgs e)
+		static void OnBarButtonItemClicked (object sender, EventArgs e)
 		{
 			Console.WriteLine ("A bar button item on the default toolbar was clicked: {0}.", sender);
 		}

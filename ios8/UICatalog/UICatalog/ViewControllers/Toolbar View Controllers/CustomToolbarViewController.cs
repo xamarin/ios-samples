@@ -9,11 +9,11 @@ namespace UICatalog
 	public class CustomToolbarViewController : UIViewController
 	{
 		[Outlet]
-		private UIToolbar Toolbar { get; set; }
+		UIToolbar Toolbar { get; set; }
 
 		#region UIBarButtonItem Creation and Configuration
 
-		private UIBarButtonItem customImageBarButtonItem {
+		UIBarButtonItem CustomImageBarButtonItem {
 			get {
 				var customImageBarButtonItem = new UIBarButtonItem (UIImage.FromBundle ("tools_icon"), UIBarButtonItemStyle.Plain, OnBarButtonItemClicked);
 				customImageBarButtonItem.TintColor = ApplicationColors.Purple;
@@ -22,14 +22,14 @@ namespace UICatalog
 			}
 		}
 
-		private UIBarButtonItem FlexibleSpaceBarButtonItem {
+		UIBarButtonItem FlexibleSpaceBarButtonItem {
 			get {
 				// Note that there's no target/action since this represents empty space.
 				return new UIBarButtonItem (UIBarButtonSystemItem.FlexibleSpace, null);
 			}
 		}
 
-		private UIBarButtonItem CustomBarButtonItem {
+		UIBarButtonItem CustomBarButtonItem {
 			get {
 				var barButtonItem = new UIBarButtonItem ("Button".Localize (), UIBarButtonItemStyle.Plain, OnBarButtonItemClicked);
 
@@ -58,19 +58,19 @@ namespace UICatalog
 			ConfigureToolbar ();
 		}
 
-		private void ConfigureToolbar()
+		void ConfigureToolbar ()
 		{
 			Toolbar.SetBackgroundImage (UIImage.FromBundle ("toolbar_background"), UIToolbarPosition.Bottom, UIBarMetrics.Default);
 
-			var toolbarButtonItems = new UIBarButtonItem[] {
-				customImageBarButtonItem,
+			var toolbarButtonItems = new [] {
+				CustomImageBarButtonItem,
 				FlexibleSpaceBarButtonItem,
 				CustomBarButtonItem
 			};
-			Toolbar.SetItems (toolbarButtonItems, animated: true);
+			Toolbar.SetItems (toolbarButtonItems, true);
 		}
 
-		private void OnBarButtonItemClicked(object sender, EventArgs e)
+		static void OnBarButtonItemClicked (object sender, EventArgs e)
 		{
 			Console.WriteLine ("A bar button item on the default toolbar was clicked: {0}.", sender);
 		}
