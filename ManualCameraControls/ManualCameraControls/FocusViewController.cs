@@ -73,7 +73,7 @@ namespace ManualCameraControls
 			Segments.ValueChanged += (object sender, EventArgs e) => {
 
 				// Lock device for change
-				ThisApp.CaptureDevice.LockForConfiguration(out Error);
+				if(ThisApp.CaptureDevice.LockForConfiguration(out Error)) {
 
 				// Take action based on the segment selected
 				switch(Segments.SelectedSegment) {
@@ -95,6 +95,7 @@ namespace ManualCameraControls
 
 				// Unlock device
 				ThisApp.CaptureDevice.UnlockForConfiguration();
+				}
 			};
 
 			// Monitor position changes
@@ -104,9 +105,10 @@ namespace ManualCameraControls
 				if (Automatic) return;
 
 				// Update Focus position
-				ThisApp.CaptureDevice.LockForConfiguration(out Error);
-				ThisApp.CaptureDevice.SetFocusModeLocked(Position.Value,null);
-				ThisApp.CaptureDevice.UnlockForConfiguration();
+				if(ThisApp.CaptureDevice.LockForConfiguration(out Error)) {
+					ThisApp.CaptureDevice.SetFocusModeLocked(Position.Value,null);
+					ThisApp.CaptureDevice.UnlockForConfiguration();
+				}
 			};
 		}
 

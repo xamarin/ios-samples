@@ -92,8 +92,7 @@ namespace ManualCameraControls
 			}
 
 			// Prepare device for configuration
-			CaptureDevice.LockForConfiguration (out Error);
-			if (Error != null) {
+			if (!CaptureDevice.LockForConfiguration (out Error)) {
 				// There has been an issue, abort
 				Console.WriteLine ("Error: {0}", Error.LocalizedDescription);
 				CaptureDevice.UnlockForConfiguration ();

@@ -100,6 +100,9 @@ namespace ManualCameraControls
 				if (DisplayView !=null) {
 					DisplayView.BeginInvokeOnMainThread(() => {
 						// Set the image
+						var oldImg = DisplayView.Image;
+						oldImg?.Dispose ();
+
 						DisplayView.Image = image;
 
 						// Rotate image to the correct display orientation

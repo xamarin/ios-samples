@@ -111,7 +111,7 @@ namespace ManualCameraControls
 			Segments.ValueChanged += (object sender, EventArgs e) => {
 
 				// Lock device for change
-				ThisApp.CaptureDevice.LockForConfiguration(out Error);
+				if(ThisApp.CaptureDevice.LockForConfiguration(out Error)) {
 
 				// Take action based on the segment selected
 				switch(Segments.SelectedSegment) {
@@ -143,6 +143,7 @@ namespace ManualCameraControls
 
 				// Unlock device
 				ThisApp.CaptureDevice.UnlockForConfiguration();
+				}
 			};
 
 			// Monitor position changes
@@ -158,9 +159,10 @@ namespace ManualCameraControls
 				var newDurationSeconds = p * (maxDurationSeconds - minDurationSeconds) +minDurationSeconds;
 
 				// Update Focus position
-				ThisApp.CaptureDevice.LockForConfiguration(out Error);
+				if(ThisApp.CaptureDevice.LockForConfiguration(out Error)) {
 				ThisApp.CaptureDevice.LockExposure(CMTime.FromSeconds(p,1000*1000*1000),ThisApp.CaptureDevice.ISO,null);
 				ThisApp.CaptureDevice.UnlockForConfiguration();
+				}
 			};
 
 			ISO.ValueChanged += (object sender, EventArgs e) => {
@@ -169,9 +171,10 @@ namespace ManualCameraControls
 				if (Automatic) return;
 
 				// Update Focus position
-				ThisApp.CaptureDevice.LockForConfiguration(out Error);
+				if(ThisApp.CaptureDevice.LockForConfiguration(out Error)) {
 				ThisApp.CaptureDevice.LockExposure(ThisApp.CaptureDevice.ExposureDuration,ISO.Value,null);
 				ThisApp.CaptureDevice.UnlockForConfiguration();
+				}
 			};
 
 			Bias.ValueChanged += (object sender, EventArgs e) => {
@@ -180,9 +183,10 @@ namespace ManualCameraControls
 				// if (Automatic) return;
 
 				// Update Focus position
-				ThisApp.CaptureDevice.LockForConfiguration(out Error);
+				if(ThisApp.CaptureDevice.LockForConfiguration(out Error)) {
 				ThisApp.CaptureDevice.SetExposureTargetBias(Bias.Value,null);
 				ThisApp.CaptureDevice.UnlockForConfiguration();
+				}
 			};
 		}
 

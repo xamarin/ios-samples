@@ -46,20 +46,21 @@ namespace ManualCameraControls
 		/// <summary>
 		/// Sets the temperature and tint.
 		/// </summary>
-		private void SetTemperatureAndTint() {
+		void SetTemperatureAndTint() {
 			// Grab current temp and tint
-			// NOTE: The following line explodes in Xamarin with no error being thrown...
-			AVCaptureWhiteBalanceTemperatureAndTintValues TempAndTint = new AVCaptureWhiteBalanceTemperatureAndTintValues(Temperature.Value, Tint.Value);
+			var TempAndTint = new AVCaptureWhiteBalanceTemperatureAndTintValues (Temperature.Value, Tint.Value);
 
 			// Convert Color space
 			var gains = ThisApp.CaptureDevice.GetDeviceWhiteBalanceGains (TempAndTint);
 
 			// Set the new values
-			ThisApp.CaptureDevice.LockForConfiguration(out Error);
-			ThisApp.CaptureDevice.SetWhiteBalanceModeLockedWithDeviceWhiteBalanceGains (gains, (time) => {
-				// Ignore callback for now
-			});
-			ThisApp.CaptureDevice.UnlockForConfiguration();
+			if (ThisApp.CaptureDevice.LockForConfiguration (out Error)) {
+				gains = NomralizeGains (gains);
+				ThisApp.CaptureDevice.SetWhiteBalanceModeLockedWithDeviceWhiteBalanceGains (gains, (time) => {
+					// Ignore callback for now
+				});
+				ThisApp.CaptureDevice.UnlockForConfiguration ();
+			}
 		}
 		#endregion
 
@@ -78,24 +79,24 @@ namespace ManualCameraControls
 			ThisApp.Recorder.DisplayView = CameraView;
 
 			// Set min and max values
-			Temperature.MinValue = 1.0f;
-			Temperature.MaxValue = ThisApp.CaptureDevice.MaxWhiteBalanceGain;
+			Temperature.MinValue = 1000;
+			Temperature.MaxValue = 10000;
 
-			Tint.MinValue = 1.0f;
-			Tint.MaxValue = ThisApp.CaptureDevice.MaxWhiteBalanceGain;
+			Tint.MinValue = -150;
+			Tint.MaxValue = 150;
 
 			// Create a timer to monitor and update the UI
 			SampleTimer = new Timer (5000);
 			SampleTimer.Elapsed += (sender, e) => {
 				// Convert color space
-				var TempAndTint = ThisApp.CaptureDevice.GetTemperatureAndTintValues(ThisApp.CaptureDevice.DeviceWhiteBalanceGains);
+				var TempAndTint = ThisApp.CaptureDevice.GetTemperatureAndTintValues (ThisApp.CaptureDevice.DeviceWhiteBalanceGains);
 
 				// Update slider positions
-				Temperature.BeginInvokeOnMainThread(() =>{
+				Temperature.BeginInvokeOnMainThread (() => {
 					Temperature.Value = TempAndTint.Temperature;
 				});
 
-				Tint.BeginInvokeOnMainThread(() =>{
+				Tint.BeginInvokeOnMainThread (() => {
 					Tint.Value = TempAndTint.Tint;
 				});
 			};
@@ -104,65 +105,70 @@ namespace ManualCameraControls
 			Segments.ValueChanged += (object sender, EventArgs e) => {
 
 				// Lock device for change
-				ThisApp.CaptureDevice.LockForConfiguration(out Error);
+				if (ThisApp.CaptureDevice.LockForConfiguration (out Error)) {
 
-				// Take action based on the segment selected
-				switch(Segments.SelectedSegment) {
-				case 0:
+					// Take action based on the segment selected
+					switch (Segments.SelectedSegment) {
+					case 0:
 					// Activate auto focus and start monitoring position
-					Temperature.Enabled = false;
-					Tint.Enabled = false;
-					ThisApp.CaptureDevice.WhiteBalanceMode = AVCaptureWhiteBalanceMode.ContinuousAutoWhiteBalance;
-					SampleTimer.Start();
-					Automatic = true;
-					break;
-				case 1:
+						Temperature.Enabled = false;
+						Tint.Enabled = false;
+						ThisApp.CaptureDevice.WhiteBalanceMode = AVCaptureWhiteBalanceMode.ContinuousAutoWhiteBalance;
+						SampleTimer.Start ();
+						Automatic = true;
+						break;
+					case 1:
 					// Stop auto focus and allow the user to control the camera
-					SampleTimer.Stop();
-					ThisApp.CaptureDevice.WhiteBalanceMode = AVCaptureWhiteBalanceMode.Locked;
-					Automatic = false;
-					Temperature.Enabled = true;
-					Tint.Enabled = true;
-					break;
-				}
+						SampleTimer.Stop ();
+						ThisApp.CaptureDevice.WhiteBalanceMode = AVCaptureWhiteBalanceMode.Locked;
+						Automatic = false;
+						Temperature.Enabled = true;
+						Tint.Enabled = true;
+						break;
+					}
 
-				// Unlock device
-				ThisApp.CaptureDevice.UnlockForConfiguration();
+					// Unlock device
+					ThisApp.CaptureDevice.UnlockForConfiguration ();
+				}
 			};
 
 			// Monitor position changes
 			Temperature.TouchUpInside += (object sender, EventArgs e) => {
 
 				// If we are in the automatic mode, ignore changes
-				if (Automatic) return;
+				if (Automatic)
+					return;
 
 				// Update white balance
-				SetTemperatureAndTint();
+				SetTemperatureAndTint ();
 			};
 
 			Tint.TouchUpInside += (object sender, EventArgs e) => {
 
 				// If we are in the automatic mode, ignore changes
-				if (Automatic) return;
+				if (Automatic)
+					return;
 
 				// Update white balance
-				SetTemperatureAndTint();
+				SetTemperatureAndTint ();
 			};
 
 			GrayCardButton.TouchUpInside += (sender, e) => {
 
 				// If we are in the automatic mode, ignore changes
-				if (Automatic) return;
+				if (Automatic)
+					return;
 
 				// Get gray card values
 				var gains = ThisApp.CaptureDevice.GrayWorldDeviceWhiteBalanceGains;
 
 				// Set the new values
-				ThisApp.CaptureDevice.LockForConfiguration(out Error);
-				ThisApp.CaptureDevice.SetWhiteBalanceModeLockedWithDeviceWhiteBalanceGains (gains, (time) => {
-					// Ignore callback for now
-				});
-				ThisApp.CaptureDevice.UnlockForConfiguration();
+				if (ThisApp.CaptureDevice.LockForConfiguration (out Error)) {
+					ThisApp.CaptureDevice.SetWhiteBalanceModeLockedWithDeviceWhiteBalanceGains (gains, (time) => {
+						// Ignore callback for now
+					});
+					ThisApp.CaptureDevice.UnlockForConfiguration ();
+				}
 			};
 		}
 
@@ -200,5 +206,19 @@ namespace ManualCameraControls
 
 		}
 		#endregion
+
+		AVCaptureWhiteBalanceGains NomralizeGains (AVCaptureWhiteBalanceGains gains)
+		{
+			gains.RedGain = Math.Max (1, gains.RedGain);
+			gains.BlueGain = Math.Max (1, gains.BlueGain);
+			gains.GreenGain = Math.Max (1, gains.GreenGain);
+
+			float maxGain = ThisApp.CaptureDevice.MaxWhiteBalanceGain;
+			gains.RedGain = Math.Min (maxGain, gains.RedGain);
+			gains.BlueGain = Math.Min (maxGain, gains.BlueGain);
+			gains.GreenGain = Math.Min (maxGain, gains.GreenGain);
+
+			return gains;
+		}
 	}
 }
