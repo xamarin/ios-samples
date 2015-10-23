@@ -23,7 +23,7 @@ For more information about processing an Apple Pay payment using a payment platf
 Build Requirements
 ------------------
 
-Xcode 7.0, iOS 9.0 SDK, watchOS 1.0 SDK
+Xcode 7.0, iOS 9.0 SDK, watchOS 1.0 SDK. This sample use new C# 6 features which means that you need IDE with C# 6 support(Xamarin Studio, Visual Studio 2015).
 
 Refs
 ----

@@ -6,7 +6,7 @@ This sample code demonstrates how to use Xcode to build a SceneKit level, choose
 Build Requirements
 ------------------
 
-Xcode 7.0, iOS 9.0 SDK, OS X 10.11 SDK
+Xcode 7.0, iOS 9.0 SDK, OS X 10.11 SDK. This sample use new C# 6 features which means that you need IDE with C# 6 support(Xamarin Studio, Visual Studio 2015).
 
 Runtime Requirements
 ------------------
