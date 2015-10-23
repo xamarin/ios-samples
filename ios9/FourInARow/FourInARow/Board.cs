@@ -62,7 +62,9 @@ namespace FourInARow {
 
 		public NSObject Copy (NSZone zone)
 		{
-			return null;
+			var board = new Board ();
+			board.SetGameModel (this);
+			return board;
 		}
 
 		public void SetGameModel (IGKGameModel gameModel)
@@ -200,7 +202,7 @@ namespace FourInARow {
 
 		void UpdateChipsFromBoard (Board otherBoard)
 		{
-			Cells = otherBoard.Cells;
+			Array.Copy (otherBoard.Cells, Cells, Cells.Length);
 		}
 
 		void SetChipInColumnRow (Chip chip, int column, int row)
