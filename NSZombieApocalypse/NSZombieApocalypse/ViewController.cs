@@ -1,14 +1,10 @@
 using System;
-using System.Timers;
-using System.Threading;
-using CoreGraphics;
-using System.Collections.Generic;
+
 using UIKit;
-using CoreFoundation;
 using Foundation;
+using CoreGraphics;
+using CoreFoundation;
 using CoreAnimation;
-using CoreImage;
-using System.Threading.Tasks;
 using ObjCRuntime;
 
 namespace NSZombieApocalypse
@@ -40,23 +36,9 @@ namespace NSZombieApocalypse
 
 		Random rand = new Random ();
 
-		public ViewController () : base ("ZBEViewController", null)
-		{
-
-		}
-
-		public ViewController (UINib name, NSBundle obj) : base ()
-		{
-
-		}
-
 		public override void ViewWillAppear (bool animated)
 		{
 			CGRect frame = View.Frame;
-			frame = new CGRect (frame.X, frame.Y, frame.Size.Height + 20, frame.Size.Width);
-			View.Frame = frame;
-
-			frame = View.Frame;
 
 			var backGround = new UIImageView (UIImage.FromBundle ("background.png"));
 			backGround.Alpha = 0.34f;
@@ -103,17 +85,17 @@ namespace NSZombieApocalypse
 			isVoiceOverSpeaking = false;
 		}
 
-		void pause ()
+		void Pause ()
 		{
 			paused = true;
 			miniPadView.PauseZombies ();
 			UIAccessibility.PostNotification(UIAccessibilityPostNotification.Announcement, (NSString)"Apocalypse On Pause");
 		}
 
-		void unpause ()
+		void Unpause ()
 		{
 			paused = false;
-			zombiesOnATimer ();
+			ZombiesOnATimer ();
 			miniPadView.UnpauseZombies ();
 			UIAccessibility.PostNotification (UIAccessibilityPostNotification.Announcement, (NSString)"Apocalypse resumed");
 		}
@@ -122,24 +104,24 @@ namespace NSZombieApocalypse
 		{
 			helpView.RemoveFromSuperview ();
 			helpView = null;
-			unpause ();
+			Unpause ();
 			UIAccessibility.PostNotification (UIAccessibilityPostNotification.ScreenChanged, statusView);
 		}
 
 		public void TogglePause ()
 		{
 			if (paused)
-				unpause ();
+				Unpause ();
 			else
-				pause ();
+				Pause ();
 		}
 
 		void questionPressed ()
 		{
-			pause ();
+			Pause ();
 			helpView = new HelpView (View.Bounds);
 			View.AddSubview (helpView);
-			helpView.HelpDidClose += new HelpDidCloseHandler (HelpDidClose);
+			helpView.HelpDidClose += HelpDidClose;
 			helpView.Show ();
 			UIAccessibility.PostNotification (UIAccessibilityPostNotification.ScreenChanged, null);
 		}
@@ -162,7 +144,7 @@ namespace NSZombieApocalypse
 				return TimerEvent.StagnantReleasePool;
 		}
 
-		string stringForZombieEvent (TimerEvent timerEvent)
+		static string StringForZombieEvent (TimerEvent timerEvent)
 		{
 			switch (timerEvent) {
 			case TimerEvent.BadProgramming:
@@ -178,10 +160,11 @@ namespace NSZombieApocalypse
 			case TimerEvent.StagnantReleasePool:
 				return  "Your release pools stopped draining! (23MB)";
 			}
-			return "";
+
+			return string.Empty;
 		}
 
-		float zombieFactorForEvent (TimerEvent timerEvent)
+		static float ZombieFactorForEvent (TimerEvent timerEvent)
 		{
 			switch (timerEvent) {
 			case TimerEvent.BadProgramming:
@@ -201,7 +184,7 @@ namespace NSZombieApocalypse
 			}
 		}
 
-		void monitorZombiePressure ()
+		void MonitorZombiePressure ()
 		{
 			if (meterView.ZombieLevel > 0.99f)
 				Environment.Exit (0);
@@ -215,20 +198,20 @@ namespace NSZombieApocalypse
 				statusView.Status = "Just like the real zombie apocalypse, this game never ends. Keep it up, the best you can hope for is that you'll never stop playing!";
 		}
 
-		void zombiesOnATimer ()
+		void ZombiesOnATimer ()
 		{
 			if (paused)
 				return;
 
 			TimerEvent eventType = nextZombieEvent ();
-			statusView.Status = stringForZombieEvent (eventType);
-			meterView.ZombieLevel = meterView.ZombieLevel + zombieFactorForEvent (eventType);
+			statusView.Status = StringForZombieEvent (eventType);
+			meterView.ZombieLevel = meterView.ZombieLevel + ZombieFactorForEvent (eventType);
 
-			monitorZombiePressure ();
+			MonitorZombiePressure ();
 			manageVisibleZombies ();
 
 			var popTime = new DispatchTime (DispatchTime.Now, (long)6 * NSEC_PER_SEC);
-			DispatchQueue.MainQueue.DispatchAfter (popTime, () => zombiesOnATimer ());
+			DispatchQueue.MainQueue.DispatchAfter (popTime, ZombiesOnATimer);
 		}
 
 		void manageVisibleZombies ()
@@ -236,14 +219,12 @@ namespace NSZombieApocalypse
 			float level = meterView.ZombieLevel;
 			int zombieCount = (int)Math.Floor (level * 10);
 			if (zombieCount < miniPadView.ZombieCount) {
-				while (zombieCount < miniPadView.ZombieCount) {
+				while (zombieCount < miniPadView.ZombieCount)
 					miniPadView.RemoveZombie ();
-				}
 			}
 			if (zombieCount > miniPadView.ZombieCount) {
-				while (zombieCount > miniPadView.ZombieCount) {
+				while (zombieCount > miniPadView.ZombieCount)
 					miniPadView.AddZombie ();
-				}
 			}
 		}
 
@@ -252,14 +233,14 @@ namespace NSZombieApocalypse
 			manageVisibleZombies ();
 			statusView.Status = "Your program has started. The zombies are massing";
 
-			double delayInSeconds = 2;
+			const double delayInSeconds = 2;
 			var popTime = new DispatchTime (DispatchTime.Now, (long)(delayInSeconds * NSEC_PER_SEC));
-			DispatchQueue.MainQueue.DispatchAfter (popTime, () => zombiesOnATimer ());
+			DispatchQueue.MainQueue.DispatchAfter (popTime, ZombiesOnATimer);
 		}
 
-		void updateScoreForDroppedButton (ButtonView button)
+		void UpdateScoreForDroppedButton (ButtonView button)
 		{
-			ButtonType buttonType = (ButtonType)(int)button.Tag;
+			var buttonType = (ButtonType)(int)button.Tag;
 			float change = 0;
 			switch (buttonType) {
 			case ButtonType.Free:
@@ -280,12 +261,10 @@ namespace NSZombieApocalypse
 			case ButtonType.ARC:
 				change = -.1f;
 				break;
-			default:
-				break;
 			}
 			meterView.ZombieLevel = meterView.ZombieLevel + change;
 
-			monitorZombiePressure ();
+			MonitorZombiePressure ();
 			manageVisibleZombies ();
 		}
 
@@ -317,7 +296,6 @@ namespace NSZombieApocalypse
 					if (!isVoiceOverSpeaking) {
 						isVoiceOverSpeaking = true;
 						UIAccessibility.PostNotification (UIAccessibilityPostNotification.Announcement, (NSString)"Memory object outside iPad. Lift to Cancel");
-
 					}
 				}
 				buttonDraggedToPad = false;
@@ -327,14 +305,14 @@ namespace NSZombieApocalypse
 
 		public void ButtonFinished (ButtonView button, UIView trackingView, UITouch location)
 		{
-			double delayInSeconds = 0;
+			double delayInSeconds;
 
 			buttonDraggedToPad = false;
 			miniPadView.Layer.BorderWidth = 0;
 
 			CGPoint point = location.LocationInView (miniPadView);
 			if (miniPadView.PointInside (point, null)) {
-				updateScoreForDroppedButton (button);
+				UpdateScoreForDroppedButton (button);
 				UIView.Animate (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (10f * (float)Math.PI / 180), async () => {
 					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (-10f * (float)Math.PI / 180));
 					await UIView.AnimateAsync (.1f, () => trackingView.Transform = CGAffineTransform.MakeRotation (10f * (float)Math.PI / 180));

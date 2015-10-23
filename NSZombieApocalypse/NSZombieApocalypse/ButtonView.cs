@@ -4,14 +4,19 @@ using UIKit;
 
 namespace NSZombieApocalypse
 {
-	public class ButtonView: UIControl
+	public class TrackingEventArgs : EventArgs
+	{
+		public UITouch Touch { get; set; }
+	}
+
+	public sealed class ButtonView: UIControl
 	{
 		UILabel labelView;
 		UIImageView imageView;
 
-		public event TrackingStartedEventHandler TrackingStartedEvent;
-		public event TrackingContinuedEventHandler TrackingContinuedEvent;
-		public event TrackingEndedEventHandler TrackingEndedEvent;
+		public event EventHandler<TrackingEventArgs> TrackingStartedEvent;
+		public event EventHandler<TrackingEventArgs> TrackingContinuedEvent;
+		public event EventHandler<TrackingEventArgs> TrackingEndedEvent;
 
 		public ButtonView (CGRect frame):base (frame)
 		{
@@ -32,24 +37,21 @@ namespace NSZombieApocalypse
 			}
 		}
 
-		public override bool BeginTracking (UITouch touch, UIEvent uievent)
+		public override bool BeginTracking (UITouch uitouch, UIEvent uievent)
 		{
-			if (TrackingStartedEvent != null)
-				TrackingStartedEvent (this);
+			TrackingStartedEvent?.Invoke (this, new TrackingEventArgs { Touch = uitouch });
 			return true;
 		}
 
-		public override bool ContinueTracking (UITouch touch, UIEvent uievent)
+		public override bool ContinueTracking (UITouch uitouch, UIEvent uievent)
 		{
-			if (TrackingContinuedEvent != null)
-				TrackingContinuedEvent (this, touch);
+			TrackingContinuedEvent?.Invoke (this, new TrackingEventArgs { Touch = uitouch });
 			return true;
 		}
 
-		public override void EndTracking (UITouch touch, UIEvent uievent)
+		public override void EndTracking (UITouch uitouch, UIEvent uievent)
 		{
-			if (TrackingEndedEvent != null)
-				TrackingEndedEvent (this, touch);
+			TrackingEndedEvent?.Invoke (this, new TrackingEventArgs { Touch = uitouch });
 		}
 
 		public override void CancelTracking (UIEvent uievent)
@@ -123,8 +125,4 @@ namespace NSZombieApocalypse
 			labelView.Text = labelString;
 		}
 	}
-	public delegate void TrackingStartedEventHandler (ButtonView button);
-	public delegate void TrackingContinuedEventHandler (ButtonView button, UITouch location);
-	public delegate void TrackingEndedEventHandler (ButtonView button, UITouch location);
 }
-
