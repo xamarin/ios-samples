@@ -10,12 +10,8 @@ namespace AVCustomEdit
 		const int ForegroundTrack = 0;
 		const int BackgroundTrack = 1;
 
-		CGPoint diagonalEnd1,
-			diagonalEnd2;
-
-		public DiagonalWipeRenderer () : base ()
-		{
-		}
+		CGPoint diagonalEnd1;
+		CGPoint	diagonalEnd2;
 
 		void quadVertexCoordinates (ref float[] vertexCoordinates, int trackID, float tween)
 		{
@@ -118,8 +114,7 @@ namespace AVCustomEdit
 				destLumaTexture.Target, destLumaTexture.Name, 0);
 
 			if (GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer) != FramebufferErrorCode.FramebufferComplete) {
-				Console.WriteLine ("Failed to make complete frmaebuffer object: " +
-					GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer).ToString ());
+				Console.WriteLine ("Failed to make complete frmaebuffer object: {0}", GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer));
 
 				foregroundLumaTexture.Dispose ();
 				foregroundChromaTexture.Dispose ();
@@ -222,8 +217,8 @@ namespace AVCustomEdit
 				destChromaTexture.Name, 0);
 
 			if (GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer) != FramebufferErrorCode.FramebufferComplete) {
-				Console.WriteLine ("Failed to make complete framebuffer object: " +
-					GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer).ToString ());
+				Console.WriteLine ("Failed to make complete framebuffer object: {0}",
+					GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer));
 
 				foregroundLumaTexture.Dispose ();
 				foregroundChromaTexture.Dispose ();

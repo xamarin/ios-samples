@@ -4,6 +4,7 @@ using OpenGLES;
 using CoreGraphics;
 using CoreVideo;
 using OpenTK.Graphics.ES20;
+using System.Text;
 
 namespace AVCustomEdit
 {
@@ -17,29 +18,29 @@ namespace AVCustomEdit
 		public uint OffscreenBufferHandle;
 		public int[] Uniforms = new int[(int)Uniform.Num_Uniforms];
 
-		string vertShaderSource = "attribute vec4 position; \n" +
-			"attribute vec2 texCoord; \n" +
-				"uniform mat4 renderTransform; \n"+
-				"varying vec2 texCoordVarying; \n"+
-				"void main() \n"+
-				"{ \n"+
-				"gl_Position = position * renderTransform; \n"+
-				"texCoordVarying = texCoord; \n"+
-				"}";
-		string fragShaderYSource = "varying highp vec2 texCoordVarying; \n"+
-		    " uniform sampler2D SamplerY; \n"+
-		     "void main() \n"+
-		     "{ \n"+
-				"gl_FragColor.r = texture2D(SamplerY, texCoordVarying).r; \n"+
-		     "}";
-		string fragShaderUVSource ="varying highp vec2 texCoordVarying; \n"+
-		    "uniform sampler2D SamplerUV; \n"+
-		    "void main() \n"+
-		    "{ \n"+
-				"gl_FragColor.rg = texture2D(SamplerUV, texCoordVarying).rg; \n"+
-		    "}";
+		const string vertShaderSource = @"attribute vec4 position;
+attribute vec2 texCoord;
+uniform mat4 renderTransform;
+varying vec2 texCoordVarying;
+void main()
+{
+	gl_Position = position * renderTransform;
+	texCoordVarying = texCoord;
+}";
+		const string fragShaderYSource = @"varying highp vec2 texCoordVarying; 
+uniform sampler2D SamplerY;
+void main()
+{
+	gl_FragColor.r = texture2D(SamplerY, texCoordVarying).r;
+}";
+		const string fragShaderUVSource = @"varying highp vec2 texCoordVarying; 
+uniform sampler2D SamplerUV;
+void main()
+{
+	gl_FragColor.rg = texture2D(SamplerUV, texCoordVarying).rg;
+}";
 
-		public OpenGLRenderer () : base()
+		public OpenGLRenderer ()
 		{
 			CurrentContext = new EAGLContext (EAGLRenderingAPI.OpenGLES2);
 
@@ -67,33 +68,33 @@ namespace AVCustomEdit
 			// UV
 			lumaTexture = VideoTextureCache.TextureFromImage (pixelBuffer, true, All.RedExt, (int)pixelBuffer.Width,(int) pixelBuffer.Height, All.RedExt, DataType.UnsignedByte, 0, out err);
 			if (lumaTexture == null || err != CVReturn.Success)
-				Console.Error.WriteLine ("Error at creating luma texture using CVOpenGLESTextureCacheCreateTextureFromImage: " + err.ToString ());
+				Console.Error.WriteLine ("Error at creating luma texture using CVOpenGLESTextureCacheCreateTextureFromImage: {0}", err);
 
 			return lumaTexture;
 		}
 
-public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixelBuffer)
-{
-	CVOpenGLESTexture chromaTexture = null;
-	CVReturn err;
-	if (VideoTextureCache == null) {
-		Console.Error.WriteLine ("No video texture cache");
-		return chromaTexture;
-	}
-	// Periodic texture cache flush every frame
-	VideoTextureCache.Flush (0);
+		public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixelBuffer)
+		{
+			CVOpenGLESTexture chromaTexture = null;
+			CVReturn err;
+			if (VideoTextureCache == null) {
+				Console.Error.WriteLine ("No video texture cache");
+				return chromaTexture;
+			}
+			// Periodic texture cache flush every frame
+			VideoTextureCache.Flush (0);
 
-	// CVOpenGLTextureCacheCreateTextureFromImage will create GL texture optimally from CVPixelBufferRef.
-	// UV
-	var height = pixelBuffer.GetHeightOfPlane (1);
-	var width = pixelBuffer.GetWidthOfPlane (1);
-			chromaTexture = VideoTextureCache.TextureFromImage (pixelBuffer, true, All.RgExt, (int)width, (int)height, All.RgExt, DataType.UnsignedByte, 1, out err);
+			// CVOpenGLTextureCacheCreateTextureFromImage will create GL texture optimally from CVPixelBufferRef.
+			// UV
+			var height = pixelBuffer.GetHeightOfPlane (1);
+			var width = pixelBuffer.GetWidthOfPlane (1);
+					chromaTexture = VideoTextureCache.TextureFromImage (pixelBuffer, true, All.RgExt, (int)width, (int)height, All.RgExt, DataType.UnsignedByte, 1, out err);
 
-	if (chromaTexture == null || err != CVReturn.Success)
-		Console.Error.WriteLine ("Error at creating chroma texture using CVOpenGLESTextureCacheCreateTextureFromImage: " + err.ToString ());
+			if (chromaTexture == null || err != CVReturn.Success)
+						Console.Error.WriteLine ("Error at creating chroma texture using CVOpenGLESTextureCacheCreateTextureFromImage: {0}", err);
 
-	return chromaTexture;
-}
+			return chromaTexture;
+		}
 
 		public virtual void RenderPixelBuffer(CVPixelBuffer destinationPixelBuffer, CVPixelBuffer foregroundPixelBuffer, CVPixelBuffer backgroundPixelBuffer, float tween)
 		{
@@ -117,7 +118,7 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 		// OpenGL ES 2 shader compilation
 		bool loadShaders()
 		{
-			int vertShader = 0, fragShaderY = 0, fragShaderUV = 0;
+			int vertShader, fragShaderY, fragShaderUV;
 
 			// Create the shader program.
 			ProgramY = GL.CreateProgram ();
@@ -125,17 +126,17 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 
 			// Create and compile the vertex shader.
 
-			if (!compileShader (ShaderType.VertexShader, vertShaderSource, out vertShader)) {
+			if (!CompileShader (ShaderType.VertexShader, vertShaderSource, out vertShader)) {
 				Console.Error.WriteLine ("Failed to compile vertex shader");
 				return false;
 			}
 
-			if(!compileShader (ShaderType.FragmentShader, fragShaderYSource, out fragShaderY)) {
+			if(!CompileShader (ShaderType.FragmentShader, fragShaderYSource, out fragShaderY)) {
 				Console.Error.WriteLine ("Failed to compile Y fragment shader");
 				return false;
 			}
 
-			if(!compileShader (ShaderType.FragmentShader, fragShaderUVSource, out fragShaderUV)) {
+			if(!CompileShader (ShaderType.FragmentShader, fragShaderUVSource, out fragShaderUV)) {
 				Console.Error.WriteLine ("Failed to compile UV fragment shader");
 				return false;
 			}
@@ -153,7 +154,7 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 			GL.BindAttribLocation (ProgramUV, (int)Attrib.TexCoord_UV, "texCoord");
 
 			// Link the program.
-			if (!linkProgram (ProgramY) || !this.linkProgram (ProgramUV)) {
+			if (!LinkProgram (ProgramY) || !LinkProgram (ProgramUV)) {
 				Console.Error.WriteLine ("Failed to link program");
 				if (vertShader != 0) {
 					GL.DeleteShader (vertShader);
@@ -202,7 +203,7 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 			return true;
 		}
 
-		bool compileShader(ShaderType type, string sourceString, out int shader)
+		static bool CompileShader(ShaderType type, string sourceString, out int shader)
 		{
 			if (string.IsNullOrEmpty (sourceString)) {
 				Console.Error.WriteLine ("Failed to load vertex shader: Empty source string");
@@ -233,48 +234,42 @@ public virtual CVOpenGLESTexture ChromaTextureForPixelBuffer (CVPixelBuffer pixe
 			return true;
 		}
 
-		bool linkProgram(int program)
+		static bool LinkProgram(int program)
 		{
-			int status = 0;
+			int status;
 			GL.LinkProgram (program);
 
 #if DEBUG
-			int logLength = 0;
+			int logLength;
 			GL.GetProgram(program, ProgramParameter.InfoLogLength, out logLength);
 			if (logLength > 0) {
-				System.Text.StringBuilder log = new System.Text.StringBuilder(logLength);
+				var log = new StringBuilder(logLength);
 				GL.GetProgramInfoLog (program, logLength, out logLength, log);
-				Console.WriteLine("Program link log: " + log.ToString());
+				Console.WriteLine("Program link log: {0}", log);
 				log.Clear ();
 			}
 #endif
 
 			GL.GetProgram (program, ProgramParameter.LinkStatus, out status);
-			if (status == 0)
-				return false;
-
-			return true;
+			return status != 0;
 		}
 
-		bool validateProgram(int program)
+		static bool ValidateProgram(int program)
 		{
-			int logLength = 0;
-			int status = 0;
+			int logLength;
+			int status;
 			GL.ValidateProgram (program);
 
 			GL.GetProgram (program, ProgramParameter.InfoLogLength, out logLength);
 			if (logLength > 0) {
-				System.Text.StringBuilder log = new System.Text.StringBuilder(logLength);
+				var log = new StringBuilder(logLength);
 				GL.GetProgramInfoLog (program, logLength, out logLength, log);
-				Console.WriteLine("Program validate log: " + log.ToString());
+				Console.WriteLine("Program validate log: {0}", log);
 				log.Clear ();
 			}
 
 			GL.GetProgram (program, ProgramParameter.ValidateStatus, out status);
-			if (status == 0)
-				return false;
-
-			return true;
+			return status != 0;
 		}
 	}
 

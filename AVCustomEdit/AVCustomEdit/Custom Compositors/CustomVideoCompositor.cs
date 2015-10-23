@@ -52,7 +52,7 @@ namespace AVCustomEdit
 			renderContextDidChange = false;
 		}
 
-		public CustomVideoCompositor (AVVideoComposition videoComposition) : base()
+		public CustomVideoCompositor (AVVideoComposition videoComposition)
 		{
 			renderingQueue = new DispatchQueue ("com.apple.aplcustomvideocompositor.renderingqueue");
 			renderContextQueue = new DispatchQueue ("com.apple.aplcustomvideocompositor.rendercontextqueue");
@@ -86,7 +86,7 @@ namespace AVCustomEdit
 					asyncVideoCompositionRequest.FinishCancelledRequest();
 				else
 				{
-					NSError error = null;
+					NSError error;
 					CVPixelBuffer resultPixels = newRenderedPixelBufferForRequest( asyncVideoCompositionRequest, out error);
 					if(resultPixels != null){
 						asyncVideoCompositionRequest.FinishWithComposedVideoFrame(resultPixels);
@@ -110,7 +110,7 @@ namespace AVCustomEdit
 
 		//Utilities methods
 
-		double factorForTimeInRange( CMTime time, CMTimeRange range)
+		static double FactorForTimeInRange( CMTime time, CMTimeRange range)
 		{
 			CMTime elapsed = CMTime.Subtract (time, range.Start);
 			return elapsed.Seconds / range.Duration.Seconds;
@@ -118,8 +118,8 @@ namespace AVCustomEdit
 
 		CVPixelBuffer newRenderedPixelBufferForRequest (AVAsynchronousVideoCompositionRequest request, out NSError error )
 		{
-			CVPixelBuffer dstPixels = null;
-			float tweenFactor =(float) factorForTimeInRange (request.CompositionTime, request.VideoCompositionInstruction.TimeRange);
+			CVPixelBuffer dstPixels;
+			float tweenFactor =(float) FactorForTimeInRange (request.CompositionTime, request.VideoCompositionInstruction.TimeRange);
 
 			var currentInstruction = (CustomVideoCompositionInstruction)request.VideoCompositionInstruction;
 
