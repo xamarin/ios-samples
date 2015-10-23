@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouchCanvas", "TouchCanvas\TouchCanvas.csproj", "{B900A2C2-C647-46EC-9087-012DEDC476B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B900A2C2-C647-46EC-9087-012DEDC476B4}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{B900A2C2-C647-46EC-9087-012DEDC476B4}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{B900A2C2-C647-46EC-9087-012DEDC476B4}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{B900A2C2-C647-46EC-9087-012DEDC476B4}.Debug|iPhone.Build.0 = Debug|iPhone
+		{B900A2C2-C647-46EC-9087-012DEDC476B4}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{B900A2C2-C647-46EC-9087-012DEDC476B4}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{B900A2C2-C647-46EC-9087-012DEDC476B4}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{B900A2C2-C647-46EC-9087-012DEDC476B4}.Release|Any CPU.Build.0 = Release|iPhone
+		{B900A2C2-C647-46EC-9087-012DEDC476B4}.Release|iPhone.ActiveCfg = Release|iPhone
+		{B900A2C2-C647-46EC-9087-012DEDC476B4}.Release|iPhone.Build.0 = Release|iPhone
+		{B900A2C2-C647-46EC-9087-012DEDC476B4}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{B900A2C2-C647-46EC-9087-012DEDC476B4}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal
