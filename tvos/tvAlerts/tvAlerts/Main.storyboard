@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Displaying Alerts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAE-8u-z30">
+                                <rect key="frame" x="460" y="137" width="1000" height="182"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="182" id="IsJ-6j-uHe"/>
+                                    <constraint firstAttribute="width" constant="1000" id="gGu-KY-c6a"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="128"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="npk-GQ-lNi">
+                                <rect key="frame" x="729" y="398" width="462" height="86"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="86" id="9bn-6d-q3Q"/>
+                                    <constraint firstAttribute="width" constant="462" id="lW0-kq-tpb"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Simple Alert"/>
+                                <connections>
+                                    <action selector="DisplaySimpleAlert:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="OJm-nM-eib"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MCF-6j-2qI">
+                                <rect key="frame" x="729" y="536" width="462" height="86"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="462" id="EVF-DF-fXU"/>
+                                    <constraint firstAttribute="height" constant="86" id="zxc-IE-sGb"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="OK/Cancel Alert"/>
+                                <connections>
+                                    <action selector="DisplayOkCancelAlert:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="1RD-Z7-D8j"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jdg-i8-Opw">
+                                <rect key="frame" x="729" y="685" width="462" height="86"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="86" id="2H5-cA-lMP"/>
+                                    <constraint firstAttribute="width" constant="462" id="cfZ-NW-2Xb"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Destructive Alert"/>
+                                <connections>
+                                    <action selector="DisplayDestructiveAlert:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="ghF-n1-TfQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tk8-gF-Yec">
+                                <rect key="frame" x="729" y="831" width="462" height="86"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="462" id="HPH-w7-2mp"/>
+                                    <constraint firstAttribute="height" constant="86" id="jvo-be-hcr"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Text Input Alert"/>
+                                <connections>
+                                    <action selector="DisplayTextInputAlert:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="RDT-1N-Zf9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bAE-8u-z30" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1pK-rQ-YjF"/>
+                            <constraint firstItem="npk-GQ-lNi" firstAttribute="top" secondItem="bAE-8u-z30" secondAttribute="bottom" constant="79" id="6Cr-8s-TZI"/>
+                            <constraint firstItem="npk-GQ-lNi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="K4h-gY-8Lt"/>
+                            <constraint firstItem="MCF-6j-2qI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RPy-HD-490"/>
+                            <constraint firstItem="MCF-6j-2qI" firstAttribute="top" secondItem="npk-GQ-lNi" secondAttribute="bottom" constant="52" id="T1j-Mb-WbS"/>
+                            <constraint firstItem="bAE-8u-z30" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="137" id="VIZ-Xd-ubu"/>
+                            <constraint firstItem="Jdg-i8-Opw" firstAttribute="top" secondItem="MCF-6j-2qI" secondAttribute="bottom" constant="63" id="jqh-LL-X6s"/>
+                            <constraint firstItem="tk8-gF-Yec" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="na9-3V-EEF"/>
+                            <constraint firstItem="Jdg-i8-Opw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="pjY-Dh-2gy"/>
+                            <constraint firstItem="tk8-gF-Yec" firstAttribute="top" secondItem="Jdg-i8-Opw" secondAttribute="bottom" constant="60" id="qJV-du-zac"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="325" y="387"/>
+        </scene>
+    </scenes>
+</document>

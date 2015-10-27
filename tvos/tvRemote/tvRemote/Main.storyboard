@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Buttons-->
+        <scene sceneID="hNz-n2-bh7">
+            <objects>
+                <viewController id="9pv-A4-QxB" customClass="FirstViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
+                        <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JN2-ja-RmA" customClass="SiriRemoteView">
+                                <rect key="frame" x="74" y="185" width="254" height="747"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="254" id="O8A-uE-lgV"/>
+                                    <constraint firstAttribute="height" constant="747" id="eHw-IH-BVc"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Siri Remote Buttons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZuI-n1-DVD">
+                                <rect key="frame" x="383" y="200" width="1517" height="158"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="128"/>
+                                <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Buz-bF-Iz7">
+                                <rect key="frame" x="383" y="375" width="965" height="557"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">By adding Gesture Recognizers to your app's Storyboard and wiring them up as actions, your app can respond to button presses by the user. Press the buttons on the Siri Remote to highlight them on this graphic representation of the remote.</string>
+                                <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66f-cS-9Se">
+                                <rect key="frame" x="74" y="956" width="254" height="76"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="254" id="S0c-rH-Agx"/>
+                                    <constraint firstAttribute="height" constant="76" id="sK2-oi-Zo0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="66f-cS-9Se" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="54" id="Ff9-T8-s6C"/>
+                            <constraint firstItem="66f-cS-9Se" firstAttribute="top" secondItem="JN2-ja-RmA" secondAttribute="bottom" constant="24" id="GmE-as-rnJ"/>
+                            <constraint firstItem="JN2-ja-RmA" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="Teg-qi-NJF"/>
+                            <constraint firstItem="JN2-ja-RmA" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="54" id="aWa-0z-oRa"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="nes-TE-H55" appends="YES" id="5Yt-NG-f1w"/>
+                            <outletCollection property="gestureRecognizers" destination="3YG-Jj-jk0" appends="YES" id="4p6-KE-QjY"/>
+                            <outletCollection property="gestureRecognizers" destination="B14-Nz-JP0" appends="YES" id="0Tf-So-QY4"/>
+                            <outletCollection property="gestureRecognizers" destination="P9v-4F-70N" appends="YES" id="LYn-sz-pbv"/>
+                            <outletCollection property="gestureRecognizers" destination="PMx-Sb-ZFe" appends="YES" id="CMh-JS-XvV"/>
+                            <outletCollection property="gestureRecognizers" destination="0pp-Px-QdW" appends="YES" id="svL-bq-xFq"/>
+                            <outletCollection property="gestureRecognizers" destination="AKb-kC-fBY" appends="YES" id="xot-QB-mem"/>
+                        </connections>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Buttons" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="ButtonLabel" destination="66f-cS-9Se" id="BIN-2q-HaW"/>
+                        <outlet property="RemoteView" destination="JN2-ja-RmA" id="EUI-TL-INj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="nes-TE-H55">
+                    <pressTypeMask key="allowedPressTypes" select="YES"/>
+                    <connections>
+                        <action selector="TouchSurfaceClicked:" destination="9pv-A4-QxB" id="7HI-Cx-wbb"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="3YG-Jj-jk0">
+                    <pressTypeMask key="allowedPressTypes" menu="YES"/>
+                    <connections>
+                        <action selector="MenuPressed:" destination="9pv-A4-QxB" id="8mL-Kw-hGR"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="B14-Nz-JP0">
+                    <pressTypeMask key="allowedPressTypes" playPause="YES"/>
+                    <connections>
+                        <action selector="PlayPausePressed:" destination="9pv-A4-QxB" id="Fx1-fK-aUn"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="P9v-4F-70N">
+                    <pressTypeMask key="allowedPressTypes" upArrow="YES"/>
+                    <connections>
+                        <action selector="UpPressed:" destination="9pv-A4-QxB" id="PfO-1P-HKP"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="PMx-Sb-ZFe">
+                    <pressTypeMask key="allowedPressTypes" downArrow="YES"/>
+                    <connections>
+                        <action selector="DownPressed:" destination="9pv-A4-QxB" id="don-lc-DxD"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="0pp-Px-QdW">
+                    <pressTypeMask key="allowedPressTypes" leftArrow="YES"/>
+                    <connections>
+                        <action selector="LeftPressed:" destination="9pv-A4-QxB" id="5lG-n9-FsO"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="AKb-kC-fBY">
+                    <pressTypeMask key="allowedPressTypes" rightArrow="YES"/>
+                    <connections>
+                        <action selector="RightPressed:" destination="9pv-A4-QxB" id="GXs-Wl-9mD"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2246" y="-640"/>
+        </scene>
+        <!--Gestures-->
+        <scene sceneID="wg7-f3-ORb">
+            <objects>
+                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ucf-aV-8t3" customClass="SiriRemoteView">
+                                <rect key="frame" x="74" y="185" width="254" height="747"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="254" id="74P-Ez-g8u"/>
+                                    <constraint firstAttribute="height" constant="747" id="XYE-3U-uM7"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Siri Remote Gestures" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="St7-n3-OAr">
+                                <rect key="frame" x="383" y="200" width="1517" height="158"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="128"/>
+                                <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFz-bd-d4t">
+                                <rect key="frame" x="383" y="375" width="965" height="557"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <string key="text">Gestures can also be added programatically. Swipe the Touch Surface on the Siri Remote to highlight them on this graphic representation of the remote.</string>
+                                <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNM-pp-YdP">
+                                <rect key="frame" x="74" y="959" width="254" height="76"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="254" id="7MP-u6-wX8"/>
+                                    <constraint firstAttribute="height" constant="76" id="vuY-W7-h1K"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ucf-aV-8t3" firstAttribute="centerY" secondItem="QS5-Rx-YEW" secondAttribute="centerY" id="Hxe-wg-UOD"/>
+                            <constraint firstItem="PNM-pp-YdP" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="54" id="R27-4R-k8q"/>
+                            <constraint firstItem="Ucf-aV-8t3" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="54" id="b5y-Vj-JRh"/>
+                            <constraint firstItem="PNM-pp-YdP" firstAttribute="top" secondItem="Ucf-aV-8t3" secondAttribute="bottom" constant="27" id="uTL-IU-nHw"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Gestures" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="ButtonLabel" destination="PNM-pp-YdP" id="8XI-Mv-a4H"/>
+                        <outlet property="RemoteView" destination="Ucf-aV-8t3" id="fab-G4-7VG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2246" y="624"/>
+        </scene>
+        <!--Event-->
+        <scene sceneID="14e-Ky-Kel">
+            <objects>
+                <viewController id="chz-3M-UHz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TFt-HI-dib"/>
+                        <viewControllerLayoutGuide type="bottom" id="T0t-d7-zxu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="J1U-ox-n6j" customClass="EventView">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Event" id="o33-ND-cJy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tsK-Ub-iOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-175" y="-1197"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="yl2-sM-qoP">
+            <objects>
+                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="120"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="chz-3M-UHz" kind="relationship" relationship="viewControllers" id="1SL-81-yI3"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+</document>

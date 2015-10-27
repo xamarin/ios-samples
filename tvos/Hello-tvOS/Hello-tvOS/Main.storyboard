@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9058" systemVersion="15A284" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9048"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello, tvOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c6e-Qj-Ndp">
+                                <rect key="frame" x="645" y="215" width="631" height="227"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="227" id="9xd-QW-Tth"/>
+                                    <constraint firstAttribute="width" constant="631" id="asG-FG-yfk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="128"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dq-Vt-IcM">
+                                <rect key="frame" x="830" y="497" width="260" height="86"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="fgE-TB-RQp"/>
+                                    <constraint firstAttribute="height" constant="86" id="pEX-Be-rID"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Click Me"/>
+                                <connections>
+                                    <action selector="ClickedButton:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="y1m-nj-PtE"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2C-9F-hcp">
+                                <rect key="frame" x="645" y="646" width="631" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="631" id="1vj-as-bRX"/>
+                                    <constraint firstAttribute="height" constant="21" id="Les-at-Xja"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="c6e-Qj-Ndp" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="215" id="2Ec-bo-PkZ"/>
+                            <constraint firstItem="2dq-Vt-IcM" firstAttribute="top" secondItem="c6e-Qj-Ndp" secondAttribute="bottom" constant="55" id="T7v-gb-t6m"/>
+                            <constraint firstItem="B2C-9F-hcp" firstAttribute="top" secondItem="2dq-Vt-IcM" secondAttribute="bottom" constant="63" id="bMd-KE-s2W"/>
+                            <constraint firstItem="B2C-9F-hcp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iUw-U1-ST6"/>
+                            <constraint firstItem="2dq-Vt-IcM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jcS-8S-pLn"/>
+                            <constraint firstItem="c6e-Qj-Ndp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xx5-55-C78"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ClickedLabel" destination="B2C-9F-hcp" id="pet-Ox-njp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="325" y="387"/>
+        </scene>
+    </scenes>
+</document>
