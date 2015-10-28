@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9052" systemVersion="15A279b" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Collection View Container View Controller-->
+        <scene sceneID="sk6-6I-5Q4">
+            <objects>
+                <collectionViewController storyboardIdentifier="CollectionViewContainerViewController" id="Pc3-Tw-cph" customClass="CollectionViewContainerViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6d7-iK-dmY">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="wQ5-UU-xEZ">
+                            <size key="itemSize" width="1920" height="378"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="30" maxX="0.0" maxY="30"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewContainerCell" id="boR-co-TtI" customClass="CollectionViewContainerCell">
+                                <rect key="frame" x="0.0" y="30" width="1920" height="378"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="1920" height="378"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nak-GR-kj0">
+                                            <rect key="frame" x="0.0" y="0.0" width="1920" height="378"/>
+                                            <animations/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="50" minimumInteritemSpacing="0.0" id="md7-dd-wSE">
+                                                <size key="itemSize" width="308" height="378"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="50" minY="0.0" maxX="50" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DataItemCell" id="JQs-NY-kjb" customClass="DataItemCollectionViewCell">
+                                                    <rect key="frame" x="50" y="0.0" width="308" height="378"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                        <rect key="frame" x="0.0" y="0.0" width="308" height="378"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <imageView opaque="NO" multipleTouchEnabled="YES" contentMode="scaleAspectFill" fixedFrame="YES" image="Iceland 1.jpg" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWg-re-qiC">
+                                                                <rect key="frame" x="0.0" y="0.0" width="308" height="308"/>
+                                                                <animations/>
+                                                            </imageView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ld5-Gv-fzL">
+                                                                <rect key="frame" x="0.0" y="343" width="308" height="35"/>
+                                                                <animations/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <animations/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </view>
+                                                    <animations/>
+                                                    <connections>
+                                                        <outlet property="ImageView" destination="fWg-re-qiC" id="sUS-je-kab"/>
+                                                        <outlet property="Label" destination="Ld5-Gv-fzL" id="INN-6O-cs7"/>
+                                                    </connections>
+                                                </collectionViewCell>
+                                            </cells>
+                                            <connections>
+                                                <outlet property="dataSource" destination="boR-co-TtI" id="mVM-0E-NLp"/>
+                                                <outlet property="delegate" destination="boR-co-TtI" id="OcE-sx-fU0"/>
+                                            </connections>
+                                        </collectionView>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="nak-GR-kj0" secondAttribute="bottom" constant="-8" id="dd8-k7-c06"/>
+                                    <constraint firstItem="nak-GR-kj0" firstAttribute="top" secondItem="boR-co-TtI" secondAttribute="topMargin" constant="-8" id="egv-68-qEp"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="nak-GR-kj0" secondAttribute="trailing" constant="-8" id="nLR-AF-i7H"/>
+                                    <constraint firstItem="nak-GR-kj0" firstAttribute="leading" secondItem="boR-co-TtI" secondAttribute="leadingMargin" constant="-8" id="smi-P6-MEK"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="CollectionView" destination="nak-GR-kj0" id="hYw-z0-9CJ"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Pc3-Tw-cph" id="shN-s7-uk3"/>
+                            <outlet property="delegate" destination="Pc3-Tw-cph" id="AvI-M7-LBI"/>
+                        </connections>
+                    </collectionView>
+                    <connections>
+                        <outlet property="CollectionView" destination="6d7-iK-dmY" id="Mts-aH-a1L"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zVt-pM-Mjn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6109" y="4006"/>
+        </scene>
+        <!--Focus Guides View Controller-->
+        <scene sceneID="2CP-h8-NXZ">
+            <objects>
+                <viewController storyboardIdentifier="FocusGuides" id="psZ-JD-4qM" customClass="FocusGuidesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="upN-tq-ONR"/>
+                        <viewControllerLayoutGuide type="bottom" id="qfM-vc-sgt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ntO-pG-qPw">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RzF-br-b9c">
+                                <rect key="frame" x="504" y="726" width="912" height="143"/>
+                                <animations/>
+                                <string key="text">A UIFocusGuide is added to this view in viewDidLoad()
+
+The UIFocusGuide allows the user to move the focus directly between
+"Top Right Button" and "Bottom Left Button".</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="251" axis="vertical" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="au2-H6-iKH">
+                                <rect key="frame" x="534" y="434" width="852" height="212"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="B3f-i6-aaF">
+                                        <rect key="frame" x="0.0" y="0.0" width="852" height="86"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-Hs-yGi">
+                                                <rect key="frame" x="0.0" y="0.0" width="406" height="86"/>
+                                                <animations/>
+                                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                <state key="normal" title="Top Left Button"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibp-5W-vOr">
+                                                <rect key="frame" x="446" y="0.0" width="406" height="86"/>
+                                                <animations/>
+                                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                <state key="normal" title="Top Right Button"/>
+                                            </button>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uPc-9V-Q8B">
+                                        <rect key="frame" x="0.0" y="126" width="406" height="86"/>
+                                        <animations/>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <state key="normal" title="Bottom Left Button"/>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="Ibp-5W-vOr" firstAttribute="width" secondItem="uPc-9V-Q8B" secondAttribute="width" id="NDE-GC-LRz"/>
+                                    <constraint firstItem="zgO-Hs-yGi" firstAttribute="width" secondItem="uPc-9V-Q8B" secondAttribute="width" id="pDH-6e-RCg"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="RzF-br-b9c" secondAttribute="trailing" constant="40" id="2yx-Gy-0Gp"/>
+                            <constraint firstItem="au2-H6-iKH" firstAttribute="centerX" secondItem="ntO-pG-qPw" secondAttribute="centerX" id="HEg-cg-CaV"/>
+                            <constraint firstItem="RzF-br-b9c" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ntO-pG-qPw" secondAttribute="leadingMargin" constant="40" id="JQS-J2-zBZ"/>
+                            <constraint firstItem="RzF-br-b9c" firstAttribute="top" secondItem="au2-H6-iKH" secondAttribute="bottom" constant="80" id="Yhj-lt-wWY"/>
+                            <constraint firstItem="RzF-br-b9c" firstAttribute="centerX" secondItem="ntO-pG-qPw" secondAttribute="centerX" id="b0F-PK-LS7"/>
+                            <constraint firstItem="au2-H6-iKH" firstAttribute="centerY" secondItem="ntO-pG-qPw" secondAttribute="centerY" id="y1m-9I-6AX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="BottomLeftButton" destination="uPc-9V-Q8B" id="EmR-uU-uMM"/>
+                        <outlet property="TopRightButton" destination="Ibp-5W-vOr" id="mua-z6-rbg"/>
+                        <outlet property="preferredFocusedView" destination="zgO-Hs-yGi" id="JDf-wR-7kK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YAj-1F-Tyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6109" y="5268"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Iceland 1.jpg" width="749" height="500"/>
+    </resources>
+</document>

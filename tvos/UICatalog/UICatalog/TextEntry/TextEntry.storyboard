@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9052" systemVersion="15A279b" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Text Fields View Controller-->
+        <scene sceneID="2K0-3i-PMS">
+            <objects>
+                <viewController storyboardIdentifier="Simple" id="KG1-aG-Hce" customClass="TextFieldsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cz8-y3-V9c"/>
+                        <viewControllerLayoutGuide type="bottom" id="KSb-UL-QES"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jf7-4i-zkh">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="J7f-Qa-xS5">
+                                <rect key="frame" x="140" y="20" width="1640" height="400"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="mhb-WJ-CZ9">
+                                        <rect key="frame" x="0.0" y="0.0" width="1640" height="55"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Regular keyboard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0x-EE-CmM">
+                                                <rect key="frame" x="0.0" y="0.0" width="471" height="55"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Regular text field placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zA2-ee-bLN">
+                                                <rect key="frame" x="491" y="0.0" width="1149" height="55"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="37s-Gz-uvl">
+                                        <rect key="frame" x="0.0" y="115" width="1640" height="55"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email keyboard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4K-Am-BWx">
+                                                <rect key="frame" x="0.0" y="0.0" width="471" height="55"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email field placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Tg-FN-Ifj">
+                                                <rect key="frame" x="491" y="0.0" width="1149" height="55"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                            </textField>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xuj-rn-wLf">
+                                        <rect key="frame" x="0.0" y="230" width="1640" height="55"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number pad" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5B-cy-o8c">
+                                                <rect key="frame" x="0.0" y="0.0" width="471" height="55"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number pad placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D3E-BU-jdT">
+                                                <rect key="frame" x="491" y="0.0" width="1149" height="55"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2kl-3E-mXr">
+                                        <rect key="frame" x="0.0" y="345" width="1640" height="55"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numbers and punctuation keyboard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIQ-Kc-csV">
+                                                <rect key="frame" x="0.0" y="0.0" width="471" height="55"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Numbers and punctiation placeholder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lzW-rv-YTO">
+                                                <rect key="frame" x="491" y="0.0" width="1149" height="55"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                            </textField>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                </subviews>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="5Tg-FN-Ifj" firstAttribute="width" secondItem="zA2-ee-bLN" secondAttribute="width" id="Aw1-4m-zLr"/>
+                                    <constraint firstItem="R5B-cy-o8c" firstAttribute="width" secondItem="x4K-Am-BWx" secondAttribute="width" id="k0i-8b-P5r"/>
+                                    <constraint firstItem="h0x-EE-CmM" firstAttribute="width" secondItem="x4K-Am-BWx" secondAttribute="width" id="lAe-9o-iTM"/>
+                                    <constraint firstItem="sIQ-Kc-csV" firstAttribute="width" secondItem="R5B-cy-o8c" secondAttribute="width" id="zkP-04-Gew"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <animations/>
+                        <constraints>
+                            <constraint firstItem="J7f-Qa-xS5" firstAttribute="top" secondItem="cz8-y3-V9c" secondAttribute="bottom" constant="20" id="7Pj-lK-fE5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="J7f-Qa-xS5" secondAttribute="trailing" constant="120" id="QGy-pX-BbN"/>
+                            <constraint firstItem="J7f-Qa-xS5" firstAttribute="centerX" secondItem="jf7-4i-zkh" secondAttribute="centerX" id="QPw-cQ-p7k"/>
+                            <constraint firstItem="J7f-Qa-xS5" firstAttribute="leading" secondItem="jf7-4i-zkh" secondAttribute="leadingMargin" constant="120" id="lnY-oJ-ZDh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="51w-Pt-q6G"/>
+                    <connections>
+                        <outlet property="EmailKeyboardTextField" destination="5Tg-FN-Ifj" id="KPx-A1-CrC"/>
+                        <outlet property="NumberPadTextField" destination="D3E-BU-jdT" id="ESp-RO-o9y"/>
+                        <outlet property="NumbersAndPunctuationTextField" destination="lzW-rv-YTO" id="Wny-Yo-zBo"/>
+                        <outlet property="RegularKeyboardTextField" destination="zA2-ee-bLN" id="VEp-Qc-Yiv"/>
+                        <outlet property="preferredFocusedView" destination="zA2-ee-bLN" id="BGm-TR-mfQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rBx-KG-tKZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="534" y="684"/>
+        </scene>
+        <!--Alert Form View Controller-->
+        <scene sceneID="jB2-lC-Jlr">
+            <objects>
+                <viewController storyboardIdentifier="Alert" id="CCd-jA-UF3" customClass="AlertFormViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wKo-sr-bYn"/>
+                        <viewControllerLayoutGuide type="bottom" id="nZ9-1q-Uhn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oCc-Xw-L00">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="NI3-gm-qYm">
+                                <rect key="frame" x="663" y="20" width="594" height="232"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEe-iG-As7">
+                                        <rect key="frame" x="0.0" y="0.0" width="594" height="86"/>
+                                        <animations/>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <state key="normal" title="Show Simple Alert Form"/>
+                                        <connections>
+                                            <action selector="ShowSimpleForm:" destination="CCd-jA-UF3" eventType="primaryActionTriggered" id="k4T-ww-oLA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tT2-bj-1Yl">
+                                        <rect key="frame" x="0.0" y="146" width="594" height="86"/>
+                                        <animations/>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <state key="normal" title="Show Secure Entry Alert Form"/>
+                                        <connections>
+                                            <action selector="ShowSecureEntry:" destination="CCd-jA-UF3" eventType="primaryActionTriggered" id="aUS-g0-T0X"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                            </stackView>
+                        </subviews>
+                        <animations/>
+                        <constraints>
+                            <constraint firstItem="NI3-gm-qYm" firstAttribute="centerX" secondItem="oCc-Xw-L00" secondAttribute="centerX" id="JWS-6z-dQF"/>
+                            <constraint firstItem="NI3-gm-qYm" firstAttribute="top" secondItem="wKo-sr-bYn" secondAttribute="bottom" constant="20" id="u2R-nS-Igf"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="99E-m1-WLS"/>
+                    <connections>
+                        <outlet property="preferredFocusedView" destination="WEe-iG-As7" id="fYd-tc-GwK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="szS-oV-bwP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="534" y="1901"/>
+        </scene>
+    </scenes>
+</document>
