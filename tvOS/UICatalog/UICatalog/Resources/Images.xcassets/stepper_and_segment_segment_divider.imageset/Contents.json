@@ -1,0 +1,13 @@
+{
+  "images" : [
+    {
+      "idiom" : "tv",
+      "filename" : "stepper_and_segment_segment_divider.png",
+      "scale" : "1x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

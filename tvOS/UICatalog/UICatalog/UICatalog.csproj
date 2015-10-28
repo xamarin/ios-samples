@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{06FA79CB-D6CD-4721-BB4B-1BD202089C55};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{7143F7A0-34D0-4996-AB68-D8C70109A58E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>UICatalog</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>UICatalog</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchFloat32>true</MtouchFloat32>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.TVOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 1.imagestack\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 1.imagestack\Back.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 1.imagestack\Back.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 1.imagestack\Back.imagestacklayer\Content.imageset\Scenery 1 back.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 1.imagestack\Front.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 1.imagestack\Front.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 1.imagestack\Front.imagestacklayer\Content.imageset\Scenery 1 top.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 1.imagestack\Middle.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 1.imagestack\Middle.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 1.imagestack\Middle.imagestacklayer\Content.imageset\Scenery 1 middle.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Back.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Back.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Back.imagestacklayer\Content.imageset\Scenery 2 back.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Front.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Front.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Front.imagestacklayer\Content.imageset\Scenery 2 top.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Middle 1.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Middle 1.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Middle 1.imagestacklayer\Content.imageset\Scenery 2 middle 1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Middle 2.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Middle 2.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 2.imagestack\Middle 2.imagestacklayer\Content.imageset\Scenery 2 middle 2.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 3.imagestack\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 3.imagestack\Back.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 3.imagestack\Back.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 3.imagestack\Back.imagestacklayer\Content.imageset\Scenery 3 back.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 3.imagestack\Front.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 3.imagestack\Front.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 3.imagestack\Front.imagestacklayer\Content.imageset\Scenery 3 top.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 3.imagestack\Middle.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 3.imagestack\Middle.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 3.imagestack\Middle.imagestacklayer\Content.imageset\Scenery 3 middle.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Back.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Back.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Back.imagestacklayer\Content.imageset\Scenery 4 back.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Front.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Front.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Front.imagestacklayer\Content.imageset\Scenery 4 top.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Middle 1.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Middle 1.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Middle 1.imagestacklayer\Content.imageset\Scenery 4 middle 1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Middle 2.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Middle 2.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 4.imagestack\Middle 2.imagestacklayer\Content.imageset\Scenery 4 middle 2.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Back.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Back.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Back.imagestacklayer\Content.imageset\Scenery 5 back.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Front.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Front.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Front.imagestacklayer\Content.imageset\Scenery 5 top.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Middle 1.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Middle 1.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Middle 1.imagestacklayer\Content.imageset\Scenery 5 middle 1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Middle 2.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Middle 2.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 5.imagestack\Middle 2.imagestacklayer\Content.imageset\Scenery 5 middle 2.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 6.imagestack\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 6.imagestack\Back.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 6.imagestack\Back.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 6.imagestack\Back.imagestacklayer\Content.imageset\Scenery 6 back.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 6.imagestack\Front.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 6.imagestack\Front.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 6.imagestack\Front.imagestacklayer\Content.imageset\Scenery 6 top.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 6.imagestack\Middle.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 6.imagestack\Middle.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Scenery 6.imagestack\Middle.imagestacklayer\Content.imageset\Scenery 6 middle.png" />
+    <ImageAsset Include="Resources\Images.xcassets\star_icon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\star_icon.imageset\star_icon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\search_icon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\search_icon.imageset\search_icon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\checkmark_icon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\checkmark_icon.imageset\checkmark_icon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Large.imagestack\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Large.imagestack\Back.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Large.imagestack\Back.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Large.imagestack\Back.imagestacklayer\Content.imageset\xamarin-large-back.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Large.imagestack\Front.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Large.imagestack\Front.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Large.imagestack\Front.imagestacklayer\Content.imageset\xamarin-large-front.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Large.imagestack\Middle.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Large.imagestack\Middle.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Small.imagestack\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Small.imagestack\Back.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Small.imagestack\Back.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Small.imagestack\Back.imagestacklayer\Content.imageset\xamarin-back.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Small.imagestack\Front.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Small.imagestack\Front.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Small.imagestack\Front.imagestacklayer\Content.imageset\xamarin-front.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Small.imagestack\Middle.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\App Icon - Small.imagestack\Middle.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\Top Shelf Image.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Brand Assets.brandassets\Top Shelf Image.imageset\TopShelf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="MenuSplitViewController.cs" />
+    <Compile Include="MenuSplitViewController.designer.cs">
+      <DependentUpon>MenuSplitViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllerSamples\ViewControllersMenuViewController.cs" />
+    <Compile Include="ViewControllerSamples\ViewControllersMenuViewController.designer.cs">
+      <DependentUpon>ViewControllersMenuViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextEntry\TextEntryMenuViewController.cs" />
+    <Compile Include="TextEntry\TextEntryMenuViewController.designer.cs">
+      <DependentUpon>TextEntryMenuViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuTableViewController.cs" />
+    <Compile Include="DataItemCollectionViewCell.cs" />
+    <Compile Include="DataItems\DataItem.cs" />
+    <Compile Include="DataItemCellComposer.cs" />
+    <Compile Include="DataItems\Group.cs" />
+    <Compile Include="ControlSamples\ControlsMenuViewController.cs" />
+    <Compile Include="ControlSamples\ControlsMenuViewController.designer.cs">
+      <DependentUpon>ControlsMenuViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlSamples\ButtonsViewController.cs" />
+    <Compile Include="ControlSamples\ButtonsViewController.designer.cs">
+      <DependentUpon>ButtonsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlSamples\SegmentedControlsViewController.cs" />
+    <Compile Include="ControlSamples\SegmentedControlsViewController.designer.cs">
+      <DependentUpon>SegmentedControlsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlSamples\ProgressViewController.cs" />
+    <Compile Include="ControlSamples\ProgressViewController.designer.cs">
+      <DependentUpon>ProgressViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllerSamples\CollectionViewController.cs" />
+    <Compile Include="ViewControllerSamples\CollectionViewController.designer.cs">
+      <DependentUpon>CollectionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllerSamples\AlertsViewController.cs" />
+    <Compile Include="ViewControllerSamples\AlertsViewController.designer.cs">
+      <DependentUpon>AlertsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllerSamples\SearchViewController.cs" />
+    <Compile Include="ViewControllerSamples\SearchViewController.designer.cs">
+      <DependentUpon>SearchViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllerSamples\PageViewController.cs" />
+    <Compile Include="ViewControllerSamples\PageViewController.designer.cs">
+      <DependentUpon>PageViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllerSamples\DataItemViewController.cs" />
+    <Compile Include="ViewControllerSamples\DataItemViewController.designer.cs">
+      <DependentUpon>DataItemViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllerSamples\SearchResultsViewController.cs" />
+    <Compile Include="ViewControllerSamples\SearchResultsViewController.designer.cs">
+      <DependentUpon>SearchResultsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllerSamples\GradientMaskView.cs" />
+    <Compile Include="DataItemCollectionViewCell.designer.cs">
+      <DependentUpon>DataItemCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextEntry\TextFieldsViewController.cs" />
+    <Compile Include="TextEntry\TextFieldsViewController.designer.cs">
+      <DependentUpon>TextFieldsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextEntry\AlertFormViewController.cs" />
+    <Compile Include="TextEntry\AlertFormViewController.designer.cs">
+      <DependentUpon>AlertFormViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextEntry\CustomInputAccessoryView.cs" />
+    <Compile Include="FocusSamples\CollectionViewContainerViewController.cs" />
+    <Compile Include="FocusSamples\CollectionViewContainerViewController.designer.cs">
+      <DependentUpon>CollectionViewContainerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FocusSamples\CollectionViewContainerCell.cs" />
+    <Compile Include="FocusSamples\CollectionViewContainerCell.designer.cs">
+      <DependentUpon>CollectionViewContainerCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FocusSamples\FocusGuidesViewController.cs" />
+    <Compile Include="FocusSamples\FocusGuidesViewController.designer.cs">
+      <DependentUpon>FocusGuidesViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="ControlSamples\ControlSamples.storyboard" />
+    <InterfaceDefinition Include="ViewControllerSamples\ViewControllerSamples.storyboard" />
+    <InterfaceDefinition Include="TextEntry\TextEntry.storyboard" />
+    <InterfaceDefinition Include="FocusSamples\FocusSamples.storyboard" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\TVOS\Xamarin.TVOS.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="DataItems\" />
+    <Folder Include="ViewControllerSamples\" />
+    <Folder Include="TextEntry\" />
+    <Folder Include="FocusSamples\" />
+    <Folder Include="ControlSamples\" />
+    <Folder Include="Resources\Images.xcassets\stepper_and_segment_background.imageset\" />
+    <Folder Include="Resources\Images.xcassets\stepper_and_segment_background_disabled.imageset\" />
+    <Folder Include="Resources\Images.xcassets\stepper_and_segment_background_highlighted.imageset\" />
+    <Folder Include="Resources\Images.xcassets\stepper_and_segment_segment_divider.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Baby 1.jpg" />
+    <BundleResource Include="Resources\Baby 2.jpg" />
+    <BundleResource Include="Resources\Baby 3.jpg" />
+    <BundleResource Include="Resources\Baby 4.jpg" />
+    <BundleResource Include="Resources\Baby 5.jpg" />
+    <BundleResource Include="Resources\Baby 6.jpg" />
+    <BundleResource Include="Resources\Baby 7.jpg" />
+    <BundleResource Include="Resources\Baby 8.jpg" />
+    <BundleResource Include="Resources\Iceland 1.jpg" />
+    <BundleResource Include="Resources\Iceland 2.jpg" />
+    <BundleResource Include="Resources\Iceland 3.jpg" />
+    <BundleResource Include="Resources\Iceland 4.jpg" />
+    <BundleResource Include="Resources\Iceland 5.jpg" />
+    <BundleResource Include="Resources\Iceland 6.jpg" />
+    <BundleResource Include="Resources\Iceland 7.jpg" />
+    <BundleResource Include="Resources\Iceland 8.jpg" />
+    <BundleResource Include="Resources\Images.xcassets\stepper_and_segment_background.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\stepper_and_segment_background.imageset\stepper_and_segment_background.png" />
+    <BundleResource Include="Resources\Images.xcassets\stepper_and_segment_background_disabled.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\stepper_and_segment_background_disabled.imageset\stepper_and_segment_background_disabled.png" />
+    <BundleResource Include="Resources\Images.xcassets\stepper_and_segment_background_highlighted.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\stepper_and_segment_background_highlighted.imageset\stepper_and_segment_background_highlighted.png" />
+    <BundleResource Include="Resources\Images.xcassets\stepper_and_segment_segment_divider.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\stepper_and_segment_segment_divider.imageset\stepper_and_segment_segment_divider.png" />
+    <BundleResource Include="Resources\Italy 1.jpg" />
+    <BundleResource Include="Resources\Italy 2.jpg" />
+    <BundleResource Include="Resources\Italy 3.jpg" />
+    <BundleResource Include="Resources\Italy 4.jpg" />
+    <BundleResource Include="Resources\Italy 5.jpg" />
+    <BundleResource Include="Resources\Italy 6.jpg" />
+    <BundleResource Include="Resources\Italy 7.jpg" />
+    <BundleResource Include="Resources\Italy 8.jpg" />
+    <BundleResource Include="Resources\Lola 1 Large.jpg" />
+    <BundleResource Include="Resources\Lola 1.jpg" />
+    <BundleResource Include="Resources\Lola 2 Large.jpg" />
+    <BundleResource Include="Resources\Lola 2.jpg" />
+    <BundleResource Include="Resources\Lola 3 Large.jpg" />
+    <BundleResource Include="Resources\Lola 3.jpg" />
+    <BundleResource Include="Resources\Lola 4 Large.jpg" />
+    <BundleResource Include="Resources\Lola 4.jpg" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+{
+  "images" : [
+    {
+      "idiom" : "tv",
+      "filename" : "search_icon.png",
+      "scale" : "1x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
+  }
+}
