@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="City02.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="pAf-8K-mYU">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <animations/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M79-tq-lcO">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="eIN-va-MhL">
+                                    <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection Views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn5-ZZ-Wm2">
+                                            <rect key="frame" x="473" y="80" width="975" height="160"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="160" id="aJj-cV-abS"/>
+                                                <constraint firstAttribute="width" constant="975" id="kFg-J9-1by"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="128"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstItem="nn5-ZZ-Wm2" firstAttribute="centerX" secondItem="eIN-va-MhL" secondAttribute="centerX" id="hH2-Kl-Mrb"/>
+                                        <constraint firstItem="nn5-ZZ-Wm2" firstAttribute="top" secondItem="eIN-va-MhL" secondAttribute="top" constant="80" id="sps-Dh-1qZ"/>
+                                    </constraints>
+                                </view>
+                                <animations/>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="City02.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="g3g-53-AaZ">
+                                <rect key="frame" x="516" y="288" width="889" height="556"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="556" id="dpE-dS-TEc"/>
+                                    <constraint firstAttribute="width" constant="889" id="veY-yx-dKP"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6m3-ep-N2g">
+                                <rect key="frame" x="787" y="974" width="347" height="86"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="347" id="YYE-Wr-eDS"/>
+                                    <constraint firstAttribute="height" constant="86" id="yUk-sb-lYx"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Select a View"/>
+                                <connections>
+                                    <segue destination="saY-Ys-33E" kind="show" id="O0a-Ya-hZ1"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="City Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRM-cM-tag">
+                                <rect key="frame" x="516" y="847" width="889" height="74"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="M79-tq-lcO" secondAttribute="bottom" id="3VG-eG-lgY"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="6m3-ep-N2g" secondAttribute="bottom" constant="20" id="6JF-nw-syu"/>
+                            <constraint firstItem="g3g-53-AaZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JRX-VS-6cN"/>
+                            <constraint firstItem="pAf-8K-mYU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="K47-bM-Tox"/>
+                            <constraint firstItem="M79-tq-lcO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="PPk-HD-59P"/>
+                            <constraint firstAttribute="trailing" secondItem="M79-tq-lcO" secondAttribute="trailing" id="YXy-FZ-hil"/>
+                            <constraint firstItem="6m3-ep-N2g" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dd8-gK-GeN"/>
+                            <constraint firstAttribute="trailing" secondItem="pAf-8K-mYU" secondAttribute="trailing" id="eJ7-pT-zAJ"/>
+                            <constraint firstItem="pAf-8K-mYU" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="g6P-Qc-Wa4"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pAf-8K-mYU" secondAttribute="bottom" id="ofg-rT-9Sh"/>
+                            <constraint firstItem="M79-tq-lcO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="vM9-zr-DCs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="BackgroundView" destination="pAf-8K-mYU" id="SNS-Dl-F3d"/>
+                        <outlet property="CityTitle" destination="aRM-cM-tag" id="XTp-I8-Czk"/>
+                        <outlet property="CityView" destination="g3g-53-AaZ" id="zMZ-Jk-3jb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="325" y="387"/>
+        </scene>
+        <!--City Collection View Controller-->
+        <scene sceneID="KAp-Wt-FJ2">
+            <objects>
+                <collectionViewController id="saY-Ys-33E" customClass="CityCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="GSf-T3-kMF" customClass="CityCollectionView">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="25" minimumInteritemSpacing="25" id="NZ1-vq-mko">
+                            <size key="itemSize" width="361" height="256"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="25" minY="25" maxX="25" maxY="25"/>
+                        </collectionViewFlowLayout>
+                        <imageView key="backgroundView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="eZk-BW-wJk">
+                            <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                        </imageView>
+                        <cells>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CityCell" id="WUr-fG-TI1" customClass="CityCollectionViewCell">
+                                <rect key="frame" x="25" y="25" width="361" height="256"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="361" height="256"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="saY-Ys-33E" id="Gw4-MU-d6C"/>
+                            <outlet property="delegate" destination="saY-Ys-33E" id="XAi-dy-SKI"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="laI-2H-eOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2373" y="387"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="City02.jpg" width="640" height="426"/>
+    </resources>
+</document>
