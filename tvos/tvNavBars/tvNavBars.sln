@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tvNavBars", "tvNavBars\tvNavBars.csproj", "{AD1BA580-B560-413E-B702-97AC207BAFDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD1BA580-B560-413E-B702-97AC207BAFDB}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{AD1BA580-B560-413E-B702-97AC207BAFDB}.Debug|iPhone.Build.0 = Debug|iPhone
+		{AD1BA580-B560-413E-B702-97AC207BAFDB}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{AD1BA580-B560-413E-B702-97AC207BAFDB}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{AD1BA580-B560-413E-B702-97AC207BAFDB}.Release|iPhone.ActiveCfg = Release|iPhone
+		{AD1BA580-B560-413E-B702-97AC207BAFDB}.Release|iPhone.Build.0 = Release|iPhone
+		{AD1BA580-B560-413E-B702-97AC207BAFDB}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{AD1BA580-B560-413E-B702-97AC207BAFDB}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal
