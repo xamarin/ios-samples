@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cat01.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="UIp-lI-2lR">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <animations/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MU9-p9-uh9">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="g45-WV-Ko1">
+                                    <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <animations/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="145" id="y1k-kr-rud"/>
+                                </constraints>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="he3-TM-RGm">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                                <animations/>
+                                <items>
+                                    <navigationItem title="Page Controls" id="l7G-z3-DBl">
+                                        <barButtonItem key="leftBarButtonItem" enabled="NO" title="Previous" id="S6f-D8-ier">
+                                            <connections>
+                                                <action selector="PreviousCat:" destination="BYZ-38-t0r" id="jca-53-tVy"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Next" id="NgV-4p-C31">
+                                            <connections>
+                                                <action selector="NextCat:" destination="BYZ-38-t0r" id="CNa-ez-RfG"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" translatesAutoresizingMaskIntoConstraints="NO" id="npY-yR-lsr">
+                                <rect key="frame" x="768" y="1030" width="384" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="CjC-1D-tHt"/>
+                                    <constraint firstAttribute="width" constant="384" id="vqh-EG-fjh"/>
+                                </constraints>
+                            </pageControl>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MU9-p9-uh9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BSK-Nf-1tH"/>
+                            <constraint firstItem="UIp-lI-2lR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Tky-PJ-tJ1"/>
+                            <constraint firstAttribute="trailing" secondItem="UIp-lI-2lR" secondAttribute="trailing" id="aWV-OI-tsN"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="npY-yR-lsr" secondAttribute="bottom" constant="20" id="deF-tY-MhX"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UIp-lI-2lR" secondAttribute="bottom" id="fPz-64-uoj"/>
+                            <constraint firstItem="npY-yR-lsr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="h1B-GI-EHT"/>
+                            <constraint firstAttribute="trailing" secondItem="MU9-p9-uh9" secondAttribute="trailing" id="mgZ-IJ-Pzd"/>
+                            <constraint firstItem="MU9-p9-uh9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="nXw-yO-iJf"/>
+                            <constraint firstItem="UIp-lI-2lR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vVW-yI-cfB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="CatView" destination="UIp-lI-2lR" id="gjq-9H-ktu"/>
+                        <outlet property="NextButton" destination="NgV-4p-C31" id="ab9-N7-C0e"/>
+                        <outlet property="PageView" destination="npY-yR-lsr" id="aer-Mh-f4a"/>
+                        <outlet property="PreviousButton" destination="S6f-D8-ier" id="3Ws-Ot-fKk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="387"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Cat01.jpg" width="1280" height="851"/>
+    </resources>
+</document>
