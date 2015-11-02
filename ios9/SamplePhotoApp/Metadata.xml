@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>547c76f0-b990-400f-8c53-2d64fea59d3b</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>User Interface, Platform Features, Media, iOS9</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <Gallery>true</Gallery>
+  <Brief>Basic Photos-like app which introduces the Photos framework.</Brief>
+</SampleMetadata>
