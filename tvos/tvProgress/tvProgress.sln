@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tvProgress", "tvProgress\tvProgress.csproj", "{7CE248EC-10BA-40D6-BB54-FE8C86E9E2D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CE248EC-10BA-40D6-BB54-FE8C86E9E2D9}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{7CE248EC-10BA-40D6-BB54-FE8C86E9E2D9}.Debug|iPhone.Build.0 = Debug|iPhone
+		{7CE248EC-10BA-40D6-BB54-FE8C86E9E2D9}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{7CE248EC-10BA-40D6-BB54-FE8C86E9E2D9}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{7CE248EC-10BA-40D6-BB54-FE8C86E9E2D9}.Release|iPhone.ActiveCfg = Release|iPhone
+		{7CE248EC-10BA-40D6-BB54-FE8C86E9E2D9}.Release|iPhone.Build.0 = Release|iPhone
+		{7CE248EC-10BA-40D6-BB54-FE8C86E9E2D9}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{7CE248EC-10BA-40D6-BB54-FE8C86E9E2D9}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal

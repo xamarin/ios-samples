@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress Indicators" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2Z-Nq-UjR">
+                                <rect key="frame" x="432" y="88" width="1057" height="217"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="217" id="FdY-IJ-Zen"/>
+                                    <constraint firstAttribute="width" constant="1057" id="lzq-lF-Vy8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="128"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long Running Task of Unknown Length:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dC6-xa-Ahw">
+                                <rect key="frame" x="746" y="368" width="429" height="68"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="429" id="Nnh-r0-aOI"/>
+                                    <constraint firstAttribute="height" constant="68" id="j5M-6D-8jj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Long Running Task of Known Length:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VER-4Z-uJW">
+                                <rect key="frame" x="746" y="556" width="429" height="68"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="68" id="Xy0-Ue-N0J"/>
+                                    <constraint firstAttribute="width" constant="429" id="tKW-PZ-5Dn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ZQN-P6-c9w">
+                                <rect key="frame" x="928" y="455" width="64" height="64"/>
+                                <animations/>
+                            </activityIndicatorView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ru8-mZ-iGh">
+                                <rect key="frame" x="746" y="649" width="429" height="10"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="429" id="2Rq-7w-61H"/>
+                                    <constraint firstAttribute="height" constant="10" id="NQL-if-5Oc"/>
+                                </constraints>
+                            </progressView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="gWv-jU-x7D">
+                                <rect key="frame" x="706" y="740" width="539" height="86"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cy9-ZL-tIj">
+                                        <rect key="frame" x="0.0" y="0.0" width="161" height="86"/>
+                                        <animations/>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <state key="normal" title="Stop"/>
+                                        <connections>
+                                            <action selector="StartStopAction:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="itl-1w-Bng"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGB-q6-qg4">
+                                        <rect key="frame" x="186" y="0.0" width="159" height="86"/>
+                                        <animations/>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <state key="normal" title="Less"/>
+                                        <connections>
+                                            <action selector="LessAction:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="8Y3-Ow-3k3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJ6-4x-wFw">
+                                        <rect key="frame" x="370" y="0.0" width="169" height="86"/>
+                                        <animations/>
+                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                        <state key="normal" title="More"/>
+                                        <connections>
+                                            <action selector="MoreAction:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="vFf-TL-ww9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="86" id="pOH-IR-qcK"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="o2Z-Nq-UjR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="88" id="5iy-7V-LEX"/>
+                            <constraint firstItem="Ru8-mZ-iGh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Lx-wb-LPi"/>
+                            <constraint firstItem="gWv-jU-x7D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EyY-eg-M45"/>
+                            <constraint firstItem="Ru8-mZ-iGh" firstAttribute="top" secondItem="VER-4Z-uJW" secondAttribute="bottom" constant="25" id="Hoq-dp-jZW"/>
+                            <constraint firstItem="dC6-xa-Ahw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Jsd-8d-Myh"/>
+                            <constraint firstItem="VER-4Z-uJW" firstAttribute="top" secondItem="ZQN-P6-c9w" secondAttribute="bottom" constant="37" id="WoC-9Y-0wl"/>
+                            <constraint firstItem="VER-4Z-uJW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XwJ-09-bqj"/>
+                            <constraint firstItem="gWv-jU-x7D" firstAttribute="top" secondItem="Ru8-mZ-iGh" secondAttribute="bottom" constant="81" id="cXM-W8-rVs"/>
+                            <constraint firstItem="o2Z-Nq-UjR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ma9-R5-Lmf"/>
+                            <constraint firstItem="dC6-xa-Ahw" firstAttribute="top" secondItem="o2Z-Nq-UjR" secondAttribute="bottom" constant="63" id="sY4-j6-vOp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ActivityIndicator" destination="ZQN-P6-c9w" id="v4W-yW-Kpf"/>
+                        <outlet property="ProgressBar" destination="Ru8-mZ-iGh" id="lkm-wF-3lx"/>
+                        <outlet property="StartStopButton" destination="cy9-ZL-tIj" id="s8L-Ng-sG0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="325" y="387"/>
+        </scene>
+    </scenes>
+</document>
