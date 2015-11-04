@@ -92,7 +92,7 @@ namespace SamplePhotoApp {
 					return;
 
 				// Get the updated asset.
-				// TODO check return type. Catch! ObjectAfterChanges should be PHObject instead of NSObject
+				// TODO check return type. Catch! ObjectAfterChanges should be PHObject instead of NSObject https://bugzilla.xamarin.com/show_bug.cgi?id=35540
 				Asset = (PHAsset)changeDetails.ObjectAfterChanges;
 
 				// If the asset's content changed, update the image and stop any video playback.
