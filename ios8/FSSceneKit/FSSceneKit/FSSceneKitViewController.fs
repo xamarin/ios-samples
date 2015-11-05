@@ -1,6 +1,7 @@
 ﻿namespace SceneKitFSharp
  
 open System
+open System.Collections.Generic
 open System.IO
 open System.Linq
 open UIKit
@@ -11,6 +12,15 @@ open CoreAnimation
 [<Register("FSSceneKitViewController")>]
 type FSSceneKitViewController() = 
     inherit UIViewController()
+
+    let cache = new Dictionary<string, UIImage> ()
+
+    let texture path = 
+        if not (cache.ContainsKey (path)) then
+            let image = UIImage.FromFile (path)
+            cache.Add (path, image)
+
+        cache.[path]
 
     let building width length height (posx:nfloat) (posy:nfloat) (scene:SCNScene) (rnd:Random) =
         let boxNode = new SCNNode ()
@@ -26,7 +36,7 @@ type FSSceneKitViewController() =
 
         let buildings = ["Content/building1.jpg";"Content/building2.jpg";"Content/building3.jpg"]
         let material = new SCNMaterial ()
-        material.Diffuse.Contents <- UIImage.FromFile (buildings.[rnd.Next(buildings.Length)])
+        material.Diffuse.Contents <- texture buildings.[rnd.Next(buildings.Length)]
         material.Diffuse.ContentsTransform <- SCNMatrix4.Scale ( new SCNVector3(float32 width, float32 height, 1.F))
         material.Diffuse.WrapS <- SCNWrapMode.Repeat
         material.Diffuse.WrapT <- SCNWrapMode.Repeat
