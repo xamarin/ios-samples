@@ -93,8 +93,6 @@
   <ItemGroup>
     <BundleResource Include="Resources\monkey1.png" />
     <BundleResource Include="Resources\monkey2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="monkey3.png" />
+    <BundleResource Include="Resources\monkey3.png" />
   </ItemGroup>
 </Project>
