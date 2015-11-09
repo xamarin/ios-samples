@@ -34,11 +34,19 @@ namespace ViewControllerPreview {
 		{
 			base.ViewDidLoad ();
 
-			if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
-				RegisterForPreviewingWithDelegate (this, View);
-			else
-				alertController = UIAlertController.Create ("3D Touch Not Available", "Unsupported device.", UIAlertControllerStyle.Alert);
+			
 		}
+
+        public override void TraitCollectionDidChange(UITraitCollection previousTraitCollection)
+        {
+            //Important: Must call base method
+            base.TraitCollectionDidChange(previousTraitCollection);
+
+            if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
+                RegisterForPreviewingWithDelegate (this, View);
+            else
+                alertController = UIAlertController.Create ("3D Touch Not Available", "Unsupported device.", UIAlertControllerStyle.Alert);
+        }
 
 		public override void ViewWillAppear (bool animated)
 		{
