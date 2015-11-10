@@ -20,6 +20,12 @@ namespace Location
 				//locMgr.RequestWhenInUseAuthorization (); // only in foreground
 			}
 
+			// iOS 9 requires the following for background location updates
+			// By default this is set to false and will not allow background updates
+			if (UIDevice.CurrentDevice.CheckSystemVersion (9, 0)) {
+				locMgr.AllowsBackgroundLocationUpdates = true;
+			}
+
 			LocationUpdated += PrintLocation;
 
 		}
