@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="amI-Vs-xW3">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Master View Controller-->
+        <scene sceneID="hoM-a9-jgf">
+            <objects>
+                <viewController id="8uo-bR-dSS" customClass="MasterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9gs-jK-svv"/>
+                        <viewControllerLayoutGuide type="bottom" id="NDV-WT-Exg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FCc-1p-5Wq">
+                        <rect key="frame" x="0.0" y="0.0" width="634" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jy-57-Xfv">
+                                <rect key="frame" x="20" y="20" width="594" height="123"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="123" id="Buz-FI-2X3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="72"/>
+                                <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coF-Qr-71T">
+                                <rect key="frame" x="55" y="194" width="528" height="86"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="528" id="pdz-pu-U35"/>
+                                    <constraint firstAttribute="height" constant="86" id="sDA-Ax-Q1C"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Hot or Cold?"/>
+                                <connections>
+                                    <action selector="Page1Pressed:" destination="8uo-bR-dSS" eventType="primaryActionTriggered" id="MLv-xf-YQB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TKM-Zh-Ht4">
+                                <rect key="frame" x="55" y="318" width="528" height="86"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="86" id="g2p-D1-2Fb"/>
+                                    <constraint firstAttribute="width" constant="528" id="rMZ-qk-hwJ"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Wet or Dry?"/>
+                                <connections>
+                                    <action selector="Page2Pressed:" destination="8uo-bR-dSS" eventType="primaryActionTriggered" id="e82-DO-O5X"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pvN-Yf-hbI">
+                                <rect key="frame" x="55" y="446" width="528" height="86"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="528" id="3zz-wK-5MG"/>
+                                    <constraint firstAttribute="height" constant="86" id="CE3-gc-o3a"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Sweet or Sour?"/>
+                                <connections>
+                                    <action selector="Page3Pressed:" destination="8uo-bR-dSS" eventType="primaryActionTriggered" id="iic-Wj-6ok"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="2jy-57-Xfv" firstAttribute="leading" secondItem="FCc-1p-5Wq" secondAttribute="leadingMargin" id="22D-xf-VSf"/>
+                            <constraint firstItem="TKM-Zh-Ht4" firstAttribute="centerX" secondItem="FCc-1p-5Wq" secondAttribute="centerX" id="7Po-0o-UpY"/>
+                            <constraint firstItem="coF-Qr-71T" firstAttribute="top" secondItem="2jy-57-Xfv" secondAttribute="bottom" constant="51" id="AcJ-ay-cna"/>
+                            <constraint firstItem="coF-Qr-71T" firstAttribute="centerX" secondItem="FCc-1p-5Wq" secondAttribute="centerX" id="EFf-y5-c45"/>
+                            <constraint firstItem="pvN-Yf-hbI" firstAttribute="top" secondItem="TKM-Zh-Ht4" secondAttribute="bottom" constant="42" id="SfV-oi-kj6"/>
+                            <constraint firstItem="TKM-Zh-Ht4" firstAttribute="top" secondItem="coF-Qr-71T" secondAttribute="bottom" constant="38" id="T8Q-nX-NzP"/>
+                            <constraint firstItem="2jy-57-Xfv" firstAttribute="trailing" secondItem="FCc-1p-5Wq" secondAttribute="trailingMargin" id="gsq-JO-U08"/>
+                            <constraint firstItem="2jy-57-Xfv" firstAttribute="top" secondItem="9gs-jK-svv" secondAttribute="bottom" constant="20" id="jW1-6S-p4F"/>
+                            <constraint firstItem="pvN-Yf-hbI" firstAttribute="centerX" secondItem="FCc-1p-5Wq" secondAttribute="centerX" id="qPy-WV-r8s"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="6gg-Vx-Aeh" appends="YES" id="K2S-G5-nGb"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iDD-Qg-YO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="6gg-Vx-Aeh">
+                    <pressTypeMask key="allowedPressTypes" playPause="YES"/>
+                    <connections>
+                        <action selector="PlayPausePressed:" destination="8uo-bR-dSS" id="XhE-pA-3gv"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-185" y="288"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="iV1-dz-A3A">
+            <objects>
+                <viewController id="QEU-EL-QUF" customClass="DetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K2q-5d-ULO"/>
+                        <viewControllerLayoutGuide type="bottom" id="MOd-u0-S7K"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7eR-9v-26m">
+                        <rect key="frame" x="0.0" y="0.0" width="1285" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zyW-FG-bb9">
+                                <rect key="frame" x="0.0" y="0.0" width="1285" height="1080"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hot or Cold?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b3p-Lk-tLt">
+                                <rect key="frame" x="20" y="8" width="1245" height="217"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="217" id="gzC-No-gB3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="100"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                <size key="shadowOffset" width="1" height="-2"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5lB-do-r9V">
+                                <rect key="frame" x="407" y="249" width="471" height="86"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="471" id="EcY-eG-6mW"/>
+                                    <constraint firstAttribute="height" constant="86" id="fLW-98-qtx"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Fire"/>
+                                <connections>
+                                    <action selector="ChooseA:" destination="QEU-EL-QUF" eventType="primaryActionTriggered" id="RJY-9E-C0L"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnS-G1-wci">
+                                <rect key="frame" x="407" y="364" width="471" height="86"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="471" id="Ecc-cw-8sf"/>
+                                    <constraint firstAttribute="height" constant="86" id="oX2-M2-5ry"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Ice"/>
+                                <connections>
+                                    <action selector="ChooseB:" destination="QEU-EL-QUF" eventType="primaryActionTriggered" id="Lug-Eb-Uo6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press the Play/Pause button to show/hide menu." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGd-ud-e26">
+                                <rect key="frame" x="20" y="999" width="645" height="61"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="Ox3-jZ-VTp"/>
+                                    <constraint firstAttribute="width" constant="645" id="sRV-PR-YgN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="dnS-G1-wci" firstAttribute="centerX" secondItem="7eR-9v-26m" secondAttribute="centerX" id="0Vr-er-IUH"/>
+                            <constraint firstItem="MOd-u0-S7K" firstAttribute="top" secondItem="zyW-FG-bb9" secondAttribute="bottom" id="40a-hy-EMv"/>
+                            <constraint firstItem="5lB-do-r9V" firstAttribute="top" secondItem="b3p-Lk-tLt" secondAttribute="bottom" constant="24" id="7Jz-02-a4P"/>
+                            <constraint firstItem="mGd-ud-e26" firstAttribute="leading" secondItem="7eR-9v-26m" secondAttribute="leadingMargin" id="GdR-ia-KlS"/>
+                            <constraint firstItem="dnS-G1-wci" firstAttribute="top" secondItem="5lB-do-r9V" secondAttribute="bottom" constant="29" id="GnS-Cq-LSf"/>
+                            <constraint firstItem="5lB-do-r9V" firstAttribute="centerX" secondItem="7eR-9v-26m" secondAttribute="centerX" id="Vkd-R4-6ZC"/>
+                            <constraint firstItem="b3p-Lk-tLt" firstAttribute="leading" secondItem="7eR-9v-26m" secondAttribute="leadingMargin" id="Wia-NL-xwj"/>
+                            <constraint firstItem="zyW-FG-bb9" firstAttribute="top" secondItem="K2q-5d-ULO" secondAttribute="bottom" id="fs5-qk-b2J"/>
+                            <constraint firstAttribute="trailing" secondItem="zyW-FG-bb9" secondAttribute="trailing" id="fsy-xi-0Fr"/>
+                            <constraint firstItem="zyW-FG-bb9" firstAttribute="leading" secondItem="7eR-9v-26m" secondAttribute="leading" id="jPE-KR-qYf"/>
+                            <constraint firstItem="b3p-Lk-tLt" firstAttribute="top" secondItem="K2q-5d-ULO" secondAttribute="bottom" constant="8" id="mIV-6m-TQa"/>
+                            <constraint firstItem="b3p-Lk-tLt" firstAttribute="trailing" secondItem="7eR-9v-26m" secondAttribute="trailingMargin" id="nvQ-s9-nkF"/>
+                            <constraint firstItem="MOd-u0-S7K" firstAttribute="top" secondItem="mGd-ud-e26" secondAttribute="bottom" constant="20" id="pD5-Ba-j5Z"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Su2-Ha-bTi" appends="YES" id="fyW-Kj-egA"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="BackgroundImage" destination="zyW-FG-bb9" id="39h-gW-OHy"/>
+                        <outlet property="ButtonA" destination="5lB-do-r9V" id="Vut-48-R2r"/>
+                        <outlet property="ButtonB" destination="dnS-G1-wci" id="Ogo-R4-dkz"/>
+                        <outlet property="PageTitle" destination="b3p-Lk-tLt" id="u22-ix-hb3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="clc-m5-Vg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Su2-Ha-bTi">
+                    <pressTypeMask key="allowedPressTypes" playPause="YES"/>
+                    <connections>
+                        <action selector="PlayPausePressed:" destination="QEU-EL-QUF" id="uZv-Xs-DuJ"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="140.5" y="1476"/>
+        </scene>
+        <!--Main Split View Controller-->
+        <scene sceneID="poO-Ur-5hI">
+            <objects>
+                <splitViewController id="amI-Vs-xW3" customClass="MainSplitViewController" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="QEU-EL-QUF" kind="relationship" relationship="detailViewController" id="wme-e7-fFG"/>
+                        <segue destination="8uo-bR-dSS" kind="relationship" relationship="masterViewController" id="tHP-aj-UpC"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZrB-mc-VrO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1680" y="1398"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="default.jpg" width="640" height="426"/>
+    </resources>
+</document>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>8fd39474-9515-4c6c-bf62-ad184f777466</ID>
+<IsFullApplication>true</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>User Interface</Tags>
+  <SupportedPlatforms>tvOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+  <Brief>Working with Split Views in Xamarin.tvOS.</Brief>
+</SampleMetadata>
