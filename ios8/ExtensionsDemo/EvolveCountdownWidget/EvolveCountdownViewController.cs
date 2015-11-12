@@ -1,16 +1,12 @@
 using System;
-using System.Drawing;
 
-using NotificationCenter;
-using Foundation;
-using Social;
-using UIKit;
 using CoreGraphics;
+using Foundation;
+using NotificationCenter;
+using UIKit;
 
-namespace EvolveCountdownWidget
-{
-	public partial class EvolveCountdownViewController : UIViewController, INCWidgetProviding
-	{
+namespace EvolveCountdownWidget {
+	public partial class EvolveCountdownViewController : UIViewController, INCWidgetProviding {
 		public EvolveCountdownViewController (IntPtr handle)
 			: base (handle)
 		{

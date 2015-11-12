@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Drawing;
 
 using Foundation;
 using UIKit;
 using NotificationCenter;
 using WebKit;
 
-namespace ExtensionsDemo
-{
-	public partial class ExtensionsDemoViewController : UIViewController
-	{
-        WKWebView webView;
+namespace ExtensionsDemo {
+	public partial class ExtensionsDemoViewController : UIViewController {
+		WKWebView webView;
 
 		public ExtensionsDemoViewController (IntPtr handle) : base (handle)
 		{
@@ -21,20 +18,20 @@ namespace ExtensionsDemo
 			base.ViewWillAppear (animated);
 
 			var controller = NCWidgetController.GetWidgetController ();
-            controller.SetHasContent (true, "com.xamarin.ExtensionsDemo.EvolveCountdownWidget");
+			controller.SetHasContent (true, "com.xamarin.ExtensionsDemo.EvolveCountdownWidget");
 		}
 
-        public override void ViewDidLoad ()
-        {
-            base.ViewDidLoad ();
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
 
-            webView = new WKWebView (View.Frame, new WKWebViewConfiguration ());
-            View.AddSubview (webView);
+			webView = new WKWebView (View.Frame, new WKWebViewConfiguration ());
+			View.AddSubview (webView);
 
-            var url = new NSUrl ("https://evolve.xamarin.com");
-            var request = new NSUrlRequest (url);
-            webView.LoadRequest (request);
-        }
+			var url = new NSUrl ("https://evolve.xamarin.com");
+			var request = new NSUrlRequest (url);
+			webView.LoadRequest (request);
+		}
 	}
 }
 

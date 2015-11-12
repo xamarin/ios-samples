@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using UIKit;
 
-using Foundation;
-using UIKit;
-
-namespace ExtensionsDemo
-{
-	public class Application
-	{
+namespace ExtensionsDemo {
+	public class Application {
 		// This is the main entry point of the application.
 		static void Main (string[] args)
 		{
