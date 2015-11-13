@@ -31,6 +31,6 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.CustomInputStreamTest</string>
 	<key>MinimumOSVersion</key>
-	<string>5.1.1</string>
+	<string>6.0</string>
 </dict>
 </plist>

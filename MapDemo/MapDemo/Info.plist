@@ -9,7 +9,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>5.1.1</string>
+	<string>6.0</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Using your location to show it on a map.</string>
 	<key>XSAppIconAssets</key>
