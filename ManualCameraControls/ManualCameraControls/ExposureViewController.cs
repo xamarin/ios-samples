@@ -1,34 +1,35 @@
 using System;
+using System.Timers;
+
+using AVFoundation;
+using CoreMedia;
 using Foundation;
 using UIKit;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Linq;
-using AVFoundation;
-using CoreVideo;
-using CoreMedia;
-using CoreGraphics;
-using CoreFoundation;
-using System.Timers;
+using ObjCRuntime;
+using System.Runtime.InteropServices;
 
 namespace ManualCameraControls
 {
 	public partial class ExposureViewController : UIViewController
 	{
 		#region Private Variables
-		private NSError Error;
-		private bool Automatic = true;
-		private float ExposureDurationPower = 5;
-		private float ExposureMinimumDuration = 1.0f/1000.0f;
+
+		bool Automatic = true;
+		const float ExposureDurationPower = 5f;
+		const float ExposureMinimumDuration = 1.0f / 1000.0f;
+
 		#endregion
 
 		#region Computed Properties
+
 		/// <summary>
 		/// Returns the delegate of the current running application
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get {
+				return (AppDelegate)UIApplication.SharedApplication.Delegate;
+			}
 		}
 
 		/// <summary>
@@ -36,26 +37,33 @@ namespace ManualCameraControls
 		/// </summary>
 		/// <value>The sample timer.</value>
 		public Timer SampleTimer { get; set; }
+
 		#endregion
 
 		#region Constructors
+
 		public ExposureViewController (IntPtr handle) : base (handle)
 		{
 		}
+
 		#endregion
 
 		#region Private methods
+
 		/// <summary>
 		/// CMs the time get seconds.
 		/// </summary>
 		/// <returns>The time get seconds.</returns>
 		/// <param name="time">Time.</param>
-		private float CMTimeGetSeconds(CMTime time) {
+		float CMTimeGetSeconds (CMTime time)
+		{
 			return (float)time.Value / (float)time.TimeScale;
 		}
+
 		#endregion
 
 		#region Override Methods
+
 		/// <summary>
 		/// Views the did load.
 		/// </summary>
@@ -73,8 +81,8 @@ namespace ManualCameraControls
 			Offset.MinValue = ThisApp.CaptureDevice.MinExposureTargetBias;
 			Offset.MaxValue = ThisApp.CaptureDevice.MaxExposureTargetBias;
 
-			Duration.MinValue = 0.0f;
-			Duration.MaxValue = 1.0f;
+			Duration.MinValue = 0.001f;
+			Duration.MaxValue = 1f;
 
 			ISO.MinValue = ThisApp.CaptureDevice.ActiveFormat.MinISO;
 			ISO.MaxValue = ThisApp.CaptureDevice.ActiveFormat.MaxISO;
@@ -86,106 +94,106 @@ namespace ManualCameraControls
 			SampleTimer = new Timer (5000);
 			SampleTimer.Elapsed += (sender, e) => {
 				// Update position slider
-				Offset.BeginInvokeOnMainThread(() =>{
+				Offset.BeginInvokeOnMainThread (() => {
 					Offset.Value = ThisApp.Input.Device.ExposureTargetOffset;
 				});
 
-				Duration.BeginInvokeOnMainThread(() =>{
-					var newDurationSeconds = CMTimeGetSeconds(ThisApp.Input.Device.ExposureDuration);
-					var minDurationSeconds = Math.Max(CMTimeGetSeconds(ThisApp.CaptureDevice.ActiveFormat.MinExposureDuration), ExposureMinimumDuration);
-					var maxDurationSeconds = CMTimeGetSeconds(ThisApp.CaptureDevice.ActiveFormat.MaxExposureDuration);
+				Duration.BeginInvokeOnMainThread (() => {
+					var newDurationSeconds = CMTimeGetSeconds (ThisApp.Input.Device.ExposureDuration);
+					var minDurationSeconds = Math.Max (CMTimeGetSeconds (ThisApp.CaptureDevice.ActiveFormat.MinExposureDuration), ExposureMinimumDuration);
+					var maxDurationSeconds = CMTimeGetSeconds (ThisApp.CaptureDevice.ActiveFormat.MaxExposureDuration);
 					var p = (newDurationSeconds - minDurationSeconds) / (maxDurationSeconds - minDurationSeconds);
-					Duration.Value = (float)Math.Pow(p, 1.0f/ExposureDurationPower);
+					Duration.Value = (float)Math.Pow (p, 1.0f / ExposureDurationPower);
 				});
 
-				ISO.BeginInvokeOnMainThread(() => {
+				ISO.BeginInvokeOnMainThread (() => {
 					ISO.Value = ThisApp.Input.Device.ISO;
 				});
 
-				Bias.BeginInvokeOnMainThread(() => {
+				Bias.BeginInvokeOnMainThread (() => {
 					Bias.Value = ThisApp.Input.Device.ExposureTargetBias;
 				});
 			};
 
 			// Watch for value changes
-			Segments.ValueChanged += (object sender, EventArgs e) => {
-
+			Segments.ValueChanged += (sender, e) => {
+				NSError err;
 				// Lock device for change
-				if(ThisApp.CaptureDevice.LockForConfiguration(out Error)) {
+				if (ThisApp.CaptureDevice.LockForConfiguration (out err)) {
 
-				// Take action based on the segment selected
-				switch(Segments.SelectedSegment) {
-				case 0:
+					// Take action based on the segment selected
+					switch (Segments.SelectedSegment) {
+					case 0:
 					// Activate auto exposure and start monitoring position
-					Duration.Enabled = false;
-					ISO.Enabled = false;
-					ThisApp.CaptureDevice.ExposureMode = AVCaptureExposureMode.ContinuousAutoExposure;
-					SampleTimer.Start();
-					Automatic = true;
-					break;
-				case 1:
+						Duration.Enabled = false;
+						ISO.Enabled = false;
+						ThisApp.CaptureDevice.ExposureMode = AVCaptureExposureMode.ContinuousAutoExposure;
+						SampleTimer.Start ();
+						Automatic = true;
+						break;
+					case 1:
 					// Lock exposure and allow the user to control the camera
-					SampleTimer.Stop();
-					ThisApp.CaptureDevice.ExposureMode = AVCaptureExposureMode.Locked;
-					Automatic = false;
-					Duration.Enabled = false;
-					ISO.Enabled = false;
-					break;
-				case 2:
+						SampleTimer.Stop ();
+						ThisApp.CaptureDevice.ExposureMode = AVCaptureExposureMode.Locked;
+						Automatic = false;
+						Duration.Enabled = false;
+						ISO.Enabled = false;
+						break;
+					case 2:
 					// Custom exposure and allow the user to control the camera
-					SampleTimer.Stop();
-					ThisApp.CaptureDevice.ExposureMode = AVCaptureExposureMode.Custom;
-					Automatic = false;
-					Duration.Enabled = true;
-					ISO.Enabled = true;
-					break;
-				}
+						SampleTimer.Stop ();
+						ThisApp.CaptureDevice.ExposureMode = AVCaptureExposureMode.Custom;
+						Automatic = false;
+						Duration.Enabled = true;
+						ISO.Enabled = true;
+						break;
+					}
 
-				// Unlock device
-				ThisApp.CaptureDevice.UnlockForConfiguration();
+					// Unlock device
+					ThisApp.CaptureDevice.UnlockForConfiguration ();
 				}
 			};
 
 			// Monitor position changes
-			Duration.ValueChanged += (object sender, EventArgs e) => {
+			Duration.ValueChanged += (sender, e) => {
 
 				// If we are in the automatic mode, ignore changes
-				if (Automatic) return;
+				if (Automatic)
+					return;
 
 				// Calculate value
-				var p = Math.Pow(Duration.Value,ExposureDurationPower);
-				var minDurationSeconds = Math.Max(CMTimeGetSeconds(ThisApp.CaptureDevice.ActiveFormat.MinExposureDuration),ExposureMinimumDuration);
-				var maxDurationSeconds = CMTimeGetSeconds(ThisApp.CaptureDevice.ActiveFormat.MaxExposureDuration);
-				var newDurationSeconds = p * (maxDurationSeconds - minDurationSeconds) +minDurationSeconds;
+				var p = Math.Pow (Duration.Value, ExposureDurationPower);
+				var minDurationSeconds = Math.Max (ThisApp.CaptureDevice.ActiveFormat.MinExposureDuration.Seconds, ExposureMinimumDuration);
+				var maxDurationSeconds = ThisApp.CaptureDevice.ActiveFormat.MaxExposureDuration.Seconds;
+				var newDurationSeconds = p * (maxDurationSeconds - minDurationSeconds ) + minDurationSeconds;
 
+				NSError err;
 				// Update Focus position
-				if(ThisApp.CaptureDevice.LockForConfiguration(out Error)) {
-				ThisApp.CaptureDevice.LockExposure(CMTime.FromSeconds(p,1000*1000*1000),ThisApp.CaptureDevice.ISO,null);
-				ThisApp.CaptureDevice.UnlockForConfiguration();
+				if (ThisApp.CaptureDevice.LockForConfiguration (out err)) {
+					ThisApp.CaptureDevice.LockExposure (CMTime.FromSeconds (newDurationSeconds, 1000 * 1000 * 1000), AVCaptureDevice.ISOCurrent, null);
+					ThisApp.CaptureDevice.UnlockForConfiguration ();
 				}
 			};
 
-			ISO.ValueChanged += (object sender, EventArgs e) => {
-
+			ISO.ValueChanged += (sender, e) => {
 				// If we are in the automatic mode, ignore changes
-				if (Automatic) return;
+				if (Automatic)
+					return;
 
+				NSError err;
 				// Update Focus position
-				if(ThisApp.CaptureDevice.LockForConfiguration(out Error)) {
-				ThisApp.CaptureDevice.LockExposure(ThisApp.CaptureDevice.ExposureDuration,ISO.Value,null);
-				ThisApp.CaptureDevice.UnlockForConfiguration();
+				if (ThisApp.CaptureDevice.LockForConfiguration (out err)) {
+					ThisApp.CaptureDevice.LockExposure (ThisApp.CaptureDevice.ExposureDuration, ISO.Value, null);
+					ThisApp.CaptureDevice.UnlockForConfiguration ();
 				}
 			};
 
-			Bias.ValueChanged += (object sender, EventArgs e) => {
-
-				// If we are in the automatic mode, ignore changes
-				// if (Automatic) return;
-
+			Bias.ValueChanged += (sender, e) => {
+				NSError err;
 				// Update Focus position
-				if(ThisApp.CaptureDevice.LockForConfiguration(out Error)) {
-				ThisApp.CaptureDevice.SetExposureTargetBias(Bias.Value,null);
-				ThisApp.CaptureDevice.UnlockForConfiguration();
+				if (ThisApp.CaptureDevice.LockForConfiguration (out err)) {
+					ThisApp.CaptureDevice.SetExposureTargetBias (Bias.Value, null);
+					ThisApp.CaptureDevice.UnlockForConfiguration ();
 				}
 			};
 		}
@@ -221,8 +229,8 @@ namespace ManualCameraControls
 			}
 
 			base.ViewWillDisappear (animated);
-
 		}
+
 		#endregion
 	}
 }

@@ -1,23 +1,17 @@
 using System;
+using System.Timers;
+
+using AVFoundation;
 using Foundation;
 using UIKit;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Linq;
-using AVFoundation;
-using CoreVideo;
-using CoreMedia;
-using CoreGraphics;
-using CoreFoundation;
-using System.Timers;
 
 namespace ManualCameraControls
 {
 	public partial class WhiteBalanceViewController : UIViewController
 	{
 		#region Private Variables
-		private NSError Error;
-		private bool Automatic = true;
+		NSError Error;
+		bool Automatic = true;
 		#endregion
 
 		#region Computed Properties
@@ -56,9 +50,7 @@ namespace ManualCameraControls
 			// Set the new values
 			if (ThisApp.CaptureDevice.LockForConfiguration (out Error)) {
 				gains = NomralizeGains (gains);
-				ThisApp.CaptureDevice.SetWhiteBalanceModeLockedWithDeviceWhiteBalanceGains (gains, (time) => {
-					// Ignore callback for now
-				});
+				ThisApp.CaptureDevice.SetWhiteBalanceModeLockedWithDeviceWhiteBalanceGains (gains, null);
 				ThisApp.CaptureDevice.UnlockForConfiguration ();
 			}
 		}
@@ -79,11 +71,11 @@ namespace ManualCameraControls
 			ThisApp.Recorder.DisplayView = CameraView;
 
 			// Set min and max values
-			Temperature.MinValue = 1000;
-			Temperature.MaxValue = 10000;
+			Temperature.MinValue = 1000f;
+			Temperature.MaxValue = 10000f;
 
-			Tint.MinValue = -150;
-			Tint.MaxValue = 150;
+			Tint.MinValue = -150f;
+			Tint.MaxValue = 150f;
 
 			// Create a timer to monitor and update the UI
 			SampleTimer = new Timer (5000);
@@ -102,8 +94,7 @@ namespace ManualCameraControls
 			};
 
 			// Watch for value changes
-			Segments.ValueChanged += (object sender, EventArgs e) => {
-
+			Segments.ValueChanged += (sender, e) => {
 				// Lock device for change
 				if (ThisApp.CaptureDevice.LockForConfiguration (out Error)) {
 
@@ -133,7 +124,7 @@ namespace ManualCameraControls
 			};
 
 			// Monitor position changes
-			Temperature.TouchUpInside += (object sender, EventArgs e) => {
+			Temperature.TouchUpInside += (sender, e) => {
 
 				// If we are in the automatic mode, ignore changes
 				if (Automatic)
@@ -143,7 +134,7 @@ namespace ManualCameraControls
 				SetTemperatureAndTint ();
 			};
 
-			Tint.TouchUpInside += (object sender, EventArgs e) => {
+			Tint.TouchUpInside += (sender, e) => {
 
 				// If we are in the automatic mode, ignore changes
 				if (Automatic)
@@ -164,9 +155,7 @@ namespace ManualCameraControls
 
 				// Set the new values
 				if (ThisApp.CaptureDevice.LockForConfiguration (out Error)) {
-					ThisApp.CaptureDevice.SetWhiteBalanceModeLockedWithDeviceWhiteBalanceGains (gains, (time) => {
-						// Ignore callback for now
-					});
+					ThisApp.CaptureDevice.SetWhiteBalanceModeLockedWithDeviceWhiteBalanceGains (gains, null);
 					ThisApp.CaptureDevice.UnlockForConfiguration ();
 				}
 			};
@@ -203,7 +192,6 @@ namespace ManualCameraControls
 			}
 
 			base.ViewWillDisappear (animated);
-
 		}
 		#endregion
 

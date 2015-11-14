@@ -1,50 +1,54 @@
 using System;
+using System.Collections.Generic;
+
+using AVFoundation;
 using CoreGraphics;
+using CoreImage;
 using Foundation;
 using UIKit;
-using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Linq;
-using AVFoundation;
-using CoreVideo;
-using CoreMedia;
-using CoreFoundation;
-using CoreImage;
 
 namespace ManualCameraControls
 {
 	public partial class BracketedViewController : UIViewController
 	{
 		#region Private Variables
-		private NSError Error;
-		private List<UIImageView> Output = new List<UIImageView>();
-		private int OutputIndex = 0;
+
+		List<UIImageView> Output = new List<UIImageView> ();
+		int OutputIndex;
+
 		#endregion
 
 		#region Computed Properties
+
 		/// <summary>
 		/// Returns the delegate of the current running application
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get {
+				return (AppDelegate)UIApplication.SharedApplication.Delegate;
+			}
 		}
+
 		#endregion
 
 		#region Constructors
+
 		public BracketedViewController (IntPtr handle) : base (handle)
 		{
 		}
+
 		#endregion
 
 		#region Private Methods
+
 		/// <summary>
 		/// Builds the output view.
 		/// </summary>
 		/// <returns>The output view.</returns>
 		/// <param name="n">N.</param>
-		private UIImageView BuildOutputView(int n) {
-
+		UIImageView BuildOutputView (int n)
+		{
 			// Create a new image view controller
 			var imageView = new UIImageView (new CGRect (CameraView.Frame.Width * n, 0, CameraView.Frame.Width, CameraView.Frame.Height));
 
@@ -52,7 +56,7 @@ namespace ManualCameraControls
 			imageView.Image = UIImage.FromFile ("Default-568h@2x.png");
 
 			// Add a label
-			UILabel label = new UILabel (new CGRect (0, 20, CameraView.Frame.Width, 24));
+			var label = new UILabel (new CGRect (0, 20, CameraView.Frame.Width, 24));
 			label.TextColor = UIColor.White;
 			label.Text = string.Format ("Bracketed Image {0}", n);
 			imageView.AddSubview (label);
@@ -63,9 +67,11 @@ namespace ManualCameraControls
 			// Return new image view
 			return imageView;
 		}
+
 		#endregion
 
 		#region Override Methods
+
 		/// <summary>
 		/// Views the did load.
 		/// </summary>
@@ -80,7 +86,7 @@ namespace ManualCameraControls
 			ThisApp.Recorder.DisplayView = CameraView;
 
 			// Setup scrolling area
-			ScrollView.ContentSize = new CGSize (CameraView.Frame.Width * 4, CameraView.Frame.Height);
+			ScrollView.ContentSize = new CGSize (CameraView.Frame.Width * 4f, CameraView.Frame.Height);
 
 			// Add output views
 			Output.Add (BuildOutputView (1));
@@ -89,9 +95,9 @@ namespace ManualCameraControls
 
 			// Create preset settings
 			var Settings = new AVCaptureBracketedStillImageSettings[] {
-				AVCaptureAutoExposureBracketedStillImageSettings.Create(-2.0f),
-				AVCaptureAutoExposureBracketedStillImageSettings.Create(0.0f),
-				AVCaptureAutoExposureBracketedStillImageSettings.Create(2.0f)
+				AVCaptureAutoExposureBracketedStillImageSettings.Create (-2f),
+				AVCaptureAutoExposureBracketedStillImageSettings.Create (0f),
+				AVCaptureAutoExposureBracketedStillImageSettings.Create (2f)
 			};
 
 			// Wireup capture button
@@ -100,28 +106,26 @@ namespace ManualCameraControls
 				OutputIndex = 0;
 
 				// Tell the camera that we are getting ready to do a bracketed capture
-				ThisApp.StillImageOutput.PrepareToCaptureStillImageBracket(ThisApp.StillImageOutput.Connections[0],Settings, (bool ready, NSError err) => {
+				ThisApp.StillImageOutput.PrepareToCaptureStillImageBracket (ThisApp.StillImageOutput.Connections [0], Settings, (ready, err) => {
 					// Was there an error, if so report it
-					if (err!=null) {
-						Console.WriteLine("Error: {0}",err.LocalizedDescription);
-					}
+					if (err != null)
+						Console.WriteLine ("Error: {0}", err.LocalizedDescription);
 				});
 
 				// Ask the camera to snap a bracketed capture
-				ThisApp.StillImageOutput.CaptureStillImageBracket(ThisApp.StillImageOutput.Connections[0],Settings, (sampleBuffer, settings, err) =>{
+				ThisApp.StillImageOutput.CaptureStillImageBracket (ThisApp.StillImageOutput.Connections [0], Settings, (sampleBuffer, settings, err) => {
 					// Convert raw image stream into a Core Image Image
-					var imageData = AVCaptureStillImageOutput.JpegStillToNSData(sampleBuffer);
-					var image = CIImage.FromData(imageData);
+					var imageData = AVCaptureStillImageOutput.JpegStillToNSData (sampleBuffer);
+					var image = CIImage.FromData (imageData);
 
 					// Display the resulting image
-					Output[OutputIndex++].Image = UIImage.FromImage(image);
+					Output [OutputIndex++].Image = UIImage.FromImage (image);
 
 					// IMPORTANT: You must release the buffer because AVFoundation has a fixed number
 					// of buffers and will stop delivering frames if it runs out.
-					sampleBuffer.Dispose();
+					sampleBuffer.Dispose ();
 				});
 			};
-
 		}
 
 		/// <summary>
@@ -136,7 +140,6 @@ namespace ManualCameraControls
 			if (ThisApp.CameraAvailable) {
 				// Remap to this camera view
 				ThisApp.Recorder.DisplayView = CameraView;
-
 				ThisApp.Session.StartRunning ();
 			}
 		}
@@ -148,13 +151,13 @@ namespace ManualCameraControls
 		public override void ViewWillDisappear (bool animated)
 		{
 			// Stop display
-			if (ThisApp.CameraAvailable) {
+			if (ThisApp.CameraAvailable)
 				ThisApp.Session.StopRunning ();
-			}
 
 			base.ViewWillDisappear (animated);
 
 		}
+
 		#endregion
 	}
 }
