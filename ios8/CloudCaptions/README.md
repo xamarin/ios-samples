@@ -4,7 +4,8 @@ This sample shows how to use `CloudKit` to upload and retrieve `CKRecords` and a
 
 Refs
 ----
-It is strongly recomended to whatch [WWDC 2014 videos](https://developer.apple.com/videos/wwdc/2014/) to become familar with CloudKit:
+It is strongly recomended to watch [WWDC 2014 videos](https://developer.apple.com/videos/wwdc/2014/) to become familar with CloudKit:
+
 * Introducing CloudKit
 * Advanced CloudKit
 
@@ -12,7 +13,7 @@ How to setup
 ------------
 The `CloudCaptions.entitlements` file lists two entitlements: `com.apple.developer.icloud-container-identifiers` and `com.apple.developer.icloud-services`. For this sample you must create iCloud container via Apple's Member Center. You can find an instruction for creation iCloud containers [here](http://developer.xamarin.com/guides/ios/platform_features/introduction_to_the_document_picker/) – you are interested in "Enabling iCloud in Xamarin" section.
 
-Don't forget change iCloud containber identifier from `iCloud.com.xamarin.cloudcaptions` to `iCloud.(Your Bundle ID)`
+Don't forget change iCloud container identifier from `iCloud.com.xamarin.cloudcaptions` to `iCloud.(Your Bundle ID)`
 
 Try running CloudCaptions on your device. You may run into provisioning issues – in this case you should check you CloudCaptions.entitlements and provisioning settings.
 
