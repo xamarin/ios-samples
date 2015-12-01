@@ -40,7 +40,7 @@ A view controller that is the contents of the popovers in this sample. In this e
 Copyright
 ---------
 
-Copyright (C) 2010 Apple Inc. All rights reserved.
+Copyright (C) 2010 Xamarin Inc. All rights reserved.
 
 Authors
 -------

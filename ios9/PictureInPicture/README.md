@@ -32,6 +32,6 @@ This sample runnable on iPad/iPadSimulator
 Author
 ------ 
 
-Copyright (C) 2015 Apple Inc. All rights reserved.
+Copyright (C) 2015 Xamarin Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Rustam Zaitov

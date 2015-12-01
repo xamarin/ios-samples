@@ -49,5 +49,5 @@ Build/Runtime Requirements
 Author 
 ------
 
-Copyright (C) 2008-2014 Apple Inc. All rights reserved.  
+Copyright (C) 2008-2014 Xamarin Inc. All rights reserved.  
 Ported to Xamarin.iOS by Rustam Zaitov.

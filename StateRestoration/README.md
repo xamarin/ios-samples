@@ -36,6 +36,6 @@ This sample runnable on iPhoneSimulator or iPhone
 
 Author
 ------
-Copyright (C) 2014 Apple Inc. All rights reserved.
+Copyright (C) 2014 Xamarin Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Timothy Risi & Rustam Zaitov

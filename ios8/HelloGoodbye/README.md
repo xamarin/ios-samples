@@ -27,7 +27,7 @@ This sample is runnable on iPhoneSimulator/iPadSimulator and iPhone/iPad.
 Author
 ------
 
-Copyright (C) 2014 Apple Inc. All rights reserved.  
+Copyright (C) 2014 Xamarin Inc. All rights reserved.  
 Ported to Xamarin.iOS by Rustam Zaitov.
 
 [WWDC 2014]:https://developer.apple.com/videos/wwdc/2014/

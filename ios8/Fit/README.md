@@ -32,6 +32,6 @@ Running the sample requires iPhone with iOS 8.0 or later.
 
 Author
 ======
-Copyright (C) 2014 Apple Inc. All rights reserved.
+Copyright (C) 2014 Xamarin Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Oleg Demchenko and Timothy Risi

@@ -19,6 +19,6 @@ Building this sample requires Xcode 6.0 and iOS 8.0 SDK
 
 Author
 ------ 
-Copyright (C) 2014 Apple Inc. All rights reserved.
+Copyright (C) 2014 Xamarin Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Oleg Demchenko

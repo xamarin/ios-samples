@@ -32,7 +32,7 @@ Build/Runtime Requirements
 Author 
 ------
 
-Copyright (C) 2015 Apple Inc. All rights reserved.  
+Copyright (C) 2015 Xamarin Inc. All rights reserved.  
 Ported to Xamarin.iOS by Vincent Dondain.
 
 
