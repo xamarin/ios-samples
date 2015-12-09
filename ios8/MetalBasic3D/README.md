@@ -20,6 +20,6 @@ This sample requires Xcode 6.0, iOS 8.0 SDK and an A7/A8 device
 
 Author
 ------ 
-Copyright (C) 2014 Apple Inc. All rights reserved.
+Copyright (C) 2014 Xamarin Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Oleg Demchenko

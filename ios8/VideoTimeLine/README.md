@@ -13,6 +13,6 @@ This sample runnable on iPadSimulator/iPad
 
 Author
 ======
-Copyright (C) 2014 Apple Inc. All rights reserved.
+Copyright (C) 2014 Xamarin Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Oleg Demchenko
