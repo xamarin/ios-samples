@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>TouchCanvas</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.Fox</string>
+	<string>com.xamarin.XiOSDebugging</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>

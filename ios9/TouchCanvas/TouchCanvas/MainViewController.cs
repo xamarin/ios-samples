@@ -47,31 +47,34 @@ namespace TouchCanvas {
 			CanvasView.DrawTouches (touches, evt);
 
 			if (visualizeAzimuth) {
-				ReticleView.Hidden = false;
-				UpdateReticleView ((UITouch)touches.First());
-			}
-		}
+				foreach (var touch in touches.Cast<UITouch> ()) {
+					if (touch.Type != UITouchType.Stylus)
+						continue;
 
-		public override bool ShouldAutorotate ()
-		{
-			return true;
+					ReticleView.Hidden = false;
+					UpdateReticleView (touch);
+				}
+			}
 		}
 
 		public override void TouchesMoved (NSSet touches, UIEvent evt)
 		{
 			CanvasView.DrawTouches (touches, evt);
-			var touch = (UITouch)touches.FirstOrDefault ();
-			if (touch == null)
-				return;
 
-			UpdateReticleView (touch);
+			if (visualizeAzimuth) {
+				foreach (var touch in touches.Cast<UITouch> ()) {
+					if (touch.Type != UITouchType.Stylus)
+						continue;
 
-			// Use the last predicted touch to update the reticle.
-			UITouch[] predictedTouches = evt?.GetPredictedTouches (touch);
-			UITouch predictedTouch = predictedTouches?.LastOrDefault ();
+					UpdateReticleView (touch);
 
-			if (predictedTouch != null)
-				UpdateReticleView (predictedTouch, true);
+					UITouch[] predictedTouches = evt?.GetPredictedTouches (touch);
+					UITouch predictedTouch = predictedTouches?.LastOrDefault ();
+
+					if (predictedTouch != null)
+						UpdateReticleView (predictedTouch, true);
+				}
+			}
 		}
 
 		public override void TouchesEnded (NSSet touches, UIEvent evt)
@@ -79,7 +82,11 @@ namespace TouchCanvas {
 			CanvasView.DrawTouches (touches, evt);
 			CanvasView.EndTouches (touches, false);
 
-			ReticleView.Hidden = true;
+			if (visualizeAzimuth) {
+				foreach (var touch in touches.Cast<UITouch> ()) {
+					ReticleView.Hidden |= touch.Type == UITouchType.Stylus;
+				}
+			}
 		}
 
 		public override void TouchesCancelled (NSSet touches, UIEvent evt)
@@ -88,17 +95,20 @@ namespace TouchCanvas {
 				return;
 
 			CanvasView.EndTouches (touches, true);
-			ReticleView.Hidden = true;
+			if (visualizeAzimuth) {
+				foreach (var touch in touches.ToArray<UITouch> ())
+					ReticleView.Hidden |= touch.Type == UITouchType.Stylus;
+			}
 		}
 
 		public override void TouchesEstimatedPropertiesUpdated (NSSet touches)
 		{
-			CanvasView.TouchesEstimatedPropertiesUpdated (touches);
+			CanvasView.UpdateEstimatedPropertiesForTouches (touches);
 		}
 
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
 		{
-			return UIInterfaceOrientationMask.LandscapeRight;
+			return UIInterfaceOrientationMask.LandscapeRight | UIInterfaceOrientationMask.LandscapeRight;
 		}
 
 		partial void ClearView (UIBarButtonItem sender)
@@ -119,15 +129,18 @@ namespace TouchCanvas {
 			sender.Selected = CanvasView.UsePreciseLocations;
 		}
 
+		public override bool ShouldAutorotate ()
+		{
+			return true;
+		}
+
 		void UpdateReticleView (UITouch touch, bool predicated = false)
 		{
-			if (touch == null)
+			if (touch.Type != UITouchType.Stylus)
 				return;
 
 			ReticleView.PredictedDotLayer.Hidden = !predicated;
 			ReticleView.PredictedLineLayer.Hidden = !predicated;
-
-			ReticleView.Center = touch.LocationInView (touch.View);
 
 			var azimuthAngle = touch.GetAzimuthAngle (touch.View);
 			var azimuthUnitVector = touch.GetAzimuthUnitVector (touch.View);
@@ -138,6 +151,8 @@ namespace TouchCanvas {
 				ReticleView.PredictedAzimuthUnitVector = azimuthUnitVector;
 				ReticleView.PredictedAzimuthAngle = altitudeAngle;
 			} else {
+				var location = touch.PreviousLocationInView (View);
+				ReticleView.Center = location;
 				ReticleView.ActualAzimuthAngle = azimuthAngle;
 				ReticleView.ActualAzimuthUnitVector = azimuthUnitVector;
 				ReticleView.ActualAzimuthAngle = altitudeAngle;

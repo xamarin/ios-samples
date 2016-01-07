@@ -6,16 +6,15 @@ using CoreGraphics;
 
 namespace TouchCanvas {
 	public class ReticleView : UIView {
-
-		CALayer reticleLayer = new CALayer ();
-		const float radius = 80f;
-		UIImage reticleImage;
-		static readonly UIColor reticleColor = new UIColor (0.516f, 0.38f, 0.85f, 0.4f);
-
 		const float dotRadius = 8f;
 		const float lineWidth = 2f;
+		const float radius = 80f;
 
-		static readonly UIColor predictedIndicatorColor = new UIColor (0.53f, 0.86f, 0.91f, 1.0f);
+		static readonly UIColor reticleColor = new UIColor (.516f, .38f, .85f, .4f);
+		static readonly UIColor predictedIndicatorColor = new UIColor (.53f, .86f, .91f, 1f);
+
+		CALayer reticleLayer = new CALayer ();
+		UIImage reticleImage;
 
 		CALayer dotLayer = new CALayer ();
 		CALayer lineLayer = new CALayer ();
@@ -210,7 +209,7 @@ namespace TouchCanvas {
 		{
 			targetLayer.BackgroundColor = color.CGColor;
 			targetLayer.Bounds = new CGRect (0f, 0f, 1f, lineWidth);
-			targetLayer.AnchorPoint = new CGPoint (0f, 0.5f);
+			targetLayer.AnchorPoint = new CGPoint (0f, .5f);
 			targetLayer.Position = CGPoint.Empty;
 		}
 	}

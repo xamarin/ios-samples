@@ -89,6 +89,7 @@
     <Compile Include="Line.cs" />
     <Compile Include="LinePoint.cs" />
     <Compile Include="ReticleView.cs" />
+    <Compile Include="Extensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

@@ -11,15 +11,37 @@ namespace TouchCanvas {
 		bool isPredictionEnabled = UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad;
 		const bool isTouchUpdatingEnabled = true;
 
+		bool needsFullRedraw = true;
 		CGImage frozenImage;
 		readonly List<Line> lines = new List<Line> ();
+		readonly List<Line> finishedLines = new List<Line> ();
 
 		readonly Dictionary<UITouch, Line> activeLines = new Dictionary<UITouch, Line> ();
 		readonly Dictionary<UITouch, Line> pendingLines = new Dictionary<UITouch, Line> ();
 
-		public bool IsDebuggingEnabled { get; set; }
+		bool isDebuggingEnabled;
+		public bool IsDebuggingEnabled {
+			get {
+				return isDebuggingEnabled;
+			}
+			set {
+				isDebuggingEnabled = value;
+				needsFullRedraw = true;
+				SetNeedsDisplay ();
+			}
+		}
 
-		public bool UsePreciseLocations { get; set; }
+		bool usePreciseLocations;
+		public bool UsePreciseLocations {
+			get {
+				return usePreciseLocations;
+			}
+			set {
+				usePreciseLocations = value;
+				needsFullRedraw = true;
+				SetNeedsDisplay ();
+			}
+		}
 
 		CGBitmapContext frozenContext;
 		public CGBitmapContext FrozenContext {
@@ -60,40 +82,22 @@ namespace TouchCanvas {
 		{
 			var context = UIGraphics.GetCurrentContext ();
 			context.SetLineCap (CGLineCap.Round);
-			frozenImage = frozenImage ?? FrozenContext.ToImage ();
 
-			if (frozenImage != null)
-				context.DrawImage (Bounds, frozenImage);
+			if (needsFullRedraw) {
+				SetFrozenImageNeedsUpdate ();
+				FrozenContext.ClearRect (Bounds);
+				foreach (var line in finishedLines) {
+					line.DrawCommitedPointsInContext (context, IsDebuggingEnabled, UsePreciseLocations);
+				}
+
+				needsFullRedraw = false;
+			}
+
+			frozenImage = frozenImage ?? FrozenContext.ToImage ();
+			context.DrawImage (Bounds, frozenImage);
 
 			foreach (var line in lines)
 				line.DrawInContext (context, IsDebuggingEnabled, UsePreciseLocations);
-		}
-
-		public void UpdateEstimatedPropertiesForTouches (NSSet touches)
-		{
-			var updateRect = CGRect.Empty;
-
-			foreach (var touch in touches.Cast<UITouch> ()) {
-				bool isPending = false;
-
-				// Look to retrieve a line from `activeLines`. If no line exists, look it up in `pendingLines`.
-				// If no line is related to the touch, return as there is no additional work to do.
-				Line possibleLine;
-				if (!activeLines.TryGetValue (touch, out possibleLine) && !(isPending = pendingLines.TryGetValue (touch, out possibleLine)))
-					return;
-
-				var updateEstimatedRect = possibleLine.UpdatePointLocation (touch.LocationInView (this), touch.GetPreciseLocation (this), touch.Force, touch.Timestamp);
-				updateRect.UnionWith (updateEstimatedRect);
-
-				if (isPending && possibleLine.IsComplete) {
-					FinishLine (possibleLine);
-					pendingLines.Remove (touch);
-				} else {
-					CommitLine (possibleLine);
-				}
-
-				SetNeedsDisplayInRect (updateRect);
-			}
 		}
 
 		public void Clear ()
@@ -101,8 +105,8 @@ namespace TouchCanvas {
 			activeLines.Clear ();
 			pendingLines.Clear ();
 			lines.Clear ();
-			frozenImage = null;
-			FrozenContext.ClearRect (Bounds);
+			finishedLines.Clear ();
+			needsFullRedraw = true;
 			SetNeedsDisplay ();
 		}
 
@@ -116,20 +120,20 @@ namespace TouchCanvas {
 				// Retrieve a line from `activeLines`. If no line exists, create one.
 				if (!activeLines.TryGetValue (touch, out line))
 					line = AddActiveLineForTouch (touch);
-				updateRect.UnionWith (line.RemovePointsWithType (PointType.Predicted));
+				updateRect = updateRect.UnionWith (line.RemovePointsWithType (PointType.Predicted));
 
-				var coalescedTouches = evt.GetCoalescedTouches (touch) ?? new UITouch[0];
+				var coalescedTouches = evt.GetCoalescedTouches (touch);
 				var coalescedRect = AddPointsOfType (PointType.Coalesced, coalescedTouches, line, updateRect);
-				updateRect.UnionWith (coalescedRect);
+				updateRect = updateRect.UnionWith (coalescedRect);
 
 				if (isPredictionEnabled) {
 					var predictedTouches = evt.GetPredictedTouches (touch) ?? new UITouch[0];
 					var predictedRect = AddPointsOfType (PointType.Predicted, predictedTouches, line, updateRect);
-					updateRect.UnionWith (predictedRect);
+					updateRect = updateRect.UnionWith (predictedRect);
 				}
 			}
 
-			SetNeedsDisplay ();
+			SetNeedsDisplayInRect (updateRect);
 		}
 
 		Line AddActiveLineForTouch (UITouch touch)
@@ -150,22 +154,28 @@ namespace TouchCanvas {
 
 				// The visualization displays non-`.Stylus` touches differently.
 				if (!isStylus)
-					type = PointType.Finger;
+					type = type.Add (PointType.Finger);
 
 				if (isTouchUpdatingEnabled && (touch.EstimatedProperties != 0))
-					type = PointType.NeedsUpdate;
+					type = type.Add (PointType.NeedsUpdate);
 
 				bool isLast = i == touches.Length - 1;
-				if (type == PointType.Coalesced && isLast)
-					type = PointType.Standard;
+				if (type.Has (PointType.Coalesced) && isLast) {
+					type = type.Remove (PointType.Coalesced);
+					type = type.Add (PointType.Standard);
+				}
 
-				var force = (isStylus || touch.Force > 0) ? touch.Force : 1f;
-				var touchRect = line.AddPointAtLocation (touch.LocationInView (this), touch.GetPreciseLocation (this), force, touch.Timestamp, type);
+				var touchRect = line.AddPointOfType (type, touch);
 				accumulatedRect.UnionWith (touchRect);
 				CommitLine (line);
 			}
 
 			return rect.UnionWith (accumulatedRect);
+		}
+
+		void SetFrozenImageNeedsUpdate ()
+		{
+			frozenImage = null;
 		}
 
 		public void EndTouches (NSSet touches, bool cancel)
@@ -179,30 +189,57 @@ namespace TouchCanvas {
 					continue;
 
 				if (cancel)
-					updateRect.UnionWith (line.Cancel ());
+					updateRect = updateRect.UnionWith (line.Cancel ());
 
 				if (line.IsComplete || !isTouchUpdatingEnabled) {
 					FinishLine (line);
-					pendingLines.Remove (touch);
 				} else {
-					CommitLine (line);
+					pendingLines.Add (touch, line);
 				}
 			}
 
 			SetNeedsDisplayInRect (updateRect);
 		}
 
-		void FinishLine (Line line)
+		public void UpdateEstimatedPropertiesForTouches (NSSet touches)
 		{
-			line.DrawInContext (FrozenContext, IsDebuggingEnabled, UsePreciseLocations);
-			frozenImage = null;
-			lines.Remove (line);
+			foreach (var touch in touches.Cast<UITouch> ()) {
+				bool isPending = false;
+
+				// Look to retrieve a line from `activeLines`. If no line exists, look it up in `pendingLines`.
+				Line possibleLine;
+				if (!activeLines.TryGetValue (touch, out possibleLine))
+					isPending = pendingLines.TryGetValue (touch, out possibleLine);
+
+				// If no line is related to the touch, return as there is no additional work to do.
+				if (possibleLine == null)
+					return;
+
+				var updateResult = possibleLine.UpdateWithTouch (touch);
+				SetNeedsDisplayInRect (updateResult.Value);
+
+				// If this update updated the last point requiring an update, move the line to the `frozenImage`.
+				if (isPending && possibleLine.IsComplete) {
+					FinishLine (possibleLine);
+					pendingLines.Remove (touch);
+				} else {
+					CommitLine (possibleLine);
+				}
+			}
 		}
 
 		void CommitLine (Line line)
 		{
 			line.DrawFixedPointsInContext (FrozenContext, IsDebuggingEnabled, UsePreciseLocations);
-			frozenImage = null;
+			SetFrozenImageNeedsUpdate ();
+		}
+
+		void FinishLine (Line line)
+		{
+			line.DrawFixedPointsInContext (FrozenContext, IsDebuggingEnabled, UsePreciseLocations, true);
+			SetFrozenImageNeedsUpdate ();
+			lines.Remove (line);
+			finishedLines.Add (line);
 		}
 	}
 }
