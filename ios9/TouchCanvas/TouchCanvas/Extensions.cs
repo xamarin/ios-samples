@@ -35,7 +35,7 @@ namespace TouchCanvas {
 			try {
 				return (T)(object)(((int)(object)type & ~(int)(object)value));
 			} catch (Exception ex) {
-				throw new ArgumentException ( string.Format ("Could not remove value from enumerated type '{0}'.", typeof(T).Name), ex);
+				return value;
 			}
 		}
 	}

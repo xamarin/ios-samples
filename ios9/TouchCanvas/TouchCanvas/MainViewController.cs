@@ -108,7 +108,7 @@ namespace TouchCanvas {
 
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
 		{
-			return UIInterfaceOrientationMask.LandscapeRight | UIInterfaceOrientationMask.LandscapeRight;
+			return UIInterfaceOrientationMask.LandscapeRight | UIInterfaceOrientationMask.LandscapeLeft;
 		}
 
 		partial void ClearView (UIBarButtonItem sender)
@@ -136,26 +136,26 @@ namespace TouchCanvas {
 
 		void UpdateReticleView (UITouch touch, bool predicated = false)
 		{
-			if (touch.Type != UITouchType.Stylus)
+			if (touch == null || touch.Type != UITouchType.Stylus)
 				return;
 
 			ReticleView.PredictedDotLayer.Hidden = !predicated;
 			ReticleView.PredictedLineLayer.Hidden = !predicated;
 
-			var azimuthAngle = touch.GetAzimuthAngle (touch.View);
-			var azimuthUnitVector = touch.GetAzimuthUnitVector (touch.View);
+			var azimuthAngle = touch.GetAzimuthAngle (View);
+			var azimuthUnitVector = touch.GetAzimuthUnitVector (View);
 			var altitudeAngle = touch.AltitudeAngle;
 
 			if (predicated) {
 				ReticleView.PredictedAzimuthAngle = azimuthAngle;
 				ReticleView.PredictedAzimuthUnitVector = azimuthUnitVector;
-				ReticleView.PredictedAzimuthAngle = altitudeAngle;
+				ReticleView.PredictedAltitudeAngle = altitudeAngle;
 			} else {
 				var location = touch.PreviousLocationInView (View);
 				ReticleView.Center = location;
 				ReticleView.ActualAzimuthAngle = azimuthAngle;
 				ReticleView.ActualAzimuthUnitVector = azimuthUnitVector;
-				ReticleView.ActualAzimuthAngle = altitudeAngle;
+				ReticleView.ActualAltitudeAngle = altitudeAngle;
 			}
 		}
 	}

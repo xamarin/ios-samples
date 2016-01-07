@@ -86,7 +86,7 @@ namespace TouchCanvas {
 			if (needsFullRedraw) {
 				SetFrozenImageNeedsUpdate ();
 				FrozenContext.ClearRect (Bounds);
-				foreach (var line in finishedLines) {
+				foreach (var line in finishedLines.Union (lines)) {
 					line.DrawCommitedPointsInContext (context, IsDebuggingEnabled, UsePreciseLocations);
 				}
 
@@ -122,7 +122,7 @@ namespace TouchCanvas {
 					line = AddActiveLineForTouch (touch);
 				updateRect = updateRect.UnionWith (line.RemovePointsWithType (PointType.Predicted));
 
-				var coalescedTouches = evt.GetCoalescedTouches (touch);
+				var coalescedTouches = evt.GetCoalescedTouches (touch) ?? new UITouch[0];
 				var coalescedRect = AddPointsOfType (PointType.Coalesced, coalescedTouches, line, updateRect);
 				updateRect = updateRect.UnionWith (coalescedRect);
 
@@ -132,8 +132,8 @@ namespace TouchCanvas {
 					updateRect = updateRect.UnionWith (predictedRect);
 				}
 			}
-
-			SetNeedsDisplayInRect (updateRect);
+			SetNeedsDisplay ();
+//			SetNeedsDisplayInRect (updateRect);
 		}
 
 		Line AddActiveLineForTouch (UITouch touch)
@@ -166,7 +166,7 @@ namespace TouchCanvas {
 				}
 
 				var touchRect = line.AddPointOfType (type, touch);
-				accumulatedRect.UnionWith (touchRect);
+				accumulatedRect = accumulatedRect.UnionWith (touchRect);
 				CommitLine (line);
 			}
 
@@ -191,7 +191,7 @@ namespace TouchCanvas {
 				if (cancel)
 					updateRect = updateRect.UnionWith (line.Cancel ());
 
-				if (line.IsComplete || !isTouchUpdatingEnabled) {
+				if (line.IsComplete) {
 					FinishLine (line);
 				} else {
 					pendingLines.Add (touch, line);
@@ -216,7 +216,8 @@ namespace TouchCanvas {
 					return;
 
 				var updateResult = possibleLine.UpdateWithTouch (touch);
-				SetNeedsDisplayInRect (updateResult.Value);
+				if (updateResult.Key)
+					SetNeedsDisplayInRect (updateResult.Value);
 
 				// If this update updated the last point requiring an update, move the line to the `frozenImage`.
 				if (isPending && possibleLine.IsComplete) {

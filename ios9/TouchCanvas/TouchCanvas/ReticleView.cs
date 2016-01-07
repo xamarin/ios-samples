@@ -20,6 +20,12 @@ namespace TouchCanvas {
 		CALayer lineLayer = new CALayer ();
 		UIColor indicatorColor = UIColor.Red;
 
+		public override CGSize IntrinsicContentSize {
+			get {
+				return reticleImage.Size;
+			}
+		}
+
 		readonly CALayer predictedDotLayer = new CALayer ();
 		public CALayer PredictedDotLayer {
 			get {
@@ -102,6 +108,8 @@ namespace TouchCanvas {
 
 		public ReticleView (CGRect frame) : base (frame)
 		{
+			ContentScaleFactor = UIScreen.MainScreen.Scale;
+
 			reticleLayer.ContentsGravity = CALayer.GravityCenter;
 			reticleLayer.Position = Layer.Position;
 			Layer.AddSublayer (reticleLayer);
@@ -151,7 +159,7 @@ namespace TouchCanvas {
 			var transform = CGAffineTransform.MakeIdentity ();
 
 			for (int i = 0; i < 4; i++) {
-				path.MoveToPoint (transform, radius * 0.5f, 0f);
+				path.MoveToPoint (transform, radius * .5f, 0f);
 				path.AddLineToPoint (transform, radius * 1.15f, 0);
 				transform.Rotate (NMath.PI / 2f);
 			}
@@ -176,7 +184,7 @@ namespace TouchCanvas {
 			LayoutIndicatorForAzimuthAngle (actualAzimuthAngle, actualAzimuthUnitVector, actualAltitudeAngle, lineLayer, dotLayer);
 		}
 
-		void LayoutIndicatorForAzimuthAngle (nfloat azimuthAngle, CGVector azimuthUnitVector, nfloat altitudeAngle, CALayer lineLayer, CALayer dotLayer)
+		void LayoutIndicatorForAzimuthAngle (nfloat azimuthAngle, CGVector azimuthUnitVector, nfloat altitudeAngle, CALayer targetLineLayer, CALayer targetDotLayer)
 		{
 			var reticleBounds = reticleLayer.Bounds;
 			var centeringTransform = CGAffineTransform.MakeTranslation (reticleBounds.Width / 2f, reticleBounds.Height / 2f);
@@ -185,16 +193,16 @@ namespace TouchCanvas {
 
 			// Draw the indicator opposite the azimuth by rotating pi radians, for easy visualization.
 			rotationTransform = CGAffineTransform.Rotate (rotationTransform, NMath.PI);
-			var altitudeRadius = (1f - altitudeAngle / (NMath.PI / 2f) * radius);
+			var altitudeRadius = (1f - altitudeAngle / NMath.PI / 2f) * radius;
 			var lineTransform = CGAffineTransform.MakeScale (altitudeRadius, 1);
 
-			lineTransform.Multiply (rotationTransform);
-			lineTransform.Multiply (centeringTransform);
-			lineLayer.AffineTransform = lineTransform;
+			lineTransform = CGAffineTransform.Multiply (lineTransform, rotationTransform);
+			lineTransform = CGAffineTransform.Multiply (lineTransform, centeringTransform);
+			targetLineLayer.AffineTransform = lineTransform;
 
 			var dotTransform = CGAffineTransform.MakeTranslation (-azimuthUnitVector.dx * altitudeRadius, -azimuthUnitVector.dy * altitudeRadius);
-			dotTransform.Multiply (centeringTransform);
-			dotLayer.AffineTransform = dotTransform;
+			dotTransform = CGAffineTransform.Multiply (dotTransform, centeringTransform);
+			targetDotLayer.AffineTransform = dotTransform;
 		}
 
 		static void ConfigureDotLayer (CALayer targetLayer, UIColor color)
