@@ -1,5 +1,4 @@
 using UIKit;
-using CoreGraphics;
 using System;
 using Foundation;
 
