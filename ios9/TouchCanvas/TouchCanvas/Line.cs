@@ -145,7 +145,7 @@ namespace TouchCanvas {
 					context.SetLineWidth (.5f);
 					context.MoveTo (location.X, location.Y);
 					var targetPoint = new CGPoint (.5f + 10f * NMath.Cos (point.AltitudeAngle), 0f);
-					targetPoint = CGPointApplyAffineTransform (targetPoint, CGAffineTransform.MakeRotation (point.AzimuthAngle));
+					targetPoint = CGAffineTransform.MakeRotation (point.AzimuthAngle).TransformPoint (targetPoint);
 					targetPoint.X += location.X;
 					targetPoint.Y += location.Y;
 					context.AddLineToPoint (targetPoint.X, targetPoint.Y);
@@ -246,9 +246,5 @@ namespace TouchCanvas {
 
 			return rect;
 		}
-
-		// TODO
-		[System.Runtime.InteropServices.DllImport ("/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics")]
-		static extern CGPoint CGPointApplyAffineTransform (CGPoint point, CGAffineTransform t);
 	}
 }

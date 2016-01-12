@@ -34,7 +34,7 @@ namespace TouchCanvas {
 		{
 			try {
 				return (T)(object)(((int)(object)type & ~(int)(object)value));
-			} catch (Exception ex) {
+			} catch (Exception) {
 				return value;
 			}
 		}
