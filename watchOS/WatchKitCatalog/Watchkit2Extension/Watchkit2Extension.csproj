@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectTypeGuids>{1E2E965C-F6D2-49ED-B86E-418A60C69EEF};{A9A6EAC2-568B-4F3E-869D-32CBBA122DF2};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectTypeGuids>{1E2E965C-F6D2-49ED-B86E-418A60C69EEF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{6DF296B2-FBD1-4B5C-BE40-F5A14968BFC3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Watchkit2Extension</RootNamespace>
