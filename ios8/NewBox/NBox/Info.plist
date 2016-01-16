@@ -43,5 +43,7 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.fileprovider-ui</string>
 	</dict>
+	<key>MinimumOSVersion</key>
+	<string>9.0</string>
 </dict>
 </plist>

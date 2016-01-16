@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSSceneKit", "CSSceneKit\CSSceneKit.csproj", "{88A47856-D987-404E-82BF-2CEDE8451FFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSSceneKit.UITests", "CSSceneKit.UITests\CSSceneKit.UITests.csproj", "{6C0E8864-B053-4988-8509-ED552AF85595}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator

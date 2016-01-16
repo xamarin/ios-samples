@@ -49,5 +49,7 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>
 	</dict>
+	<key>MinimumOSVersion</key>
+	<string>9.0</string>
 </dict>
 </plist>

@@ -31,5 +31,7 @@
 		<key>NSExtensionPrincipalClass</key>
 		<string>FileProvider</string>
 	</dict>
+	<key>MinimumOSVersion</key>
+	<string>9.0</string>
 </dict>
 </plist>

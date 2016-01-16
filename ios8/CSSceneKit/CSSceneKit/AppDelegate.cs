@@ -22,7 +22,6 @@ namespace CSSceneKit
 
 			// Code to start the Xamarin Test Cloud Agent
 			#if ENABLE_TEST_CLOUD
-			Xamarin.Calabash.Start();
 			#endif
 
 			return true;
