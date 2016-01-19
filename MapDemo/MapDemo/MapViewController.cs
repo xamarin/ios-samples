@@ -1,6 +1,4 @@
-using Foundation;
 using System;
-using System.CodeDom.Compiler;
 using UIKit;
 using CoreLocation;
 using MapKit;
@@ -30,15 +28,15 @@ namespace MapDemo
 			map.Bounds = View.Bounds;
 
 			// set map center and region
-			double lat = 42.374260;
-			double lon = -71.120824;
+			const double lat = 42.374260;
+			const double lon = -71.120824;
 			var mapCenter = new CLLocationCoordinate2D (lat, lon);
 			var mapRegion = MKCoordinateRegion.FromDistance (mapCenter, 2000, 2000);
 			map.CenterCoordinate = mapCenter;
 			map.Region = mapRegion;
 
 			// add an annotation
-			map.AddAnnotation (new MKPointAnnotation () {
+			map.AddAnnotation (new MKPointAnnotation {
 				Title = "MyAnnotation", 
 				Coordinate = new CLLocationCoordinate2D (42.364260, -71.120824)
 			});
@@ -72,9 +70,6 @@ namespace MapDemo
 			searchController.HidesNavigationBarDuringPresentation = false;
 			NavigationItem.TitleView = searchController.SearchBar;
 			DefinesPresentationContext = true;
-
-
-
 		}
 
 		public class SearchResultsUpdator : UISearchResultsUpdating
