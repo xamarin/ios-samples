@@ -4,7 +4,7 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace HttpClient
+namespace HttpClientSample
 {
 	// The name AppDelegate is referenced in the MainWindow.xib file.
 	public partial class AppDelegate : UIApplicationDelegate
@@ -19,7 +19,8 @@ namespace HttpClient
 				"http  - WebRequest",
 				"https - WebRequest",
 				"http  - NSUrlConnection",
-				"http  - HttpClient/CFNetwork"
+				"http  - HttpClient",
+				"https - HttpClient"
 			});
 
 			window.MakeKeyAndVisible ();
@@ -33,6 +34,7 @@ namespace HttpClient
 			if (UIApplication.SharedApplication.NetworkActivityIndicatorVisible)
 				return;
 
+			HandlerType = null;
 			button1.Enabled = false;
 			switch (stack.SelectedRow ()) {
 			case 0:
@@ -45,10 +47,15 @@ namespace HttpClient
 				new Cocoa (this).HttpSample ();
 				break;
 			case 3:
-				await new NetHttp (this).HttpSample ();
+				await new NetHttp (this).HttpSample (secure: false);
 				break;
+			case 4:
+				await new NetHttp (this).HttpSample (secure: true);
+			break;
 			}
 		}
+
+		public Type HandlerType { get; set; }
 
 		public void RenderStream (Stream stream)
 		{
@@ -57,12 +64,17 @@ namespace HttpClient
 			InvokeOnMainThread (delegate {
 				button1.Enabled = true;
 				var view = new UIViewController ();
+				var handler = new UILabel (new CGRect (20, 20, 300, 40)) {
+					Text = "HttpClient is using " + HandlerType?.Name
+				};
 				var label = new UILabel (new CGRect (20, 20, 300, 80)) {
 					Text = "The HTML returned by the server:"
 				};
 				var tv = new UITextView (new CGRect (20, 100, 300, 400)) {
 					Text = reader.ReadToEnd ()
 				};
+				if (HandlerType != null)
+					view.Add (handler);
 				view.Add (label);
 				view.Add (tv);
 

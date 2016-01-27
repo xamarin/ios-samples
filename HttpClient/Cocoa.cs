@@ -12,7 +12,7 @@ using Foundation;
 using UIKit;
 using System.Runtime.InteropServices;
 
-namespace HttpClient
+namespace HttpClientSample
 {
 
 	public class Cocoa : NSUrlConnectionDataDelegate
