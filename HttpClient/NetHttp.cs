@@ -23,7 +23,7 @@ namespace HttpClientSample
 		{
 			var client = new HttpClient ();
 			ad.HandlerType = typeof(HttpMessageInvoker).GetField("handler", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue (client).GetType ();
-			ad.RenderStream (await client.GetStreamAsync (secure ? "https://gmail.com" : Application.WisdomUrl));
+			ad.RenderStream (await client.GetStreamAsync (secure ? "https://xamarin.com" : Application.WisdomUrl));
 		}
 	}
 }
