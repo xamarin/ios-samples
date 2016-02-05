@@ -1,22 +1,19 @@
 using System;
-using UIKit;
+using System.IO;
+
 using Foundation;
 using NewsstandKit;
 
-namespace Newsstand
-{
+namespace Newsstand {
 	public class NewsstandUrlDelegate1 : NSUrlConnectionDownloadDelegate {
-		
-		string _name;
-		NKIssue _issue;
+		NKIssue Issue { get; set; }
 		
 		/// <summary>
 		/// Pass the issue into the delegate to determine the target file location
 		/// </summary>
 		public NewsstandUrlDelegate1(string name, NKIssue issue)
 		{
-			_name = name;
-			_issue = issue;
+			Issue = issue;
 		}
 		
 		/// <summary>
@@ -39,29 +36,15 @@ namespace Newsstand
 		/// </summary>
 		public override void FinishedDownloading (NSUrlConnection connection, NSUrl destinationUrl)
 		{
-			Console.WriteLine ("-- Downloaded file: " + destinationUrl.Path);
-			Console.WriteLine ("---Target issue location: " + _issue.ContentUrl.Path);
+			Console.WriteLine ($"Downloaded file: {destinationUrl.Path}");
+			Console.WriteLine ($"Target issue location: {Issue.ContentUrl.Path}");
 		
-			var saveToFilename = System.IO.Path.Combine(_issue.ContentUrl.Path, "default.html");
-			if (!System.IO.File.Exists (saveToFilename))
-				System.IO.File.Move (destinationUrl.Path, saveToFilename);
-		
-			Console.WriteLine ("---File moved for issue: " + _issue.Name);
-			
-			//TODO: If you download a ZIP or something, process it in the background
-			//UIApplication.SharedApplication.BeginBackgroundTask ();
-		}
-		
-//		// doesn't get called by NewsstandKit, see FinishedDownloading above instead... 
-//		public override void FinishedLoading (NSUrlConnection connection)
-//		{
-//			
-//		}
+			var saveToFilename = Path.Combine (Issue.ContentUrl.Path, "default.html");
 
-		public override void FailedWithError (NSUrlConnection connection, NSError error)
-		{
-			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
-			// do stuff
+			if (!File.Exists (saveToFilename))
+				File.Move (destinationUrl.Path, saveToFilename);
+		
+			Console.WriteLine ($"File moved for issue: {Issue.Name}");
 		}
 	}	
 }

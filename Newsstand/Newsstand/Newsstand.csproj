@@ -85,11 +85,14 @@
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="114_icon.png" />
-    <Content Include="cover_lasvegas.jpg" />
-    <Content Include="cover_newyork.jpg" />
-    <Content Include="cover_sanfrancisco.jpg" />
-    <Content Include="cover_peru.jpg" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\114_icon.png" />
+    <BundleResource Include="Resources\cover_lasvegas.jpg" />
+    <BundleResource Include="Resources\cover_newyork.jpg" />
+    <BundleResource Include="Resources\cover_peru.jpg" />
+    <BundleResource Include="Resources\cover_sanfrancisco.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
