@@ -46,7 +46,7 @@ namespace ManualCameraControls
 			// Get a pixel buffer from the sample buffer
 			using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer) {
 				// Lock the base address
-				pixelBuffer.Lock (0);
+				pixelBuffer.Lock ((CVPixelBufferLock)0);
 
 				// Prepare to decode buffer
 				var flags = CGBitmapFlags.PremultipliedFirst | CGBitmapFlags.ByteOrder32Little;
@@ -67,7 +67,7 @@ namespace ManualCameraControls
 						using (var cgImage = context.ToImage ()) {
 
 							// Unlock and return image
-							pixelBuffer.Unlock (0);
+							pixelBuffer.Unlock ((CVPixelBufferLock)0);
 							return UIImage.FromImage (cgImage);
 						}
 					}
