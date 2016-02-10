@@ -65,9 +65,12 @@ namespace HttpClientSample
 				button1.Enabled = true;
 				var view = new UIViewController ();
 				var handler = new UILabel (new CGRect (20, 20, 300, 40)) {
-					Text = "HttpClient is using " + HandlerType?.Name
+					Text = "HttpClient is using " + HandlerType?.Name,
+					Lines = 0
 				};
-				var label = new UILabel (new CGRect (20, 20, 300, 80)) {
+				handler.SizeToFit ();
+
+				var label = new UILabel (new CGRect (20, 40, 300, 80)) {
 					Text = "The HTML returned by the server:"
 				};
 				var tv = new UITextView (new CGRect (20, 100, 300, 400)) {
