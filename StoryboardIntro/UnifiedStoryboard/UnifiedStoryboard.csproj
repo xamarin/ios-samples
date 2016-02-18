@@ -113,7 +113,6 @@
     <BundleResource Include="Resources\Icon-60.png" />
     <BundleResource Include="Resources\Logo.png" />
     <BundleResource Include="Resources\Logo%402x.png" />
-    <BundleResource Include="Resources\Images.xcassets\.DS_Store" />
     <BundleResource Include="Resources\Images.xcassets\MenuBackground.imageset\Contents.json" />
     <BundleResource Include="Resources\Images.xcassets\MenuBackground.imageset\MenuBackground_Any.png" />
     <BundleResource Include="Resources\Images.xcassets\MenuBackground.imageset\MenuBackground_Any%402x.png" />
