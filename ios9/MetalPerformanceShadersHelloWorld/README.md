@@ -18,8 +18,12 @@ Useful links
 
 [Swift and Objective-C versions of sample](https://developer.apple.com/library/prerelease/ios/samplecode/MetalPerformanceShadersHelloWorld/Introduction/Intro.html#//apple_ref/doc/uid/TP40016188)
 
+Copyright
+--------
+
+Xamarin port changes are released under the MIT license
+
 Author
------- 
-Copyright (C) 2015 Xamarin Inc. All rights reserved.
+------
 
 Ported to Xamarin.iOS by Oleg Demchenko
