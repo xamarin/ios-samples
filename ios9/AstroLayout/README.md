@@ -19,8 +19,12 @@ Useful links
 
 [Objective-C version of sample](https://developer.apple.com/library/prerelease/ios/samplecode/AstroLayout/Introduction/Intro.html)
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
------- 
-Copyright (C) 2015 Xamarin Inc. All rights reserved.
+------
 
 Ported to Xamarin.iOS by Oleg Demchenko
