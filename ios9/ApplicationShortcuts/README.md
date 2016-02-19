@@ -16,8 +16,12 @@ Target
 ------
 This sample runnable on iPhone/iPad with 3D Touch support
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
------- 
-Copyright (C) 2015 Xamarin Inc. All rights reserved.
+------
 
 Ported to Xamarin.iOS by Rustam Zaitov
