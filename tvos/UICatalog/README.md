@@ -18,8 +18,12 @@ Useful links
 
 [Swift version of sample](https://developer.apple.com/library/prerelease/tvos/samplecode/UICatalogFortvOS/Introduction/Intro.html#//apple_ref/doc/uid/TP40016433)
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
------- 
-Copyright (C) 2015 Xamarin Inc. All rights reserved.
+------
 
 Ported to Xamarin.TVOS by Oleg Demchenko
