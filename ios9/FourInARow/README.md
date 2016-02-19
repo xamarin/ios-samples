@@ -18,8 +18,12 @@ Useful links
 
 [Objective-C version of sample](https://developer.apple.com/library/prerelease/ios/samplecode/FourInARow/Introduction/Intro.html#//apple_ref/doc/uid/TP40016142)
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
 ------ 
-Copyright (C) 2015 Xamarin Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Oleg Demchenko
