@@ -34,9 +34,12 @@ Target
 ------
 This sample runnable on iPhoneSimulator/iPadSimulator iPhone/iPad
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
------- 
-IOS:
-Copyright (C) 2015 Xamarin Inc. All rights reserved.
+------
 
 Ported to Xamarin.iOS by Rustam Zaitov
