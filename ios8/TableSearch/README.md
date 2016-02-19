@@ -15,8 +15,12 @@ Runtime
 ------------------
 Device/simulator with iOS 8 or later
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
 ------ 
-Copyright (C) 2014 Xamarin Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Oleg Demchenko
