@@ -19,7 +19,6 @@ This sample runnable on iPadSimulator iPad
 
 Author
 ------ 
-IOS:
-Copyright (C) 2014 Xamarin Inc. All rights reserved.
+Xamarin port changes are released under the MIT license
 
 Ported to Xamarin.iOS by Rustam Zaitov
