@@ -6,8 +6,12 @@ from the `CoreMotion` `MotionActivity` and Step Counting APIs. The
 data is then presented in app laying out a daily diary of a user's
 motion activity.
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
 ------
 
-Copyright (C) 2014 Xamarin Inc. All rights reserved.  
 Ported to Xamarin.iOS by Timothy Risi.
