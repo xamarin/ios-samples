@@ -13,9 +13,12 @@ Useful links
 
 [Swift version of sample](https://developer.apple.com/library/prerelease/ios/samplecode/StickyCorners/Introduction/Intro.html#//apple_ref/doc/uid/TP40016189-Intro-DontLinkElementID_2)
 
+Copyright
+--------
+
+Xamarin port changes are released under the MIT license
+
 Author
 ------ 
-IOS:
-Copyright (C) 2015 Xamarin Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Oleg Demchenko
