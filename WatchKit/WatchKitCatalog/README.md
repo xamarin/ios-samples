@@ -48,8 +48,11 @@ Build/Runtime Requirements
 * Xcode 6.2 or newer.
 * Xamarin.iOS 8.8 or newer.
  
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author 
 ------
-
-Copyright (C) 2015 Xamarin Inc. All rights reserved.  
 Ported to Xamarin.iOS by Vincent Dondain.
