@@ -121,10 +121,13 @@ Target
 ------
 This sample is runnable on iPhone/iPad.
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
 ------ 
-iOS:
-Copyright (C) 2014 Xamarin Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Rustam Zaitov.
 
