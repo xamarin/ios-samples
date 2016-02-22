@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>0d9f198b-4b03-431f-8f7b-d7278c6bf863</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags></Tags>
+	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates how to use Apple's Instruments tool.</Brief>
+</SampleMetadata>
