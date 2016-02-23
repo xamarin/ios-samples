@@ -13,12 +13,14 @@ If the value does not qualify as a MIDI note, the QR code is
 highlighted on the screen and the string data from the barcode is 
 written to the console, eg:
 
+![](Screenshots/xamarin-barcode.png)
+
 ```
 Barcode string data: www.xamarin.com
 ```
 
-You can generate test QR codes on a number of websites, 
-including [this one](http://www.qr-code-generator.com/).
+Search online for a website or tool that can generate test QR codes.
+
 
 Authors
 -------
