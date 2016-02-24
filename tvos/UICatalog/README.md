@@ -6,7 +6,7 @@ Demonstrates how to use many views and controls in the UIKit framework on tvOS. 
 Build Requirements
 ------------------
 
-Xcode 7.1 and tvOS 9.0 SDK or later
+Please see our [Installing tvOS Support](/guides/ios/tvos/getting-started/installation/) documentation to install the necessary requirements to run this sample.
 
 Runtime Requirements
 ------------------

@@ -6,11 +6,7 @@ This sample implements a simple "Hello World" app in Xamarin.tvOS and presents t
 Build Requirements
 ------------------
 
-WARNING! Xamarin.iOS 9.3.x introduces preview supports for iOS 9.1, tvOS 9.0 and updated previews for watchOS 2.0. The latest Xcode 7.1 is required to test the new features.
-
-Building this sample requires the preview release of Xamarin.tvOS from [here](http://developer.xamarin.com/guides/ios/tvos/getting-started/installation/).
-
-These previews are very early, unsupported builds to allow developers to test the new features and platforms recently announced by Apple and for Xamarin to gather feedback and bug reports. Your help is very appreciated!
+Please see our [Installing tvOS Support](/guides/ios/tvos/getting-started/installation/) documentation to install the necessary requirements to run this sample.
 
 Runtime Requirements
 ------------------
