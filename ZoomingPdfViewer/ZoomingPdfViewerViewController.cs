@@ -24,6 +24,7 @@ namespace ZoomingPdfViewer
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+			View.BackgroundColor = UIColor.White;
 
 			//any additional setup after loading the view, typically from a nib.
 		}

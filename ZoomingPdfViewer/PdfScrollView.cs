@@ -29,7 +29,7 @@ namespace ZoomingPdfViewer {
 			ShowsHorizontalScrollIndicator = false;
 			BouncesZoom = true;
 			DecelerationRate = UIScrollView.DecelerationRateFast;
-			BackgroundColor = UIColor.Gray;
+			BackgroundColor = UIColor.White;
 			MaximumZoomScale = 5.0f;
 			MinimumZoomScale = 0.25f;
 
