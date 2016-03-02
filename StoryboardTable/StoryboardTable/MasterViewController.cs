@@ -77,9 +77,10 @@ namespace StoryboardTable
 			base.ViewDidLoad ();
 
 			// Perform any additional setup after loading the view, typically from a nib.
-			AddButton.Clicked += (sender, e) => {
+
+			/*AddButton.Clicked += (sender, e) => {
 				CreateTask ();
-			};
+			};*/
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -105,6 +106,11 @@ namespace StoryboardTable
 			base.ViewDidDisappear (animated);
 		}
 
+		//To create a New Task
+		partial void AddButton_Activated (UIBarButtonItem sender)
+		{
+			CreateTask ();
+		}
 		#endregion
 
 //		class DataSource : UITableViewSource

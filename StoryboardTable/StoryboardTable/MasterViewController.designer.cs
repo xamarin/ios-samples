@@ -4,10 +4,10 @@
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
-using System;
 using Foundation;
-using UIKit;
+using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace StoryboardTable
 {
@@ -21,6 +21,10 @@ namespace StoryboardTable
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
 		UITableView MasterView { get; set; }
+
+		[Action ("AddButton_Activated:")]
+		[GeneratedCode ("iOS Designer", "1.0")]
+		partial void AddButton_Activated (UIBarButtonItem sender);
 
 		void ReleaseDesignerOutlets ()
 		{
