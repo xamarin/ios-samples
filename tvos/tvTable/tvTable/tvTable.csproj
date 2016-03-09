@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{40B6AD5B-F097-402F-937A-70B447B96DD1}</ProjectGuid>
+    <ProjectTypeGuids>{06FA79CB-D6CD-4721-BB4B-1BD202089C55};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>tvTable</RootNamespace>
+    <AssemblyName>tvTable</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\iPhoneSimulator\Debug\tvTable.xml</DocumentationFile>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <MtouchEnableBitcode>true</MtouchEnableBitcode>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARM64</MtouchArch>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.TVOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Large.imagestack\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Large.imagestack\Back.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Large.imagestack\Back.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Large.imagestack\Front.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Large.imagestack\Front.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Large.imagestack\Middle.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Large.imagestack\Middle.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Small.imagestack\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Small.imagestack\Back.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Small.imagestack\Back.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Small.imagestack\Front.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Small.imagestack\Front.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Small.imagestack\Middle.imagestacklayer\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Small.imagestack\Middle.imagestacklayer\Content.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\Top Shelf Image.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Louvre.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Louvre.imageset\louvre.jpg" />
+    <ImageAsset Include="Assets.xcassets\MoulinRouge.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\MoulinRouge.imageset\moulin-rouge.jpg" />
+    <ImageAsset Include="Assets.xcassets\EiffelTower.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\EiffelTower.imageset\eiffel-tower.jpg" />
+    <ImageAsset Include="Assets.xcassets\RiverSeine.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\RiverSeine.imageset\seine-river-1093747_640.jpg" />
+    <ImageAsset Include="Assets.xcassets\GoldenGateBridge.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\GoldenGateBridge.imageset\golden-gate-bridge-1081782_640.jpg" />
+    <ImageAsset Include="Assets.xcassets\SanFrancisco.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\SanFrancisco.imageset\san-francisco-918903_640.jpg" />
+    <ImageAsset Include="Assets.xcassets\Alcatraz.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Alcatraz.imageset\alcatraz-island-959106_640.jpg" />
+    <ImageAsset Include="Assets.xcassets\Houston.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Houston.imageset\aerial-view-houston-skyline-1087751_640.jpg" />
+    <ImageAsset Include="Assets.xcassets\CityHall.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\CityHall.imageset\houston-347409_640.jpg" />
+    <ImageAsset Include="Assets.xcassets\LonghornCattle.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LonghornCattle.imageset\longhorns-326062_640.jpg" />
+    <ImageAsset Include="Assets.xcassets\Rocket.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Rocket.imageset\rocket-347408_640.jpg" />
+    <ImageAsset Include="Assets.xcassets\Heart.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Heart.imageset\29-heart.png" />
+    <ImageAsset Include="Assets.xcassets\Heart.imageset\29-heart%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Map.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Map.imageset\103-map.png" />
+    <ImageAsset Include="Assets.xcassets\Map.imageset\103-map%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Plane.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Plane.imageset\38-airplane.png" />
+    <ImageAsset Include="Assets.xcassets\Plane.imageset\38-airplane%402x.png" />
+    <ImageAsset Include="Assets.xcassets\TelegraphHill.imageset\building-691441_640.jpg" />
+    <ImageAsset Include="Assets.xcassets\TelegraphHill.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\LaunchImage.png" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\Top Shelf Image.imageset\TopShelf.png" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Small.imagestack\Back.imagestacklayer\Content.imageset\IconBackground.png" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Small.imagestack\Front.imagestacklayer\Content.imageset\IconTitle.png" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Small.imagestack\Middle.imagestacklayer\Content.imageset\IconLogo.png" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Large.imagestack\Back.imagestacklayer\Content.imageset\LGIconBackground.png" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Large.imagestack\Front.imagestacklayer\Content.imageset\LGIconTitle.png" />
+    <ImageAsset Include="Assets.xcassets\App Icon &amp; Top Shelf Image.brandassets\App Icon - Large.imagestack\Middle.imagestacklayer\Content.imageset\LGIconLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Assets.xcassets\Louvre.imageset\" />
+    <Folder Include="Assets.xcassets\MoulinRouge.imageset\" />
+    <Folder Include="Assets.xcassets\EiffelTower.imageset\" />
+    <Folder Include="Assets.xcassets\RiverSeine.imageset\" />
+    <Folder Include="Assets.xcassets\GoldenGateBridge.imageset\" />
+    <Folder Include="Assets.xcassets\SanFrancisco.imageset\" />
+    <Folder Include="Assets.xcassets\Alcatraz.imageset\" />
+    <Folder Include="Assets.xcassets\Houston.imageset\" />
+    <Folder Include="Assets.xcassets\CityHall.imageset\" />
+    <Folder Include="Assets.xcassets\LonghornCattle.imageset\" />
+    <Folder Include="Assets.xcassets\Rocket.imageset\" />
+    <Folder Include="Assets.xcassets\Heart.imageset\" />
+    <Folder Include="Assets.xcassets\Map.imageset\" />
+    <Folder Include="Assets.xcassets\Plane.imageset\" />
+    <Folder Include="Classes\" />
+    <Folder Include="Assets.xcassets\TelegraphHill.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="AttractionTableViewController.cs" />
+    <Compile Include="AttractionTableViewController.designer.cs">
+      <DependentUpon>AttractionTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttractionTableView.cs" />
+    <Compile Include="AttractionTableView.designer.cs">
+      <DependentUpon>AttractionTableView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttractionTableCell.cs" />
+    <Compile Include="AttractionTableCell.designer.cs">
+      <DependentUpon>AttractionTableCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttractionViewController.cs" />
+    <Compile Include="AttractionViewController.designer.cs">
+      <DependentUpon>AttractionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttractionView.cs" />
+    <Compile Include="AttractionView.designer.cs">
+      <DependentUpon>AttractionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\CityInformation.cs" />
+    <Compile Include="Classes\AttractionInformation.cs" />
+    <Compile Include="Classes\AttractionTableDatasource.cs" />
+    <Compile Include="Classes\AttractionTableDelegate.cs" />
+    <Compile Include="MasterNavigationController.cs" />
+    <Compile Include="MasterNavigationController.designer.cs">
+      <DependentUpon>MasterNavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterSplitView.cs" />
+    <Compile Include="MasterSplitView.designer.cs">
+      <DependentUpon>MasterSplitView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\AlertViewController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\TVOS\Xamarin.TVOS.CSharp.targets" />
+</Project>

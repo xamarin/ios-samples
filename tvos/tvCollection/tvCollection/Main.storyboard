@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,7 +18,6 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="City02.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="pAf-8K-mYU">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
-                                <animations/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M79-tq-lcO">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
@@ -28,7 +27,6 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collection Views" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn5-ZZ-Wm2">
                                             <rect key="frame" x="473" y="80" width="975" height="160"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="160" id="aJj-cV-abS"/>
                                                 <constraint firstAttribute="width" constant="975" id="kFg-J9-1by"/>
@@ -38,18 +36,15 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <animations/>
                                     <constraints>
                                         <constraint firstItem="nn5-ZZ-Wm2" firstAttribute="centerX" secondItem="eIN-va-MhL" secondAttribute="centerX" id="hH2-Kl-Mrb"/>
                                         <constraint firstItem="nn5-ZZ-Wm2" firstAttribute="top" secondItem="eIN-va-MhL" secondAttribute="top" constant="80" id="sps-Dh-1qZ"/>
                                     </constraints>
                                 </view>
-                                <animations/>
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="City02.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="g3g-53-AaZ">
                                 <rect key="frame" x="516" y="288" width="889" height="556"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="556" id="dpE-dS-TEc"/>
                                     <constraint firstAttribute="width" constant="889" id="veY-yx-dKP"/>
@@ -57,7 +52,6 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6m3-ep-N2g">
                                 <rect key="frame" x="787" y="974" width="347" height="86"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="347" id="YYE-Wr-eDS"/>
                                     <constraint firstAttribute="height" constant="86" id="yUk-sb-lYx"/>
@@ -70,13 +64,11 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="City Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRM-cM-tag">
                                 <rect key="frame" x="516" y="847" width="889" height="74"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="M79-tq-lcO" secondAttribute="bottom" id="3VG-eG-lgY"/>
@@ -109,7 +101,6 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="GSf-T3-kMF" customClass="CityCollectionView">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="25" minimumInteritemSpacing="25" id="NZ1-vq-mko">
                             <size key="itemSize" width="361" height="256"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -119,7 +110,6 @@
                         <imageView key="backgroundView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="eZk-BW-wJk">
                             <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <animations/>
                         </imageView>
                         <cells>
                             <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CityCell" id="WUr-fG-TI1" customClass="CityCollectionViewCell">
@@ -128,10 +118,8 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="361" height="256"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <animations/>
                             </collectionViewCell>
                         </cells>
                         <connections>
