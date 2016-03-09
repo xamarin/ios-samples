@@ -6,6 +6,7 @@ using System;
 
 using WatchKit;
 using Foundation;
+using WatchConnectivity;
 
 namespace WatchkitExtension
 {
@@ -31,12 +32,11 @@ namespace WatchkitExtension
 
 				if (results != null) {
 					// Sends a non-nil result to the parent iOS application.
-					bool didOpenParent = WKInterfaceController.OpenParentApplication (new NSDictionary (new NSString ("TextInput"), results.GetItem<NSString> (0)), delegate(NSDictionary replyInfo, NSError error) {
-						Console.WriteLine ("Reply Info: {0}", replyInfo);
+					WCSession.DefaultSession.SendMessage (new NSDictionary<NSString, NSObject> (new NSString ("TextInput"), results.GetItem<NSString> (0)), delegate (NSDictionary<NSString, NSObject> replyMessage) {
+						Console.WriteLine ("Reply Info: {0}", replyMessage);
+					}, delegate (NSError error) {
 						Console.WriteLine ("Error: {0}", error != null ? error.LocalizedDescription : "null");
 					});
-
-					Console.WriteLine ("Did open parent application? {0}", didOpenParent);
 				}
 			});
 		}
