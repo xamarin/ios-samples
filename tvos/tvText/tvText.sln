@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tvText", "tvText\tvText.csproj", "{E12A6663-0EDA-4D51-9C7A-780D207540C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E12A6663-0EDA-4D51-9C7A-780D207540C0}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E12A6663-0EDA-4D51-9C7A-780D207540C0}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E12A6663-0EDA-4D51-9C7A-780D207540C0}.Release|iPhone.ActiveCfg = Release|iPhone
+		{E12A6663-0EDA-4D51-9C7A-780D207540C0}.Release|iPhone.Build.0 = Release|iPhone
+		{E12A6663-0EDA-4D51-9C7A-780D207540C0}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E12A6663-0EDA-4D51-9C7A-780D207540C0}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{E12A6663-0EDA-4D51-9C7A-780D207540C0}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{E12A6663-0EDA-4D51-9C7A-780D207540C0}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
