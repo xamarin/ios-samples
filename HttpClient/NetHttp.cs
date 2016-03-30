@@ -3,7 +3,6 @@
 // using the HTTP handler selected in the IDE UI (or given to mtouch)
 //
 
-using System;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Net.Http;
@@ -23,7 +22,7 @@ namespace HttpClientSample
 		{
 			var client = new HttpClient ();
 			ad.HandlerType = typeof(HttpMessageInvoker).GetField("handler", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue (client).GetType ();
-			ad.RenderStream (await client.GetStreamAsync (secure ? "https://xamarin.com" : Application.WisdomUrl));
+			ad.RenderStream (await client.GetStreamAsync (secure ? "https://www.xamarin.com" : Application.WisdomUrl));
 		}
 	}
 }
