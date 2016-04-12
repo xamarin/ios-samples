@@ -20,9 +20,9 @@ namespace Phoneword_iOS
 			TranslateButton.TouchUpInside += (object sender, EventArgs e) => {
 				// Convert the phone number with text to a number 
 				// using PhoneTranslator.cs
-				translatedNumber = PhonewordTranslator.ToNumber(
-					PhoneNumberText.Text); 
-				
+				translatedNumber = PhoneTranslator.ToNumber (
+					PhoneNumberText.Text);
+
 				// Dismiss the keyboard if text field was tapped
 				PhoneNumberText.ResignFirstResponder ();
 
@@ -30,7 +30,7 @@ namespace Phoneword_iOS
 					CallButton.SetTitle ("Call ", UIControlState.Normal);
 					CallButton.Enabled = false;
 				} else {
-					CallButton.SetTitle ("Call " + translatedNumber, 
+					CallButton.SetTitle ("Call " + translatedNumber,
 						UIControlState.Normal);
 					CallButton.Enabled = true;
 				}
