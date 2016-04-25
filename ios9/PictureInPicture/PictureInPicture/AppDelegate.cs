@@ -22,7 +22,7 @@ namespace PictureInPicture
 			var audioSession = AVAudioSession.SharedInstance ();
 			NSError error = audioSession.SetCategory (AVAudioSessionCategory.Playback);
 			if(error != null)
-				System.Console.WriteLine ("Audio session setCategory failed");
+				System.Console.WriteLine ("Audio session SetCategory failed");
 
 			return true;
 		}

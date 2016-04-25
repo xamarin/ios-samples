@@ -12,6 +12,10 @@ namespace PictureInPicture
 	// Manages the view used for playback and sets up the `AVPictureInPictureController` for video playback in picture in picture.
 	public partial class PlayerViewController : UIViewController, IAVPictureInPictureControllerDelegate
 	{
+		IDisposable durationObserver;
+		IDisposable rateObserver;
+		IDisposable statusObserver;
+
 		// Attempt to load and test these asset keys before playing
 		static readonly NSString[] assetKeysRequiredToPlay = {
 			(NSString)"playable",
@@ -112,9 +116,9 @@ namespace PictureInPicture
 
 		void PlayPauseButtonWasPressed ()
 		{
-			if (Player.Rate != 1) {
+			if (Math.Abs (Player.Rate - 1) > float.Epsilon) {
 				// Not playing foward, so play.
-				if (CurrentTime == Duration) {
+				if (Math.Abs (CurrentTime - Duration) < float.Epsilon) {
 					// At end, so got back to beginning.
 					CurrentTime = 0;
 				}
@@ -155,12 +159,10 @@ namespace PictureInPicture
 			// Use the context parameter to distinguish KVO for our particular observers
 			// and not those destined for a subclass that also happens
 			// to be observing these properties.
-
-			// TODO: Try to use "sexy" overload
 			var options = NSKeyValueObservingOptions.New | NSKeyValueObservingOptions.Initial;
-			Player.AddObserver (this, "currentItem.duration", options, IntPtr.Zero);
-			Player.AddObserver (this, "rate", options, IntPtr.Zero);
-			Player.AddObserver (this, "currentItem.status", options, IntPtr.Zero);
+			durationObserver = Player.AddObserver ("currentItem.duration", options, ObserveCurrentItemDuration);
+			rateObserver = Player.AddObserver ("rate", options, ObserveCurrentRate);
+			statusObserver = Player.AddObserver ("currentItem.status", options, ObserveCurrentItemStatus);
 
 			PlayerView.PlayerLayer.Player = Player;
 
@@ -177,9 +179,9 @@ namespace PictureInPicture
 			Player.Pause ();
 			CleanUpPlayerPeriodicTimeObserver ();
 
-			Player.RemoveObserver (this, "currentItem.duration", IntPtr.Zero);
-			Player.RemoveObserver (this, "rate", IntPtr.Zero);
-			Player.RemoveObserver (this, "currentItem.status", IntPtr.Zero);
+			rateObserver.Dispose ();
+			durationObserver.Dispose ();
+			statusObserver.Dispose ();
 		}
 
 		void SetupPlayback()
@@ -265,6 +267,79 @@ namespace PictureInPicture
 			HandleError (error);
 		}
 
+		void ObserveCurrentItemDuration (NSObservedChange change)
+		{
+			CMTime newDuration;
+			var newDurationAsValue = change.NewValue as NSValue;
+			newDuration = (newDurationAsValue != null) ? newDurationAsValue.CMTimeValue : CMTime.Zero;
+			var hasValidDuration = newDuration.IsNumeric && newDuration.Value != 0;
+			var newDurationSeconds = hasValidDuration ? newDuration.Seconds : 0;
+
+			TimeSlider.MaxValue = (float)newDurationSeconds;
+
+			var currentTime = Player.CurrentTime.Seconds;
+			TimeSlider.Value = (float)(hasValidDuration ? currentTime : 0);
+
+			PlayPauseButton.Enabled = hasValidDuration;
+			TimeSlider.Enabled = hasValidDuration;
+		}
+
+		void ObserveCurrentRate (NSObservedChange change)
+		{
+			// Update playPauseButton type.
+			var newRate = ((NSNumber)change.NewValue).DoubleValue;
+
+			UIBarButtonSystemItem style = (Math.Abs(newRate) < float.Epsilon) ? UIBarButtonSystemItem.Play : UIBarButtonSystemItem.Pause;
+			var newPlayPauseButton = new UIBarButtonItem(style, PlayPauseButtonWasPressed);
+
+			// Replace the current button with the updated button in the toolbar.
+			UIBarButtonItem[] items = Toolbar.Items;
+
+			var playPauseItemIndex = Array.IndexOf(items, PlayPauseButton);
+			if (playPauseItemIndex >= 0) {
+				items[playPauseItemIndex] = newPlayPauseButton;
+				PlayPauseButton = newPlayPauseButton;
+				Toolbar.SetItems(items, false);
+			}
+		}
+
+		void ObserveCurrentItemStatus (NSObservedChange change)
+		{
+			// Display an error if status becomes Failed
+			var newStatusAsNumber = change.NewValue as NSNumber;
+			AVPlayerItemStatus newStatus = (newStatusAsNumber != null)
+				? (AVPlayerItemStatus)newStatusAsNumber.Int32Value
+				: AVPlayerItemStatus.Unknown;
+
+			if (newStatus == AVPlayerItemStatus.Failed) {
+				HandleError(Player.CurrentItem.Error);
+			} else if (newStatus == AVPlayerItemStatus.ReadyToPlay) {
+				var asset = Player.CurrentItem != null ? Player.CurrentItem.Asset : null;
+				if (asset != null) {
+
+					// First test whether the values of `assetKeysRequiredToPlay` we need
+					// have been successfully loaded.
+					foreach (var key in assetKeysRequiredToPlay) {
+						NSError error;
+						if (asset.StatusOfValue(key, out error) == AVKeyValueStatus.Failed) {
+							HandleError(error);
+							return;
+						}
+					}
+
+					if (!asset.Playable || asset.ProtectedContent) {
+						// We can't play this asset.
+						HandleError(null);
+						return;
+					}
+
+					// The player item is ready to play,
+					// setup picture in picture.
+					SetupPictureInPicturePlayback ();
+				}
+			}
+		}
+
 		public override void ObserveValue (NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
 		{
 			if (context != IntPtr.Zero) {
@@ -273,75 +348,8 @@ namespace PictureInPicture
 			}
 
 			var ch = new NSObservedChange (change);
-			if (keyPath == "currentItem.duration") {
-				// Update `TimeSlider` and enable/disable controls when `duration` > 0.0
 
-				CMTime newDuration; 
-				var newDurationAsValue = ch.NewValue as NSValue;
-				newDuration = (newDurationAsValue != null) ? newDurationAsValue.CMTimeValue : CMTime.Zero;
-				var hasValidDuration = newDuration.IsNumeric && newDuration.Value != 0;
-				var newDurationSeconds = hasValidDuration ? newDuration.Seconds : 0;
-
-				TimeSlider.MaxValue = (float)newDurationSeconds;
-
-				var currentTime = Player.CurrentTime.Seconds;
-				TimeSlider.Value = (float)(hasValidDuration ? currentTime : 0);
-
-				PlayPauseButton.Enabled = hasValidDuration;
-				TimeSlider.Enabled = hasValidDuration;
-			} else if (keyPath == "rate") {
-				// Update playPauseButton type.
-				var newRate = ((NSNumber)ch.NewValue).DoubleValue;
-
-				UIBarButtonSystemItem style = (newRate == 0) ? UIBarButtonSystemItem.Play : UIBarButtonSystemItem.Pause;
-				var newPlayPauseButton = new UIBarButtonItem (style, PlayPauseButtonWasPressed);
-
-				// Replace the current button with the updated button in the toolbar.
-				UIBarButtonItem[] items = Toolbar.Items;
-
-				var playPauseItemIndex = Array.IndexOf (items, PlayPauseButton);
-				if (playPauseItemIndex >= 0) {
-					items [playPauseItemIndex] = newPlayPauseButton;
-					PlayPauseButton = newPlayPauseButton;
-					Toolbar.SetItems (items, false);
-				}
-			} else if (keyPath == "currentItem.status") {
-				// Display an error if status becomes Failed
-
-				var newStatusAsNumber = ch.NewValue as NSNumber;
-				AVPlayerItemStatus newStatus = (newStatusAsNumber != null)
-					? (AVPlayerItemStatus)newStatusAsNumber.Int32Value
-					: AVPlayerItemStatus.Unknown;
-
-				if (newStatus == AVPlayerItemStatus.Failed) {
-					HandleError (Player.CurrentItem.Error);
-				} else if (newStatus == AVPlayerItemStatus.ReadyToPlay) {
-
-					var asset = Player.CurrentItem != null ? Player.CurrentItem.Asset : null;
-					if (asset != null) {
-
-						// First test whether the values of `assetKeysRequiredToPlay` we need
-						// have been successfully loaded.
-						foreach (var key in assetKeysRequiredToPlay) {
-							NSError error;
-							if (asset.StatusOfValue (key, out error) == AVKeyValueStatus.Failed) {
-								HandleError (error);
-								return;
-							}
-						}
-
-						if (!asset.Playable || asset.ProtectedContent) {
-							// We can't play this asset.
-							HandleError (null);
-							return;
-						}
-
-						// The player item is ready to play,
-						// setup picture in picture.
-						SetupPictureInPicturePlayback ();
-					}
-				}
-			} else if (keyPath == "pictureInPicturePossible") {
+			if (keyPath == "pictureInPicturePossible") {
 				// Enable the `PictureInPictureButton` only if `PictureInPicturePossible`
 				// is true. If this returns false, it might mean that the application
 				// was not configured as shown in the AppDelegate.
