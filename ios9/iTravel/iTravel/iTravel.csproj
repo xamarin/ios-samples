@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{67442883-6998-4A96-97DA-E7F5AD814FD3}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>iTravel</RootNamespace>
+    <AssemblyName>iTravel</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <PlatformTarget>x86</PlatformTarget>
+    <OnDemandResourcesInitialInstallTags>Istanbul</OnDemandResourcesInitialInstallTags>
+    <OnDemandResourcesPrefetchOrder>Paris</OnDemandResourcesPrefetchOrder>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>3e3cabc6-7625-4005-b133-2ffeeb05afd6</CodesignProvision>
+    <OnDemandResourcesPrefetchOrder>paris</OnDemandResourcesPrefetchOrder>
+    <OnDemandResourcesInitialInstallTags>rotterdam</OnDemandResourcesInitialInstallTags>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <PlatformTarget>x86</PlatformTarget>
+    <OnDemandResourcesInitialInstallTags>Istanbul</OnDemandResourcesInitialInstallTags>
+    <OnDemandResourcesPrefetchOrder>Paris</OnDemandResourcesPrefetchOrder>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <BuildIpa>True</BuildIpa>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <OnDemandResourcesInitialInstallTags>Istanbul</OnDemandResourcesInitialInstallTags>
+    <OnDemandResourcesPrefetchOrder>Paris</OnDemandResourcesPrefetchOrder>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <OnDemandResourcesInitialInstallTags>Istanbul</OnDemandResourcesInitialInstallTags>
+    <OnDemandResourcesPrefetchOrder>Paris</OnDemandResourcesPrefetchOrder>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon-spotlight-40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Icon-app-60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon-app-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\istanbul.dataset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\istanbul.dataset\istanbul.json" />
+    <ImageAsset Include="Assets.xcassets\paris.dataset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\paris.dataset\paris.json" />
+    <ImageAsset Include="Assets.xcassets\rotterdam.dataset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\rotterdam.dataset\rotterdam.json" />
+    <ImageAsset Include="Assets.xcassets\Logo.spriteatlas\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Logo.spriteatlas\Sprite.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Logo.spriteatlas\Sprite.imageset\splash-xamagon.png" />
+    <ImageAsset Include="Assets.xcassets\Logo.spriteatlas\Sprite.imageset\splash-xamagon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Logo.spriteatlas\Sprite.imageset\splash-xamagon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlbumViewController.cs" />
+    <Compile Include="AlbumViewController.designer.cs">
+      <DependentUpon>AlbumViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageViewController.cs" />
+    <Compile Include="ImageViewController.designer.cs">
+      <DependentUpon>ImageViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PreviewDetail.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Assets.xcassets\buenosaires_data.dataset\" />
+    <Folder Include="Assets.xcassets\france_bookmark.imageset\" />
+    <Folder Include="Resources\Bookmarks\" />
+    <Folder Include="Assets.xcassets\netherlands_bookmark.imageset\" />
+    <Folder Include="Assets.xcassets\turkey_bookmark.imageset\" />
+    <Folder Include="Assets.xcassets\istanbul.dataset\" />
+    <Folder Include="Assets.xcassets\paris.dataset\" />
+    <Folder Include="Assets.xcassets\rotterdam.dataset\" />
+    <Folder Include="Assets.xcassets\Logo.spriteatlas\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Bookmarks\netherlands.pdf" />
+    <BundleResource Include="Resources\Bookmarks\turkey.pdf" />
+    <BundleResource Include="Resources\Bookmarks\france.pdf" />
+    <BundleResource Include="Resources\Istanbul\Istanbul_01.jpg">
+      <ResourceTags>Istanbul</ResourceTags>
+    </BundleResource>
+    <BundleResource Include="Resources\Istanbul\Istanbul_02.jpg">
+      <ResourceTags>Istanbul</ResourceTags>
+    </BundleResource>
+    <BundleResource Include="Resources\Istanbul\Istanbul_03.jpg">
+      <ResourceTags>Istanbul</ResourceTags>
+    </BundleResource>
+    <BundleResource Include="Resources\Paris\Paris_01.jpg">
+      <ResourceTags>Paris</ResourceTags>
+    </BundleResource>
+    <BundleResource Include="Resources\Paris\Paris_02.jpg">
+      <ResourceTags>Paris</ResourceTags>
+    </BundleResource>
+    <BundleResource Include="Resources\Paris\Paris_03.jpg">
+      <ResourceTags>Paris</ResourceTags>
+    </BundleResource>
+    <BundleResource Include="Resources\Paris\Paris_04.jpg">
+      <ResourceTags>Paris</ResourceTags>
+    </BundleResource>
+    <BundleResource Include="Resources\Rotterdam\Rotterdam_01.jpg">
+      <ResourceTags>Rotterdam</ResourceTags>
+    </BundleResource>
+    <BundleResource Include="Resources\Rotterdam\Rotterdam_02.jpg">
+      <ResourceTags>Rotterdam</ResourceTags>
+    </BundleResource>
+    <BundleResource Include="Resources\Rotterdam\Rotterdam_03.jpg">
+      <ResourceTags>Rotterdam</ResourceTags>
+    </BundleResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

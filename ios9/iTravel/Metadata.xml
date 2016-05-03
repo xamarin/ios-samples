@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>9c001351-13e2-483e-924d-2c57a6fdbf70</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>Data, User Interface, iOS9, Platform Features</Tags>
+  <Gallery>True</Gallery>
+  <Brief>First steps with on-demand resources technology and Xamarin.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+</SampleMetadata>
