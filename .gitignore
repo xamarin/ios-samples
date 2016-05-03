@@ -11,3 +11,4 @@ FSharp.Data.*
 CocosSharp.PCL*
 *.userprefs
 packages
+*.DS_Store
