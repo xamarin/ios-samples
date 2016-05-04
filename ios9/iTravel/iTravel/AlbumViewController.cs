@@ -8,9 +8,9 @@ using Newtonsoft.Json;
 
 namespace iTravel {
 	public partial class AlbumViewController : UIViewController, IUITableViewDataSource, IUITableViewDelegate {
-		string textCellIdentifier = "DataItem";
+		const string textCellIdentifier = "DataItem";
 
-		IntPtr progressObserverContext = IntPtr.Zero;
+		readonly IntPtr progressObserverContext = IntPtr.Zero;
 		NSBundleResourceRequest request;
 		List<PreviewDetail> previewDetails = new List<PreviewDetail> ();
 
