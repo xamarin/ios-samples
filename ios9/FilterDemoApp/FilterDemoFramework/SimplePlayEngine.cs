@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 using AudioUnit;
 using AVFoundation;
@@ -93,7 +91,7 @@ namespace FilterDemoFramework {
 			NSError error;
 			file = new AVAudioFile (fileUrl, out error);
 			if (error != null)
-				throw new Exception (string.Format ("Could not create AVAudioFile instance. Error: {0}", error.LocalizedDescription));
+				throw new NSErrorException (error);
 
 			engine.Connect (player, engine.MainMixerNode, file.ProcessingFormat);
 		}
@@ -103,7 +101,7 @@ namespace FilterDemoFramework {
 #if __IOS__
 			var error = AVAudioSession.SharedInstance ().SetActive (active);
 			if (error != null)
-				throw new Exception (string.Format ("Could not set Audio Session active {0}.  Error: {1}", active, error.LocalizedDescription));
+				throw new NSErrorException (error);
 #endif
 		}
 
@@ -137,7 +135,7 @@ namespace FilterDemoFramework {
 		void ScheduleLoop ()
 		{
 			if (file == null)
-				throw new NullReferenceException ("`file` must not be null in \"scheduleLoop\"");
+				throw new NullReferenceException ("`file` must not be null in 'scheduleLoop'");
 
 			player.ScheduleFile (file, null, () =>
 				stateChangeQueue.DispatchAsync (() => {
@@ -158,8 +156,11 @@ namespace FilterDemoFramework {
 
 		public void SelectEffectComponent (AVAudioUnitComponent component, Action completionHandler)
 		{
-			SelectEffectWithComponentDescription (component != null ?
-				component.AudioComponentDescription : (AudioComponentDescription?)null, completionHandler);
+			AudioComponentDescription? desc = (component != null)
+				? component.AudioComponentDescription
+				: default(AudioComponentDescription?);
+
+			SelectEffectWithComponentDescription (desc, completionHandler);
 		}
 
 		public void SelectEffectWithComponentDescription (AudioComponentDescription? componentDescription, Action completionHandler)
