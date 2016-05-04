@@ -119,9 +119,8 @@ namespace FilterDemoFramework {
 			var rampTime = 0.02 * outputBus.Format.SampleRate;
 
 			ParameterTree.ImplementorValueObserver = (param, val) =>
-				scheduleParameter (AUEventSampleTime.Immediate, (uint)rampTime, param.Address, val
-			);
-			
+				scheduleParameter (AUEventSampleTime.Immediate, (uint)rampTime, param.Address, val);
+
 			return true;
 		}
 
@@ -139,9 +138,9 @@ namespace FilterDemoFramework {
 		{
 			var transportStateFlags = (AUHostTransportStateFlags)0;
 
-			double currentSamplePosition = 0.0;
-			double cycleStartBeatPosition = 0.0;
-			double cycleEndBeatPosition = 0.0;
+			double currentSamplePosition = 0;
+			double cycleStartBeatPosition = 0;
+			double cycleEndBeatPosition = 0;
 
 			TransportStateBlock?.Invoke (ref transportStateFlags, ref currentSamplePosition, ref cycleStartBeatPosition, ref cycleEndBeatPosition);
 
@@ -149,9 +148,7 @@ namespace FilterDemoFramework {
 			var input = inputBus;
 
 			var pullFlags = (AudioUnitRenderActionFlags)0;
-
 			AudioUnitStatus err = input.PullInput (ref pullFlags, timestamp, frameCount, 0, pullInputBlock);
-
 			if (err != AudioUnitStatus.NoError)
 				return err;
 
@@ -161,7 +158,7 @@ namespace FilterDemoFramework {
 				for (int i = 0; i < outputData.Count; i++)
 					outputData.SetData (i, inAudioBufferList [i].Data);
 			}
-				
+
 			state.SetBuffers (inAudioBufferList, outputData);
 			state.ProcessWithEvents (timestamp, (int)frameCount, realtimeEventListHead);
 
