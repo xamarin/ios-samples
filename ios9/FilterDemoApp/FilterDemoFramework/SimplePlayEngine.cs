@@ -123,13 +123,9 @@ namespace FilterDemoFramework {
 					ScheduleLoop ();
 
 					NSError error;
-					try {
-						engine.StartAndReturnError (out error);
-						if (error != null)
-							throw new Exception (string.Format ("Could not start engine.  Error: {0}", error.LocalizedDescription));
-					} catch (Exception e) {
-						Console.WriteLine (e.Message);
-					}
+					if(!engine.StartAndReturnError (out error))
+						Console.WriteLine (error.LocalizedDescription);
+
 					player.Play ();
 					isPlaying = true;
 				}
