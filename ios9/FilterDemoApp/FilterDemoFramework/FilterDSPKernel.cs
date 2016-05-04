@@ -3,7 +3,7 @@ using System.Linq;
 using AudioToolbox;
 
 namespace FilterDemoFramework {
-	public enum FilterParam : ulong {
+	public enum FilterParam {
 		Cutoff = 0,
 		Resonance = 1
 	}
@@ -123,7 +123,7 @@ namespace FilterDemoFramework {
 		public void Reset ()
 		{
 			foreach (var state in channelStates)
-				state?.Clear ();
+				state.Clear ();
 		}
 
 		public void SetParameter (ulong  address, float value)
