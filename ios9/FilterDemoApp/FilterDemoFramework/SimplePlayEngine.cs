@@ -217,7 +217,8 @@ namespace FilterDemoFramework {
 			if (isPlaying)
 				player.Play ();
 
-			completionHandler?.Invoke ();
+			if (completionHandler != null)
+				completionHandler ();
 		}
 	}
 }

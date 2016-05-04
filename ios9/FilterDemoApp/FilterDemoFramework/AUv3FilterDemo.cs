@@ -142,7 +142,9 @@ namespace FilterDemoFramework {
 			double cycleStartBeatPosition = 0;
 			double cycleEndBeatPosition = 0;
 
-			TransportStateBlock?.Invoke (ref transportStateFlags, ref currentSamplePosition, ref cycleStartBeatPosition, ref cycleEndBeatPosition);
+			var callBack = TransportStateBlock;
+			if(callBack != null)
+				callBack (ref transportStateFlags, ref currentSamplePosition, ref cycleStartBeatPosition, ref cycleEndBeatPosition);
 
 			var state = Kernel;
 			var input = inputBus;
