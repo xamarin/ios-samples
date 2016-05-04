@@ -4,7 +4,7 @@ using AudioToolbox;
 using AudioUnit;
 
 namespace FilterDemoFramework {
-	public class DSPKernel {
+	public abstract class DSPKernel {
 		void HandleOneEvent (AURenderEvent theEvent)
 		{
 			switch (theEvent.Head.EventType) {
@@ -85,13 +85,9 @@ namespace FilterDemoFramework {
 
 #endif
 
-		public virtual void Process (int frameCount, int bufferOffset)
-		{
-		}
+		public abstract void Process (int frameCount, int bufferOffset);
 
-		public virtual void StartRamp (ulong address, float value, int duration)
-		{
-		}
+		public abstract void StartRamp (ulong address, float value, int duration);
 	}
 }
 
