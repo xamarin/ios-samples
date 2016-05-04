@@ -56,8 +56,7 @@ namespace FilterDemoFramework {
 
 			if (componentsFoundCallback != null) {
 				UpdateEffectsList ();
-				NSNotificationCenter.DefaultCenter.AddObserver (AUAudioUnit.AudioComponentRegistrationsChangedNotification,
-					null, null, notification => UpdateEffectsList ());
+				AUAudioUnit.Notifications.ObserveAudioComponentRegistrationsChanged ((sender, e) => UpdateEffectsList ());
 			}
 
 #if __IOS__
@@ -68,13 +67,11 @@ namespace FilterDemoFramework {
 			}
 #endif
 
-			NSNotificationCenter.DefaultCenter.AddObserver (
-				AUAudioUnit.AudioComponentInstanceInvalidationNotification, null, null, notification => {
-					var crashedAU = notification.Object as AUAudioUnit;
-					if (AudioUnit == crashedAU)
-						SelectEffectWithComponentDescription (null, null);
-				}
-			);
+			AUAudioUnit.Notifications.ObserveAudioComponentInstanceInvalidation ((sender, e) => {
+				var crashedAU = e.Notification.Object as AUAudioUnit;
+				if(AudioUnit == crashedAU)
+					SelectEffectWithComponentDescription (null, null);
+			});
 		}
 
 		void UpdateEffectsList ()
