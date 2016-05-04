@@ -60,11 +60,9 @@ namespace FilterDemoFramework {
 			}
 
 #if __IOS__
-			try {
-				AVAudioSession.SharedInstance ().SetCategory (AVAudioSessionCategory.Playback);
-			} catch {
-				throw new Exception ("Can't set Audio Session category");
-			}
+			var error = AVAudioSession.SharedInstance ().SetCategory (AVAudioSessionCategory.Playback);
+			if (error != null)
+				throw new NSErrorException(error);
 #endif
 
 			AUAudioUnit.Notifications.ObserveAudioComponentInstanceInvalidation ((sender, e) => {
@@ -94,10 +92,10 @@ namespace FilterDemoFramework {
 		{
 			NSError error;
 			file = new AVAudioFile (fileUrl, out error);
-			engine.Connect (player, engine.MainMixerNode, file.ProcessingFormat);
-
 			if (error != null)
 				throw new Exception (string.Format ("Could not create AVAudioFile instance. Error: {0}", error.LocalizedDescription));
+
+			engine.Connect (player, engine.MainMixerNode, file.ProcessingFormat);
 		}
 
 		static void SetSessionActive (bool active)
