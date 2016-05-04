@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Linq;
 using AudioToolbox;
 
 namespace FilterDemoFramework {
@@ -109,12 +109,11 @@ namespace FilterDemoFramework {
 		AudioBuffers inBufferList;
 		AudioBuffers outBufferList;
 
-		public void Init (uint channelCount, double inSampleRate)
+		public void Init (int channelCount, double inSampleRate)
 		{
-			channelStates = new FilterState [channelCount];
-
-			for (int i = 0; i < channelCount; i++)
-				channelStates [i] = new FilterState ();
+			channelStates = Enumerable.Range (0, channelCount)
+									  .Select (i => new FilterState ())
+									  .ToArray ();
 
 			sampleRate = (float)inSampleRate;
 			nyquist = 0.5f * sampleRate;
@@ -200,8 +199,8 @@ namespace FilterDemoFramework {
 				}
 			}
 
-			for (int channel = 0; channel < channelCount; ++channel)
-				channelStates [channel].ConvertBadStateValuesToZero ();
+			foreach (var channel in channelStates)
+				channel.ConvertBadStateValuesToZero ();
 		}
 	}
 }

@@ -46,7 +46,7 @@ namespace FilterDemoFramework {
 		{
 			var defaultFormat = new AVAudioFormat (44100.0, 2);
 
-			Kernel.Init (defaultFormat.ChannelCount, defaultFormat.SampleRate);
+			Kernel.Init ((int)defaultFormat.ChannelCount, defaultFormat.SampleRate);
 
 			AUParameter cutoffParam = AUParameterTree.CreateParameter (
 				"cutoff", "Cutoff", 0, 12, 2000,
@@ -112,7 +112,7 @@ namespace FilterDemoFramework {
 
 			inputBus.AllocateRenderResources (MaximumFramesToRender);
 
-			Kernel.Init (outputBus.Format.ChannelCount, outputBus.Format.SampleRate);
+			Kernel.Init ((int)outputBus.Format.ChannelCount, outputBus.Format.SampleRate);
 			Kernel.Reset ();
 
 			var scheduleParameter = ScheduleParameterBlock; 
