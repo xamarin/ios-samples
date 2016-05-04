@@ -47,7 +47,7 @@ namespace iTravel {
 		{
 			if (context == progressObserverContext && keyPath == "fractionCompleted") {
 				NSOperationQueue.MainQueue.AddOperation (() => {
-					var progress = ofObject as NSProgress;
+					var progress = (NSProgress)ofObject;
 
 					ProgressView.Progress = (float)progress.FractionCompleted;
 					DetailsLabel.Text = progress.LocalizedDescription;
@@ -83,6 +83,9 @@ namespace iTravel {
 				return;
 
 			var albumViewController = segue.DestinationViewController as ImageViewController;
+			if (albumViewController == null)
+				return;
+
 			var selectedRowIndex = CustomTableView.IndexPathForSelectedRow.Row;
 			albumViewController.PictureName = previewDetails[selectedRowIndex].Picture;
 			albumViewController.Title = previewDetails[selectedRowIndex].Caption;
