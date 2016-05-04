@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using AudioToolbox;
 using AudioUnit;
 using AVFoundation;
@@ -171,19 +171,11 @@ namespace FilterDemoFramework {
 		public double[] GetMagnitudes (double[] frequencies)
 		{
 			var coefficients = new FilterDSPKernel.BiquadCoefficients ();
-			double inverseNyquist = 2.0 / outputBus.Format.SampleRate;
 			coefficients.CalculateLopassParams (Kernel.CutoffRamper.Goal, Kernel.ResonanceRamper.Goal);
 
-			var magnitudes = new List <double> (frequencies.Length);
-
-			foreach (var number in frequencies) {
-				var frequency = number;
-				var magnitude = coefficients.GetMagnitude (frequency * inverseNyquist);
-
-				magnitudes.Add (magnitude);
-			}
-
-			return magnitudes.ToArray ();
+			double inverseNyquist = 2.0 / outputBus.Format.SampleRate;
+			return frequencies.Select (f => coefficients.GetMagnitude (f * inverseNyquist))
+				              .ToArray ();
 		}
 	}
 }
