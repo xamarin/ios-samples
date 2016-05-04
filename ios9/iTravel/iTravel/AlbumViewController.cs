@@ -18,29 +18,30 @@ namespace iTravel {
 		{
 		}
 
-		public void LoadAlbum (string whichAlbum)
+		public async void LoadAlbum (string whichAlbum)
 		{
-			request = new NSBundleResourceRequest (new[] { whichAlbum });
+			request = new NSBundleResourceRequest (new [] { whichAlbum });
 
-			request.Progress.AddObserver (this, "fractionCompleted", NSKeyValueObservingOptions.New | NSKeyValueObservingOptions.Initial, progressObserverContext);
+			var options = NSKeyValueObservingOptions.New | NSKeyValueObservingOptions.Initial;
+			request.Progress.AddObserver (this, "fractionCompleted", options, progressObserverContext);
 
 			if (ProgressView != null)
 				ProgressView.Hidden = false;
 
-			request.BeginAccessingResources (error => {
-				NSOperationQueue.MainQueue.AddOperation (() => {
-					if (error != null) {
-						Console.WriteLine ("Error occurred: {0}", error.LocalizedDescription);
-						return;
-					}
+			try {
+				await request.BeginAccessingResourcesAsync ();
+			} catch (NSErrorException ex) {
+				Console.WriteLine ("Error occurred: {0}", ex.Error.LocalizedDescription);
+			}
 
-					ProgressView.Hidden = true;
-					PopulateCollectionView (whichAlbum.ToLower ());
+			NSOperationQueue.MainQueue.AddOperation (() => {
+				ProgressView.Hidden = true;
+				PopulateCollectionView (whichAlbum.ToLower ());
 
-					ProgressView.Progress = 1f;
-					DetailsLabel.Text = "Loaded";
-				});
+				ProgressView.Progress = 1f;
+				DetailsLabel.Text = "Loaded";
 			});
+
 		}
 
 		public override void ObserveValue (NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
