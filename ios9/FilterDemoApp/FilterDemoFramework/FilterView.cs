@@ -27,13 +27,13 @@ namespace FilterDemoFramework {
 		CAShapeLayer curveLayer;
 		List<double> frequencies;
 
-		List <CATextLayer> dbLabels = new List <CATextLayer> ();
-		List <CATextLayer> frequencyLabels = new List<CATextLayer> ();
-		List <CALayer> dbLines = new List <CALayer> ();
-		List <CALayer> freqLines = new List<CALayer> ();
-		List <CALayer> controls = new List<CALayer> ();
-		CALayer containerLayer = new CALayer ();
-		CALayer graphLayer = new CALayer ();
+		readonly List <CATextLayer> dbLabels = new List <CATextLayer> ();
+		readonly List <CATextLayer> frequencyLabels = new List<CATextLayer> ();
+		readonly List <CALayer> dbLines = new List <CALayer> ();
+		readonly List <CALayer> freqLines = new List<CALayer> ();
+		readonly List <CALayer> controls = new List<CALayer> ();
+		readonly CALayer containerLayer = new CALayer ();
+		readonly CALayer graphLayer = new CALayer ();
 
 		public IFilterViewDelegate Delegate { get; set;}
 
@@ -338,25 +338,27 @@ namespace FilterDemoFramework {
 
 		void CreateControlPoint ()
 		{
-			var lineLayer = new CALayer ();
 			var controlColor = touchDown ? TintColor.CGColor : UIColor.DarkGray.CGColor;
-
-			lineLayer.BackgroundColor = controlColor;
-			lineLayer.Name = "x";
+			var lineLayer = new CALayer {
+				BackgroundColor = controlColor,
+				Name = "x"
+			};
 			controls.Add (lineLayer);
 			graphLayer.AddSublayer (lineLayer);
 
-			lineLayer = new CALayer ();
-			lineLayer.BackgroundColor = controlColor;
-			lineLayer.Name = "y";
+			lineLayer = new CALayer {
+				BackgroundColor = controlColor,
+				Name = "y"
+			};
 			controls.Add (lineLayer);
 			graphLayer.AddSublayer (lineLayer);
 
-			var circleLayer = new CALayer ();
-			circleLayer.BorderColor = controlColor;
-			circleLayer.BorderWidth = 2f;
-			circleLayer.CornerRadius = 3f;
-			circleLayer.Name = "point";
+			var circleLayer = new CALayer {
+				BorderColor = controlColor,
+				BorderWidth = 2f,
+				CornerRadius = 3f,
+				Name = "point"
+			};
 			controls.Add (circleLayer);
 			graphLayer.AddSublayer (circleLayer);
 		}
@@ -544,8 +546,8 @@ namespace FilterDemoFramework {
 
 			temp = (float)Math.Floor (temp * 100 / 100);
 
-			return Math.Abs ((float)Math.Floor (temp) - temp) < float.Epsilon ?
-				temp.ToString ("F1") : temp.ToString ("0.#");
+			bool tooSmall = Math.Abs ((float)Math.Floor (temp) - temp) < float.Epsilon;
+			return tooSmall ? temp.ToString ("F1") : temp.ToString ("0.#");
 		}
 	}
 }
