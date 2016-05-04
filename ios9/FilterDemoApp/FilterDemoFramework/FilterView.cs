@@ -88,7 +88,7 @@ namespace FilterDemoFramework {
 			pointOfTouch.Y += bottomMargin;
 
 			if (graphLayer.Contains (pointOfTouch))
-				ProcessTouch (pointOfTouch);
+				editPoint = ProcessTouch (pointOfTouch);
 
 			touchDown = false;
 			UpdateFrequenciesAndResonance ();
@@ -503,21 +503,15 @@ namespace FilterDemoFramework {
 			}
 		}
 
-		void ProcessTouch (CGPoint touchPoint)
+		CGPoint ProcessTouch (CGPoint touchPoint)
 		{
-			if (touchPoint.X < 0)
-				editPoint.X = 0;
-			else if (touchPoint.X > graphLayer.Frame.Width + leftMargin)
-				editPoint.X = graphLayer.Frame.Width + leftMargin;
-			else
-				editPoint.X = touchPoint.X;
+			nfloat x = NMath.Max (0, touchPoint.X);
+			x = NMath.Min (x, graphLayer.Frame.Width + leftMargin);
 
-			if (touchPoint.Y < 0)
-				editPoint.Y = 0;
-			else if (touchPoint.Y > graphLayer.Frame.Height + bottomMargin)
-				editPoint.Y = graphLayer.Frame.Height + bottomMargin;
-			else
-				editPoint.Y = touchPoint.Y;
+			nfloat y = NMath.Max (0, touchPoint.Y);
+			y = NMath.Min (y, graphLayer.Frame.Height + bottomMargin);
+
+			return new CGPoint (x, y);
 		}
 
 		float GetFrequencyValue (nfloat location)
