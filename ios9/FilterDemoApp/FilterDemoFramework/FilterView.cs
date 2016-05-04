@@ -469,18 +469,20 @@ namespace FilterDemoFramework {
 
 		void UpdateFrequenciesAndResonance ()
 		{
-			var lastFrequency = GetFrequencyValue (editPoint.X);
+			var del = Delegate;
 
+			var lastFrequency = GetFrequencyValue (editPoint.X);
 			if (Math.Abs (lastFrequency - Frequency) > float.Epsilon) {
 				Frequency = lastFrequency;
-				Delegate?.FrequencyChanged (this, Frequency);
+				if (del != null)
+					del.FrequencyChanged (this, Frequency);
 			}
 
 			var lastResonance = GetDbValue (editPoint.Y);
-
 			if (Math.Abs (lastResonance - Resonance) > float.Epsilon) {
 				Resonance = lastResonance;
-				Delegate?.ResonanceChanged (this, Resonance);
+				if(del != null)
+					del.ResonanceChanged (this, Resonance);
 			}
 		}
 

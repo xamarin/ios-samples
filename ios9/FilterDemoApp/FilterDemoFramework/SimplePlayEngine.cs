@@ -158,10 +158,11 @@ namespace FilterDemoFramework {
 
 		public void SelectPresetIndex (int presetIndex)
 		{
-			if (AudioUnit == null)
+			var au = AudioUnit;
+			if (au == null)
 				return;
 
-			AudioUnit.CurrentPreset = PresetList [presetIndex];
+			au.CurrentPreset = PresetList [presetIndex];
 		}
 
 		public void SelectEffectComponent (AVAudioUnitComponent component, Action completionHandler)

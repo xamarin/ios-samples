@@ -7,6 +7,9 @@ using UIKit;
 
 namespace FilterDemoFramework {
 	public partial class FilterDemoViewController : UIViewController, IFilterViewDelegate {
+		static readonly NSString cutoffKey = (NSString)"cutoff";
+		static readonly NSString resonanceKey = (NSString)"resonance";
+
 		AUParameter cutoffParameter;
 		AUParameter resonanceParameter;
 		AUParameterObserverToken parameterObserverToken;
@@ -31,11 +34,12 @@ namespace FilterDemoFramework {
 
 		void UpdateFilterViewFrequencyAndMagnitudes ()
 		{
-			if (AudioUnit == null)
+			var au = AudioUnit;
+			if (au == null)
 				return;
 
 			var frequencies = filterView.GetFrequencyData ();
-			var magnitudes = AudioUnit.GetMagnitudes (frequencies);
+			var magnitudes = au.GetMagnitudes (frequencies);
 			filterView.SetMagnitudes (magnitudes);
 		}
 
@@ -72,12 +76,16 @@ namespace FilterDemoFramework {
 
 		void ConnectViewWithAU ()
 		{
-			var paramTree = AudioUnit?.ParameterTree;
+			var au = AudioUnit;
+			if (au == null)
+				return;
+			
+			var paramTree = au.ParameterTree;
 			if (paramTree == null)
 				return;
 
-			cutoffParameter = (AUParameter)paramTree.ValueForKey ((NSString)"cutoff");
-			resonanceParameter = (AUParameter)paramTree.ValueForKey ((NSString)"resonance");
+			cutoffParameter = (AUParameter)paramTree.ValueForKey (cutoffKey);
+			resonanceParameter = (AUParameter)paramTree.ValueForKey (resonanceKey);
 		
 			parameterObserverToken = paramTree.CreateTokenByAddingParameterObserver ((address, value) =>
 				DispatchQueue.MainQueue.DispatchAsync (() => {
