@@ -31,6 +31,9 @@ namespace iTravel {
 			var previewDetail = sampleData[indexPath.Row];
 
 			var albumViewController = segue.DestinationViewController as AlbumViewController;
+			if (albumViewController == null)
+				return;
+
 			albumViewController.LoadAlbum (previewDetail.Tag);
 			albumViewController.Title = previewDetail.Title;
 		}
