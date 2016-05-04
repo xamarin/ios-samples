@@ -492,7 +492,7 @@ namespace FilterDemoFramework {
 		{
 			base.TouchesBegan (touches, evt);
 
-			var pointOfTouch = (touches.FirstOrDefault () as UITouch).LocationInView (this);
+			var pointOfTouch = ((UITouch)touches.FirstOrDefault ()).LocationInView (this);
 			pointOfTouch.Y += bottomMargin;
 
 			if (graphLayer.Contains (pointOfTouch)) {
