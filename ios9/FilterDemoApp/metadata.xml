@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>3129345d-7acc-4cba-a48d-4c5f9b9b04da</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Advanced</Level>
+	<Tags>iOS9, Media</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<Gallery>true</Gallery>
+	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Brief>Demonstrates how to use AudioUnitv3 API in Xamarin.iOS.</Brief>
+</SampleMetadata>

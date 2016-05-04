@@ -1,0 +1,306 @@
+{
+  "data": [
+    {
+      "idiom": "universal",
+      "filename": "rotterdam.json",
+      "universal-type-identifier": "public.json"
+    },
+    {
+      "idiom": "universal",
+      "graphicsFeatureSet": "metal1v2"
+    },
+    {
+      "idiom": "universal",
+      "graphicsFeatureSet": "metal2v2"
+    },
+    {
+      "idiom": "universal",
+      "graphicsFeatureSet": "metal3v1"
+    },
+    {
+      "idiom": "universal",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "universal",
+      "graphicsFeatureSet": "metal1v2",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "universal",
+      "graphicsFeatureSet": "metal2v2",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "universal",
+      "graphicsFeatureSet": "metal3v1",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "universal",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "universal",
+      "graphicsFeatureSet": "metal1v2",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "universal",
+      "graphicsFeatureSet": "metal2v2",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "universal",
+      "graphicsFeatureSet": "metal3v1",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "universal",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "universal",
+      "graphicsFeatureSet": "metal1v2",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "universal",
+      "graphicsFeatureSet": "metal2v2",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "universal",
+      "graphicsFeatureSet": "metal3v1",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "iphone"
+    },
+    {
+      "idiom": "iphone",
+      "graphicsFeatureSet": "metal1v2"
+    },
+    {
+      "idiom": "iphone",
+      "graphicsFeatureSet": "metal2v2"
+    },
+    {
+      "idiom": "iphone",
+      "graphicsFeatureSet": "metal3v1"
+    },
+    {
+      "idiom": "iphone",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "iphone",
+      "graphicsFeatureSet": "metal1v2",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "iphone",
+      "graphicsFeatureSet": "metal2v2",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "iphone",
+      "graphicsFeatureSet": "metal3v1",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "iphone",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "iphone",
+      "graphicsFeatureSet": "metal1v2",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "iphone",
+      "graphicsFeatureSet": "metal2v2",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "iphone",
+      "graphicsFeatureSet": "metal3v1",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "iphone",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "iphone",
+      "graphicsFeatureSet": "metal1v2",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "iphone",
+      "graphicsFeatureSet": "metal2v2",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "iphone",
+      "graphicsFeatureSet": "metal3v1",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "ipad"
+    },
+    {
+      "idiom": "ipad",
+      "graphicsFeatureSet": "metal1v2"
+    },
+    {
+      "idiom": "ipad",
+      "graphicsFeatureSet": "metal2v2"
+    },
+    {
+      "idiom": "ipad",
+      "graphicsFeatureSet": "metal3v1"
+    },
+    {
+      "idiom": "ipad",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "ipad",
+      "graphicsFeatureSet": "metal1v2",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "ipad",
+      "graphicsFeatureSet": "metal2v2",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "ipad",
+      "graphicsFeatureSet": "metal3v1",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "ipad",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "ipad",
+      "graphicsFeatureSet": "metal1v2",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "ipad",
+      "graphicsFeatureSet": "metal2v2",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "ipad",
+      "graphicsFeatureSet": "metal3v1",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "ipad",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "ipad",
+      "graphicsFeatureSet": "metal1v2",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "ipad",
+      "graphicsFeatureSet": "metal2v2",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "ipad",
+      "graphicsFeatureSet": "metal3v1",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "watch"
+    },
+    {
+      "idiom": "watch",
+      "graphicsFeatureSet": "metal1v2"
+    },
+    {
+      "idiom": "watch",
+      "graphicsFeatureSet": "metal2v2"
+    },
+    {
+      "idiom": "watch",
+      "graphicsFeatureSet": "metal3v1"
+    },
+    {
+      "idiom": "watch",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "watch",
+      "graphicsFeatureSet": "metal1v2",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "watch",
+      "graphicsFeatureSet": "metal2v2",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "watch",
+      "graphicsFeatureSet": "metal3v1",
+      "memory": "1GB"
+    },
+    {
+      "idiom": "watch",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "watch",
+      "graphicsFeatureSet": "metal1v2",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "watch",
+      "graphicsFeatureSet": "metal2v2",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "watch",
+      "graphicsFeatureSet": "metal3v1",
+      "memory": "2GB"
+    },
+    {
+      "idiom": "watch",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "watch",
+      "graphicsFeatureSet": "metal1v2",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "watch",
+      "graphicsFeatureSet": "metal2v2",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "watch",
+      "graphicsFeatureSet": "metal3v1",
+      "memory": "4GB"
+    },
+    {
+      "idiom": "mac"
+    }
+  ],
+  "info": {
+    "version": 1,
+    "author": "xcode"
+  },
+  "properties": {
+    "on-demand-resource-tags": [
+      "Rotterdam"
+    ]
+  }
+}

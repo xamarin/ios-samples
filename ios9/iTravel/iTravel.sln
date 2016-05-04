@@ -1,0 +1,35 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iTravel", "iTravel\iTravel.csproj", "{67442883-6998-4A96-97DA-E7F5AD814FD3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		Ad-Hoc|iPhoneSimulator = Ad-Hoc|iPhoneSimulator
+		AppStore|iPhone = AppStore|iPhone
+		AppStore|iPhoneSimulator = AppStore|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhoneSimulator
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.Ad-Hoc|iPhoneSimulator.Build.0 = Ad-Hoc|iPhoneSimulator
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhone
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhone
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.Debug|iPhone.Build.0 = Debug|iPhone
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.Release|iPhone.ActiveCfg = Release|iPhone
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.Release|iPhone.Build.0 = Release|iPhone
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{67442883-6998-4A96-97DA-E7F5AD814FD3}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal
