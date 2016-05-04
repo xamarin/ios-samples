@@ -64,10 +64,10 @@ namespace iTravel {
 
 		void PopulateCollectionView (string whichAlbum)
 		{
-			var tableData= new NSDataAsset (whichAlbum);
-			if (tableData == null)
+			if (string.IsNullOrEmpty (whichAlbum))
 				return;
 
+			var tableData = new NSDataAsset (whichAlbum);
 			try {
 				var jsonString = NSString.FromData (tableData.Data, NSStringEncoding.UTF8);
 				previewDetails = JsonConvert.DeserializeObject<List<PreviewDetail>> (jsonString);
