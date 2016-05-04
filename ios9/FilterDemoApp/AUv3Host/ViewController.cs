@@ -36,7 +36,7 @@ namespace AUv3Host {
 			if (tableView == AudioUnitTableView)
 				return playEngine.AvailableEffects.Length + 1;
 
-			return tableView == PresetTableView ? playEngine.PresetList.Count : 0;
+			return (tableView == PresetTableView) ? playEngine.PresetList.Length : 0;
 		}
 
 		[Export ("tableView:cellForRowAtIndexPath:")]

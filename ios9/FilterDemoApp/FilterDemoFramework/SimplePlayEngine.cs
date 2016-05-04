@@ -11,40 +11,41 @@ namespace FilterDemoFramework {
 	public class SimplePlayEngine {
 		readonly AVAudioPlayerNode player = new AVAudioPlayerNode ();
 
-		DispatchQueue stateChangeQueue = new DispatchQueue ("SimplePlayEngine.stateChangeQueue", false);
-		AVAudioEngine engine = new AVAudioEngine ();
+		readonly DispatchQueue stateChangeQueue = new DispatchQueue ("SimplePlayEngine.stateChangeQueue", false);
+		readonly AVAudioEngine engine = new AVAudioEngine ();
 		AVAudioUnit effect;
 		AVAudioFile file;
 		bool isPlaying;
 
-		Action ComponentsFoundCallback;
-		DispatchQueue availableEffectsAccessQueue = new DispatchQueue ("SimplePlayEngine.availableEffectsAccessQueue", false);
-		List <AVAudioUnitComponent> availableEffects = new List <AVAudioUnitComponent> ();
+		Action componentsFoundCallback;
+		readonly DispatchQueue availableEffectsAccessQueue = new DispatchQueue ("SimplePlayEngine.availableEffectsAccessQueue", false);
+		AVAudioUnitComponent[] availableEffects = new AVAudioUnitComponent[0];
 
 		public AUAudioUnit AudioUnit { get; private set; }
 
-		public List <AUAudioUnitPreset> PresetList { get; private set; } = new List <AUAudioUnitPreset> ();
+		public AUAudioUnitPreset[] PresetList { get; private set; }
 
 		public AVAudioUnitComponent [] AvailableEffects {
 			get {
 				AVAudioUnitComponent[] result = null;
 
 				availableEffectsAccessQueue.DispatchSync (() => {
-					result = availableEffects.ToArray ();
+					result = availableEffects;
 				});
 
 				return result;
 			}
 			set {
 				availableEffectsAccessQueue.DispatchSync (() => {
-					availableEffects = value.ToList ();
+					availableEffects = value;
 				});
 			}
 		}
 
 		public SimplePlayEngine (Action componentsFoundCallback = null)
 		{
-			ComponentsFoundCallback = componentsFoundCallback;
+			PresetList = new AUAudioUnitPreset [0];
+			this.componentsFoundCallback = componentsFoundCallback;
 			engine.AttachNode (player);
 
 			var fileUrl = NSBundle.MainBundle.GetUrlForResource ("drumLoop", "caf");
@@ -87,8 +88,8 @@ namespace FilterDemoFramework {
 					ComponentFlagsMask = 0
 				};
 
-				availableEffects = AVAudioUnitComponentManager.SharedInstance.GetComponents (anyEffectDescription).ToList ();
-				DispatchQueue.MainQueue.DispatchAsync (ComponentsFoundCallback);
+				availableEffects = AVAudioUnitComponentManager.SharedInstance.GetComponents (anyEffectDescription);
+				DispatchQueue.MainQueue.DispatchAsync (componentsFoundCallback);
 			});
 		}
 
@@ -184,16 +185,16 @@ namespace FilterDemoFramework {
 
 				effect = null;
 				AudioUnit = null;
-				PresetList = new List <AUAudioUnitPreset> ();
+				PresetList = new AUAudioUnitPreset[0];
 			}
-				
+
 			if (componentDescription != null) {
 				AVAudioUnit.FromComponentDescription (componentDescription.Value, 0, (avAudioUnitEffect, AVError) => {
 					if (AVError != null || avAudioUnitEffect == null) {
 						Console.WriteLine ("SelectEffectWithComponentDescription error!");
 						return;
 					}
-						
+
 					effect = avAudioUnitEffect;
 					engine.AttachNode (avAudioUnitEffect);
 
@@ -203,8 +204,7 @@ namespace FilterDemoFramework {
 					engine.Connect (avAudioUnitEffect, engine.MainMixerNode, file.ProcessingFormat);
 
 					AudioUnit = avAudioUnitEffect.AUAudioUnit;
-					PresetList = avAudioUnitEffect.AUAudioUnit.FactoryPresets != null ?
-						avAudioUnitEffect.AUAudioUnit.FactoryPresets.ToList () : new List <AUAudioUnitPreset> ();
+					PresetList = avAudioUnitEffect.AUAudioUnit.FactoryPresets ?? new AUAudioUnitPreset[0];
 					Done (completionHandler);
 				});
 			} else {
