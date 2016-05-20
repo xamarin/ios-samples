@@ -102,14 +102,17 @@
     <ImageAsset Include="Resources\Images.xcassets\Whale.imageset\Whale%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\Worry.imageset\Contents.json" />
     <ImageAsset Include="Resources\Images.xcassets\Worry.imageset\Worry%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-24x24%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-27.5x27.5%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-29x29%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-29x29%403x.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-40x40%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-44x44%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-86x86%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-98x98%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watchos-29%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watchos-29%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watchos-40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watchos-44%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watchos-172.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watchos-196.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watchos-48.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watchos-55.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Watchkit2Extension\Watchkit2Extension.csproj">
