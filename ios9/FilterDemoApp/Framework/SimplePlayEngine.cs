@@ -57,15 +57,13 @@ namespace FilterDemoFramework {
 				AUAudioUnit.Notifications.ObserveAudioComponentRegistrationsChanged ((sender, e) => UpdateEffectsList ());
 			}
 
-#if __IOS__
 			var error = AVAudioSession.SharedInstance ().SetCategory (AVAudioSessionCategory.Playback);
 			if (error != null)
 				throw new NSErrorException(error);
-#endif
 
 			AUAudioUnit.Notifications.ObserveAudioComponentInstanceInvalidation ((sender, e) => {
 				var crashedAU = e.Notification.Object as AUAudioUnit;
-				if(AudioUnit == crashedAU)
+				if (AudioUnit == crashedAU)
 					SelectEffectWithComponentDescription (null, null);
 			});
 		}
@@ -182,7 +180,7 @@ namespace FilterDemoFramework {
 			}
 
 			if (componentDescription != null) {
-				AVAudioUnit.FromComponentDescription (componentDescription.Value, 0, (avAudioUnitEffect, AVError) => {
+				AVAudioUnit.FromComponentDescription (componentDescription.Value, AudioComponentInstantiationOptions.OutOfProcess, (avAudioUnitEffect, AVError) => {
 					if (AVError != null || avAudioUnitEffect == null) {
 						Console.WriteLine ("SelectEffectWithComponentDescription error!");
 						return;
