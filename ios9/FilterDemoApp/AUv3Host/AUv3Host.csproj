@@ -27,11 +27,11 @@
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchProfiling>true</MtouchProfiling>
-    <MtouchExtraArgs>--registrar=static</MtouchExtraArgs>
+    <MtouchExtraArgs></MtouchExtraArgs>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <MtouchHttpClientHandler>CFNetworkHandler</MtouchHttpClientHandler>
-    <MtouchTlsProvider>AppleTLS</MtouchTlsProvider>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -84,6 +84,7 @@
     <IpaPackageName>
     </IpaPackageName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

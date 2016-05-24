@@ -179,7 +179,7 @@ namespace FilterDemoFramework {
 				PresetList = new AUAudioUnitPreset[0];
 			}
 
-			if (componentDescription != null) {
+			if (componentDescription.HasValue) {
 				AVAudioUnit.FromComponentDescription (componentDescription.Value, AudioComponentInstantiationOptions.OutOfProcess, (avAudioUnitEffect, AVError) => {
 					if (AVError != null || avAudioUnitEffect == null) {
 						Console.WriteLine ("SelectEffectWithComponentDescription error!");

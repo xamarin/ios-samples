@@ -1,12 +1,13 @@
 using System;
 
 using AudioUnit;
+using CoreAudioKit;
 using CoreFoundation;
 using Foundation;
-using UIKit;
+using ObjCRuntime;
 
 namespace FilterDemoFramework {
-	public partial class FilterDemoViewController : UIViewController, IFilterViewDelegate, IAUAudioUnitFactory {
+	public partial class FilterDemoViewController : AUViewController, IFilterViewDelegate, IAUAudioUnitFactory {
 		static readonly NSString cutoffKey = (NSString)"cutoff";
 		static readonly NSString resonanceKey = (NSString)"resonance";
 
@@ -28,7 +29,13 @@ namespace FilterDemoFramework {
 			}
 		}
 
-		public FilterDemoViewController (IntPtr handle) : base (handle)
+		[Export("initWithCoder:")]
+		public FilterDemoViewController (NSCoder coder) : base(coder)
+		{
+		}
+
+		[Export ("initWithNibName:bundle:")]
+		public FilterDemoViewController (string nibName, NSBundle bundle) : base (nibName, bundle)
 		{
 		}
 

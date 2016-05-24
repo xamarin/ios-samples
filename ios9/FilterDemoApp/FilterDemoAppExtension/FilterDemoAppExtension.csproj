@@ -29,8 +29,9 @@
     <MtouchArch>i386</MtouchArch>
     <DeviceSpecificBuild>false</DeviceSpecificBuild>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <MtouchTlsProvider>AppleTLS</MtouchTlsProvider>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <Optimize>true</Optimize>

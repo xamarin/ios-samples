@@ -23,12 +23,14 @@
     <MtouchLink>None</MtouchLink>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFastDev>false</MtouchFastDev>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchProfiling>false</MtouchProfiling>
     <MtouchFloat32>true</MtouchFloat32>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <MtouchExtraArgs></MtouchExtraArgs>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -80,8 +82,9 @@
     <IpaPackageName>
     </IpaPackageName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
-    <MtouchTlsProvider>AppleTLS</MtouchTlsProvider>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
