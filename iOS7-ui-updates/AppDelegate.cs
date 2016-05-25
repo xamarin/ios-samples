@@ -29,6 +29,7 @@ namespace ImageView {
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			
 			viewController = new ImageViewController();
+			window.RootViewController = viewController;
 			
 			navigationController = new UINavigationController();
 			navigationController.PushViewController (viewController, false);
