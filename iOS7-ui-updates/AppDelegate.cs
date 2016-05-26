@@ -25,16 +25,15 @@ namespace ImageView {
 		//
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			// create a new window instance based on the screen size
-			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
-			viewController = new ImageViewController();
-			window.RootViewController = viewController;
+			viewController = new ImageViewController ();
 			
 			navigationController = new UINavigationController();
 			navigationController.PushViewController (viewController, false);
 
-			// If you have defined a view, add it here:
+			window = new UIWindow (UIScreen.MainScreen.Bounds) {
+				RootViewController = navigationController
+			};
+
 			window.AddSubview (navigationController.View);
 			
 			// make the window visible
