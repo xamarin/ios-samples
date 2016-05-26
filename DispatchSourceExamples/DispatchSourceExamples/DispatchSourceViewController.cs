@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -7,11 +6,8 @@ using CoreFoundation;
 using Foundation;
 using UIKit;
 
-namespace DispatchSourceExamples
-{
-
-	public enum DispatchSourceType
-	{
+namespace DispatchSourceExamples {
+	public enum DispatchSourceType {
 		Timer = 0,
 		Vnode,
 		MemoryMonitor,
@@ -95,11 +91,13 @@ namespace DispatchSourceExamples
 			tableView.Delegate = this;
 		}
 
-		public override void ViewDidDisappear (bool animated)
+		public override void ViewWillDisappear(bool animated)
 		{
-			base.ViewDidDisappear (animated);
-			if (dispatchSource != null)
+			base.ViewWillDisappear(animated);
+			if (dispatchSource != null) {
 				dispatchSource.Cancel ();
+				dispatchSource.Dispose ();
+			}
 		}
 
 		public override void ViewDidLayoutSubviews ()
@@ -108,11 +106,11 @@ namespace DispatchSourceExamples
 			View.LayoutIfNeeded ();
 		}
 
-		void PrintResult (UITextView textView, string message)
+		void PrintResult (UITextView logView, string message)
 		{
 			DispatchQueue.MainQueue.DispatchAsync (() => {
-				textView.Text = string.Format ("{0}\n{1}", textView.Text, message);
-				textView.ScrollRangeToVisible (new NSRange (0, textView.Text.Length));
+				logView.Text = string.Format ("{0}\n{1}", logView.Text, message);
+				textView.ScrollRangeToVisible (new NSRange (0, logView.Text.Length));
 			});
 		}
 
@@ -210,7 +208,7 @@ namespace DispatchSourceExamples
 
 			dispatchSource.SetEventHandler (() => {
 				var observedEvents = ((DispatchSource.VnodeMonitor)dispatchSource).ObservedEvents;
-				string message = string.Format ("Vnode monitor event for {0}: {1}", fileURL.LastPathComponent, observedEvents.ToString ());
+				string message = string.Format ("Vnode monitor event for {0}: {1}", fileURL.LastPathComponent, observedEvents);
 				PrintResult (textView, message);
 				dispatchSource.Cancel ();
 				stream.Close ();
@@ -266,8 +264,7 @@ namespace DispatchSourceExamples
 		void StartWriteMonitor ()
 		{
 			NSUrl fileURL = TestFileUrl;
-
-			var stream = File.Create (fileURL.Path);
+			var stream = new FileStream (fileURL.Path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
 			int fileDescriptor = GetFileDescriptor (stream);
 
 			dispatchSource = new DispatchSource.WriteMonitor (fileDescriptor, DispatchQueue.MainQueue);
@@ -277,7 +274,7 @@ namespace DispatchSourceExamples
 			});
 
 			dispatchSource.SetEventHandler (() => {
-				string message = string.Format ("Write monitor: {0} was opened in write mode", fileURL.LastPathComponent.ToString ());
+				string message = string.Format ("Write monitor: {0} was opened in write mode", fileURL.LastPathComponent);
 				PrintResult (textView, message);
 				dispatchSource.Cancel ();
 				stream.Close ();
@@ -294,11 +291,10 @@ namespace DispatchSourceExamples
 		{
 			NSUrl fileURL = TestFileUrl;
 
-			File.WriteAllText (fileURL.Path, "Roses are red");
 			var stream = File.OpenRead (fileURL.Path);
 			int fileDescriptor = GetFileDescriptor (stream);
 
-			dispatchSource = new CoreFoundation.DispatchSource.ReadMonitor (fileDescriptor, DispatchQueue.MainQueue);
+			dispatchSource = new DispatchSource.ReadMonitor (fileDescriptor, DispatchQueue.MainQueue);
 
 			dispatchSource.SetRegistrationHandler (() => {
 				PrintResult (textView, "Read monitor registered");
