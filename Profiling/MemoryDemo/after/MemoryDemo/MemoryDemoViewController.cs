@@ -1,27 +1,28 @@
 using System;
-using System.Drawing;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+
+using Foundation;
+using CoreGraphics;
+using UIKit;
 
 namespace MemoryDemo
 {
-	public partial class MemoryDemoViewController : UICollectionViewController
+	public class MemoryDemoViewController : UICollectionViewController
 	{
 		// Id used for cell reuse
-		static NSString cellId = new NSString ("ImageCell");
+		static readonly NSString cellId = new NSString ("ImageCell");
 
 		// Declare image at the class level
-		UIImage image;
-		
+		readonly UIImage image;
+
 		public MemoryDemoViewController (UICollectionViewLayout layout) : base (layout)
-		{	
+		{
 			// Create the image from the test.png file
 			image = UIImage.FromFile ("test.png");
-			
+
 			CollectionView.ContentSize = UIScreen.MainScreen.Bounds.Size;
 			CollectionView.BackgroundColor = UIColor.White;
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -29,20 +30,20 @@ namespace MemoryDemo
 			// Register the ImageCell class for creation by the reuse system
 			CollectionView.RegisterClassForCell (typeof(ImageCell), cellId);
 		}
-		
-		public override int GetItemsCount (UICollectionView collectionView, int section)
+
+		public override nint GetItemsCount (UICollectionView collectionView, nint section)
 		{
 			return 10000;
 		}
-		
+
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
 			// Dequeue a cell from the reuse pool
-			ImageCell imageCell = (ImageCell)collectionView.DequeueReusableCell (cellId, indexPath);
+			var imageCell = (ImageCell)collectionView.DequeueReusableCell (cellId, indexPath);
 
 			// Reuse the image declared at the class level
 			imageCell.ImageView.Image = image;
-			
+
 			return imageCell;
 		}
 	}
@@ -50,13 +51,13 @@ namespace MemoryDemo
 	public class ImageCell : UICollectionViewCell
 	{
 		public UIImageView ImageView { get; private set; }
-				
+
 		[Export ("initWithFrame:")]
-		public ImageCell (RectangleF frame) : base (frame)
+		public ImageCell (CGRect frame) : base (frame)
 		{
-			ImageView = new UIImageView (new RectangleF (0, 0, 50, 50)); 
+			ImageView = new UIImageView (new CGRect (0f, 0f, 50f, 50f));
 			ImageView.ContentMode = UIViewContentMode.ScaleAspectFit;
 			ContentView.AddSubview (ImageView);
 		}
-	}			
+	}
 }

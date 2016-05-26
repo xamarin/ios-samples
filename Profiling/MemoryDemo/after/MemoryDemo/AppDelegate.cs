@@ -1,43 +1,29 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
+using Foundation;
+using UIKit;
 
 namespace MemoryDemo
 {
-	// The UIApplicationDelegate for the application. This class is responsible for launching the 
-	// User Interface of the application, as well as listening (and optionally responding) to 
-	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
+	public class AppDelegate : UIApplicationDelegate
 	{
-		// class-level declarations
 		UIWindow window;
 		MemoryDemoViewController viewController;
 		UICollectionViewFlowLayout layout;
 
-		//
-		// This method is invoked when the application has loaded and is ready to run. In this 
-		// method you should instantiate the window, load the UI into it and then make the window
-		// visible.
-		//
-		// You have 17 seconds to return from this method, or iOS will terminate your application.
-		//
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			window = new UIWindow (UIScreen.MainScreen.Bounds);
-
-			layout = new UICollectionViewFlowLayout (){
-				SectionInset = new UIEdgeInsets (10,10,10,10)
+			layout = new UICollectionViewFlowLayout {
+				SectionInset = new UIEdgeInsets (10f, 10f, 10f, 10f)
 			};
-			
+
 			viewController = new MemoryDemoViewController (layout);
-		
-			window.RootViewController = viewController;
+
+			window = new UIWindow(UIScreen.MainScreen.Bounds) {
+				RootViewController = viewController
+			};
+
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 	}
