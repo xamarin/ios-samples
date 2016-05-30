@@ -10,6 +10,8 @@ Global
 		After|iPhoneSimulator = After|iPhoneSimulator
 		Release|iPhoneSimulator = Release|iPhoneSimulator
 		Debug|iPhone = Debug|iPhone
+		After|iPhone = After|iPhone
+		Before|iPhone = Before|iPhone
 		Release|iPhone = Release|iPhone
 		Ad-Hoc|iPhone = Ad-Hoc|iPhone
 		AppStore|iPhone = AppStore|iPhone
@@ -21,6 +23,8 @@ Global
 		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.AppStore|iPhone.Build.0 = AppStore|iPhone
 		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Debug|iPhone.Build.0 = Debug|iPhone
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.After|iPhone.Build.0 = After|iPhone
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Before|iPhone.Build.0 = Before|iPhone
 		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.After|iPhoneSimulator.Build.0 = After|iPhoneSimulator
