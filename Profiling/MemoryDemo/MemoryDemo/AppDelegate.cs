@@ -1,11 +1,9 @@
 using Foundation;
 using UIKit;
 
-namespace MemoryDemo
-{
+namespace MemoryDemo {
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		MemoryDemoViewController viewController;
 		UICollectionViewFlowLayout layout;
@@ -18,7 +16,7 @@ namespace MemoryDemo
 
 			viewController = new MemoryDemoViewController (layout);
 
-			window = new UIWindow(UIScreen.MainScreen.Bounds) {
+			window = new UIWindow (UIScreen.MainScreen.Bounds) {
 				RootViewController = viewController
 			};
 

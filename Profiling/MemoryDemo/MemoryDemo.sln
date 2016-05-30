@@ -6,6 +6,8 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Before|iPhoneSimulator = Before|iPhoneSimulator
+		After|iPhoneSimulator = After|iPhoneSimulator
 		Release|iPhoneSimulator = Release|iPhoneSimulator
 		Debug|iPhone = Debug|iPhone
 		Release|iPhone = Release|iPhone
@@ -21,6 +23,8 @@ Global
 		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Debug|iPhone.Build.0 = Debug|iPhone
 		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.After|iPhoneSimulator.Build.0 = After|iPhoneSimulator
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Before|iPhoneSimulator.Build.0 = Before|iPhoneSimulator
 		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Release|iPhone.ActiveCfg = Release|iPhone
 		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Release|iPhone.Build.0 = Release|iPhone
 		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator

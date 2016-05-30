@@ -5,11 +5,13 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
+#if GREEDY
+
 // This version purposefully introduces memory issues for demonstrating debugging with Instruments
 namespace MemoryDemo {
 	public class MemoryDemoViewController : UICollectionViewController {
 		// Id used for cell reuse
-		// static NSString cellId = new NSString ("ImageCell");
+		public const string CellId = "ImageCell";
 
 		// Declare image at the class level
 		// UIImage image;
@@ -28,32 +30,32 @@ namespace MemoryDemo {
 			CollectionView.ContentSize = UIScreen.MainScreen.Bounds.Size;
 			CollectionView.BackgroundColor = UIColor.White;
 		}
-		
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
 			// Register the ImageCell class for creation by the reuse system
-			// CollectionView.RegisterClassForCell (typeof(ImageCell), cellId);
+			CollectionView.RegisterClassForCell (typeof(ImageCell), CellId);
 		}
 
 		public override nint GetItemsCount (UICollectionView collectionView, nint section)
 		{
 			return 10000;
 		}
-		
+
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
 			// Dequeue a cell from the reuse pool
-			// var imageCell = (ImageCell)collectionView.DequeueReusableCell (cellId, indexPath);
+			var imageCell = (ImageCell)collectionView.DequeueReusableCell (CellId, indexPath);
 
 			// Reuse the image declared at the class level
 			// imageCell.ImageView.Image = image;
 
 			// Inefficient cell and image creation
-			var imageCell = new ImageCell ();
-			UIImage image = UIImage.FromFile ("test.png");
-			images.Add(image);
+			 UIImage image = UIImage.FromFile ("test.png");
+
+			images.Add (image);
 			imageCell.ImageView.Image = image;
 
 			return imageCell;
@@ -62,29 +64,16 @@ namespace MemoryDemo {
 
 	public class ImageCell : UICollectionViewCell
 	{
-		// This should be set at registation and used during dequeueing, not in a subclass
-		public override NSString ReuseIdentifier {
-			get {
-				return new NSString ("ImageCell");
-			}
-		}
-
 		public UIImageView ImageView { get; private set; }
 
-		// Should use initWithFrame: instead, which is called by the reuse system
-		public ImageCell ()
+		[Export ("initWithFrame:")]
+		public ImageCell (CGRect frame) : base (frame)
 		{
-			ImageView = new UIImageView (new CGRect (0, 0, 50, 50));
+			ImageView = new UIImageView (new CGRect (0f, 0f, 50f, 50f));
 			ImageView.ContentMode = UIViewContentMode.ScaleAspectFit;
-			ContentView.AddSubview (ImageView);	
+			ContentView.AddSubview (ImageView);
 		}
-
-//		[Export ("initWithFrame:")]
-//		public ImageCell (RectangleF frame) : base (frame)
-//		{
-//			ImageView = new UIImageView (new RectangleF (0, 0, 50, 50)); 
-//			ImageView.ContentMode = UIViewContentMode.ScaleAspectFit;
-//			ContentView.AddSubview (ImageView);
-//		}
 	}
 }
+
+#endif // GREEDY
