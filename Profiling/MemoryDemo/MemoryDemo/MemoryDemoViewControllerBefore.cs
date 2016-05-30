@@ -53,7 +53,7 @@ namespace MemoryDemo {
 			// imageCell.ImageView.Image = image;
 
 			// Inefficient cell and image creation
-			 UIImage image = UIImage.FromFile ("test.png");
+			var image = new UIImage ("test.png");
 
 			images.Add (image);
 			imageCell.ImageView.Image = image;
