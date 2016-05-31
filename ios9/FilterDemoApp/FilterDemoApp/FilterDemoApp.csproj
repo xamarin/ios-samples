@@ -23,11 +23,14 @@
     <MtouchLink>None</MtouchLink>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchUseSGen>true</MtouchUseSGen>
-    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFastDev>false</MtouchFastDev>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchProfiling>false</MtouchProfiling>
     <MtouchFloat32>true</MtouchFloat32>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <MtouchExtraArgs></MtouchExtraArgs>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -42,6 +45,7 @@
     <MtouchUseSGen>true</MtouchUseSGen>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -55,6 +59,7 @@
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseSGen>true</MtouchUseSGen>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -76,6 +81,10 @@
     <MtouchProfiling>true</MtouchProfiling>
     <IpaPackageName>
     </IpaPackageName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -108,11 +117,13 @@
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
+  <Import Project="..\Framework\Framework.projitems" Label="Shared" Condition="Exists('..\Framework\Framework.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\FilterDemoFramework\FilterDemoFramework.csproj">
-      <Project>{393D098C-7B69-4789-A3B4-FBC493C15A72}</Project>
-      <Name>FilterDemoFramework</Name>
+    <ProjectReference Include="..\FilterDemoAppExtension\FilterDemoAppExtension.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{9E7B43D2-D6AC-47FE-BF67-2EE8DAF2874D}</Project>
+      <Name>FilterDemoAppExtension</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

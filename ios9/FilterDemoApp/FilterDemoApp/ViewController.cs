@@ -56,7 +56,10 @@ namespace FilterDemoApp {
 
 		void EmbedPlugInView ()
 		{
-			var storyboard = UIStoryboard.FromName ("MainInterface", NSBundle.MainBundle);
+			var builtInPlugInsURL = NSBundle.MainBundle.BuiltInPluginsUrl;
+			var pluginURL = builtInPlugInsURL.Append ("FilterDemoAppExtension.appex", false);
+			var appExtensionBundle = NSBundle.FromUrl (pluginURL);
+			var storyboard = UIStoryboard.FromName ("MainInterface", appExtensionBundle);
 			filterDemoViewController = storyboard.InstantiateInitialViewController () as FilterDemoViewController;
 
 			var view = filterDemoViewController.View;

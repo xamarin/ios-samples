@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{F4807DE7-7B59-46E8-9ADE-6C4F5125FD1A}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Framework</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AUv3FilterDemo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BufferedAudioBus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BufferedInputBus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DSPKernel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FilterDemoViewController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FilterDemoViewController.designer.cs">
+      <DependentUpon>FilterDemoViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)FilterDSPKernel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FilterView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FilterView.designer.cs">
+      <DependentUpon>FilterView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)IFilterViewDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ParameterRamper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SimplePlayEngine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="$(MSBuildThisFileDirectory)Resources\drumLoop.caf" />
+  </ItemGroup>
+</Project>

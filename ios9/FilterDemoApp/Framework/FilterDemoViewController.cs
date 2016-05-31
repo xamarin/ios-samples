@@ -1,12 +1,13 @@
 using System;
 
 using AudioUnit;
+using CoreAudioKit;
 using CoreFoundation;
 using Foundation;
-using UIKit;
+using ObjCRuntime;
 
 namespace FilterDemoFramework {
-	public partial class FilterDemoViewController : UIViewController, IFilterViewDelegate {
+	public partial class FilterDemoViewController : AUViewController, IFilterViewDelegate, IAUAudioUnitFactory {
 		static readonly NSString cutoffKey = (NSString)"cutoff";
 		static readonly NSString resonanceKey = (NSString)"resonance";
 
@@ -28,7 +29,13 @@ namespace FilterDemoFramework {
 			}
 		}
 
-		public FilterDemoViewController (IntPtr handle) : base (handle)
+		[Export("initWithCoder:")]
+		public FilterDemoViewController (NSCoder coder) : base(coder)
+		{
+		}
+
+		[Export ("initWithNibName:bundle:")]
+		public FilterDemoViewController (string nibName, NSBundle bundle) : base (nibName, bundle)
 		{
 		}
 
@@ -72,6 +79,18 @@ namespace FilterDemoFramework {
 		public void DataChanged (FilterView filterView)
 		{
 			UpdateFilterViewFrequencyAndMagnitudes ();
+		}
+
+		[Export ("createAudioUnitWithComponentDescription:error:")]
+		public AUAudioUnit CreateAudioUnit (AudioComponentDescription desc, out NSError error)
+		{
+			AudioUnit = new AUv3FilterDemo (desc, 0, out error);
+			return AudioUnit;
+		}
+
+		[Export("beginRequestWithExtensionContext:")]
+		public void BeginRequestWithExtensionContext (NSExtensionContext context)
+		{
 		}
 
 		void ConnectViewWithAU ()
