@@ -36,6 +36,22 @@ namespace ZoomingPdfViewer {
 			// instruct that we want a CATileLayer (not the default CALayer) for the Layer property
 			return new Class (typeof (CATiledLayer));
 		}
+		
+		protected override void Dispose (bool disposing)
+		{
+			Cleanup ();
+			base.Dispose (disposing);
+		}
+
+		private void Cleanup ()
+		{
+			InvokeOnMainThread (() => {
+				tiledLayer.Delegate = null;
+				this.RemoveFromSuperview ();
+				this.tiledLayer.RemoveFromSuperLayer ();
+
+			});
+		}
 	}
 
 	class TiledLayerDelegate : CALayerDelegate {
