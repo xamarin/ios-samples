@@ -9,10 +9,12 @@ namespace ZoomingPdfViewer {
 
 	public class TiledPdfView : UIView {
 
+		CATiledLayer tiledLayer;
+		
 		public TiledPdfView (CGRect frame, float scale)
 			: base (frame)
 		{
-			CATiledLayer tiledLayer = Layer as CATiledLayer;
+			tiledLayer = Layer as CATiledLayer;
 			tiledLayer.LevelsOfDetail = 4;
 			tiledLayer.LevelsOfDetailBias = 4;
 			tiledLayer.TileSize = new CGSize (512, 512);
