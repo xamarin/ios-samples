@@ -9,10 +9,12 @@ namespace ZoomingPdfViewer {
 
 	public class TiledPdfView : UIView {
 
+		CATiledLayer tiledLayer;
+		
 		public TiledPdfView (CGRect frame, float scale)
 			: base (frame)
 		{
-			CATiledLayer tiledLayer = Layer as CATiledLayer;
+			tiledLayer = Layer as CATiledLayer;
 			tiledLayer.LevelsOfDetail = 4;
 			tiledLayer.LevelsOfDetailBias = 4;
 			tiledLayer.TileSize = new CGSize (512, 512);
@@ -35,6 +37,22 @@ namespace ZoomingPdfViewer {
 		{
 			// instruct that we want a CATileLayer (not the default CALayer) for the Layer property
 			return new Class (typeof (CATiledLayer));
+		}
+		
+		protected override void Dispose (bool disposing)
+		{
+			Cleanup ();
+			base.Dispose (disposing);
+		}
+
+		private void Cleanup ()
+		{
+			InvokeOnMainThread (() => {
+				tiledLayer.Delegate = null;
+				this.RemoveFromSuperview ();
+				this.tiledLayer.RemoveFromSuperLayer ();
+
+			});
 		}
 	}
 
