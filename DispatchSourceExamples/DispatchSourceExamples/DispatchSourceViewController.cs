@@ -290,9 +290,11 @@ namespace DispatchSourceExamples {
 		void TestReadMonitor ()
 		{
 			NSUrl fileURL = TestFileUrl;
+			int fileDescriptor = 0;
 
-			var stream = File.OpenRead (fileURL.Path);
-			int fileDescriptor = GetFileDescriptor (stream);
+			using (var stream = new FileStream(fileURL.Path, FileMode.OpenOrCreate, FileAccess.Read, FileShare.None)) {
+				fileDescriptor = GetFileDescriptor (stream);
+			}
 
 			dispatchSource = new DispatchSource.ReadMonitor (fileDescriptor, DispatchQueue.MainQueue);
 
@@ -303,7 +305,6 @@ namespace DispatchSourceExamples {
 			dispatchSource.SetEventHandler (() => {
 				PrintResult (textView, string.Format ("Read monitor: {0} was opened in read mode", fileURL.LastPathComponent));
 				dispatchSource.Cancel ();
-				stream.Close ();
 			});
 
 			dispatchSource.SetCancelHandler (() => {
