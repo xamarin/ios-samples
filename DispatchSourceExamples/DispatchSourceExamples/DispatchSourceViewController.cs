@@ -292,7 +292,7 @@ namespace DispatchSourceExamples {
 			NSUrl fileURL = TestFileUrl;
 			int fileDescriptor = 0;
 
-			using (var stream = new FileStream(fileURL.Path, FileMode.OpenOrCreate, FileAccess.Read, FileShare.None)) {
+			using (var stream = new FileStream (fileURL.Path, FileMode.OpenOrCreate, FileAccess.Read, FileShare.None)) {
 				fileDescriptor = GetFileDescriptor (stream);
 			}
 
