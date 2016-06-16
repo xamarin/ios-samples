@@ -6,8 +6,10 @@ using NewsstandKit;
 
 namespace Newsstand {
 	public class NewsstandUrlDelegate1 : NSUrlConnectionDownloadDelegate {
+		public Action OnDownloadingFinished { get; set; }
+
 		NKIssue Issue { get; set; }
-		
+
 		/// <summary>
 		/// Pass the issue into the delegate to determine the target file location
 		/// </summary>
@@ -45,6 +47,9 @@ namespace Newsstand {
 				File.Move (destinationUrl.Path, saveToFilename);
 		
 			Console.WriteLine ($"File moved for issue: {Issue.Name}");
+
+			if (OnDownloadingFinished != null)
+				OnDownloadingFinished ();
 		}
 	}	
 }

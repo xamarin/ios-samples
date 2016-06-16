@@ -10,6 +10,7 @@ namespace Newsstand {
 	/// This class contains the code shown in the article 
 	/// </summary>
 	public class SampleCode {
+		static bool downloading;
 		static NewsstandUrlDelegate1 newsstandDelegate;
 
 		// -gcc_flags "-weak_framework NewsstandKit"
@@ -92,6 +93,10 @@ namespace Newsstand {
 		/// </summary>
 		public static void Download (UITextView display)
 		{
+			if (downloading)
+				return;
+
+			downloading = true;
 			var library = NKLibrary.SharedLibrary;
 			var issues = library.Issues;
 			var issue = issues[1] ; // New York
@@ -99,7 +104,10 @@ namespace Newsstand {
 			NKAssetDownload asset = issue.AddAsset (new NSUrlRequest (new NSUrl ("http://xamarin.com/")));
 			
 			newsstandDelegate = new NewsstandUrlDelegate1 ("NewYorkContent", issue);
-		
+			newsstandDelegate.OnDownloadingFinished += () => {
+				downloading = false;
+			};
+
 			//you do not have background download privileges: add 'newsstand-content' to mainBundle.infoDictionary.UIBackgroundModes	
 			asset.DownloadWithDelegate (newsstandDelegate);
 			
