@@ -67,7 +67,7 @@ namespace AVCam
 		{
 		}
 
-		public override void ViewDidLoad ()
+		public async override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
@@ -89,27 +89,26 @@ namespace AVCam
 			// Check video authorization status. Video access is required and audio access is optional.
 			// If audio access is denied, audio is not recorded during movie recording.
 			switch (AVCaptureDevice.GetAuthorizationStatus (AVMediaType.Video)) {
-			// The user has previously granted access to the camera.
-			case AVAuthorizationStatus.Authorized:
-				break;
+				// The user has previously granted access to the camera.
+				case AVAuthorizationStatus.Authorized:
+					break;
 
-			// The user has not yet been presented with the option to grant video access.
-			// We suspend the session queue to delay session setup until the access request has completed to avoid
-			// asking the user for audio access if video access is denied.
-			// Note that audio access will be implicitly requested when we create an AVCaptureDeviceInput for audio during session setup.
-			case AVAuthorizationStatus.NotDetermined:
-				SessionQueue.Suspend ();
-				AVCaptureDevice.RequestAccessForMediaType (AVMediaType.Video, granted => {
+				// The user has not yet been presented with the option to grant video access.
+				// We suspend the session queue to delay session setup until the access request has completed to avoid
+				// asking the user for audio access if video access is denied.
+				// Note that audio access will be implicitly requested when we create an AVCaptureDeviceInput for audio during session setup.
+				case AVAuthorizationStatus.NotDetermined:
+					SessionQueue.Suspend ();
+					var granted = await AVCaptureDevice.RequestAccessForMediaTypeAsync (AVMediaType.Video);
 					if (!granted)
 						SetupResult = AVCamSetupResult.CameraNotAuthorized;
 					SessionQueue.Resume ();
-				});
-				break;
+					break;
 
-			// The user has previously denied access.
-			default:
-				SetupResult = AVCamSetupResult.CameraNotAuthorized;
-				break;
+				// The user has previously denied access.
+				default:
+					SetupResult = AVCamSetupResult.CameraNotAuthorized;
+					break;
 			}
 
 			// Setup the capture session.
@@ -130,8 +129,7 @@ namespace AVCam
 
 				Session.BeginConfiguration ();
 				if (Session.CanAddInput (videoDeviceInput)) {
-					Session.AddInput (videoDeviceInput);
-					VideoDeviceInput = videoDeviceInput;
+					Session.AddInput (VideoDeviceInput = videoDeviceInput);
 					DispatchQueue.MainQueue.DispatchAsync (() => {
 						// Why are we dispatching this to the main queue?
 						// Because AVCaptureVideoPreviewLayer is the backing layer for PreviewView and UIView
@@ -165,11 +163,10 @@ namespace AVCam
 
 				var movieFileOutput = new AVCaptureMovieFileOutput ();
 				if (Session.CanAddOutput (movieFileOutput)) {
-					Session.AddOutput (movieFileOutput);
+					Session.AddOutput (MovieFileOutput = movieFileOutput);
 					AVCaptureConnection connection = movieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
 					if (connection.SupportsVideoStabilization)
 						connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto;
-					MovieFileOutput = movieFileOutput;
 				} else {
 					Console.WriteLine ("Could not add movie file output to the session");
 					SetupResult = AVCamSetupResult.SessionConfigurationFailed;
@@ -180,8 +177,7 @@ namespace AVCam
 					stillImageOutput.CompressedVideoSetting = new AVVideoSettingsCompressed {
 						Codec = AVVideoCodec.JPEG
 					};
-					Session.AddOutput (stillImageOutput);
-					StillImageOutput = stillImageOutput;
+					Session.AddOutput (StillImageOutput = stillImageOutput);
 				} else {
 					Console.WriteLine ("Could not add still image output to the session");
 					SetupResult = AVCamSetupResult.SessionConfigurationFailed;
@@ -317,7 +313,7 @@ namespace AVCam
 					RecordButton.SetTitle ("Stop", UIControlState.Normal);
 				} else {
 					// Only enable the ability to change camera if the device has more than one camera.
-					CameraButton.Enabled = AVCaptureDevice.DevicesWithMediaType (AVMediaType.Video).Length > 1;
+					CameraButton.Enabled = NumberOfVideoCameras () > 1;
 					RecordButton.Enabled = true;
 					RecordButton.SetTitle ("Record", UIControlState.Normal);
 				}
@@ -329,7 +325,7 @@ namespace AVCam
 			bool isSessionRunning = ((NSNumber)change.NewValue).BoolValue;
 			DispatchQueue.MainQueue.DispatchAsync (() => {
 				// Only enable the ability to change camera if the device has more than one camera.
-				CameraButton.Enabled = isSessionRunning && AVCaptureDevice.DevicesWithMediaType (AVMediaType.Video).Length > 1;
+				CameraButton.Enabled = isSessionRunning && NumberOfVideoCameras () > 1;
 				RecordButton.Enabled = isSessionRunning;
 				StillButton.Enabled = isSessionRunning;
 			});
@@ -370,7 +366,7 @@ namespace AVCam
 			// For example, if music playback is initiated via control center while using AVCam,
 			// then the user can let AVCam resume the session running, which will stop music playback.
 			// Note that stopping music playback in control center will not automatically resume the session running.
-			// Also note that it is not always possible to resume, see -[resumeInterruptedSession:].
+			// Also note that it is not always possible to resume, see ResumeInterruptedSession.
 			bool showResumeButton = false;
 
 			// In iOS 9 and later, the userInfo dictionary contains information on why the session was interrupted.
@@ -596,13 +592,18 @@ namespace AVCam
 			});
 		}
 
-		string GetTmpFilePath (string extension)
+		static string GetTmpFilePath (string extension)
 		{
 			// Start recording to a temporary file.
 			string outputFileName = NSProcessInfo.ProcessInfo.GloballyUniqueString;
 			string tmpDir = Path.GetTempPath ();
 			string outputFilePath = Path.Combine (tmpDir, outputFileName);
 			return Path.ChangeExtension (outputFilePath, extension);
+		}
+
+		static int NumberOfVideoCameras ()
+		{
+			return AVCaptureDevice.DevicesWithMediaType (AVMediaType.Video).Length;
 		}
 
 		[Export ("focusAndExposeTap:")]
@@ -619,6 +620,11 @@ namespace AVCam
 
 		public void FinishedRecording (AVCaptureFileOutput captureOutput, NSUrl outputFileUrl, NSObject[] connections, NSError error)
 		{
+			// Note that currentBackgroundRecordingID is used to end the background task associated with this recording.
+			// This allows a new recording to be started, associated with a new UIBackgroundTaskIdentifier, once the movie file output's isRecording property
+			// is back to NO — which happens sometime after this method returns.
+			// Note: Since we use a unique file path for each recording, a new recording will not overwrite a recording currently being saved.
+
 			var currentBackgroundRecordingID = backgroundRecordingID;
 			backgroundRecordingID = -1;
 			Action cleanup = () => {
@@ -634,35 +640,35 @@ namespace AVCam
 				success = ((NSNumber)error.UserInfo [AVErrorKeys.RecordingSuccessfullyFinished]).BoolValue;
 			}
 
-			if (success) {
-				// Check authorization status.
-				PHPhotoLibrary.RequestAuthorization (status => {
-					if (status == PHAuthorizationStatus.Authorized) {
-						// Save the movie file to the photo library and cleanup.
-						PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
-							// In iOS 9 and later, it's possible to move the file into the photo library without duplicating the file data.
-							// This avoids using double the disk space during save, which can make a difference on devices with limited free disk space.
-							if (UIDevice.CurrentDevice.CheckSystemVersion (9, 0)) {
-								var options = new PHAssetResourceCreationOptions ();
-								options.ShouldMoveFile = true;
-								var changeRequest = PHAssetCreationRequest.CreationRequestForAsset ();
-								changeRequest.AddResource (PHAssetResourceType.Video, outputFileUrl, options);
-							} else {
-								PHAssetChangeRequest.FromVideo (outputFileUrl);
-							}
-						}, (success2, error2) => {
-							if (!success2) {
-								Console.WriteLine ("Could not save movie to photo library: {0}", error);
-							}
-							cleanup ();
-						});
-					} else {
-						cleanup ();
-					}
-				});
-			} else {
+			if (!success) {
 				cleanup ();
+				return;
 			}
+			// Check authorization status.
+			PHPhotoLibrary.RequestAuthorization (status => {
+				if (status == PHAuthorizationStatus.Authorized) {
+					// Save the movie file to the photo library and cleanup.
+					PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
+						// In iOS 9 and later, it's possible to move the file into the photo library without duplicating the file data.
+						// This avoids using double the disk space during save, which can make a difference on devices with limited free disk space.
+						if (UIDevice.CurrentDevice.CheckSystemVersion (9, 0)) {
+							var options = new PHAssetResourceCreationOptions {
+								ShouldMoveFile = true
+							};
+							var changeRequest = PHAssetCreationRequest.CreationRequestForAsset ();
+							changeRequest.AddResource (PHAssetResourceType.Video, outputFileUrl, options);
+						} else {
+							PHAssetChangeRequest.FromVideo (outputFileUrl);
+						}
+					}, (success2, error2) => {
+						if (!success2)
+							Console.WriteLine ("Could not save movie to photo library: {0}", error2);
+						cleanup ();
+					});
+				} else {
+					cleanup ();
+				}
+			});
 		}
 
 		#endregion
