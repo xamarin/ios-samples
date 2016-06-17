@@ -1,112 +1,55 @@
 using System;
-using CoreAnimation;
-using Foundation;
-using ObjCRuntime;
+
 using UIKit;
 using CoreGraphics;
+using Foundation;
 
 namespace ZoomingPdfViewer {
-
-	public class PdfScrollView : UIScrollView {
-
-		// main, visible, pdf view
-		TiledPdfView pdfView;
-		// temporary, while zooming, view
+	[Register ("PdfScrollView")]
+	public class PdfScrollView : UIScrollView, IUIScrollViewDelegate {
 		TiledPdfView oldPdfView;
-		// low resolution bitmap using until 'pdfView' is ready
-		UIImageView backgroundImageView;
-
-		// global reference to the PDF document/page
-		CGPDFDocument pdf;
 		CGPDFPage page;
+		CGRect pageRect;
 
-		nfloat scale;
+		public nfloat PdfScale { get; set; }
 
-		public PdfScrollView (CGRect frame)
-			: base (frame)
+		public TiledPdfView TiledPDFView { get; private set;}
+
+		public PdfScrollView (IntPtr handle) : base(handle)
 		{
-			ShowsVerticalScrollIndicator = false;
-			ShowsHorizontalScrollIndicator = false;
-			BouncesZoom = true;
-			DecelerationRate = UIScrollView.DecelerationRateFast;
-			BackgroundColor = UIColor.White;
-			MaximumZoomScale = 5.0f;
-			MinimumZoomScale = 0.25f;
+			Initialize ();
+		}
 
-			// open the PDF file (default directory is the bundle path)
-			pdf = CGPDFDocument.FromFile ("Tamarin.pdf");
-			// select the first page (the only one we'll use)
-			page = pdf.GetPage (1);
+		public PdfScrollView (CGRect frame) : base (frame)
+		{
+			Initialize ();
+		}
 
-			// make the initial view 'fit to width'
-			CGRect pageRect = page.GetBoxRect (CGPDFBox.Media);
-			scale = Frame.Width / pageRect.Width;
-			pageRect.Size = new CGSize (pageRect.Width * scale, pageRect.Height * scale);
+		void Initialize ()
+		{
+			DecelerationRate = DecelerationRateFast;
 
-			// create bitmap version of the PDF page, to be used (scaled)
-			// when no other (tiled) view are visible
-			UIGraphics.BeginImageContext (pageRect.Size);
-			CGContext context = UIGraphics.GetCurrentContext ();
+			Delegate = this;
+			BackgroundColor = UIColor.LightGray;
 
-			// fill with white background
-			context.SetFillColor (1.0f, 1.0f, 1.0f, 1.0f);
-			context.FillRect (pageRect);
-			context.SaveState ();
+			Layer.BorderWidth = 5f;
+			MaximumZoomScale = 5f;
+			MinimumZoomScale = .25f;
+		}
 
-			// flip page so we render it as it's meant to be read
-			context.TranslateCTM (0.0f, pageRect.Height);
-			context.ScaleCTM (1.0f, -1.0f);
+		public void SetPDFPage (CGPDFPage pdfPage)
+		{
+			page = pdfPage;
 
-			// scale page at the view-zoom level
-			context.ScaleCTM (scale, scale);
-			context.DrawPDFPage (page);
-			context.RestoreState ();
+			if (page == null) {
+				pageRect = Bounds;
+			} else {
+				pageRect = page.GetBoxRect (CGPDFBox.Media);
+				PdfScale = Frame.Size.Width / pageRect.Size.Width;
+				pageRect = new CGRect (pageRect.X, pageRect.Y, pageRect.Width * PdfScale, pageRect.Height * PdfScale);
+			}
 
-			UIImage backgroundImage = UIGraphics.GetImageFromCurrentImageContext ();
-			UIGraphics.EndImageContext ();
-
-			backgroundImageView = new UIImageView (backgroundImage);
-			backgroundImageView.Frame = pageRect;
-			backgroundImageView.ContentMode = UIViewContentMode.ScaleAspectFit;
-			AddSubview (backgroundImageView);
-			SendSubviewToBack (backgroundImageView);
-
-			// Create the TiledPDFView based on the size of the PDF page and scale it to fit the view.
-			pdfView = new TiledPdfView (pageRect, (float)scale);
-			pdfView.Page = page;
-			AddSubview (pdfView);
-
-			// no need to have (or set) a UIScrollViewDelegate with MonoTouch
-
-			this.ViewForZoomingInScrollView = delegate {
-				// return the view we'll be using while zooming
-				return pdfView;
-			};
-
-			// when zooming starts we remove (from view) and dispose any
-			// oldPdfView and set pdfView as our 'new' oldPdfView, it will
-			// stay there until a new view is available (when zooming ends)
-			this.ZoomingStarted += delegate {
-				if (oldPdfView != null) {
-					oldPdfView.RemoveFromSuperview ();
-					oldPdfView.Dispose ();
-				}
-				oldPdfView = pdfView;
-				AddSubview (oldPdfView);
-			};
-
-			// when zooming ends a new TiledPdfView is created (and shown)
-			// based on the updated 'scale' and 'frame'
-			ZoomingEnded += delegate (object sender, ZoomingEndedEventArgs e) {
-				scale *= e.AtScale;
-
-				CGRect rect = page.GetBoxRect (CGPDFBox.Media);
-				rect.Size = new CGSize (rect.Width * scale, rect.Height * scale);
-
-				pdfView = new TiledPdfView (rect, (float)scale);
-				pdfView.Page = page;
-				AddSubview (pdfView);
-			};
+			ReplaceTiledPDFView (pageRect);
 		}
 
 		public override void LayoutSubviews ()
@@ -116,25 +59,51 @@ namespace ZoomingPdfViewer {
 			// if the page becomes smaller than the view's bounds then we
 			// center it in the screen
 			CGSize boundsSize = Bounds.Size;
-			CGRect frameToCenter = pdfView.Frame;
+			CGRect frameToCenter = TiledPDFView.Frame;
 
-			if (frameToCenter.Width < boundsSize.Width)
-				frameToCenter.X = (boundsSize.Width - frameToCenter.Width) / 2;
-			else
-				frameToCenter.X = 0;
-
-			if (frameToCenter.Height < boundsSize.Height)
-				frameToCenter.Y = (boundsSize.Height - frameToCenter.Height) / 2;
-			else
-				frameToCenter.Y = 0;
+			frameToCenter.X = (frameToCenter.Width < boundsSize.Width) ?
+				(boundsSize.Width - frameToCenter.Width) / 2f : 0f;
+			frameToCenter.Y = (frameToCenter.Height < boundsSize.Height) ?
+				(boundsSize.Height - frameToCenter.Height) / 2f : 0f;
 
 			// adjust the pdf and the bitmap views to the new, centered, frame
-			pdfView.Frame = frameToCenter;
-			backgroundImageView.Frame = frameToCenter;
+			TiledPDFView.Frame = frameToCenter;
 
 			// this is important wrt high resolution screen to ensure
 			// CATiledLayer will ask proper tile sizes
-			pdfView.ContentScaleFactor = 1.0f;
+			TiledPDFView.ContentScaleFactor = 1f;
+		}
+
+		[Export ("viewForZoomingInScrollView:")]
+		public new UIView ViewForZoomingInScrollView (UIScrollView scrollView)
+		{
+			return TiledPDFView;
+		}
+
+		[Export ("scrollViewWillBeginZooming:withView:")]
+		public new void ZoomingStarted (UIScrollView scrollView, UIView view)
+		{
+			// Remove back tiled view.
+			oldPdfView?.RemoveFromSuperview ();
+			oldPdfView = TiledPDFView;
+		}
+
+		[Export ("scrollViewDidEndZooming:withView:atScale:")]
+		public new void ZoomingEnded (UIScrollView scrollView, UIView withView, nfloat atScale)
+		{
+			PdfScale *= atScale;
+			ReplaceTiledPDFView (oldPdfView.Frame);
+		}
+
+		void ReplaceTiledPDFView (CGRect rect)
+		{
+			// Create a new tiled PDF View at the new scale
+			var tiledPDFView = new TiledPdfView (Frame, PdfScale);
+			tiledPDFView.Page = page;
+
+			// Add the new TiledPDFView to the PDFScrollView.
+			AddSubview (tiledPDFView);
+			TiledPDFView = tiledPDFView;
 		}
 	}
 }

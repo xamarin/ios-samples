@@ -1,35 +1,29 @@
 using System;
+
 using CoreAnimation;
+using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
 using UIKit;
-using CoreGraphics;
 
 namespace ZoomingPdfViewer {
+	public class TiledPdfView : UIView, ICALayerDelegate {
+		readonly CATiledLayer tiledLayer;
 
-	public class TiledPdfView : UIView {
+		public nfloat MyScale { get; set; }
 
-		CATiledLayer tiledLayer;
-		
-		public TiledPdfView (CGRect frame, float scale)
+		public CGPDFPage Page { get; set; }
+
+		public TiledPdfView (CGRect frame, nfloat scale)
 			: base (frame)
 		{
 			tiledLayer = Layer as CATiledLayer;
 			tiledLayer.LevelsOfDetail = 4;
-			tiledLayer.LevelsOfDetailBias = 4;
-			tiledLayer.TileSize = new CGSize (512, 512);
-			// here we still need to implement the delegate
-			tiledLayer.Delegate = new TiledLayerDelegate (this);
-			Scale = scale;
-		}
-
-		public CGPDFPage Page { get; set; }
-
-		public float Scale { get; set; }
-
-		public override void Draw (CGRect rect)
-		{
-			// empty (on purpose so the delegate will draw)
+			tiledLayer.LevelsOfDetailBias = 3;
+			tiledLayer.TileSize = new CGSize (512f, 512f);
+			MyScale = scale;
+			tiledLayer.BackgroundColor = UIColor.LightGray.CGColor;
+			tiledLayer.BorderWidth = 5;
 		}
 
 		[Export ("layerClass")]
@@ -38,6 +32,24 @@ namespace ZoomingPdfViewer {
 			// instruct that we want a CATileLayer (not the default CALayer) for the Layer property
 			return new Class (typeof (CATiledLayer));
 		}
+
+		[Export ("drawLayer:inContext:")]
+		public void DrawLayer(CALayer layer, CGContext context)
+		{
+			// fill with white background
+			context.SetFillColor (1f, 1f, 1f, 1f);
+			context.FillRect (Bounds);
+			context.SaveState ();
+
+			// flip page so we render it as it's meant to be read
+			context.TranslateCTM (0f, Bounds.Height);
+			context.ScaleCTM (1f, -1f);
+
+			// scale page at the view-zoom level
+			context.ScaleCTM (MyScale, MyScale);
+			context.DrawPDFPage (Page);
+			context.RestoreState ();
+		}
 		
 		protected override void Dispose (bool disposing)
 		{
@@ -45,43 +57,13 @@ namespace ZoomingPdfViewer {
 			base.Dispose (disposing);
 		}
 
-		private void Cleanup ()
+		void Cleanup ()
 		{
 			InvokeOnMainThread (() => {
 				tiledLayer.Delegate = null;
-				this.RemoveFromSuperview ();
-				this.tiledLayer.RemoveFromSuperLayer ();
-
+				RemoveFromSuperview ();
+				tiledLayer.RemoveFromSuperLayer ();
 			});
-		}
-	}
-
-	class TiledLayerDelegate : CALayerDelegate {
-
-		TiledPdfView view;
-		CGRect bounds;
-
-		public TiledLayerDelegate (TiledPdfView view)
-		{
-			this.view = view;
-			bounds = view.Bounds;
-		}
-
-		public override void DrawLayer (CALayer layer, CGContext context)
-		{
-			// fill with white background
-			context.SetFillColor (1.0f, 1.0f, 1.0f, 1.0f);
-			context.FillRect (bounds);
-			context.SaveState ();
-
-			// flip page so we render it as it's meant to be read
-			context.TranslateCTM (0.0f, bounds.Height);
-			context.ScaleCTM (1.0f, -1.0f);
-
-			// scale page at the view-zoom level
-			context.ScaleCTM (view.Scale, view.Scale);
-			context.DrawPDFPage (view.Page);
-			context.RestoreState ();
 		}
 	}
 }

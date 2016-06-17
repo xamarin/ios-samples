@@ -29,5 +29,9 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>ZoomingPdfViewer</string>
+	<key>UIMainStoryboardFile</key>
+	<string>MainStoryboard</string>
 </dict>
 </plist>
