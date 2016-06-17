@@ -1,23 +1,15 @@
-My Sample’s Title
-==============
+# AVCam: Using AVFoundation to Capture Images and Movies
 
-Add the long description of what your sample does here. You might want to use original sample's description and maybe some `code`.
+AVCam demonstrates how to use the  `AVFoundation` capture API to record movies and capture still images. The sample has a record button for recording movies, a camera button for switching between front and back cameras (on supported devices), and a still button for capturing still images. AVCam runs only on an actual device, either an `iPad` or `iPhone`, and cannot be run in `Simulator`.
 
-Instructions
-------------
+### Build Requirements
+Xcode 7.0, iOS 9.0 SDK
 
-* Apples.
-* Bananas.
-* Coffee.
+### Runtime
+iOS 8.0 or later
 
-Build Requirements
-------------------
 
-Building this sample requires Xcode 5.0 and iOS 7.0 SDK
+### Author
+Xamarin port changes are released under the MIT license
 
-Author
------- 
-IOS:
-Copyright (C) 201X Apple Inc. All rights reserved.
-
-Ported to Xamarin.XXX by YOU
+Ported to Xamarin.iOS by Rustam Zaitov
