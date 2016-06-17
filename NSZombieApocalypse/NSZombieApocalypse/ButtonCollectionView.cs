@@ -15,19 +15,13 @@ namespace NSZombieApocalypse
 		Count
 	}
 
-	public class ButtonCollectionView : UIView
+	public sealed class ButtonCollectionView : UIView
 	{
-
 		UIImageView trackingImageView;
 
 		public event ButtonSelectedHandler ButtonSelectedEvent;
 		public event ButtonDraggedHandler  ButtonDraggedEvent;
 		public event ButtonFinishedHandler ButtonFinishedEvent;
-
-		public ButtonCollectionView () : base()
-		{
-
-		}
 
 		public ButtonCollectionView (CGRect frame) : base(frame)
 		{
@@ -44,9 +38,7 @@ namespace NSZombieApocalypse
 				button.TrackingEndedEvent += TrackingEnded;
 				button.Tag = k;
 				button.SetLabel (ButtonLabelForType ((ButtonType)k));
-
 			}
-
 		}
 
 		public String ButtonLabelForType (ButtonType type)
@@ -69,15 +61,14 @@ namespace NSZombieApocalypse
 
 			case ButtonType.ARC:
 				return "ARC!";
-			default:
-				break;
-
 			}
 			return null;
 		}
 
-		public  void TrackingStarted (ButtonView button)
+		public  void TrackingStarted (object sender, TrackingEventArgs e)
 		{
+			var button = (ButtonView)sender;
+
 			UIGraphics.BeginImageContext (button.Bounds.Size);
 			button.Layer.RenderInContext (UIGraphics.GetCurrentContext ());
 			UIImage image = UIGraphics.GetImageFromCurrentImageContext ();
@@ -98,8 +89,11 @@ namespace NSZombieApocalypse
 				ButtonSelectedEvent (button);
 		}
 
-		public void TrackingContinued (ButtonView button, UITouch location)
+		public void TrackingContinued (object sender, TrackingEventArgs e)
 		{
+			var button = (ButtonView)sender;
+			UITouch location = e.Touch;
+
 			CGPoint point = location.LocationInView (Superview);
 			CGRect frame = trackingImageView.Frame;
 			var newPoint = new CGPoint (point.X - button.Frame.Size.Width / 2, point.Y - button.Frame.Size.Height / 2);
@@ -107,20 +101,18 @@ namespace NSZombieApocalypse
 			trackingImageView.Frame = newFrame;
 			if (ButtonDraggedEvent != null)
 				ButtonDraggedEvent (button, location);
-
 		}
 
-		public void  TrackingEnded (ButtonView button, UITouch location)
+		public void  TrackingEnded (object sender, TrackingEventArgs e)
 		{
-			if (ButtonFinishedEvent != null)
-				ButtonFinishedEvent (button, trackingImageView, location);
+			var button = (ButtonView)sender;
+			ButtonFinishedEvent?.Invoke (button, trackingImageView, e.Touch);
 			trackingImageView = null;
 		}
 
 		public override void LayoutSubviews ()
 		{
-
-			UIView[] subviews = this.Subviews;
+			UIView[] subviews = Subviews;
 			int count = 0;
 			CGRect bounds = Bounds;
 			CGSize buttonSize = ButtonView.ButtonSize;
@@ -137,13 +129,11 @@ namespace NSZombieApocalypse
 				var frame = new CGRect (x, y, buttonSize.Width, buttonSize.Height);
 				subview.Frame = frame.Integral ();
 				x += (float)buttonSize.Width + xPad;
-
 			}
-
 		}
 	}
+
 	public delegate void ButtonSelectedHandler (ButtonView button);
 	public delegate void ButtonDraggedHandler (ButtonView button, UITouch location);
 	public delegate void ButtonFinishedHandler (ButtonView button, UIView trackingview, UITouch location);
 }
-

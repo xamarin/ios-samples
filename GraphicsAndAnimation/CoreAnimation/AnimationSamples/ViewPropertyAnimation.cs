@@ -1,23 +1,16 @@
-﻿using System;
-using UIKit;
+﻿using UIKit;
 using CoreGraphics;
-using CoreAnimation;
 
 namespace AnimationSamples
 {
 	public class ViewPropertyAnimation : UIViewController
 	{
-		UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
+		readonly UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
 
 		CGPoint pt;
 		UIImageView imgView;
 		UIImage img;
 		UIButton animateButton;
-
-		public ViewPropertyAnimation ()
-		{
-			
-		}
 
 		public override void ViewDidLoad ()
 		{
@@ -43,24 +36,16 @@ namespace AnimationSamples
 
 			View.AddSubview (animateButton);
 
-			animateButton.TouchUpInside += (object sender, EventArgs e) => {
-				UIView.Animate (
-					duration: 2, 
-					delay: 0, 
-					options: UIViewAnimationOptions.CurveEaseInOut | UIViewAnimationOptions.Autoreverse,
-					animation: () => {
-						imgView.Center = 
-							new CGPoint (UIScreen.MainScreen.Bounds.Right - imgView.Frame.Width / 2, imgView.Center.Y);},
-					completion: () => {
-						imgView.Center = pt; }
-				);
-			};
+			var options = UIViewAnimationOptions.Autoreverse;
+			animateButton.TouchUpInside += (sender, e) => UIView.Animate (2, 0, options, () => {
+				imgView.Center = new CGPoint (UIScreen.MainScreen.Bounds.Right - imgView.Frame.Width / 2, imgView.Center.Y);
+			}, () => {
+				imgView.Center = pt;
+			});
 
 			View.AddGestureRecognizer (new UITapGestureRecognizer (() => {
-				ViewController initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
-
+				var initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
-
 				PresentViewController(initalViewController, true, null);
 			}));
 		}

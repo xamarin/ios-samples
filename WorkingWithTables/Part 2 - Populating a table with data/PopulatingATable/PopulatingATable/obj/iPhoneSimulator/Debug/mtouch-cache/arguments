@@ -1,0 +1,32 @@
+# Version: 8.10.1.74 (6916d0e)
+# [first argument, ignore] # /Users/amyburns/Documents/Xamarin/Repos/documentation/guides/ios/user_interface/tables/index/Resources/Populating a table with data/PopulatingATable/PopulatingATable/mtouch.exe
+/Library/Frameworks/Xamarin.iOS.framework/Versions/8.10.1.74/bin/mtouch \
+	--cache \
+	"/Users/amyburns/Documents/Xamarin/Repos/documentation/guides/ios/user_interface/tables/index/Resources/Populating a table with data/PopulatingATable/PopulatingATable/obj/iPhoneSimulator/Debug/mtouch-cache" \
+	--sim \
+	"/Users/amyburns/Documents/Xamarin/Repos/documentation/guides/ios/user_interface/tables/index/Resources/Populating a table with data/PopulatingATable/PopulatingATable/bin/iPhoneSimulator/Debug/PopulatingATable.app" \
+	--executable \
+	PopulatingATable \
+	--debug \
+	--nolink \
+	--sdkroot \
+	/Applications/Xcode.app/Contents/Developer \
+	--sdk \
+	8.3 \
+	--targetver \
+	8.3 \
+	--abi=i386 \
+	--symbollist \
+	"/Users/amyburns/Documents/Xamarin/Repos/documentation/guides/ios/user_interface/tables/index/Resources/Populating a table with data/PopulatingATable/PopulatingATable/obj/iPhoneSimulator/Debug/mtouch-symbols.list" \
+	--dsym=no \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Xml.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/Xamarin.iOS.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/System.Core.dll \
+	-r \
+	/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS/mscorlib.dll \
+	"/Users/amyburns/Documents/Xamarin/Repos/documentation/guides/ios/user_interface/tables/index/Resources/Populating a table with data/PopulatingATable/PopulatingATable/bin/iPhoneSimulator/Debug//PopulatingATable.exe" \

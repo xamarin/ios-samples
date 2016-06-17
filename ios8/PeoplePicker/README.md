@@ -5,15 +5,21 @@ This sample demonstrates how to use the Address Book UI people picker and variou
 This sample also shows you how to use the people picker with the new 8.0 APIs and old 7.x APIs. This is useful for apps with a deployment target before 8.0.
 
 Build Requirements:
-=====
+------
+
 Xcode 6.0 or later and iOS 8 or later
 
 Runtime Requirements:
-======
+------
+
 iOS 7 or later (iPhoneSimulator/iPhone)
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
-======
-Copyright (C) 2014 Apple Inc. All rights reserved.
+------
 
 Ported to Xamarin.iOS by Rustam Zaitov

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>a2464a14-c831-4798-96c6-ebed8ad7c3f0</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>User Interface, Device Features, iOS9</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <Brief>Illustrates responsive touch handling using coalesced and predictive touches.</Brief>
+</SampleMetadata>

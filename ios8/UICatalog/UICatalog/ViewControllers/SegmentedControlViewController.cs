@@ -11,16 +11,16 @@ namespace UICatalog
 	public class SegmentedControlViewController : UITableViewController
 	{
 		[Outlet]
-		private UISegmentedControl DefaultSegmentedControl { get; set; }
+		UISegmentedControl DefaultSegmentedControl { get; set; }
 
 		[Outlet]
-		private UISegmentedControl TintedSegmentedControl { get; set; }
+		UISegmentedControl TintedSegmentedControl { get; set; }
 
 		[Outlet]
-		private UISegmentedControl CustomSegmentsSegmentedControl { get; set; }
+		UISegmentedControl CustomSegmentsSegmentedControl { get; set; }
 
 		[Outlet]
-		private UISegmentedControl CustomBackgroundSegmentedControl { get; set; }
+		UISegmentedControl CustomBackgroundSegmentedControl { get; set; }
 
 		public SegmentedControlViewController (IntPtr handle)
 			: base (handle)
@@ -37,21 +37,23 @@ namespace UICatalog
 			ConfigureCustomBackgroundSegmentedControl ();
 		}
 
-		private void ConfigureDefaultSegmentedControl()
+		void ConfigureDefaultSegmentedControl ()
 		{
 			DefaultSegmentedControl.Momentary = true;
 			DefaultSegmentedControl.SetEnabled (false, 0);
+			DefaultSegmentedControl.AccessibilityIdentifier = "DEFAULT UISegmentedControl".Localize ();
 			DefaultSegmentedControl.ValueChanged += SelectedSegmentDidChange;
 		}
 
-		private void ConfigureTintedSegmentedControl()
+		void ConfigureTintedSegmentedControl ()
 		{
 			TintedSegmentedControl.TintColor = ApplicationColors.Blue;
 			TintedSegmentedControl.SelectedSegment = 1;
+			TintedSegmentedControl.AccessibilityIdentifier = "TINTED UISegmentedControl".Localize ();
 			TintedSegmentedControl.ValueChanged += SelectedSegmentDidChange;
 		}
 
-		private void ConfigureCustomSegmentsSegmentedControl()
+		void ConfigureCustomSegmentsSegmentedControl ()
 		{
 			var imageToAccessibilityLabelMappings = new Dictionary<string, string> {
 				{ "checkmark_icon",  "Done".Localize () },
@@ -71,10 +73,11 @@ namespace UICatalog
 			}
 
 			CustomSegmentsSegmentedControl.SelectedSegment = 0;
+			CustomSegmentsSegmentedControl.AccessibilityIdentifier = "CUSTOM SEGMENTS UISegmentedControl".Localize ();
 			CustomSegmentsSegmentedControl.ValueChanged += SelectedSegmentDidChange;
 		}
 
-		private void ConfigureCustomBackgroundSegmentedControl()
+		void ConfigureCustomBackgroundSegmentedControl ()
 		{
 			CustomBackgroundSegmentedControl.SelectedSegment = 2;
 			CustomBackgroundSegmentedControl.SetBackgroundImage (UIImage.FromBundle ("stepper_and_segment_background"), UIControlState.Normal, UIBarMetrics.Default);
@@ -96,10 +99,11 @@ namespace UICatalog
 			};
 			CustomBackgroundSegmentedControl.SetTitleTextAttributes (highlightedTextAttributes, UIControlState.Highlighted);
 
+			CustomBackgroundSegmentedControl.AccessibilityIdentifier = "CUSTOM BACKGROUND UISegmentedControl".Localize ();
 			CustomBackgroundSegmentedControl.ValueChanged += SelectedSegmentDidChange;
 		}
 
-		private void SelectedSegmentDidChange (object sender, EventArgs e)
+		void SelectedSegmentDidChange (object sender, EventArgs e)
 		{
 			Console.WriteLine ("The selected segment changed for: {0}", sender);
 		}

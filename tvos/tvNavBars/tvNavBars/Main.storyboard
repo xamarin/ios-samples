@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Motel01.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ehF-2L-E3v">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <animations/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zOL-4y-GS4">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FoD-ZM-x0p">
+                                    <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <animations/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="145" id="32T-gf-YVd"/>
+                                </constraints>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbL-bS-f3t">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="145" id="PUa-fG-w6s"/>
+                                </constraints>
+                                <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Navigation Bars" id="wNF-Zh-7ku">
+                                        <rightBarButtonItems>
+                                            <barButtonItem title="Hotel 3" id="PKz-2r-VGB">
+                                                <connections>
+                                                    <action selector="ShowThirdHotel:" destination="BYZ-38-t0r" id="iaN-zN-uUB"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Hotel 2" id="bTb-Ut-tnq">
+                                                <connections>
+                                                    <action selector="ShowSecondHotel:" destination="BYZ-38-t0r" id="IPG-B0-JCm"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Hotel 1" id="I25-yV-lS2">
+                                                <connections>
+                                                    <action selector="ShowFirstHotel:" destination="BYZ-38-t0r" id="2e5-lu-Uby"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zOL-4y-GS4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="5Kh-y4-YtA"/>
+                            <constraint firstItem="jbL-bS-f3t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8kk-zL-1YF"/>
+                            <constraint firstAttribute="trailing" secondItem="zOL-4y-GS4" secondAttribute="trailing" id="Olb-4h-HYl"/>
+                            <constraint firstItem="zOL-4y-GS4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="fle-5V-MMB"/>
+                            <constraint firstAttribute="trailing" secondItem="jbL-bS-f3t" secondAttribute="trailing" id="qfv-v3-hfU"/>
+                            <constraint firstItem="jbL-bS-f3t" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="xdT-WP-OJ3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="HotelImage" destination="ehF-2L-E3v" id="LCw-6U-3qI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="325" y="387"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Motel01.jpg" width="1280" height="787"/>
+    </resources>
+</document>

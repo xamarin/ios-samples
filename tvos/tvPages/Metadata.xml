@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>f888382e-7543-4634-a90d-0c77cda61d6e</ID>
+<IsFullApplication>true</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>User Interface</Tags>
+  <SupportedPlatforms>tvOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+  <Brief>Working with Page Controls in Xamarin.tvOS.</Brief>
+</SampleMetadata>

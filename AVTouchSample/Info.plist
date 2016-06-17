@@ -26,13 +26,13 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
-	<key>MinimumOSVersion</key>
-	<string>5.1.1</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.your-company.avtouch</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>MinimumOSVersion</key>
+	<string>6.0</string>
 </dict>
 </plist>

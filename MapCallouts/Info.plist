@@ -21,7 +21,7 @@
 	<string>1.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
-		<string>1</string>
+		<integer>1</integer>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
@@ -31,6 +31,8 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>5.1.1</string>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>MapCallouts</string>
 </dict>
 </plist>

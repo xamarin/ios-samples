@@ -42,10 +42,10 @@ namespace AVCustomEdit
 		{
 			base.ViewDidLoad ();
 
-			this.tableView.Delegate = new TableViewDelegate ();
+			tableView.Delegate = new TableViewDelegate ();
 		}
 
-		partial void TransitionSelected (Foundation.NSObject sender)
+		partial void TransitionSelected (NSObject sender)
 		{
 			TransitionTypePicked (CurrentTransition);
 		}
@@ -67,8 +67,6 @@ namespace AVCustomEdit
 				if (TransitionTypePicked != null)
 					TransitionTypePicked (TransitionTypeController.CrossDissolveTransition);
 				CurrentTransition = CrossDissolveTransition;
-				break;
-			default:
 				break;
 		}
 

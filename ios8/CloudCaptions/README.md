@@ -4,17 +4,18 @@ This sample shows how to use `CloudKit` to upload and retrieve `CKRecords` and a
 
 Refs
 ----
-It is strongly recomended to whatch [WWDC 2014 videos](https://developer.apple.com/videos/wwdc/2014/) to become familar with CloudKit:
+It is strongly recommended to watch [WWDC 2014 videos](https://developer.apple.com/videos/wwdc/2014/) to become familiar with CloudKit:
+
 * Introducing CloudKit
 * Advanced CloudKit
 
 How to setup
 ------------
-The `CloudCaptions.entitlements` file lists two entitlements: `com.apple.developer.icloud-container-identifiers` and `com.apple.developer.icloud-services`. For this sample you must create iCloud container via Apple's Member Center. You can find an instruction for creation iCloud containers [here](http://developer.xamarin.com/guides/ios/platform_features/introduction_to_the_document_picker/) – you are interested in "Enabling iCloud in Xamarin" section.
+The `CloudCaptions.entitlements` file lists two entitlements: `com.apple.developer.icloud-container-identifiers` and `com.apple.developer.icloud-services`. For this sample you must create an iCloud container via Apple's Member Center. You can find  instructions for creating iCloud containers [here](http://developer.xamarin.com/guides/ios/platform_features/introduction_to_the_document_picker/) – you are interested in the "Enabling iCloud in Xamarin" section.
 
-Don't forget change iCloud containber identifier from `iCloud.com.xamarin.cloudcaptions` to `iCloud.(Your Bundle ID)`
+Don't forget change iCloud container identifier from `iCloud.com.xamarin.cloudcaptions` to `iCloud.(Your Bundle ID)`
 
-Try running CloudCaptions on your device. You may run into provisioning issues – in this case you should check you CloudCaptions.entitlements and provisioning settings.
+Try running CloudCaptions on your device. You may run into provisioning issues – in this case you should check your CloudCaptions.entitlements and provisioning settings.
 
 Once the app is running, you may see a `CKInternalError` in the console output. To resolve this, all you need to do is view your container in [CloudKit dashboard](https://icloud.developer.apple.com/dashboard/).
 
@@ -34,9 +35,12 @@ Target
 ------
 This sample runnable on iPhoneSimulator/iPadSimulator iPhone/iPad
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
 ------ 
-IOS:
-Copyright (C) 2014 Apple Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Rustam Zaitov

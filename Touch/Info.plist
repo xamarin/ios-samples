@@ -16,7 +16,7 @@
 		<string>Resources/icon-100.png</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>5.2</string>
+	<string>9.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -25,5 +25,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
 </dict>
 </plist>

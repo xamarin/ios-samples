@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MusicMotion</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>MusicMotion</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+    <IpaPackageName>
+    </IpaPackageName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\Iceland_001.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Iceland_001.imageset\Iceland 001.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Iceland_005.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Iceland_005.imageset\Iceland 005.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Iceland_006.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Iceland_006.imageset\Iceland 006.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Iceland_016.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Iceland_016.imageset\Iceland 016.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Iceland_017.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Iceland_017.imageset\Iceland 017.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Iceland_018.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Iceland_018.imageset\Iceland 018.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Italy_008.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Italy_008.imageset\Italy 008.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Italy_017.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Italy_017.imageset\Italy 017.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Italy_019.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Italy_019.imageset\Italy 019.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Lola_006.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Lola_006.imageset\Lola 006.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Lola_009.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Lola_009.imageset\Lola 009.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\Lola_011.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Lola_011.imageset\Lola 011.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-app-60%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-app-57.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-app-60%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-app-72.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-app-72%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-app-76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-app-76%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-carplay-120.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-spotlight-29.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-spotlight-29%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-spotlight-29%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-spotlight-40.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-spotlight-40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-spotlight-40%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-spotlight-50.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-spotlight-50%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\icon-spp-57%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="View Controller Classes\HistoryViewController.cs" />
+    <Compile Include="View Controller Classes\HistoryViewController.designer.cs">
+      <DependentUpon>HistoryViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View Controller Classes\SongViewController.cs" />
+    <Compile Include="View Controller Classes\SongViewController.designer.cs">
+      <DependentUpon>SongViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data Model Classes\Song.cs" />
+    <Compile Include="Data Model Classes\SongManager.cs" />
+    <Compile Include="Data Model Classes\MotionManager.cs" />
+    <Compile Include="Data Model Classes\Activity.cs" />
+    <Compile Include="Data Model Classes\Extensions.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="View Controller Classes\" />
+    <Folder Include="Data Model Classes\" />
+    <Folder Include="Resources\Images.xcassets\Iceland_001.imageset\" />
+    <Folder Include="Resources\Images.xcassets\Iceland_005.imageset\" />
+    <Folder Include="Resources\Images.xcassets\Iceland_006.imageset\" />
+    <Folder Include="Resources\Images.xcassets\Iceland_016.imageset\" />
+    <Folder Include="Resources\Images.xcassets\Iceland_017.imageset\" />
+    <Folder Include="Resources\Images.xcassets\Iceland_018.imageset\" />
+    <Folder Include="Resources\Images.xcassets\Italy_008.imageset\" />
+    <Folder Include="Resources\Images.xcassets\Italy_017.imageset\" />
+    <Folder Include="Resources\Images.xcassets\Italy_019.imageset\" />
+    <Folder Include="Resources\Images.xcassets\Lola_006.imageset\" />
+    <Folder Include="Resources\Images.xcassets\Lola_009.imageset\" />
+    <Folder Include="Resources\Images.xcassets\Lola_011.imageset\" />
+    <Folder Include="Resources\Images.xcassets\splash-xamagon.imageset\" />
+    <Folder Include="Resources\Images.xcassets\AppIcon.appiconset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Images.xcassets\first.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\first.imageset\first.pdf" />
+    <BundleResource Include="Resources\Images.xcassets\second.imageset\Contents.json" />
+    <BundleResource Include="Resources\Images.xcassets\second.imageset\second.pdf" />
+  </ItemGroup>
+</Project>

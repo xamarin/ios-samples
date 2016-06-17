@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionView", "CollectionView\CollectionView.csproj", "{DA51BE70-B4C3-4604-A90B-31AAF03B7995}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA51BE70-B4C3-4604-A90B-31AAF03B7995}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{DA51BE70-B4C3-4604-A90B-31AAF03B7995}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{DA51BE70-B4C3-4604-A90B-31AAF03B7995}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{DA51BE70-B4C3-4604-A90B-31AAF03B7995}.Debug|iPhone.Build.0 = Debug|iPhone
+		{DA51BE70-B4C3-4604-A90B-31AAF03B7995}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{DA51BE70-B4C3-4604-A90B-31AAF03B7995}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{DA51BE70-B4C3-4604-A90B-31AAF03B7995}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{DA51BE70-B4C3-4604-A90B-31AAF03B7995}.Release|Any CPU.Build.0 = Release|iPhone
+		{DA51BE70-B4C3-4604-A90B-31AAF03B7995}.Release|iPhone.ActiveCfg = Release|iPhone
+		{DA51BE70-B4C3-4604-A90B-31AAF03B7995}.Release|iPhone.Build.0 = Release|iPhone
+		{DA51BE70-B4C3-4604-A90B-31AAF03B7995}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{DA51BE70-B4C3-4604-A90B-31AAF03B7995}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal

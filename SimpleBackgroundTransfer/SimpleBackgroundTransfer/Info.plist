@@ -11,9 +11,9 @@
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>9.0</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.SimpleBackgroundTransfer.BackgroundSession</string>
+	<string>com.xamarin.BackgroundSession</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon</string>

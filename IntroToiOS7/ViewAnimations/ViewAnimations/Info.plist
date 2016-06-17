@@ -22,6 +22,6 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.ViewAnimations</string>
 	<key>MinimumOSVersion</key>
-	<string>5.1.1</string>
+	<string>6.0</string>
 </dict>
 </plist>

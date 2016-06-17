@@ -9,19 +9,21 @@ namespace UICatalog
 	[Register ("PickerViewController")]
 	public class PickerViewController : UIViewController
 	{
-		private enum ColorComponent {
+		enum ColorComponent
+		{
 			Red,
 			Green,
 			Blue
 		}
 
-		private struct RGB {
+		struct RGB
+		{
 			public const float max = 255f;
 			public const float min = 0f;
 			public const float offset = 5f;
 		}
 
-		private readonly int _numberOfColorValuesPerComponent = (int)RGB.max / (int)RGB.offset + 1;
+		readonly int numberOfColorValuesPerComponent = (int)RGB.max / (int)RGB.offset + 1;
 
 		[Outlet]
 		UIPickerView PickerView { get; set; }
@@ -29,33 +31,36 @@ namespace UICatalog
 		[Outlet]
 		UIView ColorSwatchView { get; set; }
 
-		float _redColor;
-		private float RedColor {
-			get { return _redColor; }
+		float redColor;
+
+		float RedColor {
+			get { return redColor; }
 			set {
-				_redColor = value;
+				redColor = value;
 				UpdateColorSwatchViewBackgroundColor ();
 			}
 		}
 
-		private float _greenColor;
-		private float GreenColor {
+		float greenColor;
+
+		float GreenColor {
 			get {
-				return _greenColor;
+				return greenColor;
 			}
 			set {
-				_greenColor = value;
+				greenColor = value;
 				UpdateColorSwatchViewBackgroundColor ();
 			}
 		}
 
-		private float _blueColor;
-		private float BlueColor {
+		float blueColor;
+
+		float BlueColor {
 			get {
-				return _blueColor;
+				return blueColor;
 			}
 			set {
-				_blueColor = value;
+				blueColor = value;
 				UpdateColorSwatchViewBackgroundColor ();
 			}
 		}
@@ -63,9 +68,9 @@ namespace UICatalog
 		public PickerViewController (IntPtr handle)
 			: base (handle)
 		{
-			_redColor = RGB.min;
-			_greenColor = RGB.min;
-			_blueColor = RGB.min;
+			redColor = RGB.min;
+			greenColor = RGB.min;
+			blueColor = RGB.min;
 		}
 
 		public override void ViewDidLoad ()
@@ -75,15 +80,15 @@ namespace UICatalog
 			// Show that a given row is selected. This is off by default.
 			PickerView.ShowSelectionIndicator = true;
 
-			ConfigurePickerView();
+			ConfigurePickerView ();
 		}
 
-		private void UpdateColorSwatchViewBackgroundColor()
+		void UpdateColorSwatchViewBackgroundColor ()
 		{
-			ColorSwatchView.BackgroundColor = new UIColor(RedColor, GreenColor, BlueColor, 1f);
+			ColorSwatchView.BackgroundColor = new UIColor (RedColor, GreenColor, BlueColor, 1f);
 		}
 
-		private void ConfigurePickerView()
+		void ConfigurePickerView ()
 		{
 			// Set the default selected rows (the desired rows to initially select will vary from app to app).
 			Dictionary<ColorComponent, int> selectedRows = new Dictionary<ColorComponent, int> {
@@ -108,7 +113,7 @@ namespace UICatalog
 		#region UIPickerViewDelegate
 
 		[Export ("pickerView:attributedTitleForRow:forComponent:")]
-		private NSAttributedString GetAttributedTitle (UIPickerView pickerView, int row, int component)
+		NSAttributedString GetAttributedTitle (UIPickerView pickerView, int row, int component)
 		{
 			float colorValue = row * RGB.offset;
 
@@ -117,22 +122,21 @@ namespace UICatalog
 			float greenColorComponent = RGB.min;
 			float blueColorComponent = RGB.min;
 
-			switch( (ColorComponent)component)
-			{
-				case ColorComponent.Red:
-					redColorComponent = value;
-					break;
+			switch ((ColorComponent)component) {
+			case ColorComponent.Red:
+				redColorComponent = value;
+				break;
 
-				case ColorComponent.Green:
-					greenColorComponent = value;
-					break;
+			case ColorComponent.Green:
+				greenColorComponent = value;
+				break;
 
-				case ColorComponent.Blue:
-					blueColorComponent = value;
-					break;
+			case ColorComponent.Blue:
+				blueColorComponent = value;
+				break;
 
-				default:
-					throw new InvalidOperationException ("Invalid row/component combination for picker view.");
+			default:
+				throw new InvalidOperationException ("Invalid row/component combination for picker view.");
 			}
 
 			UIColor foregroundColor = new UIColor (redColorComponent, greenColorComponent, blueColorComponent, alpha: 1f);
@@ -147,23 +151,22 @@ namespace UICatalog
 		}
 
 		[Export ("pickerView:didSelectRow:inComponent:")]
-		private void Selected (UIPickerView pickerView, int row, int component)
+		void Selected (UIPickerView pickerView, int row, int component)
 		{
 			float colorComponentValue = RGB.offset * (float)row / RGB.max;
 
-			switch ((ColorComponent)component)
-			{
-				case ColorComponent.Red:
-					RedColor = colorComponentValue;
-					break;
+			switch ((ColorComponent)component) {
+			case ColorComponent.Red:
+				RedColor = colorComponentValue;
+				break;
 
-				case ColorComponent.Green:
-					GreenColor = colorComponentValue;
-					break;
+			case ColorComponent.Green:
+				GreenColor = colorComponentValue;
+				break;
 
-				case ColorComponent.Blue:
-					BlueColor = colorComponentValue;
-					break;
+			case ColorComponent.Blue:
+				BlueColor = colorComponentValue;
+				break;
 			}
 		}
 
@@ -171,22 +174,21 @@ namespace UICatalog
 
 		#region UIPickerViewAccessibilityDelegate
 
-		[Export("pickerView:accessibilityLabelForComponent:")]
-		private string GetAccessibilityLabel(UIPickerView pickerView, int component)
+		[Export ("pickerView:accessibilityLabelForComponent:")]
+		string GetAccessibilityLabel (UIPickerView pickerView, int component)
 		{
-			switch ((ColorComponent)component)
-			{
-				case ColorComponent.Red:
-					return "Red color component value".Localize ();
+			switch ((ColorComponent)component) {
+			case ColorComponent.Red:
+				return "Red color component value".Localize ();
 
-				case ColorComponent.Green:
-					return "Green color component value".Localize ();
+			case ColorComponent.Green:
+				return "Green color component value".Localize ();
 
-				case ColorComponent.Blue:
-					return "Blue color component value".Localize ();
+			case ColorComponent.Blue:
+				return "Blue color component value".Localize ();
 
-				default:
-					throw new InvalidOperationException ();
+			default:
+				throw new InvalidOperationException ();
 			}
 		}
 
@@ -194,16 +196,16 @@ namespace UICatalog
 
 		#region UIPickerViewDataSource
 
-		[Export("numberOfComponentsInPickerView:")]
+		[Export ("numberOfComponentsInPickerView:")]
 		public int GetComponentCount (UIPickerView pickerView)
 		{
 			return Enum.GetValues (typeof(ColorComponent)).Length;
 		}
 
-		[Export("pickerView:numberOfRowsInComponent:")]
+		[Export ("pickerView:numberOfRowsInComponent:")]
 		public int GetRowsInComponent (UIPickerView pickerView, int component)
 		{
-			return _numberOfColorValuesPerComponent;
+			return numberOfColorValuesPerComponent;
 		}
 
 		#endregion

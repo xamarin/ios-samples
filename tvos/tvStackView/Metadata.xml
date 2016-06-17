@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>165ca053-49b3-44a4-84cb-f920ddd8ef1b</ID>
+<IsFullApplication>true</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>User Interface</Tags>
+  <SupportedPlatforms>tvOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+  <Brief>Working with Stack Views in Xamarin.tvOS.</Brief>
+</SampleMetadata>

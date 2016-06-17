@@ -52,20 +52,20 @@ namespace RecipesAndPrinting
 		//
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
+			UIApplication.CheckForIllegalCrossThreadCalls = false;
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			// Create the recipes controller object that provides recipe data to the application UI.
 			// The need for a data controller object such as this increases as the amount of data your
 			// application uses increases. However, for simplicity, this sample stores only two recipes.
-			RecipesController recipesController = new RecipesController ();
+			var recipesController = new RecipesController ();
 
 			// Load the main table view controller that displays a list of recipes.
 			mainViewController = new RecipeListTableViewController (UITableViewStyle.Plain, recipesController);
 
 			navController = new UINavigationController (mainViewController);
-			navController.NavigationBar.Translucent = false;
 
-			window.AddSubview (navController.View);
+			window.RootViewController = navController;
 			window.MakeKeyAndVisible ();
 
 			return true;

@@ -17,10 +17,6 @@ namespace AVCustomEdit
 		AVMutableComposition Composition;
 		AVMutableVideoComposition VideoComposition;
 
-		public SimpleEditor () : base()
-		{
-		}
-
 		void buildTransitionComposition(AVMutableComposition composition, AVMutableVideoComposition videoComposition)
 		{
 			CMTime nextClipStartTime = CMTime.Zero;
@@ -66,7 +62,7 @@ namespace AVCustomEdit
 						Duration = asset.Duration
 					};
 				}
-				NSError error = new NSError ();
+				NSError error;
 				AVAssetTrack clipVideoTrack = asset.TracksWithMediaType (AVMediaType.Video) [0];
 				compositionVideoTracks [alternatingIndex].InsertTimeRange (timeRangeInAsset, clipVideoTrack, nextClipStartTime, out error);
 
@@ -98,7 +94,7 @@ namespace AVCustomEdit
 
 				if(i + 1 < clipsCount)
 				{
-					transitionTimeRanges [i] = new CMTimeRange () {
+					transitionTimeRanges [i] = new CMTimeRange {
 						Start  = nextClipStartTime,
 						Duration = transitionDuration
 					};
@@ -166,7 +162,7 @@ namespace AVCustomEdit
 //					}
 					// TODO: remove following call if previous works
 					if (videoComposition.CustomVideoCompositorClass.Name != "nil") {
-						NSNumber[] sources = new NSNumber[] {
+						NSNumber[] sources = {
 							new NSNumber (compositionVideoTracks [0].TrackID),
 							new NSNumber (compositionVideoTracks [1].TrackID)
 						};
@@ -179,7 +175,7 @@ namespace AVCustomEdit
 						instructions.Add (videoInstructions);
 						Console.WriteLine ("Add transition from clip i to clip i+1");
 					} else {
-						AVMutableVideoCompositionInstruction transitionInstruction = AVMutableVideoCompositionInstruction.Create () as AVMutableVideoCompositionInstruction;
+						var transitionInstruction = AVMutableVideoCompositionInstruction.Create () as AVMutableVideoCompositionInstruction;
 						transitionInstruction.TimeRange = transitionTimeRanges [i];
 						AVMutableVideoCompositionLayerInstruction fromLayer = AVMutableVideoCompositionLayerInstruction.FromAssetTrack (compositionVideoTracks [alternatingIndex]);
 						AVMutableVideoCompositionLayerInstruction toLayer = AVMutableVideoCompositionLayerInstruction.FromAssetTrack (compositionVideoTracks [1 - alternatingIndex]);
@@ -205,7 +201,7 @@ namespace AVCustomEdit
 
 			var videoSize = Clips [0].NaturalSize;
 			var composition = AVMutableComposition.Create ();
-			AVMutableVideoComposition videoComposition = null;
+			AVMutableVideoComposition videoComposition;
 
 			composition.NaturalSize = videoSize;
 

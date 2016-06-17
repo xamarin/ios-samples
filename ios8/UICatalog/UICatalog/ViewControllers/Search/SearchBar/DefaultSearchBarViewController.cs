@@ -6,10 +6,10 @@ using UIKit;
 namespace UICatalog
 {
 	[Register ("DefaultSearchBarViewController")]
-	public partial class DefaultSearchBarViewController : UIViewController
+	public class DefaultSearchBarViewController : UIViewController
 	{
 		[Outlet]
-		private UISearchBar SearchBar { get; set; }
+		UISearchBar SearchBar { get; set; }
 
 		public DefaultSearchBarViewController (IntPtr handle)
 			: base (handle)
@@ -23,7 +23,7 @@ namespace UICatalog
 			ConfigureSearchBar ();
 		}
 
-		private void ConfigureSearchBar()
+		void ConfigureSearchBar()
 		{
 			SearchBar.ShowsCancelButton = true;
 			SearchBar.ShowsScopeBar = true;
@@ -37,20 +37,20 @@ namespace UICatalog
 		#region UISearchBarDelegate
 
 		[Export("searchBar:selectedScopeButtonIndexDidChange:")]
-		private void OnSelectedScopeButtonIndexChange(UISearchBar searchBar, int selectedScope)
+		void OnSelectedScopeButtonIndexChange(UISearchBar searchBar, int selectedScope)
 		{
 			Console.WriteLine ("The default search selected scope button index changed to {0}.", selectedScope);
 		}
 
 		[Export("searchBarSearchButtonClicked:")]
-		private void OnSearchBarSearchButtonClicked(UISearchBar searchBar)
+		void OnSearchBarSearchButtonClicked(UISearchBar searchBar)
 		{
 			Console.WriteLine ("The default search bar keyboard search button was tapped: {0}", searchBar);
 			searchBar.ResignFirstResponder ();
 		}
 
 		[Export("searchBarCancelButtonClicked:")]
-		private void searchBarCancelButtonClicked(UISearchBar searchBar)
+		void searchBarCancelButtonClicked(UISearchBar searchBar)
 		{
 			Console.WriteLine ("The default search bar cancel button was tapped.");
 			searchBar.ResignFirstResponder();

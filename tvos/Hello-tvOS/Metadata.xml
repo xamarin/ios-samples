@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>1308688c-e198-4998-a5e8-6c6f764cc1f8</ID>
+<IsFullApplication>true</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>User Interface</Tags>
+  <SupportedPlatforms>tvOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+  <Brief>Implements a simple "Hello World" app for tvOs.</Brief>
+</SampleMetadata>

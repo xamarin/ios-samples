@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManualCameraControls", "ManualCameraControls\ManualCameraControls.csproj", "{32D1049E-065C-44C0-A7C9-994277EF71C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32D1049E-065C-44C0-A7C9-994277EF71C3}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{32D1049E-065C-44C0-A7C9-994277EF71C3}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{32D1049E-065C-44C0-A7C9-994277EF71C3}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{32D1049E-065C-44C0-A7C9-994277EF71C3}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{32D1049E-065C-44C0-A7C9-994277EF71C3}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{32D1049E-065C-44C0-A7C9-994277EF71C3}.Debug|iPhone.Build.0 = Debug|iPhone
+		{32D1049E-065C-44C0-A7C9-994277EF71C3}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{32D1049E-065C-44C0-A7C9-994277EF71C3}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{32D1049E-065C-44C0-A7C9-994277EF71C3}.Release|iPhone.ActiveCfg = Release|iPhone
+		{32D1049E-065C-44C0-A7C9-994277EF71C3}.Release|iPhone.Build.0 = Release|iPhone
+		{32D1049E-065C-44C0-A7C9-994277EF71C3}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{32D1049E-065C-44C0-A7C9-994277EF71C3}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ManualCameraControls\ManualCameraControls.csproj
+	EndGlobalSection
+EndGlobal

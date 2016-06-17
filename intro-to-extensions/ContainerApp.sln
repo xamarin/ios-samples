@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContainerApp", "ContainerApp\ContainerApp.csproj", "{056CEE8B-5147-4E68-9982-14034A4A42F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DayCountExtension", "DayCountExtension\DayCountExtension.csproj", "{B01C1AE3-B909-42C8-899F-97FFA69A2B61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{056CEE8B-5147-4E68-9982-14034A4A42F6}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{056CEE8B-5147-4E68-9982-14034A4A42F6}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{056CEE8B-5147-4E68-9982-14034A4A42F6}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{056CEE8B-5147-4E68-9982-14034A4A42F6}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{056CEE8B-5147-4E68-9982-14034A4A42F6}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{056CEE8B-5147-4E68-9982-14034A4A42F6}.Debug|iPhone.Build.0 = Debug|iPhone
+		{056CEE8B-5147-4E68-9982-14034A4A42F6}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{056CEE8B-5147-4E68-9982-14034A4A42F6}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{056CEE8B-5147-4E68-9982-14034A4A42F6}.Release|iPhone.ActiveCfg = Release|iPhone
+		{056CEE8B-5147-4E68-9982-14034A4A42F6}.Release|iPhone.Build.0 = Release|iPhone
+		{056CEE8B-5147-4E68-9982-14034A4A42F6}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{056CEE8B-5147-4E68-9982-14034A4A42F6}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{B01C1AE3-B909-42C8-899F-97FFA69A2B61}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{B01C1AE3-B909-42C8-899F-97FFA69A2B61}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{B01C1AE3-B909-42C8-899F-97FFA69A2B61}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{B01C1AE3-B909-42C8-899F-97FFA69A2B61}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{B01C1AE3-B909-42C8-899F-97FFA69A2B61}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{B01C1AE3-B909-42C8-899F-97FFA69A2B61}.Debug|iPhone.Build.0 = Debug|iPhone
+		{B01C1AE3-B909-42C8-899F-97FFA69A2B61}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{B01C1AE3-B909-42C8-899F-97FFA69A2B61}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{B01C1AE3-B909-42C8-899F-97FFA69A2B61}.Release|iPhone.ActiveCfg = Release|iPhone
+		{B01C1AE3-B909-42C8-899F-97FFA69A2B61}.Release|iPhone.Build.0 = Release|iPhone
+		{B01C1AE3-B909-42C8-899F-97FFA69A2B61}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{B01C1AE3-B909-42C8-899F-97FFA69A2B61}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ContainerApp\ContainerApp.csproj
+	EndGlobalSection
+EndGlobal

@@ -19,7 +19,7 @@
 	<key>CFBundleName</key>
 	<string>FSScenceKit</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.fsscencekit</string>
+	<string>com.xamarin.fsscenekit</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
 	<key>CFBundleVersion</key>

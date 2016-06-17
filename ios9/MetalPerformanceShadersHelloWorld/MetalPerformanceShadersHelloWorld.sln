@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetalPerformanceShadersHelloWorld", "MetalPerformanceShadersHelloWorld\MetalPerformanceShadersHelloWorld.csproj", "{4551FB46-91BE-4CE0-92B3-98C866742F46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4551FB46-91BE-4CE0-92B3-98C866742F46}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{4551FB46-91BE-4CE0-92B3-98C866742F46}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{4551FB46-91BE-4CE0-92B3-98C866742F46}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{4551FB46-91BE-4CE0-92B3-98C866742F46}.AppStore|iPhone.Build.0 = Release|iPhone
+		{4551FB46-91BE-4CE0-92B3-98C866742F46}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{4551FB46-91BE-4CE0-92B3-98C866742F46}.Debug|iPhone.Build.0 = Debug|iPhone
+		{4551FB46-91BE-4CE0-92B3-98C866742F46}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{4551FB46-91BE-4CE0-92B3-98C866742F46}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{4551FB46-91BE-4CE0-92B3-98C866742F46}.Release|iPhone.ActiveCfg = Release|iPhone
+		{4551FB46-91BE-4CE0-92B3-98C866742F46}.Release|iPhone.Build.0 = Release|iPhone
+		{4551FB46-91BE-4CE0-92B3-98C866742F46}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{4551FB46-91BE-4CE0-92B3-98C866742F46}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal

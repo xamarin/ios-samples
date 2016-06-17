@@ -1,10 +1,9 @@
-using System;
-using CoreGraphics;
 using UIKit;
+using CoreGraphics;
 
 namespace NSZombieApocalypse
 {
-	public class SymbolMarkView :UIButton
+	public sealed class SymbolMarkView :UIButton
 	{
 		UILabel label;
 
@@ -19,10 +18,11 @@ namespace NSZombieApocalypse
 
 		public SymbolMarkView (CGRect frame): base (frame)
 		{
-			label = new UILabel (new CGRect (0, 0, frame.Size.Width, frame.Size.Height));
-			label.TextAlignment = UITextAlignment.Center;
-			label.Font = UIFont.FromName ("HelveticaNeue-Bold", 48);
-			label.BackgroundColor = UIColor.Clear;
+			label = new UILabel (new CGRect (CGPoint.Empty, frame.Size)) {
+				TextAlignment = UITextAlignment.Center,
+				Font = UIFont.FromName ("HelveticaNeue-Bold", 48),
+				BackgroundColor = UIColor.Clear,
+			};
 			AddSubview (label);
 		}
 
@@ -40,4 +40,3 @@ namespace NSZombieApocalypse
 		}
 	}
 }
-

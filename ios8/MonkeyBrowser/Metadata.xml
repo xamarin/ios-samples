@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>f66db990-3feb-4d7b-ac4a-60a389eb8cc3</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>Continuation, Handoff</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+    <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>This app demonstrates using Handoff a Xamarin.iOS app to pass activities between devices.</Brief>
+</SampleMetadata>

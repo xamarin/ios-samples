@@ -13,8 +13,12 @@ namespace ImageInverterExt
 		public ImageInverterViewController (IntPtr handle)
 			: base (handle)
 		{
-			Console.WriteLine (IntPtr.Size);
-			Console.WriteLine ("ImageInverterViewController called");
+		}
+
+		[Export ("initWithCoder:")]
+		public ImageInverterViewController (NSCoder coder)
+			: base (coder)
+		{
 		}
 
 		public override void ViewDidLoad ()
@@ -40,22 +44,39 @@ namespace ImageInverterExt
 				return;
 
 			imageItemProvider.LoadItem (UTType.Image, null, (NSObject image, NSError error) => {
-				if (image == null)
+				UIImage img;
+
+				// This is true when you call extension from Photo's ActivityViewController
+				var url = image as NSUrl;
+				if(url != null) {
+					img = UIImage.LoadFromData(NSData.FromUrl(url));
+					InitWithImage (img);
 					return;
+				}
 
-				// Invert the image, enable the Done button
-				InvokeOnMainThread (() => {
-					// Invert the image
-					UIImage invertedImage = InvertedImage((UIImage)image);
-
-					// Set the inverted image in the UIImageView
-					ImageView.Image = invertedImage;
-					DoneButton.Enabled = true;
-				});
+				// This is true when you call extension from Main App
+				img = image as UIImage;
+				if (img != null) {
+					InitWithImage(img);
+					return;
+				}
 			});
 		}
 
-		private UIImage InvertedImage(UIImage originalImage)
+		void InitWithImage (UIImage image)
+		{
+			// Invert the image, enable the Done button
+			InvokeOnMainThread (() => {
+				// Invert the image
+				UIImage invertedImage = Invert(image);
+
+				// Set the inverted image in the UIImageView
+				ImageView.Image = invertedImage;
+				DoneButton.Enabled = true;
+			});
+		}
+
+		static UIImage Invert(UIImage originalImage)
 		{
 			// Invert the image by applying an affine transformation
 			UIGraphics.BeginImageContext (originalImage.Size);
@@ -81,13 +102,13 @@ namespace ImageInverterExt
 		partial void OnDoneClicked (UIBarButtonItem sender)
 		{
 			// Create the NSExtensionItem and NSItemProvider in which we return the image
-			NSExtensionItem extensionItem = new NSExtensionItem {
+			var extensionItem = new NSExtensionItem {
 				AttributedTitle = new NSAttributedString ("Inverted Image"),
-				Attachments = new NSItemProvider[] {
+				Attachments = new [] {
 					new NSItemProvider (ImageView.Image, UTType.Image)
 				}
 			};
-			ExtensionContext.CompleteRequest(new NSExtensionItem[] {
+			ExtensionContext.CompleteRequest(new [] {
 				extensionItem
 			}, null);
 		}

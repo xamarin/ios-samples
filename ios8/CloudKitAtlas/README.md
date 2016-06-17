@@ -51,8 +51,13 @@ Finally, open sample in Xamarin Studio and open project settings.
 * Make sure you are signed into your iCloud account in the simulator
   or device before running the app.
 
+
+Copyright
+=========
+
+Xamarin port changes are released under the MIT license
+
 Author
 ======
-Copyright (C) 2014 Apple Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Oleg Demchenko and Timothy Risi

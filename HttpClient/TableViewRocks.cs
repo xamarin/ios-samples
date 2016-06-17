@@ -3,7 +3,7 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace HttpClient
+namespace HttpClientSample
 {
 
 	class StringDataSource : UITableViewDataSource {

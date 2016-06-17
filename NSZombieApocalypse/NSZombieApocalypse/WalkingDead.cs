@@ -1,19 +1,21 @@
 using System;
-using CoreGraphics;
-using Foundation;
+
 using UIKit;
-using System.Threading.Tasks;
+using Foundation;
+using CoreGraphics;
+
 
 namespace NSZombieApocalypse
 {
-	public partial class WalkingDead : UIControl
+	public class WalkingDead : UIControl
 	{
 		Head head;
 		Body body;
-		RightArm rightArm;
-		LeftArm leftArm;
-		RightLeg rightLeg;
-		LeftLeg leftLeg;
+
+		readonly RightArm rightArm;
+		readonly LeftArm leftArm;
+		readonly RightLeg rightLeg;
+		readonly LeftLeg leftLeg;
 
 		double startedWalking;
 		float startedWalkingX;
@@ -157,7 +159,7 @@ namespace NSZombieApocalypse
 			}
 		}
 
-		class LeftArm : BodyPart
+		sealed class LeftArm : BodyPart
 		{
 			public LeftArm (CGRect rect) : base (rect)
 			{
@@ -166,8 +168,9 @@ namespace NSZombieApocalypse
 			public override void Draw (CGRect rect)
 			{
 				UIView head = ((WalkingDead)Superview).head;
-				UIBezierPath path = new UIBezierPath ();
-				path.LineCapStyle = CGLineCap.Round;
+				var path = new UIBezierPath {
+					LineCapStyle = CGLineCap.Round
+				};
 				CGRect headFrame = head.Frame;
 
 				if (!MovingRight) {
@@ -270,11 +273,7 @@ namespace NSZombieApocalypse
 				startedWalkingX = (float)Frame.X;
 				CGRect frame = Frame;
 				frame.X = 50;
-				UIView.Animate (10, 0, UIViewAnimationOptions.AllowUserInteraction, () => {
-					Frame = frame;},
-				                () => {
-					Walk ();
-				});
+				UIView.Animate (10, 0, UIViewAnimationOptions.AllowUserInteraction, () => Frame = frame, Walk);
 			});
 		}
 
@@ -297,12 +296,7 @@ namespace NSZombieApocalypse
 
 				frame = new CGRect (rightLeg.Frame.X + 50, rightLeg.Frame.Size.Height, rightLeg.Frame.Width, rightLeg.Frame.Height);
 				rightLeg.Frame = frame;
-			}, async () => {
-				await UIView.AnimateAsync (.5, () => {
-					this.Alpha = 0;
-				});
-				RemoveFromSuperview ();
-			});
+			}, () => UIView.Animate (.5, () => Alpha = 0, RemoveFromSuperview));
 		}
 
 		public void MoveArms ()
@@ -332,20 +326,18 @@ namespace NSZombieApocalypse
 			if (!animated)
 				return;
 
-			float legRotation = (float)(Math.PI / 4 * .35);
+			const float legRotation = (float)(Math.PI / 4 * .35);
 			UIView.Animate (2.5, () => {
 				rightLeg.Transform = CGAffineTransform.MakeRotation (legRotation);
 				leftLeg.Transform = CGAffineTransform.MakeRotation (-legRotation);
-			}, async () => {
+			}, () => {
 				if (!animated)
 					return;
 
-				await UIView.AnimateAsync (2.5, () => {
+				UIView.Animate (2.5, () => {
 					rightLeg.Transform = CGAffineTransform.MakeRotation (-legRotation);
 					leftLeg.Transform = CGAffineTransform.MakeRotation (legRotation);
-				});
-
-				MoveLegs ();
+				},MoveLegs);
 			});
 		}
 

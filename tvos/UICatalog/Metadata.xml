@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>216fda44-8eef-4919-a966-c097a21037e0</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>User Interface, tvOS</Tags>
+  <SupportedPlatforms>tvOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <Brief>Demonstrates how to use many views and controls in the UIKit framework on tvOS.</Brief>
+</SampleMetadata>

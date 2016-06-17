@@ -12,7 +12,7 @@ Go to Settings > General > Accessibility. Enable "Bold Text", "Reduce Motion". T
 
 Also you can play with VoiceOver. Enable it from Settings > General > Accessibility > VoiceOver
 
-For more details, please watch WWDC video "Accessibility on iOS" from [WWDC 2014].
+For more details, please watch WWDC video "Accessibility on iOS" from [WWDC 2014](https://developer.apple.com/videos/wwdc/2014/)
 
 Build Requirements
 ------------------
@@ -24,10 +24,12 @@ Target
 
 This sample is runnable on iPhoneSimulator/iPadSimulator and iPhone/iPad.
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
 ------
 
-Copyright (C) 2014 Apple Inc. All rights reserved.  
 Ported to Xamarin.iOS by Rustam Zaitov.
-
-[WWDC 2014]:https://developer.apple.com/videos/wwdc/2014/

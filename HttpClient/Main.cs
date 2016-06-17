@@ -6,7 +6,7 @@
 
 using UIKit;
 
-namespace HttpClient
+namespace HttpClientSample
 {
 	public class Application
 	{

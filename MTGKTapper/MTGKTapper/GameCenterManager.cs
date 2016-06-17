@@ -7,45 +7,38 @@ namespace MTGKTapper
 {
 	public class GameCenterManager
 	{
-
 		NSMutableDictionary earnedAchievementCache;
 
-		public GameCenterManager ()
+		public static bool IsGameCenterAvailable ()
 		{
-		}
-
-		public static bool isGameCenterAvailable ()
-		{
-
 			return UIDevice.CurrentDevice.CheckSystemVersion (4, 1);
 		}
 
-		public GKLeaderboard reloadLeaderboard (string category)
+		public GKLeaderboard ReloadLeaderboard (string category)
 		{
-			GKLeaderboard leaderboard = new GKLeaderboard ();
-			leaderboard.Category = category;
-			leaderboard.TimeScope = GKLeaderboardTimeScope.AllTime;
-			leaderboard.Range = new NSRange (1, 1);
-			return leaderboard;
-
+			return new GKLeaderboard {
+				Category = category,
+				TimeScope = GKLeaderboardTimeScope.AllTime,
+				Range = new NSRange (1, 1)
+			};
 		}
 
-		public void reportScore (long score, string category, MTGKTapperViewController controller)
+		public void ReportScore (long score, string category, MTGKTapperViewController controller)
 		{
-			GKScore scoreReporter = new GKScore (category);
-			scoreReporter.Value = score;
-			scoreReporter.ReportScore (new Action<NSError> ((error) => {
-				if (error == null) {
-					new UIAlertView ("Score reported", "Score Reported successfully", null, "OK", null).Show ();
-				} else {
-					new UIAlertView ("Score Reported Failed", "Score Reported Failed", null, "OK", null).Show ();
-				}
+			var scoreReporter = new GKScore (category) {
+				Value = score
+			};
+			scoreReporter.ReportScore (error => {
+				if (error == null)
+					ShowAlert("Score reported", "Score Reported successfully");
+				else
+					ShowAlert("Score Reported Failed", "Score Reported Failed");
 				NSThread.SleepFor (1);
-				controller.updateHighScore ();
-			}));
+				controller.UpdateHighScore ();
+			});
 		}
 
-		public void submitAchievement (string identifier, double percentComplete, string achievementName)
+		public void SubmitAchievement (string identifier, double percentComplete, string achievementName)
 		{
 			if (earnedAchievementCache == null) {
 				GKAchievement.LoadAchievements (new GKCompletionHandler (delegate(GKAchievement[] achievements, NSError error) {
@@ -56,48 +49,51 @@ namespace MTGKTapper
 						}
 					}
 					earnedAchievementCache = tempCache;
-					submitAchievement (identifier, percentComplete, achievementName);
+					SubmitAchievement (identifier, percentComplete, achievementName);
 				}));
 			} else {
 				GKAchievement achievement = (GKAchievement)earnedAchievementCache.ValueForKey (new NSString (identifier));
 				if (achievement != null) {
-
-					if (achievement.PercentComplete >= 100.0 || achievement.PercentComplete >= percentComplete) {
+					if (achievement.PercentComplete >= 100.0 || achievement.PercentComplete >= percentComplete)
 						achievement = null;
-					} else
+					else
 						achievement.PercentComplete = percentComplete;
 				} else {
-					achievement = new GKAchievement (identifier);
-					achievement.PercentComplete = percentComplete;
-					earnedAchievementCache.Add (new NSString (achievement.Identifier), achievement);
+					achievement = new GKAchievement (identifier) {
+						PercentComplete = percentComplete
+					};
+					earnedAchievementCache.Add ((NSString)achievement.Identifier, achievement);
 				}
 				if (achievement != null) {
-					achievement.ReportAchievement (new Action<NSError> ((error) => {
+					achievement.ReportAchievement (error => {
 						if (error == null && achievement != null) {
-							if (percentComplete == 100) {
-								new UIAlertView ("Achievement Earned", "Great job!  You earned an achievement: " + achievementName, null, "OK", null).Show ();
-							} else if (percentComplete > 0) {
-								new UIAlertView ("Achievement Progress", "Great job!  You're " + percentComplete + " % of the way to " + achievementName, null, "OK", null).Show ();
-							}
+							if (percentComplete == 100)
+								ShowAlert ("Achievement Earned", string.Format ("Great job! You earned an achievement: {0}", achievementName));
+							else if (percentComplete > 0)
+								ShowAlert ("Achievement Progress", string.Format ("Great job! You're {0} % of the way to {1}", percentComplete, achievementName));
 						} else {
-							new UIAlertView ("Achievement submittion failed", "Submittion failed because: " + error, null, "OK", null).Show ();
+							ShowAlert ("Achievement submittion failed", string.Format ("Submittion failed because: {0}", error));
 						}
-					}));
+					});
 				}
 			}
 		}
 
-		public void resetAchievement ()
+		public void ResetAchievement ()
 		{
 			earnedAchievementCache = null;
-			GKAchievement.ResetAchivements (new Action<NSError> ((error) => {
+			GKAchievement.ResetAchivements (error => {
 				if (error == null)
 					new UIAlertView ("Achievement reset", "Achievement reset successfully", null, "OK", null).Show ();
 				else
-					new UIAlertView ("Reset failed", "Reset failed because: " + error, null, "OK", null).Show ();
-			}));
+					new UIAlertView ("Reset failed", string.Format("Reset failed because: {0}", error), null, "OK", null).Show ();
+			});
 		}
 
+		void ShowAlert (string title, string msg)
+		{
+			var alert = new UIAlertView (title, msg, null, "OK", null);
+			alert.Show ();
+		}
 	}
 }
-

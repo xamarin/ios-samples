@@ -11,23 +11,23 @@ namespace UICatalog
 	[Register ("ProgressViewController")]
 	public partial class ProgressViewController : UITableViewController
 	{
-		private const int MaxProgress = 100;
+		const int MaxProgress = 100;
 
 		[Outlet]
-		private UIProgressView DefaultStyleProgressView { get; set; }
+		UIProgressView DefaultStyleProgressView { get; set; }
 
 		[Outlet]
-		private UIProgressView BarStyleProgressView { get; set; }
+		UIProgressView BarStyleProgressView { get; set; }
 
 		[Outlet]
-		private UIProgressView TintedProgressView { get; set; }
+		UIProgressView TintedProgressView { get; set; }
 
-		private int _completedProgress;
-		private int CompletedProgress
-		{
-			get { return _completedProgress; }
+		int completedProgress;
+
+		int CompletedProgress {
+			get { return completedProgress; }
 			set {
-				_completedProgress = value;
+				completedProgress = value;
 
 				float fractionalProgress = (float)CompletedProgress / (float)MaxProgress;
 
@@ -57,32 +57,32 @@ namespace UICatalog
 			ConfigureTintedProgressView ();
 
 			// As progress is received from another subsystem (i.e. NSProgress, NSURLSessionTaskDelegate, etc.), update the progressView's progress.
-			SimulateProgress();
+			SimulateProgress ();
 		}
 
-		private void ConfigureDefaultStyleProgressView()
+		void ConfigureDefaultStyleProgressView ()
 		{
 			DefaultStyleProgressView.Style = UIProgressViewStyle.Default;
 		}
 
-		private void ConfigureBarStyleProgressView()
+		void ConfigureBarStyleProgressView ()
 		{
 			BarStyleProgressView.Style = UIProgressViewStyle.Bar;
 		}
 
-		private void ConfigureTintedProgressView()
+		void ConfigureTintedProgressView ()
 		{
 			TintedProgressView.Style = UIProgressViewStyle.Default;
 			TintedProgressView.TrackTintColor = ApplicationColors.Blue;
 			TintedProgressView.ProgressTintColor = ApplicationColors.Purple;
 		}
 
-		private void SimulateProgress()
+		void SimulateProgress ()
 		{
 			// create completed task
 			Task task = Task.FromResult<object> (null);
 
-			Random rnd = new Random();
+			Random rnd = new Random ();
 
 			// In this example we will simulate progress with a "sleep operation".
 			foreach (int i in Enumerable.Range(0, MaxProgress)) {
@@ -91,11 +91,11 @@ namespace UICatalog
 				var delay = rnd.Next (100, 1000);
 
 				// TaskScheduler.FromCurrentSynchronizationContext() – means run on main thread
-				task = task.ContinueWith(_ => {
-					Thread.Sleep(delay);
+				task = task.ContinueWith (_ => {
+					Thread.Sleep (delay);
 				}).ContinueWith (_ => {
-						CompletedProgress++;
-				}, TaskScheduler.FromCurrentSynchronizationContext());
+					CompletedProgress++;
+				}, TaskScheduler.FromCurrentSynchronizationContext ());
 			}
 		}
 	}

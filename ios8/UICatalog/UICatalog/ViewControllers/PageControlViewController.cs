@@ -9,7 +9,7 @@ namespace UICatalog
 	public class PageControlViewController : UIViewController
 	{
 		// Colors that correspond to the selected page. Used as the background color for "colorView".
-		private readonly UIColor[] _colors = new UIColor[]{
+		readonly UIColor[] colors = {
 			UIColor.Black,
 			UIColor.Gray,
 			UIColor.Red,
@@ -41,10 +41,10 @@ namespace UICatalog
 			pageControlValueDidChange (PageControl, EventArgs.Empty);
 		}
 
-		private void configurePageControl()
+		void configurePageControl ()
 		{
 			// The total number of pages that are available is based on how many available colors we have.
-			PageControl.Pages = _colors.Length;
+			PageControl.Pages = colors.Length;
 			PageControl.CurrentPage = 2;
 
 			PageControl.TintColor = ApplicationColors.Blue;
@@ -54,10 +54,10 @@ namespace UICatalog
 			PageControl.ValueChanged += pageControlValueDidChange;
 		}
 
-		private void pageControlValueDidChange(object sender, EventArgs e)
+		void pageControlValueDidChange (object sender, EventArgs e)
 		{
 			Console.WriteLine ("The page control changed its current page to {0}.", PageControl.CurrentPage);
-			ColorView.BackgroundColor = _colors [PageControl.CurrentPage];
+			ColorView.BackgroundColor = colors [PageControl.CurrentPage];
 		}
 	}
 }

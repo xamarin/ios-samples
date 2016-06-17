@@ -11,19 +11,19 @@ namespace UICatalog
 	public class TextFieldViewController : UITableViewController
 	{
 		[Outlet]
-		private UITextField TextField { get; set;}
+		UITextField TextField { get; set; }
 
 		[Outlet]
-		private UITextField TintedTextField { get; set; }
+		UITextField TintedTextField { get; set; }
 
 		[Outlet]
-		private UITextField SecureTextField { get; set; }
+		UITextField SecureTextField { get; set; }
 
 		[Outlet]
-		private UITextField SpecificKeyboardTextField { get; set; }
+		UITextField SpecificKeyboardTextField { get; set; }
 
 		[Outlet]
-		private UITextField CustomTextField { get; set; }
+		UITextField CustomTextField { get; set; }
 
 		public TextFieldViewController (IntPtr handle)
 			: base (handle)
@@ -41,15 +41,16 @@ namespace UICatalog
 			ConfigureCustomTextField ();
 		}
 
-		private void ConfigureTextField()
+		void ConfigureTextField ()
 		{
 			TextField.Placeholder = "Placeholder text".Localize ();
 			TextField.AutocorrectionType = UITextAutocorrectionType.Yes;
 			TextField.ReturnKeyType = UIReturnKeyType.Done;
 			TextField.ClearButtonMode = UITextFieldViewMode.Never;
+			TextField.AccessibilityIdentifier = "DEFAULT UITextField".Localize ();
 		}
 
-		private void ConfigureTintedTextField()
+		void ConfigureTintedTextField ()
 		{
 			TintedTextField.TintColor = ApplicationColors.Blue;
 			TintedTextField.TextColor = ApplicationColors.Green;
@@ -57,27 +58,30 @@ namespace UICatalog
 			TintedTextField.Placeholder = "Placeholder text".Localize ();
 			TintedTextField.ReturnKeyType = UIReturnKeyType.Done;
 			TintedTextField.ClearButtonMode = UITextFieldViewMode.Never;
+			TintedTextField.AccessibilityIdentifier = "TINTED UITextField".Localize ();
 		}
 
-		private void ConfigureSecureTextField()
+		void ConfigureSecureTextField ()
 		{
 			SecureTextField.SecureTextEntry = true;
 			SecureTextField.Placeholder = "Placeholder text".Localize ();
 			SecureTextField.ReturnKeyType = UIReturnKeyType.Done;
 			SecureTextField.ClearButtonMode = UITextFieldViewMode.Always;
+			SecureTextField.AccessibilityIdentifier = "SECURE UITextField".Localize ();
 		}
 
 		// There are many different types of keyboards that you may choose to use.
 		// The different types of keyboards are defined in the UITextInputTraits interface.
 		// This example shows how to display a keyboard to help enter email addresses.
-		private void ConfigureSpecificKeyboardTextField()
+		void ConfigureSpecificKeyboardTextField ()
 		{
 			SpecificKeyboardTextField.KeyboardType = UIKeyboardType.EmailAddress;
 			SpecificKeyboardTextField.Placeholder = "Placeholder text".Localize ();
 			SpecificKeyboardTextField.ReturnKeyType = UIReturnKeyType.Done;
+			SpecificKeyboardTextField.AccessibilityIdentifier = "SPECIFIC KEYBOARD UITextField".Localize ();
 		}
 
-		private void ConfigureCustomTextField()
+		void ConfigureCustomTextField ()
 		{
 			// Text fields with custom image backgrounds must have no border.
 			CustomTextField.BorderStyle = UITextBorderStyle.None;
@@ -104,9 +108,10 @@ namespace UICatalog
 			CustomTextField.Placeholder = "Placeholder text".Localize ();
 			CustomTextField.AutocorrectionType = UITextAutocorrectionType.No;
 			CustomTextField.ReturnKeyType = UIReturnKeyType.Done;
+			CustomTextField.AccessibilityIdentifier = "CUSTOM UITextField".Localize ();
 		}
 
-		private void OnCustomTextFieldPurpleButtonClicked(object sender, EventArgs e)
+		void OnCustomTextFieldPurpleButtonClicked (object sender, EventArgs e)
 		{
 			CustomTextField.TextColor = ApplicationColors.Purple;
 			Console.WriteLine ("The custom text field's purple right view button was clicked.");
@@ -114,8 +119,8 @@ namespace UICatalog
 
 		#region UITextFieldDelegate
 
-		[Export("textFieldShouldReturn:")]
-		private bool textFieldShouldReturn(UITextField textField)
+		[Export ("textFieldShouldReturn:")]
+		bool textFieldShouldReturn (UITextField textField)
 		{
 			textField.ResignFirstResponder ();
 			return true;

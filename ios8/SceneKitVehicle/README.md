@@ -16,8 +16,12 @@ Build Requirements
 
 This sample requires Xcode 6.0, iOS 8.0 SDK
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
 ------ 
-Copyright (C) 2014 Apple Inc. All rights reserved.
 
 Ported to Xamarin.iOS by Oleg Demchenko

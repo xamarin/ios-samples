@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <SampleMetadata>
-    <ID>A85DBCE8-BA90-4BC1-BDAC-0AD28B6F9A82</ID>
+    <ID>A5473F84-94FB-40F0-9FD2-04D901FD7008</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Beginning</Level>
 	<Tags>Maps + Location</Tags>
 	<Gallery>true</Gallery>
-	<Brief>An example of how to use the MapKit framework. This relates to the iOS Maps guide.</Brief>
+	<Brief>An example of how to use the MapKit framework. This relates to the iOS Maps guide and walkthrough.</Brief>
 </SampleMetadata>

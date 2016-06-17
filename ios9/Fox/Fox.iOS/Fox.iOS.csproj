@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{FB2F4D81-F3F4-46F6-92CE-E2743894827F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Fox.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>Fox_iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;iOS;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;iOS;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <Import Project="..\Fox\Fox.projitems" Label="Shared" Condition="Exists('..\Fox\Fox.projitems')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Images\congratulations.png" />
+    <BundleResource Include="Resources\Images\ItemsPearl.png" />
+    <BundleResource Include="Resources\Images\congratulations_pandaMax.png" />
+    <BundleResource Include="Resources\Images\FlowerFull.png" />
+    <BundleResource Include="Resources\Images\FlowerEmpty.png" />
+    <BundleResource Include="Resources\Images\dpad.png" />
+    <BundleResource Include="Resources\Images\MaxIcon.png" />
+    <BundleResource Include="game.scnassets\textures\bamboo_leaves_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\bamboo_trunk_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\flameThrower_ambient.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\flameThrower_base_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\flameThrower_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\flameThrower_normal.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\flameThrower_specular.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\flower_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\flower_normal.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\grass.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\grass_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\grass_specular.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\ground_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\ground_normal.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\ground_specular.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\moss_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\moss_round_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\moss_round_specular.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\moss_specular.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\mountain_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\mountain_normal.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\mountain_specular.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\pearl_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_dark_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_dark_normal.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_normal.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_specular.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_wall_arch_flower_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_wall_arch_flower_normal.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_wall_arch_nologo_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_wall_dark_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_wall_diffuse.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_wall_diffuse_noLine.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_wall_normal.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_wall_normal_noLine.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\rock_wall_specular.pvrtc" />
+    <BundleResource Include="game.scnassets\textures\glow01.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Entitlements.plist" />
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <SceneKitAsset Include="game.scnassets\bamboo.scn" />
+    <SceneKitAsset Include="game.scnassets\bamboos.scn" />
+    <SceneKitAsset Include="game.scnassets\bloc.scn" />
+    <SceneKitAsset Include="game.scnassets\collect.scnp" />
+    <SceneKitAsset Include="game.scnassets\confetti.scnp" />
+    <SceneKitAsset Include="game.scnassets\enemy.scn" />
+    <SceneKitAsset Include="game.scnassets\flower.scn" />
+    <SceneKitAsset Include="game.scnassets\grass.scn" />
+    <SceneKitAsset Include="game.scnassets\level.scn" />
+    <SceneKitAsset Include="game.scnassets\panda.scn" />
+    <SceneKitAsset Include="game.scnassets\particles.scn" />
+    <SceneKitAsset Include="game.scnassets\pearl.scn" />
+    <SceneKitAsset Include="game.scnassets\skybox\skybox01_cube.png" />
+    <SceneKitAsset Include="game.scnassets\sounds\aah_extinction.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\collect1.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\collect2.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\fire_extinction.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\flamethrower.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\hit.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\music.m4a" />
+    <SceneKitAsset Include="game.scnassets\sounds\Music_victory.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\ouch_firehit.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\panda_catch_fire.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_grass_00.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_grass_01.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_grass_02.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_grass_03.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_grass_04.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_grass_05.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_grass_06.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_grass_07.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_grass_08.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_grass_09.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_rock_00.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_rock_01.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_rock_02.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_rock_03.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_rock_04.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_rock_05.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_rock_06.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_rock_07.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_rock_08.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_rock_09.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_splash_00.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_splash_01.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_splash_02.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\Step_splash_03.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\stone_roll.mp3" />
+    <SceneKitAsset Include="game.scnassets\sounds\wind.m4a" />
+    <SceneKitAsset Include="game.scnassets\stoneShell01.scn" />
+    <SceneKitAsset Include="game.scnassets\stoneShell02.scn" />
+    <SceneKitAsset Include="game.scnassets\stoneShell03.scn" />
+    <SceneKitAsset Include="game.scnassets\textures\bamboo_leaves_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\bamboo_trunk_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\bokeh.png" />
+    <SceneKitAsset Include="game.scnassets\textures\confetti.png" />
+    <SceneKitAsset Include="game.scnassets\textures\fire.png" />
+    <SceneKitAsset Include="game.scnassets\textures\flameThrower_ambient.png" />
+    <SceneKitAsset Include="game.scnassets\textures\flameThrower_base_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\flameThrower_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\flameThrower_normal.png" />
+    <SceneKitAsset Include="game.scnassets\textures\flameThrower_specular.png" />
+    <SceneKitAsset Include="game.scnassets\textures\flower_ambiant.png" />
+    <SceneKitAsset Include="game.scnassets\textures\flower_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\flower_normal.png" />
+    <SceneKitAsset Include="game.scnassets\textures\glow_ellipse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\grass.png" />
+    <SceneKitAsset Include="game.scnassets\textures\grass_ambient.png" />
+    <SceneKitAsset Include="game.scnassets\textures\grass_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\grass_specular.png" />
+    <SceneKitAsset Include="game.scnassets\textures\ground_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\ground_normal.png" />
+    <SceneKitAsset Include="game.scnassets\textures\ground_specular.png" />
+    <SceneKitAsset Include="game.scnassets\textures\lightmap.png" />
+    <SceneKitAsset Include="game.scnassets\textures\max_ambiant.png" />
+    <SceneKitAsset Include="game.scnassets\textures\max_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\max_specular.png" />
+    <SceneKitAsset Include="game.scnassets\textures\moss_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\moss_round_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\moss_round_specular.png" />
+    <SceneKitAsset Include="game.scnassets\textures\moss_specular.png" />
+    <SceneKitAsset Include="game.scnassets\textures\mountain_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\mountain_normal.png" />
+    <SceneKitAsset Include="game.scnassets\textures\mountain_specular.png" />
+    <SceneKitAsset Include="game.scnassets\textures\pearl_ambient.png" />
+    <SceneKitAsset Include="game.scnassets\textures\pearl_cubemap.png" />
+    <SceneKitAsset Include="game.scnassets\textures\pearl_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\puddle_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\puddle_normal.png" />
+    <SceneKitAsset Include="game.scnassets\textures\reflection_blurred_low_row.png" />
+    <SceneKitAsset Include="game.scnassets\textures\ripple01.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_dark_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_dark_normal.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_normal.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_specular.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_wall_arch_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_wall_arch_flower_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_wall_arch_flower_normal.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_wall_arch_nologo_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_wall_arch_normal.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_wall_dark_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_wall_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_wall_diffuse_noLine.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_wall_normal.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_wall_normal_noLine.png" />
+    <SceneKitAsset Include="game.scnassets\textures\rock_wall_specular.png" />
+    <SceneKitAsset Include="game.scnassets\textures\smoke.png" />
+    <SceneKitAsset Include="game.scnassets\textures\spark.png" />
+    <SceneKitAsset Include="game.scnassets\textures\splash.png" />
+    <SceneKitAsset Include="game.scnassets\textures\splash02.png" />
+    <SceneKitAsset Include="game.scnassets\textures\star.png" />
+    <SceneKitAsset Include="game.scnassets\textures\water_ambient.png" />
+    <SceneKitAsset Include="game.scnassets\textures\water_diffuse.png" />
+    <SceneKitAsset Include="game.scnassets\textures\water_normal.png" />
+    <SceneKitAsset Include="game.scnassets\walk.scn" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="game.scnassets\" />
+    <Folder Include="Resources\Images.xcassets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-app-60%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-app-57.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-app-60%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-app-72.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-app-72%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-app-76.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-app-76%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-carplay-120.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-29.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-29%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-29%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-40.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-40%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-50.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-50%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spp-57%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-172.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-196.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-29%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-29%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-40%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-44%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-48.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watch-55.png" />
+    <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon.png" />
+    <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
+  </ItemGroup>
+</Project>

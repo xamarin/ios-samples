@@ -100,11 +100,12 @@ namespace MonoCatalog {
 		// For tagging our embedded controls at cell recylce time.
 		const int kViewTag = 1;
 
-		UIControl SwitchControl ()
+		static UIControl SwitchControl (string id)
 		{
 			var sw = new UISwitch (new CGRect (198f, 12f, 94f, 27f)){
 				BackgroundColor = UIColor.Clear,
-				Tag = kViewTag
+				Tag = kViewTag,
+				AccessibilityIdentifier = id
 			};
 			sw.ValueChanged += delegate {
 				// The enum variant causes a full-aot crash
@@ -113,7 +114,7 @@ namespace MonoCatalog {
 			return sw;
 		}
 
-		UIControl SliderControl ()
+		static UIControl SliderControl (string id)
 		{
 			var slider = new UISlider (new CGRect (174f, 12f, 120f, 7f)){
 				BackgroundColor = UIColor.Clear,
@@ -122,7 +123,7 @@ namespace MonoCatalog {
 				Continuous = true,
 				Value = 50f,
 				Tag = kViewTag,
-				AccessibilityLabel = "SimpleSlider"
+				AccessibilityIdentifier = id
 			};
 			slider.ValueChanged += delegate {
 				Console.WriteLine ("New value {0}", slider.Value);
@@ -130,7 +131,7 @@ namespace MonoCatalog {
 			return slider;
 		}
 
-		UIControl CustomSliderControl ()
+		static UIControl CustomSliderControl (string id)
 		{
 			var cslider = new UISlider (new CGRect (174f, 12f, 120f, 7f)){
 				BackgroundColor = UIColor.Clear,
@@ -139,7 +140,7 @@ namespace MonoCatalog {
 				Continuous = true,
 				Value = 50f,
 				Tag = kViewTag,
-				AccessibilityLabel = "CustomSlider"
+				AccessibilityIdentifier = id
 			};
 
 			var left = UIImage.FromFile ("images/orangeslide.png");
@@ -157,12 +158,13 @@ namespace MonoCatalog {
 			return cslider;
 		}
 
-		UIControl PageControl ()
+		static UIControl PageControl (string id)
 		{
 			var page = new UIPageControl (new CGRect (120f, 14f, 178f, 20f)){
 				BackgroundColor = UIColor.Gray,
 				Pages = 10,
-				Tag = kViewTag
+				Tag = kViewTag,
+				AccessibilityIdentifier = id
 			};
 
 			page.TouchUpInside += delegate {
@@ -172,7 +174,7 @@ namespace MonoCatalog {
 			return page;
 		}
 
-		UIView ProgressIndicator ()
+		static UIView ActivityIndicator (string id)
 		{
 			var pind = new UIActivityIndicatorView (new CGRect (265f, 12f, 40f, 40f)){
 				ActivityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray,
@@ -180,7 +182,8 @@ namespace MonoCatalog {
 					UIViewAutoresizing.FlexibleRightMargin |
 					UIViewAutoresizing.FlexibleTopMargin |
 					UIViewAutoresizing.FlexibleBottomMargin,
-				Tag = kViewTag
+				Tag = kViewTag,
+				AccessibilityIdentifier = id,
 			};
 
 			pind.StartAnimating ();
@@ -189,12 +192,13 @@ namespace MonoCatalog {
 			return pind;
 		}
 
-		UIView ProgressBar ()
+		static UIView ProgressBar (string id)
 		{
 			return new UIProgressView (new CGRect (126f, 20f, 160f, 24f)){
 				Style = UIProgressViewStyle.Default,
 				Progress = 0.5f,
-				Tag = kViewTag
+				Tag = kViewTag,
+				AccessibilityIdentifier = id
 			};
 		}
 
@@ -218,18 +222,17 @@ namespace MonoCatalog {
 			base.ViewDidLoad ();
 			Title = "Controls";
 
-			samples = new ControlSample [] {
-				new ControlSample ("UISwitch", "Standard Switch", "controls.cs: SwitchControl ()", SwitchControl ()),
-				new ControlSample ("UISlider", "Standard Slider", "controls.cs: SliderControl ()", SliderControl ()),
-				new ControlSample ("UISlider", "Customized Slider", "controls.cs: CustomSliderControl ()", CustomSliderControl ()),
-				new ControlSample ("UIPageControl", "Ten Pages", "controls.cs: PageControl ()", PageControl ()),
-				new ControlSample ("UIActivityIndicatorView", "Style Gray", "controls.cs: ProgressIndicator ()", ProgressIndicator ()),
-				new ControlSample ("UIProgressView", "Style Default", "controls.cs: ProgressBar ()", ProgressBar ()),
+			samples = new [] {
+				new ControlSample ("UISwitch", "Standard Switch", "controls.cs: SwitchControl ()", SwitchControl ("StandardSwitch")),
+				new ControlSample ("UISlider", "Standard Slider", "controls.cs: SliderControl ()", SliderControl ("StandardSlider")),
+				new ControlSample ("UISlider", "Customized Slider", "controls.cs: CustomSliderControl ()", CustomSliderControl ("CustomizedSlider")),
+				new ControlSample ("UIPageControl", "Ten Pages", "controls.cs: PageControl ()", PageControl ("PageControll")),
+				new ControlSample ("UIActivityIndicatorView", "Style Gray", "controls.cs: ActivityIndicator ()", ActivityIndicator ("ActivityIndicator")),
+				new ControlSample ("UIProgressView", "Style Default", "controls.cs: ProgressBar ()", ProgressBar ("Progress")),
 			};
 
 			TableView.DataSource = new DataSource (this);
 			TableView.Delegate = new TableDelegate ();
 		}
-
 	}
 }

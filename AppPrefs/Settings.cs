@@ -1,4 +1,3 @@
-using System;
 using Foundation;
 
 namespace AppPrefs
@@ -31,7 +30,7 @@ namespace AppPrefs
 		const string nameColorKey = "nameColorKey";
 		const string backgroundColorKey = "backgroundColorKey";
 
-		static void LoadDefaultValues ()
+		public static void LoadDefaultValues ()
 		{
 			var settingsDict = new NSDictionary (NSBundle.MainBundle.PathForResource ("Settings.bundle/Root.plist", null));
 
@@ -61,14 +60,10 @@ namespace AppPrefs
 			var appDefaults = new NSDictionary (firstNameKey, FirstName, lastNameKey, LastName, nameColorKey, (int)TextColor, backgroundColorKey, (int)BackgroundColor);
 
 			NSUserDefaults.StandardUserDefaults.RegisterDefaults (appDefaults);
-			NSUserDefaults.StandardUserDefaults.Synchronize ();
 		}
 
 		public static void SetupByPreferences ()
 		{
-			var testValue = NSUserDefaults.StandardUserDefaults.StringForKey (firstNameKey);
-			if (testValue == null)
-				LoadDefaultValues ();
 			FirstName = NSUserDefaults.StandardUserDefaults.StringForKey (firstNameKey);
 			LastName = NSUserDefaults.StandardUserDefaults.StringForKey (lastNameKey);
 			TextColor = (TextColors)(int)NSUserDefaults.StandardUserDefaults.IntForKey (nameColorKey);

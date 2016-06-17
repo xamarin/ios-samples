@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Foundation;
+
 using UIKit;
 
 namespace AdaptivePhotos
@@ -117,12 +117,14 @@ namespace AdaptivePhotos
 					"topLayoutGuide", TopLayoutGuide,
 					"nameLabel", NameLabel,
 					"conversationsLabel", ConversationsLabel,
-					"photosLabel", PhotosLabel));
+					"photosLabel", PhotosLabel
+				));
 
 				newConstraints.AddRange (NSLayoutConstraint.FromVisualFormat ("V:|[topLayoutGuide][imageView]|",
 					NSLayoutFormatOptions.DirectionLeadingToTrailing,
 					"topLayoutGuide", TopLayoutGuide,
-					"imageView", ImageView));
+					"imageView", ImageView
+				));
 
 				newConstraints.Add (NSLayoutConstraint.Create (ImageView, NSLayoutAttribute.Width, NSLayoutRelation.Equal,
 					View, NSLayoutAttribute.Width, 0.5f, 0.0f));
@@ -149,7 +151,8 @@ namespace AdaptivePhotos
 					"nameLabel", NameLabel,
 					"conversationsLabel", ConversationsLabel,
 					"photosLabel", PhotosLabel,
-					"imageView", ImageView));
+					"imageView", ImageView
+				));
 			}
 
 			if (constraints != null)

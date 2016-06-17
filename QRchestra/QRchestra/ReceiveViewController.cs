@@ -20,6 +20,9 @@ namespace QRchestra
 		SessionManager sessionManager;
 		Synth synth;
 		NSTimer barcodeTimer;
+		#pragma warning disable 414
+		NSTimer stepTimer; // the sample requries this timer to run!
+		#pragma warning restore 414
 
 		public UIColor OverlayColor {
 			get {
@@ -77,6 +80,9 @@ namespace QRchestra
 
 			synth = new Synth ();
 			synth.LoadPreset (this);
+
+			// the loop that continuously looks for barcodes to detect
+			stepTimer = NSTimer.CreateScheduledTimer (0.15, this, new Selector ("step:"), null, true);
 		}
 
 		partial void handleTap (UIGestureRecognizer recognizer)
@@ -125,6 +131,7 @@ namespace QRchestra
 			sessionManager.FocusMode = AVCaptureFocusMode.ContinuousAutoFocus;
 		}
 
+		// called from ViewDidLoad in a timer loop
 		[Export("step:")]
 		void step (NSTimer timer)
 		{
@@ -151,12 +158,16 @@ namespace QRchestra
 				string noteString = barcode.StringValue;
 				int note = 0;
 				if (int.TryParse (noteString, out note)) {
+					// barcode data is a MIDI note (or at least an int that we presume can be a note
 					note -= 24;
 					if (note >= 0 && note <= 127) {
 						synth.StartPlayNoteNumber (note);
 						Thread.Sleep (TimeSpan.FromMilliseconds (0.5));
 						synth.StopPlayNoteNumber (note);
 					}
+				} else {
+					// barcode data is something else
+					Console.WriteLine ("Barcode string data: " + noteString);
 				}
 			}
 		}

@@ -8,11 +8,10 @@
 
 using System;
 using System.Net;
-using Foundation;
 using System.Security.Cryptography.X509Certificates;
 using System.Diagnostics;
 
-namespace HttpClient
+namespace HttpClientSample
 {
 	public class DotNet {
 		AppDelegate ad;

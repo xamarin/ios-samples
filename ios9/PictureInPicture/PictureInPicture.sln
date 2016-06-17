@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureInPicture", "PictureInPicture\PictureInPicture.csproj", "{96427818-E3E3-45EF-8DA5-15EEB07DA474}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96427818-E3E3-45EF-8DA5-15EEB07DA474}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{96427818-E3E3-45EF-8DA5-15EEB07DA474}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{96427818-E3E3-45EF-8DA5-15EEB07DA474}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{96427818-E3E3-45EF-8DA5-15EEB07DA474}.Debug|iPhone.Build.0 = Debug|iPhone
+		{96427818-E3E3-45EF-8DA5-15EEB07DA474}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{96427818-E3E3-45EF-8DA5-15EEB07DA474}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{96427818-E3E3-45EF-8DA5-15EEB07DA474}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{96427818-E3E3-45EF-8DA5-15EEB07DA474}.Release|Any CPU.Build.0 = Release|iPhone
+		{96427818-E3E3-45EF-8DA5-15EEB07DA474}.Release|iPhone.ActiveCfg = Release|iPhone
+		{96427818-E3E3-45EF-8DA5-15EEB07DA474}.Release|iPhone.Build.0 = Release|iPhone
+		{96427818-E3E3-45EF-8DA5-15EEB07DA474}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{96427818-E3E3-45EF-8DA5-15EEB07DA474}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal

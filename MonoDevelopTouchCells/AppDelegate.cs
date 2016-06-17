@@ -14,13 +14,11 @@ namespace MonoDevelopTouchCells
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			this.InitializeTableData ();
+			InitializeTableData ();
 
 			navigationController.NavigationBar.Translucent = false;
-			// If you have defined a view, add it here:
-			// window.AddSubview (navigationController.View);
-
-			window.AddSubview (this.navigationController.View);
+			window.RootViewController = navigationController.TopViewController;
+			window.AddSubview (navigationController.View);
 
 			window.MakeKeyAndVisible ();
 

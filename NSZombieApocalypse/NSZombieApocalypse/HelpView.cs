@@ -1,13 +1,12 @@
-using System;
-using CoreGraphics;
+using System.Threading.Tasks;
+
 using UIKit;
 using Foundation;
-using ObjCRuntime;
-using System.Threading.Tasks;
+using CoreGraphics;
 
 namespace NSZombieApocalypse
 {
-	public class HelpView : UIView
+	public sealed class HelpView : UIView
 	{
 		UITextView textView;
 		SymbolMarkView nextButton;
@@ -26,11 +25,12 @@ namespace NSZombieApocalypse
 			closeView.Symbol = "X";
 			closeView.AccessibilityLabel = "Close";
 
-			var label = new UILabel (new CGRect (0, 20, frame.Size.Width, 40));
-			label.Font = UIFont.FromName ("HelveticaNeue-Italic", 82);
-			label.Text = "NSZombieApocalypse";
-			label.BackgroundColor = UIColor.Clear;
-			label.TextAlignment = UITextAlignment.Center;
+			var label = new UILabel (new CGRect (0, 20, frame.Size.Width, 40)) {
+				Font = UIFont.FromName ("HelveticaNeue-Italic", 82),
+				Text = "NSZombieApocalypse",
+				BackgroundColor = UIColor.Clear,
+				TextAlignment = UITextAlignment.Center,
+			};
 			label.SizeToFit ();
 			var labelFrame = label.Frame;
 			labelFrame.X = (frame.Size.Width - labelFrame.Size.Width) / 2;

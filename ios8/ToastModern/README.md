@@ -17,8 +17,12 @@ Xcode 5.0 or later, iOS 7 or later
 
 iOS 7 or later
 
+Copyright
+---------
+
+Xamarin port changes are released under the MIT license
+
 Author
------- 
-Copyright (C) 2014 Apple Inc. All rights reserved.
+------
 
 Ported to Xamarin.iOS by Oleg Demchenko

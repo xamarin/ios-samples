@@ -9,7 +9,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>5.1.1</string>
+	<string>6.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>Maps</string>
 	<key>CFBundleIdentifier</key>

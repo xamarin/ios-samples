@@ -4,7 +4,7 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace HttpClient
+namespace HttpClientSample
 {
 	// The name AppDelegate is referenced in the MainWindow.xib file.
 	public partial class AppDelegate : UIApplicationDelegate
@@ -12,14 +12,15 @@ namespace HttpClient
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			window.AddSubview (navigationController.View);
+			window.RootViewController = navigationController;
 
 			button1.TouchDown += Button1TouchDown;
-			TableViewSelector.Configure (this.stack, new string [] {
+			TableViewSelector.Configure (stack, new [] {
 				"http  - WebRequest",
 				"https - WebRequest",
 				"http  - NSUrlConnection",
-				"http  - HttpClient/CFNetwork"
+				"http  - HttpClient",
+				"https - HttpClient"
 			});
 
 			window.MakeKeyAndVisible ();
@@ -33,61 +34,50 @@ namespace HttpClient
 			if (UIApplication.SharedApplication.NetworkActivityIndicatorVisible)
 				return;
 
+			HandlerType = null;
+			button1.Enabled = false;
 			switch (stack.SelectedRow ()) {
 			case 0:
 				new DotNet (this).HttpSample ();
 				break;
-
 			case 1:
 				new DotNet (this).HttpSecureSample ();
 				break;
-
 			case 2:
 				new Cocoa (this).HttpSample ();
 				break;
-
 			case 3:
-				await new NetHttp (this).HttpSample ();
+				await new NetHttp (this).HttpSample (secure: false);
 				break;
+			case 4:
+				await new NetHttp (this).HttpSample (secure: true);
+			break;
 			}
 		}
-		/*
-		public void RenderRssStream (Stream stream)
-		{
-			var doc = XDocument.Load (new XmlTextReader (stream));
-			var items = doc.XPathSelectElements ("./rss/channel/item/title");
 
-			//
-			// Since this is invoked on a separated thread, make sure that
-			// we call UIKit only from the main thread.
-			//
-			InvokeOnMainThread (delegate {
-				var table = new UITableViewController ();
-				navigationController.PushViewController (table, true);
+		public Type HandlerType { get; set; }
 
-				// Put the data on a string [] so we can use our existing
-				// UITableView renderer for strings.
-				string [] entries = new string [items.Count ()];
-				int i = 0;
-				foreach (var e in items)
-					entries [i++] = e.Value;
-
-				TableViewSelector.Configure (table.View as UITableView, entries);
-			});
-		}
-*/
 		public void RenderStream (Stream stream)
 		{
-			var reader = new System.IO.StreamReader (stream);
+			var reader = new StreamReader (stream);
 
 			InvokeOnMainThread (delegate {
+				button1.Enabled = true;
 				var view = new UIViewController ();
-				var label = new UILabel (new CGRect (20, 20, 300, 80)) {
+				var handler = new UILabel (new CGRect (20, 20, 300, 40)) {
+					Text = "HttpClient is using " + HandlerType?.Name,
+					Lines = 0
+				};
+				handler.SizeToFit ();
+
+				var label = new UILabel (new CGRect (20, 40, 300, 80)) {
 					Text = "The HTML returned by the server:"
 				};
 				var tv = new UITextView (new CGRect (20, 100, 300, 400)) {
 					Text = reader.ReadToEnd ()
 				};
+				if (HandlerType != null)
+					view.Add (handler);
 				view.Add (label);
 				view.Add (tv);
 
@@ -97,12 +87,6 @@ namespace HttpClient
 
 				navigationController.PushViewController (view, true);
 			});
-		}
-
-		// This method is required in iPhoneOS 3.0
-		public override void OnActivated (UIApplication application)
-		{
-
 		}
 	}
 }

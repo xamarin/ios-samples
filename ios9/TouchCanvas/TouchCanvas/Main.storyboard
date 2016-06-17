@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A279b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1fl-Ij-fK1">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="984-vW-kks">
+            <objects>
+                <viewController id="1fl-Ij-fK1" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4h2-IA-tif"/>
+                        <viewControllerLayoutGuide type="bottom" id="y0f-7p-uuV"/>
+                    </layoutGuides>
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="l3J-kE-Vqx" customClass="CanvasView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rbw-Zf-LDf">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="trash" id="Axn-KO-XMW">
+                                        <connections>
+                                            <action selector="ClearView:" destination="1fl-Ij-fK1" id="jNN-J2-NoK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="fhJ-30-nsa"/>
+                                    <barButtonItem style="plain" id="89a-qb-NJP">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="58x-qE-zXG">
+                                            <rect key="frame" x="473" y="7" width="46" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Debug"/>
+                                            <connections>
+                                                <action selector="ToggleDebugDrawing:" destination="1fl-Ij-fK1" eventType="touchUpInside" id="N7f-1M-77T"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="piu-OG-cVi">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2yf-Ag-uEP">
+                                            <rect key="frame" x="529" y="7" width="51" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Precise"/>
+                                            <connections>
+                                                <action selector="ToggleUsePreciseLocations:" destination="1fl-Ij-fK1" eventType="touchUpInside" id="Phd-rM-DTm"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Rbw-Zf-LDf" secondAttribute="trailing" constant="-20" id="CCM-F7-I6B"/>
+                            <constraint firstItem="Rbw-Zf-LDf" firstAttribute="leading" secondItem="l3J-kE-Vqx" secondAttribute="leadingMargin" constant="-20" id="ZQY-3o-5h4"/>
+                            <constraint firstItem="y0f-7p-uuV" firstAttribute="top" secondItem="Rbw-Zf-LDf" secondAttribute="bottom" id="fwZ-gM-CX3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="urh-QX-0ux"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qCw-Nu-BUt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="835" y="423"/>
+        </scene>
+    </scenes>
+</document>

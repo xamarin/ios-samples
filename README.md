@@ -27,11 +27,14 @@ The Apache License 2.0 applies to all samples in this repository.
 Samples Layout
 ==============
 
-iOS 8 samples
--------------
-Starting with iOS 8, we started adding samples that showcase specific features 
-introduced in a release into a directory for the release.   So all the new
-iOS 8 feature samples live in the ios8 directory.
+Version Specific Samples
+------------------------
+
+Starting with iOS 8, we started adding samples that showcase specific
+features introduced in a release into a directory for the release.  So
+all the new iOS 8 feature samples live in the ios8 directory, and the
+iOS 9 features live in the ios9 directory.
+
 
 WatchKit
 --------
@@ -108,6 +111,7 @@ However, because the sample galleries are powered by the github sample repos, ea
 
     * **Tags**: a list of relevant tags for the app. These are:
 		* **Data**
+		* **User Interface**
 		* **Games**
 		* **Graphics** (CoreDrawing, Animation, OpenGL...)
 		* **Media** (Video, Sound, recording, photos)
@@ -123,6 +127,7 @@ However, because the sample galleries are powered by the github sample repos, ea
 		* **Async**
 		* **Extension**
 		* **iOS8**
+		* **iOS9**
 		* **Watch**
 		* **Keyboard**
 		* **SceneKit**

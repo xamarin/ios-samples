@@ -1,11 +1,11 @@
 using System;
-using CoreGraphics;
+
 using UIKit;
-using Foundation;
+using CoreGraphics;
 
 namespace NSZombieApocalypse
 {
-	public class ZombieMeter : UIView
+	public sealed class ZombieMeter : UIView
 	{
 		float zombieLevel;
 		public float ZombieLevel {
@@ -14,11 +14,11 @@ namespace NSZombieApocalypse
 			}
 			set {
 				zombieLevel = Math.Max (0, value);
-				this.SetNeedsDisplay ();
+				SetNeedsDisplay ();
 			}
 		}
 
-		UILabel label;
+		readonly UILabel label;
 
 		public ZombieMeter (CGRect frame) : base (frame)
 		{
@@ -26,16 +26,16 @@ namespace NSZombieApocalypse
 			Layer.CornerRadius = 8;
 			ZombieLevel = 0;
 
-			label = new UILabel (new CGRect (0, 0, frame.Size.Width, 0));
-			label.TextAlignment = UITextAlignment.Center;
-			label.Text = "Zombie Meter";
-			label.Font = UIFont.FromName ("Helvetica", 24);
-			label.BackgroundColor = UIColor.Clear;
+			label = new UILabel (new CGRect (0, 0, frame.Size.Width, 0)) {
+				TextAlignment = UITextAlignment.Center,
+				Text = "Zombie Meter",
+				Font = UIFont.FromName ("Helvetica", 24),
+				BackgroundColor = UIColor.Clear
+			};
 			AddSubview (label);
 			label.SizeToFit ();
 			var labelFrame = label.Frame;
 			label.Frame = new CGRect (labelFrame.X, labelFrame.Y, frame.Size.Width, labelFrame.Size.Height);
-
 		}
 
 		public override bool IsAccessibilityElement {
@@ -58,9 +58,9 @@ namespace NSZombieApocalypse
 
 		public override void Draw (CGRect rect)
 		{
-			float pad = 20;
-			float numberOfMeters = 10;
-			float meterSpacing = 5;
+			const float pad = 20;
+			const float numberOfMeters = 10;
+			const float meterSpacing = 5;
 			float yOrigin = (float)label.Frame.GetMaxY () + 10;
 
 			UIBezierPath background = UIBezierPath.FromRoundedRect (rect, 8);
@@ -69,7 +69,7 @@ namespace NSZombieApocalypse
 
 			UIColor.Black.SetStroke ();
 
-			CGRect meter = new CGRect (
+			var meter = new CGRect (
 				pad,
 				yOrigin,
 				rect.Size.Width - pad * 2,
@@ -114,4 +114,3 @@ namespace NSZombieApocalypse
 		}
 	}
 }
-

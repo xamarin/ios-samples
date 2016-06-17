@@ -44,7 +44,6 @@ namespace GLCameraRipple
 			glkView = (GLKView) View;
 			glkView.Context = context;
 			glkView.MultipleTouchEnabled = true;
-			glkView.DrawInRect += Draw;
 
 			PreferredFramesPerSecond = 60;
 			size = UIScreen.MainScreen.Bounds.Size.ToRoundedCGSize ();
@@ -58,13 +57,6 @@ namespace GLCameraRipple
 		public override UIStatusBarStyle PreferredStatusBarStyle ()
 		{
 			return UIStatusBarStyle.LightContent;
-		}
-
-		void Draw (object sender, GLKViewDrawEventArgs args)
-		{
-			GL.Clear (ClearBufferMask.ColorBufferBit);
-			if (ripple != null)
-				GL.DrawElements (BeginMode.TriangleStrip, ripple.IndexCount, DrawElementsType.UnsignedShort, IntPtr.Zero);
 		}
 
 		void ProcessTouches (NSSet touches)
@@ -107,6 +99,13 @@ namespace GLCameraRipple
 		{
 			// Camera is fixed, only allow portrait
 			return (toInterfaceOrientation == UIInterfaceOrientation.Portrait);
+		}
+
+		public override void DrawInRect (GLKView view, CGRect rect)
+		{
+			GL.Clear (ClearBufferMask.ColorBufferBit);
+			if (ripple != null)
+				GL.DrawElements (BeginMode.TriangleStrip, ripple.IndexCount, DrawElementsType.UnsignedShort, IntPtr.Zero);
 		}
 
 		void SetupGL ()

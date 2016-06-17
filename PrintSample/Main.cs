@@ -26,7 +26,10 @@ namespace print
 			button.TouchDown += delegate {
 				Print ();
 			};
-			window.AddSubview (button);
+
+			var viewController = new UIViewController ();
+			viewController.View.Add (button);
+			window.RootViewController = viewController;
 			return true;
 		}
 

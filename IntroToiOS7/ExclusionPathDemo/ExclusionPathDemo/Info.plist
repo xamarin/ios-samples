@@ -20,7 +20,7 @@
 		<string>Icon-Small-50</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>5.1.1</string>
+	<string>6.0</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.ExclusionPathDemo</string>
 </dict>

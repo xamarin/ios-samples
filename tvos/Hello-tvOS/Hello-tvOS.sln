@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hello-tvOS", "Hello-tvOS\Hello-tvOS.csproj", "{40CFDF5B-D15D-46AB-9EB8-A2D16A07F855}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40CFDF5B-D15D-46AB-9EB8-A2D16A07F855}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{40CFDF5B-D15D-46AB-9EB8-A2D16A07F855}.Debug|iPhone.Build.0 = Debug|iPhone
+		{40CFDF5B-D15D-46AB-9EB8-A2D16A07F855}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{40CFDF5B-D15D-46AB-9EB8-A2D16A07F855}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{40CFDF5B-D15D-46AB-9EB8-A2D16A07F855}.Release|iPhone.ActiveCfg = Release|iPhone
+		{40CFDF5B-D15D-46AB-9EB8-A2D16A07F855}.Release|iPhone.Build.0 = Release|iPhone
+		{40CFDF5B-D15D-46AB-9EB8-A2D16A07F855}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{40CFDF5B-D15D-46AB-9EB8-A2D16A07F855}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal

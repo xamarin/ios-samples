@@ -92,11 +92,12 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="MapDemoViewController.cs" />
-    <Compile Include="MapDemoViewController.designer.cs">
-      <DependentUpon>MapDemoViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="MonkeyAnnotation.cs" />
+    <Compile Include="SearchResultsViewController.cs" />
+    <Compile Include="MapViewController.cs" />
+    <Compile Include="MapViewController.designer.cs">
+      <DependentUpon>MapViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="monkey.png" />
@@ -119,6 +120,6 @@
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-Small.png" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="MapDemoViewController.xib" />
+    <InterfaceDefinition Include="Main.storyboard" />
   </ItemGroup>
 </Project>

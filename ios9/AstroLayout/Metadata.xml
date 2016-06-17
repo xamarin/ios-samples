@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>5f4d6d70-e77c-482f-b581-fe7985501915</ID>
+<IsFullApplication>false</IsFullApplication>
+  <Level>Beginning</Level>
+  <Tags>iOS9, User Interface</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+  <Brief>Sample demonstrates how to properly activate and deactivate groups of constraints.</Brief>
+</SampleMetadata>

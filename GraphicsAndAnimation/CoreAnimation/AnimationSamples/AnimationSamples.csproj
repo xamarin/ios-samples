@@ -29,7 +29,6 @@
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
@@ -54,7 +53,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
@@ -95,8 +93,6 @@
   <ItemGroup>
     <BundleResource Include="Resources\monkey1.png" />
     <BundleResource Include="Resources\monkey2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="monkey3.png" />
+    <BundleResource Include="Resources\monkey3.png" />
   </ItemGroup>
 </Project>

@@ -3,14 +3,16 @@ using ObjCRuntime;
 using Foundation;
 using System.Runtime.InteropServices;
 using CoreGraphics;
+using OpenTK.Platform.iPhoneOS;
 using OpenTK.Platform;
 using CoreAnimation;
 using OpenTK.Graphics.ES11;
 using UIKit;
+using OpenGLES;
 
 namespace LowLevelGLPaint
 {
-	public class PaintingView : EAGLView
+	public class PaintingView : iPhoneOSGameView
 	{
 		public const float BrushOpacity = 1.0f / 3.0f;
 		public const int BrushPixelStep = 3;
@@ -25,15 +27,20 @@ namespace LowLevelGLPaint
 		CGPoint PreviousLocation;
 
 		[Export ("layerClass")]
-		public static new Class LayerClass ()
+		public static Class LayerClass ()
 		{
 			return new Class (typeof (CAEAGLLayer));
 		}
 
 		public PaintingView (CGRect frame)
-			: base (frame, All.Rgb565Oes, 0, true)
+			: base (frame)//base (frame, All.Rgb565Oes, 0, true)
 		{
-			SetCurrentContext ();
+			//SetCurrentContext ();
+			LayerRetainsBacking = true;
+			LayerColorFormat = EAGLColorFormat.RGBA8;
+			ContextRenderingApi = EAGLRenderingAPI.OpenGLES1;
+			CreateFrameBuffer ();
+			MakeCurrent ();
 			var brushImage = UIImage.FromFile ("Particle.png").CGImage;
 			var width = (int)brushImage.Width;
 			var height = (int)brushImage.Height;

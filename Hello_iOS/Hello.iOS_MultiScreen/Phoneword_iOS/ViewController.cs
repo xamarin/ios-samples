@@ -56,8 +56,26 @@ namespace Phoneword_iOS
 					PresentViewController (alert, true, null);
 				}
 			};
+
+
+			//
+			// Nativation without Segues
+			// - if the segue was deleted from the storyboard, this code would enable the button to open the second view controller
+			// 
+//			CallHistoryButton.TouchUpInside += (object sender, EventArgs e) => {
+//				// Launches a new instance of CallHistoryController
+//				CallHistoryController callHistory = this.Storyboard.InstantiateViewController ("CallHistoryController") as CallHistoryController;
+//				if (callHistory != null) {
+//					callHistory.PhoneNumbers = PhoneNumbers;
+//					this.NavigationController.PushViewController (callHistory, true);
+//				}
+//			};
 		}
 
+		//
+		// Navigation with Segues
+		// - there is already a segue defined in the storyboard, we use this method to populate it with phone numbers
+		//
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			base.PrepareForSegue (segue, sender);

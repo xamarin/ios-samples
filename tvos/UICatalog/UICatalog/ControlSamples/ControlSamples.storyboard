@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9052" systemVersion="15A279b" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Buttons View Controller-->
+        <scene sceneID="wXt-Sn-8fD">
+            <objects>
+                <viewController storyboardIdentifier="Buttons" id="dTB-IR-ddM" customClass="ButtonsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I8D-21-UhY"/>
+                        <viewControllerLayoutGuide type="bottom" id="u7j-by-RgE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LB3-5U-Guh">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="8lR-Zc-VSK">
+                                <rect key="frame" x="755" y="20" width="411" height="212"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="k1E-ZG-kcD">
+                                        <rect key="frame" x="0.0" y="0.0" width="411" height="86"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="System" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mac-B2-ict">
+                                                <rect key="frame" x="0.0" y="0.0" width="196" height="86"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STK-ag-oeL">
+                                                <rect key="frame" x="216" y="0.0" width="195" height="86"/>
+                                                <animations/>
+                                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="ButtonClicked:" destination="dTB-IR-ddM" eventType="primaryActionTriggered" id="OD1-un-Rf5"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="6Ri-qK-NfA">
+                                        <rect key="frame" x="0.0" y="126" width="411" height="86"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attributed Text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kby-2n-h4P">
+                                                <rect key="frame" x="0.0" y="0.0" width="196" height="86"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Oi-8m-eWo">
+                                                <rect key="frame" x="216" y="0.0" width="195" height="86"/>
+                                                <animations/>
+                                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <action selector="ButtonClicked:" destination="dTB-IR-ddM" eventType="primaryActionTriggered" id="6uc-Wq-Yhg"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                </subviews>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="mac-B2-ict" firstAttribute="width" secondItem="Kby-2n-h4P" secondAttribute="width" id="ai2-of-kFv"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <animations/>
+                        <constraints>
+                            <constraint firstItem="8lR-Zc-VSK" firstAttribute="centerX" secondItem="LB3-5U-Guh" secondAttribute="centerX" id="I1G-1T-NOE"/>
+                            <constraint firstItem="8lR-Zc-VSK" firstAttribute="top" secondItem="I8D-21-UhY" secondAttribute="bottom" constant="20" id="Mvn-xT-LXI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IsS-i8-df0"/>
+                    <connections>
+                        <outlet property="AttributedTextButton" destination="9Oi-8m-eWo" id="Wd1-ji-oDm"/>
+                        <outlet property="preferredFocusedView" destination="STK-ag-oeL" id="Gjj-Kx-SZM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dwv-qa-uaJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="438" y="374"/>
+        </scene>
+        <!--Segmented Controls View Controller-->
+        <scene sceneID="cj3-f8-Xmd">
+            <objects>
+                <viewController storyboardIdentifier="SegmentedControls" id="aGo-q0-VNZ" customClass="SegmentedControlsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5SB-d9-ani"/>
+                        <viewControllerLayoutGuide type="bottom" id="aX6-C7-bfh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZXE-yg-wQq">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="60" translatesAutoresizingMaskIntoConstraints="NO" id="HMb-oH-uCP">
+                                <rect key="frame" x="548" y="20" width="825" height="456"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4yV-Wq-yBL">
+                                        <rect key="frame" x="0.0" y="0.0" width="825" height="69"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plain" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mP5-SQ-pTB">
+                                                <rect key="frame" x="0.0" y="0.0" width="274" height="69"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nk3-z6-S4i">
+                                                <rect key="frame" x="294" y="0.0" width="531" height="70"/>
+                                                <animations/>
+                                                <segments>
+                                                    <segment title="First"/>
+                                                    <segment title="Second"/>
+                                                    <segment title="Third"/>
+                                                </segments>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FTb-28-0Ad">
+                                        <rect key="frame" x="0.0" y="129" width="825" height="69"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tinted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fx-uf-naU">
+                                                <rect key="frame" x="0.0" y="0.0" width="274" height="69"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9Wn-qn-jNv">
+                                                <rect key="frame" x="294" y="0.0" width="531" height="70"/>
+                                                <animations/>
+                                                <segments>
+                                                    <segment title="First"/>
+                                                    <segment title="Second"/>
+                                                    <segment title="Third"/>
+                                                </segments>
+                                                <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="loP-dA-Wga">
+                                        <rect key="frame" x="0.0" y="258" width="825" height="69"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Images" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7e-pa-YXJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="274" height="69"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1Ld-Nf-cEi">
+                                                <rect key="frame" x="294" y="0.0" width="531" height="70"/>
+                                                <animations/>
+                                                <segments>
+                                                    <segment title="" image="star_icon"/>
+                                                    <segment title="" image="checkmark_icon"/>
+                                                    <segment title="" image="search_icon"/>
+                                                </segments>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gog-T1-ryO">
+                                        <rect key="frame" x="0.0" y="387" width="825" height="69"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom background " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXH-Vh-B2N">
+                                                <rect key="frame" x="0.0" y="0.0" width="274" height="69"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JiN-pS-ZWw">
+                                                <rect key="frame" x="294" y="0.0" width="531" height="70"/>
+                                                <animations/>
+                                                <segments>
+                                                    <segment title="First"/>
+                                                    <segment title="Second"/>
+                                                    <segment title="Third"/>
+                                                </segments>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                </subviews>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="mP5-SQ-pTB" firstAttribute="width" secondItem="2fx-uf-naU" secondAttribute="width" id="9oO-4K-eDu"/>
+                                    <constraint firstItem="2fx-uf-naU" firstAttribute="width" secondItem="x7e-pa-YXJ" secondAttribute="width" id="HVy-Nn-fVg"/>
+                                    <constraint firstItem="x7e-pa-YXJ" firstAttribute="width" secondItem="EXH-Vh-B2N" secondAttribute="width" id="Lah-VL-PnY"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <animations/>
+                        <constraints>
+                            <constraint firstItem="HMb-oH-uCP" firstAttribute="centerX" secondItem="ZXE-yg-wQq" secondAttribute="centerX" id="FFt-wB-Img"/>
+                            <constraint firstItem="HMb-oH-uCP" firstAttribute="top" secondItem="5SB-d9-ani" secondAttribute="bottom" constant="20" id="sME-AF-m8w"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="NMU-LN-4eb"/>
+                    <connections>
+                        <outlet property="CustomBackgroundSegmentControl" destination="JiN-pS-ZWw" id="voE-2h-ecs"/>
+                        <outlet property="preferredFocusedView" destination="nk3-z6-S4i" id="CX6-HJ-IsX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5An-e7-v2C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="438" y="1634"/>
+        </scene>
+        <!--Progress View Controller-->
+        <scene sceneID="7qB-3Y-NyM">
+            <objects>
+                <viewController storyboardIdentifier="ProgressViews" id="0VG-HG-68u" customClass="ProgressViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LGL-dV-BIn"/>
+                        <viewControllerLayoutGuide type="bottom" id="rah-5s-2m9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="A0f-cP-a6p">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="39M-O2-q7q">
+                                <rect key="frame" x="110" y="20" width="1700" height="210"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GRh-8h-DGA">
+                                        <rect key="frame" x="0.0" y="0.0" width="1700" height="65"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqj-PQ-zos">
+                                                <rect key="frame" x="0.0" y="0.0" width="1700" height="35"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aCv-kv-80z">
+                                                <rect key="frame" x="0.0" y="55" width="1700" height="10"/>
+                                                <animations/>
+                                            </progressView>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="gDO-Gh-31p">
+                                        <rect key="frame" x="0.0" y="145" width="1700" height="65"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tinted" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtX-pr-ceg">
+                                                <rect key="frame" x="0.0" y="0.0" width="1700" height="35"/>
+                                                <animations/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Im7-FZ-JZb">
+                                                <rect key="frame" x="0.0" y="55" width="1700" height="10"/>
+                                                <animations/>
+                                                <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                            </progressView>
+                                        </subviews>
+                                        <animations/>
+                                    </stackView>
+                                </subviews>
+                                <animations/>
+                            </stackView>
+                        </subviews>
+                        <animations/>
+                        <constraints>
+                            <constraint firstItem="39M-O2-q7q" firstAttribute="top" secondItem="LGL-dV-BIn" secondAttribute="bottom" constant="20" id="K5a-3y-b8g"/>
+                            <constraint firstItem="39M-O2-q7q" firstAttribute="leading" secondItem="A0f-cP-a6p" secondAttribute="leadingMargin" constant="90" id="bMN-Wv-qXG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="39M-O2-q7q" secondAttribute="trailing" constant="90" id="tBG-A3-BTm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="DuO-vt-v5J"/>
+                    <connections>
+                        <outletCollection property="ProgressViews" destination="aCv-kv-80z" id="HNr-qz-LCR"/>
+                        <outletCollection property="ProgressViews" destination="Im7-FZ-JZb" id="Dvb-aN-Kah"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6xg-V8-bok" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="438" y="2902"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="checkmark_icon" width="40" height="40"/>
+        <image name="search_icon" width="40" height="40"/>
+        <image name="star_icon" width="40" height="40"/>
+    </resources>
+</document>

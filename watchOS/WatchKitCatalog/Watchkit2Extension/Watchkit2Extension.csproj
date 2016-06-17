@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{1E2E965C-F6D2-49ED-B86E-418A60C69EEF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{6DF296B2-FBD1-4B5C-BE40-F5A14968BFC3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Watchkit2Extension</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>Watchkit2Extension</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7k</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7k</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>ba6dab2b-79e9-4e8b-b0f9-174570093692</CodesignProvision>
+    <CodesignKey>iPhone Distribution: Xamarin Inc (7V723M9SQ5)</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.WatchOS" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Initital Interface Controller\" />
+    <Folder Include="Table Detail Controller\" />
+    <Folder Include="Glance\" />
+    <Folder Include="Notifications\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Initital Interface Controller\InterfaceController.cs" />
+    <Compile Include="Initital Interface Controller\ElementRowController.cs" />
+    <Compile Include="LabelDetailController.cs" />
+    <Compile Include="ButtonDetailController.cs" />
+    <Compile Include="SwitchDetailController.cs" />
+    <Compile Include="SliderDetailController.cs" />
+    <Compile Include="ImageDetailController.cs" />
+    <Compile Include="SeparatorDetailController.cs" />
+    <Compile Include="GroupDetailController.cs" />
+    <Compile Include="PageController.cs" />
+    <Compile Include="MapDetailController.cs" />
+    <Compile Include="Table Detail Controller\TableDetailController.cs" />
+    <Compile Include="Table Detail Controller\TableRowController.cs" />
+    <Compile Include="DeviceDetailController.cs" />
+    <Compile Include="ControllerDetailController.cs" />
+    <Compile Include="Initital Interface Controller\InterfaceController.designer.cs">
+      <DependentUpon>InterfaceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Initital Interface Controller\ElementRowController.designer.cs">
+      <DependentUpon>ElementRowController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LabelDetailController.designer.cs">
+      <DependentUpon>LabelDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ButtonDetailController.designer.cs">
+      <DependentUpon>ButtonDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SwitchDetailController.designer.cs">
+      <DependentUpon>SwitchDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SliderDetailController.designer.cs">
+      <DependentUpon>SliderDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageDetailController.designer.cs">
+      <DependentUpon>ImageDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MapDetailController.designer.cs">
+      <DependentUpon>MapDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table Detail Controller\TableDetailController.designer.cs">
+      <DependentUpon>TableDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table Detail Controller\TableRowController.designer.cs">
+      <DependentUpon>TableRowController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeviceDetailController.designer.cs">
+      <DependentUpon>DeviceDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControllerDetailController.designer.cs">
+      <DependentUpon>ControllerDetailController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PageController.designer.cs">
+      <DependentUpon>PageController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Glance\GlanceController.cs" />
+    <Compile Include="Glance\GlanceController.designer.cs">
+      <DependentUpon>GlanceController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications\NotificationController.cs" />
+    <Compile Include="TextInputController.cs" />
+    <Compile Include="TextInputController.designer.cs">
+      <DependentUpon>TextInputController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="AppData.json" />
+    <BundleResource Include="NotificationPayload.json" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\WatchOS\Xamarin.WatchOS.AppExtension.CSharp.targets" />
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\Bumblebee.imageset\Bumblebee%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Bumblebee.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Walkway.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Walkway.imageset\38mm-Walkway%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Walkway.imageset\42mm-Walkway%402x.png" />
+  </ItemGroup>
+</Project>

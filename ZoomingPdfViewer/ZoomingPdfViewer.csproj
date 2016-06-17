@@ -70,15 +70,17 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ZoomingPdfViewerViewController.cs" />
-    <Compile Include="ZoomingPdfViewerViewController.designer.cs">
-      <DependentUpon>ZoomingPdfViewerViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="TiledPdfView.cs" />
     <Compile Include="PdfScrollView.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <InterfaceDefinition Include="ZoomingPdfViewerViewController.xib" />
+    <Compile Include="DataViewController.cs" />
+    <Compile Include="DataViewController.designer.cs">
+      <DependentUpon>DataViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RootViewController.cs" />
+    <Compile Include="RootViewController.designer.cs">
+      <DependentUpon>RootViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModelController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tamarin.pdf" />
@@ -106,6 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="MainStoryboard.storyboard" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -1,12 +1,12 @@
-using System;
-using CoreGraphics;
 using UIKit;
+using CoreGraphics;
 
 namespace NSZombieApocalypse
 {
-	public class StatusView : UIView
+	public sealed class StatusView : UIView
 	{
-		UILabel label;
+		readonly UILabel label;
+
 		public string Status {
 			set {
 				if (value.Equals (label.Text))
@@ -33,4 +33,3 @@ namespace NSZombieApocalypse
 		}
 	}
 }
-

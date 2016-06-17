@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicMotion", "MusicMotion\MusicMotion.csproj", "{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}.Release|Any CPU.Build.0 = Release|iPhone
+		{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}.Release|iPhone.Build.0 = Release|iPhone
+		{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FF6C2F4C-7C39-42D1-8344-E3B40B418D31}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+EndGlobal

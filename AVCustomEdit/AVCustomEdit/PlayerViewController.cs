@@ -70,7 +70,7 @@ namespace AVCustomEdit
 			base.ViewDidLoad ();
 
 			gestureRecognizer.ShouldReceiveTouch = ShouldReceiveTouch;
-			gestureRecognizer.AddTarget (() => { HandleTapGesture (gestureRecognizer); });
+			gestureRecognizer.AddTarget (() => HandleTapGesture (gestureRecognizer));
 
 			Editor = new SimpleEditor ();
 
@@ -141,12 +141,12 @@ namespace AVCustomEdit
 		{
 			var path1 = NSBundle.MainBundle.PathForResource ("sample_clip1", "m4v");
 			var path2 = NSBundle.MainBundle.PathForResource ("sample_clip2", "mov");
-			AVUrlAsset asset1 = AVUrlAsset.FromUrl (new NSUrl (path1, false)) as AVUrlAsset;
-			AVUrlAsset asset2 = AVUrlAsset.FromUrl (new NSUrl (path2, false)) as AVUrlAsset;
+			var asset1 = AVAsset.FromUrl (new NSUrl (path1, false)) as AVUrlAsset;
+			var asset2 = AVAsset.FromUrl (new NSUrl (path2, false)) as AVUrlAsset;
 
 			DispatchGroup dispatchGroup = DispatchGroup.Create ();
 
-			string[] assetKeys = new string[] {
+			string[] assetKeys = {
 				"tracks",
 				"duration",
 				"composable"
@@ -172,7 +172,7 @@ namespace AVCustomEdit
 					NSError error;
 					if(asset.StatusOfValue(key, out error) == AVKeyValueStatus.Failed)
 					{
-						Console.Error.WriteLine("Key value loading failed for key" + key + " with error: "+ error.ToString());
+						Console.Error.WriteLine("Key value loading failed for key {0} with error: {1}", key, error);
 						dispatchGroup.Leave();
 					}
 
@@ -183,7 +183,7 @@ namespace AVCustomEdit
 					dispatchGroup.Leave();
 				}
 				Clips.Add(asset);
-				ClipTimeRanges.Add(NSValue.FromCMTimeRange(new CMTimeRange(){
+				ClipTimeRanges.Add(NSValue.FromCMTimeRange(new CMTimeRange {
 					Start =  CMTime.FromSeconds(0, 1),
 					Duration =  CMTime.FromSeconds(5,1)
 				}));
@@ -199,7 +199,7 @@ namespace AVCustomEdit
 			AVPlayerItem playerItem = Editor.PlayerItem;
 			var status = (NSString)"status";
 
-			if (this.PlayerItem != playerItem) {
+			if (PlayerItem != playerItem) {
 				if (PlayerItem != null) {
 					PlayerItem.RemoveObserver (this, status);
 					NSNotificationCenter.DefaultCenter.RemoveObserver (observer, AVPlayerItem.DidPlayToEndTimeNotification, PlayerItem);
@@ -208,11 +208,11 @@ namespace AVCustomEdit
 				PlayerItem = playerItem;
 
 				if (PlayerItem != null) {
-					this.PlayerItem.SeekingWaitsForVideoCompositionRendering = true;
-					this.PlayerItem.AddObserver (this, status, NSKeyValueObservingOptions.New|
+					PlayerItem.SeekingWaitsForVideoCompositionRendering = true;
+					PlayerItem.AddObserver (this, status, NSKeyValueObservingOptions.New|
 						NSKeyValueObservingOptions.Initial, StatusObservationContext.Handle);
-					observer = NSNotificationCenter.DefaultCenter.AddObserver (AVPlayerItem.DidPlayToEndTimeNotification, (notification) => {
-						Console.WriteLine("Seek Zero = true");
+					observer = NSNotificationCenter.DefaultCenter.AddObserver (AVPlayerItem.DidPlayToEndTimeNotification, notification => {
+						Console.WriteLine ("Seek Zero = true");
 						seekToZeroBeforePlaying = true;
 					}, playerItem);
 					//NSNotificationCenter.DefaultCenter.AddObserver (this, new MonoTouch.ObjCRuntime.Selector ("playerItemEnded:"), AVPlayerItem.DidPlayToEndTimeNotification, playerItem);
@@ -250,7 +250,7 @@ namespace AVCustomEdit
 
 		void synchronizeEditorClips()
 		{
-			List<AVAsset> validClips = new List<AVAsset> ();
+			var validClips = new List<AVAsset> ();
 			foreach (var asset in Clips) {
 				if (asset != null)
 					validClips.Add (asset);
@@ -261,7 +261,7 @@ namespace AVCustomEdit
 
 		void synchronizeEditorClipTimeRanges()
 		{
-			List<NSValue> validClipTimeRanges = new List<NSValue> ();
+			var validClipTimeRanges = new List<NSValue> ();
 			foreach (var timeRange in ClipTimeRanges) {
 				if (timeRange != null)
 					validClipTimeRanges.Add (timeRange);
@@ -316,7 +316,7 @@ namespace AVCustomEdit
 			if (context == RateObservationContext.Handle) {
 				//TODO: need debug here.
 				float newRate = ((NSNumber)ch.NewValue).FloatValue;
-				NSNumber oldRateNum = (NSNumber)ch.OldValue;
+				var oldRateNum = (NSNumber)ch.OldValue;
 				if (oldRateNum != null && newRate != oldRateNum.FloatValue) {
 					playing = (newRate != 0.0f || playRateToRestore != 0.0f);
 					updatePlayPauseButton ();
@@ -324,7 +324,7 @@ namespace AVCustomEdit
 					updateTimeLabel ();
 				}
 			} else if (context == StatusObservationContext.Handle) {
-				AVPlayerItem playerItem = ofObject as AVPlayerItem;
+				var playerItem = ofObject as AVPlayerItem;
 				if (playerItem.Status == AVPlayerItemStatus.ReadyToPlay) {
 					/* Once the AVPlayerItem becomes ready to play, i.e.
 					   [playerItem status] == AVPlayerItemStatusReadyToPlay,
@@ -341,7 +341,7 @@ namespace AVCustomEdit
 		void updatePlayPauseButton()
 		{
 			var style = playing ? UIBarButtonSystemItem.Pause : UIBarButtonSystemItem.Play;
-			var newPlayPauseButton = new UIBarButtonItem (style, (s, e) => { togglePlayPause (s as UIBarButtonItem); });
+			var newPlayPauseButton = new UIBarButtonItem (style, (s, e) => togglePlayPause (s as UIBarButtonItem));
 
 			var items = toolBar.Items;
 			items [0] = newPlayPauseButton;
@@ -356,7 +356,6 @@ namespace AVCustomEdit
 				return;
 
 			var seconds = Player.CurrentTime.Seconds;
-			Console.WriteLine (seconds);
 			if (double.IsInfinity(seconds))
 				seconds = 0;
 
@@ -384,7 +383,7 @@ namespace AVCustomEdit
 		void updateProgress(NSTimer timer)
 		{
 			var session = timer.UserInfo as AVAssetExportSession;
-			if (session.Status == AVAssetExportSessionStatus.Exporting)
+			if (session != null && session.Status == AVAssetExportSessionStatus.Exporting)
 				exportProgressView.Progress = session.Progress;
 		}
 
@@ -495,13 +494,9 @@ namespace AVCustomEdit
 			session.OutputUrl = NSUrl.FromFilename (filePath);
 			session.OutputFileType = AVFileType.QuickTimeMovie;
 
-			session.ExportAsynchronously (() => {
-				DispatchQueue.MainQueue.DispatchAsync (() => {
-					exportCompleted (session);
-				});
-			});
+			session.ExportAsynchronously (() => DispatchQueue.MainQueue.DispatchAsync (() => exportCompleted (session)));
 
-			progressTimer = NSTimer.CreateRepeatingTimer (0.5, (d) => updateProgress (progressTimer));
+			progressTimer = NSTimer.CreateRepeatingTimer (0.5, d => updateProgress (progressTimer));
 			NSRunLoop.Current.AddTimer (progressTimer, NSRunLoopMode.Default);
 		}
 
@@ -528,6 +523,7 @@ namespace AVCustomEdit
 					Console.WriteLine ("writeVideoToAssetsLibrary failed: {0}", error.LocalizedDescription);
 					reportError (error);
 				}
+				library.Dispose();
 			});
 
 			Player.Play ();
@@ -539,10 +535,7 @@ namespace AVCustomEdit
 
 		bool ShouldReceiveTouch (UIGestureRecognizer gestureRecognizer, UITouch touch)
 		{
-			if (touch.View != View)
-				return false;
-
-			return true;
+			return touch.View == View;
 		}
 
 		public void TransitionTypePicked (int transitionType)

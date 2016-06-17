@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>69ed8694-ae64-4184-851c-f9abf5748b33</ID>
+	<Brief>WatchKit Catalog for watchOS 2 is an exploration of the UI elements available in the WatchKit framework.</Brief>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>User Interface, Watch, iOS9</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>false</Gallery>
+</SampleMetadata>

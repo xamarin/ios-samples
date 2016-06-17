@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>4f95fae3-b11f-4620-bdef-0f14878242f2</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Advanced</Level>
+	<Tags>SceneKit, iOS8, Graphics</Tags>
+	<Gallery>true</Gallery>
+	<Brief>This sample shows how to create a randomly generated city using the [SceneKit API](http://api.xamarin.com/?link=N%3aSceneKit) and is written in C&#35;.</Brief>
+</SampleMetadata>

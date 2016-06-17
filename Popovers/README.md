@@ -40,7 +40,7 @@ A view controller that is the contents of the popovers in this sample. In this e
 Copyright
 ---------
 
-Copyright (C) 2010 Apple Inc. All rights reserved.
+Xamarin port changes are released under the MIT license
 
 Authors
 -------

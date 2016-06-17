@@ -1,5 +1,4 @@
-﻿using System;
-using CoreAnimation;
+﻿using CoreAnimation;
 using CoreGraphics;
 using UIKit;
 
@@ -10,10 +9,6 @@ namespace AnimationSamples
 		static UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
 
 		CALayer layer;
-
-		public ImplicitLayerAnimation ()
-		{
-		}
 
 		public override void ViewDidLoad ()
 		{
@@ -33,10 +28,8 @@ namespace AnimationSamples
 			View.Layer.AddSublayer (layer);
 
 			View.AddGestureRecognizer (new UITapGestureRecognizer (() => {
-				ViewController initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
-
+				var initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal;
-
 				PresentViewController(initalViewController, true, null);
 			}));
 		}

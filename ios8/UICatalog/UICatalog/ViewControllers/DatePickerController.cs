@@ -9,21 +9,22 @@ namespace UICatalog
 	public class DatePickerController : UIViewController
 	{
 		[Outlet]
-		private UIDatePicker DatePicker { get; set; }
+		UIDatePicker DatePicker { get; set; }
 
 		[Outlet]
-		private UILabel DateLabel { get; set; }
+		UILabel DateLabel { get; set; }
 
 		// Use a date formatter to format the "date" property of "datePicker".
-		private NSDateFormatter _dateFormater;
-		private NSDateFormatter DateFormater {
+		NSDateFormatter dateFormater;
+
+		NSDateFormatter DateFormater {
 			get {
-				_dateFormater = _dateFormater ?? new NSDateFormatter {
+				dateFormater = dateFormater ?? new NSDateFormatter {
 					DateStyle = NSDateFormatterStyle.Medium,
 					TimeStyle = NSDateFormatterStyle.Short,
 				};
 
-				return _dateFormater;
+				return dateFormater;
 			}
 		}
 
@@ -39,7 +40,7 @@ namespace UICatalog
 			ConfigureDatePicker ();
 		}
 
-		private void ConfigureDatePicker()
+		void ConfigureDatePicker ()
 		{
 			DatePicker.Mode = UIDatePickerMode.DateAndTime;
 
@@ -57,9 +58,9 @@ namespace UICatalog
 			updateDatePickerLabel (DatePicker, EventArgs.Empty);
 		}
 
-		private void updateDatePickerLabel (object sender, EventArgs e)
+		void updateDatePickerLabel (object sender, EventArgs e)
 		{
-			DateLabel.Text = DateFormater.ToString(DatePicker.Date);
+			DateLabel.Text = DateFormater.ToString (DatePicker.Date);
 		}
 	}
 }

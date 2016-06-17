@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Foundation;
 using UIKit;
 
@@ -12,7 +9,7 @@ namespace AppPrefs
 	/// application events from iOS.
 	/// </summary>
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
+	public class AppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
 		NSObject observer;
@@ -21,6 +18,7 @@ namespace AppPrefs
 
 		public override void FinishedLaunching (UIApplication application)
 		{
+			Settings.LoadDefaultValues();
 			observer = NSNotificationCenter.DefaultCenter.AddObserver ((NSString)"NSUserDefaultsDidChangeNotification", DefaultsChanged);
 			DefaultsChanged (null);
 		}

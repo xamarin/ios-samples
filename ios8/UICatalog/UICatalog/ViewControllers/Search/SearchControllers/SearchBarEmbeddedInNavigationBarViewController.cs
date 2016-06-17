@@ -8,7 +8,7 @@ namespace UICatalog
 	[Register ("SearchBarEmbeddedInNavigationBarViewController")]
 	public class SearchBarEmbeddedInNavigationBarViewController : SearchControllerBaseViewController
 	{
-		private UISearchController _searchController;
+		UISearchController searchController;
 
 		public SearchBarEmbeddedInNavigationBarViewController (IntPtr handle)
 			: base (handle)
@@ -23,17 +23,17 @@ namespace UICatalog
 			var searchResultsController = (SearchResultsViewController)Storyboard.InstantiateViewController (SearchResultsViewController.StoryboardIdentifier);
 
 			// Create the search controller and make it perform the results updating.
-			_searchController = new UISearchController (searchResultsController);
-			_searchController.SetSearchResultsUpdater (searchResultsController.UpdateSearchResultsForSearchController);
-			_searchController.HidesNavigationBarDuringPresentation = false;
+			searchController = new UISearchController (searchResultsController);
+			searchController.SetSearchResultsUpdater (searchResultsController.UpdateSearchResultsForSearchController);
+			searchController.HidesNavigationBarDuringPresentation = false;
 
 			// Configure the search controller's search bar. For more information on how to configure
 			// search bars, see the "Search Bar" group under "Search".
-			_searchController.SearchBar.SearchBarStyle = UISearchBarStyle.Minimal;
-			_searchController.SearchBar.Placeholder = "Search";
+			searchController.SearchBar.SearchBarStyle = UISearchBarStyle.Minimal;
+			searchController.SearchBar.Placeholder = "Search";
 
 			// Include the search bar within the navigation bar.
-			NavigationItem.TitleView = _searchController.SearchBar;
+			NavigationItem.TitleView = searchController.SearchBar;
 
 			DefinesPresentationContext = true;
 		}

@@ -5,48 +5,36 @@ namespace AnimationSamples
 {
 	public class DemoViewTransition : UIViewController
 	{
-		static UIStoryboard MainStoryboard =  UIStoryboard.FromName ("Main", null);
+		static readonly UIStoryboard MainStoryboard =  UIStoryboard.FromName ("Main", null);
 
-		UIView view1;
-		UIView view2;
-
-		public DemoViewTransition ()
-		{
-		}
+		UIView fromView;
+		UIView toView;
 
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad ();
 			View.BackgroundColor = UIColor.White;
 
-			view1 = new UIImageView (UIImage.FromFile ("monkey1.png")) {
+			fromView = new UIImageView (UIImage.FromFile ("monkey1.png")) {
 				Frame = View.Frame,
 				ContentMode = UIViewContentMode.ScaleAspectFit,
 				UserInteractionEnabled = true
 			};
-			View.AddSubview (view1);
+			View.AddSubview (fromView);
 
-			view2 = new UIImageView (UIImage.FromFile ("monkey2.png")) {
+			toView = new UIImageView (UIImage.FromFile ("monkey2.png")) {
 				Frame = View.Frame,
 				ContentMode = UIViewContentMode.ScaleAspectFit,
 				UserInteractionEnabled = true
 			};
-			View.AddSubview (view1);
+			View.AddSubview (fromView);
 
-			view1.AddGestureRecognizer (new UITapGestureRecognizer (() => { 
-				UIView.Transition (
-					fromView: view1,
-					toView: view2,
-					duration: 2,
-					options: UIViewAnimationOptions.TransitionFlipFromTop | UIViewAnimationOptions.CurveEaseInOut,
-					completion: () => { Console.WriteLine ("transition complete"); });
-			}));
+			var options = UIViewAnimationOptions.TransitionFlipFromTop | UIViewAnimationOptions.CurveEaseInOut;
+			fromView.AddGestureRecognizer (new UITapGestureRecognizer (() => UIView.Transition (fromView, toView, 2, options, () => Console.WriteLine ("transition complete"))));
 
-			view2.AddGestureRecognizer (new UITapGestureRecognizer (() => {
-				ViewController initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
-
+			toView.AddGestureRecognizer (new UITapGestureRecognizer (() => {
+				var initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
-
 				PresentViewController(initalViewController, true, null);
 			}));
 		}
