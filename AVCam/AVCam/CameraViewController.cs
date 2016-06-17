@@ -17,7 +17,7 @@ namespace AVCam
 		SessionConfigurationFailed
 	}
 
-	[Register ("AAPLCameraViewController")]
+	[Register ("CameraViewController")]
 	public class CameraViewController : UIViewController, IAVCaptureFileOutputRecordingDelegate
 	{
 		[Outlet]

@@ -7,7 +7,7 @@ using ObjCRuntime;
 
 namespace AVCam
 {
-	[Register("AAPLPreviewView")]
+	[Register("PreviewView")]
 	public class PreviewView : UIView
 	{
 		static Class layerClass;
