@@ -1,11 +1,11 @@
 using System;
+using System.IO;
+
 using UIKit;
 using Foundation;
+using CoreFoundation;
 using CoreGraphics;
 using AVFoundation;
-using CoreFoundation;
-using System.Collections.Generic;
-using System.IO;
 using Photos;
 
 namespace AVCam
@@ -451,7 +451,10 @@ namespace AVCam
 		[Export ("toggleMovieRecording:")]
 		void ToggleMovieRecording (CameraViewController sender)
 		{
+			// Disable the Camera button until recording finishes, and disable the Record button until recording starts or finishes.
+			CameraButton.Enabled = false;
 			RecordButton.Enabled = false;
+
 			SessionQueue.DispatchAsync (() => {
 				if (!MovieFileOutput.Recording) {
 					if (UIDevice.CurrentDevice.IsMultitaskingSupported) {
@@ -465,16 +468,18 @@ namespace AVCam
 
 					// Update the orientation on the movie file output video connection before starting recording.
 					AVCaptureConnection connection = MovieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
-					AVCaptureVideoPreviewLayer previewLayer = (AVCaptureVideoPreviewLayer)PreviewView.Layer;
+					var previewLayer = (AVCaptureVideoPreviewLayer)PreviewView.Layer;
 					connection.VideoOrientation = previewLayer.Connection.VideoOrientation;
+
 					// Turn OFF flash for video recording.
 					SetFlashModeForDevice (AVCaptureFlashMode.Off, VideoDeviceInput.Device);
+
 					// Start recording to a temporary file.
 					string outputFileName = NSProcessInfo.ProcessInfo.GloballyUniqueString;
 					string tmpDir = Path.GetTempPath ();
 					string outputFilePath = Path.Combine (tmpDir, outputFileName);
 					outputFilePath = Path.ChangeExtension (outputFilePath, "mov");
-					MovieFileOutput.StartRecordingToOutputFile (new NSUrl (outputFilePath), this);
+					MovieFileOutput.StartRecordingToOutputFile (new NSUrl(outputFilePath, false), this);
 				} else {
 					MovieFileOutput.StopRecording ();
 				}
@@ -487,39 +492,47 @@ namespace AVCam
 			CameraButton.Enabled = false;
 			RecordButton.Enabled = false;
 			StillButton.Enabled = false;
+
 			SessionQueue.DispatchAsync (() => {
 				AVCaptureDevice currentVideoDevice = VideoDeviceInput.Device;
 				AVCaptureDevicePosition preferredPosition = AVCaptureDevicePosition.Unspecified;
 				AVCaptureDevicePosition currentPosition = currentVideoDevice.Position;
+
 				switch (currentPosition) {
-				case AVCaptureDevicePosition.Unspecified:
-				case AVCaptureDevicePosition.Front:
-					preferredPosition = AVCaptureDevicePosition.Back;
-					break;
-				case AVCaptureDevicePosition.Back:
-					preferredPosition = AVCaptureDevicePosition.Front;
-					break;
+					case AVCaptureDevicePosition.Unspecified:
+					case AVCaptureDevicePosition.Front:
+						preferredPosition = AVCaptureDevicePosition.Back;
+						break;
+					case AVCaptureDevicePosition.Back:
+						preferredPosition = AVCaptureDevicePosition.Front;
+						break;
 				}
 				AVCaptureDevice videoDevice = CreateDevice (AVMediaType.Video, preferredPosition);
 				AVCaptureDeviceInput videoDeviceInput = AVCaptureDeviceInput.FromDevice (videoDevice);
+
 				Session.BeginConfiguration ();
 
 				// Remove the existing device input first, since using the front and back camera simultaneously is not supported.
-				Session.RemoveInput (videoDeviceInput);
+				Session.RemoveInput (VideoDeviceInput);
+
 				if (Session.CanAddInput (videoDeviceInput)) {
 					subjectSubscriber.Dispose ();
+
 					SetFlashModeForDevice (AVCaptureFlashMode.Auto, videoDevice);
 					subjectSubscriber = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureDevice.SubjectAreaDidChangeNotification, SubjectAreaDidChange, videoDevice);
+
 					Session.AddInput (videoDeviceInput);
 					VideoDeviceInput = videoDeviceInput;
 				} else {
 					Session.AddInput (VideoDeviceInput);
 				}
+
 				AVCaptureConnection connection = MovieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
-				if (connection.SupportsVideoStabilization) {
+				if (connection.SupportsVideoStabilization)
 					connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto;
-				}
+
 				Session.CommitConfiguration ();
+
 				DispatchQueue.MainQueue.DispatchAsync (() => {
 					CameraButton.Enabled = true;
 					RecordButton.Enabled = true;

@@ -10,29 +10,34 @@ namespace AVCam
 	[Register("AAPLPreviewView")]
 	public class PreviewView : UIView
 	{
+		static Class layerClass;
+
 		public static Class LayerClass
 		{
 			[Export("layerClass")]
 			get {
-				return new Class (typeof(AVCaptureVideoPreviewLayer));
+				return layerClass = layerClass ?? new Class (typeof (AVCaptureVideoPreviewLayer));
 			}
 		}
 
 		public AVCaptureSession Session {
 			get {
-				var previewLayer = (AVCaptureVideoPreviewLayer)Layer;
-				return previewLayer.Session;
+				return PreviewLayer.Session;
 			}
 			set {
-				var previewLayer = (AVCaptureVideoPreviewLayer)Layer;
-				previewLayer.Session = value;
+				PreviewLayer.Session = value;
+			}
+		}
+
+		AVCaptureVideoPreviewLayer PreviewLayer {
+			get {
+				return (AVCaptureVideoPreviewLayer)Layer;
 			}
 		}
 
 		public PreviewView (IntPtr handle)
 			: base (handle)
 		{
-			
 		}
 	}
 }
