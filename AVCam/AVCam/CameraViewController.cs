@@ -123,7 +123,7 @@ namespace AVCam
 
 				backgroundRecordingID = -1;
 				NSError error;
-				AVCaptureDevice videoDevice = CameraViewController.CreateDevice (AVMediaType.Video, AVCaptureDevicePosition.Back);
+				AVCaptureDevice videoDevice = CreateDevice (AVMediaType.Video, AVCaptureDevicePosition.Back);
 				AVCaptureDeviceInput videoDeviceInput = AVCaptureDeviceInput.FromDevice (videoDevice, out error);
 				if (videoDeviceInput == null)
 					Console.WriteLine ("Could not create video device input: {0}", error);
@@ -375,21 +375,19 @@ namespace AVCam
 
 			// In iOS 9 and later, the userInfo dictionary contains information on why the session was interrupted.
 			if (UIDevice.CurrentDevice.CheckSystemVersion (9, 0)) {
-				// TODO: not bounded
-//				AVCaptureSessionInterruptionReason reason = null;// [notification.userInfo[AVCaptureSessionInterruptionReasonKey] integerValue];
-//				Console.WriteLine ("Capture session was interrupted with reason {0}", (long)reason );
-//					if ( reason == AVCaptureSessionInterruptionReasonAudioDeviceInUseByAnotherClient ||
-				//			 reason == AVCaptureSessionInterruptionReasonVideoDeviceInUseByAnotherClient ) {
-				//			showResumeButton = YES;
-				//		}
-				//		else if ( reason == AVCaptureSessionInterruptionReasonVideoDeviceNotAvailableWithMultipleForegroundApps ) {
-				// Simply fade-in a label to inform the user that the camera is unavailable.
-				CameraUnavailableLabel.Hidden = false;
-				CameraUnavailableLabel.Alpha = 0;
-				UIView.Animate (0.25, () => {
-					CameraUnavailableLabel.Alpha = 1;
-				});
-//					}
+				var reason = (AVCaptureSessionInterruptionReason)((NSNumber)notification.UserInfo [AVCaptureSession.InterruptionReasonKey]).Int32Value;
+				Console.WriteLine ("Capture session was interrupted with reason {0}", reason);
+				if (reason == AVCaptureSessionInterruptionReason.AudioDeviceInUseByAnotherClient ||
+					reason == AVCaptureSessionInterruptionReason.VideoDeviceInUseByAnotherClient) {
+					showResumeButton = true;
+				} else if (reason == AVCaptureSessionInterruptionReason.VideoDeviceNotAvailableWithMultipleForegroundApps) {
+					// Simply fade-in a label to inform the user that the camera is unavailable.
+					CameraUnavailableLabel.Hidden = false;
+					CameraUnavailableLabel.Alpha = 0;
+					UIView.Animate (0.25, () => {
+						CameraUnavailableLabel.Alpha = 1;
+					});
+				}
 			} else {
 				Console.WriteLine ("Capture session was interrupted");
 				showResumeButton = UIApplication.SharedApplication.ApplicationState == UIApplicationState.Inactive;
