@@ -475,11 +475,7 @@ namespace AVCam
 					SetFlashModeForDevice (AVCaptureFlashMode.Off, VideoDeviceInput.Device);
 
 					// Start recording to a temporary file.
-					string outputFileName = NSProcessInfo.ProcessInfo.GloballyUniqueString;
-					string tmpDir = Path.GetTempPath ();
-					string outputFilePath = Path.Combine (tmpDir, outputFileName);
-					outputFilePath = Path.ChangeExtension (outputFilePath, "mov");
-					MovieFileOutput.StartRecordingToOutputFile (new NSUrl(outputFilePath, false), this);
+					MovieFileOutput.StartRecordingToOutputFile (new NSUrl(GetTmpFilePath ("mov"), false), this);
 				} else {
 					MovieFileOutput.StopRecording ();
 				}
@@ -544,20 +540,32 @@ namespace AVCam
 		[Export ("snapStillImage:")]
 		void SnapStillImage (CameraViewController sender)
 		{
-			SessionQueue.DispatchAsync (() => {
+			SessionQueue.DispatchAsync (async () => {
 				AVCaptureConnection connection = StillImageOutput.ConnectionFromMediaType (AVMediaType.Video);
 				var previewLayer = (AVCaptureVideoPreviewLayer)PreviewView.Layer;
+
 				// Update the orientation on the still image output video connection before capturing.
 				connection.VideoOrientation = previewLayer.Connection.VideoOrientation;
+
 				// Flash set to Auto for Still Capture.
 				SetFlashModeForDevice (AVCaptureFlashMode.Auto, VideoDeviceInput.Device);
+
 				// Capture a still image.
-				StillImageOutput.CaptureStillImageAsynchronously (connection, (imageDataSampleBuffer, error) => {
-					if (imageDataSampleBuffer != null) {
-						// The sample buffer is not retained. Create image data before saving the still image to the photo library asynchronously.
-						NSData imageData = AVCaptureStillImageOutput.JpegStillToNSData (imageDataSampleBuffer);
-						PHPhotoLibrary.RequestAuthorization (status => {
-							if (status == PHAuthorizationStatus.Authorized) {
+				try {
+					var imageDataSampleBuffer = await StillImageOutput.CaptureStillImageTaskAsync (connection);
+
+					// The sample buffer is not retained. Create image data before saving the still image to the photo library asynchronously.
+					NSData imageData = AVCaptureStillImageOutput.JpegStillToNSData (imageDataSampleBuffer);
+
+					PHPhotoLibrary.RequestAuthorization (status => {
+						if (status == PHAuthorizationStatus.Authorized) {
+							// To preserve the metadata, we create an asset from the JPEG NSData representation.
+							// Note that creating an asset from a UIImage discards the metadata.
+
+							// In iOS 9, we can use AddResource method on PHAssetCreationRequest class.
+							// In iOS 8, we save the image to a temporary file and use +[PHAssetChangeRequest creationRequestForAssetFromImageAtFileURL:].
+
+							if (UIDevice.CurrentDevice.CheckSystemVersion (9, 0)) {
 								PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
 									var request = PHAssetCreationRequest.CreationRequestForAsset ();
 									request.AddResource (PHAssetResourceType.Photo, imageData, null);
@@ -565,13 +573,38 @@ namespace AVCam
 									if (!success)
 										Console.WriteLine ("Error occurred while saving image to photo library: {0}", err);
 								});
+							} else {
+								var temporaryFileUrl = new NSUrl (GetTmpFilePath ("jpg"), false);
+								PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
+									NSError error = null;
+									if (imageData.Save (temporaryFileUrl, NSDataWritingOptions.Atomic, out error))
+										PHAssetChangeRequest.FromImage (temporaryFileUrl);
+									else
+										Console.WriteLine ("Error occured while writing image data to a temporary file: {0}", error);
+								}, (success, error) => {
+									if (!success)
+										Console.WriteLine ("Error occurred while saving image to photo library: {0}", error);
+
+									// Delete the temporary file.
+									NSError deleteError;
+									NSFileManager.DefaultManager.Remove (temporaryFileUrl, out deleteError);
+								});
 							}
-						});
-					} else {
-						Console.WriteLine ("Could not capture still image: {0}", error);
-					}
-				});
+						}
+					});
+				} catch (NSErrorException ex) {
+					Console.WriteLine ("Could not capture still image: {0}", ex.Error);
+				}
 			});
+		}
+
+		string GetTmpFilePath (string extension)
+		{
+			// Start recording to a temporary file.
+			string outputFileName = NSProcessInfo.ProcessInfo.GloballyUniqueString;
+			string tmpDir = Path.GetTempPath ();
+			string outputFilePath = Path.Combine (tmpDir, outputFileName);
+			return Path.ChangeExtension (outputFilePath, extension);
 		}
 
 		[Export ("focusAndExposeTap:")]
