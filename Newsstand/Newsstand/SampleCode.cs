@@ -99,6 +99,10 @@ namespace Newsstand {
 			downloading = true;
 			var library = NKLibrary.SharedLibrary;
 			var issues = library.Issues;
+
+			if (issues.Length == 0)
+				return;
+
 			var issue = issues[1] ; // New York
 
 			NKAssetDownload asset = issue.AddAsset (new NSUrlRequest (new NSUrl ("http://xamarin.com/")));
