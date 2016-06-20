@@ -150,6 +150,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -185,5 +186,6 @@
     <ImageAsset Include="Resources\Assets.xcassets\Navigation.imageset\nav_icon.png" />
     <ImageAsset Include="Resources\Assets.xcassets\Title.imageset\Contents.json" />
     <ImageAsset Include="Resources\Assets.xcassets\Title.imageset\cloudkit-catalog.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\LaunchImage.launchimage\Contents.json" />
   </ItemGroup>
 </Project>
