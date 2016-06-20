@@ -335,7 +335,7 @@ namespace CloudKitAtlas
 			}
 		}
 
-		public void Run (Action<Results, NSError> completionHandler)
+		public virtual void Run (Action<Results, NSError> completionHandler)
 		{
 			completionHandler (new Results (), null);
 		}

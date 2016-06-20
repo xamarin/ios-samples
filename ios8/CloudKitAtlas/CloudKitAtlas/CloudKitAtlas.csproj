@@ -237,6 +237,7 @@
     <Compile Include="CodeSamples\CodeSampleGroup.cs" />
     <Compile Include="CodeSamples\CodeSample.cs" />
     <Compile Include="CodeSamples\Notitfications\MarkNotificationsReadSample.cs" />
+    <Compile Include="Utils\CKNotificationWrapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -253,6 +254,7 @@
     <Folder Include="Loading\" />
     <Folder Include="Table\" />
     <Folder Include="CodeSamples\Notitfications\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />

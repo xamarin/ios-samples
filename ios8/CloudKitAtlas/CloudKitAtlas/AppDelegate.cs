@@ -46,8 +46,14 @@ namespace CloudKitAtlas
 
 			var viewController = Window?.RootViewController as UINavigationController;
 			if (viewController != null) {
-				//viewController.ViewControllers[0] as Main
-				
+				var tableViewController = viewController.ViewControllers [0] as MainMenuTableViewController;
+				if (tableViewController != null) {
+					var group
+					var index = tableViewController.CodeSampleGroups.Length - 1;
+					var notificationSample = tableViewController.CodeSampleGroups.LastOrDefault ()?.CodeSamples.First () as MarkNotificationsReadSample;
+					notificationSample
+				}
+
 			}
 			//		if let tableViewController = viewController.viewControllers [0] as? MainMenuTableViewController {
 			//			let index = tableViewController.codeSampleGroups.count - 1
