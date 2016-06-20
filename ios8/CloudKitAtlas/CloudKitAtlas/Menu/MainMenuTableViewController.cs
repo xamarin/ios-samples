@@ -9,6 +9,8 @@ namespace CloudKitAtlas
 {
 	public partial class MainMenuTableViewController : UITableViewController
 	{
+		public CodeSampleGroup [] CodeSampleGroups { get; set; }
+
 		public MainMenuTableViewController (IntPtr handle) : base (handle)
 		{
 		}

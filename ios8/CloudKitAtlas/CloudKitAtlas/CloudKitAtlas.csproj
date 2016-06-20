@@ -234,6 +234,9 @@
     <Compile Include="Table\TableView.designer.cs">
       <DependentUpon>TableView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CodeSamples\CodeSampleGroup.cs" />
+    <Compile Include="CodeSamples\CodeSample.cs" />
+    <Compile Include="CodeSamples\Notitfications\MarkNotificationsReadSample.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -249,6 +252,7 @@
     <Folder Include="Navigation\" />
     <Folder Include="Loading\" />
     <Folder Include="Table\" />
+    <Folder Include="CodeSamples\Notitfications\" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />
