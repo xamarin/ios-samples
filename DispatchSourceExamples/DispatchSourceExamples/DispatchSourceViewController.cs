@@ -22,6 +22,7 @@ namespace DispatchSourceExamples {
 		bool dispatchSourceIsInUse;
 		DispatchSource dispatchSource;
 		NSUrl testFileUrl;
+		FileStream testFileStream;
 
 		Test CurrentTestInfo { get; set; }
 
@@ -93,7 +94,10 @@ namespace DispatchSourceExamples {
 
 		public override void ViewWillDisappear(bool animated)
 		{
-			base.ViewWillDisappear(animated);
+			base.ViewWillDisappear (animated);
+			if (testFileStream != null)
+				testFileStream.Dispose ();
+
 			if (dispatchSource != null) {
 				dispatchSource.Cancel ();
 				dispatchSource.Dispose ();
@@ -194,8 +198,8 @@ namespace DispatchSourceExamples {
 		{
 			NSUrl fileURL = TestFileUrl;
 
-			var stream = File.Create (fileURL.Path);
-			int fileDescriptor = GetFileDescriptor (stream);
+			testFileStream = File.Create (fileURL.Path);
+			int fileDescriptor = GetFileDescriptor (testFileStream);
 
 			dispatchSource = new DispatchSource.VnodeMonitor (fileDescriptor,
 				VnodeMonitorKind.Delete | VnodeMonitorKind.Extend | VnodeMonitorKind.Write,
@@ -211,7 +215,7 @@ namespace DispatchSourceExamples {
 				string message = string.Format ("Vnode monitor event for {0}: {1}", fileURL.LastPathComponent, observedEvents);
 				PrintResult (textView, message);
 				dispatchSource.Cancel ();
-				stream.Close ();
+				testFileStream.Close ();
 			});
 
 			dispatchSource.SetCancelHandler (() => {
