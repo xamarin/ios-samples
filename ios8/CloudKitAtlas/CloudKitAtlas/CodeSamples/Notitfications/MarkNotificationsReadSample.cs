@@ -1,64 +1,65 @@
-﻿namespace CloudKitAtlas
+﻿using System;
+using System.Collections.Generic;
+
+using UIKit;
+using Foundation;
+using CloudKit;
+
+namespace CloudKitAtlas
 {
 	public class NotificationsCache
 	{
-		Results results = new Results (null, alwaysShowAsList: true);
-
+		public Results Results { get; private set; } = new Results (null, alwaysShowAsList: true);
 
 		public void AddNotification (CKNotification notification)
 		{
-			results.Items.Add (notification);
+			Results.Items.Add (new CKNotificationWrapper (notification));
+			Results.Added.Add (Results.Items.Count - 1);
+		}
 
-		results.added.insert (results.items.count - 1)
-
-	}
-
-		var addedIndices: Set<Int> {
-        return results.added
-	}
-
-	var newNotificationIDs: [CKNotificationID] {
-        var ids = [CKNotificationID] ()
-        for index in results.added {
-            if let notification = results.items [index] as? CKNotification, id = notification.notificationID {
-                ids.append(id)
-            }
-        }
-        return ids
-    }
-    
-    func markAsRead ()
-{
-	let notificationIDs = notificationIDsToBeMarkedAsRead
-
-		for notificationID in notificationIDs {
-		if let index = results.items.indexOf ({
-			result in
-                if let notification = result as? CKNotification {
-				return notification.notificationID == notificationID
-
-				} else {
-				return false
-
-				}
-		}) {
-		results.added.remove (index)
-
+		public HashSet<int> AddedIndices {
+			get {
+				return Results.Added;
 			}
-}
-UIApplication.sharedApplication().applicationIconBadgeNumber = results.added.count
-    }
-    
-    var notificationIDsToBeMarkedAsRead: [CKNotificationID] = []
-    
-}
+		}
 
-	/*
+		public CKNotificationID [] NewNotificationIDs {
+			get {
+				var ids = new CKNotificationID [Results.Added.Count];
+				var i = 0;
+				foreach (var index in Results.Added) {
+					var notification = Results.Items [index] as CKNotification;
+					var id = notification?.NotificationId;
+					if (notification != null && id != null)
+						ids [i++] = id;
+				}
+				return ids;
+			}
+		}
+
+		public CKNotificationID [] NotificationIDsToBeMarkedAsRead { get; set; } = new CKNotificationID [0];
+
+		public void MarkAsRead ()
+		{
+			var notificationIDs = NotificationIDsToBeMarkedAsRead;
+
+			foreach (var notificationID in notificationIDs) {
+				var index = Results.Items.FindIndex (result => {
+					var notification = result as CKNotification;
+					if (notification != null)
+						return notification.NotificationId == notificationID;
+					return false;
+				});
+				if (index >= 0)
+					Results.Added.Remove (index);
+			}
+			UIApplication.SharedApplication.ApplicationIconBadgeNumber = Results.Added.Count;
+		}
+	}
+
 	public class MarkNotificationsReadSample : CodeSample
 	{
-
-		//var cache = NotificationsCache ()
-
+		public NotificationsCache Cache { get; private set; } = new NotificationsCache ();
 
 		public MarkNotificationsReadSample ()
 				: base (title: "CKMarkNotificationsReadOperation",
@@ -70,38 +71,24 @@ UIApplication.sharedApplication().applicationIconBadgeNumber = results.added.cou
 
 		public override void Run (Action<Results, NSError> completionHandler)
 		{
-
-			//var ids = cache.newNotificationIDs
-
 			NSError nsError = null;
-        
-        if ids.count > 0 {
-            let operation = CKMarkNotificationsReadOperation (notificationIDsToMarkRead: ids)
+			var ids = Cache.NewNotificationIDs;
 
+			if (ids.Length > 0) {
+				var operation = new CKMarkNotificationsReadOperation (ids);
+				operation.Completed = (CKNotificationID [] notificationIDsMarkedRead, NSError operationError) => {
+					if (notificationIDsMarkedRead != null) {
+						Cache.NotificationIDsToBeMarkedAsRead = notificationIDsMarkedRead;
+						completionHandler (Cache.Results, nsError);
+					}
 
-			operation.markNotificationsReadCompletionBlock = {
-                (notificationIDsMarkedRead, operationError) in
-                
-                if let notificationIDs = notificationIDsMarkedRead {
+					nsError = operationError;
+				};
 
-					self.cache.notificationIDsToBeMarkedAsRead = notificationIDs
-					completionHandler (self.cache.results, nsError)
-
-				}
-
-	nsError = operationError
-}
-
-operation.start()
-            
-        } else {
-
-			completionHandler (self.cache.results, nsError)
-        }
-        
-        
-    }
-    
-}
-*/
+				operation.Start ();
+			} else {
+				completionHandler (Cache.Results, nsError);
+			}
+		}
+	}
 }

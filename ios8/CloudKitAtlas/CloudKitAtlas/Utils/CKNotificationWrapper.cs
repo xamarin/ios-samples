@@ -37,7 +37,7 @@ namespace CloudKitAtlas
 		public string SummaryField {
 			get {
 				var subscriptionID = notification.SubscriptionID ?? "unknown subscription";
-				return notification.AlertBody ?? $"{NotificationTypeString} notification for ${notification.NotificationId}.";
+				return notification.AlertBody ?? $"{NotificationTypeString} notification for ${subscriptionID}.";
 			}
 		}
 
