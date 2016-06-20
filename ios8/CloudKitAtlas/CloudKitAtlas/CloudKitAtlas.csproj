@@ -146,6 +146,94 @@
     <Compile Include="MasterViewController.designer.cs">
       <DependentUpon>MasterViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menu\MainMenuTableViewController.cs" />
+    <Compile Include="Menu\MainMenuTableViewController.designer.cs">
+      <DependentUpon>MainMenuTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\MainMenuTableViewCell.cs" />
+    <Compile Include="Menu\MainMenuTableViewCell.designer.cs">
+      <DependentUpon>MainMenuTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\SubmenuTableViewController.cs" />
+    <Compile Include="Menu\SubmenuTableViewController.designer.cs">
+      <DependentUpon>SubmenuTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\SubmenuTableViewCell.cs" />
+    <Compile Include="Menu\SubmenuTableViewCell.designer.cs">
+      <DependentUpon>SubmenuTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\TextFieldTableViewCell.cs" />
+    <Compile Include="Form\TextFieldTableViewCell.designer.cs">
+      <DependentUpon>TextFieldTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\LocationFieldTableViewCell.cs" />
+    <Compile Include="Form\LocationFieldTableViewCell.designer.cs">
+      <DependentUpon>LocationFieldTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\ImageFieldTableViewCell.cs" />
+    <Compile Include="Form\ImageFieldTableViewCell.designer.cs">
+      <DependentUpon>ImageFieldTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\BooleanFieldTableViewCell.cs" />
+    <Compile Include="Form\BooleanFieldTableViewCell.designer.cs">
+      <DependentUpon>BooleanFieldTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\SelectionFieldTableViewCell.cs" />
+    <Compile Include="Form\SelectionFieldTableViewCell.designer.cs">
+      <DependentUpon>SelectionFieldTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\ResultsViewController.cs" />
+    <Compile Include="Results\ResultsViewController.designer.cs">
+      <DependentUpon>ResultsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\ResultTableViewCell.cs" />
+    <Compile Include="Results\ResultTableViewCell.designer.cs">
+      <DependentUpon>ResultTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\AttributeTableViewCell.cs" />
+    <Compile Include="Results\AttributeTableViewCell.designer.cs">
+      <DependentUpon>AttributeTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\AttributeKeyTableViewCell.cs" />
+    <Compile Include="Results\AttributeKeyTableViewCell.designer.cs">
+      <DependentUpon>AttributeKeyTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\NestedAttributeTableViewCell.cs" />
+    <Compile Include="Results\NestedAttributeTableViewCell.designer.cs">
+      <DependentUpon>NestedAttributeTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\ErrorViewController.cs" />
+    <Compile Include="Results\ErrorViewController.designer.cs">
+      <DependentUpon>ErrorViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\ImageTableViewCell.cs" />
+    <Compile Include="Results\ImageTableViewCell.designer.cs">
+      <DependentUpon>ImageTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeSamples\CodeSampleViewController.cs" />
+    <Compile Include="CodeSamples\CodeSampleViewController.designer.cs">
+      <DependentUpon>CodeSampleViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigation\MainNavigationItem.cs" />
+    <Compile Include="Navigation\MainNavigationItem.designer.cs">
+      <DependentUpon>MainNavigationItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigation\NavigationBar.cs" />
+    <Compile Include="Navigation\NavigationBar.designer.cs">
+      <DependentUpon>NavigationBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigation\NavigationController.cs" />
+    <Compile Include="Navigation\NavigationController.designer.cs">
+      <DependentUpon>NavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Loading\LoadingViewController.cs" />
+    <Compile Include="Loading\LoadingViewController.designer.cs">
+      <DependentUpon>LoadingViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\TableView.cs" />
+    <Compile Include="Table\TableView.designer.cs">
+      <DependentUpon>TableView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -154,6 +242,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Menu\" />
+    <Folder Include="Form\" />
+    <Folder Include="Results\" />
+    <Folder Include="CodeSamples\" />
+    <Folder Include="Navigation\" />
+    <Folder Include="Loading\" />
+    <Folder Include="Table\" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />

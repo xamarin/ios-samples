@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using CloudKit;
 using Foundation;
 using UIKit;
 
@@ -40,7 +40,33 @@ namespace CloudKitAtlas
 
 		public override void ReceivedRemoteNotification (UIApplication application, NSDictionary userInfo)
 		{
-			Console.WriteLine ("Push received");
+			var notification = CKNotification.FromRemoteNotificationDictionary (userInfo);
+
+			var state = application.ApplicationState;
+
+			var viewController = Window?.RootViewController as UINavigationController;
+			if (viewController != null) {
+				//viewController.ViewControllers[0] as Main
+				
+			}
+			//		if let tableViewController = viewController.viewControllers [0] as? MainMenuTableViewController {
+			//			let index = tableViewController.codeSampleGroups.count - 1
+	 
+			//		if let notificationSample = tableViewController.codeSampleGroups.last?.codeSamples.first as? MarkNotificationsReadSample {
+			//				notificationSample.cache.addNotification (notification)
+
+			//			tableViewController.tableView.reloadRowsAtIndexPaths ([NSIndexPath (forRow: index, inSection: 0)], withRowAnimation: .Automatic)
+   //                 }
+			//		}
+			//		if state == .Active {
+			//			if let navigationBar = viewController.navigationBar as? NavigationBar {
+			//				navigationBar.showNotificationAlert (notification)
+	
+			//		}
+			//		}
+
+			//	}
+
 		}
 	}
 }
