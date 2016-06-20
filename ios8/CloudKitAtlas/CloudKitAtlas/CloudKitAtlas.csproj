@@ -106,10 +106,6 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\one.png" />
-    <BundleResource Include="Resources\two.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
   </ItemGroup>
@@ -156,15 +152,38 @@
     <InterfaceDefinition Include="Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CloudKitAtlas114.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CloudKitAtlas120.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CloudKitAtlas29.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CloudKitAtlas57.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CloudKitAtlas58.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CloudKitAtlas80.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default%402x.png" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog120-1.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog120.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog152.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog167-1.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog58.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog76.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog80.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Authentication.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Authentication.imageset\authentication.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Discoverability.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Discoverability.imageset\discoverability.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Notifications.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Notifications.imageset\notifications.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Query.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Query.imageset\query.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Records.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Records.imageset\records.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Subscriptions.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Subscriptions.imageset\subscriptions.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Sync.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Sync.imageset\sync.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Zones.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Zones.imageset\zones.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Navigation.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Navigation.imageset\nav_icon.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Title.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Title.imageset\cloudkit-catalog.png" />
   </ItemGroup>
 </Project>
