@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryDemo", "MemoryDemo\MemoryDemo.csproj", "{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Before-Debug|iPhoneSimulator = Before-Debug|iPhoneSimulator
+		After-Debug|iPhoneSimulator = After-Debug|iPhoneSimulator
+		Before-Release|iPhoneSimulator = Before-Release|iPhoneSimulator
+		After-Release|iPhoneSimulator = After-Release|iPhoneSimulator
+		After-Debug|iPhone = After-Debug|iPhone
+		Before-Debug|iPhone = Before-Debug|iPhone
+		After-Release|iPhone = After-Release|iPhone
+		Before-Release|iPhone = Before-Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Before-Debug|iPhoneSimulator.ActiveCfg = Before-Debug|iPhoneSimulator
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Before-Debug|iPhoneSimulator.Build.0 = Before-Debug|iPhoneSimulator
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.After-Debug|iPhoneSimulator.ActiveCfg = After-Debug|iPhoneSimulator
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.After-Debug|iPhoneSimulator.Build.0 = After-Debug|iPhoneSimulator
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Before-Release|iPhoneSimulator.ActiveCfg = Before-Release|iPhoneSimulator
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Before-Release|iPhoneSimulator.Build.0 = Before-Release|iPhoneSimulator
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.After-Release|iPhoneSimulator.ActiveCfg = After-Release|iPhoneSimulator
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.After-Release|iPhoneSimulator.Build.0 = After-Release|iPhoneSimulator
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.After-Debug|iPhone.ActiveCfg = After-Debug|iPhone
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.After-Debug|iPhone.Build.0 = After-Debug|iPhone
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Before-Debug|iPhone.ActiveCfg = Before-Debug|iPhone
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Before-Debug|iPhone.Build.0 = Before-Debug|iPhone
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.After-Release|iPhone.ActiveCfg = After-Release|iPhone
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.After-Release|iPhone.Build.0 = After-Release|iPhone
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Before-Release|iPhone.ActiveCfg = Before-Release|iPhone
+		{F5A46CEE-5910-4C8E-92AF-A9DFB90144D8}.Before-Release|iPhone.Build.0 = Before-Release|iPhone
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MemoryDemo\MemoryDemo.csproj
+	EndGlobalSection
+EndGlobal
