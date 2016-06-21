@@ -10,13 +10,13 @@
         <!--CloudKit Catalog-->
         <scene sceneID="QV7-qN-TN2">
             <objects>
-                <tableViewController id="0n3-n0-8w6" customClass="MainMenuTableViewController" customModule="CloudKitCatalog" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="22" sectionFooterHeight="22" id="KVO-je-3kv" customClass="TableView" customModule="CloudKitCatalog" customModuleProvider="target">
+                <tableViewController id="0n3-n0-8w6" customClass="MainMenuTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="22" sectionFooterHeight="22" id="KVO-je-3kv" customClass="TableView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="MainMenuItem" id="8IG-8q-HTx" customClass="MainMenuTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="MainMenuItem" id="8IG-8q-HTx" customClass="MainMenuTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="600" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8IG-8q-HTx" id="WyX-rz-92F">
@@ -78,7 +78,7 @@
                             <outlet property="delegate" destination="0n3-n0-8w6" id="Fht-sM-KhJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="CloudKit Catalog" id="gXw-29-LaS" customClass="MainNavigationItem" customModule="CloudKitCatalog" customModuleProvider="target">
+                    <navigationItem key="navigationItem" title="CloudKit Catalog" id="gXw-29-LaS" customClass="MainNavigationItem">
                         <barButtonItem key="backBarButtonItem" title=" " id="BFp-fF-rWR"/>
                     </navigationItem>
                     <connections>
@@ -93,13 +93,13 @@
         <!--Submenu Table View Controller-->
         <scene sceneID="YB2-cb-kQt">
             <objects>
-                <tableViewController id="1Kk-vQ-c7w" customClass="SubmenuTableViewController" customModule="CloudKitCatalog" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="22" sectionFooterHeight="22" id="EZW-hd-1Zh" customClass="TableView" customModule="CloudKitCatalog" customModuleProvider="target">
+                <tableViewController id="1Kk-vQ-c7w" customClass="SubmenuTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="56" sectionHeaderHeight="22" sectionFooterHeight="22" id="EZW-hd-1Zh" customClass="TableView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubmenuItem" id="vTP-uW-CyK" customClass="SubmenuTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubmenuItem" id="vTP-uW-CyK" customClass="SubmenuTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="600" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vTP-uW-CyK" id="aIR-vx-6TE">
@@ -146,7 +146,7 @@
         <!--Detail-->
         <scene sceneID="pde-x9-pib">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Plm-uL-sbP" customClass="CodeSampleViewController" customModule="CloudKitCatalog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Plm-uL-sbP" customClass="CodeSampleViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8DP-1s-bt2"/>
                         <viewControllerLayoutGuide type="bottom" id="wB8-aj-JLH"/>
@@ -183,11 +183,11 @@
                                     <constraint firstAttribute="trailing" secondItem="Ljx-3N-iZA" secondAttribute="trailing" id="rPW-70-sdi"/>
                                 </constraints>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="pJh-au-MfI" customClass="TableView" customModule="CloudKitCatalog" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="pJh-au-MfI" customClass="TableView">
                                 <rect key="frame" x="0.0" y="174" width="600" height="427"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextFieldCell" id="IWu-2V-unC" customClass="TextFieldTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TextFieldCell" id="IWu-2V-unC" customClass="TextFieldTableViewCell">
                                         <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IWu-2V-unC" id="MtN-Kl-8of">
@@ -224,7 +224,7 @@
                                             <outlet property="textField" destination="SBe-IP-Pih" id="ccc-In-Zqw"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationFieldCell" id="yxs-iN-JCC" customClass="LocationFieldTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationFieldCell" id="yxs-iN-JCC" customClass="LocationFieldTableViewCell">
                                         <rect key="frame" x="0.0" y="94" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yxs-iN-JCC" id="UU6-w0-UM1">
@@ -321,7 +321,7 @@
                                             <outlet property="spinner" destination="g3v-Gd-cDP" id="lLa-ZU-rIB"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageFieldCell" rowHeight="236" id="XET-si-ctw" customClass="ImageFieldTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ImageFieldCell" rowHeight="236" id="XET-si-ctw" customClass="ImageFieldTableViewCell">
                                         <rect key="frame" x="0.0" y="138" width="600" height="236"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XET-si-ctw" id="sci-fL-e0z">
@@ -367,7 +367,7 @@
                                             <outlet property="fieldLabel" destination="3Su-me-7Mz" id="fIX-ZI-Rux"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BooleanFieldCell" id="69c-Kv-sSj" customClass="BooleanFieldTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BooleanFieldCell" id="69c-Kv-sSj" customClass="BooleanFieldTableViewCell">
                                         <rect key="frame" x="0.0" y="374" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="69c-Kv-sSj" id="dB7-Pz-Jy1">
@@ -403,7 +403,7 @@
                                             <outlet property="fieldLabel" destination="KQO-sI-ih4" id="4B2-nG-TFH"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectionFieldCell" id="yPe-wB-J0V" customClass="SelectionFieldTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectionFieldCell" id="yPe-wB-J0V" customClass="SelectionFieldTableViewCell">
                                         <rect key="frame" x="0.0" y="418" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yPe-wB-J0V" id="DX0-wW-Yjw">
@@ -498,7 +498,7 @@
         <!--Result-->
         <scene sceneID="Jv0-83-Fui">
             <objects>
-                <viewController storyboardIdentifier="LoadingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1iX-uv-3L2" customClass="LoadingViewController" customModule="CloudKitCatalog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1iX-uv-3L2" customClass="LoadingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Omb-mp-Sqi"/>
                         <viewControllerLayoutGuide type="bottom" id="opF-tM-7Pt"/>
@@ -533,7 +533,7 @@
         <!--Result-->
         <scene sceneID="7iq-J0-guc">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Knc-At-iTH" customClass="ResultsViewController" customModule="CloudKitCatalog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Knc-At-iTH" customClass="ResultsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Toz-5T-chu"/>
                         <viewControllerLayoutGuide type="bottom" id="5av-Kg-UTI"/>
@@ -542,13 +542,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="pep-I7-QTU" customClass="TableView" customModule="CloudKitCatalog" customModuleProvider="target">
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="pep-I7-QTU" customClass="TableView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ResultCell" id="9DF-cC-BDJ" customClass="ResultTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ResultCell" id="9DF-cC-BDJ" customClass="ResultTableViewCell">
                                         <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9DF-cC-BDJ" id="u7y-zx-f6R">
@@ -590,7 +590,7 @@
                                             <segue destination="KjJ-Ta-Rtp" kind="show" identifier="DrillDown" id="0Kl-EN-DgU"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AttributeCell" id="a3q-Vl-20h" customClass="AttributeTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AttributeCell" id="a3q-Vl-20h" customClass="AttributeTableViewCell">
                                         <rect key="frame" x="0.0" y="94" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a3q-Vl-20h" id="1Im-7q-xqo">
@@ -632,7 +632,7 @@
                                             <outlet property="attributeValue" destination="Ig3-zq-4YO" id="lIu-xG-IzF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AttributeKeyCell" id="Ljh-qS-xIu" customClass="AttributeKeyTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AttributeKeyCell" id="Ljh-qS-xIu" customClass="AttributeKeyTableViewCell">
                                         <rect key="frame" x="0.0" y="138" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ljh-qS-xIu" id="2Xs-5m-Xef">
@@ -660,7 +660,7 @@
                                             <outlet property="attributeKey" destination="bhG-0x-DtC" id="o8B-eE-Tdi"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NestedAttributeCell" id="nym-94-bZ3" customClass="NestedAttributeTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NestedAttributeCell" id="nym-94-bZ3" customClass="NestedAttributeTableViewCell">
                                         <rect key="frame" x="0.0" y="182" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nym-94-bZ3" id="rsh-fo-WCW">
@@ -700,7 +700,7 @@
                                             <outlet property="attributeValue" destination="ahV-1K-3VW" id="pRN-Jr-CfR"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="210" id="lym-nO-HO3" customClass="ImageTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="210" id="lym-nO-HO3" customClass="ImageTableViewCell">
                                         <rect key="frame" x="0.0" y="226" width="600" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lym-nO-HO3" id="Qe9-HH-D5t">
@@ -799,7 +799,7 @@
         <!--Error View Controller-->
         <scene sceneID="AiH-ma-N5W">
             <objects>
-                <viewController id="zJs-8l-6Oz" customClass="ErrorViewController" customModule="CloudKitCatalog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zJs-8l-6Oz" customClass="ErrorViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yov-9Z-sTp"/>
                         <viewControllerLayoutGuide type="bottom" id="1YS-mo-Uzh"/>
@@ -857,9 +857,9 @@
         <!--Navigation Controller-->
         <scene sceneID="5MS-5g-NEI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Q5z-fk-BOc" customClass="NavigationController" customModule="CloudKitCatalog" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Q5z-fk-BOc" customClass="NavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jwb-JA-UoK" customClass="NavigationBar" customModule="CloudKitCatalog" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jwb-JA-UoK" customClass="NavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -878,7 +878,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Tsf-Vc-I6k" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wiD-lM-sRn" customClass="NavigationBar" customModule="CloudKitCatalog" customModuleProvider="target">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wiD-lM-sRn" customClass="NavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -894,7 +894,7 @@
         <!--Result-->
         <scene sceneID="Sli-za-DUW">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="KjJ-Ta-Rtp" customClass="ResultsViewController" customModule="CloudKitCatalog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="KjJ-Ta-Rtp" customClass="ResultsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="u5W-H3-GD8"/>
                         <viewControllerLayoutGuide type="bottom" id="flR-Os-Tu7"/>
@@ -903,13 +903,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="nT3-uj-CJE" customClass="TableView" customModule="CloudKitCatalog" customModuleProvider="target">
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="nT3-uj-CJE" customClass="TableView">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AttributeCell" id="lKe-cN-bxc" customClass="AttributeTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AttributeCell" id="lKe-cN-bxc" customClass="AttributeTableViewCell">
                                         <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lKe-cN-bxc" id="ff4-4E-hbu">
@@ -951,7 +951,7 @@
                                             <outlet property="attributeValue" destination="Fs0-rc-wN3" id="r6x-5f-wME"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AttributeKeyCell" id="bQW-0Q-GqM" customClass="AttributeKeyTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AttributeKeyCell" id="bQW-0Q-GqM" customClass="AttributeKeyTableViewCell">
                                         <rect key="frame" x="0.0" y="94" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bQW-0Q-GqM" id="NIp-T2-XVg">
@@ -979,7 +979,7 @@
                                             <outlet property="attributeKey" destination="dTo-js-C7h" id="tG5-UH-T6X"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NestedAttributeCell" id="OzN-O8-4uF" customClass="NestedAttributeTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NestedAttributeCell" id="OzN-O8-4uF" customClass="NestedAttributeTableViewCell">
                                         <rect key="frame" x="0.0" y="138" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OzN-O8-4uF" id="1VZ-m8-hhL">
@@ -1019,7 +1019,7 @@
                                             <outlet property="attributeValue" destination="ARV-Cd-ZrD" id="CiY-6o-PtZ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="210" id="axp-xD-ZpA" customClass="ImageTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="210" id="axp-xD-ZpA" customClass="ImageTableViewCell">
                                         <rect key="frame" x="0.0" y="182" width="600" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="axp-xD-ZpA" id="Yzf-Ha-ClQ">
@@ -1092,7 +1092,7 @@
                         <action selector="handleLongPress:" destination="KjJ-Ta-Rtp" id="Oms-yg-hOU"/>
                     </connections>
                 </pongPressGestureRecognizer>
-                <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="180" id="Ha1-Uc-xgA" customClass="ImageTableViewCell" customModule="CloudKitCatalog" customModuleProvider="target">
+                <tableViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="180" id="Ha1-Uc-xgA" customClass="ImageTableViewCell">
                     <rect key="frame" x="0.0" y="181.5" width="600" height="44"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ha1-Uc-xgA" id="nsW-HD-rkn">
