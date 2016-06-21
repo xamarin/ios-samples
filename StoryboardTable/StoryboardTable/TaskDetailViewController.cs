@@ -20,7 +20,7 @@ namespace StoryboardTable
 		{
 			base.ViewDidLoad ();
 
-			SaveButton.TouchUpInside += (sender, e) => {
+			/*SaveButton.TouchUpInside += (sender, e) => {
 				currentTask.Name = TitleText.Text;
 				currentTask.Notes = NotesText.Text;
 				currentTask.Done = DoneSwitch.On;
@@ -28,7 +28,7 @@ namespace StoryboardTable
 			};
 			DeleteButton.TouchUpInside += (sender, e) => {
 				Delegate.DeleteTask(currentTask);
-			};
+			};*/
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -43,6 +43,21 @@ namespace StoryboardTable
 		public void SetTask (MasterViewController d, Chore task) {
 			Delegate = d;
 			currentTask = task;
+		}
+
+		//create a New Task
+		partial void SaveButtonTouchUpInside (UIButton sender)
+		{
+			currentTask.Name = TitleText.Text;
+			currentTask.Notes = NotesText.Text;
+			currentTask.Done = DoneSwitch.On;
+			Delegate.SaveTask(currentTask);
+		}
+
+		//Delete a Task
+		partial void DeleteButtonTouchUpInside (UIButton sender)
+		{
+			Delegate.DeleteTask(currentTask);
 		}
 	}
 }
