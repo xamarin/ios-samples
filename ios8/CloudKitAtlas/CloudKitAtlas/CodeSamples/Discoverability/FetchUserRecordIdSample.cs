@@ -7,7 +7,7 @@ namespace CloudKitAtlas
 	public class FetchUserRecordIdSample : CodeSample
 	{
 		public FetchUserRecordIdSample ()
-			: base (title: "fetchUserRecordIDWithCompletionHandler",
+			: base (title: "FetchUserRecordId",
 					className: "CKContainer",
 					methodName: ".FetchUserRecordId()",
 					descriptionKey: "Discoverability.FetchUserRecordID")

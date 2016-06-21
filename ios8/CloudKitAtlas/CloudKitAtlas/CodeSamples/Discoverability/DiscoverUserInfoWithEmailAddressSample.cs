@@ -8,7 +8,7 @@ namespace CloudKitAtlas
 	public class DiscoverUserInfoWithEmailAddressSample : CodeSample
 	{
 		public DiscoverUserInfoWithEmailAddressSample ()
-			: base (title: "discoverUserInfoWithEmailAddress",
+			: base (title: "DiscoverUserInfo by email",
 					className: "CKContainer",
 					methodName: ".DiscoverUserInfo(email)",
 					descriptionKey: "Discoverability.DiscoverUserInfoWithEmailAddress",

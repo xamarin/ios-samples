@@ -14,5 +14,11 @@ namespace CloudKitAtlas
 			: base (handle)
 		{
 		}
+
+		public override void SetSelected (bool selected, bool animated)
+		{
+			base.SetSelected (selected, animated);
+			// Configure the view for the selected state
+		}
 	}
 }

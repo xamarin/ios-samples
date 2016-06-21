@@ -8,7 +8,7 @@ namespace CloudKitAtlas
 	public class DiscoverUserInfoWithUserRecordIdSample : CodeSample
 	{
 		public DiscoverUserInfoWithUserRecordIdSample ()
-			: base (title: "discoverUserInfoWithUserRecordID",
+			: base (title: "DiscoverUserInfo by recordId",
 					className: "CKContainer",
 					methodName: ".DiscoverUserInfo(recordId)",
 					descriptionKey: "Discoverability.DiscoverUserInfoWithUserRecordID",

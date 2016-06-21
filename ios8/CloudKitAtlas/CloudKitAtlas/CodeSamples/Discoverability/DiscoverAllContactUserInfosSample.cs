@@ -8,7 +8,7 @@ namespace CloudKitAtlas
 	public class DiscoverAllContactUserInfosSample : CodeSample
 	{
 		public DiscoverAllContactUserInfosSample ()
-			: base (title: "discoverAllContactUserInfosWithCompletionHandler",
+			: base (title: "DiscoverAllContactUserInfos",
 					className: "CKContainer",
 					methodName: ".DiscoverAllContactUserInfos()",
 					descriptionKey: "Discoverability.DiscoverAllContactUserInfos")
