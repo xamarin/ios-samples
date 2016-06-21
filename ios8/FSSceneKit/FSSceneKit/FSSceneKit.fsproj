@@ -51,7 +51,7 @@
     <MtouchDebug>true</MtouchDebug>
     <PlatformTarget>
     </PlatformTarget>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugSymbols>false</DebugSymbols>
