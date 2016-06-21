@@ -258,6 +258,9 @@
     <Compile Include="CodeSamples\Subscriptions\FetchAllSubscriptionsSample.cs" />
     <Compile Include="Utils\CKRecordIdWrapper.cs" />
     <Compile Include="Utils\CKDiscoveredUserInfoWrapper.cs" />
+    <Compile Include="Form\FormFieldTableViewCell.cs" />
+    <Compile Include="Utils\NullableExtensions.cs" />
+    <Compile Include="Utils\SegueArg.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

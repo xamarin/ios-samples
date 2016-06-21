@@ -77,7 +77,7 @@ namespace CloudKitAtlas
 
 		public bool IsRequired { get; protected set; } = false;
 
-		public bool IsHidden { get; protected set; } = false;
+		public bool IsHidden { get; set; } = false;
 
 		public List<int> ToggleIndexes { get; } = new List<int> ();
 
@@ -196,7 +196,7 @@ namespace CloudKitAtlas
 	{
 		public TextInputType Type { get; private set; } = TextInputType.Text;
 
-		public string Value { get; private set; } = string.Empty;
+		public string Value { get; set; } = string.Empty;
 
 		public override bool IsValid {
 			get {
