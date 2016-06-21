@@ -256,6 +256,7 @@
     <Compile Include="CodeSamples\Subscriptions\DeleteSubscriptionSample.cs" />
     <Compile Include="CodeSamples\Subscriptions\FetchSubscriptionSample.cs" />
     <Compile Include="CodeSamples\Subscriptions\FetchAllSubscriptionsSample.cs" />
+    <Compile Include="Utils\CKRecordIdWrapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

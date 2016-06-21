@@ -1,17 +1,24 @@
 ﻿using System;
+using System.Threading.Tasks;
+using CloudKit;
 
 namespace CloudKitAtlas
 {
 	public class FetchUserRecordIdSample : CodeSample
 	{
 		public FetchUserRecordIdSample ()
+			: base (title: "fetchUserRecordIDWithCompletionHandler",
+					className: "CKContainer",
+					methodName: ".fetchUserRecordIDWithCompletionHandler()", // TODO: fix method name
+					descriptionKey: "Discoverability.FetchUserRecordID")
 		{
 		}
 
-		public override System.Threading.Tasks.Task<Results> Run ()
+		public async override Task<Results> Run ()
 		{
-			throw new NotImplementedException ();
+			var container = CKContainer.DefaultContainer;
+			var recordId = await container.FetchUserRecordIdAsync ();
+			return new Results (new IResult [] { new CKRecordIdWrapper (recordId) });
 		}
 	}
 }
-
