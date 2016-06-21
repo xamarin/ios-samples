@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UIKit;
 using Foundation;
 using CloudKit;
+using System.Threading.Tasks;
 
 namespace CloudKitAtlas
 {
@@ -69,26 +70,28 @@ namespace CloudKitAtlas
 		{
 		}
 
-		public override void Run (Action<Results, NSError> completionHandler)
+		public override Task<Results> Run ()
 		{
-			NSError nsError = null;
 			var ids = Cache.NewNotificationIDs;
+			var tcs = new TaskCompletionSource<Results> ();
 
 			if (ids.Length > 0) {
 				var operation = new CKMarkNotificationsReadOperation (ids);
 				operation.Completed = (CKNotificationID [] notificationIDsMarkedRead, NSError operationError) => {
-					if (notificationIDsMarkedRead != null) {
+					if (operationError != null) {
+						tcs.SetException (new NSErrorException (operationError));
+					} else {
 						Cache.NotificationIDsToBeMarkedAsRead = notificationIDsMarkedRead;
-						completionHandler (Cache.Results, nsError);
+						tcs.SetResult (Cache.Results);
 					}
-
-					nsError = operationError;
 				};
 
 				operation.Start ();
 			} else {
-				completionHandler (Cache.Results, nsError);
+				tcs.SetResult (Cache.Results);
 			}
+
+			return tcs.Task;
 		}
 	}
 }

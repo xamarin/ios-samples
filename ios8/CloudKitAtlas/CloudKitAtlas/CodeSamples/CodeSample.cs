@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UIKit;
 using Foundation;
 using CoreLocation;
+using System.Threading.Tasks;
 
 namespace CloudKitAtlas
 {
@@ -282,8 +283,7 @@ namespace CloudKitAtlas
 		}
 	}
 
-
-	public class CodeSample
+	public abstract class CodeSample
 	{
 		public string Title { get; }
 		public string ClassName { get; }
@@ -296,6 +296,7 @@ namespace CloudKitAtlas
 
 		public string Error { get; private set; }
 
+		// TODO: remove default ctor
 		public CodeSample ()
 		{
 		}
@@ -339,9 +340,6 @@ namespace CloudKitAtlas
 			}
 		}
 
-		public virtual void Run (Action<Results, NSError> completionHandler)
-		{
-			completionHandler (new Results (), null);
-		}
+		public abstract Task<Results> Run ();
 	}
 }

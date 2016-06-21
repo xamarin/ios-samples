@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace CloudKitAtlas
 {
@@ -6,6 +7,11 @@ namespace CloudKitAtlas
 	{
 		public DeleteSubscriptionSample ()
 		{
+		}
+
+		public override Task<Results> Run ()
+		{
+			throw new NotImplementedException ();
 		}
 	}
 }

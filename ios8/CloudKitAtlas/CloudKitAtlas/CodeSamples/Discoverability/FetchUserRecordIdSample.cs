@@ -7,6 +7,11 @@ namespace CloudKitAtlas
 		public FetchUserRecordIdSample ()
 		{
 		}
+
+		public override System.Threading.Tasks.Task<Results> Run ()
+		{
+			throw new NotImplementedException ();
+		}
 	}
 }
 
