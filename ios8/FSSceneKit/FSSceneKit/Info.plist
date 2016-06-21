@@ -25,6 +25,6 @@
 	<key>CFBundleVersion</key>
 	<string>0</string>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>9.3</string>
 </dict>
 </plist>
