@@ -1,18 +1,33 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using CloudKit;
+
 namespace CloudKitAtlas
 {
 	public class DiscoverUserInfoWithEmailAddressSample : CodeSample
 	{
+		// TODO: fix method name
 		public DiscoverUserInfoWithEmailAddressSample ()
+			: base (title: "discoverUserInfoWithEmailAddress",
+					className: "CKContainer",
+					methodName: ".discoverUserInfoWithEmailAddress()",
+					descriptionKey: "Discoverability.DiscoverUserInfoWithEmailAddress",
+					inputs: new Input [] {
+				new TextInput (label: "emailAddress", value: string.Empty, isRequired: true, type: TextInputType.Email)
+			})
 		{
 		}
 
-		public override Task<Results> Run ()
+		public async override Task<Results> Run ()
 		{
-			throw new NotImplementedException ();
+			object emailAddress;
+			if (!Data.TryGetValue ("emailAddress", out emailAddress))
+				throw new InvalidProgramException ();
+
+			var container = CKContainer.DefaultContainer;
+			CKDiscoveredUserInfo userInfo = await container.DiscoverUserInfoAsync ((string)emailAddress);
+			return new Results (new IResult [] { new CKDiscoveredUserInfoWrapper (userInfo) });
 		}
 	}
 }
-
