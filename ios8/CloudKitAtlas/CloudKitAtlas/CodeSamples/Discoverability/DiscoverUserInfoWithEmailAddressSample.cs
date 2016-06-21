@@ -7,11 +7,10 @@ namespace CloudKitAtlas
 {
 	public class DiscoverUserInfoWithEmailAddressSample : CodeSample
 	{
-		// TODO: fix method name
 		public DiscoverUserInfoWithEmailAddressSample ()
 			: base (title: "discoverUserInfoWithEmailAddress",
 					className: "CKContainer",
-					methodName: ".discoverUserInfoWithEmailAddress()",
+					methodName: ".DiscoverUserInfo(email)",
 					descriptionKey: "Discoverability.DiscoverUserInfoWithEmailAddress",
 					inputs: new Input [] {
 				new TextInput (label: "emailAddress", value: string.Empty, isRequired: true, type: TextInputType.Email)

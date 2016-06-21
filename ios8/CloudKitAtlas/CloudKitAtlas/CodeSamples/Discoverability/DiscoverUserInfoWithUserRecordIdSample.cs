@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+
 using CloudKit;
 
 namespace CloudKitAtlas
@@ -9,7 +10,7 @@ namespace CloudKitAtlas
 		public DiscoverUserInfoWithUserRecordIdSample ()
 			: base (title: "discoverUserInfoWithUserRecordID",
 					className: "CKContainer",
-					methodName: ".discoverUserInfoWithUserRecordID()", // TODO: fix method name
+					methodName: ".DiscoverUserInfo(recordId)",
 					descriptionKey: "Discoverability.DiscoverUserInfoWithUserRecordID",
 					inputs: new Input [] {
 						new TextInput ("recordName", string.Empty, isRequired: true),

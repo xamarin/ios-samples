@@ -26,11 +26,10 @@ namespace CloudKitAtlas
 
 	public class RequestApplicationPermissionSample : CodeSample
 	{
-		// TODO: fix method name
 		public RequestApplicationPermissionSample ()
 			: base (title: "requestApplicationPermission",
 					className: "CKContainer",
-					methodName: ".requestApplicationPermission()",
+					methodName: ".RequestApplicationPermission()",
 					descriptionKey: "Discoverability.RequestApplicationPermission")
 		{
 		}

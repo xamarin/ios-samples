@@ -1,5 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+
 using CloudKit;
 
 namespace CloudKitAtlas
@@ -9,7 +9,7 @@ namespace CloudKitAtlas
 		public FetchUserRecordIdSample ()
 			: base (title: "fetchUserRecordIDWithCompletionHandler",
 					className: "CKContainer",
-					methodName: ".fetchUserRecordIDWithCompletionHandler()", // TODO: fix method name
+					methodName: ".FetchUserRecordId()",
 					descriptionKey: "Discoverability.FetchUserRecordID")
 		{
 		}
