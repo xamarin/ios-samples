@@ -296,6 +296,10 @@ namespace CloudKitAtlas
 
 		public string Error { get; private set; }
 
+		public CodeSample ()
+		{
+		}
+
 		public CodeSample (string title, string className, string methodName, string descriptionKey, Input [] inputs = null)
 		{
 			Title = title;

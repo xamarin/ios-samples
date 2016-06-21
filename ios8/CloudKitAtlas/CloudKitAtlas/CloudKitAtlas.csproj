@@ -238,6 +238,24 @@
     <Compile Include="CodeSamples\CodeSample.cs" />
     <Compile Include="CodeSamples\Notitfications\MarkNotificationsReadSample.cs" />
     <Compile Include="Utils\CKNotificationWrapper.cs" />
+    <Compile Include="CodeSamples\Discoverability\RequestApplicationPermissionSample.cs" />
+    <Compile Include="CodeSamples\Discoverability\FetchUserRecordIdSample.cs" />
+    <Compile Include="CodeSamples\Discoverability\DiscoverUserInfoWithUserRecordIdSample.cs" />
+    <Compile Include="CodeSamples\Discoverability\DiscoverUserInfoWithEmailAddressSample.cs" />
+    <Compile Include="CodeSamples\Discoverability\DiscoverAllContactUserInfosSample.cs" />
+    <Compile Include="CodeSamples\Zones\FetchAllRecordZonesSample.cs" />
+    <Compile Include="CodeSamples\Zones\SaveRecordZoneSample.cs" />
+    <Compile Include="CodeSamples\Zones\DeleteRecordZoneSample.cs" />
+    <Compile Include="CodeSamples\Zones\FetchRecordZoneSample.cs" />
+    <Compile Include="CodeSamples\Query\PerformQuerySample.cs" />
+    <Compile Include="CodeSamples\Records\SaveRecordSample.cs" />
+    <Compile Include="CodeSamples\Records\DeleteRecordSample.cs" />
+    <Compile Include="CodeSamples\Records\FetchRecordSample.cs" />
+    <Compile Include="CodeSamples\Sync\FetchRecordChangesSample.cs" />
+    <Compile Include="CodeSamples\Subscriptions\SaveSubscriptionSample.cs" />
+    <Compile Include="CodeSamples\Subscriptions\DeleteSubscriptionSample.cs" />
+    <Compile Include="CodeSamples\Subscriptions\FetchSubscriptionSample.cs" />
+    <Compile Include="CodeSamples\Subscriptions\FetchAllSubscriptionsSample.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -255,6 +273,12 @@
     <Folder Include="Table\" />
     <Folder Include="CodeSamples\Notitfications\" />
     <Folder Include="Utils\" />
+    <Folder Include="CodeSamples\Discoverability\" />
+    <Folder Include="CodeSamples\Zones\" />
+    <Folder Include="CodeSamples\Query\" />
+    <Folder Include="CodeSamples\Records\" />
+    <Folder Include="CodeSamples\Sync\" />
+    <Folder Include="CodeSamples\Subscriptions\" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />

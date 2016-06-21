@@ -9,6 +9,9 @@ namespace CloudKitAtlas
 {
 	public partial class CodeSampleViewController : UIViewController
 	{
+		public string GroupTitle { get; set; }
+		public CodeSample SelectedCodeSample { get; set; }
+
 		public CodeSampleViewController (IntPtr handle) : base (handle)
 		{
 		}
