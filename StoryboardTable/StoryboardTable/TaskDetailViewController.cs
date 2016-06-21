@@ -46,7 +46,7 @@ namespace StoryboardTable
 		}
 
 		//create a New Task
-		partial void SaveButton_TouchUpInside (UIButton sender)
+		partial void SaveButtonTouchUpInside (UIButton sender)
 		{
 			currentTask.Name = TitleText.Text;
 			currentTask.Notes = NotesText.Text;
@@ -55,7 +55,7 @@ namespace StoryboardTable
 		}
 
 		//Delete a Task
-		partial void DeleteButton_TouchUpInside (UIButton sender)
+		partial void DeleteButtonTouchUpInside (UIButton sender)
 		{
 			Delegate.DeleteTask(currentTask);
 		}

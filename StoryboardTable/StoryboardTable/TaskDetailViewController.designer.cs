@@ -40,11 +40,11 @@ namespace StoryboardTable
 
 		[Action ("DeleteButton_TouchUpInside:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void DeleteButton_TouchUpInside (UIButton sender);
+		partial void DeleteButtonTouchUpInside (UIButton sender);
 
 		[Action ("SaveButton_TouchUpInside:")]
 		[GeneratedCode ("iOS Designer", "1.0")]
-		partial void SaveButton_TouchUpInside (UIButton sender);
+		partial void SaveButtonTouchUpInside (UIButton sender);
 
 		void ReleaseDesignerOutlets ()
 		{
