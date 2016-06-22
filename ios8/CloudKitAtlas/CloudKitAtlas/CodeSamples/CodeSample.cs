@@ -49,7 +49,7 @@ namespace CloudKitAtlas
 
 	public class AttributeGroup
 	{
-		string Title { get; }
+		public string Title { get; }
 
 		public List<Attribute> Attributes { get; set; } = new List<Attribute> ();
 

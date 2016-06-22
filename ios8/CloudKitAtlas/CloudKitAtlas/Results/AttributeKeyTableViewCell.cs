@@ -7,7 +7,11 @@ namespace CloudKitAtlas
 {
 	public partial class AttributeKeyTableViewCell : UITableViewCell
 	{
-		public AttributeKeyTableViewCell (IntPtr handle) : base (handle)
+		[Outlet]
+		public UILabel AttributeKey { get; set; }
+
+		public AttributeKeyTableViewCell (IntPtr handle)
+			: base (handle)
 		{
 		}
 	}
