@@ -1,22 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat", "Chat\Chat.csproj", "{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|iPhoneSimulator = Debug|iPhoneSimulator
-		Release|iPhoneSimulator = Release|iPhoneSimulator
-		Debug|iPhone = Debug|iPhone
-		Release|iPhone = Release|iPhone
 		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		Ad-Hoc|iPhoneSimulator = Ad-Hoc|iPhoneSimulator
 		AppStore|iPhone = AppStore|iPhone
+		AppStore|iPhoneSimulator = AppStore|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
 		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhone
 		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
 		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhone
 		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Debug|iPhone.Build.0 = Debug|iPhone
 		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
@@ -25,5 +31,8 @@ Global
 		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Release|iPhone.Build.0 = Release|iPhone
 		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{F44D30FD-0B7E-4C5D-81B2-0C03264EBCC0}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
