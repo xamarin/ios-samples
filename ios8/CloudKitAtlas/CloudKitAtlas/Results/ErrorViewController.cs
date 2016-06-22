@@ -9,8 +9,11 @@ namespace CloudKitAtlas
 {
 	public partial class ErrorViewController : UIViewController
 	{
+		public NSError Error { get; set; }
+
 		public ErrorViewController (IntPtr handle) : base (handle)
 		{
 		}
+
 	}
 }
