@@ -7,12 +7,12 @@ namespace CloudKitAtlas
 {
 	public partial class LoadingViewController : UIViewController
 	{
+		[Outlet]
 		public UIActivityIndicatorView ActivityIndicator { get; set; }
 
-		readonly Results results = new Results ();
-
-		CodeSample codeSample;
-		NSError error;
+		public Results Results { get; set; } = new Results ();
+		public CodeSample CodeSample { get; set; }
+		public NSError Error { get; set; }
 
 		public LoadingViewController (IntPtr handle)
 			: base (handle)
@@ -34,13 +34,13 @@ namespace CloudKitAtlas
 			if (segue.Identifier == "ShowResult") {
 				var resultsViewController = segue.DestinationViewController as ResultsViewController;
 				if (resultsViewController != null) {
-					resultsViewController.CodeSample = codeSample;
-					resultsViewController.Results = (results.Items.Count > 0) ? results : new Results (new IResult [] { new NoResults () });
+					resultsViewController.CodeSample = CodeSample;
+					resultsViewController.Results = (Results.Items.Count > 0) ? Results : new Results (new IResult [] { new NoResults () });
 				}
 			} else if (segue.Identifier == "ShowError") {
 				var errorViewController = segue.DestinationViewController as ErrorViewController;
 				if (errorViewController != null)
-					errorViewController.Error = error;
+					errorViewController.Error = Error;
 			}
 		}
 	}
