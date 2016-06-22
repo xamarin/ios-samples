@@ -261,6 +261,7 @@
     <Compile Include="Form\FormFieldTableViewCell.cs" />
     <Compile Include="Utils\NullableExtensions.cs" />
     <Compile Include="Utils\SegueArg.cs" />
+    <Compile Include="Results\ResultOrErrorViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
