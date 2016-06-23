@@ -58,7 +58,7 @@ namespace CloudKitAtlas
 			Title = title;
 		}
 
-		public AttributeGroup (string title, Attribute [] attributes)
+		public AttributeGroup (string title, IEnumerable<Attribute> attributes)
 			: this (title)
 		{
 			Attributes.AddRange (attributes);
@@ -147,8 +147,8 @@ namespace CloudKitAtlas
 			}
 		}
 
-		public LocationInput (string label)
-			: base (label)
+		public LocationInput (string label, bool isRequired)
+			: base (label, isRequired)
 		{
 		}
 	}

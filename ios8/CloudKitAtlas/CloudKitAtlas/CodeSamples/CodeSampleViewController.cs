@@ -8,6 +8,7 @@ using CoreAnimation;
 using CoreGraphics;
 
 using static CloudKitAtlas.NullableExtensions;
+using System.Diagnostics.Contracts;
 
 namespace CloudKitAtlas
 {
@@ -101,7 +102,8 @@ namespace CloudKitAtlas
 		public nint RowsInSection (UITableView tableView, nint section)
 		{
 			var codeSample = SelectedCodeSample;
-			return codeSample == null ? 0 : codeSample.Inputs.Count (cs => !cs.IsHidden);
+			var cnt = codeSample == null ? 0 : codeSample.Inputs.Count (cs => !cs.IsHidden);
+			return cnt;
 		}
 
 		public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -112,35 +114,48 @@ namespace CloudKitAtlas
 				var input = inputs [indexPath.Row];
 
 				var textInput = input as TextInput;
-				var textCell = tableView.DequeueReusableCell ("TextFieldCell", indexPath) as TextFieldTableViewCell;
-				if (textInput != null && textCell != null) {
-					textCell.TextInput = textInput;
-					textCell.FieldLabel.Text = textInput.Label;
-					textCell.TextField.Text = textInput.Value;
+				if (textInput != null) {
+					var textCell = tableView.DequeueReusableCell ("TextFieldCell", indexPath) as TextFieldTableViewCell;
+					if (textInput != null && textCell != null) {
+						textCell.TextInput = textInput;
+						textCell.FieldLabel.Text = textInput.Label;
+						textCell.TextField.Text = textInput.Value;
 
-					if (textInput.Type == TextInputType.Email)
-						textCell.TextField.KeyboardType = UIKeyboardType.EmailAddress;
-					textCell.TextField.Delegate = this;
+						if (textInput.Type == TextInputType.Email)
+							textCell.TextField.KeyboardType = UIKeyboardType.EmailAddress;
+						textCell.TextField.Delegate = this;
 
-					if (indexPath.Row == 0)
-						textCell.TextField.BecomeFirstResponder ();
+						if (indexPath.Row == 0)
+							textCell.TextField.BecomeFirstResponder ();
 
-					return textCell;
+						return textCell;
+					}
 				}
 
 				var locationInput = input as LocationInput;
-				var locationCell = tableView.DequeueReusableCell ("LocationFieldCell", indexPath) as LocationFieldTableViewCell;
-				if (locationCell != null && locationCell != null) {
-					locationCell.LocationInput = locationInput;
-					locationCell.FieldLabel.Text = input.Label;
-					locationCell.LongitudeField.Delegate = this;
-					locationCell.LatitudeField.Delegate = this;
+				if (locationInput != null) {
+					var locationCell = tableView.DequeueReusableCell ("LocationFieldCell", indexPath) as LocationFieldTableViewCell;
+					if (locationCell != null) {
+						locationCell.LocationInput = locationInput;
+						locationCell.FieldLabel.Text = input.Label;
 
-					if (indexPath.Row == 0)
-						locationCell.LatitudeField.BecomeFirstResponder ();
-					locationCell.LookUpButton.Enabled = CLLocationManager.Status != CLAuthorizationStatus.Denied;
+						locationCell.LongitudeField.Text = locationInput?.Longitude.ToString ();
+						locationCell.LatitudeField.Text = locationInput?.Latitude.ToString ();
 
-					return locationCell;
+						locationCell.LongitudeField.RemoveTarget (EditingChanged, UIControlEvent.EditingChanged);
+						locationCell.LatitudeField.RemoveTarget (EditingChanged, UIControlEvent.EditingChanged);
+						locationCell.LongitudeField.AddTarget (EditingChanged, UIControlEvent.EditingChanged);
+						locationCell.LatitudeField.AddTarget (EditingChanged, UIControlEvent.EditingChanged);
+
+						locationCell.LongitudeField.Delegate = this;
+						locationCell.LatitudeField.Delegate = this;
+
+						if (indexPath.Row == 0)
+							locationCell.LatitudeField.BecomeFirstResponder ();
+						locationCell.LookUpButton.Enabled = CLLocationManager.Status != CLAuthorizationStatus.Denied;
+
+						return locationCell;
+					}
 				}
 
 				var imgInput = input as ImageInput;
@@ -198,6 +213,11 @@ namespace CloudKitAtlas
 			return true;
 		}
 
+		void EditingChanged (object sender, EventArgs e)
+		{
+			EditingEnded ((UITextField)sender);
+		}
+
 		[Export ("textFieldDidEndEditing:")]
 		public void EditingEnded (UITextField textField)
 		{
@@ -212,10 +232,10 @@ namespace CloudKitAtlas
 					break;
 				}
 
-				int value;
 				var stackView = contentView.Superview;
 				var stackCell = stackView?.Superview as LocationFieldTableViewCell;
-				if (stackCell != null && int.TryParse (textField.Text, out value)) {
+				if (stackCell != null) {
+					int? value = Parse (textField.Text);
 					if (textField.Tag == 0)
 						stackCell.LocationInput.Latitude = value;
 					else if (textField.Tag == 1)
@@ -487,5 +507,11 @@ namespace CloudKitAtlas
 		}
 
 		#endregion
+
+		static int? Parse (string text)
+		{
+			int value;
+			return int.TryParse (text, out value) ? value : (int?)null;
+		}
 	}
 }

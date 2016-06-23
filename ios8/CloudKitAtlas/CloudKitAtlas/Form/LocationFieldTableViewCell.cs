@@ -30,6 +30,11 @@ namespace CloudKitAtlas
 		{
 		}
 
+		public LocationFieldTableViewCell (NSCoder coder)
+			: base (coder)
+		{
+		}
+
 		public void SetCoordinate (CLLocationCoordinate2D coordinate)
 		{
 			var latitude = coordinate.Latitude;

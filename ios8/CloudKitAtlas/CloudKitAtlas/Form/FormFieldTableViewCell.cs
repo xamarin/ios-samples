@@ -5,6 +5,7 @@ using Foundation;
 
 namespace CloudKitAtlas
 {
+	[Register("FormFieldTableViewCell")]
 	public class FormFieldTableViewCell : UITableViewCell
 	{
 		[Outlet]
@@ -13,6 +14,12 @@ namespace CloudKitAtlas
 		public FormFieldTableViewCell (IntPtr handle)
 			: base (handle)
 		{
+		}
+
+		public FormFieldTableViewCell (NSCoder coder)
+			: base (coder)
+		{
+			
 		}
 	}
 }

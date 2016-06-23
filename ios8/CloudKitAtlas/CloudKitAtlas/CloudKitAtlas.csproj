@@ -262,6 +262,7 @@
     <Compile Include="Utils\NullableExtensions.cs" />
     <Compile Include="Utils\SegueArg.cs" />
     <Compile Include="Results\ResultOrErrorViewController.cs" />
+    <Compile Include="Utils\CKRecordWrapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
