@@ -10,9 +10,9 @@ namespace CloudKitAtlas
 	public class SaveRecordSample : CodeSample
 	{
 		public SaveRecordSample ()
-			: base (title: "saveRecord",
+			: base (title: "SaveRecord",
 					className: "CKDatabase",
-					methodName: ".saveRecord()",
+					methodName: ".SaveRecord()",
 					descriptionKey: "Records.SaveRecord",
 					inputs: new Input [] {
 						new TextInput (label: "recordName", value: string.Empty),
