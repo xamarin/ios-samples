@@ -409,10 +409,10 @@ namespace CloudKitAtlas
 			picker.DismissViewController (true, null);
 		}
 
-		[Export ("imagePickerController:didFinishPickingImage:editingInfo:")]
-		public void FinishedPickingImage (UIImagePickerController picker, UIImage image, NSDictionary editingInfo)
+		[Export ("imagePickerController:didFinishPickingMediaWithInfo:")]
+		public void FinishedPickingMedia (UIImagePickerController picker, NSDictionary info)
 		{
-			var selectedImage = (UIImage)editingInfo [UIImagePickerController.OriginalImage];
+			var selectedImage = (UIImage)info [UIImagePickerController.OriginalImage];
 			var imageUrl = GetImageUrl ();
 			if (selectedImage != null && selectedImageCellIndex.HasValue && imageUrl != null) {
 				var index = selectedImageCellIndex.Value;
