@@ -265,6 +265,7 @@
     <Compile Include="Utils\CKRecordWrapper.cs" />
     <Compile Include="Utils\CKRecordZoneWrapper.cs" />
     <Compile Include="Utils\CKRecordZoneIdWrapper.cs" />
+    <Compile Include="Utils\CKSubscriptionWrapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

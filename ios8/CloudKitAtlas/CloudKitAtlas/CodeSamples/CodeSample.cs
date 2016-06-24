@@ -210,7 +210,7 @@ namespace CloudKitAtlas
 			Value = value;
 		}
 
-		public TextInput (string label, string value, bool isRequired, bool isHidden = false)
+		public TextInput (string label, string value, bool isRequired = false, bool isHidden = false)
 			: this (label, value)
 		{
 			IsHidden = isHidden;
@@ -294,7 +294,7 @@ namespace CloudKitAtlas
 
 		public string ListHeading { get; set; }
 
-		public string Error { get; private set; }
+		public virtual string Error { get; }
 
 		// TODO: remove default ctor
 		public CodeSample ()
