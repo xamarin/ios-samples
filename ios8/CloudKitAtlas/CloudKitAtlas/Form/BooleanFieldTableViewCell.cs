@@ -16,5 +16,11 @@ namespace CloudKitAtlas
 			: base (handle)
 		{
 		}
+
+		[Action ("changeValue:")]
+		void changeValue (UISwitch sender)
+		{
+			BooleanInput.Value = sender.On;
+		}
 	}
 }
