@@ -10,11 +10,11 @@ namespace CloudKitAtlas
 {
 	public class CKRecordWrapper : IResult
 	{
-		readonly CKRecord record;
+		public CKRecord Record { get; }
 
 		public CKRecordWrapper (CKRecord record)
 		{
-			this.record = record;
+			Record = record;
 		}
 
 		public List<AttributeGroup> AttributeList {
@@ -26,23 +26,23 @@ namespace CloudKitAtlas
 				var metadata = new List<Attribute> ();
 				var fields = new List<Attribute> ();
 
-				metadata.Add (new Attribute (key: "RecordType", value: record.RecordType));
+				metadata.Add (new Attribute (key: "RecordType", value: Record.RecordType));
 				metadata.Add (new Attribute (key: "RecordId"));
-				metadata.Add (new Attribute (key: "RecordName", value: record.Id.RecordName, isNested: true));
-				metadata.Add (new Attribute (key: "ZoneId.ZoneName", value: record.Id.ZoneId.ZoneName, isNested: true));
-				metadata.Add (new Attribute (key: "ZoneId.OwnerName", value: record.Id.ZoneId.OwnerName, isNested: true));
-				metadata.Add (new Attribute (key: "RecordChangeTag", value: record.RecordChangeTag ?? string.Empty));
+				metadata.Add (new Attribute (key: "RecordName", value: Record.Id.RecordName, isNested: true));
+				metadata.Add (new Attribute (key: "ZoneId.ZoneName", value: Record.Id.ZoneId.ZoneName, isNested: true));
+				metadata.Add (new Attribute (key: "ZoneId.OwnerName", value: Record.Id.ZoneId.OwnerName, isNested: true));
+				metadata.Add (new Attribute (key: "RecordChangeTag", value: Record.RecordChangeTag ?? string.Empty));
 
-				var modificationDate = record.ModificationDate;
+				var modificationDate = Record.ModificationDate;
 				if (modificationDate != null)
 					metadata.Add (new Attribute (key: "ModificationDate", value: dateFormatter.StringFor (modificationDate)));
 
-				var creationDate = record.CreationDate;
+				var creationDate = Record.CreationDate;
 				if (creationDate != null)
 					metadata.Add (new Attribute (key: "CreationDate", value: dateFormatter.StringFor (creationDate)));
 
-				foreach (var key in record.AllKeys ()) {
-					NSObject value = record [key];
+				foreach (var key in Record.AllKeys ()) {
+					NSObject value = Record [key];
 
 					string str = value as NSString;
 					if (str != null) {
@@ -88,18 +88,18 @@ namespace CloudKitAtlas
 					return name;
 
 				string value;
-				foreach (var key in record.AllKeys ()) {
+				foreach (var key in Record.AllKeys ()) {
 					if (TryGetString (key, out value))
 						return value;
 				}
 
-				return record.Id.RecordName;
+				return Record.Id.RecordName;
 			}
 		}
 
 		bool TryGetString (string key, out string value)
 		{
-			var str = record [key] as NSString;
+			var str = Record [key] as NSString;
 			value = str;
 
 			return value != null;

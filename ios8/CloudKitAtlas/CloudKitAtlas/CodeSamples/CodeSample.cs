@@ -252,7 +252,7 @@ namespace CloudKitAtlas
 
 		public bool AlwaysShowAsList { get; }
 
-		public bool MoreComing { get; private set; } = false;
+		public bool MoreComing { get; set; } = false;
 
 		public HashSet<int> Added { get; } = new HashSet<int> ();
 		public HashSet<int> Modified { get; } = new HashSet<int> ();
