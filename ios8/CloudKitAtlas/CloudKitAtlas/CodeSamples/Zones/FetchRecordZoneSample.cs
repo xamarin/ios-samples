@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 using CloudKit;
 
@@ -7,10 +8,10 @@ namespace CloudKitAtlas
 	public class FetchRecordZoneSample : CodeSample
 	{
 		public FetchRecordZoneSample ()
-			: base (title: "DeleteRecordZone",
+			: base (title: "FetchRecordZone",
 					className: "CKDatabase",
-					methodName: ".DeleteRecordZone()",
-					descriptionKey: "Zones.DeleteRecordZone",
+					methodName: ".FetchRecordZone()",
+					descriptionKey: "Zones.FetchRecordZone",
 					inputs: new Input [] {
 						new TextInput (label: "zoneName", value: string.Empty, isRequired: true)
 					})
@@ -20,18 +21,18 @@ namespace CloudKitAtlas
 		public async override Task<Results> Run ()
 		{
 			string zoneName;
-			if (TryGetString ("zoneName", out zoneName))
-				return null;
+			if (!TryGetString ("zoneName", out zoneName))
+				throw new InvalidProgramException ();
 
 			var container = CKContainer.DefaultContainer;
 			var privateDB = container.PrivateCloudDatabase;
 
 			var id = new CKRecordZoneID (zoneName, CKContainer.OwnerDefaultName);
-			var zoneId = await privateDB.DeleteRecordZoneAsync (id);
+			var zone = await privateDB.FetchRecordZoneAsync (id);
 
 			var results = new Results ();
-			if (zoneId != null)
-				results.Items.Add (new CKRecordZoneIdWrapper (zoneId));
+			if (zone != null)
+				results.Items.Add (new CKRecordZoneWrapper (zone));
 
 			return results;
 		}

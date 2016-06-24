@@ -42,7 +42,6 @@ namespace CloudKitAtlas
 				segueIdentifier = "ShowError";
 			}
 
-
 			DispatchQueue.MainQueue.DispatchAsync (() => {
 				loadingViewController.PerformSegue (segueIdentifier, loadingViewController);
 			});

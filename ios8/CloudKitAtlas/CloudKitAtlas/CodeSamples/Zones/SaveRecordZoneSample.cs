@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 using CloudKit;
 
@@ -20,8 +21,8 @@ namespace CloudKitAtlas
 		public async override Task<Results> Run ()
 		{
 			string zoneName;
-			if (TryGetString ("zoneName", out zoneName))
-				return null;
+			if (!TryGetString ("zoneName", out zoneName))
+				throw new InvalidProgramException ();
 
 			var container = CKContainer.DefaultContainer;
 			var privateDB = container.PrivateCloudDatabase;
@@ -29,6 +30,9 @@ namespace CloudKitAtlas
 			CKRecordZone recordZone = await privateDB.SaveRecordZoneAsync (new CKRecordZone (zoneName));
 			var results = new Results ();
 
+			if (recordZone == null)
+				throw new InvalidProgramException ();
+			
 			if (recordZone != null)
 				results.Items.Add (new CKRecordZoneWrapper (recordZone));
 
