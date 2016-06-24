@@ -340,6 +340,15 @@ namespace CloudKitAtlas
 			}
 		}
 
+		protected bool TryGetString (string key, out string value)
+		{
+			object obj;
+			Data.TryGetValue (key, out obj);
+			value = obj as string;
+
+			return value != null;
+		}
+
 		public abstract Task<Results> Run ();
 	}
 }

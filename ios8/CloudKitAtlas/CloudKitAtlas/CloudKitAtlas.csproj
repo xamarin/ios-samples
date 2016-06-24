@@ -264,6 +264,7 @@
     <Compile Include="Results\ResultOrErrorViewController.cs" />
     <Compile Include="Utils\CKRecordWrapper.cs" />
     <Compile Include="Utils\CKRecordZoneWrapper.cs" />
+    <Compile Include="Utils\CKRecordZoneIdWrapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>

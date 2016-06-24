@@ -19,11 +19,8 @@ namespace CloudKitAtlas
 
 		public async override Task<Results> Run ()
 		{
-			object obj;
-			Data.TryGetValue ("zoneName", out obj);
-			var zoneName = obj as string;
-
-			if (zoneName == null)
+			string zoneName;
+			if (TryGetString ("zoneName", out zoneName))
 				return null;
 
 			var container = CKContainer.DefaultContainer;
