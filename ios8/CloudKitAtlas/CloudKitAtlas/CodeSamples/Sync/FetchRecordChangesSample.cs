@@ -9,10 +9,10 @@ namespace CloudKitAtlas
 {
 	class ChangedRecords
 	{
-		readonly Results results = new Results (alwaysShowAsList: true);
+		public Results Results { get; } = new Results (alwaysShowAsList: true);
 		readonly Dictionary<CKRecordID, CKRecord> recordsByID = new Dictionary<CKRecordID, CKRecord> ();
 
-		CKServerChangeToken changeToken;
+		public CKServerChangeToken ChangeToken { get; set; }
 
 		public CKRecord GetRecordById (CKRecordID recordId)
 		{
@@ -21,19 +21,19 @@ namespace CloudKitAtlas
 
 		public Results GetRecords ()
 		{
-			return results;
+			return Results;
 		}
 
 		public void AddRecord (CKRecord record)
 		{
-			results.Items.Add (new CKRecordWrapper (record));
+			Results.Items.Add (new CKRecordWrapper (record));
 			recordsByID [record.Id] = record;
-			results.Added.Add (results.Items.Count - 1);
+			Results.Added.Add (Results.Items.Count - 1);
 		}
 
 		int IndexOfRecordByRecordID (CKRecordID recordId)
 		{
-			return results.Items.FindIndex (r => {
+			return Results.Items.FindIndex (r => {
 				var record = (r as CKRecordWrapper)?.Record;
 				return record != null && record.Id == recordId;
 			});
@@ -43,57 +43,116 @@ namespace CloudKitAtlas
 		{
 			var index = IndexOfRecordByRecordID (record.Id);
 			if (index >= 0)
-				results.Modified.Add (index);
+				Results.Modified.Add (index);
 		}
 
 		public void MarkRecordAsDeleted (CKRecordID recordID)
 		{
 			var index = IndexOfRecordByRecordID (recordID);
 			if (index > 0)
-				results.Deleted.Add (index);
+				Results.Deleted.Add (index);
 		}
 
 		void RemoveDeletedRecords ()
 		{
-			foreach (var index in results.Deleted.OrderByDescending (i => i)) {
-				var record = ((CKRecordWrapper)results.Items [index]).Record;
-				results.Items.RemoveAt (index);
+			foreach (var index in Results.Deleted.OrderByDescending (i => i)) {
+				var record = ((CKRecordWrapper)Results.Items [index]).Record;
+				Results.Items.RemoveAt (index);
 				recordsByID.Remove (record.Id);
 			}
 		}
 
 		public void SetMoreComing (bool value)
 		{
-			results.MoreComing = value;
+			Results.MoreComing = value;
 		}
 
 		public void RemoveChanges ()
 		{
 			RemoveDeletedRecords ();
 
-			results.Added.Clear ();
-			results.Deleted.Clear ();
-			results.Modified.Clear ();
+			Results.Added.Clear ();
+			Results.Deleted.Clear ();
+			Results.Modified.Clear ();
 		}
 
 		public void Reset ()
 		{
-			changeToken = null;
-			results.Reset ();
+			ChangeToken = null;
+			Results.Reset ();
 			recordsByID.Clear ();
 		}
 	}
 
 	public class FetchRecordChangesSample : CodeSample
 	{
+		readonly Dictionary<CKRecordZoneID, ChangedRecords> recordCache = new Dictionary<CKRecordZoneID, ChangedRecords> ();
+
 		public FetchRecordChangesSample ()
+			: base (title: "CKFetchRecordChangesOperation",
+					className: "CKFetchRecordChangesOperation",
+					methodName: ".ctor(CKRecordZoneID, CKServerChangeToken)",
+					descriptionKey: "Sync.FetchRecordChanges",
+					inputs: new Input [] {
+						new TextInput (label: "zoneName", value: string.Empty, isRequired: true),
+						new BooleanInput (label: "cache", value: true)
+			})
 		{
+			ListHeading = "Records:";
 		}
 
 		public override Task<Results> Run ()
 		{
-			throw new NotImplementedException ();
+			string zoneName;
+			bool shouldCache;
+			if (!TryGetString ("zoneName", out zoneName) || !TryGetBool ("cache", out shouldCache))
+				throw new InvalidProgramException ();
+
+			var zoneId = new CKRecordZoneID (zoneName, CKContainer.OwnerDefaultName);
+			ChangedRecords cache;
+			if (!recordCache.TryGetValue (zoneId, out cache))
+				recordCache [zoneId] = cache = new ChangedRecords ();
+
+			cache.RemoveChanges ();
+
+			if (!cache.Results.MoreComing && !shouldCache)
+				cache.Reset ();
+
+			CKServerChangeToken changeToken = null;
+
+			var token = cache.ChangeToken;
+			if (token != null && (shouldCache || cache.Results.MoreComing))
+				changeToken = token;
+
+			// TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=42163
+			var operation = new CKFetchRecordChangesOperation (zoneId, changeToken);
+
+			operation.DesiredKeys = new string [] { "name", "location" };
+			operation.ResultsLimit = 2;
+			operation.RecordChanged = (record) => {
+				CKRecord cachedRecord = cache.GetRecordById (record.Id);
+				if (cachedRecord != null) {
+					foreach (var key in record.AllKeys ())
+						cachedRecord [key] = record [key];
+					cache.MarkRecordAsModified (cachedRecord);
+				} else {
+					cache.AddRecord (record);
+				}
+			};
+
+			operation.RecordDeleted = cache.MarkRecordAsDeleted;
+
+			var tcs = new TaskCompletionSource<Results> ();
+			operation.AllChangesReported = (chToken, nsData, nsError) => {
+				if (nsError == null) {
+					cache.ChangeToken = chToken;
+					cache.SetMoreComing (operation.MoreComing);
+				}
+				tcs.SetResult (cache.GetRecords ());
+			};
+
+			operation.Start ();
+			return tcs.Task;
 		}
 	}
 }
-

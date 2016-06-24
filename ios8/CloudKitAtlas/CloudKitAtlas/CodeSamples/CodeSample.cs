@@ -356,15 +356,18 @@ namespace CloudKitAtlas
 			return TryGet (key, out url);
 		}
 
-		bool TryGet<T> (string key, out T value) where T : class
+		protected bool TryGetBool (string key, out bool value)
 		{
-			object obj;
-			Data.TryGetValue (key, out obj);
-			value = obj as T;
-
-			return value != null;
+			return TryGet (key, out value);
 		}
 
+		bool TryGet<T> (string key, out T value)
+		{
+			object obj;
+			var contains = Data.TryGetValue (key, out obj);
+			value = contains ? (T)obj : default (T);
+			return contains;
+		}
 
 		public abstract Task<Results> Run ();
 	}
