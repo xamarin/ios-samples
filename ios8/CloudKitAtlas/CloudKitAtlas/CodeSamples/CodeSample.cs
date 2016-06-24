@@ -312,6 +312,7 @@ namespace CloudKitAtlas
 				Inputs.AddRange (inputs);
 		}
 
+		// TODO: create safe type container instead of Data
 		public Dictionary<string, object> Data {
 			get {
 				var data = new Dictionary<string, object> ();
@@ -342,12 +343,28 @@ namespace CloudKitAtlas
 
 		protected bool TryGetString (string key, out string value)
 		{
+			return TryGet (key, out value);
+		}
+
+		protected bool TryGetLocation (string key, out CLLocation location)
+		{
+			return TryGet (key, out location);
+		}
+
+		protected bool TryGetUrl (string key, out NSUrl url)
+		{
+			return TryGet (key, out url);
+		}
+
+		bool TryGet<T> (string key, out T value) where T : class
+		{
 			object obj;
 			Data.TryGetValue (key, out obj);
-			value = obj as string;
+			value = obj as T;
 
 			return value != null;
 		}
+
 
 		public abstract Task<Results> Run ();
 	}
