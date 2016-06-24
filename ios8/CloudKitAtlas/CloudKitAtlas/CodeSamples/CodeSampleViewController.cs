@@ -159,33 +159,39 @@ namespace CloudKitAtlas
 				}
 
 				var imgInput = input as ImageInput;
-				var imgCell = tableView.DequeueReusableCell ("ImageFieldCell", indexPath) as ImageFieldTableViewCell;
-				if (imgInput != null && imgCell != null) {
-					imgCell.FieldLabel.Text = imgInput.Label;
-					imgCell.ImageInput = imgInput;
+				if (imgInput != null) {
+					var imgCell = tableView.DequeueReusableCell ("ImageFieldCell", indexPath) as ImageFieldTableViewCell;
+					if (imgInput != null && imgCell != null) {
+						imgCell.FieldLabel.Text = imgInput.Label;
+						imgCell.ImageInput = imgInput;
 
-					return imgCell;
+						return imgCell;
+					}
 				}
 
 				var boolInput = input as BooleanInput;
-				var boolCell = tableView.DequeueReusableCell ("BooleanFieldCell", indexPath) as BooleanFieldTableViewCell;
-				if (boolCell != null && boolInput != null) {
-					boolCell.FieldLabel.Text = boolInput.Label;
-					boolCell.BooleanField.On = boolInput.Value;
-					boolCell.BooleanInput = boolInput;
+				if (boolInput != null) {
+					var boolCell = tableView.DequeueReusableCell ("BooleanFieldCell", indexPath) as BooleanFieldTableViewCell;
+					if (boolCell != null && boolInput != null) {
+						boolCell.FieldLabel.Text = boolInput.Label;
+						boolCell.BooleanField.On = boolInput.Value;
+						boolCell.BooleanInput = boolInput;
 
-					return boolCell;
+						return boolCell;
+					}
 				}
 
 				var selInput = input as SelectionInput;
-				var selCell = tableView.DequeueReusableCell ("SelectionFieldCell", indexPath) as SelectionFieldTableViewCell;
-				if (selInput != null && selCell != null) {
-					selCell.FieldLabel.Text = selInput.Label;
-					var index = ValueOrDefault (selInput.Value);
-					selCell.SelectedItemLabel.Text = selInput.Items.Count > 0 ? selInput.Items [index].Label : string.Empty;
-					selCell.SelectionInput = selInput;
+				if (selInput != null) {
+					var selCell = tableView.DequeueReusableCell ("SelectionFieldCell", indexPath) as SelectionFieldTableViewCell;
+					if (selInput != null && selCell != null) {
+						selCell.FieldLabel.Text = selInput.Label;
+						var index = ValueOrDefault (selInput.Value);
+						selCell.SelectedItemLabel.Text = selInput.Items.Count > 0 ? selInput.Items [index].Label : string.Empty;
+						selCell.SelectionInput = selInput;
 
-					return selCell;
+						return selCell;
+					}
 				}
 			}
 
