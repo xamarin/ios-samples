@@ -11,7 +11,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>9.3</string>
+	<string>8.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>2</integer>
@@ -34,7 +34,7 @@
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.Mohit1</string>
+	<string>com.your-company.VideoTimeLine</string>
 	<key>CFBundleName</key>
 	<string>VideoTimeLine</string>
 </dict>
