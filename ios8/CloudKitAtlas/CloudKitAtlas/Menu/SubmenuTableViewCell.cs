@@ -15,6 +15,12 @@ namespace CloudKitAtlas
 		{
 		}
 
+		[Export ("initWithCoder:")]
+		public SubmenuTableViewCell (NSCoder coder)
+			: base (coder)
+		{
+		}
+
 		public override void SetSelected (bool selected, bool animated)
 		{
 			base.SetSelected (selected, animated);

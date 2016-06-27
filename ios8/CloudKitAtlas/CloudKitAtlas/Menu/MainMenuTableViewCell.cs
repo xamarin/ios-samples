@@ -20,5 +20,11 @@ namespace CloudKitAtlas
 			: base (handle)
 		{
 		}
+
+		[Export ("initWithCoder:")]
+		public MainMenuTableViewCell (NSCoder coder)
+			: base (coder)
+		{
+		}
 	}
 }

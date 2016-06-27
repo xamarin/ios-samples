@@ -30,6 +30,7 @@ namespace CloudKitAtlas
 		{
 		}
 
+		[Export ("initWithCoder:")]
 		public LocationFieldTableViewCell (NSCoder coder)
 			: base (coder)
 		{

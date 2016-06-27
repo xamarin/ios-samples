@@ -16,5 +16,11 @@ namespace CloudKitAtlas
 			: base (handle)
 		{
 		}
+
+		[Export ("initWithCoder:")]
+		public SelectionFieldTableViewCell (NSCoder coder)
+			: base (coder)
+		{
+		}
 	}
 }

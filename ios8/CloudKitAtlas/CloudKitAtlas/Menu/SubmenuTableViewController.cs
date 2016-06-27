@@ -15,6 +15,12 @@ namespace CloudKitAtlas
 		{
 		}
 
+		[Export ("initWithCoder:")]
+		public SubmenuTableViewController (NSCoder coder)
+			: base (coder)
+		{
+		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

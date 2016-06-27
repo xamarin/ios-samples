@@ -38,6 +38,12 @@ namespace CloudKitAtlas
 		{
 		}
 
+		[Export ("initWithCoder:")]
+		public ResultsViewController (NSCoder coder)
+			: base (coder)
+		{
+		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -277,7 +283,6 @@ namespace CloudKitAtlas
 				}
 			}
 		}
-
 
 		#endregion
 	}

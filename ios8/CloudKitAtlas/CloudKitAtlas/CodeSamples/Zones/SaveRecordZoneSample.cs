@@ -32,7 +32,7 @@ namespace CloudKitAtlas
 
 			if (recordZone == null)
 				throw new InvalidProgramException ();
-			
+
 			if (recordZone != null)
 				results.Items.Add (new CKRecordZoneWrapper (recordZone));
 

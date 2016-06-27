@@ -18,6 +18,7 @@ namespace CloudKitAtlas
 		{
 		}
 
+		[Export ("initWithCoder:")]
 		public NavigationBar (NSCoder coder)
 			: base (coder)
 		{

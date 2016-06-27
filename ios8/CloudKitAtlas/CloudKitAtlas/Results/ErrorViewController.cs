@@ -20,6 +20,12 @@ namespace CloudKitAtlas
 		{
 		}
 
+		[Export ("initWithCoder:")]
+		public ErrorViewController (NSCoder coder)
+			: base (coder)
+		{
+		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

@@ -9,7 +9,14 @@ namespace CloudKitAtlas
 	{
 		public CodeSampleGroup [] CodeSampleGroups { get; set; }
 
-		public MainMenuTableViewController (IntPtr handle) : base (handle)
+		public MainMenuTableViewController (IntPtr handle)
+			: base (handle)
+		{
+		}
+
+		[Export ("initWithCoder:")]
+		public MainMenuTableViewController (NSCoder coder)
+			: base (coder)
 		{
 		}
 

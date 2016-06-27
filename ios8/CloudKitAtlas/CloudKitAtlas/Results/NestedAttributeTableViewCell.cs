@@ -1,4 +1,5 @@
 using System;
+using Foundation;
 
 namespace CloudKitAtlas
 {
@@ -8,6 +9,13 @@ namespace CloudKitAtlas
 		public NestedAttributeTableViewCell (IntPtr handle)
 			: base (handle)
 		{
+		}
+
+		[Export ("initWithCoder:")]
+		public NestedAttributeTableViewCell (NSCoder coder)
+			: base (coder)
+		{
+			
 		}
 	}
 }

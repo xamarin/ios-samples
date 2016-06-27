@@ -16,10 +16,10 @@ namespace CloudKitAtlas
 		{
 		}
 
+		[Export ("initWithCoder:")]
 		public FormFieldTableViewCell (NSCoder coder)
 			: base (coder)
 		{
-			
 		}
 	}
 }

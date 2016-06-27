@@ -1,6 +1,7 @@
 ﻿using System;
 
 using UIKit;
+using Foundation;
 
 namespace CloudKitAtlas
 {
@@ -12,6 +13,12 @@ namespace CloudKitAtlas
 
 		public ResultOrErrorViewController (IntPtr handle)
 			: base (handle)
+		{
+		}
+
+		[Export ("initWithCoder:")]
+		public ResultOrErrorViewController (NSCoder coder)
+			: base (coder)
 		{
 		}
 

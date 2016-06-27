@@ -12,6 +12,7 @@ namespace CloudKitAtlas
 		{
 		}
 
+		[Export ("initWithCoder:")]
 		public MainNavigationItem (NSCoder coder)
 			: base (coder)
 		{

@@ -13,6 +13,12 @@ namespace CloudKitAtlas
 		{
 		}
 
+		[Export ("initWithCoder:")]
+		public NavigationController (NSCoder coder)
+			: base (coder)
+		{
+		}
+
 		public async override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			if (segue.Identifier != "ShowLoadingView")

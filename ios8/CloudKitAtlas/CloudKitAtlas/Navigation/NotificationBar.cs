@@ -34,6 +34,7 @@ namespace CloudKitAtlas
 			}
 		}
 
+		[Export ("initWithCoder:")]
 		public NotificationBar (NSCoder coder)
 			: base (coder)
 		{

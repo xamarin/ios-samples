@@ -52,6 +52,13 @@ namespace CloudKitAtlas
 		{
 		}
 
+		[Export ("initWithCoder:")]
+		public CodeSampleViewController (NSCoder coder)
+			: base (coder)
+		{
+
+		}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

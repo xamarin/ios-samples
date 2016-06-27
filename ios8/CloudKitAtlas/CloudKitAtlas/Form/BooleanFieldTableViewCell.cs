@@ -22,5 +22,11 @@ namespace CloudKitAtlas
 		{
 			BooleanInput.Value = sender.On;
 		}
+
+		[Export ("initWithCoder:")]
+		public BooleanFieldTableViewCell (NSCoder coder)
+			: base (coder)
+		{
+		}
 	}
 }
