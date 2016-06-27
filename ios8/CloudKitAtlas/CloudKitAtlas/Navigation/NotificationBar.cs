@@ -17,7 +17,7 @@ namespace CloudKitAtlas
 		UIButton button;
 
 		CKNotification notification;
-		CKNotification Notification {
+		public CKNotification Notification {
 			get {
 				return notification;
 			}
@@ -94,7 +94,7 @@ namespace CloudKitAtlas
 			});
 		}
 
-		void Show ()
+		public void Show ()
 		{
 			Animate (0.4, () => {
 				heightConstraint.Constant = Superview.Frame.Size.Height;
