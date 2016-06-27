@@ -125,7 +125,8 @@ namespace CloudKitAtlas
 				changeToken = token;
 
 			// TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=42163
-			var operation = new CKFetchRecordChangesOperation (zoneId, changeToken);
+			//var operation = new CKFetchRecordChangesOperation (zoneId, changeToken);
+			var operation = CKFetchRecordChangesOperationFactory.GetOperation (zoneId, changeToken);
 
 			operation.DesiredKeys = new string [] { "name", "location" };
 			operation.ResultsLimit = 2;

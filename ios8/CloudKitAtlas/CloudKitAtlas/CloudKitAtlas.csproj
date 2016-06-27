@@ -233,6 +233,7 @@
     <Compile Include="Utils\CKRecordZoneIdWrapper.cs" />
     <Compile Include="Utils\CKSubscriptionWrapper.cs" />
     <Compile Include="Navigation\NotificationBar.cs" />
+    <Compile Include="Utils\CKFetchRecordChangesOperationFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
