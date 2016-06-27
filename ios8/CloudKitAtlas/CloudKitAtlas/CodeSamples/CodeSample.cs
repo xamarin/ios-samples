@@ -296,11 +296,6 @@ namespace CloudKitAtlas
 
 		public virtual string Error { get; }
 
-		// TODO: remove default ctor
-		public CodeSample ()
-		{
-		}
-
 		public CodeSample (string title, string className, string methodName, string descriptionKey, Input [] inputs = null)
 		{
 			Title = title;

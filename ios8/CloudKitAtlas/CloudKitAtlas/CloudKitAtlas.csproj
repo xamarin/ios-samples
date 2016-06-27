@@ -112,40 +112,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="CKAssetViewController.cs" />
-    <Compile Include="CKAssetViewController.designer.cs">
-      <DependentUpon>CKAssetViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CKRecordViewController.cs" />
-    <Compile Include="CKRecordViewController.designer.cs">
-      <DependentUpon>CKRecordViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CKReferenceDetailViewController.cs" />
-    <Compile Include="CKReferenceDetailViewController.designer.cs">
-      <DependentUpon>CKReferenceDetailViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CKReferenceViewController.cs" />
-    <Compile Include="CKReferenceViewController.designer.cs">
-      <DependentUpon>CKReferenceViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CKSubscriptionViewController.cs" />
-    <Compile Include="CKSubscriptionViewController.designer.cs">
-      <DependentUpon>CKSubscriptionViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CloudManager.cs" />
-    <Compile Include="DiscoverabilityViewController.cs" />
-    <Compile Include="DiscoverabilityViewController.designer.cs">
-      <DependentUpon>DiscoverabilityViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ICloudViewController.cs" />
-    <Compile Include="LocationQueryViewController.cs" />
-    <Compile Include="LocationQueryViewController.designer.cs">
-      <DependentUpon>LocationQueryViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MasterViewController.cs" />
-    <Compile Include="MasterViewController.designer.cs">
-      <DependentUpon>MasterViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Menu\MainMenuTableViewController.cs" />
     <Compile Include="Menu\MainMenuTableViewController.designer.cs">
       <DependentUpon>MainMenuTableViewController.cs</DependentUpon>
