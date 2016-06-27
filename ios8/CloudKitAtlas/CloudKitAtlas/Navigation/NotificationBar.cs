@@ -73,7 +73,7 @@ namespace CloudKitAtlas
 			var rightLabelConstraint = NSLayoutConstraint.Create (button, Left, Equal, label, Right, 1, 8);
 			AddConstraint (rightLabelConstraint);
 
-			var centerLabelConstraint = NSLayoutConstraint.Create (null, CenterY, Equal, label, CenterY, 1, 0);
+			var centerLabelConstraint = NSLayoutConstraint.Create (this, CenterY, Equal, label, CenterY, 1, 0);
 			AddConstraint (centerLabelConstraint);
 
 			var tapGestureRecognizer = new UITapGestureRecognizer (ShowNotification);

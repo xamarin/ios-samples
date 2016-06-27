@@ -30,10 +30,10 @@ namespace CloudKitAtlas
 
 			AddSubview (NotificationBar);
 
-			var leftConstraint = NSLayoutConstraint.Create (null, Leading, Equal, NotificationBar, Leading, 1, 0);
+			var leftConstraint = NSLayoutConstraint.Create (this, Leading, Equal, NotificationBar, Leading, 1, 0);
 			AddConstraint (leftConstraint);
 
-			var rightConstraint = NSLayoutConstraint.Create (null, Trailing, Equal, NotificationBar, Trailing, 1, 0);
+			var rightConstraint = NSLayoutConstraint.Create (this, Trailing, Equal, NotificationBar, Trailing, 1, 0);
 			AddConstraint (rightConstraint);
 
 			var topConstraint = NSLayoutConstraint.Create (this, Top, Equal, NotificationBar, Top, 1, 0);
