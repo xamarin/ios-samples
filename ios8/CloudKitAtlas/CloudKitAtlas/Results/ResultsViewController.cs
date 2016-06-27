@@ -1,12 +1,12 @@
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 using UIKit;
 using Foundation;
 using CoreGraphics;
 using ObjCRuntime;
 using CoreFoundation;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CloudKitAtlas
 {
@@ -22,7 +22,7 @@ namespace CloudKitAtlas
 		public UIToolbar Toolbar { get; set; }
 
 		public CodeSample CodeSample { get; set; }
-		public Results Results { get; set; } = new Results (); // TODO: could be get only (readonly)?
+		public Results Results { get; set; } = new Results ();
 
 		string selectedAttributeValue;
 		readonly UIActivityIndicatorView activityIndicator = new UIActivityIndicatorView (new CGRect (0, 0, 20, 20));
