@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using UIKit;
 using Foundation;
 using CloudKit;
-using System.Threading.Tasks;
 
 namespace CloudKitAtlas
 {
@@ -65,14 +64,14 @@ namespace CloudKitAtlas
 		public MarkNotificationsReadSample ()
 				: base (title: "CKMarkNotificationsReadOperation",
 						className: "CKMarkNotificationsReadOperation",
-						methodName: ".init(notificationIDsToMarkRead:)", // TODO: use C# name instead
+						methodName: ".ctor(CKNotificationID[])",
 						descriptionKey: "Notifications.MarkAsRead")
 		{
 		}
 
 		public override Task<Results> Run ()
 		{
-			var ids = Cache.NewNotificationIDs;
+			CKNotificationID [] ids = Cache.NewNotificationIDs;
 			var tcs = new TaskCompletionSource<Results> ();
 
 			if (ids.Length > 0) {
