@@ -20,15 +20,14 @@ namespace CloudKitAtlas
 		public List<AttributeGroup> AttributeList {
 			get {
 				return new List<AttributeGroup> {
-					// TODO: fix camelCase to PascalCase for keys
 					new AttributeGroup(string.Empty, new Attribute[] {
 						new Attribute("notificationID.hashValue", notification.NotificationId.GetHashCode().ToString ()),
 						new Attribute("notificationType", NotificationTypeString),
-						new Attribute("alertBody", notification.AlertBody ?? "–"),
-						new Attribute("soundName", notification.SoundName ?? "–"),
-						new Attribute("badge", notification.Badge?.ToString() ?? "–"),
-						new Attribute("category", notification.Category ?? "–"),
-						new Attribute("subscriptionID", notification.SubscriptionID ?? "–")
+						new Attribute("alertBody", AttrValue(notification.AlertBody)),
+						new Attribute("soundName", AttrValue(notification.SoundName)),
+						new Attribute("badge", AttrValue(notification.Badge?.ToString())),
+						new Attribute("category", AttrValue(notification.Category)),
+						new Attribute("subscriptionID", AttrValue(notification.SubscriptionID))
 					})
 				};
 			}
@@ -54,6 +53,11 @@ namespace CloudKitAtlas
 					throw new InvalidOperationException ();
 				}
 			}
+		}
+
+		static string AttrValue (string rawValue)
+		{
+			return string.IsNullOrWhiteSpace (rawValue) ? "–" : rawValue;
 		}
 	}
 }
