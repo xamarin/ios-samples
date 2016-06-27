@@ -473,7 +473,7 @@ namespace CloudKitAtlas
 					alertController.AddAction (UIAlertAction.Create ("Dismiss", UIAlertActionStyle.Default, null));
 					PresentViewController (alertController, true, null);
 				} else {
-					NavigationController.PerformSegue ("ShowLoadingView", new SegueArg { Sample = codeSample }); // TODO: fix client code to cast SegueArg
+					NavigationController.PerformSegue ("ShowLoadingView", new SegueArg { Sample = codeSample });
 				}
 			}
 		}
