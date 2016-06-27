@@ -60,4 +60,4 @@ Xamarin port changes are released under the MIT license
 Author
 ======
 
-Ported to Xamarin.iOS by Oleg Demchenko and Timothy Risi
+Ported to Xamarin.iOS by Rustam Zaitov and Oleg Demchenko
