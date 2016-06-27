@@ -20,22 +20,22 @@ namespace CloudKitAtlas
 		UIImagePickerController ImagePickerController { get; } = new UIImagePickerController ();
 
 		[Outlet]
-		NSLayoutConstraint PickerHeightConstraint { get; set; }
+		public NSLayoutConstraint PickerHeightConstraint { get; set; }
 
 		[Outlet]
-		UIPickerView PickerView { get; set; }
+		public UIPickerView PickerView { get; set; }
 
 		[Outlet]
-		TableView TableView { get; set; }
+		public TableView TableView { get; set; }
 
 		[Outlet]
-		UILabel ClassName { get; set; }
+		public UILabel ClassName { get; set; }
 
 		[Outlet]
-		UILabel MethodName { get; set; }
+		public UILabel MethodName { get; set; }
 
 		[Outlet]
-		UIBarButtonItem RunButton { get; set; }
+		public UIBarButtonItem RunButton { get; set; }
 
 		[Outlet]
 		UILabel CodeSampleDescription { get; set; }
@@ -463,7 +463,7 @@ namespace CloudKitAtlas
 		}
 
 		[Action ("runCode:")]
-		void RunCode (UIBarButtonItem sender)
+		public void RunCode (UIBarButtonItem sender)
 		{
 			var codeSample = SelectedCodeSample;
 			if (codeSample != null) {
