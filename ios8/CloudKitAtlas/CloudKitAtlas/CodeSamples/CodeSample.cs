@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using UIKit;
 using Foundation;
@@ -84,7 +83,6 @@ namespace CloudKitAtlas
 		public Input (string label)
 		{
 			Label = label;
-
 		}
 
 		public Input (string label, bool isRequired)

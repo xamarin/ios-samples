@@ -26,7 +26,7 @@ namespace CloudKitAtlas
 
 		public List<AttributeGroup> AttributeList {
 			get {
-				var subscriptionType = "";
+				var subscriptionType = string.Empty;
 				switch (subscription.SubscriptionType) {
 				case RecordZone:
 					subscriptionType = "RecordZone";
@@ -44,7 +44,7 @@ namespace CloudKitAtlas
 
 				var predicate = subscription.Predicate;
 				var groups = new List<AttributeGroup> {
-					new AttributeGroup (title: "", attributes: new Attribute[] {
+					new AttributeGroup (title: string.Empty, attributes: new Attribute[] {
 						new Attribute (key: "subscriptionID", value: subscription.SubscriptionId),
 						new Attribute (key: "subscriptionType", value: subscriptionType),
 						new Attribute (key: "predicate", value: predicate != null ? predicate.PredicateFormat : string.Empty)

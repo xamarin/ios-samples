@@ -30,7 +30,7 @@ namespace CloudKitAtlas
 					descriptionKey: "Subscriptions.SaveSubscription",
 					inputs: new Input [] {
 						new SelectionInput (label: "subscriptionType", items: new Input[] {
-							new Input (label: "RecordZone", toggleIndexes: new int[]{1}),
+							new Input (label: "RecordZone", toggleIndexes: new int[] {1}),
 							new Input (label: "Query", toggleIndexes: new int[] {2, 3, 4, 5, 6})
 						}),
 						new TextInput (label: "zoneName", value: string.Empty),
