@@ -106,65 +106,189 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\one.png" />
-    <BundleResource Include="Resources\two.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="CKAssetViewController.cs" />
-    <Compile Include="CKAssetViewController.designer.cs">
-      <DependentUpon>CKAssetViewController.cs</DependentUpon>
+    <Compile Include="Menu\MainMenuTableViewController.cs" />
+    <Compile Include="Menu\MainMenuTableViewController.designer.cs">
+      <DependentUpon>MainMenuTableViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="CKRecordViewController.cs" />
-    <Compile Include="CKRecordViewController.designer.cs">
-      <DependentUpon>CKRecordViewController.cs</DependentUpon>
+    <Compile Include="Menu\MainMenuTableViewCell.cs" />
+    <Compile Include="Menu\MainMenuTableViewCell.designer.cs">
+      <DependentUpon>MainMenuTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="CKReferenceDetailViewController.cs" />
-    <Compile Include="CKReferenceDetailViewController.designer.cs">
-      <DependentUpon>CKReferenceDetailViewController.cs</DependentUpon>
+    <Compile Include="Menu\SubmenuTableViewController.cs" />
+    <Compile Include="Menu\SubmenuTableViewController.designer.cs">
+      <DependentUpon>SubmenuTableViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="CKReferenceViewController.cs" />
-    <Compile Include="CKReferenceViewController.designer.cs">
-      <DependentUpon>CKReferenceViewController.cs</DependentUpon>
+    <Compile Include="Menu\SubmenuTableViewCell.cs" />
+    <Compile Include="Menu\SubmenuTableViewCell.designer.cs">
+      <DependentUpon>SubmenuTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="CKSubscriptionViewController.cs" />
-    <Compile Include="CKSubscriptionViewController.designer.cs">
-      <DependentUpon>CKSubscriptionViewController.cs</DependentUpon>
+    <Compile Include="Form\TextFieldTableViewCell.cs" />
+    <Compile Include="Form\TextFieldTableViewCell.designer.cs">
+      <DependentUpon>TextFieldTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="CloudManager.cs" />
-    <Compile Include="DiscoverabilityViewController.cs" />
-    <Compile Include="DiscoverabilityViewController.designer.cs">
-      <DependentUpon>DiscoverabilityViewController.cs</DependentUpon>
+    <Compile Include="Form\LocationFieldTableViewCell.cs" />
+    <Compile Include="Form\LocationFieldTableViewCell.designer.cs">
+      <DependentUpon>LocationFieldTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="ICloudViewController.cs" />
-    <Compile Include="LocationQueryViewController.cs" />
-    <Compile Include="LocationQueryViewController.designer.cs">
-      <DependentUpon>LocationQueryViewController.cs</DependentUpon>
+    <Compile Include="Form\ImageFieldTableViewCell.cs" />
+    <Compile Include="Form\ImageFieldTableViewCell.designer.cs">
+      <DependentUpon>ImageFieldTableViewCell.cs</DependentUpon>
     </Compile>
-    <Compile Include="MasterViewController.cs" />
-    <Compile Include="MasterViewController.designer.cs">
-      <DependentUpon>MasterViewController.cs</DependentUpon>
+    <Compile Include="Form\BooleanFieldTableViewCell.cs" />
+    <Compile Include="Form\BooleanFieldTableViewCell.designer.cs">
+      <DependentUpon>BooleanFieldTableViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\SelectionFieldTableViewCell.cs" />
+    <Compile Include="Form\SelectionFieldTableViewCell.designer.cs">
+      <DependentUpon>SelectionFieldTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\ResultsViewController.cs" />
+    <Compile Include="Results\ResultsViewController.designer.cs">
+      <DependentUpon>ResultsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\ResultTableViewCell.cs" />
+    <Compile Include="Results\ResultTableViewCell.designer.cs">
+      <DependentUpon>ResultTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\AttributeTableViewCell.cs" />
+    <Compile Include="Results\AttributeTableViewCell.designer.cs">
+      <DependentUpon>AttributeTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\AttributeKeyTableViewCell.cs" />
+    <Compile Include="Results\AttributeKeyTableViewCell.designer.cs">
+      <DependentUpon>AttributeKeyTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\NestedAttributeTableViewCell.cs" />
+    <Compile Include="Results\NestedAttributeTableViewCell.designer.cs">
+      <DependentUpon>NestedAttributeTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\ErrorViewController.cs" />
+    <Compile Include="Results\ErrorViewController.designer.cs">
+      <DependentUpon>ErrorViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Results\ImageTableViewCell.cs" />
+    <Compile Include="Results\ImageTableViewCell.designer.cs">
+      <DependentUpon>ImageTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeSamples\CodeSampleViewController.cs" />
+    <Compile Include="CodeSamples\CodeSampleViewController.designer.cs">
+      <DependentUpon>CodeSampleViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigation\MainNavigationItem.cs" />
+    <Compile Include="Navigation\MainNavigationItem.designer.cs">
+      <DependentUpon>MainNavigationItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigation\NavigationBar.cs" />
+    <Compile Include="Navigation\NavigationBar.designer.cs">
+      <DependentUpon>NavigationBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Navigation\NavigationController.cs" />
+    <Compile Include="Navigation\NavigationController.designer.cs">
+      <DependentUpon>NavigationController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Loading\LoadingViewController.cs" />
+    <Compile Include="Loading\LoadingViewController.designer.cs">
+      <DependentUpon>LoadingViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\TableView.cs" />
+    <Compile Include="Table\TableView.designer.cs">
+      <DependentUpon>TableView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CodeSamples\CodeSampleGroup.cs" />
+    <Compile Include="CodeSamples\CodeSample.cs" />
+    <Compile Include="CodeSamples\Notitfications\MarkNotificationsReadSample.cs" />
+    <Compile Include="Utils\CKNotificationWrapper.cs" />
+    <Compile Include="CodeSamples\Discoverability\RequestApplicationPermissionSample.cs" />
+    <Compile Include="CodeSamples\Discoverability\FetchUserRecordIdSample.cs" />
+    <Compile Include="CodeSamples\Discoverability\DiscoverUserInfoWithUserRecordIdSample.cs" />
+    <Compile Include="CodeSamples\Discoverability\DiscoverUserInfoWithEmailAddressSample.cs" />
+    <Compile Include="CodeSamples\Discoverability\DiscoverAllContactUserInfosSample.cs" />
+    <Compile Include="CodeSamples\Zones\FetchAllRecordZonesSample.cs" />
+    <Compile Include="CodeSamples\Zones\SaveRecordZoneSample.cs" />
+    <Compile Include="CodeSamples\Zones\DeleteRecordZoneSample.cs" />
+    <Compile Include="CodeSamples\Zones\FetchRecordZoneSample.cs" />
+    <Compile Include="CodeSamples\Query\PerformQuerySample.cs" />
+    <Compile Include="CodeSamples\Records\SaveRecordSample.cs" />
+    <Compile Include="CodeSamples\Records\DeleteRecordSample.cs" />
+    <Compile Include="CodeSamples\Records\FetchRecordSample.cs" />
+    <Compile Include="CodeSamples\Sync\FetchRecordChangesSample.cs" />
+    <Compile Include="CodeSamples\Subscriptions\SaveSubscriptionSample.cs" />
+    <Compile Include="CodeSamples\Subscriptions\DeleteSubscriptionSample.cs" />
+    <Compile Include="CodeSamples\Subscriptions\FetchSubscriptionSample.cs" />
+    <Compile Include="CodeSamples\Subscriptions\FetchAllSubscriptionsSample.cs" />
+    <Compile Include="Utils\CKRecordIdWrapper.cs" />
+    <Compile Include="Utils\CKDiscoveredUserInfoWrapper.cs" />
+    <Compile Include="Form\FormFieldTableViewCell.cs" />
+    <Compile Include="Utils\NullableExtensions.cs" />
+    <Compile Include="Utils\SegueArg.cs" />
+    <Compile Include="Results\ResultOrErrorViewController.cs" />
+    <Compile Include="Utils\CKRecordWrapper.cs" />
+    <Compile Include="Utils\CKRecordZoneWrapper.cs" />
+    <Compile Include="Utils\CKRecordZoneIdWrapper.cs" />
+    <Compile Include="Utils\CKSubscriptionWrapper.cs" />
+    <Compile Include="Navigation\NotificationBar.cs" />
+    <Compile Include="Utils\CKFetchRecordChangesOperationFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CloudKitAtlas114.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CloudKitAtlas120.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CloudKitAtlas29.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CloudKitAtlas57.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CloudKitAtlas58.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\CloudKitAtlas80.png" />
-    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Contents.json" />
-    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
-    <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default%402x.png" />
+    <Folder Include="Resources\" />
+    <Folder Include="Menu\" />
+    <Folder Include="Form\" />
+    <Folder Include="Results\" />
+    <Folder Include="CodeSamples\" />
+    <Folder Include="Navigation\" />
+    <Folder Include="Loading\" />
+    <Folder Include="Table\" />
+    <Folder Include="CodeSamples\Notitfications\" />
+    <Folder Include="Utils\" />
+    <Folder Include="CodeSamples\Discoverability\" />
+    <Folder Include="CodeSamples\Zones\" />
+    <Folder Include="CodeSamples\Query\" />
+    <Folder Include="CodeSamples\Records\" />
+    <Folder Include="CodeSamples\Sync\" />
+    <Folder Include="CodeSamples\Subscriptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog120-1.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog120.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog152.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog167-1.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog58.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog76.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\CloudKitCatalog80.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Authentication.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Authentication.imageset\authentication.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Discoverability.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Discoverability.imageset\discoverability.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Notifications.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Notifications.imageset\notifications.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Query.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Query.imageset\query.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Records.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Records.imageset\records.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Subscriptions.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Subscriptions.imageset\subscriptions.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Sync.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Sync.imageset\sync.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Zones.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Menu Icons\Zones.imageset\zones.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Navigation.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Navigation.imageset\nav_icon.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Title.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\Title.imageset\cloudkit-catalog.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\LaunchImage.launchimage\Contents.json" />
   </ItemGroup>
 </Project>

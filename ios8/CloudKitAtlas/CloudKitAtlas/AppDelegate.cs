@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
-using Foundation;
 using UIKit;
+using Foundation;
+using CloudKit;
 
 namespace CloudKitAtlas
 {
-	// The UIApplicationDelegate for the application. This class is responsible for launching the
-	// User Interface of the application, as well as listening (and optionally responding) to
-	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
+	public class AppDelegate : UIApplicationDelegate
 	{
-		// class-level declarations
 		public override UIWindow Window {
 			get;
 			set;
@@ -40,7 +35,28 @@ namespace CloudKitAtlas
 
 		public override void ReceivedRemoteNotification (UIApplication application, NSDictionary userInfo)
 		{
-			Console.WriteLine ("Push received");
+			var notification = CKNotification.FromRemoteNotificationDictionary (userInfo);
+
+			var state = application.ApplicationState;
+
+			var viewController = Window?.RootViewController as UINavigationController;
+			if (viewController != null) {
+				var tableViewController = viewController.ViewControllers [0] as MainMenuTableViewController;
+				if (tableViewController != null) {
+					var index = tableViewController.CodeSampleGroups.Length - 1;
+					if (index > 0) {
+						var notificationSample = tableViewController.CodeSampleGroups [index].CodeSamples [0] as MarkNotificationsReadSample;
+						notificationSample.Cache.AddNotification (notification);
+						tableViewController.TableView.ReloadRows (new NSIndexPath [] { NSIndexPath.FromRowSection (index, 0) }, UITableViewRowAnimation.Automatic);
+					}
+				}
+
+				if (state == UIApplicationState.Active) {
+					var navigationBar = viewController.NavigationBar as NavigationBar;
+					if (navigationBar != null)
+						navigationBar.ShowNotificationAlert (notification);
+				}
+			}
 		}
 	}
 }
