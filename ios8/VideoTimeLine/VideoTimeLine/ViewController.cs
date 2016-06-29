@@ -212,12 +212,21 @@ namespace VideoTimeLine
 				} else if (assetReader.Status == AVAssetReaderStatus.Failed) {
 					Console.WriteLine ("Asset Reader failed with error: {0}", assetReader.Error.Description);
 				} else if (assetReader.Status == AVAssetReaderStatus.Completed) {
-					ChangeStatus(); 					ReadSampleBuffers(asset);
+					ChangeStatus ();
+					ReadSampleBuffers (asset);
 				}
 			}
 		}
 		void ChangeStatus()
-		{ 			new Thread(new ThreadStart(() => { 				InvokeOnMainThread(() => { 					displayLink.Paused = true; 					playButton.Title = "Play"; 					popover.Dismiss(true); 				} ); 			} )).Start(); 		}
+		{
+			new Thread (new ThreadStart (() => {
+				InvokeOnMainThread (() => {
+					displayLink.Paused = true;
+					playButton.Title = "Play";
+					popover.Dismiss (true);
+				} );
+			} )).Start ();
+		}
 
 		void CreateDecompressionSession (AVAssetTrack videoTrack)
 		{
