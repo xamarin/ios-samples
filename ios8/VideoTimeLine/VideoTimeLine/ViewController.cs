@@ -212,12 +212,13 @@ namespace VideoTimeLine
 				} else if (assetReader.Status == AVAssetReaderStatus.Failed) {
 					Console.WriteLine ("Asset Reader failed with error: {0}", assetReader.Error.Description);
 				} else if (assetReader.Status == AVAssetReaderStatus.Completed) {
+					Console.WriteLine ("Reached the end of the video.");
 					ChangeStatus ();
 					ReadSampleBuffers (asset);
 				}
 			}
 		}
-		void ChangeStatus()
+		void ChangeStatus ()
 		{
 			new Thread (new ThreadStart (() => {
 				InvokeOnMainThread (() => {
