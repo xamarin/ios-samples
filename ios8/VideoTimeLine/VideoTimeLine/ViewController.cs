@@ -26,7 +26,7 @@ namespace VideoTimeLine
 		double lastCallbackTime;
 		CADisplayLink displayLink;
 		SemaphoreSlim bufferSemaphore;
-		Object thisLock;
+		object thisLock;
 		CGAffineTransform videoPreferredTransform;
 		AVAssetReader assetReader;
 		UIPopoverController popover;
@@ -34,7 +34,7 @@ namespace VideoTimeLine
 
 		public ViewController (IntPtr handle) : base (handle)
 		{
-			thisLock = new Object ();
+			thisLock = new object ();
 			presentationTimes = new List<double> ();
 			outputFrames = new List<CVPixelBuffer> ();
 		}
@@ -53,7 +53,7 @@ namespace VideoTimeLine
 
 		public void DisplayLinkCallback ()
 		{
-			if (lastCallbackTime == 0.0)
+			if (Math.Abs (lastCallbackTime) < float.Epsilon)
 				lastCallbackTime = displayLink.Timestamp;
 
 			double timeSinceLastCallback = displayLink.Timestamp - lastCallbackTime;
@@ -141,9 +141,9 @@ namespace VideoTimeLine
 			}
 
 			var layer = new EAGLLayer ();
-			if (videoPreferredTransform.xx == -1f)
+			if (Math.Abs (videoPreferredTransform.xx + 1f) < float.Epsilon)
 				layer.AffineTransform.Rotate (NMath.PI);
-			else if (videoPreferredTransform.yy == 0f)
+			else if (Math.Abs (videoPreferredTransform.yy) < float.Epsilon)
 				layer.AffineTransform.Rotate (NMath.PI / 2);
 
 			layer.Frame = new CGRect (0f, View.Frame.Height - 50f - height, width, height);
@@ -220,11 +220,11 @@ namespace VideoTimeLine
 		}
 		void ChangeStatus ()
 		{			
-				InvokeOnMainThread (() => {
-					displayLink.Paused = true;
-					playButton.Title = "Play";
-					popover.Dismiss (true);
-				} );			
+			InvokeOnMainThread (() => {
+				displayLink.Paused = true;
+				playButton.Title = "Play";
+				popover.Dismiss (true);
+			});
 		}
 
 		void CreateDecompressionSession (AVAssetTrack videoTrack)
