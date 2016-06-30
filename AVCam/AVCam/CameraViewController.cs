@@ -678,6 +678,9 @@ namespace AVCam
 		void UpdateDeviceFocus (AVCaptureFocusMode focusMode, AVCaptureExposureMode exposureMode, CGPoint point, bool monitorSubjectAreaChange)
 		{
 			SessionQueue.DispatchAsync (() => {
+				if (VideoDeviceInput == null)
+					return;
+
 				AVCaptureDevice device = VideoDeviceInput.Device;
 				NSError error;
 				if (device.LockForConfiguration (out error)) {
