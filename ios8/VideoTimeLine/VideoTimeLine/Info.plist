@@ -35,5 +35,7 @@
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.your-company.VideoTimeLine</string>
+	<key>CFBundleName</key>
+	<string>VideoTimeLine</string>
 </dict>
 </plist>

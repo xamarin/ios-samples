@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -212,9 +212,19 @@ namespace VideoTimeLine
 				} else if (assetReader.Status == AVAssetReaderStatus.Failed) {
 					Console.WriteLine ("Asset Reader failed with error: {0}", assetReader.Error.Description);
 				} else if (assetReader.Status == AVAssetReaderStatus.Completed) {
-					Console.WriteLine ("Reached the end of the video.");
+					Console.WriteLine("Reached the end of the video.");
+					ChangeStatus ();
+					ReadSampleBuffers (asset);
 				}
 			}
+		}
+		void ChangeStatus ()
+		{			
+				InvokeOnMainThread (() => {
+					displayLink.Paused = true;
+					playButton.Title = "Play";
+					popover.Dismiss (true);
+				} );			
 		}
 
 		void CreateDecompressionSession (AVAssetTrack videoTrack)
