@@ -12,3 +12,6 @@ CocosSharp.PCL*
 *.userprefs
 packages
 *.DS_Store
+*.lock.json
+*.nuget.props
+*.nuget.targets
