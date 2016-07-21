@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{D9A6622E-5004-4346-B09A-2E35F3D866A8}</ProjectGuid>
+    <ProjectTypeGuids>{EE2C853D-36AF-4FDB-B1AD-8E90477E2198};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MessagesExtension</RootNamespace>
+    <AssemblyName>MessagesExtension</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>10001</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Model\" />
+    <Folder Include="Assets.xcassets\base01.imageset\" />
+    <Folder Include="Assets.xcassets\base02.imageset\" />
+    <Folder Include="Assets.xcassets\base03.imageset\" />
+    <Folder Include="Assets.xcassets\base04.imageset\" />
+    <Folder Include="Assets.xcassets\create.imageset\" />
+    <Folder Include="Assets.xcassets\icecream_outline.imageset\" />
+    <Folder Include="Assets.xcassets\iMessage App Icon.imageset\" />
+    <Folder Include="Assets.xcassets\scoops01.imageset\" />
+    <Folder Include="Assets.xcassets\scoops02.imageset\" />
+    <Folder Include="Assets.xcassets\scoops03.imageset\" />
+    <Folder Include="Assets.xcassets\scoops04.imageset\" />
+    <Folder Include="Assets.xcassets\scoops05.imageset\" />
+    <Folder Include="Assets.xcassets\scoops06.imageset\" />
+    <Folder Include="Assets.xcassets\scoops07.imageset\" />
+    <Folder Include="Assets.xcassets\scoops08.imageset\" />
+    <Folder Include="Assets.xcassets\scoops09.imageset\" />
+    <Folder Include="Assets.xcassets\scoops10.imageset\" />
+    <Folder Include="Assets.xcassets\topping01.imageset\" />
+    <Folder Include="Assets.xcassets\topping02.imageset\" />
+    <Folder Include="Assets.xcassets\topping03.imageset\" />
+    <Folder Include="Assets.xcassets\topping04.imageset\" />
+    <Folder Include="Assets.xcassets\topping05.imageset\" />
+    <Folder Include="Assets.xcassets\topping06.imageset\" />
+    <Folder Include="Assets.xcassets\topping07.imageset\" />
+    <Folder Include="Assets.xcassets\topping08.imageset\" />
+    <Folder Include="Assets.xcassets\topping09.imageset\" />
+    <Folder Include="Assets.xcassets\topping10.imageset\" />
+    <Folder Include="Assets.xcassets\topping11.imageset\" />
+    <Folder Include="Assets.xcassets\topping12.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="MainInterface.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MessagesViewController.cs" />
+    <Compile Include="MessagesViewController.designer.cs">
+      <DependentUpon>MessagesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IceCreamsViewController.cs" />
+    <Compile Include="IceCreamsViewController.designer.cs">
+      <DependentUpon>IceCreamsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IceCreamOutlineCell.cs" />
+    <Compile Include="IceCreamOutlineCell.designer.cs">
+      <DependentUpon>IceCreamOutlineCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IceCreamCell.cs" />
+    <Compile Include="IceCreamCell.designer.cs">
+      <DependentUpon>IceCreamCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BuildIceCreamViewController.cs" />
+    <Compile Include="BuildIceCreamViewController.designer.cs">
+      <DependentUpon>BuildIceCreamViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IceCreamPartCell.cs" />
+    <Compile Include="IceCreamPartCell.designer.cs">
+      <DependentUpon>IceCreamPartCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CompletedIceCreamViewController.cs" />
+    <Compile Include="CompletedIceCreamViewController.designer.cs">
+      <DependentUpon>CompletedIceCreamViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\IceCreamPart.cs" />
+    <Compile Include="Model\Topping.cs" />
+    <Compile Include="Model\Scoops.cs" />
+    <Compile Include="Model\Base.cs" />
+    <Compile Include="Model\IQueryItemRepresentable.cs" />
+    <Compile Include="Model\IceCreamStickerCache.cs" />
+    <Compile Include="Model\IceCream.cs" />
+    <Compile Include="Model\IceCreamHistory.cs" />
+    <Compile Include="IceCreamView.cs" />
+    <Compile Include="IceCreamView.designer.cs">
+      <DependentUpon>IceCreamView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IceCreamPartCollectionViewLayout.cs" />
+    <Compile Include="IBuildIceCreamViewControllerDelegate.cs" />
+    <Compile Include="IIceCreamsViewControllerDelegate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\base01.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\base01.imageset\base01.png" />
+    <ImageAsset Include="Assets.xcassets\base01.imageset\base01%402x.png" />
+    <ImageAsset Include="Assets.xcassets\base01.imageset\base01%403x.png" />
+    <ImageAsset Include="Assets.xcassets\base02.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\base02.imageset\base02.png" />
+    <ImageAsset Include="Assets.xcassets\base02.imageset\base02%402x.png" />
+    <ImageAsset Include="Assets.xcassets\base02.imageset\base02%403x.png" />
+    <ImageAsset Include="Assets.xcassets\base03.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\base03.imageset\base03.png" />
+    <ImageAsset Include="Assets.xcassets\base03.imageset\base03%402x.png" />
+    <ImageAsset Include="Assets.xcassets\base03.imageset\base03%403x.png" />
+    <ImageAsset Include="Assets.xcassets\base04.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\base04.imageset\base04.png" />
+    <ImageAsset Include="Assets.xcassets\base04.imageset\base04%402x.png" />
+    <ImageAsset Include="Assets.xcassets\base04.imageset\base04%403x.png" />
+    <ImageAsset Include="Assets.xcassets\create.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\create.imageset\create.png" />
+    <ImageAsset Include="Assets.xcassets\create.imageset\create%402x.png" />
+    <ImageAsset Include="Assets.xcassets\create.imageset\create%403x.png" />
+    <ImageAsset Include="Assets.xcassets\icecream_outline.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\icecream_outline.imageset\outline66x100.png" />
+    <ImageAsset Include="Assets.xcassets\icecream_outline.imageset\outline66x100%402x.png" />
+    <ImageAsset Include="Assets.xcassets\icecream_outline.imageset\outline66x100%403x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops01.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\scoops01.imageset\scoops01.png" />
+    <ImageAsset Include="Assets.xcassets\scoops01.imageset\scoops01%402x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops01.imageset\scoops01%403x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops02.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\scoops02.imageset\scoops02.png" />
+    <ImageAsset Include="Assets.xcassets\scoops02.imageset\scoops02%402x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops02.imageset\scoops02%403x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops03.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\scoops03.imageset\scoops03.png" />
+    <ImageAsset Include="Assets.xcassets\scoops03.imageset\scoops03%402x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops03.imageset\scoops03%403x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops04.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\scoops04.imageset\scoops04.png" />
+    <ImageAsset Include="Assets.xcassets\scoops04.imageset\scoops04%402x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops04.imageset\scoops04%403x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops05.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\scoops05.imageset\scoops05.png" />
+    <ImageAsset Include="Assets.xcassets\scoops05.imageset\scoops05%402x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops05.imageset\scoops05%403x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops06.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\scoops06.imageset\scoops06.png" />
+    <ImageAsset Include="Assets.xcassets\scoops06.imageset\scoops06%402x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops06.imageset\scoops06%403x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops07.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\scoops07.imageset\scoops07.png" />
+    <ImageAsset Include="Assets.xcassets\scoops07.imageset\scoops07%402x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops07.imageset\scoops07%403x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops08.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\scoops08.imageset\scoops08.png" />
+    <ImageAsset Include="Assets.xcassets\scoops08.imageset\scoops08%402x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops08.imageset\scoops08%403x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops09.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\scoops09.imageset\scoops09.png" />
+    <ImageAsset Include="Assets.xcassets\scoops09.imageset\scoops09%402x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops09.imageset\scoops09%403x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops10.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\scoops10.imageset\scoops10.png" />
+    <ImageAsset Include="Assets.xcassets\scoops10.imageset\scoops10%402x.png" />
+    <ImageAsset Include="Assets.xcassets\scoops10.imageset\scoops10%403x.png" />
+    <ImageAsset Include="Assets.xcassets\topping01.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\topping01.imageset\topping01.png" />
+    <ImageAsset Include="Assets.xcassets\topping01.imageset\topping01%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping01.imageset\topping01%403x.png" />
+    <ImageAsset Include="Assets.xcassets\topping02.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\topping02.imageset\topping02.png" />
+    <ImageAsset Include="Assets.xcassets\topping02.imageset\topping02%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping02.imageset\topping02%403x.png" />
+    <ImageAsset Include="Assets.xcassets\topping03.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\topping03.imageset\topping03.png" />
+    <ImageAsset Include="Assets.xcassets\topping03.imageset\topping03%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping03.imageset\topping03%403x.png" />
+    <ImageAsset Include="Assets.xcassets\topping04.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\topping04.imageset\topping04.png" />
+    <ImageAsset Include="Assets.xcassets\topping04.imageset\topping04%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping04.imageset\topping04%403x.png" />
+    <ImageAsset Include="Assets.xcassets\topping05.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\topping05.imageset\topping05.png" />
+    <ImageAsset Include="Assets.xcassets\topping05.imageset\topping05%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping05.imageset\topping05%403x.png" />
+    <ImageAsset Include="Assets.xcassets\topping06.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\topping07.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\topping08.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\topping09.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\topping10.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\topping11.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\topping12.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\topping07.imageset\scoops07%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping06.imageset\topping06.png" />
+    <ImageAsset Include="Assets.xcassets\topping06.imageset\topping06%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping06.imageset\topping06%403x.png" />
+    <ImageAsset Include="Assets.xcassets\topping07.imageset\topping07.png" />
+    <ImageAsset Include="Assets.xcassets\topping07.imageset\topping07%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping07.imageset\topping07%403x.png" />
+    <ImageAsset Include="Assets.xcassets\topping08.imageset\topping08.png" />
+    <ImageAsset Include="Assets.xcassets\topping08.imageset\topping08%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping08.imageset\topping08%403x.png" />
+    <ImageAsset Include="Assets.xcassets\topping09.imageset\topping09.png" />
+    <ImageAsset Include="Assets.xcassets\topping09.imageset\topping09%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping09.imageset\topping09%403x.png" />
+    <ImageAsset Include="Assets.xcassets\topping10.imageset\topping10.png" />
+    <ImageAsset Include="Assets.xcassets\topping10.imageset\topping10%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping10.imageset\topping10%403x.png" />
+    <ImageAsset Include="Assets.xcassets\topping11.imageset\topping11.png" />
+    <ImageAsset Include="Assets.xcassets\topping11.imageset\topping11%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping11.imageset\topping11%403x.png" />
+    <ImageAsset Include="Assets.xcassets\topping12.imageset\topping12.png" />
+    <ImageAsset Include="Assets.xcassets\topping12.imageset\topping12%402x.png" />
+    <ImageAsset Include="Assets.xcassets\topping12.imageset\topping12%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sticker_placeholder.png" />
+    <BundleResource Include="Resources\base01_sticker.png" />
+    <BundleResource Include="Resources\base02_sticker.png" />
+    <BundleResource Include="Resources\base03_sticker.png" />
+    <BundleResource Include="Resources\base04_sticker.png" />
+    <BundleResource Include="Resources\scoops01_sticker.png" />
+    <BundleResource Include="Resources\scoops02_sticker.png" />
+    <BundleResource Include="Resources\scoops03_sticker.png" />
+    <BundleResource Include="Resources\scoops04_sticker.png" />
+    <BundleResource Include="Resources\scoops05_sticker.png" />
+    <BundleResource Include="Resources\scoops06_sticker.png" />
+    <BundleResource Include="Resources\scoops07_sticker.png" />
+    <BundleResource Include="Resources\scoops08_sticker.png" />
+    <BundleResource Include="Resources\scoops09_sticker.png" />
+    <BundleResource Include="Resources\scoops10_sticker.png" />
+    <BundleResource Include="Resources\topping01_sticker.png" />
+    <BundleResource Include="Resources\topping02_sticker.png" />
+    <BundleResource Include="Resources\topping03_sticker.png" />
+    <BundleResource Include="Resources\topping04_sticker.png" />
+    <BundleResource Include="Resources\topping05_sticker.png" />
+    <BundleResource Include="Resources\topping06_sticker.png" />
+    <BundleResource Include="Resources\topping07_sticker.png" />
+    <BundleResource Include="Resources\topping08_sticker.png" />
+    <BundleResource Include="Resources\topping09_sticker.png" />
+    <BundleResource Include="Resources\topping10_sticker.png" />
+    <BundleResource Include="Resources\topping11_sticker.png" />
+    <BundleResource Include="Resources\topping12_sticker.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.AppExtension.CSharp.targets" />
+</Project>
