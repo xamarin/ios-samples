@@ -16,15 +16,6 @@ namespace MessagesExtension {
 			}
 		}
 
-		public IceCream this [int i] {
-			get {
-				return iceCreams [i];
-			}
-			set {
-				iceCreams.Insert (i, value);
-			}
-		}
-
 		IceCreamHistory (List<IceCream> iceCreams)
 		{
 			this.iceCreams = iceCreams;
