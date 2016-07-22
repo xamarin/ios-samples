@@ -32,14 +32,7 @@ namespace MessagesExtension {
 
 		public static IceCreamHistory Load ()
 		{
-			var defaults = NSUserDefaults.StandardUserDefaults;
-			var serializedList = defaults.StringForKey (UserDefaultsKey);
-
-			var savedIceCreams = string.IsNullOrWhiteSpace (serializedList)
-									   ? new string [0]
-									   : JsonConvert.DeserializeObject<string []> (serializedList);
-
-			var iceCreams = savedIceCreams.Select (sic => {
+			var iceCreams = GetSavedIceCreams ().Select (sic => {
 				var components = NSUrlComponents.FromUrl (new NSUrl (sic), false);
 				return new IceCream (components.QueryItems);
 			}).ToList ();
@@ -67,7 +60,21 @@ namespace MessagesExtension {
 		{
 			var iceCreamUrls = iceCreams.Select (ic => new NSUrlComponents { QueryItems = ic.QueryItems }.Url.AbsoluteString)
 			                            .ToArray ();
+			SaveIceCreams (iceCreamUrls);
+		}
 
+		static string [] GetSavedIceCreams ()
+		{
+			var defaults = NSUserDefaults.StandardUserDefaults;
+			var serializedList = defaults.StringForKey (UserDefaultsKey);
+
+			return string.IsNullOrWhiteSpace (serializedList)
+						 ? new string [0]
+						 : JsonConvert.DeserializeObject<string []> (serializedList);
+		}
+
+		static void SaveIceCreams (string[] iceCreamUrls)
+		{
 			var serializedList = JsonConvert.SerializeObject (iceCreamUrls);
 			var defaults = NSUserDefaults.StandardUserDefaults;
 			defaults.SetString (serializedList, UserDefaultsKey);
@@ -84,4 +91,3 @@ namespace MessagesExtension {
 		}
 	}
 }
-
