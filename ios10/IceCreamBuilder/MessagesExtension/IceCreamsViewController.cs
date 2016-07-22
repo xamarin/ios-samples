@@ -15,7 +15,7 @@ namespace MessagesExtension {
 
 		public IIceCreamsViewControllerDelegate Builder { get; set; }
 
-		List<KeyValuePair<CollectionViewItem, IceCream>> items;
+		readonly List<KeyValuePair<CollectionViewItem, IceCream>> items;
 
 		public IceCreamsViewController (IntPtr handle) : base (handle)
 		{
