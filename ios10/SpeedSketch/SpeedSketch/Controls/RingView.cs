@@ -8,7 +8,7 @@ using static SpeedSketch.RingControlState;
 
 namespace SpeedSketch
 {
-	enum RingControlState
+	public enum RingControlState
 	{
 		Selected,
 		Normal,
@@ -19,28 +19,28 @@ namespace SpeedSketch
 	public class RingView : UIView
 	{
 		// Closures that configure the view for the corresponding state.
-		readonly Dictionary<RingControlState, Action> stateClosures = new Dictionary<RingControlState, Action> ();
+		public Dictionary<RingControlState, Action> StateClosures { get; } = new Dictionary<RingControlState, Action> ();
 
-		bool selected;
-		bool fannedOut;
+		public bool Selected { get; set; }
+		public bool FannedOut { get; set; }
 
 		// The actionClosure will be executed on selection.
-		Action actionClosure;
+		public Action ActionClosure { get; private set; }
 
-		Action SelectionState {
+		public Action SelectionState {
 			get {
-				return stateClosures [selected ? Selected : Normal];
+				return StateClosures [Selected ? RingControlState.Selected : Normal];
 			}
 		}
 
-		Action LocationState {
+		public Action LocationState {
 			get {
-				if (selected)
-					return stateClosures [fannedOut ? LocationFan : LocationOrigin];
+				if (Selected)
+					return StateClosures [FannedOut ? LocationFan : LocationOrigin];
 
-				var fanState = stateClosures [LocationFan];
-				var transform = fannedOut ? CGAffineTransform.MakeIdentity () : CGAffineTransform.MakeScale (0.01f, 0.01f);
-				var alpha = fannedOut ? 1f : 0f;
+				var fanState = StateClosures [LocationFan];
+				var transform = FannedOut ? CGAffineTransform.MakeIdentity () : CGAffineTransform.MakeScale (0.01f, 0.01f);
+				var alpha = FannedOut ? 1f : 0f;
 
 				return () => {
 					fanState?.Invoke ();
