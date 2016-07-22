@@ -1,5 +1,6 @@
 ﻿using System;
-
+using System.Linq;
+using System.Collections.Generic;
 using UIKit;
 
 namespace MessagesExtension {
@@ -17,27 +18,26 @@ namespace MessagesExtension {
 				foreach (var view in ArrangedSubviews)
 					RemoveArrangedSubview (view);
 
-				// Do nothing more if the `iceCream` property is nil.
+				// Do nothing more if the `iceCream` property is null.
 				if (iceCream == null)
 					return;
 
 				// Add a `UIImageView` for each of the ice cream's valid parts.
-				IceCreamPart[] iceCreamParts = {
-					iceCream.Topping,
-					iceCream.Scoops,
-					iceCream.Base
-				};
+				var views = Parts ().Where (part => part != null)
+				                    .Select (part => new UIImageView (part.Image) {
+					ContentMode = UIViewContentMode.ScaleAspectFit
+				});
 
-				foreach (var iceCreamPart in iceCreamParts) {
-					if (iceCreamPart == null)
-						continue;
-
-					var imageView = new UIImageView (iceCreamPart.Image) {
-						ContentMode = UIViewContentMode.ScaleAspectFit
-					};
-					AddArrangedSubview (imageView);
-				}
+				foreach (var v in views)
+					AddArrangedSubview (v);
 			}
+		}
+
+		IEnumerable<IceCreamPart> Parts ()
+		{
+			yield return iceCream.Topping;
+			yield return iceCream.Scoops;
+			yield return iceCream.Base;
 		}
 
 		public IceCreamView (IntPtr handle) : base (handle)
@@ -45,4 +45,3 @@ namespace MessagesExtension {
 		}
 	}
 }
-
