@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using Foundation;
 using UIKit;
 
@@ -20,14 +20,11 @@ namespace MessagesExtension {
 		public IceCreamsViewController (IntPtr handle) : base (handle)
 		{
 			var history = IceCreamHistory.Load ();
-			var reversedHistory = new List<IceCream> (history);
-			reversedHistory.Reverse ();
 
-			items = new List<KeyValuePair <CollectionViewItem, IceCream>> ();
-			reversedHistory.ForEach (s => items.Add (
-				new KeyValuePair<CollectionViewItem, IceCream> (CollectionViewItem.IceCream, s)
-			));
-			items.Insert (0, new KeyValuePair<CollectionViewItem, IceCream> (CollectionViewItem.Create, null));
+			items = history.Reverse ()
+			               .Select (s => KeyValue (CollectionViewItem.IceCream, s))
+			               .ToList ();
+			items.Insert (0, KeyValue (CollectionViewItem.Create, (IceCream)null));
 		}
 
 		[Export("collectionView:numberOfItemsInSection:")]
@@ -92,6 +89,11 @@ namespace MessagesExtension {
 				throw new Exception ("Unable to dequeue a IceCreamOutlineCell");
 
 			return cell;
+		}
+
+		static KeyValuePair<K, V> KeyValue<K, V> (K key, V value)
+		{
+			return new KeyValuePair<K, V> (key, value);
 		}
 	}
 }
