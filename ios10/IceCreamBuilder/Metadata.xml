@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>fdaa8ee0-9c2b-403e-b1cc-6dd84b31015c</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>Extension, iOS10, Graphics</Tags>
+  <Gallery>true</Gallery>
+  <Brief>App extension that interacts with the Messages app.</Brief>
+</SampleMetadata>
