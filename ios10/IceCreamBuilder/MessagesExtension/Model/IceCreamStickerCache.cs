@@ -53,7 +53,7 @@ namespace MessagesExtension {
 				throw new Exception ("Stickers can only be created for completed ice creams");
 
 			// Determine the URL for the sticker.
-			var fileName = string.Format ($"{iceCream.Base.RawValue}{iceCream.Scoops.RawValue}{iceCream.Topping.RawValue}.png");
+			var fileName = $"{iceCream.Base.RawValue}{iceCream.Scoops.RawValue}{iceCream.Topping.RawValue}.png";
 			var url = Path.Combine (cacheURL, fileName);
 
 			// Check if the sticker already exists at the URL

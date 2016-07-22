@@ -149,15 +149,7 @@ namespace MessagesExtension {
 		{
 			// Determine which parts to draw.
 			IceCreamPart[] allParts = { Topping, Scoops, Base };
-			var partImages = new List<UIImage> ();
-
-			foreach (var part in allParts) {
-				if (part != null && part.Image != null)
-					partImages.Add (part.StickerImage);
-			}
-
-			if (partImages == null)
-				return null;
+			var partImages = allParts.Where (p => p != null && p.Image != null).Select (p => p.StickerImage);
 
 			// Calculate the size of the composited ice cream parts image.
 			var outputImageSize = CGSize.Empty;

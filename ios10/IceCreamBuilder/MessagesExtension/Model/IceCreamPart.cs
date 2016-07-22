@@ -19,14 +19,11 @@ namespace MessagesExtension {
 			}
 		}
 
+		UIImage stickerImage;
 		public UIImage StickerImage {
 			get {
-				var image = new UIImage ($"{RawValue}_sticker");
-
-				if (image == null)
-					throw new Exception ($"Unable to find sticker image");
-
-				return image;
+				stickerImage = stickerImage ?? new UIImage ($"{RawValue}_sticker");
+				return stickerImage;
 			}
 		}
 
