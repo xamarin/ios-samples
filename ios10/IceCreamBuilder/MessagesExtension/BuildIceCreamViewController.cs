@@ -96,9 +96,7 @@ namespace MessagesExtension {
 			CollectionView.ContentInset = contentInset;
 
 			// Calculate the ideal height of the ice cream view.
-			nfloat iceCreamViewContentHeight = 0f;
-			IceCreamView.ArrangedSubviews.ToList ().ForEach (s => iceCreamViewContentHeight += s.IntrinsicContentSize.Height);
-
+			var iceCreamViewContentHeight = IceCreamView.ArrangedSubviews.Sum (v => (float)v.IntrinsicContentSize.Height);
 			var iceCreamPartImageScale = layout.ItemSize.Height / iceCreamPartImageSize.Height;
 			IceCreamViewHeightConstraint.Constant = iceCreamViewContentHeight * iceCreamPartImageScale;
 		}
