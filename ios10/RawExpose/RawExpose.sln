@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawExpose", "RawExpose.csproj", "{D584296E-0CDA-4C0D-BDB8-341B3A8E98B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D584296E-0CDA-4C0D-BDB8-341B3A8E98B0}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{D584296E-0CDA-4C0D-BDB8-341B3A8E98B0}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{D584296E-0CDA-4C0D-BDB8-341B3A8E98B0}.Release|iPhone.ActiveCfg = Release|iPhone
+		{D584296E-0CDA-4C0D-BDB8-341B3A8E98B0}.Release|iPhone.Build.0 = Release|iPhone
+		{D584296E-0CDA-4C0D-BDB8-341B3A8E98B0}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{D584296E-0CDA-4C0D-BDB8-341B3A8E98B0}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{D584296E-0CDA-4C0D-BDB8-341B3A8E98B0}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{D584296E-0CDA-4C0D-BDB8-341B3A8E98B0}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
