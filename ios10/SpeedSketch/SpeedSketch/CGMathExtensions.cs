@@ -26,9 +26,9 @@ namespace SpeedSketch
 			return new CGVector (left.X - right.X, left.Y - right.Y);
 		}
 
-		static CGVector Divide (this CGVector left, float right)
+		public static CGPoint Sub (this CGPoint left, CGVector right)
 		{
-			return new CGVector (left.dx / right, left.dy / right);
+			return new CGPoint (left.X - right.dx, left.Y - right.dy);
 		}
 
 		public static nfloat Quadrance (this CGVector vector)
@@ -54,6 +54,23 @@ namespace SpeedSketch
 			return new CGVector (NMath.Round (self.dx * scale) / scale,
 								 NMath.Round (self.dy * scale) / scale);
 		}
+
+		// CGVector pointing in the same direction as self, with a length of 1.0 - or nil if the length is zero.
+		public static CGVector? Normalize (this CGVector self)
+		{
+			var quadrance = self.Quadrance ();
+			return (quadrance > 0) ? self.Divide(quadrance) : (CGVector?)null;
+		}
+
+		public static CGVector Divide (this CGVector left, nfloat right)
+		{
+			return new CGVector (left.dx / right, left.dy / right);
+		}
+
+		public static CGVector Mult (this CGVector left, nfloat right)
+		{
+			return new CGVector (left.dx * right, left.dy * right);
+		}
 	}
 
 	public static class CGPointExtensions
@@ -66,6 +83,11 @@ namespace SpeedSketch
 		public static CGPoint Apply (this CGPoint point, CGAffineTransform transform)
 		{
 			return transform.TransformPoint (point);
+		}
+
+		public static CGRect ToRect (this CGPoint location)
+		{
+			return new CGRect (location, CGSize.Empty);
 		}
 	}
 }

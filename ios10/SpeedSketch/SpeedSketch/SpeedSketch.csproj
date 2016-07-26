@@ -96,6 +96,8 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Controls\" />
+    <Folder Include="DrawingEngine\" />
+    <Folder Include="StrokeModel\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -114,6 +116,10 @@
     <Compile Include="Controls\RingControl.cs" />
     <Compile Include="Controls\RingView.cs" />
     <Compile Include="CGMathExtensions.cs" />
+    <Compile Include="DrawingEngine\CGDrawingEngine.cs" />
+    <Compile Include="StrokeModel\StrokeCollection.cs" />
+    <Compile Include="CountableClosedRange.cs" />
+    <Compile Include="DrawingEngine\CGContextExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
