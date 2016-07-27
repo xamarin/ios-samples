@@ -20,14 +20,14 @@ namespace RawExpose
 	public partial class ImageViewController : UIViewController, IGLKViewDelegate
 	{
 		// Outlet to sliders used to edit the image.
-		[Outlet("exposureSlider")]
+		[Outlet ("exposureSlider")]
 		UISlider ExposureSlider { get; set; }
 
 		[Outlet ("tempSlider")]
-    	UISlider TempSlider { get; set; }
+		UISlider TempSlider { get; set; }
 
 		[Outlet ("tintSlider")]
-    	UISlider TintSlider { get; set; }
+		UISlider TintSlider { get; set; }
 
 		// View used to display the CoreImage output produced by the CIRawFilter.
 		[Outlet("imageView")]

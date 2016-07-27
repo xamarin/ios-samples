@@ -1,10 +1,10 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
-using UIKit;
 using Foundation;
 using Photos;
+using UIKit;
 
 namespace RawExpose
 {
@@ -31,7 +31,7 @@ namespace RawExpose
 				return;
 
 			var items = PHAsset.FetchKeyAssets (assetCollection, new PHFetchOptions ())
-			                   .Cast<PHAsset> ();
+							   .Cast<PHAsset> ();
 			assets.AddRange (items);
 		}
 
@@ -41,7 +41,6 @@ namespace RawExpose
 		{
 			return assets.Count;
 		}
-
 
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
@@ -56,7 +55,7 @@ namespace RawExpose
 			};
 
 			var asset = assets [indexPath.Row];
-			PHCachingImageManager.DefaultManager.RequestImageForAsset (asset, cell.Bounds.Size, PHImageContentMode.AspectFit, options, (requestedImage, _) => {
+			PHImageManager.DefaultManager.RequestImageForAsset (asset, cell.Bounds.Size, PHImageContentMode.AspectFit, options, (requestedImage, _) => {
 				cell.ImageView.Image = requestedImage;
 			});
 

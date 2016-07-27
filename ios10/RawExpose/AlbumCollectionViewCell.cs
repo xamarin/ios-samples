@@ -9,10 +9,10 @@ namespace RawExpose
 	{
 		public static new readonly string ReuseIdentifier = "AlbumCollectionViewCell";
 
-		[Outlet("imageView")]
+		[Outlet ("imageView")]
 		public UIImageView ImageView { get; set; }
-    
-		[Outlet("label")]
+
+		[Outlet ("label")]
 		public UILabel Label { get; set; }
 
 		public AlbumCollectionViewCell (IntPtr handle)

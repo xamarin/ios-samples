@@ -1,7 +1,7 @@
 using System;
 
-using UIKit;
 using Foundation;
+using UIKit;
 
 namespace RawExpose
 {
@@ -9,7 +9,7 @@ namespace RawExpose
 	{
 		public static new readonly string ReuseIdentifier = "LightboxCollectionViewCell";
 
-		[Outlet("imageView")]
+		[Outlet ("imageView")]
 		public UIImageView ImageView { get; set; }
 
 		public LightboxCollectionViewCell (IntPtr handle)
