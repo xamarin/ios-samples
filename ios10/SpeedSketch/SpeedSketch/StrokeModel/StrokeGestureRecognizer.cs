@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
-using System.Threading;
 
 using UIKit;
 using Foundation;
 
 using static UIKit.UIGestureRecognizerState;
-using System.Linq;
 
 namespace SpeedSketch
 {
@@ -44,7 +43,7 @@ namespace SpeedSketch
 		double initialTimestamp;
 		bool collectForce;
 
-		Timer fingerStartTimer;
+		NSTimer fingerStartTimer;
 		double cancellationTimeInterval = TimeSpan.FromSeconds (0.1).TotalMilliseconds;
 
 		public StrokeGestureRecognizer ()
@@ -153,6 +152,98 @@ namespace SpeedSketch
 				}
 			}
 			return false;
+		}
+
+		public override void TouchesBegan (NSSet touches, UIEvent evt)
+		{
+			if (trackedTouch == null) {
+				trackedTouch = (UITouch)touches.FirstOrDefault ();
+				initialTimestamp = trackedTouch.Timestamp;
+				collectForce = trackedTouch.Type == UITouchType.Stylus || View.TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available;
+				if (!isForPencil)
+					fingerStartTimer = NSTimer.CreateScheduledTimer (cancellationTimeInterval, BeginIfNeeded);
+			}
+			if (Append (Touches(touches), evt)) {
+				if (isForPencil)
+					State = Began;
+			}
+		}
+
+		// If not for pencil we give other gestures (pan, pinch) a chance by delaying our begin just a little.
+		void BeginIfNeeded (NSTimer timer)
+		{
+			if (State == Possible)
+				State = Began;
+		}
+
+		public override void TouchesMoved (NSSet touches, UIEvent evt)
+		{
+			if (Append (Touches(touches), evt)) {
+				if (State == Began)
+					State = Changed;
+			}
+		}
+
+		public override void TouchesEnded (NSSet touches, UIEvent evt)
+		{
+			if (Append (Touches (touches), evt)) {
+				stroke.State = StrokeState.Done;
+				State = Ended;
+			}
+		}
+
+		public override void TouchesCancelled (NSSet touches, UIEvent evt)
+		{
+			if (Append (Touches (touches), evt)) {
+				stroke.State = StrokeState.Cancelled;
+				State = Failed;
+			}
+		}
+
+		public override void TouchesEstimatedPropertiesUpdated (NSSet touches)
+		{
+			foreach (var touch in touches.Cast<UITouch> ()) {
+				StrokeIndex val;
+				if (outstandingUpdateIndexes.TryGetValue (touch.EstimationUpdateIndex.Int32Value, out val)) {
+					var stroke = val.Stroke;
+					var sampleIndex = val.Index;
+					var sample = stroke.Samples [sampleIndex];
+
+					var expectedUpdates = sample.EstimatedPropertiesExpectingUpdates;
+					// Only force is reported this way as of iOS 10.0
+					if (expectedUpdates.HasFlag (UITouchProperties.Force)) {
+						sample.Force = touch.Force;
+
+						// Only remove the estimate flag if the new value isn't estimated as well.
+						if (!touch.EstimatedProperties.HasFlag (UITouchProperties.Force))
+							sample.EstimatedProperties &= ~UITouchProperties.Force;
+					}
+					sample.EstimatedPropertiesExpectingUpdates = touch.EstimatedPropertiesExpectingUpdates;
+
+					if (touch.EstimatedPropertiesExpectingUpdates == 0)
+						outstandingUpdateIndexes.Remove (sampleIndex);
+					stroke.Update (sample, sampleIndex);
+				}
+			}
+		}
+
+		public override void Reset ()
+		{
+			stroke = new Stroke ();
+			trackedTouch = null;
+
+			var timer = fingerStartTimer;
+			if (timer != null) {
+				timer.Invalidate ();
+				fingerStartTimer = null;
+			}
+
+			base.Reset ();
+		}
+
+		HashSet<UITouch> Touches (NSSet touches)
+		{
+			return new HashSet<UITouch> (touches.Cast<UITouch> ());
 		}
 
 		NSNumber [] TouchTypes (UITouchType type)
