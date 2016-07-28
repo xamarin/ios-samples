@@ -73,14 +73,14 @@ namespace SpeedSketch
 								return;
 						}
 
-						var builder = new StrokeSampleBuilder ()
-							.TimeStamp (touch.Timestamp)
-							.Location (location)
-							.Coalesced (coalesced)
-							.Predicted (predicted);
+						var sample = new StrokeSample {
+							Timestamp = touch.Timestamp,
+							Location = location,
+							Coalesced = coalesced,
+							Predicted = predicted
+						};
 						if (collectForce)
-							builder.Force (touch.Force);
-						var sample = builder.Create ();
+							sample.Force = touch.Force;
 
 						if (touch.Type == UITouchType.Stylus) {
 							var estimatedProperties = touch.EstimatedProperties;

@@ -121,6 +121,9 @@
     <Compile Include="CountableClosedRange.cs" />
     <Compile Include="DrawingEngine\CGContextExtensions.cs" />
     <Compile Include="StrokeModel\StrokeGestureRecognizer.cs" />
+    <Compile Include="StrokeModel\StrokeSample.cs" />
+    <Compile Include="StrokeModel\StrokeSegment.cs" />
+    <Compile Include="StrokeModel\Stroke.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

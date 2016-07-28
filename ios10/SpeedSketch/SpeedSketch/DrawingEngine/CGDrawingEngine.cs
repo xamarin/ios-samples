@@ -281,9 +281,9 @@ namespace SpeedSketch
 
 						if (fromSample.Azimuth.HasValue) {
 							if (!lockedAzimuthUnitVector.HasValue)
-								lockedAzimuthUnitVector = fromSample.AzimuthUnitVector;
-							fromAzimuthUnitVector = fromSample.AzimuthUnitVector;
-							toAzimuthUnitVector = toSample.AzimuthUnitVector;
+								lockedAzimuthUnitVector = fromSample.GetAzimuthUnitVector ();
+							fromAzimuthUnitVector = fromSample.GetAzimuthUnitVector ();
+							toAzimuthUnitVector = toSample.GetAzimuthUnitVector ();
 
 							if (fromSample.Altitude.Value > azimuthLockAltitudeThreshold)
 								fromAzimuthUnitVector = lockedAzimuthUnitVector.Value;
@@ -337,7 +337,7 @@ namespace SpeedSketch
 					var isEstimated = fromSample.EstimatedProperties.HasFlag (UITouchProperties.Azimuth);
 					if (fromSample.Azimuth.HasValue && (!fromSample.Coalesced || isEstimated) && !fromSample.Predicted && displayOptions == StrokeViewDisplayOptions.Debug) {
 						var length = 20f;
-						var azimuthUnitVector = fromSample.AzimuthUnitVector;
+						var azimuthUnitVector = fromSample.GetAzimuthUnitVector ();
 						var azimuthTarget = fromSample.Location.Add (azimuthUnitVector.Mult (length));
 
 						var altitudeStart = azimuthTarget.Add (azimuthUnitVector.Mult (length / -2));
@@ -371,27 +371,27 @@ namespace SpeedSketch
 				// Construct a face segment to draw for a stroke that is only one point.
 				var sample = stroke.Samples [0];
 
-				var tempSampleFrom = new StrokeSampleBuilder ()
-					.TimeStamp (sample.Timestamp)
-					.Location (sample.Location.Add (new CGVector (-0.5f, 0)))
-					.Coalesced (false)
-					.Predicted (false)
-					.Force (sample.Force)
-					.Azimuth (sample.Azimuth.Value)
-					.Altitude (sample.Altitude.Value)
-					.EstimatedProperties (sample.EstimatedProperties)
-					.Create ();
+				var tempSampleFrom = new StrokeSample {
+					Timestamp = sample.Timestamp,
+					Location = sample.Location.Add (new CGVector (-0.5f, 0)),
+					Coalesced = false,
+					Predicted = false,
+					Force = sample.Force.Value,
+					Azimuth = sample.Azimuth.Value,
+					Altitude = sample.Altitude.Value,
+					EstimatedProperties = sample.EstimatedProperties
+				};
 
-				var tempSampleTo = new StrokeSampleBuilder ()
-					.TimeStamp (sample.Timestamp)
-					.Location (sample.Location.Add (new CGVector (0.5f, 0)))
-					.Coalesced (false)
-					.Predicted (false)
-					.Force (sample.Force)
-					.Azimuth (sample.Azimuth.Value)
-					.Altitude (sample.Altitude.Value)
-					.EstimatedProperties (sample.EstimatedProperties)
-					.Create ();
+				var tempSampleTo = new StrokeSample {
+					Timestamp = sample.Timestamp,
+					Location = sample.Location.Add (new CGVector (0.5f, 0)),
+					Coalesced = false,
+					Predicted = false,
+					Force = sample.Force.Value,
+					Azimuth = sample.Azimuth.Value,
+					Altitude = sample.Altitude.Value,
+					EstimatedProperties = sample.EstimatedProperties
+				};
 
 				var segment = new StrokeSegment (tempSampleFrom);
 				segment.AdvanceWithSample (tempSampleTo);

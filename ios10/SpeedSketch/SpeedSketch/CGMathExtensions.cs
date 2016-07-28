@@ -59,7 +59,13 @@ namespace SpeedSketch
 		public static CGVector? Normalize (this CGVector self)
 		{
 			var quadrance = self.Quadrance ();
-			return (quadrance > 0) ? self.Divide(quadrance) : (CGVector?)null;
+			return (quadrance > 0) ? self.Divide (quadrance) : (CGVector?)null;
+		}
+
+		public static CGVector? Normal (this CGVector self)
+		{
+			bool isZero = (self.dx == 0 && self.dy == 0);
+			return isZero ? (CGVector?)null : new CGVector (-self.dy, self.dx);
 		}
 
 		public static CGVector Divide (this CGVector left, nfloat right)
@@ -70,6 +76,16 @@ namespace SpeedSketch
 		public static CGVector Mult (this CGVector left, nfloat right)
 		{
 			return new CGVector (left.dx * right, left.dy * right);
+		}
+
+		public static CGVector? Add (this CGVector? left, CGVector? right)
+		{
+			if (!left.HasValue || !right.HasValue)
+				return null;
+
+			var l = left.Value;
+			var r = right.Value;
+			return new CGVector (l.dx + r.dx, l.dy + r.dy);
 		}
 	}
 

@@ -23,7 +23,6 @@ namespace SpeedSketch
 			}
 		}
 
-
 		public RingControl (CGRect frame, int itemCount)
 			: base (frame)
 		{
