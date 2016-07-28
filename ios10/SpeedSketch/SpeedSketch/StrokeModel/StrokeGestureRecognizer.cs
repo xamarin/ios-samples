@@ -6,6 +6,7 @@ using UIKit;
 using Foundation;
 
 using static UIKit.UIGestureRecognizerState;
+using static SpeedSketch.Helpers;
 
 namespace SpeedSketch
 {
@@ -21,7 +22,7 @@ namespace SpeedSketch
 		bool collectsCoalescedTouches = true;
 		bool usesPredictedSamples = true;
 
-		public bool isForPencil;
+		bool isForPencil;
 		public bool IsForPencil {
 			get {
 				return isForPencil;
@@ -36,7 +37,7 @@ namespace SpeedSketch
 		// Data.
 		readonly Dictionary<int, StrokeIndex> outstandingUpdateIndexes = new Dictionary<int, StrokeIndex> ();
 		Stroke stroke = new Stroke ();
-		UIView coordinateSpaceView;
+		public UIView CoordinateSpaceView { get; set; }
 
 		// State.
 		UITouch trackedTouch;
@@ -46,7 +47,8 @@ namespace SpeedSketch
 		NSTimer fingerStartTimer;
 		double cancellationTimeInterval = TimeSpan.FromSeconds (0.1).TotalMilliseconds;
 
-		public StrokeGestureRecognizer ()
+		public StrokeGestureRecognizer (Action handler)
+			:base (handler)
 		{
 		}
 
@@ -123,7 +125,7 @@ namespace SpeedSketch
 						}
 					};
 
-					var v = coordinateSpaceView;
+					var v = CoordinateSpaceView;
 					if (v == null)
 						throw new InvalidProgramException ();
 
@@ -244,11 +246,6 @@ namespace SpeedSketch
 		HashSet<UITouch> Touches (NSSet touches)
 		{
 			return new HashSet<UITouch> (touches.Cast<UITouch> ());
-		}
-
-		NSNumber [] TouchTypes (UITouchType type)
-		{
-			return new NSNumber [] { new NSNumber ((long)type) };
 		}
 	}
 }

@@ -122,6 +122,7 @@
     <Compile Include="StrokeModel\Stroke.cs" />
     <Compile Include="CanvasContainerView.cs" />
     <Compile Include="CanvasMainViewController.cs" />
+    <Compile Include="Helpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

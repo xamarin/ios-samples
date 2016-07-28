@@ -11,10 +11,9 @@ namespace SpeedSketch
 		UIView canvasView;
 
 		UIView documentView;
-		UIView DocumentView {
+		public UIView DocumentView {
 			get {
 				return documentView;
-
 			}
 			set {
 				var previousView = documentView;
