@@ -109,10 +109,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\RingControl.cs" />
     <Compile Include="Controls\RingView.cs" />
     <Compile Include="CGMathExtensions.cs" />
@@ -124,6 +120,8 @@
     <Compile Include="StrokeModel\StrokeSample.cs" />
     <Compile Include="StrokeModel\StrokeSegment.cs" />
     <Compile Include="StrokeModel\Stroke.cs" />
+    <Compile Include="CanvasContainerView.cs" />
+    <Compile Include="CanvasMainViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

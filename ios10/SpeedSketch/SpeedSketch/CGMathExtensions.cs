@@ -106,4 +106,12 @@ namespace SpeedSketch
 			return new CGRect (location, CGSize.Empty);
 		}
 	}
+
+	public static class CGSizeExtensions
+	{
+		public static CGSize Add (this CGSize left, nfloat right)
+		{
+			return new CGSize (left.Width + right, left.Height + right);
+		}
+	}
 }
