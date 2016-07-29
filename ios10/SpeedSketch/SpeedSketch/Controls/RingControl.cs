@@ -15,13 +15,13 @@ namespace SpeedSketch
 		RingView selectedView;
 		UITapGestureRecognizer tapRecognizer;
 
-		readonly List<RingView> ringViews = new List<RingView> ();
-
 		nfloat RingRadius {
 			get {
 				return Bounds.Width / 2;
 			}
 		}
+
+		public List<RingView> RingViews { get; } = new List<RingView> ();
 
 		public RingControl (CGRect frame, int itemCount)
 			: base (frame)
@@ -86,14 +86,14 @@ namespace SpeedSketch
 
 				view.StateClosures [LocationOrigin] = locationNormalGenerator (view);
 				AddSubview (view);
-				ringViews.Add (view);
+				RingViews.Add (view);
 
 				var gr = new UITapGestureRecognizer (Tap);
 				view.AddGestureRecognizer (gr);
 			}
 
 			// Setup the initial selection state.
-			var rv = ringViews [0];
+			var rv = RingViews [0];
 			AddSubview (rv);
 			rv.Selected = true;
 			selectedView = rv;
@@ -111,14 +111,23 @@ namespace SpeedSketch
 			if (fanState)
 				Select (view);
 			else
-				ringViews.ForEach (v => v.FannedOut = true);
+				RingViews.ForEach (v => v.FannedOut = true);
 
+			UpdateViews (true);
+		}
+
+		public void CancelInteraction ()
+		{
+			if (!selectedView.FannedOut)
+				return;
+
+			RingViews.ForEach (v => v.FannedOut = false);
 			UpdateViews (true);
 		}
 
 		void Select (RingView view)
 		{
-			foreach (var v in ringViews) {
+			foreach (var v in RingViews) {
 				if (v.Selected) {
 					v.Selected = false;
 					v.SelectionState?.Invoke ();
@@ -139,7 +148,7 @@ namespace SpeedSketch
 
 			var stateTransitions = new List<Action> ();
 
-			foreach (var view in ringViews) {
+			foreach (var view in RingViews) {
 				var ss = view.SelectionState;
 				if (ss != null)
 					stateTransitions.Add (ss);

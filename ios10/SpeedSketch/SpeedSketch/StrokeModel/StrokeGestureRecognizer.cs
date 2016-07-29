@@ -7,11 +7,31 @@ using Foundation;
 
 using static UIKit.UIGestureRecognizerState;
 using static SpeedSketch.Helpers;
+using ObjCRuntime;
 
 namespace SpeedSketch
 {
 	public class StrokeGestureRecognizer : UIGestureRecognizer
 	{
+		[Register ("__StrokeGestureRecognizer")]
+		[Preserve (Conditional = true)]
+		class Callback : Token
+		{
+			Action<StrokeGestureRecognizer> action;
+
+			internal Callback (Action<StrokeGestureRecognizer> action)
+			{
+				this.action = action;
+			}
+
+			[Export ("target:")]
+			[Preserve (Conditional = true)]
+			public void Activated (StrokeGestureRecognizer sender)
+			{
+				action (sender);
+			}
+		}
+
 		class StrokeIndex
 		{
 			public Stroke Stroke { get; set; }
@@ -36,7 +56,8 @@ namespace SpeedSketch
 
 		// Data.
 		readonly Dictionary<int, StrokeIndex> outstandingUpdateIndexes = new Dictionary<int, StrokeIndex> ();
-		Stroke stroke = new Stroke ();
+
+		public Stroke Stroke { get; private set; } = new Stroke ();
 		public UIView CoordinateSpaceView { get; set; }
 
 		// State.
@@ -47,8 +68,8 @@ namespace SpeedSketch
 		NSTimer fingerStartTimer;
 		double cancellationTimeInterval = TimeSpan.FromSeconds (0.1).TotalMilliseconds;
 
-		public StrokeGestureRecognizer (Action handler)
-			:base (handler)
+		public StrokeGestureRecognizer (Action<StrokeGestureRecognizer> handler)
+			: base (new Selector ("target:"), new Callback (handler))
 		{
 		}
 
@@ -135,18 +156,18 @@ namespace SpeedSketch
 							var lastIndex = coalescedTouches.Length - 1;
 
 							for (var index = 0; index < lastIndex; index++)
-								collector (stroke, coalescedTouches [index], v, true, false);
-							collector (stroke, coalescedTouches [lastIndex], v, false, false);
+								collector (Stroke, coalescedTouches [index], v, true, false);
+							collector (Stroke, coalescedTouches [lastIndex], v, false, false);
 						}
 					} else {
-						collector (stroke, touchToAppend, v, false, false);
+						collector (Stroke, touchToAppend, v, false, false);
 					}
 
-					if (usesPredictedSamples && stroke.State == StrokeState.Active) {
+					if (usesPredictedSamples && Stroke.State == StrokeState.Active) {
 						var predictedTouches = uievent.GetPredictedTouches (touchToAppend);
 						if (predictedTouches != null) {
 							foreach (var touch in predictedTouches) {
-								collector (stroke, touch, v, false, true);
+								collector (Stroke, touch, v, false, true);
 							}
 						}
 					}
@@ -189,7 +210,7 @@ namespace SpeedSketch
 		public override void TouchesEnded (NSSet touches, UIEvent evt)
 		{
 			if (Append (Touches (touches), evt)) {
-				stroke.State = StrokeState.Done;
+				Stroke.State = StrokeState.Done;
 				State = Ended;
 			}
 		}
@@ -197,7 +218,7 @@ namespace SpeedSketch
 		public override void TouchesCancelled (NSSet touches, UIEvent evt)
 		{
 			if (Append (Touches (touches), evt)) {
-				stroke.State = StrokeState.Cancelled;
+				Stroke.State = StrokeState.Cancelled;
 				State = Failed;
 			}
 		}
@@ -231,7 +252,7 @@ namespace SpeedSketch
 
 		public override void Reset ()
 		{
-			stroke = new Stroke ();
+			Stroke = new Stroke ();
 			trackedTouch = null;
 
 			var timer = fingerStartTimer;

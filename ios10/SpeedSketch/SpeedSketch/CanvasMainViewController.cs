@@ -1,18 +1,25 @@
 ﻿using System;
-using CoreGraphics;
+using System.Linq;
+using System.Collections.Generic;
+
 using UIKit;
+using Foundation;
+using CoreGraphics;
 
 using static UIKit.UIViewAutoresizing;
+using static UIKit.UIGestureRecognizerState;
 using static SpeedSketch.Helpers;
- 
 
 namespace SpeedSketch
 {
-	public class CanvasMainViewController : UIViewController, IUIGestureRecognizerDelegate
+	public class CanvasMainViewController : UIViewController, IUIScrollViewDelegate, IUIGestureRecognizerDelegate
 	{
 		public CanvasMainViewController ()
 		{
 		}
+
+		readonly List<UIButton> buttons = new List<UIButton> ();
+		readonly List<NSObject> observers = new List<NSObject> ();
 
 		StrokeCGView cgView;
 		RingControl leftRingControl;
@@ -25,10 +32,52 @@ namespace SpeedSketch
 
 		Action [] configurations;
 
-		readonly StrokeCollection strokeCollection = new StrokeCollection ();
+		StrokeCollection strokeCollection = new StrokeCollection ();
 
 		UIScrollView scrollView;
 		CanvasContainerView canvasContainerView;
+
+		// Since usage of the Apple Pencil can be very temporary, the best way to
+		// actually check for it being in use is to remember the last interaction.
+		// Also make sure to provide an escape hatch if you modify your UI for
+		// times when the pencil is in use vs. not.
+
+		// Timeout the pencil mode if no pencil has been seen for 5 minutes
+		// and the app is brought back in foreground.
+		double pencilResetInterval = 5 * 60;
+
+		double? lastSeenPencilInteraction;
+		double? LastSeenPencilInteraction {
+			get {
+				return lastSeenPencilInteraction;
+			}
+			set {
+				lastSeenPencilInteraction = value;
+				if (lastSeenPencilInteraction.HasValue && !PencilMode)
+					PencilMode = true;
+			}
+		}
+
+		bool pencilMode;
+		bool PencilMode {
+			get {
+				return pencilMode;
+			}
+			set {
+				if (pencilMode = value) {
+					scrollView.PanGestureRecognizer.MinimumNumberOfTouches = 1;
+					pencilButton.Hidden = false;
+					var view = fingerStrokeRecognizer.View;
+					if (view != null)
+						view.RemoveGestureRecognizer (fingerStrokeRecognizer);
+				} else {
+					scrollView.PanGestureRecognizer.MinimumNumberOfTouches = 2;
+					pencilButton.Hidden = true;
+					if (fingerStrokeRecognizer.View == null)
+						scrollView.AddGestureRecognizer (fingerStrokeRecognizer);
+				}
+			}
+		}
 
 		public override void ViewDidLoad ()
 		{
@@ -78,11 +127,231 @@ namespace SpeedSketch
 				CoordinateSpaceView = cgView,
 			};
 			scrollView.AddGestureRecognizer (fingerStrokeRecognizer);
+
+			pencilStrokeRecognizer = new StrokeGestureRecognizer (StrokeUpdated) {
+				Delegate = this,
+				CancelsTouchesInView = false,
+				CoordinateSpaceView = cgView,
+				IsForPencil = true,
+			};
+			scrollView.AddGestureRecognizer (pencilStrokeRecognizer);
+
+			SetupConfigurations ();
+
+			var onPhone = UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone;
+
+			var ringDiameter = onPhone ? 66f : 74f;
+			var ringImageInset = onPhone ? 12f : 14f;
+			var borderWidth = 1f;
+			var ringOutset = ringDiameter / 2 - (NMath.Floor (NMath.Sqrt ((ringDiameter * ringDiameter) / 8) - borderWidth));
+			var ringFrame = new CGRect (-ringOutset, View.Bounds.Height - ringDiameter + ringOutset, ringDiameter, ringDiameter);
+			var ringControl = new RingControl (ringFrame, configurations.Length);
+			ringControl.AutoresizingMask = FlexibleRightMargin | FlexibleTopMargin;
+			View.AddSubview (ringControl);
+			leftRingControl = ringControl;
+			string [] imageNames = { "Calligraphy", "Ink", "Debug" };
+			for (int index = 0; index < leftRingControl.RingViews.Count; index++) {
+				var ringView = leftRingControl.RingViews [index];
+				ringView.ActionClosure = configurations [index];
+				var imageView = new UIImageView (ringView.Bounds.Inset (ringImageInset, ringImageInset));
+				imageView.Image = UIImage.FromBundle (imageNames [index]);
+				imageView.AutoresizingMask = FlexibleLeftMargin | FlexibleRightMargin | FlexibleTopMargin | FlexibleBottomMargin;
+				ringView.AddSubview (imageView);
+			}
+
+			// TODO: fixme
+			//clearButton = AddButton ("clear", ClearButtonAction);
+			SetupPencilUI ();
 		}
 
-		void StrokeUpdated ()
+		UIButton AddButton (string title, EventHandler handler)
 		{
-			throw new NotImplementedException ();
+			var bounds = View.Bounds;
+			var lastButton = buttons.Last ();
+			var maxX = (lastButton != null) ? lastButton.Frame.GetMinX () : bounds.GetMaxX ();
+
+			var button = new UIButton (UIButtonType.Custom) {
+				AutoresizingMask = FlexibleLeftMargin | FlexibleBottomMargin
+			};
+			button.TouchUpInside += handler;
+			button.SetTitleColor (UIColor.Orange, UIControlState.Normal);
+			button.SetTitleColor (UIColor.LightGray, UIControlState.Highlighted);
+			button.SetTitle (title, UIControlState.Normal);
+			button.SizeToFit ();
+			var frame = button.Frame.Inset (-20, -4);
+			frame.Location = new CGPoint (maxX - button.Frame.Width - 5, bounds.GetMinY () - 5);
+			button.Frame = frame;
+			var buttonLayer = button.Layer;
+			buttonLayer.CornerRadius = 5;
+			button.BackgroundColor = UIColor.FromWhiteAlpha (1, 0.4f);
+			View.AddSubview (button);
+			buttons.Add (button);
+
+			return button;
 		}
+
+
+		public override void ViewDidAppear (bool animated)
+		{
+			base.ViewDidAppear (animated);
+			scrollView.FlashScrollIndicators ();
+		}
+
+		public override bool PrefersStatusBarHidden ()
+		{
+			return true;
+		}
+
+		void SetupConfigurations ()
+		{
+			configurations = new Action [] {
+				() => cgView.DisplayOptions = StrokeViewDisplayOptions.Calligraphy,
+				() => cgView.DisplayOptions = StrokeViewDisplayOptions.Ink,
+				() => cgView.DisplayOptions = StrokeViewDisplayOptions.Debug
+			};
+			configurations [0] ();
+		}
+
+		void ReceivedAllUpdatesForStroke (Stroke stroke)
+		{
+			cgView.SetNeedsDisplay (stroke);
+			stroke.ClearUpdateInfo ();
+		}
+
+		// TODO: Action attribute ?
+		void ClearButtonAction (NSObject sender)
+		{
+			cgView.StrokeCollection = strokeCollection = new StrokeCollection ();
+		}
+
+		void StrokeUpdated (StrokeGestureRecognizer strokeGesture)
+		{
+			if (strokeGesture == pencilStrokeRecognizer)
+				lastSeenPencilInteraction = DateTime.Now.Ticks;
+
+			var state = strokeGesture.State;
+
+			Stroke stroke = null;
+			if (state != Cancelled) {
+				stroke = strokeGesture.Stroke;
+				if (state == Began || (state == Ended && strokeCollection.ActiveStroke == null)) {
+					strokeCollection.ActiveStroke = stroke;
+					leftRingControl.CancelInteraction ();
+				}
+			} else {
+				strokeCollection.ActiveStroke = null;
+			}
+
+			if (stroke != null) {
+				if (state == Ended) {
+					if (strokeGesture == pencilStrokeRecognizer) {
+						// Make sure we get the final stroke update if needed.
+						stroke.ReceivedAllNeededUpdatesBlock = () => {
+							ReceivedAllUpdatesForStroke (stroke);
+						};
+					}
+					strokeCollection.TakeActiveStroke ();
+				}
+			}
+			cgView.StrokeCollection = strokeCollection;
+		}
+
+		#region Pencil Recognition and UI Adjustments
+
+		void SetupPencilUI ()
+		{
+			pencilButton = AddButton ("pencil", StopPencilButtonAction);
+			pencilButton.TitleLabel.TextAlignment = UITextAlignment.Left;
+			var bounds = pencilButton.Bounds;
+			var dimension = bounds.Height - 16;
+			pencilButton.ContentEdgeInsets = new UIEdgeInsets (0, dimension, 0, 0);
+
+			var x = bounds.GetMinX () + 3;
+			var y = bounds.GetMinY () + (bounds.Height - dimension) - 7;
+			var imageView = new UIImageView (UIImage.FromBundle ("Close")) {
+				Frame = new CGRect (x, y, dimension, dimension),
+				Alpha = 0.7f
+			};
+			pencilButton.AddSubview (imageView);
+			PencilMode = false;
+
+			NSObject observer = UIApplication.Notifications.ObserveWillEnterForeground ((sender, e) => {
+				if (PencilMode && !LastSeenPencilInteraction.HasValue
+				    || (DateTime.Now.Ticks - LastSeenPencilInteraction.Value) > pencilResetInterval)
+					StopPencilButtonAction (this, EventArgs.Empty);
+			});
+			observers.Add (observer);
+		}
+
+		protected override void Dispose (bool disposing)
+		{
+			observers.ForEach (o => o.Dispose ());
+			base.Dispose (disposing);
+		}
+
+		// TODO: Action attribute
+		void StopPencilButtonAction (object sender, EventArgs e)
+		{
+			lastSeenPencilInteraction = null;
+			PencilMode = false;
+		}
+
+		#endregion
+
+		#region IUIGestureRecognizerDelegate
+
+		// Since our gesture recognizer is beginning immediately, we do the hit test ambiguation here
+		// instead of adding failure requirements to the gesture for minimizing the delay
+		// to the first action sent and therefore the first lines drawn.
+		[Export ("gestureRecognizer:shouldReceiveTouch:")]
+		public bool ShouldReceiveTouch (UIGestureRecognizer recognizer, UITouch touch)
+		{
+			if (leftRingControl.HitTest (touch.LocationInView (leftRingControl), null) != null)
+				return false;
+
+			foreach(var button in buttons) {
+				if (button.HitTest (touch.LocationInView (clearButton), null) != null)
+					return false;
+			}
+
+			return true;
+		}
+
+		// We want the pencil to recognize simultaniously with all others.
+		[Export ("gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:")]
+		public bool ShouldRecognizeSimultaneously (UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer)
+		{
+			if (gestureRecognizer == pencilStrokeRecognizer)
+				return otherGestureRecognizer != fingerStrokeRecognizer;
+			return false;
+		}
+
+		#endregion
+
+		#region IUIScrollViewDelegate
+
+		[Export ("viewForZoomingInScrollView:")]
+		public UIView ViewForZoomingInScrollView (UIScrollView scrollView)
+		{
+			return canvasContainerView;
+		}
+
+		[Export ("scrollViewDidEndZooming:withView:atScale:")]
+		public void ZoomingEnded (UIScrollView scrollView, UIView withView, nfloat scale)
+		{
+			var desiredScale = TraitCollection.DisplayScale;
+			var existingScale = cgView.ContentScaleFactor;
+
+			if (scale >= 2)
+				desiredScale *= 2;
+
+			if (NMath.Abs (desiredScale - existingScale) > 0.00001) {
+				cgView.ContentScaleFactor = desiredScale;
+				cgView.SetNeedsDisplay ();
+			}
+		}
+
+		#endregion
+
 	}
 }

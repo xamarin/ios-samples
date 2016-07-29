@@ -31,7 +31,7 @@ namespace SpeedSketch
 
 		public bool ExpectsAltitudeAzimuthBackfill { get; set; }
 
-		Action receivedAllNeededUpdatesBlock;
+		public Action ReceivedAllNeededUpdatesBlock { get; set; }
 
 		public int Add (StrokeSample sample)
 		{
@@ -64,8 +64,8 @@ namespace SpeedSketch
 
 			sampleIndicesExpectingUpdates.Remove (index);
 			if (sampleIndicesExpectingUpdates.Count == 0) {
-				receivedAllNeededUpdatesBlock?.Invoke ();
-				receivedAllNeededUpdatesBlock = null;
+				ReceivedAllNeededUpdatesBlock?.Invoke ();
+				ReceivedAllNeededUpdatesBlock = null;
 			}
 		}
 

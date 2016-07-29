@@ -25,7 +25,7 @@ namespace SpeedSketch
 		public bool FannedOut { get; set; }
 
 		// The actionClosure will be executed on selection.
-		public Action ActionClosure { get; private set; }
+		public Action ActionClosure { get; set; }
 
 		public Action SelectionState {
 			get {

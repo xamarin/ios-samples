@@ -36,7 +36,7 @@ namespace SpeedSketch
 		}
 
 		StrokeCollection strokeCollection;
-		StrokeCollection StrokeCollection {
+		public StrokeCollection StrokeCollection {
 			get {
 				return strokeCollection;
 			}
@@ -144,7 +144,7 @@ namespace SpeedSketch
 							   .Inset (-20, -20);
 		}
 
-		void SetNeedsDisplay (Stroke stroke)
+		public void SetNeedsDisplay (Stroke stroke)
 		{
 			DirtyRects (stroke).ForEach (SetNeedsDisplayInRect);
 		}

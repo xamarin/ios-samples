@@ -12,11 +12,11 @@ namespace SpeedSketch
 
 	public class StrokeCollection
 	{
-		public Stroke ActiveStroke { get; private set; }
+		public Stroke ActiveStroke { get; set; }
 
 		public List<Stroke> Strokes { get; } = new List<Stroke> ();
 
-		void TakeActiveStroke ()
+		public void TakeActiveStroke ()
 		{
 			var stroke = ActiveStroke;
 			if (stroke != null) {
