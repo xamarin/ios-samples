@@ -2,14 +2,6 @@
 
 namespace SpeedSketch
 {
-	public enum StrokePhase
-	{
-		Began,
-		Changed,
-		Ended,
-		Cancelled
-	}
-
 	public class StrokeCollection
 	{
 		public Stroke ActiveStroke { get; set; }

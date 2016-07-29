@@ -7,7 +7,6 @@ namespace SpeedSketch
 {
 	public class CanvasContainerView : UIView
 	{
-		CGSize canvasSize;
 		UIView canvasView;
 
 		UIView documentView;

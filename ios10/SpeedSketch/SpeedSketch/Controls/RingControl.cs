@@ -13,7 +13,6 @@ namespace SpeedSketch
 	public class RingControl : UIView
 	{
 		RingView selectedView;
-		UITapGestureRecognizer tapRecognizer;
 
 		nfloat RingRadius {
 			get {
@@ -37,11 +36,8 @@ namespace SpeedSketch
 			var fillColorSelected = UIColor.FromHSBA (0.07f, 0.21f, 0.98f, 1);
 			var fillColorNormal = UIColor.White;
 
-			// TODO: check for memory leaks
 			// We define generators to return closures which we use to define
-			// the different states of our item ring views. Since we add those
-			// to the view, they need to capture the view unowned to avoid a 
-			// retain cycle.
+			// the different states of our item ring views.
 			Func<RingView, Action> selectedGenerator = (view) => () => {
 				view.Layer.BorderColor = borderColorSelected;
 				view.BackgroundColor = fillColorSelected;
@@ -139,7 +135,6 @@ namespace SpeedSketch
 			selectedView = view;
 			view.ActionClosure?.Invoke ();
 		}
-
 
 		void UpdateViews (bool animated)
 		{

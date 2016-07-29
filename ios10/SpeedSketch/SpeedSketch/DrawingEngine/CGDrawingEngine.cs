@@ -157,7 +157,7 @@ namespace SpeedSketch
 		// paths instead of an aweful lot of tiny ones, etc.You would also respect the
 		// draw rect to cull your draw requests.And you would use bezier paths to
 		// interpolate between the points to get a smooother curve.
-		void Draw (Stroke stroke, CGRect rect, bool active)
+		void Draw (Stroke stroke)
 		{
 			var updateRanges = stroke.UpdatedRanges ();
 			if (DisplayOptions == StrokeViewDisplayOptions.Debug) {
@@ -414,12 +414,12 @@ namespace SpeedSketch
 			var collection = StrokeCollection;
 			if (collection != null) {
 				foreach (var stroke in strokeCollection.Strokes)
-					Draw (stroke, rect, false);
+					Draw (stroke);
 			}
 
 			var toDraw = StrokeToDraw;
 			if (toDraw != null)
-				Draw (toDraw, rect, true);
+				Draw (toDraw);
 		}
 
 		#endregion

@@ -14,10 +14,6 @@ namespace SpeedSketch
 {
 	public class CanvasMainViewController : UIViewController, IUIScrollViewDelegate, IUIGestureRecognizerDelegate
 	{
-		public CanvasMainViewController ()
-		{
-		}
-
 		readonly List<UIButton> buttons = new List<UIButton> ();
 		readonly List<NSObject> observers = new List<NSObject> ();
 
@@ -113,8 +109,7 @@ namespace SpeedSketch
 			scrollView.PanGestureRecognizer.AllowedTouchTypes = TouchTypes (UITouchType.Direct);
 			scrollView.PinchGestureRecognizer.AllowedTouchTypes = TouchTypes (UITouchType.Direct);
 
-			// TODO: delegate
-			//scrollView.Delegate = this;
+			scrollView.Delegate = this;
 
 			// We put our UI elements on top of the scroll view, so we don't want any of the
 			// delay or cancel machinery in place.
@@ -124,7 +119,7 @@ namespace SpeedSketch
 				Delegate = this,
 				CancelsTouchesInView = false,
 				IsForPencil = false,
-				CoordinateSpaceView = cgView,
+				CoordinateSpaceView = cgView
 			};
 			scrollView.AddGestureRecognizer (fingerStrokeRecognizer);
 
@@ -132,7 +127,7 @@ namespace SpeedSketch
 				Delegate = this,
 				CancelsTouchesInView = false,
 				CoordinateSpaceView = cgView,
-				IsForPencil = true,
+				IsForPencil = true
 			};
 			scrollView.AddGestureRecognizer (pencilStrokeRecognizer);
 
@@ -159,8 +154,7 @@ namespace SpeedSketch
 				ringView.AddSubview (imageView);
 			}
 
-			// TODO: fixme
-			//clearButton = AddButton ("clear", ClearButtonAction);
+			clearButton = AddButton ("clear", ClearButtonAction);
 			SetupPencilUI ();
 		}
 
@@ -218,8 +212,7 @@ namespace SpeedSketch
 			stroke.ClearUpdateInfo ();
 		}
 
-		// TODO: Action attribute ?
-		void ClearButtonAction (NSObject sender)
+		void ClearButtonAction (object sender, EventArgs e)
 		{
 			cgView.StrokeCollection = strokeCollection = new StrokeCollection ();
 		}
@@ -289,7 +282,6 @@ namespace SpeedSketch
 			base.Dispose (disposing);
 		}
 
-		// TODO: Action attribute
 		void StopPencilButtonAction (object sender, EventArgs e)
 		{
 			lastSeenPencilInteraction = null;
