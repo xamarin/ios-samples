@@ -161,7 +161,7 @@ namespace SpeedSketch
 		UIButton AddButton (string title, EventHandler handler)
 		{
 			var bounds = View.Bounds;
-			var lastButton = buttons.Last ();
+			var lastButton = buttons.LastOrDefault ();
 			var maxX = (lastButton != null) ? lastButton.Frame.GetMinX () : bounds.GetMaxX ();
 
 			var button = new UIButton (UIButtonType.Custom) {
