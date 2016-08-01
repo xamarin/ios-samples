@@ -1,13 +1,14 @@
-﻿using CoreGraphics;
+﻿using System;
+using CoreGraphics;
 
 namespace SpeedSketch
 {
 	public class StrokeSegment
 	{
-		public StrokeSample SampleBefore { get; set; }
-		public StrokeSample FromSample { get; set; }
-		public StrokeSample ToSample { get; set; }
-		public StrokeSample SampleAfter { get; set; }
+		public StrokeSample SampleBefore { get; private set; }
+		public StrokeSample FromSample { get; private set; }
+		public StrokeSample ToSample { get; private set; }
+		public StrokeSample SampleAfter { get; private set; }
 		public int FromSampleIndex { get; set; }
 
 		CGVector PreviousSegmentStrokeVector {
@@ -51,7 +52,7 @@ namespace SpeedSketch
 			}
 		}
 
-		public bool AdvanceWithSample (StrokeSample incomingSample)
+		public void AdvanceWithSample (StrokeSample incomingSample)
 		{
 			var sampleAfter = SampleAfter;
 			if (sampleAfter != null) {
@@ -60,9 +61,7 @@ namespace SpeedSketch
 				ToSample = SampleAfter;
 				SampleAfter = incomingSample;
 				FromSampleIndex += 1;
-				return true;
 			}
-			return false;
 		}
 
 		static CGVector InterpolatedNormalUnitVector (CGVector vector1, CGVector vector2)

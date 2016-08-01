@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Linq;
 using CoreGraphics;
 
 namespace SpeedSketch
@@ -97,15 +97,43 @@ namespace SpeedSketch
 				new CountableClosedRange(hasUpdatesAtEndFrom.Value, Samples.Count - 1)
 			};
 		}
-
 		public IEnumerator<StrokeSegment> GetEnumerator ()
 		{
-			throw new NotImplementedException ();
+			var sampleCount = Samples.Count;
+			var predictedSampleCount = PredictedSamples.Count;
+			var total = sampleCount + predictedSampleCount;
+
+			StrokeSegment segment = null;
+			if (total > 0) {
+				var sample = SampleAt (0, sampleCount, predictedSampleCount);
+				var nextSample = SampleAt (1, sampleCount, predictedSampleCount);
+				segment = new StrokeSegment (sample);
+				segment.AdvanceWithSample (nextSample);
+			}
+
+			for (int index = 1; index <= total; index++) {
+				var sample = SampleAt (index, sampleCount, predictedSampleCount);
+				segment.AdvanceWithSample (sample);
+
+				yield return segment;
+			}
+		}
+
+		StrokeSample SampleAt (int index, int sampleCount, int predictedSampleCount)
+		{
+			if (index < sampleCount)
+				return Samples [index];
+
+			index = index - sampleCount;
+			if (index < predictedSampleCount)
+				return PredictedSamples [index];
+
+			return null;
 		}
 
 		IEnumerator IEnumerable.GetEnumerator ()
 		{
-			throw new NotImplementedException ();
+			return GetEnumerator ();
 		}
 	}
 }

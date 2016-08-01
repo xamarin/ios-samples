@@ -28,7 +28,8 @@ namespace SpeedSketch
 
 		public CGVector GetAzimuthUnitVector ()
 		{
-			return new CGVector (1, 1).Apply (MakeRotation (Azimuth.Value));
+			var unitVector = new CGVector (1, 1);
+			return unitVector.Apply (MakeRotation (Azimuth.Value));
 		}
 
 		// Convenience accessor returns a non-nullable (Default: 1)

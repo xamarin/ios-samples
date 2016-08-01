@@ -376,9 +376,9 @@ namespace SpeedSketch
 					Location = sample.Location.Add (new CGVector (-0.5f, 0)),
 					Coalesced = false,
 					Predicted = false,
-					Force = sample.Force.Value,
-					Azimuth = sample.Azimuth.Value,
-					Altitude = sample.Altitude.Value,
+					Force = sample.Force,
+					Azimuth = sample.Azimuth,
+					Altitude = sample.Altitude,
 					EstimatedProperties = sample.EstimatedProperties
 				};
 
@@ -387,9 +387,9 @@ namespace SpeedSketch
 					Location = sample.Location.Add (new CGVector (0.5f, 0)),
 					Coalesced = false,
 					Predicted = false,
-					Force = sample.Force.Value,
-					Azimuth = sample.Azimuth.Value,
-					Altitude = sample.Altitude.Value,
+					Force = sample.Force,
+					Azimuth = sample.Azimuth,
+					Altitude = sample.Altitude,
 					EstimatedProperties = sample.EstimatedProperties
 				};
 

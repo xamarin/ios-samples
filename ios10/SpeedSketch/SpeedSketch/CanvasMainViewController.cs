@@ -173,7 +173,7 @@ namespace SpeedSketch
 			button.SetTitle (title, UIControlState.Normal);
 			button.SizeToFit ();
 			var frame = button.Frame.Inset (-20, -4);
-			frame.Location = new CGPoint (maxX - button.Frame.Width - 5, bounds.GetMinY () - 5);
+			frame.Location = new CGPoint (maxX - frame.Width - 5, bounds.GetMinY () - 5);
 			button.Frame = frame;
 			var buttonLayer = button.Layer;
 			buttonLayer.CornerRadius = 5;
@@ -261,16 +261,16 @@ namespace SpeedSketch
 
 			var x = bounds.GetMinX () + 3;
 			var y = bounds.GetMinY () + (bounds.Height - dimension) - 7;
-			var imageView = new UIImageView (UIImage.FromBundle ("Close")) {
-				Frame = new CGRect (x, y, dimension, dimension),
-				Alpha = 0.7f
-			};
+			var closeImg = UIImage.FromBundle ("Close");
+			var imageView = (closeImg != null) ? new UIImageView (closeImg) : new UIImageView ();
+			imageView.Frame = new CGRect (x, y, dimension, dimension);
+			imageView.Alpha = 0.7f;
 			pencilButton.AddSubview (imageView);
 			PencilMode = false;
 
 			NSObject observer = UIApplication.Notifications.ObserveWillEnterForeground ((sender, e) => {
-				if (PencilMode && !LastSeenPencilInteraction.HasValue
-				    || (DateTime.Now.Ticks - LastSeenPencilInteraction.Value) > pencilResetInterval)
+				if (PencilMode
+				    && (!LastSeenPencilInteraction.HasValue || (DateTime.Now.Ticks - LastSeenPencilInteraction.Value) > pencilResetInterval))
 					StopPencilButtonAction (this, EventArgs.Empty);
 			});
 			observers.Add (observer);

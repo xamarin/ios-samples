@@ -68,6 +68,12 @@ namespace SpeedSketch
 		NSTimer fingerStartTimer;
 		double cancellationTimeInterval = TimeSpan.FromSeconds (0.1).TotalMilliseconds;
 
+		public StrokeGestureRecognizer (Action handler)
+			: base (handler)
+		{
+			int i = 25;
+		}
+
 		public StrokeGestureRecognizer (Action<StrokeGestureRecognizer> handler)
 			: base (new Selector ("target:"), new Callback (handler))
 		{
@@ -79,9 +85,10 @@ namespace SpeedSketch
 			if (touchToAppend != null) {
 				// Cancel the stroke recognition if we get a second touch during cancellation period.
 				foreach (var touch in touches) {
-					if (touch != touchToAppend && (touch.Timestamp - initialTimestamp < cancellationTimeInterval))
+					if (touch != touchToAppend && (touch.Timestamp - initialTimestamp < cancellationTimeInterval)) {
 						State = (State == Possible) ? Failed : Cancelled;
-					return false;
+						return false;
+					}
 				}
 
 				// See if those touches contain our tracked touch. If not, ignore gracefully.
