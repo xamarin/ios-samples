@@ -90,10 +90,6 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Contents.json" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Controls\" />
     <Folder Include="DrawingEngine\" />
@@ -123,6 +119,37 @@
     <Compile Include="CanvasContainerView.cs" />
     <Compile Include="CanvasMainViewController.cs" />
     <Compile Include="Helpers.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIconiPad.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIconiPad2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIconiPadPro.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIconiPhone%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\AppIconiPhone%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Close.imageset\Close-iPad.png" />
+    <ImageAsset Include="Assets.xcassets\Close.imageset\Close-iPad%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Close.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Calligraphy.imageset\Calligraphy-iPad.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Calligraphy.imageset\Calligraphy-iPad%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Calligraphy.imageset\Calligraphy-iPhone.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Calligraphy.imageset\Calligraphy-iPhone%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Calligraphy.imageset\Calligraphy-iPhone%403x.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Calligraphy.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Debug.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Debug.imageset\Debug-iPad.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Debug.imageset\Debug-iPad%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Debug.imageset\Debug-iPhone.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Debug.imageset\Debug-iPhone%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Debug.imageset\Debug-iPhone%403x.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Ink.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Ink.imageset\Ink-iPad.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Ink.imageset\Ink-iPad%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Ink.imageset\Ink-iPhone.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Ink.imageset\Ink-iPhone%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Tool Icons\Ink.imageset\Ink-iPhone%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
