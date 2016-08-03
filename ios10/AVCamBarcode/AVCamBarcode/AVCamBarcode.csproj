@@ -112,6 +112,8 @@
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="PreviewView.cs" />
+    <Compile Include="CameraViewController.cs" />
+    <Compile Include="ItemSelectionViewController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
