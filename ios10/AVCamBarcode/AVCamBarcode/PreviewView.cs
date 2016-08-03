@@ -73,7 +73,7 @@ namespace AVCamBarcode
 
 
 		IDisposable runningToken;
-		AVCaptureSession Session {
+		public AVCaptureSession Session {
 			get {
 				return videoPreviewLayer.Session;
 			}

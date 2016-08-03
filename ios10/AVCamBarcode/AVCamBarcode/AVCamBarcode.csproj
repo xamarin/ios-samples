@@ -107,13 +107,10 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="PreviewView.cs" />
     <Compile Include="CameraViewController.cs" />
     <Compile Include="ItemSelectionViewController.cs" />
+    <Compile Include="Extensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
