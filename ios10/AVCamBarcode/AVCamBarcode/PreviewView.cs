@@ -54,7 +54,7 @@ namespace AVCamBarcode
 		// This property is set only in `setRegionOfInterestWithProposedRegionOfInterest()`.
 		// When a user is resizing the region of interest in `resizeRegionOfInterestWithGestureRecognizer()`,
 		// the KVO notification will be triggered when the resizing is finished.
-		CGRect regionOfInterest = CGRect.Empty;
+		public CGRect RegionOfInterest { get; private set; } = CGRect.Empty;
 
 		const float regionOfInterestControlDiameter = 12;
 		float RegionOfInterestControlRadius {
@@ -75,7 +75,7 @@ namespace AVCamBarcode
 		IDisposable runningToken;
 		public AVCaptureSession Session {
 			get {
-				return videoPreviewLayer.Session;
+				return VideoPreviewLayer.Session;
 			}
 			set {
 
@@ -84,17 +84,17 @@ namespace AVCamBarcode
 				else
 					runningToken?.Dispose ();
 
-				videoPreviewLayer.Session = value;
+				VideoPreviewLayer.Session = value;
 			}
 		}
 
-		AVCaptureVideoPreviewLayer videoPreviewLayer {
+		public AVCaptureVideoPreviewLayer VideoPreviewLayer {
 			get {
 				return Layer as AVCaptureVideoPreviewLayer;
 			}
 		}
 
-		bool IsResizingRegionOfInterest {
+		public bool IsResizingRegionOfInterest {
 			get {
 				return resizeRegionOfInterestGestureRecognizer.State == UIGestureRecognizerState.Changed;
 			}
@@ -128,7 +128,7 @@ namespace AVCamBarcode
 			maskLayer.Opacity = 0.6f;
 			Layer.AddSublayer (maskLayer);
 
-			regionOfInterestOutline.Path = UIBezierPath.FromRect (regionOfInterest).CGPath;
+			regionOfInterestOutline.Path = UIBezierPath.FromRect (RegionOfInterest).CGPath;
 			regionOfInterestOutline.FillColor = UIColor.Clear.CGColor;
 			regionOfInterestOutline.StrokeColor = UIColor.Yellow.CGColor;
 			Layer.AddSublayer (regionOfInterestOutline);
@@ -163,7 +163,7 @@ namespace AVCamBarcode
 		void ResizeRegionOfInterestWithGestureRecognizer (UIPanGestureRecognizer pan)
 		{
 			var touchLocation = pan.LocationInView (pan.View);
-			var oldRegionOfInterest = regionOfInterest;
+			var oldRegionOfInterest = RegionOfInterest;
 
 			switch (pan.State) {
 			case UIGestureRecognizerState.Began:
@@ -184,7 +184,7 @@ namespace AVCamBarcode
 					// Update the new region of interest with the gesture recognizer's translation.
 					var translation = pan.TranslationInView (pan.View);
 					// Move the region of interest with the gesture recognizer's translation.
-					if (regionOfInterest.Contains (touchLocation)) {
+					if (RegionOfInterest.Contains (touchLocation)) {
 						newRegionOfInterest.X += translation.X;
 						newRegionOfInterest.Y += translation.Y;
 					}
@@ -193,10 +193,10 @@ namespace AVCamBarcode
 					// we will only translate the region of interest in the
 					// plane that is not out of bounds.
 					var normalizedRect = new CGRect (0, 0, 1, 1);
-					if (!normalizedRect.Contains (videoPreviewLayer.PointForCaptureDevicePointOfInterest (touchLocation))) {
-						if (touchLocation.X < regionOfInterest.GetMinX () || touchLocation.X > regionOfInterest.GetMaxX ()) {
+					if (!normalizedRect.Contains (VideoPreviewLayer.PointForCaptureDevicePointOfInterest (touchLocation))) {
+						if (touchLocation.X < RegionOfInterest.GetMinX () || touchLocation.X > RegionOfInterest.GetMaxX ()) {
 							newRegionOfInterest.Y += translation.Y;
-						} else if (touchLocation.Y < regionOfInterest.GetMinY () || touchLocation.Y > regionOfInterest.GetMaxY ()) {
+						} else if (touchLocation.Y < RegionOfInterest.GetMinY () || touchLocation.Y > RegionOfInterest.GetMaxY ()) {
 							newRegionOfInterest.X += translation.X;
 						}
 					}
@@ -293,15 +293,15 @@ namespace AVCamBarcode
 		// Updates the region of interest with a proposed region of interest ensuring
 		// the new region of interest is within the bounds of the video preview. When
 		// a new region of interest is set, the region of interest is redrawn.
-		void SetRegionOfInterestWithProposedRegionOfInterest (CGRect proposedRegionOfInterest)
+		public void SetRegionOfInterestWithProposedRegionOfInterest (CGRect proposedRegionOfInterest)
 		{
 			// We standardize to ensure we have positive widths and heights with an origin at the top left.
-			var videoPreviewRect = videoPreviewLayer.MapToLayerCoordinates (new CGRect (0, 0, 1, 1)).Standardize ();
+			var videoPreviewRect = VideoPreviewLayer.MapToLayerCoordinates (new CGRect (0, 0, 1, 1)).Standardize ();
 
 			// Intersect the video preview view with the view's frame to only get
 			// the visible portions of the video preview view.
 			var visibleVideoPreviewRect = CGRect.Intersect (videoPreviewRect, Frame);
-			var oldRegionOfInterest = regionOfInterest;
+			var oldRegionOfInterest = RegionOfInterest;
 			var newRegionOfInterest = proposedRegionOfInterest.Standardize ();
 
 			// Move the region of interest in bounds.
@@ -369,7 +369,7 @@ namespace AVCamBarcode
 				}
 			}
 
-			regionOfInterest = newRegionOfInterest;
+			RegionOfInterest = newRegionOfInterest;
 			SetNeedsLayout ();
 		}
 
@@ -386,7 +386,7 @@ namespace AVCamBarcode
 				// been initialized yet, let's set an inital region of interest
 				// that is 80% of the shortest side by 25% of the longest side
 				// and centered in the root view.
-				if (regionOfInterest.IsEmpty) {
+				if (RegionOfInterest.IsEmpty) {
 					var width = NMath.Min (Frame.Width, Frame.Height) * 0.8f;
 					var height = NMath.Max (Frame.Width, Frame.Height) * 0.25f;
 
@@ -395,7 +395,7 @@ namespace AVCamBarcode
 				}
 
 				if (running)
-					SetRegionOfInterestWithProposedRegionOfInterest (regionOfInterest);
+					SetRegionOfInterestWithProposedRegionOfInterest (RegionOfInterest);
 			});
 		}
 
@@ -411,16 +411,16 @@ namespace AVCamBarcode
 
 			// Create the path for the mask layer. We use the even odd fill rule so that the region of interest does not have a fill color.
 			var path = UIBezierPath.FromRect (new CGRect (0, 0, Frame.Width, Frame.Height));
-			path.AppendPath (UIBezierPath.FromRect (regionOfInterest));
+			path.AppendPath (UIBezierPath.FromRect (RegionOfInterest));
 			path.UsesEvenOddFillRule = true;
 			maskLayer.Path = path.CGPath;
 
-			regionOfInterestOutline.Path = CGPath.FromRect (regionOfInterest);
+			regionOfInterestOutline.Path = CGPath.FromRect (RegionOfInterest);
 
-			topLeftControl.Position = new CGPoint (regionOfInterest.X - RegionOfInterestControlRadius, regionOfInterest.Y - RegionOfInterestControlRadius);
-			topRightControl.Position = new CGPoint (regionOfInterest.X + regionOfInterest.Width - RegionOfInterestControlRadius, regionOfInterest.Y - RegionOfInterestControlRadius);
-			bottomLeftControl.Position = new CGPoint (regionOfInterest.X - RegionOfInterestControlRadius, regionOfInterest.Y + regionOfInterest.Height - RegionOfInterestControlRadius);
-			bottomRightControl.Position = new CGPoint (regionOfInterest.X + regionOfInterest.Width - RegionOfInterestControlRadius, regionOfInterest.Y + regionOfInterest.Height - RegionOfInterestControlRadius);
+			topLeftControl.Position = new CGPoint (RegionOfInterest.X - RegionOfInterestControlRadius, RegionOfInterest.Y - RegionOfInterestControlRadius);
+			topRightControl.Position = new CGPoint (RegionOfInterest.X + RegionOfInterest.Width - RegionOfInterestControlRadius, RegionOfInterest.Y - RegionOfInterestControlRadius);
+			bottomLeftControl.Position = new CGPoint (RegionOfInterest.X - RegionOfInterestControlRadius, RegionOfInterest.Y + RegionOfInterest.Height - RegionOfInterestControlRadius);
+			bottomRightControl.Position = new CGPoint (RegionOfInterest.X + RegionOfInterest.Width - RegionOfInterestControlRadius, RegionOfInterest.Y + RegionOfInterest.Height - RegionOfInterestControlRadius);
 
 			CATransaction.Commit ();
 		}
@@ -433,7 +433,7 @@ namespace AVCamBarcode
 			// Ignore drags outside of the region of interest (plus some padding).
 			if (gestureRecognizer == resizeRegionOfInterestGestureRecognizer) {
 				var touchLocation = touch.LocationInView (gestureRecognizer.View);
-				var paddedRegionOfInterest = regionOfInterest.Inset (-regionOfInterestCornerTouchThreshold, -regionOfInterestCornerTouchThreshold);
+				var paddedRegionOfInterest = RegionOfInterest.Inset (-regionOfInterestCornerTouchThreshold, -regionOfInterestCornerTouchThreshold);
 				if (!paddedRegionOfInterest.Contains (touchLocation))
 					return false;
 			}
@@ -448,7 +448,7 @@ namespace AVCamBarcode
 			// Allow multiple gesture recognizers to be recognized simultaneously if and only if the touch location is not within the touch threshold.
 			if (gestureRecognizer == resizeRegionOfInterestGestureRecognizer) {
 				var touchLocation = gestureRecognizer.LocationInView (gestureRecognizer.View);
-				var closestCorner = CornerOfRect (regionOfInterest, touchLocation);
+				var closestCorner = CornerOfRect (RegionOfInterest, touchLocation);
 				return closestCorner == ControlCorner.None;
 			}
 

@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 
 using UIKit;
-using AVFoundation;
-using System.Collections.Generic;
 using Foundation;
+using AVFoundation;
+using CoreGraphics;
 using CoreFoundation;
-using System.Linq;
+
+using static AVFoundation.AVCaptureVideoOrientation;
 
 namespace AVCamBarcode
 {
@@ -58,11 +61,7 @@ namespace AVCamBarcode
 			}
 		}
 
-		public CameraViewController ()
-		{
-		}
-
-		public async override void ViewDidLoad ()
+		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
@@ -92,10 +91,11 @@ namespace AVCamBarcode
 				// video access. We suspend the session queue to delay session
 				// setup until the access request has completed.
 				sessionQueue.Suspend ();
-				var granted = await AVCaptureDevice.RequestAccessForMediaTypeAsync (AVMediaType.Video);
-				if (!granted)
-					setupResult = SessionSetupResult.notAuthorized;
-				sessionQueue.Resume ();
+				AVCaptureDevice.RequestAccessForMediaType (AVMediaType.Video, granted => {
+					if (!granted)
+						setupResult = SessionSetupResult.notAuthorized;
+					sessionQueue.Resume ();
+				});
 				break;
 
 
@@ -188,7 +188,7 @@ namespace AVCamBarcode
 				selectionCtrl.SelectedItems = selectedItems;
 				selectionCtrl.AllowsMultipleSelection = true;
 			} else if (segue.Identifier == "SelectSessionPreset") {
-				Func<NSString, string> key = v => (string)v;
+				Func<NSString, string> key = v => v;
 				presetMap = AvailableSessionPresets ().ToDictionary (key);
 				var allItems = presetMap.Keys.ToArray ();
 
@@ -203,6 +203,97 @@ namespace AVCamBarcode
 				selectionCtrl.AllowsMultipleSelection = false;
 			}
 		}
+
+		public override bool ShouldAutorotate ()
+		{
+			// Do not allow rotation if the region of interest is being resized.
+			return !previewView.IsResizingRegionOfInterest;
+		}
+
+		public override void ViewWillTransitionToSize (CGSize size, IUIViewControllerTransitionCoordinator coordinator)
+		{
+			base.ViewWillTransitionToSize (size, coordinator);
+
+			var videoPreviewLayerConnection = previewView.VideoPreviewLayer.Connection;
+			if (videoPreviewLayerConnection != null) {
+				var deviceOrientation = UIDevice.CurrentDevice.Orientation;
+				if (!deviceOrientation.IsPortrait() && !deviceOrientation.IsLandscape())
+					return;
+
+				var newVideoOrientation = VideoOrientationFor (deviceOrientation);
+				var oldSize = View.Frame.Size;
+				var oldVideoOrientation = videoPreviewLayerConnection.VideoOrientation;
+				videoPreviewLayerConnection.VideoOrientation = newVideoOrientation;
+
+				// When we transition to the new size, we need to adjust the region
+				// of interest's origin and size so that it stays anchored relative
+				// to the camera.
+				coordinator.AnimateAlongsideTransition (context => {
+					var oldRegionOfInterest = previewView.RegionOfInterest;
+					var newRegionOfInterest = new CGRect ();
+
+					if (oldVideoOrientation == LandscapeRight && newVideoOrientation == LandscapeLeft) {
+						newRegionOfInterest.X = oldSize.Width - oldRegionOfInterest.X - oldRegionOfInterest.Width;
+						newRegionOfInterest.Y = oldRegionOfInterest.Y;
+						newRegionOfInterest.Width = oldRegionOfInterest.Width;
+						newRegionOfInterest.Height = oldRegionOfInterest.Height;
+					} else if( oldVideoOrientation == LandscapeRight && newVideoOrientation == Portrait) {
+						newRegionOfInterest.X = size.Width - oldRegionOfInterest.Y - oldRegionOfInterest.Height;
+						newRegionOfInterest.Y = oldRegionOfInterest.X;
+						newRegionOfInterest.Width = oldRegionOfInterest.Height;
+						newRegionOfInterest.Height = oldRegionOfInterest.Width;
+					} else if (oldVideoOrientation == LandscapeLeft && newVideoOrientation == LandscapeRight) {
+						newRegionOfInterest.X = oldSize.Width - oldRegionOfInterest.X - oldRegionOfInterest.Width;
+						newRegionOfInterest.Y = oldRegionOfInterest.Y;
+						newRegionOfInterest.Width = oldRegionOfInterest.Width;
+						newRegionOfInterest.Height = oldRegionOfInterest.Height;
+					} else if( oldVideoOrientation == LandscapeLeft && newVideoOrientation == Portrait) {
+						newRegionOfInterest.X = oldRegionOfInterest.Y;
+						newRegionOfInterest.Y = oldSize.Width - oldRegionOfInterest.X - oldRegionOfInterest.Width;
+						newRegionOfInterest.Width = oldRegionOfInterest.Height;
+						newRegionOfInterest.Height = oldRegionOfInterest.Width;
+					} else if( oldVideoOrientation == Portrait && newVideoOrientation == LandscapeRight) {
+						newRegionOfInterest.X = oldRegionOfInterest.Y;
+						newRegionOfInterest.Y = size.Height - oldRegionOfInterest.X - oldRegionOfInterest.Width;
+						newRegionOfInterest.Width = oldRegionOfInterest.Height;
+						newRegionOfInterest.Height = oldRegionOfInterest.Width;
+					} else if(oldVideoOrientation == Portrait && newVideoOrientation == LandscapeLeft) {
+						newRegionOfInterest.X = oldSize.Height - oldRegionOfInterest.Y - oldRegionOfInterest.Height;
+						newRegionOfInterest.Y = oldRegionOfInterest.X;
+						newRegionOfInterest.Width = oldRegionOfInterest.Height;
+						newRegionOfInterest.Height = oldRegionOfInterest.Width;
+					}
+
+					previewView.SetRegionOfInterestWithProposedRegionOfInterest (newRegionOfInterest);
+				}, context => {
+					sessionQueue.DispatchAsync (() => {
+						metadataOutput.RectOfInterest = previewView.VideoPreviewLayer.MapToLayerCoordinates (previewView.RegionOfInterest);
+					});
+					// Remove the old metadata object overlays.
+					RemoveMetadataObjectOverlayLayers ();
+				});
+			}
+		}
+
+		AVCaptureVideoOrientation VideoOrientationFor (UIDeviceOrientation deviceOrientation)
+		{
+			switch (deviceOrientation) {
+			case UIDeviceOrientation.Portrait:
+				return Portrait;
+			case UIDeviceOrientation.PortraitUpsideDown:
+				return PortraitUpsideDown;
+			case UIDeviceOrientation.LandscapeLeft:
+				return LandscapeLeft;
+			case UIDeviceOrientation.LandscapeRight:
+				return LandscapeLeft;
+			default:
+				throw new InvalidProgramException ();
+			}
+		}
+
+		#region Session Management
+
+		#endregion
 
 		void ConfigureSession ()
 		{
@@ -248,5 +339,11 @@ namespace AVCamBarcode
 			yield return AVCaptureSession.Preset1920x1080;
 			yield return AVCaptureSession.Preset3840x2160;
 		}
+
+		void RemoveMetadataObjectOverlayLayers ()
+		{
+			throw new NotImplementedException ();
+		}
+
 	}
 }
