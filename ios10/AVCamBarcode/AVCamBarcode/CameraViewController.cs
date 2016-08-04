@@ -85,6 +85,24 @@ namespace AVCamBarcode
 			}
 		}
 
+		// This property is set only in `setRegionOfInterestWithProposedRegionOfInterest ()`.
+		// When a user is resizing the region of interest in `resizeRegionOfInterestWithGestureRecognizer ()`,
+		// the KVO notification will be triggered when the resizing is finished.
+		CGRect regionOfInterest;
+		CGRect RegionOfInterest {
+			get {
+				return regionOfInterest;
+			}
+			set {
+				if (regionOfInterest == value)
+					return;
+
+				regionOfInterest = value;
+				RegionOfInterestChanged (regionOfInterest);
+			}
+		}
+
+
 		readonly List<MetadataObjectLayer> metadataObjectOverlayLayers = new List<MetadataObjectLayer> ();
 
 		Dictionary<string, AVMetadataObjectType> barcodeTypeMap;
@@ -660,6 +678,18 @@ namespace AVCamBarcode
 				// metadata object overlays are removed.
 				if (!isSessionRunning)
 					RemoveMetadataObjectOverlayLayers ();
+			});
+		}
+
+		void RegionOfInterestChanged (CGRect newRegion)
+		{
+			// Update the AVCaptureMetadataOutput with the new region of interest.
+			sessionQueue.DispatchAsync (() => {
+				// Translate the preview view's region of interest to the metadata output's coordinate system.
+				metadataOutput.RectOfInterest = previewView.VideoPreviewLayer.MapToLayerCoordinates (newRegion);
+
+				// Ensure we are not drawing old metadata object overlays.
+				DispatchQueue.MainQueue.DispatchAsync (RemoveMetadataObjectOverlayLayers);
 			});
 		}
 
