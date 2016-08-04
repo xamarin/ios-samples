@@ -104,6 +104,8 @@ namespace AVCamBarcode
 
 		NSObject runtimeErrorNotificationToken;
 
+		NSObject wasInterruptedNotificationToken;
+
 		readonly List<MetadataObjectLayer> metadataObjectOverlayLayers = new List<MetadataObjectLayer> ();
 
 		Dictionary<string, AVMetadataObjectType> barcodeTypeMap;
@@ -697,6 +699,13 @@ namespace AVCamBarcode
 		void AddObservers ()
 		{
 			runtimeErrorNotificationToken = AVCaptureSession.Notifications.ObserveRuntimeError (OnRuntimeErrorNotification);
+
+			// A session can only run when the app is full screen. It will be interrupted
+			// in a multi-app layout, introduced in iOS 9, see also the documentation of
+			// AVCaptureSessionInterruptionReason.Add observers to handle these session
+			// interruptions and show a preview is paused message.See the documentation
+			// of AVCaptureSessionWasInterruptedNotification for other interruption reasons.
+			wasInterruptedNotificationToken = AVCaptureSession.Notifications.ObserveWasInterrupted (WasInterruptedObserver);
 		}
 
 		void OnRuntimeErrorNotification (object sender, AVCaptureSessionRuntimeErrorEventArgs e)
@@ -718,6 +727,29 @@ namespace AVCamBarcode
 						session.StartRunning ();
 						SessionRunning = session.Running;
 					}
+				});
+			}
+		}
+
+		void WasInterruptedObserver (object sender, NSNotificationEventArgs e)
+		{
+			// In some scenarios we want to enable the user to resume the session running.
+			// For example, if music playback is initiated via control center while
+			// using AVMetadataRecordPlay, then the user can let AVMetadataRecordPlay resume
+			// the session running, which will stop music playback. Note that stopping
+			// music playback in control center will not automatically resume the session
+			// running. Also note that it is not always possible to resume
+
+			var reasonIntegerValue = ((NSNumber)e.Notification.UserInfo [AVCaptureSession.InterruptionReasonKey]).Int32Value;
+			var reason = (AVCaptureSessionInterruptionReason)reasonIntegerValue;
+
+			Console.WriteLine ($"Capture session was interrupted with reason {reason}");
+			if (reason == AVCaptureSessionInterruptionReason.VideoDeviceNotAvailableWithMultipleForegroundApps) {
+				// Simply fade-in a label to inform the user that the camera is unavailable.
+				cameraUnavailableLabel.Hidden = false;
+				cameraUnavailableLabel.Alpha = 0;
+				UIView.Animate (0.25, () => {
+					cameraUnavailableLabel.Alpha = 1;
 				});
 			}
 		}
