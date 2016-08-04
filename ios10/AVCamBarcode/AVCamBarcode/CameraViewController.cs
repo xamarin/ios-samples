@@ -6,9 +6,11 @@ using UIKit;
 using Foundation;
 using AVFoundation;
 using CoreGraphics;
+using CoreAnimation;
 using CoreFoundation;
 
 using static AVFoundation.AVCaptureVideoOrientation;
+using CoreText;
 
 namespace AVCamBarcode
 {
@@ -19,6 +21,17 @@ namespace AVCamBarcode
 		success,
 		notAuthorized,
 		configurationFailed
+	}
+
+	class MetadataObjectLayer : CAShapeLayer
+	{
+		public AVMetadataObject MetadataObject { get; set; }
+
+		bool PathContaints (CGPoint point)
+		{
+			var path = Path;
+			return path != null ? Path.ContainsPoint (point, false) : false;
+		}
 	}
 
 	public class CameraViewController : UIViewController, IAVCaptureMetadataOutputObjectsDelegate, ItemSelectionViewControllerDelegate
@@ -360,7 +373,6 @@ namespace AVCamBarcode
 			// Remove the metadata overlay layers, if any.
 			RemoveMetadataObjectOverlayLayers ();
 
-
 			DispatchQueue.MainQueue.DispatchAsync (() => {
 				var currentVideoDevice = videoDeviceInput.Device;
 				var currentPosition = currentVideoDevice.Position;
@@ -427,6 +439,93 @@ namespace AVCamBarcode
 			});
 		}
 
+		AVCaptureDevice DeviceWithMediaType (NSString mediaType, AVCaptureDevicePosition position)
+		{
+			return AVCaptureDevice.DevicesWithMediaType (mediaType)
+				                  .FirstOrDefault (d => d.Position == position);
+		}
+
+		[Action ("zoomCamera:")]
+		void ZoomCamera (UISlider slider)
+		{
+			var device = videoDeviceInput.Device;
+
+			NSError err;
+			videoDeviceInput.Device.LockForConfiguration (out err);
+			if (err != null) {
+				Console.WriteLine ($"Could not lock for configuration: {err}");
+				return;
+			}
+
+			device.VideoZoomFactor = slider.Value;
+			device.UnlockForConfiguration ();
+		}
+
+		#endregion
+
+		#region Drawing Metadata Object Overlay Layers
+
+		// A dispatch semaphore is used for drawing metadata object overlays so that
+		// only one group of metadata object overlays is drawn at a time.
+		// TODO: use .net objects here
+		//DispatchS metadataObjectsOverlayLayersDrawingSemaphore = DispatchSemaphore (value: 1)
+
+		readonly List<MetadataObjectLayer> metadataObjectOverlayLayers = new List<MetadataObjectLayer> ();
+
+		MetadataObjectLayer CreateMetadataObjectOverlayWithMetadataObject (AVMetadataObject metadataObject)
+		{
+			// Transform the metadata object so the bounds are updated to reflect those of the video preview layer.
+			var transformedMetadataObject = previewView.VideoPreviewLayer.GetTransformedMetadataObject (metadataObject);
+
+			// Create the initial metadata object overlay layer that can be used for either machine readable codes or faces.
+			var metadataObjectOverlayLayer = new MetadataObjectLayer {
+				MetadataObject = transformedMetadataObject,
+				LineJoin = CAShapeLayer.JoinRound,
+				LineWidth = 7,
+				StrokeColor = View.TintColor.ColorWithAlpha (0.7f).CGColor,
+				FillColor = View.TintColor.ColorWithAlpha (0.3f).CGColor
+			};
+
+			var barcodeMetadataObject = transformedMetadataObject as AVMetadataMachineReadableCodeObject;
+			if (barcodeMetadataObject != null) {
+				var barcodeOverlayPath = BarcodeOverlayPathWithCorners (barcodeMetadataObject.Corners);
+				metadataObjectOverlayLayer.Path = barcodeOverlayPath;
+
+				// If the metadata object has a string value, display it.
+				if (barcodeMetadataObject.StringValue.Length > 0) {
+					var barcodeOverlayBoundingBox = barcodeOverlayPath.BoundingBox;
+
+					var font = UIFont.BoldSystemFontOfSize (19).ToCTFont ();
+					var textLayer = new CATextLayer {
+						AlignmentMode = CATextLayer.AlignmentCenter,
+						Bounds = new CGRect (0, 0, barcodeOverlayBoundingBox.Size.Width, barcodeOverlayBoundingBox.Size.Height),
+						ContentsScale = UIScreen.MainScreen.Scale,
+						Position = new CGPoint (barcodeOverlayBoundingBox.GetMidX (), barcodeOverlayBoundingBox.GetMidY ()),
+						Wrapped = true,
+
+						// Invert the effect of transform of the video preview so the text is orientated with the interface orientation.
+						Transform = CATransform3D.MakeFromAffine (previewView.Transform).Invert (default (CATransform3D)),
+						AttributedString = new NSAttributedString (barcodeMetadataObject.StringValue, new CTStringAttributes {
+							Font = font,
+							ForegroundColor = UIColor.White.CGColor,
+							StrokeWidth = -5,
+							StrokeColor = UIColor.Black.CGColor
+						})
+					};
+					textLayer.SetFont (font);
+					metadataObjectOverlayLayer.AddSublayer (textLayer);
+				}
+			} else if (transformedMetadataObject is AVMetadataFaceObject) {
+				metadataObjectOverlayLayer.Path = CGPath.FromRect (transformedMetadataObject.Bounds);
+			}
+			return metadataObjectOverlayLayer;
+		}
+
+		CGPath BarcodeOverlayPathWithCorners (CGPoint [] corners)
+		{
+			throw new NotImplementedException ();
+		}
+
 		#endregion
 
 		void OpenBarcodeUrl (UITapGestureRecognizer openBarcodeURLGestureRecognizer)
@@ -441,7 +540,7 @@ namespace AVCamBarcode
 
 		void AddObservers ()
 		{
-			
+
 		}
 
 		void RemoveObservers ()
@@ -474,16 +573,6 @@ namespace AVCamBarcode
 			throw new NotImplementedException ();
 		}
 
-		AVCaptureDevice DeviceWithMediaType (NSString mediaType, AVCaptureDevicePosition position)
-		{
-			throw new NotImplementedException ();
-//		if let devices = AVCaptureDevice.devices (withMediaType: mediaType) as? [AVCaptureDevice] {
-//			return devices.filter({ $0.position == position
-//	}).first
-//}
-		
-//		return nil
-	}
 
 
 	}

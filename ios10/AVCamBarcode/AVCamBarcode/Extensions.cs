@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 
 using AVFoundation;
+using UIKit;
+using CoreText;
 
 namespace AVCamBarcode
 {
@@ -33,6 +35,14 @@ namespace AVCamBarcode
 				yield return item;
 
 			yield return last;
+		}
+	}
+
+	public static class FontExtensions
+	{
+		public static CTFont ToCTFont (this UIFont font)
+		{
+			return new CTFont (font.Name, font.PointSize);
 		}
 	}
 }
