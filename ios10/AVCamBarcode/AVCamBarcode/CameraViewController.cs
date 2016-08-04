@@ -29,16 +29,19 @@ namespace AVCamBarcode
 		[Outlet ("metadataObjectTypesButton")]
 		UIButton metadataObjectTypesButton { get; set; }
 
-		[Outlet("sessionPresetsButton")]
+		[Outlet ("sessionPresetsButton")]
 		UIButton sessionPresetsButton { get; set; }
 
 		[Outlet ("cameraButton")]
 		UIButton cameraButton { get; set; }
 
+		[Outlet ("cameraUnavailableLabel")]
+		UILabel cameraUnavailableLabel { get; set; }
+
 		[Outlet ("zoomSlider")]
 		UISlider zoomSlider { get; set; }
 
-		[Outlet("previewView")]
+		[Outlet ("previewView")]
 		PreviewView previewView { get; set; }
 
 		AVCaptureDeviceInput videoDeviceInput;
@@ -220,7 +223,7 @@ namespace AVCamBarcode
 			var videoPreviewLayerConnection = previewView.VideoPreviewLayer.Connection;
 			if (videoPreviewLayerConnection != null) {
 				var deviceOrientation = UIDevice.CurrentDevice.Orientation;
-				if (!deviceOrientation.IsPortrait() && !deviceOrientation.IsLandscape())
+				if (!deviceOrientation.IsPortrait () && !deviceOrientation.IsLandscape ())
 					return;
 
 				var newVideoOrientation = VideoOrientationFor (deviceOrientation);
@@ -240,7 +243,7 @@ namespace AVCamBarcode
 						newRegionOfInterest.Y = oldRegionOfInterest.Y;
 						newRegionOfInterest.Width = oldRegionOfInterest.Width;
 						newRegionOfInterest.Height = oldRegionOfInterest.Height;
-					} else if( oldVideoOrientation == LandscapeRight && newVideoOrientation == Portrait) {
+					} else if (oldVideoOrientation == LandscapeRight && newVideoOrientation == Portrait) {
 						newRegionOfInterest.X = size.Width - oldRegionOfInterest.Y - oldRegionOfInterest.Height;
 						newRegionOfInterest.Y = oldRegionOfInterest.X;
 						newRegionOfInterest.Width = oldRegionOfInterest.Height;
@@ -250,17 +253,17 @@ namespace AVCamBarcode
 						newRegionOfInterest.Y = oldRegionOfInterest.Y;
 						newRegionOfInterest.Width = oldRegionOfInterest.Width;
 						newRegionOfInterest.Height = oldRegionOfInterest.Height;
-					} else if( oldVideoOrientation == LandscapeLeft && newVideoOrientation == Portrait) {
+					} else if (oldVideoOrientation == LandscapeLeft && newVideoOrientation == Portrait) {
 						newRegionOfInterest.X = oldRegionOfInterest.Y;
 						newRegionOfInterest.Y = oldSize.Width - oldRegionOfInterest.X - oldRegionOfInterest.Width;
 						newRegionOfInterest.Width = oldRegionOfInterest.Height;
 						newRegionOfInterest.Height = oldRegionOfInterest.Width;
-					} else if( oldVideoOrientation == Portrait && newVideoOrientation == LandscapeRight) {
+					} else if (oldVideoOrientation == Portrait && newVideoOrientation == LandscapeRight) {
 						newRegionOfInterest.X = oldRegionOfInterest.Y;
 						newRegionOfInterest.Y = size.Height - oldRegionOfInterest.X - oldRegionOfInterest.Width;
 						newRegionOfInterest.Width = oldRegionOfInterest.Height;
 						newRegionOfInterest.Height = oldRegionOfInterest.Width;
-					} else if(oldVideoOrientation == Portrait && newVideoOrientation == LandscapeLeft) {
+					} else if (oldVideoOrientation == Portrait && newVideoOrientation == LandscapeLeft) {
 						newRegionOfInterest.X = oldSize.Height - oldRegionOfInterest.Y - oldRegionOfInterest.Height;
 						newRegionOfInterest.Y = oldRegionOfInterest.X;
 						newRegionOfInterest.Width = oldRegionOfInterest.Height;
@@ -296,8 +299,6 @@ namespace AVCamBarcode
 
 		#region Session Management
 
-		#endregion
-
 		void ConfigureSession ()
 		{
 			if (setupResult != SessionSetupResult.success)
@@ -316,7 +317,7 @@ namespace AVCamBarcode
 			}
 
 
-			if(session.CanAddInput(vDeviceInput)) {
+			if (session.CanAddInput (vDeviceInput)) {
 				session.AddInput (vDeviceInput);
 				videoDeviceInput = vDeviceInput;
 			} else {
@@ -324,7 +325,7 @@ namespace AVCamBarcode
 				setupResult = SessionSetupResult.configurationFailed;
 				session.CommitConfiguration ();
 				return;
-  			}
+			}
 
 			// Add metadata output.
 			if (session.CanAddOutput (metadataOutput)) {
@@ -343,6 +344,90 @@ namespace AVCamBarcode
 
 			session.CommitConfiguration ();
 		}
+
+		#endregion
+
+		#region Device Configuration
+
+		[Action ("changeCamera")]
+		void ChangeCamera ()
+		{
+			metadataObjectTypesButton.Enabled = false;
+			sessionPresetsButton.Enabled = false;
+			cameraButton.Enabled = false;
+			zoomSlider.Enabled = false;
+
+			// Remove the metadata overlay layers, if any.
+			RemoveMetadataObjectOverlayLayers ();
+
+
+			DispatchQueue.MainQueue.DispatchAsync (() => {
+				var currentVideoDevice = videoDeviceInput.Device;
+				var currentPosition = currentVideoDevice.Position;
+
+				var preferredPosition = AVCaptureDevicePosition.Unspecified;
+
+				switch (currentPosition) {
+				case AVCaptureDevicePosition.Unspecified:
+				case AVCaptureDevicePosition.Front:
+					preferredPosition = AVCaptureDevicePosition.Back;
+					break;
+
+				case AVCaptureDevicePosition.Back:
+					preferredPosition = AVCaptureDevicePosition.Front;
+					break;
+				}
+
+				var videoDevice = DeviceWithMediaType (AVMediaType.Video, preferredPosition);
+				if (videoDevice != null) {
+					NSError err;
+					var vDeviceInput = AVCaptureDeviceInput.FromDevice (videoDevice, out err);
+					if (err != null) {
+						Console.WriteLine ($"Error occured while creating video device input: {err}");
+						return;
+					}
+
+					session.BeginConfiguration ();
+
+					// Remove the existing device input first, since using the front and back camera simultaneously is not supported.
+					session.RemoveInput (vDeviceInput);
+
+					// When changing devices, a session preset that may be supported
+					// on one device may not be supported by another. To allow the
+					// user to successfully switch devices, we must save the previous
+					// session preset, set the default session preset (High), and
+					// attempt to restore it after the new video device has been
+					// added. For example, the 4K session preset is only supported
+					// by the back device on the iPhone 6s and iPhone 6s Plus. As a
+					// result, the session will not let us add a video device that
+					// does not support the current session preset.
+					var previousSessionPreset = session.SessionPreset;
+					session.SessionPreset = AVCaptureSession.PresetHigh;
+
+					if (session.CanAddInput (vDeviceInput)) {
+						session.AddInput (vDeviceInput);
+						this.videoDeviceInput = vDeviceInput;
+					} else {
+						session.AddInput (this.videoDeviceInput);
+					}
+
+					// Restore the previous session preset if we can.
+					if (session.CanSetSessionPreset (previousSessionPreset))
+						session.SessionPreset = previousSessionPreset;
+
+					session.CommitConfiguration ();
+				}
+
+				metadataObjectTypesButton.Enabled = true;
+				sessionPresetsButton.Enabled = true;
+				cameraButton.Enabled = true;
+				zoomSlider.Enabled = true;
+				zoomSlider.MaxValue = (float)NMath.Min (videoDeviceInput.Device.ActiveFormat.VideoMaxZoomFactor, 8);
+				zoomSlider.Value = (float)videoDeviceInput.Device.VideoZoomFactor;
+			});
+		}
+
+		#endregion
 
 		void OpenBarcodeUrl (UITapGestureRecognizer openBarcodeURLGestureRecognizer)
 		{
