@@ -21,7 +21,7 @@ namespace AVCamBarcode
 			}
 		}
 
-		public static AVMetadataObjectType Combine (IEnumerable<AVMetadataObjectType> flags)
+		public static AVMetadataObjectType Combine (this IEnumerable<AVMetadataObjectType> flags)
 		{
 			return flags.Aggregate ((agr, f) => agr | f);
 		}

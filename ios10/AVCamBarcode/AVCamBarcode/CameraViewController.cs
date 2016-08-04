@@ -11,6 +11,7 @@ using CoreFoundation;
 
 using static AVFoundation.AVCaptureVideoOrientation;
 using CoreText;
+using System.Threading;
 
 namespace AVCamBarcode
 {
@@ -66,10 +67,12 @@ namespace AVCamBarcode
 		readonly DispatchQueue metadataObjectsQueue = new DispatchQueue ("metadata objects queue");
 
 		NSTimer removeMetadataObjectOverlayLayersTimer;
+		readonly AutoResetEvent resetEvent = new AutoResetEvent (true);
 
 		SessionSetupResult setupResult = SessionSetupResult.success;
 		bool isSessionRunning;
 
+		readonly List<MetadataObjectLayer> metadataObjectOverlayLayers = new List<MetadataObjectLayer> ();
 
 		Dictionary<string, AVMetadataObjectType> barcodeTypeMap;
 		Dictionary<string, NSString> presetMap;
@@ -467,12 +470,8 @@ namespace AVCamBarcode
 
 		#region Drawing Metadata Object Overlay Layers
 
-		// A dispatch semaphore is used for drawing metadata object overlays so that
+		// An AutoResetEvent instance is used for drawing metadata object overlays so that
 		// only one group of metadata object overlays is drawn at a time.
-		// TODO: use .net objects here
-		//DispatchS metadataObjectsOverlayLayersDrawingSemaphore = DispatchSemaphore (value: 1)
-
-		readonly List<MetadataObjectLayer> metadataObjectOverlayLayers = new List<MetadataObjectLayer> ();
 
 		MetadataObjectLayer CreateMetadataObjectOverlayWithMetadataObject (AVMetadataObject metadataObject)
 		{
@@ -550,7 +549,7 @@ namespace AVCamBarcode
 			removeMetadataObjectOverlayLayersTimer = null;
 		}
 
-		void AddMetadataObjectOverlayLayersToVideoPreviewView (MetadataObjectLayer[] layers)
+		void AddMetadataObjectOverlayLayersToVideoPreviewView (IEnumerable<MetadataObjectLayer> layers)
 		{
 			// Add the metadata object overlays as sublayers of the video preview layer. We disable actions to allow for fast drawing.
 			CATransaction.Begin ();
@@ -589,11 +588,48 @@ namespace AVCamBarcode
 
 		#endregion
 
+		#region AVCaptureMetadataOutputObjectsDelegate
+
+		[Export ("captureOutput:didOutputMetadataObjects:fromConnection:")]
+		public void DidOutputMetadataObjects (AVCaptureMetadataOutput captureOutput, AVMetadataObject [] metadataObjects, AVCaptureConnection connection)
+		{
+			// resetEvent is used to drop new notifications if old ones are still processing, to avoid queueing up a bunch of stale data.
+			if (resetEvent.WaitOne (0)) {
+				DispatchQueue.MainQueue.DispatchAsync (() => {
+					RemoveMetadataObjectOverlayLayers ();
+					var layers = new List<MetadataObjectLayer> ();
+					foreach (var metadataObject in metadataObjects) {
+						var metadataObjectOverlayLayer = CreateMetadataObjectOverlayWithMetadataObject (metadataObject);
+						layers.Add (metadataObjectOverlayLayer);
+					}
+
+					AddMetadataObjectOverlayLayersToVideoPreviewView (layers);
+				});
+				resetEvent.Set ();
+			}
+		}
+
+
+		#endregion
+
+		#region ItemSelectionViewControllerDelegate
 
 		public void ItemSelectionViewController (ItemSelectionViewController itemSelectionViewController, List<string> selectedItems)
 		{
-			throw new NotImplementedException ();
+			var identifier = itemSelectionViewController.Identifier;
+			if (identifier == metadataObjectTypeItemSelectionIdentifier) {
+				sessionQueue.DispatchAsync (() => {
+					var objectTypes = selectedItems.Select (t => barcodeTypeMap [t]).Combine ();
+					metadataOutput.MetadataObjectTypes = objectTypes;
+				});
+			} else if (identifier == sessionPresetItemSelectionIdentifier) {
+				sessionQueue.DispatchAsync (() => {
+					session.SessionPreset = presetMap [selectedItems.First ()];
+				});
+			}
 		}
+
+		#endregion
 
 		void AddObservers ()
 		{
