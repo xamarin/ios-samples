@@ -41,14 +41,17 @@ namespace AVCamBarcode
 		[Outlet("previewView")]
 		PreviewView previewView { get; set; }
 
+		AVCaptureDeviceInput videoDeviceInput;
 		readonly AVCaptureSession session = new AVCaptureSession ();
 		readonly AVCaptureMetadataOutput metadataOutput = new AVCaptureMetadataOutput ();
 
 		// Communicate with the session and other session objects on this queue.
 		readonly DispatchQueue sessionQueue = new DispatchQueue ("session queue");
+		readonly DispatchQueue metadataObjectsQueue = new DispatchQueue ("metadata objects queue");
 
 		SessionSetupResult setupResult = SessionSetupResult.success;
 		bool isSessionRunning;
+
 
 		Dictionary<string, AVMetadataObjectType> barcodeTypeMap;
 		Dictionary<string, NSString> presetMap;
@@ -297,7 +300,48 @@ namespace AVCamBarcode
 
 		void ConfigureSession ()
 		{
-			throw new NotImplementedException ();
+			if (setupResult != SessionSetupResult.success)
+				return;
+
+			session.BeginConfiguration ();
+
+			var videoDevice = DeviceWithMediaType (AVMediaType.Video, AVCaptureDevicePosition.Back);
+			NSError err;
+			var vDeviceInput = AVCaptureDeviceInput.FromDevice (videoDevice, out err);
+			if (err != null) {
+				Console.WriteLine ($"Could not create video device input: ${err}");
+				setupResult = SessionSetupResult.configurationFailed;
+				session.CommitConfiguration ();
+				return;
+			}
+
+
+			if(session.CanAddInput(vDeviceInput)) {
+				session.AddInput (vDeviceInput);
+				videoDeviceInput = vDeviceInput;
+			} else {
+				Console.WriteLine ("Could not add video device input to the session");
+				setupResult = SessionSetupResult.configurationFailed;
+				session.CommitConfiguration ();
+				return;
+  			}
+
+			// Add metadata output.
+			if (session.CanAddOutput (metadataOutput)) {
+				session.AddOutput (metadataOutput);
+
+				// Set this view controller as the delegate for metadata objects.
+				metadataOutput.SetDelegate (this, metadataObjectsQueue);
+				metadataOutput.MetadataObjectTypes = metadataOutput.AvailableMetadataObjectTypes; // Use all metadata object types by default.
+				metadataOutput.RectOfInterest = CGRect.Empty;
+			} else {
+				Console.WriteLine ("Could not add metadata output to the session");
+				setupResult = SessionSetupResult.configurationFailed;
+				session.CommitConfiguration ();
+				return;
+			}
+
+			session.CommitConfiguration ();
 		}
 
 		void OpenBarcodeUrl (UITapGestureRecognizer openBarcodeURLGestureRecognizer)
@@ -344,6 +388,18 @@ namespace AVCamBarcode
 		{
 			throw new NotImplementedException ();
 		}
+
+		AVCaptureDevice DeviceWithMediaType (NSString mediaType, AVCaptureDevicePosition position)
+		{
+			throw new NotImplementedException ();
+//		if let devices = AVCaptureDevice.devices (withMediaType: mediaType) as? [AVCaptureDevice] {
+//			return devices.filter({ $0.position == position
+//	}).first
+//}
+		
+//		return nil
+	}
+
 
 	}
 }
