@@ -102,6 +102,7 @@ namespace AVCamBarcode
 			}
 		}
 
+		NSObject runtimeErrorNotificationToken;
 
 		readonly List<MetadataObjectLayer> metadataObjectOverlayLayers = new List<MetadataObjectLayer> ();
 
@@ -695,7 +696,30 @@ namespace AVCamBarcode
 
 		void AddObservers ()
 		{
+			runtimeErrorNotificationToken = AVCaptureSession.Notifications.ObserveRuntimeError (OnRuntimeErrorNotification);
+		}
 
+		void OnRuntimeErrorNotification (object sender, AVCaptureSessionRuntimeErrorEventArgs e)
+		{
+			var errorVal = e.Error;
+			if (errorVal == null)
+				return;
+
+			var error = (AVError)(long)errorVal.Code;
+			Console.WriteLine ($"Capture session runtime error: {error}");
+
+			// Automatically try to restart the session running if media services were
+			// reset and the last start running succeeded. Otherwise, enable the user
+			// to try to resume the session running.
+
+			if (error == AVError.MediaServicesWereReset) {
+				sessionQueue.DispatchAsync (() => {
+					if (SessionRunning) {
+						session.StartRunning ();
+						SessionRunning = session.Running;
+					}
+				});
+			}
 		}
 
 		void RemoveObservers ()
