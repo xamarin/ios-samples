@@ -70,7 +70,20 @@ namespace AVCamBarcode
 		readonly AutoResetEvent resetEvent = new AutoResetEvent (true);
 
 		SessionSetupResult setupResult = SessionSetupResult.success;
-		bool isSessionRunning;
+
+		bool sessionRunning;
+		bool SessionRunning {
+			get {
+				return sessionRunning;
+			}
+			set {
+				if (sessionRunning == value)
+					return;
+
+				sessionRunning = value;
+				RunningChanged (sessionRunning);
+			}
+		}
 
 		readonly List<MetadataObjectLayer> metadataObjectOverlayLayers = new List<MetadataObjectLayer> ();
 
@@ -149,7 +162,7 @@ namespace AVCamBarcode
 					// Only setup observers and start the session running if setup succeeded.
 					AddObservers ();
 					session.StartRunning ();
-					isSessionRunning = session.Running;
+					SessionRunning = session.Running;
 					break;
 
 				case SessionSetupResult.notAuthorized:
@@ -181,7 +194,7 @@ namespace AVCamBarcode
 			sessionQueue.DispatchAsync (() => {
 				if (setupResult == SessionSetupResult.success) {
 					session.StopRunning ();
-					isSessionRunning = session.Running;
+					SessionRunning = session.Running;
 					RemoveObservers ();
 				}
 			});
@@ -228,9 +241,9 @@ namespace AVCamBarcode
 			}
 		}
 
+		// Do not allow rotation if the region of interest is being resized.
 		public override bool ShouldAutorotate ()
 		{
-			// Do not allow rotation if the region of interest is being resized.
 			return !previewView.IsResizingRegionOfInterest;
 		}
 
@@ -609,7 +622,6 @@ namespace AVCamBarcode
 			}
 		}
 
-
 		#endregion
 
 		#region ItemSelectionViewControllerDelegate
@@ -631,6 +643,26 @@ namespace AVCamBarcode
 
 		#endregion
 
+		#region Change observers
+
+		void RunningChanged (bool isSessionRunning)
+		{
+			DispatchQueue.MainQueue.DispatchAsync (() => {
+				metadataObjectTypesButton.Enabled = isSessionRunning;
+				sessionPresetsButton.Enabled = isSessionRunning;
+				cameraButton.Enabled = isSessionRunning && AVCaptureDevice.DevicesWithMediaType (AVMediaType.Video).Length > 1;
+				zoomSlider.Enabled = isSessionRunning;
+				zoomSlider.MaxValue = (float)NMath.Min (videoDeviceInput.Device.ActiveFormat.VideoMaxZoomFactor, 8);
+				zoomSlider.Value = (float)(videoDeviceInput.Device.VideoZoomFactor);
+
+				// After the session stop running, remove the metadata object overlays,
+				// if any, so that if the view appears again, the previously displayed
+				// metadata object overlays are removed.
+				if (!isSessionRunning)
+					RemoveMetadataObjectOverlayLayers ();
+			});
+		}
+
 		void AddObservers ()
 		{
 
@@ -639,6 +671,8 @@ namespace AVCamBarcode
 		void RemoveObservers ()
 		{
 		}
+
+		#endregion
 
 		NSString [] AvailableSessionPresets ()
 		{
