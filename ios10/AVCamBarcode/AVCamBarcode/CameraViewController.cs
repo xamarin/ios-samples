@@ -65,6 +65,8 @@ namespace AVCamBarcode
 		readonly DispatchQueue sessionQueue = new DispatchQueue ("session queue");
 		readonly DispatchQueue metadataObjectsQueue = new DispatchQueue ("metadata objects queue");
 
+		NSTimer removeMetadataObjectOverlayLayersTimer;
+
 		SessionSetupResult setupResult = SessionSetupResult.success;
 		bool isSessionRunning;
 
@@ -523,15 +525,70 @@ namespace AVCamBarcode
 
 		CGPath BarcodeOverlayPathWithCorners (CGPoint [] corners)
 		{
-			throw new NotImplementedException ();
+			var path = new CGPath ();
+
+			if (corners.Length > 0) {
+				var start = corners [0];
+				path.MoveToPoint (start);
+
+				for (int i = 1; i < corners.Length; i++) {
+					var corner = corners [i];
+					path.AddLineToPoint (corner);
+				}
+				path.CloseSubpath ();
+			}
+
+			return path;
+		}
+
+		void RemoveMetadataObjectOverlayLayers ()
+		{
+			metadataObjectOverlayLayers.ForEach (l => l.RemoveFromSuperLayer ());
+			metadataObjectOverlayLayers.Clear ();
+
+			removeMetadataObjectOverlayLayersTimer?.Invalidate ();
+			removeMetadataObjectOverlayLayersTimer = null;
+		}
+
+		void AddMetadataObjectOverlayLayersToVideoPreviewView (MetadataObjectLayer[] layers)
+		{
+			// Add the metadata object overlays as sublayers of the video preview layer. We disable actions to allow for fast drawing.
+			CATransaction.Begin ();
+			CATransaction.DisableActions = true;
+			foreach (var l in layers)
+				previewView.VideoPreviewLayer.AddSublayer (l);
+			CATransaction.Commit ();
+
+			// Save the new metadata object overlays.
+			metadataObjectOverlayLayers.Clear ();
+			metadataObjectOverlayLayers.AddRange (metadataObjectOverlayLayers);
+
+			// Create a timer to destroy the metadata object overlays.
+			removeMetadataObjectOverlayLayersTimer = NSTimer.CreateScheduledTimer (TimeSpan.FromSeconds (1), t => RemoveMetadataObjectOverlayLayers());
+		}
+
+		void OpenBarcodeUrl (UITapGestureRecognizer openBarcodeURLGestureRecognizer)
+		{
+			foreach (var metadataObjectOverlayLayer in metadataObjectOverlayLayers) {
+				var location = openBarcodeURLGestureRecognizer.LocationInView (previewView);
+				if (metadataObjectOverlayLayer.Path.ContainsPoint (location, false)) {
+					var barcodeMetadataObject = metadataObjectOverlayLayer.MetadataObject as AVMetadataMachineReadableCodeObject;
+					if (barcodeMetadataObject != null) {
+						var val = barcodeMetadataObject.StringValue;
+						if (!string.IsNullOrWhiteSpace (val)) {
+							var url = NSUrl.FromString (val);
+							var sharedApp = UIApplication.SharedApplication;
+							if (sharedApp.CanOpenUrl (url)) {
+								sharedApp.OpenUrl (url);
+							}
+						}
+					}
+				}
+			}
 		}
 
 		#endregion
 
-		void OpenBarcodeUrl (UITapGestureRecognizer openBarcodeURLGestureRecognizer)
-		{
-			throw new NotImplementedException ();
-		}
 
 		public void ItemSelectionViewController (ItemSelectionViewController itemSelectionViewController, List<string> selectedItems)
 		{
@@ -567,13 +624,5 @@ namespace AVCamBarcode
 			yield return AVCaptureSession.Preset1920x1080;
 			yield return AVCaptureSession.Preset3840x2160;
 		}
-
-		void RemoveMetadataObjectOverlayLayers ()
-		{
-			throw new NotImplementedException ();
-		}
-
-
-
 	}
 }
