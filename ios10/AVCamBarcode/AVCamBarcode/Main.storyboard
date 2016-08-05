@@ -10,7 +10,7 @@
         <!--Camera View Controller-->
         <scene sceneID="hlg-yS-qYF">
             <objects>
-                <viewController id="pYE-xa-CpI" userLabel="Camera View Controller" customClass="CameraViewController" customModule="AVCamBarcode" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pYE-xa-CpI" userLabel="Camera View Controller" customClass="CameraViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pf6-pA-EQ2"/>
                         <viewControllerLayoutGuide type="bottom" id="30E-zC-PQO"/>
@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guD-bB-Q2w" customClass="PreviewView" customModule="AVCamBarcode" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="guD-bB-Q2w" customClass="PreviewView">
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFV-EL-Pn1">
@@ -116,7 +116,7 @@
         <!--Item Selection View Controller-->
         <scene sceneID="fTa-Za-MkS">
             <objects>
-                <tableViewController id="PBC-n5-MIm" userLabel="Item Selection View Controller" customClass="ItemSelectionViewController" customModule="AVCamBarcode" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="PBC-n5-MIm" userLabel="Item Selection View Controller" customClass="ItemSelectionViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="N68-f6-mTy">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
