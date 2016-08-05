@@ -72,39 +72,19 @@ namespace AVCamBarcode
 		SessionSetupResult setupResult = SessionSetupResult.success;
 
 		bool sessionRunning;
-		bool SessionRunning {
-			get {
-				return sessionRunning;
-			}
-			set {
-				if (sessionRunning == value)
-					return;
-
-				sessionRunning = value;
-				RunningChanged (sessionRunning);
-			}
-		}
 
 		// This property is set only in `setRegionOfInterestWithProposedRegionOfInterest ()`.
 		// When a user is resizing the region of interest in `resizeRegionOfInterestWithGestureRecognizer ()`,
 		// the KVO notification will be triggered when the resizing is finished.
 		CGRect regionOfInterest;
-		CGRect RegionOfInterest {
-			get {
-				return regionOfInterest;
-			}
-			set {
-				if (regionOfInterest == value)
-					return;
 
-				regionOfInterest = value;
-				RegionOfInterestChanged (regionOfInterest);
-			}
-		}
+		IDisposable runningChangeToken;
 
 		NSObject runtimeErrorNotificationToken;
 
 		NSObject wasInterruptedNotificationToken;
+
+		NSObject interruptionEndedNotificationToken;
 
 		readonly List<MetadataObjectLayer> metadataObjectOverlayLayers = new List<MetadataObjectLayer> ();
 
@@ -183,7 +163,7 @@ namespace AVCamBarcode
 					// Only setup observers and start the session running if setup succeeded.
 					AddObservers ();
 					session.StartRunning ();
-					SessionRunning = session.Running;
+					sessionRunning = session.Running;
 					break;
 
 				case SessionSetupResult.notAuthorized:
@@ -215,7 +195,7 @@ namespace AVCamBarcode
 			sessionQueue.DispatchAsync (() => {
 				if (setupResult == SessionSetupResult.success) {
 					session.StopRunning ();
-					SessionRunning = session.Running;
+					sessionRunning = session.Running;
 					RemoveObservers ();
 				}
 			});
@@ -666,8 +646,40 @@ namespace AVCamBarcode
 
 		#region Change observers
 
-		void RunningChanged (bool isSessionRunning)
+		void AddObservers ()
 		{
+			runningChangeToken = session.AddObserver ("running", NSKeyValueObservingOptions.New, RunningChanged);
+
+			// Observe the previewView's regionOfInterest to update the AVCaptureMetadataOutput's
+			// RectOfInterest when the user finishes resizing the region of interest.
+			previewView.RegionOfInterestChanged += RegionOfInterestChanged;
+
+			var center = NSNotificationCenter.DefaultCenter;
+
+			runtimeErrorNotificationToken = center.AddObserver (AVCaptureSession.RuntimeErrorNotification, OnRuntimeErrorNotification, session);
+
+			// A session can only run when the app is full screen. It will be interrupted
+			// in a multi-app layout, introduced in iOS 9, see also the documentation of
+			// AVCaptureSessionInterruptionReason.Add observers to handle these session
+			// interruptions and show a preview is paused message.See the documentation
+			// of AVCaptureSessionWasInterruptedNotification for other interruption reasons.
+			wasInterruptedNotificationToken = center.AddObserver (AVCaptureSession.WasInterruptedNotification, OnSessionWasInterrupted, session);
+			interruptionEndedNotificationToken = center.AddObserver (AVCaptureSession.InterruptionEndedNotification, OnSessionInterruptionEnded, session);
+		}
+
+		void RemoveObservers ()
+		{
+			runningChangeToken.Dispose ();
+			previewView.RegionOfInterestChanged -= RegionOfInterestChanged;
+			runtimeErrorNotificationToken.Dispose ();
+			wasInterruptedNotificationToken.Dispose ();
+			interruptionEndedNotificationToken.Dispose ();
+		}
+
+		void RunningChanged (NSObservedChange obj)
+		{
+			var isSessionRunning = ((NSNumber)obj.NewValue).BoolValue;
+
 			DispatchQueue.MainQueue.DispatchAsync (() => {
 				metadataObjectTypesButton.Enabled = isSessionRunning;
 				sessionPresetsButton.Enabled = isSessionRunning;
@@ -684,8 +696,11 @@ namespace AVCamBarcode
 			});
 		}
 
-		void RegionOfInterestChanged (CGRect newRegion)
+		void RegionOfInterestChanged (object sender, EventArgs e)
 		{
+			var pv = (PreviewView)sender;
+			CGRect newRegion = pv.RegionOfInterest;
+
 			// Update the AVCaptureMetadataOutput with the new region of interest.
 			sessionQueue.DispatchAsync (() => {
 				// Translate the preview view's region of interest to the metadata output's coordinate system.
@@ -696,20 +711,9 @@ namespace AVCamBarcode
 			});
 		}
 
-		void AddObservers ()
+		void OnRuntimeErrorNotification (NSNotification notification)
 		{
-			runtimeErrorNotificationToken = AVCaptureSession.Notifications.ObserveRuntimeError (OnRuntimeErrorNotification);
-
-			// A session can only run when the app is full screen. It will be interrupted
-			// in a multi-app layout, introduced in iOS 9, see also the documentation of
-			// AVCaptureSessionInterruptionReason.Add observers to handle these session
-			// interruptions and show a preview is paused message.See the documentation
-			// of AVCaptureSessionWasInterruptedNotification for other interruption reasons.
-			wasInterruptedNotificationToken = AVCaptureSession.Notifications.ObserveWasInterrupted (WasInterruptedObserver);
-		}
-
-		void OnRuntimeErrorNotification (object sender, AVCaptureSessionRuntimeErrorEventArgs e)
-		{
+			var e = new AVCaptureSessionRuntimeErrorEventArgs (notification);
 			var errorVal = e.Error;
 			if (errorVal == null)
 				return;
@@ -723,15 +727,15 @@ namespace AVCamBarcode
 
 			if (error == AVError.MediaServicesWereReset) {
 				sessionQueue.DispatchAsync (() => {
-					if (SessionRunning) {
+					if (sessionRunning) {
 						session.StartRunning ();
-						SessionRunning = session.Running;
+						sessionRunning = session.Running;
 					}
 				});
 			}
 		}
 
-		void WasInterruptedObserver (object sender, NSNotificationEventArgs e)
+		void OnSessionWasInterrupted (NSNotification notification)
 		{
 			// In some scenarios we want to enable the user to resume the session running.
 			// For example, if music playback is initiated via control center while
@@ -740,7 +744,7 @@ namespace AVCamBarcode
 			// music playback in control center will not automatically resume the session
 			// running. Also note that it is not always possible to resume
 
-			var reasonIntegerValue = ((NSNumber)e.Notification.UserInfo [AVCaptureSession.InterruptionReasonKey]).Int32Value;
+			var reasonIntegerValue = ((NSNumber)notification.UserInfo [AVCaptureSession.InterruptionReasonKey]).Int32Value;
 			var reason = (AVCaptureSessionInterruptionReason)reasonIntegerValue;
 
 			Console.WriteLine ($"Capture session was interrupted with reason {reason}");
@@ -754,8 +758,16 @@ namespace AVCamBarcode
 			}
 		}
 
-		void RemoveObservers ()
+		void OnSessionInterruptionEnded (NSNotification notification)
 		{
+			Console.WriteLine ("Capture session interruption ended");
+			if (cameraUnavailableLabel.Hidden) {
+				UIView.Animate (0.25, () => {
+					cameraUnavailableLabel.Alpha = 0;
+				}, () => {
+					cameraUnavailableLabel.Hidden = true;
+				});
+			}
 		}
 
 		#endregion

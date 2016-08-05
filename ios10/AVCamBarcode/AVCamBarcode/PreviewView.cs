@@ -51,10 +51,21 @@ namespace AVCamBarcode
 		// the region of interest in `resizeRegionOfInterestWithGestureRecognizer()`.
 		ControlCorner currentControlCorner = ControlCorner.None;
 
+		public event EventHandler RegionOfInterestChanged;
+
 		// This property is set only in `setRegionOfInterestWithProposedRegionOfInterest()`.
 		// When a user is resizing the region of interest in `resizeRegionOfInterestWithGestureRecognizer()`,
 		// the KVO notification will be triggered when the resizing is finished.
-		public CGRect RegionOfInterest { get; private set; } = CGRect.Empty;
+		CGRect regionOfInterest;
+		public CGRect RegionOfInterest {
+			get {
+				return regionOfInterest;
+			}
+			private set {
+				regionOfInterest = value;
+				RegionOfInterestChanged?.Invoke (this, EventArgs.Empty);
+			}
+		}
 
 		const float regionOfInterestControlDiameter = 12;
 		float RegionOfInterestControlRadius {
