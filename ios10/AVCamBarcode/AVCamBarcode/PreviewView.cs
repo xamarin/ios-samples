@@ -19,6 +19,7 @@ namespace AVCamBarcode
 		BottomRight
 	}
 
+	[Register ("PreviewView")]
 	public class PreviewView : UIView, IUIGestureRecognizerDelegate
 	{
 		readonly CAShapeLayer maskLayer = new CAShapeLayer ();

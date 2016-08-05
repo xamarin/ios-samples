@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 using UIKit;
 using Foundation;
-using AVFoundation;
 
 using static UIKit.UITableViewCellAccessory;
-using System.Linq;
 
 namespace AVCamBarcode
 {
@@ -15,6 +14,7 @@ namespace AVCamBarcode
 		void ItemSelectionViewController (ItemSelectionViewController itemSelectionViewController, List<string> selectedItems);
 	}
 
+	[Register ("ItemSelectionViewController")]
 	public class ItemSelectionViewController : UITableViewController
 	{
 		public string[] AllItems { get; set; }

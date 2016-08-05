@@ -33,6 +33,7 @@ namespace AVCamBarcode
 		}
 	}
 
+	[Register("CameraViewController")]
 	public class CameraViewController : UIViewController, IAVCaptureMetadataOutputObjectsDelegate, ItemSelectionViewControllerDelegate
 	{
 		const string metadataObjectTypeItemSelectionIdentifier = "MetadataObjectTypes";
