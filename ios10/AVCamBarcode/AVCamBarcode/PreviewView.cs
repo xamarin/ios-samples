@@ -56,16 +56,7 @@ namespace AVCamBarcode
 		// This property is set only in `setRegionOfInterestWithProposedRegionOfInterest()`.
 		// When a user is resizing the region of interest in `resizeRegionOfInterestWithGestureRecognizer()`,
 		// the KVO notification will be triggered when the resizing is finished.
-		CGRect regionOfInterest;
-		public CGRect RegionOfInterest {
-			get {
-				return regionOfInterest;
-			}
-			private set {
-				regionOfInterest = value;
-				RegionOfInterestChanged?.Invoke (this, EventArgs.Empty);
-			}
-		}
+		public CGRect RegionOfInterest { get; set; }
 
 		const float regionOfInterestControlDiameter = 12;
 		float RegionOfInterestControlRadius {
@@ -251,7 +242,8 @@ namespace AVCamBarcode
 
 			case UIGestureRecognizerState.Ended:
 				// TODO: replace with event
-				DidChangeValue (forKey: "regionOfInterest");
+				//DidChangeValue (forKey: "regionOfInterest");
+				RegionOfInterestChanged?.Invoke (this, EventArgs.Empty);
 
 				// Reset the current corner reference to none now that the resize.
 				// gesture recognizer has ended.

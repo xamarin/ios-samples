@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Threading;
 
 using UIKit;
 using Foundation;
@@ -8,15 +9,12 @@ using AVFoundation;
 using CoreGraphics;
 using CoreAnimation;
 using CoreFoundation;
+using CoreText;
 
 using static AVFoundation.AVCaptureVideoOrientation;
-using CoreText;
-using System.Threading;
 
 namespace AVCamBarcode
 {
-	// MARK: Session Management
-
 	enum SessionSetupResult
 	{
 		success,
@@ -31,7 +29,7 @@ namespace AVCamBarcode
 		bool PathContaints (CGPoint point)
 		{
 			var path = Path;
-			return path != null ? Path.ContainsPoint (point, false) : false;
+			return path != null && path.ContainsPoint (point, false);
 		}
 	}
 
@@ -72,11 +70,6 @@ namespace AVCamBarcode
 		SessionSetupResult setupResult = SessionSetupResult.success;
 
 		bool sessionRunning;
-
-		// This property is set only in `setRegionOfInterestWithProposedRegionOfInterest ()`.
-		// When a user is resizing the region of interest in `resizeRegionOfInterestWithGestureRecognizer ()`,
-		// the KVO notification will be triggered when the resizing is finished.
-		CGRect regionOfInterest;
 
 		IDisposable runningChangeToken;
 
@@ -248,9 +241,9 @@ namespace AVCamBarcode
 			return !previewView.IsResizingRegionOfInterest;
 		}
 
-		public override void ViewWillTransitionToSize (CGSize size, IUIViewControllerTransitionCoordinator coordinator)
+		public override void ViewWillTransitionToSize (CGSize toSize, IUIViewControllerTransitionCoordinator coordinator)
 		{
-			base.ViewWillTransitionToSize (size, coordinator);
+			base.ViewWillTransitionToSize (toSize, coordinator);
 
 			var videoPreviewLayerConnection = previewView.VideoPreviewLayer.Connection;
 			if (videoPreviewLayerConnection != null) {
@@ -276,7 +269,7 @@ namespace AVCamBarcode
 						newRegionOfInterest.Width = oldRegionOfInterest.Width;
 						newRegionOfInterest.Height = oldRegionOfInterest.Height;
 					} else if (oldVideoOrientation == LandscapeRight && newVideoOrientation == Portrait) {
-						newRegionOfInterest.X = size.Width - oldRegionOfInterest.Y - oldRegionOfInterest.Height;
+						newRegionOfInterest.X = toSize.Width - oldRegionOfInterest.Y - oldRegionOfInterest.Height;
 						newRegionOfInterest.Y = oldRegionOfInterest.X;
 						newRegionOfInterest.Width = oldRegionOfInterest.Height;
 						newRegionOfInterest.Height = oldRegionOfInterest.Width;
@@ -292,7 +285,7 @@ namespace AVCamBarcode
 						newRegionOfInterest.Height = oldRegionOfInterest.Width;
 					} else if (oldVideoOrientation == Portrait && newVideoOrientation == LandscapeRight) {
 						newRegionOfInterest.X = oldRegionOfInterest.Y;
-						newRegionOfInterest.Y = size.Height - oldRegionOfInterest.X - oldRegionOfInterest.Width;
+						newRegionOfInterest.Y = toSize.Height - oldRegionOfInterest.X - oldRegionOfInterest.Width;
 						newRegionOfInterest.Width = oldRegionOfInterest.Height;
 						newRegionOfInterest.Height = oldRegionOfInterest.Width;
 					} else if (oldVideoOrientation == Portrait && newVideoOrientation == LandscapeLeft) {
@@ -437,9 +430,9 @@ namespace AVCamBarcode
 
 					if (session.CanAddInput (vDeviceInput)) {
 						session.AddInput (vDeviceInput);
-						this.videoDeviceInput = vDeviceInput;
+						videoDeviceInput = vDeviceInput;
 					} else {
-						session.AddInput (this.videoDeviceInput);
+						session.AddInput (videoDeviceInput);
 					}
 
 					// Restore the previous session preset if we can.
