@@ -8,7 +8,7 @@ namespace SimpleBackgroundTransfer {
 	public partial class SimpleBackgroundTransferViewController : UIViewController {
 
 		const string Identifier = "com.SimpleBackgroundTransfer.BackgroundSession";
-		const string DownloadUrlString = "https://atmire.com/dspace-labs3/bitstream/handle/123456789/7618/earth-map-huge.jpg";
+		const string DownloadUrlString = "https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg";
 
 		public NSUrlSessionDownloadTask downloadTask;
 		public NSUrlSession session;
