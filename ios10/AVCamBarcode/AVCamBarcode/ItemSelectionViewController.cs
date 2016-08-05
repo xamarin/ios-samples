@@ -35,6 +35,19 @@ namespace AVCamBarcode
 			DismissViewController (true, null);
 		}
 
+		public ItemSelectionViewController (IntPtr handle)
+			: base (handle)
+		{
+		}
+
+
+		//[Export ("initWithCoder:")]
+		//public ItemSelectionViewController (NSCoder coder)
+		//	: base (coder)
+		//{
+		//}
+
+
 		#region UITableViewDataSource
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)

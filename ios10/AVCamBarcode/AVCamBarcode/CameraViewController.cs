@@ -93,6 +93,18 @@ namespace AVCamBarcode
 			}
 		}
 
+		public CameraViewController (IntPtr handle)
+			: base (handle)
+		{
+		}
+
+
+		//[Export ("initWithCoder:")]
+		//public CameraViewController (NSCoder coder)
+		//	: base (coder)
+		//{
+		//}
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
