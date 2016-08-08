@@ -73,7 +73,7 @@ namespace SpeakToMe
 			var audioSession = AVAudioSession.SharedInstance ();
 			NSError err;
 			err = audioSession.SetCategory (AVAudioSessionCategory.Record);
-			audioSession.SetMode (AVAudioSession.ModeMeasurement, out err); // TODO: request overload
+			audioSession.SetMode (AVAudioSession.ModeMeasurement, out err);
 			err = audioSession.SetActive (true, AVAudioSessionSetActiveOptions.NotifyOthersOnDeactivation);
 
 			// Configure request so that results are returned before audio recording is finished
