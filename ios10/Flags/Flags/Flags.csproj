@@ -90,15 +90,10 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Contents.json" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Main.storyboard" />
+    <Folder Include="Assets.xcassets\Image2.imageset\" />
+    <Folder Include="Assets.xcassets\Image3.imageset\" />
+    <Folder Include="Assets.xcassets\splash-xamagon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -111,6 +106,39 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Spotlight-40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Spotlight-40%402x-1.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Spotlight-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Spotlight-40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-iPadPro%402x.png" />
+    <ImageAsset Include="Assets.xcassets\arrow-back.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\arrow-back.imageset\arrow-back.png" />
+    <ImageAsset Include="Assets.xcassets\arrow-back.imageset\arrow-back%402x.png" />
+    <ImageAsset Include="Assets.xcassets\arrow-back.imageset\arrow-back%403x.png" />
+    <ImageAsset Include="Assets.xcassets\arrow-forward.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\arrow-forward.imageset\arrow-forward.png" />
+    <ImageAsset Include="Assets.xcassets\arrow-forward.imageset\arrow-forward%402x.png" />
+    <ImageAsset Include="Assets.xcassets\arrow-forward.imageset\arrow-forward%403x.png" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon.png" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
