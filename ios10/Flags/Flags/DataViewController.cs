@@ -27,6 +27,9 @@ namespace Flags
 				return regionCode;
 			}
 			set {
+				if (regionCode == value)
+					return;
+
 				regionCode = value;
 				flag = null;
 				if (!string.IsNullOrWhiteSpace (regionCode) && regionCode.Length == 2) {
@@ -40,6 +43,26 @@ namespace Flags
 		public DataViewController (IntPtr handle)
 			: base (handle)
 		{
+		}
+
+		public override void ViewWillAppear (bool animated)
+		{
+			base.ViewWillAppear (animated);
+
+			var rc = RegionCode;
+			if (rc == null)
+				throw new InvalidProgramException ("No region code has been set");
+
+			// TODO: make sure this works
+			answerLabel.Text = NSLocale.CurrentLocale.GetCountryCodeDisplayName (regionCode);
+			flagLabel.Text = flag;
+		}
+
+		[Action ("revealAnswer:")]
+		void revealAnswer (UIButton sender)
+		{
+			answerLabel.Hidden = false;
+			revealButton.Hidden = true;
 		}
 	}
 }
