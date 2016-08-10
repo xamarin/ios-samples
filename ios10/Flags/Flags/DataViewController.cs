@@ -22,7 +22,7 @@ namespace Flags
 
 		string flag;
 		string regionCode;
-		string RegionCode {
+		public string RegionCode {
 			get {
 				return regionCode;
 			}

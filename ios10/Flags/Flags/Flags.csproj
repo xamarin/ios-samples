@@ -114,6 +114,7 @@
     <Compile Include="DataViewController.designer.cs">
       <DependentUpon>DataViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="RootViewControllerDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
