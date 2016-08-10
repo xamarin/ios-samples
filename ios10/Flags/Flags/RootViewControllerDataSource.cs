@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
 using UIKit;
 using Foundation;
@@ -7,16 +7,15 @@ namespace Flags
 {
 	public class RootViewControllerDataSource : UIPageViewControllerDataSource
 	{
-		readonly List<string> regionCodes = new List<string> ();
+		readonly string [] regionCodes;
 
-		// TODO: replace with .net analog
 		NSCache cachedDataViewControllers = new NSCache ();
 
 		UIStoryboard storyboard;
 
 		public int NumberOfFlags {
 			get {
-				return regionCodes.Count;
+				return regionCodes.Length;
 			}
 		}
 
@@ -24,7 +23,8 @@ namespace Flags
 		{
 			this.storyboard = storyboard;
 
-			regionCodes.AddRange (NSLocale.ISOCountryCodes);
+			regionCodes = NSLocale.ISOCountryCodes;
+			regionCodes.Shuffle (new Random ());
 		}
 
 		public override UIViewController GetPreviousViewController (UIPageViewController pageViewController, UIViewController referenceViewController)
@@ -49,7 +49,7 @@ namespace Flags
 				return null;
 
 			var index = IndexOfViewController (dataViewController);
-			if (index >= regionCodes.Count - 1)
+			if (index >= regionCodes.Length - 1)
 				return null;
 
 			index += 1;
@@ -58,7 +58,8 @@ namespace Flags
 
 		public DataViewController GetViewControllerAt (int index)
 		{
-			if (regionCodes.Count == 0 || index >= regionCodes.Count)
+			var len = regionCodes.Length;
+			if (len == 0 || index >= len)
 				return null;
 
 			var regionCode = regionCodes [index];
@@ -83,7 +84,22 @@ namespace Flags
 			if (string.IsNullOrWhiteSpace (regionCode))
 				return -1;
 
-			return regionCodes.IndexOf (regionCode);
+			return Array.IndexOf (regionCodes, regionCode);
+		}
+	}
+
+	public static class Utils
+	{
+		// For more info https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+		public static void Shuffle<T> (this T [] array, Random rng)
+		{
+			int n = array.Length;
+			for (int i = 0; i < array.Length; i++) {
+				var k = rng.Next (i+1); // 0 <= k <= i
+				T tmp = array [k];
+				array [k] = array [i];
+				array [i] = tmp;
+			}
 		}
 	}
 }

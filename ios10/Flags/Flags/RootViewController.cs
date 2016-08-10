@@ -33,7 +33,7 @@ namespace Flags
 			if (pageViewController == null)
 				return;
 
-			var startingViewController = dataSource.GetViewControllerAt (0);
+			var startingViewController = DataSource.GetViewControllerAt (0);
 			if (startingViewController == null)
 				return;
 

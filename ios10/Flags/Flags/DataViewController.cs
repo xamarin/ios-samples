@@ -53,12 +53,11 @@ namespace Flags
 			if (rc == null)
 				throw new InvalidProgramException ("No region code has been set");
 
-			// TODO: make sure this works
 			answerLabel.Text = NSLocale.CurrentLocale.GetCountryCodeDisplayName (regionCode);
 			flagLabel.Text = flag;
 		}
 
-		[Action ("revealAnswer:")]
+		[Action ("revealAnswerWithSender:")]
 		void revealAnswer (UIButton sender)
 		{
 			answerLabel.Hidden = false;
