@@ -14,6 +14,12 @@ namespace Flags
 
 		UIStoryboard storyboard;
 
+		public int NumberOfFlags {
+			get {
+				return regionCodes.Count;
+			}
+		}
+
 		public RootViewControllerDataSource (UIStoryboard storyboard)
 		{
 			this.storyboard = storyboard;
@@ -50,7 +56,7 @@ namespace Flags
 			return GetViewControllerAt (index);
 		}
 
-		DataViewController GetViewControllerAt (int index)
+		public DataViewController GetViewControllerAt (int index)
 		{
 			if (regionCodes.Count == 0 || index >= regionCodes.Count)
 				return null;
