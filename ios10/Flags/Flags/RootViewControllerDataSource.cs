@@ -8,10 +8,9 @@ namespace Flags
 	public class RootViewControllerDataSource : UIPageViewControllerDataSource
 	{
 		readonly string [] regionCodes;
+		readonly UIStoryboard storyboard;
 
 		NSCache cachedDataViewControllers = new NSCache ();
-
-		UIStoryboard storyboard;
 
 		public int NumberOfFlags {
 			get {
@@ -32,7 +31,6 @@ namespace Flags
 			var dataViewController = referenceViewController as DataViewController;
 			if (dataViewController == null)
 				return null;
-
 
 			var index = IndexOfViewController (dataViewController);
 			if (index <= 0)

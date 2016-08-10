@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>1eb21297-5f24-11e6-b1f2-a8206629811d</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginning</Level>
+	<Tags>iOS10, User Interface</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<Gallery>true</Gallery>
+	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Brief>A demonstration of automatic RTL support in Asset Catalogs and UIStackViews</Brief>
+</SampleMetadata>
