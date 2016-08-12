@@ -37,7 +37,7 @@ namespace HlsCatalog
 
 		public string Name { get; set; }
 
-		public AVUrlAsset urlAsset { get; set; }
+		public AVUrlAsset UrlAsset { get; set; }
 
 		public override bool Equals (object obj)
 		{
@@ -53,12 +53,12 @@ namespace HlsCatalog
 
 		public bool Equals (Asset other)
 		{
-			return Name == other.Name && urlAsset.Equals (other.urlAsset);
+			return Name == other.Name && UrlAsset.Equals (other.UrlAsset);
 		}
 
 		public override int GetHashCode ()
 		{
-			return Name.GetHashCode () ^ urlAsset.GetHashCode ();
+			return Name.GetHashCode () ^ UrlAsset.GetHashCode ();
 		}
 	}
 }

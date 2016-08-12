@@ -96,6 +96,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Model\" />
+    <Folder Include="Managers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -113,6 +114,8 @@
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Asset.cs" />
+    <Compile Include="Managers\AssetListManager.cs" />
+    <Compile Include="Managers\AssetPersistenceManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
