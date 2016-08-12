@@ -94,6 +94,8 @@
     <Folder Include="Assets.xcassets\Image2.imageset\" />
     <Folder Include="Assets.xcassets\Image3.imageset\" />
     <Folder Include="Assets.xcassets\splash-xamagon.imageset\" />
+    <Folder Include="Resources\Base.lproj\" />
+    <Folder Include="Resources\ar.lproj\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -113,8 +115,8 @@
     <Compile Include="RootViewControllerDataSource.cs" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Resources\Base.lproj\Main.storyboard" />
+    <InterfaceDefinition Include="Resources\Base.lproj\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json" />
@@ -144,6 +146,9 @@
     <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon.png" />
     <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
     <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ar.lproj\Main.strings" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
