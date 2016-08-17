@@ -169,9 +169,27 @@ namespace HlsCatalog
 				}
 			}
 		}
+
+		// Cancels an AVAssetDownloadTask given an Asset.
+		void CancelDownload (Asset asset)
+		{
+			activeDownloadsMap.FirstOrDefault (kvp => kvp.Value.Equals (asset)).Key?.Cancel ();
+		}
+
+		// This function demonstrates returns the next `AVMediaSelectionGroup` and
+		// `AVMediaSelectionOption` that should be downloaded if needed.This is done
+		// by querying an `AVURLAsset`'s `AVAssetCache` for its available `AVMediaSelection`
+		// and comparing it to the remote versions.
+		Tuple<AVMediaSelectionGroup, AVMediaSelectionOption> NextMediaSelection (AVUrlAsset asset)
+		{
+			var assetCache = asset.AssetChace
+			guard  else { return (nil, nil) }
+			throw new NotImplementedException ();
+		}
+
 	}
 
-	public static class AVAssetDownloadUrlSessionExtensions
+	public static class NotBoundExtensions
 	{
 		// TODO:
 		// assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:
@@ -179,6 +197,12 @@ namespace HlsCatalog
 		public static AVAssetDownloadTask CreateDownloadTask (this AVAssetDownloadUrlSession session, AVUrlAsset asset, string title, NSData artworkData, NSDictionary options)
 		{
 			throw new NotImplementedException ();
+		}
+
+		// TODO: 
+		// !missing-selector! AVURLAsset::assetCache not bound
+		public static AVAssetCache AssetCache ()
+		{
 		}
 	}
 }
