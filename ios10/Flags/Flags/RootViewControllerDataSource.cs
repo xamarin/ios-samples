@@ -93,7 +93,7 @@ namespace Flags
 		{
 			int n = array.Length;
 			for (int i = 0; i < array.Length; i++) {
-				var k = rng.Next (i+1); // 0 <= k <= i
+				var k = rng.Next (i + 1); // 0 <= k <= i
 				T tmp = array [k];
 				array [k] = array [i];
 				array [i] = tmp;
