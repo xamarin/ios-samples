@@ -36,7 +36,7 @@ namespace BasicTable {
 			navController = new UINavigationController();
 			navController.PushViewController (iPhoneHome, false);
 
-			window.AddSubview (navController.View);
+			window.RootViewController = iPhoneHome;
 			
 			return true;
 		}
