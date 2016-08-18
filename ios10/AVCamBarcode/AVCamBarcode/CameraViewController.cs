@@ -40,22 +40,22 @@ namespace AVCamBarcode
 		const string sessionPresetItemSelectionIdentifier = "SessionPreset";
 
 		[Outlet ("metadataObjectTypesButton")]
-		UIButton metadataObjectTypesButton { get; set; }
+		UIButton MetadataObjectTypesButton { get; set; }
 
 		[Outlet ("sessionPresetsButton")]
-		UIButton sessionPresetsButton { get; set; }
+		UIButton SessionPresetsButton { get; set; }
 
 		[Outlet ("cameraButton")]
-		UIButton cameraButton { get; set; }
+		UIButton CameraButton { get; set; }
 
 		[Outlet ("cameraUnavailableLabel")]
-		UILabel cameraUnavailableLabel { get; set; }
+		UILabel CameraUnavailableLabel { get; set; }
 
 		[Outlet ("zoomSlider")]
-		UISlider zoomSlider { get; set; }
+		UISlider ZoomSlider { get; set; }
 
 		[Outlet ("previewView")]
-		PreviewView previewView { get; set; }
+		PreviewView PreviewView { get; set; }
 
 		AVCaptureDeviceInput videoDeviceInput;
 		readonly AVCaptureSession session = new AVCaptureSession ();
@@ -110,16 +110,16 @@ namespace AVCamBarcode
 			base.ViewDidLoad ();
 
 			// Disable UI. The UI is enabled if and only if the session starts running.
-			metadataObjectTypesButton.Enabled = false;
-			sessionPresetsButton.Enabled = false;
-			cameraButton.Enabled = false;
-			zoomSlider.Enabled = false;
+			MetadataObjectTypesButton.Enabled = false;
+			SessionPresetsButton.Enabled = false;
+			CameraButton.Enabled = false;
+			ZoomSlider.Enabled = false;
 
 			// Add the open barcode gesture recognizer to the region of interest view.
-			previewView.AddGestureRecognizer (OpenBarcodeURLGestureRecognizer);
+			PreviewView.AddGestureRecognizer (OpenBarcodeURLGestureRecognizer);
 
 			// Set up the video preview view.
-			previewView.Session = session;
+			PreviewView.Session = session;
 
 			// Check video authorization status. Video access is required and audio
 			// access is optional. If audio access is denied, audio is not recorded
@@ -250,14 +250,14 @@ namespace AVCamBarcode
 		// Do not allow rotation if the region of interest is being resized.
 		public override bool ShouldAutorotate ()
 		{
-			return !previewView.IsResizingRegionOfInterest;
+			return !PreviewView.IsResizingRegionOfInterest;
 		}
 
 		public override void ViewWillTransitionToSize (CGSize toSize, IUIViewControllerTransitionCoordinator coordinator)
 		{
 			base.ViewWillTransitionToSize (toSize, coordinator);
 
-			var videoPreviewLayerConnection = previewView.VideoPreviewLayer.Connection;
+			var videoPreviewLayerConnection = PreviewView.VideoPreviewLayer.Connection;
 			if (videoPreviewLayerConnection != null) {
 				var deviceOrientation = UIDevice.CurrentDevice.Orientation;
 				if (!deviceOrientation.IsPortrait () && !deviceOrientation.IsLandscape ())
@@ -272,7 +272,7 @@ namespace AVCamBarcode
 				// of interest's origin and size so that it stays anchored relative
 				// to the camera.
 				coordinator.AnimateAlongsideTransition (context => {
-					var oldRegionOfInterest = previewView.RegionOfInterest;
+					var oldRegionOfInterest = PreviewView.RegionOfInterest;
 					var newRegionOfInterest = new CGRect ();
 
 					if (oldVideoOrientation == LandscapeRight && newVideoOrientation == LandscapeLeft) {
@@ -307,10 +307,10 @@ namespace AVCamBarcode
 						newRegionOfInterest.Height = oldRegionOfInterest.Width;
 					}
 
-					previewView.SetRegionOfInterestWithProposedRegionOfInterest (newRegionOfInterest);
+					PreviewView.SetRegionOfInterestWithProposedRegionOfInterest (newRegionOfInterest);
 				}, context => {
 					sessionQueue.DispatchAsync (() => {
-						metadataOutput.RectOfInterest = previewView.VideoPreviewLayer.MapToLayerCoordinates (previewView.RegionOfInterest);
+						metadataOutput.RectOfInterest = PreviewView.VideoPreviewLayer.MapToLayerCoordinates (PreviewView.RegionOfInterest);
 					});
 					// Remove the old metadata object overlays.
 					RemoveMetadataObjectOverlayLayers ();
@@ -353,7 +353,6 @@ namespace AVCamBarcode
 				return;
 			}
 
-
 			if (session.CanAddInput (vDeviceInput)) {
 				session.AddInput (vDeviceInput);
 				videoDeviceInput = vDeviceInput;
@@ -369,8 +368,15 @@ namespace AVCamBarcode
 				session.AddOutput (metadataOutput);
 
 				// Set this view controller as the delegate for metadata objects.
+				Console.WriteLine (metadataOutput.Delegate);
+				Console.WriteLine ($"{this} {this.GetHashCode ()}");
 				metadataOutput.SetDelegate (this, metadataObjectsQueue);
+				Console.WriteLine ($"{metadataOutput.Delegate} {metadataOutput.Delegate.GetHashCode ()}");
+				Console.WriteLine (metadataOutput.MetadataObjectTypes);
+				Console.WriteLine (metadataOutput.AvailableMetadataObjectTypes);
 				metadataOutput.MetadataObjectTypes = metadataOutput.AvailableMetadataObjectTypes; // Use all metadata object types by default.
+				var wt = metadataOutput.WeakMetadataObjectTypes;
+				Console.WriteLine (metadataOutput.MetadataObjectTypes);
 				metadataOutput.RectOfInterest = CGRect.Empty;
 			} else {
 				Console.WriteLine ("Could not add metadata output to the session");
@@ -389,10 +395,10 @@ namespace AVCamBarcode
 		[Action ("changeCamera")]
 		void ChangeCamera ()
 		{
-			metadataObjectTypesButton.Enabled = false;
-			sessionPresetsButton.Enabled = false;
-			cameraButton.Enabled = false;
-			zoomSlider.Enabled = false;
+			MetadataObjectTypesButton.Enabled = false;
+			SessionPresetsButton.Enabled = false;
+			CameraButton.Enabled = false;
+			ZoomSlider.Enabled = false;
 
 			// Remove the metadata overlay layers, if any.
 			RemoveMetadataObjectOverlayLayers ();
@@ -454,12 +460,12 @@ namespace AVCamBarcode
 					session.CommitConfiguration ();
 				}
 
-				metadataObjectTypesButton.Enabled = true;
-				sessionPresetsButton.Enabled = true;
-				cameraButton.Enabled = true;
-				zoomSlider.Enabled = true;
-				zoomSlider.MaxValue = (float)NMath.Min (videoDeviceInput.Device.ActiveFormat.VideoMaxZoomFactor, 8);
-				zoomSlider.Value = (float)videoDeviceInput.Device.VideoZoomFactor;
+				MetadataObjectTypesButton.Enabled = true;
+				SessionPresetsButton.Enabled = true;
+				CameraButton.Enabled = true;
+				ZoomSlider.Enabled = true;
+				ZoomSlider.MaxValue = (float)NMath.Min (videoDeviceInput.Device.ActiveFormat.VideoMaxZoomFactor, 8);
+				ZoomSlider.Value = (float)videoDeviceInput.Device.VideoZoomFactor;
 			});
 		}
 
@@ -495,7 +501,7 @@ namespace AVCamBarcode
 		MetadataObjectLayer CreateMetadataObjectOverlayWithMetadataObject (AVMetadataObject metadataObject)
 		{
 			// Transform the metadata object so the bounds are updated to reflect those of the video preview layer.
-			var transformedMetadataObject = previewView.VideoPreviewLayer.GetTransformedMetadataObject (metadataObject);
+			var transformedMetadataObject = PreviewView.VideoPreviewLayer.GetTransformedMetadataObject (metadataObject);
 
 			// Create the initial metadata object overlay layer that can be used for either machine readable codes or faces.
 			var metadataObjectOverlayLayer = new MetadataObjectLayer {
@@ -524,7 +530,7 @@ namespace AVCamBarcode
 						Wrapped = true,
 
 						// Invert the effect of transform of the video preview so the text is orientated with the interface orientation.
-						Transform = CATransform3D.MakeFromAffine (previewView.Transform).Invert (default (CATransform3D)),
+						Transform = CATransform3D.MakeFromAffine (PreviewView.Transform).Invert (default (CATransform3D)),
 						AttributedString = new NSAttributedString (barcodeMetadataObject.StringValue, new CTStringAttributes {
 							Font = font,
 							ForegroundColor = UIColor.White.CGColor,
@@ -574,7 +580,7 @@ namespace AVCamBarcode
 			CATransaction.Begin ();
 			CATransaction.DisableActions = true;
 			foreach (var l in layers)
-				previewView.VideoPreviewLayer.AddSublayer (l);
+				PreviewView.VideoPreviewLayer.AddSublayer (l);
 			CATransaction.Commit ();
 
 			// Save the new metadata object overlays.
@@ -588,7 +594,7 @@ namespace AVCamBarcode
 		void OpenBarcodeUrl (UITapGestureRecognizer openBarcodeURLGestureRecognizer)
 		{
 			foreach (var metadataObjectOverlayLayer in metadataObjectOverlayLayers) {
-				var location = openBarcodeURLGestureRecognizer.LocationInView (previewView);
+				var location = openBarcodeURLGestureRecognizer.LocationInView (PreviewView);
 				if (metadataObjectOverlayLayer.Path.ContainsPoint (location, false)) {
 					var barcodeMetadataObject = metadataObjectOverlayLayer.MetadataObject as AVMetadataMachineReadableCodeObject;
 					if (barcodeMetadataObject != null) {
@@ -657,7 +663,7 @@ namespace AVCamBarcode
 
 			// Observe the previewView's regionOfInterest to update the AVCaptureMetadataOutput's
 			// RectOfInterest when the user finishes resizing the region of interest.
-			previewView.RegionOfInterestDidChange += RegionOfInterestChanged;
+			PreviewView.RegionOfInterestDidChange += RegionOfInterestChanged;
 
 			var center = NSNotificationCenter.DefaultCenter;
 
@@ -675,7 +681,7 @@ namespace AVCamBarcode
 		void RemoveObservers ()
 		{
 			runningChangeToken.Dispose ();
-			previewView.RegionOfInterestDidChange -= RegionOfInterestChanged;
+			PreviewView.RegionOfInterestDidChange -= RegionOfInterestChanged;
 			runtimeErrorNotificationToken.Dispose ();
 			wasInterruptedNotificationToken.Dispose ();
 			interruptionEndedNotificationToken.Dispose ();
@@ -686,12 +692,12 @@ namespace AVCamBarcode
 			var isSessionRunning = ((NSNumber)obj.NewValue).BoolValue;
 
 			DispatchQueue.MainQueue.DispatchAsync (() => {
-				metadataObjectTypesButton.Enabled = isSessionRunning;
-				sessionPresetsButton.Enabled = isSessionRunning;
-				cameraButton.Enabled = isSessionRunning && AVCaptureDevice.DevicesWithMediaType (AVMediaType.Video).Length > 1;
-				zoomSlider.Enabled = isSessionRunning;
-				zoomSlider.MaxValue = (float)NMath.Min (videoDeviceInput.Device.ActiveFormat.VideoMaxZoomFactor, 8);
-				zoomSlider.Value = (float)(videoDeviceInput.Device.VideoZoomFactor);
+				MetadataObjectTypesButton.Enabled = isSessionRunning;
+				SessionPresetsButton.Enabled = isSessionRunning;
+				CameraButton.Enabled = isSessionRunning && AVCaptureDevice.DevicesWithMediaType (AVMediaType.Video).Length > 1;
+				ZoomSlider.Enabled = isSessionRunning;
+				ZoomSlider.MaxValue = (float)NMath.Min (videoDeviceInput.Device.ActiveFormat.VideoMaxZoomFactor, 8);
+				ZoomSlider.Value = (float)(videoDeviceInput.Device.VideoZoomFactor);
 
 				// After the session stop running, remove the metadata object overlays,
 				// if any, so that if the view appears again, the previously displayed
@@ -709,7 +715,7 @@ namespace AVCamBarcode
 			// Update the AVCaptureMetadataOutput with the new region of interest.
 			sessionQueue.DispatchAsync (() => {
 				// Translate the preview view's region of interest to the metadata output's coordinate system.
-				metadataOutput.RectOfInterest = previewView.VideoPreviewLayer.MapToLayerCoordinates (newRegion);
+				metadataOutput.RectOfInterest = PreviewView.VideoPreviewLayer.MapToLayerCoordinates (newRegion);
 
 				// Ensure we are not drawing old metadata object overlays.
 				DispatchQueue.MainQueue.DispatchAsync (RemoveMetadataObjectOverlayLayers);
@@ -755,10 +761,10 @@ namespace AVCamBarcode
 			Console.WriteLine ($"Capture session was interrupted with reason {reason}");
 			if (reason == AVCaptureSessionInterruptionReason.VideoDeviceNotAvailableWithMultipleForegroundApps) {
 				// Simply fade-in a label to inform the user that the camera is unavailable.
-				cameraUnavailableLabel.Hidden = false;
-				cameraUnavailableLabel.Alpha = 0;
+				CameraUnavailableLabel.Hidden = false;
+				CameraUnavailableLabel.Alpha = 0;
 				UIView.Animate (0.25, () => {
-					cameraUnavailableLabel.Alpha = 1;
+					CameraUnavailableLabel.Alpha = 1;
 				});
 			}
 		}
@@ -766,11 +772,11 @@ namespace AVCamBarcode
 		void OnSessionInterruptionEnded (NSNotification notification)
 		{
 			Console.WriteLine ("Capture session interruption ended");
-			if (cameraUnavailableLabel.Hidden) {
+			if (CameraUnavailableLabel.Hidden) {
 				UIView.Animate (0.25, () => {
-					cameraUnavailableLabel.Alpha = 0;
+					CameraUnavailableLabel.Alpha = 0;
 				}, () => {
-					cameraUnavailableLabel.Hidden = true;
+					CameraUnavailableLabel.Hidden = true;
 				});
 			}
 		}

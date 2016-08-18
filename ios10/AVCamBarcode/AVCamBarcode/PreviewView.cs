@@ -1,11 +1,11 @@
 ﻿using System;
-using UIKit;
 
-using CoreGraphics;
+using UIKit;
 using Foundation;
 using CoreAnimation;
-using AVFoundation;
+using CoreGraphics;
 using CoreFoundation;
+using AVFoundation;
 using ObjCRuntime;
 
 namespace AVCamBarcode
@@ -94,7 +94,7 @@ namespace AVCamBarcode
 
 		public AVCaptureVideoPreviewLayer VideoPreviewLayer {
 			get {
-				return Layer as AVCaptureVideoPreviewLayer;
+				return (AVCaptureVideoPreviewLayer)Layer;
 			}
 		}
 
