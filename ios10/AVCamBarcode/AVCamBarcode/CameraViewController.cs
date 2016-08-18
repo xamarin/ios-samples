@@ -129,7 +129,6 @@ namespace AVCamBarcode
 				// The user has previously granted access to the camera.
 				break;
 
-
 			case AVAuthorizationStatus.NotDetermined:
 				// The user has not yet been presented with the option to grant
 				// video access. We suspend the session queue to delay session
@@ -427,7 +426,7 @@ namespace AVCamBarcode
 					session.BeginConfiguration ();
 
 					// Remove the existing device input first, since using the front and back camera simultaneously is not supported.
-					session.RemoveInput (vDeviceInput);
+					session.RemoveInput (videoDeviceInput);
 
 					// When changing devices, a session preset that may be supported
 					// on one device may not be supported by another. To allow the
@@ -470,7 +469,7 @@ namespace AVCamBarcode
 				                  .FirstOrDefault (d => d.Position == position);
 		}
 
-		[Action ("zoomCamera:")]
+		[Action ("zoomCameraWith:")]
 		void ZoomCamera (UISlider slider)
 		{
 			var device = videoDeviceInput.Device;
@@ -658,7 +657,7 @@ namespace AVCamBarcode
 
 			// Observe the previewView's regionOfInterest to update the AVCaptureMetadataOutput's
 			// RectOfInterest when the user finishes resizing the region of interest.
-			previewView.RegionOfInterestChanged += RegionOfInterestChanged;
+			previewView.RegionOfInterestDidChange += RegionOfInterestChanged;
 
 			var center = NSNotificationCenter.DefaultCenter;
 
@@ -676,7 +675,7 @@ namespace AVCamBarcode
 		void RemoveObservers ()
 		{
 			runningChangeToken.Dispose ();
-			previewView.RegionOfInterestChanged -= RegionOfInterestChanged;
+			previewView.RegionOfInterestDidChange -= RegionOfInterestChanged;
 			runtimeErrorNotificationToken.Dispose ();
 			wasInterruptedNotificationToken.Dispose ();
 			interruptionEndedNotificationToken.Dispose ();

@@ -22,6 +22,9 @@ namespace AVCamBarcode
 	[Register ("PreviewView")]
 	public class PreviewView : UIView, IUIGestureRecognizerDelegate
 	{
+		public event EventHandler RegionOfInterestWillChange;
+		public event EventHandler RegionOfInterestDidChange;
+
 		readonly CAShapeLayer maskLayer = new CAShapeLayer ();
 		readonly CAShapeLayer regionOfInterestOutline = new CAShapeLayer ();
 
@@ -51,8 +54,6 @@ namespace AVCamBarcode
 		// Saves a reference to the control corner that the user is using to resize
 		// the region of interest in `resizeRegionOfInterestWithGestureRecognizer()`.
 		ControlCorner currentControlCorner = ControlCorner.None;
-
-		public event EventHandler RegionOfInterestChanged;
 
 		// This property is set only in `setRegionOfInterestWithProposedRegionOfInterest()`.
 		// When a user is resizing the region of interest in `resizeRegionOfInterestWithGestureRecognizer()`,
@@ -171,7 +172,8 @@ namespace AVCamBarcode
 			switch (pan.State) {
 			case UIGestureRecognizerState.Began:
 				// TODO: replace with events
-				WillChangeValue (forKey: "regionOfInterest");
+				// WillChangeValue (forKey: "regionOfInterest");
+				RegionOfInterestWillChange?.Invoke (this, EventArgs.Empty);
 
 				// When the gesture begins, save the corner that is closes to
 				// the resize region of interest gesture recognizer's touch location.
@@ -244,7 +246,7 @@ namespace AVCamBarcode
 			case UIGestureRecognizerState.Ended:
 				// TODO: replace with event
 				//DidChangeValue (forKey: "regionOfInterest");
-				RegionOfInterestChanged?.Invoke (this, EventArgs.Empty);
+				RegionOfInterestDidChange?.Invoke (this, EventArgs.Empty);
 
 				// Reset the current corner reference to none now that the resize.
 				// gesture recognizer has ended.
@@ -327,8 +329,8 @@ namespace AVCamBarcode
 			}
 
 			// Clamp the size when the region of interest is being resized.
+			visibleVideoPreviewRect.Intersect(newRegionOfInterest);
 			newRegionOfInterest = visibleVideoPreviewRect;
-			newRegionOfInterest.Intersect (newRegionOfInterest);
 
 			// Fix a minimum width of the region of interest.
 			if (proposedRegionOfInterest.Size.Width < MinimumRegionOfInterestSize) {
