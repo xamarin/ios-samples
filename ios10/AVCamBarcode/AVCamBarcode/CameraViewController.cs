@@ -498,7 +498,7 @@ namespace AVCamBarcode
 		// An AutoResetEvent instance is used for drawing metadata object overlays so that
 		// only one group of metadata object overlays is drawn at a time.
 
-		MetadataObjectLayer CreateMetadataObjectOverlayWithMetadataObject (AVMetadataObject metadataObject)
+		MetadataObjectLayer CreateMetadataOverlay (AVMetadataObject metadataObject)
 		{
 			// Transform the metadata object so the bounds are updated to reflect those of the video preview layer.
 			var transformedMetadataObject = PreviewView.VideoPreviewLayer.GetTransformedMetadataObject (metadataObject);
@@ -574,18 +574,20 @@ namespace AVCamBarcode
 			removeMetadataObjectOverlayLayersTimer = null;
 		}
 
-		void AddMetadataObjectOverlayLayersToVideoPreviewView (IEnumerable<MetadataObjectLayer> layers)
+		void AddMetadataOverlayLayers (IEnumerable<MetadataObjectLayer> layers)
 		{
-			// Add the metadata object overlays as sublayers of the video preview layer. We disable actions to allow for fast drawing.
+			// Add the metadata object overlays as sublayers of the video preview layer.
+			// We disable actions to allow for fast drawing.
 			CATransaction.Begin ();
 			CATransaction.DisableActions = true;
-			foreach (var l in layers)
-				PreviewView.VideoPreviewLayer.AddSublayer (l);
-			CATransaction.Commit ();
 
-			// Save the new metadata object overlays.
 			metadataObjectOverlayLayers.Clear ();
-			metadataObjectOverlayLayers.AddRange (metadataObjectOverlayLayers);
+			foreach (var l in layers) {
+				PreviewView.VideoPreviewLayer.AddSublayer (l);
+				metadataObjectOverlayLayers.Add (l); // Save the new metadata object overlays.
+			}
+
+			CATransaction.Commit ();
 
 			// Create a timer to destroy the metadata object overlays.
 			removeMetadataObjectOverlayLayersTimer = NSTimer.CreateScheduledTimer (TimeSpan.FromSeconds (1), t => RemoveMetadataObjectOverlayLayers());
@@ -622,15 +624,9 @@ namespace AVCamBarcode
 			if (resetEvent.WaitOne (0)) {
 				DispatchQueue.MainQueue.DispatchAsync (() => {
 					RemoveMetadataObjectOverlayLayers ();
-					var layers = new List<MetadataObjectLayer> ();
-					foreach (var metadataObject in metadataObjects) {
-						var metadataObjectOverlayLayer = CreateMetadataObjectOverlayWithMetadataObject (metadataObject);
-						layers.Add (metadataObjectOverlayLayer);
-					}
-
-					AddMetadataObjectOverlayLayersToVideoPreviewView (layers);
+					AddMetadataOverlayLayers (metadataObjects.Select (CreateMetadataOverlay));
+					resetEvent.Set ();
 				});
-				resetEvent.Set ();
 			}
 		}
 
