@@ -2,6 +2,14 @@
 
 `AVCamBarcode` demonstrates how to use the `AVFoundation` capture API to detect barcodes and faces.
 
+## Machine Readable Codes
+
+* QR code ![qr_code](https://cloud.githubusercontent.com/assets/2273285/17813296/7c9025e2-6633-11e6-80b1-b624ac35591c.png)
+* PDF-417 ![pdf417](https://cloud.githubusercontent.com/assets/2273285/17813311/8f4a9488-6633-11e6-89d2-118790ee8a24.png)
+* Data Matrix ![datamatrix](https://cloud.githubusercontent.com/assets/2273285/17813387/d3cf4694-6633-11e6-8480-a51b2f6a06b7.png)
+
+
+
 ## Build Requirements
 
 Xcode 8.0, iOS 10.0 SDK
