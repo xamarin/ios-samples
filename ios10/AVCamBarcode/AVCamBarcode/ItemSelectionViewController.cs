@@ -40,14 +40,6 @@ namespace AVCamBarcode
 		{
 		}
 
-
-		//[Export ("initWithCoder:")]
-		//public ItemSelectionViewController (NSCoder coder)
-		//	: base (coder)
-		//{
-		//}
-
-
 		#region UITableViewDataSource
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)

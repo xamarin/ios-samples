@@ -73,11 +73,8 @@ namespace AVCamBarcode
 		bool sessionRunning;
 
 		IDisposable runningChangeToken;
-
 		NSObject runtimeErrorNotificationToken;
-
 		NSObject wasInterruptedNotificationToken;
-
 		NSObject interruptionEndedNotificationToken;
 
 		readonly List<MetadataObjectLayer> metadataObjectOverlayLayers = new List<MetadataObjectLayer> ();
@@ -97,13 +94,6 @@ namespace AVCamBarcode
 			: base (handle)
 		{
 		}
-
-
-		//[Export ("initWithCoder:")]
-		//public CameraViewController (NSCoder coder)
-		//	: base (coder)
-		//{
-		//}
 
 		public override void ViewDidLoad ()
 		{
@@ -152,7 +142,7 @@ namespace AVCamBarcode
 			// In general it is not safe to mutate an AVCaptureSession or any of its
 			// inputs, outputs, or connections from multiple threads at the same time.
 			// Why not do all of this on the main queue?
-			// Because AVCaptureSession.startRunning() is a blocking call which can
+			// Because AVCaptureSession.StartRunning() is a blocking call which can
 			// take a long time. We dispatch session setup to the sessionQueue so
 			// that the main queue isn't blocked, which keeps the UI responsive.
 			sessionQueue.DispatchAsync (ConfigureSession);
@@ -272,42 +262,36 @@ namespace AVCamBarcode
 				// of interest's origin and size so that it stays anchored relative
 				// to the camera.
 				coordinator.AnimateAlongsideTransition (context => {
-					var oldRegionOfInterest = PreviewView.RegionOfInterest;
-					var newRegionOfInterest = new CGRect ();
+					var oldRegion = PreviewView.RegionOfInterest;
+					var newRegion = new CGRect ();
 
 					if (oldVideoOrientation == LandscapeRight && newVideoOrientation == LandscapeLeft) {
-						newRegionOfInterest.X = oldSize.Width - oldRegionOfInterest.X - oldRegionOfInterest.Width;
-						newRegionOfInterest.Y = oldRegionOfInterest.Y;
-						newRegionOfInterest.Width = oldRegionOfInterest.Width;
-						newRegionOfInterest.Height = oldRegionOfInterest.Height;
+						newRegion = oldRegion.WithX (oldSize.Width - oldRegion.X - oldRegion.Width);
 					} else if (oldVideoOrientation == LandscapeRight && newVideoOrientation == Portrait) {
-						newRegionOfInterest.X = toSize.Width - oldRegionOfInterest.Y - oldRegionOfInterest.Height;
-						newRegionOfInterest.Y = oldRegionOfInterest.X;
-						newRegionOfInterest.Width = oldRegionOfInterest.Height;
-						newRegionOfInterest.Height = oldRegionOfInterest.Width;
+						newRegion.X = toSize.Width - oldRegion.Y - oldRegion.Height;
+						newRegion.Y = oldRegion.X;
+						newRegion.Width = oldRegion.Height;
+						newRegion.Height = oldRegion.Width;
 					} else if (oldVideoOrientation == LandscapeLeft && newVideoOrientation == LandscapeRight) {
-						newRegionOfInterest.X = oldSize.Width - oldRegionOfInterest.X - oldRegionOfInterest.Width;
-						newRegionOfInterest.Y = oldRegionOfInterest.Y;
-						newRegionOfInterest.Width = oldRegionOfInterest.Width;
-						newRegionOfInterest.Height = oldRegionOfInterest.Height;
+						newRegion = oldRegion.WithX (oldSize.Width - oldRegion.X - oldRegion.Width);
 					} else if (oldVideoOrientation == LandscapeLeft && newVideoOrientation == Portrait) {
-						newRegionOfInterest.X = oldRegionOfInterest.Y;
-						newRegionOfInterest.Y = oldSize.Width - oldRegionOfInterest.X - oldRegionOfInterest.Width;
-						newRegionOfInterest.Width = oldRegionOfInterest.Height;
-						newRegionOfInterest.Height = oldRegionOfInterest.Width;
+						newRegion.X = oldRegion.Y;
+						newRegion.Y = oldSize.Width - oldRegion.X - oldRegion.Width;
+						newRegion.Width = oldRegion.Height;
+						newRegion.Height = oldRegion.Width;
 					} else if (oldVideoOrientation == Portrait && newVideoOrientation == LandscapeRight) {
-						newRegionOfInterest.X = oldRegionOfInterest.Y;
-						newRegionOfInterest.Y = toSize.Height - oldRegionOfInterest.X - oldRegionOfInterest.Width;
-						newRegionOfInterest.Width = oldRegionOfInterest.Height;
-						newRegionOfInterest.Height = oldRegionOfInterest.Width;
+						newRegion.X = oldRegion.Y;
+						newRegion.Y = toSize.Height - oldRegion.X - oldRegion.Width;
+						newRegion.Width = oldRegion.Height;
+						newRegion.Height = oldRegion.Width;
 					} else if (oldVideoOrientation == Portrait && newVideoOrientation == LandscapeLeft) {
-						newRegionOfInterest.X = oldSize.Height - oldRegionOfInterest.Y - oldRegionOfInterest.Height;
-						newRegionOfInterest.Y = oldRegionOfInterest.X;
-						newRegionOfInterest.Width = oldRegionOfInterest.Height;
-						newRegionOfInterest.Height = oldRegionOfInterest.Width;
+						newRegion.X = oldSize.Height - oldRegion.Y - oldRegion.Height;
+						newRegion.Y = oldRegion.X;
+						newRegion.Width = oldRegion.Height;
+						newRegion.Height = oldRegion.Width;
 					}
 
-					PreviewView.SetRegionOfInterestWithProposedRegionOfInterest (newRegionOfInterest);
+					PreviewView.SetRegionOfInterestWithProposedRegionOfInterest (newRegion);
 				}, context => {
 					sessionQueue.DispatchAsync (() => {
 						metadataOutput.RectOfInterest = PreviewView.VideoPreviewLayer.MapToLayerCoordinates (PreviewView.RegionOfInterest);
@@ -368,15 +352,8 @@ namespace AVCamBarcode
 				session.AddOutput (metadataOutput);
 
 				// Set this view controller as the delegate for metadata objects.
-				Console.WriteLine (metadataOutput.Delegate);
-				Console.WriteLine ($"{this} {this.GetHashCode ()}");
 				metadataOutput.SetDelegate (this, metadataObjectsQueue);
-				Console.WriteLine ($"{metadataOutput.Delegate} {metadataOutput.Delegate.GetHashCode ()}");
-				Console.WriteLine (metadataOutput.MetadataObjectTypes);
-				Console.WriteLine (metadataOutput.AvailableMetadataObjectTypes);
 				metadataOutput.MetadataObjectTypes = metadataOutput.AvailableMetadataObjectTypes; // Use all metadata object types by default.
-				var wt = metadataOutput.WeakMetadataObjectTypes;
-				Console.WriteLine (metadataOutput.MetadataObjectTypes);
 				metadataOutput.RectOfInterest = CGRect.Empty;
 			} else {
 				Console.WriteLine ("Could not add metadata output to the session");
@@ -711,7 +688,7 @@ namespace AVCamBarcode
 			// Update the AVCaptureMetadataOutput with the new region of interest.
 			sessionQueue.DispatchAsync (() => {
 				// Translate the preview view's region of interest to the metadata output's coordinate system.
-				metadataOutput.RectOfInterest = PreviewView.VideoPreviewLayer.MapToLayerCoordinates (newRegion);
+				metadataOutput.RectOfInterest = PreviewView.VideoPreviewLayer.MapToMetadataOutputCoordinates (newRegion);
 
 				// Ensure we are not drawing old metadata object overlays.
 				DispatchQueue.MainQueue.DispatchAsync (RemoveMetadataObjectOverlayLayers);

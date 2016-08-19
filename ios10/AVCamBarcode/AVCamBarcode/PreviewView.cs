@@ -22,7 +22,6 @@ namespace AVCamBarcode
 	[Register ("PreviewView")]
 	public class PreviewView : UIView, IUIGestureRecognizerDelegate
 	{
-		public event EventHandler RegionOfInterestWillChange;
 		public event EventHandler RegionOfInterestDidChange;
 
 		readonly CAShapeLayer maskLayer = new CAShapeLayer ();
@@ -84,7 +83,7 @@ namespace AVCamBarcode
 			set {
 
 				if (value != null)
-					runningToken = value.AddObserver ("running", NSKeyValueObservingOptions.New, RunningChanged);
+					runningToken = value.AddObserver ("running", NSKeyValueObservingOptions.New, OnRunningChanged);
 				else
 					runningToken?.Dispose ();
 
@@ -153,13 +152,11 @@ namespace AVCamBarcode
 			bottomRightControl.FillColor = UIColor.White.CGColor;
 			Layer.AddSublayer (bottomRightControl);
 
-			// TODO: fix comment
 			// Add the region of interest gesture recognizer to the region of interest
 			// view so that the region of interest can be resized and moved. If you
 			// would like to have a fixed region of interest that cannot be resized
 			// or moved, do not add the following gesture recognizer. You will simply
-			// need to set the region of interest once in
-			// `observeValue(forKeyPath:, of:, change:, context:)`.
+			// need to set the region of interest once in OnRunningChanged method.
 			ResizeRegionOfInterestGestureRecognizer.Delegate = this;
 			AddGestureRecognizer (ResizeRegionOfInterestGestureRecognizer);
 		}
@@ -171,10 +168,6 @@ namespace AVCamBarcode
 
 			switch (pan.State) {
 			case UIGestureRecognizerState.Began:
-				// TODO: replace with events
-				// WillChangeValue (forKey: "regionOfInterest");
-				RegionOfInterestWillChange?.Invoke (this, EventArgs.Empty);
-
 				// When the gesture begins, save the corner that is closes to
 				// the resize region of interest gesture recognizer's touch location.
 				currentControlCorner = CornerOfRect (oldRegionOfInterest, touchLocation);
@@ -244,8 +237,6 @@ namespace AVCamBarcode
 				break;
 
 			case UIGestureRecognizerState.Ended:
-				// TODO: replace with event
-				//DidChangeValue (forKey: "regionOfInterest");
 				RegionOfInterestDidChange?.Invoke (this, EventArgs.Empty);
 
 				// Reset the current corner reference to none now that the resize.
@@ -263,10 +254,10 @@ namespace AVCamBarcode
 			var closestDistance = nfloat.MaxValue;
 			var closestCorner = ControlCorner.None;
 			Tuple<ControlCorner, CGPoint> [] corners = {
-				Tuple (ControlCorner.TopLeft, rect.Location),
-				Tuple (ControlCorner.TopRight, new CGPoint (rect.GetMaxX(), rect.GetMinY())),
-				Tuple (ControlCorner.BottomLeft, new CGPoint (rect.GetMinX (), rect.GetMaxY())),
-				Tuple (ControlCorner.BottomRight, new CGPoint (rect.GetMaxX (), rect.GetMaxY()))
+				Tuple (ControlCorner.TopLeft, rect.CornerTopLeft()),
+				Tuple (ControlCorner.TopRight, rect.CornerTopRight ()),
+				Tuple (ControlCorner.BottomLeft, rect.CornerBottomLeft ()),
+				Tuple (ControlCorner.BottomRight, rect.CornerBottomRight())
 			};
 
 			// corner, cornerPoint
@@ -284,9 +275,8 @@ namespace AVCamBarcode
 				}
 			}
 
-			if (closestDistance > regionOfInterestCornerTouchThreshold) {
+			if (closestDistance > regionOfInterestCornerTouchThreshold)
 				closestCorner = ControlCorner.None;
-			}
 
 			return closestCorner;
 		}
@@ -307,48 +297,48 @@ namespace AVCamBarcode
 			// Intersect the video preview view with the view's frame to only get
 			// the visible portions of the video preview view.
 			var visibleVideoPreviewRect = CGRect.Intersect (videoPreviewRect, Frame);
-			var oldRegionOfInterest = RegionOfInterest;
-			var newRegionOfInterest = proposedRegionOfInterest.Standardize ();
+			var oldRegion = RegionOfInterest;
+			var newRegion = proposedRegionOfInterest.Standardize ();
 
 			// Move the region of interest in bounds.
 			if (currentControlCorner == ControlCorner.None) {
 				nfloat xOffset = 0;
 				nfloat yOffset = 0;
 
-				if (!visibleVideoPreviewRect.Contains (newRegionOfInterest.Location)) {
-					xOffset = NMath.Max (visibleVideoPreviewRect.GetMinX () - newRegionOfInterest.GetMinX (), 0);
-					yOffset = NMath.Max (visibleVideoPreviewRect.GetMinY () - newRegionOfInterest.GetMinY (), 0);
+				if (!visibleVideoPreviewRect.Contains (newRegion.CornerTopLeft())) {
+					xOffset = NMath.Max (visibleVideoPreviewRect.GetMinX () - newRegion.GetMinX (), 0);
+					yOffset = NMath.Max (visibleVideoPreviewRect.GetMinY () - newRegion.GetMinY (), 0);
 				}
 
-				if (!visibleVideoPreviewRect.Contains (new CGPoint (visibleVideoPreviewRect.GetMaxX (), visibleVideoPreviewRect.GetMaxY ()))) {
-					xOffset = NMath.Min (visibleVideoPreviewRect.GetMaxX () - newRegionOfInterest.GetMaxX (), xOffset);
-					yOffset = NMath.Min (visibleVideoPreviewRect.GetMaxY () - newRegionOfInterest.GetMaxY (), yOffset);
+				if (!visibleVideoPreviewRect.Contains (visibleVideoPreviewRect.CornerBottomRight())) {
+					xOffset = NMath.Min (visibleVideoPreviewRect.GetMaxX () - newRegion.GetMaxX (), xOffset);
+					yOffset = NMath.Min (visibleVideoPreviewRect.GetMaxY () - newRegion.GetMaxY (), yOffset);
 				}
 
-				newRegionOfInterest.Offset (xOffset, yOffset);
+				newRegion.Offset (xOffset, yOffset);
 			}
 
 			// Clamp the size when the region of interest is being resized.
-			visibleVideoPreviewRect.Intersect(newRegionOfInterest);
-			newRegionOfInterest = visibleVideoPreviewRect;
+			visibleVideoPreviewRect.Intersect(newRegion);
+			newRegion = visibleVideoPreviewRect;
 
 			// Fix a minimum width of the region of interest.
 			if (proposedRegionOfInterest.Size.Width < MinimumRegionOfInterestSize) {
 				switch (currentControlCorner) {
 				case ControlCorner.TopLeft:
 				case ControlCorner.BottomLeft:
-					newRegionOfInterest.X = oldRegionOfInterest.Location.X + oldRegionOfInterest.Size.Width - MinimumRegionOfInterestSize;
-					newRegionOfInterest.Width = MinimumRegionOfInterestSize;
+					var x = oldRegion.Location.X + oldRegion.Size.Width - MinimumRegionOfInterestSize;
+					newRegion = newRegion.WithX (x).WithWidth (MinimumRegionOfInterestSize);
 					break;
 
 				case ControlCorner.TopRight:
-					newRegionOfInterest.X = oldRegionOfInterest.Location.X;
-					newRegionOfInterest.Width = MinimumRegionOfInterestSize;
+					newRegion = newRegion.WithX (oldRegion.Location.X)
+										 .WithWidth (MinimumRegionOfInterestSize);
 					break;
 
 				default:
-					newRegionOfInterest.Location = oldRegionOfInterest.Location;
-					newRegionOfInterest.Width = MinimumRegionOfInterestSize;
+					newRegion = newRegion.WithLocation (oldRegion.Location)
+										 .WithWidth (MinimumRegionOfInterestSize);
 					break;
 				}
 			}
@@ -358,30 +348,29 @@ namespace AVCamBarcode
 				switch (currentControlCorner) {
 				case ControlCorner.TopLeft:
 				case ControlCorner.TopRight:
-					newRegionOfInterest.Y = oldRegionOfInterest.Y + oldRegionOfInterest.Height - MinimumRegionOfInterestSize;
-					newRegionOfInterest.Height = MinimumRegionOfInterestSize;
+					newRegion = newRegion.WithY (oldRegion.Y + oldRegion.Height - MinimumRegionOfInterestSize)
+										 .WithHeight (MinimumRegionOfInterestSize);
 					break;
 
 				case ControlCorner.BottomLeft:
-					newRegionOfInterest.Y = oldRegionOfInterest.Y;
-					newRegionOfInterest.Height = MinimumRegionOfInterestSize;
+					newRegion = newRegion.WithY (oldRegion.Y)
+										 .WithHeight (MinimumRegionOfInterestSize);
 					break;
 
-
 				default:
-					newRegionOfInterest.Location = oldRegionOfInterest.Location;
-					newRegionOfInterest.Height = MinimumRegionOfInterestSize;
+					newRegion = newRegion.WithLocation (oldRegion.Location)
+										 .WithHeight (MinimumRegionOfInterestSize);
 					break;
 				}
 			}
 
-			RegionOfInterest = newRegionOfInterest;
+			RegionOfInterest = newRegion;
 			SetNeedsLayout ();
 		}
 
 		#region KVO
 
-		void RunningChanged (NSObservedChange change)
+		void OnRunningChanged (NSObservedChange change)
 		{
 			var running = ((NSNumber)change.NewValue).BoolValue;
 			if (!running)
@@ -400,8 +389,10 @@ namespace AVCamBarcode
 					SetRegionOfInterestWithProposedRegionOfInterest (newRegionOfInterest);
 				}
 
-				if (running)
+				if (running) {
 					SetRegionOfInterestWithProposedRegionOfInterest (RegionOfInterest);
+					RegionOfInterestDidChange?.Invoke (this, EventArgs.Empty);
+				}
 			});
 		}
 
@@ -423,10 +414,11 @@ namespace AVCamBarcode
 
 			regionOfInterestOutline.Path = CGPath.FromRect (RegionOfInterest);
 
-			topLeftControl.Position = new CGPoint (RegionOfInterest.X - RegionOfInterestControlRadius, RegionOfInterest.Y - RegionOfInterestControlRadius);
-			topRightControl.Position = new CGPoint (RegionOfInterest.X + RegionOfInterest.Width - RegionOfInterestControlRadius, RegionOfInterest.Y - RegionOfInterestControlRadius);
-			bottomLeftControl.Position = new CGPoint (RegionOfInterest.X - RegionOfInterestControlRadius, RegionOfInterest.Y + RegionOfInterest.Height - RegionOfInterestControlRadius);
-			bottomRightControl.Position = new CGPoint (RegionOfInterest.X + RegionOfInterest.Width - RegionOfInterestControlRadius, RegionOfInterest.Y + RegionOfInterest.Height - RegionOfInterestControlRadius);
+			var r = RegionOfInterestControlRadius;
+			topLeftControl.Position = RegionOfInterest.CornerTopLeft ().WithOffsetX (-r).WithOffsetY (-r);
+			topRightControl.Position = RegionOfInterest.CornerTopRight ().WithOffsetX (-r).WithOffsetY (-r);
+			bottomLeftControl.Position = RegionOfInterest.CornerBottomLeft ().WithOffsetX (-r).WithOffsetY (-r);
+			bottomRightControl.Position = RegionOfInterest.CornerBottomRight ().WithOffsetX (-r).WithOffsetY (-r);
 
 			CATransaction.Commit ();
 		}
@@ -446,7 +438,6 @@ namespace AVCamBarcode
 
 			return true;
 		}
-
 
 		[Export ("gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:")]
 		public bool ShouldRecognizeSimultaneously (UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer)

@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -111,6 +112,7 @@
     <Compile Include="CameraViewController.cs" />
     <Compile Include="ItemSelectionViewController.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Extensions\CGExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
