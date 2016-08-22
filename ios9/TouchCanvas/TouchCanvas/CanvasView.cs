@@ -160,7 +160,7 @@ namespace TouchCanvas {
 					type = type.Add (PointType.NeedsUpdate);
 
 				bool isLast = i == touches.Length - 1;
-				if (type.Has (PointType.Coalesced) && isLast) {
+				if (type.HasFlag (PointType.Coalesced) && isLast) {
 					type = type.Remove (PointType.Coalesced);
 					type = type.Add (PointType.Standard);
 				}

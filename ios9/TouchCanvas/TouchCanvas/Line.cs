@@ -60,7 +60,7 @@ namespace TouchCanvas {
 			var keepPoints = new List<LinePoint> ();
 
 			foreach (var point in Points) {
-				var keepPoint = !point.PointType.Has (type);
+				var keepPoint = !point.PointType.HasFlag (type);
 
 				if (!keepPoint) {
 					var rect = UpdateRectForLinePoint (point);
@@ -105,23 +105,23 @@ namespace TouchCanvas {
 				var pointType = point.PointType;
 
 				if (isDebuggingEnabled) {
-					if (pointType.Has (PointType.Cancelled))
+					if (pointType.HasFlag (PointType.Cancelled))
 						color = UIColor.Red;
-					else if (pointType.Has (PointType.NeedsUpdate))
+					else if (pointType.HasFlag (PointType.NeedsUpdate))
 						color = UIColor.Orange;
-					else if (pointType.Has (PointType.Finger))
+					else if (pointType.HasFlag (PointType.Finger))
 						color = UIColor.Purple;
-					else if (pointType.Has (PointType.Coalesced))
+					else if (pointType.HasFlag (PointType.Coalesced))
 						color = UIColor.Green;
-					else if (pointType.Has (PointType.Predicted))
+					else if (pointType.HasFlag (PointType.Predicted))
 						color = UIColor.Blue;
 				} else {
-					if (pointType.Has (PointType.Cancelled))
+					if (pointType.HasFlag (PointType.Cancelled))
 						color = UIColor.Red;
-					else if (pointType.Has (PointType.Finger))
+					else if (pointType.HasFlag (PointType.Finger))
 						color = UIColor.Purple;
 					
-					if (pointType.Has (PointType.Predicted) && !pointType.Has (PointType.Cancelled))
+					if (pointType.HasFlag (PointType.Predicted) && !pointType.HasFlag (PointType.Cancelled))
 						color = color.ColorWithAlpha (.5f);
 				}
 
@@ -137,9 +137,9 @@ namespace TouchCanvas {
 
 				// Draw azimuith and elevation on all non-coalesced points when debugging.
 				if (isDebuggingEnabled &&
-					!point.PointType.Has (PointType.Coalesced) &&
-					!point.PointType.Has (PointType.Predicted) &&
-					!point.PointType.Has (PointType.Finger)) {
+				    !point.PointType.HasFlag (PointType.Coalesced) &&
+				    !point.PointType.HasFlag (PointType.Predicted) &&
+				    !point.PointType.HasFlag (PointType.Finger)) {
 					context.BeginPath ();
 					context.SetStrokeColor (UIColor.Red.CGColor);
 					context.SetLineWidth (.5f);
@@ -167,8 +167,8 @@ namespace TouchCanvas {
 			} else {
 				for (int i = 0; i < allPoints.Count; i++) {
 					var point = allPoints[i];
-					if ((point.PointType.Has (PointType.NeedsUpdate) ||
-						point.PointType.Has (PointType.Predicted)) && i > (allPoints.Count - 2)) {
+					if ((point.PointType.HasFlag (PointType.NeedsUpdate) ||
+					     point.PointType.HasFlag (PointType.Predicted)) && i > (allPoints.Count - 2)) {
 						committing.Add (Points.First ());
 						break;
 					}

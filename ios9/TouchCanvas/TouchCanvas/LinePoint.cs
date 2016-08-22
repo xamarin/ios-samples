@@ -5,15 +5,16 @@ using Foundation;
 using UIKit;
 
 namespace TouchCanvas {
+
 	[Flags]
 	public enum PointType {
 		Standard = 0,
-		Coalesced,
-		Predicted,
-		NeedsUpdate,
-		Updated,
-		Cancelled,
-		Finger
+		Coalesced = 1 << 0,
+		Predicted = 1 << 1,
+		NeedsUpdate = 1 << 2,
+		Updated = 1 << 3,
+		Cancelled = 1 << 4,
+		Finger = 1 << 5
 	};
 
 	public class LinePoint {
@@ -88,7 +89,7 @@ namespace TouchCanvas {
 			// Iterate through possible properties.
 			foreach (var expectedProperty in touchProperties) {
 				// If an update to this property is not expected, continue to the next property.
-				if (EstimatedPropertiesExpectingUpdates.Has (expectedProperty))
+				if (EstimatedPropertiesExpectingUpdates.HasFlag (expectedProperty))
 					continue;
 
 				switch (expectedProperty) {
@@ -107,12 +108,11 @@ namespace TouchCanvas {
 					break;
 				}
 
-				if (!touch.EstimatedProperties.Has (expectedProperty)) {
-					// Flag that this point now has a 'final' value for this property.
+				// Flag that this point now has a 'final' value for this property.
+				if (!touch.EstimatedProperties.HasFlag (expectedProperty))
 					EstimatedProperties = EstimatedProperties.Remove (expectedProperty);
-				}
 
-				if (!touch.EstimatedPropertiesExpectingUpdates.Has (expectedProperty)) {
+				if (!touch.EstimatedPropertiesExpectingUpdates.HasFlag (expectedProperty)) {
 					// Flag that this point is no longer expecting updates for this property.
 					EstimatedPropertiesExpectingUpdates = EstimatedPropertiesExpectingUpdates.Remove (expectedProperty);
 
