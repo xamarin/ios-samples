@@ -96,7 +96,7 @@ namespace TouchCanvas {
 
 			CanvasView.EndTouches (touches, true);
 			if (visualizeAzimuth) {
-				foreach (var touch in touches.ToArray<UITouch> ())
+				foreach (var touch in touches.Cast<UITouch> ())
 					ReticleView.Hidden |= touch.Type == UITouchType.Stylus;
 			}
 		}

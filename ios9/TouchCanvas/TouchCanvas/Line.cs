@@ -57,9 +57,8 @@ namespace TouchCanvas {
 		{
 			var updateRect = CGRect.Empty;
 			LinePoint priorPoint = null;
-			var keepPoints = new List<LinePoint> ();
 
-			foreach (var point in Points) {
+			Points = Points.Where (point => {
 				var keepPoint = !point.PointType.HasFlag (type);
 
 				if (!keepPoint) {
@@ -67,14 +66,12 @@ namespace TouchCanvas {
 					if (priorPoint != null)
 						rect = rect.UnionWith (UpdateRectForLinePoint (priorPoint));
 					updateRect = updateRect.UnionWith (rect);
-				} else {
-					keepPoints.Add (point);
 				}
 
 				priorPoint = point;
-			}
+				return keepPoint;
+			}).ToList ();
 
-			Points = keepPoints;
 			return updateRect;
 		}
 
@@ -162,13 +159,12 @@ namespace TouchCanvas {
 			var committing = new List<LinePoint> ();
 
 			if (commitAll) {
-				committing = allPoints;
+				committing.AddRange (allPoints);
 				Points.Clear ();
 			} else {
 				for (int i = 0; i < allPoints.Count; i++) {
 					var point = allPoints[i];
-					if ((point.PointType.HasFlag (PointType.NeedsUpdate) ||
-					     point.PointType.HasFlag (PointType.Predicted)) && i > (allPoints.Count - 2)) {
+					if (!point.PointType.HasFlag (PointType.NeedsUpdate | PointType.Predicted) || i >= (allPoints.Count - 2)) {
 						committing.Add (Points.First ());
 						break;
 					}
