@@ -82,7 +82,7 @@ namespace TouchCanvas {
 		{
 			CGRect updateRect = CGRect.Empty;
 			foreach (var point in Points) {
-				point.PointType = point.PointType.Add<PointType> (PointType.Cancelled);
+				point.PointType |= PointType.Cancelled;
 				updateRect = updateRect.UnionWith (UpdateRectForLinePoint (point));
 			}
 

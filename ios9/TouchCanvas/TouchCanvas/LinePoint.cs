@@ -66,7 +66,7 @@ namespace TouchCanvas {
 			Force = (Type == UITouchType.Stylus || touch.Force > 0) ? touch.Force : 1f;
 
 			if (EstimatedPropertiesExpectingUpdates != 0)
-				PointType = this.PointType.Add (PointType.NeedsUpdate);
+				PointType |= PointType.NeedsUpdate;
 
 			EstimationUpdateIndex = touch.EstimationUpdateIndex;
 		}
@@ -110,15 +110,15 @@ namespace TouchCanvas {
 
 				// Flag that this point now has a 'final' value for this property.
 				if (!touch.EstimatedProperties.HasFlag (expectedProperty))
-					EstimatedProperties = EstimatedProperties.Remove (expectedProperty);
+					EstimatedProperties &= ~expectedProperty;
 
 				if (!touch.EstimatedPropertiesExpectingUpdates.HasFlag (expectedProperty)) {
 					// Flag that this point is no longer expecting updates for this property.
-					EstimatedPropertiesExpectingUpdates = EstimatedPropertiesExpectingUpdates.Remove (expectedProperty);
+					EstimatedPropertiesExpectingUpdates &= ~expectedProperty;
 
 					if (EstimatedPropertiesExpectingUpdates == 0) {
-						PointType = this.PointType.Remove (PointType.NeedsUpdate);
-						PointType = this.PointType.Add (PointType.Updated);
+						PointType &= ~PointType.NeedsUpdate;
+						PointType |= PointType.Updated;
 					}
 				}
 			}

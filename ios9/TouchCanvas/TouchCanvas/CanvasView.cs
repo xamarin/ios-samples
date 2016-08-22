@@ -154,15 +154,15 @@ namespace TouchCanvas {
 
 				// The visualization displays non-`.Stylus` touches differently.
 				if (!isStylus)
-					type = type.Add (PointType.Finger);
+					type |= PointType.Finger;
 
 				if (isTouchUpdatingEnabled && (touch.EstimatedProperties != 0))
-					type = type.Add (PointType.NeedsUpdate);
+					type |= PointType.NeedsUpdate;
 
 				bool isLast = i == touches.Length - 1;
 				if (type.HasFlag (PointType.Coalesced) && isLast) {
-					type = type.Remove (PointType.Coalesced);
-					type = type.Add (PointType.Standard);
+					type &= ~PointType.Coalesced;
+					type |= PointType.Standard;
 				}
 
 				var touchRect = line.AddPointOfType (type, touch);
