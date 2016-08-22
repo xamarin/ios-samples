@@ -90,16 +90,12 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Contents.json" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -113,6 +109,39 @@
     <Compile Include="ItemSelectionViewController.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Extensions\CGExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Images.xcassets\Contents.json" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-app-60%403x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-57.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-60%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-72.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-72%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-76.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-76%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-carplay-120.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-29.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-29%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-29%403x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-40.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-40%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-40%403x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-50.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-50%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spp-57%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-172.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-196.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-29%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-29%403x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-40%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-44%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-48.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-55.png" />
+    <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\splash-xamagon.png" />
+    <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
+    <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
