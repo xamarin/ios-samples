@@ -9,14 +9,19 @@ using UIKit;
 namespace TouchCanvas {
 	public partial class CanvasView : UIView {
 		bool isPredictionEnabled = UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad;
-		const bool isTouchUpdatingEnabled = true;
 
 		bool needsFullRedraw = true;
-		CGImage frozenImage;
+
+		// List containing all line objects that need to be drawn in Draw(CGRect rect)
 		readonly List<Line> lines = new List<Line> ();
+
+		// List containing all line objects that have been completely drawn into the frozenContext.
 		readonly List<Line> finishedLines = new List<Line> ();
 
+		// Holds a map of UITouch objects to Line objects whose touch has not ended yet.
 		readonly Dictionary<UITouch, Line> activeLines = new Dictionary<UITouch, Line> ();
+
+		// Holds a map of UITouch objects to Line objects whose touch has ended but still has points awaiting updates.
 		readonly Dictionary<UITouch, Line> pendingLines = new Dictionary<UITouch, Line> ();
 
 		bool isDebuggingEnabled;
@@ -43,6 +48,9 @@ namespace TouchCanvas {
 			}
 		}
 
+		// An CGImage containing the last representation of lines no longer receiving updates.
+		CGImage frozenImage;
+
 		CGBitmapContext frozenContext;
 		public CGBitmapContext FrozenContext {
 			get {
@@ -56,8 +64,7 @@ namespace TouchCanvas {
 
 					frozenContext = new CGBitmapContext (null, (nint)size.Width, (nint)size.Height, 8, 0, colorSpace, CGImageAlphaInfo.PremultipliedLast);
 					frozenContext.SetLineCap (CGLineCap.Round);
-					var transform = CGAffineTransform.MakeScale (scale, scale);
-					frozenContext.ConcatCTM (transform);
+					frozenContext.ConcatCTM (CGAffineTransform.MakeScale (scale, scale));
 				}
 
 				return frozenContext;
@@ -94,10 +101,16 @@ namespace TouchCanvas {
 			}
 
 			frozenImage = frozenImage ?? FrozenContext.ToImage ();
-			context.DrawImage (Bounds, frozenImage);
+			if(frozenImage != null)
+				context.DrawImage (Bounds, frozenImage);
 
 			foreach (var line in lines)
 				line.DrawInContext (context, IsDebuggingEnabled, UsePreciseLocations);
+		}
+
+		void SetFrozenImageNeedsUpdate ()
+		{
+			frozenImage = null;
 		}
 
 		public void Clear ()
@@ -117,9 +130,13 @@ namespace TouchCanvas {
 			foreach (var touch in touches.Cast<UITouch> ()) {
 				Line line;
 
-				// Retrieve a line from `activeLines`. If no line exists, create one.
+				// Retrieve a line from activeLines. If no line exists, create one.
 				if (!activeLines.TryGetValue (touch, out line))
 					line = AddActiveLineForTouch (touch);
+
+				// Remove prior predicted points and update the updateRect based on the removals. The touches
+				// used to create these points are predictions provided to offer additional data. They are stale
+				// by the time of the next event for this touch.
 				updateRect = updateRect.UnionWith (line.RemovePointsWithType (PointType.Predicted));
 
 				var coalescedTouches = evt.GetCoalescedTouches (touch) ?? new UITouch[0];
@@ -132,8 +149,7 @@ namespace TouchCanvas {
 					updateRect = updateRect.UnionWith (predictedRect);
 				}
 			}
-			SetNeedsDisplay ();
-//			SetNeedsDisplayInRect (updateRect);
+			SetNeedsDisplayInRect (updateRect);
 		}
 
 		Line AddActiveLineForTouch (UITouch touch)
@@ -156,9 +172,11 @@ namespace TouchCanvas {
 				if (!isStylus)
 					type |= PointType.Finger;
 
-				if (isTouchUpdatingEnabled && (touch.EstimatedProperties != 0))
+				// Touches with estimated properties require updates; add this information to the `PointType`.
+				if (touch.EstimatedProperties != 0)
 					type |= PointType.NeedsUpdate;
 
+				// The last touch in a set of .Coalesced touches is the originating touch. Track it differently.
 				bool isLast = i == touches.Length - 1;
 				if (type.HasFlag (PointType.Coalesced) && isLast) {
 					type &= ~PointType.Coalesced;
@@ -173,11 +191,6 @@ namespace TouchCanvas {
 			return rect.UnionWith (accumulatedRect);
 		}
 
-		void SetFrozenImageNeedsUpdate ()
-		{
-			frozenImage = null;
-		}
-
 		public void EndTouches (NSSet touches, bool cancel)
 		{
 			var updateRect = CGRect.Empty;
@@ -188,14 +201,18 @@ namespace TouchCanvas {
 				if (!activeLines.TryGetValue (touch, out line))
 					continue;
 
+				// If this is a touch cancellation, cancel the associated line.
 				if (cancel)
 					updateRect = updateRect.UnionWith (line.Cancel ());
 
-				if (line.IsComplete) {
+				// If the line is complete (no points needing updates) or updating isn't enabled, move the line to the frozenImage.
+				if (line.IsComplete)
 					FinishLine (line);
-				} else {
+				else
 					pendingLines.Add (touch, line);
-				}
+
+				// This touch is ending, remove the line corresponding to it from `activeLines`.
+				activeLines.Remove (touch);
 			}
 
 			SetNeedsDisplayInRect (updateRect);
@@ -231,6 +248,7 @@ namespace TouchCanvas {
 
 		void CommitLine (Line line)
 		{
+			// Have the line draw any segments between points no longer being updated into the frozenContext and remove them from the line.
 			line.DrawFixedPointsInContext (FrozenContext, IsDebuggingEnabled, UsePreciseLocations);
 			SetFrozenImageNeedsUpdate ();
 		}
