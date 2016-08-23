@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Chat
+﻿namespace Chat
 {
 	public enum MessageType
 	{

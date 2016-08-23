@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Drawing;
 using System.Collections.Generic;
 
 using UIKit;
 using Foundation;
 using CoreGraphics;
-using ObjCRuntime;
-using AudioToolbox;
 
 namespace Chat
 {
@@ -48,7 +45,7 @@ namespace Chat
 		public ChatViewController (IntPtr handle)
 			: base (handle)
 		{
-			messages = new List<Message> () {
+			messages = new List<Message> {
 				new Message { Type = MessageType.Incoming, Text = "Hello!" },
 				new Message { Type = MessageType.Outgoing, Text = "Hi!" },
 				new Message { Type = MessageType.Incoming, Text = "Do you know about Xamarin?" },
@@ -57,7 +54,7 @@ namespace Chat
 				new Message { Type = MessageType.Outgoing, Text = "I think it is the best way to develop mobile applications." },
 				new Message { Type = MessageType.Incoming, Text = "Wow :-)" },
 				new Message { Type = MessageType.Outgoing, Text = "Yep. Check it out\nhttp://Xamarin.com" },
-				new Message { Type = MessageType.Incoming, Text = "Will do. Thanks" },
+				new Message { Type = MessageType.Incoming, Text = "Will do. Thanks" }
 			};
 		}
 
@@ -102,7 +99,7 @@ namespace Chat
 			tableView = new UITableView {
 				TranslatesAutoresizingMaskIntoConstraints = false,
 				AllowsSelection = false,
-				SeparatorStyle = UITableViewCellSeparatorStyle.None,
+				SeparatorStyle = UITableViewCellSeparatorStyle.None
 			};
 			tableView.RegisterClassForCellReuse (typeof(IncomingCell), IncomingCell.CellId);
 			tableView.RegisterClassForCellReuse (typeof(OutgoingCell), OutgoingCell.CellId);
@@ -150,11 +147,11 @@ namespace Chat
 			toolbar.AddSubview (chatInputView);
 
 			var c1 = NSLayoutConstraint.FromVisualFormat ("H:|[chat_container_view]|",
-				(NSLayoutFormatOptions)0,
+				0,
 				"chat_container_view", chatInputView
 			);
 			var c2 = NSLayoutConstraint.FromVisualFormat ("V:|[chat_container_view]|",
-				(NSLayoutFormatOptions)0,
+				0,
 				"chat_container_view", chatInputView
 			);
 			toolbar.AddConstraints (c1);
@@ -244,7 +241,7 @@ namespace Chat
 		void UpdateTableInsets ()
 		{
 			nfloat bottom = tableView.Frame.GetMaxY () - toolbar.Frame.GetMinY ();
-			UIEdgeInsets insets = new UIEdgeInsets (0f, 0f, bottom, 0f);
+			var insets = new UIEdgeInsets (0f, 0f, bottom, 0f);
 			tableView.ContentInset = insets;
 			tableView.ScrollIndicatorInsets = insets;
 		}
@@ -304,11 +301,11 @@ namespace Chat
 			if (tableView.NumberOfSections () == 0)
 				return;
 
-			int items = (int)tableView.NumberOfRowsInSection (0);
+			var items = (int)tableView.NumberOfRowsInSection (0);
 			if (items == 0)
 				return;
 
-			int finalRow = (int)NMath.Max (0, tableView.NumberOfRowsInSection (0) - 1);
+			var finalRow = (int)NMath.Max (0, tableView.NumberOfRowsInSection (0) - 1);
 			NSIndexPath finalIndexPath = NSIndexPath.FromRowSection (finalRow, 0);
 			tableView.ScrollToRow (finalIndexPath, UITableViewScrollPosition.Top, animated);
 		}

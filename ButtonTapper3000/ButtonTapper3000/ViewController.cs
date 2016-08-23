@@ -1,4 +1,3 @@
-using System;
 using SpriteKit;
 using UIKit;
 
@@ -10,9 +9,8 @@ namespace ButtonTapper3000 {
 		{
 			View = new SKView ();
 
-			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) {
-				this.EdgesForExtendedLayout = UIRectEdge.None;
-			}
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0))
+				EdgesForExtendedLayout = UIRectEdge.None;
 		}
 
 		public override void ViewWillAppear (bool animated)
