@@ -23,7 +23,7 @@ Refs
 
 Target
 ------
-This sample runnable on iPhone/iPad
+This sample runnable on iPhone/iPad devices since it requires a real camera.
 
 Copyright
 --------

@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
-using UIKit;
-using Foundation;
 using AVFoundation;
-using CoreGraphics;
 using CoreAnimation;
 using CoreFoundation;
+using CoreGraphics;
 using CoreText;
+using Foundation;
+using UIKit;
 
 using static AVFoundation.AVCaptureVideoOrientation;
 
@@ -17,9 +17,9 @@ namespace AVCamBarcode
 {
 	enum SessionSetupResult
 	{
-		success,
-		notAuthorized,
-		configurationFailed
+		Success,
+		NotAuthorized,
+		ConfigurationFailed
 	}
 
 	class MetadataObjectLayer : CAShapeLayer
@@ -68,7 +68,7 @@ namespace AVCamBarcode
 		NSTimer removeMetadataObjectOverlayLayersTimer;
 		readonly AutoResetEvent resetEvent = new AutoResetEvent (true);
 
-		SessionSetupResult setupResult = SessionSetupResult.success;
+		SessionSetupResult setupResult = SessionSetupResult.Success;
 
 		bool sessionRunning;
 
@@ -126,15 +126,14 @@ namespace AVCamBarcode
 				sessionQueue.Suspend ();
 				AVCaptureDevice.RequestAccessForMediaType (AVMediaType.Video, granted => {
 					if (!granted)
-						setupResult = SessionSetupResult.notAuthorized;
+						setupResult = SessionSetupResult.NotAuthorized;
 					sessionQueue.Resume ();
 				});
 				break;
 
-
 			default:
 				// The user has previously denied access.
-				setupResult = SessionSetupResult.notAuthorized;
+				setupResult = SessionSetupResult.NotAuthorized;
 				break;
 			}
 
@@ -154,14 +153,14 @@ namespace AVCamBarcode
 
 			sessionQueue.DispatchAsync (() => {
 				switch (setupResult) {
-				case SessionSetupResult.success:
+				case SessionSetupResult.Success:
 					// Only setup observers and start the session running if setup succeeded.
 					AddObservers ();
 					session.StartRunning ();
 					sessionRunning = session.Running;
 					break;
 
-				case SessionSetupResult.notAuthorized:
+				case SessionSetupResult.NotAuthorized:
 					DispatchQueue.MainQueue.DispatchAsync (() => {
 						var message = "AVCamBarcode doesn't have permission to use the camera, please change privacy settings";
 						var alertController = UIAlertController.Create ("AVCamBarcode", message, UIAlertControllerStyle.Alert);
@@ -173,7 +172,7 @@ namespace AVCamBarcode
 					});
 					break;
 
-				case SessionSetupResult.configurationFailed:
+				case SessionSetupResult.ConfigurationFailed:
 					DispatchQueue.MainQueue.DispatchAsync (() => {
 						var message = "Unable to capture media";
 						var alertController = UIAlertController.Create ("AVCamBarcode", message, UIAlertControllerStyle.Alert);
@@ -188,7 +187,7 @@ namespace AVCamBarcode
 		public override void ViewDidDisappear (bool animated)
 		{
 			sessionQueue.DispatchAsync (() => {
-				if (setupResult == SessionSetupResult.success) {
+				if (setupResult == SessionSetupResult.Success) {
 					session.StopRunning ();
 					sessionRunning = session.Running;
 					RemoveObservers ();
@@ -322,7 +321,7 @@ namespace AVCamBarcode
 
 		void ConfigureSession ()
 		{
-			if (setupResult != SessionSetupResult.success)
+			if (setupResult != SessionSetupResult.Success)
 				return;
 
 			session.BeginConfiguration ();
@@ -332,7 +331,7 @@ namespace AVCamBarcode
 			var vDeviceInput = AVCaptureDeviceInput.FromDevice (videoDevice, out err);
 			if (err != null) {
 				Console.WriteLine ($"Could not create video device input: ${err}");
-				setupResult = SessionSetupResult.configurationFailed;
+				setupResult = SessionSetupResult.ConfigurationFailed;
 				session.CommitConfiguration ();
 				return;
 			}
@@ -342,7 +341,7 @@ namespace AVCamBarcode
 				videoDeviceInput = vDeviceInput;
 			} else {
 				Console.WriteLine ("Could not add video device input to the session");
-				setupResult = SessionSetupResult.configurationFailed;
+				setupResult = SessionSetupResult.ConfigurationFailed;
 				session.CommitConfiguration ();
 				return;
 			}
@@ -357,7 +356,7 @@ namespace AVCamBarcode
 				metadataOutput.RectOfInterest = CGRect.Empty;
 			} else {
 				Console.WriteLine ("Could not add metadata output to the session");
-				setupResult = SessionSetupResult.configurationFailed;
+				setupResult = SessionSetupResult.ConfigurationFailed;
 				session.CommitConfiguration ();
 				return;
 			}
