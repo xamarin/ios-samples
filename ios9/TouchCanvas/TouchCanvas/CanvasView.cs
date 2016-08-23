@@ -125,7 +125,7 @@ namespace TouchCanvas {
 
 		public void DrawTouches (NSSet touches, UIEvent evt)
 		{
-			var updateRect = CGRect.Empty;
+			var updateRect = new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0);
 
 			foreach (var touch in touches.Cast<UITouch> ()) {
 				Line line;
@@ -162,7 +162,7 @@ namespace TouchCanvas {
 
 		CGRect AddPointsOfType (PointType type, UITouch[] touches, Line line, CGRect rect)
 		{
-			var accumulatedRect = CGRect.Empty;
+			var accumulatedRect = new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0);
 
 			for (int i = 0; i < touches.Length; i++) {
 				var touch = touches [i];
@@ -193,7 +193,7 @@ namespace TouchCanvas {
 
 		public void EndTouches (NSSet touches, bool cancel)
 		{
-			var updateRect = CGRect.Empty;
+			var updateRect = new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0);
 
 			foreach (var touch in touches.Cast<UITouch> ()) {
 				// Skip over touches that do not correspond to an active line.

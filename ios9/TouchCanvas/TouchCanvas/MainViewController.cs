@@ -13,7 +13,7 @@ namespace TouchCanvas {
 		ReticleView reticleView;
 		ReticleView ReticleView {
 			get {
-				reticleView = reticleView ?? new ReticleView (CGRect.Empty) {
+				reticleView = reticleView ?? new ReticleView (new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0)) {
 					TranslatesAutoresizingMaskIntoConstraints = false,
 					Hidden = true
 				};

@@ -37,7 +37,7 @@ namespace TouchCanvas {
 				return new KeyValuePair<bool, CGRect> (didUpdate, rect);
 			}
 
-			return new KeyValuePair<bool, CGRect> (false, CGRect.Empty);
+			return new KeyValuePair<bool, CGRect> (false, new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0));
 		}
 
 		public CGRect AddPointOfType (PointType pointType, UITouch touch)
@@ -55,13 +55,12 @@ namespace TouchCanvas {
 
 		public CGRect RemovePointsWithType (PointType type)
 		{
-			var updateRect = CGRect.Empty;
+			var updateRect = new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0);
 			LinePoint priorPoint = null;
-
-			Points = Points.Where (point => {
-				var keepPoint = !point.PointType.HasFlag (type);
-
-				if (!keepPoint) {
+			for (int i = Points.Count - 1; i >=0; i--) {
+				var point = Points [i];
+				if(point.PointType.HasFlag (type)) {
+					Points.RemoveAt (i);
 					var rect = UpdateRectForLinePoint (point);
 					if (priorPoint != null)
 						rect = rect.UnionWith (UpdateRectForLinePoint (priorPoint));
@@ -69,15 +68,14 @@ namespace TouchCanvas {
 				}
 
 				priorPoint = point;
-				return keepPoint;
-			}).ToList ();
+			}
 
 			return updateRect;
 		}
 
 		public CGRect Cancel ()
 		{
-			CGRect updateRect = CGRect.Empty;
+			CGRect updateRect = new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0);
 			foreach (var point in Points) {
 				point.PointType |= PointType.Cancelled;
 				updateRect = updateRect.UnionWith (UpdateRectForLinePoint (point));
