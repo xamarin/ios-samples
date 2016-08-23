@@ -153,5 +153,5 @@ This strict approach is put in place to ensure that the samples we present to ou
 
 Should you wish to invoke validation of samples manually, simply run "validate.windows" or "validate.posix" (again, Windows vs OS X/Linux, respectively). These must be run from a Bash shell (i.e. a terminal on OS X/Linux or the Git Bash terminal on Windows).
 
-If you have any questions, don't hesitate to ask!
+If you have any questions, don't hesitate to ask on [Xamarin Forums](https://forums.xamarin.com/categories/ios)!
 
