@@ -95,9 +95,8 @@ namespace TouchCanvas {
 			if (needsFullRedraw) {
 				SetFrozenImageNeedsUpdate ();
 				FrozenContext.ClearRect (Bounds);
-				foreach (var line in finishedLines.Union (lines)) {
+				foreach (var line in finishedLines.Union (lines))
 					line.DrawCommitedPointsInContext (context, IsDebuggingEnabled, UsePreciseLocations);
-				}
 
 				needsFullRedraw = false;
 			}
@@ -142,12 +141,12 @@ namespace TouchCanvas {
 				updateRect = updateRect.UnionWith (line.RemovePointsWithType (PointType.Predicted));
 
 				var coalescedTouches = evt.GetCoalescedTouches (touch) ?? new UITouch[0];
-				var coalescedRect = AddPointsOfType (PointType.Coalesced, coalescedTouches, line, updateRect);
+				var coalescedRect = AddPointsOfType (PointType.Coalesced, coalescedTouches, line);
 				updateRect = updateRect.UnionWith (coalescedRect);
 
 				if (isPredictionEnabled) {
 					var predictedTouches = evt.GetPredictedTouches (touch) ?? new UITouch[0];
-					var predictedRect = AddPointsOfType (PointType.Predicted, predictedTouches, line, updateRect);
+					var predictedRect = AddPointsOfType (PointType.Predicted, predictedTouches, line);
 					updateRect = updateRect.UnionWith (predictedRect);
 				}
 			}
@@ -162,16 +161,14 @@ namespace TouchCanvas {
 			return newLine;
 		}
 
-		CGRect AddPointsOfType (PointType type, UITouch[] touches, Line line, CGRect rect)
+		CGRect AddPointsOfType (PointType type, UITouch[] touches, Line line)
 		{
 			var accumulatedRect = CGRectNull ();
 
 			for (int i = 0; i < touches.Length; i++) {
 				var touch = touches [i];
-				bool isStylus = touch.Type == UITouchType.Stylus;
-
 				// The visualization displays non-`.Stylus` touches differently.
-				if (!isStylus)
+				if (touch.Type != UITouchType.Stylus)
 					type |= PointType.Finger;
 
 				// Touches with estimated properties require updates; add this information to the `PointType`.
@@ -179,7 +176,7 @@ namespace TouchCanvas {
 					type |= PointType.NeedsUpdate;
 
 				// The last touch in a set of .Coalesced touches is the originating touch. Track it differently.
-				bool isLast = i == touches.Length - 1;
+				bool isLast = (i == touches.Length - 1);
 				if (type.HasFlag (PointType.Coalesced) && isLast) {
 					type &= ~PointType.Coalesced;
 					type |= PointType.Standard;
@@ -190,7 +187,7 @@ namespace TouchCanvas {
 				CommitLine (line);
 			}
 
-			return rect.UnionWith (accumulatedRect);
+			return accumulatedRect;
 		}
 
 		public void EndTouches (NSSet touches, bool cancel)
@@ -234,9 +231,9 @@ namespace TouchCanvas {
 				if (possibleLine == null)
 					return;
 
-				var updateResult = possibleLine.UpdateWithTouch (touch);
-				if (updateResult.Key)
-					SetNeedsDisplayInRect (updateResult.Value);
+				CGRect rect;
+				if (possibleLine.UpdateWithTouch (touch, out rect))
+					SetNeedsDisplayInRect (rect);
 
 				// If this update updated the last point requiring an update, move the line to the `frozenImage`.
 				if (isPending && possibleLine.IsComplete) {

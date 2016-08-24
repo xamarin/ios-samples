@@ -22,24 +22,25 @@ namespace TouchCanvas {
 			}
 		}
 
-		public KeyValuePair<bool, CGRect> UpdateWithTouch (UITouch touch)
+		public bool UpdateWithTouch (UITouch touch, out CGRect rect)
 		{
+			rect = CGRectNull ();
+
 			var estimationUpdateIndex = touch.EstimationUpdateIndex;
 			var point = pointsWaitingForUpdatesByEstimationIndex[estimationUpdateIndex];
 			if (point != null) {
-				var rect = UpdateRectForExistingPoint (point);
+				rect = UpdateRectForExistingPoint (point);
 				var didUpdate = point.UpdateWithTouch (touch);
 				if (didUpdate)
 					rect = rect.UnionWith (UpdateRectForExistingPoint (point));
 
-				if (point.EstimatedPropertiesExpectingUpdates == 0) {
+				if (point.EstimatedPropertiesExpectingUpdates == 0)
 					pointsWaitingForUpdatesByEstimationIndex.Remove (estimationUpdateIndex);
-				}
 
-				return new KeyValuePair<bool, CGRect> (didUpdate, rect);
+				return didUpdate;
 			}
 
-			return new KeyValuePair<bool, CGRect> (false, CGRectNull ());
+			return false;
 		}
 
 		public CGRect AddPointOfType (PointType pointType, UITouch touch)

@@ -112,8 +112,8 @@ namespace TouchCanvas {
 				if (!touch.EstimatedProperties.HasFlag (expectedProperty))
 					EstimatedProperties &= ~expectedProperty;
 
+				// Flag that this point is no longer expecting updates for this property.
 				if (!touch.EstimatedPropertiesExpectingUpdates.HasFlag (expectedProperty)) {
-					// Flag that this point is no longer expecting updates for this property.
 					EstimatedPropertiesExpectingUpdates &= ~expectedProperty;
 
 					if (EstimatedPropertiesExpectingUpdates == 0) {
