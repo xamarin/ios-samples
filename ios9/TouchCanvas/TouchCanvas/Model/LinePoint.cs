@@ -54,12 +54,13 @@ namespace TouchCanvas {
 			SequenceNumber = sequenceNumber;
 			Type = touch.Type;
 			PointType = pointType;
-
 			Timestamp = touch.Timestamp;
+
 			var view = touch.View;
 			Location = touch.LocationInView (view);
 			PreciseLocation = touch.GetPreciseLocation (view);
 			AzimuthAngle = touch.GetAzimuthAngle (view);
+
 			EstimatedProperties = touch.EstimatedProperties;
 			EstimatedPropertiesExpectingUpdates = touch.EstimatedPropertiesExpectingUpdates;
 			AltitudeAngle = touch.AltitudeAngle;
@@ -73,9 +74,7 @@ namespace TouchCanvas {
 
 		public bool UpdateWithTouch (UITouch touch)
 		{
-			NSNumber estimationUpdateIndex = touch.EstimationUpdateIndex;
-
-			if (estimationUpdateIndex != EstimationUpdateIndex)
+			if (!touch.EstimationUpdateIndex.IsEqualTo(EstimationUpdateIndex))
 				return false;
 
 			// An array of the touch properties that may be of interest.
