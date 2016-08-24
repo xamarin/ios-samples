@@ -78,17 +78,18 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="MainViewController.cs" />
-    <Compile Include="MainViewController.designer.cs">
-      <DependentUpon>MainViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CanvasView.cs" />
-    <Compile Include="CanvasView.designer.cs">
+    <Compile Include="Model\Line.cs" />
+    <Compile Include="Model\LinePoint.cs" />
+    <Compile Include="UI\CanvasView.cs" />
+    <Compile Include="UI\CanvasView.designer.cs">
       <DependentUpon>CanvasView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Line.cs" />
-    <Compile Include="LinePoint.cs" />
-    <Compile Include="ReticleView.cs" />
+    <Compile Include="UI\MainViewController.cs" />
+    <Compile Include="UI\MainViewController.designer.cs">
+      <DependentUpon>MainViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReticleView.cs" />
+    <Compile Include="Helpers\CGRectHelpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
@@ -123,5 +124,10 @@
     <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon.png" />
     <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="UI\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>

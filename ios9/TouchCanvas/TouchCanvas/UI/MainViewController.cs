@@ -1,9 +1,10 @@
 using System;
 using System.Linq;
 
-using CoreGraphics;
-using Foundation;
 using UIKit;
+using Foundation;
+
+using static TouchCanvas.CGRectHelpers;
 
 namespace TouchCanvas {
 	public partial class MainViewController : UIViewController {
@@ -13,7 +14,7 @@ namespace TouchCanvas {
 		ReticleView reticleView;
 		ReticleView ReticleView {
 			get {
-				reticleView = reticleView ?? new ReticleView (new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0)) {
+				reticleView = reticleView ?? new ReticleView (CGRectNull ()) {
 					TranslatesAutoresizingMaskIntoConstraints = false,
 					Hidden = true
 				};

@@ -6,6 +6,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
+using static TouchCanvas.CGRectHelpers;
+
 namespace TouchCanvas {
 	public partial class CanvasView : UIView {
 		bool isPredictionEnabled = UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad;
@@ -125,7 +127,7 @@ namespace TouchCanvas {
 
 		public void DrawTouches (NSSet touches, UIEvent evt)
 		{
-			var updateRect = new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0);
+			var updateRect = CGRectNull ();
 
 			foreach (var touch in touches.Cast<UITouch> ()) {
 				Line line;
@@ -162,7 +164,7 @@ namespace TouchCanvas {
 
 		CGRect AddPointsOfType (PointType type, UITouch[] touches, Line line, CGRect rect)
 		{
-			var accumulatedRect = new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0);
+			var accumulatedRect = CGRectNull ();
 
 			for (int i = 0; i < touches.Length; i++) {
 				var touch = touches [i];
@@ -193,7 +195,7 @@ namespace TouchCanvas {
 
 		public void EndTouches (NSSet touches, bool cancel)
 		{
-			var updateRect = new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0);
+			var updateRect = CGRectNull ();
 
 			foreach (var touch in touches.Cast<UITouch> ()) {
 				// Skip over touches that do not correspond to an active line.

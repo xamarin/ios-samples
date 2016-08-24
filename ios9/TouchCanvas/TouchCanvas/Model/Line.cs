@@ -6,13 +6,15 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
+using static TouchCanvas.CGRectHelpers;
+
 namespace TouchCanvas {
 	public class Line : NSObject {
 		readonly Dictionary<NSNumber,LinePoint> pointsWaitingForUpdatesByEstimationIndex = new Dictionary<NSNumber, LinePoint> ();
 
-		public List<LinePoint> Points { get; private set; } = new List<LinePoint> ();
+		public List<LinePoint> Points { get; } = new List<LinePoint> ();
 
-		public List<LinePoint> CommittedPoints { get; private set; } = new List<LinePoint> ();
+		public List<LinePoint> CommittedPoints { get; } = new List<LinePoint> ();
 
 		public bool IsComplete {
 			get {
@@ -37,7 +39,7 @@ namespace TouchCanvas {
 				return new KeyValuePair<bool, CGRect> (didUpdate, rect);
 			}
 
-			return new KeyValuePair<bool, CGRect> (false, new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0));
+			return new KeyValuePair<bool, CGRect> (false, CGRectNull ());
 		}
 
 		public CGRect AddPointOfType (PointType pointType, UITouch touch)
@@ -55,7 +57,7 @@ namespace TouchCanvas {
 
 		public CGRect RemovePointsWithType (PointType type)
 		{
-			var updateRect = new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0);
+			var updateRect = CGRectNull ();
 			LinePoint priorPoint = null;
 			for (int i = Points.Count - 1; i >=0; i--) {
 				var point = Points [i];
@@ -75,7 +77,7 @@ namespace TouchCanvas {
 
 		public CGRect Cancel ()
 		{
-			CGRect updateRect = new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0);
+			var updateRect = CGRectNull ();
 			foreach (var point in Points) {
 				point.PointType |= PointType.Cancelled;
 				updateRect = updateRect.UnionWith (UpdateRectForLinePoint (point));
@@ -179,9 +181,8 @@ namespace TouchCanvas {
 			if (committing.Count <= 1)
 				return;
 
-			var committedLine = new Line {
-				Points = committing
-			};
+			var committedLine = new Line ();
+			committedLine.Points.AddRange (committing);
 
 			committedLine.DrawInContext (context, isDebuggingEnabled, usePreciseLocation);
 
@@ -195,7 +196,7 @@ namespace TouchCanvas {
 		public void DrawCommitedPointsInContext (CGContext context, bool isDebuggingEnabled, bool usePreciseLocation)
 		{
 			var committedLine = new Line ();
-			committedLine.Points = CommittedPoints;
+			committedLine.Points.AddRange (CommittedPoints);
 			committedLine.DrawInContext (context, isDebuggingEnabled, usePreciseLocation);
 		}
 
