@@ -168,12 +168,10 @@ namespace TouchCanvas {
 						break;
 					}
 
-					if (i <= 0)
-						continue;
-
-					var removed = Points.First ();
-					Points.Remove (removed);
-					committing.Add (removed);
+					if (i > 0) {
+						committing.Add (Points [0]);
+						Points.RemoveAt (0);
+					}
 				}
 			}
 
@@ -185,8 +183,9 @@ namespace TouchCanvas {
 
 			committedLine.DrawInContext (context, isDebuggingEnabled, usePreciseLocation);
 
-			if (CommittedPoints.Count > 0)
-				CommittedPoints.Remove (CommittedPoints.Last ());
+			var last = CommittedPoints.Count - 1;
+			if (last >= 0)
+				CommittedPoints.RemoveAt (last);
 
 			// Store the points being committed for redrawing later in a different style if needed.
 			CommittedPoints.AddRange (committing);
