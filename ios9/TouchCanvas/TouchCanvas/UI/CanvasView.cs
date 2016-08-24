@@ -95,7 +95,7 @@ namespace TouchCanvas {
 			if (needsFullRedraw) {
 				SetFrozenImageNeedsUpdate ();
 				FrozenContext.ClearRect (Bounds);
-				foreach (var line in finishedLines.Concat(lines))
+				foreach (var line in finishedLines)
 					line.DrawCommitedPointsInContext (FrozenContext, IsDebuggingEnabled, UsePreciseLocations);
 
 				needsFullRedraw = false;
@@ -111,6 +111,7 @@ namespace TouchCanvas {
 
 		void SetFrozenImageNeedsUpdate ()
 		{
+			frozenImage?.Dispose ();
 			frozenImage = null;
 		}
 
