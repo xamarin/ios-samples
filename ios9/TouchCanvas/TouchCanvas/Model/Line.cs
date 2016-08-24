@@ -10,7 +10,7 @@ using static TouchCanvas.CGRectHelpers;
 
 namespace TouchCanvas {
 	public class Line : NSObject {
-		readonly Dictionary<NSNumber,LinePoint> pointsWaitingForUpdatesByEstimationIndex = new Dictionary<NSNumber, LinePoint> ();
+		readonly Dictionary<NSNumber, LinePoint> pointsWaitingForUpdatesByEstimationIndex = new Dictionary<NSNumber, LinePoint> ();
 
 		public List<LinePoint> Points { get; } = new List<LinePoint> ();
 
@@ -59,17 +59,15 @@ namespace TouchCanvas {
 		public CGRect RemovePointsWithType (PointType type)
 		{
 			var updateRect = CGRectNull ();
-			LinePoint priorPoint = null;
-			for (int i = Points.Count - 1; i >=0; i--) {
-				var point = Points [i];
-				if(point.PointType.HasFlag (type)) {
-					Points.RemoveAt (i);
-					var rect = UpdateRectForLinePoint (point);
-					if (priorPoint != null)
-						rect = rect.UnionWith (UpdateRectForLinePoint (priorPoint));
-					updateRect = updateRect.UnionWith (rect);
-				}
 
+			LinePoint priorPoint = null;
+			for (int i = Points.Count - 1; i >= 0; i--) {
+				var point = Points [i];
+				if (point.PointType.HasFlag (type)) {
+					Points.RemoveAt (i);
+					updateRect = updateRect.UnionWith (CalcUpdateRectFor (point));
+					updateRect = updateRect.UnionWith (CalcUpdateRectFor (priorPoint));
+				}
 				priorPoint = point;
 			}
 
@@ -81,7 +79,7 @@ namespace TouchCanvas {
 			var updateRect = CGRectNull ();
 			foreach (var point in Points) {
 				point.PointType |= PointType.Cancelled;
-				updateRect = updateRect.UnionWith (UpdateRectForLinePoint (point));
+				updateRect = updateRect.UnionWith (CalcUpdateRectFor (point));
 			}
 
 			return updateRect;
@@ -201,8 +199,11 @@ namespace TouchCanvas {
 			committedLine.DrawInContext (context, isDebuggingEnabled, usePreciseLocation);
 		}
 
-		static CGRect UpdateRectForLinePoint (LinePoint point)
+		static CGRect CalcUpdateRectFor (LinePoint point)
 		{
+			if (point == null)
+				return CGRectNull ();
+
 			var rect = new CGRect (point.Location, CGSize.Empty);
 
 			// The negative magnitude ensures an outset rectangle
@@ -231,7 +232,7 @@ namespace TouchCanvas {
 
 		CGRect UpdateRectForExistingPoint (LinePoint point)
 		{
-			var rect = UpdateRectForLinePoint (point);
+			var rect = CalcUpdateRectFor (point);
 			var arrayIndex = point.SequenceNumber - Points.First ().SequenceNumber;
 
 			if (arrayIndex > 0 && arrayIndex + 1 < Points.Count)

@@ -95,8 +95,8 @@ namespace TouchCanvas {
 			if (needsFullRedraw) {
 				SetFrozenImageNeedsUpdate ();
 				FrozenContext.ClearRect (Bounds);
-				foreach (var line in finishedLines.Union (lines))
-					line.DrawCommitedPointsInContext (context, IsDebuggingEnabled, UsePreciseLocations);
+				foreach (var line in finishedLines.Concat(lines))
+					line.DrawCommitedPointsInContext (FrozenContext, IsDebuggingEnabled, UsePreciseLocations);
 
 				needsFullRedraw = false;
 			}
@@ -140,10 +140,15 @@ namespace TouchCanvas {
 				// by the time of the next event for this touch.
 				updateRect = updateRect.UnionWith (line.RemovePointsWithType (PointType.Predicted));
 
+				// Incorporate coalesced touch data. The data in the last touch in the returned array will match
+				// the data of the touch supplied to GetCoalescedTouches
 				var coalescedTouches = evt.GetCoalescedTouches (touch) ?? new UITouch[0];
 				var coalescedRect = AddPointsOfType (PointType.Coalesced, coalescedTouches, line);
 				updateRect = updateRect.UnionWith (coalescedRect);
 
+				// Incorporate predicted touch data. This sample draws predicted touches differently; however, 
+				// you may want to use them as inputs to smoothing algorithms rather than directly drawing them. 
+				// Points derived from predicted touches should be removed from the line at the next event for this touch.
 				if (isPredictionEnabled) {
 					var predictedTouches = evt.GetPredictedTouches (touch) ?? new UITouch[0];
 					var predictedRect = AddPointsOfType (PointType.Predicted, predictedTouches, line);
