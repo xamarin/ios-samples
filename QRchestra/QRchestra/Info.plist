@@ -17,5 +17,7 @@
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This sample detects QR codes and decodes them.</string>
 </dict>
 </plist>
