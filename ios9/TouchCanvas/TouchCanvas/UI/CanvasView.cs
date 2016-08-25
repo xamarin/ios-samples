@@ -6,17 +6,24 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
+using static TouchCanvas.CGRectHelpers;
+
 namespace TouchCanvas {
 	public partial class CanvasView : UIView {
 		bool isPredictionEnabled = UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad;
-		const bool isTouchUpdatingEnabled = true;
 
 		bool needsFullRedraw = true;
-		CGImage frozenImage;
+
+		// List containing all line objects that need to be drawn in Draw(CGRect rect)
 		readonly List<Line> lines = new List<Line> ();
+
+		// List containing all line objects that have been completely drawn into the frozenContext.
 		readonly List<Line> finishedLines = new List<Line> ();
 
+		// Holds a map of UITouch objects to Line objects whose touch has not ended yet.
 		readonly Dictionary<UITouch, Line> activeLines = new Dictionary<UITouch, Line> ();
+
+		// Holds a map of UITouch objects to Line objects whose touch has ended but still has points awaiting updates.
 		readonly Dictionary<UITouch, Line> pendingLines = new Dictionary<UITouch, Line> ();
 
 		bool isDebuggingEnabled;
@@ -43,6 +50,9 @@ namespace TouchCanvas {
 			}
 		}
 
+		// An CGImage containing the last representation of lines no longer receiving updates.
+		CGImage frozenImage;
+
 		CGBitmapContext frozenContext;
 		public CGBitmapContext FrozenContext {
 			get {
@@ -56,8 +66,7 @@ namespace TouchCanvas {
 
 					frozenContext = new CGBitmapContext (null, (nint)size.Width, (nint)size.Height, 8, 0, colorSpace, CGImageAlphaInfo.PremultipliedLast);
 					frozenContext.SetLineCap (CGLineCap.Round);
-					var transform = CGAffineTransform.MakeScale (scale, scale);
-					frozenContext.ConcatCTM (transform);
+					frozenContext.ConcatCTM (CGAffineTransform.MakeScale (scale, scale));
 				}
 
 				return frozenContext;
@@ -86,18 +95,24 @@ namespace TouchCanvas {
 			if (needsFullRedraw) {
 				SetFrozenImageNeedsUpdate ();
 				FrozenContext.ClearRect (Bounds);
-				foreach (var line in finishedLines.Union (lines)) {
-					line.DrawCommitedPointsInContext (context, IsDebuggingEnabled, UsePreciseLocations);
-				}
+				foreach (var line in finishedLines)
+					line.DrawCommitedPointsInContext (FrozenContext, IsDebuggingEnabled, UsePreciseLocations);
 
 				needsFullRedraw = false;
 			}
 
 			frozenImage = frozenImage ?? FrozenContext.ToImage ();
-			context.DrawImage (Bounds, frozenImage);
+			if(frozenImage != null)
+				context.DrawImage (Bounds, frozenImage);
 
 			foreach (var line in lines)
 				line.DrawInContext (context, IsDebuggingEnabled, UsePreciseLocations);
+		}
+
+		void SetFrozenImageNeedsUpdate ()
+		{
+			frozenImage?.Dispose ();
+			frozenImage = null;
 		}
 
 		public void Clear ()
@@ -112,28 +127,36 @@ namespace TouchCanvas {
 
 		public void DrawTouches (NSSet touches, UIEvent evt)
 		{
-			var updateRect = CGRect.Empty;
+			var updateRect = CGRectNull ();
 
 			foreach (var touch in touches.Cast<UITouch> ()) {
 				Line line;
 
-				// Retrieve a line from `activeLines`. If no line exists, create one.
+				// Retrieve a line from activeLines. If no line exists, create one.
 				if (!activeLines.TryGetValue (touch, out line))
 					line = AddActiveLineForTouch (touch);
+
+				// Remove prior predicted points and update the updateRect based on the removals. The touches
+				// used to create these points are predictions provided to offer additional data. They are stale
+				// by the time of the next event for this touch.
 				updateRect = updateRect.UnionWith (line.RemovePointsWithType (PointType.Predicted));
 
+				// Incorporate coalesced touch data. The data in the last touch in the returned array will match
+				// the data of the touch supplied to GetCoalescedTouches
 				var coalescedTouches = evt.GetCoalescedTouches (touch) ?? new UITouch[0];
-				var coalescedRect = AddPointsOfType (PointType.Coalesced, coalescedTouches, line, updateRect);
+				var coalescedRect = AddPointsOfType (PointType.Coalesced, coalescedTouches, line);
 				updateRect = updateRect.UnionWith (coalescedRect);
 
+				// Incorporate predicted touch data. This sample draws predicted touches differently; however, 
+				// you may want to use them as inputs to smoothing algorithms rather than directly drawing them. 
+				// Points derived from predicted touches should be removed from the line at the next event for this touch.
 				if (isPredictionEnabled) {
 					var predictedTouches = evt.GetPredictedTouches (touch) ?? new UITouch[0];
-					var predictedRect = AddPointsOfType (PointType.Predicted, predictedTouches, line, updateRect);
+					var predictedRect = AddPointsOfType (PointType.Predicted, predictedTouches, line);
 					updateRect = updateRect.UnionWith (predictedRect);
 				}
 			}
-			SetNeedsDisplay ();
-//			SetNeedsDisplayInRect (updateRect);
+			SetNeedsDisplayInRect (updateRect);
 		}
 
 		Line AddActiveLineForTouch (UITouch touch)
@@ -144,25 +167,25 @@ namespace TouchCanvas {
 			return newLine;
 		}
 
-		CGRect AddPointsOfType (PointType type, UITouch[] touches, Line line, CGRect rect)
+		CGRect AddPointsOfType (PointType type, UITouch[] touches, Line line)
 		{
-			var accumulatedRect = CGRect.Empty;
+			var accumulatedRect = CGRectNull ();
 
 			for (int i = 0; i < touches.Length; i++) {
 				var touch = touches [i];
-				bool isStylus = touch.Type == UITouchType.Stylus;
-
 				// The visualization displays non-`.Stylus` touches differently.
-				if (!isStylus)
-					type = type.Add (PointType.Finger);
+				if (touch.Type != UITouchType.Stylus)
+					type |= PointType.Finger;
 
-				if (isTouchUpdatingEnabled && (touch.EstimatedProperties != 0))
-					type = type.Add (PointType.NeedsUpdate);
+				// Touches with estimated properties require updates; add this information to the `PointType`.
+				if (touch.EstimatedProperties != 0)
+					type |= PointType.NeedsUpdate;
 
-				bool isLast = i == touches.Length - 1;
-				if (type.Has (PointType.Coalesced) && isLast) {
-					type = type.Remove (PointType.Coalesced);
-					type = type.Add (PointType.Standard);
+				// The last touch in a set of .Coalesced touches is the originating touch. Track it differently.
+				bool isLast = (i == touches.Length - 1);
+				if (type.HasFlag (PointType.Coalesced) && isLast) {
+					type &= ~PointType.Coalesced;
+					type |= PointType.Standard;
 				}
 
 				var touchRect = line.AddPointOfType (type, touch);
@@ -170,17 +193,12 @@ namespace TouchCanvas {
 				CommitLine (line);
 			}
 
-			return rect.UnionWith (accumulatedRect);
-		}
-
-		void SetFrozenImageNeedsUpdate ()
-		{
-			frozenImage = null;
+			return accumulatedRect;
 		}
 
 		public void EndTouches (NSSet touches, bool cancel)
 		{
-			var updateRect = CGRect.Empty;
+			var updateRect = CGRectNull ();
 
 			foreach (var touch in touches.Cast<UITouch> ()) {
 				// Skip over touches that do not correspond to an active line.
@@ -188,14 +206,18 @@ namespace TouchCanvas {
 				if (!activeLines.TryGetValue (touch, out line))
 					continue;
 
+				// If this is a touch cancellation, cancel the associated line.
 				if (cancel)
 					updateRect = updateRect.UnionWith (line.Cancel ());
 
-				if (line.IsComplete) {
+				// If the line is complete (no points needing updates) or updating isn't enabled, move the line to the frozenImage.
+				if (line.IsComplete)
 					FinishLine (line);
-				} else {
+				else
 					pendingLines.Add (touch, line);
-				}
+
+				// This touch is ending, remove the line corresponding to it from `activeLines`.
+				activeLines.Remove (touch);
 			}
 
 			SetNeedsDisplayInRect (updateRect);
@@ -215,9 +237,9 @@ namespace TouchCanvas {
 				if (possibleLine == null)
 					return;
 
-				var updateResult = possibleLine.UpdateWithTouch (touch);
-				if (updateResult.Key)
-					SetNeedsDisplayInRect (updateResult.Value);
+				CGRect rect;
+				if (possibleLine.UpdateWithTouch (touch, out rect))
+					SetNeedsDisplayInRect (rect);
 
 				// If this update updated the last point requiring an update, move the line to the `frozenImage`.
 				if (isPending && possibleLine.IsComplete) {
@@ -231,6 +253,7 @@ namespace TouchCanvas {
 
 		void CommitLine (Line line)
 		{
+			// Have the line draw any segments between points no longer being updated into the frozenContext and remove them from the line.
 			line.DrawFixedPointsInContext (FrozenContext, IsDebuggingEnabled, UsePreciseLocations);
 			SetFrozenImageNeedsUpdate ();
 		}

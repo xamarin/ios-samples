@@ -1,9 +1,10 @@
 using System;
 using System.Linq;
 
-using CoreGraphics;
-using Foundation;
 using UIKit;
+using Foundation;
+
+using static TouchCanvas.CGRectHelpers;
 
 namespace TouchCanvas {
 	public partial class MainViewController : UIViewController {
@@ -13,7 +14,7 @@ namespace TouchCanvas {
 		ReticleView reticleView;
 		ReticleView ReticleView {
 			get {
-				reticleView = reticleView ?? new ReticleView (CGRect.Empty) {
+				reticleView = reticleView ?? new ReticleView (CGRectNull ()) {
 					TranslatesAutoresizingMaskIntoConstraints = false,
 					Hidden = true
 				};
@@ -96,7 +97,7 @@ namespace TouchCanvas {
 
 			CanvasView.EndTouches (touches, true);
 			if (visualizeAzimuth) {
-				foreach (var touch in touches.ToArray<UITouch> ())
+				foreach (var touch in touches.Cast<UITouch> ())
 					ReticleView.Hidden |= touch.Type == UITouchType.Stylus;
 			}
 		}

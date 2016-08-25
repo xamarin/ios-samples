@@ -6,13 +6,15 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
+using static TouchCanvas.CGRectHelpers;
+
 namespace TouchCanvas {
 	public class Line : NSObject {
-		readonly Dictionary<NSNumber,LinePoint> pointsWaitingForUpdatesByEstimationIndex = new Dictionary<NSNumber, LinePoint> ();
+		readonly Dictionary<NSNumber, LinePoint> pointsWaitingForUpdatesByEstimationIndex = new Dictionary<NSNumber, LinePoint> ();
 
-		public List<LinePoint> Points { get; private set; } = new List<LinePoint> ();
+		public List<LinePoint> Points { get; } = new List<LinePoint> ();
 
-		public List<LinePoint> CommittedPoints { get; private set; } = new List<LinePoint> ();
+		public List<LinePoint> CommittedPoints { get; } = new List<LinePoint> ();
 
 		public bool IsComplete {
 			get {
@@ -20,24 +22,25 @@ namespace TouchCanvas {
 			}
 		}
 
-		public KeyValuePair<bool, CGRect> UpdateWithTouch (UITouch touch)
+		public bool UpdateWithTouch (UITouch touch, out CGRect rect)
 		{
+			rect = CGRectNull ();
+
 			var estimationUpdateIndex = touch.EstimationUpdateIndex;
 			var point = pointsWaitingForUpdatesByEstimationIndex[estimationUpdateIndex];
 			if (point != null) {
-				var rect = UpdateRectForExistingPoint (point);
+				rect = UpdateRectForExistingPoint (point);
 				var didUpdate = point.UpdateWithTouch (touch);
 				if (didUpdate)
 					rect = rect.UnionWith (UpdateRectForExistingPoint (point));
 
-				if (point.EstimatedPropertiesExpectingUpdates == 0) {
+				if (point.EstimatedPropertiesExpectingUpdates == 0)
 					pointsWaitingForUpdatesByEstimationIndex.Remove (estimationUpdateIndex);
-				}
 
-				return new KeyValuePair<bool, CGRect> (didUpdate, rect);
+				return didUpdate;
 			}
 
-			return new KeyValuePair<bool, CGRect> (false, CGRect.Empty);
+			return false;
 		}
 
 		public CGRect AddPointOfType (PointType pointType, UITouch touch)
@@ -55,35 +58,28 @@ namespace TouchCanvas {
 
 		public CGRect RemovePointsWithType (PointType type)
 		{
-			var updateRect = CGRect.Empty;
+			var updateRect = CGRectNull ();
+
 			LinePoint priorPoint = null;
-			var keepPoints = new List<LinePoint> ();
-
-			foreach (var point in Points) {
-				var keepPoint = !point.PointType.Has (type);
-
-				if (!keepPoint) {
-					var rect = UpdateRectForLinePoint (point);
-					if (priorPoint != null)
-						rect = rect.UnionWith (UpdateRectForLinePoint (priorPoint));
-					updateRect = updateRect.UnionWith (rect);
-				} else {
-					keepPoints.Add (point);
+			for (int i = Points.Count - 1; i >= 0; i--) {
+				var point = Points [i];
+				if (point.PointType.HasFlag (type)) {
+					Points.RemoveAt (i);
+					updateRect = updateRect.UnionWith (CalcUpdateRectFor (point));
+					updateRect = updateRect.UnionWith (CalcUpdateRectFor (priorPoint));
 				}
-
 				priorPoint = point;
 			}
 
-			Points = keepPoints;
 			return updateRect;
 		}
 
 		public CGRect Cancel ()
 		{
-			CGRect updateRect = CGRect.Empty;
+			var updateRect = CGRectNull ();
 			foreach (var point in Points) {
-				point.PointType = point.PointType.Add<PointType> (PointType.Cancelled);
-				updateRect = updateRect.UnionWith (UpdateRectForLinePoint (point));
+				point.PointType |= PointType.Cancelled;
+				updateRect = updateRect.UnionWith (CalcUpdateRectFor (point));
 			}
 
 			return updateRect;
@@ -105,23 +101,23 @@ namespace TouchCanvas {
 				var pointType = point.PointType;
 
 				if (isDebuggingEnabled) {
-					if (pointType.Has (PointType.Cancelled))
+					if (pointType.HasFlag (PointType.Cancelled))
 						color = UIColor.Red;
-					else if (pointType.Has (PointType.NeedsUpdate))
+					else if (pointType.HasFlag (PointType.NeedsUpdate))
 						color = UIColor.Orange;
-					else if (pointType.Has (PointType.Finger))
+					else if (pointType.HasFlag (PointType.Finger))
 						color = UIColor.Purple;
-					else if (pointType.Has (PointType.Coalesced))
+					else if (pointType.HasFlag (PointType.Coalesced))
 						color = UIColor.Green;
-					else if (pointType.Has (PointType.Predicted))
+					else if (pointType.HasFlag (PointType.Predicted))
 						color = UIColor.Blue;
 				} else {
-					if (pointType.Has (PointType.Cancelled))
+					if (pointType.HasFlag (PointType.Cancelled))
 						color = UIColor.Red;
-					else if (pointType.Has (PointType.Finger))
+					else if (pointType.HasFlag (PointType.Finger))
 						color = UIColor.Purple;
 					
-					if (pointType.Has (PointType.Predicted) && !pointType.Has (PointType.Cancelled))
+					if (pointType.HasFlag (PointType.Predicted) && !pointType.HasFlag (PointType.Cancelled))
 						color = color.ColorWithAlpha (.5f);
 				}
 
@@ -137,9 +133,9 @@ namespace TouchCanvas {
 
 				// Draw azimuith and elevation on all non-coalesced points when debugging.
 				if (isDebuggingEnabled &&
-					!point.PointType.Has (PointType.Coalesced) &&
-					!point.PointType.Has (PointType.Predicted) &&
-					!point.PointType.Has (PointType.Finger)) {
+				    !point.PointType.HasFlag (PointType.Coalesced) &&
+				    !point.PointType.HasFlag (PointType.Predicted) &&
+				    !point.PointType.HasFlag (PointType.Finger)) {
 					context.BeginPath ();
 					context.SetStrokeColor (UIColor.Red.CGColor);
 					context.SetLineWidth (.5f);
@@ -162,37 +158,34 @@ namespace TouchCanvas {
 			var committing = new List<LinePoint> ();
 
 			if (commitAll) {
-				committing = allPoints;
+				committing.AddRange (allPoints);
 				Points.Clear ();
 			} else {
 				for (int i = 0; i < allPoints.Count; i++) {
 					var point = allPoints[i];
-					if ((point.PointType.Has (PointType.NeedsUpdate) ||
-						point.PointType.Has (PointType.Predicted)) && i > (allPoints.Count - 2)) {
+					if (!point.PointType.HasFlag (PointType.NeedsUpdate | PointType.Predicted) || i >= (allPoints.Count - 2)) {
 						committing.Add (Points.First ());
 						break;
 					}
 
-					if (i <= 0)
-						continue;
-
-					var removed = Points.First ();
-					Points.Remove (removed);
-					committing.Add (removed);
+					if (i > 0) {
+						committing.Add (Points [0]);
+						Points.RemoveAt (0);
+					}
 				}
 			}
 
 			if (committing.Count <= 1)
 				return;
 
-			var committedLine = new Line {
-				Points = committing
-			};
+			var committedLine = new Line ();
+			committedLine.Points.AddRange (committing);
 
 			committedLine.DrawInContext (context, isDebuggingEnabled, usePreciseLocation);
 
-			if (CommittedPoints.Count > 0)
-				CommittedPoints.Remove (CommittedPoints.Last ());
+			var last = CommittedPoints.Count - 1;
+			if (last >= 0)
+				CommittedPoints.RemoveAt (last);
 
 			// Store the points being committed for redrawing later in a different style if needed.
 			CommittedPoints.AddRange (committing);
@@ -201,12 +194,15 @@ namespace TouchCanvas {
 		public void DrawCommitedPointsInContext (CGContext context, bool isDebuggingEnabled, bool usePreciseLocation)
 		{
 			var committedLine = new Line ();
-			committedLine.Points = CommittedPoints;
+			committedLine.Points.AddRange (CommittedPoints);
 			committedLine.DrawInContext (context, isDebuggingEnabled, usePreciseLocation);
 		}
 
-		static CGRect UpdateRectForLinePoint (LinePoint point)
+		static CGRect CalcUpdateRectFor (LinePoint point)
 		{
+			if (point == null)
+				return CGRectNull ();
+
 			var rect = new CGRect (point.Location, CGSize.Empty);
 
 			// The negative magnitude ensures an outset rectangle
@@ -235,7 +231,7 @@ namespace TouchCanvas {
 
 		CGRect UpdateRectForExistingPoint (LinePoint point)
 		{
-			var rect = UpdateRectForLinePoint (point);
+			var rect = CalcUpdateRectFor (point);
 			var arrayIndex = point.SequenceNumber - Points.First ().SequenceNumber;
 
 			if (arrayIndex > 0 && arrayIndex + 1 < Points.Count)
