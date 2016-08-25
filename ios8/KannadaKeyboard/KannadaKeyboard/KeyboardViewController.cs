@@ -84,7 +84,7 @@ namespace KannadaKeyboard
 			UIView.Animate (0.2, () =>  {
 				button.Transform = CGAffineTransform.Scale (CGAffineTransform.MakeIdentity (), 2f, 2f);
 			}, () =>  {
-				button.Transform = CGAffineTransform.Scale (CGAffineTransform.MakeIdentity (), (nfloat)1f, (nfloat)1f);
+				button.Transform = CGAffineTransform.Scale (CGAffineTransform.MakeIdentity (), 1f, 1f);
 			});
 		}
 

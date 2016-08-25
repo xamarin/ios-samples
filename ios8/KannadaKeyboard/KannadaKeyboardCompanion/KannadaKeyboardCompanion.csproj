@@ -122,7 +122,9 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="WebElement.cs" />
-    <Compile Include="WebElement.designer.cs" />
+    <Compile Include="WebElement.designer.cs">
+      <DependentUpon>WebElement.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
