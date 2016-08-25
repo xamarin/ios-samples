@@ -94,6 +94,8 @@
     <Folder Include="Controls\" />
     <Folder Include="DrawingEngine\" />
     <Folder Include="StrokeModel\" />
+    <Folder Include="UI\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -107,18 +109,18 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Controls\RingControl.cs" />
     <Compile Include="Controls\RingView.cs" />
-    <Compile Include="CGMathExtensions.cs" />
     <Compile Include="DrawingEngine\CGDrawingEngine.cs" />
     <Compile Include="StrokeModel\StrokeCollection.cs" />
-    <Compile Include="CountableClosedRange.cs" />
     <Compile Include="DrawingEngine\CGContextExtensions.cs" />
     <Compile Include="StrokeModel\StrokeGestureRecognizer.cs" />
     <Compile Include="StrokeModel\StrokeSample.cs" />
     <Compile Include="StrokeModel\StrokeSegment.cs" />
     <Compile Include="StrokeModel\Stroke.cs" />
-    <Compile Include="CanvasContainerView.cs" />
-    <Compile Include="CanvasMainViewController.cs" />
-    <Compile Include="Helpers.cs" />
+    <Compile Include="UI\CanvasContainerView.cs" />
+    <Compile Include="UI\CanvasMainViewController.cs" />
+    <Compile Include="Helpers\CGMathExtensions.cs" />
+    <Compile Include="Helpers\CountableClosedRange.cs" />
+    <Compile Include="Helpers\Helpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\Contents.json" />
