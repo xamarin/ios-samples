@@ -11,7 +11,7 @@ namespace SpeedSketch
 
 		public static void AddLine (this CGContext context, CGPoint point)
 		{
-			context.AddLine (point);
+			context.AddLineToPoint (point.X, point.Y);
 		}
 	}
 }
