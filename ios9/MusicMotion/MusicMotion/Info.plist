@@ -43,5 +43,9 @@
 	<string>com.your-company.MusicMotion</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcon.appiconset</string>
+	<key>CFBundleName</key>
+	<string>MusicMotion</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Example of how to fuse different types of motion and fitness data</string>
 </dict>
 </plist>
