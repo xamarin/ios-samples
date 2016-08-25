@@ -4,6 +4,8 @@ using System.Linq;
 using CoreGraphics;
 using UIKit;
 
+using static SpeedSketch.CGMathExtensions;
+
 namespace SpeedSketch
 {
 	public enum StrokeViewDisplayOptions
@@ -259,7 +261,8 @@ namespace SpeedSketch
 					StrokeSample fromSample = heldFromSample ?? segment.FromSample;
 
 					// Skip line segments that are too short.
-					if (fromSample.Location.Sub (toSample.Location).Quadrance () < 0.003f) {
+					var dist = Vector (fromSample.Location, toSample.Location).Length ();
+					if (dist < 0.003f) {
 						if (heldFromSample == null) {
 							heldFromSample = fromSample;
 							heldFromSampleUnitVector = segment.FromSampleUnitNormal ();

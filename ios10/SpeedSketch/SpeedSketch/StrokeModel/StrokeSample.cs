@@ -9,6 +9,13 @@ namespace SpeedSketch
 {
 	public class StrokeSample
 	{
+		// From the Apple's doc:
+		// A touch object persists throughout a multi-touch sequence.
+		// Never retain a touch object when handling an event.
+		// If you need to keep information about a touch from one touch phase to another, copy that information from the touch
+
+		#region UITouch properties
+
 		public double Timestamp { get; set; }
 		public CGPoint Location { get; set; }
 
@@ -21,6 +28,8 @@ namespace SpeedSketch
 		public UITouchProperties EstimatedPropertiesExpectingUpdates { get; set; } = new UITouchProperties ();
 		public nfloat? Altitude { get; set; }
 		public nfloat? Azimuth { get; set; }
+
+		#endregion
 
 		// Values for debug display.
 		public bool Coalesced { get; set; }

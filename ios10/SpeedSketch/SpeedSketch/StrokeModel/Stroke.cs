@@ -21,7 +21,7 @@ namespace SpeedSketch
 
 		public List<StrokeSample> PredictedSamples { get; } = new List<StrokeSample> ();
 
-		public List<StrokeSample> PreviousPredictedSamples { get; private set; } = new List<StrokeSample> ();
+		public List<StrokeSample> PreviousPredictedSamples { get; } = new List<StrokeSample> ();
 
 		public StrokeState State { get; set; } = StrokeState.Active;
 		HashSet<int> sampleIndicesExpectingUpdates = new HashSet<int> ();
@@ -40,9 +40,6 @@ namespace SpeedSketch
 				hasUpdatesAtEndFrom = resultIndex;
 
 			Samples.Add (sample);
-
-			if (PreviousPredictedSamples == null)
-				PreviousPredictedSamples = new List<StrokeSample> (PredictedSamples);
 
 			if (sample.EstimatedPropertiesExpectingUpdates != 0)
 				sampleIndicesExpectingUpdates.Add (resultIndex);
@@ -78,7 +75,7 @@ namespace SpeedSketch
 		{
 			hasUpdatesFromStartTo = null;
 			hasUpdatesAtEndFrom = null;
-			PreviousPredictedSamples = null;
+			PreviousPredictedSamples.Clear ();
 		}
 
 		public CountableClosedRange [] UpdatedRanges ()
@@ -97,6 +94,7 @@ namespace SpeedSketch
 				new CountableClosedRange(hasUpdatesAtEndFrom.Value, Samples.Count - 1)
 			};
 		}
+
 		public IEnumerator<StrokeSegment> GetEnumerator ()
 		{
 			var sampleCount = Samples.Count;

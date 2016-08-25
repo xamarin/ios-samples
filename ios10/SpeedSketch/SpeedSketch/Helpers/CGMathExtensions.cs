@@ -21,9 +21,11 @@ namespace SpeedSketch
 			return new CGPoint (left.X + right.dx, left.Y + right.dy);
 		}
 
-		public static CGVector Sub (this CGPoint left, CGPoint right)
+
+
+		public static CGVector Vector (CGPoint start, CGPoint end)
 		{
-			return new CGVector (left.X - right.X, left.Y - right.Y);
+			return new CGVector (end.X - start.X, end.Y - start.Y);
 		}
 
 		public static CGPoint Sub (this CGPoint left, CGVector right)
@@ -31,7 +33,7 @@ namespace SpeedSketch
 			return new CGPoint (left.X - right.dx, left.Y - right.dy);
 		}
 
-		public static nfloat Quadrance (this CGVector vector)
+		public static nfloat Length (this CGVector vector)
 		{
 			return vector.dx * vector.dx + vector.dy * vector.dy;
 		}
@@ -39,6 +41,13 @@ namespace SpeedSketch
 		public static CGVector Apply (this CGVector vector, CGAffineTransform transform)
 		{
 			return vector.CreatePoint ().Apply (transform).CreateVector ();
+		}
+
+		public static nfloat Distance (CGPoint? point1, CGPoint? point2)
+		{
+			if (point1.HasValue && point2.HasValue)
+				return Vector (point1.Value, point2.Value).Length ();
+			return nfloat.PositiveInfinity;
 		}
 	}
 
@@ -58,7 +67,7 @@ namespace SpeedSketch
 		// CGVector pointing in the same direction as self, with a length of 1.0 - or nil if the length is zero.
 		public static CGVector? Normalize (this CGVector self)
 		{
-			var quadrance = self.Quadrance ();
+			var quadrance = self.Length ();
 			return (quadrance > 0) ? self.Divide (quadrance) : (CGVector?)null;
 		}
 

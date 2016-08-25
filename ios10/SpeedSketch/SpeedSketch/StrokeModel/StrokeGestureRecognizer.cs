@@ -4,10 +4,11 @@ using System.Collections.Generic;
 
 using UIKit;
 using Foundation;
+using ObjCRuntime;
 
 using static UIKit.UIGestureRecognizerState;
 using static SpeedSketch.Helpers;
-using ObjCRuntime;
+using static SpeedSketch.CGMathExtensions;
 
 namespace SpeedSketch
 {
@@ -38,10 +39,6 @@ namespace SpeedSketch
 			public int Index { get; set; }
 		}
 
-		// Configuration.
-		bool collectsCoalescedTouches = true;
-		bool usesPredictedSamples = true;
-
 		bool isForPencil;
 		public bool IsForPencil {
 			get {
@@ -55,7 +52,7 @@ namespace SpeedSketch
 		}
 
 		// Data.
-		readonly Dictionary<int, StrokeIndex> outstandingUpdateIndexes = new Dictionary<int, StrokeIndex> ();
+		readonly Dictionary<NSNumber, StrokeIndex> outstandingUpdateIndexes = new Dictionary<NSNumber, StrokeIndex> ();
 
 		public Stroke Stroke { get; private set; } = new Stroke ();
 		public UIView CoordinateSpaceView { get; set; }
@@ -79,123 +76,116 @@ namespace SpeedSketch
 		{
 		}
 
-		public bool Append (HashSet<UITouch> touches, UIEvent uievent)
+		bool Append (HashSet<UITouch> touches, UIEvent uievent)
 		{
 			var touchToAppend = trackedTouch;
-			if (touchToAppend != null) {
-				// Cancel the stroke recognition if we get a second touch during cancellation period.
-				foreach (var touch in touches) {
-					if (touch != touchToAppend && (touch.Timestamp - initialTimestamp < cancellationTimeInterval)) {
-						State = (State == Possible) ? Failed : Cancelled;
-						return false;
-					}
-				}
+			if (touchToAppend == null)
+				return false;
 
-				// See if those touches contain our tracked touch. If not, ignore gracefully.
-				if (touches.Contains (touchToAppend)) {
-					Action<Stroke, UITouch, UIView, bool, bool> collector = (stroke, touch, view, coalesced, predicted) => {
+			// Cancel the stroke recognition if we get a second touch during cancellation period.
+			foreach (var touch in touches) {
+				//if (touch != touchToAppend && (touch.Timestamp - initialTimestamp < cancellationTimeInterval)) {
+				//	State = (State == Possible) ? Failed : Cancelled;
+				//	return false;
+				//}
+			}
 
-						// Only collect samples that actually moved in 2D space.
-						var location = touch.GetPreciseLocation (view);
-						var previousSample = stroke.Samples.LastOrDefault ();
-						if (previousSample != null) {
-							if (previousSample.Location.Sub (location).Quadrance () < 0.003)
-								return;
-						}
+			// See if those touches contain our tracked touch. If not, ignore gracefully.
+			if (!touches.Contains (touchToAppend))
+				return false;
 
-						var sample = new StrokeSample {
-							Timestamp = touch.Timestamp,
-							Location = location,
-							Coalesced = coalesced,
-							Predicted = predicted
-						};
-						if (collectForce)
-							sample.Force = touch.Force;
+			var coalescedTouches = uievent.GetCoalescedTouches (touchToAppend);
+			var lastIndex = coalescedTouches.Length - 1;
+			for (var index = 0; index <= lastIndex; index++)
+				Collect (Stroke, coalescedTouches [index], CoordinateSpaceView, (index != lastIndex), false);
 
-						if (touch.Type == UITouchType.Stylus) {
-							var estimatedProperties = touch.EstimatedProperties;
-							sample.EstimatedProperties = estimatedProperties;
-							sample.EstimatedPropertiesExpectingUpdates = touch.EstimatedPropertiesExpectingUpdates;
-							sample.Altitude = touch.AltitudeAngle;
-							sample.Azimuth = touch.GetAzimuthAngle (view);
+			if (Stroke.State == StrokeState.Active) {
+				var predictedTouches = uievent.GetPredictedTouches (touchToAppend);
+				foreach (var touch in predictedTouches)
+					Collect (Stroke, touch, CoordinateSpaceView, false, true);
+			}
+			return true;
+		}
 
-							if (stroke.Samples.Count == 0 && estimatedProperties.HasFlag (UITouchProperties.Azimuth)) {
-								stroke.ExpectsAltitudeAzimuthBackfill = true;
-							} else if (stroke.ExpectsAltitudeAzimuthBackfill &&
-									   !estimatedProperties.HasFlag (UITouchProperties.Azimuth)) {
-								for (int index = 0; index < stroke.Samples.Count; index++) {
-									var priorSample = stroke.Samples [index];
-									var updatedSample = priorSample;
+		void Collect (Stroke stroke, UITouch touch, UIView view, bool coalesced, bool predicted)
+		{
+			if (view == null)
+				throw new ArgumentNullException ();
 
-									if (updatedSample.EstimatedProperties.HasFlag (UITouchProperties.Altitude)) {
-										updatedSample.EstimatedProperties &= ~UITouchProperties.Altitude;
-										updatedSample.Altitude = sample.Altitude;
-									}
-									if (updatedSample.EstimatedProperties.HasFlag (UITouchProperties.Azimuth)) {
-										updatedSample.EstimatedProperties &= ~UITouchProperties.Azimuth;
-										updatedSample.Azimuth = sample.Azimuth;
-									}
-									stroke.Update (updatedSample, index);
-								}
-								stroke.ExpectsAltitudeAzimuthBackfill = false;
-							}
-						}
-						if (predicted) {
-							stroke.AddPredicted (sample);
-						} else {
-							var index = stroke.Add (sample);
-							if (touch.EstimatedPropertiesExpectingUpdates != 0) {
-								outstandingUpdateIndexes [(int)touch.EstimationUpdateIndex] = new StrokeIndex {
-									Stroke = stroke,
-									Index = index
-								};
-							}
-						}
+			// Only collect samples that actually moved in 2D space.
+			var location = touch.GetPreciseLocation (view);
+			var previousSample = stroke.Samples.LastOrDefault ();
+			if (Distance (previousSample?.Location, location) < 0.003)
+				return;
+
+			var sample = new StrokeSample {
+				Timestamp = touch.Timestamp,
+				Location = location,
+				Coalesced = coalesced,
+				Predicted = predicted
+			};
+			bool collectForce = touch.Type == UITouchType.Stylus || view.TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available;
+			if (collectForce)
+				sample.Force = touch.Force;
+
+			//if (touch.Type == UITouchType.Stylus) {
+			//	var estimatedProperties = touch.EstimatedProperties;
+			//	sample.EstimatedProperties = estimatedProperties;
+			//	sample.EstimatedPropertiesExpectingUpdates = touch.EstimatedPropertiesExpectingUpdates;
+			//	sample.Altitude = touch.AltitudeAngle;
+			//	sample.Azimuth = touch.GetAzimuthAngle (view);
+
+			//	if (stroke.Samples.Count == 0 && estimatedProperties.HasFlag (UITouchProperties.Azimuth)) {
+			//		stroke.ExpectsAltitudeAzimuthBackfill = true;
+			//	} else if (stroke.ExpectsAltitudeAzimuthBackfill &&
+			//			   !estimatedProperties.HasFlag (UITouchProperties.Azimuth)) {
+			//		for (int index = 0; index < stroke.Samples.Count; index++) {
+			//			var priorSample = stroke.Samples [index];
+			//			var updatedSample = priorSample;
+
+			//			if (updatedSample.EstimatedProperties.HasFlag (UITouchProperties.Altitude)) {
+			//				updatedSample.EstimatedProperties &= ~UITouchProperties.Altitude;
+			//				updatedSample.Altitude = sample.Altitude;
+			//			}
+			//			if (updatedSample.EstimatedProperties.HasFlag (UITouchProperties.Azimuth)) {
+			//				updatedSample.EstimatedProperties &= ~UITouchProperties.Azimuth;
+			//				updatedSample.Azimuth = sample.Azimuth;
+			//			}
+			//			stroke.Update (updatedSample, index);
+			//		}
+			//		stroke.ExpectsAltitudeAzimuthBackfill = false;
+			//	}
+			//}
+
+			if (predicted) {
+				stroke.AddPredicted (sample);
+			} else {
+				var index = stroke.Add (sample);
+				if (touch.EstimatedPropertiesExpectingUpdates != 0) {
+					outstandingUpdateIndexes [touch.EstimationUpdateIndex] = new StrokeIndex {
+						Stroke = stroke,
+						Index = index
 					};
-
-					var v = CoordinateSpaceView;
-					if (v == null)
-						throw new InvalidProgramException ();
-
-					if (collectsCoalescedTouches) {
-						if (uievent != null) {
-							var coalescedTouches = uievent.GetCoalescedTouches (touchToAppend);
-							var lastIndex = coalescedTouches.Length - 1;
-
-							for (var index = 0; index < lastIndex; index++)
-								collector (Stroke, coalescedTouches [index], v, true, false);
-							collector (Stroke, coalescedTouches [lastIndex], v, false, false);
-						}
-					} else {
-						collector (Stroke, touchToAppend, v, false, false);
-					}
-
-					if (usesPredictedSamples && Stroke.State == StrokeState.Active) {
-						var predictedTouches = uievent.GetPredictedTouches (touchToAppend);
-						if (predictedTouches != null) {
-							foreach (var touch in predictedTouches) {
-								collector (Stroke, touch, v, false, true);
-							}
-						}
-					}
-					return true;
 				}
 			}
-			return false;
 		}
 
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
+			Console.WriteLine ($"TouchesBegan: {touches.Count}");
+
 			if (trackedTouch == null) {
+				Console.WriteLine ("trackedTouch");
 				trackedTouch = (UITouch)touches.FirstOrDefault ();
 				initialTimestamp = trackedTouch.Timestamp;
-				collectForce = trackedTouch.Type == UITouchType.Stylus || View.TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available;
-				if (!isForPencil)
-					fingerStartTimer = NSTimer.CreateScheduledTimer (cancellationTimeInterval, BeginIfNeeded);
+
+				if (!IsForPencil)
+					BeginIfNeeded (null);
+				//	fingerStartTimer = NSTimer.CreateScheduledTimer (cancellationTimeInterval, BeginIfNeeded);
 			}
 			if (Append (Touches(touches), evt)) {
-				if (isForPencil)
-					State = Began;
+			//	if (IsForPencil)
+			//		State = Began;
 			}
 		}
 
