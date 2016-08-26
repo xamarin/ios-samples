@@ -39,5 +39,7 @@
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Introduction to Manual Camera Controls.</string>
 </dict>
 </plist>
