@@ -1,9 +1,7 @@
 ﻿using UIKit;
 
-namespace SocialFrameworkDemo
-{
-	public class Application
-	{
+namespace SocialFrameworkDemo {
+	public class Application {
 		// This is the main entry point of the application.
 		static void Main (string [] args)
 		{
