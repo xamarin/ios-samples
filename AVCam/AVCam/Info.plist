@@ -44,6 +44,8 @@
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcon.appiconset</string>
 	<key>CFBundleDisplayName</key>
-	<string>AVCam</string>
+	<string>avcam</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera will be used to record movies and capture still images.</string>
 </dict>
 </plist>
