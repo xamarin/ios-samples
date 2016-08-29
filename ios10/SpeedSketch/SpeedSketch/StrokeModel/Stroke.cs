@@ -41,6 +41,9 @@ namespace SpeedSketch
 
 			Samples.Add (sample);
 
+			if (PreviousPredictedSamples.Count == 0)
+				PreviousPredictedSamples.AddRange (PredictedSamples);
+
 			if (sample.EstimatedPropertiesExpectingUpdates != 0)
 				sampleIndicesExpectingUpdates.Add (resultIndex);
 
