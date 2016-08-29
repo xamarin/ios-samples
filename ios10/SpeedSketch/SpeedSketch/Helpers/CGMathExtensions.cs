@@ -21,8 +21,6 @@ namespace SpeedSketch
 			return new CGPoint (left.X + right.dx, left.Y + right.dy);
 		}
 
-
-
 		public static CGVector Vector (CGPoint start, CGPoint end)
 		{
 			return new CGVector (end.X - start.X, end.Y - start.Y);

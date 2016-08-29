@@ -142,7 +142,8 @@ namespace SpeedSketch
 
 		CGRect DirtyRectForSampleStride (IEnumerable<StrokeSample> sampleStride)
 		{
-			return sampleStride.Aggregate (CGRect.Empty, (acc, s) => acc.UnionWith (s.Location.ToRect ()))
+			var rectNull = new CGRect (nfloat.PositiveInfinity, nfloat.PositiveInfinity, 0, 0);
+			return sampleStride.Aggregate (rectNull, (acc, s) => acc.UnionWith (s.Location.ToRect ()))
 							   .Inset (-20, -20);
 		}
 
