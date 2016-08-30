@@ -266,7 +266,7 @@ namespace SpeedSketch
 					if (dist < 0.003f) {
 						if (heldFromSample == null) {
 							heldFromSample = fromSample;
-							heldFromSampleUnitVector = segment.FromSampleUnitNormal ();
+							heldFromSampleUnitVector = segment.FromSampleUnitNormal;
 						}
 						return;
 					}
@@ -315,7 +315,7 @@ namespace SpeedSketch
 
 						context.DrawPath (CGPathDrawingMode.FillStroke);
 					} else {
-						var fromUnitVector = (heldFromSampleUnitVector.HasValue ? heldFromSampleUnitVector.Value : segment.FromSampleUnitNormal ()).Mult (forceAccessBlock (fromSample));
+						var fromUnitVector = (heldFromSampleUnitVector.HasValue ? heldFromSampleUnitVector.Value : segment.FromSampleUnitNormal).Mult (forceAccessBlock (fromSample));
 
 						var toUnitVector = segment.ToSampleUnitNormal.Mult (forceAccessBlock (toSample));
 						var isForceEstimated = fromSample.EstimatedProperties.HasFlag (UITouchProperties.Force)

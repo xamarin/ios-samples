@@ -1,5 +1,4 @@
-﻿using System;
-using CoreGraphics;
+﻿using CoreGraphics;
 
 using static SpeedSketch.CGMathExtensions;
 
@@ -41,9 +40,10 @@ namespace SpeedSketch
 			FromSampleIndex = -2;
 		}
 
-		public CGVector FromSampleUnitNormal ()
-		{
-			return InterpolatedNormalUnitVector (PreviousSegmentStrokeVector, SegmentStrokeVector);
+		public CGVector FromSampleUnitNormal {
+			get {
+				return InterpolatedNormalUnitVector (PreviousSegmentStrokeVector, SegmentStrokeVector);
+			}
 		}
 
 		public CGVector ToSampleUnitNormal {

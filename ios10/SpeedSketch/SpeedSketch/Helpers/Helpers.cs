@@ -1,6 +1,4 @@
-﻿using System;
-
-using UIKit;
+﻿using UIKit;
 using Foundation;
 
 namespace SpeedSketch

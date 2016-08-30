@@ -18,7 +18,7 @@ namespace SpeedSketch
 		[Preserve (Conditional = true)]
 		class Callback : Token
 		{
-			Action<StrokeGestureRecognizer> action;
+			readonly Action<StrokeGestureRecognizer> action;
 
 			internal Callback (Action<StrokeGestureRecognizer> action)
 			{
@@ -60,7 +60,6 @@ namespace SpeedSketch
 		// State.
 		UITouch trackedTouch;
 		double initialTimestamp;
-		bool collectForce;
 
 		NSTimer fingerStartTimer;
 		double cancellationTimeInterval = TimeSpan.FromSeconds (0.1).TotalMilliseconds;
@@ -68,7 +67,6 @@ namespace SpeedSketch
 		public StrokeGestureRecognizer (Action handler)
 			: base (handler)
 		{
-			int i = 25;
 		}
 
 		public StrokeGestureRecognizer (Action<StrokeGestureRecognizer> handler)
@@ -84,10 +82,10 @@ namespace SpeedSketch
 
 			// Cancel the stroke recognition if we get a second touch during cancellation period.
 			foreach (var touch in touches) {
-				//if (touch != touchToAppend && (touch.Timestamp - initialTimestamp < cancellationTimeInterval)) {
-				//	State = (State == Possible) ? Failed : Cancelled;
-				//	return false;
-				//}
+				if (touch != touchToAppend && (touch.Timestamp - initialTimestamp < cancellationTimeInterval)) {
+					State = (State == Possible) ? Failed : Cancelled;
+					return false;
+				}
 			}
 
 			// See if those touches contain our tracked touch. If not, ignore gracefully.
@@ -128,34 +126,34 @@ namespace SpeedSketch
 			if (collectForce)
 				sample.Force = touch.Force;
 
-			//if (touch.Type == UITouchType.Stylus) {
-			//	var estimatedProperties = touch.EstimatedProperties;
-			//	sample.EstimatedProperties = estimatedProperties;
-			//	sample.EstimatedPropertiesExpectingUpdates = touch.EstimatedPropertiesExpectingUpdates;
-			//	sample.Altitude = touch.AltitudeAngle;
-			//	sample.Azimuth = touch.GetAzimuthAngle (view);
+			if (touch.Type == UITouchType.Stylus) {
+				var estimatedProperties = touch.EstimatedProperties;
+				sample.EstimatedProperties = estimatedProperties;
+				sample.EstimatedPropertiesExpectingUpdates = touch.EstimatedPropertiesExpectingUpdates;
+				sample.Altitude = touch.AltitudeAngle;
+				sample.Azimuth = touch.GetAzimuthAngle (view);
 
-			//	if (stroke.Samples.Count == 0 && estimatedProperties.HasFlag (UITouchProperties.Azimuth)) {
-			//		stroke.ExpectsAltitudeAzimuthBackfill = true;
-			//	} else if (stroke.ExpectsAltitudeAzimuthBackfill &&
-			//			   !estimatedProperties.HasFlag (UITouchProperties.Azimuth)) {
-			//		for (int index = 0; index < stroke.Samples.Count; index++) {
-			//			var priorSample = stroke.Samples [index];
-			//			var updatedSample = priorSample;
+				if (stroke.Samples.Count == 0 && estimatedProperties.HasFlag (UITouchProperties.Azimuth)) {
+					stroke.ExpectsAltitudeAzimuthBackfill = true;
+				} else if (stroke.ExpectsAltitudeAzimuthBackfill &&
+						   !estimatedProperties.HasFlag (UITouchProperties.Azimuth)) {
+					for (int index = 0; index < stroke.Samples.Count; index++) {
+						var priorSample = stroke.Samples [index];
+						var updatedSample = priorSample;
 
-			//			if (updatedSample.EstimatedProperties.HasFlag (UITouchProperties.Altitude)) {
-			//				updatedSample.EstimatedProperties &= ~UITouchProperties.Altitude;
-			//				updatedSample.Altitude = sample.Altitude;
-			//			}
-			//			if (updatedSample.EstimatedProperties.HasFlag (UITouchProperties.Azimuth)) {
-			//				updatedSample.EstimatedProperties &= ~UITouchProperties.Azimuth;
-			//				updatedSample.Azimuth = sample.Azimuth;
-			//			}
-			//			stroke.Update (updatedSample, index);
-			//		}
-			//		stroke.ExpectsAltitudeAzimuthBackfill = false;
-			//	}
-			//}
+						if (updatedSample.EstimatedProperties.HasFlag (UITouchProperties.Altitude)) {
+							updatedSample.EstimatedProperties &= ~UITouchProperties.Altitude;
+							updatedSample.Altitude = sample.Altitude;
+						}
+						if (updatedSample.EstimatedProperties.HasFlag (UITouchProperties.Azimuth)) {
+							updatedSample.EstimatedProperties &= ~UITouchProperties.Azimuth;
+							updatedSample.Azimuth = sample.Azimuth;
+						}
+						stroke.Update (updatedSample, index);
+					}
+					stroke.ExpectsAltitudeAzimuthBackfill = false;
+				}
+			}
 
 			if (predicted) {
 				stroke.AddPredicted (sample);
@@ -172,20 +170,17 @@ namespace SpeedSketch
 
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
-			Console.WriteLine ($"TouchesBegan: {touches.Count}");
-
 			if (trackedTouch == null) {
-				Console.WriteLine ("trackedTouch");
 				trackedTouch = (UITouch)touches.FirstOrDefault ();
 				initialTimestamp = trackedTouch.Timestamp;
 
 				if (!IsForPencil)
 					BeginIfNeeded (null);
-				//	fingerStartTimer = NSTimer.CreateScheduledTimer (cancellationTimeInterval, BeginIfNeeded);
+					fingerStartTimer = NSTimer.CreateScheduledTimer (cancellationTimeInterval, BeginIfNeeded);
 			}
 			if (Append (Touches(touches), evt)) {
-			//	if (IsForPencil)
-			//		State = Began;
+				if (IsForPencil)
+					State = Began;
 			}
 		}
 
