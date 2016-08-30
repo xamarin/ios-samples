@@ -14,7 +14,8 @@ Refs
 
 Target
 ------
-This sample runnable on iPhoneSimulator/iPadSimulator iPhone/iPad
+This sample runnable on iPhone/iPad. Make sure [your device supports](https://developer.apple.com/library/ios/documentation/DeviceInformation/Reference/iOSDeviceCompatibility/DeviceCompatibilityMatrix/DeviceCompatibilityMatrix.html#//apple_ref/doc/uid/TP40013599-CH17-SW1) OpenGLESS v3
+
 
 Copyright
 --------
