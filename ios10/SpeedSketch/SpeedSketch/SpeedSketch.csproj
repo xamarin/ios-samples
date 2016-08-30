@@ -96,9 +96,7 @@
     <Folder Include="StrokeModel\" />
     <Folder Include="UI\" />
     <Folder Include="Helpers\" />
-  </ItemGroup>
-  <ItemGroup>
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <Folder Include="Assets.xcassets\splash-xamagon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -152,6 +150,13 @@
     <ImageAsset Include="Assets.xcassets\Tool Icons\Ink.imageset\Ink-iPhone.png" />
     <ImageAsset Include="Assets.xcassets\Tool Icons\Ink.imageset\Ink-iPhone%402x.png" />
     <ImageAsset Include="Assets.xcassets\Tool Icons\Ink.imageset\Ink-iPhone%403x.png" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon.png" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
