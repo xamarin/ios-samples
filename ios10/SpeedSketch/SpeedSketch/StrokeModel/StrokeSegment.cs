@@ -23,9 +23,9 @@ namespace SpeedSketch
 
 		CGVector NextSegmentStrokeVector {
 			get {
-				var start = SampleAfter?.Location;
-				var end = ToSample.Location;
-				return start.HasValue ? Vector(start.Value, end) : SegmentStrokeVector;
+				var start = ToSample.Location;
+				var end = SampleAfter?.Location;
+				return end.HasValue ? Vector(start, end.Value) : SegmentStrokeVector;
 			}
 		}
 

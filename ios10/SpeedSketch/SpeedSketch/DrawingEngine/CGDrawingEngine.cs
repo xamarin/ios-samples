@@ -262,7 +262,7 @@ namespace SpeedSketch
 					StrokeSample fromSample = heldFromSample ?? segment.FromSample;
 
 					// Skip line segments that are too short.
-					var dist = Vector (fromSample.Location, toSample.Location).Length ();
+					var dist = Vector (fromSample.Location, toSample.Location).Quadrance ();
 					if (dist < 0.003f) {
 						if (heldFromSample == null) {
 							heldFromSample = fromSample;

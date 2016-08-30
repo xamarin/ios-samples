@@ -31,7 +31,7 @@ namespace SpeedSketch
 			return new CGPoint (left.X - right.dx, left.Y - right.dy);
 		}
 
-		public static nfloat Length (this CGVector vector)
+		public static nfloat Quadrance (this CGVector vector)
 		{
 			return vector.dx * vector.dx + vector.dy * vector.dy;
 		}
@@ -44,7 +44,7 @@ namespace SpeedSketch
 		public static nfloat Distance (CGPoint? point1, CGPoint? point2)
 		{
 			if (point1.HasValue && point2.HasValue)
-				return Vector (point1.Value, point2.Value).Length ();
+				return NMath.Sqrt (Vector (point1.Value, point2.Value).Quadrance ());
 			return nfloat.PositiveInfinity;
 		}
 	}
@@ -65,8 +65,8 @@ namespace SpeedSketch
 		// CGVector pointing in the same direction as self, with a length of 1.0 - or nil if the length is zero.
 		public static CGVector? Normalize (this CGVector self)
 		{
-			var quadrance = self.Length ();
-			return (quadrance > 0) ? self.Divide (quadrance) : (CGVector?)null;
+			var quadrance = self.Quadrance ();
+			return (quadrance > 0) ? self.Divide (NMath.Sqrt(quadrance)) : (CGVector?)null;
 		}
 
 		public static CGVector? Normal (this CGVector self)

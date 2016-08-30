@@ -112,7 +112,7 @@ namespace SpeedSketch
 				segment.AdvanceWithSample (nextSample);
 			}
 
-			for (int index = 1; index <= total; index++) {
+			for (int index = 2; index <= total; index++) {
 				var sample = SampleAt (index, sampleCount, predictedSampleCount);
 				segment.AdvanceWithSample (sample);
 

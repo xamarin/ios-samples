@@ -63,7 +63,7 @@ namespace SpeedSketch
 		public override bool PointInside (CGPoint point, UIEvent uievent)
 		{
 			// Quadrance as the square of the length requires less computation and cases
-			var quadrance = Vector(Bounds.GetCenter (), point).Length ();
+			var quadrance = Vector(Bounds.GetCenter (), point).Quadrance ();
 			var maxQuadrance = NMath.Pow (Bounds.Width / 2, 2);
 
 			return quadrance < maxQuadrance;
