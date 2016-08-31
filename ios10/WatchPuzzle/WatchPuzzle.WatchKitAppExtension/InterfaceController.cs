@@ -234,14 +234,14 @@ namespace WatchPuzzle.WatchKitAppExtension
 			gameNodes.Value.CountdownLabel.Position = new CGPoint (ContentFrame.Width / 2, ContentFrame.Height - 30);
 
 			textUpdateTimer?.Invalidate ();
-			textUpdateTimer = NSTimer.CreateScheduledTimer (1, UpdateText);
+			textUpdateTimer = NSTimer.CreateRepeatingScheduledTimer (1, UpdateText);
 		}
 
 		// Update countdown timer.
 		void UpdateText (NSTimer timer)
 		{
 			var gNodes = gameNodes.Value;
-			gNodes.CongratulationsLabel.Text = countdown.ToString ();
+			gNodes.CountdownLabel.Text = countdown.ToString ();
 			sceneInterface.Playing = true;
 			sceneInterface.Playing = false;
 			countdown -= 1;
