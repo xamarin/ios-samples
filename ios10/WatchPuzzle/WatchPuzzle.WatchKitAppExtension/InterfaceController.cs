@@ -10,7 +10,7 @@ using CoreGraphics;
 
 namespace WatchPuzzle.WatchKitAppExtension
 {
-	static class GameColors
+	public static class GameColors
 	{
 		public static readonly UIColor DefaultFont = new UIColor (31f / 255, 226f / 255, 63f / 255, 1);
 		public static readonly UIColor Warning = UIColor.Orange;
@@ -18,15 +18,14 @@ namespace WatchPuzzle.WatchKitAppExtension
 	}
 
 	// A struct containing all the `SCNNode`s used in the game.
-	struct GameNodes
+	public struct GameNodes
 	{
-
-		readonly SCNNode Object;
-		readonly SCNMaterial ObjectMaterial;
-		readonly SCNNode Confetti;
-		readonly SCNCamera Camera;
-		readonly SKLabelNode CountdownLabel;
-		readonly SKLabelNode CongratulationsLabel;
+		public readonly SCNNode Object;
+		public readonly SCNMaterial ObjectMaterial;
+		public readonly SCNNode Confetti;
+		public readonly SCNCamera Camera;
+		public readonly SKLabelNode CountdownLabel;
+		public readonly SKLabelNode CongratulationsLabel;
 
 		// Queries the root node for the expected nodes.
 		internal GameNodes (SCNNode sceneRoot)
@@ -57,128 +56,129 @@ namespace WatchPuzzle.WatchKitAppExtension
 				FontSize = 45
 			};
 		}
+	}
 
-		public partial class InterfaceController : WKInterfaceController
+	public partial class InterfaceController : WKInterfaceController
+	{
+		[Outlet ("sceneInterface")]
+		WKInterfaceSCNScene sceneInterface { get; set; }
+
+		GameNodes? gameNodes;
+		bool gameStarted;
+		SCNMatrix4 initialObject3DRotation = SCNMatrix4.Identity;
+		Vector3 initialSphereLocation = new Vector3 ();
+		int countdown;
+		NSTimer textUpdateTimer;
+		NSTimer particleRemovalTimer;
+
+		protected InterfaceController (IntPtr handle) : base (handle)
 		{
-			[Outlet ("sceneInterface")]
-			WKInterfaceSCNScene sceneInterface { get; set; }
+		}
 
-			GameNodes? gameNodes;
-			bool gameStarted;
-			SCNMatrix4 initialObject3DRotation = SCNMatrix4.Identity;
-			Vector3 initialSphereLocation = new Vector3 ();
-			int countdown;
-			NSTimer textUpdateTimer;
-			NSTimer particleRemovalTimer;
+		public override void Awake (NSObject context)
+		{
+			base.Awake (context);
+			SetupGame ();
+		}
 
-			protected InterfaceController (IntPtr handle) : base (handle)
-			{
+		public override void WillActivate ()
+		{
+			// Start the game if not already started.
+			if (!gameStarted)
+				StartGame ();
+
+			base.WillActivate ();
+		}
+
+		[Action ("handleTapWithSender:")]
+		void HandleTap (NSObject sender)
+		{
+			var tapGesture = sender as WKTapGestureRecognizer;
+			if (sender == null)
+				return;
+
+			// Restart the game on single tap only if presenting congratulation screen.
+			if (tapGesture.NumberOfTapsRequired == 1 && !gameStarted)
+				StartGame ();
+		}
+
+		#region Gesture reconginzer handling
+
+		// Handle rotation of the 3D object by computing rotations of a virtual
+		// trackball using the pan gesture touch locations.
+		// On state ended, end the game if the object has the right orientation.
+
+		[Action ("handlePanWithPanGesture:")]
+		void HandlePan (WKPanGestureRecognizer panGesture)
+		{
+			if (!gameNodes.HasValue || !gameStarted)
+				return;
+
+			var gNodes = gameNodes.Value;
+			var location = panGesture.LocationInObject;
+			var bounds = panGesture.ObjectBounds;
+
+			// Compute the projection of the interface point to the virtual trackball.
+			var sphereLocation = SphereProjection (location, bounds);
+
+			switch (panGesture.State) {
+			case WKGestureRecognizerState.Began:
+				// Record initial states.
+				initialSphereLocation = sphereLocation;
+				initialObject3DRotation = gNodes.Object.Transform;
+				break;
+
+			case WKGestureRecognizerState.Cancelled:
+			case WKGestureRecognizerState.Ended:
+			case WKGestureRecognizerState.Changed:
+				// Compute the rotation and apply to the object.
+				var currentRotation = RotationFromPoint (initialSphereLocation, sphereLocation);
+				gNodes.Object.Transform = SCNMatrix4.Mult (initialObject3DRotation, currentRotation);
+				break;
+
+
+			default:
+				Console.WriteLine ($"Unhandled gesture state: {panGesture.State}");
+				throw new InvalidProgramException ();
 			}
 
-			public override void Awake (NSObject context)
-			{
-				base.Awake (context);
-				SetupGame ();
-			}
+			// End the game if the object has the initial orientation.
+			if (panGesture.State == WKGestureRecognizerState.Ended)
+				EndGameOnCorrectOrientation ();
+		}
 
-			public override void WillActivate ()
-			{
-				// Start the game if not already started.
-				if (!gameStarted)
-					StartGame ();
+		#endregion
 
-				base.WillActivate ();
-			}
+		#region Game flow
 
-			[Action ("handleTap:")]
-			void HandleTap (NSObject sender)
-			{
-				var tapGesture = sender as WKTapGestureRecognizer;
-				if (sender == null)
-					return;
+		// Setup overlays and lookup scene objects.
+		void SetupGame ()
+		{
+			var sceneRoot = sceneInterface.Scene?.RootNode;
+			if (sceneRoot == null)
+				throw new InvalidProgramException ();
 
-				// Restart the game on single tap only if presenting congratulation screen.
-				if (tapGesture.NumberOfTapsRequired == 1 && !gameStarted)
-					StartGame ();
-			}
+			gameNodes = new GameNodes (sceneRoot);
+			var gNodes = gameNodes.Value;
 
-			#region Gesture reconginzer handling
+			gNodes.Object.Transform = SCNMatrix4.Identity;
+			gNodes.ObjectMaterial.Transparency = 0;
+			gNodes.Confetti.Hidden = true;
 
-			// Handle rotation of the 3D object by computing rotations of a virtual
-			// trackball using the pan gesture touch locations.
-			// On state ended, end the game if the object has the right orientation.
+			var skScene = new SKScene (ContentFrame.Size) {
+				ScaleMode = SKSceneScaleMode.ResizeFill
+			};
+			skScene.AddChild (gNodes.CountdownLabel);
 
-			[Action("handlePan:")]
-			void HandlePan (WKPanGestureRecognizer panGesture)
-			{
-				if (!gameNodes.HasValue || !gameStarted)
-					return;
+			sceneInterface.OverlayScene = skScene;
+		}
 
-				var gNodes = gameNodes.Value;
-				var location = panGesture.LocationInObject;
-				var bounds = panGesture.ObjectBounds;
+		void StartGame ()
+		{
+			if (!gameNodes.HasValue)
+				throw new InvalidProgramException ("Nodes not set");
 
-				// Compute the projection of the interface point to the virtual trackball.
-				var sphereLocation = SphereProjection (location, bounds);
-
-				switch (panGesture.State) {
-				case WKGestureRecognizerState.Began:
-					// Record initial states.
-					initialSphereLocation = sphereLocation;
-					initialObject3DRotation = gNodes.Object.Transform;
-					break;
-
-				case WKGestureRecognizerState.Cancelled:
-				case WKGestureRecognizerState.Ended:
-				case WKGestureRecognizerState.Changed:
-					// Compute the rotation and apply to the object.
-					var currentRotation = RotationFromPoint (initialSphereLocation, sphereLocation);
-					gNodes.Object.Transform = SCNMatrix4.Mult (initialObject3DRotation, currentRotation);
-					break;
-
-
-				default:
-					Console.WriteLine ($"Unhandled gesture state: {panGesture.State}");
-					throw new InvalidProgramException ();
-				}
-
-				// End the game if the object has the initial orientation.
-				if (panGesture.State == WKGestureRecognizerState.Ended)
-					EndGameOnCorrectOrientation ();
-			}
-
-			#endregion
-
-			#region Game flow
-
-			// Setup overlays and lookup scene objects.
-			void SetupGame ()
-			{
-				var sceneRoot = sceneInterface.Scene?.RootNode;
-				if (sceneRoot == null)
-					throw new InvalidProgramException ();
-
-				gameNodes = new GameNodes (sceneRoot);
-				var gNodes = gameNodes.Value;
-
-				gNodes.Object.Transform = SCNMatrix4.Identity;
-				gNodes.ObjectMaterial.Transparency = 0;
-				gNodes.Confetti.Hidden = true;
-
-				var skScene = new SKScene (ContentFrame.Size) {
-					ScaleMode = SKSceneScaleMode.ResizeFill
-				};
-				skScene.AddChild (gNodes.CountdownLabel);
-
-				sceneInterface.OverlayScene = skScene;
-			}
-
-			void StartGame ()
-			{
-				if (!gameNodes.HasValue)
-					throw new InvalidProgramException ("Nodes not set");
-
-				var startSequence = SCNAction.Sequence (new SCNAction [] {
+			var startSequence = SCNAction.Sequence (new SCNAction [] {
 					// Wait for 1 second.
 					SCNAction.Wait(1),
 					SCNAction.Group(new SCNAction[]{
@@ -214,171 +214,171 @@ namespace WatchPuzzle.WatchKitAppExtension
 						})
 					})
 				});
-				gameNodes.Value.Object.RunAction (startSequence);
+			gameNodes.Value.Object.RunAction (startSequence);
 
-				// Load and set the background image.
-				var backgroundImage = UIImage.FromBundle ("art.scnassets/background.png");
-				sceneInterface.Scene.Background.Contents = backgroundImage;
+			// Load and set the background image.
+			var backgroundImage = UIImage.FromBundle ("art.scnassets/background.png");
+			sceneInterface.Scene.Background.Contents = backgroundImage;
 
-				// Hide particles, set camera projection to orthographic.
-				particleRemovalTimer?.Invalidate ();
-				gameNodes.Value.CongratulationsLabel.RemoveFromParent ();
-				gameNodes.Value.Confetti.Hidden = true;
-				gameNodes.Value.Camera.UsesOrthographicProjection = true;
+			// Hide particles, set camera projection to orthographic.
+			particleRemovalTimer?.Invalidate ();
+			gameNodes.Value.CongratulationsLabel.RemoveFromParent ();
+			gameNodes.Value.Confetti.Hidden = true;
+			gameNodes.Value.Camera.UsesOrthographicProjection = true;
 
 
-				// Reset the countdown.
-				countdown = 30;
-				gameNodes.Value.CountdownLabel.Text = countdown.ToString ();
-				gameNodes.Value.CountdownLabel.FontColor = GameColors.DefaultFont;
-				gameNodes.Value.CountdownLabel.Position = new CGPoint (ContentFrame.Width / 2, ContentFrame.Height - 30);
+			// Reset the countdown.
+			countdown = 30;
+			gameNodes.Value.CountdownLabel.Text = countdown.ToString ();
+			gameNodes.Value.CountdownLabel.FontColor = GameColors.DefaultFont;
+			gameNodes.Value.CountdownLabel.Position = new CGPoint (ContentFrame.Width / 2, ContentFrame.Height - 30);
 
+			textUpdateTimer?.Invalidate ();
+			textUpdateTimer = NSTimer.CreateScheduledTimer (1, UpdateText);
+		}
+
+		// Update countdown timer.
+		void UpdateText (NSTimer timer)
+		{
+			var gNodes = gameNodes.Value;
+			gNodes.CongratulationsLabel.Text = countdown.ToString ();
+			sceneInterface.Playing = true;
+			sceneInterface.Playing = false;
+			countdown -= 1;
+
+			if (countdown < 0) {
+				gNodes.CountdownLabel.FontColor = GameColors.Danger;
 				textUpdateTimer?.Invalidate ();
-				textUpdateTimer = NSTimer.CreateScheduledTimer (1, UpdateText);
+				return;
 			}
 
-			// Update countdown timer.
-			void UpdateText (NSTimer timer)
-			{
-				var gNodes = gameNodes.Value;
-				gNodes.CongratulationsLabel.Text = countdown.ToString ();
-				sceneInterface.Playing = true;
-				sceneInterface.Playing = false;
-				countdown -= 1;
-
-				if (countdown < 0) {
-					gNodes.CountdownLabel.FontColor = GameColors.Danger;
-					textUpdateTimer?.Invalidate ();
-					return;
-				}
-
-				if (countdown < 10) {
-					gNodes.CountdownLabel.FontColor = GameColors.Warning;
-				}
+			if (countdown < 10) {
+				gNodes.CountdownLabel.FontColor = GameColors.Warning;
 			}
+		}
 
-			// End the game by showing the congratulation screen after fading the object to white.
-			void EndGame ()
-			{
-				var gNodes = gameNodes.Value;
+		// End the game by showing the congratulation screen after fading the object to white.
+		void EndGame ()
+		{
+			var gNodes = gameNodes.Value;
 
-				textUpdateTimer?.Invalidate ();
+			textUpdateTimer?.Invalidate ();
+			SCNTransaction.Begin ();
+			SCNTransaction.AnimationDuration = 0.5;
+			SCNTransaction.SetCompletionBlock (() => {
 				SCNTransaction.Begin ();
-				SCNTransaction.AnimationDuration = 0.5;
+				SCNTransaction.AnimationDuration = 0.3;
 				SCNTransaction.SetCompletionBlock (() => {
-					SCNTransaction.Begin ();
-					SCNTransaction.AnimationDuration = 0.3;
-					SCNTransaction.SetCompletionBlock (() => {
-						ShowCongratulation ();
-						gNodes.ObjectMaterial.Emission.Contents = UIColor.Black;
-						gameStarted = false;
-					});
-					SCNTransaction.Commit ();
-
+					ShowCongratulation ();
+					gNodes.ObjectMaterial.Emission.Contents = UIColor.Black;
+					gameStarted = false;
 				});
-
-				gNodes.Object.Transform = SCNMatrix4.Identity;
-				gNodes.ObjectMaterial.Emission.Contents = UIColor.White;
-				gNodes.ObjectMaterial.Transparency = 0;
-
 				SCNTransaction.Commit ();
+
+			});
+
+			gNodes.Object.Transform = SCNMatrix4.Identity;
+			gNodes.ObjectMaterial.Emission.Contents = UIColor.White;
+			gNodes.ObjectMaterial.Transparency = 0;
+
+			SCNTransaction.Commit ();
+		}
+
+		#endregion
+
+		#region Utils
+
+		Vector3 SphereProjection (CGPoint location, CGRect bounds)
+		{
+			var screenLocation = ScreenProjection (location, bounds);
+			return SphereProjection (screenLocation);
+		}
+
+		// Compute projection from object interface to virtual screen on the range [-1, 1].
+		CGPoint ScreenProjection (CGPoint location, CGRect bounds)
+		{
+			var w = bounds.Width;
+			var h = bounds.Height;
+			var aspectRatioCorrection = (h - w) / 2;
+			var screenCoord = new CGPoint (location.X / w * 2 - 1,
+										   (h - location.Y - aspectRatioCorrection) / w * 2 - 1);
+			screenCoord.X = NMath.Min (1, NMath.Max (-1, screenCoord.X));
+			screenCoord.Y = NMath.Min (1, NMath.Max (-1, screenCoord.Y));
+			return screenCoord;
+		}
+
+		// Compute projection of virtual screen point to unit sphere.
+		Vector3 SphereProjection (CGPoint location)
+		{
+			var sphereCoord = new Vector3 ();
+			var squaredLenght = location.X * location.X + location.Y * location.Y;
+
+			if (squaredLenght <= 1) {
+				sphereCoord.X = (float)location.X;
+				sphereCoord.Y = (float)location.Y;
+				sphereCoord.Z = (float)NMath.Sqrt (1 - squaredLenght);
+			} else {
+				var n = 1f / NMath.Sqrt (squaredLenght);
+				sphereCoord.X = (float)(n * location.X);
+				sphereCoord.Y = (float)(n * location.Y);
+				sphereCoord.Z = 0;
 			}
 
-			#endregion
+			return sphereCoord;
+		}
 
-			#region Utils
+		// Compute the rotation matrix from one point to another on a unit sphere.
+		SCNMatrix4 RotationFromPoint (Vector3 start, Vector3 end)
+		{
+			var axis = Vector3.Cross (start, end);
+			var angle = NMath.Atan2 (axis.Length, Vector3.Dot (start, end));
 
-			Vector3 SphereProjection (CGPoint location, CGRect bounds)
-			{
-				var screenLocation = ScreenProjection (location, bounds);
-				return SphereProjection (screenLocation);
-			}
+			return SCNMatrix4.Rotate (new Quaternion (axis.X, axis.Y, axis.Z, (float)angle));
+		}
 
-			// Compute projection from object interface to virtual screen on the range [-1, 1].
-			CGPoint ScreenProjection (CGPoint location, CGRect bounds)
-			{
-				var w = bounds.Width;
-				var h = bounds.Height;
-				var aspectRatioCorrection = (h - w) / 2;
-				var screenCoord = new CGPoint (location.X / w * 2 - 1,
-											   (h - location.Y - aspectRatioCorrection) / w * 2 - 1);
-				screenCoord.X = NMath.Min (1, NMath.Max (-1, screenCoord.X));
-				screenCoord.Y = NMath.Min (1, NMath.Max (-1, screenCoord.Y));
-				return screenCoord;
-			}
+		// End the game if the object has its initial orientation with a 10 degree tolerance.
+		void EndGameOnCorrectOrientation ()
+		{
+			if (!gameNodes.HasValue || !gameStarted)
+				return;
 
-			// Compute projection of virtual screen point to unit sphere.
-			Vector3 SphereProjection (CGPoint location)
-			{
-				var sphereCoord = new Vector3 ();
-				var squaredLenght = location.X * location.X + location.Y * location.Y;
+			var gNodes = gameNodes.Value;
 
-				if (squaredLenght <= 1) {
-					sphereCoord.X = (float)location.X;
-					sphereCoord.Y = (float)location.Y;
-					sphereCoord.Z = (float)NMath.Sqrt (1 - squaredLenght);
-				} else {
-					var n = 1f / NMath.Sqrt (squaredLenght);
-					sphereCoord.X = (float)(n * location.X);
-					sphereCoord.Y = (float)(n * location.Y);
-					sphereCoord.Z = 0;
-				}
+			var transform = gNodes.Object.Transform;
+			var unitX = new SCNVector4 (1, 0, 0, 0);
+			var unitY = new SCNVector4 (0, 1, 0, 0);
 
-				return sphereCoord;
-			}
+			var tX = SCNVector4.Transform (unitX, transform);
+			var tY = SCNVector4.Transform (unitY, transform);
 
-			// Compute the rotation matrix from one point to another on a unit sphere.
-			SCNMatrix4 RotationFromPoint (Vector3 start, Vector3 end)
-			{
-				var axis = Vector3.Cross (start, end);
-				var angle = NMath.Atan2 (axis.Length, Vector3.Dot (start, end));
+			float toleranceDegree = 10;
+			var max_cos_angle = Math.Cos (toleranceDegree * Math.PI / 180);
+			var cos_angleX = SCNVector4.Dot (unitX, tX);
+			var cos_angleY = SCNVector4.Dot (unitY, tY);
 
-				return SCNMatrix4.Rotate (new Quaternion (axis.X, axis.Y, axis.Z, (float)angle));
-			}
+			if (cos_angleX >= max_cos_angle && cos_angleY >= max_cos_angle)
+				EndGame ();
+		}
 
-			// End the game if the object has its initial orientation with a 10 degree tolerance.
-			void EndGameOnCorrectOrientation ()
-			{
-				if (!gameNodes.HasValue || !gameStarted)
-					return;
+		// Show the congratulation screen.
+		void ShowCongratulation ()
+		{
+			var gNodes = gameNodes.Value;
+			gNodes.Camera.UsesOrthographicProjection = false;
 
-				var gNodes = gameNodes.Value;
+			sceneInterface.Scene.Background.Contents = UIColor.Black;
 
-				var transform = gNodes.Object.Transform;
-				var unitX = new SCNVector4 (1, 0, 0, 0);
-				var unitY = new SCNVector4 (0, 1, 0, 0);
+			gNodes.Confetti.Hidden = false;
+			particleRemovalTimer?.Invalidate ();
+			particleRemovalTimer = NSTimer.CreateScheduledTimer (30, RemoveParticles);
 
-				var tX = SCNVector4.Transform (unitX, transform);
-				var tY = SCNVector4.Transform (unitY, transform);
+			gNodes.CongratulationsLabel.RemoveFromParent ();
+			gNodes.CongratulationsLabel.Position = new CGPoint (ContentFrame.Width / 2, ContentFrame.Height / 2);
+			gNodes.CongratulationsLabel.XScale = 0;
+			gNodes.CongratulationsLabel.YScale = 0;
+			gNodes.CongratulationsLabel.Alpha = 0;
 
-				float toleranceDegree = 10;
-				var max_cos_angle = Math.Cos (toleranceDegree * Math.PI / 180);
-				var cos_angleX = SCNVector4.Dot (unitX, tX);
-				var cos_angleY = SCNVector4.Dot (unitY, tY);
-
-				if (cos_angleX >= max_cos_angle && cos_angleY >= max_cos_angle)
-					EndGame ();
-			}
-
-			// Show the congratulation screen.
-			void ShowCongratulation ()
-			{
-				var gNodes = gameNodes.Value;
-				gNodes.Camera.UsesOrthographicProjection = false;
-
-				sceneInterface.Scene.Background.Contents = UIColor.Black;
-
-				gNodes.Confetti.Hidden = false;
-				particleRemovalTimer?.Invalidate ();
-				particleRemovalTimer = NSTimer.CreateScheduledTimer (30, RemoveParticles);
-
-				gNodes.CongratulationsLabel.RemoveFromParent ();
-				gNodes.CongratulationsLabel.Position = new CGPoint (ContentFrame.Width / 2, ContentFrame.Height / 2);
-				gNodes.CongratulationsLabel.XScale = 0;
-				gNodes.CongratulationsLabel.YScale = 0;
-				gNodes.CongratulationsLabel.Alpha = 0;
-
-				gNodes.CongratulationsLabel.RunAction (SKAction.Group (new SKAction []{
+			gNodes.CongratulationsLabel.RunAction (SKAction.Group (new SKAction []{
 					SKAction.FadeInWithDuration (0.25),
 					SKAction.Sequence (new SKAction []{
 						SKAction.ScaleTo (0.7f, 0.25),
@@ -386,15 +386,14 @@ namespace WatchPuzzle.WatchKitAppExtension
 					})
 				}));
 
-				sceneInterface.OverlayScene.AddChild (gNodes.CongratulationsLabel);
-			}
-
-			void RemoveParticles (NSTimer timer)
-			{
-				gameNodes.Value.Confetti.Hidden = false;
-			}
-
-			#endregion
+			sceneInterface.OverlayScene.AddChild (gNodes.CongratulationsLabel);
 		}
+
+		void RemoveParticles (NSTimer timer)
+		{
+			gameNodes.Value.Confetti.Hidden = false;
+		}
+
+		#endregion
 	}
 }

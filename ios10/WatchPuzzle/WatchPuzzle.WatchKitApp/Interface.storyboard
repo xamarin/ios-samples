@@ -8,7 +8,7 @@
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController">
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="">
                     <items>
                         <sceneKitScene alignment="left" scene="art.scnassets/sample.scn" id="qs4-XW-IwS">
                             <gestureRecognizers>
