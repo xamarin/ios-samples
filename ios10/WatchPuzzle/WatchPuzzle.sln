@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchPuzzle", "WatchPuzzle\WatchPuzzle.csproj", "{6D4D36E9-89B6-411E-A2DE-3E5D7DB60FBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D4D36E9-89B6-411E-A2DE-3E5D7DB60FBB}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{6D4D36E9-89B6-411E-A2DE-3E5D7DB60FBB}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{6D4D36E9-89B6-411E-A2DE-3E5D7DB60FBB}.Release|iPhone.ActiveCfg = Release|iPhone
+		{6D4D36E9-89B6-411E-A2DE-3E5D7DB60FBB}.Release|iPhone.Build.0 = Release|iPhone
+		{6D4D36E9-89B6-411E-A2DE-3E5D7DB60FBB}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{6D4D36E9-89B6-411E-A2DE-3E5D7DB60FBB}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{6D4D36E9-89B6-411E-A2DE-3E5D7DB60FBB}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{6D4D36E9-89B6-411E-A2DE-3E5D7DB60FBB}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
