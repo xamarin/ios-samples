@@ -141,5 +141,12 @@
     <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
     <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WatchPuzzle.WatchKitApp\WatchPuzzle.WatchKitApp.csproj">
+      <IsWatchApp>true</IsWatchApp>
+      <Project>{3097FCA1-80BF-407B-BB46-330F16441C24}</Project>
+      <Name>WatchPuzzle.WatchKitApp</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
