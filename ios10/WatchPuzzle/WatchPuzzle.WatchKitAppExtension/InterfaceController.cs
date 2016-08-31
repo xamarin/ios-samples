@@ -58,7 +58,7 @@ namespace WatchPuzzle.WatchKitAppExtension
 			};
 		}
 
-		public class InterfaceController : WKInterfaceController
+		public partial class InterfaceController : WKInterfaceController
 		{
 			[Outlet ("sceneInterface")]
 			WKInterfaceSCNScene sceneInterface { get; set; }
