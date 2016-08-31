@@ -105,14 +105,14 @@
     <None Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Interface.storyboard" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\WatchPuzzle.WatchKitAppExtension\WatchPuzzle.WatchKitAppExtension.csproj">
       <IsAppExtension>true</IsAppExtension>
       <Project>{3C9741D9-3425-4D94-995F-4C7215AEBC9D}</Project>
       <Name>WatchPuzzle.WatchKitAppExtension</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Interface.storyboard" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\WatchOS\Xamarin.WatchOS.App.CSharp.targets" />
 </Project>

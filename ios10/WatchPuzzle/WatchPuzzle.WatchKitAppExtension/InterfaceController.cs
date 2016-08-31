@@ -9,7 +9,6 @@ namespace WatchPuzzle.WatchKitAppExtension
 	{
 		protected InterfaceController (IntPtr handle) : base (handle)
 		{
-			// Note: this .ctor should not contain any initialization logic.
 		}
 
 		public override void Awake (NSObject context)

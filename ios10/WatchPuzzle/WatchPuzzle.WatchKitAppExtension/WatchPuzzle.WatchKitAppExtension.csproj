@@ -108,5 +108,14 @@
       <DependentUpon>InterfaceController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <SceneKitAsset Include="art.scnassets\background.png" />
+    <SceneKitAsset Include="art.scnassets\confetti.png" />
+    <SceneKitAsset Include="art.scnassets\congratulations.png" />
+    <SceneKitAsset Include="art.scnassets\sample.scn" />
+    <SceneKitAsset Include="art.scnassets\teapot_AO.png" />
+    <SceneKitAsset Include="art.scnassets\texture-wood2.png" />
+    <SceneKitAsset Include="art.scnassets\watch_reflection.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\WatchOS\Xamarin.WatchOS.AppExtension.CSharp.targets" />
 </Project>
