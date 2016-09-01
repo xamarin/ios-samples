@@ -208,7 +208,7 @@ namespace WatchPuzzle.WatchKitAppExtension
 							SCNTransaction.SetCompletionBlock(() => gameStarted = true);
 
 							gNodes.ObjectMaterial.Transparency = 1;
-							gNodes.Object.Transform = SCNMatrix4.Rotate(new Quaternion(axis.X, axis.Y, axis.Z, angle));
+							gNodes.Object.Transform = SCNMatrix4.CreateFromAxisAngle(axis, angle);
 
 							SCNTransaction.Commit ();
 						})
@@ -333,7 +333,7 @@ namespace WatchPuzzle.WatchKitAppExtension
 			var axis = Vector3.Cross (start, end);
 			var angle = NMath.Atan2 (axis.Length, Vector3.Dot (start, end));
 
-			return SCNMatrix4.Rotate (new Quaternion (axis.X, axis.Y, axis.Z, (float)angle));
+			return SCNMatrix4.CreateFromAxisAngle (axis, (float)angle);
 		}
 
 		// End the game if the object has its initial orientation with a 10 degree tolerance.
@@ -395,5 +395,6 @@ namespace WatchPuzzle.WatchKitAppExtension
 		}
 
 		#endregion
+
 	}
 }
