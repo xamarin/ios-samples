@@ -23,9 +23,9 @@
 	<string>com.xamarin.watchpuzzle</string>
 	<key>WKWatchKitApp</key>
 	<true/>
-	<key>XSAppIconAssets</key>
-	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>MinimumOSVersion</key>
 	<string>3.0</string>
+	<key>XSAppIconAssets</key>
+	<string>Images.xcassets/AppIcons.appiconset</string>
 </dict>
 </plist>
