@@ -1,8 +1,8 @@
 MonoTouch Samples
 =================
 
-The samples in this directory use the MonoTouch toolchain and
-MonoDevelop project files to illustrate the basics of how to
+The samples in this directory use the Xamarin.iOS toolchain and
+Xamarin Studio project files to illustrate the basics of how to
 work with iOS and the SDK.
 
 License
@@ -32,8 +32,9 @@ Version Specific Samples
 
 Starting with iOS 8, we started adding samples that showcase specific
 features introduced in a release into a directory for the release.  So
-all the new iOS 8 feature samples live in the ios8 directory, and the
-iOS 9 features live in the ios9 directory.
+all the new iOS 8 feature samples live in the ios8 directory, the
+iOS 9 features live in the ios9 directory and the iOS 10 feature lives
+in the ios10 directory.
 
 
 WatchKit
