@@ -9,8 +9,8 @@ Xcode 8.0 or later; iOS 10.0 SDK or later; watchOS 3.0 SDK or later
 
 Refs
 ----
-[Original sample](https://developer.apple.com/library/prerelease/content/samplecode/WatchPuzzle/Introduction/Intro.html#//apple_ref/doc/uid/TP40017284)
-[Article](http://www.diku.dk/~kash/papers/DSAGM2002_henriksen.pdf) about Virtal Trackballs (You are interested in Shoemake's Trackball, the so-called arcball)
+* [Original sample](https://developer.apple.com/library/prerelease/content/samplecode/WatchPuzzle/Introduction/Intro.html#//apple_ref/doc/uid/TP40017284)
+* [Article](http://www.diku.dk/~kash/papers/DSAGM2002_henriksen.pdf) about Virtal Trackballs (You are interested in Shoemake's Trackball, the so-called arcball)
 
 Target
 ------
