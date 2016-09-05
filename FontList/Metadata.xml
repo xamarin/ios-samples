@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>a6e69ea2-ea93-44bb-9d11-b01587ea5623</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginner</Level>
+	<Level>Beginning</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
 	<Brief>Lists the fonts available on the device and shows a preview of each font.</Brief>
