@@ -129,6 +129,7 @@ However, because the sample galleries are powered by the github sample repos, ea
 		* **Extension**
 		* **iOS8**
 		* **iOS9**
+		* **iOS10**
 		* **Watch**
 		* **Keyboard**
 		* **SceneKit**
