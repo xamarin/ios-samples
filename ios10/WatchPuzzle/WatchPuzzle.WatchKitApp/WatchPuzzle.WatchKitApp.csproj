@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{3097FCA1-80BF-407B-BB46-330F16441C24}</ProjectGuid>
+    <ProjectTypeGuids>{A9A6EAC2-568B-4F3E-869D-32CBBA122DF2};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>WatchPuzzle.WatchKitApp</RootNamespace>
+    <AssemblyName>WatchPuzzleWatchKitApp</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <MtouchEnableBitcode>true</MtouchEnableBitcode>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7k</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7k</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Glance' ">
+    <WatchKitExecutionMode>Glance</WatchKitExecutionMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.WatchOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WatchPuzzle.WatchKitAppExtension\WatchPuzzle.WatchKitAppExtension.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{3C9741D9-3425-4D94-995F-4C7215AEBC9D}</Project>
+      <Name>WatchPuzzle.WatchKitAppExtension</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Interface.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Images.xcassets\Contents.json" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-app-60%403x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-57.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-60%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-72.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-72%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-76.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-76%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-carplay-120.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-29.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-29%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-29%403x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-40.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-40%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-40%403x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-50.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-50%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spp-57%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-172.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-196.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-29%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-29%403x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-40%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-44%402x.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-48.png" />
+    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-55.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\WatchOS\Xamarin.WatchOS.App.CSharp.targets" />
+</Project>

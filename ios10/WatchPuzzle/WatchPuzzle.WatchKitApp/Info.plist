@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>WatchPuzzle.WatchKitApp</string>
+	<key>CFBundleName</key>
+	<string>WatchPuzzle.WatchKitApp</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.watchpuzzle.watchkitapp</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>WKCompanionAppBundleIdentifier</key>
+	<string>com.xamarin.watchpuzzle</string>
+	<key>WKWatchKitApp</key>
+	<true/>
+	<key>MinimumOSVersion</key>
+	<string>3.0</string>
+	<key>XSAppIconAssets</key>
+	<string>Images.xcassets/AppIcons.appiconset</string>
+</dict>
+</plist>
