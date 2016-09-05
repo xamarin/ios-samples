@@ -1,12 +1,12 @@
 ﻿using System;
 
-using UIKit;
-using WatchKit;
+using CoreGraphics;
 using Foundation;
+using OpenTK;
 using SceneKit;
 using SpriteKit;
-using OpenTK;
-using CoreGraphics;
+using UIKit;
+using WatchKit;
 
 namespace WatchPuzzle.WatchKitAppExtension
 {
@@ -136,7 +136,6 @@ namespace WatchPuzzle.WatchKitAppExtension
 				gNodes.Object.Transform = SCNMatrix4.Mult (initialObject3DRotation, currentRotation);
 				break;
 
-
 			default:
 				Console.WriteLine ($"Unhandled gesture state: {panGesture.State}");
 				throw new InvalidProgramException ();
@@ -180,35 +179,35 @@ namespace WatchPuzzle.WatchKitAppExtension
 
 			var startSequence = SCNAction.Sequence (new SCNAction [] {
 					// Wait for 1 second.
-					SCNAction.Wait(1),
-					SCNAction.Group(new SCNAction[]{
-						SCNAction.FadeIn(0.3),
+					SCNAction.Wait (1),
+					SCNAction.Group (new SCNAction[] {
+						SCNAction.FadeIn (0.3),
 
 						// Start the game.
-						SCNAction.Run(node => {
-							if(!gameNodes.HasValue)
+						SCNAction.Run (node => {
+							if (!gameNodes.HasValue)
 								return;
 							var gNodes = gameNodes.Value;
 
-							var rnd = new Random();
+							var rnd = new Random ();
 
 							// Compute a random orientation for the object3D.
-							var theta = (float)(Math.PI * rnd.NextDouble());
-							var phi = (float) (Math.Acos(2 * rnd.NextDouble() - 1) / NMath.PI);
+							var theta = (float)(Math.PI * rnd.NextDouble ());
+							var phi = (float) (Math.Acos (2 * rnd.NextDouble () - 1) / NMath.PI);
 
 							var axis = new Vector3 {
-								X = (float)(Math.Cos(theta)*Math.Sin(phi)),
-								Y = (float)(Math.Sin(theta) * Math.Sin(phi)),
-								Z = (float)Math.Cos(theta)
+								X = (float)(Math.Cos (theta) * Math.Sin (phi)),
+								Y = (float)(Math.Sin (theta) * Math.Sin (phi)),
+								Z = (float)Math.Cos (theta)
 							};
 							var angle = (float)(2 * Math.PI * rnd.NextDouble());
 
 							SCNTransaction.Begin ();
 							SCNTransaction.AnimationDuration = 0.3;
-							SCNTransaction.SetCompletionBlock(() => gameStarted = true);
+							SCNTransaction.SetCompletionBlock (() => gameStarted = true);
 
 							gNodes.ObjectMaterial.Transparency = 1;
-							gNodes.Object.Transform = SCNMatrix4.CreateFromAxisAngle(axis, angle);
+							gNodes.Object.Transform = SCNMatrix4.CreateFromAxisAngle (axis, angle);
 
 							SCNTransaction.Commit ();
 						})
@@ -225,7 +224,6 @@ namespace WatchPuzzle.WatchKitAppExtension
 			gameNodes.Value.CongratulationsLabel.RemoveFromParent ();
 			gameNodes.Value.Confetti.Hidden = true;
 			gameNodes.Value.Camera.UsesOrthographicProjection = true;
-
 
 			// Reset the countdown.
 			countdown = 30;
@@ -252,9 +250,8 @@ namespace WatchPuzzle.WatchKitAppExtension
 				return;
 			}
 
-			if (countdown < 10) {
+			if (countdown < 10)
 				gNodes.CountdownLabel.FontColor = GameColors.Warning;
-			}
 		}
 
 		// End the game by showing the congratulation screen after fading the object to white.
@@ -274,7 +271,6 @@ namespace WatchPuzzle.WatchKitAppExtension
 					gameStarted = false;
 				});
 				SCNTransaction.Commit ();
-
 			});
 
 			gNodes.Object.Transform = SCNMatrix4.Identity;
