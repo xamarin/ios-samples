@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>133bdad4-776a-454d-a265-889d009d0335</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>Media</Tags>
 	<Gallery>true</Gallery>
 	<Brief>This sample demonstrates playing sound via AudioToolkit.</Brief>

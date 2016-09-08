@@ -2,7 +2,7 @@
 <SampleMetadata>
 	<ID>6674495C-EFEB-4BD2-AB5A-E93E949CD769</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>false</Gallery>
 	<Brief>Shows how to create and use a custom component with Xamarin's Designer for iOS.</Brief>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>23a2571b-45eb-4889-bb67-d88937cb68c1</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>User Interface, Platform Features, Cloud</Tags>
 	<Gallery>true</Gallery>
 	<Brief>A kitchen sink example of common UI elements and APIs used with Xamarin.iOS.</Brief>

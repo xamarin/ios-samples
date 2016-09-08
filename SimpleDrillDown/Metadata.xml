@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>cce9408f-8b52-47e9-a3fd-5a0c8393124e</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
 	<Brief>Demonstrates making a table with cells that can be drilled further down to a detailed view.</Brief>

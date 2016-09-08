@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>7973effb-bd18-4109-b01f-a377f6f9cb73</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>Cloud</Tags>
 	<Gallery>true</Gallery>
 	<Brief>This sample shows how to find out what kind of connectivity is available.</Brief>

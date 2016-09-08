@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>423dbd0e-5321-482d-996e-bfa2d870c082</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>Maps + Location</Tags>
 	<Gallery>true</Gallery>
 	<Brief>An example of how to use the MapKit framework.</Brief>

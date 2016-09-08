@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>2b33d106-c9e8-424e-b00f-dd8dd12ca66c</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>Getting Started, User Interface</Tags>
 	<Gallery>true</Gallery>
 	<Brief>Sample demonstrates how to use a C# event on a button press to run a callback.</Brief>
