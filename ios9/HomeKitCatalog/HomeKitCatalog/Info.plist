@@ -43,5 +43,7 @@
 	<string>Main</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcon.appiconset</string>
+	<key>NSHomeKitUsageDescription</key>
+	<string>Sample App using HomeKit</string>
 </dict>
 </plist>
