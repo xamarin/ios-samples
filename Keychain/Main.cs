@@ -1,34 +1,21 @@
-//
-// Shows how to use the MonoTouch.Security stack on iOS5 to
-// securely store a password on the KeyChain.
-//
-// This API is not particularly user-friendly
-//
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using Foundation;
-using UIKit;
 using Security;
+using UIKit;
 
-namespace Keychain
-{
-	public class Application
-	{
-		static void Main (string[] args)
-		{
+namespace Keychain {
+	public class Application {
+		static void Main (string[] args) {
 			UIApplication.Main (args);
 		}
 	}
 
 	// The name AppDelegate is referenced in the MainWindow.xib file.
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIViewController viewController;
 
 		// This method is invoked when the application has loaded its UI and its ready to run
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			ThreadPool.QueueUserWorkItem (delegate {
 				window.BeginInvokeOnMainThread (delegate {
@@ -39,9 +26,9 @@ namespace Keychain
 					SecStatusCode res;
 					var match = SecKeyChain.QueryAsRecord (rec, out res);
 					if (res == SecStatusCode.Success)
-						DisplayMessage ("Key found, password is: {0}", match.ValueData);
+						DisplayMessage (this, "Key found, password is: {0}", match.ValueData);
 					else
-						DisplayMessage ("Key not found: {0}", res);
+						DisplayMessage (this, "Key not found: {0}", res);
 
 					var s = new SecRecord (SecKind.GenericPassword) {
 						Label = "Item Label",
@@ -56,7 +43,7 @@ namespace Keychain
 					var err = SecKeyChain.Add (s);
 
 					if (err != SecStatusCode.Success && err != SecStatusCode.DuplicateItem)
-						DisplayMessage ("Error adding record: {0}", err);
+						DisplayMessage (this, "Error adding record: {0}", err);
 				});
 			});
 
@@ -67,12 +54,7 @@ namespace Keychain
 			return true;
 		}
 
-		// This method is required in iPhoneOS 3.0
-		public override void OnActivated (UIApplication application)
-		{
-		}
-
-		void DisplayMessage (string message, params object[] format)
+		static void DisplayMessage (AppDelegate instance, string message, params object[] format)
 		{
 			new UIAlertView ("Keychain", string.Format (message, format), null, "OK", null).Show ();
 		}
