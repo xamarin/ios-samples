@@ -27,7 +27,7 @@ namespace AutoWait
 		UISwitch automaticWaitingSwitch { get; set; }
 
 		AVPlayer player;
-		AVPlayer Player {
+		public AVPlayer Player {
 			get {
 				return player;
 			}
