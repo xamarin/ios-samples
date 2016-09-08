@@ -39,7 +39,7 @@ namespace AutoWait
 
 				// Make sure the players automaticallyWaitsToMinimizeStalling follows the switch in the UI.
 				if (player != null && IsViewLoaded)
-					automaticWaitingSwitch.On = player.GetAutomaticallyWaitsToMinimizeStalling ();
+					automaticWaitingSwitch.On = player.AutomaticallyWaitsToMinimizeStalling;
 			}
 		}
 
@@ -54,7 +54,8 @@ namespace AutoWait
 
 			// Load value for the automatic waiting switch from user defaults.
 			automaticWaitingSwitch.On = NSUserDefaults.StandardUserDefaults.BoolForKey ("disableAutomaticWaiting");
-			player?.SetAutomaticallyWaitsToMinimizeStalling (automaticWaitingSwitch.On);
+			if(player != null)
+				player.AutomaticallyWaitsToMinimizeStalling = automaticWaitingSwitch.On;
 
 			var playerView = PlayerView;
 			if (playerView != null)
@@ -77,9 +78,9 @@ namespace AutoWait
 		void toggleAutomaticWaiting (UISwitch sender)
 		{
 			// Check for the new value of the switch and update AVPlayer property and user defaults
-			var val = automaticWaitingSwitch.On;
-			Player?.SetAutomaticallyWaitsToMinimizeStalling (val);
-			NSUserDefaults.StandardUserDefaults.SetBool (val, "disableAutomaticWaiting");
+			if(Player != null)
+				Player.AutomaticallyWaitsToMinimizeStalling = automaticWaitingSwitch.On;
+			NSUserDefaults.StandardUserDefaults.SetBool (automaticWaitingSwitch.On, "disableAutomaticWaiting");
 		}
 
 		[Action ("pause:")]
@@ -97,28 +98,9 @@ namespace AutoWait
 		[Action("playImmediately:")]
 		void playImmediately (NSObject sender)
 		{
-			Player?.PlayImmediately (1);
+			Player?.PlayImmediatelyAtRate(1);
 		}
-
-
-
-
 
 		#endregion
-	}
-
-	public static class AVPlayerExtensions
-	{
-		public static bool GetAutomaticallyWaitsToMinimizeStalling (this AVPlayer player)
-		{
-			// TODO: automaticallyWaitsToMinimizeStalling is not bound
-			throw new NotImplementedException ();
-		}
-
-		public static void SetAutomaticallyWaitsToMinimizeStalling (this AVPlayer player, bool value)
-		{
-			// TODO: automaticallyWaitsToMinimizeStalling is not bound
-			throw new NotImplementedException ();
-		}
 	}
 }

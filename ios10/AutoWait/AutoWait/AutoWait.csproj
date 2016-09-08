@@ -90,7 +90,7 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Folder Include="UserInterface\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
@@ -103,25 +103,25 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="MediaSelectionTableViewController.cs" />
-    <Compile Include="MediaSelectionTableViewController.designer.cs">
+    <Compile Include="UserInterface\MediaSelectionTableViewController.cs" />
+    <Compile Include="UserInterface\MediaSelectionTableViewController.designer.cs">
       <DependentUpon>MediaSelectionTableViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="MediaViewController.cs" />
-    <Compile Include="MediaViewController.designer.cs">
+    <Compile Include="UserInterface\MediaViewController.cs" />
+    <Compile Include="UserInterface\MediaViewController.designer.cs">
       <DependentUpon>MediaViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlaybackViewController.cs" />
-    <Compile Include="PlaybackViewController.designer.cs">
+    <Compile Include="UserInterface\PlaybackDetailsViewController.cs" />
+    <Compile Include="UserInterface\PlaybackDetailsViewController.designer.cs">
+      <DependentUpon>PlaybackDetailsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\PlaybackViewController.cs" />
+    <Compile Include="UserInterface\PlaybackViewController.designer.cs">
       <DependentUpon>PlaybackViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayerView.cs" />
-    <Compile Include="PlayerView.designer.cs">
+    <Compile Include="UserInterface\PlayerView.cs" />
+    <Compile Include="UserInterface\PlayerView.designer.cs">
       <DependentUpon>PlayerView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PlaybackDetailsViewController.cs" />
-    <Compile Include="PlaybackDetailsViewController.designer.cs">
-      <DependentUpon>PlaybackDetailsViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
