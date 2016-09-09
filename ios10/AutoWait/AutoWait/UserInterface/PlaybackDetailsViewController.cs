@@ -12,37 +12,36 @@ namespace AutoWait
 {
 	public partial class PlaybackDetailsViewController : UIViewController
 	{
-
 		[Outlet ("rateLabel")]
-		UILabel rateLabel { get; set; }
+		UILabel RateLabel { get; set; }
 
 		[Outlet ("timeControlStatusLabel")]
-		UILabel timeControlStatusLabel { get; set; }
+		UILabel TimeControlStatusLabel { get; set; }
 
 		[Outlet ("reasonForWaitingLabel")]
-		UILabel reasonForWaitingLabel { get; set; }
+		UILabel ReasonForWaitingLabel { get; set; }
 
 		[Outlet ("likelyToKeepUpLabel")]
-		UILabel likelyToKeepUpLabel { get; set; }
+		UILabel LikelyToKeepUpLabel { get; set; }
 
 		[Outlet ("loadedTimeRangesLabel")]
-		UILabel loadedTimeRangesLabel { get; set; }
+		UILabel LoadedTimeRangesLabel { get; set; }
 
 		[Outlet ("currentTimeLabel")]
-		UILabel currentTimeLabel { get; set; }
+		UILabel CurrentTimeLabel { get; set; }
 
 		[Outlet ("playbackBufferFullLabel")]
-		UILabel playbackBufferFullLabel { get; set; }
+		UILabel PlaybackBufferFullLabel { get; set; }
 
 		[Outlet ("playbackBufferEmptyLabel")]
-		UILabel playbackBufferEmptyLabel { get; set; }
+		UILabel PlaybackBufferEmptyLabel { get; set; }
 
 		[Outlet ("timebaseRateLabel")]
-		UILabel timebaseRateLabel { get; set; }
+		UILabel TimebaseRateLabel { get; set; }
 
 		public AVPlayer Player { get; set; }
 
-		// AVPlayerItem.currentTime() and the AVPlayerItem.timebase's rate are not KVO observable. We check their values regularly using this timer.
+		// AVPlayerItem.CurrentTime and the AVPlayerItem.Timebase's rate are not KVO observable. We check their values regularly using this timer.
 		DispatchSource.Timer nonObservablePropertiesUpdateTimer = new DispatchSource.Timer (DispatchQueue.MainQueue);
 
 		IDisposable rateToken;
@@ -56,7 +55,6 @@ namespace AutoWait
 		public PlaybackDetailsViewController (IntPtr handle)
 			: base (handle)
 		{
-
 		}
 
 		public override void ViewDidLoad ()
@@ -125,46 +123,46 @@ namespace AutoWait
 
 		void UpdateNonObservableProperties ()
 		{
-			currentTimeLabel.Text = Player.CurrentItem.CurrentTime.Description;
-			timebaseRateLabel.Text = Player.CurrentItem.Timebase?.Rate.ToString () ?? "-";
+			CurrentTimeLabel.Text = Player.CurrentItem.CurrentTime.Description;
+			TimebaseRateLabel.Text = Player.CurrentItem.Timebase?.Rate.ToString ();
 		}
 
 		void RateChanged (NSObservedChange obj)
 		{
-			rateLabel.Text = (Player != null) ? Player.Rate.ToString () : "-";
+			RateLabel.Text = (Player != null) ? Player.Rate.ToString () : "-";
 		}
 
 		void timeControlStatusChanged (NSObservedChange obj)
 		{
-			timeControlStatusLabel.Text = (Player != null) ? Player.TimeControlStatus.ToString () : "-";
-			timeControlStatusLabel.BackgroundColor = (Player != null)
+			TimeControlStatusLabel.Text = (Player != null) ? Player.TimeControlStatus.ToString () : "-";
+			TimeControlStatusLabel.BackgroundColor = (Player != null)
 				? LabelBackgroundColor (Player.TimeControlStatus)
 				: new UIColor (1, 0.9999743700027466f, 0.9999912977218628f, 1);
 		}
 
 		void ReasonForWaitingToPlayChanged (NSObservedChange obj)
 		{
-			reasonForWaitingLabel.Text = (Player != null) ? AbbreviatedDescription (Player.ReasonForWaitingToPlay) : "-";
+			ReasonForWaitingLabel.Text = (Player != null) ? AbbreviatedDescription (Player.ReasonForWaitingToPlay) : "-";
 		}
 
 		void PlaybackLikelyToKeepUpChanged (NSObservedChange obj)
 		{
-			likelyToKeepUpLabel.Text = (Player != null) ? Player.CurrentItem.PlaybackLikelyToKeepUp.ToString () : "-";
+			LikelyToKeepUpLabel.Text = (Player != null) ? Player.CurrentItem.PlaybackLikelyToKeepUp.ToString () : "-";
 		}
 
 		void LoadedTimeRangesChanged (NSObservedChange obj)
 		{
-			loadedTimeRangesLabel.Text = (Player != null) ? Descr (TimeRanges(Player.CurrentItem.LoadedTimeRanges)) : "-";
+			LoadedTimeRangesLabel.Text = (Player != null) ? Descr (TimeRanges(Player.CurrentItem.LoadedTimeRanges)) : "-";
 		}
 
 		void PlaybackBufferFullChanged (NSObservedChange obj)
 		{
-			playbackBufferFullLabel.Text = (Player != null) ? Player.CurrentItem.PlaybackBufferFull.ToString () : "-";
+			PlaybackBufferFullLabel.Text = (Player != null) ? Player.CurrentItem.PlaybackBufferFull.ToString () : "-";
 		}
 
 		void PlaybackBufferEmptyChanged (NSObservedChange obj)
 		{
-			playbackBufferEmptyLabel.Text = (Player != null) ? Player.CurrentItem.PlaybackBufferEmpty.ToString () : "-";
+			PlaybackBufferEmptyLabel.Text = (Player != null) ? Player.CurrentItem.PlaybackBufferEmpty.ToString () : "-";
 		}
 
 		IEnumerable<CMTimeRange> TimeRanges (NSValue [] values)
