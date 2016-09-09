@@ -1,108 +1,181 @@
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 using UIKit;
 using Foundation;
 using AVFoundation;
+using CoreFoundation;
+using CoreMedia;
 
 namespace AutoWait
 {
 	public partial class PlaybackDetailsViewController : UIViewController
 	{
-		[Outlet("playerView")]
-		PlayerView PlayerView { get; set; }
 
-		[Outlet("waitingIndicatorView")]
-		UIView WaitingIndicatorView { get; set; }
+		[Outlet ("rateLabel")]
+		UILabel rateLabel { get; set; }
 
-		[Outlet ("pauseButton")]
-		UIButton PauseButton { get; set; }
+		[Outlet ("timeControlStatusLabel")]
+		UILabel timeControlStatusLabel { get; set; }
 
-		[Outlet("playButton")]
-		UIButton PlayButton { get; set; }
+		[Outlet ("reasonForWaitingLabel")]
+		UILabel reasonForWaitingLabel { get; set; }
 
-		[Outlet ("playImmediatelyButton")]
-		UIButton PlayImmediatelyButton { get; set; }
+		[Outlet ("likelyToKeepUpLabel")]
+		UILabel likelyToKeepUpLabel { get; set; }
 
-		[Outlet ("automaticWaitingSwitch")]
-		UISwitch AutomaticWaitingSwitch { get; set; }
+		[Outlet ("loadedTimeRangesLabel")]
+		UILabel loadedTimeRangesLabel { get; set; }
 
-		AVPlayer player;
-		public AVPlayer Player {
-			get {
-				return player;
-			}
-			set {
-				player = value;
+		[Outlet ("currentTimeLabel")]
+		UILabel currentTimeLabel { get; set; }
 
-				if (PlayerView != null)
-					PlayerView.Player = player;
+		[Outlet ("playbackBufferFullLabel")]
+		UILabel playbackBufferFullLabel { get; set; }
 
-				// Make sure the players automaticallyWaitsToMinimizeStalling follows the switch in the UI.
-				if (player != null && IsViewLoaded)
-					AutomaticWaitingSwitch.On = player.AutomaticallyWaitsToMinimizeStalling;
-			}
-		}
+		[Outlet ("playbackBufferEmptyLabel")]
+		UILabel playbackBufferEmptyLabel { get; set; }
+
+		[Outlet ("timebaseRateLabel")]
+		UILabel timebaseRateLabel { get; set; }
+
+		public AVPlayer Player { get; set; }
+
+		// AVPlayerItem.currentTime() and the AVPlayerItem.timebase's rate are not KVO observable. We check their values regularly using this timer.
+		DispatchSource.Timer nonObservablePropertiesUpdateTimer = new DispatchSource.Timer (DispatchQueue.MainQueue);
+
+		IDisposable rateToken;
+		IDisposable timeControlStatusToken;
+		IDisposable reasonForWaitingToPlayToken;
+		IDisposable playbackLikelyToKeepUpToken;
+		IDisposable loadedTimeRangesToken;
+		IDisposable playbackBufferFullToken;
+		IDisposable playbackBufferEmptyToken;
 
 		public PlaybackDetailsViewController (IntPtr handle)
 			: base (handle)
 		{
+
 		}
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
-			// Load value for the automatic waiting switch from user defaults.
-			AutomaticWaitingSwitch.On = NSUserDefaults.StandardUserDefaults.BoolForKey ("disableAutomaticWaiting");
-			if (Player != null)
-				Player.AutomaticallyWaitsToMinimizeStalling = AutomaticWaitingSwitch.On;
+			nonObservablePropertiesUpdateTimer.SetEventHandler (UpdateNonObservableProperties);
+			nonObservablePropertiesUpdateTimer.SetTimer (DispatchTime.Now, 1000000, 0);
+			nonObservablePropertiesUpdateTimer.Resume ();
 
-			if (PlayerView != null)
-				PlayerView.Player = player;
-
-			// We will use this to toggle our waiting indicator view.
-			// TODO: add observer
-			//addObserver (self, forKeyPath: #keyPath(PlaybackViewController.player.reasonForWaitingToPlay), options: [.new, .initial], context: &observerContext)
+			var options = NSKeyValueObservingOptions.Initial | NSKeyValueObservingOptions.New;
+			rateToken = Player.AddObserver ("rate", options, RateChanged);
+			timeControlStatusToken = Player.AddObserver ("timeControlStatus", options, timeControlStatusChanged);
+			reasonForWaitingToPlayToken = Player.AddObserver ("reasonForWaitingToPlay", options, ReasonForWaitingToPlayChanged);
+			playbackLikelyToKeepUpToken = Player.AddObserver ("currentItem.playbackLikelyToKeepUp", options, PlaybackLikelyToKeepUpChanged);
+			loadedTimeRangesToken = Player.AddObserver ("currentItem.loadedTimeRanges", options, LoadedTimeRangesChanged);
+			playbackBufferFullToken = Player.AddObserver ("currentItem.playbackBufferFull", options, PlaybackBufferFullChanged);
+			playbackBufferEmptyToken = Player.AddObserver ("currentItem.playbackBufferEmpty", options, PlaybackBufferEmptyChanged);
 		}
 
 		protected override void Dispose (bool disposing)
 		{
-			// TODO: unsubscribe
+			rateToken?.Dispose ();
+			timeControlStatusToken?.Dispose ();
+			reasonForWaitingToPlayToken?.Dispose ();
+			playbackLikelyToKeepUpToken?.Dispose ();
+			loadedTimeRangesToken?.Dispose ();
+			playbackBufferFullToken?.Dispose ();
+			playbackBufferEmptyToken?.Dispose ();
+
 			base.Dispose (disposing);
 		}
 
-		#region Actions
-
-		[Action ("toggleAutomaticWaiting:")]
-		void toggleAutomaticWaiting (UISwitch sender)
+		// Helper function to get a background color for the timeControlStatus label.
+		UIColor LabelBackgroundColor (AVPlayerTimeControlStatus status)
 		{
-			// Check for the new value of the switch and update AVPlayer property and user defaults
-			if (Player != null)
-				Player.AutomaticallyWaitsToMinimizeStalling = AutomaticWaitingSwitch.On;
+			switch (status) {
+			case AVPlayerTimeControlStatus.Paused:
+				return new UIColor (0.8196078538894653f, 0.2627451121807098f, 0.2823528945446014f, 1);
 
-			NSUserDefaults.StandardUserDefaults.SetBool (AutomaticWaitingSwitch.On, "disableAutomaticWaiting");
+			case AVPlayerTimeControlStatus.Playing:
+				return new UIColor (0.2881325483322144f, 0.6088829636573792f, 0.261575847864151f, 1);
+
+			case AVPlayerTimeControlStatus.WaitingToPlayAtSpecifiedRate:
+				return new UIColor (0.8679746985435486f, 0.4876297116279602f, 0.2578189671039581f, 1);
+
+			default:
+				throw new InvalidProgramException ();
+			}
 		}
 
-		[Action ("pause:")]
-		void Pause (NSObject sender)
+		// Helper function to get an abbreviated description for the waiting reason.
+		string AbbreviatedDescription (string reason)
 		{
-			Player?.Pause ();
+			if (reason == AVPlayer.WaitingToMinimizeStallsReason)
+				return "Minimizing Stalls";
+
+			if (reason == AVPlayer.WaitingWhileEvaluatingBufferingRateReason)
+				return "Evaluating Buffering Rate";
+
+			if (reason == AVPlayer.WaitingWithNoItemToPlayReason)
+				return "No Item";
+
+			return "UNKOWN";
 		}
 
-		[Action ("play:")]
-		void Play (NSObject sender)
+		void UpdateNonObservableProperties ()
 		{
-			Player.Play ();
+			currentTimeLabel.Text = Player.CurrentItem.CurrentTime.Description;
+			timebaseRateLabel.Text = Player.CurrentItem.Timebase?.Rate.ToString () ?? "-";
 		}
 
-		[Action ("playImmediately:")]
-		void PlayImmediately (NSObject sender)
+		void RateChanged (NSObservedChange obj)
 		{
-			Player?.PlayImmediatelyAtRate (1);
+			rateLabel.Text = (Player != null) ? Player.Rate.ToString () : "-";
 		}
 
-		#endregion
+		void timeControlStatusChanged (NSObservedChange obj)
+		{
+			timeControlStatusLabel.Text = (Player != null) ? Player.TimeControlStatus.ToString () : "-";
+			timeControlStatusLabel.BackgroundColor = (Player != null)
+				? LabelBackgroundColor (Player.TimeControlStatus)
+				: new UIColor (1, 0.9999743700027466f, 0.9999912977218628f, 1);
+		}
 
-		// TODO: do KVO here
+		void ReasonForWaitingToPlayChanged (NSObservedChange obj)
+		{
+			reasonForWaitingLabel.Text = (Player != null) ? AbbreviatedDescription (Player.ReasonForWaitingToPlay) : "-";
+		}
+
+		void PlaybackLikelyToKeepUpChanged (NSObservedChange obj)
+		{
+			likelyToKeepUpLabel.Text = (Player != null) ? Player.CurrentItem.PlaybackLikelyToKeepUp.ToString () : "-";
+		}
+
+		void LoadedTimeRangesChanged (NSObservedChange obj)
+		{
+			loadedTimeRangesLabel.Text = (Player != null) ? Descr (TimeRanges(Player.CurrentItem.LoadedTimeRanges)) : "-";
+		}
+
+		void PlaybackBufferFullChanged (NSObservedChange obj)
+		{
+			playbackBufferFullLabel.Text = (Player != null) ? Player.CurrentItem.PlaybackBufferFull.ToString () : "-";
+		}
+
+		void PlaybackBufferEmptyChanged (NSObservedChange obj)
+		{
+			playbackBufferEmptyLabel.Text = (Player != null) ? Player.CurrentItem.PlaybackBufferEmpty.ToString () : "-";
+		}
+
+		IEnumerable<CMTimeRange> TimeRanges (NSValue [] values)
+		{
+			foreach (var v in values)
+				yield return v.CMTimeRangeValue;
+		}
+
+		static string Descr (IEnumerable<CMTimeRange> ranges)
+		{
+			return string.Join (", ", ranges.Select (r => $"{r.Start}–{r.Start + r.Duration}"));
+		}
 	}
 }

@@ -12,19 +12,21 @@ namespace AutoWait
 		PlayerView PlayerView { get; set; }
 
 		[Outlet ("waitingIndicatorView")]
-		UIView waitingIndicatorView { get; set; }
+		UIView WaitingIndicatorView { get; set; }
 
 		[Outlet ("pauseButton")]
-		UIButton pauseButton { get; set; }
+		UIButton PauseButton { get; set; }
 
 		[Outlet ("playButton")]
-		UIButton playButton { get; set; }
+		UIButton PlayButton { get; set; }
 
 		[Outlet ("playImmediatelyButton")]
-		UIButton playImmediatelyButton { get; set; }
+		UIButton PlayImmediatelyButton { get; set; }
 
 		[Outlet ("automaticWaitingSwitch")]
-		UISwitch automaticWaitingSwitch { get; set; }
+		UISwitch AutomaticWaitingSwitch { get; set; }
+
+		IDisposable reasonForWaitingToPlayToken;
 
 		AVPlayer player;
 		public AVPlayer Player {
@@ -39,7 +41,7 @@ namespace AutoWait
 
 				// Make sure the players automaticallyWaitsToMinimizeStalling follows the switch in the UI.
 				if (player != null && IsViewLoaded)
-					automaticWaitingSwitch.On = player.AutomaticallyWaitsToMinimizeStalling;
+					AutomaticWaitingSwitch.On = player.AutomaticallyWaitsToMinimizeStalling;
 			}
 		}
 
@@ -53,22 +55,21 @@ namespace AutoWait
 			base.ViewDidLoad ();
 
 			// Load value for the automatic waiting switch from user defaults.
-			automaticWaitingSwitch.On = NSUserDefaults.StandardUserDefaults.BoolForKey ("disableAutomaticWaiting");
-			if(player != null)
-				player.AutomaticallyWaitsToMinimizeStalling = automaticWaitingSwitch.On;
+			AutomaticWaitingSwitch.On = NSUserDefaults.StandardUserDefaults.BoolForKey ("disableAutomaticWaiting");
+			if(Player != null)
+				Player.AutomaticallyWaitsToMinimizeStalling = AutomaticWaitingSwitch.On;
 
 			var playerView = PlayerView;
 			if (playerView != null)
 				playerView.Player = player;
 
-			// TODO: add observer or .net event
 			// We will use this to toggle our waiting indicator view.
-			//addObserver (self, forKeyPath: #keyPath(PlaybackViewController.player.reasonForWaitingToPlay), options: [.new, .initial], context: &observerContext)
+			reasonForWaitingToPlayToken = Player?.AddObserver ("reasonForWaitingToPlay", NSKeyValueObservingOptions.New | NSKeyValueObservingOptions.Initial, ReasonForWaitingToPlayChanged);
 		}
 
 		protected override void Dispose (bool disposing)
 		{
-			// TODO: unsubscribe from #keyPath(PlaybackViewController.player.reasonForWaitingToPlay)
+			reasonForWaitingToPlayToken?.Dispose ();
 			base.Dispose (disposing);
 		}
 
@@ -79,8 +80,8 @@ namespace AutoWait
 		{
 			// Check for the new value of the switch and update AVPlayer property and user defaults
 			if(Player != null)
-				Player.AutomaticallyWaitsToMinimizeStalling = automaticWaitingSwitch.On;
-			NSUserDefaults.StandardUserDefaults.SetBool (automaticWaitingSwitch.On, "disableAutomaticWaiting");
+				Player.AutomaticallyWaitsToMinimizeStalling = AutomaticWaitingSwitch.On;
+			NSUserDefaults.StandardUserDefaults.SetBool (AutomaticWaitingSwitch.On, "disableAutomaticWaiting");
 		}
 
 		[Action ("pause:")]
@@ -102,5 +103,11 @@ namespace AutoWait
 		}
 
 		#endregion
+
+		void ReasonForWaitingToPlayChanged (NSObservedChange obj)
+		{
+			// Hide the indicator view if we are not waiting to minimize stalls.
+			WaitingIndicatorView.Hidden = (Player?.ReasonForWaitingToPlay != AVPlayer.WaitingToMinimizeStallsReason);
+		}
 	}
 }
