@@ -109,6 +109,9 @@ namespace AutoWait
 		// Helper function to get an abbreviated description for the waiting reason.
 		string AbbreviatedDescription (string reason)
 		{
+			if (reason == null)
+				return null;
+
 			if (reason == AVPlayer.WaitingToMinimizeStallsReason)
 				return "Minimizing Stalls";
 
@@ -123,8 +126,10 @@ namespace AutoWait
 
 		void UpdateNonObservableProperties ()
 		{
-			CurrentTimeLabel.Text = Player.CurrentItem.CurrentTime.Description;
-			TimebaseRateLabel.Text = Player.CurrentItem.Timebase?.Rate.ToString ();
+			CurrentTimeLabel.Text = Seconds (Player.CurrentItem.CurrentTime);
+
+			// TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=44154
+			//TimebaseRateLabel.Text = Player.CurrentItem.Timebase?.Rate.ToString ();
 		}
 
 		void RateChanged (NSObservedChange obj)
@@ -142,7 +147,7 @@ namespace AutoWait
 
 		void ReasonForWaitingToPlayChanged (NSObservedChange obj)
 		{
-			ReasonForWaitingLabel.Text = (Player != null) ? AbbreviatedDescription (Player.ReasonForWaitingToPlay) : "-";
+			ReasonForWaitingLabel.Text = AbbreviatedDescription (Player?.ReasonForWaitingToPlay) ?? "-";
 		}
 
 		void PlaybackLikelyToKeepUpChanged (NSObservedChange obj)
@@ -173,7 +178,13 @@ namespace AutoWait
 
 		static string Descr (IEnumerable<CMTimeRange> ranges)
 		{
-			return string.Join (", ", ranges.Select (r => $"{r.Start}–{r.Start + r.Duration}"));
+			// CMTimeRange -> [0.5s, 9.7s]
+			return string.Join (", ", ranges.Select (r => $"[{Seconds(r.Start)}, {Seconds(r.Start + r.Duration)}]"));
+		}
+
+		static string Seconds (CMTime time)
+		{
+			return $"{time.Seconds:F1}s";
 		}
 	}
 }
