@@ -35,10 +35,12 @@ namespace HlsCatalog
 		Dictionary<AVAssetDownloadTask, Asset> activeDownloadsMap = new Dictionary<AVAssetDownloadTask, Asset> ();
 
 		// Internal map of AVAssetDownloadTask to its resoled AVMediaSelection
-		Dictionary<AVAssetDownloadTask, AVMediaSelection> mediaSelectionMap = new Dictionary<AVAssetDownloadTask, AVMediaSelection> ();
+		readonly Dictionary<AVAssetDownloadTask, AVMediaSelection> mediaSelectionMap = new Dictionary<AVAssetDownloadTask, AVMediaSelection> ();
 
 		// The URL to the Library directory of the application's data container.
 		NSUrl baseDownloadURL;
+
+		public static event EventHandler StateRestored;
 
 		public AssetPersistenceManager ()
 		{
@@ -76,8 +78,7 @@ namespace HlsCatalog
 					activeDownloadsMap [assetDownloadTask] = asset;
 				}
 
-				// TODO: raise event
-				// NotificationCenter.default.post (name: AssetPersistenceManagerDidRestoreStateNotification, object: nil)
+				StateRestored?.Invoke (this, EventArgs.Empty);
 			});
 		}
 
@@ -116,7 +117,7 @@ namespace HlsCatalog
 		}
 
 		// Returns an Asset pointing to a file on disk if it exists.
-		Asset LocalAssetForStream (string name)
+		public Asset LocalAssetForStream (string name)
 		{
 			var userDefaults = NSUserDefaults.StandardUserDefaults;
 			var localFileLocation = userDefaults.StringForKey (name);
