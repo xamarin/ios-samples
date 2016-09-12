@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 using Foundation;
 using AVFoundation;
 using ObjCRuntime;
-using System.Linq;
+using CoreMedia;
 
 namespace HlsCatalog
 {
@@ -90,7 +91,7 @@ namespace HlsCatalog
 			// TODO: method is not bound
 			// AVAssetDownloadTaskKeys.MinimumRequiredMediaBitrateKey;
 			// options – [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: 265000]
-			var task = assetDownloadURLSession.CreateDownloadTask (asset.UrlAsset, asset.Name, null, null);
+			var task = assetDownloadURLSession.GetAssetDownloadTask (asset.UrlAsset, asset.Name, null, (AVAssetDownloadOptions)null);
 			if (task == null)
 				return;
 
@@ -176,33 +177,182 @@ namespace HlsCatalog
 			activeDownloadsMap.FirstOrDefault (kvp => kvp.Value.Equals (asset)).Key?.Cancel ();
 		}
 
-		// This function demonstrates returns the next `AVMediaSelectionGroup` and
-		// `AVMediaSelectionOption` that should be downloaded if needed.This is done
-		// by querying an `AVURLAsset`'s `AVAssetCache` for its available `AVMediaSelection`
+		// This function demonstrates returns the next AVMediaSelectionGroup and
+		// AVMediaSelectionOption that should be downloaded if needed. This is done
+		// by querying an AVURLAsset's AVAssetCache for its available `AVMediaSelection`
 		// and comparing it to the remote versions.
 		Tuple<AVMediaSelectionGroup, AVMediaSelectionOption> NextMediaSelection (AVUrlAsset asset)
 		{
-			var assetCache = asset.AssetChace
-			guard  else { return (nil, nil) }
-			throw new NotImplementedException ();
+			var assetCache = asset.Cache;
+			if (assetCache == null)
+				return Tuple(null, null);
+
+			NSString [] mediaCharacteristics = {
+				AVMediaCharacteristic.Audible,
+				AVMediaCharacteristic.Legible
+			};
+			foreach (var mediaCharacteristic in mediaCharacteristics) {
+				// TODO: request strong typed API
+				AVMediaSelectionGroup mediaSelectionGroup = asset.MediaSelectionGroupForMediaCharacteristic (mediaCharacteristic);
+				if (mediaSelectionGroup != null) {
+					var savedOptions = assetCache.GetMediaSelectionOptions (mediaSelectionGroup);
+					if (savedOptions.Length < mediaSelectionGroup.Options.Length) {
+						// There are still media options left to download.
+						foreach (var option in mediaSelectionGroup.Options) {
+							// This option has not been download.
+							if (!savedOptions.Contains (option))
+								return Tuple (mediaSelectionGroup, option);
+						}
+					}
+				}
+			}
+
+			// At this point all media options have been downloaded.
+			return Tuple (null, null);
 		}
 
-	}
-
-	public static class NotBoundExtensions
-	{
-		// TODO:
-		// assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options:
-		// !missing-selector! AVAssetDownloadURLSession::assetDownloadTaskWithURLAsset:assetTitle:assetArtworkData:options: not bound
-		public static AVAssetDownloadTask CreateDownloadTask (this AVAssetDownloadUrlSession session, AVUrlAsset asset, string title, NSData artworkData, NSDictionary options)
+		static Tuple<AVMediaSelectionGroup, AVMediaSelectionOption> Tuple (AVMediaSelectionGroup group, AVMediaSelectionOption option)
 		{
-			throw new NotImplementedException ();
+			return new Tuple<AVMediaSelectionGroup, AVMediaSelectionOption> (group, option);
 		}
 
-		// TODO: 
-		// !missing-selector! AVURLAsset::assetCache not bound
-		public static AVAssetCache AssetCache ()
+		void UrlSession (NSUrlSession session, NSUrlSessionTask task, NSError error)
 		{
+			var userDefaults = NSUserDefaults.StandardUserDefaults;
+
+			// This is the ideal place to begin downloading additional media selections
+			// once the asset itself has finished downloading.
+			var downloadTask = task as AVAssetDownloadTask;
+			if (downloadTask == null)
+				return;
+
+			Asset asset;
+			if (!activeDownloadsMap.TryGetValue (downloadTask, out asset))
+				return;
+			activeDownloadsMap.Remove (downloadTask);
+
+			// Prepare the basic userInfo dictionary that will be posted as part of our notification.
+			//var userInfo = [String: Any] ()
+			//userInfo [Asset.Keys.name] = asset.name
+
+			if (error != null) {
+				if (Match (error, NSUrlError.Cancelled)) {
+					// TODO: fix comment
+					// This task was canceled, you should perform cleanup using the
+					// URL saved from AVAssetDownloadDelegate.urlSession (_: assetDownloadTask:didFinishDownloadingTo:).
+					var localFileLocation = userDefaults.StringForKey (asset.Name);
+					if (string.IsNullOrWhiteSpace (localFileLocation))
+						return;
+
+					var fileURL = baseDownloadURL.Append (localFileLocation, false);
+
+					NSError err;
+					if (NSFileManager.DefaultManager.Remove (fileURL, out err))
+						userDefaults.RemoveObject (asset.Name);
+					else
+						Console.WriteLine ($"An error occured trying to delete the contents on disk for {asset.Name}: {error}");
+
+					// TODO: port
+					//userInfo [Asset.Keys.downloadState] = Asset.DownloadState.notDownloaded.rawValue
+				} else if (Match (error, NSUrlError.Unknown)) {
+					throw new InvalidProgramException ("Downloading HLS streams is not supported in the simulator.");
+				} else {
+					Console.WriteLine ($"An unexpected error occured {error.Domain}");
+				}
+			} else {
+				var mediaSelectionPair = NextMediaSelection (downloadTask.UrlAsset);
+				var mediaSelectionGroup = mediaSelectionPair.Item1;
+				if (mediaSelectionGroup != null) {
+					// TODO: fix comment
+					// This task did complete sucessfully.At this point the application
+					// can download additional media selections if needed.
+					// To download additional `AVMediaSelection`s, you should use the
+					// `AVMediaSelection` reference saved in `AVAssetDownloadDelegate.urlSession (_: assetDownloadTask:didResolve:)`.
+					AVMediaSelection originalMediaSelection;
+					if (!mediaSelectionMap.TryGetValue (downloadTask, out originalMediaSelection))
+						return;
+
+					// There are still media selections to download.
+					// Create a mutable copy of the AVMediaSelection reference saved in
+					// `AVAssetDownloadDelegate.urlSession (_: assetDownloadTask:didResolve:)`.
+					var mediaSelection = (AVMutableMediaSelection)originalMediaSelection.MutableCopy ();
+
+					// Select the AVMediaSelectionOption in the AVMediaSelectionGroup we found earlier.
+					mediaSelection.SelectMediaOption (mediaSelectionPair.Item2, mediaSelectionPair.Item1);
+
+					// Ask the NSUrlSession to vend a new `AVAssetDownloadTask` using
+					// the same `AVURLAsset` and assetTitle as before.
+					// This time, the application includes the specific `AVMediaSelection`
+					// to download as well as a higher bitrate.
+
+					// TODO: provide own implementations for AVAssetDownloadOptions with setters
+					var t = assetDownloadURLSession.GetAssetDownloadTask (downloadTask.UrlAsset, asset.Name, null, new AVAssetDownloadOptions {
+						//media
+					});
+
+					t.TaskDescription = asset.Name;
+					activeDownloadsMap.Add (t, asset);
+					t.Resume ();
+
+					// userInfo[Asset.Keys.downloadState] = Asset.DownloadState.downloading.rawValue
+					// userInfo [Asset.Keys.downloadSelectionDisplayName] = mediaSelectionPair.mediaSelectionOption!.displayName
+					// TODO: replace with .Net event
+					// NotificationCenter.default.post(name: AssetDownloadStateChangedNotification, object: nil, userInfo: userInfo)
+				} else {
+					// All additional media selections have been downloaded.
+					// TODO: port
+					// userInfo [Asset.Keys.downloadState] = Asset.DownloadState.downloaded.rawValue
+				}
+			}
+			// TODO: replace with .Net event
+			// NotificationCenter.default.post (name: AssetDownloadStateChangedNotification, object: nil, userInfo: userInfo)
+		}
+
+		bool Match (NSError error, NSUrlError expectedCode)
+		{
+			return error.Domain == NSError.NSUrlErrorDomain && error.Code == (int)NSUrlError.Cancelled;
+		}
+
+		void UrlSession (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, NSUrl location)
+		{
+			var userDefaults = NSUserDefaults.StandardUserDefaults;
+
+			// TODO: fix comment
+			// This delegate callback should only be used to save the location URL
+			// somewhere in your application. Any additional work should be done in
+			// `URLSessionTaskDelegate.urlSession (_: task:didCompleteWithError:)`.
+			Asset asset;
+			if (activeDownloadsMap.TryGetValue (assetDownloadTask, out asset))
+				userDefaults.SetString (location.RelativePath, asset.Name);
+		}
+
+		void UrlSession (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, CMTimeRange timeRange, NSValue [] loadedTimeRanges, CMTimeRange timeRangeExpectedToLoad)
+		{
+			// This delegate callback should be used to provide download progress for your AVAssetDownloadTask.
+			Asset asset;
+			if (!activeDownloadsMap.TryGetValue (assetDownloadTask, out asset))
+				return;
+
+			double percentComplete = 0;
+
+			foreach (var value in loadedTimeRanges) {
+				var loadedTimeRange = value.CMTimeRangeValue;
+				percentComplete += loadedTimeRange.Duration.Seconds / timeRangeExpectedToLoad.Duration.Seconds;
+			}
+
+			// TODO: .Net event
+			// var userInfo = [String: Any] ()
+			// userInfo [Asset.Keys.name] = asset.name
+			// userInfo [Asset.Keys.percentDownloaded] = percentComplete
+			// NotificationCenter.default.post (name: AssetDownloadProgressNotification, object: nil, userInfo: userInfo)
+		}
+
+		void UrlSession (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, AVMediaSelection resolvedMediaSelection)
+		{
+			// You should be sure to use this delegate callback to keep a reference
+			// to `resolvedMediaSelection` so that in the future you can use it to
+			// download additional media selections.
+			mediaSelectionMap [assetDownloadTask] = resolvedMediaSelection;
 		}
 	}
 }
