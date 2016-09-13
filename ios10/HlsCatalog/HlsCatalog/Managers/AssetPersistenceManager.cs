@@ -10,6 +10,19 @@ using CoreMedia;
 
 namespace HlsCatalog
 {
+	public class DownloadStateEventArgs : EventArgs
+	{
+		public string AssetName { get; set; }
+		public string DisplayName { get; set; }
+		public DownloadState State { get; set; }
+	}
+
+	public class DownloadProgressEventArgs : EventArgs
+	{
+		public string AssetName { get; set; }
+		public double PercentDownloaded { get; set; }
+	}
+
 	public class AssetPersistenceManager : NSObject, IAVAssetDownloadDelegate
 	{
 		[DllImport (Constants.FoundationLibrary)]
@@ -41,6 +54,8 @@ namespace HlsCatalog
 		NSUrl baseDownloadURL;
 
 		public static event EventHandler StateRestored;
+		public static event EventHandler<DownloadStateEventArgs> DownloadStateChanged;
+		public static event EventHandler<DownloadProgressEventArgs> DownloadingProgressChanged;
 
 		public AssetPersistenceManager ()
 		{
@@ -103,11 +118,10 @@ namespace HlsCatalog
 
 			task.Resume ();
 
-			// TODO: raise event
-			// var userInfo = [String: AnyObject] ()
-			// userInfo [Asset.Keys.name] = asset.name
-			// userInfo [Asset.Keys.downloadState] = Asset.DownloadState.downloading.rawValue
-			// NotificationCenter.default.post (name: AssetDownloadStateChangedNotification, object: nil, userInfo: userInfo)
+			DownloadStateChanged?.Invoke (this, new DownloadStateEventArgs {
+				AssetName = asset.Name,
+				State = DownloadState.Downloading
+			});
 		}
 
 		// Returns an Asset given a specific name if that Asset is asasociated with an active download.
@@ -160,12 +174,10 @@ namespace HlsCatalog
 				NSError error;
 				if (NSFileManager.DefaultManager.Remove (url, out error)) {
 					userDefaults.RemoveObject (asset.Name);
-
-					// TODO: raise event
-					// var userInfo = [String: AnyObject]()
-					// userInfo [Asset.Keys.name] = asset.name
-					// userInfo [Asset.Keys.downloadState] = Asset.DownloadState.notDownloaded.rawValue
-					// NotificationCenter.default.post (name: AssetDownloadStateChangedNotification, object: nil, userInfo: userInfo)
+					DownloadStateChanged?.Invoke (this, new DownloadStateEventArgs {
+						AssetName = asset.Name,
+						State = DownloadState.NotDownloaded
+					});
 				} else {
 					Console.WriteLine ($"An error occured deleting the file: {error}");
 				}
@@ -232,9 +244,10 @@ namespace HlsCatalog
 				return;
 			activeDownloadsMap.Remove (downloadTask);
 
-			// Prepare the basic userInfo dictionary that will be posted as part of our notification.
-			//var userInfo = [String: Any] ()
-			//userInfo [Asset.Keys.name] = asset.name
+			// Prepare the basic event arg that will be posted as part of our notification.
+			var eventArgs = new DownloadStateEventArgs {
+				AssetName = asset.Name
+			};
 
 			if (error != null) {
 				if (Match (error, NSUrlError.Cancelled)) {
@@ -286,7 +299,7 @@ namespace HlsCatalog
 					// This time, the application includes the specific `AVMediaSelection`
 					// to download as well as a higher bitrate.
 
-					// TODO: provide own implementations for AVAssetDownloadOptions with setters
+					// TODO: provide own implementations for AVAssetDownloadOptions with setters https://bugzilla.xamarin.com/show_bug.cgi?id=44201
 					var t = assetDownloadURLSession.GetAssetDownloadTask (downloadTask.UrlAsset, asset.Name, null, new AVAssetDownloadOptions {
 						//media
 					});
@@ -295,18 +308,15 @@ namespace HlsCatalog
 					activeDownloadsMap.Add (t, asset);
 					t.Resume ();
 
-					// userInfo[Asset.Keys.downloadState] = Asset.DownloadState.downloading.rawValue
-					// userInfo [Asset.Keys.downloadSelectionDisplayName] = mediaSelectionPair.mediaSelectionOption!.displayName
-					// TODO: replace with .Net event
-					// NotificationCenter.default.post(name: AssetDownloadStateChangedNotification, object: nil, userInfo: userInfo)
+					eventArgs.DisplayName = mediaSelectionPair.Item2.DisplayName;
+					eventArgs.State = DownloadState.Downloading;
+					DownloadStateChanged?.Invoke (this, eventArgs);
 				} else {
 					// All additional media selections have been downloaded.
-					// TODO: port
-					// userInfo [Asset.Keys.downloadState] = Asset.DownloadState.downloaded.rawValue
+					eventArgs.State = DownloadState.Downloaded;
 				}
 			}
-			// TODO: replace with .Net event
-			// NotificationCenter.default.post (name: AssetDownloadStateChangedNotification, object: nil, userInfo: userInfo)
+			DownloadStateChanged?.Invoke (this, eventArgs);
 		}
 
 		bool Match (NSError error, NSUrlError expectedCode)
@@ -341,11 +351,10 @@ namespace HlsCatalog
 				percentComplete += loadedTimeRange.Duration.Seconds / timeRangeExpectedToLoad.Duration.Seconds;
 			}
 
-			// TODO: .Net event
-			// var userInfo = [String: Any] ()
-			// userInfo [Asset.Keys.name] = asset.name
-			// userInfo [Asset.Keys.percentDownloaded] = percentComplete
-			// NotificationCenter.default.post (name: AssetDownloadProgressNotification, object: nil, userInfo: userInfo)
+			DownloadingProgressChanged?.Invoke (this, new DownloadProgressEventArgs {
+				AssetName = asset.Name,
+				PercentDownloaded = percentComplete
+			});
 		}
 
 		void UrlSession (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, AVMediaSelection resolvedMediaSelection)
