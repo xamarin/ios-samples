@@ -89,8 +89,8 @@ namespace HlsCatalog
 		static Asset CreateAsset (NSDictionary dictionary)
 		{
 			return new Asset {
-				Name = (NSString)dictionary ["AssetNameKey"],
-				UrlAsset = new AVUrlAsset (NSUrl.FromString (dictionary.GetString ("AAPLStreamPlaylistURL")))
+				Name = dictionary.GetString("AssetNameKey"),
+				UrlAsset = new AVUrlAsset (NSUrl.FromString (dictionary.GetString ("StreamPlaylistUrl")))
 			};
 		}
 	}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>AssetNameKey</key>
+		<string>Basic Stream</string>
+		<key>StreamPlaylistUrl</key>
+		<string>https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/bipbop_4x3_variant.m3u8</string>
+	</dict>
+	<dict>
+		<key>AssetNameKey</key>
+		<string>Advanced Stream</string>
+		<key>StreamPlaylistUrl</key>
+		<string>https://devimages.apple.com.edgekey.net/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8</string>
+	</dict>
+</array>
+</plist>
