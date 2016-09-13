@@ -100,8 +100,8 @@
     <Folder Include="UserInterface\" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Resources\Main.storyboard" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -114,6 +114,14 @@
     <Compile Include="Managers\AssetListManager.cs" />
     <Compile Include="Managers\AssetPersistenceManager.cs" />
     <Compile Include="Managers\AssetPlaybackManager.cs" />
+    <Compile Include="UserInterface\AssetListTableViewCell.cs" />
+    <Compile Include="UserInterface\AssetListTableViewCell.designer.cs">
+      <DependentUpon>AssetListTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\AssetListTableViewController.cs" />
+    <Compile Include="UserInterface\AssetListTableViewController.designer.cs">
+      <DependentUpon>AssetListTableViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -49,7 +49,7 @@ namespace HlsCatalog
 
 		// The Asset that is currently being loaded for playback.
 		Asset asset;
-		Asset Asset {
+		public Asset Asset {
 			get {
 				return asset;
 			}

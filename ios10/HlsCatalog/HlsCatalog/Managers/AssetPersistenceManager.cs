@@ -83,7 +83,7 @@ namespace HlsCatalog
 		}
 
 		// Triggers the initial AVAssetDownloadTask for a given Asset.
-		void DownloadStream (Asset asset)
+		public void DownloadStream (Asset asset)
 		{
 			// For the initial download, we ask the URLSession for an AVAssetDownloadTask
 			// with a minimum bitrate corresponding with one of the lower bitrate variants
@@ -129,7 +129,7 @@ namespace HlsCatalog
 		}
 
 		// Returns the current download state for a given Asset.
-		DownloadState GetDownloadState (Asset asset)
+		public DownloadState GetDownloadState (Asset asset)
 		{
 			var userDefaults = NSUserDefaults.StandardUserDefaults;
 
@@ -150,7 +150,7 @@ namespace HlsCatalog
 		}
 
 		// Deletes an Asset on disk if possible.
-		void DeleteAsset (Asset asset)
+		public void DeleteAsset (Asset asset)
 		{
 			var userDefaults = NSUserDefaults.StandardUserDefaults;
 
@@ -173,7 +173,7 @@ namespace HlsCatalog
 		}
 
 		// Cancels an AVAssetDownloadTask given an Asset.
-		void CancelDownload (Asset asset)
+		public void CancelDownload (Asset asset)
 		{
 			activeDownloadsMap.FirstOrDefault (kvp => kvp.Value.Equals (asset)).Key?.Cancel ();
 		}
