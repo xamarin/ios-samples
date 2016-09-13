@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using AVFoundation;
-using CoreFoundation;
+
 using Foundation;
+using CoreFoundation;
+using AVFoundation;
 using ObjCRuntime;
 
 namespace HlsCatalog
