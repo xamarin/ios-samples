@@ -1,8 +1,8 @@
 using System;
 
-using UIKit;
-using Foundation;
 using AVFoundation;
+using Foundation;
+using UIKit;
 
 namespace AutoWait
 {

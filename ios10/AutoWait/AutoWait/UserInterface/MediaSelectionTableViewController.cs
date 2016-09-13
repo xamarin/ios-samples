@@ -1,7 +1,6 @@
 using System;
-
-using UIKit;
 using Foundation;
+using UIKit;
 
 namespace AutoWait
 {
@@ -16,7 +15,7 @@ namespace AutoWait
 		readonly MediaItem [] mediaItems = {
 			new MediaItem {
 				Name = "In the Woods",
-				Url = new NSUrl("http://devimages.apple.com.edgekey.net/samplecode/avfoundationMedia/AVFoundationQueuePlayer_Progressive.mov")
+				Url = new NSUrl ("http://devimages.apple.com.edgekey.net/samplecode/avfoundationMedia/AVFoundationQueuePlayer_Progressive.mov")
 			}
 			// Add your own media items here.
 		};
