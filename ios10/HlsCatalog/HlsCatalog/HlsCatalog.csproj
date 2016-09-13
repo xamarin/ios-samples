@@ -97,6 +97,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Model\" />
     <Folder Include="Managers\" />
+    <Folder Include="UserInterface\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -109,10 +110,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Model\Asset.cs" />
     <Compile Include="Managers\AssetListManager.cs" />
     <Compile Include="Managers\AssetPersistenceManager.cs" />
