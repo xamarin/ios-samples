@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="16A201w" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0GS-23-uGy">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Streams-->
+        <scene sceneID="SwC-nA-HIj">
+            <objects>
+                <tableViewController id="4gz-Ru-rsq" customClass="AssetListTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="74" sectionHeaderHeight="28" sectionFooterHeight="28" id="7UY-Vg-WFi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="AssetListTableViewCellIdentifier" rowHeight="74" id="jwz-mI-047" customClass="AssetListTableViewCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jwz-mI-047" id="7MV-y7-UhL">
+                                    <frame key="frameInset" width="328" height="73.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="yrm-Ja-sUX">
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zXd-ua-aqZ">
+                                                    <frame key="frameInset" width="312" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" misplaced="YES" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ok-UN-xcP">
+                                                    <frame key="frameInset" minY="45" width="312" height="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <progressView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sXu-qc-Uur">
+                                                    <frame key="frameInset" minY="58" width="312"/>
+                                                </progressView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="yrm-Ja-sUX" firstAttribute="trailing" secondItem="7MV-y7-UhL" secondAttribute="trailingMargin" id="AiC-cn-SO6"/>
+                                        <constraint firstItem="yrm-Ja-sUX" firstAttribute="leading" secondItem="7MV-y7-UhL" secondAttribute="leadingMargin" id="Nvg-a8-2QG"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="yrm-Ja-sUX" secondAttribute="bottom" id="WDv-mu-qLv"/>
+                                        <constraint firstItem="yrm-Ja-sUX" firstAttribute="top" secondItem="7MV-y7-UhL" secondAttribute="topMargin" id="qBL-Sb-g1q"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="assetNameLabel" destination="zXd-ua-aqZ" id="p0T-h1-Az5"/>
+                                    <outlet property="downloadProgressView" destination="sXu-qc-Uur" id="An4-9C-uvb"/>
+                                    <outlet property="downloadStateLabel" destination="4ok-UN-xcP" id="qvg-hD-dxS"/>
+                                    <segue destination="Pcj-Rn-AxA" kind="presentation" identifier="PresentPlayerViewControllerSegueIdentifier" id="QeI-Ao-ka7"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="4gz-Ru-rsq" id="UWk-Dn-JOc"/>
+                            <outlet property="delegate" destination="4gz-Ru-rsq" id="808-cC-Scq"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Streams" id="Zw5-2X-12I"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RzH-NA-Ji1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1610" y="787"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zkN-5i-EbQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0GS-23-uGy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HCo-nV-RNR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4gz-Ru-rsq" kind="relationship" relationship="rootViewController" id="1GA-48-TVA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qZJ-lz-sEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="831" y="787"/>
+        </scene>
+        <!--AV Player View Controller-->
+        <scene sceneID="3aP-GM-lXf">
+            <objects>
+                <avPlayerViewController videoGravity="AVLayerVideoGravityResizeAspect" id="Pcj-Rn-AxA" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="52E-27-LQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2401" y="787"/>
+        </scene>
+    </scenes>
+</document>
