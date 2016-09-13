@@ -25,6 +25,10 @@ namespace HlsCatalog
 
 	public class AssetPersistenceManager : NSObject, IAVAssetDownloadDelegate
 	{
+		public static event EventHandler StateRestored;
+		public static event EventHandler<DownloadStateEventArgs> DownloadStateChanged;
+		public static event EventHandler<DownloadProgressEventArgs> DownloadingProgressChanged;
+
 		[DllImport (Constants.FoundationLibrary)]
 		public static extern IntPtr NSHomeDirectory ();
 
@@ -42,7 +46,7 @@ namespace HlsCatalog
 		bool didRestorePersistenceManager;
 
 		// The AVAssetDownloadURLSession to use for managing AVAssetDownloadTasks.
-		AVAssetDownloadUrlSession assetDownloadURLSession;
+		AVAssetDownloadUrlSession assetDownloadUrlSession;
 
 		// Internal map of AVAssetDownloadTask to its corresponding Asset.
 		Dictionary<AVAssetDownloadTask, Asset> activeDownloadsMap = new Dictionary<AVAssetDownloadTask, Asset> ();
@@ -53,20 +57,15 @@ namespace HlsCatalog
 		// The URL to the Library directory of the application's data container.
 		NSUrl baseDownloadURL;
 
-		public static event EventHandler StateRestored;
-		public static event EventHandler<DownloadStateEventArgs> DownloadStateChanged;
-		public static event EventHandler<DownloadProgressEventArgs> DownloadingProgressChanged;
-
 		public AssetPersistenceManager ()
 		{
 			baseDownloadURL = NSUrl.FromFilename (ContainerDirectory);
 
-			// TODO: fix identifier
-			// Create the configuration for the AVAssetDownloadURLSession.
-			var backgroundConfiguration = NSUrlSessionConfiguration.BackgroundSessionConfiguration ("AAPL-Identifier");
+			// Create the configuration for the AVAssetDownloadUrlSession.
+			var backgroundConfiguration = NSUrlSessionConfiguration.CreateBackgroundSessionConfiguration ("HLS-Identifier");
 
 			// Create the AVAssetDownloadURLSession using the configuration.
-			assetDownloadURLSession = AVAssetDownloadUrlSession.CreateSession (backgroundConfiguration, this, NSOperationQueue.MainQueue);
+			assetDownloadUrlSession = AVAssetDownloadUrlSession.CreateSession (backgroundConfiguration, this, NSOperationQueue.MainQueue);
 		}
 
 		// Restores the Application state by getting all the AVAssetDownloadTasks and restoring their Asset structs.
@@ -78,8 +77,7 @@ namespace HlsCatalog
 			didRestorePersistenceManager = true;
 
 			// Grab all the tasks associated with the assetDownloadURLSession
-			// TODO: await ?
-			assetDownloadURLSession.GetAllTasks ((NSUrlSessionTask [] tasks) => {
+			assetDownloadUrlSession.GetAllTasks ((NSUrlSessionTask [] tasks) => {
 				// For each task, restore the state in the app by recreating Asset structs and reusing existing AVURLAsset objects.
 				foreach (var task in tasks) {
 					var assetDownloadTask = task as AVAssetDownloadTask;
@@ -107,7 +105,7 @@ namespace HlsCatalog
 			// TODO: method is not bound
 			// AVAssetDownloadTaskKeys.MinimumRequiredMediaBitrateKey;
 			// options – [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: 265000]
-			var task = assetDownloadURLSession.GetAssetDownloadTask (asset.UrlAsset, asset.Name, null, (AVAssetDownloadOptions)null);
+			var task = assetDownloadUrlSession.GetAssetDownloadTask (asset.UrlAsset, asset.Name, null, (AVAssetDownloadOptions)null);
 			if (task == null)
 				return;
 
@@ -229,7 +227,8 @@ namespace HlsCatalog
 			return new Tuple<AVMediaSelectionGroup, AVMediaSelectionOption> (group, option);
 		}
 
-		void UrlSession (NSUrlSession session, NSUrlSessionTask task, NSError error)
+		[Export ("URLSession:task:didCompleteWithError:")]
+		public void DidCompleteWithError (NSUrlSession session, NSUrlSessionTask task, NSError error)
 		{
 			var userDefaults = NSUserDefaults.StandardUserDefaults;
 
@@ -251,9 +250,8 @@ namespace HlsCatalog
 
 			if (error != null) {
 				if (Match (error, NSUrlError.Cancelled)) {
-					// TODO: fix comment
 					// This task was canceled, you should perform cleanup using the
-					// URL saved from AVAssetDownloadDelegate.urlSession (_: assetDownloadTask:didFinishDownloadingTo:).
+					// NSUrl saved from DidFinishDownloadingToUrl.
 					var localFileLocation = userDefaults.StringForKey (asset.Name);
 					if (string.IsNullOrWhiteSpace (localFileLocation))
 						return;
@@ -266,8 +264,7 @@ namespace HlsCatalog
 					else
 						Console.WriteLine ($"An error occured trying to delete the contents on disk for {asset.Name}: {error}");
 
-					// TODO: port
-					//userInfo [Asset.Keys.downloadState] = Asset.DownloadState.notDownloaded.rawValue
+					eventArgs.State = DownloadState.NotDownloaded;
 				} else if (Match (error, NSUrlError.Unknown)) {
 					throw new InvalidProgramException ("Downloading HLS streams is not supported in the simulator.");
 				} else {
@@ -277,30 +274,28 @@ namespace HlsCatalog
 				var mediaSelectionPair = NextMediaSelection (downloadTask.UrlAsset);
 				var mediaSelectionGroup = mediaSelectionPair.Item1;
 				if (mediaSelectionGroup != null) {
-					// TODO: fix comment
-					// This task did complete sucessfully.At this point the application
+					// This task did complete sucessfully. At this point the application
 					// can download additional media selections if needed.
-					// To download additional `AVMediaSelection`s, you should use the
-					// `AVMediaSelection` reference saved in `AVAssetDownloadDelegate.urlSession (_: assetDownloadTask:didResolve:)`.
+					// To download additional AVMediaSelections, you should use the
+					// AVMediaSelection reference saved in DidResolveMediaSelection.
 					AVMediaSelection originalMediaSelection;
 					if (!mediaSelectionMap.TryGetValue (downloadTask, out originalMediaSelection))
 						return;
 
 					// There are still media selections to download.
-					// Create a mutable copy of the AVMediaSelection reference saved in
-					// `AVAssetDownloadDelegate.urlSession (_: assetDownloadTask:didResolve:)`.
+					// Create a mutable copy of the AVMediaSelection reference saved in DidResolveMediaSelection.
 					var mediaSelection = (AVMutableMediaSelection)originalMediaSelection.MutableCopy ();
 
 					// Select the AVMediaSelectionOption in the AVMediaSelectionGroup we found earlier.
 					mediaSelection.SelectMediaOption (mediaSelectionPair.Item2, mediaSelectionPair.Item1);
 
-					// Ask the NSUrlSession to vend a new `AVAssetDownloadTask` using
-					// the same `AVURLAsset` and assetTitle as before.
-					// This time, the application includes the specific `AVMediaSelection`
+					// Ask the NSUrlSession to vend a new AVAssetDownloadTask using
+					// the same AVUrlAsset and assetTitle as before.
+					// This time, the application includes the specific AVMediaSelection
 					// to download as well as a higher bitrate.
 
 					// TODO: provide own implementations for AVAssetDownloadOptions with setters https://bugzilla.xamarin.com/show_bug.cgi?id=44201
-					var t = assetDownloadURLSession.GetAssetDownloadTask (downloadTask.UrlAsset, asset.Name, null, new AVAssetDownloadOptions {
+					var t = assetDownloadUrlSession.GetAssetDownloadTask (downloadTask.UrlAsset, asset.Name, null, new AVAssetDownloadOptions {
 						//media
 					});
 
@@ -321,23 +316,23 @@ namespace HlsCatalog
 
 		bool Match (NSError error, NSUrlError expectedCode)
 		{
-			return error.Domain == NSError.NSUrlErrorDomain && error.Code == (int)NSUrlError.Cancelled;
+			return error.Domain == NSError.NSUrlErrorDomain && error.Code == (int)expectedCode;
 		}
 
-		void UrlSession (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, NSUrl location)
+		[Export ("URLSession:assetDownloadTask:didFinishDownloadingToURL:")]
+		public void DidFinishDownloadingToUrl (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, NSUrl location)
 		{
 			var userDefaults = NSUserDefaults.StandardUserDefaults;
 
-			// TODO: fix comment
 			// This delegate callback should only be used to save the location URL
-			// somewhere in your application. Any additional work should be done in
-			// `URLSessionTaskDelegate.urlSession (_: task:didCompleteWithError:)`.
+			// somewhere in your application. Any additional work should be done in DidCompleteWithError
 			Asset asset;
 			if (activeDownloadsMap.TryGetValue (assetDownloadTask, out asset))
 				userDefaults.SetString (location.RelativePath, asset.Name);
 		}
 
-		void UrlSession (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, CMTimeRange timeRange, NSValue [] loadedTimeRanges, CMTimeRange timeRangeExpectedToLoad)
+		[Export ("URLSession:assetDownloadTask:didLoadTimeRange:totalTimeRangesLoaded:timeRangeExpectedToLoad:")]
+		public void DidLoadTimeRange (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, CMTimeRange timeRange, NSValue [] loadedTimeRanges, CMTimeRange timeRangeExpectedToLoad)
 		{
 			// This delegate callback should be used to provide download progress for your AVAssetDownloadTask.
 			Asset asset;
@@ -357,7 +352,9 @@ namespace HlsCatalog
 			});
 		}
 
-		void UrlSession (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, AVMediaSelection resolvedMediaSelection)
+
+		[Export ("URLSession:assetDownloadTask:didResolveMediaSelection:")]
+		public void DidResolveMediaSelection (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, AVMediaSelection resolvedMediaSelection)
 		{
 			// You should be sure to use this delegate callback to keep a reference
 			// to `resolvedMediaSelection` so that in the future you can use it to

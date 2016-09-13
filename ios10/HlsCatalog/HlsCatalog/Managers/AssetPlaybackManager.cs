@@ -70,14 +70,6 @@ namespace HlsCatalog
 			currentItemToken = player.AddObserver ("currentItem", New, CurrentItemChanged);
 		}
 
-		// TODO: why we need this? prop should be sufficient 
-		// Replaces the currently playing Asset, if any, with a new Asset. If null is passed,
-		// AssetPlaybackManager will handle unloading the existing Asset and handle KVO cleanup.
-		void SetAssetForPlayback (Asset asset)
-		{
-			Asset = asset;
-		}
-
 		void StatusChanged (NSObservedChange obj)
 		{
 			if (PlayerItem == null || PlayerItem.Status != AVPlayerItemStatus.ReadyToPlay)
