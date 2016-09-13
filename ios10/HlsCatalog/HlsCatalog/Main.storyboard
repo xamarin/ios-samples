@@ -10,13 +10,13 @@
         <!--Streams-->
         <scene sceneID="SwC-nA-HIj">
             <objects>
-                <tableViewController id="4gz-Ru-rsq" customClass="AssetListTableViewController" customModule="HLSCatalog" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="4gz-Ru-rsq" customClass="AssetListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="74" sectionHeaderHeight="28" sectionFooterHeight="28" id="7UY-Vg-WFi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="AssetListTableViewCellIdentifier" rowHeight="74" id="jwz-mI-047" customClass="AssetListTableViewCell" customModule="HLSCatalog" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="AssetListTableViewCellIdentifier" rowHeight="74" id="jwz-mI-047" customClass="AssetListTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jwz-mI-047" id="7MV-y7-UhL">
                                     <frame key="frameInset" width="328" height="73.5"/>
