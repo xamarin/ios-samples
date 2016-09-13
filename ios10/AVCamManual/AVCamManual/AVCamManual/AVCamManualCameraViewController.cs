@@ -1,16 +1,16 @@
 using System;
-using System.Linq;
-using System.IO;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 
-using UIKit;
-using Foundation;
 using AVFoundation;
-using CoreMedia;
-using CoreGraphics;
 using CoreFoundation;
+using CoreGraphics;
+using CoreMedia;
 using CoreVideo;
+using Foundation;
 using Photos;
+using UIKit;
 
 namespace AVCamManual
 {
@@ -302,7 +302,7 @@ namespace AVCamManual
 		}
 
 		[Action ("toggleHUD:")]
-		void toggleHUD (NSObject sender)
+		void ToggleHUD (NSObject sender)
 		{
 			ManualHUD.Hidden = !ManualHUD.Hidden;
 		}

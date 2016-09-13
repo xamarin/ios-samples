@@ -1,9 +1,9 @@
 using System;
 
-using UIKit;
-using Foundation;
 using AVFoundation;
+using Foundation;
 using ObjCRuntime;
+using UIKit;
 
 namespace AVCamManual
 {

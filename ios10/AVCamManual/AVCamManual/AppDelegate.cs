@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 using Foundation;
 using UIKit;
 
 namespace AVCamManual
 {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
+	public class AppDelegate : UIApplicationDelegate
 	{
 		public override UIWindow Window { get; set; }
 
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			return true;
 		}
