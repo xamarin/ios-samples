@@ -1,11 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 using Foundation;
 using AVFoundation;
-using ObjCRuntime;
 using CoreMedia;
 
 namespace HlsCatalog
@@ -29,13 +28,11 @@ namespace HlsCatalog
 		public static event EventHandler<DownloadStateEventArgs> DownloadStateChanged;
 		public static event EventHandler<DownloadProgressEventArgs> DownloadingProgressChanged;
 
-		[DllImport (Constants.FoundationLibrary)]
-		public static extern IntPtr NSHomeDirectory ();
-
-		// TODO: Environment.GetFolderPath(Environment.SpecialFolder.Personal)
 		public static string ContainerDirectory {
 			get {
-				return ((NSString)Runtime.GetNSObject (NSHomeDirectory ())).ToString ();
+				var docsDir = Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments);
+				var homeDir = Path.Combine (docsDir, "..");
+				return Path.GetFullPath (homeDir); // nomilize path
 			}
 		}
 
@@ -98,14 +95,11 @@ namespace HlsCatalog
 		// Triggers the initial AVAssetDownloadTask for a given Asset.
 		public void DownloadStream (Asset asset)
 		{
-			// For the initial download, we ask the URLSession for an AVAssetDownloadTask
-			// with a minimum bitrate corresponding with one of the lower bitrate variants
-			// in the asset.
-
-			// TODO: method is not bound
-			// AVAssetDownloadTaskKeys.MinimumRequiredMediaBitrateKey;
-			// options – [AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: 265000]
-			var task = assetDownloadUrlSession.GetAssetDownloadTask (asset.UrlAsset, asset.Name, null, (AVAssetDownloadOptions)null);
+			// For the initial download, we ask the UrlSession for an AVAssetDownloadTask
+			// with a minimum bitrate corresponding with one of the lower bitrate variants in the asset.
+			var task = assetDownloadUrlSession.GetAssetDownloadTask (asset.UrlAsset, asset.Name, null, new AVAssetDownloadOptions {
+				MinimumRequiredMediaBitrate = 265000
+			});
 			if (task == null)
 				return;
 
@@ -203,7 +197,7 @@ namespace HlsCatalog
 				AVMediaCharacteristic.Legible
 			};
 			foreach (var mediaCharacteristic in mediaCharacteristics) {
-				// TODO: request strong typed API
+				// TODO: request strong typed API https://bugzilla.xamarin.com/show_bug.cgi?id=44312
 				AVMediaSelectionGroup mediaSelectionGroup = asset.MediaSelectionGroupForMediaCharacteristic (mediaCharacteristic);
 				if (mediaSelectionGroup != null) {
 					var savedOptions = assetCache.GetMediaSelectionOptions (mediaSelectionGroup);
@@ -294,9 +288,9 @@ namespace HlsCatalog
 					// This time, the application includes the specific AVMediaSelection
 					// to download as well as a higher bitrate.
 
-					// TODO: provide own implementations for AVAssetDownloadOptions with setters https://bugzilla.xamarin.com/show_bug.cgi?id=44201
 					var t = assetDownloadUrlSession.GetAssetDownloadTask (downloadTask.UrlAsset, asset.Name, null, new AVAssetDownloadOptions {
-						//media
+						MinimumRequiredMediaBitrate = 2000000,
+						MediaSelection = mediaSelection
 					});
 
 					t.TaskDescription = asset.Name;
@@ -357,7 +351,7 @@ namespace HlsCatalog
 		public void DidResolveMediaSelection (NSUrlSession session, AVAssetDownloadTask assetDownloadTask, AVMediaSelection resolvedMediaSelection)
 		{
 			// You should be sure to use this delegate callback to keep a reference
-			// to `resolvedMediaSelection` so that in the future you can use it to
+			// to resolvedMediaSelection so that in the future you can use it to
 			// download additional media selections.
 			mediaSelectionMap [assetDownloadTask] = resolvedMediaSelection;
 		}

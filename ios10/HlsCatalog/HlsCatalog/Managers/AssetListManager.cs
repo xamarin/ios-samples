@@ -65,7 +65,7 @@ namespace HlsCatalog
 					var asset = AssetPersistenceManager.SharedManager.AssetForStream (entry.Name);
 
 					// If an existing AVUrlAsset is not available for an active
-					// download we then see if there is a file URL available to create an asset from.
+					// download we then see if there is a file Url available to create an asset from.
 					asset = asset ?? AssetPersistenceManager.SharedManager.LocalAssetForStream (entry.Name);
 
 					// No instance of AVUrlAsset exists for this stream, use deserialized one.
