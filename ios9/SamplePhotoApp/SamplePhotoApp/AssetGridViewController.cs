@@ -17,7 +17,7 @@ namespace SamplePhotoApp {
 		PHCachingImageManager imageManager;
 		CGRect previousPreheatRect;
 
-		public PHFetchResult AssetsFetchResults { get; set; }
+		public PHFetchResult FetchResult { get; set; }
 
 		public PHAssetCollection AssetCollection { get; set; }
 
@@ -73,7 +73,7 @@ namespace SamplePhotoApp {
 				return;
 
 			var indexPath = CollectionView.IndexPathForCell ((UICollectionViewCell)sender);
-			assetViewController.Asset = (PHAsset)AssetsFetchResults [indexPath.Item];
+			assetViewController.Asset = (PHAsset)FetchResult [indexPath.Item];
 			assetViewController.AssetCollection = AssetCollection;
 		}
 
@@ -86,13 +86,13 @@ namespace SamplePhotoApp {
 		public void PhotoLibraryDidChange (PHChange changeInstance)
 		{
 			// Check if there are changes to the assets we are showing.
-			var collectionChanges = changeInstance.GetFetchResultChangeDetails (AssetsFetchResults);
+			var collectionChanges = changeInstance.GetFetchResultChangeDetails (FetchResult);
 			if (collectionChanges == null)
 				return;
 
 			DispatchQueue.MainQueue.DispatchAsync (() => {
 				// Get the new fetch result.
-				AssetsFetchResults = collectionChanges.FetchResultAfterChanges;
+				FetchResult = collectionChanges.FetchResultAfterChanges;
 				UICollectionView collectionView = CollectionView;
 				if (collectionChanges.HasIncrementalChanges || !collectionChanges.HasMoves) {
 					collectionView.PerformBatchUpdates (() => {
@@ -118,12 +118,12 @@ namespace SamplePhotoApp {
 
 		public override nint GetItemsCount (UICollectionView collectionView, nint section)
 		{
-			return AssetsFetchResults.Count;
+			return FetchResult.Count;
 		}
 
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			var asset = (PHAsset)AssetsFetchResults [indexPath.Item];
+			var asset = (PHAsset)FetchResult [indexPath.Item];
 			// Dequeue an GridViewCell.
 			var cell = (GridViewCell)collectionView.DequeueReusableCell (cellReuseIdentifier, indexPath);
 			cell.RepresentedAssetIdentifier = asset.LocalIdentifier;
@@ -237,7 +237,7 @@ namespace SamplePhotoApp {
 
 			var assets = new PHAsset[indexPaths.Length];
 			for (int i = 0; i < indexPaths.Length; i++) {
-				var asset = (PHAsset)AssetsFetchResults.ObjectAt (i);
+				var asset = (PHAsset)FetchResult.ObjectAt (i);
 				assets [i] = asset;
 			}
 

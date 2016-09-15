@@ -69,7 +69,7 @@ namespace SamplePhotoApp {
 			PHFetchResult fetchResult = sectionFetchResults [indexPath.Section];
 
 			if (segue.Identifier == allPhotosSegue) {
-				assetGridViewController.AssetsFetchResults = fetchResult;
+				assetGridViewController.FetchResult = fetchResult;
 			} else if (segue.Identifier == collectionSegue) {
 				// Get the PHAssetCollection for the selected row.
 				var collection = fetchResult [indexPath.Row] as PHAssetCollection;
@@ -77,7 +77,7 @@ namespace SamplePhotoApp {
 					return;
 				var assetsFetchResult = PHAsset.FetchAssets (collection, null);
 
-				assetGridViewController.AssetsFetchResults = assetsFetchResult;
+				assetGridViewController.FetchResult = assetsFetchResult;
 				assetGridViewController.AssetCollection = collection;
 			}
 		}
