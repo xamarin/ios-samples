@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARMv7</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>true</MtouchFloat32>
     <MtouchUseSGen>true</MtouchUseSGen>
@@ -65,7 +65,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARMv7</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchFloat32>true</MtouchFloat32>
@@ -95,18 +95,6 @@
     <Compile Include="RootListViewController.cs" />
     <Compile Include="RootListViewController.designer.cs">
       <DependentUpon>RootListViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AssetGridViewController.cs" />
-    <Compile Include="AssetGridViewController.designer.cs">
-      <DependentUpon>AssetGridViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AssetViewController.cs" />
-    <Compile Include="AssetViewController.designer.cs">
-      <DependentUpon>AssetViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GridViewCell.cs" />
-    <Compile Include="GridViewCell.designer.cs">
-      <DependentUpon>GridViewCell.cs</DependentUpon>
     </Compile>
     <Compile Include="ConvenienceCategories\Extensions.cs" />
   </ItemGroup>

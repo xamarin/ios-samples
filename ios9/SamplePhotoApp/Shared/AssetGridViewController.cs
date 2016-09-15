@@ -8,8 +8,10 @@ using Photos;
 using PhotosUI;
 using UIKit;
 
-namespace SamplePhotoApp {
-	public partial class AssetGridViewController : UICollectionViewController, IPHPhotoLibraryChangeObserver {
+namespace SamplePhotoApp
+{
+	public partial class AssetGridViewController : UICollectionViewController, IPHPhotoLibraryChangeObserver
+	{
 		static CGSize assetGridThumbnailSize;
 
 		const string cellReuseIdentifier = "Cell";

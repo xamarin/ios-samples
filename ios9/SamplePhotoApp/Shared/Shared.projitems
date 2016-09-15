@@ -10,5 +10,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AppDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AssetGridViewController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AssetGridViewController.designer.cs">
+      <DependentUpon>AssetGridViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)GridViewCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GridViewCell.designer.cs">
+      <DependentUpon>GridViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)AssetViewController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AssetViewController.designer.cs">
+      <DependentUpon>AssetViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

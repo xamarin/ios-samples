@@ -3,9 +3,10 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace SamplePhotoApp {
-	public partial class GridViewCell : UICollectionViewCell {
-
+namespace SamplePhotoApp
+{
+	public partial class GridViewCell : UICollectionViewCell
+	{
 		UIImage thumbnailImage;
 		public UIImage ThumbnailImage {
 			get {
@@ -31,11 +32,13 @@ namespace SamplePhotoApp {
 		public string RepresentedAssetIdentifier { get; set; }
 
 		[Export ("initWithCoder:")]
-		public GridViewCell (NSCoder coder) : base (coder)
+		public GridViewCell (NSCoder coder)
+			: base (coder)
 		{
 		}
 
-		public GridViewCell (IntPtr handle) : base (handle)
+		public GridViewCell (IntPtr handle)
+			: base (handle)
 		{
 		}
 
