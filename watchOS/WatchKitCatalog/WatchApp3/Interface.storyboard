@@ -628,9 +628,14 @@
                                 <label alignment="left" text="Swipe left or right" id="15"/>
                             </items>
                             <gestureRecognizers>
-                                <swipeGestureRecognizer id="n7z-cl-0SL">
+                                <swipeGestureRecognizer direction="2" id="n7z-cl-0SL">
                                     <connections>
                                         <action selector="SwipeRecognized:" destination="8" id="9FQ-aD-sot"/>
+                                    </connections>
+                                </swipeGestureRecognizer>
+                                <swipeGestureRecognizer id="MBs-PN-f79">
+                                    <connections>
+                                        <action selector="SwipeRecognized:" destination="8" id="WJL-mM-1sy"/>
                                     </connections>
                                 </swipeGestureRecognizer>
                             </gestureRecognizers>
@@ -649,7 +654,9 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="longPresGroup" destination="10" id="YF1-Vi-iBN"/>
                         <outlet property="longPressLabel" destination="14" id="name-outlet-14"/>
+                        <outlet property="panGroup" destination="12" id="lXP-sw-htK"/>
                         <outlet property="panLabel" destination="16" id="name-outlet-16"/>
                         <outlet property="swipeGroup" destination="11" id="name-outlet-11"/>
                         <outlet property="swipeLabel" destination="15" id="name-outlet-15"/>

@@ -12,9 +12,8 @@ namespace Watchkit2Extension
 		}
 
 		partial void LongPressRecognized(Foundation.NSObject sender)
-		{ 
-			longPressLabel.SetTextColor(UIColor.Green);
-
+		{
+			longPresGroup.SetBackgroundColor(UIColor.Green);
 			ScheduleReset();
 		}
 
@@ -23,6 +22,7 @@ namespace Watchkit2Extension
 			var panGesture = sender as WKPanGestureRecognizer;
 			if (panGesture != null)
 			{
+				panGroup.SetBackgroundColor(UIColor.Green);
 				panLabel.SetText("offset:" + panGesture.TranslationInObject.ToString());
 
 				ScheduleReset();
@@ -56,6 +56,8 @@ namespace Watchkit2Extension
 		{
 			tapGroup.SetBackgroundColor(UIColor.Clear);
 			swipeGroup.SetBackgroundColor(UIColor.Clear);
+			panGroup.SetBackgroundColor(UIColor.Clear);
+			longPresGroup.SetBackgroundColor(UIColor.Clear);
 		}
 	}
 }

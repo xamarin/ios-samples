@@ -13,7 +13,13 @@ namespace Watchkit2Extension
 	partial class GestureDetailController
 	{
 		[Outlet]
+		WatchKit.WKInterfaceGroup longPresGroup { get; set; }
+
+		[Outlet]
 		WatchKit.WKInterfaceLabel longPressLabel { get; set; }
+
+		[Outlet]
+		WatchKit.WKInterfaceGroup panGroup { get; set; }
 
 		[Outlet]
 		WatchKit.WKInterfaceLabel panLabel { get; set; }
@@ -49,6 +55,11 @@ namespace Watchkit2Extension
 				longPressLabel = null;
 			}
 
+			if (longPresGroup != null) {
+				longPresGroup.Dispose ();
+				longPresGroup = null;
+			}
+
 			if (panLabel != null) {
 				panLabel.Dispose ();
 				panLabel = null;
@@ -72,6 +83,11 @@ namespace Watchkit2Extension
 			if (tapLabel != null) {
 				tapLabel.Dispose ();
 				tapLabel = null;
+			}
+
+			if (panGroup != null) {
+				panGroup.Dispose ();
+				panGroup = null;
 			}
 		}
 	}
