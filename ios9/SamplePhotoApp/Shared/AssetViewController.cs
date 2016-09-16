@@ -8,6 +8,8 @@ using CoreFoundation;
 using CoreGraphics;
 using CoreImage;
 using Photos;
+using System.Runtime.InteropServices;
+using ObjCRuntime;
 #if __IOS__
 using PhotosUI;
 #endif
@@ -327,6 +329,8 @@ namespace SamplePhotoApp
 
 		#endregion
 
+		#region Asset editing
+
 		void RevertAsset (UIAlertAction action)
 		{
 			PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
@@ -334,60 +338,136 @@ namespace SamplePhotoApp
 				request.RevertAssetContentToOriginal ();
 			}, (success, error) => {
 				if (!success)
-					Console.WriteLine ("Error: {0}", error.LocalizedDescription);
+					Console.WriteLine ($"can't revert asset: {error.LocalizedDescription}");
 			});
 		}
 
+		#endregion
+
+
 		void ApplyFilter (CIFilter filter)
 		{
-			//// Prepare the options to pass when requesting to edit the image.
-			//var options = new PHContentEditingInputRequestOptions ();
-			//options.SetCanHandleAdjustmentDataHandler (adjustmentData => {
-			//	bool result = false;
-			//	InvokeOnMainThread (() => {
-			//		result = adjustmentData.FormatIdentifier == AdjustmentFormatIdentifier && adjustmentData.FormatVersion == "1.0";
-			//	});
+			// Set up a handler to make sure we can handle prior edits.
+			var options = new PHContentEditingInputRequestOptions ();
+			options.CanHandleAdjustmentData = (adjustmentData => {
+				return adjustmentData.FormatIdentifier == formatIdentifier && adjustmentData.FormatVersion == formatVersion;
+			});
 
-			//	return result;
-			//});
+			// Prepare for editing.
+			Asset.RequestContentEditingInput (options, (contentEditingInput, requestStatusInfo) => {
+				if (contentEditingInput == null)
+					throw new InvalidProgramException ($"can't get content editing input: {requestStatusInfo}");
 
-			//Asset.RequestContentEditingInput (options,(contentEditingInput, requestStatusInfo) => {
-			//	// Create a CIImage from the full image representation.
-			//	var url = contentEditingInput.FullSizeImageUrl;
-			//	int orientation = (int)contentEditingInput.FullSizeImageOrientation;
-			//	var inputImage = CIImage.FromUrl (url);
-			//	inputImage = inputImage.CreateWithOrientation ((CIImageOrientation)orientation);
+				// This handler gets called on the main thread; dispatch to a background queue for processing.
+				DispatchQueue.GetGlobalQueue (DispatchQueuePriority.Default).DispatchAsync (() => {
+					// Create a PHAdjustmentData object that describes the filter that was applied.
+					var adjustmentData = new PHAdjustmentData (
+					formatIdentifier,
+					formatVersion,
+					NSData.FromString (filter.Name, NSStringEncoding.UTF8));
 
-			//	// Create the filter to apply.
-			//	filter.SetDefaults ();
-			//	filter.Image = inputImage;
+					// NOTE:
+					// This app's filter UI is fire-and-forget. That is, the user picks a filter, 
+					// and the app applies it and outputs the saved asset immediately. There's 
+					// no UI state for having chosen but not yet committed an edit. This means
+					// there's no role for reading adjustment data -- you do that to resume
+					// in-progress edits, and this sample app has no notion of "in-progress".
+					//
+					// However, it's still good to write adjustment data so that potential future
+					// versions of the app (or other apps that understand our adjustement data
+					// format) could make use of it.
 
-			//	// Apply the filter.
-			//	CIImage outputImage = filter.OutputImage;
+					// Create content editing output, write the adjustment data.
+					var output = new PHContentEditingOutput (input) {
+						AdjustmentData = adjustmentData
+					};
 
-			//	// Create a PHAdjustmentData object that describes the filter that was applied.
-			//	var adjustmentData = new PHAdjustmentData (
-			//		AdjustmentFormatIdentifier,
-			//		"1.0",
-			//		NSData.FromString (filter.Name, NSStringEncoding.UTF8)
-			//	);
+					// Select a filtering function for the asset's media type.
+					//let applyFunc: (String, PHContentEditingInput, PHContentEditingOutput, @escaping ()-> ())-> ()
 
-			//	var contentEditingOutput = new PHContentEditingOutput (contentEditingInput);
-			//	NSData jpegData = outputImage.GetJpegRepresentation (0.9f);
-			//	jpegData.Save (contentEditingOutput.RenderedContentUrl, true);
-			//	contentEditingOutput.AdjustmentData = adjustmentData;
+					if (Asset.MediaSubtypes.HasFlag (PHAssetMediaSubtype.PhotoLive)) {
+						// applyFunc = self.applyLivePhotoFilter
+					} else if (Asset.MediaType == PHAssetMediaType.Image) {
+						// applyFunc = self.applyPhotoFilter
+					} else {
+						//applyFunc = self.applyVideoFilter
+					}
 
-			//	// Ask the shared PHPhotoLinrary to perform the changes.
-			//	PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
-			//		var request = PHAssetChangeRequest.ChangeRequest (Asset);
-			//			request.ContentEditingOutput = contentEditingOutput;
-			//		}, (success, error) => {
-			//		if (!success)
-			//			Console.WriteLine ("Error: {0}", error.LocalizedDescription);
-			//	});
-			//});
+					// Apply the filter.
+					//               applyFunc(filterName, input, output, {
+					//// When rendering is done, commit the edit to the Photos library.
+					//PHPhotoLibrary.shared ().performChanges ({
+					//	let request = PHAssetChangeRequest (for: self.asset)
+					//		request.contentEditingOutput = output
+					//	}, completionHandler:
+					//{
+					//	success, error in
+					//                       if !success { print ("can't edit asset: \(error)") }
+					//})
+					//})
+				});
+			});
 		}
 
+		void ApplyPhotoFilter (CIFilter filter, PHContentEditingInput input, PHContentEditingOutput output, Action completion)
+		{
+			// Load the full size image.
+			var inputImage = new CIImage (input.FullSizeImageUrl);
+
+			// Apply the filter.
+			filter.Image = inputImage.CreateWithOrientation (input.FullSizeImageOrientation);
+			var outputImage = filter.OutputImage;
+
+			// Write the edited image as a JPEG.
+			NSError error;
+			if (!ciContext.WriteJpegRepresentation (outputImage, output.RenderedContentUrl, inputImage.ColorSpace (), null, out error))
+				throw new InvalidProgramException ($"can't apply filter to image: {error.LocalizedDescription}");
+
+			completion ();
+		}
+
+		void ApplyLivePhotoFilter (CIFilter filter, PHContentEditingInput input, PHContentEditingOutput output, Action completion)
+		{
+			// This app filters assets only for output. In an app that previews
+			// filters while editing, create a livePhotoContext early and reuse it
+			// to render both for previewing and for final output.
+			var livePhotoContext = new PHLivePhotoEditingContext (input);
+
+			livePhotoContext.FrameProcessor = (frame, _) => {
+				filter.Image = frame.Image;
+				return filter.OutputImage;
+			};
+			livePhotoContext.SaveLivePhoto (output, null, (success, error) => {
+				if (success)
+					completion ();
+				else
+					Console.WriteLine ("can't output live photo");
+			});
+		}
+
+		void ApplyVideoFilter (CIFilter filter, PHContentEditingInput input, PHContentEditingOutput output, Action completion)
+		{
+			// Load AVAsset to process from input.
+			var avAsset = input.AudiovisualAsset;
+			if (avAsset == null)
+				throw new InvalidProgramException ("can't get AV asset to edit");
+
+			// Set up a video composition to apply the filter.
+			var composition = AVVideoComposition.CreateVideoComposition (avAsset, request => {
+				filter.Image = request.SourceImage;
+				var filtered = filter.OutputImage;
+				request.Finish (filtered, null);
+			});
+
+			// Export the video composition to the output URL.
+			// TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=44443
+			var export = new AVAssetExportSession (avAsset, AVAssetExportSession.PresetHighestQuality) {
+				OutputFileType = AVFileType.QuickTimeMovie,
+				OutputUrl = output.RenderedContentUrl,
+				VideoComposition = composition
+			};
+			export.ExportAsynchronously (completion);
+		}
 
 		partial void PlayButtonClickHandler (NSObject sender)
 		{
@@ -425,7 +505,7 @@ namespace SamplePhotoApp
 			//}
 		}
 
-		#if __IOS__
+#if __IOS__
 		[Export ("livePhotoView:didEndPlaybackWithStyle:")]
 		public virtual void DidEndPlayback (PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle)
 		{
@@ -438,13 +518,7 @@ namespace SamplePhotoApp
 		{
 			Console.WriteLine ("Will Beginning Playback of Live Photo...");
 		}
-		#endif
-
-		void ShowLivePhotoView ()
-		{
-			//LivePhotoView.Hidden = false;
-			//ImageView.Hidden = true;
-		}
+#endif
 
 		void RemovePlayerLayer ()
 		{
@@ -454,5 +528,19 @@ namespace SamplePhotoApp
 				playerLayer.Dispose ();
 			}
 		}
+	}
+
+	public static class Bindings
+	{
+		[DllImport ("/usr/lib/libobjc.dylib", EntryPoint = "objc_msgSend")]
+		public static extern IntPtr IntPtr_objc_msgSend (IntPtr receiver, IntPtr selector);
+
+		//TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=44438
+		public static CGColorSpace ColorSpace (this CIImage img)
+		{
+			var colorSpacePtr = IntPtr_objc_msgSend (img.Handle, new Selector ("colorSpace").Handle);
+			return new CGColorSpace (colorSpacePtr);
+		}
+		 
 	}
 }
