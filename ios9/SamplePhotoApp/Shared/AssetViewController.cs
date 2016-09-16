@@ -31,13 +31,13 @@ namespace SamplePhotoApp
 		public PHAsset Asset { get; set; }
 		public PHAssetCollection AssetCollection { get; set; }
 
-		//CGSize TargetSize {
-		//	get {
-		//		nfloat scale = UIScreen.MainScreen.Scale;
-		//		var targetSize = new CGSize (ImageView.Bounds.Width * scale, ImageView.Bounds.Height * scale);
-		//		return targetSize;
-		//	}
-		//}
+		CGSize TargetSize {
+			get {
+				nfloat scale = UIScreen.MainScreen.Scale;
+				var targetSize = new CGSize (ImageView.Bounds.Width * scale, ImageView.Bounds.Height * scale);
+				return targetSize;
+			}
+		}
 
 		[Export ("initWithCoder:")]
 		public AssetViewController (NSCoder coder)
@@ -238,6 +238,63 @@ namespace SamplePhotoApp
 			});
 		}
 
+		#region Image display
+
+		void UpdateImage ()
+		{
+#if __IOS__
+			// Check the asset's MediaSubtypes to determine if this is a live photo or not.
+			if (Asset.MediaSubtypes.HasFlag (PHAssetMediaSubtype.PhotoLive))
+				UpdateLiveImage ();
+			else
+				UpdateStaticImage ();
+#else
+			UpdateStaticImage ();
+#endif
+		}
+
+#if __IOS__
+		void UpdateLivePhoto ()
+		{
+			// Prepare the options to pass when fetching the live photo.
+			var options = new PHLivePhotoRequestOptions {
+				DeliveryMode = PHImageRequestOptionsDeliveryMode.HighQualityFormat,
+				NetworkAccessAllowed = true,
+				ProgressHandler = (double progress, NSError error, out bool stop, NSDictionary dictionary) => {
+					stop = false;
+					// Handler might not be called on the main queue, so re-dispatch for UI work.
+					DispatchQueue.MainQueue.DispatchSync (() => ProgressView.Progress = (float)progress);
+				}
+			};
+
+			// Request the live photo for the asset from the default PHImageManager.
+			PHImageManager.DefaultManager.RequestLivePhoto (Asset, TargetSize, PHImageContentMode.AspectFit, options, (livePhoto, info) => {
+				// Hide the progress view now the request has completed.
+				ProgressView.Hidden = true;
+
+				// If successful, show the live photo view and display the live photo.
+				if (livePhoto == null)
+					return;
+
+				// Now that we have the Live Photo, show it.
+				ImageView.Hidden = true;
+				LivePhotoView.Hidden = false;
+				LivePhotoView.LivePhoto = livePhoto;
+
+				if (info == null)
+					return;
+
+				// TODO: strong typed API https://bugzilla.xamarin.com/show_bug.cgi?id=44424
+				var degraded = ((NSNumber)info [PHImageKeys.ResultIsDegraded]).BoolValue;
+				// Playback a short section of the live photo; similar to the Photos share sheet.
+				if (degraded && playingHint)
+					LivePhotoView.StartPlayback (PHLivePhotoViewPlaybackStyle.Hint);
+			});
+		}
+#endif
+
+
+		#endregion
 
 		void RevertAsset (UIAlertAction action)
 		{
@@ -362,17 +419,6 @@ namespace SamplePhotoApp
 		{
 			//LivePhotoView.Hidden = true;
 			//ImageView.Hidden = false;
-		}
-
-		void UpdateImage ()
-		{
-			// Check the asset's `mediaSubtypes` to determine if this is a live photo or not.
-			bool assetHasLivePhotoSubType = Asset.MediaSubtypes == PHAssetMediaSubtype.PhotoLive;
-
-			if (assetHasLivePhotoSubType)
-				UpdateLiveImage ();
-			else
-				UpdateStaticImage ();
 		}
 
 		void UpdateLiveImage ()
