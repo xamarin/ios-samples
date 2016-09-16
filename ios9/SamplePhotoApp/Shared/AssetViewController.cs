@@ -201,6 +201,30 @@ namespace SamplePhotoApp
 			}
 		}
 
+		partial void RemoveAsset (NSObject sender)
+		{
+			Action<bool, NSError> completion = (success, error) => {
+				if (success) {
+					PHPhotoLibrary.SharedPhotoLibrary.UnregisterChangeObserver (this);
+					DispatchQueue.MainQueue.DispatchSync (() => NavigationController.PopViewController (true));
+				} else {
+					Console.WriteLine ($"can't remove asset: {error.LocalizedDescription}");
+				}
+			};
+
+			if (AssetCollection != null) {
+				// Remove asset from album
+				PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
+					var request = PHAssetCollectionChangeRequest.ChangeRequest (AssetCollection);
+					request.RemoveAssets (new PHObject [] { Asset });
+				}, completion);
+			} else {
+				// Delete asset from library
+				PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() =>
+					PHAssetChangeRequest.DeleteAssets (new [] { Asset }), completion);
+			}
+		}
+
 		void RevertAsset (UIAlertAction action)
 		{
 			PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
@@ -307,31 +331,6 @@ namespace SamplePhotoApp
 			//			}
 			//	}));
 			//}
-		}
-
-		partial void TrashButtonClickHandler (NSObject sender)
-		{
-			Action<bool, NSError> completionHandler = (success, error) => {
-				if (success) {
-					DispatchQueue.MainQueue.DispatchAsync (() =>
-						NavigationController.PopViewController (true)
-					);
-				} else {
-					Console.WriteLine (error.LocalizedDescription);
-				}
-			};
-
-			if (AssetCollection != null) {
-				// Remove asset from album
-				PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
-					var changeRequest = PHAssetCollectionChangeRequest.ChangeRequest (AssetCollection);
-					changeRequest.RemoveAssets (new PHObject[] { Asset });
-				}, completionHandler);
-			} else {
-				// Delete asset from library
-				PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() =>
-					PHAssetChangeRequest.DeleteAssets (new [] { Asset }), completionHandler);
-			}
 		}
 
 		#if __IOS__
