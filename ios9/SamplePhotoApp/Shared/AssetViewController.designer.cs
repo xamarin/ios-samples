@@ -39,14 +39,17 @@ namespace SamplePhotoApp
 
 		// TODO: check selector
 		[Action ("EditButtonClickHandler:")]
-		partial void EditButtonClickHandler (NSObject sender);
+		partial void EditButtonClickHandler (UIBarButtonItem sender);
 
 		[Action ("PlayButtonClickHandler:")]
 		partial void PlayButtonClickHandler (NSObject sender);
 
 		[Action ("TrashButtonClickHandler:")]
 		partial void TrashButtonClickHandler (NSObject sender);
-		
+
+		[Action ("play:")]
+		partial void Play (NSObject sender);
+
 		void ReleaseDesignerOutlets ()
 		{
 #if __IOS__

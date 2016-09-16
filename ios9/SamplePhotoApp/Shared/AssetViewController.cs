@@ -126,8 +126,12 @@ namespace SamplePhotoApp
 			// Allow editing only if the PHAsset supports edit operations.
 			if (Asset.CanPerformEditOperation (PHAssetEditOperation.Content)) {
 				// Add actions for some canned filters.
-				alertController.AddAction (UIAlertAction.Create ("Sepia Tone", UIAlertActionStyle.Default, GetFilter ("CISepiaTone")));
-				alertController.AddAction (UIAlertAction.Create ("Chrome", UIAlertActionStyle.Default, GetFilter ("CIPhotoEffectChrome")));
+				alertController.AddAction (UIAlertAction.Create ("Sepia Tone", UIAlertActionStyle.Default, _ => {
+					ApplyFilter (new CISepiaTone ());
+				}));
+				alertController.AddAction (UIAlertAction.Create ("Chrome", UIAlertActionStyle.Default, _ => {
+					ApplyFilter (new CIPhotoEffectChrome ());
+				}));
 
 				// Add actions to revert any edits that have been made to the PHAsset.
 				alertController.AddAction (UIAlertAction.Create ("Revert", UIAlertActionStyle.Default, RevertAsset));
@@ -164,48 +168,37 @@ namespace SamplePhotoApp
 			});
 		}
 
-		partial void EditButtonClickHandler (NSObject sender)
+		partial void Play (NSObject sender)
 		{
-			// Use a UIAlertController to display the editing options to the user.
-			var alertController = UIAlertController.Create (null, null, UIAlertControllerStyle.ActionSheet);
-			alertController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
-			//if (alertController.PopoverPresentationController != null) {
-			//	alertController.PopoverPresentationController.BarButtonItem = (UIBarButtonItem)sender;
-			//	alertController.PopoverPresentationController.PermittedArrowDirections = UIPopoverArrowDirection.Up;
-			//}
+			// An AVPlayerLayer has already been created for this asset; just play it.
+			if (playerLayer != null) {
+				playerLayer.Player.Play ();
+			} else {
+				// Request an AVAsset for the displayed PHAsset and set up a layer for playing it.
+				PHImageManager.DefaultManager.RequestAvAsset (Asset, null, (avAsset, audioMix, info) => {
+					DispatchQueue.MainQueue.DispatchSync (() => {
+						if (playerLayer != null)
+							return;
 
-			// Add an action to dismiss the UIAlertController.
-			alertController.AddAction (UIAlertAction.Create ("Cancel", UIAlertActionStyle.Cancel, null));
+						// Create an AVPlayerItem for the AVAsset.
+						var playerItem = new AVPlayerItem (avAsset);
+						playerItem.AudioMix = audioMix;
 
-			// If PHAsset supports edit operations, allow the user to toggle its favorite status.
-			if (Asset.CanPerformEditOperation (PHAssetEditOperation.Properties)) {
-				var favoriteActionTitle = Asset.Favorite ? "Unfavorite" : "Favorite";
-				alertController.AddAction (UIAlertAction.Create (favoriteActionTitle, UIAlertActionStyle.Default, actions =>
-					ToggleFavoriteState ()
-				));
+						// Create an AVPlayer with the AVPlayerItem.
+						var player = new AVPlayer (playerItem);
+						// Create an AVPlayerLayer with the AVPlayer.
+						var layer = AVPlayerLayer.FromPlayer (player);
+						layer.VideoGravity = AVLayerVideoGravity.ResizeAspect;
+						layer.Frame = View.Layer.Bounds;
+						View.Layer.AddSublayer (layer);
+
+						player.Play ();
+
+						// Refer to the player layer so we can remove it later.
+						playerLayer = layer;
+					});
+				});
 			}
-
-			// Only allow editing if the PHAsset supports edit operations and it is not a Live Photo.
-			if (Asset.CanPerformEditOperation (PHAssetEditOperation.Content) && Asset.MediaSubtypes != PHAssetMediaSubtype.PhotoLive) {
-				// Allow filters to be applied if the PHAsset is an image.
-				if (Asset.MediaType == PHAssetMediaType.Image) {
-					alertController.AddAction (UIAlertAction.Create ("Sepia", UIAlertActionStyle.Default, action =>
-						ApplyFilter (new CISepiaTone())
-					));
-
-					alertController.AddAction (UIAlertAction.Create ("Chrome", UIAlertActionStyle.Default, action =>
-						ApplyFilter (new CIPhotoEffectChrome ())
-					));
-				}
-
-				// Add actions to revert any edits that have been made to the PHAsset.
-				alertController.AddAction (UIAlertAction.Create ("Revert", UIAlertActionStyle.Default, action =>
-					RevertAsset ()
-				));
-			}
-
-			// Present the UIAlertController.
-			PresentViewController (alertController, true, null);
 		}
 
 		void RevertAsset (UIAlertAction action)
