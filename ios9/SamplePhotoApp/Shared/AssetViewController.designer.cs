@@ -37,6 +37,7 @@ namespace SamplePhotoApp
 		[Outlet]
 		UIBarButtonItem FavoriteButton { get; set; }
 
+		// TODO: check selector
 		[Action ("EditButtonClickHandler:")]
 		partial void EditButtonClickHandler (NSObject sender);
 

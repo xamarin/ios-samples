@@ -106,12 +106,42 @@ namespace SamplePhotoApp
 			UpdateImage ();
 		}
 
-		public override void ViewWillDisappear (bool animated)
+		#region UI Actions
+
+		partial void EditButtonClickHandler (UIBarButtonItem sender)
 		{
-			base.ViewWillDisappear (animated);
-			RemovePlayerLayer ();
+			// Use a UIAlertController to display editing options to the user.
+			var alertController = UIAlertController.Create (null, null, UIAlertControllerStyle.ActionSheet);
+#if __IOS__
+			alertController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
+			var popoverController = alertController.PopoverPresentationController;
+			if (popoverController != null) {
+				popoverController.BarButtonItem = sender;
+				popoverController.PermittedArrowDirections = UIPopoverArrowDirection.Up;
+			}
+#endif
+			// Add a Cancel action to dismiss the alert without doing anything.
+			alertController.AddAction (UIAlertAction.Create ("Cancel", UIAlertActionStyle.Cancel, null));
+
+			// Allow editing only if the PHAsset supports edit operations.
+			if (Asset.CanPerformEditOperation (PHAssetEditOperation.Content)) {
+				// Add actions for some canned filters.
+				alertController.AddAction (UIAlertAction.Create ("Sepia Tone", UIAlertActionStyle.Default, GetFilter ("CISepiaTone")));
+				alertController.AddAction (UIAlertAction.Create ("Chrome", UIAlertActionStyle.Default, GetFilter ("CIPhotoEffectChrome")));
+
+				// Add actions to revert any edits that have been made to the PHAsset.
+				alertController.AddAction (UIAlertAction.Create ("Revert", UIAlertActionStyle.Default, RevertAsset));
+			}
+			// Present the UIAlertController.
+			PresentViewController (alertController, true, null);
 		}
 
+		Action<UIAlertAction> GetFilter (string v)
+		{
+			throw new NotImplementedException ();
+		}
+
+		#endregion
 
 		public void PhotoLibraryDidChange (PHChange changeInstance)
 		{
@@ -170,7 +200,7 @@ namespace SamplePhotoApp
 
 				// Add actions to revert any edits that have been made to the PHAsset.
 				alertController.AddAction (UIAlertAction.Create ("Revert", UIAlertActionStyle.Default, action =>
-					RevertToOriginal ()
+					RevertAsset ()
 				));
 			}
 
@@ -178,7 +208,7 @@ namespace SamplePhotoApp
 			PresentViewController (alertController, true, null);
 		}
 
-		void RevertToOriginal ()
+		void RevertAsset (UIAlertAction action)
 		{
 			PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
 				var request = PHAssetChangeRequest.ChangeRequest (Asset);
