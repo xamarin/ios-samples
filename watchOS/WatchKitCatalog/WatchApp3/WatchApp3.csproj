@@ -116,7 +116,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Watchkit3Extension\Watchkit3Extension.csproj">
       <Project>{6DF296B2-FBD1-4B5C-BE40-F5A14968BFC3}</Project>
-      <Name>Watchkit3Extension</Name>
+      <Name>WatchKit3Extension</Name>
       <IsAppExtension>True</IsAppExtension>
     </ProjectReference>
   </ItemGroup>

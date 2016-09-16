@@ -21,11 +21,11 @@ namespace WatchkitExtension
 
 		public override void Awake (NSObject context)
 		{
-			// Log the context passed in, if the wearer arrived at this controller via the sample's Glance.
+			// Log the context passed in, if the wearer arrived at this controller via the sample's Glance (in watchOS 2)
 			Console.WriteLine ("Passed in context: {0}", context);
 
+			// iImage Cache was important for watchOS 1
 			// var device = WKInterfaceDevice.CurrentDevice;
-
 			// using (var image = UIImage.FromBundle ("Bumblebee")) {
 			// 	if (!device.AddCachedImage (image, "Bumblebee")) {
 			// 		Console.WriteLine ("Image cache full.");
@@ -33,14 +33,15 @@ namespace WatchkitExtension
 			// 		cachedImage.SetImage ("Bumblebee");
 			// 	}
 			// }
-
 			// // Log what's currently residing in the image cache.
 			// Console.WriteLine ("Currently cached images: {0}", WKInterfaceDevice.CurrentDevice.WeakCachedImages);
 
-			// // Uses image inside WatchKit Extension bundle.
-			// using (var image = UIImage.FromBundle ("Walkway"))
-			// using (var png = image.AsPNG ())
-			// 	staticImage.SetImage (png);
+			// Uses image inside WatchKit Extension bundle.
+			using (var image = UIImage.FromBundle("Walkway"))
+			using (var png = image.AsPNG())
+			{
+				staticImage.SetImage(png);
+			}
 		}
 
 		public override void WillActivate ()
@@ -57,16 +58,16 @@ namespace WatchkitExtension
 
 		partial void PlayAnimation (NSObject obj)
 		{
-			// animatedImage.SetImage ("Bus");
-			// animatedImage.StartAnimating ();
+			 animatedImage.SetImage ("Bus");
+			 animatedImage.StartAnimating ();
 
-			// // Animate with a specific range, duration, and repeat count.
-			// //animatedImage.StartAnimating (new NSRange (0, 4), 2.0, 3);
+			 // Animate with a specific range, duration, and repeat count.
+			 //animatedImage.StartAnimating (new NSRange (0, 4), 2.0, 3);
 		}
 
 		partial void StopAnimation (NSObject obj)
 		{
-			// animatedImage.StopAnimating ();
+			 animatedImage.StopAnimating ();
 		}
 	}
 }
