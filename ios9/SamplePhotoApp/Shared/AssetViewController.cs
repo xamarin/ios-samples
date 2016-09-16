@@ -3,7 +3,6 @@ using System;
 using UIKit;
 using Foundation;
 using AVFoundation;
-using CoreAnimation;
 using CoreFoundation;
 using CoreGraphics;
 using CoreImage;
@@ -142,11 +141,6 @@ namespace SamplePhotoApp
 			PresentViewController (alertController, true, null);
 		}
 
-		Action<UIAlertAction> GetFilter (string v)
-		{
-			throw new NotImplementedException ();
-		}
-
 		#endregion
 
 		public void PhotoLibraryDidChange (PHChange changeInstance)
@@ -159,13 +153,15 @@ namespace SamplePhotoApp
 					return;
 
 				// Get the updated asset.
-				// TODO check return type. Catch! ObjectAfterChanges should be PHObject instead of NSObject https://bugzilla.xamarin.com/show_bug.cgi?id=35540
+				// TODO: check return type. Catch! ObjectAfterChanges should be PHObject instead of NSObject https://bugzilla.xamarin.com/show_bug.cgi?id=35540
 				Asset = (PHAsset)changeDetails.ObjectAfterChanges;
 
 				// If the asset's content changed, update the image and stop any video playback.
 				if (changeDetails.AssetContentChanged) {
 					UpdateImage ();
-					RemovePlayerLayer ();
+
+					playerLayer?.RemoveFromSuperLayer ();
+					playerLayer = null;
 				}
 			});
 		}
@@ -247,7 +243,7 @@ namespace SamplePhotoApp
 #if __IOS__
 			// Check the asset's MediaSubtypes to determine if this is a live photo or not.
 			if (Asset.MediaSubtypes.HasFlag (PHAssetMediaSubtype.PhotoLive))
-				UpdateLiveImage ();
+				UpdateLivePhoto ();
 			else
 				UpdateStaticImage ();
 #else
@@ -466,65 +462,19 @@ namespace SamplePhotoApp
 			export.ExportAsynchronously (completion);
 		}
 
-		partial void PlayButtonClickHandler (NSObject sender)
-		{
-			//if (LivePhotoView.LivePhoto != null) {
-			//	// We're displaying a live photo, begin playing it.
-			//	LivePhotoView.StartPlayback (PHLivePhotoViewPlaybackStyle.Full);
-			//} else if (playerLayer != null) {
-			//	// An AVPlayerLayer has already been created for this asset.
-			//	playerLayer.Player.Play ();
-			//} else {
-			//	// Request an AVAsset for the PHAsset we're displaying.
-			//	PHImageManager.DefaultManager.RequestAvAsset (Asset, null, (asset, audioMix, info) =>
-			//		DispatchQueue.MainQueue.DispatchAsync (() => {
-			//			if (playerLayer == null) {
-			//				CALayer viewLayer = View.Layer;
-
-			//				// Create an AVPlayerItem for the AVAsset.
-			//				var playerItem = new AVPlayerItem (asset);
-			//				playerItem.AudioMix = audioMix;
-
-			//				// Create an AVPlayer with the AVPlayerItem.
-			//				var player = new AVPlayer (playerItem);
-
-			//				// Create an AVPlayerLayer with the AVPlayer.
-			//				playerLayer = AVPlayerLayer.FromPlayer (player);
-
-			//				// Configure the AVPlayerLayer and add it to the view.
-			//				playerLayer.VideoGravity = AVLayerVideoGravity.ResizeAspect;
-			//				playerLayer.Frame = new CGRect (0, 0, viewLayer.Bounds.Width, viewLayer.Bounds.Height);
-
-			//				viewLayer.AddSublayer (playerLayer);
-			//				playerLayer.Player.Play ();
-			//			}
-			//	}));
-			//}
-		}
-
 #if __IOS__
 		[Export ("livePhotoView:didEndPlaybackWithStyle:")]
 		public virtual void DidEndPlayback (PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle)
 		{
-			Console.WriteLine ("Did End Playback of Live Photo...");
-			playingHint = false;
+			playingHint = (playbackStyle == PHLivePhotoViewPlaybackStyle.Hint);
 		}
 
 		[Export ("livePhotoView:willBeginPlaybackWithStyle:")]
 		public virtual void WillBeginPlayback (PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle)
 		{
-			Console.WriteLine ("Will Beginning Playback of Live Photo...");
+			playingHint = (playbackStyle == PHLivePhotoViewPlaybackStyle.Hint);
 		}
 #endif
-
-		void RemovePlayerLayer ()
-		{
-			if (playerLayer != null) {
-				playerLayer.Player.Pause ();
-				playerLayer.RemoveFromSuperLayer ();
-				playerLayer.Dispose ();
-			}
-		}
 	}
 
 	public static class Bindings

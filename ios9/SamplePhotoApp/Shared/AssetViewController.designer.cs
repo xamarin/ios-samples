@@ -41,9 +41,7 @@ namespace SamplePhotoApp
 		[Action ("EditButtonClickHandler:")]
 		partial void EditButtonClickHandler (UIBarButtonItem sender);
 
-		[Action ("PlayButtonClickHandler:")]
-		partial void PlayButtonClickHandler (NSObject sender);
-
+		// TODO: check selector
 		[Action ("TrashButtonClickHandler:")]
 		partial void RemoveAsset (NSObject sender);
 
