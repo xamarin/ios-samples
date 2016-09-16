@@ -55,6 +55,12 @@ namespace GrowRowTable
 		{
 			return DataSource.RowsInSection(tableView, section);
 		}
+
+		public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
+		{
+			TableView.Delegate.RowSelected(tableView, indexPath);
+		}
+
 		// ---------------------------------------------------------------------------------------
 		#endregion
 	}
