@@ -1,11 +1,10 @@
-// WARNING
-//
-// This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
-//
-using Foundation;
 using System.CodeDom.Compiler;
+
+using UIKit;
+using Foundation;
+#if __IOS__
+using PhotosUI;
+#endif
 
 namespace SamplePhotoApp
 {
@@ -13,41 +12,48 @@ namespace SamplePhotoApp
 	partial class AssetViewController
 	{
 		[Outlet]
-		UIKit.UIBarButtonItem EditButton { get; set; }
+		UIImageView ImageView { get; set; }
+
+		#if __IOS__
+		[Outlet]
+		PHLivePhotoView LivePhotoView { get; set; }
+		#endif
 
 		[Outlet]
-		UIKit.UIImageView ImageView { get; set; }
+		UIBarButtonItem EditButton { get; set; }
 
 		[Outlet]
-		PhotosUI.PHLivePhotoView LivePhotoView { get; set; }
+		UIProgressView ProgressView { get; set; }
 
 		[Outlet]
-		UIKit.UIBarButtonItem PlayButton { get; set; }
+		UIBarButtonItem PlayButton { get; set; }
 
 		[Outlet]
-		UIKit.UIProgressView ProgressView { get; set; }
+		UIBarButtonItem Space { get; set; }
 
 		[Outlet]
-		UIKit.UIBarButtonItem Space { get; set; }
+		UIBarButtonItem TrashButton { get; set; }
 
 		[Outlet]
-		UIKit.UIBarButtonItem TrashButton { get; set; }
+		UIBarButtonItem FavoriteButton { get; set; }
 
 		[Action ("EditButtonClickHandler:")]
-		partial void EditButtonClickHandler (Foundation.NSObject sender);
+		partial void EditButtonClickHandler (NSObject sender);
 
 		[Action ("PlayButtonClickHandler:")]
-		partial void PlayButtonClickHandler (Foundation.NSObject sender);
+		partial void PlayButtonClickHandler (NSObject sender);
 
 		[Action ("TrashButtonClickHandler:")]
-		partial void TrashButtonClickHandler (Foundation.NSObject sender);
+		partial void TrashButtonClickHandler (NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
+#if __IOS__
 			if (LivePhotoView != null) {
 				LivePhotoView.Dispose ();
 				LivePhotoView = null;
 			}
+#endif
 
 			if (ImageView != null) {
 				ImageView.Dispose ();

@@ -62,7 +62,8 @@ namespace SamplePhotoApp
 			UpdateCachedAssets ();
 		}
 
-		public override void Scrolled (UIScrollView scrollView)
+		[Export ("scrollViewDidScroll:")]
+		public void Scrolled (UIScrollView scrollView)
 		{
 			ScrollViewDidScroll ();
 		}
@@ -92,30 +93,30 @@ namespace SamplePhotoApp
 			if (collectionChanges == null)
 				return;
 
-			DispatchQueue.MainQueue.DispatchAsync (() => {
-				// Get the new fetch result.
-				FetchResult = collectionChanges.FetchResultAfterChanges;
-				UICollectionView collectionView = CollectionView;
-				if (collectionChanges.HasIncrementalChanges || !collectionChanges.HasMoves) {
-					collectionView.PerformBatchUpdates (() => {
-						var removedIndexes = collectionChanges.RemovedIndexes;
-						if (removedIndexes != null && removedIndexes.Count > 0)
-							collectionView.DeleteItems (removedIndexes.GetIndexPaths (0));
+			//DispatchQueue.MainQueue.DispatchAsync (() => {
+			//	// Get the new fetch result.
+			//	FetchResult = collectionChanges.FetchResultAfterChanges;
+			//	UICollectionView collectionView = CollectionView;
+			//	if (collectionChanges.HasIncrementalChanges || !collectionChanges.HasMoves) {
+			//		collectionView.PerformBatchUpdates (() => {
+			//			var removedIndexes = collectionChanges.RemovedIndexes;
+			//			if (removedIndexes != null && removedIndexes.Count > 0)
+			//				collectionView.DeleteItems (removedIndexes.GetIndexPaths (0));
 
-						var insertedIndexes = collectionChanges.InsertedIndexes;
-						if (insertedIndexes != null && insertedIndexes.Count > 0)
-							collectionView.InsertItems (insertedIndexes.GetIndexPaths (0));
+			//			var insertedIndexes = collectionChanges.InsertedIndexes;
+			//			if (insertedIndexes != null && insertedIndexes.Count > 0)
+			//				collectionView.InsertItems (insertedIndexes.GetIndexPaths (0));
 
-						var changedIndexes = collectionChanges.ChangedIndexes;
-						if (changedIndexes != null && changedIndexes.Count > 0)
-							collectionView.ReloadItems (changedIndexes.GetIndexPaths (0));
-					}, null);
-				} else {
-					collectionView.ReloadData ();
-				}
+			//			var changedIndexes = collectionChanges.ChangedIndexes;
+			//			if (changedIndexes != null && changedIndexes.Count > 0)
+			//				collectionView.ReloadItems (changedIndexes.GetIndexPaths (0));
+			//		}, null);
+			//	} else {
+			//		collectionView.ReloadData ();
+			//	}
 
-				ResetCachedAssets ();
-			});
+			//	ResetCachedAssets ();
+			//});
 		}
 
 		public override nint GetItemsCount (UICollectionView collectionView, nint section)
@@ -175,15 +176,15 @@ namespace SamplePhotoApp
 				var addedIndexPaths = new List<NSIndexPath> ();
 				var removedIndexPaths = new List<NSIndexPath> ();
 
-				ComputeDifferenceBetweenRect (previousPreheatRect, preheatRect, removedRect => {
-					var indexPaths = CollectionView.GetIndexPaths (removedRect);
-					if (indexPaths != null)
-						removedIndexPaths.AddRange (indexPaths);
-				}, addedRect => {
-					var indexPaths = CollectionView.GetIndexPaths (addedRect);
-					if (indexPaths != null)
-						addedIndexPaths.AddRange (indexPaths);
-				});
+				//ComputeDifferenceBetweenRect (previousPreheatRect, preheatRect, removedRect => {
+				//	var indexPaths = CollectionView.GetIndexPaths (removedRect);
+				//	if (indexPaths != null)
+				//		removedIndexPaths.AddRange (indexPaths);
+				//}, addedRect => {
+				//	var indexPaths = CollectionView.GetIndexPaths (addedRect);
+				//	if (indexPaths != null)
+				//		addedIndexPaths.AddRange (indexPaths);
+				//});
 
 				var assetsToStartCaching = AssetsAtIndexPaths (addedIndexPaths.ToArray ());
 				var assetsToStopCaching = AssetsAtIndexPaths (removedIndexPaths.ToArray ());
