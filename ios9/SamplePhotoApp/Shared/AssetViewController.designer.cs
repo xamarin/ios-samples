@@ -45,10 +45,15 @@ namespace SamplePhotoApp
 		partial void PlayButtonClickHandler (NSObject sender);
 
 		[Action ("TrashButtonClickHandler:")]
-		partial void TrashButtonClickHandler (NSObject sender);
+		partial void RemoveAsset (NSObject sender);
 
+		// TODO: check selector
 		[Action ("play:")]
 		partial void Play (NSObject sender);
+
+		// TODO: check selector
+		[Action ("ToggleFavorite:")]
+		partial void ToggleFavorite (UIBarButtonItem sender);
 
 		void ReleaseDesignerOutlets ()
 		{

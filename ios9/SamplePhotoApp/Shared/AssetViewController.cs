@@ -225,6 +225,20 @@ namespace SamplePhotoApp
 			}
 		}
 
+		partial void ToggleFavorite (UIBarButtonItem sender)
+		{
+			PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
+				var request = PHAssetChangeRequest.ChangeRequest (Asset);
+				request.Favorite = !Asset.Favorite;
+			}, (success, error) => {
+				if (success)
+					DispatchQueue.MainQueue.DispatchSync (() => sender.Title = Asset.Favorite ? "♥︎" : "♡");
+				else
+					Console.WriteLine ($"can't set favorite: {error.LocalizedDescription}");
+			});
+		}
+
+
 		void RevertAsset (UIAlertAction action)
 		{
 			PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
@@ -286,16 +300,6 @@ namespace SamplePhotoApp
 			//});
 		}
 
-		void ToggleFavoriteState ()
-		{
-			PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
-				var request = PHAssetChangeRequest.ChangeRequest (Asset);
-				request.Favorite = !Asset.Favorite;
-			}, (success, error) => {
-				if (!success)
-					Console.WriteLine ("Error: {0}", error.LocalizedDescription);
-			});
-		}
 
 		partial void PlayButtonClickHandler (NSObject sender)
 		{
