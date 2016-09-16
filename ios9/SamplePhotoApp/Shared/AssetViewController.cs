@@ -293,6 +293,37 @@ namespace SamplePhotoApp
 		}
 #endif
 
+		void UpdateStaticImage ()
+		{
+			// Prepare the options to pass when fetching the (photo, or video preview) image.
+			var options = new PHImageRequestOptions {
+				DeliveryMode = PHImageRequestOptionsDeliveryMode.HighQualityFormat,
+				NetworkAccessAllowed = true,
+				ProgressHandler = (double progress, NSError error, out bool stop, NSDictionary info) => {
+					stop = false;
+					// Handler might not be called on the main queue, so re-dispatch for UI work.
+					DispatchQueue.MainQueue.DispatchSync (() => {
+						ProgressView.Progress = (float)progress;
+					});
+				}
+			};
+
+			PHImageManager.DefaultManager.RequestImageForAsset (Asset, TargetSize, PHImageContentMode.AspectFit, options, (image, info) => {
+				// Hide the progress view now the request has completed.
+				ProgressView.Hidden = true;
+
+				// If successful, show the image view and display the image.
+				if (image == null)
+					return;
+
+				// Now that we have the image, show it.
+#if __IOS__
+				LivePhotoView.Hidden = true;
+#endif
+				ImageView.Hidden = false;
+				ImageView.Image = image;
+			});
+		}
 
 		#endregion
 
@@ -413,83 +444,6 @@ namespace SamplePhotoApp
 		{
 			//LivePhotoView.Hidden = false;
 			//ImageView.Hidden = true;
-		}
-
-		void ShowStaticPhotoView ()
-		{
-			//LivePhotoView.Hidden = true;
-			//ImageView.Hidden = false;
-		}
-
-		void UpdateLiveImage ()
-		{
-			// Prepare the options to pass when fetching the live photo.
-			var livePhotoOptions = new PHLivePhotoRequestOptions {
-				DeliveryMode = PHImageRequestOptionsDeliveryMode.HighQualityFormat,
-				NetworkAccessAllowed = true
-			};
-
-			livePhotoOptions.ProgressHandler = (double progress, NSError error, out bool stop, NSDictionary info) => {
-				stop = false;
-				DispatchQueue.MainQueue.DispatchAsync (() => {
-					ProgressView.Progress = (float)progress;
-				});
-			};
-
-			// Request the live photo for the asset from the default PHImageManager.
-			//PHImageManager.DefaultManager.RequestLivePhoto (Asset, TargetSize, PHImageContentMode.AspectFit, livePhotoOptions, (livePhoto, info) => {
-			//	// Hide the progress view now the request has completed.
-			//	ProgressView.Hidden = true;
-			//	// Check if the request was successful.
-			//	if (livePhoto == null)
-			//		return;
-
-			//	Console.WriteLine ("Got a live photo");
-
-			//	// Show the PHLivePhotoView and use it to display the requested image.
-			//	ShowLivePhotoView ();
-			//	LivePhotoView.LivePhoto = livePhoto;
-
-			//	var value = (NSNumber)info.ObjectForKey (PHImageKeys.ResultIsDegraded);
-			//	if (value.BoolValue && !playingHint) {
-			//		// Playback a short section of the live photo; similar to the Photos share sheet.
-			//		Console.WriteLine ("playing hint...");
-			//		playingHint = true;
-			//		LivePhotoView.StartPlayback (PHLivePhotoViewPlaybackStyle.Hint);
-
-			//		// Update the toolbar to show the correct items for a live photo.
-			//		ShowPlaybackToolbar ();
-			//	}
-			//});
-		}
-
-		void UpdateStaticImage ()
-		{
-			// Prepare the options to pass when fetching the live photo.
-			var options = new PHImageRequestOptions {
-				DeliveryMode = PHImageRequestOptionsDeliveryMode.HighQualityFormat,
-				NetworkAccessAllowed = true
-			};
-
-			options.ProgressHandler = (double progress, NSError error, out bool stop, NSDictionary info) => {
-				stop = false;
-				DispatchQueue.MainQueue.DispatchAsync (() => {
-					ProgressView.Progress = (float)progress;
-				});
-			};
-
-			//PHImageManager.DefaultManager.RequestImageForAsset (Asset, TargetSize, PHImageContentMode.AspectFit, options, (result, info) => {
-			//	// Hide the progress view now the request has completed.
-			//	ProgressView.Hidden = true;
-
-			//	// Check if the request was successful.
-			//	if (result == null)
-			//		return;
-
-			//	// Show the UIImageView and use it to display the requested image.
-			//	ShowStaticPhotoView ();
-			//	ImageView.Image = result;
-			//});
 		}
 
 		void RemovePlayerLayer ()
