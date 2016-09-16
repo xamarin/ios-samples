@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11077"/>
     </dependencies>
     <scenes>
-        <!--Catalog-->
+        <!--Catalog3-->
         <scene sceneID="aou-V4-d1y">
             <objects>
                 <controller identifier="interfaceController" title="Catalog3" id="AgC-eL-Hgc" customClass="InterfaceController">
@@ -17,7 +17,7 @@
                                         <items>
                                             <label alignment="center" verticalAlignment="center" text="Label" id="F1f-WA-jZa"/>
                                         </items>
-                                        <color key="backgroundColor" red="0.94901960784313721" green="0.95686274509803926" blue="0.9882352941176471" alpha="0.14000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.93625843524932861" green="0.94465947151184082" blue="0.98500943183898926" alpha="0.14000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                     </group>
                                     <connections>
                                         <outlet property="ElementLabel" destination="F1f-WA-jZa" id="k6D-5u-VSg"/>
@@ -61,13 +61,12 @@
                     <items>
                         <label alignment="center" text="- Static -" textAlignment="center" numberOfLines="0" id="ivJ-0G-bDR"/>
                         <separator alignment="left" id="fUV-Py-o42">
-                            <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="color" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </separator>
                         <label alignment="left" text="Alert from payload." numberOfLines="0" id="XG7-oj-wkh"/>
                     </items>
                     <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf">
-                        <color key="sashColor" red="0.80000001190000003" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                        <color key="sashColor" red="0.80000001190000003" green="0.40000000600000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </notificationCategory>
                     <connections>
                         <outlet property="notificationAlertLabel" destination="XG7-oj-wkh" id="gMR-p4-Z2l"/>
@@ -84,7 +83,7 @@
                     <items>
                         <label alignment="center" text="- Dynamic -" textAlignment="center" numberOfLines="0" id="pZY-e7-d8r"/>
                         <separator alignment="left" id="Ulp-oM-cKi">
-                            <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="color" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </separator>
                     </items>
                 </controller>
@@ -103,7 +102,7 @@
                                     <imageView width="35" height="35" alignment="left" image="LocationMarker" id="lmE-5L-IFc"/>
                                     <label alignment="left" verticalAlignment="center" text="Group" id="9ma-tk-xph"/>
                                 </items>
-                                <color key="backgroundColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.98823529409999999" alpha="0.14000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.93625843524932861" green="0.94465947151184082" blue="0.98500943183898926" alpha="0.14000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <edgeInsets key="margins" left="2" right="2" top="2" bottom="2"/>
                             </group>
                         </button>
@@ -228,11 +227,11 @@
                         </label>
                         <label alignment="center" text="Label" id="ifE-9Y-cY3"/>
                         <dateLabel alignment="center" minimumScaleFactor="0.0" id="Dqk-xg-uyY">
-                            <dateFormatterStyle key="dateStyle" none="YES" medium="YES"/>
-                            <dateFormatterStyle key="timeStyle" none="YES" short="YES"/>
+                            <dateFormatterStyle key="dateStyle" medium="YES"/>
+                            <dateFormatterStyle key="timeStyle" short="YES"/>
                         </dateLabel>
                         <timer alignment="center" minimumScaleFactor="0.0" format="abbreviated" id="2YG-3i-leu">
-                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                             <calendarUnit key="units" year="YES" month="YES" day="YES" hour="YES" minute="YES" second="YES" weekOfMonth="YES"/>
                         </timer>
@@ -369,13 +368,13 @@
                             <fontDescription key="font" style="UICTFontTextStyleBody"/>
                         </label>
                         <separator width="0.5" alignment="center" id="Icd-h9-qMl">
-                            <color key="color" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="color" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </separator>
                         <label alignment="left" text="A fixed width green separator." numberOfLines="0" id="Hox-VI-FOx">
                             <fontDescription key="font" style="UICTFontTextStyleBody"/>
                         </label>
                         <separator width="100" alignment="center" id="Seo-L5-V4O">
-                            <color key="color" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="color" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </separator>
                         <label alignment="left" text="A vertical separator in a group." numberOfLines="0" id="0xY-q4-bYI">
                             <fontDescription key="font" style="UICTFontTextStyleBody"/>
@@ -403,7 +402,7 @@
                                 <button width="0.5" alignment="left" title="Button" id="Ktd-g3-MpZ"/>
                                 <button width="0.5" alignment="left" title="Button" id="9Dh-9S-wOA"/>
                             </items>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <edgeInsets key="margins" left="4" right="4" top="4" bottom="4"/>
                         </group>
                         <label alignment="left" text="Vertical" id="MgH-iK-eAV">
@@ -455,7 +454,7 @@
                                             <imageView width="35" height="35" alignment="left" verticalAlignment="center" image="LocationMarker" id="rac-gq-1kM"/>
                                             <label alignment="left" verticalAlignment="center" text="Location" id="jkO-KQ-vGr"/>
                                         </items>
-                                        <color key="backgroundColor" red="0.94901960780000005" green="0.95686274510000002" blue="0.98823529409999999" alpha="0.14000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.93625843524932861" green="0.94465947151184082" blue="0.98500943183898926" alpha="0.14000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                         <edgeInsets key="margins" left="2" right="2" top="2" bottom="2"/>
                                     </group>
                                     <connections>
@@ -555,80 +554,112 @@
             </objects>
             <point key="canvasLocation" x="888" y="1076"/>
         </scene>
+        <!--Crown-->
         <scene sceneID="0">
             <objects>
-                <controller id="1" customClass="CrownDetailController" identifier="crownDetailController" title="Crown">
+                <controller identifier="crownDetailController" title="Crown" id="1" customClass="CrownDetailController">
                     <items>
                         <group width="1" alignment="left" id="2">
                             <items>
-                                <label alignment="left" text="Crown Velocity" id="5" width="1" textAlignment="center"/>
+                                <label width="1" alignment="left" text="Crown Velocity" textAlignment="center" id="5"/>
                             </items>
+                            <gestureRecognizers>
+                                <tapGestureRecognizer id="UWK-Td-kGD">
+                                    <connections>
+                                        <action selector="FocusCrown:" destination="1" id="yV0-tN-093"/>
+                                    </connections>
+                                </tapGestureRecognizer>
+                            </gestureRecognizers>
                         </group>
                         <group width="1" alignment="left" id="3">
                             <items>
-                                <label alignment="left" text="Crown State" id="6" textAlignment="center" width="1"/>
+                                <label width="1" alignment="left" text="Crown State" textAlignment="center" id="6"/>
                             </items>
+                            <gestureRecognizers>
+                                <tapGestureRecognizer id="XuB-3h-xUN">
+                                    <connections>
+                                        <action selector="FocusCrown:" destination="1" id="tFs-IY-08H"/>
+                                    </connections>
+                                </tapGestureRecognizer>
+                            </gestureRecognizers>
                         </group>
                         <picker height="100" alignment="left" id="4"/>
                     </items>
                     <connections>
-                        <outlet property="velocityLabel" destination="5" id="name-outlet-5"/>
-                        <outlet property="stateLabel" destination="6" id="name-outlet-6"/>
                         <outlet property="pickerView" destination="4" id="name-outlet-4"/>
+                        <outlet property="stateLabel" destination="6" id="name-outlet-6"/>
+                        <outlet property="velocityLabel" destination="5" id="name-outlet-5"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="462" y="-70"/>
         </scene>
+        <!--Gestures-->
         <scene sceneID="7">
             <objects>
-                <controller id="8" customClass="GestureDetailController" identifier="gestureDetailController" title="Gestures">
+                <controller identifier="gestureDetailController" title="Gestures" id="8" customClass="GestureDetailController">
                     <items>
-                        <group width="1" alignment="left" id="9" height="44">
+                        <group width="1" height="44" alignment="left" id="9">
                             <items>
-                                <label alignment="left" text="Tap" id="13" width="1"/>
+                                <label width="1" alignment="left" text="Tap" id="13"/>
                             </items>
+                            <gestureRecognizers>
+                                <tapGestureRecognizer id="cb3-rR-yHG">
+                                    <connections>
+                                        <action selector="TapRecognized:" destination="8" id="lLy-gh-0Fj"/>
+                                    </connections>
+                                </tapGestureRecognizer>
+                            </gestureRecognizers>
                         </group>
-                        <group width="1" alignment="left" id="10" height="44">
+                        <group width="1" height="44" alignment="left" id="10">
                             <items>
                                 <label alignment="left" text="Long Press" id="14"/>
                             </items>
+                            <gestureRecognizers>
+                                <longPressGestureRecognizer id="fcJ-bb-3py">
+                                    <connections>
+                                        <action selector="LongPressRecognized:" destination="8" id="v5l-iy-abQ"/>
+                                    </connections>
+                                </longPressGestureRecognizer>
+                            </gestureRecognizers>
                         </group>
-                        <group width="1" alignment="left" id="11" height="44">
+                        <group width="1" height="44" alignment="left" id="11">
                             <items>
                                 <label alignment="left" text="Swipe left or right" id="15"/>
                             </items>
+                            <gestureRecognizers>
+                                <swipeGestureRecognizer id="n7z-cl-0SL">
+                                    <connections>
+                                        <action selector="SwipeRecognized:" destination="8" id="9FQ-aD-sot"/>
+                                    </connections>
+                                </swipeGestureRecognizer>
+                            </gestureRecognizers>
                         </group>
-                        <group width="1" alignment="left" id="12" height="44">
+                        <group width="1" height="44" alignment="left" id="12">
                             <items>
                                 <label alignment="left" text="Pan" id="16"/>
                             </items>
+                            <gestureRecognizers>
+                                <panGestureRecognizer id="JRr-6M-rOa">
+                                    <connections>
+                                        <action selector="PanRecognized:" destination="8" id="Jz8-B4-oap"/>
+                                    </connections>
+                                </panGestureRecognizer>
+                            </gestureRecognizers>
                         </group>
                     </items>
                     <connections>
-                        <outlet property="tapLabel" destination="13" id="name-outlet-13"/>
-                        <outlet property="tapGroup" destination="9" id="name-outlet-9"/>
                         <outlet property="longPressLabel" destination="14" id="name-outlet-14"/>
+                        <outlet property="panLabel" destination="16" id="name-outlet-16"/>
                         <outlet property="swipeGroup" destination="11" id="name-outlet-11"/>
                         <outlet property="swipeLabel" destination="15" id="name-outlet-15"/>
-                        <outlet property="panLabel" destination="16" id="name-outlet-16"/>
+                        <outlet property="tapGroup" destination="9" id="name-outlet-9"/>
+                        <outlet property="tapLabel" destination="13" id="name-outlet-13"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="686" y="-70"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.80000001192092896" green="0.40000000596046448" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-    <resources>
-        <image name="Bus0" width="136" height="136"/>
-        <image name="Bus1" width="136" height="136"/>
-        <image name="Bus2" width="136" height="136"/>
-        <image name="Bus3" width="136" height="136"/>
-        <image name="Bus4" width="136" height="136"/>
-        <image name="Bus5" width="136" height="136"/>
-        <image name="Laugh" width="20" height="20"/>
-        <image name="LocationMarker" width="35" height="35"/>
-        <image name="Whale" width="50" height="50"/>
-        <image name="Worry" width="20" height="20"/>
-    </resources>
+    <color key="tintColor" red="0.80000001192092896" green="0.40000000596046448" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

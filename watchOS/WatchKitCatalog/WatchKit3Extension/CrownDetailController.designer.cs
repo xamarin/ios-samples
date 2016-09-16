@@ -1,47 +1,45 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by Xamarin Studio to store outlets and
+// actions made in the UI designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
 using Foundation;
-using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace Watchkit2Extension
 {
-    [Register ("CrownDetailController")]
-    partial class CrownDetailController
-    {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        WatchKit.WKInterfacePicker pickerView { get; set; }
+	[Register ("CrownDetailController")]
+	partial class CrownDetailController
+	{
+		[Outlet]
+		WatchKit.WKInterfacePicker pickerView { get; set; }
 
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        WatchKit.WKInterfaceLabel stateLabel { get; set; }
+		[Outlet]
+		WatchKit.WKInterfaceLabel stateLabel { get; set; }
 
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        WatchKit.WKInterfaceLabel velocityLabel { get; set; }
+		[Outlet]
+		WatchKit.WKInterfaceLabel velocityLabel { get; set; }
 
-        void ReleaseDesignerOutlets ()
-        {
-            if (pickerView != null) {
-                pickerView.Dispose ();
-                pickerView = null;
-            }
+		[Action ("FocusCrown:")]
+		partial void FocusCrown (Foundation.NSObject sender);
+		
+		void ReleaseDesignerOutlets ()
+		{
+			if (pickerView != null) {
+				pickerView.Dispose ();
+				pickerView = null;
+			}
 
-            if (stateLabel != null) {
-                stateLabel.Dispose ();
-                stateLabel = null;
-            }
+			if (stateLabel != null) {
+				stateLabel.Dispose ();
+				stateLabel = null;
+			}
 
-            if (velocityLabel != null) {
-                velocityLabel.Dispose ();
-                velocityLabel = null;
-            }
-        }
-    }
+			if (velocityLabel != null) {
+				velocityLabel.Dispose ();
+				velocityLabel = null;
+			}
+		}
+	}
 }

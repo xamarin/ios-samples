@@ -39,6 +39,12 @@ namespace Watchkit2Extension
 			stateLabel.SetText(CrownSequencer.Idle ? "Idle:true" : "Idle: false");
 		}
 
+
+		partial void FocusCrown(Foundation.NSObject sender) 
+		{
+			CrownSequencer.Focus();
+		}
+
 		[Export("crownDidRotate:rotationalDelta:")]
 		public void CrownDidRotate(WKCrownSequencer crownSequencer, double rotationalDelta)
 		{

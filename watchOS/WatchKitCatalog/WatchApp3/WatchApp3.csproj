@@ -114,7 +114,7 @@
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watchos-55.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Watchkit2Extension\Watchkit3Extension.csproj">
+    <ProjectReference Include="..\Watchkit3Extension\Watchkit3Extension.csproj">
       <Project>{6DF296B2-FBD1-4B5C-BE40-F5A14968BFC3}</Project>
       <Name>Watchkit3Extension</Name>
       <IsAppExtension>True</IsAppExtension>
