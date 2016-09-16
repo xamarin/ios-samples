@@ -354,8 +354,8 @@ namespace SamplePhotoApp
 			});
 
 			// Prepare for editing.
-			Asset.RequestContentEditingInput (options, (contentEditingInput, requestStatusInfo) => {
-				if (contentEditingInput == null)
+			Asset.RequestContentEditingInput (options, (input, requestStatusInfo) => {
+				if (input == null)
 					throw new InvalidProgramException ($"can't get content editing input: {requestStatusInfo}");
 
 				// This handler gets called on the main thread; dispatch to a background queue for processing.
@@ -383,28 +383,25 @@ namespace SamplePhotoApp
 					};
 
 					// Select a filtering function for the asset's media type.
-					//let applyFunc: (String, PHContentEditingInput, PHContentEditingOutput, @escaping ()-> ())-> ()
-
-					if (Asset.MediaSubtypes.HasFlag (PHAssetMediaSubtype.PhotoLive)) {
-						// applyFunc = self.applyLivePhotoFilter
-					} else if (Asset.MediaType == PHAssetMediaType.Image) {
-						// applyFunc = self.applyPhotoFilter
-					} else {
-						//applyFunc = self.applyVideoFilter
-					}
+					Action<CIFilter, PHContentEditingInput, PHContentEditingOutput, Action> applyFunc;
+					if (Asset.MediaSubtypes.HasFlag (PHAssetMediaSubtype.PhotoLive))
+						applyFunc = ApplyLivePhotoFilter;
+					else if (Asset.MediaType == PHAssetMediaType.Image)
+						applyFunc = ApplyPhotoFilter;
+					else
+						applyFunc = ApplyVideoFilter;
 
 					// Apply the filter.
-					//               applyFunc(filterName, input, output, {
-					//// When rendering is done, commit the edit to the Photos library.
-					//PHPhotoLibrary.shared ().performChanges ({
-					//	let request = PHAssetChangeRequest (for: self.asset)
-					//		request.contentEditingOutput = output
-					//	}, completionHandler:
-					//{
-					//	success, error in
-					//                       if !success { print ("can't edit asset: \(error)") }
-					//})
-					//})
+					applyFunc (filter, input, output, () => {
+						// When rendering is done, commit the edit to the Photos library.
+						PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
+							var request = PHAssetChangeRequest.ChangeRequest (Asset);
+							request.ContentEditingOutput = output;
+						}, (success, error) => {
+							if (!success)
+								Console.WriteLine ($"can't edit asset: {error.LocalizedDescription}");
+						});
+					});
 				});
 			});
 		}
