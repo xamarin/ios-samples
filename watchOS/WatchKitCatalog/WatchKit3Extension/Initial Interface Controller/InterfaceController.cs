@@ -10,7 +10,6 @@ using System.IO;
 using WatchKit;
 using Foundation;
 
-// using Newtonsoft.Json;
 using Newtonsoft.Json;
 
 namespace WatchkitExtension

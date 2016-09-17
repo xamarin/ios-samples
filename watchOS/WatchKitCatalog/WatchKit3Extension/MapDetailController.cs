@@ -93,16 +93,16 @@ namespace WatchkitExtension
 
 		partial void AddImageAnnotations (NSObject obj)
 		{
-			// var firstCoordinate = new CLLocationCoordinate2D (currentRegion.Center.Latitude, currentRegion.Center.Longitude - 0.3f);
+			 var firstCoordinate = new CLLocationCoordinate2D (currentRegion.Center.Latitude, currentRegion.Center.Longitude - 0.3f);
 
-			// // Uses image in Watch app bundle.
-			// map.AddAnnotation (firstCoordinate, "Whale", CGPoint.Empty);
+			 // Uses image in Watch app bundle.
+			 map.AddAnnotation (firstCoordinate, "Whale", CGPoint.Empty);
 
-			// var secondCoordinate = new CLLocationCoordinate2D (currentRegion.Center.Latitude, currentRegion.Center.Longitude + 0.3f);
+			 var secondCoordinate = new CLLocationCoordinate2D (currentRegion.Center.Latitude, currentRegion.Center.Longitude + 0.3f);
 
-			// // Uses image in WatchKit Extension bundle.
-			// using (var image = UIImage.FromBundle ("Bumblebee"))
-			// 	map.AddAnnotation (secondCoordinate, image, CGPoint.Empty);
+			 // Uses image in WatchKit Extension bundle.
+			 using (var image = UIImage.FromBundle ("Bumblebee"))
+			 	map.AddAnnotation (secondCoordinate, image, CGPoint.Empty);
 		}
 
 		partial void RemoveAll (NSObject obj)

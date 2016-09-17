@@ -33,27 +33,6 @@
             </objects>
             <point key="canvasLocation" x="235" y="-69"/>
         </scene>
-        <!--Glance Interface Controller-->
-        <scene sceneID="BOz-TT-tkC">
-            <objects>
-                <glanceController spacing="0.0" topTemplateType="body1Medium" id="0uZ-2p-rRc" customClass="GlanceController">
-                    <items>
-                        <label alignment="left" text="WatchKit Catalog" id="gaI-OH-psT"/>
-                        <label alignment="left" text="Tap Glance" id="ddL-00-QSD"/>
-                        <group alignment="left" id="56w-Mv-CNg">
-                            <items>
-                                <imageView width="1" height="1" alignment="left" contentMode="scaleAspectFit" id="qPv-Zg-Ju4"/>
-                            </items>
-                        </group>
-                    </items>
-                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
-                    <connections>
-                        <outlet property="glanceImage" destination="qPv-Zg-Ju4" id="zU3-MG-SbW"/>
-                    </connections>
-                </glanceController>
-            </objects>
-            <point key="canvasLocation" x="235" y="1426"/>
-        </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
             <objects>
@@ -74,7 +53,7 @@
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="235" y="1755"/>
+            <point key="canvasLocation" x="235" y="1519"/>
         </scene>
         <!--Notification Controller-->
         <scene sceneID="KIl-fV-djm">
@@ -88,7 +67,7 @@
                     </items>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="556" y="1755"/>
+            <point key="canvasLocation" x="556" y="1519"/>
         </scene>
         <!--Button-->
         <scene sceneID="1Fe-wX-9eZ">

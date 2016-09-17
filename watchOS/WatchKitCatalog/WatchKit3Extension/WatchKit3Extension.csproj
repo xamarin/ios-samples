@@ -77,11 +77,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Initital Interface Controller\" />
+    <Folder Include="Initial Interface Controller\" />
     <Folder Include="Table Detail Controller\" />
-    <Folder Include="Glance\" />
     <Folder Include="Notifications\" />
     <Folder Include="Media\" />
+    <Folder Include="Resources\Images.xcassets\Whale.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -89,8 +89,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Initital Interface Controller\InterfaceController.cs" />
-    <Compile Include="Initital Interface Controller\ElementRowController.cs" />
+    <Compile Include="Initial Interface Controller\InterfaceController.cs" />
+    <Compile Include="Initial Interface Controller\ElementRowController.cs" />
     <Compile Include="LabelDetailController.cs" />
     <Compile Include="ButtonDetailController.cs" />
     <Compile Include="SwitchDetailController.cs" />
@@ -104,10 +104,10 @@
     <Compile Include="Table Detail Controller\TableRowController.cs" />
     <Compile Include="DeviceDetailController.cs" />
     <Compile Include="ControllerDetailController.cs" />
-    <Compile Include="Initital Interface Controller\InterfaceController.designer.cs">
+    <Compile Include="Initial Interface Controller\InterfaceController.designer.cs">
       <DependentUpon>InterfaceController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Initital Interface Controller\ElementRowController.designer.cs">
+    <Compile Include="Initial Interface Controller\ElementRowController.designer.cs">
       <DependentUpon>ElementRowController.cs</DependentUpon>
     </Compile>
     <Compile Include="LabelDetailController.designer.cs">
@@ -143,10 +143,6 @@
     <Compile Include="PageController.designer.cs">
       <DependentUpon>PageController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Glance\GlanceController.cs" />
-    <Compile Include="Glance\GlanceController.designer.cs">
-      <DependentUpon>GlanceController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Notifications\NotificationController.cs" />
     <Compile Include="TextInputController.cs" />
     <Compile Include="TextInputController.designer.cs">
@@ -177,5 +173,7 @@
     <ImageAsset Include="Resources\Images.xcassets\Walkway.imageset\Contents.json" />
     <ImageAsset Include="Resources\Images.xcassets\Walkway.imageset\38mm-Walkway%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\Walkway.imageset\42mm-Walkway%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Whale.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Whale.imageset\Whale%402x.png" />
   </ItemGroup>
 </Project>
