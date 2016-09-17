@@ -12,22 +12,25 @@ namespace WatchkitExtension
 {
 	public partial class LabelDetailController : WKInterfaceController
 	{
-		public LabelDetailController ()
+		public LabelDetailController()
 		{
-			// coloredLabel.SetTextColor (UIColor.Purple);
+			coloredLabel.SetTextColor(UIColor.Purple);
 
-			// var attrString = new NSAttributedString ("Ultralight Label", new UIStringAttributes {
-			// 	Font = UIFont.SystemFontOfSize (16f, UIFontWeight.UltraLight)
-			// });
-			// ultralightLabel.SetText (attrString);
+			var attr = new UIStringAttributes
+			{
+				Font = UIFont.SystemFontOfSize(18f, UIFontWeight.UltraLight)
+			};
+			var attrString = new NSAttributedString("Ultralight Label", attr.Dictionary);
 
-			// var components = new NSDateComponents {
-			// 	Day = 10,
-			// 	Month = 12,
-			// 	Year = 2015
-			// };
-			// timer.SetDate (NSCalendar.CurrentCalendar.DateFromComponents (components));
-			// timer.Start ();
+			ultralightLabel.SetText(attrString);
+
+			var components = new NSDateComponents {
+			Day = 7,
+			Month = 9,
+			Year = 2016
+			};
+			timer.SetDate (NSCalendar.CurrentCalendar.DateFromComponents (components));
+			timer.Start ();
 		}
 
 		public override void WillActivate ()
