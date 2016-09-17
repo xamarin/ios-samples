@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Resources\Images.xcassets\Ski1.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -112,6 +113,10 @@
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watchos-196.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watchos-48.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-watchos-55.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Ski1.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Ski1.imageset\Ski1-1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Ski1.imageset\Ski1.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Ski1.imageset\Ski1-2.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Watchkit3Extension\Watchkit3Extension.csproj">

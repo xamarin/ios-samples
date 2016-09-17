@@ -441,6 +441,32 @@
             </objects>
             <point key="canvasLocation" x="888" y="725"/>
         </scene>
+        <!--Movie-->
+        <scene sceneID="tTC-eD-wKV">
+            <objects>
+                <controller identifier="movieDetailController" title="Movie" id="pMZ-kn-LpJ" customClass="MovieDetailController">
+                    <items>
+                        <movie width="1" height="100" alignment="left" id="Nfc-Lu-7f4"/>
+                        <separator alignment="left" id="DpL-Ll-Ypd"/>
+                        <inlineMovie width="1" height="100" alignment="left" id="Peg-fA-rtu">
+                            <gestureRecognizers>
+                                <tapGestureRecognizer id="bTk-6b-xG6">
+                                    <connections>
+                                        <action selector="InlineMovieTapped:" destination="pMZ-kn-LpJ" id="Tmi-M4-qTf"/>
+                                    </connections>
+                                </tapGestureRecognizer>
+                            </gestureRecognizers>
+                        </inlineMovie>
+                    </items>
+                    <connections>
+                        <outlet property="InlineMovie" destination="Peg-fA-rtu" id="QON-gh-LMh"/>
+                        <outlet property="Movie" destination="Nfc-Lu-7f4" id="RgV-w9-SpQ"/>
+                        <outlet property="TapGestureRecognizer" destination="bTk-6b-xG6" id="8hk-sJ-8Gu"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="1094" y="585"/>
+        </scene>
         <!--Table-->
         <scene sceneID="UNG-mI-Hyp">
             <objects>

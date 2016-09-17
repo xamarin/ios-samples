@@ -81,6 +81,7 @@
     <Folder Include="Table Detail Controller\" />
     <Folder Include="Glance\" />
     <Folder Include="Notifications\" />
+    <Folder Include="Media\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -159,10 +160,15 @@
     <Compile Include="GestureDetailController.designer.cs">
       <DependentUpon>GestureDetailController.cs</DependentUpon>
     </Compile>
+    <Compile Include="MovieDetailController.cs" />
+    <Compile Include="MovieDetailController.designer.cs">
+      <DependentUpon>MovieDetailController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="AppData.json" />
     <BundleResource Include="NotificationPayload.json" />
+    <BundleResource Include="Media\Ski1.m4v" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\WatchOS\Xamarin.WatchOS.AppExtension.CSharp.targets" />
   <ItemGroup>
