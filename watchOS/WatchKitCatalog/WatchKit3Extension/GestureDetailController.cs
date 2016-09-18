@@ -5,6 +5,9 @@ using WatchKit;
 
 namespace Watchkit2Extension
 {
+	/// <summary>
+	/// New in watchOS 3
+	/// </summary>
 	public partial class GestureDetailController : WKInterfaceController
 	{
 		public GestureDetailController(IntPtr handle) : base(handle)

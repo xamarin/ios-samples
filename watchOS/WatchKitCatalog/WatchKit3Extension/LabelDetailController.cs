@@ -25,9 +25,9 @@ namespace WatchkitExtension
 			ultralightLabel.SetText(attrString);
 
 			var components = new NSDateComponents {
-			Day = 7,
-			Month = 9,
-			Year = 2016
+				Day = 7,
+				Month = 9,
+				Year = 2016
 			};
 			timer.SetDate (NSCalendar.CurrentCalendar.DateFromComponents (components));
 			timer.Start ();

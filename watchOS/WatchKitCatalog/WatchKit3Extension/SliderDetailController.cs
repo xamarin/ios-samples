@@ -14,7 +14,7 @@ namespace WatchkitExtension
 	{
 		public SliderDetailController ()
 		{
-			// coloredSlider.SetColor (UIColor.Red);
+			 coloredSlider.SetColor (UIColor.Red);
 		}
 
 		public override void WillActivate ()

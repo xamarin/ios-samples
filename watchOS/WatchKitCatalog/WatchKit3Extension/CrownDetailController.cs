@@ -5,6 +5,9 @@ using WatchKit;
 
 namespace Watchkit2Extension
 {
+	/// <summary>
+	/// New in watchOS 3
+	/// </summary>
 	public partial class CrownDetailController : WKInterfaceController, IWKCrownDelegate
     {
         public CrownDetailController (IntPtr handle) : base (handle)
