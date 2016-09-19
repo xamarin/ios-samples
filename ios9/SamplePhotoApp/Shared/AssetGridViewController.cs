@@ -88,35 +88,56 @@ namespace SamplePhotoApp
 
 		public void PhotoLibraryDidChange (PHChange changeInstance)
 		{
-			// Check if there are changes to the assets we are showing.
-			var collectionChanges = changeInstance.GetFetchResultChangeDetails (FetchResult);
-			if (collectionChanges == null)
+			var changes = changeInstance.GetFetchResultChangeDetails (FetchResult);
+			if (changes == null)
 				return;
 
-			//DispatchQueue.MainQueue.DispatchAsync (() => {
-			//	// Get the new fetch result.
-			//	FetchResult = collectionChanges.FetchResultAfterChanges;
-			//	UICollectionView collectionView = CollectionView;
-			//	if (collectionChanges.HasIncrementalChanges || !collectionChanges.HasMoves) {
-			//		collectionView.PerformBatchUpdates (() => {
-			//			var removedIndexes = collectionChanges.RemovedIndexes;
-			//			if (removedIndexes != null && removedIndexes.Count > 0)
-			//				collectionView.DeleteItems (removedIndexes.GetIndexPaths (0));
+			DispatchQueue.MainQueue.DispatchSync (() => {
+				// Hang on to the new fetch result.
+				FetchResult = changes.FetchResultAfterChanges;
 
-			//			var insertedIndexes = collectionChanges.InsertedIndexes;
-			//			if (insertedIndexes != null && insertedIndexes.Count > 0)
-			//				collectionView.InsertItems (insertedIndexes.GetIndexPaths (0));
+				if (changes.HasIncrementalChanges) {
+					// If we have incremental diffs, animate them in the collection view.
+					CollectionView.PerformBatchUpdates (() => {
+						// For indexes to make sense, updates must be in this order:
+						// delete, insert, reload, move
+						var removed = changes.RemovedIndexes;
+						if (removed.Count > 0)
+							CollectionView.DeleteItems (ToNSIndexPaths (removed));
 
-			//			var changedIndexes = collectionChanges.ChangedIndexes;
-			//			if (changedIndexes != null && changedIndexes.Count > 0)
-			//				collectionView.ReloadItems (changedIndexes.GetIndexPaths (0));
-			//		}, null);
-			//	} else {
-			//		collectionView.ReloadData ();
-			//	}
+						var inserted = changes.InsertedIndexes;
+						if (inserted.Count > 0)
+							CollectionView.InsertItems (ToNSIndexPaths (inserted));
 
-			//	ResetCachedAssets ();
-			//});
+						var changed = changes.ChangedIndexes;
+						if (changed.Count > 0)
+							CollectionView.ReloadItems (ToNSIndexPaths (changed));
+
+						changes.EnumerateMoves ((fromIndex, toIndex) => {
+							var start = NSIndexPath.FromItemSection ((nint)fromIndex, 0);
+							var end = NSIndexPath.FromItemSection ((nint)toIndex, 0);
+							CollectionView.MoveItem (start, end);
+						});
+					}, null);
+
+				} else {
+					// Reload the collection view if incremental diffs are not available.
+					CollectionView.ReloadData ();
+				}
+
+				ResetCachedAssets ();
+			});
+		}
+
+		static NSIndexPath [] ToNSIndexPaths (NSIndexSet indexSet)
+		{
+			var cnt = indexSet.Count;
+			var result = new NSIndexPath [(int)cnt];
+			indexSet.EnumerateIndexes ((nuint idx, ref bool stop) => {
+				stop = false;
+				result [idx] = NSIndexPath.FromItemSection ((nint)idx, 0);
+			});
+			return result;
 		}
 
 		public override nint GetItemsCount (UICollectionView collectionView, nint section)
