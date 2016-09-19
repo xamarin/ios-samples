@@ -7,7 +7,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>WatchKitCatalog</string>
 	<key>CFBundleIdentifier</key>
-	<string>co.conceptdev.WatchKitCatalogDemo.watchkitapp</string>
+	<string>com.xamarin.WatchKitCatalogDemo.watchkitapp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -24,7 +24,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>co.conceptdev.WatchKitCatalogDemo</string>
+	<string>com.xamarin.WatchKitCatalogDemo</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 	<key>MinimumOSVersion</key>

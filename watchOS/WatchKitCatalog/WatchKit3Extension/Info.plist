@@ -7,7 +7,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>WatchKit Catalog Extension</string>
 	<key>CFBundleIdentifier</key>
-	<string>co.conceptdev.WatchKitCatalogDemo.watchkitapp.watchkitextension</string>
+	<string>com.xamarin.WatchKitCatalogDemo.watchkitapp.watchkitextension</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -25,7 +25,7 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>WKAppBundleIdentifier</key>
-			<string>co.conceptdev.WatchKitCatalogDemo.watchkitapp</string>
+			<string>com.xamarin.WatchKitCatalogDemo.watchkitapp</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>

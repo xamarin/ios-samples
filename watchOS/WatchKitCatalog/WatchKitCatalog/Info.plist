@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>WatchKitCatalog</string>
 	<key>CFBundleIdentifier</key>
-	<string>co.conceptdev.WatchKitCatalogDemo</string>
+	<string>com.xamarin.WatchKitCatalogDemo</string>
 	<key>CFBundleShortVersionString</key>
 	<string>3.0</string>
 	<key>CFBundleVersion</key>
