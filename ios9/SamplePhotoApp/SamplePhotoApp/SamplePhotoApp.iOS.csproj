@@ -92,10 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
-    <Compile Include="RootListViewController.cs" />
-    <Compile Include="RootListViewController.designer.cs">
-      <DependentUpon>RootListViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="ConvenienceCategories\Extensions.cs" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
