@@ -22,5 +22,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)AssetViewController.designer.cs">
       <DependentUpon>AssetViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)MasterViewController.cs" />
   </ItemGroup>
 </Project>
