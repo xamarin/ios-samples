@@ -475,6 +475,7 @@ namespace SamplePhotoApp
 			playingHint = (playbackStyle == PHLivePhotoViewPlaybackStyle.Hint);
 		}
 #endif
+
 	}
 
 	public static class Bindings
@@ -488,6 +489,5 @@ namespace SamplePhotoApp
 			var colorSpacePtr = IntPtr_objc_msgSend (img.Handle, new Selector ("colorSpace").Handle);
 			return new CGColorSpace (colorSpacePtr);
 		}
-		 
 	}
 }
