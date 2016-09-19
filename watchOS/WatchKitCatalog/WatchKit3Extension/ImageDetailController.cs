@@ -24,23 +24,10 @@ namespace WatchkitExtension
 			// Log the context passed in, if the wearer arrived at this controller via the sample's Glance (in watchOS 2)
 			Console.WriteLine ("Passed in context: {0}", context);
 
-			// iImage Cache was important for watchOS 1
-			// var device = WKInterfaceDevice.CurrentDevice;
-			// using (var image = UIImage.FromBundle ("Bumblebee")) {
-			// 	if (!device.AddCachedImage (image, "Bumblebee")) {
-			// 		Console.WriteLine ("Image cache full.");
-			// 	} else {
-			// 		cachedImage.SetImage ("Bumblebee");
-			// 	}
-			// }
-			// // Log what's currently residing in the image cache.
-			// Console.WriteLine ("Currently cached images: {0}", WKInterfaceDevice.CurrentDevice.WeakCachedImages);
-
 			// Uses image inside WatchKit Extension bundle.
 			using (var image = UIImage.FromBundle("Walkway"))
-			using (var png = image.AsPNG())
 			{
-				staticImage.SetImage(png);
+				staticImage.SetImage(image);
 			}
 		}
 

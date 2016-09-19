@@ -8,8 +8,6 @@ namespace WatchkitExtension
 	[Register ("ImageDetailController")]
 	partial class ImageDetailController
 	{
-		[Outlet]
-		WKInterfaceImage cachedImage { get; set; }
 
 		[Outlet]
 		WKInterfaceImage staticImage { get; set; }
@@ -31,11 +29,6 @@ namespace WatchkitExtension
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (cachedImage != null) {
-				cachedImage.Dispose ();
-				cachedImage = null;
-			}
-
 			if (staticImage != null) {
 				staticImage.Dispose ();
 				staticImage = null;
