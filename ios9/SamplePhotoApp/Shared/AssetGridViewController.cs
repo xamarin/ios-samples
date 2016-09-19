@@ -19,8 +19,7 @@ namespace SamplePhotoApp
 
 	public partial class AssetGridViewController : UICollectionViewController, IPHPhotoLibraryChangeObserver
 	{
-		// TODO: does it match to id defined in storyboard ?
-		const string cellReuseIdentifier = "Cell";
+		const string cellReuseIdentifier = "GridViewCell";
 
 		public PHFetchResult FetchResult { get; set; }
 		public PHAssetCollection AssetCollection { get; set; }
@@ -75,7 +74,7 @@ namespace SamplePhotoApp
 
 			// Add button to the navigation bar if the asset collection supports adding content.
 			if (AssetCollection == null || AssetCollection.CanPerformEditOperation (PHCollectionEditOperation.AddContent))
-				NavigationItem.RightBarButtonItem = AddButton;
+				NavigationItem.RightBarButtonItem = AddButtonItem;
 			else
 				NavigationItem.RightBarButtonItem = null;
 		}
@@ -167,18 +166,16 @@ namespace SamplePhotoApp
 				return;
 
 			// Compute the assets to start caching and to stop caching.
-			var addedIndexPaths = new List<NSIndexPath> ();
-			var removedIndexPaths = new List<NSIndexPath> ();
-
 			var rects = ComputeDifferenceBetweenRect (previousPreheatRect, preheatRect);
 			var addedAssets = rects.Added
-								   .SelectMany (rect => CollectionView.GetIndexPaths (rect))
+								   .SelectMany (rect => CollectionView.GetIndexPaths (rect) ?? Enumerable.Empty<NSIndexPath> ())
 								   .Select (indexPath => FetchResult.ObjectAt (indexPath.Item))
 								   .Cast<PHAsset> ()
 								   .ToArray ();
 
+
 			var removedAssets = rects.Removed
-									 .SelectMany (rect => CollectionView.GetIndexPaths (rect))
+									 .SelectMany (rect => CollectionView.GetIndexPaths (rect) ?? Enumerable.Empty<NSIndexPath> ())
 									 .Select (indexPath => FetchResult.ObjectAt (indexPath.Item))
 									 .Cast<PHAsset> ()
 									 .ToArray ();
@@ -230,7 +227,7 @@ namespace SamplePhotoApp
 
 		#region UI Actions
 
-		partial void AddButtonClickHandler (NSObject sender)
+		partial void AddAsset (NSObject sender)
 		{
 			var rnd = new Random ();
 				

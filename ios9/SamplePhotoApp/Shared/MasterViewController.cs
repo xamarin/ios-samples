@@ -14,6 +14,7 @@ namespace SamplePhotoApp
 		UserCollections
 	}
 
+	[Register ("MasterViewController")]
 	public class MasterViewController : UITableViewController, IPHPhotoLibraryChangeObserver
 	{
 		const string allPhotosIdentifier = "allPhotos";

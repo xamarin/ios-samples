@@ -6,18 +6,17 @@ namespace SamplePhotoApp
 	[Register ("AssetGridViewController")]
 	partial class AssetGridViewController
 	{
-		[Outlet]
-		UIBarButtonItem AddButton { get; set; }
+		[Outlet("addButtonItem")]
+		UIBarButtonItem AddButtonItem { get; set; }
 
-		// TODO: fix selector
-		[Action ("AddButtonClickHandler:")]
-		partial void AddButtonClickHandler (NSObject sender);
+		[Action ("addAsset:")]
+		partial void AddAsset (NSObject sender);
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (AddButton != null) {
-				AddButton.Dispose ();
-				AddButton = null;
+			if (AddButtonItem != null) {
+				AddButtonItem.Dispose ();
+				AddButtonItem = null;
 			}
 		}
 	}

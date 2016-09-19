@@ -11,46 +11,42 @@ namespace SamplePhotoApp
 	[Register ("AssetViewController")]
 	partial class AssetViewController
 	{
-		[Outlet]
+		[Outlet ("imageView")]
 		UIImageView ImageView { get; set; }
 
 		#if __IOS__
-		[Outlet]
+		[Outlet ("livePhotoView")]
 		PHLivePhotoView LivePhotoView { get; set; }
 		#endif
 
-		[Outlet]
+		[Outlet ("editButton")]
 		UIBarButtonItem EditButton { get; set; }
 
-		[Outlet]
+		[Outlet ("progressView")]
 		UIProgressView ProgressView { get; set; }
 
-		[Outlet]
+		[Outlet ("playButton")]
 		UIBarButtonItem PlayButton { get; set; }
 
-		[Outlet]
+		[Outlet ("space")]
 		UIBarButtonItem Space { get; set; }
 
-		[Outlet]
+		[Outlet ("trashButton")]
 		UIBarButtonItem TrashButton { get; set; }
 
-		[Outlet]
+		[Outlet ("favoriteButton")]
 		UIBarButtonItem FavoriteButton { get; set; }
 
-		// TODO: check selector
-		[Action ("EditButtonClickHandler:")]
-		partial void EditButtonClickHandler (UIBarButtonItem sender);
+		[Action ("editAsset:")]
+		partial void EditAsset (UIBarButtonItem sender);
 
-		// TODO: check selector
-		[Action ("TrashButtonClickHandler:")]
+		[Action ("removeAsset:")]
 		partial void RemoveAsset (NSObject sender);
 
-		// TODO: check selector
 		[Action ("play:")]
 		partial void Play (NSObject sender);
 
-		// TODO: check selector
-		[Action ("ToggleFavorite:")]
+		[Action ("toggleFavorite:")]
 		partial void ToggleFavorite (UIBarButtonItem sender);
 
 		void ReleaseDesignerOutlets ()

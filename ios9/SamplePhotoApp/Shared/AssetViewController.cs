@@ -109,7 +109,7 @@ namespace SamplePhotoApp
 
 		#region UI Actions
 
-		partial void EditButtonClickHandler (UIBarButtonItem sender)
+		partial void EditAsset (UIBarButtonItem sender)
 		{
 			// Use a UIAlertController to display editing options to the user.
 			var alertController = UIAlertController.Create (null, null, UIAlertControllerStyle.ActionSheet);
