@@ -8,7 +8,7 @@
         <!--Asset Grid View Controller-->
         <scene sceneID="1js-rZ-uoo">
             <objects>
-                <collectionViewController id="uZN-iM-VWn" customClass="AssetGridViewController" customModule="SamplePhotosApp" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="uZN-iM-VWn" customClass="AssetGridViewController" sceneMemberID="viewController">
                     <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="GPf-Pl-xo6">
                         <rect key="frame" x="0.0" y="0.0" width="1285" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -19,7 +19,7 @@
                             <inset key="sectionInset" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GridViewCell" id="P1W-st-1B8" customClass="GridViewCell" customModule="SamplePhotosApp" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GridViewCell" id="P1W-st-1B8" customClass="GridViewCell">
                                 <frame key="frameInset" minX="30" minY="145" width="280" height="280"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -73,7 +73,7 @@
         <!--Asset View Controller-->
         <scene sceneID="az8-GC-4Sk">
             <objects>
-                <viewController id="bCd-wL-H8p" customClass="AssetViewController" customModule="SamplePhotosApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bCd-wL-H8p" customClass="AssetViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6ri-2e-T1u"/>
                         <viewControllerLayoutGuide type="bottom" id="AOS-Mc-JYH"/>
@@ -138,7 +138,7 @@
         <!--Photos-->
         <scene sceneID="he0-o0-ZkF">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="rjh-Es-5bR" customClass="MasterViewController" customModule="SamplePhotosApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="rjh-Es-5bR" customClass="MasterViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="40" sectionFooterHeight="40" id="Ktr-pj-pIF">
                         <rect key="frame" x="0.0" y="0.0" width="634" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
