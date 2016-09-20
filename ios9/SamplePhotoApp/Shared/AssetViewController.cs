@@ -155,6 +155,8 @@ namespace SamplePhotoApp
 				// Get the updated asset.
 				// TODO: check return type. Catch! ObjectAfterChanges should be PHObject instead of NSObject https://bugzilla.xamarin.com/show_bug.cgi?id=35540
 				Asset = (PHAsset)changeDetails.ObjectAfterChanges;
+				if(Asset != null)
+					FavoriteButton.Title = Asset.Favorite ? "♥︎" : "♡";
 
 				// If the asset's content changed, update the image and stop any video playback.
 				if (changeDetails.AssetContentChanged) {
@@ -229,9 +231,10 @@ namespace SamplePhotoApp
 				var request = PHAssetChangeRequest.ChangeRequest (Asset);
 				request.Favorite = !Asset.Favorite;
 			}, (success, error) => {
-				if (success)
-					DispatchQueue.MainQueue.DispatchSync (() => sender.Title = Asset.Favorite ? "♥︎" : "♡");
-				else
+				// Original sample updates FavoriteButton.Title here
+				// but this doesn't work, because you have to wait PhotoLibraryDidChange notification.
+				// At this point you just know is there any issue or everthing is ok.
+				if (!success)
 					Console.WriteLine ($"can't set favorite: {error.LocalizedDescription}");
 			});
 		}
@@ -412,8 +415,9 @@ namespace SamplePhotoApp
 			var outputImage = filter.OutputImage;
 
 			// Write the edited image as a JPEG.
+			// TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=44503
 			NSError error;
-			if (!ciContext.WriteJpegRepresentation (outputImage, output.RenderedContentUrl, inputImage.ColorSpace (), null, out error))
+			if (!ciContext.WriteJpegRepresentation (outputImage, output.RenderedContentUrl, inputImage.ColorSpace (), new NSDictionary(), out error))
 				throw new InvalidProgramException ($"can't apply filter to image: {error.LocalizedDescription}");
 
 			completion ();

@@ -278,15 +278,15 @@ namespace SamplePhotoApp
 						// For indexes to make sense, updates must be in this order:
 						// delete, insert, reload, move
 						var removed = changes.RemovedIndexes;
-						if (removed.Count > 0)
+						if (removed != null && removed.Count > 0)
 							CollectionView.DeleteItems (ToNSIndexPaths (removed));
 
 						var inserted = changes.InsertedIndexes;
-						if (inserted.Count > 0)
+						if (inserted != null && inserted.Count > 0)
 							CollectionView.InsertItems (ToNSIndexPaths (inserted));
 
 						var changed = changes.ChangedIndexes;
-						if (changed.Count > 0)
+						if (changed != null && changed.Count > 0)
 							CollectionView.ReloadItems (ToNSIndexPaths (changed));
 
 						changes.EnumerateMoves ((fromIndex, toIndex) => {
@@ -309,9 +309,10 @@ namespace SamplePhotoApp
 		{
 			var cnt = indexSet.Count;
 			var result = new NSIndexPath [(int)cnt];
+			int i = 0;
 			indexSet.EnumerateIndexes ((nuint idx, ref bool stop) => {
 				stop = false;
-				result [idx] = NSIndexPath.FromItemSection ((nint)idx, 0);
+				result [i++] = NSIndexPath.FromItemSection ((nint)idx, 0);
 			});
 			return result;
 		}
