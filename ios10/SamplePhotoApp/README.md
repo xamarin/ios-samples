@@ -1,26 +1,32 @@
 SamplePhotoApp
 ==========
 
-A basic Photos-like app which introduces the Photos framework. 
-- List albums, folders and moments
-- Display the contents of the moments, or a single album
-- Display the content of a single photo or video (and allow playback in the case of a video)
-- Allow the following actions
+A basic Photos-like app to demonstrate the Photos framework. 
+
+* Lists albums and built-in collections (Recently Added, Favorites, etc)
+* Displays assets (all photos or those from a collection) in a thumbnail grid
+* Displays a single photo, video, or Live Photo asset
+* Allows the following actions:
+  * simple edit with canned filters (for still photos, Live Photos, and videos)
+  * creating an album and adding assets to it
+  * removing assets from an album
+  * deleting assets and albums
+  * favoriting an asset
 
 Build Requirements
 ------------------
 
-Building this sample requires Xcode 7.1 and iOS 9.1 SDK.
+Xcode 8.0 (iOS 10.0 / tvOS 10.0 SDK) or later
 
 Runtime Requirements
 ------------------
 
-Running the sample requires iOS 9.1 or later. Some features requires 3DTouch support.
+iOS 10.0, tvOS 10.0, or later
 
 Useful links
 ------------
 
-[Objective-C version of sample](https://developer.apple.com/library/ios/samplecode/UsingPhotosFramework/Introduction/Intro.html)
+[Original sample](https://developer.apple.com/library/ios/samplecode/UsingPhotosFramework/Introduction/Intro.html)
 
 Copyright
 ---------
@@ -30,4 +36,4 @@ Xamarin port changes are released under the MIT license
 Author
 ------ 
 
-Ported to Xamarin.iOS by Oleg Demchenko
+Ported to Xamarin.iOS by Oleg Demchenko and Rustam Zaitov
