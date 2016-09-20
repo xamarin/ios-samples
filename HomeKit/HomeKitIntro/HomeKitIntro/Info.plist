@@ -39,5 +39,9 @@
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>
+	<key>CFBundleName</key>
+	<string>HomeKit</string>
+	<key>NSHomeKitUsageDescription</key>
+	<string>Allow the app to control HomeKit enabled devices.</string>
 </dict>
 </plist>
