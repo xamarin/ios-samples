@@ -7,7 +7,9 @@ using Foundation;
 using CoreFoundation;
 using CoreGraphics;
 using Photos;
+#if __IOS__ && !__TVOS__
 using PhotosUI;
+#endif
 
 namespace SamplePhotoApp
 {
@@ -112,7 +114,7 @@ namespace SamplePhotoApp
 			// Dequeue an GridViewCell.
 			var cell = (GridViewCell)collectionView.DequeueReusableCell (cellReuseIdentifier, indexPath);
 
-#if __IOS__
+#if __IOS__ && !__TVOS__
 			// Add a badge to the cell if the PHAsset represents a Live Photo.
 			// Add Badge Image to the cell to denote that the asset is a Live Photo.
 			if (asset.MediaSubtypes.HasFlag (PHAssetMediaSubtype.PhotoLive))
@@ -134,8 +136,12 @@ namespace SamplePhotoApp
 		#endregion
 
 		#region UIScrollView
-
+#if __IOS__ && !__TVOS__
 		public override void Scrolled (UIScrollView scrollView)
+#elif __TVOS__
+		[Export ("scrollViewDidScroll:")]
+		public void Scrolled (UIScrollView scrollView)
+#endif
 		{
 			UpdateCachedAssets ();
 		}
@@ -168,14 +174,13 @@ namespace SamplePhotoApp
 			// Compute the assets to start caching and to stop caching.
 			var rects = ComputeDifferenceBetweenRect (previousPreheatRect, preheatRect);
 			var addedAssets = rects.Added
-								   .SelectMany (rect => CollectionView.GetIndexPaths (rect) ?? Enumerable.Empty<NSIndexPath> ())
+								   .SelectMany (rect => CollectionView.GetIndexPaths (rect))
 								   .Select (indexPath => FetchResult.ObjectAt (indexPath.Item))
 								   .Cast<PHAsset> ()
 								   .ToArray ();
 
-
 			var removedAssets = rects.Removed
-									 .SelectMany (rect => CollectionView.GetIndexPaths (rect) ?? Enumerable.Empty<NSIndexPath> ())
+									 .SelectMany (rect => CollectionView.GetIndexPaths (rect))
 									 .Select (indexPath => FetchResult.ObjectAt (indexPath.Item))
 									 .Cast<PHAsset> ()
 									 .ToArray ();

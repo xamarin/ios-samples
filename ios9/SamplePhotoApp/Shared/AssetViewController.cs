@@ -9,21 +9,23 @@ using CoreImage;
 using Photos;
 using System.Runtime.InteropServices;
 using ObjCRuntime;
-#if __IOS__
+#if __IOS__ && !__TVOS__
 using PhotosUI;
 #endif
 
 
 namespace SamplePhotoApp
 {
-#if __IOS__
+#if __IOS__ && !__TVOS__
 	public partial class AssetViewController : UIViewController, IPHPhotoLibraryChangeObserver, IPHLivePhotoViewDelegate
 #else
 	public partial class AssetViewController : UIViewController, IPHPhotoLibraryChangeObserver
 #endif
 	{
 		AVPlayerLayer playerLayer;
+#if __IOS__ && !__TVOS__
 		bool playingHint;
+#endif
 
 		readonly string formatIdentifier = NSBundle.MainBundle.BundleIdentifier;
 		readonly string formatVersion = "1.0";
@@ -54,7 +56,7 @@ namespace SamplePhotoApp
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-#if __IOS__
+#if __IOS__ && !__TVOS__
 			LivePhotoView.Delegate = this;
 #endif
 			PHPhotoLibrary.SharedPhotoLibrary.RegisterChangeObserver (this);
@@ -72,7 +74,7 @@ namespace SamplePhotoApp
 
 			// Set the appropriate toolbarItems based on the mediaType of the asset.
 			if (Asset.MediaType == PHAssetMediaType.Video) {
-#if __IOS__
+#if __IOS__ && !__TVOS__
 				ToolbarItems = new UIBarButtonItem [] { FavoriteButton, Space, PlayButton, Space, TrashButton };
 				if (NavigationController != null)
 					NavigationController.ToolbarHidden = false;
@@ -81,13 +83,12 @@ namespace SamplePhotoApp
 #endif
 			} else {
 				// Live Photos have their own playback UI, so present them like regular photos, just like Photos app
-#if __IOS__
+#if __IOS__ && !__TVOS__
 				ToolbarItems = new UIBarButtonItem [] { FavoriteButton, Space, TrashButton };
 				if (NavigationController != null)
 					NavigationController.ToolbarHidden = false;
 #elif __TVOS__
-				// TODO: port tvos
-				navigationItem.leftBarButtonItems = [favoriteButton, trashButton]
+				NavigationItem.LeftBarButtonItems = new UIBarButtonItem [] { FavoriteButton, TrashButton };
 #endif
 			}
 
@@ -113,7 +114,7 @@ namespace SamplePhotoApp
 		{
 			// Use a UIAlertController to display editing options to the user.
 			var alertController = UIAlertController.Create (null, null, UIAlertControllerStyle.ActionSheet);
-#if __IOS__
+#if __IOS__ && !__TVOS__
 			alertController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
 			var popoverController = alertController.PopoverPresentationController;
 			if (popoverController != null) {
@@ -243,7 +244,7 @@ namespace SamplePhotoApp
 
 		void UpdateImage ()
 		{
-#if __IOS__
+#if __IOS__ && !__TVOS__
 			// Check the asset's MediaSubtypes to determine if this is a live photo or not.
 			if (Asset.MediaSubtypes.HasFlag (PHAssetMediaSubtype.PhotoLive))
 				UpdateLivePhoto ();
@@ -254,7 +255,7 @@ namespace SamplePhotoApp
 #endif
 		}
 
-#if __IOS__
+#if __IOS__ && !__TVOS__
 		void UpdateLivePhoto ()
 		{
 			// Prepare the options to pass when fetching the live photo.
@@ -318,7 +319,7 @@ namespace SamplePhotoApp
 					return;
 
 				// Now that we have the image, show it.
-#if __IOS__
+#if __IOS__ && !__TVOS__
 				LivePhotoView.Hidden = true;
 #endif
 				ImageView.Hidden = false;
@@ -466,7 +467,7 @@ namespace SamplePhotoApp
 			export.ExportAsynchronously (completion);
 		}
 
-#if __IOS__
+#if __IOS__ && !__TVOS__
 		[Export ("livePhotoView:didEndPlaybackWithStyle:")]
 		public virtual void DidEndPlayback (PHLivePhotoView livePhotoView, PHLivePhotoViewPlaybackStyle playbackStyle)
 		{

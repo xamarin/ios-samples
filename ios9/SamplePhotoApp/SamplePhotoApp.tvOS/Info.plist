@@ -24,6 +24,10 @@
 	<array>
 		<string>arm64</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Automatic</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Displays and edits photos to demonstrate the Photos framework.</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/App Icon &amp; Top Shelf Image.brandassets</string>
 	<key>XSLaunchImageAssets</key>

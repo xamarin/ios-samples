@@ -92,12 +92,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
-    <Compile Include="ConvenienceCategories\Extensions.cs" />
   </ItemGroup>
   <Import Project="..\Shared\Shared.projitems" Label="Shared" Condition="Exists('..\Shared\Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <Folder Include="ConvenienceCategories\" />
     <Folder Include="Resources\" />
     <Folder Include="Resources\Images.xcassets\" />
   </ItemGroup>

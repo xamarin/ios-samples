@@ -23,5 +23,6 @@
       <DependentUpon>AssetViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)MasterViewController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UICollectionViewExtensions.cs" />
   </ItemGroup>
 </Project>
