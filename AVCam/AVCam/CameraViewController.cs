@@ -586,10 +586,25 @@ namespace AVCam
 			});
 		}
 
-		#endregion
+		[Export ("toggleLivePhotoMode:")]
+		void ToggleLivePhotoMode (UIButton livePhotoModeButton)
+		{
+			sessionQueue.DispatchAsync (() => {
+				livePhotoMode = (livePhotoMode == LivePhotoMode.On) ? LivePhotoMode.Off : LivePhotoMode.On;
+				var mode = livePhotoMode;
+
+				DispatchQueue.MainQueue.DispatchAsync (() => {
+					var title = (mode == LivePhotoMode.On) ? "Live Photo Mode: On" : "Live Photo Mode: Off";
+					LivePhotoModeButton.SetTitle (title, UIControlState.Normal);
+				});
+			});
+		}
 
 
-		void AddObservers ()
+#endregion
+
+
+void AddObservers ()
 		{
 			runningObserver = session.AddObserver ("running", NSKeyValueObservingOptions.New, OnSessionRunningChanged);
 			capturingStillObserver = StillImageOutput.AddObserver ("capturingStillImage", NSKeyValueObservingOptions.New, OnCapturingStillImageChanged);
