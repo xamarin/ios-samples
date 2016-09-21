@@ -35,18 +35,15 @@ namespace AVCam
 	[Register ("CameraViewController")]
 	public class CameraViewController : UIViewController, IAVCaptureFileOutputRecordingDelegate
 	{
-		// TODO: ???
 		[Outlet]
 		PreviewView PreviewView { get; set; }
 
 		[Outlet]
 		UILabel CameraUnavailableLabel  { get; set; }
 
-		// TODO: ???
 		[Outlet]
 		UIButton ResumeButton { get; set; }
 
-		// TODO: ???
 		[Outlet]
 		UIButton RecordButton { get; set; }
 
@@ -600,8 +597,57 @@ namespace AVCam
 			});
 		}
 
+		#endregion
 
-#endregion
+		#region Recording Movies
+
+		[Export ("toggleMovieRecording:")]
+		void ToggleMovieRecording (UIButton recordButton)
+		{
+			var output = MovieFileOutput;
+			if (output == null)
+				return;
+
+			// Disable the Camera button until recording finishes, and disable
+			// the Record button until recording starts or finishes.
+			// See the AVCaptureFileOutputRecordingDelegate methods.
+
+			CameraButton.Enabled = false;
+			recordButton.Enabled = false;
+			CaptureModeControl.Enabled = false;
+
+			// Retrieve the video preview layer's video orientation on the main queue
+			// before entering the session queue.We do this to ensure UI elements are
+			// accessed on the main thread and session configuration is done on the session queue.
+			var videoPreviewLayerOrientation = PreviewView.VideoPreviewLayer.Connection.VideoOrientation;
+
+			sessionQueue.DispatchAsync (() => {
+				if (!output.Recording) {
+					if (UIDevice.CurrentDevice.IsMultitaskingSupported) {
+						// Setup background task. This is needed because the IAVCaptureFileOutputRecordingDelegate.FinishedRecording
+						// callback is not received until AVCam returns to the foreground unless you request background execution time.
+						// This also ensures that there will be time to write the file to the photo library when AVCam is backgrounded.
+						// To conclude this background execution, UIApplication.SharedApplication.EndBackgroundTask is called in
+						// IAVCaptureFileOutputRecordingDelegate.FinishedRecording after the recorded file has been saved.
+						backgroundRecordingID = UIApplication.SharedApplication.BeginBackgroundTask (null);
+					}
+
+					// Update the orientation on the movie file output video connection before starting recording.
+					AVCaptureConnection connection = MovieFileOutput?.ConnectionFromMediaType (AVMediaType.Video);
+					if (connection != null)
+						connection.VideoOrientation = videoPreviewLayerOrientation;
+
+					// Start recording to a temporary file.
+					var outputFileName = new NSUuid ().AsString ();
+					var outputFilePath = Path.Combine (Path.GetTempPath (), Path.ChangeExtension (outputFileName, "mov"));
+					output.StartRecordingToOutputFile (NSUrl.FromString (outputFilePath), this);
+				} else {
+					output.StopRecording ();
+				}
+			});
+		}
+
+		#endregion
 
 
 void AddObservers ()
@@ -756,41 +802,6 @@ void AddObservers ()
 		}
 
 		#region Actions
-
-		[Export ("toggleMovieRecording:")]
-		void ToggleMovieRecording (CameraViewController sender)
-		{
-			// Disable the Camera button until recording finishes, and disable the Record button until recording starts or finishes.
-			CameraButton.Enabled = false;
-			RecordButton.Enabled = false;
-
-			sessionQueue.DispatchAsync (() => {
-				if (!MovieFileOutput.Recording) {
-					if (UIDevice.CurrentDevice.IsMultitaskingSupported) {
-						// Setup background task. This is needed because the IAVCaptureFileOutputRecordingDelegate.FinishedRecording
-						// callback is not received until AVCam returns to the foreground unless you request background execution time.
-						// This also ensures that there will be time to write the file to the photo library when AVCam is backgrounded.
-						// To conclude this background execution, UIApplication.SharedApplication.EndBackgroundTask is called in
-						// IAVCaptureFileOutputRecordingDelegate.FinishedRecording after the recorded file has been saved.
-						backgroundRecordingID = UIApplication.SharedApplication.BeginBackgroundTask (null);
-					}
-
-					// Update the orientation on the movie file output video connection before starting recording.
-					AVCaptureConnection connection = MovieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
-					var previewLayer = (AVCaptureVideoPreviewLayer)PreviewView.Layer;
-					connection.VideoOrientation = previewLayer.Connection.VideoOrientation;
-
-					// Turn OFF flash for video recording.
-					SetFlashModeForDevice (AVCaptureFlashMode.Off, videoDeviceInput.Device);
-
-					// Start recording to a temporary file.
-					MovieFileOutput.StartRecordingToOutputFile (new NSUrl(GetTmpFilePath ("mov"), false), this);
-				} else {
-					MovieFileOutput.StopRecording ();
-				}
-			});
-		}
-
 
 		static string GetTmpFilePath (string extension)
 		{
