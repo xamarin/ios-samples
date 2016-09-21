@@ -649,6 +649,83 @@ namespace AVCam
 
 		#endregion
 
+		#region IAVCaptureFileOutputRecordingDelegate
+
+		[Export ("captureOutput:didStartRecordingToOutputFileAtURL:fromConnections:")]
+		public void DidStartRecording (AVCaptureFileOutput captureOutput, NSUrl outputFileUrl, NSObject [] connections)
+		{
+			// Enable the Record button to let the user stop the recording.
+			DispatchQueue.MainQueue.DispatchAsync (() => {
+				RecordButton.Enabled = true;
+				RecordButton.SetTitle ("Stop", UIControlState.Normal);
+			});
+		}
+
+		public void FinishedRecording (AVCaptureFileOutput captureOutput, NSUrl outputFileUrl, NSObject [] connections, NSError error)
+		{
+			// Note that currentBackgroundRecordingID is used to end the background task associated with this recording.
+			// This allows a new recording to be started, associated with a new UIBackgroundTaskIdentifier, once the movie file output's isRecording property
+			// is back to false — which happens sometime after this method returns.
+			// Note: Since we use a unique file path for each recording, a new recording will not overwrite a recording currently being saved.
+
+			Action cleanup = () => {
+				var path = outputFileUrl.Path;
+				if (NSFileManager.DefaultManager.FileExists (path)) {
+					NSError err;
+					if (!NSFileManager.DefaultManager.Remove (path, out err))
+						Console.WriteLine ($"Could not remove file at url: {outputFileUrl}");
+
+				}
+				var currentBackgroundRecordingID = backgroundRecordingID;
+				if (currentBackgroundRecordingID != -1) {
+					backgroundRecordingID = -1;
+					UIApplication.SharedApplication.EndBackgroundTask (currentBackgroundRecordingID);
+				}
+			};
+
+			bool success = true;
+			if (error != null) {
+				Console.WriteLine ($"Movie file finishing error: {error.LocalizedDescription}");
+				success = ((NSNumber)error.UserInfo [AVErrorKeys.RecordingSuccessfullyFinished]).BoolValue;
+			}
+
+			if (success) {
+				// Check authorization status.
+				PHPhotoLibrary.RequestAuthorization (status => {
+					if (status == PHAuthorizationStatus.Authorized) {
+						// Save the movie file to the photo library and cleanup.
+						PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
+							var options = new PHAssetResourceCreationOptions {
+								ShouldMoveFile = true
+							};
+							var creationRequest = PHAssetCreationRequest.CreationRequestForAsset ();
+							creationRequest.AddResource (PHAssetResourceType.Video, outputFileUrl, options);
+						}, (success2, error2) => {
+							if (!success2)
+								Console.WriteLine ($"Could not save movie to photo library: {error2}");
+							cleanup ();
+						});
+					} else {
+						cleanup ();
+					}
+				});
+			} else {
+				cleanup ();
+			}
+
+			// Enable the Camera and Record buttons to let the user switch camera and start another recording.
+			DispatchQueue.MainQueue.DispatchAsync (() => {
+				// Only enable the ability to change camera if the device has more than one camera.
+				CameraButton.Enabled = UniqueDevicePositionsCount (videoDeviceDiscoverySession) > 1;
+				RecordButton.Enabled = true;
+				CaptureModeControl.Enabled = true;
+				RecordButton.SetTitle ("Record", UIControlState.Normal);
+			});
+		}
+
+		#endregion
+
+
 
 void AddObservers ()
 		{
@@ -819,62 +896,6 @@ void AddObservers ()
 
 		#endregion
 
-		#region IAVCaptureFileOutputRecordingDelegate
-
-		public void FinishedRecording (AVCaptureFileOutput captureOutput, NSUrl outputFileUrl, NSObject[] connections, NSError error)
-		{
-			// Note that currentBackgroundRecordingID is used to end the background task associated with this recording.
-			// This allows a new recording to be started, associated with a new UIBackgroundTaskIdentifier, once the movie file output's isRecording property
-			// is back to NO — which happens sometime after this method returns.
-			// Note: Since we use a unique file path for each recording, a new recording will not overwrite a recording currently being saved.
-
-			var currentBackgroundRecordingID = backgroundRecordingID;
-			backgroundRecordingID = -1;
-			Action cleanup = () => {
-				NSError err;
-				NSFileManager.DefaultManager.Remove (outputFileUrl, out err);
-				if (currentBackgroundRecordingID != -1)
-					UIApplication.SharedApplication.EndBackgroundTask (currentBackgroundRecordingID);
-			};
-
-			bool success = true;
-			if (error != null) {
-				Console.WriteLine ("Movie file finishing error: {0}", error);
-				success = ((NSNumber)error.UserInfo [AVErrorKeys.RecordingSuccessfullyFinished]).BoolValue;
-			}
-
-			if (!success) {
-				cleanup ();
-				return;
-			}
-			// Check authorization status.
-			PHPhotoLibrary.RequestAuthorization (status => {
-				if (status == PHAuthorizationStatus.Authorized) {
-					// Save the movie file to the photo library and cleanup.
-					PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
-						// In iOS 9 and later, it's possible to move the file into the photo library without duplicating the file data.
-						// This avoids using double the disk space during save, which can make a difference on devices with limited free disk space.
-						if (UIDevice.CurrentDevice.CheckSystemVersion (9, 0)) {
-							var options = new PHAssetResourceCreationOptions {
-								ShouldMoveFile = true
-							};
-							var changeRequest = PHAssetCreationRequest.CreationRequestForAsset ();
-							changeRequest.AddResource (PHAssetResourceType.Video, outputFileUrl, options);
-						} else {
-							PHAssetChangeRequest.FromVideo (outputFileUrl);
-						}
-					}, (success2, error2) => {
-						if (!success2)
-							Console.WriteLine ("Could not save movie to photo library: {0}", error2);
-						cleanup ();
-					});
-				} else {
-					cleanup ();
-				}
-			});
-		}
-
-		#endregion
 
 		#region Device Configuration
 
@@ -956,5 +977,12 @@ void AddObservers ()
 				return false;
 			}
 		}
+
+		static int UniqueDevicePositionsCount (AVCaptureDeviceDiscoverySession session)
+		{
+			throw new NotImplementedException ();
+		}
 	}
+
+
 }
