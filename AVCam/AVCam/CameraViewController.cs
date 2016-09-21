@@ -8,6 +8,8 @@ using CoreGraphics;
 using AVFoundation;
 using Photos;
 using System.Linq;
+using System.Collections.Generic;
+using CoreVideo;
 
 namespace AVCam
 {
@@ -64,14 +66,20 @@ namespace AVCam
 		[Outlet]
 		UISegmentedControl CaptureModeControl { get; set; }
 
+		[Outlet]
+		UILabel CapturingLivePhotoLabel { get; set; }
+
 		// Communicate with the session and other session objects on this queue.
 		readonly DispatchQueue sessionQueue = new DispatchQueue ("session queue");
-
 		readonly AVCaptureSession session = new AVCaptureSession ();
 
 		AVCaptureDeviceInput videoDeviceInput;
 		readonly AVCapturePhotoOutput photoOutput = new AVCapturePhotoOutput ();
 		AVCaptureMovieFileOutput MovieFileOutput;
+
+		int inProgressLivePhotoCapturesCount;
+
+		readonly Dictionary<long, PhotoCaptureDelegate> inProgressPhotoCaptureDelegates = new Dictionary<long, PhotoCaptureDelegate> ();
 
 		readonly AVCaptureDeviceDiscoverySession videoDeviceDiscoverySession = AVCaptureDeviceDiscoverySession.Create (
 			new AVCaptureDeviceType [] { AVCaptureDeviceType.BuiltInWideAngleCamera, AVCaptureDeviceType.BuiltInDuoCamera },
@@ -513,6 +521,71 @@ namespace AVCam
 
 		#region Capturing Photos
 
+		[Export ("capturePhoto:")]
+		void CapturePhoto (UIButton photoButton)
+		{
+			// Retrieve the video preview layer's video orientation on the main queue before
+			// entering the session queue. We do this to ensure UI elements are accessed on
+			// the main thread and session configuration is done on the session queue.
+			var videoPreviewLayerOrientation = PreviewView.VideoPreviewLayer.Connection.VideoOrientation;
+
+			sessionQueue.DispatchAsync (() => {
+				// Update the photo output's connection to match the video orientation of the video preview layer.
+				var photoOutputConnection = photoOutput.ConnectionFromMediaType (AVMediaType.Video);
+				if (photoOutputConnection != null)
+					photoOutputConnection.VideoOrientation = videoPreviewLayerOrientation;
+
+				// Capture a JPEG photo with flash set to auto and high resolution photo enabled.
+				var photoSettings = AVCapturePhotoSettings.Create ();
+				photoSettings.FlashMode = AVCaptureFlashMode.Auto;
+				photoSettings.IsHighResolutionPhotoEnabled = true;
+				// TODO: request strong typed API
+				if (photoSettings.AvailablePreviewPhotoPixelFormatTypes.Length > 0)
+					photoSettings.PreviewPhotoFormat = new NSDictionary<NSString, NSObject> (CVPixelBuffer.PixelFormatTypeKey, photoOutput.AvailablePhotoPixelFormatTypes [0]);
+				// Live Photo capture is not supported in movie mode.
+				if (livePhotoMode == LivePhotoMode.On && photoOutput.IsLivePhotoCaptureSupported) {
+					var livePhotoMovieFileName = new NSUuid ().AsString ();
+					var livePhotoMovieFilePath = Path.Combine (Path.GetTempPath (), Path.ChangeExtension (livePhotoMovieFileName, "mov"));
+					photoSettings.LivePhotoMovieFileUrl = NSUrl.FromString (livePhotoMovieFilePath);
+				}
+
+				// Use a separate object for the photo capture delegate to isolate each capture life cycle.
+				var photoCaptureDelegate = new PhotoCaptureDelegate (photoSettings, () => DispatchQueue.MainQueue.DispatchAsync (() => {
+					PreviewView.VideoPreviewLayer.Opacity = 0;
+					UIView.Animate (0.25, () => PreviewView.VideoPreviewLayer.Opacity = 1);
+				}), capturing => {
+					// Because Live Photo captures can overlap, we need to keep track of the
+					// number of in progress Live Photo captures to ensure that the
+					// Live Photo label stays visible during these captures.
+					sessionQueue.DispatchAsync (() => {
+						if (capturing)
+							inProgressLivePhotoCapturesCount += 1;
+						else
+							inProgressLivePhotoCapturesCount -= 1;
+
+						var count = inProgressLivePhotoCapturesCount;
+						DispatchQueue.MainQueue.DispatchAsync (() => {
+							if (count > 0)
+								CapturingLivePhotoLabel.Hidden = false;
+							else if (count == 0)
+								CapturingLivePhotoLabel.Hidden = true;
+							else
+								Console.WriteLine ("Error: In progress live photo capture count is less than 0");
+						});
+					});
+				}, photoDelegate => {
+					// When the capture is complete, remove a reference to the photo capture delegate so it can be deallocated.
+					sessionQueue.DispatchAsync (() => inProgressPhotoCaptureDelegates.Remove (photoDelegate.RequestedPhotoSettings.UniqueID));
+				});
+
+				// The Photo Output keeps a weak reference to the photo capture delegate so
+				// we store it in an array to maintain a strong reference to this object
+				// until the capture is completed.
+				inProgressPhotoCaptureDelegates [photoCaptureDelegate.RequestedPhotoSettings.UniqueID] = photoCaptureDelegate;
+				photoOutput.CapturePhoto (photoSettings, photoCaptureDelegate);
+			});
+		}
+
 		#endregion
 
 
@@ -703,66 +776,6 @@ namespace AVCam
 			});
 		}
 
-		[Export ("snapStillImage:")]
-		void SnapStillImage (CameraViewController sender)
-		{
-			sessionQueue.DispatchAsync (async () => {
-				AVCaptureConnection connection = StillImageOutput.ConnectionFromMediaType (AVMediaType.Video);
-				var previewLayer = (AVCaptureVideoPreviewLayer)PreviewView.Layer;
-
-				// Update the orientation on the still image output video connection before capturing.
-				connection.VideoOrientation = previewLayer.Connection.VideoOrientation;
-
-				// Flash set to Auto for Still Capture.
-				SetFlashModeForDevice (AVCaptureFlashMode.Auto, videoDeviceInput.Device);
-
-				// Capture a still image.
-				try {
-					var imageDataSampleBuffer = await StillImageOutput.CaptureStillImageTaskAsync (connection);
-
-					// The sample buffer is not retained. Create image data before saving the still image to the photo library asynchronously.
-					NSData imageData = AVCaptureStillImageOutput.JpegStillToNSData (imageDataSampleBuffer);
-
-					PHPhotoLibrary.RequestAuthorization (status => {
-						if (status == PHAuthorizationStatus.Authorized) {
-							// To preserve the metadata, we create an asset from the JPEG NSData representation.
-							// Note that creating an asset from a UIImage discards the metadata.
-
-							// In iOS 9, we can use AddResource method on PHAssetCreationRequest class.
-							// In iOS 8, we save the image to a temporary file and use +[PHAssetChangeRequest creationRequestForAssetFromImageAtFileURL:].
-
-							if (UIDevice.CurrentDevice.CheckSystemVersion (9, 0)) {
-								PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
-									var request = PHAssetCreationRequest.CreationRequestForAsset ();
-									request.AddResource (PHAssetResourceType.Photo, imageData, null);
-								}, (success, err) => {
-									if (!success)
-										Console.WriteLine ("Error occurred while saving image to photo library: {0}", err);
-								});
-							} else {
-								var temporaryFileUrl = new NSUrl (GetTmpFilePath ("jpg"), false);
-								PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
-									NSError error = null;
-									if (imageData.Save (temporaryFileUrl, NSDataWritingOptions.Atomic, out error))
-										PHAssetChangeRequest.FromImage (temporaryFileUrl);
-									else
-										Console.WriteLine ("Error occured while writing image data to a temporary file: {0}", error);
-								}, (success, error) => {
-									if (!success)
-										Console.WriteLine ("Error occurred while saving image to photo library: {0}", error);
-
-									// Delete the temporary file.
-									NSError deleteError;
-									NSFileManager.DefaultManager.Remove (temporaryFileUrl, out deleteError);
-								});
-							}
-						}
-					});
-				} catch (NSErrorException ex) {
-					Console.WriteLine ("Could not capture still image: {0}", ex.Error);
-				}
-			});
-		}
 
 		static string GetTmpFilePath (string extension)
 		{

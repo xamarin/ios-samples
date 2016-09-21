@@ -77,6 +77,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="CameraViewController.cs" />
     <Compile Include="PreviewView.cs" />
+    <Compile Include="PhotoCaptureDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
