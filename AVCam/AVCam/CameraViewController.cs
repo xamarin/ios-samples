@@ -23,6 +23,12 @@ namespace AVCam
 		Off
 	}
 
+	public enum CaptureMode
+	{
+		Photo,
+		Movie
+	}
+
 	[Register ("CameraViewController")]
 	public class CameraViewController : UIViewController, IAVCaptureFileOutputRecordingDelegate
 	{
@@ -30,7 +36,6 @@ namespace AVCam
 		[Outlet]
 		PreviewView PreviewView { get; set; }
 
-		// TODO: ???
 		[Outlet]
 		UILabel CameraUnavailableLabel  { get; set; }
 
@@ -42,7 +47,6 @@ namespace AVCam
 		[Outlet]
 		UIButton RecordButton { get; set; }
 
-		// TODO: ???
 		[Outlet]
 		UIButton CameraButton { get; set; }
 
@@ -66,9 +70,11 @@ namespace AVCam
 
 		AVCaptureDeviceInput videoDeviceInput;
 		readonly AVCapturePhotoOutput photoOutput = new AVCapturePhotoOutput ();
+		AVCaptureMovieFileOutput MovieFileOutput;
 
-		// TODO: ???
-		AVCaptureMovieFileOutput MovieFileOutput { get; set; }
+		readonly AVCaptureDeviceDiscoverySession videoDeviceDiscoverySession = AVCaptureDeviceDiscoverySession.Create (
+			new AVCaptureDeviceType [] { AVCaptureDeviceType.BuiltInWideAngleCamera, AVCaptureDeviceType.BuiltInDuoCamera },
+			AVMediaType.Video, AVCaptureDevicePosition.Unspecified);
 
 		// TODO: ???
 		AVCaptureStillImageOutput StillImageOutput { get; set; }
@@ -223,9 +229,6 @@ namespace AVCam
 
 		#region Session Management
 
-
-		#endregion
-
 		void ConfigureSession ()
 		{
 			if (setupResult != AVCamSetupResult.Success)
@@ -336,6 +339,65 @@ namespace AVCam
 				}
 			});
 		}
+
+		[Export ("toggleCaptureMode:")]
+		void ToggleCaptureMode (UISegmentedControl captureModeControl)
+		{
+			if (captureModeControl.SelectedSegment == (int)CaptureMode.Photo) {
+				RecordButton.Enabled = false;
+
+				sessionQueue.DispatchAsync (() => {
+					// Remove the AVCaptureMovieFileOutput from the session because movie recording is
+					// not supported with AVCaptureSessionPresetPhoto. Additionally, Live Photo
+					// capture is not supported when an AVCaptureMovieFileOutput is connected to the session.
+					session.BeginConfiguration ();
+					session.RemoveOutput (MovieFileOutput);
+					session.SessionPreset = AVCaptureSession.PresetPhoto;
+					session.CommitConfiguration ();
+
+					MovieFileOutput = null;
+
+					if (photoOutput.IsLivePhotoCaptureSupported) {
+						photoOutput.IsLivePhotoCaptureEnabled = true;
+						DispatchQueue.MainQueue.DispatchAsync (() => {
+							LivePhotoModeButton.Enabled = true;
+							LivePhotoModeButton.Enabled = false;
+						});
+					}
+				});
+			} else if (captureModeControl.SelectedSegment == (int)CaptureMode.Movie) {
+				LivePhotoModeButton.Hidden = true;
+
+				sessionQueue.DispatchAsync (() => {
+					var output = new AVCaptureMovieFileOutput ();
+					if (session.CanAddOutput (output)) {
+						session.BeginConfiguration ();
+						session.AddOutput (output);
+						session.SessionPreset = AVCaptureSession.PresetHigh;
+						var connection = output.ConnectionFromMediaType (AVMediaType.Video);
+						if (connection != null) {
+							if (connection.SupportsVideoStabilization)
+								connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto;
+						}
+						session.CommitConfiguration ();
+						MovieFileOutput = output;
+
+						DispatchQueue.MainQueue.DispatchAsync (() => {
+							RecordButton.Enabled = true;
+						});
+					}
+				});
+			}
+		}
+
+		#endregion
+
+		#region Device Configuration
+
+
+
+		#endregion
+
 
 		void AddObservers ()
 		{
