@@ -7,6 +7,7 @@ using CoreFoundation;
 using CoreGraphics;
 using AVFoundation;
 using Photos;
+using System.Linq;
 
 namespace AVCam
 {
@@ -394,7 +395,123 @@ namespace AVCam
 
 		#region Device Configuration
 
+		[Export ("changeCamera:")]
+		void ChangeCamera (UIButton cameraButton)
+		{
+			cameraButton.Enabled = false;
+			RecordButton.Enabled = false;
+			PhotoButton.Enabled = false;
+			LivePhotoModeButton.Enabled = false;
+			CaptureModeControl.Enabled = false;
 
+			sessionQueue.DispatchAsync (() => {
+				AVCaptureDevice currentVideoDevice = videoDeviceInput.Device;
+				AVCaptureDevicePosition currentPosition = currentVideoDevice.Position;
+
+			AVCaptureDevicePosition preferredPosition = 0;
+			AVCaptureDeviceType preferredDeviceType = 0;
+
+				switch (currentPosition) {
+				case AVCaptureDevicePosition.Unspecified:
+				case AVCaptureDevicePosition.Front:
+					preferredPosition = AVCaptureDevicePosition.Back;
+					preferredDeviceType = AVCaptureDeviceType.BuiltInDuoCamera;
+					break;
+
+				case AVCaptureDevicePosition.Back:
+					preferredPosition = AVCaptureDevicePosition.Front;
+					preferredDeviceType = AVCaptureDeviceType.BuiltInWideAngleCamera;
+					break;
+				}
+
+				var devices = videoDeviceDiscoverySession.Devices;
+				AVCaptureDevice newVideoDevice = null;
+
+				// First, look for a device with both the preferred position and device type. Otherwise, look for a device with only the preferred position.
+				newVideoDevice = devices.FirstOrDefault (d => d.Position == preferredPosition && d.DeviceType == preferredDeviceType)
+							  ?? devices.FirstOrDefault (d => d.Position == preferredPosition);
+
+				if (newVideoDevice != null) {
+					NSError error;
+					var input = AVCaptureDeviceInput.FromDevice (newVideoDevice, out error);
+					if (error == null) {
+						session.BeginConfiguration ();
+
+						// Remove the existing device input first, since using the front and back camera simultaneously is not supported.
+						session.RemoveInput (input);
+
+						if (session.CanAddInput (input)) {
+							subjectSubscriber?.Dispose ();
+							subjectSubscriber = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureDevice.SubjectAreaDidChangeNotification, SubjectAreaDidChange, input.Device);
+							session.AddInput (input);
+							videoDeviceInput = input;
+						} else {
+							session.AddInput (videoDeviceInput);
+						}
+
+						var connection = MovieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
+						if (connection != null) {
+							if (connection.SupportsVideoStabilization)
+								connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto;
+						}
+
+						// Set Live Photo capture enabled if it is supported.When changing cameras, the
+						// IsLivePhotoCaptureEnabled property of the AVCapturePhotoOutput gets set to false when
+						// a video device is disconnected from the session.After the new video device is
+						// added to the session, re - enable Live Photo capture on the AVCapturePhotoOutput if it is supported.
+						photoOutput.IsLivePhotoCaptureEnabled = photoOutput.IsLivePhotoCaptureSupported;
+						session.CommitConfiguration ();
+					}
+				}
+
+				DispatchQueue.MainQueue.DispatchAsync (() => {
+					CameraButton.Enabled = true;
+					RecordButton.Enabled = MovieFileOutput != null;
+					PhotoButton.Enabled = true;
+					LivePhotoModeButton.Enabled = true;
+					CaptureModeControl.Enabled = true;
+				});
+			});
+		}
+
+		[Export ("focusAndExposeTap:")]
+		void FocusAndExposeTap (UIGestureRecognizer gestureRecognizer)
+		{
+			var location = gestureRecognizer.LocationInView (gestureRecognizer.View);
+			CGPoint devicePoint = PreviewView.VideoPreviewLayer.CaptureDevicePointOfInterestForPoint (location);
+			UpdateDeviceFocus (AVCaptureFocusMode.AutoFocus, AVCaptureExposureMode.AutoExpose, devicePoint, true);
+		}
+
+		void UpdateDeviceFocus (AVCaptureFocusMode focusMode, AVCaptureExposureMode exposureMode, CGPoint point, bool monitorSubjectAreaChange)
+		{
+			sessionQueue.DispatchAsync (() => {
+				var device = videoDeviceInput?.Device;
+				if (device == null)
+					return;
+
+				NSError error;
+				if (device.LockForConfiguration (out error)) {
+					// Setting (Focus/Exposure)PointOfInterest alone does not initiate a (focus/exposure) operation.
+					// Set (Focus/Exposure)Mode to apply the new point of interest.
+					if (device.FocusPointOfInterestSupported && device.IsFocusModeSupported (focusMode)) {
+						device.FocusPointOfInterest = point;
+						device.FocusMode = focusMode;
+					}
+					if (device.ExposurePointOfInterestSupported && device.IsExposureModeSupported (exposureMode)) {
+						device.ExposurePointOfInterest = point;
+						device.ExposureMode = exposureMode;
+					}
+					device.SubjectAreaChangeMonitoringEnabled = monitorSubjectAreaChange;
+					device.UnlockForConfiguration ();
+				} else {
+					Console.WriteLine ($"Could not lock device for configuration: {error.LocalizedDescription}");
+				}
+			});
+		}
+
+		#endregion
+
+		#region Capturing Photos
 
 		#endregion
 
@@ -586,61 +703,6 @@ namespace AVCam
 			});
 		}
 
-		[Export ("changeCamera:")]
-		void ChangeCamera (CameraViewController sender)
-		{
-			CameraButton.Enabled = false;
-			RecordButton.Enabled = false;
-			StillButton.Enabled = false;
-
-			sessionQueue.DispatchAsync (() => {
-				AVCaptureDevice currentVideoDevice = videoDeviceInput.Device;
-				AVCaptureDevicePosition preferredPosition = AVCaptureDevicePosition.Unspecified;
-				AVCaptureDevicePosition currentPosition = currentVideoDevice.Position;
-
-				switch (currentPosition) {
-					case AVCaptureDevicePosition.Unspecified:
-					case AVCaptureDevicePosition.Front:
-						preferredPosition = AVCaptureDevicePosition.Back;
-						break;
-					case AVCaptureDevicePosition.Back:
-						preferredPosition = AVCaptureDevicePosition.Front;
-						break;
-				}
-				AVCaptureDevice videoDevice = CreateDevice (AVMediaType.Video, preferredPosition);
-				AVCaptureDeviceInput videoDeviceInput = AVCaptureDeviceInput.FromDevice (videoDevice);
-
-				session.BeginConfiguration ();
-
-				// Remove the existing device input first, since using the front and back camera simultaneously is not supported.
-				session.RemoveInput (videoDeviceInput);
-
-				if (session.CanAddInput (videoDeviceInput)) {
-					subjectSubscriber.Dispose ();
-
-					SetFlashModeForDevice (AVCaptureFlashMode.Auto, videoDevice);
-					subjectSubscriber = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureDevice.SubjectAreaDidChangeNotification, SubjectAreaDidChange, videoDevice);
-
-					session.AddInput (videoDeviceInput);
-					videoDeviceInput = videoDeviceInput;
-				} else {
-					session.AddInput (videoDeviceInput);
-				}
-
-				AVCaptureConnection connection = MovieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
-				if (connection.SupportsVideoStabilization)
-					connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto;
-
-				session.CommitConfiguration ();
-
-				DispatchQueue.MainQueue.DispatchAsync (() => {
-					CameraButton.Enabled = true;
-					RecordButton.Enabled = true;
-					StillButton.Enabled = true;
-				});
-			});
-		}
-
 		[Export ("snapStillImage:")]
 		void SnapStillImage (CameraViewController sender)
 		{
@@ -716,14 +778,6 @@ namespace AVCam
 			return AVCaptureDevice.DevicesWithMediaType (AVMediaType.Video).Length;
 		}
 
-		[Export ("focusAndExposeTap:")]
-		void FocusAndExposeTap (UIGestureRecognizer gestureRecognizer)
-		{
-			var location = gestureRecognizer.LocationInView (gestureRecognizer.View);
-			CGPoint devicePoint = ((AVCaptureVideoPreviewLayer)PreviewView.Layer).CaptureDevicePointOfInterestForPoint (location);
-			UpdateDeviceFocus (AVCaptureFocusMode.AutoFocus, AVCaptureExposureMode.AutoExpose, devicePoint, true);
-		}
-
 		#endregion
 
 		#region IAVCaptureFileOutputRecordingDelegate
@@ -785,32 +839,6 @@ namespace AVCam
 
 		#region Device Configuration
 
-		void UpdateDeviceFocus (AVCaptureFocusMode focusMode, AVCaptureExposureMode exposureMode, CGPoint point, bool monitorSubjectAreaChange)
-		{
-			sessionQueue.DispatchAsync (() => {
-				if (videoDeviceInput == null)
-					return;
-
-				AVCaptureDevice device = videoDeviceInput.Device;
-				NSError error;
-				if (device.LockForConfiguration (out error)) {
-					// Setting (Focus/Exposure)PointOfInterest alone does not initiate a (focus/exposure) operation.
-					// Set (Focus/Exposure)Mode to apply the new point of interest.
-					if (device.FocusPointOfInterestSupported && device.IsFocusModeSupported (focusMode)) {
-						device.FocusPointOfInterest = point;
-						device.FocusMode = focusMode;
-					}
-					if (device.ExposurePointOfInterestSupported && device.IsExposureModeSupported (exposureMode)) {
-						device.ExposurePointOfInterest = point;
-						device.ExposureMode = exposureMode;
-					}
-					device.SubjectAreaChangeMonitoringEnabled = monitorSubjectAreaChange;
-					device.UnlockForConfiguration ();
-				} else {
-					Console.WriteLine ("Could not lock device for configuration: {0}", error);
-				}
-			});
-		}
 
 		static void SetFlashModeForDevice (AVCaptureFlashMode flashMode, AVCaptureDevice device)
 		{
