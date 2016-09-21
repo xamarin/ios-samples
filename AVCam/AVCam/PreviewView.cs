@@ -22,14 +22,14 @@ namespace AVCam
 
 		public AVCaptureSession Session {
 			get {
-				return PreviewLayer.Session;
+				return VideoPreviewLayer.Session;
 			}
 			set {
-				PreviewLayer.Session = value;
+				VideoPreviewLayer.Session = value;
 			}
 		}
 
-		AVCaptureVideoPreviewLayer PreviewLayer {
+		public AVCaptureVideoPreviewLayer VideoPreviewLayer {
 			get {
 				return (AVCaptureVideoPreviewLayer)Layer;
 			}

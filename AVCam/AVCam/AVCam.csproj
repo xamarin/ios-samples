@@ -105,7 +105,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Resources\Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />

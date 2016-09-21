@@ -17,41 +17,68 @@ namespace AVCam
 		SessionConfigurationFailed
 	}
 
+	public enum LivePhotoMode
+	{
+		On,
+		Off
+	}
+
 	[Register ("CameraViewController")]
 	public class CameraViewController : UIViewController, IAVCaptureFileOutputRecordingDelegate
 	{
+		// TODO: ???
 		[Outlet]
 		PreviewView PreviewView { get; set; }
 
+		// TODO: ???
 		[Outlet]
 		UILabel CameraUnavailableLabel  { get; set; }
 
+		// TODO: ???
 		[Outlet]
 		UIButton ResumeButton { get; set; }
 
+		// TODO: ???
 		[Outlet]
 		UIButton RecordButton { get; set; }
 
+		// TODO: ???
 		[Outlet]
 		UIButton CameraButton { get; set; }
 
+		// TODO: ???
 		[Outlet]
 		UIButton StillButton { get; set; }
 
-		DispatchQueue SessionQueue { get; set; }
+		[Outlet]
+		UIButton PhotoButton { get; set; }
 
-		AVCaptureSession Session  { get; set; }
+		[Outlet]
+		UIButton LivePhotoModeButton { get; set; }
 
-		AVCaptureDeviceInput VideoDeviceInput  { get; set; }
+		[Outlet]
+		UISegmentedControl CaptureModeControl { get; set; }
 
+		// Communicate with the session and other session objects on this queue.
+		readonly DispatchQueue sessionQueue = new DispatchQueue ("session queue");
+
+		readonly AVCaptureSession session = new AVCaptureSession ();
+
+		AVCaptureDeviceInput videoDeviceInput;
+		readonly AVCapturePhotoOutput photoOutput = new AVCapturePhotoOutput ();
+
+		// TODO: ???
 		AVCaptureMovieFileOutput MovieFileOutput { get; set; }
 
+		// TODO: ???
 		AVCaptureStillImageOutput StillImageOutput { get; set; }
 
-		AVCamSetupResult SetupResult { get; set; }
+		AVCamSetupResult setupResult;
+		LivePhotoMode livePhotoMode = LivePhotoMode.Off;
 
-		bool SessionRunning { get; set; }
+		bool sessionRunning;
 
+		// TODO: ???
 		nint backgroundRecordingID;
 
 		IDisposable subjectSubscriber;
@@ -67,24 +94,19 @@ namespace AVCam
 		{
 		}
 
-		public async override void ViewDidLoad ()
+		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 
 			// Disable UI. The UI is enabled if and only if the session starts running.
 			CameraButton.Enabled = false;
 			RecordButton.Enabled = false;
-			StillButton.Enabled = false;
-
-			// Create the AVCaptureSession.
-			Session = new AVCaptureSession ();
+			PhotoButton.Enabled = false;
+			LivePhotoModeButton.Enabled = false;
+			CaptureModeControl.Enabled = false;
 
 			// Setup the preview view.
-			PreviewView.Session = Session;
-
-			// Communicate with the session and other session objects on this queue.
-			SessionQueue = new DispatchQueue ("session queue");
-			SetupResult = AVCamSetupResult.Success;
+			PreviewView.Session = session;
 
 			// Check video authorization status. Video access is required and audio access is optional.
 			// If audio access is denied, audio is not recorded during movie recording.
@@ -98,16 +120,17 @@ namespace AVCam
 				// asking the user for audio access if video access is denied.
 				// Note that audio access will be implicitly requested when we create an AVCaptureDeviceInput for audio during session setup.
 				case AVAuthorizationStatus.NotDetermined:
-					SessionQueue.Suspend ();
-					var granted = await AVCaptureDevice.RequestAccessForMediaTypeAsync (AVMediaType.Video);
-					if (!granted)
-						SetupResult = AVCamSetupResult.CameraNotAuthorized;
-					SessionQueue.Resume ();
+					sessionQueue.Suspend ();
+					AVCaptureDevice.RequestAccessForMediaType (AVMediaType.Video, granted => {
+						if (!granted)
+							setupResult = AVCamSetupResult.CameraNotAuthorized;
+						sessionQueue.Resume ();
+					});
 					break;
 
 				// The user has previously denied access.
 				default:
-					SetupResult = AVCamSetupResult.CameraNotAuthorized;
+					setupResult = AVCamSetupResult.CameraNotAuthorized;
 					break;
 			}
 
@@ -116,87 +139,19 @@ namespace AVCam
 			// Why not do all of this on the main queue?
 			// Because AVCaptureSession.StartRunning is a blocking call which can take a long time. We dispatch session setup to the sessionQueue
 			// so that the main queue isn't blocked, which keeps the UI responsive.
-			SessionQueue.DispatchAsync (() => {
-				if (SetupResult != AVCamSetupResult.Success)
-					return;
-
-				backgroundRecordingID = -1;
-				NSError error;
-				AVCaptureDevice videoDevice = CreateDevice (AVMediaType.Video, AVCaptureDevicePosition.Back);
-				AVCaptureDeviceInput videoDeviceInput = AVCaptureDeviceInput.FromDevice (videoDevice, out error);
-				if (videoDeviceInput == null)
-					Console.WriteLine ("Could not create video device input: {0}", error);
-
-				Session.BeginConfiguration ();
-				if (Session.CanAddInput (videoDeviceInput)) {
-					Session.AddInput (VideoDeviceInput = videoDeviceInput);
-					DispatchQueue.MainQueue.DispatchAsync (() => {
-						// Why are we dispatching this to the main queue?
-						// Because AVCaptureVideoPreviewLayer is the backing layer for PreviewView and UIView
-						// can only be manipulated on the main thread.
-						// Note: As an exception to the above rule, it is not necessary to serialize video orientation changes
-						// on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
-						// Use the status bar orientation as the initial video orientation. Subsequent orientation changes are handled by
-						// ViewWillTransitionToSize method.
-						UIInterfaceOrientation statusBarOrientation = UIApplication.SharedApplication.StatusBarOrientation;
-						AVCaptureVideoOrientation initialVideoOrientation = AVCaptureVideoOrientation.Portrait;
-						if (statusBarOrientation != UIInterfaceOrientation.Unknown)
-							initialVideoOrientation = (AVCaptureVideoOrientation)(long)statusBarOrientation;
-
-						var previewLayer = (AVCaptureVideoPreviewLayer)PreviewView.Layer;
-						previewLayer.Connection.VideoOrientation = initialVideoOrientation;
-					});
-				} else {
-					Console.WriteLine ("Could not add video device input to the session");
-					SetupResult = AVCamSetupResult.SessionConfigurationFailed;
-				}
-
-				AVCaptureDevice audioDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Audio);
-				AVCaptureDeviceInput audioDeviceInput = AVCaptureDeviceInput.FromDevice (audioDevice, out error);
-				if (audioDeviceInput == null)
-					Console.WriteLine ("Could not create audio device input: {0}", error);
-
-				if (Session.CanAddInput (audioDeviceInput))
-					Session.AddInput (audioDeviceInput);
-				else
-					Console.WriteLine ("Could not add audio device input to the session");
-
-				var movieFileOutput = new AVCaptureMovieFileOutput ();
-				if (Session.CanAddOutput (movieFileOutput)) {
-					Session.AddOutput (MovieFileOutput = movieFileOutput);
-					AVCaptureConnection connection = movieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
-					if (connection.SupportsVideoStabilization)
-						connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto;
-				} else {
-					Console.WriteLine ("Could not add movie file output to the session");
-					SetupResult = AVCamSetupResult.SessionConfigurationFailed;
-				}
-
-				var stillImageOutput = new AVCaptureStillImageOutput ();
-				if (Session.CanAddOutput (stillImageOutput)) {
-					stillImageOutput.CompressedVideoSetting = new AVVideoSettingsCompressed {
-						Codec = AVVideoCodec.JPEG
-					};
-					Session.AddOutput (StillImageOutput = stillImageOutput);
-				} else {
-					Console.WriteLine ("Could not add still image output to the session");
-					SetupResult = AVCamSetupResult.SessionConfigurationFailed;
-				}
-
-				Session.CommitConfiguration ();
-			});
+			sessionQueue.DispatchAsync (ConfigureSession);
 		}
 
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			SessionQueue.DispatchAsync (() => {
-				switch (SetupResult) {
+			sessionQueue.DispatchAsync (() => {
+				switch (setupResult) {
 				// Only setup observers and start the session running if setup succeeded.
 				case AVCamSetupResult.Success:
 					AddObservers ();
-					Session.StartRunning ();
-					SessionRunning = Session.Running;
+					session.StartRunning ();
+					sessionRunning = session.Running;
 					break;
 
 				case AVCamSetupResult.CameraNotAuthorized:
@@ -206,10 +161,9 @@ namespace AVCam
 						UIAlertAction cancelAction = UIAlertAction.Create ("OK", UIAlertActionStyle.Cancel, null);
 						alertController.AddAction (cancelAction);
 						// Provide quick access to Settings.
-						UIAlertAction settingsAction = UIAlertAction.Create ("Settings", UIAlertActionStyle.Default, action => {
-							UIApplication.SharedApplication.OpenUrl (new NSUrl (UIApplication.OpenSettingsUrlString));
-						});
-						alertController.AddAction (settingsAction);
+						alertController.AddAction (UIAlertAction.Create ("Settings", UIAlertActionStyle.Default, action => {
+							UIApplication.SharedApplication.OpenUrl (new NSUrl (UIApplication.OpenSettingsUrlString), new NSDictionary (), null);
+						}));
 						PresentViewController (alertController, true, null);
 					});
 					break;
@@ -218,8 +172,7 @@ namespace AVCam
 					DispatchQueue.MainQueue.DispatchAsync (() => {
 						string message = "Unable to capture media";
 						UIAlertController alertController = UIAlertController.Create ("AVCam", message, UIAlertControllerStyle.Alert);
-						UIAlertAction cancelAction = UIAlertAction.Create ("OK", UIAlertActionStyle.Cancel, null);
-						alertController.AddAction (cancelAction);
+						alertController.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Cancel, null));
 						PresentViewController (alertController, true, null);
 					});
 					break;
@@ -229,9 +182,10 @@ namespace AVCam
 
 		public override void ViewDidDisappear (bool animated)
 		{
-			SessionQueue.DispatchAsync (() => {
-				if (SetupResult == AVCamSetupResult.Success) {
-					Session.StopRunning ();
+			sessionQueue.DispatchAsync (() => {
+				if (setupResult == AVCamSetupResult.Success) {
+					session.StopRunning ();
+					sessionRunning = session.Running;
 					RemoveObservers ();
 				}
 			});
@@ -240,10 +194,8 @@ namespace AVCam
 
 		public override bool ShouldAutorotate ()
 		{
-			if (MovieFileOutput == null)
-				return true;
-
-			return !MovieFileOutput.Recording;
+			// Disable autorotation of the interface when recording is in progress.
+			return (MovieFileOutput == null) || !MovieFileOutput.Recording;
 		}
 
 		public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations ()
@@ -254,29 +206,152 @@ namespace AVCam
 		public override void ViewWillTransitionToSize (CGSize toSize, IUIViewControllerTransitionCoordinator coordinator)
 		{
 			base.ViewWillTransitionToSize (toSize, coordinator);
-			// Note that the app delegate controls the device orientation notifications required to use the device orientation.
-			UIDeviceOrientation deviceOrientation = UIDevice.CurrentDevice.Orientation;
-			if (deviceOrientation.IsPortrait () || deviceOrientation.IsLandscape ()) {
-				var previewLayer = (AVCaptureVideoPreviewLayer)PreviewView.Layer;
-				previewLayer.Connection.VideoOrientation = (AVCaptureVideoOrientation)(long)deviceOrientation;
+
+			var videoPreviewLayerConnection = PreviewView.VideoPreviewLayer.Connection;
+			if (videoPreviewLayerConnection != null) {
+				var deviceOrientation = UIDevice.CurrentDevice.Orientation;
+
+				AVCaptureVideoOrientation newVideoOrientation;
+				if (!TryConvertToVideoOrientation (deviceOrientation, out newVideoOrientation))
+					return;
+				if (!deviceOrientation.IsPortrait () && !deviceOrientation.IsLandscape ())
+					return;
+
+				videoPreviewLayerConnection.VideoOrientation = newVideoOrientation;
 			}
+		}
+
+		#region Session Management
+
+
+		#endregion
+
+		void ConfigureSession ()
+		{
+			if (setupResult != AVCamSetupResult.Success)
+				return;
+
+			session.BeginConfiguration ();
+
+			// We do not create an AVCaptureMovieFileOutput when setting up the session because the
+			// AVCaptureMovieFileOutput does not support movie recording with AVCaptureSessionPresetPhoto.
+			session.SessionPreset = AVCaptureSession.PresetPhoto;
+
+			// Add video input.
+			// Choose the back dual camera if available, otherwise default to a wide angle camera.
+			AVCaptureDevice defaultVideoDevice = AVCaptureDevice.GetDefaultDevice (AVCaptureDeviceType.BuiltInDuoCamera, AVMediaType.Video, AVCaptureDevicePosition.Back)
+				?? AVCaptureDevice.GetDefaultDevice (AVCaptureDeviceType.BuiltInWideAngleCamera, AVMediaType.Video, AVCaptureDevicePosition.Back)
+				?? AVCaptureDevice.GetDefaultDevice (AVCaptureDeviceType.BuiltInWideAngleCamera, AVMediaType.Video, AVCaptureDevicePosition.Front);
+
+			NSError error;
+			var input = AVCaptureDeviceInput.FromDevice (defaultVideoDevice, out error);
+			if (error != null) {
+				Console.WriteLine ($"Could not create video device input: {error.LocalizedDescription}");
+				setupResult = AVCamSetupResult.SessionConfigurationFailed;
+				session.CommitConfiguration ();
+				return;
+			}
+
+			if (session.CanAddInput (input)) {
+				session.AddInput (input);
+				videoDeviceInput = input;
+
+				DispatchQueue.MainQueue.DispatchAsync (() => {
+					// Why are we dispatching this to the main queue?
+					// Because AVCaptureVideoPreviewLayer is the backing layer for PreviewView and UIView
+					// can only be manipulated on the main thread.
+					// Note: As an exception to the above rule, it is not necessary to serialize video orientation changes
+					// on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
+					// Use the status bar orientation as the initial video orientation. Subsequent orientation changes are handled by
+					// ViewWillTransitionToSize method.
+					var statusBarOrientation = UIApplication.SharedApplication.StatusBarOrientation;
+					var initialVideoOrientation = AVCaptureVideoOrientation.Portrait;
+					AVCaptureVideoOrientation videoOrientation;
+					if (statusBarOrientation != UIInterfaceOrientation.Unknown && TryConvertToVideoOrientation(statusBarOrientation, out videoOrientation))
+						initialVideoOrientation = videoOrientation;
+
+					PreviewView.VideoPreviewLayer.Connection.VideoOrientation = initialVideoOrientation;
+				});
+			} else {
+				Console.WriteLine ("Could not add video device input to the session");
+				setupResult = AVCamSetupResult.SessionConfigurationFailed;
+				session.CommitConfiguration ();
+				return;
+			}
+
+			// Add audio input.
+			var audioDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Audio);
+			var audioDeviceInput = AVCaptureDeviceInput.FromDevice (audioDevice, out error);
+			if (error != null)
+				Console.WriteLine ($"Could not create audio device input: {error.LocalizedDescription}");
+			if (session.CanAddInput (audioDeviceInput))
+				session.AddInput (audioDeviceInput);
+			else
+				Console.WriteLine ("Could not add audio device input to the session");
+
+			// Add photo output.
+			if (session.CanAddOutput (photoOutput)) {
+				session.AddOutput (photoOutput);
+				photoOutput.IsHighResolutionCaptureEnabled = true;
+				photoOutput.IsLivePhotoCaptureEnabled = photoOutput.IsLivePhotoCaptureSupported;
+				livePhotoMode = photoOutput.IsLivePhotoCaptureSupported ? LivePhotoMode.On : LivePhotoMode.Off;
+			} else {
+				Console.WriteLine ("Could not add photo output to the session");
+				setupResult = AVCamSetupResult.SessionConfigurationFailed;
+				session.CommitConfiguration ();
+				return;
+			}
+			session.CommitConfiguration ();
+		}
+
+		static bool TryGetDefaultVideoCamera (AVCaptureDeviceType type, AVCaptureDevicePosition position, out AVCaptureDevice device)
+		{
+			device = AVCaptureDevice.GetDefaultDevice (type, AVMediaType.Video, position);
+			return device != null;
+		}
+
+		[Export ("resumeInterruptedSession:")]
+		void ResumeInterruptedSession (CameraViewController sender)
+		{
+			sessionQueue.DispatchAsync (() => {
+				// The session might fail to start running, e.g., if a phone or FaceTime call is still using audio or video.
+				// A failure to start the session running will be communicated via a session runtime error notification.
+				// To avoid repeatedly failing to start the session running, we only try to restart the session running in the
+				// session runtime error handler if we aren't trying to resume the session running.
+
+				session.StartRunning ();
+				sessionRunning = session.Running;
+				if (!session.Running) {
+					DispatchQueue.MainQueue.DispatchAsync (() => {
+						const string message = "Unable to resume";
+						UIAlertController alertController = UIAlertController.Create ("AVCam", message, UIAlertControllerStyle.Alert);
+						UIAlertAction cancelAction = UIAlertAction.Create ("OK", UIAlertActionStyle.Cancel, null);
+						alertController.AddAction (cancelAction);
+						PresentViewController (alertController, true, null);
+					});
+				} else {
+					DispatchQueue.MainQueue.DispatchAsync (() => {
+						ResumeButton.Hidden = true;
+					});
+				}
+			});
 		}
 
 		void AddObservers ()
 		{
-			runningObserver = Session.AddObserver ("running", NSKeyValueObservingOptions.New, OnSessionRunningChanged);
+			runningObserver = session.AddObserver ("running", NSKeyValueObservingOptions.New, OnSessionRunningChanged);
 			capturingStillObserver = StillImageOutput.AddObserver ("capturingStillImage", NSKeyValueObservingOptions.New, OnCapturingStillImageChanged);
 			recordingObserver = MovieFileOutput.AddObserver ("recording", NSKeyValueObservingOptions.New, OnRecordingChanged);
 
-			subjectSubscriber = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureDevice.SubjectAreaDidChangeNotification, SubjectAreaDidChange, VideoDeviceInput.Device);
-			runtimeErrorObserver = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.RuntimeErrorNotification, SessionRuntimeError, Session);
+			subjectSubscriber = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureDevice.SubjectAreaDidChangeNotification, SubjectAreaDidChange, videoDeviceInput.Device);
+			runtimeErrorObserver = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.RuntimeErrorNotification, SessionRuntimeError, session);
 
 			// A session can only run when the app is full screen. It will be interrupted in a multi-app layout, introduced in iOS 9.
 			// Add observers to handle these session interruptions
 			// and show a preview is paused message. See the documentation of AVCaptureSession.WasInterruptedNotification for other
 			// interruption reasons.
-			interuptionObserver = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.WasInterruptedNotification, SessionWasInterrupted, Session);
-			interuptionEndedObserver = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.InterruptionEndedNotification, SessionInterruptionEnded, Session);
+			interuptionObserver = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.WasInterruptedNotification, SessionWasInterrupted, session);
+			interuptionEndedObserver = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.InterruptionEndedNotification, SessionInterruptionEnded, session);
 		}
 
 		void RemoveObservers ()
@@ -345,10 +420,10 @@ namespace AVCam
 			// Automatically try to restart the session running if media services were reset and the last start running succeeded.
 			// Otherwise, enable the user to try to resume the session running.
 			if (error.Code == (int)AVError.MediaServicesWereReset) {
-				SessionQueue.DispatchAsync (() => {
-					if (SessionRunning) {
-						Session.StartRunning ();
-						SessionRunning = Session.Running;
+				sessionQueue.DispatchAsync (() => {
+					if (sessionRunning) {
+						session.StartRunning ();
+						sessionRunning = session.Running;
 					} else {
 						DispatchQueue.MainQueue.DispatchAsync (() => {
 							ResumeButton.Hidden = false;
@@ -415,33 +490,6 @@ namespace AVCam
 
 		#region Actions
 
-		[Export ("resumeInterruptedSession:")]
-		void ResumeInterruptedSession (CameraViewController sender)
-		{
-			SessionQueue.DispatchAsync (() => {
-				// The session might fail to start running, e.g., if a phone or FaceTime call is still using audio or video.
-				// A failure to start the session running will be communicated via a session runtime error notification.
-				// To avoid repeatedly failing to start the session running, we only try to restart the session running in the
-				// session runtime error handler if we aren't trying to resume the session running.
-
-				Session.StartRunning ();
-				SessionRunning = Session.Running;
-				if (!Session.Running) {
-					DispatchQueue.MainQueue.DispatchAsync (() => {
-						const string message = "Unable to resume";
-						UIAlertController alertController = UIAlertController.Create ("AVCam", message, UIAlertControllerStyle.Alert);
-						UIAlertAction cancelAction = UIAlertAction.Create ("OK", UIAlertActionStyle.Cancel, null);
-						alertController.AddAction (cancelAction);
-						PresentViewController (alertController, true, null);
-					});
-				} else {
-					DispatchQueue.MainQueue.DispatchAsync (() => {
-						ResumeButton.Hidden = true;
-					});
-				}
-			});
-		}
-
 		[Export ("toggleMovieRecording:")]
 		void ToggleMovieRecording (CameraViewController sender)
 		{
@@ -449,7 +497,7 @@ namespace AVCam
 			CameraButton.Enabled = false;
 			RecordButton.Enabled = false;
 
-			SessionQueue.DispatchAsync (() => {
+			sessionQueue.DispatchAsync (() => {
 				if (!MovieFileOutput.Recording) {
 					if (UIDevice.CurrentDevice.IsMultitaskingSupported) {
 						// Setup background task. This is needed because the IAVCaptureFileOutputRecordingDelegate.FinishedRecording
@@ -466,7 +514,7 @@ namespace AVCam
 					connection.VideoOrientation = previewLayer.Connection.VideoOrientation;
 
 					// Turn OFF flash for video recording.
-					SetFlashModeForDevice (AVCaptureFlashMode.Off, VideoDeviceInput.Device);
+					SetFlashModeForDevice (AVCaptureFlashMode.Off, videoDeviceInput.Device);
 
 					// Start recording to a temporary file.
 					MovieFileOutput.StartRecordingToOutputFile (new NSUrl(GetTmpFilePath ("mov"), false), this);
@@ -483,8 +531,8 @@ namespace AVCam
 			RecordButton.Enabled = false;
 			StillButton.Enabled = false;
 
-			SessionQueue.DispatchAsync (() => {
-				AVCaptureDevice currentVideoDevice = VideoDeviceInput.Device;
+			sessionQueue.DispatchAsync (() => {
+				AVCaptureDevice currentVideoDevice = videoDeviceInput.Device;
 				AVCaptureDevicePosition preferredPosition = AVCaptureDevicePosition.Unspecified;
 				AVCaptureDevicePosition currentPosition = currentVideoDevice.Position;
 
@@ -500,28 +548,28 @@ namespace AVCam
 				AVCaptureDevice videoDevice = CreateDevice (AVMediaType.Video, preferredPosition);
 				AVCaptureDeviceInput videoDeviceInput = AVCaptureDeviceInput.FromDevice (videoDevice);
 
-				Session.BeginConfiguration ();
+				session.BeginConfiguration ();
 
 				// Remove the existing device input first, since using the front and back camera simultaneously is not supported.
-				Session.RemoveInput (VideoDeviceInput);
+				session.RemoveInput (videoDeviceInput);
 
-				if (Session.CanAddInput (videoDeviceInput)) {
+				if (session.CanAddInput (videoDeviceInput)) {
 					subjectSubscriber.Dispose ();
 
 					SetFlashModeForDevice (AVCaptureFlashMode.Auto, videoDevice);
 					subjectSubscriber = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureDevice.SubjectAreaDidChangeNotification, SubjectAreaDidChange, videoDevice);
 
-					Session.AddInput (videoDeviceInput);
-					VideoDeviceInput = videoDeviceInput;
+					session.AddInput (videoDeviceInput);
+					videoDeviceInput = videoDeviceInput;
 				} else {
-					Session.AddInput (VideoDeviceInput);
+					session.AddInput (videoDeviceInput);
 				}
 
 				AVCaptureConnection connection = MovieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
 				if (connection.SupportsVideoStabilization)
 					connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto;
 
-				Session.CommitConfiguration ();
+				session.CommitConfiguration ();
 
 				DispatchQueue.MainQueue.DispatchAsync (() => {
 					CameraButton.Enabled = true;
@@ -534,7 +582,7 @@ namespace AVCam
 		[Export ("snapStillImage:")]
 		void SnapStillImage (CameraViewController sender)
 		{
-			SessionQueue.DispatchAsync (async () => {
+			sessionQueue.DispatchAsync (async () => {
 				AVCaptureConnection connection = StillImageOutput.ConnectionFromMediaType (AVMediaType.Video);
 				var previewLayer = (AVCaptureVideoPreviewLayer)PreviewView.Layer;
 
@@ -542,7 +590,7 @@ namespace AVCam
 				connection.VideoOrientation = previewLayer.Connection.VideoOrientation;
 
 				// Flash set to Auto for Still Capture.
-				SetFlashModeForDevice (AVCaptureFlashMode.Auto, VideoDeviceInput.Device);
+				SetFlashModeForDevice (AVCaptureFlashMode.Auto, videoDeviceInput.Device);
 
 				// Capture a still image.
 				try {
@@ -677,11 +725,11 @@ namespace AVCam
 
 		void UpdateDeviceFocus (AVCaptureFocusMode focusMode, AVCaptureExposureMode exposureMode, CGPoint point, bool monitorSubjectAreaChange)
 		{
-			SessionQueue.DispatchAsync (() => {
-				if (VideoDeviceInput == null)
+			sessionQueue.DispatchAsync (() => {
+				if (videoDeviceInput == null)
 					return;
 
-				AVCaptureDevice device = VideoDeviceInput.Device;
+				AVCaptureDevice device = videoDeviceInput.Device;
 				NSError error;
 				if (device.LockForConfiguration (out error)) {
 					// Setting (Focus/Exposure)PointOfInterest alone does not initiate a (focus/exposure) operation.
@@ -729,5 +777,55 @@ namespace AVCam
 		}
 
 		#endregion
+
+		static bool TryConvertToVideoOrientation (UIDeviceOrientation orientation, out AVCaptureVideoOrientation result)
+		{
+			switch (orientation) {
+			case UIDeviceOrientation.Portrait:
+				result = AVCaptureVideoOrientation.Portrait;
+				return true;
+
+			case UIDeviceOrientation.PortraitUpsideDown:
+				result = AVCaptureVideoOrientation.PortraitUpsideDown;
+				return true;
+
+			case UIDeviceOrientation.LandscapeLeft:
+				result = AVCaptureVideoOrientation.LandscapeRight;
+				return true;
+
+			case UIDeviceOrientation.LandscapeRight:
+				result = AVCaptureVideoOrientation.LandscapeLeft;
+				return true;
+
+			default:
+				result = 0;
+				return false;
+			}
+		}
+
+		static bool TryConvertToVideoOrientation (UIInterfaceOrientation orientation, out AVCaptureVideoOrientation result)
+		{
+			switch (orientation) {
+			case UIInterfaceOrientation.Portrait:
+				result = AVCaptureVideoOrientation.Portrait;
+				return true;
+
+			case UIInterfaceOrientation.PortraitUpsideDown:
+				result = AVCaptureVideoOrientation.PortraitUpsideDown;
+				return true;
+
+			case UIInterfaceOrientation.LandscapeLeft:
+				result = AVCaptureVideoOrientation.LandscapeRight;
+				return true;
+
+			case UIInterfaceOrientation.LandscapeRight:
+				result = AVCaptureVideoOrientation.LandscapeLeft;
+				return true;
+
+			default:
+				result = 0;
+				return false;
+			}
+		}
 	}
 }
