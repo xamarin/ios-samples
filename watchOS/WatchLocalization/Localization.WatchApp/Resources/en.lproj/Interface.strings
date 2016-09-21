@@ -1,0 +1,7 @@
+﻿"AgC-eL-Hgc.title" = "English"; // interface controller title
+"0.text" = "Welcome to watchOS L10n"; 
+"2.text" = "Language settings are in Apple Watch App on iOS";
+"3.title" = "Next"; // Minutes page
+
+"45.title" = "Detail";
+"46.text" = "Second screen";

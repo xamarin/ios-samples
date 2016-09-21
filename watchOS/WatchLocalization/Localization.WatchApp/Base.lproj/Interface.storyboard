@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6221" systemVersion="14A389" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3734"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="" title="WatchL10n">
+                    <items>
+                        <label alignment="left" text="Welcome..." id="0" numberOfLines="0">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <imageView alignment="left" id="1" image="gradient"/>
+                        <label alignment="left" text="Change the language in the Apple Watch app" id="2" numberOfLines="0"/>
+                        <button width="1" alignment="left" title="Hello" id="3">
+                            <connections>
+                                <segue id="42" destination="5" kind="push"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="WelcomeLabel" destination="0" id="name-outlet-0"/>
+                        <outlet property="WelcomeImage" destination="1" id="name-outlet-1"/>
+                        <outlet property="Subheading" destination="2" id="name-outlet-2"/>
+                        <outlet property="HelloButton" destination="3" id="name-outlet-3"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="XkS-y5-khE"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" id="JfB-70-Muf">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                    </notificationCategory>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="XkS-y5-khE" id="49B-RR-99y"/>
+                        <segue destination="gdX-wl-uQE" kind="relationship" relationship="dynamicNotificationInterface" id="fKh-qV-3T2"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="4" y="285"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="KIl-fV-djm">
+            <objects>
+                <controller id="gdX-wl-uQE" customClass="NotificationController" customModuleProvider=""/>
+            </objects>
+            <point key="canvasLocation" x="235" y="285"/>
+        </scene>
+        <scene sceneID="4">
+            <objects>
+                <controller id="5" customClass="DetailController" title="Detail">
+                    <items>
+                        <imageView alignment="left" id="44" image="language"/>
+                        <label alignment="left" text="Detail" id="45" width="1">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <label alignment="left" text="Time" id="46" width="1" numberOfLines="0"/>
+                    </items>
+                    <connections>
+                        <outlet property="DisplayImage" destination="44" id="name-outlet-44"/>
+                        <outlet property="DisplayText" destination="45" id="name-outlet-45"/>
+                        <outlet property="DisplayTime" destination="46" id="name-outlet-46"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="208" y="-5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="gradient" width="136" height="16"/>
+        <image name="language" width="136" height="32"/>
+    </resources>
+</document>
