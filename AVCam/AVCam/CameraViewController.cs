@@ -533,7 +533,7 @@ namespace AVCam
 				if (livePhotoMode == LivePhotoMode.On && photoOutput.IsLivePhotoCaptureSupported) {
 					var livePhotoMovieFileName = new NSUuid ().AsString ();
 					var livePhotoMovieFilePath = Path.Combine (Path.GetTempPath (), Path.ChangeExtension (livePhotoMovieFileName, "mov"));
-					photoSettings.LivePhotoMovieFileUrl = NSUrl.FromString (livePhotoMovieFilePath);
+					photoSettings.LivePhotoMovieFileUrl = NSUrl.FromFilename (livePhotoMovieFilePath);
 				}
 
 				// Use a separate object for the photo capture delegate to isolate each capture life cycle.
@@ -630,7 +630,7 @@ namespace AVCam
 					// Start recording to a temporary file.
 					var outputFileName = new NSUuid ().AsString ();
 					var outputFilePath = Path.Combine (Path.GetTempPath (), Path.ChangeExtension (outputFileName, "mov"));
-					output.StartRecordingToOutputFile (NSUrl.FromString (outputFilePath), this);
+					output.StartRecordingToOutputFile (NSUrl.FromFilename (outputFilePath), this);
 				} else {
 					output.StopRecording ();
 				}

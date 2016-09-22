@@ -44,7 +44,13 @@
 	<key>CFBundleDisplayName</key>
 	<string>avcam</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Camera will be used to record movies and capture still images.</string>
+	<string>to take photos and video</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>to record Live Photos and movies</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>to save photos and videos to your Photo Library</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Assets.xcassets/AppIcon.appiconset</string>
 </dict>
