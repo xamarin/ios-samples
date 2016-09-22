@@ -41,11 +41,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>XSAppIconAssets</key>
-	<string>Resources/Images.xcassets/AppIcon.appiconset</string>
 	<key>CFBundleDisplayName</key>
 	<string>avcam</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Camera will be used to record movies and capture still images.</string>
+	<key>XSAppIconAssets</key>
+	<string>Resources/Assets.xcassets/AppIcon.appiconset</string>
 </dict>
 </plist>
