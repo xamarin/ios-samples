@@ -1,0 +1,8 @@
+{
+  "textProvider" : {
+    "class" : "CLKSimpleTextProvider",
+    "text" : "X1"
+  },
+  "class" : "CLKComplicationTemplateModularSmallSimpleText",
+  "version" : 30000
+}

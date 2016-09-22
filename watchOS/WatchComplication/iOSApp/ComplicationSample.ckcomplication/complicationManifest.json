@@ -1,0 +1,10 @@
+{
+  "supported complication families" : {
+    "3" : "54240BB9-5D79-4305-838A-BDD3FA8271A8.json",
+    "1" : "DE25A806-EF73-4FAF-9950-DC630590FA68.json",
+    "4" : "0834CABD-BC4F-4BFD-92F5-0E5E3C9CBE8F.json",
+    "2" : "5CBA1C54-AC0A-422A-8B7F-2FA78289BCC2.json",
+    "0" : "924C6D24-C952-499D-A202-1627E0635059.json"
+  },
+  "client ID" : "com.xamarin.watchcomplication.watchkitapp.watchkitextension"
+}
