@@ -357,7 +357,7 @@ namespace AVCam
 						photoOutput.IsLivePhotoCaptureEnabled = true;
 						DispatchQueue.MainQueue.DispatchAsync (() => {
 							LivePhotoModeButton.Enabled = true;
-							LivePhotoModeButton.Enabled = false;
+							LivePhotoModeButton.Hidden = false;
 						});
 					}
 				});
@@ -433,7 +433,7 @@ namespace AVCam
 						session.BeginConfiguration ();
 
 						// Remove the existing device input first, since using the front and back camera simultaneously is not supported.
-						session.RemoveInput (input);
+						session.RemoveInput (videoDeviceInput);
 
 						if (session.CanAddInput (input)) {
 							subjectSubscriber?.Dispose ();
@@ -444,7 +444,7 @@ namespace AVCam
 							session.AddInput (videoDeviceInput);
 						}
 
-						var connection = MovieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
+						var connection = MovieFileOutput?.ConnectionFromMediaType (AVMediaType.Video);
 						if (connection != null) {
 							if (connection.SupportsVideoStabilization)
 								connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto;
@@ -732,9 +732,6 @@ namespace AVCam
 			interuptionEndedObserver = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.InterruptionEndedNotification, SessionInterruptionEnded, session);
 		}
 
-
-		#endregion
-
 		void RemoveObservers ()
 		{
 			runningObserver.Dispose ();
@@ -835,6 +832,8 @@ namespace AVCam
 					success => CameraUnavailableLabel.Hidden = true);
 			}
 		}
+
+		#endregion
 
 		static bool TryConvertToVideoOrientation (UIDeviceOrientation orientation, out AVCaptureVideoOrientation result)
 		{
