@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Linq;
+using System.Collections.Generic;
 
 using UIKit;
 using Foundation;
@@ -7,8 +9,6 @@ using CoreFoundation;
 using CoreGraphics;
 using AVFoundation;
 using Photos;
-using System.Linq;
-using System.Collections.Generic;
 using CoreVideo;
 
 namespace AVCam
@@ -50,10 +50,6 @@ namespace AVCam
 		[Outlet]
 		UIButton CameraButton { get; set; }
 
-		// TODO: ???
-		[Outlet]
-		UIButton StillButton { get; set; }
-
 		[Outlet]
 		UIButton PhotoButton { get; set; }
 
@@ -71,8 +67,8 @@ namespace AVCam
 		readonly AVCaptureSession session = new AVCaptureSession ();
 
 		AVCaptureDeviceInput videoDeviceInput;
-		readonly AVCapturePhotoOutput photoOutput = new AVCapturePhotoOutput ();
 		AVCaptureMovieFileOutput MovieFileOutput;
+		readonly AVCapturePhotoOutput photoOutput = new AVCapturePhotoOutput ();
 
 		int inProgressLivePhotoCapturesCount;
 
@@ -82,21 +78,15 @@ namespace AVCam
 			new AVCaptureDeviceType [] { AVCaptureDeviceType.BuiltInWideAngleCamera, AVCaptureDeviceType.BuiltInDuoCamera },
 			AVMediaType.Video, AVCaptureDevicePosition.Unspecified);
 
-		// TODO: ???
-		AVCaptureStillImageOutput StillImageOutput { get; set; }
-
 		AVCamSetupResult setupResult;
 		LivePhotoMode livePhotoMode = LivePhotoMode.Off;
 
 		bool sessionRunning;
 
-		// TODO: ???
 		nint backgroundRecordingID;
 
 		IDisposable subjectSubscriber;
 		IDisposable runningObserver;
-		IDisposable capturingStillObserver;
-		IDisposable recordingObserver;
 		IDisposable runtimeErrorObserver;
 		IDisposable interuptionObserver;
 		IDisposable interuptionEndedObserver;
@@ -725,13 +715,11 @@ namespace AVCam
 
 		#endregion
 
+		#region KVO and Notifications
 
-
-void AddObservers ()
+		void AddObservers ()
 		{
 			runningObserver = session.AddObserver ("running", NSKeyValueObservingOptions.New, OnSessionRunningChanged);
-			capturingStillObserver = StillImageOutput.AddObserver ("capturingStillImage", NSKeyValueObservingOptions.New, OnCapturingStillImageChanged);
-			recordingObserver = MovieFileOutput.AddObserver ("recording", NSKeyValueObservingOptions.New, OnRecordingChanged);
 
 			subjectSubscriber = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureDevice.SubjectAreaDidChangeNotification, SubjectAreaDidChange, videoDeviceInput.Device);
 			runtimeErrorObserver = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.RuntimeErrorNotification, SessionRuntimeError, session);
@@ -744,68 +732,48 @@ void AddObservers ()
 			interuptionEndedObserver = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.InterruptionEndedNotification, SessionInterruptionEnded, session);
 		}
 
+
+		#endregion
+
 		void RemoveObservers ()
 		{
-			subjectSubscriber.Dispose ();
 			runningObserver.Dispose ();
-			capturingStillObserver.Dispose ();
-			recordingObserver.Dispose ();
+			subjectSubscriber.Dispose ();
 			runtimeErrorObserver.Dispose ();
 			interuptionObserver.Dispose ();
 			interuptionEndedObserver.Dispose ();
 		}
 
-		void OnCapturingStillImageChanged (NSObservedChange change)
-		{
-			bool isCapturingStillImage = ((NSNumber)change.NewValue).BoolValue;
-			if (isCapturingStillImage) {
-				DispatchQueue.MainQueue.DispatchAsync (() => {
-					PreviewView.Layer.Opacity = 0;
-					UIView.Animate (0.25, () => {
-						PreviewView.Layer.Opacity = 1;
-					});
-				});
-			}
-		}
-
-		void OnRecordingChanged (NSObservedChange change)
-		{
-			bool isRecording = ((NSNumber)change.NewValue).BoolValue;
-			DispatchQueue.MainQueue.DispatchAsync (() => {
-				if (isRecording) {
-					CameraButton.Enabled = false;
-					RecordButton.Enabled = true;
-					RecordButton.SetTitle ("Stop", UIControlState.Normal);
-				} else {
-					// Only enable the ability to change camera if the device has more than one camera.
-					CameraButton.Enabled = NumberOfVideoCameras () > 1;
-					RecordButton.Enabled = true;
-					RecordButton.SetTitle ("Record", UIControlState.Normal);
-				}
-			});
-		}
-
 		void OnSessionRunningChanged (NSObservedChange change)
 		{
 			bool isSessionRunning = ((NSNumber)change.NewValue).BoolValue;
+			var isLivePhotoCaptureSupported = photoOutput.IsLivePhotoCaptureSupported;
+			var isLivePhotoCaptureEnabled = photoOutput.IsLivePhotoCaptureEnabled;
+
 			DispatchQueue.MainQueue.DispatchAsync (() => {
 				// Only enable the ability to change camera if the device has more than one camera.
-				CameraButton.Enabled = isSessionRunning && NumberOfVideoCameras () > 1;
-				RecordButton.Enabled = isSessionRunning;
-				StillButton.Enabled = isSessionRunning;
+				CameraButton.Enabled = isSessionRunning && UniqueDevicePositionsCount (videoDeviceDiscoverySession) > 1;
+				RecordButton.Enabled = isSessionRunning && MovieFileOutput != null;
+				PhotoButton.Enabled = isSessionRunning;
+				CaptureModeControl.Enabled = isSessionRunning;
+				LivePhotoModeButton.Enabled = isSessionRunning && isLivePhotoCaptureEnabled;
+				LivePhotoModeButton.Hidden = !(isSessionRunning && isLivePhotoCaptureSupported);
 			});
 		}
 
 		void SubjectAreaDidChange (NSNotification notification)
 		{
 			var devicePoint = new CGPoint (0.5, 0.5);
-			UpdateDeviceFocus (AVCaptureFocusMode.ContinuousAutoFocus, AVCaptureExposureMode.ContinuousAutoExposure, devicePoint, false);
+			UpdateDeviceFocus (AVCaptureFocusMode.AutoFocus, AVCaptureExposureMode.ContinuousAutoExposure, devicePoint, false);
 		}
 
 		void SessionRuntimeError (NSNotification notification)
 		{
 			var error = (NSError)notification.UserInfo [AVCaptureSession.ErrorKey];
-			Console.WriteLine ("Capture session runtime error: {0}", error);
+			if (error == null)
+				return;
+
+			Console.WriteLine ($"Capture session runtime error: {error.LocalizedDescription}");
 
 			// Automatically try to restart the session running if media services were reset and the last start running succeeded.
 			// Otherwise, enable the user to try to resume the session running.
@@ -815,9 +783,7 @@ void AddObservers ()
 						session.StartRunning ();
 						sessionRunning = session.Running;
 					} else {
-						DispatchQueue.MainQueue.DispatchAsync (() => {
-							ResumeButton.Hidden = false;
-						});
+						DispatchQueue.MainQueue.DispatchAsync (() => ResumeButton.Hidden = false);
 					}
 				});
 			} else {
@@ -832,34 +798,26 @@ void AddObservers ()
 			// then the user can let AVCam resume the session running, which will stop music playback.
 			// Note that stopping music playback in control center will not automatically resume the session running.
 			// Also note that it is not always possible to resume, see ResumeInterruptedSession.
-			bool showResumeButton = false;
+			var reason = (AVCaptureSessionInterruptionReason)((NSNumber)notification.UserInfo [AVCaptureSession.InterruptionReasonKey]).Int32Value;
+			Console.WriteLine ("Capture session was interrupted with reason {0}", reason);
 
-			// In iOS 9 and later, the userInfo dictionary contains information on why the session was interrupted.
-			if (UIDevice.CurrentDevice.CheckSystemVersion (9, 0)) {
-				var reason = (AVCaptureSessionInterruptionReason)((NSNumber)notification.UserInfo [AVCaptureSession.InterruptionReasonKey]).Int32Value;
-				Console.WriteLine ("Capture session was interrupted with reason {0}", reason);
-				if (reason == AVCaptureSessionInterruptionReason.AudioDeviceInUseByAnotherClient ||
-					reason == AVCaptureSessionInterruptionReason.VideoDeviceInUseByAnotherClient) {
-					showResumeButton = true;
-				} else if (reason == AVCaptureSessionInterruptionReason.VideoDeviceNotAvailableWithMultipleForegroundApps) {
-					// Simply fade-in a label to inform the user that the camera is unavailable.
-					CameraUnavailableLabel.Hidden = false;
-					CameraUnavailableLabel.Alpha = 0;
-					UIView.Animate (0.25, () => {
-						CameraUnavailableLabel.Alpha = 1;
-					});
-				}
-			} else {
-				Console.WriteLine ("Capture session was interrupted");
-				showResumeButton = UIApplication.SharedApplication.ApplicationState == UIApplicationState.Inactive;
+			var showResumeButton = false;
+
+			if (reason == AVCaptureSessionInterruptionReason.AudioDeviceInUseByAnotherClient ||
+				reason == AVCaptureSessionInterruptionReason.VideoDeviceInUseByAnotherClient) {
+				showResumeButton = true;
+			} else if (reason == AVCaptureSessionInterruptionReason.VideoDeviceNotAvailableWithMultipleForegroundApps) {
+				// Simply fade-in a label to inform the user that the camera is unavailable.
+				CameraUnavailableLabel.Alpha = 0;
+				CameraUnavailableLabel.Hidden = false;
+				UIView.Animate (0.25, () => CameraUnavailableLabel.Alpha = 1);
 			}
+
 			if (showResumeButton) {
 				// Simply fade-in a button to enable the user to try to resume the session running.
-				ResumeButton.Hidden = false;
 				ResumeButton.Alpha = 0;
-				UIView.Animate (0.25, () => {
-					ResumeButton.Alpha = 1;
-				});
+				ResumeButton.Hidden = false;
+				UIView.Animate (0.25, () => ResumeButton.Alpha = 1);
 			}
 		}
 
@@ -877,56 +835,6 @@ void AddObservers ()
 					success => CameraUnavailableLabel.Hidden = true);
 			}
 		}
-
-		#region Actions
-
-		static string GetTmpFilePath (string extension)
-		{
-			// Start recording to a temporary file.
-			string outputFileName = NSProcessInfo.ProcessInfo.GloballyUniqueString;
-			string tmpDir = Path.GetTempPath ();
-			string outputFilePath = Path.Combine (tmpDir, outputFileName);
-			return Path.ChangeExtension (outputFilePath, extension);
-		}
-
-		static int NumberOfVideoCameras ()
-		{
-			return AVCaptureDevice.DevicesWithMediaType (AVMediaType.Video).Length;
-		}
-
-		#endregion
-
-
-		#region Device Configuration
-
-
-		static void SetFlashModeForDevice (AVCaptureFlashMode flashMode, AVCaptureDevice device)
-		{
-			if (device.HasFlash && device.IsFlashModeSupported (flashMode)) {
-				NSError error;
-				if (device.LockForConfiguration (out error)) {
-					device.FlashMode = flashMode;
-					device.UnlockForConfiguration ();
-				} else {
-					Console.WriteLine ("Could not lock device for configuration: {0}", error);
-				}
-			}
-		}
-
-		static AVCaptureDevice CreateDevice (string mediaType, AVCaptureDevicePosition position)
-		{
-			AVCaptureDevice[] devices = AVCaptureDevice.DevicesWithMediaType (mediaType);
-			AVCaptureDevice captureDevice = devices [0];
-			foreach (var device in devices) {
-				if (device.Position == position) {
-					captureDevice = device;
-					break;
-				}
-			}
-			return captureDevice;
-		}
-
-		#endregion
 
 		static bool TryConvertToVideoOrientation (UIDeviceOrientation orientation, out AVCaptureVideoOrientation result)
 		{
@@ -980,9 +888,14 @@ void AddObservers ()
 
 		static int UniqueDevicePositionsCount (AVCaptureDeviceDiscoverySession session)
 		{
-			throw new NotImplementedException ();
+			var uniqueDevicePositions = new List<AVCaptureDevicePosition> ();
+
+			foreach (var device in session.Devices) {
+				if (!uniqueDevicePositions.Contains (device.Position))
+					uniqueDevicePositions.Add (device.Position);
+			}
+
+			return uniqueDevicePositions.Count;
 		}
 	}
-
-
 }
