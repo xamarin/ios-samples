@@ -1,4 +1,5 @@
-# WatchPuzzle
+WatchPuzzle
+==============
 
 This sample demonstrate how to use `SceneKit` with `WatchOS`. Refer to this sample if you want to see how to use, configure, and interact with a 3D scene using `SceneKit`. This project shows you how to load a 3D `SceneKit` scene, add overlays using `SpriteKit` and setup gesture recognizer to manipulate the scene graph.
 
