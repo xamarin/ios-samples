@@ -67,10 +67,10 @@ namespace AutoWait
 			reasonForWaitingToPlayToken = Player?.AddObserver ("reasonForWaitingToPlay", NSKeyValueObservingOptions.New | NSKeyValueObservingOptions.Initial, ReasonForWaitingToPlayChanged);
 		}
 
-		protected override void Dispose (bool disposing)
+		public override void ViewWillDisappear (bool animated)
 		{
+			base.ViewDidDisappear (animated);
 			reasonForWaitingToPlayToken?.Dispose ();
-			base.Dispose (disposing);
 		}
 
 		#region User Actions

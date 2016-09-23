@@ -42,7 +42,7 @@ namespace AutoWait
 		public AVPlayer Player { get; set; }
 
 		// AVPlayerItem.CurrentTime and the AVPlayerItem.Timebase's rate are not KVO observable. We check their values regularly using this timer.
-		DispatchSource.Timer nonObservablePropertiesUpdateTimer = new DispatchSource.Timer (DispatchQueue.MainQueue);
+		readonly DispatchSource.Timer nonObservablePropertiesUpdateTimer = new DispatchSource.Timer (DispatchQueue.MainQueue);
 
 		IDisposable rateToken;
 		IDisposable timeControlStatusToken;
@@ -75,8 +75,10 @@ namespace AutoWait
 			playbackBufferEmptyToken = Player.AddObserver ("currentItem.playbackBufferEmpty", options, PlaybackBufferEmptyChanged);
 		}
 
-		protected override void Dispose (bool disposing)
+		public override void ViewDidDisappear (bool animated)
 		{
+			base.ViewDidDisappear (animated);
+
 			rateToken?.Dispose ();
 			timeControlStatusToken?.Dispose ();
 			reasonForWaitingToPlayToken?.Dispose ();
@@ -85,7 +87,7 @@ namespace AutoWait
 			playbackBufferFullToken?.Dispose ();
 			playbackBufferEmptyToken?.Dispose ();
 
-			base.Dispose (disposing);
+			nonObservablePropertiesUpdateTimer.Suspend ();
 		}
 
 		// Helper function to get a background color for the timeControlStatus label.
@@ -157,7 +159,8 @@ namespace AutoWait
 
 		void LoadedTimeRangesChanged (NSObservedChange obj)
 		{
-			LoadedTimeRangesLabel.Text = (Player != null) ? Descr (TimeRanges(Player.CurrentItem.LoadedTimeRanges)) : "-";
+			var description = Descr (TimeRanges (Player?.CurrentItem?.LoadedTimeRanges));
+			LoadedTimeRangesLabel.Text = string.IsNullOrWhiteSpace (description) ? "-" : description;
 		}
 
 		void PlaybackBufferFullChanged (NSObservedChange obj)
