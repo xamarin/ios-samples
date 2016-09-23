@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamplePhotoApp.iOS", "SamplePhotoApp\SamplePhotoApp.iOS.csproj", "{F2483E34-332B-4C6B-B2C1-196BBF9068A1}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared", "Shared\Shared.shproj", "{FDCB59CD-E624-46E6-87D3-3A4B6D066F6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamplePhotoApp.tvOS", "SamplePhotoApp.tvOS\SamplePhotoApp.tvOS.csproj", "{7E640A09-100A-42CA-8678-40F81A85928A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2483E34-332B-4C6B-B2C1-196BBF9068A1}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{F2483E34-332B-4C6B-B2C1-196BBF9068A1}.Debug|iPhone.Build.0 = Debug|iPhone
+		{F2483E34-332B-4C6B-B2C1-196BBF9068A1}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{F2483E34-332B-4C6B-B2C1-196BBF9068A1}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{F2483E34-332B-4C6B-B2C1-196BBF9068A1}.Release|iPhone.ActiveCfg = Release|iPhone
+		{F2483E34-332B-4C6B-B2C1-196BBF9068A1}.Release|iPhone.Build.0 = Release|iPhone
+		{F2483E34-332B-4C6B-B2C1-196BBF9068A1}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{F2483E34-332B-4C6B-B2C1-196BBF9068A1}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{7E640A09-100A-42CA-8678-40F81A85928A}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{7E640A09-100A-42CA-8678-40F81A85928A}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{7E640A09-100A-42CA-8678-40F81A85928A}.Release|iPhone.ActiveCfg = Release|iPhone
+		{7E640A09-100A-42CA-8678-40F81A85928A}.Release|iPhone.Build.0 = Release|iPhone
+		{7E640A09-100A-42CA-8678-40F81A85928A}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{7E640A09-100A-42CA-8678-40F81A85928A}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{7E640A09-100A-42CA-8678-40F81A85928A}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{7E640A09-100A-42CA-8678-40F81A85928A}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
