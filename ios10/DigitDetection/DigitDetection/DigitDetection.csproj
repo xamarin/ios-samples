@@ -114,6 +114,8 @@
     <Compile Include="MnistFullLayerNeuralNetwork.cs" />
     <Compile Include="SlimMPSCNNFullyConnected.cs" />
     <Compile Include="Atomics.cs" />
+    <Compile Include="MnistDeepConvNeuralNetwork.cs" />
+    <Compile Include="SlimMPSCnnConvolution.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

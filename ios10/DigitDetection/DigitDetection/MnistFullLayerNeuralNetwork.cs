@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Accelerate;
 using Metal;
 using MetalPerformanceShaders;
@@ -11,16 +12,18 @@ namespace DigitDetection
 	// https://www.tensorflow.org/versions/r0.8/tutorials/mnist/beginners/index.html#mnist-for-ml-beginners to run this network on TensorFlow.
 	public class MnistFullLayerNeuralNetwork
 	{
+		// TODO: convert protected fields to props
+
 		// MPSImageDescriptors for different layers outputs to be put in
-		MPSImageDescriptor sid = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Unorm8, 28, 28, 1);
-		MPSImageDescriptor did = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Float16, 1, 1, 10);
+		protected readonly MPSImageDescriptor sid = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Unorm8, 28, 28, 1);
+		protected readonly MPSImageDescriptor did = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Float16, 1, 1, 10);
 
 		// MPSImages and layers declared
-		MPSImage srcImage;
-		MPSImage dstImage;
+		protected MPSImage srcImage;
+		protected MPSImage dstImage;
 		MPSCnnFullyConnected layer;
-		MPSCnnSoftMax softmax;
-		readonly IMTLCommandQueue commandQueue;
+		protected MPSCnnSoftMax softmax;
+		protected readonly IMTLCommandQueue commandQueue;
 		readonly IMTLDevice device;
 
 		public MnistFullLayerNeuralNetwork (IMTLCommandQueue commandQueueIn)
@@ -35,7 +38,7 @@ namespace DigitDetection
 
 			// setup convolution layer (which is a fully-connected layer)
 			// cliprect, offset is automatically set
-			layer = SlimMPSCNNFullyConnected.Create (kernelWidth: 28, kernelHeight: 28,
+			layer = SlimMPSCnnFullyConnected.Create (kernelWidth: 28, kernelHeight: 28,
 													 inputFeatureChannels: 1, outputFeatureChannels: 10,
 													 neuronFilter: null, device: device,
 													 kernelParamsBinaryName: "NN");
@@ -51,7 +54,7 @@ namespace DigitDetection
 		/// <param name="inputImage">Image coming in on which the network will run</param>
 		/// <param name="imageNum">If the test set is being used we will get a value between 0 and 9999 for which of the 10,000 images is being evaluated</param>
 		/// <param name="correctLabel">The correct label for the inputImage while testing</param>
-		public uint Forward (MPSImage inputImage = null, int imageNum = 9999, uint correctLabel = 10)
+		public virtual uint Forward (MPSImage inputImage = null, int imageNum = 9999, uint correctLabel = 10)
 		{
 			uint label = 99;
 
@@ -93,8 +96,13 @@ namespace DigitDetection
 		public uint GetLabel (MPSImage finalLayer)
 		{
 			// even though we have 10 labels outputed the MTLTexture format used is RGBAFloat16 thus 3 slices will have 3*4 = 12 outputs
-			var result_half_array = Enumerable.Repeat ((UInt16)6, 12).ToArray ();
-			var result_float_array = Enumerable.Repeat (0.3f, 10).ToArray ();
+			var resultHalfArray = Enumerable.Repeat ((UInt16)6, 12).ToArray ();
+			var resultHalfArrayHandle = GCHandle.Alloc (resultHalfArray, GCHandleType.Pinned);
+			var resultHalfArrayPtr = resultHalfArrayHandle.AddrOfPinnedObject ();
+
+			var resultFloatArray = Enumerable.Repeat (0.3f, 10).ToArray ();
+			var resultFloatArrayHandle = GCHandle.Alloc (resultFloatArray, GCHandleType.Pinned);
+			var resultFloatArrayPtr = resultFloatArrayHandle.AddrOfPinnedObject ();
 
 			for (uint i = 0; i <= 2; i++) {
 				finalLayer.Texture.GetBytes (IntPtr.Zero,
@@ -105,19 +113,20 @@ namespace DigitDetection
 
 			// we use vImage to convert our data to float16, Metal GPUs use float16 and swift float is 32-bit
 			var fullResultVImagebuf = new vImageBuffer {
-				Data = IntPtr.Zero, //&result_float_array
+				Data = resultFloatArrayPtr,
 				Height = 1,
 				Width = 10,
 				BytesPerRow = 10 * 4
 			};
 
 			var halfResultVImagebuf = new vImageBuffer {
-				Data = IntPtr.Zero, // &result_half_array, height: 1, width: 10, rowBytes: 10 * 2)
+				Data = resultHalfArrayPtr,
 				Height = 1,
 				Width = 10,
 				BytesPerRow = 10 * 2
 			};
 
+			// TODO: request bindings
 			//if vImageConvert_Planar16FtoPlanarF (&halfResultVImagebuf, &fullResultVImagebuf, 0) != kvImageNoError {
 			//	print ("Error in vImage")
 			//}
@@ -127,11 +136,14 @@ namespace DigitDetection
 			uint mostProbableDigit = 10;
 
 			for (uint i = 0; i <= 9; i++) {
-				if (max < result_float_array [i]) {
-					max = result_float_array [i];
+				if (max < resultFloatArray [i]) {
+					max = resultFloatArray [i];
 					mostProbableDigit = i;
 				}
 			}
+
+			resultHalfArrayHandle.Free ();
+			resultFloatArrayHandle.Free ();
 
 			return mostProbableDigit;
 		}

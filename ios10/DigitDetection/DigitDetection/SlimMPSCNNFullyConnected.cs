@@ -5,15 +5,15 @@ using MetalPerformanceShaders;
 
 namespace DigitDetection
 {
-	public class SlimMPSCNNFullyConnected : MPSCnnFullyConnected
+	public class SlimMPSCnnFullyConnected : MPSCnnFullyConnected
 	{
-		SlimMPSCNNFullyConnected ()
+		SlimMPSCnnFullyConnected ()
 			: base (null, null, null, null, MPSCnnConvolutionFlags.None)
 		{
 			throw new NotImplementedException ();
 		}
 
-		public static SlimMPSCNNFullyConnected Create (uint kernelWidth, uint kernelHeight,
+		public static SlimMPSCnnFullyConnected Create (uint kernelWidth, uint kernelHeight,
 										 uint inputFeatureChannels, uint outputFeatureChannels,
 										 MPSCnnNeuron neuronFilter, IMTLDevice device,
 										 string kernelParamsBinaryName,
