@@ -46,20 +46,21 @@ namespace GrowRowTable
 		// Delegate aren't being called. This wasn't required before and is invalid behavior.
 		// See: https://bugzilla.xamarin.com/show_bug.cgi?id=37448
 		// ---------------------------------------------------------------------------------------
-		public override nint NumberOfSections (UITableView tableView)
-		{
-			return DataSource.NumberOfSections(tableView);
-		}
+		//public override nint NumberOfSections (UITableView tableView)
+		//{
+		//	return TableView.DataSource.NumberOfSections(tableView);
+		//}
 
-		public override nint RowsInSection (UITableView tableView, nint section)
-		{
-			return DataSource.RowsInSection(tableView, section);
-		}
+		//public override nint RowsInSection (UITableView tableView, nint section)
+		//{
+		//	return TableView.DataSource.RowsInSection(tableView, section);
+		//}
 
-		public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
-		{
-			TableView.Delegate.RowSelected(tableView, indexPath);
-		}
+		//public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
+		//{
+		//	TableView.Delegate.RowSelected(tableView, indexPath);
+		//}
+
 
 		// ---------------------------------------------------------------------------------------
 		#endregion
