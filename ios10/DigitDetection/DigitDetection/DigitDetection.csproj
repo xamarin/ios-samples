@@ -111,6 +111,9 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="MnistFullLayerNeuralNetwork.cs" />
+    <Compile Include="SlimMPSCNNFullyConnected.cs" />
+    <Compile Include="Atomics.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
