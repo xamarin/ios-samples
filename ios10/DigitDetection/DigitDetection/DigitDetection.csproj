@@ -103,8 +103,8 @@
     <Folder Include="NeuralNetworkLayers\" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Resources\Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -122,6 +122,7 @@
     <Compile Include="MetalPerformanceShaders\SlimMPSCNNFullyConnected.cs" />
     <Compile Include="NeuralNetworkLayers\MnistDeepConvNeuralNetwork.cs" />
     <Compile Include="NeuralNetworkLayers\MnistFullLayerNeuralNetwork.cs" />
+    <Compile Include="MNISTData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -40,29 +40,31 @@ namespace DigitDetection
 			fc1Image = new MPSImage (device, fc1id);
 
 			// setup convolution layers
-			conv1 = new SlimMPSCnnConvolution (kernelWidth: 5,
-											   kernelHeight: 5,
-											   inputFeatureChannels: 1,
-											   outputFeatureChannels: 32,
-											   neuronFilter: relu,
-											   device: device,
-											   kernelParamsBinaryName: "conv1",
-											   padding: true,
-											   strideXY: new Tuple<int, int> (1, 1),
-											   destinationFeatureChannelOffset: 0,
-											   groupNum: 1);
+			conv1 = SlimMPSCnnConvolution.Create (kernelWidth: 5,
+												  kernelHeight: 5,
+												  inputFeatureChannels: 1,
+												  outputFeatureChannels: 32,
+												  neuronFilter: relu,
+												  device: device,
+												  kernelParamsBinaryName: "conv1",
+												  padding: true,
+												  strideX: 1,
+												  strideY: 1,
+												  destinationFeatureChannelOffset: 0,
+												  groupNum: 1);
 
-			conv2 = new SlimMPSCnnConvolution (kernelWidth: 5,
-											   kernelHeight: 5,
-											   inputFeatureChannels: 32,
-											   outputFeatureChannels: 64,
-											   neuronFilter: relu,
-											   device: device,
-											   kernelParamsBinaryName: "conv2",
-											   padding: true,
-											   strideXY: new Tuple<int, int> (1, 1),
-											   destinationFeatureChannelOffset: 0,
-											   groupNum: 1);
+			conv2 = SlimMPSCnnConvolution.Create (kernelWidth: 5,
+												  kernelHeight: 5,
+												  inputFeatureChannels: 32,
+												  outputFeatureChannels: 64,
+												  neuronFilter: relu,
+												  device: device,
+												  kernelParamsBinaryName: "conv2",
+												  padding: true,
+												  strideX: 1,
+												  strideY: 1,
+												  destinationFeatureChannelOffset: 0,
+												  groupNum: 1);
 
 			// same as a 1x1 convolution filter to produce 1x1x10 from 1x1x1024
 			fc1 = SlimMPSCnnFullyConnected.Create (kernelWidth: 7,
