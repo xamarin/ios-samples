@@ -15,3 +15,7 @@ packages
 *.lock.json
 *.nuget.props
 *.nuget.targets
+
+github
+
+github.pub
