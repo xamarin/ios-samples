@@ -10,8 +10,15 @@ using ObjCRuntime;
 
 namespace DigitDetection
 {
+	/// <summary>
+	/// The SlimMPSCnnFullyConnected is a wrapper class around MPSCnnFullyConnected used to encapsulate:
+	/// - making an MPSCnnConvolutionDescriptor,
+	/// - adding network parameters (weights and bias binaries by memory mapping the binaries)
+	/// - getting our fullyConnected layer
+	/// </summary>
 	public class SlimMPSCnnFullyConnected : MPSCnnFullyConnected
 	{
+		// TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=44938
 		[DllImport ("/usr/lib/libobjc.dylib", EntryPoint = "objc_msgSend")]
 		static extern IntPtr IntPtr_objc_msgSend_IntPtr_IntPtr_IntPtr_IntPtr_UInt64 (IntPtr receiver, IntPtr selector, IntPtr arg1, IntPtr arg2, IntPtr arg3, IntPtr arg4, ulong arg5);
 
@@ -30,8 +37,9 @@ namespace DigitDetection
 										 uint destinationFeatureChannelOffset = 0)
 		{
 			// calculate the size of weights and bias required to be memory mapped into memory
-			uint sizeBias = outputFeatureChannels * sizeof (float);
-			uint sizeWeights = inputFeatureChannels * kernelHeight * kernelWidth * outputFeatureChannels * sizeof (float);
+			// TODO: do we need these sizes? perhaps in CreateViewAccessor ?
+			// uint sizeBias = outputFeatureChannels * sizeof (float);
+			// uint sizeWeights = inputFeatureChannels * kernelHeight * kernelWidth * outputFeatureChannels * sizeof (float);
 
 			// get the url to this layer's weights and bias
 			var wtPath = NSBundle.MainBundle.PathForResource ($"weights_{kernelParamsBinaryName}", "dat");
