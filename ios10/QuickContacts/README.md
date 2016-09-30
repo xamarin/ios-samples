@@ -1,11 +1,11 @@
 QuickContacts
 ==============
 
-QuickContacts demonstrates how to use the Address Book UI controllers and various properties such as `DisplayedProperties` and `allowsAddingToAddressBook`
+QuickContacts demonstrates how to use the ContactsUI controllers and various properties such as `AllowsEditing`
 
 This sample also shows how to
 -----------------------------
-* Browse a list of Address Book contacts and allow users to choose a contact from that list.
+* Browse a list of ContactStore contacts and allow users to choose a contact from that list.
 * Display and edit information associated with a selected contact. 
 * Prevent users from performing default actions such as dialing a phone number associated with a selected information.
 * Create a new contact record.
@@ -24,7 +24,7 @@ The application displays four cells labeled `Display Picker`, `Create New Contac
 Build Requirements
 ------------------
 
-Building this sample requires Xcode 6.0 and iOS 8.0 SDK
+Building this sample requires Xcode 7.0 and iOS 9.0 or later SDK
 
 Target
 ------
