@@ -113,16 +113,20 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="Atomics.cs" />
     <Compile Include="MetalPerformanceShaders\SlimMPSCnnConvolution.cs" />
     <Compile Include="MetalPerformanceShaders\SlimMPSCNNFullyConnected.cs" />
     <Compile Include="NeuralNetworkLayers\MnistDeepConvNeuralNetwork.cs" />
     <Compile Include="NeuralNetworkLayers\MnistFullLayerNeuralNetwork.cs" />
     <Compile Include="MNISTData.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawView.cs" />
+    <Compile Include="DrawView.designer.cs">
+      <DependentUpon>DrawView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
