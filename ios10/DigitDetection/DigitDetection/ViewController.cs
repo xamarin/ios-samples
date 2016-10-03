@@ -94,7 +94,7 @@ namespace DigitDetection
 				throw new InvalidProgramException ();
 
 			for (int i = 0; i < total; i++) {
-				Inference (i, Mnistdata.Labels.Length);
+				Inference (i, Mnistdata.LabelsCount);
 
 				if (i % 100 == 0) {
 					AccuracyLabel.Text = $"{i / 100}% Done";
@@ -144,10 +144,10 @@ namespace DigitDetection
 			// get the correct image pixels from the test set
 
 			int startIndex = imageNum * mnistInputNumPixels;
-			var mnist_input_image = new byte [784];
-			Array.Copy (Mnistdata.images, startIndex, mnist_input_image, 0, mnist_input_image.Length);
-			var imageHandle = GCHandle.Alloc (mnist_input_image, GCHandleType.Pinned);
-			var imagePtr = imageHandle.AddrOfPinnedObject ();
+			//var mnist_input_image = new byte [784];
+			//Array.Copy (Mnistdata.images, startIndex, mnist_input_image, 0, mnist_input_image.Length);
+			//var imageHandle = GCHandle.Alloc (mnist_input_image, GCHandleType.Pinned);
+			//var imagePtr = imageHandle.AddrOfPinnedObject ();
 
 
 			// create a source image for the network to forward
@@ -157,10 +157,10 @@ namespace DigitDetection
 			inputImage.Texture.ReplaceRegion (region: new MTLRegion (new MTLOrigin (0, 0, 0), new MTLSize ((nint)mnistInputWidth, mnistInputHeight, 1)),
 											  level: 0,
 											  slice: 0,
-											  pixelBytes: imagePtr,
+											  pixelBytes: Mnistdata.images + startIndex, // TODO: is this ok ? or we have to do copy them before pass?
 											  bytesPerRow: mnistInputWidth,
 											  bytesPerImage: 0);
-			imageHandle.Free (); // TODO: request overload with managed array
+			//imageHandle.Free ();
 
 			// run the network forward pass
 			runningNet.Forward (inputImage, imageNum, correctLabel);

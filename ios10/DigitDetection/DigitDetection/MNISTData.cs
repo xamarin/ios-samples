@@ -1,15 +1,27 @@
 ﻿using System;
+using System.IO;
+using System.IO.MemoryMappedFiles;
+
 using Foundation;
 
 namespace DigitDetection
 {
 	public class MNISTData : IDisposable
 	{
-		public byte [] Labels { get; private set; }
-		public byte [] images { get; private set; } // tODO: rename
+		public IntPtr Labels { get; private set; }
+		public int LabelsCount { get; private set; }
+
+		public IntPtr images { get; private set; } // tODO: rename
 
 		nuint sizeBias;
 		nuint sizeWeights;
+
+		MemoryMappedFile weights;
+		MemoryMappedFile biases;
+
+		MemoryMappedViewAccessor wView;
+		MemoryMappedViewAccessor bView;
+
 
 		//var hdrW, hdrB: UnsafeMutableRawPointer?
 		//var fd_b, fd_w: CInt
@@ -31,18 +43,33 @@ namespace DigitDetection
 			sizeBias = dataL.Length;
 			sizeWeights = dataI.Length;
 
+			weights = MemoryMappedFile.CreateFromFile (wtPath, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
+			biases = MemoryMappedFile.CreateFromFile (bsPath, FileMode.Open, null, 0, MemoryMappedFileAccess.Read);
+			wView = weights.CreateViewAccessor (0, 0, MemoryMappedFileAccess.Read);
+			bView = biases.CreateViewAccessor (0, 0, MemoryMappedFileAccess.Read);
 
-			// TODO: porting is not completed
-			// remove first 16 bytes that contain info data from array
-			// images = Array (UnsafeBufferPointer (start: (i + 16), count: sizeWeights - 16))
+			unsafe {
+				byte* i = null;
+				wView.SafeMemoryMappedViewHandle.AcquirePointer (ref i);
+				// remove first 16 bytes that contain info data from array
+				images = ((IntPtr)i) + 16;
 
-			// remove first 8 bytes that contain file data from our labels array
-			// labels = Array (UnsafeBufferPointer (start: (l + 8), count: sizeBias - 8))
+				byte* l = null;
+				bView.SafeMemoryMappedViewHandle.AcquirePointer (ref l);
+				// remove first 8 bytes that contain file data from our labels array
+				Labels = (IntPtr)l + 8;
+			}
 		}
 
 		public void Dispose ()
 		{
-			throw new NotImplementedException ();
+			wView.SafeMemoryMappedViewHandle.ReleasePointer ();
+			wView.Dispose ();
+			weights.Dispose ();
+
+			bView.SafeMemoryMappedViewHandle.ReleasePointer ();
+			bView.Dispose ();
+			biases.Dispose ();
 		}
 	}
 }
