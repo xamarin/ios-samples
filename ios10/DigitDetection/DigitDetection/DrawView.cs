@@ -91,6 +91,8 @@ namespace DigitDetection
 			// TODO: request Set method (defined in Swift Headers
 			Color.SetFill ();
 			Color.SetStroke ();
+
+			drawPath.Stroke ();
 		}
 
 		public CGBitmapContext GetViewContext ()
