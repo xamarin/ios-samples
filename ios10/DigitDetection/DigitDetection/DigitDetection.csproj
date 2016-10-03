@@ -154,5 +154,21 @@
     </Compile>
     <Compile Include="DrawView.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bias_conv1.dat" />
+    <BundleResource Include="Resources\bias_conv2.dat" />
+    <BundleResource Include="Resources\bias_fc1.dat" />
+    <BundleResource Include="Resources\bias_fc2.dat" />
+    <BundleResource Include="Resources\weights_conv1.dat" />
+    <BundleResource Include="Resources\weights_conv2.dat" />
+    <BundleResource Include="Resources\weights_fc1.dat" />
+    <BundleResource Include="Resources\weights_fc2.dat" />
+    <BundleResource Include="Resources\t10k-images-idx3-ubyte.data" />
+    <BundleResource Include="Resources\t10k-labels-idx1-ubyte.data" />
+    <BundleResource Include="Resources\train-images-idx3-ubyte.data" />
+    <BundleResource Include="Resources\train-labels-idx1-ubyte.data" />
+    <BundleResource Include="Resources\bias_NN.dat" />
+    <BundleResource Include="Resources\weights_NN.dat" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
