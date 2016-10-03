@@ -9,7 +9,7 @@ using CoreGraphics;
 namespace DigitDetection
 {
 	// 2 points can give a line and this class is just for that purpose, it keeps a record of a lin
-	class Line
+	public class Line
 	{
 		public CGPoint Start { get; }
 		public CGPoint End { get; }
@@ -49,7 +49,7 @@ namespace DigitDetection
 		}
 
 		// we will keep touches made by user in view in these as a record so we can draw them
-		readonly List<Line> lines = new List<Line> ();
+		public List<Line> Lines { get; } = new List<Line> ();
 		CGPoint lastPoint;
 
 		public DrawView (IntPtr handle)
@@ -66,7 +66,7 @@ namespace DigitDetection
 		{
 			var newPoint = ((UITouch)touches.First ()).LocationInView (this);
 			// keep all lines drawn by user as touch in record so we can draw them in view
-			lines.Add (new Line (lastPoint, newPoint));
+			Lines.Add (new Line (lastPoint, newPoint));
 
 			lastPoint = newPoint;
 
@@ -82,7 +82,7 @@ namespace DigitDetection
 
 			drawPath.LineCapStyle = CGLineCap.Round;
 
-			foreach (var line in lines) {
+			foreach (var line in Lines) {
 				drawPath.MoveTo (line.Start);
 				drawPath.AddLineTo (line.End);
 			}
@@ -93,7 +93,7 @@ namespace DigitDetection
 			Color.SetStroke ();
 		}
 
-		public CGContext GetViewContext ()
+		public CGBitmapContext GetViewContext ()
 		{
 			// our network takes in only grayscale images as input
 			var colorSpace = CGColorSpace.CreateDeviceGray ();

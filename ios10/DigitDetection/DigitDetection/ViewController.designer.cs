@@ -8,32 +8,32 @@ namespace DigitDetection
 	[Register ("ViewController")]
 	partial class ViewController
 	{
-		[Outlet]
-		UIKit.UILabel accuracyLabel { get; set; }
+		[Outlet ("accuracyLabel")]
+		UILabel AccuracyLabel { get; set; }
 
-		[Outlet]
-		DigitDetection.DrawView DigitView { get; set; }
+		[Outlet ("digitView")]
+		DrawView DigitView { get; set; }
 
-		[Outlet]
-		UIKit.UILabel predictionLabel { get; set; }
+		[Outlet ("predictionLabel")]
+		UILabel PredictionLabel { get; set; }
 
 		[Action ("tappedClear:")]
-		partial void tappedClear (UIButton sender);
+		partial void TappedClear (UIButton sender);
 
 		[Action ("tappedDeepButton:")]
-		partial void tappedDeepButton (UIButton sender);
+		partial void TappedDeepButton (UIButton sender);
 
 		[Action ("tappedDetectDigit:")]
-		partial void tappedDetectDigit (UIButton sender);
+		partial void TappedDetectDigit (UIButton sender);
 
 		[Action ("tappedTestSet:")]
-		partial void tappedTestSet (UIButton sender);
+		partial void TappedTestSet (UIButton sender);
 
 		void ReleaseDesignerOutlets ()
 		{
-			if (accuracyLabel != null) {
-				accuracyLabel.Dispose ();
-				accuracyLabel = null;
+			if (AccuracyLabel != null) {
+				AccuracyLabel.Dispose ();
+				AccuracyLabel = null;
 			}
 
 			if (DigitView != null) {
@@ -41,9 +41,9 @@ namespace DigitDetection
 				DigitView = null;
 			}
 
-			if (predictionLabel != null) {
-				predictionLabel.Dispose ();
-				predictionLabel = null;
+			if (PredictionLabel != null) {
+				PredictionLabel.Dispose ();
+				PredictionLabel = null;
 			}
 		}
 	}

@@ -5,8 +5,8 @@ namespace DigitDetection
 {
 	public class MNISTData : IDisposable
 	{
-		byte [] labels;
-		byte [] images;
+		public byte [] Labels { get; private set; }
+		public byte [] images { get; private set; } // tODO: rename
 
 		nuint sizeBias;
 		nuint sizeWeights;

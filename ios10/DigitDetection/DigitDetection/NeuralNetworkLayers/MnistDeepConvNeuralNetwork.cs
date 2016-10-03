@@ -92,7 +92,7 @@ namespace DigitDetection
 		/// <param name="inputImage">Image coming in on which the network will run</param>
 		/// <param name="imageNum">If the test set is being used we will get a value between 0 and 9999 for which of the 10,000 images is being evaluated</param>
 		/// <param name="correctLabel">The correct label for the inputImage while testing</param>
-		public override uint Forward (MPSImage inputImage = null, int imageNum = 9999, uint correctLabel = 10)
+		public override uint Forward (MPSImage inputImage = null, int imageNum = 9999, int correctLabel = 10)
 		{
 			uint label = 99;
 

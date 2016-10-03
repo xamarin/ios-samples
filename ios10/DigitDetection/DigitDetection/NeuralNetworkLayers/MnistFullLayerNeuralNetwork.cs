@@ -15,11 +15,11 @@ namespace DigitDetection
 		// TODO: convert protected fields to props
 
 		// MPSImageDescriptors for different layers outputs to be put in
-		protected readonly MPSImageDescriptor sid = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Unorm8, 28, 28, 1);
+		public readonly MPSImageDescriptor sid = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Unorm8, 28, 28, 1);
 		protected readonly MPSImageDescriptor did = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Float16, 1, 1, 10);
 
 		// MPSImages and layers declared
-		protected MPSImage srcImage;
+		public MPSImage srcImage { get; protected set; } // TODO: rename
 		protected MPSImage dstImage;
 		MPSCnnFullyConnected layer;
 		protected MPSCnnSoftMax softmax;
@@ -54,7 +54,7 @@ namespace DigitDetection
 		/// <param name="inputImage">Image coming in on which the network will run</param>
 		/// <param name="imageNum">If the test set is being used we will get a value between 0 and 9999 for which of the 10,000 images is being evaluated</param>
 		/// <param name="correctLabel">The correct label for the inputImage while testing</param>
-		public virtual uint Forward (MPSImage inputImage = null, int imageNum = 9999, uint correctLabel = 10)
+		public virtual uint Forward (MPSImage inputImage = null, int imageNum = 9999, int correctLabel = 10)
 		{
 			uint label = 99;
 
