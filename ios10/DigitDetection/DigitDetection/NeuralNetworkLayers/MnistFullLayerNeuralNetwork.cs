@@ -4,6 +4,10 @@ using System.Runtime.InteropServices;
 using Accelerate;
 using Metal;
 using MetalPerformanceShaders;
+using ObjCRuntime;
+
+using Pixel8 = System.Byte;
+using vImagePixelCount = System.nint;
 
 namespace DigitDetection
 {
@@ -12,6 +16,14 @@ namespace DigitDetection
 	// https://www.tensorflow.org/versions/r0.8/tutorials/mnist/beginners/index.html#mnist-for-ml-beginners to run this network on TensorFlow.
 	public class MnistFullLayerNeuralNetwork
 	{
+		// TODO: request bindings
+		[DllImport (Constants.AccelerateImageLibrary)]
+		extern static nint vImageConvert_Planar16FtoPlanarF (ref vImageBuffer src, ref vImageBuffer dest, vImageFlags flags);
+		unsafe public static vImageError Planar16FtoPlanarF (ref vImageBuffer src, ref vImageBuffer dest, vImageFlags flags)
+		{
+			return (vImageError)(long)vImageConvert_Planar16FtoPlanarF (ref src, ref dest, flags);
+		}
+
 		// TODO: convert protected fields to props
 
 		// MPSImageDescriptors for different layers outputs to be put in
@@ -105,7 +117,7 @@ namespace DigitDetection
 			var resultFloatArrayPtr = resultFloatArrayHandle.AddrOfPinnedObject ();
 
 			for (uint i = 0; i <= 2; i++) {
-				finalLayer.Texture.GetBytes (IntPtr.Zero,
+				finalLayer.Texture.GetBytes (resultHalfArrayPtr + 4 * (int)i * sizeof (UInt16),
 											sizeof (UInt16) * 1 * 4, sizeof (UInt16) * 1 * 1 * 4,
 											new MTLRegion (new MTLOrigin (0, 0, 0), new MTLSize (1, 1, 1)),
 											0, i);
@@ -127,9 +139,8 @@ namespace DigitDetection
 			};
 
 			// TODO: request bindings
-			//if vImageConvert_Planar16FtoPlanarF (&halfResultVImagebuf, &fullResultVImagebuf, 0) != kvImageNoError {
-			//	print ("Error in vImage")
-			//}
+			if (Planar16FtoPlanarF (ref halfResultVImagebuf, ref fullResultVImagebuf, 0) != vImageError.NoError)
+				Console.WriteLine ("Error in vImage");
 
 			// poll all labels for probability and choose the one with max probability to return
 			float max = 0f;
