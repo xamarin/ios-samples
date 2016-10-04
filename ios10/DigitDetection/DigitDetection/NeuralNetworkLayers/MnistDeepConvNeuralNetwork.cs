@@ -1,5 +1,4 @@
-﻿using System;
-using Metal;
+﻿using Metal;
 using MetalPerformanceShaders;
 
 namespace DigitDetection
@@ -14,11 +13,14 @@ namespace DigitDetection
 		readonly MPSImageDescriptor fc1id = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Float16, 1, 1, 1024);
 
 		// MPSImages and layers declared
-		MPSImage c1Image, c2Image, p1Image, p2Image, fc1Image;
-		MPSCnnConvolution conv1, conv2;
-		MPSCnnFullyConnected fc1, fc2;
-		MPSCnnPoolingMax pool;
-		MPSCnnNeuronReLU relu;
+		readonly MPSImage c2Image, p1Image, p2Image, fc1Image;
+
+		// MPSImages and layers declared
+		readonly MPSImage c1Image;
+		readonly MPSCnnConvolution conv1, conv2;
+		readonly MPSCnnFullyConnected fc1, fc2;
+		readonly MPSCnnPoolingMax pool;
+		readonly MPSCnnNeuronReLU relu;
 
 		public MnistDeepConvNeuralNetwork (IMTLCommandQueue commandQueueIn)
 			: base (commandQueueIn)
@@ -99,11 +101,11 @@ namespace DigitDetection
 			// Get command buffer to use in MetalPerformanceShaders.
 			using (var commandBuffer = commandQueue.CommandBuffer ()) {
 				// output will be stored in this image
-				var finalLayer = new MPSImage (commandBuffer.Device, did);
+				var finalLayer = new MPSImage (commandBuffer.Device, DID);
 
 				// encode layers to metal commandBuffer
 				if (inputImage == null)
-					conv1.EncodeToCommandBuffer (commandBuffer, srcImage, c1Image);
+					conv1.EncodeToCommandBuffer (commandBuffer, SrcImage, c1Image);
 				else
 					conv1.EncodeToCommandBuffer (commandBuffer, inputImage, c1Image);
 

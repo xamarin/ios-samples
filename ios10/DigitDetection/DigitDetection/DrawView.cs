@@ -88,10 +88,7 @@ namespace DigitDetection
 			}
 
 			drawPath.LineWidth = LineWidth;
-			// TODO: request Set method (defined in Swift Headers
-			Color.SetFill ();
-			Color.SetStroke ();
-
+			Color.SetColor ();
 			drawPath.Stroke ();
 		}
 

@@ -55,11 +55,6 @@ namespace DigitDetection
 		                                            uint strideX, uint strideY,
 													uint destinationFeatureChannelOffset, uint groupNum)
 		{
-			// calculate the size of weights and bias required to be memory mapped into memory
-			// TODO: do we need these sizes? perhaps in CreateViewAccessor ?
-			uint sizeBias = outputFeatureChannels * sizeof (float);
-			uint sizeWeights = inputFeatureChannels * kernelHeight * kernelWidth * outputFeatureChannels * sizeof (float);
-
 			// get the url to this layer's weights and bias
 			var wtPath = NSBundle.MainBundle.PathForResource ($"weights_{kernelParamsBinaryName}", "dat");
 			var bsPath = NSBundle.MainBundle.PathForResource ($"bias_{kernelParamsBinaryName}", "dat");

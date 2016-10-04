@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.InteropServices;
 
 using UIKit;
 using Foundation;
@@ -120,7 +119,7 @@ namespace DigitDetection
 
 			// putting input into MTLTexture in the MPSImage
 			var region = new MTLRegion (new MTLOrigin (0, 0, 0), new MTLSize ((nint)mnistInputWidth, mnistInputHeight, 1));
-			runningNet.srcImage.Texture.ReplaceRegion (region,
+			runningNet.SrcImage.Texture.ReplaceRegion (region,
 													   level: 0,
 													   slice: 0,
 													   pixelBytes: context.Data,
@@ -142,25 +141,18 @@ namespace DigitDetection
 		void Inference (int imageNum, int correctLabel)
 		{
 			// get the correct image pixels from the test set
-
 			int startIndex = imageNum * mnistInputNumPixels;
-			//var mnist_input_image = new byte [784];
-			//Array.Copy (Mnistdata.images, startIndex, mnist_input_image, 0, mnist_input_image.Length);
-			//var imageHandle = GCHandle.Alloc (mnist_input_image, GCHandleType.Pinned);
-			//var imagePtr = imageHandle.AddrOfPinnedObject ();
-
 
 			// create a source image for the network to forward
-			var inputImage = new MPSImage (device, runningNet.sid);
+			var inputImage = new MPSImage (device, runningNet.SID);
 
 			// put image in source texture (input layer)
 			inputImage.Texture.ReplaceRegion (region: new MTLRegion (new MTLOrigin (0, 0, 0), new MTLSize ((nint)mnistInputWidth, mnistInputHeight, 1)),
 											  level: 0,
 											  slice: 0,
-											  pixelBytes: Mnistdata.images + startIndex, // TODO: is this ok ? or we have to do copy them before pass?
+											  pixelBytes: Mnistdata.Images + startIndex,
 											  bytesPerRow: mnistInputWidth,
 											  bytesPerImage: 0);
-			//imageHandle.Free ();
 
 			// run the network forward pass
 			runningNet.Forward (inputImage, imageNum, correctLabel);

@@ -6,9 +6,6 @@ using Metal;
 using MetalPerformanceShaders;
 using ObjCRuntime;
 
-using Pixel8 = System.Byte;
-using vImagePixelCount = System.nint;
-
 namespace DigitDetection
 {
 	// This class has our entire network with all layers to getting the final label
@@ -16,7 +13,7 @@ namespace DigitDetection
 	// https://www.tensorflow.org/versions/r0.8/tutorials/mnist/beginners/index.html#mnist-for-ml-beginners to run this network on TensorFlow.
 	public class MnistFullLayerNeuralNetwork
 	{
-		// TODO: request bindings
+		// TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=45009
 		[DllImport (Constants.AccelerateImageLibrary)]
 		extern static nint vImageConvert_Planar16FtoPlanarF (ref vImageBuffer src, ref vImageBuffer dest, vImageFlags flags);
 		unsafe public static vImageError Planar16FtoPlanarF (ref vImageBuffer src, ref vImageBuffer dest, vImageFlags flags)
@@ -24,16 +21,14 @@ namespace DigitDetection
 			return (vImageError)(long)vImageConvert_Planar16FtoPlanarF (ref src, ref dest, flags);
 		}
 
-		// TODO: convert protected fields to props
-
 		// MPSImageDescriptors for different layers outputs to be put in
-		public readonly MPSImageDescriptor sid = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Unorm8, 28, 28, 1);
-		protected readonly MPSImageDescriptor did = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Float16, 1, 1, 10);
+		public MPSImageDescriptor SID { get; } = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Unorm8, 28, 28, 1);
+		protected MPSImageDescriptor DID { get; } = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Float16, 1, 1, 10);
 
 		// MPSImages and layers declared
-		public MPSImage srcImage { get; protected set; } // TODO: rename
+		public MPSImage SrcImage { get; protected set; }
 		protected MPSImage dstImage;
-		MPSCnnFullyConnected layer;
+		readonly MPSCnnFullyConnected layer;
 		protected MPSCnnSoftMax softmax;
 		protected readonly IMTLCommandQueue commandQueue;
 		readonly IMTLDevice device;
@@ -45,8 +40,8 @@ namespace DigitDetection
 			device = commandQueueIn.Device;
 
 			// Initialize MPSImage from descriptors
-			srcImage = new MPSImage (device, sid);
-			dstImage = new MPSImage (device, did);
+			SrcImage = new MPSImage (device, SID);
+			dstImage = new MPSImage (device, DID);
 
 			// setup convolution layer (which is a fully-connected layer)
 			// cliprect, offset is automatically set
@@ -73,11 +68,11 @@ namespace DigitDetection
 			// Get command buffer to use in MetalPerformanceShaders.
 			using (var commandBuffer = commandQueue.CommandBuffer ()) {
 				// output will be stored in this image
-				var finalLayer = new MPSImage (commandBuffer.Device, did);
+				var finalLayer = new MPSImage (commandBuffer.Device, DID);
 
 				// encode layers to metal commandBuffer
 				if (inputImage == null)
-					layer.EncodeToCommandBuffer (commandBuffer, srcImage, dstImage);
+					layer.EncodeToCommandBuffer (commandBuffer, SrcImage, dstImage);
 				else
 					layer.EncodeToCommandBuffer (commandBuffer, inputImage, dstImage);
 
@@ -108,7 +103,7 @@ namespace DigitDetection
 		public uint GetLabel (MPSImage finalLayer)
 		{
 			// even though we have 10 labels outputed the MTLTexture format used is RGBAFloat16 thus 3 slices will have 3*4 = 12 outputs
-			var resultHalfArray = Enumerable.Repeat ((UInt16)6, 12).ToArray ();
+			var resultHalfArray = Enumerable.Repeat ((ushort)6, 12).ToArray ();
 			var resultHalfArrayHandle = GCHandle.Alloc (resultHalfArray, GCHandleType.Pinned);
 			var resultHalfArrayPtr = resultHalfArrayHandle.AddrOfPinnedObject ();
 
@@ -117,8 +112,8 @@ namespace DigitDetection
 			var resultFloatArrayPtr = resultFloatArrayHandle.AddrOfPinnedObject ();
 
 			for (uint i = 0; i <= 2; i++) {
-				finalLayer.Texture.GetBytes (resultHalfArrayPtr + 4 * (int)i * sizeof (UInt16),
-											sizeof (UInt16) * 1 * 4, sizeof (UInt16) * 1 * 1 * 4,
+				finalLayer.Texture.GetBytes (resultHalfArrayPtr + 4 * (int)i * sizeof (ushort),
+											sizeof (ushort) * 1 * 4, sizeof (ushort) * 1 * 1 * 4,
 											new MTLRegion (new MTLOrigin (0, 0, 0), new MTLSize (1, 1, 1)),
 											0, i);
 			}
@@ -138,7 +133,6 @@ namespace DigitDetection
 				BytesPerRow = 10 * 2
 			};
 
-			// TODO: request bindings
 			if (Planar16FtoPlanarF (ref halfResultVImagebuf, ref fullResultVImagebuf, 0) != vImageError.NoError)
 				Console.WriteLine ("Error in vImage");
 

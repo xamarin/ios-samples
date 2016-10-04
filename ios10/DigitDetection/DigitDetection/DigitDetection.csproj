@@ -94,42 +94,10 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Images.xcassets\Contents.json" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Contents.json" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\Icon-app-60%403x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-57.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-60%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-72.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-72%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-76.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-app-76%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-carplay-120.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-29.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-29%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-29%403x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-40.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-40%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-40%403x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-50.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spotlight-50%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-spp-57%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-172.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-196.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-29%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-29%403x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-40%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-44%402x.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-48.png" />
-    <ImageAsset Include="Images.xcassets\AppIcons.appiconset\icon-watch-55.png" />
-    <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\Contents.json" />
-    <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\splash-xamagon.png" />
-    <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
-    <ImageAsset Include="Images.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="MetalPerformanceShaders\" />
     <Folder Include="NeuralNetworkLayers\" />
+    <Folder Include="Assets.xcassets\splash-xamagon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\Main.storyboard" />
@@ -169,6 +137,27 @@
     <BundleResource Include="Resources\train-labels-idx1-ubyte.data" />
     <BundleResource Include="Resources\bias_NN.dat" />
     <BundleResource Include="Resources\weights_NN.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-120-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-152.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-167.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-58-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-80-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-87.png" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon.png" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
