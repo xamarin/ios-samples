@@ -100,9 +100,14 @@ namespace ManualCameraControls
 				AVCaptureAutoExposureBracketedStillImageSettings.Create (2f)
 			};
 
+			OutputIndex = Settings.Length;
+
 			// Wireup capture button
 			CaptureButton.TouchUpInside += (sender, e) => {
 				// Reset output index
+				if (OutputIndex < Settings.Length)
+					return;
+				
 				OutputIndex = 0;
 
 				// Tell the camera that we are getting ready to do a bracketed capture
