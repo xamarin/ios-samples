@@ -1,10 +1,7 @@
 ﻿using System;
 using UIKit;
-using System.Collections.Generic;
-using AddressBook;
 using Foundation;
 using CoreFoundation;
-using AddressBookUI;
 
 using Contacts;
 using ContactsUI;
@@ -18,6 +15,10 @@ namespace QuickContacts
 		const string CellIdentifier = "Cell";
 
 		NSMutableArray menuArray;
+
+		public QuickContactsViewController (IntPtr handle) : base(handle)
+		{
+		}
 
 		public override void ViewDidLoad ()
 		{
@@ -181,29 +182,22 @@ namespace QuickContacts
 		void ShowUnknownPersonViewController ()
 		{
 			using (var unknowContact = new CNMutableContact()) {
-				using (var email = new ABMutableStringMultiValue()) {
-					bool didAdd = email.Add("John-Appleseed@mac.com", ABLabel.Other);
-
-					if (didAdd) { 
-						try
-						{
-							var unknownContactVC = CNContactViewController.FromUnknownContact(unknowContact);
-							unknownContactVC.ContactStore = new CNContactStore();
-							unknownContactVC.AllowsActions = true;
-							unknownContactVC.AlternateName = "John Appleseed";
-							unknownContactVC.Title = "John Appleseed";
-							unknownContactVC.Message = "Company, Inc";
-							NavigationController.PushViewController(unknownContactVC, true);
-						}
-						catch (Exception)
-						{
-							var alert = UIAlertController.Create("Error", "Could not create unknown user.", UIAlertControllerStyle.Alert);
-							alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Default, null));
-							PresentViewController(alert, true, null);
-						}
-					}
+				try
+				{
+					var unknownContactVC = CNContactViewController.FromUnknownContact(unknowContact);
+					unknownContactVC.ContactStore = new CNContactStore();
+					unknownContactVC.AllowsActions = true;
+					unknownContactVC.AlternateName = "John Appleseed";
+					unknownContactVC.Title = "John Appleseed";
+					unknownContactVC.Message = "Company, Inc";
+					NavigationController.PushViewController(unknownContactVC, true);
 				}
-
+				catch (Exception)
+				{
+					var alert = UIAlertController.Create("Error", "Could not create unknown user.", UIAlertControllerStyle.Alert);
+					alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Default, null));
+					PresentViewController(alert, true, null);
+				}
 			}
 		}
 
@@ -218,22 +212,18 @@ namespace QuickContacts
 
 
 		//ContactsPickerDelegate
-		public QuickContactsViewController (IntPtr handle)
-			: base(handle)
-		{
-		}
 		[Export("contactPicker:didSelectContact:")]
 		public void DidSelectContact(CNContactPickerViewController picker, CNContact contact)
 		{
 			string contactName = contact.GivenName;
-			string message = String.Format("Picked -> {0}", contactName);
+			string message = $"Picked -> {contactName}";
 			Console.WriteLine(message);
 		}
 
 		[Export("contactPicker:didSelectContactProperty:")]
 		public void DidSelectContactProperty(CNContactPickerViewController picker, CNContactProperty contactProperty)
 		{
-			string message = String.Format("Picked property -> {0}", contactProperty.Identifier);
+			string message = $"Picked -> {contactProperty.Identifier}";
 			Console.WriteLine(message);
 		}
 	}
