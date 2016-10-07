@@ -24,7 +24,7 @@ The application displays four cells labeled `Display Picker`, `Create New Contac
 Build Requirements
 ------------------
 
-Building this sample requires Xcode 6.0 and support up to iOS 9.3 SDK.
+Building this sample requires Xcode 6.0 and support up to iOS 8.4 SDK.
 
 Target
 ------
