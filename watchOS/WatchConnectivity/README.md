@@ -5,7 +5,6 @@ Sample code for Watch Connectivity Communication, demonstrating how to update th
 
 ![](Screenshots/phoneNoCommand_small.png) ![](Screenshots/watchNoCommand_small.png) 
 
-Command sent:
 ![](Screenshots/phoneCommand_small.png) ![](Screenshots/watchCommand_small.png)
 
 Author
