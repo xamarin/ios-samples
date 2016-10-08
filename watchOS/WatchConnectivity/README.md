@@ -3,7 +3,7 @@ Watch Connectivity
 
 Sample code for Watch Connectivity Communication, demonstrating how to update the application context using a WCSession manager. Also see [Apple's doc]. WatchConnectivity is supported in watchOS 2.0+
 
-![](Screenshots/phoneCommand.png) ![](Screenshots/watchCommand.png) ![](Screenshots/phoneNoCommand.png) ![](Screenshots/watchNoCommand.png) 
+![](Screenshots/phoneCommand_small.png) ![](Screenshots/watchCommand_small.png) ![](Screenshots/phoneNoCommand_small.png) ![](Screenshots/watchNoCommand_small.png) 
 
 Author
 ------
