@@ -9,6 +9,7 @@ namespace GrowRowTable
 	{
 		public GrowRowTableView (IntPtr handle) : base (handle)
 		{
+			
 		}
 	}
 }
