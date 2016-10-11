@@ -353,13 +353,13 @@ namespace SoZoomy
 			PerformSelector (new ObjCRuntime.Selector ("startZoom:"), NSNumber.FromFloat (getZoomSliderValue ()), MEME_ZOOM_DELAY);
 			device.VideoZoomFactor = 1;
 
-			if (faceViews != null)
+			if (faceViews == null)
+				return;
+			
+			foreach (var faceId in faceViews.Keys)
 			{
-				foreach (var faceId in faceViews.Keys)
-				{
-					FaceView view = faceViews[faceId];
-					view.Alpha = 0;
-				}
+				FaceView view = faceViews[faceId];
+				view.Alpha = 0;
 			}
 		}
 
