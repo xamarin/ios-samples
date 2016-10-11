@@ -352,9 +352,14 @@ namespace SoZoomy
 			PerformSelector (new ObjCRuntime.Selector ("flash"), null, MEME_FLASH_DELAY);
 			PerformSelector (new ObjCRuntime.Selector ("startZoom:"), NSNumber.FromFloat (getZoomSliderValue ()), MEME_ZOOM_DELAY);
 			device.VideoZoomFactor = 1;
-			foreach (var faceId in faceViews.Keys) {
-				FaceView view = faceViews [faceId];
-				view.Alpha = 0;
+
+			if (faceViews != null)
+			{
+				foreach (var faceId in faceViews.Keys)
+				{
+					FaceView view = faceViews[faceId];
+					view.Alpha = 0;
+				}
 			}
 		}
 
