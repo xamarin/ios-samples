@@ -46,5 +46,11 @@
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
+	<key>CFBundleName</key>
+	<string>PhotoHandoff</string>
+	<key>NSCameraUsageDescription</key>
+	<string></string>
+	<key>NSContactsUsageDescription</key>
+	<string></string>
 </dict>
 </plist>
