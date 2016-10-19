@@ -34,8 +34,8 @@
 	<key>CFBundleName</key>
 	<string>StateRestoration</string>
 	<key>NSContactsUsageDescription</key>
-	<string></string>
+	<string>StateRestoration App needs Contacts Access</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>StateRestoration App needs Photo Library Access</string>
 </dict>
 </plist>

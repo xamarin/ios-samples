@@ -37,6 +37,6 @@
 	<key>CFBundleName</key>
 	<string>ToastModern</string>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>ToastModern App needs Camera Access</string>
 </dict>
 </plist>

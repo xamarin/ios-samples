@@ -14,10 +14,10 @@
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
 	<key>NSContactsUsageDescription</key>
-	<string></string>
+	<string>MediaNotes App needs Contacts Access</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>MediaNotes App needs Photo Library Access</string>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>MediaNotes App needs Camera Access</string>
 </dict>
 </plist>

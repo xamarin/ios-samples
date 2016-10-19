@@ -34,8 +34,8 @@
 	<key>CFBundleName</key>
 	<string>HKWork</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string></string>
+	<string>HKWorks App needs Health Share Access</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string></string>
+	<string>HKWorks App needs Health Update Access</string>
 </dict>
 </plist>

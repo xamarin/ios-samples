@@ -31,20 +31,20 @@
 	<key>CFBundleName</key>
 	<string>PrivacyPrompts</string>
 	<key>NSCalendarsUsageDescription</key>
-	<string></string>
+	<string>PrivacyPrompts App needs Calendars Access</string>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>PrivacyPrompts App needs Camera Access</string>
 	<key>NSRemindersUsageDescription</key>
-	<string></string>
+	<string>PrivacyPrompts App needs Reminders Access</string>
 	<key>NSContactsUsageDescription</key>
-	<string></string>
+	<string>PrivacyPrompts App needs Contacts Access</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>PrivacyPrompts App needs Photo Library Access</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string></string>
+	<string>PrivacyPrompts App needs Microphone Access</string>
 	<key>NSMotionUsageDescription</key>
-	<string></string>
+	<string>PrivacyPrompts App needs Motion Usage Access</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string></string>
+	<string>PrivacyPrompts App needs Bluetooth Access</string>
 </dict>
 </plist>

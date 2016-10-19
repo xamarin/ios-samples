@@ -38,6 +38,6 @@
 	<key>CFBundleName</key>
 	<string>VideoTimeLine</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string> VideoTimeLine App needs Photo Library Access</string>
 </dict>
 </plist>

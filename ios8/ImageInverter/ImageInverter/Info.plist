@@ -44,8 +44,8 @@
 	<key>CFBundleName</key>
 	<string>ImageInverter</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>ImageInverter App needs Photo Library Access</string>
 	<key>NSContactsUsageDescription</key>
-	<string></string>
+	<string>ImageInverter App needs Contacts Access</string>
 </dict>
 </plist>

@@ -49,8 +49,8 @@
 	<key>CFBundleName</key>
 	<string>PhotoHandoff</string>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>PhotoHandoff App needs Camera Access</string>
 	<key>NSContactsUsageDescription</key>
-	<string></string>
+	<string>PhotoHandoff App needs Contacts Access</string>
 </dict>
 </plist>
