@@ -31,5 +31,11 @@
 	<string>1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CFBundleName</key>
+	<string>StateRestoration</string>
+	<key>NSContactsUsageDescription</key>
+	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string></string>
 </dict>
 </plist>
