@@ -37,5 +37,7 @@
 	<string>com.your-company.VideoTimeLine</string>
 	<key>CFBundleName</key>
 	<string>VideoTimeLine</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string> VideoTimeLine App needs Photo Library Access</string>
 </dict>
 </plist>
