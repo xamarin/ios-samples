@@ -34,5 +34,9 @@
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.MotionActivityDemo</string>
+	<key>CFBundleName</key>
+	<string>MotionActivityDemo</string>
+	<key>NSMotionUsageDescription</key>
+	<string>MotionActivity App needs Motion Access</string>
 </dict>
 </plist>
