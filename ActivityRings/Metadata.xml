@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>TP40016623</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Advanced</Level>
+	<Tags>iOS 8, Watch, HealthKit</Tags>
+	<Gallery>false</Gallery>
+	<Brief>This sample demonstrates the proper way to work with HealthKit on Apple Watch to contribute to the Activity Rings and have your app associated and listed with workouts and within the Move graph in the Activity app on iPhone.</Brief>
+</SampleMetadata>
