@@ -1,4 +1,5 @@
-# AVCamManual
+AVCamManual
+==============
 
 `AVCamManual` adds manual controls for focus, exposure, and white balance to the AVCam sample application. `AVCamManual` now uses `AVCapturePhotoOutput` rather than `AVCaptureStillImageOutput`, and adds support for raw photo capture.
 

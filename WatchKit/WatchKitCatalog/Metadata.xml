@@ -7,5 +7,5 @@
 	<Tags>User Interface, Watch, iOS8</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<LicenseRequirement>Starter</LicenseRequirement>
-	<Gallery>true</Gallery>
+	<Gallery>false</Gallery>
 </SampleMetadata>

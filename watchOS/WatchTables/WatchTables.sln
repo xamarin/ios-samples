@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchTablesiOSApp", "WatchTables\WatchTablesiOSApp.csproj", "{E72409BD-98AB-4F81-BE87-468CEA5546AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchTables.OnWatch", "WatchTables.OnWatch\WatchTables.OnWatch.csproj", "{883E2CA2-A0C8-4C68-B7DA-733FF718923F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatchTables.OnWatchExtension", "WatchTables.OnWatchExtension\WatchTables.OnWatchExtension.csproj", "{1726E324-A435-4269-8B2F-89D6CB34A629}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E72409BD-98AB-4F81-BE87-468CEA5546AA}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{E72409BD-98AB-4F81-BE87-468CEA5546AA}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{E72409BD-98AB-4F81-BE87-468CEA5546AA}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{E72409BD-98AB-4F81-BE87-468CEA5546AA}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{E72409BD-98AB-4F81-BE87-468CEA5546AA}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{E72409BD-98AB-4F81-BE87-468CEA5546AA}.Debug|iPhone.Build.0 = Debug|iPhone
+		{E72409BD-98AB-4F81-BE87-468CEA5546AA}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E72409BD-98AB-4F81-BE87-468CEA5546AA}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E72409BD-98AB-4F81-BE87-468CEA5546AA}.Release|iPhone.ActiveCfg = Release|iPhone
+		{E72409BD-98AB-4F81-BE87-468CEA5546AA}.Release|iPhone.Build.0 = Release|iPhone
+		{E72409BD-98AB-4F81-BE87-468CEA5546AA}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E72409BD-98AB-4F81-BE87-468CEA5546AA}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{883E2CA2-A0C8-4C68-B7DA-733FF718923F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{883E2CA2-A0C8-4C68-B7DA-733FF718923F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{883E2CA2-A0C8-4C68-B7DA-733FF718923F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{883E2CA2-A0C8-4C68-B7DA-733FF718923F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{883E2CA2-A0C8-4C68-B7DA-733FF718923F}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{883E2CA2-A0C8-4C68-B7DA-733FF718923F}.Debug|iPhone.Build.0 = Debug|iPhone
+		{883E2CA2-A0C8-4C68-B7DA-733FF718923F}.Release|iPhone.ActiveCfg = Release|iPhone
+		{883E2CA2-A0C8-4C68-B7DA-733FF718923F}.Release|iPhone.Build.0 = Release|iPhone
+		{883E2CA2-A0C8-4C68-B7DA-733FF718923F}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{883E2CA2-A0C8-4C68-B7DA-733FF718923F}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{883E2CA2-A0C8-4C68-B7DA-733FF718923F}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{883E2CA2-A0C8-4C68-B7DA-733FF718923F}.AppStore|iPhone.Build.0 = Release|iPhone
+		{1726E324-A435-4269-8B2F-89D6CB34A629}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{1726E324-A435-4269-8B2F-89D6CB34A629}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{1726E324-A435-4269-8B2F-89D6CB34A629}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{1726E324-A435-4269-8B2F-89D6CB34A629}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{1726E324-A435-4269-8B2F-89D6CB34A629}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{1726E324-A435-4269-8B2F-89D6CB34A629}.Debug|iPhone.Build.0 = Debug|iPhone
+		{1726E324-A435-4269-8B2F-89D6CB34A629}.Release|iPhone.ActiveCfg = Release|iPhone
+		{1726E324-A435-4269-8B2F-89D6CB34A629}.Release|iPhone.Build.0 = Release|iPhone
+		{1726E324-A435-4269-8B2F-89D6CB34A629}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{1726E324-A435-4269-8B2F-89D6CB34A629}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{1726E324-A435-4269-8B2F-89D6CB34A629}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{1726E324-A435-4269-8B2F-89D6CB34A629}.AppStore|iPhone.Build.0 = Release|iPhone
+	EndGlobalSection
+EndGlobal

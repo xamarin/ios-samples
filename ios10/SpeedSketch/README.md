@@ -1,4 +1,5 @@
-# SpeedSketch
+SpeedSketch
+==============
 
 This sample demonstrates how to capture touch input on iOS into a series of strokes and rendering them in a fast, efficient and correct way on a Canvas. It shows how to get the highest fidelity and best latency when using Apple Pencil. It also touches on subclassing of `UIGestureRecognizer`, and on how to coordinate gestures between pencil and touches.
 

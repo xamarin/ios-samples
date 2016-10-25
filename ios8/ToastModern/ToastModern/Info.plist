@@ -34,5 +34,9 @@
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
+	<key>CFBundleName</key>
+	<string>ToastModern</string>
+	<key>NSCameraUsageDescription</key>
+	<string>ToastModern App needs Camera Access</string>
 </dict>
 </plist>

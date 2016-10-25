@@ -31,5 +31,11 @@
 	<string>com.xamarin.HKWork</string>
 	<key>CFBundleDisplayName</key>
 	<string>HKWork</string>
+	<key>CFBundleName</key>
+	<string>HKWork</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>HKWorks App needs Health Share Access</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>HKWorks App needs Health Update Access</string>
 </dict>
 </plist>

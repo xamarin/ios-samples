@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2548a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k3j-Vc-BBo">
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JXn-wd-xIK">
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ElizaChat" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="N2D-4c-dEK">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="so5-ee-AWC"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="eRr-vS-28J"/>
+                                            <constraint firstAttribute="trailing" secondItem="N2D-4c-dEK" secondAttribute="trailing" constant="8" id="kSS-nl-44c"/>
+                                            <constraint firstAttribute="bottom" secondItem="N2D-4c-dEK" secondAttribute="bottom" constant="7" id="pjf-cW-bm4"/>
+                                            <constraint firstItem="N2D-4c-dEK" firstAttribute="leading" secondItem="JXn-wd-xIK" secondAttribute="leading" constant="8" id="sS6-jp-BYQ"/>
+                                        </constraints>
+                                    </view>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8SG-Q2-Co3">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <string key="text">
+Eliza: Hi I'm Eliza and I'm here to help.  Please tell me your problem.
+</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
+                                    </textView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Header" translatesAutoresizingMaskIntoConstraints="NO" id="0Fo-5T-q2O">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="136" id="vN7-JU-Ujr"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="JXn-wd-xIK" secondAttribute="bottom" id="1mw-Wj-hvq"/>
+                                    <constraint firstItem="8SG-Q2-Co3" firstAttribute="leading" secondItem="k3j-Vc-BBo" secondAttribute="leading" id="6Im-3T-A1f"/>
+                                    <constraint firstItem="8SG-Q2-Co3" firstAttribute="top" secondItem="0Fo-5T-q2O" secondAttribute="bottom" id="Gqw-x1-KOB"/>
+                                    <constraint firstAttribute="bottom" secondItem="8SG-Q2-Co3" secondAttribute="bottom" constant="42" id="H64-7v-mL6"/>
+                                    <constraint firstAttribute="trailing" secondItem="8SG-Q2-Co3" secondAttribute="trailing" id="Jdx-4i-q0i"/>
+                                    <constraint firstItem="0Fo-5T-q2O" firstAttribute="top" secondItem="k3j-Vc-BBo" secondAttribute="top" id="LNZ-Ni-6hH"/>
+                                    <constraint firstAttribute="trailing" secondItem="0Fo-5T-q2O" secondAttribute="trailing" id="MY5-f6-ivR"/>
+                                    <constraint firstAttribute="trailing" secondItem="JXn-wd-xIK" secondAttribute="trailing" id="SmI-4x-LWe"/>
+                                    <constraint firstItem="JXn-wd-xIK" firstAttribute="leading" secondItem="k3j-Vc-BBo" secondAttribute="leading" id="w0M-Xy-uba"/>
+                                    <constraint firstItem="0Fo-5T-q2O" firstAttribute="leading" secondItem="k3j-Vc-BBo" secondAttribute="leading" id="zxW-zk-L82"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="k3j-Vc-BBo" secondAttribute="trailing" id="GF2-AL-FqU"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="k3j-Vc-BBo" secondAttribute="bottom" id="MQJ-Ch-38b"/>
+                            <constraint firstItem="k3j-Vc-BBo" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="UgX-hp-jkx"/>
+                            <constraint firstItem="k3j-Vc-BBo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kwG-cv-fus"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ChatHistory" destination="8SG-Q2-Co3" id="8cL-Px-8Fl"/>
+                        <outlet property="ChatInput" destination="N2D-4c-dEK" id="FpJ-eU-mTm"/>
+                        <outlet property="ContainerBottomConstraint" destination="MQJ-Ch-38b" id="eJI-xs-tcp"/>
+                        <outlet property="ContainerTopConstraint" destination="UgX-hp-jkx" id="hRf-XZ-Tn9"/>
+                        <outlet property="InterfaceContainer" destination="k3j-Vc-BBo" id="PB9-kn-EdE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Header" width="400" height="136"/>
+    </resources>
+</document>

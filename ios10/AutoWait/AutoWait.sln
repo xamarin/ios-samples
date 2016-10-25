@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoWait", "AutoWait\AutoWait.csproj", "{FCD9CD4D-93B0-46E3-800B-41E24052E38E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCD9CD4D-93B0-46E3-800B-41E24052E38E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FCD9CD4D-93B0-46E3-800B-41E24052E38E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FCD9CD4D-93B0-46E3-800B-41E24052E38E}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FCD9CD4D-93B0-46E3-800B-41E24052E38E}.Release|iPhone.Build.0 = Release|iPhone
+		{FCD9CD4D-93B0-46E3-800B-41E24052E38E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FCD9CD4D-93B0-46E3-800B-41E24052E38E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{FCD9CD4D-93B0-46E3-800B-41E24052E38E}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FCD9CD4D-93B0-46E3-800B-41E24052E38E}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal

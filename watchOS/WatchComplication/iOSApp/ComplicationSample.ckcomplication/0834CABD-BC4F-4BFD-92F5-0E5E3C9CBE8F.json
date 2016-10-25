@@ -1,0 +1,10 @@
+{
+  "class" : "CLKComplicationTemplateCircularSmallRingText",
+  "fillFraction" : 0,
+  "ringStyle" : 0,
+  "textProvider" : {
+    "class" : "CLKSimpleTextProvider",
+    "text" : "s"
+  },
+  "version" : 30000
+}

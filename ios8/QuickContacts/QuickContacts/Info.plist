@@ -43,5 +43,7 @@
 	<string>Resources/Images.xcassets/AppIcon.appiconset</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
+	<key>CFBundleName</key>
+	<string>QuickContacts</string>
 </dict>
 </plist>

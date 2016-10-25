@@ -1,5 +1,8 @@
-WatchTables (WatchKit) 
+WatchTables (WatchKit)
 ======================
+
+**NOTE:** There is an [updated watchOS 3 version](https://github.com/xamarin/ios-samples/tree/master/watchOS/WatchTables)
+
 
 Sample code for the Xamarin.iOS Watch Kit [Table Control] documentation.
 
@@ -8,7 +11,7 @@ Author
 
 Created with Xamarin.iOS by Craig Dunn.
 
-*Watch screenshots use [Bezel] courtesy of [infinitapps] :)*  
+*Watch screenshots use [Bezel] courtesy of [infinitapps] :)*
 *Watch bezel art courtesy of [Max Rudberg]*
 
 [Table Control]:http://developer.xamarin.com/guides/ios/watch/controls/table/

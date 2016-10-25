@@ -1,4 +1,5 @@
-# AVCamBarcode
+AVCamBarcode
+============
 
 `AVCamBarcode` demonstrates how to use the `AVFoundation` capture API to detect barcodes and faces.
 
