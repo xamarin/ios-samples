@@ -1,15 +1,17 @@
 ﻿using System;
+
 using UIKit;
 
 namespace CustomTransitions
 {
-	public partial class MenuViewController : UITableViewController
+	public partial class CDSecondViewController : UIViewController
 	{
-
-		public MenuViewController(IntPtr handle)
-			: base (handle)
-		{ 
 		
+
+		public CDSecondViewController(IntPtr handle)
+			: base (handle)
+		{
+
 		}
 
 		public override void ViewDidLoad()
@@ -22,6 +24,11 @@ namespace CustomTransitions
 		{
 			base.DidReceiveMemoryWarning();
 			// Release any cached data, images, etc that aren't in use.
+		}
+
+		partial void dismiisAction(UIButton sender)
+		{
+			this.DismissViewController(true, null);
 		}
 	}
 }

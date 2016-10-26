@@ -95,10 +95,22 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="CrossDissolve\" />
+    <Folder Include="Slide\" />
+    <Folder Include="AdaptativePresentation\" />
+    <Folder Include="Checkboard\" />
+    <Folder Include="CustomPresentation\" />
+    <Folder Include="Swipe\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="AdaptativePresentation\AdaptativePresentation.storyboard" />
+    <InterfaceDefinition Include="Checkboard\Checkboard.storyboard" />
+    <InterfaceDefinition Include="CustomPresentation\CustomPresentation.storyboard" />
+    <InterfaceDefinition Include="Slide\Slide.storyboard" />
+    <InterfaceDefinition Include="Swipe\Swipe.storyboard" />
+    <InterfaceDefinition Include="CrossDissolve\CrossDissolve.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -110,6 +122,19 @@
     <Compile Include="MenuViewController.cs" />
     <Compile Include="MenuViewController.designer.cs">
       <DependentUpon>MenuViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrossDissolve\CrossDissolveTransitionAnimator.cs" />
+    <Compile Include="Cross.cs" />
+    <Compile Include="Cross.designer.cs">
+      <DependentUpon>Cross.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrossDissolve\CDFirstViewController.cs" />
+    <Compile Include="CrossDissolve\CDFirstViewController.designer.cs">
+      <DependentUpon>CDFirstViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrossDissolve\CDSecondViewController.cs" />
+    <Compile Include="CrossDissolve\CDSecondViewController.designer.cs">
+      <DependentUpon>CDSecondViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
