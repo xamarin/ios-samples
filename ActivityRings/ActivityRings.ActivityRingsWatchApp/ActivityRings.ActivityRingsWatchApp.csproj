@@ -80,11 +80,11 @@
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>Full</MtouchLink>
     <MtouchArch>ARMv7k</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
-    <CodesignProvision>90f3eb96-8bcc-494e-905e-05bb8923200c</CodesignProvision>
+    <CodesignProvision>7a42b0a5-60a2-4b41-b169-0ce915e0ffb7</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Glance' ">
     <WatchKitExecutionMode>Glance</WatchKitExecutionMode>

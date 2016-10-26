@@ -82,11 +82,12 @@
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <IOSDebuggerPort>10001</IOSDebuggerPort>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>Full</MtouchLink>
     <MtouchArch>ARMv7k</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <MtouchTlsProvider>Default</MtouchTlsProvider>
-    <CodesignProvision>90f3eb96-8bcc-494e-905e-05bb8923200c</CodesignProvision>
+    <CodesignProvision>006d3f0f-8a40-4e8c-baac-4b54fc8c43ce</CodesignProvision>
+    <MtouchProfiling>true</MtouchProfiling>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
