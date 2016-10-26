@@ -20,9 +20,9 @@ namespace ActivityRings.UITests
 		}
 
 		[Test]
-		public void ViewIsDisplayed()
+		public void TextViewIsDisplayed()
 		{
-			AppResult[] results = app.WaitForElement(c => c.Child("UIView"));
+			AppResult[] results = app.WaitForElement(c => c.Marked("InfoTextView"));
 			app.Screenshot("First screen.");
 
 			Assert.IsTrue(results.Any());
