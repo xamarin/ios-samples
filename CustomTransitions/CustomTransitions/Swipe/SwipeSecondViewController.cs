@@ -4,14 +4,13 @@ using UIKit;
 
 namespace CustomTransitions
 {
-	public partial class CDSecondViewController : UIViewController
+	public partial class SwipeSecondViewController : UIViewController
 	{
-		public CDSecondViewController(IntPtr handle)
+		public SwipeSecondViewController(IntPtr handle)
 			: base (handle)
 		{
 
 		}
-
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
@@ -22,11 +21,6 @@ namespace CustomTransitions
 		{
 			base.DidReceiveMemoryWarning();
 			// Release any cached data, images, etc that aren't in use.
-		}
-
-		partial void dismiisAction(UIButton sender)
-		{
-			this.DismissViewController(true, null);
 		}
 	}
 }

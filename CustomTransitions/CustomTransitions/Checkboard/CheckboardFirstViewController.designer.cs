@@ -11,13 +11,9 @@ using UIKit;
 
 namespace CustomTransitions
 {
-    [Register ("CDFirstViewController")]
-    partial class CDFirstViewController
+    [Register ("CheckboardFirstViewController")]
+    partial class CheckboardFirstViewController
     {
-        [Action ("presentWithCustomTransitionAction:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void presentWithCustomTransitionAction (UIKit.UIButton sender);
-
         [Action ("unwindToMenuViewController:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void unwindToMenuViewController (UIKit.UIBarButtonItem sender);

@@ -42,10 +42,18 @@
                             </button>
                         </subviews>
                     </view>
-                    <navigationItem title="Title" id="58" key="navigationItem"/>
+                    <navigationItem title="Cross Dissolve" id="58" key="navigationItem">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="87">
+                            <connections>
+                                <action selector="unwindToMenuViewController:" destination="21" id="90"/>
+                                <segue id="97" destination="94" kind="unwind" unwindAction="UnwindToMenuViewController:"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="94" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="53" y="-125"/>
         </scene>

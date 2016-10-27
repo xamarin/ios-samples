@@ -4,12 +4,11 @@ using UIKit;
 
 namespace CustomTransitions
 {
-	public partial class CDSecondViewController : UIViewController
+	public partial class CPFirstViewController : UIViewController
 	{
-		public CDSecondViewController(IntPtr handle)
+		public CPFirstViewController(IntPtr handle)
 			: base (handle)
 		{
-
 		}
 
 		public override void ViewDidLoad()
@@ -22,11 +21,6 @@ namespace CustomTransitions
 		{
 			base.DidReceiveMemoryWarning();
 			// Release any cached data, images, etc that aren't in use.
-		}
-
-		partial void dismiisAction(UIButton sender)
-		{
-			this.DismissViewController(true, null);
 		}
 	}
 }

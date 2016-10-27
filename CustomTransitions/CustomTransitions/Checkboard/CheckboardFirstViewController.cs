@@ -1,15 +1,19 @@
 ﻿using System;
-
 using UIKit;
 
 namespace CustomTransitions
 {
-	public partial class CDSecondViewController : UIViewController
+	public partial class CheckboardFirstViewController : UIViewController
 	{
-		public CDSecondViewController(IntPtr handle)
+		partial void unwindToMenuViewController(UIBarButtonItem sender)
+		{
+			DismissViewController(true, null);
+		}
+
+		public CheckboardFirstViewController(IntPtr handle)
 			: base (handle)
 		{
-
+			WeakTransitioningDelegate = this;
 		}
 
 		public override void ViewDidLoad()
@@ -22,11 +26,6 @@ namespace CustomTransitions
 		{
 			base.DidReceiveMemoryWarning();
 			// Release any cached data, images, etc that aren't in use.
-		}
-
-		partial void dismiisAction(UIButton sender)
-		{
-			this.DismissViewController(true, null);
 		}
 	}
 }

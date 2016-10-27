@@ -136,6 +136,43 @@
     <Compile Include="CrossDissolve\CDSecondViewController.designer.cs">
       <DependentUpon>CDSecondViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Swipe\SwipeFirstViewController.cs" />
+    <Compile Include="Swipe\SwipeFirstViewController.designer.cs">
+      <DependentUpon>SwipeFirstViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Swipe\SwipeSecondViewController.cs" />
+    <Compile Include="Swipe\SwipeSecondViewController.designer.cs">
+      <DependentUpon>SwipeSecondViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomPresentation\CPFirstViewController.cs" />
+    <Compile Include="CustomPresentation\CPFirstViewController.designer.cs">
+      <DependentUpon>CPFirstViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomPresentation\CPSecondViewController.cs" />
+    <Compile Include="CustomPresentation\CPSecondViewController.designer.cs">
+      <DependentUpon>CPSecondViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Checkboard\CheckboardFirstViewController.cs" />
+    <Compile Include="Checkboard\CheckboardFirstViewController.designer.cs">
+      <DependentUpon>CheckboardFirstViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdaptativePresentation\APFirstViewController.cs" />
+    <Compile Include="AdaptativePresentation\APFirstViewController.designer.cs">
+      <DependentUpon>APFirstViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdaptativePresentation\APSecondViewController.cs" />
+    <Compile Include="AdaptativePresentation\APSecondViewController.designer.cs">
+      <DependentUpon>APSecondViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Slide\SlideTransitionDelegate.cs" />
+    <Compile Include="SlideTransitionDelegate.cs" />
+    <Compile Include="SlideTransitionDelegate.designer.cs">
+      <DependentUpon>SlideTransitionDelegate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdaptativePresentation\AdaptativePresentationSegue.cs" />
+    <Compile Include="AdaptativePresentation\AdaptativePresentationSegue.designer.cs">
+      <DependentUpon>AdaptativePresentationSegue.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -4,34 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
     </dependencies>
     <scenes>
-        <scene sceneID="2">
-            <objects>
-                <tableViewController id="3" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8" rowHeight="44">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8" id="9">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="3" id="6"/>
-                            <outlet property="delegate" destination="3" id="7"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Adaptative Presentation" id="4"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="10" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="393" y="24"/>
-        </scene>
         <scene sceneID="11">
             <objects>
                 <navigationController id="12" sceneMemberID="viewController" storyboardIdentifier="AdaptativePresentationController" useStoryboardIdentifierAsRestorationIdentifier="YES">
@@ -40,12 +12,65 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="3" kind="relationship" relationship="rootViewController" id="13"/>
+                        <segue id="96" destination="23" kind="relationship" relationship="rootViewController"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-485" y="25"/>
+        </scene>
+        <scene sceneID="22">
+            <objects>
+                <viewController id="23" sceneMemberID="viewController" customClass="APFirstViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="20"/>
+                        <viewControllerLayoutGuide type="bottom" id="21"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="24">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="110" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="179" y="216" width="123" height="110"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue id="161" destination="30" kind="custom" customClass="AdaptativePresentationSegue"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <navigationItem title="Adaptative Presentation" id="95" key="navigationItem">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="98">
+                            <connections>
+                                <segue id="174" destination="165" kind="unwind" unwindAction="UnwindToMenuViewController:"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="25" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="165" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="167" y="10"/>
+        </scene>
+        <scene sceneID="29">
+            <objects>
+                <viewController id="30" sceneMemberID="viewController" customClass="APSecondViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="27"/>
+                        <viewControllerLayoutGuide type="bottom" id="28"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="31">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="32" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="831" y="14"/>
         </scene>
     </scenes>
 </document>

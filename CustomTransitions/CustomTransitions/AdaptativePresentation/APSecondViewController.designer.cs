@@ -11,14 +11,9 @@ using UIKit;
 
 namespace CustomTransitions
 {
-    [Register ("MenuViewController")]
-    partial class MenuViewController
+    [Register ("APSecondViewController")]
+    partial class APSecondViewController
     {
-        [Action ("UnwindToMenuViewController:")]
-        public void UnwindToMenuViewController (UIStoryboardSegue segue)
-        {
-        }
-
         void ReleaseDesignerOutlets ()
         {
         }

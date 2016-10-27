@@ -1,29 +1,19 @@
 ﻿using System;
-using CoreGraphics;
 using Foundation;
-using ObjCRuntime;
 using UIKit;
 
 namespace CustomTransitions
 {
-	[Adopts("IUIViewControllerTransitioningDelegate")]
-	[Adopts("UIViewControllerTransitioningDelegate")]
-
 	public partial class CDFirstViewController  : UIViewController, IUIViewControllerTransitioningDelegate
 	{
-
 		public CDFirstViewController(IntPtr handle)
 			: base (handle)
 		{
-			WeakTransitioningDelegate = this;
 		}
 
 		public override void ViewDidLoad()
 		{
 			base.ViewDidLoad();
-
-
-			// Perform any additional setup after loading the view, typically from a nib.
 		}
 
 		public override void DidReceiveMemoryWarning()
@@ -47,14 +37,12 @@ namespace CustomTransitions
 		//  expected to return an object that conforms to the
 		//  UIViewControllerAnimatedTransitioning protocol, or nil if the default
 		//  presentation animation should be used.
-		//
 
 		[Export("animationControllerForPresentedController:presentingController:sourceController:")]
 		public IUIViewControllerAnimatedTransitioning GetAnimationControllerForPresentedController(UIViewController presented, UIViewController presenting, UIViewController source)
 		{
 			return (new CrossDissolveTransitionAnimator());
 		}
-
 		 
 		//| ----------------------------------------------------------------------------
 		//  The system calls this method on the presented view controller's
