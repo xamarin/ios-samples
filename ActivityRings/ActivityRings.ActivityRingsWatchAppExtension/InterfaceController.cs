@@ -31,19 +31,10 @@ namespace ActivityRings.ActivityRingsWatchAppExtension
 			// Note: this .ctor should not contain any initialization logic.
 		}
 
-		public override void Awake(NSObject context)
-		{
-			base.Awake(context);
-
-			// Configure interface objects here.
-			Console.WriteLine("{0} awake with context", this);
-		}
 
 		public override void WillActivate()
 		{
 			// This method is called when the watch view controller is about to be visible to the user.
-			Console.WriteLine("{0} will activate", this);
-
 
 			// Only proceed if health data is available.
 			if (!HKHealthStore.IsHealthDataAvailable) { return; };
@@ -59,18 +50,11 @@ namespace ActivityRings.ActivityRingsWatchAppExtension
 			{
 				if (error != null && !success)
 				{
-					Console.WriteLine("You didn't allow HealthKit to access these read/write data types. " +
-									  "In your app, try to handle this error gracefully when a user decides not to provide access. " +
-									  "The error was: {0}. If you're using a simulator, try it on a device.", error.LocalizedDescription);
+					Console.WriteLine($"You didn't allow HealthKit to access these read/write data types. In your app, try to handle this error gracefully when a user decides not to provide access. The error was: {error.LocalizedDescription}. If you're using a simulator, try it on a device.");
 				}
 			});
 		}
 
-		public override void DidDeactivate()
-		{
-			// This method is called when the watch view controller is no longer visible to the user.
-			Console.WriteLine("{0} did deactivate", this);
-		}
 
 		partial void ToggleWorkout()
 		{
@@ -102,10 +86,11 @@ namespace ActivityRings.ActivityRingsWatchAppExtension
 
 
 				NSError error = null;
-				var workoutSession = new HKWorkoutSession(configuration, out error);
-				workoutSession.Delegate = this;
-				CurrentWorkoutSession = workoutSession;
-				HealthStore.StartWorkoutSession(workoutSession);
+				CurrentWorkoutSession = new HKWorkoutSession(configuration, out error)
+				{
+					Delegate = this
+				};
+				HealthStore.StartWorkoutSession(CurrentWorkoutSession);
 
 			}
 
@@ -145,33 +130,23 @@ namespace ActivityRings.ActivityRingsWatchAppExtension
 
 			HealthStore.SaveObject(workout, (success, error) =>
 			{
-				if (success)
+				if (!success)
 				{
-					if (finalActiveEnergySamples.Count > 0)
+					Console.WriteLine($"An error occured saving the workout. In your app, try to handle this gracefully. The error was: {error.ToString()}.");
+					return;
+				}
+					
+				if (finalActiveEnergySamples.Count > 0)
+				{
+					HealthStore.AddSamples(finalActiveEnergySamples.ToArray(), workout, (addSuccess, addError) =>
 					{
-						HealthStore.AddSamples(finalActiveEnergySamples.ToArray(), workout, (addSuccess, addError) =>
-						{
-							// Handle any errors
-							if (addError == null)
-							{
-								// Was the save successful
-								if (addSuccess)
-								{
+						// Handle any errors
+						if (addError != null)
+							Console.WriteLine($"An error occurred adding the samples. In your app, try to handle this gracefully. The error was: {error.ToString()}.");
 
-								}
-							}
-							else {
-								// Report error
-								Console.WriteLine("An error occured adding the samples. In your app, try to handle this gracefully. " +
-					"The error was: {0}.", error);
-							}
-						});
-					}
+					});
 				}
-				else {
-					Console.WriteLine("An error occured saving the workout. In your app, try to handle this gracefully. " +
-					"The error was: {0}.", error);
-				}
+
 			});
 
 		}
@@ -243,8 +218,7 @@ namespace ActivityRings.ActivityRingsWatchAppExtension
 
 				}
 				else {
-					Console.WriteLine("An error occured executing the query. In your app, try to handle this gracefully. " +
-					"The error was: {0}.", error);
+					Console.WriteLine($"An error occured executing the query. In your app, try to handle this gracefully. The error was: {error.ToString()}.");
 				}
 
 			});
@@ -261,8 +235,7 @@ namespace ActivityRings.ActivityRingsWatchAppExtension
 
 				}
 				else {
-					Console.WriteLine("An error occured executing the query. In your app, try to handle this gracefully. " +
-					"The error was: {0}.", error);
+					Console.WriteLine($"An error occured executing the query. In your app, try to handle this gracefully. The error was: {error.ToString()}.");
 				}
 
 			};
@@ -304,7 +277,7 @@ namespace ActivityRings.ActivityRingsWatchAppExtension
 						EndWorkout((DateTime)date);
 						break;
 					default:
-						Console.WriteLine("Unexpected workout session: {0}.", toState);
+						Console.WriteLine($"Unexpected workout session: {toState}.");
 						break;
 				}
 			});
@@ -313,8 +286,7 @@ namespace ActivityRings.ActivityRingsWatchAppExtension
 
 		public void DidFail(HKWorkoutSession workoutSession, NSError error) 
 		{ 
-			Console.WriteLine("An error occured with the workout session. In your app, try to handle this gracefully. " +
-					"The error was: {0}.", error);
+			Console.WriteLine($"An error occured with the workout session. In your app, try to handle this gracefully. The error was: {error}.");
 		}
 	}
 }
