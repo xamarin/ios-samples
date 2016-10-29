@@ -42,7 +42,7 @@
                             </button>
                         </subviews>
                     </view>
-                    <navigationItem title="Title" id="109" key="navigationItem">
+                    <navigationItem title="Swipe" id="109" key="navigationItem">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="112">
                             <connections>
                                 <segue id="147" destination="144" kind="unwind" unwindAction="UnwindToMenuViewController:"/>

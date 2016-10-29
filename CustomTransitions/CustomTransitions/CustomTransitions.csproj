@@ -101,16 +101,17 @@
     <Folder Include="Checkboard\" />
     <Folder Include="CustomPresentation\" />
     <Folder Include="Swipe\" />
+    <Folder Include="MainMenu\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="AdaptativePresentation\AdaptativePresentation.storyboard" />
     <InterfaceDefinition Include="Checkboard\Checkboard.storyboard" />
     <InterfaceDefinition Include="CustomPresentation\CustomPresentation.storyboard" />
     <InterfaceDefinition Include="Slide\Slide.storyboard" />
     <InterfaceDefinition Include="Swipe\Swipe.storyboard" />
     <InterfaceDefinition Include="CrossDissolve\CrossDissolve.storyboard" />
+    <InterfaceDefinition Include="MainMenu\Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -119,15 +120,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="MenuViewController.cs" />
-    <Compile Include="MenuViewController.designer.cs">
-      <DependentUpon>MenuViewController.cs</DependentUpon>
-    </Compile>
     <Compile Include="CrossDissolve\CrossDissolveTransitionAnimator.cs" />
-    <Compile Include="Cross.cs" />
-    <Compile Include="Cross.designer.cs">
-      <DependentUpon>Cross.cs</DependentUpon>
-    </Compile>
     <Compile Include="CrossDissolve\CDFirstViewController.cs" />
     <Compile Include="CrossDissolve\CDFirstViewController.designer.cs">
       <DependentUpon>CDFirstViewController.cs</DependentUpon>
@@ -165,14 +158,20 @@
       <DependentUpon>APSecondViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Slide\SlideTransitionDelegate.cs" />
-    <Compile Include="SlideTransitionDelegate.cs" />
-    <Compile Include="SlideTransitionDelegate.designer.cs">
-      <DependentUpon>SlideTransitionDelegate.cs</DependentUpon>
-    </Compile>
     <Compile Include="AdaptativePresentation\AdaptativePresentationSegue.cs" />
     <Compile Include="AdaptativePresentation\AdaptativePresentationSegue.designer.cs">
       <DependentUpon>AdaptativePresentationSegue.cs</DependentUpon>
     </Compile>
+    <Compile Include="Slide\SlideTransitionDelegate.designer.cs">
+      <DependentUpon>..\SlideTransitionDelegate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu\MenuViewController.cs" />
+    <Compile Include="MainMenu\MenuViewController.designer.cs">
+      <DependentUpon>MenuViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Swipe\SwipeTransitionDelegate.cs" />
+    <Compile Include="Swipe\SwipeTransitionAnimator.cs" />
+    <Compile Include="Swipe\SwipeTransitionInteractionController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

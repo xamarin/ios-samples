@@ -1,15 +1,13 @@
-﻿using System;
-using UIKit;
 using Foundation;
+using System;
+using UIKit;
 
 namespace CustomTransitions
 {
 	public partial class SlideTransitionDelegate : NSObject, IUITabBarDelegate
-	{
-		public SlideTransitionDelegate()
-		{
-		}
-
-
-	}
+    {
+        public SlideTransitionDelegate (IntPtr handle) : base (handle)
+        {
+        }
+    }
 }
