@@ -9,6 +9,11 @@ namespace CustomTransitions
 	{
 		public UIRectEdge targetEdge;
 
+		public SwipeTransitionAnimator(UIRectEdge edge)
+		{
+			targetEdge = edge;
+		}
+
 		public override double TransitionDuration(IUIViewControllerContextTransitioning transitionContext)
 		{
 			return 0.35;

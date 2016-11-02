@@ -9,10 +9,6 @@ namespace CustomTransitions
 		public UIScreenEdgePanGestureRecognizer gestureRecognizer;
 		public UIRectEdge targetEdge;
 
-		public SwipeTransitionDelegate(IntPtr handle) : base (handle)
-        {
-		}
-
 		//| ----------------------------------------------------------------------------
 		//  The system calls this method on the presented view controller's
 		//  transitioningDelegate to retrieve the animator object used for animating
@@ -23,10 +19,8 @@ namespace CustomTransitions
 
 		[Export("animationControllerForPresentedController:presentingController:sourceController:")]
 		public IUIViewControllerAnimatedTransitioning GetAnimationControllerForPresentedController(UIViewController presented, UIViewController presenting, UIViewController source)
-		{
-			SwipeTransitionAnimator animator = new SwipeTransitionAnimator();
-			animator.targetEdge = this.targetEdge;
-			return animator;
+		{			
+			return new SwipeTransitionAnimator(targetEdge);;
 		}
 
 		//| ----------------------------------------------------------------------------
@@ -40,9 +34,7 @@ namespace CustomTransitions
 		[Export("animationControllerForDismissedController:")]
 		public IUIViewControllerAnimatedTransitioning GetAnimationControllerForDismissedController(UIViewController dismissed)
 		{
-			SwipeTransitionAnimator animator = new SwipeTransitionAnimator();
-			animator.targetEdge = this.targetEdge;
-			return animator;
+			return new SwipeTransitionAnimator(targetEdge); ;
 		}
 
 		//| ----------------------------------------------------------------------------
@@ -56,11 +48,13 @@ namespace CustomTransitions
 		[Export("interactionControllerForPresentation:")]
 		public IUIViewControllerInteractiveTransitioning GetInteractionControllerForPresentation(IUIViewControllerAnimatedTransitioning animator)
 		{
-			if (this.gestureRecognizer != null) { 
-			
+			if (gestureRecognizer != null)
+			{
+				return new SwipeTransitionInteractionController(gestureRecognizer, targetEdge);
 			}
-
-			return null;
+			else {
+				return null;
+			}
 		}
 
 		//| ----------------------------------------------------------------------------
@@ -74,12 +68,13 @@ namespace CustomTransitions
 		[Export("interactionControllerForDismissal:")]
 		public IUIViewControllerInteractiveTransitioning GetInteractionControllerForDismissal(IUIViewControllerAnimatedTransitioning animator)
 		{
-			if (this.gestureRecognizer != null)
+			if (gestureRecognizer != null)
 			{
-
+				return new SwipeTransitionInteractionController(gestureRecognizer, targetEdge);
 			}
-
-			return null;
+			else {
+				return null;
+			}
 		}
 	}
 }
