@@ -14,10 +14,10 @@ namespace CustomTransitions
     [Register ("SwipeFirstViewController")]
     partial class SwipeFirstViewController
     {
-		[Action("UnwindToSwipeFirstViewController:")]
-		public void UnwindToSwipeFirstViewController(UIStoryboardSegue segue)
-		{
-		}
+        [Action ("UnwindToSwipeFirstViewController:")]
+        public void UnwindToSwipeFirstViewController (UIStoryboardSegue segue)
+        {
+        }
 
         void ReleaseDesignerOutlets ()
         {

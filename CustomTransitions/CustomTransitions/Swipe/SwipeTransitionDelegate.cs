@@ -1,5 +1,4 @@
-﻿using System;
-using UIKit;
+﻿using UIKit;
 using Foundation;
 
 namespace CustomTransitions
@@ -20,7 +19,7 @@ namespace CustomTransitions
 		[Export("animationControllerForPresentedController:presentingController:sourceController:")]
 		public IUIViewControllerAnimatedTransitioning GetAnimationControllerForPresentedController(UIViewController presented, UIViewController presenting, UIViewController source)
 		{			
-			return new SwipeTransitionAnimator(targetEdge);;
+			return new SwipeTransitionAnimator(targetEdge);
 		}
 
 		//| ----------------------------------------------------------------------------
@@ -34,7 +33,7 @@ namespace CustomTransitions
 		[Export("animationControllerForDismissedController:")]
 		public IUIViewControllerAnimatedTransitioning GetAnimationControllerForDismissedController(UIViewController dismissed)
 		{
-			return new SwipeTransitionAnimator(targetEdge); ;
+			return new SwipeTransitionAnimator(targetEdge);
 		}
 
 		//| ----------------------------------------------------------------------------
@@ -52,9 +51,8 @@ namespace CustomTransitions
 			{
 				return new SwipeTransitionInteractionController(gestureRecognizer, targetEdge);
 			}
-			else {
-				return null;
-			}
+
+			return null;
 		}
 
 		//| ----------------------------------------------------------------------------
@@ -72,9 +70,8 @@ namespace CustomTransitions
 			{
 				return new SwipeTransitionInteractionController(gestureRecognizer, targetEdge);
 			}
-			else {
-				return null;
-			}
+
+			return null;
 		}
 	}
 }

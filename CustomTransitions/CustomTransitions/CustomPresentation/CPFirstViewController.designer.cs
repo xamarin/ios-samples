@@ -14,6 +14,10 @@ namespace CustomTransitions
     [Register ("CPFirstViewController")]
     partial class CPFirstViewController
     {
+        [Action ("ButtonAction:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ButtonAction (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
         }
