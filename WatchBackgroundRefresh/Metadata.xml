@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>9c49ecbb-860c-483f-b285-aff602401a5f</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Advanced</Level>
+	<Tags>iOS 8, iOS9, iOS10, Watch, Background</Tags>
+	<Gallery>false</Gallery>
+	<Brief>This sample demonstrates how to use WKRefreshBackgroundTask to update WatchKit apps in the background.</Brief>
+</SampleMetadata>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6221" systemVersion="14A389" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3734"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="">
+                    <items>
+                        <group width="1" alignment="left" id="0" height="1" layout="vertical">
+                            <items>
+                                <label alignment="left" text="Active energy burned" id="1" numberOfLines="2"/>
+                                <label alignment="center" text="0" id="2"/>
+                                <button width="1" alignment="left" title="Begin Workout" id="3" verticalAlignment="bottom">
+                                    <connections>
+                                        <action selector="ToggleWorkout" destination="AgC-eL-Hgc" id="6"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="activeEnergyBurnedLabel" destination="2" id="name-outlet-2"/>
+                        <outlet property="workoutButton" destination="3" id="name-outlet-3"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+</document>
