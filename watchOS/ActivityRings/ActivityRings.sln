@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityRings", "ActivityRings\ActivityRings.csproj", "{B0C8298E-D3D5-4BBA-8825-F14DA1C1CF23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityRings.UITests", "ActivityRings.UITests\ActivityRings.UITests.csproj", "{1D524F2C-DE91-4838-90EA-14CFD0D69C44}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityRings.ActivityRingsWatchApp", "ActivityRings.ActivityRingsWatchApp\ActivityRings.ActivityRingsWatchApp.csproj", "{70862869-8602-4243-8EFE-439F13897C4E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActivityRings.ActivityRingsWatchAppExtension", "ActivityRings.ActivityRingsWatchAppExtension\ActivityRings.ActivityRingsWatchAppExtension.csproj", "{FBFAC437-D670-4187-A3C1-F2F5F2FB58B6}"
@@ -31,18 +29,6 @@ Global
 		{B0C8298E-D3D5-4BBA-8825-F14DA1C1CF23}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
 		{B0C8298E-D3D5-4BBA-8825-F14DA1C1CF23}.Release|Any CPU.ActiveCfg = Release|iPhone
 		{B0C8298E-D3D5-4BBA-8825-F14DA1C1CF23}.Release|Any CPU.Build.0 = Release|iPhone
-		{1D524F2C-DE91-4838-90EA-14CFD0D69C44}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{1D524F2C-DE91-4838-90EA-14CFD0D69C44}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{1D524F2C-DE91-4838-90EA-14CFD0D69C44}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{1D524F2C-DE91-4838-90EA-14CFD0D69C44}.Release|iPhone.Build.0 = Release|Any CPU
-		{1D524F2C-DE91-4838-90EA-14CFD0D69C44}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{1D524F2C-DE91-4838-90EA-14CFD0D69C44}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{1D524F2C-DE91-4838-90EA-14CFD0D69C44}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{1D524F2C-DE91-4838-90EA-14CFD0D69C44}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{1D524F2C-DE91-4838-90EA-14CFD0D69C44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D524F2C-DE91-4838-90EA-14CFD0D69C44}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D524F2C-DE91-4838-90EA-14CFD0D69C44}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D524F2C-DE91-4838-90EA-14CFD0D69C44}.Release|Any CPU.Build.0 = Release|Any CPU
 		{70862869-8602-4243-8EFE-439F13897C4E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{70862869-8602-4243-8EFE-439F13897C4E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{70862869-8602-4243-8EFE-439F13897C4E}.Release|iPhone.ActiveCfg = Release|iPhone
