@@ -36,5 +36,15 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
+	<key>CFBundleName</key>
+	<string>Calendars</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Calendars App needs Calendar Access</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Calendars App needs Reminder Access</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Calendars App needs Location Access</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Calendars App needs location access</string>
 </dict>
 </plist>

@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>53594be9-2bd8-40df-9b2c-f29454736a30</ID>
 	<Brief>Sample code for the Xamarin.iOS WatchKit Table control documentation.</Brief>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>iOS8, Watch, User Interface, Getting Started</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
-	<Gallery>true</Gallery>
+	<Gallery>false</Gallery>
 	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
 	<Description>Sample code for the Xamarin.iOS Watch Kit Table documentation, demonstrating how to add row controllers to a storyboard and codebehind.</Description>
 </SampleMetadata>

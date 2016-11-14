@@ -28,5 +28,9 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Data</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.data</string>
 </dict>
 </plist>

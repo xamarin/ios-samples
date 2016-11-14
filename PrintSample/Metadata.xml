@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>8e9f2c81-2b16-449b-97fd-2762c4cd45af</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>User Interface, Platform Features</Tags>
 	<Gallery>true</Gallery>
 	<Brief>A simple example of using the UIKit Printing API in a Xamarin.iOS application.</Brief>

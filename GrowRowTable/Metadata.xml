@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>26a57b7d-a588-491a-ac09-19500f724764</ID>
 	<IsFullApplication>true</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>User Interface, Table View</Tags>
 	<Gallery>true</Gallery>
 	<Brief>Shows how to create a Table View with Auto-Resizing Row Height.</Brief>

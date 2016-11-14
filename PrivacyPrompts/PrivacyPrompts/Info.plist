@@ -28,5 +28,23 @@
 	<string>1</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>CFBundleName</key>
+	<string>PrivacyPrompts</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>PrivacyPrompts App needs Calendars Access</string>
+	<key>NSCameraUsageDescription</key>
+	<string>PrivacyPrompts App needs Camera Access</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>PrivacyPrompts App needs Reminders Access</string>
+	<key>NSContactsUsageDescription</key>
+	<string>PrivacyPrompts App needs Contacts Access</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>PrivacyPrompts App needs Photo Library Access</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>PrivacyPrompts App needs Microphone Access</string>
+	<key>NSMotionUsageDescription</key>
+	<string>PrivacyPrompts App needs Motion Usage Access</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>PrivacyPrompts App needs Bluetooth Access</string>
 </dict>
 </plist>

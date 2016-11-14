@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9052" systemVersion="14F27" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9040"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9016"/>
+    </dependencies>
+    <scenes>
+        <!--Complicate-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="interfaceController" title="Complication" id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <label alignment="left" text="Show this:" id="0">
+                            <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                        </label>
+                        <label alignment="left" text="-" id="3"/>
+                        <button width="1" alignment="left" title="Edit Message" id="2">
+                            <connections>
+                                <action selector="SetMessageClicked" destination="AgC-eL-Hgc" id="4"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Update Complication" id="1">
+                            <connections>
+                                <action selector="UpdateClicked" destination="AgC-eL-Hgc" id="FFZ-FF-Abo"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="SetMessageButton" destination="2" id="name-outlet-2"/>
+                        <outlet property="MessageText" destination="3" id="name-outlet-3"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="glyphish_13_target.png" width="28" height="28"/>
+    </resources>
+    <color key="tintColor" colorSpace="calibratedRGB" red="0.49803921568627452" green="0" blue="0.49803921568627452" alpha="1"/>
+</document>

@@ -41,21 +41,7 @@ namespace GrowRowTable
 			TableView.ReloadData ();
 		}
 			
-		// ---------------------------------------------------------------------------------------
-		// TODO: I shouldn't need override these two methods, but without them the Datasource and 
-		// Delegate aren't being called. This wasn't required before and is invalid behavior.
-		// See: https://bugzilla.xamarin.com/show_bug.cgi?id=37448
-		// ---------------------------------------------------------------------------------------
-		public override nint NumberOfSections (UITableView tableView)
-		{
-			return DataSource.NumberOfSections(tableView);
-		}
 
-		public override nint RowsInSection (UITableView tableView, nint section)
-		{
-			return DataSource.RowsInSection(tableView, section);
-		}
-		// ---------------------------------------------------------------------------------------
 		#endregion
 	}
 }

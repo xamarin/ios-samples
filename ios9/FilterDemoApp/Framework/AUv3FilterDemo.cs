@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+
 using AudioToolbox;
 using AudioUnit;
 using AVFoundation;
@@ -87,11 +87,10 @@ namespace FilterDemoFramework {
 			ParameterTree.ImplementorStringFromValueCallback = (AUParameter param, ref float? value) => {
 				switch (param.Address) {
 				case (ulong)FilterParam.Cutoff:
-					return param.Value.ToString ();
 				case (ulong)FilterParam.Resonance:
-					return param.Value.ToString ();
+					return (NSString)param.Value.ToString ();
 				default:
-					return "?";
+					return (NSString)"?";
 				}
 			};
 
@@ -174,7 +173,7 @@ namespace FilterDemoFramework {
 
 			double inverseNyquist = 2.0 / outputBus.Format.SampleRate;
 			return frequencies.Select (f => coefficients.GetMagnitude (f * inverseNyquist))
-				              .ToArray ();
+							  .ToArray ();
 		}
 	}
 }

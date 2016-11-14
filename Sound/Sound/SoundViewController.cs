@@ -37,6 +37,9 @@ namespace Sound
 
 		void OnStopRecording (object sender, EventArgs e)
 		{
+			if (recorder == null)
+				return;
+
 			recorder.Stop ();
 			stopwatch.Stop ();
 

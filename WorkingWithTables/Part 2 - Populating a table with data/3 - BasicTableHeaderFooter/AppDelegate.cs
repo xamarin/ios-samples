@@ -20,7 +20,7 @@ namespace BasicTable {
 						, UIScreen.MainScreen.ApplicationFrame.Width
 						, UIScreen.MainScreen.ApplicationFrame.Height);
 			
-			window.AddSubview (iPhoneHome.View);
+			window.RootViewController = iPhoneHome;
 			
 			return true;
 		}

@@ -1,10 +1,9 @@
 ﻿using System;
-
-using UIKit;
 using System.Collections.Generic;
-using Foundation;
+
 using CoreGraphics;
-using ObjCRuntime;
+using Foundation;
+using UIKit;
 
 namespace Chat
 {
@@ -20,7 +19,7 @@ namespace Chat
 		public ChatSource (IList<Message> messages)
 		{
 			if (messages == null)
-				throw new ArgumentNullException ("messages");
+				throw new ArgumentNullException (nameof (messages));
 
 			this.messages = messages;
 			sizingCells = new BubbleCell[2];

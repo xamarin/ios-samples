@@ -2,7 +2,6 @@ using System;
 
 using Foundation;
 using UIKit;
-using CoreGraphics;
 
 namespace Chat
 {
@@ -56,14 +55,14 @@ namespace Chat
 			BubbleImage = normalBubbleImage;
 
 			ContentView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|[bubble]",
-				(NSLayoutFormatOptions)0, 
+				0, 
 				"bubble", BubbleImageView));
 			ContentView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-2-[bubble]-2-|",
-				(NSLayoutFormatOptions)0,
+				0,
 				"bubble", BubbleImageView
 			));
 			BubbleImageView.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:[bubble(>=48)]",
-				(NSLayoutFormatOptions)0,
+				0,
 				"bubble", BubbleImageView
 			));
 

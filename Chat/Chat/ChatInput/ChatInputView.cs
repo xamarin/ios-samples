@@ -1,11 +1,8 @@
-﻿using System;
-
-using UIKit;
-using Foundation;
+﻿using UIKit;
 
 namespace Chat
 {
-	public partial class ChatInputView : UIView
+	public class ChatInputView : UIView
 	{
 		static readonly UIColor ButtonTextColorNormal = UIColor.FromRGB (1, 122, 255);
 		static readonly UIColor ButtonTextColorDisabled = UIColor.FromRGB (142, 142, 147);
@@ -52,7 +49,7 @@ namespace Chat
 			AddSubviews (TextView, SendButton);
 
 			var c1 = NSLayoutConstraint.FromVisualFormat ("H:|-[input]-[button]-|",
-				(NSLayoutFormatOptions)0,
+				0,
 				"input", TextView,
 				"button", SendButton
 			);

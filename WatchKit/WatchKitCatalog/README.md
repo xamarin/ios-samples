@@ -1,8 +1,10 @@
 WatchKit Catalog: Using WatchKit Interface Elements
 ==================================================
- 
+
+**NOTE:** There is an [updated watchOS 3 version](https://github.com/xamarin/ios-samples/tree/master/watchOS/WatchKitCatalog)
+
 WatchKit Catalog is an exploration of the UI elements available in the WatchKit framework. Throughout the sample, you'll find tips and configurations that will help guide the development of your WatchKit app.
- 
+
 Tips
 ----
 
@@ -23,12 +25,12 @@ Tips
 - ControllerDetailController can present a modal controller. The "Dismiss" text of the modal controller is set in the Title field in the Attributes Inspector of the scene for PageController.
 
 - TextInputController presents the text input controller with a set of suggestions. The result is sent to the parent iOS application and a confirmation message is sent back to the WatchKit app extension.
- 
+
 WatchKit Controls
 --------------
- 
+
 WatchKit Catalog demonstrates how to configure and customize the following controls:
- 
+
 * WKInterfaceController
 * WKInterfaceDevice
 * WKInterfaceGroup
@@ -42,17 +44,17 @@ WatchKit Catalog demonstrates how to configure and customize the following contr
 * WKInterfaceTimer
 * WKUserNotificationInterfaceController
 
-Build/Runtime Requirements 
+Build/Runtime Requirements
 --------------------------
 
 * Xcode 6.2 or newer.
 * Xamarin.iOS 8.8 or newer.
- 
+
 Copyright
 ---------
 
 Xamarin port changes are released under the MIT license
 
-Author 
+Author
 ------
 Ported to Xamarin.iOS by Vincent Dondain.

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>0a3f0a5a-1460-4d8d-8770-466a2ebbe5f0</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>Getting Started, User Interface</Tags>
 	<Gallery>true</Gallery>
 	<Brief>This sample serves as an introduction to the primary pattern used in iOS for user interfaces: MVC.</Brief>

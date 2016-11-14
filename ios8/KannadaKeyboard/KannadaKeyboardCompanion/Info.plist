@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Kannada Keyboard</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.prashantvc.KannadaKeyboard</string>
+	<string>com.xamarin.KannadaKeyboard</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -32,5 +32,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
+	<key>CFBundleName</key>
+	<string>Kannada Keyboard</string>
 </dict>
 </plist>

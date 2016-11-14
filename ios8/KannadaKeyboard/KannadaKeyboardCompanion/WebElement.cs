@@ -1,27 +1,19 @@
-﻿
-using System;
-using System.Drawing;
-
-using Foundation;
+﻿using Foundation;
 using UIKit;
 
 namespace KannadaKeyboardCompanion
 {
 	public partial class WebElement : UIViewController
 	{
+		public string HtmlFile { get; set; }
+
 		public WebElement () : base ("WebElement", null)
 		{
-
 		}
 
 		public void SetPageTitle (string title)
 		{
 			Title = title;
-		}
-
-		public string HtmlFile {
-			get;
-			set;
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -32,7 +24,6 @@ namespace KannadaKeyboardCompanion
 				var html = new NSString (data, NSStringEncoding.UTF8);
 				InstructionWebView.LoadHtmlString (html.ToString (), NSBundle.MainBundle.BundleUrl);
 			}
-
 		}
 	}
 }

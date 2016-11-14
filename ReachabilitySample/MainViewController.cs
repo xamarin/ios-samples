@@ -1,7 +1,6 @@
 using System;
-
-using UIKit;
 using Foundation;
+using UIKit;
 
 namespace Reachability {
 	public partial class MainViewController : UITableViewController {
@@ -25,28 +24,28 @@ namespace Reachability {
 			imageStop = UIImage.FromFile ("stop-32.png");
 
 			TableView.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
-			TableView.RowHeight = 44.0f;
+			TableView.RowHeight = 44f;
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
-			TableView.SectionHeaderHeight = 28.0f;
+			TableView.SectionHeaderHeight = 28f;
 			TableView.ScrollEnabled = false;
 		}
 
-		public override NSIndexPath WillSelectRow (UITableView view, NSIndexPath index)
+		public override NSIndexPath WillSelectRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			return null;
 		}
 
-		public override nint RowsInSection (UITableView view, nint section)
+		public override nint RowsInSection (UITableView tableView, nint section)
 		{
 			return 1;
 		}
 
-		public override nint NumberOfSections (UITableView view)
+		public override nint NumberOfSections (UITableView tableView)
 		{
 			return 3;
 		}
 
-		public override string TitleForHeader (UITableView view, nint section)
+		public override string TitleForHeader (UITableView tableView, nint section)
 		{
 			switch (section) {
 			case 0:
@@ -60,7 +59,7 @@ namespace Reachability {
 			}
 		}
 
-		public override UITableViewCell GetCell (UITableView tableView, Foundation.NSIndexPath indexPath)
+		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = tableView.DequeueReusableCell (ReachabilityTableCellIdentifier);
 			if (cell == null) {
@@ -71,7 +70,7 @@ namespace Reachability {
 				label.TextAlignment = UITextAlignment.Left;
 			}
 
-			string text = "";
+			string text = string.Empty;
 			UIImage image = null;
 			switch (indexPath.Section) {
 			case 0:

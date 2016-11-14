@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>33b74c2c-dc77-4b1d-9da4-e1ffd184b86d</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
 	<Brief>Sample demonstrating basic usage of images.</Brief>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>e980347f-d1db-4de0-9d6a-b9dc714dc58a</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>Media, Graphics</Tags>
 	<Gallery>true</Gallery>
 	<Brief>A sample of using the Core Graphics capabilities in a Xamarin.iOS application.</Brief>

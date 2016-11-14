@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>a90e033a-3a8a-432f-bdff-b878597ba491</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>Graphics, Getting Started, iOS8</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
     <LicenseRequirement>Starter</LicenseRequirement>

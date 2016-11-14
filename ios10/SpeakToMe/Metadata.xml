@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+	<ID>a1d79bb0-5d63-11e6-bf8e-a8206629811d</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>iOS10, Platform Features, Getting Started</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+	<Gallery>true</Gallery>
+	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
+	<Brief>Using Speech Recognition with AVAudioEngine</Brief>
+</SampleMetadata>

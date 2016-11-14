@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>f3e41d3f-83a3-43ae-8201-2135b7e7b8e4</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Advanced</Level>
+    <Tags>iOS10, Watch, HealthKit, Platform Features, Device Features</Tags>
+    <Gallery>true</Gallery>
+    <Brief>Demonstrates how to use HealthKit on Apple Watch to contribute to the Activity Rings.</Brief>
+</SampleMetadata>

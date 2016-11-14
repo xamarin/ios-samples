@@ -1,8 +1,8 @@
-MonoTouch Samples
-=================
+iOS/tvOS/watchOS Samples
+========================
 
-The samples in this directory use the MonoTouch toolchain and
-MonoDevelop project files to illustrate the basics of how to
+The samples in this directory use the Xamarin.iOS toolchain and
+Xamarin Studio project files to illustrate the basics of how to
 work with iOS and the SDK.
 
 License
@@ -32,8 +32,9 @@ Version Specific Samples
 
 Starting with iOS 8, we started adding samples that showcase specific
 features introduced in a release into a directory for the release.  So
-all the new iOS 8 feature samples live in the ios8 directory, and the
-iOS 9 features live in the ios9 directory.
+all the new iOS 8 feature samples live in the ios8 directory, the
+iOS 9 features live in the ios9 directory and the iOS 10 feature lives
+in the ios10 directory.
 
 
 WatchKit
@@ -105,7 +106,7 @@ However, because the sample galleries are powered by the github sample repos, ea
 
     * **Brief** - Short description or what your sample does. This allows us to display a nice and clean vignette on the sample page.
 
-    * **Level** - Beginning, Intermediate, or Advanced: this is the intended audience level for the sample. only the getting started samples are Beginning, as they are intended for people who are _just_ starting with the platform. most samples are Intermediate, and a few, that dive deep into difficult APIs, should be Advanced.
+    * **Level** - Beginner, Intermediate, or Advanced: this is the intended audience level for the sample. only the getting started samples are Beginner, as they are intended for people who are _just_ starting with the platform. most samples are Intermediate, and a few, that dive deep into difficult APIs, should be Advanced.
 
     * **Minimum License Requirement** - Starter, Indie, Business, or Enterprise: denotes the license that a user has to have in order to build/run the sample.
 
@@ -128,6 +129,7 @@ However, because the sample galleries are powered by the github sample repos, ea
 		* **Extension**
 		* **iOS8**
 		* **iOS9**
+		* **iOS10**
 		* **Watch**
 		* **Keyboard**
 		* **SceneKit**
@@ -153,5 +155,5 @@ This strict approach is put in place to ensure that the samples we present to ou
 
 Should you wish to invoke validation of samples manually, simply run "validate.windows" or "validate.posix" (again, Windows vs OS X/Linux, respectively). These must be run from a Bash shell (i.e. a terminal on OS X/Linux or the Git Bash terminal on Windows).
 
-If you have any questions, don't hesitate to ask!
+If you have any questions, don't hesitate to ask on [Xamarin Forums](https://forums.xamarin.com/categories/ios)!
 

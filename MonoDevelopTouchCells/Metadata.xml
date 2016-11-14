@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>05e33228-333b-4150-b596-cd7696277a3c</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
 	<Brief>An example of how to use a UITableView and display a custom cell within it.</Brief>

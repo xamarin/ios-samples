@@ -1,0 +1,16 @@
+{
+  "class" : "CLKComplicationTemplateModularLargeStandardBody",
+  "body1TextProvider" : {
+    "shortText" : "B 2",
+    "class" : "CLKSimpleTextProvider",
+    "text" : "Body B",
+    "accessibilityLabel" : "~~~"
+  },
+  "version" : 30000,
+  "headerTextProvider" : {
+    "shortText" : "A 2",
+    "class" : "CLKSimpleTextProvider",
+    "text" : "Header A",
+    "accessibilityLabel" : "~~~"
+  }
+}

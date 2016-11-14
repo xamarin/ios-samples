@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>fb2748c2-3905-44ca-990c-7e34d2b9ced9</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>Getting Started, User Interface</Tags>
 	<Gallery>true</Gallery>
-	<Brief>Sample demonstrating how to create universal applications that will run on both iPhone and iPad.</Brief>>
+	<Brief>Sample demonstrating how to create universal applications that will run on both iPhone and iPad.</Brief>&gt;
 </SampleMetadata>

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>e797f7f2-5132-4aec-8605-dcfd3989a4a5</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>Backgrounding</Tags>
 	<Gallery>true</Gallery>
 	<Brief>This sample illustrates how to develop multitasking aware applications in Xamarin.iOS.</Brief>

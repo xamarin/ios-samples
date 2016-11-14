@@ -1,0 +1,8 @@
+{
+  "textProvider" : {
+    "class" : "CLKSimpleTextProvider",
+    "text" : "XAM3"
+  },
+  "class" : "CLKComplicationTemplateUtilitarianLargeFlat",
+  "version" : 30000
+}

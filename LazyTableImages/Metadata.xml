@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
 	<ID>4912a5a3-7b98-4886-9d50-1b0c417f6037</ID>
 	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginning</Level>
+	<Level>Beginner</Level>
 	<Tags>User Interface, Cloud</Tags>
 	<Gallery>true</Gallery>
 	<Brief>This sample demonstrates how to lazily download images and add them to table.</Brief>
