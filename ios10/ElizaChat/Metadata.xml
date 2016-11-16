@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>857d20f3-57e6-4622-b33e-44babfbee833</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>iOS10, Voice Control, SiriKit</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+    <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>This app demonstrates how to use SiriKit to add Siri Voice Control to a Xamarin.iOS.</Brief>
+</SampleMetadata>

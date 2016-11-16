@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{78C6C92D-3C17-4C5E-A8DC-614C8D660697}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DigitDetection</RootNamespace>
+    <AssemblyName>DigitDetection</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="MetalPerformanceShaders\" />
+    <Folder Include="NeuralNetworkLayers\" />
+    <Folder Include="Assets.xcassets\splash-xamagon.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\Main.storyboard" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Atomics.cs" />
+    <Compile Include="MetalPerformanceShaders\SlimMPSCnnConvolution.cs" />
+    <Compile Include="MetalPerformanceShaders\SlimMPSCNNFullyConnected.cs" />
+    <Compile Include="NeuralNetworkLayers\MnistDeepConvNeuralNetwork.cs" />
+    <Compile Include="NeuralNetworkLayers\MnistFullLayerNeuralNetwork.cs" />
+    <Compile Include="MNISTData.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bias_conv1.dat" />
+    <BundleResource Include="Resources\bias_conv2.dat" />
+    <BundleResource Include="Resources\bias_fc1.dat" />
+    <BundleResource Include="Resources\bias_fc2.dat" />
+    <BundleResource Include="Resources\weights_conv1.dat" />
+    <BundleResource Include="Resources\weights_conv2.dat" />
+    <BundleResource Include="Resources\weights_fc1.dat" />
+    <BundleResource Include="Resources\weights_fc2.dat" />
+    <BundleResource Include="Resources\t10k-images-idx3-ubyte.data" />
+    <BundleResource Include="Resources\t10k-labels-idx1-ubyte.data" />
+    <BundleResource Include="Resources\train-images-idx3-ubyte.data" />
+    <BundleResource Include="Resources\train-labels-idx1-ubyte.data" />
+    <BundleResource Include="Resources\bias_NN.dat" />
+    <BundleResource Include="Resources\weights_NN.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-120-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-152.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-167.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-58-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-80-2.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\mnist-main-87.png" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon.png" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\splash-xamagon.imageset\splash-xamagon%403x.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

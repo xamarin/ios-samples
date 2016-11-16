@@ -28,5 +28,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>RosyWriter App needs Camera Access</string>
 </dict>
 </plist>

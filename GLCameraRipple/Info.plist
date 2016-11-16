@@ -31,5 +31,9 @@
 	<string>1.0</string>
 	<key>MinimumOSVersion</key>
 	<string>7.0</string>
+	<key>CFBundleName</key>
+	<string>GLCameraRipple</string>
+	<key>NSCameraUsageDescription</key>
+	<string>GLCammeraRipple App needs Camera Access</string>
 </dict>
 </plist>

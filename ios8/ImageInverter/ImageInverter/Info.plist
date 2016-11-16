@@ -41,5 +41,11 @@
 	<string>Resources/Images.xcassets/AppIcon.appiconset</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
+	<key>CFBundleName</key>
+	<string>ImageInverter</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>ImageInverter App needs Photo Library Access</string>
+	<key>NSContactsUsageDescription</key>
+	<string>ImageInverter App needs Contacts Access</string>
 </dict>
 </plist>

@@ -28,5 +28,15 @@
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
+	<key>CFBundleName</key>
+	<string>SoZoomy</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.sozoomy</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>NSCameraUsageDescription</key>
+	<string>SoZoomy needs access to your camera</string>
 </dict>
 </plist>
