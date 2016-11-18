@@ -67,7 +67,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="144" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="144" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="277" y="196" width="46" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,13 +85,17 @@
                                 <connections>
                                     <action selector="SliderValueChange:" destination="30" id="355" eventType="valueChanged"/>
                                 </connections>
+                                <constraints>
+                                    <constraint id="418" firstAttribute="width" constant="538"/>
+                                    <constraint id="419" firstAttribute="height" constant="33"/>
+                                </constraints>
                             </slider>
                         </subviews>
                         <constraints>
-                            <constraint id="385" firstItem="236" firstAttribute="leading" secondItem="31" secondAttribute="leading" constant="33"/>
-                            <constraint id="386" firstItem="31" firstAttribute="trailing" secondItem="236" secondAttribute="trailing" constant="33"/>
-                            <constraint id="404" firstItem="236" firstAttribute="centerX" secondItem="31" secondAttribute="centerX"/>
-                            <constraint id="409" firstItem="236" firstAttribute="top" secondItem="144" secondAttribute="bottom" constant="21"/>
+                            <constraint id="414" firstItem="31" firstAttribute="trailing" secondItem="144" secondAttribute="trailing" constant="277"/>
+                            <constraint id="415" firstItem="31" firstAttribute="bottom" secondItem="144" secondAttribute="bottom" constant="74"/>
+                            <constraint id="416" firstItem="31" firstAttribute="trailing" secondItem="236" secondAttribute="trailing" constant="31"/>
+                            <constraint id="417" firstItem="31" firstAttribute="bottom" secondItem="236" secondAttribute="bottom" constant="20"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

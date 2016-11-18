@@ -1,6 +1,4 @@
-﻿using System;
-using UIKit;
-using Foundation;
+﻿using UIKit;
 using CoreGraphics;
 
 namespace CustomTransitions

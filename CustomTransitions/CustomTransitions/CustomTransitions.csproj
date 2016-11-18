@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -158,7 +157,6 @@
     <Compile Include="AdaptativePresentation\APSecondViewController.designer.cs">
       <DependentUpon>APSecondViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Slide\SlideTransitionDelegate.cs" />
     <Compile Include="AdaptativePresentation\AdaptativePresentationSegue.cs" />
     <Compile Include="AdaptativePresentation\AdaptativePresentationSegue.designer.cs">
       <DependentUpon>AdaptativePresentationSegue.cs</DependentUpon>
@@ -174,6 +172,10 @@
     <Compile Include="Swipe\SwipeTransitionAnimator.cs" />
     <Compile Include="Swipe\SwipeTransitionInteractionController.cs" />
     <Compile Include="CustomPresentation\CustomPresentationController.cs" />
+    <Compile Include="AdaptativePresentation\AdaptativePresentationController.cs" />
+    <Compile Include="Slide\SlideTransitionDelegate.cs" />
+    <Compile Include="Slide\SlideTransitionAnimator.cs" />
+    <Compile Include="Slide\SlideTransitionInteractionController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

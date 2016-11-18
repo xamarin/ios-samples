@@ -37,7 +37,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue id="161" destination="30" kind="custom" customClass="AdaptativePresentationSegue"/>
+                                    <action selector="PerformCustomSegue:" destination="23" id="185" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -57,7 +57,7 @@
         </scene>
         <scene sceneID="29">
             <objects>
-                <viewController id="30" sceneMemberID="viewController" customClass="APSecondViewController">
+                <viewController id="30" sceneMemberID="viewController" customClass="APSecondViewController" storyboardIdentifier="APSecondViewController" useStoryboardIdentifierAsRestorationIdentifier="YES">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="27"/>
                         <viewControllerLayoutGuide type="bottom" id="28"/>
@@ -65,8 +65,9 @@
                     <view key="view" contentMode="scaleToFill" id="31">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0" green="1" blue="1" alpha="1"/>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="32" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

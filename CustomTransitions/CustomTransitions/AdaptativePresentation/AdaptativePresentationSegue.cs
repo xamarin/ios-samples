@@ -1,19 +1,24 @@
-using Foundation;
-using System;
 using UIKit;
+using System;
 
 namespace CustomTransitions
 {
     public partial class AdaptativePresentationSegue : UIStoryboardSegue
     {
-        public AdaptativePresentationSegue (IntPtr handle) : base (handle)
-        {
-        }
+		public AdaptativePresentationSegue(string identifier, UIViewController source, UIViewController destination) 
+			: base (identifier, source, destination)  { 
+		}
 
 		public void perform()
 		{
-			UIViewController sourceViewController = SourceViewController;
-			UIViewController destinationViewController = DestinationViewController;
+			APSecondViewController sourceViewController = (APSecondViewController)DestinationViewController;
+			APSecondViewController destinationViewController = (APSecondViewController)DestinationViewController;
+
+			AdaptativePresentationController presentationController = new AdaptativePresentationController(destinationViewController, sourceViewController);
+
+			destinationViewController.TransitioningDelegate = presentationController;
+
+			SourceViewController.PresentViewController(destinationViewController, true, null);
 		}
     }
 }

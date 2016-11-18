@@ -16,6 +16,10 @@ namespace CustomTransitions
     {
         void ReleaseDesignerOutlets ()
         {
+            if (tabBarController != null) {
+                tabBarController.Dispose ();
+                tabBarController = null;
+            }
         }
     }
 }

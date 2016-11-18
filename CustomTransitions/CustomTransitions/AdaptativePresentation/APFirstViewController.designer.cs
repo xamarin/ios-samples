@@ -14,6 +14,15 @@ namespace CustomTransitions
     [Register ("APFirstViewController")]
     partial class APFirstViewController
     {
+        [Action ("UwindToAdaptivePresentationFirstViewController:")]
+        public void UnwindToAdaptivePresentationFirstViewController (UIStoryboardSegue segue)
+        {
+        }
+
+        [Action ("PerformCustomSegue:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void PerformCustomSegue (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
         }

@@ -22,7 +22,7 @@ namespace CustomTransitions
 
 		public override void WillTransitionToTraitCollection(UITraitCollection traitCollection, IUIViewControllerTransitionCoordinator coordinator)
 		{
-			//base.WillTransitionToTraitCollection(traitCollection, coordinator);
+			base.WillTransitionToTraitCollection(traitCollection, coordinator);
 			UpdatePreferredContentSizeWithTraitCollection(traitCollection);
 		}
 

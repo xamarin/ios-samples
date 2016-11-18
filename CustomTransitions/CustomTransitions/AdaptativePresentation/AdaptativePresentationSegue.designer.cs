@@ -14,5 +14,8 @@ namespace CustomTransitions
     [Register ("AdaptativePresentationSegue")]
     partial class AdaptativePresentationSegue
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace CustomTransitions
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UISlider slider { get; set; }
+
         [Action ("UnwindToCustomPresentationSecondViewController:")]
         public void UnwindToCustomPresentationSecondViewController (UIStoryboardSegue segue)
         {
