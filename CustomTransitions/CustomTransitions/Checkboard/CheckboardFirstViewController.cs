@@ -1,9 +1,10 @@
 ﻿using System;
+using Foundation;
 using UIKit;
 
 namespace CustomTransitions
 {
-	public partial class CheckboardFirstViewController : UIViewController
+	public partial class CheckboardFirstViewController : UIViewController, IUINavigationControllerDelegate
 	{
 		partial void unwindToMenuViewController(UIBarButtonItem sender)
 		{
@@ -13,7 +14,7 @@ namespace CustomTransitions
 		public CheckboardFirstViewController(IntPtr handle)
 			: base (handle)
 		{
-			WeakTransitioningDelegate = this;
+			NavigationController.Delegate = this;
 		}
 
 		public override void ViewDidLoad()
@@ -26,6 +27,11 @@ namespace CustomTransitions
 		{
 			base.DidReceiveMemoryWarning();
 			// Release any cached data, images, etc that aren't in use.
+		}
+
+		[Export("navigationController:animationControllerForOperation:fromViewController:toViewController:")]
+		public IUIViewControllerAnimatedTransitioning GetAnimationControllerForOperation(UINavigationController navigationController, UINavigationControllerOperation animationControllerForOperation, UIViewController fromViewController, UIViewController toViewController) {
+			return new CheckboardTransitionAnimator();
 		}
 	}
 }

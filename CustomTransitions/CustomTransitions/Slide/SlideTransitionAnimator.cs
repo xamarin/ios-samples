@@ -35,7 +35,7 @@ namespace CustomTransitions
 			CGRect toFrame = transitionContext.GetFinalFrameForViewController(toViewController);
 
 			CGVector offset = new CGVector(0, 0);
-			if (this.targetEdge == UIRectEdge.Left)
+				if (this.targetEdge == UIRectEdge.Left)
 			{
 				offset = new CGVector(-1, 0);
 			}

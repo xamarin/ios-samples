@@ -176,6 +176,7 @@
     <Compile Include="Slide\SlideTransitionDelegate.cs" />
     <Compile Include="Slide\SlideTransitionAnimator.cs" />
     <Compile Include="Slide\SlideTransitionInteractionController.cs" />
+    <Compile Include="Checkboard\CheckboardTransitionAnimator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
