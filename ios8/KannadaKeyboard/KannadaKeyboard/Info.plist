@@ -39,6 +39,6 @@
 	<key>MinimumOSVersion</key>
 	<string>8.1</string>
 	<key>CFBundleDisplayName</key>
-	<string>com.xamarin.KannadaKeyboard</string>
+	<string>Kannada Keyboard</string>
 </dict>
 </plist>
