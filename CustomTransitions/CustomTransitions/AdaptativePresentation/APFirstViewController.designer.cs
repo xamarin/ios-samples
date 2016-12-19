@@ -19,10 +19,6 @@ namespace CustomTransitions
         {
         }
 
-        [Action ("PerformCustomSegue:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void PerformCustomSegue (UIKit.UIButton sender);
-
         void ReleaseDesignerOutlets ()
         {
         }

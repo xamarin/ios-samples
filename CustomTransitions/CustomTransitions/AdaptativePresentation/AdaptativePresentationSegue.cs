@@ -7,9 +7,15 @@ namespace CustomTransitions
     {
 		public AdaptativePresentationSegue(string identifier, UIViewController source, UIViewController destination) 
 			: base (identifier, source, destination)  { 
+
 		}
 
-		public void perform()
+		public AdaptativePresentationSegue(IntPtr handle)
+			: base (handle)
+		{
+		}
+
+		public override void Perform()
 		{
 			APSecondViewController sourceViewController = (APSecondViewController)DestinationViewController;
 			APSecondViewController destinationViewController = (APSecondViewController)DestinationViewController;
@@ -17,8 +23,10 @@ namespace CustomTransitions
 			AdaptativePresentationController presentationController = new AdaptativePresentationController(destinationViewController, sourceViewController);
 
 			destinationViewController.TransitioningDelegate = presentationController;
+			destinationViewController.presentationControllerInstance = presentationController;
 
 			SourceViewController.PresentViewController(destinationViewController, true, null);
 		}
+
     }
 }

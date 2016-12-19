@@ -41,6 +41,7 @@ namespace CustomTransitions
 				dismissButtonAux.Frame = new CGRect(0F, 0F, 26F, 26F);
 				dismissButtonAux.SetImage(new UIImage("CloseButton"), UIControlState.Normal);
 				dismissButtonAux.AddTarget((object sender, System.EventArgs e) => DismissButtonTapped(dismissButtonAux), UIControlEvent.TouchUpInside);
+				this.dismissButton = dismissButtonAux;
 
 				presentationWrapperView.AddSubview(dismissButton);
 			}
@@ -139,11 +140,17 @@ namespace CustomTransitions
 			{
 				toView.Alpha = 0F;
 
-				fromView.Frame = transitionContext.GetFinalFrameForViewController(fromViewController);
+				if (fromView != null)
+				{
+					fromView.Frame = transitionContext.GetFinalFrameForViewController(fromViewController);
+				}
 				toView.Frame = transitionContext.GetFinalFrameForViewController(toViewController);
 			}
 			else {
-				toView.Frame = transitionContext.GetFinalFrameForViewController(toViewController);
+				if (toView != null)
+				{
+					toView.Frame = transitionContext.GetFinalFrameForViewController(toViewController);
+				}
 			}
 
 			double transitionDuration = TransitionDuration(transitionContext);
@@ -178,6 +185,7 @@ namespace CustomTransitions
 		//  controller that will manage the presentation.  If your implementation
 		//  returns nil, an instance of UIPresentationController is used.
 		//
+		[Export("presentationControllerForPresentedViewController:presentingViewController:sourceViewController:")]
 		public UIPresentationController GetPresentationControllerForPresentedViewController(UIViewController presentedViewController, UIViewController presentingViewController, UIViewController sourceViewController)
 		{
 			return this;
@@ -192,6 +200,7 @@ namespace CustomTransitions
 		//  UIViewControllerAnimatedTransitioning protocol, or nil if the default
 		//  dismissal animation should be used.
 		//
+		[Export("animationControllerForPresentedController:presentingController:sourceController:")]
 		public IUIViewControllerAnimatedTransitioning GetAnimationControllerForPresentedController(UIViewController presented, UIViewController presenting, UIViewController source)
 		{
 			return this;
@@ -206,6 +215,7 @@ namespace CustomTransitions
 		//  UIViewControllerAnimatedTransitioning protocol, or nil if the default
 		//  dismissal animation should be used.
 		//
+		[Export("animationControllerForDismissedController:")]
 		public IUIViewControllerAnimatedTransitioning GetAnimationControllerForDismissedController(UIViewController dismissed)
 		{
 			return this;

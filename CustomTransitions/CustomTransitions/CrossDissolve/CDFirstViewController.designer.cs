@@ -14,9 +14,9 @@ namespace CustomTransitions
     [Register ("CDFirstViewController")]
     partial class CDFirstViewController
     {
-        [Action ("presentWithCustomTransitionAction:")]
+        [Action ("PresentWithCustomTransitionAction:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void presentWithCustomTransitionAction (UIKit.UIButton sender);
+        partial void PresentWithCustomTransitionAction (UIKit.UIButton sender);
 
         [Action ("unwindToMenuViewController:")]
         [GeneratedCode ("iOS Designer", "1.0")]

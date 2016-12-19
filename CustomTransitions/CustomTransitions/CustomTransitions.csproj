@@ -92,6 +92,8 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\CloseButton.imageset\CloseButton.pdf" />
+    <ImageAsset Include="Assets.xcassets\CloseButton.imageset\Contents.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -102,6 +104,7 @@
     <Folder Include="CustomPresentation\" />
     <Folder Include="Swipe\" />
     <Folder Include="MainMenu\" />
+    <Folder Include="Assets.xcassets\CloseButton.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -177,6 +180,9 @@
     <Compile Include="Slide\SlideTransitionAnimator.cs" />
     <Compile Include="Slide\SlideTransitionInteractionController.cs" />
     <Compile Include="Checkboard\CheckboardTransitionAnimator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\CloseButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

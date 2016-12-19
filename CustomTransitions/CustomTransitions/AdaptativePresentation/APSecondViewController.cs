@@ -11,6 +11,7 @@ namespace CustomTransitions
 		{
 		}
 
+		public AdaptativePresentationController presentationControllerInstance;
 
 		public override void ViewDidLoad()
 		{
@@ -18,20 +19,26 @@ namespace CustomTransitions
 
 			UIBarButtonItem dismissButton = new UIBarButtonItem("Dismiss", UIBarButtonItemStyle.Plain, DismissButtonAction);
 			NavigationItem.LeftBarButtonItem = dismissButton;
+
+			if (PresentationController != null)
+			{
+				PresentationController.Delegate = this;
+			}
 		}
 
 
-		//public new IUIViewControllerTransitioningDelegate TransitioningDelegate
-		//{
-		//	set {
-		//		base.TransitioningDelegate = value;
 
-		//		if (PresentationController != null)
-		//		{
-		//			PresentationController.Delegate = this;
-		//		}
-		//	}
-		//}
+		public new IUIViewControllerTransitioningDelegate TransitioningDelegate
+		{
+			set {
+				base.TransitioningDelegate = value;
+
+				if (PresentationController != null)
+				{
+					PresentationController.Delegate = this;
+				}
+			}
+		}
 
 
 		void DismissButtonAction(object sender, EventArgs e)

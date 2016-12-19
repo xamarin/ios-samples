@@ -6,6 +6,7 @@ namespace CustomTransitions
 {
 	public partial class CDFirstViewController  : UIViewController, IUIViewControllerTransitioningDelegate
 	{
+
 		public CDFirstViewController(IntPtr handle)
 			: base (handle)
 		{
@@ -22,7 +23,7 @@ namespace CustomTransitions
 			// Release any cached data, images, etc that aren't in use.
 		}
 
-		partial void presentWithCustomTransitionAction(UIButton sender)
+		partial void PresentWithCustomTransitionAction(UIButton sender)
 		{
 			UIViewController secondViewController = this.Storyboard.InstantiateViewController("SecondViewController");
 			secondViewController.ModalPresentationStyle = UIModalPresentationStyle.FullScreen;

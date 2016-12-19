@@ -100,7 +100,7 @@ namespace CustomTransitions
 					});
 
 					UIView toCheckboardSquareView = new UIView();
-					toCheckboardSquareView.Frame = new CGRect(x + sliceSize, y * sliceSize, sliceSize, sliceSize);
+					toCheckboardSquareView.Frame = new CGRect(x * sliceSize, y * sliceSize, sliceSize, sliceSize);
 					toCheckboardSquareView.Opaque = false;
 					toCheckboardSquareView.Layer.MasksToBounds = true;
 					toCheckboardSquareView.Layer.DoubleSided = false;
