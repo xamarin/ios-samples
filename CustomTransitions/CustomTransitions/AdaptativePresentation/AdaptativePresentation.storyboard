@@ -31,22 +31,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.87058823529411766" blue="0.996078431372549" alpha="1"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="110" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="252" y="436" width="123" height="110"/>
-                                <state key="normal" title="Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="110" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="178.5" y="550" width="243" height="30"/>
+                                <state key="normal" title="Present With Adaptive Presentation">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue id="248" destination="30" kind="custom" customClass="AdaptativePresentationSegue"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="102" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" text="A">
-                                <rect key="frame" x="238" y="238" width="137" height="105"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="102" translatesAutoresizingMaskIntoConstraints="NO" text="A">
+                                <rect key="frame" x="261" y="230" width="78" height="140"/>
                                 <nil key="highlightedColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="120"/>
                                 <color key="textColor" colorSpace="calibratedRGB" red="0.55294117647058827" green="0.55294117647058827" blue="0.55294117647058827" alpha="1"/>
                             </label>
                         </subviews>
+                        <constraints>
+                            <constraint id="258" firstItem="102" firstAttribute="centerX" secondItem="24" secondAttribute="centerX"/>
+                            <constraint id="259" firstItem="102" firstAttribute="centerY" secondItem="24" secondAttribute="centerY"/>
+                            <constraint id="260" firstItem="110" firstAttribute="centerX" secondItem="24" secondAttribute="centerX"/>
+                            <constraint id="261" firstItem="21" firstAttribute="top" secondItem="110" secondAttribute="bottom" constant="20"/>
+                        </constraints>
                     </view>
                     <navigationItem title="Adaptative Presentation" id="95" key="navigationItem">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="98">
@@ -73,13 +79,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.996078431372549" green="0.87450980392156863" blue="0.87450980392156863" alpha="1"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="253" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" text="B">
-                                <rect key="frame" x="269" y="240" width="137" height="105"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="253" translatesAutoresizingMaskIntoConstraints="NO" text="B">
+                                <rect key="frame" x="259" y="230" width="82.5" height="140"/>
                                 <nil key="highlightedColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="120"/>
                                 <color key="textColor" colorSpace="calibratedRGB" red="0.55294117647058827" green="0.55294117647058827" blue="0.55294117647058827" alpha="1"/>
                             </label>
                         </subviews>
+                        <constraints>
+                            <constraint id="262" firstItem="253" firstAttribute="centerX" secondItem="31" secondAttribute="centerX"/>
+                            <constraint id="263" firstItem="253" firstAttribute="centerY" secondItem="31" secondAttribute="centerY"/>
+                        </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
@@ -88,4 +98,7 @@
             <point key="canvasLocation" x="831" y="14"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CloseButton.png" width="533" height="536"/>
+    </resources>
 </document>

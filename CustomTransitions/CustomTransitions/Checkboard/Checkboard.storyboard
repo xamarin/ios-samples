@@ -31,22 +31,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.87450980392156863" green="0.87058823529411766" blue="0.996078431372549" alpha="1"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="85" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="155" y="376" width="274" height="193"/>
-                                <state key="normal" title="Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="85" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="202" y="550" width="196" height="30"/>
+                                <state key="normal" title="Push with Custom Transition">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue id="132" destination="30" kind="show"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="102" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" text="A">
-                                <rect key="frame" x="232" y="233" width="137" height="105"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="102" translatesAutoresizingMaskIntoConstraints="NO" text="A">
+                                <rect key="frame" x="261" y="230" width="78" height="140"/>
                                 <nil key="highlightedColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="120"/>
                                 <color key="textColor" colorSpace="calibratedRGB" red="0.55294117647058827" green="0.55294117647058827" blue="0.55294117647058827" alpha="1"/>
                             </label>
                         </subviews>
+                        <constraints>
+                            <constraint id="155" firstItem="85" firstAttribute="centerX" secondItem="24" secondAttribute="centerX"/>
+                            <constraint id="156" firstItem="21" firstAttribute="top" secondItem="85" secondAttribute="bottom" constant="20"/>
+                            <constraint id="157" firstItem="102" firstAttribute="centerX" secondItem="24" secondAttribute="centerX"/>
+                            <constraint id="158" firstItem="102" firstAttribute="centerY" secondItem="24" secondAttribute="centerY"/>
+                        </constraints>
                     </view>
                     <navigationItem title="Checkboard" id="81" key="navigationItem">
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="84">
@@ -74,13 +80,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.996078431372549" green="0.87450980392156863" blue="0.87450980392156863" alpha="1"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="150" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" text="B">
-                                <rect key="frame" x="278" y="278" width="137" height="105"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="150" translatesAutoresizingMaskIntoConstraints="NO" text="B">
+                                <rect key="frame" x="259" y="230" width="82.5" height="140"/>
                                 <nil key="highlightedColor"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="120"/>
                                 <color key="textColor" colorSpace="calibratedRGB" red="0.55294117647058827" green="0.55294117647058827" blue="0.55294117647058827" alpha="1"/>
                             </label>
                         </subviews>
+                        <constraints>
+                            <constraint id="159" firstItem="150" firstAttribute="centerX" secondItem="31" secondAttribute="centerX"/>
+                            <constraint id="160" firstItem="150" firstAttribute="centerY" secondItem="31" secondAttribute="centerY"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="32" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -88,4 +98,7 @@
             <point key="canvasLocation" x="917" y="129"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CloseButton.png" width="533" height="536"/>
+    </resources>
 </document>

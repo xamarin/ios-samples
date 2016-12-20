@@ -82,7 +82,7 @@
                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.996078431372549" green="0.87450980392156863" blue="0.87450980392156863" alpha="1"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="80" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="273" y="538" width="54" height="30"/>
+                                <rect key="frame" x="273" y="550" width="54" height="30"/>
                                 <state key="normal" title="Dismiss">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -101,7 +101,7 @@
                             <constraint id="130" firstItem="106" firstAttribute="centerY" secondItem="77" secondAttribute="centerY"/>
                             <constraint id="131" firstItem="106" firstAttribute="centerX" secondItem="77" secondAttribute="centerX"/>
                             <constraint id="138" firstItem="80" firstAttribute="centerX" secondItem="77" secondAttribute="centerX"/>
-                            <constraint id="139" firstItem="74" firstAttribute="top" secondItem="80" secondAttribute="bottom" constant="32"/>
+                            <constraint id="139" firstItem="74" firstAttribute="top" secondItem="80" secondAttribute="bottom" constant="20"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -110,4 +110,7 @@
             <point key="canvasLocation" x="745" y="-114"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CloseButton.png" width="533" height="536"/>
+    </resources>
 </document>
