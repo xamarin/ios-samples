@@ -23,5 +23,7 @@
 	<string>MainWindow</string>
 	<key>MinimumOSVersion</key>
 	<string>6.1</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>AUSoundTriggeredPlayingSoundMemoryBased app needs Microphone access.</string>
 </dict>
 </plist>
