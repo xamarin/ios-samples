@@ -3,102 +3,85 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{F2A71F9B-5D33-465A-A702-920D77279786}</ProjectTypeGuids>
-    <ProjectGuid>{F478F9C8-C4F9-4D4B-9714-564D982E3D68}</ProjectGuid>
+    <ProjectGuid>{04744F51-603B-4FC3-8785-641D0ABF7339}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{F2A71F9B-5D33-465A-A702-920D77279786}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>FSSceneKit</RootNamespace>
+    <RootNamespace>FSSceneKit1</RootNamespace>
+    <AssemblyName>FSSceneKit1</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>FSSceneKit</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <Tailcalls>false</Tailcalls>
-    <ConsolePause>false</ConsolePause>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <PlatformTarget>
-    </PlatformTarget>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <IOSDebuggerPort>12359</IOSDebuggerPort>
     <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <GenerateTailCalls>true</GenerateTailCalls>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>none</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <PlatformTarget>
-    </PlatformTarget>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>None</MtouchLink>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <ConsolePause>false</ConsolePause>
-    <Tailcalls>true</Tailcalls>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <GenerateTailCalls>true</GenerateTailCalls>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhone\Debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <Tailcalls>false</Tailcalls>
-    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
     <MtouchDebug>true</MtouchDebug>
-    <PlatformTarget>
-    </PlatformTarget>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <IpaPackageName>
-    </IpaPackageName>
-    <MtouchI18n>
-    </MtouchI18n>
-    <MtouchArch>ARMv7</MtouchArch>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <PlatformTarget>
-    </PlatformTarget>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <ConsolePause>false</ConsolePause>
-    <Tailcalls>true</Tailcalls>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <PlatformTarget>
-    </PlatformTarget>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <BuildIpa>true</BuildIpa>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
-    <ConsolePause>false</ConsolePause>
-    <Tailcalls>true</Tailcalls>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\iPhone\AppStore</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <PlatformTarget>
-    </PlatformTarget>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignKey>iPhone Distribution</CodesignKey>
-    <CodesignProvision>Automatic:AppStore</CodesignProvision>
-    <ConsolePause>false</ConsolePause>
-    <Tailcalls>true</Tailcalls>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -106,29 +89,22 @@
     <Reference Include="System.Core" />
     <Reference Include="mscorlib" />
     <Reference Include="FSharp.Core" />
-    <Reference Include="monotouch" />
+    <Reference Include="Xamarin.iOS" />
     <Reference Include="Zlib.Portable">
-      <HintPath>..\packages\Zlib.Portable.1.10.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
+      <HintPath>..\packages\Zlib.Portable.1.11.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
     </Reference>
     <Reference Include="FSharp.Data">
-      <HintPath>..\packages\FSharp.Data.2.0.14\lib\portable-net40+sl5+wp8+win8\FSharp.Data.dll</HintPath>
+      <HintPath>..\packages\FSharp.Data.2.3.2\lib\portable-net45+netcore45\FSharp.Data.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="textureX.png" />
-    <BundleResource Include="Content\building1.jpg" />
-    <BundleResource Include="Content\building2.jpg" />
-    <BundleResource Include="Content\building3.jpg" />
-    <BundleResource Include="Content\city.csv" />
-    <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Resources\Default%402x.png" />
-    <BundleResource Include="Resources\Icon-72.png" />
-    <BundleResource Include="Resources\Icon-Small-50.png" />
-    <BundleResource Include="Resources\Icon-Small.png" />
-    <BundleResource Include="Resources\Icon-Small%402x.png" />
-    <BundleResource Include="Resources\Icon.png" />
-    <BundleResource Include="Resources\Icon%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -138,12 +114,25 @@
   <ItemGroup>
     <Compile Include="FSSceneKitViewController.fs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.FSharp.targets" />
   <ItemGroup>
-    <Folder Include="Content\" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Icon-72.png" />
+    <BundleResource Include="Resources\Icon-Small-50.png" />
+    <BundleResource Include="Resources\Icon-Small.png" />
+    <BundleResource Include="Resources\Icon-Small%402x.png" />
+    <BundleResource Include="Resources\Icon.png" />
+    <BundleResource Include="Resources\Icon%402x.png" />
+    <BundleResource Include="Content\building1.jpg" />
+    <BundleResource Include="Content\building2.jpg" />
+    <BundleResource Include="Content\building3.jpg" />
+    <BundleResource Include="Content\city.csv" />
+    <BundleResource Include="textureX.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />
     <ITunesArtwork Include="Resources\iTunesArtwork%402x" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.FSharp.targets" />
 </Project>

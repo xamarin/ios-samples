@@ -4,7 +4,7 @@
 // actions made in the Xcode designer. If it is removed, they will be lost.
 // Manual changes to this file may not be handled correctly.
 //
-using MonoTouch.Foundation;
+using Foundation;
 
 namespace Protocols_Delegates_Events
 {
@@ -12,6 +12,6 @@ namespace Protocols_Delegates_Events
 	partial class Protocols_Delegates_EventsViewController
 	{
 		[Outlet]
-		MonoTouch.MapKit.MKMapView map { get; set; }
+		MapKit.MKMapView map { get; set; }
 	}
 }

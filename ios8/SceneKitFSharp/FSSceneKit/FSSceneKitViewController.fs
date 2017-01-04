@@ -4,29 +4,31 @@ open System
 open System.IO
 open System.Linq
 open FSharp.Data
-open MonoTouch.UIKit
-open MonoTouch.Foundation
-open MonoTouch.SceneKit
-open MonoTouch.CoreAnimation
+open UIKit
+open Foundation
+open SceneKit
+open CoreAnimation
 open System.Drawing
-open MonoTouch.CoreMotion
+open CoreMotion
+open CoreGraphics
 
 [<Register("FSSceneKitViewController")>]
 type FSSceneKitViewController() = 
     inherit UIViewController()
  
-    let piover2 = float32(Math.PI) / 2.f
+    //let piover2 = nfloat(Math.PI) / nfloat(2.0)
+    let piover2 = Math.PI / 2.0
 
     //Creates a building of specified dimensions, randomly textured. Adds it to the scene.
-    let building width length height posx posy (scene:SCNNode) (rnd:Random) =
+    let building (width:float32) (length:float32) (height:float32) posx posy (scene:SCNNode) (rnd:Random) =
         let boxNode = new SCNNode ()
         boxNode.Geometry <- new SCNBox(
-            Width = width, 
-            Height = height, 
-            Length = length, 
-            ChamferRadius = 0.02f
+            Width = nfloat(width), 
+            Height = nfloat(height), 
+            Length = nfloat(length), 
+            ChamferRadius = nfloat(0.02f)
         )
-        boxNode.Position <- new SCNVector3(posx, height/2.0F, posy)
+        boxNode.Position <- new SCNVector3(posx, height/2.0f, posy)
 
         scene.AddChildNode (boxNode)
         let buildings = ["Content/building1.jpg"; "Content/building2.jpg"; "Content/building3.jpg"]
@@ -77,8 +79,8 @@ type FSSceneKitViewController() =
 
         let worldNode = new SCNNode()
 
-        worldNode.Transform <- SCNMatrix4.CreateRotationX (piover2)
-
+        worldNode.Transform <- SCNMatrix4.CreateRotationX (float32(piover2))
+        //worldNode.Transform <- SCNMatrix4.CreateRotationX()
         scene.RootNode.AddChildNode worldNode
 
         let bs = List.map (fun i -> (building 
@@ -117,10 +119,10 @@ type FSSceneKitViewController() =
 
         let ss = 
             [
-                new RectangleF(new PointF(0.0f, 0.0f), new SizeF(float32 UIScreen.MainScreen.Bounds.Width / 2.0f - 1.0F, UIScreen.MainScreen.Bounds.Height));
-                new RectangleF(new PointF(float32 UIScreen.MainScreen.Bounds.Width / 2.0f + 1.0F, 0.0f), new SizeF(UIScreen.MainScreen.Bounds.Width / 2.0f - 1.0F, UIScreen.MainScreen.Bounds.Height));
+                new CGRect(new CGPoint(0.0f, 0.0f), new CGSize(UIScreen.MainScreen.Bounds.Width / nfloat(2.0f) - nfloat(1.0F), UIScreen.MainScreen.Bounds.Height));
+                new CGRect(new CGPoint(float32 UIScreen.MainScreen.Bounds.Width / 2.0f + 1.0F, 0.0f), new CGSize(UIScreen.MainScreen.Bounds.Width / nfloat(2.0f) - nfloat(1.0F), UIScreen.MainScreen.Bounds.Height));
             ]
-            |> List.map (fun r -> new SCNView(r))
+            |> List.map (fun r -> new SCNView(new CGRect()))
             |> List.map (fun s -> outer.AddSubview(configView s scene); s)
 
 
@@ -138,7 +140,7 @@ type FSSceneKitViewController() =
             let q = a.Quaternion
 
             let dq = new SCNQuaternion(float32 q.x, float32 q.y, float32 q.z, float32 q.w)
-            let dqz = SCNQuaternion.Multiply (dq, SCNQuaternion.FromAxisAngle(SCNVector3.UnitZ, piover2))
+            let dqz = SCNQuaternion.Multiply (dq, SCNQuaternion.FromAxisAngle(SCNVector3.UnitZ, float32(piover2)))
 
             camNode.Orientation <- dqz
 
