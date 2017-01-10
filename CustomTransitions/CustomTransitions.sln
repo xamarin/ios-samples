@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomTransitions", "CustomTransitions\CustomTransitions.csproj", "{B0F4D802-A436-4C01-8BBF-3E82F29F8750}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0F4D802-A436-4C01-8BBF-3E82F29F8750}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{B0F4D802-A436-4C01-8BBF-3E82F29F8750}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{B0F4D802-A436-4C01-8BBF-3E82F29F8750}.Release|iPhone.ActiveCfg = Release|iPhone
+		{B0F4D802-A436-4C01-8BBF-3E82F29F8750}.Release|iPhone.Build.0 = Release|iPhone
+		{B0F4D802-A436-4C01-8BBF-3E82F29F8750}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{B0F4D802-A436-4C01-8BBF-3E82F29F8750}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{B0F4D802-A436-4C01-8BBF-3E82F29F8750}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{B0F4D802-A436-4C01-8BBF-3E82F29F8750}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
