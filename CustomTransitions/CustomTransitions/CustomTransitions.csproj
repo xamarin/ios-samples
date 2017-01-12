@@ -112,7 +112,7 @@
     <Folder Include="Resources\" />
     <Folder Include="CrossDissolve\" />
     <Folder Include="Slide\" />
-    <Folder Include="AdaptativePresentation\" />
+    <Folder Include="AdaptivePresentation\" />
     <Folder Include="Checkboard\" />
     <Folder Include="CustomPresentation\" />
     <Folder Include="Swipe\" />
@@ -120,14 +120,15 @@
     <Folder Include="Assets.xcassets\CloseButton.imageset\" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="AdaptativePresentation\AdaptativePresentation.storyboard" />
+    <InterfaceDefinition Include="AdaptivePresentation\AdaptivePresentation.storyboard" />
     <InterfaceDefinition Include="Checkboard\Checkboard.storyboard" />
     <InterfaceDefinition Include="CustomPresentation\CustomPresentation.storyboard" />
-    <InterfaceDefinition Include="Slide\Slide.storyboard" />
     <InterfaceDefinition Include="Swipe\Swipe.storyboard" />
     <InterfaceDefinition Include="CrossDissolve\CrossDissolve.storyboard" />
     <InterfaceDefinition Include="MainMenu\Main.storyboard" />
+    <InterfaceDefinition Include="Slide\Slide.storyboard" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -165,20 +166,17 @@
     <Compile Include="Checkboard\CheckboardFirstViewController.designer.cs">
       <DependentUpon>CheckboardFirstViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdaptativePresentation\APFirstViewController.cs" />
-    <Compile Include="AdaptativePresentation\APFirstViewController.designer.cs">
+    <Compile Include="AdaptivePresentation\APFirstViewController.cs" />
+    <Compile Include="AdaptivePresentation\APFirstViewController.designer.cs">
       <DependentUpon>APFirstViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdaptativePresentation\APSecondViewController.cs" />
-    <Compile Include="AdaptativePresentation\APSecondViewController.designer.cs">
+    <Compile Include="AdaptivePresentation\APSecondViewController.cs" />
+    <Compile Include="AdaptivePresentation\APSecondViewController.designer.cs">
       <DependentUpon>APSecondViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdaptativePresentation\AdaptativePresentationSegue.cs" />
-    <Compile Include="AdaptativePresentation\AdaptativePresentationSegue.designer.cs">
-      <DependentUpon>AdaptativePresentationSegue.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Slide\SlideTransitionDelegate.designer.cs">
-      <DependentUpon>..\SlideTransitionDelegate.cs</DependentUpon>
+    <Compile Include="AdaptivePresentation\AdaptivePresentationSegue.cs" />
+    <Compile Include="AdaptivePresentation\AdaptivePresentationSegue.designer.cs">
+      <DependentUpon>AdaptivePresentationSegue.cs</DependentUpon>
     </Compile>
     <Compile Include="MainMenu\MenuViewController.cs" />
     <Compile Include="MainMenu\MenuViewController.designer.cs">
@@ -188,7 +186,7 @@
     <Compile Include="Swipe\SwipeTransitionAnimator.cs" />
     <Compile Include="Swipe\SwipeTransitionInteractionController.cs" />
     <Compile Include="CustomPresentation\CustomPresentationController.cs" />
-    <Compile Include="AdaptativePresentation\AdaptativePresentationController.cs" />
+    <Compile Include="AdaptivePresentation\AdaptivePresentationController.cs" />
     <Compile Include="Slide\SlideTransitionDelegate.cs" />
     <Compile Include="Slide\SlideTransitionAnimator.cs" />
     <Compile Include="Slide\SlideTransitionInteractionController.cs" />

@@ -12,7 +12,7 @@ using UIKit;
 namespace CustomTransitions
 {
     [Register ("AdaptativePresentationSegue")]
-    partial class AdaptativePresentationSegue
+    partial class AdaptivePresentationSegue
     {
         void ReleaseDesignerOutlets ()
         {
