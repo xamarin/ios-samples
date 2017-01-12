@@ -1,0 +1,199 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{B0F4D802-A436-4C01-8BBF-3E82F29F8750}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CustomTransitions</RootNamespace>
+    <AssemblyName>CustomTransitions</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer: Germán Marquez (U3F86JM574)</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <MtouchTlsProvider>Default</MtouchTlsProvider>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>02db28a1-63df-4a32-84cf-fa9130fded4a</CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-app-60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-57.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-72.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-72%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-50.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-50%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-167.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spp-57%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="CrossDissolve\" />
+    <Folder Include="Slide\" />
+    <Folder Include="AdaptivePresentation\" />
+    <Folder Include="Checkboard\" />
+    <Folder Include="CustomPresentation\" />
+    <Folder Include="Swipe\" />
+    <Folder Include="MainMenu\" />
+    <Folder Include="Assets.xcassets\CloseButton.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="AdaptivePresentation\AdaptivePresentation.storyboard" />
+    <InterfaceDefinition Include="Checkboard\Checkboard.storyboard" />
+    <InterfaceDefinition Include="CustomPresentation\CustomPresentation.storyboard" />
+    <InterfaceDefinition Include="Swipe\Swipe.storyboard" />
+    <InterfaceDefinition Include="CrossDissolve\CrossDissolve.storyboard" />
+    <InterfaceDefinition Include="MainMenu\Main.storyboard" />
+    <InterfaceDefinition Include="Slide\Slide.storyboard" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="CrossDissolve\CrossDissolveTransitionAnimator.cs" />
+    <Compile Include="CrossDissolve\CDFirstViewController.cs" />
+    <Compile Include="CrossDissolve\CDFirstViewController.designer.cs">
+      <DependentUpon>CDFirstViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrossDissolve\CDSecondViewController.cs" />
+    <Compile Include="CrossDissolve\CDSecondViewController.designer.cs">
+      <DependentUpon>CDSecondViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Swipe\SwipeFirstViewController.cs" />
+    <Compile Include="Swipe\SwipeFirstViewController.designer.cs">
+      <DependentUpon>SwipeFirstViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Swipe\SwipeSecondViewController.cs" />
+    <Compile Include="Swipe\SwipeSecondViewController.designer.cs">
+      <DependentUpon>SwipeSecondViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomPresentation\CPFirstViewController.cs" />
+    <Compile Include="CustomPresentation\CPFirstViewController.designer.cs">
+      <DependentUpon>CPFirstViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomPresentation\CPSecondViewController.cs" />
+    <Compile Include="CustomPresentation\CPSecondViewController.designer.cs">
+      <DependentUpon>CPSecondViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Checkboard\CheckboardFirstViewController.cs" />
+    <Compile Include="Checkboard\CheckboardFirstViewController.designer.cs">
+      <DependentUpon>CheckboardFirstViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdaptivePresentation\APFirstViewController.cs" />
+    <Compile Include="AdaptivePresentation\APFirstViewController.designer.cs">
+      <DependentUpon>APFirstViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdaptivePresentation\APSecondViewController.cs" />
+    <Compile Include="AdaptivePresentation\APSecondViewController.designer.cs">
+      <DependentUpon>APSecondViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdaptivePresentation\AdaptivePresentationSegue.cs" />
+    <Compile Include="AdaptivePresentation\AdaptivePresentationSegue.designer.cs">
+      <DependentUpon>AdaptivePresentationSegue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu\MenuViewController.cs" />
+    <Compile Include="MainMenu\MenuViewController.designer.cs">
+      <DependentUpon>MenuViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Swipe\SwipeTransitionDelegate.cs" />
+    <Compile Include="Swipe\SwipeTransitionAnimator.cs" />
+    <Compile Include="Swipe\SwipeTransitionInteractionController.cs" />
+    <Compile Include="CustomPresentation\CustomPresentationController.cs" />
+    <Compile Include="AdaptivePresentation\AdaptivePresentationController.cs" />
+    <Compile Include="Slide\SlideTransitionDelegate.cs" />
+    <Compile Include="Slide\SlideTransitionAnimator.cs" />
+    <Compile Include="Slide\SlideTransitionInteractionController.cs" />
+    <Compile Include="Checkboard\CheckboardTransitionAnimator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\CloseButton.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>
