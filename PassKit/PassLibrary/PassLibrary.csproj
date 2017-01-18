@@ -27,7 +27,8 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchUseArmv7>false</MtouchUseArmv7>
-    <MtouchArch>i386</MtouchArch>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -93,9 +94,6 @@
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CouponBanana2.pkpass" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="CouponBanana2.pass\" />
   </ItemGroup>
@@ -121,6 +119,7 @@
     <BundleResource Include="CouponBanana2.pass\logo.png" />
     <BundleResource Include="CouponBanana2.pass\logo%402x.png" />
     <BundleResource Include="CouponBanana2.pass\pass.json" />
+    <BundleResource Include="CouponBanana2.pkpass" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
