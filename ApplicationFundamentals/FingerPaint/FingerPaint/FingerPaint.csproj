@@ -84,18 +84,17 @@
     <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="FingerPaintView.cs" />
+    <Compile Include="FingerPaintPolyline.cs" />
+    <Compile Include="FingerPaintCanvasView.cs" />
     <Compile Include="FingerPaintViewController.cs" />
     <Compile Include="FingerPaintViewController.designer.cs">
       <DependentUpon>FingerPaintViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <InterfaceDefinition Include="FingerPaintViewController.xib">
-      <SubType>Designer</SubType>
-    </InterfaceDefinition>
     <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
+    <Compile Include="PickerDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <Content Include="Entitlements.plist" />

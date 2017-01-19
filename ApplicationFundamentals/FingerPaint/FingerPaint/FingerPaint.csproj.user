@@ -12,12 +12,13 @@
 		&lt;key&gt;model&lt;/key&gt;
 		&lt;string&gt;iPhone4,1&lt;/string&gt;
 		&lt;key&gt;os-version&lt;/key&gt;
-		&lt;string&gt;8.2&lt;/string&gt;
+		&lt;string&gt;9.3.5&lt;/string&gt;
 		&lt;key&gt;os&lt;/key&gt;
 		&lt;string&gt;iOS&lt;/string&gt;
 	&lt;/dict&gt;
 &lt;/dict&gt;
 &lt;/plist&gt;
 </TargetiOSDevice>
+    <SelectedDevice>iPhone 7 iOS 10.2</SelectedDevice>
   </PropertyGroup>
 </Project>
