@@ -14,18 +14,10 @@ namespace FingerPaint
         Dictionary<IntPtr, FingerPaintPolyline> inProgressPolylines = new Dictionary<IntPtr, FingerPaintPolyline>();
         List<FingerPaintPolyline> completedPolylines = new List<FingerPaintPolyline>();
 
-
-
-        public FingerPaintCanvasView() // CGRect frame) : base(frame)
+        public FingerPaintCanvasView()
         {
-            // Clear canvas to white
             BackgroundColor = UIColor.White;
-
-
-
-
-       //     MultipleTouchEnabled = true;
-
+            MultipleTouchEnabled = true;
         }
 
         public CGColor StrokeColor { set; get; } = new CGColor(1.0f, 0, 0);
@@ -44,9 +36,7 @@ namespace FingerPaint
 
             foreach (UITouch touch in touches.Cast<UITouch>())
             {
-     //           System.Diagnostics.Debug.WriteLine("Began: {0} {1}", touch.Handle, inProgressPolylines.Count);
-
-                // Create a Polyline, set the initial point, and store it
+                // Create a FingerPaintPolyline, set the initial point, and store it
                 FingerPaintPolyline polyline = new FingerPaintPolyline
                 {
                     Color = StrokeColor,
@@ -65,12 +55,6 @@ namespace FingerPaint
 
             foreach (UITouch touch in touches.Cast<UITouch>())
             {
-                //              System.Diagnostics.Debug.WriteLine("Move: " + touch);
-
-
-
-
-
                 // Add point to path
                 inProgressPolylines[touch.Handle].Path.AddLineToPoint(touch.LocationInView(this));
             }
@@ -83,8 +67,6 @@ namespace FingerPaint
 
             foreach (UITouch touch in touches.Cast<UITouch>())
             {
-     //           System.Diagnostics.Debug.WriteLine("Ended: {0} {1}", touch.Handle, inProgressPolylines.Count);
-
                 // Get polyline from dictionary and remove it from dictionary
                 FingerPaintPolyline polyline = inProgressPolylines[touch.Handle];
                 inProgressPolylines.Remove(touch.Handle);
@@ -113,7 +95,7 @@ namespace FingerPaint
 
             using (CGContext context = UIGraphics.GetCurrentContext())
             {
-                // Draw strokes
+                // Stroke settings
                 context.SetLineCap(CGLineCap.Round);
                 context.SetLineJoin(CGLineJoin.Round);
 
@@ -131,15 +113,8 @@ namespace FingerPaint
                 {
                     context.SetStrokeColor(polyline.Color);
                     context.SetLineWidth(polyline.StrokeWidth);
-
                     context.AddPath(polyline.Path);
                     context.DrawPath(CGPathDrawingMode.Stroke);
-
-       //             context.BeginPath();
-       //             context.MoveTo(polyline.StartPoint.X, polyline.StartPoint.Y);
-       //             context.AddLines(polyline.Points.ToArray());
-            //        context.ClosePath();
-        //            context.DrawPath(CGPathDrawingMode.Stroke);
                 }
             }
         }

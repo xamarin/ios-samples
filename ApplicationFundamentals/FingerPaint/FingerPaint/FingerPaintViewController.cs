@@ -1,312 +1,180 @@
 using CoreGraphics;
-using System;
-using System.Reflection;
-
 using UIKit;
 
 namespace FingerPaint
 {
-    internal class NoCaretField : UITextField
-    {
-        public NoCaretField() : base(new CGRect())
-        {
-        }
-
-        public override CGRect GetCaretRectForPosition(UITextPosition position)
-        {
-            return new CGRect();
-        }
-    }
-
-    class ColorName
-    {
-        public ColorName(string name, UIColor color)
-        {
-            Name = name;
-            Color = color;
-        }
-
-        public string Name { private set; get; }
-
-        public UIColor Color { private set; get; }
-
-        public override string ToString()
-        {
-            return Name;
-        }
-    }
-
-
-
-
     public partial class FingerPaintViewController : UIViewController
     {
-        public FingerPaintViewController() // base("FingerPaintViewController", null)
+        // UITextField derivative used for invoking picker views
+        class NoCaretField : UITextField
         {
-       //     this.EdgesForExtendedLayout = UIRectEdge.
+            public NoCaretField() : base(new CGRect())
+            {
+                BorderStyle = UITextBorderStyle.Line;
+            }
 
-            
+            public override CGRect GetCaretRectForPosition(UITextPosition position)
+            {
+                return new CGRect();
+            }
+        }
+
+        public FingerPaintViewController()
+        {
         }
 
         public override void LoadView()
         {
             base.LoadView();
 
-            //UIView contentView = new UIView()
-            //{
-            //    BackgroundColor = UIColor.White
-            //};
-            //View = contentView;
+            // White view covering entire screen 
+            UIView contentView = new UIView()
+            {
+                BackgroundColor = UIColor.White
+            };
+            View = contentView;
 
-      //      CGRect rect = UIScreen.MainScreen.Bounds;
-      //      rect.X += 20;
-      //      rect.Height -= 20;
+            // Vertical UIStackView offset from status bar
+            CGRect rect = UIScreen.MainScreen.Bounds;
+            rect.Y += 20;
+            rect.Height -= 20;
 
-            UIStackView vertStackView = new UIStackView // (rect)
+            UIStackView vertStackView = new UIStackView(rect)
             {
                 Axis = UILayoutConstraintAxis.Vertical,
-
-
-                
-                //         BackgroundColor = UIColor.White
-             //   LayoutMargins = new UIEdgeInsets(20, 0, 0, 0)
             };
-        //    contentView.AddSubview(vertStackView);
+            contentView.Add(vertStackView); 
 
-           View = vertStackView;
-
-
-            UIView view = new UIView // (new CGRect(0, 0, UIScreen.MainScreen.Bounds.Width, 20))
-            {
-                BackgroundColor = UIColor.White,
-                Bounds = new CGRect(0, 0, UIScreen.MainScreen.Bounds.Width, 20)
-            };
-            vertStackView.AddArrangedSubview(view);
-
-
-
+            // Horizontal UIStackView for tools
             UIStackView horzStackView = new UIStackView
             {
                 Axis = UILayoutConstraintAxis.Horizontal,
                 Alignment = UIStackViewAlignment.Center,
-                Distribution = UIStackViewDistribution.FillProportionally,
-      //          BackgroundColor = UIColor.White
-
-
-        };
+                Distribution = UIStackViewDistribution.EqualSpacing
+            };
             vertStackView.AddArrangedSubview(horzStackView);
 
-
+            // FingerPaintCanvasView for drawing
             FingerPaintCanvasView canvasView = new FingerPaintCanvasView();
-
             vertStackView.AddArrangedSubview(canvasView);
-            // new FingerPaintCanvasView()); //  UIScreen.MainScreen.Bounds)
 
-        //    Tuple<string, UIColor> y;
+            // Add space at left to horizontal UIStackView
+            horzStackView.AddArrangedSubview(new UILabel(new CGRect(0, 0, 10, 10)));
 
-           
-
-
-            var x = new { name = "Red", value = UIColor.Red };
-
-            var n = x.name;
-            var v = x.value;
-
-
-            PickerDataModel<ColorName> colorModel = new PickerDataModel<ColorName>
+            // Construct UIPickerView for choosing color, but don't add it to any view
+            PickerDataModel<UIColor> colorModel = new PickerDataModel<UIColor>
             {
                 Items =
                 {
-                    new ColorName("Red", UIColor.Red),
-                    new ColorName("Green", UIColor.Green),
-                    new ColorName("Blue", UIColor.Blue),
-                    new ColorName("Cyan", UIColor.Cyan),
-                    new ColorName("Magenta", UIColor.Magenta),
-                    new ColorName("Yellow", UIColor.Yellow),
-                    new ColorName("Black", UIColor.Black),
-                    new ColorName("Gray", UIColor.Gray),
-                    new ColorName("White", UIColor.White)
-                }
-            };
-            colorModel.ValueChanged += (sender, args) =>
-            {
-                return;
-
-                if (colorModel.SelectedItem != null)
-                {
-
-
-              //      var a = typeof(UIColor);
-                    var b = a.GetProperty(colorModel.SelectedItem);
-                    var c = b.GetValue(null);
-                    var d = (UIColor)c;
-                    var e = d.CGColor;
-
-
-                 //   canvasView.StrokeColor = ((UIColor)(typeof(UIColor).GetProperty(colorModel.SelectedItem).GetValue(null))).CGColor;
+                    new NamedValue<UIColor>("Red", UIColor.Red),
+                    new NamedValue<UIColor>("Green", UIColor.Green),
+                    new NamedValue<UIColor>("Blue", UIColor.Blue),
+                    new NamedValue<UIColor>("Cyan", UIColor.Cyan),
+                    new NamedValue<UIColor>("Magenta", UIColor.Magenta),
+                    new NamedValue<UIColor>("Yellow", UIColor.Yellow),
+                    new NamedValue<UIColor>("Black", UIColor.Black),
+                    new NamedValue<UIColor>("Gray", UIColor.Gray),
+                    new NamedValue<UIColor>("White", UIColor.White)
                 }
             };
 
             UIPickerView colorPicker = new UIPickerView
             {
-                Model = colorModel,
-                BackgroundColor = UIColor.White
+                Model = colorModel
             };
 
-            var width = UIScreen.MainScreen.Bounds.Width;
-            var toolbar = new UIToolbar(new CoreGraphics.CGRect(0, 0, width, 44))
+            // Ditto for UIPickerView for stroke thickness
+            PickerDataModel<float> thicknessModel = new PickerDataModel<float>
+            {
+                Items =
+                {
+                    new NamedValue<float>("Thin", 2),
+                    new NamedValue<float>("Thinish", 5),
+                    new NamedValue<float>("Medium", 10),
+                    new NamedValue<float>("Thickish", 20),
+                    new NamedValue<float>("Thick", 50)
+                }
+            };
+
+            UIPickerView thicknessPicker = new UIPickerView
+            {
+                Model = thicknessModel
+            };
+
+            // Create UIToolbar for dismissing picker when it's displayed
+            var toolbar = new UIToolbar(new CGRect(0, 0, UIScreen.MainScreen.Bounds.Width, 44))
             {
                 BarStyle = UIBarStyle.Default,
                 Translucent = true
             };
 
+            // Set Font to be used in tools
+            UIFont font = UIFont.SystemFontOfSize(24);
 
-
-            UITextField colorTextField = new NoCaretField //  new UITextField
+            // Create a NoCaretField text field for invoking color picker & add to horizontal UIStackView
+            //  (technique from Xamarin.Forms iOS PickerRenderer
+            UITextField colorTextField = new NoCaretField
             {
-                Text = "Color = Red",
-                BackgroundColor = UIColor.White,
-                TextColor = UIColor.Black,
+                Text = "Red",
                 InputView = colorPicker,
                 InputAccessoryView = toolbar,
-
-                Font = UIFont.FromName("Courier", 48)
-              //  MinimumFontSize = 24
-               
+                Font = font 
             };
-
             horzStackView.AddArrangedSubview(colorTextField);
 
+            // Use ValueChanged handler to change the color
+            colorModel.ValueChanged += (sender, args) =>
+            {
+                colorTextField.Text = colorModel.SelectedItem.Name;
+                canvasView.StrokeColor = colorModel.SelectedItem.Value.CGColor;
+            };
 
+            // Ditto for the thickness
+            UITextField thicknessTextField = new NoCaretField 
+            {
+                Text = "Thin",
+                InputView = thicknessPicker,
+                InputAccessoryView = toolbar,
+                Font = font
+            };
+            horzStackView.AddArrangedSubview(thicknessTextField);
 
+            thicknessModel.ValueChanged += (sender, args) =>
+            {
+                thicknessTextField.Text = thicknessModel.SelectedItem.Name;
+                canvasView.StrokeWidth = thicknessModel.SelectedItem.Value;
+            };
 
-
+            // Now add a Done button to the toolbar to rest text fields
             var spacer = new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace);
             var doneButton = new UIBarButtonItem(UIBarButtonSystemItem.Done, (o, a) =>
             {
-                //             var s = (PickerSource)_picker.Model;
-                //             if (s.SelectedIndex == -1 && Element.Items != null && Element.Items.Count > 0)
-                //                UpdatePickerSelectedIndex(0);
-                //            UpdatePickerFromModel(s);
-
-                colorTextField.Text = "Color = " + colorModel.SelectedItem;
-
-                //    canvasView.StrokeColor = (UIColor)(typeof(UIColor).GetProperty(colorModel.SelectedItem).GetValue(null))).CGColor;
-
-                canvasView.StrokeColor = colorModel.SelectedItem.Color.CGColor;
-
                 colorTextField.ResignFirstResponder();
+                thicknessTextField.ResignFirstResponder();
             });
 
             toolbar.SetItems(new[] { spacer, doneButton }, false);
 
-
-
-
-
-
-            //===================================
-
-            PickerDataModel<string> tryoutModel = new PickerDataModel<string>
+            // Create the Clear button 
+            UIButton button = new UIButton(UIButtonType.RoundedRect)
             {
-                Items =
-                {
-                    "Red",
-                    "Green",
-                    "Blue",
-                    "Cyan",
-                    "Magenta",
-                    "Yellow",
-                    "Black",
-                    "Gray",
-                    "White"
-                }
+                Font = font
             };
+            horzStackView.AddArrangedSubview(button);
 
-
-            UIPickerView tryoutPicker = new UIPickerView
-            {
-
-
-
-
-                Model = tryoutModel,
-                BackgroundColor = UIColor.White
-            };
-
-
-            UITextField textField = new UITextField
-            {
-                
-                Text = "whatsit is it going?",
-                BackgroundColor = UIColor.White,
-
-                InputView = tryoutPicker,
-                InputAccessoryView = toolbar
-
-            };
-            horzStackView.AddArrangedSubview(textField);
-
-
-/*
-            PickerDataModel thicknessModel = new PickerDataModel
-            {
-                Items =
-                {
-                    "Thin",
-                    "Thinish",
-                    "Medium",
-                    "Thickish",
-                    "Thick"
-                }
-            };
-            thicknessModel.ValueChanged += (sender, args) =>
-            {
-                canvasView.StrokeWidth = new float[] { 2, 5, 10, 20, 50 }
-                    [thicknessModel.Items.IndexOf(thicknessModel.SelectedItem)];
-
-            };
-
-            UIPickerView thicknessPicker = new UIPickerView
-            {
-                Model = thicknessModel,
-                BackgroundColor = UIColor.White
-            };
-
-            horzStackView.AddArrangedSubview(thicknessPicker);
-*/
-
-
-
-
-
-
-
-
-            //   View = stackView;
-
-            //      View = contentView;
-
-            /* contentView. */
-            //  );
-
-
-
-            UIButton button = new UIButton(); //  new CoreGraphics.CGRect(100, 100, 100, 100));
+            button.Layer.BorderColor = UIColor.Black.CGColor;
+            button.Layer.BorderWidth = 1;
+            button.Layer.CornerRadius = 10;
             button.SetTitle("Clear", UIControlState.Normal);
+            button.SetTitleColor(UIColor.Black, UIControlState.Normal);
+
             button.TouchUpInside += (sender, args) =>
             {
                 canvasView.Clear();
             };
 
-            horzStackView.AddArrangedSubview(button);
-
-
-
-
-
-
-
+            // Add space at right to horizontal UIStackView
+            horzStackView.AddArrangedSubview(new UILabel(new CGRect(0, 0, 10, 10)));
         }
 
         public override void DidReceiveMemoryWarning()

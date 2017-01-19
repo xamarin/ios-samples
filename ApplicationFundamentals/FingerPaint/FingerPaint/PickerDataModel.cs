@@ -4,7 +4,20 @@ using UIKit;
 
 namespace FingerPaint
 {
-    class PickerDataModel<T> : UIPickerViewModel where T : class
+    class NamedValue<T>
+    {
+        public NamedValue(string name, T value)
+        {
+            Name = name;
+            Value = value;
+        }
+
+        public string Name { private set; get; }
+
+        public T Value { private set; get; }
+    }
+
+    class PickerDataModel<T> : UIPickerViewModel 
     {
         public event EventHandler<EventArgs> ValueChanged;
 
@@ -12,12 +25,12 @@ namespace FingerPaint
 
         public PickerDataModel()
         {
-            Items = new List<T>();
+            Items = new List<NamedValue<T>>();
         }
 
-        public IList<T> Items { private set; get; }
+        public IList<NamedValue<T>> Items { private set; get; }
 
-        public T SelectedItem
+        public NamedValue<T> SelectedItem
         {
             get
             {
@@ -34,7 +47,7 @@ namespace FingerPaint
 
         public override string GetTitle(UIPickerView picker, nint row, nint component)
         {
-            return Items != null && Items.Count > row ? Items[(int)row].ToString() : null;
+            return Items != null && Items.Count > row ? Items[(int)row].Name : null;
         }
 
         public override nint GetComponentCount(UIPickerView picker)
