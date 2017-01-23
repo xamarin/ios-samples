@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FingerPaint", "FingerPaint\FingerPaint.csproj", "{EE2A9EC7-2AF2-44CE-9773-1C6884555740}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		Ad-Hoc|iPhoneSimulator = Ad-Hoc|iPhoneSimulator
+		AppStore|iPhone = AppStore|iPhone
+		AppStore|iPhoneSimulator = AppStore|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhoneSimulator
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.Ad-Hoc|iPhoneSimulator.Build.0 = Ad-Hoc|iPhoneSimulator
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhoneSimulator
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.Debug|iPhone.Build.0 = Debug|iPhone
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.Release|iPhone.ActiveCfg = Release|iPhone
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.Release|iPhone.Build.0 = Release|iPhone
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{EE2A9EC7-2AF2-44CE-9773-1C6884555740}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
