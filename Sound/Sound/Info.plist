@@ -39,10 +39,14 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>10.2</string>
 	<key>UIMainStoryboardFile</key>
 	<string>SoundViewControllerIPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>SoundViewControllerIPad</string>
+	<key>CFBundleName</key>
+	<string>Sound</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs access to the mic to rec sounds.</string>
 </dict>
 </plist>
