@@ -49,8 +49,6 @@
 	<string>Poker Night Voting</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Poker Night Voting need access to Calendar to add Events</string>
-	<key>NSLocationUsageDescription</key>
-	<string>Poker Night Voting need access to Location to Add Events</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Poker Night Voting need access to Location to Add Events</string>
 </dict>
