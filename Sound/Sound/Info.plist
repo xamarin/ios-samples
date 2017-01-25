@@ -39,7 +39,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>MinimumOSVersion</key>
-	<string>10.2</string>
+	<string>7.0</string>
 	<key>UIMainStoryboardFile</key>
 	<string>SoundViewControllerIPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>
