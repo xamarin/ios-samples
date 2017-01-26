@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -23,7 +27,7 @@
                                     <constraint firstAttribute="width" constant="1057" id="lzq-lF-Vy8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="128"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long Running Task of Unknown Length:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dC6-xa-Ahw">
@@ -33,33 +37,33 @@
                                     <constraint firstAttribute="height" constant="68" id="j5M-6D-8jj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Long Running Task of Known Length:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VER-4Z-uJW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long Running Task of Known Length:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VER-4Z-uJW">
                                 <rect key="frame" x="746" y="556" width="429" height="68"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="68" id="Xy0-Ue-N0J"/>
                                     <constraint firstAttribute="width" constant="429" id="tKW-PZ-5Dn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ZQN-P6-c9w">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ZQN-P6-c9w">
                                 <rect key="frame" x="928" y="455" width="64" height="64"/>
                             </activityIndicatorView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ru8-mZ-iGh">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ru8-mZ-iGh">
                                 <rect key="frame" x="746" y="649" width="429" height="10"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="429" id="2Rq-7w-61H"/>
                                     <constraint firstAttribute="height" constant="10" id="NQL-if-5Oc"/>
                                 </constraints>
                             </progressView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" distribution="equalSpacing" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="gWv-jU-x7D">
-                                <rect key="frame" x="706" y="740" width="539" height="86"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="gWv-jU-x7D">
+                                <rect key="frame" x="691" y="740" width="539" height="86"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cy9-ZL-tIj">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cy9-ZL-tIj">
                                         <rect key="frame" x="0.0" y="0.0" width="161" height="86"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <state key="normal" title="Stop"/>
@@ -67,7 +71,7 @@
                                             <action selector="StartStopAction:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="itl-1w-Bng"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGB-q6-qg4">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGB-q6-qg4">
                                         <rect key="frame" x="186" y="0.0" width="159" height="86"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <state key="normal" title="Less"/>
@@ -75,7 +79,7 @@
                                             <action selector="LessAction:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="8Y3-Ow-3k3"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJ6-4x-wFw">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJ6-4x-wFw">
                                         <rect key="frame" x="370" y="0.0" width="169" height="86"/>
                                         <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                         <state key="normal" title="More"/>
@@ -89,9 +93,10 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="o2Z-Nq-UjR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="88" id="5iy-7V-LEX"/>
+                            <constraint firstItem="ZQN-P6-c9w" firstAttribute="top" secondItem="dC6-xa-Ahw" secondAttribute="bottom" constant="19" id="9LU-Oq-vUb"/>
                             <constraint firstItem="Ru8-mZ-iGh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Lx-wb-LPi"/>
                             <constraint firstItem="gWv-jU-x7D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EyY-eg-M45"/>
                             <constraint firstItem="Ru8-mZ-iGh" firstAttribute="top" secondItem="VER-4Z-uJW" secondAttribute="bottom" constant="25" id="Hoq-dp-jZW"/>
@@ -100,6 +105,7 @@
                             <constraint firstItem="VER-4Z-uJW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XwJ-09-bqj"/>
                             <constraint firstItem="gWv-jU-x7D" firstAttribute="top" secondItem="Ru8-mZ-iGh" secondAttribute="bottom" constant="81" id="cXM-W8-rVs"/>
                             <constraint firstItem="o2Z-Nq-UjR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ma9-R5-Lmf"/>
+                            <constraint firstItem="ZQN-P6-c9w" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oPF-hY-a9e"/>
                             <constraint firstItem="dC6-xa-Ahw" firstAttribute="top" secondItem="o2Z-Nq-UjR" secondAttribute="bottom" constant="63" id="sY4-j6-vOp"/>
                         </constraints>
                     </view>
@@ -114,4 +120,9 @@
             <point key="canvasLocation" x="325" y="387"/>
         </scene>
     </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <nil key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
 </document>
