@@ -45,5 +45,11 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>Poker Night Voting</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Poker Night Voting need access to Calendar to add Events</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Poker Night Voting need access to Location to Add Events</string>
 </dict>
 </plist>
