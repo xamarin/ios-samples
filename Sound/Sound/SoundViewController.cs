@@ -62,27 +62,23 @@ namespace Sound
 				if (granted) {
 					NSError error = null;
 					session.SetCategory(AVAudioSession.CategoryRecord, out error);
-					if (error != null)
-					{
+					if (error != null) {
 						Console.WriteLine(error);
 						return;
 					}
 
 					session.SetActive(true, out error);
-					if (error != null)
-					{
+					if (error != null) {
 						Console.WriteLine(error);
 						return;
 					}
 
-					if (!PrepareAudioRecording())
-					{
+					if (!PrepareAudioRecording()) {
 						RecordingStatusLabel.Text = "Error preparing";
 						return;
 					}
 
-					if (!recorder.Record())
-					{
+					if (!recorder.Record()) {
 						RecordingStatusLabel.Text = "Error preparing";
 						return;
 					}
@@ -95,8 +91,7 @@ namespace Sound
 					StartRecordingButton.Enabled = false;
 					StopRecordingButton.Enabled = true;
 					PlayRecordedSoundButton.Enabled = false;
-				}
-				else {
+				} else {
 					Console.WriteLine("YOU MUST ENABLE MICROPHONE PERMISSION");
 				}
 
