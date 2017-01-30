@@ -44,5 +44,9 @@
 	<string>SoundViewControllerIPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>SoundViewControllerIPad</string>
+	<key>CFBundleName</key>
+	<string>Sound</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs access to the mic to rec sounds.</string>
 </dict>
 </plist>
