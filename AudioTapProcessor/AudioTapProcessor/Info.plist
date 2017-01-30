@@ -41,5 +41,9 @@
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>MainStoryboard</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>AudioTapProcessor need access to your Library to work correctly</string>
+	<key>CFBundleName</key>
+	<string>AudioTapProcessor</string>
 </dict>
 </plist>
