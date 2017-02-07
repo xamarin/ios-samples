@@ -34,5 +34,9 @@
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>The apps need access to your Health Usage Update</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>The apps need access to your Health Usage Share</string>
 </dict>
 </plist>
