@@ -207,7 +207,12 @@ namespace DocPicker
 				if (presentationPopover!=null) {
 					presentationPopover.SourceView = this.View;
 					presentationPopover.PermittedArrowDirections = UIPopoverArrowDirection.Down;
-					presentationPopover.SourceRect = ((UIButton)s).Frame;
+
+					// Get UIBarButtonItem's frame
+					// there is no built in way to get a UIBarButtonItem frame so you need to hack your own
+					// This is because UIBarButtonItem inherits from UIBarItem and UIBarItem inherits from NSObject
+					var buttonView = (UIView)((UIBarButtonItem)s).ValueForKey(new NSString("view"));
+					presentationPopover.SourceRect = buttonView.Frame;
 				}
 			};
 
