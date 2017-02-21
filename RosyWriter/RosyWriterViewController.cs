@@ -327,7 +327,6 @@ namespace RosyWriter
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-
 			timer = NSTimer.CreateRepeatingScheduledTimer (.25, UpdateLabels);
 		}
 
