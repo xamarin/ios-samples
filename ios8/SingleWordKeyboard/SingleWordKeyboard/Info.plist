@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>SingleWordKeyboard</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.your-company.SingleWordKeyboard</string>
+	<string>com.xamarin.SingleWordKeyboard</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -13,7 +13,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>8.1</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -44,5 +44,7 @@
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
+	<key>CFBundleName</key>
+	<string>SingleWordKeyboard</string>
 </dict>
 </plist>
