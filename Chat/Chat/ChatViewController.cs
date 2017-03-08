@@ -90,19 +90,22 @@ namespace Chat
 			AddObservers ();
 		}
 
-		#endregion
-
+        #endregion
+        
 		#region Initialization
 
-		void SetUpTableView ()
-		{
+		void SetUpTableView () 
+        {
 			tableView = new UITableView {
 				TranslatesAutoresizingMaskIntoConstraints = false,
 				AllowsSelection = false,
 				SeparatorStyle = UITableViewCellSeparatorStyle.None
 			};
-			tableView.RegisterClassForCellReuse (typeof(IncomingCell), IncomingCell.CellId);
-			tableView.RegisterClassForCellReuse (typeof(OutgoingCell), OutgoingCell.CellId);
+
+            tableView.RegisterClassForCellReuse(typeof(OutgoingCell), OutgoingCell.CellId);
+
+            tableView.RegisterClassForCellReuse (typeof(IncomingCell), IncomingCell.CellId);
+			
 			View.AddSubview (tableView);
 
 			var pinLeft = NSLayoutConstraint.Create (tableView, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, View, NSLayoutAttribute.Leading, 1f, 0f);
