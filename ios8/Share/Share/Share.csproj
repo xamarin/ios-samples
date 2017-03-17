@@ -140,6 +140,5 @@
     <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Landscape~ipad.png" />
     <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Portrait%402x~ipad.png" />
     <ImageAsset Include="Resources\Images.xcassets\LaunchImage.launchimage\Default-Portrait~ipad.png" />
-    <ImageAsset Include="Resources\Images.xcassets\.DS_Store" />
   </ItemGroup>
 </Project>
