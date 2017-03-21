@@ -63,6 +63,7 @@
   <ItemGroup>
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
