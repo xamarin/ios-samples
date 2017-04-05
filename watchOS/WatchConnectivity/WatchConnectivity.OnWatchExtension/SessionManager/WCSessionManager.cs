@@ -109,7 +109,7 @@ namespace WatchConnectivity
 
 		public override void DidReceiveApplicationContext(WCSession session, NSDictionary<NSString, NSObject> applicationContext)
 		{
-			Console.WriteLine($"Recieving Message on {Device}");
+			Console.WriteLine($"Receiving Message on {Device}");
 			if (ApplicationContextUpdated != null)
 			{
 				var keys = applicationContext.Keys.Select(k => k.ToString()).ToArray();
