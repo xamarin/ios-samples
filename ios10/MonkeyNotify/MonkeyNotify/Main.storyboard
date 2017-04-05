@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E191a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,12 +53,21 @@
                                     <action selector="CustomActionTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V5z-JB-MhX"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="alerts will appear 20 seconds after button press" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3">
+                                <rect key="frame" x="76" y="268" width="223" height="34"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="3" secondAttribute="trailing" constant="60" id="BGR-tY-dhw"/>
                             <constraint firstItem="xjE-fv-Ofz" firstAttribute="top" secondItem="0Ya-GD-kf2" secondAttribute="bottom" constant="41" id="DjI-em-b3I"/>
                             <constraint firstItem="oaP-M9-Mm4" firstAttribute="top" secondItem="xjE-fv-Ofz" secondAttribute="bottom" constant="37" id="Ffn-FN-XM1"/>
                             <constraint firstItem="0Ya-GD-kf2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="LaI-Hi-1be"/>
+                            <constraint firstItem="3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="60" id="Odp-9t-tin"/>
+                            <constraint firstItem="3" firstAttribute="top" secondItem="oaP-M9-Mm4" secondAttribute="bottom" constant="50" id="Wn2-Xs-Zjx"/>
                             <constraint firstItem="0Ya-GD-kf2" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="ag4-lz-Oyc"/>
                             <constraint firstItem="oaP-M9-Mm4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hbN-Ey-bJ4"/>
                             <constraint firstItem="0Ya-GD-kf2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vlH-Z5-DpY"/>
@@ -68,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="136.80000000000001" y="138.0809595202399"/>
         </scene>
     </scenes>
 </document>

@@ -31,8 +31,8 @@ namespace MonkeyNotify
 			content.Subtitle = "Notification Subtitle";
 			content.Body = "This is the message body of the notification.";
 
-			// Fire trigger in one minute
-			var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(60, false);
+			// Fire trigger in twenty seconds
+			var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(20, false);
 
 			var requestID = "sampleRequest";
 			var request = UNNotificationRequest.FromIdentifier(requestID, content, trigger);
@@ -63,7 +63,7 @@ namespace MonkeyNotify
 			var categoryID = "message";
 			var actions = new UNNotificationAction[] { action };
 			var intentIDs = new string[] { };
-			var categoryOptions = new UNNotificationCategoryOptions[] { };
+			//var categoryOptions = new UNNotificationCategoryOptions[] { };
 			var category = UNNotificationCategory.FromIdentifier(categoryID, actions, intentIDs, UNNotificationCategoryOptions.None);
 
 			// Register category
@@ -78,8 +78,8 @@ namespace MonkeyNotify
 			content.Badge = 1;
 			content.CategoryIdentifier = "message";
 
-			// Fire trigger in one minute
-			var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(60, false);
+			// Fire trigger in twenty seconds
+			var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(20, false);
 
 			var requestID = "sampleRequest";
 			var request = UNNotificationRequest.FromIdentifier(requestID, content, trigger);
