@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HapticFeedback", "HapticFeedback\HapticFeedback.csproj", "{EB10F61A-7667-4380-B4C9-5E2A1B571AB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB10F61A-7667-4380-B4C9-5E2A1B571AB8}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{EB10F61A-7667-4380-B4C9-5E2A1B571AB8}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{EB10F61A-7667-4380-B4C9-5E2A1B571AB8}.Release|iPhone.ActiveCfg = Release|iPhone
+		{EB10F61A-7667-4380-B4C9-5E2A1B571AB8}.Release|iPhone.Build.0 = Release|iPhone
+		{EB10F61A-7667-4380-B4C9-5E2A1B571AB8}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{EB10F61A-7667-4380-B4C9-5E2A1B571AB8}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{EB10F61A-7667-4380-B4C9-5E2A1B571AB8}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{EB10F61A-7667-4380-B4C9-5E2A1B571AB8}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
