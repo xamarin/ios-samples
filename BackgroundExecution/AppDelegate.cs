@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -57,11 +57,15 @@ namespace BackgroundExecution
 		{
 			Console.WriteLine ("App entering background state.");
 
+			nint taskID = 0;
 			// if you're creating a VOIP application, this is how you set the keep alive
 			//UIApplication.SharedApplication.SetKeepAliveTimout(600, () => { /* keep alive handler code*/ });
 
 			// register a long running task, and then start it on a new thread so that this method can return
-			var taskID = UIApplication.SharedApplication.BeginBackgroundTask (null);
+			taskID = UIApplication.SharedApplication.BeginBackgroundTask (()=>{
+				Console.WriteLine("Running out of time to complete you background task!");
+				UIApplication.SharedApplication.EndBackgroundTask(taskID);
+			});
 			Task.Factory.StartNew (() => FinishLongRunningTask (taskID));
 		}
 

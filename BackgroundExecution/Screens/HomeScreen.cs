@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -11,6 +11,7 @@ namespace BackgroundExecution
 {
 	public partial class HomeScreen : UIViewController
 	{
+
 		#region Constructors
 
 		// The IntPtr and initWithCoder constructors are required for items that need
@@ -44,8 +45,13 @@ namespace BackgroundExecution
 
 		void DoSomething ()
 		{
+			nint taskID = 0;
 			// register our background task
-			var taskID = UIApplication.SharedApplication.BeginBackgroundTask (BackgroundTaskExpiring);
+			taskID = UIApplication.SharedApplication.BeginBackgroundTask(() =>
+			{
+				Console.WriteLine("Running out of time to complete you background task!");
+				UIApplication.SharedApplication.EndBackgroundTask(taskID);
+			});
 
 			Console.WriteLine ("Starting background task {0}", taskID);
 
@@ -58,10 +64,6 @@ namespace BackgroundExecution
 			UIApplication.SharedApplication.EndBackgroundTask (taskID);
 		}
 
-		public void BackgroundTaskExpiring ()
-		{
-			Console.WriteLine ("Running out of time to complete you background task!");
-		}
 	}
 }
 

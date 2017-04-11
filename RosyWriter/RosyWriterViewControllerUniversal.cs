@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using CoreGraphics;
 
 using Foundation;
@@ -167,7 +167,9 @@ namespace RosyWriter
 				// Make sure we have time to finish saving the movie if the app is backgrounded during recording
 				if (UIDevice.CurrentDevice.IsMultitaskingSupported)
 					// HACK: Cast nint to int
-					backgroundRecordingID = (int)UIApplication.SharedApplication.BeginBackgroundTask (() => {});
+					backgroundRecordingID = (int)UIApplication.SharedApplication.BeginBackgroundTask (() => {
+					UIApplication.SharedApplication.EndBackgroundTask(backgroundRecordingID);
+				});
 			});
 		}
 
