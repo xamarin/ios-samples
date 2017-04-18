@@ -211,56 +211,61 @@ namespace RosyWriter
 		#endregion
 
 		#region UIViewController Methods
-		public override void ViewDidLoad ()
+		public override void ViewDidLoad()
 		{
-			base.ViewDidLoad ();
+			base.ViewDidLoad();
 
-			// Initialize the class responsible for managing AV capture session and asset writer
-			videoProcessor = new RosyWriterVideoProcessor ();
+			if (HaveWeThePermissionsToStartCapture()) {
+				// Initialize the class responsible for managing AV capture session and asset writer
+				videoProcessor = new RosyWriterVideoProcessor();
 
-			// Keep track of changes to the device orientation so we can update the video processor
-			var notificationCenter = NSNotificationCenter.DefaultCenter;
-			notificationCenter.AddObserver(UIApplication.DidChangeStatusBarOrientationNotification, DeviceOrientationDidChange);
+				// Keep track of changes to the device orientation so we can update the video processor
+				var notificationCenter = NSNotificationCenter.DefaultCenter;
+				notificationCenter.AddObserver(UIApplication.DidChangeStatusBarOrientationNotification, DeviceOrientationDidChange);
 
-			UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications ();
+				UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications();
 
-			// Setup and start the capture session
-			videoProcessor.SetupAndStartCaptureSession ();
+				// Setup and start the capture session
+				videoProcessor.SetupAndStartCaptureSession();
 
-			notificationCenter.AddObserver (UIApplication.DidBecomeActiveNotification, OnApplicationDidBecomeActive);
+				notificationCenter.AddObserver(UIApplication.DidBecomeActiveNotification, OnApplicationDidBecomeActive);
 
-			oglView = new RosyWriterPreviewWindow(CGRect.Empty);
+				oglView = new RosyWriterPreviewWindow(CGRect.Empty);
 
-			// Our interface is always in portrait
-			oglView.Transform = videoProcessor.TransformFromCurrentVideoOrientationToOrientation(AVCaptureVideoOrientation.Portrait);
+				// Our interface is always in portrait
+				oglView.Transform = videoProcessor.TransformFromCurrentVideoOrientationToOrientation(AVCaptureVideoOrientation.Portrait);
 
-			CGRect bounds = previewView.ConvertRectToView(previewView.Bounds, oglView);
-			oglView.Bounds = bounds;
-			oglView.Center = new CGPoint(previewView.Bounds.Size.Width / 2.0F, previewView.Bounds.Size.Height / 2.0F);
+				CGRect bounds = previewView.ConvertRectToView(previewView.Bounds, oglView);
+				oglView.Bounds = bounds;
+				oglView.Center = new CGPoint(previewView.Bounds.Size.Width / 2.0F, previewView.Bounds.Size.Height / 2.0F);
 
-			previewView.AddSubview(oglView);
+				previewView.AddSubview(oglView);
 
-			// Set up labels
-			shouldShowStats = true;
+				// Set up labels
+				shouldShowStats = true;
 
-			frameRateLabel = LabelWithText (string.Empty, 10.0F);
-			previewView.AddSubview (frameRateLabel);
+				frameRateLabel = LabelWithText(string.Empty, 10.0F);
+				previewView.AddSubview(frameRateLabel);
 
-			dimensionsLabel = LabelWithText (string.Empty, 54.0F);
-			previewView.AddSubview (dimensionsLabel);
+				dimensionsLabel = LabelWithText(string.Empty, 54.0F);
+				previewView.AddSubview(dimensionsLabel);
 
-			typeLabel = LabelWithText (string.Empty, 90F);
-			previewView.Add (typeLabel);
+				typeLabel = LabelWithText(string.Empty, 90F);
+				previewView.Add(typeLabel);
 
-			// btnRecord Event Handler
-			btnRecord.Clicked += OnToggleRecording;
+				// btnRecord Event Handler
+				btnRecord.Clicked += OnToggleRecording;
 
-			// Video Processor Event Handlers
-			videoProcessor.RecordingDidStart += OnRecordingDidStart;
-			videoProcessor.RecordingDidStop += OnRecordingDidStop;
-			videoProcessor.RecordingWillStart += OnRecordingWillStart;
-			videoProcessor.RecordingWillStop += OnRecordingWillStop;
-			videoProcessor.PixelBufferReadyForDisplay += OnPixelBufferReadyForDisplay;
+				// Video Processor Event Handlers
+				videoProcessor.RecordingDidStart += OnRecordingDidStart;
+				videoProcessor.RecordingDidStop += OnRecordingDidStop;
+				videoProcessor.RecordingWillStart += OnRecordingWillStart;
+				videoProcessor.RecordingWillStop += OnRecordingWillStop;
+				videoProcessor.PixelBufferReadyForDisplay += OnPixelBufferReadyForDisplay;
+			}
+			else {
+				Console.WriteLine("The app doesn't has the correct permissions to run");
+			}
 		}
 
 		public override void ViewWillAppear (bool animated)
@@ -284,5 +289,37 @@ namespace RosyWriter
 			return (toInterfaceOrientation == UIInterfaceOrientation.Portrait);
 		}
 		#endregion
+
+		private bool HaveWeThePermissionsToStartCapture()
+		{
+			var canRunApp = true;
+			bool isSimulator = UIDevice.CurrentDevice.BatteryLevel < 0;
+
+			if (isSimulator)
+			{
+				Console.WriteLine("It's Emulator");
+
+				canRunApp = false;
+			}
+			else {
+				var authorizationStatus = AVCaptureDevice.GetAuthorizationStatus(AVMediaType.Video);
+
+				if (authorizationStatus == AVAuthorizationStatus.NotDetermined)
+				{
+					AVCaptureDevice.RequestAccessForMediaType(AVMediaType.Video, (bool isAccessGranted) =>
+					{
+						Console.WriteLine("Check Video Access");
+
+						canRunApp = isAccessGranted;
+					});
+				}
+				else if (authorizationStatus != AVAuthorizationStatus.Authorized)
+				{
+					canRunApp = false;
+				}
+			}
+
+			return canRunApp;
+		}
 	}
 }
