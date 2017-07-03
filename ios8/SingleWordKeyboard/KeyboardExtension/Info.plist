@@ -7,11 +7,11 @@
 	<key>CFBundleDisplayName</key>
 	<string>KeyboardExtension</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.your-company.SingleWordKeyboard.KeyboardExtension</string>
+	<string>com.xamarin.SingleWordKeyboard.KeyboardExtension</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>com.your-company.KeyboardExtension</string>
+	<string>KeyboardExtension</string>
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.0</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>

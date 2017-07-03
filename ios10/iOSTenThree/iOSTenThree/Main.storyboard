@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Km-a9-U16">
+                                <rect key="frame" x="16" y="189" width="343" height="458"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Xamarin" translatesAutoresizingMaskIntoConstraints="NO" id="dI5-4p-zhy">
+                                        <rect key="frame" x="0.0" y="0.0" width="1000" height="750"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS 10.3 Features" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDQ-ss-rWm">
+                                <rect key="frame" x="16" y="28" width="343" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="rXW-a8-W3b"/>
+                                    <constraint firstAttribute="width" constant="343" id="yJb-dI-u5W"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This sample showcases the new features introduced in iOS 10.3" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rf-PQ-ezq">
+                                <rect key="frame" x="16" y="57" width="343" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="Fj4-YN-KuZ"/>
+                                    <constraint firstAttribute="width" constant="343" id="X52-nz-WIE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V5G-St-c9D">
+                                <rect key="frame" x="16" y="113" width="167" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="167" id="PSQ-3z-JZY"/>
+                                    <constraint firstAttribute="height" constant="30" id="txk-WH-5ZO"/>
+                                </constraints>
+                                <state key="normal" title="Primary Icon"/>
+                                <connections>
+                                    <action selector="UsePrimaryIcon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jJa-zh-h9Q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vac-jP-E9R">
+                                <rect key="frame" x="192" y="113" width="167" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="CAh-ak-Age"/>
+                                    <constraint firstAttribute="width" constant="167" id="WZL-ws-907"/>
+                                </constraints>
+                                <state key="normal" title="Alternate Icon"/>
+                                <connections>
+                                    <action selector="UseAlternateIcon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ufR-3H-uEl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3y-D1-2fY">
+                                <rect key="frame" x="16" y="151" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="Mt1-fd-bgV"/>
+                                    <constraint firstAttribute="height" constant="30" id="dUh-9n-0Ip"/>
+                                </constraints>
+                                <state key="normal" title="Toggle Index Display Mode"/>
+                                <connections>
+                                    <action selector="ToggleIndexDisplayMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2ey-Uz-g9z"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4rf-PQ-ezq" firstAttribute="top" secondItem="zDQ-ss-rWm" secondAttribute="bottom" constant="8" id="0YD-2k-H9K"/>
+                            <constraint firstItem="Vac-jP-E9R" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="88" id="9Xb-P3-Ed7"/>
+                            <constraint firstItem="5Km-a9-U16" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Chh-0e-znE"/>
+                            <constraint firstItem="zDQ-ss-rWm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FMi-pp-Ebp"/>
+                            <constraint firstItem="5Km-a9-U16" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="HBx-YY-RGV"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5Km-a9-U16" secondAttribute="bottom" constant="20" id="KwY-W8-F8g"/>
+                            <constraint firstItem="zDQ-ss-rWm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="VnH-G4-qRo"/>
+                            <constraint firstItem="j3y-D1-2fY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ezb-Is-tyN"/>
+                            <constraint firstItem="5Km-a9-U16" firstAttribute="top" secondItem="j3y-D1-2fY" secondAttribute="bottom" constant="8" id="nPh-gx-Gc5"/>
+                            <constraint firstItem="4rf-PQ-ezq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="siS-vc-qxu"/>
+                            <constraint firstItem="j3y-D1-2fY" firstAttribute="top" secondItem="Vac-jP-E9R" secondAttribute="bottom" constant="8" id="tYC-pw-gHw"/>
+                            <constraint firstItem="Vac-jP-E9R" firstAttribute="top" secondItem="4rf-PQ-ezq" secondAttribute="bottom" constant="8" id="uFu-ew-m73"/>
+                            <constraint firstItem="V5G-St-c9D" firstAttribute="top" secondItem="4rf-PQ-ezq" secondAttribute="bottom" constant="8" id="v6c-DR-mps"/>
+                            <constraint firstItem="V5G-St-c9D" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-88" id="zay-lQ-pps"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="AlternateIconButton" destination="Vac-jP-E9R" id="Mdh-Vj-jhI"/>
+                        <outlet property="PrimaryIconButton" destination="V5G-St-c9D" id="mfn-ep-dds"/>
+                        <outlet property="ScrollView" destination="5Km-a9-U16" id="Abk-Qx-oEJ"/>
+                        <outlet property="XamarinImage" destination="dI5-4p-zhy" id="gOa-iE-h3X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Xamarin" width="1000" height="750"/>
+    </resources>
+</document>

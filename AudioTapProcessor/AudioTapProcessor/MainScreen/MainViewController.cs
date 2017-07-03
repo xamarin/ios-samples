@@ -23,7 +23,12 @@ namespace AudioTapProcessor
 
 		public AVPlayer Player {
 			get {
-				return player = player ?? new AVPlayer (movieUrl);
+
+				if (player == null && movieUrl != null) {
+					player = new AVPlayer(movieUrl);
+				}
+
+				return player;
 			}
 		}
 
@@ -91,7 +96,7 @@ namespace AudioTapProcessor
 
 			// Start observing player's status.
 			// TODO: https://trello.com/c/SeE2FBoN
-			Player.AddObserver (this, "status", NSKeyValueObservingOptions.Initial | NSKeyValueObservingOptions.New, IntPtr.Zero);
+			Player?.AddObserver (this, "status", NSKeyValueObservingOptions.Initial | NSKeyValueObservingOptions.New, IntPtr.Zero);
 
 			// Add player item did play to end time observer.
 			AVPlayerItem.Notifications.ObserveDidPlayToEndTime (DidPlayToEndTime);
@@ -302,8 +307,8 @@ namespace AudioTapProcessor
 			waitHandle.WaitOne ();
 
 			if (movieURL == null) {
-				UIAlertView alertView = new UIAlertView (null, "Could not find any movies in assets library to use as sample content.", null, "OK", null);
-				alertView.Show ();
+				UIAlertView alertView = new UIAlertView(null, "Could not find any movies in assets library to use as sample content.", null, "OK", null);
+				alertView.Show();
 			}
 
 			return movieURL;

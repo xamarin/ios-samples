@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>7f2f3ac8-1b1c-402b-a7ea-17f20ce53685</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>iOS10, Request Review, App Icon</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+    <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>This app demonstrates how to use Request Review, Index Display Mode and Alternate App Icons in a Xamarin.iOS.</Brief>
+</SampleMetadata>

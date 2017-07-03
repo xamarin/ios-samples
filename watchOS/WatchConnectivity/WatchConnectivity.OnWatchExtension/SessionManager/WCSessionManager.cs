@@ -4,13 +4,9 @@ using Foundation;
 using Newtonsoft.Json;
 using System;
 
-#if __IOS__
-		namespace WatchConnectivity
-#else
-		namespace WatchConnectivity.OnWatchExtension
-#endif
+namespace WatchConnectivity
 {
-	public sealed class WCSessionManager : NSObject, IWCSessionDelegate
+	public sealed class WCSessionManager : WCSessionDelegate
 	{
 		// Setup is converted from https://www.natashatherobot.com/watchconnectivity-say-hello-to-wcsession/ 
 		// with some extra bits
@@ -68,8 +64,7 @@ using System;
 			}
 		}
 
-		[Export("sessionReachabilityDidChange:")]
-		public void SessionReachabilityDidChange(WCSession session)
+		public override void SessionReachabilityDidChange(WCSession session)
 		{
 			Console.WriteLine($"Watch connectivity Reachable:{(session.Reachable ? '✓' : '✗')} from {Device}");
 			// handle session reachability change
@@ -112,10 +107,9 @@ using System;
 			}
 		}
 
-		[Export("session:didReceiveApplicationContext:")]
-		public void DidReceiveApplicationContext(WCSession session, NSDictionary<NSString, NSObject> applicationContext)
+		public override void DidReceiveApplicationContext(WCSession session, NSDictionary<NSString, NSObject> applicationContext)
 		{
-			Console.WriteLine($"Recieving Message on {Device}");
+			Console.WriteLine($"Receiving Message on {Device}");
 			if (ApplicationContextUpdated != null)
 			{
 				var keys = applicationContext.Keys.Select(k => k.ToString()).ToArray();

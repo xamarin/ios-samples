@@ -45,5 +45,7 @@
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>CFBundleName</key>
 	<string>QuickContacts</string>
+	<key>NSContactsUsageDescription</key>
+	<string>The app need access to your contacts</string>
 </dict>
 </plist>

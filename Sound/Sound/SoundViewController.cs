@@ -55,38 +55,45 @@ namespace Sound
 			Console.WriteLine ("Begin Recording");
 
 			var session = AVAudioSession.SharedInstance ();
+			session.RequestRecordPermission (delegate (bool granted) {
+				Console.WriteLine ($"Audio Permission: {granted}");
 
-			NSError error = null;
-			session.SetCategory (AVAudioSession.CategoryRecord, out error);
-			if (error != null) {
-				Console.WriteLine (error);
-				return;
-			}
+				if (granted) {
+					NSError error = null;
+					session.SetCategory (AVAudioSession.CategoryRecord, out error);
+					if (error != null) {
+						Console.WriteLine (error);
+						return;
+					}
 
-			session.SetActive (true, out error);
-			if (error != null) {
-				Console.WriteLine (error);
-				return;
-			}
+					session.SetActive (true, out error);
+					if (error != null) {
+						Console.WriteLine (error);
+						return;
+					}
 
-			if (!PrepareAudioRecording ()) {
-				RecordingStatusLabel.Text = "Error preparing";
-				return;
-			}
+					if (!PrepareAudioRecording ()) {
+						RecordingStatusLabel.Text = "Error preparing";
+						return;
+					}
 
-			if (!recorder.Record ()) {
-				RecordingStatusLabel.Text = "Error preparing";
-				return;
-			}
+					if (!recorder.Record ()) {
+						RecordingStatusLabel.Text = "Error preparing";
+						return;
+					}
 
-			stopwatch = new Stopwatch ();
-			stopwatch.Start ();
+					stopwatch = new Stopwatch ();
+					stopwatch.Start ();
 
-			LengthOfRecordingLabel.Text = "";
-			RecordingStatusLabel.Text = "Recording";
-			StartRecordingButton.Enabled = false;
-			StopRecordingButton.Enabled = true;
-			PlayRecordedSoundButton.Enabled = false;
+					LengthOfRecordingLabel.Text = string.Empty;
+					RecordingStatusLabel.Text = "Recording";
+					StartRecordingButton.Enabled = false;
+					StopRecordingButton.Enabled = true;
+					PlayRecordedSoundButton.Enabled = false;
+				} else {
+					Console.WriteLine ("YOU MUST ENABLE MICROPHONE PERMISSION");
+				}
+			});
 		}
 
 		NSUrl CreateOutputUrl ()
