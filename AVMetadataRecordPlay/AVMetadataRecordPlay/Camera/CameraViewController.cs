@@ -603,16 +603,110 @@ namespace AVMetadataRecordPlay.Camera
 
 
 
-		#endregion
+        #endregion
 
 
-		#region Metadata Support
+        #region Metadata Support
 
-		private void ConnectMetadataPorts()
+        private void ConnectMetadataPorts()
         {
+            var specs = new string[] {};
 
         }
 
+        private bool IsConnectionActiveWithInputPort (string portType){
+
+            foreach (var connection in movieFileOutput.Connections)
+			{
+                foreach (var inputPort in connection.InputPorts)
+				{
+                    var formatDescription = inputPort.FormatDescription;
+                    if (formatDescription.MediaType == CoreMedia.CMMediaType.Metadata){
+                        //var metadataIdentifiers = formatDescription.
+                        //Continue here
+
+                    }
+				}
+			}
+
+            return false;
+        }
+
+		/*
+		 * 
+		 * private func connectMetadataPorts() {
+        // Location metadata
+        if !isConnectionActiveWithInputPort(AVMetadataIdentifierQuickTimeMetadataLocationISO6709) {
+            // Create a format description for the location metadata.
+            let specs = [kCMMetadataFormatDescriptionMetadataSpecificationKey_Identifier as String: AVMetadataIdentifierQuickTimeMetadataLocationISO6709,
+                         kCMMetadataFormatDescriptionMetadataSpecificationKey_DataType as String: kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709 as String]
+            
+            var locationMetadataDesc: CMFormatDescription?
+            CMMetadataFormatDescriptionCreateWithMetadataSpecifications(kCFAllocatorDefault, kCMMetadataFormatType_Boxed, [specs] as CFArray, &locationMetadataDesc)
+            
+            // Create the metadata input and add it to the session.
+            guard let newLocationMetadataInput = AVCaptureMetadataInput(formatDescription: locationMetadataDesc, clock: CMClockGetHostTimeClock())
+                else {
+                    print("Unable to obtain metadata input.")
+                    return
+            }
+            session.addInputWithNoConnections(newLocationMetadataInput)
+            
+            // Connect the location metadata input to the movie file output.
+            let inputPort = newLocationMetadataInput.ports[0]
+            session.add(AVCaptureConnection(inputPorts: [inputPort], output: movieFileOutput))
+            
+            locationMetadataInput = newLocationMetadataInput
+        }
+        
+        // Face metadata
+        if !isConnectionActiveWithInputPort(AVMetadataIdentifierQuickTimeMetadataDetectedFace) {
+            connectSpecificMetadataPort(AVMetadataIdentifierQuickTimeMetadataDetectedFace)
+        }
+    }
+    
+
+		private func connectSpecificMetadataPort(_ metadataIdentifier: String)
+		{
+
+			// Iterate over the videoDeviceInput's ports (individual streams of media data) and find the port that matches metadataIdentifier.
+			for inputPort in videoDeviceInput.ports as! [AVCaptureInputPort] {
+
+				guard(inputPort.formatDescription != nil) && (CMFormatDescriptionGetMediaType(inputPort.formatDescription) == kCMMediaType_Metadata),
+                let metadataIdentifiers = CMMetadataFormatDescriptionGetIdentifiers(inputPort.formatDescription) as NSArray? else {
+					continue
+
+			}
+
+				if metadataIdentifiers.contains(metadataIdentifier) {
+					// Add an AVCaptureConnection to connect the input port to the AVCaptureOutput (movieFileOutput).
+					if let connection = AVCaptureConnection(inputPorts: [inputPort], output: movieFileOutput) {
+						session.add(connection)
+	
+				}
+				}
+			}
+		}
+
+
+		private func isConnectionActiveWithInputPort(_ portType: String) -> Bool {
+        
+        for connection in movieFileOutput.connections as! [AVCaptureConnection] {
+            for inputPort in connection.inputPorts as! [AVCaptureInputPort] {
+                if let formatDescription = inputPort.formatDescription, CMFormatDescriptionGetMediaType(formatDescription) == kCMMediaType_Metadata {
+                    if let metadataIdentifiers = CMMetadataFormatDescriptionGetIdentifiers(inputPort.formatDescription) as NSArray? {
+                        if metadataIdentifiers.contains(portType) {
+                            return connection.isActive
+                        }
+                    }
+                }
+            }
+        }
+        
+        return false
+    }
+
+         */
 
 		#endregion
 
