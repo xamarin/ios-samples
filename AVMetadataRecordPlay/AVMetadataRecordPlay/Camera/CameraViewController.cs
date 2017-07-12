@@ -610,20 +610,33 @@ namespace AVMetadataRecordPlay.Camera
 
         private void ConnectMetadataPorts()
         {
-            var specs = new string[] {};
+            var specs = new string[] {CoreMedia.CMMetadataFormatDescription.FromMetadataSpecifications(null,new string[]{"asd"});};
 
         }
 
-        private bool IsConnectionActiveWithInputPort (string portType){
+        private void ConnectSpecificMetadataPort (NSString metadataIdentifier){
+            foreach (var inputPort in videoDeviceInput.Ports){
+                if (inputPort.FormatDescription != null && inputPort.FormatDescription.MediaType == CoreMedia.CMMediaType.Metadata){
+                    var metadataIdentifiers = ((CoreMedia.CMMetadataFormatDescription)inputPort.FormatDescription).GetIdentifiers();
+                    if (metadataIdentifiers.Contains(metadataIdentifier)){
+                        var connection = AVCaptureConnection.FromInputPorts(new AVCaptureInputPort[]{inputPort}, movieFileOutput);
+                    }
+                }
+            }
+        }
+
+        private bool IsConnectionActiveWithInputPort (NSString portType){
 
             foreach (var connection in movieFileOutput.Connections)
 			{
                 foreach (var inputPort in connection.InputPorts)
 				{
-                    var formatDescription = inputPort.FormatDescription;
+                    var formatDescription = (CoreMedia.CMMetadataFormatDescription)inputPort.FormatDescription;
                     if (formatDescription.MediaType == CoreMedia.CMMediaType.Metadata){
-                        //var metadataIdentifiers = formatDescription.
-                        //Continue here
+                        var metadataIdentifiers = formatDescription.GetIdentifiers();
+                        if (metadataIdentifiers.Contains(portType)){
+                            return connection.Active;
+                        }
 
                     }
 				}
@@ -632,7 +645,13 @@ namespace AVMetadataRecordPlay.Camera
             return false;
         }
 
+ 
+
 		/*
+		  
+
+		 
+		 * 
 		 * 
 		 * private func connectMetadataPorts() {
         // Location metadata
