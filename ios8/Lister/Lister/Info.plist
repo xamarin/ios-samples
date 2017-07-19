@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -11,9 +11,9 @@
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
-	<true/>
+	<true />
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>9.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -48,7 +48,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleTypeIconFiles</key>
-			<array/>
+			<array />
 			<key>CFBundleTypeName</key>
 			<string>List Document</string>
 			<key>LSItemContentTypes</key>
@@ -56,7 +56,7 @@
 				<string>com.xamarin.Lister</string>
 			</array>
 			<key>LSTypeIsPackage</key>
-			<false/>
+			<false />
 			<key>NSUbiquitousDocumentUserActivityType</key>
 			<string>com.xamarin.Lister</string>
 		</dict>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -9,11 +9,11 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.example.xamarin.sample.gamekitsamplewwdc2013</string>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>9.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>ButtonTapper3000</string>
 	<key>UIStatusBarHidden</key>
-	<true/>
+	<true />
 	<key>CFBundleShortVersionString</key>
 	<string>0.0.1</string>
 	<key>CFBundleVersion</key>
