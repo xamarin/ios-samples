@@ -25,5 +25,9 @@
 	<string>Main</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>CFBundleName</key>
+	<string>MetalPerformanceShaders</string>
+	<key>MinimumOSVersion</key>
+	<string>9.0</string>
 </dict>
 </plist>
