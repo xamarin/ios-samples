@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisionML", "VisionML\VisionML.csproj", "{8D251A1C-2599-4DD3-B789-203BEB53357E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D251A1C-2599-4DD3-B789-203BEB53357E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{8D251A1C-2599-4DD3-B789-203BEB53357E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{8D251A1C-2599-4DD3-B789-203BEB53357E}.Release|iPhone.ActiveCfg = Release|iPhone
+		{8D251A1C-2599-4DD3-B789-203BEB53357E}.Release|iPhone.Build.0 = Release|iPhone
+		{8D251A1C-2599-4DD3-B789-203BEB53357E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{8D251A1C-2599-4DD3-B789-203BEB53357E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{8D251A1C-2599-4DD3-B789-203BEB53357E}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{8D251A1C-2599-4DD3-B789-203BEB53357E}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
