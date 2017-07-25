@@ -19,12 +19,12 @@ Global
 		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.AppStore|iPhone.Build.0 = AppStore|iPhone
 		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.Debug|iPhone.Build.0 = Debug|iPhone
-		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhone
+		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.Debug|iPhoneSimulator.Build.0 = Debug|iPhone
 		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.Release|iPhone.ActiveCfg = Release|iPhone
 		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.Release|iPhone.Build.0 = Release|iPhone
-		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.Release|iPhoneSimulator.ActiveCfg = Release|iPhone
+		{8BAF9950-0D9E-46E6-855D-F2F6C4659535}.Release|iPhoneSimulator.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MetalBasic3D\MetalBasic3D.csproj
