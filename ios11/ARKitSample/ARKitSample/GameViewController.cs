@@ -73,11 +73,26 @@ namespace ARKitSample
 			// Run the view's session
 			SceneView.Session.Run(configuration);
 
-		 
+
 			// Find the ship and position it just in front of the camera
 			var ship = SceneView.Scene.RootNode.FindChildNode("ship", true);
-			ship.Position = new SCNVector3(2f, -2f, -9f);
+			
 
+            ship.Position = new SCNVector3(2f, -2f, -9f);
+            //HACK: to see the jet move (circle around the viewer in a roll), comment out the ship.Position line above
+            // and uncomment the code below (courtesy @lobrien)
+
+			//var animation = SCNAction.RepeatActionForever(SCNAction.RotateBy(0, (float)Math.PI, (float)Math.PI, (float)1));
+			//var pivotNode = new SCNNode { Position = new SCNVector3(0.0f, 2.0f, 0.0f) };
+			//pivotNode.RunAction(SCNAction.RepeatActionForever(SCNAction.RotateBy(0, -2, 0, 10)));
+			//ship.RemoveFromParentNode();
+			//pivotNode.AddChildNode(ship);
+			//SceneView.Scene.RootNode.AddChildNode(pivotNode);
+			//ship.Scale = new SCNVector3(0.1f, 0.1f, 0.1f);
+			//ship.Position = new SCNVector3(2f, -2f, -3f);
+			//ship.RunAction(SCNAction.RepeatActionForever(SCNAction.RotateBy(0, 0, 2, 1)));
+
+            //ENDHACK
 		}
 
 		public override void ViewWillDisappear(bool animated)

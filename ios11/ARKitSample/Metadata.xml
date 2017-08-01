@@ -4,6 +4,7 @@
   <IsFullApplication>false</IsFullApplication>
   <Level>Intermediate</Level>
   <Tags>iOS11</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
   <Gallery>true</Gallery>
   <Brief>Simple example using ARKit in iOS 11.</Brief>
 </SampleMetadata>
