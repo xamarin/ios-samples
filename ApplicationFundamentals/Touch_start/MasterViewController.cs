@@ -50,12 +50,12 @@ namespace Touch
 		class DataSource : UITableViewSource
 		{
 			static readonly NSString CellIdentifier = new NSString ("Cell");
-			readonly List<object> objects = new List<object> ();
-			readonly MasterViewController controller;
+			List<object> objects = new List<object> ();
+			WeakReference<MasterViewController> _controller;
 
 			public DataSource (MasterViewController controller)
 			{
-				this.controller = controller;
+				_controller = new WeakReference<MasterViewController>(controller);
 			}
 
 			public IList<object> Objects {
@@ -94,7 +94,8 @@ namespace Touch
 				if (editingStyle == UITableViewCellEditingStyle.Delete) {
 					// Delete the row from the data source.
 					objects.RemoveAt (indexPath.Row);
-					controller.TableView.DeleteRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
+					if (_controller.TryGetTarget (out var controller))
+						controller.TableView.DeleteRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
 				} else if (editingStyle == UITableViewCellEditingStyle.Insert) {
 					// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
 				}

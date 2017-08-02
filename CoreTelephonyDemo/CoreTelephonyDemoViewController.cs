@@ -92,12 +92,12 @@ namespace CoreTelephonyDemo
 		}
 
 		class TableViewDataSource : UITableViewDataSource {
-			CoreTelephonyDemoViewController controller;
+			WeakReference wcontroller;
 			List<UITableViewCell> table_cells = new List<UITableViewCell> ();
 
 			public TableViewDataSource (CoreTelephonyDemoViewController controller)
 			{
-				this.controller = controller;
+				wcontroller = new WeakReference (controller);
 			}
 
 			#region implemented abstract members of MonoTouch.UIKit.UITableViewDataSource
@@ -135,6 +135,7 @@ namespace CoreTelephonyDemo
 			{
 				UITableViewCell cell;
 				string cellText = string.Empty;
+				var controller = wcontroller.Target as CoreTelephonyDemoViewController;
 
 				cell = tableView.DequeueReusableCell ("Cell");
 				if (cell == null) {

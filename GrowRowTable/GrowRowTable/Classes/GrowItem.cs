@@ -4,13 +4,10 @@ namespace GrowRowTable
 {
 	public class GrowItem
 	{
-		#region Computed Properties
 		public string ImageName { get; set; } = "";
 		public string Title { get; set; } = "";
 		public string Description { get; set; } = "";
-		#endregion
 
-		#region Constructors
 		public GrowItem ()
 		{
 		}
@@ -22,8 +19,6 @@ namespace GrowRowTable
 			this.Title = title;
 			this.Description = description;
 		}
-		#endregion
-
 	}
 }
 

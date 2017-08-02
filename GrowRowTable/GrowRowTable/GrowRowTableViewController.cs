@@ -7,7 +7,6 @@ namespace GrowRowTable
 {
 	public partial class GrowRowTableViewController : UITableViewController
 	{
-		#region Computed Properties
 		public GrowRowTableDataSource DataSource {
 			get { return TableView.DataSource as GrowRowTableDataSource; }
 		}
@@ -15,15 +14,11 @@ namespace GrowRowTable
 		public GrowRowTableDelegate TableDelegate {
 			get { return TableView.Delegate as GrowRowTableDelegate; }
 		}
-		#endregion
 
-		#region Constructors
 		public GrowRowTableViewController (IntPtr handle) : base (handle)
 		{
 		}
-		#endregion
 
-		#region Override Methods
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
@@ -35,13 +30,12 @@ namespace GrowRowTable
 			base.ViewWillAppear (animated);
 
 			// Initialize table
-			TableView.DataSource = new GrowRowTableDataSource(this);
-			TableView.Delegate = new GrowRowTableDelegate (this);
+			TableView.DataSource = new GrowRowTableDataSource();
+			TableView.Delegate = new GrowRowTableDelegate ();
 			TableView.EstimatedRowHeight = 40f;
 			TableView.ReloadData ();
 		}
 			
 
-		#endregion
 	}
 }
