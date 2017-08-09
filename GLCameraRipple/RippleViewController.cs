@@ -285,7 +285,8 @@ namespace GLCameraRipple
 					lumaTexture.Dispose ();
 				if (chromaTexture != null)
 					chromaTexture.Dispose ();
-				container.videoTextureCache.Flush (CVOptionFlags.None);
+				if (wcontainer.TryGetTarget (out var container))
+					container.videoTextureCache.Flush (CVOptionFlags.None);
 			}
 
 			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
