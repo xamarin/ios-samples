@@ -279,7 +279,7 @@ namespace GLCameraRipple
 				wcontainer = new WeakReference<RippleViewController>(container);
 			}
 
-			void CleanupTextures (RippleViewController container)
+			void CleanupTextures ()
 			{
 				if (lumaTexture != null)
 					lumaTexture.Dispose ();
@@ -304,7 +304,7 @@ namespace GLCameraRipple
 								container.SetupRipple (textureWidth, textureHeight);
 							}
 
-							CleanupTextures (container);
+							CleanupTextures ();
 
 							// Y-plane
 							GL.ActiveTexture (TextureUnit.Texture0);
