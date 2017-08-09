@@ -103,9 +103,10 @@ namespace CoreTelephonyDemo
 			#region implemented abstract members of MonoTouch.UIKit.UITableViewDataSource
 			public override nint RowsInSection (UITableView tableView, nint section)
 			{
+                var controller = wcontroller.Target as CoreTelephonyDemoViewController;
 				switch ((SectionIndex) (int)section) {
 				case SectionIndex.CurrentCall:
-					return Math.Max (controller.calls.Length, 1);
+                        return Math.Max (controller.calls.Length, 1);
 				case SectionIndex.CallCenter:
 					return (int) SectionRow.CallCenter;
 				case SectionIndex.Carrier:
