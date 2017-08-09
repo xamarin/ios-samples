@@ -105,6 +105,7 @@ namespace CoreTelephonyDemo
 			{
 				switch ((SectionIndex) (int)section) {
 				case SectionIndex.CurrentCall:
+					var controller = wcontroller.Target as CoreTelephonyDemoViewController;
 					return Math.Max (controller.calls.Length, 1);
 				case SectionIndex.CallCenter:
 					return (int) SectionRow.CallCenter;
