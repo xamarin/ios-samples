@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>2DEA03B8-9AFD-404F-A5BF-1149A72FD46D</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginner</Level>
+  <Tags>iOS11</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>iOS 11 example using different CoreML image recognition models.</Brief>
+</SampleMetadata>
