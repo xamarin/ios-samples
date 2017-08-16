@@ -1,0 +1,46 @@
+{
+  "layer_shapes" : {
+    "output" : {
+      "k" : 10,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "convolution2d_1__activation___output" : {
+      "k" : 32,
+      "w" : 24,
+      "n" : 1,
+      "h" : 24
+    },
+    "flatten_1_output" : {
+      "k" : 4608,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "dense_2_output" : {
+      "k" : 10,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "dense_1__activation___output" : {
+      "k" : 128,
+      "w" : 1,
+      "n" : 1,
+      "h" : 1
+    },
+    "maxpooling2d_1_output" : {
+      "k" : 32,
+      "w" : 12,
+      "n" : 1,
+      "h" : 12
+    },
+    "imageInput" : {
+      "k" : 1,
+      "w" : 28,
+      "n" : 1,
+      "h" : 28
+    }
+  }
+}
