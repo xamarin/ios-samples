@@ -70,10 +70,8 @@ namespace ARKitSample
 				LightEstimationEnabled = true
 			};
 
-            var sessionOptions = new ARSessionRunOptions ();
-
-			// Run the view's session
-            SceneView.Session.Run(configuration, sessionOptions);
+            // Run the view's session
+            SceneView.Session.Run(configuration, ARSessionRunOptions.ResetTracking);
 
 
 			// Find the ship and position it just in front of the camera
