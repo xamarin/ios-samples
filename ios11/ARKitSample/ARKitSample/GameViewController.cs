@@ -65,13 +65,13 @@ namespace ARKitSample
 			base.ViewWillAppear(animated);
 
 			// Create a session configuration
-			var configuration = new ARWorldTrackingSessionConfiguration(){
+			var configuration = new ARWorldTrackingConfiguration {
 				PlaneDetection = ARPlaneDetection.Horizontal,
 				LightEstimationEnabled = true
 			};
 
 			// Run the view's session
-			SceneView.Session.Run(configuration);
+			SceneView.Session.Run(configuration, ARSessionRunOptions.ResetTracking);
 
 
 			// Find the ship and position it just in front of the camera
