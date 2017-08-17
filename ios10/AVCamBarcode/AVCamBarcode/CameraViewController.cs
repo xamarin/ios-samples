@@ -311,7 +311,7 @@ namespace AVCamBarcode
 			case UIDeviceOrientation.LandscapeLeft:
 				return LandscapeLeft;
 			case UIDeviceOrientation.LandscapeRight:
-				return LandscapeLeft;
+				return LandscapeRight;
 			default:
 				throw new InvalidProgramException ();
 			}
