@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="51">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="40">
+            <objects>
+                <viewController id="41" sceneMemberID="viewController" customClass="DatePickerViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="36"/>
+                        <viewControllerLayoutGuide type="bottom" id="37"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="42">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" id="60" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="335" width="600" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="332704801.65417802">
+                                    <!--2011-07-18 18:00:01 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="DateTimeChanged:" destination="41" id="2215" eventType="valueChanged"/>
+                                </connections>
+                            </datePicker>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="63">
+                                <rect key="frame" x="43" y="128" width="514" height="29"/>
+                                <segments>
+                                    <segment title="Time"/>
+                                    <segment title="Date"/>
+                                    <segment title="Date Time"/>
+                                    <segment title="Countdown"/>
+                                </segments>
+                                <connections>
+                                    <action selector="DateModeValueChanged:" destination="41" id="319" eventType="valueChanged"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="68" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="16" y="269" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint id="544" firstItem="42" firstAttribute="leadingMargin" secondItem="60" secondAttribute="leading" constant="20"/>
+                            <constraint id="545" firstItem="60" firstAttribute="trailing" secondItem="42" secondAttribute="trailingMargin" constant="20"/>
+                            <constraint id="546" firstItem="60" firstAttribute="bottom" secondItem="37" secondAttribute="top"/>
+                            <constraint id="547" firstItem="63" firstAttribute="leading" secondItem="42" secondAttribute="leadingMargin" constant="23"/>
+                            <constraint id="548" firstItem="42" firstAttribute="trailingMargin" secondItem="63" secondAttribute="trailing" constant="23"/>
+                            <constraint id="549" firstItem="63" firstAttribute="top" secondItem="36" secondAttribute="bottom" constant="108"/>
+                            <constraint id="550" firstItem="42" firstAttribute="leadingMargin" secondItem="68" secondAttribute="leading" constant="4"/>
+                            <constraint id="551" firstItem="68" firstAttribute="trailing" secondItem="42" secondAttribute="trailingMargin" constant="4"/>
+                            <constraint id="552" firstItem="60" firstAttribute="top" secondItem="68" secondAttribute="bottom" constant="45"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="UIDatePicker" id="43"/>
+                    <connections>
+                        <outlet property="datePickerView" destination="60" id="name-outlet-60"/>
+                        <outlet property="datePickerMode" destination="63" id="name-outlet-63"/>
+                        <outlet property="dateLabel" destination="68" id="name-outlet-68"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="44" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="487" y="135"/>
+        </scene>
+        <scene sceneID="45">
+            <objects>
+                <viewController id="46" sceneMemberID="viewController" customClass="PickerViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="38"/>
+                        <viewControllerLayoutGuide type="bottom" id="39"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="47">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" id="59" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="4" y="388" width="592" height="162"/>
+                                <constraints>
+                                    <constraint id="83" firstItem="59" firstAttribute="height" constant="162"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="69" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0" misplaced="YES">
+                                <rect key="frame" x="20" y="290" width="553" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint id="79" firstItem="47" firstAttribute="leadingMargin" secondItem="59" secondAttribute="leading" constant="16"/>
+                            <constraint id="81" firstItem="59" firstAttribute="trailing" secondItem="47" secondAttribute="trailingMargin" constant="16"/>
+                            <constraint id="82" firstItem="39" firstAttribute="top" secondItem="59" secondAttribute="bottom" constant="1"/>
+                            <constraint id="84" firstItem="59" firstAttribute="top" secondItem="69" secondAttribute="bottom" constant="77"/>
+                            <constraint id="86" firstItem="69" firstAttribute="leading" secondItem="47" secondAttribute="leadingMargin"/>
+                            <constraint id="87" firstItem="47" firstAttribute="trailingMargin" secondItem="69" secondAttribute="trailing" constant="7"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="UIPicker" id="48"/>
+                    <connections>
+                        <outlet property="personPicker" destination="59" id="name-outlet-59"/>
+                        <outlet property="personLabel" destination="69" id="name-outlet-69"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="49" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="504" y="-619"/>
+        </scene>
+        <scene sceneID="50">
+            <objects>
+                <tabBarController id="51" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="54">
+                        <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="46" kind="relationship" relationship="viewControllers" id="52"/>
+                        <segue destination="41" kind="relationship" relationship="viewControllers" id="53"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="55" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-260" y="-378"/>
+        </scene>
+    </scenes>
+</document>

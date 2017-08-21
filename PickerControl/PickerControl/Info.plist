@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>StoryboardTables1</string>
+	<string>PickerControl</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.storyboardtables1</string>
+	<string>com.companyname.pickercontrol</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
