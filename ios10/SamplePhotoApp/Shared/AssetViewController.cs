@@ -435,7 +435,8 @@ namespace SamplePhotoApp
 				filter.Image = frame.Image;
 				return filter.OutputImage;
 			};
-			livePhotoContext.SaveLivePhoto (output, null, (success, error) => {
+            PHLivePhotoEditingOption option = null;
+			livePhotoContext.SaveLivePhoto (output, option, (success, error) => {
 				if (success)
 					completion ();
 				else
