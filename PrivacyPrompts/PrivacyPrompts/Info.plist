@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -33,7 +33,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>PrivacyPrompts App needs Calendars Access</string>
 	<key>NSCameraUsageDescription</key>
-	<string>PrivacyPrompts App needs Camera Access</string>
+	<string>Take videos</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>PrivacyPrompts App needs Reminders Access</string>
 	<key>NSContactsUsageDescription</key>
@@ -46,5 +46,11 @@
 	<string>PrivacyPrompts App needs Motion Usage Access</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>PrivacyPrompts App needs Bluetooth Access</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Add tracks to your music library</string>
+	<key>NSSiriUsageDescription</key>
+	<string>Send text messages.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Transcribe your lessons.</string>
 </dict>
 </plist>

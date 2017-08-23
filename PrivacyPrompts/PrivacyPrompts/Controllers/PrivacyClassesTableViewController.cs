@@ -22,20 +22,23 @@ namespace PrivacyPrompts
 			: base (handle)
 		{
 			availableItems = new List<DataClass> () {
-				DataClass.Location,
-				DataClass.Reminders,
-				DataClass.Calendars,
-				DataClass.Contacts,
-				DataClass.Photos,
-				DataClass.Video,
-				DataClass.Microphone,
-				DataClass.Bluetooth,
-				DataClass.Motion,
-				DataClass.Facebook,
-				DataClass.Twitter,
-				DataClass.SinaWeibo,
-				DataClass.TencentWeibo,
-				DataClass.Advertising,
+                DataClass.Advertising,
+                DataClass.AppleMusic,
+                DataClass.Bluetooth,
+                DataClass.Calendars,
+                DataClass.Contacts,
+                DataClass.Facebook,
+                DataClass.Location,
+                DataClass.Microphone,
+                DataClass.Motion,
+                DataClass.Photos,
+                DataClass.Reminders,
+                DataClass.SinaWeibo,
+                DataClass.Siri,
+                DataClass.SpeechRecognition,
+                DataClass.TencentWeibo,
+                DataClass.Twitter,
+                DataClass.Video,
 			};
 
 			// iOS8
@@ -91,19 +94,21 @@ namespace PrivacyPrompts
 				case DataClass.Motion:
 					return MotionSegueId;
 
-				case DataClass.Notifications:
-				case DataClass.Calendars:
-				case DataClass.Reminders:
-				case DataClass.Contacts:
-				case DataClass.Photos:
-				case DataClass.Video:
-				case DataClass.Microphone:
-				case DataClass.Bluetooth:
-				case DataClass.Facebook:
-				case DataClass.Twitter:
-				case DataClass.SinaWeibo:
-				case DataClass.TencentWeibo:
-				case DataClass.Advertising:
+                case DataClass.Advertising:
+                case DataClass.AppleMusic:
+                case DataClass.Bluetooth:
+                case DataClass.Calendars:
+                case DataClass.Contacts:
+                case DataClass.Facebook:
+                case DataClass.Microphone:
+                case DataClass.Photos:
+                case DataClass.Reminders:
+                case DataClass.SinaWeibo:
+                case DataClass.Siri:
+                case DataClass.SpeechRecognition:
+                case DataClass.TencentWeibo:
+                case DataClass.Twitter:
+                case DataClass.Video:
 					return DefaultSegueId;
 
 				default:
@@ -136,7 +141,7 @@ namespace PrivacyPrompts
 					break;
 
 				case DataClass.TencentWeibo:
-					manager = new SocialNetworkPrivacyManager (ACAccountType.TencentWeibo);
+                    manager = new SocialNetworkPrivacyManager (ACAccountType.TencentWeibo);
 					break;
 
 				case DataClass.Notifications:
@@ -166,6 +171,18 @@ namespace PrivacyPrompts
 				case DataClass.Advertising:
 					manager = new AdvertisingPrivacyManager ();
 					break;
+
+                case DataClass.AppleMusic:
+                    manager = new AppleMusicPrivacyManager();
+                    break;
+
+                case DataClass.Siri:
+                    manager = new SiriPrivacyManager();
+                    break;
+
+                case DataClass.SpeechRecognition:
+                    manager = new SpeechRecognitionPrivacyManager();
+                    break;
 
 				default:
 					throw new NotImplementedException ();
