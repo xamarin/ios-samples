@@ -3,23 +3,26 @@ using System;
 namespace PrivacyPrompts
 {
 	public enum DataClass {
-		Location,
-		Reminders,
+		
+		Advertising,
+		AppleMusic,
+		Bluetooth,
 		Calendars,
 		Contacts,
-		Photos,
-		Video,
-		Microphone,
-		Bluetooth,
-		Motion,
 		Facebook,
-		Twitter,
+		Location,
+		Microphone,
+		Motion,
+		Photos,
+		Reminders,
 		SinaWeibo,
+		SpeechRecognition,
 		TencentWeibo,
-		Advertising,
+		Twitter,
+		Video,
+
 
 		// iOS8
 		Notifications,
 	}
 }
-

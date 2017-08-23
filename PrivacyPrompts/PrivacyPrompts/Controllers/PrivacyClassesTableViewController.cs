@@ -22,20 +22,22 @@ namespace PrivacyPrompts
 			: base (handle)
 		{
 			availableItems = new List<DataClass> () {
-				DataClass.Location,
-				DataClass.Reminders,
+				DataClass.Advertising,
+				DataClass.AppleMusic,
+				DataClass.Bluetooth,
 				DataClass.Calendars,
 				DataClass.Contacts,
-				DataClass.Photos,
-				DataClass.Video,
-				DataClass.Microphone,
-				DataClass.Bluetooth,
-				DataClass.Motion,
 				DataClass.Facebook,
-				DataClass.Twitter,
+				DataClass.Location,
+				DataClass.Microphone,
+				DataClass.Motion,
+				DataClass.Photos,
+				DataClass.Reminders,
 				DataClass.SinaWeibo,
+				DataClass.SpeechRecognition,
 				DataClass.TencentWeibo,
-				DataClass.Advertising,
+				DataClass.Twitter,
+				DataClass.Video,
 			};
 
 			// iOS8
@@ -91,19 +93,21 @@ namespace PrivacyPrompts
 				case DataClass.Motion:
 					return MotionSegueId;
 
-				case DataClass.Notifications:
-				case DataClass.Calendars:
-				case DataClass.Reminders:
-				case DataClass.Contacts:
-				case DataClass.Photos:
-				case DataClass.Video:
-				case DataClass.Microphone:
-				case DataClass.Bluetooth:
-				case DataClass.Facebook:
-				case DataClass.Twitter:
-				case DataClass.SinaWeibo:
-				case DataClass.TencentWeibo:
 				case DataClass.Advertising:
+				case DataClass.AppleMusic:
+				case DataClass.Bluetooth:
+				case DataClass.Calendars:
+				case DataClass.Contacts:
+				case DataClass.Facebook:
+				case DataClass.Microphone:
+				case DataClass.Notifications:
+				case DataClass.Photos:
+				case DataClass.Reminders:
+				case DataClass.SinaWeibo:
+				case DataClass.SpeechRecognition:
+				case DataClass.TencentWeibo:
+				case DataClass.Twitter:
+				case DataClass.Video:
 					return DefaultSegueId;
 
 				default:
@@ -165,6 +169,14 @@ namespace PrivacyPrompts
 
 				case DataClass.Advertising:
 					manager = new AdvertisingPrivacyManager ();
+					break;
+
+				case DataClass.AppleMusic:
+					manager = new AppleMusicPrivacyManager();
+					break;
+
+				case DataClass.SpeechRecognition:
+					manager = new SpeechRecognitionPrivacyManager();
 					break;
 
 				default:
