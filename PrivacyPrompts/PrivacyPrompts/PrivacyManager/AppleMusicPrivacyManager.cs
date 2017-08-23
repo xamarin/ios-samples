@@ -6,13 +6,12 @@ using StoreKit;
 
 namespace PrivacyPrompts
 {
-    public class AppleMusicPrivacyManager : IPrivacyManager
-    {
-        SKCloudServiceAuthorizationStatus status = SKCloudServiceController.AuthorizationStatus;
+	public class AppleMusicPrivacyManager : IPrivacyManager
+	{
 
-        public Task RequestAccess()
-        {
-            var tcs = new TaskCompletionSource<object>();
+		public Task RequestAccess()
+		{
+			var tcs = new TaskCompletionSource<object>();
 
 			SKCloudServiceController.RequestAuthorization(_ => {
 				tcs.SetResult(null);
@@ -21,10 +20,9 @@ namespace PrivacyPrompts
 			return tcs.Task;
 		}
 
-        public string CheckAccess()
-        {
-
-            return SKCloudServiceController.AuthorizationStatus.ToString();
-        }
-    }
+		public string CheckAccess()
+		{
+			return SKCloudServiceController.AuthorizationStatus.ToString();
+		}
+	}
 }

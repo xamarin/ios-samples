@@ -4,26 +4,25 @@ namespace PrivacyPrompts
 {
 	public enum DataClass {
 		
-        Advertising,
-        AppleMusic,
-        Bluetooth,
-        Calendars,
-        Contacts,
+		Advertising,
+		AppleMusic,
+		Bluetooth,
+		Calendars,
+		Contacts,
 		Facebook,
-        Location,
-        Microphone,
-        Motion,
+		Location,
+		Microphone,
+		Motion,
 		Photos,
-        Reminders,
-        SinaWeibo,
-        Siri,
-        SpeechRecognition,
+		Reminders,
+		SinaWeibo,
+		SpeechRecognition,
 		TencentWeibo,
-        Video,
 		Twitter,
+		Video,
+
 
 		// iOS8
 		Notifications,
 	}
 }
-

@@ -4,23 +4,22 @@ using Speech;
 
 namespace PrivacyPrompts
 {
-    public class SpeechRecognitionPrivacyManager : IPrivacyManager
-    {
+	public class SpeechRecognitionPrivacyManager : IPrivacyManager
+	{
+		public string CheckAccess()
+		{
+			return SFSpeechRecognizer.AuthorizationStatus.ToString();
+		}
 
-        public string CheckAccess()
-        {
-            return SFSpeechRecognizer.AuthorizationStatus.ToString();
-        }
-
-        public Task RequestAccess()
-        {
+		public Task RequestAccess()
+		{
 			var tcs = new TaskCompletionSource<object>();
 
-            SFSpeechRecognizer.RequestAuthorization(_ => {
+			SFSpeechRecognizer.RequestAuthorization(_ => {
 				tcs.SetResult(null);
 			});
 
 			return tcs.Task;
-        }
-    }
+		}
+	}
 }

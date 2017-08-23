@@ -137,7 +137,6 @@
     <Compile Include="PrivacyManager\SimplePrivacyManager.cs" />
     <Compile Include="PrivacyManager\MotionPrivacyManager.cs" />
     <Compile Include="PrivacyManager\AppleMusicPrivacyManager.cs" />
-    <Compile Include="PrivacyManager\SiriPrivacyManager.cs" />
     <Compile Include="PrivacyManager\SpeechRecognitionPrivacyManager.cs" />
   </ItemGroup>
   <ItemGroup>
