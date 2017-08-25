@@ -10,6 +10,10 @@ namespace NFCTagReader
     public partial class MessagesTableViewController : UITableViewController, INFCNdefReaderSessionDelegate
     {
 
+		public MessagesTableViewController(IntPtr p) : base(p)
+        {
+
+		}
 
         public MessagesTableViewController() : base("MessagesTableViewController", null)
         {

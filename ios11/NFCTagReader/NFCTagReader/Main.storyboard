@@ -31,7 +31,7 @@
                             <outlet property="delegate" destination="200" id="204"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="201">
+                    <navigationItem key="navigationItem" title="Scanned Tags" id="201">
                         <barButtonItem key="rightBarButtonItem" title="Scan" id="218">
                             <connections>
                                 <action selector="Scan:" destination="200" id="220"/>
