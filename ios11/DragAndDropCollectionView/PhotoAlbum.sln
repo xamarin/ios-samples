@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoAlbum", "PhotoAlbum\PhotoAlbum.csproj", "{50D285FE-10E8-478D-BBBF-794947DED13C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50D285FE-10E8-478D-BBBF-794947DED13C}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{50D285FE-10E8-478D-BBBF-794947DED13C}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{50D285FE-10E8-478D-BBBF-794947DED13C}.Release|iPhone.ActiveCfg = Release|iPhone
+		{50D285FE-10E8-478D-BBBF-794947DED13C}.Release|iPhone.Build.0 = Release|iPhone
+		{50D285FE-10E8-478D-BBBF-794947DED13C}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{50D285FE-10E8-478D-BBBF-794947DED13C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{50D285FE-10E8-478D-BBBF-794947DED13C}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{50D285FE-10E8-478D-BBBF-794947DED13C}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
