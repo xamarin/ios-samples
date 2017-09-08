@@ -83,7 +83,7 @@ namespace PhotoAlbum
 
                     // Start loading the image for this drag item.
                     var progress = dragItem.ItemProvider.LoadObject(typeof(UIImage),
-                                (INSItemProviderReading droppedImage, NSError _) =>
+                                (droppedImage, _) =>
                                 {
                                     DispatchQueue.MainQueue.DispatchAsync(() =>
                                     {
@@ -91,8 +91,8 @@ namespace PhotoAlbum
                                         if (image != null)
                                         {   //The image loaded successfully, commit the insertion to exchange the placeholder for the final cell.
                                             placeholderContext?.CommitInsertion((insertionIndexPath) =>
-                                            {
-                                                var photo = new Photo(image);
+                                            {   // Update the photo library backing store to insert the new photo, using the insertionIndexPath passed into the closure.
+												var photo = new Photo(image);
                                                 var insertionIndex = insertionIndexPath.Item;
                                                 UpdatePhotoLibrary((photoLibrary) =>
                                                 {
@@ -101,12 +101,14 @@ namespace PhotoAlbum
                                             });
                                         }
                                         else
-                                        {
-                                            placeholderContext?.DeletePlaceholder();
+                                        {   // The data transfer for this item was canceled or failed, delete the placeholder.
+											placeholderContext?.DeletePlaceholder();
                                         }
                                     });
                     });
-                    var placeholder = new UICollectionViewDropPlaceholder(destinationPath, PhotoPlaceholderCollectionViewCell.Identifier);
+
+					// Insert and animate to a placeholder for this item, configuring the placeholder cell to display the progress of the data transfer for this item.
+					var placeholder = new UICollectionViewDropPlaceholder(destinationPath, PhotoPlaceholderCollectionViewCell.Identifier);
                     placeholder.CellUpdateHandler = (cell) => {
                         var placeholderCell = cell as PhotoPlaceholderCollectionViewCell;
                         if (cell is null) return;
