@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>A8F613BC-00F7-4052-AF94-B87879B31F80</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginner</Level>
+  <Tags>iOS11</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>iOS 11 SiriKit example demonstrating how to respond to Siri requests for the new Lists and Notes domain.</Brief>
+</SampleMetadata>
