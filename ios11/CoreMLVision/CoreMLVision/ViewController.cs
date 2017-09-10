@@ -39,7 +39,7 @@ namespace CoreMLVision
 			// Load the ML model
 			var bundle = NSBundle.MainBundle;
 			var assetPath = bundle.GetUrlForResource("MNISTClassifier", "mlmodelc");
-			var mlModel = MLModel.FromUrl(assetPath, out NSError mlErr);
+			var mlModel = MLModel.Create(assetPath, out NSError mlErr);
 			var model = VNCoreMLModel.FromMLModel(mlModel, out NSError vnErr);
 
 			// Initialize

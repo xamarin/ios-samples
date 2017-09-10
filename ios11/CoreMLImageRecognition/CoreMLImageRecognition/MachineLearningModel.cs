@@ -74,7 +74,7 @@ namespace CoreMLImageRecognition
             MLModel mdl = null;
             try
             {
-                mdl = MLModel.FromUrl(assetPath, out var err);
+				 mdl = MLModel.Create(assetPath, out var err);
                 if (err != null)
                 {
                     ErrorOccurred(this, new EventArgsT<string>(err.ToString()));
@@ -92,7 +92,7 @@ namespace CoreMLImageRecognition
 			var model = models[currentModel];
 
 			var pixelBuffer = source.Scale(sizeFor[model]).ToCVPixelBuffer();
-			var imageValue = MLFeatureValue.FromPixelBuffer(pixelBuffer);
+			var imageValue = MLFeatureValue.Create(pixelBuffer);
 
 			var inputs = new NSDictionary<NSString, NSObject>(new NSString("image"), imageValue);
 

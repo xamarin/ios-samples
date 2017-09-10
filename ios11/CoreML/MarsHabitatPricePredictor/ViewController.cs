@@ -34,7 +34,7 @@ namespace MarsHabitatPricePredictor
             // Load the ML model
             var bundle = NSBundle.MainBundle;
             var assetPath = bundle.GetUrlForResource("MarsHabitatPricer", "mlmodelc");
-            model = MLModel.FromUrl(assetPath, out NSError mlErr);
+            model = MLModel.Create(assetPath, out NSError mlErr);
 
             updatePredictedPrice();
         }
