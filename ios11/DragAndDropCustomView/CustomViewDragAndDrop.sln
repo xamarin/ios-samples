@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomViewDragAndDrop", "CustomViewDragAndDrop\CustomViewDragAndDrop.csproj", "{C6E2C2BF-5671-4B44-B3EF-78C17BD3728A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C6E2C2BF-5671-4B44-B3EF-78C17BD3728A}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C6E2C2BF-5671-4B44-B3EF-78C17BD3728A}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C6E2C2BF-5671-4B44-B3EF-78C17BD3728A}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C6E2C2BF-5671-4B44-B3EF-78C17BD3728A}.Release|iPhone.Build.0 = Release|iPhone
+		{C6E2C2BF-5671-4B44-B3EF-78C17BD3728A}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C6E2C2BF-5671-4B44-B3EF-78C17BD3728A}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{C6E2C2BF-5671-4B44-B3EF-78C17BD3728A}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C6E2C2BF-5671-4B44-B3EF-78C17BD3728A}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal

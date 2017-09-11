@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UOu-wr-yf1">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="hBn-xC-fzY">
+            <objects>
+                <viewController id="UOu-wr-yf1" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dFt-C5-GiT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="butterfly" translatesAutoresizingMaskIntoConstraints="NO" id="u1d-eg-z4s">
+                                <rect key="frame" x="95" y="83" width="184" height="500"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="u1d-eg-z4s" firstAttribute="centerX" secondItem="Jfa-yp-6Qh" secondAttribute="centerX" id="6cP-Kz-bpG"/>
+                            <constraint firstItem="u1d-eg-z4s" firstAttribute="top" secondItem="Jfa-yp-6Qh" secondAttribute="top" constant="63" id="LDk-f3-rVE"/>
+                            <constraint firstItem="u1d-eg-z4s" firstAttribute="leading" secondItem="dFt-C5-GiT" secondAttribute="leadingMargin" constant="79" id="Xbu-sx-3B4"/>
+                            <constraint firstItem="u1d-eg-z4s" firstAttribute="centerY" secondItem="dFt-C5-GiT" secondAttribute="centerY" id="jvS-FU-DkF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Jfa-yp-6Qh"/>
+                    </view>
+                    <connections>
+                        <outlet property="ImageView" destination="u1d-eg-z4s" id="h1m-pJ-Bak"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vq0-gr-Dom" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="butterfly" width="417" height="393"/>
+    </resources>
+</document>

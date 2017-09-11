@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>97BA7491-4376-45BB-8DAA-CE145C230FD8</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginner</Level>
+  <Tags>iOS11</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>iOS 11 example implementing drag and drop with a custom view.</Brief>
+</SampleMetadata>
