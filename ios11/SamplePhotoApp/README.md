@@ -1,7 +1,5 @@
-SamplePhotoApp (iOS 10)
+SamplePhotoApp
 ==========
-
-## See the updated iOS 11 version
 
 A basic Photos-like app to demonstrate the Photos framework. 
 
@@ -18,12 +16,12 @@ A basic Photos-like app to demonstrate the Photos framework.
 Build Requirements
 ------------------
 
-Xcode 8.0 (iOS 10.0 / tvOS 10.0 SDK) or later
+Xcode 9.0 (iOS 11.0 / tvOS 11.0 SDK) or later
 
 Runtime Requirements
 ------------------
 
-iOS 10.0, tvOS 10.0, or later
+iOS 11.0, tvOS 11.0, or later
 
 Useful links
 ------------
@@ -38,4 +36,4 @@ Xamarin port changes are released under the MIT license
 Author
 ------ 
 
-Ported to Xamarin.iOS by Oleg Demchenko and Rustam Zaitov
+Ported to Xamarin.iOS by Oleg Demchenko, Rustam Zaitov, and Matthew Leibowitz
