@@ -126,7 +126,8 @@ namespace CustomViewDragAndDrop {
 		{
 			// Get the drag items (UIImage in this case).
 			session.LoadObjects ((UIImage [] imageItems) => {
-				ImageView.Image = imageItems.First ();
+				if (imageItems != null)
+					ImageView.Image = imageItems.First ();
 			});
 
 			var dropLocation = session.LocationInView (View);
