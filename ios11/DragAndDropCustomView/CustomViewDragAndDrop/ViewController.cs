@@ -43,7 +43,7 @@ namespace CustomViewDragAndDrop {
 			if (image == null)
 				return new UIDragItem [] { };
 
-            var provider = new NSItemProvider (image);
+			var provider = new NSItemProvider (image);
 			var item = new UIDragItem (provider) {
 				LocalObject = image
 			};
@@ -125,15 +125,8 @@ namespace CustomViewDragAndDrop {
 		public void PerformDrop (UIDropInteraction interaction, IUIDropSession session)
 		{
 			// Get the drag items (UIImage in this case).
-			session.LoadObjects (typeof (UIImage), (imageItems) => {
-				// HACK: Use 'GetNSObject' until https://bugzilla.xamarin.com/show_bug.cgi?id=59049 is fixed.
-				var image = ObjCRuntime.Runtime.GetNSObject<UIImage> (imageItems [0].Handle);
-				ImageView.Image = image;
-
-				/* Final code should look like this
-				if (imageItems is UIImage[] images)
-				    ImageView.Image = images.First();
-				    */
+			session.LoadObjects ((UIImage [] imageItems) => {
+				ImageView.Image = imageItems.First ();
 			});
 
 			var dropLocation = session.LocationInView (View);
