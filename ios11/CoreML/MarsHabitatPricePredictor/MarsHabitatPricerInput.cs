@@ -28,13 +28,13 @@ namespace MarsHabitatPricePredictor
 			switch (featureName)
 			{
 				case "solarPanels":
-					return MLFeatureValue.FromDouble(SolarPanels);
+					return MLFeatureValue.Create(SolarPanels);
 				case "greenhouses":
-					return MLFeatureValue.FromDouble(Greenhouses);
+					return MLFeatureValue.Create(Greenhouses);
 				case "size":
-					return MLFeatureValue.FromDouble(Size);
+					return MLFeatureValue.Create(Size);
 				default:
-					return MLFeatureValue.FromDouble(0);
+					return MLFeatureValue.Create(0);
 			}
 		}
 	}
