@@ -67,7 +67,7 @@ namespace TableViewDragAndDrop
                 destinationIndexPath = NSIndexPath.FromRowSection(row, section);
             }
 
-            coordinator.Session.LoadObjects(typeof(NSString), (items) =>
+            coordinator.Session.LoadObjects<NSString>((items) =>
             {
                 // Consume drag items
                 List<string> stringItems = new List<string>();

@@ -70,12 +70,9 @@ namespace DragBoard
         {
             Console.WriteLine("can load : " + itemProvider.CanLoadObject(typeof(UIImage)));
 
-			var progress = itemProvider.LoadObject(typeof(UIImage), (droppedImage, _) =>
+			var progress = itemProvider.LoadObject<UIImage>((droppedImage, _) =>
 			{
-				// HACK: Use 'GetNSObject' until https://bugzilla.xamarin.com/show_bug.cgi?id=59049 is fixed.
-				var image = ObjCRuntime.Runtime.GetNSObject<UIImage>(droppedImage.Handle);
-                //var image = droppedImage as UIImage;
-
+                var image = droppedImage as UIImage;
             	DispatchQueue.MainQueue.DispatchAsync(()=>{
                     if (image != null)
                     {

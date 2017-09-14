@@ -82,7 +82,7 @@ namespace PhotoAlbum
                     IUICollectionViewDropPlaceholderContext placeholderContext = null;
 
                     // Start loading the image for this drag item.
-                    var progress = dragItem.ItemProvider.LoadObject(typeof(UIImage),
+                    var progress = dragItem.ItemProvider.LoadObject<UIImage>(
                                 (droppedImage, _) =>
                                 {
                                     DispatchQueue.MainQueue.DispatchAsync(() =>
