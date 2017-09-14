@@ -43,7 +43,7 @@ namespace CustomViewDragAndDrop {
 			if (image == null)
 				return new UIDragItem [] { };
 
-            var provider = new NSItemProvider (image);
+			var provider = new NSItemProvider (image);
 			var item = new UIDragItem (provider) {
 				LocalObject = image
 			};
@@ -125,11 +125,8 @@ namespace CustomViewDragAndDrop {
 		public void PerformDrop (UIDropInteraction interaction, IUIDropSession session)
 		{
 			// Get the drag items (UIImage in this case).
-			session.LoadObjects<UIImage> ((imageItems) => {
-                if (imageItems is UIImage[] images)
-                {
-                    ImageView.Image = images?.First();
-                }
+			session.LoadObjects<UIImage> (images => {
+				ImageView.Image = images?.First ();
 			});
 
 			var dropLocation = session.LocationInView (View);

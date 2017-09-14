@@ -1,9 +1,7 @@
 ﻿using UIKit;
 
-namespace CustomViewDragAndDrop
-{
-	public class Application
-	{
+namespace CustomViewDragAndDrop {
+	public class Application {
 		// This is the main entry point of the application.
 		static void Main (string [] args)
 		{

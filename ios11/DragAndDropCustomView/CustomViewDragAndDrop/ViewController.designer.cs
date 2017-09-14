@@ -7,14 +7,12 @@
 using Foundation;
 using System.CodeDom.Compiler;
 
-namespace CustomViewDragAndDrop
-{
+namespace CustomViewDragAndDrop {
 	[Register ("ViewController")]
-	partial class ViewController
-	{
+	partial class ViewController {
 		[Outlet]
 		UIKit.UIImageView ImageView { get; set; }
-		
+
 		void ReleaseDesignerOutlets ()
 		{
 			if (ImageView != null) {
