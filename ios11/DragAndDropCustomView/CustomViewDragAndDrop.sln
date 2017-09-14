@@ -20,4 +20,15 @@ Global
 		{C6E2C2BF-5671-4B44-B3EF-78C17BD3728A}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{C6E2C2BF-5671-4B44-B3EF-78C17BD3728A}.Debug|iPhone.Build.0 = Debug|iPhone
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.FileWidth = 80
+		$1.TabWidth = 8
+		$1.IndentWidth = 8
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.scope = text/x-csharp
+		$2.NewLinesForBracesInTypes = False
+	EndGlobalSection
 EndGlobal
