@@ -32,6 +32,7 @@ namespace GrowRowTable
 			// Initialize table
 			TableView.DataSource = new GrowRowTableDataSource();
 			TableView.Delegate = new GrowRowTableDelegate ();
+			TableView.RowHeight = UITableView.AutomaticDimension;
 			TableView.EstimatedRowHeight = 40f;
 			TableView.ReloadData ();
 		}

@@ -9,11 +9,6 @@ namespace GrowRowTable
 		{
 		}
 
-		public override nfloat EstimatedHeight (UITableView tableView, Foundation.NSIndexPath indexPath)
-		{
-			return 40f;
-		}
-
 		public override void RowSelected (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			// Output selected row
