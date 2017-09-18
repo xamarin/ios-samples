@@ -1,6 +1,9 @@
-## NFCTagReader
+NFCTagReader
+============
 
 This sample shows how to integrate Core NFC Framework into your application to enable NFC tag reading.
+
+![Sample showing an NFC payload](Screenshots/01.jpg)
 
 ## Overview
 
