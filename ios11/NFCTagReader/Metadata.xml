@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>6c404562-f9bb-4dc9-a09d-9b1cc8721e95</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>iOS11,NFC,CoreNFC</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>This sample shows how to integrate Core NFC Framework into your application to enable NFC tag reading.</Brief>
+</SampleMetadata>
