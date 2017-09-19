@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomVision", "CustomVision\CustomVision.csproj", "{0ED000E3-CF7E-486D-B6CB-B4EE4C8BD798}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0ED000E3-CF7E-486D-B6CB-B4EE4C8BD798}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{0ED000E3-CF7E-486D-B6CB-B4EE4C8BD798}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{0ED000E3-CF7E-486D-B6CB-B4EE4C8BD798}.Release|iPhone.ActiveCfg = Release|iPhone
+		{0ED000E3-CF7E-486D-B6CB-B4EE4C8BD798}.Release|iPhone.Build.0 = Release|iPhone
+		{0ED000E3-CF7E-486D-B6CB-B4EE4C8BD798}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{0ED000E3-CF7E-486D-B6CB-B4EE4C8BD798}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{0ED000E3-CF7E-486D-B6CB-B4EE4C8BD798}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{0ED000E3-CF7E-486D-B6CB-B4EE4C8BD798}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
