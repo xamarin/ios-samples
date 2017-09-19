@@ -3,13 +3,13 @@ using Foundation;
 using SceneKit;
 using ARKit;
 using OpenTK;
-using Simd;
 
 namespace ARKitSample
 {
 	public static class Matrix4Extensions
 	{
-		public static SCNMatrix4 ToSCNMatrix4(this MatrixFloat4x4 self) {
+		public static SCNMatrix4 ToSCNMatrix4(this NMatrix4 self)
+		{
 			var row0 = new SCNVector4(self.M11, self.M12, self.M13, self.M14);
 			var row1 = new SCNVector4(self.M21, self.M22, self.M23, self.M24);
 			var row2 = new SCNVector4(self.M31, self.M32, self.M33, self.M34);
