@@ -1,0 +1,20 @@
+<ListOfTaskListEntry>
+  <TaskListEntry file="" description="Sweep for places where null checks can be replaced by ? monad" completed="True" />
+  <TaskListEntry file="" description="//TODO: Search in project for `null) return` and sweep them out to be bracketed&#xA;			" completed="True" />
+  <TaskListEntry file="" description="Sweep through appsettings and delete unreferenced" completed="True" />
+  <TaskListEntry file="" description="Sweep for Tuple return types and convert to C# 7 style" completed="True" />
+  <TaskListEntry file="" description="Restructure classes into some kind of order, whether that's alphabetical or sequential (i.e., began / moved / cancelled / ended)" completed="True" />
+  <TaskListEntry file="" description="Sweep Swift and make sure all methods have corresponding C# code (opposite of last pass)" completed="True" />
+  <TaskListEntry file="" description="Sweep for functions named async and either asyncify them or rename" completed="True" />
+  <TaskListEntry file="" description="Drag doesn't work; check if it works with Swift" completed="True" />
+  <TaskListEntry file="" description="Pinch to resize doesn't work; check if it works with Swift" completed="True" />
+  <TaskListEntry file="" description="Confirm rotate and translate accuracy: Hard-code behaviors and see if they work" completed="True" />
+  <TaskListEntry file="" description="Add the logo back in: Grab the Xam splashscreen from an existing project" completed="True" />
+  <TaskListEntry file="" description="Seems to freeze after lengthy manipulation sequence (pinching / tapping / etc.)" completed="True" />
+  <TaskListEntry file="" description="Pinch-to-scale doesn't work in Swift. Remove toggle or document? (Disable maybe?)" completed="True" />
+  <TaskListEntry file="" description="Rotation with fingers works in Swift" completed="True" />
+  <TaskListEntry file="" description="Starting a new session locks things up" completed="True" />
+  <TaskListEntry file="" completed="True" />
+  <TaskListEntry file="" description="Focus square doesn't close" completed="True" />
+  <TaskListEntry file="" description="I don't think I get the &quot;initializing&quot; messages " completed="True" />
+</ListOfTaskListEntry>

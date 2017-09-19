@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{642930A6-0CFA-4520-89D0-BEB7F1BFA1EA}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>PlacingObjects</RootNamespace>
+    <AssemblyName>PlacingObjects</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <IOSDebuggerPort>29297</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>false</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>false</MtouchProfiling>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>56606</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision></CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\add.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\add.imageset\add%402x.png" />
+    <ImageAsset Include="Assets.xcassets\add.imageset\add%403x.png" />
+    <ImageAsset Include="Assets.xcassets\addPressed.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\addPressed.imageset\addPressed%402x.png" />
+    <ImageAsset Include="Assets.xcassets\addPressed.imageset\addpressed%403x.png" />
+    <ImageAsset Include="Assets.xcassets\buttonring.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\buttonring.imageset\ring%402x.png" />
+    <ImageAsset Include="Assets.xcassets\buttonring.imageset\ring%403x.png" />
+    <ImageAsset Include="Assets.xcassets\candle.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\candle.imageset\candle%402x.png" />
+    <ImageAsset Include="Assets.xcassets\candle.imageset\candle%403x.png" />
+    <ImageAsset Include="Assets.xcassets\chair.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\chair.imageset\chair%402x.png" />
+    <ImageAsset Include="Assets.xcassets\chair.imageset\chair%403x.png" />
+    <ImageAsset Include="Assets.xcassets\cup.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\cup.imageset\cup%402x.png" />
+    <ImageAsset Include="Assets.xcassets\cup.imageset\cup%403x.png" />
+    <ImageAsset Include="Assets.xcassets\lamp.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\lamp.imageset\tableLamp%402x.png" />
+    <ImageAsset Include="Assets.xcassets\lamp.imageset\tableLamp%403x.png" />
+    <ImageAsset Include="Assets.xcassets\restart.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\restart.imageset\refresh%402x.png" />
+    <ImageAsset Include="Assets.xcassets\restart.imageset\refresh%403x.png" />
+    <ImageAsset Include="Assets.xcassets\restartPressed.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\restartPressed.imageset\refreshPressed%402x.png" />
+    <ImageAsset Include="Assets.xcassets\restartPressed.imageset\refreshPressed%403x.png" />
+    <ImageAsset Include="Assets.xcassets\settings.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\settings.imageset\settings%402x.png" />
+    <ImageAsset Include="Assets.xcassets\settings.imageset\settings%403x.png" />
+    <ImageAsset Include="Assets.xcassets\settingsPressed.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\settingsPressed.imageset\settingsPressed%402x.png" />
+    <ImageAsset Include="Assets.xcassets\settingsPressed.imageset\settingsPressed%403x.png" />
+    <ImageAsset Include="Assets.xcassets\shutter.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\shutter.imageset\shutter%402x.png" />
+    <ImageAsset Include="Assets.xcassets\shutter.imageset\shutter%403x.png" />
+    <ImageAsset Include="Assets.xcassets\shutterPressed.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\shutterPressed.imageset\shutterPressed%402px.png" />
+    <ImageAsset Include="Assets.xcassets\shutterPressed.imageset\shutterPressed%403x.png" />
+    <ImageAsset Include="Assets.xcassets\vase.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\vase.imageset\vase%402x.png" />
+    <ImageAsset Include="Assets.xcassets\vase.imageset\vase%403x.png" />
+    <ImageAsset Include="Assets.xcassets\XamarinLogo.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\XamarinLogo.imageset\xamagon.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\iTunesArtwork%402x" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="VirtualObjects\" />
+    <Folder Include="UIElements\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="ObjectExtensions\" />
+    <Folder Include="Assets.xcassets\AddIcon.imageset\" />
+    <Folder Include="Assets.xcassets\AddPressedIcon.imageset\" />
+    <Folder Include="Assets.xcassets\ButtonRingIcon.imageset\" />
+    <Folder Include="Assets.xcassets\ChairIcon.imageset\" />
+    <Folder Include="Assets.xcassets\CupIcon.imageset\" />
+    <Folder Include="Assets.xcassets\LampIcon.imageset\" />
+    <Folder Include="Assets.xcassets\RestartIcon.imageset\" />
+    <Folder Include="Assets.xcassets\RestartPressedIcon.imageset\" />
+    <Folder Include="Assets.xcassets\SettingsIcon.imageset\" />
+    <Folder Include="Assets.xcassets\SettingsPressedIcon.imageset\" />
+    <Folder Include="Assets.xcassets\ShutterIcon.imageset\" />
+    <Folder Include="Assets.xcassets\ShutterPressedIcon.imageset\" />
+    <Folder Include="Assets.xcassets\VaseIcon.imageset\" />
+    <Folder Include="Assets.xcassets\BlueCrosshair.imageset\" />
+    <Folder Include="Assets.xcassets\YellowCrosshair.imageset\" />
+    <Folder Include="Assets.xcassets\PlaneGrid.imageset\" />
+    <Folder Include="Enumerations\" />
+    <Folder Include="Assets.xcassets\ARKitLogo.imageset\" />
+    <Folder Include="Assets.xcassets\Environment.imageset\" />
+    <Folder Include="Assets.xcassets\EnvironmentBlur.imageset\" />
+    <Folder Include="Assets.xcassets\cacaca.imageset\" />
+    <Folder Include="Assets.xcassets\XamarinLogo.imageset\" />
+    <Folder Include="Assets.xcassets\XamarinLogo.imageset\" />
+    <Folder Include="Assets.xcassets\AppIcon.appiconset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="LICENSE.txt" />
+    <None Include="README.md" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VirtualObjects\VirtualObject.cs" />
+    <Compile Include="Utilities\TextManager.cs" />
+    <Compile Include="ObjectExtensions\SCNNodeExtensions.cs" />
+    <Compile Include="UIElements\FocusSquare.cs" />
+    <Compile Include="UIElements\FocusSquareSegment.cs" />
+    <Compile Include="ObjectExtensions\UIImageExtensions.cs" />
+    <Compile Include="ObjectExtensions\CGSizeExtensions.cs" />
+    <Compile Include="ObjectExtensions\SCNVector3Extensions.cs" />
+    <Compile Include="ObjectExtensions\SCNMaterialExtensions.cs" />
+    <Compile Include="ObjectExtensions\CGPointExtensions.cs" />
+    <Compile Include="ObjectExtensions\CGRectExtensions.cs" />
+    <Compile Include="Utilities\Utilities.cs" />
+    <Compile Include="Utilities\HitTestRay.cs" />
+    <Compile Include="ObjectExtensions\ARSCNViewExtensions.cs" />
+    <Compile Include="UIElements\Gesture.cs" />
+    <Compile Include="Enumerations\MessageType.cs" />
+    <Compile Include="Enumerations\TouchEventType.cs" />
+    <Compile Include="ObjectExtensions\ListExtensions.cs" />
+    <Compile Include="UIElements\SingleFingerGesture.cs" />
+    <Compile Include="UIElements\TwoFingerGesture.cs" />
+    <Compile Include="Utilities\AppSettings.cs" />
+    <Compile Include="UIElements\Plane.cs" />
+    <Compile Include="SettingsViewController.cs" />
+    <Compile Include="SettingsViewController.designer.cs">
+      <DependentUpon>SettingsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectExtensions\NSSetExtensions.cs" />
+    <Compile Include="Interfaces\IVirtualObjectSelectionViewControllerDelegate.cs" />
+    <Compile Include="VirtualObjectSelectionViewController.cs" />
+    <Compile Include="ViewController+ARSceneViewDelegate.cs" />
+    <Compile Include="ViewController+Actions.cs" />
+    <Compile Include="ViewController+ObjectSelection.cs" />
+    <Compile Include="VirtualObjects\VirtualObjectManager.cs" />
+    <Compile Include="ObjectExtensions\Matrix4Extensions.cs" />
+    <Compile Include="Utilities\FeatureHitTestResult.cs" />
+    <Compile Include="VirtualObjects\VirtualObjectDefinition.cs" />
+    <Compile Include="VirtualObjects\IVirtualObjectManagerDelegate.cs" />
+    <Compile Include="ObjectCell.cs" />
+    <Compile Include="ObjectExtensions\SCNScene_Extensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <SceneKitAsset Include="Models.scnassets\crosshair_blue.png" />
+    <SceneKitAsset Include="Models.scnassets\crosshair_yellow.png" />
+    <SceneKitAsset Include="Models.scnassets\plane_grid.png" />
+    <SceneKitAsset Include="Models.scnassets\candle\candle.scn" />
+    <SceneKitAsset Include="Models.scnassets\candle\textures\candle_AO.png" />
+    <SceneKitAsset Include="Models.scnassets\candle\textures\candle_DIFFUSE.png" />
+    <SceneKitAsset Include="Models.scnassets\candle\textures\candle_METALLIC.png" />
+    <SceneKitAsset Include="Models.scnassets\candle\textures\candle_NORMAL.png" />
+    <SceneKitAsset Include="Models.scnassets\candle\textures\candle_ROUGHNESS.png" />
+    <SceneKitAsset Include="Models.scnassets\candle\textures\candle_SHADOW.png" />
+    <SceneKitAsset Include="Models.scnassets\candle\textures\flame_PARTICLE.png" />
+    <SceneKitAsset Include="Models.scnassets\chair\chair.scn" />
+    <SceneKitAsset Include="Models.scnassets\chair\textures\chair_DIFFUSE.png" />
+    <SceneKitAsset Include="Models.scnassets\chair\textures\chair_METALLIC.png" />
+    <SceneKitAsset Include="Models.scnassets\chair\textures\chair_NORMAL.png" />
+    <SceneKitAsset Include="Models.scnassets\chair\textures\chair_ROUGHNESS.png" />
+    <SceneKitAsset Include="Models.scnassets\chair\textures\chair_SHADOW.png" />
+    <SceneKitAsset Include="Models.scnassets\cup\cup.scn" />
+    <SceneKitAsset Include="Models.scnassets\cup\textures\cup_AO.png" />
+    <SceneKitAsset Include="Models.scnassets\cup\textures\cup_DIFFUSE.png" />
+    <SceneKitAsset Include="Models.scnassets\cup\textures\cup_METALLIC.png" />
+    <SceneKitAsset Include="Models.scnassets\cup\textures\cup_NORMAL.png" />
+    <SceneKitAsset Include="Models.scnassets\cup\textures\cup_ROUGHNESS.png" />
+    <SceneKitAsset Include="Models.scnassets\cup\textures\cup_SHADOW.png" />
+    <SceneKitAsset Include="Models.scnassets\cup\textures\cup_steam_SPRITE.png" />
+    <SceneKitAsset Include="Models.scnassets\lamp\lamp.scn" />
+    <SceneKitAsset Include="Models.scnassets\lamp\textures\lamp_DIFFUSE.png" />
+    <SceneKitAsset Include="Models.scnassets\lamp\textures\lamp_METALLIC.png" />
+    <SceneKitAsset Include="Models.scnassets\lamp\textures\lamp_NORMAL.png" />
+    <SceneKitAsset Include="Models.scnassets\lamp\textures\lamp_ROUGHNESS.png" />
+    <SceneKitAsset Include="Models.scnassets\lamp\textures\lamp_SHADOW.png" />
+    <SceneKitAsset Include="Models.scnassets\sharedImages\environment.jpg" />
+    <SceneKitAsset Include="Models.scnassets\sharedImages\environment_blur.exr" />
+    <SceneKitAsset Include="Models.scnassets\vase\vase.scn" />
+    <SceneKitAsset Include="Models.scnassets\vase\textures\vase_AO.png" />
+    <SceneKitAsset Include="Models.scnassets\vase\textures\vase_DIFFUSE.png" />
+    <SceneKitAsset Include="Models.scnassets\vase\textures\vase_METALLIC.png" />
+    <SceneKitAsset Include="Models.scnassets\vase\textures\vase_NORMAL.png" />
+    <SceneKitAsset Include="Models.scnassets\vase\textures\vase_ROUGHNESS.png" />
+    <SceneKitAsset Include="Models.scnassets\vase\textures\vase_SHADOW.png" />
+    <SceneKitAsset Include="Models.scnassets\vase\textures\water_DIFFUSE.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\crosshair_blue.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\crosshair_yellow.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\plane_grid.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\candle\candle.scn" />
+    <SceneKitAsset Include="Resources\Models.scnassets\candle\textures\candle_AO.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\candle\textures\candle_DIFFUSE.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\candle\textures\candle_METALLIC.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\candle\textures\candle_NORMAL.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\candle\textures\candle_ROUGHNESS.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\candle\textures\candle_SHADOW.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\candle\textures\flame_PARTICLE.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\chair\chair.scn" />
+    <SceneKitAsset Include="Resources\Models.scnassets\chair\textures\chair_DIFFUSE.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\chair\textures\chair_METALLIC.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\chair\textures\chair_NORMAL.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\chair\textures\chair_ROUGHNESS.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\chair\textures\chair_SHADOW.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\cup\cup.scn" />
+    <SceneKitAsset Include="Resources\Models.scnassets\cup\textures\cup_AO.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\cup\textures\cup_DIFFUSE.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\cup\textures\cup_METALLIC.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\cup\textures\cup_NORMAL.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\cup\textures\cup_ROUGHNESS.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\cup\textures\cup_SHADOW.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\cup\textures\cup_steam_SPRITE.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\lamp\lamp.scn" />
+    <SceneKitAsset Include="Resources\Models.scnassets\lamp\textures\lamp_DIFFUSE.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\lamp\textures\lamp_METALLIC.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\lamp\textures\lamp_NORMAL.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\lamp\textures\lamp_ROUGHNESS.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\lamp\textures\lamp_SHADOW.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\sharedImages\environment.jpg" />
+    <SceneKitAsset Include="Resources\Models.scnassets\sharedImages\environment_blur.exr" />
+    <SceneKitAsset Include="Resources\Models.scnassets\vase\vase.scn" />
+    <SceneKitAsset Include="Resources\Models.scnassets\vase\textures\vase_AO.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\vase\textures\vase_DIFFUSE.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\vase\textures\vase_METALLIC.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\vase\textures\vase_NORMAL.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\vase\textures\vase_ROUGHNESS.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\vase\textures\vase_SHADOW.png" />
+    <SceneKitAsset Include="Resources\Models.scnassets\vase\textures\water_DIFFUSE.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\VirtualObjects.json" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>
