@@ -5,8 +5,7 @@ This sample is an ARKit augmented reality demo: you can place objects on detecte
 
 To test this sample you'll need to deploy it on a device running iOS 11 software - doesn't work on the simulator.
 
-![Demo showing placed objects and menu](Screenshots/arkit.png)
-
+![Demo showing placed objects and menu](Screenshots/arkit-sml.png)
 
 
 License
