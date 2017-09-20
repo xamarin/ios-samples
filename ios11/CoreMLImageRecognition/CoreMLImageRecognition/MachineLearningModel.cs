@@ -74,7 +74,8 @@ namespace CoreMLImageRecognition
             MLModel mdl = null;
             try
             {
-				 mdl = MLModel.Create(assetPath, out var err);
+                NSError err;
+				mdl = MLModel.Create(assetPath, out err);
                 if (err != null)
                 {
                     ErrorOccurred(this, new EventArgsT<string>(err.ToString()));
@@ -96,16 +97,17 @@ namespace CoreMLImageRecognition
 
 			var inputs = new NSDictionary<NSString, NSObject>(new NSString("image"), imageValue);
 
-			var inputFp = new MLDictionaryFeatureProvider(inputs, out var error);
+            NSError error, error2;
+			var inputFp = new MLDictionaryFeatureProvider(inputs, out error);
 			if(error != null)
 			{
 				ErrorOccurred(this, new EventArgsT<string>(error.ToString()));
 				return;
 			}
-			var outFeatures = model.GetPrediction(inputFp, out var err2);
-			if(err2 != null)
+			var outFeatures = model.GetPrediction(inputFp, out error2);
+			if(error2 != null)
 			{
-				ErrorOccurred(this, new EventArgsT<string>(err2.ToString()));
+				ErrorOccurred(this, new EventArgsT<string>(error2.ToString()));
 				return;
 			}
 

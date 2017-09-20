@@ -210,7 +210,8 @@ namespace VisionFramework
 			// Run the face detector
 			var handler = new VNImageRequestHandler(ciImage, uiImage.Orientation.ToCGImagePropertyOrientation(), new VNImageOptions());
 			DispatchQueue.DefaultGlobalQueue.DispatchAsync(()=>{
-				handler.Perform(new VNRequest[] {FaceRectangleRequest}, out NSError error);
+                NSError error;
+				handler.Perform(new VNRequest[] {FaceRectangleRequest}, out error);
 			});
 		}
 		#endregion

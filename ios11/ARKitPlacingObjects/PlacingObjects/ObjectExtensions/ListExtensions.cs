@@ -46,7 +46,8 @@ namespace PlacingObjects
 			var sum = 0f;
 
 			foreach(T value in self) {
-				float.TryParse(value.ToString(), out float v);
+                float v = default(float);
+				float.TryParse(value.ToString(), out v);
 				sum += v;
 			}
 

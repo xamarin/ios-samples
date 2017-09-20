@@ -57,8 +57,9 @@ namespace CustomVision
 				if (model == null)
 				{
 					var modelPath = NSBundle.MainBundle.GetUrlForResource("Fruit", "mlmodelc");
-					var mlModel = MLModel.Create(modelPath, out _);
-					model = VNCoreMLModel.FromMLModel(mlModel, out _);
+                    NSError createErr, mlErr;
+                    var mlModel = MLModel.Create(modelPath, out createErr);
+                    model = VNCoreMLModel.FromMLModel(mlModel, out mlErr);
 				}
 				if (classificationRequestAry == null)
 				{
@@ -195,7 +196,8 @@ namespace CustomVision
 				captureSession.SessionPreset = AVCaptureSession.Preset1920x1080;
 				captureSession.AddOutput(videoOutput);
 
-				var input = new AVCaptureDeviceInput(captureDevice, out var err);
+                NSError err;
+				var input = new AVCaptureDeviceInput(captureDevice, out err);
 				if (err != null)
 				{
 					Console.WriteLine("AVCapture error: " + err);
@@ -266,7 +268,8 @@ namespace CustomVision
 					{
 						VNImageOptions options = new VNImageOptions();
 						classifierRequestHandler = new VNImageRequestHandler(croppedBuffer, options);
-						classifierRequestHandler.Perform(ClassificationRequest, out var err);
+                        NSError err;
+						classifierRequestHandler.Perform(ClassificationRequest, out err);
 						if (err != null)
 						{
 							Console.WriteLine(err);

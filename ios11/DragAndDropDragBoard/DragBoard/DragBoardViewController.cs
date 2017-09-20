@@ -19,10 +19,6 @@ namespace DragBoard
 		public CGPoint DropPoint { get; set; } = new CGPoint(0, 0);
         public CGPoint MovePoint { get; set; } = new CGPoint(0, 0);
 
-        // HACK: should be present on class
-        UIPasteConfiguration pasteConfiguration;
-        public UIPasteConfiguration PasteConfiguration { get => pasteConfiguration; set => pasteConfiguration = value; }
-
         public DragBoardViewController(IntPtr handle) : base(handle)
 		{
 		}
@@ -70,7 +66,7 @@ namespace DragBoard
         {
             Console.WriteLine("can load : " + itemProvider.CanLoadObject(typeof(UIImage)));
 
-			var progress = itemProvider.LoadObject<UIImage>((droppedImage, _) =>
+            var progress = itemProvider.LoadObject<UIImage>((droppedImage, err) =>
 			{
                 var image = droppedImage as UIImage;
             	DispatchQueue.MainQueue.DispatchAsync(()=>{

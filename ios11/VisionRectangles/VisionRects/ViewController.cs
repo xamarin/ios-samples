@@ -210,7 +210,8 @@ namespace VisionFramework
 			// Run the rectangle detector
 			var handler = new VNImageRequestHandler(ciImage, uiImage.Orientation.ToCGImagePropertyOrientation(), new VNImageOptions());
 			DispatchQueue.DefaultGlobalQueue.DispatchAsync(()=>{
-				handler.Perform(new VNRequest[] {RectangleRequest}, out NSError error);
+                NSError error;
+				handler.Perform(new VNRequest[] {RectangleRequest}, out error);
 			});
 		}
 		#endregion

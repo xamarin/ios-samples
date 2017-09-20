@@ -34,7 +34,8 @@ namespace MarsHabitatPricePredictor
             // Load the ML model
             var bundle = NSBundle.MainBundle;
             var assetPath = bundle.GetUrlForResource("MarsHabitatPricer", "mlmodelc");
-            model = MLModel.Create(assetPath, out NSError mlErr);
+            NSError mlErr;
+            model = MLModel.Create(assetPath, out mlErr);
 
             updatePredictedPrice();
         }
@@ -49,11 +50,12 @@ namespace MarsHabitatPricePredictor
             };
 
             // Use the ML model
-			var outFeatures = model.GetPrediction(pricerInput, out NSError err2);
+            NSError prErr;
+			var outFeatures = model.GetPrediction(pricerInput, out prErr);
             var result = outFeatures.GetFeatureValue("price").DoubleValue;
             priceLabel.Text = "Predicted Price (millions) " + priceFormatter.StringFor(new NSNumber(result));
 			
-			Console.WriteLine(err2 == null ? $"result was {result}" : "Unexpected runtime error " + err2.Description);
+			Console.WriteLine(prErr == null ? $"result was {result}" : "Unexpected runtime error " + prErr.Description);
         }
 
         #region user interface

@@ -83,7 +83,7 @@ namespace PhotoAlbum
 
                     // Start loading the image for this drag item.
                     var progress = dragItem.ItemProvider.LoadObject<UIImage>(
-                                (droppedImage, _) =>
+                                (droppedImage, err) =>
                                 {
                                     DispatchQueue.MainQueue.DispatchAsync(() =>
                                     {

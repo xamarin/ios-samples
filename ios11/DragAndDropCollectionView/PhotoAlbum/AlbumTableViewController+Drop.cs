@@ -65,7 +65,7 @@ namespace PhotoAlbum
                 var dragItem = item.DragItem;
                 if (dragItem.ItemProvider.CanLoadObject(typeof(UIImage)))
                 {
-                    dragItem.ItemProvider.LoadObject<UIImage>((droppedImage, _) => {
+                    dragItem.ItemProvider.LoadObject<UIImage>((droppedImage, err) => {
                         var image = droppedImage as UIImage;
                         if (image != null)
                         {

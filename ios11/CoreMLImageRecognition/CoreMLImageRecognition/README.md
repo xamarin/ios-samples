@@ -53,7 +53,8 @@ The function to load a Core ML model is [MLModel.FromUrl](https://developer.xama
 	{  
 	    NSBundle bundle = NSBundle.MainBundle;  
 		var assetPath = bundle.GetUrlForResource(modelName, "mlmodelc");  
-		var mdl = MLModel.FromUrl(assetPath, out var err);  
+        NSError err;
+        var mdl = MLModel.FromUrl(assetPath, out err);  
 		if (err != null)  
 		{  
 		    ErrorOccurred(this, new EventArgsT\<string\>(err.ToString()));  

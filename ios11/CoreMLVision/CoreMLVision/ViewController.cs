@@ -39,8 +39,9 @@ namespace CoreMLVision
 			// Load the ML model
 			var bundle = NSBundle.MainBundle;
 			var assetPath = bundle.GetUrlForResource("MNISTClassifier", "mlmodelc");
-			var mlModel = MLModel.Create(assetPath, out NSError mlErr);
-			var model = VNCoreMLModel.FromMLModel(mlModel, out NSError vnErr);
+            NSError mlErr, vnErr;
+            var mlModel = MLModel.Create(assetPath, out mlErr);
+			var model = VNCoreMLModel.FromMLModel(mlModel, out vnErr);
 
 			// Initialize
 			RectangleRequest = new VNDetectRectanglesRequest(HandleRectangles);
@@ -142,7 +143,8 @@ namespace CoreMLVision
 			// Run the Core ML MNIST classifier -- results in handleClassification method
 			var handler = new VNImageRequestHandler(correctedImage, new VNImageOptions());
 			DispatchQueue.DefaultGlobalQueue.DispatchAsync(() => {
-				handler.Perform(new VNRequest[] { ClassificationRequest }, out NSError err);
+                NSError err;
+				handler.Perform(new VNRequest[] { ClassificationRequest }, out err);
 			});
 		}
 		#endregion
@@ -179,7 +181,8 @@ namespace CoreMLVision
 			// Run the rectangle detector, which upon completion runs the ML classifier.
 			var handler = new VNImageRequestHandler(ciImage, uiImage.Orientation.ToCGImagePropertyOrientation(), new VNImageOptions());
 			DispatchQueue.DefaultGlobalQueue.DispatchAsync(()=>{
-				handler.Perform(new VNRequest[] {RectangleRequest}, out NSError error);
+                NSError error;
+				handler.Perform(new VNRequest[] {RectangleRequest}, out error);
 			});
 		}
 		#endregion

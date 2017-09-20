@@ -46,7 +46,7 @@ namespace PhotoAlbum
             var scaleFactor = widthRatio > heightRatio ? widthRatio : heightRatio;
 
             var renderer = new UIGraphicsImageRenderer(thumbnailSize);
-            var newThumbnail = renderer.CreateImage((_) =>
+            var newThumbnail = renderer.CreateImage((err) =>
             {
                 var size = new CGSize(imageSize.Width * scaleFactor, imageSize.Height * scaleFactor);
                 var x = (thumbnailSize.Width - size.Width) / 2.0;

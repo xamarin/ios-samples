@@ -72,7 +72,7 @@ namespace DragBoard
             });
 
             var movePoint = MovePoint; //DropPoint
-            animator.AddCompletion( (_) => {
+            animator.AddCompletion( (err) => {
                 var index = item.LocalObject as NSNumber;
                 if (index != null)
                 {
