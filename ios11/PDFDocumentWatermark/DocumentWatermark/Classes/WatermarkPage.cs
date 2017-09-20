@@ -33,27 +33,33 @@ namespace DocumentWatermark
 			// Draw original content
 			base.Draw(box, context);
 
-			// Draw watermark underlay
-            UIGraphics.PushContext(context);
-            context.SaveState();
+            using (context)
+            {
+                // Draw watermark underlay
+                UIGraphics.PushContext(context);
+                context.SaveState();
 
-            var pageBounds = this.GetBoundsForBox(box);
-            context.TranslateCTM(0.0f, pageBounds.Size.Height);
-            context.ScaleCTM(1.0f, -1.0f);
-			context.RotateCTM((float)(Math.PI / 4.0f));
+                var pageBounds = this.GetBoundsForBox(box);
+                context.TranslateCTM(0.0f, pageBounds.Size.Height);
+                context.ScaleCTM(1.0f, -1.0f);
+                context.RotateCTM((float)(Math.PI / 4.0f));
 
-			var attributes = new UIStringAttributes()
-			{
-				ForegroundColor = UIColor.FromRGBA(255, 0, 0, 125),
-				Font = UIFont.BoldSystemFontOfSize(84)
-			};
 
-			var text = new NSAttributedString("WATERMARK", attributes);
-           
-			text.DrawString(new CGPoint(250, 40));
+                Console.WriteLine($"{pageBounds}");
 
-			context.RestoreState();
-			UIGraphics.PopContext();
+                var attributes = new UIStringAttributes()
+                {
+                    ForegroundColor = UIColor.FromRGBA(255, 0, 0, 125),
+                    Font = UIFont.BoldSystemFontOfSize(84)
+                };
+
+                var text = new NSAttributedString("WATERMARK", attributes);
+
+                text.DrawString(new CGPoint(250, 40));
+
+                context.RestoreState();
+                UIGraphics.PopContext();
+            }
 		}
 	}
 }
