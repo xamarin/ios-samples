@@ -33,10 +33,13 @@ namespace VisionFramework
 
 		}
 
+		private string ToShortString(CGRect rect) 
+		{
+			return $"[X: {rect.X:F}, Y: {rect.Y:F} Width: {rect.Width:F} Height: {rect.Height:F}]";
+		}
+
 		void HandleRectangles(VNRequest request, NSError error){
-
-			Func<CGRect, string> toShortString = (rect) => $"[X: {rect.X:F}, Y: {rect.Y:F} Width: {rect.Width:F} Height: {rect.Height:F}]";
-
+			
 			var observations = request.GetResults<VNRectangleObservation>();
 			if (observations == null) {
 				ShowAlert("Processing Error","Unexpected result type from VNDetectRectanglesRequest.");
@@ -60,11 +63,11 @@ namespace VisionFramework
 				var boundingBox = o.BoundingBox.Scaled(imageSize);
 				if (!InputImage.Extent.Contains(boundingBox))
 				{
-                    Console.WriteLine(" --- Rectangle out of bounds: " + boundingBox);
-					summary += " --- Rectangle out of bounds:" + toShortString(boundingBox) + Environment.NewLine;
+					Console.WriteLine(" --- Rectangle out of bounds: " + ToShortString(boundingBox));
+					summary += " --- Rectangle out of bounds:" + ToShortString(boundingBox) + Environment.NewLine;
                 } else {
-					Console.WriteLine(toShortString(o.BoundingBox));
-					summary += toShortString(o.BoundingBox) + Environment.NewLine;
+					Console.WriteLine(ToShortString(o.BoundingBox));
+					summary += ToShortString(o.BoundingBox) + Environment.NewLine;
                     atLeastOneValid |= true;
                 }
             }
