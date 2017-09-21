@@ -35,6 +35,8 @@ namespace VisionFramework
 
 		void HandleRectangles(VNRequest request, NSError error){
 
+			Func<CGRect, string> toShortString = (rect) => $"[X: {rect.X:F}, Y: {rect.Y:F} Width: {rect.Width:F} Height: {rect.Height:F}]";
+
 			var observations = request.GetResults<VNRectangleObservation>();
 			if (observations == null) {
 				ShowAlert("Processing Error","Unexpected result type from VNDetectRectanglesRequest.");
@@ -59,10 +61,10 @@ namespace VisionFramework
 				if (!InputImage.Extent.Contains(boundingBox))
 				{
                     Console.WriteLine(" --- Rectangle out of bounds: " + boundingBox);
-                    summary += " --- Rectangle out of bounds:" + boundingBox + Environment.NewLine;
+					summary += " --- Rectangle out of bounds:" + toShortString(boundingBox) + Environment.NewLine;
                 } else {
-					Console.WriteLine(o.BoundingBox);
-					summary += o.BoundingBox + Environment.NewLine;
+					Console.WriteLine(toShortString(o.BoundingBox));
+					summary += toShortString(o.BoundingBox) + Environment.NewLine;
                     atLeastOneValid |= true;
                 }
             }
