@@ -1,0 +1,25 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableRowActions", "TableRowActions\TableRowActions.csproj", "{4C633D7D-C502-42EA-BD1C-1310FE3246AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{57CF2DCA-22A9-47AB-A00A-77D5764633BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C633D7D-C502-42EA-BD1C-1310FE3246AC}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{4C633D7D-C502-42EA-BD1C-1310FE3246AC}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{4C633D7D-C502-42EA-BD1C-1310FE3246AC}.Release|iPhone.ActiveCfg = Release|iPhone
+		{4C633D7D-C502-42EA-BD1C-1310FE3246AC}.Release|iPhone.Build.0 = Release|iPhone
+		{4C633D7D-C502-42EA-BD1C-1310FE3246AC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{4C633D7D-C502-42EA-BD1C-1310FE3246AC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{4C633D7D-C502-42EA-BD1C-1310FE3246AC}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{4C633D7D-C502-42EA-BD1C-1310FE3246AC}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
