@@ -7,11 +7,16 @@ A basic Photos-like app to demonstrate the Photos framework.
 * Displays assets (all photos or those from a collection) in a thumbnail grid
 * Displays a single photo, video, or Live Photo asset
 * Allows the following actions:
-  * simple edit with canned filters (for still photos, Live Photos, and videos)
+  * simple edit with canned filters (for still photos, Live Photos^, and videos)
   * creating an album and adding assets to it
   * removing assets from an album
   * deleting assets and albums
   * favoriting an asset
+
+Known Issues
+------------
+
+^ An error occurs when filters are applied to Live Photos. This will be fixed in a future release.
 
 Build Requirements
 ------------------
