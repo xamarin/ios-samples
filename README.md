@@ -8,21 +8,7 @@ work with iOS and the SDK.
 License
 -------
 
-The Apache License 2.0 applies to all samples in this repository.
-
-   Copyright 2011 Xamarin Inc
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+See the repo's [license file](LICENSE) and any additional license information attached to each sample.
 
 Samples Layout
 ==============
@@ -34,7 +20,7 @@ Starting with iOS 8, we started adding samples that showcase specific
 features introduced in a release into a directory for the release.  So
 all the new iOS 8 feature samples live in the ios8 directory, the
 iOS 9 features live in the ios9 directory and the iOS 10 feature lives
-in the ios10 directory.
+in the ios10 directory, and so on for iOS 11.
 
 
 WatchKit
