@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>FB3F661C-0DFC-43D4-BE9E-6FBDE26349A4</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginner</Level>
+  <Tags>iOS11</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>iOS 11 example to demonstrate the capabilities of MusicKit, including accessing the Apple Music catalog and playing songs, albums, and playlists using Media Player.</Brief>
+</SampleMetadata>
