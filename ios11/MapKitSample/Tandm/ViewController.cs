@@ -91,11 +91,12 @@ namespace Tandm
                 }
                 return view;
             }
-            else {
+            else if (annotation != null) {
                 var unwrappedAnnotation = MKAnnotationWrapperExtensions.UnwrapClusterAnnotation(annotation);
 
                 return HandleMKMapViewAnnotation(mapView, unwrappedAnnotation);
             }
+            return null;
         }
 		#endregion
 
