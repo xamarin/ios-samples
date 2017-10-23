@@ -70,6 +70,34 @@ namespace Tandm
 				MapView.AddAnnotations(Bike.FromDictionaryArray(bikes));
 			}
 		}
+
+        private MKAnnotationView HandleMKMapViewAnnotation(MKMapView mapView, IMKAnnotation annotation)
+        {
+            if (annotation is Bike) {
+                var marker = annotation as Bike;
+
+                var view = mapView.DequeueReusableAnnotation(MKMapViewDefault.AnnotationViewReuseIdentifier) as BikeView;
+                if (view == null) {
+                    view = new BikeView(marker, MKMapViewDefault.AnnotationViewReuseIdentifier);
+                }
+                return view;
+            }
+            else if (annotation is MKClusterAnnotation) {
+                var cluster = annotation as MKClusterAnnotation;
+
+                var view = mapView.DequeueReusableAnnotation(MKMapViewDefault.ClusterAnnotationViewReuseIdentifier) as ClusterView;
+                if (view == null) {
+                    view = new ClusterView(cluster, MKMapViewDefault.ClusterAnnotationViewReuseIdentifier);
+                }
+                return view;
+            }
+            else if (annotation != null) {
+                var unwrappedAnnotation = MKAnnotationWrapperExtensions.UnwrapClusterAnnotation(annotation);
+
+                return HandleMKMapViewAnnotation(mapView, unwrappedAnnotation);
+            }
+            return null;
+        }
 		#endregion
 
 		#region Override Methods
@@ -81,6 +109,8 @@ namespace Tandm
 			SetupUserTrackingAndScaleView();
 			RegisterAnnotationViewClasses();
 			LoadDataForMapRegionAndBikes();
+
+            MapView.GetViewForAnnotation = HandleMKMapViewAnnotation;
 		}
 		#endregion
 	}

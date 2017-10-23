@@ -58,6 +58,11 @@ namespace Tandm
 		public BikeView(IntPtr handle) : base(handle)
 		{
 		}
+
+        public BikeView(IMKAnnotation annotation, string identifier) : base(annotation, identifier)
+        {
+
+        }
 		#endregion
 
 

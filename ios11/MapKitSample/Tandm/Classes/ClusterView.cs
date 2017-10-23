@@ -81,7 +81,7 @@ namespace Tandm
 		{
 		}
 
-		public ClusterView(MKAnnotation annotation, string reuseIdentifier) : base(annotation, reuseIdentifier)
+		public ClusterView(IMKAnnotation annotation, string reuseIdentifier) : base(annotation, reuseIdentifier)
 		{
 			// Initialize
 			DisplayPriority = MKFeatureDisplayPriority.DefaultHigh;
