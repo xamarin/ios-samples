@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -33,5 +33,7 @@
 	<string>SharedResources App needs Photo Library Access</string>
 	<key>NSCameraUsageDescription</key>
 	<string>SharedResources App needs Camera Access</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.sharedresources</string>
 </dict>
 </plist>

@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenGLES20Example", "OpenGLES20Example.csproj", "{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Debug|iPhone.Build.0 = Debug|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Release|iPhone.ActiveCfg = Release|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Release|iPhone.Build.0 = Release|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{850F3504-CFDB-4D3F-B9F8-2A7B1D451C36}.AppStore|iPhone.Build.0 = AppStore|iPhone
+	EndGlobalSection
+EndGlobal

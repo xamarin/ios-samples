@@ -29,5 +29,9 @@
 	<string>1</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
+	<key>CFBundleName</key>
+	<string>Touch</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.touch</string>
 </dict>
 </plist>
