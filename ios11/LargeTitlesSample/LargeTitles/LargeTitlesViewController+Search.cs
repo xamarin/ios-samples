@@ -18,8 +18,10 @@ namespace largetitles
                 DimsBackgroundDuringPresentation = false
             };
             search.SearchResultsUpdater = this;
-            //TODO: enable search once I've figured out the segue losing the navbar
-            //NavigationItem.SearchController = search;
+			// ensures the segue works in the context of the underling ViewController, thanks @artemkalinovsky
+			DefinesPresentationContext = true;
+
+            NavigationItem.SearchController = search;
         }
 
         public void UpdateSearchResultsForSearchController(UISearchController searchController)
