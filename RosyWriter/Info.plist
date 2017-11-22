@@ -30,5 +30,9 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>RosyWriter App needs Camera Access</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>RosyWriter App needs Camera Mic</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>RosyWriterp needs access to Photos.</string>
 </dict>
 </plist>
