@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -29,5 +29,9 @@
 		<string>Icon-60@2x</string>
 		<string>Icon-Small-40@2x</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>PrintBanner</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.printbanner</string>
 </dict>
 </plist>
