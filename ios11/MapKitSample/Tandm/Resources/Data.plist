@@ -2,536 +2,535 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-<key>bikes</key>
-<array>
-<dict>
-<key>lat</key>
-<real>37.808542461852035</real>
-<key>long</key>
-<real>-122.41354889535489</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.80850819261321</real>
-<key>long</key>
-<real>-122.4141778369151</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.808294009510277</real>
-<key>long</key>
-<real>-122.41527306273548</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.808254028682754</real>
-<key>long</key>
-<real>-122.41601767176421</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806476987725425</real>
-<key>long</key>
-<real>-122.41376762744851</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806344454692741</real>
-<key>long</key>
-<real>-122.41370996511159</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806260240829218</real>
-<key>long</key>
-<real>-122.41368200756155</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806152557442246</real>
-<key>long</key>
-<real>-122.41364007131649</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806883782716596</real>
-<key>long</key>
-<real>-122.41216619515379</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806686886801479</real>
-<key>long</key>
-<real>-122.41208739380835</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806852652972594</real>
-<key>long</key>
-<real>-122.4120923188642</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806159482532017</real>
-<key>long</key>
-<real>-122.41702863404177</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806217857814495</real>
-<key>long</key>
-<real>-122.4168004613514</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806245328545145</real>
-<key>long</key>
-<real>-122.41649840420388</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806237602406846</real>
-<key>long</key>
-<real>-122.41664943277765</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806199830150568</real>
-<key>long</key>
-<real>-122.4168982496473</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806092522562317</real>
-<key>long</key>
-<real>-122.41687977855787</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806132870217432</real>
-<key>long</key>
-<real>-122.41671245188506</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806270522290028</real>
-<key>long</key>
-<real>-122.41536721913532</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806167852957309</real>
-<key>long</key>
-<real>-122.41534250537647</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806092897988805</real>
-<key>long</key>
-<real>-122.41531938603013</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806023611788433</real>
-<key>long</key>
-<real>-122.41530344168612</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.805948656644695</real>
-<key>long</key>
-<real>-122.41528430844403</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.80540988172141</real>
-<key>long</key>
-<real>-122.41358367044165</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.804169469489018</real>
-<key>long</key>
-<real>-122.41323811392559</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.803967057861108</real>
-<key>long</key>
-<real>-122.41492131541673</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.805224326796505</real>
-<key>long</key>
-<real>-122.41514742026504</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.804486147376743</real>
-<key>long</key>
-<real>-122.41501090414313</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.804701871831568</real>
-<key>long</key>
-<real>-122.41345589982076</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.803108506227147</real>
-<key>long</key>
-<real>-122.4113553868039</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.803546703936156</real>
-<key>long</key>
-<real>-122.41145350775737</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.803962989451868</real>
-<key>long</key>
-<real>-122.41151323364011</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.80484931569606</real>
-<key>long</key>
-<real>-122.41166884072558</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.805071780409463</real>
-<key>long</key>
-<real>-122.41056178003518</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.80500099625516</real>
-<key>long</key>
-<real>-122.41078575185117</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.805038663597152</real>
-<key>long</key>
-<real>-122.4101089303214</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.804829260132145</real>
-<key>long</key>
-<real>-122.4118889730247</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807385015006425</real>
-<key>long</key>
-<real>-122.41404980880694</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807429307712994</real>
-<key>long</key>
-<real>-122.41381046972714</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807659288916824</real>
-<key>long</key>
-<real>-122.4138816245887</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807654178231182</real>
-<key>long</key>
-<real>-122.41409940162214</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807147196510066</real>
-<key>long</key>
-<real>-122.41545037366545</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807160825045891</real>
-<key>long</key>
-<real>-122.41573499311171</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807419767762454</real>
-<key>long</key>
-<real>-122.41576086760682</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807392510705895</real>
-<key>long</key>
-<real>-122.41554740302212</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806986804878271</real>
-<key>long</key>
-<real>-122.41378664362954</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807548119046317</real>
-<key>long</key>
-<real>-122.41219557024961</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807766174991613</real>
-<key>long</key>
-<real>-122.41223006954355</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807548119046317</real>
-<key>long</key>
-<real>-122.41243922167949</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.80255467268104</real>
-<key>long</key>
-<real>-122.41457269927989</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.802500241461352</real>
-<key>long</key>
-<real>-122.41482888050143</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.803238904327131</real>
-<key>long</key>
-<real>-122.41643403022073</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.801068178317763</real>
-<key>long</key>
-<real>-122.41254708911714</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.800826634754443</real>
-<key>long</key>
-<real>-122.41283125659538</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.800869257468896</real>
-<key>long</key>
-<real>-122.41420960605107</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806903334812901</real>
-<key>long</key>
-<real>-122.41033876817218</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807059140442952</real>
-<key>long</key>
-<real>-122.41068766440364</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807294095304307</real>
-<key>long</key>
-<real>-122.41482682184105</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.80735409019438</real>
-<key>long</key>
-<real>-122.41460948907898</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807450288821038</real>
-<key>long</key>
-<real>-122.41486871733709</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.807478217431104</real>
-<key>long</key>
-<real>-122.41468673382305</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.80617220559143</real>
-<key>long</key>
-<real>-122.41379709205859</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806351842028583</real>
-<key>long</key>
-<real>-122.41383843071553</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806279520930595</real>
-<key>long</key>
-<real>-122.41382514329371</real>
-<key>type</key>
-<integer>1</integer>
-</dict>
-<dict>
-<key>lat</key>
-<real>37.806456240929734</real>
-<key>long</key>
-<real>-122.41384950356704</real>
-<key>type</key>
-<integer>0</integer>
-</dict>
-</array>
-<key>region</key>
-<array>
-<real>37.805031541354815</real>
-<real>-122.41363291721927</real>
-<real>0.0097887105185137102</real>
-<real>0.008167393319212124</real>
-</array>
+	<key>bikes</key>
+	<array>
+		<dict>
+			<key>lat</key>
+			<real>37.808542461852</real>
+			<key>long</key>
+			<real>-122.413548895355</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8085081926132</real>
+			<key>long</key>
+			<real>-122.414177836915</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8082940095103</real>
+			<key>long</key>
+			<real>-122.415273062735</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8082540286828</real>
+			<key>long</key>
+			<real>-122.416017671764</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8064769877254</real>
+			<key>long</key>
+			<real>-122.413767627449</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8063444546927</real>
+			<key>long</key>
+			<real>-122.413709965112</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8062602408292</real>
+			<key>long</key>
+			<real>-122.413682007562</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8061525574422</real>
+			<key>long</key>
+			<real>-122.413640071316</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8068837827166</real>
+			<key>long</key>
+			<real>-122.412166195154</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8066868868015</real>
+			<key>long</key>
+			<real>-122.412087393808</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8068526529726</real>
+			<key>long</key>
+			<real>-122.412092318864</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.806159482532</real>
+			<key>long</key>
+			<real>-122.417028634042</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8062178578145</real>
+			<key>long</key>
+			<real>-122.416800461351</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8062453285451</real>
+			<key>long</key>
+			<real>-122.416498404204</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8062376024068</real>
+			<key>long</key>
+			<real>-122.416649432778</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8061998301506</real>
+			<key>long</key>
+			<real>-122.416898249647</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8060925225623</real>
+			<key>long</key>
+			<real>-122.416879778558</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8061328702174</real>
+			<key>long</key>
+			<real>-122.416712451885</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.80627052229</real>
+			<key>long</key>
+			<real>-122.415367219135</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8061678529573</real>
+			<key>long</key>
+			<real>-122.415342505376</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8060928979888</real>
+			<key>long</key>
+			<real>-122.41531938603</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8060236117884</real>
+			<key>long</key>
+			<real>-122.415303441686</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8059486566447</real>
+			<key>long</key>
+			<real>-122.415284308444</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8054098817214</real>
+			<key>long</key>
+			<real>-122.413583670442</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.804169469489</real>
+			<key>long</key>
+			<real>-122.413238113926</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8039670578611</real>
+			<key>long</key>
+			<real>-122.414921315417</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8052243267965</real>
+			<key>long</key>
+			<real>-122.415147420265</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8044861473767</real>
+			<key>long</key>
+			<real>-122.415010904143</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8047018718316</real>
+			<key>long</key>
+			<real>-122.413455899821</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8031085062271</real>
+			<key>long</key>
+			<real>-122.411355386804</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8035467039362</real>
+			<key>long</key>
+			<real>-122.411453507757</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8039629894519</real>
+			<key>long</key>
+			<real>-122.41151323364</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8048493156961</real>
+			<key>long</key>
+			<real>-122.411668840726</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8050717804095</real>
+			<key>long</key>
+			<real>-122.410561780035</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8050009962552</real>
+			<key>long</key>
+			<real>-122.410785751851</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8050386635972</real>
+			<key>long</key>
+			<real>-122.410108930321</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8048292601321</real>
+			<key>long</key>
+			<real>-122.411888973025</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8073850150064</real>
+			<key>long</key>
+			<real>-122.414049808807</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.807429307713</real>
+			<key>long</key>
+			<real>-122.413810469727</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8076592889168</real>
+			<key>long</key>
+			<real>-122.413881624589</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8076541782312</real>
+			<key>long</key>
+			<real>-122.414099401622</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8071471965101</real>
+			<key>long</key>
+			<real>-122.415450373665</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8071608250459</real>
+			<key>long</key>
+			<real>-122.415734993112</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8074197677625</real>
+			<key>long</key>
+			<real>-122.415760867607</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8073925107059</real>
+			<key>long</key>
+			<real>-122.415547403022</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8069868048783</real>
+			<key>long</key>
+			<real>-122.41378664363</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8075481190463</real>
+			<key>long</key>
+			<real>-122.41219557025</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8077661749916</real>
+			<key>long</key>
+			<real>-122.412230069544</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8075481190463</real>
+			<key>long</key>
+			<real>-122.412439221679</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.802554672681</real>
+			<key>long</key>
+			<real>-122.41457269928</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8025002414614</real>
+			<key>long</key>
+			<real>-122.414828880501</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8032389043271</real>
+			<key>long</key>
+			<real>-122.416434030221</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8010681783178</real>
+			<key>long</key>
+			<real>-122.412547089117</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8008266347544</real>
+			<key>long</key>
+			<real>-122.412831256595</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8008692574689</real>
+			<key>long</key>
+			<real>-122.414209606051</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8069033348129</real>
+			<key>long</key>
+			<real>-122.410338768172</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.807059140443</real>
+			<key>long</key>
+			<real>-122.410687664404</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8072940953043</real>
+			<key>long</key>
+			<real>-122.414826821841</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8073540901944</real>
+			<key>long</key>
+			<real>-122.414609489079</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.807450288821</real>
+			<key>long</key>
+			<real>-122.414868717337</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8074782174311</real>
+			<key>long</key>
+			<real>-122.414686733823</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8061722055914</real>
+			<key>long</key>
+			<real>-122.413797092059</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8063518420286</real>
+			<key>long</key>
+			<real>-122.413838430716</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8062795209306</real>
+			<key>long</key>
+			<real>-122.413825143294</real>
+			<key>type</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>lat</key>
+			<real>37.8064562409297</real>
+			<key>long</key>
+			<real>-122.413849503567</real>
+			<key>type</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>region</key>
+	<array>
+		<real>37.8050315413548</real>
+		<real>-122.413632917219</real>
+		<real>0.00978871051851371</real>
+		<real>0.00816739331921212</real>
+	</array>
 </dict>
 </plist>
-
