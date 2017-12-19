@@ -22,7 +22,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>i386, x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>true</MtouchProfiling>
   </PropertyGroup>
@@ -49,7 +49,6 @@
     <MtouchProfiling>true</MtouchProfiling>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>
@@ -98,6 +97,10 @@
     <ImageAsset Include="Resources\Images.xcassets\BubbleIncoming.imageset\bubble_regular.png" />
     <ImageAsset Include="Resources\Images.xcassets\BubbleIncoming.imageset\bubble_regular%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\BubbleIncoming.imageset\bubble_regular%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BubbleOutgoing.imageset\Contents.json" />
+	<ImageAsset Include="Resources\Images.xcassets\BubbleOutgoing.imageset\bubble_regular.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BubbleOutgoing.imageset\bubble_regular%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\BubbleOutgoing.imageset\bubble_regular%403x.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-60%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcon.appiconset\Icon-72.png" />
@@ -151,11 +154,5 @@
     <Folder Include="Resources\Images.xcassets\AppIcon.appiconset\" />
     <Folder Include="Resources\Images.xcassets\LaunchImage.launchimage\" />
     <Folder Include="Model\" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Images.xcassets\BubbleOutgoing.imageset\bubble_regular.png" />
-    <BundleResource Include="Resources\Images.xcassets\BubbleOutgoing.imageset\bubble_regular%402x.png" />
-    <BundleResource Include="Resources\Images.xcassets\BubbleOutgoing.imageset\bubble_regular%403x.png" />
-    <BundleResource Include="Resources\Images.xcassets\BubbleOutgoing.imageset\Contents.json" />
   </ItemGroup>
 </Project>
