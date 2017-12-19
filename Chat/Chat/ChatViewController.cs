@@ -53,7 +53,7 @@ namespace Chat
 				new Message { Type = MessageType.Incoming, Text = "And what do you think?" },
 				new Message { Type = MessageType.Outgoing, Text = "I think it is the best way to develop mobile applications." },
 				new Message { Type = MessageType.Incoming, Text = "Wow :-)" },
-				new Message { Type = MessageType.Outgoing, Text = "Yep. Check it out\nhttp://Xamarin.com" },
+				new Message { Type = MessageType.Outgoing, Text = "Yep. Check it out\nhttp://xamarin.com" },
 				new Message { Type = MessageType.Incoming, Text = "Will do. Thanks" }
 			};
 		}
@@ -105,45 +105,69 @@ namespace Chat
 			tableView.RegisterClassForCellReuse (typeof(OutgoingCell), OutgoingCell.CellId);
 			View.AddSubview (tableView);
 
-			var pinLeft = NSLayoutConstraint.Create (tableView, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, View, NSLayoutAttribute.Leading, 1f, 0f);
-			View.AddConstraint (pinLeft);
+            if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+            {   // iPhone X layout
+                var safeGuide = View.SafeAreaLayoutGuide;
+                tableView.TopAnchor.ConstraintEqualTo(safeGuide.TopAnchor).Active = true;
+				tableView.LeadingAnchor.ConstraintEqualTo(safeGuide.LeadingAnchor).Active = true;
+				tableView.TrailingAnchor.ConstraintEqualTo(safeGuide.TrailingAnchor).Active = true;
+				tableView.BottomAnchor.ConstraintEqualTo(safeGuide.BottomAnchor, -44).Active = true;
+            }
+            else
+            {
+                var pinLeft = NSLayoutConstraint.Create(tableView, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, View, NSLayoutAttribute.Leading, 1f, 0f);
+                View.AddConstraint(pinLeft);
 
-			var pinRight = NSLayoutConstraint.Create (tableView, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, View, NSLayoutAttribute.Trailing, 1f, 0f);
-			View.AddConstraint (pinRight);
+                var pinRight = NSLayoutConstraint.Create(tableView, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, View, NSLayoutAttribute.Trailing, 1f, 0f);
+                View.AddConstraint(pinRight);
 
-			var pinTop = NSLayoutConstraint.Create (tableView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, TopLayoutGuide, NSLayoutAttribute.Bottom, 1f, 0f);
-			View.AddConstraint (pinTop);
+                var pinTop = NSLayoutConstraint.Create(tableView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, TopLayoutGuide, NSLayoutAttribute.Bottom, 1f, 0f);
+                View.AddConstraint(pinTop);
 
-			var pinBottom = NSLayoutConstraint.Create (tableView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, View, NSLayoutAttribute.Bottom, 1f, 0f);
-			View.AddConstraint (pinBottom);
-
+                var pinBottom = NSLayoutConstraint.Create(tableView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, View, NSLayoutAttribute.Bottom, 1f, 0f);
+                View.AddConstraint(pinBottom);
+            }
 			chatSource = new ChatSource (messages);
 			tableView.Source = chatSource;
 		}
 
-		void SetUpToolbar ()
-		{
-			toolbar = new UIToolbar {
-				TranslatesAutoresizingMaskIntoConstraints = false
-			};
-			chatInputView = new ChatInputView {
-				TranslatesAutoresizingMaskIntoConstraints = false
-			};
+        void SetUpToolbar()
+        {
+            toolbar = new UIToolbar
+            {
+                TranslatesAutoresizingMaskIntoConstraints = false
+            };
+            chatInputView = new ChatInputView
+            {
+                TranslatesAutoresizingMaskIntoConstraints = false
+            };
 
-			toolbar.LayoutIfNeeded();
-			View.AddSubview (toolbar);
+            toolbar.LayoutIfNeeded();
+            View.AddSubview(toolbar);
 
-			var pinLeft = NSLayoutConstraint.Create (toolbar, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, View, NSLayoutAttribute.Leading, 1f, 0f);
-			View.AddConstraint (pinLeft);
 
-			var pinRight = NSLayoutConstraint.Create (toolbar, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, View, NSLayoutAttribute.Trailing, 1f, 0f);
-			View.AddConstraint (pinRight);
+            if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+            {   // iPhone X layout
+				var safeGuide = View.SafeAreaLayoutGuide;
+                toolbar.HeightAnchor.ConstraintEqualTo(44).Active = true;
+                toolbar.LeadingAnchor.ConstraintEqualTo(safeGuide.LeadingAnchor).Active = true;
+                toolbar.TrailingAnchor.ConstraintEqualTo(safeGuide.TrailingAnchor).Active = true;
+                toolbar.BottomAnchor.ConstraintEqualTo(safeGuide.BottomAnchor).Active = true;
+            }
+            else
+            {
+                var pinLeft = NSLayoutConstraint.Create (toolbar, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, View, NSLayoutAttribute.Leading, 1f, 0f);
+                View.AddConstraint (pinLeft);
 
-			toolbarBottomConstraint = NSLayoutConstraint.Create (View, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, toolbar, NSLayoutAttribute.Bottom, 1f, 0f);
-			View.AddConstraint (toolbarBottomConstraint);
+                var pinRight = NSLayoutConstraint.Create (toolbar, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, View, NSLayoutAttribute.Trailing, 1f, 0f);
+                View.AddConstraint (pinRight);
 
-			toolbarHeightConstraint = NSLayoutConstraint.Create (toolbar, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 0f, 44f);
-			View.AddConstraint (toolbarHeightConstraint);
+                toolbarBottomConstraint = NSLayoutConstraint.Create (View, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, toolbar, NSLayoutAttribute.Bottom, 1f, 0f);
+                View.AddConstraint (toolbarBottomConstraint);
+
+                toolbarHeightConstraint = NSLayoutConstraint.Create (toolbar, NSLayoutAttribute.Height, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 0f, 44f);
+                View.AddConstraint (toolbarHeightConstraint);
+            }
 
 			toolbar.AddSubview (chatInputView);
 
@@ -223,11 +247,24 @@ namespace Chat
 		void UpdateButtomLayoutConstraint (UIKeyboardEventArgs e)
 		{
 			UIViewAnimationCurve curve = e.AnimationCurve;
-			UIView.Animate (e.AnimationDuration, 0, ConvertToAnimationOptions (e.AnimationCurve), () => {
-				nfloat offsetFromBottom = tableView.Frame.GetMaxY () - e.FrameEnd.GetMinY ();
-				offsetFromBottom = NMath.Max (0, offsetFromBottom);
-				SetToolbarContstraint (offsetFromBottom);
-			}, null);
+            if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+            {
+				UIView.Animate(e.AnimationDuration, 0, ConvertToAnimationOptions(e.AnimationCurve), () =>
+				{
+					nfloat offsetFromBottom = tableView.Frame.GetMaxY() - e.FrameEnd.GetMinY();
+					offsetFromBottom = NMath.Max(0, offsetFromBottom);
+					
+				}, null);
+            }
+            else
+            {
+                UIView.Animate(e.AnimationDuration, 0, ConvertToAnimationOptions(e.AnimationCurve), () =>
+                {
+                    nfloat offsetFromBottom = tableView.Frame.GetMaxY() - e.FrameEnd.GetMinY();
+                    offsetFromBottom = NMath.Max(0, offsetFromBottom);
+                    SetToolbarContstraint(offsetFromBottom);
+                }, null);
+            }
 		}
 
 		void SetToolbarContstraint (nfloat constant)
