@@ -130,6 +130,7 @@ namespace Chat
 				TranslatesAutoresizingMaskIntoConstraints = false
 			};
 
+			toolbar.LayoutIfNeeded();
 			View.AddSubview (toolbar);
 
 			var pinLeft = NSLayoutConstraint.Create (toolbar, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, View, NSLayoutAttribute.Leading, 1f, 0f);
