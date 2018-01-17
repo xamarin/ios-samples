@@ -92,6 +92,6 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Resources\map.png" />
-    <BundleResource Include="Resources\map%402x.png" />
-  </ItemGroup>
-</Project>
+    		      <BundleResource Include="Resources\map%402x.png" />
+    </ItemGroup>		    </ItemGroup>
+ </Project> 
