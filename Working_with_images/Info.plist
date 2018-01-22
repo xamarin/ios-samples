@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Images</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.images</string>
+	<string>com.xamarin.working-with-images</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
