@@ -6,8 +6,8 @@
     <ProjectGuid>{C838053B-4D84-4E33-9521-EF2E64B4DE54}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Notifications</RootNamespace>
-    <AssemblyName>Notifications</AssemblyName>
+    <RootNamespace>LocalNotifications</RootNamespace>
+    <AssemblyName>LocalNotifications</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
