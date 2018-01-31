@@ -5,7 +5,7 @@
 	<key>CFBundleName</key>
 	<string>LocalNotifications</string>
 	<key>CFBundleDisplayName</key>
-	<string>LocalNotification</string>
+	<string>LocalNotifications</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.localnotifications</string>
 	<key>CFBundleShortVersionString</key>
