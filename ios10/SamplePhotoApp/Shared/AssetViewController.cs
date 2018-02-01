@@ -431,7 +431,7 @@ namespace SamplePhotoApp
 			// to render both for previewing and for final output.
 			var livePhotoContext = new PHLivePhotoEditingContext (input);
 
-			livePhotoContext.FrameProcessor = (frame, _) => {
+			livePhotoContext.FrameProcessor2 = (IPHLivePhotoFrame frame, ref NSError _) => {
 				filter.Image = frame.Image;
 				return filter.OutputImage;
 			};
