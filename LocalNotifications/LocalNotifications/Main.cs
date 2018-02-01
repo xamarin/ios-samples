@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace Notifications
+namespace LocalNotifications
 {
     public class Application
     {

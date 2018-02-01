@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notifications", "Notifications\Notifications.csproj", "{C838053B-4D84-4E33-9521-EF2E64B4DE54}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalNotifications", "LocalNotifications\LocalNotifications.csproj", "{C838053B-4D84-4E33-9521-EF2E64B4DE54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
