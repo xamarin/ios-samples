@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27205.2004
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARKitAudio", "ARKitAudio\ARKitAudio.csproj", "{BC14A9A0-F771-4C15-BCD7-7974A2A71260}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC14A9A0-F771-4C15-BCD7-7974A2A71260}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{BC14A9A0-F771-4C15-BCD7-7974A2A71260}.Debug|iPhone.Build.0 = Debug|iPhone
+		{BC14A9A0-F771-4C15-BCD7-7974A2A71260}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{BC14A9A0-F771-4C15-BCD7-7974A2A71260}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{BC14A9A0-F771-4C15-BCD7-7974A2A71260}.Release|iPhone.ActiveCfg = Release|iPhone
+		{BC14A9A0-F771-4C15-BCD7-7974A2A71260}.Release|iPhone.Build.0 = Release|iPhone
+		{BC14A9A0-F771-4C15-BCD7-7974A2A71260}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{BC14A9A0-F771-4C15-BCD7-7974A2A71260}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {04A35DA2-FEED-451C-B35B-3CDFD32AE9FB}
+	EndGlobalSection
+EndGlobal
