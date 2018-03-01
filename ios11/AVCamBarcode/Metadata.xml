@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>b7af782e-4453-4989-9beb-4d7828b570e0</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Brief>Demonstrates how to use the AVFoundation capture API to detect barcodes and faces.</Brief>
+  <Level>Intermediate</Level>
+  <Tags>iOS11, Graphics, Media, Platform Features</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <Gallery>true</Gallery>
+</SampleMetadata>

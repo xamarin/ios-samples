@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SampleMetadata>
-	<ID>e7510d8f-3ee4-11e6-95ff-a8206629811d</ID>
+	<ID>795043ED-ACFA-47D0-88EB-52A22827A8A9</ID>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Beginner</Level>
-	<Tags>iOS10, Media</Tags>
+	<Tags>iOS11, Media</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
-	<Gallery>false</Gallery>
+	<Gallery>true</Gallery>
 	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
 	<Brief>Using AVFoundation to Capture Photos and Movies</Brief>
 </SampleMetadata>
