@@ -3,7 +3,8 @@ iOS/tvOS/watchOS Samples
 
 The samples in this directory use the Xamarin.iOS toolchain and
 Xamarin Studio project files to illustrate the basics of how to
-work with iOS and the SDK.
+work with iOS and the SDK. Visit the [iOS Sample Gallery](https://developer.xamarin.com/samples/ios/all/)
+to download individual samples.
 
 License
 -------
@@ -23,13 +24,18 @@ iOS 9 features live in the ios9 directory and the iOS 10 feature lives
 in the ios10 directory, and so on for iOS 11.
 
 
-WatchKit
+watchOS
 --------
-WatchKit samples are in the WatchKit directory, there are a couple of them:
+watchOS samples are in the watchOS directory, there are a couple of them:
 
-* [WatchKit/WatchKitCatalog](https://github.com/xamarin/monotouch-samples/tree/master/WatchKit/WatchKitCatalog): contains a sample that shows all the UI elements available in WatchKit.
-* [WatchKit/GpsWatch](https://github.com/xamarin/monotouch-samples/tree/master/WatchKit/GpsWatch): a GPS app for the Apple Watch.
-* [WatchKit/WatchTables](https://github.com/xamarin/monotouch-samples/tree/master/WatchKit/WatchTables): the sample app used in our tutorials to show how to build WatchKit apps.
+* [WatchKit/WatchKitCatalog](https://github.com/xamarin/ios-samples/tree/master/WatchKit/WatchKitCatalog): contains a sample that shows all the UI elements available in WatchKit.
+* [WatchKit/GpsWatch](https://github.com/xamarin/ios-samples/tree/master/WatchKit/GpsWatch): a GPS app for the Apple Watch.
+* [WatchKit/WatchTables](https://github.com/xamarin/ios-samples/tree/master/WatchKit/WatchTables): the sample app used in our tutorials to show how to build WatchKit apps.
+
+tvOS
+----
+
+tvOS samples are in the tvos directory, including the [tvOS UI Catalog](https://github.com/xamarin/ios-samples/tree/master/tvos/UICatalog).
 
 Contributing
 ------------
@@ -45,7 +51,7 @@ Samples Submission Guidelines
 
 ## Galleries
 
-We love samples! Application samples show off our platform and provide a great way for people to learn our stuff. And we even promote them as a first-class feature of the docs site. You can find our two sample galleries here:
+We love samples! Application samples show off our platform and provide a great way for people to learn our stuff. And we even promote them as a first-class feature of the docs site. You can find the sample galleries here:
 
 * [Xamarin Forms Samples](http://developer.xamarin.com/samples/xamarin-forms/all/)
 
@@ -57,13 +63,13 @@ We love samples! Application samples show off our platform and provide a great w
 
 ## Sample GitHub Repositories
 
-These sample galleries are populated by samples in our six sample GitHub repos:
+These sample galleries are populated by samples in these GitHub repos:
 
 * [https://github.com/xamarin/xamarin-forms-samples](https://github.com/xamarin/xamarin-forms-samples)
 
 * [https://github.com/xamarin/mobile-samples](https://github.com/xamarin/mobile-samples)
 
-* [https://github.com/xamarin/monotouch-samples](https://github.com/xamarin/monotouch-samples)
+* [https://github.com/xamarin/monotouch-samples](https://github.com/xamarin/ios-samples)
 
 * [https://github.com/xamarin/mac-samples](https://github.com/xamarin/mac-samples)
 
@@ -76,9 +82,9 @@ The [mac-ios-samples](https://github.com/xamarin/mac-ios-samples) repository is 
 
 ## Sample Requirements
 
-We welcome sample submissions. Please ping Nat or Miguel for repo commit access.
+We welcome sample submissions, please start by creating an issue with your proposal.
 
-However, because the sample galleries are powered by the github sample repos, each sample needs to have the following things:
+Because the sample galleries are powered by the github sample repos, each sample needs to have the following things:
 
 * **Screenshots** - a folder called Screenshots that has at least one screen shot of the sample (preferably a screen shot for every page or every major functionality piece, people really key off these things). for the xplat samples, the folder should be split into platform folders, e.g. iOS, Android, Windows. see[ https://github.com/xamarin/mobile-samples/tree/master/Tasky/Screenshots](https://github.com/xamarin/mobile-samples/tree/master/Tasky/Screenshots) for an example of this.
 
@@ -129,7 +135,7 @@ However, because the sample galleries are powered by the github sample repos, ea
 
 A good example of this stuff is here in the drawing sample:[ https://github.com/xamarin/monotouch-samples/tree/master/Drawing](https://github.com/xamarin/monotouch-samples/tree/master/Drawing)
 
-For a x-platform sample, please see: https://github.com/xamarin/mobile-samples/tree/master/Tasky
+For a cross-platform sample, please see: https://github.com/xamarin/mobile-samples/tree/master/Tasky
 
 ## GitHub Integration
 

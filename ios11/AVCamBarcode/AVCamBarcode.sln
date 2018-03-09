@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVCamBarcode", "AVCamBarcode\AVCamBarcode.csproj", "{944AEF71-C52C-4C82-91D5-208131ADFEBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{944AEF71-C52C-4C82-91D5-208131ADFEBF}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{944AEF71-C52C-4C82-91D5-208131ADFEBF}.Debug|iPhone.Build.0 = Debug|iPhone
+		{944AEF71-C52C-4C82-91D5-208131ADFEBF}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{944AEF71-C52C-4C82-91D5-208131ADFEBF}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{944AEF71-C52C-4C82-91D5-208131ADFEBF}.Release|iPhone.ActiveCfg = Release|iPhone
+		{944AEF71-C52C-4C82-91D5-208131ADFEBF}.Release|iPhone.Build.0 = Release|iPhone
+		{944AEF71-C52C-4C82-91D5-208131ADFEBF}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{944AEF71-C52C-4C82-91D5-208131ADFEBF}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D275291-5334-411E-BECC-E0EADA4A7E04}
+	EndGlobalSection
+EndGlobal

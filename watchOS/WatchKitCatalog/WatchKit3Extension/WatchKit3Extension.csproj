@@ -51,16 +51,17 @@
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\iPhone\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <MtouchArch>i386</MtouchArch>
+    <MtouchArch>ARMv7k</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision></CodesignProvision>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchEnableBitcode>true</MtouchEnableBitcode>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>

@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVCam", "AVCam.csproj", "{DD06F0B6-6C44-4D32-B70B-06597BB017BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD06F0B6-6C44-4D32-B70B-06597BB017BD}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{DD06F0B6-6C44-4D32-B70B-06597BB017BD}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{DD06F0B6-6C44-4D32-B70B-06597BB017BD}.Release|iPhone.ActiveCfg = Release|iPhone
+		{DD06F0B6-6C44-4D32-B70B-06597BB017BD}.Release|iPhone.Build.0 = Release|iPhone
+		{DD06F0B6-6C44-4D32-B70B-06597BB017BD}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{DD06F0B6-6C44-4D32-B70B-06597BB017BD}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{DD06F0B6-6C44-4D32-B70B-06597BB017BD}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{DD06F0B6-6C44-4D32-B70B-06597BB017BD}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal

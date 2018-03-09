@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="CameraViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" heightSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="1811" translatesAutoresizingMaskIntoConstraints="NO" customClass="PreviewView" misplaced="YES">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="307"/>
+                                <subviews/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Unavailable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4808" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" hidden="YES">
+                                <rect key="frame" x="101" y="358" width="210" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" colorSpace="calibratedRGB" red="1" green="1" blue="0" alpha="1"/>
+                                <nil key="highlightedColor"/>
+                                <color key="tintColor" colorSpace="calibratedRGB" red="1" green="1" blue="0" alpha="1"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="1" id="5042" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="18" y="648" width="378" height="31"/>
+                                <connections>
+                                    <action selector="ZoomCamera:" destination="BYZ-38-t0r" id="6376" eventType="valueChanged"/>
+                                </connections>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5045" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="37" y="686" width="120" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="tintColor" colorSpace="calibratedRGB" red="1" green="1" blue="0" alpha="1"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="0.29803921568627451"/>
+                                <state key="normal" title="Metadata">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="1" green="1" blue="0" alpha="1"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="SelectMetadataObjectTypes:" destination="BYZ-38-t0r" id="6942" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5046" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="156" y="686" width="105" height="30"/>
+                                <color key="tintColor" colorSpace="calibratedRGB" red="1" green="1" blue="0" alpha="1"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="0.29803921568627451"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Presets">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="1" green="1" blue="0" alpha="1"/>
+                                </state>
+                                <connections>
+                                    <action selector="SelectSessionPreset:" destination="BYZ-38-t0r" id="7225" eventType="touchUpInside"/>
+                                </connections>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5047" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="288" y="686" width="77" height="30"/>
+                                <color key="tintColor" colorSpace="calibratedRGB" red="1" green="1" blue="0" alpha="1"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="0.29803921568627451"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Camera">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="1" green="1" blue="0" alpha="1"/>
+                                </state>
+                                <connections>
+                                    <action selector="ChangeCamera:" destination="BYZ-38-t0r" id="6093" eventType="touchUpInside"/>
+                                </connections>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0" green="0" blue="0" alpha="1"/>
+                        <constraints>
+                            <constraint id="3413" firstItem="1811" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width"/>
+                            <constraint id="3641" firstItem="1811" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height"/>
+                            <constraint id="4563" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="1811" secondAttribute="trailing"/>
+                            <constraint id="4564" firstItem="8bC-Xf-vdC" firstAttribute="bottom" secondItem="1811" secondAttribute="bottom"/>
+                            <constraint id="4809" firstItem="4808" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX"/>
+                            <constraint id="4810" firstItem="4808" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY"/>
+                            <constraint id="5043" firstItem="5042" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin"/>
+                            <constraint id="5044" firstItem="8bC-Xf-vdC" firstAttribute="trailingMargin" secondItem="5042" secondAttribute="trailing"/>
+                            <constraint id="5051" firstItem="wfy-db-euE" firstAttribute="top" secondItem="5046" secondAttribute="bottom" constant="20"/>
+                            <constraint id="5053" firstItem="5046" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="2"/>
+                            <constraint id="5067" firstItem="5046" firstAttribute="top" secondItem="5042" secondAttribute="bottom" constant="8"/>
+                            <constraint id="5079" firstItem="5046" firstAttribute="width" secondItem="1811" secondAttribute="width" multiplier="0.25"/>
+                            <constraint id="5359" firstItem="5045" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="31" relation="greaterThanOrEqual"/>
+                            <constraint id="5373" firstItem="5045" firstAttribute="centerY" secondItem="5046" secondAttribute="centerY"/>
+                            <constraint id="5374" firstItem="5045" firstAttribute="width" secondItem="5046" secondAttribute="width"/>
+                            <constraint id="5375" firstItem="5045" firstAttribute="height" secondItem="5046" secondAttribute="height"/>
+                            <constraint id="5376" firstItem="5046" firstAttribute="leading" secondItem="5045" secondAttribute="trailing" symbolic="YES" constant="8"/>
+                            <constraint id="5428" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="5047" secondAttribute="trailing" constant="31" relation="greaterThanOrEqual"/>
+                            <constraint id="5447" firstItem="5047" firstAttribute="centerY" secondItem="5046" secondAttribute="centerY"/>
+                            <constraint id="5448" firstItem="5047" firstAttribute="width" secondItem="5046" secondAttribute="width"/>
+                            <constraint id="5449" firstItem="5047" firstAttribute="height" secondItem="5046" secondAttribute="height"/>
+                            <constraint id="5810" firstItem="5047" firstAttribute="leading" secondItem="5046" secondAttribute="trailing" symbolic="YES" constant="8"/>
+                        </constraints>
+                        <color key="tintColor" colorSpace="calibratedRGB" red="1" green="1" blue="0" alpha="1"/>
+                    </view>
+                    <connections>
+                        <outlet property="SessionPresetsButton" destination="5046" id="name-outlet-5046"/>
+                        <outlet property="CameraButton" destination="5047" id="name-outlet-5047"/>
+                        <outlet property="MetadataObjectTypesButton" destination="5045" id="name-outlet-5045"/>
+                        <outlet property="ZoomSlider" destination="5042" id="name-outlet-5042"/>
+                        <outlet property="CameraUnavailableLabel" destination="4808" id="name-outlet-4808"/>
+                        <outlet property="PreviewView" destination="1811" id="name-outlet-1811"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+</document>

@@ -5,7 +5,7 @@
 	<Level>Intermediate</Level>
 	<Tags>iOS10, Graphics, Media, Platform Features</Tags>
 	<SupportedPlatforms>iOS</SupportedPlatforms>
-	<Gallery>true</Gallery>
+	<Gallery>false</Gallery>
 	<MinimumLicenseRequirement>Starter</MinimumLicenseRequirement>
 	<Brief>Using AVFoundation to Detect Barcodes and Faces</Brief>
 </SampleMetadata>
