@@ -1,0 +1,10 @@
+﻿<Properties StartupConfiguration="{618ED649-90AF-4B5A-8571-CF41CD78FEE9}|Default">
+  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.ItemProperties.OpenGLESSample__GameView PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.3624F62A-22E4-4254-9AA4-9AD5AC40E67C" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
