@@ -109,13 +109,13 @@
     <Compile Include="DataSources\SolarPanelDataSource.cs" />
     <Compile Include="DataSources\GreenhousesDataSource.cs" />
     <Compile Include="DataSources\SizeDataSource.cs" />
-    <Compile Include="MarsHabitatPricerInput.cs" />
     <Compile Include="Feature.cs" />
+    <Compile Include="Resources\MarsHabitatPricer.cs">
+      <DependentUpon>MarsHabitatPricer.mlmodel</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\MarsHabitatPricer.mlmodelc\coremldata.bin" />
-    <BundleResource Include="Resources\MarsHabitatPricer.mlmodelc\model0\coremldata.bin" />
-    <BundleResource Include="Resources\MarsHabitatPricer.mlmodelc\model1\coremldata.bin" />
+    <CoreMLModel Include="Resources\MarsHabitatPricer.mlmodel" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

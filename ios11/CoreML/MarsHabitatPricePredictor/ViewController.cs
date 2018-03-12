@@ -42,12 +42,9 @@ namespace MarsHabitatPricePredictor
 
         void updatePredictedPrice()
         {
-            var pricerInput = new MarsHabitatPricerInput()
-            {
-                SolarPanels = datasource.GetValue(pickerView.SelectedRowInComponent(0), Feature.SolarPanels),
-                Greenhouses = datasource.GetValue(pickerView.SelectedRowInComponent(1), Feature.Greenhouses),
-                Size = datasource.GetValue(pickerView.SelectedRowInComponent(2), Feature.Size)
-            };
+		var pricerInput = new MarsHabitatPricerInput (datasource.GetValue (pickerView.SelectedRowInComponent (0), Feature.SolarPanels),
+			                                      datasource.GetValue (pickerView.SelectedRowInComponent (1), Feature.Greenhouses),
+			                                      datasource.GetValue (pickerView.SelectedRowInComponent (2), Feature.Size));
 
             // Use the ML model
             NSError prErr;
