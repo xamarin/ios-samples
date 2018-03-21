@@ -1,6 +1,7 @@
 *.stamp
 bin
 obj
+.vs
 Newtonsoft.Json.*
 NUnit.*
 Xamarin.UITest*
