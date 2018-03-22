@@ -32,5 +32,9 @@
 	<string>RosyWriter App needs Camera Access</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.rosywriter</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>RosyWriter App needs Microphone Access</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>RosyWriter App needs Photo Library Access</string>
 </dict>
 </plist>
