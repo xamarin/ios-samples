@@ -29,12 +29,12 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>We need the camera access to record video</string>
+	<string>RosyWriter needs camera access to record video</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.rosywriter</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>We need the microphone access to record video</string>
+	<string>RosyWriter needs microphone access to record video</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>We need the photo library access to save recorded video</string>
+	<string>RosyWriter needs photo library access to save recorded video</string>
 </dict>
 </plist>
