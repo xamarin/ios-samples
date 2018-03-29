@@ -1,5 +1,6 @@
+﻿
 //
-// Touches_ClassicViewController.cs
+// TouchesClassicViewController.cs
 //
 // Author:
 //       Mike Krüger <mkrueger@xamarin.com>
@@ -30,13 +31,13 @@ using System.Linq;
 using UIKit;
 using Foundation;
 
-namespace Touches_Classic
+namespace TouchesClassic
 {
-	public partial class Touches_ClassicViewController : UIViewController
+	public partial class TouchesClassicViewController : UIViewController
 	{
 		private float padding = 10f;
 
-		public Touches_ClassicViewController (UIWindow window, string nibName, NSBundle bundle) : base (nibName, bundle)
+		public TouchesClassicViewController (UIWindow window, string nibName, NSBundle bundle) : base (nibName, bundle)
 		{
 		}
 

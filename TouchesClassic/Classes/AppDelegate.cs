@@ -1,4 +1,4 @@
-//
+﻿//
 // AppDelegate.cs
 //
 // Author:
@@ -30,20 +30,20 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Touches_Classic
+namespace TouchesClassic
 {
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		UIWindow window;
-		Touches_ClassicViewController viewController;
+		TouchesClassicViewController viewController;
 
 		// This method is invoked when the application has loaded its UI and is ready to run
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
-			viewController = new Touches_ClassicViewController (window, "Touches_ClassicViewController", null);
+			viewController = new TouchesClassicViewController (window, "TouchesClassicViewController", null);
 			window.RootViewController = viewController;
 			window.MakeKeyAndVisible ();
 
