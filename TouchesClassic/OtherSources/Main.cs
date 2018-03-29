@@ -1,4 +1,4 @@
-//
+﻿//
 // Main.cs
 //
 // Author:
@@ -30,7 +30,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Touches_Classic
+namespace TouchesClassic
 {
 	public class Application
 	{

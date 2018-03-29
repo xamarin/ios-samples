@@ -8,8 +8,8 @@
     <ProjectGuid>{2099AE48-7732-405F-99E3-26E021ABEBC2}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Touches_Classic</RootNamespace>
-    <AssemblyName>Touches_Classic</AssemblyName>
+    <RootNamespace>TouchesClassic</RootNamespace>
+    <AssemblyName>TouchesClassic</AssemblyName>
     <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v1.0</TargetFrameworkVersion>
   </PropertyGroup>
@@ -79,9 +79,9 @@
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Touches_ClassicViewController.cs" />
-    <Compile Include="Classes\Touches_ClassicViewController.designer.cs">
-      <DependentUpon>Touches_ClassicViewController.cs</DependentUpon>
+    <Compile Include="Classes\TouchesClassicViewController.cs" />
+    <Compile Include="Classes\TouchesClassicViewController.designer.cs">
+      <DependentUpon>TouchesClassicViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\AppDelegate.cs" />
     <Compile Include="OtherSources\Main.cs" />
@@ -92,7 +92,7 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Classes\Touches_ClassicViewController.xib" />
+    <InterfaceDefinition Include="Classes\TouchesClassicViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
