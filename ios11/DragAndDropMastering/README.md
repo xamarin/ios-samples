@@ -6,7 +6,6 @@ There are two app projects in this sample, intended to be run at the same time o
 
 Swift sample available from [WWDC 2017 Mastering Drag and Drop](https://developer.apple.com/videos/play/wwdc2017/213/). See the [original readme](DragAndDropCommon/README.md) for more information.
 
-
 ## License
 
 Xamarin port changes are released under the MIT license
