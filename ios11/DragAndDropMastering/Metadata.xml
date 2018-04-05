@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>8AFA8A11-43B0-4470-8804-6B84F040CBE8</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>iOS11</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>Sample app demonstrating how to use the iOS 11 drag and drop APIs to copy data between iPad applications.</Brief>
+</SampleMetadata>
