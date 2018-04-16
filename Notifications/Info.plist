@@ -31,6 +31,6 @@
 	<key>CFBundleName</key>
 	<string>Notifications</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.notifications</string>
+	<string>com.xamarin.allnotifications</string>
 </dict>
 </plist>
