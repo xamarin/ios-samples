@@ -1,20 +1,12 @@
-using System;
 using UIKit;
 
 namespace Example_Notifications
 {
-	public class Application// : UIApplication
+	public class Application
 	{
-		public static void Main (string[] args)
+		public static void Main(string[] args)
 		{
-			try
-			{
-				UIApplication.Main (args, null, "AppDelegate");
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine (e.ToString ());
-			}
+			UIApplication.Main(args, null, "AppDelegate");
 		}
 	}
 }
