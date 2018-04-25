@@ -27,6 +27,7 @@
     </MtouchI18n>
     <AssemblyName>iCloud</AssemblyName>
     <MtouchArch>i386, x86_64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -39,7 +40,8 @@
     <MtouchI18n>
     </MtouchI18n>
     <AssemblyName>iCloud</AssemblyName>
-  <MtouchArch>i386, x86_64</MtouchArch></PropertyGroup>
+  <MtouchArch>i386, x86_64</MtouchArch>  <CodesignKey>iPhone Developer</CodesignKey>
+</PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -69,12 +71,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer: Craig Dunn (6Q937X2U43)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchLink>None</MtouchLink>
     <MtouchI18n>
     </MtouchI18n>
     <AssemblyName>iCloudSample</AssemblyName>
-    <CodesignProvision>CFA558A3-468A-48C2-9744-4B8BD0A9B79C</CodesignProvision>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
   </PropertyGroup>

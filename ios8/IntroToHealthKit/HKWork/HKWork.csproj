@@ -27,6 +27,7 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>i386, x86_64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -70,7 +71,6 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <CodesignProvision>6303ad69-45e8-4c05-940a-f9c02c8a8de0</CodesignProvision>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
