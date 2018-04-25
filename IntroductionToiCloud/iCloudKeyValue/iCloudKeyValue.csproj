@@ -40,7 +40,8 @@
     <MtouchI18n>
     </MtouchI18n>
     <AssemblyName>iCloud</AssemblyName>
-  <MtouchArch>i386, x86_64</MtouchArch>  <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
 </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
