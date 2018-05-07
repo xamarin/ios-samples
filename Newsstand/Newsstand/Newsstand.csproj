@@ -26,7 +26,9 @@
     <MtouchI18n />
     <AssemblyName>Newsstand</AssemblyName>
     <MtouchSdkVersion>5.0</MtouchSdkVersion>
-  <MtouchArch>i386, x86_64</MtouchArch></PropertyGroup>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
@@ -37,7 +39,9 @@
     <ConsolePause>false</ConsolePause>
     <MtouchI18n />
     <AssemblyName>Newsstand</AssemblyName>
-  <MtouchArch>i386, x86_64</MtouchArch></PropertyGroup>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -56,6 +60,7 @@
     <MtouchI18n />
     <MtouchLink>None</MtouchLink>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -67,6 +72,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <AssemblyName>FileSystem</AssemblyName>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
