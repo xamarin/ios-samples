@@ -52,6 +52,7 @@ namespace Quotes
 			}
 		}
 
+		[Export("getLineHeight")]
 		public float GetLineHeight ()
 		{
 			return page.LineHeight;
