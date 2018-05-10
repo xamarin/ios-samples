@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>96c0a724-8c67-42e4-932e-d053530a640a</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Fox2.SharedPart</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BaseComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Character.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ChaserComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\AudioSourceKind.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ChaserState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\GroundType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ParticleKind.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\ScaredState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\GKAgent2DExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\SimdExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\Utils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IMenuDelegate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Overlay.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlayerComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ScaredComponent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Menu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI\Slider.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Bitmask.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)audio\aah_extinction.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\ambience.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\attack.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\collect.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\collectBig.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\hit.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\hitEnemy.wav" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\Music_victory.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\ouch_firehit.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\panda_catch_fire.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\Step_rock_00.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\Step_rock_01.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\Step_rock_02.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\Step_rock_03.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\Step_rock_04.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\Step_rock_05.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\Step_rock_06.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\Step_rock_07.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\Step_rock_08.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\Step_rock_09.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)audio\volcano.mp3" />
+    <Content Include="$(MSBuildThisFileDirectory)Overlays\collectableBIG_empty.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Overlays\collectableBIG_full.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Overlays\congratulations.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Overlays\congratulations_pandaMax.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Overlays\dpad.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Overlays\key_empty.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Overlays\key_full.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Overlays\MaxIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)audio\Explosion1.m4a" />
+    <None Include="$(MSBuildThisFileDirectory)audio\Explosion2.m4a" />
+    <None Include="$(MSBuildThisFileDirectory)audio\jump.m4a" />
+    <None Include="$(MSBuildThisFileDirectory)audio\unlockTheDoor.m4a" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Resources\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Overlays\" />
+    <Folder Include="$(MSBuildThisFileDirectory)art.scnassets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\jump_dust.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\max.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\max_AO.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\max_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\max_diffuseB.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\max_diffuseC.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\max_diffuseD.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\max_idle.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\max_jump.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\max_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\max_specular.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\max_spin.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\max_walk.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\character\smoke.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\collision.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\baddy_bad_AO.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\baddy_bad_DIFFUSE.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\baddy_bad_ILLUMINATION.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\baddy_bad_NORMAL.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\baddy_fearful_AO.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\baddy_fearful_DIFFUSE.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\baddy_fearful_ILLUMINATION.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\baddy_fearful_NORMAL.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\baddy_fearful_ROUGHNESS.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\dot.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\enemies.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\enemy_explosion.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\enemy1.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\enemy2.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\fireMask.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\flare.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\enemy\gradient.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\level_scene.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\burn.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\circle.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\collect.scnp" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\collect-big.scnp" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\dot.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\enemy_explosion.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\fire.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\flare.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\glow_ellipse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\glow01.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\key_apparition.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\particles_spin.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\particles\unlock_door.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\scene.gks" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\scene.scn" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\Background_sky.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\circle.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\cubeMap4096.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\depart-vieuxVolcan_AO.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\depart-vieuxVolcan_lightmap.exr" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\depart-vieuxVolcan_lightmap.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\dot.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\env_star.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\fern_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\fern_illumination.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\fern_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\fernSpiral_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\fernSpiral_illumination.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\fernSpiral_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\fire.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\flowmapPanda.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\gem.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\gradient_fire.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\lava_cold2.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\lava_hot.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\lava_medium2.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\lava_splash01.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\lavaDry_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\lavaDry_Med_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\lavaDry_Med_diffuse.psd" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\lavaDry_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\lavalBubble.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\mobilePlateformBig_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\mobilePlateformBig_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\mobilePlateformBig_specular.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\mobilePT_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\noisemap.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\planks_albedo.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\planks_metalness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\planks_normal.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\planks_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\plantes_AO.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\plantes_lightmap.exr" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\plantes_lightmap.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\ripples.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\rocks_border_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\rocks_border_normal.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\rocks_border_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\rocks_top_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\rocks_top_normal.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\rocks_top_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\sand_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\sand_normal.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\sand_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\sky_cube.exr" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\sky_cube.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\smoke_panda.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\tile_blue_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\tile_blue_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\tile_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\tile_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\topLava_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\topLava_normal.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\topLava_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\wall_diffuse.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\textures\wall_roughness.png" />
+    <SceneKitAsset Include="$(MSBuildThisFileDirectory)art.scnassets\tile.png" />
+  </ItemGroup>
+</Project>
