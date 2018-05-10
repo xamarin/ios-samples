@@ -17,7 +17,7 @@ Build Requirements
 
 Xcode 9.0 or later; iOS 11 or later, tvOS 11 or later, macOS 10.13 or later
 
-Refs
+Related Links
 -------
 
 - [Original sample](https://developer.apple.com/library/content/samplecode/scenekit-2017/Introduction/Intro.html)
