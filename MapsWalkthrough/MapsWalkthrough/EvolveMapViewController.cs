@@ -1,11 +1,9 @@
-using System;
-using CoreGraphics;
-using Foundation;
-using UIKit;
-using MapKit;
+﻿using System;
 using CoreLocation;
+using MapKit;
+using UIKit;
 
-namespace MapDemo
+namespace MapsWalkthrough
 {
 	public partial class EvolveMapViewController : UIViewController
 	{
