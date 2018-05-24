@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapDemo", "MapDemo\MapDemo.csproj", "{A8ED3331-ADA1-49D9-9165-225F8C1DCCEA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapsWalkthrough", "MapsWalkthrough\MapsWalkthrough.csproj", "{A8ED3331-ADA1-49D9-9165-225F8C1DCCEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +27,6 @@ Global
 		{A8ED3331-ADA1-49D9-9165-225F8C1DCCEA}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = MapDemo\MapDemo.csproj
+		StartupItem = MapsWalkthrough\MapsWalkthrough.csproj
 	EndGlobalSection
 EndGlobal
