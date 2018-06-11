@@ -1,7 +1,8 @@
 Maps Walkthrough
 =================
 
-It also contains the completed sample created in the iOS [Annotations and
-Overlays](https://docs.microsoft.com/xamarin/ios/user-interface/controls/ios-maps/ios-maps-walkthrough)
-walkthrough. 
+Completed sample for the 
+[Annotations and Overlays in Xamarin.iOS](https://docs.microsoft.com/xamarin/ios/user-interface/controls/ios-maps/ios-maps-walkthrough)
+guide, which demonstrates how to add custom map annotations and overlays.
+
 
