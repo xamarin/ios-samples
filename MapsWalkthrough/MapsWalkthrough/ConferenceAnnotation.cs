@@ -1,10 +1,9 @@
-using System;
-using CoreLocation;
+﻿using CoreLocation;
 using MapKit;
 
-namespace MapDemo
+namespace MapsWalkthrough
 {
-    public class ConferenceAnnotation : MKAnnotation
+	public class ConferenceAnnotation : MKAnnotation
     {
         string title;
         CLLocationCoordinate2D coord;

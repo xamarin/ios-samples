@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using UIKit;
 
-using Foundation;
-using UIKit;
-
-namespace MapDemo
+namespace MapsWalkthrough
 {
-    public class Application
+	public class Application
     {
         // This is the main entry point of the application.
         static void Main (string[] args)

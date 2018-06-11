@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+    <ID>41B76554-BE84-4570-AF52-D22B32013C2E</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Beginner</Level>
+    <Tags>Maps, Location</Tags>
+    <Gallery>true</Gallery>
+    <Brief>An example of how to use the MapKit framework. This relates to the iOS Maps guide and walkthrough.</Brief>
+</SampleMetadata>

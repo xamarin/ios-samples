@@ -3,7 +3,7 @@ using MapKit;
 using UIKit;
 using CoreGraphics;
 
-namespace MapDemo
+namespace MapsWalkthrough
 {
 	class MapDelegate : MKMapViewDelegate
 	{
