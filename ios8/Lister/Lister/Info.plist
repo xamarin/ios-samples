@@ -97,7 +97,7 @@
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>WidgetBundleIdentifier</key>
-	<string>com.xamarin.Lister.ListerToday</string>
+	<string>$(CFBundleIdentifier).ListerToday</string>
 	<key>CFBundleName</key>
 	<string>Lister</string>
 </dict>
