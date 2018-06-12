@@ -4,6 +4,7 @@
     <IsFullApplication>false</IsFullApplication>
     <Level>Beginner</Level>
     <Tags>Maps, Location</Tags>
+    <SupportedPlatforms>iOS</SupportedPlatforms>
     <Gallery>true</Gallery>
     <Brief>An example of how to use the MapKit framework. This relates to the iOS Maps guide and walkthrough.</Brief>
 </SampleMetadata>
