@@ -5,5 +5,6 @@
     <Level>Beginner</Level>
     <Tags>Maps, Location</Tags>
     <Gallery>true</Gallery>
-    <Brief>An example of how to use the MapKit framework. This relates to the iOS Maps guide and walkthrough.</Brief>
+    <Brief>A demonstration of using custom map annotations and overlays. This relates to the Annotations and Overlays in Xamarin.iOS guide.</Brief>
 </SampleMetadata>
+
