@@ -1,0 +1,22 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup>
+        <CleanDependsOn>
+            CleanResources;
+            $(CleanDependsOn);
+        </CleanDependsOn>
+
+        <BuildDependsOn>
+            PrepareResources;
+            $(BuildDependsOn);
+        </BuildDependsOn>
+    </PropertyGroup>
+    
+    <Target Name="CleanResources">
+        <Exec Command="make clean" WorkingDirectory="..\..\..\binding" />
+    </Target>
+
+    <Target Name="PrepareResources">
+        <Exec Command="make" WorkingDirectory="..\..\..\binding" />
+    </Target>
+</Project>

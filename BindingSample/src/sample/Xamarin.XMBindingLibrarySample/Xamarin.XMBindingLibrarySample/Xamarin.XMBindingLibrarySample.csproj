@@ -116,4 +116,5 @@
     <ITunesArtwork Include="Resources\iTunesArtwork.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="BindingActions.targets" />
 </Project>

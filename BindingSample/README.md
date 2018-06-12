@@ -9,8 +9,7 @@ This example shows how we can utilize an existing Objective-C library and expose
 
 - Building a `*.dll` that contains both the binding and and the embedded native library.
 
-##Understanding this Sample
-
+## Understanding this Sample
 
 This sample consists of three distinct source projects:
 
@@ -20,8 +19,7 @@ This sample consists of three distinct source projects:
 
 Please see the README in each project folder for more details.
 
-##Building this Sample
-
+## Building this Sample
 
 To compile the Xcode Project and binding classes execute the `make` command from the root directory.
 
@@ -33,13 +31,12 @@ The make command will:
 
 The resulting .dll is created using the [LinkWithAttribute](http://docs.xamarin.com/ios/advanced_topics/binding_objective-c_types#Linking_the_Dependencies) and will automatically embed the native library in your application.
 
-##Creating a Universal Binary
-
+## Creating a Universal Binary
 
 A "fat" or multi-architecture library is a compiled binary that is usable on multiple targets, for example: armv6, armv7, i386
 (simulator). In this sample we illustrate how to create a universal binary in two ways:
 
-###Using lipo
+### Using lipo
 
 Once we have built our library against the desired architectures we can create the universal binary via `lipo`. This will create a "universal" file from the architecture specific inputs we have provided. For instance:
 
@@ -48,7 +45,7 @@ Once we have built our library against the desired architectures we can create t
 
 Similarly, in our Makefile script we have `lipo -create -output $@ $^` which will take the libraries compiled for armv6, armv7, and i386 using xbuild and output them to the current directory with the name of our build target.
 
-###Using Xcode
+### Using Xcode
 
 In our Xcode project we have created a separate `Build Target` that will execute a post build `Run Script` to output a
 "universal" file.
