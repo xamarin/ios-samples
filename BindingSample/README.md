@@ -25,7 +25,7 @@ To compile the Xcode Project and binding classes execute the `make` command from
 
 The make command will:
 
-- Compile the Xcode Project for ARM6, ARM7, and Simulator
+- Compile the Xcode Project for ARMv7, ARM64, and i386 (Simulator)
 - Create a multi-architecture binary using `lipo`
 - Create a `*.dll` in the binding folder using `btouch-native`
 
@@ -33,17 +33,18 @@ The resulting .dll is created using the [LinkWithAttribute](http://docs.xamarin.
 
 ## Creating a Universal Binary
 
-A "fat" or multi-architecture library is a compiled binary that is usable on multiple targets, for example: armv6, armv7, i386
-(simulator). In this sample we illustrate how to create a universal binary in two ways:
+A "fat" or multi-architecture library is a compiled binary that is usable on 
+multiple targets, for example: ARMv7, ARM64, and i386 (simulator). In
+this sample we illustrate how to create a universal binary in two ways:
 
 ### Using lipo
 
 Once we have built our library against the desired architectures we can create the universal binary via `lipo`. This will create a "universal" file from the architecture specific inputs we have provided. For instance:
 
-	lipo -create libXMBindingLibrarySample-armv7.a libXMBindingLibrarySample-armv6.a libXMBindingLibrarySample-i386.a -output 	libXMBindingLibrarySampleUniversal.a
+	lipo -create libXMBindingLibrarySample-armv7.a libXMBindingLibrarySample-arm64.a libXMBindingLibrarySample-i386.a -output 	libXMBindingLibrarySampleUniversal.a
 
 
-Similarly, in our Makefile script we have `lipo -create -output $@ $^` which will take the libraries compiled for armv6, armv7, and i386 using xbuild and output them to the current directory with the name of our build target.
+Similarly, in our Makefile script we have `lipo -create -output $@ $^` which will take the libraries compiled for ARM64, ARMv7, and i386 using xbuild and output them to the current directory with the name of our build target.
 
 ### Using Xcode
 
