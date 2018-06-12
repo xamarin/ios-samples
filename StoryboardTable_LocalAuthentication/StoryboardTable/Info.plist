@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Storyboard Table</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.your-company.StoryboardTable</string>
+	<string>com.xamarin.StoryboardTable</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -41,5 +41,7 @@
 	</array>
 	<key>CFBundleName</key>
 	<string>Storyboard Table</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>To authenticate before adding a chore</string>
 </dict>
 </plist>
