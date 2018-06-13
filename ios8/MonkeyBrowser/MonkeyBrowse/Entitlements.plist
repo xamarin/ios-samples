@@ -13,9 +13,5 @@
 	</array>
 	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
 	<string>$(AppIdentifierPrefix)$(CFBundleIdentifier)</string>
-	<key>com.apple.developer.ubiquity-container-identifiers</key>
-	<array>
-		<string>$(AppIdentifierPrefix)com.appracatappra.monkeybrowser</string>
-	</array>
 </dict>
 </plist>
