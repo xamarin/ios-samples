@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14113" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" identifier="interfaceController" title="Hi Watch">
+                    <items>
+                        <button width="151" alignment="left" title="Press me!" id="81" height="38">
+                            <connections>
+                                <action selector="OnButtonPress" destination="AgC-eL-Hgc" id="84"/>
+                            </connections>
+                        </button>
+                        <label alignment="left" text="unclicked" id="83"/>
+                    </items>
+                    <connections>
+                        <outlet property="myButton" destination="81" id="name-outlet-81"/>
+                        <outlet property="myLabel" destination="83" id="name-outlet-83"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <!--Notification Controller-->
+    </scenes>
+</document>

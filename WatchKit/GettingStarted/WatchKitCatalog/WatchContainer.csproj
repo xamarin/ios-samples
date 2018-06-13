@@ -24,7 +24,6 @@
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchProfiling>true</MtouchProfiling>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n></MtouchI18n>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
@@ -128,12 +127,12 @@
       <DependentUpon>WatchKitCatalogViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\WatchkitExtension\WatchExtension.csproj">
-      <Project>{79CEF537-4C5B-497C-9F9B-E32AAC4227BC}</Project>
-      <Name>WatchExtension</Name>
-      <IsAppExtension>True</IsAppExtension>
+    <ProjectReference Include="..\WatchContainer.WatchApp\WatchContainer.WatchApp.csproj">
+      <IsWatchApp>true</IsWatchApp>
+      <Project>{3939EB76-707A-4C18-9EBF-292228006E82}</Project>
+      <Name>WatchContainer.WatchApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
