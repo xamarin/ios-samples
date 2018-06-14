@@ -21,6 +21,7 @@ namespace Chat
 
 		NSLayoutConstraint toolbarBottomConstraint;
 		NSLayoutConstraint toolbarHeightConstraint;
+        int notifCount = 0;
 
 		ChatInputView chatInputView;
 
@@ -152,7 +153,8 @@ namespace Chat
                 toolbar.HeightAnchor.ConstraintEqualTo(44).Active = true;
                 toolbar.LeadingAnchor.ConstraintEqualTo(safeGuide.LeadingAnchor).Active = true;
                 toolbar.TrailingAnchor.ConstraintEqualTo(safeGuide.TrailingAnchor).Active = true;
-                toolbar.BottomAnchor.ConstraintEqualTo(safeGuide.BottomAnchor).Active = true;
+                toolbarBottomConstraint = toolbar.BottomAnchor.ConstraintEqualTo(safeGuide.BottomAnchor);
+                toolbarBottomConstraint.Active = true;
             }
             else
             {
@@ -236,12 +238,13 @@ namespace Chat
 
 		void KeyboardWillShowHandler (object sender, UIKeyboardEventArgs e)
 		{
-			UpdateButtomLayoutConstraint (e);
+            UpdateButtomLayoutConstraint (e);
 		}
 
 		void KeyboardWillHideHandler (object sender, UIKeyboardEventArgs e)
 		{
-			UpdateButtomLayoutConstraint (e);
+            notifCount = 0;
+            SetToolbarContstraint(0);
 		}
 
 		void UpdateButtomLayoutConstraint (UIKeyboardEventArgs e)
@@ -251,9 +254,9 @@ namespace Chat
             {
 				UIView.Animate(e.AnimationDuration, 0, ConvertToAnimationOptions(e.AnimationCurve), () =>
 				{
-					nfloat offsetFromBottom = tableView.Frame.GetMaxY() - e.FrameEnd.GetMinY();
+                    nfloat offsetFromBottom = toolbar.Frame.GetMaxY() - e.FrameEnd.GetMinY();
 					offsetFromBottom = NMath.Max(0, offsetFromBottom);
-					
+                    if (++notifCount >= 2) { SetToolbarContstraint(-offsetFromBottom); }
 				}, null);
             }
             else
