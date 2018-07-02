@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Configuration View Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="ConfigurationInterfaceController" identifier="ConfigurationInterfaceController">
+                    <items>
+                        <label alignment="left" text="Activity Type" id="33">
+                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                        </label>
+                        <picker width="1" height="38" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="34">
+                            <connections>
+                                <action selector="ActivityTypePickerSelectedItemChanged:" destination="AgC-eL-Hgc" id="728"/>
+                            </connections>
+                        </picker>
+                        <label alignment="left" text="Location Type" id="35">
+                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                        </label>
+                        <picker width="1" height="38" alignment="left" focusStyle="stack" indicatorMode="shownWhileFocused" id="36">
+                            <connections>
+                                <action selector="LocationTypePickerSelectedItemChanged:" destination="AgC-eL-Hgc" id="729"/>
+                            </connections>
+                        </picker>
+                        <button width="1" alignment="left" title="Start" id="37">
+                            <connections>
+                                <action selector="DidTapStartButton" destination="AgC-eL-Hgc" id="670"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Slothify Workouts" id="153">
+                            <connections>
+                                <action selector="SlothifyWorkouts" destination="AgC-eL-Hgc" id="344"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="ActivityTypePicker" destination="34" id="name-outlet-34"/>
+                        <outlet property="LocationTypePicker" destination="36" id="name-outlet-36"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-104" y="32"/>
+        </scene>
+        <!--Workout Interface Controller-->
+        <scene sceneID="43">
+            <objects>
+                <controller id="44" customClass="WorkoutInterfaceController" identifier="WorkoutInterfaceController">
+                    <items>
+                        <label alignment="left" text="Label" id="45">
+                            <color key="textColor" red="1" green="0.97880674710000004" blue="0.13324607359999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label alignment="left" text="Label" id="46">
+                            <color key="textColor" red="1" green="0.041046944600000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label alignment="left" text="Label" id="47">
+                          <color key="textColor" red="0.0" green="0.56638695100000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label width="136" alignment="left" id="53" text="Marker Saved!" alpha="0">
+                            <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <group width="1" alignment="left" id="48">
+                            <items>
+                                <button width="0.5" alignment="left" title="Pause" id="49">
+                                    <connections>
+                                        <action selector="DidTapPauseResumeButton" destination="44" id="54"/>
+                                    </connections>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </button>
+                                <button width="0.5" alignment="left" title="Marker" id="51">
+                                    <connections>
+                                        <action selector="DidTapMarkerButton" destination="44" id="55"/>
+                                    </connections>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </button>
+                            </items>
+                        </group>
+                        <button width="1" alignment="left" title="Stop" id="52">
+                            <connections>
+                                <action selector="DidTapStopButton" destination="44" id="56"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="CaloriesLabel" destination="46" id="name-outlet-46"/>
+                        <outlet property="DistanceLabel" destination="47" id="name-outlet-47"/>
+                        <outlet property="DurationLabel" destination="45" id="name-outlet-45"/>
+                        <outlet property="MarkerButton" destination="51" id="name-outlet-51"/>
+                        <outlet property="MarkerLabel" destination="53" id="name-outlet-53"/>
+                        <outlet property="PauseResumeButton" destination="49" id="name-outlet-49"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="157" y="43"/>
+        </scene>
+        <!--Summary Interface Controller-->
+        <scene sceneID="57">
+            <objects>
+                <controller id="58" customClass="SummaryInterfaceController" identifier="SummaryInterfaceController">
+                    <items>
+                        <label alignment="left" text="Label" id="59"/>
+                        <label alignment="left" text="Label" id="60">
+                            <color key="textColor" red="1" green="0.97880674707302084" blue="0.13324607364832664" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label alignment="left" text="Label" id="61">
+                            <color key="textColor" red="1" green="0.041046944598614132" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label alignment="left" text="Label" id="62">
+                            <color key="textColor" red="0.0" green="0.56638695098710379" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <button width="1" alignment="left" title="Done" id="63">
+                            <connections>
+                                <action selector="TapDoneTapped" destination="58" id="285"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="CaloriesLabel" destination="61" id="name-outlet-61"/>
+                        <outlet property="DistanceLabel" destination="62" id="name-outlet-62"/>
+                        <outlet property="DurationLabel" destination="60" id="name-outlet-60"/>
+                        <outlet property="WorkoutLabel" destination="59" id="name-outlet-59"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="386" y="43"/>
+        </scene>
+    </scenes>
+</document>
