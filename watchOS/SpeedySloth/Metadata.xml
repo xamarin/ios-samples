@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>912c97e0-8a72-455f-bf66-bda25464b8ec</ID>
+  <IsFullApplication>true</IsFullApplication>
+  <Brief>This sample demonstrates how to use HealthKit to build a workout app that runs in the background, collects data from the Apple Watch sensors, and contributes to Activity rings.</Brief>
+  <SupportedPlatforms>iOS, watchOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>Device Features, Backgrounding, iOS11, Maps + Location</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>
