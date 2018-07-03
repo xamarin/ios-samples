@@ -8,7 +8,7 @@ This sample demonstrates how to use HealthKit to build a workout app that runs i
 Build Requirements
 -------
 
-Xcode 9.0 or later; iOS 11.0 SDK, watchOS 4.0 SDK or later
+Xamarin.iOS 11.0 or later, Xcode 9.0 or later
 
 Related Links
 -------
