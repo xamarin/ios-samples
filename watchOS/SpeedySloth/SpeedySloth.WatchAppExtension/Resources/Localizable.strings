@@ -1,0 +1,19 @@
+﻿// Workout type with location type prefix: %1$@ in the location type, %2$@ is the workout type, e.g. "Indoor Walk"
+"LOCATION_TYPE_%@_WORKOUT_TYPE_%@" = "{0} {1}";
+
+// Page titles
+"Starting" = "Starting";
+"Ended" = "Ended";
+"Paused" = "Paused";
+"Summary" = "Summary";
+
+// pause and resume
+"Pause" = "Pause";
+"Resume" = "Resume";
+
+// Units
+"Calories" = "Calories";
+"Meters" = "Meters";
+
+// Value with unit: %1$@ is the numeric value, %2$@ is the unit, e.g., "0.5 meters"
+"VALUE_%@_UNIT_%@" = "{0:0.0} {1}";
