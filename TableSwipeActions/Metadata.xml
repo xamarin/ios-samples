@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+    <ID>EACEDCA4-6E94-4A5C-9BA4-6F3766FABB3D</ID>
+	<IsFullApplication>true</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>User Interface</Tags>
+    <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>This sample demonstrates table row actions in ios 11</Brief>
+</SampleMetadata>

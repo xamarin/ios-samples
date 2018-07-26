@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Lister</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.Lister</string>
+	<string>com.xamarin.lister</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -13,7 +13,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>9.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -97,6 +97,8 @@
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>WidgetBundleIdentifier</key>
-	<string>com.xamarin.Lister.ListerToday</string>
+	<string>$(CFBundleIdentifier).ListerToday</string>
+	<key>CFBundleName</key>
+	<string>Lister</string>
 </dict>
 </plist>

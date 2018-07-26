@@ -1,5 +1,7 @@
-SamplePhotoApp
+SamplePhotoApp (iOS 10)
 ==========
+
+## See the updated iOS 11 version
 
 A basic Photos-like app to demonstrate the Photos framework. 
 

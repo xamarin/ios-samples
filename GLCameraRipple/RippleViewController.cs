@@ -271,12 +271,12 @@ namespace GLCameraRipple
 
 		class DataOutputDelegate : AVCaptureVideoDataOutputSampleBufferDelegate {
 			CVOpenGLESTexture lumaTexture, chromaTexture;
-			RippleViewController container;
+			WeakReference<RippleViewController> wcontainer;
 			int textureWidth, textureHeight;
 
 			public DataOutputDelegate (RippleViewController container)
 			{
-				this.container = container;
+				wcontainer = new WeakReference<RippleViewController>(container);
 			}
 
 			void CleanupTextures ()
@@ -285,7 +285,8 @@ namespace GLCameraRipple
 					lumaTexture.Dispose ();
 				if (chromaTexture != null)
 					chromaTexture.Dispose ();
-				container.videoTextureCache.Flush (CVOptionFlags.None);
+				if (wcontainer.TryGetTarget (out var container))
+					container.videoTextureCache.Flush (CVOptionFlags.None);
 			}
 
 			public override void DidOutputSampleBuffer (AVCaptureOutput captureOutput, CMSampleBuffer sampleBuffer, AVCaptureConnection connection)
@@ -295,39 +296,43 @@ namespace GLCameraRipple
 						int width = (int) pixelBuffer.Width;
 						int height = (int) pixelBuffer.Height;
 
-						if (container.ripple == null || width != textureWidth || height != textureHeight){
-							textureWidth = width;
-							textureHeight = height;
-							container.SetupRipple (textureWidth, textureHeight);
+						if (wcontainer.TryGetTarget (out var container)) {
+
+							if (container.ripple == null || width != textureWidth || height != textureHeight) {
+								textureWidth = width;
+								textureHeight = height;
+								container.SetupRipple (textureWidth, textureHeight);
+							}
+
+							CleanupTextures ();
+
+							// Y-plane
+							GL.ActiveTexture (TextureUnit.Texture0);
+							All re = (All)0x1903; // GL_RED_EXT, RED component from ARB OpenGL extension
+							CVReturn status;
+							lumaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureWidth, textureHeight, re, DataType.UnsignedByte, 0, out status);
+
+							if (lumaTexture == null) {
+								Console.WriteLine ("Error creating luma texture: {0}", status);
+								return;
+							}
+							GL.BindTexture (lumaTexture.Target, lumaTexture.Name);
+							GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)All.ClampToEdge);
+							GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)All.ClampToEdge);
+
+							// UV Plane
+							GL.ActiveTexture (TextureUnit.Texture1);
+							re = (All)0x8227; // GL_RG_EXT, RED GREEN component from ARB OpenGL extension
+							chromaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureWidth / 2, textureHeight / 2, re, DataType.UnsignedByte, 1, out status);
+
+							if (chromaTexture == null) {
+								Console.WriteLine ("Error creating chroma texture: {0}", status);
+								return;
+							}
+							GL.BindTexture (chromaTexture.Target, chromaTexture.Name);
+							GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int)All.ClampToEdge);
+							GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int)All.ClampToEdge);
 						}
-						CleanupTextures ();
-
-						// Y-plane
-						GL.ActiveTexture(TextureUnit.Texture0);
-						All re = (All) 0x1903; // GL_RED_EXT, RED component from ARB OpenGL extension
-						CVReturn status;
-						lumaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureWidth, textureHeight, re, DataType.UnsignedByte, 0, out status);
-
-						if (lumaTexture == null){
-							Console.WriteLine ("Error creating luma texture: {0}", status);
-							return;
-						}
-						GL.BindTexture (lumaTexture.Target, lumaTexture.Name);
-						GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int) All.ClampToEdge);
-						GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int) All.ClampToEdge);
-
-						// UV Plane
-						GL.ActiveTexture (TextureUnit.Texture1);
-						re = (All) 0x8227; // GL_RG_EXT, RED GREEN component from ARB OpenGL extension
-						chromaTexture = container.videoTextureCache.TextureFromImage (pixelBuffer, true, re, textureWidth/2, textureHeight/2, re, DataType.UnsignedByte, 1, out status);
-
-						if (chromaTexture == null){
-							Console.WriteLine ("Error creating chroma texture: {0}", status);
-							return;
-						}
-						GL.BindTexture (chromaTexture.Target, chromaTexture.Name);
-						GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int) All.ClampToEdge);
-						GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int) All.ClampToEdge);
 					}
 				} finally {
 					sampleBuffer.Dispose ();

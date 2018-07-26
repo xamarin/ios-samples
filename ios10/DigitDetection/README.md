@@ -1,4 +1,5 @@
-# MPSCNNHelloWorld
+MPSCNNHelloWorld
+================
 
 This sample is a port of the open source library, `TensorFlow` trained networks trained on [MNIST Dataset](http://yann.lecun.com/exdb/mnist/) via inference using Metal Performance Shaders.  
 The sample demonstrates how to encode different layers to the GPU and perform image recognition using trained parameters (weights and bias) that have been fetched from, pre-trained and saved network on TensorFlow.

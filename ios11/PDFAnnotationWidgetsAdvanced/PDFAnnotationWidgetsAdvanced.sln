@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFAnnotationWidgetsAdvanced", "PDFAnnotationWidgetsAdvanced\PDFAnnotationWidgetsAdvanced.csproj", "{A5983ACA-90D1-4C61-A7C7-791FFE3ECF1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5983ACA-90D1-4C61-A7C7-791FFE3ECF1D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{A5983ACA-90D1-4C61-A7C7-791FFE3ECF1D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{A5983ACA-90D1-4C61-A7C7-791FFE3ECF1D}.Release|iPhone.ActiveCfg = Release|iPhone
+		{A5983ACA-90D1-4C61-A7C7-791FFE3ECF1D}.Release|iPhone.Build.0 = Release|iPhone
+		{A5983ACA-90D1-4C61-A7C7-791FFE3ECF1D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{A5983ACA-90D1-4C61-A7C7-791FFE3ECF1D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{A5983ACA-90D1-4C61-A7C7-791FFE3ECF1D}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{A5983ACA-90D1-4C61-A7C7-791FFE3ECF1D}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal

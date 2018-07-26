@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>547c76f0-b990-400f-8c53-2d64fea59d3b</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginner</Level>
+  <Tags>User Interface, Platform Features, Media, iOS11</Tags>
+  <SupportedPlatforms>iOS, tvOS</SupportedPlatforms>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <Gallery>true</Gallery>
+  <Brief>Basic Photos-like app which introduces the Photos framework.</Brief>
+</SampleMetadata>

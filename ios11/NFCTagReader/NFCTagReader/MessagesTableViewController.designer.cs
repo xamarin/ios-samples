@@ -1,0 +1,33 @@
+// WARNING
+//
+// This file has been generated automatically by Visual Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
+//
+using Foundation;
+using System;
+using System.CodeDom.Compiler;
+using UIKit;
+
+namespace NFCTagReader
+{
+    [Register ("MessagesTableViewController")]
+    partial class MessagesTableViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIBarButtonItem ScanButton { get; set; }
+
+        [Action ("Scan:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void Scan (UIKit.UIBarButtonItem sender);
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (ScanButton != null) {
+                ScanButton.Dispose ();
+                ScanButton = null;
+            }
+        }
+    }
+}

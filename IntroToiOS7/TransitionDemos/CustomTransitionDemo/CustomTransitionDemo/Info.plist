@@ -20,6 +20,10 @@
 		<string>Icon-Small-50</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>6.0</string>
+	<string>9.0</string>
+	<key>CFBundleName</key>
+	<string>CustomTransitionDemo</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.customtransitiondemo</string>
 </dict>
 </plist>

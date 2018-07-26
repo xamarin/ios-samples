@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+    <ID>41B76554-BE84-4570-AF52-D22B32013C2E</ID>
+    <IsFullApplication>false</IsFullApplication>
+    <Level>Beginner</Level>
+    <Tags>Maps + Location</Tags>
+    <SupportedPlatforms>iOS</SupportedPlatforms>
+    <Gallery>true</Gallery>
+    <Brief>A demonstration of using custom map annotations and overlays. This relates to the Annotations and Overlays in Xamarin.iOS guide.</Brief>
+</SampleMetadata>

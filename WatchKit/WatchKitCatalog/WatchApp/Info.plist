@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"[]>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
     <key>CFBundleDevelopmentRegion</key>
@@ -30,7 +30,7 @@
     <key>WKWatchKitApp</key>
     <true />
     <key>MinimumOSVersion</key>
-    <string>8.2</string>
+    <string>9.0</string>
     <key>XSAppIconAssets</key>
     <string>Resources/Images.xcassets/AppIcons.appiconset</string>
   </dict>

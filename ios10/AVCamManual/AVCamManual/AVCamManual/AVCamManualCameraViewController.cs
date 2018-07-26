@@ -897,7 +897,7 @@ namespace AVCamManual
 						// This avoids using double the disk space during save, which can make a difference on devices with limited free disk space.
 						var options = new PHAssetResourceCreationOptions ();
 						options.ShouldMoveFile = true;
-						PHAssetCreationRequest.CreationRequestForAsset ().AddResource (PHAssetResourceType.Photo, filePath, options); // Add move (not copy) option
+						PHAssetCreationRequest.CreationRequestForAsset ().AddResource (PHAssetResourceType.Photo, new NSUrl(filePath), options); // Add move (not copy) option
 					}, (success, err) => {
 						if (!success)
 							Console.WriteLine ($"Error occurred while saving raw photo to photo library: {err}");

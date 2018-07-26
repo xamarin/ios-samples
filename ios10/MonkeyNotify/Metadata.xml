@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+	<ID>f154a5da-893f-474b-aaa3-45f89e067b02</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>iOS10, Notifications</Tags>
+	<SupportedPlatforms>iOS</SupportedPlatforms>
+    <LicenseRequirement>Starter</LicenseRequirement>
+	<Gallery>true</Gallery>
+	<Brief>This app demonstrates how to use the new User Notification framework in Xamarin.iOS.</Brief>
+</SampleMetadata>

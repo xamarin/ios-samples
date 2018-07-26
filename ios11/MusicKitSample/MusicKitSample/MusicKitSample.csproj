@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{BCBBC179-9DD9-4630-B712-FFDB3BFBCAEF}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MusicKitSample</RootNamespace>
+    <AssemblyName>MusicKitSample</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <IOSDebuggerPort>23990</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>60707</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Assets.imageset\Assets.png" />
+    <ImageAsset Include="Assets.xcassets\Assets.imageset\Assets%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Assets.imageset\Assets%403x.png" />
+    <ImageAsset Include="Assets.xcassets\Assets.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Backward.imageset\Backward.pdf" />
+    <ImageAsset Include="Assets.xcassets\Backward.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Configure.imageset\Configure.png" />
+    <ImageAsset Include="Assets.xcassets\Configure.imageset\Configure%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Configure.imageset\Configure%403x.png" />
+    <ImageAsset Include="Assets.xcassets\Configure.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Forward.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Forward.imageset\Forward.pdf" />
+    <ImageAsset Include="Assets.xcassets\Pause.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Pause.imageset\Pause.pdf" />
+    <ImageAsset Include="Assets.xcassets\Play.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Play.imageset\Play.pdf" />
+    <ImageAsset Include="Assets.xcassets\Song.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Album.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Song.imageset\song_thumbnail.png" />
+    <ImageAsset Include="Assets.xcassets\Song.imageset\song_thumbnail%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Song.imageset\song_thumbnail%403x.png" />
+    <ImageAsset Include="Assets.xcassets\Album.imageset\album_thumbnail.png" />
+    <ImageAsset Include="Assets.xcassets\Album.imageset\album_thumbnail%402x.png" />
+    <ImageAsset Include="Assets.xcassets\Album.imageset\album_thumbnail%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Views\" />
+    <Folder Include="Models\" />
+    <Folder Include="Utilities\" />
+    <Folder Include="Assets.xcassets\Song.imageset\" />
+    <Folder Include="Assets.xcassets\Album.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Views\PlayerViewController.cs" />
+    <Compile Include="Views\PlayerViewController.designer.cs">
+      <DependentUpon>PlayerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecentlyPlayedTableViewController.cs" />
+    <Compile Include="Views\RecentlyPlayedTableViewController.designer.cs">
+      <DependentUpon>RecentlyPlayedTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AuthorizationTableViewController.cs" />
+    <Compile Include="Views\AuthorizationTableViewController.designer.cs">
+      <DependentUpon>AuthorizationTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediaSearchTableViewController.cs" />
+    <Compile Include="Views\MediaSearchTableViewController.designer.cs">
+      <DependentUpon>MediaSearchTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlaylistTableViewController.cs" />
+    <Compile Include="Views\PlaylistTableViewController.designer.cs">
+      <DependentUpon>PlaylistTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlaylistTableViewCell.cs" />
+    <Compile Include="Views\PlaylistTableViewCell.designer.cs">
+      <DependentUpon>PlaylistTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediaItemTableViewCell.cs" />
+    <Compile Include="Views\MediaItemTableViewCell.designer.cs">
+      <DependentUpon>MediaItemTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Artwork.cs" />
+    <Compile Include="Models\MediaItem.cs" />
+    <Compile Include="Models\MediaType.cs" />
+    <Compile Include="Utilities\JsonKeys.cs" />
+    <Compile Include="Utilities\AppleMusicRequestFactory.cs" />
+    <Compile Include="Controllers\AppleMusicManager.cs" />
+    <Compile Include="Models\SerializationException.cs" />
+    <Compile Include="Controllers\AuthorizationManager.cs" />
+    <Compile Include="Controllers\AuthorizationDataSource.cs" />
+    <Compile Include="Controllers\ImageCacheManager.cs" />
+    <Compile Include="Controllers\MediaLibraryManager.cs" />
+    <Compile Include="Controllers\MusicPlayerManager.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

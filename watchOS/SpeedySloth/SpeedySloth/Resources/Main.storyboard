@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="232">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="231">
+            <objects>
+                <navigationController id="232" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="234">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue id="287" destination="241" kind="relationship" relationship="rootViewController"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="235" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-517" y="-425"/>
+        </scene>
+        <scene sceneID="240">
+            <objects>
+                <viewController id="241" sceneMemberID="viewController" customClass="ConfigurationViewController">
+                    <layoutGuides/>
+                    <view key="view" contentMode="scaleToFill" id="242">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.8287925124168396" green="0.7889552116394043" blue="0.7471005916595459" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="293" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="72" width="343" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" id="997" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="104" width="343" height="150"/>
+                                <constraints>
+                                    <constraint id="3045" firstItem="997" firstAttribute="height" constant="150"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1009" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="26" y="262" width="333" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" id="1254" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="302" width="343" height="150"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3297" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="130" y="617" width="120" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Start Workout"/>
+                                <connections>
+                                    <segue id="3675" destination="3596" kind="presentation" identifier="presentWorkoutSegue"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="298" firstItem="242" firstAttribute="trailingMargin" secondItem="293" secondAttribute="trailing"/>
+                            <constraint id="299" firstItem="293" firstAttribute="top" secondItem="242" secondAttribute="topMargin" constant="8"/>
+                            <constraint id="311" firstItem="242" firstAttribute="leadingMargin" secondItem="293" secondAttribute="leading"/>
+                            <constraint id="998" firstItem="997" firstAttribute="leading" secondItem="242" secondAttribute="leadingMargin"/>
+                            <constraint id="999" firstItem="242" firstAttribute="trailingMargin" secondItem="997" secondAttribute="trailing"/>
+                            <constraint id="1000" firstItem="997" firstAttribute="top" secondItem="293" secondAttribute="bottom" constant="8"/>
+                            <constraint id="1255" firstItem="1254" firstAttribute="top" secondItem="1009" secondAttribute="bottom" constant="8"/>
+                            <constraint id="1256" firstItem="1254" firstAttribute="leading" secondItem="242" secondAttribute="leadingMargin"/>
+                            <constraint id="1257" firstItem="242" firstAttribute="trailingMargin" secondItem="1254" secondAttribute="trailing"/>
+                            <constraint id="1258" firstItem="1254" firstAttribute="height" secondItem="997" secondAttribute="height"/>
+                            <constraint id="2779" firstItem="1009" firstAttribute="top" secondItem="997" secondAttribute="bottom" constant="16"/>
+                            <constraint id="3029" firstItem="1009" firstAttribute="leading" secondItem="242" secondAttribute="leadingMargin"/>
+                            <constraint id="3314" firstItem="3297" firstAttribute="centerX" secondItem="242" secondAttribute="centerX"/>
+                            <constraint id="3315" firstItem="242" firstAttribute="bottom" secondItem="3297" secondAttribute="bottom" constant="40"/>
+                            <constraint id="3316" firstItem="3297" firstAttribute="top" secondItem="1254" secondAttribute="bottom" constant="100" relation="greaterThanOrEqual"/>
+                        </constraints>
+                    </view>
+                    <navigationItem id="286" key="navigationItem"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="ActivityTypePicker" destination="997" id="name-outlet-997"/>
+                        <outlet property="LocationTypePicker" destination="1254" id="name-outlet-1254"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="243" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="82" y="-429"/>
+        </scene>
+        <scene sceneID="3595">
+            <objects>
+                <viewController id="3596" sceneMemberID="viewController" customClass="WorkoutViewController" storyboardIdentifier="WorkoutViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3593"/>
+                        <viewControllerLayoutGuide type="bottom" id="3594"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3597">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.88627450980392153" green="0.83921568627450982" blue="0.72941176470588232" alpha="1"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work session is" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3737" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="108" y="323" width="160" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="starting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3738" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="140" y="358" width="100" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3739" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                <rect key="frame" x="160" y="597" width="50" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <segue id="12847" destination="7177" kind="unwind" unwindAction="UnwindToConfigurationWithSegue:"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="3740" firstItem="3737" firstAttribute="centerX" secondItem="3597" secondAttribute="centerX"/>
+                            <constraint id="3741" firstItem="3597" firstAttribute="centerY" secondItem="3737" secondAttribute="centerY"/>
+                            <constraint id="3764" firstItem="3738" firstAttribute="top" secondItem="3737" secondAttribute="bottom" constant="8"/>
+                            <constraint id="3765" firstItem="3597" firstAttribute="centerX" secondItem="3738" secondAttribute="centerX"/>
+                            <constraint id="3766" firstItem="3597" firstAttribute="centerX" secondItem="3739" secondAttribute="centerX"/>
+                            <constraint id="3767" firstItem="3594" firstAttribute="top" secondItem="3739" secondAttribute="bottom" constant="40"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="WorkoutSessionState" destination="3738" id="name-outlet-3738"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3598" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="7177" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="656" y="-428"/>
+        </scene>
+    </scenes>
+</document>

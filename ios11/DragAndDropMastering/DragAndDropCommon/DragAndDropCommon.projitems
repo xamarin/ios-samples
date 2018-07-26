@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{56037AE7-C313-438E-AC9B-AB7051AC6B49}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>DragAndDropCommon</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ClassExtensions\CGRectExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ClassExtensions\CLLocationExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ClassExtensions\UIImageExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ClassExtensions\UIImageViewExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)ClassExtensions\" />
+  </ItemGroup>
+</Project>

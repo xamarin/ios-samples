@@ -9,11 +9,11 @@
 	<key>CFBundleExecutable</key>
 	<string>ListerToday</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.Lister.ListerToday</string>
+	<string>com.xamarin.lister.ListerToday</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>com.your-company.Lister.ListerToday</string>
+	<string>Lister Today</string>
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
@@ -30,6 +30,6 @@
 		<string>com.apple.widget-extension</string>
 	</dict>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>9.0</string>
 </dict>
 </plist>

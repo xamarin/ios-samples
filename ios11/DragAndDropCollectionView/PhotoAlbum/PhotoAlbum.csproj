@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{50D285FE-10E8-478D-BBBF-794947DED13C}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>PhotoAlbum</RootNamespace>
+    <AssemblyName>PhotoAlbum</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebuggerPort>56060</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>12335</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-60.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-20 copy.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-83.5%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="DataModel\" />
+    <Folder Include="Utility\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="LICENSE.txt" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="AlbumTableViewCell.cs" />
+    <Compile Include="AlbumTableViewCell.designer.cs">
+      <DependentUpon>AlbumTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlbumTableViewController.cs" />
+    <Compile Include="AlbumTableViewController.designer.cs">
+      <DependentUpon>AlbumTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhotoCollectionViewController.cs" />
+    <Compile Include="PhotoCollectionViewController.designer.cs">
+      <DependentUpon>PhotoCollectionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhotoCollectionViewCell.cs" />
+    <Compile Include="PhotoCollectionViewCell.designer.cs">
+      <DependentUpon>PhotoCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhotoPlaceholderCollectionViewCell.cs" />
+    <Compile Include="PhotoPlaceholderCollectionViewCell.designer.cs">
+      <DependentUpon>PhotoPlaceholderCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\Photo.cs" />
+    <Compile Include="DataModel\PhotoAlbum.cs" />
+    <Compile Include="DataModel\PhotoLibrary.cs" />
+    <Compile Include="Utility\UIImageViewExtensions.cs" />
+    <Compile Include="PhotoCollectionViewController+Drop.cs" />
+    <Compile Include="PhotoCollectionViewController+Drag.cs" />
+    <Compile Include="AlbumTableViewController+Drop.cs" />
+    <Compile Include="AlbumTableViewController+Drag.cs" />
+    <Compile Include="DataModel\Photo+DragDrop.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Sample Data\Album0Photo0.jpg" />
+    <BundleResource Include="Sample Data\Album0Photo1.jpg" />
+    <BundleResource Include="Sample Data\Album0Photo2.jpg" />
+    <BundleResource Include="Sample Data\Album0Photo3.jpg" />
+    <BundleResource Include="Sample Data\Album0Photo4.jpg" />
+    <BundleResource Include="Sample Data\Album0Photo5.jpg" />
+    <BundleResource Include="Sample Data\Album1Photo0.jpg" />
+    <BundleResource Include="Sample Data\Album1Photo1.jpg" />
+    <BundleResource Include="Sample Data\Album1Photo2.jpg" />
+    <BundleResource Include="Sample Data\Album2Photo0.jpg" />
+    <BundleResource Include="Sample Data\Album2Photo1.jpg" />
+    <BundleResource Include="Sample Data\Album2Photo2.jpg" />
+    <BundleResource Include="Sample Data\Album2Photo3.jpg" />
+    <BundleResource Include="Sample Data\Album2Photo4.jpg" />
+    <BundleResource Include="Sample Data\Album3Photo0.jpg" />
+    <BundleResource Include="Sample Data\Album3Photo1.jpg" />
+    <BundleResource Include="Sample Data\Album3Photo2.jpg" />
+    <BundleResource Include="Sample Data\Album3Photo3.jpg" />
+    <BundleResource Include="Sample Data\Album3Photo4.jpg" />
+    <BundleResource Include="Sample Data\Album4Photo0.jpg" />
+    <BundleResource Include="Sample Data\Album4Photo1.jpg" />
+    <BundleResource Include="Sample Data\Album4Photo2.jpg" />
+    <BundleResource Include="Sample Data\Album4Photo3.jpg" />
+    <BundleResource Include="Sample Data\Album5Photo0.jpg" />
+    <BundleResource Include="Sample Data\Album5Photo1.jpg" />
+    <BundleResource Include="Sample Data\Album6Photo0.jpg" />
+    <BundleResource Include="Sample Data\Album6Photo1.jpg" />
+    <BundleResource Include="Sample Data\Album6Photo2.jpg" />
+    <BundleResource Include="Sample Data\Album6Photo3.jpg" />
+    <BundleResource Include="Sample Data\Album7Photo0.jpg" />
+    <BundleResource Include="Sample Data\Album7Photo1.jpg" />
+    <BundleResource Include="Sample Data\Album7Photo2.jpg" />
+    <BundleResource Include="Sample Data\Album7Photo3.jpg" />
+    <BundleResource Include="Sample Data\Album7Photo4.jpg" />
+    <BundleResource Include="Resources\AutomaticInsertion.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PickerControl", "PickerControl\PickerControl.csproj", "{EE65B40E-1FEB-4265-9A2E-4FFB960CA213}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE65B40E-1FEB-4265-9A2E-4FFB960CA213}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{EE65B40E-1FEB-4265-9A2E-4FFB960CA213}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{EE65B40E-1FEB-4265-9A2E-4FFB960CA213}.Release|iPhone.ActiveCfg = Release|iPhone
+		{EE65B40E-1FEB-4265-9A2E-4FFB960CA213}.Release|iPhone.Build.0 = Release|iPhone
+		{EE65B40E-1FEB-4265-9A2E-4FFB960CA213}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{EE65B40E-1FEB-4265-9A2E-4FFB960CA213}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{EE65B40E-1FEB-4265-9A2E-4FFB960CA213}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{EE65B40E-1FEB-4265-9A2E-4FFB960CA213}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal

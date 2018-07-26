@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="7553" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="605" width="414" height="62"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.44705882352941179" green="0.98039215686274506" blue="0.47058823529411764" alpha="1"/>
+                                <constraints>
+                                    <constraint id="7554" firstItem="7553" firstAttribute="height" constant="62"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" id="7249" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="89" width="414" height="62"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.44705882352941179" green="0.98039215686274506" blue="0.47058823529411764" alpha="1"/>
+                                <constraints>
+                                    <constraint id="7250" firstItem="7249" firstAttribute="height" constant="62"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="197" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="335.5" width="374" height="65"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="46"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                <constraints>
+                                    <constraint id="843" firstItem="197" firstAttribute="height" constant="65"/>
+                                </constraints>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Odd Numbers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2408" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="691" width="374" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="2419" firstItem="2408" firstAttribute="height" constant="20"/>
+                                </constraints>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2409" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="604" width="374" height="62"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="2641" firstItem="2409" firstAttribute="height" constant="62"/>
+                                </constraints>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="0" alpha="0"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Even Numbers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2644" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="45" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="5143" firstItem="2644" firstAttribute="height" constant="20"/>
+                                </constraints>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2646" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="90" width="374" height="62"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="0" alpha="0"/>
+                                <constraints>
+                                    <constraint id="5388" firstItem="2646" firstAttribute="height" constant="62"/>
+                                </constraints>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Even? Odd? Drag to find out!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6098" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="300" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="6102" firstItem="6098" firstAttribute="height" constant="21"/>
+                                </constraints>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint id="841" firstItem="197" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin"/>
+                            <constraint id="842" firstItem="197" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin"/>
+                            <constraint id="2420" firstItem="2408" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin"/>
+                            <constraint id="2421" firstItem="2408" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin"/>
+                            <constraint id="2639" firstItem="2409" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin"/>
+                            <constraint id="2640" firstItem="2409" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin"/>
+                            <constraint id="2649" firstItem="2644" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin"/>
+                            <constraint id="2650" firstItem="2644" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin"/>
+                            <constraint id="5141" firstItem="2644" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="25"/>
+                            <constraint id="5145" firstItem="wfy-db-euE" firstAttribute="top" secondItem="2408" secondAttribute="bottom" constant="25"/>
+                            <constraint id="5148" firstItem="2408" firstAttribute="top" secondItem="2409" secondAttribute="bottom" constant="25"/>
+                            <constraint id="5385" firstItem="2646" firstAttribute="top" secondItem="2644" secondAttribute="bottom" constant="25"/>
+                            <constraint id="5386" firstItem="2646" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin"/>
+                            <constraint id="5387" firstItem="2646" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin"/>
+                            <constraint id="5633" firstItem="8bC-Xf-vdC" firstAttribute="centerY" secondItem="197" secondAttribute="centerY"/>
+                            <constraint id="5634" firstItem="197" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX"/>
+                            <constraint id="6099" firstItem="6098" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin"/>
+                            <constraint id="6100" firstItem="6098" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin"/>
+                            <constraint id="6101" firstItem="197" firstAttribute="top" secondItem="6098" secondAttribute="bottom" constant="14"/>
+                            <constraint id="7253" firstItem="7249" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading"/>
+                            <constraint id="7285" firstItem="8bC-Xf-vdC" firstAttribute="trailing" secondItem="7249" secondAttribute="trailing"/>
+                            <constraint id="7286" firstItem="7249" firstAttribute="top" secondItem="2644" secondAttribute="bottom" constant="24"/>
+                            <constraint id="7558" firstItem="8bC-Xf-vdC" firstAttribute="leading" secondItem="7553" secondAttribute="leading"/>
+                            <constraint id="7559" firstItem="7553" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing"/>
+                            <constraint id="7560" firstItem="2408" firstAttribute="top" secondItem="7553" secondAttribute="bottom" constant="24"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="NumberLabel" destination="197" id="name-outlet-197"/>
+                        <outlet property="OddNumbersLabel" destination="2409" id="name-outlet-2409"/>
+                        <outlet property="EvenNumbersLabel" destination="2646" id="name-outlet-2646"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+</document>

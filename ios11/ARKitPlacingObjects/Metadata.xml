@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>ED9821A2-008E-48AB-9356-DA5B303DCC63</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>iOS11</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>iOS 11 ARKit example, placing pre-built objects in AR space.</Brief>
+</SampleMetadata>

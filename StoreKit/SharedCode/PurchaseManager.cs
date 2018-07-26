@@ -67,7 +67,7 @@ namespace SharedCode
 
 		public void CompleteTransaction (SKPaymentTransaction transaction)
 		{
-			Console.WriteLine ("CompleteTransaction {0}" + transaction.TransactionIdentifier);
+			Console.WriteLine ("CompleteTransaction {0}", transaction.TransactionIdentifier);
 			string productId = transaction.Payment.ProductIdentifier;
 
 			// Register the purchase, so it is remembered for next time

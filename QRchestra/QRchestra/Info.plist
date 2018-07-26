@@ -12,12 +12,14 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>9.0</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Images.xcassets/LaunchImage.launchimage</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This sample detects QR codes and decodes them.</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.qrchestra</string>
 </dict>
 </plist>

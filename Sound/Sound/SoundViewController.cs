@@ -85,11 +85,14 @@ namespace Sound
 					stopwatch = new Stopwatch ();
 					stopwatch.Start ();
 
-					LengthOfRecordingLabel.Text = string.Empty;
-					RecordingStatusLabel.Text = "Recording";
-					StartRecordingButton.Enabled = false;
-					StopRecordingButton.Enabled = true;
-					PlayRecordedSoundButton.Enabled = false;
+					BeginInvokeOnMainThread (() => {
+						LengthOfRecordingLabel.Text = string.Empty;
+						RecordingStatusLabel.Text = "Recording";
+						StartRecordingButton.Enabled = false;
+						StopRecordingButton.Enabled = true;
+						PlayRecordedSoundButton.Enabled = false;
+					});
+
 				} else {
 					Console.WriteLine ("YOU MUST ENABLE MICROPHONE PERMISSION");
 				}

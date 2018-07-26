@@ -110,7 +110,6 @@
     <Reference Include="FSharp.Core" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Content\building1.jpg" />
     <BundleResource Include="Content\building2.jpg" />
     <BundleResource Include="Content\building3.jpg" />
@@ -123,6 +122,7 @@
     <BundleResource Include="Resources\Icon-Small-40%402x.png" />
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\Default-568h%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />

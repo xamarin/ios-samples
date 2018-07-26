@@ -1,4 +1,5 @@
-# AVAutoWait
+AVAutoWait
+==========
 
 This sample demonstrates how to use automatic waiting to deal with bandwidth limitations when playing HTTP live-streamed and progressive-download movies. This sample highlights what properties you should consider and how automatic waiting affects your user interface.
 

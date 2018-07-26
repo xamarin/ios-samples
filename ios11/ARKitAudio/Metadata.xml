@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>140d20be-f5a4-4040-b585-d3877b4457a4</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Brief>Runs an ARKit world tracking session with content displayed in a SceneKit view. To demonstrate plane detection, the app simply places a 3D model onto the first plane that ARKit detects. If the model's position is outside the current field of view of the camera, the app uses SceneKit's positional audio feature to indicate which direction to turn the device to see the model.</Brief>
+  <Level>Intermediate</Level>
+  <Tags>Graphics, Media, Platform Features, Device Features, SceneKit, ARKit, iOS11</Tags>
+  <LicenseRequirement>Starter</LicenseRequirement>
+  <Gallery>true</Gallery>
+</SampleMetadata>

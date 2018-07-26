@@ -1,6 +1,8 @@
 AVCamBarcode
 ============
 
+> [!NOTE] This sample replaced by the [iOS 11 version](https://github.com/xamarin/ios-samples/tree/master/ios11/AVCamBarcode)
+
 `AVCamBarcode` demonstrates how to use the `AVFoundation` capture API to detect barcodes and faces.
 
 ## Machine Readable Codes

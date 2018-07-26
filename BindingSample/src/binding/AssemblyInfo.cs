@@ -1,4 +1,4 @@
 using System;
 using ObjCRuntime;
 
-[assembly: LinkWith ("libXMBindingLibrarySampleUniversal.a", LinkTarget.Simulator | LinkTarget.ArmV6 | LinkTarget.ArmV7, ForceLoad = true)]
+[assembly: LinkWith ("libXMBindingLibrarySampleUniversal.a", LinkTarget.Simulator | LinkTarget.Arm64 | LinkTarget.ArmV7, ForceLoad = true)]

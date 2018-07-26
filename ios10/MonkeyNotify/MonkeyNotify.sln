@@ -1,0 +1,33 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonkeyNotify", "MonkeyNotify\MonkeyNotify.csproj", "{A2C057A4-CBB8-446C-A4DF-718B88B5370E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonkeyNotifyServiceExtension", "MonkeyNotifyServiceExtension\MonkeyNotifyServiceExtension.csproj", "{DDC0C501-9701-4165-84B5-2E195CAC0D32}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2C057A4-CBB8-446C-A4DF-718B88B5370E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{A2C057A4-CBB8-446C-A4DF-718B88B5370E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{A2C057A4-CBB8-446C-A4DF-718B88B5370E}.Release|iPhone.ActiveCfg = Release|iPhone
+		{A2C057A4-CBB8-446C-A4DF-718B88B5370E}.Release|iPhone.Build.0 = Release|iPhone
+		{A2C057A4-CBB8-446C-A4DF-718B88B5370E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{A2C057A4-CBB8-446C-A4DF-718B88B5370E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{A2C057A4-CBB8-446C-A4DF-718B88B5370E}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{A2C057A4-CBB8-446C-A4DF-718B88B5370E}.Debug|iPhone.Build.0 = Debug|iPhone
+		{DDC0C501-9701-4165-84B5-2E195CAC0D32}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{DDC0C501-9701-4165-84B5-2E195CAC0D32}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{DDC0C501-9701-4165-84B5-2E195CAC0D32}.Release|iPhone.ActiveCfg = Release|iPhone
+		{DDC0C501-9701-4165-84B5-2E195CAC0D32}.Release|iPhone.Build.0 = Release|iPhone
+		{DDC0C501-9701-4165-84B5-2E195CAC0D32}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{DDC0C501-9701-4165-84B5-2E195CAC0D32}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{DDC0C501-9701-4165-84B5-2E195CAC0D32}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{DDC0C501-9701-4165-84B5-2E195CAC0D32}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal

@@ -11,7 +11,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>9.0</string>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackTranslucent</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -33,7 +33,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>PrivacyPrompts App needs Calendars Access</string>
 	<key>NSCameraUsageDescription</key>
-	<string>PrivacyPrompts App needs Camera Access</string>
+	<string>Take videos</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>PrivacyPrompts App needs Reminders Access</string>
 	<key>NSContactsUsageDescription</key>
@@ -46,5 +46,11 @@
 	<string>PrivacyPrompts App needs Motion Usage Access</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>PrivacyPrompts App needs Bluetooth Access</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Add tracks to your music library</string>
+	<key>NSSiriUsageDescription</key>
+	<string>Send text messages.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Transcribe your lessons.</string>
 </dict>
 </plist>

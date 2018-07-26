@@ -13,7 +13,7 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>9.0</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main_iPhone</string>
 	<key>CFBundleIconFiles</key>
@@ -25,5 +25,7 @@
 		<string>Icon@2x</string>
 		<string>Icon-60@2x</string>
 	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.transitionsdemo</string>
 </dict>
 </plist>

@@ -1,9 +1,15 @@
 {
   "images": [
     {
-      "filename": "Icon-Small.png",
-      "size": "29x29",
-      "scale": "1x",
+      "filename": "Icon-20@2x.png",
+      "size": "20x20",
+      "scale": "2x",
+      "idiom": "iphone"
+    },
+    {
+      "filename": "Icon-20@3x.png",
+      "size": "20x20",
+      "scale": "3x",
       "idiom": "iphone"
     },
     {
@@ -13,29 +19,21 @@
       "idiom": "iphone"
     },
     {
+      "filename": "Icon-Small@3x.png",
       "size": "29x29",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "Icon-Spotlight-40@2x.png",
+      "filename": "Icon-Small-40@2x.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
+      "filename": "Icon-Small-40@3x.png",
       "size": "40x40",
       "scale": "3x",
-      "idiom": "iphone"
-    },
-    {
-      "size": "57x57",
-      "scale": "1x",
-      "idiom": "iphone"
-    },
-    {
-      "size": "57x57",
-      "scale": "2x",
       "idiom": "iphone"
     },
     {
@@ -45,9 +43,22 @@
       "idiom": "iphone"
     },
     {
+      "filename": "Icon-60@3x.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
+    },
+    {
+      "filename": "Icon-20.png",
+      "size": "20x20",
+      "scale": "1x",
+      "idiom": "ipad"
+    },
+    {
+      "filename": "Icon-20@2x.png",
+      "size": "20x20",
+      "scale": "2x",
+      "idiom": "ipad"
     },
     {
       "filename": "Icon-Small.png",
@@ -56,42 +67,26 @@
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-Small@2x.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-Spotlight-40.png",
+      "filename": "Icon-Small-40.png",
       "size": "40x40",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
+      "filename": "Icon-Small-40@2x.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "Icon-Small-50.png",
-      "size": "50x50",
-      "scale": "1x",
-      "idiom": "ipad"
-    },
-    {
-      "filename": "Icon-Small-50@2x.png",
-      "size": "50x50",
-      "scale": "2x",
-      "idiom": "ipad"
-    },
-    {
-      "filename": "Icon-72.png",
-      "size": "72x72",
-      "scale": "1x",
-      "idiom": "ipad"
-    },
-    {
-      "filename": "Icon-72@2x.png",
-      "size": "72x72",
+      "filename": "Icon-83.5@2x.png",
+      "size": "83.5x83.5",
       "scale": "2x",
       "idiom": "ipad"
     },
@@ -106,6 +101,12 @@
       "size": "76x76",
       "scale": "2x",
       "idiom": "ipad"
+    },
+    {
+      "filename": "iTunesArtwork@2x.png",
+      "size": "1024x1024",
+      "scale": "1x",
+      "idiom": "ios-marketing"
     },
     {
       "role": "notificationCenter",
@@ -129,7 +130,7 @@
     },
     {
       "role": "companionSettings",
-      "size": "29.3x29.3",
+      "size": "29x29",
       "scale": "3x",
       "idiom": "watch"
     },
@@ -143,6 +144,7 @@
     {
       "role": "longLook",
       "size": "44x44",
+      "subtype": "42mm",
       "scale": "2x",
       "idiom": "watch"
     },
@@ -161,9 +163,54 @@
       "idiom": "watch"
     },
     {
-      "size": "120x120",
+      "size": "16x16",
       "scale": "1x",
-      "idiom": "car"
+      "idiom": "mac"
+    },
+    {
+      "size": "16x16",
+      "scale": "2x",
+      "idiom": "mac"
+    },
+    {
+      "size": "32x32",
+      "scale": "1x",
+      "idiom": "mac"
+    },
+    {
+      "size": "32x32",
+      "scale": "2x",
+      "idiom": "mac"
+    },
+    {
+      "size": "128x128",
+      "scale": "1x",
+      "idiom": "mac"
+    },
+    {
+      "size": "128x128",
+      "scale": "2x",
+      "idiom": "mac"
+    },
+    {
+      "size": "256x256",
+      "scale": "1x",
+      "idiom": "mac"
+    },
+    {
+      "size": "256x256",
+      "scale": "2x",
+      "idiom": "mac"
+    },
+    {
+      "size": "512x512",
+      "scale": "1x",
+      "idiom": "mac"
+    },
+    {
+      "size": "512x512",
+      "scale": "2x",
+      "idiom": "mac"
     }
   ],
   "info": {

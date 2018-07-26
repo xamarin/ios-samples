@@ -1,0 +1,114 @@
+{
+  "storage" : "model.espresso.weights",
+  "properties" : {
+
+  },
+  "format_version" : 200,
+  "layers" : [
+    {
+      "pad_r" : 0,
+      "fused_relu" : 1,
+      "fused_tanh" : 0,
+      "pad_fill_mode" : 0,
+      "pad_b" : 0,
+      "pad_l" : 0,
+      "top" : "convolution2d_1__activation___output",
+      "blob_weights" : 3,
+      "K" : 1,
+      "blob_biases" : 1,
+      "name" : "convolution2d_1",
+      "has_batch_norm" : 0,
+      "type" : "convolution",
+      "n_groups" : 1,
+      "pad_t" : 0,
+      "has_biases" : 1,
+      "C" : 32,
+      "bottom" : "imageInput",
+      "weights" : {
+
+      },
+      "pad_mode" : 0,
+      "Nx" : 5,
+      "pad_value" : 0,
+      "Ny" : 5,
+      "n_parallel" : 1
+    },
+    {
+      "pad_value" : 0,
+      "average_count_exclude_padding" : 1,
+      "top_shape_style" : 0,
+      "avg_or_max" : 1,
+      "stride_x" : 2,
+      "pad_mode" : 2,
+      "stride_y" : 2,
+      "pad_t" : 0,
+      "weights" : {
+
+      },
+      "size_y" : 2,
+      "type" : "pool",
+      "pad_r" : 0,
+      "pad_b" : 0,
+      "size_x" : 2,
+      "pad_fill_mode" : 0,
+      "bottom" : "convolution2d_1__activation___output",
+      "pad_l" : 0,
+      "name" : "maxpooling2d_1",
+      "top" : "maxpooling2d_1_output"
+    },
+    {
+      "mode" : 1,
+      "weights" : {
+
+      },
+      "top" : "flatten_1_output",
+      "type" : "flatten",
+      "name" : "flatten_1",
+      "bottom" : "maxpooling2d_1_output"
+    },
+    {
+      "nB" : 4608,
+      "top" : "dense_1__activation___output",
+      "has_biases" : 1,
+      "weights" : {
+
+      },
+      "nC" : 128,
+      "blob_weights" : 7,
+      "type" : "inner_product",
+      "has_relu" : 1,
+      "bottom" : "flatten_1_output",
+      "blob_biases" : 5,
+      "has_tanh" : 0,
+      "name" : "dense_1",
+      "has_prelu" : 0
+    },
+    {
+      "nB" : 128,
+      "top" : "dense_2_output",
+      "has_biases" : 1,
+      "weights" : {
+
+      },
+      "nC" : 10,
+      "blob_weights" : 11,
+      "type" : "inner_product",
+      "has_relu" : 0,
+      "bottom" : "dense_1__activation___output",
+      "blob_biases" : 9,
+      "has_tanh" : 0,
+      "name" : "dense_2",
+      "has_prelu" : 0
+    },
+    {
+      "C" : 2,
+      "weights" : {
+
+      },
+      "top" : "output",
+      "type" : "softmax",
+      "name" : "dense_2__activation__",
+      "bottom" : "dense_2_output"
+    }
+  ]
+}

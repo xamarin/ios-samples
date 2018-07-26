@@ -20,6 +20,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>6.0</string>
+	<string>9.0</string>
+	<key>CFBundleName</key>
+	<string>Protocols_Delegates_Events</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.xamarin.Protocols_Delegates_Events_xib</string>
 </dict>
 </plist>

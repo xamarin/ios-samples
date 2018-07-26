@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using AVFoundation;
 using Foundation;
 using System.Collections.Generic;
@@ -173,6 +173,7 @@ namespace QRchestra
 		{
 			pipelineRunningTask = UIApplication.SharedApplication.BeginBackgroundTask (delegate {
 				Console.WriteLine ("Video capture pipeline background task expired");
+				UIApplication.SharedApplication.EndBackgroundTask(pipelineRunningTask);
 			});
 		}
 

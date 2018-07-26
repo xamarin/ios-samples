@@ -1,0 +1,41 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragSource", "DragSource\DragSource.csproj", "{501126F8-0CE5-443D-A4E9-E90C1BB4CA2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DropDestination", "DropDestination\DropDestination.csproj", "{1E5DAE28-0558-4920-9478-32259E6366F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9093996E-0B68-4A7C-A929-D32AE0856D99}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		LICENSE.txt = LICENSE.txt
+	EndProjectSection
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "DragAndDropCommon", "DragAndDropCommon\DragAndDropCommon.shproj", "{56037AE7-C313-438E-AC9B-AB7051AC6B49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{501126F8-0CE5-443D-A4E9-E90C1BB4CA2E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{501126F8-0CE5-443D-A4E9-E90C1BB4CA2E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{501126F8-0CE5-443D-A4E9-E90C1BB4CA2E}.Release|iPhone.ActiveCfg = Release|iPhone
+		{501126F8-0CE5-443D-A4E9-E90C1BB4CA2E}.Release|iPhone.Build.0 = Release|iPhone
+		{501126F8-0CE5-443D-A4E9-E90C1BB4CA2E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{501126F8-0CE5-443D-A4E9-E90C1BB4CA2E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{501126F8-0CE5-443D-A4E9-E90C1BB4CA2E}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{501126F8-0CE5-443D-A4E9-E90C1BB4CA2E}.Debug|iPhone.Build.0 = Debug|iPhone
+		{1E5DAE28-0558-4920-9478-32259E6366F9}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{1E5DAE28-0558-4920-9478-32259E6366F9}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{1E5DAE28-0558-4920-9478-32259E6366F9}.Release|iPhone.ActiveCfg = Release|iPhone
+		{1E5DAE28-0558-4920-9478-32259E6366F9}.Release|iPhone.Build.0 = Release|iPhone
+		{1E5DAE28-0558-4920-9478-32259E6366F9}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{1E5DAE28-0558-4920-9478-32259E6366F9}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{1E5DAE28-0558-4920-9478-32259E6366F9}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{1E5DAE28-0558-4920-9478-32259E6366F9}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal

@@ -18,10 +18,12 @@
 		<string>Icon-Small-50</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>6.1</string>
+	<string>9.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>MemoryDemo</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.memorydemo</string>
+	<key>CFBundleName</key>
+	<string>MemoryDemo</string>
 </dict>
 </plist>

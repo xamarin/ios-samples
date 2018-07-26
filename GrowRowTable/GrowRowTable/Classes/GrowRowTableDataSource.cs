@@ -6,29 +6,15 @@ namespace GrowRowTable
 {
 	public class GrowRowTableDataSource : UITableViewDataSource
 	{
-		#region Private Variables
-		private GrowRowTableViewController Controller;
-		#endregion
-
-		#region Computed Properties
 		public List<GrowItem> Items = new List<GrowItem>();
 
 		public string CellID {
 			get { return "GrowCell"; }
 		}
-		#endregion
 
-		#region Constructors
 		public GrowRowTableDataSource ()
 		{
 			// Initialize
-			Initialize();
-		}
-
-		public GrowRowTableDataSource (GrowRowTableViewController controller)
-		{
-			// Initialize
-			this.Controller = controller;
 			Initialize();
 		}
 
@@ -49,9 +35,7 @@ namespace GrowRowTable
 			Items.Add(new GrowItem("Macintosh_Color_Classic.jpg","Macintosh Color Classic","The Macintosh Color Classic, released on February 10, 1993, is the first color compact Apple Macintosh computer. It has an integrated 10″ Sony Trinitron color display with the same 512×384 pixel resolution as the Macintosh 12″ RGB monitor. It can display 256 colors(Can upgrade to 4096 colors). "));
 			Items.Add(new GrowItem("Power_Macintosh.jpg","Power Macintosh","Power Macintosh, later Power Mac, is a line of Apple Macintosh workstation-class personal computers based on various models of PowerPC microprocessors that were developed, marketed, and supported by Apple Inc. from March 1994 until August 2006. "));
 		}
-		#endregion
 
-		#region Override Methods
 		public override nint NumberOfSections (UITableView tableView)
 		{
 			// Hard coded 1 section
@@ -75,7 +59,6 @@ namespace GrowRowTable
 
 			return cell;
 		}
-		#endregion
 	}
 }
 
