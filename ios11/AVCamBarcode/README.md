@@ -8,13 +8,13 @@ Machine Readable Codes
 
 * QR code 
 
-    ![qr_code](Resources/code1.png)
+    ![qr_code](https://github.com/xamarin/ios-samples/raw/master/ios11/AVCamBarcode/Resources/code1.png)
 * PDF-417 
 
-    ![pdf417](Resources/code2.gif)
+    ![pdf417](https://github.com/xamarin/ios-samples/raw/master/ios11/AVCamBarcode/Resources/code2.gif)
 * Data Matrix 
 
-    ![datamatrix](Resources/code3.png)
+    ![datamatrix](https://github.com/xamarin/ios-samples/raw/master/ios11/AVCamBarcode/Resources/code3.png)
 
 Build Requirements
 -------
