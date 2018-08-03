@@ -1,5 +1,5 @@
-iOS 7 UI Updates
+iOS 7 UI Updates (ImageViewer sample)
 ================
 
-These small sample projects relate to the [iOS 7 UI](/guides/ios/platform_features/ios7_ui/#Full-Screen_Content) guide, and shows the use of `TopLayoutGuide` and `EdgesForExtendedLayout`.
+This sample project relates to the [Xamarin.iOS 7 UI](https://docs.microsoft.com/xamarin/ios/platform/introduction-to-ios7/ios7-ui) guide, and shows the use of `TopLayoutGuide` and `EdgesForExtendedLayout`.
 
