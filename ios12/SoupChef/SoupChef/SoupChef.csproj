@@ -1,0 +1,191 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{63853807-0805-41E0-8B8A-F9C800DC41BA}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SoupChef</RootNamespace>
+    <AssemblyName>SoupChef</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <IOSDebuggerPort>60950</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>63799</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodesignProvision>ios - dev - com.bradumbaugh.SoupChef - c20180802</CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_1024.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_29.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_29%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_29%402x-1.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_29%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_40.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_40%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_40%402x-1.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_40%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_60%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_60%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_76.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_76%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\AppIcon.appiconset\Logo_83_5%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\chicken_noodle_soup.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\chicken_noodle_soup.imageset\Soup_chicken.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\chicken_noodle_soup.imageset\Soup_chicken%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\chicken_noodle_soup.imageset\Soup_chicken%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\new_england_clam_chowder.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\new_england_clam_chowder.imageset\Soup_chowder.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\new_england_clam_chowder.imageset\Soup_chowder%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\new_england_clam_chowder.imageset\Soup_chowder%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\tomato.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\tomato.imageset\Icon_tomato.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\tomato.imageset\Icon_tomato%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\tomato.imageset\Icon_tomato%403x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\tomato_soup.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Assets.xcassets\tomato_soup.imageset\Soup_tomato.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\tomato_soup.imageset\Soup_tomato%402x.png" />
+    <ImageAsset Include="Resources\Assets.xcassets\tomato_soup.imageset\Soup_tomato%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="UI\" />
+    <Folder Include="Resources\Assets.xcassets\" />
+    <Folder Include="UI\Cells\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\Main.storyboard" />
+    <InterfaceDefinition Include="Resources\OrderDetail.storyboard" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="UI\OrderDetailTableConfiguration.cs" />
+    <Compile Include="UI\AppDelegate.cs" />
+    <Compile Include="UI\ConfigureMenuTableViewController.cs" />
+    <Compile Include="UI\ConfigureMenuTableViewController.designer.cs">
+      <DependentUpon>ConfigureMenuTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderDetailViewController.cs" />
+    <Compile Include="UI\OrderDetailViewController.designer.cs">
+      <DependentUpon>OrderDetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderHistoryTableViewController.cs" />
+    <Compile Include="UI\OrderHistoryTableViewController.designer.cs">
+      <DependentUpon>OrderHistoryTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Cells\SoupOrderDetailCell.cs" />
+    <Compile Include="UI\Cells\SoupOrderDetailCell.designer.cs">
+      <DependentUpon>SoupOrderDetailCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Cells\QuantityCell.cs" />
+    <Compile Include="UI\Cells\QuantityCell.designer.cs">
+      <DependentUpon>QuantityCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SoupMenuViewController.cs" />
+    <Compile Include="UI\SoupMenuViewController.designer.cs">
+      <DependentUpon>SoupMenuViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Cells\SoupMenuItemDetailCell.cs" />
+    <Compile Include="UI\Cells\SoupMenuItemDetailCell.designer.cs">
+      <DependentUpon>SoupMenuItemDetailCell.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OrderSoupIntentBinding\OrderSoupIntentBinding.csproj">
+      <Project>{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}</Project>
+      <Name>OrderSoupIntentBinding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SoupChefIntents\SoupChefIntents.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{79BD781B-589B-48DF-B46D-21B83C833FCA}</Project>
+      <Name>SoupChefIntents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SoupChefIntentsUI\SoupChefIntentsUI.csproj">
+      <Project>{1D563B8E-73B6-4CD0-B046-B77F6FAA4B7B}</Project>
+      <Name>SoupChefIntentsUI</Name>
+      <IsAppExtension>true</IsAppExtension>
+    </ProjectReference>
+    <ProjectReference Include="..\SoupKit\SoupKit.csproj">
+      <Project>{690EF06A-88BD-405D-A7EA-06FE67D1F301}</Project>
+      <Name>SoupKit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>
