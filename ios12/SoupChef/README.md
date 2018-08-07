@@ -55,6 +55,8 @@ This repository contains the following folders:
     directory, edit the Makefile to make sure that the `XBUILD` variable
     points to a valid Xcode installation, and then type `make`.
 
+    Note that you will first need to [install Objective Sharpie](https://docs.microsoft.com/xamarin/cross-platform/macios/binding/objective-sharpie/get-started?context=xamarin/mac#installing-objective-sharpie).
+
 3. **OrderSoupIntentBinding/**
 
     This project takes the binding definition and static library created
@@ -94,6 +96,7 @@ simulator or device, you'll need to build the static library required by
 the **OrderSoupIntentBinding** bindings project. To do this, open
 **Terminal** on your Mac build host and do the following:
 
+- [Install Objective Sharpie](https://docs.microsoft.com/xamarin/cross-platform/macios/binding/objective-sharpie/get-started?context=xamarin/mac#installing-objective-sharpie).
 - `cd` to the **OrderSoupIntentStaticLib** directory
 - Edit **Makefile**, updating the `XBUILD` variable as necessary to point
 to a valid Xcode 10 installation.
@@ -122,7 +125,9 @@ screen).
 This app works on the simulator. On the **Hardware** menu of macOS
 **Simulator** application (the iOS simulator), select **Siri** to invoke
 Siri, and issue commands with your voice just as you would with a
-physical device.
+physical device. If you run the app on simulator, you will not need
+to to through the provisioning steps described below in the
+**Running on device** section.
 
 ### Running on device
 
