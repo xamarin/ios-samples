@@ -25,7 +25,7 @@
     <ConsolePause>false</ConsolePause>
     <MtouchI18n></MtouchI18n>
     <AssemblyName>iCloud</AssemblyName>
-    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchArch>x86_64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
@@ -39,7 +39,7 @@
     <ConsolePause>false</ConsolePause>
     <MtouchI18n></MtouchI18n>
     <AssemblyName>iCloud</AssemblyName>
-    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchArch>x86_64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
@@ -61,7 +61,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <AssemblyName>iCloudSample</AssemblyName>
     <MtouchLink>Full</MtouchLink>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -76,7 +76,7 @@
     <MtouchI18n></MtouchI18n>
     <AssemblyName>iCloudSample</AssemblyName>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <ItemGroup>
