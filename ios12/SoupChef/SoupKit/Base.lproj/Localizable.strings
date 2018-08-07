@@ -1,0 +1,27 @@
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+The strings in this file and `Localizable.stringsdict` demonstrate how to localize the information
+ in an intent and a user activity when displayed in Siri, Search, the Cover Sheet, and Settings.
+ Interface strings not used in these contexts are not localized.
+*/
+
+
+
+"TOMATO_SOUP" = "Tomato Soup";
+
+"CHEESE" = "Cheese";
+"RED_PEPPER" = "Red Pepper";
+"CROUTONS" = "Croutons";
+
+"ORDER_LUNCH_TITLE" = "Order Lunch";
+"ORDER_LUNCH_SUGGESTED_PHRASE" = "Start My Lunch Order";
+"VIEW_MENU_CONTENT_DESCRIPTION" = "Display the menu to start your lunch order.";
+
+"ORDER_SOUP_SUGGESTED_PHRASE" = "Order {0}";
+
+// Searchable Keywords
+"ORDER" = "Order";
+"SOUP" = "Soup";
+"MENU" = "Menu";
