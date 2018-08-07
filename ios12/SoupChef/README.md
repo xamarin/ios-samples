@@ -1,4 +1,5 @@
-# SoupChef
+SoupChef
+============
 
 This is a Xamarin port of Apple's [Soup Chef](https://developer.apple.com/documentation/sirikit/accelerating_app_interactions_with_shortcuts?language=objc)
 sample. It demonstrates how to create an app that makes use of Siri 
@@ -9,7 +10,8 @@ restaurant, view your order history, and assign voice shortcuts to
 orders. These voice shortcuts can then be invoked with Siri, making it
 possible to order soup without even opening the app.
 
-## Usage
+Usage
+-------
 
 To use the app, set up an order and assign it a voice shortcut:
 
@@ -29,7 +31,8 @@ Then, order soup with Siri:
 defined above. For example, "Hey Siri, order two bowls of chowder with 
 cheese." Siri will interact with you to create and execute the order.
 
-## Repository overview
+Repository overview
+-------
 
 This repository contains the following folders:
 
@@ -89,7 +92,8 @@ This repository contains the following folders:
     - **SoupChefIntentsUI**
     - **SoupKit**
 
-## Building the static library for the C# binding
+Building the static library for the C# binding
+-------
 
 Before building the **SoupChef** solution to run the app on your
 simulator or device, you'll need to build the static library required by
@@ -106,9 +110,8 @@ NOTE: Do not build this static library by opening the Xcode project
 and building it. Use the `make` command instead, as it generates output
 in a directory expected by the **OrderSoupIntentBinding** project.
 
-## Running the app on simulator or device
-
-### Setup
+Running the app on simulator or device
+-------
 
 It can be helpful when working with Siri Shortcuts to enable two settings
 on your iOS device or simulator:
@@ -120,7 +123,8 @@ These settings will surface recently created shortcuts on the lock screen
 and in the search results (accessible by swiping down on the iOS home
 screen).
 
-### Running on simulator
+Running on simulator
+-------
 
 This app works on the simulator. On the **Hardware** menu of macOS
 **Simulator** application (the iOS simulator), select **Siri** to invoke
@@ -129,7 +133,8 @@ physical device. If you run the app on simulator, you will not need
 to to through the provisioning steps described below in the
 **Running on device** section.
 
-### Running on device
+Running on device
+-------
 
 To run this application on a device, you'll need to set up an App Group,
 some App IDs, and some development provisioning profiles; make a few edits
@@ -140,7 +145,7 @@ provisioning profiles.
 Please also see the [note about automatic provisioning](#automatic-provisioning),
 below.
 
-#### App Group, App IDs, Provisioning Profiles
+**App Group, App IDs, Provisioning Profiles**
 
 In the **Certificates, IDs & Profiles** section of the 
 [Apple Developer Portal](https://developer.apple.com/), do the following:
@@ -168,7 +173,7 @@ new App IDs.
 it. If Visual Studio for Mac or Visual Studio 2017 is already running,
 restart it to make sure it registers the new provisioning profiles.
 
-#### Editing Info.plist, Entitlements.plist, and source code
+**Editing Info.plist, Entitlements.plist, and source code**
 
 In Visual Studio for Mac or Visual Studio 2017, do the following:
 
@@ -188,7 +193,7 @@ created above (in the example above, it was **group.com.yourcompanyname.SoupChef
 to the value of your new App Group (for example, set it to 
 `group.com.yourcompanyname.SoupChef`).
 
-#### Configure the build settings
+**Configure the build settings**
 
 In Visual Studio for Mac or Visual Studio 2017:
 
@@ -209,7 +214,7 @@ you created above.
 
 With these changes in place, the app will run on an iOS device.
 
-#### Automatic provisioning
+**Automatic provisioning**
 
 Note that you can use [automatic provisioning](https://docs.microsoft.com/en-us/xamarin/ios/get-started/installation/device-provisioning/automatic-provisioning)
 to accomplish many of these provisioning tasks directly in the IDE.
@@ -221,7 +226,7 @@ automatic provisioning, regenerate the provisioning profiles (app, Intents
 Extension, Intents UI Extension) to include the newly created App Group,
 and download and install them.
 
-## Notes
+**Notes**
 
 - The **OrderDetail.storyboard** file makes use of secondary views, which
 Xamarin's iOS Designer cannot edit. To edit these, use Xcode's Interface
@@ -239,7 +244,7 @@ System Containers, detaching from cfprefsd". This seems to be innocuous.
 object with identifier intents-remote-image-proxy." This is consistent
 with the Swift-based app.
 
-## Known Issues (TO FIX)
+**Known Issues (TO FIX)**
 
 - After successfully completing an order made via voice, Siri does not 
 report back the success message defined by the **Intents.intentdefinition**
