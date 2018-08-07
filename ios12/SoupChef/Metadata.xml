@@ -3,7 +3,7 @@
   <ID>916F4F59-44A6-4FCC-B28E-881DDE2D5BB2</ID>
   <IsFullApplication>true</IsFullApplication>
   <Level>Intermediate</Level>
-  <Tags>iOS12</Tags>
+  <Tags>iOS12, Siri Shortcuts</Tags>
   <SupportedPlatforms>iOS</SupportedPlatforms>
   <Gallery>true</Gallery>
   <Brief>An app that demonstrates how to work with Siri Shortcuts in iOS 12.</Brief>
