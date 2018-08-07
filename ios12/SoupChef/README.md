@@ -235,8 +235,6 @@ Builder.
 search result or on the lock screen, there can be a long lag before the 
 user interface appears. This appears to be consistent with the Swift-based
 app.
-- The custom UI does not always load the soup icon as it should. Again, 
-this is consistent with the Swift-based app.
 - The application console occasionally shows an errors such as:
 "Using kCFPreferencesAnyUser with a container is only allowed for 
 System Containers, detaching from cfprefsd". This seems to be innocuous.
