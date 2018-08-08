@@ -302,7 +302,7 @@ namespace ScanningAndDetecting3DObjects
 		}
 
 
-		partial void NextButtonPressed(RoundedButton sender)
+		partial void NextButtonTapped(RoundedButton sender)
 		{
 			if (nextButton.Hidden || !nextButton.Enabled)
 			{

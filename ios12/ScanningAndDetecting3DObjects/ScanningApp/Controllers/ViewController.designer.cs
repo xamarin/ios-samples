@@ -102,7 +102,7 @@ namespace ScanningAndDetecting3DObjects
 
         [Action ("NextButtonPressed:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void NextButtonPressed (ScanningAndDetecting3DObjects.RoundedButton sender);
+        partial void NextButtonTapped (ScanningAndDetecting3DObjects.RoundedButton sender);
 
         [Action ("ToggleFlashlightButtonTapped:")]
         [GeneratedCode ("iOS Designer", "1.0")]
