@@ -1,4 +1,4 @@
-SoupChef
+Soup Chef
 ============
 
 This is a Xamarin port of Apple's [Soup Chef](https://developer.apple.com/documentation/sirikit/accelerating_app_interactions_with_shortcuts?language=objc)
