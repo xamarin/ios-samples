@@ -25,6 +25,7 @@ namespace SoupKit.Data
         void DonateInteraction(Order order)
         {
             var interaction = new INInteraction(order.Intent, null);
+            interaction.Identifier = order.Identifier.ToString();
             interaction.DonateInteraction((error) =>
             {
                 if (!(error is null))
