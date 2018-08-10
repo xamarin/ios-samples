@@ -1,0 +1,212 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{5ADF133F-4D1F-4ADC-BDCF-6482AF1818B3}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ScanningAndDetecting3DObjects</RootNamespace>
+    <AssemblyName>ScanningAndDetecting3DObjects</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebuggerPort>12283</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <IntermediateOutputPath></IntermediateOutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>54426</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon_1024.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon@20px.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon@29px.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon@40px.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon@58px.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon@60px.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon@76px.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon@80px.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon@87px.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon@120px.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon@152px.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon@167px.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon@180px.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\x_portrait.png" />
+    <ImageAsset Include="Assets.xcassets\art.scnassets\axes.scn" />
+    <ImageAsset Include="Assets.xcassets\add.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\add.imageset\add%402x.png" />
+    <ImageAsset Include="Assets.xcassets\add.imageset\add%403x.png" />
+    <ImageAsset Include="Assets.xcassets\addPressed.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\addPressed.imageset\addPressed%402x.png" />
+    <ImageAsset Include="Assets.xcassets\addPressed.imageset\addpressed%403x.png" />
+    <ImageAsset Include="Assets.xcassets\appBlue.colorset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\appBrown.colorset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\appGray.colorset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\appGreen.colorset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\appLightBlue.colorset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\appYellow.colorset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\gradientyellow.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\gradientyellow.imageset\gradientyellow.png" />
+    <ImageAsset Include="Assets.xcassets\handle_blue.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\handle_blue.imageset\handle_blue.png" />
+    <ImageAsset Include="Assets.xcassets\handle_green.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\handle_green.imageset\handle_green.png" />
+    <ImageAsset Include="Assets.xcassets\handle_red.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\handle_red.imageset\handle_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="3D_UI\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Gesture_Recognizers\" />
+    <Folder Include="Storyboards\" />
+    <Folder Include="Views\" />
+    <Folder Include="Utility_Extensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Storyboards\Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="Controllers\AppDelegate.cs" />
+    <Compile Include="Controllers\ViewController.cs" />
+    <Compile Include="Controllers\ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gesture_Recognizers\ThresholdPanGestureRecognizer.cs" />
+    <Compile Include="Gesture_Recognizers\ThresholdPanGestureRecognizer.designer.cs">
+      <DependentUpon>ThresholdPanGestureRecognizer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gesture_Recognizers\ThresholdPinchGestureRecognizer.cs" />
+    <Compile Include="Gesture_Recognizers\ThresholdPinchGestureRecognizer.designer.cs">
+      <DependentUpon>ThresholdPinchGestureRecognizer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gesture_Recognizers\ThresholdRotationGestureRecognizer.cs" />
+    <Compile Include="Gesture_Recognizers\ThresholdRotationGestureRecognizer.designer.cs">
+      <DependentUpon>ThresholdRotationGestureRecognizer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FlashlightButton.cs" />
+    <Compile Include="Views\FlashlightButton.designer.cs">
+      <DependentUpon>FlashlightButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageLabel.cs" />
+    <Compile Include="Views\MessageLabel.designer.cs">
+      <DependentUpon>MessageLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoundedButton.cs" />
+    <Compile Include="Views\RoundedButton.designer.cs">
+      <DependentUpon>RoundedButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ViewControllerApplicationState.cs" />
+    <Compile Include="Controllers\Scan.cs" />
+    <Compile Include="Controllers\TestRun.cs" />
+    <Compile Include="Controllers\ViewControllerSessionInfo.cs" />
+    <Compile Include="3D_UI\ScannedObject.cs" />
+    <Compile Include="3D_UI\ScannedPointCloud.cs" />
+    <Compile Include="3D_UI\BoundingBox.cs" />
+    <Compile Include="3D_UI\ObjectOrigin.cs" />
+    <Compile Include="Utility_Extensions\SCNMatrix4_Extensions.cs" />
+    <Compile Include="3D_UI\DetectedObject.cs" />
+    <Compile Include="Controllers\ViewControllerSCNViewDelegate.cs" />
+    <Compile Include="Controllers\ViewControllerSessionDelegate.cs" />
+    <Compile Include="Controllers\ViewControllerDocumentPickerDelegate.cs" />
+    <Compile Include="Controllers\ShareScanViewController.cs" />
+    <Compile Include="Controllers\ViewControllerNavigationBar.cs" />
+    <Compile Include="Utility_Extensions\SimpleBox.cs" />
+    <Compile Include="Utility_Extensions\Utilities.cs" />
+    <Compile Include="3D_UI\BoundingBoxSide.cs" />
+    <Compile Include="3D_UI\Wireframe.cs" />
+    <Compile Include="Utility_Extensions\Axis.cs" />
+    <Compile Include="3D_UI\Tile.cs" />
+    <Compile Include="3D_UI\Snapping.cs" />
+    <Compile Include="3D_UI\DetectedBoundingBox.cs" />
+    <Compile Include="3D_UI\DetectedPointCloud.cs" />
+    <Compile Include="3D_UI\ObjectOriginAxis.cs" />
+    <Compile Include="3D_UI\PointCloud.cs" />
+    <Compile Include="3D_UI\PlaneDrag.cs" />
+    <Compile Include="3D_UI\Ray.cs" />
+    <Compile Include="Utility_Extensions\NMatrix4_Extensions.cs" />
+    <Compile Include="Utility_Extensions\SCNVector3_Extensions.cs" />
+    <Compile Include="Utility_Extensions\NVector3_Extensions.cs" />
+    <Compile Include="Utility_Extensions\ARCamera_Extensions.cs" />
+    <Compile Include="Utility_Extensions\CGPoint_Extensions.cs" />
+    <Compile Include="Utility_Extensions\ARSCNView_Extensions.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>
