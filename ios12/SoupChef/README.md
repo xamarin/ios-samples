@@ -167,7 +167,7 @@ Extension, and one for the Intents UI Extension. For example:
         - This App ID needs no special capabilities.
 
 - After creating the the above App IDs, edit the **App Groups** capability
-assigned to the app and the Intents extension, and specify the specific
+assigned to the app and the Intents extension, specifying the specific
 App Group created above.
 
 - Create three new development provisioning profiles, one for each of the
