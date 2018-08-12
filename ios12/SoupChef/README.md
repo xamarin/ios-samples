@@ -157,14 +157,18 @@ extensions. For example: **group.com.yourcompanyname.SoupChef**
 Extension, and one for the Intents UI Extension. For example:
 
     - App: **com.yourcompanyname.SoupChef**
-    - Intents Extension: **com.yourcompanyname.SoupChef.Intents**
-    - Intents UI Extension: **com.yourcompanyname.SoupChef.Intentsui**
+        - To this App ID, assign the SiriKit and **App Groups**
+        capabilities.
 
-    To each new App ID, assign the **SiriKit** and **App Groups**
-    capabilities.
+    - Intents extension: **com.yourcompanyname.SoupChef.Intents**
+        - To this App ID, assign the **App Groups** capability.
+
+    - Intents UI extension: **com.yourcompanyname.SoupChef.Intentsui**
+        - This App ID needs no special capabilities.
 
 - After creating the the above App IDs, edit the **App Groups** capability
-assigned to each one, specifying the App Group created above.
+assigned to the app and the Intents extension, and specify the specific
+App Group created above.
 
 - Create three new development provisioning profiles, one for each of the
 new App IDs.
@@ -177,17 +181,22 @@ restart it to make sure it registers the new provisioning profiles.
 
 In Visual Studio for Mac or Visual Studio 2017, do the following:
 
-- Update the various **Info.plist** files. Setting the app, Intents 
-Extension, and Intents UI extension bundle identifiers to the App IDs 
-defined above:
+- Update the various **Info.plist** files in the solution. Set the app,
+Intents Extension, and Intents UI extension **Bundle Identifier** to the App
+IDs defined above:
 
     - App: **com.yourcompanyname.SoupChef**
     - Intents Extension: **com.yourcompanyname.SoupChef.Intents**
     - Intents UI Extension: **com.yourcompanyname.SoupChef.Intentsui**
 
-- Update the three **Entitlements.plist** files included with the project. 
-For the **App Groups** capability, set the group to the new App Group 
-created above (in the example above, it was **group.com.yourcompanyname.SoupChef**).
+- Update the **Entitlements.plist** file for the **SoupChef** project:
+    - For the **App Groups** capability, set the group to the new App Group 
+    created above (in the example above, it was **group.com.yourcompanyname.SoupChef**).
+    - Make sure that **SiriKit** is enabled.
+
+- Update the **Entitlements.plist** file for the **SoupChefIntents** project:
+    - For the **App Groups** capability, set the group to the new App Group 
+    created above (in the example above, it was **group.com.yourcompanyname.SoupChef**).
 
 - Finally, open **NSUserDefaultsHelper.cs**. Set the `AppGroup` variable
 to the value of your new App Group (for example, set it to 
