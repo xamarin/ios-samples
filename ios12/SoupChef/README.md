@@ -160,10 +160,10 @@ Extension, and one for the Intents UI Extension. For example:
         - To this App ID, assign the SiriKit and **App Groups**
         capabilities.
 
-    - Intents Extension: **com.yourcompanyname.SoupChef.Intents**
-        - To this AppID, assign the **App Groups** capability.
+    - Intents extension: **com.yourcompanyname.SoupChef.Intents**
+        - To this App ID, assign the **App Groups** capability.
 
-    - Intents UI Extension: **com.yourcompanyname.SoupChef.Intentsui**
+    - Intents UI extension: **com.yourcompanyname.SoupChef.Intentsui**
         - This App ID needs no special capabilities.
 
 - After creating the the above App IDs, edit the **App Groups** capability
