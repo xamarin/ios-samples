@@ -32,7 +32,6 @@ namespace SoupKit.Support
                     EligibleForPrediction = true
                 };
 
-#if __IOS__
                 var attributes = new CSSearchableItemAttributeSet(NSUserActivityHelper.SearchableItemContentType)
                 {
                     ThumbnailData = UIImage.FromBundle("tomato").AsPNG(),
@@ -41,7 +40,6 @@ namespace SoupKit.Support
                     ContentDescription = NSBundleHelper.SoupKitBundle.GetLocalizedString("VIEW_MENU_CONTENT_DESCRIPTION", "View menu content description")
                 };
                 userActivity.ContentAttributeSet = attributes;
-#endif
 
                 var phrase = NSBundleHelper.SoupKitBundle.GetLocalizedString("ORDER_LUNCH_SUGGESTED_PHRASE", "Voice shortcut suggested phrase");
                 userActivity.SuggestedInvocationPhrase = phrase;
