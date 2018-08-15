@@ -122,7 +122,7 @@ namespace MarsHabitatCoreMLTimer
             {
                 for (int i = 0; i < num; i++)
                 {
-                    IMLFeatureProvider output = model.GetPrediction(inputs[i], out NSError error);
+                    model.GetPrediction(inputs[i], out NSError error);
                 }
             });
             stopWatch.Stop();
