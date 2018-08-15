@@ -29,7 +29,7 @@
     <Commandlineparameters>foobar</Commandlineparameters>
     <CrashReportingApiKey></CrashReportingApiKey>
     <MtouchUseSGen>True</MtouchUseSGen>
-    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -41,7 +41,7 @@
     <ConsolePause>False</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -58,7 +58,7 @@
     <MtouchProfiling>True</MtouchProfiling>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <MtouchI18n></MtouchI18n>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -71,7 +71,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <MtouchI18n></MtouchI18n>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <ItemGroup>

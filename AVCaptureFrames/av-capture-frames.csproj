@@ -25,7 +25,7 @@
     <MtouchDebug>True</MtouchDebug>
     <ConsolePause>False</ConsolePause>
     <MtouchUseArmv7>false</MtouchUseArmv7>
-    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchArch>x86_64</MtouchArch>
     <MtouchI18n></MtouchI18n>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
@@ -39,7 +39,7 @@
     <ConsolePause>False</ConsolePause>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchI18n></MtouchI18n>
-    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -55,7 +55,7 @@
     <ConsolePause>False</ConsolePause>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchI18n></MtouchI18n>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <IpaPackageName></IpaPackageName>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
@@ -69,7 +69,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchUseArmv7>false</MtouchUseArmv7>
     <MtouchI18n></MtouchI18n>
-    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <ItemGroup>
