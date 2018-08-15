@@ -33,7 +33,7 @@ namespace SamplePhotoApp
 			imageSource = source;
 			FrameCount = imageSource.ImageCount;
 
-			var imageProperties = source.CopyProperties ((CGImageOptions)null);
+			var imageProperties = source.CopyProperties (new CGImageOptions());
 			if (imageProperties != null)
 			{
 				LoopCount = LoopCountForProperties (imageProperties);
@@ -55,7 +55,7 @@ namespace SamplePhotoApp
 			var totalDuration = 0.0;
 			for (var index = 0; index < FrameCount; index++)
 			{
-				var properties = source.CopyProperties ((CGImageOptions)null, index);
+				var properties = source.CopyProperties (new CGImageOptions(), index);
 				if (properties != null)
 				{
 					var time = FrameDelayForProperties (properties);
