@@ -1,4 +1,4 @@
-XBUILD=/Applications/Xcode-beta5.app/Contents/Developer/usr/bin/xcodebuild
+XBUILD=xcodebuild
 PROJECT_ROOT=./
 PROJECT=$(PROJECT_ROOT)/OrderSoupIntentStaticLib.xcodeproj
 TARGET=OrderSoupIntentStaticLib
