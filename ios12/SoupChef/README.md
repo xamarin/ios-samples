@@ -107,14 +107,14 @@ created by Xcode.
     **Command Line Tools** to the most current Xcode 10 installation
     available on your system.
 - In the terminal, `cd` to the **OrderSoupIntentStaticLib** directory.
-- Type `make` to build:
+- Type `make`, which builds:
     - The static library, **libOrderSoupIntentStaticLib.a** 
     - In the **bo** output directory, a C# API definition and associated code:
         - **ApiDefinitions.cs**
         - **StructsAndEnums.cs**
 
-The **OrderSoupIntentBindings** automatically builds the static library
-and generates the bindings definition since it depends on these items.
+The **OrderSoupIntentBindings** project, which relies on this static library
+and its associated bindings definitions, builds these items automatically.
 However, manually running through the above process will ensure that it
 builds as expected.
 
