@@ -96,7 +96,7 @@ Follow these instructions to make sure that the static library and C#
 bindings definitions build as expected:
 
 - [Install Objective Sharpie](https://docs.microsoft.com/xamarin/cross-platform/macios/binding/objective-sharpie/get-started?context=xamarin/mac#installing-objective-sharpie), 
-the tool used to generate a bindings definition from the .h and .m files
+the tool used to generate bindings definitions from the .h and .m files
 created by Xcode.
 - Configure your system to use Xcode 10 Command Line Tools:
     - WARNING: Updating the selected Command Line Tools impacts all 
@@ -115,8 +115,8 @@ created by Xcode.
 
 The **OrderSoupIntentBindings** project, which relies on this static library
 and its associated bindings definitions, builds these items automatically.
-However, manually running through the above process will ensure that it
-builds as expected.
+However, manually running through the above process will ensure that the
+static library and bindings definitions build as expected.
 
 Running the app on simulator or device
 -------
