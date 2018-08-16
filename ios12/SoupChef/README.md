@@ -98,7 +98,6 @@ bindings definitions build as expected:
 - [Install Objective Sharpie](https://docs.microsoft.com/xamarin/cross-platform/macios/binding/objective-sharpie/get-started?context=xamarin/mac#installing-objective-sharpie), 
 the tool used to generate a bindings definition from the .h and .m files
 created by Xcode.
-- In the terminal, `cd` to the **OrderSoupIntentStaticLib** directory.
 - Use Xcode to set the developer directory to an Xcode 10 installation:
     - WARNING: Updating the developer directory impacts all installed
     versions of Xcode on your system. When you are done using the Soup
@@ -107,7 +106,8 @@ created by Xcode.
     - In Xcode, choose **Xcode > Preferences > Locations** and set
     **Command Line Tools** to the most current Xcode 10 installation
     available on your system.
-- In the terminal, type `make` to build:
+- In the terminal, `cd` to the **OrderSoupIntentStaticLib** directory.
+- Type `make` to build:
     - The static library, **libOrderSoupIntentStaticLib.a** 
     - In the **bo** output directory, a C# API definition and associated code:
         - **ApiDefinitions.cs**
