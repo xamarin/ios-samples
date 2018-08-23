@@ -38,7 +38,7 @@ namespace ScanningAndDetecting3DObjects
 			// map the user's touch position in screen space onto that plane in 3D space.
 			// The plane's transform is constructed such that:
 			// 1. The ray along which we want to drag the object is the plane's X axis.
-			// 2. The plane's Z axis is ortogonal to the X axis and orthogonal to the vector
+			// 2. The plane's Z axis is orthogonal to the X axis and orthogonal to the vector
 			//    from the camera to the object.
 			//
 			// Defining the plane this way has two main benefits:
