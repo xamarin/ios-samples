@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>E9D12654-CDE5-4391-9BA7-3A8AFAC39765</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>iOS12, Notifications</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>An app that demonstrates various iOS 12 notification features: provisional notifications, dynamic notification action buttons, interactive notification content, and notification management features.</Brief>
+</SampleMetadata>

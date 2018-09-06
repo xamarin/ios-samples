@@ -124,7 +124,7 @@
         <scene sceneID="BdZ-Ld-87Z">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="adC-Gn-aor" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recognizer" image="First" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Recognizer" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bKc-KC-g8d">
                         <rect key="frame" x="0.0" y="20" width="320" height="50"/>
