@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{5F8F62FD-F149-4104-ADBA-CA1BAB610990}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>RedGreenNotifications</RootNamespace>
+    <AssemblyName>RedGreenNotifications</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <IOSDebuggerPort>29952</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>17596</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024x1024.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120x120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon128x128.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152x152.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167x167.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon16x16.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon172x172.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180x180.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon196x196.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20x20.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon256x256.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29x29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon32x32.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40x40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon48x48.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon512x512.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon55x55.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58x58.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60x60.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon64x64.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76x76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80x80.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87x87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon88x88.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageNotificationsViewController.cs" />
+    <Compile Include="ManageNotificationsViewController.designer.cs">
+      <DependentUpon>ManageNotificationsViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="RedGreenNotificationsContentExtension\RedGreenNotificationsContentExtension.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{00D40866-2EE9-4568-94DB-3064950F5A75}</Project>
+      <Name>RedGreenNotificationsContentExtension</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

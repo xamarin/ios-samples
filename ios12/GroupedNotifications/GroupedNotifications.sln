@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupedNotifications", "GroupedNotifications.csproj", "{9D91E5A5-C10D-4AA9-A384-E5BC8FEBC6F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D91E5A5-C10D-4AA9-A384-E5BC8FEBC6F0}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{9D91E5A5-C10D-4AA9-A384-E5BC8FEBC6F0}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{9D91E5A5-C10D-4AA9-A384-E5BC8FEBC6F0}.Release|iPhone.ActiveCfg = Release|iPhone
+		{9D91E5A5-C10D-4AA9-A384-E5BC8FEBC6F0}.Release|iPhone.Build.0 = Release|iPhone
+		{9D91E5A5-C10D-4AA9-A384-E5BC8FEBC6F0}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{9D91E5A5-C10D-4AA9-A384-E5BC8FEBC6F0}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{9D91E5A5-C10D-4AA9-A384-E5BC8FEBC6F0}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{9D91E5A5-C10D-4AA9-A384-E5BC8FEBC6F0}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
