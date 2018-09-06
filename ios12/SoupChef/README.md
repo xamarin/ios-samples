@@ -267,3 +267,11 @@ file.
 - There is a persistent warning in the application console: "Warning:
 observer object was not disposed manually with Dispose()"
 
+License
+-------
+Xamarin port changes are released under the MIT license.
+
+Author
+-------
+Ported to Xamarin.iOS by Brad Umbaugh
+
