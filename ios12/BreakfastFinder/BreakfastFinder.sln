@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreakfastFinder", "BreakfastFinder.csproj", "{BF3CD315-1262-4D36-95B4-A6DC05992602}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF3CD315-1262-4D36-95B4-A6DC05992602}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{BF3CD315-1262-4D36-95B4-A6DC05992602}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{BF3CD315-1262-4D36-95B4-A6DC05992602}.Release|iPhone.ActiveCfg = Release|iPhone
+		{BF3CD315-1262-4D36-95B4-A6DC05992602}.Release|iPhone.Build.0 = Release|iPhone
+		{BF3CD315-1262-4D36-95B4-A6DC05992602}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{BF3CD315-1262-4D36-95B4-A6DC05992602}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{BF3CD315-1262-4D36-95B4-A6DC05992602}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{BF3CD315-1262-4D36-95B4-A6DC05992602}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
