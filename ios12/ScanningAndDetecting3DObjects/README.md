@@ -125,6 +125,10 @@ A matter of internal debate was the clearest form for porting Swift `guard` stat
 
 I chose to use the former solely because the pattern matching form is still relatively new and therefore might be less familiar to some developers.  
 
+License
+-------
+Xamarin port changes are released under the MIT license.
+
 Author
 ------
 
