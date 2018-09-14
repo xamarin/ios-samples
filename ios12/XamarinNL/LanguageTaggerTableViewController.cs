@@ -10,7 +10,7 @@ namespace XamarinNL
         const string EntityCell = "EntityCell";
 
         public NSValue[] TokenRanges { get; set; }
-        public NLTag[] Tags { get; set; }
+        public NSString[] Tags { get; set; }
         public string Text { get; set; }
 
         public LanguageTaggerTableViewController(IntPtr handle) : base(handle) { }
@@ -29,7 +29,7 @@ namespace XamarinNL
             var tag = Tags[indexPath.Row];
 
             cell.TextLabel.Text = token;
-            cell.DetailTextLabel.Text = tag.ToString();
+            cell.DetailTextLabel.Text = tag;
 
             return cell;
         }
