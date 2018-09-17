@@ -22,7 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
     <MtouchArch>x86_64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
@@ -85,30 +85,17 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Protocols_Delegates_EventsViewController.xib" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="Resources\Default-Landscape%402x~ipad.png" />
-    <BundleResource Include="Resources\Default-Landscape~ipad.png" />
-    <BundleResource Include="Resources\Default-Portrait%402x~ipad.png" />
-    <BundleResource Include="Resources\Default-Portrait~ipad.png" />
-    <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Resources\Default%402x.png" />
-    <BundleResource Include="Resources\iTunesArtwork%402x.png" />
-    <BundleResource Include="Resources\icon-100.png" />
-    <BundleResource Include="Resources\icon-114.png" />
-    <BundleResource Include="Resources\icon-144.png" />
-    <BundleResource Include="Resources\icon-29.png" />
-    <BundleResource Include="Resources\icon-50.png" />
-    <BundleResource Include="Resources\icon-57.png" />
-    <BundleResource Include="Resources\icon-58.png" />
-    <BundleResource Include="Resources\icon-72.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ITunesArtwork Include="Resources\iTunesArtwork.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-57.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-114.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-58.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
