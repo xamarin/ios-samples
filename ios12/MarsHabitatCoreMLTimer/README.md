@@ -7,6 +7,8 @@ sample to demonstrate the performance benefit of using iOS 12's Core ML
 batch prediction API instead of looping over the standard Core ML
 prediction API.
 
+![batch processing timer](Screenshots/complete-sml.png)
+
 License
 -------
 Code is released under the MIT license

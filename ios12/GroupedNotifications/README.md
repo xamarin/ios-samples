@@ -5,6 +5,8 @@ This sample app demonstrates how to use the User Notifications framework
 to group notifications by their thread identifiers, a new feature 
 introduced in iOS 12 to make it easier for users to work with notifications.
 
+![Example grouped and expanded notifications](Screenshots/all-sml.png)
+
 Usage
 -------
 
