@@ -19,6 +19,7 @@ This sample demonstrates how to:
 - Set up an in-app notification management screen to which iOS can directly 
 link.
 
+![Provisional nortifications examples](Screenshots/all-sml.png)
 
 Usage
 -------
