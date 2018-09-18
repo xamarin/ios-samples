@@ -9,7 +9,7 @@ namespace XamarinNL
     {
         const string ShowEntitiesSegue = "ShowEntitiesSegue";
 
-        NSString[] tags;
+        NLTag[] tags;
         NSValue[] tokenRanges;
         string detailViewTitle;
 
