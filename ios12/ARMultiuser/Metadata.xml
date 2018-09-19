@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>395bf0ee-2f5a-49f1-a02c-568d0a04aefb</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Brief>Transmit ARKit world-mapping data between nearby devices with the MultipeerConnectivity framework to create a shared basis for AR experiences.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>ARKit, SceneKit, iOS12</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>
