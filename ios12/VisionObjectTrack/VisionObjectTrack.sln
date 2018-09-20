@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisionObjectTrack", "VisionObjectTrack\VisionObjectTrack.csproj", "{C254E4CA-55DA-4C1B-B1EF-9665FCDFC960}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C254E4CA-55DA-4C1B-B1EF-9665FCDFC960}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C254E4CA-55DA-4C1B-B1EF-9665FCDFC960}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C254E4CA-55DA-4C1B-B1EF-9665FCDFC960}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C254E4CA-55DA-4C1B-B1EF-9665FCDFC960}.Release|iPhone.Build.0 = Release|iPhone
+		{C254E4CA-55DA-4C1B-B1EF-9665FCDFC960}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C254E4CA-55DA-4C1B-B1EF-9665FCDFC960}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{C254E4CA-55DA-4C1B-B1EF-9665FCDFC960}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C254E4CA-55DA-4C1B-B1EF-9665FCDFC960}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
