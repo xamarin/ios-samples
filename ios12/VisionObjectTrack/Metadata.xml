@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>d18e15ca-3b1a-42ad-8767-84d3713e782e</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Brief>Apply Vision algorithms to track objects or rectangles throughout a video.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>Vision, iOS12</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>
