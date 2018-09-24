@@ -8,6 +8,8 @@ sample app.
 It demonstrates how to use the Vision framework and Core ML in iOS 12 to
 recognize objects in live video.
 
+![Recognizing a cup of coffee](Screenshots/identify-coffee-sml.jpeg)
+
 Usage
 -------
 
