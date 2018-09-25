@@ -120,5 +120,6 @@
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-50.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-50%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\icon-spotlight-29.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon1024x1024.png" />
   </ItemGroup>
 </Project>

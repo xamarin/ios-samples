@@ -116,6 +116,7 @@
     <ImageAsset Include="Resources\Images.xcassets\Ski1.imageset\Ski1-1.png" />
     <ImageAsset Include="Resources\Images.xcassets\Ski1.imageset\Ski1.png" />
     <ImageAsset Include="Resources\Images.xcassets\Ski1.imageset\Ski1-2.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon1024x1024.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Watchkit3Extension\Watchkit3Extension.csproj">
