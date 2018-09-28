@@ -3,11 +3,11 @@ Multiuser AR Experience
 
 This sample demonstrates how to transmit ARKit world-mapping data between nearby devices with the MultipeerConnectivity framework to create a shared basis for AR experiences.
 
-![Added Object](https://github.com/xamarin/ios-samples/blob/master/ios12/ARMultiuser/Screenshots/screenshots_1.png)
+![Added Object](Screenshots/screenshots_1.png)
 
 Diagram showing AR experiences on two devices viewing, from two different perspectives, the same virtual red panda character sitting on a real table, after an ARWorldMap is transmitted from one device to the other.
 
-![Diagram](https://github.com/xamarin/ios-samples/blob/master/ios12/ARMultiuser/Screenshots/concept-art.png)
+![Diagram](ARMultiuser/Screenshots/concept-art.png)
 
 Build Requirements
 -------
