@@ -3,7 +3,7 @@ Vision in Real Time with ARKit
 
 Manage Vision resources for efficient execution of a Core ML image classifier, and use SpriteKit to display image classifier output in AR.
 
-![Detected Object]("https://github.com/xamarin/ios-samples/blob/master/ios12/ARKitVision/Screenshots/scnreenshot-1.png")
+![Detected Object](https://github.com/xamarin/ios-samples/blob/master/ios12/ARKitVision/Screenshots/scnreenshot-1.png)
 
 Build Requirements
 -------
