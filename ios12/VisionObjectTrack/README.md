@@ -3,7 +3,7 @@ Tracking Multiple Objects or Rectangles in Video
 
 This sample demonstrates how to apply Vision algorithms to track objects or rectangles throughout a video.
 
-<img src="https://github.com/xamarin/ios-samples/blob/master/ios12/VisionObjectTrack/Screenshots/screenshot-2.png" width="250" height="445" />
+![Detected Object](Screenshots/screenshot-2.png)
 
 Build Requirements
 -------
