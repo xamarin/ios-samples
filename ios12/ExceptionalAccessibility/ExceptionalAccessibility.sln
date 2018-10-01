@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExceptionalAccessibility", "ExceptionalAccessibility\ExceptionalAccessibility.csproj", "{B3EAC7D0-3DA4-470A-9790-55F48D48C8FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3EAC7D0-3DA4-470A-9790-55F48D48C8FC}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{B3EAC7D0-3DA4-470A-9790-55F48D48C8FC}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{B3EAC7D0-3DA4-470A-9790-55F48D48C8FC}.Release|iPhone.ActiveCfg = Release|iPhone
+		{B3EAC7D0-3DA4-470A-9790-55F48D48C8FC}.Release|iPhone.Build.0 = Release|iPhone
+		{B3EAC7D0-3DA4-470A-9790-55F48D48C8FC}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{B3EAC7D0-3DA4-470A-9790-55F48D48C8FC}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{B3EAC7D0-3DA4-470A-9790-55F48D48C8FC}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{B3EAC7D0-3DA4-470A-9790-55F48D48C8FC}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
