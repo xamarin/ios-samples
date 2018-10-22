@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>SoupChefIntents</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.SoupChef.SoupChefIntents</string>
+	<string>com.xamarin.soup-chef.soup-chef-intents</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleInfoDictionaryVersion</key>
