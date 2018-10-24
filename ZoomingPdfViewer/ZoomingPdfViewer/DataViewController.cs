@@ -7,6 +7,7 @@ namespace ZoomingPdfViewer
     public partial class DataViewController : UIViewController
     {
         private CGPDFPage page;
+
         private nfloat myScale;
 
         public DataViewController(IntPtr handle) : base(handle) { }

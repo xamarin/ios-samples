@@ -20,18 +20,6 @@ namespace ZoomingPdfViewer
         // Frame of the PDF
         private CGRect pageRect;
 
-
-
-        // A low resolution image of the PDF page that is displayed until the TiledPDFView renders its content.
-        private UIView backgroundImageView;
-
-
-        // Current PDF zoom scale.
-        public nfloat PdfScale { get; set; }
-
-        // The TiledPDFView that is currently front most.
-        public TiledPdfView TiledPDFView { get; private set; }
-
         public PdfScrollView(IntPtr handle) : base(handle)
         {
             Initialize();
@@ -42,18 +30,27 @@ namespace ZoomingPdfViewer
             Initialize();
         }
 
+        /// <summary>
+        /// Current PDF zoom scale.
+        /// </summary>
+        public nfloat PdfScale { get; set; }
+
+        /// <summary>
+        /// The TiledPDFView that is currently front most.
+        /// </summary>
+        public TiledPdfView TiledPDFView { get; private set; }
+
         private void Initialize()
         {
-            DecelerationRate = DecelerationRateFast;
+            DecelerationRate = UIScrollView.DecelerationRateFast;
             Delegate = this;
-            //BackgroundColor = UIColor.LightGray;
 
-            Layer.BackgroundColor = UIColor.LightGray.CGColor;
+            Layer.BorderColor = UIColor.Red.CGColor;
             Layer.BorderWidth = 5f;
-            MaximumZoomScale = 5f;
-            MinimumZoomScale = .25f;
 
-            backgroundImageView = new UIView(Frame);
+            MaximumZoomScale = 5f;
+            MinimumZoomScale = 0.25f;
+
             oldPdfView = new TiledPdfView(pageRect, PdfScale);
         }
 
@@ -92,7 +89,6 @@ namespace ZoomingPdfViewer
             frameToCenter.Y = frameToCenter.Height < boundsSize.Height ? (boundsSize.Height - frameToCenter.Height) / 2f : 0f;
 
             TiledPDFView.Frame = frameToCenter;
-            backgroundImageView.Frame = frameToCenter;
 
             /*
              * To handle the interaction between CATiledLayer and high resolution screens, set the tiling view's contentScaleFactor to 1.0.
@@ -111,7 +107,8 @@ namespace ZoomingPdfViewer
         public new void ZoomingStarted(UIScrollView scrollView, UIView view)
         {
             // Remove back tiled view.
-            oldPdfView?.RemoveFromSuperview();
+            oldPdfView.RemoveFromSuperview();
+            oldPdfView.Dispose();
 
             // Set the current TiledPDFView to be the old view.
             oldPdfView = TiledPDFView;
@@ -126,14 +123,13 @@ namespace ZoomingPdfViewer
         {
             // Set the new scale factor for the TiledPDFView.
             PdfScale *= atScale;
-
             ReplaceTiledPdfViewWithFrame(oldPdfView.Frame);
         }
 
-        private void ReplaceTiledPdfViewWithFrame(CGRect rect)
+        private void ReplaceTiledPdfViewWithFrame(CGRect frame)
         {
             // Create a new tiled PDF View at the new scale
-            var tiledPDFView = new TiledPdfView(Frame, PdfScale) { Page = page };
+            var tiledPDFView = new TiledPdfView(frame, PdfScale) { PdfPage = page };
 
             // Add the new TiledPDFView to the PDFScrollView.
             AddSubview(tiledPDFView);

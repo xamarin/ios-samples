@@ -16,10 +16,10 @@ namespace ZoomingPdfViewer
 
         public ModelController()
         {
-            var pdfURL = NSBundle.MainBundle.GetUrlForResource("Tamarin", "pdf");
-            if (pdfURL != null)
+            var pdfUrl = NSBundle.MainBundle.GetUrlForResource("Tamarin", "pdf");
+            if (pdfUrl != null)
             {
-                pdf = CGPDFDocument.FromUrl(pdfURL.AbsoluteString);
+                pdf = CGPDFDocument.FromUrl(pdfUrl.AbsoluteString);
                 numberOfPages = pdf.Pages;
                 if (numberOfPages % 2 != 0)
                 {

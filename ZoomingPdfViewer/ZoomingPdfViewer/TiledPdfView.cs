@@ -1,8 +1,8 @@
-using System;
+using CoreAnimation;
 using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
-using CoreAnimation;
+using System;
 using UIKit;
 
 namespace ZoomingPdfViewer
@@ -10,28 +10,31 @@ namespace ZoomingPdfViewer
     /// <summary>
     /// This view is backed by a CATiledLayer into which the PDF page is rendered into.
     /// </summary>
-    public class TiledPdfView : UIView//, ICALayerDelegate
+    public class TiledPdfView : UIView
     {
-        //private readonly CATiledLayer tiledLayer;
+        private CATiledLayer tiledLayer;
 
-        public nfloat MyScale { get; set; }
-
-        public CGPDFPage Page { get; set; }
-
+        /// <summary>
+        /// Create a new TiledPDFView with the desired frame and scale.
+        /// </summary>
         public TiledPdfView(CGRect frame, nfloat scale) : base(frame)
         {
-            //var tiledLayer = CATiledLayer.Create();
-            var tiledLayer = Layer as CATiledLayer;
+            tiledLayer = Layer as CATiledLayer;
 
             // levelsOfDetail and levelsOfDetailBias determine how the layer is rendered at different zoom levels.
             // This only matters while the view is zooming, because once the the view is done zooming a new TiledPDFView is created at the correct size and scale.
             tiledLayer.LevelsOfDetail = 4;
             tiledLayer.LevelsOfDetailBias = 3;
             tiledLayer.TileSize = new CGSize(512f, 512f);
+
             MyScale = scale;
-            tiledLayer.BackgroundColor = UIColor.LightGray.CGColor;
-            tiledLayer.BorderWidth = 5;
+            Layer.BorderColor = UIColor.Green.CGColor;
+            Layer.BorderWidth = 5;
         }
+
+        public nfloat MyScale { get; set; }
+
+        public CGPDFPage PdfPage { get; set; }
 
         [Export("layerClass")]
         public static Class LayerClass()
@@ -47,7 +50,7 @@ namespace ZoomingPdfViewer
             context.FillRect(Bounds);
 
             // Print a blank page and return if our page is nil.
-            if (Page != null)
+            if (PdfPage != null)
             {
                 context.SaveState();
 
@@ -59,24 +62,18 @@ namespace ZoomingPdfViewer
                 context.ScaleCTM(MyScale, MyScale);
 
                 // draw the page, restore and exit
-                context.DrawPDFPage(Page);
+                context.DrawPDFPage(PdfPage);
                 context.RestoreState();
             }
         }
 
         protected override void Dispose(bool disposing)
         {
-            Cleanup();
             base.Dispose(disposing);
-        }
-
-        void Cleanup()
-        {
-            //InvokeOnMainThread(() => {
-            //    tiledLayer.Delegate = null;
-            //    RemoveFromSuperview();
-            //    tiledLayer.RemoveFromSuperLayer();
-            //});
+            if(disposing)
+            {
+                tiledLayer.Dispose();
+            }
         }
     }
 }
