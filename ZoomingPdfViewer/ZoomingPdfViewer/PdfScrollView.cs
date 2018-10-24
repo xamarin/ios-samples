@@ -45,7 +45,7 @@ namespace ZoomingPdfViewer
             DecelerationRate = UIScrollView.DecelerationRateFast;
             Delegate = this;
 
-            Layer.BorderColor = UIColor.Red.CGColor;
+            Layer.BorderColor = UIColor.LightGray.CGColor;
             Layer.BorderWidth = 5f;
 
             MaximumZoomScale = 5f;
@@ -75,9 +75,9 @@ namespace ZoomingPdfViewer
             ReplaceTiledPdfViewWithFrame(pageRect);
         }
 
-        // Use layoutSubviews to center the PDF page in the view.
         public override void LayoutSubviews()
         {
+            // Use layoutSubviews to center the PDF page in the view.
             base.LayoutSubviews();
 
             // Center the image as it becomes smaller than the size of the screen.

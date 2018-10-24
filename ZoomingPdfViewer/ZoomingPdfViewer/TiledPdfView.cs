@@ -28,7 +28,7 @@ namespace ZoomingPdfViewer
             tiledLayer.TileSize = new CGSize(512f, 512f);
 
             MyScale = scale;
-            Layer.BorderColor = UIColor.Green.CGColor;
+            Layer.BorderColor = UIColor.LightGray.CGColor;
             Layer.BorderWidth = 5;
         }
 
