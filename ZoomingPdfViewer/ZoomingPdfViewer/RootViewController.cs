@@ -10,6 +10,7 @@ namespace ZoomingPdfViewer
     public partial class RootViewController : UIViewController, IUIPageViewControllerDelegate
     {
         private UIPageViewController pageViewController;
+
         private ModelController modelController;
 
         public RootViewController(IntPtr handle) : base(handle) { }

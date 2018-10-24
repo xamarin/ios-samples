@@ -17,11 +17,14 @@ namespace ZoomingPdfViewer
         public ModelController()
         {
             var pdfURL = NSBundle.MainBundle.GetUrlForResource("Tamarin", "pdf");
-            pdf = CGPDFDocument.FromUrl(pdfURL.AbsoluteString);
-            numberOfPages = pdf.Pages;
-            if (numberOfPages % 2 != 0)
+            if (pdfURL != null)
             {
-                numberOfPages++;
+                pdf = CGPDFDocument.FromUrl(pdfURL.AbsoluteString);
+                numberOfPages = pdf.Pages;
+                if (numberOfPages % 2 != 0)
+                {
+                    numberOfPages++;
+                }
             }
             else
             {
@@ -46,12 +49,12 @@ namespace ZoomingPdfViewer
             return viewController.PageNumber - 1;
         }
 
-        public UIViewController GetNextViewController(UIPageViewController pageViewController, UIViewController referenceViewController)
+        public UIViewController GetPreviousViewController(UIPageViewController pageViewController, UIViewController referenceViewController)
         {
             UIViewController result = null;
 
             var index = IndexOfViewController(referenceViewController as DataViewController);
-            if (index != 0)
+            if (index > 0)
             {
                 index--;
                 result = GetViewController(index, referenceViewController.Storyboard);
@@ -60,12 +63,12 @@ namespace ZoomingPdfViewer
             return result;
         }
 
-        public UIViewController GetPreviousViewController(UIPageViewController pageViewController, UIViewController referenceViewController)
+        public UIViewController GetNextViewController(UIPageViewController pageViewController, UIViewController referenceViewController)
         {
             UIViewController result = null;
 
             var index = IndexOfViewController(referenceViewController as DataViewController);
-            if (index != 0)
+            if (index >= 0)
             {
                 index++;
                 if (index != numberOfPages)
