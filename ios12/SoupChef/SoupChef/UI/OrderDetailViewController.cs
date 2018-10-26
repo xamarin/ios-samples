@@ -10,9 +10,9 @@ This class shows soup order details. It can be configured for two possible order
 using Foundation;
 using System;
 using UIKit;
-using SoupKit.Data;
+//using SoupKit.Data;
 using System.Collections.Generic;
-using SoupKit.Support;
+//using SoupKit.Support;
 using CoreFoundation;
 using System.Threading;
 using IntentsUI;
@@ -22,7 +22,7 @@ namespace SoupChef
 {
     public partial class OrderDetailViewController : UITableViewController, IINUIAddVoiceShortcutViewControllerDelegate, IINUIEditVoiceShortcutViewControllerDelegate
     {
-        public Order Order { get; private set; }
+        //public Order Order { get; private set; }
 
         OrderDetailTableConfiguration TableConfiguration = new OrderDetailTableConfiguration(OrderDetailTableConfiguration.OrderTypeEnum.New);
 
@@ -32,7 +32,7 @@ namespace SoupChef
 
         Dictionary<string, string> OptionMap = new Dictionary<string, string>();
 
-        VoiceShortcutDataManager VoiceShortcutDataManager;
+        //VoiceShortcutDataManager VoiceShortcutDataManager;
 
         public override void ViewDidLoad()
         {
@@ -46,26 +46,26 @@ namespace SoupChef
 
         void ConfigureTableViewHeader()
         {
-            SoupDetailView.ImageView.Image = UIImage.FromBundle(Order.MenuItem.IconImageName);
-            SoupDetailView.TitleLabel.Text = Order.MenuItem.LocalizedString;
+            //SoupDetailView.ImageView.Image = UIImage.FromBundle(Order.MenuItem.IconImageName);
+            //SoupDetailView.TitleLabel.Text = Order.MenuItem.LocalizedString;
             TableView.TableHeaderView = TableViewHeader;
         }
 
-        public void Configure(OrderDetailTableConfiguration tableConfiguration, Order order, VoiceShortcutDataManager voiceShortcutDataManager)
+        public void Configure(OrderDetailTableConfiguration tableConfiguration/*, Order order, VoiceShortcutDataManager voiceShortcutDataManager*/)
         {
             TableConfiguration = tableConfiguration;
-            Order = order;
-            VoiceShortcutDataManager = voiceShortcutDataManager;
+            //Order = order;
+            //VoiceShortcutDataManager = voiceShortcutDataManager;
         }
 
         partial void PlaceOrder(UIBarButtonItem sender)
         {
-            if (Order.Quantity == 0)
-            {
-                Console.WriteLine("Quantity must be greater than 0 to add to order");
-                return;
+            //if (Order.Quantity == 0)
+            //{
+            //    Console.WriteLine("Quantity must be greater than 0 to add to order");
+            //    return;
 
-            }
+            //}
             PerformSegue("Place Order Segue", this);
         }
 
@@ -74,8 +74,8 @@ namespace SoupChef
             var stepper = sender as UIStepper;
             if (!(stepper is null))
             {
-                Order.Quantity = (int)(stepper.Value);
-                QuantityLabel.Text = $"{Order.Quantity}";
+                //Order.Quantity = (int)(stepper.Value);
+                //QuantityLabel.Text = $"{Order.Quantity}";
                 UpdateTotalLabel();
             }
         }
@@ -84,24 +84,24 @@ namespace SoupChef
         {
             if (!(TotalLabel is null))
             {
-                TotalLabel.Text = NSNumberFormatterHelper.CurrencyFormatter.StringFromNumber(Order.Total);
+                //TotalLabel.Text = NSNumberFormatterHelper.CurrencyFormatter.StringFromNumber(Order.Total);
             }
         }
 
         void UpdateVoiceShortcuts()
         {
             var weakThis = new WeakReference<OrderDetailViewController>(this);
-            VoiceShortcutDataManager.UpdateVoiceShortcuts(() =>
-            {
-                var indexPath = NSIndexPath.FromRowSection(0, 3);
-                DispatchQueue.MainQueue.DispatchAsync(() =>
-                {
-                    if (weakThis.TryGetTarget(out var orderDetailViewController))
-                    {
-                        orderDetailViewController.TableView.ReloadRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);
-                    }
-                });
-            });
+            //VoiceShortcutDataManager.UpdateVoiceShortcuts(() =>
+            ////{
+            //    var indexPath = NSIndexPath.FromRowSection(0, 3);
+            //    DispatchQueue.MainQueue.DispatchAsync(() =>
+            //    {
+            //        if (weakThis.TryGetTarget(out var orderDetailViewController))
+            //        {
+            //            orderDetailViewController.TableView.ReloadRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);
+            //        }
+            //    });
+            //});
             DismissViewController(true, null);
         }
 
@@ -132,7 +132,7 @@ namespace SoupChef
                 case OrderDetailTableConfiguration.SectionType.Price:
                     if (!(cell.TextLabel is null))
                     {
-                        cell.TextLabel.Text = NSNumberFormatterHelper.CurrencyFormatter.StringFromNumber(Order.MenuItem.Price);
+                        //cell.TextLabel.Text = NSNumberFormatterHelper.CurrencyFormatter.StringFromNumber(Order.MenuItem.Price);
                     }
                     break;
                 case OrderDetailTableConfiguration.SectionType.Quantity:
@@ -150,7 +150,7 @@ namespace SoupChef
                         }
                         else
                         {
-                            quantityCell.GetQuantityLabel().Text = $"{Order.Quantity}";
+                            //quantityCell.GetQuantityLabel().Text = $"{Order.Quantity}";
                             quantityCell.GetStepper().Hidden = true;
                         }
                     }
@@ -159,22 +159,22 @@ namespace SoupChef
                     // Maintains a mapping of values to localized values in 
                     // order to help instantiate Order.MenuItemOption later
                     // when an option is selected in the table view
-                    var option = new MenuItemOption(MenuItemOption.All[indexPath.Row]);
-                    var localizedValue =
-                        Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(
-                            option.LocalizedString
-                        );
-                    OptionMap[localizedValue] = option.Value;
+                    //var option = new MenuItemOption(MenuItemOption.All[indexPath.Row]);
+                    //var localizedValue =
+                    //    Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(
+                    //        option.LocalizedString
+                    //    );
+                    //OptionMap[localizedValue] = option.Value;
 
-                    if (!(cell.TextLabel is null))
-                    {
-                        cell.TextLabel.Text = localizedValue;
-                    }
+                    //if (!(cell.TextLabel is null))
+                    //{
+                    //    cell.TextLabel.Text = localizedValue;
+                    //}
 
-                    if (TableConfiguration.OrderType == OrderDetailTableConfiguration.OrderTypeEnum.Historical)
-                    {
-                        cell.Accessory = Order.MenuItemOptions.Contains(option) ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
-                    }
+                    //if (TableConfiguration.OrderType == OrderDetailTableConfiguration.OrderTypeEnum.Historical)
+                    //{
+                    //    //cell.Accessory = Order.MenuItemOptions.Contains(option) ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
+                    //}
                     break;
                 case OrderDetailTableConfiguration.SectionType.Total:
                     TotalLabel = cell.TextLabel;
@@ -185,15 +185,15 @@ namespace SoupChef
                     if (!(cell.TextLabel is null))
                     {
                         cell.TextLabel.TextColor = TableView.TintColor;
-                        var shortcut = VoiceShortcutDataManager.VoiceShortcutForOrder(Order);
-                        if (!(shortcut is null))
-                        {
-                            cell.TextLabel.Text = $"“{shortcut.InvocationPhrase}”";
-                        }
-                        else
-                        {
-                            cell.TextLabel.Text = "Add to Siri";
-                        }
+                        //var shortcut = VoiceShortcutDataManager.VoiceShortcutForOrder(Order);
+                        //if (!(shortcut is null))
+                        //{
+                        //    cell.TextLabel.Text = $"“{shortcut.InvocationPhrase}”";
+                        //}
+                        //else
+                        //{
+                        //    cell.TextLabel.Text = "Add to Siri";
+                        //}
                     }
                     break;
                 default:
@@ -216,23 +216,23 @@ namespace SoupChef
                 var optionRawValue = OptionMap[cellText];
                 if (optionRawValue is null) { return; }
 
-                var option = new MenuItemOption(optionRawValue);
-                if (option is null) { return; }
+                //var option = new MenuItemOption(optionRawValue);
+                //if (option is null) { return; }
 
-                if (Order.MenuItemOptions.Contains(option))
-                {
-                    Order.MenuItemOptions.Remove(option);
-                    cell.Accessory = UITableViewCellAccessory.None;
-                }
-                else
-                {
-                    Order.MenuItemOptions.Add(option);
-                    cell.Accessory = UITableViewCellAccessory.Checkmark;
-                }
+                //if (Order.MenuItemOptions.Contains(option))
+                //{
+                //    //Order.MenuItemOptions.Remove(option);
+                //    cell.Accessory = UITableViewCellAccessory.None;
+                //}
+                //else
+                //{
+                //    //Order.MenuItemOptions.Add(option);
+                //    cell.Accessory = UITableViewCellAccessory.Checkmark;
+                //}
             }
             else if (TableConfiguration.Sections[indexPath.Section].Type == OrderDetailTableConfiguration.SectionType.VoiceShortcut)
             {
-                INVoiceShortcut existingShortcut = VoiceShortcutDataManager?.VoiceShortcutForOrder(Order);
+                INVoiceShortcut existingShortcut = null; //VoiceShortcutDataManager?.VoiceShortcutForOrder(Order);
                 if (!(existingShortcut is null))
                 {
                     var editVoiceShortcutViewController = new INUIEditVoiceShortcutViewController(existingShortcut);
@@ -243,13 +243,13 @@ namespace SoupChef
                 {
                     // Since the app isn't yet managing a voice shortcut for
                     // this order, present the add view controller
-                    INShortcut newShortcut = new INShortcut(Order.Intent);
-                    if (!(newShortcut is null))
-                    {
-                        var addVoiceShortcutVC = new INUIAddVoiceShortcutViewController(newShortcut);
-                        addVoiceShortcutVC.Delegate = this;
-                        PresentViewController(addVoiceShortcutVC, true, null);
-                    }
+                    //INShortcut newShortcut = new INShortcut(Order.Intent);
+                    //if (!(newShortcut is null))
+                    //{
+                    //    var addVoiceShortcutVC = new INUIAddVoiceShortcutViewController(newShortcut);
+                    //    addVoiceShortcutVC.Delegate = this;
+                    //    PresentViewController(addVoiceShortcutVC, true, null);
+                    //}
                 }
             }
         }

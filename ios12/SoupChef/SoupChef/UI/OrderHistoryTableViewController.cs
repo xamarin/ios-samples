@@ -8,9 +8,9 @@ This class displays a list of previously placed orders.
 using Foundation;
 using System;
 using UIKit;
-using SoupKit.Data;
+//using SoupKit.Data;
 using System.Linq;
-using SoupKit.UI;
+//using SoupKit.UI;
 
 namespace SoupChef
 {
@@ -23,9 +23,9 @@ namespace SoupChef
             public const string ConfigureMenu = "Configure Menu";
         }
 
-        SoupMenuManager SoupMenuManager = new SoupMenuManager();
-        SoupOrderDataManager SoupOrderDataManager = new SoupOrderDataManager();
-        VoiceShortcutDataManager VoiceShortcutManager = new VoiceShortcutDataManager();
+        //SoupMenuManager SoupMenuManager = new SoupMenuManager();
+        //SoupOrderDataManager SoupOrderDataManager = new SoupOrderDataManager();
+        //VoiceShortcutDataManager VoiceShortcutManager = new VoiceShortcutDataManager();
         NSObject NotificationToken;
 
         Lazy<NSDateFormatter> DateFormatter => new Lazy<NSDateFormatter>(() =>
@@ -45,18 +45,18 @@ namespace SoupChef
             base.ViewDidLoad();
 
             var weakThis = new WeakReference<OrderHistoryTableViewController>(this);
-            NotificationToken = NSNotificationCenter.DefaultCenter.AddObserver(
-                NotificationKeys.DataChanged,
-                SoupOrderDataManager,
-                NSOperationQueue.MainQueue,
-                (notification) =>
-                {
-                    if (weakThis.TryGetTarget(out var orderHistoryViewController))
-                    {
-                        orderHistoryViewController.TableView.ReloadData();
-                    }
-                }
-            );
+            //NotificationToken = NSNotificationCenter.DefaultCenter.AddObserver(
+            //    NotificationKeys.DataChanged,
+            //    SoupOrderDataManager,
+            //    NSOperationQueue.MainQueue,
+            //    (notification) =>
+            //    {
+            //        if (weakThis.TryGetTarget(out var orderHistoryViewController))
+            //        {
+            //            orderHistoryViewController.TableView.ReloadData();
+            //        }
+            //    }
+            //);
         }
 
         public override void ViewDidAppear(bool animated)
@@ -79,7 +79,7 @@ namespace SoupChef
             var source = segue.SourceViewController as OrderDetailViewController;
             if (!(source is null))
             {
-                SoupOrderDataManager.PlaceOrder(source.Order);
+                //SoupOrderDataManager.PlaceOrder(source.Order);
             }
         }
         #endregion
@@ -96,11 +96,11 @@ namespace SoupChef
                 var destination = segue.DestinationViewController as OrderDetailViewController;
                 if (destination is null) { return; }
 
-                destination.Configure(
-                    new OrderDetailTableConfiguration(OrderDetailTableConfiguration.OrderTypeEnum.Historical),
-                    SoupOrderDataManager.OrderHistory[(nuint)selectedIndexPath.Row],
-                    VoiceShortcutManager
-                );
+                //destination.Configure(
+                //    new OrderDetailTableConfiguration(OrderDetailTableConfiguration.OrderTypeEnum.Historical),
+                //    SoupOrderDataManager.OrderHistory[(nuint)selectedIndexPath.Row],
+                //    VoiceShortcutManager
+                //);
             }
             else if (segue.Identifier == SegueIdentifiers.ConfigureMenu)
             {
@@ -108,31 +108,31 @@ namespace SoupChef
                 var configureMenuTableViewController = navCon?.ViewControllers?.FirstOrDefault() as ConfigureMenuTableViewController;
                 if (configureMenuTableViewController is null) { return; }
 
-                configureMenuTableViewController.SoupMenuManager = SoupMenuManager;
-                configureMenuTableViewController.SoupOrderDataManager = SoupOrderDataManager;
+                //configureMenuTableViewController.SoupMenuManager = SoupMenuManager;
+                //configureMenuTableViewController.SoupOrderDataManager = SoupOrderDataManager;
             }
         }
         #endregion
 
         #region UITableViewDataSource
-        public override nint RowsInSection(UITableView tableView, nint section)
-        {
-            return (nint)SoupOrderDataManager.OrderHistory.Count;
-        }
+        //public override nint RowsInSection(UITableView tableView, nint section)
+        //{
+        //    return (nint)SoupOrderDataManager.OrderHistory.Count;
+        //}
 
-        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-        {
-            var cell = TableView.DequeueReusableCell(SoupOrderDetailCell.CellIdentifier, indexPath) as SoupOrderDetailCell;
-            if (cell is null ) 
-            {
-                return new UITableViewCell();
-            }
-            Order order = SoupOrderDataManager.OrderHistory[(nuint)indexPath.Row];
-            cell.DetailView.ImageView.Image = UIImage.FromBundle(order.MenuItem.IconImageName);
-            cell.DetailView.TitleLabel.Text = $"{order.Quantity} {order.MenuItem.LocalizedString}";
-            cell.DetailView.SubTitleLabel.Text = DateFormatter.Value.StringFor(order.Date);
-            return cell;
-        }
+        //public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+        //{
+        //    var cell = TableView.DequeueReusableCell(SoupOrderDetailCell.CellIdentifier, indexPath) as SoupOrderDetailCell;
+        //    if (cell is null ) 
+        //    {
+        //        return new UITableViewCell();
+        //    }
+        //    Order order = SoupOrderDataManager.OrderHistory[(nuint)indexPath.Row];
+        //    cell.DetailView.ImageView.Image = UIImage.FromBundle(order.MenuItem.IconImageName);
+        //    cell.DetailView.TitleLabel.Text = $"{order.Quantity} {order.MenuItem.LocalizedString}";
+        //    cell.DetailView.SubTitleLabel.Text = DateFormatter.Value.StringFor(order.Date);
+        //    return cell;
+        //}
         #endregion
 
         #region xamarin

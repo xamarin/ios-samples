@@ -14,9 +14,9 @@ namespace SoupChef
     [Register ("OrderDetailViewController")]
     partial class OrderDetailViewController
     {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        SoupKit.UI.MenuItemView SoupDetailView { get; set; }
+        //[Outlet]
+        //[GeneratedCode ("iOS Designer", "1.0")]
+        //SoupKit.UI.MenuItemView SoupDetailView { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -28,10 +28,10 @@ namespace SoupChef
 
         void ReleaseDesignerOutlets ()
         {
-            if (SoupDetailView != null) {
-                SoupDetailView.Dispose ();
-                SoupDetailView = null;
-            }
+            //if (SoupDetailView != null) {
+            //    SoupDetailView.Dispose ();
+            //    SoupDetailView = null;
+            //}
 
             if (TableViewHeader != null) {
                 TableViewHeader.Dispose ();

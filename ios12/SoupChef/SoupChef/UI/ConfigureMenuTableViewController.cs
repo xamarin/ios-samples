@@ -10,7 +10,7 @@ This view controller allows you to enable and disable menu items from the active
 using Foundation;
 using System;
 using UIKit;
-using SoupKit.Data;
+//using SoupKit.Data;
 using System.Linq;
 
 namespace SoupChef
@@ -28,32 +28,32 @@ namespace SoupChef
             public SectionType SectionType { get; set; }
             public string SectionHeaderText { get; set; }
             public string SectionFooterText { get; set; }
-            public MenuItem[] RowContent { get; set; }
+            //public MenuItem[] RowContent { get; set; }
 
-            public SectionModel(SectionType sectionType, string sectionHeaderText, string sectionFooterText, MenuItem[] rowContent)
+            public SectionModel(SectionType sectionType, string sectionHeaderText, string sectionFooterText/*, MenuItem[] rowContent*/)
             {
                 SectionType = sectionType;
                 SectionHeaderText = sectionHeaderText;
                 SectionFooterText = sectionFooterText;
-                RowContent = rowContent;
+                //RowContent = rowContent;
             }
         }
 
-        public SoupMenuManager SoupMenuManager { get; set; }
+        //public SoupMenuManager SoupMenuManager { get; set; }
 
-        SoupOrderDataManager _soupOrderDataManager;
-        public SoupOrderDataManager SoupOrderDataManager
-        {
-            get
-            {
-                return _soupOrderDataManager;
-            }
-            set
-            {
-                _soupOrderDataManager = value;
-                SoupMenuManager.OrderManager = _soupOrderDataManager;
-            }
-        }
+        //SoupOrderDataManager _soupOrderDataManager;
+        //public SoupOrderDataManager SoupOrderDataManager
+        //{
+        //    get
+        //    {
+        //        return _soupOrderDataManager;
+        //    }
+        //    set
+        //    {
+        //        _soupOrderDataManager = value;
+        //        SoupMenuManager.OrderManager = _soupOrderDataManager;
+        //    }
+        //}
 
         SectionModel[] SectionData;
 
@@ -65,25 +65,25 @@ namespace SoupChef
 
         void ReloadData()
         {
-            MenuItem[] SortedRegularMenuItems =
-                SoupMenuManager.AllRegularItems.OrderBy(
-                    arg => arg.LocalizedString, StringComparer.CurrentCultureIgnoreCase
-                ).ToArray<MenuItem>();
+            //MenuItem[] SortedRegularMenuItems =
+            //    SoupMenuManager.AllRegularItems.OrderBy(
+            //        arg => arg.LocalizedString, StringComparer.CurrentCultureIgnoreCase
+            //    ).ToArray<MenuItem>();
 
-            SectionData = new SectionModel[] {
-                new SectionModel(
-                    SectionType.RegularItems,
-                    "Regular Menu Items",
-                    "Uncheck a row to delete any donated shortcuts associated with the menu item.",
-                    SortedRegularMenuItems
-                ),
-                new SectionModel(
-                    SectionType.SpecialItems,
-                    "Daily Special Menu Items",
-                    "Check a row in this section to provide a relevant shortcut.",
-                    SoupMenuManager.DailySpecialItems
-                ),
-            };
+            //SectionData = new SectionModel[] {
+            //    new SectionModel(
+            //        SectionType.RegularItems,
+            //        "Regular Menu Items",
+            //        "Uncheck a row to delete any donated shortcuts associated with the menu item.",
+            //        SortedRegularMenuItems
+            //    ),
+            //    new SectionModel(
+            //        SectionType.SpecialItems,
+            //        "Daily Special Menu Items",
+            //        "Check a row in this section to provide a relevant shortcut.",
+            //        SoupMenuManager.DailySpecialItems
+            //    ),
+            //};
             TableView.ReloadData();
         }
 
@@ -93,19 +93,19 @@ namespace SoupChef
             return SectionData.Length;
         }
 
-        public override nint RowsInSection(UITableView tableView, nint section)
-        {
-            return SectionData[section].RowContent.Length;
-        }
+        //public override nint RowsInSection(UITableView tableView, nint section)
+        //{
+        //    return SectionData[section].RowContent.Length;
+        //}
 
-        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-        {
-            var cell = TableView.DequeueReusableCell("Basic Cell", indexPath);
-            var menuItem = SectionData[indexPath.Section].RowContent[indexPath.Row];
-            cell.TextLabel.Text = menuItem.LocalizedString;
-            cell.Accessory = menuItem.IsAvailable ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
-            return cell;
-        }
+        //public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+        //{
+        //    var cell = TableView.DequeueReusableCell("Basic Cell", indexPath);
+        //    var menuItem = SectionData[indexPath.Section].RowContent[indexPath.Row];
+        //    cell.TextLabel.Text = menuItem.LocalizedString;
+        //    cell.Accessory = menuItem.IsAvailable ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
+        //    return cell;
+        //}
         #endregion
 
         #region table delegate
@@ -121,12 +121,12 @@ namespace SoupChef
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            var sectionModel = SectionData[indexPath.Section];
-            var currentMenuItem = sectionModel.RowContent[indexPath.Row];
-            var newMenuItem = currentMenuItem.Clone();
-            newMenuItem.IsAvailable = !newMenuItem.IsAvailable;
+            //var sectionModel = SectionData[indexPath.Section];
+            //var currentMenuItem = sectionModel.RowContent[indexPath.Row];
+            //var newMenuItem = currentMenuItem.Clone();
+            //newMenuItem.IsAvailable = !newMenuItem.IsAvailable;
 
-            SoupMenuManager.ReplaceMenuItem(currentMenuItem, newMenuItem);
+            //SoupMenuManager.ReplaceMenuItem(currentMenuItem, newMenuItem);
             ReloadData();
         }
         #endregion

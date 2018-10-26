@@ -1,4 +1,4 @@
-using SoupKit.UI;
+//using SoupKit.UI;
 using System;
 using UIKit;
 
@@ -8,7 +8,7 @@ namespace SoupChef
     {
         public const string CellIdentifier = "SoupMenuItemDetailCell";
 
-        public MenuItemView DetailView => detailView;
+        //public MenuItemView DetailView => detailView;
 
         #region xamarin
         // This constructor is used when Xamarin.iOS needs to create a new

@@ -14,16 +14,16 @@ namespace SoupChef
     [Register ("SoupMenuItemDetailCell")]
     partial class SoupMenuItemDetailCell
     {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        SoupKit.UI.MenuItemView detailView { get; set; }
+        //[Outlet]
+        //[GeneratedCode ("iOS Designer", "1.0")]
+        //SoupKit.UI.MenuItemView detailView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (detailView != null) {
-                detailView.Dispose ();
-                detailView = null;
-            }
+            //if (detailView != null) {
+            //    detailView.Dispose ();
+            //    detailView = null;
+            //}
         }
     }
 }

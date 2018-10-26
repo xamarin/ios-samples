@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoupChef", "SoupChef\SoupCh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderSoupIntentBinding", "OrderSoupIntentBinding\OrderSoupIntentBinding.csproj", "{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SoupChef.Shared", "SoupChef.Shared\SoupChef.Shared.shproj", "{F360E0DB-A1AF-44C8-B5F7-38925740FB90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator

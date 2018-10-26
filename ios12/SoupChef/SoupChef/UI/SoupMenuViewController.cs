@@ -1,45 +1,45 @@
 using Foundation;
-using SoupKit.Data;
+//using SoupKit.Data;
 using System;
 using UIKit;
-using SoupKit.Support;
+//using SoupKit.Support;
 using System.Linq;
-using SoupKit.UI;
+//using SoupKit.UI;
 
 namespace SoupChef
 {
     public partial class SoupMenuViewController : UITableViewController
     {
 
-        public MenuItem[] MenuItems { get; set; } = new SoupMenuManager().AvailableRegularItems;
+        //public MenuItem[] MenuItems { get; set; } = new SoupMenuManager().AvailableRegularItems;
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            UserActivity = NSUserActivityHelper.ViewMenuActivity;
+            //UserActivity = NSUserActivityHelper.ViewMenuActivity;
         }
 
         public override void UpdateUserActivityState(NSUserActivity activity)
         {
             base.UpdateUserActivityState(activity);
 
-            var keys = new NSString[] {
-                (NSString)(NSUserActivityHelper.ActivityKeys.MenuItems),
-                (NSString)(NSUserActivityHelper.ActivityKeys.SegueId)
-            };
+            //var keys = new NSString[] {
+            //    (NSString)(NSUserActivityHelper.ActivityKeys.MenuItems),
+            //    (NSString)(NSUserActivityHelper.ActivityKeys.SegueId)
+            //};
 
             // Creates an NSArray<NSString> of MenuItem.ItemNameKey values
-            var menuItemNames = NSArray.FromNSObjects(
-                MenuItems.Select<MenuItem, NSString>(
-                    (menuItem) => (NSString)(menuItem.ItemNameKey)
-                ).ToArray<NSString>()
-            );
+            //var menuItemNames = NSArray.FromNSObjects(
+            //    MenuItems.Select<MenuItem, NSString>(
+            //        (menuItem) => (NSString)(menuItem.ItemNameKey)
+            //    ).ToArray<NSString>()
+            //);
 
-            var objects = new NSObject[] { menuItemNames, (NSString)"Soup Menu" };
+            //var objects = new NSObject[] { menuItemNames, (NSString)"Soup Menu" };
 
-            NSDictionary userInfo = NSDictionary.FromObjectsAndKeys(objects, keys);
+            //NSDictionary userInfo = NSDictionary.FromObjectsAndKeys(objects, keys);
 
-            activity.AddUserInfoEntries(userInfo);
+            //activity.AddUserInfoEntries(userInfo);
 
         }
 
@@ -55,34 +55,34 @@ namespace SoupChef
                 if (indexPath is null) { return; }
 
                 var orderType = new OrderDetailTableConfiguration(OrderDetailTableConfiguration.OrderTypeEnum.New);
-                var newOrder = new Order(0, MenuItems[indexPath.Row], new NSMutableSet<MenuItemOption>());
+                //var newOrder = new Order(0, MenuItems[indexPath.Row], new NSMutableSet<MenuItemOption>());
 
-                destination.Configure(orderType, newOrder, null);
+                //destination.Configure(orderType, newOrder, null);
             }
         }
         #endregion
 
         #region UITableViewDataSource
-        public override nint RowsInSection(UITableView tableView, nint section)
-        {
-            return MenuItems.Length;
-        }
+        //public override nint RowsInSection(UITableView tableView, nint section)
+        //{
+        //    return MenuItems.Length;
+        //}
 
-        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-        {
-            var cell = TableView.DequeueReusableCell(SoupMenuItemDetailCell.CellIdentifier, indexPath) as SoupMenuItemDetailCell;
-            if (cell is null)
-            {
-                Console.WriteLine("Failed to downcase UITableViewCell as SoupMenuItemDetailCell. Check Main.storyboard.");
-                return new UITableViewCell();
-            }
+        //public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+        //{
+        //    var cell = TableView.DequeueReusableCell(SoupMenuItemDetailCell.CellIdentifier, indexPath) as SoupMenuItemDetailCell;
+        //    if (cell is null)
+        //    {
+        //        Console.WriteLine("Failed to downcase UITableViewCell as SoupMenuItemDetailCell. Check Main.storyboard.");
+        //        return new UITableViewCell();
+        //    }
 
-            var menuItem = MenuItems[indexPath.Row];
-            cell.DetailView.ImageView.Image = UIImage.FromBundle(menuItem.IconImageName);
-            cell.DetailView.TitleLabel.Text = menuItem.LocalizedString;
-            return cell;
+        //    var menuItem = MenuItems[indexPath.Row];
+        //    cell.DetailView.ImageView.Image = UIImage.FromBundle(menuItem.IconImageName);
+        //    cell.DetailView.TitleLabel.Text = menuItem.LocalizedString;
+        //    return cell;
 
-        }
+        //}
         #endregion
 
         #region xamarin

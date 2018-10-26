@@ -5,7 +5,7 @@ Abstract:
 This struct encapsulates the configuration of the `UITableView` in `OrderDetailViewController`.
 */
 
-using SoupKit.Data;
+//using SoupKit.Data;
 
 namespace SoupChef
 {
@@ -56,13 +56,13 @@ namespace SoupChef
         static SectionModel[] NewOrderSectionModel = {
             new SectionModel(SectionType.Price, 1, BasicCellType.Basic),
             new SectionModel(SectionType.Quantity, 1, QuantityCell.CellIdentifier),
-            new SectionModel(SectionType.Options, MenuItemOption.All.Length, BasicCellType.Basic),
+            //new SectionModel(SectionType.Options, MenuItemOption.All.Length, BasicCellType.Basic),
             new SectionModel(SectionType.Total, 1, BasicCellType.Basic),
         };
 
         static SectionModel[] HistoricalOrderSectionModel = {
             new SectionModel(SectionType.Quantity, 1, QuantityCell.CellIdentifier),
-            new SectionModel(SectionType.Options, MenuItemOption.All.Length, BasicCellType.Basic),
+            //new SectionModel(SectionType.Options, MenuItemOption.All.Length, BasicCellType.Basic),
             new SectionModel(SectionType.Total, 1, BasicCellType.Basic),
             new SectionModel(SectionType.VoiceShortcut, 1, BasicCellType.VoiceShortcut),
         };
