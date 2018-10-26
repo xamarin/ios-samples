@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoupChefIntents", "SoupChef
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoupChef", "SoupChef\SoupChef.csproj", "{63853807-0805-41E0-8B8A-F9C800DC41BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderSoupIntentBinding", "OrderSoupIntentBinding\OrderSoupIntentBinding.csproj", "{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SoupChef.Shared", "SoupChef.Shared\SoupChef.Shared.shproj", "{F360E0DB-A1AF-44C8-B5F7-38925740FB90}"
 EndProject
 Global
@@ -53,13 +51,5 @@ Global
 		{63853807-0805-41E0-8B8A-F9C800DC41BA}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{63853807-0805-41E0-8B8A-F9C800DC41BA}.Debug|iPhone.ActiveCfg = Debug|iPhone
 		{63853807-0805-41E0-8B8A-F9C800DC41BA}.Debug|iPhone.Build.0 = Debug|iPhone
-		{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}.Release|iPhone.Build.0 = Release|Any CPU
-		{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal
