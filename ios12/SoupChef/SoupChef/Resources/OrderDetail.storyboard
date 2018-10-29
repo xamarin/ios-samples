@@ -12,7 +12,7 @@
         <!--Order Detail View Controller-->
         <scene sceneID="csD-4H-JgJ">
             <objects>
-                <tableViewController storyboardIdentifier="OrderDetailViewController" id="tcN-Rs-4Id" customClass="OrderDetailViewController" customModule="SoupChef" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="OrderDetailViewController" id="tcN-Rs-4Id" customClass="OrderDetailViewController" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="44" sectionFooterHeight="18" id="9bU-jW-418">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,7 +35,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Quantity Cell" id="lhp-qy-yjW" customClass="QuantityCell" customModule="SoupChef" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Quantity Cell" id="lhp-qy-yjW" customClass="QuantityCell" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="97" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lhp-qy-yjW" id="007-XF-JhV">
@@ -48,7 +48,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="RR2-3g-1UZ">
+                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="RR2-3g-1UZ" value="1" minimumValue="1">
                                             <rect key="frame" x="261" y="11" width="94" height="29"/>
                                         </stepper>
                                     </subviews>
@@ -63,7 +63,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="QuantityLabel" destination="RH7-0N-t6f" id="UZf-hM-e7q"/>
+                                    <outlet property="QuantityLabel" destination="RH7-0N-t6f" id="name-outlet-RH7-0N-t6f"/>
                                     <outlet property="Stepper" destination="RR2-3g-1UZ" id="name-outlet-RR2-3g-1UZ"/>
                                 </connections>
                             </tableViewCell>

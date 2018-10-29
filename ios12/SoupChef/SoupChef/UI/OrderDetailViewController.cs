@@ -6,7 +6,6 @@ namespace SoupChef
     using IntentsUI;
     using SoupChef.Support;
     using SoupChef.Data;
-    using SoupChef.Support;
     using System;
     using System.Collections.Generic;
     using UIKit;
@@ -138,7 +137,7 @@ namespace SoupChef
             switch (sectionModel.Type)
             {
                 case OrderDetailTableConfiguration.SectionType.Price:
-                    if (!(cell.TextLabel is null))
+                    if (cell.TextLabel != null)
                     {
                         cell.TextLabel.Text = NSNumberFormatterHelper.CurrencyFormatter.StringFromNumber(Order.MenuItem.Price);
                     }
