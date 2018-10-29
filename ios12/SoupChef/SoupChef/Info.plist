@@ -39,7 +39,17 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>OrderSoupIntent</string>
-		<string>com.xamarin.SoupChef.viewMenu</string>
+		<string>com.xamarin.soup-chef.viewMenu</string>
 	</array>
+	<key>UIStatusBarTintParameters</key>
+	<dict>
+		<key>UINavigationBar</key>
+		<dict>
+			<key>Style</key>
+			<string>UIBarStyleDefault</string>
+			<key>Translucent</key>
+			<false/>
+		</dict>
+	</dict>
 </dict>
 </plist>

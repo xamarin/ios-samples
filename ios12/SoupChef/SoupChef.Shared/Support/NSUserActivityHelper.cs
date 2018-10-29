@@ -21,8 +21,8 @@ namespace SoupChef.Support
 
         private static string SearchableItemContentType = "Soup Menu";
 
-        public static string ViewMenuActivityType = "com.xamarin.SoupChef.viewMenu";
-        public static string OrderCompleteActivityType = "com.xamarin.SoupChef.orderComplete";
+        public static string ViewMenuActivityType = "com.xamarin.soup-chef.viewMenu";
+        public static string OrderCompleteActivityType = "com.xamarin.soup-chef.orderComplete";
 
         public static NSUserActivity ViewMenuActivity
         {

@@ -24,9 +24,13 @@
 	<dict>
 		<key>NSExtensionAttributes</key>
 		<dict>
+			<key>IntentsRestrictedWhileLocked</key>
+			<array/>
+			<key>IntentsRestrictedWhileProtectedDataUnavailable</key>
+			<array/>
 			<key>IntentsSupported</key>
 			<array>
-				<string>INSendMessageIntent</string>
+				<string>OrderSoupIntent</string>
 			</array>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>
