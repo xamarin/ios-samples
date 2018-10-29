@@ -1,9 +1,10 @@
-using System;
-using Foundation;
-using UIKit;
 
 namespace SoupChef
 {
+    using Foundation;
+    using System;
+    using UIKit;
+
     public partial class QuantityCell : UITableViewCell
     {
         public const string CellIdentifier = "Quantity Cell";

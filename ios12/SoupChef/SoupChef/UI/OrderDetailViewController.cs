@@ -1,43 +1,42 @@
-/*
- * This class shows soup order details. It can be configured for two possible order types.
- * When configured with a 'new' order type, the view controller collects details of a new order.
- * When configured with a 'historical' order type, the view controller displays details of a previously placed order.
- */
 
 namespace SoupChef
 {
-
     using Foundation;
-    using System;
-    using UIKit;
-    using System.Collections.Generic;
-    using IntentsUI;
     using Intents;
+    using IntentsUI;
+    using SoupChef.Support;
     using SoupKit.Data;
     using SoupKit.Support;
-    using SoupChef.Support;
+    using System;
+    using System.Collections.Generic;
+    using UIKit;
 
+    /// <summary>
+    /// This class shows soup order details. It can be configured for two possible order types.
+    /// When configured with a 'new' order type, the view controller collects details of a new order.
+    /// When configured with a 'historical' order type, the view controller displays details of a previously placed order.
+    /// </summary>
     partial class OrderDetailViewController : UITableViewController, 
                                               IINUIAddVoiceShortcutButtonDelegate,
                                               IINUIAddVoiceShortcutViewControllerDelegate,
                                               IINUIEditVoiceShortcutViewControllerDelegate
     {
-        public Order Order { get; private set; }
+        private OrderDetailTableConfiguration tableConfiguration = new OrderDetailTableConfiguration(OrderDetailTableConfiguration.OrderTypeEnum.New);
 
-        private OrderDetailTableConfiguration TableConfiguration = new OrderDetailTableConfiguration(OrderDetailTableConfiguration.OrderTypeEnum.New);
+        private Dictionary<string, string> optionMap = new Dictionary<string, string>();
 
-        private UILabel QuantityLabel;
+        private UILabel quantityLabel;
 
-        private UILabel TotalLabel;
-
-        Dictionary<string, string> OptionMap = new Dictionary<string, string>();
+        private UILabel totalLabel;
 
         public OrderDetailViewController(IntPtr handle) : base(handle) { }
+       
+        public Order Order { get; private set; }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            if (TableConfiguration.OrderType == OrderDetailTableConfiguration.OrderTypeEnum.Historical)
+            if (tableConfiguration.OrderType == OrderDetailTableConfiguration.OrderTypeEnum.Historical)
             {
                 NavigationItem.RightBarButtonItem = null;
             }
@@ -57,7 +56,7 @@ namespace SoupChef
 
         private void ConfigureTableFooterView()
         {
-            if (TableConfiguration.OrderType ==  OrderDetailTableConfiguration.OrderTypeEnum.Historical)
+            if (tableConfiguration.OrderType ==  OrderDetailTableConfiguration.OrderTypeEnum.Historical)
              {
                 var addShortcutButton = new INUIAddVoiceShortcutButton(INUIAddVoiceShortcutButtonStyle.WhiteOutline);
                 addShortcutButton.Shortcut = new INShortcut(Order.Intent);
@@ -74,7 +73,7 @@ namespace SoupChef
 
         public void Configure(OrderDetailTableConfiguration tableConfiguration, Order order)
         {
-            TableConfiguration = tableConfiguration;
+            this.tableConfiguration = tableConfiguration;
             Order = order;
         }
 
@@ -82,13 +81,14 @@ namespace SoupChef
 
         partial void PlaceOrder(UIBarButtonItem sender)
         {
-            if (Order.Quantity == 0)
+            if (Order.Quantity != 0)
+            {
+                PerformSegue("Place Order Segue", this);
+            }
+            else
             {
                 Console.WriteLine("Quantity must be greater than 0 to add to order");
-                return;
             }
-
-            PerformSegue("Place Order Segue", this);
         }
 
         private void StepperDidChange(object sender, EventArgs args)
@@ -96,16 +96,16 @@ namespace SoupChef
             if (sender is UIStepper stepper)
             {
                 Order.Quantity = (int)(stepper.Value);
-                QuantityLabel.Text = $"{Order.Quantity}";
+                quantityLabel.Text = $"{Order.Quantity}";
                 UpdateTotalLabel();
             }
         }
 
-        void UpdateTotalLabel()
+        private void UpdateTotalLabel()
         {
-            if (TotalLabel != null)
+            if (totalLabel != null)
             {
-                TotalLabel.Text = Order.LocalizedCurrencyValue;
+                totalLabel.Text = Order.LocalizedCurrencyValue;
             }
         }
 
@@ -115,17 +115,17 @@ namespace SoupChef
 
         public override nint NumberOfSections(UITableView tableView)
         {
-            return TableConfiguration.Sections.Count;
+            return tableConfiguration.Sections.Count;
         }
 
         public override nint RowsInSection(UITableView tableView, nint section)
         {
-            return TableConfiguration.Sections[(int)section].RowCount;
+            return tableConfiguration.Sections[(int)section].RowCount;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var sectionModel = TableConfiguration.Sections[indexPath.Section];
+            var sectionModel = tableConfiguration.Sections[indexPath.Section];
             var reuseIdentifier = sectionModel.CellReuseIdentifier;
             var cell = TableView.DequeueReusableCell(reuseIdentifier, indexPath);
             Configure(cell, indexPath, sectionModel);
@@ -146,10 +146,10 @@ namespace SoupChef
                     if (cell is QuantityCell quantityCell)
                     {
                         quantityCell.Stepper.ValueChanged -= StepperDidChange;
-                        if (TableConfiguration.OrderType == OrderDetailTableConfiguration.OrderTypeEnum.New)
+                        if (tableConfiguration.OrderType == OrderDetailTableConfiguration.OrderTypeEnum.New)
                         {
                             // Save a weak reference to the quantityLabel for quick udpates, later.
-                            QuantityLabel = quantityCell.QuantityLabel;
+                            quantityLabel = quantityCell.QuantityLabel;
                             quantityCell.Stepper.ValueChanged += StepperDidChange;
                         }
                         else
@@ -165,20 +165,20 @@ namespace SoupChef
                     // when an option is selected in the table view
                     var option = (MenuItemOption)indexPath.Row;
                     var localizedValue = option.ToString();
-                    OptionMap[localizedValue] = option.ToString();
+                    optionMap[localizedValue] = option.ToString();
 
                     if (cell.TextLabel != null)
                     {
                         cell.TextLabel.Text = localizedValue;
                     }
 
-                    if (TableConfiguration.OrderType == OrderDetailTableConfiguration.OrderTypeEnum.Historical)
+                    if (tableConfiguration.OrderType == OrderDetailTableConfiguration.OrderTypeEnum.Historical)
                     {
                         cell.Accessory = Order.MenuItemOptions.Contains(option) ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
                     }
                     break;
                 case OrderDetailTableConfiguration.SectionType.Total:
-                    TotalLabel = cell.TextLabel;
+                    totalLabel = cell.TextLabel;
 
                     UpdateTotalLabel();
                     break;
@@ -191,13 +191,13 @@ namespace SoupChef
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            if (TableConfiguration.Sections[indexPath.Section].Type == OrderDetailTableConfiguration.SectionType.Options && 
-                TableConfiguration.OrderType == OrderDetailTableConfiguration.OrderTypeEnum.New)
+            if (tableConfiguration.Sections[indexPath.Section].Type == OrderDetailTableConfiguration.SectionType.Options && 
+                tableConfiguration.OrderType == OrderDetailTableConfiguration.OrderTypeEnum.New)
             {
                 var cell = TableView.CellAt(indexPath);
                 if (!string.IsNullOrEmpty(cell?.TextLabel?.Text))
                 {
-                    var optionRawValue = OptionMap[cell.TextLabel.Text];
+                    var optionRawValue = optionMap[cell.TextLabel.Text];
                     var option = (MenuItemOption)Enum.Parse(typeof(MenuItemOption), optionRawValue, false);
 
                     if (Order.MenuItemOptions.Contains(option))

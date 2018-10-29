@@ -1,19 +1,13 @@
-﻿/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-The application delegate.
-*/
-
-using System;
-using System.Linq;
-using Foundation;
-using Intents;
-using SoupKit.Support;
-using UIKit;
-
+﻿
 namespace SoupChef
 {
+    using System;
+    using System.Linq;
+    using Foundation;
+    using Intents;
+    using SoupKit.Support;
+    using UIKit;
+
     [Register("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate
     {

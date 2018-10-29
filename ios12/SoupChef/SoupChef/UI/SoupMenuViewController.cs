@@ -1,24 +1,25 @@
-using System;
-using System.Collections.Generic;
-using Foundation;
-using Intents;
-using SoupChef.Support;
-using SoupKit.Data;
-using UIKit;
-using static SoupChef.OrderHistoryTableViewController;
 
 namespace SoupChef
 {
+    using Foundation;
+    using Intents;
+    using SoupChef.Support;
+    using SoupKit.Data;
+    using System;
+    using System.Collections.Generic;
+    using UIKit;
+
     /// <summary>
     /// This view controller displays the list of active menu items to the user.
     /// </summary>
     public partial class SoupMenuViewController : UITableViewController
     {
+        private const string NewOrderSegueIdentifier = "Show New Order Detail Segue";
         private const string CellReuseIdentifier = "SoupMenuItemDetailCell";
 
-        public SoupMenuViewController(IntPtr handle) : base(handle) { }
+        private readonly List<MenuItem> menuItems = new SoupMenuManager().AvailableRegularItems;
 
-        public List<MenuItem> MenuItems { get; set; } = new SoupMenuManager().AvailableRegularItems;
+        public SoupMenuViewController(IntPtr handle) : base(handle) { }
 
         public override NSUserActivity UserActivity 
         { 
@@ -28,15 +29,16 @@ namespace SoupChef
                 base.UserActivity = value;
                 if (base.UserActivity?.ActivityType == "OrderSoupIntent")
                 {
-                    PerformSegue(SegueIdentifiers.NewOrder, base.UserActivity);
+                    PerformSegue(NewOrderSegueIdentifier, base.UserActivity);
                 }
             }
         }
 
         #region Navigation
+
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
-            if (segue.Identifier == SegueIdentifiers.NewOrder)
+            if (segue.Identifier == NewOrderSegueIdentifier)
             {
                 if (segue.DestinationViewController is OrderDetailViewController destination)
                 {
@@ -44,7 +46,7 @@ namespace SoupChef
 
                     if (sender is UITableViewCell && TableView.IndexPathForSelectedRow != null)
                     {
-                        order = new Order(new NSDate(), new NSUuid(), 1, MenuItems[TableView.IndexPathForSelectedRow.Row], new List<MenuItemOption>());
+                        order = new Order(new NSDate(), new NSUuid(), 1, menuItems[TableView.IndexPathForSelectedRow.Row], new List<MenuItemOption>());
                     } 
                     else if (sender is NSUserActivity activity &&
                              activity.GetInteraction()?.Intent is OrderSoupIntent orderIntent)
@@ -68,17 +70,17 @@ namespace SoupChef
 
         public override nint RowsInSection(UITableView tableView, nint section)
         {
-            return MenuItems.Count;
+            return menuItems.Count;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = TableView.DequeueReusableCell(SoupMenuItemDetailCell.CellIdentifier, indexPath) as SoupMenuItemDetailCell;
-            var menuItem = MenuItems[indexPath.Row];
+            var cell = TableView.DequeueReusableCell(CellReuseIdentifier, indexPath);
+            var menuItem = menuItems[indexPath.Row];
 
             cell.ImageView.Image = UIImage.FromBundle(menuItem.IconImageName);
             cell.ImageView.ApplyRoundedCorners();
-            cell.TextLabel.Text = MenuItems[indexPath.Row].ItemName;
+            cell.TextLabel.Text = menuItems[indexPath.Row].ItemName;
             cell.TextLabel.Lines = 0;
 
             return cell;

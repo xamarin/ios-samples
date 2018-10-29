@@ -1,18 +1,51 @@
-﻿/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-This struct encapsulates the configuration of the `UITableView` in `OrderDetailViewController`.
-*/
-
-//using SoupKit.Data;
-
-using System.Collections.Generic;
-
+﻿
 namespace SoupChef
 {
-    public struct OrderDetailTableConfiguration
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// This class encapsulates the configuration of the `UITableView` in `OrderDetailViewController`.
+    /// </summary>
+    public class OrderDetailTableConfiguration
     {
+        public OrderDetailTableConfiguration(OrderTypeEnum orderType)
+        {
+            this.OrderType = orderType;
+        }
+
+        public OrderTypeEnum OrderType { get; private set; }
+
+        private static readonly List<SectionModel> NewOrderSectionModel = new List<SectionModel>
+        {
+            new SectionModel(SectionType.Price, 1, BasicCellType.Basic),
+            new SectionModel(SectionType.Quantity, 1, QuantityCell.CellIdentifier),
+            //new SectionModel(SectionType.Options, MenuItemOption.All.Length, BasicCellType.Basic),
+            new SectionModel(SectionType.Total, 1, BasicCellType.Basic),
+        };
+
+        private static readonly List<SectionModel> HistoricalOrderSectionModel = new List<SectionModel>
+        {
+            new SectionModel(SectionType.Quantity, 1, QuantityCell.CellIdentifier),
+            //new SectionModel(SectionType.Options, MenuItemOption.All.Length, BasicCellType.Basic),
+            new SectionModel(SectionType.Total, 1, BasicCellType.Basic),
+        };
+
+        public List<SectionModel> Sections
+        {
+            get
+            {
+                switch (OrderType)
+                {
+                    case OrderTypeEnum.New:
+                        return OrderDetailTableConfiguration.NewOrderSectionModel;
+                    default:
+                        return OrderDetailTableConfiguration.HistoricalOrderSectionModel;
+                }
+            }
+        }
+
+        /* helpers */
+
         public enum OrderTypeEnum
         {
             New,
@@ -33,54 +66,20 @@ namespace SoupChef
             public const string Quantity = "Quantity Cell";
         }
 
-        public OrderTypeEnum OrderType { get; private set; }
-
-        public OrderDetailTableConfiguration(OrderTypeEnum orderType)
+        public class SectionModel
         {
-            OrderType = orderType;
-        }
-
-        public struct SectionModel
-        {
-            public string Type { get; private set; }
-            public int RowCount { get; private set; }
-            public string CellReuseIdentifier { get; private set; }
-
             public SectionModel(string type, int rowCount, string cellReuseIdentifier)
             {
                 this.Type = type;
                 this.RowCount = rowCount;
                 this.CellReuseIdentifier = cellReuseIdentifier;
             }
-        }
 
-        private static List<SectionModel> NewOrderSectionModel = new List<SectionModel>
-        {
-            new SectionModel(SectionType.Price, 1, BasicCellType.Basic),
-            new SectionModel(SectionType.Quantity, 1, QuantityCell.CellIdentifier),
-            //new SectionModel(SectionType.Options, MenuItemOption.All.Length, BasicCellType.Basic),
-            new SectionModel(SectionType.Total, 1, BasicCellType.Basic),
-        };
+            public string Type { get; private set; }
 
-        private static List<SectionModel> HistoricalOrderSectionModel = new List<SectionModel>
-        {
-            new SectionModel(SectionType.Quantity, 1, QuantityCell.CellIdentifier),
-            //new SectionModel(SectionType.Options, MenuItemOption.All.Length, BasicCellType.Basic),
-            new SectionModel(SectionType.Total, 1, BasicCellType.Basic),
-        };
+            public int RowCount { get; private set; }
 
-        public List<SectionModel> Sections
-        {
-            get
-            {
-                switch (OrderType)
-                {
-                    case OrderTypeEnum.New:
-                        return NewOrderSectionModel;
-                    default:
-                        return HistoricalOrderSectionModel;
-                }
-            }
+            public string CellReuseIdentifier { get; private set; }
         }
     }
 }

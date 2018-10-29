@@ -1,7 +1,8 @@
-﻿using UIKit;
-
+﻿
 namespace SoupChef
 {
+    using UIKit;
+
     public class Application
     {
         // This is the main entry point of the application.

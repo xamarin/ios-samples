@@ -161,10 +161,6 @@
     <Compile Include="UI\OrderHistoryTableViewController.designer.cs">
       <DependentUpon>OrderHistoryTableViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Cells\SoupOrderDetailCell.cs" />
-    <Compile Include="UI\Cells\SoupOrderDetailCell.designer.cs">
-      <DependentUpon>SoupOrderDetailCell.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Cells\QuantityCell.cs" />
     <Compile Include="UI\Cells\QuantityCell.designer.cs">
       <DependentUpon>QuantityCell.cs</DependentUpon>
@@ -172,10 +168,6 @@
     <Compile Include="UI\SoupMenuViewController.cs" />
     <Compile Include="UI\SoupMenuViewController.designer.cs">
       <DependentUpon>SoupMenuViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Cells\SoupMenuItemDetailCell.cs" />
-    <Compile Include="UI\Cells\SoupMenuItemDetailCell.designer.cs">
-      <DependentUpon>SoupMenuItemDetailCell.cs</DependentUpon>
     </Compile>
     <Compile Include="AppDelegate.cs" />
   </ItemGroup>
