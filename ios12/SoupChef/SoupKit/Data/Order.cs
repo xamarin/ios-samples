@@ -160,7 +160,7 @@ namespace SoupKit.Data
                     .ToArray<INObject>();
 
                 var comment = "Suggested phrase for ordering a specific soup";
-                var phrase = NSBundleHelper.SoupKitBundle.GetLocalizedString("ORDER_SOUP_SUGGESTED_PHRASE", comment);
+                var phrase = NSBundle.MainBundle.GetLocalizedString("ORDER_SOUP_SUGGESTED_PHRASE", comment);
                 orderSoupIntent.SuggestedInvocationPhrase = String.Format(phrase, MenuItem.LocalizedString);
 
                 return orderSoupIntent;

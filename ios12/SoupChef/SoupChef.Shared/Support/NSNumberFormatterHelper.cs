@@ -1,17 +1,11 @@
-﻿using System;
-using Foundation;
+﻿
 namespace SoupKit.Support
 {
+    using System;
+    using Foundation;
+
     public static class NSNumberFormatterHelper
     {
-        public static NSNumberFormatter CurrencyFormatter
-        {
-            get
-            {
-                var formatter = new NSNumberFormatter();
-                formatter.NumberStyle = NSNumberFormatterStyle.Currency;
-                return formatter;
-            }
-        }
+        public static NSNumberFormatter CurrencyFormatter => new NSNumberFormatter { NumberStyle = NSNumberFormatterStyle.Currency };
     }
 }

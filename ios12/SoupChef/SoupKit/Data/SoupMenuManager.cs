@@ -166,7 +166,7 @@ namespace SoupKit.Data
             //    var shortcut = new INShortcut(orderIntent);
             //    var suggestedShortcut = new INRelevantShortcut(shortcut);
 
-            //    var localizedTitle = NSBundleHelper.SoupKitBundle.GetLocalizedString(
+            //    var localizedTitle = NSBundle.MainBundle.GetLocalizedString(
             //        "ORDER_LUNCH_TITLE",
             //        "Relevant shortcut title"
             //    );

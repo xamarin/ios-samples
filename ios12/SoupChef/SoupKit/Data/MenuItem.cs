@@ -40,7 +40,7 @@ namespace SoupKit.Data
         {
             get
             {
-                return NSBundleHelper.SoupKitBundle.GetLocalizedString(ItemNameKey, "Menu item title") ?? "";
+                return NSBundle.MainBundle.GetLocalizedString(ItemNameKey, "Menu item title") ?? "";
             }
         }
 

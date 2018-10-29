@@ -18,7 +18,7 @@ namespace SoupKit.Data
             get
             {
                 string usageComment = $"UI representation for MenuItemOption value: {Value}";
-                return NSBundleHelper.SoupKitBundle.GetLocalizedString(Value, usageComment, null);
+                return NSBundle.MainBundle.GetLocalizedString(Value, usageComment, null);
             }
         }
 

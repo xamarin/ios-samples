@@ -1,8 +1,10 @@
-﻿using System;
-using Foundation;
-using System.Resources;
+﻿
 namespace SoupKit.Support
 {
+    using System;
+    using Foundation;
+    using System.Resources;
+
     public static class NSUserDefaultsHelper
     {
         private const string AppGroup = "group.com.xamarin.SoupChef";
@@ -14,14 +16,16 @@ namespace SoupKit.Support
             public const string VoiceShortcutHistory = "voiceShortcutHistory";
         }
 
-        public static NSUserDefaults DataSuite 
+        public static NSUserDefaults DataSuite
         {
-            get {
+            get
+            {
                 var dataSuite = new NSUserDefaults(AppGroup, NSUserDefaultsType.SuiteName);
-                if( dataSuite is null )
+                if (dataSuite == null)
                 {
                     throw new Exception($"Could not load UserDefaults for app group {AppGroup}");
                 }
+
                 return dataSuite;
             }
         }

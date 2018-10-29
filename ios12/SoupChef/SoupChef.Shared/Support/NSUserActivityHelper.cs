@@ -24,35 +24,33 @@ namespace SoupKit.Support
         public static string ViewMenuActivityType = "com.xamarin.SoupChef.viewMenu";
         public static string OrderCompleteActivityType = "com.xamarin.SoupChef.orderComplete";
 
-        public static NSUserActivity ViewMenuActivity {
+        public static NSUserActivity ViewMenuActivity
+        {
             get
             {
                 var userActivity = new NSUserActivity(ViewMenuActivityType)
                 {
-                    Title = NSBundleHelper.SoupKitBundle.GetLocalizedString("ORDER_LUNCH_TITLE", "View menu activity title"),
-                    EligibleForSearch = true,
+                    // User activites should be as rich as possible, with icons and localized strings for appropiate content attributes.
+                    Title = NSBundle.MainBundle.GetLocalizedString("ORDER_LUNCH_TITLE", "View menu activity title"),
                     EligibleForPrediction = true
                 };
 
-                var attributes = new CSSearchableItemAttributeSet(NSUserActivityHelper.SearchableItemContentType)
+                // #if canImport(CoreSpotlight)
+                var attributes = new CSSearchableItemAttributeSet(NSUserActivityHelper.SearchableItemContentType /*kUTTypeContent*/)
                 {
                     ThumbnailData = UIImage.FromBundle("tomato").AsPNG(),
-                    Keywords = ViewMenuSearchableKeywords,
-                    DisplayName = NSBundleHelper.SoupKitBundle.GetLocalizedString("ORDER_LUNCH_TITLE", "View menu activity title"),
-                    ContentDescription = NSBundleHelper.SoupKitBundle.GetLocalizedString("VIEW_MENU_CONTENT_DESCRIPTION", "View menu content description")
+                    Keywords = new string[] { "Order", "Soup", "Menu" },
+                    DisplayName = NSBundle.MainBundle.GetLocalizedString("ORDER_LUNCH_TITLE", "View menu activity title"),
+                    ContentDescription = NSBundle.MainBundle.GetLocalizedString("VIEW_MENU_CONTENT_DESCRIPTION", "View menu content description")
                 };
-                userActivity.ContentAttributeSet = attributes;
 
-                var phrase = NSBundleHelper.SoupKitBundle.GetLocalizedString("ORDER_LUNCH_SUGGESTED_PHRASE", "Voice shortcut suggested phrase");
+                userActivity.ContentAttributeSet = attributes;
+                //#endif
+
+                var phrase = NSBundle.MainBundle.GetLocalizedString("ORDER_LUNCH_SUGGESTED_PHRASE", "Voice shortcut suggested phrase");
                 userActivity.SuggestedInvocationPhrase = phrase;
                 return userActivity;
             }
         }
-
-        static string[] ViewMenuSearchableKeywords = new string[] {
-            NSBundleHelper.SoupKitBundle.GetLocalizedString("ORDER",  "Searchable Keyword"),
-            NSBundleHelper.SoupKitBundle.GetLocalizedString("SOUP", "Searchable Keyword"),
-            NSBundleHelper.SoupKitBundle.GetLocalizedString("MENU", "Searchable Keyword")
-        };
     }
 }

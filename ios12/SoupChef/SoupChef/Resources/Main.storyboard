@@ -1,44 +1,46 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zhO-OM-TLc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zhO-OM-TLc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
     </dependencies>
     <scenes>
         <!--Order History-->
         <scene sceneID="eJV-ef-NmJ">
             <objects>
-                <tableViewController id="Taf-9T-Cgq" customClass="OrderHistoryTableViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Taf-9T-Cgq" customClass="OrderHistoryTableViewController" customModule="SoupChef" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="6IH-c8-2QZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SoupOrderDetailCell" rowHeight="70" id="41N-Au-pPP" customClass="SoupOrderDetailCell" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SoupOrderDetailCell" textLabel="ivj-Dh-JU9" detailTextLabel="LM3-i0-Zsj" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="41N-Au-pPP" customClass="SoupOrderDetailCell" customModule="SoupChef" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="41N-Au-pPP" id="8mr-Zh-Cqz">
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VMr-4C-6Z1" customClass="MenuItemView">
-                                            <rect key="frame" x="20" y="10" width="321" height="49.5"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ivj-Dh-JU9">
+                                            <rect key="frame" x="16" y="15" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LM3-i0-Zsj">
+                                            <rect key="frame" x="16" y="38.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="VMr-4C-6Z1" secondAttribute="trailing" id="4fF-GC-APb"/>
-                                        <constraint firstAttribute="bottom" secondItem="VMr-4C-6Z1" secondAttribute="bottom" constant="10" id="5bW-pI-TQh"/>
-                                        <constraint firstItem="VMr-4C-6Z1" firstAttribute="leading" secondItem="8mr-Zh-Cqz" secondAttribute="leading" constant="20" id="6RE-uW-xct"/>
-                                        <constraint firstItem="VMr-4C-6Z1" firstAttribute="top" secondItem="8mr-Zh-Cqz" secondAttribute="top" constant="10" id="Mkp-ZJ-GGV"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="detailView" destination="VMr-4C-6Z1" id="name-outlet-VMr-4C-6Z1"/>
                                     <segue destination="tax-DP-kPU" kind="show" identifier="Order Details" id="UvH-qW-306"/>
                                 </connections>
                             </tableViewCell>
@@ -63,19 +65,19 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ORF-LO-gq4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2877.6" y="-73.31335"/>
+            <point key="canvasLocation" x="2877.5999999999999" y="-73.31335"/>
         </scene>
         <!--Configure Menu-->
         <scene sceneID="5SB-93-Xhb">
             <objects>
-                <tableViewController modalPresentationStyle="formSheet" id="pLp-jO-TwF" customClass="ConfigureMenuTableViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalPresentationStyle="formSheet" id="pLp-jO-TwF" customClass="ConfigureMenuTableViewController" customModule="SoupChef" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="dhs-Cl-Rmg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Basic Cell" textLabel="lDd-jz-lsq" style="IBUITableViewCellStyleDefault" id="jgz-sR-QxL">
-                                <rect key="frame" x="0.0" y="53" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jgz-sR-QxL" id="gB4-05-AKc">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -108,7 +110,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hei-oE-r4e" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cm4-h5-KPJ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3665" y="687"/>
+            <point key="canvasLocation" x="4489" y="696"/>
         </scene>
         <!--OrderDetailViewController-->
         <scene sceneID="JX8-L5-T9G">
@@ -116,38 +118,34 @@
                 <viewControllerPlaceholder storyboardName="OrderDetail" referencedIdentifier="OrderDetailViewController" id="tax-DP-kPU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0PY-3u-CNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3742" y="-361"/>
+            <point key="canvasLocation" x="4489" y="-58"/>
         </scene>
         <!--Soup Menu-->
         <scene sceneID="nr7-Xg-D7c">
             <objects>
-                <tableViewController storyboardIdentifier="SoupMenuViewController" id="45J-ng-s2z" customClass="SoupMenuViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SoupMenuViewController" id="45J-ng-s2z" customClass="SoupMenuViewController" customModule="SoupChef" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VXW-u7-TcX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SoupMenuItemDetailCell" rowHeight="70" id="P6R-OU-6cj" customClass="SoupMenuItemDetailCell" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SoupMenuItemDetailCell" textLabel="TSg-4d-DDk" rowHeight="70" style="IBUITableViewCellStyleDefault" id="P6R-OU-6cj" customClass="SoupMenuItemDetailCell" customModule="SoupChef" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P6R-OU-6cj" id="GZT-rA-AAA">
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="69.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRx-Ce-6pu" customClass="MenuItemView">
-                                            <rect key="frame" x="20" y="10" width="321" height="49.5"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </view>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TSg-4d-DDk">
+                                            <rect key="frame" x="16" y="0.0" width="324" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="GRx-Ce-6pu" firstAttribute="leading" secondItem="GZT-rA-AAA" secondAttribute="leading" constant="20" id="1bl-Q8-tCY"/>
-                                        <constraint firstAttribute="trailing" secondItem="GRx-Ce-6pu" secondAttribute="trailing" id="kjX-50-bdV"/>
-                                        <constraint firstItem="GRx-Ce-6pu" firstAttribute="top" secondItem="GZT-rA-AAA" secondAttribute="top" constant="10" id="mhr-x4-mOO"/>
-                                        <constraint firstAttribute="bottom" secondItem="GRx-Ce-6pu" secondAttribute="bottom" constant="10" id="wKZ-HT-zx3"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="detailView" destination="GRx-Ce-6pu" id="name-outlet-GRx-Ce-6pu"/>
                                     <segue destination="tax-DP-kPU" kind="show" identifier="Show New Order Detail Segue" id="yhC-gq-G3c"/>
                                 </connections>
                             </tableViewCell>
@@ -168,7 +166,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZZ-PO-oSu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="smc-Lz-K4p" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2877.6" y="-942.2789"/>
+            <point key="canvasLocation" x="4490" y="-752"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="g9D-EK-Pi5">
@@ -181,7 +179,6 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H3K-oR-azb">
-                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -208,7 +205,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Fh-sk-VHF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2106" y="-942"/>
+            <point key="canvasLocation" x="3665" y="-752"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Lmo-uX-DHu">
@@ -226,10 +223,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cfa-Rn-Fof" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2877.6" y="686.8066"/>
+            <point key="canvasLocation" x="3665" y="696"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UvH-qW-306"/>
+        <segue reference="yhC-gq-G3c"/>
     </inferredMetricsTieBreakers>
 </document>

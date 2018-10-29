@@ -28,7 +28,7 @@ namespace SoupKit.Support
             {
                 var userActivity = new NSUserActivity(ViewMenuActivityType)
                 {
-                    Title = NSBundleHelper.SoupKitBundle.GetLocalizedString("ORDER_LUNCH_TITLE", "View menu activity title"),
+                    Title = NSBundle.MainBundle.GetLocalizedString("ORDER_LUNCH_TITLE", "View menu activity title"),
                     EligibleForSearch = true,
                     EligibleForPrediction = true
                 };
@@ -37,21 +37,21 @@ namespace SoupKit.Support
                 {
                     ThumbnailData = UIImage.FromBundle("tomato").AsPNG(),
                     Keywords = ViewMenuSearchableKeywords,
-                    DisplayName = NSBundleHelper.SoupKitBundle.GetLocalizedString("ORDER_LUNCH_TITLE", "View menu activity title"),
-                    ContentDescription = NSBundleHelper.SoupKitBundle.GetLocalizedString("VIEW_MENU_CONTENT_DESCRIPTION", "View menu content description")
+                    DisplayName = NSBundle.MainBundle.GetLocalizedString("ORDER_LUNCH_TITLE", "View menu activity title"),
+                    ContentDescription = NSBundle.MainBundle.GetLocalizedString("VIEW_MENU_CONTENT_DESCRIPTION", "View menu content description")
                 };
                 userActivity.ContentAttributeSet = attributes;
 
-                var phrase = NSBundleHelper.SoupKitBundle.GetLocalizedString("ORDER_LUNCH_SUGGESTED_PHRASE", "Voice shortcut suggested phrase");
+                var phrase = NSBundle.MainBundle.GetLocalizedString("ORDER_LUNCH_SUGGESTED_PHRASE", "Voice shortcut suggested phrase");
                 userActivity.SuggestedInvocationPhrase = phrase;
                 return userActivity;
             }
         }
 
         static string[] ViewMenuSearchableKeywords = new string[] {
-            NSBundleHelper.SoupKitBundle.GetLocalizedString("ORDER",  "Searchable Keyword"),
-            NSBundleHelper.SoupKitBundle.GetLocalizedString("SOUP", "Searchable Keyword"),
-            NSBundleHelper.SoupKitBundle.GetLocalizedString("MENU", "Searchable Keyword")
+            NSBundle.MainBundle.GetLocalizedString("ORDER",  "Searchable Keyword"),
+            NSBundle.MainBundle.GetLocalizedString("SOUP", "Searchable Keyword"),
+            NSBundle.MainBundle.GetLocalizedString("MENU", "Searchable Keyword")
         };
     }
 }

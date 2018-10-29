@@ -179,7 +179,7 @@ namespace SoupKit.Data
                 var shortcut = new INShortcut(orderIntent);
                 var suggestedShortcut = new INRelevantShortcut(shortcut);
 
-                var localizedTitle = NSBundleHelper.SoupKitBundle.GetLocalizedString("ORDER_LUNCH_TITLE", "Relevant shortcut title");
+                var localizedTitle = NSBundle.MainBundle.GetLocalizedString("ORDER_LUNCH_TITLE", "Relevant shortcut title");
                 var template = new INDefaultCardTemplate(localizedTitle);
 
                 // Need a different string for the subtitle because of capitalization difference

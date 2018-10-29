@@ -29,7 +29,7 @@ namespace SoupKit.Data
     //        get
     //        {
     //            string usageComment = $"UI representation for MenuItemOption value: {Value}";
-    //            return NSBundleHelper.SoupKitBundle.GetLocalizedString(Value, usageComment, null);
+    //            return NSBundle.MainBundle.GetLocalizedString(Value, usageComment, null);
     //        }
     //    }
 
@@ -251,7 +251,7 @@ namespace SoupKit.Data
                 orderSoupIntent.Options = NSArray.FromObjects(MenuItemOptions.Select(arg => new INObject(arg.ToString(), arg.ToString())).ToArray()) as NSArray<INObject>;
 
                 var comment = "Suggested phrase for ordering a specific soup";
-                var phrase = NSBundleHelper.SoupKitBundle.GetLocalizedString("ORDER_SOUP_SUGGESTED_PHRASE", comment);
+                var phrase = NSBundle.MainBundle.GetLocalizedString("ORDER_SOUP_SUGGESTED_PHRASE", comment);
                 orderSoupIntent.SuggestedInvocationPhrase = string.Format(phrase, MenuItem.ShortcutLocalizationKey);
                 //orderSoupIntent.suggestedInvocationPhrase = NSString.deferredLocalizedIntentsString(with: "ORDER_SOUP_SUGGESTED_PHRASE") as String
 

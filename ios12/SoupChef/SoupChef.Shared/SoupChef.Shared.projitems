@@ -15,7 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\SoupMenuManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\SoupOrderDataManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Support\ILocalizableShortcut.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Support\NSBundleHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Support\NSNumberFormatterHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Support\NSUserActivityHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Support\NSUserDefaultsHelper.cs" />
