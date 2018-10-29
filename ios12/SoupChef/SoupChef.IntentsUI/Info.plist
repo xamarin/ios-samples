@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>SoupChefIntents</string>
+	<string>SoupChef.IntentsUI</string>
 	<key>CFBundleName</key>
-	<string>SoupChefIntents</string>
+	<string>SoupChef.IntentsUI</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.soup-chef.soup-chef-intents</string>
+	<string>com.xamarin.soup-chef.soup-chef-intents-ui</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -24,19 +24,15 @@
 	<dict>
 		<key>NSExtensionAttributes</key>
 		<dict>
-			<key>IntentsRestrictedWhileLocked</key>
-			<array/>
 			<key>IntentsSupported</key>
 			<array>
-				<string>OrderSoupIntent</string>
+				<string>INSendMessageIntent</string>
 			</array>
-			<key>IntentsRestrictedWhileProtectedDataUnavailable</key>
-			<array/>
 		</dict>
+		<key>NSExtensionMainStoryboard</key>
+		<string>MainInterface</string>
 		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.intents-service</string>
-		<key>NSExtensionPrincipalClass</key>
-		<string>IntentHandler</string>
+		<string>com.apple.intents-ui-service</string>
 	</dict>
 </dict>
 </plist>

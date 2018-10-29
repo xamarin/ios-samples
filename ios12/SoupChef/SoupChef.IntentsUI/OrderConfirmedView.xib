@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderConfirmedViewController" customModule="SoupChefIntentsUI" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="qbQ-nc-bMg" id="nbN-5o-8ZD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="qbQ-nc-bMg" customModuleProvider="target" customClass="OrderConfirmedView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mB7-wh-hMa">
+                    <rect key="frame" x="20" y="24" width="205" height="77.5"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gRx-kw-FN9">
+                            <rect key="frame" x="0.0" y="9" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="B0R-Xh-Bma"/>
+                                <constraint firstAttribute="height" constant="60" id="Lmg-Zn-z07"/>
+                            </constraints>
+                        </imageView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="SdR-p7-Yha">
+                            <rect key="frame" x="70" y="0.0" width="135" height="77.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Item Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wxn-ee-sKR">
+                                    <rect key="frame" x="26" y="0.0" width="83" height="20.5"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Confirmed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pde-XG-AaS">
+                                    <rect key="frame" x="0.0" y="28.5" width="135" height="20.5"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hR8-O1-n6z">
+                                    <rect key="frame" x="48.5" y="57" width="38" height="20.5"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="mB7-wh-hMa" firstAttribute="top" secondItem="qbQ-nc-bMg" secondAttribute="topMargin" constant="16" id="UyH-4C-Vb1"/>
+                <constraint firstItem="mB7-wh-hMa" firstAttribute="leading" secondItem="qbQ-nc-bMg" secondAttribute="leading" constant="20" id="cf1-b6-1mz"/>
+                <constraint firstItem="S49-Qd-uKF" firstAttribute="trailing" secondItem="mB7-wh-hMa" secondAttribute="trailing" constant="20" id="xdc-dt-Ghs"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="S49-Qd-uKF"/>
+            <connections>
+                <outlet property="ImageView" destination="gRx-kw-FN9" id="name-outlet-gRx-kw-FN9"/>
+                <outlet property="ItemNameLabel" destination="wxn-ee-sKR" id="name-outlet-wxn-ee-sKR"/>
+                <outlet property="TimeLabel" destination="hR8-O1-n6z" id="name-outlet-hR8-O1-n6z"/>
+            </connections>
+            <point key="canvasLocation" x="398" y="82"/>
+        </view>
+    </objects>
+</document>

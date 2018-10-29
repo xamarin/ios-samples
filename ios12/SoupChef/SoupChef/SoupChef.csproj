@@ -172,7 +172,16 @@
     <Compile Include="AppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
-    <IntentDefinition Include="Intents.intentdefinition" />
+    <ProjectReference Include="..\SoupChef.Intents\SoupChef.Intents.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{6308D020-291F-481F-9368-111ECA9541E2}</Project>
+      <Name>SoupChef.Intents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SoupChef.IntentsUI\SoupChef.IntentsUI.csproj">
+      <IsAppExtension>true</IsAppExtension>
+      <Project>{2BF5BA15-8A05-4793-AB94-4A2BF2C591E9}</Project>
+      <Name>SoupChef.IntentsUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\SoupChef.Shared\SoupChef.Shared.projitems" Label="Shared" Condition="Exists('..\SoupChef.Shared\SoupChef.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

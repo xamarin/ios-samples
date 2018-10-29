@@ -30,4 +30,7 @@
     <BundleResource Include="$(MSBuildThisFileDirectory)Base.lproj\Localizable.strings" />
     <BundleResource Include="$(MSBuildThisFileDirectory)Base.lproj\Localizable.stringsdict" />
   </ItemGroup>
+  <ItemGroup>
+    <IntentDefinition Include="$(MSBuildThisFileDirectory)Intents.intentdefinition" />
+  </ItemGroup>
 </Project>

@@ -14,8 +14,10 @@ using SoupChef.Support;
 
 namespace SoupChef
 {
-    internal class OrderSoupIntentHandler : BaseWrapper, IOrderSoupIntentHandling
+    internal class OrderSoupIntentHandler : NSObject/*BaseWrapper*/, IOrderSoupIntentHandling
     {
+        public OrderSoupIntentHandler() : base(IntPtr.Zero, false) { }
+
         [Preserve(Conditional = true)]
         public OrderSoupIntentHandler(IntPtr handle, bool owns) : base(handle, owns) { }
 

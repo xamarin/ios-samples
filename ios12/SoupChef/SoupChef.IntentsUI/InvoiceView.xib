@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvoiceViewController" customModule="SoupChefIntentsUI" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="x3m-QY-vGT" id="R5E-tm-RCZ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="x3m-QY-vGT" customModuleProvider="target" customClass="InvoiceView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5VK-BP-NNi">
+                    <rect key="frame" x="20" y="24" width="186" height="91.5"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HNv-lq-y5J">
+                            <rect key="frame" x="0.0" y="16" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="jy6-Bg-zuX"/>
+                                <constraint firstAttribute="height" constant="60" id="svV-bZ-4Db"/>
+                            </constraints>
+                        </imageView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JCX-ui-FMN">
+                            <rect key="frame" x="80" y="9.5" width="106" height="72.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Item Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="KAS-gW-tuH">
+                                    <rect key="frame" x="0.0" y="0.0" width="83" height="20.5"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity / Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAU-Lk-VFp">
+                                    <rect key="frame" x="0.0" y="28.5" width="106" height="18"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Options" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVk-of-zG9">
+                                    <rect key="frame" x="0.0" y="54.5" width="54" height="18"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qDQ-Y1-oX5">
+                    <rect key="frame" x="195.5" y="125.5" width="104.5" height="20.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4N-vs-dFr">
+                            <rect key="frame" x="0.0" y="0.0" width="37.5" height="20.5"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$99.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXd-5v-zCW">
+                            <rect key="frame" x="45.5" y="0.0" width="59" height="20.5"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="qDQ-Y1-oX5" firstAttribute="top" secondItem="5VK-BP-NNi" secondAttribute="bottom" constant="10" id="02T-P4-QF2"/>
+                <constraint firstItem="pvn-ta-NZV" firstAttribute="trailing" secondItem="5VK-BP-NNi" secondAttribute="trailing" constant="20" id="7Kp-N7-C7s"/>
+                <constraint firstItem="5VK-BP-NNi" firstAttribute="leading" secondItem="x3m-QY-vGT" secondAttribute="leading" constant="20" id="7Ks-6X-qA0"/>
+                <constraint firstItem="5VK-BP-NNi" firstAttribute="top" secondItem="x3m-QY-vGT" secondAttribute="topMargin" constant="16" id="I1M-VP-17z"/>
+                <constraint firstAttribute="trailing" secondItem="qDQ-Y1-oX5" secondAttribute="trailing" constant="20" id="lpi-o8-ZyY"/>
+                <constraint firstItem="qDQ-Y1-oX5" firstAttribute="bottom" secondItem="x3m-QY-vGT" secondAttribute="bottomMargin" constant="-16" id="uCY-yf-8Xb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="pvn-ta-NZV"/>
+            <connections>
+                <outlet property="ItemNameLabel" destination="KAS-gW-tuH" id="name-outlet-KAS-gW-tuH"/>
+                <outlet property="OptionsLabel" destination="fVk-of-zG9" id="name-outlet-fVk-of-zG9"/>
+                <outlet property="TotalPriceLabel" destination="JXd-5v-zCW" id="name-outlet-JXd-5v-zCW"/>
+                <outlet property="UnitPriceLabel" destination="AAU-Lk-VFp" id="name-outlet-AAU-Lk-VFp"/>
+                <outlet property="ImageView" destination="HNv-lq-y5J" id="name-outlet-HNv-lq-y5J"/>
+            </connections>
+        </view>
+    </objects>
+</document>
