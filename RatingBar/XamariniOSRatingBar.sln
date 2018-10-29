@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamariniOSRatingBar", "XamariniOSRatingBar\XamariniOSRatingBar.csproj", "{0A627960-06F4-4F16-993E-E4AEC2077726}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A627960-06F4-4F16-993E-E4AEC2077726}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{0A627960-06F4-4F16-993E-E4AEC2077726}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{0A627960-06F4-4F16-993E-E4AEC2077726}.Release|iPhone.ActiveCfg = Release|iPhone
+		{0A627960-06F4-4F16-993E-E4AEC2077726}.Release|iPhone.Build.0 = Release|iPhone
+		{0A627960-06F4-4F16-993E-E4AEC2077726}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{0A627960-06F4-4F16-993E-E4AEC2077726}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{0A627960-06F4-4F16-993E-E4AEC2077726}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{0A627960-06F4-4F16-993E-E4AEC2077726}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
