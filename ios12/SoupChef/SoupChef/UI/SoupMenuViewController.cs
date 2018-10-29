@@ -46,7 +46,7 @@ namespace SoupChef
 
                     if (sender is UITableViewCell && TableView.IndexPathForSelectedRow != null)
                     {
-                        order = new Order(new NSDate(), new NSUuid(), 1, menuItems[TableView.IndexPathForSelectedRow.Row], new List<MenuItemOption>());
+                        order = new Order(1, menuItems[TableView.IndexPathForSelectedRow.Row], new List<MenuItemOption>());
                     } 
                     else if (sender is NSUserActivity activity &&
                              activity.GetInteraction()?.Intent is OrderSoupIntent orderIntent)

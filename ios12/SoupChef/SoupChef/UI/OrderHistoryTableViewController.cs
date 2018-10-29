@@ -1,10 +1,10 @@
 ﻿
 namespace SoupChef
 {
+    using CoreFoundation;
     using Foundation;
     using SoupChef.Support;
     using SoupChef.Data;
-    using SoupChef.Support;
     using System;
     using System.Linq;
     using UIKit;
@@ -16,14 +16,10 @@ namespace SoupChef
     {
         private const string CellReuseIdentifier = "SoupOrderDetailCell";
 
-        private readonly NSDateFormatter dateFormatter = new NSDateFormatter()
-        {
-            DateStyle = NSDateFormatterStyle.Long,
-            TimeStyle = NSDateFormatterStyle.Long
-        };
+        private SoupOrderDataManager soupOrderManager = new SoupOrderDataManager();
 
         private SoupMenuManager soupMenuManager = new SoupMenuManager();
-        private SoupOrderDataManager soupOrderManager = new SoupOrderDataManager();
+
         private NSObject notificationToken;
 
         public OrderHistoryTableViewController(IntPtr handle) : base(handle) { }
@@ -32,10 +28,18 @@ namespace SoupChef
         {
             base.ViewDidLoad();
 
-            //notificationToken = NSNotificationCenter.DefaultCenter.AddObserver(NotificationKeys.DataChanged,
-                                                                               //soupOrderManager,
-                                                                               //NSOperationQueue.MainQueue,
-                                                                               //(notification) => this.TableView.ReloadData());
+            notificationToken = NSNotificationCenter.DefaultCenter.AddObserver(NotificationKeys.DataChanged,
+                                                                                NSObject.FromObject(soupOrderManager),
+                                                                                NSOperationQueue.MainQueue,
+                                                                                (notification) => this.TableView.ReloadData());
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            notificationToken.Dispose();
+            NSNotificationCenter.DefaultCenter.RemoveObserver(this);
+
+            base.Dispose(disposing);
         }
 
         public override void ViewWillAppear(bool animated)
@@ -70,11 +74,11 @@ namespace SoupChef
             {
                 Order order = null;
                 var activity = sender as NSUserActivity;
-                var orderID = activity.UserInfo?[NSUserActivityHelper.ActivityKeys.OrderId] as NSUuid;
-                if (orderID != null)
+                var stringOrderId = activity?.UserInfo?[NSUserActivityHelper.ActivityKeys.OrderId] as NSString;
+                if (stringOrderId != null && Guid.TryParse(stringOrderId, out Guid orderId))
                 {
                     // An order was completed outside of the app and then continued as a user activity in the app
-                    order = soupOrderManager.Order(orderID);
+                    order = soupOrderManager.Order(orderId);
                 }
                 else if (sender is UITableViewCell && TableView.IndexPathsForSelectedRows != null)
                 {
@@ -177,7 +181,7 @@ namespace SoupChef
             cell.ImageView.ApplyRoundedCorners();
 
             cell.TextLabel.Text = $"{order.Quantity} {order.MenuItem.ItemName}";
-            cell.DetailTextLabel.Text = dateFormatter.StringFor(order.Date);
+            cell.DetailTextLabel.Text = order.Date.ToString("r");
             return cell;
         }
 

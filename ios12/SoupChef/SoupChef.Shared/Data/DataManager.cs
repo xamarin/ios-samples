@@ -91,8 +91,6 @@ namespace SoupChef.Data
         /// Notifies clients the data changed by posting a `Notification` with the key `dataChangedNotificationKey`
         private void NotifyClientsDataChanged()
         {
-            // TODO:
-            // NotificationCenter.default.post(Notification(name: dataChangedNotificationKey, object: self))
             var notification = NSNotification.FromName(NotificationKeys.DataChanged, NSObject.FromObject(this));
             NSNotificationCenter.DefaultCenter.PostNotification(notification);
         }

@@ -34,7 +34,7 @@ namespace SoupChef.Data
 
             // The order identifier is used to match with the donation so the interaction
             // can be deleted if a soup is removed from the menu.
-            interaction.Identifier = order.Identifier.AsString();
+            interaction.Identifier = order.Identifier.ToString();
             interaction.DonateInteraction((error) =>
             {
                 if (error != null)
@@ -70,7 +70,7 @@ namespace SoupChef.Data
         /// <summary>
         /// Tries to find an order by its identifier
         /// </summary>
-        public Order Order(NSUuid identifier) 
+        public Order Order(Guid identifier) 
         {
             return OrderHistory.FirstOrDefault(g => g.Identifier == identifier);
         }

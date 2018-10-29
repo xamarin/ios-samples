@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SoupOrderDetailCell" textLabel="ivj-Dh-JU9" detailTextLabel="LM3-i0-Zsj" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="41N-Au-pPP" customClass="SoupOrderDetailCell" customModule="SoupChef" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SoupOrderDetailCell" textLabel="ivj-Dh-JU9" detailTextLabel="LM3-i0-Zsj" rowHeight="70" style="IBUITableViewCellStyleSubtitle" id="41N-Au-pPP" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="41N-Au-pPP" id="8mr-Zh-Cqz">

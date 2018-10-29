@@ -2,6 +2,7 @@
 namespace SoupChef
 {
     using System.Collections.Generic;
+    using SoupChef.Data;
 
     /// <summary>
     /// This class encapsulates the configuration of the `UITableView` in `OrderDetailViewController`.
@@ -19,14 +20,14 @@ namespace SoupChef
         {
             new SectionModel(SectionType.Price, 1, BasicCellType.Basic),
             new SectionModel(SectionType.Quantity, 1, QuantityCell.CellIdentifier),
-            //new SectionModel(SectionType.Options, MenuItemOption.All.Length, BasicCellType.Basic),
+            new SectionModel(SectionType.Options, System.Enum.GetValues(typeof(MenuItemOption)).Length, BasicCellType.Basic),
             new SectionModel(SectionType.Total, 1, BasicCellType.Basic),
         };
 
         private static readonly List<SectionModel> HistoricalOrderSectionModel = new List<SectionModel>
         {
             new SectionModel(SectionType.Quantity, 1, QuantityCell.CellIdentifier),
-            //new SectionModel(SectionType.Options, MenuItemOption.All.Length, BasicCellType.Basic),
+            new SectionModel(SectionType.Options, System.Enum.GetValues(typeof(MenuItemOption)).Length, BasicCellType.Basic),
             new SectionModel(SectionType.Total, 1, BasicCellType.Basic),
         };
 

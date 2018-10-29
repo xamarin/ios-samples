@@ -81,7 +81,8 @@ namespace SoupChef
                     var readyDate = NSDate.FromTimeIntervalSinceNow(10 * 60); // 10 minutes
 
                     var userActivity = new NSUserActivity(NSUserActivityHelper.OrderCompleteActivityType);
-                    userActivity.AddUserInfoEntries(NSDictionary.FromObjectAndKey(order.Identifier, new NSString(NSUserActivityHelper.ActivityKeys.OrderId)));
+                    userActivity.AddUserInfoEntries(NSDictionary.FromObjectAndKey(new NSString(order.Identifier.ToString()), 
+                                                                                  new NSString(NSUserActivityHelper.ActivityKeys.OrderId)));
 
                     var formatter = new NSDateComponentsFormatter();
                     formatter.UnitsStyle = NSDateComponentsFormatterUnitsStyle.Full;

@@ -21,18 +21,18 @@ namespace SoupChef.Data
     /// </summary>
     class Order : ILocalizableCurrency
     {
-        public Order(NSDate date, NSUuid identifier, int quantity, MenuItem menuItem, List<MenuItemOption> menuItemOptions)
+        public Order(int quantity, MenuItem menuItem, List<MenuItemOption> menuItemOptions)
         {
-            Date = date;
-            Identifier = identifier;
             MenuItem = menuItem;
             Quantity = quantity;
             MenuItemOptions = menuItemOptions;
         }
 
-        public NSDate Date { get; private set; }
+        [Newtonsoft.Json.JsonIgnore]
+        public DateTime Date { get; private set; } = DateTime.UtcNow;
 
-        public NSUuid Identifier { get; private set; }
+        [Newtonsoft.Json.JsonIgnore]
+        public Guid Identifier { get; private set; } = Guid.NewGuid();
 
         public MenuItem MenuItem { get; private set; }
 
@@ -40,8 +40,10 @@ namespace SoupChef.Data
 
         public List<MenuItemOption> MenuItemOptions { get; set; }
 
+        [Newtonsoft.Json.JsonIgnore]
         public float Total => Quantity * MenuItem.Price;
 
+        [Newtonsoft.Json.JsonIgnore]
         public string LocalizedCurrencyValue => NSNumberFormatterHelper.CurrencyFormatter.StringFromNumber(Total) ?? string.Empty;
 
         public override int GetHashCode()
@@ -51,15 +53,22 @@ namespace SoupChef.Data
 
         public override bool Equals(object obj)
         {
-            var rhs = obj as Order;
+            var item = obj as Order;
 
-            return MenuItem == rhs.MenuItem &&
-            rhs.Quantity == Quantity &&
-            rhs.MenuItemOptions == MenuItemOptions;
+            var result = item != null;
+            if (result)
+            {
+                result = MenuItem == item.MenuItem &&
+                         Quantity == item.Quantity &&
+                         MenuItemOptions == item.MenuItemOptions;
+            }
+
+            return result;
         }
 
         #region intent helpers
 
+        [Newtonsoft.Json.JsonIgnore]
         public OrderSoupIntent Intent
         {
             get
@@ -123,7 +132,7 @@ namespace SoupChef.Data
                         }).ToList();
                     }
 
-                    result = new Order(new NSDate(), new NSUuid(), quantity.Int32Value, menuItem, new List<MenuItemOption>(rawOptions));
+                    result = new Order(quantity.Int32Value, menuItem, new List<MenuItemOption>(rawOptions));
                 }
             }
 

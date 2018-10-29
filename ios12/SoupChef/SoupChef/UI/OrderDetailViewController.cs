@@ -7,6 +7,7 @@ namespace SoupChef
     using SoupChef.Support;
     using SoupChef.Data;
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using UIKit;
 
@@ -112,6 +113,11 @@ namespace SoupChef
 
         #region TableView DataSource
 
+        public override string TitleForHeader(UITableView tableView, nint section)
+        {
+            return tableConfiguration.Sections[(int)section].Type;
+        }
+
         public override nint NumberOfSections(UITableView tableView)
         {
             return tableConfiguration.Sections.Count;
@@ -179,7 +185,6 @@ namespace SoupChef
                     break;
                 case OrderDetailTableConfiguration.SectionType.Total:
                     totalLabel = cell.TextLabel;
-
                     UpdateTotalLabel();
                     break;
             }
