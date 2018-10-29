@@ -16,6 +16,7 @@ namespace SoupKit.Support
         {
             public const string MenuItems = "menuItems";
             public const string SegueId = "segueID";
+            public const string OrderId = "orderID";
         }
 
         static string SearchableItemContentType = "Soup Menu";

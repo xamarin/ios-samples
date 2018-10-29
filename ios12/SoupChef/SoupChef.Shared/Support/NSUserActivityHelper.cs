@@ -16,11 +16,13 @@ namespace SoupKit.Support
         {
             public const string MenuItems = "menuItems";
             public const string SegueId = "segueID";
+            public const string OrderId = "orderID";
         }
 
         static string SearchableItemContentType = "Soup Menu";
 
         public static string ViewMenuActivityType = "com.xamarin.SoupChef.viewMenu";
+        public static string OrderCompleteActivityType = "com.xamarin.SoupChef.orderComplete";
 
         public static NSUserActivity ViewMenuActivity {
             get

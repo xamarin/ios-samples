@@ -6,66 +6,84 @@ A data manager that manages an array of `Order` structs.
 */
 
 using Foundation;
-//using SoupKit.Support;
 using Intents;
+using SoupKit.Support;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SoupKit.Data
 {
     // A concrete `DataManager` for reading and writing data of type `NSMutableArray<Order>`.
-    public class SoupOrderDataManager : DataManager<NSMutableArray<Order>>
+    class SoupOrderDataManager : DataManager<List<Order>>
     {
-        public SoupOrderDataManager() : base(new UserDefaultsStorageDescriptor(null/*NSUserDefaultsHelper.StorageKeys.OrderHistory*/), new NSMutableArray<Order>()) { }
+        public SoupOrderDataManager() : base(new UserDefaultsStorageDescriptor(NSUserDefaultsHelper.StorageKeys.OrderHistory)) { }
+        //public SoupOrderDataManager() { }
+        protected override void DeployInitialData()
+        {
+            DataAccessQueue.DispatchSync(() =>
+            {
+                // Order history is empty the first time the app is used.
+                ManagedData = new List<Order>();
+            });
+        }
 
         // Converts an `Order` into `OrderSoupIntent` and donates it as an 
         // interaction to the system so that this order can be suggested in the 
         // future or turned into a voice shortcut for quickly placing the same 
         // order in the future.
-        void DonateInteraction(Order order)
+        private void DonateInteraction(Order order)
         {
-            //var interaction = new INInteraction(order.Intent, null);
-            //interaction.Identifier = order.Identifier.ToString();
-            //interaction.DonateInteraction((error) =>
-            //{
-            //    if (!(error is null))
-            //    {
-            //        Console.WriteLine($"Interaction donation failed: {error}");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine("Successfully donated interaction.");
-            //    }
-            //});
-        }
+            var interaction = new INInteraction(order.Intent, null);
 
-        #region Public API for clients of `SoupOrderDataManager`
-        // Convenience method to access the data with a property name that makes 
-        // sense in the caller's context.
-        public NSMutableArray<Order> OrderHistory
-        {
-            get
-            {
-                return ManagedData as NSMutableArray<Order>;
-            }
-        }
+            // The order identifier is used to match with the donation so the interaction
+            // can be deleted if a soup is removed from the menu.
+            interaction.Identifier = order.Identifier.AsString();//.ToString();
 
-        public void PlaceOrder(Order order)
-        {
-            // Access to `ManagedDataBackingInstance` is only valid on 
-            // `DataAccessQueue`.
-            DataAccessQueue.DispatchSync(() =>
+            interaction.DonateInteraction((error) =>
             {
-                if (ManagedDataBackingInstance.Count == 0)
+                if (error != null)
                 {
-                    // Getting an error trying to insert at 0 for an empty
-                    // NSMutableArray<Order>
-                    ManagedDataBackingInstance.Add(order);
+                    Console.WriteLine($"Interaction donation failed: {error}");
                 }
                 else
                 {
-                    ManagedDataBackingInstance.Insert(order, 0);
+                    Console.WriteLine("Successfully donated interaction.");
                 }
+            });
+        }
+
+        #region Public API for clients of `SoupOrderDataManager`
+
+        // Convenience method to access the data with a property name that makes sense in the caller's context.
+        public List<Order> OrderHistory
+        {
+            get
+            {
+                List<Order> result = null;
+                DataAccessQueue.DispatchAsync(() =>
+                {
+                    result = ManagedData;
+                });
+
+                return result;
+            }
+        }
+
+        /// Tries to find an order by its identifier
+        public Order Order(NSUuid identifier) 
+        {
+            return OrderHistory.FirstOrDefault(g => g.Identifier == identifier);
+        }
+
+        /// Stores the order in the data manager.
+        /// Note: This project does not share data between iOS and watchOS. Orders placed on the watch will not display in the iOS order history.
+        public void PlaceOrder(Order order)
+        {
+            // Access to `managedDataBackingInstance` is only valid on `dataAccessQueue`.
+            DataAccessQueue.DispatchSync(() =>
+            {
+                ManagedData.Insert(0, order);
             });
 
             // Access to UserDefaults is gated behind a separate access queue.
@@ -76,13 +94,13 @@ namespace SoupKit.Data
         }
         #endregion
 
-        #region Support methods for unarchiving saved data
-        override protected void FinishUnarchiving(NSObject unarchivedData)
-        {
-            var array = (NSArray)unarchivedData;
-            Order[] orders = NSArray.FromArray<Order>(array);
-            ManagedDataBackingInstance = new NSMutableArray<Order>(orders);
-        }
-        #endregion
+        //#region Support methods for unarchiving saved data
+        //override protected void FinishUnarchiving(NSObject unarchivedData)
+        //{
+        //    var array = (NSArray)unarchivedData;
+        //    Order[] orders = NSArray.FromArray<Order>(array);
+        //    ManagedDataBackingInstance = new NSMutableArray<Order>(orders);
+        //}
+        //#endregion
     }
 }

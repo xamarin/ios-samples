@@ -1,94 +1,89 @@
-using Foundation;
-//using SoupKit.Data;
 using System;
+using System.Collections.Generic;
+using Foundation;
+using Intents;
+using SoupChef.Support;
+using SoupKit.Data;
 using UIKit;
-//using SoupKit.Support;
-using System.Linq;
-//using SoupKit.UI;
+using static SoupChef.OrderHistoryTableViewController;
 
 namespace SoupChef
 {
+    /// <summary>
+    /// This view controller displays the list of active menu items to the user.
+    /// </summary>
     public partial class SoupMenuViewController : UITableViewController
     {
+        private const string CellReuseIdentifier = "SoupMenuItemDetailCell";
 
-        //public MenuItem[] MenuItems { get; set; } = new SoupMenuManager().AvailableRegularItems;
+        public SoupMenuViewController(IntPtr handle) : base(handle) { }
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-            //UserActivity = NSUserActivityHelper.ViewMenuActivity;
-        }
+        public List<MenuItem> MenuItems { get; set; } = new SoupMenuManager().AvailableRegularItems;
 
-        public override void UpdateUserActivityState(NSUserActivity activity)
-        {
-            base.UpdateUserActivityState(activity);
-
-            //var keys = new NSString[] {
-            //    (NSString)(NSUserActivityHelper.ActivityKeys.MenuItems),
-            //    (NSString)(NSUserActivityHelper.ActivityKeys.SegueId)
-            //};
-
-            // Creates an NSArray<NSString> of MenuItem.ItemNameKey values
-            //var menuItemNames = NSArray.FromNSObjects(
-            //    MenuItems.Select<MenuItem, NSString>(
-            //        (menuItem) => (NSString)(menuItem.ItemNameKey)
-            //    ).ToArray<NSString>()
-            //);
-
-            //var objects = new NSObject[] { menuItemNames, (NSString)"Soup Menu" };
-
-            //NSDictionary userInfo = NSDictionary.FromObjectsAndKeys(objects, keys);
-
-            //activity.AddUserInfoEntries(userInfo);
-
+        public override NSUserActivity UserActivity 
+        { 
+            get => base.UserActivity;
+            set
+            {
+                base.UserActivity = value;
+                if (base.UserActivity?.ActivityType == "OrderSoupIntent")
+                {
+                    PerformSegue(SegueIdentifiers.NewOrder, base.UserActivity);
+                }
+            }
         }
 
         #region Navigation
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
-            if (segue.Identifier == "Show New Order Detail Segue")
+            if (segue.Identifier == SegueIdentifiers.NewOrder)
             {
-                var destination = segue.DestinationViewController as OrderDetailViewController;
-                if (destination is null) { return; }
+                if (segue.DestinationViewController is OrderDetailViewController destination)
+                {
+                    Order order = null;
 
-                var indexPath = TableView.IndexPathForSelectedRow;
-                if (indexPath is null) { return; }
+                    if (sender is UITableViewCell && TableView.IndexPathForSelectedRow != null)
+                    {
+                        order = new Order(new NSDate(), new NSUuid(), 1, MenuItems[TableView.IndexPathForSelectedRow.Row], new List<MenuItemOption>());
+                    } 
+                    else if (sender is NSUserActivity activity &&
+                             activity.GetInteraction()?.Intent is OrderSoupIntent orderIntent)
+                    {
+                        order = Order.FromOrderSoupIntent(orderIntent);
+                    }
 
-                var orderType = new OrderDetailTableConfiguration(OrderDetailTableConfiguration.OrderTypeEnum.New);
-                //var newOrder = new Order(0, MenuItems[indexPath.Row], new NSMutableSet<MenuItemOption>());
-
-                //destination.Configure(orderType, newOrder, null);
+                    if (order != null)
+                    {
+                        // Pass the represented menu item to OrderDetailTableConfiguration.
+                        var orderType = new OrderDetailTableConfiguration(OrderDetailTableConfiguration.OrderTypeEnum.New);
+                        destination.Configure(orderType, order);
+                    }
+                }
             }
         }
+
         #endregion
 
         #region UITableViewDataSource
-        //public override nint RowsInSection(UITableView tableView, nint section)
-        //{
-        //    return MenuItems.Length;
-        //}
 
-        //public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-        //{
-        //    var cell = TableView.DequeueReusableCell(SoupMenuItemDetailCell.CellIdentifier, indexPath) as SoupMenuItemDetailCell;
-        //    if (cell is null)
-        //    {
-        //        Console.WriteLine("Failed to downcase UITableViewCell as SoupMenuItemDetailCell. Check Main.storyboard.");
-        //        return new UITableViewCell();
-        //    }
+        public override nint RowsInSection(UITableView tableView, nint section)
+        {
+            return MenuItems.Count;
+        }
 
-        //    var menuItem = MenuItems[indexPath.Row];
-        //    cell.DetailView.ImageView.Image = UIImage.FromBundle(menuItem.IconImageName);
-        //    cell.DetailView.TitleLabel.Text = menuItem.LocalizedString;
-        //    return cell;
+        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+        {
+            var cell = TableView.DequeueReusableCell(SoupMenuItemDetailCell.CellIdentifier, indexPath) as SoupMenuItemDetailCell;
+            var menuItem = MenuItems[indexPath.Row];
 
-        //}
-        #endregion
+            cell.ImageView.Image = UIImage.FromBundle(menuItem.IconImageName);
+            cell.ImageView.ApplyRoundedCorners();
+            cell.TextLabel.Text = MenuItems[indexPath.Row].ItemName;
+            cell.TextLabel.Lines = 0;
 
-        #region xamarin
-        // This constructor is used when Xamarin.iOS needs to create a new
-        // managed object for an already-existing native object.
-        public SoupMenuViewController(IntPtr handle) : base(handle) { }
+            return cell;
+        }
+
         #endregion
     }
 }

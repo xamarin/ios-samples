@@ -14,8 +14,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\Order.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\SoupMenuManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\SoupOrderDataManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Support\ILocalizableShortcut.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Support\NSBundleHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Support\NSNumberFormatterHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Support\NSUserActivityHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Support\NSUserDefaultsHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OrderSoupIntentHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Support\UIImageViewExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Support\" />
   </ItemGroup>
 </Project>

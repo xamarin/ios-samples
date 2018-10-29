@@ -6,7 +6,7 @@ namespace SoupChef
 {
     public partial class SoupOrderDetailCell : UITableViewCell
     {
-        public const string CellIdentifier = "SoupOrderDetailCell";
+        //public const string CellIdentifier = "SoupOrderDetailCell";
 
         //public MenuItemView DetailView => detailView;
 

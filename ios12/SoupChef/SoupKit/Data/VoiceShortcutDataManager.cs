@@ -8,7 +8,7 @@ A data manager that surfaces INVoiceShortcuts managed by INVoiceShortcutCenter.
 using System;
 using Intents;
 using System.Linq;
-using SoupChef;
+//using SoupChef;
 
 namespace SoupKit.Data
 {
@@ -23,15 +23,15 @@ namespace SoupKit.Data
 
         public INVoiceShortcut VoiceShortcutForOrder(Order order)
         {
-            var voiceShortcut = VoiceShortcuts.FirstOrDefault((shortcut) =>
-            {
-                var intent = shortcut.Shortcut.Intent as OrderSoupIntent;
-                if (intent is null) { return false; }
-                var orderFromIntent = Order.FromOrderSoupIntent(intent);
-                if (orderFromIntent is null) { return false; }
-                return order.IsEqual(orderFromIntent);
-            });
-            return voiceShortcut;
+            //var voiceShortcut = VoiceShortcuts.FirstOrDefault((shortcut) =>
+            //{
+            //    var intent = shortcut.Shortcut.Intent as OrderSoupIntent;
+            //    if (intent is null) { return false; }
+            //    var orderFromIntent = Order.FromOrderSoupIntent(intent);
+            //    if (orderFromIntent is null) { return false; }
+            //    return order.IsEqual(orderFromIntent);
+            //});
+            return null; //voiceShortcut;
         }
 
         public void UpdateVoiceShortcuts(Action completion)

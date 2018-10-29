@@ -19,10 +19,8 @@ namespace SoupChef
             return this.Stepper;
         }
 
-        #region xamarin
         // This constructor is used when Xamarin.iOS needs to create a new
         // managed object for an already-existing native object.
         public QuantityCell(IntPtr handle) : base(handle) { }
-        #endregion
     }
 }

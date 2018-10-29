@@ -186,7 +186,7 @@
 						<key>INIntentResponseParameterTag</key>
 						<integer>2</integer>
 						<key>INIntentResponseParameterType</key>
-						<string>Integer</string>
+						<string>String</string>
 					</dict>
 				</array>
 			</dict>

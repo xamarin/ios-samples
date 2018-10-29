@@ -9,13 +9,13 @@ using System;
 using Foundation;
 using SoupKit.Support;
 using System.Linq;
-using SoupChef;
+//using SoupChef;
 using Intents;
 using UIKit;
 
 namespace SoupKit.Data
 {
-    public class Order : NSObject, ILocalizableCurrency, INSCoding
+    class Order : NSObject, ILocalizableCurrency, INSCoding
     {
         public NSDate Date { get; private set; }
         public NSUuid Identifier { get; private set; }
@@ -167,49 +167,49 @@ namespace SoupKit.Data
             }
         }
 
-        public static Order FromOrderSoupIntent(OrderSoupIntent intent)
-        {
-            var menuManager = new SoupMenuManager();
+        //public static Order FromOrderSoupIntent(OrderSoupIntent intent)
+        //{
+        //    var menuManager = new SoupMenuManager();
 
-            var soupID = intent.Soup?.Identifier;
-            if (soupID is null)
-            {
-                return null;
-            }
+        //    var soupID = intent.Soup?.Identifier;
+        //    if (soupID is null)
+        //    {
+        //        return null;
+        //    }
 
-            var menuItem = menuManager.FindItem(soupID);
-            if (menuItem is null)
-            {
-                return null;
-            }
+        //    var menuItem = menuManager.FindItem(soupID);
+        //    if (menuItem is null)
+        //    {
+        //        return null;
+        //    }
 
-            var quantity = intent.Quantity;
-            if (menuItem is null)
-            {
-                return null;
-            }
+        //    var quantity = intent.Quantity;
+        //    if (menuItem is null)
+        //    {
+        //        return null;
+        //    }
 
-            MenuItemOption[] rawOptions;
-            if (intent.Options is null)
-            {
-                rawOptions = new MenuItemOption[0];
-            }
-            else
-            {
-                // For the equivalent code in Apple's Swift sample, compactMap
-                // is used. This eliminates nil values from the final result. 
-                // Here, LINQ's Where method is used to filter out the null 
-                // values.
-                rawOptions = intent.Options.Select<INObject, MenuItemOption>((option) => {
-                    var optionID = option.Identifier;
-                    return (optionID is null) ? null : new MenuItemOption(optionID);
-                }).Where((option) => !(option is null)).ToArray<MenuItemOption>();
-            }
+        //    MenuItemOption[] rawOptions;
+        //    if (intent.Options is null)
+        //    {
+        //        rawOptions = new MenuItemOption[0];
+        //    }
+        //    else
+        //    {
+        //        // For the equivalent code in Apple's Swift sample, compactMap
+        //        // is used. This eliminates nil values from the final result. 
+        //        // Here, LINQ's Where method is used to filter out the null 
+        //        // values.
+        //        rawOptions = intent.Options.Select<INObject, MenuItemOption>((option) => {
+        //            var optionID = option.Identifier;
+        //            return (optionID is null) ? null : new MenuItemOption(optionID);
+        //        }).Where((option) => !(option is null)).ToArray<MenuItemOption>();
+        //    }
 
-            var order = new Order(quantity.Int32Value, menuItem, new NSMutableSet<MenuItemOption>(rawOptions));
+        //    var order = new Order(quantity.Int32Value, menuItem, new NSMutableSet<MenuItemOption>(rawOptions));
 
-            return order;
-        }
+        //    return order;
+        //}
         #endregion
 
         #region INSCoding

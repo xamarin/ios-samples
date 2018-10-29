@@ -158,53 +158,53 @@ namespace SoupKit.Data
         // may want to start, but hasn't used in the app before.
         void Suggest(MenuItem menuItem)
         {
-            if (menuItem.IsDailySpecial && menuItem.IsAvailable)
-            {
-                var order = new Order(1, menuItem, new NSMutableSet<MenuItemOption>());
-                var orderIntent = order.Intent;
+            //if (menuItem.IsDailySpecial && menuItem.IsAvailable)
+            //{
+            //    var order = new Order(1, menuItem, new NSMutableSet<MenuItemOption>());
+            //    var orderIntent = order.Intent;
 
-                var shortcut = new INShortcut(orderIntent);
-                var suggestedShortcut = new INRelevantShortcut(shortcut);
+            //    var shortcut = new INShortcut(orderIntent);
+            //    var suggestedShortcut = new INRelevantShortcut(shortcut);
 
-                var localizedTitle = NSBundleHelper.SoupKitBundle.GetLocalizedString(
-                    "ORDER_LUNCH_TITLE",
-                    "Relevant shortcut title"
-                );
-                var template = new INDefaultCardTemplate(localizedTitle);
-                template.Subtitle = menuItem.ItemNameKey;
+            //    var localizedTitle = NSBundleHelper.SoupKitBundle.GetLocalizedString(
+            //        "ORDER_LUNCH_TITLE",
+            //        "Relevant shortcut title"
+            //    );
+            //    var template = new INDefaultCardTemplate(localizedTitle);
+            //    template.Subtitle = menuItem.ItemNameKey;
 
-                var image = UIImage.FromBundle(menuItem.IconImageName);
-                if (!(image is null))
-                {
-                    var data = image.AsPNG();
-                    template.Image = INImage.FromData(data);
-                }
+            //    var image = UIImage.FromBundle(menuItem.IconImageName);
+            //    if (!(image is null))
+            //    {
+            //        var data = image.AsPNG();
+            //        template.Image = INImage.FromData(data);
+            //    }
 
-                suggestedShortcut.WatchTemplate = template;
+            //    suggestedShortcut.WatchTemplate = template;
 
-                // Make a lunch suggestion when arriving to work.
-                var routineRelevanceProvider = new INDailyRoutineRelevanceProvider(
-                    INDailyRoutineSituation.Work
-                );
+            //    // Make a lunch suggestion when arriving to work.
+            //    var routineRelevanceProvider = new INDailyRoutineRelevanceProvider(
+            //        INDailyRoutineSituation.Work
+            //    );
 
-                // This sample uses a single relevance provider, but using 
-                // multiple relevance providers is supported.
-                suggestedShortcut.RelevanceProviders =
-                    new INRelevanceProvider[] { routineRelevanceProvider };
+            //    // This sample uses a single relevance provider, but using 
+            //    // multiple relevance providers is supported.
+            //    suggestedShortcut.RelevanceProviders =
+            //        new INRelevanceProvider[] { routineRelevanceProvider };
 
-                var suggestedShortcuts = new INRelevantShortcut[] { suggestedShortcut };
-                INRelevantShortcutStore.DefaultStore.SetRelevantShortcuts(suggestedShortcuts, (error) =>
-                {
-                    if (!(error is null))
-                    {
-                        Console.WriteLine($"Providing relevant shortcut failed. \n{error}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Providing relevant shortcut succeeded.");
-                    }
-                });
-            }
+            //    var suggestedShortcuts = new INRelevantShortcut[] { suggestedShortcut };
+            //    INRelevantShortcutStore.DefaultStore.SetRelevantShortcuts(suggestedShortcuts, (error) =>
+            //    {
+            //        if (!(error is null))
+            //        {
+            //            Console.WriteLine($"Providing relevant shortcut failed. \n{error}");
+            //        }
+            //        else
+            //        {
+            //            Console.WriteLine("Providing relevant shortcut succeeded.");
+            //        }
+            //    });
+            //}
 
         }
         #endregion

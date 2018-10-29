@@ -1,31 +1,31 @@
 /*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-This class displays a list of previously placed orders.
-*/
+ * This class displays a list of previously placed orders.
+ */
 
 using Foundation;
 using System;
 using UIKit;
-//using SoupKit.Data;
 using System.Linq;
-//using SoupKit.UI;
+using SoupKit.Data;
+using SoupKit.Support;
+using SoupChef.Support;
 
 namespace SoupChef
 {
     public partial class OrderHistoryTableViewController : UITableViewController
     {
+        private const string CellReuseIdentifier = "SoupOrderDetailCell";
+
         public static class SegueIdentifiers
         {
             public const string OrderDetails = "Order Details";
             public const string SoupMenu = "Soup Menu";
             public const string ConfigureMenu = "Configure Menu";
+            public const string NewOrder = "Show New Order Detail Segue";
         }
 
-        //SoupMenuManager SoupMenuManager = new SoupMenuManager();
-        //SoupOrderDataManager SoupOrderDataManager = new SoupOrderDataManager();
-        //VoiceShortcutDataManager VoiceShortcutManager = new VoiceShortcutDataManager();
+        SoupMenuManager SoupMenuManager = new SoupMenuManager();
+        SoupOrderDataManager SoupOrderDataManager = new SoupOrderDataManager();
         NSObject NotificationToken;
 
         Lazy<NSDateFormatter> DateFormatter => new Lazy<NSDateFormatter>(() =>
@@ -38,107 +38,164 @@ namespace SoupChef
             return formatter;
         });
 
+        public OrderHistoryTableViewController(IntPtr handle) : base(handle) { }
 
-        #region View Controller Life Cycle
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             var weakThis = new WeakReference<OrderHistoryTableViewController>(this);
-            //NotificationToken = NSNotificationCenter.DefaultCenter.AddObserver(
-            //    NotificationKeys.DataChanged,
-            //    SoupOrderDataManager,
-            //    NSOperationQueue.MainQueue,
-            //    (notification) =>
-            //    {
-            //        if (weakThis.TryGetTarget(out var orderHistoryViewController))
-            //        {
-            //            orderHistoryViewController.TableView.ReloadData();
-            //        }
-            //    }
-            //);
+            NotificationToken = NSNotificationCenter.DefaultCenter.AddObserver(
+                NotificationKeys.DataChanged,
+                SoupOrderDataManager as NSObject,
+                NSOperationQueue.MainQueue,
+                (notification) =>
+                {
+                    if (weakThis.TryGetTarget(out var orderHistoryViewController))
+                    {
+                        orderHistoryViewController.TableView.ReloadData();
+                    }
+                }
+            );
         }
 
-        public override void ViewDidAppear(bool animated)
+        public override void ViewWillAppear(bool animated)
         {
-            base.ViewDidAppear(animated);
-            if (!(NavigationController is null))
+            base.ViewWillAppear(animated);
+            if (NavigationController != null)
             {
                 NavigationController.ToolbarHidden = true;
             }
         }
-        #endregion
 
         #region Target Action
+
         [Action("unwindToOrderHistoryWithSegue:")]
         public void UnwindToOrderHistory(UIStoryboardSegue segue) { }
 
         [Action("placeNewOrderWithSegue:")]
         public void PlaceNewOrder(UIStoryboardSegue segue)
         {
-            var source = segue.SourceViewController as OrderDetailViewController;
-            if (!(source is null))
+            if (segue.SourceViewController is OrderDetailViewController source)
             {
-                //SoupOrderDataManager.PlaceOrder(source.Order);
+                SoupOrderDataManager.PlaceOrder(source.Order);
             }
         }
         #endregion
 
         #region Navigation
+
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
-            base.PrepareForSegue(segue, sender);
             if (segue.Identifier == SegueIdentifiers.OrderDetails)
             {
-                NSIndexPath selectedIndexPath = TableView.IndexPathsForSelectedRows?.FirstOrDefault();
-                if (selectedIndexPath is null) { return; }
+                Order order = null;
+                var activity = sender as NSUserActivity;
+                var orderID = activity.UserInfo?[NSUserActivityHelper.ActivityKeys.OrderId] as NSUuid;
+                if(orderID != null)
+                {
+                    // An order was completed outside of the app and then continued as a user activity in the app
+                    order = SoupOrderDataManager.Order(orderID);
+                } 
+                else if (sender is UITableViewCell && TableView.IndexPathsForSelectedRows != null)
+                {
+                    var selectedIndexPath = TableView.IndexPathsForSelectedRows.FirstOrDefault();
 
-                var destination = segue.DestinationViewController as OrderDetailViewController;
-                if (destination is null) { return; }
+                    // An order was completed inside the app
+                    order = SoupOrderDataManager.OrderHistory[selectedIndexPath.Row];
+                }
 
-                //destination.Configure(
-                //    new OrderDetailTableConfiguration(OrderDetailTableConfiguration.OrderTypeEnum.Historical),
-                //    SoupOrderDataManager.OrderHistory[(nuint)selectedIndexPath.Row],
-                //    VoiceShortcutManager
-                //);
+                if (segue.DestinationViewController is OrderDetailViewController destination && order != null)
+                {
+                    destination.Configure(new OrderDetailTableConfiguration(OrderDetailTableConfiguration.OrderTypeEnum.Historical), order);
+                }
             }
             else if (segue.Identifier == SegueIdentifiers.ConfigureMenu)
             {
-                var navCon = segue.DestinationViewController as UINavigationController;
-                var configureMenuTableViewController = navCon?.ViewControllers?.FirstOrDefault() as ConfigureMenuTableViewController;
-                if (configureMenuTableViewController is null) { return; }
+                if (segue.DestinationViewController is UINavigationController navController &&
+                    navController.ViewControllers.FirstOrDefault() is ConfigureMenuTableViewController configureMenuTableViewController)
+                {
+                    configureMenuTableViewController.SoupMenuManager = SoupMenuManager;
+                    configureMenuTableViewController.SoupOrderDataManager = SoupOrderDataManager;
+                }
+            }
+            else if (segue.Identifier == SegueIdentifiers.SoupMenu)
+            {
+                if (segue.DestinationViewController is UINavigationController navController &&
+                    navController.ViewControllers.FirstOrDefault() is SoupMenuViewController menuController)
+                {
 
-                //configureMenuTableViewController.SoupMenuManager = SoupMenuManager;
-                //configureMenuTableViewController.SoupOrderDataManager = SoupOrderDataManager;
+                    if (sender is NSUserActivity activity && activity.ActivityType == "OrderSoupIntent")
+                    {
+                        menuController.UserActivity = activity;
+                    } 
+                    else 
+                    {
+                        menuController.UserActivity = NSUserActivityHelper.ViewMenuActivity;
+                    }
+                }
             }
         }
+
+        public override void RestoreUserActivityState(NSUserActivity activity)
+        {
+            base.RestoreUserActivityState(activity);
+
+            if (activity.ActivityType == NSUserActivityHelper.ViewMenuActivityType)
+            {
+                DriveContinueActivitySegue(SegueIdentifiers.SoupMenu, null);
+            }
+            else if (activity.ActivityType == NSUserActivityHelper.OrderCompleteActivityType &&
+                     activity.UserInfo?[NSUserActivityHelper.ActivityKeys.OrderId] is NSUuid)
+            {
+                // Order complete, display the order history
+                DriveContinueActivitySegue(SegueIdentifiers.OrderDetails, activity);
+            } 
+            else if (activity.ActivityType == "OrderSoupIntent")
+            {
+                // Order not completed, allow order to be customized
+                DriveContinueActivitySegue(SegueIdentifiers.SoupMenu, activity);
+            }
+        }
+
+        /// Ensures this view controller is visible by popping pushed order history, and dismissing anything presented modally before starting segue.
+        private void DriveContinueActivitySegue(string segueId, NSObject sender)
+        {
+            Action encapsulatedSegue = () => PerformSegue(segueId, sender);
+
+            NavigationController?.PopToRootViewController(false);
+            if (PresentedViewController != null)
+            {
+                DismissViewController(false, () => encapsulatedSegue());
+            }
+            else
+            {
+                encapsulatedSegue();
+            }
+        }
+
         #endregion
 
         #region UITableViewDataSource
-        //public override nint RowsInSection(UITableView tableView, nint section)
-        //{
-        //    return (nint)SoupOrderDataManager.OrderHistory.Count;
-        //}
+       
+         public override nint RowsInSection(UITableView tableView, nint section)
+        {
+            return SoupOrderDataManager.OrderHistory.Count;
+        }
 
-        //public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-        //{
-        //    var cell = TableView.DequeueReusableCell(SoupOrderDetailCell.CellIdentifier, indexPath) as SoupOrderDetailCell;
-        //    if (cell is null ) 
-        //    {
-        //        return new UITableViewCell();
-        //    }
-        //    Order order = SoupOrderDataManager.OrderHistory[(nuint)indexPath.Row];
-        //    cell.DetailView.ImageView.Image = UIImage.FromBundle(order.MenuItem.IconImageName);
-        //    cell.DetailView.TitleLabel.Text = $"{order.Quantity} {order.MenuItem.LocalizedString}";
-        //    cell.DetailView.SubTitleLabel.Text = DateFormatter.Value.StringFor(order.Date);
-        //    return cell;
-        //}
-        #endregion
+        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+        {
+            var cell = TableView.DequeueReusableCell(CellReuseIdentifier, indexPath) as SoupOrderDetailCell;
+            Order order = SoupOrderDataManager.OrderHistory[indexPath.Row];
 
-        #region xamarin
-        // This constructor is used when Xamarin.iOS needs to create a new
-        // managed object for an already-existing native object.
-        public OrderHistoryTableViewController(IntPtr handle) : base(handle) { }
+            cell.ImageView.Image = UIImage.FromBundle(order.MenuItem.IconImageName);
+            cell.ImageView.ApplyRoundedCorners();
+
+            cell.TextLabel.Text = $"{order.Quantity} {order.MenuItem.ItemName}";
+            cell.DetailTextLabel.Text = DateFormatter.Value.StringFor(order.Date);
+            return cell;
+        }
+
         #endregion
     }
 }

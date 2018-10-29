@@ -27,6 +27,7 @@
     <MtouchVerbosity></MtouchVerbosity>
     <MtouchLink></MtouchLink>
     <MtouchHttpClientHandler></MtouchHttpClientHandler>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,6 +41,7 @@
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchVerbosity></MtouchVerbosity>
     <MtouchHttpClientHandler></MtouchHttpClientHandler>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -80,12 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Base.lproj\Intents.intentdefinition" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OrderSoupIntentBinding\OrderSoupIntentBinding.csproj">
-      <Project>{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}</Project>
-      <Name>OrderSoupIntentBinding</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

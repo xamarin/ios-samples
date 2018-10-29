@@ -24,19 +24,19 @@ namespace SoupKit.Data
         // order in the future.
         void DonateInteraction(Order order)
         {
-            var interaction = new INInteraction(order.Intent, null);
-            interaction.Identifier = order.Identifier.ToString();
-            interaction.DonateInteraction((error) =>
-            {
-                if (!(error is null))
-                {
-                    Console.WriteLine($"Interaction donation failed: {error}");
-                }
-                else
-                {
-                    Console.WriteLine("Successfully donated interaction.");
-                }
-            });
+            //var interaction = new INInteraction(order.Intent, null);
+            //interaction.Identifier = order.Identifier.ToString();
+            //interaction.DonateInteraction((error) =>
+            //{
+            //    if (!(error is null))
+            //    {
+            //        Console.WriteLine($"Interaction donation failed: {error}");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Successfully donated interaction.");
+            //    }
+            //});
         }
 
         #region Public API for clients of `SoupOrderDataManager`

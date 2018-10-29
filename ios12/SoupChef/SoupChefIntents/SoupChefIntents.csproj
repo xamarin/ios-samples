@@ -99,10 +99,6 @@
     <Compile Include="IntentHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OrderSoupIntentBinding\OrderSoupIntentBinding.csproj">
-      <Project>{D76C0BF4-85BB-40D7-A82E-9C8A74BAB169}</Project>
-      <Name>OrderSoupIntentBinding</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SoupKit\SoupKit.csproj">
       <Project>{690EF06A-88BD-405D-A7EA-06FE67D1F301}</Project>
       <Name>SoupKit</Name>

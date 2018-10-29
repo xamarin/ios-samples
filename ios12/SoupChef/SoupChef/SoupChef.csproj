@@ -144,7 +144,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="UI\OrderDetailTableConfiguration.cs" />
-    <Compile Include="UI\AppDelegate.cs" />
     <Compile Include="UI\ConfigureMenuTableViewController.cs" />
     <Compile Include="UI\ConfigureMenuTableViewController.designer.cs">
       <DependentUpon>ConfigureMenuTableViewController.cs</DependentUpon>
@@ -173,6 +172,7 @@
     <Compile Include="UI\Cells\SoupMenuItemDetailCell.designer.cs">
       <DependentUpon>SoupMenuItemDetailCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <IntentDefinition Include="Intents.intentdefinition" />
