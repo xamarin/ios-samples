@@ -124,12 +124,17 @@
     <ImageAsset Include="Assets.xcassets\tomato_soup.imageset\Soup_tomato.png" />
     <ImageAsset Include="Assets.xcassets\tomato_soup.imageset\Soup_tomato%402x.png" />
     <ImageAsset Include="Assets.xcassets\tomato_soup.imageset\Soup_tomato%403x.png" />
+    <ImageAsset Include="Assets.xcassets\clam_chowder.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\clam_chowder.imageset\Soup_chowder.png" />
+    <ImageAsset Include="Assets.xcassets\clam_chowder.imageset\Soup_chowder%402x.png" />
+    <ImageAsset Include="Assets.xcassets\clam_chowder.imageset\Soup_chowder%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="UI\" />
     <Folder Include="UI\Cells\" />
     <Folder Include="Assets.xcassets\" />
+    <Folder Include="Assets.xcassets\clam_chowder.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\Main.storyboard" />
