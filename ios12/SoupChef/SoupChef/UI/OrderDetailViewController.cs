@@ -1,12 +1,12 @@
-
+﻿
 namespace SoupChef
 {
     using Foundation;
     using Intents;
     using IntentsUI;
     using SoupChef.Support;
-    using SoupKit.Data;
-    using SoupKit.Support;
+    using SoupChef.Data;
+    using SoupChef.Support;
     using System;
     using System.Collections.Generic;
     using UIKit;

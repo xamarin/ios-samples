@@ -5,12 +5,12 @@ Abstract:
 A data manager that manages data conforming to `Codable` and stores it in `UserDefaults`.
 */
 
-namespace SoupKit.Data
+namespace SoupChef.Data
 {
     using System;
     using Foundation;
     using CoreFoundation;
-    using SoupKit.Support;
+    using SoupChef.Support;
 
     public struct UserDefaultsStorageDescriptor
     {

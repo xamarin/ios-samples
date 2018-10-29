@@ -1,14 +1,14 @@
 ﻿using System;
 using Foundation;
 
-#if __IOS__
+//#if __IOS__
 using CoreSpotlight;
 using UIKit;
 using System.Linq.Expressions;
 using System.Xml;
-#endif
+//#endif
 
-namespace SoupKit.Support
+namespace SoupChef.Support
 {
     public static class NSUserActivityHelper
     {
@@ -19,7 +19,7 @@ namespace SoupKit.Support
             public const string OrderId = "orderID";
         }
 
-        static string SearchableItemContentType = "Soup Menu";
+        private static string SearchableItemContentType = "Soup Menu";
 
         public static string ViewMenuActivityType = "com.xamarin.SoupChef.viewMenu";
         public static string OrderCompleteActivityType = "com.xamarin.SoupChef.orderComplete";

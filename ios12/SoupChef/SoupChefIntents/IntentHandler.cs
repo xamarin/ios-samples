@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Foundation;
 using Intents;
 using SoupChef;
-using SoupKit;
+using SoupChef;
 
 namespace SoupChefIntents
 {

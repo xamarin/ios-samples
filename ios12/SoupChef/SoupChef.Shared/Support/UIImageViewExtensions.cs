@@ -4,7 +4,9 @@ namespace SoupChef.Support
     using System;
     using UIKit;
 
-    ///Utility extension on `UIImageView` for visual appearance.
+    /// <summary>
+    /// Utility extension on `UIImageView` for visual appearance.
+    /// </summary>
     public static class UIImageViewExtensions
     {
         public static void ApplyRoundedCorners(this UIImageView self)

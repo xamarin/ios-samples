@@ -1,32 +1,28 @@
-﻿/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-A DataManager subclass that persists the active menu items.
-*/
-
-using System;
-using Foundation;
-using System.Linq;
-using SoupKit.Support;
-using Intents;
-using UIKit;
-using System.Collections.Generic;
-
-namespace SoupKit.Data
+﻿
+namespace SoupChef.Data
 {
+    using Foundation;
+    using Intents;
+    using SoupChef.Support;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    /// <summary>
+    /// A DataManager subclass that persists the active menu items.
+    /// </summary>
     class SoupMenuManager : DataManager<List<MenuItem>>
     {
-        private List<MenuItem> DefaultMenu = new List<MenuItem>
+        private readonly List<MenuItem> DefaultMenu = new List<MenuItem>
         {
             new MenuItem("Chicken Noodle Soup", "CHICKEN_NOODLE_SOUP", 4.55f, "chicken_noodle_soup", true, true),
             new MenuItem("Clam Chowder", "CLAM_CHOWDER", 3.75f, "new_england_clam_chowder", true, false),
             new MenuItem("Tomato Soup", "TOMATO_SOUP", 2.95f, "tomato_soup", true, false)
         };
 
-        public SoupOrderDataManager OrderManager { get; set; }
-
         public SoupMenuManager() : base(new UserDefaultsStorageDescriptor(NSUserDefaultsHelper.StorageKeys.SoupMenu)) { }
+
+        public SoupOrderDataManager OrderManager { get; set; }
 
         #region Public API for clients of `SoupMenuManager`
 

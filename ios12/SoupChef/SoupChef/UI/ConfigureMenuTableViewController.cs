@@ -1,8 +1,8 @@
-
+﻿
 namespace SoupChef
 {
     using Foundation;
-    using SoupKit.Data;
+    using SoupChef.Data;
     using System;
     using System.Collections.Generic;
     using UIKit;

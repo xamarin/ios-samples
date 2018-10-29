@@ -1,101 +1,25 @@
-﻿/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-This type encapsulates the attributes of a soup order.
-*/
-
-using System;
-using Foundation;
-using SoupKit.Support;
-using System.Linq;
-using SoupChef;
-using Intents;
-using UIKit;
-using System.Collections.Generic;
-
-namespace SoupKit.Data
+﻿
+namespace SoupChef.Data
 {
-    //public class MenuItemOption : NSObject, ILocalizable, INSCoding
-    //{
-    //    public const string Cheese = "CHEESE";
-    //    public const string RedPepper = "RED_PEPPER";
-    //    public const string Croutons = "CROUTONS";
-
-    //    public static string[] All = new string[] { Cheese, RedPepper, Croutons };
-
-    //    public string LocalizedString
-    //    {
-    //        get
-    //        {
-    //            string usageComment = $"UI representation for MenuItemOption value: {Value}";
-    //            return NSBundle.MainBundle.GetLocalizedString(Value, usageComment, null);
-    //        }
-    //    }
-
-    //    public MenuItemOption(string value)
-    //    {
-    //        if (All.Contains(value))
-    //        {
-    //            _value = value;
-    //        }
-    //        else
-    //        {
-    //            throw new ArgumentException($"Invalid menuItemOption value: {value}");
-    //        }
-    //    }
-
-    //    string _value;
-    //    public string Value
-    //    {
-    //        get { return _value; }
-    //    }
-
-    //    [Export("isEqual:")]
-    //    override public bool IsEqual(NSObject anObject)
-    //    {
-    //        var other = anObject as MenuItemOption;
-    //        if (other is null)
-    //        {
-    //            return false;
-    //        }
-    //        if (ReferenceEquals(other, this))
-    //        {
-    //            return true;
-    //        }
-    //        return Value.Equals(other.Value);
-    //    }
-
-    //    public override nuint GetNativeHash()
-    //    {
-    //        return !(Value is null) ? (nuint)this.Value?.GetHashCode() : 0;
-    //    }
-
-    //    #region INSCoding
-    //    [Export("initWithCoder:")]
-    //    public MenuItemOption(NSCoder coder)
-    //    {
-    //        _value = (NSString)coder.DecodeObject("Value");
-    //    }
-
-    //    public void EncodeTo(NSCoder encoder)
-    //    {
-    //        encoder.Encode((NSString)_value, "Value");
-    //    }
-    //    #endregion
-    //}
+    using Foundation;
+    using Intents;
+    using SoupChef;
+    using SoupChef.Support;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     enum MenuItemOption
     {
-        cheese = 0,// = "Cheese"
-        redPepper = 1,// = "Red Pepper"
-        croutons = 2,// = "Croutons"
+        Cheese = 0,// = "Cheese"
+        RedPepper = 1,// = "Red Pepper"
+        Croutons = 2,// = "Croutons"
     }
 
     /// <summary>
     /// This type encapsulates the attributes of a soup order.
     /// </summary>
-    class Order :/* NSObject,*/ ILocalizableCurrency//: NSObject, ILocalizableShortcutString, INSCoding
+    class Order : ILocalizableCurrency
     {
         public Order(NSDate date, NSUuid identifier, int quantity, MenuItem menuItem, List<MenuItemOption> menuItemOptions)
         {
@@ -107,11 +31,23 @@ namespace SoupKit.Data
         }
 
         public NSDate Date { get; private set; }
+
         public NSUuid Identifier { get; private set; }
+
         public MenuItem MenuItem { get; private set; }
+
         public int Quantity { get; set; }
+
         public List<MenuItemOption> MenuItemOptions { get; set; }
+
         public float Total => Quantity * MenuItem.Price;
+
+        public string LocalizedCurrencyValue => NSNumberFormatterHelper.CurrencyFormatter.StringFromNumber(Total) ?? string.Empty;
+
+        public override int GetHashCode()
+        {
+            return MenuItem.GetHashCode();
+        }
 
         public override bool Equals(object obj)
         {
@@ -122,83 +58,8 @@ namespace SoupKit.Data
             rhs.MenuItemOptions == MenuItemOptions;
         }
 
-        // SoupChef considers orders with the same contents (menuItem, quantity, 
-        // menuItemOptions) to be identical. The data and idenfier properties 
-        // are unique to an instance of an order (regardless of contents) and 
-        // are not considered when determining equality.
-        //[Export("isEqual:")]
-        //override public bool IsEqual(NSObject anObject)
-        //{
-        //    var other = anObject as Order;
-
-        //    if (other is null)
-        //    {
-        //        return false;
-        //    }
-
-        //    if (ReferenceEquals(other, this))
-        //    {
-        //        return true;
-        //    }
-
-        //    // MenuItem check
-        //    if (MenuItem is null)
-        //    {
-        //        if (!(other.MenuItem is null))
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (!MenuItem.IsEqual(other.MenuItem))
-        //        {
-        //            return false;
-        //        }
-        //    }
-
-        //    // Quantity check
-        //    if (Quantity != other.Quantity)
-        //    {
-        //        return false;
-        //    }
-
-        //    // MenuItemOptions check
-        //    //if (MenuItemOptions is null)
-        //    //{
-        //    //    if (!(other.MenuItemOptions is null))
-        //    //    {
-        //    //        return false;
-        //    //    }
-        //    //}
-        //    //else
-        //    //{
-        //    //    if (!MenuItemOptions.IsEqualToSet(other.MenuItemOptions))
-        //    //    {
-        //    //        return false;
-        //    //    }
-        //    //}
-
-        //    return true;
-        //}
-
-        //public override nuint GetNativeHash()
-        //{
-        //    nuint hashValue = (MenuItem is null) ? 0 : MenuItem.GetNativeHash();
-        //    hashValue = hashValue ^ (nuint)Quantity.GetHashCode();
-        //    //hashValue = hashValue ^ (MenuItemOptions is null ? 0 : MenuItemOptions.GetNativeHash());
-        //    return hashValue;
-        //}
-
-        public string LocalizedCurrencyValue
-        {
-            get
-            {
-                return NSNumberFormatterHelper.CurrencyFormatter.StringFromNumber(Total) ?? string.Empty;
-            }
-        }
-
         #region intent helpers
+
         public OrderSoupIntent Intent
         {
             get
@@ -268,31 +129,7 @@ namespace SoupKit.Data
 
             return result;
         }
+
         #endregion
-
-        //#region INSCoding
-        //[Export("initWithCoder:")]
-        //public Order(NSCoder coder)
-        //{
-        //    Date = (NSDate)coder.DecodeObject("Date");
-        //    Identifier = (NSUuid)coder.DecodeObject("Identifier");
-        //    MenuItem = (MenuItem)coder.DecodeObject("MenuItem");
-        //    Quantity = (int)coder.DecodeInt("Quantity");
-
-        //    // Can't decode an NSMutableSet<MenuItemOption> directly. Get an
-        //    // NSSet, convert it to NSMutableSet<MenuItemOption>
-        //    //var set = (NSSet)(coder.DecodeObject("MenuItemOptions"));
-        //    //MenuItemOptions = new NSMutableSet<MenuItemOption>(set.ToArray<MenuItemOption>());
-        //}
-
-        //public void EncodeTo(NSCoder encoder)
-        //{
-        //    encoder.Encode(Date, "Date");
-        //    encoder.Encode(Identifier, "Identifier");
-        //    encoder.Encode(MenuItem, "MenuItem");
-        //    encoder.Encode(Quantity, "Quantity");
-        //    //encoder.Encode(MenuItemOptions, "MenuItemOptions");
-        //}
-        //#endregion
     }
 }

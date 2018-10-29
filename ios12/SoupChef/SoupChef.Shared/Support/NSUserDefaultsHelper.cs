@@ -1,5 +1,5 @@
 ﻿
-namespace SoupKit.Support
+namespace SoupChef.Support
 {
     using System;
     using Foundation;

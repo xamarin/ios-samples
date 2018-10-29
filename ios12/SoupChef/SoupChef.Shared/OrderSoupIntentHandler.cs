@@ -9,10 +9,10 @@ using System;
 using Foundation;
 using ObjCRuntime;
 using SoupChef;
-using SoupKit.Data;
-using SoupKit.Support;
+using SoupChef.Data;
+using SoupChef.Support;
 
-namespace SoupKit
+namespace SoupChef
 {
     internal class OrderSoupIntentHandler : BaseWrapper, IOrderSoupIntentHandling
     {

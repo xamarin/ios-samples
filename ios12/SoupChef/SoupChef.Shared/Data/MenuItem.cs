@@ -1,9 +1,9 @@
 ﻿
-namespace SoupKit.Data
+namespace SoupChef.Data
 {
     using System;
     using Foundation;
-    using SoupKit.Support;
+    using SoupChef.Support;
     using System.Globalization;
 
     /// <summary>

@@ -1,10 +1,10 @@
-
+﻿
 namespace SoupChef
 {
     using Foundation;
     using SoupChef.Support;
-    using SoupKit.Data;
-    using SoupKit.Support;
+    using SoupChef.Data;
+    using SoupChef.Support;
     using System;
     using System.Linq;
     using UIKit;

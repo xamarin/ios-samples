@@ -1,24 +1,20 @@
-﻿/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-A data manager that manages an array of `Order` structs.
-*/
-
-using Foundation;
-using Intents;
-using SoupKit.Support;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace SoupKit.Data
+﻿
+namespace SoupChef.Data
 {
-    // A concrete `DataManager` for reading and writing data of type `NSMutableArray<Order>`.
+    using Foundation;
+    using Intents;
+    using SoupChef.Support;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    /// <summary>
+    /// A concrete `DataManager` for reading and writing data of type `NSMutableArray<Order>`.
+    /// </summary>
     class SoupOrderDataManager : DataManager<List<Order>>
     {
         public SoupOrderDataManager() : base(new UserDefaultsStorageDescriptor(NSUserDefaultsHelper.StorageKeys.OrderHistory)) { }
-        //public SoupOrderDataManager() { }
+
         protected override void DeployInitialData()
         {
             DataAccessQueue.DispatchSync(() =>
@@ -38,8 +34,7 @@ namespace SoupKit.Data
 
             // The order identifier is used to match with the donation so the interaction
             // can be deleted if a soup is removed from the menu.
-            interaction.Identifier = order.Identifier.AsString();//.ToString();
-
+            interaction.Identifier = order.Identifier.AsString();
             interaction.DonateInteraction((error) =>
             {
                 if (error != null)
@@ -55,7 +50,9 @@ namespace SoupKit.Data
 
         #region Public API for clients of `SoupOrderDataManager`
 
-        // Convenience method to access the data with a property name that makes sense in the caller's context.
+        /// <summary>
+        /// Convenience method to access the data with a property name that makes sense in the caller's context.
+        /// </summary>
         public List<Order> OrderHistory
         {
             get
@@ -70,14 +67,18 @@ namespace SoupKit.Data
             }
         }
 
+        /// <summary>
         /// Tries to find an order by its identifier
+        /// </summary>
         public Order Order(NSUuid identifier) 
         {
             return OrderHistory.FirstOrDefault(g => g.Identifier == identifier);
         }
 
+        /// <summary>
         /// Stores the order in the data manager.
         /// Note: This project does not share data between iOS and watchOS. Orders placed on the watch will not display in the iOS order history.
+        /// </summary>
         public void PlaceOrder(Order order)
         {
             // Access to `managedDataBackingInstance` is only valid on `dataAccessQueue`.
@@ -92,15 +93,7 @@ namespace SoupKit.Data
             // Donate an interaction to the system.
             DonateInteraction(order);
         }
-        #endregion
 
-        //#region Support methods for unarchiving saved data
-        //override protected void FinishUnarchiving(NSObject unarchivedData)
-        //{
-        //    var array = (NSArray)unarchivedData;
-        //    Order[] orders = NSArray.FromArray<Order>(array);
-        //    ManagedDataBackingInstance = new NSMutableArray<Order>(orders);
-        //}
-        //#endregion
+        #endregion
     }
 }

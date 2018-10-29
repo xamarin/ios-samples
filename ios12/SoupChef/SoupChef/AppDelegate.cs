@@ -5,7 +5,7 @@ namespace SoupChef
     using System.Linq;
     using Foundation;
     using Intents;
-    using SoupKit.Support;
+    using SoupChef.Support;
     using UIKit;
 
     [Register("AppDelegate")]
