@@ -151,7 +151,7 @@ namespace SoupChef.Data
                 if (orderHistory != null)
                 {
                     var ordersAssociatedWithRemovedMenuItem = orderHistory.Where(order => order.MenuItem.ItemName == menuItem.ItemName);
-                    var orderIdentifiersToRemove = ordersAssociatedWithRemovedMenuItem.Select(order => order.Identifier.AsString());
+                    var orderIdentifiersToRemove = ordersAssociatedWithRemovedMenuItem.Select(order => order.Identifier.ToString());
 
                     INInteraction.DeleteInteractions(orderIdentifiersToRemove.ToArray(), (error) =>
                     {
@@ -175,7 +175,7 @@ namespace SoupChef.Data
         {
             var dailySpecialSuggestedShortcuts = AvailableDailySpecialItems.Select(menuItem =>
             {
-                var order = new Order(new NSDate(), new NSUuid(), 1, menuItem, new List<MenuItemOption>());
+                var order = new Order(1, menuItem, new List<MenuItemOption>());
                 var orderIntent = order.Intent;
 
                 var shortcut = new INShortcut(orderIntent);
@@ -226,7 +226,7 @@ namespace SoupChef.Data
         {
             var availableShortcuts = AvailableRegularItems.Select(menuItem =>
             {
-                var order = new Order(new NSDate(), new NSUuid(), 1, menuItem, new List<MenuItemOption>());
+                var order = new Order(1, menuItem, new List<MenuItemOption>());
                 try
                 {
                     return new INShortcut(order.Intent);
