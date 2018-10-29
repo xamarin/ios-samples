@@ -15,6 +15,7 @@ namespace SoupChef
     using Intents;
     using SoupKit.Data;
     using SoupKit.Support;
+    using SoupChef.Support;
 
     partial class OrderDetailViewController : UITableViewController, 
                                               IINUIAddVoiceShortcutButtonDelegate,
@@ -47,9 +48,9 @@ namespace SoupChef
 
         private void ConfigureTableViewHeader()
         {
-            headerImageView.Image = UIImage.FromBundle(Order.MenuItem.IconImageName);
-            headerImageView.ApplyRoundedCorners();
-            headerLabel.Text = Order.MenuItem.ItemName;
+            HeaderImageView.Image = UIImage.FromBundle(Order.MenuItem.IconImageName);
+            HeaderImageView.ApplyRoundedCorners();
+            HeaderLabel.Text = Order.MenuItem.ItemName;
 
             TableView.TableHeaderView = TableViewHeader;
         }
@@ -58,18 +59,16 @@ namespace SoupChef
         {
             if (TableConfiguration.OrderType ==  OrderDetailTableConfiguration.OrderTypeEnum.Historical)
              {
-            //    var addShortcutButton = INUIAddVoiceShortcutButton(style: .whiteOutline)
-            //    addShortcutButton.shortcut = INShortcut(intent: order.intent)
-            //    addShortcutButton.delegate = self
-    
+                var addShortcutButton = new INUIAddVoiceShortcutButton(INUIAddVoiceShortcutButtonStyle.WhiteOutline);
+                addShortcutButton.Shortcut = new INShortcut(Order.Intent);
+                addShortcutButton.Delegate = this;
 
-            //addShortcutButton.translatesAutoresizingMaskIntoConstraints = false
-            //    tableFooterView.addSubview(addShortcutButton)
-            //    tableFooterView.centerXAnchor.constraint(equalTo: addShortcutButton.centerXAnchor).isActive = true
-            //    tableFooterView.centerYAnchor.constraint(equalTo: addShortcutButton.centerYAnchor).isActive = true
-    
+                addShortcutButton.TranslatesAutoresizingMaskIntoConstraints = false;
+                TableFooterView.AddSubview(addShortcutButton);
+                TableFooterView.CenterXAnchor.ConstraintEqualTo(addShortcutButton.CenterXAnchor).Active = true;
+                TableFooterView.CenterYAnchor.ConstraintEqualTo(addShortcutButton.CenterYAnchor).Active = true;
 
-            //tableView.tableFooterView = tableFooterView
+                TableView.TableFooterView = TableFooterView;
             }
         }
 
@@ -88,13 +87,13 @@ namespace SoupChef
                 Console.WriteLine("Quantity must be greater than 0 to add to order");
                 return;
             }
+
             PerformSegue("Place Order Segue", this);
         }
 
-        protected void StepperDidChange(object sender, EventArgs args)
+        private void StepperDidChange(object sender, EventArgs args)
         {
-            var stepper = sender as UIStepper;
-            if (!(stepper is null))
+            if (sender is UIStepper stepper)
             {
                 Order.Quantity = (int)(stepper.Value);
                 QuantityLabel.Text = $"{Order.Quantity}";
@@ -104,7 +103,7 @@ namespace SoupChef
 
         void UpdateTotalLabel()
         {
-            if (!(TotalLabel is null))
+            if (TotalLabel != null)
             {
                 TotalLabel.Text = Order.LocalizedCurrencyValue;
             }
@@ -146,20 +145,17 @@ namespace SoupChef
                 case OrderDetailTableConfiguration.SectionType.Quantity:
                     if (cell is QuantityCell quantityCell)
                     {
+                        quantityCell.Stepper.ValueChanged -= StepperDidChange;
                         if (TableConfiguration.OrderType == OrderDetailTableConfiguration.OrderTypeEnum.New)
                         {
                             // Save a weak reference to the quantityLabel for quick udpates, later.
-                            QuantityLabel = quantityCell.GetQuantityLabel();
-                            var stepper = quantityCell.GetStepper();
-                            if (stepper != null)
-                            {
-                                stepper.AddTarget(StepperDidChange, UIControlEvent.ValueChanged);
-                            }
+                            QuantityLabel = quantityCell.QuantityLabel;
+                            quantityCell.Stepper.ValueChanged += StepperDidChange;
                         }
                         else
                         {
-                            quantityCell.GetQuantityLabel().Text = $"{Order.Quantity}";
-                            quantityCell.GetStepper().Hidden = true;
+                            quantityCell.QuantityLabel.Text = $"{Order.Quantity}";
+                            quantityCell.Stepper.Hidden = true;
                         }
                     }
                     break;

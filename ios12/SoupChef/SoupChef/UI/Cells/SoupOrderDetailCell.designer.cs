@@ -14,16 +14,8 @@ namespace SoupChef
     [Register ("SoupOrderDetailCell")]
     partial class SoupOrderDetailCell
     {
-        //[Outlet]
-        //[GeneratedCode ("iOS Designer", "1.0")]
-        //SoupKit.UI.MenuItemView detailView { get; set; }
-
-        //void ReleaseDesignerOutlets ()
-        //{
-        //    if (detailView != null) {
-        //        detailView.Dispose ();
-        //        detailView = null;
-        //    }
-        //}
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }
