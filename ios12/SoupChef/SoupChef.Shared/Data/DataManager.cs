@@ -5,21 +5,21 @@ Abstract:
 A data manager that manages data conforming to `Codable` and stores it in `UserDefaults`.
 */
 
-using System;
-using Foundation;
-using CoreFoundation;
-using SoupKit.Support;
-//using SoupKit.Support;
-
 namespace SoupKit.Data
 {
+    using System;
+    using Foundation;
+    using CoreFoundation;
+    using SoupKit.Support;
+
     public struct UserDefaultsStorageDescriptor
     {
-        public string Key { get; set; }
         public UserDefaultsStorageDescriptor(string key)
         {
             Key = key;
         }
+
+        public string Key { get; private set; }
     }
 
     public static class NotificationKeys
@@ -29,7 +29,7 @@ namespace SoupKit.Data
         public const string DataChanged = "DataChangedNotification";
     }
 
-    class DataManager<T> : NSObject //where T : NSObject, INSCoding
+    class DataManager<T> 
     {
         // This sample uses App Groups to share a suite of data between the main app and the different extensions.
         protected NSUserDefaults UserDefaults = NSUserDefaultsHelper.DataSuite;
@@ -67,10 +67,7 @@ namespace SoupKit.Data
         }
 
         /// Subclasses are expected to implement this method and set their own initial data for `managedData`.
-        protected virtual void DeployInitialData()
-        {
-
-        }
+        protected virtual void DeployInitialData() { }
 
         private void ObserveChangesInUserDefaults()
         {
@@ -106,23 +103,26 @@ namespace SoupKit.Data
             UserDefaultsAccessQueue.DispatchSync(() =>
             {
                 var archivedData = UserDefaults.DataForKey(StorageDescriptor.Key);
-                var json = archivedData.ToString();
-                ManagedData = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
+                var json = archivedData?.ToString();
+                if (!string.IsNullOrEmpty(json))
+                {
+                    ManagedData = Newtonsoft.Json.JsonConvert.DeserializeObject<T>(json);
+                }
             });
         }
 
-        // Writes the data to `NSUserDefaults`
+        /// Writes the data to `NSUserDefaults`
         protected void WriteData()
         {
-            UserDefaultsAccessQueue.DispatchAsync(() =>
+            this.UserDefaultsAccessQueue.DispatchAsync(() =>
             {
                 var json = Newtonsoft.Json.JsonConvert.SerializeObject(ManagedData);
 
-                IgnoreLocalUserDefaultsChanges = true;
-                UserDefaults[StorageDescriptor.Key] = NSData.FromString(json);
-                //UserDefaults.SetValueForKey(encodedData, new NSString(StorageDescriptor.Key));
-                IgnoreLocalUserDefaultsChanges = false;
-                NotifyClientsDataChanged();
+                this.IgnoreLocalUserDefaultsChanges = true;
+                this.UserDefaults[StorageDescriptor.Key] = NSData.FromString(json);
+                this.IgnoreLocalUserDefaultsChanges = false;
+
+                this.NotifyClientsDataChanged();
             });
         }
     }

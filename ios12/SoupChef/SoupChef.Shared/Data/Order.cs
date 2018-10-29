@@ -111,13 +111,7 @@ namespace SoupKit.Data
         public MenuItem MenuItem { get; private set; }
         public int Quantity { get; set; }
         public List<MenuItemOption> MenuItemOptions { get; set; }
-        public NSDecimalNumber Total
-        {
-            get
-            {
-                return new NSDecimalNumber(Quantity).Multiply(MenuItem.Price);
-            }
-        }
+        public float Total => Quantity * MenuItem.Price;
 
         public override bool Equals(object obj)
         {
@@ -196,7 +190,6 @@ namespace SoupKit.Data
         //    return hashValue;
         //}
 
-        #region LocalizableCurrency (and other localization methods)
         public string LocalizedCurrencyValue
         {
             get
@@ -204,28 +197,6 @@ namespace SoupKit.Data
                 return NSNumberFormatterHelper.CurrencyFormatter.StringFromNumber(Total) ?? string.Empty;
             }
         }
-
-        //public string[] LocalizedOptionsArray
-        //{
-        //    get
-        //    {
-        //        var localizedArray = MenuItemOptions
-        //            .ToArray<MenuItemOption>()
-        //            .Select(arg => arg.LocalizedString)
-        //            .OrderBy(arg => arg, StringComparer.CurrentCultureIgnoreCase)
-        //            .ToArray<string>();
-        //        return localizedArray;
-        //    }
-        //}
-
-        //public string LocalizedOptionString
-        //{
-        //    get
-        //    {
-        //        return String.Join(", ", LocalizedOptionsArray);
-        //    }
-        //}
-        #endregion
 
         #region intent helpers
         public OrderSoupIntent Intent
@@ -236,22 +207,20 @@ namespace SoupKit.Data
                 orderSoupIntent.Quantity = new NSNumber(Quantity);
 
                 //var displayString = NSString.DeferredLocalizedIntentsString(with: menuItem.shortcutLocalizationKey) as String
-                //orderSoupIntent.soup = INObject(identifier: menuItem.itemName, display: displayString)
                 //orderSoupIntent.setImage(INImage(named: menuItem.iconImageName), forParameterNamed: \OrderSoupIntent.soup)
 
                 orderSoupIntent.Soup = new INObject(MenuItem.ItemName, MenuItem.ShortcutNameKey);
-
-                var image = UIImage.FromBundle(MenuItem.IconImageName);
-                if (image != null)
-                {
-                    var data = image.AsPNG();
-                    orderSoupIntent.SetImage(INImage.FromData(data), "soup");
-                }
+                orderSoupIntent.SetImage(INImage.FromName(MenuItem.IconImageName), "soup");
+                //var image = UIImage.FromBundle(MenuItem.IconImageName);
+                //if (image != null)
+                //{
+                //    var data = image.AsPNG();
+                //    orderSoupIntent.SetImage(INImage.FromData(data), "soup");
+                //}
 
                 orderSoupIntent.Options = NSArray.FromObjects(MenuItemOptions.Select(arg => new INObject(arg.ToString(), arg.ToString())).ToArray()) as NSArray<INObject>;
 
-                var comment = "Suggested phrase for ordering a specific soup";
-                var phrase = NSBundle.MainBundle.GetLocalizedString("ORDER_SOUP_SUGGESTED_PHRASE", comment);
+                var phrase = NSBundle.MainBundle.GetLocalizedString("ORDER_SOUP_SUGGESTED_PHRASE", "Suggested phrase for ordering a specific soup");
                 orderSoupIntent.SuggestedInvocationPhrase = string.Format(phrase, MenuItem.ShortcutLocalizationKey);
                 //orderSoupIntent.suggestedInvocationPhrase = NSString.deferredLocalizedIntentsString(with: "ORDER_SOUP_SUGGESTED_PHRASE") as String
 

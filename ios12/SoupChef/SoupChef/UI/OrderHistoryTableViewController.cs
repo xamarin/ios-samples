@@ -32,10 +32,10 @@ namespace SoupChef
         {
             base.ViewDidLoad();
 
-            notificationToken = NSNotificationCenter.DefaultCenter.AddObserver(NotificationKeys.DataChanged,
-                                                                               soupOrderManager,
-                                                                               NSOperationQueue.MainQueue,
-                                                                               (notification) => this.TableView.ReloadData());
+            //notificationToken = NSNotificationCenter.DefaultCenter.AddObserver(NotificationKeys.DataChanged,
+                                                                               //soupOrderManager,
+                                                                               //NSOperationQueue.MainQueue,
+                                                                               //(notification) => this.TableView.ReloadData());
         }
 
         public override void ViewWillAppear(bool animated)

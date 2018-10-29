@@ -19,9 +19,9 @@ namespace SoupKit.Data
     {
         private List<MenuItem> DefaultMenu = new List<MenuItem>
         {
-            new MenuItem("Chicken Noodle Soup", "CHICKEN_NOODLE_SOUP", new NSDecimalNumber(4.55m), "chicken_noodle_soup", true, true),
-            new MenuItem("Clam Chowder", "CLAM_CHOWDER", new NSDecimalNumber(3.75m), "new_england_clam_chowder", true, false),
-            new MenuItem("Tomato Soup", "TOMATO_SOUP", new NSDecimalNumber(2.95m), "tomato_soup", true, false)
+            new MenuItem("Chicken Noodle Soup", "CHICKEN_NOODLE_SOUP", 4.55f, "chicken_noodle_soup", true, true),
+            new MenuItem("Clam Chowder", "CLAM_CHOWDER", 3.75f, "new_england_clam_chowder", true, false),
+            new MenuItem("Tomato Soup", "TOMATO_SOUP", 2.95f, "tomato_soup", true, false)
         };
 
         public SoupOrderDataManager OrderManager { get; set; }
@@ -115,6 +115,12 @@ namespace SoupKit.Data
 
             RemoveDonation(menuItem);
             UpdateShortcuts();
+        }
+
+        protected override void DeployInitialData()
+        {
+            DataAccessQueue.DispatchSync(() => ManagedData = DefaultMenu);
+            //UpdateShortcuts();
         }
 
         public MenuItem FindItem(string identifier)
@@ -225,20 +231,19 @@ namespace SoupKit.Data
             var availableShortcuts = AvailableRegularItems.Select(menuItem =>
             {
                 var order = new Order(new NSDate(), new NSUuid(), 1, menuItem, new List<MenuItemOption>());
-                return new INShortcut(order.Intent);
+                try
+                {
+                    return new INShortcut(order.Intent);
+                }
+                catch(Exception ex)
+                {
+                    return null;
+                }
             });
 
             INVoiceShortcutCenter.SharedCenter.SetShortcutSuggestions(availableShortcuts.ToArray());
         }
 
-        #endregion
-
-        #region Support methods for unarchiving saved data
-        //override protected void FinishUnarchiving(NSObject unarchivedData)
-        //{
-        //    NSSet set = (NSSet)unarchivedData;
-        //    ManagedDataBackingInstance = new NSMutableSet<MenuItem>(set.ToArray<MenuItem>());
-        //}
         #endregion
     }
 }

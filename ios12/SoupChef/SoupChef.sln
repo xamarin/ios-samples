@@ -1,8 +1,6 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoupKit", "SoupKit\SoupKit.csproj", "{690EF06A-88BD-405D-A7EA-06FE67D1F301}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoupChefIntentsUI", "SoupChefIntentsUI\SoupChefIntentsUI.csproj", "{1D563B8E-73B6-4CD0-B046-B77F6FAA4B7B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoupChefIntents", "SoupChefIntents\SoupChefIntents.csproj", "{79BD781B-589B-48DF-B46D-21B83C833FCA}"
@@ -19,14 +17,6 @@ Global
 		Debug|iPhone = Debug|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{690EF06A-88BD-405D-A7EA-06FE67D1F301}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{690EF06A-88BD-405D-A7EA-06FE67D1F301}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{690EF06A-88BD-405D-A7EA-06FE67D1F301}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{690EF06A-88BD-405D-A7EA-06FE67D1F301}.Release|iPhone.Build.0 = Release|Any CPU
-		{690EF06A-88BD-405D-A7EA-06FE67D1F301}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{690EF06A-88BD-405D-A7EA-06FE67D1F301}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{690EF06A-88BD-405D-A7EA-06FE67D1F301}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{690EF06A-88BD-405D-A7EA-06FE67D1F301}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{1D563B8E-73B6-4CD0-B046-B77F6FAA4B7B}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{1D563B8E-73B6-4CD0-B046-B77F6FAA4B7B}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{1D563B8E-73B6-4CD0-B046-B77F6FAA4B7B}.Release|iPhone.ActiveCfg = Release|iPhone

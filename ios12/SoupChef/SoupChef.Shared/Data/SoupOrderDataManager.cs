@@ -61,7 +61,7 @@ namespace SoupKit.Data
             get
             {
                 List<Order> result = null;
-                DataAccessQueue.DispatchAsync(() =>
+                DataAccessQueue.DispatchSync(() =>
                 {
                     result = ManagedData;
                 });

@@ -129,6 +129,7 @@ namespace SoupChef
             var reuseIdentifier = sectionModel.CellReuseIdentifier;
             var cell = TableView.DequeueReusableCell(reuseIdentifier, indexPath);
             Configure(cell, indexPath, sectionModel);
+
             return cell;
         }
 

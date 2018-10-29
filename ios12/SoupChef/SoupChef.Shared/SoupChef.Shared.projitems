@@ -24,5 +24,10 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Data\" />
     <Folder Include="$(MSBuildThisFileDirectory)Support\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Base.lproj\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="$(MSBuildThisFileDirectory)Base.lproj\Localizable.strings" />
+    <BundleResource Include="$(MSBuildThisFileDirectory)Base.lproj\Localizable.stringsdict" />
   </ItemGroup>
 </Project>

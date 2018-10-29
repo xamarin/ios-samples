@@ -3,9 +3,7 @@ using CoreGraphics;
 using Foundation;
 using Intents;
 using IntentsUI;
-using SoupKit.Data;
 using UIKit;
-using SoupChef;
 using CoreFoundation;
 
 namespace SoupChefIntentsUI
