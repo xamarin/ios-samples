@@ -28,10 +28,8 @@ namespace SoupChef.Data
             MenuItemOptions = menuItemOptions;
         }
 
-        [Newtonsoft.Json.JsonIgnore]
         public DateTime Date { get; private set; } = DateTime.UtcNow;
 
-        [Newtonsoft.Json.JsonIgnore]
         public Guid Identifier { get; private set; } = Guid.NewGuid();
 
         public MenuItem MenuItem { get; private set; }
@@ -75,24 +73,14 @@ namespace SoupChef.Data
             {
                 var orderSoupIntent = new OrderSoupIntent();
                 orderSoupIntent.Quantity = new NSNumber(Quantity);
-
-                //var displayString = NSString.DeferredLocalizedIntentsString(with: menuItem.shortcutLocalizationKey) as String
-                //orderSoupIntent.setImage(INImage(named: menuItem.iconImageName), forParameterNamed: \OrderSoupIntent.soup)
-
-                orderSoupIntent.Soup = new INObject(MenuItem.ItemName, MenuItem.ShortcutNameKey);
+                orderSoupIntent.Soup = new INObject(MenuItem.ShortcutNameKey, MenuItem.ItemName);
                 orderSoupIntent.SetImage(INImage.FromName(MenuItem.IconImageName), "soup");
-                //var image = UIImage.FromBundle(MenuItem.IconImageName);
-                //if (image != null)
-                //{
-                //    var data = image.AsPNG();
-                //    orderSoupIntent.SetImage(INImage.FromData(data), "soup");
-                //}
 
-                orderSoupIntent.Options = NSArray.FromObjects(MenuItemOptions.Select(arg => new INObject(arg.ToString(), arg.ToString())).ToArray()) as NSArray<INObject>;
+                var options = MenuItemOptions.Select(arg => new INObject(arg.ToString(), arg.ToString())).ToArray();
+                orderSoupIntent.Options = NSArray<INObject>.FromNSObjects(options);
 
                 var phrase = NSBundle.MainBundle.GetLocalizedString("ORDER_SOUP_SUGGESTED_PHRASE", "Suggested phrase for ordering a specific soup");
-                orderSoupIntent.SuggestedInvocationPhrase = string.Format(phrase, MenuItem.ShortcutLocalizationKey);
-                //orderSoupIntent.suggestedInvocationPhrase = NSString.deferredLocalizedIntentsString(with: "ORDER_SOUP_SUGGESTED_PHRASE") as String
+                orderSoupIntent.SuggestedInvocationPhrase = string.Format(phrase, MenuItem.ItemName);
 
                 return orderSoupIntent;
             }
