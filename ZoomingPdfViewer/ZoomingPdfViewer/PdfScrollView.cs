@@ -38,7 +38,7 @@ namespace ZoomingPdfViewer
         /// <summary>
         /// The TiledPDFView that is currently front most.
         /// </summary>
-        public TiledPdfView TiledPDFView { get; private set; }
+        public TiledPdfView TiledPdfView { get; private set; }
 
         private void Initialize()
         {
@@ -82,25 +82,25 @@ namespace ZoomingPdfViewer
 
             // Center the image as it becomes smaller than the size of the screen.
             var boundsSize = Bounds.Size;
-            var frameToCenter = TiledPDFView.Frame;
+            var frameToCenter = TiledPdfView.Frame;
 
             // Center horizontally.
             frameToCenter.X = frameToCenter.Width < boundsSize.Width ? (boundsSize.Width - frameToCenter.Width) / 2f : 0f;
             frameToCenter.Y = frameToCenter.Height < boundsSize.Height ? (boundsSize.Height - frameToCenter.Height) / 2f : 0f;
 
-            TiledPDFView.Frame = frameToCenter;
+            TiledPdfView.Frame = frameToCenter;
 
             /*
              * To handle the interaction between CATiledLayer and high resolution screens, set the tiling view's contentScaleFactor to 1.0.
              * If this step were omitted, the content scale factor would be 2.0 on high resolution screens, which would cause the CATiledLayer to ask for tiles of the wrong scale.
              */
-            TiledPDFView.ContentScaleFactor = 1f;
+            TiledPdfView.ContentScaleFactor = 1f;
         }
 
         [Export("viewForZoomingInScrollView:")]
         public new UIView ViewForZoomingInScrollView(UIScrollView scrollView)
         {
-            return TiledPDFView;
+            return TiledPdfView;
         }
 
         [Export("scrollViewWillBeginZooming:withView:")]
@@ -111,7 +111,7 @@ namespace ZoomingPdfViewer
             oldPdfView.Dispose();
 
             // Set the current TiledPDFView to be the old view.
-            oldPdfView = TiledPDFView;
+            oldPdfView = TiledPdfView;
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace ZoomingPdfViewer
 
             // Add the new TiledPDFView to the PDFScrollView.
             AddSubview(tiledPDFView);
-            TiledPDFView = tiledPDFView;
+            TiledPdfView = tiledPDFView;
         }
     }
 }

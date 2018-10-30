@@ -36,7 +36,7 @@ namespace ZoomingPdfViewer
         public override void ViewWillTransitionToSize(CGSize toSize, IUIViewControllerTransitionCoordinator coordinator)
         {
             base.ViewWillTransitionToSize(toSize, coordinator);
-            coordinator.AnimateAlongsideTransition(null, (context) =>
+            coordinator.AnimateAlongsideTransition((param) => { }, (context) =>
             {
                 // Disable zooming if our pages are currently shown in landscape after orientation changes
                 ScrollView.UserInteractionEnabled = UIApplication.SharedApplication.StatusBarOrientation.IsPortrait();
@@ -56,9 +56,9 @@ namespace ZoomingPdfViewer
             ScrollView.ZoomScale = 1f;
             ScrollView.PdfScale = myScale;
 
-            ScrollView.TiledPDFView.Bounds = View.Bounds;
-            ScrollView.TiledPDFView.MyScale = myScale;
-            ScrollView.TiledPDFView.Layer.SetNeedsDisplay();
+            ScrollView.TiledPdfView.Bounds = View.Bounds;
+            ScrollView.TiledPdfView.MyScale = myScale;
+            ScrollView.TiledPdfView.Layer.SetNeedsDisplay();
         }
     }
 }
