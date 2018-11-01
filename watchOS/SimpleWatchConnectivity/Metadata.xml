@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>c7e69b71-b229-4b38-b84d-708a21aae576</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Brief>Implement two-way communication between your Apple Watch app and the paired iPhone app with the Watch Connectivity framework.</Brief>
+  <SupportedPlatforms>iOS, watchOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>WatchConnectivity, iOS12</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>

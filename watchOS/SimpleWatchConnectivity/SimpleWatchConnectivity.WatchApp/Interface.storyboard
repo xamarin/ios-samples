@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14313.18" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14238.10"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MainInterfaceController-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="MainInterfaceController" identifier="MainInterfaceController">
+                    <items>
+                        <button width="1" alignment="left" id="46">
+                            <connections>
+                                <action selector="StatusAction" destination="AgC-eL-Hgc" id="47"/>
+                            </connections>
+                            <group key="contentGroup" width="1" alignment="left" id="48" height="108">
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <label alignment="left" text="Label" id="63" textAlignment="center" numberOfLines="0" width="1" height="1">
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </label>
+                                </items>
+                                <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </group>
+                        </button>
+                        <group width="1" alignment="left" radius="0.0" id="51">
+                            <items>
+                                <button width="1" alignment="center" title="Command" id="52" verticalAlignment="center" height="1">
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <connections>
+                                        <action selector="CommandAction" destination="AgC-eL-Hgc" id="53"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="CommandButton" destination="52" id="name-outlet-52"/>
+                        <outlet property="StatusLabel" destination="63" id="name-outlet-63"/>
+                        <outlet property="StatusGroup" destination="48" id="name-outlet-48"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--UserInfoTransfersController-->
+        <scene sceneID="72">
+            <objects>
+                <controller id="73" customClass="UserInfoTransfersController" identifier="UserInfoTransfersController">
+                    <items>
+                        <table alignment="left" id="74">
+                            <items>
+                                <tableRow id="75" identifier="UserInfoTransferRowController" customClass="UserInfoTransferRowController">
+                                    <group key="rootItem" width="1" alignment="left" id="76">
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <items>
+                                            <label alignment="left" text="Label" id="81" width="108" height="1">
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </label>
+                                            <label alignment="left" text="x" id="82" height="1" textAlignment="right">
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <connections>
+                                        <outlet property="TitleLabel" destination="81" id="name-outlet-81"/>
+                                        <outlet property="DeleteLabel" destination="82" id="name-outlet-82"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow id="77" customClass="DoneRowController" identifier="DoneRowController">
+                                    <group key="rootItem" width="1" alignment="left" id="78" height="110">
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <items>
+                                            <label alignment="left" text="No outstanding transfer now." id="94" width="1" height="1" textAlignment="center" numberOfLines="0">
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </group>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <connections>
+                                        <outlet property="DoneLabel" destination="94" id="name-outlet-94"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="Table" destination="74" id="name-outlet-74"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="198" y="-1"/>
+        </scene>
+        <!--FileTransfersController-->
+        <scene sceneID="100">
+            <objects>
+                <controller id="101" customClass="FileTransfersController" identifier="FileTransfersController">
+                    <items>
+                        <table alignment="left" id="102">
+                            <items>
+                                <tableRow id="103" customClass="FileTransferRowController" identifier="FileTransferRowController">
+                                    <group key="rootItem" width="1" alignment="left" id="104" layout="vertical" height="50">
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <edgeInsets key="margins" left="0.0" right="0.0" top="4" bottom="6"/>
+                                        <items>
+                                            <group width="1" alignment="left" id="131" height="0.7">
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <items>
+                                                    <label alignment="left" text="Label" id="133" numberOfLines="0" width="108" height="1">
+                                                        <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </label>
+                                                    <label alignment="left" text="x" id="134" textAlignment="right" height="1">
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                            <group width="1" alignment="left" id="132" height="0.3">
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <items>
+                                                    <label alignment="left" text="Label" id="135" alpha="0.8" height="1" width="1">
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                                    </label>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <connections>
+                                        <outlet property="ProgressLabel" destination="135" id="name-outlet-135"/>
+                                        <outlet property="TitleLabel" destination="133" id="name-outlet-133"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow id="105">
+                                    <group key="rootItem" width="1" alignment="left" id="106" height="97">
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <items>
+                                            <label alignment="left" text="No outstanding transfer now" id="160" numberOfLines="0" textAlignment="center" height="1" width="1">
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="Table" destination="102" id="name-outlet-102"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="397" y="-3"/>
+        </scene>
+    </scenes>
+</document>
