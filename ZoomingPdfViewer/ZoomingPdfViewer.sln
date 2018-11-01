@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomingPdfViewer", "ZoomingPdfViewer.csproj", "{C23B2EC8-93C5-4959-BE9A-80B0228D9CE5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZoomingPdfViewer", "..\ZoomingPdfViewer\ZoomingPdfViewer\ZoomingPdfViewer.csproj", "{4E64C520-9A6F-49FE-AEF0-6EDE58BDB2F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C23B2EC8-93C5-4959-BE9A-80B0228D9CE5}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{C23B2EC8-93C5-4959-BE9A-80B0228D9CE5}.Debug|iPhone.Build.0 = Debug|iPhone
-		{C23B2EC8-93C5-4959-BE9A-80B0228D9CE5}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{C23B2EC8-93C5-4959-BE9A-80B0228D9CE5}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{C23B2EC8-93C5-4959-BE9A-80B0228D9CE5}.Release|iPhone.ActiveCfg = Release|iPhone
-		{C23B2EC8-93C5-4959-BE9A-80B0228D9CE5}.Release|iPhone.Build.0 = Release|iPhone
-		{C23B2EC8-93C5-4959-BE9A-80B0228D9CE5}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{C23B2EC8-93C5-4959-BE9A-80B0228D9CE5}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{4E64C520-9A6F-49FE-AEF0-6EDE58BDB2F3}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{4E64C520-9A6F-49FE-AEF0-6EDE58BDB2F3}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{4E64C520-9A6F-49FE-AEF0-6EDE58BDB2F3}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{4E64C520-9A6F-49FE-AEF0-6EDE58BDB2F3}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{4E64C520-9A6F-49FE-AEF0-6EDE58BDB2F3}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{4E64C520-9A6F-49FE-AEF0-6EDE58BDB2F3}.Debug|iPhone.Build.0 = Debug|iPhone
+		{4E64C520-9A6F-49FE-AEF0-6EDE58BDB2F3}.Release|iPhone.ActiveCfg = Release|iPhone
+		{4E64C520-9A6F-49FE-AEF0-6EDE58BDB2F3}.Release|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = ZoomingPdfViewer.csproj
