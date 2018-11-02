@@ -1,7 +1,7 @@
-SwiftShot: Creating a Game for Augmented Reality
+XamarinShot: Creating a Game for Augmented Reality
 ============
 
-SwiftShot is an AR game for two to six players, featured in the WWDC18 keynote. Use this sample code project to experience it on your own device, see how it works, and build your own customized version of the game.
+XamarinShot is an AR game for two to six players, featured in the WWDC18 keynote. Use this sample code project to experience it on your own device, see how it works, and build your own customized version of the game.
 
 ![Home Screen](Screenshots/screenshot-1.png)![Shooting](Screenshots/screenshot-4.png)
 
