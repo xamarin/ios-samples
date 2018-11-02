@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>82a833fa-3d56-4a0e-90da-37965507e548</ID>
+  <IsFullApplication>true</IsFullApplication>
+  <Brief>SwiftShot is an AR game for two to six players, featured in the WWDC18 keynote. Use this sample code project to experience it on your own device, see how it works, and build your own customized version of the game.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>ARKit, SceneKit, MultipeerConnectivity, iOS12</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>

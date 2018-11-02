@@ -1,0 +1,649 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{DCEC9527-3784-4BC2-BDE5-376C083CE616}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>XamarinShot</RootNamespace>
+    <AssemblyName>XamarinShot</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebuggerPort>44304</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>32102</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-20%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-20%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-20.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\ICON-1024.png" />
+    <ImageAsset Include="Assets.xcassets\close.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\close.imageset\close.png" />
+    <ImageAsset Include="Assets.xcassets\close.imageset\close%402x.png" />
+    <ImageAsset Include="Assets.xcassets\close.imageset\close%403x.png" />
+    <ImageAsset Include="Assets.xcassets\closePressed.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\closePressed.imageset\closePressed.png" />
+    <ImageAsset Include="Assets.xcassets\closePressed.imageset\closePressed%402x.png" />
+    <ImageAsset Include="Assets.xcassets\closePressed.imageset\closePressed%403x.png" />
+    <ImageAsset Include="Assets.xcassets\cogwheel_gr%40512x-8.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\cogwheel_gr%40512x-8.imageset\cogwheel_gr%40512x-8.png" />
+    <ImageAsset Include="Assets.xcassets\cogwheel%40512x-8.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\cogwheel%40512x-8.imageset\cogwheel%40512x-8.png" />
+    <ImageAsset Include="Assets.xcassets\healthBlue.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\healthBlue.imageset\healthBlue.png" />
+    <ImageAsset Include="Assets.xcassets\healthBlue.imageset\healthBlue%402x.png" />
+    <ImageAsset Include="Assets.xcassets\healthBlue.imageset\healthBlue%403x.png" />
+    <ImageAsset Include="Assets.xcassets\healthBlueEmpty.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\healthBlueEmpty.imageset\healthBlueEmpty.png" />
+    <ImageAsset Include="Assets.xcassets\healthBlueEmpty.imageset\healthBlueEmpty%402x.png" />
+    <ImageAsset Include="Assets.xcassets\healthBlueEmpty.imageset\healthBlueEmpty%403x.png" />
+    <ImageAsset Include="Assets.xcassets\healthYellow.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\healthYellowEmpty.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\healthYellow.imageset\healthYellow.png" />
+    <ImageAsset Include="Assets.xcassets\healthYellow.imageset\healthYellow%402x.png" />
+    <ImageAsset Include="Assets.xcassets\healthYellow.imageset\healthYellow%403x.png" />
+    <ImageAsset Include="Assets.xcassets\healthYellowEmpty.imageset\healthYellowEmpty.png" />
+    <ImageAsset Include="Assets.xcassets\healthYellowEmpty.imageset\healthYellowEmpty%402x.png" />
+    <ImageAsset Include="Assets.xcassets\healthYellowEmpty.imageset\healthYellowEmpty%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Assets.xcassets\close.imageset\" />
+    <Folder Include="Assets.xcassets\closePressed.imageset\" />
+    <Folder Include="Assets.xcassets\cogwheel_gr%40512x-8.imageset\" />
+    <Folder Include="Assets.xcassets\cogwheel%40512x-8.imageset\" />
+    <Folder Include="Assets.xcassets\healthBlue.imageset\" />
+    <Folder Include="Assets.xcassets\healthBlueEmpty.imageset\" />
+    <Folder Include="Assets.xcassets\healthYellow.imageset\" />
+    <Folder Include="Assets.xcassets\healthYellowEmpty.imageset\" />
+    <Folder Include="Resources\Sounds\" />
+    <Folder Include="art.scnassets\" />
+    <Folder Include="Resources\Launch Screens\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Core\" />
+    <Folder Include="Core\Local Networking\" />
+    <Folder Include="Core\Slingshot Behavior\" />
+    <Folder Include="Core\Sounds and Haptics\" />
+    <Folder Include="Core\Gameplay State\" />
+    <Folder Include="Core\Gameplay State\Components\" />
+    <Folder Include="Core\Interactions\" />
+    <Folder Include="Core\Physics Synchronization\" />
+    <Folder Include="Core\World Map Loading\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Core\Gesture Recognizers\" />
+    <Folder Include="Core\Enums\" />
+    <Folder Include="Core\Local Networking\Formattings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Utils\UserDefaults.cs" />
+    <Compile Include="Utils\UserDefaultsKeys.cs" />
+    <Compile Include="Core\Local Networking\GameBrowser.cs" />
+    <Compile Include="Core\Local Networking\Player.cs" />
+    <Compile Include="Core\Local Networking\NetworkGame.cs" />
+    <Compile Include="Core\Local Networking\GameTableLocation.cs" />
+    <Compile Include="Utils\XamarinShotGameService.cs" />
+    <Compile Include="Core\Local Networking\NetworkSession.cs" />
+    <Compile Include="Core\Local Networking\GameCommand.cs" />
+    <Compile Include="Core\Local Networking\GAction.cs" />
+    <Compile Include="Utils\XamarinShotGameAttribute.cs" />
+    <Compile Include="Core\Local Networking\ProximityManager.cs" />
+    <Compile Include="Core\Sounds and Haptics\ButtonBeep.cs" />
+    <Compile Include="Core\Sounds and Haptics\SFXCoordinator.cs" />
+    <Compile Include="Core\Sounds and Haptics\AUSamplerNode.cs" />
+    <Compile Include="Core\Gameplay State\Components\GameAudioComponent.cs" />
+    <Compile Include="Core\Sounds and Haptics\CollisionEvent.cs" />
+    <Compile Include="Core\Sounds and Haptics\CollisionAudioSampler.cs" />
+    <Compile Include="Core\Slingshot Behavior\Catapult.cs" />
+    <Compile Include="Core\Gameplay State\Components\GameObjectComponent.cs" />
+    <Compile Include="Core\Interactions\IGrabbable.cs" />
+    <Compile Include="Core\Gameplay State\GameObject.cs" />
+    <Compile Include="Utils\DigitExtensions.cs" />
+    <Compile Include="Core\Gameplay State\Components\AnimWaypointComponent.cs" />
+    <Compile Include="Core\Gameplay State\Components\GamePhysicsSmoothComponent.cs" />
+    <Compile Include="Core\Gameplay State\Components\SlingshotComponent.cs" />
+    <Compile Include="Core\Gameplay State\Components\ConstrainHierarchyComponent.cs" />
+    <Compile Include="Core\Gameplay State\Components\ResetSwitchComponent.cs" />
+    <Compile Include="Core\Local Networking\Ray.cs" />
+    <Compile Include="Utils\SCNNodeExtensions.cs" />
+    <Compile Include="Utils\SCNShadableExtensions.cs" />
+    <Compile Include="Core\Gameplay State\GameTime.cs" />
+    <Compile Include="Core\Slingshot Behavior\CatapultRope.cs" />
+    <Compile Include="Core\Slingshot Behavior\SlingShotSimulation.cs" />
+    <Compile Include="Core\Slingshot Behavior\SlingShotPose.cs" />
+    <Compile Include="Core\Sounds and Haptics\AudioSampler.cs" />
+    <Compile Include="Core\Sounds and Haptics\CatapultAudioSampler.cs" />
+    <Compile Include="Core\Interactions\Projectile.cs" />
+    <Compile Include="Utils\SCNMaterialExtensions.cs" />
+    <Compile Include="Core\Sounds and Haptics\HapticsGenerator.cs" />
+    <Compile Include="Core\Sounds and Haptics\MusicCoordinator.cs" />
+    <Compile Include="Core\Gameplay State\GameManager.cs" />
+    <Compile Include="Core\Interactions\IInteraction.cs" />
+    <Compile Include="Core\Physics Synchronization\PhysicsSyncSceneData.cs" />
+    <Compile Include="Core\Physics Synchronization\PhysicsSyncData.cs" />
+    <Compile Include="Core\Physics Synchronization\PhysicsNodeData.cs" />
+    <Compile Include="Core\Physics Synchronization\CollisionSoundData.cs" />
+    <Compile Include="Core\Interactions\GameObjectPool.cs" />
+    <Compile Include="Core\Local Networking\GameLevel.cs" />
+    <Compile Include="Core\Local Networking\GameBoard.cs" />
+    <Compile Include="Core\Local Networking\GameBoardBorderSegment.cs" />
+    <Compile Include="Core\World Map Loading\BoardAnchor.cs" />
+    <Compile Include="Core\Gameplay State\GameCamera.cs" />
+    <Compile Include="Core\Gameplay State\GameLight.cs" />
+    <Compile Include="Core\Gameplay State\Flag.cs" />
+    <Compile Include="Core\Interactions\InteractionManager.cs" />
+    <Compile Include="Core\Gameplay State\GameObjectManager.cs" />
+    <Compile Include="Core\Interactions\TrailBallProjectile.cs" />
+    <Compile Include="Core\Interactions\CatapultInteraction.cs" />
+    <Compile Include="Core\Interactions\VortexInteraction.cs" />
+    <Compile Include="Core\Interactions\LeverInteraction.cs" />
+    <Compile Include="Core\Interactions\GrabInteraction.cs" />
+    <Compile Include="Core\Interactions\VictoryInteraction.cs" />
+    <Compile Include="Core\Interactions\CatapultDisableInteraction.cs" />
+    <Compile Include="Core\Interactions\HighlightInteraction.cs" />
+    <Compile Include="Utils\SimdExtensions.cs" />
+    <Compile Include="Core\Slingshot Behavior\ComputedValue.cs" />
+    <Compile Include="Controllers\DeveloperSettingsTableViewController.cs" />
+    <Compile Include="Controllers\DeveloperSettingsTableViewController.designer.cs">
+      <DependentUpon>DeveloperSettingsTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GameViewController.cs" />
+    <Compile Include="Controllers\GameViewController.designer.cs">
+      <DependentUpon>GameViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\LevelSelectorViewController.cs" />
+    <Compile Include="Controllers\LevelSelectorViewController.designer.cs">
+      <DependentUpon>LevelSelectorViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\NetworkGameBrowserViewController.cs" />
+    <Compile Include="Controllers\NetworkGameBrowserViewController.designer.cs">
+      <DependentUpon>NetworkGameBrowserViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GameStartViewController.cs" />
+    <Compile Include="Controllers\GameStartViewController.designer.cs">
+      <DependentUpon>GameStartViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\UserSettingsTableViewController.cs" />
+    <Compile Include="Controllers\UserSettingsTableViewController.designer.cs">
+      <DependentUpon>UserSettingsTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\GameViewController+ARSCNViewDelegate.cs" />
+    <Compile Include="Controllers\GameViewController+Gestures.cs" />
+    <Compile Include="Core\Gesture Recognizers\ThresholdPanGestureRecognizer.cs" />
+    <Compile Include="Utils\CGPointExtensions.cs" />
+    <Compile Include="Core\Gesture Recognizers\ThresholdPinchGestureRecognizer.cs" />
+    <Compile Include="Core\Gesture Recognizers\ThresholdRotationGestureRecognizer.cs" />
+    <Compile Include="Controllers\GameViewController+Maps.cs" />
+    <Compile Include="Core\World Map Loading\KeyPositionAnchor.cs" />
+    <Compile Include="Utils\UIViewExtensions.cs" />
+    <Compile Include="Utils\ARSCNViewExtensions.cs" />
+    <Compile Include="Core\Enums\SessionState.cs" />
+    <Compile Include="Utils\ARWorldMapExtensions.cs" />
+    <Compile Include="Core\Enums\GameSegue.cs" />
+    <Compile Include="Core\Enums\CollisionMask.cs" />
+    <Compile Include="Utils\ParserExtensions.cs" />
+    <Compile Include="Utils\ListExtensions.cs" />
+    <Compile Include="Core\Enums\ProjectileType.cs" />
+    <Compile Include="Utils\SCNGeometrySourceExtensions.cs" />
+    <Compile Include="Core\Enums\TouchType.cs" />
+    <Compile Include="Core\Gameplay State\Components\RemoveWhenFallenComponent.cs" />
+    <Compile Include="Core\Local Networking\Formattings\SCNVector3Formatting.cs" />
+    <Compile Include="Core\Local Networking\Formattings\SCNQuaternionFormatting.cs" />
+    <Compile Include="Core\Local Networking\Formattings\SCNVector4Formatting.cs" />
+    <Compile Include="Core\Local Networking\Formattings\PhysicsNodeDataFormatting.cs" />
+    <Compile Include="Controllers\WorldMapSelectorViewController.cs" />
+    <Compile Include="Core\Enums\BoardLocatingMode.cs" />
+    <Compile Include="Core\Local Networking\Formattings\BoolFormatting.cs" />
+    <Compile Include="Core\Local Networking\Formattings\SCNMatrix4Formatting.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Sounds\ball_bounce_02.wav" />
+    <BundleResource Include="Resources\Sounds\ball_bounce_03.wav" />
+    <BundleResource Include="Resources\Sounds\ball_bounce_04.wav" />
+    <BundleResource Include="Resources\Sounds\ball.aupreset" />
+    <BundleResource Include="Resources\Sounds\block_fall_a_01.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_a_02.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_a_03.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_a_04.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_a_05.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_a_06.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_a_07.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_a_08.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_a_09.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_b_01.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_b_02.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_b_03.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_b_04.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_b_05.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_b_06.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_b_07.wav" />
+    <BundleResource Include="Resources\Sounds\block_fall_b_08.wav" />
+    <BundleResource Include="Resources\Sounds\blocks.aupreset" />
+    <BundleResource Include="Resources\Sounds\button_backward.wav" />
+    <BundleResource Include="Resources\Sounds\button_forward.wav" />
+    <BundleResource Include="Resources\Sounds\catapult_highlight_off_02.wav" />
+    <BundleResource Include="Resources\Sounds\catapult_highlight_on_02.wav" />
+    <BundleResource Include="Resources\Sounds\catapult.aupreset" />
+    <BundleResource Include="Resources\Sounds\catapultBreak.m4a" />
+    <BundleResource Include="Resources\Sounds\grab_ball_04.wav" />
+    <BundleResource Include="Resources\Sounds\music_321_go.m4a" />
+    <BundleResource Include="Resources\Sounds\music_gameplay.m4a" />
+    <BundleResource Include="Resources\Sounds\music_win.m4a" />
+    <BundleResource Include="Resources\Sounds\music.json" />
+    <BundleResource Include="Resources\Sounds\slingshot_release_01.wav" />
+    <BundleResource Include="Resources\Sounds\slingshot_release_02.wav" />
+    <BundleResource Include="Resources\Sounds\slingshot_release_03.wav" />
+    <BundleResource Include="Resources\Sounds\slingshot_release_04.wav" />
+    <BundleResource Include="Resources\Sounds\slingshot_release_05.wav" />
+    <BundleResource Include="Resources\Sounds\slingshot_stretch_02.m4a" />
+    <BundleResource Include="Resources\Sounds\slingshot_swish_01.wav" />
+    <BundleResource Include="Resources\Sounds\slingshot_swish_02.wav" />
+    <BundleResource Include="Resources\Sounds\slingshot_swish_03.wav" />
+    <BundleResource Include="Resources\Sounds\slingshot_swish_04.wav" />
+    <BundleResource Include="Resources\Sounds\slingshot_swish_05.wav" />
+    <BundleResource Include="Resources\Sounds\vortex_04.m4a" />
+    <BundleResource Include="Resources\Launch Screens\iPad.png" />
+    <BundleResource Include="Resources\Launch Screens\iPhone_Landscape.png" />
+    <BundleResource Include="Resources\Launch Screens\iPhone_Portrait.png" />
+    <BundleResource Include="Resources\Launch Screens\iPhone_X_Landscape.png" />
+    <BundleResource Include="Resources\Sounds\music_menu.m4a" />
+  </ItemGroup>
+  <ItemGroup>
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_archA.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_boxA.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_boxB.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_boxC.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_cubeA.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_cubeB.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_cubeC.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_cubeD.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_cubeE.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_cylinderA.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_cylinderB.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_cylinderC.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_halfCylinderA.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_halfCylinderB.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_halfCylinderC.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_quarterCylinderA.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_sphereA.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_wedgeA.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\block_wedgeB.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\cloud_cloudA.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\cloud_cloudB.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\flag_flagA.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\entities\resetSwitch.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\geometries\geom_catapultOutline.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\geometries\geom_cloud_cloudA.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\geometries\geom_cloud_cloudB.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\geometries\geom_resetSwitch.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\geometries\geom_resetSwitchOutline.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\systems\system_cloud_cloudA.scn" />
+    <SceneKitAsset Include="art.scnassets\blocks\systems\system_cloud_cloudB.scn" />
+    <SceneKitAsset Include="art.scnassets\catapults\catapult.scn" />
+    <SceneKitAsset Include="art.scnassets\data\entities_def.json" />
+    <SceneKitAsset Include="art.scnassets\effects\chasm.scn" />
+    <SceneKitAsset Include="art.scnassets\effects\chasm_animation.scn" />
+    <SceneKitAsset Include="art.scnassets\levels\level_archFort.scn" />
+    <SceneKitAsset Include="art.scnassets\levels\level_bridge.scn" />
+    <SceneKitAsset Include="art.scnassets\levels\level_farm.scn" />
+    <SceneKitAsset Include="art.scnassets\levels\level_gateway.scn" />
+    <SceneKitAsset Include="art.scnassets\levels\level_towers.scn" />
+    <SceneKitAsset Include="art.scnassets\models\321Go.scn" />
+    <SceneKitAsset Include="art.scnassets\models\ShadowLight.scn" />
+    <SceneKitAsset Include="art.scnassets\models\ShadowPlane.scn" />
+    <SceneKitAsset Include="art.scnassets\models\resetSwitch.scn" />
+    <SceneKitAsset Include="art.scnassets\models\victory.scn" />
+    <SceneKitAsset Include="art.scnassets\projectiles\projectileTail.scnp" />
+    <SceneKitAsset Include="art.scnassets\projectiles\projectiles_ball.scn" />
+    <SceneKitAsset Include="art.scnassets\projectiles\projectiles_ball_8k.scn" />
+    <SceneKitAsset Include="art.scnassets\projectiles\projectiles_chicken.scn" />
+    <SceneKitAsset Include="art.scnassets\textures\World_Lighting.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_archAMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_archAMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_archAMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_archAMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxAMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxAMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxAMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxAMaterial_Paintmask.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxAMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxBMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxBMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxBMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxBMaterial_PaintMask.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxBMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxCMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxCMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxCMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxCMaterial_Paintmask.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxCMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeAMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeAMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeAMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeAMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeBMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeBMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeBMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeBMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeCMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeCMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeCMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeCMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeDMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeDMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeDMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeDMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeEMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeEMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeEMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeEMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderAMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderAMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderAMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderAMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderBMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderBMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderBMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderBMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderCMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderCMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderCMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderCMaterial_Paintmask.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderCMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderAMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderAMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderAMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderAMaterial_Paintmask.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderAMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderBMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderBMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderBMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderBMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderCMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderCMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderCMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderCMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_quarterCylinderAMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_quarterCylinderAMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_quarterCylinderAMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_quarterCylinderAMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_sphereAMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_sphereAMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_sphereAMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_sphereAMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeAMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeAMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeAMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeAMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeBMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeBMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeBMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeBMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\blur_Alpha.png" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultBase_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultBase_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultBase_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultBase_PaintMask.png" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultBase_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultSling_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultSling_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultSling_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultSling_PaintMask.png" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultSling_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\chasm_chasm_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\chickenMaterial_Base_Color.png" />
+    <SceneKitAsset Include="art.scnassets\textures\chickenMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\chickenMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudAMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudAMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudAMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudAMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudBMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudBMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudBMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudBMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\endzone_MateMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\endzone_MateMaterial_Paintmask.png" />
+    <SceneKitAsset Include="art.scnassets\textures\flag_flagAMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\flag_flagAMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\flag_flagAMaterial_Occlusion.png" />
+    <SceneKitAsset Include="art.scnassets\textures\flag_flagAMaterial_PaintMask.png" />
+    <SceneKitAsset Include="art.scnassets\textures\flag_flagAMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\grid.png" />
+    <SceneKitAsset Include="art.scnassets\textures\letters_lettersMaterial_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\letters_lettersMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\letters_lettersMaterial_PaintMask.png" />
+    <SceneKitAsset Include="art.scnassets\textures\letters_lettersMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\projectiles_ballMaterial_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\projectiles_ballMaterial_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\resetSwitch_resetSwitch_Diffuse.png" />
+    <SceneKitAsset Include="art.scnassets\textures\resetSwitch_resetSwitch_Metalness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\resetSwitch_resetSwitch_Normal.png" />
+    <SceneKitAsset Include="art.scnassets\textures\resetSwitch_resetSwitch_Roughness.png" />
+    <SceneKitAsset Include="art.scnassets\textures\World_Lighting.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_archAMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_archAMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_archAMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_archAMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxAMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxAMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxAMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxAMaterial_Paintmask.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxAMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxBMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxBMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxBMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxBMaterial_PaintMask.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxBMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxCMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxCMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxCMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxCMaterial_Paintmask.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_boxCMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeAMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeAMaterial_Metalness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeAMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeAMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeAMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeBMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeBMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeBMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeBMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeCMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeCMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeCMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeCMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeDMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeDMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeDMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeDMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeEMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeEMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeEMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cubeEMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderAMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderAMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderAMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderAMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderBMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderBMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderBMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderBMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderCMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderCMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderCMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderCMaterial_Paintmask.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_cylinderCMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderAMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderAMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderAMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderAMaterial_Paintmask.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderAMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderBMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderBMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderBMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderBMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderCMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderCMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderCMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_halfCylinderCMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_quarterCylinderAMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_quarterCylinderAMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_quarterCylinderAMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_quarterCylinderAMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_sphereAMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_sphereAMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_sphereAMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_sphereAMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeAMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeAMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeAMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeAMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeBMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeBMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeBMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\block_wedgeBMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\blur_Alpha.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultBase_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultBase_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultBase_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultBase_PaintMask.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultBase_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultSling_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultSling_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultSling_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultSling_PaintMask.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\catapultSling_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\chasm_chasm_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudAMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudAMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudAMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudAMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudBMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudBMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudBMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\cloud_cloudBMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\endzone_MateMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\endzone_MateMaterial_Paintmask.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\flag_flagAMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\flag_flagAMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\flag_flagAMaterial_Occlusion.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\flag_flagAMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\letters_lettersMaterial_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\letters_lettersMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\letters_lettersMaterial_PaintMask.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\letters_lettersMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\projectiles_ballMaterial_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\projectiles_ballMaterial_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\resetSwitch_resetSwitch_Diffuse.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\resetSwitch_resetSwitch_Metalness.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\resetSwitch_resetSwitch_Normal.ktx" />
+    <SceneKitAsset Include="art.scnassets\textures\resetSwitch_resetSwitch_Roughness.ktx" />
+    <SceneKitAsset Include="art.scnassets\data\levels.json" />
+    <SceneKitAsset Include="art.scnassets\models\OcclusionBox.scn" />
+  </ItemGroup>
+  <ItemGroup>
+    <Metal Include="Core\Gameplay State\Flag.metal" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

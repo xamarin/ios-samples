@@ -1,0 +1,22 @@
+{
+    "music_win": {
+        "filename": "Sounds/music_win.m4a",
+        "volumeDB": -16.0,
+        "loops": false
+    },
+    "music_menu": {
+        "filename": "Sounds/music_menu.m4a",
+        "volumeDB": -20.0,
+        "loops": true
+    },
+    "music_gameplay": {
+        "filename": "Sounds/music_gameplay.m4a",
+        "volumeDB": -20.0,
+        "loops": true
+    },
+    "music_321_go": {
+        "filename": "Sounds/music_321_go.m4a",
+        "volumeDB": -18.0,
+        "loops": false
+    }
+}
