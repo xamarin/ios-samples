@@ -187,14 +187,7 @@ namespace SoupChef.Data
                 // Need a different string for the subtitle because of capitalization difference
                 //template.subtitle = NSString.deferredLocalizedIntentsString(with: menuItem.shortcutNameKey + "_SUBTITLE") as String
                 template.Subtitle = menuItem.ItemName;
-                //template.image = INImage(named: menuItem.iconImageName)
                 template.Image = INImage.FromName(menuItem.IconImageName);
-                //var image = UIImage.FromBundle(menuItem.IconImageName);
-                //if (!(image is null))
-                //{
-                //    var data = image.AsPNG();
-                //    template.Image = INImage.FromData(data);
-                //}
 
                 suggestedShortcut.WatchTemplate = template;
 
@@ -227,14 +220,7 @@ namespace SoupChef.Data
             var availableShortcuts = AvailableRegularItems.Select(menuItem =>
             {
                 var order = new Order(1, menuItem, new List<MenuItemOption>());
-                try
-                {
-                    return new INShortcut(order.Intent);
-                }
-                catch(Exception ex)
-                {
-                    return null;
-                }
+                return new INShortcut(order.Intent);
             });
 
             INVoiceShortcutCenter.SharedCenter.SetShortcutSuggestions(availableShortcuts.ToArray());
