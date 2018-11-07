@@ -1,7 +1,9 @@
 
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapKitSearch", "MapKitSearch.csproj", "{84315F67-2869-4A97-A63C-904390127F04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapKitSearch2", "MapKitSearch2.csproj", "{84315F67-2869-4A97-A63C-904390127F04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapKitSearch", "MapKitSearch\MapKitSearch.csproj", "{B776ACE8-1772-4165-8A4F-AC418316C1B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,18 @@ Global
 		{84315F67-2869-4A97-A63C-904390127F04}.Release|iPhone.Build.0 = Release|iPhone
 		{84315F67-2869-4A97-A63C-904390127F04}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{84315F67-2869-4A97-A63C-904390127F04}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Debug|iPhone.Build.0 = Debug|iPhone
+		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Release|iPhone.ActiveCfg = Release|iPhone
+		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Release|iPhone.Build.0 = Release|iPhone
+		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.AppStore|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = MapKitSearch.csproj
