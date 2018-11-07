@@ -20,12 +20,12 @@ namespace HttpClient.Core
 
         public override async Task<Stream> ExecuteAsync()
         {
-            Stream stream = null;
-            using (var client = new System.Net.Http.HttpClient())
-            {
-                stream = await client.GetStreamAsync(secure ? "https://www.xamarin.com" : WisdomUrl);
-            }
+            Busy();
 
+            var client = new System.Net.Http.HttpClient();
+            var stream = await client.GetStreamAsync(secure ? "https://www.xamarin.com" : WisdomUrl);
+
+            Done();
             return stream;
         }
 
