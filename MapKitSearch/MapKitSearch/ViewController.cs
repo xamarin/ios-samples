@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using CoreLocation;
+﻿using CoreLocation;
 using Foundation;
 using MapKit;
+using System;
+using System.Threading.Tasks;
 using UIKit;
 
 namespace MapKitSearch
@@ -87,7 +87,7 @@ namespace MapKitSearch
             if (response != null)
             {
                 searchItems = response.MapItems;
-                this.PerformSegue(SearchSegueIdentifier, this);
+                PerformSegue(SearchSegueIdentifier, this);
             }
         }
 

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>MapKitSearch</string>
+	<string>MapKit Search</string>
 	<key>CFBundleIdentifier</key>
 	<string>org.xamarin.MapKitSearch</string>
 	<key>CFBundleShortVersionString</key>

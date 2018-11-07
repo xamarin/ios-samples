@@ -1,6 +1,6 @@
-using System;
 using Foundation;
 using MapKit;
+using System;
 using UIKit;
 
 namespace MapKitSearch
@@ -18,7 +18,7 @@ namespace MapKitSearch
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            this.NavigationItem.Title = Query;
+            NavigationItem.Title = Query;
         }
 
         public override nint RowsInSection(UITableView tableView, nint section)
