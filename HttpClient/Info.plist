@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -22,7 +22,7 @@
 	<key>MinimumOSVersion</key>
 	<string>9.0</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.HttpClient</string>
+	<string>com.xamarin.HttpClient2</string>
 	<key>CFBundleDisplayName</key>
 	<string>HttpClient</string>
 	<key>UISupportedInterfaceOrientations</key>
@@ -35,7 +35,9 @@
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
-		<true />
+		<true/>
 	</dict>
+	<key>CFBundleName</key>
+	<string>HttpClient</string>
 </dict>
 </plist>
