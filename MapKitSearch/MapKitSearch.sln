@@ -1,8 +1,6 @@
 
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapKitSearch2", "MapKitSearch2.csproj", "{84315F67-2869-4A97-A63C-904390127F04}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapKitSearch", "MapKitSearch\MapKitSearch.csproj", "{B776ACE8-1772-4165-8A4F-AC418316C1B7}"
 EndProject
 Global
@@ -15,18 +13,6 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{84315F67-2869-4A97-A63C-904390127F04}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{84315F67-2869-4A97-A63C-904390127F04}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{84315F67-2869-4A97-A63C-904390127F04}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{84315F67-2869-4A97-A63C-904390127F04}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{84315F67-2869-4A97-A63C-904390127F04}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{84315F67-2869-4A97-A63C-904390127F04}.Debug|iPhone.Build.0 = Debug|iPhone
-		{84315F67-2869-4A97-A63C-904390127F04}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{84315F67-2869-4A97-A63C-904390127F04}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{84315F67-2869-4A97-A63C-904390127F04}.Release|iPhone.ActiveCfg = Release|iPhone
-		{84315F67-2869-4A97-A63C-904390127F04}.Release|iPhone.Build.0 = Release|iPhone
-		{84315F67-2869-4A97-A63C-904390127F04}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{84315F67-2869-4A97-A63C-904390127F04}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{B776ACE8-1772-4165-8A4F-AC418316C1B7}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
