@@ -13,11 +13,11 @@ namespace HttpClient
 
         private readonly List<RequestConfiguration> configurations = new List<RequestConfiguration>
         {
-            new RequestConfiguration { Type = RequestType.WebRequestHttp, Title = "http  - WebRequest" },
-            new RequestConfiguration { Type = RequestType.WebRequestHttps, Title = "https - WebRequest" },
-            new RequestConfiguration { Type = RequestType.NSUrlConnectionHttp, Title = "http  - NSUrlConnection" },
-            new RequestConfiguration { Type = RequestType.HttpClientHttp, Title = "http  - HttpClient" },
-            new RequestConfiguration { Type = RequestType.HttpClientHttps, Title = "https - HttpClient" },
+            new RequestConfiguration { Type = RequestType.WebRequestHttp, Title = "WebRequest (http)" },
+            new RequestConfiguration { Type = RequestType.WebRequestHttps, Title = "WebRequest (https)" },
+            new RequestConfiguration { Type = RequestType.NSUrlConnectionHttp, Title = "NSUrlConnection (http)" },
+            new RequestConfiguration { Type = RequestType.HttpClientHttp, Title = "HttpClient (http)" },
+            new RequestConfiguration { Type = RequestType.HttpClientHttps, Title = "HttpClient (https)" },
         };
 
         protected ViewController(IntPtr handle) : base(handle) { }

@@ -13,11 +13,18 @@ namespace HttpClient
     [Register ("ViewController")]
     partial class ViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton IssueRequestButton { get; set; }
         [Action ("RunHttpRequest:")]
         partial void RunHttpRequest (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
+            if (IssueRequestButton != null) {
+                IssueRequestButton.Dispose ();
+                IssueRequestButton = null;
+            }
         }
     }
 }

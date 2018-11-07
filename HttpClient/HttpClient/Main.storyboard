@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="31p-Su-eE1">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
@@ -59,6 +59,7 @@
                     <navigationItem key="navigationItem" title="HTTP Client Sample" id="TOe-Jl-3c8"/>
                     <connections>
                         <segue destination="gik-vm-Qrg" kind="show" identifier="showRequestDetails" id="zNk-YD-SZi"/>
+                        <outlet property="IssueRequestButton" destination="KVv-Bm-aCX" id="name-outlet-KVv-Bm-aCX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TmK-Gp-Wa5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -74,19 +75,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HttpClient is using " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6s-dC-8EN">
-                                <rect key="frame" x="16" y="80" width="145" height="21"/>
+                                <rect key="frame" x="16" y="86" width="145" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The HTML returned by the server:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E5H-c6-Tab">
-                                <rect key="frame" x="16" y="109" width="259.5" height="20.5"/>
+                                <rect key="frame" x="16" y="114.5" width="259.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Pgy-sn-ovh">
-                                <rect key="frame" x="16" y="145.5" width="343" height="521.5"/>
+                                <rect key="frame" x="16" y="151" width="343" height="516"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -114,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sMz-dE-AKW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1792.8" y="132.68365817091455"/>
+            <point key="canvasLocation" x="1792.8" y="132.6837"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yrY-UA-MYY">
@@ -122,7 +123,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="31p-Su-eE1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="uQR-4K-Adl">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -132,7 +133,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CPz-Yv-Lgi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="152.80000000000001" y="132.68365817091455"/>
+            <point key="canvasLocation" x="152.8" y="132.6837"/>
         </scene>
     </scenes>
 </document>
