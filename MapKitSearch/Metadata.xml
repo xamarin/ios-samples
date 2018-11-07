@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>40e06d5c-e298-11e8-9f32-f2801f1b9fd1/ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Brief>This sample demonstrates how to use MapKit.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Beginner</Level>
+  <Tags>MapKit</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>
