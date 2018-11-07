@@ -1,4 +1,3 @@
-using Foundation;
 using HttpClient.Core;
 using System;
 using System.IO;
@@ -15,6 +14,12 @@ namespace HttpClient
         public override async void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            if(Provider.GetType() == typeof(NetHttpProvider))
+            {
+                TitleLabel.Text = $"HttpClient is using {NetHttpProvider.GetHandlerType().Name}";
+                TitleLabel.Hidden = false;
+            }
 
             // execute request
             using (var stream = await Provider.ExecuteAsync())

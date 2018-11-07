@@ -9,18 +9,17 @@
 using System;
 using System.IO;
 using System.Net;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace HttpClient.Core
 {
-    public class DotNet : NetworkProvider
+    public class DotNetProvider : NetworkProvider
     {
         private TaskCompletionSource<Stream> taskCompletionSource;
 
         private readonly bool secure;
 
-        public DotNet(bool secure)
+        public DotNetProvider(bool secure)
         {
             this.secure = secure;
         }
@@ -92,22 +91,6 @@ namespace HttpClient.Core
             {
                 System.Diagnostics.Debug.WriteLine(ex);
                 taskCompletionSource.TrySetResult(null);
-            }
-        }
-
-        //
-        // For an explanation of this AcceptingPolicy class, see
-        // http://mono-project.com/UsingTrustedRootsRespectfully
-        //
-        // This will not be needed in the future, when MonoTouch
-        // pulls the certificates from the iPhone directly
-        //
-        class AcceptingPolicy : ICertificatePolicy
-        {
-            public bool CheckValidationResult(ServicePoint sp, X509Certificate cert, WebRequest req, int error)
-            {
-                // Trust everything
-                return true;
             }
         }
     }

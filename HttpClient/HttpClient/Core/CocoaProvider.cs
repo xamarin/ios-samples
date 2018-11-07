@@ -14,8 +14,25 @@ using Foundation;
 
 namespace HttpClient.Core
 {
+    public class CocoaProvider : NetworkProvider
+    {
+        public override async Task<Stream> ExecuteAsync()
+        {
+            Busy();
 
-    public class Cocoa : NetworkProvider, INSUrlConnectionDataDelegate
+            Stream result = null;
+            using (var cocoa = new Cocoa())
+            {
+                result = await cocoa.ExecuteAsync();
+            }
+
+            Done();
+
+            return result;
+        }
+    }
+
+    public class Cocoa : NSUrlConnectionDataDelegate
     {
         private TaskCompletionSource<Stream> taskCompletionSource;
 
@@ -26,22 +43,17 @@ namespace HttpClient.Core
             result = new byte[0];
         }
 
-        public IntPtr Handle => throw new NotImplementedException();
-
-        public override async Task<Stream> ExecuteAsync()
+        public async Task<Stream> ExecuteAsync()
         {
-            Busy();
             taskCompletionSource = new TaskCompletionSource<Stream>();
 
-            var req = new NSUrlRequest(new NSUrl(WisdomUrl), NSUrlRequestCachePolicy.ReloadIgnoringCacheData, 10);
+            var req = new NSUrlRequest(new NSUrl(NetworkProvider.WisdomUrl), NSUrlRequestCachePolicy.ReloadIgnoringCacheData, 10);
             NSUrlConnection.FromRequest(req, this);
-
 
             return await taskCompletionSource.Task;
         }
 
-        [Export("connection:didReceiveData:")]
-        public void ReceivedData(NSUrlConnection connection, NSData data)
+        public override void ReceivedData(NSUrlConnection connection, NSData data)
         {
             var nb = new byte[result.Length + (int)data.Length];
             result.CopyTo(nb, 0);
@@ -49,20 +61,14 @@ namespace HttpClient.Core
             result = nb;
         }
 
-        [Export("connectionDidFinishLoading:")]
-        public void FinishedLoading(NSUrlConnection connection)
+        public override void FinishedLoading(NSUrlConnection connection)
         {
-            Done();
             taskCompletionSource.TrySetResult(new MemoryStream(result));
         }
 
-        [Export("connection:didFailWithError:")]
-        public void FailedWithError(NSUrlConnection connection, NSError error)
+        public override void FailedWithError(NSUrlConnection connection, NSError error)
         {
-            Done();
             taskCompletionSource.TrySetResult(null);
         }
-
-        public void Dispose() { }
     }
 }

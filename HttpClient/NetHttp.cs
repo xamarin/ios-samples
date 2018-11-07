@@ -9,21 +9,21 @@ using System.Net.Http;
 
 namespace HttpClientSample
 {
-	public class NetHttp
-	{
-		AppDelegate ad;
+    public class NetHttp
+    {
+        AppDelegate ad;
 
-		public NetHttp (AppDelegate ad)
-		{
-			this.ad = ad;
-		}
+        public NetHttp(AppDelegate ad)
+        {
+            this.ad = ad;
+        }
 
-		public async Task HttpSample (bool secure)
-		{
-			var client = new HttpClient ();
-			ad.HandlerType = typeof(HttpMessageInvoker).GetField("handler", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue (client).GetType ();
-			ad.RenderStream (await client.GetStreamAsync (secure ? "https://www.xamarin.com" : Application.WisdomUrl));
-		}
-	}
+        public async Task HttpSample(bool secure)
+        {
+            var client = new HttpClient();
+            ad.HandlerType = typeof(HttpMessageInvoker).GetField("handler", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(client).GetType();
+            ad.RenderStream(await client.GetStreamAsync(secure ? "https://www.xamarin.com" : Application.WisdomUrl));
+        }
+    }
 }
 

@@ -128,9 +128,9 @@
     <Compile Include="ResponseViewController.designer.cs">
       <DependentUpon>ResponseViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\Cocoa.cs" />
-    <Compile Include="Core\DotNet.cs" />
-    <Compile Include="Core\NetHttp.cs" />
+    <Compile Include="Core\CocoaProvider.cs" />
+    <Compile Include="Core\DotNetProvider.cs" />
+    <Compile Include="Core\NetHttpProvider.cs" />
     <Compile Include="Core\NetworkProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

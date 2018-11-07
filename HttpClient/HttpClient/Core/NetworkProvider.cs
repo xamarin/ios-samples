@@ -7,7 +7,7 @@ namespace HttpClient.Core
     public abstract class NetworkProvider
     {
         // URL where we fetch the wisdom from
-        protected const string WisdomUrl = "http://httpbin.org/ip";
+        public const string WisdomUrl = "http://httpbin.org/ip";
 
         protected void Busy()
         {

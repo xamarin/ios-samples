@@ -39,19 +39,19 @@ namespace HttpClient
                     switch (selectedConfiguration.Type)
                     {
                         case RequestType.WebRequestHttp:
-                            provider = new DotNet(false);
+                            provider = new DotNetProvider(false);
                             break;
                         case RequestType.WebRequestHttps:
-                            provider = new DotNet(true);
+                            provider = new DotNetProvider(true);
                             break;
                         case RequestType.NSUrlConnectionHttp:
-                            provider = new Cocoa();
+                            provider = new CocoaProvider();
                             break;
                         case RequestType.HttpClientHttp:
-                            provider = new NetHttp(false);
+                            provider = new NetHttpProvider(false);
                             break;
                         case RequestType.HttpClientHttps:
-                            provider = new NetHttp(true);
+                            provider = new NetHttpProvider(true);
                             break;
                     }
 
