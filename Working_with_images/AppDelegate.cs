@@ -17,7 +17,7 @@ namespace Working_with_images
         // class-level declarations
         UIWindow window;
 
-        // Added contoller. As of MonoTouch 5.0.2, applications are expected to
+        // Added controller. As of MonoTouch 5.0.2, applications are expected to
         // have a root view controller at the end of application launch
 
         UIViewController controller;
