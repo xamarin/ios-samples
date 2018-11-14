@@ -8,8 +8,8 @@
     <ProjectGuid>{0C9B6B52-850A-45A1-9428-EF3944A44E11}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MapDemo2</RootNamespace>
-    <AssemblyName>MapDemo2</AssemblyName>
+    <RootNamespace>MapDemo</RootNamespace>
+    <AssemblyName>MapDemo</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">

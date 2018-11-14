@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace MapDemo2
+namespace MapDemo
 {
     public class Application
     {
