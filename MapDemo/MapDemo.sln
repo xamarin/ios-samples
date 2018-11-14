@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapDemo2", "MapDemo2\MapDemo2.csproj", "{0C9B6B52-850A-45A1-9428-EF3944A44E11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapDemo", "MapDemo\MapDemo.csproj", "{0C9B6B52-850A-45A1-9428-EF3944A44E11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
