@@ -106,7 +106,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-40%403x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
     <Folder Include="Assets.xcassets\Monkey.imageset\" />
   </ItemGroup>
   <ItemGroup>
