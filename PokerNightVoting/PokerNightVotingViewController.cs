@@ -72,7 +72,7 @@ namespace PokerNightVoting
 
 		public void RefreshView ()
 		{
-			Root = new RootElement (model.SelectedCalendar.Title);
+			Root = new RootElement (model.SelectedCalendar?.Title ?? "No Default Calendar");
 			int sections = model.EventDates.Count;
 
 			for (int i = 0; i < sections; i++) {
