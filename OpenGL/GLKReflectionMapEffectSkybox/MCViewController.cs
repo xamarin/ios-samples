@@ -39,7 +39,6 @@ namespace GLKReflectionMapEffectSkybox
 			GLKView view = View as GLKView;
 			view.Context = context;
 			view.DrawableDepthFormat = GLKViewDrawableDepthFormat.Format24;
-			view.DrawInRect += Draw;
 
 			setupGL ();
 		}
@@ -130,7 +129,7 @@ namespace GLKReflectionMapEffectSkybox
 			rotation += (float) TimeSinceLastUpdate * 0.5f;
 		}
 
-		public void Draw (object sender, GLKViewDrawEventArgs args)
+		public override void DrawInRect (GLKView view, CGRect rect)
 		{
 			GL.ClearColor (0.65f, 0.65f, 0.65f, 1f);
 			GL.Clear (ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
