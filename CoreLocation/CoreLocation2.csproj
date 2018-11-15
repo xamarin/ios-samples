@@ -53,7 +53,6 @@
     <IpaPackageName></IpaPackageName>
     <AssemblyName>Example_CoreLocation</AssemblyName>
     <MtouchArch>ARM64</MtouchArch>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
