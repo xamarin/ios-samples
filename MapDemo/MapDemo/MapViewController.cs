@@ -1,145 +1,89 @@
-using System;
-using UIKit;
 using CoreLocation;
 using MapKit;
+using System;
+using UIKit;
 
 namespace MapDemo
 {
-	partial class MapViewController : UIViewController
-	{
-		MyMapDelegate mapDel;
-		UISearchController searchController;
-		CLLocationManager locationManager = new CLLocationManager ();
+    public partial class MapViewController : UIViewController
+    {
+        private readonly CLLocationManager locationManager = new CLLocationManager();
 
-		public MapViewController (IntPtr handle) : base (handle)
-		{
-			
-		}
+        private UISearchController searchController;
 
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
+        private MapViewDelegate mapViewDelegate;
 
-			locationManager.RequestWhenInUseAuthorization ();
+        public MapViewController (IntPtr handle) : base (handle) { }
 
-			// set map type and show user location
-			map.MapType = MKMapType.Standard;
-			map.ShowsUserLocation = true;
-			map.Bounds = View.Bounds;
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
 
-			// set map center and region
-			const double lat = 42.374260;
-			const double lon = -71.120824;
-			var mapCenter = new CLLocationCoordinate2D (lat, lon);
-			var mapRegion = MKCoordinateRegion.FromDistance (mapCenter, 2000, 2000);
-			map.CenterCoordinate = mapCenter;
-			map.Region = mapRegion;
+            locationManager.RequestWhenInUseAuthorization();
 
-			// add an annotation
-			map.AddAnnotation (new MKPointAnnotation {
-				Title = "MyAnnotation", 
-				Coordinate = new CLLocationCoordinate2D (42.364260, -71.120824)
-			});
+            // set map center and region
+            const double lat = 42.374260;
+            const double lon = -71.120824;
+            var mapCenter = new CLLocationCoordinate2D(lat, lon);
+            var mapRegion = MKCoordinateRegion.FromDistance(mapCenter, 2000, 2000);
+            map.CenterCoordinate = mapCenter;
+            map.Region = mapRegion;
 
-			// set the map delegate
-			mapDel = new MyMapDelegate ();
-			map.Delegate = mapDel;
+            // add an annotation
+            map.AddAnnotation(new MKPointAnnotation
+            {
+                Title = "MyAnnotation",
+                Coordinate = new CLLocationCoordinate2D(42.364260, -71.120824)
+            });
 
-			// add a custom annotation
-			map.AddAnnotation (new MonkeyAnnotation ("Xamarin", mapCenter));
+            // set the map delegate
+            mapViewDelegate = new MapViewDelegate();
+            map.Delegate = mapViewDelegate;
 
-			// add an overlay
-			var circleOverlay = MKCircle.Circle (mapCenter, 1000);
-			map.AddOverlay (circleOverlay);
+            // add a custom annotation
+            map.AddAnnotation(new MonkeyAnnotation("Xamarin", mapCenter));
 
-			var searchResultsController = new SearchResultsViewController (map);
+            // add an overlay
+            map.AddOverlay(MKCircle.Circle(mapCenter, 1000));
 
+            // add search
+            var searchResultsController = new SearchResultsViewController(map);
 
-			var searchUpdater = new SearchResultsUpdator ();
-			searchUpdater.UpdateSearchResults += searchResultsController.Search;
+            var searchUpdater = new SearchResultsUpdator();
+            searchUpdater.UpdateSearchResults += searchResultsController.UpdateSearchResults;
 
-			//add the search controller
-			searchController = new UISearchController (searchResultsController) {
-				SearchResultsUpdater = searchUpdater
-			};
+            // add the search controller
+            searchController = new UISearchController(searchResultsController);
+            searchController.SearchResultsUpdater = searchUpdater;
 
-			searchController.SearchBar.SizeToFit ();
-			searchController.SearchBar.SearchBarStyle = UISearchBarStyle.Minimal;
-			searchController.SearchBar.Placeholder = "Enter a search query";
+            searchController.SearchBar.SizeToFit();
+            searchController.SearchBar.SearchBarStyle = UISearchBarStyle.Minimal;
+            searchController.SearchBar.Placeholder = "Enter a search query";
 
-			searchController.HidesNavigationBarDuringPresentation = false;
-			NavigationItem.TitleView = searchController.SearchBar;
-			DefinesPresentationContext = true;
-		}
+            searchController.HidesNavigationBarDuringPresentation = false;
+            NavigationItem.TitleView = searchController.SearchBar;
+            DefinesPresentationContext = true;
+        }
 
-		public class SearchResultsUpdator : UISearchResultsUpdating
-		{
-			public event Action<string> UpdateSearchResults = delegate {};
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if(searchController != null)
+            {
+                searchController.Dispose();
+                searchController = null;
+            }
 
-			public override void UpdateSearchResultsForSearchController (UISearchController searchController)
-			{
-				this.UpdateSearchResults (searchController.SearchBar.Text);
-			}
-		}
+            if (mapViewDelegate != null)
+            {
+                mapViewDelegate.Dispose();
+                mapViewDelegate = null;
+            }
 
-		class MyMapDelegate : MKMapViewDelegate
-		{
-			string pId = "PinAnnotation";
-			string mId = "MonkeyAnnotation";
-
-			public override MKAnnotationView GetViewForAnnotation (MKMapView mapView, IMKAnnotation annotation)
-			{
-				MKAnnotationView anView;
-
-				if (annotation is MKUserLocation)
-					return null; 
-
-				if (annotation is MonkeyAnnotation) {
-
-					// show monkey annotation
-					anView = mapView.DequeueReusableAnnotation (mId);
-
-					if (anView == null)
-						anView = new MKAnnotationView (annotation, mId);
-
-					anView.Image = UIImage.FromFile ("monkey.png");
-					anView.CanShowCallout = true;
-					anView.Draggable = true;
-					anView.RightCalloutAccessoryView = UIButton.FromType (UIButtonType.DetailDisclosure);
-
-				} else {
-
-					// show pin annotation
-					anView = (MKPinAnnotationView)mapView.DequeueReusableAnnotation (pId);
-
-					if (anView == null)
-						anView = new MKPinAnnotationView (annotation, pId);
-
-					((MKPinAnnotationView)anView).PinColor = MKPinAnnotationColor.Red;
-					anView.CanShowCallout = true;
-				}
-
-				return anView;
-			}
-
-			public override void CalloutAccessoryControlTapped (MKMapView mapView, MKAnnotationView view, UIControl control)
-			{
-				var monkeyAn = view.Annotation as MonkeyAnnotation;
-
-				if (monkeyAn != null) {
-					var alert = new UIAlertView ("Monkey Annotation", monkeyAn.Title, null, "OK");
-					alert.Show ();
-				}
-			}
-
-			public override MKOverlayView GetViewForOverlay (MKMapView mapView, IMKOverlay overlay)
-			{
-				var circleOverlay = overlay as MKCircle;
-				var circleView = new MKCircleView (circleOverlay);
-				circleView.FillColor = UIColor.Red;
-				circleView.Alpha = 0.4f;
-				return circleView;
-			}
-		}
-	}
+            if (locationManager != null)
+            {
+                locationManager.Dispose();
+            }
+        }
+    }
 }
