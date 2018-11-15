@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontList", "FontList.csproj", "{0181730D-31E9-4DCA-8C52-6455A0963E1C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FontList", "FontList\FontList.csproj", "{B62DF180-BA8C-4F2D-8D0E-1BA98DDDAF0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Debug|iPhone.Build.0 = Debug|iPhone
-		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Release|iPhone.ActiveCfg = Release|iPhone
-		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Release|iPhone.Build.0 = Release|iPhone
-		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{0181730D-31E9-4DCA-8C52-6455A0963E1C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{B62DF180-BA8C-4F2D-8D0E-1BA98DDDAF0E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{B62DF180-BA8C-4F2D-8D0E-1BA98DDDAF0E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{B62DF180-BA8C-4F2D-8D0E-1BA98DDDAF0E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{B62DF180-BA8C-4F2D-8D0E-1BA98DDDAF0E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{B62DF180-BA8C-4F2D-8D0E-1BA98DDDAF0E}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{B62DF180-BA8C-4F2D-8D0E-1BA98DDDAF0E}.Debug|iPhone.Build.0 = Debug|iPhone
+		{B62DF180-BA8C-4F2D-8D0E-1BA98DDDAF0E}.Release|iPhone.ActiveCfg = Release|iPhone
+		{B62DF180-BA8C-4F2D-8D0E-1BA98DDDAF0E}.Release|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = FontList.csproj
