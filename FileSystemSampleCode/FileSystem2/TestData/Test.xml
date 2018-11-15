@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <Title>Working with the File System</Title>
+   <Description>Working with files and directories in iOS using MonoTouch can be done with the same 
+System.IO classes that you would use in any .NET application. Despite the familiar classes and methods, 
+iOS implements some restrictions on the files that you can create or access and also provides 
+special features for certain directories. This article outlines those restrictions and features, 
+and introduces some sample code to show how the System.IO classes can be used in MonoTouch
+demonstrate how file access works in a MonoTouch application.</Description>
+</TestXml>

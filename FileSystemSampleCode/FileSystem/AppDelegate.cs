@@ -1,25 +1,21 @@
-using Foundation;
+﻿using Foundation;
 using UIKit;
 
 namespace FileSystem
 {
-	/// <summary>
-	/// Sizes the window according to the screen, for iPad as well as iPhone support
-	/// </summary>
-	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
-		UIWindow window;
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-		{
-			var viewController = new FileSystemViewController();
+    // The UIApplicationDelegate for the application. This class is responsible for launching the
+    // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
+    [Register("AppDelegate")]
+    public class AppDelegate : UIApplicationDelegate
+    {
+        public override UIWindow Window { get; set; }
 
-			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			window.BackgroundColor = UIColor.White;
-			window.Bounds = UIScreen.MainScreen.Bounds;
-			window.RootViewController = viewController;
-			window.MakeKeyAndVisible ();
-			return true;
-		}
-	}
+        public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+        {
+            // Override point for customization after application launch.
+            // If not required for your application you can safely delete this method
+
+            return true;
+        }
+    }
 }
