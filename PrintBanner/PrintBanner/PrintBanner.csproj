@@ -102,9 +102,10 @@
     <Compile Include="PrintBannerViewController.designer.cs">
       <DependentUpon>PrintBannerViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Main.cs" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="MainStoryboard.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
