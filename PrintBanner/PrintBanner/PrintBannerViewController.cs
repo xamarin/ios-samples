@@ -1,6 +1,5 @@
-using System;
-using CoreGraphics;
 using Foundation;
+using System;
 using UIKit;
 
 namespace PrintBanner
@@ -72,11 +71,7 @@ namespace PrintBanner
 
             controller.PrintInfo = printInfo;
             controller.PrintFormatter = textFormatter;
-
-            if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad)
-                controller.PresentFromRectInView(printButton.Frame, View, true, OnPrintingComplete);
-            else
-                controller.Present(true, OnPrintingComplete);
+            controller.Present(true, OnPrintingComplete);
 
             printInfo.Dispose();
             printInfo = null;
