@@ -17,7 +17,7 @@ namespace PrintSample
             {
                 StartPage = 0,
                 MaximumContentWidth = 6 * 72,
-                ContentInsets = new UIEdgeInsets(72, 72, 72, 72),
+                PerPageContentInsets = new UIEdgeInsets(72, 72, 72, 72),
             };
 
             var printer = UIPrintInteractionController.SharedPrintController;
