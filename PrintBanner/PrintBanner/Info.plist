@@ -17,21 +17,19 @@
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
-	</array>
-	<key>CFBundleIconFiles</key>
-	<array>
-		<string>Icon</string>
-		<string>Icon@2x</string>
-		<string>Icon-72</string>
-		<string>Icon-Small</string>
-		<string>Icon-Small@2x</string>
-		<string>Icon-Small-50</string>
-		<string>Icon-60@2x</string>
-		<string>Icon-Small-40@2x</string>
+		<integer>2</integer>
 	</array>
 	<key>CFBundleName</key>
-	<string>PrintBanner</string>
+	<string>Print Banner</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.printbanner</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
 </dict>
 </plist>
