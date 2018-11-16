@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using System;
 using UIKit;
+using UserNotifications;
 
 namespace LocalNotifications
 {
@@ -10,25 +11,29 @@ namespace LocalNotifications
 
         partial void SendNotification(UIButton sender)
         {
-            // create the notification
-            var notification = new UILocalNotification();
+            var content = new UNMutableNotificationContent();
+            content.Title = "View Alert";
+            content.Body = "Your 10 second alert has fired!";
+            content.Sound = UNNotificationSound.Default;
+            content.Badge = 1;
 
-            // set the fire date (the date time in which it will fire)
-            notification.FireDate = NSDate.FromTimeIntervalSinceNow(10);
+            var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(10, false);
 
-            // configure the alert
-            notification.AlertAction = "View Alert";
-            notification.AlertBody = "Your 10 second alert has fired!";
-
-            // modify the badge
-            notification.ApplicationIconBadgeNumber = 1;
-
-            // set the sound to be the default sound
-            notification.SoundName = UILocalNotification.DefaultSoundName;
+            var requestID = "sampleRequest";
+            var request = UNNotificationRequest.FromIdentifier(requestID, content, trigger);
 
             // schedule it
-            UIApplication.SharedApplication.ScheduleLocalNotification(notification);
-            Console.WriteLine("Scheduled...");
+            UNUserNotificationCenter.Current.AddNotificationRequest(request, (error) =>
+            {
+                if (error != null)
+                {
+                    Console.WriteLine($"Error: {error.LocalizedDescription ?? ""}");
+                }
+                else
+                {
+                    Console.WriteLine("Scheduled...");
+                }
+            });
         }
     }
 }
