@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace Print
+namespace PrintSample
 {
     public class Application
     {

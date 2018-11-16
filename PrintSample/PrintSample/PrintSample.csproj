@@ -8,8 +8,8 @@
     <ProjectGuid>{6E0B1FAF-FB9A-4608-836E-7C98752612E9}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Print</RootNamespace>
-    <AssemblyName>Print</AssemblyName>
+    <RootNamespace>PrintSample</RootNamespace>
+    <AssemblyName>PrintSample</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">

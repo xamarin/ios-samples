@@ -1,7 +1,7 @@
 ﻿using System;
 using UIKit;
 
-namespace Print
+namespace PrintSample
 {
     public partial class ViewController : UIViewController
     {

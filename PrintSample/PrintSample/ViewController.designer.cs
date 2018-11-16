@@ -8,7 +8,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace Print
+namespace PrintSample
 {
     [Register ("ViewController")]
     partial class ViewController
