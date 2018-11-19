@@ -1,8 +1,6 @@
 
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableEditing2", "TableEditing2\TableEditing2.csproj", "{15D8E98D-D803-4CCC-906F-0960D31DD333}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableEditing", "TableEditing\TableEditing.csproj", "{0D55C671-AAEC-47D8-8AE3-C1DB0A4F733D}"
 EndProject
 Global
@@ -13,14 +11,6 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhone.Build.0 = Debug|iPhone
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhone.ActiveCfg = Release|iPhone
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhone.Build.0 = Release|iPhone
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{0D55C671-AAEC-47D8-8AE3-C1DB0A4F733D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{0D55C671-AAEC-47D8-8AE3-C1DB0A4F733D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{0D55C671-AAEC-47D8-8AE3-C1DB0A4F733D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
