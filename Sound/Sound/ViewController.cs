@@ -10,10 +10,15 @@ namespace Sound
     public partial class ViewController : UIViewController
     {
         private NSObject observer;
+
         private AVPlayer player;
+
         private NSUrl audioFilePath;
+
         private AVAudioRecorder recorder;
+
         private Stopwatch stopwatch;
+
         private Status status;
 
         protected ViewController(IntPtr handle) : base(handle) { }
