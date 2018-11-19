@@ -377,7 +377,7 @@ namespace RosyWriter.Helpers
             return true;
         }
 
-        public void SetupAndStartCaptureSession()
+        public bool SetupAndStartCaptureSession()
         {
             // Create a shallow queue for buffers going to the display for preview.
             previewBufferQueue = CMBufferQueue.CreateUnsorted(1);
@@ -385,13 +385,27 @@ namespace RosyWriter.Helpers
             // Create serial queue for movie writing
             movieWritingQueue = new DispatchQueue("Movie Writing Queue");
 
+            var isSupported = true;
             if (captureSession == null)
-                SetupCaptureSession();
+            {
+                isSupported = SetupCaptureSession();
+            }
 
             NSNotificationCenter.DefaultCenter.AddObserver(AVCaptureSession.DidStopRunningNotification, CaptureSessionStoppedRunningNotification, captureSession);
 
             if (!captureSession.Running)
-                captureSession.StartRunning();
+            {
+                if (isSupported)
+                {
+                    captureSession.StartRunning();
+                }
+                else
+                {
+                    StopAndTearDownCaptureSession();
+                }
+            }
+
+            return isSupported;
         }
 
         public void CaptureSessionStoppedRunningNotification(NSNotification notification)
@@ -426,14 +440,18 @@ namespace RosyWriter.Helpers
         /// </summary>
         public void StopAndTearDownCaptureSession()
         {
-            captureSession.StopRunning();
             if (captureSession != null)
             {
-                NSNotificationCenter.DefaultCenter.RemoveObserver(this, AVCaptureSession.DidStopRunningNotification, captureSession);
-            }
+                if (captureSession.Running)
+                {
+                    captureSession.StopRunning();
+                }
 
-            captureSession.Dispose();
-            captureSession = null;
+                NSNotificationCenter.DefaultCenter.RemoveObserver(this, AVCaptureSession.DidStopRunningNotification, captureSession);
+
+                captureSession.Dispose();
+                captureSession = null;
+            }
 
             if (previewBufferQueue != null)
             {

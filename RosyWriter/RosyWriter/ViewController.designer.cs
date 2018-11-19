@@ -1,4 +1,4 @@
-﻿// WARNING
+// WARNING
 //
 // This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
@@ -15,6 +15,10 @@ namespace RosyWriter
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel errorLabel { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         RosyWriter.RosyWriterPreview previewView { get; set; }
 
         [Outlet]
@@ -25,12 +29,17 @@ namespace RosyWriter
         [GeneratedCode ("iOS Designer", "1.0")]
         RosyWriter.StatisticView statisticView { get; set; }
 
+
         [Action ("OnRecordButtonClicked:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
         partial void OnRecordButtonClicked (UIKit.UIBarButtonItem sender);
 
         void ReleaseDesignerOutlets ()
         {
+            if (errorLabel != null) {
+                errorLabel.Dispose ();
+                errorLabel = null;
+            }
+
             if (previewView != null) {
                 previewView.Dispose ();
                 previewView = null;

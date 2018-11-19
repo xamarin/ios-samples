@@ -30,24 +30,33 @@ namespace RosyWriter
             videoProcessor = new RosyWriterVideoProcessor();
 
             // Setup and start the capture session
-            videoProcessor.SetupAndStartCaptureSession();
+            var isSupported = videoProcessor.SetupAndStartCaptureSession();
+            if (isSupported)
+            {
+                // Our interface is always in portrait
+                previewView.Transform = videoProcessor.TransformFromCurrentVideoOrientationToOrientation(AVCaptureVideoOrientation.Portrait);
+                previewView.Bounds = View.ConvertRectToView(View.Bounds, previewView);
+                previewView.Center = new CGPoint(View.Bounds.Size.Width / 2f, View.Bounds.Size.Height / 2f);
 
-            // Our interface is always in portrait
-            previewView.Transform = videoProcessor.TransformFromCurrentVideoOrientationToOrientation(AVCaptureVideoOrientation.Portrait);
-            previewView.Bounds = View.ConvertRectToView(View.Bounds, previewView);
-            previewView.Center = new CGPoint(View.Bounds.Size.Width / 2f, View.Bounds.Size.Height / 2f);
+                UIApplication.Notifications.ObserveDidBecomeActive(OnApplicationDidBecomeActive);
 
-            UIApplication.Notifications.ObserveDidBecomeActive(OnApplicationDidBecomeActive);
+                // Set up labels
+                shouldShowStats = true;
 
-            // Set up labels
-            shouldShowStats = true;
+                // Video Processor Event Handlers
+                videoProcessor.RecordingDidStart += OnRecordingDidStart;
+                videoProcessor.RecordingDidStop += OnRecordingDidStop;
+                videoProcessor.RecordingWillStart += OnRecordingWillStart;
+                videoProcessor.RecordingWillStop += OnRecordingWillStop;
+                videoProcessor.PixelBufferReadyForDisplay += OnPixelBufferReadyForDisplay;
+            }
+            else
+            {
+                errorLabel.Hidden = false;
 
-            // Video Processor Event Handlers
-            videoProcessor.RecordingDidStart += OnRecordingDidStart;
-            videoProcessor.RecordingDidStop += OnRecordingDidStop;
-            videoProcessor.RecordingWillStart += OnRecordingWillStart;
-            videoProcessor.RecordingWillStop += OnRecordingWillStop;
-            videoProcessor.PixelBufferReadyForDisplay += OnPixelBufferReadyForDisplay;
+                previewView.Hidden = true;
+                recordButton.Enabled = false;
+            }
         }
 
         public override void ViewWillAppear(bool animated)
