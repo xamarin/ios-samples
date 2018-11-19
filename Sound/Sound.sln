@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sound", "Sound\Sound.csproj", "{55F46846-CDA1-4BC2-9C40-0458BC6F909C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sound", "Sound\Sound.csproj", "{A31153BC-4CD6-497B-B5BA-D1921CDF5F27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Debug|iPhone.Build.0 = Debug|iPhone
-		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Release|iPhone.ActiveCfg = Release|iPhone
-		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Release|iPhone.Build.0 = Release|iPhone
-		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{55F46846-CDA1-4BC2-9C40-0458BC6F909C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{A31153BC-4CD6-497B-B5BA-D1921CDF5F27}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{A31153BC-4CD6-497B-B5BA-D1921CDF5F27}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{A31153BC-4CD6-497B-B5BA-D1921CDF5F27}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{A31153BC-4CD6-497B-B5BA-D1921CDF5F27}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{A31153BC-4CD6-497B-B5BA-D1921CDF5F27}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{A31153BC-4CD6-497B-B5BA-D1921CDF5F27}.Debug|iPhone.Build.0 = Debug|iPhone
+		{A31153BC-4CD6-497B-B5BA-D1921CDF5F27}.Release|iPhone.ActiveCfg = Release|iPhone
+		{A31153BC-4CD6-497B-B5BA-D1921CDF5F27}.Release|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Sound\Sound.csproj
