@@ -86,44 +86,44 @@ namespace RosyWriter
 
 		void DeviceOrientationDidChange (NSNotification notification)
 		{
-			var orientation = UIDevice.CurrentDevice.Orientation;
-			// Don't update the reference orientation when the device orientation is face up/down or unknown.
-			if (UIDeviceOrientation.Portrait == orientation || (UIDeviceOrientation.LandscapeLeft == orientation || UIDeviceOrientation.LandscapeRight == orientation))
-				videoProcessor.ReferenceOrientation = OrientationFromDeviceOrientation (orientation);
+			//var orientation = UIDevice.CurrentDevice.Orientation;
+			//// Don't update the reference orientation when the device orientation is face up/down or unknown.
+			//if (UIDeviceOrientation.Portrait == orientation || (UIDeviceOrientation.LandscapeLeft == orientation || UIDeviceOrientation.LandscapeRight == orientation))
+				//videoProcessor.ReferenceOrientation = OrientationFromDeviceOrientation (orientation);
 		}
 
-		static AVCaptureVideoOrientation OrientationFromDeviceOrientation (UIDeviceOrientation orientation)
-		{
-			switch (orientation) {
-			case UIDeviceOrientation.PortraitUpsideDown:
-				return AVCaptureVideoOrientation.PortraitUpsideDown;
-			case UIDeviceOrientation.Portrait:
-				return AVCaptureVideoOrientation.Portrait;
-			case UIDeviceOrientation.LandscapeLeft:
-				return AVCaptureVideoOrientation.LandscapeLeft;
-			case UIDeviceOrientation.LandscapeRight:
-				return AVCaptureVideoOrientation.LandscapeRight;
-			default:
-				return (AVCaptureVideoOrientation) 0;
-			}
-		}
+		//static AVCaptureVideoOrientation OrientationFromDeviceOrientation (UIDeviceOrientation orientation)
+		//{
+		//	switch (orientation) {
+		//	case UIDeviceOrientation.PortraitUpsideDown:
+		//		return AVCaptureVideoOrientation.PortraitUpsideDown;
+		//	case UIDeviceOrientation.Portrait:
+		//		return AVCaptureVideoOrientation.Portrait;
+		//	case UIDeviceOrientation.LandscapeLeft:
+		//		return AVCaptureVideoOrientation.LandscapeLeft;
+		//	case UIDeviceOrientation.LandscapeRight:
+		//		return AVCaptureVideoOrientation.LandscapeRight;
+		//	default:
+		//		return (AVCaptureVideoOrientation) 0;
+		//	}
+		//}
 
-		void Cleanup ()
-		{
-			frameRateLabel.Dispose ();
-			dimensionsLabel.Dispose ();
-			typeLabel.Dispose ();
+		//void Cleanup ()
+		//{
+		//	frameRateLabel.Dispose ();
+		//	dimensionsLabel.Dispose ();
+		//	typeLabel.Dispose ();
 
-			var notificationCenter = NSNotificationCenter.DefaultCenter;
-			notificationCenter.RemoveObserver (this, UIDevice.OrientationDidChangeNotification, UIApplication.SharedApplication);
-			UIDevice.CurrentDevice.EndGeneratingDeviceOrientationNotifications ();
+		//	var notificationCenter = NSNotificationCenter.DefaultCenter;
+		//	notificationCenter.RemoveObserver (this, UIDevice.OrientationDidChangeNotification, UIApplication.SharedApplication);
+		//	UIDevice.CurrentDevice.EndGeneratingDeviceOrientationNotifications ();
 
-			notificationCenter.RemoveObserver (this, UIApplication.DidBecomeActiveNotification, UIApplication.SharedApplication);
+		//	notificationCenter.RemoveObserver (this, UIApplication.DidBecomeActiveNotification, UIApplication.SharedApplication);
 
-			// Stop and tear down the capture session
-			videoProcessor.StopAndTearDownCaptureSession ();
-			videoProcessor.Dispose ();
-		}
+		//	// Stop and tear down the capture session
+		//	videoProcessor.StopAndTearDownCaptureSession ();
+		//	videoProcessor.Dispose ();
+		//}
 
 		#region Event Handler
 		public void OnPixelBufferReadyForDisplay (CVImageBuffer imageBuffer)
@@ -220,9 +220,9 @@ namespace RosyWriter
 
 			// Keep track of changes to the device orientation so we can update the video processor
 			var notificationCenter = NSNotificationCenter.DefaultCenter;
-			notificationCenter.AddObserver(UIApplication.DidChangeStatusBarOrientationNotification, DeviceOrientationDidChange);
+			//notificationCenter.AddObserver(UIApplication.DidChangeStatusBarOrientationNotification, DeviceOrientationDidChange);
 
-			UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications ();
+			//UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications ();
 
 			// Setup and start the capture session
 			videoProcessor.SetupAndStartCaptureSession ();
@@ -236,30 +236,30 @@ namespace RosyWriter
 
 			CGRect bounds = previewView.ConvertRectToView(previewView.Bounds, oglView);
 			oglView.Bounds = bounds;
-			oglView.Center = new CGPoint(previewView.Bounds.Size.Width / 2.0F, previewView.Bounds.Size.Height / 2.0F);
+			//oglView.Center = new CGPoint(previewView.Bounds.Size.Width / 2.0F, previewView.Bounds.Size.Height / 2.0F);
 
 			previewView.AddSubview(oglView);
 
 			// Set up labels
-			shouldShowStats = true;
+			//shouldShowStats = true;
 
-			frameRateLabel = LabelWithText (string.Empty, 10.0F);
-			previewView.AddSubview (frameRateLabel);
+			//frameRateLabel = LabelWithText (string.Empty, 10.0F);
+			//previewView.AddSubview (frameRateLabel);
 
-			dimensionsLabel = LabelWithText (string.Empty, 54.0F);
-			previewView.AddSubview (dimensionsLabel);
+			//dimensionsLabel = LabelWithText (string.Empty, 54.0F);
+			//previewView.AddSubview (dimensionsLabel);
 
-			typeLabel = LabelWithText (string.Empty, 90F);
-			previewView.Add (typeLabel);
+			//typeLabel = LabelWithText (string.Empty, 90F);
+			//previewView.Add (typeLabel);
 
 			// btnRecord Event Handler
-			btnRecord.Clicked += OnToggleRecording;
+			//btnRecord.Clicked += OnToggleRecording;
 
 			// Video Processor Event Handlers
-			videoProcessor.RecordingDidStart += OnRecordingDidStart;
-			videoProcessor.RecordingDidStop += OnRecordingDidStop;
-			videoProcessor.RecordingWillStart += OnRecordingWillStart;
-			videoProcessor.RecordingWillStop += OnRecordingWillStop;
+			//videoProcessor.RecordingDidStart += OnRecordingDidStart;
+			//videoProcessor.RecordingDidStop += OnRecordingDidStop;
+			//videoProcessor.RecordingWillStart += OnRecordingWillStart;
+			//videoProcessor.RecordingWillStop += OnRecordingWillStop;
 			videoProcessor.PixelBufferReadyForDisplay += OnPixelBufferReadyForDisplay;
 		}
 
@@ -267,22 +267,23 @@ namespace RosyWriter
 		{
 			base.ViewWillAppear (animated);
 
-			timer = NSTimer.CreateRepeatingScheduledTimer (.25, UpdateLabels);
+			//timer = NSTimer.CreateRepeatingScheduledTimer (.25, UpdateLabels);
 		}
 
 		public override void ViewDidDisappear (bool animated)
 		{
 			base.ViewDidDisappear (animated);
 
-			timer.Invalidate ();
-			timer.Dispose ();
+			//timer.Invalidate ();
+			//timer.Dispose ();
 		}
 
-		public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
-		{
-			// Return true for supported orientations
-			return (toInterfaceOrientation == UIInterfaceOrientation.Portrait);
-		}
+		//public override bool ShouldAutorotateToInterfaceOrientation (UIInterfaceOrientation toInterfaceOrientation)
+		//{
+		//	// Return true for supported orientations
+		//	return (toInterfaceOrientation == UIInterfaceOrientation.Portrait);
+		//}
+
 		#endregion
 	}
 }

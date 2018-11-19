@@ -30,7 +30,7 @@ namespace RosyWriter
 		public RosyWriterPreviewWindow (CGRect frame) : base(frame)
 		{
 			// Use 2x scale factor on Retina dispalys.
-			ContentScaleFactor = UIScreen.MainScreen.Scale;
+			//ContentScaleFactor = UIScreen.MainScreen.Scale;
 
 			// Initialize OpenGL ES 2
 			var eagleLayer = (CAEAGLLayer)Layer;
