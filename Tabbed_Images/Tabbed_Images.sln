@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tabbed_Images", "Tabbed_Images.csproj", "{BB12EF41-7C00-443C-B8C1-734ECD648B71}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabbedImages", "TabbedImages\TabbedImages.csproj", "{863DAE81-82CC-4ABE-9EF4-1594EB9DCFB7}"
 EndProject
 Global
@@ -13,14 +11,6 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BB12EF41-7C00-443C-B8C1-734ECD648B71}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{BB12EF41-7C00-443C-B8C1-734ECD648B71}.Debug|iPhone.Build.0 = Debug|iPhone
-		{BB12EF41-7C00-443C-B8C1-734ECD648B71}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{BB12EF41-7C00-443C-B8C1-734ECD648B71}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{BB12EF41-7C00-443C-B8C1-734ECD648B71}.Release|iPhone.ActiveCfg = Release|iPhone
-		{BB12EF41-7C00-443C-B8C1-734ECD648B71}.Release|iPhone.Build.0 = Release|iPhone
-		{BB12EF41-7C00-443C-B8C1-734ECD648B71}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{BB12EF41-7C00-443C-B8C1-734ECD648B71}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{863DAE81-82CC-4ABE-9EF4-1594EB9DCFB7}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{863DAE81-82CC-4ABE-9EF4-1594EB9DCFB7}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{863DAE81-82CC-4ABE-9EF4-1594EB9DCFB7}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
