@@ -7,14 +7,12 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
-namespace Tabbed_Images
+namespace TabbedImages
 {
-    [Register ("SecondViewController")]
-    partial class SecondViewController
+    [Register ("FirstViewController")]
+    partial class FirstViewController
     {
-        void ReleaseDesignerOutlets ()
-        {
-        }
     }
 }
