@@ -18,30 +18,7 @@ namespace RosyWriter.Helpers
 
     public class RosyWriterVideoProcessor : NSObject, IAVCaptureVideoDataOutputSampleBufferDelegate, IAVCaptureAudioDataOutputSampleBufferDelegate
     {
-        public double VideoFrameRate { get; private set; }
-        public CGSize VideoDimensions { get; private set; }
-        public uint VideoType { get; private set; }
-        public AVCaptureVideoOrientation ReferenceOrientation { get; set; }
-        public bool IsRecording { get; private set; }
-
-        public event Action RecordingDidStart;
-        public event Action RecordingWillStop;
-        public event Action RecordingDidStop;
-        public event Action<CVImageBuffer> PixelBufferReadyForDisplay;
-        public event Action RecordingWillStart;
-
         private const int BYTES_PER_PIXEL = 4;
-        private AVCaptureSession captureSession;
-        private AVCaptureConnection videoConnection;
-        private AVCaptureConnection audioConnection;
-        private readonly NSUrl movieURL;
-        private AVAssetWriter assetWriter;
-        private AVAssetWriterInput assetWriterAudioIn;
-        private AVAssetWriterInput assetWriterVideoIn;
-        private DispatchQueue movieWritingQueue;
-        private readonly List<CMTime> previousSecondTimestamps;
-        private AVCaptureVideoOrientation videoOrientation;
-        private CMBufferQueue previewBufferQueue;
 
         // Only Accessed on movie writing Queue
         private bool readyToRecordAudio;
@@ -49,19 +26,50 @@ namespace RosyWriter.Helpers
         private bool recordingWillBeStarted;
         private bool recordingWillBeStopped;
 
+        private readonly NSUrl movieUrl;
+
+        private AVCaptureSession captureSession;
+        private AVCaptureConnection videoConnection;
+        private AVCaptureConnection audioConnection;
+
+        private AVAssetWriter assetWriter;
+        private AVAssetWriterInput assetWriterAudioIn;
+        private AVAssetWriterInput assetWriterVideoIn;
+
+        private readonly List<CMTime> previousSecondTimestamps = new List<CMTime>();
+        private AVCaptureVideoOrientation videoOrientation;
+
+        private DispatchQueue movieWritingQueue;
+        private CMBufferQueue previewBufferQueue;
+
+        public event Action RecordingDidStart;
+        public event Action RecordingWillStop;
+        public event Action RecordingDidStop;
+        public event Action<CVImageBuffer> PixelBufferReadyForDisplay;
+        public event Action RecordingWillStart;
+
         public RosyWriterVideoProcessor()
         {
-            previousSecondTimestamps = new List<CMTime>();
             ReferenceOrientation = AVCaptureVideoOrientation.Portrait;
 
             // The temp path for the video before saving it to photo album
-            movieURL = NSUrl.FromFilename(Path.Combine(Path.GetTempPath(), "Movie.MOV"));
+            movieUrl = NSUrl.FromFilename(Path.Combine(Path.GetTempPath(), "Movie.MOV"));
         }
 
-        private static void RemoveFile(NSUrl fileURL)
+        public AVCaptureVideoOrientation ReferenceOrientation { get; set; }
+
+        public bool IsRecording { get; private set; }
+
+        public double VideoFrameRate { get; private set; }
+
+        public CGSize VideoDimensions { get; private set; }
+
+        public uint VideoType { get; private set; }
+
+        private static void RemoveFile(NSUrl fileUrl)
         {
-            var filePath = fileURL.Path;
-            if (File.Exists(filePath))
+            var filePath = fileUrl?.Path;
+            if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
             {
                 File.Delete(filePath);
             }
@@ -72,14 +80,14 @@ namespace RosyWriter.Helpers
             switch (orientation)
             {
                 case AVCaptureVideoOrientation.LandscapeRight:
-                    return (float)(-Math.PI / 2.0);
+                    return (float)(-Math.PI / 2d);
                 case AVCaptureVideoOrientation.LandscapeLeft:
-                    return (float)(Math.PI / 2.0);
+                    return (float)(Math.PI / 2d);
                 case AVCaptureVideoOrientation.PortraitUpsideDown:
                     return (float)Math.PI;
                 //case AVCaptureVideoOrientation.Portrait:
                 default:
-                    return 0.0f;
+                    return 0f;
             }
         }
 
@@ -91,17 +99,22 @@ namespace RosyWriter.Helpers
             //Console.WriteLine ("Save movie to camera roll");
             using (var library = new ALAssetsLibrary())
             {
-                library.WriteVideoToSavedPhotosAlbum(movieURL, (assetUrl, error) => {
+                library.WriteVideoToSavedPhotosAlbum(movieUrl, (assetUrl, error) =>
+                {
                     if (error != null)
+                    {
                         ShowError(error);
+                    }
                     else
-                        RemoveFile(movieURL);
+                    {
+                        RemoveFile(movieUrl);
+                    }
 
-                    movieWritingQueue.DispatchAsync(() => {
+                    movieWritingQueue.DispatchAsync(() =>
+                    {
                         recordingWillBeStopped = false;
                         IsRecording = false;
-                        if (RecordingDidStop != null)
-                            RecordingDidStop();
+                        RecordingDidStop?.Invoke();
                     });
                 });
             }
@@ -110,20 +123,16 @@ namespace RosyWriter.Helpers
         /// <summary>
         /// Creates a Transform to apply to the OpenGL view to display the Video at the proper orientation
         /// </summary>
-        /// <returns>
-        /// A transform to correct the orientation
-        /// </returns>
-        /// <param name='orientation'>
-        /// Current Orientation
-        /// </param>
+        /// <returns> A transform to correct the orientation</returns>
+        /// <param name='orientation'>Current Orientation</param>
         public CGAffineTransform TransformFromCurrentVideoOrientationToOrientation(AVCaptureVideoOrientation orientation)
         {
             // Calculate offsets from an arbitrary reference orientation (portrait)
-            float orientationAngleOffset = AngleOffsetFromPortraitOrientationToOrientation(orientation);
-            float videoOrientationAngleOffset = AngleOffsetFromPortraitOrientationToOrientation(videoOrientation);
+            var orientationAngleOffset = AngleOffsetFromPortraitOrientationToOrientation(orientation);
+            var videoOrientationAngleOffset = AngleOffsetFromPortraitOrientationToOrientation(videoOrientation);
 
             // Find the difference in angle between the passed in orientation and the current video orientation
-            float angleOffset = orientationAngleOffset - videoOrientationAngleOffset;
+            var angleOffset = orientationAngleOffset - videoOrientationAngleOffset;
             return CGAffineTransform.MakeRotation(angleOffset);
         }
 
@@ -132,9 +141,13 @@ namespace RosyWriter.Helpers
             if (assetWriter.Status == AVAssetWriterStatus.Unknown)
             {
                 if (assetWriter.StartWriting())
+                {
                     assetWriter.StartSessionAtSourceTime(sampleBuffer.OutputPresentationTimeStamp);
+                }
                 else
+                {
                     ShowError(assetWriter.Error);
+                }
             }
 
             if (assetWriter.Status == AVAssetWriterStatus.Writing)
@@ -144,7 +157,9 @@ namespace RosyWriter.Helpers
                     if (assetWriterVideoIn.ReadyForMoreMediaData)
                     {
                         if (!assetWriterVideoIn.AppendSampleBuffer(sampleBuffer))
+                        {
                             ShowError(assetWriter.Error);
+                        }
                     }
                 }
                 else if (mediaType == AVMediaType.Audio)
@@ -152,7 +167,9 @@ namespace RosyWriter.Helpers
                     if (assetWriterAudioIn.ReadyForMoreMediaData)
                     {
                         if (!assetWriterAudioIn.AppendSampleBuffer(sampleBuffer))
+                        {
                             ShowError(assetWriter.Error);
+                        }
                     }
                 }
             }
@@ -174,17 +191,17 @@ namespace RosyWriter.Helpers
                 recordingWillBeStarted = true;
 
                 // recordingDidStart is called from captureOutput.DidOutputSampleBuffer.FromeConnection one the asset writere is setup
-                if (RecordingWillStart != null)
-                    RecordingWillStart();
+                RecordingWillStart?.Invoke();
 
                 // Remove the file if one with the same name already exists
-                RemoveFile(movieURL);
+                RemoveFile(movieUrl);
 
                 // Create an asset writer
-                NSError error;
-                assetWriter = new AVAssetWriter(movieURL, AVFileType.QuickTimeMovie, out error);
+                assetWriter = new AVAssetWriter(movieUrl, AVFileType.QuickTimeMovie, out NSError error);
                 if (error != null)
+                {
                     ShowError(error);
+                }
             });
         }
 
@@ -198,23 +215,29 @@ namespace RosyWriter.Helpers
                 recordingWillBeStopped = true;
 
                 // recordingDidStop is called from saveMovieToCameraRoll
-                if (RecordingWillStop != null)
-                    RecordingWillStop();
+                RecordingWillStop?.Invoke();
 
                 if (assetWriter.FinishWriting())
                 {
                     if (assetWriterAudioIn != null)
+                    {
                         assetWriterAudioIn.Dispose();
-                    if (assetWriterVideoIn != null)
-                        assetWriterVideoIn.Dispose();
+                        assetWriterAudioIn = null;
+                    }
 
-                    lock (inuse)
+                    if (assetWriterVideoIn != null)
+                    {
+                        assetWriterVideoIn.Dispose();
+                        assetWriterVideoIn = null;
+                    }
+
+                    lock (inUse)
                     {
                         assetWriter.Dispose();
                         assetWriter = null;
 
                         // Clear the 'Inuse' list when we're creating a new Recording session.
-                        inuse.Clear();
+                        inUse.Clear();
                     }
 
                     readyToRecordVideo = false;
@@ -223,7 +246,9 @@ namespace RosyWriter.Helpers
                     SaveMovieToCameraRoll();
                 }
                 else
+                {
                     ShowError(assetWriter.Error);
+                }
             });
         }
 
@@ -231,22 +256,22 @@ namespace RosyWriter.Helpers
 
         #region Capture
 
-        private readonly List<CMSampleBuffer> inuse = new List<CMSampleBuffer>();
+        private readonly List<CMSampleBuffer> inUse = new List<CMSampleBuffer>();
 
         // This is used to solve the issue with the movieWriter queue and the DisplayPixelBuffer
         // thread not releasing CMSampleBuffers when
-        private void CompleteBufferUse(CMSampleBuffer buf)
+        private void CompleteBufferUse(CMSampleBuffer buffer)
         {
-            lock (inuse)
+            lock (inUse)
             {
-                if (inuse.Contains(buf))
+                if (inUse.Contains(buffer))
                 {
-                    inuse.Remove(buf);
-                    buf.Dispose();
+                    inUse.Remove(buffer);
+                    buffer.Dispose();
                 }
                 else
                 {
-                    inuse.Add(buf);
+                    inUse.Add(buffer);
                 }
             }
         }
@@ -257,9 +282,7 @@ namespace RosyWriter.Helpers
         /// <returns>
         /// The available device
         /// </returns>
-        /// <param name='position'>
-        /// The desired Position.
-        /// </param>
+        /// <param name='position'> The desired Position.</param>
         private static AVCaptureDevice VideoDeviceWithPosition(AVCaptureDevicePosition position)
         {
             var devices = AVCaptureDevice.DevicesWithMediaType(AVMediaType.Video);
@@ -274,9 +297,7 @@ namespace RosyWriter.Helpers
         /// <summary>
         /// Returns an audio device
         /// </summary>
-        /// <returns>
-        /// The audio device.
-        /// </returns>
+        /// <returns> The audio device.</returns>
         private static AVCaptureDevice AudioDevice()
         {
             var devices = AVCaptureDevice.DevicesWithMediaType(AVMediaType.Audio);
@@ -285,7 +306,6 @@ namespace RosyWriter.Helpers
 
         private bool SetupCaptureSession()
         {
-            //Console.WriteLine ("SetupCaptureSession");
             // Overview: RosyWriter uses separate GCD queues for audio and video capture.  If a single GCD queue
             // is used to deliver both audio and video buffers, and our video processing consistently takes
             // too long, the delivery queue can back up, resulting in audio being dropped.
@@ -300,12 +320,11 @@ namespace RosyWriter.Helpers
             captureSession.BeginConfiguration();
 
             // Create audio connection
-            NSError error;
-            var audioDevice = AVCaptureDevice.DefaultDeviceWithMediaType(AVMediaType.Audio);
+            var audioDevice = AVCaptureDevice.GetDefaultDevice(AVMediaType.Audio);
             if (audioDevice == null)
                 return false; // e.g. simulator
 
-            var audioIn = new AVCaptureDeviceInput(audioDevice, out error);
+            var audioIn = new AVCaptureDeviceInput(audioDevice, out NSError error);
             if (captureSession.CanAddInput(audioIn))
                 captureSession.AddInput(audioIn);
 
@@ -336,7 +355,7 @@ namespace RosyWriter.Helpers
                 AlwaysDiscardsLateVideoFrames = true,
                 // HACK: Change VideoSettings to WeakVideoSettings, and AVVideoSettings to CVPixelBufferAttributes
                 // VideoSettings = new AVVideoSettings (CVPixelFormatType.CV32BGRA)
-                WeakVideoSettings = new CVPixelBufferAttributes()
+                WeakVideoSettings = new CVPixelBufferAttributes
                 {
                     PixelFormatType = CVPixelFormatType.CV32BGRA
                 }.Dictionary
@@ -360,8 +379,6 @@ namespace RosyWriter.Helpers
 
         public void SetupAndStartCaptureSession()
         {
-            //Console.WriteLine ("SetupAndStartCapture Session");
-
             // Create a shallow queue for buffers going to the display for preview.
             previewBufferQueue = CMBufferQueue.CreateUnsorted(1);
 
@@ -379,22 +396,29 @@ namespace RosyWriter.Helpers
 
         public void CaptureSessionStoppedRunningNotification(NSNotification notification)
         {
-            movieWritingQueue.DispatchAsync(() => {
+            movieWritingQueue.DispatchAsync(() =>
+            {
                 if (IsRecording)
+                {
                     StopRecording();
+                }
             });
         }
 
         public void PauseCaptureSession()
         {
             if (captureSession.Running)
+            {
                 captureSession.StopRunning();
+            }
         }
 
         public void ResumeCaptureSession()
         {
             if (!captureSession.Running)
+            {
                 captureSession.StartRunning();
+            }
         }
 
         /// <summary>
@@ -404,7 +428,10 @@ namespace RosyWriter.Helpers
         {
             captureSession.StopRunning();
             if (captureSession != null)
+            {
                 NSNotificationCenter.DefaultCenter.RemoveObserver(this, AVCaptureSession.DidStopRunningNotification, captureSession);
+            }
+
             captureSession.Dispose();
             captureSession = null;
 
@@ -425,9 +452,11 @@ namespace RosyWriter.Helpers
 
         public void ShowError(NSError error)
         {
-            InvokeOnMainThread(() => {
-                using (var alertView = new UIAlertView(error.LocalizedDescription, error.ToString(), null, "OK", null))
-                    alertView.Show();
+            InvokeOnMainThread(() =>
+            {
+                var alert = UIAlertController.Create(error.LocalizedDescription, error.ToString(), UIAlertControllerStyle.Alert);
+                alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                UIApplication.SharedApplication.Windows[0].RootViewController.PresentViewController(alert, true, null);
             });
         }
 
@@ -464,11 +493,10 @@ namespace RosyWriter.Helpers
                 previewBufferQueue.Enqueue(sampleBuffer);
 
                 //var writeBuffer = sampleBuffer.Duplicate ();
-                InvokeOnMainThread(() => {
+                InvokeOnMainThread(() =>
+                {
                     INativeObject j = previewBufferQueue.Dequeue();
-
-                    var sbuf = j as CMSampleBuffer;
-                    if (sbuf == null)
+                    if (!(j is CMSampleBuffer sbuf))
                     {
 #if DEBUG
                         // Record the current sampleBuffer.ClassHandle
@@ -480,15 +508,16 @@ namespace RosyWriter.Helpers
 
                     using (CVImageBuffer pixBuf = sbuf.GetImageBuffer())
                     {
-                        if (PixelBufferReadyForDisplay != null)
-                            PixelBufferReadyForDisplay(pixBuf);
+                        PixelBufferReadyForDisplay?.Invoke(pixBuf);
                     }
                 });
             }
+
             // keep a reference to 'sampleBuffer', movieWritingQueue will remove it
             CompleteBufferUse(sampleBuffer);
 
-            movieWritingQueue.DispatchAsync(() => {
+            movieWritingQueue.DispatchAsync(() =>
+            {
                 if (assetWriter != null)
                 {
                     bool wasReadyToRecord = (readyToRecordAudio && readyToRecordVideo);
@@ -520,8 +549,7 @@ namespace RosyWriter.Helpers
                         recordingWillBeStarted = false;
                         IsRecording = true;
 
-                        if (RecordingDidStart != null)
-                            RecordingDidStart();
+                        RecordingDidStart?.Invoke();
                     }
                 }
                 CompleteBufferUse(sampleBuffer);
@@ -543,15 +571,11 @@ namespace RosyWriter.Helpers
 
             bitsPerSecond = (int)(numPixels * bitsPerPixel);
 
-            NSDictionary videoCompressionSettings = new NSDictionary(
-                AVVideo.CodecKey, AVVideo.CodecH264,
-                AVVideo.WidthKey, dimensions.Width,
-                AVVideo.HeightKey, dimensions.Height,
-                AVVideo.CompressionPropertiesKey, new NSDictionary(
-                    AVVideo.AverageBitRateKey, bitsPerSecond,
-                    AVVideo.MaxKeyFrameIntervalKey, 30
-                )
-            );
+            var videoCompressionSettings = new NSDictionary(AVVideo.CodecKey, AVVideo.CodecH264,
+                                                            AVVideo.WidthKey, dimensions.Width,
+                                                            AVVideo.HeightKey, dimensions.Height,
+                                                            AVVideo.CompressionPropertiesKey, new NSDictionary(AVVideo.AverageBitRateKey, bitsPerSecond,
+                                                                                                               AVVideo.MaxKeyFrameIntervalKey, 30));
 
             if (assetWriter.CanApplyOutputSettings(videoCompressionSettings, AVMediaType.Video))
             {
@@ -569,7 +593,9 @@ namespace RosyWriter.Helpers
                 }
             }
             else
+            {
                 Console.WriteLine("Couldn't apply video output settings.");
+            }
 
             return true;
         }
@@ -586,13 +612,11 @@ namespace RosyWriter.Helpers
             var currentChannelLayout = currentFormatDescription.AudioChannelLayout;
             var currentChannelLayoutData = currentChannelLayout == null ? new NSData() : currentChannelLayout.AsData();
 
-            NSDictionary audioCompressionSettings = new NSDictionary(
-                AVAudioSettings.AVFormatIDKey, AudioFormatType.MPEG4AAC,
-                AVAudioSettings.AVSampleRateKey, currentASBD.SampleRate,
-                AVAudioSettings.AVEncoderBitRateKey, 64000,
-                AVAudioSettings.AVNumberOfChannelsKey, currentASBD.ChannelsPerFrame,
-                AVAudioSettings.AVChannelLayoutKey, currentChannelLayoutData
-            );
+            var audioCompressionSettings = new NSDictionary(AVAudioSettings.AVFormatIDKey, AudioFormatType.MPEG4AAC,
+                                                            AVAudioSettings.AVSampleRateKey, currentASBD.SampleRate,
+                                                            AVAudioSettings.AVEncoderBitRateKey, 64000,
+                                                            AVAudioSettings.AVNumberOfChannelsKey, currentASBD.ChannelsPerFrame,
+                                                            AVAudioSettings.AVChannelLayoutKey, currentChannelLayoutData);
 
             if (assetWriter.CanApplyOutputSettings(audioCompressionSettings, AVMediaType.Audio))
             {
@@ -625,10 +649,11 @@ namespace RosyWriter.Helpers
             var oneSecondAgo = CMTime.Subtract(timeStamp, oneSecond);
 
             while (previousSecondTimestamps.Count > 0 && CMTime.Compare(previousSecondTimestamps[0], oneSecondAgo) < 0)
+            {
                 previousSecondTimestamps.RemoveAt(0);
+            }
 
-            double newRate = Convert.ToDouble(previousSecondTimestamps.Count);
-
+            var newRate = Convert.ToDouble(previousSecondTimestamps.Count);
             VideoFrameRate = (VideoFrameRate + newRate) / 2;
         }
 
@@ -656,7 +681,7 @@ namespace RosyWriter.Helpers
                 pixelBuffer.Unlock(CVOptionFlags.None);
             }
         }
-    }
 
-    #endregion
+        #endregion
+    }
 }
