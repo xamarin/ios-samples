@@ -39,6 +39,8 @@ namespace Sound
         {
             base.ViewDidLoad();
 
+            playButton.Enabled = false;
+            stopButton.Enabled = false;
             statusLabel.Text = string.Empty;
             lenghtButton.Text = string.Empty;
 
@@ -49,11 +51,6 @@ namespace Sound
         {
             switch (status)
             {
-                case Status.Default:
-                    startButton.Enabled = true;
-                    stopButton.Enabled = false;
-                    playButton.Enabled = false;
-                    break;
                 case Status.PreparingError:
                     statusLabel.Text = "Error preparing";
                     lenghtButton.Text = string.Empty;
@@ -61,12 +58,14 @@ namespace Sound
                     stopButton.Enabled = false;
                     playButton.Enabled = false;
                     break;
+
                 case Status.Playing:
-                    statusLabel.Text = string.Empty;
+                    statusLabel.Text = "Playing";
                     startButton.Enabled = false;
                     stopButton.Enabled = false;
                     playButton.Enabled = false;
                     break;
+
                 case Status.Recording:
                     lenghtButton.Text = string.Empty;
                     statusLabel.Text = "Recording";
@@ -74,6 +73,7 @@ namespace Sound
                     stopButton.Enabled = true;
                     playButton.Enabled = false;
                     break;
+
                 case Status.Recorded:
                     lenghtButton.Text = string.Format("{0:hh\\:mm\\:ss}", stopwatch.Elapsed);
                     statusLabel.Text = string.Empty;
@@ -101,7 +101,7 @@ namespace Sound
                         session.SetActive(true, out error);
                         if (error != null)
                         {
-                            Console.WriteLine(error);
+                            Status = Status.PreparingError;
                         }
                         else
                         {
@@ -111,15 +111,6 @@ namespace Sound
                                 stopwatch = new Stopwatch();
                                 stopwatch.Start();
                                 Status = Status.Recording;
-
-                                //BeginInvokeOnMainThread(() =>
-                                //{
-                                //    lenghtButton.Text = string.Empty;
-                                //    statusLabel.Text = "Recording";
-                                //    startButton.Enabled = false;
-                                //    stopButton.Enabled = true;
-                                //    playButton.Enabled = false;
-                                //});
                             }
                             else
                             {
@@ -144,14 +135,9 @@ namespace Sound
             if (recorder != null)
             {
                 recorder.Stop();
-                stopwatch.Stop();
+                stopwatch?.Stop();
 
                 Status = Status.Recorded;
-                //lenghtButton.Text = string.Format("{0:hh\\:mm\\:ss}", stopwatch.Elapsed);
-                //statusLabel.Text = string.Empty;
-                //startButton.Enabled = true;
-                //stopButton.Enabled = false;
-                //playButton.Enabled = true;
             }
         }
 
@@ -173,30 +159,23 @@ namespace Sound
 
         partial void PlayRecorded(UIButton sender)
         {
-            //try
-            //{
-            Status = Status.Playing;
-                Console.WriteLine("Playing Back Recording {0}", audioFilePath);
+            Console.WriteLine($"Playing Back Recording {audioFilePath}");
 
-                // The following line prevents the audio from stopping
-                // when the device autolocks. will also make sure that it plays, even
-                // if the device is in mute
-                AVAudioSession.SharedInstance().SetCategory(AVAudioSession.CategoryPlayback, out NSError error);
+            // The following line prevents the audio from stopping
+            // when the device autolocks. will also make sure that it plays, even
+            // if the device is in mute
+            AVAudioSession.SharedInstance().SetCategory(AVAudioSession.CategoryPlayback, out NSError error);
             if (error == null)
             {
+                Status = Status.Playing;
                 player = new AVPlayer(audioFilePath);
                 player.Play();
             }
             else
             {
+                Status = Status.Recorded;
                 Console.WriteLine(error.LocalizedDescription);
             }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine("There was a problem playing back audio: ");
-            //    Console.WriteLine(ex.Message);
-            //}
         }
 
         private bool PrepareAudioRecording()
@@ -208,9 +187,9 @@ namespace Sound
             var audioSettings = new AudioSettings
             {
                 SampleRate = 44100,
-                Format = AudioToolbox.AudioFormatType.MPEG4AAC,
                 NumberChannels = 1,
-                AudioQuality = AVAudioQuality.High
+                AudioQuality = AVAudioQuality.High,
+                Format = AudioToolbox.AudioFormatType.MPEG4AAC,
             };
 
             // Set recorder parameters
@@ -245,7 +224,6 @@ namespace Sound
             Console.WriteLine($"Done Recording (status: {e.Status})");
         }
 
-
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -277,10 +255,10 @@ namespace Sound
 
     public enum Status
     {
+        Unknown,
         PreparingError,
         Recording,
         Recorded,
         Playing,
-        Default,
     }
 }
