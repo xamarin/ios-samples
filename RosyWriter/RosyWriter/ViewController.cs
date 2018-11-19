@@ -1,9 +1,9 @@
-﻿using System;
-using AVFoundation;
+﻿using AVFoundation;
 using CoreGraphics;
 using CoreVideo;
 using Foundation;
 using RosyWriter.Helpers;
+using System;
 using UIKit;
 
 namespace RosyWriter
@@ -12,9 +12,11 @@ namespace RosyWriter
     {
         private RosyWriterVideoProcessor videoProcessor;
 
-        private NSTimer timer;
+        private nint backgroundRecordingID;
+
         private bool shouldShowStats;
-        private int backgroundRecordingID;
+
+        private NSTimer timer;
 
         protected ViewController(IntPtr handle) : base(handle) { }
 
@@ -27,12 +29,6 @@ namespace RosyWriter
             // Initialize the class responsible for managing AV capture session and asset writer
             videoProcessor = new RosyWriterVideoProcessor();
 
-            // Keep track of changes to the device orientation so we can update the video processor
-            var notificationCenter = NSNotificationCenter.DefaultCenter;
-            //notificationCenter.AddObserver(UIApplication.DidChangeStatusBarOrientationNotification, DeviceOrientationDidChange);
-
-            //UIDevice.CurrentDevice.BeginGeneratingDeviceOrientationNotifications ();
-
             // Setup and start the capture session
             videoProcessor.SetupAndStartCaptureSession();
 
@@ -41,7 +37,7 @@ namespace RosyWriter
             previewView.Bounds = View.ConvertRectToView(View.Bounds, previewView);
             previewView.Center = new CGPoint(View.Bounds.Size.Width / 2f, View.Bounds.Size.Height / 2f);
 
-            notificationCenter.AddObserver(UIApplication.DidBecomeActiveNotification, OnApplicationDidBecomeActive);
+            UIApplication.Notifications.ObserveDidBecomeActive(OnApplicationDidBecomeActive);
 
             // Set up labels
             shouldShowStats = true;
@@ -64,11 +60,32 @@ namespace RosyWriter
         {
             base.ViewDidDisappear(animated);
 
-            timer.Invalidate();
-            timer.Dispose();
+            if (timer != null)
+            {
+                timer.Invalidate();
+                timer.Dispose();
+                timer = null;
+            }
         }
 
-        // HACK: Updated method to match delegate in NSTimer.CreateRepeatingScheduledTimer()
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (timer != null)
+            {
+                timer.Invalidate();
+                timer.Dispose();
+                timer = null;
+            }
+
+            if (videoProcessor != null)
+            {
+                videoProcessor.Dispose();
+                videoProcessor = null;
+            }
+        }
+
         private void UpdateLabels(NSTimer time)
         {
             statisticView.Hidden = !shouldShowStats;
@@ -84,7 +101,9 @@ namespace RosyWriter
         {
             // Don't make OpenGLES calls while in the backgroud.
             if (UIApplication.SharedApplication.ApplicationState != UIApplicationState.Background)
+            {
                 previewView.DisplayPixelBuffer(imageBuffer);
+            }
         }
 
         partial void OnRecordButtonClicked(UIBarButtonItem sender)
@@ -94,12 +113,16 @@ namespace RosyWriter
 
             // The recordingWill/DidStop delegate methods will fire asynchronously in the response to this call.
             if (videoProcessor.IsRecording)
+            {
                 videoProcessor.StopRecording();
+            }
             else
+            {
                 videoProcessor.StartRecording();
+            }
         }
 
-        public void OnApplicationDidBecomeActive(NSNotification notification)
+        private void OnApplicationDidBecomeActive(object sender, NSNotificationEventArgs e)
         {
             // For performance reasons, we manually pause/resume the session when saving a recoding.
             // If we try to resume the session in the background it will fail. Resume the session here as well to ensure we will succeed.
@@ -122,10 +145,12 @@ namespace RosyWriter
 
                 // Make sure we have time to finish saving the movie if the app is backgrounded during recording
                 if (UIDevice.CurrentDevice.IsMultitaskingSupported)
-                    // HACK: Cast nint to int
-                    backgroundRecordingID = (int)UIApplication.SharedApplication.BeginBackgroundTask(() => {
+                {
+                    backgroundRecordingID = UIApplication.SharedApplication.BeginBackgroundTask(() =>
+                    {
                         UIApplication.SharedApplication.EndBackgroundTask(backgroundRecordingID);
                     });
+                }
             });
         }
 
@@ -136,7 +161,8 @@ namespace RosyWriter
 
         public void OnRecordingWillStop()
         {
-            InvokeOnMainThread(() => {
+            InvokeOnMainThread(() => 
+            {
                 // Disable until saving to the camera roll is complete
                 recordButton.Title = "Record";
                 recordButton.Enabled = false;
@@ -149,9 +175,9 @@ namespace RosyWriter
 
         public void OnRecordingDidStop()
         {
-            InvokeOnMainThread(() => {
+            InvokeOnMainThread(() => 
+            {
                 recordButton.Enabled = true;
-
                 UIApplication.SharedApplication.IdleTimerDisabled = false;
 
                 videoProcessor.ResumeCaptureSession();

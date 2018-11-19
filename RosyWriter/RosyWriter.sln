@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RosyWriter2", "RosyWriter2.csproj", "{EBC654AC-7F6C-46B3-9111-C6291164B396}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RosyWriter", "RosyWriter\RosyWriter.csproj", "{E24368B0-83F1-4D3B-A99F-C806DBB1C1CD}"
 EndProject
 Global
@@ -13,14 +11,6 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EBC654AC-7F6C-46B3-9111-C6291164B396}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{EBC654AC-7F6C-46B3-9111-C6291164B396}.Debug|iPhone.Build.0 = Debug|iPhone
-		{EBC654AC-7F6C-46B3-9111-C6291164B396}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{EBC654AC-7F6C-46B3-9111-C6291164B396}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{EBC654AC-7F6C-46B3-9111-C6291164B396}.Release|iPhone.ActiveCfg = Release|iPhone
-		{EBC654AC-7F6C-46B3-9111-C6291164B396}.Release|iPhone.Build.0 = Release|iPhone
-		{EBC654AC-7F6C-46B3-9111-C6291164B396}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{EBC654AC-7F6C-46B3-9111-C6291164B396}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{E24368B0-83F1-4D3B-A99F-C806DBB1C1CD}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{E24368B0-83F1-4D3B-A99F-C806DBB1C1CD}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{E24368B0-83F1-4D3B-A99F-C806DBB1C1CD}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
