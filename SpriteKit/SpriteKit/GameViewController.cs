@@ -1,5 +1,5 @@
-﻿using System;
-using SpriteKit;
+﻿using SpriteKit;
+using System;
 using UIKit;
 
 namespace SpriteKit
@@ -20,7 +20,7 @@ namespace SpriteKit
             skView.IgnoresSiblingOrder = true;
 
             // Create and configure the scene.
-            var scene = new GameScene(View.Bounds.Size);// SKNode.FromFile<GameScene>("GameScene");
+            var scene = new GameScene(View.Bounds.Size);
             scene.ScaleMode = SKSceneScaleMode.AspectFill;
 
             // Present the scene.
