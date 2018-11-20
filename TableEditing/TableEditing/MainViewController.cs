@@ -227,7 +227,7 @@ namespace TableEditing
         }
 
         /// <summary>
-        /// Called manually when the table goes into edit mode
+        /// Called when the table goes into edit mode
         /// </summary>
         [Export("tableView:willBeginEditingRowAtIndexPath:")]
         public void WillBeginEditing(UITableView tableView, NSIndexPath indexPath)
@@ -235,18 +235,14 @@ namespace TableEditing
             //---- start animations
             tableView.BeginUpdates();
 
-            //---- insert a new row in the table
-            tableView.InsertRows(new NSIndexPath[] { NSIndexPath.FromRowSection(1, 1) }, UITableViewRowAnimation.Fade);
-
-            //---- create a new item and add it to our underlying data
-            items[1].Items.Insert(1, new TableItem());
+            //---- do something if you need
 
             //---- end animations
             tableView.EndUpdates();
         }
 
         /// <summary>
-        /// Called manually when the table leaves edit mode
+        /// Called when the table leaves edit mode
         /// </summary>
         [Export("tableView:didEndEditingRowAtIndexPath:")]
         public void DidEndEditing(UITableView tableView, NSIndexPath indexPath)
@@ -254,11 +250,7 @@ namespace TableEditing
             //---- start animations
             tableView.BeginUpdates();
 
-            //---- remove our row from the underlying data
-            items[1].Items.RemoveAt(1);
-
-            //---- remove the row from the table
-            tableView.DeleteRows(new NSIndexPath[] { NSIndexPath.FromRowSection(1, 1) }, UITableViewRowAnimation.Fade);
+            //---- do something if you need
 
             //---- finish animations
             tableView.EndUpdates();
@@ -272,10 +264,7 @@ namespace TableEditing
             var item = items[indexPath.Section].Items[indexPath.Row];
 
             cell.TextLabel.Text = item.Heading;
-            if (!string.IsNullOrEmpty(item.ImageName))
-            {
-                cell.ImageView.Image = UIImage.FromBundle(item.ImageName);
-            }
+            cell.ImageView.Image = !string.IsNullOrEmpty(item.ImageName) ? UIImage.FromBundle(item.ImageName) : null;
 
             return cell;
         }
