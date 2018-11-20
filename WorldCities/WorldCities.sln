@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldCities", "WorldCities.csproj", "{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldCities2", "WorldCities2.csproj", "{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldCities", "WorldCities\WorldCities.csproj", "{F8BB128E-1ADD-43E2-B819-FBA79DA19B7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +21,14 @@ Global
 		{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}.Release|iPhone.Build.0 = Release|iPhone
 		{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{90BC50CE-3867-44A6-AAA5-259FA2D6CC7C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{F8BB128E-1ADD-43E2-B819-FBA79DA19B7A}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{F8BB128E-1ADD-43E2-B819-FBA79DA19B7A}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{F8BB128E-1ADD-43E2-B819-FBA79DA19B7A}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{F8BB128E-1ADD-43E2-B819-FBA79DA19B7A}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{F8BB128E-1ADD-43E2-B819-FBA79DA19B7A}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{F8BB128E-1ADD-43E2-B819-FBA79DA19B7A}.Debug|iPhone.Build.0 = Debug|iPhone
+		{F8BB128E-1ADD-43E2-B819-FBA79DA19B7A}.Release|iPhone.ActiveCfg = Release|iPhone
+		{F8BB128E-1ADD-43E2-B819-FBA79DA19B7A}.Release|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = WorldCities\WorldCities.csproj

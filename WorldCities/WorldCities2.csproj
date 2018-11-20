@@ -75,26 +75,26 @@
     <None Include="Info.plist" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WorldCities\WorldCitiesListController.cs" />
-    <Compile Include="WorldCities\WorldCitiesListController.designer.cs">
+    <Compile Include="WorldCities2\WorldCitiesListController.cs" />
+    <Compile Include="WorldCities2\WorldCitiesListController.designer.cs">
       <DependentUpon>WorldCitiesListController.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorldCities\WorldCitiesViewController.cs" />
-    <Compile Include="WorldCities\WorldCitiesViewController.designer.cs">
+    <Compile Include="WorldCities2\WorldCitiesViewController.cs" />
+    <Compile Include="WorldCities2\WorldCitiesViewController.designer.cs">
       <DependentUpon>WorldCitiesViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorldCities\WorldCity.cs" />
-    <Compile Include="WorldCities\AppDelegate.cs" />
-    <Compile Include="WorldCities\Main.cs" />
+    <Compile Include="WorldCities2\WorldCity.cs" />
+    <Compile Include="WorldCities2\AppDelegate.cs" />
+    <Compile Include="WorldCities2\Main.cs" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="WorldCities\MainStoryboard.storyboard" />
+    <InterfaceDefinition Include="WorldCities2\MainStoryboard.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CityList.plist" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="WorldCities\" />
+    <Folder Include="WorldCities2\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
