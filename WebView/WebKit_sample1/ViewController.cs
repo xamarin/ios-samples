@@ -8,7 +8,7 @@ namespace WebView
 {
     public partial class ViewController : UIViewController
     {
-        private NSUrl url = new NSUrl("https://xamarin.com");
+        private readonly NSUrl url = new NSUrl("https://xamarin.com");
 
         protected ViewController(IntPtr handle) : base(handle) { }
 
