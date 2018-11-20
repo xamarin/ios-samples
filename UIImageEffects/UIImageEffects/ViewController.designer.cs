@@ -1,4 +1,4 @@
-// WARNING
+﻿// WARNING
 //
 // This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
@@ -7,7 +7,6 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace UIImageEffects
 {
@@ -21,6 +20,10 @@ namespace UIImageEffects
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView imageView { get; set; }
+
+        [Action ("Update:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void Update (UIKit.UITapGestureRecognizer sender);
 
         void ReleaseDesignerOutlets ()
         {
