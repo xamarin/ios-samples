@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
+// This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
@@ -14,16 +14,12 @@ namespace LocalNotifications
     [Register ("ViewController")]
     partial class ViewController
     {
-        [Outlet]
+        [Action ("SendNotification:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton button { get; set; }
+        partial void SendNotification (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
-            if (button != null) {
-                button.Dispose ();
-                button = null;
-            }
         }
     }
 }
