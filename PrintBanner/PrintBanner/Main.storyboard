@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Print Banner View Controller-->
+        <scene sceneID="5">
+            <objects>
+                <viewController id="2" customClass="PrintBannerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Font:" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="8">
+                                <rect key="frame" x="16" y="80" width="39" height="21"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Color:" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="9">
+                                <rect key="frame" x="16" y="153" width="46" height="20.5"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="10">
+                                <rect key="frame" x="68" y="109" width="239" height="29"/>
+                                <segments>
+                                    <segment title="Typed"/>
+                                    <segment title="Script"/>
+                                    <segment title="Courier"/>
+                                    <segment title="Arial"/>
+                                </segments>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="11">
+                                <rect key="frame" x="68" y="181.5" width="239" height="29"/>
+                                <segments>
+                                    <segment title="Black"/>
+                                    <segment title="Orange"/>
+                                    <segment title="Purple"/>
+                                    <segment title="Red"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="12">
+                                <rect key="frame" x="168.5" y="241.5" width="38" height="32"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Print">
+                                    <color key="titleColor" red="0.196078" green="0.30980000000000002" blue="0.52156999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="Print:" destination="2" eventType="touchUpInside" id="267"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="sample text" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tVX-Kv-BBY">
+                                <rect key="frame" x="65.5" y="34" width="244" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="244" id="AbK-0y-xi7"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="11" firstAttribute="top" secondItem="9" secondAttribute="bottom" constant="8" id="8Lm-2y-W9b"/>
+                            <constraint firstItem="tVX-Kv-BBY" firstAttribute="centerX" secondItem="ibY-wK-ZT2" secondAttribute="centerX" id="FDY-RE-xmo"/>
+                            <constraint firstItem="8" firstAttribute="top" secondItem="tVX-Kv-BBY" secondAttribute="bottom" constant="16" id="Gmp-Po-9Zu"/>
+                            <constraint firstItem="10" firstAttribute="centerX" secondItem="ibY-wK-ZT2" secondAttribute="centerX" id="Nnu-Pn-Tzp"/>
+                            <constraint firstItem="12" firstAttribute="centerX" secondItem="ibY-wK-ZT2" secondAttribute="centerX" id="O7q-Ta-SUI"/>
+                            <constraint firstItem="8" firstAttribute="leading" secondItem="ibY-wK-ZT2" secondAttribute="leading" constant="16" id="RGv-8R-3xh"/>
+                            <constraint firstItem="10" firstAttribute="top" secondItem="8" secondAttribute="bottom" constant="8" id="RLN-AW-7oe"/>
+                            <constraint firstItem="9" firstAttribute="top" secondItem="10" secondAttribute="bottom" constant="16" id="edl-Pq-fNH"/>
+                            <constraint firstItem="tVX-Kv-BBY" firstAttribute="top" secondItem="ibY-wK-ZT2" secondAttribute="top" constant="14" id="hfH-69-WWF"/>
+                            <constraint firstItem="12" firstAttribute="top" secondItem="11" secondAttribute="bottom" constant="32" id="pw1-uT-shI"/>
+                            <constraint firstItem="11" firstAttribute="centerX" secondItem="ibY-wK-ZT2" secondAttribute="centerX" id="tce-zG-NtC"/>
+                            <constraint firstItem="9" firstAttribute="leading" secondItem="ibY-wK-ZT2" secondAttribute="leading" constant="16" id="yEv-Do-ZmK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ibY-wK-ZT2"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <connections>
+                        <outlet property="colorSelection" destination="11" id="name-outlet-11"/>
+                        <outlet property="fontSelection" destination="10" id="name-outlet-10"/>
+                        <outlet property="printButton" destination="12" id="name-outlet-12"/>
+                        <outlet property="textField" destination="tVX-Kv-BBY" id="name-outlet-tVX-Kv-BBY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-614.39999999999998" y="-249.23070000000001"/>
+        </scene>
+    </scenes>
+</document>
