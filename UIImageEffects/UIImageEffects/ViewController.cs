@@ -1,5 +1,5 @@
-﻿using System;
-using Foundation;
+﻿using Foundation;
+using System;
 using UIKit;
 
 namespace UIImageEffects
@@ -19,7 +19,7 @@ namespace UIImageEffects
             base.ViewDidLoad();
 
             effectLabel.Text = string.Empty;
-            image = imageView.Image; 
+            image = imageView.Image;
             ShowAlertForFirstRun();
         }
 
