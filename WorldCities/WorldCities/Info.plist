@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>WorldCities</string>
+	<string>World Cities</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.world-cities</string>
 	<key>CFBundleShortVersionString</key>

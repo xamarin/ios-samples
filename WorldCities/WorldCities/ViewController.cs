@@ -66,7 +66,7 @@ namespace WorldCities
         {
             var city = selectedCity;
             var region = mapView.Region;
-            var zoomOut = new MKCoordinateRegion(new CLLocationCoordinate2D((region.Center.Latitude + city.Latitude) / 2d, 
+            var zoomOut = new MKCoordinateRegion(new CLLocationCoordinate2D((region.Center.Latitude + city.Latitude) / 2d,
                                                                             (region.Center.Longitude + city.Longitude) / 2d),
                                                  new MKCoordinateSpan(90, 90));
             mapView.SetRegion(zoomOut, true);
