@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintSample", "PrintSample\PrintSample.csproj", "{6E0B1FAF-FB9A-4608-836E-7C98752612E9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E0B1FAF-FB9A-4608-836E-7C98752612E9}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{6E0B1FAF-FB9A-4608-836E-7C98752612E9}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{6E0B1FAF-FB9A-4608-836E-7C98752612E9}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{6E0B1FAF-FB9A-4608-836E-7C98752612E9}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{6E0B1FAF-FB9A-4608-836E-7C98752612E9}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{6E0B1FAF-FB9A-4608-836E-7C98752612E9}.Debug|iPhone.Build.0 = Debug|iPhone
+		{6E0B1FAF-FB9A-4608-836E-7C98752612E9}.Release|iPhone.ActiveCfg = Release|iPhone
+		{6E0B1FAF-FB9A-4608-836E-7C98752612E9}.Release|iPhone.Build.0 = Release|iPhone
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = print.csproj
+	EndGlobalSection
+EndGlobal
