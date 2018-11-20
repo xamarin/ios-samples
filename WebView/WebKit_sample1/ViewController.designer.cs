@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
+// This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
@@ -11,40 +11,23 @@ using UIKit;
 
 namespace WebView
 {
-    [Register("ViewController")]
+    [Register ("ViewController")]
     partial class ViewController
     {
-        [Outlet]
-        [GeneratedCode("iOS Designer", "1.0")]
-        UIKit.UIButton openSafari { get; set; }
+        [Action ("OpenSafari:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void OpenSafari (UIKit.UIButton sender);
 
-        [Outlet]
-        [GeneratedCode("iOS Designer", "1.0")]
-        UIKit.UIButton safariButton { get; set; }
+        [Action ("OpenSafariViewController:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void OpenSafariViewController(UIKit.UIButton sender);
 
-        [Outlet]
-        [GeneratedCode("iOS Designer", "1.0")]
-        UIKit.UIButton webviewButton { get; set; }
+        [Action ("OpenWebView:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void OpenWebView (UIKit.UIButton sender);
 
-        void ReleaseDesignerOutlets()
+        void ReleaseDesignerOutlets ()
         {
-            if (openSafari != null)
-            {
-                openSafari.Dispose();
-                openSafari = null;
-            }
-
-            if (safariButton != null)
-            {
-                safariButton.Dispose();
-                safariButton = null;
-            }
-
-            if (webviewButton != null)
-            {
-                webviewButton.Dispose();
-                webviewButton = null;
-            }
         }
     }
 }
