@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>TableRowActions</string>
+	<string>TableRow Actions</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.table-row-actions</string>
 	<key>CFBundleShortVersionString</key>
