@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableParts", "TableParts\TableParts.csproj", "{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableParts2", "TableParts2\TableParts2.csproj", "{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableParts", "TableParts\TableParts.csproj", "{C6541871-24F4-4BA9-B9ED-FFD87688B348}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +21,14 @@ Global
 		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.Release|iPhone.Build.0 = Release|iPhone
 		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{30CC7D7B-7DD0-4A6E-B483-D83ADB46A2B7}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{C6541871-24F4-4BA9-B9ED-FFD87688B348}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C6541871-24F4-4BA9-B9ED-FFD87688B348}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C6541871-24F4-4BA9-B9ED-FFD87688B348}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C6541871-24F4-4BA9-B9ED-FFD87688B348}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{C6541871-24F4-4BA9-B9ED-FFD87688B348}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C6541871-24F4-4BA9-B9ED-FFD87688B348}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C6541871-24F4-4BA9-B9ED-FFD87688B348}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C6541871-24F4-4BA9-B9ED-FFD87688B348}.Release|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = TableParts\TableParts.csproj
