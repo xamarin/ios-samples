@@ -14,6 +14,10 @@ Build Requirements
 
 Building this sample requires Xcode 5.0 and iOS SDK 
 
+License
+-------
+Code is released under the MIT license
+
 Authors
 ------ 
 Oleg Demchenko
