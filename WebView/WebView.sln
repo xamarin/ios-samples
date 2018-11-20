@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebView", "WebKit_sample1\WebView.csproj", "{6DE4AE99-9025-4229-80E4-E47276A1ECB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebView", "WebView\WebView.csproj", "{6DE4AE99-9025-4229-80E4-E47276A1ECB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
