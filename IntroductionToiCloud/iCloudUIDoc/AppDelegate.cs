@@ -125,34 +125,36 @@ namespace Cloud {
 				});
 
 			} else if (metadataQuery.ResultCount == 0) {
-				// no document exists, CREATE the first one
-				// for a more realistic iCloud application the user will probably 
-				// create documents as needed, so this bit of code wouldn't be necessary
-				var docsFolder = Path.Combine (iCloudUrl.Path, "Documents"); // NOTE: Documents folder is user-accessible in Settings
-				var docPath = Path.Combine (docsFolder, MonkeyDocFilename);
-				var ubiq = new NSUrl (docPath, false);
-				
-				Console.WriteLine ("ubiq:" + ubiq.AbsoluteString);
+				if (HasiCloud) {
+                    // no document exists, CREATE the first one
+                    // for a more realistic iCloud application the user will probably 
+                    // create documents as needed, so this bit of code wouldn't be necessary
+                    var docsFolder = Path.Combine (iCloudUrl.Path, "Documents"); // NOTE: Documents folder is user-accessible in Settings
+                    var docPath = Path.Combine (docsFolder, MonkeyDocFilename);
+                    var ubiq = new NSUrl (docPath, false);
 
-				var monkeyDoc = new MonkeyDocument (ubiq);
-				
-				monkeyDoc.Save (monkeyDoc.FileUrl, UIDocumentSaveOperation.ForCreating, saveSuccess => {
-					Console.WriteLine ("Save completion:" + saveSuccess);
-					if (saveSuccess) {
-						monkeyDoc.Open (openSuccess => {
-							Console.WriteLine ("Open completion:" + openSuccess);
-							if (openSuccess) {
-								Console.WriteLine ("new document for iCloud");
-								Console.WriteLine (" == " + monkeyDoc.DocumentString);
-								viewController.DisplayDocument (monkeyDoc);
-							} else {
-								Console.WriteLine ("couldn't open");
-							}
-						});
-					} else {
-						Console.WriteLine ("couldn't save");
-					}
-				});
+                    Console.WriteLine ("ubiq:" + ubiq.AbsoluteString);
+
+                    var monkeyDoc = new MonkeyDocument (ubiq);
+
+                    monkeyDoc.Save (monkeyDoc.FileUrl, UIDocumentSaveOperation.ForCreating, saveSuccess => {
+                        Console.WriteLine ("Save completion:" + saveSuccess);
+                        if (saveSuccess) {
+                            monkeyDoc.Open (openSuccess => {
+                                Console.WriteLine ("Open completion:" + openSuccess);
+                                if (openSuccess) {
+                                    Console.WriteLine ("new document for iCloud");
+                                    Console.WriteLine (" == " + monkeyDoc.DocumentString);
+                                    viewController.DisplayDocument (monkeyDoc);
+                                } else {
+                                    Console.WriteLine ("couldn't open");
+                                }
+                            });
+                        } else {
+                            Console.WriteLine ("couldn't save");
+                        }
+                    });
+                }
 			} else {
 				Console.WriteLine ("Who put all these other UIDocuments here?");
 			}
