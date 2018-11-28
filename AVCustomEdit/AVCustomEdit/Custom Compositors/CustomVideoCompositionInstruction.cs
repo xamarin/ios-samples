@@ -4,65 +4,44 @@ using Foundation;
 
 namespace AVCustomEdit
 {
-	public class CustomVideoCompositionInstruction : AVVideoCompositionInstruction
-	{
-		public int ForegroundTrackID;
-		public int BackgroundTrackID;
+    public class CustomVideoCompositionInstruction : AVVideoCompositionInstruction
+    {
+        private readonly NSNumber[] requiredSourceTrackIDs;
+        private readonly bool enablePostProcessing;
+        private readonly int passthroughTrackID;
+        private readonly bool containsTweening;
+        private readonly CMTimeRange timeRange;
 
-		CMTimeRange timeRange;
-		readonly int passthroughTrackID;
-		readonly NSNumber [] requiredSourceTrackIDs;
-		readonly bool enablePostProcessing;
-		readonly bool containsTweening;
+        public CustomVideoCompositionInstruction(int passthroughTrackId, CMTimeRange timeRange)
+        {
+            this.passthroughTrackID = passthroughTrackId;
+            this.requiredSourceTrackIDs = null;
+            this.timeRange = timeRange;
+            this.containsTweening = false;
+            this.enablePostProcessing = false;
+        }
 
-		public override int PassthroughTrackID {
-			get {
-				return passthroughTrackID;
-			}
-		}
+        public CustomVideoCompositionInstruction(NSNumber[] sourceTracksIDS, CMTimeRange timeRange)
+        {
+            this.requiredSourceTrackIDs = sourceTracksIDS;
+            this.passthroughTrackID = 0;
+            this.timeRange = timeRange;
+            this.containsTweening = true;
+            this.enablePostProcessing = false;
+        }
 
-		public override NSNumber [] RequiredSourceTrackIDs {
-			get {
-				return requiredSourceTrackIDs;
-			}
-		}
+        public int ForegroundTrackId { get; set; }
 
-		public override CMTimeRange TimeRange {
-			get {
-				return timeRange;
-			}
-		}
-		public override bool EnablePostProcessing {
-			get {
-				return enablePostProcessing;
-			}
-		}
-		public override bool ContainsTweening {
-			get {
-				return containsTweening;
-			}
-		}
+        public int BackgroundTrackId { get; set; }
 
-		public CustomVideoCompositionInstruction ()
-		{
-		}
+        public override int PassthroughTrackID => this.passthroughTrackID;
 
-		public CustomVideoCompositionInstruction (int passthroughTrackID, CMTimeRange timeRange)
-		{
-			this.passthroughTrackID = passthroughTrackID;
-			requiredSourceTrackIDs = null;
-			this.timeRange = timeRange;
-			containsTweening = false;
-			enablePostProcessing = false;
-		}
+        public override NSNumber[] RequiredSourceTrackIDs => this.requiredSourceTrackIDs;
 
-		public CustomVideoCompositionInstruction(NSNumber [] sourceTracksIDS, CMTimeRange timeRange)
-		{
-			requiredSourceTrackIDs = sourceTracksIDS;
-			passthroughTrackID = 0;
-			this.timeRange = timeRange;
-			containsTweening = true;
-			enablePostProcessing = false;
-		}
-	}
+        public override CMTimeRange TimeRange => this.timeRange;
+
+        public override bool EnablePostProcessing => this.enablePostProcessing;
+
+        public override bool ContainsTweening => this.containsTweening;
+    }
 }
