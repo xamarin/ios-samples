@@ -61,7 +61,7 @@ namespace AVCustomEdit
             this.UpdateTimeLabel();
 
             // Add the clips from the main bundle to create a composition using them
-            //this.setupEditingAndPlayback();
+            this.SetupEditingAndPlayback();
         }
 
         public override void ViewDidAppear(bool animated)
@@ -80,9 +80,9 @@ namespace AVCustomEdit
             this.AddTimeObserverToPlayer();
 
             // Build AVComposition and AVVideoComposition objects for playback
-            this.SetupEditingAndPlayback();
-            //this.editor.buildCompositionObjectsForPlayback(true);
-            //this.synchronizePlayerWithEditor();
+            //this.SetupEditingAndPlayback();
+            this.editor.BuildCompositionObjectsForPlayback(true);
+            this.SynchronizePlayerWithEditor();
         }
 
         public override void ViewWillDisappear(bool animated)
@@ -268,7 +268,7 @@ namespace AVCustomEdit
                 this.player.CurrentItem.Status == AVPlayerItemStatus.ReadyToPlay)
             {
                 var duration = this.GetPlayerItemDuration().Seconds;
-                if (double.IsInfinity(duration))
+                if (!double.IsInfinity(duration))
                 {
                     var width = this.scrubber.Bounds.Width;
                     var interval = 0.5 * duration / width;
@@ -368,7 +368,7 @@ namespace AVCustomEdit
         private void UpdateTimeLabel()
         {
             var seconds = this.player != null ? this.player.CurrentTime.Seconds : 0d;
-            if (!double.IsInfinity(seconds))
+            if (double.IsInfinity(seconds))
             {
                 seconds = 0;
             }
@@ -380,13 +380,13 @@ namespace AVCustomEdit
             this.currentTimeLabel.TextColor = UIColor.White;
             this.currentTimeLabel.TextAlignment = UITextAlignment.Center;
 
-            this.currentTimeLabel.Text = $"{minutes}:{secondsInt}";
+            this.currentTimeLabel.Text = TimeSpan.FromSeconds(seconds).ToString(@"mm\:ss");
         }
 
         private void UpdateScrubber()
         {
             var duration = this.GetPlayerItemDuration().Seconds;
-            if (double.IsInfinity(duration))
+            if (!double.IsNaN(duration))
             {
                 double time = this.player.CurrentTime.Seconds;
                 this.scrubber.Value = (float)(time / duration);

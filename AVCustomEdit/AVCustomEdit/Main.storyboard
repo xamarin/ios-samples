@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
@@ -19,16 +19,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LD4-Le-jcl" customClass="PlayerView">
-                                <rect key="frame" x="0.0" y="20" width="667" height="355"/>
+                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                                 <subviews>
                                     <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qwZ-Xz-etI">
-                                        <rect key="frame" x="258.5" y="301" width="150" height="2"/>
+                                        <rect key="frame" x="258.5" y="321" width="150" height="2"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="150" id="WOv-Rg-XAp"/>
                                         </constraints>
                                     </progressView>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="rAL-i5-8Tr">
-                                        <rect key="frame" x="0.0" y="305" width="667" height="50"/>
+                                        <rect key="frame" x="0.0" y="341" width="667" height="34"/>
                                         <items>
                                             <barButtonItem style="plain" systemItem="play" id="Qpn-Ic-8jZ">
                                                 <connections>
@@ -37,7 +37,7 @@
                                             </barButtonItem>
                                             <barButtonItem style="plain" id="efu-Ly-hxw">
                                                 <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="3t9-Uy-JJm">
-                                                    <rect key="frame" x="0.0" y="0.0" width="204" height="34"/>
+                                                    <rect key="frame" x="37" y="0.0" width="204" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
                                                         <action selector="beginScrubbing:" destination="BYZ-38-t0r" eventType="touchDown" id="264"/>
@@ -62,7 +62,7 @@
                                         </items>
                                     </toolbar>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miR-oB-qMb">
-                                        <rect key="frame" x="241" y="328" width="48" height="21"/>
+                                        <rect key="frame" x="249" y="347.5" width="48" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="48" id="eOK-qf-EL8"/>
                                             <constraint firstAttribute="height" constant="21" id="hV9-BJ-oMA"/>
@@ -75,11 +75,11 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="rAL-i5-8Tr" firstAttribute="centerX" secondItem="qwZ-Xz-etI" secondAttribute="centerX" id="5oH-Ty-D81"/>
-                                    <constraint firstItem="miR-oB-qMb" firstAttribute="bottom" secondItem="rAL-i5-8Tr" secondAttribute="bottom" constant="-6" id="Cxp-y0-W1p"/>
+                                    <constraint firstItem="miR-oB-qMb" firstAttribute="centerY" secondItem="rAL-i5-8Tr" secondAttribute="centerY" id="SQ5-ZZ-cW7"/>
                                     <constraint firstAttribute="trailing" secondItem="rAL-i5-8Tr" secondAttribute="trailing" id="btU-9R-1m3"/>
                                     <constraint firstItem="rAL-i5-8Tr" firstAttribute="leading" secondItem="LD4-Le-jcl" secondAttribute="leading" id="fgv-m2-g1i"/>
                                     <constraint firstAttribute="bottom" secondItem="rAL-i5-8Tr" secondAttribute="bottom" id="x2q-jn-2Jf"/>
-                                    <constraint firstItem="rAL-i5-8Tr" firstAttribute="leading" secondItem="miR-oB-qMb" secondAttribute="leading" constant="-241" id="zWg-Jb-eDI"/>
+                                    <constraint firstItem="rAL-i5-8Tr" firstAttribute="leading" secondItem="miR-oB-qMb" secondAttribute="leading" constant="-249" id="zWg-Jb-eDI"/>
                                     <constraint firstAttribute="bottom" secondItem="qwZ-Xz-etI" secondAttribute="bottom" constant="52" id="zno-nE-9K9"/>
                                 </constraints>
                                 <connections>
@@ -122,7 +122,7 @@
             <objects>
                 <navigationController id="R9e-Pk-PpT" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BNi-gR-eHR">
-                        <rect key="frame" x="0.0" y="20" width="667" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -145,7 +145,7 @@
                             <tableViewSection headerTitle="Transition Type" id="1042">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationLevel="1" indentationWidth="0.0" textLabel="nno-KP-PYO" style="IBUITableViewCellStyleDefault" id="1043">
-                                        <rect key="frame" x="0.0" y="45" width="667" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="667" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1043" id="1044">
                                             <rect key="frame" x="0.0" y="0.0" width="667" height="43.5"/>
@@ -162,7 +162,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationLevel="1" indentationWidth="0.0" textLabel="7iK-G1-2ez" style="IBUITableViewCellStyleDefault" id="1045">
-                                        <rect key="frame" x="0.0" y="89" width="667" height="44"/>
+                                        <rect key="frame" x="0.0" y="99.5" width="667" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1045" id="1046">
                                             <rect key="frame" x="0.0" y="0.0" width="667" height="43.5"/>
@@ -194,8 +194,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="diagonalWipeCell" destination="1043" id="name-outlet-1043"/>
                         <outlet property="crossDissolveCell" destination="1045" id="name-outlet-1045"/>
+                        <outlet property="diagonalWipeCell" destination="1043" id="name-outlet-1043"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMV-Ds-sup" userLabel="First Responder" sceneMemberID="firstResponder"/>
