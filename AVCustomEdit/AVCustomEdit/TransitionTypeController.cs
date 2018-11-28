@@ -15,11 +15,27 @@ namespace AVCustomEdit
 
         public ITransitionTypePickerDelegate Delegate { get; set; }
 
-        public TransitionType currentTransition;
+        public TransitionType CurrentTransition { get; set; }
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+
+            switch (this.CurrentTransition)
+            {
+                case TransitionType.CrossDissolveTransition:
+                    this.crossDissolveCell.Accessory = UITableViewCellAccessory.Checkmark;
+                    break;
+
+                case TransitionType.DiagonalWipeTransition:
+                    this.diagonalWipeCell.Accessory = UITableViewCellAccessory.Checkmark;
+                    break;
+            }
+        }
 
         partial void transitionSelected(UIBarButtonItem sender)
         {
-            this.Delegate.DidPickTransitionType(this.currentTransition);
+            this.Delegate.DidPickTransitionType(this.CurrentTransition);
         }
 
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
@@ -30,14 +46,14 @@ namespace AVCustomEdit
             if (selectedCell == this.diagonalWipeCell)
             {
                 this.crossDissolveCell.Accessory = UITableViewCellAccessory.None;
+                this.CurrentTransition = TransitionType.DiagonalWipeTransition;
                 this.Delegate.DidPickTransitionType(TransitionType.DiagonalWipeTransition);
-                this.currentTransition = TransitionType.DiagonalWipeTransition;
             }
             else if (selectedCell == this.crossDissolveCell)
             {
                 this.diagonalWipeCell.Accessory = UITableViewCellAccessory.None;
+                this.CurrentTransition = TransitionType.CrossDissolveTransition;
                 this.Delegate.DidPickTransitionType(TransitionType.CrossDissolveTransition);
-                this.currentTransition = TransitionType.CrossDissolveTransition;
             }
 
             tableView.DeselectRow(indexPath, true);

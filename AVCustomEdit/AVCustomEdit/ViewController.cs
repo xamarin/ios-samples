@@ -10,7 +10,7 @@ using UIKit;
 
 namespace AVCustomEdit
 {
-    public partial class ViewController : UIViewController, IUIGestureRecognizerDelegate
+    public partial class ViewController : UIViewController, IUIGestureRecognizerDelegate, ITransitionTypePickerDelegate
     {
         private readonly NSString StatusObservationContext = new NSString("AVCustomEditPlayerViewControllerStatusObservationContext");
         private readonly NSString RateObservationContext = new NSString("AVCustomEditPlayerViewControllerRateObservationContext");
@@ -22,10 +22,6 @@ namespace AVCustomEdit
 
         private AVPlayer player;
         private AVPlayerItem playerItem;
-
-        private UIPopoverController popover;
-
-        /*****/
 
         private bool isPlaying;
         private bool isScrubInFlight;
@@ -94,24 +90,20 @@ namespace AVCustomEdit
             if (segue.Identifier == "Transition")
             {
                 // Setup transition type picker controller before it is shown.
-                //APLTransitionTypeController* transitionTypePickerController = (APLTransitionTypeController*)((UINavigationController*)segue.destinationViewController).topViewController;
-                //if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                //    self.popover = [(UIStoryboardPopoverSegue*)segue popoverController];
-                //}
-                //transitionTypePickerController.delegate = self;
-                //transitionTypePickerController.currentTransition = _transitionType;
-                //if (_transitionType == kCrossDissolveTransition)
-                //{
-                //    // Make sure the view is loaded first
-                //    if (!transitionTypePickerController.crossDissolveCell)
-                //        [transitionTypePickerController loadView];
-                //    [transitionTypePickerController.crossDissolveCell setAccessoryType:UITableViewCellAccessoryCheckmark];
-                //} else {
-                //    // Make sure the view is loaded first
-                //    if (!transitionTypePickerController.diagonalWipeCell)
-                //        [transitionTypePickerController loadView];
-                //    [transitionTypePickerController.diagonalWipeCell setAccessoryType:UITableViewCellAccessoryCheckmark];
-                //}
+                if ((segue.DestinationViewController as UINavigationController)?.TopViewController is TransitionTypeController transitionTypePickerController)
+                {
+                    transitionTypePickerController.Delegate = this;
+                    transitionTypePickerController.CurrentTransition = this.transitionType;
+                    if (this.transitionType == TransitionType.CrossDissolveTransition)
+                    {
+                        //[transitionTypePickerController.crossDissolveCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+                    }
+                    else
+                    {
+                        // Make sure the view is loaded first
+                        //[transitionTypePickerController.diagonalWipeCell setAccessoryType:UITableViewCellAccessoryCheckmark];
+                    }
+                }
             }
         }
 
@@ -591,5 +583,15 @@ namespace AVCustomEdit
         }
 
         #endregion
+
+        public void DidPickTransitionType(TransitionType transitionType)
+        {
+            this.transitionType = transitionType;
+
+            // Let the editor know of the change in transition type.
+            this.SynchronizeWithEditor();
+
+            this.DismissViewController(true, null);
+        }
     }
 }

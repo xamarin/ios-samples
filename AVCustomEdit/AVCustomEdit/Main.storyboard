@@ -51,7 +51,7 @@
                                             <barButtonItem style="plain" systemItem="flexibleSpace" id="ied-hw-7v0"/>
                                             <barButtonItem title="Set Transition" id="kca-Ih-Apo">
                                                 <connections>
-                                                    <segue destination="R9e-Pk-PpT" kind="presentation" id="ZKd-7X-hTO"/>
+                                                    <segue destination="R9e-Pk-PpT" kind="presentation" identifier="Transition" id="ZKd-7X-hTO"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem title="Export" id="kIy-gk-TuL">
@@ -120,7 +120,7 @@
         <!--Navigation Controller-->
         <scene sceneID="oF8-X1-4jb">
             <objects>
-                <navigationController id="R9e-Pk-PpT" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="R9e-Pk-PpT" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="BNi-gR-eHR">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
