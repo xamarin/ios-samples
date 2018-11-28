@@ -22,9 +22,9 @@ namespace AVCustomEdit
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITableViewCell diagonalWipeCell { get; set; }
 
-        [Action ("transitionSelected:")]
+        [Action ("TransitionSelected:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void transitionSelected (UIKit.UIBarButtonItem sender);
+        partial void TransitionSelected (UIKit.UIBarButtonItem sender);
 
         void ReleaseDesignerOutlets ()
         {

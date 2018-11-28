@@ -32,7 +32,7 @@
                                         <items>
                                             <barButtonItem style="plain" systemItem="play" id="Qpn-Ic-8jZ">
                                                 <connections>
-                                                    <action selector="togglePlayPause:" destination="BYZ-38-t0r" id="241"/>
+                                                    <action selector="TogglePlayPause:" destination="BYZ-38-t0r" id="241"/>
                                                 </connections>
                                             </barButtonItem>
                                             <barButtonItem style="plain" id="efu-Ly-hxw">
@@ -40,11 +40,11 @@
                                                     <rect key="frame" x="37" y="0.0" width="204" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <action selector="beginScrubbing:" destination="BYZ-38-t0r" eventType="touchDown" id="264"/>
-                                                        <action selector="endScrubbing:" destination="BYZ-38-t0r" eventType="touchCancel" id="265"/>
-                                                        <action selector="endScrubbing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="288"/>
-                                                        <action selector="endScrubbing:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="311"/>
-                                                        <action selector="scrub:" destination="BYZ-38-t0r" eventType="valueChanged" id="312"/>
+                                                        <action selector="BeginScrubbing:" destination="BYZ-38-t0r" eventType="touchDown" id="264"/>
+                                                        <action selector="EndScrubbing:" destination="BYZ-38-t0r" eventType="touchCancel" id="265"/>
+                                                        <action selector="EndScrubbing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="288"/>
+                                                        <action selector="EndScrubbing:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="311"/>
+                                                        <action selector="Scrub:" destination="BYZ-38-t0r" eventType="valueChanged" id="312"/>
                                                     </connections>
                                                 </slider>
                                             </barButtonItem>
@@ -56,7 +56,7 @@
                                             </barButtonItem>
                                             <barButtonItem title="Export" id="kIy-gk-TuL">
                                                 <connections>
-                                                    <action selector="exportToMovie:" destination="BYZ-38-t0r" id="382"/>
+                                                    <action selector="ExportToMovie:" destination="BYZ-38-t0r" id="382"/>
                                                 </connections>
                                             </barButtonItem>
                                         </items>
@@ -110,7 +110,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="sLC-Cu-nWY">
                     <connections>
-                        <action selector="handleTapGesture:" destination="BYZ-38-t0r" id="407"/>
+                        <action selector="HandleTapGesture:" destination="BYZ-38-t0r" id="407"/>
                         <outlet property="delegate" destination="BYZ-38-t0r" id="e8g-ul-YGd"/>
                     </connections>
                 </tapGestureRecognizer>
@@ -189,7 +189,7 @@
                     <navigationItem key="navigationItem" title="Set Transition" id="H2T-Lk-SG8">
                         <barButtonItem key="rightBarButtonItem" title="Done" style="done" id="2f7-fq-iCZ">
                             <connections>
-                                <action selector="transitionSelected:" destination="1IP-es-DBQ" id="772"/>
+                                <action selector="TransitionSelected:" destination="1IP-es-DBQ" id="772"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

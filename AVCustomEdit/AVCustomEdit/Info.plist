@@ -34,5 +34,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access to PhotoLibrary for export feature</string>
 </dict>
 </plist>

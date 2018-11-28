@@ -3,6 +3,7 @@ using AVFoundation;
 using CoreFoundation;
 using CoreMedia;
 using Foundation;
+using Photos;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -348,7 +349,7 @@ namespace AVCustomEdit
         private void UpdatePlayPauseButton()
         {
             var style = this.isPlaying ? UIBarButtonSystemItem.Pause : UIBarButtonSystemItem.Play;
-            using (var newPlayPauseButton = new UIBarButtonItem(style, (sender, e) => this.togglePlayPause(sender as UIBarButtonItem)))
+            using (var newPlayPauseButton = new UIBarButtonItem(style, (sender, e) => this.TogglePlayPause(sender as UIBarButtonItem)))
             {
                 var items = this.toolbar.Items;
                 items[0] = newPlayPauseButton;
@@ -385,10 +386,9 @@ namespace AVCustomEdit
             }
         }
 
-        private void UpdateProgress(NSTimer timer)
+        private void UpdateProgress(AVAssetExportSession session)
         {
-            var session = timer.UserInfo as AVAssetExportSession;
-            if (session.Status == AVAssetExportSessionStatus.Exporting)
+            if (session?.Status == AVAssetExportSessionStatus.Exporting)
             {
                 this.exportProgressView.Progress = session.Progress;
             }
@@ -411,7 +411,7 @@ namespace AVCustomEdit
 
         #region IBActions
 
-        partial void togglePlayPause(UIBarButtonItem sender)
+        partial void TogglePlayPause(UIBarButtonItem sender)
         {
             this.isPlaying = !this.isPlaying;
             if (this.isPlaying)
@@ -430,7 +430,7 @@ namespace AVCustomEdit
             }
         }
 
-        partial void beginScrubbing(UISlider sender)
+        partial void BeginScrubbing(UISlider sender)
         {
             this.isSeekToZeroBeforePlaying = false;
             this.playRateToRestore = this.player.Rate;
@@ -439,7 +439,7 @@ namespace AVCustomEdit
             this.RemoveTimeObserverFromPlayer();
         }
 
-        partial void scrub(UISlider sender)
+        partial void Scrub(UISlider sender)
         {
             this.lastScrubSliderValue = this.scrubber.Value;
             if (!this.isScrubInFlight)
@@ -471,7 +471,7 @@ namespace AVCustomEdit
             }
         }
 
-        partial void endScrubbing(UISlider sender)
+        partial void EndScrubbing(UISlider sender)
         {
             if (this.isScrubInFlight)
             {
@@ -493,13 +493,13 @@ namespace AVCustomEdit
             this.isSeekToZeroBeforePlaying = true;
         }
 
-        partial void handleTapGesture(UITapGestureRecognizer sender)
+        partial void HandleTapGesture(UITapGestureRecognizer sender)
         {
             this.toolbar.Hidden = !this.toolbar.Hidden;
             this.currentTimeLabel.Hidden = !this.currentTimeLabel.Hidden;
         }
 
-        partial void exportToMovie(UIBarButtonItem sender)
+        partial void ExportToMovie(UIBarButtonItem sender)
         {
             this.exportProgressView.Hidden = false;
 
@@ -524,14 +524,14 @@ namespace AVCustomEdit
             session.OutputUrl = NSUrl.FromFilename(filePath);
             session.OutputFileType = AVFileType.QuickTimeMovie;
 
-            session.ExportAsynchronously(() => DispatchQueue.MainQueue.DispatchAsync(() => exportCompleted(session)));
+            session.ExportAsynchronously(() => DispatchQueue.MainQueue.DispatchAsync(() => OnExportCompleted(session)));
 
             // Update progress view with export progress
-            this.progressTimer = NSTimer.CreateRepeatingTimer(0.5, d => this.UpdateProgress(this.progressTimer));
+            this.progressTimer = NSTimer.CreateRepeatingTimer(0.5, d => this.UpdateProgress(session));
             NSRunLoop.Current.AddTimer(this.progressTimer, NSRunLoopMode.Default);
         }
 
-        private void exportCompleted(AVAssetExportSession session)
+        private void OnExportCompleted(AVAssetExportSession session)
         {
             this.exportProgressView.Hidden = true;
             this.currentTimeLabel.Hidden = false;
@@ -546,30 +546,35 @@ namespace AVCustomEdit
                 Console.WriteLine($"exportSession error:{session.Error}");
                 this.ReportError(session.Error);
             }
-
-            if (session.Status != AVAssetExportSessionStatus.Completed)
+            else
             {
-                return;
-            }
+                this.exportProgressView.Progress = 1f;
 
-            this.exportProgressView.Progress = 1f;
-
-            // Save the exported movie to the camera roll
-            var library = new ALAssetsLibrary();
-            library.WriteVideoToSavedPhotosAlbum(outputURL, (assetURL, error) =>
-            {
-                if (error != null)
+                // Save the exported movie to the camera roll
+                PHPhotoLibrary.RequestAuthorization((status) =>
                 {
-                    Console.WriteLine($"writeVideoToAssestsLibrary failed: {error}");
-                    this.ReportError(error);
-                }
-            });
+                    if(status == PHAuthorizationStatus.Authorized)
+                    {
+                        PHPhotoLibrary.SharedPhotoLibrary.PerformChanges(() => PHAssetChangeRequest.FromVideo(outputURL), 
+                        (successfully, error) =>
+                        {
+                            if (error != null)
+                            {
+                                Console.WriteLine($"writeVideoToAssestsLibrary failed: {error}");
+                                this.ReportError(error);
+                            }
 
-            this.player.Play();
-            this.playPauseButton.Enabled = true;
-            this.transitionButton.Enabled = true;
-            this.scrubber.Enabled = true;
-            this.exportButton.Enabled = true;
+                            base.InvokeOnMainThread(() =>
+                            {
+                                this.playPauseButton.Enabled = true;
+                                this.transitionButton.Enabled = true;
+                                this.scrubber.Enabled = true;
+                                this.exportButton.Enabled = true;
+                            });
+                        });
+                    }
+                });
+            }
         }
 
         #endregion

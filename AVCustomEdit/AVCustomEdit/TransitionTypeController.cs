@@ -33,7 +33,7 @@ namespace AVCustomEdit
             }
         }
 
-        partial void transitionSelected(UIBarButtonItem sender)
+        partial void TransitionSelected(UIBarButtonItem sender)
         {
             this.Delegate.DidPickTransitionType(this.CurrentTransition);
         }

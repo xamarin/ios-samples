@@ -45,29 +45,29 @@ namespace AVCustomEdit
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIBarButtonItem transitionButton { get; set; }
 
-        [Action ("beginScrubbing:")]
+        [Action ("BeginScrubbing:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void beginScrubbing (UIKit.UISlider sender);
+        partial void BeginScrubbing (UIKit.UISlider sender);
 
-        [Action ("endScrubbing:")]
+        [Action ("EndScrubbing:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void endScrubbing (UIKit.UISlider sender);
+        partial void EndScrubbing (UIKit.UISlider sender);
 
-        [Action ("exportToMovie:")]
+        [Action ("ExportToMovie:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void exportToMovie (UIKit.UIBarButtonItem sender);
+        partial void ExportToMovie (UIKit.UIBarButtonItem sender);
 
-        [Action ("handleTapGesture:")]
+        [Action ("HandleTapGesture:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void handleTapGesture (UIKit.UITapGestureRecognizer sender);
+        partial void HandleTapGesture (UIKit.UITapGestureRecognizer sender);
 
-        [Action ("scrub:")]
+        [Action ("Scrub:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void scrub (UIKit.UISlider sender);
+        partial void Scrub (UIKit.UISlider sender);
 
-        [Action ("togglePlayPause:")]
+        [Action ("TogglePlayPause:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void togglePlayPause (UIKit.UIBarButtonItem sender);
+        partial void TogglePlayPause (UIKit.UIBarButtonItem sender);
 
         void ReleaseDesignerOutlets ()
         {
