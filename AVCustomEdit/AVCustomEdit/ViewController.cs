@@ -316,14 +316,17 @@ namespace AVCustomEdit
             if (context == this.RateObservationContext.Handle)
             {
                 var changes = new NSObservedChange(change);
-                var newValue = changes.NewValue as NSNumber;
-                if ((changes.OldValue == null && newValue != null) ||
-                    (changes.OldValue is NSNumber oldRate && newValue != null && oldRate.FloatValue != newValue.FloatValue))
+                if (changes.NewValue is NSNumber newValue &&
+                    (changes.OldValue == null || (changes.OldValue is NSNumber oldRate && oldRate.FloatValue != newValue.FloatValue)))
                 {
                     this.isPlaying = (newValue.FloatValue != 0f) || (playRateToRestore != 0f);
                     this.UpdatePlayPauseButton();
                     this.UpdateScrubber();
                     this.UpdateTimeLabel();
+
+                    // clear
+                    newValue.Dispose();
+                    newValue = null;
                 }
             }
             else if (context == this.StatusObservationContext.Handle)
@@ -353,13 +356,14 @@ namespace AVCustomEdit
         private void UpdatePlayPauseButton()
         {
             var style = this.isPlaying ? UIBarButtonSystemItem.Pause : UIBarButtonSystemItem.Play;
-            var newPlayPauseButton = new UIBarButtonItem(style, (sender, e) => this.togglePlayPause(sender as UIBarButtonItem));
+            using (var newPlayPauseButton = new UIBarButtonItem(style, (sender, e) => this.togglePlayPause(sender as UIBarButtonItem)))
+            {
+                var items = this.toolbar.Items;
+                items[0] = newPlayPauseButton;
+                this.toolbar.SetItems(items, false);
 
-            var items = this.toolbar.Items;
-            items[0] = newPlayPauseButton;
-            this.toolbar.SetItems(items, false);
-
-            this.playPauseButton = newPlayPauseButton;
+                this.playPauseButton = newPlayPauseButton;
+            }
         }
 
         private void UpdateTimeLabel()
@@ -370,13 +374,8 @@ namespace AVCustomEdit
                 seconds = 0;
             }
 
-            int secondsInt = (int)Math.Round(seconds);
-            int minutes = secondsInt / 60;
-            secondsInt -= minutes * 60;
-
             this.currentTimeLabel.TextColor = UIColor.White;
             this.currentTimeLabel.TextAlignment = UITextAlignment.Center;
-
             this.currentTimeLabel.Text = TimeSpan.FromSeconds(seconds).ToString(@"mm\:ss");
         }
 
@@ -385,7 +384,7 @@ namespace AVCustomEdit
             var duration = this.GetPlayerItemDuration().Seconds;
             if (!double.IsNaN(duration))
             {
-                double time = this.player.CurrentTime.Seconds;
+                var time = this.player.CurrentTime.Seconds;
                 this.scrubber.Value = (float)(time / duration);
             }
             else
