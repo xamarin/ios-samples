@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using AssetsLibrary;
+﻿using AssetsLibrary;
 using AVFoundation;
 using CoreFoundation;
-using CoreGraphics;
 using CoreMedia;
 using Foundation;
-using ObjCRuntime;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using UIKit;
 
 namespace AVCustomEdit
@@ -25,20 +23,20 @@ namespace AVCustomEdit
         private AVPlayer player;
         private AVPlayerItem playerItem;
 
-        //private UIPopoverController popover;
+        private UIPopoverController popover;
 
         /*****/
 
-        private bool playing;
-        private bool scrubInFlight;
-        private bool seekToZeroBeforePlaying;
+        private bool isPlaying;
+        private bool isScrubInFlight;
+        private bool isSeekToZeroBeforePlaying;
         private float lastScrubSliderValue;
         private float playRateToRestore;
         private NSObject timeObserver;
 
         private float transitionDuration;
         private TransitionType transitionType;
-        private bool transitionsEnabled;
+        private bool isTransitionsEnabled;
 
         private NSTimer progressTimer;
 
@@ -55,7 +53,7 @@ namespace AVCustomEdit
             // Defaults for the transition settings.
             this.transitionType = TransitionType.DiagonalWipeTransition;
             this.transitionDuration = 2f;
-            this.transitionsEnabled = true;
+            this.isTransitionsEnabled = true;
 
             this.UpdateScrubber();
             this.UpdateTimeLabel();
@@ -70,17 +68,16 @@ namespace AVCustomEdit
 
             if (this.player == null)
             {
-                seekToZeroBeforePlaying = false;
+                this.isSeekToZeroBeforePlaying = false;
+
                 this.player = new AVPlayer();
                 this.player.AddObserver(this, "rate", NSKeyValueObservingOptions.Old | NSKeyValueObservingOptions.New, RateObservationContext.Handle);
-
                 this.playerView.Player = this.player;
             }
 
             this.AddTimeObserverToPlayer();
 
             // Build AVComposition and AVVideoComposition objects for playback
-            //this.SetupEditingAndPlayback();
             this.editor.BuildCompositionObjectsForPlayback(true);
             this.SynchronizePlayerWithEditor();
         }
@@ -135,7 +132,7 @@ namespace AVCustomEdit
 
             // Wait until both assets are loaded
             dispatchGroup.Wait(DispatchTime.Forever);
-            InvokeOnMainThread(() => this.SynchronizeWithEditor());
+            base.InvokeOnMainThread(() => this.SynchronizeWithEditor());
         }
 
         private void LoadAsset(AVAsset asset, string[] assetKeysToLoad, DispatchGroup dispatchGroup)
@@ -163,7 +160,7 @@ namespace AVCustomEdit
                 // This code assumes that both assets are atleast 5 seconds long.
                 var value = NSValue.FromCMTimeRange(new CMTimeRange { Start = CMTime.FromSeconds(0, 1), Duration = CMTime.FromSeconds(5, 1) });
                 this.clipTimeRanges.Add(value);
-                if(this.clips.Count != this.clipTimeRanges.Count)
+                if (this.clips.Count != this.clipTimeRanges.Count)
                 { }
             bail:
                 dispatchGroup.Leave();
@@ -180,13 +177,13 @@ namespace AVCustomEdit
                     if (this.playerItem != null)
                     {
                         this.playerItem.RemoveObserver(this, "status");
-                        //NSNotificationCenter.DefaultCenter.RemoveObserver(this, AVPlayerItem.DidPlayToEndTimeNotification, this.playerItem);
+                        NSNotificationCenter.DefaultCenter.RemoveObserver(this, AVPlayerItem.DidPlayToEndTimeNotification, this.playerItem);
                     }
 
                     this.playerItem = playerItem;
                     if (this.playerItem != null)
                     {
-                        //this.playerItem.SeekingWaitsForVideoCompositionRendering = true;
+                        this.playerItem.SeekingWaitsForVideoCompositionRendering = true;
 
                         // Observe the player item "status" key to determine when it is ready to play
                         this.playerItem.AddObserver(this, "status", NSKeyValueObservingOptions.New | NSKeyValueObservingOptions.Initial, StatusObservationContext.Handle);
@@ -194,7 +191,7 @@ namespace AVCustomEdit
                         // When the player item has played to its end time we'll set a flag
                         // so that the next time the play method is issued the player will
                         // be reset to time zero first.
-                        //NSNotificationCenter.DefaultCenter.AddObserver(AVPlayerItem.DidPlayToEndTimeNotification, playerItemDidReachEnd);
+                        NSNotificationCenter.DefaultCenter.AddObserver(AVPlayerItem.DidPlayToEndTimeNotification, this.PlayerItemDidReachEnd);
                     }
 
                     this.player.ReplaceCurrentItemWithPlayerItem(this.playerItem);
@@ -209,10 +206,10 @@ namespace AVCustomEdit
             this.SynchronizeEditorClipTimeRangesWithOurClipTimeRanges();
 
             // Transitions
-            if (transitionsEnabled)
+            if (this.isTransitionsEnabled)
             {
-                this.editor.TransitionDuration = CMTime.FromSeconds(transitionDuration, 600);
-                this.editor.TransitionType = transitionType;
+                this.editor.TransitionDuration = CMTime.FromSeconds(this.transitionDuration, 600);
+                this.editor.TransitionType = this.transitionType;
             }
             else
             {
@@ -292,9 +289,9 @@ namespace AVCustomEdit
 
         private void RemoveTimeObserverFromPlayer()
         {
-            if (timeObserver != null)
+            if (this.timeObserver != null)
             {
-                this.player.RemoveTimeObserver(timeObserver);
+                this.player.RemoveTimeObserver(this.timeObserver);
                 this.timeObserver.Dispose();
                 this.timeObserver = null;
             }
@@ -310,26 +307,26 @@ namespace AVCustomEdit
                 itemDuration = playerItem.Duration;
             }
 
-            /* Will be kCMTimeInvalid if the item is not ready to play. */
+            // Will be kCMTimeInvalid if the item is not ready to play.
             return itemDuration;
         }
 
         public override void ObserveValue(NSString keyPath, NSObject ofObject, NSDictionary change, IntPtr context)
         {
-            if (context == RateObservationContext.Handle)
+            if (context == this.RateObservationContext.Handle)
             {
-                var ch = new NSObservedChange(change);
-                var newValue = ch.NewValue as NSNumber;
-                if ((ch.OldValue == null && newValue != null) ||
-                    (ch.OldValue is NSNumber oldRate && newValue != null && oldRate.FloatValue != newValue.FloatValue))
+                var changes = new NSObservedChange(change);
+                var newValue = changes.NewValue as NSNumber;
+                if ((changes.OldValue == null && newValue != null) ||
+                    (changes.OldValue is NSNumber oldRate && newValue != null && oldRate.FloatValue != newValue.FloatValue))
                 {
-                    playing = (newValue.FloatValue != 0f) || (playRateToRestore != 0f);
+                    this.isPlaying = (newValue.FloatValue != 0f) || (playRateToRestore != 0f);
                     this.UpdatePlayPauseButton();
                     this.UpdateScrubber();
                     this.UpdateTimeLabel();
                 }
             }
-            else if (context == StatusObservationContext.Handle)
+            else if (context == this.StatusObservationContext.Handle)
             {
                 if (ofObject is AVPlayerItem playerItem)
                 {
@@ -355,12 +352,12 @@ namespace AVCustomEdit
 
         private void UpdatePlayPauseButton()
         {
-            var style = playing ? UIBarButtonSystemItem.Pause : UIBarButtonSystemItem.Play;
-            var newPlayPauseButton = new UIBarButtonItem(style, (sender, e) => togglePlayPause(sender as UIBarButtonItem));
+            var style = this.isPlaying ? UIBarButtonSystemItem.Pause : UIBarButtonSystemItem.Play;
+            var newPlayPauseButton = new UIBarButtonItem(style, (sender, e) => this.togglePlayPause(sender as UIBarButtonItem));
 
-            var items = toolbar.Items;
+            var items = this.toolbar.Items;
             items[0] = newPlayPauseButton;
-            toolbar.SetItems(items, false);
+            this.toolbar.SetItems(items, false);
 
             this.playPauseButton = newPlayPauseButton;
         }
@@ -402,7 +399,7 @@ namespace AVCustomEdit
             var session = timer.UserInfo as AVAssetExportSession;
             if (session.Status == AVAssetExportSessionStatus.Exporting)
             {
-                exportProgressView.Progress = session.Progress;
+                this.exportProgressView.Progress = session.Progress;
             }
         }
 
@@ -414,7 +411,7 @@ namespace AVCustomEdit
                 {
                     var alertView = UIAlertController.Create(error.LocalizedDescription, error.LocalizedRecoverySuggestion, UIAlertControllerStyle.Alert);
                     alertView.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-                    PresentViewController(alertView, true, null);
+                    base.PresentViewController(alertView, true, null);
                 });
             }
         }
@@ -425,13 +422,13 @@ namespace AVCustomEdit
 
         partial void togglePlayPause(UIBarButtonItem sender)
         {
-            this.playing = !this.playing;
-            if (this.playing)
+            this.isPlaying = !this.isPlaying;
+            if (this.isPlaying)
             {
-                if (this.seekToZeroBeforePlaying)
+                if (this.isSeekToZeroBeforePlaying)
                 {
                     this.player.Seek(CMTime.Zero);
-                    this.seekToZeroBeforePlaying = false;
+                    this.isSeekToZeroBeforePlaying = false;
                 }
 
                 this.player.Play();
@@ -444,8 +441,8 @@ namespace AVCustomEdit
 
         partial void beginScrubbing(UISlider sender)
         {
-            seekToZeroBeforePlaying = false;
-            playRateToRestore = this.player.Rate;
+            this.isSeekToZeroBeforePlaying = false;
+            this.playRateToRestore = this.player.Rate;
             this.player.Rate = 0f;
 
             this.RemoveTimeObserverFromPlayer();
@@ -453,32 +450,31 @@ namespace AVCustomEdit
 
         partial void scrub(UISlider sender)
         {
-            lastScrubSliderValue = this.scrubber.Value;
-
-            if (!scrubInFlight)
+            this.lastScrubSliderValue = this.scrubber.Value;
+            if (!this.isScrubInFlight)
             {
-                this.ScrubToSliderValue(lastScrubSliderValue);
+                this.ScrubToSliderValue(this.lastScrubSliderValue);
             }
         }
 
         private void ScrubToSliderValue(float sliderValue)
         {
             var duration = this.GetPlayerItemDuration().Seconds;
-            if (double.IsInfinity(duration))
+            if (!double.IsInfinity(duration))
             {
                 var width = this.scrubber.Bounds.Width;
 
                 double time = duration * sliderValue;
-                double tolerance = 1.0f * duration / width;
+                double tolerance = 1d * duration / width;
 
-                scrubInFlight = true;
+                this.isScrubInFlight = true;
 
                 this.player.Seek(CMTime.FromSeconds(time, NSEC_PER_SEC),
                                  CMTime.FromSeconds(tolerance, NSEC_PER_SEC),
                                  CMTime.FromSeconds(tolerance, NSEC_PER_SEC),
                                  (finished) =>
                                  {
-                                     scrubInFlight = false;
+                                     this.isScrubInFlight = false;
                                      this.UpdateTimeLabel();
                                  });
             }
@@ -486,15 +482,15 @@ namespace AVCustomEdit
 
         partial void endScrubbing(UISlider sender)
         {
-            if (scrubInFlight)
+            if (this.isScrubInFlight)
             {
-                this.ScrubToSliderValue(lastScrubSliderValue);
+                this.ScrubToSliderValue(this.lastScrubSliderValue);
             }
 
             this.AddTimeObserverToPlayer();
 
-            this.player.Rate = playRateToRestore;
-            playRateToRestore = 0f;
+            this.player.Rate = this.playRateToRestore;
+            this.playRateToRestore = 0f;
         }
 
         /// <summary>
@@ -502,8 +498,8 @@ namespace AVCustomEdit
         /// </summary>
         private void PlayerItemDidReachEnd(NSNotification obj)
         {
-            /* After the movie has played to its end time, seek back to time zero to play it again. */
-            seekToZeroBeforePlaying = true;
+            // After the movie has played to its end time, seek back to time zero to play it again. 
+            this.isSeekToZeroBeforePlaying = true;
         }
 
         partial void handleTapGesture(UITapGestureRecognizer sender)
@@ -514,7 +510,7 @@ namespace AVCustomEdit
 
         partial void exportToMovie(UIBarButtonItem sender)
         {
-            exportProgressView.Hidden = false;
+            this.exportProgressView.Hidden = false;
 
             this.player.Pause();
             this.playPauseButton.Enabled = false;
@@ -529,7 +525,9 @@ namespace AVCustomEdit
 
             var filePath = Path.Combine(Path.GetTempPath(), "ExportedProject.mov");
             if (File.Exists(filePath))
+            {
                 File.Delete(filePath);
+            }
 
             // If a preset that is not compatible with AVFileTypeQuickTimeMovie is used, one can use -[AVAssetExportSession supportedFileTypes] to obtain a supported file type for the output file and UTTypeCreatePreferredIdentifierForTag to obtain an appropriate path extension for the output file type.
             session.OutputUrl = NSUrl.FromFilename(filePath);
@@ -538,19 +536,19 @@ namespace AVCustomEdit
             session.ExportAsynchronously(() => DispatchQueue.MainQueue.DispatchAsync(() => exportCompleted(session)));
 
             // Update progress view with export progress
-            progressTimer = NSTimer.CreateRepeatingTimer(0.5, d => UpdateProgress(progressTimer));
-            NSRunLoop.Current.AddTimer(progressTimer, NSRunLoopMode.Default);
+            this.progressTimer = NSTimer.CreateRepeatingTimer(0.5, d => this.UpdateProgress(this.progressTimer));
+            NSRunLoop.Current.AddTimer(this.progressTimer, NSRunLoopMode.Default);
         }
 
         private void exportCompleted(AVAssetExportSession session)
         {
-            exportProgressView.Hidden = true;
-            currentTimeLabel.Hidden = false;
+            this.exportProgressView.Hidden = true;
+            this.currentTimeLabel.Hidden = false;
             var outputURL = session.OutputUrl;
 
-            progressTimer.Invalidate();
-            progressTimer.Dispose();
-            progressTimer = null;
+            this.progressTimer.Invalidate();
+            this.progressTimer.Dispose();
+            this.progressTimer = null;
 
             if (session.Status != AVAssetExportSessionStatus.Completed)
             {
@@ -563,7 +561,7 @@ namespace AVCustomEdit
                 return;
             }
 
-            exportProgressView.Progress = 1f;
+            this.exportProgressView.Progress = 1f;
 
             // Save the exported movie to the camera roll
             var library = new ALAssetsLibrary();
