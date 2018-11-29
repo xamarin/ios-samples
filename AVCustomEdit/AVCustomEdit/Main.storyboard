@@ -53,7 +53,11 @@
                                         </slider>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Qbw-sK-BJN"/>
-                                    <barButtonItem title="Set Transition" id="6uz-rN-HPP"/>
+                                    <barButtonItem title="Set Transition" id="6uz-rN-HPP">
+                                        <connections>
+                                            <segue destination="R9e-Pk-PpT" kind="presentation" identifier="Transition" id="1354"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Export" id="xIp-Oh-YCB">
                                         <connections>
                                             <action selector="ExportToMovie:" destination="BYZ-38-t0r" id="ebu-5Y-QnB"/>
