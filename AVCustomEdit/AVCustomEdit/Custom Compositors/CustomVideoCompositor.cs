@@ -100,6 +100,7 @@ namespace AVCustomEdit
                         // The resulting pixelbuffer from OpenGL renderer is passed along to the request
                         request.FinishWithComposedVideoFrame(resultPixels);
                         resultPixels.Dispose();
+                        resultPixels = null;
                     }
                     else
                     {
@@ -155,7 +156,7 @@ namespace AVCustomEdit
                 var renderSize = renderContext.Size;
                 var destinationSize = new CGSize(dstPixels.Width, dstPixels.Height);
                 var renderContextTransform = new CGAffineTransform(renderSize.Width / 2, 0, 0, renderSize.Height / 2, renderSize.Width / 2, renderSize.Height / 2);
-                var destinationTransform = new CGAffineTransform(2 / destinationSize.Width, 0, 0, 2 / destinationSize.Height, -1, -1);
+                var destinationTransform = new CGAffineTransform(2 / destinationSize.Width, 0, 0, 2 / destinationSize.Height, -1, -1); 
                 var normalizedRenderTransform = CGAffineTransform.Multiply(CGAffineTransform.Multiply(renderContextTransform, renderContext.RenderTransform), destinationTransform);
                 Render.RenderTransform = normalizedRenderTransform;
 
