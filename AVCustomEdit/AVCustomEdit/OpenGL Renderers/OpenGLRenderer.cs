@@ -1,38 +1,38 @@
-using System;
-using Foundation;
-using OpenGLES;
 using CoreGraphics;
 using CoreVideo;
+using Foundation;
+using OpenGLES;
 using OpenTK.Graphics.ES20;
+using System;
 using System.Text;
 
 namespace AVCustomEdit
 {
     public class OpenGLRenderer : NSObject
     {
-        const string vertShaderSource = @"attribute vec4 position;
-                                          attribute vec2 texCoord;
-                                          uniform mat4 renderTransform;
-                                          varying vec2 texCoordVarying;
-                                          void main()
-                                          {
-                                             gl_Position = position * renderTransform;
-                                             texCoordVarying = texCoord;
-                                           }";
+        private const string VertShaderSource = @"attribute vec4 position; 
+                                                  attribute vec2 texCoord;
+                                                  uniform mat4 renderTransform;
+                                                  varying vec2 texCoordVarying;
+                                                  void main()
+                                                  {
+                                                     gl_Position = position * renderTransform;
+                                                     texCoordVarying = texCoord;
+                                                  }";
 
-        const string fragShaderYSource = @"varying highp vec2 texCoordVarying;
-                                           uniform sampler2D SamplerY;
-                                           void main()
-                                           {
-                                             gl_FragColor.r = texture2D(SamplerY, texCoordVarying).r;
-                                           }";
+        private const string FragShaderYSource = @"varying highp vec2 texCoordVarying;
+                                                   uniform sampler2D SamplerY;
+                                                   void main()
+                                                   {
+                                                      gl_FragColor.r = texture2D(SamplerY, texCoordVarying).r;
+                                                   }";
 
-        const string fragShaderUVSource = @"varying highp vec2 texCoordVarying;
-                                            uniform sampler2D SamplerUV;
-                                            void main()
-                                            {
-                                               gl_FragColor.rg = texture2D(SamplerUV, texCoordVarying).rg;
-                                            }";
+        private const string FragShaderUVSource = @"varying highp vec2 texCoordVarying;
+                                                    uniform sampler2D SamplerUV;
+                                                    void main()
+                                                    {
+                                                       gl_FragColor.rg = texture2D(SamplerUV, texCoordVarying).rg;
+                                                    }";
 
         public uint OffscreenBufferHandle;
 
@@ -69,6 +69,7 @@ namespace AVCustomEdit
             }
 
             _videoTextureCache = CVOpenGLESTextureCache.FromEAGLContext(CurrentContext);
+
             GL.Disable(EnableCap.DepthTest);
             GL.GenFramebuffers(1, out OffscreenBufferHandle);
             GL.BindFramebuffer(FramebufferTarget.Framebuffer, OffscreenBufferHandle);
@@ -87,7 +88,7 @@ namespace AVCustomEdit
             _videoTextureCache.Flush(0);
 
             // CVOpenGLTextureCacheCreateTextureFromImage will create GL texture optimally from CVPixelBufferRef.
-            // UV
+            // Y
             lumaTexture = _videoTextureCache.TextureFromImage(pixelBuffer, 
                                                               true,
                                                               All.RedExt,
@@ -97,6 +98,7 @@ namespace AVCustomEdit
                                                               DataType.UnsignedByte,
                                                               0,
                                                               out CVReturn error);
+
             if (lumaTexture == null || error != CVReturn.Success)
             {
                 Console.Error.WriteLine($"Error at creating luma texture using CVOpenGLESTextureCacheCreateTextureFromImage: {error}");
@@ -141,6 +143,8 @@ namespace AVCustomEdit
             return chromaTexture;
         }
 
+        #region OpenGL ES 2 shader compilation
+
         private bool LoadShaders()
         {
             int vertShader, fragShaderY, fragShaderUV;
@@ -150,28 +154,34 @@ namespace AVCustomEdit
             ProgramUV = GL.CreateProgram();
 
             // Create and compile the vertex shader.
-            if (!CompileShader(ShaderType.VertexShader, vertShaderSource, out vertShader))
+            if (!CompileShader(ShaderType.VertexShader, VertShaderSource, out vertShader))
             {
                 Console.Error.WriteLine("Failed to compile vertex shader");
                 return false;
             }
 
-            if (!CompileShader(ShaderType.FragmentShader, fragShaderYSource, out fragShaderY))
+            if (!CompileShader(ShaderType.FragmentShader, FragShaderYSource, out fragShaderY))
             {
                 Console.Error.WriteLine("Failed to compile Y fragment shader");
                 return false;
             }
 
-            if (!CompileShader(ShaderType.FragmentShader, fragShaderUVSource, out fragShaderUV))
+            if (!CompileShader(ShaderType.FragmentShader, FragShaderUVSource, out fragShaderUV))
             {
                 Console.Error.WriteLine("Failed to compile UV fragment shader");
                 return false;
             }
 
+            // Attach vertex shader to programY.
             GL.AttachShader(ProgramY, vertShader);
+
+            // Attach fragment shader to programY.
             GL.AttachShader(ProgramY, fragShaderY);
 
+            // Attach vertex shader to programUV.
             GL.AttachShader(ProgramUV, vertShader);
+
+            // Attach fragment shader to programUV.
             GL.AttachShader(ProgramUV, fragShaderUV);
 
             // Bind attribute locations. This needs to be done prior to linking.
@@ -189,26 +199,31 @@ namespace AVCustomEdit
                     GL.DeleteShader(vertShader);
                     vertShader = 0;
                 }
+
                 if (fragShaderY != 0)
                 {
                     GL.DeleteShader(fragShaderY);
                     fragShaderY = 0;
                 }
+
                 if (fragShaderUV != 0)
                 {
                     GL.DeleteShader(fragShaderUV);
                     fragShaderUV = 0;
                 }
+
                 if (ProgramY != 0)
                 {
                     GL.DeleteProgram(ProgramY);
                     ProgramY = 0;
                 }
+
                 if (ProgramUV != 0)
                 {
                     GL.DeleteProgram(ProgramUV);
                     ProgramUV = 0;
                 }
+
                 return false;
             }
 
@@ -218,18 +233,20 @@ namespace AVCustomEdit
             Uniforms[(int)Uniform.Render_Transform_Y] = GL.GetUniformLocation(ProgramY, "renderTransform");
             Uniforms[(int)Uniform.Render_Transform_UV] = GL.GetUniformLocation(ProgramUV, "renderTransform");
 
-            //Release vertex and fragment shaders.
+            // Release vertex and fragment shaders.
             if (vertShader != 0)
             {
                 GL.DetachShader(ProgramY, vertShader);
                 GL.DetachShader(ProgramUV, vertShader);
                 GL.DeleteShader(vertShader);
             }
+
             if (fragShaderY != 0)
             {
                 GL.DetachShader(ProgramY, fragShaderY);
                 GL.DeleteShader(fragShaderY);
             }
+
             if (fragShaderUV != 0)
             {
                 GL.DetachShader(ProgramUV, fragShaderUV);
@@ -248,14 +265,12 @@ namespace AVCustomEdit
                 return false;
             }
 
-            int status;
             shader = GL.CreateShader(type);
             GL.ShaderSource(shader, sourceString);
             GL.CompileShader(shader);
 
 #if DEBUG
-            int logLength;
-            GL.GetShader(shader, ShaderParameter.InfoLogLength, out logLength);
+            GL.GetShader(shader, ShaderParameter.InfoLogLength, out int logLength);
             if (logLength > 0)
             {
                 var log = GL.GetShaderInfoLog(shader);
@@ -263,7 +278,7 @@ namespace AVCustomEdit
             }
 #endif
 
-            GL.GetShader(shader, ShaderParameter.CompileStatus, out status);
+            GL.GetShader(shader, ShaderParameter.CompileStatus, out int status);
             if (status == 0)
             {
                 GL.DeleteShader(shader);
@@ -273,46 +288,27 @@ namespace AVCustomEdit
             return true;
         }
 
-        static bool LinkProgram(int program)
+        private static bool LinkProgram(int program)
         {
-            int status;
             GL.LinkProgram(program);
 
 #if DEBUG
-            int logLength;
-            GL.GetProgram(program, ProgramParameter.InfoLogLength, out logLength);
+            GL.GetProgram(program, ProgramParameter.InfoLogLength, out int logLength);
             if (logLength > 0)
             {
                 var log = new StringBuilder(logLength);
                 GL.GetProgramInfoLog(program, logLength, out logLength, log);
-                Console.WriteLine("Program link log: {0}", log);
+                Console.WriteLine($"Program link log: {log}");
                 log.Clear();
             }
 #endif
 
-            GL.GetProgram(program, ProgramParameter.LinkStatus, out status);
-            return status != 0;
-        }
-
-        static bool ValidateProgram(int program)
-        {
-            int logLength;
-            int status;
-            GL.ValidateProgram(program);
-
-            GL.GetProgram(program, ProgramParameter.InfoLogLength, out logLength);
-            if (logLength > 0)
-            {
-                var log = new StringBuilder(logLength);
-                GL.GetProgramInfoLog(program, logLength, out logLength, log);
-                Console.WriteLine("Program validate log: {0}", log);
-                log.Clear();
-            }
-
-            GL.GetProgram(program, ProgramParameter.ValidateStatus, out status);
+            GL.GetProgram(program, ProgramParameter.LinkStatus, out int status);
             return status != 0;
         }
     }
+
+    #endregion
 
     public enum Uniform
     {
