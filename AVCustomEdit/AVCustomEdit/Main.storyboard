@@ -20,91 +20,83 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LD4-Le-jcl" customClass="PlayerView">
                                 <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
-                                <subviews>
-                                    <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qwZ-Xz-etI">
-                                        <rect key="frame" x="258.5" y="321" width="150" height="2"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="150" id="WOv-Rg-XAp"/>
-                                        </constraints>
-                                    </progressView>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="rAL-i5-8Tr">
-                                        <rect key="frame" x="0.0" y="341" width="667" height="34"/>
-                                        <items>
-                                            <barButtonItem style="plain" systemItem="play" id="Qpn-Ic-8jZ">
-                                                <connections>
-                                                    <action selector="TogglePlayPause:" destination="BYZ-38-t0r" id="241"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" id="efu-Ly-hxw">
-                                                <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="3t9-Uy-JJm">
-                                                    <rect key="frame" x="37" y="0.0" width="204" height="34"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <action selector="BeginScrubbing:" destination="BYZ-38-t0r" eventType="touchDown" id="264"/>
-                                                        <action selector="EndScrubbing:" destination="BYZ-38-t0r" eventType="touchCancel" id="265"/>
-                                                        <action selector="EndScrubbing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="288"/>
-                                                        <action selector="EndScrubbing:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="311"/>
-                                                        <action selector="Scrub:" destination="BYZ-38-t0r" eventType="valueChanged" id="312"/>
-                                                    </connections>
-                                                </slider>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="ied-hw-7v0"/>
-                                            <barButtonItem title="Set Transition" id="kca-Ih-Apo">
-                                                <connections>
-                                                    <segue destination="R9e-Pk-PpT" kind="presentation" identifier="Transition" id="ZKd-7X-hTO"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem title="Export" id="kIy-gk-TuL">
-                                                <connections>
-                                                    <action selector="ExportToMovie:" destination="BYZ-38-t0r" id="382"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </items>
-                                    </toolbar>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="miR-oB-qMb">
-                                        <rect key="frame" x="249" y="347.5" width="48" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="48" id="eOK-qf-EL8"/>
-                                            <constraint firstAttribute="height" constant="21" id="hV9-BJ-oMA"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="rAL-i5-8Tr" firstAttribute="centerX" secondItem="qwZ-Xz-etI" secondAttribute="centerX" id="5oH-Ty-D81"/>
-                                    <constraint firstItem="miR-oB-qMb" firstAttribute="centerY" secondItem="rAL-i5-8Tr" secondAttribute="centerY" id="SQ5-ZZ-cW7"/>
-                                    <constraint firstAttribute="trailing" secondItem="rAL-i5-8Tr" secondAttribute="trailing" id="btU-9R-1m3"/>
-                                    <constraint firstItem="rAL-i5-8Tr" firstAttribute="leading" secondItem="LD4-Le-jcl" secondAttribute="leading" id="fgv-m2-g1i"/>
-                                    <constraint firstAttribute="bottom" secondItem="rAL-i5-8Tr" secondAttribute="bottom" id="x2q-jn-2Jf"/>
-                                    <constraint firstItem="rAL-i5-8Tr" firstAttribute="leading" secondItem="miR-oB-qMb" secondAttribute="leading" constant="-249" id="zWg-Jb-eDI"/>
-                                    <constraint firstAttribute="bottom" secondItem="qwZ-Xz-etI" secondAttribute="bottom" constant="52" id="zno-nE-9K9"/>
-                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="sLC-Cu-nWY" appends="YES" id="HWH-G8-9PM"/>
                                 </connections>
                             </view>
+                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kEb-nT-KfT">
+                                <rect key="frame" x="258.5" y="323" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="boE-uP-EQB"/>
+                                </constraints>
+                            </progressView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="4sS-5v-XkA">
+                                <rect key="frame" x="0.0" y="341" width="667" height="34"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="play" id="EYI-u1-A8G">
+                                        <connections>
+                                            <action selector="TogglePlayPause:" destination="BYZ-38-t0r" id="N3Z-8b-dQc"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="A6v-IJ-sMa">
+                                        <slider key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="fHe-9A-hM0">
+                                            <rect key="frame" x="37" y="0.0" width="204" height="34"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <connections>
+                                                <action selector="BeginScrubbing:" destination="BYZ-38-t0r" eventType="touchDown" id="eHY-jB-UQ4"/>
+                                                <action selector="EndScrubbing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AyU-3Z-Leu"/>
+                                                <action selector="EndScrubbing:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="HVd-Gp-Qpg"/>
+                                                <action selector="EndScrubbing:" destination="BYZ-38-t0r" eventType="touchCancel" id="jEC-H0-ztW"/>
+                                                <action selector="Scrub:" destination="BYZ-38-t0r" eventType="valueChanged" id="RXh-oW-bvG"/>
+                                            </connections>
+                                        </slider>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Qbw-sK-BJN"/>
+                                    <barButtonItem title="Set Transition" id="6uz-rN-HPP"/>
+                                    <barButtonItem title="Export" id="xIp-Oh-YCB">
+                                        <connections>
+                                            <action selector="ExportToMovie:" destination="BYZ-38-t0r" id="ebu-5Y-QnB"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ddd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyX-Gk-aIe">
+                                <rect key="frame" x="256" y="342" width="48" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="49U-gc-cgh"/>
+                                    <constraint firstAttribute="width" constant="48" id="Xsh-ZO-Iie"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="lKW-hZ-kwj" firstAttribute="trailing" secondItem="LD4-Le-jcl" secondAttribute="trailing" id="JcL-ai-hsJ"/>
-                            <constraint firstItem="LD4-Le-jcl" firstAttribute="leading" secondItem="lKW-hZ-kwj" secondAttribute="leading" id="LGn-eA-lFf"/>
-                            <constraint firstItem="lKW-hZ-kwj" firstAttribute="bottom" secondItem="LD4-Le-jcl" secondAttribute="bottom" id="hfk-51-is5"/>
-                            <constraint firstItem="LD4-Le-jcl" firstAttribute="top" secondItem="lKW-hZ-kwj" secondAttribute="top" id="isS-W9-DiJ"/>
+                            <constraint firstAttribute="trailing" secondItem="LD4-Le-jcl" secondAttribute="trailing" id="JcL-ai-hsJ"/>
+                            <constraint firstItem="iyX-Gk-aIe" firstAttribute="leading" secondItem="lKW-hZ-kwj" secondAttribute="leading" constant="256" id="KvA-GL-IGT"/>
+                            <constraint firstItem="LD4-Le-jcl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LGn-eA-lFf"/>
+                            <constraint firstItem="4sS-5v-XkA" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="MJG-q2-xEK"/>
+                            <constraint firstItem="4sS-5v-XkA" firstAttribute="centerX" secondItem="kEb-nT-KfT" secondAttribute="centerX" id="cRw-Hw-r9y"/>
+                            <constraint firstItem="iyX-Gk-aIe" firstAttribute="bottom" secondItem="4sS-5v-XkA" secondAttribute="bottom" constant="-12" id="dbf-pq-r04"/>
+                            <constraint firstAttribute="bottom" secondItem="LD4-Le-jcl" secondAttribute="bottom" id="hfk-51-is5"/>
+                            <constraint firstAttribute="leading" secondItem="4sS-5v-XkA" secondAttribute="leading" symbolic="YES" id="iWh-sU-oDY"/>
+                            <constraint firstItem="LD4-Le-jcl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="isS-W9-DiJ"/>
+                            <constraint firstItem="4sS-5v-XkA" firstAttribute="top" secondItem="kEb-nT-KfT" secondAttribute="bottom" constant="16" id="m2G-PQ-rNK"/>
+                            <constraint firstAttribute="bottom" secondItem="4sS-5v-XkA" secondAttribute="bottom" id="pN1-vs-Azc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lKW-hZ-kwj"/>
                     </view>
                     <connections>
-                        <outlet property="currentTimeLabel" destination="miR-oB-qMb" id="name-outlet-miR-oB-qMb"/>
-                        <outlet property="exportButton" destination="kIy-gk-TuL" id="name-outlet-kIy-gk-TuL"/>
-                        <outlet property="exportProgressView" destination="qwZ-Xz-etI" id="name-outlet-qwZ-Xz-etI"/>
-                        <outlet property="playPauseButton" destination="Qpn-Ic-8jZ" id="name-outlet-Qpn-Ic-8jZ"/>
+                        <outlet property="currentTimeLabel" destination="iyX-Gk-aIe" id="name-outlet-iyX-Gk-aIe"/>
+                        <outlet property="exportButton" destination="xIp-Oh-YCB" id="name-outlet-xIp-Oh-YCB"/>
+                        <outlet property="exportProgressView" destination="kEb-nT-KfT" id="name-outlet-kEb-nT-KfT"/>
+                        <outlet property="playPauseButton" destination="EYI-u1-A8G" id="name-outlet-EYI-u1-A8G"/>
                         <outlet property="playerView" destination="LD4-Le-jcl" id="name-outlet-LD4-Le-jcl"/>
-                        <outlet property="scrubber" destination="3t9-Uy-JJm" id="name-outlet-3t9-Uy-JJm"/>
-                        <outlet property="toolbar" destination="rAL-i5-8Tr" id="name-outlet-rAL-i5-8Tr"/>
-                        <outlet property="transitionButton" destination="kca-Ih-Apo" id="name-outlet-kca-Ih-Apo"/>
+                        <outlet property="scrubber" destination="fHe-9A-hM0" id="name-outlet-fHe-9A-hM0"/>
+                        <outlet property="toolbar" destination="4sS-5v-XkA" id="name-outlet-4sS-5v-XkA"/>
+                        <outlet property="transitionButton" destination="6uz-rN-HPP" id="name-outlet-6uz-rN-HPP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

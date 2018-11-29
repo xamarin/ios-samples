@@ -144,8 +144,7 @@ namespace AVCustomEdit
                 // This code assumes that both assets are atleast 5 seconds long.
                 var value = NSValue.FromCMTimeRange(new CMTimeRange { Start = CMTime.FromSeconds(0, 1), Duration = CMTime.FromSeconds(5, 1) });
                 this.clipTimeRanges.Add(value);
-                if (this.clips.Count != this.clipTimeRanges.Count)
-                { }
+
             bail:
                 dispatchGroup.Leave();
             });
