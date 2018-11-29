@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>1ff461ca-3867-43a7-9afb-2a85f08e015b</ID>
+  <IsFullApplication>true</IsFullApplication>
+  <Brief>It's a simple AVFoundation based movie editing application demonstrating custom compositing to add transitions. It implements the CustomVideoCompositor and CustomVideoCompositionInstruction protocols to have access to individual source frames, which are then be rendered using OpenGL off screen rendering.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>AVFoundation, OpenGL</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>
