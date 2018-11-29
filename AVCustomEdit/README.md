@@ -5,7 +5,7 @@ AVCustomEdit is a simple AVFoundation based movie editing application demonstrat
 
 This is a port of Apple's iOS7 sample AVCustomEdit.
 
-![Home View](Screenshots/screenshots-1.png)
+![Home View](Screenshots/screenshot-1.png)
 
 Instructions
 ------------
