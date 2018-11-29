@@ -95,15 +95,6 @@ namespace AVCustomEdit
                 {
                     transitionTypePickerController.Delegate = this;
                     transitionTypePickerController.CurrentTransition = this.transitionType;
-                    if (this.transitionType == TransitionType.CrossDissolveTransition)
-                    {
-                        //[transitionTypePickerController.crossDissolveCell setAccessoryType:UITableViewCellAccessoryCheckmark];
-                    }
-                    else
-                    {
-                        // Make sure the view is loaded first
-                        //[transitionTypePickerController.diagonalWipeCell setAccessoryType:UITableViewCellAccessoryCheckmark];
-                    }
                 }
             }
         }
@@ -210,9 +201,8 @@ namespace AVCustomEdit
             }
 
             // Build AVComposition and AVVideoComposition objects for playback
-            this.editor.BuildCompositionObjectsForPlayback(true);
-
-            this.SynchronizePlayerWithEditor();
+            //this.editor.BuildCompositionObjectsForPlayback(true);
+            //this.SynchronizePlayerWithEditor();
         }
 
         private void SynchronizeEditorClipsWithOurClips()
@@ -362,7 +352,7 @@ namespace AVCustomEdit
         private void UpdateTimeLabel()
         {
             var seconds = this.player != null ? this.player.CurrentTime.Seconds : 0d;
-            if (double.IsInfinity(seconds))
+            if (double.IsNaN(seconds))
             {
                 seconds = 0;
             }

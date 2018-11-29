@@ -138,7 +138,12 @@ namespace AVCustomEdit
             // 1.0 indicates the time at last frame in that videoComposition timeRange
             var tweenFactor = (float)FactorForTimeInRange(request.CompositionTime, request.VideoCompositionInstruction.TimeRange);
 
-            var currentInstruction = (CustomVideoCompositionInstruction)request.VideoCompositionInstruction;
+            var currentInstruction = request.VideoCompositionInstruction as CustomVideoCompositionInstruction;
+            if(currentInstruction == null)
+            {
+                error = new NSError();
+                return null;
+            }
 
             // Source pixel buffers are used as inputs while rendering the transition
             var foregroundSourceBuffer = request.SourceFrameByTrackID(currentInstruction.ForegroundTrackId);

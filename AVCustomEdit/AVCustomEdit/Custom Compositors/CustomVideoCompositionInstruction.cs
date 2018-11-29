@@ -6,25 +6,25 @@ namespace AVCustomEdit
 {
     public class CustomVideoCompositionInstruction : AVVideoCompositionInstruction
     {
-        private readonly NSNumber[] requiredSourceTrackIDs;
+        private readonly NSNumber[] requiredSourceTrackIds;
         private readonly bool enablePostProcessing;
-        private readonly int passthroughTrackID;
+        private readonly int passthroughTrackId;
         private readonly bool containsTweening;
         private readonly CMTimeRange timeRange;
 
-        public CustomVideoCompositionInstruction(int passthroughTrackId, CMTimeRange timeRange)
+        public CustomVideoCompositionInstruction(int passthroughTrackId, CMTimeRange timeRange) : base()
         {
-            this.passthroughTrackID = passthroughTrackId;
-            this.requiredSourceTrackIDs = null;
+            this.passthroughTrackId = passthroughTrackId;
+            this.requiredSourceTrackIds = null;
             this.timeRange = timeRange;
             this.containsTweening = false;
             this.enablePostProcessing = false;
         }
 
-        public CustomVideoCompositionInstruction(NSNumber[] sourceTracksIDS, CMTimeRange timeRange)
+        public CustomVideoCompositionInstruction(NSNumber[] sourceTracksIds, CMTimeRange timeRange) : base()
         {
-            this.requiredSourceTrackIDs = sourceTracksIDS;
-            this.passthroughTrackID = 0;
+            this.requiredSourceTrackIds = sourceTracksIds;
+            this.passthroughTrackId = 0;
             this.timeRange = timeRange;
             this.containsTweening = true;
             this.enablePostProcessing = false;
@@ -34,9 +34,9 @@ namespace AVCustomEdit
 
         public int BackgroundTrackId { get; set; }
 
-        public override int PassthroughTrackID => this.passthroughTrackID;
+        public override int PassthroughTrackID => this.passthroughTrackId;
 
-        public override NSNumber[] RequiredSourceTrackIDs => this.requiredSourceTrackIDs;
+        public override NSNumber[] RequiredSourceTrackIDs => this.requiredSourceTrackIds;
 
         public override CMTimeRange TimeRange => this.timeRange;
 

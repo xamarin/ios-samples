@@ -7,11 +7,11 @@ namespace AVCustomEdit
 {
     public class DiagonalWipeRenderer : OpenGLRenderer
     {
-        const int ForegroundTrack = 0;
-        const int BackgroundTrack = 1;
+        private const int ForegroundTrack = 0;
+        private const int BackgroundTrack = 1;
 
-        CGPoint diagonalEnd1;
-        CGPoint diagonalEnd2;
+        private CGPoint diagonalEnd1;
+        private CGPoint diagonalEnd2;
 
         private void QuadVertexCoordinates(ref float[] vertexCoordinates, int trackId, float tween)
         {

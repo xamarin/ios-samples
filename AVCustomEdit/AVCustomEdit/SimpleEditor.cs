@@ -8,15 +8,36 @@ namespace AVCustomEdit
     public class SimpleEditor : NSObject
     {
         private AVMutableComposition composition;
+
         private AVMutableVideoComposition videoComposition;
 
         public List<AVAsset> Clips { get; set; } // array of AVURLAssets
+
         public List<NSValue> ClipTimeRanges { get; set; } // array of CMTimeRanges stored in NSValues.
 
         public TransitionType TransitionType { get; set; }
+
         public CMTime TransitionDuration { get; set; }
 
-        public AVPlayerItem PlayerItem => new AVPlayerItem(this.composition) { VideoComposition = videoComposition };
+        public AVPlayerItem PlayerItem
+        {
+            get
+            {
+                var result = new AVPlayerItem(this.composition) { VideoComposition = this.videoComposition };
+
+                //foreach (var item in this.videoComposition.Instructions)
+                //{
+                //    System.Console.WriteLine(item.GetType());
+                //}
+
+                //foreach (var item in result.VideoComposition.Instructions)
+                //{
+                //    System.Console.WriteLine(item.GetType());
+                //}
+
+                return result;
+            }
+        }
 
         private void BuildTransitionComposition(AVMutableComposition mutableComposition, AVMutableVideoComposition mutableVideoComposition)
         {
@@ -110,7 +131,7 @@ namespace AVCustomEdit
                     // Pass through clip i.
                     var passThroughInstruction = AVMutableVideoCompositionInstruction.Create() as AVMutableVideoCompositionInstruction;
                     passThroughInstruction.TimeRange = passThroughTimeRanges[i];
-                   
+
                     var passThroughLayer = AVMutableVideoCompositionLayerInstruction.FromAssetTrack(compositionVideoTracks[alternatingIndex]);
                     passThroughInstruction.LayerInstructions = new[] { passThroughLayer };
 
@@ -122,10 +143,11 @@ namespace AVCustomEdit
                     // Add transition from clip i to clip i+1.
                     if (mutableVideoComposition.CustomVideoCompositorClass != null)
                     {
-                        var videoInstruction = new CustomVideoCompositionInstruction(new NSNumber[] {
-                                              compositionVideoTracks [0].TrackID,
-                                              compositionVideoTracks [1].TrackID
-                                          }, transitionTimeRanges[i]);
+                        var videoInstruction = new CustomVideoCompositionInstruction(new NSNumber[]
+                        {
+                            compositionVideoTracks[0].TrackID,
+                            compositionVideoTracks[1].TrackID
+                        }, transitionTimeRanges[i]);
 
                         if (alternatingIndex == 0)
                         {
@@ -154,47 +176,47 @@ namespace AVCustomEdit
             mutableVideoComposition.Instructions = instructions.ToArray();
         }
 
-        public void BuildCompositionObjectsForPlayback(bool playBack)
+        public void BuildCompositionObjectsForPlayback(bool playback)
         {
             if (Clips == null || Clips.Count == 0)
             {
                 this.composition = null;
                 this.videoComposition = null;
-                return;
-            }
-
-            var videoSize = Clips[0].NaturalSize;
-            var composition = AVMutableComposition.Create();
-            AVMutableVideoComposition videoComposition = null;
-
-            composition.NaturalSize = videoSize;
-
-            // With transitions:
-            // Place clips into alternating video & audio tracks in composition, overlapped by transitionDuration.
-            // Set up the video composition to cycle between "pass through A", "transition from A to B",
-            // "pass through B".
-
-            videoComposition = AVMutableVideoComposition.Create();
-
-            if (TransitionType == TransitionType.DiagonalWipeTransition)
-            {
-                //videoComposition.CustomVideoCompositorClass = new ObjCRuntime.Class(typeof(DiagonalWipeCompositor));
             }
             else
             {
-                //videoComposition.CustomVideoCompositorClass = new ObjCRuntime.Class(typeof(CrossDissolveCompositor));
-            }
+                var videoSize = Clips[0].NaturalSize;
+                var mutableComposition = AVMutableComposition.Create();
+                AVMutableVideoComposition mutableVideoComposition = null;
 
-            BuildTransitionComposition(composition, videoComposition);
-            if (videoComposition != null)
-            {
-                // Every videoComposition needs these properties to be set:
-                videoComposition.FrameDuration = new CMTime(1, 30);
-                videoComposition.RenderSize = videoSize;
-            }
+                mutableComposition.NaturalSize = videoSize;
 
-            this.composition = composition;
-            this.videoComposition = videoComposition;
+                // With transitions:
+                // Place clips into alternating video & audio tracks in composition, overlapped by transitionDuration.
+                // Set up the video composition to cycle between "pass through A", "transition from A to B",
+                // "pass through B".
+
+                mutableVideoComposition = AVMutableVideoComposition.Create();
+                if (TransitionType == TransitionType.DiagonalWipeTransition)
+                {
+                    mutableVideoComposition.CustomVideoCompositorClass = new ObjCRuntime.Class(typeof(DiagonalWipeCompositor));
+                }
+                else
+                {
+                    mutableVideoComposition.CustomVideoCompositorClass = new ObjCRuntime.Class(typeof(CrossDissolveCompositor));
+                }
+
+                BuildTransitionComposition(mutableComposition, mutableVideoComposition);
+                if (mutableVideoComposition != null)
+                {
+                    // Every videoComposition needs these properties to be set:
+                    mutableVideoComposition.FrameDuration = new CMTime(1, 30);
+                    mutableVideoComposition.RenderSize = videoSize;
+                }
+
+                this.composition = mutableComposition;
+                this.videoComposition = mutableVideoComposition;
+            }
         }
 
         public AVAssetExportSession AssetExportSessionWithPreset(string presetName)
