@@ -1,6 +1,7 @@
 using AVFoundation;
 using CoreMedia;
 using Foundation;
+using ObjCRuntime;
 
 namespace AVCustomEdit
 {
@@ -11,6 +12,8 @@ namespace AVCustomEdit
         private readonly int passthroughTrackId;
         private readonly bool containsTweening;
         private readonly CMTimeRange timeRange;
+
+        public CustomVideoCompositionInstruction() : base() { }
 
         public CustomVideoCompositionInstruction(int passthroughTrackId, CMTimeRange timeRange) : base()
         {
@@ -43,5 +46,35 @@ namespace AVCustomEdit
         public override bool EnablePostProcessing => this.enablePostProcessing;
 
         public override bool ContainsTweening => this.containsTweening;
+
+        [return: Release]
+        public override NSObject Copy()
+        {
+            return CustomVideoCompositionInstruction.Copy(this);
+        }
+
+        [return: Release]
+        public override NSObject MutableCopy()
+        {
+            return CustomVideoCompositionInstruction.Copy(this); 
+        }
+
+        public static CustomVideoCompositionInstruction Copy(CustomVideoCompositionInstruction current)
+        {
+            CustomVideoCompositionInstruction result = null;
+            if (current.RequiredSourceTrackIDs != null && current.RequiredSourceTrackIDs.Length > 0)
+            {
+                result = new CustomVideoCompositionInstruction(current.RequiredSourceTrackIDs, current.TimeRange);
+            }
+            else
+            {
+                result = new CustomVideoCompositionInstruction(current.PassthroughTrackID, current.TimeRange);
+            }
+
+            result.ForegroundTrackId = current.ForegroundTrackId;
+            result.BackgroundTrackId = current.BackgroundTrackId;
+
+            return result;
+        }
     }
 }

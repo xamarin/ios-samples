@@ -139,11 +139,6 @@ namespace AVCustomEdit
             var tweenFactor = (float)FactorForTimeInRange(request.CompositionTime, request.VideoCompositionInstruction.TimeRange);
 
             var currentInstruction = request.VideoCompositionInstruction as CustomVideoCompositionInstruction;
-            if(currentInstruction == null)
-            {
-                error = new NSError();
-                return null;
-            }
 
             // Source pixel buffers are used as inputs while rendering the transition
             var foregroundSourceBuffer = request.SourceFrameByTrackID(currentInstruction.ForegroundTrackId);

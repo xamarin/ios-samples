@@ -19,25 +19,7 @@ namespace AVCustomEdit
 
         public CMTime TransitionDuration { get; set; }
 
-        public AVPlayerItem PlayerItem
-        {
-            get
-            {
-                var result = new AVPlayerItem(this.composition) { VideoComposition = this.videoComposition };
-
-                //foreach (var item in this.videoComposition.Instructions)
-                //{
-                //    System.Console.WriteLine(item.GetType());
-                //}
-
-                //foreach (var item in result.VideoComposition.Instructions)
-                //{
-                //    System.Console.WriteLine(item.GetType());
-                //}
-
-                return result;
-            }
-        }
+        public AVPlayerItem PlayerItem =>  new AVPlayerItem(this.composition) { VideoComposition = this.videoComposition };
 
         private void BuildTransitionComposition(AVMutableComposition mutableComposition, AVMutableVideoComposition mutableVideoComposition)
         {
