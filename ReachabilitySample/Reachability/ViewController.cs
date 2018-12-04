@@ -71,7 +71,7 @@ namespace Reachability
                 }
                 else
                 {
-                    baseLabelText = "Cellular data network is active.\\nInternet traffic will be routed through it.";
+                    baseLabelText = "Cellular data network is active.\nInternet traffic will be routed through it.";
                 }
 
                 summaryLabel.Text = baseLabelText;

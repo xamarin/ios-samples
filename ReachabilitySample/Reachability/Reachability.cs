@@ -118,7 +118,7 @@ namespace Reachability
 
         public bool ConnectionRequired()
         {
-            if (NetworkReachability.GetFlags(out NetworkReachabilityFlags flags) == StatusCode.OK)
+            if (NetworkReachability.TryGetFlags(out NetworkReachabilityFlags flags))
             {
                 return (flags & NetworkReachabilityFlags.ConnectionRequired) != 0;
             }
@@ -129,7 +129,7 @@ namespace Reachability
         public NetworkStatus CurrentReachabilityStatus()
         {
             var returnValue = NetworkStatus.NotReachable;
-            if (NetworkReachability.GetFlags(out NetworkReachabilityFlags flags) == StatusCode.OK)
+            if (NetworkReachability.TryGetFlags(out NetworkReachabilityFlags flags))
             {
                 returnValue = this.NetworkStatusForFlags(flags);
             }
