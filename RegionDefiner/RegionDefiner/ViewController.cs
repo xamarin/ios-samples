@@ -1,10 +1,10 @@
-﻿using System;
+﻿using CoreGraphics;
+using Foundation;
+using MapKit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using CoreGraphics;
-using Foundation;
-using MapKit;
 using UIKit;
 
 namespace RegionDefiner
@@ -12,6 +12,8 @@ namespace RegionDefiner
     public partial class ViewController : UIViewController, IMKMapViewDelegate, IUIGestureRecognizerDelegate
     {
         private readonly List<MyAnnotation> items = new List<MyAnnotation>();
+
+        private MKPolygon polygon;
 
         protected ViewController(IntPtr handle) : base(handle) { }
 
@@ -23,22 +25,19 @@ namespace RegionDefiner
 
         partial void Log(UIBarButtonItem sender)
         {
-            Console.WriteLine(coordinates());
-        }
-
-        public string coordinates()
-        {
             if (items.Count < 3)
-                return "Minimum of 3 vertices to make polygon";
+            {
+                Console.WriteLine("Minimum of 3 vertices to make polygon");
+            }
 
-            var masterString = new StringBuilder("\n" + "{ " + "\"type\"" + ":" + "  \"MultiPolygon\"" + ",\n" + " \"coordinates\"" + ":" + " [ " + " \n" + "[ [");
-            foreach (MyAnnotation pin in items)
-                masterString = masterString.AppendFormat(" [{0}, {1}] , \n", pin.Coordinate.Longitude, pin.Coordinate.Latitude);
+            var builder = new StringBuilder("Coordinates:\n");
+            foreach (var item in items)
+            {
+                builder.AppendLine($"{item.Coordinate.Longitude}, {item.Coordinate.Latitude},");
+            }
 
-            masterString = masterString.Append("]]" + "\n" + "]" + "\n" + "}");
-            masterString = masterString.Replace("]" + " , \n" + "]]", "] ] ]");
-            return masterString.ToString();
-
+            builder = builder.Remove(builder.Length - 2, 1);
+            Console.WriteLine(builder);
         }
 
         partial void Reset(UIBarButtonItem sender)
@@ -46,7 +45,6 @@ namespace RegionDefiner
             if (mapView.Annotations != null && polygon != null)
             {
                 mapView.RemoveAnnotations(mapView.Annotations);
-                mapView.RemoveOverlay(polygon);
 
                 items.Clear();
                 UpdatePolygon();
@@ -59,11 +57,15 @@ namespace RegionDefiner
             if (polygon != null)
             {
                 mapView.RemoveOverlay(polygon);
+                polygon.Dispose();
+                polygon = null;
             }
 
             polygon = MKPolygon.FromCoordinates(points);
             mapView.AddOverlay(polygon);
         }
+
+        #region IUIGestureRecognizerDelegate
 
         partial void HandleLongPress(UILongPressGestureRecognizer recognizer)
         {
@@ -77,36 +79,39 @@ namespace RegionDefiner
         private void DropPinAtPoint(CGPoint pointToConvert)
         {
             var convertedPoint = mapView.ConvertPoint(pointToConvert, mapView);
+
             var pinTitle = $"Pin Number {items.Count}";
             var subCoordinates = $"{convertedPoint.Latitude},{convertedPoint.Longitude}";
             var droppedPin = new MyAnnotation(convertedPoint, pinTitle, subCoordinates);
+
             mapView.AddAnnotation(droppedPin);
             items.Add(droppedPin);
             UpdatePolygon();
         }
 
+        #endregion
 
         #region IMKMapViewDelegate
 
-        private MKPolygon polygon;
+        private MKPolygonRenderer polygonRenderer;
 
-        private MKPolygonView polygonView;
-
-        [Export("mapView:viewForOverlay:")]
-        public MKOverlayView GetViewForOverlay(MKMapView mapView, IMKOverlay overlay)
+        [Export("mapView:rendererForOverlay:")]
+        public MKOverlayRenderer OverlayRenderer(MKMapView mapView, IMKOverlay overlay)
         {
-            if (polygonView != null && polygonView.Polygon == polygon)
-                return polygonView;
+            if (polygonRenderer != null && polygonRenderer.Polygon == polygon)
+            {
+                return polygonRenderer;
+            }
 
             polygon = overlay as MKPolygon;
-            polygonView = new MKPolygonView(polygon)
+            polygonRenderer = new MKPolygonRenderer(polygon)
             {
                 FillColor = new UIColor(0, 1, 0, .3f),
                 StrokeColor = new UIColor(0, 1, 0, 0.9f),
                 LineWidth = 1f
             };
 
-            return polygonView;
+            return polygonRenderer;
         }
 
         #endregion
