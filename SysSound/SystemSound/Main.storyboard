@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmR-dT-P94">
+                                <rect key="frame" x="114" y="270" width="147" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Play System Sound"/>
+                                <connections>
+                                    <action selector="PlaySystem:" destination="BYZ-38-t0r" id="425" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ip-2d-cfO">
+                                <rect key="frame" x="124" y="327" width="127" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Play Alert Sound"/>
+                                <connections>
+                                    <action selector="PlayAlert:" destination="BYZ-38-t0r" id="212" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08l-GA-tVX">
+                                <rect key="frame" x="160" y="384" width="55" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Vibrate"/>
+                                <connections>
+                                    <action selector="Vibrate:" destination="BYZ-38-t0r" id="213" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="08l-GA-tVX" firstAttribute="top" secondItem="2Ip-2d-cfO" secondAttribute="bottom" constant="24" id="Jcl-zl-Bsv"/>
+                            <constraint firstItem="2Ip-2d-cfO" firstAttribute="centerX" secondItem="q1q-jT-HcB" secondAttribute="centerX" id="gAv-Bq-SMN"/>
+                            <constraint firstItem="08l-GA-tVX" firstAttribute="centerX" secondItem="q1q-jT-HcB" secondAttribute="centerX" id="gre-UN-ZcQ"/>
+                            <constraint firstItem="2Ip-2d-cfO" firstAttribute="centerY" secondItem="q1q-jT-HcB" secondAttribute="centerY" id="nIq-LL-a28"/>
+                            <constraint firstItem="2Ip-2d-cfO" firstAttribute="top" secondItem="hmR-dT-P94" secondAttribute="bottom" constant="24" id="pyx-yJ-kq3"/>
+                            <constraint firstItem="hmR-dT-P94" firstAttribute="centerX" secondItem="q1q-jT-HcB" secondAttribute="centerX" id="uEf-uT-fop"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="q1q-jT-HcB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+</document>
