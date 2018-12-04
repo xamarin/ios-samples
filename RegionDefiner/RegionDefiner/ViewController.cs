@@ -30,13 +30,17 @@ namespace RegionDefiner
                 Console.WriteLine("Minimum of 3 vertices to make polygon");
             }
 
-            var builder = new StringBuilder("Coordinates:\n");
+            var builder = new StringBuilder("\n{\n \"type\": \"MultiPolygon\",\n \"coordinates\":\n [[[\n");
             foreach (var item in items)
             {
-                builder.AppendLine($"{item.Coordinate.Longitude}, {item.Coordinate.Latitude},");
+                builder.AppendLine($"\t[{item.Coordinate.Longitude}, {item.Coordinate.Latitude}],");
             }
 
-            builder = builder.Remove(builder.Length - 2, 1);
+            // GeoJSON requires that the first and last vertices be identical
+            var first = items.First();
+            builder.AppendLine($"\t[{first.Coordinate.Longitude}, {first.Coordinate.Latitude}]");
+            builder.AppendLine(" ]]]\n}\n");
+
             Console.WriteLine(builder);
         }
 
