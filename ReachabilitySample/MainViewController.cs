@@ -7,7 +7,7 @@ namespace Reachability {
 		const string ReachabilityTableCellIdentifier = "ReachabilityTableCell";
 
 		UIImage imageCarrier, imageWiFi, imageStop;
-		NetworkStatus remoteHostStatus, internetStatus, localWifiStatus;
+		NetworkStatus remoteHostStatus, internetStatus;
 
 		public MainViewController (IntPtr handle) : base (handle)
 		{
@@ -105,18 +105,7 @@ namespace Reachability {
 					break;
 				}
 				break;
-			case 2:
-				switch (localWifiStatus) {
-				case NetworkStatus.NotReachable:
-					text = "Access not available";
-					image = imageStop;
-					break;
-				case NetworkStatus.ReachableViaWiFiNetwork:
-					text = "Available via WiFi network";
-					image = imageWiFi;
-					break;
-				}
-				break;
+			
 			}
 			cell.TextLabel.Text = text;
 			cell.ImageView.Image = image;
@@ -127,7 +116,6 @@ namespace Reachability {
 		{
 			remoteHostStatus = Reachability.RemoteHostStatus ();
 			internetStatus = Reachability.InternetConnectionStatus ();
-			localWifiStatus = Reachability.LocalWifiConnectionStatus ();
 			TableView.ReloadData ();
 		}
 	}

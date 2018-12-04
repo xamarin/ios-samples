@@ -53,25 +53,7 @@ namespace Reachability {
 			ReachabilityChanged?.Invoke (null, EventArgs.Empty);
 		}
 
-		//
-		// Returns true if it is possible to reach the AdHoc WiFi network
-		// and optionally provides extra network reachability flags as the
-		// out parameter
-		//
-		static NetworkReachability adHocWiFiNetworkReachability;
-
-		public static bool IsAdHocWiFiNetworkAvailable (out NetworkReachabilityFlags flags)
-		{
-			if (adHocWiFiNetworkReachability == null) {
-				var ipAddress = new IPAddress (new byte[] { 169, 254, 0, 0 });
-				adHocWiFiNetworkReachability = new NetworkReachability (ipAddress.MapToIPv6 ());
-				adHocWiFiNetworkReachability.SetNotification (OnChange);
-				adHocWiFiNetworkReachability.Schedule (CFRunLoop.Current, CFRunLoop.ModeDefault);
-			}
-
-			return adHocWiFiNetworkReachability.TryGetFlags (out flags) && IsReachableWithoutRequiringConnection (flags);
-		}
-
+		
 		static NetworkReachability defaultRouteReachability;
 
 		static bool IsNetworkAvailable (out NetworkReachabilityFlags flags)
@@ -130,16 +112,6 @@ namespace Reachability {
 				return NetworkStatus.NotReachable;
 
 			return NetworkStatus.ReachableViaWiFiNetwork;
-		}
-
-		public static NetworkStatus LocalWifiConnectionStatus ()
-		{
-			NetworkReachabilityFlags flags;
-			if (IsAdHocWiFiNetworkAvailable (out flags))
-			if ((flags & NetworkReachabilityFlags.IsDirect) != 0)
-				return NetworkStatus.ReachableViaWiFiNetwork;
-
-			return NetworkStatus.NotReachable;
 		}
 	}
 }
