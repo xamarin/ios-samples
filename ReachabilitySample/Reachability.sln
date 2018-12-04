@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reachability2", "Reachability2.csproj", "{E1356D0A-1572-4157-BD97-05F0B9DA832E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reachability", "Reachability\Reachability.csproj", "{E38A885A-4DD2-4A1F-8A8F-FCAC3001957F}"
 EndProject
 Global
@@ -13,14 +11,6 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E1356D0A-1572-4157-BD97-05F0B9DA832E}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{E1356D0A-1572-4157-BD97-05F0B9DA832E}.Debug|iPhone.Build.0 = Debug|iPhone
-		{E1356D0A-1572-4157-BD97-05F0B9DA832E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{E1356D0A-1572-4157-BD97-05F0B9DA832E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{E1356D0A-1572-4157-BD97-05F0B9DA832E}.Release|iPhone.ActiveCfg = Release|iPhone
-		{E1356D0A-1572-4157-BD97-05F0B9DA832E}.Release|iPhone.Build.0 = Release|iPhone
-		{E1356D0A-1572-4157-BD97-05F0B9DA832E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{E1356D0A-1572-4157-BD97-05F0B9DA832E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{E38A885A-4DD2-4A1F-8A8F-FCAC3001957F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{E38A885A-4DD2-4A1F-8A8F-FCAC3001957F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{E38A885A-4DD2-4A1F-8A8F-FCAC3001957F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator

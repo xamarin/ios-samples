@@ -6,8 +6,9 @@ namespace Reachability
 {
     public partial class ViewController : UIViewController
     {
-        private Reachability hostReachability;
         private Reachability internetReachability;
+
+        private Reachability hostReachability;
 
         protected ViewController(IntPtr handle) : base(handle) { }
 
@@ -59,22 +60,13 @@ namespace Reachability
             if (reachability == hostReachability)
             {
                 ConfigureTextField(remoteHostStatusField, remoteHostImageView, reachability);
-                NetworkStatus netStatus = reachability.CurrentReachabilityStatus();
+
+                var networkStatus = reachability.CurrentReachabilityStatus();
                 var connectionRequired = reachability.ConnectionRequired();
-
-                summaryLabel.Hidden = netStatus != NetworkStatus.ReachableViaWWAN;
-                var baseLabelText = "";
-
-                if (connectionRequired)
-                {
-                    baseLabelText = "Cellular data network is available.\nInternet traffic will be routed through it after a connection is established.";
-                }
-                else
-                {
-                    baseLabelText = "Cellular data network is active.\nInternet traffic will be routed through it.";
-                }
-
+                var baseLabelText = connectionRequired ? "Cellular data network is available.\nInternet traffic will be routed through it after a connection is established."
+                                                       : "Cellular data network is active.\nInternet traffic will be routed through it.";
                 summaryLabel.Text = baseLabelText;
+                summaryLabel.Hidden = networkStatus != NetworkStatus.ReachableViaWWAN;
             }
             else if (reachability == internetReachability)
             {
@@ -84,16 +76,16 @@ namespace Reachability
 
         private void ConfigureTextField(UITextField textField, UIImageView imageView, Reachability reachability)
         {
-            var netStatus = reachability.CurrentReachabilityStatus();
+            var networkStatus = reachability.CurrentReachabilityStatus();
             var connectionRequired = reachability.ConnectionRequired();
-            var statusString = "";
+            var statusString = string.Empty;
 
-            switch (netStatus)
+            switch (networkStatus)
             {
                 case NetworkStatus.NotReachable:
                     statusString = "Access Not Available";
                     imageView.Image = UIImage.FromBundle("stop-32.png");
-                    // Minor interface detail- connectionRequired may return YES even when the host is unreachable. We cover that up here...
+                    // Minor interface detail - connectionRequired may return YES even when the host is unreachable. We cover that up here...
                     connectionRequired = false;
                     break;
 
