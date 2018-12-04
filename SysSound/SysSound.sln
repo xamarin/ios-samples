@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysSound", "SysSound.csproj", "{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemSound", "SystemSound\SystemSound.csproj", "{EA3F2E85-63D8-4EEF-81BA-BB6262FB011E}"
 EndProject
 Global
@@ -15,18 +13,6 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}.Debug|iPhone.Build.0 = Debug|iPhone
-		{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}.Release|iPhone.ActiveCfg = Release|iPhone
-		{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}.Release|iPhone.Build.0 = Release|iPhone
-		{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{FB4AA61A-8551-47B7-B690-ED3DDC983DB0}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{EA3F2E85-63D8-4EEF-81BA-BB6262FB011E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{EA3F2E85-63D8-4EEF-81BA-BB6262FB011E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{EA3F2E85-63D8-4EEF-81BA-BB6262FB011E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
