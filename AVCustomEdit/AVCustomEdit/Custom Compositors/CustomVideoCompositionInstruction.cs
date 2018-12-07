@@ -1,68 +1,80 @@
 using AVFoundation;
 using CoreMedia;
 using Foundation;
+using ObjCRuntime;
 
 namespace AVCustomEdit
 {
-	public class CustomVideoCompositionInstruction : AVVideoCompositionInstruction
-	{
-		public int ForegroundTrackID;
-		public int BackgroundTrackID;
+    public class CustomVideoCompositionInstruction : AVVideoCompositionInstruction
+    {
+        private readonly NSNumber[] requiredSourceTrackIds;
+        private readonly bool enablePostProcessing;
+        private readonly int passthroughTrackId;
+        private readonly bool containsTweening;
+        private readonly CMTimeRange timeRange;
 
-		CMTimeRange timeRange;
-		readonly int passthroughTrackID;
-		readonly NSNumber [] requiredSourceTrackIDs;
-		readonly bool enablePostProcessing;
-		readonly bool containsTweening;
+        public CustomVideoCompositionInstruction() : base() { }
 
-		public override int PassthroughTrackID {
-			get {
-				return passthroughTrackID;
-			}
-		}
+        public CustomVideoCompositionInstruction(int passthroughTrackId, CMTimeRange timeRange) : base()
+        {
+            this.passthroughTrackId = passthroughTrackId;
+            this.requiredSourceTrackIds = null;
+            this.timeRange = timeRange;
+            this.containsTweening = false;
+            this.enablePostProcessing = false;
+        }
 
-		public override NSNumber [] RequiredSourceTrackIDs {
-			get {
-				return requiredSourceTrackIDs;
-			}
-		}
+        public CustomVideoCompositionInstruction(NSNumber[] sourceTracksIds, CMTimeRange timeRange) : base()
+        {
+            this.requiredSourceTrackIds = sourceTracksIds;
+            this.passthroughTrackId = 0;
+            this.timeRange = timeRange;
+            this.containsTweening = true;
+            this.enablePostProcessing = false;
+        }
 
-		public override CMTimeRange TimeRange {
-			get {
-				return timeRange;
-			}
-		}
-		public override bool EnablePostProcessing {
-			get {
-				return enablePostProcessing;
-			}
-		}
-		public override bool ContainsTweening {
-			get {
-				return containsTweening;
-			}
-		}
+        public int ForegroundTrackId { get; set; }
 
-		public CustomVideoCompositionInstruction ()
-		{
-		}
+        public int BackgroundTrackId { get; set; }
 
-		public CustomVideoCompositionInstruction (int passthroughTrackID, CMTimeRange timeRange)
-		{
-			this.passthroughTrackID = passthroughTrackID;
-			requiredSourceTrackIDs = null;
-			this.timeRange = timeRange;
-			containsTweening = false;
-			enablePostProcessing = false;
-		}
+        public override int PassthroughTrackID => this.passthroughTrackId;
 
-		public CustomVideoCompositionInstruction(NSNumber [] sourceTracksIDS, CMTimeRange timeRange)
-		{
-			requiredSourceTrackIDs = sourceTracksIDS;
-			passthroughTrackID = 0;
-			this.timeRange = timeRange;
-			containsTweening = true;
-			enablePostProcessing = false;
-		}
-	}
+        public override NSNumber[] RequiredSourceTrackIDs => this.requiredSourceTrackIds;
+
+        public override CMTimeRange TimeRange => this.timeRange;
+
+        public override bool EnablePostProcessing => this.enablePostProcessing;
+
+        public override bool ContainsTweening => this.containsTweening;
+
+        [return: Release]
+        public override NSObject Copy()
+        {
+            return CustomVideoCompositionInstruction.Copy(this);
+        }
+
+        [return: Release]
+        public override NSObject MutableCopy()
+        {
+            return CustomVideoCompositionInstruction.Copy(this); 
+        }
+
+        public static CustomVideoCompositionInstruction Copy(CustomVideoCompositionInstruction current)
+        {
+            CustomVideoCompositionInstruction result = null;
+            if (current.RequiredSourceTrackIDs != null && current.RequiredSourceTrackIDs.Length > 0)
+            {
+                result = new CustomVideoCompositionInstruction(current.RequiredSourceTrackIDs, current.TimeRange);
+            }
+            else
+            {
+                result = new CustomVideoCompositionInstruction(current.PassthroughTrackID, current.TimeRange);
+            }
+
+            result.ForegroundTrackId = current.ForegroundTrackId;
+            result.BackgroundTrackId = current.BackgroundTrackId;
+
+            return result;
+        }
+    }
 }

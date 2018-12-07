@@ -5,6 +5,8 @@ AVCustomEdit is a simple AVFoundation based movie editing application demonstrat
 
 This is a port of Apple's iOS7 sample AVCustomEdit.
 
+![Home View](Screenshots/screenshot-1.png)
+
 Instructions
 ------------
 1. Open the transition menu in the lower right. Select a transition.
@@ -15,8 +17,12 @@ Build
 ------------
 Building this sample requires Xcode 5.0 and iOS 7 or later.
 
+License
+-------
+
+Xamarin port changes are released under the MIT license.
+
 Author
 ------------
-Copyright © 2014 Apple Inc. All Rights Reserved.
 
-Ported to Xamarin.iOS by Timothy Risi.
+Ported to Xamarin.iOS by Timothy Risi/Mykyta Bondarenko.
