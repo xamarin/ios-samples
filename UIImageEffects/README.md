@@ -5,17 +5,15 @@ This is a port of Apple's UIImageEffect sample
 
 From Apple:
 
-UIImageEffects shows how to create and apply blur and tint
-effects to an image using the vImage, Quartz, and UIKit frameworks. 
+UIImageEffects shows how to create and apply blur and tint effects to an image using the vImage, Quartz, and UIKit frameworks. 
 
 The vImage framework is suited for high-performance image processing. Using vImage, our app gets all the benefits of vector processing without the need for you to write vectorized code.
-
 	
 ##Main classes:
 
-###AppDelegate.cs: 
+###ViewController.cs: 
 
-Sets up the application, loads the image and calls the various filters on each tap.
+Calls the various filters on each tap.
 
 ###UIImageEffect.cs:
 

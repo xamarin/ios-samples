@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DisplayImage" translatesAutoresizingMaskIntoConstraints="NO" id="I6w-AR-Iz8">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Effect]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RM6-Zh-PWs">
+                                <rect key="frame" x="159" y="626" width="57.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="I6w-AR-Iz8" secondAttribute="trailing" id="N6N-se-6qD"/>
+                            <constraint firstItem="RM6-Zh-PWs" firstAttribute="centerX" secondItem="LIl-CU-LID" secondAttribute="centerX" id="OfQ-kL-oNF"/>
+                            <constraint firstAttribute="bottom" secondItem="I6w-AR-Iz8" secondAttribute="bottom" id="SDq-Pz-sHU"/>
+                            <constraint firstItem="LIl-CU-LID" firstAttribute="bottom" secondItem="RM6-Zh-PWs" secondAttribute="bottom" constant="20" id="Vud-m3-4Kd"/>
+                            <constraint firstItem="I6w-AR-Iz8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="iI4-xy-Mmq"/>
+                            <constraint firstItem="I6w-AR-Iz8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kgV-Vh-Hu3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="LIl-CU-LID"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="c7g-k5-JOh" appends="YES" id="9RB-hr-Q1p"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="effectLabel" destination="RM6-Zh-PWs" id="name-outlet-RM6-Zh-PWs"/>
+                        <outlet property="imageView" destination="I6w-AR-Iz8" id="name-outlet-I6w-AR-Iz8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="c7g-k5-JOh">
+                    <connections>
+                        <action selector="Update:" destination="BYZ-38-t0r" id="226"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="DisplayImage" width="192" height="288"/>
+    </resources>
+</document>

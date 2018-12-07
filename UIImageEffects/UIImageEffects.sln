@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIImageEffects", "UIImageEffects.csproj", "{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIImageEffects", "UIImageEffects\UIImageEffects.csproj", "{1AD209A2-B89A-4912-B29E-3F72E5D44018}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,18 +13,18 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}.Debug|iPhone.Build.0 = Debug|iPhone
-		{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}.Release|iPhone.ActiveCfg = Release|iPhone
-		{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}.Release|iPhone.Build.0 = Release|iPhone
-		{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{CBD5A17E-2279-413A-B2C2-CB99EC2263B2}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{1AD209A2-B89A-4912-B29E-3F72E5D44018}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{1AD209A2-B89A-4912-B29E-3F72E5D44018}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{1AD209A2-B89A-4912-B29E-3F72E5D44018}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{1AD209A2-B89A-4912-B29E-3F72E5D44018}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{1AD209A2-B89A-4912-B29E-3F72E5D44018}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{1AD209A2-B89A-4912-B29E-3F72E5D44018}.Debug|iPhone.Build.0 = Debug|iPhone
+		{1AD209A2-B89A-4912-B29E-3F72E5D44018}.Release|iPhone.ActiveCfg = Release|iPhone
+		{1AD209A2-B89A-4912-B29E-3F72E5D44018}.Release|iPhone.Build.0 = Release|iPhone
+		{1AD209A2-B89A-4912-B29E-3F72E5D44018}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{1AD209A2-B89A-4912-B29E-3F72E5D44018}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{1AD209A2-B89A-4912-B29E-3F72E5D44018}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{1AD209A2-B89A-4912-B29E-3F72E5D44018}.AppStore|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = UIImageEffects.csproj
