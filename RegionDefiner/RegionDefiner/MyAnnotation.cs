@@ -1,43 +1,25 @@
-using System;
-using CoreGraphics;
-
-using Foundation;
-using UIKit;
-using MapKit;
 using CoreLocation;
+using MapKit;
 
 namespace RegionDefiner
 {
-	public class MyAnnotation : MKAnnotation
-	{
-		CLLocationCoordinate2D coordinate;
-		string title;
-		string subtitle ;
+    public class MyAnnotation : MKAnnotation
+    {
+        private readonly CLLocationCoordinate2D coordinate;
+        private readonly string title;
+        private readonly string subtitle;
 
-		public MyAnnotation (CLLocationCoordinate2D coordinateToSet, string _title, string _subtitle)
-		{
-			coordinate = coordinateToSet;
-			title = _title;
-			subtitle = _subtitle;
-		}
+        public MyAnnotation(CLLocationCoordinate2D coordinate, string title, string subtitle)
+        {
+            this.coordinate = coordinate;
+            this.title = title;
+            this.subtitle = subtitle;
+        }
 
-		public override string Title {
-			get {
-				return title;
-			}
-		}
+        public override string Title => this.title;
 
-		public override string Subtitle {
-			get {
-				return subtitle;
-			}
-		}
+        public override string Subtitle => this.subtitle;
 
-		public override CLLocationCoordinate2D Coordinate {
-			get {
-				return coordinate;
-			}
-		}
-	}
+        public override CLLocationCoordinate2D Coordinate => this.coordinate;
+    }
 }
-

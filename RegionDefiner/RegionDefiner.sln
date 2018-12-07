@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegionDefiner", "RegionDefiner\RegionDefiner.csproj", "{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegionDefiner", "RegionDefiner\RegionDefiner.csproj", "{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,18 +13,18 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}.Debug|iPhone.Build.0 = Debug|iPhone
-		{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}.Release|iPhone.ActiveCfg = Release|iPhone
-		{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}.Release|iPhone.Build.0 = Release|iPhone
-		{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{FE9AAC77-AFB1-4ED8-9621-7C3A1C00D9B1}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}.Debug|iPhone.Build.0 = Debug|iPhone
+		{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}.Release|iPhone.ActiveCfg = Release|iPhone
+		{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}.Release|iPhone.Build.0 = Release|iPhone
+		{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{D2D5B9C5-CCF3-4905-97A3-43C0AC6244E2}.AppStore|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = RegionDefiner\RegionDefiner.csproj
