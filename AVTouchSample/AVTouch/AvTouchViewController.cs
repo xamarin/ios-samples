@@ -180,8 +180,6 @@ namespace AVTouch
             var style = p.Playing ? UIBarButtonSystemItem.Pause : UIBarButtonSystemItem.Play;
             using (var playButton = new UIBarButtonItem(style, (sender, e) => this.PlayButtonPressed(sender as UIBarButtonItem)))
             {
-                playButton.TintColor = UIColor.White;
-
                 var items = this.toolbar.Items;
                 items[3] = playButton;
                 this.toolbar.Items = items;
