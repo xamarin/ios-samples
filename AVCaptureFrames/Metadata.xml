@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<SampleMetadata>
-	<ID>9fa28988-64fe-4365-b2b7-95542daf4f9b</ID>
-	<IsFullApplication>true</IsFullApplication>
-	<Level>Advanced</Level>
-	<Tags>Media</Tags>
-	<Gallery>true</Gallery>
-	<Brief>AVCaptureFrames demonstrates AV Foundation APIs to display a real-time capture from camera.</Brief>
-</SampleMetadata>
