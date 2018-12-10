@@ -7,26 +7,18 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace BackgroundExecution
 {
-    [Register ("HomeScreen")]
-    partial class HomeScreen
+    [Register ("ViewController")]
+    partial class ViewController
     {
-        [Outlet]
-        UIButton BtnStartLongRunningTask { get; set; }
-
-        [Outlet]
+        [Action ("StartLongRunningTask:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton btnStartLongRunningTask { get; set; }
+        partial void StartLongRunningTask (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
-            if (btnStartLongRunningTask != null) {
-                btnStartLongRunningTask.Dispose ();
-                btnStartLongRunningTask = null;
-            }
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundExecution", "BackgroundExecution.csproj", "{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundExecution2", "BackgroundExecution2.csproj", "{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackgroundExecution", "BackgroundExecution\BackgroundExecution.csproj", "{FCC765DF-9029-40C6-BF0D-2D0A7F48CD6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +21,14 @@ Global
 		{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}.Release|iPhone.Build.0 = Release|iPhone
 		{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{BE447407-5D4B-4EFF-A47B-07B1D49F2C9B}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{FCC765DF-9029-40C6-BF0D-2D0A7F48CD6F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FCC765DF-9029-40C6-BF0D-2D0A7F48CD6F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FCC765DF-9029-40C6-BF0D-2D0A7F48CD6F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FCC765DF-9029-40C6-BF0D-2D0A7F48CD6F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{FCC765DF-9029-40C6-BF0D-2D0A7F48CD6F}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FCC765DF-9029-40C6-BF0D-2D0A7F48CD6F}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FCC765DF-9029-40C6-BF0D-2D0A7F48CD6F}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FCC765DF-9029-40C6-BF0D-2D0A7F48CD6F}.Release|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = BackgroundExecution\BackgroundExecution.csproj
