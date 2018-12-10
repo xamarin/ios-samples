@@ -6,19 +6,19 @@ using UIKit;
 
 namespace AVTouch
 {
-    public partial class AvTouchViewController : UIViewController, IAVAudioPlayerDelegate
+    public partial class AvTouchViewController : UIViewController
     {
         // amount to skip on rewind or fast forward
-        float SKIP_TIME = 1f;
+        private const float SKIP_TIME = 1f;
         // amount to play between skips
-        float SKIP_INTERVAL = .2f;
+        private const float SKIP_INTERVAL = .2f;
 
         private AVAudioPlayer player;
-        private NSTimer rewTimer;
-        private NSTimer ffwTimer;
+        private NSTimer rewindTimer;
+        private NSTimer forwardTimer;
+        private NSTimer updateTimer;
 
         private bool inBackground;
-        private NSTimer updateTimer;
 
         public AvTouchViewController(IntPtr handle) : base(handle) { }
 
@@ -26,40 +26,46 @@ namespace AVTouch
         {
             base.ViewDidLoad();
 
-            RegisterForBackgroundNotifications();
-
-            updateTimer = null;
-            rewTimer = null;
-            ffwTimer = null;
+            this.updateTimer = null;
+            this.rewindTimer = null;
+            this.forwardTimer = null;
 
             // Load the the sample file, use mono or stero sample
             var fileUrl = NSBundle.MainBundle.PathForResource("sample", "m4a");
-            player = AVAudioPlayer.FromUrl(new NSUrl(fileUrl, false));
-
-            if (player != null)
+            this.player = AVAudioPlayer.FromUrl(new NSUrl(fileUrl, false));
+            if (this.player != null)
             {
-                fileNameLabel.Text = $"Mono {Path.GetFileName(player.Url.RelativePath)} ({player.NumberOfChannels} ch)";
-                UpdateViewForPlayerInfo(player);
-                UpdateViewForPlayerState(player);
-                player.NumberOfLoops = 1;
-                player.Delegate = this;
+                this.fileNameLabel.Text = $"Mono {Path.GetFileName(this.player.Url.RelativePath)} ({this.player.NumberOfChannels} ch)";
+                this.UpdateViewForPlayerInfo(this.player);
+                this.UpdateViewForPlayerState(this.player);
+                this.player.NumberOfLoops = 1;
             }
+        }
 
-            // we don't do anything special in the route change notification
-            NSNotificationCenter.DefaultCenter.AddObserver(AVAudioSession.RouteChangeNotification, HandleRouteChange);
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+
+            this.RegisterForBackgroundNotifications();
+        }
+
+        public override void ViewDidDisappear(bool animated)
+        {
+            base.ViewDidDisappear(animated);
+            NSNotificationCenter.DefaultCenter.RemoveObserver(this);
         }
 
         private void PausePlaybackForPlayer(AVAudioPlayer p)
         {
             p.Pause();
-            UpdateViewForPlayerState(p);
+            this.UpdateViewForPlayerState(p);
         }
 
         private void StartPlaybackForPlayer(AVAudioPlayer p)
         {
             if (p.Play())
             {
-                UpdateViewForPlayerState(p);
+                this.UpdateViewForPlayerState(p);
             }
             else
             {
@@ -69,160 +75,137 @@ namespace AVTouch
 
         partial void PlayButtonPressed(UIBarButtonItem sender)
         {
-            if (player.Playing)
+            if (this.player.Playing)
             {
-                PausePlaybackForPlayer(player);
+                this.PausePlaybackForPlayer(this.player);
             }
             else
             {
-                StartPlaybackForPlayer(player);
+                this.StartPlaybackForPlayer(this.player);
             }
         }
 
         partial void RewindButtonPressed(UIBarButtonItem sender)
         {
-            if (rewTimer != null)
+            if (this.rewindTimer != null)
             {
-                rewTimer.Invalidate();
-                rewTimer.Dispose();
-                rewTimer = null;
+                this.DestroyTimer(this.rewindTimer);
             }
 
-            rewTimer = NSTimer.CreateRepeatingScheduledTimer(SKIP_INTERVAL, (timer) => Rewind(player));
+            this.rewindTimer = NSTimer.CreateRepeatingScheduledTimer(SKIP_INTERVAL, (timer) => this.Rewind(this.player));
         }
 
         partial void RewindButtonReleased(UIBarButtonItem sender)
         {
-            if (rewTimer != null)
+            if (this.rewindTimer != null)
             {
-                rewTimer.Invalidate();
-                rewTimer.Dispose();
-                rewTimer = null;
+                this.DestroyTimer(this.rewindTimer);
+                this.rewindTimer = null;
             }
         }
 
         partial void ForwardButtonPressed(UIBarButtonItem sender)
         {
-            if (ffwTimer != null)
+            if (this.forwardTimer != null)
             {
-                ffwTimer.Invalidate();
-                ffwTimer.Dispose();
-                ffwTimer = null;
+                this.DestroyTimer(this.forwardTimer);
             }
 
-            ffwTimer = NSTimer.CreateRepeatingScheduledTimer(SKIP_INTERVAL, (timer) => Forward(player));
+            this.forwardTimer = NSTimer.CreateRepeatingScheduledTimer(SKIP_INTERVAL, (timer) => this.Forward(this.player));
         }
 
         partial void ForwardButtonReleased(UIBarButtonItem sender)
         {
-            if (ffwTimer != null)
+            if (this.forwardTimer != null)
             {
-                ffwTimer.Invalidate();
-                ffwTimer.Dispose();
-                ffwTimer = null;
+                this.DestroyTimer(this.forwardTimer);
+                this.forwardTimer = null;
             }
         }
 
         partial void VolumeSliderMoved(UISlider sender)
         {
-            player.Volume = sender.Value;
+            this.player.Volume = sender.Value;
         }
 
         partial void ProgressSliderMoved(UISlider sender)
         {
-            player.CurrentTime = sender.Value;
-            UpdateCurrentTimeForPlayer(player);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
+            this.player.CurrentTime = sender.Value;
+            this.UpdateCurrentTimeForPlayer(this.player);
         }
 
         private void UpdateCurrentTimeForPlayer(AVAudioPlayer p)
         {
-            currentTimeLabel.Text = TimeSpan.FromSeconds(player.CurrentTime).ToString(@"mm\:ss");
-            progressSlider.Value = (float)p.CurrentTime;
+            this.currentTimeLabel.Text = TimeSpan.FromSeconds(player.CurrentTime).ToString(@"mm\:ss");
+            this.progressSlider.Value = (float)p.CurrentTime;
         }
 
         private void UpdateCurrentTime(AVAudioPlayer p)
         {
-            UpdateCurrentTimeForPlayer(p);
+            this.UpdateCurrentTimeForPlayer(p);
         }
 
         private void UpdateViewForPlayerState(AVAudioPlayer p)
         {
-            UpdateCurrentTimeForPlayer(p);
+            this.UpdateCurrentTimeForPlayer(p);
 
-            if (updateTimer != null)
+            if (this.updateTimer != null)
             {
-                updateTimer.Invalidate();
+                this.DestroyTimer(this.updateTimer);
+                this.updateTimer = null;
             }
 
-            UpdatePlayButtonState(p);
+            this.UpdatePlayButtonState(p);
 
             if (p.Playing)
             {
-                lvlMeter.Player = p;
-                updateTimer = NSTimer.CreateRepeatingScheduledTimer(.01f, (timer) => UpdateCurrentTime(p));
+                this.lvlMeter.Player = p;
+                this.updateTimer = NSTimer.CreateRepeatingScheduledTimer(.01f, (timer) => this.UpdateCurrentTime(p));
             }
             else
             {
-                lvlMeter.Player = null;
-                updateTimer = null;
+                this.lvlMeter.Player = null;
+                this.updateTimer = null;
             }
         }
 
         private void UpdateViewForPlayerStateInBackground(AVAudioPlayer p)
         {
-            UpdateCurrentTimeForPlayer(p);
-            UpdatePlayButtonState(p);
+            this.UpdateCurrentTimeForPlayer(p);
+            this.UpdatePlayButtonState(p);
         }
 
         private void UpdatePlayButtonState(AVAudioPlayer p)
         {
             var style = p.Playing ? UIBarButtonSystemItem.Pause : UIBarButtonSystemItem.Play;
-            using (var playButton = new UIBarButtonItem(style, (sender, e) => PlayButtonPressed(sender as UIBarButtonItem)))
+            using (var playButton = new UIBarButtonItem(style, (sender, e) => this.PlayButtonPressed(sender as UIBarButtonItem)))
             {
                 playButton.TintColor = UIColor.White;
 
-                var items = toolbar.Items;
+                var items = this.toolbar.Items;
                 items[3] = playButton;
-                toolbar.Items = items;
+                this.toolbar.Items = items;
             }
         }
 
         private void UpdateViewForPlayerInfo(AVAudioPlayer p)
         {
-            durationLabel.Text = TimeSpan.FromSeconds(player.Duration).ToString(@"mm\:ss");
-            progressSlider.MaxValue = (float)p.Duration;
-            volumeSlider.Value = p.Volume;
+            this.durationLabel.Text = TimeSpan.FromSeconds(p.Duration).ToString(@"mm\:ss");
+            this.progressSlider.MaxValue = (float)p.Duration;
+            this.volumeSlider.Value = p.Volume;
         }
 
         private void Rewind(AVAudioPlayer p)
         {
-            p.CurrentTime-= SKIP_TIME;
-            UpdateCurrentTimeForPlayer(p);
+            p.CurrentTime -= SKIP_TIME;
+            this.UpdateCurrentTimeForPlayer(p);
         }
 
         private void Forward(AVAudioPlayer p)
         {
-            p.CurrentTime+= SKIP_TIME;
-            UpdateCurrentTimeForPlayer(p);
+            p.CurrentTime += SKIP_TIME;
+            this.UpdateCurrentTimeForPlayer(p);
         }
-
-        #region AVAudioSession notification handlers
-
-        private void HandleRouteChange(NSNotification notification)
-        {
-            var reasonValue = ((NSNumber)notification.UserInfo.ValueForKey(new NSString("AVAudioSessionRouteChangeReason"))).Int32Value;
-            var routeDescription = notification.UserInfo.ValueForKey(new NSString("AVAudioSessionRouteChangePreviousRouteKey"));
-            Console.WriteLine("Route change:");
-
-            // TODO:
-        }
-
-        #endregion
 
         #region AVAudioPlayer delegate methods
 
@@ -235,13 +218,13 @@ namespace AVTouch
             }
 
             p.CurrentTime = 0d;
-            if (inBackground)
+            if (this.inBackground)
             {
-                UpdateViewForPlayerStateInBackground(p);
+                this.UpdateViewForPlayerStateInBackground(p);
             }
             else
             {
-                UpdateViewForPlayerState(p);
+                this.UpdateViewForPlayerState(p);
             }
         }
 
@@ -257,13 +240,13 @@ namespace AVTouch
         {
             Console.WriteLine("Interruption begin. Updating UI for new state");
             // the object has already been paused,  we just need to update UI
-            if (inBackground)
+            if (this.inBackground)
             {
-                UpdateViewForPlayerStateInBackground(p);
-            } 
-            else 
+                this.UpdateViewForPlayerStateInBackground(p);
+            }
+            else
             {
-                UpdateViewForPlayerState(p);
+                this.UpdateViewForPlayerState(p);
             }
         }
 
@@ -286,14 +269,48 @@ namespace AVTouch
 
         private void SetInBackgroundFlag(NSNotification notification)
         {
-            inBackground = true;
+            this.inBackground = true;
         }
 
         private void ClearInBackgroundFlag(NSNotification notification)
         {
-            inBackground = false;
+            this.inBackground = false;
         }
 
         #endregion
+
+        private void DestroyTimer(NSTimer timer)
+        {
+            timer.Invalidate();
+            timer.Dispose();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (this.player != null)
+            {
+                this.player.Dispose();
+                this.player = null;
+            }
+
+            if (this.rewindTimer != null)
+            {
+                this.DestroyTimer(this.rewindTimer);
+                this.rewindTimer = null;
+            }
+
+            if (this.forwardTimer != null)
+            {
+                this.DestroyTimer(this.forwardTimer);
+                this.forwardTimer = null;
+            }
+
+            if (this.updateTimer != null)
+            {
+                this.DestroyTimer(this.updateTimer);
+                this.updateTimer = null;
+            }
+        }
     }
 }
