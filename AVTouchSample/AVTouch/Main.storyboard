@@ -84,22 +84,22 @@
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="volume_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sgg-2y-a8H">
-                                <rect key="frame" x="16" y="355.5" width="27" height="15"/>
+                                <rect key="frame" x="16" y="395.5" width="27" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="27" id="GFA-zF-ZCu"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="volume_up.png" translatesAutoresizingMaskIntoConstraints="NO" id="vH6-hK-T6h">
-                                <rect key="frame" x="332" y="352.5" width="22" height="21"/>
+                                <rect key="frame" x="332" y="392.5" width="22" height="21"/>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.40000000596046448" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="waJ-c8-1Jf">
-                                <rect key="frame" x="49" y="348" width="277" height="31"/>
+                                <rect key="frame" x="49" y="388" width="277" height="31"/>
                                 <connections>
                                     <action selector="VolumeSliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="349"/>
                                 </connections>
                             </slider>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cO4-qZ-SWC">
-                                <rect key="frame" x="16" y="187" width="343" height="89"/>
+                                <rect key="frame" x="16" y="227" width="343" height="89"/>
                                 <subviews>
                                     <imageView opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sound_meter_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="geU-De-ENl">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="89"/>
@@ -152,7 +152,7 @@
                             <constraint firstItem="cO4-qZ-SWC" firstAttribute="leading" secondItem="szH-UI-FOc" secondAttribute="leading" constant="16" id="giI-5x-UI7"/>
                             <constraint firstItem="WKI-ci-M11" firstAttribute="top" secondItem="Edn-ec-0hH" secondAttribute="bottom" constant="24" id="hwM-8n-nb0"/>
                             <constraint firstItem="vH6-hK-T6h" firstAttribute="centerY" secondItem="waJ-c8-1Jf" secondAttribute="centerY" id="mOo-qd-27U"/>
-                            <constraint firstItem="cO4-qZ-SWC" firstAttribute="top" secondItem="WKI-ci-M11" secondAttribute="bottom" constant="32" id="qrs-p3-ujT"/>
+                            <constraint firstItem="cO4-qZ-SWC" firstAttribute="top" secondItem="WKI-ci-M11" secondAttribute="bottom" constant="72" id="qrs-p3-ujT"/>
                             <constraint firstItem="vH6-hK-T6h" firstAttribute="leading" secondItem="waJ-c8-1Jf" secondAttribute="trailing" constant="8" symbolic="YES" id="u9w-mY-QOz"/>
                             <constraint firstItem="szH-UI-FOc" firstAttribute="trailing" secondItem="Akg-NI-hXU" secondAttribute="trailing" constant="16" id="uYn-VB-6cn"/>
                         </constraints>
