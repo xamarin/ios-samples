@@ -121,6 +121,8 @@
     <BundleResource Include="Resources\volume_down.png" />
     <BundleResource Include="Resources\volume_up.png" />
     <BundleResource Include="Resources\sample.m4a" />
+    <BundleResource Include="Resources\forward.png" />
+    <BundleResource Include="Resources\rewind.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

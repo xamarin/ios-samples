@@ -39,13 +39,13 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.40000000000000002" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="WKI-ci-M11">
                                 <rect key="frame" x="48.5" y="130.5" width="278" height="31"/>
                                 <connections>
-                                    <action selector="ProgressSliderMoved:" destination="BYZ-38-t0r" id="316" eventType="valueChanged"/>
+                                    <action selector="ProgressSliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="316"/>
                                 </connections>
                             </slider>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sound_meter_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="geU-De-ENl">
                                 <rect key="frame" x="16" y="196.5" width="343" height="89"/>
                             </imageView>
-                            <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lCo-re-OLd" misplaced="YES" customClass="CALevelMeter">
+                            <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lCo-re-OLd" customClass="CALevelMeter" misplaced="YES">
                                 <rect key="frame" x="68" y="201" width="240" height="65"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -56,28 +56,39 @@
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="oDe-if-BoK"/>
-                                    <barButtonItem systemItem="rewind" id="luB-Xg-Qvd">
-                                        <connections>
-                                            <action selector="RewindButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="105"/>
-                                            <action selector="RewindButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="102"/>
-                                            <action selector="RewindButtonReleased:" destination="BYZ-38-t0r" eventType="touchDragOutside" id="103"/>
-                                            <action selector="RewindButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="104"/>
-                                        </connections>
+                                    <barButtonItem title="Item" id="S6B-iN-drI">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tjg-br-MVA">
+                                            <rect key="frame" x="0.0" y="0.0" width="28" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="rewind.png"/>
+                                            <connections>
+                                                <action selector="RewindButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="beS-fH-Kj0"/>
+                                                <action selector="RewindButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OBm-hN-uFf"/>
+                                                <action selector="RewindButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="OBm-hN-sAG"/>
+                                                <action selector="RewindButtonReleased:" destination="BYZ-38-t0r" eventType="touchDragOutside" id="OBm-hN-aLd"/>
+                                            </connections>
+                                        </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ato-gv-PRs"/>
                                     <barButtonItem systemItem="play" id="ajE-fc-GAb">
+                                        <color key="tintColor" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" white="1" alpha="1"/>
                                         <connections>
                                             <action selector="PlayButtonPressed:" destination="BYZ-38-t0r" id="351"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="4fE-bh-E7D"/>
-                                    <barButtonItem systemItem="fastForward" id="eFW-Qh-tyW">
-                                        <connections>
-                                            <action selector="ForwardButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="106"/>
-                                            <action selector="ForwardButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="99"/>
-                                            <action selector="ForwardButtonReleased:" destination="BYZ-38-t0r" eventType="touchDragOutside" id="100"/>
-                                            <action selector="ForwardButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="101"/>
-                                        </connections>
+                                    <barButtonItem id="K0d-Hl-yK5">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="A1I-xz-U6K">
+                                            <rect key="frame" x="0.0" y="0.0" width="28" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="forward.png"/>
+                                            <connections>
+                                                <action selector="ForwardButtonPressed:" destination="BYZ-38-t0r" eventType="touchDown" id="beF-fH-Kj0"/>
+                                                <action selector="ForwardButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ODf-hN-uFf"/>
+                                                <action selector="ForwardButtonReleased:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="RDm-hN-sAG"/>
+                                                <action selector="ForwardButtonReleased:" destination="BYZ-38-t0r" eventType="touchDragOutside" id="GTg-hN-aLd"/>
+                                            </connections>
+                                        </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="wia-QZ-hgI"/>
                                 </items>
@@ -94,7 +105,7 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.40000000596046448" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="waJ-c8-1Jf">
                                 <rect key="frame" x="49" y="369.5" width="277" height="31"/>
                                 <connections>
-                                    <action selector="VolumeSliderMoved:" destination="BYZ-38-t0r" id="349" eventType="valueChanged"/>
+                                    <action selector="VolumeSliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="349"/>
                                 </connections>
                             </slider>
                         </subviews>
@@ -131,12 +142,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="avTouch" id="K1g-QQ-TWI"/>
                     <connections>
-                        <outlet property="fileNameLabel" destination="Edn-ec-0hH" id="name-outlet-Edn-ec-0hH"/>
                         <outlet property="currentTimeLabel" destination="uf2-MU-Nck" id="name-outlet-uf2-MU-Nck"/>
                         <outlet property="durationLabel" destination="Akg-NI-hXU" id="name-outlet-Akg-NI-hXU"/>
-                        <outlet property="progressSlider" destination="WKI-ci-M11" id="name-outlet-WKI-ci-M11"/>
-                        <outlet property="volumeSlider" destination="waJ-c8-1Jf" id="name-outlet-waJ-c8-1Jf"/>
+                        <outlet property="fileNameLabel" destination="Edn-ec-0hH" id="name-outlet-Edn-ec-0hH"/>
                         <outlet property="lvlMeter" destination="lCo-re-OLd" id="name-outlet-lCo-re-OLd"/>
+                        <outlet property="progressSlider" destination="WKI-ci-M11" id="name-outlet-WKI-ci-M11"/>
+                        <outlet property="toolbar" destination="zPf-hS-3Aq" id="name-outlet-zPf-hS-3Aq"/>
+                        <outlet property="volumeSlider" destination="waJ-c8-1Jf" id="name-outlet-waJ-c8-1Jf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -163,6 +175,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="forward.png" width="28" height="21"/>
+        <image name="rewind.png" width="28" height="21"/>
         <image name="sound_meter_background.png" width="265" height="89"/>
         <image name="sound_meter_glare.png" width="265" height="89"/>
         <image name="volume_down.png" width="9" height="15"/>

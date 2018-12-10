@@ -141,7 +141,7 @@ namespace AVTouch
 
         private void UpdateCurrentTimeForPlayer(AVAudioPlayer p)
         {
-            currentTimeLabel.Text = string.Format("{0}:{1:2}", (int)player.CurrentTime / 60, (int)player.CurrentTime % 60);
+            currentTimeLabel.Text = TimeSpan.FromSeconds(player.CurrentTime).ToString(@"mm\:ss");
             progressSlider.Value = (float)p.CurrentTime;
         }
 
@@ -159,16 +159,16 @@ namespace AVTouch
                 updateTimer.Invalidate();
             }
 
+            UpdatePlayButtonState(p);
+
             if (p.Playing)
             {
-                //playButton.SesetImage:((p.playing == YES) ? pauseBtnBG : playBtnBG) forState:UIControlStateNormal];
                 lvlMeter.Player = p;
                 updateTimer = NSTimer.CreateRepeatingScheduledTimer(.01f, (timer) => UpdateCurrentTime(p));
             }
             else
             {
-                //[playButton setImage:((p.playing == YES) ? pauseBtnBG : playBtnBG) forState:UIControlStateNormal];
-                lvlMeter.Player = null; 
+                lvlMeter.Player = null;
                 updateTimer = null;
             }
         }
@@ -176,20 +176,25 @@ namespace AVTouch
         private void UpdateViewForPlayerStateInBackground(AVAudioPlayer p)
         {
             UpdateCurrentTimeForPlayer(p);
-    
-            if (p.Playing)
+            UpdatePlayButtonState(p);
+        }
+
+        private void UpdatePlayButtonState(AVAudioPlayer p)
+        {
+            var style = p.Playing ? UIBarButtonSystemItem.Pause : UIBarButtonSystemItem.Play;
+            using (var playButton = new UIBarButtonItem(style, (sender, e) => PlayButtonPressed(sender as UIBarButtonItem)))
             {
-                        //[playButton setImage:((p.playing == YES) ? pauseBtnBG : playBtnBG) forState:UIControlStateNormal];
+                playButton.TintColor = UIColor.White;
+
+                var items = toolbar.Items;
+                items[3] = playButton;
+                toolbar.Items = items;
             }
-            else
-            {
-                        //[playButton setImage:((p.playing == YES) ? pauseBtnBG : playBtnBG) forState:UIControlStateNormal];
-            }   
         }
 
         private void UpdateViewForPlayerInfo(AVAudioPlayer p)
         {
-            durationLabel.Text = string.Format("{0}:{1:2}", player.Duration / 60, player.Duration % 60);
+            durationLabel.Text = TimeSpan.FromSeconds(player.Duration).ToString(@"mm\:ss");
             progressSlider.MaxValue = (float)p.Duration;
             volumeSlider.Value = p.Volume;
         }

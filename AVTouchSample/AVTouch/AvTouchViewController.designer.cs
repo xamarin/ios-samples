@@ -7,7 +7,6 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace AVTouch
 {
@@ -36,34 +35,38 @@ namespace AVTouch
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIToolbar toolbar { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UISlider volumeSlider { get; set; }
 
+
         [Action ("ForwardButtonPressed:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
         partial void ForwardButtonPressed (UIKit.UIBarButtonItem sender);
 
+
         [Action ("ForwardButtonReleased:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
         partial void ForwardButtonReleased (UIKit.UIBarButtonItem sender);
 
+
         [Action ("PlayButtonPressed:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
         partial void PlayButtonPressed (UIKit.UIBarButtonItem sender);
 
+
         [Action ("ProgressSliderMoved:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
         partial void ProgressSliderMoved (UIKit.UISlider sender);
 
+
         [Action ("RewindButtonPressed:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
         partial void RewindButtonPressed (UIKit.UIBarButtonItem sender);
 
+
         [Action ("RewindButtonReleased:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
         partial void RewindButtonReleased (UIKit.UIBarButtonItem sender);
 
+
         [Action ("VolumeSliderMoved:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
         partial void VolumeSliderMoved (UIKit.UISlider sender);
 
         void ReleaseDesignerOutlets ()
@@ -91,6 +94,11 @@ namespace AVTouch
             if (progressSlider != null) {
                 progressSlider.Dispose ();
                 progressSlider = null;
+            }
+
+            if (toolbar != null) {
+                toolbar.Dispose ();
+                toolbar = null;
             }
 
             if (volumeSlider != null) {
