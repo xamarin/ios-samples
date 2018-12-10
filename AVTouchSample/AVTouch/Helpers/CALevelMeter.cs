@@ -284,9 +284,12 @@ namespace AVTouch
 
         private void PauseTimer(NSNotification notification)
         {
-            updateTimer.Invalidate();
-            updateTimer.Dispose();
-            updateTimer = null;
+            if (updateTimer != null)
+            {
+                updateTimer.Invalidate();
+                updateTimer.Dispose();
+                updateTimer = null;
+            }
         }
 
         private void ResumeTimer(NSNotification notification)
