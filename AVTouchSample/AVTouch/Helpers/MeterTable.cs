@@ -25,30 +25,30 @@ namespace AVTouch
                 Console.WriteLine($"MeterTable {nameof(inMinDecibels)} must be negative");
             }
 
-            minDecibels = inMinDecibels;
-            decibelResolution = (minDecibels / (inTableSize - 1));
-            scaleFactor = 1f / decibelResolution;
+            this.minDecibels = inMinDecibels;
+            this.decibelResolution = (this.minDecibels / (inTableSize - 1));
+            this.scaleFactor = 1f / this.decibelResolution;
 
-            table = new float[inTableSize];
+            this.table = new float[inTableSize];
 
-            var minAmp = DbToAmp(minDecibels);
+            var minAmp = this.DbToAmp(this.minDecibels);
             var ampRange = 1d - minAmp;
             var invAmpRange = 1d / ampRange;
 
             var rroot = 1.0 / inRoot;
             for (int i = 0; i < inTableSize; ++i)
             {
-                var decibels = i * decibelResolution;
-                var amp = DbToAmp(decibels);
+                var decibels = i * this.decibelResolution;
+                var amp = this.DbToAmp(decibels);
                 var adjAmp = (amp - minAmp) * invAmpRange;
-                table[i] = (float)Math.Pow(adjAmp, rroot);
+                this.table[i] = (float)Math.Pow(adjAmp, rroot);
             }
         }
 
         public float ValueAt(float inDecibels)
         {
             float result;
-            if (inDecibels < minDecibels)
+            if (inDecibels < this.minDecibels)
             {
                 result = 0f;
             }
@@ -58,8 +58,8 @@ namespace AVTouch
             }
             else
             {
-                var index = (int)(inDecibels * scaleFactor);
-                result = table[index];
+                var index = (int)(inDecibels * this.scaleFactor);
+                result = this.table[index];
             }
 
             return result;

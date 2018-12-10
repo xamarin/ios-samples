@@ -1,8 +1,7 @@
-using System;
-using Foundation;
-using UIKit;
 using CoreGraphics;
-using System.Collections.Generic;
+using Foundation;
+using System;
+using UIKit;
 
 namespace AVTouch
 {
@@ -32,7 +31,7 @@ namespace AVTouch
     {
         public LevelMeter(CGRect frame) : base(frame)
         {
-            PerformInit();
+            this.PerformInit();
         }
 
         public LevelMeter(NSCoder coder) : base(coder)
@@ -79,12 +78,12 @@ namespace AVTouch
 
         private void PerformInit()
         {
-            Level = 0;
-            NumLights = 0;
-            Vertical = Frame.Width < Frame.Height;
-            BgColor = UIColor.FromRGBA(0, 0, 0, 0.6f);
-            BorderColor = UIColor.FromRGBA(0f, 0f, 0, 1f);
-            ColorThresholds = new LevelMeterColorThreshold[]
+            this.Level = 0;
+            this.NumLights = 0;
+            this.Vertical = this.Frame.Width < this.Frame.Height;
+            this.BgColor = UIColor.FromRGBA(0, 0, 0, 0.6f);
+            this.BorderColor = UIColor.FromRGBA(0f, 0f, 0, 1f);
+            this.ColorThresholds = new LevelMeterColorThreshold[]
             {
                 new LevelMeterColorThreshold (0.25f, UIColor.FromRGBA (0, 1f, 0, 1f)),
                 new LevelMeterColorThreshold (0.8f, UIColor.FromRGBA (1f, 1f, 0, 1f)),
@@ -102,48 +101,48 @@ namespace AVTouch
             {
                 using(cs = CGColorSpace.CreateDeviceRGB())
                 {
-                    if (Vertical)
+                    if (this.Vertical)
                     {
-                        ctx.TranslateCTM(0, Bounds.Height);
+                        ctx.TranslateCTM(0, this.Bounds.Height);
                         ctx.ScaleCTM(1, -1);
-                        bds = Bounds;
+                        bds = this.Bounds;
                     }
                     else
                     {
-                        ctx.TranslateCTM(0, Bounds.Height);
+                        ctx.TranslateCTM(0, this.Bounds.Height);
                         ctx.RotateCTM(-(float)Math.PI / 2);
-                        bds = new CGRect(0, 0, Bounds.Height, Bounds.Width);
+                        bds = new CGRect(0, 0, this.Bounds.Height, this.Bounds.Width);
                     }
 
                     ctx.SetFillColorSpace(cs);
                     ctx.SetStrokeColorSpace(cs);
 
-                    if (NumLights == 0)
+                    if (this.NumLights == 0)
                     {
                         float currentTop = 0;
 
-                        if (BgColor != null)
+                        if (this.BgColor != null)
                         {
-                            BgColor.SetColor();
+                            this.BgColor.SetColor();
                             ctx.FillRect(bds);
                         }
 
-                        foreach (var thisTresh in ColorThresholds)
+                        foreach (var thisTresh in this.ColorThresholds)
                         {
-                            var value = Math.Min(thisTresh.MaxValue, Level);
+                            var value = Math.Min(thisTresh.MaxValue, this.Level);
 
                             var fillRect = new CGRect(0, bds.Height * currentTop, bds.Width, bds.Height * (value - currentTop));
                             thisTresh.Color.SetColor();
                             ctx.FillRect(fillRect);
 
-                            if (Level < thisTresh.MaxValue)
+                            if (this.Level < thisTresh.MaxValue)
                                 break;
                             currentTop = value;
                         }
 
-                        if (BorderColor != null)
+                        if (this.BorderColor != null)
                         {
-                            BorderColor.SetColor();
+                            this.BorderColor.SetColor();
                             bds.Inflate(-0.5f, -0.5f);
                             ctx.StrokeRect(bds);
                         }
@@ -154,7 +153,7 @@ namespace AVTouch
                         float insetAmount, lightVSpace;
                         int peakLight = -1;
 
-                        lightVSpace = (float)bds.Height / NumLights;
+                        lightVSpace = (float)bds.Height / this.NumLights;
                         if (lightVSpace < 4)
                         {
                             insetAmount = 0;
@@ -168,18 +167,18 @@ namespace AVTouch
                             insetAmount = 1;
                         }
 
-                        if (PeakLevel > 0)
+                        if (this.PeakLevel > 0)
                         {
-                            peakLight = (int)(PeakLevel * NumLights);
-                            if (peakLight >= NumLights)
+                            peakLight = (int)(this.PeakLevel * this.NumLights);
+                            if (peakLight >= this.NumLights)
                             {
-                                peakLight = NumLights - 1;
+                                peakLight = this.NumLights - 1;
                             }
                         }
 
-                        for (int light_i = 0; light_i < NumLights; light_i++)
+                        for (int light_i = 0; light_i < this.NumLights; light_i++)
                         {
-                            float lightMaxVal = (light_i + 1) / (float)NumLights;
+                            float lightMaxVal = (light_i + 1) / (float)this.NumLights;
                             float lightIntensity;
                             CGRect lightRect;
                             UIColor lightColor;
@@ -192,37 +191,36 @@ namespace AVTouch
                             {
                                 lightIntensity = (Level - lightMinVal) / (lightMaxVal - lightMinVal);
                                 lightIntensity = Clamp(0, lightIntensity, 1);
-                                if (!VariableLightIntensity && lightIntensity > 0)
+                                if (!this.VariableLightIntensity && lightIntensity > 0)
                                 {
                                     lightIntensity = 1;
                                 }
                             }
 
-                            lightColor = ColorThresholds[0].Color;
+                            lightColor = this.ColorThresholds[0].Color;
                             int color_i = 0;
-                            for (; color_i < ColorThresholds.Length - 1; color_i++)
+                            for (; color_i < this.ColorThresholds.Length - 1; color_i++)
                             {
-                                var thisTresh = ColorThresholds[color_i];
-                                var nextTresh = ColorThresholds[color_i + 1];
+                                var thisTresh = this.ColorThresholds[color_i];
+                                var nextTresh = this.ColorThresholds[color_i + 1];
                                 if (thisTresh.MaxValue <= lightMaxVal)
                                 {
                                     lightColor = nextTresh.Color;
                                 }
                             }
 
-                            lightRect = new CGRect(0, bds.Height * light_i / (float)NumLights, bds.Width, bds.Height * (1f / NumLights));
+                            lightRect = new CGRect(0, bds.Height * light_i / (float)this.NumLights, bds.Width, bds.Height * (1f / this.NumLights));
                             lightRect.Inset(insetAmount, insetAmount);
 
-                            if (BgColor != null)
+                            if (this.BgColor != null)
                             {
-                                BgColor.SetColor();
+                                this.BgColor.SetColor();
                                 ctx.FillRect(lightRect);
                             }
 
                             if (lightIntensity == 1f)
                             {
                                 lightColor.SetColor();
-                                //Console.WriteLine ("Setting color to {0}", lightColor);
                                 ctx.FillRect(lightRect);
                             }
                             else if (lightIntensity > 0)
@@ -234,9 +232,9 @@ namespace AVTouch
                                 }
                             }
 
-                            if (BorderColor != null)
+                            if (this.BorderColor != null)
                             {
-                                BorderColor.SetColor();
+                                this.BorderColor.SetColor();
                                 lightRect.Inset(0.5f, 0.5f);
                                 ctx.StrokeRect(lightRect);
                             }
