@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "avTouch", "avTouch.csproj", "{39F57FAA-67B1-4686-9D42-377DFC6DE989}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVTouch", "AVTouch\AVTouch.csproj", "{B70B002B-0935-46DE-BFCC-8278108C446F}"
 EndProject
 Global
@@ -13,14 +11,6 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{39F57FAA-67B1-4686-9D42-377DFC6DE989}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{39F57FAA-67B1-4686-9D42-377DFC6DE989}.Debug|iPhone.Build.0 = Debug|iPhone
-		{39F57FAA-67B1-4686-9D42-377DFC6DE989}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{39F57FAA-67B1-4686-9D42-377DFC6DE989}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{39F57FAA-67B1-4686-9D42-377DFC6DE989}.Release|iPhone.ActiveCfg = Release|iPhone
-		{39F57FAA-67B1-4686-9D42-377DFC6DE989}.Release|iPhone.Build.0 = Release|iPhone
-		{39F57FAA-67B1-4686-9D42-377DFC6DE989}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{39F57FAA-67B1-4686-9D42-377DFC6DE989}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{B70B002B-0935-46DE-BFCC-8278108C446F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{B70B002B-0935-46DE-BFCC-8278108C446F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{B70B002B-0935-46DE-BFCC-8278108C446F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
