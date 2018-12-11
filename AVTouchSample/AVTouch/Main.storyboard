@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RTg-Z7-S8g">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
@@ -19,36 +19,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[File Name]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edn-ec-0hH">
-                                <rect key="frame" x="143.5" y="86" width="88" height="20.5"/>
+                                <rect key="frame" x="143.5" y="80" width="88" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uf2-MU-Nck">
-                                <rect key="frame" x="16" y="138.5" width="26.5" height="14.5"/>
+                                <rect key="frame" x="16" y="132.5" width="26.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Akg-NI-hXU">
-                                <rect key="frame" x="332.5" y="138.5" width="26.5" height="14.5"/>
+                                <rect key="frame" x="332.5" y="132.5" width="26.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.40000000000000002" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="WKI-ci-M11">
-                                <rect key="frame" x="48.5" y="130.5" width="278" height="31"/>
+                                <rect key="frame" x="48.5" y="124.5" width="278" height="31"/>
                                 <connections>
                                     <action selector="ProgressSliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="316"/>
                                 </connections>
                             </slider>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="zPf-hS-3Aq">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="oDe-if-BoK"/>
                                     <barButtonItem title="Item" id="S6B-iN-drI">
-                                        <button key="customView" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tjg-br-MVA" buttonType="roundedRect">
-                                            <rect key="frame" x="0.0" y="0.0" width="28" height="21"/>
+                                        <button key="customView" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tjg-br-MVA">
+                                            <rect key="frame" x="81" y="11.5" width="28" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <state key="normal" image="rewind.png"/>
@@ -68,8 +68,8 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="4fE-bh-E7D"/>
                                     <barButtonItem id="K0d-Hl-yK5">
-                                        <button key="customView" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="A1I-xz-U6K" buttonType="roundedRect">
-                                            <rect key="frame" x="0.0" y="0.0" width="28" height="21"/>
+                                        <button key="customView" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="A1I-xz-U6K">
+                                            <rect key="frame" x="266" y="11.5" width="28" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="forward.png"/>
                                             <connections>
@@ -84,22 +84,22 @@
                                 </items>
                             </toolbar>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="volume_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sgg-2y-a8H">
-                                <rect key="frame" x="16" y="401" width="27" height="15"/>
+                                <rect key="frame" x="16" y="395" width="27" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="27" id="GFA-zF-ZCu"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="volume_up.png" translatesAutoresizingMaskIntoConstraints="NO" id="vH6-hK-T6h">
-                                <rect key="frame" x="332" y="398" width="22" height="21"/>
+                                <rect key="frame" x="332" y="392" width="22" height="21"/>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.40000000596046448" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="waJ-c8-1Jf">
-                                <rect key="frame" x="49" y="393.5" width="277" height="31"/>
+                                <rect key="frame" x="49" y="387.5" width="277" height="31"/>
                                 <connections>
                                     <action selector="VolumeSliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="349"/>
                                 </connections>
                             </slider>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cO4-qZ-SWC">
-                                <rect key="frame" x="16" y="232.5" width="343" height="89"/>
+                                <rect key="frame" x="16" y="226.5" width="343" height="89"/>
                                 <subviews>
                                     <imageView opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sound_meter_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="geU-De-ENl">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="89"/>
@@ -139,16 +139,16 @@
                             <constraint firstItem="waJ-c8-1Jf" firstAttribute="top" secondItem="cO4-qZ-SWC" secondAttribute="bottom" constant="72" id="6EJ-vz-aY9"/>
                             <constraint firstItem="WKI-ci-M11" firstAttribute="leading" secondItem="uf2-MU-Nck" secondAttribute="trailing" constant="8" symbolic="YES" id="9Y3-CO-gRJ"/>
                             <constraint firstItem="uf2-MU-Nck" firstAttribute="centerY" secondItem="WKI-ci-M11" secondAttribute="centerY" id="CW0-P2-ELR"/>
-                            <constraint firstItem="zPf-hS-3Aq" firstAttribute="leading" secondItem="szH-UI-FOc" secondAttribute="leading" id="Cjc-ky-pS7"/>
+                            <constraint firstItem="zPf-hS-3Aq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Cjc-ky-pS7"/>
                             <constraint firstItem="Sgg-2y-a8H" firstAttribute="leading" secondItem="szH-UI-FOc" secondAttribute="leading" constant="16" id="RFC-jt-mVd"/>
-                            <constraint firstAttribute="bottom" secondItem="zPf-hS-3Aq" secondAttribute="bottom" id="RJd-li-59V"/>
+                            <constraint firstItem="szH-UI-FOc" firstAttribute="bottom" secondItem="zPf-hS-3Aq" secondAttribute="bottom" id="RJd-li-59V"/>
                             <constraint firstItem="Akg-NI-hXU" firstAttribute="leading" secondItem="WKI-ci-M11" secondAttribute="trailing" constant="8" symbolic="YES" id="Sl2-wd-Z9H"/>
                             <constraint firstItem="szH-UI-FOc" firstAttribute="trailing" secondItem="cO4-qZ-SWC" secondAttribute="trailing" constant="16" id="VhM-4s-xJc"/>
                             <constraint firstItem="uf2-MU-Nck" firstAttribute="leading" secondItem="szH-UI-FOc" secondAttribute="leading" constant="16" id="Waf-yE-aj6"/>
                             <constraint firstItem="waJ-c8-1Jf" firstAttribute="leading" secondItem="Sgg-2y-a8H" secondAttribute="trailing" constant="8" symbolic="YES" id="XTf-qH-Hl8"/>
                             <constraint firstItem="szH-UI-FOc" firstAttribute="trailing" secondItem="vH6-hK-T6h" secondAttribute="trailing" constant="21" id="Y4R-L1-hkc"/>
                             <constraint firstItem="Sgg-2y-a8H" firstAttribute="centerY" secondItem="waJ-c8-1Jf" secondAttribute="centerY" id="au9-Yb-gwI"/>
-                            <constraint firstItem="szH-UI-FOc" firstAttribute="trailing" secondItem="zPf-hS-3Aq" secondAttribute="trailing" id="g7b-rP-z4C"/>
+                            <constraint firstAttribute="trailing" secondItem="zPf-hS-3Aq" secondAttribute="trailing" id="g7b-rP-z4C"/>
                             <constraint firstItem="cO4-qZ-SWC" firstAttribute="leading" secondItem="szH-UI-FOc" secondAttribute="leading" constant="16" id="giI-5x-UI7"/>
                             <constraint firstItem="WKI-ci-M11" firstAttribute="top" secondItem="Edn-ec-0hH" secondAttribute="bottom" constant="24" id="hwM-8n-nb0"/>
                             <constraint firstItem="vH6-hK-T6h" firstAttribute="centerY" secondItem="waJ-c8-1Jf" secondAttribute="centerY" id="mOo-qd-27U"/>
@@ -171,7 +171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1072.8" y="133.5832"/>
+            <point key="canvasLocation" x="1072.8" y="133.58320000000001"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3ub-b2-ywY">
@@ -179,7 +179,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RTg-Z7-S8g" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="Kbp-OT-SeV">
-                        <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
