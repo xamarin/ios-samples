@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendars", "Calendars\Calendars.csproj", "{29CF4463-4FAD-4B9E-A086-49ECB241238A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendars2", "Calendars2\Calendars2.csproj", "{29CF4463-4FAD-4B9E-A086-49ECB241238A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calendars", "Calendars\Calendars.csproj", "{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,18 @@ Global
 		{29CF4463-4FAD-4B9E-A086-49ECB241238A}.Release|iPhone.Build.0 = Release|iPhone
 		{29CF4463-4FAD-4B9E-A086-49ECB241238A}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{29CF4463-4FAD-4B9E-A086-49ECB241238A}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}.Debug|iPhone.Build.0 = Debug|iPhone
+		{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}.Release|iPhone.ActiveCfg = Release|iPhone
+		{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}.Release|iPhone.Build.0 = Release|iPhone
+		{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{F26BEA24-7FDE-4B56-A2E4-2D9C2C127030}.AppStore|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Calendars\Calendars.csproj
