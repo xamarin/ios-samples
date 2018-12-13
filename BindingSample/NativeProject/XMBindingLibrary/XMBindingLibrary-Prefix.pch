@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'XMBindingLibrary' target in the 'XMBindingLibrary' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+    #import <QuartzCore/QuartzCore.h>
+#endif
