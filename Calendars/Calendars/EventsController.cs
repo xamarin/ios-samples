@@ -9,7 +9,7 @@ namespace Calendars
     {
         private EKEvent[] events;
 
-        public EventsController (IntPtr handle) : base (handle) { }
+        public EventsController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {

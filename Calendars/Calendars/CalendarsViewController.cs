@@ -9,7 +9,7 @@ namespace Calendars
     {
         private EKCalendar[] calendars;
 
-        public CalendarsViewController (IntPtr handle) : base (handle) { }
+        public CalendarsViewController(IntPtr handle) : base(handle) { }
 
         public EKEntityType EntityType { get; set; }
 

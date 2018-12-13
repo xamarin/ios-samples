@@ -9,7 +9,7 @@ namespace Calendars
     {
         private EKReminder[] reminders;
 
-        public RemindersController (IntPtr handle) : base (handle) { }
+        public RemindersController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {

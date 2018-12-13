@@ -39,8 +39,8 @@ namespace Calendars
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
-            if(segue.Identifier == "showCalendarsSegue" && 
-               segue.DestinationViewController is CalendarsViewController calendarsViewController && 
+            if (segue.Identifier == "showCalendarsSegue" &&
+               segue.DestinationViewController is CalendarsViewController calendarsViewController &&
                sender is NSNumber number)
             {
                 calendarsViewController.EntityType = (EKEntityType)number.UInt64Value;
