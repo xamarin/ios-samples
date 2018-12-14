@@ -29,7 +29,6 @@
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <MtouchArch>x86_64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -59,7 +58,6 @@
     <MtouchProfiling>True</MtouchProfiling>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <MtouchArch>ARM64</MtouchArch>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n></MtouchI18n>
     <IpaPackageName></IpaPackageName>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
