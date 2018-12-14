@@ -105,6 +105,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Shaders\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -121,7 +122,8 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ripple.cs" />
+    <Compile Include="Helpers\Ripple.cs" />
+    <Compile Include="Helpers\DataOutputDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Shaders\Shader.fsh" />

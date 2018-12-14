@@ -6,17 +6,17 @@ namespace GLCameraRipple
 {
     public class RippleModel
     {
-        private CGSize screenSize;
-        private int poolHeight, poolWidth;
-        private int touchRadius;
+        private readonly CGSize screenSize;
+        private readonly int poolHeight, poolWidth;
+        private readonly int touchRadius;
 
-        private float texCoordFactorS;
-        private float texCoordOffsetS;
-        private float texCoordFactorT;
-        private float texCoordOffsetT;
+        private readonly float texCoordFactorS;
+        private readonly float texCoordOffsetS;
+        private readonly float texCoordFactorT;
+        private readonly float texCoordOffsetT;
 
         // ripple coefficients
-        private float[,] rippleCoeff;
+        private readonly float[,] rippleCoeff;
 
         // ripple simulation buffers
         private float[,] rippleSource;
@@ -264,7 +264,7 @@ namespace GLCameraRipple
                     if (x >= 0 && x < this.poolWidth && y >= 0 && y < this.poolHeight)
                     {
                         // +1 to both x/y values because the border is padded
-                        this.rippleSource[x + 1, y + 1] += this.rippleCoeff[y - yIndex - this.touchRadius, x - xIndex - this.touchRadius];
+                        this.rippleSource[x + 1, y + 1] += this.rippleCoeff[y - (yIndex - this.touchRadius), x - (xIndex - this.touchRadius)];
                     }
                 }
             }
