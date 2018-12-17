@@ -2,28 +2,34 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDisplayName</key>
-	<string>ShareExtension</string>
-	<key>CFBundleName</key>
-	<string>ShareExtension</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.Share.ShareExtension</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>ShareExtension</string>
+	<key>CFBundleExecutable</key>
+	<string>ShareExtension</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.your-company.Share.ShareExtension</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>com.your-company.ShareExtension</string>
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
-	<key>MinimumOSVersion</key>
-	<string>12.1</string>
+	<string>1</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>
 		<dict>
+			<key>NSExtensionPointName</key>
+			<string>com.apple.share-services</string>
+			<key>NSExtensionPointVersion</key>
+			<string>1.0</string>
 			<key>NSExtensionActivationRule</key>
 			<dict>
 				<key>NSExtensionActivationSupportsFileWithMaxCount</key>
@@ -43,5 +49,7 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>
 	</dict>
+	<key>MinimumOSVersion</key>
+	<string>9.0</string>
 </dict>
 </plist>
