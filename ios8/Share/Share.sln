@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Share", "Share\Share.csproj", "{FFF22AB3-CCDA-4417-BF95-3287BBA73763}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Share2", "Share2\Share2.csproj", "{FFF22AB3-CCDA-4417-BF95-3287BBA73763}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareExtension", "ShareExtension\ShareExtension.csproj", "{B60A6F80-074E-46BD-A255-7ACA9FC71CDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Share", "Share\Share.csproj", "{2749EF9C-186D-4295-945A-77AD1492127F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,18 @@ Global
 		{FFF22AB3-CCDA-4417-BF95-3287BBA73763}.Release|iPhone.Build.0 = Release|iPhone
 		{FFF22AB3-CCDA-4417-BF95-3287BBA73763}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{FFF22AB3-CCDA-4417-BF95-3287BBA73763}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{2749EF9C-186D-4295-945A-77AD1492127F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{2749EF9C-186D-4295-945A-77AD1492127F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{2749EF9C-186D-4295-945A-77AD1492127F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{2749EF9C-186D-4295-945A-77AD1492127F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{2749EF9C-186D-4295-945A-77AD1492127F}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{2749EF9C-186D-4295-945A-77AD1492127F}.Debug|iPhone.Build.0 = Debug|iPhone
+		{2749EF9C-186D-4295-945A-77AD1492127F}.Release|iPhone.ActiveCfg = Release|iPhone
+		{2749EF9C-186D-4295-945A-77AD1492127F}.Release|iPhone.Build.0 = Release|iPhone
+		{2749EF9C-186D-4295-945A-77AD1492127F}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{2749EF9C-186D-4295-945A-77AD1492127F}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{2749EF9C-186D-4295-945A-77AD1492127F}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{2749EF9C-186D-4295-945A-77AD1492127F}.AppStore|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Share\Share.csproj
