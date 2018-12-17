@@ -7,7 +7,7 @@
 	<key>CFBundleName</key>
 	<string>ShareExtension</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.Share.ShareExtension</string>
+	<string>com.xamarin.share.share-extension</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -19,7 +19,7 @@
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>MinimumOSVersion</key>
-	<string>12.1</string>
+	<string>10.0</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionAttributes</key>

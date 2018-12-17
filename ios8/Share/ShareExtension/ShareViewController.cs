@@ -1,6 +1,6 @@
-﻿using System;
-using Foundation;
+﻿using Foundation;
 using Social;
+using System;
 
 namespace ShareExtension
 {
