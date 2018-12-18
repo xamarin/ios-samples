@@ -1031,6 +1031,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Afj-3i-Ccs">
                                                     <rect key="frame" x="164.5" y="7" width="46" height="30"/>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="SystemButtonTouched:" destination="WzQ-Og-zks" eventType="touchUpInside" id="qfO-ra-xSd"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1052,6 +1055,9 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Xh-rc-KFb">
                                                     <rect key="frame" x="176.5" y="11" width="22" height="22"/>
+                                                    <connections>
+                                                        <action selector="SystemContactButtonTouched:" destination="WzQ-Og-zks" eventType="touchUpInside" id="fMZ-ZN-S9r"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1073,6 +1079,9 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kYa-Zg-Tca">
                                                     <rect key="frame" x="176.5" y="11" width="22" height="22"/>
+                                                    <connections>
+                                                        <action selector="SystemDetailsButtonTouched:" destination="WzQ-Og-zks" eventType="touchUpInside" id="otJ-ir-1SU"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1093,8 +1102,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cza-Xt-UnY">
-                                                    <rect key="frame" x="164.5" y="7" width="46" height="30"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <rect key="frame" x="157.5" y="-8.5" width="60" height="60.5"/>
+                                                    <color key="tintColor" red="1" green="0.4914794998" blue="0.95117448309999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" image="x_icon"/>
+                                                    <connections>
+                                                        <action selector="ImageButtonTouched:" destination="WzQ-Og-zks" eventType="touchUpInside" id="Mua-jy-HOu"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1117,6 +1130,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0p-hl-b3L">
                                                     <rect key="frame" x="164.5" y="7" width="46" height="30"/>
                                                     <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <action selector="AttributedButtonTouched:" destination="WzQ-Og-zks" eventType="touchUpInside" id="rUa-dA-64Y"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1133,6 +1149,9 @@
                             <outlet property="delegate" destination="WzQ-Og-zks" id="svL-e6-TyR"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="attributedButton" destination="e0p-hl-b3L" id="5aY-Br-DoZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Yv-Is-IcC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1151,6 +1170,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="566821304.20906401">
                                     <!--2018-12-18 10:21:44 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="PickerValurChanged:" destination="P1M-Tj-dQa" eventType="valueChanged" id="in7-tw-1hL"/>
+                                </connections>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Current Date]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wad-RS-kQc">
                                 <rect key="frame" x="132" y="481.5" width="111" height="20.5"/>
@@ -1168,6 +1190,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kOn-kJ-ld1"/>
                     </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="wad-RS-kQc" id="ZXk-sU-aKv"/>
+                        <outlet property="datePicker" destination="EK0-n9-V1A" id="xae-Es-btA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YPm-Ll-trl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1693,4 +1719,7 @@
             <point key="canvasLocation" x="-142" y="-312"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="x_icon" width="60" height="60"/>
+    </resources>
 </document>
