@@ -1,21 +1,40 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by Visual Studio to store outlets and
+// actions made in the UI designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
 using Foundation;
-using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace UICatalog
 {
-    [Register ("PageControlViewController")]
-    partial class PageControlViewController
-    {
-        void ReleaseDesignerOutlets ()
-        {
-        }
-    }
+	[Register ("PageControlViewController")]
+	partial class PageControlViewController
+	{
+		[Outlet]
+		UIKit.UIView colorView { get; set; }
+
+		[Outlet]
+		UIKit.UIPageControl pageControl { get; set; }
+
+		[Action ("PageControllerValueChanged:")]
+		partial void PageControllerValueChanged (Foundation.NSObject sender);
+
+		[Action ("PageControlValueChanged:")]
+		partial void PageControlValueChanged (Foundation.NSObject sender);
+		
+		void ReleaseDesignerOutlets ()
+		{
+			if (colorView != null) {
+				colorView.Dispose ();
+				colorView = null;
+			}
+
+			if (pageControl != null) {
+				pageControl.Dispose ();
+				pageControl = null;
+			}
+		}
+	}
 }

@@ -114,12 +114,15 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EA0-9U-VQn">
                                 <rect key="frame" x="16" y="80" width="343" height="518"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="6" currentPage="2" translatesAutoresizingMaskIntoConstraints="NO" id="JJO-IZ-r2d">
                                 <rect key="frame" x="144" y="614" width="87" height="37"/>
-                                <color key="pageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="currentPageIndicatorTintColor" red="0.31144055720000002" green="0.64777427909999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="pageIndicatorTintColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="1" green="0.4914794998" blue="0.95117448309999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="PageControlValueChanged:" destination="v1Z-aE-73Q" eventType="valueChanged" id="FZp-RS-5Ez"/>
+                                </connections>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -133,6 +136,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XOW-MD-O1R"/>
                     </view>
+                    <connections>
+                        <outlet property="colorView" destination="EA0-9U-VQn" id="Mbf-jk-eNx"/>
+                        <outlet property="pageControl" destination="JJO-IZ-r2d" id="Ob2-ia-Bbg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BdD-iT-sEi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1208,18 +1215,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6zt-Wa-9Hu">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="SFb-JA-kRR" firstAttribute="bottom" secondItem="6zt-Wa-9Hu" secondAttribute="bottom" id="Uym-gv-VH1"/>
-                            <constraint firstItem="SFb-JA-kRR" firstAttribute="trailing" secondItem="6zt-Wa-9Hu" secondAttribute="trailing" id="aEy-57-YYm"/>
-                            <constraint firstItem="6zt-Wa-9Hu" firstAttribute="top" secondItem="SFb-JA-kRR" secondAttribute="top" id="agW-Jf-iWZ"/>
-                            <constraint firstItem="6zt-Wa-9Hu" firstAttribute="leading" secondItem="SFb-JA-kRR" secondAttribute="leading" id="sgP-sG-LcB"/>
+                            <constraint firstAttribute="bottom" secondItem="6zt-Wa-9Hu" secondAttribute="bottom" id="Uym-gv-VH1"/>
+                            <constraint firstAttribute="trailing" secondItem="6zt-Wa-9Hu" secondAttribute="trailing" id="aEy-57-YYm"/>
+                            <constraint firstItem="6zt-Wa-9Hu" firstAttribute="top" secondItem="Moy-WF-Rs7" secondAttribute="top" id="agW-Jf-iWZ"/>
+                            <constraint firstItem="6zt-Wa-9Hu" firstAttribute="leading" secondItem="Moy-WF-Rs7" secondAttribute="leading" id="sgP-sG-LcB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SFb-JA-kRR"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="6zt-Wa-9Hu" id="b2e-gC-iSx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6dC-Sg-z7I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

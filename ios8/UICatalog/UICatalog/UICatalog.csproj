@@ -103,11 +103,26 @@
     <ImageAsset Include="Assets.xcassets\x_icon.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\x_icon.imageset\x_icon_1x.png" />
     <ImageAsset Include="Assets.xcassets\x_icon.imageset\x_icon_2x.png" />
+    <ImageAsset Include="Assets.xcassets\image_animal_1.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\image_animal_2.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\image_animal_3.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\image_animal_4.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\image_animal_5.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\image_animal_1.imageset\image_animal_5.png" />
+    <ImageAsset Include="Assets.xcassets\image_animal_2.imageset\image_animal_2.png" />
+    <ImageAsset Include="Assets.xcassets\image_animal_3.imageset\image_animal_3.png" />
+    <ImageAsset Include="Assets.xcassets\image_animal_4.imageset\image_animal_4.png" />
+    <ImageAsset Include="Assets.xcassets\image_animal_5.imageset\image_animal_1.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Resources\en.lproj\" />
     <Folder Include="Assets.xcassets\x_icon.imageset\" />
+    <Folder Include="Assets.xcassets\image_animal_1.imageset\" />
+    <Folder Include="Assets.xcassets\image_animal_2.imageset\" />
+    <Folder Include="Assets.xcassets\image_animal_3.imageset\" />
+    <Folder Include="Assets.xcassets\image_animal_4.imageset\" />
+    <Folder Include="Assets.xcassets\image_animal_5.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
