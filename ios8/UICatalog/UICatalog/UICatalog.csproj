@@ -109,6 +109,66 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ActivityIndicatorViewController.cs" />
+    <Compile Include="ActivityIndicatorViewController.designer.cs">
+      <DependentUpon>ActivityIndicatorViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PageControlViewController.cs" />
+    <Compile Include="PageControlViewController.designer.cs">
+      <DependentUpon>PageControlViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StepperViewController.cs" />
+    <Compile Include="StepperViewController.designer.cs">
+      <DependentUpon>StepperViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SwitchesViewController.cs" />
+    <Compile Include="SwitchesViewController.designer.cs">
+      <DependentUpon>SwitchesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextFieldsViewController.cs" />
+    <Compile Include="TextFieldsViewController.designer.cs">
+      <DependentUpon>TextFieldsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextViewController.cs" />
+    <Compile Include="TextViewController.designer.cs">
+      <DependentUpon>TextViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WebViewController.cs" />
+    <Compile Include="WebViewController.designer.cs">
+      <DependentUpon>WebViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PickerViewController.cs" />
+    <Compile Include="PickerViewController.designer.cs">
+      <DependentUpon>PickerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgressViewController.cs" />
+    <Compile Include="ProgressViewController.designer.cs">
+      <DependentUpon>ProgressViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SegmentedControlViewController.cs" />
+    <Compile Include="SegmentedControlViewController.designer.cs">
+      <DependentUpon>SegmentedControlViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SliderViewController.cs" />
+    <Compile Include="SliderViewController.designer.cs">
+      <DependentUpon>SliderViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlertControllerViewController.cs" />
+    <Compile Include="AlertControllerViewController.designer.cs">
+      <DependentUpon>AlertControllerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ButtonsViewController.cs" />
+    <Compile Include="ButtonsViewController.designer.cs">
+      <DependentUpon>ButtonsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatePickerController.cs" />
+    <Compile Include="DatePickerController.designer.cs">
+      <DependentUpon>DatePickerController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageViewController.cs" />
+    <Compile Include="ImageViewController.designer.cs">
+      <DependentUpon>ImageViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\en.lproj\Localizable.strings" />
