@@ -14,5 +14,8 @@ namespace UICatalog
     [Register ("ImageViewController")]
     partial class ImageViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

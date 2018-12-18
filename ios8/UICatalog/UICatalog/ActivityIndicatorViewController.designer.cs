@@ -14,5 +14,16 @@ namespace UICatalog
     [Register ("ActivityIndicatorViewController")]
     partial class ActivityIndicatorViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIActivityIndicatorView tintedActivityIndicatorView { get; set; }
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (tintedActivityIndicatorView != null) {
+                tintedActivityIndicatorView.Dispose ();
+                tintedActivityIndicatorView = null;
+            }
+        }
     }
 }

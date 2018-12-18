@@ -14,5 +14,8 @@ namespace UICatalog
     [Register ("TextViewController")]
     partial class TextViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

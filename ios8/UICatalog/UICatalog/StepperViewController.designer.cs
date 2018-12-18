@@ -14,5 +14,8 @@ namespace UICatalog
     [Register ("StepperViewController")]
     partial class StepperViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

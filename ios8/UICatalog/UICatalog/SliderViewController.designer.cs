@@ -14,5 +14,8 @@ namespace UICatalog
     [Register ("SliderViewController")]
     partial class SliderViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

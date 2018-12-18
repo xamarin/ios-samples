@@ -14,5 +14,8 @@ namespace UICatalog
     [Register ("ProgressViewController")]
     partial class ProgressViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

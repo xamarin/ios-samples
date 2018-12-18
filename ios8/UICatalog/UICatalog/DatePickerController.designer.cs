@@ -14,5 +14,8 @@ namespace UICatalog
     [Register ("DatePickerController")]
     partial class DatePickerController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

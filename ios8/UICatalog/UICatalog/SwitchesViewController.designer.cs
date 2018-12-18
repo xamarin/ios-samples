@@ -14,5 +14,8 @@ namespace UICatalog
     [Register ("SwitchesViewController")]
     partial class SwitchesViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

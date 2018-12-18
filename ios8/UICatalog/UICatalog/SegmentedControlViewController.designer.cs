@@ -14,5 +14,8 @@ namespace UICatalog
     [Register ("SegmentedControlViewController")]
     partial class SegmentedControlViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

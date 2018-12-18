@@ -14,5 +14,8 @@ namespace UICatalog
     [Register ("PageControlViewController")]
     partial class PageControlViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

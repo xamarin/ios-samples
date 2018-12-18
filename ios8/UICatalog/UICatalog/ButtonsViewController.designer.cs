@@ -14,5 +14,8 @@ namespace UICatalog
     [Register ("ButtonsViewController")]
     partial class ButtonsViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

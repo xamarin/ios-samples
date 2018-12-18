@@ -14,5 +14,8 @@ namespace UICatalog
     [Register ("WebViewController")]
     partial class WebViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

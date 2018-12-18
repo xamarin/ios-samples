@@ -14,5 +14,8 @@ namespace UICatalog
     [Register ("PickerViewController")]
     partial class PickerViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }
