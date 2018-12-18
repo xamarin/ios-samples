@@ -641,8 +641,8 @@
                                             <subviews>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="3tr-nl-pYC">
                                                     <rect key="frame" x="16" y="21" width="343" height="2"/>
-                                                    <color key="progressTintColor" red="0.31144055720000002" green="0.64777427909999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="trackTintColor" red="1" green="0.49147949981258088" blue="0.9511744831083826" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="progressTintColor" red="1" green="0.4914794998" blue="0.95117448309999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="trackTintColor" red="0.31144055720000002" green="0.64777427909999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </progressView>
                                             </subviews>
                                             <constraints>
@@ -660,6 +660,11 @@
                             <outlet property="delegate" destination="kMc-do-MDo" id="AeJ-2d-wU8"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="barProgressView" destination="vTc-b2-kr7" id="tX7-kj-3Lf"/>
+                        <outlet property="defaultProgressView" destination="6rU-bh-2zX" id="tN5-kb-ekH"/>
+                        <outlet property="tintedProgressView" destination="3tr-nl-pYC" id="iFI-wU-iUa"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hbn-Bj-MxH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
