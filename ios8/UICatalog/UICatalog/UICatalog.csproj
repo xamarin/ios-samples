@@ -122,6 +122,27 @@
     <ImageAsset Include="Assets.xcassets\slider_green_track.imageset\slider_green_track_2x.png" />
     <ImageAsset Include="Assets.xcassets\slider_thumb.imageset\slider_thumb_1x.png" />
     <ImageAsset Include="Assets.xcassets\slider_thumb.imageset\slider_thumb_2x.png" />
+    <ImageAsset Include="Assets.xcassets\checkmark_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\search_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\search_icon.imageset\search_icon_1x.png" />
+    <ImageAsset Include="Assets.xcassets\search_icon.imageset\search_icon_2x.png" />
+    <ImageAsset Include="Assets.xcassets\checkmark_icon.imageset\checkmark_icon_1x.png" />
+    <ImageAsset Include="Assets.xcassets\checkmark_icon.imageset\checkmark_icon_2x.png" />
+    <ImageAsset Include="Assets.xcassets\tools_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\tools_icon.imageset\tools_icon_1x.png" />
+    <ImageAsset Include="Assets.xcassets\tools_icon.imageset\tools_icon_2x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background.imageset\stepper_and_segment_background_1x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background.imageset\stepper_and_segment_background_2x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background_disabled.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background_disabled.imageset\stepper_and_segment_background_disabled_1x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background_disabled.imageset\stepper_and_segment_background_disabled_2x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background_highlighted.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background_highlighted.imageset\stepper_and_segment_background_highlighted_1x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background_highlighted.imageset\stepper_and_segment_background_highlighted_2x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_divider.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_divider.imageset\stepper_and_segment_segment_divider_1x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_divider.imageset\stepper_and_segment_segment_divider_2x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -135,6 +156,13 @@
     <Folder Include="Assets.xcassets\slider_blue_track.imageset\" />
     <Folder Include="Assets.xcassets\slider_green_track.imageset\" />
     <Folder Include="Assets.xcassets\slider_thumb.imageset\" />
+    <Folder Include="Assets.xcassets\checkmark_icon.imageset\" />
+    <Folder Include="Assets.xcassets\search_icon.imageset\" />
+    <Folder Include="Assets.xcassets\tools_icon.imageset\" />
+    <Folder Include="Assets.xcassets\stepper_and_segment_background.imageset\" />
+    <Folder Include="Assets.xcassets\stepper_and_segment_background_disabled.imageset\" />
+    <Folder Include="Assets.xcassets\stepper_and_segment_background_highlighted.imageset\" />
+    <Folder Include="Assets.xcassets\stepper_and_segment_divider.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
