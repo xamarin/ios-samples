@@ -810,6 +810,9 @@
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="42" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="SVg-l0-tAC">
                                                     <rect key="frame" x="14" y="7" width="347" height="31"/>
+                                                    <connections>
+                                                        <action selector="DefaultSliderValueChanged:" destination="iAO-1q-hx0" eventType="valueChanged" id="Nop-6d-qeR"/>
+                                                    </connections>
                                                 </slider>
                                             </subviews>
                                             <constraints>
@@ -830,13 +833,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="8i7-1D-ZtH">
-                                                    <rect key="frame" x="14" y="5.5" width="347" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="8i7-1D-ZtH">
+                                                    <rect key="frame" x="14" y="7" width="347" height="31"/>
                                                     <color key="minimumTrackTintColor" red="0.31144055720000002" green="0.64777427909999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="maximumTrackTintColor" red="1" green="0.4914794998" blue="0.95117448309999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="TintedSliderValueChanged:" destination="iAO-1q-hx0" eventType="valueChanged" id="7Bc-LW-7Bg"/>
+                                                    </connections>
                                                 </slider>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8i7-1D-ZtH" firstAttribute="centerY" secondItem="Sxk-dx-lsW" secondAttribute="centerY" id="7am-xx-Mkw"/>
+                                                <constraint firstAttribute="trailing" secondItem="8i7-1D-ZtH" secondAttribute="trailing" constant="16" id="KoZ-yK-c7y"/>
+                                                <constraint firstItem="8i7-1D-ZtH" firstAttribute="leading" secondItem="Sxk-dx-lsW" secondAttribute="leading" constant="16" id="fRA-TT-158"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -850,11 +860,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="84" minValue="0.0" maxValue="100" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXV-lE-Itr">
-                                                    <rect key="frame" x="14" y="5.5" width="347" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="84" minValue="0.0" maxValue="100" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXV-lE-Itr">
+                                                    <rect key="frame" x="14" y="7" width="347" height="31"/>
+                                                    <connections>
+                                                        <action selector="CustomSliderValueChanged:" destination="iAO-1q-hx0" eventType="valueChanged" id="YBs-a9-Bmu"/>
+                                                    </connections>
                                                 </slider>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="YXV-lE-Itr" firstAttribute="centerY" secondItem="OzQ-Ov-eYH" secondAttribute="centerY" id="7TG-OO-Rgw"/>
+                                                <constraint firstItem="YXV-lE-Itr" firstAttribute="leading" secondItem="OzQ-Ov-eYH" secondAttribute="leading" constant="16" id="aqy-Is-0nN"/>
+                                                <constraint firstAttribute="trailing" secondItem="YXV-lE-Itr" secondAttribute="trailing" constant="16" id="bEh-Tz-7Yc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -865,6 +882,11 @@
                             <outlet property="delegate" destination="iAO-1q-hx0" id="XJb-IP-bwC"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="customSlider" destination="YXV-lE-Itr" id="PES-XL-qgf"/>
+                        <outlet property="defaultSlider" destination="SVg-l0-tAC" id="95Q-9U-xvP"/>
+                        <outlet property="tintedSlider" destination="8i7-1D-ZtH" id="EoN-GO-yO0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CIH-Xr-Szu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

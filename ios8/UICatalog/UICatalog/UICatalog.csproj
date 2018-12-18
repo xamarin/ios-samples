@@ -113,6 +113,15 @@
     <ImageAsset Include="Assets.xcassets\image_animal_3.imageset\image_animal_3.png" />
     <ImageAsset Include="Assets.xcassets\image_animal_4.imageset\image_animal_4.png" />
     <ImageAsset Include="Assets.xcassets\image_animal_5.imageset\image_animal_1.png" />
+    <ImageAsset Include="Assets.xcassets\slider_blue_track.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\slider_green_track.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\slider_thumb.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\slider_blue_track.imageset\slider_blue_track_1x.png" />
+    <ImageAsset Include="Assets.xcassets\slider_blue_track.imageset\slider_blue_track_2x.png" />
+    <ImageAsset Include="Assets.xcassets\slider_green_track.imageset\slider_green_track_1x.png" />
+    <ImageAsset Include="Assets.xcassets\slider_green_track.imageset\slider_green_track_2x.png" />
+    <ImageAsset Include="Assets.xcassets\slider_thumb.imageset\slider_thumb_1x.png" />
+    <ImageAsset Include="Assets.xcassets\slider_thumb.imageset\slider_thumb_2x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -123,6 +132,9 @@
     <Folder Include="Assets.xcassets\image_animal_3.imageset\" />
     <Folder Include="Assets.xcassets\image_animal_4.imageset\" />
     <Folder Include="Assets.xcassets\image_animal_5.imageset\" />
+    <Folder Include="Assets.xcassets\slider_blue_track.imageset\" />
+    <Folder Include="Assets.xcassets\slider_green_track.imageset\" />
+    <Folder Include="Assets.xcassets\slider_thumb.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
