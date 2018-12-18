@@ -14,6 +14,9 @@ namespace UICatalog
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
+            var splitViewController = this.Window.RootViewController as UISplitViewController;
+            splitViewController.PreferredDisplayMode = UISplitViewControllerDisplayMode.AllVisible;
+
 
             return true;
         }
