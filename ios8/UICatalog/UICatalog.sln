@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UICatalog", "UICatalog\UICatalog.csproj", "{7C3AC6A1-1082-4EA6-B2C0-8203729030DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UICatalog2", "UICatalog2\UICatalog2.csproj", "{7C3AC6A1-1082-4EA6-B2C0-8203729030DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UICatalog", "UICatalog\UICatalog.csproj", "{EBCD8403-7F6B-481E-8608-A92D57D02FAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,18 @@ Global
 		{7C3AC6A1-1082-4EA6-B2C0-8203729030DF}.Release|iPhone.Build.0 = Release|iPhone
 		{7C3AC6A1-1082-4EA6-B2C0-8203729030DF}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{7C3AC6A1-1082-4EA6-B2C0-8203729030DF}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{EBCD8403-7F6B-481E-8608-A92D57D02FAB}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{EBCD8403-7F6B-481E-8608-A92D57D02FAB}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{EBCD8403-7F6B-481E-8608-A92D57D02FAB}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{EBCD8403-7F6B-481E-8608-A92D57D02FAB}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{EBCD8403-7F6B-481E-8608-A92D57D02FAB}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{EBCD8403-7F6B-481E-8608-A92D57D02FAB}.Debug|iPhone.Build.0 = Debug|iPhone
+		{EBCD8403-7F6B-481E-8608-A92D57D02FAB}.Release|iPhone.ActiveCfg = Release|iPhone
+		{EBCD8403-7F6B-481E-8608-A92D57D02FAB}.Release|iPhone.Build.0 = Release|iPhone
+		{EBCD8403-7F6B-481E-8608-A92D57D02FAB}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{EBCD8403-7F6B-481E-8608-A92D57D02FAB}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{EBCD8403-7F6B-481E-8608-A92D57D02FAB}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{EBCD8403-7F6B-481E-8608-A92D57D02FAB}.AppStore|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = UICatalog\UICatalog.csproj
