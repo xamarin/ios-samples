@@ -165,6 +165,9 @@
                                             <subviews>
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="hgf-L4-xAR">
                                                     <rect key="frame" x="140.5" y="7.5" width="94" height="29"/>
+                                                    <connections>
+                                                        <action selector="DefaultValueChanged:" destination="KTp-gL-lQI" eventType="valueChanged" id="Hm4-pO-tPx"/>
+                                                    </connections>
                                                 </stepper>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[number]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngA-Vg-QSb">
                                                     <rect key="frame" x="287.5" y="11.5" width="71.5" height="21"/>
@@ -195,6 +198,9 @@
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="BJy-Db-3uZ">
                                                     <rect key="frame" x="140.5" y="7.5" width="94" height="29"/>
                                                     <color key="tintColor" red="0.31144055720000002" green="0.64777427909999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="TintedValueChanged:" destination="KTp-gL-lQI" eventType="valueChanged" id="msT-BC-man"/>
+                                                    </connections>
                                                 </stepper>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[number]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JR0-6k-mMQ">
                                                     <rect key="frame" x="287" y="11.5" width="71.5" height="21"/>
@@ -224,6 +230,9 @@
                                             <subviews>
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="brj-L5-xi6">
                                                     <rect key="frame" x="140.5" y="7.5" width="94" height="29"/>
+                                                    <connections>
+                                                        <action selector="CustomValueChanged:" destination="KTp-gL-lQI" eventType="valueChanged" id="dbX-iB-dsC"/>
+                                                    </connections>
                                                 </stepper>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[number]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GN9-In-QtB">
                                                     <rect key="frame" x="287.5" y="11.5" width="71.5" height="21"/>
@@ -248,6 +257,14 @@
                             <outlet property="delegate" destination="KTp-gL-lQI" id="O4E-if-5mk"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="customLabel" destination="GN9-In-QtB" id="KlQ-yX-7tk"/>
+                        <outlet property="customStepper" destination="brj-L5-xi6" id="WDt-8c-ApP"/>
+                        <outlet property="defaultLabel" destination="ngA-Vg-QSb" id="M1O-qg-Le5"/>
+                        <outlet property="defaultStepper" destination="hgf-L4-xAR" id="6eL-Nb-5ei"/>
+                        <outlet property="tintedLabel" destination="JR0-6k-mMQ" id="VPI-w3-hs9"/>
+                        <outlet property="tintedStepper" destination="BJy-Db-3uZ" id="LOI-0P-NrS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rch-fm-HiN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

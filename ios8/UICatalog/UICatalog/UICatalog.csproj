@@ -143,6 +143,12 @@
     <ImageAsset Include="Assets.xcassets\stepper_and_segment_divider.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\stepper_and_segment_divider.imageset\stepper_and_segment_segment_divider_1x.png" />
     <ImageAsset Include="Assets.xcassets\stepper_and_segment_divider.imageset\stepper_and_segment_segment_divider_2x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_increment.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\stepper_increment.imageset\increment_1x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_increment.imageset\increment_2x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_decrement.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\stepper_decrement.imageset\decrement_1x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_decrement.imageset\decrement_2x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -163,6 +169,8 @@
     <Folder Include="Assets.xcassets\stepper_and_segment_background_disabled.imageset\" />
     <Folder Include="Assets.xcassets\stepper_and_segment_background_highlighted.imageset\" />
     <Folder Include="Assets.xcassets\stepper_and_segment_divider.imageset\" />
+    <Folder Include="Assets.xcassets\stepper_increment.imageset\" />
+    <Folder Include="Assets.xcassets\stepper_decrement.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
