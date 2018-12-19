@@ -616,6 +616,10 @@
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMx-cq-mLS">
                                 <rect key="frame" x="0.0" y="64" width="375" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="tFW-NC-BI1" id="Kso-2c-Ia0"/>
+                                    <outlet property="delegate" destination="tFW-NC-BI1" id="8ri-Tw-QIO"/>
+                                </connections>
                             </pickerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yAl-zd-yyA">
                                 <rect key="frame" x="16" y="296" width="343" height="355"/>
@@ -634,6 +638,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BaB-rT-Fa1"/>
                     </view>
+                    <connections>
+                        <outlet property="colorView" destination="yAl-zd-yyA" id="fqO-xP-z8V"/>
+                        <outlet property="pickerView" destination="SMx-cq-mLS" id="c6I-4m-g5M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Zt-sb-tT0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
