@@ -565,17 +565,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e04-jE-9Vd">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQQ-Sn-xeT">
-                                <rect key="frame" x="10" y="30" width="375" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://apple.com" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g7L-sQ-GYz">
+                                <rect key="frame" x="87.5" y="80" width="200" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Wp8-rm-ZGv"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="go"/>
+                                <connections>
+                                    <outlet property="delegate" destination="oUP-nJ-NdB" id="E7D-1k-pKg"/>
+                                </connections>
+                            </textField>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BuE-OO-KmX">
+                                <rect key="frame" x="0.0" y="117" width="375" height="550"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -585,17 +588,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="e04-jE-9Vd" firstAttribute="leading" secondItem="PAg-Lj-M9E" secondAttribute="leading" id="K0Y-LZ-TWX"/>
-                            <constraint firstItem="PAg-Lj-M9E" firstAttribute="trailing" secondItem="e04-jE-9Vd" secondAttribute="trailing" id="Vt8-S9-LAI"/>
-                            <constraint firstItem="PAg-Lj-M9E" firstAttribute="bottom" secondItem="e04-jE-9Vd" secondAttribute="bottom" id="ZLl-iC-fM6"/>
-                            <constraint firstItem="e04-jE-9Vd" firstAttribute="top" secondItem="PAg-Lj-M9E" secondAttribute="top" id="pJe-6L-05K"/>
+                            <constraint firstItem="BuE-OO-KmX" firstAttribute="leading" secondItem="VTE-Sy-ZJK" secondAttribute="leading" id="HmZ-gA-T4W"/>
+                            <constraint firstAttribute="bottom" secondItem="BuE-OO-KmX" secondAttribute="bottom" id="f9F-ht-jn5"/>
+                            <constraint firstItem="g7L-sQ-GYz" firstAttribute="top" secondItem="PAg-Lj-M9E" secondAttribute="top" constant="16" id="i2H-YI-slL"/>
+                            <constraint firstAttribute="trailing" secondItem="BuE-OO-KmX" secondAttribute="trailing" id="nJg-l8-lPa"/>
+                            <constraint firstItem="g7L-sQ-GYz" firstAttribute="centerX" secondItem="PAg-Lj-M9E" secondAttribute="centerX" id="nuL-p4-ZYc"/>
+                            <constraint firstItem="BuE-OO-KmX" firstAttribute="top" secondItem="g7L-sQ-GYz" secondAttribute="bottom" constant="16" id="plz-uY-C0P"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PAg-Lj-M9E"/>
                     </view>
+                    <connections>
+                        <outlet property="addressTextField" destination="g7L-sQ-GYz" id="bIC-i4-yRi"/>
+                        <outlet property="webView" destination="BuE-OO-KmX" id="aCq-0L-0R0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WZi-Jj-YDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3477.5999999999999" y="1899.4000000000001"/>
+            <point key="canvasLocation" x="3477.5999999999999" y="1898.5007496251876"/>
         </scene>
         <!--Picker View-->
         <scene sceneID="xW1-A8-u5Z">
