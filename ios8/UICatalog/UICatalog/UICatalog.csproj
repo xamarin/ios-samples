@@ -161,6 +161,15 @@
     <ImageAsset Include="Assets.xcassets\toolbar_background.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\toolbar_background.imageset\toolbar_background_1x.png" />
     <ImageAsset Include="Assets.xcassets\toolbar_background.imageset\toolbar_background_2x.png" />
+    <ImageAsset Include="Assets.xcassets\search_bar_background.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\search_bar_background.imageset\search_bar_bg_1x.png" />
+    <ImageAsset Include="Assets.xcassets\search_bar_background.imageset\search_bar_bg_2x.png" />
+    <ImageAsset Include="Assets.xcassets\bookmark_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\bookmark_icon.imageset\bookmark_icon_highlighted_1x.png" />
+    <ImageAsset Include="Assets.xcassets\bookmark_icon.imageset\bookmark_icon_highlighted_2x.png" />
+    <ImageAsset Include="Assets.xcassets\bookmark_icon_highlighted.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\bookmark_icon_highlighted.imageset\bookmark_icon_1x.png" />
+    <ImageAsset Include="Assets.xcassets\bookmark_icon_highlighted.imageset\bookmark_icon_2x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\x_icon.imageset\" />
@@ -187,6 +196,11 @@
     <Folder Include="Controllers\" />
     <Folder Include="Controllers\Toolbars\" />
     <Folder Include="Assets.xcassets\toolbar_background.imageset\" />
+    <Folder Include="Controllers\Search\" />
+    <Folder Include="Controllers\Search\SearchBar\" />
+    <Folder Include="Assets.xcassets\search_bar_background.imageset\" />
+    <Folder Include="Assets.xcassets\bookmark_icon.imageset\" />
+    <Folder Include="Assets.xcassets\bookmark_icon_highlighted.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -270,6 +284,14 @@
     <Compile Include="Controllers\Toolbars\TintedToolbarViewController.cs" />
     <Compile Include="Controllers\Toolbars\TintedToolbarViewController.designer.cs">
       <DependentUpon>TintedToolbarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Search\SearchBar\CustomSearchBarViewController.cs" />
+    <Compile Include="Controllers\Search\SearchBar\CustomSearchBarViewController.designer.cs">
+      <DependentUpon>CustomSearchBarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Search\SearchBar\DefaultSearchBarViewController.cs" />
+    <Compile Include="Controllers\Search\SearchBar\DefaultSearchBarViewController.designer.cs">
+      <DependentUpon>DefaultSearchBarViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

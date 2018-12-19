@@ -1874,6 +1874,71 @@
             </objects>
             <point key="canvasLocation" x="601" y="-1708"/>
         </scene>
+        <!--Custom Search-->
+        <scene sceneID="g7c-tc-fXn">
+            <objects>
+                <viewController title="Custom Search" id="j49-fV-Hkq" customClass="CustomSearchBarViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CSR-Gg-9oI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" showsBookmarkButton="YES" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mec-Bw-RVK">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="j49-fV-Hkq" id="0yM-Md-Tp3"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mec-Bw-RVK" firstAttribute="leading" secondItem="qyc-TT-2w1" secondAttribute="leading" id="3Oa-dV-4BM"/>
+                            <constraint firstItem="mec-Bw-RVK" firstAttribute="top" secondItem="qyc-TT-2w1" secondAttribute="top" id="ICr-Sn-bG0"/>
+                            <constraint firstItem="qyc-TT-2w1" firstAttribute="trailing" secondItem="mec-Bw-RVK" secondAttribute="trailing" id="duw-zE-H6t"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qyc-TT-2w1"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="mec-Bw-RVK" id="IW5-8a-VLz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ahu-NB-dIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1337" y="-2392"/>
+        </scene>
+        <!--Default Search-->
+        <scene sceneID="S7g-uf-PBI">
+            <objects>
+                <viewController title="Default Search" id="4eh-yt-p3s" customClass="DefaultSearchBarViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nxy-Xz-Ye3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" showsCancelButton="YES" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HHZ-l6-zfF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="100"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Scope One</string>
+                                    <string>Scope Two</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="4eh-yt-p3s" id="qye-UL-9GY"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HHZ-l6-zfF" firstAttribute="top" secondItem="V93-ta-NnU" secondAttribute="top" id="SxX-xH-EDW"/>
+                            <constraint firstItem="HHZ-l6-zfF" firstAttribute="leading" secondItem="V93-ta-NnU" secondAttribute="leading" id="gkp-KB-U1V"/>
+                            <constraint firstItem="V93-ta-NnU" firstAttribute="trailing" secondItem="HHZ-l6-zfF" secondAttribute="trailing" id="hMY-zE-zTC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="V93-ta-NnU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ig-WV-ceA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1337" y="-1709"/>
+        </scene>
         <!--Default Toolbar-->
         <scene sceneID="wh9-Vg-13Y">
             <objects>
@@ -2051,6 +2116,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="4eh-yt-p3s" kind="show" id="J4n-e3-EcJ"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="3VD-xW-WYr" detailTextLabel="BFI-97-UDe" style="IBUITableViewCellStyleSubtitle" id="SfR-aZ-cwL">
                                         <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
@@ -2075,6 +2143,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="j49-fV-Hkq" kind="show" id="AJO-fn-kGG"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
