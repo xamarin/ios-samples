@@ -290,6 +290,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c8v-sa-NQh">
                                                     <rect key="frame" x="163" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="DefaultValueChanged:" destination="6eF-jn-1EZ" eventType="valueChanged" id="4i3-zQ-f4l"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -314,6 +317,9 @@
                                                     <color key="tintColor" red="0.31144055720000002" green="0.64777427909999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="onTintColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="thumbTintColor" red="1" green="0.4914794998" blue="0.95117448309999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="TintedValueChanged:" destination="6eF-jn-1EZ" eventType="valueChanged" id="oHq-ru-u0O"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -330,6 +336,10 @@
                             <outlet property="delegate" destination="6eF-jn-1EZ" id="Fww-Et-OXF"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="defaultSwitch" destination="c8v-sa-NQh" id="2TH-JK-ZeE"/>
+                        <outlet property="tintedSwitch" destination="j8j-8l-7JH" id="xPQ-S7-PBb"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o57-0t-Fdh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -346,7 +356,7 @@
                         <sections>
                             <tableViewSection headerTitle="Default" id="5aR-qe-Vxl">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="tfs-6n-icG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="tfs-6n-icG">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tfs-6n-icG" id="XBw-pe-mPr">
@@ -361,6 +371,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="yes" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="blm-f9-5sg" id="Y0R-KV-uPt"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -373,7 +386,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Tinted" id="API-IZ-Mg2">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="inc-Gn-HIo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="inc-Gn-HIo">
                                         <rect key="frame" x="0.0" y="155.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="inc-Gn-HIo" id="qNd-Nh-DeE">
@@ -389,6 +402,9 @@
                                                     <color key="textColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="blm-f9-5sg" id="xG2-2v-WJz"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -401,7 +417,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Secure" id="S4J-Fx-hZo">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Bmj-G9-kUh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Bmj-G9-kUh">
                                         <rect key="frame" x="0.0" y="255.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bmj-G9-kUh" id="fyW-lV-9o9">
@@ -416,6 +432,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="blm-f9-5sg" id="RTn-nJ-OS6"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -428,7 +447,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Specific Keyboard" id="7xc-7u-JLp">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="A3H-ze-Va1">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="A3H-ze-Va1">
                                         <rect key="frame" x="0.0" y="355.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A3H-ze-Va1" id="31K-Lb-O5Y">
@@ -443,6 +462,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="blm-f9-5sg" id="WP6-kb-H8p"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -455,7 +477,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Custom" id="cTy-ji-ufA">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ae6-OT-fAQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="ae6-OT-fAQ">
                                         <rect key="frame" x="0.0" y="455.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ae6-OT-fAQ" id="WR9-Lh-7tZ">
@@ -463,13 +485,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Placeholder text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Qi-25-t4W">
-                                                    <rect key="frame" x="87.5" y="13.5" width="200" height="17"/>
+                                                    <rect key="frame" x="87.5" y="7" width="200" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="200" id="Hrw-gw-ork"/>
+                                                        <constraint firstAttribute="height" constant="30" id="ONJ-hH-lDr"/>
                                                     </constraints>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="blm-f9-5sg" id="YY7-re-uyi"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -486,6 +512,9 @@
                             <outlet property="delegate" destination="blm-f9-5sg" id="k42-qn-2s5"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="customTextField" destination="9Qi-25-t4W" id="y27-N4-Rcg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lfi-go-Snj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
