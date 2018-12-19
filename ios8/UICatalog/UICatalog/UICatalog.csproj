@@ -298,6 +298,15 @@
     <Compile Include="Controllers\Search\SearchControllers\SearchShowResultsInSourceViewController.designer.cs">
       <DependentUpon>SearchShowResultsInSourceViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Search\SearchControllers\BaseSearchController.cs" />
+    <Compile Include="Controllers\Search\SearchControllers\SearchBarEmbeddedInNavigationBarViewController.cs" />
+    <Compile Include="Controllers\Search\SearchControllers\SearchBarEmbeddedInNavigationBarViewController.designer.cs">
+      <DependentUpon>SearchBarEmbeddedInNavigationBarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Search\SearchControllers\SearchPresentOverNavigationBarViewController.cs" />
+    <Compile Include="Controllers\Search\SearchControllers\SearchPresentOverNavigationBarViewController.designer.cs">
+      <DependentUpon>SearchPresentOverNavigationBarViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

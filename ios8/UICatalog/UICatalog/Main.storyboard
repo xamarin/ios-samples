@@ -1939,10 +1939,38 @@
             </objects>
             <point key="canvasLocation" x="1337" y="-1709"/>
         </scene>
-        <!--Present Over Navigation Bar-->
+        <!--Search Bar Embedded in Navigation Bar-->
+        <scene sceneID="OpL-Rd-LTg">
+            <objects>
+                <tableViewController title="Search Bar Embedded in Navigation Bar" id="gXN-EP-n4a" customClass="SearchBarEmbeddedInNavigationBarViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ez7-a3-11r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultsCell" id="Djj-xM-e3r">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Djj-xM-e3r" id="zE8-YD-4Sd">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gXN-EP-n4a" id="ln1-tb-wRx"/>
+                            <outlet property="delegate" destination="gXN-EP-n4a" id="eFB-Ag-8Fy"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="faR-6g-znY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2094" y="-1708"/>
+        </scene>
+        <!--Results in Searched Controller-->
         <scene sceneID="A4Z-cl-HcS">
             <objects>
-                <tableViewController title="Present Over Navigation Bar" id="wJw-hL-gzy" customClass="SearchShowResultsInSourceViewController" sceneMemberID="viewController">
+                <tableViewController title="Results in Searched Controller" id="wJw-hL-gzy" customClass="SearchShowResultsInSourceViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UFa-i0-oDz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2214,7 +2242,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="wJw-hL-gzy" kind="show" id="LGe-JL-u4W"/>
+                                            <segue destination="5mO-85-Rsk" kind="show" id="BVH-lR-hDp"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="v4a-P7-o8x" detailTextLabel="Cby-Nk-bV6" style="IBUITableViewCellStyleSubtitle" id="qXG-b1-yDX">
@@ -2240,6 +2268,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="gXN-EP-n4a" kind="show" id="2Z6-MG-EYh"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="GL7-1m-DJy" detailTextLabel="1PN-Mt-lQ4" style="IBUITableViewCellStyleSubtitle" id="yCB-yF-dPd">
                                         <rect key="frame" x="0.0" y="287.5" width="375" height="44"/>
@@ -2264,6 +2295,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="wJw-hL-gzy" kind="show" id="Lc1-ug-ukU"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -2277,6 +2311,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wRq-vj-iex" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1337" y="-1013"/>
+        </scene>
+        <!--Present Over Navigation Bar-->
+        <scene sceneID="lgY-eR-VU5">
+            <objects>
+                <tableViewController title="Present Over Navigation Bar" id="5mO-85-Rsk" customClass="SearchPresentOverNavigationBarViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="He6-Dt-5ho">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultsCell" id="TDP-Fp-B5S">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TDP-Fp-B5S" id="yI1-qT-PaY">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5mO-85-Rsk" id="D1C-CB-hVg"/>
+                            <outlet property="delegate" destination="5mO-85-Rsk" id="0wK-uX-9ge"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Presented Over Navigation Bar" id="izM-lh-aNV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="tvD-tk-V5x">
+                            <connections>
+                                <action selector="SearchButtonClicked:" destination="5mO-85-Rsk" id="gI2-Dr-fAi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ioO-85-6xk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2094" y="-1013"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gZB-dj-POH">
