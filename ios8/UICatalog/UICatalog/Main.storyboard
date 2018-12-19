@@ -531,9 +531,12 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbJ-GG-pZ6">
                                 <rect key="frame" x="16" y="80" width="343" height="571"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">This is a UITextView that uses attributed text. You can programmatically modify the display of the text by making it bold, highlighted, underlined, tinted, and more. These attributes are defined in NSAttributedString.h. You can even embed attachments in an NSAttributedString!</string>
+                                <string key="text">This is a UITextView that uses attributed text. You can programmatically modify the display of the text by making it bold, highlighted, underlined, tinted, and more. These attributes are defined in NSAttributedString.h. You can even embed attachments in an NSAttributedString! </string>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="0ej-ip-2Pb" id="I9P-ZS-UXl"/>
+                                </connections>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -545,6 +548,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K8d-u6-rTQ"/>
                     </view>
+                    <connections>
+                        <outlet property="textBottomConstraint" destination="ZUz-Wm-fse" id="cnR-eQ-Gvm"/>
+                        <outlet property="textView" destination="pbJ-GG-pZ6" id="fzv-1f-LrK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uzm-y2-hwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
