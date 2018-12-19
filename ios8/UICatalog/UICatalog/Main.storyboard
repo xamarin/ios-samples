@@ -1892,9 +1892,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="mec-Bw-RVK" firstAttribute="leading" secondItem="qyc-TT-2w1" secondAttribute="leading" id="3Oa-dV-4BM"/>
+                            <constraint firstItem="mec-Bw-RVK" firstAttribute="leading" secondItem="CSR-Gg-9oI" secondAttribute="leading" id="3Oa-dV-4BM"/>
                             <constraint firstItem="mec-Bw-RVK" firstAttribute="top" secondItem="qyc-TT-2w1" secondAttribute="top" id="ICr-Sn-bG0"/>
-                            <constraint firstItem="qyc-TT-2w1" firstAttribute="trailing" secondItem="mec-Bw-RVK" secondAttribute="trailing" id="duw-zE-H6t"/>
+                            <constraint firstAttribute="trailing" secondItem="mec-Bw-RVK" secondAttribute="trailing" id="duw-zE-H6t"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qyc-TT-2w1"/>
                     </view>
@@ -1929,8 +1929,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="HHZ-l6-zfF" firstAttribute="top" secondItem="V93-ta-NnU" secondAttribute="top" id="SxX-xH-EDW"/>
-                            <constraint firstItem="HHZ-l6-zfF" firstAttribute="leading" secondItem="V93-ta-NnU" secondAttribute="leading" id="gkp-KB-U1V"/>
-                            <constraint firstItem="V93-ta-NnU" firstAttribute="trailing" secondItem="HHZ-l6-zfF" secondAttribute="trailing" id="hMY-zE-zTC"/>
+                            <constraint firstItem="HHZ-l6-zfF" firstAttribute="leading" secondItem="nxy-Xz-Ye3" secondAttribute="leading" id="gkp-KB-U1V"/>
+                            <constraint firstAttribute="trailing" secondItem="HHZ-l6-zfF" secondAttribute="trailing" id="hMY-zE-zTC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="V93-ta-NnU"/>
                     </view>
@@ -1938,6 +1938,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ig-WV-ceA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1337" y="-1709"/>
+        </scene>
+        <!--Present Over Navigation Bar-->
+        <scene sceneID="A4Z-cl-HcS">
+            <objects>
+                <tableViewController title="Present Over Navigation Bar" id="wJw-hL-gzy" customClass="SearchShowResultsInSourceViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UFa-i0-oDz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="searchResultsCell" id="czs-oX-zcF">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="czs-oX-zcF" id="e8r-AD-9QE">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wJw-hL-gzy" id="lEc-jb-VqT"/>
+                            <outlet property="delegate" destination="wJw-hL-gzy" id="i9C-D7-Y4E"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="Pic-XT-XWx" id="erW-qp-gTm"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tvq-xA-Y6A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Pic-XT-XWx">
+                    <connections>
+                        <outlet property="delegate" destination="wJw-hL-gzy" id="YoS-rZ-hax"/>
+                        <outlet property="searchContentsController" destination="wJw-hL-gzy" id="Moz-zC-FL3"/>
+                        <outlet property="searchResultsDataSource" destination="wJw-hL-gzy" id="fqD-wS-3EB"/>
+                        <outlet property="searchResultsDelegate" destination="wJw-hL-gzy" id="L6v-ZR-0Qz"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2094" y="-2392"/>
         </scene>
         <!--Default Toolbar-->
         <scene sceneID="wh9-Vg-13Y">
@@ -2174,6 +2213,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="wJw-hL-gzy" kind="show" id="LGe-JL-u4W"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="v4a-P7-o8x" detailTextLabel="Cby-Nk-bV6" style="IBUITableViewCellStyleSubtitle" id="qXG-b1-yDX">
                                         <rect key="frame" x="0.0" y="243.5" width="375" height="44"/>

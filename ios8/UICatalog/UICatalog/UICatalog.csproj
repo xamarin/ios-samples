@@ -201,6 +201,7 @@
     <Folder Include="Assets.xcassets\search_bar_background.imageset\" />
     <Folder Include="Assets.xcassets\bookmark_icon.imageset\" />
     <Folder Include="Assets.xcassets\bookmark_icon_highlighted.imageset\" />
+    <Folder Include="Controllers\Search\SearchControllers\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -292,6 +293,10 @@
     <Compile Include="Controllers\Search\SearchBar\DefaultSearchBarViewController.cs" />
     <Compile Include="Controllers\Search\SearchBar\DefaultSearchBarViewController.designer.cs">
       <DependentUpon>DefaultSearchBarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Search\SearchControllers\SearchShowResultsInSourceViewController.cs" />
+    <Compile Include="Controllers\Search\SearchControllers\SearchShowResultsInSourceViewController.designer.cs">
+      <DependentUpon>SearchShowResultsInSourceViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
