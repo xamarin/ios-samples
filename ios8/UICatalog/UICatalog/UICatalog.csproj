@@ -158,6 +158,9 @@
     <ImageAsset Include="Assets.xcassets\text_view_attachment.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\text_view_attachment.imageset\text_view_attachment_1x.png" />
     <ImageAsset Include="Assets.xcassets\text_view_attachment.imageset\text_view_attachment_2x.png" />
+    <ImageAsset Include="Assets.xcassets\toolbar_background.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\toolbar_background.imageset\toolbar_background_1x.png" />
+    <ImageAsset Include="Assets.xcassets\toolbar_background.imageset\toolbar_background_2x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\x_icon.imageset\" />
@@ -182,6 +185,8 @@
     <Folder Include="Assets.xcassets\text_field_purple_right_view.imageset\" />
     <Folder Include="Assets.xcassets\text_view_attachment.imageset\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Controllers\Toolbars\" />
+    <Folder Include="Assets.xcassets\toolbar_background.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -253,6 +258,18 @@
     <Compile Include="Controllers\WebViewController.cs" />
     <Compile Include="Controllers\WebViewController.designer.cs">
       <DependentUpon>WebViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Toolbars\CustomToolbarViewController.cs" />
+    <Compile Include="Controllers\Toolbars\CustomToolbarViewController.designer.cs">
+      <DependentUpon>CustomToolbarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Toolbars\DefaultToolbarViewController.cs" />
+    <Compile Include="Controllers\Toolbars\DefaultToolbarViewController.designer.cs">
+      <DependentUpon>DefaultToolbarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Toolbars\TintedToolbarViewController.cs" />
+    <Compile Include="Controllers\Toolbars\TintedToolbarViewController.designer.cs">
+      <DependentUpon>TintedToolbarViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

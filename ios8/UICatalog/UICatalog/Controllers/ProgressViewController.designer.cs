@@ -1,42 +1,45 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Visual Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
 using Foundation;
+using System;
 using System.CodeDom.Compiler;
 
 namespace UICatalog
 {
-	[Register ("ProgressViewController")]
-	partial class ProgressViewController
-	{
-		[Outlet]
-		UIKit.UIProgressView barProgressView { get; set; }
+    [Register ("ProgressViewController")]
+    partial class ProgressViewController
+    {
+        [Outlet]
+        UIKit.UIProgressView barProgressView { get; set; }
 
-		[Outlet]
-		UIKit.UIProgressView defaultProgressView { get; set; }
 
-		[Outlet]
-		UIKit.UIProgressView tintedProgressView { get; set; }
-		
-		void ReleaseDesignerOutlets ()
-		{
-			if (defaultProgressView != null) {
-				defaultProgressView.Dispose ();
-				defaultProgressView = null;
-			}
+        [Outlet]
+        UIKit.UIProgressView defaultProgressView { get; set; }
 
-			if (barProgressView != null) {
-				barProgressView.Dispose ();
-				barProgressView = null;
-			}
 
-			if (tintedProgressView != null) {
-				tintedProgressView.Dispose ();
-				tintedProgressView = null;
-			}
-		}
-	}
+        [Outlet]
+        UIKit.UIProgressView tintedProgressView { get; set; }
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (barProgressView != null) {
+                barProgressView.Dispose ();
+                barProgressView = null;
+            }
+
+            if (defaultProgressView != null) {
+                defaultProgressView.Dispose ();
+                defaultProgressView = null;
+            }
+
+            if (tintedProgressView != null) {
+                tintedProgressView.Dispose ();
+                tintedProgressView = null;
+            }
+        }
+    }
 }
