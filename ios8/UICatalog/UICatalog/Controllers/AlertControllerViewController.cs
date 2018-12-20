@@ -205,6 +205,7 @@ namespace UICatalog
             alertController.AddAction(cancelAction);
             alertController.AddAction(destructiveAction);
 
+            SetupPopover(alertController, okayActionSheetCell);
             PresentViewController(alertController, true, null);
         }
 
@@ -223,7 +224,18 @@ namespace UICatalog
             alertController.AddAction(destructiveAction);
             alertController.AddAction(otherAction);
 
+            SetupPopover(alertController, otherActionSheetCell);
             PresentViewController(alertController, true, null);
+        }
+
+        private static void SetupPopover(UIAlertController alertController, UIView sourceView)
+        {
+            var popover = alertController.PopoverPresentationController;
+            if (popover != null)
+            {
+                popover.SourceView = sourceView;
+                popover.SourceRect = sourceView.Bounds;
+            }
         }
 
         #endregion

@@ -1,20 +1,34 @@
 // WARNING
 //
-// This file has been generated automatically by Visual Studio from the outlets and
-// actions declared in your storyboard file.
-// Manual changes to this file will not be maintained.
+// This file has been generated automatically by Visual Studio to store outlets and
+// actions made in the UI designer. If it is removed, they will be lost.
+// Manual changes to this file may not be handled correctly.
 //
 using Foundation;
-using System;
 using System.CodeDom.Compiler;
 
 namespace UICatalog
 {
-    [Register ("AlertControllerViewController")]
-    partial class AlertControllerViewController
-    {
-        void ReleaseDesignerOutlets ()
-        {
-        }
-    }
+	[Register ("AlertControllerViewController")]
+	partial class AlertControllerViewController
+	{
+		[Outlet]
+		UIKit.UITableViewCell okayActionSheetCell { get; set; }
+
+		[Outlet]
+		UIKit.UITableViewCell otherActionSheetCell { get; set; }
+		
+		void ReleaseDesignerOutlets ()
+		{
+			if (okayActionSheetCell != null) {
+				okayActionSheetCell.Dispose ();
+				okayActionSheetCell = null;
+			}
+
+			if (otherActionSheetCell != null) {
+				otherActionSheetCell.Dispose ();
+				otherActionSheetCell = null;
+			}
+		}
+	}
 }

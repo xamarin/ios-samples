@@ -588,10 +588,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="BuE-OO-KmX" firstAttribute="leading" secondItem="PAg-Lj-M9E" secondAttribute="leading" id="HmZ-gA-T4W"/>
+                            <constraint firstItem="BuE-OO-KmX" firstAttribute="leading" secondItem="VTE-Sy-ZJK" secondAttribute="leading" id="HmZ-gA-T4W"/>
                             <constraint firstAttribute="bottom" secondItem="BuE-OO-KmX" secondAttribute="bottom" id="f9F-ht-jn5"/>
                             <constraint firstItem="g7L-sQ-GYz" firstAttribute="top" secondItem="PAg-Lj-M9E" secondAttribute="top" constant="16" id="i2H-YI-slL"/>
-                            <constraint firstItem="PAg-Lj-M9E" firstAttribute="trailing" secondItem="BuE-OO-KmX" secondAttribute="trailing" id="nJg-l8-lPa"/>
+                            <constraint firstAttribute="trailing" secondItem="BuE-OO-KmX" secondAttribute="trailing" id="nJg-l8-lPa"/>
                             <constraint firstItem="g7L-sQ-GYz" firstAttribute="centerX" secondItem="PAg-Lj-M9E" secondAttribute="centerX" id="nuL-p4-ZYc"/>
                             <constraint firstItem="BuE-OO-KmX" firstAttribute="top" secondItem="g7L-sQ-GYz" secondAttribute="bottom" constant="16" id="plz-uY-C0P"/>
                         </constraints>
@@ -1112,6 +1112,10 @@
                             <outlet property="delegate" destination="3oJ-kb-Dxm" id="IP0-A8-qH3"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="okayActionSheetCell" destination="SRa-tA-bQp" id="4Ly-Xb-CbP"/>
+                        <outlet property="otherActionSheetCell" destination="Ayq-Uv-zyl" id="Awi-un-3C8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7hI-vs-YVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1321,9 +1325,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="6zt-Wa-9Hu" secondAttribute="bottom" id="Uym-gv-VH1"/>
-                            <constraint firstItem="SFb-JA-kRR" firstAttribute="trailing" secondItem="6zt-Wa-9Hu" secondAttribute="trailing" id="aEy-57-YYm"/>
+                            <constraint firstAttribute="trailing" secondItem="6zt-Wa-9Hu" secondAttribute="trailing" id="aEy-57-YYm"/>
                             <constraint firstItem="6zt-Wa-9Hu" firstAttribute="top" secondItem="Moy-WF-Rs7" secondAttribute="top" id="agW-Jf-iWZ"/>
-                            <constraint firstItem="6zt-Wa-9Hu" firstAttribute="leading" secondItem="SFb-JA-kRR" secondAttribute="leading" id="sgP-sG-LcB"/>
+                            <constraint firstItem="6zt-Wa-9Hu" firstAttribute="leading" secondItem="Moy-WF-Rs7" secondAttribute="leading" id="sgP-sG-LcB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SFb-JA-kRR"/>
                     </view>
