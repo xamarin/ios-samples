@@ -1732,14 +1732,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Web View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ixI-Xw-uCs">
-                                                    <rect key="frame" x="15" y="5" width="76" height="20.5"/>
+                                                    <rect key="frame" x="16" y="5" width="76" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="WebViewController" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WkB-ib-h2V">
-                                                    <rect key="frame" x="15" y="25.5" width="108" height="14.5"/>
+                                                    <rect key="frame" x="16" y="25.5" width="108" height="14.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -1759,7 +1759,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tXm-IA-EJn">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1768,7 +1768,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Wpg-Xb-BDb" kind="showDetail" id="2Ld-5J-lHy"/>
+                                            <segue destination="Dc6-sF-pxo" kind="showDetail" id="Hht-Xi-3Xw"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="iK8-wi-m4E" style="IBUITableViewCellStyleDefault" id="p17-t3-aOQ">
@@ -1788,7 +1788,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="I2S-2y-0lQ" kind="showDetail" id="ywy-8q-cYP"/>
+                                            <segue destination="4GR-6y-6Wu" kind="showDetail" id="VIM-HI-dMY"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1843,7 +1843,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7mw-sV-d8R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-143" y="-1707"/>
+            <point key="canvasLocation" x="-871" y="-1719"/>
         </scene>
         <!--Custom Toolbar-->
         <scene sceneID="vZS-aX-Gh8">
@@ -1872,7 +1872,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j7D-Jp-hPM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="-1708"/>
+            <point key="canvasLocation" x="-871" y="-2392"/>
         </scene>
         <!--Custom Search-->
         <scene sceneID="g7c-tc-fXn">
@@ -1904,7 +1904,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ahu-NB-dIW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1337" y="-2392"/>
+            <point key="canvasLocation" x="2094" y="-2366"/>
         </scene>
         <!--Default Search-->
         <scene sceneID="S7g-uf-PBI">
@@ -1937,7 +1937,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ig-WV-ceA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1337" y="-1709"/>
+            <point key="canvasLocation" x="2094" y="-1696"/>
         </scene>
         <!--Search Bar Embedded in Navigation Bar-->
         <scene sceneID="OpL-Rd-LTg">
@@ -1965,7 +1965,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faR-6g-znY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2094" y="-1708"/>
+            <point key="canvasLocation" x="2905" y="-1696"/>
         </scene>
         <!--Results in Searched Controller-->
         <scene sceneID="A4Z-cl-HcS">
@@ -2004,7 +2004,23 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2094" y="-2392"/>
+            <point key="canvasLocation" x="2905" y="-2366"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mHq-Dk-yuy">
+            <objects>
+                <navigationController id="4GR-6y-6Wu" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1Z2-b1-GpA">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="I2S-2y-0lQ" kind="relationship" relationship="rootViewController" id="n8T-iU-XoV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4CB-Wj-mXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="601" y="-1013"/>
         </scene>
         <!--Default Toolbar-->
         <scene sceneID="wh9-Vg-13Y">
@@ -2042,7 +2058,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0IU-5B-OHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-143" y="-1013"/>
+            <point key="canvasLocation" x="-871" y="-1013"/>
         </scene>
         <!--Toolbars-->
         <scene sceneID="1xG-5S-rOd">
@@ -2144,10 +2160,27 @@
                             <outlet property="delegate" destination="I2S-2y-0lQ" id="WRg-0D-DAe"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Toolbars" id="lzv-2Y-R1U"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QDm-xO-mEr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="-1013"/>
+            <point key="canvasLocation" x="-143" y="-1013"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="uf2-KV-kFY">
+            <objects>
+                <navigationController id="Dc6-sF-pxo" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="llS-lY-916">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Wpg-Xb-BDb" kind="relationship" relationship="rootViewController" id="tg2-PC-NNf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TFp-if-FMk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1337" y="-1013"/>
         </scene>
         <!--Search-->
         <scene sceneID="1jM-T0-t57">
@@ -2307,10 +2340,11 @@
                             <outlet property="delegate" destination="Wpg-Xb-BDb" id="eMn-3e-BrT"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Search" id="0jO-f0-izn"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wRq-vj-iex" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1337" y="-1013"/>
+            <point key="canvasLocation" x="2108" y="-1013"/>
         </scene>
         <!--Present Over Navigation Bar-->
         <scene sceneID="lgY-eR-VU5">
@@ -2345,7 +2379,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ioO-85-6xk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2094" y="-1013"/>
+            <point key="canvasLocation" x="2905" y="-1001"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gZB-dj-POH">
