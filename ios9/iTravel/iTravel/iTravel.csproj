@@ -117,7 +117,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -130,11 +130,6 @@
     <ImageAsset Include="Assets.xcassets\paris.dataset\paris.json" />
     <ImageAsset Include="Assets.xcassets\rotterdam.dataset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\rotterdam.dataset\rotterdam.json" />
-    <ImageAsset Include="Assets.xcassets\Logo.spriteatlas\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Logo.spriteatlas\Sprite.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\Logo.spriteatlas\Sprite.imageset\splash-xamagon.png" />
-    <ImageAsset Include="Assets.xcassets\Logo.spriteatlas\Sprite.imageset\splash-xamagon%402x.png" />
-    <ImageAsset Include="Assets.xcassets\Logo.spriteatlas\Sprite.imageset\splash-xamagon%403x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon-spotlight-29%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon-spotlight-29%403x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\icon-spotlight-40%402x.png" />
