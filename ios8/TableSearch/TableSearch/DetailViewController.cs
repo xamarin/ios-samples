@@ -59,9 +59,9 @@ namespace TableSearch
 
         public override void EncodeRestorableState(NSCoder coder)
         {
+            base.EncodeRestorableState(coder);
             // Encode the product.
             coder.Encode(product, DetailViewController.restoreProduct);
-            base.EncodeRestorableState(coder);
         }
 
         public override void DecodeRestorableState(NSCoder coder)

@@ -294,6 +294,7 @@ namespace TableSearch
 
         public override void EncodeRestorableState(NSCoder coder)
         {
+            base.EncodeRestorableState(coder);
 
             // Encode the view state so it can be restored later.
 
@@ -308,7 +309,6 @@ namespace TableSearch
 
             // Encode the search bar text.
             coder.Encode(new NSString(searchController.SearchBar.Text), RestorationKeys.searchBarText);
-            base.EncodeRestorableState(coder);
         }
 
         public override void DecodeRestorableState(NSCoder coder)
