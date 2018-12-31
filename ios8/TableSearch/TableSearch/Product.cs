@@ -45,5 +45,10 @@ namespace TableSearch
             encoder.Encode(this.YearIntroduced, nameof(this.YearIntroduced));
             encoder.Encode(this.IntroPrice, nameof(this.IntroPrice));
         }
+
+        public override int GetHashCode()
+        {
+            return this.Title.GetHashCode();
+        }
     }
 }

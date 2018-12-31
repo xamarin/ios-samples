@@ -185,6 +185,24 @@ namespace TableSearch
 
         #region IUISearchResultsUpdating
 
+        public void UpdateSearchResultsForSearchController(UISearchController searchController)
+        {
+            // Strip out all the leading and trailing spaces.
+            var searchItems = searchController.SearchBar.Text.Trim().Split(' ');
+
+            /* here you can choose the way how to do search */
+
+            var filteredResults = this.PerformSearch_Swift(searchItems);
+            //var filteredResults = this.PerformSearch_CSharp(searchItems);
+
+            // Apply the filtered results to the search results table.
+            if (searchController.SearchResultsController is ResultsTableController resultsController)
+            {
+                resultsController.FilteredProducts = filteredResults;
+                resultsController.TableView.ReloadData();
+            }
+        }
+
         private NSCompoundPredicate FindMatches(string searchString)
         {
             /*
@@ -251,13 +269,10 @@ namespace TableSearch
             return NSCompoundPredicate.CreateOrPredicate(searchItemsPredicate.ToArray());
         }
 
-        public void UpdateSearchResultsForSearchController(UISearchController searchController)
+        private List<Product> PerformSearch_Swift(string[] searchItems)
         {
             // Update the filtered array based on the search text.
             var searchResults = this.products;
-
-            // Strip out all the leading and trailing spaces.
-            var searchItems = searchController.SearchBar.Text.Trim().Split(' ');
 
             // Build all the "AND" expressions for each value in searchString.
             var andMatchPredicates = searchItems.Select(searchItem => FindMatches(searchItem)).ToArray();
@@ -266,12 +281,25 @@ namespace TableSearch
             var finalCompoundPredicate = NSCompoundPredicate.CreateAndPredicate(andMatchPredicates);
             var filteredResults = searchResults.Where(searchResult => finalCompoundPredicate.EvaluateWithObject(searchResult));
 
-            // Apply the filtered results to the search results table.
-            if (searchController.SearchResultsController is ResultsTableController resultsController)
+            return filteredResults.ToList();
+        }
+
+        private List<Product> PerformSearch_CSharp(string[] searchItems)
+        {
+            var results = new List<Product>();
+            // Update the filtered array based on the search text.
+            var localProducts = this.products;
+
+            foreach (var searchItem in searchItems)
             {
-                resultsController.FilteredProducts = filteredResults.ToList();
-                resultsController.TableView.ReloadData();
+                int.TryParse(searchItem, out int @int);
+                double.TryParse(searchItem, out double @double);
+                results.AddRange(localProducts.Where(product => product.Title.Contains(searchItem, StringComparison.OrdinalIgnoreCase) ||
+                                                     product.IntroPrice == @double || 
+                                                     product.YearIntroduced == @int));
             }
+                       
+            return results.Distinct().ToList();
         }
 
         #endregion
