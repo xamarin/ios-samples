@@ -17,5 +17,15 @@ namespace TableSearch
 
             return true;
         }
+
+        public override bool ShouldSaveApplicationState(UIApplication application, NSCoder coder)
+        {
+            return true;
+        }
+
+        public override bool ShouldRestoreApplicationState(UIApplication application, NSCoder coder)
+        {
+            return true;
+        }
     }
 }
