@@ -15,15 +15,14 @@ namespace TableSearch
 
         public override nint RowsInSection(UITableView tableView, nint section)
         {
-            return base.filteredProducts.Count;
+            return base.FilteredProducts.Count;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.DequeueReusableCell(BaseTableViewController.tableViewCellIdentifier, indexPath);
-            var product = base.filteredProducts[indexPath.Row];
+            var cell = tableView.DequeueReusableCell(BaseTableViewController.TableViewCellIdentifier, indexPath);
+            var product = base.FilteredProducts[indexPath.Row];
             base.ConfigureCell(cell, product);
-
 
             return cell;
         }

@@ -105,9 +105,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-40.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="TableCell.xib" />
@@ -120,16 +117,19 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Product.cs" />
-    <Compile Include="MainTableViewController.cs" />
-    <Compile Include="MainTableViewController.designer.cs">
-      <DependentUpon>MainTableViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DetailViewController.cs" />
-    <Compile Include="DetailViewController.designer.cs">
+    <Compile Include="Controllers\BaseTableViewController.cs" />
+    <Compile Include="Controllers\DetailViewController.cs" />
+    <Compile Include="Controllers\DetailViewController.designer.cs">
       <DependentUpon>DetailViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="BaseTableViewController.cs" />
-    <Compile Include="ResultsTableController.cs" />
+    <Compile Include="Controllers\MainTableViewController.cs" />
+    <Compile Include="Controllers\MainTableViewController.designer.cs">
+      <DependentUpon>MainTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ResultsTableController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

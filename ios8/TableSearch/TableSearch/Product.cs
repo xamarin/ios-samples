@@ -1,5 +1,5 @@
-﻿using System;
-using Foundation;
+﻿using Foundation;
+using System;
 
 namespace TableSearch
 {
@@ -8,6 +8,28 @@ namespace TableSearch
     /// </summary>
     public class Product : NSObject, INSCoding
     {
+        public Product(string title, int year, double price)
+        {
+            this.Title = title;
+            this.YearIntroduced = year;
+            this.IntroPrice = price;
+        }
+
+        [Export("initWithCoder:")]
+        public Product(NSCoder coder)
+        {
+            if(coder.DecodeObject(nameof(Title)) is NSString decodedTitle)
+            {
+                this.Title = decodedTitle;
+                this.YearIntroduced = coder.DecodeInt(nameof(this.YearIntroduced));
+                this.IntroPrice = coder.DecodeDouble(nameof(this.IntroPrice));
+            }
+            else
+            {
+                throw new Exception("A title did not exist. In your app, handle this gracefully.");
+            }
+        }
+
         [Export("title")]
         public string Title { get; private set; }
 
@@ -17,38 +39,11 @@ namespace TableSearch
         [Export("introPrice")]
         public double IntroPrice { get; private set; }
 
-        public Product(string title, int yearIntroduced, double price)
-        {
-            Title = title;
-            YearIntroduced = yearIntroduced;
-            IntroPrice = price;
-        }
-
-        [Export("initWithCoder:")]
-        public Product(NSCoder coder) 
-        {
-            var decodedTitle = coder.DecodeObject(CoderKeys.nameKey) as NSString;
-            if (decodedTitle == null)
-            {
-                throw new Exception("A title did not exist. In your app, handle this gracefully.");
-            }
-            Title = decodedTitle;
-            YearIntroduced = coder.DecodeInt(CoderKeys.yearKey);
-            IntroPrice = coder.DecodeDouble(CoderKeys.priceKey);
-        }
-
         public void EncodeTo(NSCoder encoder)
         {
-            encoder.Encode(new NSString(Title), CoderKeys.nameKey);
-            encoder.Encode(YearIntroduced, CoderKeys.yearKey);
-            encoder.Encode(IntroPrice, CoderKeys.priceKey);
+            encoder.Encode(new NSString(this.Title), nameof(this.Title));
+            encoder.Encode(this.YearIntroduced, nameof(this.YearIntroduced));
+            encoder.Encode(this.IntroPrice, nameof(this.IntroPrice));
         }
-    }
-
-    class CoderKeys
-    {
-        public const string nameKey = "nameKey";
-        public const string yearKey = "yearKey";
-        public const string priceKey = "priceKey";
     }
 }

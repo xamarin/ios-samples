@@ -1,5 +1,5 @@
-using System;
 using Foundation;
+using System;
 using UIKit;
 
 namespace TableSearch
@@ -10,25 +10,24 @@ namespace TableSearch
     public partial class DetailViewController : UIViewController
     {
         // Constants for Storyboard/ViewControllers.
-        private const string storyboardName = "Main";
-        private const string viewControllerIdentifier = "DetailViewController";
+        private const string StoryboardName = "Main";
+        private const string ViewControllerIdentifier = "DetailViewController";
 
         // Constants for state restoration.
-        private const string restoreProduct = "restoreProductKey";
-
+        private const string RestoreProductKey = "restoreProduct";
 
         public DetailViewController(IntPtr handle) : base(handle) { }
 
-        public Product product;
+        public Product Product { get; set; }
 
         public static UIViewController Create(Product product)
         {
-            var storyboard = UIStoryboard.FromName(DetailViewController.storyboardName, null);
+            var storyboard = UIStoryboard.FromName(DetailViewController.StoryboardName, null);
 
-            var viewController = storyboard.InstantiateViewController(DetailViewController.viewControllerIdentifier);
+            var viewController = storyboard.InstantiateViewController(DetailViewController.ViewControllerIdentifier);
             if (viewController is DetailViewController detailViewController)
             {
-                detailViewController.product = product;
+                detailViewController.Product = product;
             }
 
             return viewController;
@@ -43,16 +42,16 @@ namespace TableSearch
                 base.NavigationItem.LargeTitleDisplayMode = UINavigationItemLargeTitleDisplayMode.Never;
             }
 
-            base.Title = product.Title;
+            base.Title = Product.Title;
+            this.yearsLabel.Text = this.Product.YearIntroduced.ToString();
 
-            yearsLabel.Text = product.YearIntroduced.ToString();
+            /* Here you can use 'NSNumberFormatter' as a Swift developer or string format as a C# developer */
 
-            var numberFormatter = new NSNumberFormatter();
-            numberFormatter.NumberStyle = NSNumberFormatterStyle.Currency;
-            numberFormatter.FormatterBehavior = NSNumberFormatterBehavior.Default;
-            var priceString = numberFormatter.StringFromNumber(new NSNumber(product.IntroPrice));
-            priceLabel.Text = priceString;
-            // string.Format ("{0:C}", Product.IntroPrice);
+            //var numberFormatter = new NSNumberFormatter();
+            //numberFormatter.NumberStyle = NSNumberFormatterStyle.Currency;
+            //numberFormatter.FormatterBehavior = NSNumberFormatterBehavior.Default;
+            //var priceString = numberFormatter.StringFromNumber(new NSNumber(Product.IntroPrice));
+            this.priceLabel.Text = this.Product.IntroPrice.ToString("C");
         }
 
         #region UIStateRestoration
@@ -60,23 +59,24 @@ namespace TableSearch
         public override void EncodeRestorableState(NSCoder coder)
         {
             base.EncodeRestorableState(coder);
+
             // Encode the product.
-            coder.Encode(product, DetailViewController.restoreProduct);
+            coder.Encode(Product, DetailViewController.RestoreProductKey);
         }
 
         public override void DecodeRestorableState(NSCoder coder)
         {
+            base.DecodeRestorableState(coder);
 
             // Restore the product.
-            if (coder.DecodeObject(DetailViewController.restoreProduct) is Product decodedProduct)
+            if (coder.DecodeObject(DetailViewController.RestoreProductKey) is Product decodedProduct)
             {
-                product = decodedProduct;
+                Product = decodedProduct;
             }
             else
             {
                 throw new Exception("A product did not exist. In your app, handle this gracefully.");
             }
-            base.DecodeRestorableState(coder);
         }
 
         #endregion
