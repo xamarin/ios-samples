@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableSearch", "TableSearch\TableSearch.csproj", "{789C53FC-74BF-4880-A808-9F05033D8528}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableSearch2", "TableSearch2\TableSearch2.csproj", "{789C53FC-74BF-4880-A808-9F05033D8528}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
