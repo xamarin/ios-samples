@@ -110,9 +110,36 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-60%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-app-60%403x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\conservatory_of_flowers.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\conservatory_of_flowers.imageset\Flowers_3.jpg" />
+    <ImageAsset Include="Assets.xcassets\conservatory_of_flowers.imageset\Flowers_3%402x.jpg" />
+    <ImageAsset Include="Assets.xcassets\conservatory_of_flowers.imageset\Flowers_3%403x.jpg" />
+    <ImageAsset Include="Assets.xcassets\ferry_building.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ferry_building.imageset\Food_5.jpg" />
+    <ImageAsset Include="Assets.xcassets\ferry_building.imageset\Food_5%402x.jpg" />
+    <ImageAsset Include="Assets.xcassets\ferry_building.imageset\Food_5%403x.jpg" />
+    <ImageAsset Include="Assets.xcassets\flag.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\flag.imageset\Flag_1x.png" />
+    <ImageAsset Include="Assets.xcassets\flag.imageset\Flag_2x.png" />
+    <ImageAsset Include="Assets.xcassets\flag.imageset\Flag_3x.png" />
+    <ImageAsset Include="Assets.xcassets\golden_gate.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\golden_gate.imageset\GGBridge_2.jpg" />
+    <ImageAsset Include="Assets.xcassets\golden_gate.imageset\GGBridge_2%402x.jpg" />
+    <ImageAsset Include="Assets.xcassets\golden_gate.imageset\GGBridge_2%403x.jpg" />
+    <ImageAsset Include="Assets.xcassets\sf_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\sf_icon.imageset\SFIcon_1x.png" />
+    <ImageAsset Include="Assets.xcassets\sf_icon.imageset\SFIcon_2x.png" />
+    <ImageAsset Include="Assets.xcassets\sf_icon.imageset\SFIcon_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Annotations\" />
+    <Folder Include="Assets.xcassets\conservatory_of_flowers.imageset\" />
+    <Folder Include="Assets.xcassets\ferry_building.imageset\" />
+    <Folder Include="Assets.xcassets\flag.imageset\" />
+    <Folder Include="Assets.xcassets\golden_gate.imageset\" />
+    <Folder Include="Assets.xcassets\internationalOrange.imageset\" />
+    <Folder Include="Assets.xcassets\sf_icon.imageset\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -125,10 +152,17 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="ViewController.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
+    <Compile Include="MapViewController.cs" />
+    <Compile Include="MapViewController.designer.cs">
+      <DependentUpon>MapViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Annotations\BridgeAnnotation.cs" />
+    <Compile Include="Annotations\FerryBuildingAnnotation.cs" />
+    <Compile Include="Annotations\SanFranciscoAnnotation.cs" />
+    <Compile Include="Annotations\CustomAnnotation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Localizable.strings" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

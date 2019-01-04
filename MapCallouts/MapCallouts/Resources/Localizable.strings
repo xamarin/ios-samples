@@ -1,0 +1,16 @@
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+Localized strings.
+*/
+
+"BRIDGE_TITLE" = "Golden Gate Bridge";
+"BRIDGE_SUBTITLE" = "Opened: May 27, 1937";
+
+"FERRY_BUILDING_TITLE" = "Ferry Building";
+
+"SAN_FRANCISCO_TITLE" = "San Francisco";
+"SAN_FRANCISCO_SUBTITLE" = "Founded: June 29, 1776";
+
+"FLOWERS_TITLE" = "Conservatory of Flowers";
