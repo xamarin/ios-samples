@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapCallouts2", "MapCallouts2.csproj", "{103AF9D5-9AAD-4093-A132-1286AFB8F321}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapCallouts", "MapCallouts\MapCallouts.csproj", "{B8B97262-0766-4115-8FB0-2C2EF4860259}"
 EndProject
 Global
@@ -13,14 +11,6 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{103AF9D5-9AAD-4093-A132-1286AFB8F321}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{103AF9D5-9AAD-4093-A132-1286AFB8F321}.Debug|iPhone.Build.0 = Debug|iPhone
-		{103AF9D5-9AAD-4093-A132-1286AFB8F321}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{103AF9D5-9AAD-4093-A132-1286AFB8F321}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{103AF9D5-9AAD-4093-A132-1286AFB8F321}.Release|iPhone.ActiveCfg = Release|iPhone
-		{103AF9D5-9AAD-4093-A132-1286AFB8F321}.Release|iPhone.Build.0 = Release|iPhone
-		{103AF9D5-9AAD-4093-A132-1286AFB8F321}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{103AF9D5-9AAD-4093-A132-1286AFB8F321}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{B8B97262-0766-4115-8FB0-2C2EF4860259}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{B8B97262-0766-4115-8FB0-2C2EF4860259}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{B8B97262-0766-4115-8FB0-2C2EF4860259}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
