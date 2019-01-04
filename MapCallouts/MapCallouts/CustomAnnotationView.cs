@@ -14,7 +14,7 @@ namespace MapCallouts
         private const float BoxInset = 10f;
         private const float InterItemSpacing = 10f;
         private const float MaxContentWidth = 90f;
-        private UIEdgeInsets contentInsets = new UIEdgeInsets(10f, 30f, 20f, 20f);
+        private readonly UIEdgeInsets contentInsets = new UIEdgeInsets(10f, 30f, 20f, 20f);
 
         private NSLayoutConstraint imageHeightConstraint;
         private UILabel label;
@@ -24,9 +24,8 @@ namespace MapCallouts
         [Foundation.Export("initWithAnnotation:reuseIdentifier:")]
         public CustomAnnotationView(MKAnnotation annotation, string reuseIdentifier) : base(annotation, reuseIdentifier)
         {
-            var ff = this.Annotation;
-            BackgroundColor = UIColor.Clear;
-            TranslatesAutoresizingMaskIntoConstraints = false;
+            this.BackgroundColor = UIColor.Clear;
+            this.TranslatesAutoresizingMaskIntoConstraints = false;
 
             this.InitializeElements();
 
@@ -48,26 +47,31 @@ namespace MapCallouts
                 var size = this.stackView.Bounds.Size;
                 size.Width += this.contentInsets.Left + this.contentInsets.Right;
                 size.Height += this.contentInsets.Top + this.contentInsets.Bottom;
+
                 return size;
             }
         }
 
         private void InitializeElements()
         {
-            this.label = new UILabel(CGRect.Empty);
-            this.label.TextColor = UIColor.White;
-            this.label.LineBreakMode = UILineBreakMode.WordWrap;
-            this.label.BackgroundColor = UIColor.Clear;
-            this.label.Lines = 2;
-            this.label.Font = UIFont.PreferredCaption1;
+            this.label = new UILabel(CGRect.Empty)
+            {
+                TextColor = UIColor.White,
+                LineBreakMode = UILineBreakMode.WordWrap,
+                BackgroundColor = UIColor.Clear,
+                Lines = 2,
+                Font = UIFont.PreferredCaption1
+            };
 
             this.imageView = new UIImageView();
 
-            this.stackView = new UIStackView(new UIView[] { this.label, this.imageView });
-            this.stackView.TranslatesAutoresizingMaskIntoConstraints = false;
-            this.stackView.Axis = UILayoutConstraintAxis.Vertical;
-            this.stackView.Alignment = UIStackViewAlignment.Top;
-            this.stackView.Spacing = InterItemSpacing;
+            this.stackView = new UIStackView(new UIView[] { this.label, this.imageView })
+            {
+                TranslatesAutoresizingMaskIntoConstraints = false,
+                Axis = UILayoutConstraintAxis.Vertical,
+                Alignment = UIStackViewAlignment.Top,
+                Spacing = InterItemSpacing
+            };
         }
 
         public override void PrepareForReuse()
@@ -76,6 +80,7 @@ namespace MapCallouts
             this.imageView.Image = null;
             this.label.Text = null;
         }
+
         public override void PrepareForDisplay()
         {
             /*

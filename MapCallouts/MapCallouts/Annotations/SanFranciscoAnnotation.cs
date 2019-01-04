@@ -11,8 +11,8 @@ namespace MapCallouts.Annotations
     {
         public override CLLocationCoordinate2D Coordinate => new CLLocationCoordinate2D(37.779_379f, -122.418_433f);
 
-        public override string Title =>  NSBundle.MainBundle.GetLocalizedString("SAN_FRANCISCO_TITLE");
+        public override string Title => NSBundle.MainBundle.GetLocalizedString("SAN_FRANCISCO_TITLE");
 
-        public override string Subtitle =>  NSBundle.MainBundle.GetLocalizedString("SAN_FRANCISCO_SUBTITLE");
+        public override string Subtitle => NSBundle.MainBundle.GetLocalizedString("SAN_FRANCISCO_SUBTITLE");
     }
 }
