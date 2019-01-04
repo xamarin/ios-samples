@@ -5,5 +5,5 @@
 	<Level>Beginner</Level>
 	<Tags>Maps + Location</Tags>
 	<Gallery>true</Gallery>
-	<Brief>An example of how to use the MapKit framework.</Brief>
+	<Brief>Annotate a map with location-specific data using default and customized annotation views and callouts.</Brief>
 </SampleMetadata>

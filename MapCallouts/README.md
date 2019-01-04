@@ -1,18 +1,27 @@
-Map Callouts Demo
+Annotating a Map with Custom Data
 =================
 
-An example of how to use the MapKit framework, displaying a map view with a
-custom MKAnnotations with custom callouts.
+This sample code project demonstrates how to display a map with custom annotations, each with a customized callout provided by its [`MKAnnotationView`][1]. In addition, the Map Callouts sample project shows how you can extend annotations with custom views, strings, and callout accessory views using [`MKAnnotation`][2] and [`MKAnnotationView`][1].
 
-Based on the Apple sample:
-http://developer.apple.com/library/ios/#samplecode/MapCallouts/Introduction/Intro.html
+[1]:https://developer.apple.com/documentation/mapkit/mkannotationview
+[2]:https://developer.apple.com/documentation/mapkit/mkannotation
 
-Authors
+Build Requirements
 -------
 
-Rolf Bjarne Kvinge
+Xamarin.iOS 12.0+ and Xcode 10.0+.
+
+Related Links
+-------
+
+- [Original sample](https://developer.apple.com/documentation/mapkit/mapkit_annotations/annotating_a_map_with_custom_data)
 
 License
 -------
 
-GoldenGate.jpg: licensed under a Creative Commons Attribute 3.0 Unported license (http://creativecommons.org/licenses/by/3.0/) by freeimageslive / akphoto (http://www.freeimageslive.co.uk/free_stock_image/goldengatebridgejpg)
+Xamarin port changes are released under the MIT license.
+
+Author
+------
+
+Ported to Xamarin.iOS by Rolf Bjarne Kvinge/Mykyta Bondarenko
