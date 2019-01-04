@@ -164,11 +164,11 @@ namespace MapCallouts
         public MKAnnotationView GetViewForAnnotation(MKMapView mapView, IMKAnnotation annotation)
         {
             MKAnnotationView result = null;
-            if (annotation is MKUserLocation)
+            if (!(annotation is MKUserLocation))
             {
                 if (annotation is BridgeAnnotation bridgeAnnotation)
                 {
-                    result = this.SetupBridgeAnnotationView(annotation, this.mapView);
+                    result = this.SetupBridgeAnnotationView(bridgeAnnotation, this.mapView);
                 }
                 else if (annotation is CustomAnnotation customAnnotation)
                 {

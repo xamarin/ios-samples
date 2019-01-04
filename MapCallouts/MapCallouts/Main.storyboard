@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nyw-z0-6d9">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -69,7 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gzs-bS-E0j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1664.8" y="-244.22788605697153"/>
+            <point key="canvasLocation" x="1664.8" y="-244.2279"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qrH-sw-ZuB">
@@ -77,12 +77,12 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="Nyw-z0-6d9" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="407-TW-vwu">
-                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JaR-M6-rAP">
-                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -91,7 +91,62 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0U4-qR-7Qr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="725.60000000000002" y="-244.22788605697153"/>
+            <point key="canvasLocation" x="725.6" y="-244.2279"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bxE-63-7uP">
+            <objects>
+                <navigationController storyboardIdentifier="DetailNavController" id="gWQ-6K-reB" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="W58-92-1vA">
+                        <rect key="frame" x="0.0" y="20" width="375" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ebZ-dq-nGB" kind="relationship" relationship="rootViewController" id="ryQ-jo-h8b"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gnx-i8-3ut" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="726" y="466"/>
+        </scene>
+        <!--Golden Gate Bridge-->
+        <scene sceneID="i9G-Wz-MQW">
+            <objects>
+                <viewController id="ebZ-dq-nGB" customClass="DetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8sz-Xh-4BK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="golden_gate" translatesAutoresizingMaskIntoConstraints="NO" id="bU0-XB-MWm">
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bU0-XB-MWm" firstAttribute="top" secondItem="c4F-By-AzN" secondAttribute="top" id="6kR-FE-cfe"/>
+                            <constraint firstItem="c4F-By-AzN" firstAttribute="trailing" secondItem="bU0-XB-MWm" secondAttribute="trailing" id="GDW-k4-0aw"/>
+                            <constraint firstItem="c4F-By-AzN" firstAttribute="bottom" secondItem="bU0-XB-MWm" secondAttribute="bottom" id="S26-fa-saE"/>
+                            <constraint firstItem="bU0-XB-MWm" firstAttribute="leading" secondItem="c4F-By-AzN" secondAttribute="leading" id="aIG-MH-am5"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="c4F-By-AzN"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Golden Gate Bridge" id="a4y-vb-jLU">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="rBk-MY-XXz">
+                            <connections>
+                                <action selector="DoneAction:" destination="ebZ-dq-nGB" id="241"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="bU0-XB-MWm" id="name-outlet-bU0-XB-MWm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VLq-dF-DZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1665" y="466"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="golden_gate" width="609" height="812"/>
+    </resources>
 </document>

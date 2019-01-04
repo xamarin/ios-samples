@@ -160,6 +160,11 @@
     <Compile Include="Annotations\FerryBuildingAnnotation.cs" />
     <Compile Include="Annotations\SanFranciscoAnnotation.cs" />
     <Compile Include="Annotations\CustomAnnotation.cs" />
+    <Compile Include="DetailViewController.cs" />
+    <Compile Include="DetailViewController.designer.cs">
+      <DependentUpon>DetailViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomAnnotationView.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Localizable.strings" />
