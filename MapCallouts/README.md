@@ -6,6 +6,8 @@ This sample code project demonstrates how to display a map with custom annotatio
 [1]:https://developer.apple.com/documentation/mapkit/mkannotationview
 [2]:https://developer.apple.com/documentation/mapkit/mkannotation
 
+![Home View](Screenshots/screenshot-1.png)
+
 Build Requirements
 -------
 
