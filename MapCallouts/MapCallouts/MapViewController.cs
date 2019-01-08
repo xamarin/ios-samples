@@ -58,7 +58,7 @@ namespace MapCallouts
             flowerAnnotation.ImageName = "conservatory_of_flowers";
 
             // Create the array of annotations and the specific annotations for the points of interest.
-            allAnnotations = new List<MKAnnotation> { new SanFranciscoAnnotation(), new BridgeAnnotation(), new FerryBuildingAnnotation(), flowerAnnotation };
+            this.allAnnotations = new List<MKAnnotation> { new SanFranciscoAnnotation(), new BridgeAnnotation(), new FerryBuildingAnnotation(), flowerAnnotation };
 
             // Dispaly all annotations on the map.
             this.ShowAllAnnotations(this);
@@ -115,14 +115,7 @@ namespace MapCallouts
         private void DisplayOne(Type annotationType)
         {
             var annotation = this.allAnnotations.FirstOrDefault(item => item.GetType() == annotationType);
-            if (annotation != null)
-            {
-                this.DisplayedAnnotations = new List<MKAnnotation> { annotation };
-            }
-            else
-            {
-                this.DisplayedAnnotations = new List<MKAnnotation>();
-            }
+            this.DisplayedAnnotations = annotation != null ? new List <MKAnnotation> { annotation } : new List<MKAnnotation>();
         }
 
         #region IMKMapViewDelegate

@@ -8,7 +8,7 @@ namespace MapCallouts.Annotations
     /// </summary>
     public class CustomAnnotation : MKAnnotation
     {
-        private CLLocationCoordinate2D coordinate;
+        private readonly CLLocationCoordinate2D coordinate;
 
         private readonly string title;
 

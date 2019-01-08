@@ -1,7 +1,6 @@
 ﻿using CoreGraphics;
 using MapCallouts.Annotations;
 using MapKit;
-using System;
 using UIKit;
 
 namespace MapCallouts
@@ -83,6 +82,8 @@ namespace MapCallouts
 
         public override void PrepareForDisplay()
         {
+            base.PrepareForDisplay();
+
             /*
              * If using the same annotation view and reuse identifier for multiple annotations, iOS will reuse this view by calling `prepareForReuse()`
              * so the view can be put into a known default state, and `prepareForDisplay()` right before the annotation view is displayed. This method is
@@ -92,24 +93,25 @@ namespace MapCallouts
             {
                 this.label.Text = annotation.Title;
 
-                var imageName = annotation.ImageName;
-                var image = UIImage.FromBundle(annotation.ImageName);
-                this.imageView.Image = UIImage.FromBundle(annotation.ImageName);
-
-                /*
-                 The image view has a width constraint to keep the image to a reasonable size. A height constraint to keep the aspect ratio
-                 proportions of the image is required to keep the image packed into the stack view. Without this constraint, the image's height
-                 will remain the intrinsic size of the image, resulting in extra height in the stack view that is not desired.
-                 */
-
-                if (this.imageHeightConstraint != null)
+                using (var image = UIImage.FromBundle(annotation.ImageName))
                 {
-                    this.imageView.RemoveConstraint(this.imageHeightConstraint);
-                }
+                    this.imageView.Image = image;
 
-                var ratio = image.Size.Height / image.Size.Width;
-                this.imageHeightConstraint = this.imageView.HeightAnchor.ConstraintEqualTo(this.imageView.WidthAnchor, ratio, 0);
-                this.imageHeightConstraint.Active = true;
+                    /*
+                     The image view has a width constraint to keep the image to a reasonable size. A height constraint to keep the aspect ratio
+                     proportions of the image is required to keep the image packed into the stack view. Without this constraint, the image's height
+                     will remain the intrinsic size of the image, resulting in extra height in the stack view that is not desired.
+                     */
+
+                    if (this.imageHeightConstraint != null)
+                    {
+                        this.imageView.RemoveConstraint(this.imageHeightConstraint);
+                    }
+
+                    var ratio = image.Size.Height / image.Size.Width;
+                    this.imageHeightConstraint = this.imageView.HeightAnchor.ConstraintEqualTo(this.imageView.WidthAnchor, ratio, 0);
+                    this.imageHeightConstraint.Active = true;
+                }
             }
 
             // Since the image and text sizes may have changed, require the system do a layout pass to update the size of the subviews.
@@ -140,17 +142,50 @@ namespace MapCallouts
             UIColor.DarkGray.SetFill();
 
             // Draw the pointed shape.
-            var pointShape = new UIBezierPath();
-            pointShape.MoveTo(new CGPoint(14f, 0f));
-            pointShape.AddLineTo(CGPoint.Empty);
-            pointShape.AddLineTo(new CGPoint(rect.Size.Width, rect.Size.Height));
-            pointShape.Fill();
+            using (var pointShape = new UIBezierPath())
+            {
+                pointShape.MoveTo(new CGPoint(14f, 0f));
+                pointShape.AddLineTo(CGPoint.Empty);
+                pointShape.AddLineTo(new CGPoint(rect.Size.Width, rect.Size.Height));
+                pointShape.Fill();
+            }
 
             // Draw the rounded box.
             var box = new CGRect(BoxInset, 0, rect.Size.Width - BoxInset, rect.Size.Height);
-            var roundedRect = UIBezierPath.FromRoundedRect(box, 5f);
-            roundedRect.LineWidth = 2f;
-            roundedRect.Fill();
+            using (var roundedRect = UIBezierPath.FromRoundedRect(box, 5f))
+            {
+                roundedRect.LineWidth = 2f;
+                roundedRect.Fill();
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (this.label != null)
+            {
+                this.label.Dispose();
+                this.label = null;
+            }
+
+            if (this.imageView != null)
+            {
+                this.imageView.Dispose();
+                this.imageView = null;
+            }
+
+            if (this.stackView != null)
+            {
+                this.stackView.Dispose();
+                this.stackView = null;
+            }
+
+            if (this.imageHeightConstraint != null)
+            {
+                this.imageHeightConstraint.Dispose();
+                this.imageHeightConstraint = null;
+            }
         }
     }
 }
