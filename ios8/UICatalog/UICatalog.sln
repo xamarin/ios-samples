@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012 
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UICatalog", "UICatalog\UICatalog.csproj", "{EBCD8403-7F6B-481E-8608-A92D57D02FAB}"
 EndProject
 Global
