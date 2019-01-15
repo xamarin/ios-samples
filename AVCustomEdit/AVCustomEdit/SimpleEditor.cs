@@ -19,7 +19,7 @@ namespace AVCustomEdit
 
         public CMTime TransitionDuration { get; set; }
 
-		public AVPlayerItem PlayerItem {
+        public AVPlayerItem PlayerItem {
             get {
                 if (composition == null)
                     return null;
