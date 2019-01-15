@@ -19,7 +19,7 @@ namespace AVCustomEdit
         private SimpleEditor editor;
 
         private List<AVAsset> clips;
-        private List<NSValue> clipTimeRanges;
+        private List<CMTimeRange> clipTimeRanges;
 
         private AVPlayer player;
         private AVPlayerItem playerItem;
@@ -44,8 +44,8 @@ namespace AVCustomEdit
             base.ViewDidLoad();
 
             this.editor = new SimpleEditor();
-            this.clips = new List<AVAsset>();
-            this.clipTimeRanges = new List<NSValue>();
+            this.clips = new List<AVAsset>(2);
+            this.clipTimeRanges = new List<CMTimeRange>(2);
 
             // Defaults for the transition settings.
             this.transitionType = TransitionType.DiagonalWipeTransition;
@@ -115,8 +115,9 @@ namespace AVCustomEdit
             this.LoadAsset(asset2, assetKeysToLoadAndTest, dispatchGroup);
 
             // Wait until both assets are loaded
-            dispatchGroup.Wait(DispatchTime.Forever);
-            base.InvokeOnMainThread(() => this.SynchronizeWithEditor());
+            dispatchGroup.Notify(DispatchQueue.MainQueue, () => {
+                SynchronizeWithEditor();
+            });
         }
 
         private void LoadAsset(AVAsset asset, string[] assetKeysToLoad, DispatchGroup dispatchGroup)
@@ -124,28 +125,32 @@ namespace AVCustomEdit
             dispatchGroup.Enter();
             asset.LoadValuesAsynchronously(assetKeysToLoad, () =>
             {
+                bool add_asset = true;
                 // First test whether the values of each of the keys we need have been successfully loaded.
                 foreach (var key in assetKeysToLoad)
                 {
                     if (asset.StatusOfValue(key, out NSError error) == AVKeyValueStatus.Failed)
                     {
                         Console.WriteLine($"Key value loading failed for key:{key} with error: {error?.LocalizedDescription ?? ""}");
-                        goto bail;
+                        add_asset = false;
+                        break;
                     }
                 }
 
                 if (!asset.Composable)
                 {
                     Console.WriteLine("Asset is not composable");
-                    goto bail;
+                    add_asset = false;
                 }
 
-                this.clips.Add(asset);
-                // This code assumes that both assets are atleast 5 seconds long.
-                var value = NSValue.FromCMTimeRange(new CMTimeRange { Start = CMTime.FromSeconds(0, 1), Duration = CMTime.FromSeconds(5, 1) });
-                this.clipTimeRanges.Add(value);
+                if (add_asset)
+                {
+                    this.clips.Add(asset);
+                    // This code assumes that both assets are atleast 5 seconds long.
+                    var value = new CMTimeRange { Start = CMTime.FromSeconds(0, 1), Duration = CMTime.FromSeconds(5, 1) };
+                    this.clipTimeRanges.Add(value);
+                }
 
-            bail:
                 dispatchGroup.Leave();
             });
         }
@@ -185,8 +190,8 @@ namespace AVCustomEdit
         private void SynchronizeWithEditor()
         {
             // Clips
-            this.SynchronizeEditorClipsWithOurClips();
-            this.SynchronizeEditorClipTimeRangesWithOurClipTimeRanges();
+            this.editor.Clips = new List<AVAsset> (clips);
+            this.editor.ClipTimeRanges = new List<CMTimeRange> (clipTimeRanges);
 
             // Transitions
             if (this.isTransitionsEnabled)
@@ -200,36 +205,8 @@ namespace AVCustomEdit
             }
 
             // Build AVComposition and AVVideoComposition objects for playback
-            //this.editor.BuildCompositionObjectsForPlayback(true);
-            //this.SynchronizePlayerWithEditor();
-        }
-
-        private void SynchronizeEditorClipsWithOurClips()
-        {
-            var validClips = new List<AVAsset>();
-            foreach (var asset in this.clips)
-            {
-                if (asset != null)
-                {
-                    validClips.Add(asset);
-                }
-            }
-
-            this.editor.Clips = validClips;
-        }
-
-        private void SynchronizeEditorClipTimeRangesWithOurClipTimeRanges()
-        {
-            var validClipTimeRanges = new List<NSValue>();
-            foreach (var timeRange in this.clipTimeRanges)
-            {
-                if (timeRange != null)
-                {
-                    validClipTimeRanges.Add(timeRange);
-                }
-            }
-
-            this.editor.ClipTimeRanges = validClipTimeRanges;
+           this.editor.BuildCompositionObjectsForPlayback(true);
+           this.SynchronizePlayerWithEditor();
         }
 
         #endregion
