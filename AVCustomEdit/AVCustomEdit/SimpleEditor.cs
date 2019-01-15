@@ -13,13 +13,19 @@ namespace AVCustomEdit
 
         public List<AVAsset> Clips { get; set; } // array of AVURLAssets
 
-        public List<NSValue> ClipTimeRanges { get; set; } // array of CMTimeRanges stored in NSValues.
+        public List<CMTimeRange> ClipTimeRanges { get; set; }
 
         public TransitionType TransitionType { get; set; }
 
         public CMTime TransitionDuration { get; set; }
 
-        public AVPlayerItem PlayerItem =>  new AVPlayerItem(this.composition) { VideoComposition = this.videoComposition };
+        public AVPlayerItem PlayerItem {
+            get {
+                if (composition == null)
+                    return null;
+                return new AVPlayerItem(this.composition) { VideoComposition = this.videoComposition };
+            }
+        }
 
         private void BuildTransitionComposition(AVMutableComposition mutableComposition, AVMutableVideoComposition mutableVideoComposition)
         {
@@ -30,12 +36,9 @@ namespace AVCustomEdit
             var transitionDuration = this.TransitionDuration;
             foreach (var clipTimeRange in this.ClipTimeRanges)
             {
-                if (clipTimeRange != null)
-                {
-                    var halfClipDuration = clipTimeRange.CMTimeRangeValue.Duration;
-                    halfClipDuration.TimeScale *= 2; // You can halve a rational by doubling its denominator.
-                    transitionDuration = CMTime.GetMinimum(transitionDuration, halfClipDuration);
-                }
+                var halfClipDuration = clipTimeRange.Duration;
+                halfClipDuration.TimeScale *= 2; // You can halve a rational by doubling its denominator.
+                transitionDuration = CMTime.GetMinimum(transitionDuration, halfClipDuration);
             }
 
             // Add two video tracks and two audio tracks.
@@ -55,16 +58,13 @@ namespace AVCustomEdit
             {
                 int alternatingIndex = i % 2; // alternating targets: 0, 1, 0, 1, ...
                 var asset = this.Clips[i];
-                var clipTimeRange = this.ClipTimeRanges[i];
-
-                var timeRangeInAsset = clipTimeRange != null ? clipTimeRange.CMTimeRangeValue
-                                                             : new CMTimeRange { Start = CMTime.Zero, Duration = asset.Duration };
+                var timeRangeInAsset = this.ClipTimeRanges[i];
 
                 var clipVideoTrack = asset.TracksWithMediaType(AVMediaType.Video)[0];
-                compositionVideoTracks[alternatingIndex].InsertTimeRange(timeRangeInAsset, clipVideoTrack, nextClipStartTime, out NSError error);
+                compositionVideoTracks[alternatingIndex].InsertTimeRange(timeRangeInAsset, clipVideoTrack, nextClipStartTime, out _);
 
                 var clipAudioTrack = asset.TracksWithMediaType(AVMediaType.Audio)[0];
-                compositionAudioTracks[alternatingIndex].InsertTimeRange(timeRangeInAsset, clipAudioTrack, nextClipStartTime, out error);
+                compositionAudioTracks[alternatingIndex].InsertTimeRange(timeRangeInAsset, clipAudioTrack, nextClipStartTime, out _);
 
                 // Remember the time range in which this clip should pass through.
                 // First clip ends with a transition.
