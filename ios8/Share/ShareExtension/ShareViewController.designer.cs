@@ -8,12 +8,11 @@ using Foundation;
 
 namespace ShareExtension
 {
-	[Register ("ShareExtensionViewController")]
-	partial class ShareExtensionViewController
-	{
-		void ReleaseDesignerOutlets ()
-		{
-		}
-	}
+    [Register("ShareViewController")]
+    partial class ShareViewController
+    {
+        void ReleaseDesignerOutlets()
+        {
+        }
+    }
 }
-

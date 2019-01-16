@@ -4,18 +4,14 @@
 // Manual changes to this file may not be handled correctly.
 //
 using Foundation;
-using UIKit;
 
 namespace Share
 {
-	[Register ("ShareViewController")]
-	partial class ShareViewController
-	{
-		[Outlet("instructionsLabel")]
-		public UILabel InstructionsLabel { get; set; }
-
-		void ReleaseDesignerOutlets ()
-		{
-		}
-	}
+    [Register("ViewController")]
+    partial class ViewController
+    {
+        void ReleaseDesignerOutlets()
+        {
+        }
+    }
 }

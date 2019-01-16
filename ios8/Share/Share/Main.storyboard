@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4k-oN-m79">
+                                <rect key="frame" x="112.5" y="190.5" width="150" height="36"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBV-Y3-Nqx">
+                                <rect key="frame" x="16" y="262.5" width="343" height="142.5"/>
+                                <string key="text">To enable the share extension, please run any app that contains a share button (square + arrow), like Safari and click on that button. You should see a line of icons, Mail, Twitter and Facebook. These are native share extensions. To add our extension click on *more* and activate the ShareExtension.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="x4k-oN-m79" firstAttribute="centerX" secondItem="Qos-Oc-L0P" secondAttribute="centerX" id="162-PC-l9f"/>
+                            <constraint firstItem="Qos-Oc-L0P" firstAttribute="trailing" secondItem="CBV-Y3-Nqx" secondAttribute="trailing" constant="16" id="97Z-pn-7IF"/>
+                            <constraint firstItem="CBV-Y3-Nqx" firstAttribute="centerX" secondItem="Qos-Oc-L0P" secondAttribute="centerX" id="ZUs-DG-xCC"/>
+                            <constraint firstItem="CBV-Y3-Nqx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mLs-2r-OPJ"/>
+                            <constraint firstItem="CBV-Y3-Nqx" firstAttribute="leading" secondItem="Qos-Oc-L0P" secondAttribute="leading" constant="16" id="vVL-QZ-HSn"/>
+                            <constraint firstItem="CBV-Y3-Nqx" firstAttribute="top" secondItem="x4k-oN-m79" secondAttribute="bottom" constant="36" id="zth-Bf-7ms"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Qos-Oc-L0P"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133.59999999999999" y="133.5832083958021"/>
+        </scene>
+    </scenes>
+</document>
