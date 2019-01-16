@@ -1,20 +1,19 @@
 GLCameraRipple
 ==============
 
-This is a port of Apple's GLCameraRipple sample to C# and MonoTouch.
+This sample shows how to use GLKit to render OpenGL frames, AVFoundation to fetch live video from the camera and OpenTK's API to load a couple of shaders that simulate a water ripple effect when the user touches the display.
 
-http://developer.apple.com/library/ios/#samplecode/GLCameraRipple/Introduction/Intro.html
+Related Links
+-------
 
-This sample shows how to use GLKit [1] to render OpenGL frames,
-AVFoundation to fetch live video from the camera and OpenTK's API to
-load a couple of shaders that simulate a water ripple effect when the
-user touches the display.
+- [Original sample](http://developer.apple.com/library/ios/#samplecode/GLCameraRipple/Introduction/Intro.html)
 
-This uses the CVOpenGLESTextureCache [2] class which was introduced
-with iOS 5.0 which binds CoreVideo buffers to OpenGL textures.
+License
+-------
 
-[1] http://iosapi.xamarin.com/?link=N%3aMonoTouch.GLKit
+Xamarin port changes are released under the MIT license.
 
-[2] http://iosapi.xamarin.com/?link=T%3aMonoTouch.CoreVideo.CVOpenGLESTextureCache
+Author
+------
 
-Ported by: Miguel de Icaza (miguel@xamarin.com)
+Ported to Xamarin.iOS by Miguel de Icaza
