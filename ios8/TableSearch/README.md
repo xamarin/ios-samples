@@ -1,4 +1,4 @@
-Displaying Searchable Content by Using a Search Controller
+Table Search with UISearchController
 ====================================
 
 This sample demonstrates how to create a table view controller and search controller to manage the display of searchable content. It creates another custom table view controller to display the search results. This table view controller also acts as the presenter or provides context for the search results so they're presented within their own context.
