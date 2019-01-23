@@ -40,18 +40,17 @@ UICatalog demonstrates how to configure and customize the following controls:
 * UISearchBar
 * UIToolbar
 
-Build/Runtime Requirements 
+Build Requirements 
 --------------------------
 
-* Building this sample requires Xcode 6.0 and iOS 8.0 SDK. 
-* Running the sample requires iOS 8.0 or later.
+Xamarin.iOS 11.0+ and Xcode 9.0+.
 
-Copyright
----------
+License
+-------
 
-Xamarin port changes are released under the MIT license
+Xamarin port changes are released under the MIT license.
 
 Author 
 ------
 
-Ported to Xamarin.iOS by Rustam Zaitov.
+Ported to Xamarin.iOS by Rustam Zaitov/Mykyta Bondarenko.
