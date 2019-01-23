@@ -2,10 +2,9 @@
 <SampleMetadata>
 	<ID>4b39028f-0479-4c74-a78e-99c9588db521</ID>
 	<IsFullApplication>false</IsFullApplication>
+    <Brief>Create a user interface with searchable content in a table view.</Brief>
+    <SupportedPlatforms>iOS</SupportedPlatforms>
 	<Level>Beginner</Level>
-	<Tags>User Interface, iOS8</Tags>
-	<SupportedPlatforms>iOS</SupportedPlatforms>
-    <LicenseRequirement>Starter</LicenseRequirement>
+	<Tags>User Interface</Tags>
 	<Gallery>true</Gallery>
-	<Brief>Application that demonstrates how to use UISearchController.</Brief>
 </SampleMetadata>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableSearch", "TableSearch\TableSearch.csproj", "{789C53FC-74BF-4880-A808-9F05033D8528}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableSearch", "TableSearch\TableSearch.csproj", "{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,18 +13,18 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{789C53FC-74BF-4880-A808-9F05033D8528}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{789C53FC-74BF-4880-A808-9F05033D8528}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{789C53FC-74BF-4880-A808-9F05033D8528}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{789C53FC-74BF-4880-A808-9F05033D8528}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{789C53FC-74BF-4880-A808-9F05033D8528}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{789C53FC-74BF-4880-A808-9F05033D8528}.Debug|iPhone.Build.0 = Debug|iPhone
-		{789C53FC-74BF-4880-A808-9F05033D8528}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{789C53FC-74BF-4880-A808-9F05033D8528}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{789C53FC-74BF-4880-A808-9F05033D8528}.Release|iPhone.ActiveCfg = Release|iPhone
-		{789C53FC-74BF-4880-A808-9F05033D8528}.Release|iPhone.Build.0 = Release|iPhone
-		{789C53FC-74BF-4880-A808-9F05033D8528}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{789C53FC-74BF-4880-A808-9F05033D8528}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}.Debug|iPhone.Build.0 = Debug|iPhone
+		{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}.Release|iPhone.ActiveCfg = Release|iPhone
+		{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}.Release|iPhone.Build.0 = Release|iPhone
+		{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{2CF08293-FF00-4B3D-8A9D-90A2E6CB67C2}.AppStore|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = TableSearch\TableSearch.csproj
