@@ -1,0 +1,424 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D09B81014C87E5F00033666 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6535114C7C824007670AC /* Foundation.framework */; };
+		1D09B81B14C87E7700033666 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6535F14C7C8BA007670AC /* UIKit.framework */; };
+		1D09B81C14C87E8200033666 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6536E14C7ECE5007670AC /* QuartzCore.framework */; };
+		1D09B82514C87F8500033666 /* XMUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536214C7C8EF007670AC /* XMUtilities.m */; };
+		1D09B82714C87F8500033666 /* XMCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536914C7D087007670AC /* XMCustomView.m */; };
+		1DE6535214C7C824007670AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6535114C7C824007670AC /* Foundation.framework */; };
+		1DE6536014C7C8BA007670AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6535F14C7C8BA007670AC /* UIKit.framework */; };
+		1DE6536314C7C8EF007670AC /* XMUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536114C7C8EF007670AC /* XMUtilities.h */; };
+		1DE6536414C7C8EF007670AC /* XMUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536214C7C8EF007670AC /* XMUtilities.m */; };
+		1DE6536A14C7D087007670AC /* XMCustomView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536814C7D087007670AC /* XMCustomView.h */; };
+		1DE6536B14C7D087007670AC /* XMCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DE6536914C7D087007670AC /* XMCustomView.m */; };
+		1DE6536D14C7D118007670AC /* XMCustomViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536C14C7D118007670AC /* XMCustomViewDelegate.h */; };
+		1DE6536F14C7ECE5007670AC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DE6536E14C7ECE5007670AC /* QuartzCore.framework */; };
+		CE304A2F174D4DFB001653BF /* XMUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536114C7C8EF007670AC /* XMUtilities.h */; };
+		CE304A30174D4DFB001653BF /* XMCustomView.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536814C7D087007670AC /* XMCustomView.h */; };
+		CE304A31174D4DFB001653BF /* XMCustomViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE6536C14C7D118007670AC /* XMCustomViewDelegate.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D09B80F14C87E5F00033666 /* libXMBindingLibraryUniversal.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXMBindingLibraryUniversal.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D22C39B14CBA7A80000024A /* RunScript.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = RunScript.sh; sourceTree = "<group>"; };
+		1D7D8A0214D9BFB90043495B /* XMBindingLibrary-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "XMBindingLibrary-Prefix.pch"; path = "XMBindingLibrary/XMBindingLibrary-Prefix.pch"; sourceTree = "<group>"; };
+		1DE6534E14C7C824007670AC /* libXMBindingLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXMBindingLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DE6535114C7C824007670AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1DE6535F14C7C8BA007670AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1DE6536114C7C8EF007670AC /* XMUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMUtilities.h; sourceTree = "<group>"; };
+		1DE6536214C7C8EF007670AC /* XMUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMUtilities.m; sourceTree = "<group>"; };
+		1DE6536814C7D087007670AC /* XMCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMCustomView.h; sourceTree = "<group>"; };
+		1DE6536914C7D087007670AC /* XMCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMCustomView.m; sourceTree = "<group>"; };
+		1DE6536C14C7D118007670AC /* XMCustomViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMCustomViewDelegate.h; sourceTree = "<group>"; };
+		1DE6536E14C7ECE5007670AC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D09B80C14C87E5F00033666 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D09B81C14C87E8200033666 /* QuartzCore.framework in Frameworks */,
+				1D09B81B14C87E7700033666 /* UIKit.framework in Frameworks */,
+				1D09B81014C87E5F00033666 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DE6534B14C7C824007670AC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DE6536F14C7ECE5007670AC /* QuartzCore.framework in Frameworks */,
+				1DE6535214C7C824007670AC /* Foundation.framework in Frameworks */,
+				1DE6536014C7C8BA007670AC /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1D22C39914CBA7800000024A /* Post-Build Run Script */ = {
+			isa = PBXGroup;
+			children = (
+				1D22C39B14CBA7A80000024A /* RunScript.sh */,
+			);
+			name = "Post-Build Run Script";
+			sourceTree = "<group>";
+		};
+		1DE6534314C7C824007670AC = {
+			isa = PBXGroup;
+			children = (
+				1D22C39914CBA7800000024A /* Post-Build Run Script */,
+				1DE6535E14C7C87F007670AC /* Classes */,
+				1DE6535414C7C824007670AC /* Supporting Files */,
+				1DE6535014C7C824007670AC /* Frameworks */,
+				1DE6534F14C7C824007670AC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1DE6534F14C7C824007670AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1DE6534E14C7C824007670AC /* libXMBindingLibrary.a */,
+				1D09B80F14C87E5F00033666 /* libXMBindingLibraryUniversal.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1DE6535014C7C824007670AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DE6536E14C7ECE5007670AC /* QuartzCore.framework */,
+				1DE6535F14C7C8BA007670AC /* UIKit.framework */,
+				1DE6535114C7C824007670AC /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1DE6535414C7C824007670AC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1D7D8A0214D9BFB90043495B /* XMBindingLibrary-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = XMBindingLibrary;
+			sourceTree = "<group>";
+		};
+		1DE6535E14C7C87F007670AC /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1DE6536114C7C8EF007670AC /* XMUtilities.h */,
+				1DE6536214C7C8EF007670AC /* XMUtilities.m */,
+				1DE6536814C7D087007670AC /* XMCustomView.h */,
+				1DE6536914C7D087007670AC /* XMCustomView.m */,
+				1DE6536C14C7D118007670AC /* XMCustomViewDelegate.h */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1D09B80D14C87E5F00033666 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE304A2F174D4DFB001653BF /* XMUtilities.h in Headers */,
+				CE304A30174D4DFB001653BF /* XMCustomView.h in Headers */,
+				CE304A31174D4DFB001653BF /* XMCustomViewDelegate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DE6534C14C7C824007670AC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DE6536314C7C8EF007670AC /* XMUtilities.h in Headers */,
+				1DE6536A14C7D087007670AC /* XMCustomView.h in Headers */,
+				1DE6536D14C7D118007670AC /* XMCustomViewDelegate.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1D09B80E14C87E5F00033666 /* XMBindingLibraryUniversal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D09B81914C87E5F00033666 /* Build configuration list for PBXNativeTarget "XMBindingLibraryUniversal" */;
+			buildPhases = (
+				1D09B80B14C87E5F00033666 /* Sources */,
+				1D09B80C14C87E5F00033666 /* Frameworks */,
+				1D09B80D14C87E5F00033666 /* Headers */,
+				1D09B81D14C87E8900033666 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XMBindingLibraryUniversal;
+			productName = XMBindingLibraryUniversal;
+			productReference = 1D09B80F14C87E5F00033666 /* libXMBindingLibraryUniversal.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		1DE6534D14C7C824007670AC /* XMBindingLibrary */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DE6535B14C7C824007670AC /* Build configuration list for PBXNativeTarget "XMBindingLibrary" */;
+			buildPhases = (
+				1DE6534A14C7C824007670AC /* Sources */,
+				1DE6534B14C7C824007670AC /* Frameworks */,
+				1DE6534C14C7C824007670AC /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XMBindingLibrary;
+			productName = XMBindingLibrary;
+			productReference = 1DE6534E14C7C824007670AC /* libXMBindingLibrary.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1DE6534514C7C824007670AC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+			};
+			buildConfigurationList = 1DE6534814C7C824007670AC /* Build configuration list for PBXProject "XMBindingLibrary" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1DE6534314C7C824007670AC;
+			productRefGroup = 1DE6534F14C7C824007670AC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1DE6534D14C7C824007670AC /* XMBindingLibrary */,
+				1D09B80E14C87E5F00033666 /* XMBindingLibraryUniversal */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D09B81D14C87E8900033666 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$PROJECT_DIR/RunScript.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D09B80B14C87E5F00033666 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D09B82514C87F8500033666 /* XMUtilities.m in Sources */,
+				1D09B82714C87F8500033666 /* XMCustomView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DE6534A14C7C824007670AC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DE6536414C7C8EF007670AC /* XMUtilities.m in Sources */,
+				1DE6536B14C7D087007670AC /* XMCustomView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D09B81714C87E5F00033666 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/XMBindingLibraryUniversal.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XMBindingLibrary/XMBindingLibrary-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1D09B81814C87E5F00033666 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/XMBindingLibraryUniversal.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XMBindingLibrary/XMBindingLibrary-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		1DE6535914C7C824007670AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1DE6535A14C7C824007670AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1DE6535C14C7C824007670AC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/XMBindingLibrary.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XMBindingLibrary/XMBindingLibrary-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1DE6535D14C7C824007670AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/XMBindingLibrary.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "XMBindingLibrary/XMBindingLibrary-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D09B81914C87E5F00033666 /* Build configuration list for PBXNativeTarget "XMBindingLibraryUniversal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D09B81714C87E5F00033666 /* Debug */,
+				1D09B81814C87E5F00033666 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DE6534814C7C824007670AC /* Build configuration list for PBXProject "XMBindingLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DE6535914C7C824007670AC /* Debug */,
+				1DE6535A14C7C824007670AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DE6535B14C7C824007670AC /* Build configuration list for PBXNativeTarget "XMBindingLibrary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DE6535C14C7C824007670AC /* Debug */,
+				1DE6535D14C7C824007670AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1DE6534514C7C824007670AC /* Project object */;
+}

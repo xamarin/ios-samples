@@ -1,5 +1,7 @@
 all: 
-	(cd src/binding/; make)
+	(cd NativeProject/; make)
+	msbuild
 
 clean:
-	(cd src/binding; make clean)
+	(cd NativeProject/; make clean)
+	msbuild /t:clean

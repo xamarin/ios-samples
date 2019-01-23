@@ -112,8 +112,6 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
-    <None Include="README.md" />
-    <None Include="LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
