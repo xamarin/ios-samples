@@ -1,4 +1,4 @@
-UICatalog
+tvOS UICatalog
 =========
 
 Demonstrates how to use many views and controls in the UIKit framework on tvOS. Refer to this sample if you are looking for specific controls or views that are provided by the system.
@@ -6,7 +6,7 @@ Demonstrates how to use many views and controls in the UIKit framework on tvOS. 
 Build Requirements
 ------------------
 
-Please see our [Installing tvOS Support](/guides/ios/tvos/getting-started/installation/) documentation to install the necessary requirements to run this sample.
+Please see our [Installing tvOS Support](https://docs.microsoft.com/xamarin/ios/get-started/installation/) documentation to install the necessary requirements to run this sample.
 
 Runtime Requirements
 ------------------

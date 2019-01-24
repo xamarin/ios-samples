@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{EBCD8403-7F6B-481E-8608-A92D57D02FAB}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>UICatalog</RootNamespace>
+    <AssemblyName>UICatalog</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebuggerPort>29066</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <DeviceSpecificBuild>false</DeviceSpecificBuild>
+    <MtouchVerbosity></MtouchVerbosity>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <MtouchVerbosity></MtouchVerbosity>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <DefineConstants></DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <MtouchVerbosity></MtouchVerbosity>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>56746</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <MtouchVerbosity></MtouchVerbosity>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\app-store-logo.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-app-83.5%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-76%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-29%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-app-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-app-60%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-spotlight-29%403x.png" />
+    <ImageAsset Include="Assets.xcassets\x_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\x_icon.imageset\x_icon_1x.png" />
+    <ImageAsset Include="Assets.xcassets\x_icon.imageset\x_icon_2x.png" />
+    <ImageAsset Include="Assets.xcassets\image_animal_1.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\image_animal_2.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\image_animal_3.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\image_animal_4.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\image_animal_5.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\image_animal_1.imageset\image_animal_5.png" />
+    <ImageAsset Include="Assets.xcassets\image_animal_2.imageset\image_animal_2.png" />
+    <ImageAsset Include="Assets.xcassets\image_animal_3.imageset\image_animal_3.png" />
+    <ImageAsset Include="Assets.xcassets\image_animal_4.imageset\image_animal_4.png" />
+    <ImageAsset Include="Assets.xcassets\image_animal_5.imageset\image_animal_1.png" />
+    <ImageAsset Include="Assets.xcassets\slider_blue_track.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\slider_green_track.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\slider_thumb.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\slider_blue_track.imageset\slider_blue_track_1x.png" />
+    <ImageAsset Include="Assets.xcassets\slider_blue_track.imageset\slider_blue_track_2x.png" />
+    <ImageAsset Include="Assets.xcassets\slider_green_track.imageset\slider_green_track_1x.png" />
+    <ImageAsset Include="Assets.xcassets\slider_green_track.imageset\slider_green_track_2x.png" />
+    <ImageAsset Include="Assets.xcassets\slider_thumb.imageset\slider_thumb_1x.png" />
+    <ImageAsset Include="Assets.xcassets\slider_thumb.imageset\slider_thumb_2x.png" />
+    <ImageAsset Include="Assets.xcassets\checkmark_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\search_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\search_icon.imageset\search_icon_1x.png" />
+    <ImageAsset Include="Assets.xcassets\search_icon.imageset\search_icon_2x.png" />
+    <ImageAsset Include="Assets.xcassets\checkmark_icon.imageset\checkmark_icon_1x.png" />
+    <ImageAsset Include="Assets.xcassets\checkmark_icon.imageset\checkmark_icon_2x.png" />
+    <ImageAsset Include="Assets.xcassets\tools_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\tools_icon.imageset\tools_icon_1x.png" />
+    <ImageAsset Include="Assets.xcassets\tools_icon.imageset\tools_icon_2x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background.imageset\stepper_and_segment_background_1x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background.imageset\stepper_and_segment_background_2x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background_disabled.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background_disabled.imageset\stepper_and_segment_background_disabled_1x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background_disabled.imageset\stepper_and_segment_background_disabled_2x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background_highlighted.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background_highlighted.imageset\stepper_and_segment_background_highlighted_1x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_background_highlighted.imageset\stepper_and_segment_background_highlighted_2x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_divider.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_divider.imageset\stepper_and_segment_segment_divider_1x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_and_segment_divider.imageset\stepper_and_segment_segment_divider_2x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_increment.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\stepper_increment.imageset\increment_1x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_increment.imageset\increment_2x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_decrement.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\stepper_decrement.imageset\decrement_1x.png" />
+    <ImageAsset Include="Assets.xcassets\stepper_decrement.imageset\decrement_2x.png" />
+    <ImageAsset Include="Assets.xcassets\text_field_background.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\text_field_background.imageset\text_field_background_1x.png" />
+    <ImageAsset Include="Assets.xcassets\text_field_background.imageset\text_field_background_2x.png" />
+    <ImageAsset Include="Assets.xcassets\text_field_purple_right_view.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\text_field_purple_right_view.imageset\text_field_purple_right_view_1x.png" />
+    <ImageAsset Include="Assets.xcassets\text_field_purple_right_view.imageset\text_field_purple_right_view_2x.png" />
+    <ImageAsset Include="Assets.xcassets\text_view_attachment.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\text_view_attachment.imageset\text_view_attachment_1x.png" />
+    <ImageAsset Include="Assets.xcassets\text_view_attachment.imageset\text_view_attachment_2x.png" />
+    <ImageAsset Include="Assets.xcassets\toolbar_background.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\toolbar_background.imageset\toolbar_background_1x.png" />
+    <ImageAsset Include="Assets.xcassets\toolbar_background.imageset\toolbar_background_2x.png" />
+    <ImageAsset Include="Assets.xcassets\search_bar_background.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\search_bar_background.imageset\search_bar_bg_1x.png" />
+    <ImageAsset Include="Assets.xcassets\search_bar_background.imageset\search_bar_bg_2x.png" />
+    <ImageAsset Include="Assets.xcassets\bookmark_icon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\bookmark_icon.imageset\bookmark_icon_highlighted_1x.png" />
+    <ImageAsset Include="Assets.xcassets\bookmark_icon.imageset\bookmark_icon_highlighted_2x.png" />
+    <ImageAsset Include="Assets.xcassets\bookmark_icon_highlighted.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\bookmark_icon_highlighted.imageset\bookmark_icon_1x.png" />
+    <ImageAsset Include="Assets.xcassets\bookmark_icon_highlighted.imageset\bookmark_icon_2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\x_icon.imageset\" />
+    <Folder Include="Assets.xcassets\image_animal_1.imageset\" />
+    <Folder Include="Assets.xcassets\image_animal_2.imageset\" />
+    <Folder Include="Assets.xcassets\image_animal_3.imageset\" />
+    <Folder Include="Assets.xcassets\image_animal_4.imageset\" />
+    <Folder Include="Assets.xcassets\image_animal_5.imageset\" />
+    <Folder Include="Assets.xcassets\slider_blue_track.imageset\" />
+    <Folder Include="Assets.xcassets\slider_green_track.imageset\" />
+    <Folder Include="Assets.xcassets\slider_thumb.imageset\" />
+    <Folder Include="Assets.xcassets\checkmark_icon.imageset\" />
+    <Folder Include="Assets.xcassets\search_icon.imageset\" />
+    <Folder Include="Assets.xcassets\tools_icon.imageset\" />
+    <Folder Include="Assets.xcassets\stepper_and_segment_background.imageset\" />
+    <Folder Include="Assets.xcassets\stepper_and_segment_background_disabled.imageset\" />
+    <Folder Include="Assets.xcassets\stepper_and_segment_background_highlighted.imageset\" />
+    <Folder Include="Assets.xcassets\stepper_and_segment_divider.imageset\" />
+    <Folder Include="Assets.xcassets\stepper_increment.imageset\" />
+    <Folder Include="Assets.xcassets\stepper_decrement.imageset\" />
+    <Folder Include="Assets.xcassets\text_field_background.imageset\" />
+    <Folder Include="Assets.xcassets\text_field_purple_right_view.imageset\" />
+    <Folder Include="Assets.xcassets\text_view_attachment.imageset\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="Controllers\Toolbars\" />
+    <Folder Include="Assets.xcassets\toolbar_background.imageset\" />
+    <Folder Include="Controllers\Search\" />
+    <Folder Include="Controllers\Search\SearchBar\" />
+    <Folder Include="Assets.xcassets\search_bar_background.imageset\" />
+    <Folder Include="Assets.xcassets\bookmark_icon.imageset\" />
+    <Folder Include="Assets.xcassets\bookmark_icon_highlighted.imageset\" />
+    <Folder Include="Controllers\Search\SearchControllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Controllers\ActivityIndicatorViewController.cs" />
+    <Compile Include="Controllers\ActivityIndicatorViewController.designer.cs">
+      <DependentUpon>ActivityIndicatorViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AlertControllerViewController.cs" />
+    <Compile Include="Controllers\AlertControllerViewController.designer.cs">
+      <DependentUpon>AlertControllerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ButtonsViewController.cs" />
+    <Compile Include="Controllers\ButtonsViewController.designer.cs">
+      <DependentUpon>ButtonsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DatePickerController.cs" />
+    <Compile Include="Controllers\DatePickerController.designer.cs">
+      <DependentUpon>DatePickerController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ImageViewController.cs" />
+    <Compile Include="Controllers\ImageViewController.designer.cs">
+      <DependentUpon>ImageViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PageControlViewController.cs" />
+    <Compile Include="Controllers\PageControlViewController.designer.cs">
+      <DependentUpon>PageControlViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\PickerViewController.cs" />
+    <Compile Include="Controllers\PickerViewController.designer.cs">
+      <DependentUpon>PickerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ProgressViewController.cs" />
+    <Compile Include="Controllers\ProgressViewController.designer.cs">
+      <DependentUpon>ProgressViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SegmentedControlViewController.cs" />
+    <Compile Include="Controllers\SegmentedControlViewController.designer.cs">
+      <DependentUpon>SegmentedControlViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SliderViewController.cs" />
+    <Compile Include="Controllers\SliderViewController.designer.cs">
+      <DependentUpon>SliderViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\StepperViewController.cs" />
+    <Compile Include="Controllers\StepperViewController.designer.cs">
+      <DependentUpon>StepperViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\SwitchesViewController.cs" />
+    <Compile Include="Controllers\SwitchesViewController.designer.cs">
+      <DependentUpon>SwitchesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TextFieldsViewController.cs" />
+    <Compile Include="Controllers\TextFieldsViewController.designer.cs">
+      <DependentUpon>TextFieldsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\TextViewController.cs" />
+    <Compile Include="Controllers\TextViewController.designer.cs">
+      <DependentUpon>TextViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\WebViewController.cs" />
+    <Compile Include="Controllers\WebViewController.designer.cs">
+      <DependentUpon>WebViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Toolbars\CustomToolbarViewController.cs" />
+    <Compile Include="Controllers\Toolbars\CustomToolbarViewController.designer.cs">
+      <DependentUpon>CustomToolbarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Toolbars\DefaultToolbarViewController.cs" />
+    <Compile Include="Controllers\Toolbars\DefaultToolbarViewController.designer.cs">
+      <DependentUpon>DefaultToolbarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Toolbars\TintedToolbarViewController.cs" />
+    <Compile Include="Controllers\Toolbars\TintedToolbarViewController.designer.cs">
+      <DependentUpon>TintedToolbarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Search\SearchBar\CustomSearchBarViewController.cs" />
+    <Compile Include="Controllers\Search\SearchBar\CustomSearchBarViewController.designer.cs">
+      <DependentUpon>CustomSearchBarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Search\SearchBar\DefaultSearchBarViewController.cs" />
+    <Compile Include="Controllers\Search\SearchBar\DefaultSearchBarViewController.designer.cs">
+      <DependentUpon>DefaultSearchBarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Search\SearchControllers\SearchShowResultsInSourceViewController.cs" />
+    <Compile Include="Controllers\Search\SearchControllers\SearchShowResultsInSourceViewController.designer.cs">
+      <DependentUpon>SearchShowResultsInSourceViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Search\SearchControllers\BaseSearchController.cs" />
+    <Compile Include="Controllers\Search\SearchControllers\SearchBarEmbeddedInNavigationBarViewController.cs" />
+    <Compile Include="Controllers\Search\SearchControllers\SearchBarEmbeddedInNavigationBarViewController.designer.cs">
+      <DependentUpon>SearchBarEmbeddedInNavigationBarViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Search\SearchControllers\SearchPresentOverNavigationBarViewController.cs" />
+    <Compile Include="Controllers\Search\SearchControllers\SearchPresentOverNavigationBarViewController.designer.cs">
+      <DependentUpon>SearchPresentOverNavigationBarViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>
