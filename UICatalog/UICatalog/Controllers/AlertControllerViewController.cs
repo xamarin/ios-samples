@@ -96,7 +96,7 @@ namespace UICatalog
 
             // Create the actions.
             var cancelAction = UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, alertAction => Console.WriteLine("The 'Other' alert's cancel action occured."));
-            var otherButtonOneAction = UIAlertAction.Create("Choice Two", UIAlertActionStyle.Default, alertAction => Console.WriteLine("The 'Other' alert's other button one action occured."));
+            var otherButtonOneAction = UIAlertAction.Create("Choice One", UIAlertActionStyle.Default, alertAction => Console.WriteLine("The 'Other' alert's other button one action occured."));
             var otherButtonTwoAction = UIAlertAction.Create("Choice Two", UIAlertActionStyle.Default, alertAction => Console.WriteLine("The 'Other' alert's other button two action occured."));
 
             // Add the actions.
