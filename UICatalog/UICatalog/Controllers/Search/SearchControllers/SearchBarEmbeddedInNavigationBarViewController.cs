@@ -5,7 +5,9 @@ namespace UICatalog
 {
     public partial class SearchBarEmbeddedInNavigationBarViewController : BaseSearchController
     {
-		public SearchBarEmbeddedInNavigationBarViewController (IntPtr handle) : base (handle) { }
+        private UISearchController searchController;
+
+        public SearchBarEmbeddedInNavigationBarViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
@@ -16,7 +18,7 @@ namespace UICatalog
 
             // Create the search controller and make it perform the results updating.
             //var searchController = new UISearchController(searchResultsController);
-            var searchController = new UISearchController((UIViewController)null);
+            searchController = new UISearchController((UIViewController)null);
             searchController.SetSearchResultsUpdater(UpdateSearchResultsForSearchController);
             searchController.HidesNavigationBarDuringPresentation = false;
 
@@ -30,6 +32,16 @@ namespace UICatalog
             NavigationItem.TitleView = searchController.SearchBar;
 
             DefinesPresentationContext = true;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (searchController != null)
+            {
+                searchController.Dispose();
+                searchController = null;
+            }
         }
     }
 }
