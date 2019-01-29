@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cZE-iV-UFb" customClass="ForecastCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="411" height="400"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="411" height="400"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vjK-NK-u0J">
+                        <rect key="frame" x="130.5" y="125" width="150" height="150"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="150" id="7Cm-OT-r9N"/>
+                            <constraint firstAttribute="width" constant="150" id="QSO-US-hdf"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCB-sF-f2K">
+                        <rect key="frame" x="171.5" y="85" width="68" height="32"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunny" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHj-Ae-Ooo">
+                        <rect key="frame" x="177.5" y="283" width="56" height="24"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="vjK-NK-u0J" firstAttribute="centerX" secondItem="d92-HZ-NeG" secondAttribute="centerX" id="Fjf-mu-9gi"/>
+                <constraint firstItem="hHj-Ae-Ooo" firstAttribute="centerX" secondItem="d92-HZ-NeG" secondAttribute="centerX" id="JUI-aT-7Lb"/>
+                <constraint firstItem="vjK-NK-u0J" firstAttribute="top" secondItem="hCB-sF-f2K" secondAttribute="bottom" constant="8" symbolic="YES" id="WoJ-ak-Avd"/>
+                <constraint firstItem="vjK-NK-u0J" firstAttribute="centerY" secondItem="d92-HZ-NeG" secondAttribute="centerY" id="e1f-dJ-Iez"/>
+                <constraint firstItem="hCB-sF-f2K" firstAttribute="centerX" secondItem="d92-HZ-NeG" secondAttribute="centerX" id="q1s-9S-dXi"/>
+                <constraint firstItem="hHj-Ae-Ooo" firstAttribute="top" secondItem="vjK-NK-u0J" secondAttribute="bottom" constant="8" symbolic="YES" id="q73-4h-ib9"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="d92-HZ-NeG"/>
+            <connections>
+                <outlet property="dateLabel" destination="hCB-sF-f2K" id="SkR-Fh-ZfZ"/>
+                <outlet property="forecastImageView" destination="vjK-NK-u0J" id="SlE-Fm-4vR"/>
+                <outlet property="forecastLabel" destination="hHj-Ae-Ooo" id="ixx-hq-mcA"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

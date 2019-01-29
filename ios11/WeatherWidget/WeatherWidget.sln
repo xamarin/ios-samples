@@ -1,0 +1,35 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherWidget", "WeatherWidget\WeatherWidget.csproj", "{44B494AD-1870-48E8-854A-51F3F238BA47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherWidget.Today", "WeatherWidget.Today\WeatherWidget.Today.csproj", "{126207DD-1E8B-4B6C-AE8E-BC4F01341575}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WeatherWidget.Shared", "WeatherWidget.Shared\WeatherWidget.Shared.shproj", "{FA912CA3-1896-4DB0-BF7A-5FA6426D5272}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44B494AD-1870-48E8-854A-51F3F238BA47}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{44B494AD-1870-48E8-854A-51F3F238BA47}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{44B494AD-1870-48E8-854A-51F3F238BA47}.Release|iPhone.ActiveCfg = Release|iPhone
+		{44B494AD-1870-48E8-854A-51F3F238BA47}.Release|iPhone.Build.0 = Release|iPhone
+		{44B494AD-1870-48E8-854A-51F3F238BA47}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{44B494AD-1870-48E8-854A-51F3F238BA47}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{44B494AD-1870-48E8-854A-51F3F238BA47}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{44B494AD-1870-48E8-854A-51F3F238BA47}.Debug|iPhone.Build.0 = Debug|iPhone
+		{126207DD-1E8B-4B6C-AE8E-BC4F01341575}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{126207DD-1E8B-4B6C-AE8E-BC4F01341575}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{126207DD-1E8B-4B6C-AE8E-BC4F01341575}.Release|iPhone.ActiveCfg = Release|iPhone
+		{126207DD-1E8B-4B6C-AE8E-BC4F01341575}.Release|iPhone.Build.0 = Release|iPhone
+		{126207DD-1E8B-4B6C-AE8E-BC4F01341575}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{126207DD-1E8B-4B6C-AE8E-BC4F01341575}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{126207DD-1E8B-4B6C-AE8E-BC4F01341575}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{126207DD-1E8B-4B6C-AE8E-BC4F01341575}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
