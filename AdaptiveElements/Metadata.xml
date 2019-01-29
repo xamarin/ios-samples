@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>8ba2d4f2-72b6-44cc-ac57-05a8de10492b</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Brief>Implementing Your Own Adaptive Design with UIKit</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>User Interface</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>
