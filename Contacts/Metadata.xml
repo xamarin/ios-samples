@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+    <ID>3d6ede64-4510-4bfc-a386-66bd622ddb1e</ID>
+  <IsFullApplication>true</IsFullApplication>
+  <Brief>This sample is a set of sample code that demonstrates how to use ContactsUI view controllers and properties.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>Contacts</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>
