@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+    <ID>a4751bb5-da66-4bd2-b0a2-20d8a37af744</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Brief>Building a Simple Widget for the Today View to provide users with a glanceable look at your app's data.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>NotificationCenter</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>
