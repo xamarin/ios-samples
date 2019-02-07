@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" wantsMultisampling="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cmo-cF-lL4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </arscnView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="uOF-4V-l3q">
+                                <rect key="frame" x="111" y="619" width="153" height="29"/>
+                                <segments>
+                                    <segment title="Automatic"/>
+                                    <segment title="Manual"/>
+                                </segments>
+                                <connections>
+                                    <action selector="ChangeTextureMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="1BH-Cq-RCU"/>
+                                </connections>
+                            </segmentedControl>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="L8V-02-Uxi">
+                                <rect key="frame" x="16" y="28" width="343" height="50"/>
+                                <subviews>
+                                    <visualEffectView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0u6-51-bW3">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="s8Y-Lt-Zbi">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initializing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gV1-pH-S01">
+                                                    <rect key="frame" x="8" y="8" width="224" height="34"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="gV1-pH-S01" secondAttribute="trailing" constant="8" id="9eC-J7-NdA"/>
+                                                <constraint firstAttribute="bottom" secondItem="gV1-pH-S01" secondAttribute="bottom" constant="8" id="Apt-62-Ckv"/>
+                                                <constraint firstItem="gV1-pH-S01" firstAttribute="top" secondItem="s8Y-Lt-Zbi" secondAttribute="top" constant="8" id="a8C-FA-LO1"/>
+                                                <constraint firstItem="gV1-pH-S01" firstAttribute="leading" secondItem="s8Y-Lt-Zbi" secondAttribute="leading" constant="8" id="tXg-5a-n33"/>
+                                            </constraints>
+                                        </view>
+                                        <blurEffect style="light"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </visualEffectView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlg-lF-4wC">
+                                        <rect key="frame" x="293" y="0.0" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="TFJ-7a-U6f"/>
+                                            <constraint firstAttribute="width" constant="50" id="yWD-zO-iTW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" image="restart"/>
+                                        <state key="highlighted" image="restartPressed"/>
+                                        <connections>
+                                            <action selector="RestartExperience:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HVH-wW-5mU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="YaP-bL-CsZ" firstAttribute="bottom" secondItem="uOF-4V-l3q" secondAttribute="bottom" constant="20" id="5fG-dn-FwY"/>
+                            <constraint firstItem="uOF-4V-l3q" firstAttribute="centerX" secondItem="YaP-bL-CsZ" secondAttribute="centerX" id="RG1-BU-GP9"/>
+                            <constraint firstItem="L8V-02-Uxi" firstAttribute="top" secondItem="YaP-bL-CsZ" secondAttribute="top" constant="8" id="YsJ-Td-t5v"/>
+                            <constraint firstAttribute="bottom" secondItem="cmo-cF-lL4" secondAttribute="bottom" id="aCT-bb-tqe"/>
+                            <constraint firstItem="cmo-cF-lL4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="bxf-25-tUY"/>
+                            <constraint firstItem="cmo-cF-lL4" firstAttribute="leading" secondItem="YaP-bL-CsZ" secondAttribute="leading" id="ktV-mB-hkM"/>
+                            <constraint firstItem="YaP-bL-CsZ" firstAttribute="trailing" secondItem="cmo-cF-lL4" secondAttribute="trailing" id="lE1-PU-Xxj"/>
+                            <constraint firstItem="L8V-02-Uxi" firstAttribute="leading" secondItem="YaP-bL-CsZ" secondAttribute="leading" constant="16" id="nGW-t4-M7y"/>
+                            <constraint firstAttribute="trailing" secondItem="L8V-02-Uxi" secondAttribute="trailing" constant="16" id="tq2-M9-g5L"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YaP-bL-CsZ"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Wm4-wK-UeN" appends="YES" id="v3S-z0-ntW"/>
+                            <outletCollection property="gestureRecognizers" destination="hoL-QT-DPs" appends="YES" id="PBH-B8-jDu"/>
+                            <outletCollection property="gestureRecognizers" destination="YIu-lt-SBE" appends="YES" id="gzZ-FK-NIO"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="cmo-cF-lL4" id="r2G-WC-vGF"/>
+                        <outlet property="sessionInfoLabel" destination="gV1-pH-S01" id="AZD-jt-jpf"/>
+                        <outlet property="sessionInfoView" destination="0u6-51-bW3" id="fxL-8i-W46"/>
+                        <outlet property="textureModeSelectionControl" destination="uOF-4V-l3q" id="iSo-Rd-svQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Wm4-wK-UeN">
+                    <connections>
+                        <action selector="DidTap:" destination="BYZ-38-t0r" id="CbJ-2Q-fiA"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <pinchGestureRecognizer id="hoL-QT-DPs">
+                    <connections>
+                        <action selector="DidScale:" destination="BYZ-38-t0r" id="MI9-6U-OmB"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="YIu-lt-SBE">
+                    <connections>
+                        <action selector="DidPan:" destination="BYZ-38-t0r" id="1Nv-Vb-LyB"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="restart" width="20" height="23"/>
+        <image name="restartPressed" width="20" height="23"/>
+    </resources>
+</document>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>8fddf9fb-3018-4301-8336-43d388038f38</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Brief>Use ARKit to generate environment probe textures from camera imagery and render reflective virtual objects.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>ARKit, iOS12</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>
