@@ -110,8 +110,10 @@
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-29%403x.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-40%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-44%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-50x50%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-86%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-98%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Icon-108%402x.png" />
     <ImageAsset Include="Resources\Images.xcassets\Ski1.imageset\Contents.json" />
     <ImageAsset Include="Resources\Images.xcassets\Ski1.imageset\Ski1-1.png" />
     <ImageAsset Include="Resources\Images.xcassets\Ski1.imageset\Ski1.png" />
