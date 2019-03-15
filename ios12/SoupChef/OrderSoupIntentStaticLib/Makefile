@@ -17,7 +17,7 @@ lib$(TARGET).a: lib$(TARGET)-i386.a lib$(TARGET)-arm64.a
 	xcrun -sdk iphoneos lipo -create -output $@ $^
 
 bind: lib$(TARGET).a
-	sharpie bind -scope OrderSoupIntentStaticLib -output bo -namespace SoupChef -sdk iphoneos12.0 OrderSoupIntentStaticLib/OrderSoupIntent.h
+	sharpie bind -scope OrderSoupIntentStaticLib -output bo -namespace SoupChef -sdk iphoneos$(shell xcrun --show-sdk-platform-version --sdk iphoneos) OrderSoupIntentStaticLib/OrderSoupIntent.h
 
 clean:
 	-rm -rf bo build *.a *.dll
