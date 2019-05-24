@@ -201,9 +201,11 @@ namespace CloudCaptions
 					string dismissButton = "Okay";
 					string errorMessage = "We couldn't fetch one or more of the thumbnails";
 
-					UIAlertController alert = UIAlertController.Create (errorTitle, errorMessage, UIAlertControllerStyle.Alert);
-					alert.AddAction (UIAlertAction.Create (dismissButton, UIAlertActionStyle.Cancel, null));
-					InvokeOnMainThread (() => PresentViewController (alert, true, null));
+					InvokeOnMainThread (() => {
+						UIAlertController alert = UIAlertController.Create (errorTitle, errorMessage, UIAlertControllerStyle.Alert);
+						alert.AddAction (UIAlertAction.Create (dismissButton, UIAlertActionStyle.Cancel, null));
+						PresentViewController (alert, true, null);
+					});
 				}
 			};
 
