@@ -27,11 +27,13 @@ Xcode 7.0, iOS 9.0 SDK, watchOS 1.0 SDK. This sample use new C# 6 features which
 
 Refs
 ----
+
 * [Original sample](https://developer.apple.com/library/prerelease/watchos/samplecode/Emporium/Introduction/Intro.html)
 * [Documentation](http://developer.apple.com/apple-pay)
 
 Target
 ------
+
 This sample runnable on iPhoneSimulator/iPadSimulator iPhone/iPad
 
 Copyright

@@ -1,11 +1,13 @@
-Photo Handoﬀ
+Photo Handoff
 ==============
+
 Demonstrates how to use `Handoﬀ` technology. `Handoff` uses `NSUserActivity` class which encapsulates the state of a user activity in an application on a particular device, in a way that allows the same activity to be continued on another device.
 
 This sample is universal - running on both iPhone and iPad, but not on simulator
 
 References
 ----------
+
 * [About Handoff feature](https://developer.apple.com/videos/wwdc/2014/?id=219)
 * [Preserving Your App’s Visual Appearance Across Launches](https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/StrategiesforImplementingYourApp/StrategiesforImplementingYourApp.html#//apple_ref/doc/uid/TP40007072-CH5-SW2)
 
@@ -40,6 +42,6 @@ Copyright
 Xamarin port changes are released under the MIT license
 
 Author
------- 
+------
 
 Ported to Xamarin.iOS by Rustam Zaitov
