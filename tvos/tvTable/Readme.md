@@ -1,5 +1,16 @@
-tvTable
-=======
+---
+name: Xamarin.iOS - tvTable
+description: This app shows how to use a Table View (UITableViewController) to present a list of items grouped by Section in a Xamarin.tvOS app. The code has...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: tvos-tvtable
+---
+# tvTable
 
 This app shows how to use a Table View (`UITableViewController`) to present a list of items grouped by Section in a Xamarin.tvOS app. 
 

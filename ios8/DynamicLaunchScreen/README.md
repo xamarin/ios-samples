@@ -1,15 +1,26 @@
-Dynamic Launch Screens
-======================
+---
+name: Xamarin.iOS - Dynamic Launch Screens
+description: This sample application shows how to create a special type of storyboard to be used as a Dynamic Launch Screen in a Xamarin.iOS application....
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios8-dynamiclaunchscreen
+---
+# Dynamic Launch Screens
 
 This sample application shows how to create a special type of storyboard to be used as a Dynamic Launch Screen in a Xamarin.iOS application. 
 
 ## Unified Storyboards
 
 New to iOS 8, Unified Storyboards allow the developer to create one, unified storyboard file that can be displayed on both iPhone and iPad devices by targeting multiple Size Classes. By using Unified Storyboards, the developer writes less UI specific code and has only interface design to create and maintain.
-The key benefits of Unified Storyboards are:* Use the same storyboard file for iPhone and iPad.* Able to deploy backwards to iOS 6 and iOS 7.* Preview the layout for different devices, orientations and OS versions all from within the Xamarin iOS Designer.Storyboards using this feature will require Xcode 6 and Auto Layout, so they will not be compatible with older versions of Xcode.### Enabling Size Classes
-Before Size Classes and Adaptive Segues can be used inside a storyboard, it must first be converted to the Xcode 6 Unified Storyboard format from inside the iOS Designer.
-To do this:
-1. Open the Storyboard to be converted in the iOS Designer and check the Use **Size Classes** check box.
+The key benefits of Unified Storyboards are:* Use the same storyboard file for iPhone and iPad.* Able to deploy backwards to iOS 6 and iOS 7.* Preview the layout for different devices, orientations and OS versions all from within the Xamarin iOS Designer.Storyboards using this feature will require Xcode 6 and Auto Layout, so they will not be compatible with older versions of Xcode.### Enabling Size Classes
+Before Size Classes and Adaptive Segues can be used inside a storyboard, it must first be converted to the Xcode 6 Unified Storyboard format from inside the iOS Designer.
+To do this:
+1. Open the Storyboard to be converted in the iOS Designer and check the Use **Size Classes** check box.
 2. The iOS Designer will confirm that the developer wants to convert the format of the storyboard to use Size Classes.
 3. Click the Enable Size Classes button to convert the format to continue and start the conversion process.
 

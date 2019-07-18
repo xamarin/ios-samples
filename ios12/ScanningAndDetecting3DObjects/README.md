@@ -1,5 +1,16 @@
-Scanning App
-============
+---
+name: Xamarin.iOS - Scanning App
+description: This is a port of the Apple sample Scanning and Detecting 3D Objects. The architecture and code design of the app follows that of the Swift app,...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios12-scanninganddetecting3dobjects
+---
+# Scanning App
 
 This is a port of the Apple sample [Scanning and Detecting 3D Objects](https://developer.apple.com/documentation/arkit/scanning_and_detecting_3d_objects). The architecture and code design of the app follows that of the Swift app, with some exceptions discussed below. 
 
@@ -7,8 +18,7 @@ This sample requires a device that supports ARKit's "object scanning" configurat
 
 The app is used by developers to scan a real-world object to create an `ARReferenceObject` definition that can be saved to a file and used in end-user mixed-reality apps (for instance, recognizing a sculpture or factory-floor machine). 
 
-Usage
-------
+## Usage
 
 After ARKit initializes, a "ghost" bounding box will appear and try to fit around any object that is in the middle of the screen. Use pinch, pan, and two-finger pan to adjust the size of the bounding box until it is sufficient to encompass the scanned object. Points will appear within the bounding box, showing how well the object is being detected. 
 
@@ -125,11 +135,9 @@ A matter of internal debate was the clearest form for porting Swift `guard` stat
 
 I chose to use the former solely because the pattern matching form is still relatively new and therefore might be less familiar to some developers.  
 
-License
--------
+## License
 Xamarin port changes are released under the MIT license.
 
-Author
-------
+## Author
 
 Ported to Xamarin.iOS by Larry O'Brien

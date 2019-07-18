@@ -1,5 +1,16 @@
-ActivityRings
-=============
+---
+name: Xamarin.iOS - ActivityRings
+description: This sample demonstrates the proper way to work with HealthKit on Apple Watch to contribute to the Activity Rings and have your app associated with...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: watchos-activityrings
+---
+# ActivityRings
 
 This sample demonstrates the proper way to work with HealthKit on Apple Watch to contribute to the Activity Rings and have your app associated with workouts and calories in the Activity app on iPhone.
 
@@ -12,7 +23,6 @@ There are a few specific pieces to pay attention to for a great user experience:
 
 Note: For important guidelines that govern how you can use HealthKit and user health information in your app, see https://developer.apple.com/app-store/review/guidelines/#healthkit
 
----
 ## Build/Runtime Requirements
 
 Building this sample requires Xcode 8.0 (Swift 3.0), iOS 10.0 SDK, and watchOS 3.0 SDK.
@@ -20,9 +30,10 @@ Running the sample requires iOS 9.1 and watchOS 2.0 or later.
 
 Note: Before being able to run the sample you will need to update the bundle identifiers for each of the targets and associate the WatchKit extension to the WatchKit app and the WatchKit app to the iOS app.
 
----
+![ActivityRings application screenshot](Screenshots/iPhoneScreenshot.png "ActivityRings application screenshot")
 
-### Author
+## Author
+
 Xamarin port changes are released under the MIT license
 
 Ported to Xamarin.iOS by Ivan Herrera

@@ -1,5 +1,16 @@
-Storyboard Tables - Local Authentication
-====================
+---
+name: Xamarin.iOS - Storyboard Tables - Local Authentication
+description: This sample is a demonstration of the final application that will be produced at the end of the Introduction to Touch ID guide. FOr iOS 11...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: storyboardtable-localauthentication
+---
+# Storyboard Tables - Local Authentication
 
 This sample is a demonstration of the final application that will be produced at the end of the [Introduction to Touch ID](developer.xamarin.com/guides/ios/platform_features/introduction_to_touchid/) guide.
 

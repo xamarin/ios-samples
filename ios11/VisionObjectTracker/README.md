@@ -1,3 +1,15 @@
+---
+name: Xamarin.iOS - Tracking Objects Example
+description: This program demonstrates the rectangle and object-tracking capability of iOS 11's Vision namespace. These capabilities rely on a live video feed...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios11-visionobjecttracker
+---
 # Tracking Objects Example
 
 This program demonstrates the rectangle and object-tracking capability of iOS 11's Vision namespace. These capabilities rely on a live video feed and so this application must be run on a device and not the Simulator.
@@ -11,7 +23,6 @@ The app first runs in a "scanning" mode, when it is detecting rectangles. Detect
 You'll notice that "tracking" mode isn't noticeably faster or more accurate than "scanning" mode. What tracking _does_ provide is the same object identity over subsequent frames which you can access via the [VNObservation.Uuid](https://developer.xamarin.com/api/property/Vision.VNObservation.Uuid/) property. 
 
 
-Author
-------
+## Author
 
 Larry O'Brien

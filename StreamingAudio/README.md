@@ -1,5 +1,16 @@
-Streaming Audio
-===============
+---
+name: Xamarin.iOS - Streaming Audio
+description: This sample illustrates how to use AudioToolbox's AudioFileStream to parse an audio stream progressively and play the audio back. The audio is a...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: streamingaudio
+---
+# Streaming Audio
 
 This sample illustrates how to use AudioToolbox's AudioFileStream to 
 parse an audio stream progressively and play the audio back.
@@ -16,12 +27,10 @@ There are two samples:
   downloaded (for example, a podcasting application would stream audio
   and retain a copy).
 
-Preview
--------
+## Preview
 
 ![iPhone running Streaming Audio sample](http://farm7.static.flickr.com/6144/6002389235_5c1d164cc1.jpg)
 
-Authors
--------
+## Authors
 
 Miguel de Icaza

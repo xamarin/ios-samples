@@ -1,5 +1,16 @@
-CSSceneKit City
-----------
+---
+name: Xamarin.iOS - CSSceneKit City
+description: This sample shows how to create a randomly generated city using the SceneKit API and is written in C&35; (you can find an F version of this sample...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios8-csscenekit
+---
+## CSSceneKit City
 This sample shows how to create a randomly generated city using the [SceneKit API](http://api.xamarin.com/?link=N%3aSceneKit) and is written in C&#35; (you can find an F# version of this sample [here](http://developer.xamarin.com/samples/monotouch/ios8/FSSceneKit/)).
 
 Core concepts include:

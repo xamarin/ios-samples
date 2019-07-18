@@ -1,5 +1,16 @@
-MetalBasic3D
-====================
+---
+name: Xamarin.iOS - MetalBasic3D
+description: 'This sample is an equivalent for Xcode OpenGL ES template. It shows how to: Work with basic Metal classes such as MTLDevice and CAMetalLayer Create...'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios8-metalbasic3d
+---
+# MetalBasic3D
 
 This sample is an equivalent for Xcode OpenGL ES template. It shows
 how to:
@@ -13,17 +24,14 @@ Additional effects have been added to one of the spinning cubes from
 the template to demonstrate altering a single object's uniform values
 per frame while keeping the other constant.
 
-Build Requirements
-------------------
+## Build Requirements
 
 This sample requires Xcode 6.0, iOS 8.0 SDK and an A7/A8 device
 
-Copyright
----------
+## Copyright
 
 Xamarin port changes are released under the MIT license
 
-Author
------- 
+## Author 
 
 Ported to Xamarin.iOS by Oleg Demchenko

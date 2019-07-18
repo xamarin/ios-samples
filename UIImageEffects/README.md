@@ -1,5 +1,16 @@
-Image Effects
-========================
+---
+name: Xamarin.iOS - Image Effects
+description: "This is a port of Apple's UIImageEffect sample From Apple: UIImageEffects shows how to create and apply blur and tint effects to an image using the..."
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: uiimageeffects
+---
+# Image Effects
 
 This is a port of Apple's UIImageEffect sample
 

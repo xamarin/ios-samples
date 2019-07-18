@@ -1,5 +1,16 @@
-AVAutoWait
-==========
+---
+name: Xamarin.iOS - AVAutoWait
+description: This sample demonstrates how to use automatic waiting to deal with bandwidth limitations when playing HTTP live-streamed and progressive-download...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios10-autowait
+---
+# AVAutoWait
 
 This sample demonstrates how to use automatic waiting to deal with bandwidth limitations when playing HTTP live-streamed and progressive-download movies. This sample highlights what properties you should consider and how automatic waiting affects your user interface.
 
@@ -15,7 +26,6 @@ This sample runnable on iPhoneSimulator/iPadSimulator iPhone/iPad
 
 Xamarin port changes are released under the MIT license.
 
-Author
-------
+## Author
 
 Ported to Xamarin.iOS by Rustam Zaitov

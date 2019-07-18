@@ -1,5 +1,16 @@
-File System
-============
+---
+name: Xamarin.iOS - File System
+description: This sample application demonstrates how to use the file system in iOS Working with the file system in iOS is not unlike working with the file...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: filesystemsamplecode
+---
+# File System
 
 This sample application demonstrates how to use the file system in iOS
 

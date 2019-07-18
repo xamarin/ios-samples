@@ -1,5 +1,16 @@
-StateRestoration
-================
+---
+name: Xamarin.iOS - StateRestoration
+description: Demonstrates how to use UICollectionView, a way to present ordered data to users in a grid-like fashion. With a collection view object, you are...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: staterestoration
+---
+# StateRestoration
 
 Demonstrates how to use `UICollectionView`, a way to present ordered data to users in a grid-like fashion.  With a collection view object, you are able to define the presentation and arrangement of embedded views. The collection view class works closely with an accompanying layout object to define the placement of individual data items.  In this example `UIKit` provides a standard flow-based layout object that you can use to implement multi-column grids containing items of a standard size.
 
@@ -25,21 +36,19 @@ In this example, the following state is saved and restored:
 
 Additionally, if the Mail Activity is selected, to compose Mail, that will be saved and restored.
 
-Build Requirements
-------------------
+## Build Requirements
 
 Building this sample requires Xcode 5.0 and iOS 7.0 SDK
 
-Target
-------
+## Target
 This sample runnable on iPhoneSimulator or iPhone
 
-Copyright
----------
+## Copyright
 
 Xamarin port changes are released under the MIT license
 
-Author
-------
+![StateRestoration application screenshot](Screenshots/DetailScreen.png "StateRestoration application screenshot")
+
+## Author
 
 Ported to Xamarin.iOS by Timothy Risi & Rustam Zaitov

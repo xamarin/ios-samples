@@ -1,5 +1,16 @@
-NFCTagReader
-============
+---
+name: Xamarin.iOS - NFCTagReader
+description: This sample shows how to integrate Core NFC Framework into your application to enable NFC tag reading. Overview Core NFC provides NFC tag reading...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios11-nfctagreader
+---
+# NFCTagReader
 
 This sample shows how to integrate Core NFC Framework into your application to enable NFC tag reading.
 

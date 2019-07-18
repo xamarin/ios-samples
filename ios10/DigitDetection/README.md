@@ -1,5 +1,16 @@
-MPSCNNHelloWorld
-================
+---
+name: Xamarin.iOS - MPSCNNHelloWorld
+description: This sample is a port of the open source library, TensorFlow trained networks trained on MNIST Dataset via inference using Metal Performance...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios10-digitdetection
+---
+# MPSCNNHelloWorld
 
 This sample is a port of the open source library, `TensorFlow` trained networks trained on [MNIST Dataset](http://yann.lecun.com/exdb/mnist/) via inference using Metal Performance Shaders.  
 The sample demonstrates how to encode different layers to the GPU and perform image recognition using trained parameters (weights and bias) that have been fetched from, pre-trained and saved network on TensorFlow.
@@ -31,7 +42,8 @@ This sample runnable on iPhone/iPad with following features:
 
 Xamarin port changes are released under the MIT license.
 
-Author
-------
+![MPSCNNHelloWorld application screenshot](Screenshots/Main.png "MPSCNNHelloWorld application screenshot")
+
+## Author
 
 Ported to Xamarin.iOS by Rustam Zaitov

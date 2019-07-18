@@ -1,5 +1,16 @@
-Watch Connectivity  
-=======================
+---
+name: Xamarin.iOS - Watch Connectivity
+description: Sample code for Watch Connectivity Communication, demonstrating how to update the application context using a WCSession manager. Also see [Apple's...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: watchos-watchconnectivity
+---
+# Watch Connectivity  
 
 Sample code for Watch Connectivity Communication, demonstrating how to update the application context using a WCSession manager. Also see [Apple's doc]. WatchConnectivity is supported in watchOS 2.0+
 
@@ -7,8 +18,9 @@ Sample code for Watch Connectivity Communication, demonstrating how to update th
 
 ![](Screenshots/phoneCommand_small.png) ![](Screenshots/watchCommand_small.png)
 
-Author
-------
+![Watch Connectivity   application screenshot](Screenshots/phoneCommand.png "Watch Connectivity   application screenshot")
+
+## Author
 
 Created with Xamarin.iOS by Iain Smith.
 

@@ -1,5 +1,16 @@
-Breakfast Finder
-============
+---
+name: Xamarin.iOS - Breakfast Finder
+description: This sample is a C port of Apple's Recognizing Objects in Live Capture sample app. It demonstrates how to use the Vision framework and Core ML in...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios12-breakfastfinder
+---
+# Breakfast Finder
 
 This sample is a C# port of Apple's
 [Recognizing Objects in Live Capture](https://developer.apple.com/documentation/vision/recognizing_objects_in_live_capture?language=objc)
@@ -10,8 +21,7 @@ recognize objects in live video.
 
 ![Recognizing a cup of coffee](Screenshots/identify-coffee-sml.jpeg)
 
-Usage
--------
+## Usage
 
 **Note**: This sample will not run a simulator. It must be run on a physical
 device running iOS 12 or later.
@@ -22,11 +32,9 @@ coffee, an egg, a banana, a waffle, or a croissant.
 - The app will highlight and identify the breakfast foods it recognizes
 in the live video.
 
-License
--------
+## License
 Xamarin port changes are released under the MIT license.
 
-Author
--------
+## Author
 Ported to Xamarin.iOS by Brad Umbaugh
 

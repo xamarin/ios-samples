@@ -1,5 +1,16 @@
-Split View
-==========
+---
+name: Xamarin.iOS - Split View
+description: This sample illustrates how to use the UISplitView control for iPad. It utilizes a main split view controller that manages a master view and a set...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: splitview
+---
+# Split View
 
 This sample illustrates how to use the UISplitView control for iPad. It
 utilizes a main split view controller that manages a master view and a set
@@ -10,7 +21,8 @@ generally be used when implementing the UISplitViewController because it
 decouples the child views from each other and represents an architecturally
 resilient design.
 
-Authors
--------
+![Split View application screenshot](Screenshots/01.png "Split View application screenshot")
+
+## Authors
 
 Bryan Costanich

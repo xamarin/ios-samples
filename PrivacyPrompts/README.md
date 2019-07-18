@@ -1,9 +1,19 @@
-PrivacyPrompts
-==============
+---
+name: Xamarin.iOS - PrivacyPrompts
+description: This sample demonstrates how to check and request access to classes in the Privacy Settings. Notes This sample does not show how to set and access...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: privacyprompts
+---
+# PrivacyPrompts
 This sample demonstrates how to check and request access to classes in the Privacy Settings.
 
-Notes
------
+## Notes
 
 This sample does not show how to set and access the following frameworks:
 
@@ -37,12 +47,12 @@ For examples on using privacy settings in these frameworks, refer to the followi
         <true/>
         ```
 
-License
--------
+## License
 
 Xamarin port changes are released under the MIT license
 
-Authors
-------
+![PrivacyPrompts application screenshot](Screenshots/01.png "PrivacyPrompts application screenshot")
+
+## Authors
 
 Ported to Xamarin.iOS by Timothy Risi, Larry O'Brien, Amy Burns

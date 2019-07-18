@@ -1,5 +1,16 @@
-Custom View Controller Presentations and Transitions
-====================================================
+---
+name: Xamarin.iOS - Custom View Controller Presentations and Transitions
+description: Custom View Controller Presentations and Transitions demonstrates using the view controller transitioning APIs to implement your own view...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: customtransitions
+---
+# Custom View Controller Presentations and Transitions
 
 Custom View Controller Presentations and Transitions demonstrates using the view controller transitioning APIs to implement your own view controller presentations and transitions.  Learn from a collection of easy to understand examples how to use UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning, and UIPresentationController to create unique presentation styles that adapt to the available screen space.
 
@@ -31,14 +42,11 @@ This example implements an interactive transition between two view controllers i
 
 
 
-Authors
--------
+![Custom View Controller Presentations and Transitions application screenshot](Screenshots/Screenshow_01.png "Custom View Controller Presentations and Transitions application screenshot")
+
+## Authors
 
 Xamarin port changes are released under the MIT license
 
-Ported to Xamarin.iOS by Germán Marquez
-
-
-
-================================================================================
+# Ported to Xamarin.iOS by Germán Marquez
 Copyright (C) 2016 Apple Inc. All rights reserved.

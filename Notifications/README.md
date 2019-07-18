@@ -1,5 +1,16 @@
-Notifications
-=============
+---
+name: Xamarin.iOS - Notifications
+description: This sample illustrates how to schedule and respond to local notifications as well as how to register the device for, and receive remote...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: notifications
+---
+# Notifications
 
 This sample illustrates how to schedule and respond to
 local notifications as well as how to register the device
@@ -10,7 +21,8 @@ To learn more about how to make push notifications work please read this <a href
 
 Also original <a href="https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/ConfiguringPushNotifications/ConfiguringPushNotifications.html">Apple documentation</a> can be helpfull, it contains broad explaination of how to set up needed environment. 
 
-Authors
--------
+![Notifications application screenshot](Screenshots/01.png "Notifications application screenshot")
+
+## Authors
 
 Bryan Costanich

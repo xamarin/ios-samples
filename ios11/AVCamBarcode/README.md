@@ -1,10 +1,20 @@
-AVCamBarcode
-============
+---
+name: Xamarin.iOS - AVCamBarcode
+description: This sample demonstrates how to use the AVFoundation capture API to detect barcodes and faces. Machine Readable Codes QR code PDF-417 Data Matrix...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios11-avcambarcode
+---
+# AVCamBarcode
 
 This sample demonstrates how to use the AVFoundation capture API to detect barcodes and faces.
 
-Machine Readable Codes
--------
+## Machine Readable Codes
 
 * QR code 
 
@@ -16,17 +26,14 @@ Machine Readable Codes
 
     ![datamatrix](https://github.com/xamarin/ios-samples/raw/master/ios11/AVCamBarcode/Resources/code3.png)
 
-Build Requirements
--------
+## Build Requirements
 
 Xcode 9.0 or later; iOS 11.0 SDK or later
 
-Target
--------
+## Target
 
 This sample runnable on iPhone/iPad devices since it requires a real camera.
 
-Author
-------
+## Author
 
 Ported to Xamarin.iOS by Mykyta Bondarenko, Rustam Zaitov

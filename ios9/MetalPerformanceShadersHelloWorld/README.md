@@ -1,29 +1,37 @@
-MetalPerformanceShaders HelloWorld
-==============
+---
+name: Xamarin.iOS - MetalPerformanceShaders HelloWorld
+description: This sample demonstrates how easy it is to use the MetalPerformanceShaders framework. To convince you of its ease of use, the sample shows how to...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios9-metalperformanceshadershelloworld
+---
+# MetalPerformanceShaders HelloWorld
 
 This sample demonstrates how easy it is to use the MetalPerformanceShaders framework. To convince you of its ease of use, the sample shows how to process an image using the Gaussian blur kernel provided by the framework. You’ll also see how MetalPerformanceShaders integrates nicely with MetalKit. A label will be displayed in case the device does not support MetalPerformanceShaders.
 
-Build Requirements
-------------------
+## Build Requirements
 
 Building this sample requires Xcode 7.0 and iOS 9.0 SDK
 
-Runtime Requirements
-------------------
+## Runtime Requirements
 
 This sample works only on a real device with A8 chip on board
 
-Useful links
--------------
+## Useful links
 
 [Swift and Objective-C versions of sample](https://developer.apple.com/library/prerelease/ios/samplecode/MetalPerformanceShadersHelloWorld/Introduction/Intro.html#//apple_ref/doc/uid/TP40016188)
 
-Copyright
---------
+## Copyright
 
 Xamarin port changes are released under the MIT license
 
-Author
-------
+![MetalPerformanceShaders HelloWorld application screenshot](Screenshots/1.png "MetalPerformanceShaders HelloWorld application screenshot")
+
+## Author
 
 Ported to Xamarin.iOS by Oleg Demchenko

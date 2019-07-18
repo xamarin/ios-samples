@@ -1,5 +1,16 @@
-CloudKitAtlas
-======================
+---
+name: Xamarin.iOS - CloudKitAtlas
+description: CloudKitAtlas is a sample intended as a quick introduction to CloudKit. It teaches you how to use Discoverability to get the first name and last...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios8-cloudkitatlas
+---
+# CloudKitAtlas
 
 CloudKitAtlas is a sample intended as a quick introduction to
 CloudKit. It teaches you how to use Discoverability to get the first
@@ -52,12 +63,10 @@ Finally, open sample in Xamarin Studio and open project settings.
   or device before running the app.
 
 
-Copyright
-=========
+# Copyright
 
 Xamarin port changes are released under the MIT license
 
-Author
-======
+# Author
 
 Ported to Xamarin.iOS by Rustam Zaitov and Oleg Demchenko

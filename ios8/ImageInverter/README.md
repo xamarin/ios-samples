@@ -1,5 +1,16 @@
-ImageInverter
-=============
+---
+name: Xamarin.iOS - ImageInverter
+description: This sample code shows how to use an Action extension with a view controller. The app shares an image through a UIActivityViewController while the...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios8-imageinverter
+---
+# ImageInverter
 
 This sample code shows how to use an Action extension with a view
 controller. The app shares an image through a
@@ -10,8 +21,7 @@ app and extension are communicating using `NSExtensionItem` and
 `NSExtensionContext`.
 
 
-Instructions
-------------
+## Instructions
 
 * Launch the app and tap the share icon at the bottom left corner, the
   iOS sharing view should appear
@@ -30,17 +40,14 @@ Instructions
 * The app should now display the vertically inverted image
   ImageInverterExt.
 
-Build Requirements
-------------------
+## Build Requirements
 
 Building this sample required Xcode 6.0 and iOS 8.0 SDK.
 
-Copyright
----------
+## Copyright
 
 Xamarin port changes are released under the MIT license
 
-Author
---------
+## Author
 
 Ported to Xamatin.iOS by Rustam Zaitov.

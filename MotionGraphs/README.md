@@ -1,5 +1,16 @@
-MotionGraphs
-============
+---
+name: Xamarin.iOS - MotionGraphs
+description: This is a port of the WWDC2012 sample. MotionGraphs is an application project that demonstrates a how to use the push method to receive data from...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: motiongraphs
+---
+# MotionGraphs
 
 This is a port of the WWDC2012 sample.
 

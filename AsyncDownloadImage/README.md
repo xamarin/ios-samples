@@ -1,5 +1,16 @@
-AsyncDownloadImage
-===========
+---
+name: Xamarin.iOS - AsyncDownloadImage
+description: This sample application demonstrates how to use the new Async/Await feature which is available in Xamarin.iOS 6.4. The sample downloads a large...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: asyncdownloadimage
+---
+# AsyncDownloadImage
 
 This sample application demonstrates how to use the new Async/Await feature which is available in Xamarin.iOS 6.4.
 
