@@ -1,5 +1,16 @@
-QRchestra
-=========
+---
+name: Xamarin.iOS - QRchestra
+description: This sample detects QR codes and decodes them. If the value of the QR code is a MIDI note number, that note is played. Use these QR codes to test...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: qrchestra
+---
+# QRchestra
 
 This sample detects QR codes and decodes them.  
 
@@ -22,6 +33,7 @@ Barcode string data: www.xamarin.com
 Search online for a website or tool that can generate test QR codes.
 
 
-Authors
--------
+![QRchestra application screenshot](Screenshots/xamarin-barcode.png "QRchestra application screenshot")
+
+## Authors
 Timothy Risi

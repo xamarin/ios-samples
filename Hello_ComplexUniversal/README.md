@@ -1,5 +1,16 @@
-Hello, Complex Universal
-========================
+---
+name: Xamarin.iOS - Hello, Complex Universal
+description: A sample demonstrating how to create universal applications that will run on both iPhone and iPad devices, by switching the UI based on the...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: hello-complexuniversal
+---
+# Hello, Complex Universal
 
 A sample demonstrating how to create universal applications that
 will run on both iPhone and iPad devices, by switching the UI based

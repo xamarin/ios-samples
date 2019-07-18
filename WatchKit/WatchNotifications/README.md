@@ -1,5 +1,16 @@
-WatchNotifications (WatchKit) 
-=============================
+---
+name: 'Xamarin.iOS - WatchNotifications (WatchKit) '
+description: 'Sample code for the Xamarin.iOS Watch Kit [Notifications] documentation. NOTE: for a local notification to appear on the watch, trigger it in the...'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: watchkit-watchnotifications
+---
+# WatchNotifications (WatchKit) 
 
 Sample code for the Xamarin.iOS Watch Kit [Notifications] documentation.
 
@@ -9,8 +20,9 @@ NOTE: for a local notification to appear on the watch, trigger it in the app (bu
 
 Testing local notifications properly can only be done on a real iPhone and Watch. When using the iOS Simulator notifications can only be "faked" using a `.json` file.
 
-Author
-------
+![WatchNotifications (WatchKit)  application screenshot](Screenshots/phone-alert.png "WatchNotifications (WatchKit)  application screenshot")
+
+## Author
 
 Created with Xamarin.iOS by Craig Dunn.
 

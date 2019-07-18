@@ -1,8 +1,18 @@
-WatchKit Catalog (watchOS 3)
-==================================================
+---
+name: Xamarin.iOS - WatchKit Catalog (watchOS 3)
+description: Xamarin watchOS 3 Preview This sample is for use with the Xamarin watchOS 3 preview that was release along with our iOS 10 support. 1. Right-click...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: watchos-watchkitcatalog
+---
+# WatchKit Catalog (watchOS 3)
 
-Xamarin watchOS 3 Preview
--------------------------
+## Xamarin watchOS 3 Preview
 
 This sample is for use with the Xamarin watchOS 3 preview that was release along with our [iOS 10 support](https://blog.xamarin.com/let-the-ios10-ing-begin/).
 
@@ -14,8 +24,7 @@ This sample is for use with the Xamarin watchOS 3 preview that was release along
 
 ^ Screenshots are shown with the iOS Simulator running inside [Bezel].
 
-Using WatchKit Interface Elements
----------------------------------
+## Using WatchKit Interface Elements
 
 WatchKit Catalog is an exploration of the UI elements available in the WatchKit framework.
 Throughout the sample, you'll find tips and configurations that will help guide the development of your watchOS app.
@@ -57,8 +66,7 @@ WatchKit Catalog demonstrates how to configure and customize the following contr
 
 - TextInputController presents the text input controller with a set of suggestions. The result is sent to the parent iOS application and a confirmation message is sent back to the WatchKit app extension.
 
-Build/Runtime Requirements
---------------------------
+## Build/Runtime Requirements
 
 * Xcode 8.0 (or newer)
 * Xamarin Studio 6.10 or newer
@@ -70,7 +78,9 @@ Build/Runtime Requirements
 Xamarin port changes are released under the MIT license
 
 
-### Author
+#![WatchKit Catalog (watchOS 3) application screenshot](Screenshots/0.png "WatchKit Catalog (watchOS 3) application screenshot")
+
+## Author
 
 Ported to Xamarin.iOS by Vincent Dondain.
 

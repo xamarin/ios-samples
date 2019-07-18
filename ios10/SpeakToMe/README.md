@@ -1,27 +1,33 @@
-SpeakToMe
-==============
+---
+name: Xamarin.iOS - SpeakToMe
+description: Shows how to use SFSpeechRecognizer with AVAudioEngine to record what a user says and transcribe it into text. Refs Original sample Build...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios10-speaktome
+---
+# SpeakToMe
 
 Shows how to use `SFSpeechRecognizer` with `AVAudioEngine` to record what a user says and transcribe it into text.
 
-Refs
-----
+## Refs
 [Original sample](https://developer.apple.com/library/prerelease/content/samplecode/SpeakToMe/Introduction/Intro.html#//apple_ref/doc/uid/TP40017110)
 
-Build Requirements
-------------------
+## Build Requirements
 
 Xcode 8.0 or later; iOS 10.0 SDK or later
 
-Target
-------
+## Target
 iOS 10.0 or later on an iOS device
 
-Copyright
---------
+## Copyright
 
 Xamarin port changes are released under the MIT license.
 
-Author
-------
+## Author
 
 Ported to Xamarin.iOS by Rustam Zaitov

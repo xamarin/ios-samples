@@ -1,5 +1,16 @@
-RosyWriter
-==========
+---
+name: Xamarin.iOS - RosyWriter
+description: This is a port of Apple's RosyWriter sample to C and MonoTouch....
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: rosywriter
+---
+# RosyWriter
 
 This is a port of Apple's RosyWriter sample to C# and MonoTouch.
 
@@ -26,8 +37,7 @@ This sample shows multiple parts of iOS in action:
           separate dispatch queues with their own threads to perform
           the CPU intensive "pinkening" and the saving of the data.
 
-Port
-====
+# Port
 
 This port was written by Eric Beisecker of Xamarin.
 

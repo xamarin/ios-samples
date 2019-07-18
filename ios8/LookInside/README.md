@@ -1,5 +1,16 @@
-LookInside
-==============
+---
+name: Xamarin.iOS - LookInside
+description: This example shows how to use a custom presentation controller to create a custom view controller presentation. It provides a transitioning...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios8-lookinside
+---
+# LookInside
 
 This example shows how to use a custom presentation controller to
 create a custom view controller presentation. It provides a
@@ -53,35 +64,29 @@ The LookInside project contains the following interesting classes:
   a pink flower, and a unicorn
 
 
-Instructions
-------------
+## Instructions
 
 For shifting between Normal and Cool transitions use the switch at the
 top left corner. Tap image then change settings with sliders and hit
 Save button.
 
-Known issue
------------
+## Known issue
 
 This sampe and original sample from `Apple` consume lot of memory so
 you can find a crash by applying filters to all images within the app.
 
-Build Requirements
-------------------
+## Build Requirements
 
 * Building this sample requires Xcode 6.0 and iOS 8.0 SDK
 * Running this sample requires Xamarin.iOS 8.2 or later.
 
-Target
-------
+## Target
 This sample runnable on iPhoneSimulator/iPadSimulator iPhone/iPad
 
-Copyright
---------
+## Copyright
 
 Xamarin port changes are released under the MIT license
 
-Author
------- 
+## Author 
 
 Ported to Xamarin.iOS by Rustam Zaitov

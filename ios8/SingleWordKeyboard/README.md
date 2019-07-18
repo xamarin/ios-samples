@@ -1,10 +1,20 @@
-Single Word Keyboard
-====================
+---
+name: Xamarin.iOS - Single Word Keyboard
+description: This is an app extension sample. It uses the Keyboard Extension to provide a new keyboard for the system that has a unique button. Instructions To...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios8-singlewordkeyboard
+---
+# Single Word Keyboard
 
 This is an app extension sample. It uses the Keyboard Extension to provide a new keyboard for the system that has a unique button.
 
-Instructions
-------------
+## Instructions
 
 To enable the keyboard:
 
@@ -12,17 +22,16 @@ To enable the keyboard:
 * Add a new keyboard.
 * Now each time you see the keyboard, you can click on the globe that allows you to go to the next keyboard and start using the Single Word Keyboard.
 
-Build Requirements
-------------------
+## Build Requirements
 
 Building this sample requires Xcode 6.0 and iOS 8.0 SDK
 
-Copyright
----------
+## Copyright
 
 Xamarin port changes are released under the MIT license
 
-Author
-------
+![Single Word Keyboard application screenshot](Screenshots/0.png "Single Word Keyboard application screenshot")
+
+## Author
 
 Ported to Xamarin.iOS by Vincent Dondain.

@@ -1,5 +1,16 @@
-Multiuser AR Experience
-============
+---
+name: Xamarin.iOS - Multiuser AR Experience
+description: This sample demonstrates how to transmit ARKit world-mapping data between nearby devices with the MultipeerConnectivity framework to create a...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios12-armultiuser
+---
+# Multiuser AR Experience
 
 This sample demonstrates how to transmit ARKit world-mapping data between nearby devices with the MultipeerConnectivity framework to create a shared basis for AR experiences.
 
@@ -9,23 +20,19 @@ Diagram showing AR experiences on two devices viewing, from two different perspe
 
 ![Diagram](ARMultiuser/Screenshots/concept-art.png)
 
-Build Requirements
--------
+## Build Requirements
 
 Xamarin.iOS 12.0, Xcode 10.0 and two or more iOS devices with A9 or later processors.
 
-Related Links
--------
+## Related Links
 
 - [Original sample](https://developer.apple.com/documentation/arkit/creating_a_multiuser_ar_experience).
 - [Documentation](https://developer.apple.com/documentation/arkit/arworldmap)
 
-License
--------
+## License
 
 Xamarin port changes are released under the MIT license.
 
-Author
-------
+## Author
 
 Ported to Xamarin.iOS by Mykyta Bondarenko

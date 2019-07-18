@@ -1,12 +1,19 @@
-Eliza Chat
-==========
-
-This sample application shows how to use SiriKit to enable Siri Voice Control in a Xamarin.iOS running iOS 10 (or greater). 
-
 ---
-**NOTE**: The Eliza Chat sample app must be singed with a valid developer account and provisioned with the correct App ID, Entitlements and Provisioning Profile before it can be compiled and tested on an iOS 10 device. Testing SiriKit only works on a real iOS 10 Hardware Device and not in the iOS 10 Simulator. See the following instructions for details.
-
+name: Xamarin.iOS - Eliza Chat
+description: 'This sample application shows how to use SiriKit to enable Siri Voice Control in a Xamarin.iOS running iOS 10 (or greater). NOTE: The Eliza Chat...'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios10-elizachat
 ---
+# Eliza Chat
+
+## This sample application shows how to use SiriKit to enable Siri Voice Control in a Xamarin.iOS running iOS 10 (or greater). 
+## **NOTE**: The Eliza Chat sample app must be singed with a valid developer account and provisioned with the correct App ID, Entitlements and Provisioning Profile before it can be compiled and tested on an iOS 10 device. Testing SiriKit only works on a real iOS 10 Hardware Device and not in the iOS 10 Simulator. See the following instructions for details.
 
 ## Enabling SiriKit Support in a Xamarin Application
 
@@ -43,12 +50,8 @@ When the application is first run, the user will be asked if they want to allow 
 Please see our SiriKit documentation for more information:
 
 * [Understanding SiriKit Concepts](https://developer.xamarin.com/guides/ios/platform_features/introduction-to-ios10/sirikit/understanding-sirikit/) - This article covers the key concepts that will be required for working with SiriKit in a Xamarin.iOS app. It covers the new Intents and Intents UI Extension Points and how they work with App and User Vocabulary to open an app to Siri.
-* [Implementing SiriKit](https://developer.xamarin.com/guides/ios/platform_features/introduction-to-ios10/sirikit/implementing-sirikit/) - This article covers the steps required to implement SiriKit support in a Xamarin.iOS apps. The developer should read the Understanding SiriKit Concepts guide above before attempting to add SiriKit support to an app, as key concepts are covered that will be required for successful implementation.
-
----
-**NOTE:** Testing SiriKit only works on a real iOS 10 Hardware Device and not in the iOS 10 Simulator.
-
----
+## * [Implementing SiriKit](https://developer.xamarin.com/guides/ios/platform_features/introduction-to-ios10/sirikit/implementing-sirikit/) - This article covers the steps required to implement SiriKit support in a Xamarin.iOS apps. The developer should read the Understanding SiriKit Concepts guide above before attempting to add SiriKit support to an app, as key concepts are covered that will be required for successful implementation.
+## **NOTE:** Testing SiriKit only works on a real iOS 10 Hardware Device and not in the iOS 10 Simulator.
 
 
 

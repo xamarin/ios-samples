@@ -1,5 +1,16 @@
-Sprite Tour
-============================
+---
+name: Xamarin.iOS - Sprite Tour
+description: This sample is a port to apple’s WWDC2013 Sprite Tour sample. Link to Apple’s sample:...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: spritetour
+---
+# Sprite Tour
 This sample is a port to apple’s WWDC2013 Sprite Tour sample.
 Link to Apple’s sample: https://developer.apple.com/downloads/index.action?name=WWDC%202013#
 
@@ -23,6 +34,4 @@ SpriteBlending
 Shows how an additive blending mode can be used to simulate lights.
 
 AnimatedSprites
-Shows how a sprite’s texture image can be animated.
-
-=============================
+# Shows how a sprite’s texture image can be animated.

@@ -1,5 +1,16 @@
-Red & Green Notifications
-============
+---
+name: Xamarin.iOS - Red & Green Notifications
+description: 'iOS 12 introduced various notification-related features, including: - Provisional notifications - Notification management features - Dynamic...'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios12-redgreennotifications
+---
+# Red & Green Notifications
 
 iOS 12 introduced various notification-related features, including:
 
@@ -21,8 +32,7 @@ link.
 
 ![Provisional nortifications examples](Screenshots/all-sml.png)
 
-Usage
--------
+## Usage
 
 - Run the app.
 - Notice that the app does not ask for permission to send notifications.
@@ -53,11 +63,9 @@ Green Notifications app, and tap **Red & Green Notifications Notification Settin
 to jump to the in-app custom notification management screen.
 
 
-License
--------
+## License
 Code is released under the MIT license
 
-Author
--------
+## Author
 Brad Umbaugh
 

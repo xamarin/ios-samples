@@ -1,5 +1,16 @@
-LineLayout
-==========
+---
+name: Xamarin.iOS - LineLayout
+description: This is a port of the WWDC2012 sample This example shows how to implement a document-browser-like-interface as a flow layout subclass, and using...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: linelayout
+---
+# LineLayout
 
 This is a port of the WWDC2012 sample
 

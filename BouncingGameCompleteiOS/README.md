@@ -1,5 +1,16 @@
-CocosSharp BouncingGame Project for iOS
-====================================
+---
+name: Xamarin.iOS - CocosSharp BouncingGame Project for iOS
+description: This is a small, complete game using CocosSharp for iOS. It is the result of working through the the entire Introduction to CocosSharp walkthrough....
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: bouncinggamecompleteios
+---
+# CocosSharp BouncingGame Project for iOS
 
 This is a small, complete game using CocosSharp for iOS.  It is the result of working through the the entire Introduction to CocosSharp walkthrough.
 
@@ -7,7 +18,8 @@ This single solution contains two projects:  one for iOS and one cross-platform 
 
 The game can be played by touching the screen to move the paddle at the bottom of the screen horizontally.  The goal is to keep the ball from falling off-screen.  Each bounce awards the player one point.
 
-Author
-------
+![CocosSharp BouncingGame Project for iOS application screenshot](Screenshots/FinalBouncingGameScreen.png "CocosSharp BouncingGame Project for iOS application screenshot")
+
+## Author
 
 Victor Chelaru

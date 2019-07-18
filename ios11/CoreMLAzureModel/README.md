@@ -1,5 +1,16 @@
-CoreML with Azure Custom Vision Service
-============
+---
+name: Xamarin.iOS - CoreML with Azure Custom Vision Service
+description: This sample CustomVision is a demo of the new iOS 11 Vision framework and CoreML, using a model trained with Azure's Custom Vision Service. This...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios11-coremlazuremodel
+---
+# CoreML with Azure Custom Vision Service
 
 This sample "CustomVision" is a demo of the new iOS 11 Vision framework and CoreML, using a model
 trained with Azure's Custom Vision Service.
@@ -13,12 +24,10 @@ The custom model has been trained to recognize differet varieties of fruit:
 ![Screenshot of fruit recognizer working](Screenshots/banana-sml.png)
 
 
-License
--------
+## License
 
 Xamarin port changes are released under the MIT license
 
-Author
-------
+## Author
 
 Ported to Xamarin.iOS by Larry O'Brien, Craig Dunn

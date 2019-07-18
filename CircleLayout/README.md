@@ -1,5 +1,16 @@
-Circle Layout
-=============
+---
+name: Xamarin.iOS - Circle Layout
+description: This sample provides an introduction to Collection Views. It demonstrates how to arrange view cells on a circle, and how to use custom animations...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: circlelayout
+---
+# Circle Layout
 
 This sample provides an introduction to Collection Views. It demonstrates how to arrange view cells on a circle, 
 and how to use custom animations when adding or removing cells.

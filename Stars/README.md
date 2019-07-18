@@ -1,5 +1,16 @@
-Stars
-===========
+---
+name: Xamarin.iOS - Stars
+description: This sample provides an introduction to Core Motion by demonstrating how to implement virtual reality. The view controller provides a view of...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: stars
+---
+# Stars
 
 This sample provides an introduction to Core Motion by demonstrating
 how to implement virtual reality.  The view controller provides a view

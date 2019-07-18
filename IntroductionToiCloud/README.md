@@ -1,5 +1,16 @@
-Introduction to iCloud
-======================
+---
+name: Xamarin.iOS - Introduction to iCloud
+description: DocPicker accompanies to the Introduction to iCloud guide in the developer portal. Setting up sample To run this sample you need to have an app ID...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: introductiontoicloud
+---
+# Introduction to iCloud
 
 DocPicker accompanies to the [Introduction to iCloud](http://developer.xamarin.com/guides/ios/platform_features/introduction_to_icloud/) guide in the developer portal.
 

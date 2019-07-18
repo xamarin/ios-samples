@@ -1,5 +1,16 @@
-Even/Odd Number Drag
-====================
+---
+name: Xamarin.iOS - Even/Odd Number Drag
+description: This sample demonstrates how to use the iOS 11 Drag and Drop APIs within a single iPhone app. The app shows a number in the middle of the screen,...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios11-evenoddnumberdrag
+---
+# Even/Odd Number Drag
 
 This sample demonstrates how to use the iOS 11 Drag and Drop APIs within a 
 single iPhone app.
@@ -13,7 +24,6 @@ iOS 11.
 
 ![Dragging numbers](Screenshots/EvenOddNumberDrag.gif)
 
-Author
-------
+## Author
 
 Brad Umbaugh

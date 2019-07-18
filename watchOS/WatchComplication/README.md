@@ -1,5 +1,16 @@
-WatchComplication (watchOS 3)
-=======================
+---
+name: Xamarin.iOS - WatchComplication (watchOS 3)
+description: 'To configure complications in the simulator: 1. Command+Shift+H until you see the watch face 2. Command+Shift+2 enables force-touch deep press 3....'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: watchos-watchcomplication
+---
+# WatchComplication (watchOS 3)
 
 To configure complications in the simulator:
 
@@ -25,8 +36,9 @@ Previews of other faces with the complication can also be explored:
 
 ![](Screenshots/gallery1-sml.png)
 
-Author
-------
+![WatchComplication (watchOS 3) application screenshot](Screenshots/complication-scribble.png "WatchComplication (watchOS 3) application screenshot")
+
+## Author
 
 Created with Xamarin.iOS by Craig Dunn.
 

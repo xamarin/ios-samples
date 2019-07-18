@@ -1,5 +1,16 @@
-CollectionViewTransition
-========================
+---
+name: Xamarin.iOS - CollectionViewTransition
+description: This sample illustrates how to create a custom transition when navigating between two collection views in a navigation hierarchy managed by a...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: collectionviewtransition
+---
+# CollectionViewTransition
 This sample illustrates how to create a custom transition when navigating between 
 two collection views in a navigation hierarchy managed by a navigation controller.
 

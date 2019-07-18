@@ -1,5 +1,16 @@
-WatchBackgroundRrefresh
-=======================
+---
+name: Xamarin.iOS - WatchBackgroundRrefresh
+description: 'This sample demonstrates a common background refresh pattern: 1. First schedule an application task by pressing the button on the UI 2. Now...'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: watchos-watchbackgroundrefresh
+---
+# WatchBackgroundRrefresh
 
 This sample demonstrates a common background refresh pattern:
 
@@ -22,7 +33,9 @@ Xcode 8.0 or later; iOS 10.0 SDK or later, watchOS 3.0 SDK or later
 
 iOS 10.0 or later, watchOS 3.0 or later
 
-### Author
+#![WatchBackgroundRrefresh application screenshot](Screenshots/WatchScreenshot.png "WatchBackgroundRrefresh application screenshot")
+
+## Author
 Xamarin port changes are released under the MIT license
 
 Ported to Xamarin.iOS by Ivan Herrera

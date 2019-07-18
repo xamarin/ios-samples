@@ -1,5 +1,16 @@
-NewBox
-======
+---
+name: Xamarin.iOS - NewBox
+description: 'This sample shows you how to: Use UIDocumentMenuViewController and UIDocumentMenuViewController. Create Document Provider extensions:...'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios8-newbox
+---
+# NewBox
 
 This sample shows you how to:
 * Use `UIDocumentMenuViewController` and `UIDocumentMenuViewController`.
@@ -17,8 +28,7 @@ Document Provider extension consists in two parts: Document picker extension and
 * `NBox` – Document picker extension.
 * `NBoxFileProvider` – File provider extension.
 
-Setup
------
+## Setup
 You need to setup an Application IDs with App Groups and iCloud. Then you need to generate a provisioning profile linked to the newly created AppID.
 To setup AppIDs, App Groups, Provisioning profiles please look at [this introduction]. Also have a look at next section, here you will find step by step instructions for Xamarin Studio (the same should work in Visual Studio)
 
@@ -33,8 +43,7 @@ You can donwload these apps from the [iOS Dev Center]. Choose iOS 8 tab and down
 
 Also to use Document Picker's Export/Move feature you need to be able to export or move documents to an other app which is compatible with iCloud Drive feature. In order to use that, you need to update your mac to Yosemite. Then you will be able to export documents to Preview or TextEdit apps.
 
-Setup. Xamarin Studio
--------------------------
+## Setup. Xamarin Studio
 1. Open the solution
 2. Inside the NBox project open the `Entitlements.plist` file and scroll down to `App Groups` section and change 
 `group.com.xamarin.NewBox,security` to `group.com.yourcompanyname.NewBox,security` replacing `yourcompanyname` with your company name (to make id unique)
@@ -73,16 +82,14 @@ You will need to do the following three times, once for each project in the NewB
 28. Once you have all of those profiles created, make sure to go into the Project Options page for each project and set your `Signing Identity and Provisioning Profile` to the certificates ad profiles created above. (Project Options->Build->iOS Bundle Signing page)
 29. Try running the NewBox sample!
 
-Open/Import documents from iCloud document provider with Document Picker
-------------
+## Open/Import documents from iCloud document provider with Document Picker
 * Create some documents in iCloud container. For this step you need Pages, Numbers or Keynote.
 * Run the NewBox app.
 * Choose `Open` or `Import`.
 * Choose a file and tap on it. `UIDocumentViewController` will be dismissed.
 * Look at the device's console output to see the results (file content).
 
-Export/Move documents to iCloud document provider with Document Picker
-------------
+## Export/Move documents to iCloud document provider with Document Picker
 * For this step you need mac with Yosemite.
 * Run the NewBox app.
 * Choose `Export` or `Move`.
@@ -90,8 +97,7 @@ Export/Move documents to iCloud document provider with Document Picker
 * Go to `Finder` on your Mac and choose `iCloud Drive`. Choose a folder (e.g. `Preview` or `TextEdit`)
 * You will find your file.
 
-Open/Import documents from NBox file provider extension
--------------------------------------------------------
+## Open/Import documents from NBox file provider extension
 * Run the NewBox app.
 * Choose `Open/Import`.
 * Enable your extension. Tap on `Locations` then `More ...`. Enable extension. Tap `Done`.
@@ -99,8 +105,7 @@ Open/Import documents from NBox file provider extension
 * Tap on `Untitled.txt` button. At this point file provider will provide a file for you.
 * Look at the console output.
 
-Export/Move document to NBox file provider extension
-----------------------------------------------------
+## Export/Move document to NBox file provider extension
 * Run the NewBox app.
 * Choose Export/Move.
 * Enable your extension. Tap on `Locations` then `More ...`. Enable extension. Tap `Done`.
@@ -108,26 +113,21 @@ Export/Move document to NBox file provider extension
 * Tap on `Export/Move to this location` button.
 * Go to NBox user interface again and you will see the imported file.
 
-Note
-----
+## Note
 Don't use `NSFileCoordinator` inside your app extension. Apple provide an [explanation](https://developer.apple.com/library/ios/technotes/tn2408/_index.html#//apple_ref/doc/uid/DTS40014939)
 
-Build Requirements
-------------------
+## Build Requirements
 
 Building this sample requires Xcode 6.0 and iOS 8.0 SDK.
 
-Target
-------
+## Target
 This sample is runnable on iPhone/iPad.
 
-Copyright
----------
+## Copyright
 
 Xamarin port changes are released under the MIT license
 
-Author
------- 
+## Author 
 
 Ported to Xamarin.iOS by Rustam Zaitov.
 

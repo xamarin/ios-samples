@@ -1,5 +1,16 @@
-Grouped Notifications
-============
+---
+name: Xamarin.iOS - Grouped Notifications
+description: This sample app demonstrates how to use the User Notifications framework to group notifications by their thread identifiers, a new feature...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios12-groupednotifications
+---
+# Grouped Notifications
 
 This sample app demonstrates how to use the User Notifications framework
 to group notifications by their thread identifiers, a new feature 
@@ -7,8 +18,7 @@ introduced in iOS 12 to make it easier for users to work with notifications.
 
 ![Example grouped and expanded notifications](Screenshots/all-sml.png)
 
-Usage
--------
+## Usage
 
 To use the app: 
 
@@ -26,11 +36,9 @@ by swiping down from the top of the device. You will see:
   thread, but iOS 12 by default groups together all app-related
   notifications not assigned to a specific thread)
 
-License
--------
+## License
 Code is released under the MIT license
 
-Author
--------
+## Author
 Brad Umbaugh
 

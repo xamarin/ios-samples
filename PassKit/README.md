@@ -1,13 +1,23 @@
-PassKit Sample
-==============
+---
+name: Xamarin.iOS - PassKit Sample
+description: 'This sample demonstrates how to build a PassKit Companion App to interact with passes you have issued in a users Passbook. >NOTE: This sample...'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: passkit
+---
+# PassKit Sample
 
 This sample demonstrates how to build a PassKit Companion App to interact with passes you have issued in a users Passbook.
 
 >NOTE: This sample doen't work out of the box, you need to setup provisioning profile for you app and create certicicate for pass singing.
 
 
-Instructions
-------------
+## Instructions
 
 When you open this app, _it will not run_ because the solution requires the file **CouponBanana2.pkpass** which does not exist. Follow the steps below to create the sample Pass file, _then_ you'll be able to run the sample.
 

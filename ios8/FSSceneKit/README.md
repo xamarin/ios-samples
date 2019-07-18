@@ -1,5 +1,16 @@
-FSSceneKit City
-----------
+---
+name: Xamarin.iOS - FSSceneKit City
+description: 'This sample shows how to create a randomly generated city using the SceneKit API and is written in F&35;. Core concepts include: - General F&35;...'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios8-fsscenekit
+---
+## FSSceneKit City
 This sample shows how to create a randomly generated city using the [SceneKit API](http://api.xamarin.com/?link=N%3aSceneKit) and is written in F&#35;.
 
 Core concepts include:

@@ -1,5 +1,16 @@
-HomeKitIntro
-============
+---
+name: Xamarin.iOS - HomeKitIntro
+description: This sample application shows how to use HomeKit to write home automation applications in Xamarin.iOS. Enabling HomeKit in a Xamarin Application...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: homekit-homekitintro
+---
+# HomeKitIntro
 
 This sample application shows how to use HomeKit to write home automation applications in Xamarin.iOS.
 
@@ -68,12 +79,8 @@ A Primary Home must be created and configured before any other function of the H
 
 Once a Primary Home has been created or accessed, the iOS 8 application can call the `MHAccessoryBrowser` to find any new home automation accessories and add them to a home. Once the new accessory has been found, it should be presented to the user and they should be allowed to select an accessory and add it to a home. When the user selects an accessory from the list, the application calls the Home’s `AddAccessory` method to add it to the Home’s collection of accessories. The user will be asked to enter the setup code for the device to add, In the HomeKit Accessory Simulator this number can be found under the **Accessories Name**. For a real HomeKit accessory, the setup code will either be presented in the accessory’s user manual, on the product box or on a label on the device itself.
 
-When working with HomeKit Service Characteristics and simulated accessories, modifications to Characteristics values can be monitored inside the HomeKit Accessory Simulator. With the `HomeKitIntro` app running on real iOS Device Hardware, changes to a characteristic’s value should be seen nearly instantly in the HomeKit Accessory Simulator. 
-
----
-**NOTE:** Testing HomeKit only works on a real iOS 8 Hardware Device and not in the iOS 8 Simulator.
-
----
+## When working with HomeKit Service Characteristics and simulated accessories, modifications to Characteristics values can be monitored inside the HomeKit Accessory Simulator. With the `HomeKitIntro` app running on real iOS Device Hardware, changes to a characteristic’s value should be seen nearly instantly in the HomeKit Accessory Simulator. 
+## **NOTE:** Testing HomeKit only works on a real iOS 8 Hardware Device and not in the iOS 8 Simulator.
 
 
 

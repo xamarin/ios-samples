@@ -1,5 +1,16 @@
-Quotes
-======
+---
+name: Xamarin.iOS - Quotes
+description: This is a port of the WWDC2012 of the same name This sample application utilizes the legacy string drawing functions and the new attributed string...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: quotes
+---
+# Quotes
 
 This is a port of the WWDC2012 of the same name
 

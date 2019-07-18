@@ -1,5 +1,16 @@
-PaintCode Demo
-==============
+---
+name: Xamarin.iOS - PaintCode Demo
+description: PaintCode (http://www.paintcodeapp.com) now supports C code generation for Xamarin MonoTouch. This sample app shows some PaintCode-generated...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: paintcode
+---
+# PaintCode Demo
 
 PaintCode (http://www.paintcodeapp.com) now supports C# code generation for Xamarin MonoTouch.
 
@@ -19,7 +30,6 @@ See also http://blog.xamarin.com/2012/06/06/meet-our-new-favorite-design-tool-pa
 ![screenshot](https://github.com/xamarin/monotouch-samples/raw/master/PaintCode/Screenshots/GlossyButton.png "GlossyButton Example") 
 
 
-Authors
--------
+## Authors
 
 Craig Dunn

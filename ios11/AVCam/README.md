@@ -1,5 +1,16 @@
-AVCam
-=====
+---
+name: Xamarin.iOS - AVCam
+description: Using AVFoundation to Capture Images and Movies AVCam demonstrates how to use the AVFoundation capture API to record movies and capture still...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios11-avcam
+---
+# AVCam
 
 ### Using AVFoundation to Capture Images and Movies
 

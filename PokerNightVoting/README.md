@@ -1,5 +1,16 @@
-Poker Night Voting
-==================
+---
+name: Xamarin.iOS - Poker Night Voting
+description: This is a port of the WWDC2012 application of the same name This sample application utilizes the EventKit API to allow a user to create events at...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: pokernightvoting
+---
+# Poker Night Voting
 
 This is a port of the WWDC2012 application of the same name
 

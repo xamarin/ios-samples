@@ -1,5 +1,16 @@
-DocPicker
-======================
+---
+name: Xamarin.iOS - DocPicker
+description: DocPicker accompanies to the Introduction to the Document Picker guide in the developer portal. Setting up sample To run this sample you need to...
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios8-docpicker
+---
+# DocPicker
 
 DocPicker accompanies to the [Introduction to the Document Picker](http://developer.xamarin.com/guides/ios/platform_features/introduction_to_the_document_picker/) guide in the developer portal.
 

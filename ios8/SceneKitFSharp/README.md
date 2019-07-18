@@ -1,5 +1,16 @@
-SceneKit F# "Oculus Thrift" (Google Cardboard) Edition
-======================================================
+---
+name: Xamarin.iOS - SceneKit F# "Oculus Thrift" (Google Cardboard) Edition
+description: 'Extends F Scene Kit for stereoscopic viewing with Google Cardboard. Core concepts include: - General F&35; and iOS technique. - Using multiple...'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+technologies:
+- xamarin-ios
+urlFragment: ios8-scenekitfsharp
+---
+# SceneKit F# "Oculus Thrift" (Google Cardboard) Edition
 
 Extends [F# Scene Kit](https://github.com/xamarin/monotouch-samples/tree/master/FSSceneKit) for stereoscopic viewing with
 Google Cardboard. 
