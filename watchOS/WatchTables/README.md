@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.iOS - WatchTables (watchOS 3) '
+name: Xamarin.iOS - WatchTables (watchOS 3)
 description: Sample code for the Xamarin.iOS Watch Kit [Table Control] documentation. Also see [Apple's doc]. Includes support for [item pagination] introduced...
 page_type: sample
 languages:

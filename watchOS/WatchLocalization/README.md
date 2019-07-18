@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.iOS - WatchLocalization (watchOS 3) '
+name: Xamarin.iOS - WatchLocalization (watchOS 3)
 description: Sample code for the Xamarin watchOS [Localization] documentation. Contains English and Spanish (machine translated) strings....
 page_type: sample
 languages:

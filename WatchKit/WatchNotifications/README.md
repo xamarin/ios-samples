@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.iOS - WatchNotifications (WatchKit) '
+name: Xamarin.iOS - WatchNotifications (WatchKit)
 description: 'Sample code for the Xamarin.iOS Watch Kit [Notifications] documentation. NOTE: for a local notification to appear on the watch, trigger it in the...'
 page_type: sample
 languages:

@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.iOS - ConvertedFrogScroller '
+name: Xamarin.iOS - ConvertedFrogScroller
 description: 'Description: Converted FrogScroller is an example of enhancing scrollview experience with the use of UIPageViewController, UIScrollView and...'
 page_type: sample
 languages:

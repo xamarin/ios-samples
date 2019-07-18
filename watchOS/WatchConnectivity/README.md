@@ -1,5 +1,5 @@
 ---
-name: 'Xamarin.iOS - Watch Connectivity  '
+name: Xamarin.iOS - Watch Connectivity
 description: Sample code for Watch Connectivity Communication, demonstrating how to update the application context using a WCSession manager. Also see [Apple's...
 page_type: sample
 languages:
