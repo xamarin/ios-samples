@@ -33,6 +33,7 @@ Note: Before being able to run the sample you will need to update the bundle ide
 ![ActivityRings application screenshot](Screenshots/iPhoneScreenshot.png "ActivityRings application screenshot")
 
 ## Author
+
 Xamarin port changes are released under the MIT license
 
 Ported to Xamarin.iOS by Ivan Herrera
