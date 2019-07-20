@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: customtransitions
 ---
 # Custom View Controller Presentations and Transitions

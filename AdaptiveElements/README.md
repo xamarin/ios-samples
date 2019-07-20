@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: adaptiveelements
 ---
 # AdaptiveElements: Implementing Your Own Adaptive Design with UIKit

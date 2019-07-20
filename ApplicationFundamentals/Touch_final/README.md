@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: applicationfundamentals-touch-final
 ---
 # Touch in iOS (Completed Sample)

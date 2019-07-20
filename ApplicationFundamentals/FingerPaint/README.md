@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: applicationfundamentals-fingerpaint
 ---
 # Multi-Touch Tracking for iOS

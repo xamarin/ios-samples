@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: contacts
 ---
 # Contacts: Using ContactsUI View Controllers and Properties
