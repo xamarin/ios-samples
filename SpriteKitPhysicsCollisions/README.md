@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: spritekitphysicscollisions
 ---
 # Sprite Kit Physics Collisions

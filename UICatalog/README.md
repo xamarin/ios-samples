@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: uicatalog
 ---
 # UICatalog: Creating and Customizing UIKit Controls
