@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: mtdwalkthrough
 ---
 # MonoTouch.Dialog Element Walkthrough

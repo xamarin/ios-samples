@@ -1,13 +1,11 @@
 ---
 name: Xamarin.iOS - Hello, iOS
-description: This sample is the application that will be built at the end of the Getting Started guides. There are two seperate folders containing a solution....
+description: "This sample is the application that will be built at the end of the Get Started guides #getstarted"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: hello-ios
 ---
 # Hello, iOS

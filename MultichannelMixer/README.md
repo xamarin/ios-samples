@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: multichannelmixer
 ---
 # iPhone Multichannel Mixer test
