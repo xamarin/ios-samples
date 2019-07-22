@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Grouped Notifications
-description: This sample app demonstrates how to use the User Notifications framework to group notifications by their thread identifiers, a new feature...
+description: "This sample app demonstrates how to use the User Notifications framework to group notifications by their thread identifiers... #ios12"
 page_type: sample
 languages:
 - csharp

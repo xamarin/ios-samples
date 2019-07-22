@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Soup Chef
-description: This is a Xamarin port of Apple's Soup Chef sample. It demonstrates how to create an app that makes use of Siri Shortcuts, introduced in iOS 12....
+description: "This is a Xamarin port of Apple's Soup Chef sample. It demonstrates how to create an app that makes use of Siri Shortcuts #ios12"
 page_type: sample
 languages:
 - csharp
@@ -11,7 +11,7 @@ urlFragment: ios12-soupchef
 # Soup Chef
 
 This is a Xamarin port of Apple's [Soup Chef](https://developer.apple.com/documentation/sirikit/accelerating_app_interactions_with_shortcuts?language=objc)
-sample. It demonstrates how to create an app that makes use of Siri 
+sample. It demonstrates how to create an app that makes use of Siri
 Shortcuts, introduced in iOS 12.
 
 The application provides a way to order soup from a fictitious soup

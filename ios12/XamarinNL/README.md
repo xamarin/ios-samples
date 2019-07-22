@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - XamarinNL
-description: This app demonstrates how to use Apple's Natural Language framework to recognize languages, tokenize text into words and sentences, and tag named...
+description: "Demonstrates how to use Apple's Natural Language framework to recognize languages, tokenize text into words and sentences, and tag... #ios12"
 page_type: sample
 languages:
 - csharp

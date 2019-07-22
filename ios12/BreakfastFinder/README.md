@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Breakfast Finder
-description: This sample is a C port of Apple's Recognizing Objects in Live Capture sample app. It demonstrates how to use the Vision framework and Core ML in...
+description: "A C# port of Apple's Recognizing Objects in Live Capture sample app. It demonstrates how to use the Vision framework and Core ML #ios12"
 page_type: sample
 languages:
 - csharp

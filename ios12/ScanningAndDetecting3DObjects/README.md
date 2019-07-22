@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Scanning App
-description: This is a port of the Apple sample Scanning and Detecting 3D Objects. The architecture and code design of the app follows that of the Swift app,...
+description: "This is a port of the Apple sample Scanning and Detecting 3D Objects. The architecture and code design of the app follows the Swift app #ios12"
 page_type: sample
 languages:
 - csharp
@@ -10,7 +10,7 @@ urlFragment: ios12-scanninganddetecting3dobjects
 ---
 # Scanning App
 
-This is a port of the Apple sample [Scanning and Detecting 3D Objects](https://developer.apple.com/documentation/arkit/scanning_and_detecting_3d_objects). The architecture and code design of the app follows that of the Swift app, with some exceptions discussed below. 
+This is a port of the Apple sample [Scanning and Detecting 3D Objects](https://developer.apple.com/documentation/arkit/scanning_and_detecting_3d_objects). The architecture and code design of the app follows that of the Swift app, with some exceptions discussed below.
 
 This sample requires a device that supports ARKit's "object scanning" configuration (`ARObjectScanningConfiguration`). This configuration is processor-intensive and may not be supported or may not produce adequate tracking on older hardware. This configuration also "disables ARKit features not necessary for reference object scanning," and should only be used for, essentially, the use-case embodied in this app. 
 

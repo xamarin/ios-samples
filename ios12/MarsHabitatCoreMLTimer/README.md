@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - MarsHabitatCoreMLTimer
-description: This sample uses the MarsHabitatPricer Core ML model from Apple's Integrating a Core ML Model into Your App sample to demonstrate the performance...
+description: "Use the MarsHabitatPricer Core ML model from Apple's Integrating a Core ML Model to demonstrate the performance... #ios12"
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Tracking Multiple Objects or Rectangles in Video
-description: This sample demonstrates how to apply Vision algorithms to track objects or rectangles throughout a video. Build Requirements Xamarin.iOS 12.0 or...
+description: "Demonstrates how to apply Vision algorithms to track objects or rectangles throughout a video #ios12"
 page_type: sample
 languages:
 - csharp

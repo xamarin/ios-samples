@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Delivering an Exceptional Accessibility Experience
-description: Make improvements to your app’s interaction model to support assistive technologies such as VoiceOver. To see the sample app in action, use Visual...
+description: "Make improvements to your app’s interaction model to support assistive technologies such as VoiceOver. To see the sample app in action... #ios12"
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: 'Xamarin.iOS - XamarinShot: Creating a Game for Augmented Reality'
-description: XamarinShot is an AR game for two to six players, featured in the WWDC18 keynote. Use this sample code project to experience it on your own device,...
+description: "XamarinShot is an AR game for two to six players, featured in the WWDC18 keynote. Use this sample project to experience it on your device... #ios12"
 page_type: sample
 languages:
 - csharp

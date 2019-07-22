@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Vision in Real Time with ARKit
-description: Manage Vision resources for efficient execution of a Core ML image classifier, and use SpriteKit to display image classifier output in AR. Build...
+description: "Manage Vision resources for efficient execution of a Core ML image classifier, and use SpriteKit to display image classifier output in AR #ios12"
 page_type: sample
 languages:
 - csharp

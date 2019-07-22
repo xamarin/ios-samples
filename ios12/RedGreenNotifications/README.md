@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Red & Green Notifications
-description: 'iOS 12 introduced various notification-related features, including: - Provisional notifications - Notification management features - Dynamic...'
+description: "iOS 12 introduced various notification-related features, including Provisional notifications, Notification management features... #ios12"
 page_type: sample
 languages:
 - csharp
