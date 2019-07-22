@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - StickyCorners
-description: The application positions a red box in one of the screen corners. The box can be manipulated by panning with a finger. Additionally, the box can be...
+description: "The application positions a red box in one of the screen corners. The box can be manipulated by panning with a finger #ios9"
 page_type: sample
 languages:
 - csharp

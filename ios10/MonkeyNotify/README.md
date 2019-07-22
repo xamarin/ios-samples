@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - MonkeyNotify
-description: This sample application shows how to use the new User Notification framework in a Xamarin.iOS running iOS 10 (or greater).
+description: Shows how to use the new User Notification framework in a Xamarin.iOS running #ios10"
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Eliza Chat
-description: 'This sample application shows how to use SiriKit to enable Siri Voice Control in a Xamarin.iOS running iOS 10 (or greater). NOTE: The Eliza Chat...'
+description: 'This sample application shows how to use SiriKit to enable Siri Voice Control in a Xamarin.iOS #ios10'
 page_type: sample
 languages:
 - csharp

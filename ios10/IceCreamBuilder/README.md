@@ -1,6 +1,6 @@
 ---
 name: 'Xamarin.iOS - Ice Cream Builder: A simple Messages app extension'
-description: This sample is a simple example of building an app extension that interacts with the Messages app and lets users send interactive messages and...
+description: "Example of building an app extension that interacts with the Messages app and lets users send interactive messages... #ios10"
 page_type: sample
 languages:
 - csharp

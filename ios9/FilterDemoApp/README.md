@@ -1,6 +1,6 @@
 ---
 name: 'Xamarin.iOS - AudioUnitV3Example: A Basic AudioUnit Extension and Host Implementation'
-description: Demonstrates how to build a fully-functioning example of an Audio Unit extension and Audio Unit host using the version 3 of the Audio Unit APIs....
+description: "Demonstrates how to build a fully-functioning example of an Audio Unit extension and Audio Unit host #ios9"
 page_type: sample
 languages:
 - csharp

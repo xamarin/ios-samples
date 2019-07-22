@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - RawExpose
-description: This sample demonstrates an application supporting a RAW image asset management system with native RAW editing capabilities on iOS using the...
+description: "Demonstrates an application supporting a RAW image asset management system with native RAW editing capabilities on #ios10"
 page_type: sample
 languages:
 - csharp

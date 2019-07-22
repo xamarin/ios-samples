@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - SpeedSketch
-description: This sample demonstrates how to capture touch input on iOS into a series of strokes and rendering them in a fast, efficient and correct way on a...
+description: "Demonstrates how to capture touch input on iOS into a series of strokes and rendering them in a fast, efficient and correct way #ios10"
 page_type: sample
 languages:
 - csharp

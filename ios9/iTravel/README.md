@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - iTravel
-description: This app replicates iTravel sample demonstrated on WWDC 2015 - session 214 about on-demand resources (original Swift source never been published to...
+description: "This app replicates iTravel sample demonstrated on WWDC 2015 - session 214 about on-demand resources #ios9"
 page_type: sample
 languages:
 - csharp

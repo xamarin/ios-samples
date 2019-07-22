@@ -1,6 +1,6 @@
 ---
 name: 'Xamarin.iOS - AstroLayout: Building Adaptive UI with Auto Layout'
-description: This sample demonstrates how to properly activate and deactivate groups of constraints in response to a size class change. It also shows how to...
+description: "Demonstrates how to properly activate and deactivate groups of constraints in response to a size class change #ios9"
 page_type: sample
 languages:
 - csharp

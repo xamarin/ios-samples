@@ -1,6 +1,6 @@
 ---
 name: 'Xamarin.iOS - PhotoProgress: Using NSProgress'
-description: This sample demonstrates how to create and compose NSProgress objects, and show their progress in your app. The app presents a collection view of...
+description: "Demonstrates how to create and compose NSProgress objects, and show their progress in your app. The app presents a collection view of... #ios9"
 page_type: sample
 languages:
 - csharp

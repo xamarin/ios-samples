@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - A demonstration of automatic RTL support in Asset Catalogs and UIStackViews
-description: This sample project illustrates the usage of Directional Image Assets in an iOS project. By using Directional Image Assets, images shown on-screen...
+description: "This sample project illustrates the usage of Directional Image Assets in an iOS project. By using Directional Image Assets... #ios10"
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - TouchCanvas
-description: TouchCanvas illustrates responsive touch handling using coalesced and predictive touches (when available) via a simple drawing app. The sample uses...
+description: "TouchCanvas illustrates responsive touch handling using coalesced and predictive touches (when available) via a simple drawing app #ios9"
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - AVCamManual
-description: AVCamManual adds manual controls for focus, exposure, and white balance to the AVCam sample application. AVCamManual now uses AVCapturePhotoOutput...
+description: "AVCamManual adds manual controls for focus, exposure, and white balance to the AVCam sample application #ios10"
 page_type: sample
 languages:
 - csharp

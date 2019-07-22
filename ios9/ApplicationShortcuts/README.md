@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Application Shortcuts
-description: Demonstrates how to use the UIApplicationShortcutItem class to provide quick access to parts of your application directly from the device's home...
+description: "Demonstrates how to use the UIApplicationShortcutItem class to provide quick access to parts of your application from the device's home... #ios9"
 page_type: sample
 languages:
 - csharp

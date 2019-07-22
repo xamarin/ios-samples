@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - SegueCatalog
-description: Sample demonstrates how to combine UIStoryboardSegue subclasses with Transition Delegates and Adaptivity, and how to use unwind segues Build...
+description: "Demonstrates how to combine UIStoryboardSegue subclasses with Transition Delegates and Adaptivity, and how to use unwind segues #ios9"
 page_type: sample
 languages:
 - csharp

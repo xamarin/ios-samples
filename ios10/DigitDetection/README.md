@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - MPSCNNHelloWorld
-description: This sample is a port of the open source library, TensorFlow trained networks trained on MNIST Dataset via inference using Metal Performance...
+description: "This sample is a port of the open source library, TensorFlow trained networks trained on MNIST Dataset via inference... #ios10"
 page_type: sample
 languages:
 - csharp

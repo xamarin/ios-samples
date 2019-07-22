@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Fox
-description: This sample code demonstrates how to use Xcode to build a SceneKit level, choose the renderer in between Metal and OpenGL ES, add positional audio...
+description: "Demonstrates how to use Xcode to build a SceneKit level, choose the renderer in between Metal and OpenGL ES, add positional audio... #ios9"
 page_type: sample
 languages:
 - csharp

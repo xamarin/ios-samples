@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - HomeKitCatalog
-description: HomeKit Catalog demonstrates how to use the HomeKit API, to create homes, to associate accessories with homes, to group the accessories into rooms...
+description: "HomeKit Catalog demonstrates how to use the HomeKit API, to create homes, associate accessories with homes, group accessories into rooms... #ios9"
 page_type: sample
 languages:
 - csharp

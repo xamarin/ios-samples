@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - PictureInPicture
-description: This sample demonstrates the use of AVPictureInPictureController to get picture in picture playback of video content from an application. It shows...
+description: "Demonstrates the use of AVPictureInPictureController to get picture in picture playback of video content from an application #ios9"
 page_type: sample
 languages:
 - csharp

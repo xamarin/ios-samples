@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - iOSTenThree
-description: This app demonstrates how to use Request Review, Index Display Mode and Alternate App Icons in a Xamarin.iOS. Alternate App Icons Apple has added...
+description: Demonstrates how to use Request Review, Index Display Mode and Alternate App Icons in a Xamarin.iOS. Alternate App Icons Apple has added... #ios10"
 page_type: sample
 languages:
 - csharp

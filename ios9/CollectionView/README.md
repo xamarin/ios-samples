@@ -1,6 +1,6 @@
 ---
 name: 'Xamarin.iOS - Collection Views: Using the New Drag-To-Reorder Feature'
-description: In iOS 9, the Collection View (UICollectionView) supports dragging reordering of items out of the box by adding a new default gesture recognizer...
+description: "Collection View (UICollectionView) supports dragging reordering of items out of the box by adding a new default gesture recognizer... #ios9"
 page_type: sample
 languages:
 - csharp

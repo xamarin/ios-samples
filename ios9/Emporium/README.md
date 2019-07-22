@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Emporium
-description: This sample shows how to integrate Apple Pay into a simple shopping experience. You'll learn how to make payment requests, collect shipping and...
+description: "Shows how to integrate Apple Pay into a simple shopping experience. Learn how to make payment requests, collect shipping and... #ios9"
 page_type: sample
 languages:
 - csharp

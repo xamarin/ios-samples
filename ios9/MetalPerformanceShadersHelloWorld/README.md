@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - MetalPerformanceShaders HelloWorld
-description: This sample demonstrates how easy it is to use the MetalPerformanceShaders framework. To convince you of its ease of use, the sample shows how to...
+description: "Demonstrates how easy it is to use the MetalPerformanceShaders framework. To convince you of its ease of use, the sample shows how to... #ios9"
 page_type: sample
 languages:
 - csharp
