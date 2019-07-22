@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios11-weatherwidget
 ---
 # Building a Simple Widget for the Today View

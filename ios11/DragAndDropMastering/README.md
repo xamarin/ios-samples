@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios11-draganddropmastering
 ---
 # Mastering Drag and Drop in iOS 11

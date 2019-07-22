@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios11-visionrectangles
 ---
 # Vision Rectangle Detection Example

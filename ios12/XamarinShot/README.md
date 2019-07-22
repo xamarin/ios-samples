@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios12-xamarinshot
 ---
 # XamarinShot: Creating a Game for Augmented Reality

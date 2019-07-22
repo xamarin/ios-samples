@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: watchkit-gettingstarted
 ---
 # Getting Started with Watch Kit

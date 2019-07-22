@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios9-filterdemoapp
 ---
 # AudioUnitV3Example: A Basic AudioUnit Extension and Host Implementation

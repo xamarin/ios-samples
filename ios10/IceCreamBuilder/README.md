@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios10-icecreambuilder
 ---
 # Ice Cream Builder: A simple Messages app extension

@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios12-scanninganddetecting3dobjects
 ---
 # Scanning App

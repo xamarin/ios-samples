@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios9-astrolayout
 ---
 # AstroLayout: Building Adaptive UI with Auto Layout

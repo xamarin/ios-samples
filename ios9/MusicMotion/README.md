@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios9-musicmotion
 ---
 # MusicMotion: Adding Motion Awareness to a Music App

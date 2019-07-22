@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios10-flags
 ---
 # A demonstration of automatic RTL support in Asset Catalogs and UIStackViews

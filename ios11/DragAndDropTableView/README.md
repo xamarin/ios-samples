@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios11-draganddroptableview
 ---
 # Drag and Drop TableView Example

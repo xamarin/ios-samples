@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios9-collectionview
 ---
 # Collection Views: Using the New Drag-To-Reorder Feature

@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios11-coremlazuremodel
 ---
 # CoreML with Azure Custom Vision Service

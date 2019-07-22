@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: watchos-watchpuzzle
 ---
 # WatchPuzzle (watchOS 3)

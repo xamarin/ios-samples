@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: watchos-watchkitcatalog
 ---
 # WatchKit Catalog (watchOS 3)

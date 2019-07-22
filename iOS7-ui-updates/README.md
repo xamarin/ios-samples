@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios7-ui-updates
 ---
 # iOS 7 UI Updates (ImageViewer sample)

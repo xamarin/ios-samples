@@ -6,8 +6,6 @@ languages:
 - csharp
 products:
 - xamarin
-technologies:
-- xamarin-ios
 urlFragment: ios8-motionactivitydemo
 ---
 # MotionActivityDemo: Integrating Motion Activity into your app
