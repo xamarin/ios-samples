@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - CloudKitAtlas
-description: CloudKitAtlas is a sample intended as a quick introduction to CloudKit. It teaches you how to use Discoverability to get the first name and last...
+description: "CloudKitAtlas is a sample intended as a quick introduction to CloudKit. It teaches you how to use Discoverability... #ios8"
 page_type: sample
 languages:
 - csharp
@@ -27,7 +27,7 @@ https://developer.apple.com/membercenter/index.action, select
 "Certificates, Identifiers & Profiles" and use the following
 instructions.
 
-Folow the instructions which can be found in [this guide](http://developer.xamarin.com/guides/ios/platform_features/introduction_to_the_document_picker/#Enabling_iCloud_in_Xamarin), or follow the steps below.
+Folow the instructions which can be found in [this guide](https://docs.microsoft.com/xamarin/ios/platform/document-picker#Enabling_iCloud_in_Xamarin), or follow the steps below.
 
 First of all, you should create an app ID.  To do that, select "App
 ID's" in "Identifiers" section and then press add button at top-right
@@ -60,8 +60,7 @@ Finally, open sample in Xamarin Studio and open project settings.
 * Make sure you are signed into your iCloud account in the simulator
   or device before running the app.
 
-
-# Copyright
+# License
 
 Xamarin port changes are released under the MIT license
 

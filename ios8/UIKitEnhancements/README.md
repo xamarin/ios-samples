@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - UIKitEnhancements
-description: This sample is a catalog exhibiting many views and controls that have been updated or introducted in the UIKit framework in iOS 8. This sample is...
+description: "A catalog exhibiting many views and controls that have been updated or introducted in the UIKit framework in iOS #ios8"
 page_type: sample
 languages:
 - csharp

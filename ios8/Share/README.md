@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Share
-description: This is an app extension sample using the Share Extension. The extension is avaible across the whole system by clicking on the iOS share button...
+description: "This is an app extension sample using the Share Extension, available across the whole system by clicking on the iOS share button... #ios8"
 page_type: sample
 languages:
 - csharp

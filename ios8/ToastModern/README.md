@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Toast Modern
-description: This sample shows how you can test ideas to save time and money building the right things and get new ideas to make the experience of your product...
+description: "Shows how you can test ideas to save time and money building the right things and get new ideas to make the experience of your product... #ios8"
 page_type: sample
 languages:
 - csharp

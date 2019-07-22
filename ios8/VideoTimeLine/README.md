@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - VideoTimeLine
-description: VideoTimeLine shows how to use VTDecompressionSession to get direct access to the hardware video decoder on iOS. This sample demonstrates how to...
+description: "VideoTimeLine shows how to use VTDecompressionSession to get direct access to the hardware video decoder on iOS #ios8"
 page_type: sample
 languages:
 - csharp

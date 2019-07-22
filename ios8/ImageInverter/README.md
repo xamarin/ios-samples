@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - ImageInverter
-description: This sample code shows how to use an Action extension with a view controller. The app shares an image through a UIActivityViewController while the...
+description: "This sample code shows how to use an Action extension with a view controller. The app shares an image through a UIActivityViewController #ios8"
 page_type: sample
 languages:
 - csharp

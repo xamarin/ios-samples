@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Font Example
-description: Lists the fonts available on the device and shows a preview of each font. License Code is released under the MIT license
+description: Lists the fonts available on the device and shows a preview of each font.
 page_type: sample
 languages:
 - csharp
@@ -15,6 +15,7 @@ Lists the fonts available on the device and shows a preview of each font.
 ![Main Screen](Screenshots/screenshot-1.png)
 
 ## License
+
 Code is released under the MIT license
 
 ## Authors

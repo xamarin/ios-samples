@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - iOS 7 Font Features
-description: This sample shows how to use many of the new iOS 7 font features in your application and how to customize fonts using UIFontDescriptors.
+description: "Shows how to use many of the new iOS 7 font features in your application and how to customize fonts using UIFontDescriptors #ios7"
 page_type: sample
 languages:
 - csharp

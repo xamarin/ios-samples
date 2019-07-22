@@ -1,6 +1,6 @@
 ---
 name: 'Xamarin.iOS - Hello World: iPhone'
-description: A simple hello world sample demonstrating the use of the UIButton and UILabel controls, and simple user interaction with them.
+description: "Hello world sample demonstrating the use of the UIButton and UILabel controls, and simple user interaction with them #getstarted"
 page_type: sample
 languages:
 - csharp

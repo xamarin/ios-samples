@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - iOS 7 UI Updates (ImageViewer sample)
-description: This sample project relates to the Xamarin.iOS 7 UI guide, and shows the use of TopLayoutGuide and EdgesForExtendedLayout.
+description: "This sample project relates to the Xamarin.iOS 7 UI guide, and shows the use of TopLayoutGuide and EdgesForExtendedLayout #ios7"
 page_type: sample
 languages:
 - csharp

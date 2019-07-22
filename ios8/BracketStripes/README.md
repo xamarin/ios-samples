@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Bracket Stripes
-description: This sample shows how to use bracketing API in AVFoundation. App's code demonstrates how to use Auto-exposure brackets and Manual exposure brackets...
+description: "Shows how to use bracketing API in AVFoundation. App's code demonstrates how to use Auto-exposure brackets and Manual exposure brackets... #ios8"
 page_type: sample
 languages:
 - csharp

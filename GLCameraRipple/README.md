@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - GLCameraRipple
-description: This sample shows how to use GLKit to render OpenGL frames, AVFoundation to fetch live video from the camera and OpenTK's API to load a couple of...
+description: This sample shows how to use GLKit to render OpenGL frames, AVFoundation to fetch live video from the camera and OpenTK API to load a couple of...
 page_type: sample
 languages:
 - csharp

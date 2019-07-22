@@ -10,7 +10,7 @@ urlFragment: httpclient
 ---
 # HTTP Client
 
-An example on using both the .NET and Objective-C classes to send a web request in one Xamarin application. 
+An example on using both the .NET and Objective-C classes to send a web request in one Xamarin application.
 
 ![Home Screen](Screenshots/screenshot-1.png)
 

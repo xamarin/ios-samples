@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Intro To HealthKit
-description: An example of how to use the HealthKit framework, recording users Heartbeat data. This relates to the Introduction to HealthKit guide in the...
+description: "An example of how to use the HealthKit framework, recording users Heartbeat data. This relates to the Introduction to HealthKit guide #ios8"
 page_type: sample
 languages:
 - csharp

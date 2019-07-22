@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Hello Goodbye
-description: This project shows you how to use the Accessibility API to widen your user base. It demonstrates how you can adjust your user interface when a user...
+description: "This project shows you how to use the Accessibility API to widen your user base. It demonstrates how you can adjust your user interface #ios8"
 page_type: sample
 languages:
 - csharp

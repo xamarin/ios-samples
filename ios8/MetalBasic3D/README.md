@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - MetalBasic3D
-description: 'This sample is an equivalent for Xcode OpenGL ES template. It shows how to: Work with basic Metal classes such as MTLDevice and CAMetalLayer Create...'
+description: 'This sample is an equivalent for Xcode OpenGL ES template. It shows how to: Work with basic Metal classes such as MTLDevice and CAMetalLayer #ios8'
 page_type: sample
 languages:
 - csharp

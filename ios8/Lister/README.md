@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Lister
-description: Lister is a productivity sample code project for iOS. In this sample, the user can create lists, add items to lists, and track the progress of...
+description: "Lister is a productivity sample code project for iOS. In this sample, the user can create lists, add items to lists, and track the progress #ios8"
 page_type: sample
 languages:
 - csharp

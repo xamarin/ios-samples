@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Kannada Keyboard
-description: Kannada Keyboard is a keyboard extension for iOS 8. It enables users to enter and communicate in Kannada throughout iOS. The sample solution has...
+description: "Kannada Keyboard is a keyboard extension for iOS 8. It enables users to enter and communicate in Kannada throughout iOS #ios8"
 page_type: sample
 languages:
 - csharp

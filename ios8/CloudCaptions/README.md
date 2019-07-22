@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - CloudCaptions
-description: This sample shows how to use CloudKit to upload and retrieve CKRecords and associated assets. In this example, there are two record types, an Image...
+description: "Shows how to use CloudKit to upload and retrieve CKRecords and associated assets. In this example, there are two record types, an Image... #ios8"
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Dynamic Launch Screens
-description: This sample application shows how to create a special type of storyboard to be used as a Dynamic Launch Screen in a Xamarin.iOS application....
+description: "This sample application shows how to create a special type of storyboard to be used as a Dynamic Launch Screen in Xamarin.iOS #ios8"
 page_type: sample
 languages:
 - csharp
@@ -10,7 +10,7 @@ urlFragment: ios8-dynamiclaunchscreen
 ---
 # Dynamic Launch Screens
 
-This sample application shows how to create a special type of storyboard to be used as a Dynamic Launch Screen in a Xamarin.iOS application. 
+This sample application shows how to create a special type of storyboard to be used as a Dynamic Launch Screen in a Xamarin.iOS application.
 
 ## Unified Storyboards
 

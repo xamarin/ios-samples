@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - SceneKit Vehicle Demo
-description: This sample shows how to create simple iOS game with SceneKit. The vehicle itself is represented by SCNPhysicsVehicle instance and can be...
+description: "Shows how to create simple iOS game with SceneKit. The vehicle itself is represented by SCNPhysicsVehicle instance and can be... #ios8"
 page_type: sample
 languages:
 - csharp

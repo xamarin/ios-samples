@@ -1,6 +1,6 @@
 ---
 name: 'Xamarin.iOS - MotionActivityDemo: Integrating Motion Activity into your app'
-description: This projects shows an example of using both historical and live data from the CoreMotion MotionActivity and Step Counting APIs. The data is then...
+description: "This projects shows an example of using both historical and live data from the CoreMotion MotionActivity and Step Counting APIs #ios8"
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - KeychainTouchID
-description: KeychainTouchID sample demonstrates how to add, delete, update and copy Touch ID items to keychain. It also shows how to set custom promts to...
+description: "KeychainTouchID sample demonstrates how to add, delete, update and copy Touch ID items to keychain #ios8"
 page_type: sample
 languages:
 - csharp
@@ -12,7 +12,7 @@ urlFragment: ios8-keychaintouchid
 
 KeychainTouchID sample demonstrates how to add, delete, update and
 copy Touch ID items to keychain. It also shows how to set custom
-promts to security dialog and how to use LocalAuthentication to invoke
+prompts to security dialog and how to use LocalAuthentication to invoke
 Touch ID verification without keychain.
 
 ## Requirements

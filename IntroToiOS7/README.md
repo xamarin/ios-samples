@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Intro to iOS 7
-description: These small sample projects relate to the Intro to iOS 7 guide, and show a number of transitions.
+description: "These small sample projects relate to the Intro to iOS 7 guide, and show a number of transitions #ios7"
 page_type: sample
 languages:
 - csharp

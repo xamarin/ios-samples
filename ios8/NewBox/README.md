@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - NewBox
-description: 'This sample shows you how to: Use UIDocumentMenuViewController and UIDocumentMenuViewController. Create Document Provider extensions:...'
+description: 'Shows you how to: Use UIDocumentMenuViewController and UIDocumentMenuViewController. Create Document Provider extensions #ios8'
 page_type: sample
 languages:
 - csharp

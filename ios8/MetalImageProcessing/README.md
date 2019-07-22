@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - MetalImageProcessing
-description: This sample extends the textured quad sample by adding a Metal compute encoder to convert the image to greyscale. Note the compute encoder is part...
+description: "This sample extends the textured quad sample by adding a Metal compute encoder to convert the image to greyscale #ios8"
 page_type: sample
 languages:
 - csharp

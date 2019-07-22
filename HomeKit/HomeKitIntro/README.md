@@ -8,7 +8,7 @@ products:
 - xamarin
 urlFragment: homekit-homekitintro
 ---
-# HomeKitIntro
+# Xamarin.iOS HomeKit intro
 
 This sample application shows how to use HomeKit to write home automation applications in Xamarin.iOS.
 

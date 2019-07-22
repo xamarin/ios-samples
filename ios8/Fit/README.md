@@ -1,6 +1,6 @@
 ---
 name: 'Xamarin.iOS - Fit: Store and Retrieve HealthKit Data'
-description: Fit is a sample intended as a quick introduction to HealthKit. It teaches you everything from writing data into HealthKit to reading data from...
+description: "Fit is a sample intended as a quick introduction to HealthKit. It teaches you everything from writing data into HealthKit to reading data #ios8"
 page_type: sample
 languages:
 - csharp

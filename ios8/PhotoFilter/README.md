@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Photo Filter
-description: This is an app extension sample showing you how to implement a Photo Editing extension. This extension allows the user to select a filter effect to...
+description: "App extension sample showing you how to implement a Photo Editing extension. This extension allows the user to select a filter effect... #ios8"
 page_type: sample
 languages:
 - csharp

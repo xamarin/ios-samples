@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Single Word Keyboard
-description: This is an app extension sample. It uses the Keyboard Extension to provide a new keyboard for the system that has a unique button. Instructions To...
+description: "This is an app extension sample. It uses the Keyboard Extension to provide a new keyboard for the system that has a unique button. #ios8"
 page_type: sample
 languages:
 - csharp

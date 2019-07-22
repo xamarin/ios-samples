@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Photo Handoff
-description: Demonstrates how to use Handoff technology. Handoff uses NSUserActivity class which encapsulates the state of a user activity in an application on...
+description: "Demonstrates how to use Handoff technology. Handoff uses NSUserActivity class which encapsulates the state of a user activity in an application #ios8"
 page_type: sample
 languages:
 - csharp

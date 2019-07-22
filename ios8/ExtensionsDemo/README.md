@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - ExtensionsDemo
-description: This sample shows how to create a today widget extension.
+description: "This sample shows how to create a today widget extension #ios8"
 page_type: sample
 languages:
 - csharp

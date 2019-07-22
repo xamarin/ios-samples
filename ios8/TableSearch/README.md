@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Table Search with UISearchController
-description: This sample demonstrates how to create a table view controller and search controller to manage the display of searchable content. It creates...
+description: "Demonstrates how to create a table view controller and search controller to manage the display of searchable content #ios8"
 page_type: sample
 languages:
 - csharp
