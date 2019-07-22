@@ -12,7 +12,7 @@ urlFragment: ios11-sirikitsample
 
 This sample is a demo of the new iOS 11 SiriKit domain _Lists and Notes_. It also uses the _Alternative App Name_ **Info.plist** setting.
 
-![create task list example](Screenshots/CreateTaskList-sml.png) ![set task to complete example](SetTaskAttribute-sml.png)
+![create task list example](Screenshots/CreateTaskList-sml.png) ![set task to complete example](Screenshots/SetTaskAttribute-sml.png)
 
 
 ## License
