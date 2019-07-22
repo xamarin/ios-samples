@@ -1,6 +1,6 @@
 ---
 name: 'Xamarin.iOS - StackView: Using the UIStackView Control'
-description: "Demonstrates how to use the new Stack View control (UIStackView) in a Xamarin.iOS application to layout a collection of subviews and... #ios9
+description: "Demonstrates how to use the new Stack View control (UIStackView) in a Xamarin.iOS application to layout a collection of subviews"
 page_type: sample
 languages:
 - csharp
