@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Multiuser AR Experience
-description: "Demonstrates how to transmit ARKit world-mapping data between nearby devices with the MultipeerConnectivity framework to create a... #ios12"
+description: "Demonstrates how to transmit ARKit world-mapping data between nearby devices with the MultipeerConnectivity framework to create a..."
 page_type: sample
 languages:
 - csharp
