@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - SiriKit Sample "TasksNotes"
-description: This sample is a demo of the new iOS 11 SiriKit domain Lists and Notes. It also uses the Alternative App Name Info.plist setting. License Code is...
+description: "This sample is a demo of the new iOS 11 SiriKit domain Lists and Notes. It also uses the Alternative App Name Info.plist setting #ios11"
 page_type: sample
 languages:
 - csharp

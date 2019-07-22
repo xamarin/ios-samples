@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - ARKit Sample
-description: This sample is a simple ARKit augmented reality demo. To test this sample you'll need to deploy it on a device running iOS 11 beta software. By...
+description: "This sample is a simple ARKit augmented reality demo. To test this sample you'll need to deploy it on a device running iOS 11 beta software #ios11"
 page_type: sample
 languages:
 - csharp

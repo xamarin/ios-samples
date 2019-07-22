@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - PDFAnnotationWidgets
-description: This sample is a demo of iOS 11 features in PDFKit, adding input fields to a PDF document. License Xamarin port changes are released under the MIT...
+description: "Demo of iOS 11 features in PDFKit, adding input fields to a PDF document #ios11"
 page_type: sample
 languages:
 - csharp

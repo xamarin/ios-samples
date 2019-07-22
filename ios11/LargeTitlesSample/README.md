@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Large Titles support
-description: This sample demonstrates how to enable large titles in the navbar of iOS 11 applications. License MIT license
+description: "This sample demonstrates how to enable large titles in the navbar of iOS 11 applications #ios11"
 page_type: sample
 languages:
 - csharp

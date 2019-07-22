@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Tracking Objects Example
-description: This program demonstrates the rectangle and object-tracking capability of iOS 11's Vision namespace. These capabilities rely on a live video feed...
+description: "Demonstrates the rectangle and object-tracking capability of iOS 11's Vision namespace. These capabilities rely on a live video feed... #ios11"
 page_type: sample
 languages:
 - csharp

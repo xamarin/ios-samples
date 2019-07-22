@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - MusicKitSample
-description: MusicKit on iOS lets users play Apple Music and their local music library natively from your apps and games. When a user provides permission to...
+description: "MusicKit on iOS lets users play Apple Music and their local music library natively from your apps and games #ios11"
 page_type: sample
 languages:
 - csharp

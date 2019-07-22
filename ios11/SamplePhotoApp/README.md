@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - SamplePhotoApp
-description: A basic Photos-like app to demonstrate the Photos framework. Lists albums and built-in collections (Recently Added, Favorites, etc) Displays assets...
+description: "A basic Photos-like app to demonstrate the Photos framework. Lists albums and built-in collections (Recently Added, Favorites, etc) #ios11"
 page_type: sample
 languages:
 - csharp

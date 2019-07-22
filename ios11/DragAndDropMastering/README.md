@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Mastering Drag and Drop in iOS 11
-description: There are two app projects in this sample, intended to be run at the same time on an iPad. The DragSource app contains a variety of different types...
+description: "There are two app projects in this sample, intended to be run at the same time on an iPad. The DragSource app contains different types... #ios11"
 page_type: sample
 languages:
 - csharp

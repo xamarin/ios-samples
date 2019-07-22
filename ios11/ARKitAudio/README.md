@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - ARKitAudio
-description: This sample runs an ARKit world tracking session with content displayed in a SceneKit view. To demonstrate plane detection, the app simply places a...
+description: "This sample runs an ARKit world tracking session with content displayed in a SceneKit view. To demonstrate plane detection... #ios11"
 page_type: sample
 languages:
 - csharp

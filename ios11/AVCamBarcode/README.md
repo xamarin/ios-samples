@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - AVCamBarcode
-description: This sample demonstrates how to use the AVFoundation capture API to detect barcodes and faces. Machine Readable Codes QR code PDF-417 Data Matrix...
+description: "Demonstrates how to use the AVFoundation capture API to detect barcodes and faces. Machine Readable Codes QR code PDF-417 Data Matrix... #ios11"
 page_type: sample
 languages:
 - csharp

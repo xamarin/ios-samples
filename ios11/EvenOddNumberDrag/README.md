@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Even/Odd Number Drag
-description: This sample demonstrates how to use the iOS 11 Drag and Drop APIs within a single iPhone app. The app shows a number in the middle of the screen,...
+description: "Demonstrates how to use the iOS 11 Drag and Drop APIs within a single iPhone app. The app shows a number in the middle of the screen... #ios11"
 page_type: sample
 languages:
 - csharp

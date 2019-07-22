@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Local Authentication using Face ID or Touch ID
-description: Demonstrates how to use Face ID and Touch ID to authenticate the user. Refer to the Introduction to Touch ID guide. See Also KeychainTouchID Sample...
+description: "Demonstrates how to use Face ID and Touch ID to authenticate the user. Refer to the Introduction to Touch ID guide #ios11"
 page_type: sample
 languages:
 - csharp

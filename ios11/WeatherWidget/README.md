@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Building a Simple Widget for the Today View
-description: This sample code builds a weather app that displays a simple five-day weather forecast using a horizontally paging collection view. Each collection...
+description: "This sample code builds a weather app that displays a simple five-day weather forecast using a horizontally paging collection view #ios11"
 page_type: sample
 languages:
 - csharp

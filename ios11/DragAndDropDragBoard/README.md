@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Drag and Drop Example
-description: This sample is a demo of the new iOS 11 Drag and Drop. Test this app on an iPad - the drag and drop functionality does not work on iPhone. Open an...
+description: "Demo of the new iOS 11 Drag and Drop. Test this app on an iPad - the drag and drop functionality does not work on iPhone #ios11"
 page_type: sample
 languages:
 - csharp

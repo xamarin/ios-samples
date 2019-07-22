@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Drag and Drop TableView Example
-description: This sample is a demo of the new iOS 11 Drag and Drop feature using for a UITableView Test this app on an iPad - the drag and drop functionality...
+description: "Demo of the new iOS 11 Drag and Drop feature using for a UITableView Test this app on an iPad - the drag and drop functionality... #ios11"
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Adding Realistic Reflections to an AR Experience
-description: Use ARKit to generate environment probe textures from camera imagery and render reflective virtual objects. This app provides a simple AR...
+description: "Use ARKit to generate environment probe textures from camera imagery and render reflective virtual objects #ios11"
 page_type: sample
 languages:
 - csharp

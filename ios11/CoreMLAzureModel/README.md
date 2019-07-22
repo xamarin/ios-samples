@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - CoreML with Azure Custom Vision Service
-description: This sample CustomVision is a demo of the new iOS 11 Vision framework and CoreML, using a model trained with Azure's Custom Vision Service. This...
+description: "This sample CustomVision is a demo of the new iOS 11 Vision framework and CoreML, using a model trained with Azure's Custom Vision Service #ios11"
 page_type: sample
 languages:
 - csharp

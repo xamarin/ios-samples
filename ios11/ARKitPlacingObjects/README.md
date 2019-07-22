@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - ARKit Sample "Placing Objects"
-description: "This sample is an ARKit augmented reality demo: you can place objects on detected surfaces. To test this sample you'll need to deploy it on a..."
+description: "This sample is an ARKit augmented reality demo: you can place objects on detected surfaces. To test this sample you'll need to deploy it #ios11"
 page_type: sample
 languages:
 - csharp

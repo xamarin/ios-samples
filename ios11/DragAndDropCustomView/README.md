@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Drag and Drop Custom View Example
-description: This sample is a demo of the new iOS 11 Drag and Drop feature in a custom view Test this app on an iPad - the drag and drop functionality does not...
+description: "Demo of the new iOS 11 Drag and Drop feature in a custom view Test this app on an iPad - the drag and drop functionality does not... #ios11"
 page_type: sample
 languages:
 - csharp

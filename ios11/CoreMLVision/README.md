@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - CoreML and Vision Example
-description: This sample is a demo of the new iOS 11 Vision framework and CoreML. It detects a handwritten number inside a box; use the sample photos in the...
+description: "Demo of the new iOS 11 Vision framework and CoreML. It detects a handwritten number inside a box; use the sample photos in the... #ios11"
 page_type: sample
 languages:
 - csharp
