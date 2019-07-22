@@ -10,5 +10,7 @@ urlFragment: hello-ipad
 ---
 # Hello iPad
 
+[Xamarin.iOS samples](https://review.docs.microsoft.com/en-us/samples/browse/?branch=master&products=xamarin&term=Xamarin.iOS) | [Xamarin.iOS docs](https://docs.microsoft.com/xamarin/ios/)
+
 This is a simple hello world application demonstrating how to
 create, configure, and build applications specific to the iPad.
