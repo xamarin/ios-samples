@@ -15,7 +15,7 @@ This sample demonstrates how to transmit ARKit world-mapping data between nearby
 
 ![Added Object](Screenshots/screenshots_1.png)
 
-Diagram showing AR experiences on two devices viewing, from two different perspectives, the same virtual red panda character sitting on a real table, after an ARWorldMap is transmitted from one device to the other.
+Diagram showing AR experiences on two devices viewing, from two different perspectives, the same virtual red panda character sitting on a real table, after an `ARWorldMap` is transmitted from one device to the other.
 
 ![Diagram](ARMultiuser/Screenshots/concept-art.png)
 
