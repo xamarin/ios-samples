@@ -17,7 +17,3 @@ The example also shows how to enable Airplay for displayed movies from
 within your applications.
 
 ![MoviePlayback application screenshot](Screenshots/01.png "MoviePlayback application screenshot")
-
-## Authors
-
-James Bentley

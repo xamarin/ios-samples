@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Touch Cells
-description: An example showing using a UITableView and displaying a custom cell within it. Preview
+description: An example showing using a UITableView and displaying a custom cell within it.
 page_type: sample
 languages:
 - csharp
@@ -8,14 +8,8 @@ products:
 - xamarin
 urlFragment: monodeveloptouchcells
 ---
-# Touch Cells
+# Xamarin.iOS MonoTouch Cells
 
 An example showing using a UITableView and displaying a custom cell within it.
 
-## Preview
-
-![iPhone running MonoDevelop TouchCells](http://farm7.static.flickr.com/6013/5999235933_dcab80c0a3.jpg)
-
-## Authors
-
-Miguel de Icaza
+![iPhone running MonoDevelop TouchCells](Screenshots/MonoDevelopTouchCells.jpg)

@@ -19,6 +19,8 @@ UIPopoverControllers are never presented at the same time.
 
 Popovers are only supported on the iPad.
 
+![Popovers application screenshot](Screenshots/Popovers1.png "Popovers application screenshot")
+
 ## Build Requirements
 
 iOS 4.1 or later
@@ -43,13 +45,6 @@ The detail view is also responsible for ensuring that there are never multiple p
 PopoverContentViewController
 A view controller that is the contents of the popovers in this sample. In this example, the view controller only contains a label with text.
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-![Popovers application screenshot](Screenshots/Popovers1.png "Popovers application screenshot")
-
-## Authors
-
-alexrp, 
-Craig Dunn

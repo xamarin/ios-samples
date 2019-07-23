@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - OpenGLES Sample
-description: A simple example of using OpenGLES in a MonoTouch application. Preview
+description: A simple example of using OpenGLES in a Xamarin.iOS application. Preview
 page_type: sample
 languages:
 - csharp
@@ -8,14 +8,8 @@ products:
 - xamarin
 urlFragment: openglessample
 ---
-# OpenGLES Sample
+# Xamarin.iOS OpenGLES Sample
 
-A simple example of using OpenGLES in a MonoTouch application.
+A simple example of using OpenGLES in a Xamarin.iOS application.
 
-## Preview
-
-![iPhone running OpenGLES sample](http://farm7.static.flickr.com/6136/5999292719_90550e7ed6.jpg)
-
-## Authors
-
-Miguel de Icaza
+![iPhone running OpenGLES sample](Screenshots/OpenGLESSample.jpg)

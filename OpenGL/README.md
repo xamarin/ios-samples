@@ -8,9 +8,11 @@ products:
 - xamarin
 urlFragment: opengl
 ---
-# OpenGL
+# Xamarin.iOS OpenGL
 
 A collection of samples for using OpenGL in Xamarin.iOS.  These samples are Xamarin ports of samples found in objective-c at https://github.com/jlamarche/iOS-OpenGLES-Stuff
+
+![OpenGL application screenshot](Screenshots/GLKBaseEffectDrawing.png "OpenGL application screenshot")
 
 ## GLKBaseEffectDrawing
 
@@ -32,8 +34,3 @@ Draws a rotating 20-sided die using shaders and a texture image.
 
 Adds directional lighting to OpenGLES20Example
 
-![OpenGL application screenshot](Screenshots/GLKBaseEffectDrawing.png "OpenGL application screenshot")
-
-## Authors
-
-Timothy Risi

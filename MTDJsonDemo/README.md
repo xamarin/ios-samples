@@ -8,6 +8,8 @@ products:
 - xamarin
 urlFragment: mtdjsondemo
 ---
-# MonoTouch.Dialog JSON Walkthrough
+# Xamarin.iOS MonoTouch.Dialog JSON Walkthrough
 
 This sample demonstrates how to use the JSON API with MonoTouch.Dialog
+
+![App showing user input fields loaded from JSON](Screenshots/MTDJsonDemo.png)
