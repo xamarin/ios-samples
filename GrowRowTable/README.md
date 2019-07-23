@@ -14,6 +14,4 @@ Starting with iOS 8, Apple added the ability to create a Table View (`UITableVie
 
 This sample shows how to create a Table View with Auto-Resizing Row Height.
 
-# Author
-
-Kevin Mullins - For Documentation usage.
+![App with variable height rows](Screenshots/01.png)

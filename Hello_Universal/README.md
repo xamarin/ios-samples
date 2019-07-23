@@ -10,8 +10,10 @@ urlFragment: hello-universal
 ---
 # Hello, Universal App
 
-[Xamarin.iOS samples](https://review.docs.microsoft.com/en-us/samples/browse/?branch=master&products=xamarin&term=Xamarin.iOS) | [Xamarin.iOS docs](https://docs.microsoft.com/xamarin/ios/)
+[Xamarin.iOS samples](https://docs.microsoft.com/en-us/samples/browse/?products=xamarin&term=Xamarin.iOS) | [Xamarin.iOS docs](https://docs.microsoft.com/xamarin/ios/)
 
 A sample demonstrating how to create universal applications that
 will run on both iPhone and iPad devices, by switching the UI based
 on the `UIInterfaceIdiom` enum.
+
+![Simple iPhone app](Screenshots/Hello_Universal1.png)

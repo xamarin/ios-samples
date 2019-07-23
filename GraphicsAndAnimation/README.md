@@ -11,3 +11,5 @@ urlFragment: graphicsandanimation
 # Graphics and Animations
 
 This contains three samples demonstrating the use of Core Graphics and Core Animation in iOS. It accompanies the [Graphics and Animation in iOS](https://docs.microsoft.com/xamarin/ios/platform/graphics-animation-ios/) guides.
+
+![Screenshot of image effects](Screenshots/07_animated_transition.png)

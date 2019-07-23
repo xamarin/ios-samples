@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Hello, Complex Universal
-description: A sample demonstrating how to create universal applications that will run on both iPhone and iPad devices, by switching the UI based on the...
+description: "A sample demonstrating how to create universal applications that will run on both iPhone and iPad devices #getstarted"
 page_type: sample
 languages:
 - csharp
@@ -19,4 +19,4 @@ way UI switching is done. Instead of having one controller manage
 two separate views depending on the device in use, we employ two
 different root controllers.
 
-**NOTE: This sample will only work with Xcode 5.0 or above.
+![Simple app with button and text](Screenshots/HelloComplexUniverse02.png)

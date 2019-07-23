@@ -44,7 +44,7 @@ Do the following to enable HomeKit support:
 24. Scroll to the bottom of the list and place a check by the **Enable HomeKit** checkbox.
 25. Save the changes to the entitlements.
 
-##The HomeKit Accessory Simulator
+## The HomeKit Accessory Simulator
 
 To make testing of a HomeKit enable mobile applications possible, Apple has created a HomeKit Accessory Simulator that allows the developer to create and configure different types of simulated home automation accessories. Using the simulator, the developer can create a wide range of virtual hardware with different configurations of options and features.  Apple is providing the HomeKit Accessory Simulator as a separate download from Xcode 6.
 
@@ -56,7 +56,7 @@ To install the simulator, do the following:
 4. Open the Downloads folder and unzip the tool.
 5. Copy the contents of the zip file to the Applications folder.
 
-###Creating Virtual Accessories
+### Creating Virtual Accessories
 
 To start the HomeKit Accessory Simulator and create a few virtual accessories, do the following;
 
@@ -69,7 +69,7 @@ To start the HomeKit Accessory Simulator and create a few virtual accessories, d
 
 With some sample virtual HomeKit accessories created and configured, a Xamarin iOS 8 mobile application can be created to consume and control these accessories.
 
-##Testing a HomeKit App
+## Testing a HomeKit App
 
 When the application is first run, the user will be asked if they want to allow it to access their HomeKit information. If the user answers **OK**, then the application will be able to work with their HomeKit Accessories otherwise it will not and any calls to HomeKit will fail with an error. 
 
@@ -77,8 +77,7 @@ A Primary Home must be created and configured before any other function of the H
 
 Once a Primary Home has been created or accessed, the iOS 8 application can call the `MHAccessoryBrowser` to find any new home automation accessories and add them to a home. Once the new accessory has been found, it should be presented to the user and they should be allowed to select an accessory and add it to a home. When the user selects an accessory from the list, the application calls the Home’s `AddAccessory` method to add it to the Home’s collection of accessories. The user will be asked to enter the setup code for the device to add, In the HomeKit Accessory Simulator this number can be found under the **Accessories Name**. For a real HomeKit accessory, the setup code will either be presented in the accessory’s user manual, on the product box or on a label on the device itself.
 
-## When working with HomeKit Service Characteristics and simulated accessories, modifications to Characteristics values can be monitored inside the HomeKit Accessory Simulator. With the `HomeKitIntro` app running on real iOS Device Hardware, changes to a characteristic’s value should be seen nearly instantly in the HomeKit Accessory Simulator. 
-## **NOTE:** Testing HomeKit only works on a real iOS 8 Hardware Device and not in the iOS 8 Simulator.
+When working with HomeKit Service Characteristics and simulated accessories, modifications to Characteristics values can be monitored inside the HomeKit Accessory Simulator. With the `HomeKitIntro` app running on real iOS Device Hardware, changes to a characteristic’s value should be seen nearly instantly in the HomeKit Accessory Simulator.
 
-
-
+> [!NOTE]
+> Testing HomeKit only works on a real iOS 8 Hardware Device and not in the iOS 8 Simulator.

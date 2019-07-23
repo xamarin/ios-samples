@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - MapkitViewer
-description: This sample demonstrates how to use MapKit. License Xamarin port changes are released under the MIT license.
+description: "Demonstrates how to use MapKit with Xamarin.iOS #map"
 page_type: sample
 languages:
 - csharp
@@ -8,7 +8,7 @@ products:
 - xamarin
 urlFragment: mapkitsearch
 ---
-# MapkitViewer
+# MapkitViewer for Xamarin.iOS
 
 This sample demonstrates how to use MapKit.
 
@@ -17,7 +17,3 @@ This sample demonstrates how to use MapKit.
 ## License
 
 Xamarin port changes are released under the MIT license.
-
-## Author
-
-Mykyta Bondarenko

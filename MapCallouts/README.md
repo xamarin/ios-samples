@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Map Callouts Demo
-description: An example of how to use the MapKit framework, displaying a map view with a custom MKAnnotations with custom callouts. Based on the Apple sample:...
+description: "Example of how to use the MapKit framework, displaying a map view with a custom MKAnnotations with custom callouts #map"
 page_type: sample
 languages:
 - csharp
@@ -8,7 +8,7 @@ products:
 - xamarin
 urlFragment: mapcallouts
 ---
-# Map Callouts Demo
+# Xamarin.iOS Map Callouts Demo
 
 An example of how to use the MapKit framework, displaying a map view with a
 custom MKAnnotations with custom callouts.
@@ -17,10 +17,6 @@ Based on the Apple sample:
 http://developer.apple.com/library/ios/#samplecode/MapCallouts/Introduction/Intro.html
 
 ![Map Callouts Demo application screenshot](Screenshots/MapCalloutsAll.png "Map Callouts Demo application screenshot")
-
-## Authors
-
-Rolf Bjarne Kvinge
 
 ## License
 
