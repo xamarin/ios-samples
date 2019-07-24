@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Zooming PDF Viewer
-description: This is a port of Apple's ZoomingPDFViewer (original written in ObjectiveC) available from:...
+description: This is a port of Apple's ZoomingPDFViewer (originally written in ObjectiveC)
 page_type: sample
 languages:
 - csharp
@@ -8,7 +8,7 @@ products:
 - xamarin
 urlFragment: zoomingpdfviewer
 ---
-# Zooming PDF Viewer
+# Zooming PDF Viewer for Xamarin.iOS
 
 This is a port of Apple's ZoomingPDFViewer (original written in ObjectiveC) available from:
 http://developer.apple.com/library/ios/#samplecode/ZoomingPDFViewer/Introduction/Intro.html#//apple_ref/doc/uid/DTS40010281
@@ -20,9 +20,4 @@ Text is available under the Creative Commons Attribution-ShareAlike License [1];
 [1] http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License
 [2] http://wikimediafoundation.org/wiki/Terms_of_use
 
-
 ![Zooming PDF Viewer application screenshot](Screenshots/ZoomingPdfViewer1.png "Zooming PDF Viewer application screenshot")
-
-## Authors
-
-Sebastien Pouliot

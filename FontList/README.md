@@ -24,7 +24,7 @@ Lists the fonts available on the device and shows a preview of each font.
 
 ## Running the sample
 
-1. Open the solution file (**.sln**) in Visual Studio for Mac.
+1. Open the solution file (**.sln**) in Visual Studio.
 1. Use the **Run** button or menu to start the app.
 
 ## License

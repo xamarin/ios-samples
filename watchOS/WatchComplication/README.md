@@ -1,6 +1,6 @@
 ---
-name: Xamarin.iOS - WatchComplication (watchOS 3)
-description: 'To configure complications in the simulator: 1. Command+Shift+H until you see the watch face 2. Command+Shift+2 enables force-touch deep press 3....'
+name: Xamarin.iOS - WatchComplication
+description: 'Build a complication that adds functionality to Apple Watch faces #watchos'
 page_type: sample
 languages:
 - csharp
@@ -21,24 +21,21 @@ To configure complications in the simulator:
 7. Click on each configuration, and use the up & down arrows on the keyboard or swipe up & down on trackpad to simulate the Digital Crown
 8. One of the complications should be the one in your app (use `CFBundleDisplayName` to set the text displayed)
 
-![](Screenshots/configure-complications.png)
-
+![Apple watch complication](Screenshots/configure-complications.png)
 
 [Add complications to gallery](https://developer.apple.com/library/prerelease/content/releasenotes/WatchKit/AddingComplications/)
 
 When the complication bundle has been added to the iOS App project, examples of the complication will appear in the **Face Gallery**:
 
-![](Screenshots/gallery2-sml.png)
+![Complications gallery](Screenshots/gallery2-sml.png)
 
 Previews of other faces with the complication can also be explored:
 
-![](Screenshots/gallery1-sml.png)
+![Complications faces](Screenshots/gallery1-sml.png)
 
 ![WatchComplication (watchOS 3) application screenshot](Screenshots/complication-scribble.png "WatchComplication (watchOS 3) application screenshot")
 
-## Author
-
-Created with Xamarin.iOS by Craig Dunn.
+## License
 
 *Watch screenshots use [Bezel] courtesy of [infinitapps]*  
 

@@ -1,6 +1,6 @@
 ---
-name: Xamarin.iOS - WatchKit Catalog (watchOS 3)
-description: Xamarin watchOS 3 Preview This sample is for use with the Xamarin watchOS 3 preview that was release along with our iOS 10 support. 1. Right-click...
+name: Xamarin.iOS - WatchKit Catalog
+description: "This sample is for use with the Xamarin watchOS 3 preview that was release along with our iOS 10 support #watchos"
 page_type: sample
 languages:
 - csharp
@@ -12,15 +12,17 @@ urlFragment: watchos-watchkitcatalog
 
 ## Xamarin watchOS 3 Preview
 
-This sample is for use with the Xamarin watchOS 3 preview that was release along with our [iOS 10 support](https://blog.xamarin.com/let-the-ios10-ing-begin/).
+This sample is for use with the Xamarin watchOS 3 preview that was release along with our [iOS 10 support](https://devblogs.microsoft.com/xamarin/let-the-ios10-ing-begin/).
 
 1. Right-click the **WatchApp3** project and select **Set as startup project**.
 2. The simulator list should change to display 38mm and 42mm watch options.
 3. With a *watch simulator* selected, start debugging.
 
-![](Screenshots/watchOS3-sml.png) ![](Screenshots/watchCatalog3-sml.png)
+![Apple Watch screen](Screenshots/watchOS3-sml.png) ![Apple Watch screen](Screenshots/watchCatalog3-sml.png)
 
 ^ Screenshots are shown with the iOS Simulator running inside [Bezel].
+
+![WatchKit Catalog (watchOS 3) application screenshot](Screenshots/0.png "WatchKit Catalog (watchOS 3) application screenshot")
 
 ## Using WatchKit Interface Elements
 
@@ -31,22 +33,21 @@ Throughout the sample, you'll find tips and configurations that will help guide 
 
 WatchKit Catalog demonstrates how to configure and customize the following controls:
 
-* WKInterfaceController
-* WKInterfaceDevice
-* WKInterfaceGroup
-* WKInterfaceImage
-* WKInterfaceLabel
-* WKInterfaceMap
-* WKInterfaceMovie and WKInterfaceInlineMovie
-* WKInterfaceSeparator
-* WKInterfaceSlider
-* WKInterfaceSwitch
-* WKInterfaceTable
-* WKInterfaceTimer
-* WKUserNotificationInterfaceController
-* IWKCrownDelegate and CrownSequencer
-* Gesture Recognizers
-
+- WKInterfaceController
+- WKInterfaceDevice
+- WKInterfaceGroup
+- WKInterfaceImage
+- WKInterfaceLabel
+- WKInterfaceMap
+- WKInterfaceMovie and WKInterfaceInlineMovie
+- WKInterfaceSeparator
+- WKInterfaceSlider
+- WKInterfaceSwitch
+- WKInterfaceTable
+- WKInterfaceTimer
+- WKUserNotificationInterfaceController
+- IWKCrownDelegate and CrownSequencer
+- Gesture Recognizers
 
 ### Tips
 
@@ -66,24 +67,13 @@ WatchKit Catalog demonstrates how to configure and customize the following contr
 
 ## Build/Runtime Requirements
 
-* Xcode 8.0 (or newer)
-* Xamarin Studio 6.10 or newer
-* Xamarin.iOS 10
+- Xcode 8.0 (or newer)
+- Xamarin Studio 6.10 or newer
+- Xamarin.iOS 10
 
-
-### Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-
-#![WatchKit Catalog (watchOS 3) application screenshot](Screenshots/0.png "WatchKit Catalog (watchOS 3) application screenshot")
-
-## Author
-
-Ported to Xamarin.iOS by Vincent Dondain.
-
-
-### Other Credits
 
 *Watch screenshots use [Bezel] courtesy of [infinitapps] :)*
 

@@ -11,7 +11,6 @@ Xamarin has [watchOS](https://blog.xamarin.com/let-the-ios10-ing-begin/) support
 Refer to the [Xamarin watchOS docs](https://developer.xamarin.com/guides/ios/watch/) for more information. Also see the [release notes](https://developer.xamarin.com/releases/ios/xamarin.ios_10/xamarin.ios_10.0/#watchOS) and [API diff](https://developer.xamarin.com/releases/ios/api_changes/watchos_9.10.0_to_10.0.0/). 
 
 
-
 Requirements
 --------------------
 

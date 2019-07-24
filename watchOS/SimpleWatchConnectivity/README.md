@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - SimpleWatchConnectivity
-description: Implement two-way communication between your Apple Watch app and the paired iPhone app with the Watch Connectivity framework. Build Requirements...
+description: "Implement two-way communication between your Apple Watch app and the paired iPhone app with the Watch Connectivity framework #watchos"
 page_type: sample
 languages:
 - csharp
@@ -26,7 +26,3 @@ Xamarin.iOS 12.0, watchOS 5.0 and Xcode 10.0
 ## License
 
 Xamarin port changes are released under the MIT license.
-
-## Author
-
-Ported to Xamarin.iOS/watchOS by Mykyta Bondarenko

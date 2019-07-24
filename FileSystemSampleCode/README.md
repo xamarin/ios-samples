@@ -30,5 +30,5 @@ applications in order to know where and when to store things.
 
 ## Running the sample
 
-1. Open the solution file (**.sln**) in Visual Studio for Mac.
+1. Open the solution file (**.sln**) in Visual Studio.
 1. Use the **Run** button or menu to start the app.

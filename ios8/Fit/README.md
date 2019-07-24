@@ -32,15 +32,11 @@ from the Dev Portal. Download and link Fit with this Provisioning
 Profile. Don't forget to change the Bundle Identifier and
 entitlements.plist to match the new AppId
 
-Build ## Requirements
+## Build requirements
 
 Building this sample requires Xcode 6.0 and iOS 8.0 SDK
 Running the sample requires iPhone with iOS 8.0 or later.
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-## Author
-
-Ported to Xamarin.iOS by Oleg Demchenko and Timothy Risi
