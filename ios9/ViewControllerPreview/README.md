@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - ViewControllerPreviews
-description: "Displays a UITableViewController that triggers view controller previews, using preferredContentSize to show previews of different... #ios9"
+description: "Displays a UITableViewController that triggers view controller previews, using preferredContentSize to show previews of different... (iOS9)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios9
 urlFragment: ios9-viewcontrollerpreview
 ---
 # ViewControllerPreviews

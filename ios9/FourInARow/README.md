@@ -1,16 +1,21 @@
 ---
 name: Xamarin.iOS - FourInARow
-description: "Demonstrates how to use the GKMinmaxStrategist class to implement a computer-controlled opponent for turn-based, adversarial games #ios9"
+description: "Demonstrates how to use the GKMinmaxStrategist class to implement a computer-controlled opponent for turn-based, adversarial games (iOS9)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios9
 urlFragment: ios9-fourinarow
 ---
 # FourInARow
 
 This sample demonstrates how to use the GKMinmaxStrategist class to implement a computer-controlled opponent for turn-based, adversarial games. As part of this demonstration, the sample shows how to structure gameplay model code for use with the minmax strategist using the GKGameModel protocol and related APIs.
+
+![FourInARow application screenshot](Screenshots/1.png "FourInARow application screenshot")
 
 ## Build Requirements
 
@@ -27,9 +32,3 @@ iOS 9.0
 ## Copyright
 
 Xamarin port changes are released under the MIT license
-
-![FourInARow application screenshot](Screenshots/1.png "FourInARow application screenshot")
-
-## Author 
-
-Ported to Xamarin.iOS by Oleg Demchenko

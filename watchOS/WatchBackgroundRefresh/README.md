@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - WatchBackgroundRefresh
-description: 'This sample demonstrates a common background refresh pattern for Apple Watch apps #watchos'
+description: 'This sample demonstrates a common background refresh pattern for Apple Watch apps (watchOS)'
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - watchos
 urlFragment: watchos-watchbackgroundrefresh
 ---
 # WatchBackgroundRefresh

@@ -1,11 +1,14 @@
 ---
 name: 'Xamarin.iOS - MusicMotion: Adding Motion Awareness to a Music App'
-description: "CoreMotion provides great contextual awareness that can be used to make apps even smarter. This sample demonstrates best practices #ios9"
+description: "CoreMotion provides great contextual awareness that can be used to make apps even smarter. This sample demonstrates best practices (iOS9)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios9
 urlFragment: ios9-musicmotion
 ---
 # MusicMotion: Adding Motion Awareness to a Music App

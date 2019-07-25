@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - WatchLocalization
-description: "Sample code for the Xamarin watchOS Localization documentation. Contains English and Spanish (machine translated) strings... #watchos"
+description: "Sample code for the Xamarin watchOS Localization documentation. Contains English and Spanish (machine translated) strings... (watchOS)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - watchos
 urlFragment: watchos-watchlocalization
 ---
 # WatchLocalization (watchOS 3)

@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - MultiTask
-description: "iOS 9 adds multitasking support for running two apps at the same time on specific iPad hardware. Multitasking for iPad is supported... #ios9"
+description: "iOS 9 adds multitasking support for running two apps at the same time on specific iPad hardware. Multitasking for iPad is supported... (iOS9)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios9
 urlFragment: ios9-multitask
 ---
 # MultiTask
@@ -20,10 +23,11 @@ Additionally, with iOS 9, apps can create their own custom keyboard shortcuts wh
 
 This sample demonstrates a multitasking ready Xamarin.iOS app with a custom hardware keyboard shortcut.
 
+![MultiTask application screenshot](Screenshots/01.png "MultiTask application screenshot")
+
 ## Build Requirements
 
 Building this sample requires Xcode 7.0, iOS 9.0 SDK
-
 
 ## Runtime Requirements
 
@@ -34,11 +38,3 @@ This sample can be launched on iPhoneSimulator/iPadSimulator iPhone/iPad
 * [Multitasking for iPad](http://developer.xamarin.com/guides/ios/platform_features/introduction_to_ios9/multitasking/)
 * [iOS 9 for Developers](https://developer.apple.com/ios/pre-release/)
 * [What's New in iOS 9.0](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html)
-
-![MultiTask application screenshot](Screenshots/01.png "MultiTask application screenshot")
-
-## Author
-
-Kevin Mullins for Xamarin, Inc.
-
-

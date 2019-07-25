@@ -1,11 +1,14 @@
 ---
-name: Xamarin.iOS - A demonstration of automatic RTL support in Asset Catalogs and UIStackViews
-description: "This sample project illustrates the usage of Directional Image Assets in an iOS project. By using Directional Image Assets... #ios10"
+name: Xamarin.iOS - Automatic RTL support in Asset Catalogs and UIStackViews
+description: "This sample project illustrates the usage of Directional Image Assets in an iOS project. By using Directional Image Assets... (iOS10)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios10
 urlFragment: ios10-flags
 ---
 # A demonstration of automatic RTL support in Asset Catalogs and UIStackViews
@@ -28,16 +31,14 @@ When running in the environment above, both the forward and back arrows will be 
 Xcode 8.0 or later; iOS 10.0 SDK or later
 
 ## Target
+
 iOS 10.0 or later
 
-## Refs
+## References
+
 [Original sample](https://developer.apple.com/library/prerelease/content/samplecode/Flags/Introduction/Intro.html#//apple_ref/doc/uid/TP40017471)
 [Unicode’s encoding of national flags](https://esham.io/2014/06/unicode-flags)
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license.
-
-## Author
-
-Ported to Xamarin.iOS by Rustam Zaitov

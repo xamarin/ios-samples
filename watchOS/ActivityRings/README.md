@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - ActivityRings
-description: "This sample demonstrates the proper way to work with HealthKit on Apple Watch to contribute to the Activity Rings... #watchos"
+description: "This sample demonstrates the proper way to work with HealthKit on Apple Watch to contribute to the Activity Rings... (watchOS)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - watchos
 urlFragment: watchos-activityrings
 ---
 # ActivityRings with Xamarin.iOS

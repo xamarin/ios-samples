@@ -1,11 +1,14 @@
 ---
 name: 'Xamarin.iOS - Collection Views: Using the New Drag-To-Reorder Feature'
-description: "Collection View (UICollectionView) supports dragging reordering of items out of the box by adding a new default gesture recognizer... #ios9"
+description: "Collection View (UICollectionView) supports dragging reordering of items out of the box by adding a new default gesture recognizer... (iOS9)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios9
 urlFragment: ios9-collectionview
 ---
 # Collection Views: Using the New Drag-To-Reorder Feature
@@ -16,10 +19,11 @@ Using these new methods, you can easily implement drag to reorder in your Collec
 
 This sample demonstrates using the new drag-to-reorder feature in a Xamarin.iOS app.
 
+![Collection Views: Using the New Drag-To-Reorder Feature application screenshot](Screenshots/01.png "Collection Views: Using the New Drag-To-Reorder Feature application screenshot")
+
 ## Build Requirements
 
 Building this sample requires Xcode 7.0, iOS 9.0 SDK
-
 
 ## Runtime Requirements
 
@@ -31,11 +35,6 @@ This sample can be launched on iPhoneSimulator/iPadSimulator iPhone/iPad
 * [iOS 9 for Developers](https://developer.apple.com/ios/pre-release/)
 * [What's New in iOS 9.0](https://developer.apple.com/library/prerelease/ios/releasenotes/General/WhatsNewIniOS/Articles/iOS9.html)
 
-![Collection Views: Using the New Drag-To-Reorder Feature application screenshot](Screenshots/01.png "Collection Views: Using the New Drag-To-Reorder Feature application screenshot")
-
-## Author
+## LIcense
 
 Copyright (c) 2015 Wojciech Łukaszuk. Under The MIT License (MIT). <br/>
-Ported to Xamarin.iOS by Kevin Mullins
-
-

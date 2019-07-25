@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - PictureInPicture
-description: "Demonstrates the use of AVPictureInPictureController to get picture in picture playback of video content from an application #ios9"
+description: "Demonstrates the use of AVPictureInPictureController to get picture in picture playback of video content from an application (iOS9)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios9
 urlFragment: ios9-pictureinpicture
 ---
 # PictureInPicture
@@ -24,23 +27,20 @@ The AppDelegate class configures the application as described above.
 
 The `PlayerViewController` class creates and manages an `AVPictureInPictureController` object. It also handles delegate callbacks to setup / restore UI when in picture in picture. This class also handles the playback setup and UI.
 
+![PictureInPicture application screenshot](Screenshots/fullScreen.png "PictureInPicture application screenshot")
 
 ## Build Requirements
 
 Building this sample requires Xcode 7.0 and iOS 9.0 SDK
 
-## Refs
+## References
+
 [Original sample](https://developer.apple.com/library/prerelease/ios/samplecode/AVFoundationPiPPlayer/Introduction/Intro.html)
 
 ## Target
+
 This sample runnable on iPad/iPadSimulator
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-![PictureInPicture application screenshot](Screenshots/fullScreen.png "PictureInPicture application screenshot")
-
-## Author 
-
-Ported to Xamarin.iOS by Rustam Zaitov

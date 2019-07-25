@@ -1,11 +1,14 @@
 ---
 name: 'Xamarin.iOS - Ice Cream Builder: A simple Messages app extension'
-description: "Example of building an app extension that interacts with the Messages app and lets users send interactive messages... #ios10"
+description: "Example of building an app extension that interacts with the Messages app and lets users send interactive messages... (iOS10)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios10
 urlFragment: ios10-icecreambuilder
 ---
 # Ice Cream Builder: A simple Messages app extension
@@ -26,10 +29,6 @@ Xcode 8.0, iOS 10.0 SDK
 
 [Swift version of sample](https://developer.apple.com/library/prerelease/content/samplecode/IceCreamBuilder/Introduction/Intro.html)
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-## Author 
-
-Ported to Xamarin.iOS by Oleg Demchenko

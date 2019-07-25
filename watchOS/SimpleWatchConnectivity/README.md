@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - SimpleWatchConnectivity
-description: "Implement two-way communication between your Apple Watch app and the paired iPhone app with the Watch Connectivity framework #watchos"
+description: "Implement two-way communication between your Apple Watch app and the paired iPhone app with the Watch Connectivity framework (watchOS)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - watchos
 urlFragment: watchos-simplewatchconnectivity
 ---
 # SimpleWatchConnectivity

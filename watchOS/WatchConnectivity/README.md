@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Watch Connectivity
-description: "Sample code for Watch Connectivity Communication, demonstrating how to update the application context using a WCSession manager #watchos"
+description: "Sample code for Watch Connectivity Communication, demonstrating how to update the application context using a WCSession manager (watchOS)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - watchos
 urlFragment: watchos-watchconnectivity
 ---
 # Watch Connectivity  

@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - WatchPuzzle
-description: "Demonstrate how to use SceneKit with watchOS. Refer to this sample if you want to see how to use, configure, and interact with a 3D... #watchos"
+description: "Demonstrate how to use SceneKit with watchOS. Refer to this sample if you want to see how to use, configure, and interact with a 3D... (watchOS)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - watchos
 urlFragment: watchos-watchpuzzle
 ---
 # WatchPuzzle (watchOS 3)

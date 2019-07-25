@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - WatchComplication
-description: 'Build a complication that adds functionality to Apple Watch faces #watchos'
+description: 'Build a complication that adds functionality to Apple Watch faces (watchOS)'
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - watchos
 urlFragment: watchos-watchcomplication
 ---
 # WatchComplication (watchOS 3)

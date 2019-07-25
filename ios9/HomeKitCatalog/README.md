@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - HomeKitCatalog
-description: "HomeKit Catalog demonstrates how to use the HomeKit API, to create homes, associate accessories with homes, group accessories into rooms... #ios9"
+description: "HomeKit Catalog demonstrates how to use the HomeKit API, to create homes, associate accessories with homes, group accessories into rooms... (iOS9)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios9
 urlFragment: ios9-homekitcatalog
 ---
 # HomeKitCatalog
@@ -50,17 +53,15 @@ This sample also includes many convenience functions implemented as Extensions o
 
 HomeKit Catalog requires Xcode 7.0 with the iOS 9.0 SDK to build the application. You can either run the sample code within the iOS Simulator or on a device with iOS 9.0 installed. You can use the HomeKit Accessory Simulator running under OS X to simulate accessories on your local Wi-Fi network. For the Xcode 6.1.1 timeframe, the HomeKit Accessory Simulator is available from the Apple Developer site as part of the [Hardware IO Tools disk image](https://developer.apple.com/downloads/index.action).
 
-## Refs
+## References
+
 [Original sample](https://developer.apple.com/library/prerelease/ios/samplecode/HomeKitCatalog/Introduction/Intro.html#//apple_ref/doc/uid/TP40015048)
 [Documentation](https://developer.apple.com/homekit/)
 
 ## Target
+
 This sample runnable on iPhoneSimulator/iPadSimulator iPhone/iPad
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-## Author
-
-Ported to Xamarin.iOS by Rustam Zaitov

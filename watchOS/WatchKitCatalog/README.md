@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - WatchKit Catalog
-description: "This sample is for use with the Xamarin watchOS 3 preview that was release along with our iOS 10 support #watchos"
+description: "This sample is for use with the Xamarin watchOS 3 preview that was release along with our iOS 10 support (watchOS)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - watchos
 urlFragment: watchos-watchkitcatalog
 ---
 # WatchKit Catalog (watchOS 3)

@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Emporium
-description: "Shows how to integrate Apple Pay into a simple shopping experience. Learn how to make payment requests, collect shipping and... #ios9"
+description: "Shows how to integrate Apple Pay into a simple shopping experience. Learn how to make payment requests, collect shipping and... (iOS9)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios9
 urlFragment: ios9-emporium
 ---
 # Emporium
@@ -41,10 +44,6 @@ Xcode 7.0, iOS 9.0 SDK, watchOS 1.0 SDK. This sample use new C# 6 features which
 
 This sample runnable on iPhoneSimulator/iPadSimulator iPhone/iPad
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-## Author
-
-Ported to Xamarin.iOS by Rustam Zaitov

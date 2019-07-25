@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - SpeedySloth
-description: "Demonstrates how to use HealthKit to build a workout app that runs in the background, collects data from the Apple Watch sensors #watchos"
+description: "Demonstrates how to use HealthKit to build a workout app that runs in the background, collects data from the Apple Watch sensors (watchOS)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - watchos
 urlFragment: watchos-speedysloth
 ---
 # SpeedySloth
