@@ -6,12 +6,17 @@ languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - tvos
 urlFragment: tvos-uicatalog
 ---
 
 # tvOS UICatalog
 
 Demonstrates how to use many views and controls in the UIKit framework on tvOS. Refer to this sample if you are looking for specific controls or views that are provided by the system.
+
+![tvOS UICatalog application screenshot](Screenshots/0.png "tvOS UICatalog application screenshot")
 
 ## Build Requirements
 
@@ -28,9 +33,3 @@ Simulator or device with tvOS 9.0 or later
 ## Copyright
 
 Xamarin port changes are released under the MIT license
-
-![tvOS UICatalog application screenshot](Screenshots/0.png "tvOS UICatalog application screenshot")
-
-## Author
-
-Ported to Xamarin.TVOS by Oleg Demchenko
