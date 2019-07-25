@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Integrating a Core ML Model into Your App
-description: "Add a simple model to an app, pass input data to the model, and process the model's predictions. This app uses a trained model #ios12"
+description: "Add a simple model to an app, pass input data to the model, and process the model's predictions. This app uses a trained model (iOS12)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios12
 urlFragment: ios12-marshabitatpricepredictor
 ---
 # Integrating a Core ML Model into Your App
@@ -25,7 +28,3 @@ Xamarin.iOS 11.0 and Xcode 9.0.
 ## License
 
 Xamarin port changes are released under the MIT license.
-
-## Author
-
-Ported to Xamarin.iOS by Mykyta Bondarenko

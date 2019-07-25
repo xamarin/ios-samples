@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Soup Chef
-description: "This is a Xamarin port of Apple's Soup Chef sample. It demonstrates how to create an app that makes use of Siri Shortcuts #ios12"
+description: "This is a Xamarin port of Apple's Soup Chef sample. It demonstrates how to create an app that makes use of Siri Shortcuts (iOS12)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios12
 urlFragment: ios12-soupchef
 ---
 # Soup Chef
@@ -27,7 +30,7 @@ To use the app, set up an order and assign it a voice shortcut:
 - Click the **+** button in the upper-right, and create a new soup order. 
 - After creating the order, it will appear on the **Order History** screen 
 in the app. Select the order, then tap **Add to Siri** on the bottom of the 
-screen. 
+screen.
 - Record a phrase to use to make the same order again in the future with 
 Siri. For example, for an order that contains two bowls of chowder with 
 cheese, you might specify, "Order two bowls of chowder with cheese."
@@ -105,19 +108,19 @@ bindings definitions build as expected:
 the tool used to generate bindings definitions from the .h and .m files
 created by Xcode.
 - Configure your system to use Xcode 10 Command Line Tools:
-    - WARNING: Updating the selected Command Line Tools impacts all 
+  - WARNING: Updating the selected Command Line Tools impacts all 
     installed versions of Xcode on your system. When you are done using the 
     Soup Chef sample app, be sure to revert this setting to its original
     configuration.
-    - In Xcode, choose **Xcode > Preferences > Locations** and set
+  - In Xcode, choose **Xcode > Preferences > Locations** and set
     **Command Line Tools** to the most current Xcode 10 installation
     available on your system.
 - In the terminal, `cd` to the **OrderSoupIntentStaticLib** directory.
 - Type `make`, which builds:
-    - The static library, **libOrderSoupIntentStaticLib.a** 
-    - In the **bo** output directory, C# bindings definitions:
-        - **ApiDefinitions.cs**
-        - **StructsAndEnums.cs**
+  - The static library, **libOrderSoupIntentStaticLib.a** 
+  - In the **bo** output directory, C# bindings definitions:
+    - **ApiDefinitions.cs**
+    - **StructsAndEnums.cs**
 
 The **OrderSoupIntentBindings** project, which relies on this static library
 and its associated bindings definitions, builds these items automatically.
@@ -266,13 +269,10 @@ with the Swift-based app.
 
 - After successfully completing an order made via voice, Siri does not 
 report back the success message defined by the **Intents.intentdefinition**
-file. 
+file.
 - There is a persistent warning in the application console: "Warning:
 observer object was not disposed manually with Dispose()"
 
 ## License
+
 Xamarin port changes are released under the MIT license.
-
-## Author
-Ported to Xamarin.iOS by Brad Umbaugh
-

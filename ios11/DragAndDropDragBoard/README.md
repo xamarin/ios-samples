@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Drag and Drop Example
-description: "Demo of the new iOS 11 Drag and Drop. Test this app on an iPad - the drag and drop functionality does not work on iPhone #ios11"
+description: "Demo of the new iOS 11 Drag and Drop. Test this app on an iPad - the drag and drop functionality does not work on iPhone (iOS11)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios11
 urlFragment: ios11-draganddropdragboard
 ---
 # Drag and Drop Example
@@ -19,7 +22,3 @@ Test this app on an iPad - the drag and drop functionality does not work on iPho
 ## License
 
 Xamarin port changes are released under the MIT license
-
-## Author
-
-Ported to Xamarin.iOS by Kevin Mullins

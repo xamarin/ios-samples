@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - MarsHabitatCoreMLTimer
-description: "Use the MarsHabitatPricer Core ML model from Apple's Integrating a Core ML Model to demonstrate the performance... #ios12"
+description: "Use the MarsHabitatPricer Core ML model from Apple's Integrating a Core ML Model to demonstrate the performance... (iOS12)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios12
 urlFragment: ios12-marshabitatcoremltimer
 ---
 # MarsHabitatCoreMLTimer
@@ -19,7 +22,5 @@ prediction API.
 ![batch processing timer](Screenshots/complete-sml.png)
 
 ## License
-Code is released under the MIT license
 
-## Author
-Brad Umbaugh
+Code is released under the MIT license

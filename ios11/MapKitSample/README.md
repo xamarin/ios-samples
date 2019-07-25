@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - MapKit Sample "Tandm"
-description: "Demo of new iOS 11 features in MapKit, grouping and splitting markers based on zoom-level. Tandm is a fictional bike sharing... #ios11"
+description: "Demo of new iOS 11 features in MapKit, grouping and splitting markers based on zoom-level. Tandm is a fictional bike sharing... (iOS11)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios11
 urlFragment: ios11-mapkitsample
 ---
 # MapKit Sample "Tandm"
@@ -24,7 +27,3 @@ Xcode 9.0 or later; iOS 11.0 SDK or later
 ## License
 
 Xamarin port changes are released under the MIT license
-
-## Author
-
-Ported to Xamarin.iOS by Kevin Mullins

@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - SamplePhotoApp
-description: "A basic Photos-like app to demonstrate the Photos framework. Lists albums and built-in collections (Recently Added, Favorites, etc) #ios11"
+description: "A basic Photos-like app to demonstrate the Photos framework. Lists albums and built-in collections (Recently Added, Favorites, etc) (iOS11)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios11
 urlFragment: ios11-samplephotoapp
 ---
 # SamplePhotoApp
@@ -38,10 +41,6 @@ iOS 11.0, tvOS 11.0, or later
 
 [Original sample](https://developer.apple.com/library/ios/samplecode/UsingPhotosFramework/Introduction/Intro.html)
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-## Author 
-
-Ported to Xamarin.iOS by Oleg Demchenko, Rustam Zaitov, and Matthew Leibowitz

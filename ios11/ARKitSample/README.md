@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - ARKit Sample
-description: "This sample is a simple ARKit augmented reality demo. To test this sample you'll need to deploy it on a device running iOS 11 beta software #ios11"
+description: "This sample is a simple ARKit augmented reality demo. To test this sample you'll need to deploy it on a device running iOS 11 beta software (iOS11)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios11
 urlFragment: ios11-arkitsample
 ---
 # ARKit Sample
@@ -21,7 +24,3 @@ By default, the sample presents a jet in a fixed location. To animate the jet ar
 ## License
 
 Xamarin port changes are released under the MIT license
-
-## Author
-
-Ported to Xamarin.iOS by Kevin Mullins, Larry O'Brien

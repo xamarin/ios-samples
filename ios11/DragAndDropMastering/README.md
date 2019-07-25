@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Mastering Drag and Drop in iOS 11
-description: "There are two app projects in this sample, intended to be run at the same time on an iPad. The DragSource app contains different types... #ios11"
+description: "There are two app projects in this sample, intended to be run at the same time on an iPad. The DragSource app contains different types... (iOS11)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios11
 urlFragment: ios11-draganddropmastering
 ---
 # Mastering Drag and Drop in iOS 11
@@ -19,7 +22,3 @@ Swift sample available from [WWDC 2017 Mastering Drag and Drop](https://develope
 ## License
 
 Xamarin port changes are released under the MIT license
-
-## Author
-
-Ported to Xamarin.iOS by Kevin Mullins, Amy Burns

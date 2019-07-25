@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - ARKitAudio
-description: "This sample runs an ARKit world tracking session with content displayed in a SceneKit view. To demonstrate plane detection... #ios11"
+description: "This sample runs an ARKit world tracking session with content displayed in a SceneKit view. To demonstrate plane detection... (iOS11)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios11
 urlFragment: ios11-arkitaudio
 ---
 # ARKitAudio
@@ -30,7 +33,3 @@ This sample is runnable on iPhone/iPad devices since it requires a real camera.
 ## License
 
 Xamarin port changes are released under the MIT license.
-
-## Author
-
-Ported to Xamarin.iOS by Mykyta Bondarenko

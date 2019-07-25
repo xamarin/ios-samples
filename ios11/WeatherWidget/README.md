@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Building a Simple Widget for the Today View
-description: "This sample code builds a weather app that displays a simple five-day weather forecast using a horizontally paging collection view #ios11"
+description: "This sample code builds a weather app that displays a simple five-day weather forecast using a horizontally paging collection view (iOS11)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios11
 urlFragment: ios11-weatherwidget
 ---
 # Building a Simple Widget for the Today View
@@ -26,7 +29,3 @@ Xamarin.iOS 11.3+ and Xcode 10.0+.
 ## License
 
 Xamarin port changes are released under the MIT license.
-
-## Author
-
-Ported to Xamarin.iOS by Mykyta Bondarenko

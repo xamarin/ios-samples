@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Drag and Drop CollectionView Example
-description: "Demo of the new iOS 11 Drag and Drop feature using UICollectionView & UITableView. Test this app on an iPad - the drag and drop... #ios11"
+description: "Demo of the new iOS 11 Drag and Drop feature using UICollectionView & UITableView. Test this app on an iPad - the drag and drop... (iOS11)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios11
 urlFragment: ios11-draganddropcollectionview
 ---
 # Drag and Drop CollectionView Example
@@ -23,11 +26,6 @@ Test this app on an iPad - the drag and drop functionality does not work on iPho
 
 ![drag and drop example screenshot](Screenshots/01-sml.png)
 
-
 ## License
 
 Xamarin port changes are released under the MIT license
-
-## Author
-
-Ported to Xamarin.iOS by Craig Dunn

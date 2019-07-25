@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Tracking Multiple Objects or Rectangles in Video
-description: "Demonstrates how to apply Vision algorithms to track objects or rectangles throughout a video #ios12"
+description: "Demonstrates how to apply Vision algorithms to track objects or rectangles throughout a video (iOS12)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios12
 urlFragment: ios12-visionobjecttrack
 ---
 # Tracking Multiple Objects or Rectangles in Video
@@ -26,7 +29,3 @@ Xamarin.iOS 12.0 or later; Xcode 10.0 or later;
 ## License
 
 Xamarin port changes are released under the MIT license.
-
-## Author
-
-Ported to Xamarin.iOS by Mykyta Bondarenko

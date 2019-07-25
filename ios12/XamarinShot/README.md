@@ -1,11 +1,14 @@
 ---
 name: 'Xamarin.iOS - XamarinShot: Creating a Game for Augmented Reality'
-description: "XamarinShot is an AR game for two to six players, featured in the WWDC18 keynote. Use this sample project to experience it on your device... #ios12"
+description: "XamarinShot is an AR game for two to six players, featured in the WWDC18 keynote. Use this sample project to experience it on your device... (iOS12)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios12
 urlFragment: ios12-xamarinshot
 ---
 # XamarinShot: Creating a Game for Augmented Reality
@@ -25,7 +28,3 @@ Xamarin.iOS 12.0, Xcode 10.0 and an iOS device with A9 or later processor. ARKit
 ## License
 
 Xamarin port changes are released under the MIT license.
-
-## Author
-
-Ported to Xamarin.iOS by Mykyta Bondarenko
