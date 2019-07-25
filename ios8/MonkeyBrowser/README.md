@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - MonkeyBrowser
-description: "Example using Handoff in a Xamarin.iOS app. The app has four tabs that the user can use to browse the web, each with a given activity... #ios8"
+description: "Example using Handoff in a Xamarin.iOS app. The app has four tabs that the user can use to browse the web, each with a given activity... (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-monkeybrowser
 ---
 # MonkeyBrowser

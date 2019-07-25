@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Hello Goodbye
-description: "This project shows you how to use the Accessibility API to widen your user base. It demonstrates how you can adjust your user interface #ios8"
+description: "This project shows you how to use the Accessibility API to widen your user base. It demonstrates how you can adjust your user interface (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-hellogoodbye
 ---
 # Hello Goodbye

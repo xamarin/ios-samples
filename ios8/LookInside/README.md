@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - LookInside
-description: "This example shows how to use a custom presentation controller to create a custom view controller presentation #ios8"
+description: "This example shows how to use a custom presentation controller to create a custom view controller presentation (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-lookinside
 ---
 # LookInside

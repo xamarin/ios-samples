@@ -1,16 +1,21 @@
 ---
 name: Xamarin.iOS - Photo Filter
-description: "App extension sample showing you how to implement a Photo Editing extension. This extension allows the user to select a filter effect... #ios8"
+description: "App extension sample showing you how to implement a Photo Editing extension. This extension allows the user to select a filter effect... (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-photofilter
 ---
 # Photo Filter
 
 This is an app extension sample showing you how to implement a Photo Editing extension. This extension allows the user to select a filter effect to apply to the photo or video selected in Photos or Camera.
+
+![Photo Filter application screenshot](Screenshots/0.png "Photo Filter application screenshot")
 
 ## Instructions
 
@@ -29,12 +34,6 @@ To enable the Photo Editing extension:
 * Building this sample requires Xcode 6.0 and iOS 8.0 SDK.
 * Running this sample requires Xamarin.iOS 8.2 or later.
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-![Photo Filter application screenshot](Screenshots/0.png "Photo Filter application screenshot")
-
-## Author 
-
-Ported to Xamarin.iOS by Rustam Zaitov & Vincent Dondain.

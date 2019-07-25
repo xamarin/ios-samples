@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Table Search with UISearchController
-description: "Demonstrates how to create a table view controller and search controller to manage the display of searchable content #ios8"
+description: "Demonstrates how to create a table view controller and search controller to manage the display of searchable content (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-tablesearch
 ---
 # Table Search with UISearchController
@@ -14,6 +17,7 @@ This sample demonstrates how to create a table view controller and search contro
 
 This sample includes the optional—but recommended—[`UIStateRestoring`](https://developer.apple.com/documentation/uikit/uistaterestoring) protocol. You adopt this protocol from the view controller class to save the search bar's active state, first responder status, and search bar text and restore them when the app is relaunched.
 
+![Table Search with UISearchController application screenshot](Screenshots/screenshot-1.png "Table Search with UISearchController application screenshot")
 
 ## Build Requirements
 
@@ -26,9 +30,3 @@ Xcode 10.0 or later and iOS 10 or later.
 ## License
 
 Xamarin port changes are released under the MIT license.
-
-![Table Search with UISearchController application screenshot](Screenshots/screenshot-1.png "Table Search with UISearchController application screenshot")
-
-## Author 
-
-Ported to Xamarin.iOS by Oleg Demchenko/Mykyta Bondarenko

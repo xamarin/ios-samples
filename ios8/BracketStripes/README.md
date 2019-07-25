@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Bracket Stripes
-description: "Shows how to use bracketing API in AVFoundation. App's code demonstrates how to use Auto-exposure brackets and Manual exposure brackets... #ios8"
+description: "Shows how to use bracketing API in AVFoundation. App's code demonstrates how to use Auto-exposure brackets and Manual exposure brackets... (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-bracketstripes
 ---
 # Bracket Stripes
@@ -19,7 +22,3 @@ Building this sample requires Xcode 6.0 and iOS 8.0 SDK or later, iPhone with iO
 ## Copyright
 
 Xamarin port changes are released under the MIT license
-
-## Author 
-
-Ported to Xamarin.iOS by Oleg Demchenko

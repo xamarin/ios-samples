@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - CSSceneKit City
-description: "This sample shows how to create a randomly generated city using the SceneKit API and is written in C# #ios8"
+description: "This sample shows how to create a randomly generated city using the SceneKit API and is written in C# (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-csscenekit
 ---
 ## CSSceneKit City

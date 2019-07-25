@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - NewBox
-description: 'Shows you how to: Use UIDocumentMenuViewController and UIDocumentMenuViewController. Create Document Provider extensions #ios8'
+description: 'Shows you how to: Use UIDocumentMenuViewController and UIDocumentMenuViewController. Create Document Provider extensions (iOS8)'
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-newbox
 ---
 # NewBox
@@ -14,7 +17,6 @@ This sample shows you how to:
 * Use `UIDocumentMenuViewController` and `UIDocumentMenuViewController`.
 * Create Document Provider extensions: DocumentPickerViewController Extension and FileProvider Extension.
 * Work with built-in iCloud storage provider.
- 
 
 We strongly recommend you to read the following guides before you start:
 * [App Extension Programming Guide]
@@ -119,15 +121,12 @@ Don't use `NSFileCoordinator` inside your app extension. Apple provide an [expla
 Building this sample requires Xcode 6.0 and iOS 8.0 SDK.
 
 ## Target
+
 This sample is runnable on iPhone/iPad.
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-## Author 
-
-Ported to Xamarin.iOS by Rustam Zaitov.
 
 [App Extension Programming Guide]:https://developer.apple.com/library/prerelease/mac/documentation/General/Conceptual/ExtensibilityPG/FileProvider.html
 

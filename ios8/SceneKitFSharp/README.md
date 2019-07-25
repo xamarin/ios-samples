@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - SceneKit F# "Oculus Thrift" (Google Cardboard) Edition
-description: 'Extends F# Scene Kit for stereoscopic viewing with Google Cardboard #ios8'
+description: 'Extends F# Scene Kit for stereoscopic viewing with Google Cardboard (iOS8)'
 page_type: sample
 languages:
 - fsharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-scenekitfsharp
 ---
 # SceneKit F# "Oculus Thrift" (Google Cardboard) Edition
@@ -19,10 +22,6 @@ Core concepts include:
 - Using multiple [`SCNView`](https://docs.microsoft.com/dotnet/api/scenekit.scnview) objects to render the same [`SCNScene`](https://docs.microsoft.com/dotnet/api/scenekit.scnscene).
 - Using the [`SCNView.PointOfView`](https://docs.microsoft.com/dotnet/api/scenekit.scnview.pointofview) property to allow multiple cameras
 - Tracking gaze-view using iOS' Core Motion and quaternion math.
-
-## Author
-
-Joel Martinez, Larry O'Brien
 
 ## Content
 

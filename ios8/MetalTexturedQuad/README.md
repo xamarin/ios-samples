@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - MetalTexturedQuad
-description: "This sample shows how to create a basic textured quad in metal. It includes all transformations needed to ensure correct rendering... #ios8"
+description: "This sample shows how to create a basic textured quad in metal. It includes all transformations needed to ensure correct rendering... (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-metaltexturedquad
 ---
 # MetalTexturedQuad

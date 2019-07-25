@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Footprint
-description: "Display device location on a floorplan image. Using Core Location, we will take the position in Latitude/Longitude and project it #ios8"
+description: "Display device location on a floorplan image. Using Core Location, we will take the position in Latitude/Longitude and project it (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-footprint
 ---
 # Footprint

@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - GrowRowTable
-description: "Shows the ability to create a Table View (UITableView) that can automatically grow and shrink the height of a given Row... #ios8"
+description: "Shows the ability to create a Table View (UITableView) that can automatically grow and shrink the height of a given Row... (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: growrowtable
 ---
 # GrowRowTable

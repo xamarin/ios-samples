@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - KeychainTouchID
-description: "KeychainTouchID sample demonstrates how to add, delete, update and copy Touch ID items to keychain #ios8"
+description: "KeychainTouchID sample demonstrates how to add, delete, update and copy Touch ID items to keychain (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-keychaintouchid
 ---
 # KeychainTouchID

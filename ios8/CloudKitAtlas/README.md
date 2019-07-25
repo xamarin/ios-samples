@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - CloudKitAtlas
-description: "CloudKitAtlas is a sample intended as a quick introduction to CloudKit. It teaches you how to use Discoverability... #ios8"
+description: "CloudKitAtlas is a sample intended as a quick introduction to CloudKit. It teaches you how to use Discoverability... (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-cloudkitatlas
 ---
 # CloudKitAtlas

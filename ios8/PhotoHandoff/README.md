@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Photo Handoff
-description: "Demonstrates how to use Handoff technology. Handoff uses NSUserActivity class which encapsulates the state of a user activity in an application #ios8"
+description: "Demonstrates how to use Handoff technology. Handoff uses NSUserActivity class which encapsulates the state of a user activity in an application (iOS8)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios8
 urlFragment: ios8-photohandoff
 ---
 # Photo Handoff
@@ -29,7 +32,6 @@ This sample shows how to hand off the user activity of choosing a photo for edit
 
 ## Requirements
 
-
 * Two iOS devices
 * An iCloud account
 * Bluetooth connection
@@ -42,10 +44,6 @@ Building this sample requires Xcode 6.0 and iOS 8.0 SDK
 
 This sample runnable on iPhone/iPad
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-## Author
-
-Ported to Xamarin.iOS by Rustam Zaitov
