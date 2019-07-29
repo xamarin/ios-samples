@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Keychain
-description: An example using Apple's keychain storage for storing information securely within an application.
+description: "An example using Apple's keychain storage for storing information securely within an application."
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Xamarin.iOS Binding Sample
-description: This example shows how we can utilize an existing Objective-C library and expose it for use in a Xamarin.iOS project. For instance, you may have...
+description: "Shows how to utilize an existing Objective-C library and expose it for use in a Xamarin.iOS project"
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - iPhone Multichannel Mixer test
-description: "Demonstrates how to build an Audio Unit Graph connecting a Multichannel Mixer instance to the RemoteIO unit. Two input busses are created #ios6"
+description: "Demonstrates how to build an Audio Unit Graph connecting a Multichannel Mixer instance to the RemoteIO unit. Two input busses are created (iOS6)"
 page_type: sample
 languages:
 - csharp
