@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - tvOS UICatalog
-description: "Demonstrates how to use many views and controls in the UIKit framework on tvOS."
+description: "Demonstrates how to use many views and controls in the UIKit framework on tvOS"
 page_type: sample
 languages:
 - csharp
@@ -11,7 +11,6 @@ extensions:
     - tvos
 urlFragment: tvos-uicatalog
 ---
-
 # tvOS UICatalog
 
 Demonstrates how to use many views and controls in the UIKit framework on tvOS. Refer to this sample if you are looking for specific controls or views that are provided by the system.
@@ -30,6 +29,6 @@ Simulator or device with tvOS 9.0 or later
 
 [Swift version of sample](https://developer.apple.com/library/prerelease/tvos/samplecode/UICatalogFortvOS/Introduction/Intro.html#//apple_ref/doc/uid/TP40016433)
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license

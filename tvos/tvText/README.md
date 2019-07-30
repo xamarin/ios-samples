@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - tvText
-description: This sample shows how to work with Text and Search Fields in a Xamarin.tvOS app. Build Requirements Please see our Installing tvOS Support...
+description: Shows to work with Text and Search Fields in a Xamarin.tvOS app
 page_type: sample
 languages:
 - csharp
