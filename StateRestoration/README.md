@@ -1,18 +1,23 @@
 ---
 name: Xamarin.iOS - StateRestoration
-description: Demonstrates how to use UICollectionView, a way to present ordered data to users in a grid-like fashion. With a collection view object, you are...
+description: "Demonstrates how to use UICollectionView, a way to present ordered data to users in a grid-like fashion (UI)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ui
 urlFragment: staterestoration
 ---
 # StateRestoration
 
 Demonstrates how to use `UICollectionView`, a way to present ordered data to users in a grid-like fashion.  With a collection view object, you are able to define the presentation and arrangement of embedded views. The collection view class works closely with an accompanying layout object to define the placement of individual data items.  In this example `UIKit` provides a standard flow-based layout object that you can use to implement multi-column grids containing items of a standard size.
 
-This application also demonstrates the use of `Application State Restoration` features introduced in iOS 7. If the application exits, it will restore the previous state the next time it starts. 
+![StateRestoration application screenshot](Screenshots/DetailScreen.png "StateRestoration application screenshot")
+
+This application also demonstrates the use of `Application State Restoration` features introduced in iOS 7. If the application exits, it will restore the previous state the next time it starts.
 
 (Note that if you quit the application from the `App Switcher`, it will not restore state on the next launch, so for testing, exit the application from `Xamarin Studio`.)
 
@@ -39,14 +44,9 @@ Additionally, if the Mail Activity is selected, to compose Mail, that will be sa
 Building this sample requires Xcode 5.0 and iOS 7.0 SDK
 
 ## Target
+
 This sample runnable on iPhoneSimulator or iPhone
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license
-
-![StateRestoration application screenshot](Screenshots/DetailScreen.png "StateRestoration application screenshot")
-
-## Author
-
-Ported to Xamarin.iOS by Timothy Risi & Rustam Zaitov

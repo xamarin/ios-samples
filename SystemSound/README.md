@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - System Sound
-description: 'This sample demonstrates playing sound via AudioToolkit. Note: not all devices support vibration. Build Requirements Building this sample requires...'
+description: 'This sample demonstrates playing sound via AudioToolkit. Note: not all devices support vibration'
 page_type: sample
 languages:
 - csharp
