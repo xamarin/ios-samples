@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - tvText
-description: Shows to work with Text and Search Fields in a Xamarin.tvOS app
+description: "Shows to work with Text and Search Fields in a Xamarin app (tvOS)"
 page_type: sample
 languages:
 - csharp

@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - tvFocus
-description: This sample shows how to work with Focus Guides is a Xamarin.tvOS app. Focus Guides provide a mechanism that allows otherwise inaccessible User...
+description: "How to work with Focus Guides is a Xamarin app (tvOS)"
 page_type: sample
 languages:
 - csharp
@@ -27,6 +27,6 @@ This sample can be launched on the tvOS Simulator and real 4th generation Apple 
 
 ## Useful links
 
-* [tvOS](https://developer.apple.com/tvos/)
-* [tvOS Human Interface Guides](https://developer.apple.com/tvos/human-interface-guidelines/)
-* [App Programming Guide for tvOS](https://developer.apple.com/library/prerelease/tvos/documentation/General/Conceptual/AppleTV_PG/)
+- [tvOS](https://developer.apple.com/tvos/)
+- [tvOS Human Interface Guides](https://developer.apple.com/tvos/human-interface-guidelines/)
+- [App Programming Guide for tvOS](https://developer.apple.com/library/prerelease/tvos/documentation/General/Conceptual/AppleTV_PG/)
