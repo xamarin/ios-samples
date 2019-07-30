@@ -4,6 +4,7 @@ description: "Shows how to utilize an existing Objective-C library and expose it
 page_type: sample
 languages:
 - csharp
+- objc
 products:
 - xamarin
 urlFragment: bindingsample
