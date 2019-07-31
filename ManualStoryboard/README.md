@@ -5,6 +5,7 @@ page_type: sample
 languages:
 - csharp
 products:
+- dotnet
 - xamarin
 urlFragment: manualstoryboard
 ---
