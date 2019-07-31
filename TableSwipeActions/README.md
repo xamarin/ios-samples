@@ -6,10 +6,10 @@ languages:
 - csharp
 products:
 - xamarin
-- extensions:
+urlFragment: tableswipeactions
+extensions:
     tags:
     - ios11
-urlFragment: tableswipeactions
 ---
 # Table Swipe Actions
 
