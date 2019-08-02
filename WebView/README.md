@@ -12,3 +12,4 @@ urlFragment: webview
 
 An example showing the various web views in iOS.
 
+![App showing web view with Xamarin website](Screenshots/safari.png)

@@ -1,6 +1,6 @@
 ---
-name: 'Xamarin.iOS - UICatalog: Creating and Customizing UIKit Controls'
-description: This sample is a catalog exhibiting many views and controls in the UIKit framework along with their various functionalities. Refer to this sample...
+name: 'Xamarin.iOS - UICatalog'
+description: "Catalog exhibiting many views and controls in the UIKit framework along with their various features"
 page_type: sample
 languages:
 - csharp

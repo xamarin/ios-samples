@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Working with Images
-description: This sample demonstrates using application support icons (application icon, settings icon, Spotlight Search icon, iTunes image, launch image, etc).
+description: "Demonstrates using application support icons (application icon, settings icon, Spotlight Search icon, iTunes image, launch image, etc)"
 page_type: sample
 languages:
 - csharp
@@ -12,3 +12,5 @@ urlFragment: workingwithimages
 
 This sample demonstrates using application support icons (application icon,
 settings icon, Spotlight Search icon, iTunes image, launch image, etc).
+
+![App screenshot](Screenshots/WorkingWithImages.png)
