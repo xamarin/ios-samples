@@ -1,6 +1,6 @@
 ---
-name: Xamarin.iOS - CustomPropertyAnimation
-description: This sample illustrates how to animate custom properties in a CALayer. Note that this sample requires at least MonoTouch 5.3.3
+name: Xamarin.iOS - Custom Property Animation
+description: "This sample illustrates how to animate custom properties in a CALayer"
 page_type: sample
 languages:
 - csharp
@@ -12,10 +12,4 @@ urlFragment: custompropertyanimation
 
 This sample illustrates how to animate custom properties in a CALayer.
 
-Note that this sample requires at least MonoTouch 5.3.3
-
 ![CustomPropertyAnimation application screenshot](Screenshots/CustomPropertyAnimation.png "CustomPropertyAnimation application screenshot")
-
-## Authors
-
-Rolf Bjarne Kvinge

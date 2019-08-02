@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Core Location
-description: This sample illustrates how to retrieve location, orientation, and velocity data from the device using the Core Location API. It covers...
+description: "Illustrates how to retrieve location, orientation, and velocity data from the device using the Core Location API"
 page_type: sample
 languages:
 - csharp
@@ -14,8 +14,5 @@ This sample illustrates how to retrieve location, orientation, and velocity data
 It also illustrates how to retrieve "Distance To" information.
 
 ## License
+
 Code is released under the MIT license
-
-## Authors
-
-Bryan Costanich

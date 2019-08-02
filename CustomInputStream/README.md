@@ -1,14 +1,4 @@
----
-name: Xamarin.iOS - CustomInputStream
-description: This sample illustrates how to derive from NSInputStream and create subclass that is toll-free bridged to CFReadStream that can be used with...
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: custominputstream
----
-# CustomInputStream
+# Custom Input Stream
 
 This sample illustrates how to derive from NSInputStream and create subclass that is toll-free
 bridged to CFReadStream that can be used with NSMutableUrlRequest.
