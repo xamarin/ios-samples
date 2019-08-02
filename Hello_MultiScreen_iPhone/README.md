@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Hello Multi-Screen iPhone
-description: 'An introduction to the primary pattern used in iOS for user interfaces: MVC (Model-View-Controller) #getstarted'
+description: 'An introduction to the primary pattern used in iOS for user interfaces: MVC (Model-View-Controller) (get started)'
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - getstarted
 urlFragment: hello-multiscreen-iphone
 ---
 # Hello Multi-Screen iPhone

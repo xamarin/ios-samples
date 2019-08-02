@@ -1,6 +1,6 @@
 ---
-name: Xamarin.iOS - HomeKitIntro
-description: This sample application shows how to use HomeKit to write home automation applications in Xamarin.iOS. Enabling HomeKit in a Xamarin Application...
+name: Xamarin.iOS - Home Kit
+description: "Sample application shows how to use HomeKit to write home automation applications in Xamarin.iOS"
 page_type: sample
 languages:
 - csharp

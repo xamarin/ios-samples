@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Hello, Complex Universal
-description: "A sample demonstrating how to create universal applications that will run on both iPhone and iPad devices #getstarted"
+description: "Sample demonstrating how to create universal applications that will run on both iPhone and iPad devices (get started)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - getstarted
 urlFragment: hello-complexuniversal
 ---
 # Hello, Complex Universal

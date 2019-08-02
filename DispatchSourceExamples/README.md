@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Dispatch Source Examples
-description: This sample demonstrates how to create and configure different types of Dispatch Sources. Creating a dispatch source involves creating both the...
+description: "Demonstrates how to create and configure different types of Dispatch Sources. Creating a dispatch source involves creating both the..."
 page_type: sample
 languages:
 - csharp
@@ -18,14 +18,8 @@ This sample demonstrates how to create and configure different types of Dispatch
 * WriteMonitor - this type monitor file descriptors for available write buffer space.
 * ReadMonitor - monitor file descriptors for pending data.
 
-## Build Requirements
-
-Building this sample requires Xcode 5.0 and iOS SDK 
-
-## License
-Code is released under the MIT license
-
 ![Dispatch Source Examples application screenshot](Screenshots/screenshot-1.png "Dispatch Source Examples application screenshot")
 
-## Authors 
-Oleg Demchenko
+## License
+
+Code is released under the MIT license

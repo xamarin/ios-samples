@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Hello, iOS
-description: "This sample is the application that will be built at the end of the Get Started guides #getstarted"
+description: "This sample is the application that will be built at the end of the Get Started guides"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - getstarted
 urlFragment: hello-ios
 ---
 # Hello, iOS
