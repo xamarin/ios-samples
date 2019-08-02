@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - LifeCycle Demo
-description: This basic sample relates to the iOS Backgrounding guides in the developers centre. It adds location to the AppDelegate to display when an...
+description: "Demonstrates iOS vbackgrounding"
 page_type: sample
 languages:
 - csharp

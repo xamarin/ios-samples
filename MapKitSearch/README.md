@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - MapkitViewer
-description: "Demonstrates how to use MapKit with Xamarin.iOS #map"
+description: "Demonstrates how to use MapKit with Xamarin.iOS (map)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - map
 urlFragment: mapkitsearch
 ---
 # MapkitViewer for Xamarin.iOS

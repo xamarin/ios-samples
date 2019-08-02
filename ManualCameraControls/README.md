@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Manual Camera Controls
-description: The AVFoundation Framework makes it easier than ever for users to take great photos by allowing for Manual Camera Controls. Using this framework,...
+description: "The AVFoundation Framework makes it easier than ever for users to take great photos by allowing for Manual Camera Controls"
 page_type: sample
 languages:
 - csharp

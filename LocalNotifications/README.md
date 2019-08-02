@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Local Notifications
-description: This sample illustrates how to schedule and respond to local notifications. It related to the Local Notifications guide and Walkthrough
+description: "Illustrates how to schedule and respond to local notifications"
 page_type: sample
 languages:
 - csharp

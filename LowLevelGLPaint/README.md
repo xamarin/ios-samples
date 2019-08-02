@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Low-Level OpenGL Painting
-description: An example on using the low-level OpenGL classes to create a touch painting application. Loosely based on Apple's GLPaint example...
+description: "Low-level OpenGL classes create a touch painting application. Loosely based on Apple's GLPaint example..."
 page_type: sample
 languages:
 - csharp

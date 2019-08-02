@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Location
-description: 'This is an iOS Location application that prints information about our current location: latitude, longitude, and other parameters to the screen....'
+description: 'This is an iOS Location application that prints information about current location: latitude, longitude, and other parameters...'
 page_type: sample
 languages:
 - csharp

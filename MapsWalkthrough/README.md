@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Maps Walkthrough
-description: "Sample for the Annotations and Overlays in Xamarin.iOS guide, which demonstrates how to add custom map annotations and overlays #map"
+description: "Sample for the Annotations and Overlays in Xamarin.iOS guide, which demonstrates how to add custom map annotations and overlays (map)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - map
 urlFragment: mapswalkthrough
 ---
 # Xamarin.iOS Maps Walkthrough

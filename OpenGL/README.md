@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - OpenGL
-description: A collection of samples for using OpenGL in Xamarin.iOS. These samples are Xamarin ports of samples found in objective-c at...
+description: "A collection of samples for using OpenGL in Xamarin.iOS"
 page_type: sample
 languages:
 - csharp
@@ -33,4 +33,3 @@ Draws a rotating 20-sided die using shaders and a texture image.
 ## PerVertexDirectionalLighting
 
 Adds directional lighting to OpenGLES20Example
-
