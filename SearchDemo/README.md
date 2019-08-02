@@ -1,14 +1,7 @@
----
-name: Xamarin.iOS - Search Demo
-description: This sample demonstrates how to create a master-detail style of application with a UITableViewController and UINavigationController. It also shows...
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: searchdemo
----
+
 # Search Demo
+
+## DECPRECATED
 
 This sample demonstrates how to create a master-detail style of application with a UITableViewController and UINavigationController. It also shows how to add a UISearchBar to a UITableView. The search in this case calls the Bing web service to retrieve results. The associated web page is loaded in a UIWebView when a row is selcted in the table.
 

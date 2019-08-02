@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Quotes
-description: This is a port of the WWDC2012 of the same name This sample application utilizes the legacy string drawing functions and the new attributed string...
+description: "Port of the WWDC2012 sample, utilizes the legacy string drawing functions and the new attributed string..."
 page_type: sample
 languages:
 - csharp
@@ -10,7 +10,7 @@ urlFragment: quotes
 ---
 # Quotes
 
-This is a port of the WWDC2012 of the same name
+This is a port of the WWDC2012 sample.
 
 This sample application utilizes the legacy string drawing functions
 and the new attributed string drawing.  Various usages and functionality
@@ -20,6 +20,4 @@ Perform a swipe gesture to enter drawing mode, which changes speaker
 text color, italicizes and centers stage direction, and enables the
 slider on the bottom right.
 
-**NOTE: This sample will only work with Xcode 5.0 or above.
-
-Ported by: Peter Collins
+![iOS app with famous quotes in text](Screenshots/Quotes02.png)

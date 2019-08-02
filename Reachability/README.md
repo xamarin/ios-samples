@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Reachability Sample
-description: The Reachability sample application demonstrates how to use the System Configuration framework to monitor the network state of an iOS device. In...
+description: "Demonstrates how to use the System Configuration framework to monitor the network state of an iOS device"
 page_type: sample
 languages:
 - csharp
@@ -18,7 +18,6 @@ Note: Reachability cannot tell your application if you can connect to a particul
 
 ![iPhone running Reachability sample](Screenshots/screenshot-1.png)
 
-
 ## Related Links
 
 - [Original sample](https://developer.apple.com/library/archive/samplecode/Reachability/Introduction/Intro.html).
@@ -27,7 +26,3 @@ Note: Reachability cannot tell your application if you can connect to a particul
 ## License
 
 Xamarin port changes are released under the MIT license.
-
-## Author
-
-Miguel de Icaza
