@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Touches
-description: An example on how to handle touches to move multiple objects. TouchesClassic demonstrates how to use the UIResponder events Loosely based on...
+description: "How to handle touches to move multiple objects. TouchesClassic demonstrates how to use the UIResponder events"
 page_type: sample
 languages:
 - csharp
@@ -17,7 +17,3 @@ Loosely based on Apple's Touches example:
 http://developer.apple.com/library/ios/#samplecode/Touches
 
 ![Touches application screenshot](Screenshots/Touches_Classic1.png "Touches application screenshot")
-
-## Authors
-
-Mike Krüger

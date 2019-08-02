@@ -1,14 +1,17 @@
 ---
 name: Xamarin.iOS - TicTacToe
-description: This sample demonstrates how to customize UIKit controls, tintColor, and renderingMode and build custom controls.
+description: "Demonstrates how to customize UIKit controls, tintColor, and renderingMode and build custom controls (game)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - game
 urlFragment: tictactoe
 ---
-# TicTacToe
+# TicTacToe for Xamarin.iOS
 
 This sample demonstrates how to customize UIKit controls, tintColor, and renderingMode and build custom controls.
 

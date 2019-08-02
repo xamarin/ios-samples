@@ -1,11 +1,14 @@
 ---
 name: Xamarin.iOS - Transitions Demo
-description: 'This sample shows how to create custom view controller transitions in iOS 7. Transitions can be used in a range of contexts: push, pop, modal etc....'
+description: 'Shows how to create custom view controller transitions. Transitions can be used in a range of contexts: push, pop, modal... (iOS7)'
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - ios7
 urlFragment: transitionsdemo
 ---
 # Transitions Demo
@@ -38,7 +41,3 @@ Library currently contains the following transition animations:
 </table>
 
 ![Transitions Demo application screenshot](Screenshots/cards.png "Transitions Demo application screenshot")
-
-## Authors
-
-Oleg Demchenko
