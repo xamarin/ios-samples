@@ -1,6 +1,6 @@
 ---
-name: Xamarin.iOS - Multi-Touch Tracking for iOS
-description: FingerPaint sample for [Multi-Touch Tracking]/guides/ios/applicationfundamentals/touch/touchtracking/)
+name: Xamarin.iOS - Fingerpaint
+description: FingerPaint sample for multi-touch tracking
 page_type: sample
 languages:
 - csharp
@@ -10,10 +10,6 @@ urlFragment: applicationfundamentals-fingerpaint
 ---
 # Multi-Touch Tracking for iOS
 
-FingerPaint sample for [Multi-Touch Tracking]/guides/ios/application_fundamentals/touch/touch_tracking/)
+FingerPaint sample for [Multi-Touch Tracking](https://docs.microsoft.com/xamarin/ios/app-fundamentals/touch/touch-tracking)
 
-![Multi-Touch Tracking for iOS application screenshot](Screenshots/image01.png "Multi-Touch Tracking for iOS application screenshot")
-
-## Author
-Charles Petzold
-
+![App showing a hand-drawn face](Screenshots/image01.png)

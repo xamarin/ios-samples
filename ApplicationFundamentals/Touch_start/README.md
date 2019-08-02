@@ -1,13 +1,5 @@
----
-name: Xamarin.iOS - Touch in iOS (Walkthrough)
-description: Walkthrough starting point for Using Touch in iOS Walkthrough
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: applicationfundamentals-touch-start
----
 # Touch in iOS (Walkthrough)
 
-Walkthrough starting point for [Using Touch in iOS Walkthrough](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/touch/part_2_ios_touch_walkthrough/)
+## REFER TO THE FINAL version for finished code
+
+Walkthrough starting point for [Using Touch in iOS Walkthrough](https://docs.microsoft.com/en-us/xamarin/ios/app-fundamentals/touch/ios-touch-walkthrough)

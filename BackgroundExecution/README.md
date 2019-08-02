@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Background Execution
-description: "llustrates how to develop multitasking (background execution) aware applications in Xamarin.iOS"
+description: "Illustrates how to develop multitasking (background execution) aware applications in Xamarin.iOS"
 page_type: sample
 languages:
 - csharp
