@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - SimpleLogin
-description: This sample is the application that will be built at the end of the Creating iOS Applications in Code Using Visual Studio guide.
+description: This sample is the application that will be built at the end of the Creating iOS Applications in Code Using Visual Studio doc.
 page_type: sample
 languages:
 - csharp
@@ -10,8 +10,4 @@ urlFragment: simplelogin
 ---
 # SimpleLogin
 
-This sample is the application that will be built at the end of the [Creating iOS Applications in Code Using Visual Studio](http://developer.xamarin.com/guides/ios/application_fundamentals/ios_code_only/) guide.
-
-
-
-
+This sample is the application that will be built at the end of the [Creating iOS Applications in Code Using Visual Studio](https://docs.microsoft.com/xamarin/ios/app-fundamentals/ios-code-only) doc.

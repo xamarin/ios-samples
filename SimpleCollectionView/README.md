@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Simple Collection Views
-description: This sample demonstrates using Collection Views in iOS 6. It accompanies the article Introduction to Collection Views.
+description: "Demonstrates using Collection Views. It accompanies the article Introduction to Collection Views."
 page_type: sample
 languages:
 - csharp
@@ -10,4 +10,6 @@ urlFragment: simplecollectionview
 ---
 # Simple Collection Views
 
-This sample demonstrates using Collection Views in iOS 6. It accompanies the article Introduction to Collection Views.
+This sample demonstrates using Collection Views. It accompanies the article [Introduction to Collection Views](https://docs.microsoft.com/xamarin/ios/user-interface/controls/uicollectionview).
+
+![App showing a layout of monkey icons](Screenshots/CollectionView.png)

@@ -1,15 +1,19 @@
 ---
 name: Xamarin.iOS - Sprite Kit Physics Collisions
-description: This example demostrates physics and collisions between objects when using Sprite Kit. The ship on the left when the app launches is controllable...
+description: "Demonstrates physics and collisions between objects using Sprite Kit. The ship starting on the left is controllable... (game)"
 page_type: sample
 languages:
 - csharp
 products:
 - xamarin
+extensions:
+    tags:
+    - game
 urlFragment: spritekitphysicscollisions
 ---
 # Sprite Kit Physics Collisions
-This example demostrates physics and collisions between objects when using Sprite Kit. The ship on the left when the app launches is controllable by the player using the following controls:
+
+This example demonstrates physics and collisions between objects when using Sprite Kit. The ship on the left when the app launches is controllable by the player using the following controls:
 
 * Tap left of the ship – `Turn Left`
 * Tap right of the ship – `Turn Right`
@@ -18,6 +22,3 @@ This example demostrates physics and collisions between objects when using Sprit
 * Tap on the ship – `Fire weapon`
 
 ![Sprite Kit Physics Collisions application screenshot](Screenshots/01.png "Sprite Kit Physics Collisions application screenshot")
-
-## Author
-Timothy Risi

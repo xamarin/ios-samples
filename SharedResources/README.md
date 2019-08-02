@@ -12,4 +12,4 @@ urlFragment: sharedresources
 
 This sample illustrates how to work with various iOS resources including: the accelerometer, photo/video library, camera, battery status, contacts, file system, and network activity indicator.
 
-![Shared Resources application screenshot](Screenshots/01.png "Shared Resources application screenshot")
+![Shared Resources application screenshot](Screenshots/01.png)
