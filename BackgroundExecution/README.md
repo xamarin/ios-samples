@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Background Execution
-description: This sample illustrates how to develop multitasking (background execution) aware applications in Xamarin.iOS. The AppDelegate class illustrates the...
+description: "llustrates how to develop multitasking (background execution) aware applications in Xamarin.iOS"
 page_type: sample
 languages:
 - csharp
@@ -19,7 +19,3 @@ The home screen has a button that will launch a background task that will execut
 ## License
 
 Xamarin port changes are released under the MIT license.
-
-## Authors
-
-Ported to Xamarin.iOS by Bryan Costanich

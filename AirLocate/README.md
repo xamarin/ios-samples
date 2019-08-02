@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - AirLocate
-description: AirLocate shows how to use CLLocationManager to monitor and range CLBeaconRegion. The code also provides an example of how you can calibrate and...
+description: "AirLocate shows how to use CLLocationManager to monitor and range CLBeaconRegion. The code also provides an example of calibrating..."
 page_type: sample
 languages:
 - csharp
@@ -9,6 +9,7 @@ products:
 urlFragment: airlocate
 ---
 # AirLocate
+
 AirLocate shows how to use `CLLocationManager` to monitor and range `CLBeaconRegion`.
 The code also provides an example of how you can calibrate and configure an iOS device as a beacon with CoreBluetooth.
 
@@ -40,16 +41,9 @@ Once you've setup your target device as a beacon, you can use this app to demo b
 To demo ranging, select Ranging from the remote device. `RangingViewController` ranges a set of `CLBeaconRegion`.
 To demo monitoring, select Monitoring from the remote device. `MonitoringViewController` allows you to configure a `CLBeaconRegion` to monitor.
 
-
-
 This sample is the Xamarin.iOS version of Apple's iOS7 Sample -- AirLocate.
 
-Here is the link to the Apple's Sample: 
+Here is the link to the Apple's Sample:
 https://developer.apple.com/downloads/index.action?name=WWDC%202013#
 
-
 ![AirLocate application screenshot](Screenshots/01.png "AirLocate application screenshot")
-
-## Authors
-
-Bo Pang

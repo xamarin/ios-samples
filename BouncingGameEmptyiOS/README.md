@@ -1,13 +1,3 @@
----
-name: Xamarin.iOS - CocosSharp Empty Project for iOS
-description: This project serves as a starting-point for CocosSharp iOS projects. It is the result of working through the Part 1 - Creating iOS CocosSharp...
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: bouncinggameemptyios
----
 # CocosSharp Empty Project for iOS
 
 This project serves as a starting-point for CocosSharp iOS projects.  It is the result of working through the Part 1 - Creating iOS CocosSharp Project walkthrough.  It is titled BouncingGame as that is the name of the project created by the full Introduction to CocosSharp walkthrough.

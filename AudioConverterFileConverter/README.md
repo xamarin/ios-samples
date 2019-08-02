@@ -1,6 +1,6 @@
 ---
-name: Xamarin.iOS - Audio Converter File Converter Demo
-description: This sample demonstrates the use of the Audio Converter API to convert from a PCM audio format in an AIF file to a compressed format in a CAF file...
+name: Xamarin.iOS - Audio Converter File Converter
+description: "Demonstrates the use of the Audio Converter API to convert from a PCM audio format in an AIF file to a compressed format in a CAF file..."
 page_type: sample
 languages:
 - csharp
@@ -35,9 +35,7 @@ Supported transformations include the following:
 * PCM interleaved to and from PCM deinterleaved
 * PCM to and from compressed formats<
 
-**NOTE: This sample will only work with Xcode 5.0 or above.
-
-# Resources
+# Source
 
 This is port of Apple's iPhoneACFileConvertTest sample
 

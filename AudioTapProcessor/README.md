@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - AudioTapProcessor
-description: Sample application that uses the MTAudioProcessingTap in combination with AV Foundation to visualize audio samples (volume) as well as applying a...
+description: "Sample application that uses the MTAudioProcessingTap in combination with AV Foundation to visualize audio samples (volume)"
 page_type: sample
 languages:
 - csharp
@@ -21,10 +21,9 @@ The sample requires at least one video asset in the Asset Library (Camera Roll) 
 Building this sample requires Xcode 6 and iOS 7.0 SDK
 
 ## Target
+
 This sample runnable on iPadSimulator iPad
 
 ## Copyright
-Xamarin port changes are released under the MIT license
 
-## Author 
-Ported to Xamarin.iOS by Rustam Zaitov
+Xamarin port changes are released under the MIT license

@@ -1,13 +1,3 @@
----
-name: Xamarin.iOS - CocosSharp BouncingGame Project for iOS
-description: This is a small, complete game using CocosSharp for iOS. It is the result of working through the the entire Introduction to CocosSharp walkthrough....
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: bouncinggamecompleteios
----
 # CocosSharp BouncingGame Project for iOS
 
 This is a small, complete game using CocosSharp for iOS.  It is the result of working through the the entire Introduction to CocosSharp walkthrough.

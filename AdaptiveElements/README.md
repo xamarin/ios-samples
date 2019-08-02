@@ -1,6 +1,6 @@
 ---
-name: 'Xamarin.iOS - AdaptiveElements: Implementing Your Own Adaptive Design with UIKit'
-description: This sample shows how to use UIKit to lay out your app's elements in different sizes, from full-screen on the smallest iPhone to Multitasking on...
+name: 'Xamarin.iOS - Adaptive design with UIKit'
+description: "Shows how to use UIKit to lay out your app's elements in different sizes, from full-screen on the smallest iPhone to Multitasking..."
 page_type: sample
 languages:
 - csharp
@@ -26,7 +26,3 @@ Xamarin.iOS 10.0+ and Xcode 8.0+.
 ## License
 
 Xamarin port changes are released under the MIT license.
-
-## Author
-
-Ported to Xamarin.iOS by Mykyta Bondarenko

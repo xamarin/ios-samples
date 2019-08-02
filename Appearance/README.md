@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Introduction to Appearance
-description: This contains a sample demonstrating the use of the Appearance API. You can find more information on this in the Introduction to Appearance API...
+description: This contains a sample demonstrating the use of the Appearance API with Xamarin.iOS
 page_type: sample
 languages:
 - csharp
