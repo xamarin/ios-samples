@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Gesture Recognizers
-description: An example on how to handle touches to move multiple objects. TouchesGestureRecognizers demostrate how to do it with UIGestureRecognizers. Loosely...
+description: "How to handle touches to move multiple objects with UIGestureRecognizers"
 page_type: sample
 languages:
 - csharp
@@ -10,14 +10,11 @@ urlFragment: touches-gesturerecognizers
 ---
 # Gesture Recognizers
 
-An example on how to handle touches to move multiple objects.
-Touches_GestureRecognizers demostrate how to do it with UIGestureRecognizers.
-
-Loosely based on Apple's Touches example:
-http://developer.apple.com/library/ios/#samplecode/Touches
+An example on how to handle touches to move multiple objects with UIGestureRecognizers.
 
 ![Gesture Recognizers application screenshot](Screenshots/Touches_GestureRecognizers1.png "Gesture Recognizers application screenshot")
 
-## Authors
+See the [touch events and gestures](https://docs.microsoft.com/xamarin/ios/app-fundamentals/touch/touch-in-ios) docs for Xamarin.iOS.
 
-Mike Krüger
+Loosely based on Apple's Touches example:
+http://developer.apple.com/library/ios/#samplecode/Touches
