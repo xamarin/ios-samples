@@ -1,13 +1,5 @@
----
-name: Xamarin.iOS - Getting Started with Watch Kit
-description: Sample for getting started with Watch Kit.
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-urlFragment: watchkit-gettingstarted
----
-# Getting Started with Watch Kit
+# Getting Started with Watch Kit - DEPRECATED
 
-Sample for [getting started with Watch Kit](http://developer.xamarin.com/guides/ios/watch/getting-started/).
+## See the watchOS samples instead
+
+Sample for [getting started with Watch Kit](https://docs.microsoft.com/xamarin/ios/watchos/get-started/).
