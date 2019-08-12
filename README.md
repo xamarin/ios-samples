@@ -1,8 +1,8 @@
 # iOS/tvOS/watchOS Samples
 
 The samples in this directory use the Xamarin.iOS toolchain and
-Xamarin Studio project files to illustrate the basics of how to
-work with iOS and the SDK. Visit the [iOS Sample Gallery](https://developer.xamarin.com/samples/ios/all/)
+Xamarin project files to illustrate the basics of how to
+work with iOS and the SDK. Visit the [iOS Sample Gallery](https://docs.microsoft.com/samples/browse/?term=Xamarin.iOS)
 to download individual samples.
 
 ## License
@@ -17,15 +17,18 @@ Starting with iOS 8, we started adding samples that showcase specific
 features introduced in a release into a directory for the release.  So
 all the new iOS 8 feature samples live in the ios8 directory, the
 iOS 9 features live in the ios9 directory and the iOS 10 feature lives
-in the ios10 directory, and so on for iOS 11.
+in the ios10 directory, and so on for ios11, ios12, ios13...
 
 ### watchOS
 
-watchOS samples are in the watchOS directory, there are a couple of them:
+watchOS samples are in the watchOS directory, including:
 
-- [WatchKit/WatchKitCatalog](https://github.com/xamarin/ios-samples/tree/master/WatchKit/WatchKitCatalog): contains a sample that shows all the UI elements available in WatchKit.
-- [WatchKit/GpsWatch](https://github.com/xamarin/ios-samples/tree/master/WatchKit/GpsWatch): a GPS app for the Apple Watch.
-- [WatchKit/WatchTables](https://github.com/xamarin/ios-samples/tree/master/WatchKit/WatchTables): the sample app used in our tutorials to show how to build WatchKit apps.
+- [watchOS/WatchKitCatalog](https://github.com/xamarin/ios-samples/tree/master/watchOS/WatchKitCatalog): contains a sample that shows all the UI elements available in WatchKit.
+- [watchOS/ActivityRings](https://github.com/xamarin/ios-samples/tree/master/watchOS/ActivityRings): Health Kit integration for Apple Watch.
+- [watchOS/WatchTables](https://github.com/xamarin/ios-samples/tree/master/watchOS/WatchTables): the sample app used in our tutorials to show how to build WatchKit apps.
+- [and more...](https://github.com/xamarin/ios-samples/tree/master/watchOS)
+
+> NOTE: The [WatchKit samples](https://github.com/xamarin/ios-samples/tree/master/WatchKit) are deprecated, please refer to these samples in the **watchOS** directory.
 
 ### tvOS
 
