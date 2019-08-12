@@ -94,7 +94,7 @@ Because the sample galleries are powered by the github sample repos, each sample
 
     - **products**: should be `xamarin` for every sample in this repo
 
-    - **urlFragment**: although this can be auto-generated, please supply a value that represents the sample's path in this repo, except directory separators are replaced with dashes (`-`).
+    - **urlFragment**: although this can be auto-generated, please supply an all-lowercase value that represents the sample's path in this repo, except directory separators are replaced with dashes (`-`) and no other punctuation.
 
     Here is a working example from [_ios11/MapKitSample_ README raw view](https://raw.githubusercontent.com/xamarin/ios-samples/master/ios11/MapKitSample/README.md).
 
