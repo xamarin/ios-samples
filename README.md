@@ -90,7 +90,7 @@ Because the sample galleries are powered by the github sample repos, each sample
 
     - **page_type** - must be the string `sample`.
 
-    - **languages** - coding language/s used in the sample, such as: `csharp`, `fsharp`, `vb`, `java`
+    - **languages** - coding language/s used in the sample, such as: `csharp`, `fsharp`, `vb`, `objc`
 
     - **products**: should be `xamarin` for every sample in this repo
 
