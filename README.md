@@ -84,7 +84,7 @@ Because the sample galleries are powered by the github sample repos, each sample
 
 - **Readme** - a `README.md` file that explains the sample, and contains metadata to help customers find it. For an example of this, see [ios11/MapKitSample](https://github.com/xamarin/ios-samples/tree/master/ios11/MapKitSample/README.md). The README file should begin with a YAML header (delimited by `---`) with the following keys/values:
 
-  - **name** - must begin with `Xamarin.Forms -`
+  - **name** - must begin with `Xamarin.iOS -`
 
     - **description** - brief description of the sample (&lt; 150 chars) that appears in the sample code browser search
 
