@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Lazy Table Images Async
-description: "Demonstrates how to lazily download images and add them to a prepopulated table new async/await feature..."
+description: "Demonstrates how to lazily download images and add them to a table using async/await..."
 page_type: sample
 languages:
 - csharp
@@ -10,6 +10,6 @@ urlFragment: lazytableimagesasync
 ---
 # Lazy Table Images Async
 
-This sample demonstrates how to lazily download images and add them to a pre-populated table new `async`/`await` feature.
+This sample demonstrates how to lazily download images and add them to a pre-populated table using the `async`/`await` feature.
 
-![iOS app with images in a table](Screenshots/LazyTableImages.png)
+![iOS app with images in a table](Screenshots/01.png)
