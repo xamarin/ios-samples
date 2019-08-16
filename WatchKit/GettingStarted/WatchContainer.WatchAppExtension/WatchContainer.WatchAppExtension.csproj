@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectGuid>{3EAA8C5D-7793-4A0A-A24B-BBB4DB11CC35}</ProjectGuid>
+    <ProjectGuid>{0D0E4549-6E41-4FEA-BDD6-EB8AF2728007}</ProjectGuid>
     <ProjectTypeGuids>{1E2E965C-F6D2-49ED-B86E-418A60C69EEF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>WatchContainer.WatchAppExtension</RootNamespace>

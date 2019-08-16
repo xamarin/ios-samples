@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectGuid>{3939EB76-707A-4C18-9EBF-292228006E82}</ProjectGuid>
+    <ProjectGuid>{FB3834F0-445E-4015-B236-7A548D0F85FB}</ProjectGuid>
     <ProjectTypeGuids>{A9A6EAC2-568B-4F3E-869D-32CBBA122DF2};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>WatchContainer.WatchApp</RootNamespace>
@@ -111,7 +111,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WatchContainer.WatchAppExtension\WatchContainer.WatchAppExtension.csproj">
       <IsAppExtension>true</IsAppExtension>
-      <Project>{3EAA8C5D-7793-4A0A-A24B-BBB4DB11CC35}</Project>
+      <Project>{0D0E4549-6E41-4FEA-BDD6-EB8AF2728007}</Project>
       <Name>WatchContainer.WatchAppExtension</Name>
     </ProjectReference>
   </ItemGroup>
