@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicTableHeaderFooter", "BasicTableHeaderFooter.csproj", "{15D8E98D-D803-4CCC-906F-0960D31DD333}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicTableHeaderFooter", "BasicTableHeaderFooter.csproj", "{397FCECC-2658-4C74-90C6-A52B6B3425CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhone.Build.0 = Debug|iPhone
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhone.ActiveCfg = Release|iPhone
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhone.Build.0 = Release|iPhone
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{15D8E98D-D803-4CCC-906F-0960D31DD333}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{397FCECC-2658-4C74-90C6-A52B6B3425CF}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{397FCECC-2658-4C74-90C6-A52B6B3425CF}.Debug|iPhone.Build.0 = Debug|iPhone
+		{397FCECC-2658-4C74-90C6-A52B6B3425CF}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{397FCECC-2658-4C74-90C6-A52B6B3425CF}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{397FCECC-2658-4C74-90C6-A52B6B3425CF}.Release|iPhone.ActiveCfg = Release|iPhone
+		{397FCECC-2658-4C74-90C6-A52B6B3425CF}.Release|iPhone.Build.0 = Release|iPhone
+		{397FCECC-2658-4C74-90C6-A52B6B3425CF}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{397FCECC-2658-4C74-90C6-A52B6B3425CF}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = BasicTableHeaderFooter.csproj

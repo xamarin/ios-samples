@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - CoreML Image Recognition
-description: "Demo of iOS 11 CoreML using different image recognition models to identify features in photographs. The smaller, simpler... (iOS11)"
+description: "Demo of iOS 11 CoreML using different image recognition models to identify features in photographs... (iOS11)"
 page_type: sample
 languages:
 - csharp
