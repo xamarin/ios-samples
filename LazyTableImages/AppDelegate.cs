@@ -42,9 +42,13 @@ namespace LazyTableImages {
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate {
 
-		static readonly Uri RssFeedUrl = new Uri ("http://phobos.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=75/xml");
+        /// <summary>
+        /// Choose a feed from https://rss.itunes.apple.com/
+        /// </summary>
+		static readonly Uri RssFeedUrl = new Uri("https://rss.itunes.apple.com/api/v1/us/ios-apps/top-free/all/50/non-explicit.atom");
 
-		UINavigationController NavigationController { get; set; }
+
+        UINavigationController NavigationController { get; set; }
 
 		RootViewController RootController { get; set; }
 
