@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - Storyboard Tables - Local Authentication
-description: "Demonstration of the final application that will be produced at the end of the Introduction to Touch ID guide (iOS11)"
+description: "Demonstration of the final application that will be produced at the end of the Introduction to Touch ID doc (iOS11)"
 page_type: sample
 languages:
 - csharp

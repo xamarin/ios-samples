@@ -1,6 +1,6 @@
 ---
 name: Xamarin.iOS - PassKit Sample
-description: 'This sample demonstrates how to build a PassKit Companion App to interact with passes you have issued in a users Passbook...'
+description: 'Demonstrates how to build a PassKit Companion App to interact with passes you have issued in a user's Apple Wallet'
 page_type: sample
 languages:
 - csharp
@@ -68,7 +68,7 @@ Do not attempt to run the sample app until the Pass is generated and used succes
 
 ### Run the sample app
 
-Go to Xamarin Studio - the solution should now include the **CouponBanana2.pkpass** file. Compile and run the sample app.
+Go to Visual Studio for Mac - the solution should now include the **CouponBanana2.pkpass** file. Compile and run the sample app.
 
 #### App Troubleshooting
 
@@ -86,4 +86,4 @@ Also verify:
 
 Refer to the [Introduction to PassKit](https://docs.microsoft.com/xamarin/ios/platform/passkit) documentation on the Xamarin website.
 
-Also refer to Apple's [Passbook for Developers](https://developer.apple.com/passbook/) site.
+Also refer to Apple's [Integrating with Wallet](https://developer.apple.com/wallet/) docs.

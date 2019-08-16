@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iCloudUIDoc", "iCloudUIDoc.csproj", "{367D4ECC-D04A-41FB-A784-4D10F30666C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iCloudUIDoc", "iCloudUIDoc.csproj", "{DC7EA164-6ADE-4F64-A6E8-A3FF9FCF6F78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Debug|iPhone.Build.0 = Debug|iPhone
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Release|iPhone.ActiveCfg = Release|iPhone
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Release|iPhone.Build.0 = Release|iPhone
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{DC7EA164-6ADE-4F64-A6E8-A3FF9FCF6F78}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{DC7EA164-6ADE-4F64-A6E8-A3FF9FCF6F78}.Debug|iPhone.Build.0 = Debug|iPhone
+		{DC7EA164-6ADE-4F64-A6E8-A3FF9FCF6F78}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{DC7EA164-6ADE-4F64-A6E8-A3FF9FCF6F78}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{DC7EA164-6ADE-4F64-A6E8-A3FF9FCF6F78}.Release|iPhone.ActiveCfg = Release|iPhone
+		{DC7EA164-6ADE-4F64-A6E8-A3FF9FCF6F78}.Release|iPhone.Build.0 = Release|iPhone
+		{DC7EA164-6ADE-4F64-A6E8-A3FF9FCF6F78}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{DC7EA164-6ADE-4F64-A6E8-A3FF9FCF6F78}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = iCloudUIDoc.csproj
