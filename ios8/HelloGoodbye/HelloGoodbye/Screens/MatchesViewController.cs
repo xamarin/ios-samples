@@ -122,10 +122,10 @@ namespace HelloGoodbye
 			cv.AddGestureRecognizer (swipeDownRecognizer);
 
 			string sayHelloName = "Say hello".LocalizedString (@"Accessibility action to say hello");
-			helloAction = new UIAccessibilityCustomAction (sayHelloName, SayHello);
+			helloAction = new UIAccessibilityCustomAction (sayHelloName, probe: SayHello);
 
 			string sayGoodbyeName = "Say goodbye".LocalizedString ("Accessibility action to say goodbye");
-			goodbyeAction = new UIAccessibilityCustomAction (sayGoodbyeName, SayGoodbye);
+			goodbyeAction = new UIAccessibilityCustomAction (sayGoodbyeName, probe: SayGoodbye);
 
 			UIView[] elements = NSArray.FromArray<UIView> ((NSArray)cv.GetAccessibilityElements ());
 			foreach (UIView element in elements)

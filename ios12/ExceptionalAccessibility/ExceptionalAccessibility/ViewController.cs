@@ -60,8 +60,8 @@ namespace ExceptionalAccessibility
             this.shelterInfoView.IsAccessibilityElement = true;
             this.shelterInfoView.AccessibilityCustomActions = new UIAccessibilityCustomAction[]
             {
-                new UIAccessibilityCustomAction("Call", this.ActivateCallButton),
-                new UIAccessibilityCustomAction("Open address in Maps", this.ActivateLocationButton)
+                new UIAccessibilityCustomAction("Call", probe: ActivateCallButton),
+                new UIAccessibilityCustomAction("Open address in Maps", probe: ActivateLocationButton)
             };
         }
 
