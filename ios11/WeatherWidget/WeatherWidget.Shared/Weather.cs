@@ -44,7 +44,7 @@ namespace WeatherWidget
         public static UIImage GetImageAsset(this Weather self)
         {
             var assetName = self.GetImageAssetName();
-            var image = UIImage.FromBundle(assetName, null, null);
+            var image = UIImage.FromBundle(assetName);
             if (image == null)
             {
                 throw new Exception($"Expected an image named {assetName}");
