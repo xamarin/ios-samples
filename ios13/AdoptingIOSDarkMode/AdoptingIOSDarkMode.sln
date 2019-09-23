@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdoptingIOSDarkMode", "AdoptingIOSDarkMode\AdoptingIOSDarkMode.csproj", "{AC05759B-38A8-4552-BB0F-ECA0DCC00133}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC05759B-38A8-4552-BB0F-ECA0DCC00133}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{AC05759B-38A8-4552-BB0F-ECA0DCC00133}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{AC05759B-38A8-4552-BB0F-ECA0DCC00133}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{AC05759B-38A8-4552-BB0F-ECA0DCC00133}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{AC05759B-38A8-4552-BB0F-ECA0DCC00133}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{AC05759B-38A8-4552-BB0F-ECA0DCC00133}.Debug|iPhone.Build.0 = Debug|iPhone
+		{AC05759B-38A8-4552-BB0F-ECA0DCC00133}.Release|iPhone.ActiveCfg = Release|iPhone
+		{AC05759B-38A8-4552-BB0F-ECA0DCC00133}.Release|iPhone.Build.0 = Release|iPhone
+	EndGlobalSection
+EndGlobal
