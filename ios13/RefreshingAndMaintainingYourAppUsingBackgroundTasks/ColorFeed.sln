@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorFeed", "ColorFeed\ColorFeed.csproj", "{D551BAFC-7604-4663-92CD-A2FF61297B6E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D551BAFC-7604-4663-92CD-A2FF61297B6E}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{D551BAFC-7604-4663-92CD-A2FF61297B6E}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{D551BAFC-7604-4663-92CD-A2FF61297B6E}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{D551BAFC-7604-4663-92CD-A2FF61297B6E}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{D551BAFC-7604-4663-92CD-A2FF61297B6E}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{D551BAFC-7604-4663-92CD-A2FF61297B6E}.Debug|iPhone.Build.0 = Debug|iPhone
+		{D551BAFC-7604-4663-92CD-A2FF61297B6E}.Release|iPhone.ActiveCfg = Release|iPhone
+		{D551BAFC-7604-4663-92CD-A2FF61297B6E}.Release|iPhone.Build.0 = Release|iPhone
+	EndGlobalSection
+EndGlobal

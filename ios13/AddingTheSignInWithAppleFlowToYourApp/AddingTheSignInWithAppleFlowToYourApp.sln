@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddingTheSignInWithAppleFlowToYourApp", "AddingTheSignInWithAppleFlowToYourApp\AddingTheSignInWithAppleFlowToYourApp.csproj", "{C16B8570-4E7B-4E5A-8D37-51DA6FF1BC1D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C16B8570-4E7B-4E5A-8D37-51DA6FF1BC1D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C16B8570-4E7B-4E5A-8D37-51DA6FF1BC1D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C16B8570-4E7B-4E5A-8D37-51DA6FF1BC1D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C16B8570-4E7B-4E5A-8D37-51DA6FF1BC1D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{C16B8570-4E7B-4E5A-8D37-51DA6FF1BC1D}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C16B8570-4E7B-4E5A-8D37-51DA6FF1BC1D}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C16B8570-4E7B-4E5A-8D37-51DA6FF1BC1D}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C16B8570-4E7B-4E5A-8D37-51DA6FF1BC1D}.Release|iPhone.Build.0 = Release|iPhone
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conference-Diffable", "Conference-Diffable\Conference-Diffable.csproj", "{DA5CCF0A-4D10-4D93-B039-53B9F4A4AAF1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA5CCF0A-4D10-4D93-B039-53B9F4A4AAF1}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{DA5CCF0A-4D10-4D93-B039-53B9F4A4AAF1}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{DA5CCF0A-4D10-4D93-B039-53B9F4A4AAF1}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{DA5CCF0A-4D10-4D93-B039-53B9F4A4AAF1}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{DA5CCF0A-4D10-4D93-B039-53B9F4A4AAF1}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{DA5CCF0A-4D10-4D93-B039-53B9F4A4AAF1}.Debug|iPhone.Build.0 = Debug|iPhone
+		{DA5CCF0A-4D10-4D93-B039-53B9F4A4AAF1}.Release|iPhone.ActiveCfg = Release|iPhone
+		{DA5CCF0A-4D10-4D93-B039-53B9F4A4AAF1}.Release|iPhone.Build.0 = Release|iPhone
+	EndGlobalSection
+EndGlobal
