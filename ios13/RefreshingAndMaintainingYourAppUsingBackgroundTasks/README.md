@@ -89,8 +89,7 @@ Xamarin port changes are released under the MIT license.
 
 The original sample is released under the following [license][5].
 
-Author
-------
+## Author
 
 Ported to Xamarin.iOS by Israel Soto.
 

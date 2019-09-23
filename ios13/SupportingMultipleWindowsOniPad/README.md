@@ -22,7 +22,7 @@ Use the UIScene lifecycle to support two side-by-side instances of your interfac
 To be able to test Background tasks, please, follow these steps:
 
 1. Add the following keys to **Info.plist** to support multiple windows:
-	
+
 	```xml
 	<key>NSUserActivityTypes</key>
 	<array>
@@ -74,8 +74,7 @@ Xamarin port changes are released under the MIT license.
 
 The original sample is released under the following [license][7].
 
-Author
-------
+## Author
 
 Ported to Xamarin.iOS by Israel Soto.
 
