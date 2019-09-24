@@ -1,6 +1,6 @@
 ---
-name: 'Xamarin.iOS - PassKit Sample'
-description: 'Demonstrates how to build a PassKit Companion App to interact with passes you have issued in a user's Apple Wallet'
+name: "Xamarin.iOS - PassKit Sample"
+description: "Demonstrates how to build a PassKit Companion App to interact with passes you have issued in a user's Apple Wallet"
 page_type: sample
 languages:
 - csharp
