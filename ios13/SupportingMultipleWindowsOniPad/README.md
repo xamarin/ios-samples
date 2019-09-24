@@ -13,7 +13,7 @@ urlFragment: ios13-supportingmultiplewindowsonipad
 ---
 # Supporting Multiple Windows on iPad
 
-This is a Xamarin port of Apple's [Supporting Multiple Windows on iPad][1] sample. 
+This is a Xamarin port of Apple's [Supporting Multiple Windows on iPad][1] sample.
 
 Use the UIScene lifecycle to support two side-by-side instances of your interface and learn how to create a new window with drag and drop.
 
@@ -57,26 +57,22 @@ Building this sample requires Xcode 11.0 and iOS 13.0 SDK
 
 ## Refs
 
-* [Original sample page.][1]
-* [protocol UIWindowSceneDelegate][2]
-* [class UIWindowScene][3]
-* [protocol UISceneDelegate][4]
-* [class UIScene][5]
-* This sample code project is associated with WWDC 2019 session 212: [Introducing Multiple Windows on iPad.][6]
+- [Original sample page.][1]
+- [protocol UIWindowSceneDelegate][2]
+- [class UIWindowScene][3]
+- [protocol UISceneDelegate][4]
+- [class UIScene][5]
+- This sample code project is associated with WWDC 2019 session 212: [Introducing Multiple Windows on iPad.][6]
 
 ## Target
 
 This sample runnable on iPhoneSimulator/iPadSimulator iPhone/iPad
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license.
 
 The original sample is released under the following [license][7].
-
-## Author
-
-Ported to Xamarin.iOS by Israel Soto.
 
 [1]: https://developer.apple.com/documentation/uikit/app_and_environment/scenes/supporting_multiple_windows_on_ipad
 [2]: https://developer.apple.com/documentation/uikit/uiwindowscenedelegate

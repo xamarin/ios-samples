@@ -45,8 +45,8 @@ To be able to test Background tasks, please, follow these steps:
 
 3. To be able to test a background task, you need to the debug the app with Xcode by:
 	
-	* Following [these steps][6]
-	* or by running the app on Visual Studio with Debug configuration and attaching the process to Xcode by clicking on **Debug** menu > **Attach to process** > **ColorFeed** (or the app name.)
+	- Following [these steps][6]
+	- or by running the app on Visual Studio with Debug configuration and attaching the process to Xcode by clicking on **Debug** menu > **Attach to process** > **ColorFeed** (or the app name.)
 
 4. Once attached to Xcode, send the app to background and open it again; this, to register the background tasks in the OS.
 5. On Xcode, enable the `lldb` in the debugger by pausing the debug session.
@@ -74,24 +74,20 @@ Building this sample requires Xcode 11.0 and iOS 13.0 SDK
 
 ## Refs
 
-* [Original sample page.][1]
-* [class `BGTaskScheduler`][2]
-* [Starting and Terminating Tasks During Development][3]
-* This sample code project is associated with WWDC 2019 session 707: [Advances in App Background Execution.][4]
+- [Original sample page.][1]
+- [class `BGTaskScheduler`][2]
+- [Starting and Terminating Tasks During Development][3]
+- This sample code project is associated with WWDC 2019 session 707: [Advances in App Background Execution.][4]
 
 ## Target
 
 This sample runnable on iPhone/iPad
 
-## Copyright
+## License
 
 Xamarin port changes are released under the MIT license.
 
 The original sample is released under the following [license][5].
-
-## Author
-
-Ported to Xamarin.iOS by Israel Soto.
 
 [1]: https://developer.apple.com/documentation/backgroundtasks/refreshing_and_maintaining_your_app_using_background_tasks
 [2]: https://developer.apple.com/documentation/backgroundtasks/bgtaskscheduler

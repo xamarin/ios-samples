@@ -35,9 +35,9 @@ Building this sample requires Xcode 11.0 and iOS 13.0 SDK
 
 ## References
 
-* [Original sample page.][1]
-* [Sign In with Apple Entitlement.][2]
-* This sample code project is associated with WWDC 2019 session 706: [Introducing Sign In with Apple.][3]
+- [Original sample page.][1]
+- [Sign In with Apple Entitlement.][2]
+- This sample code project is associated with WWDC 2019 session 706: [Introducing Sign In with Apple.][3]
 
 ## Target
 
@@ -48,10 +48,6 @@ This sample runnable on iPhoneSimulator/iPadSimulator iPhone/iPad
 Xamarin port changes are released under the MIT license.
 
 The original sample is released under the following [license][4].
-
-## Author
-
-Ported to Xamarin.iOS by Israel Soto.
 
 [1]: https://developer.apple.com/documentation/authenticationservices/adding_the_sign_in_with_apple_flow_to_your_app
 [2]: https://developer.apple.com/documentation/bundleresources/entitlements/com_apple_developer_applesignin

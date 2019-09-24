@@ -19,7 +19,7 @@ Learn how to bring complex, high-performance layouts to your app, and simplify u
 
 ## Instructions
 
-* Open the solution and deploy it!
+- Open the solution and deploy it!
 
 ## Build Requirements
 
@@ -27,14 +27,14 @@ Building this sample requires Xcode 11.0 and iOS 13.0 SDK
 
 ## References
 
-* [Original sample page.][1]
-* [class `NSCollectionViewFlowLayout`][2]
-* [protocol `NSCollectionViewDelegateFlowLayout`][3]
-* [class `NSCollectionViewGridLayout`][4]
-* [class `NSCollectionViewTransitionLayout`][5]
-* [class `NSCollectionViewLayoutAttributes`][6]
-* [class `NSCollectionViewLayout`][7]
-* This sample code project is associated with WWDC 2019 sessions [215: Advances in Collection View Layout][8] and [220: Advances in UI Data Sources][9].
+- [Original sample page.][1]
+- [class `NSCollectionViewFlowLayout`][2]
+- [protocol `NSCollectionViewDelegateFlowLayout`][3]
+- [class `NSCollectionViewGridLayout`][4]
+- [class `NSCollectionViewTransitionLayout`][5]
+- [class `NSCollectionViewLayoutAttributes`][6]
+- [class `NSCollectionViewLayout`][7]
+- This sample code project is associated with WWDC 2019 sessions [215: Advances in Collection View Layout][8] and [220: Advances in UI Data Sources][9].
 
 ## Target
 
@@ -45,10 +45,6 @@ This sample runnable on iPhoneSimulator/iPadSimulator iPhone/iPad
 Xamarin port changes are released under the MIT license.
 
 The original sample is released under the following [license][10].
-
-## Author
-
-Ported to Xamarin.iOS by Israel Soto.
 
 [1]: https://developer.apple.com/documentation/uikit/views_and_controls/collection_views/using_collection_view_compositional_layouts_and_diffable_data_sources
 [2]: https://developer.apple.com/documentation/uikit/views_and_controls/collection_views/using_collection_view_compositional_layouts_and_diffable_data_sources
