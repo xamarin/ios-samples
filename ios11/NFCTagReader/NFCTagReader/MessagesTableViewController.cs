@@ -73,12 +73,11 @@ namespace NFCTagReader
             if (readerError != NFCReaderError.ReaderSessionInvalidationErrorFirstNDEFTagRead &&
                 readerError != NFCReaderError.ReaderSessionInvalidationErrorUserCanceled)
             {
-                BeginInvokeOnMainThread (() =>
-                {
+                BeginInvokeOnMainThread (() => {
                     var alertController = UIAlertController.Create ("Session Invalidated", error.LocalizedDescription, UIAlertControllerStyle.Alert);
                     alertController.AddAction (UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, null));
                     PresentViewController (alertController, true, null);
-});
+                });
             }
 
 
