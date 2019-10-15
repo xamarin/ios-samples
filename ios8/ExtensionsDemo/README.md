@@ -1,16 +1,5 @@
----
-name: Xamarin.iOS - ExtensionsDemo
-description: "This sample shows how to create a today widget extension (iOS8)"
-page_type: sample
-languages:
-- csharp
-products:
-- xamarin
-extensions:
-    tags:
-    - ios8
-urlFragment: ios8-extensionsdemo
----
-# ExtensionsDemo
+# ExtensionsDemo - DEPRECATED
 
-This sample shows how to create a today widget extension.
+See the [intro to Extensions](https://github.com/xamarin/ios-samples/tree/master/intro-to-extensions) sample instead.
+
+This sample shows how to create a today widget extension (see the [doc](https://docs.microsoft.com/xamarin/ios/platform/extensions#Walkthrough))
