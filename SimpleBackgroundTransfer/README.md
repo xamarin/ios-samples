@@ -10,6 +10,8 @@ urlFragment: simplebackgroundtransfer
 ---
 # SimpleBackgroundTransfer
 
+## Overview
+
 SimpleBackgroundTransfer is a simple app that illustrates how to use background transfers.
 
 Right now this sample only works on iOS devices (not the simulator).
