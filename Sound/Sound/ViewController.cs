@@ -54,38 +54,41 @@ namespace Sound
 
         private void UpdateUserInterface()
         {
-            switch (status)
+            InvokeOnMainThread(() =>
             {
-                case Status.PreparingError:
-                    statusLabel.Text = "Error preparing";
-                    lenghtButton.Text = string.Empty;
-                    startButton.Enabled = true;
-                    stopButton.Enabled = false;
-                    playButton.Enabled = false;
-                    break;
+                switch (status)
+                {
+                    case Status.PreparingError:
+                        statusLabel.Text = "Error preparing";
+                        lenghtButton.Text = string.Empty;
+                        startButton.Enabled = true;
+                        stopButton.Enabled = false;
+                        playButton.Enabled = false;
+                        break;
 
-                case Status.Playing:
-                    statusLabel.Text = "Playing";
-                    startButton.Enabled = false;
-                    stopButton.Enabled = false;
-                    playButton.Enabled = false;
-                    break;
+                    case Status.Playing:
+                        statusLabel.Text = "Playing";
+                        startButton.Enabled = false;
+                        stopButton.Enabled = false;
+                        playButton.Enabled = false;
+                        break;
 
-                case Status.Recording:
-                    lenghtButton.Text = string.Empty;
-                    statusLabel.Text = "Recording";
-                    startButton.Enabled = false;
-                    stopButton.Enabled = true;
-                    playButton.Enabled = false;
-                    break;
+                    case Status.Recording:
+                        lenghtButton.Text = string.Empty;
+                        statusLabel.Text = "Recording";
+                        startButton.Enabled = false;
+                        stopButton.Enabled = true;
+                        playButton.Enabled = false;
+                        break;
 
-                case Status.Recorded:
-                    lenghtButton.Text = string.Format("{0:hh\\:mm\\:ss}", stopwatch.Elapsed);
-                    statusLabel.Text = string.Empty;
-                    startButton.Enabled = true;
-                    stopButton.Enabled = false;
-                    playButton.Enabled = true;
-                    break;
+                    case Status.Recorded:
+                        lenghtButton.Text = string.Format("{0:hh\\:mm\\:ss}", stopwatch.Elapsed);
+                        statusLabel.Text = string.Empty;
+                        startButton.Enabled = true;
+                        stopButton.Enabled = false;
+                        playButton.Enabled = true;
+                        break;
+                }
             }
         }
 
