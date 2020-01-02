@@ -10,13 +10,10 @@ urlFragment: simplebackgroundtransfer
 ---
 # SimpleBackgroundTransfer
 
-## Overview
+SimpleBackgroundTransfer is a simple app that illustrates how to use background transfers - press the **Start** button to initiate a large image download in the background.
 
-SimpleBackgroundTransfer is a simple app that illustrates how to use background transfers.
+The app must be properly signed to run on the simulator, so ensure that the bundle identifier is correct and your provisioning profiles are configured correctly (otherwise you might see [this isssue](https://github.com/xamarin/xamarin-macios/issues/7101)).
 
-Right now this sample only works on iOS devices (not the simulator).
+![App showing a world map image](Screenshots/02-sml.png)
 
-![App showing a world map image](Screenshots/IMG_0002.PNG)
-
-This is a port of Apple's WWDC2013 sample SimpleBackgroundTransfer.
-Link to Apple’s sample:https://developer.apple.com/downloads/index.action?name=WWDC%202013#
+This is a port of Apple's [WWDC2013 sample](https://developer.apple.com/downloads/index.action?name=WWDC%202013) SimpleBackgroundTransfer.
