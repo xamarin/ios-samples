@@ -31,8 +31,9 @@ namespace ImageIOAnimation {
 
 		public static AnimatedImage AnimatedImageWithURL (NSUrl url)
 		{
-			AnimatedImage animatedImage = new AnimatedImage ();
-			animatedImage.url = url;
+			AnimatedImage animatedImage = new AnimatedImage {
+				url = url
+			};
 			return animatedImage;
 		}
 

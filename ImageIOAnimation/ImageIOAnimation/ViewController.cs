@@ -5,7 +5,7 @@ using UIKit;
 namespace ImageIOAnimation {
 	class MyDelegate : UITableViewDelegate {
 
-		ViewController viewController;
+		readonly ViewController viewController;
 
 		public MyDelegate (ViewController view)
 		{
