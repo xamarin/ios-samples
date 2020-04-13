@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+    <ID>???</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>Graphics</Tags>
+    <LicenseRequirement>starter</LicenseRequirement>
+	<Gallery>false</Gallery>
+	<Brief>This contains a sample demonstrating the use of CGAnimateImageData CGAnimateImageAtUrl.</Brief>
+</SampleMetadata>
