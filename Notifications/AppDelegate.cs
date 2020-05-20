@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UIKit;
 using Foundation;
 using Example_Notifications.Screens;
@@ -97,7 +98,12 @@ namespace Example_Notifications
 		/// </summary>
 		public override void RegisteredForRemoteNotifications (UIApplication application, NSData deviceToken)
 		{
-			deviceToken = deviceToken.ToString ();
+			var bytes = deviceToken.ToArray<byte>();
+			var hexArray = bytes.Select(b => b.ToString("x2")).ToArray();
+
+			//This is the token that you need to send to your backend-server to perform the 
+			//device registration/installation on the backend if you want.
+			var token = string.Join(string.Empty, hexArray);
 		}
 
 		/// <summary>
