@@ -71,7 +71,7 @@ namespace SimpleBackgroundTransfer {
 	}
 
 	public class UrlSessionDelegate : NSUrlSessionDownloadDelegate
-    {
+	{
 		public SimpleBackgroundTransferViewController controller;
 
 		public UrlSessionDelegate (SimpleBackgroundTransferViewController controller)
