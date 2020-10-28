@@ -57,7 +57,7 @@ namespace SimpleBackgroundTransfer {
 		{
 			Console.WriteLine ("InitBackgroundSession");
 			using (var configuration = NSUrlSessionConfiguration.CreateBackgroundSessionConfiguration (Identifier)) {
-				return NSUrlSession.FromConfiguration (configuration, new UrlSessionDelegate (this), null);
+				return NSUrlSession.FromConfiguration (configuration, (INSUrlSessionDownloadDelegate) new UrlSessionDelegate (this), null);
 			}
 		}
 
@@ -70,7 +70,7 @@ namespace SimpleBackgroundTransfer {
 		}
 	}
 
-	public class UrlSessionDelegate : NSObject, INSUrlSessionDownloadDelegate
+	public class UrlSessionDelegate : NSUrlSessionDownloadDelegate
     {
 		public SimpleBackgroundTransferViewController controller;
 
@@ -79,7 +79,7 @@ namespace SimpleBackgroundTransfer {
 			this.controller = controller;
 		}
 
-		public void DidWriteData (NSUrlSession session, NSUrlSessionDownloadTask downloadTask, long bytesWritten, long totalBytesWritten, long totalBytesExpectedToWrite)
+		public override void DidWriteData (NSUrlSession session, NSUrlSessionDownloadTask downloadTask, long bytesWritten, long totalBytesWritten, long totalBytesExpectedToWrite)
 		{
 			Console.WriteLine ("Set Progress");
 			if (downloadTask == controller.downloadTask) {
@@ -91,7 +91,7 @@ namespace SimpleBackgroundTransfer {
 			}
 		}
 
-		public void DidFinishDownloading (NSUrlSession session, NSUrlSessionDownloadTask downloadTask, NSUrl location)
+		public override void DidFinishDownloading (NSUrlSession session, NSUrlSessionDownloadTask downloadTask, NSUrl location)
 		{
 			Console.WriteLine ("Finished");
 			Console.WriteLine ("File downloaded in : {0}", location);
@@ -121,7 +121,7 @@ namespace SimpleBackgroundTransfer {
 			}
 		}
 
-		public void DidCompleteWithError (NSUrlSession session, NSUrlSessionTask task, NSError error)
+		public override void DidCompleteWithError (NSUrlSession session, NSUrlSessionTask task, NSError error)
 		{
 			Console.WriteLine ("DidComplete");
 			if (error == null)
@@ -137,12 +137,12 @@ namespace SimpleBackgroundTransfer {
 			controller.downloadTask = null;
 		}
 
-		public void DidResume (NSUrlSession session, NSUrlSessionDownloadTask downloadTask, long resumeFileOffset, long expectedTotalBytes)
+		public override void DidResume (NSUrlSession session, NSUrlSessionDownloadTask downloadTask, long resumeFileOffset, long expectedTotalBytes)
 		{
 			Console.WriteLine ("DidResume");
 		}
 
-		public void DidFinishEventsForBackgroundSession (NSUrlSession session)
+		public override void DidFinishEventsForBackgroundSession (NSUrlSession session)
 		{
 			using (AppDelegate appDelegate = UIApplication.SharedApplication.Delegate as AppDelegate) {
 				var handler = appDelegate.BackgroundSessionCompletionHandler;
