@@ -29,7 +29,7 @@ namespace UICatalog
             var toolbarButtonItems = new[]
             {
                 leftButton,
-                new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace, null),
+                new UIBarButtonItem(UIBarButtonSystemItem.FlexibleSpace, (EventHandler) null),
                 rightButton
             };
             toolbar.SetItems(toolbarButtonItems, true);
