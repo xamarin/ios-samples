@@ -79,6 +79,7 @@ namespace SimpleBackgroundTransfer {
 			this.controller = controller;
 		}
 
+		[Export ("URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:")]
 		public void DidWriteData (NSUrlSession session, NSUrlSessionDownloadTask downloadTask, long bytesWritten, long totalBytesWritten, long totalBytesExpectedToWrite)
 		{
 			Console.WriteLine ("Set Progress");
@@ -121,6 +122,7 @@ namespace SimpleBackgroundTransfer {
 			}
 		}
 
+		[Export ("URLSession:task:didCompleteWithError:")]
 		public void DidCompleteWithError (NSUrlSession session, NSUrlSessionTask task, NSError error)
 		{
 			Console.WriteLine ("DidComplete");
@@ -137,11 +139,13 @@ namespace SimpleBackgroundTransfer {
 			controller.downloadTask = null;
 		}
 
+		[Export ("URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:")]
 		public void DidResume (NSUrlSession session, NSUrlSessionDownloadTask downloadTask, long resumeFileOffset, long expectedTotalBytes)
 		{
 			Console.WriteLine ("DidResume");
 		}
 
+		[Export ("URLSessionDidFinishEventsForBackgroundURLSession:")]
 		public void DidFinishEventsForBackgroundSession (NSUrlSession session)
 		{
 			using (AppDelegate appDelegate = UIApplication.SharedApplication.Delegate as AppDelegate) {
