@@ -29,5 +29,7 @@
 	<string>AirLocate</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Using Core Location for iBeacons</string>
+  <key>NSBluetoothAlwaysUsageDescription</key>
+  <string>Using Core Location for iBeacons</string>
 </dict>
 </plist>
