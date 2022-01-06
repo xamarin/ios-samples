@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-ios</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+      <BundleResource Include="Resources\2.jpg" />
+      <BundleResource Include="Resources\3.jpg" />
+      <BundleResource Include="Resources\4.jpg" />
+      <BundleResource Include="Resources\5.jpg" />
+      <BundleResource Include="Resources\6.jpg" />
+      <BundleResource Include="Resources\7.jpg" />
+      <BundleResource Include="Resources\1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\2.jpg" />
+    <None Remove="Resources\3.jpg" />
+    <None Remove="Resources\4.jpg" />
+    <None Remove="Resources\5.jpg" />
+    <None Remove="Resources\6.jpg" />
+    <None Remove="Resources\7.jpg" />
+    <None Remove="Resources\1.jpg" />
+  </ItemGroup>
+</Project>
