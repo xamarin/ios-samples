@@ -56,9 +56,10 @@ public partial class After2MoreViewController : UIViewController {
 		SetupConstraints ();
 	}
 
-	UIImageView starImageView = new UIImageView (UIImage.FromBundle ("StarImage"));
+	UIImageView? starImageView;
 	UIImageView ConfigureStarImageView ()
 	{
+		starImageView = new UIImageView (UIImage.FromBundle ("StarImage"));
 		starImageView.TranslatesAutoresizingMaskIntoConstraints = false;
 		// DARK MODE ADOPTION: Changed to a color, from the "After" asset catalog,
 		// which has light and dark variants:
@@ -66,9 +67,10 @@ public partial class After2MoreViewController : UIViewController {
 		return starImageView;
 	}
 
-	UILabel titleLabel = new UILabel ();
+	UILabel? titleLabel;
 	UILabel ConfigureTitleLabel ()
 	{
+		titleLabel = new UILabel ();
 		titleLabel.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.LargeTitle, TraitCollection);
 		titleLabel.Text = "Presented Content";
 		// DARK MODE ADOPTION: Changed from .black to a semantic color:
@@ -77,37 +79,41 @@ public partial class After2MoreViewController : UIViewController {
 		return titleLabel;
 	}
 
-	UIImageView backgroundImageView = new UIImageView ();
+	UIImageView? backgroundImageView;
 	UIImageView ConfigureBackgroundImageView ()
 	{
 		// DARK MODE ADOPTION: Changed to an image, from the "After" asset catalog,
 		// which has light and dark variants:
+		backgroundImageView = new UIImageView ();
 		backgroundImageView.Image = UIImage.FromBundle ("LightAndDarkHeaderImage");
 		backgroundImageView.TranslatesAutoresizingMaskIntoConstraints = false;
 		return backgroundImageView;
 	}
 
-	UIVisualEffectView blurView = new UIVisualEffectView ();
+	UIVisualEffectView? blurView;
 	UIVisualEffectView ConfigureBlurView (UIBlurEffect blurEffect)
 	{
+		blurView = new UIVisualEffectView ();
 		blurView.Effect = blurEffect;
 		blurView.TranslatesAutoresizingMaskIntoConstraints = false;
 		return blurView;
 	}
 
-	UIVisualEffectView vibrancyView = new UIVisualEffectView ();
+	UIVisualEffectView? vibrancyView;
 	UIVisualEffectView ConfigureVibrancyView (UIBlurEffect blurEffect)
 	{
 		// DARK MODE ADOPTION: Changed to use a specific iOS 13 vibrancy style:
+		vibrancyView = new UIVisualEffectView ();
 		var vibrancyEffect = UIVibrancyEffect.FromBlurEffect (blurEffect, UIVibrancyEffectStyle.SecondaryLabel);
 		vibrancyView.Effect = vibrancyEffect;
 		vibrancyView.TranslatesAutoresizingMaskIntoConstraints = false;
 		return vibrancyView;
 	}
 
-	UILabel vibrantLabel = new UILabel ();
+	UILabel? vibrantLabel;
 	UILabel ConfigureVibrantLabel ()
 	{
+		vibrantLabel = new UILabel ();
 		vibrantLabel.TranslatesAutoresizingMaskIntoConstraints = false;
 		vibrantLabel.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.LargeTitle, TraitCollection);
 		vibrantLabel.Text = "Vibrant Label";
@@ -116,7 +122,10 @@ public partial class After2MoreViewController : UIViewController {
 
 	void SetupConstraints ()
 	{
-		starImageView.TopAnchor.ConstraintEqualToSystemSpacingBelowAnchor (View!.LayoutMarginsGuide.TopAnchor, 2).Active = true;
+		if ( starImageView is null || backgroundImageView is null || titleLabel is null || vibrantLabel is null || blurView is null || vibrancyView is null || View is null)
+			throw new NullReferenceException ("There was a null UI element.");
+
+		starImageView.TopAnchor.ConstraintEqualToSystemSpacingBelowAnchor (View.LayoutMarginsGuide.TopAnchor, 2).Active = true;
 		starImageView.LeadingAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.LeadingAnchor).Active = true;
 		starImageView.WidthAnchor.ConstraintEqualTo (70).Active = true;
 		starImageView.HeightAnchor.ConstraintEqualTo (70).Active = true;

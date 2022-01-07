@@ -52,17 +52,19 @@ public partial class Before1MoreViewController : UIViewController {
 		SetupConstraints ();
 	}
 
-	UIImageView starImageView = new UIImageView (UIImage.FromBundle ("StarImage"));
+	UIImageView? starImageView;
 	UIImageView ConfigureStarImageView ()
 	{
+		starImageView = new UIImageView (UIImage.FromBundle ("StarImage"));
 		starImageView.TranslatesAutoresizingMaskIntoConstraints = false;
 		starImageView.TintColor = UIColor.FromName ("HeaderColor");
 		return starImageView;
 	}
 
-	UILabel titleLabel = new UILabel ();
+	UILabel? titleLabel;
 	UILabel ConfigureTitleLabel ()
 	{
+		titleLabel = new UILabel ();
 		titleLabel.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.LargeTitle, TraitCollection);
 		titleLabel.Text = "Presented Content";
 		titleLabel.TextColor = UIColor.Black;
@@ -70,34 +72,38 @@ public partial class Before1MoreViewController : UIViewController {
 		return titleLabel;
 	}
 
-	UIImageView backgroundImageView = new UIImageView ();
+	UIImageView? backgroundImageView;
 	UIImageView ConfigureBackgroundImageView ()
 	{
+		backgroundImageView = new UIImageView ();
 		backgroundImageView.Image = UIImage.FromBundle ("HeaderImage");
 		backgroundImageView.TranslatesAutoresizingMaskIntoConstraints = false;
 		return backgroundImageView;
 	}
 
-	UIVisualEffectView blurView = new UIVisualEffectView ();
+	UIVisualEffectView? blurView;
 	UIVisualEffectView ConfigureBlurView (UIBlurEffect blurEffect)
 	{
+		blurView = new UIVisualEffectView ();
 		blurView.Effect = blurEffect;
 		blurView.TranslatesAutoresizingMaskIntoConstraints = false;
 		return blurView;
 	}
 
-	UIVisualEffectView vibrancyView = new UIVisualEffectView ();
+	UIVisualEffectView? vibrancyView;
 	UIVisualEffectView ConfigureVibrancyView (UIBlurEffect blurEffect)
 	{
+		vibrancyView = new UIVisualEffectView ();
 		var vibrancyEffect = UIVibrancyEffect.FromBlurEffect (blurEffect);
 		vibrancyView.Effect = vibrancyEffect;
 		vibrancyView.TranslatesAutoresizingMaskIntoConstraints = false;
 		return vibrancyView;
 	}
 
-	UILabel vibrantLabel = new UILabel ();
+	UILabel? vibrantLabel;
 	UILabel ConfigureVibrantLabel ()
 	{
+		vibrantLabel = new UILabel ();
 		vibrantLabel.TranslatesAutoresizingMaskIntoConstraints = false;
 		vibrantLabel.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.LargeTitle, TraitCollection);
 		vibrantLabel.Text = "Vibrant Label";
@@ -106,7 +112,10 @@ public partial class Before1MoreViewController : UIViewController {
 
 	void SetupConstraints ()
 	{
-		starImageView.TopAnchor.ConstraintEqualToSystemSpacingBelowAnchor (View!.LayoutMarginsGuide.TopAnchor, 2).Active = true;
+		if (starImageView is null || backgroundImageView is null || titleLabel is null || vibrantLabel is null || blurView is null || vibrancyView is null || View is null)
+			throw new NullReferenceException ("There was a null UI element.");
+
+		starImageView.TopAnchor.ConstraintEqualToSystemSpacingBelowAnchor (View.LayoutMarginsGuide.TopAnchor, 2).Active = true;
 		starImageView.LeadingAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.LeadingAnchor).Active = true;
 		starImageView.WidthAnchor.ConstraintEqualTo (70).Active = true;
 		starImageView.HeightAnchor.ConstraintEqualTo (70).Active = true;

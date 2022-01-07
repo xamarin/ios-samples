@@ -45,17 +45,17 @@ public partial class After2SlowDrawingViewController : UIViewController {
 		var size = resultImageView.Bounds.Size;
 
 		// Specify what colors to draw.
-		UIColor [] colors = { UIColor.White, UIColor.LightGray, UIColor.Gray, UIColor.FromName("HeaderColor") ?? UIColor.DarkGray };
+		UIColor [] colors = { UIColor.White, UIColor.LightGray, UIColor.Gray, UIColor.FromName ("HeaderColor") ?? UIColor.DarkGray };
 
 #if DEBUG
-			UIApplication.CheckForIllegalCrossThreadCalls = false;
+		UIApplication.CheckForIllegalCrossThreadCalls = false;
 #endif
 
-		DispatchQueue.GetGlobalQueue (DispatchQueuePriority.High).DispatchAsync (() => {
+		DispatchQueue.GetGlobalQueue (DispatchQueuePriority.High).DispatchAsync ( () => {
 			var image = CreateImage (size, colors);
 
 			// And go back to the main queue to update the UI.
-			DispatchQueue.MainQueue.DispatchAsync (() => {
+			DispatchQueue.MainQueue.DispatchAsync ( () => {
 				resultImageView.Image = image;
 				activityIndicator.StopAnimating ();
 
@@ -66,7 +66,7 @@ public partial class After2SlowDrawingViewController : UIViewController {
 		});
 	}
 
-	UIImage CreateImage (CGSize size, UIColor [] colors)
+	static UIImage CreateImage (CGSize size, UIColor [] colors)
 	{
 		// Perform some time-consuming drawing, using some colors of our choice.
 		// This example just draws a lot of random circles.

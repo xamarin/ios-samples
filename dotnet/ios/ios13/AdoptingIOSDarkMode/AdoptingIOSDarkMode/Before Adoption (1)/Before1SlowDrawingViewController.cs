@@ -42,11 +42,11 @@ public partial class Before1SlowDrawingViewController : UIViewController {
 		UIApplication.CheckForIllegalCrossThreadCalls = false;
 #endif
 
-		DispatchQueue.GetGlobalQueue (DispatchQueuePriority.High).DispatchAsync (() => {
+		DispatchQueue.GetGlobalQueue (DispatchQueuePriority.High).DispatchAsync ( () => {
 			var image = CreateImage (size, colors);
 
 			// And go back to the main queue to update the UI.
-			DispatchQueue.MainQueue.DispatchAsync (() => {
+			DispatchQueue.MainQueue.DispatchAsync ( () => {
 				resultImageView.Image = image;
 				activityIndicator.StopAnimating ();
 
