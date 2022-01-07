@@ -23,20 +23,26 @@ public partial class PhotoDetailViewController : UIViewController {
 	{
 		base.ViewWillAppear (animated);
 
-		if (Photo != null)
-			imageView.Image = UIImage.FromFile (Photo.Name!);
+		if (Photo is not null && Photo.Name is not null)
+			imageView.Image = UIImage.FromFile (Photo.Name);
 	}
 
 	public override void ViewDidAppear (bool animated)
 	{
 		base.ViewDidAppear (animated);
-		View!.Window.WindowScene!.UserActivity = Photo?.OpenDetailUserActivity ();
+		if (View is null || View.Window.WindowScene is null)
+			return;
+
+		View.Window.WindowScene.UserActivity = Photo?.OpenDetailUserActivity ();
 	}
 
 	public override void ViewWillDisappear (bool animated)
 	{
 		base.ViewWillDisappear (animated);
-		View!.Window.WindowScene!.UserActivity = null;
+		if (View is null || View.Window.WindowScene is null)
+			return;
+
+		View.Window.WindowScene.UserActivity = null;
 	}
 
 	public static PhotoDetailViewController? LoadFromStoryboard ()

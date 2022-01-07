@@ -44,7 +44,10 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 
 	#region Internal Functionality
 
-	Photo GetPhoto (NSIndexPath indexPath) => photoSections! [indexPath.Section]!.Photos! [indexPath.Row];
+	Photo? GetPhoto (NSIndexPath indexPath)
+	{
+		return photoSections?[indexPath.Section]?.Photos?[indexPath.Row];
+	}
 
 	#endregion
 
@@ -54,15 +57,29 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 	{
 		var selectedPhoto = GetPhoto (indexPath);
 
-		var userActivity = selectedPhoto!.OpenDetailUserActivity ();
-		var itemProvider = new NSItemProvider (UIImage.FromFile (selectedPhoto!.Name!)!);
+		if (selectedPhoto is null)
+			throw new NullReferenceException ("selectedPhoto was null");
+
+		var userActivity = selectedPhoto.OpenDetailUserActivity ();
+
+		if (selectedPhoto.Name is null)
+			throw new NullReferenceException ("selectedPhoto.Name was null");
+
+		var selectedPhotoImage = UIImage.FromFile (selectedPhoto.Name);
+
+		if (selectedPhotoImage is null)
+			throw new NullReferenceException ("selectedPhotoImage was null");
+
+		var itemProvider = new NSItemProvider (selectedPhotoImage);
+
 		itemProvider.RegisterObject (userActivity, NSItemProviderRepresentationVisibility.All);
 
-		var dragItem = new UIDragItem (itemProvider) {
+		var dragItem = new UIDragItem (itemProvider)
+		{
 			LocalObject = selectedPhoto
 		};
 
-		return new [] { dragItem };
+		return new[] { dragItem };
 	}
 
 	#endregion
@@ -74,8 +91,15 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 	{
 		var selectedPhoto = GetPhoto (indexPath);
 
+		if (selectedPhoto is null)
+			throw new NullReferenceException ("selectedPhoto was null");
+
 		var detailViewController = PhotoDetailViewController.LoadFromStoryboard ();
-		detailViewController!.Photo = selectedPhoto;
+
+		if (detailViewController is null)
+			throw new NullReferenceException ("detailViewController was null");
+
+		detailViewController.Photo = selectedPhoto;
 		NavigationController.PushViewController (detailViewController, true);
 	}
 
@@ -84,16 +108,44 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 	#region UICollectionView Data Source
 
 	[Export ("numberOfSectionsInCollectionView:")]
-	public nint NumberOfSections (UICollectionView collectionView) => photoSections!.Length;
+	public nint NumberOfSections (UICollectionView collectionView)
+	{
+		if (photoSections is null)
+			throw new NullReferenceException ("photoSections was null");
 
-	public nint GetItemsCount (UICollectionView collectionView, nint section) => photoSections! [section]!.Photos!.Length;
+		return photoSections.Length;
+	}
+
+	public nint GetItemsCount (UICollectionView collectionView, nint section)
+	{
+		if (photoSections is null || photoSections[section] is null || photoSections[section].Photos is null)
+			return 0;
+
+		return photoSections![section]!.Photos!.Length;
+	}
+
 
 	public UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 	{
 		var cell = collectionView.DequeueReusableCell (GalleryCollectionViewCell.Key, indexPath) as GalleryCollectionViewCell;
 
+		if (cell is null)
+			throw new NullReferenceException ("cell was null");
+
 		var photo = GetPhoto (indexPath);
-		cell!.Image = UIImage.FromFile (photo!.Name!)!;
+
+		if (photo is null)
+			throw new NullReferenceException ("photo was null");
+
+		if (photo.Name is null)
+			throw new NullReferenceException ("photo.Name was null");
+
+		var photoImage = UIImage.FromFile (photo.Name);
+
+		if (photoImage is null)
+			throw new NullReferenceException ("photoImage was null");
+
+		cell.Image = photoImage;
 
 		return cell;
 	}
@@ -102,28 +154,28 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 
 	#region MyRegion
 
-	nfloat itemsPerRow = 5;
-	nfloat spacing = 20;
+	nfloat ItemsPerRow = 5;
+	nfloat Spacing = 20;
 
 	[Export ("collectionView:layout:sizeForItemAtIndexPath:")]
 	public CGSize GetSizeForItem (UICollectionView collectionView, UICollectionViewLayout layout, NSIndexPath indexPath)
 	{
-		var totalSpacing = (2 * spacing) + ((itemsPerRow - 1) * spacing);
-		var width = (collectionView.Bounds.Width - totalSpacing) / itemsPerRow;
+		var totalSpacing = (2 * Spacing) + ( (ItemsPerRow - 1) * Spacing);
+		var width = (collectionView.Bounds.Width - totalSpacing) / ItemsPerRow;
 		return new CGSize (width, width);
 	}
 
 	[Export ("collectionView:layout:insetForSectionAtIndex:")]
 	public UIEdgeInsets GetInsetForSection (UICollectionView collectionView, UICollectionViewLayout layout, nint section)
-		=> new UIEdgeInsets (spacing, spacing, spacing, spacing);
+		=> new UIEdgeInsets (Spacing, Spacing, Spacing, Spacing);
 
 	[Export ("collectionView:layout:minimumLineSpacingForSectionAtIndex:")]
 	public nfloat GetMinimumLineSpacingForSection (UICollectionView collectionView, UICollectionViewLayout layout, nint section)
-		=> spacing;
+		=> Spacing;
 
 	[Export ("collectionView:layout:minimumInteritemSpacingForSectionAtIndex:")]
 	public nfloat GetMinimumInteritemSpacingForSection (UICollectionView collectionView, UICollectionViewLayout layout, nint section)
-		=> spacing;
+		=> Spacing;
 
 	#endregion
 }

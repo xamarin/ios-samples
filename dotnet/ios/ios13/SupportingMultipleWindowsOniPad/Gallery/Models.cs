@@ -33,7 +33,7 @@ public class PhotoSection {
 }
 
 public class PhotoManager {
-	static Lazy<PhotoManager> lazy = new Lazy<PhotoManager> (() => new PhotoManager ());
+	static Lazy<PhotoManager> lazy = new Lazy<PhotoManager> ( () => new PhotoManager ());
 	public static PhotoManager SharedInstance { get; } = lazy.Value;
 
 	PhotoManager ()	{ }

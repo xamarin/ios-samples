@@ -10,8 +10,15 @@ public partial class GalleryCollectionViewCell : UICollectionViewCell {
 	public static readonly NSString Key = new NSString (nameof (GalleryCollectionViewCell));
 	public static readonly UINib Nib;
 
-	public UIImage Image {
-		get => imageView!.Image!;
+	public UIImage? Image
+	{
+		get
+		{
+			if (imageView is null || imageView.Image is null)
+				return null;
+
+			return imageView!.Image!;
+		}
 		set => imageView.Image = value;
 	}
 

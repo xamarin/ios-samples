@@ -9,16 +9,19 @@ public class SceneDelegate : UIResponder, IUIWindowSceneDelegate {
 	[Export ("scene:willConnectToSession:options:")]
 	public void WillConnect (UIScene scene, UISceneSession session, UISceneConnectionOptions connectionOptions)
 	{
-		var userActivities = connectionOptions.UserActivities?.ToArray () ?? new NSUserActivity [0];
-			var userActivity = userActivities.Length > 0 ? userActivities [0] : session.StateRestorationActivity;
-			if (userActivity == null) {
-				// If there were no user activities, we don't have to do anything.
-				// The `Window` property will automatically be loaded with the storyboard's initial view controller.
-				return;
-			}
+		var userActivities = connectionOptions.UserActivities?.ToArray () ?? Array.Empty<NSUserActivity> ();
+		var userActivity = userActivities.Length > 0 ? userActivities [0] : session.StateRestorationActivity;
+		if (userActivity is null) {
+			// If there were no user activities, we don't have to do anything.
+			// The `Window` property will automatically be loaded with the storyboard's initial view controller.
+			return;
+		}
 
-			if (!Configure (Window!, userActivity))
-				Console.WriteLine ($"Failed to restore from {userActivity}");
+		if (Window is null)
+			Console.WriteLine ("Window was null");
+
+		else if (!Configure (Window, userActivity))
+			Console.WriteLine ($"Failed to restore from {userActivity}");
 	}
 
 	[Export ("sceneDidDisconnect:")]
@@ -61,16 +64,16 @@ public class SceneDelegate : UIResponder, IUIWindowSceneDelegate {
 
 	bool Configure (UIWindow window, NSUserActivity activity)
 	{
-		if (activity.Title == GalleryOpenDetailData.DetailPath) {
-			if (activity.UserInfo! [GalleryOpenDetailData.PhotoIdKey] is NSString photoId) {
-				if (PhotoDetailViewController.LoadFromStoryboard () is PhotoDetailViewController photoDetailViewController) {
-					photoDetailViewController.Photo = new Photo { Name = photoId };
+		if (activity.Title == GalleryOpenDetailData.DetailPath
+			&& activity.UserInfo is not null
+			&& activity.UserInfo[GalleryOpenDetailData.PhotoIdKey] is NSString photoId
+			&& PhotoDetailViewController.LoadFromStoryboard () is PhotoDetailViewController photoDetailViewController) {
 
-					if (window.RootViewController is UINavigationController navigationController) {
-						navigationController.PushViewController (photoDetailViewController, true);
-						return true;
-					}
-				}
+			photoDetailViewController.Photo = new Photo { Name = photoId };
+
+			if (window.RootViewController is UINavigationController navigationController) {
+				navigationController.PushViewController (photoDetailViewController, true);
+				return true;
 			}
 		}
 
