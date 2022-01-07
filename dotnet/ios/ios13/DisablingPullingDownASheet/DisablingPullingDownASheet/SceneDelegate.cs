@@ -1,8 +1,4 @@
-﻿using System;
-using Foundation;
-using UIKit;
-
-namespace DisablingPullingDownASheet;
+﻿namespace DisablingPullingDownASheet;
 
 [Register("SceneDelegate")]
 public class SceneDelegate : UIResponder, IUIWindowSceneDelegate

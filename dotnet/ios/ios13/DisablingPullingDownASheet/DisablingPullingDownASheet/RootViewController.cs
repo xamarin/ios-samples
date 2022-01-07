@@ -5,10 +5,6 @@ Abstract:
 The root view controller of the app. Contains a label displaying text, and a button to present a sheet for editing the text.
 */
 
-using System;
-using Foundation;
-using UIKit;
-
 namespace DisablingPullingDownASheet;
 public partial class RootViewController : UIViewController, IEditViewControllerDelegate
 {
