@@ -6,8 +6,8 @@
 public class SizeDataSource
 {
     // Helper formatter to represent large nubmers in the picker
-    private static NSNumberFormatter numberFormatter = new NSNumberFormatter
-    {
+    private static readonly NSNumberFormatter numberFormatter = new ()
+	{
         Locale = NSLocale.CurrentLocale,
         NumberStyle = NSNumberFormatterStyle.Decimal,
         UsesGroupingSeparator = true
@@ -18,25 +18,10 @@ public class SizeDataSource
     /// </summary>
     public double[] Values { get; } = { 750, 1000, 1500, 2000, 3000, 4000, 5000, 10000 };
 
-    public string? Title(int index)
-    {
-        string? result = null;
-        if (index < this.Values.Length)
-        {
-            result = numberFormatter.StringFor(NSNumber.FromDouble(this.Values[index]));
-        }
+    public string? Title (int index) =>
+        index < this.Values.Length ? numberFormatter.StringFor (NSNumber.FromDouble (this.Values[index])) : null;
 
-        return result;
-    }
 
-    public double? Value(int index)
-    {
-        double? result = null;
-        if (index < this.Values.Length)
-        {
-            result = this.Values[index];
-        }
-
-        return result;
-    }
+    public double? Value (int index) =>
+        index < this.Values.Length ? this.Values[index] : null;
 }

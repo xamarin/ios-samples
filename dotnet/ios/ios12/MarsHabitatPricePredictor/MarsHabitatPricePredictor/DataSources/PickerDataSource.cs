@@ -6,31 +6,31 @@
 /// </summary>
 public class PickerDataSource : UIPickerViewDataSource
 {
-    private readonly SolarPanelDataSource solarPanelsDataSource = new SolarPanelDataSource();
-    private readonly GreenhousesDataSource greenhousesDataSource = new GreenhousesDataSource();
-    private readonly SizeDataSource sizeDataSource = new SizeDataSource();
+    private readonly SolarPanelDataSource solarPanelsDataSource = new ();
+    private readonly GreenhousesDataSource greenhousesDataSource = new ();
+    private readonly SizeDataSource sizeDataSource = new ();
 
     /// <summary>
     /// Find the title for the given feature.
     /// </summary>
-    public string Title(int row, Feature feature)
+    public string Title (int row, Feature feature)
     {
         string? result = null;
         switch (feature)
         {
             case Feature.SolarPanels:
-                result = this.solarPanelsDataSource.Title(row);
+                result = this.solarPanelsDataSource.Title (row);
                 break;
             case Feature.Greenhouses:
-                result = this.greenhousesDataSource.Title(row);
+                result = this.greenhousesDataSource.Title (row);
                 break;
             case Feature.Size:
-                result = this.sizeDataSource.Title(row);
+                result = this.sizeDataSource.Title (row);
                 break;
         }
 
         if (result is null)
-            throw new NullReferenceException("Unexpected Null Reference Error.");
+            throw new NullReferenceException ("Unexpected Null Reference Error.");
 
         return result;
     }
@@ -38,50 +38,43 @@ public class PickerDataSource : UIPickerViewDataSource
     /// <summary>
     /// For the given feature, find the value for the given row.
     /// </summary>
-    public double Value(int row, Feature feature)
+    public double Value (int row, Feature feature)
     {
         double? result = null;
 
         switch (feature)
         {
             case Feature.SolarPanels:
-                result = this.solarPanelsDataSource.Value(row);
+                result = this.solarPanelsDataSource.Value (row);
                 break;
             case Feature.Greenhouses:
-                result = this.greenhousesDataSource.Value(row);
+                result = this.greenhousesDataSource.Value (row);
                 break;
             case Feature.Size:
-                result = this.sizeDataSource.Value(row);
+                result = this.sizeDataSource.Value (row);
                 break;
         }
 
         if (result is null)
-            throw new NullReferenceException("Unexpected Null Reference Error.");
+            throw new NullReferenceException ("Unexpected Null Reference Error.");
 
         return result.Value;
     }
 
     #region UIPickerViewDataSource
 
-    public override nint GetComponentCount(UIPickerView pickerView)
+    public override nint GetComponentCount (UIPickerView pickerView)
     {
         return 3;
     }
 
-    public override nint GetRowsInComponent(UIPickerView pickerView, nint component)
+    public override nint GetRowsInComponent (UIPickerView pickerView, nint component) => (Feature) (int)component switch
     {
-        switch ((Feature)(int)component)
-        {
-            case Feature.SolarPanels:
-                return this.solarPanelsDataSource.Values.Length;
-            case Feature.Greenhouses:
-                return this.greenhousesDataSource.Values.Length;
-            case Feature.Size:
-                return this.sizeDataSource.Values.Length;
-            default:
-                throw new NotImplementedException();
-        }
-    }
+        Feature.SolarPanels => this.solarPanelsDataSource.Values.Length,
+        Feature.Greenhouses => this.greenhousesDataSource.Values.Length,
+        Feature.Size => this.sizeDataSource.Values.Length,
+        _ => throw new NotImplementedException (),
+    };
 
     #endregion
 }
