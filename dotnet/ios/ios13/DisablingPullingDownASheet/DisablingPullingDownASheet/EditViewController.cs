@@ -42,12 +42,7 @@ public partial class EditViewController : UIViewController, IUITextViewDelegate,
 
 	#region Delegate
 
-	IEditViewControllerDelegate? _delegate;
-	public IEditViewControllerDelegate? Delegate
-	{
-		get => _delegate;
-		set => _delegate = value;
-	}
+	public IEditViewControllerDelegate? Delegate { get; set; }
 
 	void SendDidCancel() => Delegate?.EditViewControllerDidCancel(this);
 	void SendDidFinish() => Delegate?.EditViewControllerDidFinish(this);
@@ -122,7 +117,7 @@ public partial class EditViewController : UIViewController, IUITextViewDelegate,
 		alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, null));
 
 		// The popover should point at the Cancel button
-		if (alert.PopoverPresentationController != null)
+		if (alert.PopoverPresentationController is not null)
 			// The popover should point at the Cancel button
 			alert.PopoverPresentationController.BarButtonItem = cancelButton;
 
