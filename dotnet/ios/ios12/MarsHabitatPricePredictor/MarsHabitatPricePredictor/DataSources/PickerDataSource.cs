@@ -15,7 +15,7 @@ public class PickerDataSource : UIPickerViewDataSource
     /// </summary>
     public string Title(int row, Feature feature)
     {
-        string result = null;
+        string? result = null;
         switch (feature)
         {
             case Feature.SolarPanels:
@@ -28,6 +28,9 @@ public class PickerDataSource : UIPickerViewDataSource
                 result = this.sizeDataSource.Title(row);
                 break;
         }
+
+        if (result is null)
+            throw new NullReferenceException("Unexpected Null Reference Error.");
 
         return result;
     }
@@ -51,6 +54,9 @@ public class PickerDataSource : UIPickerViewDataSource
                 result = this.sizeDataSource.Value(row);
                 break;
         }
+
+        if (result is null)
+            throw new NullReferenceException("Unexpected Null Reference Error.");
 
         return result.Value;
     }

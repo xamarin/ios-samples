@@ -57,7 +57,7 @@ public class MarsHabitatPricerInput : NSObject, IMLFeatureProvider
 		get { return featureNames; }
 	}
 
-	public MLFeatureValue GetFeatureValue (string featureName)
+	public MLFeatureValue? GetFeatureValue (string featureName)
 	{
 		switch (featureName) {
 		case "solarPanels":
@@ -105,7 +105,7 @@ public class MarsHabitatPricerOutput : NSObject, IMLFeatureProvider
 		get { return featureNames; }
 	}
 
-	public MLFeatureValue GetFeatureValue (string featureName)
+	public MLFeatureValue? GetFeatureValue (string featureName)
 	{
 		switch (featureName) {
 		case "price":
@@ -126,7 +126,7 @@ public class MarsHabitatPricerOutput : NSObject, IMLFeatureProvider
 /// </summary>
 public class MarsHabitatPricer : NSObject
 {
-	readonly MLModel model;
+	readonly MLModel? model;
 
 	static NSUrl GetModelUrl ()
 	{
@@ -145,7 +145,7 @@ public class MarsHabitatPricer : NSObject
 		this.model = model;
 	}
 
-	public static MarsHabitatPricer Create (NSUrl url, out NSError error)
+	public static MarsHabitatPricer? Create (NSUrl url, out NSError error)
 	{
 		if (url == null)
 			throw new ArgumentNullException (nameof (url));
@@ -158,7 +158,7 @@ public class MarsHabitatPricer : NSObject
 		return new MarsHabitatPricer (model);
 	}
 
-	public static MarsHabitatPricer Create (MLModelConfiguration configuration, out NSError error)
+	public static MarsHabitatPricer? Create (MLModelConfiguration configuration, out NSError error)
 	{
 		if (configuration == null)
 			throw new ArgumentNullException (nameof (configuration));
@@ -171,7 +171,7 @@ public class MarsHabitatPricer : NSObject
 		return new MarsHabitatPricer (model);
 	}
 
-	public static MarsHabitatPricer Create (NSUrl url, MLModelConfiguration configuration, out NSError error)
+	public static MarsHabitatPricer? Create (NSUrl url, MLModelConfiguration configuration, out NSError error)
 	{
 		if (url == null)
 			throw new ArgumentNullException (nameof (url));
@@ -192,19 +192,24 @@ public class MarsHabitatPricer : NSObject
 	/// </summary>
 	/// <param name="input">an instance of MarsHabitatPricerInput to predict from</param>
 	/// <param name="error">If an error occurs, upon return contains an NSError object that describes the problem.</param>
-	public MarsHabitatPricerOutput GetPrediction (MarsHabitatPricerInput input, out NSError error)
+	public MarsHabitatPricerOutput? GetPrediction (MarsHabitatPricerInput input, out NSError? error)
 	{
+		error = null;
+
 		if (input == null)
 			throw new ArgumentNullException (nameof (input));
 
-		var prediction = model.GetPrediction (input, out error);
+		var prediction = model?.GetPrediction (input, out error);
 
-		if (prediction == null)
+		if (prediction is null)
 			return null;
 
-		var priceValue = prediction.GetFeatureValue ("price").DoubleValue;
+		var priceValue = prediction.GetFeatureValue ("price")?.DoubleValue;
 
-		return new MarsHabitatPricerOutput (priceValue);
+		if (priceValue is null)
+			return null;
+
+		return new MarsHabitatPricerOutput (priceValue.Value);
 	}
 
 	/// <summary>
@@ -213,22 +218,27 @@ public class MarsHabitatPricer : NSObject
 	/// <param name="input">an instance of MarsHabitatPricerInput to predict from</param>
 	/// <param name="options">prediction options</param>
 	/// <param name="error">If an error occurs, upon return contains an NSError object that describes the problem.</param>
-	public MarsHabitatPricerOutput GetPrediction (MarsHabitatPricerInput input, MLPredictionOptions options, out NSError error)
+	public MarsHabitatPricerOutput? GetPrediction (MarsHabitatPricerInput input, MLPredictionOptions options, out NSError? error)
 	{
+		error = null;
+
 		if (input == null)
 			throw new ArgumentNullException (nameof (input));
 
 		if (options == null)
 			throw new ArgumentNullException (nameof (options));
 
-		var prediction = model.GetPrediction (input, options, out error);
+		var prediction = model?.GetPrediction (input, options, out error);
 
 		if (prediction == null)
 			return null;
 
-		var priceValue = prediction.GetFeatureValue ("price").DoubleValue;
+		var priceValue = prediction.GetFeatureValue("price")?.DoubleValue;
 
-		return new MarsHabitatPricerOutput (priceValue);
+		if (priceValue is null)
+			return null;
+
+		return new MarsHabitatPricerOutput(priceValue.Value);
 	}
 
 	/// <summary>
@@ -238,7 +248,7 @@ public class MarsHabitatPricer : NSObject
 	/// <param name="greenhouses">Number of greenhouses as double</param>
 	/// <param name="size">Size in acres as double</param>
 	/// <param name="error">If an error occurs, upon return contains an NSError object that describes the problem.</param>
-	public MarsHabitatPricerOutput GetPrediction (double solarPanels, double greenhouses, double size, out NSError error)
+	public MarsHabitatPricerOutput? GetPrediction (double solarPanels, double greenhouses, double size, out NSError? error)
 	{
 		var input = new MarsHabitatPricerInput (solarPanels, greenhouses, size);
 
@@ -253,7 +263,7 @@ public class MarsHabitatPricer : NSObject
 	/// <param name="size">Size in acres as double</param>
 	/// <param name="options">prediction options</param>
 	/// <param name="error">If an error occurs, upon return contains an NSError object that describes the problem.</param>
-	public MarsHabitatPricerOutput GetPrediction (double solarPanels, double greenhouses, double size, MLPredictionOptions options, out NSError error)
+	public MarsHabitatPricerOutput? GetPrediction (double solarPanels, double greenhouses, double size, MLPredictionOptions options, out NSError? error)
 	{
 		var input = new MarsHabitatPricerInput (solarPanels, greenhouses, size);
 

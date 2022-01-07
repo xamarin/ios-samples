@@ -51,11 +51,14 @@ public partial class ViewController : UIViewController, IUIPickerViewDelegate
         var greenhouses = this.pickerDataSource.Value(SelectedRow(Feature.Greenhouses), Feature.Greenhouses);
         var size = this.pickerDataSource.Value(SelectedRow(Feature.Size), Feature.Size);
 
-        var marsHabitatPricerOutput = this.model.GetPrediction(solarPanels, greenhouses, size, out NSError error);
-        if (error != null)
+        var marsHabitatPricerOutput = this.model.GetPrediction(solarPanels, greenhouses, size, out NSError? error);
+        if (error is not null)
         {
             throw new Exception("Unexpected runtime error.");
         }
+
+        if (marsHabitatPricerOutput is null)
+            throw new NullReferenceException("marsHabitatPricerOutput null reference error.");
 
         var price = marsHabitatPricerOutput.Price;
         this.priceLabel.Text = this.priceFormatter.StringFor(NSNumber.FromDouble(price));
