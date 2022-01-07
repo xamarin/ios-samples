@@ -1,5 +1,4 @@
-﻿
-namespace MarsHabitatPricePredictor.DataSources
+﻿namespace MarsHabitatPricePredictor.DataSources
 {
     /// <summary>
     /// Data source for the number of solar panels in the habitat.

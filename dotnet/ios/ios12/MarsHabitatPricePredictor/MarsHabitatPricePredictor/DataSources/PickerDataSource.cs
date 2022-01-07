@@ -1,7 +1,4 @@
-﻿using System;
-using UIKit;
-
-namespace MarsHabitatPricePredictor.DataSources
+﻿namespace MarsHabitatPricePredictor.DataSources
 {
     /// <summary>
     /// The common data source for the three features and their picker values. Decouples

@@ -1,8 +1,5 @@
-﻿
-namespace MarsHabitatPricePredictor.DataSources
+﻿namespace MarsHabitatPricePredictor.DataSources
 {
-    using Foundation;
-
     /// <summary>
     /// Data source for the size field on the UIPicker.
     /// </summary>

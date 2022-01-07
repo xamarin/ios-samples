@@ -3,14 +3,7 @@
 // This file was automatically generated and should not be edited.
 //
 
-using System;
-using System.IO;
-using System.Collections;
-using System.Collections.Generic;
-
 using CoreML;
-using CoreVideo;
-using Foundation;
 
 namespace MarsHabitatPricePredictor {
 	/// <summary>

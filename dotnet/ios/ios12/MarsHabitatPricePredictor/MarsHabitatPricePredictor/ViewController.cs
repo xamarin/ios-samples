@@ -1,8 +1,4 @@
-﻿using Foundation;
-using MarsHabitatPricePredictor.DataSources;
-using System;
-using System.Linq;
-using UIKit;
+﻿using MarsHabitatPricePredictor.DataSources;
 
 namespace MarsHabitatPricePredictor
 {
