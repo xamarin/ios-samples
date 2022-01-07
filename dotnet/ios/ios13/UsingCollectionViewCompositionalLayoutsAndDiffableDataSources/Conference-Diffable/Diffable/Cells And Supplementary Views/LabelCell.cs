@@ -5,37 +5,31 @@ Abstract:
 Generic label cell
 */
 
+namespace Conference_Diffable.Diffable.CellsAndSupplementaryViews;
 
-using System;
-using CoreGraphics;
-using Foundation;
-using UIKit;
+public partial class LabelCell : UICollectionViewCell {
+	public static readonly NSString Key = new (nameof (LabelCell));
 
-namespace Conference_Diffable.Diffable.CellsAndSupplementaryViews {
-	public partial class LabelCell : UICollectionViewCell {
-		public static readonly NSString Key = new NSString (nameof (LabelCell));
+	public UILabel? Label { get; private set; }
 
-		public UILabel Label { get; private set; }
+	[Export ("initWithFrame:")]
+	public LabelCell (CGRect frame) : base (frame) => Configure ();
 
-		[Export ("initWithFrame:")]
-		public LabelCell (CGRect frame) : base (frame) => Configure ();
+	void Configure ()
+	{
+		Label = new UILabel {
+			TranslatesAutoresizingMaskIntoConstraints = false,
+			AdjustsFontForContentSizeCategory = true,
+			Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Body)
+		};
+		ContentView.AddSubview (Label);
 
-		void Configure ()
-		{
-			Label = new UILabel {
-				TranslatesAutoresizingMaskIntoConstraints = false,
-				AdjustsFontForContentSizeCategory = true,
-				Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Body)
-			};
-			ContentView.AddSubview (Label);
+		Layer.BorderWidth = 1;
+		Layer.BorderColor = UIColor.SystemGray2Color.CGColor;
 
-			Layer.BorderWidth = 1;
-			Layer.BorderColor = UIColor.SystemGray2Color.CGColor;
-
-			var inset = 10;
-			Label.LeadingAnchor.ConstraintEqualTo (ContentView.LeadingAnchor, inset).Active = true;
-			Label.TrailingAnchor.ConstraintEqualTo (ContentView.TrailingAnchor, -inset).Active = true;
-			Label.CenterYAnchor.ConstraintEqualTo (ContentView.CenterYAnchor).Active = true;
-		}
+		var inset = 10;
+		Label.LeadingAnchor.ConstraintEqualTo (ContentView.LeadingAnchor, inset).Active = true;
+		Label.TrailingAnchor.ConstraintEqualTo (ContentView.TrailingAnchor, -inset).Active = true;
+		Label.CenterYAnchor.ConstraintEqualTo (ContentView.CenterYAnchor).Active = true;
 	}
 }

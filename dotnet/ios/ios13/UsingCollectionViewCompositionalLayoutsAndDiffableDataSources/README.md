@@ -23,7 +23,7 @@ Learn how to bring complex, high-performance layouts to your app, and simplify u
 
 ## Build Requirements
 
-Building this sample requires Xcode 11.0 and iOS 13.0 SDK
+Building this sample requires Xcode 11.0 and iOS 14.0 SDK
 
 ## References
 
