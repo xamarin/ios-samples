@@ -7,7 +7,7 @@ public class SizeDataSource
 {
     // Helper formatter to represent large nubmers in the picker
     private static readonly NSNumberFormatter numberFormatter = new ()
-	{
+    {
         Locale = NSLocale.CurrentLocale,
         NumberStyle = NSNumberFormatterStyle.Decimal,
         UsesGroupingSeparator = true
