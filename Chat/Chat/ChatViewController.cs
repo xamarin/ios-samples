@@ -250,7 +250,7 @@ namespace Chat
 
 		void KeyboardWillHideHandler (object sender, UIKeyboardEventArgs e)
 		{
-            SetToolbarContstraint(0);
+			SetToolbarContstraint(0);
 		}
 
 		void SetToolbarContstraint (nfloat constant)
