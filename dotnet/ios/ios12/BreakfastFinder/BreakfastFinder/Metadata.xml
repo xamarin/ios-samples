@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>88D2841D-B12F-4A9E-AE42-C5BB17EB0960</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Advanced</Level>
+  <Tags>iOS12, Vision, CoreML</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>A sample app that demonstrates how to use the Vision framework and Core ML in iOS 12 to detect objects in live video.</Brief>
+</SampleMetadata>
