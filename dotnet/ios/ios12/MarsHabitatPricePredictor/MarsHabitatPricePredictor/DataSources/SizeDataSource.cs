@@ -18,10 +18,10 @@ public class SizeDataSource
     /// </summary>
     public double[] Values { get; } = { 750, 1000, 1500, 2000, 3000, 4000, 5000, 10000 };
 
-    public string? Title (int index) =>
+    public string? GetTitle (int index) =>
         index < this.Values.Length ? numberFormatter.StringFor (NSNumber.FromDouble (this.Values[index])) : null;
 
 
-    public double? Value (int index) =>
+    public double? GetValue (int index) =>
         index < this.Values.Length ? this.Values[index] : null;
 }

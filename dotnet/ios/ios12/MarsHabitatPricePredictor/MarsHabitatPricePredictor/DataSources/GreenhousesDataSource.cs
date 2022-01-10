@@ -10,9 +10,9 @@ public class GreenhousesDataSource
     /// </summary>
     public double[] Values { get; } = { 1, 2, 3, 4, 5 };
 
-    public string? Title (int index) =>
+    public string? GetTitle (int index) =>
         index < this.Values.Length ? this.Values[index].ToString () : null;
 
-    public double? Value (int index) =>
+    public double? GetValue (int index) =>
         index < this.Values.Length ? this.Values[index] : null;
 }

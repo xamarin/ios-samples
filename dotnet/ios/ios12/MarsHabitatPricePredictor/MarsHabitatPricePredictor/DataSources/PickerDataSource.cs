@@ -13,7 +13,7 @@ public class PickerDataSource : UIPickerViewDataSource
     /// <summary>
     /// Find the title for the given feature.
     /// </summary>
-    public string Title (int row, Feature feature)
+    public string GetTitle (int row, Feature feature)
     {
         string? result = null;
         switch (feature)
@@ -27,10 +27,9 @@ public class PickerDataSource : UIPickerViewDataSource
             case Feature.Size:
                 result = this.sizeDataSource.Title (row);
                 break;
+            default:
+                throw new ArgumentOutOfRangeException ($"Unknown feature: {feature}");
         }
-
-        if (result is null)
-            throw new NullReferenceException ("Unexpected Null Reference Error.");
 
         return result;
     }
@@ -38,7 +37,7 @@ public class PickerDataSource : UIPickerViewDataSource
     /// <summary>
     /// For the given feature, find the value for the given row.
     /// </summary>
-    public double Value (int row, Feature feature)
+    public double GetValue (int row, Feature feature)
     {
         double? result = null;
 
@@ -53,10 +52,9 @@ public class PickerDataSource : UIPickerViewDataSource
             case Feature.Size:
                 result = this.sizeDataSource.Value (row);
                 break;
+            default:
+                throw new ArgumentOutOfRangeException ($"Unknown feature: {feature}");
         }
-
-        if (result is null)
-            throw new NullReferenceException ("Unexpected Null Reference Error.");
 
         return result.Value;
     }
