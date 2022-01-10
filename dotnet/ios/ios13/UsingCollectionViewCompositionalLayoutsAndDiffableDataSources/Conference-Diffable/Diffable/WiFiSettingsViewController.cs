@@ -125,7 +125,11 @@ public class WiFiSettingsViewController : UIViewController {
 		tableView = new UITableView (CGRect.Empty, UITableViewStyle.InsetGrouped) {
 			TranslatesAutoresizingMaskIntoConstraints = false
 		};
-		View!.AddSubview (tableView);
+
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		View.AddSubview (tableView);
 		tableView.RegisterClassForCellReuse (typeof (UITableViewCell), key);
 
 		tableView.LeadingAnchor.ConstraintEqualTo (View.LeadingAnchor).Active = true;
@@ -137,7 +141,11 @@ public class WiFiSettingsViewController : UIViewController {
 	void ConfigureDataSource ()
 	{
 		wifiController = new WIFIController (wifiController => UpdateUI ());
-		dataSource = new UITableViewDiffableDataSource<Section, Item> (tableView!, CellProviderHandler);
+
+		if (tableView is null)
+			throw new InvalidOperationException ("tableView");
+
+		dataSource = new UITableViewDiffableDataSource<Section, Item> (tableView, CellProviderHandler);
 		dataSource.DefaultRowAnimation = UITableViewRowAnimation.Fade;
 		wifiController.ScanForNetworks = true;
 
@@ -145,12 +153,15 @@ public class WiFiSettingsViewController : UIViewController {
 		{
 			var item = obj as Item;
 
+			if (item is null)
+				throw new InvalidOperationException ("item");
+
 			// Get a cell of the desired kind.
 			var cell = tableView.DequeueReusableCell (key, indexPath);
 			var content = cell.DefaultContentConfiguration;
 
 			// network cell
-			if (item!.IsNetwork) {
+			if (item.IsNetwork) {
 				content.Text = item.Title;
 				cell.ContentConfiguration = content;
 				cell.Accessory = UITableViewCellAccessory.DetailDisclosureButton;
@@ -177,25 +188,39 @@ public class WiFiSettingsViewController : UIViewController {
 
 	void UpdateUI (bool animated = true)
 	{
-		var configItems = configurationItems?.Where (c => !(c.Type == ItemType.CurrentNetwork && !wifiController!.WifiEnabled)).ToArray ();
+		if (dataSource is null)
+			throw new InvalidOperationException ("dataSource");
+
+		if (wifiController is null)
+			throw new InvalidOperationException ("wifiController");
+
+		var configItems = configurationItems?.Where (c => !(c.Type == ItemType.CurrentNetwork && !wifiController.WifiEnabled)).ToArray ();
+
+		if (configItems is null)
+			throw new InvalidOperationException ("configItems");
 
 		currentSnapshot = new NSDiffableDataSourceSnapshot<Section, Item> ();
 		currentSnapshot.AppendSections (new [] { Section.Config });
-		currentSnapshot.AppendItems (configItems!, Section.Config);
+		currentSnapshot.AppendItems (configItems, Section.Config);
 
-		if (wifiController!.WifiEnabled) {
-			var sortedNetworks = wifiController!.AvailableNetworks!.OrderBy (w => w.Name).ToArray ();
+		if (wifiController.WifiEnabled && wifiController.AvailableNetworks is not null) {
+			var sortedNetworks = wifiController.AvailableNetworks.OrderBy (w => w.Name).ToArray ();
 			var networkItems = sortedNetworks.Select (n => new Item (n)).ToArray ();
 			currentSnapshot.AppendSections (new [] { Section.Networks });
 			currentSnapshot.AppendItems (networkItems);
 		}
 
-		dataSource!.ApplySnapshot (currentSnapshot, animated);
+		dataSource.ApplySnapshot (currentSnapshot, animated);
 	}
 
 	private void EnableWifiSwitch_ValueChanged (object? sender, EventArgs e)
 	{
-		wifiController!.WifiEnabled = (sender as UISwitch)!.On;
+		if ( (sender as UISwitch) is not null)
+		{
+			if (wifiController is null)
+				throw new InvalidOperationException ("wifiController");
+			wifiController.WifiEnabled = (sender as UISwitch)!.On;
+		}
 		UpdateUI ();
 	}
 }

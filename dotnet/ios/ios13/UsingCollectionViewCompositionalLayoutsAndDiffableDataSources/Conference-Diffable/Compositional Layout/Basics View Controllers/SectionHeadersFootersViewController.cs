@@ -50,7 +50,10 @@ public partial class SectionHeadersFootersViewController : UIViewController, IUI
 
 	void ConfigureHierarchy ()
 	{
-		collectionView = new UICollectionView (View!.Bounds, CreateLayout ()) {
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
 			BackgroundColor = UIColor.SystemBackgroundColor,
 			Delegate = this
@@ -63,7 +66,10 @@ public partial class SectionHeadersFootersViewController : UIViewController, IUI
 
 	void ConfigureDataSource ()
 	{
-		dataSource = new UICollectionViewDiffableDataSource<NSNumber, NSNumber> (collectionView!, CellProviderHandler) {
+		if (collectionView is null)
+			throw new InvalidOperationException ("collectionView");
+
+		dataSource = new UICollectionViewDiffableDataSource<NSNumber, NSNumber> (collectionView, CellProviderHandler) {
 			SupplementaryViewProvider = SupplementaryViewProviderHandler
 		};
 
@@ -87,8 +93,11 @@ public partial class SectionHeadersFootersViewController : UIViewController, IUI
 			// Get a cell of the desired kind.
 			var cell = collectionView.DequeueReusableCell (ListCell.Key, indexPath) as ListCell;
 
+			if (cell is null || cell.Label is null)
+				throw new InvalidOperationException ("cell or cell.Label");
+
 			// Populate the cell with our item description.
-			cell!.Label!.Text = $"{indexPath.Section}, {indexPath.Row}";
+			cell.Label.Text = $"{indexPath.Section}, {indexPath.Row}";
 
 			// Return the cell.
 			return cell;
@@ -100,9 +109,12 @@ public partial class SectionHeadersFootersViewController : UIViewController, IUI
 			var supplementaryView = collectionView.DequeueReusableSupplementaryView (new NSString (kind),
 				TitleSupplementaryView.Key, indexPath) as TitleSupplementaryView;
 
+			if (supplementaryView is null || supplementaryView.Label is null)
+				throw new InvalidOperationException ("supplementaryView or supplementaryView.Label");
+
 			// Populate the view with our section's  description.
 			var viewKind = kind == sectionHeaderElementKind ? "Header" : "Footer";
-			supplementaryView!.Label!.Text = $"{viewKind} for section {indexPath.Section}";
+			supplementaryView.Label.Text = $"{viewKind} for section {indexPath.Section}";
 			supplementaryView.BackgroundColor = UIColor.LightGray;
 			supplementaryView.Layer.BorderColor = UIColor.Black.CGColor;
 			supplementaryView.Layer.BorderWidth = 1;

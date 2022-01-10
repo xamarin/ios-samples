@@ -50,7 +50,10 @@ public partial class InsertionSortViewController : UIViewController {
 
 	void ConfigureHierarchy ()
 	{
-		insertionCollectionView = new UICollectionView (View!.Bounds, CreateLayout ()) {
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		insertionCollectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			BackgroundColor = UIColor.SystemBackgroundColor,
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
 		};
@@ -60,8 +63,11 @@ public partial class InsertionSortViewController : UIViewController {
 
 	void ConfigureDataSource ()
 	{
-		dataSource = new UICollectionViewDiffableDataSource<InsertionSortArray, InsertionSortArray.SortNode> (insertionCollectionView!, CellProviderHandler);
-		var snapshot = RandomizedSnapshot (insertionCollectionView!.Bounds);
+		if (insertionCollectionView is null)
+			throw new InvalidOperationException ("insertionCollectionView");
+
+		dataSource = new UICollectionViewDiffableDataSource<InsertionSortArray, InsertionSortArray.SortNode> (insertionCollectionView, CellProviderHandler);
+		var snapshot = RandomizedSnapshot (insertionCollectionView.Bounds);
 		dataSource.ApplySnapshot (snapshot, true);
 
 		UICollectionViewCell CellProviderHandler (UICollectionView collectionView, NSIndexPath indexPath, NSObject obj)
@@ -69,8 +75,12 @@ public partial class InsertionSortViewController : UIViewController {
 			var sortNode = obj as InsertionSortArray.SortNode;
 			// Get a cell of the desired kind.
 			var cell = collectionView.DequeueReusableCell (key, indexPath) as UICollectionViewCell;
+
+			if (cell is null)
+				throw new InvalidOperationException ("cell");
+
 			// Populate the cell with our item description.
-			cell!.BackgroundColor = sortNode?.Color;
+			cell.BackgroundColor = sortNode?.Color;
 
 			// Return the cell.
 			return cell;
@@ -97,8 +107,11 @@ public partial class InsertionSortViewController : UIViewController {
 
 		var sectionCountNeedingSort = 0;
 
+		if (dataSource is null)
+			throw new InvalidOperationException ("dataSource");
+
 		// grab the current state of the UI from the data source
-		var updatedSnapshot = dataSource!.Snapshot;
+		var updatedSnapshot = dataSource.Snapshot;
 
 		// for each section, if needed, step through and perform the next sorting step
 		foreach (var section in updatedSnapshot.SectionIdentifiers) {
@@ -125,7 +138,10 @@ public partial class InsertionSortViewController : UIViewController {
 			shouldReset = true;
 		}
 
-		var bounds = insertionCollectionView!.Bounds;
+		if (insertionCollectionView is null)
+			throw new InvalidOperationException ("insertionCollectionView");
+
+		var bounds = insertionCollectionView.Bounds;
 
 		Task.Factory.StartNew (() => {
 			Task.Delay (delay).Wait ();
@@ -145,7 +161,10 @@ public partial class InsertionSortViewController : UIViewController {
 	{
 		base.ViewWillTransitionToSize (toSize, coordinator);
 
-		var bounds = insertionCollectionView!.Bounds;
+		if (insertionCollectionView is null)
+			throw new InvalidOperationException ("insertionCollectionView");
+
+		var bounds = insertionCollectionView.Bounds;
 		var snapshot = RandomizedSnapshot (bounds);
 		dataSource?.ApplySnapshot (snapshot, false);
 	}
@@ -153,8 +172,8 @@ public partial class InsertionSortViewController : UIViewController {
 	NSDiffableDataSourceSnapshot<InsertionSortArray, InsertionSortArray.SortNode> RandomizedSnapshot (CGRect bounds)
 	{
 		var snapshot = new NSDiffableDataSourceSnapshot<InsertionSortArray, InsertionSortArray.SortNode> ();
-		var rowCount = GetRows(bounds);
-		var columnCount = GetColumns(bounds);
+		var rowCount = GetRows (bounds);
+		var columnCount = GetColumns (bounds);
 
 		for (int i = 0; i < rowCount; i++) {
 			var section = new InsertionSortArray (columnCount);

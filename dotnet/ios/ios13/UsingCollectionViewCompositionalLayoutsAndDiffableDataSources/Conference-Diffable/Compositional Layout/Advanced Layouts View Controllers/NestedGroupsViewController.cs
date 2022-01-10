@@ -13,7 +13,10 @@ public partial class NestedGroupsViewController : UIViewController, IUICollectio
 
 		public int Value { get; private set; }
 
-		Section (int value) => Value = value;
+		Section (int value)
+		{
+			Value = value;
+		}
 
 		public static bool operator == (Section left, Section right)
 		{
@@ -96,7 +99,10 @@ public partial class NestedGroupsViewController : UIViewController, IUICollectio
 
 	void ConfigureHierarchy ()
 	{
-		collectionView = new UICollectionView (View!.Bounds, CreateLayout ()) {
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
 			BackgroundColor = UIColor.SystemBackgroundColor,
 			Delegate = this
@@ -107,7 +113,10 @@ public partial class NestedGroupsViewController : UIViewController, IUICollectio
 
 	void ConfigureDataSource ()
 	{
-		dataSource = new UICollectionViewDiffableDataSource<Section, NSNumber> (collectionView!, CellProviderHandler);
+		if (collectionView is null)
+			throw new InvalidOperationException ("collectionView");
+
+		dataSource = new UICollectionViewDiffableDataSource<Section, NSNumber> (collectionView, CellProviderHandler);
 
 		var items = Enumerable.Range (0, 100).Select (i => NSNumber.FromInt32 (i)).ToArray ();
 
@@ -122,9 +131,12 @@ public partial class NestedGroupsViewController : UIViewController, IUICollectio
 			// Get a cell of the desired kind.
 			var cell = collectionView.DequeueReusableCell (TextCell.Key, indexPath) as TextCell;
 
+			if (cell is null || cell.Label is null)
+				throw new InvalidOperationException ("cell or cell.Label");
+
 			// Populate the cell with our item description.
-			cell!.Label!.Text = $"{indexPath.Section}, {indexPath.Row}";
-			cell.ContentView.BackgroundColor = UIColorExtensions.CornflowerBlue;
+			cell.Label.Text = $"{indexPath.Section}, {indexPath.Row}";
+			cell.ContentView.BackgroundColor = CornflowerBlue;
 			cell.ContentView.Layer.BorderColor = UIColor.Black.CGColor;
 			cell.ContentView.Layer.BorderWidth = 1;
 			cell.ContentView.Layer.CornerRadius = 8;

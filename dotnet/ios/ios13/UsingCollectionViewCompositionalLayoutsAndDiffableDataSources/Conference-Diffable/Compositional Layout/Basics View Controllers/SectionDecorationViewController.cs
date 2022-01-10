@@ -50,7 +50,10 @@ public partial class SectionDecorationViewController : UIViewController, IUIColl
 
 	void ConfigureHierarchy ()
 	{
-		collectionView = new UICollectionView (View!.Bounds, CreateLayout ()) {
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
 			BackgroundColor = UIColor.SystemBackgroundColor,
 			Delegate = this
@@ -61,7 +64,10 @@ public partial class SectionDecorationViewController : UIViewController, IUIColl
 
 	void ConfigureDataSource ()
 	{
-		dataSource = new UICollectionViewDiffableDataSource<NSNumber, NSNumber> (collectionView!, CellProviderHandler);
+		if (collectionView is null)
+			throw new InvalidOperationException ("collectionView");
+
+		dataSource = new UICollectionViewDiffableDataSource<NSNumber, NSNumber> (collectionView, CellProviderHandler);
 
 		// initial data
 		var itemsPerSection = 5;
@@ -81,15 +87,22 @@ public partial class SectionDecorationViewController : UIViewController, IUIColl
 		UICollectionViewCell CellProviderHandler (UICollectionView collectionView, NSIndexPath indexPath, NSObject obj)
 		{
 			var sectionId = currentSnapshot?.SectionIdentifiers [indexPath.Section];
-			var numberOfItemsInSection = currentSnapshot?.GetNumberOfItems (sectionId!);
+
+			if (sectionId is null)
+				throw new InvalidOperationException ("sectionId");
+
+			var numberOfItemsInSection = currentSnapshot?.GetNumberOfItems (sectionId);
 			var isLastCell = indexPath.Item + 1 == numberOfItemsInSection;
 
 			// Get a cell of the desired kind.
 			var cell = collectionView.DequeueReusableCell (ListCell.Key, indexPath) as ListCell;
 
+			if (cell is null || cell.Label is null || cell.SeparatorView is null)
+				throw new InvalidOperationException ("cell, cell.Label, or cell.SeparatorView");
+
 			// Populate the cell with our item description.
-			cell!.Label!.Text = $"{indexPath.Section}, {indexPath.Row}";
-			cell.SeparatorView!.Hidden = isLastCell;
+			cell.Label.Text = $"{indexPath.Section}, {indexPath.Row}";
+			cell.SeparatorView.Hidden = isLastCell;
 
 			// Return the cell.
 			return cell;

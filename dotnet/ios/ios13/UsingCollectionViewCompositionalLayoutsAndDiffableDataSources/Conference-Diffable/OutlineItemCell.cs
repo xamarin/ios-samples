@@ -23,7 +23,8 @@ public partial class OutlineItemCell : UICollectionViewCell {
 		get => indentLevel;
 		set {
 			indentLevel = value;
-			indentConstraint!.Constant = 20 * indentLevel;
+			if (indentConstraint is not null)
+				indentConstraint.Constant = 20 * indentLevel;
 		}
 	}
 
@@ -65,7 +66,7 @@ public partial class OutlineItemCell : UICollectionViewCell {
 
 	public void ConfigureIfNeeded ()
 	{
-		if (Label != null)
+		if (Label is not null)
 			return;
 
 		Configure ();
@@ -111,6 +112,9 @@ public partial class OutlineItemCell : UICollectionViewCell {
 
 	void ConfigureChevron ()
 	{
+		if (ImageView is null)
+			throw new InvalidOperationException ("ImageView");
+
 		var rtl = EffectiveUserInterfaceLayoutDirection == UIUserInterfaceLayoutDirection.RightToLeft;
 		var chevron = rtl ? "chevron.left.circle.fill" : "chevron.right.circle.fill";
 		var chevronSelected = rtl ? "chevron.left.circle.fill" : "chevron.right.circle.fill";
@@ -121,7 +125,7 @@ public partial class OutlineItemCell : UICollectionViewCell {
 		if (Group) {
 			var imageName = highlighted ? chevronSelected : chevron;
 			var image = UIImage.GetSystemImage (imageName);
-			ImageView!.Image = image;
+			ImageView.Image = image;
 			var rtlMultiplier = rtl ? -1.0 : 1.0;
 			var rotationTransform = Expanded ?
 				CGAffineTransform.MakeRotation ((nfloat)(rtlMultiplier * Math.PI / 2)) : CGAffineTransform.MakeIdentity ();
@@ -129,10 +133,10 @@ public partial class OutlineItemCell : UICollectionViewCell {
 		} else {
 			var imageName = Highlighted ? circleFill : circle;
 			var image = UIImage.GetSystemImage (imageName);
-			ImageView!.Image = image;
+			ImageView.Image = image;
 			ImageView.Transform = CGAffineTransform.MakeIdentity ();
 		}
 
-		ImageView.TintColor = Highlighted ? UIColor.Gray : UIColorExtensions.CornflowerBlue;
+		ImageView.TintColor = Highlighted ? UIColor.Gray : CornflowerBlue;
 	}
 }

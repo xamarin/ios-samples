@@ -8,8 +8,8 @@ Pinned sction headers example
 namespace Conference_Diffable.CompositionalLayout.BasicsViewControllers;
 
 public partial class PinnedSectionHeaderFooterViewController : UIViewController, IUICollectionViewDelegate {
-	static readonly string sectionHeaderElementKind = nameof (sectionHeaderElementKind);
-	static readonly string sectionFooterElementKind = nameof (sectionFooterElementKind);
+	static readonly string SectionHeaderElementKind = nameof (SectionHeaderElementKind);
+	static readonly string SectionFooterElementKind = nameof (SectionFooterElementKind);
 
 	UICollectionViewDiffableDataSource<NSNumber, NSNumber>? dataSource;
 	UICollectionView? collectionView;
@@ -40,8 +40,8 @@ public partial class PinnedSectionHeaderFooterViewController : UIViewController,
 
 		var headerFooterSize = NSCollectionLayoutSize.Create (NSCollectionLayoutDimension.CreateFractionalWidth (1),
 			NSCollectionLayoutDimension.CreateAbsolute (44));
-		var sectionHeader = NSCollectionLayoutBoundarySupplementaryItem.Create (headerFooterSize, sectionHeaderElementKind, NSRectAlignment.Top);
-		var sectionFooter = NSCollectionLayoutBoundarySupplementaryItem.Create (headerFooterSize, sectionFooterElementKind, NSRectAlignment.Bottom);
+		var sectionHeader = NSCollectionLayoutBoundarySupplementaryItem.Create (headerFooterSize, SectionHeaderElementKind, NSRectAlignment.Top);
+		var sectionFooter = NSCollectionLayoutBoundarySupplementaryItem.Create (headerFooterSize, SectionFooterElementKind, NSRectAlignment.Bottom);
 		sectionHeader.PinToVisibleBounds = true;
 		sectionHeader.ZIndex = 2;
 		section.BoundarySupplementaryItems = new [] { sectionHeader, sectionFooter };
@@ -52,20 +52,26 @@ public partial class PinnedSectionHeaderFooterViewController : UIViewController,
 
 	void ConfigureHierarchy ()
 	{
-		collectionView = new UICollectionView (View!.Bounds, CreateLayout ()) {
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
 			BackgroundColor = UIColor.SystemBackgroundColor,
 			Delegate = this
 		};
 		collectionView.RegisterClassForCell (typeof (ListCell), ListCell.Key);
-		collectionView.RegisterClassForSupplementaryView (typeof (TitleSupplementaryView), new NSString (sectionHeaderElementKind), TitleSupplementaryView.Key);
-		collectionView.RegisterClassForSupplementaryView (typeof (TitleSupplementaryView), new NSString (sectionFooterElementKind), TitleSupplementaryView.Key);
+		collectionView.RegisterClassForSupplementaryView (typeof (TitleSupplementaryView), new NSString (SectionHeaderElementKind), TitleSupplementaryView.Key);
+		collectionView.RegisterClassForSupplementaryView (typeof (TitleSupplementaryView), new NSString (SectionFooterElementKind), TitleSupplementaryView.Key);
 		View.AddSubview (collectionView);
 	}
 
 	void ConfigureDataSource ()
 	{
-		dataSource = new UICollectionViewDiffableDataSource<NSNumber, NSNumber> (collectionView!, CellProviderHandler) {
+		if (collectionView is null)
+			throw new InvalidOperationException ("collectionView");
+
+		dataSource = new UICollectionViewDiffableDataSource<NSNumber, NSNumber> (collectionView, CellProviderHandler) {
 			SupplementaryViewProvider = SupplementaryViewProviderHandler
 		};
 
@@ -89,8 +95,11 @@ public partial class PinnedSectionHeaderFooterViewController : UIViewController,
 			// Get a cell of the desired kind.
 			var cell = collectionView.DequeueReusableCell (ListCell.Key, indexPath) as ListCell;
 
+			if (cell is null || cell.Label is null)
+				throw new InvalidOperationException ("cell or cell.Label");
+
 			// Populate the cell with our item description.
-			cell!.Label!.Text = $"{indexPath.Section}, {indexPath.Row}";
+			cell.Label.Text = $"{indexPath.Section}, {indexPath.Row}";
 
 			// Return the cell.
 			return cell;
@@ -103,8 +112,12 @@ public partial class PinnedSectionHeaderFooterViewController : UIViewController,
 				TitleSupplementaryView.Key, indexPath) as TitleSupplementaryView;
 
 			// Populate the view with our section's  description.
-			var viewKind = kind == sectionHeaderElementKind ? "Header" : "Footer";
-			supplementaryView!.Label!.Text = $"{viewKind} for section {indexPath.Section}";
+			var viewKind = kind == SectionHeaderElementKind ? "Header" : "Footer";
+
+			if (supplementaryView is null || supplementaryView.Label is null)
+				throw new InvalidOperationException ("cell or cell.Label");
+
+			supplementaryView.Label.Text = $"{viewKind} for section {indexPath.Section}";
 			supplementaryView.BackgroundColor = UIColor.LightGray;
 			supplementaryView.Layer.BorderColor = UIColor.Black.CGColor;
 			supplementaryView.Layer.BorderWidth = 1;

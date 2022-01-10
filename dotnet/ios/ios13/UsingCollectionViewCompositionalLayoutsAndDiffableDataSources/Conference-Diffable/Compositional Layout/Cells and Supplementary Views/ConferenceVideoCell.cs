@@ -16,7 +16,7 @@ public partial class ConferenceVideoCell : UICollectionViewCell {
 		ImageView.Layer.BackgroundColor = UIColor.Black.CGColor;
 		ImageView.Layer.BorderWidth = 1;
 		ImageView.Layer.CornerRadius = 4;
-		ImageView.BackgroundColor = UIColorExtensions.CornflowerBlue;
+		ImageView.BackgroundColor = CornflowerBlue;
 		AddSubview (ImageView);
 
 		TitleLabel = new UILabel {

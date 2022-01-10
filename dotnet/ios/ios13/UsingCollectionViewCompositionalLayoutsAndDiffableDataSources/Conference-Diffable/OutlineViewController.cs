@@ -143,7 +143,10 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 
 	void ConfigureCollectionView ()
 	{
-		var collectionView = new UICollectionView (View!.Bounds, GenerateLayout());
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		var collectionView = new UICollectionView (View.Bounds, GenerateLayout ());
 		View.AddSubview (collectionView);
 		collectionView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
 		collectionView.BackgroundColor = UIColor.SystemBackgroundColor;
@@ -154,7 +157,10 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 
 	void ConfigureDataSource ()
 	{
-		dataSource = new UICollectionViewDiffableDataSource<Section, OutlineItem> (outlineCollectionView!, CellProviderHandler);
+		if (outlineCollectionView is null)
+			throw new InvalidOperationException ("outlineCollectionView");
+
+		dataSource = new UICollectionViewDiffableDataSource<Section, OutlineItem> (outlineCollectionView, CellProviderHandler);
 
 		// load our initial data
 		var snapshot = GetSnapshotForCurrentState ();
@@ -165,8 +171,18 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 			var menuItem = obj as OutlineItem;
 			var cell = collectionView.DequeueReusableCell (OutlineItemCell.Key, indexPath) as OutlineItemCell;
 
-			cell!.ConfigureIfNeeded ();
-			cell.Label!.Text = menuItem!.Title;
+			if (cell is null)
+				throw new InvalidOperationException ("cell");
+
+			cell.ConfigureIfNeeded ();
+
+			if (cell.Label is null)
+				throw new InvalidOperationException ("cell.Label");
+
+			if (menuItem is null)
+				return cell;
+
+			cell.Label.Text = menuItem.Title;
 			cell.IndentLevel = menuItem.IndentLevel;
 			cell.Group = menuItem.IsGroup;
 			cell.Expanded = menuItem.Expanded;
@@ -198,13 +214,14 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 		void AddItems (OutlineItem menuItem)
 		{
 			snapshot.AppendItems (new [] { menuItem });
-			if (menuItem.Expanded)
-				foreach (var item in menuItem!.Subitems!)
+			if (menuItem.Expanded && menuItem.Subitems is not null)
+				foreach (var item in menuItem.Subitems)
 					AddItems (item);
 		}
 
-		foreach (var menuItem in menuItems!)
-			AddItems (menuItem);
+		if (menuItems is not null)
+			foreach (var menuItem in menuItems)
+				AddItems (menuItem);
 
 		return snapshot;
 	}
@@ -212,7 +229,9 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 	void UpdateUI ()
 	{
 		var snapshot = GetSnapshotForCurrentState ();
-		dataSource!.ApplySnapshot (snapshot, true);
+
+		if (dataSource is not null)
+			dataSource.ApplySnapshot (snapshot, true);
 	}
 
 	#region UICollectionView Delegate
@@ -220,10 +239,16 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 	[Export ("collectionView:didSelectItemAtIndexPath:")]
 	public void ItemSelected (UICollectionView collectionView, NSIndexPath indexPath)
 	{
-		var menuItem = dataSource!.GetItemIdentifier (indexPath);
+		if (dataSource is null)
+			return;
+
+		var menuItem = dataSource.GetItemIdentifier (indexPath);
 		collectionView.DeselectItem (indexPath, true);
 
-		if (menuItem!.IsGroup) {
+		if (menuItem is null)
+			return;
+
+		if (menuItem.IsGroup) {
 			menuItem.Expanded = !menuItem.Expanded;
 			if (collectionView.CellForItem (indexPath) is OutlineItemCell cell) {
 				UIView.Animate (0.3, () => {

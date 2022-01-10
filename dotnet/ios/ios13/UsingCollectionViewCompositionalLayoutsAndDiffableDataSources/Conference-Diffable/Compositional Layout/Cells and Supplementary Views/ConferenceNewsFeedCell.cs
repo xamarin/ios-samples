@@ -64,5 +64,9 @@ public partial class ConferenceNewsFeedCell : UICollectionViewCell {
 		NSLayoutConstraint.ActivateConstraints (constraints.ToArray ());
 	}
 
-	void UpdateSeparator () => SeparatorView!.Hidden = !ShowsSeparator;
+	void UpdateSeparator ()
+	{
+		if (SeparatorView is not null)
+			SeparatorView.Hidden = !ShowsSeparator;
+	}
 }

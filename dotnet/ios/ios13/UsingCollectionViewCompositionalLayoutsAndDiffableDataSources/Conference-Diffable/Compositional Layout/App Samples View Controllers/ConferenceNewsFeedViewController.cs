@@ -59,7 +59,10 @@ public partial class ConferenceNewsFeedViewController : UIViewController {
 
 	void ConfigureHierarchy ()
 	{
-		collectionView = new UICollectionView (View!.Bounds, CreateLayout ()) {
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			TranslatesAutoresizingMaskIntoConstraints = false,
 			BackgroundColor = UIColor.SystemBackgroundColor,
 		};
@@ -74,14 +77,18 @@ public partial class ConferenceNewsFeedViewController : UIViewController {
 
 	void ConfigureDataSource ()
 	{
+		if (collectionView is null)
+			throw new InvalidOperationException ("collectionView");
+
 		var newsController = new ConferenceNewsController ();
-		dataSource = new UICollectionViewDiffableDataSource<Section, ConferenceNewsController.NewsFeedItem> (collectionView!, CellProviderHandler);
+		dataSource = new UICollectionViewDiffableDataSource<Section, ConferenceNewsController.NewsFeedItem> (collectionView, CellProviderHandler);
 
 		// load our data
 		var newsItems = newsController.News;
 		var snapshot = new NSDiffableDataSourceSnapshot<Section, ConferenceNewsController.NewsFeedItem> ();
-		snapshot.AppendSections (new [] { Section.Main });
-		snapshot.AppendItems (newsItems!);
+		snapshot.AppendSections (new[] { Section.Main });
+		if (newsItems is not null)
+			snapshot.AppendItems (newsItems);
 
 		dataSource.ApplySnapshot (snapshot, false);
 
@@ -92,11 +99,15 @@ public partial class ConferenceNewsFeedViewController : UIViewController {
 			// Get a cell of the desired kind.
 			var cell = collectionView.DequeueReusableCell (ConferenceNewsFeedCell.Key, indexPath) as ConferenceNewsFeedCell;
 
+			if (cell is null || cell.TitleLabel is null || cell.BodyLabel is null || cell.DateLabel is null)
+				throw new InvalidOperationException ("cell, cell.Label, cell.BodyLabel, or cell.DateLabel");
+
 			// Populate the cell with our item description.
-			cell!.TitleLabel!.Text = newsItem?.Title;
-			cell.BodyLabel!.Text = newsItem?.Body;
-			cell.DateLabel!.Text = newsItem?.Date.ToShortDateString ();
-			cell.ShowsSeparator = indexPath.Item != newsController.News!.Length - 1;
+			cell.TitleLabel.Text = newsItem?.Title;
+			cell.BodyLabel.Text = newsItem?.Body;
+			cell.DateLabel.Text = newsItem?.Date.ToShortDateString ();
+			if (newsController.News is not null)
+				cell.ShowsSeparator = indexPath.Item != newsController.News.Length - 1;
 
 			// Return the cell.
 			return cell;

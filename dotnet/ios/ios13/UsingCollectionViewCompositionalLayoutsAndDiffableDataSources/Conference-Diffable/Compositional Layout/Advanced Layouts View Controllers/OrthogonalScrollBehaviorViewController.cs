@@ -13,13 +13,13 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 	class SectionKind : NSObject, IEquatable<SectionKind> {
 		readonly string description;
 
-		public static SectionKind Unknown { get; } = new SectionKind (-1, nameof (Unknown));
-		public static SectionKind Continuous { get; } = new SectionKind (0, nameof (Continuous));
-		public static SectionKind ContinuousGroupLeadingBoundary { get; } = new SectionKind (1, nameof (ContinuousGroupLeadingBoundary));
-		public static SectionKind Paging { get; } = new SectionKind (2, nameof (Paging));
-		public static SectionKind GroupPaging { get; } = new SectionKind (3, nameof (GroupPaging));
-		public static SectionKind GroupPagingCentered { get; } = new SectionKind (4, nameof (GroupPagingCentered));
-		public static SectionKind None { get; } = new SectionKind (5, nameof (None));
+		static SectionKind Unknown { get; } = new SectionKind (-1, nameof (Unknown));
+		static SectionKind Continuous { get; } = new SectionKind (0, nameof (Continuous));
+		static SectionKind ContinuousGroupLeadingBoundary { get; } = new SectionKind (1, nameof (ContinuousGroupLeadingBoundary));
+		static SectionKind Paging { get; } = new SectionKind (2, nameof (Paging));
+		static SectionKind GroupPaging { get; } = new SectionKind (3, nameof (GroupPaging));
+		static SectionKind GroupPagingCentered { get; } = new SectionKind (4, nameof (GroupPagingCentered));
+		static SectionKind None { get; } = new SectionKind (5, nameof (None));
 
 		public int EnumValue { get; private set; }
 
@@ -35,30 +35,31 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 
 		public static SectionKind GetSectionKind (nint sectionIndex)
 		{
-			if (Continuous.EnumValue == sectionIndex) return Continuous;
-			if (ContinuousGroupLeadingBoundary.EnumValue == sectionIndex) return ContinuousGroupLeadingBoundary;
-			if (Paging.EnumValue == sectionIndex) return Paging;
-			if (GroupPaging.EnumValue == sectionIndex) return GroupPaging;
-			if (GroupPagingCentered.EnumValue == sectionIndex) return GroupPagingCentered;
-			if (None.EnumValue == sectionIndex) return None;
-			return Unknown;
+			return (int)sectionIndex switch
+			{
+				-1 => Unknown,
+				0 => Continuous,
+				1 => ContinuousGroupLeadingBoundary,
+				2 => Paging,
+				3 => GroupPaging,
+				4 => GroupPagingCentered,
+				5 => None,
+				_ => Unknown,
+			};
 		}
 
 		public UICollectionLayoutSectionOrthogonalScrollingBehavior GetOrthogonalScrollingBehavior ()
 		{
-			if (Continuous.EnumValue == EnumValue)
-				return UICollectionLayoutSectionOrthogonalScrollingBehavior.Continuous;
-			if (ContinuousGroupLeadingBoundary.EnumValue == EnumValue)
-				return UICollectionLayoutSectionOrthogonalScrollingBehavior.ContinuousGroupLeadingBoundary;
-			if (Paging.EnumValue == EnumValue)
-				return UICollectionLayoutSectionOrthogonalScrollingBehavior.Paging;
-			if (GroupPaging.EnumValue == EnumValue)
-				return UICollectionLayoutSectionOrthogonalScrollingBehavior.GroupPaging;
-			if (GroupPagingCentered.EnumValue == EnumValue)
-				return UICollectionLayoutSectionOrthogonalScrollingBehavior.GroupPagingCentered;
-			if (None.EnumValue == EnumValue)
-				return UICollectionLayoutSectionOrthogonalScrollingBehavior.None;
-			return UICollectionLayoutSectionOrthogonalScrollingBehavior.None;
+			return EnumValue switch
+			{
+				0 => UICollectionLayoutSectionOrthogonalScrollingBehavior.Continuous,
+				1 => UICollectionLayoutSectionOrthogonalScrollingBehavior.ContinuousGroupLeadingBoundary,
+				2 => UICollectionLayoutSectionOrthogonalScrollingBehavior.Paging,
+				3 => UICollectionLayoutSectionOrthogonalScrollingBehavior.GroupPaging,
+				4 => UICollectionLayoutSectionOrthogonalScrollingBehavior.GroupPagingCentered,
+				5 => UICollectionLayoutSectionOrthogonalScrollingBehavior.None,
+				_ => UICollectionLayoutSectionOrthogonalScrollingBehavior.None,
+			};
 		}
 
 		public static bool operator == (SectionKind left, SectionKind right)
@@ -157,7 +158,10 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 
 	void ConfigureHierarchy ()
 	{
-		collectionView = new UICollectionView (View!.Bounds, CreateLayout ()) {
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
 			BackgroundColor = UIColor.SystemBackgroundColor,
 			Delegate = this
@@ -170,7 +174,10 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 
 	void ConfigureDataSource ()
 	{
-		dataSource = new UICollectionViewDiffableDataSource<NSNumber, NSNumber> (collectionView!, CellProviderHandler) {
+		if (collectionView is null)
+			throw new InvalidOperationException ("collectionView");
+
+		dataSource = new UICollectionViewDiffableDataSource<NSNumber, NSNumber> (collectionView, CellProviderHandler) {
 			SupplementaryViewProvider = SupplementaryViewProviderHandler
 		};
 
@@ -193,9 +200,12 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 			// Get a cell of the desired kind.
 			var cell = collectionView.DequeueReusableCell (TextCell.Key, indexPath) as TextCell;
 
+			if (cell is null || cell.Label is null)
+				throw new InvalidOperationException ("cell or cell.Label");
+
 			// Populate the cell with our item description.
-			cell!.Label!.Text = $"{indexPath.Section}, {indexPath.Row}";
-			cell.ContentView.BackgroundColor = UIColorExtensions.CornflowerBlue;
+			cell.Label.Text = $"{indexPath.Section}, {indexPath.Row}";
+			cell.ContentView.BackgroundColor = CornflowerBlue;
 			cell.ContentView.Layer.BorderColor = UIColor.Black.CGColor;
 			cell.ContentView.Layer.BorderWidth = 1;
 			cell.ContentView.Layer.CornerRadius = 8;
@@ -214,8 +224,11 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 			var header = collectionView.DequeueReusableSupplementaryView (new NSString (kind),
 				TitleSupplementaryView.Key, indexPath) as TitleSupplementaryView;
 
+			if (header is null || header.Label is null)
+				throw new InvalidOperationException ("header or header.Label");
+
 			// Populate the view with our section's description.
-			header!.Label!.Text = $".{sectionKind}";
+			header.Label.Text = $".{sectionKind}";
 
 			// Return the view.
 			return header;

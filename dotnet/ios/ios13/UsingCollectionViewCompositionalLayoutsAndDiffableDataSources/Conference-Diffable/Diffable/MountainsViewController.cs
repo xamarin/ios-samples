@@ -84,7 +84,10 @@ public partial class MountainsViewController : UIViewController, IUISearchBarDel
 	{
 		mountainsController = new MountainsController ();
 
-		View!.BackgroundColor = UIColor.SystemBackgroundColor;
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		View.BackgroundColor = UIColor.SystemBackgroundColor;
 		mountainCollectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			TranslatesAutoresizingMaskIntoConstraints = false,
 			BackgroundColor = UIColor.SystemBackgroundColor
@@ -112,7 +115,10 @@ public partial class MountainsViewController : UIViewController, IUISearchBarDel
 
 	void ConfigureDataSource ()
 	{
-		dataSource = new UICollectionViewDiffableDataSource<Section, MountainsController.Mountain> (mountainCollectionView!, CellProviderHandler);
+		if (mountainCollectionView is null)
+			throw new InvalidOperationException ("mountainCollectionView");
+
+		dataSource = new UICollectionViewDiffableDataSource<Section, MountainsController.Mountain> (mountainCollectionView, CellProviderHandler);
 
 		static UICollectionViewCell CellProviderHandler (UICollectionView collectionView, NSIndexPath indexPath, NSObject obj)
 		{
@@ -120,8 +126,11 @@ public partial class MountainsViewController : UIViewController, IUISearchBarDel
 			// Get a cell of the desired kind.
 			var mountainCell = collectionView.DequeueReusableCell (LabelCell.Key, indexPath) as LabelCell;
 
+			if (mountainCell is null || mountainCell.Label is null)
+				throw new InvalidOperationException ("mountainCell or mountainCell.Label");
+
 			// Populate the cell with our item description.
-			mountainCell!.Label!.Text = mountain?.Name;
+			mountainCell.Label.Text = mountain?.Name;
 
 			// Return the cell.
 			return mountainCell;
@@ -137,11 +146,16 @@ public partial class MountainsViewController : UIViewController, IUISearchBarDel
 
 	void PerformQuery (string? filter)
 	{
+		if (dataSource is null)
+			throw new InvalidOperationException ("dataSource");
+
 		var mountains = mountainsController?.FilterMountains (filter).OrderBy (m => m.Name).ToArray ();
+		if (mountains is null)
+			throw new InvalidOperationException ("mountains");
 
 		var snapshot = new NSDiffableDataSourceSnapshot<Section, MountainsController.Mountain> ();
 		snapshot.AppendSections (new [] { Section.Main });
-		snapshot.AppendItems (mountains!);
-		dataSource!.ApplySnapshot (snapshot, true);
+		snapshot.AppendItems (mountains);
+		dataSource.ApplySnapshot (snapshot, true);
 	}
 }

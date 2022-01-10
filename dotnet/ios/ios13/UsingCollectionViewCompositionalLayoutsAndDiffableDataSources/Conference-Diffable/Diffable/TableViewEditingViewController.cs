@@ -41,10 +41,10 @@ public partial class TableViewEditingViewController : UIViewController {
 			if (ReferenceEquals (left, right))
 				return true;
 
-			if (ReferenceEquals (left, null))
+			if (left is null)
 				return false;
 
-			if (ReferenceEquals (right, null))
+			if (right is null)
 				return false;
 
 			return left.Equals (right);
@@ -96,25 +96,29 @@ public partial class TableViewEditingViewController : UIViewController {
 
 			var snapshot = Snapshot;
 
-			if (destinationId is not null) {
-				var sourceIndex = snapshot.GetIndex (sourceId!);
+			if (destinationId is not null && sourceId is not null) {
+				var sourceIndex = snapshot.GetIndex (sourceId);
 				var destinationIndex = snapshot.GetIndex (destinationId);
 
 				if (sourceIndex > -1 && destinationIndex > -1) {
+					if (snapshot.GetSectionIdentifierForSection (sourceId) is null ||
+						snapshot.GetSectionIdentifierForSection (destinationId) is null)
+						throw new InvalidOperationException ("snapshot.GetSectionIdentifierForSection cannot use 'null' are argument");
+
 					var isAfter = destinationIndex > sourceIndex &&
-						snapshot.GetSectionIdentifierForSection (sourceId!)! ==
+						snapshot.GetSectionIdentifierForSection (sourceId)! ==
 						snapshot.GetSectionIdentifierForSection (destinationId)!;
-					snapshot.DeleteItems (new [] { sourceId! });
+					snapshot.DeleteItems (new [] { sourceId });
 
 					if (isAfter)
-						snapshot.InsertItemsAfter (new [] { sourceId }!, destinationId);
+						snapshot.InsertItemsAfter (new [] { sourceId }, destinationId);
 					else
-						snapshot.InsertItemsBefore (new [] { sourceId }!, destinationId);
+						snapshot.InsertItemsBefore (new [] { sourceId }, destinationId);
 				}
-			} else {
+			} else if (sourceId is not null) {
 				var destinationSectionId = Snapshot.SectionIdentifiers [destinationIndexPath.Section];
-				snapshot.DeleteItems (new [] { sourceId }!);
-				snapshot.AppendItems (new [] { sourceId }!, destinationSectionId);
+				snapshot.DeleteItems (new [] { sourceId });
+				snapshot.AppendItems (new [] { sourceId }, destinationSectionId);
 			}
 
 			ApplySnapshot (snapshot, false);
@@ -158,11 +162,14 @@ public partial class TableViewEditingViewController : UIViewController {
 
 	void ConfigureHierarchy ()
 	{
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
 		tableView = new UITableView (CGRect.Empty, UITableViewStyle.InsetGrouped) {
 			TranslatesAutoresizingMaskIntoConstraints = false
 		};
-		View!.BackgroundColor = UIColor.SystemBackgroundColor;
-		View!.AddSubview (tableView);
+		View.BackgroundColor = UIColor.SystemBackgroundColor;
+		View.AddSubview (tableView);
 
 		tableView.LeadingAnchor.ConstraintEqualTo (View.SafeAreaLayoutGuide.LeadingAnchor).Active = true;
 		tableView.TrailingAnchor.ConstraintEqualTo (View.SafeAreaLayoutGuide.TrailingAnchor).Active = true;
@@ -172,13 +179,17 @@ public partial class TableViewEditingViewController : UIViewController {
 
 	void ConfigureDataSource ()
 	{
-		var formatter = new NSNumberFormatter {
+		var formatter = new NSNumberFormatter
+		{
 			GroupingSize = 3,
 			UsesGroupingSeparator = true
 		};
 
-		var snapshot = InitialSnapshot();
-		dataSource = new DataSource (tableView!, CellProviderHandler);
+		if (tableView is null)
+			throw new InvalidOperationException ("tableView");
+
+		var snapshot = InitialSnapshot ();
+		dataSource = new DataSource (tableView, CellProviderHandler);
 		dataSource.ApplySnapshot (snapshot, false);
 
 		UITableViewCell CellProviderHandler (UITableView tableView, NSIndexPath indexPath, NSObject obj)
@@ -193,7 +204,7 @@ public partial class TableViewEditingViewController : UIViewController {
 
 			var content = cell.DefaultContentConfiguration;
 			content.Text = mountain?.Name;
-			content.SecondaryText = formatter.StringFromNumber(NSNumber.FromInt32(mountain!.Height));
+			content.SecondaryText = formatter.StringFromNumber (NSNumber.FromInt32 (mountain!.Height));
 			cell.ContentConfiguration = content;
 
 			// Return the cell.
@@ -220,7 +231,10 @@ public partial class TableViewEditingViewController : UIViewController {
 
 	void ConfigureNavigationItem ()
 	{
-		var editingItem = new UIBarButtonItem (tableView!.Editing ? "Done" : "Edit", UIBarButtonItemStyle.Plain, ToggleEditing!);
+		if (tableView is null)
+			throw new InvalidOperationException ("tableView");
+
+		var editingItem = new UIBarButtonItem (tableView.Editing ? "Done" : "Edit", UIBarButtonItemStyle.Plain, ToggleEditing!);
 		NavigationItem.RightBarButtonItem = editingItem;
 
 		void ToggleEditing (object sender, EventArgs e)

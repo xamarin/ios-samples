@@ -70,7 +70,10 @@ public partial class TwoColumnViewController : UIViewController {
 
 	void ConfigureHierarchy ()
 	{
-		collectionView = new UICollectionView (View!.Bounds, CreateLayout ()) {
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
 			BackgroundColor = UIColor.SystemBackgroundColor
 		};
@@ -80,6 +83,9 @@ public partial class TwoColumnViewController : UIViewController {
 
 	void ConfigureDataSource ()
 	{
+		if (collectionView is null)
+			throw new InvalidOperationException ("collectionView");
+
 		dataSource = new UICollectionViewDiffableDataSource<Section, NSNumber> (collectionView!, CellProviderHandler);
 
 		var items = Enumerable.Range (0, 94).Select (i => NSNumber.FromInt32 (i)).ToArray ();
@@ -95,10 +101,13 @@ public partial class TwoColumnViewController : UIViewController {
 			var id = (obj as NSNumber)?.Int32Value;
 			// Get a cell of the desired kind.
 			var cell = collectionView.DequeueReusableCell (TextCell.Key, indexPath) as TextCell;
-				
+
+			if (cell is null || cell.Label is null)
+				throw new InvalidOperationException ("cell or cell.Label");
+
 			// Populate the cell with our item description.
-			cell!.Label!.Text = id.ToString ();
-			cell.ContentView.BackgroundColor = UIColorExtensions.CornflowerBlue;
+			cell.Label.Text = id.ToString ();
+			cell.ContentView.BackgroundColor = CornflowerBlue;
 			cell.Layer.BorderColor = UIColor.Black.CGColor;
 			cell.Layer.BorderWidth = 1;
 			cell.Label.TextAlignment = UITextAlignment.Center;

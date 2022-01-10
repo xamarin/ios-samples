@@ -51,13 +51,13 @@ public class MountainsController {
 
 	readonly Mountain [] mountains;
 
-	public MountainsController () => mountains = GenerateMountains();
+	public MountainsController () => mountains = GenerateMountains ();
 
 	public Mountain [] FilterMountains (string? filter = null, int? limit = null)
 	{
 		var filtered = filter is null ? mountains : mountains.Where (m => m.Contains (filter)).ToArray ();
 
-		if (limit != null && limit > 0)
+		if (limit is not null && limit > 0)
 			filtered = filtered.Take (limit.Value).ToArray ();
 
 		return filtered;

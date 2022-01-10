@@ -21,10 +21,10 @@ public partial class ItemBadgeSupplementaryViewController : UIViewController {
 			if (ReferenceEquals (left, right))
 				return true;
 
-			if (ReferenceEquals (left, null))
+			if (left is null)
 				return false;
 
-			if (ReferenceEquals (right, null))
+			if (right is null)
 				return false;
 
 			return left.Equals (right);
@@ -89,7 +89,10 @@ public partial class ItemBadgeSupplementaryViewController : UIViewController {
 
 	void ConfigureHierarchy ()
 	{
-		collectionView = new UICollectionView (View!.Bounds, CreateLayout ()) {
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
 			BackgroundColor = UIColor.SystemBackgroundColor
 		};
@@ -100,7 +103,13 @@ public partial class ItemBadgeSupplementaryViewController : UIViewController {
 
 	void ConfigureDataSource ()
 	{
-		dataSource = new UICollectionViewDiffableDataSource<Section, Model> (collectionView!, CellProviderHandler) {
+		if (collectionView is null)
+			throw new InvalidOperationException ("collectionView");
+
+		if (SupplementaryViewProviderHandler == null)
+			throw new InvalidOperationException ("SupplementaryViewProviderHandler");
+
+		dataSource = new UICollectionViewDiffableDataSource<Section, Model> (collectionView, CellProviderHandler) {
 			SupplementaryViewProvider = SupplementaryViewProviderHandler!
 		};
 
@@ -119,9 +128,12 @@ public partial class ItemBadgeSupplementaryViewController : UIViewController {
 			// Get a cell of the desired kind.
 			var cell = collectionView.DequeueReusableCell (TextCell.Key, indexPath) as TextCell;
 
+			if (cell is null || cell.Label is null)
+				throw new InvalidOperationException ("cell or cell.Label");
+
 			// Populate the cell with our item description.
-			cell!.Label!.Text = model?.Title;
-			cell.ContentView.BackgroundColor = UIColorExtensions.CornflowerBlue;
+			cell.Label.Text = model?.Title;
+			cell.ContentView.BackgroundColor = CornflowerBlue;
 			cell.Layer.BorderColor = UIColor.Black.CGColor;
 			cell.Layer.BorderWidth = 1;
 			cell.Layer.CornerRadius = 8;
@@ -143,8 +155,11 @@ public partial class ItemBadgeSupplementaryViewController : UIViewController {
 			var badgeView = collectionView.DequeueReusableSupplementaryView (new NSString (kind),
 				BadgeSupplementaryView.Key, indexPath) as BadgeSupplementaryView;
 
+			if (badgeView is null || badgeView.Label is null)
+				throw new InvalidOperationException ("cell or cell.Label");
+
 			// Set the badge count as its label (and hide the view if the badge count is zero).
-			badgeView!.Label!.Text = model.BadgeCount.ToString ();
+			badgeView.Label.Text = model.BadgeCount.ToString ();
 			badgeView.Hidden = !hasBadgeCount;
 
 			// Return the view.

@@ -73,8 +73,10 @@ public partial class AdaptiveSectionsViewController : UIViewController, IUIColle
 
 	static UICollectionViewLayout? CreateLayout ()
 	{
-		var section = SectionProviderHandler;
-		return section is not null ? new UICollectionViewCompositionalLayout (SectionProviderHandler!) : null;
+		if (SectionProviderHandler != null)
+			return new UICollectionViewCompositionalLayout (SectionProviderHandler!);
+
+		return null;
 
 		static NSCollectionLayoutSection? SectionProviderHandler (nint sectionIndex, INSCollectionLayoutEnvironment layoutEnvironment)
 		{
@@ -103,7 +105,14 @@ public partial class AdaptiveSectionsViewController : UIViewController, IUIColle
 
 	void ConfigureHierarchy ()
 	{
-		collectionView = new UICollectionView (View!.Bounds, CreateLayout()!) {
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		var layout = CreateLayout ();
+		if (layout is null)
+			return;
+
+		collectionView = new UICollectionView (View.Bounds, layout) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
 			BackgroundColor = UIColor.SystemBackgroundColor,
 			Delegate = this
@@ -115,7 +124,10 @@ public partial class AdaptiveSectionsViewController : UIViewController, IUIColle
 
 	void ConfigureDataSource ()
 	{
-		dataSource = new UICollectionViewDiffableDataSource<SectionLayoutKind, NSNumber> (collectionView!, CellProviderHandler);
+		if (collectionView is null)
+			throw new InvalidOperationException ("collectionView");
+
+		dataSource = new UICollectionViewDiffableDataSource<SectionLayoutKind, NSNumber> (collectionView, CellProviderHandler);
 
 		// initial data
 		var itemsPerSection = 10;
@@ -133,25 +145,31 @@ public partial class AdaptiveSectionsViewController : UIViewController, IUIColle
 
 		static UICollectionViewCell CellProviderHandler (UICollectionView collectionView, NSIndexPath indexPath, NSObject obj)
 		{
-			var id = (obj as NSNumber)!.Int32Value;
+			var id = (obj as NSNumber)?.Int32Value;
 			var section = SectionLayoutKind.GetSectionLayoutKind (indexPath.Section);
 
 			if (section == SectionLayoutKind.List) {
 				// Get a cell of the desired kind.
 				var cell = collectionView.DequeueReusableCell (ListCell.Key, indexPath) as ListCell;
-					
+
+				if (cell is null || cell.Label is null)
+					throw new InvalidOperationException ("cell or cell.Label");
+
 				// Populate the cell with our item description.
-				cell!.Label!.Text = id.ToString ();
+				cell.Label.Text = id?.ToString ();
 
 				// Return the cell.
 				return cell;
 			} else {
 				// Get a cell of the desired kind.
 				var cell = collectionView.DequeueReusableCell (TextCell.Key, indexPath) as TextCell;
-					
+
+				if (cell is null || cell.Label is null)
+					throw new InvalidOperationException ("cell or cell.Label");
+
 				// Populate the cell with our item description.
-				cell!.Label!.Text = id.ToString ();
-				cell.ContentView.BackgroundColor = UIColorExtensions.CornflowerBlue;
+				cell.Label.Text = id.ToString ();
+				cell.ContentView.BackgroundColor = CornflowerBlue;
 				cell.ContentView.Layer.CornerRadius = section == SectionLayoutKind.Grid5 ? 8 : 0;
 				cell.ContentView.Layer.BorderColor = UIColor.Black.CGColor;
 				cell.ContentView.Layer.BorderWidth = 1;

@@ -61,7 +61,10 @@ public partial class ConferenceVideoSessionsViewController : UIViewController {
 
 	void ConfigureHierarchy ()
 	{
-		collectionView = new UICollectionView (View!.Bounds, CreateLayout ()) {
+		if (View is null)
+			throw new InvalidOperationException ("View");
+
+		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			TranslatesAutoresizingMaskIntoConstraints = false,
 			BackgroundColor = UIColor.SystemBackgroundColor,
 		};
@@ -77,16 +80,22 @@ public partial class ConferenceVideoSessionsViewController : UIViewController {
 
 	void ConfigureDataSource ()
 	{
-		dataSource = new UICollectionViewDiffableDataSource<ConferenceVideoController.VideoCollection, ConferenceVideoController.Video> (collectionView!, CellProviderHandler) {
+		if (collectionView is null)
+			throw new InvalidOperationException ("collectionView");
+
+		dataSource = new UICollectionViewDiffableDataSource<ConferenceVideoController.VideoCollection, ConferenceVideoController.Video> (collectionView, CellProviderHandler) {
 			SupplementaryViewProvider = SupplementaryViewProviderHandler
 		};
 		currentSnapshot = new NSDiffableDataSourceSnapshot<ConferenceVideoController.VideoCollection, ConferenceVideoController.Video> ();
 
-		foreach (var videoCollection in videosController!.Collections!) {
-			currentSnapshot.AppendSections (new [] { videoCollection });
-			currentSnapshot.AppendItems (videoCollection.Videos!);
+		if (videosController is not null && videosController.Collections is not null)
+		{
+			foreach (var videoCollection in videosController.Collections!)
+			{
+				currentSnapshot.AppendSections (new[] { videoCollection });
+				currentSnapshot.AppendItems (videoCollection.Videos!);
+			}
 		}
-
 		dataSource.ApplySnapshot (currentSnapshot, false);
 
 		UICollectionViewCell CellProviderHandler (UICollectionView collectionView, NSIndexPath indexPath, NSObject obj)
@@ -96,9 +105,12 @@ public partial class ConferenceVideoSessionsViewController : UIViewController {
 			// Get a cell of the desired kind.
 			var cell = collectionView.DequeueReusableCell (ConferenceVideoCell.Key, indexPath) as ConferenceVideoCell;
 
+			if (cell is null || cell.TitleLabel is null || cell.CategoryLabel is null)
+				throw new InvalidOperationException ("cell, cell.TitleLabel, or cell.CategoryLabel");
+
 			// Populate the cell with our item description.
-			cell!.TitleLabel!.Text = video?.Title;
-			cell.CategoryLabel!.Text = video?.Category;
+			cell.TitleLabel.Text = video?.Title;
+			cell.CategoryLabel.Text = video?.Category;
 
 			// Return the cell.
 			return cell;
@@ -110,9 +122,12 @@ public partial class ConferenceVideoSessionsViewController : UIViewController {
 			var titleSupplementary = collectionView.DequeueReusableSupplementaryView (new NSString (kind),
 				TitleSupplementaryView.Key, indexPath) as TitleSupplementaryView;
 
+			if (titleSupplementary is null || titleSupplementary.Label is null)
+				throw new InvalidOperationException ("titleSupplementary or titleSupplementary.Label");
+
 			// Populate the view with our section's description.
 			var videoCategory = currentSnapshot?.SectionIdentifiers [indexPath.Section];
-			titleSupplementary!.Label!.Text = videoCategory?.Title;
+			titleSupplementary.Label.Text = videoCategory?.Title;
 
 			// Return the view.
 			return titleSupplementary;
