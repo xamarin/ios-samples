@@ -1,7 +1,7 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicsCatalog", "Dynamics_Catalog\DynamicsCatalog.csproj", "{A6CE4BA5-4CF6-4216-B390-2A0289132977}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicsCatalog", "DynamicsCatalog\DynamicsCatalog.csproj", "{A6CE4BA5-4CF6-4216-B390-2A0289132977}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

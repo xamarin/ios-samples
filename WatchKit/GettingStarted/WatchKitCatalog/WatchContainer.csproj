@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{BA547202-7B4E-4C29-B3F2-6C6155DC9F3D}</ProjectGuid>
+    <ProjectGuid>{745A5C9C-547B-40F3-956F-9F2297388E5E}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>WatchKitCatalog</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
@@ -130,7 +130,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WatchContainer.WatchApp\WatchContainer.WatchApp.csproj">
       <IsWatchApp>true</IsWatchApp>
-      <Project>{3939EB76-707A-4C18-9EBF-292228006E82}</Project>
+      <Project>{FB3834F0-445E-4015-B236-7A548D0F85FB}</Project>
       <Name>WatchContainer.WatchApp</Name>
     </ProjectReference>
   </ItemGroup>

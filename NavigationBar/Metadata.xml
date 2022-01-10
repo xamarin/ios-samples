@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>e63817a7-fb62-4f6f-ab93-2f2ba76f8cce</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Brief>Sample demonstrates using `UINavigationController` and `UIViewController` classes together as building blocks to your application's user interface.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Begginer</Level>
+  <Tags>User Interface</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>

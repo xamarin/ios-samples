@@ -2,6 +2,7 @@
 bin
 obj
 .vs
+*/.vscode/settings.json
 Newtonsoft.Json.*
 NUnit.*
 Xamarin.UITest*

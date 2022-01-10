@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<SampleMetadata>
-	<ID>0857a1e5-1178-4973-85ba-08655ae7b565</ID>
-	<IsFullApplication>false</IsFullApplication>
-	<Level>Beginner</Level>
-	<Tags>User Interface</Tags>
-	<Gallery>true</Gallery>
-	<Brief>Demonstrates how to create a master-detail style of application.</Brief>
-</SampleMetadata>

@@ -1,16 +1,19 @@
-Quartz Sample
-=============
+---
+name: "Xamarin.iOS - Quartz (Core Graphics)"
+description: "A sample of using the Core Graphics capabilities in a Xamarin.iOS application"
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+urlFragment: quartzsample
+---
+# Quartz Sample
 
-A sample of using the Core Graphics capabilities in a MonoTouch application.
+A sample of using the Core Graphics capabilities in a Xamarin.iOS application.
 
-Preview
--------
+## Preview
 
-![iPhone running Quartz sample one](http://farm7.static.flickr.com/6132/5999556473_a801e2c50f.jpg)
-![iPhone running Quartz sample two](http://farm7.static.flickr.com/6138/6000105490_2a67a8aa09.jpg)
-![iPhone running Quartz sample three](http://farm7.static.flickr.com/6025/5999556761_72206a31f1.jpg)
-
-Authors
--------
-
-Miguel de Icaza
+![iPhone running Quartz sample one](Screenshots/QuartzSample1.jpg)
+![iPhone running Quartz sample two](Screenshots/QuartzSample2.jpg)
+![iPhone running Quartz sample three](Screenshots/QuartzSample3.jpg)

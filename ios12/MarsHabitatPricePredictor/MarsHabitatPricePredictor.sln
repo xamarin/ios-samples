@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsHabitatPricePredictor", "MarsHabitatPricePredictor\MarsHabitatPricePredictor.csproj", "{D20D1E6F-A200-4A53-A305-91F8AC12D332}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D20D1E6F-A200-4A53-A305-91F8AC12D332}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{D20D1E6F-A200-4A53-A305-91F8AC12D332}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{D20D1E6F-A200-4A53-A305-91F8AC12D332}.Release|iPhone.ActiveCfg = Release|iPhone
+		{D20D1E6F-A200-4A53-A305-91F8AC12D332}.Release|iPhone.Build.0 = Release|iPhone
+		{D20D1E6F-A200-4A53-A305-91F8AC12D332}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{D20D1E6F-A200-4A53-A305-91F8AC12D332}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{D20D1E6F-A200-4A53-A305-91F8AC12D332}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{D20D1E6F-A200-4A53-A305-91F8AC12D332}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal

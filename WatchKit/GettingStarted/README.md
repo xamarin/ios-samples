@@ -1,4 +1,5 @@
-Getting Started with Watch Kit
-==============================
+# Getting Started with Watch Kit - DEPRECATED
 
-Sample for [getting started with Watch Kit](http://developer.xamarin.com/guides/ios/watch/getting-started/).
+## See the watchOS samples instead
+
+Sample for [getting started with Watch Kit](https://docs.microsoft.com/xamarin/ios/watchos/get-started/).

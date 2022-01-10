@@ -1,13 +1,27 @@
-AV Touch
-========
+---
+name: Xamarin.iOS - AV Touch
+description: "Example using AVFoundation on iOS devices. This allows a developer to access playing audio and accessing audio data from the application..."
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+urlFragment: avtouchsample
+---
+# AV Touch
 
-An example on using AVFoundation on iOS devices. This allows a developer to access playing
-audio and accessing audio data from their application.
+An example using AVFoundation on iOS devices. This allows a developer to access playing audio and accessing audio data from their application.
 
-Based on Apple's avTouch example:
-http://developer.apple.com/library/ios/#samplecode/avTouch/Introduction/Intro.html
+![Hove View](Screenshots/screenshot-1.png)
 
-Authors
--------
+## Build Requirements
 
-Miguel de Icaza
+Xamarin.iOS 7.0, Xcode 5.0 and later
+
+## Related Links
+
+- [Original sample](http://developer.apple.com/library/ios/#samplecode/avTouch/Introduction/Intro.html)
+
+## License
+
+Xamarin port changes are released under the MIT license.

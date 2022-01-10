@@ -1,13 +1,19 @@
-Data Access
-===========
+---
+name: Xamarin.iOS - Data Access
+description: 'How use the built in SQLite engine in iOS to create a database, add rows, and query using SQL'
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+urlFragment: data
+---
+# Data Access
 
 This sample illustrates how use the built in SQLite functionality in iOS. It
 illustrates creating a database, adding rows, and querying using the following
-three data technologies: ADO.NET, SQLite .NET, and Vici Cool Storage. It also
-outputs performance data of the three approaches.
+three data technologies: ADO.NET and SQLite .NET.
 
+It also outputs performance data of the approaches.
 
-Authors
--------
-
-Bryan Costanich
+![Data Access application screenshot](Screenshots/Data01.png "Data Access application screenshot")

@@ -1,5 +1,17 @@
-Lister
-==============
+---
+name: Xamarin.iOS - Lister
+description: "Lister is a productivity sample code project for iOS. In this sample, the user can create lists, add items to lists, and track the progress (iOS8)"
+page_type: sample
+languages:
+- csharp
+products:
+- xamarin
+extensions:
+    tags:
+    - ios8
+urlFragment: ios8-lister
+---
+# Lister
 
 Lister is a productivity sample code project for iOS. In this sample,
 the user can create lists, add items to lists, and track the progress
@@ -33,22 +45,19 @@ indexer, archiving and unarchiving.
 In addition to model code, by subclassing `CALayer`, Lister shares
 checkbox drawing code with both app and it's extension.
 
-References
-----------
+## References
 
 For understanding Widgets (Today extension) read [Apple's
 documentation](https://developer.apple.com/library/prerelease/mac/documentation/General/Conceptual/ExtensibilityPG/NotificationCenter.html#//apple_ref/doc/uid/TP40014214-CH11-SW1)
 
-Setup
------
+## Setup
 
 For this sample you need create ApplicationID and setup
 iCloudContainer for it. For complete instructions read `Enabling
 iCloud in Xamarin` section from
 [tutorial](http://developer.xamarin.com/guides/ios/platform_features/introduction_to_the_document_picker/).
 
-Instructions
-------------
+## Instructions
 
 Before running the app you shoud signin to your `iCloud` account via
 `Settings` application. Also enable `iCloud Drive`.  After that run
@@ -80,21 +89,17 @@ press `Done`. At this point you will see `Today view` with
 When you change your `Today list` within Lister app these changes will
 be displayed inside ListerToday Widget and vice versa.
 
-Build Requirements
-------------------
+## Build Requirements
 
 Building this sample requires Xcode 6.0 and iOS 8.0 SDK
 
-Target
-------
+## Target
 This sample runnable on iPhone/iPad
 
-Copyright
---------
+## Copyright
 
 Xamarin port changes are released under the MIT license
 
-Author
------- 
+## Author 
 
 Ported to Xamarin.iOS by Rustam Zaitov

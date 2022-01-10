@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpriteKit", "SpriteKit\SpriteKit.csproj", "{799D6664-EEBB-4F5D-85E4-58BA92291712}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpriteKit", "SpriteKit\SpriteKit.csproj", "{C58E33CF-0E52-44AC-86FD-877639469028}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,18 +13,18 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{799D6664-EEBB-4F5D-85E4-58BA92291712}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{799D6664-EEBB-4F5D-85E4-58BA92291712}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{799D6664-EEBB-4F5D-85E4-58BA92291712}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{799D6664-EEBB-4F5D-85E4-58BA92291712}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{799D6664-EEBB-4F5D-85E4-58BA92291712}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{799D6664-EEBB-4F5D-85E4-58BA92291712}.Debug|iPhone.Build.0 = Debug|iPhone
-		{799D6664-EEBB-4F5D-85E4-58BA92291712}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{799D6664-EEBB-4F5D-85E4-58BA92291712}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{799D6664-EEBB-4F5D-85E4-58BA92291712}.Release|iPhone.ActiveCfg = Release|iPhone
-		{799D6664-EEBB-4F5D-85E4-58BA92291712}.Release|iPhone.Build.0 = Release|iPhone
-		{799D6664-EEBB-4F5D-85E4-58BA92291712}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{799D6664-EEBB-4F5D-85E4-58BA92291712}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{C58E33CF-0E52-44AC-86FD-877639469028}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{C58E33CF-0E52-44AC-86FD-877639469028}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{C58E33CF-0E52-44AC-86FD-877639469028}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{C58E33CF-0E52-44AC-86FD-877639469028}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{C58E33CF-0E52-44AC-86FD-877639469028}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{C58E33CF-0E52-44AC-86FD-877639469028}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C58E33CF-0E52-44AC-86FD-877639469028}.Release|iPhone.ActiveCfg = Release|iPhone
+		{C58E33CF-0E52-44AC-86FD-877639469028}.Release|iPhone.Build.0 = Release|iPhone
+		{C58E33CF-0E52-44AC-86FD-877639469028}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{C58E33CF-0E52-44AC-86FD-877639469028}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{C58E33CF-0E52-44AC-86FD-877639469028}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{C58E33CF-0E52-44AC-86FD-877639469028}.AppStore|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = SpriteKit\SpriteKit.csproj

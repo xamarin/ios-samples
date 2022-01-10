@@ -1,50 +1,21 @@
-using System;
-using CoreGraphics;
+﻿using Foundation;
 using UIKit;
-using Foundation;
 
 namespace TableEditing
 {
-	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
-		#region -= main =-
+    // The UIApplicationDelegate for the application. This class is responsible for launching the
+    // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
+    [Register("AppDelegate")]
+    public class AppDelegate : UIApplicationDelegate
+    {
+        public override UIWindow Window { get; set; }
 
-		public static void Main (string[] args)
-		{
-			try {
-				UIApplication.Main (args, null, "AppDelegate");
-			} catch (Exception e) {
-				Console.WriteLine (e.ToString ());
-			}
-		}
+        public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+        {
+            // Override point for customization after application launch.
+            // If not required for your application you can safely delete this method
 
-		#endregion
-
-		#region -= declarations and properties =-
-
-		protected UIWindow window;
-		protected TableEditing.Screens.HomeScreen iPhoneHome;
-
-		#endregion
-
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
-		{
-			//---- create our window
-			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			window.MakeKeyAndVisible ();
-
-			//---- create the home screen
-			iPhoneHome = new TableEditing.Screens.HomeScreen ();
-			iPhoneHome.View.Frame = new CGRect (0, UIApplication.SharedApplication.StatusBarFrame.Height,
-				UIScreen.MainScreen.ApplicationFrame.Width,
-				UIScreen.MainScreen.ApplicationFrame.Height);
-
-			var navigationController = new UINavigationController (iPhoneHome);
-			window.RootViewController = navigationController;
-			window.MakeKeyAndVisible ();
-
-			return true;
-		}
-	}
+            return true;
+        }
+    }
 }

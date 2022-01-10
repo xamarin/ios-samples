@@ -43,7 +43,7 @@ namespace LazyTableImages {
 		public RootViewController (string nibName, NSBundle bundle) : base (nibName, bundle)
 		{
 			Apps = new ObservableCollection<App> ();
-			Title = NSBundle.MainBundle.LocalizedString ("Top 75 Apps", "Master");
+			Title = NSBundle.MainBundle.LocalizedString ("Top 50 Apps", "Master");
 		}
 
 		public override void ViewDidLoad ()

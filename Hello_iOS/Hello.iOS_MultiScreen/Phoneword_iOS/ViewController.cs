@@ -83,13 +83,13 @@ namespace Phoneword_iOS
 			// set the View Controller that’s powering the screen we’re
 			// transitioning to
 
-			var callHistoryContoller = segue.DestinationViewController as CallHistoryController;
+			var callHistoryController = segue.DestinationViewController as CallHistoryController;
 
 			//set the Table View Controller’s list of phone numbers to the
 			// list of dialed phone numbers
 
-			if (callHistoryContoller != null) {
-				callHistoryContoller.PhoneNumbers = PhoneNumbers;
+			if (callHistoryController != null) {
+				callHistoryController.PhoneNumbers = PhoneNumbers;
 			}
 		}
 

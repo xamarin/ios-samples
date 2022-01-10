@@ -1,54 +1,59 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Visual Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
 using Foundation;
+using System;
 using System.CodeDom.Compiler;
 
 namespace PrintBanner
 {
-	[Register ("PrintBannerViewController")]
-	partial class PrintBannerViewController
-	{
-		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		UIKit.UISegmentedControl colorSelection { get; set; }
+    [Register ("PrintBannerViewController")]
+    partial class PrintBannerViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UISegmentedControl colorSelection { get; set; }
 
-		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		UIKit.UISegmentedControl fontSelection { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UISegmentedControl fontSelection { get; set; }
 
-		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		UIKit.UIButton printButton { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton printButton { get; set; }
 
-		[Outlet]
-		[GeneratedCodeAttribute ("iOS Designer", "1.0")]
-		UIKit.UITextField textField { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField textField { get; set; }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (textField != null) {
-				textField.Dispose ();
-				textField = null;
-			}
+        [Action ("Print:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void Print (UIKit.UIButton sender);
 
-			if (fontSelection != null) {
-				fontSelection.Dispose ();
-				fontSelection = null;
-			}
+        void ReleaseDesignerOutlets ()
+        {
+            if (colorSelection != null) {
+                colorSelection.Dispose ();
+                colorSelection = null;
+            }
 
-			if (colorSelection != null) {
-				colorSelection.Dispose ();
-				colorSelection = null;
-			}
+            if (fontSelection != null) {
+                fontSelection.Dispose ();
+                fontSelection = null;
+            }
 
-			if (printButton != null) {
-				printButton.Dispose ();
-				printButton = null;
-			}
-		}
-	}
+            if (printButton != null) {
+                printButton.Dispose ();
+                printButton = null;
+            }
+
+            if (textField != null) {
+                textField.Dispose ();
+                textField = null;
+            }
+        }
+    }
 }

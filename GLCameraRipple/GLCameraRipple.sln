@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLCameraRipple", "GLCameraRipple.csproj", "{96FCF082-6930-4167-BDEF-07ABB007205A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GLCameraRipple", "GLCameraRipple\GLCameraRipple.csproj", "{F284E2D3-F4C7-43CA-914B-22D9905A69FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{96FCF082-6930-4167-BDEF-07ABB007205A}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{96FCF082-6930-4167-BDEF-07ABB007205A}.Debug|iPhone.Build.0 = Debug|iPhone
-		{96FCF082-6930-4167-BDEF-07ABB007205A}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{96FCF082-6930-4167-BDEF-07ABB007205A}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{96FCF082-6930-4167-BDEF-07ABB007205A}.Release|iPhone.ActiveCfg = Release|iPhone
-		{96FCF082-6930-4167-BDEF-07ABB007205A}.Release|iPhone.Build.0 = Release|iPhone
-		{96FCF082-6930-4167-BDEF-07ABB007205A}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{96FCF082-6930-4167-BDEF-07ABB007205A}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{F284E2D3-F4C7-43CA-914B-22D9905A69FA}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{F284E2D3-F4C7-43CA-914B-22D9905A69FA}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{F284E2D3-F4C7-43CA-914B-22D9905A69FA}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{F284E2D3-F4C7-43CA-914B-22D9905A69FA}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{F284E2D3-F4C7-43CA-914B-22D9905A69FA}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{F284E2D3-F4C7-43CA-914B-22D9905A69FA}.Debug|iPhone.Build.0 = Debug|iPhone
+		{F284E2D3-F4C7-43CA-914B-22D9905A69FA}.Release|iPhone.ActiveCfg = Release|iPhone
+		{F284E2D3-F4C7-43CA-914B-22D9905A69FA}.Release|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = GLCameraRipple.csproj

@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavigationBar", "NavigationBar\NavigationBar.csproj", "{1042AF15-AA47-4781-B18A-99323DC882EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1042AF15-AA47-4781-B18A-99323DC882EB}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{1042AF15-AA47-4781-B18A-99323DC882EB}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{1042AF15-AA47-4781-B18A-99323DC882EB}.Release|iPhone.ActiveCfg = Release|iPhone
+		{1042AF15-AA47-4781-B18A-99323DC882EB}.Release|iPhone.Build.0 = Release|iPhone
+		{1042AF15-AA47-4781-B18A-99323DC882EB}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{1042AF15-AA47-4781-B18A-99323DC882EB}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{1042AF15-AA47-4781-B18A-99323DC882EB}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{1042AF15-AA47-4781-B18A-99323DC882EB}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newsstand", "Newsstand\Newsstand.csproj", "{367D4ECC-D04A-41FB-A784-4D10F30666C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newsstand", "Newsstand\Newsstand.csproj", "{BABC9873-F1DB-4E50-8FC0-80E1B9547EDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Debug|iPhone.Build.0 = Debug|iPhone
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Release|iPhone.ActiveCfg = Release|iPhone
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Release|iPhone.Build.0 = Release|iPhone
+		{BABC9873-F1DB-4E50-8FC0-80E1B9547EDF}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{BABC9873-F1DB-4E50-8FC0-80E1B9547EDF}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{BABC9873-F1DB-4E50-8FC0-80E1B9547EDF}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{BABC9873-F1DB-4E50-8FC0-80E1B9547EDF}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{BABC9873-F1DB-4E50-8FC0-80E1B9547EDF}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{BABC9873-F1DB-4E50-8FC0-80E1B9547EDF}.Debug|iPhone.Build.0 = Debug|iPhone
+		{BABC9873-F1DB-4E50-8FC0-80E1B9547EDF}.Release|iPhone.ActiveCfg = Release|iPhone
+		{BABC9873-F1DB-4E50-8FC0-80E1B9547EDF}.Release|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Newsstand.csproj

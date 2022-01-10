@@ -1,7 +1,0 @@
-﻿"AgC-eL-Hgc.title" = "WatchL10nEN"; // interface controller title
-"0.text" = "Welcome to WatchL10n"; // Days page
-"1.text" = "Language settings are in Apple Watch App"; // Hours page
-"2.title" = "Greetings"; // Minutes page
-
-"6.title" = "Detail";
-"39.text" = "Second screen";

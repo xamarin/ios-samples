@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>eb9bd1d5-5655-458d-960c-ed64b7801c5e</ID>
+  <IsFullApplication>true</IsFullApplication>
+  <Brief>Accelerate actions in your app by providing shortcuts to preview content in detail view controllers.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>User Interface, 3D Touch</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>

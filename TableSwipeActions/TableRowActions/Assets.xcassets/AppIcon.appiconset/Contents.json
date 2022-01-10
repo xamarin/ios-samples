@@ -1,7 +1,6 @@
 {
   "images": [
     {
-      "filename": "xamarin_40.png",
       "size": "20x20",
       "scale": "2x",
       "idiom": "iphone"
@@ -12,37 +11,37 @@
       "idiom": "iphone"
     },
     {
-      "filename": "xamarin_58.png",
+      "filename": "icon-spotlight-29@2x.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "xamarin_87.png",
+      "filename": "icon-spotlight-29@3x.png",
       "size": "29x29",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "xamarin_80.png",
+      "filename": "icon-spotlight-40@2x.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "xamarin_120.png",
+      "filename": "icon-spotlight-40@3x.png",
       "size": "40x40",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "xamarin_120.png",
+      "filename": "icon-app-60@2x.png",
       "size": "60x60",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "xamarin_180.png",
+      "filename": "Icon-app-60@3x.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
@@ -58,11 +57,13 @@
       "idiom": "ipad"
     },
     {
+      "filename": "icon-spotlight-29.png",
       "size": "29x29",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
+      "filename": "icon-spotlight-29@2x.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "ipad"
@@ -73,24 +74,25 @@
       "idiom": "ipad"
     },
     {
+      "filename": "icon-spotlight-40@2x.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "xamarin_167.png",
+      "filename": "Icon-app-83.5@2x.png",
       "size": "83.5x83.5",
       "scale": "2x",
       "idiom": "ipad"
     },
     {
-      "filename": "xamarin_76.png",
+      "filename": "icon-app-76.png",
       "size": "76x76",
       "scale": "1x",
       "idiom": "ipad"
     },
     {
-      "filename": "xamarin_152.png",
+      "filename": "icon-app-76@2x.png",
       "size": "76x76",
       "scale": "2x",
       "idiom": "ipad"
@@ -99,6 +101,16 @@
       "size": "1024x1024",
       "scale": "1x",
       "idiom": "ios-marketing"
+    },
+    {
+      "size": "60x60",
+      "scale": "2x",
+      "idiom": "car"
+    },
+    {
+      "size": "60x60",
+      "scale": "3x",
+      "idiom": "car"
     },
     {
       "role": "notificationCenter",
@@ -134,9 +146,16 @@
       "idiom": "watch"
     },
     {
-      "role": "longLook",
+      "role": "appLauncher",
       "size": "44x44",
-      "subtype": "42mm",
+      "subtype": "40mm",
+      "scale": "2x",
+      "idiom": "watch"
+    },
+    {
+      "role": "appLauncher",
+      "size": "50x50",
+      "subtype": "44mm",
       "scale": "2x",
       "idiom": "watch"
     },
@@ -153,6 +172,18 @@
       "subtype": "42mm",
       "scale": "2x",
       "idiom": "watch"
+    },
+    {
+      "role": "quickLook",
+      "size": "108x108",
+      "subtype": "44mm",
+      "scale": "2x",
+      "idiom": "watch"
+    },
+    {
+      "size": "1024x1024",
+      "scale": "1x",
+      "idiom": "watch-marketing"
     },
     {
       "size": "16x16",

@@ -1,31 +1,23 @@
-using System;
-using CoreLocation;
-using MapKit;
-
+﻿
 namespace MapDemo
 {
+    using CoreLocation;
+    using MapKit;
+
     public class MonkeyAnnotation : MKAnnotation
     {
-        string title;
-        CLLocationCoordinate2D coord;
+        private CLLocationCoordinate2D coordinate;
 
-        public MonkeyAnnotation (string title, CLLocationCoordinate2D coord)
+        private readonly string title;
+
+        public MonkeyAnnotation(string title, CLLocationCoordinate2D coordinate)
         {
             this.title = title;
-            this.coord = coord;
+            this.coordinate = coordinate;
         }
 
-        public override string Title {
-            get {
-                return title;
-            }
-        }
+        public override string Title => title;
 
-        public override CLLocationCoordinate2D Coordinate {
-            get {
-                return coord;
-            }
-        }
+        public override CLLocationCoordinate2D Coordinate => coordinate;
     }
 }
-

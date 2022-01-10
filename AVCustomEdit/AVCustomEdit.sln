@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVCustomEdit", "AVCustomEdit\AVCustomEdit.csproj", "{B086E3A5-1D26-4F87-B908-2521E3091A2D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVCustomEdit", "AVCustomEdit\AVCustomEdit.csproj", "{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,30 +13,27 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
-		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
-		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
-		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.AppStore|iPhone.Build.0 = AppStore|iPhone
-		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Debug|iPhone.Build.0 = Debug|iPhone
-		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Release|iPhone.ActiveCfg = Release|iPhone
-		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Release|iPhone.Build.0 = Release|iPhone
-		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{B086E3A5-1D26-4F87-B908-2521E3091A2D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}.Debug|iPhone.Build.0 = Debug|iPhone
+		{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}.Release|iPhone.ActiveCfg = Release|iPhone
+		{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}.Release|iPhone.Build.0 = Release|iPhone
+		{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}.Ad-Hoc|iPhone.ActiveCfg = Release|iPhone
+		{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}.Ad-Hoc|iPhone.Build.0 = Release|iPhone
+		{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}.AppStore|iPhone.ActiveCfg = Release|iPhone
+		{E35D29CE-B9F3-41D9-A22A-C00FD94D392C}.AppStore|iPhone.Build.0 = Release|iPhone
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = AVCustomEdit\AVCustomEdit.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
-		$1.TabsToSpaces = False
-		$1.inheritsSet = VisualStudio
-		$1.inheritsScope = text/plain
 		$1.scope = text/x-csharp
+		$1.FileWidth = 80
+		$1.inheritsSet = null
 		$0.CSharpFormattingPolicy = $2
-		$2.inheritsSet = Mono
-		$2.inheritsScope = text/x-csharp
 		$2.scope = text/x-csharp
 	EndGlobalSection
 EndGlobal

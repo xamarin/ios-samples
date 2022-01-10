@@ -1,45 +1,42 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Visual Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
 using Foundation;
+using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace AVCustomEdit
 {
-	[Register ("TransitionTypeController")]
-	partial class TransitionTypeController
-	{
-		[Outlet]
-		UIKit.UITableViewCell crossDissolveCell { get; set; }
+    [Register ("TransitionTypeController")]
+    partial class TransitionTypeController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableViewCell crossDissolveCell { get; set; }
 
-		[Outlet]
-		UIKit.UITableViewCell diagonalWipeCell { get; set; }
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableViewCell diagonalWipeCell { get; set; }
 
-		[Outlet]
-		UIKit.UITableView tableView { get; set; }
+        [Action ("TransitionSelected:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void TransitionSelected (UIKit.UIBarButtonItem sender);
 
-		[Action ("TransitionSelected:")]
-		partial void TransitionSelected (Foundation.NSObject sender);
+        void ReleaseDesignerOutlets ()
+        {
+            if (crossDissolveCell != null) {
+                crossDissolveCell.Dispose ();
+                crossDissolveCell = null;
+            }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (crossDissolveCell != null) {
-				crossDissolveCell.Dispose ();
-				crossDissolveCell = null;
-			}
-
-			if (diagonalWipeCell != null) {
-				diagonalWipeCell.Dispose ();
-				diagonalWipeCell = null;
-			}
-
-			if (tableView != null) {
-				tableView.Dispose ();
-				tableView = null;
-			}
-		}
-	}
+            if (diagonalWipeCell != null) {
+                diagonalWipeCell.Dispose ();
+                diagonalWipeCell = null;
+            }
+        }
+    }
 }
