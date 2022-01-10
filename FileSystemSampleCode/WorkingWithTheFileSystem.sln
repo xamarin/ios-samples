@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystem2", "FileSystem2\FileSystem2.csproj", "{367D4ECC-D04A-41FB-A784-4D10F30666C8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystem", "FileSystem\FileSystem.csproj", "{7652DDB4-2A98-4533-8B7A-A662DACF04EB}"
 EndProject
 Global
@@ -13,14 +11,6 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Debug|iPhone.Build.0 = Debug|iPhone
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Release|iPhone.ActiveCfg = Release|iPhone
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Release|iPhone.Build.0 = Release|iPhone
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
-		{367D4ECC-D04A-41FB-A784-4D10F30666C8}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 		{7652DDB4-2A98-4533-8B7A-A662DACF04EB}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{7652DDB4-2A98-4533-8B7A-A662DACF04EB}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{7652DDB4-2A98-4533-8B7A-A662DACF04EB}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
