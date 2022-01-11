@@ -9,10 +9,10 @@ public class AppDelegate : UIApplicationDelegate, IUNUserNotificationCenterDeleg
 		set;
 	}
 
-	public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+	public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 	{
 		UNUserNotificationCenter center = UNUserNotificationCenter.Current;
-		center.RequestAuthorization(UNAuthorizationOptions.Alert, (bool success, NSError error) =>
+		center.RequestAuthorization (UNAuthorizationOptions.Alert, (bool success, NSError error) =>
 		{
 			// Set the Delegate regardless of success; users can modify their notification
 			// preferences at any time in the Settings app.
@@ -21,9 +21,9 @@ public class AppDelegate : UIApplicationDelegate, IUNUserNotificationCenterDeleg
 		return true;
 	}
 
-	[Export("userNotificationCenter:willPresentNotification:withCompletionHandler:")]
-	public void WillPresentNotification(UNUserNotificationCenter center, UNNotification notification, System.Action<UNNotificationPresentationOptions> completionHandler)
+	[Export ("userNotificationCenter:willPresentNotification:withCompletionHandler:")]
+	public void WillPresentNotification (UNUserNotificationCenter center, UNNotification notification, System.Action<UNNotificationPresentationOptions> completionHandler)
 	{
-		completionHandler(UNNotificationPresentationOptions.Banner | UNNotificationPresentationOptions.List);
+		completionHandler (UNNotificationPresentationOptions.Banner | UNNotificationPresentationOptions.List);
 	}
 }

@@ -37,6 +37,11 @@ by swiping down from the top of the device. You will see:
   thread, but iOS 12 by default groups together all app-related
   notifications not assigned to a specific thread)
 
+## Build Requirements
+
+iOS 14.0
+- UNNotificationPresentationOptions has some enums that were deprecated in iOS 14 and this sample uses the updated enums
+
 ## License
 
 Code is released under the MIT license
