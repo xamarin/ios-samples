@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32104.457
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARKitVision", "ARKitVision.csproj", "{74922571-866A-490F-9FD8-98C473D3EF89}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74922571-866A-490F-9FD8-98C473D3EF89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74922571-866A-490F-9FD8-98C473D3EF89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74922571-866A-490F-9FD8-98C473D3EF89}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{74922571-866A-490F-9FD8-98C473D3EF89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74922571-866A-490F-9FD8-98C473D3EF89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74922571-866A-490F-9FD8-98C473D3EF89}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1A494A6B-7F06-4677-8F86-B4697AD1DDA7}
+	EndGlobalSection
+EndGlobal
