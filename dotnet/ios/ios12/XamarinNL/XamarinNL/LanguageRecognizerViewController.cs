@@ -1,60 +1,55 @@
-using Foundation;
-using System;
-using UIKit;
-using NaturalLanguage;
-
 namespace XamarinNL
 {
     public partial class LanguageRecognizerViewController : UIViewController, IUITextFieldDelegate
     {
         const string ShowLanguageProbabilitiesSegue = "ShowLanguageProbabilitiesSegue";
 
-        NSDictionary<NSString, NSNumber> probabilities;
+        NSDictionary<NSString, NSNumber>? probabilities;
 
-        public LanguageRecognizerViewController(IntPtr handle) : base(handle) { }
+        public LanguageRecognizerViewController (IntPtr handle) : base (handle) { }
 
-        partial void HandleLanguageProbabilitiesButtonTap(UIButton sender)
+        partial void HandleLanguageProbabilitiesButtonTap (UIButton sender)
         {
-            UserInput.ResignFirstResponder();
-            if (!String.IsNullOrWhiteSpace(UserInput.Text))
+            UserInput.ResignFirstResponder ();
+            if (!String.IsNullOrWhiteSpace (UserInput.Text))
             {
-                var recognizer = new NLLanguageRecognizer();
-                recognizer.Process(UserInput.Text);
-                probabilities = recognizer.GetNativeLanguageHypotheses(10);
-                PerformSegue(ShowLanguageProbabilitiesSegue, this);
+                var recognizer = new NLLanguageRecognizer ();
+                recognizer.Process (UserInput.Text);
+                probabilities = recognizer.GetNativeLanguageHypotheses (10);
+                PerformSegue (ShowLanguageProbabilitiesSegue, this);
             }
         }
 
-        partial void HandleDetermineLanguageButtonTap(UIButton sender)
+        partial void HandleDetermineLanguageButtonTap (UIButton sender)
         {
-            UserInput.ResignFirstResponder();
-            if (!String.IsNullOrWhiteSpace(UserInput.Text))
+            UserInput.ResignFirstResponder ();
+            if (!String.IsNullOrWhiteSpace (UserInput.Text))
             {
-                NLLanguage lang = NLLanguageRecognizer.GetDominantLanguage(UserInput.Text);
-                DominantLanguageLabel.Text = lang.ToString();
+                NLLanguage lang = NLLanguageRecognizer.GetDominantLanguage (UserInput.Text);
+                DominantLanguageLabel.Text = lang.ToString ();
             }
         }
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        public override void PrepareForSegue (UIStoryboardSegue segue, NSObject? sender)
         {
-            base.PrepareForSegue(segue, sender);
+            base.PrepareForSegue (segue, sender);
             var destination = segue.DestinationViewController as LanguageProbabilityTableViewController;
-            if (destination != null)
+            if (destination is not null && probabilities is not null)
             {
                 destination.Probabilities = probabilities;
             }
         }
 
-        public override void ViewDidLoad()
+        public override void ViewDidLoad ()
         {
-            base.ViewDidLoad();
+            base.ViewDidLoad ();
             UserInput.Delegate = this;
         }
 
-        [Export("textFieldShouldReturn:")]
-        public bool ShouldReturn(UITextField textField)
+        [Export ("textFieldShouldReturn:")]
+        public bool ShouldReturn (UITextField textField)
         {
-            UserInput.ResignFirstResponder();
+            UserInput.ResignFirstResponder ();
             return true;
         }
     }

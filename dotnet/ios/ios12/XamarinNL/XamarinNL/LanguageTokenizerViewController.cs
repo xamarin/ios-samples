@@ -1,62 +1,59 @@
-using Foundation;
-using System;
-using UIKit;
-using NaturalLanguage;
-
 namespace XamarinNL
-{
+{ 
     public partial class LanguageTokenizerViewController : UIViewController, IUITextFieldDelegate
     {
         const string ShowTokensSegue = "ShowTokensSegue";
 
-        NSValue[] tokens;
+        NSValue[]? tokens;
 
-        public LanguageTokenizerViewController(IntPtr handle) : base(handle) { }
+        public LanguageTokenizerViewController (IntPtr handle) : base (handle) { }
 
-        partial void HandleFindSentencesTap(UIButton sender)
+        partial void HandleFindSentencesTap (UIButton sender)
         {
-            ShowTokens(NLTokenUnit.Sentence);
+            ShowTokens (NLTokenUnit.Sentence);
         }
 
-        partial void HandleFindWordsButtonTap(UIButton sender)
+        partial void HandleFindWordsButtonTap (UIButton sender)
         {
-            ShowTokens(NLTokenUnit.Word);
+            ShowTokens (NLTokenUnit.Word);
         }
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        public override void PrepareForSegue (UIStoryboardSegue segue, NSObject? sender)
         {
-            base.PrepareForSegue(segue, sender);
+            base.PrepareForSegue (segue, sender);
             var destination = segue.DestinationViewController as LanguageTokenizerTableViewController;
-            if (destination != null)
+            if (destination is not null)
             {
-                destination.Tokens = tokens;
-                destination.Text = UserInput.Text;
+                if (tokens is not null)
+                    destination.Tokens = tokens;
+                if (UserInput is not null && UserInput.Text is not null)
+                    destination.Text = UserInput.Text;
             }
         }
 
-        public override void ViewDidLoad()
+        public override void ViewDidLoad ()
         {
-            base.ViewDidLoad();
+            base.ViewDidLoad ();
             UserInput.Delegate = this;
         }
 
-        [Export("textFieldShouldReturn:")]
-        public bool ShouldReturn(UITextField textField)
+        [Export ("textFieldShouldReturn:")]
+        public bool ShouldReturn (UITextField textField)
         {
-            UserInput.ResignFirstResponder();
+            UserInput.ResignFirstResponder ();
             return true;
         }
 
-        void ShowTokens(NLTokenUnit unit)
+        void ShowTokens (NLTokenUnit unit)
         {
-            if (!String.IsNullOrWhiteSpace(UserInput.Text))
+            if (!String.IsNullOrWhiteSpace (UserInput.Text))
             {
-                var tokenizer = new NLTokenizer(unit);
+                var tokenizer = new NLTokenizer (unit);
                 tokenizer.String = UserInput.Text;
-                var range = new NSRange(0, UserInput.Text.Length);
-                tokens = tokenizer.GetTokens(range);
-                PerformSegue(ShowTokensSegue, this);
+                var range = new NSRange (0, UserInput.Text.Length);
+                tokens = tokenizer.GetTokens (range);
+                PerformSegue (ShowTokensSegue, this);
             }
-       }
+        }
     }
 }

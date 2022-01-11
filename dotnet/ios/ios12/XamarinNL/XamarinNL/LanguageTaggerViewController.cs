@@ -1,69 +1,70 @@
-using Foundation;
-using NaturalLanguage;
-using System;
-using UIKit;
-
 namespace XamarinNL
 {
     public partial class LanguageTaggerViewController : UIViewController, IUITextFieldDelegate
     {
         const string ShowEntitiesSegue = "ShowEntitiesSegue";
 
-        NSString[] tags;
-        NSValue[] tokenRanges;
-        string detailViewTitle;
+        NSString[]? tags;
+        NSValue[]? tokenRanges;
+        string? detailViewTitle;
 
-        public LanguageTaggerViewController(IntPtr handle) : base(handle) { }
+        public LanguageTaggerViewController (IntPtr handle) : base (handle) { }
 
-        partial void HandlePartsOfSpeechButtonTap(UIButton sender)
+        partial void HandlePartsOfSpeechButtonTap (UIButton sender)
         {
-            ShowTags(NLTagScheme.LexicalClass); 
+            ShowTags (NLTagScheme.LexicalClass); 
         }
 
-        partial void HandleNamedEntitiesButtonTap(UIButton sender)
+        partial void HandleNamedEntitiesButtonTap (UIButton sender)
         {
-            ShowTags(NLTagScheme.NameType);
+            ShowTags (NLTagScheme.NameType);
         }
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        public override void PrepareForSegue (UIStoryboardSegue segue, NSObject? sender)
         {
-            base.PrepareForSegue(segue, sender);
+            base.PrepareForSegue (segue, sender);
             var destination = segue.DestinationViewController as LanguageTaggerTableViewController;
-            if (destination != null)
+            if (destination is not null)
             {
-                destination.Text = UserInput.Text;
-                destination.Tags = tags;
-                destination.TokenRanges = tokenRanges;
+                if (UserInput is not null && UserInput.Text is not null)
+                    destination.Text = UserInput.Text;
+
+                if (tags is not null)
+                    destination.Tags = tags;
+
+                if (tokenRanges is not null)
+                    destination.TokenRanges = tokenRanges;
+
                 destination.Title = detailViewTitle;
             }
         }
 
-        public override void ViewDidLoad()
+        public override void ViewDidLoad ()
         {
-            base.ViewDidLoad();
+            base.ViewDidLoad ();
             UserInput.Delegate = this;
         }
 
-        [Export("textFieldShouldReturn:")]
-        public bool ShouldReturn(UITextField textField)
+        [Export ("textFieldShouldReturn:")]
+        public bool ShouldReturn (UITextField textField)
         {
-            UserInput.ResignFirstResponder();
+            UserInput.ResignFirstResponder ();
             return true;
         }
 
-        void ShowTags(NLTagScheme tagScheme)
+        void ShowTags (NLTagScheme tagScheme)
         {
-            if (!String.IsNullOrWhiteSpace(UserInput.Text))
+            if (!String.IsNullOrWhiteSpace (UserInput.Text))
             {
-                var tagger = new NLTagger(new NLTagScheme[] { tagScheme });
-                var range = new NSRange(0, UserInput.Text.Length);
+                var tagger = new NLTagger (new NLTagScheme[] { tagScheme });
+                var range = new NSRange (0, UserInput.Text.Length);
                 tagger.String = UserInput.Text;
 
-                tags = tagger.GetTags(range, NLTokenUnit.Word, tagScheme, NLTaggerOptions.OmitWhitespace, out NSValue[] ranges);
+                tags = tagger.GetTags (range, NLTokenUnit.Word, tagScheme, NLTaggerOptions.OmitWhitespace, out NSValue[]? ranges);
                 tokenRanges = ranges;
                 detailViewTitle = tagScheme == NLTagScheme.NameType ? "Named Entities" : "Parts of Speech";
 
-                PerformSegue(ShowEntitiesSegue, this);
+                PerformSegue (ShowEntitiesSegue, this);
             }
         }
     }

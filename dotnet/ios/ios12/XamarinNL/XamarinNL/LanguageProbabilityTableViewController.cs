@@ -1,8 +1,4 @@
-using Foundation;
-using System;
-using UIKit;
-using System.Linq;
-using NaturalLanguage;
+global using NaturalLanguage;
 
 namespace XamarinNL
 {
@@ -10,44 +6,62 @@ namespace XamarinNL
     {
         const string LanguageProbabilityCell = "LanguageProbabilityCell";
 
-        NSString[] sortedLanguages;
+        NSString[]? sortedLanguages;
 
-        NSDictionary<NSString, NSNumber> probabilities;
-        public NSDictionary<NSString, NSNumber> Probabilities
+        NSDictionary<NSString, NSNumber>? probabilities;
+        public NSDictionary<NSString, NSNumber>? Probabilities
         {
             set
             {
                 probabilities = value;
-                sortedLanguages = value.Keys.OrderByDescending(lang => value[lang].DoubleValue).ToArray<NSString>();
+                if (value is not null)
+                    sortedLanguages = value.Keys.OrderByDescending (lang => value[lang].DoubleValue).ToArray<NSString> ();
             }
         }
 
-        public LanguageProbabilityTableViewController(IntPtr handle) : base(handle) { }
+        public LanguageProbabilityTableViewController (IntPtr handle) : base (handle) { }
 
-        public override nint RowsInSection(UITableView tableView, nint section)
+        public override nint RowsInSection (UITableView tableView, nint section)
         {
+            if (sortedLanguages is null)
+                return 0;
+
             return sortedLanguages.Length;
         }
 
-        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+        public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = TableView.DequeueReusableCell(LanguageProbabilityCell);
+            var cell = TableView.DequeueReusableCell (LanguageProbabilityCell);
+
+            if (cell is null)
+                throw new InvalidOperationException ("cell");
+
+            if (sortedLanguages is null)
+                throw new InvalidOperationException ("sortedLanguages");
+
             NSString languageAbbreviation = sortedLanguages[indexPath.Row];
-            NLLanguage language = NLLanguageExtensions.GetValue(languageAbbreviation);
-            cell.TextLabel.Text = language.ToString();
-            cell.DetailTextLabel.Text = probabilities[languageAbbreviation].ToString();
+            NLLanguage language = NLLanguageExtensions.GetValue (languageAbbreviation);
+
+            var content = cell.DefaultContentConfiguration;
+            content.Text = language.ToString ();
+
+            if (probabilities is not null)
+                content.SecondaryText = probabilities[languageAbbreviation].ToString ();
+
+            cell.ContentConfiguration = content;
+
             return cell;
         }
 
-        public override void ViewDidLoad()
+        public override void ViewDidLoad ()
         {
-            base.ViewDidLoad();
+            base.ViewDidLoad ();
         }
 
-        public override void ViewWillAppear(bool animated)
+        public override void ViewWillAppear (bool animated)
         {
-            base.ViewWillAppear(animated);
-            TableView.ReloadData();
+            base.ViewWillAppear (animated);
+            TableView.ReloadData ();
         }
     }
 }

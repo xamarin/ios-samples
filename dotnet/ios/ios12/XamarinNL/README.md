@@ -19,6 +19,10 @@ tag named entities and parts of speech in a body of text.
 
 ![Examples of natural language parsing](Screenshots/all-sml.png)
 
+## Requires
+
+iOS 14.0
+
 ## License
 
 Code is released under the MIT license
