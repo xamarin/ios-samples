@@ -45,7 +45,7 @@ public partial class ViewController : UIViewController
         if (settings.AuthorizationStatus != UNAuthorizationStatus.Authorized)
             return;
 
-        string appointment = appointments[unthreadedMessagesSent % appointments.Length];
+        var appointment = appointments[unthreadedMessagesSent % appointments.Length];
 
         var content = new UNMutableNotificationContent ()
         {
@@ -75,13 +75,13 @@ public partial class ViewController : UIViewController
             return;
         }
 
-        string author = friend ?? throw new InvalidOperationException ("friend");
+        var author = friend ?? throw new InvalidOperationException ("friend");
         if (threadMessagesSent % 2 == 0)
         {
             author = "Me";
         }
 
-        string message = "Fine!";
+        var message = "Fine!";
         if (threadMessagesSent < messages.Length)
         {
             message = messages[threadMessagesSent % messages.Length];
