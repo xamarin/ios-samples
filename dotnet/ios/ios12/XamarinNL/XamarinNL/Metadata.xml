@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>F9C97F72-235E-4E6A-A258-0B0DDD1ABA60</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Intermediate</Level>
+  <Tags>iOS12, Natural Language</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>A sample app that demonstrates how to use the Natural Language framework to recognize languages, tokenize text into words and sentences, and tag named entities and parts of speech.</Brief>
+</SampleMetadata>
