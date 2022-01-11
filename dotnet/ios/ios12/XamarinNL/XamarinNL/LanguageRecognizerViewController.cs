@@ -25,7 +25,7 @@ public partial class LanguageRecognizerViewController : UIViewController, IUITex
         UserInput.ResignFirstResponder ();
         if (!String.IsNullOrWhiteSpace (UserInput.Text))
         {
-            NLLanguage lang = NLLanguageRecognizer.GetDominantLanguage (UserInput.Text);
+            var lang = NLLanguageRecognizer.GetDominantLanguage (UserInput.Text);
             DominantLanguageLabel.Text = lang.ToString ();
         }
     }

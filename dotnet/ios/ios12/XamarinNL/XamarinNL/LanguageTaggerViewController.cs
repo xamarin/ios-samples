@@ -12,7 +12,7 @@ public partial class LanguageTaggerViewController : UIViewController, IUITextFie
 
     partial void HandlePartsOfSpeechButtonTap (UIButton sender)
     {
-        ShowTags (NLTagScheme.LexicalClass); 
+        ShowTags (NLTagScheme.LexicalClass);
     }
 
     partial void HandleNamedEntitiesButtonTap (UIButton sender)

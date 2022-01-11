@@ -21,11 +21,8 @@ public partial class LanguageTokenizerTableViewController : UITableViewControlle
         if (Tokens is null)
             throw new InvalidOperationException ("Tokens");
 
-        var cell = TableView.DequeueReusableCell (TokenCell);
+        var cell = TableView.DequeueReusableCell (TokenCell) ?? throw new InvalidOperationException ("cell");
         NSRange range = Tokens[indexPath.Row].RangeValue;
-
-        if (cell is null)
-            throw new InvalidOperationException ("cell");
 
         if (Text is not null)
 		{

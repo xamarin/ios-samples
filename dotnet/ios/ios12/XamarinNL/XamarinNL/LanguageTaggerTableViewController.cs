@@ -20,10 +20,7 @@ public partial class LanguageTaggerTableViewController : UITableViewController
 
     public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
     {
-        var cell = TableView.DequeueReusableCell (EntityCell);
-
-        if (cell is null)
-            throw new InvalidOperationException ("cell");
+        var cell = TableView.DequeueReusableCell (EntityCell) ?? throw new InvalidOperationException ("cell");
 
         var content = cell.DefaultContentConfiguration;
 

@@ -31,13 +31,10 @@ public partial class LanguageProbabilityTableViewController : UITableViewControl
 
     public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
     {
-        var cell = TableView.DequeueReusableCell (LanguageProbabilityCell);
-
-        if (cell is null)
-            throw new InvalidOperationException ("cell");
+        var cell = TableView.DequeueReusableCell(LanguageProbabilityCell) ?? throw new InvalidOperationException ("cell");
 
         if (sortedLanguages is null)
-            throw new InvalidOperationException ("sortedLanguages");
+            throw new InvalidOperationException (nameof (sortedLanguages));
 
         NSString languageAbbreviation = sortedLanguages[indexPath.Row];
         NLLanguage language = NLLanguageExtensions.GetValue (languageAbbreviation);
