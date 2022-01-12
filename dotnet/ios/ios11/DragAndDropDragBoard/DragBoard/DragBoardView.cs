@@ -5,14 +5,14 @@ namespace DragBoard;
 /// </summary>
 public partial class DragBoardView : UIView
 {
-    public DragBoardView(IntPtr handle) : base(handle)
+    public DragBoardView (IntPtr handle) : base (handle)
 	{
 	}
 		
-    public override void AwakeFromNib()
+    public override void AwakeFromNib ()
 	{
-		base.AwakeFromNib();
-		BackgroundColor = UIColor.FromPatternImage(UIImage.FromBundle("Cork"));
+		base.AwakeFromNib ();
+		BackgroundColor = UIImage.FromBundle ("Cork") is not null ? UIColor.FromPatternImage (UIImage.FromBundle ("Cork")!) : UIColor.Blue;
 	}
 
 	public override bool CanBecomeFirstResponder

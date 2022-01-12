@@ -2,33 +2,24 @@
 
 public partial class DragBoardViewController : IUIDropInteractionDelegate
 {
-    [Export("dropInteraction:canHandleSession:")]
-    public bool CanHandleSession(UIDropInteraction interaction, IUIDropSession session)
+    [Export ("dropInteraction:canHandleSession:")]
+    public bool CanHandleSession (UIDropInteraction interaction, IUIDropSession session)
     {
-        return session.CanLoadObjects(typeof(UIImage));
+        return session.CanLoadObjects (typeof (UIImage));
     }
 
-    [Export("dropInteraction:sessionDidUpdate:")]
-    public UIDropProposal SessionDidUpdate(UIDropInteraction interaction, IUIDropSession session)
+    [Export ("dropInteraction:sessionDidUpdate:")]
+    public UIDropProposal SessionDidUpdate (UIDropInteraction interaction, IUIDropSession session)
     {
-        UIDropOperation operation;
-        if (session.LocalDragSession == null)
-        {
-            operation = UIDropOperation.Copy;
-        }
-        else
-        {
-            operation = UIDropOperation.Move;
-        }
-        return new UIDropProposal(operation);
+        return new UIDropProposal (session.LocalDragSession is null ? UIDropOperation.Copy : UIDropOperation.Move);
     }
 
-    [Export("dropInteraction:performDrop:")]
-    public void PerformDrop(UIDropInteraction interaction, IUIDropSession session)
+    [Export ("dropInteraction:performDrop:")]
+    public void PerformDrop (UIDropInteraction interaction, IUIDropSession session)
     {
-        if (session.LocalDragSession == null)
+        if (session.LocalDragSession is null)
         {
-            DropPoint = session.LocationInView(interaction.View);
+            DropPoint = session.LocationInView (interaction.View);
             foreach (var dragItem in session.Items)
             {
                 LoadImage (dragItem.ItemProvider, DropPoint);
@@ -36,37 +27,31 @@ public partial class DragBoardViewController : IUIDropInteractionDelegate
         }
         else
         {
-			MovePoint = session.LocationInView(interaction.View);
+			MovePoint = session.LocationInView (interaction.View);
         }
     }
 
-    [Export("dropInteraction:previewForDroppingItem:withDefault:")]
-    public UITargetedDragPreview GetPreviewForDroppingItem(UIDropInteraction interaction, UIDragItem item, UITargetedDragPreview defaultPreview)
+    [Export ("dropInteraction:previewForDroppingItem:withDefault:")]
+    public UITargetedDragPreview? GetPreviewForDroppingItem (UIDropInteraction interaction, UIDragItem item, UITargetedDragPreview defaultPreview)
     {
-        if (item.LocalObject == null)
-        {
+        if (item.LocalObject is null)
             return null;
-        }
-        else
-        {
-            DropPoint = defaultPreview.View.Center;
-            var target = new UIDragPreviewTarget(View, DropPoint); // HACK: why is this null?
-            //return defaultPreview.GetRetargetedPreview(target);
-            return defaultPreview;
-        }
+
+        return defaultPreview;
     }
 
-    [Export("dropInteraction:item:willAnimateDropWithAnimator:")]
-    public void WillAnimateDrop(UIDropInteraction interaction, UIDragItem item, IUIDragAnimating animator)
+    [Export ("dropInteraction:item:willAnimateDropWithAnimator:")]
+    public void WillAnimateDrop (UIDropInteraction interaction, UIDragItem item, IUIDragAnimating animator)
     {
-        animator.AddAnimations(() =>{
-            FadeItems(new UIDragItem[] { item }, 0f);
+        animator.AddAnimations ( () =>{
+            FadeItems (new UIDragItem[] { item }, 0f);
         });
 
         var movePoint = MovePoint; //DropPoint
-        animator.AddCompletion( (err) => {
+
+        animator.AddCompletion ( (err) => {
             var index = item.LocalObject as NSNumber;
-            if (index != null)
+            if (index is not null)
             {
                 var i = index.Int32Value;
                 if (i >= 0)

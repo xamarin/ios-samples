@@ -8,45 +8,43 @@ namespace DragBoard;
 /// </summary>
 public partial class DragBoardViewController : UIViewController
 {
-	List<UIImage> Images { get; set; } = new List<UIImage>();
-	List<UIView> Views { get; set; } = new List<UIView>();
+	List<UIImage> Images { get; set; } = new List<UIImage> ();
+	List<UIView> Views { get; set; } = new List<UIView> ();
 	// A property that keeps track of the location where the drop operation was performed.
-	public CGPoint DropPoint { get; set; } = new CGPoint(0, 0);
-    public CGPoint MovePoint { get; set; } = new CGPoint(0, 0);
+	public CGPoint DropPoint { get; set; } = new CGPoint (0, 0);
+    public CGPoint MovePoint { get; set; } = new CGPoint (0, 0);
 
-    public DragBoardViewController(IntPtr handle) : base(handle)
+    public DragBoardViewController (IntPtr handle) : base (handle)
 	{
 	}
-		
-	public override void ViewDidLoad()
-	{
-		base.ViewDidLoad();
 
-		SetupPasteMenu();
+	public override void ViewDidLoad ()
+	{
+		base.ViewDidLoad ();
+
+		SetupPasteMenu ();
 
 		// Set a paste configuration
-		PasteConfiguration = new UIPasteConfiguration(typeof(UIImage));
+		PasteConfiguration = new UIPasteConfiguration (typeof (UIImage));
+
+		if (View is null)
+			return;
 
 		// Add drag interaction
-        View.AddInteraction(new UIDragInteraction(this));
+        View.AddInteraction (new UIDragInteraction (this));
 
 		// Add drag interaction
-        View.AddInteraction(new UIDropInteraction(this));
+        View.AddInteraction (new UIDropInteraction (this));
 	}
-		
 
-    //public bool CanPastCanPasteItemProviders (NSItemProvider[] itemProviders)
-    //{
-    //    return true;
-    //}
-    public void PasteItemProviders(NSItemProvider[] itemProviders)
+    public void PasteItemProviders (NSItemProvider[] itemProviders)
     {
-        Console.WriteLine(itemProviders);
-		if (itemProviders != null)
+        Console.WriteLine (itemProviders);
+		if (itemProviders is not null)
 		{
 			foreach (var item in itemProviders)
 			{
-			    LoadImage(item, DropPoint);
+			    LoadImage (item, DropPoint);
 			}
 		}
 	}
@@ -57,45 +55,42 @@ public partial class DragBoardViewController : UIViewController
 	// - Parameters:
 	//   - itemProvider: an item provider that can load an image.
 	//   - imageView: the image view that will display the loaded image.
-	public void LoadImage(NSItemProvider itemProvider, CGPoint center)
+	public void LoadImage (NSItemProvider itemProvider, CGPoint center)
     {
-        Console.WriteLine("can load : " + itemProvider.CanLoadObject(typeof(UIImage)));
+        Console.WriteLine ("can load : " + itemProvider.CanLoadObject (typeof (UIImage)));
 
-        var progress = itemProvider.LoadObject<UIImage>((droppedImage, err) =>
+        var progress = itemProvider.LoadObject<UIImage> ( (droppedImage, err) =>
 		{
             var image = droppedImage as UIImage;
-            DispatchQueue.MainQueue.DispatchAsync(()=>{
-                if (image != null)
+            DispatchQueue.MainQueue.DispatchAsync ( ()=>{
+                if (image is not null)
                 {
-                    var imageView = NewImageView(image);
+                    var imageView = CreateNewImageView (image);
                     imageView.Center = center;
-                    Images.Add(image);
+                    Images.Add (image);
                 }
                 else
                 {
-                    Console.WriteLine("Image is null");
+                    Console.WriteLine ("Image is null");
                 }
 			});
 		});
-
-
 	}
-
 
 	// Creates a new image view with the given image and
 	// scales it down if it exceeds a maximum size.
 	//
 	// - Parameter image: the image to be displayed in the image view.
 	// - Returns: A newly created image view with the given image, resized if necessary.
-	public UIImageView NewImageView(UIImage image) {
+	public UIImageView CreateNewImageView (UIImage image) {
 
-		var imageView = new UIImageView() {
+		var imageView = new UIImageView () {
 			Image = image,
 			ContentMode = UIViewContentMode.ScaleAspectFit,
 			UserInteractionEnabled = true
 		};
 		var size = image.Size;
-		var longestSide = (float)Math.Max(size.Width, size.Height);
+		var longestSide = (float)Math.Max (size.Width, size.Height);
 		var maximumLength = 200f;
 		var scaleFactor = 1f;
 
@@ -105,12 +100,14 @@ public partial class DragBoardViewController : UIViewController
 		if (longestSide > maximumLength ) {
 			scaleFactor = maximumLength / longestSide;
 		}
-		size = new CGSize((float)Math.Round(size.Width * scaleFactor), (float)Math.Round(size.Height * scaleFactor));
-		imageView.Frame = new CGRect(imageView.Frame.Location, size);
+		size = new CGSize ( (float)Math.Round (size.Width * scaleFactor), (float)Math.Round (size.Height * scaleFactor));
+		imageView.Frame = new CGRect (imageView.Frame.Location, size);
 
-		Views.Add(imageView);
-		View.AddSubview(imageView);
-
+		if (View is not null)
+		{
+			Views.Add (imageView);
+			View.AddSubview (imageView);
+		}
 		return imageView;
 	}
 
@@ -120,10 +117,10 @@ public partial class DragBoardViewController : UIViewController
 	// - Parameters:
 	//   - items: the list of drag items.
 	//   - alpha: the alpha value applied to each drag item.
-	public void FadeItems(UIDragItem[] items, float alpha) {
-		foreach(UIDragItem item in items) {
+	public void FadeItems (UIDragItem[] items, float alpha) {
+		foreach (UIDragItem item in items) {
 			var index = item.LocalObject as NSNumber;
-			if (index !=null) {
+			if (index is not null) {
 				Views[index.Int32Value].Alpha = alpha;
 			}
 		}
