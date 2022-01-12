@@ -10,7 +10,7 @@ namespace BreakfastFinder;
 [Register ("ViewController")]
 public class ViewController : UIViewController, IAVCaptureVideoDataOutputSampleBufferDelegate
 {
-        public ViewController (IntPtr handle) : base (handle) { }
+        protected ViewController (IntPtr handle) : base (handle) { }
 
         protected CGSize bufferSize = CGSize.Empty;
         protected CALayer? rootLayer = null;

@@ -10,11 +10,11 @@ namespace BreakfastFinder;
 
 public partial class VisionObjectRecognitionViewController : ViewController
 {
-        public VisionObjectRecognitionViewController (IntPtr handle) : base (handle) { }
+        protected VisionObjectRecognitionViewController (IntPtr handle) : base (handle) { }
         public override UIView previewView { get => PreviewView; }
         NSDictionary options = new NSDictionary ();
 
-        CALayer detectionOverlay = null;
+        CALayer? detectionOverlay = null;
 
         // Vision parts
         VNRequest [] requests = new VNRequest [0];
@@ -129,10 +129,12 @@ public partial class VisionObjectRecognitionViewController : ViewController
 
         void SetupLayers ()
         {
-                detectionOverlay = new CALayer (); // container layer that has all the renderings of the observations
-                detectionOverlay.Name = "DetectionOverlay";
-                detectionOverlay.Bounds = new CGRect (0.0, 0.0, bufferSize.Width, bufferSize.Height);
-                detectionOverlay.Position = new CGPoint (rootLayer!.Bounds.GetMidX (), rootLayer.Bounds.GetMidY ());
+                detectionOverlay = new CALayer ()
+                {
+                        Name = "DetectionOverlay",
+                        Bounds = new CGRect (0.0, 0.0, bufferSize.Width, bufferSize.Height),
+                        Position = new CGPoint (rootLayer!.Bounds.GetMidX (), rootLayer.Bounds.GetMidY ())
+                };
                 rootLayer.AddSublayer (detectionOverlay);
         }
 
