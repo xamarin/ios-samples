@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32104.457
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisablingPullingDownASheet", "DisablingPullingDownASheet\DisablingPullingDownASheet.csproj", "{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}.Debug|iPhone.Deploy.0 = Debug|Any CPU
+		{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}.Debug|iPhoneSimulator.Deploy.0 = Debug|iPhoneSimulator
+		{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}.Release|iPhone.ActiveCfg = Release|iPhone
+		{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}.Release|iPhone.Build.0 = Release|iPhone
+		{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}.Release|iPhone.Deploy.0 = Release|iPhone
+		{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{BA8B6E3F-2B2D-493D-9F6E-F277B2479EA7}.Release|iPhoneSimulator.Deploy.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FC3BC4C7-66C1-4C14-92AE-140E14D900F2}
+	EndGlobalSection
+EndGlobal
