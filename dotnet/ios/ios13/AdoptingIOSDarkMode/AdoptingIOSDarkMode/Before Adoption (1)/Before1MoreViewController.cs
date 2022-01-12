@@ -8,6 +8,9 @@ A view controller demonstrating typical creation of views: images, labels, blur,
 
 namespace AdoptingIOSDarkMode;
 public partial class Before1MoreViewController : UIViewController {
+
+	UITraitCollection? Traits;
+
 	protected Before1MoreViewController (IntPtr handle) : base (handle)
 	{
 	}
@@ -29,116 +32,94 @@ public partial class Before1MoreViewController : UIViewController {
 		// - Visual effect view for vibrancy
 		// - Vibrant label
 
-		var starImageView = ConfigureStarImageView ();
-		View.AddSubview (starImageView);
+		Traits = TraitCollection;
+		TitleLabel.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.LargeTitle, Traits);
+		VibrantLabel.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.LargeTitle, Traits);
 
-		var titleLabel = ConfigureTitleLabel ();
-		View.AddSubview (titleLabel);
+		View.AddSubview (StarImageView);
 
-		var backgroundImageView = ConfigureBackgroundImageView ();
-		View.AddSubview (backgroundImageView);
+		View.AddSubview (TitleLabel);
 
-		var blurEffect = UIBlurEffect.FromStyle (UIBlurEffectStyle.Light);
-		var blurView = ConfigureBlurView (blurEffect);
-		View.AddSubview (blurView);
+		View.AddSubview (BackgroundImageView);
 
-		var vibrancyView = ConfigureVibrancyView (blurEffect);
-		blurView.ContentView.AddSubview (vibrancyView);
+		View.AddSubview (BlurView);
 
-		var vibrantLabel = ConfigureVibrantLabel ();
-		vibrancyView.ContentView.AddSubview (vibrantLabel);
+		BlurView.ContentView.AddSubview (VibrancyView);
+
+		VibrancyView.ContentView.AddSubview (VibrantLabel);
 
 		// Add constraints to put everything in the right place.
 		SetupConstraints ();
 	}
 
-	UIImageView? starImageView;
-	UIImageView ConfigureStarImageView ()
+	readonly UIImageView StarImageView = new (UIImage.FromBundle ("StarImage"))
 	{
-		starImageView = new UIImageView (UIImage.FromBundle ("StarImage"));
-		starImageView.TranslatesAutoresizingMaskIntoConstraints = false;
-		starImageView.TintColor = UIColor.FromName ("HeaderColor");
-		return starImageView;
-	}
+		TranslatesAutoresizingMaskIntoConstraints = false,
+		TintColor = UIColor.FromName ("HeaderColor"),
+	};
 
-	UILabel? titleLabel;
-	UILabel ConfigureTitleLabel ()
+	readonly UILabel TitleLabel = new ()
 	{
-		titleLabel = new UILabel ();
-		titleLabel.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.LargeTitle, TraitCollection);
-		titleLabel.Text = "Presented Content";
-		titleLabel.TextColor = UIColor.Black;
-		titleLabel.TranslatesAutoresizingMaskIntoConstraints = false;
-		return titleLabel;
-	}
+		Text = "Presented Content",
+		TextColor = UIColor.Black,
+		TranslatesAutoresizingMaskIntoConstraints = false,
+	};
 
-	UIImageView? backgroundImageView;
-	UIImageView ConfigureBackgroundImageView ()
+	readonly UIImageView BackgroundImageView = new ()
 	{
-		backgroundImageView = new UIImageView ();
-		backgroundImageView.Image = UIImage.FromBundle ("HeaderImage");
-		backgroundImageView.TranslatesAutoresizingMaskIntoConstraints = false;
-		return backgroundImageView;
-	}
+		Image = UIImage.FromBundle ("HeaderImage"),
+		TranslatesAutoresizingMaskIntoConstraints = false,
+	};
 
-	UIVisualEffectView? blurView;
-	UIVisualEffectView ConfigureBlurView (UIBlurEffect blurEffect)
-	{
-		blurView = new UIVisualEffectView ();
-		blurView.Effect = blurEffect;
-		blurView.TranslatesAutoresizingMaskIntoConstraints = false;
-		return blurView;
-	}
+	readonly static UIBlurEffect BlurEffect = UIBlurEffect.FromStyle (UIBlurEffectStyle.SystemThinMaterial);
 
-	UIVisualEffectView? vibrancyView;
-	UIVisualEffectView ConfigureVibrancyView (UIBlurEffect blurEffect)
+	readonly UIVisualEffectView BlurView = new ()
 	{
-		vibrancyView = new UIVisualEffectView ();
-		var vibrancyEffect = UIVibrancyEffect.FromBlurEffect (blurEffect);
-		vibrancyView.Effect = vibrancyEffect;
-		vibrancyView.TranslatesAutoresizingMaskIntoConstraints = false;
-		return vibrancyView;
-	}
+		Effect = BlurEffect,
+		TranslatesAutoresizingMaskIntoConstraints = false,
+	};
 
-	UILabel? vibrantLabel;
-	UILabel ConfigureVibrantLabel ()
+	readonly UIVisualEffectView VibrancyView = new ()
 	{
-		vibrantLabel = new UILabel ();
-		vibrantLabel.TranslatesAutoresizingMaskIntoConstraints = false;
-		vibrantLabel.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.LargeTitle, TraitCollection);
-		vibrantLabel.Text = "Vibrant Label";
-		return vibrantLabel;
-	}
+		Effect = UIVibrancyEffect.FromBlurEffect (BlurEffect),
+		TranslatesAutoresizingMaskIntoConstraints = false,
+	};
+
+	readonly UILabel VibrantLabel = new ()
+	{
+		TranslatesAutoresizingMaskIntoConstraints = false,
+		Text = "Vibrant Label",
+	};
 
 	void SetupConstraints ()
 	{
-		if (starImageView is null || backgroundImageView is null || titleLabel is null || vibrantLabel is null || blurView is null || vibrancyView is null || View is null)
-			throw new NullReferenceException ("There was a null UI element.");
+		if (View is null)
+			throw new NullReferenceException (nameof (View));
 
-		starImageView.TopAnchor.ConstraintEqualToSystemSpacingBelowAnchor (View.LayoutMarginsGuide.TopAnchor, 2).Active = true;
-		starImageView.LeadingAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.LeadingAnchor).Active = true;
-		starImageView.WidthAnchor.ConstraintEqualTo (70).Active = true;
-		starImageView.HeightAnchor.ConstraintEqualTo (70).Active = true;
+		StarImageView.TopAnchor.ConstraintEqualToSystemSpacingBelowAnchor (View.LayoutMarginsGuide.TopAnchor, 2).Active = true;
+		StarImageView.LeadingAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.LeadingAnchor).Active = true;
+		StarImageView.WidthAnchor.ConstraintEqualTo (70).Active = true;
+		StarImageView.HeightAnchor.ConstraintEqualTo (70).Active = true;
 
-		titleLabel.TopAnchor.ConstraintEqualToSystemSpacingBelowAnchor (starImageView.BottomAnchor, 2).Active = true;
-		titleLabel.LeadingAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.LeadingAnchor).Active = true;
+		TitleLabel.TopAnchor.ConstraintEqualToSystemSpacingBelowAnchor (StarImageView.BottomAnchor, 2).Active = true;
+		TitleLabel.LeadingAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.LeadingAnchor).Active = true;
 
-		backgroundImageView.TopAnchor.ConstraintEqualToSystemSpacingBelowAnchor (titleLabel.BottomAnchor, 2).Active = true;
-		backgroundImageView.LeadingAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.LeadingAnchor).Active = true;
-		backgroundImageView.TrailingAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.TrailingAnchor).Active = true;
-		backgroundImageView.BottomAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.BottomAnchor).Active = true;
+		BackgroundImageView.TopAnchor.ConstraintEqualToSystemSpacingBelowAnchor (TitleLabel.BottomAnchor, 2).Active = true;
+		BackgroundImageView.LeadingAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.LeadingAnchor).Active = true;
+		BackgroundImageView.TrailingAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.TrailingAnchor).Active = true;
+		BackgroundImageView.BottomAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.BottomAnchor).Active = true;
 
-		blurView.TopAnchor.ConstraintEqualTo (backgroundImageView.TopAnchor).Active = true;
-		blurView.LeadingAnchor.ConstraintEqualTo (backgroundImageView.LeadingAnchor).Active = true;
-		blurView.TrailingAnchor.ConstraintEqualTo (backgroundImageView.TrailingAnchor).Active = true;
-		blurView.BottomAnchor.ConstraintEqualTo (backgroundImageView.BottomAnchor).Active = true;
+		BlurView.TopAnchor.ConstraintEqualTo (BackgroundImageView.TopAnchor).Active = true;
+		BlurView.LeadingAnchor.ConstraintEqualTo (BackgroundImageView.LeadingAnchor).Active = true;
+		BlurView.TrailingAnchor.ConstraintEqualTo (BackgroundImageView.TrailingAnchor).Active = true;
+		BlurView.BottomAnchor.ConstraintEqualTo (BackgroundImageView.BottomAnchor).Active = true;
 
-		vibrancyView.TopAnchor.ConstraintEqualTo (blurView.TopAnchor).Active = true;
-		vibrancyView.LeadingAnchor.ConstraintEqualTo (blurView.LeadingAnchor).Active = true;
-		vibrancyView.TrailingAnchor.ConstraintEqualTo (blurView.TrailingAnchor).Active = true;
-		vibrancyView.BottomAnchor.ConstraintEqualTo (blurView.BottomAnchor).Active = true;
+		VibrancyView.TopAnchor.ConstraintEqualTo (BlurView.TopAnchor).Active = true;
+		VibrancyView.LeadingAnchor.ConstraintEqualTo (BlurView.LeadingAnchor).Active = true;
+		VibrancyView.TrailingAnchor.ConstraintEqualTo (BlurView.TrailingAnchor).Active = true;
+		VibrancyView.BottomAnchor.ConstraintEqualTo (BlurView.BottomAnchor).Active = true;
 
-		vibrantLabel.TopAnchor.ConstraintEqualTo (vibrancyView.LayoutMarginsGuide.TopAnchor).Active = true;
-		vibrantLabel.LeadingAnchor.ConstraintEqualTo (vibrancyView.LayoutMarginsGuide.LeadingAnchor).Active = true;
+		VibrantLabel.TopAnchor.ConstraintEqualTo (VibrancyView.LayoutMarginsGuide.TopAnchor).Active = true;
+		VibrantLabel.LeadingAnchor.ConstraintEqualTo (VibrancyView.LayoutMarginsGuide.LeadingAnchor).Active = true;
 	}
 }
