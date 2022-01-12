@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>7b01c707-3fbd-485f-a1a6-08dfb023397c</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Brief>Manage Vision resources for efficient execution of a Core ML image classifier, and use SpriteKit to display image classifier output in AR.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>ARKit, Vision, iOS12</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>
