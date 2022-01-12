@@ -1,7 +1,4 @@
-﻿using ARKit;
-using ImageIO;
-
-namespace ARKitVision;
+﻿namespace ARKitVision;
 
 public static class ARTrackingStateExtensions
 {

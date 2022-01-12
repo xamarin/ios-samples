@@ -5,8 +5,6 @@
  the experience altogether.
  */
 
-using ARKit;
-
 namespace ARKitVision;
 
 /// <summary>
@@ -22,7 +20,7 @@ public partial class StatusViewController : UIViewController
         // Timer for hiding messages.
         private NSTimer? messageHideTimer;
 
-        public StatusViewController (IntPtr handle) : base (handle) { }
+        protected StatusViewController (IntPtr handle) : base (handle) { }
 
         /// <summary>
         /// Trigerred when the "Restart Experience" button is tapped.
@@ -44,9 +42,9 @@ public partial class StatusViewController : UIViewController
                 if (autoHide)
                 {
                         messageHideTimer = NSTimer.CreateScheduledTimer (DisplayDuration, false, (timer) =>
-                         {
-                                 SetMessageHidden (true, true);
-                         });
+                        {
+                                SetMessageHidden (true, true);
+                        });
                 }
         }
 
@@ -55,10 +53,10 @@ public partial class StatusViewController : UIViewController
                 CancelScheduledMessage (messageType);
 
                 var timer = NSTimer.CreateScheduledTimer (seconds, false, (internalTimer) =>
-                 {
-                         ShowMessage (text);
-                         internalTimer.Invalidate ();
-                 });
+                {
+                        ShowMessage (text);
+                        internalTimer.Invalidate ();
+                });
 
                 timers [messageType] = timer;
         }
@@ -74,7 +72,7 @@ public partial class StatusViewController : UIViewController
 
         public void CancelAllScheduledMessages ()
         {
-                foreach (var messageType in Enum.GetValues <MessageType> ())
+                foreach (var messageType in Enum.GetValues<MessageType> ())
                 {
                         CancelScheduledMessage (messageType);
                 }
@@ -94,18 +92,18 @@ public partial class StatusViewController : UIViewController
                 CancelScheduledMessage (MessageType.TrackingStateEscalation);
 
                 var timer = NSTimer.CreateScheduledTimer (seconds, false, (internalTimer) =>
-                 {
-                         CancelScheduledMessage (MessageType.TrackingStateEscalation);
+                {
+                        CancelScheduledMessage (MessageType.TrackingStateEscalation);
 
-                         var message = camera.GetPresentationString ();
-                         var recommendation = camera.GetRecommendation ();
-                         if (!string.IsNullOrEmpty (recommendation))
-                         {
-                                 message += $": {recommendation}";
-                         }
+                        var message = camera.GetPresentationString ();
+                        var recommendation = camera.GetRecommendation ();
+                        if (!string.IsNullOrEmpty (recommendation))
+                        {
+                                message += $": {recommendation}";
+                        }
 
-                         ShowMessage (message, false);
-                 });
+                        ShowMessage (message, false);
+                });
 
                 timers [MessageType.TrackingStateEscalation] = timer;
         }

@@ -14,8 +14,6 @@
 	<true/>
  	<key>NSCameraUsageDescription</key>	
 	<string>This application will use the camera for Augmented Reality and Computer Vision.</string>
-	<key>MinimumOSVersion</key>
-	<string>12.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>

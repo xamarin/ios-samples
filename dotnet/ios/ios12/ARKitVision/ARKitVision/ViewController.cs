@@ -1,11 +1,4 @@
-﻿
-using ARKit;
-using CoreFoundation;
-using CoreVideo;
-using SpriteKit;
-using Vision;
-
-namespace ARKitVision;
+﻿namespace ARKitVision;
 
 /// <summary>
 /// Main view controller for the ARKitVision sample.
@@ -128,11 +121,8 @@ public partial class ViewController : UIViewController, IUIGestureRecognizerDele
                          }
 
                          // Release the pixel buffer when done, allowing the next buffer to be processed.
-                         if (currentBuffer is not null)
-                         {
-                                 currentBuffer.Dispose ();
-                                 currentBuffer = null;
-                         }
+                         currentBuffer?.Dispose ();
+                         currentBuffer = null;
                  });
         }
 
@@ -146,14 +136,14 @@ public partial class ViewController : UIViewController, IUIGestureRecognizerDele
         private void ProcessClassifications (VNRequest request, NSError error)
         {
                 var classifications = request.GetResults<VNClassificationObservation> ();
-                if (classifications == null)
+                if (classifications is null)
                 {
                         Console.WriteLine ($"Unable to classify image.\n{error.LocalizedDescription}");
                 }
 
                 // Show a label for the highest-confidence result (but only above a minimum confidence threshold).
                 var bestResult = classifications.FirstOrDefault (result => result.Confidence > 0.5f);
-                if (bestResult != null)
+                if (bestResult is not null)
                 {
                         identifierString = bestResult.Identifier.Split (',') [0];
                         confidence = bestResult.Confidence;
