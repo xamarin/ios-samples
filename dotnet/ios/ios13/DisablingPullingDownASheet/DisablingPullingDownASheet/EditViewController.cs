@@ -4,11 +4,11 @@ See LICENSE folder for this sample’s licensing information.
 Abstract:
 A view controller for editing saved text. Allows cancellation and saving with standard bar button items, as well as with the pull to dismiss gesture.
 */
-
 namespace DisablingPullingDownASheet;
+
 public partial class EditViewController : UIViewController, IUITextViewDelegate, IUIAdaptivePresentationControllerDelegate
 {
-	public EditViewController(IntPtr handle) : base(handle)
+	protected EditViewController(IntPtr handle) : base(handle)
 	{
 	}
 
@@ -36,7 +36,7 @@ public partial class EditViewController : UIViewController, IUITextViewDelegate,
 		}
 	}
 
-	public bool HasChanges { get => OriginalText != EditedText; }
+	public bool HasChanges => OriginalText != EditedText;
 
 	#endregion
 

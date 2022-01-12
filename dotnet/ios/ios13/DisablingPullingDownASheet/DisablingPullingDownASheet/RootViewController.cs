@@ -8,7 +8,7 @@ The root view controller of the app. Contains a label displaying text, and a but
 namespace DisablingPullingDownASheet;
 public partial class RootViewController : UIViewController, IEditViewControllerDelegate
 {
-	public RootViewController(IntPtr handle) : base(handle)
+	protected RootViewController(IntPtr handle) : base(handle)
 	{
 	}
 
@@ -45,22 +45,19 @@ public partial class RootViewController : UIViewController, IEditViewControllerD
 		{
 			case "Edit":
 				// Get the presented navigationController and the editViewController it contains
-				var navigationController = segue.DestinationViewController as UINavigationController;
-				if (navigationController is null)
-					break;
-				var editViewController = navigationController.TopViewController as EditViewController;
-				if (editViewController is null)
-					break;
+				if (segue.DestinationViewController is UINavigationController navigationController &&
+					navigationController.TopViewController is EditViewController editViewController)
+				{
+					// Set the editViewController to be the delegate of the PresentationController for this presentation,
+					// so that editViewController can respond to attempted dismissals
+					navigationController.PresentationController.Delegate = editViewController;
 
-				// Set the editViewController to be the delegate of the PresentationController for this presentation,
-				// so that editViewController can respond to attempted dismissals
-				navigationController.PresentationController.Delegate = editViewController;
+					// Set ourself as the delegate of editViewController, so we can respond to editViewController cancelling or finishing
+					editViewController.Delegate = this;
 
-				// Set ourself as the delegate of editViewController, so we can respond to editViewController cancelling or finishing
-				editViewController.Delegate = this;
-
-				// Pass our model to the editViewController
-				editViewController.OriginalText = text;
+					// Pass our model to the editViewController
+					editViewController.OriginalText = text;
+				}
 				break;
 			default:
 				break;
