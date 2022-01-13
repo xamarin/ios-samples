@@ -17,9 +17,13 @@ public partial class GalleryCollectionViewCell : UICollectionViewCell {
 			if (imageView is null || imageView.Image is null)
 				return null;
 
-			return imageView!.Image!;
+			return imageView.Image;
 		}
-		set => imageView.Image = value;
+		set
+		{
+			if (imageView is not null)
+				imageView.Image = value;
+		}
 	}
 
 	static GalleryCollectionViewCell ()

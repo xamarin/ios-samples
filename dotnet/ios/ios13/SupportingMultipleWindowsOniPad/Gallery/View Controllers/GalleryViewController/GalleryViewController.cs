@@ -12,7 +12,7 @@ namespace Gallery;
 public partial class GalleryViewController : UIViewController, IUICollectionViewDataSource, IUICollectionViewDelegate, IUICollectionViewDragDelegate, IUICollectionViewDelegateFlowLayout {
 	#region Data
 
-	PhotoSection []? photoSections;
+	PhotoSection [] PhotoSections = Array.Empty<PhotoSection> ();
 
 	#endregion
 
@@ -31,7 +31,7 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 		base.ViewDidLoad ();
 		// Perform any additional setup after loading the view, typically from a nib.
 
-		photoSections = PhotoManager.SharedInstance.Sections;
+		PhotoSections = PhotoManager.SharedInstance.Sections;
 		Title = "Gallery";
 
 		galleryCollectionView.DataSource = this;
@@ -44,9 +44,16 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 
 	#region Internal Functionality
 
-	Photo? GetPhoto (NSIndexPath indexPath)
+	bool TryGetPhoto (NSIndexPath indexPath, out Photo photo)
 	{
-		return photoSections?[indexPath.Section]?.Photos?[indexPath.Row];
+		if (PhotoSections[indexPath.Section]?.Photos?[indexPath.Row] is null)
+		{
+			photo = new Photo ();
+			return false;
+		}
+
+		photo = PhotoSections[indexPath.Section]!.Photos![indexPath.Row];
+		return true;
 	}
 
 	#endregion
@@ -55,20 +62,18 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 
 	public UIDragItem [] GetItemsForBeginningDragSession (UICollectionView collectionView, IUIDragSession session, NSIndexPath indexPath)
 	{
-		var selectedPhoto = GetPhoto (indexPath);
-
-		if (selectedPhoto is null)
-			throw new NullReferenceException ("selectedPhoto was null");
+		if (!TryGetPhoto (indexPath, out var selectedPhoto))
+			throw new InvalidOperationException (nameof (selectedPhoto));
 
 		var userActivity = selectedPhoto.OpenDetailUserActivity ();
 
 		if (selectedPhoto.Name is null)
-			throw new NullReferenceException ("selectedPhoto.Name was null");
+			throw new InvalidOperationException (nameof (selectedPhoto.Name));
 
 		var selectedPhotoImage = UIImage.FromFile (selectedPhoto.Name);
 
 		if (selectedPhotoImage is null)
-			throw new NullReferenceException ("selectedPhotoImage was null");
+			throw new InvalidOperationException (nameof (selectedPhotoImage));
 
 		var itemProvider = new NSItemProvider (selectedPhotoImage);
 
@@ -89,15 +94,13 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 	[Export ("collectionView:didSelectItemAtIndexPath:")]
 	public void ItemSelected (UICollectionView collectionView, NSIndexPath indexPath)
 	{
-		var selectedPhoto = GetPhoto (indexPath);
-
-		if (selectedPhoto is null)
-			throw new NullReferenceException ("selectedPhoto was null");
+		if (!TryGetPhoto (indexPath, out var selectedPhoto))
+			return;
 
 		var detailViewController = PhotoDetailViewController.LoadFromStoryboard ();
 
 		if (detailViewController is null)
-			throw new NullReferenceException ("detailViewController was null");
+			throw new InvalidOperationException (nameof (detailViewController));
 
 		detailViewController.Photo = selectedPhoto;
 		NavigationController.PushViewController (detailViewController, true);
@@ -110,42 +113,28 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 	[Export ("numberOfSectionsInCollectionView:")]
 	public nint NumberOfSections (UICollectionView collectionView)
 	{
-		if (photoSections is null)
-			throw new NullReferenceException ("photoSections was null");
-
-		return photoSections.Length;
+		return PhotoSections.Length;
 	}
 
 	public nint GetItemsCount (UICollectionView collectionView, nint section)
 	{
-		if (photoSections is null || photoSections[section] is null || photoSections[section].Photos is null)
-			return 0;
-
-		return photoSections![section]!.Photos!.Length;
+		return PhotoSections[section]?.Photos?.Length ?? 0;
 	}
-
 
 	public UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 	{
 		var cell = collectionView.DequeueReusableCell (GalleryCollectionViewCell.Key, indexPath) as GalleryCollectionViewCell;
 
 		if (cell is null)
-			throw new NullReferenceException ("cell was null");
+			throw new InvalidOperationException (nameof (cell));
 
-		var photo = GetPhoto (indexPath);
-
-		if (photo is null)
-			throw new NullReferenceException ("photo was null");
+		if (!TryGetPhoto (indexPath, out var photo))
+			throw new InvalidOperationException (nameof (photo));
 
 		if (photo.Name is null)
-			throw new NullReferenceException ("photo.Name was null");
+			throw new InvalidOperationException (nameof (photo.Name));
 
-		var photoImage = UIImage.FromFile (photo.Name);
-
-		if (photoImage is null)
-			throw new NullReferenceException ("photoImage was null");
-
-		cell.Image = photoImage;
+		cell.Image = UIImage.FromFile (photo.Name) ?? throw new InvalidOperationException (nameof (cell.Image));
 
 		return cell;
 	}
