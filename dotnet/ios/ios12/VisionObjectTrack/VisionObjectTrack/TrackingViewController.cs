@@ -7,7 +7,7 @@ public partial class TrackingViewController : UIViewController, IVisionTrackerPr
 
         VisionTrackerProcessor visionProcessor;
 
-        DispatchQueue workQueue = new DispatchQueue ("com.apple.VisionTracker");//, qos: .userInitiated)
+        DispatchQueue workQueue = new DispatchQueue ("com.apple.VisionTracker");
 
         TrackedObjectType trackedObjectType = TrackedObjectType.Object;
 
