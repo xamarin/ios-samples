@@ -314,7 +314,7 @@ public partial class TrackingViewController : UIViewController, IVisionTrackerPr
                 DispatchQueue.MainQueue.DispatchAsync (() => frameCounterLabel.Text = $"Frame: {frame}");
         }
 
-        public void DidFinifshTracking ()
+        public void DidFinishTracking ()
         {
                 workQueue.DispatchAsync (DisplayFirstVideoFrame);
                 DispatchQueue.MainQueue.DispatchAsync (() => State = State.Stopped);

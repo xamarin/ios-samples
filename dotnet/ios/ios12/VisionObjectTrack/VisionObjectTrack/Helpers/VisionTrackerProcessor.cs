@@ -4,7 +4,7 @@ public interface IVisionTrackerProcessorDelegate
 {
         void DisplayFrame (CVPixelBuffer frame, CGAffineTransform transform, IList<TrackedPolyRect>? rects);
         void DisplayFrameCounter (int frame);
-        void DidFinifshTracking ();
+        void DidFinishTracking ();
 }
 
 /// <summary>
@@ -214,7 +214,7 @@ public class VisionTrackerProcessor
                                         System.Threading.Thread.Sleep ((int)miliseconds);
                                 }
 
-                                Delegate?.DidFinifshTracking ();
+                                Delegate?.DidFinishTracking ();
 
                                 error = trackingFailedForAtLeastOneObject ? new VisionTrackerProcessorError (VisionTrackerProcessorErrorType.FirstFrameReadFailed)
                                                                           : null;
