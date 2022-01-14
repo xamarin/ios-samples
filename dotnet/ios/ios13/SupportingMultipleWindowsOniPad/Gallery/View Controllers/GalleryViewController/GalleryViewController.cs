@@ -7,6 +7,7 @@ A view controller that displays a collection of photos.
 */
 
 using ObjCRuntime;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Gallery;
 public partial class GalleryViewController : UIViewController, IUICollectionViewDataSource, IUICollectionViewDelegate, IUICollectionViewDragDelegate, IUICollectionViewDelegateFlowLayout {
@@ -44,16 +45,20 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 
 	#region Internal Functionality
 
-	bool TryGetPhoto (NSIndexPath indexPath, out Photo photo)
+	bool TryGetPhoto (NSIndexPath indexPath, [MaybeNullWhen (false)] out Photo photo)
 	{
-		if (PhotoSections[indexPath.Section]?.Photos?[indexPath.Row] is null)
-		{
-			photo = new Photo ();
-			return false;
-		}
+		photo = null;
 
-		photo = PhotoSections[indexPath.Section]!.Photos![indexPath.Row];
-		return true;
+		if (indexPath.Section >= 0 && indexPath.Section < PhotoSections.Length && indexPath.Row >= 0
+		&& indexPath.Row < PhotoSections[indexPath.Section].Photos.Length) {
+
+			if (PhotoSections[indexPath.Section].Photos[indexPath.Row] is null)
+				return false;
+
+			photo = PhotoSections[indexPath.Section].Photos[indexPath.Row];
+			return true;
+		}
+		return false;
 	}
 
 	#endregion

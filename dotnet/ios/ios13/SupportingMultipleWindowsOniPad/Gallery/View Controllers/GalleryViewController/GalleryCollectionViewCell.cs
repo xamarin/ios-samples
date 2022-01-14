@@ -12,13 +12,7 @@ public partial class GalleryCollectionViewCell : UICollectionViewCell {
 
 	public UIImage? Image
 	{
-		get
-		{
-			if (imageView is null || imageView.Image is null)
-				return null;
-
-			return imageView.Image;
-		}
+		get => imageView?.Image;
 		set
 		{
 			if (imageView is not null)
