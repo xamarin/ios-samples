@@ -12,50 +12,27 @@ namespace MarsHabitatPricePredictor;
 /// </summary>
 public class MarsHabitatPricerInput : NSObject, IMLFeatureProvider
 {
-	static readonly NSSet<NSString> featureNames = new (
+	public NSSet<NSString> FeatureNames { get; } = new (
 		new NSString ("solarPanels"), new NSString ("greenhouses"), new NSString ("size")
 	);
-
-	double solarPanels;
-	double greenhouses;
-	double size;
 
 	/// <summary>
 	/// Number of solar panels as double
 	/// </summary>
 	/// <value>Number of solar panels</value>
-	public double SolarPanels {
-		get { return solarPanels; }
-		set {
-			solarPanels = value;
-		}
-	}
+	public double SolarPanels { get; set; }
 
 	/// <summary>
 	/// Number of greenhouses as double
 	/// </summary>
 	/// <value>Number of greenhouses</value>
-	public double Greenhouses {
-		get { return greenhouses; }
-		set {
-			greenhouses = value;
-		}
-	}
+	public double Greenhouses { get; set; }
 
 	/// <summary>
 	/// Size in acres as double
 	/// </summary>
 	/// <value>Size in acres</value>
-	public double Size {
-		get { return size; }
-		set {
-			size = value;
-		}
-	}
-
-	public NSSet<NSString> FeatureNames {
-		get { return featureNames; }
-	}
+	public double Size { get; set; }
 
 	public MLFeatureValue? GetFeatureValue (string featureName) => featureName switch
 	{
@@ -78,26 +55,15 @@ public class MarsHabitatPricerInput : NSObject, IMLFeatureProvider
 /// </summary>
 public class MarsHabitatPricerOutput : NSObject, IMLFeatureProvider
 {
-	static readonly NSSet<NSString> featureNames = new (
+	public NSSet<NSString> FeatureNames { get; } = new (
 		new NSString ("price")
 	);
-
-	double price;
 
 	/// <summary>
 	/// Price of the habitat (in millions) as double
 	/// </summary>
 	/// <value>Price of the habitat (in millions)</value>
-	public double Price {
-		get { return price; }
-		set {
-			price = value;
-		}
-	}
-
-	public NSSet<NSString> FeatureNames {
-		get { return featureNames; }
-	}
+	public double Price { get; set; }
 
 	public MLFeatureValue? GetFeatureValue (string featureName) => featureName switch
 	{
@@ -135,44 +101,20 @@ public class MarsHabitatPricer : NSObject
 
 	public static MarsHabitatPricer? Create (NSUrl url, out NSError error)
 	{
-		if (url is null)
-			throw new ArgumentNullException (nameof (url));
-
 		var model = MLModel.Create (url, out error);
-
-		if (model is null)
-			return null;
-
-		return new MarsHabitatPricer (model);
+		return model is not null ? new MarsHabitatPricer (model) : null;
 	}
 
 	public static MarsHabitatPricer? Create (MLModelConfiguration configuration, out NSError error)
 	{
-		if (configuration is null)
-			throw new ArgumentNullException (nameof (configuration));
-
 		var model = MLModel.Create (GetModelUrl (), configuration, out error);
-
-		if (model is null)
-			return null;
-
-		return new MarsHabitatPricer (model);
+		return model is not null ? new MarsHabitatPricer (model) : null;
 	}
 
 	public static MarsHabitatPricer? Create (NSUrl url, MLModelConfiguration configuration, out NSError error)
 	{
-		if (url is null)
-			throw new ArgumentNullException (nameof (url));
-
-		if (configuration is null)
-			throw new ArgumentNullException (nameof (configuration));
-
 		var model = MLModel.Create (url, configuration, out error);
-
-		if (model is null)
-			return null;
-
-		return new MarsHabitatPricer (model);
+		return model is not null ?  new MarsHabitatPricer (model) : null;
 	}
 
 	/// <summary>
@@ -184,9 +126,6 @@ public class MarsHabitatPricer : NSObject
 	{
 		error = null;
 
-		if (input is null)
-			throw new ArgumentNullException (nameof (input));
-
 		var prediction = model?.GetPrediction (input, out error);
 
 		if (prediction is null)
@@ -194,10 +133,7 @@ public class MarsHabitatPricer : NSObject
 
 		var priceValue = prediction.GetFeatureValue ("price")?.DoubleValue;
 
-		if (priceValue is null)
-			return null;
-
-		return new MarsHabitatPricerOutput (priceValue.Value);
+		return priceValue is not null ? new MarsHabitatPricerOutput (priceValue.Value) : null;
 	}
 
 	/// <summary>
@@ -210,12 +146,6 @@ public class MarsHabitatPricer : NSObject
 	{
 		error = null;
 
-		if (input is null)
-			throw new ArgumentNullException (nameof (input));
-
-		if (options is null)
-			throw new ArgumentNullException (nameof (options));
-
 		var prediction = model?.GetPrediction (input, options, out error);
 
 		if (prediction is null)
@@ -223,10 +153,7 @@ public class MarsHabitatPricer : NSObject
 
 		var priceValue = prediction.GetFeatureValue ("price")?.DoubleValue;
 
-		if (priceValue is null)
-			return null;
-
-		return new MarsHabitatPricerOutput (priceValue.Value);
+		return priceValue is not null ? new MarsHabitatPricerOutput (priceValue.Value) : null;
 	}
 
 	/// <summary>

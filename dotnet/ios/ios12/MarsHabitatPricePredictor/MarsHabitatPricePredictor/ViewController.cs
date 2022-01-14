@@ -7,83 +7,81 @@ namespace MarsHabitatPricePredictor;
 /// </summary>
 public partial class ViewController : UIViewController, IUIPickerViewDelegate
 {
-    private readonly MarsHabitatPricer model = new ();
+	private readonly MarsHabitatPricer model = new ();
 
-    // Data source for the picker.
-    private readonly PickerDataSource pickerDataSource = new ();
+	// Data source for the picker.
+	private readonly PickerDataSource pickerDataSource = new ();
 
-    // Formatter for the output.
-    private readonly NSNumberFormatter priceFormatter = new ()
-    {
-        NumberStyle = NSNumberFormatterStyle.Currency,
-        MaximumFractionDigits = 0,
-        UsesGroupingSeparator = true,
-        Locale = new NSLocale ("en_US")
-    };
+	// Formatter for the output.
+	private readonly NSNumberFormatter priceFormatter = new ()
+	{
+		NumberStyle = NSNumberFormatterStyle.Currency,
+		MaximumFractionDigits = 0,
+		UsesGroupingSeparator = true,
+		Locale = new NSLocale ("en_US")
+	};
 
-    protected ViewController (IntPtr handle) : base (handle) { }
+	protected ViewController (IntPtr handle) : base (handle) { }
 
-    public override void ViewDidLoad ()
-    {
-        base.ViewDidLoad ();
+	public override void ViewDidLoad ()
+	{
+		base.ViewDidLoad ();
 
-        this.pickerView.Delegate = this;
-        this.pickerView.DataSource = this.pickerDataSource;
+		this.pickerView.Delegate = this;
+		this.pickerView.DataSource = this.pickerDataSource;
 
-        // set default values
-        var features = Enum.GetValues (typeof (Feature)).Cast<Feature> ();
-        foreach (var feature in features)
-        {
-            this.pickerView.Select (2, (int)feature, false);
-        }
+		// set default values
+		var features = Enum.GetValues (typeof (Feature)).Cast<Feature> ();
+		foreach (var feature in features)
+		{
+			this.pickerView.Select (2, (int)feature, false);
+		}
 
-        this.UpdatePredictedPrice ();
-    }
+		this.UpdatePredictedPrice ();
+	}
 
-    /// <summary>
-    /// The main logic for the app, performing the integration with Core ML.
-    /// First gather the values for input to the model. Then have the model generate
-    /// a prediction with those inputs. Finally, present the predicted value to the user.
-    /// </summary>
-    private void UpdatePredictedPrice ()
-    {
-        var solarPanels = this.pickerDataSource.Value (SelectedRow (Feature.SolarPanels), Feature.SolarPanels);
-        var greenhouses = this.pickerDataSource.Value (SelectedRow (Feature.Greenhouses), Feature.Greenhouses);
-        var size = this.pickerDataSource.Value (SelectedRow (Feature.Size), Feature.Size);
+	/// <summary>
+	/// The main logic for the app, performing the integration with Core ML.
+	/// First gather the values for input to the model. Then have the model generate
+	/// a prediction with those inputs. Finally, present the predicted value to the user.
+	/// </summary>
+	private void UpdatePredictedPrice ()
+	{
+		var solarPanels = pickerDataSource.GetValue (SelectedRow (Feature.SolarPanels), Feature.SolarPanels);
+		var greenhouses = pickerDataSource.GetValue (SelectedRow (Feature.Greenhouses), Feature.Greenhouses);
+		var size = pickerDataSource.GetValue (SelectedRow (Feature.Size), Feature.Size);
 
-        var marsHabitatPricerOutput = this.model.GetPrediction (solarPanels, greenhouses, size, out NSError? error);
-        if (error is not null)
-        {
-            throw new Exception ($"Unexpected runtime error: {error}");
-        }
+		var marsHabitatPricerOutput = model.GetPrediction (solarPanels, greenhouses, size, out NSError? error);
+		if (error is not null)
+			throw new Exception ($"Unexpected runtime error: {error}");
 
-        var price = marsHabitatPricerOutput.Price;
-        this.priceLabel.Text = this.priceFormatter.StringFor (NSNumber.FromDouble (price));
+		var price = marsHabitatPricerOutput?.Price ?? throw new InvalidOperationException (nameof (marsHabitatPricerOutput));
+		priceLabel.Text = priceFormatter.StringFor (NSNumber.FromDouble (price));
 
-        int SelectedRow (Feature feature)
-        {
-            return (int)this.pickerView.SelectedRowInComponent ( (int)feature);
-        }
-    }
+		int SelectedRow (Feature feature)
+		{
+			return (int)this.pickerView.SelectedRowInComponent ( (int)feature);
+		}
+	}
 
-    #region IUIPickerViewDelegate
+	#region IUIPickerViewDelegate
 
-    [Export ("pickerView:didSelectRow:inComponent:")]
-    public void Selected (UIPickerView pickerView, nint row, nint component)
-    {
-        // When values are changed, update the predicted price.
-        this.UpdatePredictedPrice ();
-    }
+	[Export ("pickerView:didSelectRow:inComponent:")]
+	public void Selected (UIPickerView pickerView, nint row, nint component)
+	{
+		// When values are changed, update the predicted price.
+		this.UpdatePredictedPrice ();
+	}
 
-    [Export ("pickerView:titleForRow:forComponent:")]
-    public string GetTitle (UIPickerView pickerView, nint row, nint component)
-    {
-        // Accessor for picker values.
-        var feature = (Feature) (int)component;
-        return this.pickerDataSource.Title ( (int)row, feature);
-    }
+	[Export ("pickerView:titleForRow:forComponent:")]
+	public string GetTitle (UIPickerView pickerView, nint row, nint component)
+	{
+		// Accessor for picker values.
+		var feature = (Feature) (int)component;
+		return pickerDataSource.GetTitle ( (int)row, feature);
+	}
 
-    #endregion
+	#endregion
 }
 
 /// <summary>
@@ -92,7 +90,7 @@ public partial class ViewController : UIViewController, IUIPickerViewDelegate
 /// model. So each needs an appropriate `UIPicker` as well.
 /// </summary>
 public enum Feature {
-    SolarPanels = 0,
-    Greenhouses = 1,
-    Size = 2
+	SolarPanels = 0,
+	Greenhouses = 1,
+	Size = 2
 }
