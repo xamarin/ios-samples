@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="213">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!-- Navigation Controller -->
+        <scene sceneID="212">
+            <objects>
+                <navigationController id="213" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="215">
+                        <rect key="frame" x="0.0" y="20" width="414" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="269" kind="relationship" relationship="rootViewController" id="317"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="216" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-498" y="5"/>
+        </scene>
+        <!-- Vision Tracker -->
+        <scene sceneID="268">
+            <objects>
+                <collectionViewController id="269" customClass="AssetsViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="270">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="274">
+                            <size key="itemSize" width="100" height="100"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="1" minY="1" maxX="1" maxY="1"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AssetCell" id="273" customClass="AssetsCell">
+                                <rect key="frame" x="1" y="1" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="329">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="329" secondAttribute="bottom" id="2Et-fy-kla"/>
+                                    <constraint firstAttribute="trailing" secondItem="329" secondAttribute="trailing" id="HQb-yH-0mz"/>
+                                    <constraint firstItem="329" firstAttribute="top" secondItem="273" secondAttribute="top" id="cYe-XO-YYg"/>
+                                    <constraint firstItem="329" firstAttribute="leading" secondItem="273" secondAttribute="leading" id="slS-bD-eBV"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="ImageView" destination="329" id="name-outlet-329"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="269" id="271"/>
+                            <outlet property="delegate" destination="269" id="272"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Vision Tracker" prompt="Choose a movie to start tracking" id="316">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="322"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="353" kind="show" identifier="ShowTrackingView" id="427"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="275" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="39" y="14"/>
+        </scene>
+        <!-- Tracking View Controller -->
+        <scene sceneID="352">
+            <objects>
+                <viewController id="353" customClass="TrackingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="350"/>
+                        <viewControllerLayoutGuide type="bottom" id="351"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="354">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="429">
+                                <rect key="frame" x="56" y="104" width="302" height="56"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="434">
+                                        <rect key="frame" x="67" y="20" width="139" height="29"/>
+                                        <segments>
+                                            <segment title="Fast"/>
+                                            <segment title="Accurate"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="handleModeSelection:" destination="353" eventType="valueChanged" id="437"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="447">
+                                        <rect key="frame" x="20" y="25" width="39" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="457">
+                                        <rect key="frame" x="246" y="19" width="36" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Clear"/>
+                                        <connections>
+                                            <action selector="handleClearRectsButton:" destination="353" eventType="touchUpInside" id="458"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="447" firstAttribute="leading" secondItem="429" secondAttribute="leading" constant="20" id="459"/>
+                                    <constraint firstItem="447" firstAttribute="centerY" secondItem="434" secondAttribute="centerY" id="460"/>
+                                    <constraint firstItem="447" firstAttribute="centerY" secondItem="457" secondAttribute="centerY" id="461"/>
+                                    <constraint firstItem="434" firstAttribute="leading" secondItem="447" secondAttribute="trailing" constant="8" symbolic="YES" id="462"/>
+                                    <constraint firstAttribute="bottom" secondItem="434" secondAttribute="bottom" constant="8" id="477"/>
+                                    <constraint firstItem="434" firstAttribute="top" secondItem="429" secondAttribute="top" constant="20" id="478"/>
+                                    <constraint firstItem="457" firstAttribute="leading" secondItem="434" secondAttribute="trailing" constant="40" id="479"/>
+                                    <constraint firstAttribute="trailing" secondItem="457" secondAttribute="trailing" constant="20" id="480"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="499" customClass="TrackingImageView">
+                                <rect key="frame" x="0.0" y="160" width="414" height="576"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="521">
+                                        <rect key="frame" x="8" y="538" width="85" height="35"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frame" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="550">
+                                                <rect key="frame" x="20" y="8" width="46" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.27059" green="0.27059" blue="0.27059" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="550" firstAttribute="leading" secondItem="521" secondAttribute="leading" constant="20" id="827"/>
+                                            <constraint firstAttribute="trailing" secondItem="550" secondAttribute="trailing" constant="20" id="828"/>
+                                            <constraint firstItem="550" firstAttribute="top" secondItem="521" secondAttribute="top" constant="8" id="856"/>
+                                            <constraint firstAttribute="bottom" secondItem="550" secondAttribute="bottom" constant="8" id="QU4-4T-kN7"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers />
+                                <constraints>
+                                    <constraint firstAttribute="bottomMargin" secondItem="521" secondAttribute="bottom" id="522"/>
+                                    <constraint firstItem="521" firstAttribute="leading" secondItem="499" secondAttribute="leadingMargin" id="523"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="1158" appends="YES" id="gjS-li-mUG"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="429" firstAttribute="centerX" secondItem="354" secondAttribute="centerX" id="430"/>
+                            <constraint firstItem="429" firstAttribute="top" secondItem="350" secondAttribute="bottom" id="431"/>
+                            <constraint firstItem="499" firstAttribute="top" secondItem="429" secondAttribute="bottom" id="520"/>
+                            <constraint firstItem="499" firstAttribute="bottom" secondItem="351" secondAttribute="top" id="524"/>
+                            <constraint firstAttribute="trailing" secondItem="499" secondAttribute="trailing" id="FyJ-Of-yUe"/>
+                            <constraint firstItem="499" firstAttribute="leading" secondItem="354" secondAttribute="leading" id="n5Y-RO-N6F"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="1157" appends="YES" id="9Gb-Ro-y4l"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" prompt="Drag to select objects" id="lTG-K7-k2e">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="9zs-Eh-wMm">
+                            <rect key="frame" x="0.0" y="0.0" width="165" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Objects"/>
+                                <segment title="Rectangles"/>
+                            </segments>
+                            <connections>
+                                <action selector="handleEntitySelection:" destination="353" id="1439" eventType="valueChanged"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="WXg-bW-UHO">
+                            <connections>
+                                <action selector="handleStartStopButton:" destination="353" id="1478"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="clearRectsButton" destination="457" id="name-outlet-457"/>
+                        <outlet property="frameCounterLabel" destination="550" id="name-outlet-550"/>
+                        <outlet property="frameCounterLabelBackplate" destination="521" id="name-outlet-521"/>
+                        <outlet property="modeSelector" destination="434" id="name-outlet-434"/>
+                        <outlet property="settingsView" destination="429" id="name-outlet-429"/>
+                        <outlet property="trackingView" destination="499" id="name-outlet-499"/>
+                        <outlet property="entitySelector" destination="9zs-Eh-wMm" id="name-outlet-9zs-Eh-wMm"/>
+                        <outlet property="startStopButton" destination="WXg-bW-UHO" id="name-outlet-WXg-bW-UHO"/>
+                        <outlet property="trackingViewTopConstraint" destination="520" id="name-outlet-520"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="355" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="1157">
+                    <connections>
+                        <action selector="handlePan:" destination="353" id="xE7-Xb-75n"/>
+                        <outlet property="delegate" destination="353" id="DsO-pV-xiT"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="1158">
+                    <connections>
+                        <action selector="handleTap:" destination="353" id="1159"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="739.1304" y="13.8587"/>
+        </scene>
+    </scenes>
+</document>
