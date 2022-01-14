@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>136a5652-3381-45a5-bfe3-c924d1100344</ID>
+  <IsFullApplication>true</IsFullApplication>
+  <Level>Advanced</Level>
+  <Tags>iOS12, ARKit</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>An app that demonstrates 3D scanning of reference objects using ARKit.</Brief>
+</SampleMetadata>
