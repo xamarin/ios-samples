@@ -63,6 +63,7 @@ public partial class After2MoreViewController : UIViewController {
 		// which has light and dark variants:
 		TintColor = UIColor.FromName ("LightAndDarkHeaderColor"),
 	};
+
 	readonly UILabel TitleLabel = new ()
 	{
 		Text = "Presented Content",
@@ -102,7 +103,7 @@ public partial class After2MoreViewController : UIViewController {
 	void SetupConstraints ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		StarImageView.TopAnchor.ConstraintEqualToSystemSpacingBelowAnchor (View.LayoutMarginsGuide.TopAnchor, 2).Active = true;
 		StarImageView.LeadingAnchor.ConstraintEqualTo (View.LayoutMarginsGuide.LeadingAnchor).Active = true;
