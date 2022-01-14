@@ -67,9 +67,6 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 
 		var userActivity = selectedPhoto.OpenDetailUserActivity ();
 
-		if (selectedPhoto.Name is null)
-			throw new InvalidOperationException (nameof (selectedPhoto.Name));
-
 		var selectedPhotoImage = UIImage.FromFile (selectedPhoto.Name);
 
 		if (selectedPhotoImage is null)
@@ -123,20 +120,14 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 
 	public UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 	{
-		var cell = collectionView.DequeueReusableCell (GalleryCollectionViewCell.Key, indexPath) as GalleryCollectionViewCell;
+		if (collectionView.DequeueReusableCell (GalleryCollectionViewCell.Key, indexPath) is GalleryCollectionViewCell cell) {
+			if (!TryGetPhoto (indexPath, out var photo))
+				throw new InvalidOperationException (nameof (photo));
 
-		if (cell is null)
-			throw new InvalidOperationException (nameof (cell));
-
-		if (!TryGetPhoto (indexPath, out var photo))
-			throw new InvalidOperationException (nameof (photo));
-
-		if (photo.Name is null)
-			throw new InvalidOperationException (nameof (photo.Name));
-
-		cell.Image = UIImage.FromFile (photo.Name) ?? throw new InvalidOperationException (nameof (cell.Image));
-
-		return cell;
+			cell.Image = UIImage.FromFile (photo.Name) ?? throw new InvalidOperationException (nameof (cell.Image));
+			return cell;
+		}
+		throw new InvalidOperationException ("UICollectionViewCell");
 	}
 
 	#endregion

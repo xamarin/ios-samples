@@ -13,7 +13,7 @@ public static class GalleryOpenDetailData {
 }
 
 public class Photo : NSObject {
-	public string? Name { get; set; }
+	public string Name { get; set; } = string.Empty;
 
 	public NSUserActivity OpenDetailUserActivity ()
 	{
@@ -28,8 +28,8 @@ public class Photo : NSObject {
 }
 
 public class PhotoSection {
-	public string? Name { get; set; }
-	public Photo []? Photos { get; set; }
+	public string Name { get; set; } = string.Empty;
+	public Photo [] Photos { get; set; } = Array.Empty<Photo> ();
 }
 
 public class PhotoManager {
