@@ -10,18 +10,17 @@ namespace Conference_Diffable.CompositionalLayout.CellsandSupplementaryViews;
 public partial class TitleSupplementaryView : UICollectionReusableView {
 	public static readonly NSString Key = new (nameof (TitleSupplementaryView));
 
-	public UILabel? Label { get; private set; }
+	public UILabel Label { get; private set; } = new UILabel {
+			TranslatesAutoresizingMaskIntoConstraints = false,
+			AdjustsFontForContentSizeCategory = true,
+			Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Title3),
+		};
 
 	[Export ("initWithFrame:")]
 	public TitleSupplementaryView (CGRect frame) : base (frame) => Configure ();
 
 	void Configure ()
 	{
-		Label = new UILabel {
-			TranslatesAutoresizingMaskIntoConstraints = false,
-			AdjustsFontForContentSizeCategory = true,
-			Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Title3),
-		};
 		AddSubview (Label);
 
 		var inset = 10;

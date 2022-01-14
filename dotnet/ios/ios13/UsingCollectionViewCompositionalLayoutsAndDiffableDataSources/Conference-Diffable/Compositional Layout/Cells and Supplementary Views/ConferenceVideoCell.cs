@@ -3,35 +3,31 @@
 public partial class ConferenceVideoCell : UICollectionViewCell {
 	public static readonly NSString Key = new NSString (nameof (ConferenceVideoCell));
 
-	public UIImageView? ImageView { get; private set; }
-	public UILabel? TitleLabel { get; private set; }
-	public UILabel? CategoryLabel { get; private set; }
+	public UIImageView ImageView { get; private set; } = new UIImageView { TranslatesAutoresizingMaskIntoConstraints = false };
+	public UILabel TitleLabel { get; private set; } = new UILabel {
+		TranslatesAutoresizingMaskIntoConstraints = false,
+		Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Caption1),
+		AdjustsFontForContentSizeCategory = true,
+	};
+	public UILabel CategoryLabel { get; private set; } = new UILabel {
+		TranslatesAutoresizingMaskIntoConstraints = false,
+		Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Caption2),
+		AdjustsFontForContentSizeCategory = true,
+		TextColor = UIColor.PlaceholderTextColor
+	};
 
 	[Export ("initWithFrame:")]
 	public ConferenceVideoCell (CGRect frame) : base (frame) => Configure ();
 
 	void Configure ()
 	{
-		ImageView = new UIImageView { TranslatesAutoresizingMaskIntoConstraints = false };
 		ImageView.Layer.BackgroundColor = UIColor.Black.CGColor;
 		ImageView.Layer.BorderWidth = 1;
 		ImageView.Layer.CornerRadius = 4;
 		ImageView.BackgroundColor = CornflowerBlue;
 		AddSubview (ImageView);
 
-		TitleLabel = new UILabel {
-			TranslatesAutoresizingMaskIntoConstraints = false,
-			Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Caption1),
-			AdjustsFontForContentSizeCategory = true,
-		};
 		AddSubview (TitleLabel);
-
-		CategoryLabel = new UILabel {
-			TranslatesAutoresizingMaskIntoConstraints = false,
-			Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Caption2),
-			AdjustsFontForContentSizeCategory = true,
-			TextColor = UIColor.PlaceholderTextColor
-		};
 		AddSubview (CategoryLabel);
 
 		var spacing = 10;

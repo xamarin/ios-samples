@@ -10,18 +10,17 @@ namespace Conference_Diffable.Diffable.CellsAndSupplementaryViews;
 public partial class LabelCell : UICollectionViewCell {
 	public static readonly NSString Key = new (nameof (LabelCell));
 
-	public UILabel? Label { get; private set; }
+	public UILabel Label { get; private set; } = new UILabel {
+		TranslatesAutoresizingMaskIntoConstraints = false,
+		AdjustsFontForContentSizeCategory = true,
+		Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Body)
+	};
 
 	[Export ("initWithFrame:")]
 	public LabelCell (CGRect frame) : base (frame) => Configure ();
 
 	void Configure ()
 	{
-		Label = new UILabel {
-			TranslatesAutoresizingMaskIntoConstraints = false,
-			AdjustsFontForContentSizeCategory = true,
-			Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Body)
-		};
 		ContentView.AddSubview (Label);
 
 		Layer.BorderWidth = 1;

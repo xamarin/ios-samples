@@ -90,7 +90,7 @@ public partial class ItemBadgeSupplementaryViewController : UIViewController {
 	void ConfigureHierarchy ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
@@ -104,10 +104,10 @@ public partial class ItemBadgeSupplementaryViewController : UIViewController {
 	void ConfigureDataSource ()
 	{
 		if (collectionView is null)
-			throw new InvalidOperationException ("collectionView");
+			throw new InvalidOperationException (nameof (collectionView));
 
 		if (SupplementaryViewProviderHandler == null)
-			throw new InvalidOperationException ("SupplementaryViewProviderHandler");
+			throw new InvalidOperationException (nameof (SupplementaryViewProviderHandler));
 
 		dataSource = new UICollectionViewDiffableDataSource<Section, Model> (collectionView, CellProviderHandler) {
 			SupplementaryViewProvider = SupplementaryViewProviderHandler!
@@ -126,22 +126,20 @@ public partial class ItemBadgeSupplementaryViewController : UIViewController {
 		{
 			var model = obj as Model;
 			// Get a cell of the desired kind.
-			var cell = collectionView.DequeueReusableCell (TextCell.Key, indexPath) as TextCell;
+			if (collectionView.DequeueReusableCell (TextCell.Key, indexPath) is TextCell cell) {
+				// Populate the cell with our item description.
+				cell.Label.Text = model?.Title;
+				cell.ContentView.BackgroundColor = CornflowerBlue;
+				cell.Layer.BorderColor = UIColor.Black.CGColor;
+				cell.Layer.BorderWidth = 1;
+				cell.Layer.CornerRadius = 8;
+				cell.Label.TextAlignment = UITextAlignment.Center;
+				cell.Label.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Title1);
 
-			if (cell is null || cell.Label is null)
-				throw new InvalidOperationException ("cell or cell.Label");
-
-			// Populate the cell with our item description.
-			cell.Label.Text = model?.Title;
-			cell.ContentView.BackgroundColor = CornflowerBlue;
-			cell.Layer.BorderColor = UIColor.Black.CGColor;
-			cell.Layer.BorderWidth = 1;
-			cell.Layer.CornerRadius = 8;
-			cell.Label.TextAlignment = UITextAlignment.Center;
-			cell.Label.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Title1);
-
-			// Return the cell.
-			return cell;
+				// Return the cell.
+				return cell;
+			}
+			throw new InvalidOperationException ("UICollectionViewCell");
 		}
 
 		UICollectionReusableView? SupplementaryViewProviderHandler (UICollectionView collectionView, string kind, NSIndexPath indexPath)
@@ -152,18 +150,15 @@ public partial class ItemBadgeSupplementaryViewController : UIViewController {
 			var hasBadgeCount = model.BadgeCount > 0;
 
 			// Get a supplementary view of the desired kind.
-			var badgeView = collectionView.DequeueReusableSupplementaryView (new NSString (kind),
-				BadgeSupplementaryView.Key, indexPath) as BadgeSupplementaryView;
+			if (collectionView.DequeueReusableSupplementaryView (new NSString (kind), BadgeSupplementaryView.Key, indexPath) is BadgeSupplementaryView badgeView) {
+				// Set the badge count as its label (and hide the view if the badge count is zero).
+				badgeView.Label.Text = model.BadgeCount.ToString ();
+				badgeView.Hidden = !hasBadgeCount;
 
-			if (badgeView is null || badgeView.Label is null)
-				throw new InvalidOperationException ("cell or cell.Label");
-
-			// Set the badge count as its label (and hide the view if the badge count is zero).
-			badgeView.Label.Text = model.BadgeCount.ToString ();
-			badgeView.Hidden = !hasBadgeCount;
-
-			// Return the view.
-			return badgeView;
+				// Return the view.
+				return badgeView;
+			}
+			throw new InvalidOperationException ("UICollectionReusableView");
 		}
 	}
 }

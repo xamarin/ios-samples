@@ -51,7 +51,7 @@ public partial class SectionDecorationViewController : UIViewController, IUIColl
 	void ConfigureHierarchy ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
@@ -65,13 +65,13 @@ public partial class SectionDecorationViewController : UIViewController, IUIColl
 	void ConfigureDataSource ()
 	{
 		if (collectionView is null)
-			throw new InvalidOperationException ("collectionView");
+			throw new InvalidOperationException (nameof (collectionView));
 
 		dataSource = new UICollectionViewDiffableDataSource<NSNumber, NSNumber> (collectionView, CellProviderHandler);
 
 		// initial data
 		var itemsPerSection = 5;
-		var sections = Enumerable.Range (0, 5).Select (i => NSNumber.FromInt32 (i)).ToArray ();
+		var sections = Enumerable.Range (0, 5).Select (i => NSNumber.FromInt32 (i));
 		currentSnapshot = new NSDiffableDataSourceSnapshot<NSNumber, NSNumber> ();
 		var itemOffset = 0;
 
@@ -89,23 +89,21 @@ public partial class SectionDecorationViewController : UIViewController, IUIColl
 			var sectionId = currentSnapshot?.SectionIdentifiers [indexPath.Section];
 
 			if (sectionId is null)
-				throw new InvalidOperationException ("sectionId");
+				throw new InvalidOperationException (nameof (sectionId));
 
 			var numberOfItemsInSection = currentSnapshot?.GetNumberOfItems (sectionId);
 			var isLastCell = indexPath.Item + 1 == numberOfItemsInSection;
 
 			// Get a cell of the desired kind.
-			var cell = collectionView.DequeueReusableCell (ListCell.Key, indexPath) as ListCell;
+			if (collectionView.DequeueReusableCell (ListCell.Key, indexPath) is ListCell cell) {
+				// Populate the cell with our item description.
+				cell.Label.Text = $"{indexPath.Section}, {indexPath.Row}";
+				cell.SeparatorView.Hidden = isLastCell;
 
-			if (cell is null || cell.Label is null || cell.SeparatorView is null)
-				throw new InvalidOperationException ("cell, cell.Label, or cell.SeparatorView");
-
-			// Populate the cell with our item description.
-			cell.Label.Text = $"{indexPath.Section}, {indexPath.Row}";
-			cell.SeparatorView.Hidden = isLastCell;
-
-			// Return the cell.
-			return cell;
+				// Return the cell.
+				return cell;
+			}
+			throw new InvalidOperationException ();
 		}
 	}
 

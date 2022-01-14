@@ -67,7 +67,7 @@ public partial class GridViewController : UIViewController {
 	void ConfigureHierarchy ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
@@ -93,21 +93,20 @@ public partial class GridViewController : UIViewController {
 		{
 			var id = (obj as NSNumber)?.Int32Value;
 			// Get a cell of the desired kind.
-			var cell = collectionView.DequeueReusableCell (TextCell.Key, indexPath) as TextCell;
 
-			if (cell is null || cell.Label is null)
-				throw new InvalidOperationException ("cell or cell.Label");
+			if (collectionView.DequeueReusableCell (TextCell.Key, indexPath) is TextCell cell) {
+				// Populate the cell with our item description.
+				cell.Label.Text = id.ToString ();
+				cell.ContentView.BackgroundColor = CornflowerBlue;
+				cell.Layer.BorderColor = UIColor.Black.CGColor;
+				cell.Layer.BorderWidth = 1;
+				cell.Label.TextAlignment = UITextAlignment.Center;
+				cell.Label.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Title1);
 
-			// Populate the cell with our item description.
-			cell.Label.Text = id.ToString ();
-			cell.ContentView.BackgroundColor = CornflowerBlue;
-			cell.Layer.BorderColor = UIColor.Black.CGColor;
-			cell.Layer.BorderWidth = 1;
-			cell.Label.TextAlignment = UITextAlignment.Center;
-			cell.Label.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Title1);
-
-			// Return the cell.
-			return cell;
+				// Return the cell.
+				return cell;
+			}
+			throw new InvalidOperationException ("UICollectionViewCell");
 		}
 	}
 }

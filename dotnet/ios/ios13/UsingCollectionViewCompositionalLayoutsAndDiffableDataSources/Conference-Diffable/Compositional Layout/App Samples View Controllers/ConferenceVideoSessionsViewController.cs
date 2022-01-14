@@ -12,7 +12,7 @@ namespace Conference_Diffable.CompositionalLayout.AppSamplesViewControllers;
 public partial class ConferenceVideoSessionsViewController : UIViewController {
 	static readonly string titleElementKind = nameof (titleElementKind);
 
-	ConferenceVideoController? videosController;
+	ConferenceVideoController videosController = new ConferenceVideoController ();
 	UICollectionView? collectionView;
 	UICollectionViewDiffableDataSource<ConferenceVideoController.VideoCollection, ConferenceVideoController.Video>? dataSource;
 	NSDiffableDataSourceSnapshot<ConferenceVideoController.VideoCollection, ConferenceVideoController.Video>? currentSnapshot;
@@ -23,7 +23,6 @@ public partial class ConferenceVideoSessionsViewController : UIViewController {
 		// Perform any additional setup after loading the view, typically from a nib.
 
 		NavigationItem.Title = "Conference Videos";
-		videosController = new ConferenceVideoController ();
 		ConfigureHierarchy ();
 		ConfigureDataSource ();
 	}
@@ -62,7 +61,7 @@ public partial class ConferenceVideoSessionsViewController : UIViewController {
 	void ConfigureHierarchy ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			TranslatesAutoresizingMaskIntoConstraints = false,
@@ -81,56 +80,54 @@ public partial class ConferenceVideoSessionsViewController : UIViewController {
 	void ConfigureDataSource ()
 	{
 		if (collectionView is null)
-			throw new InvalidOperationException ("collectionView");
+			throw new InvalidOperationException (nameof (collectionView));
 
 		dataSource = new UICollectionViewDiffableDataSource<ConferenceVideoController.VideoCollection, ConferenceVideoController.Video> (collectionView, CellProviderHandler) {
 			SupplementaryViewProvider = SupplementaryViewProviderHandler
 		};
 		currentSnapshot = new NSDiffableDataSourceSnapshot<ConferenceVideoController.VideoCollection, ConferenceVideoController.Video> ();
 
-		if (videosController is not null && videosController.Collections is not null)
+		if (videosController is not null)
 		{
-			foreach (var videoCollection in videosController.Collections!)
+			foreach (var videoCollection in videosController.Collections)
 			{
 				currentSnapshot.AppendSections (new[] { videoCollection });
-				currentSnapshot.AppendItems (videoCollection.Videos!);
+				if (videoCollection.Videos is not null)
+					currentSnapshot.AppendItems (videoCollection.Videos);
 			}
 		}
 		dataSource.ApplySnapshot (currentSnapshot, false);
 
 		UICollectionViewCell CellProviderHandler (UICollectionView collectionView, NSIndexPath indexPath, NSObject obj)
 		{
-			var video = obj as ConferenceVideoController.Video;
+			if (obj is ConferenceVideoController.Video video) {
+				// Get a cell of the desired kind.
+				if (collectionView.DequeueReusableCell (ConferenceVideoCell.Key, indexPath) is ConferenceVideoCell cell) {
+					// Populate the cell with our item description.
+					cell.TitleLabel.Text = video.Title;
+					cell.CategoryLabel.Text = video.Category;
 
-			// Get a cell of the desired kind.
-			var cell = collectionView.DequeueReusableCell (ConferenceVideoCell.Key, indexPath) as ConferenceVideoCell;
-
-			if (cell is null || cell.TitleLabel is null || cell.CategoryLabel is null)
-				throw new InvalidOperationException ("cell, cell.TitleLabel, or cell.CategoryLabel");
-
-			// Populate the cell with our item description.
-			cell.TitleLabel.Text = video?.Title;
-			cell.CategoryLabel.Text = video?.Category;
-
-			// Return the cell.
-			return cell;
+					// Return the cell.
+					return cell;
+				}
+				throw new InvalidOperationException ("UICollectionViewCell");
+			}
+			throw new InvalidOperationException ("UICollectionViewCell");
 		}
 
 		UICollectionReusableView SupplementaryViewProviderHandler (UICollectionView collectionView, string kind, NSIndexPath indexPath)
 		{
 			// Get a supplementary view of the desired kind.
-			var titleSupplementary = collectionView.DequeueReusableSupplementaryView (new NSString (kind),
-				TitleSupplementaryView.Key, indexPath) as TitleSupplementaryView;
+			if (collectionView.DequeueReusableSupplementaryView (new NSString (kind), TitleSupplementaryView.Key, indexPath) is TitleSupplementaryView titleSupplementary) {
 
-			if (titleSupplementary is null || titleSupplementary.Label is null)
-				throw new InvalidOperationException ("titleSupplementary or titleSupplementary.Label");
+				// Populate the view with our section's description.
+				var videoCategory = currentSnapshot?.SectionIdentifiers [indexPath.Section];
+				titleSupplementary.Label.Text = videoCategory?.Title;
 
-			// Populate the view with our section's description.
-			var videoCategory = currentSnapshot?.SectionIdentifiers [indexPath.Section];
-			titleSupplementary.Label.Text = videoCategory?.Title;
-
-			// Return the view.
-			return titleSupplementary;
+				// Return the view.
+				return titleSupplementary;
+			}
+			throw new InvalidOperationException ("UICollectionReusableView");
 		}
 	}
 }

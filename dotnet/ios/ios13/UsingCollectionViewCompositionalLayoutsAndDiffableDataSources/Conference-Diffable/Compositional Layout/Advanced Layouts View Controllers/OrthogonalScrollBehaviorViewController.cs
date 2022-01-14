@@ -159,7 +159,7 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 	void ConfigureHierarchy ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
@@ -175,7 +175,7 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 	void ConfigureDataSource ()
 	{
 		if (collectionView is null)
-			throw new InvalidOperationException ("collectionView");
+			throw new InvalidOperationException (nameof (collectionView));
 
 		dataSource = new UICollectionViewDiffableDataSource<NSNumber, NSNumber> (collectionView, CellProviderHandler) {
 			SupplementaryViewProvider = SupplementaryViewProviderHandler
@@ -198,22 +198,20 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 		UICollectionViewCell CellProviderHandler (UICollectionView collectionView, NSIndexPath indexPath, NSObject obj)
 		{
 			// Get a cell of the desired kind.
-			var cell = collectionView.DequeueReusableCell (TextCell.Key, indexPath) as TextCell;
+			if (collectionView.DequeueReusableCell (TextCell.Key, indexPath) is TextCell cell){
+				// Populate the cell with our item description.
+				cell.Label.Text = $"{indexPath.Section}, {indexPath.Row}";
+				cell.ContentView.BackgroundColor = CornflowerBlue;
+				cell.ContentView.Layer.BorderColor = UIColor.Black.CGColor;
+				cell.ContentView.Layer.BorderWidth = 1;
+				cell.ContentView.Layer.CornerRadius = 8;
+				cell.Label.TextAlignment = UITextAlignment.Center;
+				cell.Label.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Title1);
 
-			if (cell is null || cell.Label is null)
-				throw new InvalidOperationException ("cell or cell.Label");
-
-			// Populate the cell with our item description.
-			cell.Label.Text = $"{indexPath.Section}, {indexPath.Row}";
-			cell.ContentView.BackgroundColor = CornflowerBlue;
-			cell.ContentView.Layer.BorderColor = UIColor.Black.CGColor;
-			cell.ContentView.Layer.BorderWidth = 1;
-			cell.ContentView.Layer.CornerRadius = 8;
-			cell.Label.TextAlignment = UITextAlignment.Center;
-			cell.Label.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Title1);
-
-			// Return the cell.
-			return cell;
+				// Return the cell.
+				return cell;
+			}
+			throw new InvalidOperationException ("UICollectionViewCell");
 		}
 
 		UICollectionReusableView SupplementaryViewProviderHandler (UICollectionView collectionView, string kind, NSIndexPath indexPath)
@@ -221,17 +219,14 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 			var sectionKind = SectionKind.GetSectionKind (indexPath.Section);
 
 			// Get a supplementary view of the desired kind.
-			var header = collectionView.DequeueReusableSupplementaryView (new NSString (kind),
-				TitleSupplementaryView.Key, indexPath) as TitleSupplementaryView;
+			if (collectionView.DequeueReusableSupplementaryView (new NSString (kind), TitleSupplementaryView.Key, indexPath) is TitleSupplementaryView header) {
+				// Populate the view with our section's description.
+				header.Label.Text = $".{sectionKind}";
 
-			if (header is null || header.Label is null)
-				throw new InvalidOperationException ("header or header.Label");
-
-			// Populate the view with our section's description.
-			header.Label.Text = $".{sectionKind}";
-
-			// Return the view.
-			return header;
+				// Return the view.
+				return header;
+			}
+			throw new InvalidOperationException ("UICollectionReusableView");
 		}
 	}
 

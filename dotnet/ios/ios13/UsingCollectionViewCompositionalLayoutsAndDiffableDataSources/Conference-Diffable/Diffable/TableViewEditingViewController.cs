@@ -163,7 +163,7 @@ public partial class TableViewEditingViewController : UIViewController {
 	void ConfigureHierarchy ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		tableView = new UITableView (CGRect.Empty, UITableViewStyle.InsetGrouped) {
 			TranslatesAutoresizingMaskIntoConstraints = false
@@ -186,7 +186,7 @@ public partial class TableViewEditingViewController : UIViewController {
 		};
 
 		if (tableView is null)
-			throw new InvalidOperationException ("tableView");
+			throw new InvalidOperationException (nameof (tableView));
 
 		var snapshot = InitialSnapshot ();
 		dataSource = new DataSource (tableView, CellProviderHandler);
@@ -194,21 +194,20 @@ public partial class TableViewEditingViewController : UIViewController {
 
 		UITableViewCell CellProviderHandler (UITableView tableView, NSIndexPath indexPath, NSObject obj)
 		{
-			var mountain = obj as MountainsController.Mountain;
+			if (obj is MountainsController.Mountain mountain)
+			{
+				// Get a cell of the desired kind.
+				var cell = tableView.DequeueReusableCell (key) ?? new UITableViewCell (UITableViewCellStyle.Subtitle, key);
 
-			// Get a cell of the desired kind.
-			var cell = tableView.DequeueReusableCell (key);
+				var content = cell.DefaultContentConfiguration;
+				content.Text = mountain.Name;
+				content.SecondaryText = formatter.StringFromNumber (NSNumber.FromInt32 (mountain.Height));
+				cell.ContentConfiguration = content;
 
-			if (cell == null)
-				cell = new UITableViewCell (UITableViewCellStyle.Subtitle, key);
-
-			var content = cell.DefaultContentConfiguration;
-			content.Text = mountain?.Name;
-			content.SecondaryText = formatter.StringFromNumber (NSNumber.FromInt32 (mountain!.Height));
-			cell.ContentConfiguration = content;
-
-			// Return the cell.
-			return cell;
+				// Return the cell.
+				return cell;
+			}
+			throw new InvalidOperationException ("MountainsController.Mountain");
 		}
 	}
 
@@ -232,7 +231,7 @@ public partial class TableViewEditingViewController : UIViewController {
 	void ConfigureNavigationItem ()
 	{
 		if (tableView is null)
-			throw new InvalidOperationException ("tableView");
+			throw new InvalidOperationException (nameof (tableView));
 
 		var editingItem = new UIBarButtonItem (tableView.Editing ? "Done" : "Edit", UIBarButtonItemStyle.Plain, ToggleEditing!);
 		NavigationItem.RightBarButtonItem = editingItem;

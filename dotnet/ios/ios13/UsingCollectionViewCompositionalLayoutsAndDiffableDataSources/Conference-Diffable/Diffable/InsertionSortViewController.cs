@@ -51,7 +51,7 @@ public partial class InsertionSortViewController : UIViewController {
 	void ConfigureHierarchy ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		insertionCollectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			BackgroundColor = UIColor.SystemBackgroundColor,
@@ -64,7 +64,7 @@ public partial class InsertionSortViewController : UIViewController {
 	void ConfigureDataSource ()
 	{
 		if (insertionCollectionView is null)
-			throw new InvalidOperationException ("insertionCollectionView");
+			throw new InvalidOperationException (nameof (insertionCollectionView));
 
 		dataSource = new UICollectionViewDiffableDataSource<InsertionSortArray, InsertionSortArray.SortNode> (insertionCollectionView, CellProviderHandler);
 		var snapshot = RandomizedSnapshot (insertionCollectionView.Bounds);
@@ -72,18 +72,18 @@ public partial class InsertionSortViewController : UIViewController {
 
 		UICollectionViewCell CellProviderHandler (UICollectionView collectionView, NSIndexPath indexPath, NSObject obj)
 		{
-			var sortNode = obj as InsertionSortArray.SortNode;
-			// Get a cell of the desired kind.
-			var cell = collectionView.DequeueReusableCell (key, indexPath) as UICollectionViewCell;
+			if (obj is InsertionSortArray.SortNode sortNode) {
+				// Get a cell of the desired kind.
+				if (collectionView.DequeueReusableCell (key, indexPath) is UICollectionViewCell cell) {
+					// Populate the cell with our item description.
+					cell.BackgroundColor = sortNode?.Color;
 
-			if (cell is null)
-				throw new InvalidOperationException ("cell");
-
-			// Populate the cell with our item description.
-			cell.BackgroundColor = sortNode?.Color;
-
-			// Return the cell.
-			return cell;
+					// Return the cell.
+					return cell;
+				}
+				throw new InvalidOperationException ("UICollectionViewCell");
+			}
+			throw new InvalidOperationException ("InsertionSortArray.SortNode");
 		}
 	}
 
@@ -108,7 +108,7 @@ public partial class InsertionSortViewController : UIViewController {
 		var sectionCountNeedingSort = 0;
 
 		if (dataSource is null)
-			throw new InvalidOperationException ("dataSource");
+			throw new InvalidOperationException (nameof (dataSource));
 
 		// grab the current state of the UI from the data source
 		var updatedSnapshot = dataSource.Snapshot;
@@ -139,7 +139,7 @@ public partial class InsertionSortViewController : UIViewController {
 		}
 
 		if (insertionCollectionView is null)
-			throw new InvalidOperationException ("insertionCollectionView");
+			throw new InvalidOperationException (nameof (insertionCollectionView));
 
 		var bounds = insertionCollectionView.Bounds;
 
@@ -162,7 +162,7 @@ public partial class InsertionSortViewController : UIViewController {
 		base.ViewWillTransitionToSize (toSize, coordinator);
 
 		if (insertionCollectionView is null)
-			throw new InvalidOperationException ("insertionCollectionView");
+			throw new InvalidOperationException (nameof (insertionCollectionView));
 
 		var bounds = insertionCollectionView.Bounds;
 		var snapshot = RandomizedSnapshot (bounds);

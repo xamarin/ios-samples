@@ -105,7 +105,7 @@ public partial class DistinctSectionsViewController : UIViewController, IUIColle
 	void ConfigureHierarchy ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		var layout = CreateLayout ();
 		if (layout is null)
@@ -124,7 +124,7 @@ public partial class DistinctSectionsViewController : UIViewController, IUIColle
 	void ConfigureDataSource ()
 	{
 		if (collectionView is null)
-			throw new InvalidOperationException ("collectionView");
+			throw new InvalidOperationException (nameof (collectionView));
 
 		dataSource = new UICollectionViewDiffableDataSource<SectionLayoutKind, NSNumber> (collectionView, CellProviderHandler);
 
@@ -149,34 +149,31 @@ public partial class DistinctSectionsViewController : UIViewController, IUIColle
 
 			if (section == SectionLayoutKind.List) {
 				// Get a cell of the desired kind.
-				var cell = collectionView.DequeueReusableCell (ListCell.Key, indexPath) as ListCell;
+				if (collectionView.DequeueReusableCell (ListCell.Key, indexPath) is ListCell cell) {
 
-				if (cell is null || cell.Label is null)
-					throw new InvalidOperationException ("cell or cell.Label");
+					// Populate the cell with our item description.
+					cell.Label.Text = id.ToString ();
 
-				// Populate the cell with our item description.
-				cell.Label.Text = id.ToString ();
-
-				// Return the cell.
-				return cell;
+					// Return the cell.
+					return cell;
+				}
+				throw new InvalidOperationException ("UICollectionViewCell");
 			} else {
 				// Get a cell of the desired kind.
-				var cell = collectionView.DequeueReusableCell (TextCell.Key, indexPath) as TextCell;
+				if (collectionView.DequeueReusableCell (TextCell.Key, indexPath) is TextCell cell) {
+					// Populate the cell with our item description.
+					cell.Label.Text = id.ToString ();
+					cell.ContentView.BackgroundColor = CornflowerBlue;
+					cell.ContentView.Layer.CornerRadius = section == SectionLayoutKind.Grid5 ? 8 : 0;
+					cell.ContentView.Layer.BorderColor = UIColor.Black.CGColor;
+					cell.ContentView.Layer.BorderWidth = 1;
+					cell.Label.TextAlignment = UITextAlignment.Center;
+					cell.Label.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Title1);
 
-				if (cell is null || cell.Label is null)
-					throw new InvalidOperationException ("cell or cell.Label");
-
-				// Populate the cell with our item description.
-				cell.Label.Text = id.ToString ();
-				cell.ContentView.BackgroundColor = CornflowerBlue;
-				cell.ContentView.Layer.CornerRadius = section == SectionLayoutKind.Grid5 ? 8 : 0;
-				cell.ContentView.Layer.BorderColor = UIColor.Black.CGColor;
-				cell.ContentView.Layer.BorderWidth = 1;
-				cell.Label.TextAlignment = UITextAlignment.Center;
-				cell.Label.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Title1);
-
-				// Return the cell.
-				return cell;
+					// Return the cell.
+					return cell;
+				}
+				throw new InvalidOperationException ("UICollectionViewCell");
 			}
 		}
 	}

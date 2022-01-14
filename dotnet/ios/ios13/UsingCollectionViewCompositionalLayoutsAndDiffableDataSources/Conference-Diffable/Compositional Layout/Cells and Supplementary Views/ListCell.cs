@@ -10,29 +10,26 @@ namespace Conference_Diffable.CompositionalLayout.CellsandSupplementaryViews;
 public partial class ListCell : UICollectionViewCell {
 	public static readonly NSString Key = new NSString (nameof (ListCell));
 
-	public UILabel? Label { get; private set; }
-	public UIImageView? AccessoryImageView { get; private set; }
-	public UIView? SeparatorView { get; private set; }
+	public UILabel Label { get; private set; } = new UILabel {
+			TranslatesAutoresizingMaskIntoConstraints = false,
+			AdjustsFontForContentSizeCategory = true,
+			Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Body)
+		};
+
+	public UIImageView AccessoryImageView { get; private set; } = new UIImageView { TranslatesAutoresizingMaskIntoConstraints = false };
+
+	public UIView SeparatorView { get; private set; } = new UIView {
+			TranslatesAutoresizingMaskIntoConstraints = false,
+			BackgroundColor = UIColor.LightGray
+		};
 
 	[Export ("initWithFrame:")]
 	public ListCell (CGRect frame) : base (frame) => Configure ();
 
 	void Configure ()
 	{
-		SeparatorView = new UIView {
-			TranslatesAutoresizingMaskIntoConstraints = false,
-			BackgroundColor = UIColor.LightGray
-		};
 		ContentView.AddSubview (SeparatorView);
-
-		Label = new UILabel {
-			TranslatesAutoresizingMaskIntoConstraints = false,
-			AdjustsFontForContentSizeCategory = true,
-			Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Body)
-		};
 		ContentView.AddSubview (Label);
-
-		AccessoryImageView = new UIImageView { TranslatesAutoresizingMaskIntoConstraints = false };
 		ContentView.AddSubview (AccessoryImageView);
 
 		SelectedBackgroundView = new UIView { BackgroundColor = UIColor.LightGray.ColorWithAlpha (.3f) };

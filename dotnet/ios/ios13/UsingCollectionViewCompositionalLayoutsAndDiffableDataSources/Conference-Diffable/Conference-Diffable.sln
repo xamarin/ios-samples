@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1700.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conference-Diffable", "Conference-Diffable.csproj", "{38330F3B-5C69-4B13-8AE7-181DEF296559}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conference-Diffable", "Conference-Diffable.csproj", "{A44751BB-6F1D-49B6-B1EC-83DA1ABBC6E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{38330F3B-5C69-4B13-8AE7-181DEF296559}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{38330F3B-5C69-4B13-8AE7-181DEF296559}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{38330F3B-5C69-4B13-8AE7-181DEF296559}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{38330F3B-5C69-4B13-8AE7-181DEF296559}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A44751BB-6F1D-49B6-B1EC-83DA1ABBC6E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A44751BB-6F1D-49B6-B1EC-83DA1ABBC6E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A44751BB-6F1D-49B6-B1EC-83DA1ABBC6E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A44751BB-6F1D-49B6-B1EC-83DA1ABBC6E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

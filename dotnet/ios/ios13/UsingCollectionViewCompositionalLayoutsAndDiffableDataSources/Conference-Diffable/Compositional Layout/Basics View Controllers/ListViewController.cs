@@ -67,7 +67,7 @@ public partial class ListViewController : UIViewController, IUICollectionViewDel
 	void ConfigureHierarchy ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
@@ -82,7 +82,7 @@ public partial class ListViewController : UIViewController, IUICollectionViewDel
 	void ConfigureDataSource ()
 	{
 		if (collectionView is null)
-			throw new InvalidOperationException ("collectionView");
+			throw new InvalidOperationException (nameof (collectionView));
 
 		dataSource = new UICollectionViewDiffableDataSource<Section, NSNumber> (collectionView, CellProviderHandler);
 
@@ -98,16 +98,14 @@ public partial class ListViewController : UIViewController, IUICollectionViewDel
 		{
 			var id = (obj as NSNumber)?.Int32Value;
 			// Get a cell of the desired kind.
-			var cell = collectionView.DequeueReusableCell (ListCell.Key, indexPath) as ListCell;
+			if (collectionView.DequeueReusableCell (ListCell.Key, indexPath) is ListCell cell) {
+				// Populate the cell with our item description.
+				cell.Label.Text = id.ToString ();
 
-			if (cell is null || cell.Label is null)
-				throw new InvalidOperationException ("cell or cell.Label");
-
-			// Populate the cell with our item description.
-			cell.Label.Text = id.ToString ();
-
-			// Return the cell.
-			return cell;
+				// Return the cell.
+				return cell;
+			}
+			throw new InvalidOperationException ("UICollectionViewCell");
 		}
 	}
 

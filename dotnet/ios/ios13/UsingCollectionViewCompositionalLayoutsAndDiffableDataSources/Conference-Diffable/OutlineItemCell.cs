@@ -14,9 +14,14 @@ namespace Conference_Diffable;
 public partial class OutlineItemCell : UICollectionViewCell {
 	public static readonly NSString Key = new NSString (nameof (OutlineItemCell));
 
-	public UILabel? Label { get; private set; }
-	public UIView? ContainerView { get; private set; }
-	public UIImageView? ImageView { get; private set; }
+	public UILabel Label { get; private set; } =
+		new UILabel {
+			TranslatesAutoresizingMaskIntoConstraints = false,
+			Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Headline),
+			AdjustsFontForContentSizeCategory = true
+		};
+	public UIView ContainerView { get; private set; } = new UIView { TranslatesAutoresizingMaskIntoConstraints = false };
+	public UIImageView ImageView { get; private set; } = new UIImageView { TranslatesAutoresizingMaskIntoConstraints = false };
 
 	int indentLevel;
 	public int IndentLevel {
@@ -66,9 +71,6 @@ public partial class OutlineItemCell : UICollectionViewCell {
 
 	public void ConfigureIfNeeded ()
 	{
-		if (Label is not null)
-			return;
-
 		Configure ();
 		ConfigureChevron ();
 	}
@@ -78,18 +80,10 @@ public partial class OutlineItemCell : UICollectionViewCell {
 
 	private void Configure ()
 	{
-		ContainerView = new UIView { TranslatesAutoresizingMaskIntoConstraints = false };
-
-		ImageView = new UIImageView { TranslatesAutoresizingMaskIntoConstraints = false };
 		ContainerView.AddSubview (ImageView);
 
 		ContentView.AddSubview (ContainerView);
 
-		Label = new UILabel {
-			TranslatesAutoresizingMaskIntoConstraints = false,
-			Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Headline),
-			AdjustsFontForContentSizeCategory = true
-		};
 		ContainerView.AddSubview (Label);
 
 		indentConstraint = ContainerView.LeadingAnchor.ConstraintEqualTo (ContentView.LeadingAnchor, inset);
@@ -112,9 +106,6 @@ public partial class OutlineItemCell : UICollectionViewCell {
 
 	void ConfigureChevron ()
 	{
-		if (ImageView is null)
-			throw new InvalidOperationException ("ImageView");
-
 		var rtl = EffectiveUserInterfaceLayoutDirection == UIUserInterfaceLayoutDirection.RightToLeft;
 		var chevron = rtl ? "chevron.left.circle.fill" : "chevron.right.circle.fill";
 		var chevronSelected = rtl ? "chevron.left.circle.fill" : "chevron.right.circle.fill";

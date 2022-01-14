@@ -10,7 +10,13 @@ namespace Conference_Diffable.CompositionalLayout.CellsandSupplementaryViews;
 public partial class BadgeSupplementaryView : UICollectionReusableView {
 	public static readonly NSString Key = new (nameof (BadgeSupplementaryView));
 
-	public UILabel? Label { get; private set; }
+	public UILabel Label { get; private set; } = new UILabel {
+		TranslatesAutoresizingMaskIntoConstraints = false,
+		AdjustsFontForContentSizeCategory = true,
+		Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Caption1),
+		TextAlignment = UITextAlignment.Center,
+		TextColor = UIColor.Black
+	};
 
 	public override CGRect Frame {
 		get => base.Frame;
@@ -33,13 +39,6 @@ public partial class BadgeSupplementaryView : UICollectionReusableView {
 
 	void Configure ()
 	{
-		Label = new UILabel {
-			TranslatesAutoresizingMaskIntoConstraints = false,
-			AdjustsFontForContentSizeCategory = true,
-			Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Caption1),
-			TextAlignment = UITextAlignment.Center,
-			TextColor = UIColor.Black
-		};
 		AddSubview (Label);
 
 		BackgroundColor = UIColor.Green;

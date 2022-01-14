@@ -29,11 +29,7 @@ namespace Conference_Diffable.CompositionalLayout.Controllers {
 			public override int GetHashCode () => HashCode.Combine (base.GetHashCode (), Id);
 		}
 
-		public NewsFeedItem []? News { get; private set; }
-
-		public ConferenceNewsController () => GenerateNews ();
-
-		void GenerateNews () => News = new [] {
+		public NewsFeedItem [] News { get; private set; } = new [] {
 			new NewsFeedItem ("Conference 2019 Registration Now Open", new DateTime (2109, 3, 14), "\"" +
 				"Register by Wednesday, March 20, 2019 at 5:00PM PSD for your chance to join us and thousands\n" +
 				"of coders, creators, and crazy ones at this year's Conference 19 in San Jose, June 3-7.\""),

@@ -100,7 +100,7 @@ public partial class NestedGroupsViewController : UIViewController, IUICollectio
 	void ConfigureHierarchy ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
@@ -114,7 +114,7 @@ public partial class NestedGroupsViewController : UIViewController, IUICollectio
 	void ConfigureDataSource ()
 	{
 		if (collectionView is null)
-			throw new InvalidOperationException ("collectionView");
+			throw new InvalidOperationException (nameof (collectionView));
 
 		dataSource = new UICollectionViewDiffableDataSource<Section, NSNumber> (collectionView, CellProviderHandler);
 
@@ -129,22 +129,20 @@ public partial class NestedGroupsViewController : UIViewController, IUICollectio
 		UICollectionViewCell CellProviderHandler (UICollectionView collectionView, NSIndexPath indexPath, NSObject obj)
 		{
 			// Get a cell of the desired kind.
-			var cell = collectionView.DequeueReusableCell (TextCell.Key, indexPath) as TextCell;
+			if (collectionView.DequeueReusableCell (TextCell.Key, indexPath) is TextCell cell){
+				// Populate the cell with our item description.
+				cell.Label.Text = $"{indexPath.Section}, {indexPath.Row}";
+				cell.ContentView.BackgroundColor = CornflowerBlue;
+				cell.ContentView.Layer.BorderColor = UIColor.Black.CGColor;
+				cell.ContentView.Layer.BorderWidth = 1;
+				cell.ContentView.Layer.CornerRadius = 8;
+				cell.Label.TextAlignment = UITextAlignment.Center;
+				cell.Label.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Title1);
 
-			if (cell is null || cell.Label is null)
-				throw new InvalidOperationException ("cell or cell.Label");
-
-			// Populate the cell with our item description.
-			cell.Label.Text = $"{indexPath.Section}, {indexPath.Row}";
-			cell.ContentView.BackgroundColor = CornflowerBlue;
-			cell.ContentView.Layer.BorderColor = UIColor.Black.CGColor;
-			cell.ContentView.Layer.BorderWidth = 1;
-			cell.ContentView.Layer.CornerRadius = 8;
-			cell.Label.TextAlignment = UITextAlignment.Center;
-			cell.Label.Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Title1);
-
-			// Return the cell.
-			return cell;
+				// Return the cell.
+				return cell;
+			}
+			return new UICollectionViewCell ();
 		}
 	}
 

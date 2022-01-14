@@ -15,8 +15,5 @@ public class AppDelegate : UIApplicationDelegate {
 		return true;
 	}
 
-
-	public static UIColor CornflowerBlue {
-		get => UIColor.FromDisplayP3 (100.0f / 255.0f, 149.0f / 255.0f, 237.0f / 255.0f, 1.0f);
-	}
+	public static UIColor CornflowerBlue => UIColor.FromDisplayP3 (100.0f / 255.0f, 149.0f / 255.0f, 237.0f / 255.0f, 1.0f);
 }

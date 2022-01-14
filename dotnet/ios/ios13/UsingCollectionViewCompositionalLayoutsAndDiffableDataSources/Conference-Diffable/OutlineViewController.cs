@@ -47,7 +47,7 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 		public OutlineItem []? Subitems { get; private set; }
 		public UIViewController? OutlineViewController { get; private set; }
 		public bool Expanded { get; set; }
-		public bool IsGroup { get => OutlineViewController == null; }
+		public bool IsGroup { get => OutlineViewController is null; }
 
 		public OutlineItem (string title, int indentLevel = 0, UIViewController? outlineViewController = null, OutlineItem []? subitems = null)
 		{
@@ -89,62 +89,56 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 
 	UICollectionViewDiffableDataSource<Section, OutlineItem>? dataSource;
 	UICollectionView? outlineCollectionView;
-	OutlineItem []? menuItems;
+	OutlineItem [] menuItems = new [] {
+		new OutlineItem ("Compositional Layout", subitems: new [] {
+			new OutlineItem ("Getting Started", 1, subitems: new [] {
+				new OutlineItem ("List", 2, new ListViewController ()),
+				new OutlineItem ("Grid", 2, new GridViewController ()),
+				new OutlineItem ("Inset Items Grid", 2, new InsetItemsGridViewController ()),
+				new OutlineItem ("Two-Column Grid", 2, new TwoColumnViewController ()),
+				new OutlineItem ("Per-Section Layout", 2, subitems: new [] {
+					new OutlineItem ("Distinct Sections", 3, new DistinctSectionsViewController ()),
+					new OutlineItem ("Adaptive Sections", 3, new AdaptiveSectionsViewController ())
+				})
+			}),
+			new OutlineItem ("Advanced Layouts", 1, subitems: new [] {
+				new OutlineItem ("Supplementary Views", 2, subitems: new [] {
+					new OutlineItem ("Item Badges", 3, new ItemBadgeSupplementaryViewController ()),
+					new OutlineItem ("Section Headers/Footers", 3, new SectionHeadersFootersViewController ()),
+					new OutlineItem ("Pinnned Section Headers", 3, new PinnedSectionHeaderFooterViewController ()),
+				}),
+				new OutlineItem ("Section Background Decoration", 2, new SectionDecorationViewController ()),
+				new OutlineItem ("Nested Groups", 2, new NestedGroupsViewController ()),
+				new OutlineItem ("Orthogonal Sections", 2, subitems: new [] {
+					new OutlineItem ("Orthogonal Sections", 3, new OrthogonalScrollingViewController ()),
+					new OutlineItem ("Orthogonal Section Behaviors", 3, new OrthogonalScrollBehaviorViewController ()),
+				}),
+			}),
+			new OutlineItem ("Conference App", 1, subitems: new [] {
+				new OutlineItem ("Videos", 2, new ConferenceVideoSessionsViewController ()),
+				new OutlineItem ("News", 2, new ConferenceNewsFeedViewController ()),
+			}),
+		}),
+		new OutlineItem ("Diffable Data Source", subitems: new [] {
+			new OutlineItem ("Mountains Search", 1, new MountainsViewController ()),
+			new OutlineItem ("Settings: Wi-Fi", 1, new WiFiSettingsViewController ()),
+			new OutlineItem ("Insertion Sort Visualization", 1, new InsertionSortViewController ()),
+			new OutlineItem ("UITableView: Editing", 1, new TableViewEditingViewController ()),
+		})
+	};
 
 	public override void ViewDidLoad ()
 	{
 		base.ViewDidLoad ();
 		NavigationItem.Title = "Diffable + CompLayout";
-		GenerateMenuItems ();
 		ConfigureCollectionView ();
 		ConfigureDataSource ();
-	}
-
-	void GenerateMenuItems ()
-	{
-		menuItems = new [] {
-			new OutlineItem ("Compositional Layout", subitems: new [] {
-				new OutlineItem ("Getting Started", 1, subitems: new [] {
-					new OutlineItem ("List", 2, new ListViewController ()),
-					new OutlineItem ("Grid", 2, new GridViewController ()),
-					new OutlineItem ("Inset Items Grid", 2, new InsetItemsGridViewController ()),
-					new OutlineItem ("Two-Column Grid", 2, new TwoColumnViewController ()),
-					new OutlineItem ("Per-Section Layout", 2, subitems: new [] {
-						new OutlineItem ("Distinct Sections", 3, new DistinctSectionsViewController ()),
-						new OutlineItem ("Adaptive Sections", 3, new AdaptiveSectionsViewController ())
-					})
-				}),
-				new OutlineItem ("Advanced Layouts", 1, subitems: new [] {
-					new OutlineItem ("Supplementary Views", 2, subitems: new [] {
-						new OutlineItem ("Item Badges", 3, new ItemBadgeSupplementaryViewController ()),
-						new OutlineItem ("Section Headers/Footers", 3, new SectionHeadersFootersViewController ()),
-						new OutlineItem ("Pinnned Section Headers", 3, new PinnedSectionHeaderFooterViewController ()),
-					}),
-					new OutlineItem ("Section Background Decoration", 2, new SectionDecorationViewController ()),
-					new OutlineItem ("Nested Groups", 2, new NestedGroupsViewController ()),
-					new OutlineItem ("Orthogonal Sections", 2, subitems: new [] {
-						new OutlineItem ("Orthogonal Sections", 3, new OrthogonalScrollingViewController ()),
-						new OutlineItem ("Orthogonal Section Behaviors", 3, new OrthogonalScrollBehaviorViewController ()),
-					}),
-				}),
-				new OutlineItem ("Conference App", 1, subitems: new [] {
-					new OutlineItem ("Videos", 2, new ConferenceVideoSessionsViewController ()),
-					new OutlineItem ("News", 2, new ConferenceNewsFeedViewController ()),
-				}),
-			}),
-			new OutlineItem ("Diffable Data Source", subitems: new [] {
-				new OutlineItem ("Mountains Search", 1, new MountainsViewController ()),
-				new OutlineItem ("Settings: Wi-Fi", 1, new WiFiSettingsViewController ()),
-				new OutlineItem ("Insertion Sort Visualization", 1, new InsertionSortViewController ()),
-				new OutlineItem ("UITableView: Editing", 1, new TableViewEditingViewController ()),
-			})
-		};
 	}
 
 	void ConfigureCollectionView ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		var collectionView = new UICollectionView (View.Bounds, GenerateLayout ());
 		View.AddSubview (collectionView);
@@ -158,7 +152,7 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 	void ConfigureDataSource ()
 	{
 		if (outlineCollectionView is null)
-			throw new InvalidOperationException ("outlineCollectionView");
+			throw new InvalidOperationException (nameof (outlineCollectionView));
 
 		dataSource = new UICollectionViewDiffableDataSource<Section, OutlineItem> (outlineCollectionView, CellProviderHandler);
 
@@ -168,25 +162,19 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 
 		UICollectionViewCell CellProviderHandler (UICollectionView collectionView, NSIndexPath indexPath, NSObject obj)
 		{
-			var menuItem = obj as OutlineItem;
-			var cell = collectionView.DequeueReusableCell (OutlineItemCell.Key, indexPath) as OutlineItemCell;
+			if (obj is OutlineItem menuItem) {
+				if (collectionView.DequeueReusableCell (OutlineItemCell.Key, indexPath) is OutlineItemCell cell) {
+				cell.ConfigureIfNeeded ();
 
-			if (cell is null)
-				throw new InvalidOperationException ("cell");
-
-			cell.ConfigureIfNeeded ();
-
-			if (cell.Label is null)
-				throw new InvalidOperationException ("cell.Label");
-
-			if (menuItem is null)
+				cell.Label.Text = menuItem.Title;
+				cell.IndentLevel = menuItem.IndentLevel;
+				cell.Group = menuItem.IsGroup;
+				cell.Expanded = menuItem.Expanded;
 				return cell;
-
-			cell.Label.Text = menuItem.Title;
-			cell.IndentLevel = menuItem.IndentLevel;
-			cell.Group = menuItem.IsGroup;
-			cell.Expanded = menuItem.Expanded;
-			return cell;
+			}
+			throw new InvalidOperationException ("UICollectionViewCell");
+			}
+			throw new InvalidOperationException ("OutlineItem");
 		}
 	}
 
@@ -219,9 +207,8 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 					AddItems (item);
 		}
 
-		if (menuItems is not null)
-			foreach (var menuItem in menuItems)
-				AddItems (menuItem);
+		foreach (var menuItem in menuItems)
+			AddItems (menuItem);
 
 		return snapshot;
 	}
@@ -257,7 +244,7 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 				});
 			}
 		} else {
-			if (menuItem.OutlineViewController == null)
+			if (menuItem.OutlineViewController is null)
 				return;
 
 			var navigationController = new UINavigationController (menuItem.OutlineViewController);

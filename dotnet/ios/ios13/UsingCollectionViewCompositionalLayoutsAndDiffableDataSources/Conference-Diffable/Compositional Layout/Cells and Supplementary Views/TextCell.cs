@@ -10,18 +10,17 @@ namespace Conference_Diffable.CompositionalLayout.CellsandSupplementaryViews;
 public partial class TextCell : UICollectionViewCell {
 	public static readonly NSString Key = new (nameof (TextCell));
 
-	public UILabel? Label { get; private set; }
+	public UILabel Label { get; private set; } = new UILabel {
+		TranslatesAutoresizingMaskIntoConstraints = false,
+		AdjustsFontForContentSizeCategory = true,
+		Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Caption1)
+	};
 
 	[Export ("initWithFrame:")]
 	public TextCell (CGRect frame) : base (frame) => Configure ();
 
 	void Configure ()
 	{
-		Label = new UILabel {
-			TranslatesAutoresizingMaskIntoConstraints = false,
-			AdjustsFontForContentSizeCategory = true,
-			Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Caption1)
-		};
 		ContentView.AddSubview (Label);
 
 		var inset = 10f;

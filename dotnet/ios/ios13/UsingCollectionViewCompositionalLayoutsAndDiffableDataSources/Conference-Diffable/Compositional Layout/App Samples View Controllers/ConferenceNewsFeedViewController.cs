@@ -60,7 +60,7 @@ public partial class ConferenceNewsFeedViewController : UIViewController {
 	void ConfigureHierarchy ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			TranslatesAutoresizingMaskIntoConstraints = false,
@@ -78,7 +78,7 @@ public partial class ConferenceNewsFeedViewController : UIViewController {
 	void ConfigureDataSource ()
 	{
 		if (collectionView is null)
-			throw new InvalidOperationException ("collectionView");
+			throw new InvalidOperationException (nameof (collectionView));
 
 		var newsController = new ConferenceNewsController ();
 		dataSource = new UICollectionViewDiffableDataSource<Section, ConferenceNewsController.NewsFeedItem> (collectionView, CellProviderHandler);
@@ -94,23 +94,22 @@ public partial class ConferenceNewsFeedViewController : UIViewController {
 
 		UICollectionViewCell CellProviderHandler (UICollectionView collectionView, NSIndexPath indexPath, NSObject obj)
 		{
-			var newsItem = obj as ConferenceNewsController.NewsFeedItem;
+			if (obj is ConferenceNewsController.NewsFeedItem newsItem) {
+				// Get a cell of the desired kind.
+				if (collectionView.DequeueReusableCell (ConferenceNewsFeedCell.Key, indexPath) is ConferenceNewsFeedCell cell)
+				{
+					// Populate the cell with our item description.
+					cell.TitleLabel.Text = newsItem.Title;
+					cell.BodyLabel.Text = newsItem.Body;
+					cell.DateLabel.Text = newsItem.Date.ToShortDateString();
+					cell.ShowsSeparator = indexPath.Item != newsController.News.Length - 1;
 
-			// Get a cell of the desired kind.
-			var cell = collectionView.DequeueReusableCell (ConferenceNewsFeedCell.Key, indexPath) as ConferenceNewsFeedCell;
-
-			if (cell is null || cell.TitleLabel is null || cell.BodyLabel is null || cell.DateLabel is null)
-				throw new InvalidOperationException ("cell, cell.Label, cell.BodyLabel, or cell.DateLabel");
-
-			// Populate the cell with our item description.
-			cell.TitleLabel.Text = newsItem?.Title;
-			cell.BodyLabel.Text = newsItem?.Body;
-			cell.DateLabel.Text = newsItem?.Date.ToShortDateString ();
-			if (newsController.News is not null)
-				cell.ShowsSeparator = indexPath.Item != newsController.News.Length - 1;
-
-			// Return the cell.
-			return cell;
+					// Return the cell.
+					return cell;
+				}
+				throw new InvalidOperationException ("UICollectionViewCell");
+			}
+			throw new InvalidOperationException ("ConferenceNewsController.NewsFeedItem");
 		}
 	}
 }

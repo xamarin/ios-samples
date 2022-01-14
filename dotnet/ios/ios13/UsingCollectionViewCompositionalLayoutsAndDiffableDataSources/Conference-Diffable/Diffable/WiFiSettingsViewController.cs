@@ -127,7 +127,7 @@ public class WiFiSettingsViewController : UIViewController {
 		};
 
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		View.AddSubview (tableView);
 		tableView.RegisterClassForCellReuse (typeof (UITableViewCell), key);
@@ -143,7 +143,7 @@ public class WiFiSettingsViewController : UIViewController {
 		wifiController = new WIFIController (wifiController => UpdateUI ());
 
 		if (tableView is null)
-			throw new InvalidOperationException ("tableView");
+			throw new InvalidOperationException (nameof (tableView));
 
 		dataSource = new UITableViewDiffableDataSource<Section, Item> (tableView, CellProviderHandler);
 		dataSource.DefaultRowAnimation = UITableViewRowAnimation.Fade;
@@ -151,53 +151,50 @@ public class WiFiSettingsViewController : UIViewController {
 
 		UITableViewCell CellProviderHandler (UITableView tableView, NSIndexPath indexPath, NSObject obj)
 		{
-			var item = obj as Item;
+			if (obj is Item item) {
+				// Get a cell of the desired kind.
+				var cell = tableView.DequeueReusableCell (key, indexPath);
+				var content = cell.DefaultContentConfiguration;
 
-			if (item is null)
-				throw new InvalidOperationException ("item");
-
-			// Get a cell of the desired kind.
-			var cell = tableView.DequeueReusableCell (key, indexPath);
-			var content = cell.DefaultContentConfiguration;
-
-			// network cell
-			if (item.IsNetwork) {
-				content.Text = item.Title;
-				cell.ContentConfiguration = content;
-				cell.Accessory = UITableViewCellAccessory.DetailDisclosureButton;
-				cell.AccessoryView = null;
-			} else if (item.IsConfig) {
-				// configuration cells
-				content.Text = item.Title;
-				cell.ContentConfiguration = content;
-
-				if (item.Type == ItemType.WifiEnabled) {
-					var enableWifiSwitch = new UISwitch { On = wifiController.WifiEnabled };
-					enableWifiSwitch.ValueChanged += EnableWifiSwitch_ValueChanged;
-					cell.AccessoryView = enableWifiSwitch;
-				} else {
-					cell.AccessoryView = null;
+				// network cell
+				if (item.IsNetwork) {
+					content.Text = item.Title;
+					cell.ContentConfiguration = content;
 					cell.Accessory = UITableViewCellAccessory.DetailDisclosureButton;
-				}
-			}
+					cell.AccessoryView = null;
+				} else if (item.IsConfig) {
+					// configuration cells
+					content.Text = item.Title;
+					cell.ContentConfiguration = content;
 
-			// Return the cell.
-			return cell;
+					if (item.Type == ItemType.WifiEnabled) {
+						var enableWifiSwitch = new UISwitch { On = wifiController.WifiEnabled };
+						enableWifiSwitch.ValueChanged += EnableWifiSwitch_ValueChanged;
+						cell.AccessoryView = enableWifiSwitch;
+					} else {
+						cell.AccessoryView = null;
+						cell.Accessory = UITableViewCellAccessory.DetailDisclosureButton;
+					}
+				}
+				// Return the cell.
+				return cell;
+			}
+			throw new InvalidOperationException ("UITableViewCell");
 		}
 	}
 
 	void UpdateUI (bool animated = true)
 	{
 		if (dataSource is null)
-			throw new InvalidOperationException ("dataSource");
+			throw new InvalidOperationException (nameof (dataSource));
 
 		if (wifiController is null)
-			throw new InvalidOperationException ("wifiController");
+			throw new InvalidOperationException (nameof (wifiController));
 
 		var configItems = configurationItems?.Where (c => !(c.Type == ItemType.CurrentNetwork && !wifiController.WifiEnabled)).ToArray ();
 
 		if (configItems is null)
-			throw new InvalidOperationException ("configItems");
+			throw new InvalidOperationException (nameof (configItems));
 
 		currentSnapshot = new NSDiffableDataSourceSnapshot<Section, Item> ();
 		currentSnapshot.AppendSections (new [] { Section.Config });
@@ -218,7 +215,7 @@ public class WiFiSettingsViewController : UIViewController {
 		if ( (sender as UISwitch) is not null)
 		{
 			if (wifiController is null)
-				throw new InvalidOperationException ("wifiController");
+				throw new InvalidOperationException (nameof (wifiController));
 			wifiController.WifiEnabled = (sender as UISwitch)!.On;
 		}
 		UpdateUI ();
