@@ -4,9 +4,9 @@ public partial class LanguageTokenizerViewController : UIViewController, IUIText
 {
     const string ShowTokensSegue = "ShowTokensSegue";
 
-    NSValue[]? tokens;
+    NSValue[] tokens = Array.Empty<NSValue> ();
 
-    public LanguageTokenizerViewController (IntPtr handle) : base (handle) { }
+    protected LanguageTokenizerViewController (IntPtr handle) : base (handle) { }
 
     partial void HandleFindSentencesTap (UIButton sender)
     {
@@ -21,12 +21,9 @@ public partial class LanguageTokenizerViewController : UIViewController, IUIText
     public override void PrepareForSegue (UIStoryboardSegue segue, NSObject? sender)
     {
         base.PrepareForSegue (segue, sender);
-        var destination = segue.DestinationViewController as LanguageTokenizerTableViewController;
-        if (destination is not null)
-        {
-            if (tokens is not null)
-                destination.Tokens = tokens;
-            if (UserInput is not null && UserInput.Text is not null)
+        if (segue.DestinationViewController is LanguageTokenizerTableViewController destination) {
+            destination.Tokens = tokens;
+            if (UserInput.Text is not null)
                 destination.Text = UserInput.Text;
         }
     }
@@ -48,8 +45,9 @@ public partial class LanguageTokenizerViewController : UIViewController, IUIText
     {
         if (!String.IsNullOrWhiteSpace (UserInput.Text))
         {
-            var tokenizer = new NLTokenizer (unit);
-            tokenizer.String = UserInput.Text;
+            var tokenizer = new NLTokenizer (unit) {
+                String = UserInput.Text,
+            };
             var range = new NSRange (0, UserInput.Text.Length);
             tokens = tokenizer.GetTokens (range);
             PerformSegue (ShowTokensSegue, this);

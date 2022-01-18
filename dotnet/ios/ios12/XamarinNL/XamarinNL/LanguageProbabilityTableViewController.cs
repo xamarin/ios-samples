@@ -1,12 +1,10 @@
-global using NaturalLanguage;
-
 namespace XamarinNL;
 
 public partial class LanguageProbabilityTableViewController : UITableViewController
 {
     const string LanguageProbabilityCell = "LanguageProbabilityCell";
 
-    NSString[]? sortedLanguages;
+    NSString[] sortedLanguages = Array.Empty<NSString> ();
 
     NSDictionary<NSString, NSNumber>? probabilities;
     public NSDictionary<NSString, NSNumber>? Probabilities
@@ -19,35 +17,28 @@ public partial class LanguageProbabilityTableViewController : UITableViewControl
         }
     }
 
-    public LanguageProbabilityTableViewController (IntPtr handle) : base (handle) { }
+    protected LanguageProbabilityTableViewController (IntPtr handle) : base (handle) { }
 
-    public override nint RowsInSection (UITableView tableView, nint section)
-    {
-        if (sortedLanguages is null)
-            return 0;
-
-        return sortedLanguages.Length;
-    }
+    public override nint RowsInSection (UITableView tableView, nint section) => sortedLanguages.Length;
 
     public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
     {
-        var cell = TableView.DequeueReusableCell(LanguageProbabilityCell) ?? throw new InvalidOperationException ("cell");
+        if (TableView.DequeueReusableCell (LanguageProbabilityCell) is UITableViewCell cell)
+		{
+            var languageAbbreviation = sortedLanguages[indexPath.Row];
+            var language = NLLanguageExtensions.GetValue (languageAbbreviation);
 
-        if (sortedLanguages is null)
-            throw new InvalidOperationException (nameof (sortedLanguages));
+            var content = cell.DefaultContentConfiguration;
+            content.Text = language.ToString ();
 
-        NSString languageAbbreviation = sortedLanguages[indexPath.Row];
-        NLLanguage language = NLLanguageExtensions.GetValue (languageAbbreviation);
+            if (probabilities is not null)
+                content.SecondaryText = probabilities[languageAbbreviation].ToString ();
 
-        var content = cell.DefaultContentConfiguration;
-        content.Text = language.ToString ();
+            cell.ContentConfiguration = content;
 
-        if (probabilities is not null)
-            content.SecondaryText = probabilities[languageAbbreviation].ToString ();
-
-        cell.ContentConfiguration = content;
-
-        return cell;
+            return cell;
+        }
+        throw new InvalidOperationException ("UITableViewCell");
     }
 
     public override void ViewDidLoad ()

@@ -6,7 +6,7 @@ public partial class LanguageRecognizerViewController : UIViewController, IUITex
 
     NSDictionary<NSString, NSNumber>? probabilities;
 
-    public LanguageRecognizerViewController (IntPtr handle) : base (handle) { }
+    protected LanguageRecognizerViewController (IntPtr handle) : base (handle) { }
 
     partial void HandleLanguageProbabilitiesButtonTap (UIButton sender)
     {
@@ -33,10 +33,11 @@ public partial class LanguageRecognizerViewController : UIViewController, IUITex
     public override void PrepareForSegue (UIStoryboardSegue segue, NSObject? sender)
     {
         base.PrepareForSegue (segue, sender);
-        var destination = segue.DestinationViewController as LanguageProbabilityTableViewController;
-        if (destination is not null && probabilities is not null)
-        {
-            destination.Probabilities = probabilities;
+        if (segue.DestinationViewController is LanguageProbabilityTableViewController destination) {
+            if (probabilities is not null)
+            {
+                destination.Probabilities = probabilities;
+            }
         }
     }
 
