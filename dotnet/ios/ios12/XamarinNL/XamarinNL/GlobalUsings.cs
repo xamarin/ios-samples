@@ -5,5 +5,3 @@ namespace XamarinNL;
 public class GlobalUsings
 {
 }
-
-
