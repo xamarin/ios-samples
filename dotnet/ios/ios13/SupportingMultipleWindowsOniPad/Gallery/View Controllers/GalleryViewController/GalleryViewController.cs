@@ -52,11 +52,8 @@ public partial class GalleryViewController : UIViewController, IUICollectionView
 		if (indexPath.Section >= 0 && indexPath.Section < PhotoSections.Length && indexPath.Row >= 0
 		&& indexPath.Row < PhotoSections[indexPath.Section].Photos.Length) {
 
-			if (PhotoSections[indexPath.Section].Photos[indexPath.Row] is null)
-				return false;
-
 			photo = PhotoSections[indexPath.Section].Photos[indexPath.Row];
-			return true;
+			return photo is not null;
 		}
 		return false;
 	}

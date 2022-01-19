@@ -23,7 +23,7 @@ public partial class PhotoDetailViewController : UIViewController {
 	{
 		base.ViewWillAppear (animated);
 
-		if (Photo is not null && Photo.Name is not null)
+		if (Photo?.Name is not null)
 			imageView.Image = UIImage.FromFile (Photo.Name);
 	}
 
@@ -31,7 +31,7 @@ public partial class PhotoDetailViewController : UIViewController {
 	{
 		base.ViewDidAppear (animated);
 
-		if (View is not null && View.Window.WindowScene is not null)
+		if (View?.Window.WindowScene is not null)
 			View.Window.WindowScene.UserActivity = Photo?.OpenDetailUserActivity ();
 	}
 
@@ -39,7 +39,7 @@ public partial class PhotoDetailViewController : UIViewController {
 	{
 		base.ViewWillDisappear (animated);
 
-		if (View is not null && View.Window.WindowScene is not null)
+		if (View?.Window.WindowScene is not null)
 			View.Window.WindowScene.UserActivity = null;
 	}
 
