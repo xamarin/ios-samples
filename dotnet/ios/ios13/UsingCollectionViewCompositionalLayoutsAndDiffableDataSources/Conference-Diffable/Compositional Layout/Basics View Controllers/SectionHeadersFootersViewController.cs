@@ -44,8 +44,7 @@ public partial class SectionHeadersFootersViewController : UIViewController, IUI
 		var sectionFooter = NSCollectionLayoutBoundarySupplementaryItem.Create (headerFooterSize, sectionFooterElementKind, NSRectAlignment.Bottom);
 		section.BoundarySupplementaryItems = new [] { sectionHeader, sectionFooter };
 
-		var layout = new UICollectionViewCompositionalLayout (section);
-		return layout;
+		return new UICollectionViewCompositionalLayout (section);
 	}
 
 	void ConfigureHierarchy ()

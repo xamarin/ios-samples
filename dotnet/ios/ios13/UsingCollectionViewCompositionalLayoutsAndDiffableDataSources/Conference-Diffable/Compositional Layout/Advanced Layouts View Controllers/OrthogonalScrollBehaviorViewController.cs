@@ -34,9 +34,7 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 		}
 
 		public static SectionKind GetSectionKind (nint sectionIndex)
-		{
-			return (int)sectionIndex switch
-			{
+			=> (int)sectionIndex switch {
 				-1 => Unknown,
 				0 => Continuous,
 				1 => ContinuousGroupLeadingBoundary,
@@ -46,12 +44,9 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 				5 => None,
 				_ => Unknown,
 			};
-		}
 
 		public UICollectionLayoutSectionOrthogonalScrollingBehavior GetOrthogonalScrollingBehavior ()
-		{
-			return EnumValue switch
-			{
+			=> EnumValue switch {
 				0 => UICollectionLayoutSectionOrthogonalScrollingBehavior.Continuous,
 				1 => UICollectionLayoutSectionOrthogonalScrollingBehavior.ContinuousGroupLeadingBoundary,
 				2 => UICollectionLayoutSectionOrthogonalScrollingBehavior.Paging,
@@ -60,7 +55,6 @@ public partial class OrthogonalScrollBehaviorViewController : UIViewController, 
 				5 => UICollectionLayoutSectionOrthogonalScrollingBehavior.None,
 				_ => UICollectionLayoutSectionOrthogonalScrollingBehavior.None,
 			};
-		}
 
 		public static bool operator == (SectionKind left, SectionKind right)
 		{

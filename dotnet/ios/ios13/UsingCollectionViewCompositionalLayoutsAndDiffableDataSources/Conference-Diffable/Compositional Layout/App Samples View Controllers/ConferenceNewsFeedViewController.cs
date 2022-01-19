@@ -53,8 +53,7 @@ public partial class ConferenceNewsFeedViewController : UIViewController {
 		var section = NSCollectionLayoutSection.Create (group);
 		section.ContentInsets = new NSDirectionalEdgeInsets (10, 10, 10, 10);
 		section.InterGroupSpacing = 10;
-		var layout = new UICollectionViewCompositionalLayout (section);
-		return layout;
+		return new UICollectionViewCompositionalLayout (section);
 	}
 
 	void ConfigureHierarchy ()

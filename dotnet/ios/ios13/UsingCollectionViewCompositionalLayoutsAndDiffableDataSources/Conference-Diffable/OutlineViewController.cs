@@ -140,11 +140,12 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 		if (View is null)
 			throw new InvalidOperationException (nameof (View));
 
-		var collectionView = new UICollectionView (View.Bounds, GenerateLayout ());
+		var collectionView = new UICollectionView (View.Bounds, GenerateLayout ()) {
+			AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth,
+			BackgroundColor = UIColor.SystemBackgroundColor,
+			Delegate = this,
+		};
 		View.AddSubview (collectionView);
-		collectionView.AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth;
-		collectionView.BackgroundColor = UIColor.SystemBackgroundColor;
-		collectionView.Delegate = this;
 		collectionView.RegisterClassForCell (typeof (OutlineItemCell), OutlineItemCell.Key);
 		outlineCollectionView = collectionView;
 	}
@@ -164,15 +165,15 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 		{
 			if (obj is OutlineItem menuItem) {
 				if (collectionView.DequeueReusableCell (OutlineItemCell.Key, indexPath) is OutlineItemCell cell) {
-				cell.ConfigureIfNeeded ();
+					cell.ConfigureIfNeeded ();
 
-				cell.Label.Text = menuItem.Title;
-				cell.IndentLevel = menuItem.IndentLevel;
-				cell.Group = menuItem.IsGroup;
-				cell.Expanded = menuItem.Expanded;
-				return cell;
-			}
-			throw new InvalidOperationException ("UICollectionViewCell");
+					cell.Label.Text = menuItem.Title;
+					cell.IndentLevel = menuItem.IndentLevel;
+					cell.Group = menuItem.IsGroup;
+					cell.Expanded = menuItem.Expanded;
+					return cell;
+				}
+				throw new InvalidOperationException ("UICollectionViewCell");
 			}
 			throw new InvalidOperationException ("OutlineItem");
 		}
@@ -190,8 +191,7 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 		var section = NSCollectionLayoutSection.Create (group);
 		section.ContentInsets = new NSDirectionalEdgeInsets (0, 10, 0, 10);
 
-		var layout = new UICollectionViewCompositionalLayout (section);
-		return layout;
+		return new UICollectionViewCompositionalLayout (section);
 	}
 
 	NSDiffableDataSourceSnapshot<Section, OutlineItem> GetSnapshotForCurrentState ()

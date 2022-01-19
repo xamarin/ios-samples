@@ -64,8 +64,7 @@ public partial class TwoColumnViewController : UIViewController {
 		section.InterGroupSpacing = spacing;
 		section.ContentInsets = new NSDirectionalEdgeInsets (0, 10, 0, 10);
 
-		var layout = new UICollectionViewCompositionalLayout (section);
-		return layout;
+		return new UICollectionViewCompositionalLayout (section);
 	}
 
 	void ConfigureHierarchy ()

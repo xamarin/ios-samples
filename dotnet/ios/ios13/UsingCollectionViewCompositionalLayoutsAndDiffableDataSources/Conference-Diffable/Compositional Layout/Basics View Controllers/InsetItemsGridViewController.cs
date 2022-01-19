@@ -61,8 +61,7 @@ public partial class InsetItemsGridViewController : UIViewController {
 			
 		var section = NSCollectionLayoutSection.Create (group);
 
-		var layout = new UICollectionViewCompositionalLayout (section);
-		return layout;
+		return new UICollectionViewCompositionalLayout (section);
 	}
 
 	void ConfigureHierarchy ()

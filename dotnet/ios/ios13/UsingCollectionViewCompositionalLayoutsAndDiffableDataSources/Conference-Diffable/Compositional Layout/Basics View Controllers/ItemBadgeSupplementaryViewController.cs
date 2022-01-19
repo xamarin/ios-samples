@@ -83,8 +83,7 @@ public partial class ItemBadgeSupplementaryViewController : UIViewController {
 		var section = NSCollectionLayoutSection.Create (group);
 		section.ContentInsets = new NSDirectionalEdgeInsets (20, 20, 20, 20);
 
-		var layout = new UICollectionViewCompositionalLayout (section);
-		return layout;
+		return new UICollectionViewCompositionalLayout (section);
 	}
 
 	void ConfigureHierarchy ()

@@ -71,8 +71,7 @@ public class WiFiSettingsViewController : UIViewController {
 
 		public bool IsConfig {
 			get {
-				var configItems = new List<ItemType> (new [] { ItemType.CurrentNetwork, ItemType.WifiEnabled });
-				return configItems.Contains (Type);
+				return Type == ItemType.CurrentNetwork || Type == ItemType.WifiEnabled;
 			}
 		}
 

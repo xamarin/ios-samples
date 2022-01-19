@@ -65,7 +65,8 @@ public partial class WIFIController {
 		if (WifiEnabled && ScanForNetworks) {
 			var updatedNetworks = new List<Network> ();
 
-			if (AvailableNetworks is not null) updatedNetworks.AddRange (AvailableNetworks);
+			if (AvailableNetworks is not null)
+				updatedNetworks.AddRange (AvailableNetworks);
 
 			if (updatedNetworks.Count == 0) {
 				AvailableNetworks = allNetworks;

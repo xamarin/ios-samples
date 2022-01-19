@@ -95,7 +95,8 @@ public partial class InsertionSortViewController : UIViewController {
 		{
 			sorting = !sorting;
 
-			if (sorting) PerformSortStep ();
+			if (sorting)
+				PerformSortStep ();
 
 			ConfigureNavItem ();
 		}
@@ -103,7 +104,8 @@ public partial class InsertionSortViewController : UIViewController {
 
 	private void PerformSortStep ()
 	{
-		if (!sorting) return;
+		if (!sorting)
+			return;
 
 		var sectionCountNeedingSort = 0;
 
@@ -115,7 +117,8 @@ public partial class InsertionSortViewController : UIViewController {
 
 		// for each section, if needed, step through and perform the next sorting step
 		foreach (var section in updatedSnapshot.SectionIdentifiers) {
-			if (section.Sorted) continue;
+			if (section.Sorted)
+				continue;
 
 			// step the sort algorthim
 			section.SortNext ();

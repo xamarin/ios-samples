@@ -46,8 +46,7 @@ public partial class PinnedSectionHeaderFooterViewController : UIViewController,
 		sectionHeader.ZIndex = 2;
 		section.BoundarySupplementaryItems = new [] { sectionHeader, sectionFooter };
 
-		var layout = new UICollectionViewCompositionalLayout (section);
-		return layout;
+		return new UICollectionViewCompositionalLayout (section);
 	}
 
 	void ConfigureHierarchy ()
