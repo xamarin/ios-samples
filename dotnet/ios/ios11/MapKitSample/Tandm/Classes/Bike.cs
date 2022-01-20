@@ -3,20 +3,20 @@
 public class Bike : MKPointAnnotation
 {
 	#region Static Methods
-	public static Bike[] FromDictionaryArray(NSArray dictionaryArray) {
-		var bikes = new List<Bike>();
+	public static Bike[] FromDictionaryArray (NSArray dictionaryArray) {
+		var bikes = new List<Bike> ();
 
 		for (nuint n = 0; n < dictionaryArray.Count; ++n){
-			var dictionary = dictionaryArray.GetItem<NSDictionary<NSString, NSNumber>>(n);
-			if (dictionary !=null) {
-				var lat = dictionary[new NSString("lat")];
-				var lgn = dictionary[new NSString("long")];
-				var type = dictionary[new NSString("type")];
-				bikes.Add(new Bike(lat, lgn, type));
+			var dictionary = dictionaryArray.GetItem<NSDictionary<NSString, NSNumber>> (n);
+			if (dictionary is not null) {
+				var lat = dictionary[new NSString ("lat")];
+				var lgn = dictionary[new NSString ("long")];
+				var type = dictionary[new NSString ("type")];
+				bikes.Add (new Bike (lat, lgn, type));
 			}
 		}
 
-		return bikes.ToArray();
+		return bikes.ToArray ();
 	}
 	#endregion
 
@@ -25,16 +25,16 @@ public class Bike : MKPointAnnotation
 	#endregion
 
 	#region Constructors
-	public Bike()
+	public Bike ()
 	{
 	}
 
-	public Bike(NSNumber lat, NSNumber lgn, NSNumber type)
+	public Bike (NSNumber lat, NSNumber lgn, NSNumber type)
 	{
 		// Initialize
-		Coordinate = new CLLocationCoordinate2D(lat.NFloatValue, lgn.NFloatValue);
+		Coordinate = new CLLocationCoordinate2D (lat.NFloatValue, lgn.NFloatValue);
 
-		switch(type.NUIntValue) {
+		switch (type.NUIntValue) {
 			case 0:
 				Type = BikeType.Unicycle;
 				break;

@@ -3,124 +3,103 @@
 public partial class ViewController : UIViewController
 {
 	#region Private Variables
-	private CLLocationManager LocationManager = new CLLocationManager();
+	CLLocationManager LocationManager = new CLLocationManager ();
 	#endregion
 
 	#region Constructors
-	protected ViewController(IntPtr handle) : base(handle)
+	protected ViewController (IntPtr handle) : base (handle)
 	{
 		// Note: this .ctor should not contain any initialization logic.
 	}
 	#endregion
 
 	#region Private Methods
-	private void SetupCompassButton() {
-
-		var compass = MKCompassButton.FromMapView(MapView);
+	private void SetupCompassButton () {
+		var compass = MKCompassButton.FromMapView (MapView);
 		compass.CompassVisibility = MKFeatureVisibility.Visible;
-		NavigationItem.RightBarButtonItem = new UIBarButtonItem(compass);
+		NavigationItem.RightBarButtonItem = new UIBarButtonItem (compass);
 		MapView.ShowsCompass = false;
 	}
 
-	private void SetupUserTrackingAndScaleView() {
+	void SetupUserTrackingAndScaleView ()
+	{
+		if (View is null)
+			throw new InvalidOperationException (nameof (View));
 
-		var button = MKUserTrackingButton.FromMapView(MapView);
-		button.Layer.BackgroundColor = UIColor.FromRGBA(255,255,255,80).CGColor;
+		var button = MKUserTrackingButton.FromMapView (MapView);
+		button.Layer.BackgroundColor = UIColor.FromRGBA (255,255,255,80).CGColor;
 		button.Layer.BorderColor = UIColor.White.CGColor;
 		button.Layer.BorderWidth = 1;
 		button.Layer.CornerRadius = 5;
 		button.TranslatesAutoresizingMaskIntoConstraints = false;
-		View.AddSubview(button);
+		View.AddSubview (button);
 
-		var scale = MKScaleView.FromMapView(MapView);
+		var scale = MKScaleView.FromMapView (MapView);
 		scale.LegendAlignment = MKScaleViewAlignment.Trailing;
 		scale.TranslatesAutoresizingMaskIntoConstraints = false;
-		View.AddSubview(scale);
+		View.AddSubview (scale);
 
-		NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[]{
-			button.BottomAnchor.ConstraintEqualTo(View.BottomAnchor, -10),
-			button.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, -10),
-			scale.TrailingAnchor.ConstraintEqualTo(button.LeadingAnchor, -10),
-			scale.CenterYAnchor.ConstraintEqualTo(button.CenterYAnchor)
+		NSLayoutConstraint.ActivateConstraints (new NSLayoutConstraint[] {
+			button.BottomAnchor.ConstraintEqualTo (View.BottomAnchor, -10),
+			button.TrailingAnchor.ConstraintEqualTo (View.TrailingAnchor, -10),
+			scale.TrailingAnchor.ConstraintEqualTo (button.LeadingAnchor, -10),
+			scale.CenterYAnchor.ConstraintEqualTo (button.CenterYAnchor)
 		});
 	}
 
-	private void RegisterAnnotationViewClasses() {
-		MapView.Register(typeof(BikeView), MKMapViewDefault.AnnotationViewReuseIdentifier);
-		MapView.Register(typeof(ClusterView), MKMapViewDefault.ClusterAnnotationViewReuseIdentifier);
+	void RegisterAnnotationViewClasses () {
+		MapView.Register (typeof (BikeView), MKMapViewDefault.AnnotationViewReuseIdentifier);
+		MapView.Register (typeof (ClusterView), MKMapViewDefault.ClusterAnnotationViewReuseIdentifier);
 	}
 
-	private void LoadDataForMapRegionAndBikes()
+	void LoadDataForMapRegionAndBikes ()
 	{
-		// var plist = NSDictionary.FromFile(NSBundle.MainBundle.PathForResource("Data", "plist"));
-		var plistFile = NSBundle.MainBundle.PathForResource("Data", "plist");
+		var plistFile = NSBundle.MainBundle.PathForResource ("Data", "plist");
+		var plistPath = Path.GetFullPath (plistFile);
+		var url = NSUrl.FromFilename (plistPath);
 
-		var plistPath = Path.GetFullPath(plistFile);
+		if (NSDictionary.FromUrl (url, out var err) is NSDictionary plist) {
+			if (err is not null)
+				throw new Exception ($"Error forming NSDictionary from Data.plist: {err.LocalizedDescription}");
 
-		//var url = new NSUrl (plistPath);
-		var url = NSUrl.FromFilename(plistPath);
-
-		var urlCheck = url.CheckPromisedItemIsReachable(out var error1);
-		Console.WriteLine(error1);
-
-		//var plist = new NSDictionary (new NSUrl (plistPath), out _);
-		var plist = NSDictionary.FromUrl(url, out var error);
-		Console.WriteLine(error);
-
-		// FIXME TJ
-		if (plist is null)
-			return;
-
-		var region = plist["region"] as NSArray;
-		if (region !=null) {
-			var coordinate = new CLLocationCoordinate2D(region.GetItem<NSNumber>(0).NFloatValue, region.GetItem<NSNumber>(1).NFloatValue);
-			var span = new MKCoordinateSpan(region.GetItem<NSNumber>(2).NFloatValue, region.GetItem<NSNumber>(3).NFloatValue);
-			MapView.Region = new MKCoordinateRegion(coordinate, span);
-		}
-		var bikes = plist["bikes"] as NSArray;
-		if (bikes !=null) {
-			MapView.AddAnnotations(Bike.FromDictionaryArray(bikes));
+			var region = plist["region"] as NSArray;
+			if (region is not null) {
+				var coordinate = new CLLocationCoordinate2D (region.GetItem<NSNumber> (0).NFloatValue, region.GetItem<NSNumber> (1).NFloatValue);
+				var span = new MKCoordinateSpan (region.GetItem<NSNumber> (2).NFloatValue, region.GetItem<NSNumber> (3).NFloatValue);
+				MapView.Region = new MKCoordinateRegion (coordinate, span);
+			}
+			var bikes = plist["bikes"] as NSArray;
+			if (bikes is not null) {
+				MapView.AddAnnotations (Bike.FromDictionaryArray (bikes));
+			}
+		} else {
+			throw new InvalidOperationException ("plist could not be created from Data.plist");
 		}
 	}
 
-	private MKAnnotationView HandleMKMapViewAnnotation(MKMapView mapView, IMKAnnotation annotation)
+	MKAnnotationView HandleMKMapViewAnnotation (MKMapView mapView, IMKAnnotation annotation)
 	{
-		if (annotation is Bike) {
-			var marker = annotation as Bike;
-
-			var view = mapView.DequeueReusableAnnotation(MKMapViewDefault.AnnotationViewReuseIdentifier) as BikeView;
-			if (view == null) {
-				view = new BikeView(marker, MKMapViewDefault.AnnotationViewReuseIdentifier);
-			}
-			return view;
-		}
-		else if (annotation is MKClusterAnnotation) {
-			var cluster = annotation as MKClusterAnnotation;
-
-			var view = mapView.DequeueReusableAnnotation(MKMapViewDefault.ClusterAnnotationViewReuseIdentifier) as ClusterView;
-			if (view == null) {
-				view = new ClusterView(cluster, MKMapViewDefault.ClusterAnnotationViewReuseIdentifier);
-			}
-			return view;
-		}
-		else if (annotation != null) {
-			var unwrappedAnnotation = MKAnnotationWrapperExtensions.UnwrapClusterAnnotation(annotation);
-
-			return HandleMKMapViewAnnotation(mapView, unwrappedAnnotation);
-		}
-		return null;
+		switch (annotation){
+			case Bike marker:
+				return mapView.DequeueReusableAnnotation (MKMapViewDefault.AnnotationViewReuseIdentifier) ?? new BikeView (marker, MKMapViewDefault.AnnotationViewReuseIdentifier);
+			case MKClusterAnnotation cluster:
+				return mapView.DequeueReusableAnnotation (MKMapViewDefault.ClusterAnnotationViewReuseIdentifier) ?? new ClusterView (cluster, MKMapViewDefault.ClusterAnnotationViewReuseIdentifier);
+			default:
+				var unwrappedAnnotation = MKAnnotationWrapperExtensions.UnwrapClusterAnnotation (annotation);
+				return HandleMKMapViewAnnotation (mapView, unwrappedAnnotation);
+		};
 	}
 	#endregion
 
 	#region Override Methods
-	public override void ViewDidLoad()
+	public override void ViewDidLoad ()
 	{
-		base.ViewDidLoad();
+		base.ViewDidLoad ();
 
-		SetupCompassButton();
-		SetupUserTrackingAndScaleView();
-		RegisterAnnotationViewClasses();
-		LoadDataForMapRegionAndBikes();
+		SetupCompassButton ();
+		SetupUserTrackingAndScaleView ();
+		RegisterAnnotationViewClasses ();
+		LoadDataForMapRegionAndBikes ();
 
 		MapView.GetViewForAnnotation = HandleMKMapViewAnnotation;
 	}
