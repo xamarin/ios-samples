@@ -1,9 +1,8 @@
 ﻿using System;
-namespace Tandm
+namespace Tandm;
+
+public enum BikeType
 {
-	public enum BikeType
-	{
-		Unicycle,
-		Tricycle
-	}
+	Unicycle,
+	Tricycle
 }
