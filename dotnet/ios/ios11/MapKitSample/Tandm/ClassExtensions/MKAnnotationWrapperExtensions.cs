@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Foundation;
-using UIKit;
-using MapKit;
-using CoreGraphics;
-using CoreLocation;
-
-namespace Tandm;
+﻿namespace Tandm;
 
 public static class MKAnnotationWrapperExtensions
 {

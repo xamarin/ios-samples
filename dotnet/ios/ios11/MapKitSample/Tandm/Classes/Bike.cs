@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Foundation;
-using UIKit;
-using MapKit;
-using CoreLocation;
-
-namespace Tandm;
+﻿namespace Tandm;
 
 public class Bike : MKPointAnnotation
 {

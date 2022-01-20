@@ -1,10 +1,4 @@
-﻿using System;
-using Foundation;
-using UIKit;
-using MapKit;
-using CoreLocation;
-
-namespace Tandm;
+﻿namespace Tandm;
 
 public partial class ViewController : UIViewController
 {

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Foundation;
-using UIKit;
-using MapKit;
-using CoreGraphics;
-using CoreLocation;
-using ObjCRuntime;
+﻿using ObjCRuntime;
 
 namespace Tandm
 {

@@ -1,5 +1,4 @@
-﻿using System;
-namespace Tandm;
+﻿namespace Tandm;
 
 public enum BikeType
 {
