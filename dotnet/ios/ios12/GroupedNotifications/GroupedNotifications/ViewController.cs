@@ -27,8 +27,8 @@ public partial class ViewController : UIViewController
     int unthreadedMessagesSent = 0;
     int threadNumber = 0;
     int threadMessagesSent = 0;
-    string? friend;
-    string? threadId;
+    string friend = string.Empty;
+    string threadId = string.Empty;
 
     protected ViewController (IntPtr handle) : base (handle) { }
 
@@ -75,7 +75,7 @@ public partial class ViewController : UIViewController
             return;
         }
 
-        var author = friend ?? throw new InvalidOperationException ("friend");
+        var author = friend;
         if (threadMessagesSent % 2 == 0)
         {
             author = "Me";
@@ -93,7 +93,7 @@ public partial class ViewController : UIViewController
 
         var content = new UNMutableNotificationContent ()
         {
-            ThreadIdentifier = threadId ?? throw new InvalidOperationException ("threadId"),
+            ThreadIdentifier = threadId,
             Title = author,
             Body = message,
             SummaryArgument = author
