@@ -24,6 +24,9 @@ public class AppDelegate : UIApplicationDelegate, IUNUserNotificationCenterDeleg
 	[Export ("userNotificationCenter:willPresentNotification:withCompletionHandler:")]
 	public void WillPresentNotification (UNUserNotificationCenter center, UNNotification notification, System.Action<UNNotificationPresentationOptions> completionHandler)
 	{
-		completionHandler (UNNotificationPresentationOptions.Banner | UNNotificationPresentationOptions.List);
+		if (UIDevice.CurrentDevice.CheckSystemVersion (14, 0))
+			completionHandler (UNNotificationPresentationOptions.Banner | UNNotificationPresentationOptions.List);
+		else
+			completionHandler (UNNotificationPresentationOptions.Alert);
 	}
 }
