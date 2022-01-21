@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>13A28BA7-2DB3-400C-9FE6-BCBE60D64B30</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginner</Level>
+  <Tags>iOS12, CoreML</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>Sample app that demonstrates the performance benefit of Core ML's batch prediction API in iOS 12.</Brief>
+</SampleMetadata>
