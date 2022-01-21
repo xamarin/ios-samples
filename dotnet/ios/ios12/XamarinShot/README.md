@@ -19,7 +19,7 @@ XamarinShot is an AR game for two to six players, featured in the WWDC18 keynote
 
 ## Build Requirements
 
-Xamarin.iOS 12.0, Xcode 10.0 and an iOS device with A9 or later processor. ARKit is not supported in iOS Simulator.
+.NET 6 with MAUI, Xcode 10.0 and an iOS device with A9 or later processor. ARKit is not supported in iOS Simulator.
 
 ## Related Links
 
