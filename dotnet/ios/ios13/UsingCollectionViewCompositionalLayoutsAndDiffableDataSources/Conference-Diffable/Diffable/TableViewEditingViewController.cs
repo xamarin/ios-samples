@@ -199,10 +199,8 @@ public partial class TableViewEditingViewController : UIViewController {
 				// Get a cell of the desired kind.
 				var cell = tableView.DequeueReusableCell (key) ?? new UITableViewCell (UITableViewCellStyle.Subtitle, key);
 
-				var content = cell.DefaultContentConfiguration;
-				content.Text = mountain.Name;
-				content.SecondaryText = formatter.StringFromNumber (NSNumber.FromInt32 (mountain.Height));
-				cell.ContentConfiguration = content;
+				var secondaryText = formatter.StringFromNumber (NSNumber.FromInt32 (mountain.Height));
+				cell.AddTextLabel (mountain.Name, secondaryText);
 
 				// Return the cell.
 				return cell;

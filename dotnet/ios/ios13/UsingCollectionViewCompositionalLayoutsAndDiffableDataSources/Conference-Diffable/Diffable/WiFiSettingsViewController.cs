@@ -153,18 +153,15 @@ public class WiFiSettingsViewController : UIViewController {
 			if (obj is Item item) {
 				// Get a cell of the desired kind.
 				var cell = tableView.DequeueReusableCell (key, indexPath);
-				var content = cell.DefaultContentConfiguration;
 
 				// network cell
 				if (item.IsNetwork) {
-					content.Text = item.Title;
-					cell.ContentConfiguration = content;
+					cell.AddTextLabel (item.Title);
 					cell.Accessory = UITableViewCellAccessory.DetailDisclosureButton;
 					cell.AccessoryView = null;
 				} else if (item.IsConfig) {
 					// configuration cells
-					content.Text = item.Title;
-					cell.ContentConfiguration = content;
+					cell.AddTextLabel (item.Title);
 
 					if (item.Type == ItemType.WifiEnabled) {
 						var enableWifiSwitch = new UISwitch { On = wifiController.WifiEnabled };
