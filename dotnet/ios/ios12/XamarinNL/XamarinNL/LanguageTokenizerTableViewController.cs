@@ -16,9 +16,7 @@ public partial class LanguageTokenizerTableViewController : UITableViewControlle
 		if (TableView.DequeueReusableCell (TokenCell) is UITableViewCell cell) {
 			NSRange range = Tokens[indexPath.Row].RangeValue;
 
-			var content = cell.DefaultContentConfiguration;
-			content.Text = Text.Substring ( (int)range.Location, (int)range.Length);
-			cell.ContentConfiguration = content;
+			cell.AddTextLabel (Text.Substring ( (int)range.Location, (int)range.Length));
 
 			return cell;
 		}

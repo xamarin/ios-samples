@@ -15,18 +15,16 @@ public partial class LanguageTaggerTableViewController : UITableViewController
 	public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 	{
 		if (TableView.DequeueReusableCell (EntityCell) is UITableViewCell cell) {
-			var content = cell.DefaultContentConfiguration;
-
 			var range = TokenRanges[indexPath.Row].RangeValue;
-			var token = Text.Substring ( (int)range.Location, (int)range.Length);
-			content.Text = token;
+			var token = Text.Substring((int)range.Location, (int)range.Length);
 
-			if (indexPath.Row >= 0 && indexPath.Row < Tags.Length){
+			if (indexPath.Row >= 0 && indexPath.Row < Tags.Length) {
 				var tag = Tags[indexPath.Row];
-				content.SecondaryText = tag;
+				cell.AddTextLabel (token, tag);
+			} else {
+				cell.AddTextLabel (token);
 			}
 
-			cell.ContentConfiguration = content;
 			return cell;
 		}
 		throw new InvalidOperationException ("UITableViewCell");

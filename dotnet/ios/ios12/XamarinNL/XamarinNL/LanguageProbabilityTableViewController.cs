@@ -28,13 +28,10 @@ public partial class LanguageProbabilityTableViewController : UITableViewControl
 			var languageAbbreviation = sortedLanguages[indexPath.Row];
 			var language = NLLanguageExtensions.GetValue (languageAbbreviation);
 
-			var content = cell.DefaultContentConfiguration;
-			content.Text = language.ToString ();
-
 			if (probabilities is not null)
-				content.SecondaryText = probabilities[languageAbbreviation].ToString ();
-
-			cell.ContentConfiguration = content;
+				cell.AddTextLabel (language.ToString (), probabilities[languageAbbreviation].ToString ());
+			else
+				cell.AddTextLabel (language.ToString ());
 
 			return cell;
 		}
