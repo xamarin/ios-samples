@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14252.1" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" useTraitCollections="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!-- View Controller -->
+        <scene sceneID="tXr-a1-R10">
+            <objects>
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                    <view contentMode="scaleToFill" id="197" key="view">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <color key="backgroundColor" white="0" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" sceneName="CameraSetup.scn" id="198" wantsMultisampling="YES" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="0gP-0b-mlo" appends="YES" id="Bjp-eC-9Fb"/>
+                                </connections>
+                            </arscnView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="406" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="166" y="564" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="408" translatesAutoresizingMaskIntoConstraints="NO" customClass="RoundedButton">
+                                <rect key="frame" x="117" y="593" width="140" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Send World Map"/>
+                                <inset key="contentEdgeInsets" minX="13" minY="8" maxX="13" maxY="8"/>
+                                <connections>
+                                    <action selector="shareSession:" destination="BV1-FR-VrT" id="1498" eventType="touchUpInside"/>
+                                </connections>
+                            </button> 
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" id="409" translatesAutoresizingMaskIntoConstraints="NO" clipsSubviews="YES">
+                                <rect key="frame" x="16" y="40" width="191" height="38"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="410">
+                                    <rect key="frame" x="0.0" y="0.0" width="191" height="38"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initializing AR session." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="411" numberOfLines="0" translatesAutoresizingMaskIntoConstraints="NO">
+                                            <rect key="frame" x="8" y="8" width="169" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <constraints>
+                                                <constraint id="412" firstAttribute="height" constant="22" relation="greaterThanOrEqual"/>
+                                                <constraint id="413" firstAttribute="width" constant="200" relation="lessThanOrEqual"/>
+                                            </constraints>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint id="414" firstItem="411" firstAttribute="leading" secondItem="410" secondAttribute="leading" constant="8"/>
+                                        <constraint id="415" firstAttribute="bottom" secondItem="411" secondAttribute="bottom" constant="8"/>
+                                        <constraint id="416" firstItem="411" firstAttribute="top" secondItem="410" secondAttribute="top" constant="8"/>
+                                        <constraint id="417" firstAttribute="trailing" secondItem="411" secondAttribute="trailing" constant="14"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </visualEffectView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="768" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="323" y="20" width="52" height="60"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="25" maxX="24" maxY="12"/>
+                                <state key="normal" image="restart"/>
+                                <state key="selected" image="restartPressed"/>
+                                <state key="highlighted" image="restartPressed"/>
+                                <connections>
+                                    <action selector="resetTracking:" destination="BV1-FR-VrT" id="1017" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="71x-2l-AWw"/>
+                        <constraints>
+                            <constraint id="397" firstItem="198" firstAttribute="trailing" secondItem="71x-2l-AWw" secondAttribute="trailing"/>
+                            <constraint id="398" firstItem="198" firstAttribute="centerX" secondItem="71x-2l-AWw" secondAttribute="centerX"/>
+                            <constraint id="399" firstItem="198" firstAttribute="bottom" secondItem="71x-2l-AWw" secondAttribute="bottom"/>
+                            <constraint id="400" firstItem="198" firstAttribute="top" secondItem="197" secondAttribute="top"/>
+                            <constraint id="407" firstItem="406" firstAttribute="centerX" secondItem="71x-2l-AWw" secondAttribute="centerX"/>
+                            <constraint id="995" firstItem="768" firstAttribute="trailing" secondItem="71x-2l-AWw" secondAttribute="trailing"/>
+                            <constraint id="996" firstItem="768" firstAttribute="top" secondItem="71x-2l-AWw" secondAttribute="top"/>
+                            <constraint id="997" firstItem="409" firstAttribute="top" secondItem="71x-2l-AWw" secondAttribute="top" constant="20"/>
+                            <constraint id="998" firstItem="409" firstAttribute="leading" secondItem="197" secondAttribute="leadingMargin"/>
+                            <constraint id="1251" firstItem="408" firstAttribute="centerX" secondItem="71x-2l-AWw" secondAttribute="centerX"/>
+                            <constraint id="1253" firstItem="71x-2l-AWw" firstAttribute="bottom" secondItem="408" secondAttribute="bottom" constant="40"/>
+                            <constraint id="1254" firstItem="408" firstAttribute="top" secondItem="406" secondAttribute="bottom" constant="8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="sceneView" destination="198" id="name-outlet-198"/>
+                        <outlet property="sessionInfoLabel" destination="411" id="name-outlet-411"/>
+                        <outlet property="sessionInfoView" destination="409" id="name-outlet-409"/>
+                        <outlet property="sendMapButton" destination="408" id="name-outlet-408"/>
+                        <outlet property="mappingStatusLabel" destination="406" id="name-outlet-406"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="0gP-0b-mlo">
+                    <connections>
+                        <action selector="handleSceneTap:" destination="BV1-FR-VrT" id="rVD-lF-42A"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="restart" width="20" height="23"/>
+        <image name="restartPressed" width="20" height="23"/>
+    </resources>
+</document>
