@@ -142,15 +142,11 @@ internal class ScannedPointCloud : SCNNode
 		if (!disposed)
 		{
 			disposed = true;
-			if (disposing)
-			{
-				base.Dispose ();
-			}
-
 			foreach (var notificationObserverHandle in notificationObservationHandles)
 			{
 				NSNotificationCenter.DefaultCenter.RemoveObserver (notificationObserverHandle);
 			}
 		}
+		base.Dispose (disposing);
 	}
 }

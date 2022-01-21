@@ -152,6 +152,7 @@ Do you want to go back and adjust the bounding box of the scanned object?""";
 		sceneView.Scene.RootNode.AddChildNode (pointCloud);
 	}
 
+	bool disposed;
 	internal new void Dispose ()
 	{
 		Dispose (true);
@@ -160,14 +161,19 @@ Do you want to go back and adjust the bounding box of the scanned object?""";
 
 	protected override void Dispose (bool disposing)
 	{
-		if (disposing)
+		if (!disposed)
 		{
-			scannedObject?.RemoveFromParentNode ();
-			pointCloud?.RemoveFromParentNode ();
+			disposed = true;
+			if (disposing)
+			{
+				scannedObject?.RemoveFromParentNode ();
+				pointCloud?.RemoveFromParentNode ();
 
-			scannedObject?.Dispose ();
-			pointCloud?.Dispose ();
+				scannedObject?.Dispose ();
+				pointCloud?.Dispose ();
+			}
 		}
+		base.Dispose (disposing);
 	}
 
 	void ApplicationStateChanged (NSNotification notification)

@@ -515,13 +515,9 @@ internal class ObjectOrigin : SCNNode
 		{
 			disposed = true;
 
-			if (disposing)
-			{
-				base.Dispose ();
-			}
-
 			NSNotificationCenter.DefaultCenter.RemoveObserver (notificationObserverHandles [0]);
 			NSNotificationCenter.DefaultCenter.RemoveObserver (notificationObserverHandles [1]);
 		}
+		base.Dispose (disposing);
 	}
 }

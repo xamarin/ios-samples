@@ -115,6 +115,8 @@ internal class TestRun : NSObject, IDisposable
 		noDetectionTimer = null;
 	}
 
+	bool disposed;
+
 	internal new void Dispose ()
 	{
 		Dispose (true);
@@ -123,18 +125,23 @@ internal class TestRun : NSObject, IDisposable
 
 	protected override void Dispose (bool disposing)
 	{
-		if (disposing)
+		if (!disposed)
 		{
-			DetectedObject?.RemoveFromParentNode ();
-
-			if (sceneView.Session.Configuration as ARWorldTrackingConfiguration is not null)
+			disposed = true;
+			if (disposing)
 			{
-				// Make sure we switch back to an object scanning configuration & no longer
-				// try to detect the object.
-				var configuration = new ARObjectScanningConfiguration ();
-				configuration.PlaneDetection = ARPlaneDetection.Horizontal;
-				sceneView.Session.Run (configuration, ARSessionRunOptions.ResetTracking);
+				DetectedObject?.RemoveFromParentNode ();
+
+				if (sceneView.Session.Configuration as ARWorldTrackingConfiguration is not null)
+				{
+					// Make sure we switch back to an object scanning configuration & no longer
+					// try to detect the object.
+					var configuration = new ARObjectScanningConfiguration ();
+					configuration.PlaneDetection = ARPlaneDetection.Horizontal;
+					sceneView.Session.Run (configuration, ARSessionRunOptions.ResetTracking);
+				}
 			}
+			base.Dispose (disposing);
 		}
 	}
 }

@@ -801,26 +801,16 @@ internal class BoundingBox : SCNNode
 	// Dispose pattern for debugging purposes
 	bool disposed = false;
 
-	internal bool IsDisposed
-	{
-		get
-		{
-			return disposed;
-		}
-	}
+	internal bool IsDisposed => disposed;
 
 	override protected void Dispose (bool disposing)
 	{
 		if (!disposed)
 		{
 			disposed = true;
-			if (disposing)
-			{
-				base.Dispose ();
-			}
-
 			NSNotificationCenter.DefaultCenter.RemoveObserver (notificationObserverHandle);
 		}
+		base.Dispose (disposing);
 	}
 
 	internal new void Dispose ()

@@ -124,7 +124,7 @@ The Swift code uses five files to organize the behavior of the single class `Vie
 
 I occasionally refactored the Swift code where I thought it helped legibility or reduced repetition. Usually this was in the form of extracting a function.
 
-One area where there is considerably variance from the Swift code is in the "Utility_Extensions" folder. Xamarin.iOS uses OpenTK vector and matrix classes for manipulating 3D objects and transforms. The OpenTK classes have different APIs and 
+One area where there is considerably variance from the Swift code is in the "Utility_Extensions" folder. Xamarin.iOS uses OpenTK vector and matrix classes for manipulating 3D objects and transforms.
 
 A matter of internal debate was the clearest form for porting Swift `guard` statements that assign a local variable if the passed-in variable is not `null`. The options are:
 

@@ -341,16 +341,12 @@ internal class ScannedObject : SCNNode
 		if (!disposed)
 		{
 			disposed = true;
-			if (disposing)
-			{
-				base.Dispose ();
-			}
-
 			NSNotificationCenter.DefaultCenter.RemoveObserver (notificationObserverHandle);
 			Origin?.Dispose ();
 			BoundingBox?.Dispose ();
 			GhostBoundingBox?.Dispose ();
 		}
+		base.Dispose (disposing);
 	}
 
 	#endregion
