@@ -21,7 +21,7 @@ Diagram showing AR experiences on two devices viewing, from two different perspe
 
 ## Build Requirements
 
-Xamarin.iOS 12.0, Xcode 10.0 and two or more iOS devices with A9 or later processors.
+.NET 6 with MAUI, Xcode 10.0 and two or more iOS devices with A9 or later processors.
 
 ## Related Links
 
