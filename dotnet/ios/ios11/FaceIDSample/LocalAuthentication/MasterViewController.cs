@@ -1,25 +1,17 @@
-using System;
-using CoreGraphics;
-using System.Collections.Generic;
+namespace StoryboardTable;
 
-using Foundation;
-using UIKit;
-
-namespace StoryboardTable
+public partial class MasterViewController : UITableViewController
 {
-	public partial class MasterViewController : UITableViewController
+	public MasterViewController (IntPtr handle) : base (handle)
 	{
-       	public MasterViewController (IntPtr handle) : base (handle)
-		{
-			Title = "Secret Data";
-		}
+		Title = "Secret Data";
+	}
 
-		public override void ViewWillAppear (bool animated)
-		{
-			base.ViewWillAppear (animated);
+	public override void ViewWillAppear (bool animated)
+	{
+		base.ViewWillAppear (animated);
 
-			// bind every time, to reflect deletion in the Detail view
-			TableView.Source = new SecretTableSource();
-		}
+		// bind every time, to reflect deletion in the Detail view
+		TableView.Source = new SecretTableSource();
 	}
 }
