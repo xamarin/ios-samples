@@ -132,7 +132,7 @@ namespace MarsHabitatCoreMLTimer {
 	/// </summary>
 	public class MarsHabitatPricer : NSObject
 	{
-		readonly MLModel model;
+		readonly MLModel? model;
 
 		public MarsHabitatPricer ()
 		{
@@ -147,14 +147,14 @@ namespace MarsHabitatCoreMLTimer {
 			this.model = model;
 		}
 
-		public static MarsHabitatPricer Create (NSUrl url, out NSError error)
+		public static MarsHabitatPricer? Create (NSUrl url, out NSError error)
 		{
-			if (url == null)
+			if (url is null)
 				throw new ArgumentNullException (nameof (url));
 
 			var model = MLModel.Create (url, out error);
 
-			if (model == null)
+			if (model is null)
 				return null;
 
 			return new MarsHabitatPricer (model);
@@ -165,14 +165,19 @@ namespace MarsHabitatCoreMLTimer {
 		/// </summary>
 		/// <param name="input">an instance of MarsHabitatPricerInput to predict from</param>
 		/// <param name="error">If an error occurs, upon return contains an NSError object that describes the problem.</param>
-		public MarsHabitatPricerOutput GetPrediction (MarsHabitatPricerInput input, out NSError error)
+		public MarsHabitatPricerOutput? GetPrediction (MarsHabitatPricerInput input, out NSError? error)
 		{
+			if (model is null)
+			{
+				error = null;
+				return null;
+			}
 			var prediction = model.GetPrediction (input, out error);
 
-			if (prediction == null)
+			if (prediction is null)
 				return null;
 
-			var priceValue = prediction.GetFeatureValue ("price").DoubleValue;
+			var priceValue = prediction.GetFeatureValue ("price")?.DoubleValue ?? 0.0;
 
 			return new MarsHabitatPricerOutput (priceValue);
 		}
@@ -184,7 +189,7 @@ namespace MarsHabitatCoreMLTimer {
 		/// <param name="greenhouses">Number of greenhouses as double</param>
 		/// <param name="size">Size in acres as double</param>
 		/// <param name="error">If an error occurs, upon return contains an NSError object that describes the problem.</param>
-		public MarsHabitatPricerOutput GetPrediction (double solarPanels, double greenhouses, double size, out NSError error)
+		public MarsHabitatPricerOutput? GetPrediction (double solarPanels, double greenhouses, double size, out NSError? error)
 		{
 			var input = new MarsHabitatPricerInput (solarPanels, greenhouses, size);
 
