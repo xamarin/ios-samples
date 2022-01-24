@@ -12,9 +12,9 @@ public partial class DragBoardViewController : UIViewController
 	List<UIView> Views { get; set; } = new List<UIView> ();
 	// A property that keeps track of the location where the drop operation was performed.
 	public CGPoint DropPoint { get; set; } = new CGPoint (0, 0);
-    public CGPoint MovePoint { get; set; } = new CGPoint (0, 0);
+	public CGPoint MovePoint { get; set; } = new CGPoint (0, 0);
 
-    public DragBoardViewController (IntPtr handle) : base (handle)
+	public DragBoardViewController (IntPtr handle) : base (handle)
 	{
 	}
 
@@ -31,20 +31,17 @@ public partial class DragBoardViewController : UIViewController
 			return;
 
 		// Add drag interaction
-        View.AddInteraction (new UIDragInteraction (this));
+		View.AddInteraction (new UIDragInteraction (this));
 
 		// Add drag interaction
-        View.AddInteraction (new UIDropInteraction (this));
+		View.AddInteraction (new UIDropInteraction (this));
 	}
 
-    public void PasteItemProviders (NSItemProvider[] itemProviders)
-    {
-        Console.WriteLine (itemProviders);
-		if (itemProviders is not null)
-		{
-			foreach (var item in itemProviders)
-			{
-			    LoadImage (item, DropPoint);
+	public void PasteItemProviders (NSItemProvider[] itemProviders)
+	{
+		if (itemProviders is not null) {
+			foreach (var item in itemProviders) {
+				LoadImage (item, DropPoint);
 			}
 		}
 	}
@@ -56,24 +53,16 @@ public partial class DragBoardViewController : UIViewController
 	//   - itemProvider: an item provider that can load an image.
 	//   - imageView: the image view that will display the loaded image.
 	public void LoadImage (NSItemProvider itemProvider, CGPoint center)
-    {
-        Console.WriteLine ("can load : " + itemProvider.CanLoadObject (typeof (UIImage)));
-
-        var progress = itemProvider.LoadObject<UIImage> ( (droppedImage, err) =>
+	{
+		var progress = itemProvider.LoadObject<UIImage> ( (droppedImage, err) =>
 		{
-            var image = droppedImage as UIImage;
-            DispatchQueue.MainQueue.DispatchAsync ( ()=>{
-                if (image is not null)
-                {
-                    var imageView = CreateNewImageView (image);
-                    imageView.Center = center;
-                    Images.Add (image);
-                }
-                else
-                {
-                    Console.WriteLine ("Image is null");
-                }
-			});
+			if (droppedImage is UIImage image) {
+				DispatchQueue.MainQueue.DispatchAsync ( ()=>{
+					var imageView = CreateNewImageView (image);
+					imageView.Center = center;
+					Images.Add (image);
+				});
+			}
 		});
 	}
 
@@ -103,8 +92,7 @@ public partial class DragBoardViewController : UIViewController
 		size = new CGSize ( (float)Math.Round (size.Width * scaleFactor), (float)Math.Round (size.Height * scaleFactor));
 		imageView.Frame = new CGRect (imageView.Frame.Location, size);
 
-		if (View is not null)
-		{
+		if (View is not null) {
 			Views.Add (imageView);
 			View.AddSubview (imageView);
 		}
@@ -119,8 +107,7 @@ public partial class DragBoardViewController : UIViewController
 	//   - alpha: the alpha value applied to each drag item.
 	public void FadeItems (UIDragItem[] items, float alpha) {
 		foreach (UIDragItem item in items) {
-			var index = item.LocalObject as NSNumber;
-			if (index is not null) {
+			if (item.LocalObject is NSNumber index) {
 				Views[index.Int32Value].Alpha = alpha;
 			}
 		}

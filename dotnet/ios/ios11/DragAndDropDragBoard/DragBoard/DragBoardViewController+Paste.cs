@@ -12,35 +12,44 @@ public partial class DragBoardViewController
 
 		var longPressGesture = new UILongPressGestureRecognizer ( (longPress) =>
 		{
-			if (longPress.State == UIGestureRecognizerState.Began)
-			{
+			if (longPress.State == UIGestureRecognizerState.Began) {
 				DropPoint = longPress.LocationInView (View);
 
 				// Only show the paste menu if we are
 				// not over an image in the pin board.
-				if (ImageIndex (DropPoint) < 0)
-				{
+				if (ImageIndex (DropPoint) < 0) {
 					View.BecomeFirstResponder ();
 
 					var menu = UIMenuController.SharedMenuController;
 					var rect = new CGRect (DropPoint, new CGSize (10, 10));
-					menu.ShowMenu (View, rect);
-					//menu.SetTargetRect(rect, View);
-					//menu.SetMenuVisible (true, true);
+
+					// menu.SetTargetRect and menu.SetMenuVisible is deprecated at iOS 13
+					if (UIDevice.CurrentDevice.CheckSystemVersion(13, 0)) {
+						menu.ShowMenu (View, rect);
+					} else {
+						menu.SetTargetRect(rect, View);
+						menu.SetMenuVisible (true, true);
+					}
 				}
-			}
-			else if (longPress.State == UIGestureRecognizerState.Cancelled)
-			{
-				UIMenuController.SharedMenuController.HideMenu ();
-				//UIMenuController.SharedMenuController.SetMenuVisible (false, true);
+			} else if (longPress.State == UIGestureRecognizerState.Cancelled) {
+				// menu.SetMenuVisible is deprecated at iOS 13
+				if (UIDevice.CurrentDevice.CheckSystemVersion(13, 0)) {
+					UIMenuController.SharedMenuController.HideMenu ();
+				} else {
+					UIMenuController.SharedMenuController.SetMenuVisible (false, true);
+				}
 			}
 		});
 		View.AddGestureRecognizer (longPressGesture);
 
 		var tapGesture = new UITapGestureRecognizer ( (obj) =>
 		{
-			UIMenuController.SharedMenuController.HideMenu ();
-			//UIMenuController.SharedMenuController.SetMenuVisible (false, true);
+			// menu.SetMenuVisible is deprecated at iOS 13
+			if (UIDevice.CurrentDevice.CheckSystemVersion(13, 0)) {
+				UIMenuController.SharedMenuController.HideMenu ();
+			} else {
+				UIMenuController.SharedMenuController.SetMenuVisible (false, true);
+			}
 		});
 		View.AddGestureRecognizer (tapGesture);
 	}
