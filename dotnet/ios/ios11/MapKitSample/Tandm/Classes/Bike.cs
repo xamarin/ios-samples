@@ -6,7 +6,7 @@ public class Bike : MKPointAnnotation
 	public static Bike[] FromDictionaryArray (NSArray dictionaryArray) {
 		var bikes = new List<Bike> ();
 
-		for (nuint n = 0; n < dictionaryArray.Count; ++n){
+		for (nuint n = 0; n < dictionaryArray.Count; ++n) {
 			var dictionary = dictionaryArray.GetItem<NSDictionary<NSString, NSNumber>> (n);
 			if (dictionary is not null) {
 				var lat = dictionary[new NSString ("lat")];

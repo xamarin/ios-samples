@@ -11,10 +11,7 @@ public class BikeView : MKMarkerAnnotationView
 	#region Override Methods
 	public override IMKAnnotation? Annotation
 	{
-		get
-		{
-			return base.Annotation;
-		}
+		get => base.Annotation;
 		set
 		{
 			base.Annotation = value;
