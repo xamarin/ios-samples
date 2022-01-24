@@ -2,7 +2,7 @@
 
 public partial class DetailViewController : UIViewController
 {
-	object detailItem;
+	object? detailItem;
 
 	public DetailViewController (IntPtr handle) : base (handle)
 	{
@@ -21,7 +21,7 @@ public partial class DetailViewController : UIViewController
 	void ConfigureView ()
 	{
 		// Update the user interface for the detail item
-		if (IsViewLoaded && detailItem != null)
+		if (IsViewLoaded && detailItem is not null)
 			detailDescriptionLabel.Text = detailItem.ToString ();
 	}
 

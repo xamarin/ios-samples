@@ -12,6 +12,6 @@ public partial class MasterViewController : UITableViewController
 		base.ViewWillAppear (animated);
 
 		// bind every time, to reflect deletion in the Detail view
-		TableView.Source = new SecretTableSource();
+		TableView.Source = new SecretTableSource ();
 	}
 }
