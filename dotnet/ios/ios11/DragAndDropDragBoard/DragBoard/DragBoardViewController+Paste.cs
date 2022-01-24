@@ -8,7 +8,7 @@ public partial class DragBoardViewController
 	void SetupPasteMenu ()
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		var longPressGesture = new UILongPressGestureRecognizer ( (longPress) =>
 		{

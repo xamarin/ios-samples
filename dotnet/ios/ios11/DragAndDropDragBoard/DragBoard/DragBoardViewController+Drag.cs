@@ -22,9 +22,14 @@ public partial class DragBoardViewController : IUIDragInteractionDelegate
 	[Export ("dragInteraction:previewForLiftingItem:session:")]
 	public UITargetedDragPreview GetPreviewForLiftingItem (UIDragInteraction interaction, UIDragItem item, IUIDragSession session)
 	{
-		var index = item.LocalObject as NSNumber ?? throw new InvalidOperationException ("index");
-		var i = index.Int32Value;
-		return new UITargetedDragPreview (Views[i]);
+		if (item.LocalObject is NSNumber index) {
+			var i = index.Int32Value;
+			if (i >= 0 && i < Views.Count)
+				return new UITargetedDragPreview (Views[i]);
+			else
+				throw new InvalidOperationException (nameof (index));
+		}
+		throw new ArgumentNullException (nameof (item.LocalObject));
 	}
 
 	[Export ("dragInteraction:willAnimateLiftWithAnimator:session:")]
@@ -61,7 +66,7 @@ public partial class DragBoardViewController : IUIDragInteractionDelegate
 	public int ImageIndex (CGPoint point)
 	{
 		if (View is null)
-			throw new InvalidOperationException ("View");
+			throw new InvalidOperationException (nameof (View));
 
 		var hitTestView = View.HitTest (point, null);
 		if (hitTestView is null)

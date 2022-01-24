@@ -29,9 +29,7 @@ public partial class DragBoardViewController : IUIDropInteractionDelegate
 
 	[Export ("dropInteraction:previewForDroppingItem:withDefault:")]
 	public UITargetedDragPreview? GetPreviewForDroppingItem (UIDropInteraction interaction, UIDragItem item, UITargetedDragPreview defaultPreview)
-	{
-		return item.LocalObject is not null ? defaultPreview : null;
-	}
+		=> item.LocalObject is not null ? defaultPreview : null;
 
 	[Export ("dropInteraction:item:willAnimateDropWithAnimator:")]
 	public void WillAnimateDrop (UIDropInteraction interaction, UIDragItem item, IUIDragAnimating animator)
@@ -45,7 +43,7 @@ public partial class DragBoardViewController : IUIDropInteractionDelegate
 		animator.AddCompletion ( (err) => {
 			if (item.LocalObject is NSNumber index) {
 				var i = index.Int32Value;
-				if (i >= 0) {
+				if (i >= 0 && i < Views.Count) {
 					Views[i].Center = movePoint;
 					Views[i].Alpha = 1f;
 				}
