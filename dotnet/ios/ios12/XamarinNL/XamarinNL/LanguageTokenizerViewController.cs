@@ -43,8 +43,7 @@ public partial class LanguageTokenizerViewController : UIViewController, IUIText
 
 	void ShowTokens (NLTokenUnit unit)
 	{
-		if (!String.IsNullOrWhiteSpace (UserInput.Text))
-		{
+		if (!String.IsNullOrWhiteSpace (UserInput.Text)) {
 			var tokenizer = new NLTokenizer (unit) {
 				String = UserInput.Text,
 			};

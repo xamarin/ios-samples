@@ -11,8 +11,7 @@ public partial class LanguageRecognizerViewController : UIViewController, IUITex
 	partial void HandleLanguageProbabilitiesButtonTap (UIButton sender)
 	{
 		UserInput.ResignFirstResponder ();
-		if (!String.IsNullOrWhiteSpace (UserInput.Text))
-		{
+		if (!String.IsNullOrWhiteSpace (UserInput.Text)) {
 			var recognizer = new NLLanguageRecognizer ();
 			recognizer.Process (UserInput.Text);
 			probabilities = recognizer.GetNativeLanguageHypotheses (10);
@@ -23,8 +22,7 @@ public partial class LanguageRecognizerViewController : UIViewController, IUITex
 	partial void HandleDetermineLanguageButtonTap (UIButton sender)
 	{
 		UserInput.ResignFirstResponder ();
-		if (!String.IsNullOrWhiteSpace (UserInput.Text))
-		{
+		if (!String.IsNullOrWhiteSpace (UserInput.Text)) {
 			var lang = NLLanguageRecognizer.GetDominantLanguage (UserInput.Text);
 			DominantLanguageLabel.Text = lang.ToString ();
 		}
@@ -33,12 +31,8 @@ public partial class LanguageRecognizerViewController : UIViewController, IUITex
 	public override void PrepareForSegue (UIStoryboardSegue segue, NSObject? sender)
 	{
 		base.PrepareForSegue (segue, sender);
-		if (segue.DestinationViewController is LanguageProbabilityTableViewController destination) {
-			if (probabilities is not null)
-			{
-				destination.Probabilities = probabilities;
-			}
-		}
+		if (segue.DestinationViewController is LanguageProbabilityTableViewController destination && probabilities is not null)
+			destination.Probabilities = probabilities;
 	}
 
 	public override void ViewDidLoad ()

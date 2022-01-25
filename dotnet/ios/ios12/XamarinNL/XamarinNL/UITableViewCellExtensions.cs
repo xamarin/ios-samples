@@ -6,8 +6,7 @@ public static class UITableViewCellExtensions
 	{
 		// Beginning in iOS 14, UITableViewCell has to use cell.ContentConfiguration
 		// to add text
-		if (UIDevice.CurrentDevice.CheckSystemVersion(14, 0))
-		{
+		if (UIDevice.CurrentDevice.CheckSystemVersion(14, 0)) {
 			var content = cell.DefaultContentConfiguration;
 			content.Text = text;
 
@@ -15,9 +14,7 @@ public static class UITableViewCellExtensions
 				content.SecondaryText = secondaryText;
 
 			cell.ContentConfiguration = content;
-		}
-		else
-		{
+		} else {
 			cell.TextLabel.Text = text;
 
 			if (!string.IsNullOrEmpty(secondaryText))

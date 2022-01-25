@@ -48,8 +48,7 @@ public partial class LanguageTaggerViewController : UIViewController, IUITextFie
 
 	void ShowTags (NLTagScheme tagScheme)
 	{
-		if (!String.IsNullOrWhiteSpace (UserInput.Text))
-		{
+		if (!String.IsNullOrWhiteSpace (UserInput.Text)) {
 			var tagger = new NLTagger (new NLTagScheme[] { tagScheme }){
 				String = UserInput.Text,
 			};

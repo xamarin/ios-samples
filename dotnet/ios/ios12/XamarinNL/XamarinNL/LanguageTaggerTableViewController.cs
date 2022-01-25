@@ -27,7 +27,7 @@ public partial class LanguageTaggerTableViewController : UITableViewController
 
 			return cell;
 		}
-		throw new InvalidOperationException ("UITableViewCell");
+		throw new InvalidOperationException (nameof (UITableViewCell));
 	}
 
 	public override void ViewDidLoad ()

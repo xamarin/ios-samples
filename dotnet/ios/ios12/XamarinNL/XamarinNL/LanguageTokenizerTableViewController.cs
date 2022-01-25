@@ -20,7 +20,7 @@ public partial class LanguageTokenizerTableViewController : UITableViewControlle
 
 			return cell;
 		}
-		throw new InvalidOperationException ("UICollectionViewCell");
+		throw new InvalidOperationException (nameof (UITableViewCell));
 	}
 
 	public override void ViewDidLoad ()
