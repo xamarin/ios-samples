@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>e9e2ae24-f49b-442d-9c7f-88fe29297333</ID>
+  <IsFullApplication>true</IsFullApplication>
+  <Brief>This sample app uses a trained model, `MarsHabitatPricer.mlmodel`, to predict habitat prices on Mars.</Brief>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Level>Intermediate</Level>
+  <Tags>CoreML, iOS12</Tags>
+  <Gallery>true</Gallery>
+</SampleMetadata>
