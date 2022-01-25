@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>8E71C1A6-4C74-4D46-84FE-BE6730C48CAF</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginner</Level>
+  <Tags>iOS11</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>iOS 11 example combining the Vision framework with CoreML and a trained model from Azure's Custom Vision Service.</Brief>
+</SampleMetadata>
