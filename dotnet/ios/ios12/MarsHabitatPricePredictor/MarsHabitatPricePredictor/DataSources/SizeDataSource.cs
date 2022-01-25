@@ -19,9 +19,9 @@ public class SizeDataSource
 	public double[] Values { get; } = { 750, 1000, 1500, 2000, 3000, 4000, 5000, 10000 };
 
 	public string GetTitle (int index) =>
-		index < this.Values.Length ? numberFormatter.StringFor (NSNumber.FromDouble (this.Values[index])) : throw new IndexOutOfRangeException ($"{nameof (Values)} does not have index: {index}");
+		index < Values.Length ? numberFormatter.StringFor (NSNumber.FromDouble (Values[index])) : throw new IndexOutOfRangeException ($"{nameof (Values)} does not have index: {index}");
 
 
 	public double GetValue (int index) =>
-		index < this.Values.Length ? this.Values[index] : throw new IndexOutOfRangeException ($"{nameof (Values)} does not have index: {index}");
+		index < Values.Length ? Values[index] : throw new IndexOutOfRangeException ($"{nameof (Values)} does not have index: {index}");
 }

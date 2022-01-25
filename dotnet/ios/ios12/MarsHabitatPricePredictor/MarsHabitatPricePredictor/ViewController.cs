@@ -27,17 +27,17 @@ public partial class ViewController : UIViewController, IUIPickerViewDelegate
 	{
 		base.ViewDidLoad ();
 
-		this.pickerView.Delegate = this;
-		this.pickerView.DataSource = this.pickerDataSource;
+		pickerView.Delegate = this;
+		pickerView.DataSource = pickerDataSource;
 
 		// set default values
 		var features = Enum.GetValues (typeof (Feature)).Cast<Feature> ();
 		foreach (var feature in features)
 		{
-			this.pickerView.Select (2, (int)feature, false);
+			pickerView.Select (2, (int)feature, false);
 		}
 
-		this.UpdatePredictedPrice ();
+		UpdatePredictedPrice ();
 	}
 
 	/// <summary>
@@ -60,7 +60,7 @@ public partial class ViewController : UIViewController, IUIPickerViewDelegate
 
 		int SelectedRow (Feature feature)
 		{
-			return (int)this.pickerView.SelectedRowInComponent ( (int)feature);
+			return (int)pickerView.SelectedRowInComponent ( (int)feature);
 		}
 	}
 
@@ -70,7 +70,7 @@ public partial class ViewController : UIViewController, IUIPickerViewDelegate
 	public void Selected (UIPickerView pickerView, nint row, nint component)
 	{
 		// When values are changed, update the predicted price.
-		this.UpdatePredictedPrice ();
+		UpdatePredictedPrice ();
 	}
 
 	[Export ("pickerView:titleForRow:forComponent:")]

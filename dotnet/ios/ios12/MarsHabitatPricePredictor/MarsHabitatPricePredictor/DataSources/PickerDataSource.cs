@@ -15,9 +15,9 @@ public class PickerDataSource : UIPickerViewDataSource
 	/// </summary>
 	public string GetTitle (int row, Feature feature) => feature switch
 	{
-		Feature.SolarPanels => this.solarPanelsDataSource.GetTitle (row),
-		Feature.Greenhouses => this.greenhousesDataSource.GetTitle (row),
-		Feature.Size => this.sizeDataSource.GetTitle (row),
+		Feature.SolarPanels => solarPanelsDataSource.GetTitle (row),
+		Feature.Greenhouses => greenhousesDataSource.GetTitle (row),
+		Feature.Size => sizeDataSource.GetTitle (row),
 		_ => throw new ArgumentOutOfRangeException ($"Unknown feature: {feature}"),
 	};
 
@@ -26,9 +26,9 @@ public class PickerDataSource : UIPickerViewDataSource
 	/// </summary>
 	public double GetValue (int row, Feature feature) => feature switch
 	{
-		Feature.SolarPanels => this.solarPanelsDataSource.GetValue (row),
-		Feature.Greenhouses => this.greenhousesDataSource.GetValue (row),
-		Feature.Size => this.sizeDataSource.GetValue (row),
+		Feature.SolarPanels => solarPanelsDataSource.GetValue (row),
+		Feature.Greenhouses => greenhousesDataSource.GetValue (row),
+		Feature.Size => sizeDataSource.GetValue (row),
 		_ => throw new ArgumentOutOfRangeException ($"Unknown feature: {feature}"),
 	};
 
@@ -38,9 +38,9 @@ public class PickerDataSource : UIPickerViewDataSource
 
 	public override nint GetRowsInComponent (UIPickerView pickerView, nint component) => (Feature) (int)component switch
 	{
-		Feature.SolarPanels => this.solarPanelsDataSource.Values.Length,
-		Feature.Greenhouses => this.greenhousesDataSource.Values.Length,
-		Feature.Size => this.sizeDataSource.Values.Length,
+		Feature.SolarPanels => solarPanelsDataSource.Values.Length,
+		Feature.Greenhouses => greenhousesDataSource.Values.Length,
+		Feature.Size => sizeDataSource.Values.Length,
 		_ => throw new NotImplementedException (),
 	};
 
