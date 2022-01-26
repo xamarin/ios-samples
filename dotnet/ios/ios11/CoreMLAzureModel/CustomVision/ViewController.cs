@@ -169,8 +169,9 @@ namespace CustomVision
 
 		public void SetupCamera()
 		{
+			// To be changed after this PR lands https://github.com/xamarin/xamarin-macios/pull/13913
 			var deviceDiscovery = AVCaptureDeviceDiscoverySession.Create(
-				new AVCaptureDeviceType[] { AVCaptureDeviceType.BuiltInWideAngleCamera }, AVMediaType.Video, AVCaptureDevicePosition.Back);
+				new AVCaptureDeviceType[] { AVCaptureDeviceType.BuiltInWideAngleCamera }, AVMediaTypes.Video.GetConstant (), AVCaptureDevicePosition.Back);
 			var device = deviceDiscovery.Devices.LastOrDefault();
 			if (device != null)
 			{
@@ -204,7 +205,7 @@ namespace CustomVision
 				}
 				captureSession.AddInput(input);
 
-				videoConnection = videoOutput.ConnectionFromMediaType(AVMediaType.Video);
+				videoConnection = videoOutput.ConnectionFromMediaType(new NSString ("AVMediaTypeVideo"));
 
 				captureSession.CommitConfiguration();
 				captureSession.StartRunning();

@@ -92,7 +92,7 @@ namespace CustomVision
             layerLabel.SetFont(font.Name);
             layerLabel.FontSize = font.PointSize;
             layerLabel.ForegroundColor = textColor.CGColor;
-			layerLabel.AlignmentMode = CATextLayer.AlignmentCenter; 
+			layerLabel.TextAlignmentMode = CATextLayerAlignmentMode.Center;
             layerLabel.ContentsScale = UIScreen.MainScreen.Scale;
             layerLabel.AllowsFontSubpixelQuantization = true;
             layerLabel.Wrapped = true;
