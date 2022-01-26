@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="269">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController" title="Red Green Notifications">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="198" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="90" width="288" height="30"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1"/>
+                                <constraints>
+                                    <constraint id="321" firstAttribute="height" constant="30"/>
+                                </constraints>
+                                <state key="normal" title="Red notification"/>
+                                <connections>
+                                    <action selector="HandleTapRedNotificationButton:" destination="BYZ-38-t0r" id="979" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="203" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="130" width="288" height="30"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1"/>
+                                <state key="normal" title="Green notification"/>
+                                <constraints>
+                                    <constraint id="323" firstAttribute="height" constant="30"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="HandleTapGreenNotificationButton:" destination="BYZ-38-t0r" id="981" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="204" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="170" width="288" height="30"/>
+                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1"/>
+                                <state key="normal" title="Manage Notifications"/>
+                                <constraints>
+                                    <constraint id="329" firstAttribute="height" constant="30"/>
+                                </constraints>
+                                <connections>
+                                    <segue id="409" destination="352" kind="show" identifier="ShowManageNotificationsSegue"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="319" firstItem="198" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin"/>
+                            <constraint id="320" firstItem="198" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin"/>
+                            <constraint id="322" firstItem="203" firstAttribute="top" secondItem="198" secondAttribute="bottom" constant="10"/>
+                            <constraint id="324" firstItem="203" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin"/>
+                            <constraint id="325" firstItem="203" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin"/>
+                            <constraint id="326" firstItem="204" firstAttribute="top" secondItem="203" secondAttribute="bottom" constant="10"/>
+                            <constraint id="327" firstItem="204" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin"/>
+                            <constraint id="328" firstItem="204" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin"/>
+                            <constraint id="713" firstItem="198" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20"/>
+                        </constraints>
+                    </view>
+                    <navigationItem title="Red Green Notifications" id="310" key="navigationItem"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="39" y="27"/>
+        </scene>
+        <scene sceneID="268">
+            <objects>
+                <navigationController id="269" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="271">
+                        <rect key="frame" x="0.0" y="20" width="320" height="50"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue id="311" destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="272" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-450" y="28"/>
+        </scene>
+        <scene sceneID="351">
+            <objects>
+                <viewController id="352" sceneMemberID="viewController" title="Manage Notifications" customClass="ManageNotificationsViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="349"/>
+                        <viewControllerLayoutGuide type="bottom" id="350"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="353">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="356" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="135.5" y="154" width="51" height="31"/>
+                                <connections>
+                                    <action selector="HandleRedNotificationsSwitchValueChange:" destination="352" id="1705" eventType="valueChanged"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Red notifications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="358" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="125" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="444" firstAttribute="height" constant="21"/>
+                                </constraints>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="364" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="135.5" y="235" width="51" height="31"/>
+                                <connections>
+                                    <action selector="HandleGreenNotificationsSwitchValueChange:" destination="352" id="1706" eventType="valueChanged"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Green notifications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="365" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="205" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="439" firstAttribute="height" constant="21"/>
+                                </constraints>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="714" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="16" y="94" width="288" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="718" firstAttribute="height" constant="21"/>
+                                </constraints>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint id="359" firstAttribute="centerX" secondItem="356" secondAttribute="centerX"/>
+                            <constraint id="436" firstItem="365" firstAttribute="top" secondItem="356" secondAttribute="bottom" constant="20"/>
+                            <constraint id="437" firstItem="365" firstAttribute="leading" secondItem="353" secondAttribute="leadingMargin"/>
+                            <constraint id="438" firstItem="365" firstAttribute="trailing" secondItem="353" secondAttribute="trailingMargin"/>
+                            <constraint id="441" firstItem="358" firstAttribute="leading" secondItem="353" secondAttribute="leadingMargin"/>
+                            <constraint id="442" firstItem="358" firstAttribute="trailing" secondItem="353" secondAttribute="trailingMargin"/>
+                            <constraint id="445" firstItem="356" firstAttribute="top" secondItem="358" secondAttribute="bottom" constant="8"/>
+                            <constraint id="450" firstAttribute="centerX" secondItem="364" secondAttribute="centerX"/>
+                            <constraint id="451" firstItem="364" firstAttribute="top" secondItem="365" secondAttribute="bottom" constant="9"/>
+                            <constraint id="715" firstItem="714" firstAttribute="top" secondItem="349" secondAttribute="bottom" constant="24"/>
+                            <constraint id="716" firstItem="714" firstAttribute="leading" secondItem="353" secondAttribute="leadingMargin"/>
+                            <constraint id="717" firstItem="714" firstAttribute="trailing" secondItem="353" secondAttribute="trailingMargin"/>
+                            <constraint id="720" firstItem="358" firstAttribute="top" secondItem="714" secondAttribute="bottom" constant="10"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ManageNotificationsStatusLabel" destination="714" id="name-outlet-714"/>
+                        <outlet property="RedNotificationsSwitch" destination="356" id="name-outlet-356"/>
+                        <outlet property="GreenNotificationsSwitch" destination="364" id="name-outlet-364"/>
+                        <outlet property="RedNotificationsLabel" destination="358" id="name-outlet-358"/>
+                        <outlet property="GreenNotificationsLabel" destination="365" id="name-outlet-365"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="354" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="497" y="28"/>
+        </scene>
+    </scenes>
+</document>

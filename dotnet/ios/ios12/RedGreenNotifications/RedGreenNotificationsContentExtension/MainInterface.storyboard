@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notification View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" userLabel="Notification View Controller" customClass="NotificationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ft6-oW-KC0"/>
+                        <viewControllerLayoutGuide type="bottom" id="FKl-LY-JtV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" id="589" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="149" width="374" height="31"/>
+                                <connections>
+                                    <action selector="HandleSliderValueChanged:" destination="M4Y-Lb-cyx" id="4277" eventType="valueChanged"/>
+                                </connections>
+                            </slider>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2192" translatesAutoresizingMaskIntoConstraints="NO" image="Xamagon">
+                                <rect key="frame" x="152" y="35" width="109" height="88"/>
+                                <constraints>
+                                    <constraint id="2619" firstAttribute="height" constant="88"/>
+                                    <constraint id="2620" firstAttribute="width" constant="109"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" id="4703" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="20" width="107" height="65"/>
+                                <state key="normal" title="Dismiss Notification">
+                                    <color key="titleColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="4707" firstAttribute="width" constant="107"/>
+                                    <constraint id="4708" firstAttribute="height" constant="65"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="HandleDismissNotificationButtonTap:" destination="M4Y-Lb-cyx" id="4714" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" id="4704" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="307" y="46" width="79" height="65"/>
+                                <state key="normal" title="Launch App">
+                                    <color key="titleColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                </state>
+                                <connections>
+                                    <action selector="HandleLaunchAppButtonTap:" destination="M4Y-Lb-cyx" id="4715" eventType="touchUpInside"/>
+                                </connections>
+                                <constraints>
+                                    <constraint id="6519" firstAttribute="width" constant="79"/>
+                                    <constraint id="6520" firstAttribute="height" constant="65"/>
+                                </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" id="5598" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="85" width="107" height="65"/>
+                                <state key="normal" title="Remove Notification">
+                                    <color key="titleColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="5601" firstAttribute="width" constant="107"/>
+                                    <constraint id="5602" firstAttribute="height" constant="65"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="HandleDismissNotificationButtonTap:" destination="5600" id="5599" eventType="touchUpInside"/>
+                                    <action selector="HandleRemoveNotificationButtonTap:" destination="M4Y-Lb-cyx" id="5608" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="594" firstItem="589" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin" constant="2"/>
+                            <constraint id="595" firstItem="FKl-LY-JtV" firstAttribute="top" secondItem="589" secondAttribute="bottom" constant="21"/>
+                            <constraint id="596" firstAttribute="trailingMargin" secondItem="589" secondAttribute="trailing" constant="2"/>
+                            <constraint id="2621" firstItem="2192" firstAttribute="centerX" secondItem="S3S-Oj-5AN" secondAttribute="centerX"/>
+                            <constraint id="2622" firstAttribute="centerY" secondItem="2192" secondAttribute="centerY" constant="21"/>
+                            <constraint id="4706" firstItem="4703" firstAttribute="top" secondItem="Ft6-oW-KC0" secondAttribute="bottom" constant="20"/>
+                            <constraint id="4709" firstItem="4703" firstAttribute="leading" secondItem="S3S-Oj-5AN" secondAttribute="leadingMargin"/>
+                            <constraint id="5606" firstItem="5598" firstAttribute="top" secondItem="4703" secondAttribute="bottom"/>
+                            <constraint id="5607" firstItem="4703" firstAttribute="leading" secondItem="5598" secondAttribute="leading"/>
+                            <constraint id="6279" firstItem="2192" firstAttribute="centerY" secondItem="4704" secondAttribute="centerY"/>
+                            <constraint id="6280" firstAttribute="trailingMargin" secondItem="4704" secondAttribute="trailing" constant="8"/>
+                        </constraints>
+                        <color key="backgroundColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <size key="freeformSize" width="414" height="200"/>
+                    <connections>
+                        <outlet property="Xamagon" destination="2192" id="name-outlet-2192"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Xamagon" width="167" height="147"/>
+    </resources>
+</document>
