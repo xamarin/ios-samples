@@ -71,7 +71,10 @@ public class AppDelegate : UIApplicationDelegate, IUNUserNotificationCenterDeleg
         [Export ("userNotificationCenter:willPresentNotification:withCompletionHandler:")]
         public void WillPresentNotification (UNUserNotificationCenter center, UNNotification notification, System.Action<UNNotificationPresentationOptions> completionHandler)
         {
-                completionHandler (UNNotificationPresentationOptions.Alert | UNNotificationPresentationOptions.Sound);
+                var presentationOptions = UIDevice.CurrentDevice.CheckSystemVersion (14, 0) ?
+                        UNNotificationPresentationOptions.Banner | UNNotificationPresentationOptions.List | UNNotificationPresentationOptions.Sound :
+                        UNNotificationPresentationOptions.Alert | UNNotificationPresentationOptions.Sound;
+                completionHandler (presen);
         }
 
         [Export ("userNotificationCenter:openSettingsForNotification:")]
