@@ -57,9 +57,7 @@ public partial class ViewController : UIViewController, IAVCaptureVideoDataOutpu
 				model = VNCoreMLModel.FromMLModel (mlModel, out mlErr);
 			}
 			if (classificationRequestAry is null) {
-				if (model is null)
-					throw new InvalidOperationException (nameof (model));
-				var classificationRequest = new VNCoreMLRequest (model, handleClassification);
+				var classificationRequest = new VNCoreMLRequest (model!, handleClassification);
 				classificationRequestAry = new VNRequest[] { classificationRequest };
 			}
 			return classificationRequestAry;
@@ -212,9 +210,8 @@ public partial class ViewController : UIViewController, IAVCaptureVideoDataOutpu
 				frameCount = frameCount + 1;
 				if (frameCount % framesPerSample == 0) {
 					var diff = currentDate.Subtract (startDate);
-					if (diff.Seconds > 0) {
-						if (pace > TimeSpan.Zero)
-							Console.WriteLine ("WARNING: Frame rate of image classification is being limited by \"pace\" setting. Set to 0.0 for fastest possible rate.");
+					if (diff.Seconds > 0 && pace > TimeSpan.Zero) {
+						Console.WriteLine ("WARNING: Frame rate of image classification is being limited by \"pace\" setting. Set to 0.0 for fastest possible rate.");
 					}
 					Console.WriteLine ($"{diff.Seconds / framesPerSample}s per frame (average");
 				}

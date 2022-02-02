@@ -24,7 +24,6 @@ public class BubbleLayerLabel : CATextLayer
 			return;
 		}
 
-		// TODO: test .Font property
 		if (this.WeakFont is string fontName) {
 			if (font is null)
 				font = UIFont.FromName (fontName, UIFont.ButtonFontSize);
