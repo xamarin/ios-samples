@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+  <ID>1F673E45-A0A9-4395-B34D-D8AA71B5E4F0</ID>
+  <IsFullApplication>false</IsFullApplication>
+  <Level>Beginner</Level>
+  <Tags>User Interface, Platform Features, iOS11</Tags>
+  <SupportedPlatforms>iOS</SupportedPlatforms>
+  <Gallery>true</Gallery>
+  <Brief>Demonstrates how to use FaceID and TouchID to authenticate the user.</Brief>
+</SampleMetadata>
