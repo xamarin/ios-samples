@@ -9,7 +9,7 @@ namespace PlacingObjects
 	public partial class ViewController : IARSCNViewDelegate
 	{
 		[Export("renderer:updateAtTime:")]
-		public void RendererUpdateAtTime(SCNSceneRenderer renderer, double updateAtTime)
+		public void RendererUpdateAtTime(ISCNSceneRenderer renderer, double updateAtTime)
 		{
 			if (Session?.CurrentFrame == null)
 			{
