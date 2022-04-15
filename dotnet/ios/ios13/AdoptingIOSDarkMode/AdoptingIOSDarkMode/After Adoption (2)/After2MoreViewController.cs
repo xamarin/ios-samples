@@ -22,7 +22,7 @@ public partial class After2MoreViewController : UIViewController {
 		View = new UIView {
 			TranslatesAutoresizingMaskIntoConstraints = false,
 			// DARK MODE ADOPTION: Changed from .white to a semantic color.
-			BackgroundColor = UIColor.SystemBackgroundColor
+			BackgroundColor = UIColor.SystemBackground
 		};
 
 		// Add various subviews, from top to bottom:
@@ -68,7 +68,7 @@ public partial class After2MoreViewController : UIViewController {
 	{
 		Text = "Presented Content",
 		// DARK MODE ADOPTION: Changed from .black to a semantic color:
-		TextColor = UIColor.LabelColor,
+		TextColor = UIColor.Label,
 		TranslatesAutoresizingMaskIntoConstraints = false,
 	};
 
