@@ -54,7 +54,7 @@ public partial class InsertionSortViewController : UIViewController {
 			throw new InvalidOperationException (nameof (View));
 
 		insertionCollectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
-			BackgroundColor = UIColor.SystemBackgroundColor,
+			BackgroundColor = UIColor.SystemBackground,
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
 		};
 		View.AddSubview (insertionCollectionView);

@@ -70,7 +70,7 @@ public partial class GridViewController : UIViewController {
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
-			BackgroundColor = UIColor.SystemBackgroundColor
+			BackgroundColor = UIColor.SystemBackground
 		};
 		collectionView.RegisterClassForCell (typeof (TextCell), TextCell.Key);
 		View.AddSubview (collectionView);

@@ -87,10 +87,10 @@ public partial class MountainsViewController : UIViewController, IUISearchBarDel
 		if (View is null)
 			throw new InvalidOperationException (nameof (View));
 
-		View.BackgroundColor = UIColor.SystemBackgroundColor;
+		View.BackgroundColor = UIColor.SystemBackground;
 		mountainCollectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			TranslatesAutoresizingMaskIntoConstraints = false,
-			BackgroundColor = UIColor.SystemBackgroundColor
+			BackgroundColor = UIColor.SystemBackground
 		};
 		View.AddSubview (mountainCollectionView);
 		mountainCollectionView.RegisterClassForCell (typeof (LabelCell), LabelCell.Key);

@@ -63,7 +63,7 @@ public partial class ConferenceNewsFeedViewController : UIViewController {
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			TranslatesAutoresizingMaskIntoConstraints = false,
-			BackgroundColor = UIColor.SystemBackgroundColor,
+			BackgroundColor = UIColor.SystemBackground,
 		};
 		View.AddSubview (collectionView);
 		collectionView.RegisterClassForCell (typeof (ConferenceNewsFeedCell), ConferenceNewsFeedCell.Key);

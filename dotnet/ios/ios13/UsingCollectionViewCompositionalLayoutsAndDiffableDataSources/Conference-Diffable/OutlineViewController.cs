@@ -1,4 +1,4 @@
-/*
+﻿/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -142,7 +142,7 @@ public partial class OutlineViewController : UIViewController, IUICollectionView
 
 		var collectionView = new UICollectionView (View.Bounds, GenerateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleWidth,
-			BackgroundColor = UIColor.SystemBackgroundColor,
+			BackgroundColor = UIColor.SystemBackground,
 			Delegate = this,
 		};
 		View.AddSubview (collectionView);

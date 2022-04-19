@@ -55,7 +55,7 @@ public partial class SectionDecorationViewController : UIViewController, IUIColl
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
-			BackgroundColor = UIColor.SystemBackgroundColor,
+			BackgroundColor = UIColor.SystemBackground,
 			Delegate = this
 		};
 		collectionView.RegisterClassForCell (typeof (ListCell), ListCell.Key);

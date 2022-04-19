@@ -93,7 +93,7 @@ public partial class ItemBadgeSupplementaryViewController : UIViewController {
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
-			BackgroundColor = UIColor.SystemBackgroundColor
+			BackgroundColor = UIColor.SystemBackground
 		};
 		collectionView.RegisterClassForCell (typeof (TextCell), TextCell.Key);
 		collectionView.RegisterClassForSupplementaryView (typeof (BadgeSupplementaryView), new NSString (badgeElementKind), BadgeSupplementaryView.Key);

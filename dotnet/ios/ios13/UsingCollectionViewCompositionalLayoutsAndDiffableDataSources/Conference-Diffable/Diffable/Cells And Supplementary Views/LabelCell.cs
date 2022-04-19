@@ -24,7 +24,7 @@ public partial class LabelCell : UICollectionViewCell {
 		ContentView.AddSubview (Label);
 
 		Layer.BorderWidth = 1;
-		Layer.BorderColor = UIColor.SystemGray2Color.CGColor;
+		Layer.BorderColor = UIColor.SystemGray2.CGColor;
 
 		var inset = 10;
 		Label.LeadingAnchor.ConstraintEqualTo (ContentView.LeadingAnchor, inset).Active = true;
