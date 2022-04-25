@@ -157,7 +157,7 @@ public partial class ViewController : UIViewController, IARSCNViewDelegate, IARS
                         sceneView.Session.AddAnchor (anchor);
 
                         // Send the anchor info to peers, so they can place the same content.
-                        var data = NSKeyedArchiver.ArchivedDataWithRootObject (anchor, true, out NSError? error);
+                        var data = NSKeyedArchiver.GetArchivedData (anchor, true, out NSError? error);
                         if (error is not null)
                         {
                                 throw new Exception ("can't encode anchor");
@@ -174,7 +174,7 @@ public partial class ViewController : UIViewController, IARSCNViewDelegate, IARS
                  {
                          if (worldMap is not null)
                          {
-                                 var data = NSKeyedArchiver.ArchivedDataWithRootObject (worldMap, true, out NSError? archivError);
+                                 var data = NSKeyedArchiver.GetArchivedData (worldMap, true, out NSError? archivError);
                                  if (archivError is not null)
                                  {
                                          throw new Exception ("can't encode map");
