@@ -74,7 +74,7 @@ public class AppDelegate : UIApplicationDelegate, IUNUserNotificationCenterDeleg
                 var presentationOptions = UIDevice.CurrentDevice.CheckSystemVersion (14, 0) ?
                         UNNotificationPresentationOptions.Banner | UNNotificationPresentationOptions.List | UNNotificationPresentationOptions.Sound :
                         UNNotificationPresentationOptions.Alert | UNNotificationPresentationOptions.Sound;
-                completionHandler (presen);
+                completionHandler (presentationOptions);
         }
 
         [Export ("userNotificationCenter:openSettingsForNotification:")]
