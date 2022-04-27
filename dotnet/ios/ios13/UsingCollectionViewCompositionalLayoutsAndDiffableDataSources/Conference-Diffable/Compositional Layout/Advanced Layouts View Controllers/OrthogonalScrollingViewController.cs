@@ -70,7 +70,7 @@ public partial class OrthogonalScrollingViewController : UIViewController, IUICo
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
-			BackgroundColor = UIColor.SystemBackgroundColor,
+			BackgroundColor = UIColor.SystemBackground,
 			Delegate = this
 		};
 		View.AddSubview (collectionView);

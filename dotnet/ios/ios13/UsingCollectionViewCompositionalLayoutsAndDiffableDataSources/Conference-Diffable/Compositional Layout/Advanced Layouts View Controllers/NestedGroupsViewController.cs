@@ -104,7 +104,7 @@ public partial class NestedGroupsViewController : UIViewController, IUICollectio
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
-			BackgroundColor = UIColor.SystemBackgroundColor,
+			BackgroundColor = UIColor.SystemBackground,
 			Delegate = this
 		};
 		View.AddSubview (collectionView);

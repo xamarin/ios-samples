@@ -25,7 +25,7 @@ public partial class ConferenceNewsFeedCell : UICollectionViewCell {
 
 	public UIView SeparatorView { get; private set; } = new UIImageView {
 			TranslatesAutoresizingMaskIntoConstraints = false,
-			BackgroundColor = UIColor.PlaceholderTextColor
+			BackgroundColor = UIColor.PlaceholderText
 		};
 
 	bool showsSeparator = true;

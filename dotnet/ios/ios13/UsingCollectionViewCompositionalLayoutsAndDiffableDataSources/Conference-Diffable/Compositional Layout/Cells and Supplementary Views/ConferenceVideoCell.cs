@@ -13,7 +13,7 @@ public partial class ConferenceVideoCell : UICollectionViewCell {
 		TranslatesAutoresizingMaskIntoConstraints = false,
 		Font = UIFont.GetPreferredFontForTextStyle (UIFontTextStyle.Caption2),
 		AdjustsFontForContentSizeCategory = true,
-		TextColor = UIColor.PlaceholderTextColor
+		TextColor = UIColor.PlaceholderText
 	};
 
 	[Export ("initWithFrame:")]

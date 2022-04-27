@@ -113,7 +113,7 @@ public partial class DistinctSectionsViewController : UIViewController, IUIColle
 
 		collectionView = new UICollectionView (View.Bounds, layout) {
 			AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight,
-			BackgroundColor = UIColor.SystemBackgroundColor,
+			BackgroundColor = UIColor.SystemBackground,
 			Delegate = this
 		};
 		collectionView.RegisterClassForCell (typeof (TextCell), TextCell.Key);

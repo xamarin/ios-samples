@@ -65,7 +65,7 @@ public partial class ConferenceVideoSessionsViewController : UIViewController {
 
 		collectionView = new UICollectionView (View.Bounds, CreateLayout ()) {
 			TranslatesAutoresizingMaskIntoConstraints = false,
-			BackgroundColor = UIColor.SystemBackgroundColor,
+			BackgroundColor = UIColor.SystemBackground,
 		};
 		View.AddSubview (collectionView);
 		collectionView.RegisterClassForCell (typeof (ConferenceVideoCell), ConferenceVideoCell.Key);

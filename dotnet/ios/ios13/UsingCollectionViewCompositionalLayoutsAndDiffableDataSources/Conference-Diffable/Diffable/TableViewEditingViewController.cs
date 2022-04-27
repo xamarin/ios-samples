@@ -168,7 +168,7 @@ public partial class TableViewEditingViewController : UIViewController {
 		tableView = new UITableView (CGRect.Empty, UITableViewStyle.InsetGrouped) {
 			TranslatesAutoresizingMaskIntoConstraints = false
 		};
-		View.BackgroundColor = UIColor.SystemBackgroundColor;
+		View.BackgroundColor = UIColor.SystemBackground;
 		View.AddSubview (tableView);
 
 		tableView.LeadingAnchor.ConstraintEqualTo (View.SafeAreaLayoutGuide.LeadingAnchor).Active = true;
