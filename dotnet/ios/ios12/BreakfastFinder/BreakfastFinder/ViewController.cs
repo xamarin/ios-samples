@@ -14,7 +14,7 @@ public class ViewController : UIViewController, IAVCaptureVideoDataOutputSampleB
 
         protected CGSize bufferSize = CGSize.Empty;
         protected CALayer? rootLayer = null;
-        static NSString videoDeviceName = AVMediaTypes.Video.GetConstant ()!;
+        static AVMediaTypes videoDeviceName = AVMediaTypes.Video;
 
         public virtual UIView previewView { get; }
         AVCaptureSession session = new AVCaptureSession ();
@@ -45,7 +45,7 @@ public class ViewController : UIViewController, IAVCaptureVideoDataOutputSampleB
         {
                 AVCaptureDeviceInput deviceInput;
 
-                var device = AVMediaTypes.Video.GetConstant ();
+                var device = AVMediaTypes.Video;
 
                 // Select a video device, make an input
                 var videoDevice = AVCaptureDeviceDiscoverySession.Create (
@@ -77,7 +77,7 @@ public class ViewController : UIViewController, IAVCaptureVideoDataOutputSampleB
                         // Add a video data ouptut
                         videoDataOutput.AlwaysDiscardsLateVideoFrames = true;
                         videoDataOutput.WeakVideoSettings = new NSDictionary (CVPixelBuffer.PixelFormatTypeKey, CVPixelFormatType.CV420YpCbCr8BiPlanarFullRange);
-                        videoDataOutput.SetSampleBufferDelegateQueue (this, videoDataOutputQueue);
+                        videoDataOutput.SetSampleBufferDelegate (this, videoDataOutputQueue);
                 }
                 else
                 {
@@ -86,7 +86,7 @@ public class ViewController : UIViewController, IAVCaptureVideoDataOutputSampleB
                         return;
                 }
 
-                var captureConnection = videoDataOutput.ConnectionFromMediaType (videoDeviceName);
+                var captureConnection = videoDataOutput.ConnectionFromMediaType (videoDeviceName.GetConstant());
                 if (captureConnection is null)
                 {
                         Console.WriteLine ($"Could not connection video output");

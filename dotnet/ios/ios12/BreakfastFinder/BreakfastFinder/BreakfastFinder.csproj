@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <Nullable>enable</Nullable>
     <ImplicitUsings>true</ImplicitUsings>
-	<SupportedOSPlatformVersion>12.0</SupportedOSPlatformVersion>
+	  <SupportedOSPlatformVersion>14.0</SupportedOSPlatformVersion>
     <ProvisioningType>manual</ProvisioningType>
   </PropertyGroup>
 </Project>
