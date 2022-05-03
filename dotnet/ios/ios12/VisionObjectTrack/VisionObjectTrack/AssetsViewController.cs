@@ -191,7 +191,7 @@ public partial class AssetsViewController : UICollectionViewController
                                 DeliveryMode = PHVideoRequestOptionsDeliveryMode.HighQualityFormat
                         };
 
-                        imageManager.RequestAvAsset (asset, videoOptions, (avAsset, _, __) =>
+                        imageManager.RequestAVAsset (asset, videoOptions, (avAsset, _, __) =>
                         {
                                 if (avAsset is not null)
                                 {
