@@ -150,7 +150,7 @@ public partial class ViewController : UIViewController, IAVCaptureVideoDataOutpu
 	{
 		// Eventually we will want to use 'AVMediaTypes.Video' instead of AVMediaTypes.Video.GetConstant ()
 		var deviceDiscovery = AVCaptureDeviceDiscoverySession.Create (
-			new AVCaptureDeviceType[] { AVCaptureDeviceType.BuiltInWideAngleCamera }, AVMediaTypes.Video.GetConstant (), AVCaptureDevicePosition.Back);
+			new AVCaptureDeviceType[] { AVCaptureDeviceType.BuiltInWideAngleCamera }, AVMediaTypes.Video, AVCaptureDevicePosition.Back);
 		var device = deviceDiscovery.Devices.LastOrDefault ();
 		if (device is not null)
 		{
@@ -170,7 +170,7 @@ public partial class ViewController : UIViewController, IAVCaptureVideoDataOutpu
 			};
 			videoOutput.WeakVideoSettings = settings.Dictionary;
 			videoOutput.AlwaysDiscardsLateVideoFrames = true;
-			videoOutput.SetSampleBufferDelegateQueue (this, queue);
+			videoOutput.SetSampleBufferDelegate (this, queue);
 
 			captureSession.SessionPreset = AVCaptureSession.Preset1920x1080;
 			captureSession.AddOutput (videoOutput);
