@@ -22,8 +22,8 @@ namespace GroupedNotifications
         int unthreadedMessagesSent = 0;
         int threadNumber = 0;
         int threadMessagesSent = 0;
-        string friend;
-        string threadId;
+        string friend = String.Empty;
+        string threadId = String.Empty;
 
         protected ViewController(IntPtr handle) : base(handle) { }
 
@@ -72,7 +72,7 @@ namespace GroupedNotifications
                 return;
             }
 
-            string author = friend;
+            string? author = friend;
             if (threadMessagesSent % 2 == 0)
             {
                 author = "Me";
