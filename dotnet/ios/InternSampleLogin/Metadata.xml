@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SampleMetadata>
+    <ID>C8C9307F-8006-4F85-9198-8D3FB1BA19A5</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Beginner</Level>
+	<Tags>Getting Started, User Interface</Tags>
+	<Gallery>false</Gallery>
+	<Brief>This introductory sample looks at setting up a basic iOS application in Visual Studio.</Brief>
+</SampleMetadata>
