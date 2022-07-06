@@ -11,11 +11,7 @@ public partial class ViewController : UIViewController
 
     partial void OpenWebView(UIButton sender)
     {
-        
-        if (View == null)
-        {
-            throw new NullReferenceException();
-        }
+        if (View == null) throw new NullReferenceException();
         
         var webView = new WKWebView(View.Frame, new WKWebViewConfiguration());
         View.AddSubview(webView);
