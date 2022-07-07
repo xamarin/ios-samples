@@ -13,7 +13,7 @@ public partial class AppDelegate : UIApplicationDelegate
         // create a new window instance based on the screen size
         window = new UIWindow (UIScreen.MainScreen.Bounds);
 
-        var controller = new CustomViewController();
+        var controller = new CustomViewController ();
 
         window.RootViewController = controller;
 
