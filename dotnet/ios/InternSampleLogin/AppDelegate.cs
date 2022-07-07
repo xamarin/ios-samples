@@ -11,7 +11,7 @@ public partial class AppDelegate : UIApplicationDelegate
     public override bool FinishedLaunching(UIApplication app, NSDictionary options)
     {
         // create a new window instance based on the screen size
-        window = new UIWindow(UIScreen.MainScreen.Bounds);
+        window = new UIWindow (UIScreen.MainScreen.Bounds);
 
         var controller = new CustomViewController();
 
