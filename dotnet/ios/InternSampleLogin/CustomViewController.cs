@@ -13,7 +13,8 @@ public class CustomViewController : UIViewController
     {
         base.ViewDidLoad();
 
-        if (View is null) throw new NullReferenceException();
+        if (View is null) 
+            throw new NullReferenceException ();
 
         View.BackgroundColor = UIColor.Gray;
 
