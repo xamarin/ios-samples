@@ -18,7 +18,7 @@ public partial class AppDelegate : UIApplicationDelegate
         window.RootViewController = controller;
 
         // make the window visible
-        window.MakeKeyAndVisible();
+        window.MakeKeyAndVisible ();
 
         return true;
     }
