@@ -6,7 +6,7 @@ class CircleController : UIViewController
 {
 	CircleView? view;
 
-	public override void LoadView()
+	public override void LoadView ()
 	{
 		view = new CircleView();
 		View = view;
