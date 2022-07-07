@@ -1,7 +1,3 @@
-﻿using System;
-using UIKit;
-using CoreGraphics;
-
 namespace CodeOnlyDemo;
 
 public class CustomViewController : UIViewController
