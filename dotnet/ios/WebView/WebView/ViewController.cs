@@ -9,12 +9,12 @@ public partial class ViewController : UIViewController
 
     protected ViewController (IntPtr handle) : base (handle) { }
 
-    partial void OpenWebView(UIButton sender)
+    partial void OpenWebView (UIButton sender)
     {
         if (View is null)
             throw new NullReferenceException ();
         
-        var webView = new WKWebView (View.Frame, new WKWebViewConfiguration());
+        var webView = new WKWebView (View.Frame, new WKWebViewConfiguration ());
         View.AddSubview (webView);
        
         webView.LoadRequest (new NSUrlRequest (url));
