@@ -6,7 +6,7 @@ namespace CodeOnlyDemo;
 
 class CircleView : UIView
 {
-	public override void Draw(CGRect rect)
+	public override void Draw (CGRect rect)
 	{
 		base.Draw(rect);
 
