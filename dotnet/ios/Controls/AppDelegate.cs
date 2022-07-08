@@ -6,5 +6,4 @@ public class AppDelegate : UIApplicationDelegate {
 		get;
 		set;
 	}
-	//Finished launching erased
 }
