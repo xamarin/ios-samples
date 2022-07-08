@@ -24,9 +24,9 @@ public partial class ControlsViewController : UIViewController
 	{
 		base.ViewDidLoad ();
 
-			label1.Text = "New Label";
+		label1.Text = "New Label";
 		if (View is not null)
-			View.Add(label1);
+			View.Add (label1);
 
 //			new System.Threading.Thread (new System.Threading.ThreadStart (() => {
 //				InvokeOnMainThread (() => {
@@ -37,30 +37,30 @@ public partial class ControlsViewController : UIViewController
 		Button1.TouchUpInside += (sender, e) => {
 			label1.Text = "button1 clicked";
 
-            //SIMPLE ALERT
+			//SIMPLE ALERT
 
-            //var alert = UIAlertController.Create("Title", "The message", UIAlertControllerStyle.Alert);
-            //alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            //PresentViewController(alert, animated: true, completionHandler: null);
+			//var alert = UIAlertController.Create ("Title", "The message", UIAlertControllerStyle.Alert);
+			//alert.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Default, null));
+			//PresentViewController (alert, animated: true, completionHandler: null);
 
-            // TWO BUTTON ALERT
-            //var alert = UIAlertController.Create("Alert Title", "Choose from two buttons", UIAlertControllerStyle.Alert);
-            //alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Cancel, null));
-            //alert.AddAction(UIAlertAction.Create("Cancel", UIAlertActionStyle.Default, null));
-            //PresentViewController(alert, animated: true, completionHandler: null);
+			// TWO BUTTON ALERT
+			//var alert = UIAlertController.Create ("Alert Title", "Choose from two buttons", UIAlertControllerStyle.Alert);
+			//alert.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Cancel, null));
+			//alert.AddAction (UIAlertAction.Create ("Cancel", UIAlertActionStyle.Default, null));
+			//PresentViewController (alert, animated: true, completionHandler: null);
 
-            //THREE BUTTON ALERT
-
-
-            var alert = UIAlertController.Create ("custom buttons alert", "this alert has custom buttons", UIAlertControllerStyle.Alert);
-
-            alert.AddAction(UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, null));
-            alert.AddAction(UIAlertAction.Create ("Cancel", UIAlertActionStyle.Cancel, null));
-            alert.AddAction(UIAlertAction.Create ("custom button 1", UIAlertActionStyle.Default, null));
-            PresentViewController(alert, animated: true, completionHandler: null);
+			//THREE BUTTON ALERT
 
 
-            textfield1.ResignFirstResponder ();
+			var alert = UIAlertController.Create ("custom buttons alert", "this alert has custom buttons", UIAlertControllerStyle.Alert);
+
+			alert.AddAction(UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, null));
+			alert.AddAction(UIAlertAction.Create ("Cancel", UIAlertActionStyle.Cancel, null));
+			alert.AddAction(UIAlertAction.Create ("custom button 1", UIAlertActionStyle.Default, null));
+			PresentViewController(alert, animated: true, completionHandler: null);
+
+
+			textfield1.ResignFirstResponder ();
 			textview1.ResignFirstResponder ();
 		};
 
@@ -101,10 +101,9 @@ public partial class ControlsViewController : UIViewController
 			null, "Cancel", null)
 			.Show ();
 	}
-
-	//
+	
 	// Async/Await example
-	//
+	
 	async partial void button3_TouchUpInside (UIButton sender)
 	{
 		textfield1.ResignFirstResponder ();
@@ -124,7 +123,7 @@ public partial class ControlsViewController : UIViewController
 
 		new UIAlertView ("Async method complete", "This method contained async awaits",
 			null, "Cancel", null)
-			.Show();
+			.Show ();
 
 		label1.Text = "async method completed";
 	}
@@ -141,7 +140,7 @@ public partial class ControlsViewController : UIViewController
 		//	label1.Text = "Button " + b.ButtonIndex.ToString () + " clicked";
 		//	Console.WriteLine ("Button " + b.ButtonIndex.ToString () + " clicked");
 		//};
-		//alert.Show();
+		//alert.Show ();
 	}
 
 	public override void ViewWillAppear (bool animated)
@@ -166,5 +165,3 @@ public partial class ControlsViewController : UIViewController
 
 	#endregion
 }
-
-
