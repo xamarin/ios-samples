@@ -10,5 +10,3 @@ class CircleController : UIViewController
 		View = view;
 	}
 }
-
-
