@@ -21,7 +21,7 @@ public class CustomViewController : UIViewController
         {
             Placeholder = "Enter your username",
             BorderStyle = UITextBorderStyle.RoundedRect,
-            Frame = new CGRect(10, 32, w - 20, h),
+            Frame = new CGRect (10, 32, w - 20, h),
             AutoresizingMask = UIViewAutoresizing.FlexibleWidth
         };
 
