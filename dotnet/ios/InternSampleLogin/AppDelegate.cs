@@ -23,4 +23,3 @@ public partial class AppDelegate : UIApplicationDelegate
         return true;
     }
 }
-
