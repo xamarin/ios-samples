@@ -29,5 +29,3 @@ class CircleView : UIView
 		BackgroundColor = UIColor.White;
 	}
 }
-
-
