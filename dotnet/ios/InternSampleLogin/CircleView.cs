@@ -7,7 +7,7 @@ class CircleView : UIView
 		base.Draw (rect);
 
 		//get graphics context
-		using var g = UIGraphics.GetCurrentContext ()
+		using var g = UIGraphics.GetCurrentContext ();
 		{
 			// set up drawing attributes
 			g.SetLineWidth (10.0f);
