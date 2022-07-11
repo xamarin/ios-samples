@@ -51,5 +51,3 @@ public class CustomViewController : UIViewController
         View.AddSubviews(new UIView[]{ usernameField, passwordField, submitButton });
     }
 }
-
-
