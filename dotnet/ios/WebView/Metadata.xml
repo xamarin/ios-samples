@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SampleMetadata>
+    <ID>CA3281CA-4116-4219-9683-3DE70010228A</ID>
+	<IsFullApplication>false</IsFullApplication>
+	<Level>Intermediate</Level>
+	<Tags>User Interface</Tags>
+	<Gallery>false</Gallery>
+	<Brief>Demonstrates how to use various web views in ios.</Brief>
+</SampleMetadata>
