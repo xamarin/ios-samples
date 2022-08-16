@@ -14,7 +14,7 @@ and will generate an output assembly which should act as it were compiled agains
 
 ## Getting nnyeah
 
-nnyeah is packaged with TBD and can be downloaded from TBD.
+nnyeah is packaged as a nuget package and can be downloaded from here: https://github.com/xamarin/ios-samples/nnyeah-samples/nupkg/nnyeah.0.1.0.nupkg
 In addition, nnyeah can be built from the github repository above.
 
 Installing nnyeah as a dotnet tool
