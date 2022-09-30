@@ -1,0 +1,12 @@
+{
+  "images": [
+    {
+      "idiom": "universal",
+      "filename": "cogwheel_gr@512x-8.png",
+    }
+  ],
+  "info": {
+    "version": 1,
+    "author": "xcode"
+  }
+}

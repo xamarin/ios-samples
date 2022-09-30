@@ -1,0 +1,23 @@
+
+[
+    {
+        "key": "gateway",
+        "identifier": "level_gateway",
+    },
+    {
+        "key": "bridge",
+        "identifier": "level_bridge"
+    },
+    {
+        "key": "farm",
+        "identifier": "level_farm"
+    },
+    {
+        "key": "fort",
+        "identifier": "level_archFort"
+    },
+    {
+        "key": "towers",
+        "identifier": "level_towers"
+    }
+]

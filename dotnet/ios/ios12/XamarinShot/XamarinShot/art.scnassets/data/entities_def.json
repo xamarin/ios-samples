@@ -1,0 +1,98 @@
+{
+    "entityDefs":{
+        "base":{
+        },
+        "basePhysics":{
+            "inherit": "base",
+            "smoothPhysics": false,
+            "density":8.0,
+            "audio":{
+                "presetName": "blocks",
+                "minimumImpulse": 0.03,
+                "maximumImpulse": 2.5,
+                "velocityMinimum": 45,
+                "velocityMaximum": 127,
+                "collision": true,
+                "pooled": true,
+                "poolCount": 10,
+            }
+        },
+        "block_boxA":{
+            "inherit": "basePhysics",
+            "density":2.0
+        },
+        "block_boxB":{
+            "inherit": "basePhysics",
+            "density":2.0
+        },
+        "block_boxC":{
+            "inherit": "basePhysics",
+            "density":2.0
+        },
+        "cloud":{
+            "inherit": "basePhysics",
+            "animWaypoints" : {"speed": 0.5},
+            "constrainPhysics":true,
+            "predefinedPhysics":true
+        },
+        "cloudAnchor":{
+            "inherit": "basePhysics",
+            "animWaypoints" : {"speed": 0.5},
+            "constrainPhysics":true,
+            "predefinedPhysics":true,
+            "blockObject":false
+        },
+        "projectiles_ball":{
+            "inherit": "base",
+            "smoothPhysics": false,
+            "audio":{
+                "presetName": "ball",
+                "minimumImpulse": 0.2,
+                "maximumImpulse": 25.0,
+                "velocityMinimum": 40,
+                "velocityMaximum": 127,
+                "collision": true,
+                "pooled": true,
+                "poolCount": 4
+            },
+        },
+        // a light above the table
+        "GameLight":{
+            "properties": {
+                "shadowMapSize": "512 1024",
+                "angles": "-75.0 0.0 -20.0", // off-vertical
+                "shadowMode": 1
+            }
+        },
+        // a camera representing a view of the scene
+        "GameCamera":{
+            "properties": {
+                "hdr": false, // defaults to on in SceneKit for WideGamut devices - ignoring this
+                "motionBlur": 0.0,
+                "ambientOcclusion": 0.0
+            }
+        },
+
+        "catapult":{
+            "properties": {
+                "minYaw": -45.0,
+                "maxYaw": 45.0,
+                "minPitch": -30.0,
+                "maxPitch": 30.0,
+                "minStretch": 0.05,
+                "maxStretch": 5.0,
+                "minVelocity": 1.0,
+                "maxVelocity": 50.0,
+                "cooldownTime": 3.0,
+                "pickRadius": 5.0
+            },
+            "slingshot": false,
+            "playerTrigger": false
+        },
+        "resetSwitch":{
+            "inherit": "base",
+            "category":{"enabled":true,"header":"reset"},
+            "resetSwitch":true
+        }
+    }
+}
