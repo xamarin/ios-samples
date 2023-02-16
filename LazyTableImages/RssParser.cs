@@ -29,51 +29,48 @@ using System.Linq;
 using System.Xml.Linq;
 using System.Collections.Generic;
 
-namespace LazyTableImages
-{
+namespace LazyTableImages {
 
-    public static class RssParser
-    {
+	public static class RssParser {
 
-        // These are used to select the correct nodes and attributes from the Rss feed
-        static readonly XName FeedElement = XName.Get("feed", "http://www.w3.org/2005/Atom");
-        static readonly XName EntryElement = XName.Get("entry", "http://www.w3.org/2005/Atom");
-        static readonly XName AppUrlElement = XName.Get("id", "http://www.w3.org/2005/Atom");
+		// These are used to select the correct nodes and attributes from the Rss feed
+		static readonly XName FeedElement = XName.Get ("feed", "http://www.w3.org/2005/Atom");
+		static readonly XName EntryElement = XName.Get ("entry", "http://www.w3.org/2005/Atom");
+		static readonly XName AppUrlElement = XName.Get ("id", "http://www.w3.org/2005/Atom");
 
-        static readonly XName AppNameElement = XName.Get("name", "https://rss.itunes.apple.com");
-        static readonly XName ArtistElement = XName.Get("artist", "https://rss.itunes.apple.com");
-        static readonly XName ImageUrlElement = XName.Get("image", "https://rss.itunes.apple.com");
+		static readonly XName AppNameElement = XName.Get ("name", "https://rss.itunes.apple.com");
+		static readonly XName ArtistElement = XName.Get ("artist", "https://rss.itunes.apple.com");
+		static readonly XName ImageUrlElement = XName.Get ("image", "https://rss.itunes.apple.com");
 
-        static readonly XName HeightAttribute = XName.Get("height", "");
+		static readonly XName HeightAttribute = XName.Get ("height", "");
 
-        public static List<App> Parse(string xml)
-        {
-            // Open the xml
-            var doc = XDocument.Parse(xml);
+		public static List<App> Parse (string xml)
+		{
+			// Open the xml
+			var doc = XDocument.Parse (xml);
 
-            // We want to convert all the raw Xml nodes called 'entry' which
-            // are in that namespace into instances of the 'App' class so they
-            // can be displayed easily in the table.
-            return doc.Element(FeedElement) // Select the 'feed' node.
-                .Elements(EntryElement)     // Select all children with the name 'entry'.
-                .Select(XmlElementToApp)    // Convert the 'entry' nodes to instances of the App class.
-                .ToList();                  // Return as a List<App>.
-        }
+			// We want to convert all the raw Xml nodes called 'entry' which
+			// are in that namespace into instances of the 'App' class so they
+			// can be displayed easily in the table.
+			return doc.Element (FeedElement) // Select the 'feed' node.
+				.Elements (EntryElement)     // Select all children with the name 'entry'.
+				.Select (XmlElementToApp)    // Convert the 'entry' nodes to instances of the App class.
+				.ToList ();                  // Return as a List<App>.
+		}
 
-        static App XmlElementToApp(XElement entry)
-        {
-            // Select an image node
-            var imageUrlNode = entry.Elements(ImageUrlElement).FirstOrDefault();
+		static App XmlElementToApp (XElement entry)
+		{
+			// Select an image node
+			var imageUrlNode = entry.Elements (ImageUrlElement).FirstOrDefault ();
 
-            // Parse the rest of the apps information from the XElement and
-            // return the App instance.
-            return new App
-            {
-                Name = entry.Element(AppNameElement).Value,
-                Url = new Uri(entry.Element(AppUrlElement).Value),
-                Artist = entry.Element(ArtistElement).Value,
-                ImageUrl = new Uri(imageUrlNode.Value)
-            };
-        }
-    }
+			// Parse the rest of the apps information from the XElement and
+			// return the App instance.
+			return new App {
+				Name = entry.Element (AppNameElement).Value,
+				Url = new Uri (entry.Element (AppUrlElement).Value),
+				Artist = entry.Element (ArtistElement).Value,
+				ImageUrl = new Uri (imageUrlNode.Value)
+			};
+		}
+	}
 }

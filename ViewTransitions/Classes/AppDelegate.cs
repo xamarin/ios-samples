@@ -29,11 +29,9 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace ViewTransitions
-{
+namespace ViewTransitions {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		ViewTransitionsViewController viewController;
 

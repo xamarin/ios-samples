@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using CoreGraphics;
 using UIKit;
 
-namespace ToastModern
-{
-	public class Share : Layer
-	{
+namespace ToastModern {
+	public class Share : Layer {
 		public Share (Layer parent) : base (parent)
 		{
 			Layer screen = Screen.GlobalScreen;
@@ -53,7 +51,7 @@ namespace ToastModern
 
 			OnTouchUp = (touches) => {
 				// get position of touch
-				UITouch touch = (UITouch)touches.AnyObject;
+				UITouch touch = (UITouch) touches.AnyObject;
 				CGPoint touchPos = touch.LocationInView (screen);
 
 				if (touchPos.X < 100 && touchPos.Y > screen.Height - 100) {
@@ -73,7 +71,7 @@ namespace ToastModern
 							postNavBar.Y = 0;
 							keyboard.Y = screen.Height - keyboard.Height;
 						}, () => {
-							var firstKeyboardTypingFrame = (Layer)keyboardTyping.Subviews [0];
+							var firstKeyboardTypingFrame = (Layer) keyboardTyping.Subviews [0];
 
 							UIView.PerformWithoutAnimation (() => {
 								keyboardTyping.Hidden = false;

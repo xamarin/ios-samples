@@ -4,10 +4,8 @@ using System.Drawing;
 using MonoTouch.UIKit;
 using MonoTouch.Foundation;
 
-namespace NSZombieApocalypse
-{
-	public class ZBEWalkingDeadHead : ZBEBodyPart
-	{
+namespace NSZombieApocalypse {
+	public class ZBEWalkingDeadHead : ZBEBodyPart {
 		public ZBEWalkingDeadHead ()
 		{
 		}

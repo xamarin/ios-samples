@@ -13,11 +13,9 @@ using CoreGraphics;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace coreimage
-{
+namespace coreimage {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		/// <summary>
 		/// "Flower" © 2012 Milica Sekulic, used under a Creative Commons Attribution-ShareAlike license: http://creativecommons.org/licenses/by-sa/3.0/
 		/// </summary>
@@ -57,7 +55,7 @@ namespace coreimage
 
 					var catSection = new Section (section);
 					iOSRoot.Add (catSection);
-					var elementList = query.Select (fi => (Element)new RootElement (fi.Name, (x) => {
+					var elementList = query.Select (fi => (Element) new RootElement (fi.Name, (x) => {
 						var viewCtrl = Demo (fi.Callback);
 						viewCtrl.Title = fi.Name;
 						return viewCtrl;
@@ -93,7 +91,7 @@ namespace coreimage
 					var catSection = new Section ();
 					catRoot.Add (catSection);
 
-					var elementList = query.Select (fi => (Element)new RootElement (fi.Name, (x) => {
+					var elementList = query.Select (fi => (Element) new RootElement (fi.Name, (x) => {
 						var viewCtrl = Demo (fi.Callback);
 						viewCtrl.Title = fi.Name;
 						return viewCtrl;
@@ -117,7 +115,7 @@ namespace coreimage
 
 		#endregion
 
-		string[] sectionList = new [] {
+		string [] sectionList = new [] {
 			"Blur",
 			"Color Adjustment",
 			"Color Effect",
@@ -132,7 +130,7 @@ namespace coreimage
 			"Tile Effect",
 			"Transition",
 		};
-		FilterHolder[] masterList;
+		FilterHolder [] masterList;
 
 		void InitList ()
 		{
@@ -517,7 +515,7 @@ namespace coreimage
 				Image = flower,
 				Center = new CIVector (flower.Extent.Width * .3f, flower.Extent.Width * .35f),
 				Intensity = .6f,
-				Radius = (float)flower.Extent.Width * .20f,
+				Radius = (float) flower.Extent.Width * .20f,
 			};
 
 			return vignette_effect.OutputImage;
@@ -566,9 +564,9 @@ namespace coreimage
 		{
 			var color_cross_polynomial = new CIColorCrossPolynomial () {
 				Image = flower,
-				RedCoefficients = new CIVector (new nfloat []{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 }),
-				GreenCoefficients = new CIVector (new nfloat []{ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 }),
-				BlueCoefficients = new CIVector (new nfloat []{ 1, 0, 1, 0, -20, 0, 0, 0, 0, 0 }),
+				RedCoefficients = new CIVector (new nfloat [] { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 }),
+				GreenCoefficients = new CIVector (new nfloat [] { 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 }),
+				BlueCoefficients = new CIVector (new nfloat [] { 1, 0, 1, 0, -20, 0, 0, 0, 0, 0 }),
 			};
 			return color_cross_polynomial.OutputImage;
 		}
@@ -581,7 +579,7 @@ namespace coreimage
 		/// </returns>
 		public unsafe CIImage ColorCube ()
 		{
-			float[] color_cube_data = {
+			float [] color_cube_data = {
 				0, 0, 0, 1,
 				.1f, 0, 1, 1,
 				0, 1, 0, 1,
@@ -592,7 +590,7 @@ namespace coreimage
 				1, 1, 1, 1
 			};
 
-			var byteArray = new byte[color_cube_data.Length * 4];
+			var byteArray = new byte [color_cube_data.Length * 4];
 			Buffer.BlockCopy (color_cube_data, 0, byteArray, 0, byteArray.Length);
 			var data = NSData.FromArray (byteArray);
 
@@ -611,7 +609,7 @@ namespace coreimage
 		/// <returns>The altered image.</returns>
 		public CIImage ColorCubeWithColorSpace ()
 		{
-			float[] color_cube_data = {
+			float [] color_cube_data = {
 				0, 0, 0, 1,
 				.1f, 0, 1, 1,
 				0, 1, 0, 1,
@@ -622,7 +620,7 @@ namespace coreimage
 				1, 1, 1, 1
 			};
 
-			var byteArray = new byte[color_cube_data.Length * 4];
+			var byteArray = new byte [color_cube_data.Length * 4];
 			Buffer.BlockCopy (color_cube_data, 0, byteArray, 0, byteArray.Length);
 			var data = NSData.FromArray (byteArray);
 
@@ -1547,7 +1545,7 @@ namespace coreimage
 			var bump_distortion = new CIBumpDistortion () {
 				Image = xamarinCheck,
 				Center = new CIVector (width / 2f, height / 2f),
-				Radius = .4f * (float)height,
+				Radius = .4f * (float) height,
 				Scale = .5f
 			};
 
@@ -1566,9 +1564,9 @@ namespace coreimage
 			var bump_distortion_linear = new CIBumpDistortionLinear () {
 				Image = xamarinCheck,
 				Center = new CIVector (width * .5f, height * .5f),
-				Radius = .4f * (float)height,
+				Radius = .4f * (float) height,
 				Scale = .5f,
-				Angle = (float)Math.PI * .5f
+				Angle = (float) Math.PI * .5f
 			};
 
 			return bump_distortion_linear.OutputImage;
@@ -1671,7 +1669,7 @@ namespace coreimage
 			var checker = new CICheckerboardGenerator () {
 				Color0 = c0,
 				Color1 = c1,
-				Center = new CIVector (new nfloat[] { 10, 10 }), // Default [80 80]
+				Center = new CIVector (new nfloat [] { 10, 10 }), // Default [80 80]
 				Sharpness = 1F // Default 1
 			};
 

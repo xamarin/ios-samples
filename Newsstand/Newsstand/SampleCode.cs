@@ -34,7 +34,7 @@ namespace Newsstand {
 		/// an issue until it's in the library, since the library keeps
 		/// track of downloads and file locations for you.
 		/// </summary>
-		public static void PopulateLibrary(UITextView display)
+		public static void PopulateLibrary (UITextView display)
 		{
 			var library = NKLibrary.SharedLibrary;
 			var weekSeconds = 60 * 60 * 24 * 7;
@@ -55,10 +55,10 @@ namespace Newsstand {
 				library.AddIssue ("San Francisco", NSDate.Now.AddSeconds (-3 * weekSeconds));
 			else
 				display.Text += "\nSan Francisco already added";
-	
+
 			display.Text += "\n\nLibrary populated!";
 		}
-		
+
 		/// <summary>
 		/// When the user reads an issue, tell NewsstandKit about it so it can keep track
 		/// </summary>
@@ -66,7 +66,7 @@ namespace Newsstand {
 		{
 			var library = NKLibrary.SharedLibrary;
 			var issues = library.Issues;
-			
+
 			if (library.CurrentlyReadingIssue == null) {
 				display.Text = "No issue is currently being read";
 			} else {
@@ -77,11 +77,11 @@ namespace Newsstand {
 				display.Text += "\n\nNotice how the ContentURL changes for each issue - NewsstandKit manages where your issue's files are stored";
 			}
 
-			var randomIssueNumber = new Random().Next(0,3);
+			var randomIssueNumber = new Random ().Next (0, 3);
 			// Note: it is possible to set this to an issue with Status=None
 			// (content hasn't been downloaded yet).
-			library.CurrentlyReadingIssue = issues[randomIssueNumber]; // New York
-			
+			library.CurrentlyReadingIssue = issues [randomIssueNumber]; // New York
+
 			// Set the Badge to zero to remove the 'New' banner
 			UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
 		}
@@ -103,10 +103,10 @@ namespace Newsstand {
 			if (issues.Length == 0)
 				return;
 
-			var issue = issues[1] ; // New York
+			var issue = issues [1]; // New York
 
 			NKAssetDownload asset = issue.AddAsset (new NSUrlRequest (new NSUrl ("http://xamarin.com/")));
-			
+
 			newsstandDelegate = new NewsstandUrlDelegate1 ("NewYorkContent", issue);
 			newsstandDelegate.OnDownloadingFinished += () => {
 				downloading = false;
@@ -114,8 +114,8 @@ namespace Newsstand {
 
 			//you do not have background download privileges: add 'newsstand-content' to mainBundle.infoDictionary.UIBackgroundModes	
 			asset.DownloadWithDelegate (newsstandDelegate);
-			
-			display.Text = string.Format ("Issue {0} downloading has started", issues[1].Name);
+
+			display.Text = string.Format ("Issue {0} downloading has started", issues [1].Name);
 			display.Text += "\n\nPress the Read button quickly to see the 'downloading' status detected";
 		}
 
@@ -127,28 +127,28 @@ namespace Newsstand {
 		{
 			var library = NKLibrary.SharedLibrary;
 			var issues = library.Issues;
-			var issue = issues[1]; // New York
+			var issue = issues [1]; // New York
 
 			switch (issue.Status) {
-				case NKIssueContentStatus.Available:
-					display.Text = "Just download some random HTML to simulate downloading an issue.\n\n";
-					display.Text += string.Format ("Issue '{0}' content has been downloaded to \n\t{1}", issue.Name, issue.ContentUrl.Path);
-					display.Text += "\n\n\n------------------------------------\n\n\n";
-					display.Text += File.ReadAllText (Path.Combine (issue.ContentUrl.Path, "default.html"));
-					
-					// set this whenever user reads a different issue
-					library.CurrentlyReadingIssue = issue; 
-					UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
-					break;
-				case NKIssueContentStatus.Downloading:
-					display.Text = string.Format ("Issue '{0}' is still downloading...\n\nPress Read again until the content appears", issue.Name);
-					break;
-				default:
-					display.Text = string.Format ("Issue '{0}' has not been downloaded", issue.Name);
-					break;
+			case NKIssueContentStatus.Available:
+				display.Text = "Just download some random HTML to simulate downloading an issue.\n\n";
+				display.Text += string.Format ("Issue '{0}' content has been downloaded to \n\t{1}", issue.Name, issue.ContentUrl.Path);
+				display.Text += "\n\n\n------------------------------------\n\n\n";
+				display.Text += File.ReadAllText (Path.Combine (issue.ContentUrl.Path, "default.html"));
+
+				// set this whenever user reads a different issue
+				library.CurrentlyReadingIssue = issue;
+				UIApplication.SharedApplication.ApplicationIconBadgeNumber = 0;
+				break;
+			case NKIssueContentStatus.Downloading:
+				display.Text = string.Format ("Issue '{0}' is still downloading...\n\nPress Read again until the content appears", issue.Name);
+				break;
+			default:
+				display.Text = string.Format ("Issue '{0}' has not been downloaded", issue.Name);
+				break;
 			}
 		}
-		
+
 		/// <summary>
 		/// Change the icon that appears in Newsstand - you would do this
 		/// when you download a new issue (via a notification or otherwise).
@@ -160,21 +160,21 @@ namespace Newsstand {
 			display.Text = string.Format ("Newsstand application badge has been set to 1");
 
 			string coverFile = "cover_lasvegas.jpg";
-			var randomIssueNumber = new Random().Next(0,4);
-			switch(randomIssueNumber) {
-				case 1:
-					coverFile = "cover_newyork.jpg";
-					break;
-				case 2: 
-					coverFile = "cover_sanfrancisco.jpg";
-					break;
-				case 3: 
-					coverFile = "cover_peru.jpg";
-					break;
+			var randomIssueNumber = new Random ().Next (0, 4);
+			switch (randomIssueNumber) {
+			case 1:
+				coverFile = "cover_newyork.jpg";
+				break;
+			case 2:
+				coverFile = "cover_sanfrancisco.jpg";
+				break;
+			case 3:
+				coverFile = "cover_peru.jpg";
+				break;
 			}
 			// We can use a downloaded image here - it doesn't have to exist in the 
 			// application bundle
-			UIImage newcover = new UIImage(coverFile);
+			UIImage newcover = new UIImage (coverFile);
 			// Setting the Newsstand Icon in code doesn't seem to have any effect
 			// if your Info.plist doesn't already define the UINewsstandIcon key
 			UIApplication.SharedApplication.SetNewsstandIconImage (newcover);

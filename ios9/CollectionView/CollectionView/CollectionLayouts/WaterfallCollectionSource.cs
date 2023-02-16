@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using Foundation;
@@ -16,7 +16,7 @@ namespace CollectionView {
 	/// </remarks>
 	public class WaterfallCollectionSource : UICollectionViewDataSource {
 		#region Private Variables
-		Random rnd = new Random();
+		Random rnd = new Random ();
 		#endregion
 
 		#region Computed Properties
@@ -58,7 +58,7 @@ namespace CollectionView {
 		{
 			// Get a reusable cell and set it's title from the item
 			var cell = collectionView.DequeueReusableCell ("Cell", indexPath) as TextCollectionViewCell;
-			cell.Title = Numbers [(int)indexPath.Item].ToString();
+			cell.Title = Numbers [(int) indexPath.Item].ToString ();
 
 			return cell;
 		}
@@ -72,9 +72,9 @@ namespace CollectionView {
 		public override void MoveItem (UICollectionView collectionView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath)
 		{
 			// Reorder our list of items
-			var item = Numbers [(int)sourceIndexPath.Item];
-			Numbers.RemoveAt ((int)sourceIndexPath.Item);
-			Numbers.Insert ((int)destinationIndexPath.Item, item);
+			var item = Numbers [(int) sourceIndexPath.Item];
+			Numbers.RemoveAt ((int) sourceIndexPath.Item);
+			Numbers.Insert ((int) destinationIndexPath.Item, item);
 		}
 		#endregion
 	}

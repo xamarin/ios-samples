@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
@@ -9,23 +9,21 @@ using NotificationCenter;
 using System.Drawing;
 using CoreGraphics;
 
-namespace Lister
-{
-	[Register("ListViewController")]
-	public class ListViewController : UITableViewController, IUITextFieldDelegate
-	{
+namespace Lister {
+	[Register ("ListViewController")]
+	public class ListViewController : UITableViewController, IUITextFieldDelegate {
 		const string EmptyViewControllerStoryboardIdentifier = "emptyViewController";
 
 		// Notification User Info Keys
-		public static readonly NSString ListDidUpdateColorUserInfoKey = new NSString("ListDidUpdateColorUserInfoKey");
-		public static readonly NSString ListDidUpdateURLUserInfoKey = new NSString("ListDidUPdateURLUserInfoKey");
+		public static readonly NSString ListDidUpdateColorUserInfoKey = new NSString ("ListDidUpdateColorUserInfoKey");
+		public static readonly NSString ListDidUpdateURLUserInfoKey = new NSString ("ListDidUPdateURLUserInfoKey");
 
 		// UITableViewCell Identifiers
-		static readonly NSString ListItemCellIdentifier = new NSString("listItemCell");
-		static readonly NSString ListColorCellIdentifier = new NSString("listColorCell");
+		static readonly NSString ListItemCellIdentifier = new NSString ("listItemCell");
+		static readonly NSString ListColorCellIdentifier = new NSString ("listColorCell");
 
 		ListDocument document;
-		UIBarButtonItem[] listToolbarItems;
+		UIBarButtonItem [] listToolbarItems;
 
 		public NSUrl DocumentURL {
 			get {
@@ -51,12 +49,12 @@ namespace Lister
 			set {
 				textAttributes = value;
 
-				if(IsViewLoaded)
+				if (IsViewLoaded)
 					UpdateInterfaceWithTextAttributes ();
 			}
 		}
 
-		public ListViewController(IntPtr handle)
+		public ListViewController (IntPtr handle)
 			: base (handle)
 		{
 			string title = "Delete List";
@@ -64,7 +62,7 @@ namespace Lister
 
 			UIBarButtonItem flexibleSpace = new UIBarButtonItem (UIBarButtonSystemItem.FixedSpace);
 
-			listToolbarItems = new UIBarButtonItem[] {
+			listToolbarItems = new UIBarButtonItem [] {
 				flexibleSpace,
 				deleteList,
 				flexibleSpace
@@ -113,11 +111,11 @@ namespace Lister
 		{
 			base.ViewWillDisappear (animated);
 
-			if(document != null)
+			if (document != null)
 				document.Close (null);
 
 			// Unsibscribe from UIDocument.StateChangedNotification
-			if(docStateChangeToken != null)
+			if (docStateChangeToken != null)
 				docStateChangeToken.Dispose ();
 
 			// Hide the toolbar so the list can't be edited.
@@ -128,7 +126,7 @@ namespace Lister
 
 		#region Setup
 
-		public async void ConfigureWith(ListInfo listInfo)
+		public async void ConfigureWith (ListInfo listInfo)
 		{
 			await listInfo.FetchInfoAsync ();
 
@@ -137,14 +135,14 @@ namespace Lister
 				document.Close (null);
 			}
 
-			document = new ListDocument(listInfo.Url);
+			document = new ListDocument (listInfo.Url);
 			document.DocumentDeleted += OnListDocumentWasDeleted;
 
 			NavigationItem.Title = listInfo.Name;
 
 			TextAttributes = new UIStringAttributes {
 				Font = UIFont.PreferredHeadline,
-				ForegroundColor = AppColors.ColorFrom(listInfo.Color.Value)
+				ForegroundColor = AppColors.ColorFrom (listInfo.Color.Value)
 			};
 		}
 
@@ -152,7 +150,7 @@ namespace Lister
 
 		#region Notifications
 
-		void HandleDocumentStateChangedNotification(NSNotification notification)
+		void HandleDocumentStateChangedNotification (NSNotification notification)
 		{
 			UIDocumentState state = document.DocumentState;
 
@@ -160,7 +158,7 @@ namespace Lister
 				ResolveConflicts ();
 
 			InvokeOnMainThread (() => {
-				TableView.ReloadData();
+				TableView.ReloadData ();
 			});
 		}
 
@@ -177,7 +175,7 @@ namespace Lister
 
 			// Reload the first row to switch from "Add Item" to "Change Color"
 			NSIndexPath indexPath = NSIndexPath.FromRowSection (0, 0);
-			TableView.ReloadRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);
+			TableView.ReloadRows (new NSIndexPath [] { indexPath }, UITableViewRowAnimation.Automatic);
 
 			// If moving out of edit mode, notify observers about the list color and trigger a save.
 			if (!editing) {
@@ -207,21 +205,21 @@ namespace Lister
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			if (Editing && indexPath.Row == 0) {
-				var colorCell = (ListColorCell)tableView.DequeueReusableCell (ListColorCellIdentifier, indexPath);
+				var colorCell = (ListColorCell) tableView.DequeueReusableCell (ListColorCellIdentifier, indexPath);
 
 				colorCell.Configure ();
 				colorCell.ViewController = this;
 
 				return colorCell;
 			} else {
-				var itemCell = (ListItemCell)tableView.DequeueReusableCell (ListItemCellIdentifier, indexPath);
+				var itemCell = (ListItemCell) tableView.DequeueReusableCell (ListItemCellIdentifier, indexPath);
 				ConfigureListItemCell (itemCell, indexPath.Row);
 
 				return itemCell;
 			}
 		}
 
-		void ConfigureListItemCell(ListItemCell itemCell, int row)
+		void ConfigureListItemCell (ListItemCell itemCell, int row)
 		{
 			itemCell.TextField.Font = UIFont.PreferredBody;
 			itemCell.TextField.WeakDelegate = this;
@@ -231,7 +229,7 @@ namespace Lister
 				itemCell.TextField.Placeholder = "Add Item";
 				itemCell.CheckBox.Hidden = true;
 			} else {
-				ListItem item = List[row - 1];
+				ListItem item = List [row - 1];
 
 				itemCell.Completed = item.IsComplete;
 				itemCell.TextField.Text = item.Text;
@@ -255,10 +253,10 @@ namespace Lister
 			if (editingStyle != UITableViewCellEditingStyle.Delete)
 				return;
 
-			ListItem item = List[indexPath.Row - 1];
-			List.RemoveItems (new ListItem[]{ item });
+			ListItem item = List [indexPath.Row - 1];
+			List.RemoveItems (new ListItem [] { item });
 
-			TableView.DeleteRows (new NSIndexPath[]{ indexPath }, UITableViewRowAnimation.Automatic);
+			TableView.DeleteRows (new NSIndexPath [] { indexPath }, UITableViewRowAnimation.Automatic);
 
 			TriggerNewDataForWidget ();
 
@@ -268,7 +266,7 @@ namespace Lister
 
 		public override void MoveRow (UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath destinationIndexPath)
 		{
-			ListItem item = List[sourceIndexPath.Row - 1];
+			ListItem item = List [sourceIndexPath.Row - 1];
 			List.MoveItem (item, destinationIndexPath.Row - 1);
 
 			// Notify the document of a change.
@@ -293,13 +291,13 @@ namespace Lister
 
 		public override NSIndexPath CustomizeMoveTarget (UITableView tableView, NSIndexPath sourceIndexPath, NSIndexPath proposedIndexPath)
 		{
-			ListItem item = List[sourceIndexPath.Row - 1];
+			ListItem item = List [sourceIndexPath.Row - 1];
 
 			int row;
 			if (proposedIndexPath.Row == 0) {
-				row = item.IsComplete ? List.IndexOfFirstCompletedItem() + 1 : 1;
+				row = item.IsComplete ? List.IndexOfFirstCompletedItem () + 1 : 1;
 				return NSIndexPath.FromRowSection (row, 0);
-			} else if (List.CanMoveItem(item, proposedIndexPath.Row - 1, false)) {
+			} else if (List.CanMoveItem (item, proposedIndexPath.Row - 1, false)) {
 				return proposedIndexPath;
 			} else if (item.IsComplete) {
 				row = List.IndexOfFirstCompletedItem () + 1;
@@ -321,7 +319,7 @@ namespace Lister
 
 			if (indexPath.Row > 0) {
 				// Edit the item in place.
-				ListItem item = List[indexPath.Row - 1];
+				ListItem item = List [indexPath.Row - 1];
 
 				// If the contents of the text field at the end of editing is the same as it started, don't trigger an update.
 				if (item.Text != textField.Text) {
@@ -338,14 +336,14 @@ namespace Lister
 				int insertedIndex = List.InsertItem (item);
 
 				// Update the edit row to show the check box.
-				ListItemCell itemCell = (ListItemCell)TableView.CellAt (indexPath);
+				ListItemCell itemCell = (ListItemCell) TableView.CellAt (indexPath);
 				itemCell.CheckBox.Hidden = false;
 
 				// Insert a new add item row into the table view.
 				TableView.BeginUpdates ();
 
 				NSIndexPath targetIndexPath = NSIndexPath.FromRowSection (insertedIndex, 0);
-				TableView.InsertRows (new NSIndexPath[] { targetIndexPath }, UITableViewRowAnimation.Automatic);
+				TableView.InsertRows (new NSIndexPath [] { targetIndexPath }, UITableViewRowAnimation.Automatic);
 
 				TableView.EndUpdates ();
 
@@ -359,10 +357,10 @@ namespace Lister
 		[Export ("textFieldShouldReturn:")]
 		public bool ShouldReturn (UITextField textField)
 		{
-			NSIndexPath indexPath = IndexPathForView(textField);
+			NSIndexPath indexPath = IndexPathForView (textField);
 
 			// An item must have text to dismiss the keyboard.
-			if (!string.IsNullOrEmpty(textField.Text) || indexPath.Row == 0) {
+			if (!string.IsNullOrEmpty (textField.Text) || indexPath.Row == 0) {
 				textField.ResignFirstResponder ();
 				return true;
 			}
@@ -381,35 +379,35 @@ namespace Lister
 				ForegroundColor = AppColors.ColorFrom (List.Color)
 			};
 
-			NSIndexPath[] indexPaths = TableView.IndexPathsForVisibleRows;
+			NSIndexPath [] indexPaths = TableView.IndexPathsForVisibleRows;
 			TableView.ReloadRows (indexPaths, UITableViewRowAnimation.None);
 		}
 
 		#region IBActions
 
-		void DeleteList(object sender, EventArgs e)
+		void DeleteList (object sender, EventArgs e)
 		{
 			if (SplitViewController.Collapsed) {
 				NavigationController.PopViewController (true);
 			} else {
-				UIViewController emptyViewController = (UIViewController)Storyboard.InstantiateViewController (EmptyViewControllerStoryboardIdentifier);
+				UIViewController emptyViewController = (UIViewController) Storyboard.InstantiateViewController (EmptyViewControllerStoryboardIdentifier);
 				SplitViewController.ShowDetailViewController (emptyViewController, null);
 			}
 
 			MasterController.ListViewControllerDidDeleteList (this);
 		}
 
-		[Export("checkBoxTapped:")]
-		public void CheckBoxTapped(CheckBox sender)
+		[Export ("checkBoxTapped:")]
+		public void CheckBoxTapped (CheckBox sender)
 		{
 			NSIndexPath indexPath = IndexPathForView (sender);
 
 			if (indexPath.Row >= 1 && indexPath.Row <= List.Count) {
-				ListItem item = List[indexPath.Row - 1];
+				ListItem item = List [indexPath.Row - 1];
 				ListOperationInfo info = List.ToggleItem (item, -1);
 
 				if (info.FromIndex == info.ToIndex) {
-					TableView.ReloadRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);
+					TableView.ReloadRows (new NSIndexPath [] { indexPath }, UITableViewRowAnimation.Automatic);
 				} else {
 					// Animate the row up or down depending on whether it was complete/incomplete.
 					NSIndexPath target = NSIndexPath.FromRowSection (info.ToIndex + 1, 0);
@@ -417,7 +415,7 @@ namespace Lister
 					TableView.BeginUpdates ();
 					TableView.MoveRow (indexPath, target);
 					TableView.EndUpdates ();
-					TableView.ReloadRows (new NSIndexPath[] { target }, UITableViewRowAnimation.Automatic);
+					TableView.ReloadRows (new NSIndexPath [] { target }, UITableViewRowAnimation.Automatic);
 				}
 
 				TriggerNewDataForWidget ();
@@ -431,17 +429,17 @@ namespace Lister
 
 		void OnListDocumentWasDeleted (object sender, EventArgs e)
 		{
-			var document = (ListDocument)sender;
+			var document = (ListDocument) sender;
 			document.DocumentDeleted -= OnListDocumentWasDeleted;
 
 			InvokeOnMainThread (() => {
-				DismissViewController(true, null);
+				DismissViewController (true, null);
 			});
 		}
 
 		#region Convenience
 
-		void TriggerNewDataForWidget()
+		void TriggerNewDataForWidget ()
 		{
 			string todayDocumentName = AppConfig.SharedAppConfiguration.TodayDocumentName;
 
@@ -451,11 +449,11 @@ namespace Lister
 			// You can use hardcoded value for widget bundle identifier
 			// But it is a good idea to move this value to some kind of setting
 			// Info.plist works for this purpose
-			var widgetBundleId = (string)(NSString)NSBundle.MainBundle.ObjectForInfoDictionary ("WidgetBundleIdentifier");
+			var widgetBundleId = (string) (NSString) NSBundle.MainBundle.ObjectForInfoDictionary ("WidgetBundleIdentifier");
 			NCWidgetController.GetWidgetController ().SetHasContent (true, widgetBundleId);
 		}
 
-		void UpdateInterfaceWithTextAttributes()
+		void UpdateInterfaceWithTextAttributes ()
 		{
 			NavigationController.NavigationBar.TitleTextAttributes = TextAttributes;
 
@@ -465,19 +463,19 @@ namespace Lister
 			TableView.TintColor = color;
 		}
 
-		void ResolveConflicts()
+		void ResolveConflicts ()
 		{
 			// Any automatic merging logic or presentation of conflict resolution UI should go here.
 			// For this sample, just pick the current version and mark the conflict versions as resolved.
 			NSError error = null;
 			NSFileVersion.RemoveOtherVersions (DocumentURL, out error);
 
-			NSFileVersion[] conflictVersions = NSFileVersion.GetUnresolvedConflictVersions (DocumentURL);
+			NSFileVersion [] conflictVersions = NSFileVersion.GetUnresolvedConflictVersions (DocumentURL);
 			foreach (NSFileVersion fileVersion in conflictVersions)
 				fileVersion.Resolved = true;
 		}
 
-		NSIndexPath IndexPathForView(UIView view)
+		NSIndexPath IndexPathForView (UIView view)
 		{
 			CGPoint viewOrigin = view.Bounds.Location;
 			CGPoint viewLocation = TableView.ConvertPointFromView (viewOrigin, view);

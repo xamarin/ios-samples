@@ -1,16 +1,14 @@
-﻿using System;
+using System;
 using System.Linq;
 
 using Foundation;
 using HomeKit;
 
-namespace HomeKitCatalog
-{
-	public static class HMCharacteristicExtensions
-	{
-		static readonly NSNumberFormatter formatter = new NSNumberFormatter();
+namespace HomeKitCatalog {
+	public static class HMCharacteristicExtensions {
+		static readonly NSNumberFormatter formatter = new NSNumberFormatter ();
 
-		static readonly HMCharacteristicMetadataFormat[] numericFormats = {
+		static readonly HMCharacteristicMetadataFormat [] numericFormats = {
 			HMCharacteristicMetadataFormat.Int,
 			HMCharacteristicMetadataFormat.Float,
 			HMCharacteristicMetadataFormat.UInt8,
@@ -20,7 +18,7 @@ namespace HomeKitCatalog
 		};
 
 		// Returns the description for a provided value, taking the characteristic's metadata and possible values into account.
-		public static string DescriptionForValue(this HMCharacteristic self, NSObject value)
+		public static string DescriptionForValue (this HMCharacteristic self, NSObject value)
 		{
 			if (self.IsWriteOnly ())
 				return "Write-Only Characteristic";
@@ -32,7 +30,7 @@ namespace HomeKitCatalog
 		public static string DescriptionForValue (this HMCharacteristic self, int value)
 		{
 			if (self.IsBoolean ())
-				return Convert.ToBoolean(value) ? "On" : "Off";
+				return Convert.ToBoolean (value) ? "On" : "Off";
 
 			var predeterminedValueString = self.PredeterminedValueDescriptionForNumber (value);
 			if (predeterminedValueString != null)
@@ -42,7 +40,7 @@ namespace HomeKitCatalog
 			if (metadata != null) {
 				var stepValue = metadata.StepValue;
 				if (stepValue != null) {
-					formatter.MaximumFractionDigits = (int)Math.Log10 (1f / stepValue.DoubleValue);
+					formatter.MaximumFractionDigits = (int) Math.Log10 (1f / stepValue.DoubleValue);
 					var str = formatter.StringFromNumber (value);
 					if (!string.IsNullOrEmpty (str))
 						return str + self.LocalizedUnitDescription ();
@@ -52,7 +50,7 @@ namespace HomeKitCatalog
 			return value.ToString ();
 		}
 
-		public static string PredeterminedValueDescriptionForNumber(this HMCharacteristic self, int number)
+		public static string PredeterminedValueDescriptionForNumber (this HMCharacteristic self, int number)
 		{
 			switch (self.CharacteristicType) {
 			case HMCharacteristicType.PowerState:
@@ -69,7 +67,7 @@ namespace HomeKitCatalog
 
 			case HMCharacteristicType.TargetDoorState:
 			case HMCharacteristicType.CurrentDoorState:
-				var doorState = (HMCharacteristicValueDoorState)number;
+				var doorState = (HMCharacteristicValueDoorState) number;
 				switch (doorState) {
 				case HMCharacteristicValueDoorState.Open:
 					return "Open";
@@ -85,7 +83,7 @@ namespace HomeKitCatalog
 				break;
 
 			case HMCharacteristicType.TargetHeatingCooling:
-				var targetMode = (HMCharacteristicValueHeatingCooling)number;
+				var targetMode = (HMCharacteristicValueHeatingCooling) number;
 				switch (targetMode) {
 				case HMCharacteristicValueHeatingCooling.Off:
 					return "Off";
@@ -99,7 +97,7 @@ namespace HomeKitCatalog
 				break;
 
 			case HMCharacteristicType.CurrentHeatingCooling:
-				var currentMode = (HMCharacteristicValueHeatingCooling)number;
+				var currentMode = (HMCharacteristicValueHeatingCooling) number;
 				switch (currentMode) {
 				case HMCharacteristicValueHeatingCooling.Off:
 					return "Off";
@@ -109,12 +107,12 @@ namespace HomeKitCatalog
 					return "Cooling";
 				case HMCharacteristicValueHeatingCooling.Auto:
 					return "Auto";
-					}
+				}
 				break;
 
 			case HMCharacteristicType.TargetLockMechanismState:
 			case HMCharacteristicType.CurrentLockMechanismState:
-				var lockState = (HMCharacteristicValueLockMechanismState)number;
+				var lockState = (HMCharacteristicValueLockMechanismState) number;
 				switch (lockState) {
 				case HMCharacteristicValueLockMechanismState.Unsecured:
 					return "Unsecured";
@@ -128,7 +126,7 @@ namespace HomeKitCatalog
 				break;
 
 			case HMCharacteristicType.TemperatureUnits:
-				var unit = (HMCharacteristicValueTemperatureUnit)number;
+				var unit = (HMCharacteristicValueTemperatureUnit) number;
 				switch (unit) {
 				case HMCharacteristicValueTemperatureUnit.Celsius:
 					return "Celsius";
@@ -138,7 +136,7 @@ namespace HomeKitCatalog
 				break;
 
 			case HMCharacteristicType.LockMechanismLastKnownAction:
-				var lastKnownAction = (HMCharacteristicValueLockMechanism)number;
+				var lastKnownAction = (HMCharacteristicValueLockMechanism) number;
 				switch (lastKnownAction) {
 				case HMCharacteristicValueLockMechanism.LastKnownActionSecuredUsingPhysicalMovementInterior:
 					return "Interior Secured";
@@ -166,7 +164,7 @@ namespace HomeKitCatalog
 				break;
 
 			case HMCharacteristicType.RotationDirection:
-				var rotationDirection = (HMCharacteristicValueRotationDirection)number;
+				var rotationDirection = (HMCharacteristicValueRotationDirection) number;
 				switch (rotationDirection) {
 				case HMCharacteristicValueRotationDirection.Clockwise:
 					return "Clockwise";
@@ -176,7 +174,7 @@ namespace HomeKitCatalog
 				break;
 
 			case HMCharacteristicType.AirParticulateSize:
-				var size = (HMCharacteristicValueAirParticulate)number;
+				var size = (HMCharacteristicValueAirParticulate) number;
 				switch (size) {
 				case HMCharacteristicValueAirParticulate.Size10:
 					return "Size 10";
@@ -187,7 +185,7 @@ namespace HomeKitCatalog
 				break;
 
 			case HMCharacteristicType.PositionState:
-				var state = (HMCharacteristicValuePositionState)number;
+				var state = (HMCharacteristicValuePositionState) number;
 				switch (state) {
 				case HMCharacteristicValuePositionState.Opening:
 					return "Opening";
@@ -199,7 +197,7 @@ namespace HomeKitCatalog
 				break;
 
 			case HMCharacteristicType.CurrentSecuritySystemState:
-				var positionState = (HMCharacteristicValueCurrentSecuritySystemState)number;
+				var positionState = (HMCharacteristicValueCurrentSecuritySystemState) number;
 				switch (positionState) {
 				case HMCharacteristicValueCurrentSecuritySystemState.AwayArm:
 					return "Away";
@@ -211,11 +209,11 @@ namespace HomeKitCatalog
 					return "Disarm";
 				case HMCharacteristicValueCurrentSecuritySystemState.Triggered:
 					return "Triggered";
-					}
+				}
 				break;
 
 			case HMCharacteristicType.TargetSecuritySystemState:
-				var securityState = (HMCharacteristicValueTargetSecuritySystemState)number;
+				var securityState = (HMCharacteristicValueTargetSecuritySystemState) number;
 				switch (securityState) {
 				case HMCharacteristicValueTargetSecuritySystemState.AwayArm:
 					return "Away";
@@ -251,7 +249,7 @@ namespace HomeKitCatalog
 			return string.Empty;
 		}
 
-		public static string LocalizedCharacteristicType(this HMCharacteristic self)
+		public static string LocalizedCharacteristicType (this HMCharacteristic self)
 		{
 			var type = self.LocalizedDescription;
 
@@ -272,43 +270,43 @@ namespace HomeKitCatalog
 			return self.IsNumeric () && !self.IsFloatingPoint ();
 		}
 
-		public static bool IsNumeric(this HMCharacteristic self)
+		public static bool IsNumeric (this HMCharacteristic self)
 		{
 			var metadata = self.Metadata;
 			return metadata != null && numericFormats.Contains (metadata.Format);
 		}
 
-		public static bool IsBoolean(this HMCharacteristic self)
+		public static bool IsBoolean (this HMCharacteristic self)
 		{
 			return CharacteristicFormatEqualsTo (self, HMCharacteristicMetadataFormat.Bool);
 		}
 
-		public static bool IsTextWritable(this HMCharacteristic self)
+		public static bool IsTextWritable (this HMCharacteristic self)
 		{
 			return CharacteristicFormatEqualsTo (self, HMCharacteristicMetadataFormat.String) && self.Writable;
 		}
 
-		public static bool IsFloatingPoint(this HMCharacteristic self)
+		public static bool IsFloatingPoint (this HMCharacteristic self)
 		{
 			return CharacteristicFormatEqualsTo (self, HMCharacteristicMetadataFormat.Float);
 		}
 
-		public static bool IsReadOnly(this HMCharacteristic self)
+		public static bool IsReadOnly (this HMCharacteristic self)
 		{
 			return self.Readable && !self.Writable;
 		}
 
-		public static bool IsWriteOnly(this HMCharacteristic self)
+		public static bool IsWriteOnly (this HMCharacteristic self)
 		{
 			return !self.Readable && self.Writable;
 		}
 
-		public static bool IsIdentify(this HMCharacteristic self)
+		public static bool IsIdentify (this HMCharacteristic self)
 		{
 			return self.CharacteristicType == HMCharacteristicType.Identify;
 		}
 
-		public static int[] AllPossibleValues (this HMCharacteristic self)
+		public static int [] AllPossibleValues (this HMCharacteristic self)
 		{
 			if (!self.IsInteger ())
 				return null;
@@ -323,11 +321,11 @@ namespace HomeKitCatalog
 
 			var step = stepValue.DoubleValue;
 			return Enumerable.Range (0, self.NumberOfChoices ())
-				.Select (i => (int)(i * step))
+				.Select (i => (int) (i * step))
 				.ToArray ();
 		}
 
-		static int NumberOfChoices(this HMCharacteristic self)
+		static int NumberOfChoices (this HMCharacteristic self)
 		{
 			var metadata = self.Metadata;
 			if (metadata == null)
@@ -347,12 +345,12 @@ namespace HomeKitCatalog
 
 			var stepValue = metadata.StepValue;
 			if (stepValue != null)
-				range = (int)(range / stepValue.DoubleValue);
+				range = (int) (range / stepValue.DoubleValue);
 
 			return range + 1;
 		}
 
-		public static bool HasPredeterminedValueDescriptions(this HMCharacteristic self)
+		public static bool HasPredeterminedValueDescriptions (this HMCharacteristic self)
 		{
 			var number = self.Value as NSNumber;
 			if (number == null)
@@ -362,18 +360,18 @@ namespace HomeKitCatalog
 			return self.PredeterminedValueDescriptionForNumber (num) != null;
 		}
 
-		static bool CharacteristicFormatEqualsTo(HMCharacteristic characteristic, HMCharacteristicMetadataFormat format)
+		static bool CharacteristicFormatEqualsTo (HMCharacteristic characteristic, HMCharacteristicMetadataFormat format)
 		{
 			var metadata = characteristic.Metadata;
 			return metadata != null && metadata.Format == format;
 		}
 
-		public static bool IsFavorite(this HMCharacteristic self)
+		public static bool IsFavorite (this HMCharacteristic self)
 		{
 			return FavoritesManager.SharedManager.IsFavorite (self);
 		}
 
-		public static void IsFavorite(this HMCharacteristic self, bool newValue)
+		public static void IsFavorite (this HMCharacteristic self, bool newValue)
 		{
 			if (newValue)
 				FavoritesManager.SharedManager.FavoriteCharacteristic (self);

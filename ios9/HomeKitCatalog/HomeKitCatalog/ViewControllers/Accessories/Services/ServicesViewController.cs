@@ -6,19 +6,16 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
-	public enum AccessoryTableViewSection
-	{
+namespace HomeKitCatalog {
+	public enum AccessoryTableViewSection {
 		Services,
 		BridgedAccessories
 	}
 
 	// A view controller which displays all the services of a provided accessory, and passes its cell delegate onto a `CharacteristicsViewController`.
-	public partial class ServicesViewController : HMCatalogViewController, IHMAccessoryDelegate
-	{
-		static readonly NSString AccessoryCell = (NSString)"AccessoryCell";
-		static readonly NSString ServiceCell = (NSString)"ServiceCell";
+	public partial class ServicesViewController : HMCatalogViewController, IHMAccessoryDelegate {
+		static readonly NSString AccessoryCell = (NSString) "AccessoryCell";
+		static readonly NSString ServiceCell = (NSString) "ServiceCell";
 		static readonly string ShowServiceSegue = "Show Service";
 
 		List<HMService> displayedServices = new List<HMService> ();
@@ -83,12 +80,12 @@ namespace HomeKitCatalog
 			if (segue.Identifier != ShowServiceSegue)
 				return;
 
-			var indexPath = TableView.IndexPathForCell ((UITableViewCell)sender);
+			var indexPath = TableView.IndexPathForCell ((UITableViewCell) sender);
 			if (indexPath == null)
 				return;
 
 			var selectedService = displayedServices [indexPath.Row];
-			var characteristicsViewController = (CharacteristicsViewController)segue.IntendedDestinationViewController ();
+			var characteristicsViewController = (CharacteristicsViewController) segue.IntendedDestinationViewController ();
 			characteristicsViewController.ShowsFavorites = ShowsFavorites;
 			characteristicsViewController.AllowsAllWrites = AllowsAllWrites;
 			characteristicsViewController.Service = selectedService;
@@ -128,7 +125,7 @@ namespace HomeKitCatalog
 		// Section 2 contains the bridged accessories.
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			switch ((AccessoryTableViewSection)(int)section) {
+			switch ((AccessoryTableViewSection) (int) section) {
 			case AccessoryTableViewSection.Services:
 				return displayedServices.Count;
 			case AccessoryTableViewSection.BridgedAccessories:
@@ -141,7 +138,7 @@ namespace HomeKitCatalog
 		// returns:  A Service or Bridged Accessory Cell based on the section.
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			switch ((AccessoryTableViewSection)indexPath.Section) {
+			switch ((AccessoryTableViewSection) indexPath.Section) {
 			case AccessoryTableViewSection.Services:
 				return GetServiceCell (tableView, indexPath);
 			case AccessoryTableViewSection.BridgedAccessories:
@@ -178,7 +175,7 @@ namespace HomeKitCatalog
 
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			switch ((AccessoryTableViewSection)(int)section) {
+			switch ((AccessoryTableViewSection) (int) section) {
 			case AccessoryTableViewSection.Services:
 				return "Services";
 			case AccessoryTableViewSection.BridgedAccessories:
@@ -191,7 +188,7 @@ namespace HomeKitCatalog
 		// returns:  A description of the accessories bridged status.
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			if (Accessory.Bridged && (AccessoryTableViewSection)(int)section == AccessoryTableViewSection.Services) {
+			if (Accessory.Bridged && (AccessoryTableViewSection) (int) section == AccessoryTableViewSection.Services) {
 				var bridge = Home.BridgeForAccessory (Accessory);
 				return bridge != null ?
 					string.Format ("This accessory is being bridged into HomeKit by {0}.", bridge.Name) :
@@ -226,7 +223,7 @@ namespace HomeKitCatalog
 				displayedServices.AddRange (filtered);
 			}
 
-			NSUuid[] identifiers = Accessory.UniqueIdentifiersForBridgedAccessories;
+			NSUuid [] identifiers = Accessory.UniqueIdentifiersForBridgedAccessories;
 			if (identifiers != null) {
 				bridgedAccessories.Clear ();
 				bridgedAccessories.AddRange (Home.AccessoriesWithIdentifiers (new HashSet<NSUuid> (identifiers)));
@@ -252,8 +249,8 @@ namespace HomeKitCatalog
 		{
 			var index = displayedServices.IndexOf (service);
 			if (index >= 0) {
-				var path = NSIndexPath.FromRowSection (index, (int)AccessoryTableViewSection.Services);
-				TableView.ReloadRows (new []{ path }, UITableViewRowAnimation.Automatic);
+				var path = NSIndexPath.FromRowSection (index, (int) AccessoryTableViewSection.Services);
+				TableView.ReloadRows (new [] { path }, UITableViewRowAnimation.Automatic);
 			}
 		}
 

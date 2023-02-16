@@ -2,10 +2,8 @@ using UIKit;
 using Foundation;
 using CoreGraphics;
 
-namespace CircleLayout
-{
-	public class Cell : UICollectionViewCell
-	{
+namespace CircleLayout {
+	public class Cell : UICollectionViewCell {
 		[Export ("initWithFrame:")]
 		public Cell (CGRect frame) : base (frame)
 		{

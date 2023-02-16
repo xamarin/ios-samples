@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using AVFoundation;
@@ -7,10 +7,8 @@ using CoreFoundation;
 using Foundation;
 using CoreMedia;
 
-namespace PhotoFilterExtension
-{
-	public abstract class ReadWriteSampleBufferChannel
-	{
+namespace PhotoFilterExtension {
+	public abstract class ReadWriteSampleBufferChannel {
 		readonly AVAssetReaderOutput readerOutput;
 		protected AVAssetReaderOutput ReaderOutput {
 			get {
@@ -63,7 +61,7 @@ namespace PhotoFilterExtension
 		void AdjustMediaData ()
 		{
 			writerInput.RequestMediaData (serializationQueue, () => {
-				if(finished)
+				if (finished)
 					return;
 
 				bool shouldContinue = true;
@@ -77,12 +75,12 @@ namespace PhotoFilterExtension
 					}
 				}
 
-				if(!shouldContinue)
+				if (!shouldContinue)
 					CompleteTask ();
 			});
 		}
 
-		protected abstract bool Append(CMSampleBuffer sampleBuffer);
+		protected abstract bool Append (CMSampleBuffer sampleBuffer);
 
 		public void Cancel ()
 		{

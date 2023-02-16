@@ -4,17 +4,15 @@ using UIKit;
 using System.CodeDom.Compiler;
 using HomeKit;
 
-namespace HomeKitIntro
-{
-	public partial class AvailableTableViewController : UITableViewController
-	{
+namespace HomeKitIntro {
+	public partial class AvailableTableViewController : UITableViewController {
 		#region Computed Properties
 		/// <summary>
 		/// Returns the delegate of the current running application
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 
 		/// <summary>
@@ -22,7 +20,7 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <value>The data source.</value>
 		public AvailableTableSource DataSource {
-			get { return (AvailableTableSource)TableView.Source; }
+			get { return (AvailableTableSource) TableView.Source; }
 		}
 
 		/// <summary>
@@ -48,7 +46,8 @@ namespace HomeKitIntro
 		/// <summary>
 		/// Reloads the data.
 		/// </summary>
-		public void ReloadData() {
+		public void ReloadData ()
+		{
 
 			// Ask the table to redisplay its information
 			TableView.ReloadData ();
@@ -70,15 +69,15 @@ namespace HomeKitIntro
 			// Wireup changes
 			AccessoryBrowser.DidFindNewAccessory += (sender, e) => {
 				// Update display
-				ReloadData();
+				ReloadData ();
 			};
 
 			AccessoryBrowser.DidRemoveNewAccessory += (sender, e) => {
 				// Update display
-				ReloadData();
+				ReloadData ();
 
 				// Inform the rest of the UI that it needs to refresh
-				ThisApp.RaiseUpdateGUI();
+				ThisApp.RaiseUpdateGUI ();
 			};
 		}
 

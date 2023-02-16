@@ -4,17 +4,15 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-namespace TransitionsDemo.AnimationControllers
-{
-	public class CEExplosionAnimationController : CEReversibleAnimationController
-	{
+namespace TransitionsDemo.AnimationControllers {
+	public class CEExplosionAnimationController : CEReversibleAnimationController {
 		public CEExplosionAnimationController ()
 		{
 		}
 
 		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
-		                                        UIViewController fromViewController, UIViewController toViewController,
-		                                        UIView fromView, UIView toView)
+												UIViewController fromViewController, UIViewController toViewController,
+												UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
 			containerView.AddSubview (toView);

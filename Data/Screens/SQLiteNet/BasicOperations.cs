@@ -7,19 +7,17 @@ using System.Data;
 using System.IO;
 using SQLite;
 
-namespace Xamarin.Screens.SQLiteNet
-{
-	public partial class BasicOperations : UITableViewController
-	{
+namespace Xamarin.Screens.SQLiteNet {
+	public partial class BasicOperations : UITableViewController {
 		protected List<Person> people = new List<Person> ();
 		protected TableSource tableSource;
 
 		#region Constructors
 
-		public BasicOperations (IntPtr handle) : base(handle) { Initialize (); }
-		[Export("initWithCoder:")]
-		public BasicOperations (NSCoder coder) : base(coder) { Initialize (); }
-		public BasicOperations () : base("DataSample", null) { Initialize (); }
+		public BasicOperations (IntPtr handle) : base (handle) { Initialize (); }
+		[Export ("initWithCoder:")]
+		public BasicOperations (NSCoder coder) : base (coder) { Initialize (); }
+		public BasicOperations () : base ("DataSample", null) { Initialize (); }
 
 		protected void Initialize ()
 		{
@@ -74,13 +72,12 @@ namespace Xamarin.Screens.SQLiteNet
 		{
 			// create a connection object. if the database doesn't exist, it will create
 			// a blank database
-			using(SQLiteConnection db = new SQLiteConnection (GetDBPath (dbName)))
-			{
+			using (SQLiteConnection db = new SQLiteConnection (GetDBPath (dbName))) {
 				// create the tables
 				db.CreateTable<Person> ();
 
 				// skip inserting data if it already exists
-				if(db.Table<Person>().Count() > 0)
+				if (db.Table<Person> ().Count () > 0)
 					return;
 
 				// declare vars
@@ -107,11 +104,10 @@ namespace Xamarin.Screens.SQLiteNet
 		}
 
 		// A simple data source for our table
-		protected class TableSource : UITableViewSource
-		{
+		protected class TableSource : UITableViewSource {
 			List<Person> items;
 
-			public TableSource (List<Person> items) : base() { this.items = items; }
+			public TableSource (List<Person> items) : base () { this.items = items; }
 
 			public override nint NumberOfSections (UITableView tableView) { return 1; }
 
@@ -121,9 +117,9 @@ namespace Xamarin.Screens.SQLiteNet
 			{
 				UITableViewCell cell;
 				cell = tableView.DequeueReusableCell ("item");
-				if(cell == null)
-					cell = new UITableViewCell(UITableViewCellStyle.Default, "item");
-				cell.TextLabel.Text = this.items[indexPath.Row].FirstName + " " + this.items[indexPath.Row].LastName;
+				if (cell == null)
+					cell = new UITableViewCell (UITableViewCellStyle.Default, "item");
+				cell.TextLabel.Text = this.items [indexPath.Row].FirstName + " " + this.items [indexPath.Row].LastName;
 				return cell;
 			}
 

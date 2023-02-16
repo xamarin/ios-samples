@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using Foundation;
@@ -6,12 +6,12 @@ using Foundation;
 namespace UICatalog {
 	public class DataItem {
 
-		static DataItem[] sampleItems;
-		public static DataItem[] SampleItems {
+		static DataItem [] sampleItems;
+		public static DataItem [] SampleItems {
 			get {
 				if (sampleItems == null) {
 					var items = new List<DataItem> ();
-					foreach (Group groupType in Enum.GetValues (typeof(Group))) {
+					foreach (Group groupType in Enum.GetValues (typeof (Group))) {
 						int itemCount = 0;
 
 						switch (groupType) {
@@ -101,19 +101,19 @@ namespace UICatalog {
 
 		public override bool Equals (object obj)
 		{
-			if (obj == null || GetType () != obj.GetType()) 
+			if (obj == null || GetType () != obj.GetType ())
 				return false;
 
-			var dataItem = (DataItem)obj;
+			var dataItem = (DataItem) obj;
 			return Identifier == dataItem.Identifier;
 		}
 
-		public override int GetHashCode () 
+		public override int GetHashCode ()
 		{
 			int hash = 17;
-			hash = hash * 23 + Title.GetHashCode();
-			hash = hash * 23 + Identifier.GetHashCode();
-			hash = hash * 23 + DisplayURL.GetHashCode();
+			hash = hash * 23 + Title.GetHashCode ();
+			hash = hash * 23 + Identifier.GetHashCode ();
+			hash = hash * 23 + DisplayURL.GetHashCode ();
 			return hash;
 		}
 	}

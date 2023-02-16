@@ -1,14 +1,12 @@
-﻿using System.IO;
+using System.IO;
 using System.Xml.Linq;
 using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace MonoDevelopTouchCells
-{
+namespace MonoDevelopTouchCells {
 	// The name AppDelegate is referenced in the MainWindow.xib file.
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		DetailViewController detailViewController = new DetailViewController ();
 
 		// This method is invoked when the application has loaded its UI and its ready to run
@@ -46,13 +44,14 @@ namespace MonoDevelopTouchCells
 			XDocument xdoc = XDocument.Load (source);//Path.Combine(Directory.GetCurrentDirectory(), "data.xml"));
 
 			var items = from c in xdoc.Descendants ("item")
-				select new Item {
-				Title = (string)c.Element ("title"),
-				Checked = (bool)c.Element ("checked"),
-			};
+						select new Item {
+							Title = (string) c.Element ("title"),
+							Checked = (bool) c.Element ("checked"),
+						};
 
 			myTableView.Delegate = new TableViewDelegate ();
-			myTableView.InvokeOnMainThread (delegate {
+			myTableView.InvokeOnMainThread (delegate
+			{
 				myTableView.DataSource = new DataSource (items);
 			});
 		}

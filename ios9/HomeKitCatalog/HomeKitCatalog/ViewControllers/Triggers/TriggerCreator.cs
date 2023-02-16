@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,12 +6,10 @@ using CoreFoundation;
 using Foundation;
 using HomeKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A base class for all trigger creators.
 	// These classes manage the temporary state of the trigger and unify some of the saving processes.
-	public class TriggerCreator
-	{
+	public class TriggerCreator {
 		protected HMHome Home { get; set; }
 
 		protected HMTrigger Trigger { get; set; }
@@ -30,7 +28,7 @@ namespace HomeKitCatalog
 			get {
 				return errors;
 			}
-		} 
+		}
 
 		// Initializes a trigger creator from an existing trigger (if it exists), and the current home.
 		public TriggerCreator (HMTrigger trigger, HMHome home)

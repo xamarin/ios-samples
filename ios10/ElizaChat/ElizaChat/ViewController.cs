@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UIKit;
 using ElizaCore;
 using Foundation;
@@ -6,13 +6,11 @@ using Intents;
 using System.Threading;
 using UserNotifications;
 
-namespace ElizaChat
-{
-	public partial class ViewController : UIViewController
-	{
+namespace ElizaChat {
+	public partial class ViewController : UIViewController {
 		#region AppDelegate Access
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 		#endregion
 
@@ -105,18 +103,21 @@ namespace ElizaChat
 			});
 
 			// Wireup events
-			ChatInput.ShouldBeginEditing = delegate (UITextField field) {
+			ChatInput.ShouldBeginEditing = delegate (UITextField field)
+			{
 				//Placeholder
 				return true;
 			};
 
-			ChatInput.ShouldReturn = delegate (UITextField field) {
+			ChatInput.ShouldReturn = delegate (UITextField field)
+			{
 				field.ResignFirstResponder ();
 				AskQuestion (field.Text, false);
 				return true;
 			};
 
-			ChatInput.ShouldEndEditing = delegate (UITextField field) {
+			ChatInput.ShouldEndEditing = delegate (UITextField field)
+			{
 				AskQuestion (field.Text, false);
 				return true;
 			};

@@ -1,21 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UIKit;
 
-namespace tvTable
-{
+namespace tvTable {
 	/// <summary>
 	/// The <c>AttractionTableDelegate</c> handles the user interactions on the <c>AttractionTable</c> such
 	/// as highlighting or selecting a row.
 	/// </summary>
-	public class AttractionTableDelegate : UITableViewDelegate
-	{
+	public class AttractionTableDelegate : UITableViewDelegate {
 		#region Computed Properties
 		/// <summary>
 		/// Gets or sets a shortcut to the Table View Controller.
 		/// </summary>
 		/// <value>The <c>ActionTableViewController</c>.</value>
-		public AttractionTableViewController Controller { get; set;}
+		public AttractionTableViewController Controller { get; set; }
 		#endregion
 
 		#region Constructors

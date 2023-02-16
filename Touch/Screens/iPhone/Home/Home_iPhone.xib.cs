@@ -5,10 +5,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Example_Touch.Screens.iPhone.Home
-{
-	public partial class Home_iPhone : UIViewController
-	{
+namespace Example_Touch.Screens.iPhone.Home {
+	public partial class Home_iPhone : UIViewController {
 		GestureRecognizers.GestureRecognizers_iPhone gestureScreen;
 		GestureRecognizers.CustomCheckmarkGestureRecognizer_iPhone customGestureScreen;
 		SimpleTouch.Touches_iPhone touchScreen;
@@ -18,18 +16,18 @@ namespace Example_Touch.Screens.iPhone.Home
 		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
-		public Home_iPhone (IntPtr handle) : base(handle)
+		public Home_iPhone (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public Home_iPhone (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public Home_iPhone (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
 
-		public Home_iPhone () : base("Home_iPhone", null)
+		public Home_iPhone () : base ("Home_iPhone", null)
 		{
 			Initialize ();
 		}
@@ -54,13 +52,13 @@ namespace Example_Touch.Screens.iPhone.Home
 
 			this.btnGestureRecognizers.TouchUpInside += (s, e) => {
 				if (gestureScreen == null)
-					gestureScreen = new Example_Touch.Screens.iPhone.GestureRecognizers.GestureRecognizers_iPhone();
+					gestureScreen = new Example_Touch.Screens.iPhone.GestureRecognizers.GestureRecognizers_iPhone ();
 				this.NavigationController.PushViewController (gestureScreen, true);
 			};
 
 			this.btnCustomGestureRecognizer.TouchUpInside += (s, e) => {
 				if (customGestureScreen == null)
-					customGestureScreen = new Example_Touch.Screens.iPhone.GestureRecognizers.CustomCheckmarkGestureRecognizer_iPhone();
+					customGestureScreen = new Example_Touch.Screens.iPhone.GestureRecognizers.CustomCheckmarkGestureRecognizer_iPhone ();
 				this.NavigationController.PushViewController (customGestureScreen, true);
 			};
 

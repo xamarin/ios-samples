@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -43,7 +43,7 @@ namespace Conference_Diffable.Diffable {
 			}
 
 			public static bool operator != (Section left, Section right) => !(left == right);
-			public override bool Equals (object obj) => this == (Section)obj;
+			public override bool Equals (object obj) => this == (Section) obj;
 			public bool Equals (Section other) => Value == other.Value;
 			public override int GetHashCode () => HashCode.Combine (base.GetHashCode (), Value);
 		}
@@ -70,7 +70,7 @@ namespace Conference_Diffable.Diffable {
 			public Item (WIFIController.Network network)
 			{
 				Title = network.Name;
-				Type = ItemType.AvailableNetwork; 
+				Type = ItemType.AvailableNetwork;
 				Network = network;
 				Id = network.Id;
 			}
@@ -99,7 +99,7 @@ namespace Conference_Diffable.Diffable {
 			}
 
 			public static bool operator != (Item left, Item right) => !(left == right);
-			public override bool Equals (object obj) => this == (Item)obj;
+			public override bool Equals (object obj) => this == (Item) obj;
 			public bool Equals (Item other) => Id == other.Id;
 			public override int GetHashCode () => HashCode.Combine (base.GetHashCode (), Id);
 		}

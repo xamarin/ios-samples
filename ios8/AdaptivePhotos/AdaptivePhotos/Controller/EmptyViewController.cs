@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using UIKit;
 
-namespace AdaptivePhotos
-{
-	public class EmptyViewController : CustomViewController
-	{
+namespace AdaptivePhotos {
+	public class EmptyViewController : CustomViewController {
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

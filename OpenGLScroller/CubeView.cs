@@ -10,10 +10,8 @@ using Foundation;
 using GLKit;
 using UIKit;
 
-namespace OpenGLScroller
-{
-	public class CubeView : GLKView
-	{
+namespace OpenGLScroller {
+	public class CubeView : GLKView {
 		const int NumLittleCubes = 20;
 		const float LittleCubeWidth = (320 / 3);
 		const float ScrollerHeight = LittleCubeWidth;
@@ -22,7 +20,7 @@ namespace OpenGLScroller
 		int vertexArray;
 		int vertexBuffer;
 
-		float[] gCubeVertexData =
+		float [] gCubeVertexData =
 		{
 			// Data layout for each line below is:
 			// positionX, positionY, positionZ,     normalX, normalY, normalZ,
@@ -69,8 +67,7 @@ namespace OpenGLScroller
 			-0.5f, 0.5f, -0.5f,        0.0f, 0.0f, -1.0f
 		};
 
-		struct CubeInfo
-		{
+		struct CubeInfo {
 			public float Red;
 			public float Green;
 			public float Blue;
@@ -105,7 +102,7 @@ namespace OpenGLScroller
 		public CGPoint scrollOffset;
 
 		GLKBaseEffect effect;
-		Random gen = new Random();
+		Random gen = new Random ();
 
 		public CubeView (CGRect frame) : base (frame)
 		{
@@ -114,14 +111,14 @@ namespace OpenGLScroller
 
 		public CGRect ScrollableFrame {
 			get {
-				return new CGRect (0, 30, 320, (int)ScrollerHeight);
+				return new CGRect (0, 30, 320, (int) ScrollerHeight);
 			}
 		}
 
 		public CGSize ScrollableContentSize {
 			get {
 				float width = NumLittleCubes * LittleCubeWidth;
-				return new CGSize ((int)width, (int)ScrollerHeight);
+				return new CGSize ((int) width, (int) ScrollerHeight);
 			}
 		}
 
@@ -147,7 +144,7 @@ namespace OpenGLScroller
 			set {
 				base.Frame = value;
 
-				float aspect = (float)Math.Abs (Bounds.Size.Width / Bounds.Size.Height);
+				float aspect = (float) Math.Abs (Bounds.Size.Width / Bounds.Size.Height);
 
 				Matrix4 projectionMatrix = Matrix4.CreatePerspectiveFieldOfView (MathHelper.DegreesToRadians (65), aspect, 0.1f, 100);
 				if (effect != null)
@@ -169,13 +166,13 @@ namespace OpenGLScroller
 				var cube = littleCube [i];
 
 				var translationX = ((i - 1) * UnitLittleCubeWidth) - (scrollOffset.X * UnitLittleCubeWidth / LittleCubeWidth);
-				var cubeMatrix = Matrix4.CreateTranslation ((float)translationX, 2.8f, -7);
+				var cubeMatrix = Matrix4.CreateTranslation ((float) translationX, 2.8f, -7);
 				cubeMatrix = Matrix4.Mult (Matrix4.CreateFromAxisAngle (new Vector3 (cube.XAxis, cube.YAxis, cube.ZAxis), cube.RotationRadians), cubeMatrix);
 
 				effect.Light0.DiffuseColor = new Vector4 (cube.Red, cube.Green, cube.Blue, 1.0f);
 				effect.Transform.ModelViewMatrix = cubeMatrix;
 
-				effect.PrepareToDraw();
+				effect.PrepareToDraw ();
 
 				GL.DrawArrays (BeginMode.Triangles, 0, 36);
 			}
@@ -271,30 +268,30 @@ namespace OpenGLScroller
 
 			RandomizeBigCube ();
 
-			for (int i = 0; i< NumLittleCubes; i++)
-				littleCube[i] = bigCube;
+			for (int i = 0; i < NumLittleCubes; i++)
+				littleCube [i] = bigCube;
 
-			timeOfLastRenderedFrame = CAAnimation.CurrentMediaTime();
+			timeOfLastRenderedFrame = CAAnimation.CurrentMediaTime ();
 		}
 
-		public void RandomizeBigCube()
+		public void RandomizeBigCube ()
 		{
-			bigCube.Red = (minimums.Red + ((float) gen.NextDouble() * (maximums.Red - minimums.Red)));
-			bigCube.Green = (minimums.Green + ((float) gen.NextDouble() * (maximums.Green - minimums.Green)));
-			bigCube.Blue = (minimums.Blue + ((float) gen.NextDouble() * (maximums.Blue - minimums.Blue)));
-			bigCube.XAxis = (minimums.XAxis + ((float) gen.NextDouble() * (maximums.XAxis - minimums.XAxis)));
-			bigCube.YAxis = (minimums.YAxis + ((float) gen.NextDouble() * (maximums.YAxis - minimums.YAxis)));
-			bigCube.ZAxis = (minimums.ZAxis + ((float) gen.NextDouble() * (maximums.ZAxis - minimums.ZAxis)));
-			bigCube.Speed = (minimums.Speed + ((float) gen.NextDouble() * (maximums.Speed - minimums.Speed)));
-			bigCube.RotationRadians = (minimums.RotationRadians + ((float) gen.NextDouble() * (maximums.RotationRadians - minimums.RotationRadians)));
+			bigCube.Red = (minimums.Red + ((float) gen.NextDouble () * (maximums.Red - minimums.Red)));
+			bigCube.Green = (minimums.Green + ((float) gen.NextDouble () * (maximums.Green - minimums.Green)));
+			bigCube.Blue = (minimums.Blue + ((float) gen.NextDouble () * (maximums.Blue - minimums.Blue)));
+			bigCube.XAxis = (minimums.XAxis + ((float) gen.NextDouble () * (maximums.XAxis - minimums.XAxis)));
+			bigCube.YAxis = (minimums.YAxis + ((float) gen.NextDouble () * (maximums.YAxis - minimums.YAxis)));
+			bigCube.ZAxis = (minimums.ZAxis + ((float) gen.NextDouble () * (maximums.ZAxis - minimums.ZAxis)));
+			bigCube.Speed = (minimums.Speed + ((float) gen.NextDouble () * (maximums.Speed - minimums.Speed)));
+			bigCube.RotationRadians = (minimums.RotationRadians + ((float) gen.NextDouble () * (maximums.RotationRadians - minimums.RotationRadians)));
 
-			bigCubeDirections.Red = PositiveOrNegative();
-			bigCubeDirections.Green = PositiveOrNegative();
-			bigCubeDirections.Blue = PositiveOrNegative();
-			bigCubeDirections.XAxis = PositiveOrNegative();
-			bigCubeDirections.YAxis = PositiveOrNegative();
-			bigCubeDirections.ZAxis = PositiveOrNegative();
-			bigCubeDirections.Speed = PositiveOrNegative();
+			bigCubeDirections.Red = PositiveOrNegative ();
+			bigCubeDirections.Green = PositiveOrNegative ();
+			bigCubeDirections.Blue = PositiveOrNegative ();
+			bigCubeDirections.XAxis = PositiveOrNegative ();
+			bigCubeDirections.YAxis = PositiveOrNegative ();
+			bigCubeDirections.ZAxis = PositiveOrNegative ();
+			bigCubeDirections.Speed = PositiveOrNegative ();
 			bigCubeDirections.RotationRadians = 0.0f;
 		}
 

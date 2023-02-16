@@ -31,11 +31,9 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace ImageProtocol
-{
+namespace ImageProtocol {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		UIWebView web;
 		UIViewController controller;
@@ -54,8 +52,8 @@ namespace ImageProtocol
 			};
 			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0))
 				web.Frame = new CGRect (0, 20,
-				                            UIScreen.MainScreen.Bounds.Width,
-				                            UIScreen.MainScreen.Bounds.Height - 20);
+											UIScreen.MainScreen.Bounds.Width,
+											UIScreen.MainScreen.Bounds.Height - 20);
 			else
 				web.Frame = UIScreen.MainScreen.Bounds;
 			controller.NavigationItem.Title = "Test case";

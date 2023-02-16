@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using Foundation;
 using HomeKit;
 
-namespace HomeKitCatalog
-{
-	public interface ICharacteristicCellDelegate
-	{
+namespace HomeKitCatalog {
+	public interface ICharacteristicCellDelegate {
 		// Called whenever the control within the cell updates its value.
 		//
 		// parameter cell:           The cell which has updated its value.

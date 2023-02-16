@@ -5,10 +5,8 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace CoreAnimationExample
-{
-	public partial class BasicUIViewAnimationScreen : UIViewController, IDetailView
-	{
+namespace CoreAnimationExample {
+	public partial class BasicUIViewAnimationScreen : UIViewController, IDetailView {
 		public event EventHandler ContentsButtonClicked;
 
 		public override void ViewDidLoad ()

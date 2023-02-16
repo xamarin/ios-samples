@@ -2,13 +2,11 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace tvTable
-{
+namespace tvTable {
 	/// <summary>
 	/// This is the prototype for every Cell (row) that will be added to the <c>AttractionTableView</c>.
 	/// </summary>
-	public partial class AttractionTableCell : UITableViewCell
-	{
+	public partial class AttractionTableCell : UITableViewCell {
 		#region Private Variables
 		/// <summary>
 		/// The backing store for the <c>AttractionInfomarion</c> object being displayed in this cell.

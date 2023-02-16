@@ -1,12 +1,10 @@
 using System;
 
-namespace UIKitEnhancements
-{
+namespace UIKitEnhancements {
 	/// <summary>
 	/// Holds information about a give item on a table-based menu
 	/// </summary>
-	public class MenuItem
-	{
+	public class MenuItem {
 		#region Computed Properties
 		/// <summary>
 		/// Gets or sets the title.
@@ -18,19 +16,19 @@ namespace UIKitEnhancements
 		/// Gets or sets the subtitle.
 		/// </summary>
 		/// <value>The subtitle.</value>
-		public string Subtitle{ get; set; }
+		public string Subtitle { get; set; }
 
 		/// <summary>
 		/// Gets or sets the segue.
 		/// </summary>
 		/// <value>The segue.</value>
-		public string Segue{ get; set; }
+		public string Segue { get; set; }
 
 		/// <summary>
 		/// Gets or sets the URL.
 		/// </summary>
 		/// <value>The UR.</value>
-		public string URL{ get; set; }
+		public string URL { get; set; }
 		#endregion
 
 		#region Constructors
@@ -51,7 +49,8 @@ namespace UIKitEnhancements
 		/// </summary>
 		/// <param name="title">Title.</param>
 		/// <param name="subtitle">Subtitle.</param>
-		public MenuItem(string title, string subtitle, string segue) {
+		public MenuItem (string title, string subtitle, string segue)
+		{
 
 			// Initialize
 			Title = title;
@@ -67,7 +66,8 @@ namespace UIKitEnhancements
 		/// <param name="subtitle">Subtitle.</param>
 		/// <param name="segue">Segue.</param>
 		/// <param name="url">URL.</param>
-		public MenuItem(string title, string subtitle, string segue, string url) {
+		public MenuItem (string title, string subtitle, string segue, string url)
+		{
 
 			// Initialize
 			Title = title;

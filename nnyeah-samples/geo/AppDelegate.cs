@@ -31,8 +31,8 @@ public class AppDelegate : UIApplicationDelegate {
 
 		// make the window visible
 		Window.MakeKeyAndVisible ();
-		
-		Task.Run(() => Query ());
+
+		Task.Run (() => Query ());
 
 		return true;
 	}
@@ -51,8 +51,7 @@ public class AppDelegate : UIApplicationDelegate {
 		SetTextOnMainThread ("checking if we can get location");
 		if (!CrossGeolocator.Current.IsGeolocationAvailable) {
 			SetTextOnMainThread ("Does not have permissions!");
-		}
-		else {
+		} else {
 			SetTextOnMainThread ("getting position.");
 			var position = await GetPosition ();
 			if (position is not null) {
@@ -75,7 +74,7 @@ public class AppDelegate : UIApplicationDelegate {
 
 			return position;
 		} catch (Exception e) {
-			SetTextOnMainThread ($"Oops: {e.GetType().Name} - {e.Message}\n{e.StackTrace}");
+			SetTextOnMainThread ($"Oops: {e.GetType ().Name} - {e.Message}\n{e.StackTrace}");
 			return null;
 		}
 	}

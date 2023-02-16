@@ -7,13 +7,11 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A view controller that provides a list of services and lets the user select services to be added to the provided Service Group.
 	// The services are not added to the service group until the 'Done' button is pressed.
-	public partial class AddServicesViewController : HMCatalogViewController, IHMAccessoryDelegate
-	{
-		static readonly NSString ServiceCell = (NSString)"ServiceCell";
+	public partial class AddServicesViewController : HMCatalogViewController, IHMAccessoryDelegate {
+		static readonly NSString ServiceCell = (NSString) "ServiceCell";
 
 		readonly List<HMAccessory> displayedAccessories = new List<HMAccessory> ();
 		readonly Dictionary<HMAccessory, List<HMService>> displayedServicesForAccessory = new Dictionary<HMAccessory, List<HMService>> ();
@@ -59,13 +57,13 @@ namespace HomeKitCatalog
 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			var accessory = displayedAccessories [(int)section];
+			var accessory = displayedAccessories [(int) section];
 			return displayedServicesForAccessory [accessory].Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = (ServiceCell)tableView.DequeueReusableCell (ServiceCell, indexPath);
+			var cell = (ServiceCell) tableView.DequeueReusableCell (ServiceCell, indexPath);
 
 			var service = ServiceAtIndexPath (indexPath);
 
@@ -88,12 +86,12 @@ namespace HomeKitCatalog
 			else
 				selectedServices.Add (service);
 
-			tableView.ReloadRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+			tableView.ReloadRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 		}
 
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			return displayedAccessories [(int)section].Name;
+			return displayedAccessories [(int) section].Name;
 		}
 
 		#endregion

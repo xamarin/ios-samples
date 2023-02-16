@@ -19,21 +19,21 @@ namespace HandlingRotation.Screens.iPhone.Method3SwapViews {
 			base.LoadView ();
 
 			switch (InterfaceOrientation) {
-				// if we're switching to landscape
-				case UIInterfaceOrientation.LandscapeLeft:
-				case UIInterfaceOrientation.LandscapeRight:
+			// if we're switching to landscape
+			case UIInterfaceOrientation.LandscapeLeft:
+			case UIInterfaceOrientation.LandscapeRight:
 
-					NSBundle.MainBundle.LoadNib ("LandscapeView", this, null);
+				NSBundle.MainBundle.LoadNib ("LandscapeView", this, null);
 
-					break;
+				break;
 
-				// we're switching back to portrait
-				case UIInterfaceOrientation.Portrait:
-				case UIInterfaceOrientation.PortraitUpsideDown:
+			// we're switching back to portrait
+			case UIInterfaceOrientation.Portrait:
+			case UIInterfaceOrientation.PortraitUpsideDown:
 
-					NSBundle.MainBundle.LoadNib ("PortraitView", this, null);
+				NSBundle.MainBundle.LoadNib ("PortraitView", this, null);
 
-					break;
+				break;
 			}
 		}
 
@@ -55,14 +55,13 @@ namespace HandlingRotation.Screens.iPhone.Method3SwapViews {
 			// we're passed to orientation that it will rotate to. in our case, we could
 			// just return true, but this switch illustrates how you can test for the
 			// different cases
-			switch (toInterfaceOrientation)
-			{
-				case UIInterfaceOrientation.LandscapeLeft:
-				case UIInterfaceOrientation.LandscapeRight:
-				case UIInterfaceOrientation.Portrait:
-				case UIInterfaceOrientation.PortraitUpsideDown:
-				default:
-					return true;
+			switch (toInterfaceOrientation) {
+			case UIInterfaceOrientation.LandscapeLeft:
+			case UIInterfaceOrientation.LandscapeRight:
+			case UIInterfaceOrientation.Portrait:
+			case UIInterfaceOrientation.PortraitUpsideDown:
+			default:
+				return true;
 			}
 		}
 
@@ -76,21 +75,21 @@ namespace HandlingRotation.Screens.iPhone.Method3SwapViews {
 			base.WillAnimateRotation (toInterfaceOrientation, duration);
 
 			switch (toInterfaceOrientation) {
-				// if we're switching to landscape
-				case UIInterfaceOrientation.LandscapeLeft:
-				case UIInterfaceOrientation.LandscapeRight:
+			// if we're switching to landscape
+			case UIInterfaceOrientation.LandscapeLeft:
+			case UIInterfaceOrientation.LandscapeRight:
 
-					NSBundle.MainBundle.LoadNib ("LandscapeView", this, null);
+				NSBundle.MainBundle.LoadNib ("LandscapeView", this, null);
 
-					break;
+				break;
 
-				// we're switch back to portrait
-				case UIInterfaceOrientation.Portrait:
-				case UIInterfaceOrientation.PortraitUpsideDown:
+			// we're switch back to portrait
+			case UIInterfaceOrientation.Portrait:
+			case UIInterfaceOrientation.PortraitUpsideDown:
 
-					NSBundle.MainBundle.LoadNib ("PortraitView", this, null);
+				NSBundle.MainBundle.LoadNib ("PortraitView", this, null);
 
-					break;
+				break;
 			}
 		}
 	}

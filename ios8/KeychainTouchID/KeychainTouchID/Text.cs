@@ -1,9 +1,7 @@
-﻿using System;
+using System;
 
-namespace KeychainTouchID
-{
-	public static class Text
-	{
+namespace KeychainTouchID {
+	public static class Text {
 		public static string SELECT_TEST = "Select test";
 		public static string TOUCH_ID_IS_AVAILABLE = "Touch ID is available";
 		public static string TOUCH_ID_IS_NOT_AVAILABLE = "Touch ID is not available";

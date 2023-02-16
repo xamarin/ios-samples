@@ -4,10 +4,8 @@ using Foundation;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TicTacToe
-{
-	public class TTTMessagesViewController : UITableViewController
-	{
+namespace TicTacToe {
+	public class TTTMessagesViewController : UITableViewController {
 		readonly NSString cellIdentifier = new NSString ("Cell");
 
 		TTTProfile profile;
@@ -50,7 +48,7 @@ namespace TicTacToe
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			TableView.RegisterClassForCellReuse (typeof(TTTMessageTableViewCell), cellIdentifier);
+			TableView.RegisterClassForCellReuse (typeof (TTTMessageTableViewCell), cellIdentifier);
 		}
 
 		void NewMessage (object sender, EventArgs e)
@@ -62,7 +60,7 @@ namespace TicTacToe
 
 		void OnMessagesAdded (object sender, MessageEvenArg e)
 		{
-			NSIndexPath[] paths = e.Indexes.Select (index => NSIndexPath.FromRowSection (index, 0)).ToArray ();
+			NSIndexPath [] paths = e.Indexes.Select (index => NSIndexPath.FromRowSection (index, 0)).ToArray ();
 			TableView.InsertRows (paths, UITableViewRowAnimation.Automatic);
 		}
 
@@ -76,7 +74,7 @@ namespace TicTacToe
 		void UpdateFavoriteButton ()
 		{
 			bool isFavorite = selectedMessage != null
-			                  && TTTMessageServer.SharedMessageServer.IsFavoriteMessage (selectedMessage);
+							  && TTTMessageServer.SharedMessageServer.IsFavoriteMessage (selectedMessage);
 
 			UIImage image = isFavorite ? FavoriteImage : UnselectedFavoriteImage;
 
@@ -98,7 +96,7 @@ namespace TicTacToe
 
 		public override void WillDisplay (UITableView tableView, UITableViewCell cell, NSIndexPath indexPath)
 		{
-			TTTMessageTableViewCell messageCell = (TTTMessageTableViewCell)cell;
+			TTTMessageTableViewCell messageCell = (TTTMessageTableViewCell) cell;
 			TTTMessage message = TTTMessageServer.SharedMessageServer.MessageAtIndex (indexPath.Row);
 			cell.TextLabel.Text = message.Text;
 			cell.ImageView.Image = TTTProfile.SmallImageForIcon (message.Icon);
@@ -118,14 +116,14 @@ namespace TicTacToe
 
 		public override void RowDeselected (UITableView tableView, NSIndexPath indexPath)
 		{
-			TTTMessageTableViewCell cell = (TTTMessageTableViewCell)tableView.CellAt (indexPath);
+			TTTMessageTableViewCell cell = (TTTMessageTableViewCell) tableView.CellAt (indexPath);
 			cell.SetShowReplyButton (false);
 		}
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			TTTMessage message = TTTMessageServer.SharedMessageServer.MessageAtIndex (indexPath.Row);
-			TTTMessageTableViewCell cell = (TTTMessageTableViewCell)tableView.CellAt (indexPath);
+			TTTMessageTableViewCell cell = (TTTMessageTableViewCell) tableView.CellAt (indexPath);
 
 			if (selectedMessage == message) {
 				tableView.DeselectRow (indexPath, true);
@@ -140,8 +138,7 @@ namespace TicTacToe
 		#endregion
 	}
 
-	public class TTTMessageTableViewCell : UITableViewCell
-	{
+	public class TTTMessageTableViewCell : UITableViewCell {
 		bool showReplyButton;
 
 		public UIButton ReplyButton { get; set; }

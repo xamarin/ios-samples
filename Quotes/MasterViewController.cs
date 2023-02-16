@@ -11,12 +11,10 @@ using System.Text.RegularExpressions;
 using UIKit;
 using Foundation;
 
-namespace Quotes
-{
-	public class MasterViewController : UICollectionViewController
-	{
+namespace Quotes {
+	public class MasterViewController : UICollectionViewController {
 		List<Page> pages;
-		string[] titles = new string [5];
+		string [] titles = new string [5];
 		NSString cellName = new NSString ("PagePreview");
 
 		[Export ("initWithNibName:bundle:")]
@@ -77,7 +75,7 @@ namespace Quotes
 
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			var cell = (PagePreview)collectionView.DequeueReusableCell (cellName, indexPath);
+			var cell = (PagePreview) collectionView.DequeueReusableCell (cellName, indexPath);
 
 			cell.Page = pages.ElementAt (indexPath.Row);
 

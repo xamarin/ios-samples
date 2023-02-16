@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 using CoreGraphics;
 
-namespace SpeedSketch
-{
-	public class CanvasContainerView : UIView
-	{
+namespace SpeedSketch {
+	public class CanvasContainerView : UIView {
 		UIView canvasView;
 
 		UIView documentView;

@@ -1,16 +1,14 @@
-﻿using System;
+using System;
 using UIKit;
 
-namespace AnimationSamples
-{
-	public class DemoViewTransition : UIViewController
-	{
-		static readonly UIStoryboard MainStoryboard =  UIStoryboard.FromName ("Main", null);
+namespace AnimationSamples {
+	public class DemoViewTransition : UIViewController {
+		static readonly UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
 
 		UIView fromView;
 		UIView toView;
 
-		public override void ViewDidLoad()
+		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			View.BackgroundColor = UIColor.White;
@@ -33,9 +31,9 @@ namespace AnimationSamples
 			fromView.AddGestureRecognizer (new UITapGestureRecognizer (() => UIView.Transition (fromView, toView, 2, options, () => Console.WriteLine ("transition complete"))));
 
 			toView.AddGestureRecognizer (new UITapGestureRecognizer (() => {
-				var initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
+				var initalViewController = (ViewController) MainStoryboard.InstantiateViewController ("InitalViewController");
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.CrossDissolve;
-				PresentViewController(initalViewController, true, null);
+				PresentViewController (initalViewController, true, null);
 			}));
 		}
 	}

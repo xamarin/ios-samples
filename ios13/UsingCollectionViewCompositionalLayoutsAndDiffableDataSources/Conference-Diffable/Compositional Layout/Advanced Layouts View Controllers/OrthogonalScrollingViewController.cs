@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Conference_Diffable.CompositionalLayout.CellsandSupplementaryViews;
 using Foundation;

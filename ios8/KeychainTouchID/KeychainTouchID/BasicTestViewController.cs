@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using CoreFoundation;
 using Foundation;
 using UIKit;
 
-namespace KeychainTouchID
-{
+namespace KeychainTouchID {
 	[Register ("BasicTestViewController")]
-	public class BasicTestViewController : UIViewController, IUITableViewDelegate, IUITableViewDataSource
-	{
+	public class BasicTestViewController : UIViewController, IUITableViewDelegate, IUITableViewDataSource {
 		public List<Test> Tests { get; set; }
 
 		public BasicTestViewController (IntPtr handle) : base (handle)
@@ -32,7 +30,7 @@ namespace KeychainTouchID
 		[Export ("tableView:numberOfRowsInSection:")]
 		public nint RowsInSection (UITableView tableview, nint section)
 		{
-			return (nint)Tests.Count;
+			return (nint) Tests.Count;
 		}
 
 		[Export ("tableView:titleForHeaderInSection:")]

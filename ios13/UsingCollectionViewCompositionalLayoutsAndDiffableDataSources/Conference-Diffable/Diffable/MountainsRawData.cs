@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 namespace Conference_Diffable.Diffable {
 	public class MountainsRawData {
 		public static string [] Mountains { get; } = {

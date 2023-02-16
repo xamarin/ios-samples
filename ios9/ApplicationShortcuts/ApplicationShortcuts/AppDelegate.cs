@@ -1,21 +1,18 @@
-﻿using System;
+using System;
 using System.Linq;
 
 using Foundation;
 using UIKit;
 
-namespace ApplicationShortcuts
-{
-	enum ShortcutIdentifierType
-	{
+namespace ApplicationShortcuts {
+	enum ShortcutIdentifierType {
 		First,
 		Second,
 		Third,
 		Fourth,
 	}
 
-	static class ShortcutIdentifierTypeExtensions
-	{
+	static class ShortcutIdentifierTypeExtensions {
 		public static string GetTypeName (this ShortcutIdentifierType self)
 		{
 			return string.Format ("{0} {1}", NSBundle.MainBundle.BundleIdentifier, self);
@@ -23,24 +20,22 @@ namespace ApplicationShortcuts
 	}
 
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
-		public static readonly NSString ApplicationShortcutUserInfoIconKey = (NSString)"applicationShortcutUserInfoIconKey";
+	public class AppDelegate : UIApplicationDelegate {
+		public static readonly NSString ApplicationShortcutUserInfoIconKey = (NSString) "applicationShortcutUserInfoIconKey";
 
-		class ShortcutIdentifier
-		{
+		class ShortcutIdentifier {
 			public ShortcutIdentifierType Type { get; private set; }
 
 			ShortcutIdentifier ()
 			{
 			}
 
-			public static ShortcutIdentifier Create(string fullType)
+			public static ShortcutIdentifier Create (string fullType)
 			{
 				if (string.IsNullOrWhiteSpace (fullType))
 					return null;
 
-				string last = fullType.Split (new []{ '.' }, StringSplitOptions.RemoveEmptyEntries).Last ();
+				string last = fullType.Split (new [] { '.' }, StringSplitOptions.RemoveEmptyEntries).Last ();
 
 				ShortcutIdentifierType type;
 				bool isParsed = Enum.TryParse<ShortcutIdentifierType> (last, out type);
@@ -53,7 +48,7 @@ namespace ApplicationShortcuts
 		// Saved shortcut item used as a result of an app launch, used later when app is activated.
 		UIApplicationShortcutItem launchedShortcutItem;
 
-		bool HandleShortCutItem(UIApplicationShortcutItem shortcutItem)
+		bool HandleShortCutItem (UIApplicationShortcutItem shortcutItem)
 		{
 			// Verify that the provided `shortcutItem`'s `type` is one handled by the application.
 			var shortcutIdentifier = ShortcutIdentifier.Create (shortcutItem.Type);
@@ -89,7 +84,7 @@ namespace ApplicationShortcuts
 			var shouldPerformAdditionalDelegateHandling = true;
 
 			// If a shortcut was launched, display its information and take the appropriate action
-			if(launchOptions != null) {
+			if (launchOptions != null) {
 				var shortcutItem = launchOptions [UIApplication.LaunchOptionsShortcutItemKey] as UIApplicationShortcutItem;
 				if (shortcutItem != null) {
 					launchedShortcutItem = shortcutItem;
@@ -107,26 +102,26 @@ namespace ApplicationShortcuts
 			return shouldPerformAdditionalDelegateHandling;
 		}
 
-		static UIMutableApplicationShortcutItem CreatePlayShortcut()
+		static UIMutableApplicationShortcutItem CreatePlayShortcut ()
 		{
 			string type = ShortcutIdentifierType.Third.GetTypeName ();
 			var icon = CreateIcon (UIApplicationShortcutIconType.Play);
-			var userInfo = CreateUserInfo(UIApplicationShortcutIconType.Play);
+			var userInfo = CreateUserInfo (UIApplicationShortcutIconType.Play);
 			return new UIMutableApplicationShortcutItem (type, "Play", "Will Play an item", icon, userInfo);
 		}
 
 		static UIMutableApplicationShortcutItem CreatePauseShortcut ()
 		{
 			var type = ShortcutIdentifierType.Fourth.GetTypeName ();
-			var icon = CreateIcon(UIApplicationShortcutIconType.Pause);
+			var icon = CreateIcon (UIApplicationShortcutIconType.Pause);
 			var userInfo = CreateUserInfo (UIApplicationShortcutIconType.Pause);
 			return new UIMutableApplicationShortcutItem (type, "Pause", "Will Pause an item", icon, userInfo);
 		}
 
-		static NSDictionary<NSString, NSObject> CreateUserInfo(UIApplicationShortcutIconType type)
+		static NSDictionary<NSString, NSObject> CreateUserInfo (UIApplicationShortcutIconType type)
 		{
 			int rawValue = Convert.ToInt32 (type);
-			return new NSDictionary<NSString, NSObject>(ApplicationShortcutUserInfoIconKey, new NSNumber (rawValue));
+			return new NSDictionary<NSString, NSObject> (ApplicationShortcutUserInfoIconKey, new NSNumber (rawValue));
 		}
 
 		static UIApplicationShortcutIcon CreateIcon (UIApplicationShortcutIconType type)

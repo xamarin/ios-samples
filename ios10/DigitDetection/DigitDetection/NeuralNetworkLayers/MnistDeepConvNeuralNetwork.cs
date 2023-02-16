@@ -1,10 +1,8 @@
-﻿using Metal;
+using Metal;
 using MetalPerformanceShaders;
 
-namespace DigitDetection
-{
-	public class MnistDeepConvNeuralNetwork : MnistFullLayerNeuralNetwork
-	{
+namespace DigitDetection {
+	public class MnistDeepConvNeuralNetwork : MnistFullLayerNeuralNetwork {
 		// MPSImageDescriptors for different layers outputs to be put in
 		readonly MPSImageDescriptor c1id = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Float16, 28, 28, 32);
 		readonly MPSImageDescriptor p1id = MPSImageDescriptor.GetImageDescriptor (MPSImageFeatureChannelFormat.Float16, 14, 14, 32);

@@ -5,15 +5,13 @@ using MonoTouch.Dialog;
 using System.Collections.Generic;
 using Xamarin.Code;
 
-namespace Xamarin.Screens.NavTable
-{
-	public class HomeNavController : UITableViewController
-	{
+namespace Xamarin.Screens.NavTable {
+	public class HomeNavController : UITableViewController {
 		// declare vars
-		protected List<NavItemGroup> navItems = new List<NavItemGroup>();
+		protected List<NavItemGroup> navItems = new List<NavItemGroup> ();
 		protected NavItemTableSource tableSource;
 
-		public HomeNavController () : base(UITableViewStyle.Grouped)
+		public HomeNavController () : base (UITableViewStyle.Grouped)
 		{
 		}
 
@@ -39,15 +37,15 @@ namespace Xamarin.Screens.NavTable
 			// create the navigation items
 			navGroup = new NavItemGroup ("ADO.NET");
 			navItems.Add (navGroup);
-			navGroup.Items.Add (new NavItem ("Basic ADO.NET", "", typeof(ADONET.BasicOperations)));
+			navGroup.Items.Add (new NavItem ("Basic ADO.NET", "", typeof (ADONET.BasicOperations)));
 
 			navGroup = new NavItemGroup ("SQLite-Net");
 			navItems.Add (navGroup);
-			navGroup.Items.Add (new NavItem ("Basic SQLite-Net", "", typeof(SQLiteNet.BasicOperations)));
+			navGroup.Items.Add (new NavItem ("Basic SQLite-Net", "", typeof (SQLiteNet.BasicOperations)));
 
 			navGroup = new NavItemGroup ("Vici CoolStorage");
 			navItems.Add (navGroup);
-			navGroup.Items.Add (new NavItem ("Basic Vici CoolStorage", "", typeof(ViciCoolStorage.BasicOperations)));
+			navGroup.Items.Add (new NavItem ("Basic Vici CoolStorage", "", typeof (ViciCoolStorage.BasicOperations)));
 
 			// create a table source from our nav items
 			tableSource = new NavItemTableSource (NavigationController, navItems);

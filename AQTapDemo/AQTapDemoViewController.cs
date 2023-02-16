@@ -33,10 +33,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace AQTapDemo
-{
-	public partial class AQTapDemoViewController : UIViewController
-	{
+namespace AQTapDemo {
+	public partial class AQTapDemoViewController : UIViewController {
 		CCFWebRadioPlayer player;
 
 		public AQTapDemoViewController ()

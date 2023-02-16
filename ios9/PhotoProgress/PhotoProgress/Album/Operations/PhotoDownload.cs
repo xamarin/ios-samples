@@ -5,7 +5,7 @@ using CoreFoundation;
 
 namespace PhotoProgress {
 	class DownloadState {
-		
+
 		public DispatchQueue Queue { get; set; }
 
 		public DispatchSource.Timer DownloadTimer { get; set; }
@@ -50,13 +50,13 @@ namespace PhotoProgress {
 					downloadState.DownloadTimer = new DispatchSource.Timer (downloadState.Queue);
 					int downloadedBytes = 0;
 					int randomMilliseconds = new Random ().Next (0, 500);
-					var delay = new DispatchTime (DispatchTime.Now, (long)(TimerInterval * NanosecondsPerSecond - randomMilliseconds * NanosecondsPerMillisecond));
-					downloadState.DownloadTimer.SetTimer (delay, (long)TimerInterval * NanosecondsPerSecond, 0);
+					var delay = new DispatchTime (DispatchTime.Now, (long) (TimerInterval * NanosecondsPerSecond - randomMilliseconds * NanosecondsPerMillisecond));
+					downloadState.DownloadTimer.SetTimer (delay, (long) TimerInterval * NanosecondsPerSecond, 0);
 
 					downloadState.DownloadTimer.SetEventHandler (() => {
-						downloadedBytes += (int)(BatchSize * TimerInterval);
+						downloadedBytes += (int) (BatchSize * TimerInterval);
 
-						if (downloadedBytes >= (int)data.Length) {
+						if (downloadedBytes >= (int) data.Length) {
 							downloadState.DownloadTimer.Cancel ();
 							return;
 						}
@@ -65,7 +65,7 @@ namespace PhotoProgress {
 					});
 
 					downloadState.DownloadTimer.SetCancelHandler (() => {
-						if (downloadedBytes >= (int)data.Length)
+						if (downloadedBytes >= (int) data.Length)
 							DidFinishDownload (data);
 						else
 							DidFailDownloadWithError (downloadState.DownloadError);
@@ -73,7 +73,7 @@ namespace PhotoProgress {
 						downloadState.DownloadTimer = null;
 					});
 
-					WillBeginDownload ((int)data.Length);
+					WillBeginDownload ((int) data.Length);
 					downloadState.DownloadTimer.Resume ();
 				} catch (Exception) {
 					var error = new NSError (NSError.CocoaErrorDomain, 0, null);
@@ -87,7 +87,7 @@ namespace PhotoProgress {
 			downloadState.Queue.DispatchAsync (() => {
 				if (downloadState.DownloadTimer == null)
 					return;
-				
+
 				downloadState.DownloadError = error;
 
 				if (downloadState.IsPaused)
@@ -103,7 +103,7 @@ namespace PhotoProgress {
 				if ((downloadState.DownloadTimer == null) ||
 					(downloadState.IsPaused == pause && !downloadState.DownloadTimer.IsCanceled))
 					return;
-				
+
 				downloadState.IsPaused = pause;
 
 				if (pause)
@@ -118,7 +118,7 @@ namespace PhotoProgress {
 			Progress.TotalUnitCount = downloadLength;
 			Progress.Cancellable = true;
 			Progress.SetCancellationHandler (() => {
-				var error = new NSError (NSError.CocoaErrorDomain, (nint)(int)NSCocoaError.UserCancelled, null);
+				var error = new NSError (NSError.CocoaErrorDomain, (nint) (int) NSCocoaError.UserCancelled, null);
 				FailDownloadWithError (error);
 			});
 
@@ -134,7 +134,7 @@ namespace PhotoProgress {
 
 		void DidFinishDownload (NSData downloadedData)
 		{
-			Progress.CompletedUnitCount = (long)downloadedData.Length;
+			Progress.CompletedUnitCount = (long) downloadedData.Length;
 			completionHandler?.Invoke (downloadedData, null);
 			completionHandler = null;
 		}

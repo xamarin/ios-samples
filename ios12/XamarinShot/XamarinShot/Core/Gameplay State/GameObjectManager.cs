@@ -1,98 +1,89 @@
-﻿
-namespace XamarinShot.Models
-{
-    using Foundation;
-    using SceneKit;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
-    public class GameObjectManager
-    {
-        private readonly NSLock @lock = new NSLock();
+namespace XamarinShot.Models {
+	using Foundation;
+	using SceneKit;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
 
-        #region Block Management
+	public class GameObjectManager {
+		private readonly NSLock @lock = new NSLock ();
 
-        public List<GameObject> BlockObjects { get; private set; } = new List<GameObject>();
+		#region Block Management
 
-        public void AddBlockObject(GameObject block)
-        {
-            if (!this.BlockObjects.Contains(block))
-            {
-                this.BlockObjects.Add(block);
-            }
-        }
+		public List<GameObject> BlockObjects { get; private set; } = new List<GameObject> ();
 
-        #endregion
+		public void AddBlockObject (GameObject block)
+		{
+			if (!this.BlockObjects.Contains (block)) {
+				this.BlockObjects.Add (block);
+			}
+		}
 
-        #region Projectile Management
+		#endregion
 
-        private readonly List<Projectile> projectiles = new List<Projectile>();
+		#region Projectile Management
 
-        public void AddProjectile(Projectile projectile)
-        {
-            this.@lock.Lock();
-            this.projectiles.Add(projectile);
-            this.@lock.Unlock();
-        }
+		private readonly List<Projectile> projectiles = new List<Projectile> ();
 
-        public void ReplaceProjectile(Projectile projectile)
-        {
-            this.@lock.Lock();
+		public void AddProjectile (Projectile projectile)
+		{
+			this.@lock.Lock ();
+			this.projectiles.Add (projectile);
+			this.@lock.Unlock ();
+		}
 
-            var oldProjectile = this.projectiles.FirstOrDefault(tile => tile.Index == projectile.Index);
-            if (oldProjectile != null)
-            {
-                this.projectiles[this.projectiles.IndexOf(oldProjectile)] = projectile;
-            }
-            else
-            {
-                throw new Exception($"Cannot find the projectile to replace {projectile.Index}");
-            }
+		public void ReplaceProjectile (Projectile projectile)
+		{
+			this.@lock.Lock ();
 
-            this.@lock.Unlock();
-        }
+			var oldProjectile = this.projectiles.FirstOrDefault (tile => tile.Index == projectile.Index);
+			if (oldProjectile != null) {
+				this.projectiles [this.projectiles.IndexOf (oldProjectile)] = projectile;
+			} else {
+				throw new Exception ($"Cannot find the projectile to replace {projectile.Index}");
+			}
 
-        public void DidBeginContactAll(SCNPhysicsContact contact)
-        {
-            this.@lock.Lock();
+			this.@lock.Unlock ();
+		}
 
-            foreach (var projectile in this.projectiles)
-            {
-                projectile.DidBeginContact(contact);
-            }
+		public void DidBeginContactAll (SCNPhysicsContact contact)
+		{
+			this.@lock.Lock ();
 
-            this.@lock.Unlock();
-        }
+			foreach (var projectile in this.projectiles) {
+				projectile.DidBeginContact (contact);
+			}
 
-        #endregion
+			this.@lock.Unlock ();
+		}
 
-        #region Shared Management
+		#endregion
 
-        public void Update(double deltaTime)
-        {
-            this.@lock.Lock();
+		#region Shared Management
 
-            foreach (var projectile in this.projectiles)
-            {
-                projectile.Update(deltaTime);
-            }
+		public void Update (double deltaTime)
+		{
+			this.@lock.Lock ();
 
-            this.@lock.Unlock();
-        }
+			foreach (var projectile in this.projectiles) {
+				projectile.Update (deltaTime);
+			}
 
-        public void OnDidApplyConstraints(ISCNSceneRenderer renderer)
-        {
-            this.@lock.Lock();
+			this.@lock.Unlock ();
+		}
 
-            foreach (var projectile in this.projectiles)
-            {
-                projectile.OnDidApplyConstraints(renderer);
-            }
+		public void OnDidApplyConstraints (ISCNSceneRenderer renderer)
+		{
+			this.@lock.Lock ();
 
-            this.@lock.Unlock();
-        }
+			foreach (var projectile in this.projectiles) {
+				projectile.OnDidApplyConstraints (renderer);
+			}
 
-        #endregion
-    }
+			this.@lock.Unlock ();
+		}
+
+		#endregion
+	}
 }

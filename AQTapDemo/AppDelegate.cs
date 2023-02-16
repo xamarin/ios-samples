@@ -8,11 +8,9 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace AQTapDemo
-{
+namespace AQTapDemo {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 		UIWindow window;
 		AQTapDemoViewController viewController;
@@ -28,7 +26,7 @@ namespace AQTapDemo
 			return true;
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

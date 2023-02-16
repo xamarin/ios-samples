@@ -1,15 +1,15 @@
-﻿using System;
+using System;
 
 using Foundation;
 using UIKit;
 
 namespace CustomTransitions {
-	public partial class CDFirstViewController  : UIViewController, IUIViewControllerTransitioningDelegate {
+	public partial class CDFirstViewController : UIViewController, IUIViewControllerTransitioningDelegate {
 		public CDFirstViewController (IntPtr handle) : base (handle)
 		{
 		}
 
-		partial void PresentWithCustomTransitionAction(UIButton sender)
+		partial void PresentWithCustomTransitionAction (UIButton sender)
 		{
 			UIViewController secondViewController = Storyboard.InstantiateViewController ("SecondViewController");
 			secondViewController.ModalPresentationStyle = UIModalPresentationStyle.FullScreen;

@@ -5,11 +5,9 @@ using Foundation;
 using CoreAnimation;
 using UIKit;
 
-namespace InteractiveTransitionLayout
-{
+namespace InteractiveTransitionLayout {
 	// this class creates a circular layout
-	public class CircleLayout : UICollectionViewLayout
-	{
+	public class CircleLayout : UICollectionViewLayout {
 		nint count;
 		double radius;
 		CGPoint center;
@@ -29,11 +27,11 @@ namespace InteractiveTransitionLayout
 		public override void PrepareLayout ()
 		{
 			base.PrepareLayout ();
-			
+
 			CGSize size = CollectionView.Frame.Size;
 			count = CollectionView.NumberOfItemsInSection (0);
 			center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
-			radius = Math.Min (size.Width, size.Height) / 2.5f;	
+			radius = Math.Min (size.Width, size.Height) / 2.5f;
 		}
 
 		// return the overall content size for the collection view
@@ -55,22 +53,22 @@ namespace InteractiveTransitionLayout
 		{
 			UICollectionViewLayoutAttributes attributes = UICollectionViewLayoutAttributes.CreateForCell (path);
 			attributes.Size = ItemSize;
-			attributes.Center = new CGPoint (center.X + radius * (float)Math.Cos (2 * path.Row * Math.PI / count),
-			                                center.Y + radius * (float)Math.Sin (2 * path.Row * Math.PI / count));
+			attributes.Center = new CGPoint (center.X + radius * (float) Math.Cos (2 * path.Row * Math.PI / count),
+											center.Y + radius * (float) Math.Sin (2 * path.Row * Math.PI / count));
 			attributes.Transform3D = CATransform3D.MakeScale (0.5f, 0.5f, 1.0f);
 			return attributes;
 		}
 
 		// return layout attributes for all the items in a given rectangle
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
+		public override UICollectionViewLayoutAttributes [] LayoutAttributesForElementsInRect (CGRect rect)
 		{
-			UICollectionViewLayoutAttributes[] attributes = new UICollectionViewLayoutAttributes [count];
-			
+			UICollectionViewLayoutAttributes [] attributes = new UICollectionViewLayoutAttributes [count];
+
 			for (int i = 0; i < count; i++) {
 				NSIndexPath indexPath = NSIndexPath.FromItemSection (i, 0);
 				attributes [i] = LayoutAttributesForItem (indexPath);
 			}
-			
+
 			return attributes;
 		}
 	}

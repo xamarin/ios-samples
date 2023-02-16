@@ -1,21 +1,19 @@
-	using System;
-	using Foundation;
-	using UIKit;
-	using System.CodeDom.Compiler;
-	using System.Collections.Generic;
-	using CoreGraphics;
+using System;
+using Foundation;
+using UIKit;
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using CoreGraphics;
 
-namespace UIKitEnhancements
-{
-	public partial class MainMenuTableViewController : UITableViewController
-	{
+namespace UIKitEnhancements {
+	public partial class MainMenuTableViewController : UITableViewController {
 		#region Computed Properties
 		/// <summary>
 		/// Returns the delegate of the current running application
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 
 		/// <summary>
@@ -23,7 +21,7 @@ namespace UIKitEnhancements
 		/// </summary>
 		/// <value>The data source.</value>
 		public MainMenuTableSource DataSource {
-			get { return (MainMenuTableSource)TableView.Source; }
+			get { return (MainMenuTableSource) TableView.Source; }
 		}
 
 		/// <summary>
@@ -36,7 +34,7 @@ namespace UIKitEnhancements
 		/// Gets or sets the search controller.
 		/// </summary>
 		/// <value>The search controller.</value>
-		public UISearchController SearchController { get; set;}
+		public UISearchController SearchController { get; set; }
 		#endregion
 
 		#region Constructors
@@ -49,7 +47,8 @@ namespace UIKitEnhancements
 		/// <summary>
 		/// Reloads the data.
 		/// </summary>
-		public void ReloadData() {
+		public void ReloadData ()
+		{
 
 			// Ask the table to redisplay its information
 			DataSource.LoadData ();
@@ -77,8 +76,8 @@ namespace UIKitEnhancements
 			var searchUpdater = new SearchResultsUpdator ();
 			searchUpdater.UpdateSearchResults += (searchText) => {
 				// Preform search and reload search table
-				searchSource.Search(searchText);
-				searchResultsController.TableView.ReloadData();
+				searchSource.Search (searchText);
+				searchResultsController.TableView.ReloadData ();
 			};
 
 			// Create a new search controller
@@ -106,7 +105,7 @@ namespace UIKitEnhancements
 				var webView = segue.DestinationViewController as WebViewController;
 				webView.URL = MenuItem.URL;
 				break;
-			} 
+			}
 
 		}
 		#endregion

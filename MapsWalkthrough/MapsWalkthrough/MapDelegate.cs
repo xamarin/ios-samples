@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using MapKit;
 using UIKit;
 using CoreGraphics;
 
-namespace MapsWalkthrough
-{
-	class MapDelegate : MKMapViewDelegate
-	{
+namespace MapsWalkthrough {
+	class MapDelegate : MKMapViewDelegate {
 		static string annotationId = "ConferenceAnnotation";
 		UIImageView venueView;
 		UIImage venueImage;
@@ -16,7 +14,7 @@ namespace MapsWalkthrough
 			MKAnnotationView annotationView = null;
 
 			if (annotation is MKUserLocation)
-				return null; 
+				return null;
 
 			if (annotation is ConferenceAnnotation) {
 
@@ -28,7 +26,7 @@ namespace MapsWalkthrough
 
 				annotationView.Image = UIImage.FromFile ("conference.png");
 				annotationView.CanShowCallout = true;
-			} 
+			}
 
 			return annotationView;
 		}
@@ -45,7 +43,8 @@ namespace MapsWalkthrough
 				view.AddSubview (venueView);
 
 				UIView.Animate (0.4, () => {
-					venueView.Frame = new CGRect (-75, -75, 200, 200); });
+					venueView.Frame = new CGRect (-75, -75, 200, 200);
+				});
 			}
 		}
 

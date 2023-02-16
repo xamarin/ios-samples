@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using Foundation;
 using UIKit;
 using System.Text;
 
-namespace NBox
-{
-	public partial class DocumentPickerViewController : UIDocumentPickerExtensionViewController
-	{
+namespace NBox {
+	public partial class DocumentPickerViewController : UIDocumentPickerExtensionViewController {
 		public DocumentPickerViewController (IntPtr handle) : base (handle)
 		{
 			Console.WriteLine (IntPtr.Size);
@@ -37,10 +35,10 @@ namespace NBox
 			SetupMoveExportButton (mode);
 		}
 
-		void FillMovedImportedList()
+		void FillMovedImportedList ()
 		{
 			NSError error;
-			string[] files = NSFileManager.DefaultManager.GetDirectoryContent (DocumentStorageUrl.Path, out error);
+			string [] files = NSFileManager.DefaultManager.GetDirectoryContent (DocumentStorageUrl.Path, out error);
 			if (error != null) {
 				Console.WriteLine ("GetDirectoryContent error: {0}", error);
 				return;
@@ -56,7 +54,7 @@ namespace NBox
 			MovedImportedList.Text = sb.ToString ();
 		}
 
-		void SetupMoveExportButton(UIDocumentPickerMode mode)
+		void SetupMoveExportButton (UIDocumentPickerMode mode)
 		{
 			switch (mode) {
 			case UIDocumentPickerMode.Import:
@@ -74,13 +72,13 @@ namespace NBox
 			}
 		}
 
-		void HideMoveExportButton()
+		void HideMoveExportButton ()
 		{
 			MoveExportBtn.Hidden = true;
 			MoveExportBtn.Enabled = false;
 		}
 
-		void ShowMoveExportButton(string title)
+		void ShowMoveExportButton (string title)
 		{
 			MoveExportBtn.Hidden = false;
 			MoveExportBtn.Enabled = true;
@@ -100,7 +98,7 @@ namespace NBox
 			DismissGrantingAccess (documentURL);
 		}
 
-		partial void OnExportMoveClicked(NSObject sender)
+		partial void OnExportMoveClicked (NSObject sender)
 		{
 			Console.WriteLine ("DocumentPickerViewController MoveExportClicked");
 
@@ -110,11 +108,11 @@ namespace NBox
 			// After the copy is complete, call DismissGrantingAccess method, and provide the URL to the new copy
 
 			NSError error;
-			var destinationUrl = DocumentStorageUrl.Append(OriginalUrl.LastPathComponent, false);
-			NSFileManager.DefaultManager.Copy(OriginalUrl.Path, destinationUrl.Path, out error);
+			var destinationUrl = DocumentStorageUrl.Append (OriginalUrl.LastPathComponent, false);
+			NSFileManager.DefaultManager.Copy (OriginalUrl.Path, destinationUrl.Path, out error);
 
 			// Provide here a destination Url
-			DismissGrantingAccess(destinationUrl);
+			DismissGrantingAccess (destinationUrl);
 		}
 	}
 }

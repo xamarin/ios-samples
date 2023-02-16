@@ -4,10 +4,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace MonoDevelopTouchCells
-{
-	public partial class DetailViewController : UIViewController
-	{
+namespace MonoDevelopTouchCells {
+	public partial class DetailViewController : UIViewController {
 		// This is required for controllers that need to be able to be
 		// created from a xib rather than from managed code
 		public DetailViewController (IntPtr handle) : base (handle)

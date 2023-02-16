@@ -4,11 +4,9 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// Represents the sections in the `HomeListConfigurationViewController`.
-	enum HomeListSection
-	{
+	enum HomeListSection {
 		Homes,
 		PrimaryHome
 	}
@@ -16,11 +14,10 @@ namespace HomeKitCatalog
 	/// <summary>
 	/// A `HomeListViewController` subclass which allows the user to add and remove homes and set the primary home.
 	/// </summary>
-	partial class HomeListConfigurationViewController : HomeListViewController
-	{
-		static readonly NSString AddHomeCell = (NSString)"AddHomeCell";
-		static readonly NSString NoHomesCell = (NSString)"NoHomesCell";
-		static readonly NSString PrimaryHomeCell = (NSString)"PrimaryHomeCell";
+	partial class HomeListConfigurationViewController : HomeListViewController {
+		static readonly NSString AddHomeCell = (NSString) "AddHomeCell";
+		static readonly NSString NoHomesCell = (NSString) "NoHomesCell";
+		static readonly NSString PrimaryHomeCell = (NSString) "PrimaryHomeCell";
 
 		[Export ("initWithCoder:")]
 		public HomeListConfigurationViewController (NSCoder coder)
@@ -41,12 +38,12 @@ namespace HomeKitCatalog
 
 		public override nint NumberOfSections (UITableView tableView)
 		{
-			return Enum.GetNames (typeof(HomeListSection)).Length;
+			return Enum.GetNames (typeof (HomeListSection)).Length;
 		}
 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			switch ((HomeListSection)(int)section) {
+			switch ((HomeListSection) (int) section) {
 			case HomeListSection.Homes:
 				return Homes.Count + 1;
 			case HomeListSection.PrimaryHome:
@@ -63,7 +60,7 @@ namespace HomeKitCatalog
 			else if (Homes.Count == 0)
 				return tableView.DequeueReusableCell (NoHomesCell, indexPath);
 
-			var section = (HomeListSection)indexPath.Section;
+			var section = (HomeListSection) indexPath.Section;
 			NSString reuseId;
 
 			switch (section) {
@@ -104,7 +101,7 @@ namespace HomeKitCatalog
 		// Provides subtext about the use of designating a "primary home".
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			var isPrimeHome = (HomeListSection)(int)section == HomeListSection.PrimaryHome;
+			var isPrimeHome = (HomeListSection) (int) section == HomeListSection.PrimaryHome;
 			return isPrimeHome ? "Primary Home" : null;
 
 		}
@@ -136,7 +133,7 @@ namespace HomeKitCatalog
 
 		static HomeListSection GetSection (NSIndexPath indexPath)
 		{
-			return (HomeListSection)indexPath.Section;
+			return (HomeListSection) indexPath.Section;
 		}
 
 		// Updates the primary home in HomeKit and reloads the view.
@@ -156,7 +153,7 @@ namespace HomeKitCatalog
 		// Reloads the 'primary home' section.
 		void DidUpdatePrimaryHome ()
 		{
-			TableView.ReloadSections (NSIndexSet.FromIndex ((int)HomeListSection.PrimaryHome), UITableViewRowAnimation.Automatic);
+			TableView.ReloadSections (NSIndexSet.FromIndex ((int) HomeListSection.PrimaryHome), UITableViewRowAnimation.Automatic);
 		}
 
 		// Removed the home at the specified index path from HomeKit and updates the view.
@@ -185,9 +182,9 @@ namespace HomeKitCatalog
 			if (index < 0)
 				return;
 
-			var indexPath = NSIndexPath.FromRowSection (index, (int)HomeListSection.Homes);
+			var indexPath = NSIndexPath.FromRowSection (index, (int) HomeListSection.Homes);
 			Homes.RemoveAt (index);
-			var primaryIndexPath = NSIndexPath.FromRowSection (index, (int)HomeListSection.PrimaryHome);
+			var primaryIndexPath = NSIndexPath.FromRowSection (index, (int) HomeListSection.PrimaryHome);
 
 			// If there aren't any homes, we still want one cell to display 'No Homes'.
 			// Just reload.
@@ -211,9 +208,9 @@ namespace HomeKitCatalog
 			if (newHomeIndex < 0)
 				return;
 
-			var indexPath = NSIndexPath.FromRowSection (newHomeIndex, (int)HomeListSection.Homes);
+			var indexPath = NSIndexPath.FromRowSection (newHomeIndex, (int) HomeListSection.Homes);
 
-			var primaryIndexPath = NSIndexPath.FromRowSection (newHomeIndex, (int)HomeListSection.PrimaryHome);
+			var primaryIndexPath = NSIndexPath.FromRowSection (newHomeIndex, (int) HomeListSection.PrimaryHome);
 
 			TableView.BeginUpdates ();
 
@@ -259,8 +256,8 @@ namespace HomeKitCatalog
 		{
 			var index = Homes.IndexOf (home);
 			if (index >= 0) {
-				var listIndexPath = NSIndexPath.FromRowSection (index, (int)HomeListSection.Homes);
-				var primaryIndexPath = NSIndexPath.FromRowSection (index, (int)HomeListSection.PrimaryHome);
+				var listIndexPath = NSIndexPath.FromRowSection (index, (int) HomeListSection.Homes);
+				var primaryIndexPath = NSIndexPath.FromRowSection (index, (int) HomeListSection.PrimaryHome);
 
 				TableView.ReloadRows (new [] { listIndexPath, primaryIndexPath }, UITableViewRowAnimation.Automatic);
 			} else {

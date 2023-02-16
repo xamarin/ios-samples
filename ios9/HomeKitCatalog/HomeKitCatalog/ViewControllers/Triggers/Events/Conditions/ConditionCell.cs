@@ -1,16 +1,14 @@
-﻿using System;
+using System;
 
 using Foundation;
 using HomeKit;
 using UIKit;
 using CoreGraphics;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `UITableViewCell` subclass that displays a trigger condition.
 	[Register ("ConditionCell")]
-	public class ConditionCell : UITableViewCell
-	{
+	public class ConditionCell : UITableViewCell {
 		/// A static, short date formatter.
 		static NSDateFormatter DateFormatter {
 			get {

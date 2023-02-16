@@ -5,10 +5,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace Chat
-{
-	public partial class OutgoingCell : UITableViewCell
-	{
+namespace Chat {
+	public partial class OutgoingCell : UITableViewCell {
 		public OutgoingCell (IntPtr handle) : base (handle)
 		{
 		}

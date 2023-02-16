@@ -1,67 +1,63 @@
-﻿
-namespace ARKitAudio
-{
-    using ARKit;
-    using Foundation;
-    using SceneKit;
-    using System;
-    using System.Collections.Generic;
 
-    /// <summary>
-    /// SceneKit node wrapper that estimates an object's final placement
-    /// </summary>
-    public class PreviewNode : SCNNode
-    {
-        // Use average of recent positions to avoid jitter.
-        private readonly List<SCNVector3> recentPreviewNodePositions = new List<SCNVector3>();
+namespace ARKitAudio {
+	using ARKit;
+	using Foundation;
+	using SceneKit;
+	using System;
+	using System.Collections.Generic;
 
-        // Saved positions that help smooth the movement of the preview
-        private SCNVector3 lastPositionOnPlane;
+	/// <summary>
+	/// SceneKit node wrapper that estimates an object's final placement
+	/// </summary>
+	public class PreviewNode : SCNNode {
+		// Use average of recent positions to avoid jitter.
+		private readonly List<SCNVector3> recentPreviewNodePositions = new List<SCNVector3> ();
 
-        // Saved positions that help smooth the movement of the preview
-        private SCNVector3 lastPosition;
+		// Saved positions that help smooth the movement of the preview
+		private SCNVector3 lastPositionOnPlane;
 
-        public PreviewNode(IntPtr handle) : base(handle) { }
+		// Saved positions that help smooth the movement of the preview
+		private SCNVector3 lastPosition;
 
-        public PreviewNode(NSCoder coder)
-        {
-            throw new NotImplementedException("init(coder:) has not been implemented");
-        }
+		public PreviewNode (IntPtr handle) : base (handle) { }
 
-        public PreviewNode(SCNNode node) : base()
-        {
-            this.Opacity = 0.5f;
-            this.AddChildNode(node);
-        }
+		public PreviewNode (NSCoder coder)
+		{
+			throw new NotImplementedException ("init(coder:) has not been implemented");
+		}
 
-        // Appearance
+		public PreviewNode (SCNNode node) : base ()
+		{
+			this.Opacity = 0.5f;
+			this.AddChildNode (node);
+		}
 
-        public void Update(SCNVector3 position, ARPlaneAnchor planeAnchor, ARCamera camera)
-        {
-            this.lastPosition = position;
+		// Appearance
 
-            if (planeAnchor != null)
-            {
-                this.lastPositionOnPlane = position;
-            }
+		public void Update (SCNVector3 position, ARPlaneAnchor planeAnchor, ARCamera camera)
+		{
+			this.lastPosition = position;
 
-            this.UpdateTransform(position, camera);
-        }
+			if (planeAnchor != null) {
+				this.lastPositionOnPlane = position;
+			}
 
-        private void UpdateTransform(SCNVector3 position, ARCamera camera)
-        {
-            // Add to the list of recent positions.
-            this.recentPreviewNodePositions.Add(position);
+			this.UpdateTransform (position, camera);
+		}
 
-            // Remove anything older than the last 8 positions.
-            this.recentPreviewNodePositions.KeepLast(8);
+		private void UpdateTransform (SCNVector3 position, ARCamera camera)
+		{
+			// Add to the list of recent positions.
+			this.recentPreviewNodePositions.Add (position);
 
-            // Move to average of recent positions to avoid jitter.
-            var average = this.recentPreviewNodePositions.GetAverage();
-            if (average.HasValue)
-            {
-                this.Position = average.Value;
-            }
-        }
-    }
+			// Remove anything older than the last 8 positions.
+			this.recentPreviewNodePositions.KeepLast (8);
+
+			// Move to average of recent positions to avoid jitter.
+			var average = this.recentPreviewNodePositions.GetAverage ();
+			if (average.HasValue) {
+				this.Position = average.Value;
+			}
+		}
+	}
 }

@@ -4,17 +4,15 @@ using UIKit;
 using System.CodeDom.Compiler;
 using HomeKit;
 
-namespace HomeKitIntro
-{
-	public partial class CharacteristicTableViewController : UITableViewController
-	{
+namespace HomeKitIntro {
+	public partial class CharacteristicTableViewController : UITableViewController {
 		#region Computed Properties
 		/// <summary>
 		/// Returns the delegate of the current running application
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 
 		/// <summary>
@@ -22,7 +20,7 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <value>The data source.</value>
 		public CharacteristicTableSource DataSource {
-			get { return (CharacteristicTableSource)TableView.Source; }
+			get { return (CharacteristicTableSource) TableView.Source; }
 		}
 
 		/// <summary>
@@ -46,7 +44,8 @@ namespace HomeKitIntro
 		/// <summary>
 		/// Reloads the data.
 		/// </summary>
-		public void ReloadData() {
+		public void ReloadData ()
+		{
 
 			// Ask the table to redisplay its information
 			TableView.ReloadData ();

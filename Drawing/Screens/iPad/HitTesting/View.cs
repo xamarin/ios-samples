@@ -3,16 +3,14 @@ using UIKit;
 using CoreGraphics;
 using Foundation;
 
-namespace Example_Drawing.Screens.iPad.HitTesting
-{
-	public class View : UIView
-	{
+namespace Example_Drawing.Screens.iPad.HitTesting {
+	public class View : UIView {
 		CGPath myRectangleButtonPath;
 		bool touchStartedInPath;
 
 		#region -= constructors =-
 
-		public View () : base() { }
+		public View () : base () { }
 
 		#endregion
 

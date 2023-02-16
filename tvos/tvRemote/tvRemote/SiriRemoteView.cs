@@ -3,10 +3,8 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace tvRemote
-{
-	public partial class SiriRemoteView : UIView
-	{
+namespace tvRemote {
+	public partial class SiriRemoteView : UIView {
 		#region Private Variables
 		private string _buttonPressed = "";
 		private string _arrowPressed = "";

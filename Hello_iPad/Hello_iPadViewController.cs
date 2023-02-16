@@ -3,10 +3,8 @@ using CoreGraphics;
 using System;
 using Foundation;
 
-namespace Hello_iPad
-{
-	public partial class Hello_iPadViewController : UIViewController
-	{
+namespace Hello_iPad {
+	public partial class Hello_iPadViewController : UIViewController {
 		public Hello_iPadViewController (string nibName, NSBundle bundle) : base (nibName, bundle)
 		{
 		}

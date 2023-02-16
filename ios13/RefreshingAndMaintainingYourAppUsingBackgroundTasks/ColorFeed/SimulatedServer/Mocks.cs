@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -36,7 +36,7 @@ namespace ColorFeed {
 			}
 
 			public void Start ()
-			{	
+			{
 				Task.Factory.StartNew (async () => {
 					await Task.Delay (delay);
 					var posts = await ServerUtils.GenerateFakePosts (startDate, DateTime.Now);

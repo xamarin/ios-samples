@@ -42,10 +42,12 @@ namespace MonoCatalog {
 				ScalesPageToFit = true,
 				AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
 			};
-			web.LoadStarted += delegate {
+			web.LoadStarted += delegate
+			{
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 			};
-			web.LoadFinished += delegate {
+			web.LoadFinished += delegate
+			{
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 			};
 			web.LoadError += (webview, args) => {
@@ -55,7 +57,7 @@ namespace MonoCatalog {
 			View.AddSubview (web);
 
 			// Delegate = new
-			var urlField = new UITextField (new CGRect (20f, 10f, View.Bounds.Width - (20f * 2f), 30f)){
+			var urlField = new UITextField (new CGRect (20f, 10f, View.Bounds.Width - (20f * 2f), 30f)) {
 				BorderStyle = UITextBorderStyle.Bezel,
 				TextColor = UIColor.Black,
 				Placeholder = "<enter a URL>",
@@ -69,7 +71,8 @@ namespace MonoCatalog {
 				ClearButtonMode = UITextFieldViewMode.Always
 			};
 
-			urlField.ShouldReturn = delegate (UITextField field){
+			urlField.ShouldReturn = delegate (UITextField field)
+			{
 				field.ResignFirstResponder ();
 				web.LoadRequest (NSUrlRequest.FromUrl (new NSUrl (field.Text)));
 

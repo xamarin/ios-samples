@@ -8,10 +8,8 @@ using MusicKitSample.Controllers;
 using StoreKit;
 using CoreGraphics;
 
-namespace MusicKitSample
-{
-	public partial class PlaylistTableViewController : UITableViewController
-	{
+namespace MusicKitSample {
+	public partial class PlaylistTableViewController : UITableViewController {
 		#region Fields
 
 		NSObject libraryDidUpdateToken;
@@ -54,9 +52,9 @@ namespace MusicKitSample
 
 			// Add the notification observer needed to respond to events 
 			// from the `MediaLibraryManager`.
-			libraryDidUpdateToken = NSNotificationCenter.DefaultCenter.AddObserver (MediaLibraryManager.LibraryDidUpdate, 
-			                                                                        HandleMediaLibraryManagerLibraryDidUpdate, 
-			                                                                        null);
+			libraryDidUpdateToken = NSNotificationCenter.DefaultCenter.AddObserver (MediaLibraryManager.LibraryDidUpdate,
+																					HandleMediaLibraryManagerLibraryDidUpdate,
+																					null);
 		}
 
 		protected override void Dispose (bool disposing)

@@ -1,4 +1,4 @@
-﻿/*
+/*
 Abstract:
 `Artwork` represents a `Artwork` object from the Apple Music Web Services.
 */
@@ -7,15 +7,12 @@ using System;
 using Foundation;
 using System.Collections.Generic;
 using CoreGraphics;
-namespace MusicKitSample.Models
-{
-	public class Artwork
-	{
+namespace MusicKitSample.Models {
+	public class Artwork {
 		#region Types
 
 		// The various keys needed for serializing an instance of `Artwork` using a JSON response from the Apple Music Web Service.
-		struct JsonKeys
-		{
+		struct JsonKeys {
 			public static readonly string Height = "height";
 			public static readonly string Width = "width";
 			public static readonly string Url = "url";

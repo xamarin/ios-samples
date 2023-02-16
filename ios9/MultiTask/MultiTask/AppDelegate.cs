@@ -1,13 +1,11 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
-namespace MultiTask
-{
+namespace MultiTask {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate, IUISplitViewControllerDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate, IUISplitViewControllerDelegate {
 		// class-level declarations
 
 		public override UIWindow Window {
@@ -18,8 +16,8 @@ namespace MultiTask
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			// Override point for customization after application launch.
-			var splitViewController = (UISplitViewController)Window.RootViewController;
-			var navigationController = (UINavigationController)splitViewController.ViewControllers [1];
+			var splitViewController = (UISplitViewController) Window.RootViewController;
+			var navigationController = (UINavigationController) splitViewController.ViewControllers [1];
 			navigationController.TopViewController.NavigationItem.LeftBarButtonItem = splitViewController.DisplayModeButtonItem;
 			splitViewController.WeakDelegate = this;
 
@@ -60,9 +58,9 @@ namespace MultiTask
 		[Export ("splitViewController:collapseSecondaryViewController:ontoPrimaryViewController:")]
 		public bool CollapseSecondViewController (UISplitViewController splitViewController, UIViewController secondaryViewController, UIViewController primaryViewController)
 		{
-			if (secondaryViewController.GetType () == typeof(UINavigationController) &&
-			    ((UINavigationController)secondaryViewController).TopViewController.GetType () == typeof(DetailViewController) &&
-			    ((DetailViewController)((UINavigationController)secondaryViewController).TopViewController).DetailItem == null) {
+			if (secondaryViewController.GetType () == typeof (UINavigationController) &&
+				((UINavigationController) secondaryViewController).TopViewController.GetType () == typeof (DetailViewController) &&
+				((DetailViewController) ((UINavigationController) secondaryViewController).TopViewController).DetailItem == null) {
 				// Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
 				return true;
 			}

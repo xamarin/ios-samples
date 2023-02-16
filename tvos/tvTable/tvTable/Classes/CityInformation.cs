@@ -1,16 +1,14 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Foundation;
 
-namespace tvTable
-{
+namespace tvTable {
 	/// <summary>
 	/// Holds information about a given city that will be idplayed as the Sections of a Table View. Each City
 	/// also contains a collection of <c>AttractionInformation</c> objects that will be the Rows in each Table
 	/// View section.
 	/// </summary>
-	public class CityInformation : NSObject
-	{
+	public class CityInformation : NSObject {
 		#region Computed Properties
 		/// <summary>
 		/// Gets or sets the name of the city.
@@ -22,13 +20,13 @@ namespace tvTable
 		/// Gets or sets the list of attractions.
 		/// </summary>
 		/// <value>A collection of <c>AttractionInformation</c> objects.</value>
-		public List<AttractionInformation> Attractions { get; set;}
+		public List<AttractionInformation> Attractions { get; set; }
 
 		/// <summary>
 		/// Gets or sets a flag denoting that the user wants to book a flight to this city.
 		/// </summary>
 		/// <value><c>true</c> is a flight has been booked, else <c>false</c>.</value>
-		public bool FlightBooked { get; set;}
+		public bool FlightBooked { get; set; }
 		#endregion
 
 		#region Constructors

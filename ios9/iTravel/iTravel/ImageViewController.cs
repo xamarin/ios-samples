@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 
@@ -6,7 +6,7 @@ namespace iTravel {
 	public partial class ImageViewController : UIViewController {
 		public string PictureName { get; set; }
 
-		protected ImageViewController(IntPtr handle) : base (handle)
+		protected ImageViewController (IntPtr handle) : base (handle)
 		{
 		}
 

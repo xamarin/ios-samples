@@ -5,17 +5,14 @@ using CoreLocation;
 using Foundation;
 using UIKit;
 
-namespace AirLocate
-{
-	class PeripheralManagerDelegate : CBPeripheralManagerDelegate
-	{
+namespace AirLocate {
+	class PeripheralManagerDelegate : CBPeripheralManagerDelegate {
 		public override void StateUpdated (CBPeripheralManager peripheral)
 		{
 		}
 	}
 
-	public partial class ConfigurationViewController : UITableViewController
-	{
+	public partial class ConfigurationViewController : UITableViewController {
 		bool enabled;
 		NSUuid uuid;
 		NSNumber major;

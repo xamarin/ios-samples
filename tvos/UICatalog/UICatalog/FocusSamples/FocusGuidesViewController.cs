@@ -7,7 +7,7 @@ namespace UICatalog {
 		UIFocusGuide focusGuide;
 
 		[Export ("initWithCoder:")]
-		public FocusGuidesViewController (NSCoder coder): base (coder)
+		public FocusGuidesViewController (NSCoder coder) : base (coder)
 		{
 		}
 

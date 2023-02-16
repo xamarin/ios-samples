@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 using System.Threading.Tasks;
-namespace MusicKitSample.Controllers
-{
-	public class ImageCacheManager
-	{
+namespace MusicKitSample.Controllers {
+	public class ImageCacheManager {
 		#region Fields
 
 		NSCache imageCache;

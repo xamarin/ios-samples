@@ -1,11 +1,9 @@
-﻿using Foundation;
+using Foundation;
 using WatchKit;
 
-namespace WatchPuzzle.WatchKitAppExtension
-{
+namespace WatchPuzzle.WatchKitAppExtension {
 	[Register ("ExtensionDelegate")]
-	public class ExtensionDelegate : WKExtensionDelegate
-	{
+	public class ExtensionDelegate : WKExtensionDelegate {
 	}
 }
 

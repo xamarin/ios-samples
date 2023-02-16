@@ -8,10 +8,8 @@ using CoreGraphics;
 
 using SharedCode;
 
-namespace NonConsumables
-{
-	public class NonConsumableViewController : UIViewController
-	{
+namespace NonConsumables {
+	public class NonConsumableViewController : UIViewController {
 		public static string greyscaleProductId = "com.xamarin.storekit.testing.greyscale";
 		public static string sepiaProductId = "com.xamarin.storekit.testing.sepia";
 
@@ -30,14 +28,14 @@ namespace NonConsumables
 		public NonConsumableViewController ()
 		{
 			// two products for sale on this page
-			products = new List<string>() {greyscaleProductId, sepiaProductId};
+			products = new List<string> () { greyscaleProductId, sepiaProductId };
 
-			iap = new InAppPurchaseManager();
-			theObserver = new CustomPaymentObserver(iap);
+			iap = new InAppPurchaseManager ();
+			theObserver = new CustomPaymentObserver (iap);
 
 			// Call this once upon startup of in-app-purchase activities
 			// This also kicks off the TransactionObserver which handles the various communications
-			SKPaymentQueue.DefaultQueue.AddTransactionObserver(theObserver);
+			SKPaymentQueue.DefaultQueue.AddTransactionObserver (theObserver);
 		}
 
 		public override void ViewDidLoad ()
@@ -54,41 +52,41 @@ namespace NonConsumables
 
 			greyscaleButton = UIButton.FromType (UIButtonType.RoundedRect);
 			greyscaleButton.SetTitle ("loading...", UIControlState.Disabled);
-			greyscaleButton.SetTitleColor(UIColor.Gray, UIControlState.Disabled);
+			greyscaleButton.SetTitleColor (UIColor.Gray, UIControlState.Disabled);
 			greyscaleButton.SetTitle ("Buy...", UIControlState.Normal);
 			greyscaleButton.Enabled = false;
 
 			sepiaButton = UIButton.FromType (UIButtonType.RoundedRect);
 			sepiaButton.SetTitle ("loading...", UIControlState.Disabled);
-			sepiaButton.SetTitleColor(UIColor.Gray, UIControlState.Disabled);
+			sepiaButton.SetTitleColor (UIColor.Gray, UIControlState.Disabled);
 			sepiaButton.SetTitle ("Buy...", UIControlState.Normal);
 			sepiaButton.Enabled = false;
 
-			greyscaleTitle = new UILabel(new CGRect(10, 5, 300, 30));
-			greyscaleTitle.Font = UIFont.BoldSystemFontOfSize(18f);
-			greyscaleDescription = new UILabel(new CGRect(10, 30, 300, 30));
-			greyscaleButton.Frame = new CGRect(10, 65, 180, 40);
+			greyscaleTitle = new UILabel (new CGRect (10, 5, 300, 30));
+			greyscaleTitle.Font = UIFont.BoldSystemFontOfSize (18f);
+			greyscaleDescription = new UILabel (new CGRect (10, 30, 300, 30));
+			greyscaleButton.Frame = new CGRect (10, 65, 180, 40);
 
-			sepiaTitle = new UILabel(new CGRect(10, 110, 300, 30));
-			sepiaTitle.Font = UIFont.BoldSystemFontOfSize(18f);
-			sepiaDescription = new UILabel(new CGRect(10, 135, 300, 30));
-			sepiaButton.Frame = new CGRect(10, 170, 180, 40);
+			sepiaTitle = new UILabel (new CGRect (10, 110, 300, 30));
+			sepiaTitle.Font = UIFont.BoldSystemFontOfSize (18f);
+			sepiaDescription = new UILabel (new CGRect (10, 135, 300, 30));
+			sepiaButton.Frame = new CGRect (10, 170, 180, 40);
 
 			clearButton = UIButton.FromType (UIButtonType.RoundedRect);
 			clearButton.SetTitle ("Clear Filter", UIControlState.Normal);
-			clearButton.Frame = new CGRect(10, 215, 180, 40);
-			clearButton.TouchUpInside += (sender, args) =>{
+			clearButton.Frame = new CGRect (10, 215, 180, 40);
+			clearButton.TouchUpInside += (sender, args) => {
 				testFilterImage.Image = UIImage.FromFile (testImagePath);
 			};
 
 			restoreButton = UIButton.FromType (UIButtonType.RoundedRect);
 			restoreButton.SetTitle ("Restore", UIControlState.Normal);
-			restoreButton.Frame = new CGRect(200, 215, 110, 40);
+			restoreButton.Frame = new CGRect (200, 215, 110, 40);
 
-			testFilterImage = new UIImageView(new CGRect(10, 265, 300, 100));
+			testFilterImage = new UIImageView (new CGRect (10, 265, 300, 100));
 			testFilterImage.Image = UIImage.FromFile (testImagePath);
 
-			infoLabel = new UILabel(new CGRect(10, 370, 300, 80));
+			infoLabel = new UILabel (new CGRect (10, 370, 300, 80));
 			infoLabel.Lines = 3;
 			infoLabel.Text = "Notice how you can only purchase each product once. After that the transaction can't be charged again.";
 
@@ -123,7 +121,7 @@ namespace NonConsumables
 				}
 			};
 			restoreButton.TouchUpInside += (sender, e) => {
-				iap.Restore();
+				iap.Restore ();
 			};
 		}
 
@@ -151,7 +149,7 @@ namespace NonConsumables
 					if (!greyscalePurchased && info.ContainsKey (NSgreyscaleProductId)) {
 						pricesLoaded = true;
 
-						var product = (SKProduct)info [NSgreyscaleProductId];
+						var product = (SKProduct) info [NSgreyscaleProductId];
 						Print (product);
 						SetVisualState (greyscaleButton, greyscaleTitle, greyscaleDescription, product);
 					}
@@ -159,7 +157,7 @@ namespace NonConsumables
 					if (!sepiaPurchased && info.ContainsKey (NSsepiaProductId)) {
 						pricesLoaded = true;
 
-						var product = (SKProduct)info.ObjectForKey (NSsepiaProductId);
+						var product = (SKProduct) info.ObjectForKey (NSsepiaProductId);
 						Print (product);
 						SetVisualState (sepiaButton, sepiaTitle, sepiaDescription, product);
 					}
@@ -193,16 +191,17 @@ namespace NonConsumables
 				});
 		}
 
-		void UpdateButtons () {
+		void UpdateButtons ()
+		{
 			// set whether the user already has purchased these products
-			if (PhotoFilterManager.HasPurchased(greyscaleProductId)) {
+			if (PhotoFilterManager.HasPurchased (greyscaleProductId)) {
 				greyscaleButton.Enabled = true;
-				greyscaleButton.SetTitle("Use Greyscale Filter", UIControlState.Normal);
+				greyscaleButton.SetTitle ("Use Greyscale Filter", UIControlState.Normal);
 				greyscalePurchased = true;
 			}
-			if (PhotoFilterManager.HasPurchased(sepiaProductId)) {
+			if (PhotoFilterManager.HasPurchased (sepiaProductId)) {
 				sepiaButton.Enabled = true;
-				sepiaButton.SetTitle("Use Sepia Filter ", UIControlState.Normal);
+				sepiaButton.SetTitle ("Use Sepia Filter ", UIControlState.Normal);
 				sepiaPurchased = true;
 			}
 		}
@@ -216,16 +215,16 @@ namespace NonConsumables
 			base.ViewWillDisappear (animated);
 		}
 
-		void Print(SKProduct product)
+		void Print (SKProduct product)
 		{
-			Console.WriteLine("Product id: {0}", product.ProductIdentifier);
-			Console.WriteLine("Product title: {0}", product.LocalizedTitle);
-			Console.WriteLine("Product description: {0}", product.LocalizedDescription);
-			Console.WriteLine("Product price: {0}", product.Price);
-			Console.WriteLine("Product l10n price: {0}", product.LocalizedPrice());
+			Console.WriteLine ("Product id: {0}", product.ProductIdentifier);
+			Console.WriteLine ("Product title: {0}", product.LocalizedTitle);
+			Console.WriteLine ("Product description: {0}", product.LocalizedDescription);
+			Console.WriteLine ("Product price: {0}", product.Price);
+			Console.WriteLine ("Product l10n price: {0}", product.LocalizedPrice ());
 		}
 
-		void SetVisualState(UIButton button, UILabel title, UILabel description, SKProduct product)
+		void SetVisualState (UIButton button, UILabel title, UILabel description, SKProduct product)
 		{
 			var btnTitle = string.Format ("Buy {0}", product.LocalizedPrice ());
 			button.Enabled = true;

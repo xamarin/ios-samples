@@ -5,14 +5,12 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace MonkeyBrowse
-{
+namespace MonkeyBrowse {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		#region Public Constants
 		public NSString UserActivityTab1 = new NSString ("com.xamarin.monkeybrowser.tab1");
 		public NSString UserActivityTab2 = new NSString ("com.xamarin.monkeybrowser.tab2");
@@ -21,9 +19,9 @@ namespace MonkeyBrowse
 		#endregion
 
 		#region Computed Properties
-		public override UIWindow Window { get; set;}
+		public override UIWindow Window { get; set; }
 		public FirstViewController Tab1 { get; set; }
-		public SecondViewController Tab2 { get; set;}
+		public SecondViewController Tab2 { get; set; }
 		public ThirdViewController Tab3 { get; set; }
 		public FourthViewController Tab4 { get; set; }
 		#endregion
@@ -75,7 +73,7 @@ namespace MonkeyBrowse
 		{
 
 			// Report Activity
-			Console.WriteLine ("Continuing User Activity: {0}", userActivity.ToString());
+			Console.WriteLine ("Continuing User Activity: {0}", userActivity.ToString ());
 
 			// Get input and output streams from the Activity
 			userActivity.GetContinuationStreams ((NSInputStream arg1, NSOutputStream arg2, NSError arg3) => {
@@ -88,22 +86,22 @@ namespace MonkeyBrowse
 			case "com.xamarin.monkeybrowser.tab1":
 				// Preform handoff
 				Tab1.PerformHandoff (userActivity);
-				completionHandler (new NSObject[]{Tab1});
+				completionHandler (new NSObject [] { Tab1 });
 				break;
 			case "com.xamarin.monkeybrowser.tab2":
 				// Preform handoff
 				Tab2.PerformHandoff (userActivity);
-				completionHandler (new NSObject[]{Tab2});
+				completionHandler (new NSObject [] { Tab2 });
 				break;
 			case "com.xamarin.monkeybrowser.tab3":
 				// Preform handoff
 				Tab3.PerformHandoff (userActivity);
-				completionHandler (new NSObject[]{Tab3});
+				completionHandler (new NSObject [] { Tab3 });
 				break;
 			case "com.xamarin.monkeybrowser.tab4":
 				// Preform handoff
 				Tab4.PerformHandoff (userActivity);
-				completionHandler (new NSObject[]{Tab4});
+				completionHandler (new NSObject [] { Tab4 });
 				break;
 			}
 
@@ -127,19 +125,19 @@ namespace MonkeyBrowse
 		public override void OnResignActivation (UIApplication application)
 		{
 		}
-		
+
 		// This method should be used to release shared resources and it should store the application state.
 		// If your application supports background exection this method is called instead of WillTerminate
 		// when the user quits.
 		public override void DidEnterBackground (UIApplication application)
 		{
 		}
-		
+
 		// This method is called as part of the transiton from background to active state.
 		public override void WillEnterForeground (UIApplication application)
 		{
 		}
-		
+
 		// This method is called when the application is about to terminate. Save data, if needed.
 		public override void WillTerminate (UIApplication application)
 		{

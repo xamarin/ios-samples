@@ -3,13 +3,11 @@ using Foundation;
 using Intents;
 using ObjCRuntime;
 
-namespace SoupChef
-{
+namespace SoupChef {
 	// @interface OrderSoupIntent : INIntent
 	// [Watch (5,0), iOS (12,0)]
-	[BaseType (typeof(INIntent))]
-	interface OrderSoupIntent
-	{
+	[BaseType (typeof (INIntent))]
+	interface OrderSoupIntent {
 		// @property (readwrite, copy, nonatomic) INObject * _Nullable soup;
 		[NullAllowed, Export ("soup", ArgumentSemantic.Copy)]
 		INObject Soup { get; set; }
@@ -20,15 +18,14 @@ namespace SoupChef
 
 		// @property (readwrite, copy, nonatomic) NSArray<INObject *> * _Nullable options;
 		[NullAllowed, Export ("options", ArgumentSemantic.Copy)]
-		INObject[] Options { get; set; }
+		INObject [] Options { get; set; }
 	}
 
 	// @protocol OrderSoupIntentHandling <NSObject>
 	// [Watch (5,0), iOS (12,0)]
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface OrderSoupIntentHandling
-	{
+	[BaseType (typeof (NSObject))]
+	interface OrderSoupIntentHandling {
 		// @required -(void)handleOrderSoup:(OrderSoupIntent * _Nonnull)intent completion:(void (^ _Nonnull)(OrderSoupIntentResponse * _Nonnull))completion;
 		[Abstract]
 		[Export ("handleOrderSoup:completion:")]
@@ -41,10 +38,9 @@ namespace SoupChef
 
 	// @interface OrderSoupIntentResponse : INIntentResponse
 	// [Watch (5,0), iOS (12,0)]
-	[BaseType (typeof(INIntentResponse))]
+	[BaseType (typeof (INIntentResponse))]
 	[DisableDefaultCtor]
-	interface OrderSoupIntentResponse
-	{
+	interface OrderSoupIntentResponse {
 		// -(instancetype _Nonnull)initWithCode:(OrderSoupIntentResponseCode)code userActivity:(NSUserActivity * _Nullable)userActivity __attribute__((objc_designated_initializer));
 		[Export ("initWithCode:userActivity:")]
 		[DesignatedInitializer]

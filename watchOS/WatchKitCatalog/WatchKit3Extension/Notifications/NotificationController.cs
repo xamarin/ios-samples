@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This controller handles displaying a custom or static notification.
 */
 
@@ -7,11 +7,9 @@ using System;
 using Foundation;
 using WatchKit;
 
-namespace WatchkitExtension
-{
+namespace WatchkitExtension {
 	[Register ("NotificationController")]
-	public class NotificationController : WKUserNotificationInterfaceController
-	{
+	public class NotificationController : WKUserNotificationInterfaceController {
 		public NotificationController (IntPtr handle) : base (handle)
 		{
 		}

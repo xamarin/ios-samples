@@ -6,11 +6,9 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// Represents table view sections of the `ActionSetViewController`.
-	public enum ActionSetTableViewSection
-	{
+	public enum ActionSetTableViewSection {
 		Name,
 		Actions,
 		Accessories
@@ -20,11 +18,10 @@ namespace HomeKitCatalog
 	// It contains a cell for a name, and lists accessories within a home.
 	// If there are actions within the action set, it also displays a list of ActionCells displaying those actions.
 	// It owns an `ActionSetCreator` and routes events to the creator as appropriate.
-	public partial class ActionSetViewController : HMCatalogViewController
-	{
-		static readonly NSString accessoryCell = (NSString)"AccessoryCell";
-		static readonly NSString unreachableAccessoryCell = (NSString)"UnreachableAccessoryCell";
-		static readonly NSString actionCell = (NSString)"ActionCell";
+	public partial class ActionSetViewController : HMCatalogViewController {
+		static readonly NSString accessoryCell = (NSString) "AccessoryCell";
+		static readonly NSString unreachableAccessoryCell = (NSString) "UnreachableAccessoryCell";
+		static readonly NSString actionCell = (NSString) "ActionCell";
 		const string showServiceSegue = "Show Services";
 
 		[Outlet ("nameField")]
@@ -62,9 +59,9 @@ namespace HomeKitCatalog
 			displayedAccessories.Clear ();
 			displayedAccessories.AddRange (Home.SortedControlAccessories ());
 
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), accessoryCell);
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), unreachableAccessoryCell);
-			TableView.RegisterClassForCellReuse (typeof(ActionCell), actionCell);
+			TableView.RegisterClassForCellReuse (typeof (UITableViewCell), accessoryCell);
+			TableView.RegisterClassForCellReuse (typeof (UITableViewCell), unreachableAccessoryCell);
+			TableView.RegisterClassForCellReuse (typeof (ActionCell), actionCell);
 
 			TableView.RowHeight = UITableView.AutomaticDimension;
 
@@ -104,11 +101,11 @@ namespace HomeKitCatalog
 			base.PrepareForSegue (segue, sender);
 
 			if (segue.Identifier == showServiceSegue) {
-				var servicesViewController = (ServicesViewController)segue.IntendedDestinationViewController ();
+				var servicesViewController = (ServicesViewController) segue.IntendedDestinationViewController ();
 				servicesViewController.OnlyShowsControlServices = true;
 				servicesViewController.CellDelegate = ActionSetCreator;
 
-				var index = TableView.IndexPathForCell ((UITableViewCell)sender).Row;
+				var index = TableView.IndexPathForCell ((UITableViewCell) sender).Row;
 				servicesViewController.Accessory = displayedAccessories [index];
 			}
 		}
@@ -159,7 +156,7 @@ namespace HomeKitCatalog
 		// In the Accessories section: The number of accessories in the home.
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			switch ((ActionSetTableViewSection)(int)section) {
+			switch ((ActionSetTableViewSection) (int) section) {
 			case ActionSetTableViewSection.Name:
 				return base.RowsInSection (tableView, section);
 			case ActionSetTableViewSection.Actions:
@@ -186,9 +183,9 @@ namespace HomeKitCatalog
 				var characteristic = ActionSetCreator.AllCharacteristics () [indexPath.Row];
 				ActionSetCreator.RemoveTargetValueForCharacteristic (characteristic, () => {
 					if (ActionSetCreator.ContainsActions)
-						tableView.DeleteRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+						tableView.DeleteRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 					else
-						tableView.ReloadRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+						tableView.ReloadRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 				});
 			}
 		}
@@ -196,13 +193,13 @@ namespace HomeKitCatalog
 		// returns:  `true` for the Actions section; `false` otherwise.
 		public override bool CanEditRow (UITableView tableView, NSIndexPath indexPath)
 		{
-			return (ActionSetTableViewSection)indexPath.Section == ActionSetTableViewSection.Actions && Home.IsAdmin ();
+			return (ActionSetTableViewSection) indexPath.Section == ActionSetTableViewSection.Actions && Home.IsAdmin ();
 		}
 
 		// returns:  `UITableViewAutomaticDimension` for dynamic sections, otherwise the superclass's implementation.
 		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
-			switch ((ActionSetTableViewSection)indexPath.Section) {
+			switch ((ActionSetTableViewSection) indexPath.Section) {
 			case ActionSetTableViewSection.Name:
 				return base.GetHeightForRow (tableView, indexPath);
 			case ActionSetTableViewSection.Actions:
@@ -216,7 +213,7 @@ namespace HomeKitCatalog
 		// returns:  An action cell for the actions section, an accessory cell for the accessory section, or the superclass's implementation.
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			switch ((ActionSetTableViewSection)indexPath.Section) {
+			switch ((ActionSetTableViewSection) indexPath.Section) {
 			case ActionSetTableViewSection.Name:
 				return base.GetCell (tableView, indexPath);
 			case ActionSetTableViewSection.Actions:
@@ -260,12 +257,12 @@ namespace HomeKitCatalog
 		// - returns:  An `ActionCell` instance with the target value for the characteristic at the specified index path.
 		UITableViewCell GetActionCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = (ActionCell)tableView.DequeueReusableCell (actionCell, indexPath);
+			var cell = (ActionCell) tableView.DequeueReusableCell (actionCell, indexPath);
 			var characteristic = ActionSetCreator.AllCharacteristics () [indexPath.Row];
 
 			NSObject target = ActionSetCreator.TargetValueForCharacteristic (characteristic);
 			if (target != null)
-				cell.SetCharacteristic (characteristic, (NSNumber)target);
+				cell.SetCharacteristic (characteristic, (NSNumber) target);
 
 			return cell;
 		}
@@ -305,7 +302,7 @@ namespace HomeKitCatalog
 			if (cell.SelectionStyle == UITableViewCellSelectionStyle.None)
 				return;
 
-			if ((ActionSetTableViewSection)indexPath.Section == ActionSetTableViewSection.Accessories)
+			if ((ActionSetTableViewSection) indexPath.Section == ActionSetTableViewSection.Accessories)
 				PerformSegue (showServiceSegue, cell);
 		}
 

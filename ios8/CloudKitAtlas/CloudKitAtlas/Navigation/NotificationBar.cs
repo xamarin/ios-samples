@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 using CloudKit;
@@ -8,10 +8,8 @@ using static UIKit.NSLayoutAttribute;
 using static UIKit.NSLayoutRelation;
 using System.Linq;
 
-namespace CloudKitAtlas
-{
-	public class NotificationBar : UIView
-	{
+namespace CloudKitAtlas {
+	public class NotificationBar : UIView {
 		NSLayoutConstraint heightConstraint;
 		UILabel label;
 		UIButton button;

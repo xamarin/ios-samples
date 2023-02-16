@@ -26,10 +26,8 @@
 
 using System;
 
-namespace WeatherMap
-{
-	public class WeatherForecast
-	{
+namespace WeatherMap {
+	public class WeatherForecast {
 		public WeatherForecast ()
 		{
 		}

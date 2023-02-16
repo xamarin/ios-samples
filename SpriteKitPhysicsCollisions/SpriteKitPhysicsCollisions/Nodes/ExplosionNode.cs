@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using SpriteKit;
 using Foundation;
 using CoreGraphics;
 
-namespace SpriteKitPhysicsCollisions
-{
-	public class ExplosionNode : ArchiveBasedNode
-	{
+namespace SpriteKitPhysicsCollisions {
+	public class ExplosionNode : ArchiveBasedNode {
 		const double defaultDuration = 0.1f;
 
 		static SKEmitterNode template = UnarchiveNode ("explosion", "sks");

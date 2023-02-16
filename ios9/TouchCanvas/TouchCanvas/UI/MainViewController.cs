@@ -25,7 +25,7 @@ namespace TouchCanvas {
 
 		public CanvasView CanvasView {
 			get {
-				return (CanvasView)View;
+				return (CanvasView) View;
 			}
 		}
 
@@ -69,7 +69,7 @@ namespace TouchCanvas {
 
 					UpdateReticleView (touch);
 
-					UITouch[] predictedTouches = evt?.GetPredictedTouches (touch);
+					UITouch [] predictedTouches = evt?.GetPredictedTouches (touch);
 					UITouch predictedTouch = predictedTouches?.LastOrDefault ();
 
 					if (predictedTouch != null)

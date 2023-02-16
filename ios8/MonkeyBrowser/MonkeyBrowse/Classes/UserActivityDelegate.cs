@@ -3,10 +3,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace MonkeyBrowse
-{
-	public class UserActivityDelegate : NSUserActivityDelegate
-	{
+namespace MonkeyBrowse {
+	public class UserActivityDelegate : NSUserActivityDelegate {
 		#region Constructors
 		public UserActivityDelegate ()
 		{
@@ -30,6 +28,6 @@ namespace MonkeyBrowse
 			Console.WriteLine ("User Activity will be Saved: {0}", userActivity.Title);
 		}
 		#endregion
-	}	
+	}
 }
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -118,7 +118,7 @@ namespace ColorFeed {
 						InsertPostsIntoTable (insertedPostCount);
 						insertedPostCount = posts.Count;
 					});
-		}
+				}
 
 				posts = await DBManager.SharedInstance.GetPosts ();
 				InvokeOnMainThread (() => {
@@ -149,7 +149,7 @@ namespace ColorFeed {
 				for (int i = 0; i < totalPosts; i++) {
 					if (cancellationToken.IsCancellationRequested)
 						return;
-					
+
 					Task.Delay (delayInSeconds * 1000).Wait ();
 
 					this.posts.Insert (0, posts [i]);

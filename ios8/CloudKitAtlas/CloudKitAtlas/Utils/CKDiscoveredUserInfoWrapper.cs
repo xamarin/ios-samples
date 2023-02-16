@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using CloudKit;
 using Contacts;
 
-namespace CloudKitAtlas
-{
-	public class CKDiscoveredUserInfoWrapper : IResult
-	{
+namespace CloudKitAtlas {
+	public class CKDiscoveredUserInfoWrapper : IResult {
 		readonly CKDiscoveredUserInfo userInfo;
 
 		public CKDiscoveredUserInfoWrapper (CKDiscoveredUserInfo userInfo)

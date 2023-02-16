@@ -1,4 +1,4 @@
-﻿namespace FilterDemoFramework {
+namespace FilterDemoFramework {
 	public class ParameterRamper {
 		float inverseSlope;
 		int samplesRemaining;

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This controller displays labels and specialized labels (Date and Timer).
 */
 
@@ -8,21 +8,18 @@ using UIKit;
 using WatchKit;
 using Foundation;
 
-namespace WatchkitExtension
-{
-	public partial class LabelDetailController : WKInterfaceController
-	{
-		public LabelDetailController()
+namespace WatchkitExtension {
+	public partial class LabelDetailController : WKInterfaceController {
+		public LabelDetailController ()
 		{
-			coloredLabel.SetTextColor(UIColor.Purple);
+			coloredLabel.SetTextColor (UIColor.Purple);
 
-			var attr = new UIStringAttributes
-			{
-				Font = UIFont.SystemFontOfSize(18f, UIFontWeight.UltraLight)
+			var attr = new UIStringAttributes {
+				Font = UIFont.SystemFontOfSize (18f, UIFontWeight.UltraLight)
 			};
-			var attrString = new NSAttributedString("Ultralight Label", attr.Dictionary);
+			var attrString = new NSAttributedString ("Ultralight Label", attr.Dictionary);
 
-			ultralightLabel.SetText(attrString);
+			ultralightLabel.SetText (attrString);
 
 			var components = new NSDateComponents {
 				Day = 7,

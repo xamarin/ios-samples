@@ -5,10 +5,8 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-namespace StateRestoration
-{
-	public class DataSource : UIStateRestoring
-	{
+namespace StateRestoration {
+	public class DataSource : UIStateRestoring {
 		NSDictionary data;
 
 		public DataSource ()
@@ -30,7 +28,7 @@ namespace StateRestoration
 
 		public string GetTitle (string identifier)
 		{
-			string title = string.IsNullOrEmpty (identifier) ? null : (NSString)data [identifier];
+			string title = string.IsNullOrEmpty (identifier) ? null : (NSString) data [identifier];
 			return title ?? "Image";
 		}
 

@@ -10,10 +10,8 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace AVCompositionDebugVieweriOS
-{
-	public partial class APLCompositionDebugView : UIView
-	{
+namespace AVCompositionDebugVieweriOS {
+	public partial class APLCompositionDebugView : UIView {
 		private const int GapAfterRows = 4;
 		private const int IdealRowHeight = 40;
 		private const int BannerHeight = 20;
@@ -89,12 +87,12 @@ namespace AVCompositionDebugVieweriOS
 
 					while (layerInstruction.GetOpacityRamp (startTime, ref startOpacity, ref endOpacity, ref timeRange)) {
 						if (CMTime.Compare (startTime, CMTime.Zero) == 0 &&
-						    CMTime.Compare (timeRange.Start, CMTime.Zero) == 1) {
-							ramp.Add (new CGPoint ((float)timeRange.Start.Seconds, startOpacity));
+							CMTime.Compare (timeRange.Start, CMTime.Zero) == 1) {
+							ramp.Add (new CGPoint ((float) timeRange.Start.Seconds, startOpacity));
 						}
 
 						CMTime endTime = CMTime.Add (timeRange.Start, timeRange.Duration);
-						ramp.Add (new CGPoint ((float)endTime.Seconds, endOpacity));
+						ramp.Add (new CGPoint ((float) endTime.Seconds, endOpacity));
 						startTime = CMTime.Add (timeRange.Start, timeRange.Duration);
 					}
 
@@ -127,20 +125,20 @@ namespace AVCompositionDebugVieweriOS
 
 				while (input.GetVolumeRamp (startTime, ref startVolume, ref endVolume, ref timeRange)) {
 					if (CMTime.Compare (startTime, CMTime.Zero) == 0 &&
-					    CMTime.Compare (timeRange.Start, CMTime.Zero) == 1) {
+						CMTime.Compare (timeRange.Start, CMTime.Zero) == 1) {
 						ramp.Add (new CGPoint (0f, 1f));
-						ramp.Add (new CGPoint ((float)timeRange.Start.Seconds, startVolume));
+						ramp.Add (new CGPoint ((float) timeRange.Start.Seconds, startVolume));
 					}
 
-					ramp.Add (new CGPoint ((float)timeRange.Start.Seconds, startVolume));
+					ramp.Add (new CGPoint ((float) timeRange.Start.Seconds, startVolume));
 
 					CMTime endTime = CMTime.Add (timeRange.Start, timeRange.Duration);
-					ramp.Add (new CGPoint ((float)endTime.Seconds, endVolume));
+					ramp.Add (new CGPoint ((float) endTime.Seconds, endVolume));
 					startTime = CMTime.Add (timeRange.Start, timeRange.Duration);
 				}
 
 				if (CMTime.Compare (startTime, duration) == -1) {
-					ramp.Add (new CGPoint ((float)duration.Seconds, endVolume));
+					ramp.Add (new CGPoint ((float) duration.Seconds, endVolume));
 				}
 
 				mixTracks.Add (ramp);
@@ -179,11 +177,11 @@ namespace AVCompositionDebugVieweriOS
 			float rowHeight = IdealRowHeight;
 
 			if (numRows > 0) {
-				float maxRowHeight = (float)(rect.Size.Height - totalBannerHeight) / numRows;
+				float maxRowHeight = (float) (rect.Size.Height - totalBannerHeight) / numRows;
 				rowHeight = Math.Min (rowHeight, maxRowHeight);
 			}
 
-			float runningTop = (float)rect.Y;
+			float runningTop = (float) rect.Y;
 			var bannerRect = rect;
 			bannerRect.Height = BannerHeight;
 			bannerRect.Y = runningTop;
@@ -193,16 +191,16 @@ namespace AVCompositionDebugVieweriOS
 
 			rowRect.X += LeftInsetToMatchTimeSlider;
 			rowRect.Width -= (LeftInsetToMatchTimeSlider + RightInsetToMatchTimeSlider);
-			compositionRectWidth = (float)rowRect.Size.Width;
+			compositionRectWidth = (float) rowRect.Size.Width;
 
 			if (duration.Seconds != 0)
-				scaledDurationToWidth = compositionRectWidth / (float)duration.Seconds;
+				scaledDurationToWidth = compositionRectWidth / (float) duration.Seconds;
 			else
 				scaledDurationToWidth = 0;
 
 			if (compositionTracks != null) {
 				DrawCompositionTracks (bannerRect, rowRect, ref runningTop);
-				DrawMarker (rowRect, (float)rect.Y);
+				DrawMarker (rowRect, (float) rect.Y);
 			}
 
 			if (videoCompositionStages != null)
@@ -220,13 +218,13 @@ namespace AVCompositionDebugVieweriOS
 			NSString compositionTitle = new NSString ("AVComposition");
 			compositionTitle.DrawString (bannerRect, UIFont.PreferredCaption1);
 
-			runningTop += (float)bannerRect.Height;
+			runningTop += (float) bannerRect.Height;
 
 			foreach (List<APLCompositionTrackSegmentInfo> track in compositionTracks) {
 				rowRect.Y = runningTop;
 				CGRect segmentRect = rowRect;
 				foreach (APLCompositionTrackSegmentInfo segment in track) {
-					segmentRect.Width = (float)segment.TimeRange.Duration.Seconds * scaledDurationToWidth;
+					segmentRect.Width = (float) segment.TimeRange.Duration.Seconds * scaledDurationToWidth;
 
 					if (segment.Empty) {
 						context.SetFillColor (0.00f, 0.00f, 0.00f, 1.00f);
@@ -252,7 +250,7 @@ namespace AVCompositionDebugVieweriOS
 					segmentRect.X += segmentRect.Width;
 				}
 
-				runningTop += (float)rowRect.Height;
+				runningTop += (float) rowRect.Height;
 			}
 			runningTop += GapAfterRows;
 		}
@@ -265,13 +263,13 @@ namespace AVCompositionDebugVieweriOS
 
 			NSString compositionTitle = new NSString ("AVAudioMix");
 			compositionTitle.DrawString (bannerRect, UIFont.PreferredCaption1);
-			runningTop += (float)bannerRect.Height;
+			runningTop += (float) bannerRect.Height;
 
 			foreach (List<CGPoint> mixTrack in audioMixTracks) {
 				rowRect.Y = runningTop;
 
 				CGRect rampRect = rowRect;
-				rampRect.Width = (float)duration.Seconds * scaledDurationToWidth;
+				rampRect.Width = (float) duration.Seconds * scaledDurationToWidth;
 				rampRect = rampRect.Inset (3f, 3f);
 
 				context.SetFillColor (0.55f, 0.02f, 0.02f, 1.00f); // darker red
@@ -292,8 +290,8 @@ namespace AVCompositionDebugVieweriOS
 					pointInRow.X = rampRect.X + timeVolumePoint.X * scaledDurationToWidth;
 					pointInRow.Y = rampRect.Y + (0.9f - 0.8f * timeVolumePoint.Y) * rampRect.Height;
 
-					pointInRow.X = (float)Math.Max (pointInRow.X, rampRect.GetMinX ());
-					pointInRow.X = (float)Math.Min (pointInRow.X, rampRect.GetMaxX ());
+					pointInRow.X = (float) Math.Max (pointInRow.X, rampRect.GetMinX ());
+					pointInRow.X = (float) Math.Min (pointInRow.X, rampRect.GetMaxX ());
 
 					if (firstPoint) {
 						context.MoveTo (pointInRow.X, pointInRow.Y);
@@ -303,7 +301,7 @@ namespace AVCompositionDebugVieweriOS
 					}
 				}
 				context.StrokePath ();
-				runningTop += (float)rowRect.Height;
+				runningTop += (float) rowRect.Height;
 			}
 
 			runningTop += GapAfterRows;
@@ -312,7 +310,7 @@ namespace AVCompositionDebugVieweriOS
 		private void DrawMarker (CGRect rowRect, float position)
 		{
 			if (Layer.Sublayers != null) {
-				Layer.Sublayers = new CALayer[0];
+				Layer.Sublayers = new CALayer [0];
 			}
 
 			var visibleRect = Layer.Bounds;
@@ -371,12 +369,12 @@ namespace AVCompositionDebugVieweriOS
 			var compositionTitle = new NSString ("AVComposition");
 			compositionTitle.DrawString (bannerRect, UIFont.PreferredCaption1);
 
-			runningTop += (float)bannerRect.Height;
+			runningTop += (float) bannerRect.Height;
 			rowRect.Y = runningTop;
 			CGRect stageRect = rowRect;
 
 			foreach (APLVideoCompositionStageInfo stage in videoCompositionStages) {
-				stageRect.Width = (float)stage.TimeRange.Duration.Seconds * scaledDurationToWidth;
+				stageRect.Width = (float) stage.TimeRange.Duration.Seconds * scaledDurationToWidth;
 				int layerCount = stage.LayerNames.Count;
 				CGRect layerRect = stageRect;
 
@@ -411,7 +409,7 @@ namespace AVCompositionDebugVieweriOS
 
 					if (rampArray.Count > 0) {
 						CGRect rampRect = bufferRect;
-						rampRect.Width = (float)duration.Seconds * scaledDurationToWidth;
+						rampRect.Width = (float) duration.Seconds * scaledDurationToWidth;
 						rampRect = rampRect.Inset (3f, 3f);
 
 						context.BeginPath ();
@@ -423,11 +421,11 @@ namespace AVCompositionDebugVieweriOS
 							CGPoint timeVolumePoint = point;
 							CGPoint pointInRow = new CGPoint ();
 
-							pointInRow.X = (float)HorizontalPositionForTime (CMTime.FromSeconds (timeVolumePoint.X, 1)) - 9.0f;
+							pointInRow.X = (float) HorizontalPositionForTime (CMTime.FromSeconds (timeVolumePoint.X, 1)) - 9.0f;
 							pointInRow.Y = rampRect.Y + (0.9f - 0.8f * timeVolumePoint.Y) * rampRect.Height;
 
-							pointInRow.X = (float)Math.Max (pointInRow.X, rampRect.GetMinX ());
-							pointInRow.X = (float)Math.Min (pointInRow.X, rampRect.GetMaxX ());
+							pointInRow.X = (float) Math.Max (pointInRow.X, rampRect.GetMinX ());
+							pointInRow.X = (float) Math.Min (pointInRow.X, rampRect.GetMaxX ());
 
 							if (firstPoint) {
 								context.MoveTo (pointInRow.X, pointInRow.Y);
@@ -441,7 +439,7 @@ namespace AVCompositionDebugVieweriOS
 				}
 				stageRect.X += stageRect.Width;
 			}
-			runningTop += (float)rowRect.Height;
+			runningTop += (float) rowRect.Height;
 			runningTop += GapAfterRows;
 		}
 
@@ -461,13 +459,13 @@ namespace AVCompositionDebugVieweriOS
 			int nummerOfRows = 0;
 
 			if (compositionTracks != null)
-				nummerOfRows += (int)compositionTracks.Count;
+				nummerOfRows += (int) compositionTracks.Count;
 
 			if (audioMixTracks != null)
-				nummerOfRows += (int)audioMixTracks.Count;
+				nummerOfRows += (int) audioMixTracks.Count;
 
 			if (videoCompositionStages != null)
-				nummerOfRows += (int)videoCompositionStages.Count;
+				nummerOfRows += (int) videoCompositionStages.Count;
 
 			return nummerOfRows;
 		}

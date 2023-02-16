@@ -1,67 +1,60 @@
-﻿
-namespace XamarinShot.Models
-{
-    using CoreFoundation;
-    using System;
-    using UIKit;
 
-    public class HapticsGenerator : IDisposable
-    {
-        private readonly UIImpactFeedbackGenerator impact = new UIImpactFeedbackGenerator(UIImpactFeedbackStyle.Medium);
+namespace XamarinShot.Models {
+	using CoreFoundation;
+	using System;
+	using UIKit;
 
-        private readonly UISelectionFeedbackGenerator selection = new UISelectionFeedbackGenerator();
+	public class HapticsGenerator : IDisposable {
+		private readonly UIImpactFeedbackGenerator impact = new UIImpactFeedbackGenerator (UIImpactFeedbackStyle.Medium);
 
-        private readonly UINotificationFeedbackGenerator notification = new UINotificationFeedbackGenerator();
+		private readonly UISelectionFeedbackGenerator selection = new UISelectionFeedbackGenerator ();
 
-        public void GenerateImpactFeedback()
-        {
-            DispatchQueue.MainQueue.DispatchAsync(() =>
-            {
-                this.impact.ImpactOccurred();
-            });
-        }
+		private readonly UINotificationFeedbackGenerator notification = new UINotificationFeedbackGenerator ();
 
-        public void GenerateSelectionFeedback()
-        {
-            DispatchQueue.MainQueue.DispatchAsync(() =>
-            {
-                this.selection.SelectionChanged();
-            });
-        }
+		public void GenerateImpactFeedback ()
+		{
+			DispatchQueue.MainQueue.DispatchAsync (() => {
+				this.impact.ImpactOccurred ();
+			});
+		}
 
-        public void GenerateNotificationFeedback(UINotificationFeedbackType notificationType)
-        {
-            DispatchQueue.MainQueue.DispatchAsync(() =>
-            {
-                this.notification.NotificationOccurred(notificationType);
-            });
-        }
+		public void GenerateSelectionFeedback ()
+		{
+			DispatchQueue.MainQueue.DispatchAsync (() => {
+				this.selection.SelectionChanged ();
+			});
+		}
 
-        #region IDisposable 
+		public void GenerateNotificationFeedback (UINotificationFeedbackType notificationType)
+		{
+			DispatchQueue.MainQueue.DispatchAsync (() => {
+				this.notification.NotificationOccurred (notificationType);
+			});
+		}
 
-        private bool isDisposed = false; // To detect redundant calls
+		#region IDisposable 
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.isDisposed)
-            {
-                if (disposing)
-                {
-                    this.impact.Dispose();
-                    this.selection.Dispose();
-                    this.notification.Dispose();
-                }
+		private bool isDisposed = false; // To detect redundant calls
 
-                this.isDisposed = true;
-            }
-        }
+		protected virtual void Dispose (bool disposing)
+		{
+			if (!this.isDisposed) {
+				if (disposing) {
+					this.impact.Dispose ();
+					this.selection.Dispose ();
+					this.notification.Dispose ();
+				}
 
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(true);
-        }
+				this.isDisposed = true;
+			}
+		}
 
-        #endregion
-    }
+		public void Dispose ()
+		{
+			this.Dispose (true);
+			GC.SuppressFinalize (true);
+		}
+
+		#endregion
+	}
 }

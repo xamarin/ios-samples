@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using UIKit;
@@ -24,9 +24,9 @@ namespace MessagesExtension {
 
 				// Add a `UIImageView` for each of the ice cream's valid parts.
 				var views = Parts ().Where (part => part != null)
-				                    .Select (part => new UIImageView (part.Image) {
-					ContentMode = UIViewContentMode.ScaleAspectFit
-				});
+									.Select (part => new UIImageView (part.Image) {
+										ContentMode = UIViewContentMode.ScaleAspectFit
+									});
 
 				foreach (var v in views)
 					AddArrangedSubview (v);

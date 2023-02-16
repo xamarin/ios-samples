@@ -1,17 +1,15 @@
-﻿using System;
+using System;
 
 using CoreGraphics;
 using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `CharacteristicCell` subclass that contains a slider.
 	// Used for numeric characteristics that have a continuous range of options.
 	[Register ("SliderCharacteristicCell")]
-	public class SliderCharacteristicCell : CharacteristicCell
-	{
+	public class SliderCharacteristicCell : CharacteristicCell {
 		[Outlet ("valueSlider")]
 		public UISlider ValueSlider { get; set; }
 
@@ -28,7 +26,7 @@ namespace HomeKitCatalog
 			set {
 				// These are sane defaults in case the max and min are not set.
 				HMCharacteristicMetadata metadata;
-				if(value != null && (metadata = value.Metadata) != null) {
+				if (value != null && (metadata = value.Metadata) != null) {
 					ValueSlider.MinValue = metadata.MinimumValue.FloatValue;
 					ValueSlider.MaxValue = metadata.MaximumValue.FloatValue;
 				} else {
@@ -84,7 +82,7 @@ namespace HomeKitCatalog
 
 			float stepValue = metadata.StepValue.FloatValue;
 			if (stepValue > 0) {
-				var newStep = (float)Math.Round (value / stepValue);
+				var newStep = (float) Math.Round (value / stepValue);
 				var stepped = newStep * stepValue;
 				return stepped;
 			}

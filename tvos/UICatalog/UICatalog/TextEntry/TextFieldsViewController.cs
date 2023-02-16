@@ -5,7 +5,7 @@ namespace UICatalog {
 	public partial class TextFieldsViewController : UIViewController {
 
 		[Export ("initWithCoder:")]
-		public TextFieldsViewController (NSCoder coder): base (coder)
+		public TextFieldsViewController (NSCoder coder) : base (coder)
 		{
 		}
 

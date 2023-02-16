@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using UIKit;
 
-namespace AnimationSamples
-{
-	public partial class ViewController : UIViewController
-	{
+namespace AnimationSamples {
+	public partial class ViewController : UIViewController {
 		public ViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -15,7 +13,7 @@ namespace AnimationSamples
 			// Perform any additional setup after loading the view, typically from a nib.
 
 			TransitionButton.TouchUpInside += (sender, e) => {
-				var vc2 = (SecondViewController)Storyboard.InstantiateViewController ("SecondViewController");
+				var vc2 = (SecondViewController) Storyboard.InstantiateViewController ("SecondViewController");
 				vc2.ModalTransitionStyle = UIModalTransitionStyle.PartialCurl;
 				PresentViewController (vc2, true, null);
 			};

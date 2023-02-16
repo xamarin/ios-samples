@@ -5,7 +5,7 @@ namespace UICatalog {
 	public partial class SegmentedControlsViewController : UIViewController {
 
 		[Export ("initWithCoder:")]
-		public SegmentedControlsViewController (NSCoder coder): base (coder)
+		public SegmentedControlsViewController (NSCoder coder) : base (coder)
 		{
 		}
 
@@ -32,15 +32,15 @@ namespace UICatalog {
 
 			//TODO fix it https://bugzilla.xamarin.com/show_bug.cgi?id=35338
 			// Create a font to use for the attributed title (both normal and highlighted states).
-//			var font = UIFont.FromName (".HelveticaNeueInterface-M3", 30f);
+			//			var font = UIFont.FromName (".HelveticaNeueInterface-M3", 30f);
 
-//			var normalTextAttributes = new UITextAttributes {
-//				TextColor = UIColor.Purple,
-//				Font = font
-//			};
+			//			var normalTextAttributes = new UITextAttributes {
+			//				TextColor = UIColor.Purple,
+			//				Font = font
+			//			};
 
-//			CustomBackgroundSegmentControl.SetTitleTextAttributes (normalTextAttributes, UIControlState.Normal);
-//			CustomBackgroundSegmentControl.SetTitleTextAttributes (normalTextAttributes, UIControlState.Highlighted);
+			//			CustomBackgroundSegmentControl.SetTitleTextAttributes (normalTextAttributes, UIControlState.Normal);
+			//			CustomBackgroundSegmentControl.SetTitleTextAttributes (normalTextAttributes, UIControlState.Highlighted);
 		}
 	}
 }

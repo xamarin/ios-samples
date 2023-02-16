@@ -1,20 +1,17 @@
-﻿/*
+/*
 Abstract:
 `MediaItem` represents a `Resource` object from the Apple Music Web Services.
 */
 
 using System;
 using Foundation;
-namespace MusicKitSample.Models
-{
-	public class MediaItem
-	{
+namespace MusicKitSample.Models {
+	public class MediaItem {
 		#region Types
 
 		// The various keys needed for serializing an instance of `MediaItem`
 		// using a Json response from the Apple Music Web Service.
-		struct JsonKeys
-		{
+		struct JsonKeys {
 			public static readonly string Id = "id";
 			public static readonly string Type = "type";
 			public static readonly string Attributes = "attributes";
@@ -73,9 +70,9 @@ namespace MusicKitSample.Models
 			var id = json [JsonKeys.Id]?.ToString () ?? throw new SerializationException (JsonKeys.Id);
 
 			var typeString = json [JsonKeys.Type]?.ToString () ?? throw new SerializationException (JsonKeys.Type);
-			var type = (MediaType)Enum.Parse (typeof (MediaType), typeString, true);
+			var type = (MediaType) Enum.Parse (typeof (MediaType), typeString, true);
 
-			var attributes = json [JsonKeys.Attributes] as NSDictionary ?? 
+			var attributes = json [JsonKeys.Attributes] as NSDictionary ??
 				throw new SerializationException (JsonKeys.Attributes);
 			var name = attributes [JsonKeys.Name]?.ToString () ?? throw new SerializationException (JsonKeys.Name);
 

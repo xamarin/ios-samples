@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using CloudKit;
 using static CloudKit.CKSubscriptionType;
 using static CloudKit.CKSubscriptionOptions;
 
-namespace CloudKitAtlas
-{
-	public class CKSubscriptionWrapper : IResult
-	{
+namespace CloudKitAtlas {
+	public class CKSubscriptionWrapper : IResult {
 		readonly CKSubscription subscription;
 
 		public string SummaryField {

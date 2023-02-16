@@ -29,7 +29,7 @@ namespace PhotoProgress {
 
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			var cell = (PhotoCollectionViewCell)CollectionView.DequeueReusableCell ("Photo", indexPath);
+			var cell = (PhotoCollectionViewCell) CollectionView.DequeueReusableCell ("Photo", indexPath);
 			cell.Photo = album.Photos [indexPath.Row];
 			return cell;
 		}

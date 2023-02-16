@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using CoreGraphics;
 
-namespace FrogScroller
-{
+namespace FrogScroller {
 	/// <summary>
 	/// Class to hold FrogImage properties
 	/// </summary>
-	public class ImageDetails
-	{
+	public class ImageDetails {
 		public float Height { get; set; }
 
 		public string Name { get; set; }

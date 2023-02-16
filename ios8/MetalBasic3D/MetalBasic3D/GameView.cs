@@ -9,23 +9,21 @@ using Metal;
 using ObjCRuntime;
 using UIKit;
 
-namespace MetalBasic3D
-{
+namespace MetalBasic3D {
 	[Register ("GameView")]
-	public class GameView : UIView
-	{
+	public class GameView : UIView {
 		[Export ("layerClass")]
 		public static Class LayerClass ()
 		{
-			return new Class (typeof(CAMetalLayer));
+			return new Class (typeof (CAMetalLayer));
 		}
 
 		bool layerSizeDidUpdate;
 
 		IMTLTexture depthTex;
-		#pragma warning disable 649
+#pragma warning disable 649
 		IMTLTexture stencilTex;
-		#pragma warning restore 649
+#pragma warning restore 649
 		IMTLTexture msaaTex;
 
 		CAMetalLayer metalLayer;
@@ -56,7 +54,7 @@ namespace MetalBasic3D
 			Opaque = true;
 			BackgroundColor = UIColor.Clear;
 
-			metalLayer = (CAMetalLayer)Layer;
+			metalLayer = (CAMetalLayer) Layer;
 			ContentScaleFactor = UIScreen.MainScreen.Scale;
 			metalLayer.PresentsWithTransaction = false;
 			metalLayer.DrawsAsynchronously = true;

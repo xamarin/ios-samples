@@ -7,16 +7,14 @@ using Metal;
 using OpenTK;
 using UIKit;
 
-namespace MetalTexturedQuad
-{
-	public class Texture : NSObject
-	{
+namespace MetalTexturedQuad {
+	public class Texture : NSObject {
 		string path;
 		bool flip;
 
 		public nint Height { get; private set; }
 
-		public nint Width  { get; private set; }
+		public nint Width { get; private set; }
 
 		public IMTLTexture MetalTexture { get; private set; }
 
@@ -46,17 +44,17 @@ namespace MetalTexturedQuad
 				Width = image.CGImage.Width;
 				Height = image.CGImage.Height;
 
-				nuint width = (nuint)Width;
-				nuint height = (nuint)Height;
+				nuint width = (nuint) Width;
+				nuint height = (nuint) Height;
 				nuint rowBytes = width * 4;
 
 				var context = new CGBitmapContext (IntPtr.Zero,
-					              (int)width,
-					              (int)height,
-					              8,
-					              (int)rowBytes,
-					              colorSpace,
-					              CGImageAlphaInfo.PremultipliedLast);
+								  (int) width,
+								  (int) height,
+								  8,
+								  (int) rowBytes,
+								  colorSpace,
+								  CGImageAlphaInfo.PremultipliedLast);
 
 				if (context == null)
 					return false;
@@ -89,8 +87,8 @@ namespace MetalTexturedQuad
 					var region = new MTLRegion ();
 					region.Origin.X = 0;
 					region.Origin.Y = 0;
-					region.Size.Width = (nint)width;
-					region.Size.Height = (nint)height;
+					region.Size.Width = (nint) width;
+					region.Size.Height = (nint) height;
 
 					MetalTexture.ReplaceRegion (region, 0, pixels, rowBytes);
 				}

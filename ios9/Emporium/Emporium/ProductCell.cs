@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace Emporium
-{
+namespace Emporium {
 	[Register ("ProductCell")]
-	public class ProductCell : UICollectionViewCell
-	{
+	public class ProductCell : UICollectionViewCell {
 		[Outlet ("imageView")]
 		public UIImageView ImageView { get; set; }
 

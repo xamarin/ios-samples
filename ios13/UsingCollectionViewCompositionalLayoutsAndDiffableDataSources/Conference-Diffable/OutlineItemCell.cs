@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -126,7 +126,7 @@ namespace Conference_Diffable {
 				ImageView.Image = image;
 				var rtlMultiplier = rtl ? -1.0 : 1.0;
 				var rotationTransform = Expanded ?
-					CGAffineTransform.MakeRotation ((nfloat)(rtlMultiplier * Math.PI / 2)) : CGAffineTransform.MakeIdentity ();
+					CGAffineTransform.MakeRotation ((nfloat) (rtlMultiplier * Math.PI / 2)) : CGAffineTransform.MakeIdentity ();
 				ImageView.Transform = rotationTransform;
 			} else {
 				var imageName = Highlighted ? circleFill : circle;

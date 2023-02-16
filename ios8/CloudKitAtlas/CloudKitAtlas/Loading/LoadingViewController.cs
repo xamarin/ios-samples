@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public partial class LoadingViewController : UIViewController
-	{
+namespace CloudKitAtlas {
+	public partial class LoadingViewController : UIViewController {
 		[Outlet]
 		public UIActivityIndicatorView ActivityIndicator { get; set; }
 

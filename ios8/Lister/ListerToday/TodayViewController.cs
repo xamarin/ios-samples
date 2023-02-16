@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using NotificationCenter;
@@ -10,19 +10,17 @@ using ListerKit;
 using System.Collections.Generic;
 using CoreGraphics;
 
-namespace ListerToday
-{
-	[Register("TodayViewController")]
-	public class TodayViewController : UITableViewController, INCWidgetProviding
-	{
+namespace ListerToday {
+	[Register ("TodayViewController")]
+	public class TodayViewController : UITableViewController, INCWidgetProviding {
 		const float TodayRowHeight = 44;
 		const int TodayBaseRowCount = 5;
 
-		static readonly NSString ContentCellIdentifier = new NSString("todayViewCell");
-		static readonly NSString MessageCellIdentifier = new NSString("messageCell");
+		static readonly NSString ContentCellIdentifier = new NSString ("todayViewCell");
+		static readonly NSString MessageCellIdentifier = new NSString ("messageCell");
 
 		ListDocument document;
-		List empty = new List();
+		List empty = new List ();
 		List List {
 			get {
 				return document != null ? document.List : empty;
@@ -92,7 +90,7 @@ namespace ListerToday
 		{
 			base.ViewWillDisappear (animated);
 
-			if(finishGatheringToken != null)
+			if (finishGatheringToken != null)
 				finishGatheringToken.Dispose ();
 
 			if (IsTodayAvailable)
@@ -118,15 +116,15 @@ namespace ListerToday
 
 		#region Query Management
 
-		void StartQuery()
+		void StartQuery ()
 		{
 			if (documentMetadataQuery == null) {
 				documentMetadataQuery = new NSMetadataQuery ();
-				documentMetadataQuery.SearchScopes = new NSObject[]{ NSMetadataQuery.UbiquitousDocumentsScope };
+				documentMetadataQuery.SearchScopes = new NSObject [] { NSMetadataQuery.UbiquitousDocumentsScope };
 
 				string todayListName = AppConfig.SharedAppConfiguration.TodayDocumentNameAndExtension;
 				documentMetadataQuery.Predicate = NSPredicate.FromFormat ("(%K = %@)", NSMetadataQuery.ItemFSNameKey,
-					(NSString)todayListName);
+					(NSString) todayListName);
 
 				NSNotificationCenter notificationCenter = NSNotificationCenter.DefaultCenter;
 				// TODO: subscribtion https://trello.com/c/1RyX6cJL
@@ -137,21 +135,21 @@ namespace ListerToday
 			documentMetadataQuery.StartQuery ();
 		}
 
-		void HandleMetadataQueryUpdates(NSNotification notification)
+		void HandleMetadataQueryUpdates (NSNotification notification)
 		{
 			documentMetadataQuery.DisableUpdates ();
 			ProcessMetadataItems ();
-			documentMetadataQuery.EnableUpdates();
+			documentMetadataQuery.EnableUpdates ();
 		}
 
-		async void ProcessMetadataItems()
+		async void ProcessMetadataItems ()
 		{
 			Console.WriteLine ("ProcessMetadataItems");
-			NSMetadataItem[] metadataItems = documentMetadataQuery.Results;
+			NSMetadataItem [] metadataItems = documentMetadataQuery.Results;
 
 			// We only expect a single result to be returned by our NSMetadataQuery since we query for a specific file.
 			if (metadataItems.Length == 1) {
-				var url = (NSUrl)metadataItems [0].ValueForAttribute (NSMetadataQuery.ItemURLKey);
+				var url = (NSUrl) metadataItems [0].ValueForAttribute (NSMetadataQuery.ItemURLKey);
 
 				if (document != null)
 					document.Close (null);
@@ -163,8 +161,8 @@ namespace ListerToday
 					return;
 				}
 
-				ResetContentSize();
-				TableView.ReloadData();
+				ResetContentSize ();
+				TableView.ReloadData ();
 			}
 		}
 
@@ -177,7 +175,7 @@ namespace ListerToday
 			if (!IsTodayAvailable)
 				return 1;
 
-			return ShowingAll ? List.Count : Math.Min(List.Count, TodayBaseRowCount + 1);
+			return ShowingAll ? List.Count : Math.Min (List.Count, TodayBaseRowCount + 1);
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -192,7 +190,7 @@ namespace ListerToday
 			int itemCount = List.Count;
 
 			if (itemCount > 0) {
-				ListItem item = List[indexPath.Row];
+				ListItem item = List [indexPath.Row];
 
 				if (ShowingAll && indexPath.Row == TodayBaseRowCount && itemCount != TodayBaseRowCount + 1) {
 					UITableViewCell cell = tableView.DequeueReusableCell (MessageCellIdentifier, indexPath);
@@ -200,14 +198,14 @@ namespace ListerToday
 
 					return cell;
 				} else {
-					var cell = (CheckBoxCell)tableView.DequeueReusableCell (ContentCellIdentifier, indexPath);
+					var cell = (CheckBoxCell) tableView.DequeueReusableCell (ContentCellIdentifier, indexPath);
 					ConfigureListItemCell (cell, List.Color, item);
 
 					return cell;
 				}
 			}
 
-			var msgCell = tableView.DequeueReusableCell(MessageCellIdentifier, indexPath);
+			var msgCell = tableView.DequeueReusableCell (MessageCellIdentifier, indexPath);
 			msgCell.TextLabel.Text = IsTodayAvailable ? "No items in today's list" : string.Empty;
 
 			return msgCell;
@@ -218,9 +216,9 @@ namespace ListerToday
 			cell.Layer.BackgroundColor = UIColor.Clear.CGColor;
 		}
 
-		void ConfigureListItemCell(CheckBoxCell itemCell, ListColor color, ListItem item)
+		void ConfigureListItemCell (CheckBoxCell itemCell, ListColor color, ListItem item)
 		{
-			itemCell.CheckBox.TintColor = AppColors.ColorFrom(color);
+			itemCell.CheckBox.TintColor = AppColors.ColorFrom (color);
 			itemCell.CheckBox.Checked = item.IsComplete;
 			itemCell.Label.Text = item.Text;
 
@@ -244,12 +242,12 @@ namespace ListerToday
 				TableView.BeginUpdates ();
 
 				NSIndexPath indexPathForRemoval = NSIndexPath.FromRowSection (TodayBaseRowCount, 0);
-				TableView.DeleteRows (new NSIndexPath[] { indexPathForRemoval }, UITableViewRowAnimation.Fade);
+				TableView.DeleteRows (new NSIndexPath [] { indexPathForRemoval }, UITableViewRowAnimation.Fade);
 
 				int count = Math.Max (List.Count - TodayBaseRowCount, 0);
-				NSIndexPath[] inserted = new NSIndexPath[count];
+				NSIndexPath [] inserted = new NSIndexPath [count];
 				for (int i = 0; i < count; i++)
-					inserted[i] = NSIndexPath.FromRowSection (i + TodayBaseRowCount, 0);
+					inserted [i] = NSIndexPath.FromRowSection (i + TodayBaseRowCount, 0);
 
 				TableView.InsertRows (inserted, UITableViewRowAnimation.Fade);
 				TableView.EndUpdates ();
@@ -266,15 +264,15 @@ namespace ListerToday
 
 		#region IBActions
 
-		[Export("checkBoxTapped:")]
-		public void CheckBoxTapped(CheckBox sender)
+		[Export ("checkBoxTapped:")]
+		public void CheckBoxTapped (CheckBox sender)
 		{
 			NSIndexPath indexPath = IndexPathForView (sender);
 
-			ListItem item = List[indexPath.Row];
+			ListItem item = List [indexPath.Row];
 			ListOperationInfo info = List.ToggleItem (item, -1);
 			if (info.FromIndex == info.ToIndex) {
-				TableView.ReloadRows (new NSIndexPath[]{ indexPath }, UITableViewRowAnimation.Automatic);
+				TableView.ReloadRows (new NSIndexPath [] { indexPath }, UITableViewRowAnimation.Automatic);
 			} else {
 				int itemCount = List.Count;
 
@@ -284,8 +282,8 @@ namespace ListerToday
 					NSIndexPath targetIndexPath = NSIndexPath.FromRowSection (TodayBaseRowCount - 1, 0);
 
 					TableView.BeginUpdates ();
-					TableView.DeleteRows (new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Automatic);
-					TableView.InsertRows (new NSIndexPath[]{ targetIndexPath }, UITableViewRowAnimation.Automatic);
+					TableView.DeleteRows (new NSIndexPath [] { indexPath }, UITableViewRowAnimation.Automatic);
+					TableView.InsertRows (new NSIndexPath [] { targetIndexPath }, UITableViewRowAnimation.Automatic);
 					TableView.EndUpdates ();
 				} else {
 					// Need to animate the row up or down depending on its completion state.
@@ -294,7 +292,7 @@ namespace ListerToday
 					TableView.BeginUpdates ();
 					TableView.MoveRow (indexPath, targetIndexPath);
 					TableView.EndUpdates ();
-					TableView.ReloadRows (new NSIndexPath[] { targetIndexPath }, UITableViewRowAnimation.Automatic);
+					TableView.ReloadRows (new NSIndexPath [] { targetIndexPath }, UITableViewRowAnimation.Automatic);
 				}
 			}
 
@@ -306,14 +304,14 @@ namespace ListerToday
 
 		#region Convenience
 
-		void ResetContentSize()
+		void ResetContentSize ()
 		{
 			CGSize preferredSize = PreferredContentSize;
 			preferredSize.Height = PreferredViewHeight;
 			PreferredContentSize = preferredSize;
 		}
 
-		NSIndexPath IndexPathForView(UIView view)
+		NSIndexPath IndexPathForView (UIView view)
 		{
 			CGPoint viewOrigin = view.Bounds.Location;
 			CGPoint viewLocation = TableView.ConvertPointFromView (viewOrigin, view);

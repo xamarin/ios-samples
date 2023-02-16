@@ -2,14 +2,12 @@ using System;
 using CoreLocation;
 using MapKit;
 
-namespace Protocols_Delegates_Events
-{
+namespace Protocols_Delegates_Events {
 	/// <summary>
 	/// Annotation class that subclasses MKAnnotation abstract class
 	/// MKAnnotation is bound by MonoTouch to the MKAnnotation protocol
 	/// </summary>
-	public class SampleMapAnnotation : MKAnnotation
-	{
+	public class SampleMapAnnotation : MKAnnotation {
 		string _title;
 		CLLocationCoordinate2D _coordinate;
 

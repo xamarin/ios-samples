@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace CoreAnimationExample
-{
+namespace CoreAnimationExample {
 	/// <summary>
 	/// A group that contains table items
 	/// </summary>
-	public class NavItemGroup
-	{
+	public class NavItemGroup {
 		List<NavItem> items = new List<NavItem> ();
 
 		public string Name { get; set; }
@@ -15,7 +13,7 @@ namespace CoreAnimationExample
 		public string Footer { get; set; }
 
 		public List<NavItem> Items {
-			get { return  items; }
+			get { return items; }
 			set { items = value; }
 		}
 

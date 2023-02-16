@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using WatchKit;
 using Foundation;
 
-namespace WatchNotifications_iOSWatchKitExtension
-{
-	public partial class InterfaceController : WKInterfaceController
-	{
+namespace WatchNotifications_iOSWatchKitExtension {
+	public partial class InterfaceController : WKInterfaceController {
 		public InterfaceController (IntPtr handle) : base (handle)
 		{
 		}
@@ -23,7 +21,7 @@ namespace WatchNotifications_iOSWatchKitExtension
 		{
 			base.HandleRemoteNotificationAction (identifier, remoteNotification);
 
-			Console.WriteLine ("HandleRemoteNotificationAction count:"  + remoteNotification.Count);
+			Console.WriteLine ("HandleRemoteNotificationAction count:" + remoteNotification.Count);
 		}
 
 

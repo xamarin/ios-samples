@@ -1,12 +1,10 @@
-﻿
-namespace SpeedySloth.WatchAppExtension
-{
-    public enum WorkoutType
-    {
-        Walking,
 
-        Running,
+namespace SpeedySloth.WatchAppExtension {
+	public enum WorkoutType {
+		Walking,
 
-        Hiking
-    }
+		Running,
+
+		Hiking
+	}
 }

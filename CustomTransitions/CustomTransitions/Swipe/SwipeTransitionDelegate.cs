@@ -1,4 +1,4 @@
-﻿using UIKit;
+using UIKit;
 using Foundation;
 
 namespace CustomTransitions {

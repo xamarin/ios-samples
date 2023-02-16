@@ -4,12 +4,10 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Popovers
-{
+namespace Popovers {
 	[Register ("PopoversAppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
- 		[Outlet]
+	public partial class AppDelegate : UIApplicationDelegate {
+		[Outlet]
 		public override UIWindow Window { get; set; }
 
 		[Outlet]

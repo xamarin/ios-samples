@@ -3,16 +3,14 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace tvCollection
-{
-	public partial class CityCollectionViewCell : UICollectionViewCell
-	{
+namespace tvCollection {
+	public partial class CityCollectionViewCell : UICollectionViewCell {
 		#region Private Variables
 		private CityInfo _city;
 		#endregion
 
 		#region Computed Properties
-		public UIImageView CityView { get ; set; }
+		public UIImageView CityView { get; set; }
 		public UILabel CityTitle { get; set; }
 
 		public CityInfo City {
@@ -30,7 +28,7 @@ namespace tvCollection
 		public CityCollectionViewCell (IntPtr handle) : base (handle)
 		{
 			// Initialize
-			CityView = new UIImageView(new CGRect(22, 19, 320, 171));
+			CityView = new UIImageView (new CGRect (22, 19, 320, 171));
 			CityView.AdjustsImageWhenAncestorFocused = true;
 			AddSubview (CityView);
 
@@ -42,7 +40,7 @@ namespace tvCollection
 			AddSubview (CityTitle);
 		}
 		#endregion
-	
+
 
 	}
 }

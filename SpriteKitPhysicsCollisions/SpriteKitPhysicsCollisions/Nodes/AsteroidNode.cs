@@ -1,19 +1,17 @@
-﻿using System;
+using System;
 
 using UIKit;
 using SpriteKit;
 using CoreGraphics;
 
-namespace SpriteKitPhysicsCollisions
-{
-	public class AsteroidNode : SKShapeNode
-	{
+namespace SpriteKitPhysicsCollisions {
+	public class AsteroidNode : SKShapeNode {
 		const float defaultSize = 18f;
 
 		public AsteroidNode (CGPoint initialPosition, float size = defaultSize)
 		{
 			var path = new CGPath ();
-			path.AddArc (0, 0, size, 0, (float)Math.PI * 2f, true);
+			path.AddArc (0, 0, size, 0, (float) Math.PI * 2f, true);
 			Path = path;
 			StrokeColor = UIColor.Clear;
 			FillColor = UIColor.Brown;

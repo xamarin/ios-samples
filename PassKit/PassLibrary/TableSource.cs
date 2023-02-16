@@ -14,12 +14,12 @@ namespace PassLibrary {
 	/// our Team ID).
 	/// </summary>
 	public class TableSource : UITableViewSource {
-		protected PKPass[] tableItems;
+		protected PKPass [] tableItems;
 		PKPassLibrary library;
 
 		protected string cellIdentifier = "TableCell";
 
-		public TableSource (PKPass[] items, PKPassLibrary library)
+		public TableSource (PKPass [] items, PKPassLibrary library)
 		{
 			tableItems = items;
 			this.library = library;
@@ -38,7 +38,7 @@ namespace PassLibrary {
 		/// </summary>
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			var pass = tableItems[indexPath.Row];
+			var pass = tableItems [indexPath.Row];
 			string passInfo =
 					"Desc:" + pass.LocalizedDescription
 					+ "\nOrg:" + pass.OrganizationName
@@ -49,8 +49,8 @@ namespace PassLibrary {
 					+ "\n#" + pass.SerialNumber
 					+ "\nPassUrl:" + pass.PassUrl;
 
-			new UIAlertView(pass.LocalizedName + " Selected"
-				,passInfo , null, "OK", null).Show();
+			new UIAlertView (pass.LocalizedName + " Selected"
+				, passInfo, null, "OK", null).Show ();
 			tableView.DeselectRow (indexPath, true);
 		}
 
@@ -65,9 +65,9 @@ namespace PassLibrary {
 			if (cell == null)
 				cell = new UITableViewCell (UITableViewCellStyle.Subtitle, cellIdentifier);
 
-			cell.ImageView.Image = tableItems[indexPath.Row].Icon;
-			cell.TextLabel.Text = tableItems[indexPath.Row].LocalizedDescription;
-			cell.DetailTextLabel.Text = tableItems[indexPath.Row].LocalizedName;
+			cell.ImageView.Image = tableItems [indexPath.Row].Icon;
+			cell.TextLabel.Text = tableItems [indexPath.Row].LocalizedDescription;
+			cell.DetailTextLabel.Text = tableItems [indexPath.Row].LocalizedName;
 
 			cell.Accessory = UITableViewCellAccessory.DetailDisclosureButton;
 
@@ -79,7 +79,7 @@ namespace PassLibrary {
 		/// </summary>
 		public override void AccessoryButtonTapped (UITableView tableView, NSIndexPath indexPath)
 		{
-			var p = tableItems[indexPath.Row];
+			var p = tableItems [indexPath.Row];
 			var pass = library.GetPass (p.PassTypeIdentifier, p.SerialNumber);
 
 			UIApplication.SharedApplication.OpenUrl (p.PassUrl);

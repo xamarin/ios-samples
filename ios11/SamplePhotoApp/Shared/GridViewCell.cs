@@ -3,27 +3,21 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace SamplePhotoApp
-{
-	public partial class GridViewCell : UICollectionViewCell
-	{
+namespace SamplePhotoApp {
+	public partial class GridViewCell : UICollectionViewCell {
 		UIImage thumbnailImage;
-		public UIImage ThumbnailImage
-		{
+		public UIImage ThumbnailImage {
 			get { return thumbnailImage; }
-			set
-			{
+			set {
 				thumbnailImage = value;
 				ImageView.Image = thumbnailImage;
 			}
 		}
 
 		UIImage livePhotoBadgeImage;
-		public UIImage LivePhotoBadgeImage
-		{
+		public UIImage LivePhotoBadgeImage {
 			get { return livePhotoBadgeImage; }
-			set
-			{
+			set {
 				livePhotoBadgeImage = value;
 				LivePhotoBadgeImageView.Image = livePhotoBadgeImage;
 			}

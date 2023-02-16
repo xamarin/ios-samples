@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
@@ -6,23 +6,21 @@ using System.Reflection;
 using System.Globalization;
 using CoreFoundation;
 
-namespace PhotoHandoff
-{
-	[Register("CollectionViewController")]
-	public class CollectionViewController : UICollectionViewController, INSUserActivityDelegate
-	{
+namespace PhotoHandoff {
+	[Register ("CollectionViewController")]
+	public class CollectionViewController : UICollectionViewController, INSUserActivityDelegate {
 		const string DetailedViewControllerID = "DetailView";    // view controller storyboard id
 		const string DetailSegueName = "showDetail";             // segue ID to navigate to the detail view controller
 		const string DetailViewControllerKey = "DetailViewControllerKey";
 
-		readonly NSString CellID = new NSString("cellID"); // UICollectionViewCell id
+		readonly NSString CellID = new NSString ("cellID"); // UICollectionViewCell id
 
 		DetailViewController detailViewController;
 
 		public DataSource DataSource { get; set; }
 
 		public CollectionViewController (IntPtr handle)
-			: base(handle)
+			: base (handle)
 		{
 		}
 		public override void ViewDidAppear (bool animated)
@@ -78,7 +76,7 @@ namespace PhotoHandoff
 			});
 		}
 
-		void SaveActivity()
+		void SaveActivity ()
 		{
 			if (UserActivity == null) {
 				UserActivity = new NSUserActivity (NSBundle.MainBundle.BundleIdentifier) {
@@ -93,15 +91,15 @@ namespace PhotoHandoff
 				PresentedViewController.UserActivity = UserActivity;
 		}
 
-		void InstantiateAndPushDetailViewController(bool animated)
+		void InstantiateAndPushDetailViewController (bool animated)
 		{
 			// we use our bundle identifier to define the user activity
-			detailViewController = (DetailViewController)Storyboard.InstantiateViewController ("DetailViewController");
+			detailViewController = (DetailViewController) Storyboard.InstantiateViewController ("DetailViewController");
 			detailViewController.DataSource = DataSource;
 			NavigationController.PushViewController (detailViewController, animated);
 		}
 
-		public bool HandleUserActivity(NSUserActivity userActivity)
+		public bool HandleUserActivity (NSUserActivity userActivity)
 		{
 			var userInfo = new UserInfo (userActivity.UserInfo);
 			bool rc = HandleActivityUserInfo (userInfo);
@@ -110,7 +108,7 @@ namespace PhotoHandoff
 			return rc;
 		}
 
-		bool HandleActivityUserInfo(UserInfo userInfo)
+		bool HandleActivityUserInfo (UserInfo userInfo)
 		{
 			string imageIdentifier = userInfo.ImageId;
 			if (string.IsNullOrEmpty (imageIdentifier)) {
@@ -139,7 +137,7 @@ namespace PhotoHandoff
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 		}
 
-		public void PrepareForActivity()
+		public void PrepareForActivity ()
 		{
 			if (detailViewController == null)
 				InstantiateAndPushDetailViewController (true);
@@ -152,7 +150,7 @@ namespace PhotoHandoff
 		public void HandleActivityFailure ()
 		{
 			// pop the current view controller since something failed
-			if (detailViewController != null && string.IsNullOrEmpty(detailViewController.ImageIdentifier))
+			if (detailViewController != null && string.IsNullOrEmpty (detailViewController.ImageIdentifier))
 				NavigationController.PopToRootViewController (true);
 
 			ClearActivityContinuationInProgress ();
@@ -169,7 +167,7 @@ namespace PhotoHandoff
 
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			var cell = (Cell)collectionView.DequeueReusableCell (CellID, indexPath);
+			var cell = (Cell) collectionView.DequeueReusableCell (CellID, indexPath);
 
 			string imageIdentifier = DataSource.IdentifierForIndexPath (indexPath);
 			string text = DataSource.GetTitleForIdentifier (imageIdentifier);
@@ -190,7 +188,7 @@ namespace PhotoHandoff
 
 			NSIndexPath selectedIndexPath = CollectionView.GetIndexPathsForSelectedItems () [0];
 			string imageIdentifier = DataSource.IdentifierForIndexPath (selectedIndexPath);
-			detailViewController = (DetailViewController)segue.DestinationViewController;
+			detailViewController = (DetailViewController) segue.DestinationViewController;
 			detailViewController.ImageIdentifier = imageIdentifier;
 			detailViewController.DataSource = DataSource;
 			SaveActivity ();    // create our new NSUserActivity handled us
@@ -207,7 +205,7 @@ namespace PhotoHandoff
 		public override void DecodeRestorableState (NSCoder coder)
 		{
 			base.DecodeRestorableState (coder);
-			detailViewController = (DetailViewController)coder.DecodeObject (DetailViewControllerKey);
+			detailViewController = (DetailViewController) coder.DecodeObject (DetailViewControllerKey);
 		}
 
 		public override void ApplicationFinishedRestoringState ()

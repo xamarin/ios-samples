@@ -3,17 +3,15 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace UIKitEnhancements
-{
-	public partial class DetailsViewController : UINavigationController
-	{
+namespace UIKitEnhancements {
+	public partial class DetailsViewController : UINavigationController {
 		#region Computed Properties
 		/// <summary>
 		/// Returns the delegate of the current running application
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 
 		/// <summary>
@@ -49,7 +47,7 @@ namespace UIKitEnhancements
 
 			// Dismiss previous view before displaying the next view
 			// in the sequence.
-			if (ViewControllers.Length>0) {
+			if (ViewControllers.Length > 0) {
 				// Pop everything off the stack back to the Home view
 				PopToRootViewController (false);
 			}
@@ -60,7 +58,7 @@ namespace UIKitEnhancements
 				var webView = segue.DestinationViewController as WebViewController;
 				webView.URL = MenuItem.URL;
 				break;
-			} 
+			}
 
 		}
 		#endregion

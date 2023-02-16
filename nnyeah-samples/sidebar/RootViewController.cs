@@ -5,10 +5,8 @@ using Foundation;
 using CoreGraphics;
 using SidebarNavigation;
 
-namespace StoryboardSample
-{
-	public partial class RootViewController : UIViewController
-	{
+namespace StoryboardSample {
+	public partial class RootViewController : UIViewController {
 		private UIStoryboard? _storyboard;
 
 
@@ -22,12 +20,12 @@ namespace StoryboardSample
 		public override UIStoryboard Storyboard {
 			get {
 				if (_storyboard is null)
-					_storyboard = UIStoryboard.FromName("Phone", null);
+					_storyboard = UIStoryboard.FromName ("Phone", null);
 				return _storyboard;
 			}
 		}
 
-		public RootViewController () : base(null, null)
+		public RootViewController () : base (null, null)
 		{
 
 		}
@@ -36,12 +34,12 @@ namespace StoryboardSample
 		{
 			base.ViewDidLoad ();
 
-			var introController = (IntroController)Storyboard.InstantiateViewController("IntroController");
-			var menuController = (MenuController)Storyboard.InstantiateViewController("MenuController");
+			var introController = (IntroController) Storyboard.InstantiateViewController ("IntroController");
+			var menuController = (MenuController) Storyboard.InstantiateViewController ("MenuController");
 
 			// create a slideout navigation controller with the top navigation controller and the menu view controller
 			NavController = new NavController ();
-			NavController.PushViewController(introController, false);
+			NavController.PushViewController (introController, false);
 			SidebarController = new SidebarNavigation.SidebarController (this, NavController, menuController);
 			SidebarController.MenuWidth = 220;
 			SidebarController.ReopenOnRotate = false;

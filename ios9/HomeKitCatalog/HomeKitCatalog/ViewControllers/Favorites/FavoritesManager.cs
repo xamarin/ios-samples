@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
 using HomeKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// Handles interactions with `NSUserDefault`s to save the user's favorite accessories.
-	public class FavoritesManager
-	{
+	public class FavoritesManager {
 		const string accessoryToCharacteristicIdentifierMappingKey = "FavoritesManager.accessoryToCharacteristicIdentifierMappingKey";
 		const string accessoryIdentifiersKey = "FavoritesManager.accessoryIdentifiersKey";
 
@@ -38,7 +36,7 @@ namespace HomeKitCatalog
 			}
 		}
 
-		static HMHome[] Homes {
+		static HMHome [] Homes {
 			get {
 				return HomeManager.Homes;
 			}
@@ -53,13 +51,13 @@ namespace HomeKitCatalog
 				var rawDictionary = NSKeyedUnarchiver.UnarchiveObject (mapData) as NSDictionary;
 				if (rawDictionary != null) {
 					foreach (var kvp in rawDictionary)
-						accessoryToCharacteristicIdentifiers [(NSUuid)kvp.Key] = new List<NSUuid> (NSArray.FromArray<NSUuid> ((NSArray)kvp.Value));
+						accessoryToCharacteristicIdentifiers [(NSUuid) kvp.Key] = new List<NSUuid> (NSArray.FromArray<NSUuid> ((NSArray) kvp.Value));
 				}
 			}
 		}
 
 		// returns:  An array of all favorite characteristics. The array is sorted by localized type.
-		public HMCharacteristic[] FavoriteCharacteristics ()
+		public HMCharacteristic [] FavoriteCharacteristics ()
 		{
 			// Find all of the favorite characteristics.
 			var favoriteCharacteristics = Homes.SelectMany (home => {
@@ -71,11 +69,11 @@ namespace HomeKitCatalog
 		}
 
 		// returns:  An array of all favorite accessories. The array is sorted by localized name.
-		public HMAccessory[] FavoriteAccessories ()
+		public HMAccessory [] FavoriteAccessories ()
 		{
 			var ids = new HashSet<NSUuid> (accessoryToCharacteristicIdentifiers.Keys);
 
-			HMAccessory[] allAccessories = Homes.SelectMany (h => h.Accessories)
+			HMAccessory [] allAccessories = Homes.SelectMany (h => h.Accessories)
 				.Where (a => ids.Contains (a.UniqueIdentifier))
 				.ToArray ();
 
@@ -85,11 +83,11 @@ namespace HomeKitCatalog
 
 		// returns:  An array of tuples representing accessories and all favorite characteristics they contain.
 		// The array is sorted by localized type.
-		public Tuple<HMAccessory, HMCharacteristic[]>[] FavoriteGroups ()
+		public Tuple<HMAccessory, HMCharacteristic []> [] FavoriteGroups ()
 		{
 			return FavoriteAccessories ().Select (a => {
 				var characteristics = FavoriteCharacteristicsForAccessory (a);
-				return new Tuple<HMAccessory, HMCharacteristic[]> (a, characteristics);
+				return new Tuple<HMAccessory, HMCharacteristic []> (a, characteristics);
 			}).ToArray ();
 		}
 
@@ -139,7 +137,7 @@ namespace HomeKitCatalog
 		}
 
 		// Provides an array of favorite `HMCharacteristic`s within a given accessory.
-		public HMCharacteristic[] FavoriteCharacteristicsForAccessory (HMAccessory accessory)
+		public HMCharacteristic [] FavoriteCharacteristicsForAccessory (HMAccessory accessory)
 		{
 			var result = accessory.Services
 				.SelectMany (s => s.Characteristics)
@@ -212,7 +210,7 @@ namespace HomeKitCatalog
 		{
 			var result = new NSMutableDictionary ();
 			foreach (var kvp in dictionary) {
-				NSUuid[] array = kvp.Value.ToArray ();
+				NSUuid [] array = kvp.Value.ToArray ();
 				var nativeArray = NSArray.FromNSObjects (array);
 				result.Add (kvp.Key, nativeArray);
 			}

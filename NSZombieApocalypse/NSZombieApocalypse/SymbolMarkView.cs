@@ -1,10 +1,8 @@
 using UIKit;
 using CoreGraphics;
 
-namespace NSZombieApocalypse
-{
-	public sealed class SymbolMarkView :UIButton
-	{
+namespace NSZombieApocalypse {
+	public sealed class SymbolMarkView : UIButton {
 		UILabel label;
 
 		string symbol;
@@ -16,7 +14,7 @@ namespace NSZombieApocalypse
 			}
 		}
 
-		public SymbolMarkView (CGRect frame): base (frame)
+		public SymbolMarkView (CGRect frame) : base (frame)
 		{
 			label = new UILabel (new CGRect (CGPoint.Empty, frame.Size)) {
 				TextAlignment = UITextAlignment.Center,

@@ -1,8 +1,6 @@
-﻿using System;
-namespace PlacingObjects
-{
-	public enum TouchEventType
-	{
+using System;
+namespace PlacingObjects {
+	public enum TouchEventType {
 		TouchBegan,
 		TouchCanceled,
 		TouchMoved,

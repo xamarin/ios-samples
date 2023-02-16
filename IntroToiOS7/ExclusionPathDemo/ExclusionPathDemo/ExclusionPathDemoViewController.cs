@@ -3,10 +3,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace ExclusionPathDemo
-{
-	public class ExclusionPathDemoViewController : UIViewController
-	{
+namespace ExclusionPathDemo {
+	public class ExclusionPathDemoViewController : UIViewController {
 		ExclusionPathView textView;
 
 		public ExclusionPathDemoViewController ()
@@ -22,8 +20,8 @@ namespace ExclusionPathDemo
 			textView = new ExclusionPathView (text) { Frame = UIScreen.MainScreen.Bounds };
 
 			textView.TextStorage.BeginEditing ();
-			textView.TextStorage.AddAttribute(UIStringAttributeKey.ForegroundColor, UIColor.Green, new NSRange(200, 400));
-			textView.TextStorage.AddAttribute(UIStringAttributeKey.BackgroundColor, UIColor.Black, new NSRange(210, 300));
+			textView.TextStorage.AddAttribute (UIStringAttributeKey.ForegroundColor, UIColor.Green, new NSRange (200, 400));
+			textView.TextStorage.AddAttribute (UIStringAttributeKey.BackgroundColor, UIColor.Black, new NSRange (210, 300));
 			textView.TextStorage.EndEditing ();
 
 			View.AddSubview (textView);

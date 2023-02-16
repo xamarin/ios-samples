@@ -8,10 +8,8 @@ using AddressBook;
 using AddressBookUI;
 using CoreGraphics;
 
-namespace Example_SharedResources.Screens.iPhone.Contacts
-{
-	public partial class AddressBookScreen : UIViewController
-	{
+namespace Example_SharedResources.Screens.iPhone.Contacts {
+	public partial class AddressBookScreen : UIViewController {
 		/// <summary>
 		/// Our address book picker control
 		/// </summary>
@@ -112,7 +110,8 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 				// code to deal with changes
 			};
 
-			addressBook.RequestAccess (delegate (bool granted, NSError error) {
+			addressBook.RequestAccess (delegate (bool granted, NSError error)
+			{
 
 				if (!granted || error != null)
 					return;
@@ -148,13 +147,15 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 
 			// wire up our keyboard events
 			NSNotificationCenter.DefaultCenter.AddObserver (
-				UIKeyboard.WillShowNotification, delegate (NSNotification n) {
-				KeyboardOpenedOrClosed (n, "Open");
-			});
+				UIKeyboard.WillShowNotification, delegate (NSNotification n)
+				{
+					KeyboardOpenedOrClosed (n, "Open");
+				});
 			NSNotificationCenter.DefaultCenter.AddObserver (
-				UIKeyboard.WillHideNotification, delegate (NSNotification n) {
-				KeyboardOpenedOrClosed (n, "Close");
-			});
+				UIKeyboard.WillHideNotification, delegate (NSNotification n)
+				{
+					KeyboardOpenedOrClosed (n, "Close");
+				});
 
 			#endregion
 		}
@@ -208,7 +209,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 
 				// loop backwards and delete the phone number
 				// HACK: Cast nint to int
-				for (int i = (int)phones.Count - 1; i >= 0; i--) {
+				for (int i = (int) phones.Count - 1; i >= 0; i--) {
 					if (phones [i].Identifier == phoneNumberID)
 						phones.RemoveAt (i);
 				}
@@ -242,7 +243,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 
 					// remove all phones data
 					// HACK: Cast nint to int
-					for (int i = (int)phones.Count - 1; i >= 0; i--) {
+					for (int i = (int) phones.Count - 1; i >= 0; i--) {
 						phones.RemoveAt (i);
 					}
 
@@ -286,8 +287,8 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 			// wire up our delete clicked handler
 			tableDataSource.DeleteClicked +=
 				(object sender, PhoneNumberTableSource.PhoneNumberClickedEventArgs e) => {
-				DeletePhoneNumber (e.PhoneNumberID);
-			};
+					DeletePhoneNumber (e.PhoneNumberID);
+				};
 		}
 
 		// Opens up a contact picker and then populates the screen, based on the contact chosen
@@ -309,7 +310,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 				PopulatePage (args.Person);
 				EnableTextFields (true);
 				// HACK: NavigationController.DismissModalViewControllerAnimated to NavigationController.DismissModalViewController
-				NavigationController.DismissModalViewController(true);
+				NavigationController.DismissModalViewController (true);
 			};
 		}
 
@@ -337,8 +338,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 		/// <summary>
 		/// A simple table view source to bind our phone numbers to the table
 		/// </summary>
-		protected class PhoneNumberTableSource : UITableViewSource
-		{
+		protected class PhoneNumberTableSource : UITableViewSource {
 			public event EventHandler<PhoneNumberClickedEventArgs> DeleteClicked;
 
 			protected ABMultiValue<string> phoneNumbers { get; set; }
@@ -389,8 +389,8 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 						numbers [cell.dataIndex] = cell.PhoneNumber;
 					};
 				}
-//				cell.PhoneLabel = phoneNumbers[indexPath.Row].Label.ToString ().Replace ("_$!<", "").Replace (">!$_", "");
-//				cell.PhoneNumber = phoneNumbers[indexPath.Row].Value.ToString ();
+				//				cell.PhoneLabel = phoneNumbers[indexPath.Row].Label.ToString ().Replace ("_$!<", "").Replace (">!$_", "");
+				//				cell.PhoneNumber = phoneNumbers[indexPath.Row].Value.ToString ();
 				cell.PhoneLabel = labels [indexPath.Row].Replace ("_$!<", "").Replace (">!$_", "");
 				cell.PhoneNumber = numbers [indexPath.Row];
 				cell.SelectionStyle = UITableViewCellSelectionStyle.None;
@@ -417,8 +417,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 			}
 
 			// We use this so we can pass the id of the phone number that was clicked along with the event
-			public class PhoneNumberClickedEventArgs : EventArgs
-			{
+			public class PhoneNumberClickedEventArgs : EventArgs {
 				public int PhoneNumberID { get; set; }
 
 				public PhoneNumberClickedEventArgs (int phoneNumberID) : base ()
@@ -432,8 +431,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 		/// <summary>
 		/// A simple, two text box cell, that will hold our phone label, and our phone number.
 		/// </summary>
-		protected class EditablePhoneTableCell : UITableViewCell
-		{
+		protected class EditablePhoneTableCell : UITableViewCell {
 			// label and phone number text boxes
 			public UITextField txtLabel = new UITextField (new CGRect (10, 5, 110, 33));
 			public UITextField txtPhoneNumber = new UITextField (new CGRect (130, 5, 140, 33));
@@ -491,7 +489,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 				scrlMain.Frame = newFrame;
 				UIView.CommitAnimations ();
 			} else { // if it's closing, resize
-				// declare vars
+					 // declare vars
 				double animationDuration = UIKeyboard.AnimationDurationFromNotification (n);
 				// apply the size change
 				UIView.BeginAnimations ("ResizeForKeyboard");

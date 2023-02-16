@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -81,7 +81,7 @@ namespace Conference_Diffable.CompositionalLayout.AdvancedLayoutsViewControllers
 			}
 
 			public static bool operator != (SectionKind left, SectionKind right) => !(left == right);
-			public override bool Equals (object obj) => this == (SectionKind)obj;
+			public override bool Equals (object obj) => this == (SectionKind) obj;
 			public bool Equals (SectionKind other) => EnumValue == other.EnumValue;
 			public override int GetHashCode () => HashCode.Combine (base.GetHashCode (), EnumValue);
 

@@ -12,8 +12,8 @@ namespace MessagesExtension {
 		public IBuildIceCreamViewControllerDelegate Builder { get; set; }
 		string promt;
 
-		IceCreamPart[] iceCreamParts;
-		IceCreamPart[] IceCreamParts {
+		IceCreamPart [] iceCreamParts;
+		IceCreamPart [] IceCreamParts {
 			get {
 				return iceCreamParts;
 			}
@@ -96,7 +96,7 @@ namespace MessagesExtension {
 			CollectionView.ContentInset = contentInset;
 
 			// Calculate the ideal height of the ice cream view.
-			var iceCreamViewContentHeight = IceCreamView.ArrangedSubviews.Sum (v => (float)v.IntrinsicContentSize.Height);
+			var iceCreamViewContentHeight = IceCreamView.ArrangedSubviews.Sum (v => (float) v.IntrinsicContentSize.Height);
 			var iceCreamPartImageScale = layout.ItemSize.Height / iceCreamPartImageSize.Height;
 			IceCreamViewHeightConstraint.Constant = iceCreamViewContentHeight * iceCreamPartImageScale;
 		}

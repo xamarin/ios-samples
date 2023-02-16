@@ -1,19 +1,16 @@
 using System;
 using System.Collections.Generic;
 
-namespace Example_SharedResources.Code
-{
+namespace Example_SharedResources.Code {
 	/// <summary>
 	/// A group that contains table items
 	/// </summary>
-	public class NavItemGroup
-	{
+	public class NavItemGroup {
 		public string Name { get; set; }
 
 		public string Footer { get; set; }
 
-		public List<NavItem> Items
-		{
+		public List<NavItem> Items {
 			get { return items; }
 			set { items = value; }
 		}

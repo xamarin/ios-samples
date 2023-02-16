@@ -1,9 +1,7 @@
-﻿using UIKit;
+using UIKit;
 
-namespace Chat
-{
-	public class ChatInputView : UIView
-	{
+namespace Chat {
+	public class ChatInputView : UIView {
 		static readonly UIColor ButtonTextColorNormal = UIColor.FromRGB (1, 122, 255);
 		static readonly UIColor ButtonTextColorDisabled = UIColor.FromRGB (142, 142, 147);
 		static readonly UIFont ButtonFont = UIFont.BoldSystemFontOfSize (17f);

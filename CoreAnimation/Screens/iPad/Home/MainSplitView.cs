@@ -4,10 +4,8 @@ using UIKit;
 using ObjCRuntime;
 using Foundation;
 
-namespace CoreAnimationExample
-{
-	public class MainSplitView : UISplitViewController
-	{
+namespace CoreAnimationExample {
+	public class MainSplitView : UISplitViewController {
 		MasterNavTableViewController masterViewController;
 		UIViewController detailViewController;
 		Selector toggleMasterVisible;
@@ -24,7 +22,7 @@ namespace CoreAnimationExample
 
 			// create an array of controllers from them and then assign it to the
 			// controllers property
-			ViewControllers = new UIViewController[] { masterViewController,  detailViewController };
+			ViewControllers = new UIViewController [] { masterViewController, detailViewController };
 
 			// in this example, i expose an event on the master view called RowClicked, and i listen
 			// for it in here, and then call a method on the detail view to update. this class thereby
@@ -73,7 +71,7 @@ namespace CoreAnimationExample
 			if (e.Item.Controller != null) {
 				UIView.BeginAnimations ("DetailViewPush");
 				detailViewController = e.Item.Controller;
-				ViewControllers = new UIViewController[] { masterViewController,  detailViewController };
+				ViewControllers = new UIViewController [] { masterViewController, detailViewController };
 				UIView.SetAnimationTransition (UIViewAnimationTransition.FlipFromRight, ViewControllers [1].View, false);
 				UIView.CommitAnimations ();
 			} else {
@@ -108,7 +106,7 @@ namespace CoreAnimationExample
 							// push the view controller onto the stack
 							UIView.BeginAnimations ("DetailViewPush");
 							detailViewController = e.Item.Controller;
-							ViewControllers = new UIViewController[] { masterViewController,  detailViewController };
+							ViewControllers = new UIViewController [] { masterViewController, detailViewController };
 							UIView.SetAnimationTransition (UIViewAnimationTransition.FlipFromRight, ViewControllers [1].View, false);
 							UIView.CommitAnimations ();
 						} else

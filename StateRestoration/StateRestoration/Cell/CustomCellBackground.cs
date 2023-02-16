@@ -3,10 +3,8 @@ using CoreGraphics;
 
 using UIKit;
 
-namespace StateRestoration
-{
-	public class CustomCellBackground : UIView
-	{
+namespace StateRestoration {
+	public class CustomCellBackground : UIView {
 		CustomCellBackground (CGRect frame) : base (frame)
 		{
 			BackgroundColor = UIColor.White;

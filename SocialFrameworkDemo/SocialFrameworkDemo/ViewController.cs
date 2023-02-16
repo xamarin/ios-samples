@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Accounts;
 using Foundation;
@@ -132,7 +132,7 @@ namespace SocialFrameworkDemo {
 		{
 			// Initialize request
 			var parameters = new NSDictionary ();
-			var url = new NSUrl("https://api.twitter.com/1.1/statuses/user_timeline.json?count=10");
+			var url = new NSUrl ("https://api.twitter.com/1.1/statuses/user_timeline.json?count=10");
 			var request = SLRequest.Create (SLServiceKind.Twitter, SLRequestMethod.Get, url, parameters);
 
 			// Request data

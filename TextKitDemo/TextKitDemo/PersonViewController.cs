@@ -3,10 +3,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace TextKitDemo
-{
-	public partial class PersonViewController : TextViewController
-	{
+namespace TextKitDemo {
+	public partial class PersonViewController : TextViewController {
 		public PersonViewController (IntPtr handle) : base (handle)
 		{
 		}

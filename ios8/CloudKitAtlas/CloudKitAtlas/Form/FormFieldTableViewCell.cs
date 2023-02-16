@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	[Register("FormFieldTableViewCell")]
-	public class FormFieldTableViewCell : UITableViewCell
-	{
+namespace CloudKitAtlas {
+	[Register ("FormFieldTableViewCell")]
+	public class FormFieldTableViewCell : UITableViewCell {
 		[Outlet]
 		public UILabel FieldLabel { get; set; }
 

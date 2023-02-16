@@ -1,4 +1,4 @@
-﻿using UIKit;
+using UIKit;
 using Foundation;
 using CoreGraphics;
 
@@ -34,7 +34,7 @@ namespace CustomTransitions {
 			var dismissButtonAux = new UIButton (UIButtonType.Custom) {
 				Frame = new CGRect (0f, 0f, 26f, 26f)
 			};
-			dismissButtonAux.SetImage (new UIImage("CloseButton"), UIControlState.Normal);
+			dismissButtonAux.SetImage (new UIImage ("CloseButton"), UIControlState.Normal);
 			dismissButtonAux.AddTarget ((object sender, System.EventArgs e) => DismissButtonTapped (dismissButtonAux), UIControlEvent.TouchUpInside);
 
 			dismissButton = dismissButtonAux;
@@ -54,7 +54,7 @@ namespace CustomTransitions {
 			presentationWrappingView.Layer.ShadowOpacity = .0f;
 			presentationWrappingView.Layer.ShadowRadius = .0f;
 
-			coordinator.AnimateAlongsideTransition ((obj) => {}, (obj) => {
+			coordinator.AnimateAlongsideTransition ((obj) => { }, (obj) => {
 				presentationWrappingView.ClipsToBounds = false;
 				presentationWrappingView.Layer.ShadowOpacity = .63f;
 				presentationWrappingView.Layer.ShadowRadius = 17f;
@@ -69,14 +69,14 @@ namespace CustomTransitions {
 			return base.GetSizeForChildContentContainer (contentContainer, parentContainerSize);
 		}
 
-		public override CGRect FrameOfPresentedViewInContainerView{
+		public override CGRect FrameOfPresentedViewInContainerView {
 			get {
 				CGRect containerViewBounds = ContainerView.Bounds;
 				var presentedViewContentSize = GetSizeForChildContentContainer (PresentedViewController, containerViewBounds.Size);
 
-				var frame = new CGRect (containerViewBounds.GetMidX () - (presentedViewContentSize.Width / 2f), 
-				                          containerViewBounds.GetMidY () - (presentedViewContentSize.Height / 2f), 
-				                          presentedViewContentSize.Width, presentedViewContentSize.Height);
+				var frame = new CGRect (containerViewBounds.GetMidX () - (presentedViewContentSize.Width / 2f),
+										  containerViewBounds.GetMidY () - (presentedViewContentSize.Height / 2f),
+										  presentedViewContentSize.Width, presentedViewContentSize.Height);
 
 				return frame.Inset (-20f, -20f);
 			}
@@ -91,7 +91,7 @@ namespace CustomTransitions {
 			dismissButton.Center = new CGPoint (PresentedViewController.View.Frame.GetMinX (), PresentedViewController.View.Frame.GetMinY ());
 		}
 
-		public double TransitionDuration(IUIViewControllerContextTransitioning transitionContext)
+		public double TransitionDuration (IUIViewControllerContextTransitioning transitionContext)
 		{
 			return transitionContext.IsAnimated ? 0 : 0.35;
 		}
@@ -114,26 +114,25 @@ namespace CustomTransitions {
 				toView.Alpha = 0f;
 
 				if (fromView != null)
-					fromView.Frame = transitionContext.GetFinalFrameForViewController(fromViewController);
+					fromView.Frame = transitionContext.GetFinalFrameForViewController (fromViewController);
 
-				toView.Frame = transitionContext.GetFinalFrameForViewController(toViewController);
-			}
-			else if (toView != null) {
+				toView.Frame = transitionContext.GetFinalFrameForViewController (toViewController);
+			} else if (toView != null) {
 				toView.Frame = transitionContext.GetFinalFrameForViewController (toViewController);
 			}
 
 			double transitionDuration = TransitionDuration (transitionContext);
 
-			UIView.Animate(transitionDuration, 0, UIViewAnimationOptions.TransitionNone, () => {
-					if (toView != null)
-						toView.Alpha = isPresenting ? 1f : 0f;
-				}, () => {
-					bool wasCancelled = transitionContext.TransitionWasCancelled;
-					transitionContext.CompleteTransition (!wasCancelled);
+			UIView.Animate (transitionDuration, 0, UIViewAnimationOptions.TransitionNone, () => {
+				if (toView != null)
+					toView.Alpha = isPresenting ? 1f : 0f;
+			}, () => {
+				bool wasCancelled = transitionContext.TransitionWasCancelled;
+				transitionContext.CompleteTransition (!wasCancelled);
 
-					if (isPresenting == false)
-						fromView.Alpha = 1f;
-				}
+				if (isPresenting == false)
+					fromView.Alpha = 1f;
+			}
 			);
 		}
 

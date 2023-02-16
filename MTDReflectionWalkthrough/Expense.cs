@@ -1,29 +1,26 @@
 using System;
 using MonoTouch.Dialog;
 
-namespace MTDReflectionWalkthrough
-{
-	public enum Category
-	{
+namespace MTDReflectionWalkthrough {
+	public enum Category {
 		Travel,
 		Lodging,
 		Books
 	}
 
-	public class Expense
-	{
-		[Section("Expense Entry")]
+	public class Expense {
+		[Section ("Expense Entry")]
 
-		[Entry("Enter expense name")]
+		[Entry ("Enter expense name")]
 		public string Name;
-		[Section("Expense Details")]
+		[Section ("Expense Details")]
 
-		[Caption("Description")]
+		[Caption ("Description")]
 		[Entry]
 		public string Details;
 		[Checkbox]
 		public bool IsApproved = true;
-		[Caption("Category")]
+		[Caption ("Category")]
 		public Category ExpenseCategory;
 	}
 }

@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using SpriteKit;
 using Foundation;
 
-namespace SpriteKitPhysicsCollisions
-{
-	public class DamageNode : ArchiveBasedNode
-	{
+namespace SpriteKitPhysicsCollisions {
+	public class DamageNode : ArchiveBasedNode {
 		static readonly SKEmitterNode template;
 
 		static DamageNode ()

@@ -4,23 +4,20 @@ using System.CodeDom.Compiler;
 using UIKit;
 using System.Collections.Generic;
 
-namespace Phoneword_iOS
-{
-	partial class CallHistoryController : UITableViewController
-	{
+namespace Phoneword_iOS {
+	partial class CallHistoryController : UITableViewController {
 		public List<String> PhoneNumbers { get; set; }
 
 		static NSString callHistoryCellId = new NSString ("CallHistoryCell");
 
 		public CallHistoryController (IntPtr handle) : base (handle)
 		{
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), callHistoryCellId);
+			TableView.RegisterClassForCellReuse (typeof (UITableViewCell), callHistoryCellId);
 			TableView.Source = new CallHistoryDataSource (this);
 			PhoneNumbers = new List<string> ();
 		}
 
-		class CallHistoryDataSource : UITableViewSource
-		{
+		class CallHistoryDataSource : UITableViewSource {
 			CallHistoryController controller;
 
 			public CallHistoryDataSource (CallHistoryController controller)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using UIKit;
@@ -7,18 +7,15 @@ using CoreGraphics;
 using static SpeedSketch.RingControlState;
 using static SpeedSketch.CGMathExtensions;
 
-namespace SpeedSketch
-{
-	public enum RingControlState
-	{
+namespace SpeedSketch {
+	public enum RingControlState {
 		Selected,
 		Normal,
 		LocationFan,
 		LocationOrigin
 	}
 
-	public class RingView : UIView
-	{
+	public class RingView : UIView {
 		// Closures that configure the view for the corresponding state.
 		public Dictionary<RingControlState, Action> StateClosures { get; } = new Dictionary<RingControlState, Action> ();
 
@@ -63,7 +60,7 @@ namespace SpeedSketch
 		public override bool PointInside (CGPoint point, UIEvent uievent)
 		{
 			// Quadrance as the square of the length requires less computation and cases
-			var quadrance = Vector(Bounds.GetCenter (), point).Quadrance ();
+			var quadrance = Vector (Bounds.GetCenter (), point).Quadrance ();
 			var maxQuadrance = NMath.Pow (Bounds.Width / 2, 2);
 
 			return quadrance < maxQuadrance;

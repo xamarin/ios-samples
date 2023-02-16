@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -64,7 +64,7 @@ namespace WalkingGame {
 		// frame time as obtained from gameTime
 		public void Update (GameTime gameTime)
 		{
-			double secondsIntoAnimation = 
+			double secondsIntoAnimation =
 				timeIntoAnimation.TotalSeconds + gameTime.ElapsedGameTime.TotalSeconds;
 
 

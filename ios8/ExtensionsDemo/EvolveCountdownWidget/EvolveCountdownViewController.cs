@@ -31,7 +31,7 @@ namespace EvolveCountdownWidget {
 			completionHandler (NCUpdateResult.NewData);
 		}
 
-		void UpdateTitle()
+		void UpdateTitle ()
 		{
 			var evolveStartDate = new DateTime (2014, 10, 6);
 			var numDays = (evolveStartDate - DateTime.Now).Days;

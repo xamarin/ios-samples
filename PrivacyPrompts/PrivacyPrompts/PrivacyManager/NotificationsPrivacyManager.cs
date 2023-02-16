@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using UIKit;
 using Foundation;
 using System.Threading.Tasks;
 
-namespace PrivacyPrompts
-{
-	public class NotificationsPrivacyManager : IPrivacyManager
-	{
+namespace PrivacyPrompts {
+	public class NotificationsPrivacyManager : IPrivacyManager {
 		readonly AppDelegate applicationDelegate;
 		TaskCompletionSource<object> tcs;
 
@@ -22,7 +20,7 @@ namespace PrivacyPrompts
 
 			// After the user interacts with the permissions dialog, AppDelegate.DidRegisterUserNotificationSettings
 			// is called. In this example, we've hooked that up to an event
-			applicationDelegate.NotificationsRegistered += (obj) => tcs.SetResult(null);
+			applicationDelegate.NotificationsRegistered += (obj) => tcs.SetResult (null);
 		}
 
 		public Task RequestAccess ()

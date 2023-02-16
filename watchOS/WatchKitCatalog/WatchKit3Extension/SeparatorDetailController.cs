@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This controller displays separators and how to visually break up content onscreen.
 */
 
@@ -8,11 +8,9 @@ using UIKit;
 using WatchKit;
 using Foundation;
 
-namespace WatchkitExtension
-{
+namespace WatchkitExtension {
 	[Register ("SeparatorDetailController")]
-	public class SeparatorDetailController : WKInterfaceController
-	{
+	public class SeparatorDetailController : WKInterfaceController {
 		public SeparatorDetailController ()
 		{
 		}

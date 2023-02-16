@@ -1,4 +1,4 @@
-﻿
+
 //
 // TouchesClassicViewController.cs
 //
@@ -31,10 +31,8 @@ using System.Linq;
 using UIKit;
 using Foundation;
 
-namespace TouchesClassic
-{
-	public partial class TouchesClassicViewController : UIViewController
-	{
+namespace TouchesClassic {
+	public partial class TouchesClassicViewController : UIViewController {
 		private float padding = 10f;
 
 		public TouchesClassicViewController (UIWindow window, string nibName, NSBundle bundle) : base (nibName, bundle)
@@ -72,7 +70,7 @@ namespace TouchesClassic
 			touchInfoLabel.Text = "";
 
 			var numTaps = touches.Sum (t => t.TapCount);
-			if (numTaps >= 2){
+			if (numTaps >= 2) {
 				touchInfoLabel.Text = string.Format ("{0} taps", numTaps);
 				if (numTaps == 2 && piecesOnTop) {
 					// recieved double tap -> align the three pieces diagonal.

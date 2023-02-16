@@ -90,7 +90,7 @@ namespace MessagesExtension {
 			var controller = Storyboard.InstantiateViewController (CompletedIceCreamViewController.StoryboardIdentifier) as CompletedIceCreamViewController;
 			if (controller == null)
 				throw new Exception ("Unable to instantiate an CompletedIceCreamViewController from the storyboard");
-			
+
 			controller.IceCream = iceCream;
 			return controller;
 		}
@@ -155,7 +155,7 @@ namespace MessagesExtension {
 				Caption = caption
 			};
 
-			var message = new MSMessage (session ?? new MSSession()) {
+			var message = new MSMessage (session ?? new MSSession ()) {
 				Url = components.Url,
 				Layout = layout
 			};

@@ -8,10 +8,8 @@ using System.Threading;
 using System.Diagnostics;
 using AVFoundation;
 
-namespace StreamingAudio
-{
-	public partial class PlayerViewController : UIViewController
-	{
+namespace StreamingAudio {
+	public partial class PlayerViewController : UIViewController {
 		NSTimer updatingTimer;
 		StreamingPlayback player;
 
@@ -102,7 +100,7 @@ namespace StreamingAudio
 		void StartPlayback ()
 		{
 			try {
-				var request = (HttpWebRequest)WebRequest.Create (SourceUrl);
+				var request = (HttpWebRequest) WebRequest.Create (SourceUrl);
 				request.BeginGetResponse (StreamDownloadedHandler, request);
 			} catch (Exception e) {
 				string.Format ("Error: {0}", e.ToString ());
@@ -137,12 +135,14 @@ namespace StreamingAudio
 					inputStream = responseStream;
 
 				using (player = new StreamingPlayback ()) {
-					player.OutputReady += delegate {
+					player.OutputReady += delegate
+					{
 						timeline = player.OutputQueue.CreateTimeline ();
 						sampleRate = player.OutputQueue.SampleRate;
 					};
 
-					InvokeOnMainThread (delegate {
+					InvokeOnMainThread (delegate
+					{
 						if (updatingTimer != null)
 							updatingTimer.Invalidate ();
 
@@ -151,10 +151,11 @@ namespace StreamingAudio
 
 					while ((inputStreamLength = inputStream.Read (buffer, 0, buffer.Length)) != 0 && player != null) {
 						l += inputStreamLength;
-						player.ParseBytes (buffer, inputStreamLength, false, l == (int)response.ContentLength);
+						player.ParseBytes (buffer, inputStreamLength, false, l == (int) response.ContentLength);
 
-						InvokeOnMainThread (delegate {
-							progressBar.Progress = l / (float)response.ContentLength;
+						InvokeOnMainThread (delegate
+						{
+							progressBar.Progress = l / (float) response.ContentLength;
 						});
 					}
 				}
@@ -162,7 +163,8 @@ namespace StreamingAudio
 			} catch (Exception e) {
 				RaiseErrorOccurredEvent ("Error fetching response stream\n" + e);
 				Debug.WriteLine (e);
-				InvokeOnMainThread (delegate {
+				InvokeOnMainThread (delegate
+				{
 					if (NavigationController != null)
 						NavigationController.PopToRootViewController (true);
 				});
@@ -187,7 +189,7 @@ namespace StreamingAudio
 			double minutes = time / 60;
 			double seconds = time % 60;
 
-			return String.Format ("{0}:{1:D2}", (int)minutes, (int)seconds);
+			return String.Format ("{0}:{1:D2}", (int) minutes, (int) seconds);
 		}
 
 		Stream GetQueueStream (Stream responseStream)

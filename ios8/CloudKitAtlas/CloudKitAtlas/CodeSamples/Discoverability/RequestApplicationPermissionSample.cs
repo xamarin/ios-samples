@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	public class PermissionStatus : IResult
-	{
+namespace CloudKitAtlas {
+	public class PermissionStatus : IResult {
 		readonly Attribute attribute;
 
 		public string SummaryField { get; }
@@ -24,8 +22,7 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public class RequestApplicationPermissionSample : CodeSample
-	{
+	public class RequestApplicationPermissionSample : CodeSample {
 		public RequestApplicationPermissionSample ()
 			: base (title: "RequestApplicationPermission",
 					className: "CKContainer",
@@ -38,7 +35,7 @@ namespace CloudKitAtlas
 		{
 			var container = CKContainer.DefaultContainer;
 			var status = await container.RequestApplicationPermissionAsync (CKApplicationPermissions.UserDiscoverability);
-			return new Results (new IResult [] { new PermissionStatus(status) });
+			return new Results (new IResult [] { new PermissionStatus (status) });
 		}
 	}
 }

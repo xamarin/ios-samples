@@ -6,10 +6,8 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_SharedResources.Screens.iPhone.Photos
-{
-	public partial class ImagePickerScreen : UIViewController
-	{
+namespace Example_SharedResources.Screens.iPhone.Photos {
+	public partial class ImagePickerScreen : UIViewController {
 		protected UIImagePickerController imagePicker;
 		protected FeaturesTableDataSource tableSource;
 		protected PickerDelegate pickerDelegate;
@@ -19,18 +17,18 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
-		public ImagePickerScreen (IntPtr handle) : base(handle)
+		public ImagePickerScreen (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public ImagePickerScreen (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public ImagePickerScreen (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
 
-		public ImagePickerScreen () : base("ImagePickerScreen", null)
+		public ImagePickerScreen () : base ("ImagePickerScreen", null)
 		{
 			Initialize ();
 		}
@@ -64,10 +62,10 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 				// wire up a delegate. in this first one, i wire up the events. in the other two,
 				// i use a delegate
 				imagePicker.FinishedPickingMedia += Handle_imagePickerhandleFinishedPickingMedia;
-				imagePicker.Canceled += (sender,evt) => {
+				imagePicker.Canceled += (sender, evt) => {
 					Console.WriteLine ("picker cancelled");
 					// HACK: NavigationController.DismissModalViewControllerAnimated to NavigationController.DismissModalViewController
-					imagePicker.DismissModalViewController(true);
+					imagePicker.DismissModalViewController (true);
 				};
 
 				// show the picker
@@ -191,7 +189,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 			// declare vars
 			List<FeatureGroup> features = new List<FeatureGroup> ();
 			FeatureGroup featGroup;
-			string[] mediaTypes;
+			string [] mediaTypes;
 
 			// Sources
 			featGroup = new FeatureGroup () { Name = "Sources" };
@@ -262,13 +260,12 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 
 		// Our custom picker delegate. The events haven't been exposed so we have to use a
 		// delegate.
-		protected class PickerDelegate : UIImagePickerControllerDelegate
-		{
+		protected class PickerDelegate : UIImagePickerControllerDelegate {
 			public override void Canceled (UIImagePickerController picker)
 			{
 				Console.WriteLine ("picker cancelled");
 				// HACK: NavigationController.DismissModalViewControllerAnimated to NavigationController.DismissModalViewController
-				picker.DismissModalViewController(true);
+				picker.DismissModalViewController (true);
 			}
 
 			public override void FinishedPickingMedia (UIImagePickerController picker, NSDictionary info)
@@ -312,16 +309,16 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 
 					}
 
-//					// get the cropping, if any
-//					try
-//					{
-//						RectangleF cropRectangle = info[UIImagePickerController.CropRect] as RectangleF;
-//						if(cropRectangle != null)
-//						{
-//							// do something with the crop rectangle
-//							Console.WriteLine("Got the crop rectangle");
-//						}
-//					} finally {}
+					//					// get the cropping, if any
+					//					try
+					//					{
+					//						RectangleF cropRectangle = info[UIImagePickerController.CropRect] as RectangleF;
+					//						if(cropRectangle != null)
+					//						{
+					//							// do something with the crop rectangle
+					//							Console.WriteLine("Got the crop rectangle");
+					//						}
+					//					} finally {}
 
 					//- get the image metadata
 					NSDictionary imageMetadata = info [UIImagePickerController.MediaMetadata] as NSDictionary;
@@ -353,12 +350,10 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		/// <summary>
 		/// Group that holds features available
 		/// </summary>
-		protected class FeatureGroup
-		{
+		protected class FeatureGroup {
 			public string Name { get; set; }
 
-			public List<Feature> Features
-			{ get { return features; } set { features = value; } }
+			public List<Feature> Features { get { return features; } set { features = value; } }
 
 			protected List<Feature> features = new List<Feature> ();
 		}
@@ -366,8 +361,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		/// <summary>
 		/// A feature, such as whether or not the front camera is available
 		/// </summary>
-		protected class Feature
-		{
+		protected class Feature {
 			public string Name { get; set; }
 
 			public bool IsAvailable { get; set; }
@@ -376,8 +370,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		/// <summary>
 		///
 		/// </summary>
-		protected class FeaturesTableDataSource : UITableViewSource
-		{
+		protected class FeaturesTableDataSource : UITableViewSource {
 			protected List<FeatureGroup> features { get; set; }
 
 			public FeaturesTableDataSource (List<FeatureGroup> features)
@@ -393,7 +386,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 			public override nint RowsInSection (UITableView tableview, nint section)
 			{
 				// HACK: Cast nitn to int
-				return features [(int)section].Features.Count;
+				return features [(int) section].Features.Count;
 			}
 
 			public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -411,7 +404,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 			public override string TitleForHeader (UITableView tableView, nint section)
 			{
 				// HACK: Cast nint to int
-				return features [(int)section].Name;
+				return features [(int) section].Name;
 			}
 
 			public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)

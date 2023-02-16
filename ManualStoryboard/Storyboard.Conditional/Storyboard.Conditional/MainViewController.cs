@@ -3,11 +3,9 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Storyboard.Conditional
-{
-	partial class MainViewController : UIViewController
-	{
-		
+namespace Storyboard.Conditional {
+	partial class MainViewController : UIViewController {
+
 
 		public MainViewController (IntPtr handle) : base (handle)
 		{
@@ -15,19 +13,18 @@ namespace Storyboard.Conditional
 
 		public override bool ShouldPerformSegue (string segueIdentifier, NSObject sender)
 		{
-			
-			if(segueIdentifier == "SegueToPink"){
+
+			if (segueIdentifier == "SegueToPink") {
 				if (PasswordTextField.Text == "password") {
 					PasswordTextField.ResignFirstResponder ();
 					return true;
-				}
-				else{
+				} else {
 					ErrorLabel.Hidden = false;
 					return false;
 				}
 			}
 			return base.ShouldPerformSegue (segueIdentifier, sender);
 		}
-			
+
 	}
 }

@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using Foundation;
 
-namespace MotionActivityDemo
-{
-	public class MotionActivityQuery : NSObject
-	{
+namespace MotionActivityDemo {
+	public class MotionActivityQuery : NSObject {
 		public NSDate StartDate;
 		public NSDate EndDate;
 		public bool IsToday;
@@ -20,7 +18,7 @@ namespace MotionActivityDemo
 		{
 			NSCalendar currentCalendar = NSCalendar.CurrentCalendar;
 			NSDateComponents timeComponents = currentCalendar.Components (
-				                                  NSCalendarUnit.Year | NSCalendarUnit.Month | NSCalendarUnit.Day, date);
+												  NSCalendarUnit.Year | NSCalendarUnit.Month | NSCalendarUnit.Day, date);
 			timeComponents.Hour = 0;
 			timeComponents.Day = timeComponents.Day + offset;
 

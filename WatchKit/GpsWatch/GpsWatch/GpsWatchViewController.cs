@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using UIKit;
@@ -6,10 +6,8 @@ using Foundation;
 using CoreGraphics;
 using System.Linq;
 
-namespace GpsWatch
-{
-	public partial class GpsWatchViewController : UIViewController
-	{
+namespace GpsWatch {
+	public partial class GpsWatchViewController : UIViewController {
 		UILabel lbl;
 
 		static bool UserInterfaceIdiomIsPhone {
@@ -24,7 +22,7 @@ namespace GpsWatch
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -38,7 +36,7 @@ namespace GpsWatch
 			ShowDescription ();
 		}
 
-		void ShowDescription()
+		void ShowDescription ()
 		{
 			lbl = new UILabel {
 				Lines = 0,

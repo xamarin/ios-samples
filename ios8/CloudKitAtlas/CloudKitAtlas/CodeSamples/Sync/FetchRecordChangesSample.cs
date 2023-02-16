@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	class ChangedRecords
-	{
+namespace CloudKitAtlas {
+	class ChangedRecords {
 		public Results Results { get; } = new Results (alwaysShowAsList: true);
 		readonly Dictionary<CKRecordID, CKRecord> recordsByID = new Dictionary<CKRecordID, CKRecord> ();
 
@@ -56,7 +54,7 @@ namespace CloudKitAtlas
 		void RemoveDeletedRecords ()
 		{
 			foreach (var index in Results.Deleted.OrderByDescending (i => i)) {
-				var record = ((CKRecordWrapper)Results.Items [index]).Record;
+				var record = ((CKRecordWrapper) Results.Items [index]).Record;
 				Results.Items.RemoveAt (index);
 				recordsByID.Remove (record.Id);
 			}
@@ -84,8 +82,7 @@ namespace CloudKitAtlas
 		}
 	}
 
-	public class FetchRecordChangesSample : CodeSample
-	{
+	public class FetchRecordChangesSample : CodeSample {
 		readonly Dictionary<CKRecordZoneID, ChangedRecords> recordCache = new Dictionary<CKRecordZoneID, ChangedRecords> ();
 
 		public FetchRecordChangesSample ()

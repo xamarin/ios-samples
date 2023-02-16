@@ -5,10 +5,8 @@ using AVFoundation;
 using Foundation;
 using UIKit;
 
-namespace ManualCameraControls
-{
-	public partial class WhiteBalanceViewController : UIViewController
-	{
+namespace ManualCameraControls {
+	public partial class WhiteBalanceViewController : UIViewController {
 		#region Private Variables
 		NSError Error;
 		bool Automatic = true;
@@ -20,7 +18,7 @@ namespace ManualCameraControls
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 
 		/// <summary>
@@ -40,7 +38,8 @@ namespace ManualCameraControls
 		/// <summary>
 		/// Sets the temperature and tint.
 		/// </summary>
-		void SetTemperatureAndTint() {
+		void SetTemperatureAndTint ()
+		{
 			// Grab current temp and tint
 			var TempAndTint = new AVCaptureWhiteBalanceTemperatureAndTintValues (Temperature.Value, Tint.Value);
 
@@ -101,7 +100,7 @@ namespace ManualCameraControls
 					// Take action based on the segment selected
 					switch (Segments.SelectedSegment) {
 					case 0:
-					// Activate auto focus and start monitoring position
+						// Activate auto focus and start monitoring position
 						Temperature.Enabled = false;
 						Tint.Enabled = false;
 						ThisApp.CaptureDevice.WhiteBalanceMode = AVCaptureWhiteBalanceMode.ContinuousAutoWhiteBalance;
@@ -109,7 +108,7 @@ namespace ManualCameraControls
 						Automatic = true;
 						break;
 					case 1:
-					// Stop auto focus and allow the user to control the camera
+						// Stop auto focus and allow the user to control the camera
 						SampleTimer.Stop ();
 						ThisApp.CaptureDevice.WhiteBalanceMode = AVCaptureWhiteBalanceMode.Locked;
 						Automatic = false;

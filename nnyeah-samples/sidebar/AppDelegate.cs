@@ -1,13 +1,11 @@
 using Foundation;
 using UIKit;
 
-namespace StoryboardSample
-{
+namespace StoryboardSample {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
-	[Register("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	[Register ("AppDelegate")]
+	public class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 
 		public override UIWindow? Window {
@@ -20,7 +18,7 @@ namespace StoryboardSample
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			// create a new window instance based on the screen size
-			Window = new UIWindow(UIScreen.MainScreen.Bounds);
+			Window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			// If you have defined a root view controller, set it here:
 			Window.RootViewController = new RootViewController ();

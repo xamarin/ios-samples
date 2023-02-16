@@ -1,12 +1,10 @@
-﻿using AVFoundation;
+using AVFoundation;
 using Foundation;
 using UIKit;
 
-namespace PictureInPicture
-{
+namespace PictureInPicture {
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		public override UIWindow Window { get; set; }
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
@@ -21,7 +19,7 @@ namespace PictureInPicture
 			// If an application is not configured correctly, AVPictureInPictureController.PictureInPicturePossible returns false.
 			var audioSession = AVAudioSession.SharedInstance ();
 			NSError error = audioSession.SetCategory (AVAudioSessionCategory.Playback);
-			if(error != null)
+			if (error != null)
 				System.Console.WriteLine ("Audio session SetCategory failed");
 
 			return true;

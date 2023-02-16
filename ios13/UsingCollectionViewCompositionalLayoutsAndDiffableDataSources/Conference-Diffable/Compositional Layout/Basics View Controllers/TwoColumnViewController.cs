@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -35,7 +35,7 @@ namespace Conference_Diffable.CompositionalLayout.BasicsViewControllers {
 			}
 
 			public static bool operator != (Section left, Section right) => !(left == right);
-			public override bool Equals (object obj) => this == (Section)obj;
+			public override bool Equals (object obj) => this == (Section) obj;
 			public bool Equals (Section other) => Value == other.Value;
 			public override int GetHashCode () => HashCode.Combine (base.GetHashCode (), Value);
 		}
@@ -100,7 +100,7 @@ namespace Conference_Diffable.CompositionalLayout.BasicsViewControllers {
 				var id = (obj as NSNumber).Int32Value;
 				// Get a cell of the desired kind.
 				var cell = collectionView.DequeueReusableCell (TextCell.Key, indexPath) as TextCell;
-				
+
 				// Populate the cell with our item description.
 				cell.Label.Text = id.ToString ();
 				cell.ContentView.BackgroundColor = UIColorExtensions.CornflowerBlue;

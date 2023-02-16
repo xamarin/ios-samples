@@ -2,13 +2,11 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_Drawing.Screens.iPad.FlagOnScreen
-{
-	public class View : UIView
-	{
+namespace Example_Drawing.Screens.iPad.FlagOnScreen {
+	public class View : UIView {
 		#region -= constructors =-
 
-		public View () : base() { }
+		public View () : base () { }
 
 		#endregion
 
@@ -47,8 +45,8 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 			int i, j;
 
 			// general sizes
-			float flagWidth = (float)Frame.Width * .8f;
-			float flagHeight = (float)(flagWidth / 1.9);
+			float flagWidth = (float) Frame.Width * .8f;
+			float flagHeight = (float) (flagWidth / 1.9);
 			CGPoint flagOrigin = new CGPoint (Frame.Width * .1f, Frame.Height / 3);
 
 			// stripe
@@ -176,7 +174,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 		{
 			// declare vars
 			// 144º
-			float theta = 2 * (float)Math.PI * (2f / 5f);
+			float theta = 2 * (float) Math.PI * (2f / 5f);
 			float radius = starDiameter / 2;
 
 			// move up and over
@@ -184,7 +182,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 
 			context.MoveTo (0, radius);
 			for (int i = 1; i < 5; i++) {
-				context.AddLineToPoint (radius * (float)Math.Sin (i * theta), radius * (float)Math.Cos (i * theta));
+				context.AddLineToPoint (radius * (float) Math.Sin (i * theta), radius * (float) Math.Cos (i * theta));
 			}
 			context.SetFillColor (1, 1, 1, 1);
 			context.ClosePath ();
@@ -210,7 +208,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 
 				// draw a vertical tick every 20 pixels
 				float yPos = 20;
-				int numberOfVerticalTicks = ((int)(Frame.Height / 20) - 1);
+				int numberOfVerticalTicks = ((int) (Frame.Height / 20) - 1);
 				for (int i = 0; i < numberOfVerticalTicks; i++) {
 
 					// draw the layer
@@ -220,7 +218,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 					if (yPos > 40 && i < (numberOfVerticalTicks - 2)) {
 
 						// draw it every 80 points
-						Math.DivRem ((int)yPos, (int)80, out remainder);
+						Math.DivRem ((int) yPos, (int) 80, out remainder);
 						if (remainder == 0)
 							DrawTextAtPoint (context, 30, (yPos - (textHeight / 2)), yPos.ToString (), textHeight);
 					}
@@ -241,7 +239,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 
 				// draw a horizontal tick every 20 pixels
 				float xPos = 20;
-				int numberOfHorizontalTicks = ((int)(Frame.Width / 20) - 1);
+				int numberOfHorizontalTicks = ((int) (Frame.Width / 20) - 1);
 				for (int i = 0; i < numberOfHorizontalTicks; i++) {
 
 					context.DrawLayer (horizontalTickLayer, new CGPoint (xPos, 0));
@@ -250,7 +248,7 @@ namespace Example_Drawing.Screens.iPad.FlagOnScreen
 					if (xPos > 100 && i < (numberOfHorizontalTicks - 1)) {
 
 						// draw it every 80 points
-						Math.DivRem ((int)xPos, (int)80, out remainder);
+						Math.DivRem ((int) xPos, (int) 80, out remainder);
 						if (remainder == 0)
 							DrawCenteredTextAtPoint (context, xPos, 30, xPos.ToString (), textHeight);
 					}

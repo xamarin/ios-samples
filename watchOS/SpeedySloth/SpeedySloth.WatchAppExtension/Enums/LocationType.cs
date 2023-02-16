@@ -1,10 +1,8 @@
-﻿
-namespace SpeedySloth.WatchAppExtension
-{
-    public enum LocationType
-    {
-        Indoor,
 
-        Outdoor,
-    }
+namespace SpeedySloth.WatchAppExtension {
+	public enum LocationType {
+		Indoor,
+
+		Outdoor,
+	}
 }

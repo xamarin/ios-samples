@@ -5,10 +5,8 @@ using Foundation;
 using MapKit;
 using UIKit;
 
-namespace Protocols_Delegates_Events
-{
-	public partial class Protocols_Delegates_EventsViewController : UIViewController
-	{
+namespace Protocols_Delegates_Events {
+	public partial class Protocols_Delegates_EventsViewController : UIViewController {
 		#region Private Variables
 		private SampleMapDelegate _mapDelegate;
 		#endregion

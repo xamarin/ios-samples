@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
@@ -50,7 +50,7 @@ namespace MessagesExtension {
 		public void Save ()
 		{
 			var iceCreamUrls = iceCreams.Select (ic => new NSUrlComponents { QueryItems = ic.QueryItems }.Url.AbsoluteString)
-			                            .ToArray ();
+										.ToArray ();
 			SaveIceCreams (iceCreamUrls);
 		}
 
@@ -64,7 +64,7 @@ namespace MessagesExtension {
 						 : JsonConvert.DeserializeObject<string []> (serializedList);
 		}
 
-		static void SaveIceCreams (string[] iceCreamUrls)
+		static void SaveIceCreams (string [] iceCreamUrls)
 		{
 			var serializedList = JsonConvert.SerializeObject (iceCreamUrls);
 			var defaults = NSUserDefaults.StandardUserDefaults;

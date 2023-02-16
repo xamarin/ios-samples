@@ -1,23 +1,21 @@
 using System;
 using UIKit;
 
-namespace SimpleCollectionView
-{
-	public class Monkey : IAnimal
-	{
+namespace SimpleCollectionView {
+	public class Monkey : IAnimal {
 		public Monkey ()
 		{
 		}
 
 		public string Name {
-			get{
+			get {
 				return "Monkey";
 			}
 		}
 
-		public UIImage Image{
-			get{
-				return UIImage.FromBundle("monkey.png");
+		public UIImage Image {
+			get {
+				return UIImage.FromBundle ("monkey.png");
 			}
 		}
 

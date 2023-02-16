@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -40,7 +40,7 @@ namespace Gallery {
 		static Lazy<PhotoManager> lazy = new Lazy<PhotoManager> (() => new PhotoManager ());
 		public static PhotoManager SharedInstance { get; } = lazy.Value;
 
-		PhotoManager ()	{ }
+		PhotoManager () { }
 
 		public PhotoSection [] Sections { get; } = {
 			new PhotoSection {

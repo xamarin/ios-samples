@@ -29,10 +29,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace RecipesAndPrinting
-{
-	public partial class InstructionsViewController : UIViewController
-	{
+namespace RecipesAndPrinting {
+	public partial class InstructionsViewController : UIViewController {
 		public InstructionsViewController () : base ("RecipeInstructionsView", null)
 		{
 			NavigationItem.Title = "Instructions";

@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public partial class ErrorViewController : ResultOrErrorViewController
-	{
+namespace CloudKitAtlas {
+	public partial class ErrorViewController : ResultOrErrorViewController {
 		[Outlet]
 		public UILabel ErrorCode { get; set; }
 

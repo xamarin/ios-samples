@@ -5,15 +5,13 @@ using Foundation;
 using UIKit;
 using System.IO;
 
-namespace TicTacToe
-{
+namespace TicTacToe {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		TTTProfile profile;
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}
@@ -43,8 +41,8 @@ namespace TicTacToe
 
 			window.MakeKeyAndVisible ();
 
-			NSNotificationCenter.DefaultCenter.AddObserver ((NSString)TTTProfile.IconDidChangeNotification,
-			                                                iconDidChange);
+			NSNotificationCenter.DefaultCenter.AddObserver ((NSString) TTTProfile.IconDidChangeNotification,
+															iconDidChange);
 
 			return true;
 		}
@@ -52,7 +50,7 @@ namespace TicTacToe
 		string profilePath {
 			get {
 				return Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.MyDocuments),
-				                            "Profile.ttt");
+											"Profile.ttt");
 			}
 		}
 

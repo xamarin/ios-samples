@@ -2,11 +2,9 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace Example_Touch
-{
-	[Register("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+namespace Example_Touch {
+	[Register ("AppDelegate")]
+	public class AppDelegate : UIApplicationDelegate {
 		#region -= declarations and properties =-
 
 		protected UIWindow window;

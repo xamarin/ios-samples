@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -38,7 +38,7 @@ namespace Conference_Diffable.Diffable {
 			}
 
 			public static bool operator != (Network left, Network right) => !(left == right);
-			public override bool Equals (object obj) => this == (Network)obj;
+			public override bool Equals (object obj) => this == (Network) obj;
 			public bool Equals (Network other) => Id == other.Id;
 			public override int GetHashCode () => HashCode.Combine (base.GetHashCode (), Id);
 		}
