@@ -5,14 +5,12 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A view controller that lists the rooms within a provided zone.
-	public partial class ZoneViewController : HMCatalogViewController
-	{
-		static readonly NSString RoomCell = (NSString)"RoomCell";
-		static readonly NSString AddCell = (NSString)"AddCell";
-		static readonly NSString DisabledAddCell = (NSString)"DisabledAddCell";
+	public partial class ZoneViewController : HMCatalogViewController {
+		static readonly NSString RoomCell = (NSString) "RoomCell";
+		static readonly NSString AddCell = (NSString) "AddCell";
+		static readonly NSString DisabledAddCell = (NSString) "DisabledAddCell";
 		const string AddRoomsSegue = "Add Rooms";
 
 		readonly List<HMRoom> rooms = new List<HMRoom> ();
@@ -50,7 +48,7 @@ namespace HomeKitCatalog
 		{
 			base.PrepareForSegue (segue, sender);
 			if (segue.Identifier == AddRoomsSegue) {
-				var addViewController = (AddRoomViewController)segue.IntendedDestinationViewController ();
+				var addViewController = (AddRoomViewController) segue.IntendedDestinationViewController ();
 				addViewController.HomeZone = HomeZone;
 			}
 		}
@@ -93,7 +91,7 @@ namespace HomeKitCatalog
 			var newRoomIndex = rooms.IndexOf (room);
 			if (newRoomIndex >= 0) {
 				var newRoomIndexPath = NSIndexPath.FromRowSection (newRoomIndex, 0);
-				TableView.InsertRows (new []{ newRoomIndexPath }, UITableViewRowAnimation.Automatic);
+				TableView.InsertRows (new [] { newRoomIndexPath }, UITableViewRowAnimation.Automatic);
 			}
 
 			ReloadAddIndexPath ();
@@ -106,7 +104,7 @@ namespace HomeKitCatalog
 			if (roomIndex >= 0) {
 				rooms.RemoveAtIndex (roomIndex);
 				var roomIndexPath = NSIndexPath.FromRowSection (roomIndex, 0);
-				TableView.DeleteRows (new []{ roomIndexPath }, UITableViewRowAnimation.Automatic);
+				TableView.DeleteRows (new [] { roomIndexPath }, UITableViewRowAnimation.Automatic);
 			}
 
 			ReloadAddIndexPath ();
@@ -114,7 +112,7 @@ namespace HomeKitCatalog
 
 		void ReloadAddIndexPath ()
 		{
-			TableView.ReloadRows (new []{ AddIndexPath () }, UITableViewRowAnimation.Automatic);
+			TableView.ReloadRows (new [] { AddIndexPath () }, UITableViewRowAnimation.Automatic);
 		}
 
 		// Reloads the cell corresponding a given room.
@@ -123,7 +121,7 @@ namespace HomeKitCatalog
 			var roomIndex = rooms.IndexOf (room);
 			if (roomIndex >= 0) {
 				var roomIndexPath = NSIndexPath.FromRowSection (roomIndex, 0);
-				TableView.ReloadRows (new []{ roomIndexPath }, UITableViewRowAnimation.Automatic);
+				TableView.ReloadRows (new [] { roomIndexPath }, UITableViewRowAnimation.Automatic);
 			}
 		}
 

@@ -6,17 +6,15 @@ using Foundation;
 using UIKit;
 using CoreAnimation;
 
-namespace MetalImageProcessing
-{
-	public partial class ImageViewController : UIViewController
-	{
+namespace MetalImageProcessing {
+	public partial class ImageViewController : UIViewController {
 		CADisplayLink timer;
 		double timeSinceLastDrawPreviousTime;
 		bool gameLoopPaused;
 		bool firstDrawOccurred;
-		#pragma warning disable 414
+#pragma warning disable 414
 		double timeSinceLastDraw;
-		#pragma warning restore 414
+#pragma warning restore 414
 
 		Renderer renderer;
 
@@ -64,7 +62,7 @@ namespace MetalImageProcessing
 				timeSinceLastDrawPreviousTime = currentTime;
 			}
 
-			((ImageView)View).Display ();
+			((ImageView) View).Display ();
 		}
 
 		public override void ViewDidLoad ()
@@ -72,7 +70,7 @@ namespace MetalImageProcessing
 			base.ViewDidLoad ();
 
 			renderer = new Renderer ();
-			var renderView = (ImageView)View;
+			var renderView = (ImageView) View;
 			renderView.Renderer = renderer;
 
 			// load all renderer assets before starting game loop

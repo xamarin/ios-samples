@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace PhotoFilterExtension
-{
-	public class FilterInfo
-	{
+namespace PhotoFilterExtension {
+	public class FilterInfo {
 		const string filterNameKey = "filterName";
 		const string displayNameKey = "displayName";
 		const string previewImageKey = "previewImage";
@@ -28,9 +26,9 @@ namespace PhotoFilterExtension
 
 		public void FillFrom (NSDictionary storage)
 		{
-			FilterName = (NSString)storage [filterNameKey];
-			DisplayName = (NSString)storage [displayNameKey];
-			PreviewImage = (NSString)storage [previewImageKey];
+			FilterName = (NSString) storage [filterNameKey];
+			DisplayName = (NSString) storage [displayNameKey];
+			PreviewImage = (NSString) storage [previewImageKey];
 		}
 	}
 }

@@ -7,10 +7,8 @@ using CoreAnimation;
 using CoreMedia;
 using System.Collections.Generic;
 
-namespace AVCompositionDebugVieweriOS
-{
-	public class APLCompositionTrackSegmentInfo : NSObject
-	{
+namespace AVCompositionDebugVieweriOS {
+	public class APLCompositionTrackSegmentInfo : NSObject {
 		public CMTimeRange TimeRange { get; set; }
 
 		public bool Empty { get; set; }

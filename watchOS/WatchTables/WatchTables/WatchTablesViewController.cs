@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using Foundation;
 using UIKit;
 
-namespace WatchTables
-{
-	public partial class WatchTablesViewController : UIViewController
-	{
+namespace WatchTables {
+	public partial class WatchTablesViewController : UIViewController {
 		public WatchTablesViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -16,7 +14,7 @@ namespace WatchTables
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -25,7 +23,7 @@ namespace WatchTables
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,8 +8,7 @@ using Messages;
 using UIKit;
 
 namespace MessagesExtension {
-	public class IceCream : IEquatable<IceCream>
-	{
+	public class IceCream : IEquatable<IceCream> {
 		CGSize size = new CGSize (300f, 300f);
 		CGSize opaquePadding = new CGSize (60f, 10f);
 
@@ -25,8 +24,7 @@ namespace MessagesExtension {
 			}
 		}
 
-		public NSUrlQueryItem[] QueryItems
-		{
+		public NSUrlQueryItem [] QueryItems {
 			get {
 				var items = new List<NSUrlQueryItem> ();
 				if (Base != null)
@@ -48,10 +46,10 @@ namespace MessagesExtension {
 			var iceCreamScoops = new NSUrlQueryItem ("Scoops", scoopsType.ToString ());
 			var iceCreamTopping = new NSUrlQueryItem ("Topping", toppingType.ToString ());
 
-			CheckQueryItems (new[] { iceCreamBase, iceCreamScoops, iceCreamTopping });
+			CheckQueryItems (new [] { iceCreamBase, iceCreamScoops, iceCreamTopping });
 		}
 
-		public IceCream (NSUrlQueryItem[] queryItems)
+		public IceCream (NSUrlQueryItem [] queryItems)
 		{
 			CheckQueryItems (queryItems);
 		}
@@ -94,9 +92,9 @@ namespace MessagesExtension {
 		{
 			unchecked {
 				var hashCode = 13;
-				hashCode = (hashCode * 397) ^ Base.GetHashCode();
-				hashCode = (hashCode * 397) ^ Scoops.GetHashCode();
-				hashCode = (hashCode * 397) ^ Topping.GetHashCode();
+				hashCode = (hashCode * 397) ^ Base.GetHashCode ();
+				hashCode = (hashCode * 397) ^ Scoops.GetHashCode ();
+				hashCode = (hashCode * 397) ^ Topping.GetHashCode ();
 				return hashCode;
 			}
 		}
@@ -148,13 +146,13 @@ namespace MessagesExtension {
 		public UIImage RenderParts ()
 		{
 			// Determine which parts to draw.
-			IceCreamPart[] allParts = { Topping, Scoops, Base };
+			IceCreamPart [] allParts = { Topping, Scoops, Base };
 			var partImages = allParts.Where (p => p != null && p.Image != null).Select (p => p.StickerImage);
 
 			// Calculate the size of the composited ice cream parts image.
 			var outputImageSize = CGSize.Empty;
 			outputImageSize.Width = partImages.OrderByDescending (i => i.Size.Width).FirstOrDefault ().Size.Width;
-			outputImageSize.Height = (nfloat)partImages.Sum (i => i.Size.Height);
+			outputImageSize.Height = (nfloat) partImages.Sum (i => i.Size.Height);
 
 			// Render the part images into a single composite image.
 			var renderer = new UIGraphicsImageRenderer (outputImageSize);
@@ -172,25 +170,25 @@ namespace MessagesExtension {
 			return image;
 		}
 
-		void CheckQueryItems (NSUrlQueryItem[] queryItems)
+		void CheckQueryItems (NSUrlQueryItem [] queryItems)
 		{
 			foreach (var queryItem in queryItems) {
 				if (string.IsNullOrEmpty (queryItem.Value))
 					continue;
 
 				switch (queryItem.Name) {
-					case "Base":
-						var baseType = (BaseType)Enum.Parse (typeof (BaseType), queryItem.Value, true);
-						Base = new Base (baseType);
-						break;
-					case "Scoops":
-						var scoopsType = (ScoopsType)Enum.Parse(typeof(ScoopsType), queryItem.Value, true);
-						Scoops = new Scoops (scoopsType);
-						break;
-					case "Topping":
-						var toppingType = (ToppingType)Enum.Parse (typeof (ToppingType), queryItem.Value, true);
-						Topping = new Topping (toppingType);
-						break;
+				case "Base":
+					var baseType = (BaseType) Enum.Parse (typeof (BaseType), queryItem.Value, true);
+					Base = new Base (baseType);
+					break;
+				case "Scoops":
+					var scoopsType = (ScoopsType) Enum.Parse (typeof (ScoopsType), queryItem.Value, true);
+					Scoops = new Scoops (scoopsType);
+					break;
+				case "Topping":
+					var toppingType = (ToppingType) Enum.Parse (typeof (ToppingType), queryItem.Value, true);
+					Topping = new Topping (toppingType);
+					break;
 				}
 			}
 		}

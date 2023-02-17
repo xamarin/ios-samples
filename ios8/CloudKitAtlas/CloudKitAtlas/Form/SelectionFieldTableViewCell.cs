@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public partial class SelectionFieldTableViewCell : FormFieldTableViewCell
-	{
+namespace CloudKitAtlas {
+	public partial class SelectionFieldTableViewCell : FormFieldTableViewCell {
 		[Outlet]
 		public UILabel SelectedItemLabel { get; set; }
 

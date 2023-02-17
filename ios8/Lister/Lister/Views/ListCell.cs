@@ -1,21 +1,19 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace Lister
-{
-	[Register("ListCell")]
-	public class ListCell : UITableViewCell
-	{
-		[Outlet("label")]
+namespace Lister {
+	[Register ("ListCell")]
+	public class ListCell : UITableViewCell {
+		[Outlet ("label")]
 		public UILabel Label { get; set; }
 
-		[Outlet("listColorView")]
+		[Outlet ("listColorView")]
 		public UIView ListColorView { get; set; }
 
-		public ListCell(IntPtr handle)
-			: base(handle)
+		public ListCell (IntPtr handle)
+			: base (handle)
 		{
 		}
 

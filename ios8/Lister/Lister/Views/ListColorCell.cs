@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using UIKit;
@@ -7,27 +7,25 @@ using Foundation;
 using Common;
 using CoreGraphics;
 
-namespace Lister
-{
-	[Register("ListColorCell")]
-	public class ListColorCell : UITableViewCell
-	{
-		[Outlet("gray")]
+namespace Lister {
+	[Register ("ListColorCell")]
+	public class ListColorCell : UITableViewCell {
+		[Outlet ("gray")]
 		UIView Gray { get; set; }
 
-		[Outlet("blue")]
+		[Outlet ("blue")]
 		UIView Blue { get; set; }
 
-		[Outlet("green")]
+		[Outlet ("green")]
 		UIView Green { get; set; }
 
-		[Outlet("yellow")]
+		[Outlet ("yellow")]
 		UIView Yellow { get; set; }
 
-		[Outlet("orange")]
+		[Outlet ("orange")]
 		UIView Orange { get; set; }
 
-		[Outlet("red")]
+		[Outlet ("red")]
 		UIView Red { get; set; }
 
 		public ListViewController ViewController { get; set; }
@@ -35,11 +33,11 @@ namespace Lister
 		public ListColor SelectedColor { get; private set; }
 
 		public ListColorCell (IntPtr handle)
-			: base(handle)
+			: base (handle)
 		{
 		}
 
-		public void Configure()
+		public void Configure ()
 		{
 			UITapGestureRecognizer colorTapGestureRecognizer = new UITapGestureRecognizer (ColorTap);
 			colorTapGestureRecognizer.NumberOfTapsRequired = 1;
@@ -48,7 +46,7 @@ namespace Lister
 			AddGestureRecognizer (colorTapGestureRecognizer);
 		}
 
-		void ColorTap(UITapGestureRecognizer tapGestureRecognizer)
+		void ColorTap (UITapGestureRecognizer tapGestureRecognizer)
 		{
 			if (tapGestureRecognizer.State != UIGestureRecognizerState.Ended)
 				return;
@@ -57,7 +55,7 @@ namespace Lister
 			UIView view = ContentView.HitTest (tapLocation, null);
 
 			// If the user tapped on a color (identified by its tag), notify the delegate.
-			ListColor color = (ListColor)(int)view.Tag;
+			ListColor color = (ListColor) (int) view.Tag;
 			SelectedColor = color;
 			ViewController.OnListColorCellDidChangeSelectedColor (SelectedColor);
 		}

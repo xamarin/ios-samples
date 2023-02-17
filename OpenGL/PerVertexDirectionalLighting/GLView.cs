@@ -6,10 +6,8 @@ using OpenTK.Graphics.ES20;
 using CoreAnimation;
 using ObjCRuntime;
 
-namespace PerVertexDirectionalLighting
-{
-	public class GLView : UIView
-	{
+namespace PerVertexDirectionalLighting {
+	public class GLView : UIView {
 		int backingWidth;
 		int backingHeight;
 		uint frameBuffer;
@@ -45,7 +43,7 @@ namespace PerVertexDirectionalLighting
 
 		public GLView () : base ()
 		{
-			CAEAGLLayer eaglLayer = (CAEAGLLayer)Layer;
+			CAEAGLLayer eaglLayer = (CAEAGLLayer) Layer;
 			eaglLayer.Opaque = true;
 
 			context = new EAGLContext (EAGLRenderingAPI.OpenGLES2);
@@ -109,7 +107,7 @@ namespace PerVertexDirectionalLighting
 
 			if (GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer) != FramebufferErrorCode.FramebufferComplete)
 				Console.WriteLine (String.Format ("Failed to make complete framebuffer object {0}",
-				                                  GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer).ToString ()));
+												  GL.CheckFramebufferStatus (FramebufferTarget.Framebuffer).ToString ()));
 
 			GL.Viewport (0, 0, backingWidth, backingHeight);
 

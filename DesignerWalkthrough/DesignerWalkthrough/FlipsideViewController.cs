@@ -4,10 +4,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace DesignerWalkthrough
-{
-	public partial class FlipsideViewController : UIViewController
-	{
+namespace DesignerWalkthrough {
+	public partial class FlipsideViewController : UIViewController {
 		public event EventHandler Done;
 
 		public FlipsideViewController (IntPtr handle) : base (handle)

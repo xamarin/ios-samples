@@ -4,10 +4,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace CircleLayout
-{
-	public partial class ViewController : UICollectionViewController
-	{
+namespace CircleLayout {
+	public partial class ViewController : UICollectionViewController {
 		static NSString cellClass = new NSString ("Cell");
 		int cellCount = 20;
 
@@ -19,7 +17,7 @@ namespace CircleLayout
 		{
 			base.ViewDidLoad ();
 
-			CollectionView.RegisterClassForCell (typeof(Cell), cellClass);
+			CollectionView.RegisterClassForCell (typeof (Cell), cellClass);
 			CollectionView.AddGestureRecognizer (new UITapGestureRecognizer (HandleTapGesture));
 			CollectionView.ReloadData ();
 			CollectionView.BackgroundColor = UIColor.DarkGray;
@@ -52,17 +50,19 @@ namespace CircleLayout
 			if (tappedCellPath != null) {
 				cellCount--;
 
-				CollectionView.PerformBatchUpdates (delegate {
-						CollectionView.DeleteItems (new NSIndexPath [] { tappedCellPath });
-					}, null);
+				CollectionView.PerformBatchUpdates (delegate
+				{
+					CollectionView.DeleteItems (new NSIndexPath [] { tappedCellPath });
+				}, null);
 			} else {
 				cellCount++;
 
-				CollectionView.PerformBatchUpdates (delegate {
-						CollectionView.InsertItems (new NSIndexPath[] {
+				CollectionView.PerformBatchUpdates (delegate
+				{
+					CollectionView.InsertItems (new NSIndexPath [] {
 								NSIndexPath.FromItemSection (0, 0)
 							});
-					}, null);
+				}, null);
 			}
 		}
 	}

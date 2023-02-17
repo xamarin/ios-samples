@@ -10,10 +10,8 @@ using CoreFoundation;
 using System.Linq;
 using System.Diagnostics;
 
-namespace SceneKitVehicle
-{
-	public partial class GameView : SCNView
-	{
+namespace SceneKitVehicle {
+	public partial class GameView : SCNView {
 		public int TouchesCount { get; set; }
 
 		public bool InCarView { get; set; }
@@ -52,7 +50,7 @@ namespace SceneKitVehicle
 
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
-			var touch = (UITouch)touches.AnyObject;
+			var touch = (UITouch) touches.AnyObject;
 
 			SKScene scene = OverlayScene;
 			CGPoint p = touch.LocationInView (this);
@@ -66,7 +64,7 @@ namespace SceneKitVehicle
 			}
 
 			NSSet allTouches = evt.AllTouches;
-			TouchesCount = (int)allTouches.Count;
+			TouchesCount = (int) allTouches.Count;
 		}
 
 		public override void TouchesEnded (NSSet touches, UIEvent evt)

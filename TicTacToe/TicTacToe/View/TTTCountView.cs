@@ -2,10 +2,8 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace TicTacToe
-{
-	public class TTTCountView : UIView
-	{
+namespace TicTacToe {
+	public class TTTCountView : UIView {
 		const float LineWidth = 1f;
 		const float LineMargin = 4f;
 		const int LineGroupCount = 5;
@@ -33,7 +31,7 @@ namespace TicTacToe
 		{
 			TintColor.SetColor ();
 			CGRect bounds = Bounds;
-			float x = (float)bounds.Right - LineWidth;
+			float x = (float) bounds.Right - LineWidth;
 
 			for (int n = 0; n < Count; n++) {
 				x -= LineMargin;
@@ -41,10 +39,10 @@ namespace TicTacToe
 					UIBezierPath path = new UIBezierPath ();
 					path.MoveTo (
 						new CGPoint (x + 0.5f * LineWidth,
-					             bounds.Top + 0.5f * LineWidth));
+								 bounds.Top + 0.5f * LineWidth));
 					path.AddLineTo (
 						new CGPoint (x + 0.5f * LineWidth + LineGroupCount * LineMargin,
-					             bounds.Bottom - 0.5f * LineWidth));
+								 bounds.Bottom - 0.5f * LineWidth));
 					path.Stroke ();
 				} else {
 					CGRect lineRect = bounds;

@@ -3,10 +3,8 @@ using UIKit;
 using Foundation;
 using CoreGraphics;
 
-namespace PaintCode
-{
-	public class DrawingViewController : UIViewController
-	{
+namespace PaintCode {
+	public class DrawingViewController : UIViewController {
 		public DrawingViewController ()
 		{
 		}
@@ -21,7 +19,7 @@ namespace PaintCode
 			View.BackgroundColor = UIColor.White;
 
 			drawing = new DrawingView ();
-			nfloat statusBarHeight = UIDevice.CurrentDevice.CheckSystemVersion (7,0) ?
+			nfloat statusBarHeight = UIDevice.CurrentDevice.CheckSystemVersion (7, 0) ?
 				UIApplication.SharedApplication.StatusBarFrame.Height : 0f;
 			drawing.Frame = new CGRect (0, statusBarHeight, 320, 640 - statusBarHeight);
 
@@ -30,9 +28,9 @@ namespace PaintCode
 			text = new UITextView (new CGRect (10, 150 + statusBarHeight, 300, 300 - statusBarHeight));
 			text.Font = UIFont.SystemFontOfSize (14f);
 			text.Editable = false;
-			text.Text = "Xamarin Shapes Example\n\n"+
+			text.Text = "Xamarin Shapes Example\n\n" +
 				"These are a few random shapes drawn with PaintCode and rendered in a UIView\n\n"
-				+"http://www.paintcodeapp.com/";
+				+ "http://www.paintcodeapp.com/";
 			View.AddSubview (text);
 		}
 	}

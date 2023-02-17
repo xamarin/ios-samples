@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 using CoreGraphics;
@@ -9,7 +9,7 @@ namespace MessagesExtension {
 	[Register ("IceCreamPartCollectionViewLayout")]
 	public class IceCreamPartCollectionViewLayout : UICollectionViewFlowLayout {
 
-		public IceCreamPartCollectionViewLayout (IntPtr handle) : base(handle)
+		public IceCreamPartCollectionViewLayout (IntPtr handle) : base (handle)
 		{
 		}
 

@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using CoreGraphics;
 
 using Foundation;
 using UIKit;
 using MobileCoreServices;
 
-namespace DocPicker
-{
-	public partial class DocPickerViewController : UIViewController
-	{
+namespace DocPicker {
+	public partial class DocPickerViewController : UIViewController {
 		#region Private Variables
 		private nfloat _documentTextHeight = 0;
 		#endregion
@@ -23,7 +21,7 @@ namespace DocPicker
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 		#endregion
 
@@ -40,7 +38,8 @@ namespace DocPicker
 		/// <returns><c>true</c>, if file was moved, <c>false</c> otherwise.</returns>
 		/// <param name="fromURL">From UR.</param>
 		/// <param name="toURL">To UR.</param>
-		private bool MoveFile(string fromURL, string toURL) {
+		private bool MoveFile (string fromURL, string toURL)
+		{
 			bool successful = true;
 
 			// Get source options
@@ -52,7 +51,7 @@ namespace DocPicker
 			var dstIntent = NSFileAccessIntent.CreateReadingIntent (dstURL, NSFileCoordinatorReadingOptions.ForUploading);
 
 			// Create an array
-			var intents = new NSFileAccessIntent[] {
+			var intents = new NSFileAccessIntent [] {
 				srcIntent,
 				dstIntent
 			};
@@ -62,9 +61,9 @@ namespace DocPicker
 			var fileCoordinator = new NSFileCoordinator ();
 			fileCoordinator.CoordinateAccess (intents, queue, (err) => {
 				// Was there an error?
-				if (err!=null) {
+				if (err != null) {
 					// Yes, inform caller
-					Console.WriteLine("Error: {0}",err.LocalizedDescription);
+					Console.WriteLine ("Error: {0}", err.LocalizedDescription);
 					successful = false;
 				}
 			});
@@ -80,17 +79,18 @@ namespace DocPicker
 		///  Adjust the size of the <c>DocumentText</c> text editor to account for the keyboard being displayed
 		/// </summary>
 		/// <param name="height">The new text area height</param>
-		private void MoveDocumentText(nfloat height) {
+		private void MoveDocumentText (nfloat height)
+		{
 
 			// Animate size change
-			UIView.BeginAnimations("keyboard");
-			UIView.SetAnimationDuration(0.3f);
+			UIView.BeginAnimations ("keyboard");
+			UIView.SetAnimationDuration (0.3f);
 
 			// Adjust frame to move the text away from the keyboard
 			DocumentText.Frame = new CGRect (0, DocumentText.Frame.Y, DocumentText.Frame.Width, height);
 
 			// Start animation
-			UIView.CommitAnimations();
+			UIView.CommitAnimations ();
 		}
 		#endregion
 
@@ -103,7 +103,7 @@ namespace DocPicker
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -128,18 +128,20 @@ namespace DocPicker
 				document.DocumentModified += (doc) => {
 					// Display the updated contents of the document
 					DocumentText.Text = doc.Contents;
-					Console.WriteLine("Document contents have been updated");
+					Console.WriteLine ("Document contents have been updated");
 				};
 			};
 
 			// Wireup events for the text editor
-			DocumentText.ShouldBeginEditing= delegate(UITextView field){
+			DocumentText.ShouldBeginEditing = delegate (UITextView field)
+			{
 				//Placeholder
-				MoveDocumentText(_documentTextHeight-170f);
+				MoveDocumentText (_documentTextHeight - 170f);
 				return true;
 			};
-			DocumentText.ShouldEndEditing= delegate (UITextView field){
-				MoveDocumentText(_documentTextHeight);
+			DocumentText.ShouldEndEditing = delegate (UITextView field)
+			{
+				MoveDocumentText (_documentTextHeight);
 				ThisApp.Document.Contents = DocumentText.Text;
 				return true;
 			};
@@ -147,17 +149,17 @@ namespace DocPicker
 			// Wireup the Save button
 			SaveButton.Clicked += (sender, e) => {
 				// Close the keyboard
-				DocumentText.ResignFirstResponder();
+				DocumentText.ResignFirstResponder ();
 
 				// Save the changes to the document
-				ThisApp.SaveDocument();
+				ThisApp.SaveDocument ();
 			};
 
 			// Wireup the Action buttom
 			ActionButton.Clicked += (s, e) => {
 
 				// Allow the Document picker to select a range of document types
-				var allowedUTIs = new string[] {
+				var allowedUTIs = new string [] {
 					UTType.UTF8PlainText,
 					UTType.PlainText,
 					UTType.RTF,
@@ -169,7 +171,7 @@ namespace DocPicker
 
 				// Display the picker
 				//var picker = new UIDocumentPickerViewController (allowedUTIs, UIDocumentPickerMode.Open);
-				var pickerMenu = new UIDocumentMenuViewController(allowedUTIs, UIDocumentPickerMode.Open);
+				var pickerMenu = new UIDocumentMenuViewController (allowedUTIs, UIDocumentPickerMode.Open);
 				pickerMenu.DidPickDocumentPicker += (sender, args) => {
 
 					// Wireup Document Picker
@@ -177,41 +179,41 @@ namespace DocPicker
 
 						// IMPORTANT! You must lock the security scope before you can
 						// access this file
-						var securityEnabled = pArgs.Url.StartAccessingSecurityScopedResource();
+						var securityEnabled = pArgs.Url.StartAccessingSecurityScopedResource ();
 
 						// Open the document
-						ThisApp.OpenDocument(pArgs.Url);
+						ThisApp.OpenDocument (pArgs.Url);
 
 						// TODO: This should work but doesn't
 						// Apple's WWDC 2014 sample project does this but it blows
 						// up in Xamarin
-						 NSFileCoordinator fileCoordinator = new NSFileCoordinator();
-						 NSError err;
-						 fileCoordinator.CoordinateRead (pArgs.Url, 0, out err, (NSUrl newUrl) => {
-							NSData data = NSData.FromUrl(newUrl);
-							Console.WriteLine("Data: {0}",data);
-						 });
+						NSFileCoordinator fileCoordinator = new NSFileCoordinator ();
+						NSError err;
+						fileCoordinator.CoordinateRead (pArgs.Url, 0, out err, (NSUrl newUrl) => {
+							NSData data = NSData.FromUrl (newUrl);
+							Console.WriteLine ("Data: {0}", data);
+						});
 
 						// IMPORTANT! You must release the security lock established
 						// above.
-						pArgs.Url.StopAccessingSecurityScopedResource();
+						pArgs.Url.StopAccessingSecurityScopedResource ();
 					};
 
 					// Display the document picker
-					PresentViewController(args.DocumentPicker,true,null);
+					PresentViewController (args.DocumentPicker, true, null);
 				};
 
 				pickerMenu.ModalPresentationStyle = UIModalPresentationStyle.Popover;
-				PresentViewController(pickerMenu,true,null);
+				PresentViewController (pickerMenu, true, null);
 				UIPopoverPresentationController presentationPopover = pickerMenu.PopoverPresentationController;
-				if (presentationPopover!=null) {
+				if (presentationPopover != null) {
 					presentationPopover.SourceView = this.View;
 					presentationPopover.PermittedArrowDirections = UIPopoverArrowDirection.Down;
 
 					// Get UIBarButtonItem's frame
 					// there is no built in way to get a UIBarButtonItem frame so you need to hack your own
 					// This is because UIBarButtonItem inherits from UIBarItem and UIBarItem inherits from NSObject
-					var buttonView = (UIView)((UIBarButtonItem)s).ValueForKey(new NSString("view"));
+					var buttonView = (UIView) ((UIBarButtonItem) s).ValueForKey (new NSString ("view"));
 					presentationPopover.SourceRect = buttonView.Frame;
 				}
 			};

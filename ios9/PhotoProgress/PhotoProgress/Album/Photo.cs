@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Foundation;
 using UIKit;
@@ -57,7 +57,7 @@ namespace PhotoProgress {
 
 		void ReportError (NSError error)
 		{
-			if (error.Domain == NSError.CocoaErrorDomain || error.Code == (nint)(int)NSCocoaError.UserCancelled)
+			if (error.Domain == NSError.CocoaErrorDomain || error.Code == (nint) (int) NSCocoaError.UserCancelled)
 				Console.WriteLine ("Error importing photo: {0}", error.LocalizedDescription);
 		}
 	}

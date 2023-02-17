@@ -6,11 +6,11 @@ using Foundation;
 using UIKit;
 
 namespace AstroLayout {
-    [Register ("AstroViewController")]
-    public class AstroViewController : UIViewController {
-        
-		NSLayoutConstraint[] regularConstraints;
-		NSLayoutConstraint[] compactConstraints;
+	[Register ("AstroViewController")]
+	public class AstroViewController : UIViewController {
+
+		NSLayoutConstraint [] regularConstraints;
+		NSLayoutConstraint [] compactConstraints;
 		List<NSLayoutConstraint> sharedConstraints;
 
 		UIImageView mercury;
@@ -50,13 +50,13 @@ namespace AstroLayout {
 		}
 
 		public override void ViewDidLoad ()
-        {
+		{
 			View.BackgroundColor = UIColor.Black;
 
 			CreatePlanetViews ();
 			CreateConstraints ();
 			SetUpGestures ();
-        }
+		}
 
 		public override void TraitCollectionDidChange (UITraitCollection previousTraitCollection)
 		{
@@ -73,26 +73,26 @@ namespace AstroLayout {
 			}
 		}
 
-        void CreateConstraints ()
-        {
+		void CreateConstraints ()
+		{
 			PlanetSizes ();
 			CreateCompactConstraints ();
 			CreateRegularConstraints ();
 
 			NSLayoutConstraint.ActivateConstraints (regularConstraints);
 			NSLayoutConstraint.ActivateConstraints (sharedConstraints.ToArray ());
-        }
+		}
 
-        void SetLayoutIdentifierForArray (NSString identifier, NSArray constraintsArray)
+		void SetLayoutIdentifierForArray (NSString identifier, NSArray constraintsArray)
 		{
 			for (nuint i = 0; i < constraintsArray.Count; i++) {
 				var constraint = constraintsArray.GetItem<NSLayoutConstraint> (i);
 				constraint.SetIdentifier (identifier);
 			}
-        }
+		}
 
-        void CreatePlanetViews ()
-        {   
+		void CreatePlanetViews ()
+		{
 			mercury = CreatePlanet ("Mercury");
 			venus = CreatePlanet ("Venus");
 			earth = CreatePlanet ("Earth");
@@ -101,7 +101,7 @@ namespace AstroLayout {
 			saturn = CreatePlanet ("Saturn");
 			uranus = CreatePlanet ("Uranus");
 			neptune = CreatePlanet ("Neptune");
-        }
+		}
 
 		UIImageView CreatePlanet (string planetName)
 		{
@@ -115,14 +115,14 @@ namespace AstroLayout {
 			return planet;
 		}
 
-        void PlanetSizes ()
-        {
+		void PlanetSizes ()
+		{
 			NSLayoutConstraint mercuryHeight = mercury.HeightAnchor.ConstraintEqualTo (earth.HeightAnchor, .38f);
 			NSLayoutConstraint mercuryWidth = mercury.WidthAnchor.ConstraintEqualTo (mercury.HeightAnchor, 1f);
 
 			NSLayoutConstraint venusHeight = venus.HeightAnchor.ConstraintEqualTo (earth.HeightAnchor, .95f);
 			NSLayoutConstraint venusWidth = venus.WidthAnchor.ConstraintEqualTo (venus.HeightAnchor, 1f);
-            
+
 			NSLayoutConstraint marsHeight = mars.HeightAnchor.ConstraintEqualTo (earth.HeightAnchor, .53f);
 			NSLayoutConstraint marsWidth = mars.WidthAnchor.ConstraintEqualTo (mars.HeightAnchor, 1f);
 
@@ -134,12 +134,12 @@ namespace AstroLayout {
 
 			NSLayoutConstraint uranusHeight = uranus.HeightAnchor.ConstraintEqualTo (earth.HeightAnchor, 4f);
 			NSLayoutConstraint uranusWidth = uranus.WidthAnchor.ConstraintEqualTo (uranus.HeightAnchor, 1f);
-            
+
 			NSLayoutConstraint neptuneHeight = neptune.HeightAnchor.ConstraintEqualTo (earth.HeightAnchor, 3.88f);
 			NSLayoutConstraint neptuneWidth = neptune.HeightAnchor.ConstraintEqualTo (neptune.HeightAnchor, 1f);
-            
+
 			NSLayoutConstraint earthWidth = earth.WidthAnchor.ConstraintEqualTo (earth.HeightAnchor);
-            
+
 			mercuryHeight.SetIdentifier ("mercuryHeight");
 			mercuryHeight.SetIdentifier ("mercuryHeight");
 			mercuryWidth.SetIdentifier ("mercuryWidth");
@@ -164,12 +164,12 @@ namespace AstroLayout {
 			});
 		}
 
-        void CreateCompactConstraints()
-        {
+		void CreateCompactConstraints ()
+		{
 			if (compactConstraints?.Length > 0)
 				return;
-			
-            mercuryCenter = CreateCenterXConstraint (mercury, "mercuryCenterX");
+
+			mercuryCenter = CreateCenterXConstraint (mercury, "mercuryCenterX");
 			venusCenter = CreateCenterXConstraint (venus, "venusCenterX");
 			earthCenter = CreateCenterXConstraint (earth, "earthCenterX");
 			marsCenter = CreateCenterXConstraint (mars, "marsCenterX");
@@ -181,8 +181,8 @@ namespace AstroLayout {
 			compactConstraints = new [] {
 				mercuryCenter, venusCenter, earthCenter, marsCenter, jupiterCenter, saturnCenter, uranusCenter, neptuneCenter
 			};
-        }
-			
+		}
+
 		NSLayoutConstraint CreateCenterXConstraint (UIView planetToCenter, string identifierName)
 		{
 			NSLayoutConstraint newConstraint = planetToCenter.CenterXAnchor.ConstraintEqualTo (View.CenterXAnchor);
@@ -190,12 +190,12 @@ namespace AstroLayout {
 			return newConstraint;
 		}
 
-        void CreateRegularConstraints ()
-        {
+		void CreateRegularConstraints ()
+		{
 			if (regularConstraints?.Length > 0 && sharedConstraints?.Count > 0)
-            	return;
-			
-            UILayoutGuide leadingMercuryGuide = NewLayoutGuide ("leadingMercuryGuide");
+				return;
+
+			UILayoutGuide leadingMercuryGuide = NewLayoutGuide ("leadingMercuryGuide");
 			UILayoutGuide leadingVenusGuide = NewLayoutGuide ("leadingVenusGuide");
 			UILayoutGuide leadingEarthGuide = NewLayoutGuide ("leadingEarthGuide");
 			UILayoutGuide leadingMarsGuide = NewLayoutGuide ("leadingMarsGuide");
@@ -212,16 +212,16 @@ namespace AstroLayout {
 			UILayoutGuide trailingSaturnGuide = NewLayoutGuide ("trailingSaturnGuide");
 			UILayoutGuide trailingUranusGuide = NewLayoutGuide ("trailingUranusGuide");
 			UILayoutGuide trailingNeptuneGuide = NewLayoutGuide ("trailingNeptuneGuide");
-            
+
 			IUILayoutSupport topLayoutGuide = TopLayoutGuide;
 
-			var planetsAndGuides = NSDictionary.FromObjectsAndKeys (new object[] {
+			var planetsAndGuides = NSDictionary.FromObjectsAndKeys (new object [] {
 				mercury, venus, earth, mars, jupiter, saturn, uranus, neptune,
 				leadingMercuryGuide, leadingVenusGuide, leadingEarthGuide, leadingMarsGuide,
 				leadingJupiterGuide, leadingSaturnGuide, leadingUranusGuide, leadingNeptuneGuide,
 				trailingMercuryGuide, trailingVenusGuide, trailingEarthGuide, trailingMarsGuide,
 				trailingJupiterGuide, trailingSaturnGuide, trailingUranusGuide, trailingNeptuneGuide, topLayoutGuide
-			}, new object[] {
+			}, new object [] {
 				"mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune",
 				"leadingMercuryGuide", "leadingVenusGuide", "leadingEarthGuide", "leadingMarsGuide",
 				"leadingJupiterGuide", "leadingSaturnGuide", "leadingUranusGuide", "leadingNeptuneGuide",
@@ -233,9 +233,9 @@ namespace AstroLayout {
 				"[leadingVenusGuide]-[leadingEarthGuide]-[leadingMarsGuide]-" +
 				"[leadingJupiterGuide][leadingSaturnGuide][leadingUranusGuide]-" +
 				"[leadingNeptuneGuide]-20-|", NSLayoutFormatOptions.DirectionLeadingToTrailing, null, planetsAndGuides);
-                
+
 			sharedConstraints = new List<NSLayoutConstraint> (topToBottom);
-			SetLayoutIdentifierForArray ((NSString)"topToBottom", NSArray.FromObjects (topToBottom));
+			SetLayoutIdentifierForArray ((NSString) "topToBottom", NSArray.FromObjects (topToBottom));
 
 			NewHorizontalArray ("|[leadingMercuryGuide][mercury][trailingMercuryGuide]|", "hMercury", planetsAndGuides);
 			NewHorizontalArray ("|[leadingVenusGuide][venus][trailingVenusGuide]|", "hVenus", planetsAndGuides);
@@ -245,7 +245,7 @@ namespace AstroLayout {
 			NewHorizontalArray ("|[leadingSaturnGuide][saturn][trailingSaturnGuide]|", "hSaturn", planetsAndGuides);
 			NewHorizontalArray ("|[leadingUranusGuide][uranus][trailingUranusGuide]|", "hUranus", planetsAndGuides);
 			NewHorizontalArray ("|[leadingNeptuneGuide][neptune][trailingNeptuneGuide]|", "hNeptune", planetsAndGuides);
-            
+
 			sharedConstraints.Add (GuideHeightToPlanet (leadingMercuryGuide, mercury, "guideHeightToMercury"));
 			sharedConstraints.Add (GuideHeightToPlanet (leadingVenusGuide, venus, "guideHeightToVenus"));
 			sharedConstraints.Add (GuideHeightToPlanet (leadingEarthGuide, earth, "guideHeightToEarth"));
@@ -263,7 +263,7 @@ namespace AstroLayout {
 			saturnLeadingToTrailing = leadingSaturnGuide.WidthAnchor.ConstraintEqualTo (trailingSaturnGuide.WidthAnchor, 1f);
 			uranusLeadingToTrailing = leadingUranusGuide.WidthAnchor.ConstraintEqualTo (trailingUranusGuide.WidthAnchor, 2.7f);
 			neptuneLeadingToTrailing = leadingNeptuneGuide.WidthAnchor.ConstraintEqualTo (trailingNeptuneGuide.WidthAnchor, 10f);
-            
+
 			mercuryLeadingToTrailing.SetIdentifier ("leadingTrailingAnchorMercury");
 			venusLeadingToTrailing.SetIdentifier ("leadingTrailingAnchorVenus");
 			earthLeadingToTrailing.SetIdentifier ("leadingTrailingAnchorEarth");
@@ -272,7 +272,7 @@ namespace AstroLayout {
 			saturnLeadingToTrailing.SetIdentifier ("leadingTrailingAnchorSaturn");
 			uranusLeadingToTrailing.SetIdentifier ("leadingTrailingAnchorUranus");
 			neptuneLeadingToTrailing.SetIdentifier ("leadingTrailingAnchorNeptune");
-            
+
 			regularConstraints = new [] {
 				mercuryLeadingToTrailing, venusLeadingToTrailing, earthLeadingToTrailing, marsLeadingToTrailing,
 				saturnLeadingToTrailing, jupiterLeadingToTrailing,  uranusLeadingToTrailing, neptuneLeadingToTrailing
@@ -283,7 +283,7 @@ namespace AstroLayout {
 		{
 			var horizontalConstraintsArray = NSLayoutConstraint.FromVisualFormat (layoutString, NSLayoutFormatOptions.AlignAllCenterY, null, planetsAndGuides);
 			sharedConstraints.AddRange (horizontalConstraintsArray);
-			SetLayoutIdentifierForArray ((NSString)arrayID, NSArray.FromObjects (horizontalConstraintsArray));
+			SetLayoutIdentifierForArray ((NSString) arrayID, NSArray.FromObjects (horizontalConstraintsArray));
 		}
 
 		NSLayoutConstraint GuideHeightToPlanet (UILayoutGuide layoutGuide, UIView planet, string identifier)
@@ -303,8 +303,8 @@ namespace AstroLayout {
 			return newGuide;
 		}
 
-        void ChangeLayout (UIGestureRecognizer tapGesture)
-        {
+		void ChangeLayout (UIGestureRecognizer tapGesture)
+		{
 			if (tapGesture.State != UIGestureRecognizerState.Ended)
 				return;
 
@@ -323,10 +323,10 @@ namespace AstroLayout {
 					View.LayoutIfNeeded ();
 				});
 			}
-        }
+		}
 
-        void KeyframeBasedLayoutChange (UIGestureRecognizer twoFingerDoubleTap)
-        {
+		void KeyframeBasedLayoutChange (UIGestureRecognizer twoFingerDoubleTap)
+		{
 			if (twoFingerDoubleTap.State != UIGestureRecognizerState.Ended)
 				return;
 
@@ -335,16 +335,16 @@ namespace AstroLayout {
 			if (regularConstraint.Active) {
 				UIView.AnimateKeyframes (1.5, 0.0, UIViewKeyframeAnimationOptions.CalculationModeLinear,
 					AnimateToCompact, finished => {
-				});
+					});
 			} else if (compactConstraint.Active) {
 				UIView.AnimateKeyframes (1.5, 0.0, UIViewKeyframeAnimationOptions.CalculationModeLinear,
 					AnimateToRegular, finished => {
-				});
+					});
 			}
-        }
+		}
 
-        void AnimateToRegular ()
-        {
+		void AnimateToRegular ()
+		{
 			UIView.AddKeyframeWithRelativeStartTime (0.0, 1.0, () => {
 				NSLayoutConstraint.DeactivateConstraints (new [] { mercuryCenter });
 				NSLayoutConstraint.ActivateConstraints (new [] { mercuryLeadingToTrailing });
@@ -368,10 +368,10 @@ namespace AstroLayout {
 				NSLayoutConstraint.ActivateConstraints (new [] { marsLeadingToTrailing, jupiterLeadingToTrailing, saturnLeadingToTrailing });
 				View.LayoutIfNeeded ();
 			});
-        }
+		}
 
-        void AnimateToCompact ()
-        {
+		void AnimateToCompact ()
+		{
 			UIView.AddKeyframeWithRelativeStartTime (0.0, 1.0, () => {
 				NSLayoutConstraint.DeactivateConstraints (new [] { marsLeadingToTrailing, jupiterLeadingToTrailing, saturnLeadingToTrailing });
 				NSLayoutConstraint.ActivateConstraints (new [] { marsCenter, jupiterCenter, saturnCenter });
@@ -395,10 +395,10 @@ namespace AstroLayout {
 				NSLayoutConstraint.ActivateConstraints (new [] { mercuryCenter });
 				View.LayoutIfNeeded ();
 			});
-        }
+		}
 
-        void SetUpGestures ()
-        {
+		void SetUpGestures ()
+		{
 			UITapGestureRecognizer doubleTap = null;
 			doubleTap = new UITapGestureRecognizer (() => ChangeLayout (doubleTap)) {
 				NumberOfTapsRequired = 2,
@@ -412,6 +412,6 @@ namespace AstroLayout {
 				NumberOfTouchesRequired = 2
 			};
 			View.AddGestureRecognizer (twoFingerDoubleTap);
-        }
-    }
+		}
+	}
 }

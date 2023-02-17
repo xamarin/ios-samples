@@ -9,7 +9,7 @@ namespace UICatalog {
 		public DataItem DataItem { get; private set; }
 
 		[Export ("initWithCoder:")]
-		public DataItemViewController (NSCoder coder): base (coder)
+		public DataItemViewController (NSCoder coder) : base (coder)
 		{
 		}
 
@@ -18,7 +18,7 @@ namespace UICatalog {
 			ImageView.Image = UIImage.FromBundle (DataItem.LargeImageName);
 		}
 
-		public void ConfigureWithDataItem (DataItem dataItem) 
+		public void ConfigureWithDataItem (DataItem dataItem)
 		{
 			DataItem = dataItem;
 		}

@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 using CoreLocation;
 using MapKit;
 using UIKit;
 
-namespace MapsWalkthrough
-{
-	public partial class EvolveMapViewController : UIViewController
-	{
+namespace MapsWalkthrough {
+	public partial class EvolveMapViewController : UIViewController {
 		MKMapView map;
 		MapDelegate mapDelegate;
-		CLLocationManager locationManager = new CLLocationManager();
+		CLLocationManager locationManager = new CLLocationManager ();
 
 		public override void LoadView ()
 		{
@@ -21,7 +19,7 @@ namespace MapsWalkthrough
 		{
 			base.ViewDidLoad ();
 
-			if (UIDevice.CurrentDevice.CheckSystemVersion(8,0)){
+			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
 				locationManager.RequestWhenInUseAuthorization ();
 			}
 
@@ -50,7 +48,7 @@ namespace MapsWalkthrough
 
 			// add an overlay of the hotel
 			MKPolygon hotelOverlay = MKPolygon.FromCoordinates (
-				new CLLocationCoordinate2D[] {
+				new CLLocationCoordinate2D [] {
 				new CLLocationCoordinate2D(30.2649977168594, -97.73863627705),
 				new CLLocationCoordinate2D(30.2648461170005, -97.7381627734755),
 				new CLLocationCoordinate2D(30.2648355402574, -97.7381750192576),
@@ -73,7 +71,7 @@ namespace MapsWalkthrough
 			});
 
 			map.AddGestureRecognizer (tap);
-		}			
+		}
 	}
 }
 

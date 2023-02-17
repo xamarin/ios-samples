@@ -3,30 +3,27 @@
 
 using System.Collections.Generic;
 
-namespace ElizaCore
-{
+namespace ElizaCore {
 	/// <summary>Eliza decomp list.</summary>
 	/// <remarks>
 	/// Eliza decomp list.
 	/// This stores all the decompositions of a single key.
 	/// </remarks>
-	public class DecompList : List<Decomp>
-	{
+	public class DecompList : List<Decomp> {
 		/// <summary>Add another decomp rule to the list.</summary>
 		/// <remarks>Add another decomp rule to the list.</remarks>
-		public virtual void Add(string word, bool mem, ReasembList reasmb)
+		public virtual void Add (string word, bool mem, ReasembList reasmb)
 		{
-			Add(new Decomp(word, mem, reasmb));
+			Add (new Decomp (word, mem, reasmb));
 		}
 
 		/// <summary>Print the whole decomp list.</summary>
 		/// <remarks>Print the whole decomp list.</remarks>
-		public virtual void Print(int indent)
+		public virtual void Print (int indent)
 		{
-			for (int i = 0; i < Count; i++)
-			{
-				Decomp d = (Decomp)this[i];
-				d.Print(indent);
+			for (int i = 0; i < Count; i++) {
+				Decomp d = (Decomp) this [i];
+				d.Print (indent);
 			}
 		}
 	}

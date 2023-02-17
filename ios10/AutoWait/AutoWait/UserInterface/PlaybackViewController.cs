@@ -4,10 +4,8 @@ using AVFoundation;
 using Foundation;
 using UIKit;
 
-namespace AutoWait
-{
-	public partial class PlaybackViewController : UIViewController
-	{
+namespace AutoWait {
+	public partial class PlaybackViewController : UIViewController {
 		[Outlet ("playerView")]
 		PlayerView PlayerView { get; set; }
 
@@ -56,7 +54,7 @@ namespace AutoWait
 
 			// Load value for the automatic waiting switch from user defaults.
 			AutomaticWaitingSwitch.On = NSUserDefaults.StandardUserDefaults.BoolForKey ("disableAutomaticWaiting");
-			if(Player != null)
+			if (Player != null)
 				Player.AutomaticallyWaitsToMinimizeStalling = AutomaticWaitingSwitch.On;
 
 			var playerView = PlayerView;
@@ -79,7 +77,7 @@ namespace AutoWait
 		void toggleAutomaticWaiting (UISwitch sender)
 		{
 			// Check for the new value of the switch and update AVPlayer property and user defaults
-			if(Player != null)
+			if (Player != null)
 				Player.AutomaticallyWaitsToMinimizeStalling = AutomaticWaitingSwitch.On;
 			NSUserDefaults.StandardUserDefaults.SetBool (AutomaticWaitingSwitch.On, "disableAutomaticWaiting");
 		}
@@ -96,10 +94,10 @@ namespace AutoWait
 			Player?.Play ();
 		}
 
-		[Action("playImmediately:")]
+		[Action ("playImmediately:")]
 		void playImmediately (NSObject sender)
 		{
-			Player?.PlayImmediatelyAtRate(1);
+			Player?.PlayImmediatelyAtRate (1);
 		}
 
 		#endregion

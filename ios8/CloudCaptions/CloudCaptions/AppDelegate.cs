@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,21 +6,19 @@ using Foundation;
 using UIKit;
 using CloudKit;
 
-namespace CloudCaptions
-{
+namespace CloudCaptions {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		public override UIWindow Window { get; set; }
 
-		[Outlet("tableController")]
+		[Outlet ("tableController")]
 		public MainViewController TableController { get; set; }
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			// Override point for customization after application launch.
 			UIUserNotificationSettings notificationSettings = UIUserNotificationSettings.GetSettingsForTypes (UIUserNotificationType.Alert, null);
-			app.RegisterUserNotificationSettings (notificationSettings);;
+			app.RegisterUserNotificationSettings (notificationSettings); ;
 			app.RegisterForRemoteNotifications ();
 
 			return true;
@@ -32,7 +30,7 @@ namespace CloudCaptions
 				return;
 
 			// Sends the ID of the record save that triggered the push to the tableViewController
-			var recordInfo = (CKQueryNotification)CKQueryNotification.FromRemoteNotificationDictionary (userInfo);
+			var recordInfo = (CKQueryNotification) CKQueryNotification.FromRemoteNotificationDictionary (userInfo);
 			TableController.LoadNewPostsWithRecordID (recordInfo.RecordId);
 		}
 	}

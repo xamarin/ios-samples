@@ -4,8 +4,7 @@ using Foundation;
 using CoreGraphics;
 using QuartzSample;
 
-public class RectDrawingView : QuartzView
-{
+public class RectDrawingView : QuartzView {
 	public override void DrawInContext (CGContext context)
 	{
 		// Drawing with a white stroke color
@@ -48,8 +47,7 @@ public class RectDrawingView : QuartzView
 	}
 }
 
-public class PolyDrawingView : QuartzView
-{
+public class PolyDrawingView : QuartzView {
 	public override void DrawInContext (CGContext context)
 	{
 		// Drawing with a white stroke color
@@ -65,8 +63,8 @@ public class PolyDrawingView : QuartzView
 		center = new CGPoint (90, 90);
 		context.MoveTo (center.X, center.Y + 60);
 		for (int i = 1; i < 5; ++i) {
-			float x = (float)(60 * Math.Sin (i * 4 * Math.PI / 5));
-			float y = (float)(60 * Math.Cos (i * 4 * Math.PI / 5));
+			float x = (float) (60 * Math.Sin (i * 4 * Math.PI / 5));
+			float y = (float) (60 * Math.Cos (i * 4 * Math.PI / 5));
 
 			context.AddLineToPoint (center.X + x, center.Y + y);
 		}
@@ -79,8 +77,8 @@ public class PolyDrawingView : QuartzView
 		center = new CGPoint (90, 210);
 		context.MoveTo (center.X, center.Y + 60);
 		for (int i = 1; i < 5; ++i) {
-			float x = (float)(60 * Math.Sin (i * 4 * Math.PI / 5));
-			float y = (float)(60 * Math.Cos (i * 4 * Math.PI / 5));
+			float x = (float) (60 * Math.Sin (i * 4 * Math.PI / 5));
+			float y = (float) (60 * Math.Cos (i * 4 * Math.PI / 5));
 			context.AddLineToPoint (center.X + x, center.Y + y);
 		}
 		// Closing the path connects the current point to the start of the current path.
@@ -92,8 +90,8 @@ public class PolyDrawingView : QuartzView
 		center = new CGPoint (90, 330);
 		context.MoveTo (center.X, center.Y + 60);
 		for (int i = 1; i < 5; ++i) {
-			float x = (float)(60 * Math.Sin (i * 4 * Math.PI / 5));
-			float y = (float)(60 * Math.Cos (i * 4 * Math.PI / 5));
+			float x = (float) (60 * Math.Sin (i * 4 * Math.PI / 5));
+			float y = (float) (60 * Math.Cos (i * 4 * Math.PI / 5));
 			context.AddLineToPoint (center.X + x, center.Y + y);
 		}
 		// Closing the path connects the current point to the start of the current path.
@@ -105,8 +103,8 @@ public class PolyDrawingView : QuartzView
 		center = new CGPoint (210, 90);
 		context.MoveTo (center.X, center.Y + 60);
 		for (int i = 1; i < 6; ++i) {
-			float x = (float)(60 * Math.Sin (i * 2 * Math.PI / 6));
-			float y = (float)(60 * Math.Cos (i * 2 * Math.PI / 6));
+			float x = (float) (60 * Math.Sin (i * 2 * Math.PI / 6));
+			float y = (float) (60 * Math.Cos (i * 2 * Math.PI / 6));
 			context.AddLineToPoint (center.X + x, center.Y + y);
 		}
 		// Closing the path connects the current point to the start of the current path.
@@ -118,8 +116,8 @@ public class PolyDrawingView : QuartzView
 		center = new CGPoint (210, 240);
 		context.MoveTo (center.X, center.Y + 60);
 		for (int i = 1; i < 6; ++i) {
-			float x = (float)(60 * Math.Sin (i * 2 * Math.PI / 6));
-			float y = (float)(60 * Math.Cos (i * 2 * Math.PI / 6));
+			float x = (float) (60 * Math.Sin (i * 2 * Math.PI / 6));
+			float y = (float) (60 * Math.Cos (i * 2 * Math.PI / 6));
 			context.AddLineToPoint (center.X + x, center.Y + y);
 		}
 		// Closing the path connects the current point to the start of the current path.

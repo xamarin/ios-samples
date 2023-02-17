@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 using CoreGraphics;
 
-namespace LookInside
-{
-	public class CoolPresentationController : UIPresentationController
-	{
+namespace LookInside {
+	public class CoolPresentationController : UIPresentationController {
 		UIImageView bigFlowerImageView;
 		UIImageView carlImageView;
 
@@ -31,7 +29,7 @@ namespace LookInside
 					? 300
 					: containerBounds.Size.Height - 2 * jaguarPrintImageH.Size.Height;
 				presentedViewFrame.Size = new CGSize (w, h);
-				var location = (CGPoint)containerBounds.Size;
+				var location = (CGPoint) containerBounds.Size;
 				location.X /= 2;
 				location.Y /= 2;
 				location.X -= presentedViewFrame.Size.Width / 2;
@@ -43,11 +41,11 @@ namespace LookInside
 		}
 
 		public CoolPresentationController (UIViewController presentedViewController,
-			                               UIViewController presentingViewController)
-			: base(presentedViewController, presentingViewController)
+										   UIViewController presentingViewController)
+			: base (presentedViewController, presentingViewController)
 		{
 			dimmingView = new UIView {
-				BackgroundColor = UIColor.Purple.ColorWithAlpha(0.4f)
+				BackgroundColor = UIColor.Purple.ColorWithAlpha (0.4f)
 			};
 
 			bigFlowerImageView = new UIImageView (UIImage.FromBundle ("BigFlower"));
@@ -80,7 +78,7 @@ namespace LookInside
 			MoveJaguarPrintToPresentedPosition (false);
 
 			UIView.Animate (1, () => {
-				MoveJaguarPrintToPresentedPosition(true);
+				MoveJaguarPrintToPresentedPosition (true);
 			});
 		}
 
@@ -112,7 +110,7 @@ namespace LookInside
 		{
 			base.DismissalTransitionWillBegin ();
 
-			PresentedViewController.GetTransitionCoordinator().AnimateAlongsideTransition(context => {
+			PresentedViewController.GetTransitionCoordinator ().AnimateAlongsideTransition (context => {
 				dimmingView.Alpha = 0;
 			}, null);
 		}
@@ -123,7 +121,7 @@ namespace LookInside
 			Dispose ();
 		}
 
-		void AddViewsToDimmingView()
+		void AddViewsToDimmingView ()
 		{
 			if (TraitCollection.HorizontalSizeClass == UIUserInterfaceSizeClass.Regular &&
 			   TraitCollection.VerticalSizeClass == UIUserInterfaceSizeClass.Regular) {
@@ -136,7 +134,7 @@ namespace LookInside
 			ContainerView.AddSubview (dimmingView);
 		}
 
-		void MoveJaguarPrintToPresentedPosition(bool presentedPosition)
+		void MoveJaguarPrintToPresentedPosition (bool presentedPosition)
 		{
 			CGSize horizontalJaguarSize = jaguarPrintImageH.Size;
 			CGSize verticalJaguarSize = jaguarPrintImageV.Size;
@@ -159,7 +157,7 @@ namespace LookInside
 
 			CGRect frameToAlignAround = presentedPosition ? frameOfView : containerFrame;
 
-			topFrame.Y = frameToAlignAround.GetMinY() - horizontalJaguarSize.Height;
+			topFrame.Y = frameToAlignAround.GetMinY () - horizontalJaguarSize.Height;
 			bottomFrame.Y = frameToAlignAround.GetMaxY ();
 			leftFrame.X = frameToAlignAround.GetMinX () - verticalJaguarSize.Width;
 			rightFrame.X = frameToAlignAround.GetMaxX ();
@@ -175,13 +173,13 @@ namespace LookInside
 			bigFlowerImageView.Dispose ();
 			bigFlowerImageView = null;
 
-			carlImageView.Dispose();
+			carlImageView.Dispose ();
 			carlImageView = null;
 
-			jaguarPrintImageH.Dispose();
+			jaguarPrintImageH.Dispose ();
 			jaguarPrintImageH = null;
 
-			jaguarPrintImageV.Dispose();
+			jaguarPrintImageV.Dispose ();
 			jaguarPrintImageV = null;
 
 			topJaguarPrintImageView.Dispose ();

@@ -2,13 +2,11 @@ using System;
 using CoreGraphics;
 using UIKit;
 
-namespace Example_Drawing.Screens.iPad.Layers
-{
-	public class View : UIView
-	{
+namespace Example_Drawing.Screens.iPad.Layers {
+	public class View : UIView {
 		#region -= constructors =-
 
-		public View () : base() { }
+		public View () : base () { }
 
 		#endregion
 
@@ -32,7 +30,7 @@ namespace Example_Drawing.Screens.iPad.Layers
 				// paint
 				context.FillRect (rect);
 
-				CGPoint[] myStarPoints = { new CGPoint (5f, 5f)
+				CGPoint [] myStarPoints = { new CGPoint (5f, 5f)
 					, new CGPoint (10f, 15f), new CGPoint (10f, 15f)
 					, new CGPoint (15f, 5f), new CGPoint (15f, 5f)
 					, new CGPoint (12f, 5f), new CGPoint (15f, 5f)

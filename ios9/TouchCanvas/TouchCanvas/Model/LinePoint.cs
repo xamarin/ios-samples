@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using CoreGraphics;
 using Foundation;
@@ -74,11 +74,11 @@ namespace TouchCanvas {
 
 		public bool UpdateWithTouch (UITouch touch)
 		{
-			if (!touch.EstimationUpdateIndex.IsEqualTo(EstimationUpdateIndex))
+			if (!touch.EstimationUpdateIndex.IsEqualTo (EstimationUpdateIndex))
 				return false;
 
 			// An array of the touch properties that may be of interest.
-			UITouchProperties[] touchProperties = {
+			UITouchProperties [] touchProperties = {
 				UITouchProperties.Location,
 				UITouchProperties.Force,
 				UITouchProperties.Altitude,

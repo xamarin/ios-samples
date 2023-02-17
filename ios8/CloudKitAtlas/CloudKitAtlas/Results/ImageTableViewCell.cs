@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public partial class ImageTableViewCell : NestedAttributeTableViewCell
-	{
+namespace CloudKitAtlas {
+	public partial class ImageTableViewCell : NestedAttributeTableViewCell {
 		[Outlet]
 		public UIImageView AssetImage { get; set; }
 

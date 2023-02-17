@@ -1,9 +1,7 @@
-﻿using UIKit;
+using UIKit;
 
-namespace tvTable
-{
-	public class Application
-	{
+namespace tvTable {
+	public class Application {
 		// This is the main entry point of the application.
 		static void Main (string [] args)
 		{

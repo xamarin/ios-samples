@@ -5,19 +5,16 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace PaintCode
-{
-	public class Application
-	{
-		static void Main (string[] args)
+namespace PaintCode {
+	public class Application {
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}
 	}
 
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		UINavigationController navCtrlr;
 		UITabBarController tabBarController;
@@ -36,10 +33,10 @@ namespace PaintCode
 			lineart = new DrawingViewController ();
 
 			news = new NewsDialogViewController ();
-//			news.View.Frame = new System.Drawing.RectangleF (0
-//						, UIApplication.SharedApplication.StatusBarFrame.Height
-//						, UIScreen.MainScreen.ApplicationFrame.Width
-//						, UIScreen.MainScreen.ApplicationFrame.Height);
+			//			news.View.Frame = new System.Drawing.RectangleF (0
+			//						, UIApplication.SharedApplication.StatusBarFrame.Height
+			//						, UIScreen.MainScreen.ApplicationFrame.Width
+			//						, UIScreen.MainScreen.ApplicationFrame.Height);
 
 			navCtrlr.PushViewController (news, false);
 

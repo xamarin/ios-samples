@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
@@ -13,12 +13,12 @@ namespace CollectionView {
 	/// Ported from http://nshint.io/blog/2015/07/16/uicollectionviews-now-have-easy-reordering/ to
 	/// Xamarin.iOS by Kevin Mullins.
 	/// </remarks>
-	[Register("WaterfallCollectionView")]
+	[Register ("WaterfallCollectionView")]
 	public class WaterfallCollectionView : UICollectionView {
 		#region Computed Properties
 		public WaterfallCollectionSource Source {
 			get {
-				return (WaterfallCollectionSource)DataSource;
+				return (WaterfallCollectionSource) DataSource;
 			}
 		}
 		#endregion

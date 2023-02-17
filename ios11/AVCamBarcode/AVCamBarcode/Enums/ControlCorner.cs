@@ -1,16 +1,14 @@
-﻿
-namespace AVCamBarcode
-{
-    public enum ControlCorner
-    {
-        None,
 
-        TopLeft,
+namespace AVCamBarcode {
+	public enum ControlCorner {
+		None,
 
-        TopRight,
+		TopLeft,
 
-        BottomLeft,
+		TopRight,
 
-        BottomRight
-    }
+		BottomLeft,
+
+		BottomRight
+	}
 }

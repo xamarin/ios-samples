@@ -1,164 +1,148 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 using MapKit;
 using CoreLocation;
 using System.Collections.Generic;
 
-namespace Tandm
-{
-    public partial class ViewController : UIViewController
-    {
-        #region Private Variables
-        private CLLocationManager LocationManager = new CLLocationManager();
-        private List<BikeView> BikeViews = new List<BikeView>();
-        private List<ClusterView> ClusterViews = new List<ClusterView>();
-        #endregion
+namespace Tandm {
+	public partial class ViewController : UIViewController {
+		#region Private Variables
+		private CLLocationManager LocationManager = new CLLocationManager ();
+		private List<BikeView> BikeViews = new List<BikeView> ();
+		private List<ClusterView> ClusterViews = new List<ClusterView> ();
+		#endregion
 
-        #region Constructors
-        protected ViewController(IntPtr handle) : base(handle)
-        {
-            // Note: this .ctor should not contain any initialization logic.
-        }
-        #endregion
+		#region Constructors
+		protected ViewController (IntPtr handle) : base (handle)
+		{
+			// Note: this .ctor should not contain any initialization logic.
+		}
+		#endregion
 
-        #region Private Methods
-        private void SetupCompassButton()
-        {
+		#region Private Methods
+		private void SetupCompassButton ()
+		{
 
-            var compass = MKCompassButton.FromMapView(MapView);
-            compass.CompassVisibility = MKFeatureVisibility.Visible;
-            NavigationItem.RightBarButtonItem = new UIBarButtonItem(compass);
-            MapView.ShowsCompass = false;
-        }
+			var compass = MKCompassButton.FromMapView (MapView);
+			compass.CompassVisibility = MKFeatureVisibility.Visible;
+			NavigationItem.RightBarButtonItem = new UIBarButtonItem (compass);
+			MapView.ShowsCompass = false;
+		}
 
-        private void SetupUserTrackingAndScaleView()
-        {
+		private void SetupUserTrackingAndScaleView ()
+		{
 
-            var button = MKUserTrackingButton.FromMapView(MapView);
-            button.Layer.BackgroundColor = UIColor.FromRGBA(255, 255, 255, 80).CGColor;
-            button.Layer.BorderColor = UIColor.White.CGColor;
-            button.Layer.BorderWidth = 1;
-            button.Layer.CornerRadius = 5;
-            button.TranslatesAutoresizingMaskIntoConstraints = false;
-            View.AddSubview(button);
+			var button = MKUserTrackingButton.FromMapView (MapView);
+			button.Layer.BackgroundColor = UIColor.FromRGBA (255, 255, 255, 80).CGColor;
+			button.Layer.BorderColor = UIColor.White.CGColor;
+			button.Layer.BorderWidth = 1;
+			button.Layer.CornerRadius = 5;
+			button.TranslatesAutoresizingMaskIntoConstraints = false;
+			View.AddSubview (button);
 
-            var scale = MKScaleView.FromMapView(MapView);
-            scale.LegendAlignment = MKScaleViewAlignment.Trailing;
-            scale.TranslatesAutoresizingMaskIntoConstraints = false;
-            View.AddSubview(scale);
+			var scale = MKScaleView.FromMapView (MapView);
+			scale.LegendAlignment = MKScaleViewAlignment.Trailing;
+			scale.TranslatesAutoresizingMaskIntoConstraints = false;
+			View.AddSubview (scale);
 
-            NSLayoutConstraint.ActivateConstraints(new NSLayoutConstraint[]{
-                button.BottomAnchor.ConstraintEqualTo(View.BottomAnchor, -10),
-                button.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, -10),
-                scale.TrailingAnchor.ConstraintEqualTo(button.LeadingAnchor, -10),
-                scale.CenterYAnchor.ConstraintEqualTo(button.CenterYAnchor)
-            });
-        }
+			NSLayoutConstraint.ActivateConstraints (new NSLayoutConstraint []{
+				button.BottomAnchor.ConstraintEqualTo(View.BottomAnchor, -10),
+				button.TrailingAnchor.ConstraintEqualTo(View.TrailingAnchor, -10),
+				scale.TrailingAnchor.ConstraintEqualTo(button.LeadingAnchor, -10),
+				scale.CenterYAnchor.ConstraintEqualTo(button.CenterYAnchor)
+			});
+		}
 
-        private void RegisterAnnotationViewClasses()
-        {
-            MapView.Register(typeof(BikeView), MKMapViewDefault.AnnotationViewReuseIdentifier);
-            MapView.Register(typeof(ClusterView), MKMapViewDefault.ClusterAnnotationViewReuseIdentifier);
-        }
+		private void RegisterAnnotationViewClasses ()
+		{
+			MapView.Register (typeof (BikeView), MKMapViewDefault.AnnotationViewReuseIdentifier);
+			MapView.Register (typeof (ClusterView), MKMapViewDefault.ClusterAnnotationViewReuseIdentifier);
+		}
 
-        private void LoadDataForMapRegionAndBikes()
-        {
+		private void LoadDataForMapRegionAndBikes ()
+		{
 
-            var plist = NSDictionary.FromFile(NSBundle.MainBundle.PathForResource("Data", "plist"));
-            var region = plist["region"] as NSArray;
-            if (region != null)
-            {
-                var coordinate = new CLLocationCoordinate2D(region.GetItem<NSNumber>(0).NFloatValue, region.GetItem<NSNumber>(1).NFloatValue);
-                var span = new MKCoordinateSpan(region.GetItem<NSNumber>(2).NFloatValue, region.GetItem<NSNumber>(3).NFloatValue);
-                MapView.Region = new MKCoordinateRegion(coordinate, span);
-            }
-            var bikes = plist["bikes"] as NSArray;
-            if (bikes != null)
-            {
-                MapView.AddAnnotations(Bike.FromDictionaryArray(bikes));
-            }
-        }
+			var plist = NSDictionary.FromFile (NSBundle.MainBundle.PathForResource ("Data", "plist"));
+			var region = plist ["region"] as NSArray;
+			if (region != null) {
+				var coordinate = new CLLocationCoordinate2D (region.GetItem<NSNumber> (0).NFloatValue, region.GetItem<NSNumber> (1).NFloatValue);
+				var span = new MKCoordinateSpan (region.GetItem<NSNumber> (2).NFloatValue, region.GetItem<NSNumber> (3).NFloatValue);
+				MapView.Region = new MKCoordinateRegion (coordinate, span);
+			}
+			var bikes = plist ["bikes"] as NSArray;
+			if (bikes != null) {
+				MapView.AddAnnotations (Bike.FromDictionaryArray (bikes));
+			}
+		}
 
-        private MKAnnotationView HandleMKMapViewAnnotation(MKMapView mapView, IMKAnnotation annotation)
-        {
-            if (annotation is Bike)
-            {
-                var marker = annotation as Bike;
+		private MKAnnotationView HandleMKMapViewAnnotation (MKMapView mapView, IMKAnnotation annotation)
+		{
+			if (annotation is Bike) {
+				var marker = annotation as Bike;
 
-                var view = mapView.DequeueReusableAnnotation(MKMapViewDefault.AnnotationViewReuseIdentifier) as BikeView;
-                if (view == null)
-                {
-                    view = new BikeView(marker, MKMapViewDefault.AnnotationViewReuseIdentifier);
-                    BikeViews.Add(view);
-                }
-                return view;
-            }
-            else if (annotation is MKClusterAnnotation)
-            {
-                var cluster = annotation as MKClusterAnnotation;
+				var view = mapView.DequeueReusableAnnotation (MKMapViewDefault.AnnotationViewReuseIdentifier) as BikeView;
+				if (view == null) {
+					view = new BikeView (marker, MKMapViewDefault.AnnotationViewReuseIdentifier);
+					BikeViews.Add (view);
+				}
+				return view;
+			} else if (annotation is MKClusterAnnotation) {
+				var cluster = annotation as MKClusterAnnotation;
 
-                var view = mapView.DequeueReusableAnnotation(MKMapViewDefault.ClusterAnnotationViewReuseIdentifier) as ClusterView;
-                if (view == null)
-                {
-                    view = new ClusterView(cluster, MKMapViewDefault.ClusterAnnotationViewReuseIdentifier);
-                    ClusterViews.Add(view);
-                }
-                return view;
-            }
-            else if (annotation != null)
-            {
-                var unwrappedAnnotation = MKAnnotationWrapperExtensions.UnwrapClusterAnnotation(annotation);
+				var view = mapView.DequeueReusableAnnotation (MKMapViewDefault.ClusterAnnotationViewReuseIdentifier) as ClusterView;
+				if (view == null) {
+					view = new ClusterView (cluster, MKMapViewDefault.ClusterAnnotationViewReuseIdentifier);
+					ClusterViews.Add (view);
+				}
+				return view;
+			} else if (annotation != null) {
+				var unwrappedAnnotation = MKAnnotationWrapperExtensions.UnwrapClusterAnnotation (annotation);
 
-                return HandleMKMapViewAnnotation(mapView, unwrappedAnnotation);
-            }
-            return null;
-        }
-        #endregion
+				return HandleMKMapViewAnnotation (mapView, unwrappedAnnotation);
+			}
+			return null;
+		}
+		#endregion
 
-        #region Override Methods
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+		#region Override Methods
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
 
-            SetupCompassButton();
-            SetupUserTrackingAndScaleView();
-            RegisterAnnotationViewClasses();
-            LoadDataForMapRegionAndBikes();
+			SetupCompassButton ();
+			SetupUserTrackingAndScaleView ();
+			RegisterAnnotationViewClasses ();
+			LoadDataForMapRegionAndBikes ();
 
-            MapView.GetViewForAnnotation = HandleMKMapViewAnnotation;
-        }
+			MapView.GetViewForAnnotation = HandleMKMapViewAnnotation;
+		}
 
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-            if (disposing)
-            {
-                if (ClusterViews != null)
-                {
-                    for (int i = 0; i < ClusterViews.Count; i++)
-                    {
-                        var clusterView = ClusterViews[i];
-                        clusterView.Dispose();
-                        clusterView = null;
-                    }
-                    ClusterViews = null;
-                }
+		protected override void Dispose (bool disposing)
+		{
+			base.Dispose (disposing);
+			if (disposing) {
+				if (ClusterViews != null) {
+					for (int i = 0; i < ClusterViews.Count; i++) {
+						var clusterView = ClusterViews [i];
+						clusterView.Dispose ();
+						clusterView = null;
+					}
+					ClusterViews = null;
+				}
 
-                if (BikeViews != null)
-                {
-                    for (int i = 0; i < BikeViews.Count; i++)
-                    {
-                        var bikeView = BikeViews[i];
-                        bikeView.Dispose();
-                        bikeView = null;
-                    }
-                    BikeViews = null;
-                }
+				if (BikeViews != null) {
+					for (int i = 0; i < BikeViews.Count; i++) {
+						var bikeView = BikeViews [i];
+						bikeView.Dispose ();
+						bikeView = null;
+					}
+					BikeViews = null;
+				}
 
-                LocationManager = null;
-            }
-        }
-        #endregion
-    }
+				LocationManager = null;
+			}
+		}
+		#endregion
+	}
 }

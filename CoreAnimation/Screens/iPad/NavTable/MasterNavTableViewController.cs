@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 using UIKit;
 
-namespace CoreAnimationExample
-{
-	public class MasterNavTableViewController : UITableViewController
-	{
+namespace CoreAnimationExample {
+	public class MasterNavTableViewController : UITableViewController {
 		public event EventHandler<RowClickedEventArgs> RowClicked;
 
 		List<NavItemGroup> navItems;

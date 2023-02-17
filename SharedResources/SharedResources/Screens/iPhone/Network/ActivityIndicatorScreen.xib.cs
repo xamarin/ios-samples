@@ -5,27 +5,25 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Example_SharedResources.Screens.iPhone.Network
-{
-	public partial class ActivityIndicatorScreen : UIViewController
-	{
+namespace Example_SharedResources.Screens.iPhone.Network {
+	public partial class ActivityIndicatorScreen : UIViewController {
 		#region Constructors
 
 		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
-		public ActivityIndicatorScreen (IntPtr handle) : base(handle)
+		public ActivityIndicatorScreen (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public ActivityIndicatorScreen (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public ActivityIndicatorScreen (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
 
-		public ActivityIndicatorScreen () : base("ActivityIndicatorScreen", null)
+		public ActivityIndicatorScreen () : base ("ActivityIndicatorScreen", null)
 		{
 			Initialize ();
 		}

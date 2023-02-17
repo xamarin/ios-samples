@@ -32,15 +32,13 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-namespace RecipesAndPrinting
-{
+namespace RecipesAndPrinting {
 	public class Ingredient {
 		public string Name;
 		public string Amount;
 	}
 
-	public class Recipe : IDisposable
-	{
+	public class Recipe : IDisposable {
 		public Recipe ()
 		{
 		}
@@ -53,7 +51,7 @@ namespace RecipesAndPrinting
 			get; set;
 		}
 
-    	public string PrepTime {
+		public string PrepTime {
 			get; set;
 		}
 
@@ -69,7 +67,7 @@ namespace RecipesAndPrinting
 			get; set;
 		}
 
-		public Ingredient[] Ingredients {
+		public Ingredient [] Ingredients {
 			get; set;
 		}
 

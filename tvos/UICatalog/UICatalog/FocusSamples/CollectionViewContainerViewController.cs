@@ -10,13 +10,13 @@ namespace UICatalog {
 
 		readonly nfloat MinimumEdgePadding = 90f;
 
-		List<DataItem[]> dataItemsByGroup;
-		public List<DataItem[]> DataItemsByGroup {
+		List<DataItem []> dataItemsByGroup;
+		public List<DataItem []> DataItemsByGroup {
 			get {
 				if (dataItemsByGroup == null) {
-					dataItemsByGroup = new List<DataItem[]> ();
+					dataItemsByGroup = new List<DataItem []> ();
 
-					foreach (Group groupType in Enum.GetValues (typeof(Group)))
+					foreach (Group groupType in Enum.GetValues (typeof (Group)))
 						dataItemsByGroup.Add (DataItem.SampleItems.Where (c => c.Group == groupType).ToArray ());
 				}
 
@@ -25,7 +25,7 @@ namespace UICatalog {
 		}
 
 		[Export ("initWithCoder:")]
-		public CollectionViewContainerViewController (NSCoder coder): base (coder)
+		public CollectionViewContainerViewController (NSCoder coder) : base (coder)
 		{
 		}
 
@@ -38,7 +38,7 @@ namespace UICatalog {
 
 			if (collectionView == null || layout == null)
 				return;
-			
+
 			CollectionView.ContentInset = new UIEdgeInsets (
 				MinimumEdgePadding - layout.SectionInset.Top,
 				CollectionView.ContentInset.Left,
@@ -59,7 +59,7 @@ namespace UICatalog {
 
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			return (UICollectionViewCell)CollectionView.DequeueReusableCell (CollectionViewContainerCell.ReuseIdentifier, indexPath);
+			return (UICollectionViewCell) CollectionView.DequeueReusableCell (CollectionViewContainerCell.ReuseIdentifier, indexPath);
 		}
 
 		public override void WillDisplayCell (UICollectionView collectionView, UICollectionViewCell cell, NSIndexPath indexPath)

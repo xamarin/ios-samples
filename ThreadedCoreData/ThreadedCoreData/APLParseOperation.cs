@@ -7,10 +7,8 @@ using ObjCRuntime;
 using UIKit;
 using System.Linq;
 
-namespace ThreadedCoreData
-{
-	public class APLParseOperation : NSOperation
-	{
+namespace ThreadedCoreData {
+	public class APLParseOperation : NSOperation {
 		public const string EarthquakesErrorNotificationName = "EarthquakeErrorNotif";
 		public const string EarthquakesMessageErrorKey = "EarthquakesMsgErrorKey";
 		const int MaximumNumberOfEarthquakesToParse = 50;
@@ -57,12 +55,12 @@ namespace ThreadedCoreData
 
 					var earthquake = featureCollection [i] as JsonObject;
 					JsonValue earthquakeProperties = earthquake ["properties"];
-					currentEarthquake.Magnitude = NSNumber.FromFloat ((float)earthquakeProperties ["mag"]);
-					currentEarthquake.USGSWebLink = new NSString ((string)earthquakeProperties ["url"]);
-					currentEarthquake.Location = new NSString ((string)earthquakeProperties ["place"]);
+					currentEarthquake.Magnitude = NSNumber.FromFloat ((float) earthquakeProperties ["mag"]);
+					currentEarthquake.USGSWebLink = new NSString ((string) earthquakeProperties ["url"]);
+					currentEarthquake.Location = new NSString ((string) earthquakeProperties ["place"]);
 
 					//date and time in milliseconds since epoch
-					var seconds = (Int64)earthquakeProperties ["time"];
+					var seconds = (Int64) earthquakeProperties ["time"];
 					var date = new DateTime (1970, 1, 1, 0, 0, 0).AddMilliseconds (seconds);
 					string str = date.ToString ("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'");
 					currentEarthquake.Date = dateFormatter.Parse (str);
@@ -92,7 +90,7 @@ namespace ThreadedCoreData
 			}
 		}
 
-		[Export("HandleEarthquakesError:")]
+		[Export ("HandleEarthquakesError:")]
 		public void HandleEarthquakesError (NSError parserError)
 		{
 			var userInfo = new NSDictionary (EarthquakesMessageErrorKey, parserError);
@@ -105,16 +103,16 @@ namespace ThreadedCoreData
 			var fetchRequest = new NSFetchRequest ();
 			fetchRequest.Entity = entity;
 
-			var date = (NSPropertyDescription)entity.PropertiesByName.ValueForKey (new NSString ("date"));
-			var location = (NSPropertyDescription)entity.PropertiesByName.ValueForKey (new NSString ("location"));
+			var date = (NSPropertyDescription) entity.PropertiesByName.ValueForKey (new NSString ("date"));
+			var location = (NSPropertyDescription) entity.PropertiesByName.ValueForKey (new NSString ("location"));
 
-			fetchRequest.PropertiesToFetch = new NSPropertyDescription[] { date, location };
+			fetchRequest.PropertiesToFetch = new NSPropertyDescription [] { date, location };
 			fetchRequest.ResultType = NSFetchRequestResultType.DictionaryResultType;
 
 			NSError error;
 
 			foreach (var earthquake in earthquakes) {
-				var arguments = new NSObject[] { earthquake.Location, earthquake.Date };
+				var arguments = new NSObject [] { earthquake.Location, earthquake.Date };
 				fetchRequest.Predicate = NSPredicate.FromFormat ("location = %@ AND date = %@", arguments);
 				var fetchedItems = NSArray.FromNSObjects (managedObjectContext.ExecuteFetchRequest (fetchRequest, out error));
 
@@ -142,7 +140,7 @@ namespace ThreadedCoreData
 
 				// use the same fetchrequest instance but switch back to NSManagedObjectResultType
 				fetchRequest.ResultType = NSFetchRequestResultType.ManagedObject;
-				fetchRequest.Predicate = NSPredicate.FromFormat ("date < %@", new NSObject[] { twoWeeksAgo });
+				fetchRequest.Predicate = NSPredicate.FromFormat ("date < %@", new NSObject [] { twoWeeksAgo });
 
 				var olderEarthquakes = NSArray.FromObjects (managedObjectContext.ExecuteFetchRequest (fetchRequest, out error));
 

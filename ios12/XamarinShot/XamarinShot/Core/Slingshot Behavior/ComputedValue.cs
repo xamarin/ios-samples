@@ -1,51 +1,46 @@
-﻿
-namespace XamarinShot.Models
-{
-    using System;
 
-    // Using a provided closure the value is computed upon request.
-    // Managing classes can set the dirty state of the ComputedValue to
-    // force a consecutive compute of the value.
+namespace XamarinShot.Models {
+	using System;
 
-    /// <summary>
-    /// Wrapper class for lazily computed values for use as properties elsewhere.
-    /// </summary>
-    public class ComputedValue<T>
-    {
-        private Func<T> compute;
+	// Using a provided closure the value is computed upon request.
+	// Managing classes can set the dirty state of the ComputedValue to
+	// force a consecutive compute of the value.
 
-        private T storage;
+	/// <summary>
+	/// Wrapper class for lazily computed values for use as properties elsewhere.
+	/// </summary>
+	public class ComputedValue<T> {
+		private Func<T> compute;
 
-        public ComputedValue(Func<T> compute)
-        {
-            this.compute = compute;
-        }
+		private T storage;
 
-        // a flag specifying if the value has to be re-computed.
-        // note: there is no way to set the flag to false from the outside
-        public bool IsDirty { get; set; }
+		public ComputedValue (Func<T> compute)
+		{
+			this.compute = compute;
+		}
 
-        /// <summary>
-        /// accessor property to retrieved the computed value.
-        /// </summary>
-        public T Value
-        {
-            get
-            {
-                this.ComputeIfRequired();
-                return this.storage;
-            }
-        }
+		// a flag specifying if the value has to be re-computed.
+		// note: there is no way to set the flag to false from the outside
+		public bool IsDirty { get; set; }
 
-        private void ComputeIfRequired()
-        {
-            if (!this.IsDirty)
-            {
-                return;
-            }
+		/// <summary>
+		/// accessor property to retrieved the computed value.
+		/// </summary>
+		public T Value {
+			get {
+				this.ComputeIfRequired ();
+				return this.storage;
+			}
+		}
 
-            this.storage = this.compute();
-            this.IsDirty = false;
-        }
-    }
+		private void ComputeIfRequired ()
+		{
+			if (!this.IsDirty) {
+				return;
+			}
+
+			this.storage = this.compute ();
+			this.IsDirty = false;
+		}
+	}
 }

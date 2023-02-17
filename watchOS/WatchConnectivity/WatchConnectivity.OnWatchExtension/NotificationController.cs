@@ -1,18 +1,16 @@
-﻿using System;
+using System;
 
 using WatchKit;
 using Foundation;
 
-namespace WatchConnectivity.OnWatchExtension
-{
-	public partial class NotificationController : WKUserNotificationInterfaceController
-	{
-		protected NotificationController(IntPtr handle) : base(handle)
+namespace WatchConnectivity.OnWatchExtension {
+	public partial class NotificationController : WKUserNotificationInterfaceController {
+		protected NotificationController (IntPtr handle) : base (handle)
 		{
 			// Note: this .ctor should not contain any initialization logic.
 		}
 
-		public NotificationController()
+		public NotificationController ()
 		{
 			// Initialize variables here.
 			// Configure interface objects here.
@@ -38,16 +36,16 @@ namespace WatchConnectivity.OnWatchExtension
 		//			completionHandler.Invoke (WKUserNotificationInterfaceType.Custom);
 		//		}
 
-		public override void WillActivate()
+		public override void WillActivate ()
 		{
 			// This method is called when the watch view controller is about to be visible to the user.
-			Console.WriteLine("{0} will activate", this);
+			Console.WriteLine ("{0} will activate", this);
 		}
 
-		public override void DidDeactivate()
+		public override void DidDeactivate ()
 		{
 			// This method is called when the watch view controller is no longer visible to the user.
-			Console.WriteLine("{0} did deactivate", this);
+			Console.WriteLine ("{0} did deactivate", this);
 		}
 	}
 }

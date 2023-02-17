@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using AudioToolbox;
 
@@ -9,7 +9,7 @@ namespace FilterDemoFramework {
 	}
 
 	public static class Extensions {
-		public static float ConvertBadValuesToZero (this float x) 
+		public static float ConvertBadValuesToZero (this float x)
 		{
 			var absx = Math.Abs (x);
 			return (absx > 1e-15 && absx < 1e15) ? x : 0f;
@@ -63,11 +63,11 @@ namespace FilterDemoFramework {
 
 			public void CalculateLopassParams (float frequency, float resonance)
 			{
-				var r = (float)Math.Pow (10, 0.05 * -resonance);
+				var r = (float) Math.Pow (10, 0.05 * -resonance);
 
-				float k = 0.5f * r * (float)Math.Sin (Math.PI * frequency);
+				float k = 0.5f * r * (float) Math.Sin (Math.PI * frequency);
 				float c1 = (1.0f - k) / (1.0f + k);
-				float c2 = (1.0f + c1) * (float)Math.Cos (Math.PI * frequency);
+				float c2 = (1.0f + c1) * (float) Math.Cos (Math.PI * frequency);
 				float c3 = (1.0f + c1 - c2) * 0.25f;
 
 				B0 = c3;
@@ -99,7 +99,7 @@ namespace FilterDemoFramework {
 		public ParameterRamper CutoffRamper = new ParameterRamper (400f / 44100f);
 		public ParameterRamper ResonanceRamper = new ParameterRamper (20f);
 
-		FilterState[] channelStates;
+		FilterState [] channelStates;
 		readonly BiquadCoefficients coeffs = new BiquadCoefficients ();
 
 		float sampleRate = 44100f;
@@ -115,7 +115,7 @@ namespace FilterDemoFramework {
 									  .Select (i => new FilterState ())
 									  .ToArray ();
 
-			sampleRate = (float)inSampleRate;
+			sampleRate = (float) inSampleRate;
 			nyquist = 0.5f * sampleRate;
 			inverseNyquist = 1f / nyquist;
 		}
@@ -126,13 +126,13 @@ namespace FilterDemoFramework {
 				state.Clear ();
 		}
 
-		public void SetParameter (ulong  address, float value)
+		public void SetParameter (ulong address, float value)
 		{
 			switch (address) {
-			case (ulong)FilterParam.Cutoff:
+			case (ulong) FilterParam.Cutoff:
 				CutoffRamper.Set ((value * inverseNyquist).Clamp (0f, 0.99f));
 				break;
-			case (ulong)FilterParam.Resonance:
+			case (ulong) FilterParam.Resonance:
 				ResonanceRamper.Set (value.Clamp (-20f, 20f));
 				break;
 			}
@@ -141,9 +141,9 @@ namespace FilterDemoFramework {
 		public float GetParameter (nuint address)
 		{
 			switch (address) {
-			case (ulong)FilterParam.Cutoff:
+			case (ulong) FilterParam.Cutoff:
 				return CutoffRamper.Goal * nyquist;
-			case (ulong)FilterParam.Resonance:
+			case (ulong) FilterParam.Resonance:
 				return ResonanceRamper.Goal;
 			default:
 				return 0.0f;
@@ -153,10 +153,10 @@ namespace FilterDemoFramework {
 		public override void StartRamp (ulong address, float value, int duration)
 		{
 			switch (address) {
-			case (ulong)FilterParam.Cutoff:
+			case (ulong) FilterParam.Cutoff:
 				CutoffRamper.StartRamp ((value * inverseNyquist).Clamp (0f, 0.99f), duration);
 				break;
-			case (ulong)FilterParam.Resonance:
+			case (ulong) FilterParam.Resonance:
 				ResonanceRamper.StartRamp (value.Clamp (-20f, 20f), duration);
 				break;
 			}
@@ -183,8 +183,8 @@ namespace FilterDemoFramework {
 					FilterState state = channelStates [channel];
 
 					unsafe {
-						float * In = (float *)inBufferList [channel].Data + frameOffset;
-						float * Out = (float *)outBufferList [channel].Data + frameOffset;
+						float* In = (float*) inBufferList [channel].Data + frameOffset;
+						float* Out = (float*) outBufferList [channel].Data + frameOffset;
 
 						float x0 = *In;
 						float y0 = (coeffs.B0 * x0) + (coeffs.B1 * state.X1) + (coeffs.B2 * state.X2) -

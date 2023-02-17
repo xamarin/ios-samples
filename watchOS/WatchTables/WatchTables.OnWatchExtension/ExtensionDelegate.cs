@@ -1,25 +1,23 @@
-﻿using System;
+using System;
 
 using Foundation;
 using WatchKit;
 
-namespace WatchTables.OnWatchExtension
-{
-	[Register("ExtensionDelegate")]
-	public class ExtensionDelegate : WKExtensionDelegate
-	{
-		public override void ApplicationDidFinishLaunching()
+namespace WatchTables.OnWatchExtension {
+	[Register ("ExtensionDelegate")]
+	public class ExtensionDelegate : WKExtensionDelegate {
+		public override void ApplicationDidFinishLaunching ()
 		{
 			// Perform any final initialization of your application.
 		}
 
-		public override void ApplicationDidBecomeActive()
+		public override void ApplicationDidBecomeActive ()
 		{
 			// Restart any tasks that were paused (or not yet started) while the application was inactive.
 			// If the application was previously in the background, optionally refresh the user interface.
 		}
 
-		public override void ApplicationWillResignActive()
+		public override void ApplicationWillResignActive ()
 		{
 			// Sent when the application is about to move from active to inactive state.
 			// This can occur for certain types of temporary interruptions

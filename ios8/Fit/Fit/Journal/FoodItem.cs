@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using Foundation;
 
-namespace Fit
-{
-	public class FoodItem : NSObject
-	{
+namespace Fit {
+	public class FoodItem : NSObject {
 		public string Name { get; private set; }
 
 		public double Joules { get; private set; }
@@ -29,8 +27,8 @@ namespace Fit
 
 		public override bool Equals (object obj)
 		{
-			if (obj.GetType () == typeof(FoodItem))
-				return ((FoodItem)obj).Joules == Joules && ((FoodItem)obj).Name == Name;
+			if (obj.GetType () == typeof (FoodItem))
+				return ((FoodItem) obj).Joules == Joules && ((FoodItem) obj).Name == Name;
 
 			return false;
 		}

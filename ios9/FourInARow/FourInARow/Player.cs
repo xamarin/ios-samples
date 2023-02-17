@@ -28,7 +28,7 @@ namespace FourInARow {
 		public int PlayerID {
 			[Export ("playerId")]
 			get {
-				return (int)Chip;
+				return (int) Chip;
 			}
 		}
 
@@ -60,7 +60,7 @@ namespace FourInARow {
 			}
 		}
 
-		public Player Opponent { 
+		public Player Opponent {
 			get {
 				switch (Chip) {
 				case Chip.Red:
@@ -73,8 +73,8 @@ namespace FourInARow {
 			}
 		}
 
-		static Player[] allPlayers;
-		public static Player[] AllPlayers {
+		static Player [] allPlayers;
+		public static Player [] AllPlayers {
 			get {
 				allPlayers = allPlayers ?? new [] {
 					new Player (Chip.Red),
@@ -91,7 +91,7 @@ namespace FourInARow {
 
 		public static Player PlayerForChip (Chip chip)
 		{
-			return (chip == Chip.None) ? null : AllPlayers [(int)chip - 1];
+			return (chip == Chip.None) ? null : AllPlayers [(int) chip - 1];
 		}
 	}
 }

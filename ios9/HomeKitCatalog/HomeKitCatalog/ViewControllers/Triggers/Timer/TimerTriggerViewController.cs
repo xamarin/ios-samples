@@ -4,14 +4,12 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A view controller which facilitates the creation of timer triggers.
-	public partial class TimerTriggerViewController : TriggerViewController
-	{
-		static readonly NSString recurrenceCell = (NSString)"RecurrenceCell";
+	public partial class TimerTriggerViewController : TriggerViewController {
+		static readonly NSString recurrenceCell = (NSString) "RecurrenceCell";
 
-		static readonly string[] RecurrenceTitles = {
+		static readonly string [] RecurrenceTitles = {
 			"Every Hour",
 			"Every Day",
 			"Every Week",
@@ -58,7 +56,7 @@ namespace HomeKitCatalog
 			TableView.EstimatedRowHeight = 44;
 			TriggerCreator = new TimerTriggerCreator (Trigger, Home);
 			datePicker.Date = TimerTriggerCreator.FireDate;
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), recurrenceCell);
+			TableView.RegisterClassForCellReuse (typeof (UITableViewCell), recurrenceCell);
 		}
 
 		// Reset our saved fire date to the date in the picker.
@@ -73,7 +71,7 @@ namespace HomeKitCatalog
 		// returns:  The number of rows in the Recurrence section; defaults to the super implementation for other sections
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			switch (SectionForIndex ((int)section)) {
+			switch (SectionForIndex ((int) section)) {
 			case TriggerTableViewSection.Recurrence:
 				return RecurrenceTitles.Length;
 

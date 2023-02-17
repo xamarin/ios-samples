@@ -26,8 +26,7 @@
 
 using System;
 
-namespace WeatherMap
-{
+namespace WeatherMap {
 	public enum WeatherConditions {
 		Sunny,
 		PartlyCloudy,

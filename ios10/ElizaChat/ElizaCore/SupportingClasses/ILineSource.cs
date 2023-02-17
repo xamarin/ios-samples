@@ -1,9 +1,7 @@
-namespace ElizaCore
-{
-	public interface ILineSource
-	{
-		string ReadLine();
+namespace ElizaCore {
+	public interface ILineSource {
+		string ReadLine ();
 
-		void Close();
+		void Close ();
 	}
 }

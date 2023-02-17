@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
-namespace tvCollection
-{
-	public class CityInfo
-	{
+namespace tvCollection {
+	public class CityInfo {
 		#region Computed Properties
 		public string ImageFilename { get; set; }
 		public string Title { get; set; }
-		public bool CanSelect{ get; set; }
+		public bool CanSelect { get; set; }
 		#endregion
 
 		#region Constructors

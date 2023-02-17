@@ -1,145 +1,131 @@
-﻿
-namespace XamarinShot
-{
-    using Foundation;
-    using XamarinShot.Models;
-    using XamarinShot.Utils;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using UIKit;
 
-    /// <summary>
-    /// View controller for finding network games.
-    /// </summary>
-    public partial class NetworkGameBrowserViewController : UIViewController, 
-                                                            IUITableViewDelegate, 
-                                                            IUITableViewDataSource, 
-                                                            IGameBrowserDelegate
-    {
-        private List<NetworkGame> games = new List<NetworkGame>();
+namespace XamarinShot {
+	using Foundation;
+	using XamarinShot.Models;
+	using XamarinShot.Utils;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using UIKit;
 
-        private GameBrowser browser;
+	/// <summary>
+	/// View controller for finding network games.
+	/// </summary>
+	public partial class NetworkGameBrowserViewController : UIViewController,
+															IUITableViewDelegate,
+															IUITableViewDataSource,
+															IGameBrowserDelegate {
+		private List<NetworkGame> games = new List<NetworkGame> ();
 
-        public NetworkGameBrowserViewController(IntPtr handle) : base(handle) { }
+		private GameBrowser browser;
 
-        // must be set by parent
-        public ProximityManager ProximityManager { get; set; }
+		public NetworkGameBrowserViewController (IntPtr handle) : base (handle) { }
 
-        /// <summary>
-        /// Must be set by parent
-        /// </summary>
-        /// <value>The browser.</value>
-        public GameBrowser Browser
-        {
-            get
-            {
-                return this.browser;
-            }
+		// must be set by parent
+		public ProximityManager ProximityManager { get; set; }
 
-            set
-            {
-                if (this.browser != null)
-                {
-                    this.browser.Stop();
-                }
+		/// <summary>
+		/// Must be set by parent
+		/// </summary>
+		/// <value>The browser.</value>
+		public GameBrowser Browser {
+			get {
+				return this.browser;
+			}
 
-                this.browser = value;
-            }
-        }
+			set {
+				if (this.browser != null) {
+					this.browser.Stop ();
+				}
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+				this.browser = value;
+			}
+		}
 
-            this.tableView.DataSource = this;
-            this.tableView.Delegate = this;
-            this.tableView.Layer.CornerRadius = 10;
-            this.tableView.ClipsToBounds = true;
-            this.StartBrowser();
-        }
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
 
-        private void StartBrowser()
-        {
-            if (this.browser != null)
-            {
-                this.browser.Delegate = this;
-                this.browser.Start();
+			this.tableView.DataSource = this;
+			this.tableView.Delegate = this;
+			this.tableView.Layer.CornerRadius = 10;
+			this.tableView.ClipsToBounds = true;
+			this.StartBrowser ();
+		}
 
-                this.tableView.ReloadData();
-            }
-        }
+		private void StartBrowser ()
+		{
+			if (this.browser != null) {
+				this.browser.Delegate = this;
+				this.browser.Start ();
 
-        private void JoinGame(NetworkGame game)
-        {
-            var session = this.browser?.Join(game);
-            if (session != null)
-            {
-                if (this.ParentViewController is GameStartViewController parent)
-                {
-                    parent.JoinGame(session);
-                }
-                else
-                {
-                    throw new ArgumentException("Unexpected parent", nameof(this.ParentViewController));
-                }
-            }
-        }
+				this.tableView.ReloadData ();
+			}
+		}
 
-        #region IGameBrowserDelegate
+		private void JoinGame (NetworkGame game)
+		{
+			var session = this.browser?.Join (game);
+			if (session != null) {
+				if (this.ParentViewController is GameStartViewController parent) {
+					parent.JoinGame (session);
+				} else {
+					throw new ArgumentException ("Unexpected parent", nameof (this.ParentViewController));
+				}
+			}
+		}
 
-        public void SawGames(GameBrowser browser, IList<NetworkGame> games)
-        {
-            // os_log(.info, "saw %d games!", games.count)
-            var location = this.ProximityManager?.ClosestLocation;
-            if (location != null && UserDefaults.GameRoomMode)
-            {
-                this.games = games.Where(game => game.Location == location).ToList();
-            }
-            else
-            {
-                this.games = games.ToList();
-            }
+		#region IGameBrowserDelegate
 
-            this.tableView.ReloadData();
-        }
+		public void SawGames (GameBrowser browser, IList<NetworkGame> games)
+		{
+			// os_log(.info, "saw %d games!", games.count)
+			var location = this.ProximityManager?.ClosestLocation;
+			if (location != null && UserDefaults.GameRoomMode) {
+				this.games = games.Where (game => game.Location == location).ToList ();
+			} else {
+				this.games = games.ToList ();
+			}
 
-        #endregion
+			this.tableView.ReloadData ();
+		}
 
-        #region UITableViewDataSource
+		#endregion
 
-        public nint RowsInSection(UITableView tableView, nint section)
-        {
-            return this.games.Count;
-        }
+		#region UITableViewDataSource
 
-        [Export("numberOfSectionsInTableView:")]
-        public nint NumberOfSections(UITableView tableView)
-        {
-            return 1;
-        }
+		public nint RowsInSection (UITableView tableView, nint section)
+		{
+			return this.games.Count;
+		}
 
-        public UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-        {         
-            var game = this.games[indexPath.Row];
+		[Export ("numberOfSectionsInTableView:")]
+		public nint NumberOfSections (UITableView tableView)
+		{
+			return 1;
+		}
 
-            var cell = tableView.DequeueReusableCell("GameCell", indexPath);
-            cell.TextLabel.Text = game.Name;
-            return cell;
-        }
+		public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
+		{
+			var game = this.games [indexPath.Row];
 
-        #endregion
+			var cell = tableView.DequeueReusableCell ("GameCell", indexPath);
+			cell.TextLabel.Text = game.Name;
+			return cell;
+		}
 
-        #region IUITableViewDelegate
+		#endregion
 
-        [Export("tableView:didSelectRowAtIndexPath:")]
-        public void RowSelected(UITableView tableView, NSIndexPath indexPath)
-        {
-            this.tableView.DeselectRow(indexPath, true);
-            var otherPlayer = this.games[indexPath.Row];
-            this.JoinGame(otherPlayer);
-        }
+		#region IUITableViewDelegate
 
-        #endregion
-    }
+		[Export ("tableView:didSelectRowAtIndexPath:")]
+		public void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		{
+			this.tableView.DeselectRow (indexPath, true);
+			var otherPlayer = this.games [indexPath.Row];
+			this.JoinGame (otherPlayer);
+		}
+
+		#endregion
+	}
 }

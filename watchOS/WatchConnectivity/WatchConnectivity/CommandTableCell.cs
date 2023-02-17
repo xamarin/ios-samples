@@ -5,10 +5,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace WatchConnectivity
-{
-	public partial class CommandTableCell : UITableViewCell
-	{
+namespace WatchConnectivity {
+	public partial class CommandTableCell : UITableViewCell {
 		public CommandTableCell (IntPtr handle) : base (handle)
 		{
 		}

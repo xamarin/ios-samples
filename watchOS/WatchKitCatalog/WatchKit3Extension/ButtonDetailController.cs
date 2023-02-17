@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This controller displays buttons and shows use of groups within buttons. 
  * This also demonstrates how to hide and show UI elements at runtime.
 */
@@ -8,10 +8,8 @@ using System;
 using WatchKit;
 using Foundation;
 
-namespace WatchkitExtension
-{
-	public partial class ButtonDetailController : WKInterfaceController
-	{
+namespace WatchkitExtension {
+	public partial class ButtonDetailController : WKInterfaceController {
 		bool hidden;
 		bool alpha;
 

@@ -4,10 +4,8 @@ using UIKit;
 using System.CodeDom.Compiler;
 using HomeKit;
 
-namespace HomeKitIntro
-{
-	public partial class CharacteristicCellSlider : UITableViewCell
-	{
+namespace HomeKitIntro {
+	public partial class CharacteristicCellSlider : UITableViewCell {
 		#region Static Properties
 		public static readonly NSString Key = new NSString ("CharacteristicCellSlider");
 		#endregion
@@ -28,7 +26,7 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <value>The controller.</value>
 		public CharacteristicTableViewController Controller { get; set; }
-		#endregion 
+		#endregion
 
 		#region Constructors
 		public CharacteristicCellSlider (IntPtr handle) : base (handle)
@@ -37,7 +35,8 @@ namespace HomeKitIntro
 		#endregion
 
 		#region Public Methods
-		public void DisplayInfo(string title, float value, float min, float max, bool enabled) {
+		public void DisplayInfo (string title, float value, float min, float max, bool enabled)
+		{
 
 			// Update UI
 			Title.Text = title;
@@ -58,7 +57,8 @@ namespace HomeKitIntro
 		/// <summary>
 		/// Wireups the events.
 		/// </summary>
-		private void WireupEvents () {
+		private void WireupEvents ()
+		{
 
 			// Already wired up?
 			if (_wiredup)
@@ -66,22 +66,22 @@ namespace HomeKitIntro
 
 			// Display the new value
 			Slider.ValueChanged += (sender, e) => {
-				var value = Math.Round(Slider.Value,0);
-				SubTItle.Text = value.ToString();
+				var value = Math.Round (Slider.Value, 0);
+				SubTItle.Text = value.ToString ();
 			};
 
 			// Send change of value on end of change
 			Slider.TouchUpInside += (sender, e) => {
 				// Is a characteristic attached?
-				if (Characteristic==null) return;
+				if (Characteristic == null) return;
 
 				// Set updated value to the characteristic
-				var value = Math.Round(Slider.Value,0);
-				Characteristic.WriteValue(NSObject.FromObject(value),(err) =>{
+				var value = Math.Round (Slider.Value, 0);
+				Characteristic.WriteValue (NSObject.FromObject (value), (err) => {
 					// Was there an error?
-					if (err!=null) {
+					if (err != null) {
 						// Yes, inform user
-						AlertView.PresentOKAlert("Update Error",err.LocalizedDescription,Controller);
+						AlertView.PresentOKAlert ("Update Error", err.LocalizedDescription, Controller);
 					}
 				});
 			};

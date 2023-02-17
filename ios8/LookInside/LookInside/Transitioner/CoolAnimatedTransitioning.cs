@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 using CoreGraphics;
 
-namespace LookInside
-{
-	public class CoolAnimatedTransitioning : UIViewControllerAnimatedTransitioning
-	{
+namespace LookInside {
+	public class CoolAnimatedTransitioning : UIViewControllerAnimatedTransitioning {
 		public bool IsPresentation { get; set; }
 
 		public CoolAnimatedTransitioning ()
@@ -29,13 +27,13 @@ namespace LookInside
 			if (IsPresentation)
 				containerView.AddSubview (toView);
 
-			UIViewController animatingVC = IsPresentation? toVC : fromVC;
+			UIViewController animatingVC = IsPresentation ? toVC : fromVC;
 			UIView animatingView = animatingVC.View;
 
 			animatingView.Frame = transitionContext.GetFinalFrameForViewController (animatingVC);
 
 			CGAffineTransform presentedTransform = CGAffineTransform.MakeIdentity ();
-			CGAffineTransform dismissedTransform = CGAffineTransform.MakeScale (0.001f, 0.001f) * CGAffineTransform.MakeRotation (8 * (float)Math.PI);
+			CGAffineTransform dismissedTransform = CGAffineTransform.MakeScale (0.001f, 0.001f) * CGAffineTransform.MakeRotation (8 * (float) Math.PI);
 
 			animatingView.Transform = IsPresentation ? dismissedTransform : presentedTransform;
 

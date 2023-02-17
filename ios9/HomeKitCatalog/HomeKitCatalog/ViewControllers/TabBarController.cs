@@ -3,13 +3,11 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	/// <summary>
 	/// The `TabBarController` maintains the state of the tabs across app launches.
 	/// </summary>
-	partial class TabBarController : UITabBarController
-	{
+	partial class TabBarController : UITabBarController {
 		const string StartingTabIndexKey = "TabBarController-StartingTabIndexKey";
 
 		public TabBarController (IntPtr handle)
@@ -22,7 +20,7 @@ namespace HomeKitCatalog
 			base.ViewDidLoad ();
 
 			var userDefaults = NSUserDefaults.StandardUserDefaults;
-			var startingIndex = (NSNumber)userDefaults [StartingTabIndexKey];
+			var startingIndex = (NSNumber) userDefaults [StartingTabIndexKey];
 
 			if (startingIndex != null)
 				SelectedIndex = startingIndex.NIntValue;
@@ -31,7 +29,7 @@ namespace HomeKitCatalog
 		public override void ItemSelected (UITabBar tabbar, UITabBarItem item)
 		{
 			var userDefaults = NSUserDefaults.StandardUserDefaults;
-			userDefaults [StartingTabIndexKey] = new NSNumber ((nint)Array.IndexOf (tabbar.Items, item));
+			userDefaults [StartingTabIndexKey] = new NSNumber ((nint) Array.IndexOf (tabbar.Items, item));
 		}
 	}
 }

@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	public class CKRecordZoneIdWrapper : IResult
-	{
+namespace CloudKitAtlas {
+	public class CKRecordZoneIdWrapper : IResult {
 		readonly CKRecordZoneID zoneId;
 
 		public string SummaryField {

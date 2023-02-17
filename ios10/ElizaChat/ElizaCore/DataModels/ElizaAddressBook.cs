@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using Foundation;
 using Intents;
 
-namespace ElizaCore
-{
-	public class ElizaAddressBook : NSObject
-	{
+namespace ElizaCore {
+	public class ElizaAddressBook : NSObject {
 		#region Computed Properties
 		public List<ElizaUser> Contacts { get; set; } = new List<ElizaUser> ();
 		#endregion

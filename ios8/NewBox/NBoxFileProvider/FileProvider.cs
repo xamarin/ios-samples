@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.IO;
 
 using Foundation;
 using UIKit;
 
-namespace NBoxFileProvider
-{
+namespace NBoxFileProvider {
 	[Register ("FileProvider")]
-	public class FileProvider : NSFileProviderExtension
-	{
+	public class FileProvider : NSFileProviderExtension {
 		public FileProvider ()
 		{
 			Console.WriteLine ("FileProvider ctor");
@@ -46,11 +44,11 @@ namespace NBoxFileProvider
 			// The system then passes the error back to the original coordinated read.
 
 			string str = "These are the contents of the file";
-			NSData fileData = ((NSString)str).Encode (NSStringEncoding.UTF8);
+			NSData fileData = ((NSString) str).Encode (NSStringEncoding.UTF8);
 
 			NSError error = null;
 			fileData.Save (url, NSDataWritingOptions.Atomic, out error);
-			if(error != null)
+			if (error != null)
 				Console.WriteLine ("FileProvider atomic save error {0}", error);
 
 			completionHandler (error);

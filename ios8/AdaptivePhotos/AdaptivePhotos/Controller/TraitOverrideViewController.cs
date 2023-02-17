@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Drawing;
 using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace AdaptivePhotos
-{
-	public class TraitOverrideViewController : CustomViewController
-	{
+namespace AdaptivePhotos {
+	public class TraitOverrideViewController : CustomViewController {
 		UITraitCollection forcedTraitCollection = new UITraitCollection ();
 		UIViewController viewController;
 

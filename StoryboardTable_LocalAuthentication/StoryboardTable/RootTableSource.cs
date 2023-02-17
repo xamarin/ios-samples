@@ -2,17 +2,16 @@ using System;
 using UIKit;
 
 
-namespace StoryboardTable
-{
+namespace StoryboardTable {
 	public class RootTableSource : UITableViewSource {
 
 		// there is NO database or storage of Tasks in this example, just an in-memory List<>
-		Chore[] tableItems;
+		Chore [] tableItems;
 		string cellIdentifier = "taskcell"; // set in the Storyboard
 
-		public RootTableSource (Chore[] items)
+		public RootTableSource (Chore [] items)
 		{
-			tableItems = items; 
+			tableItems = items;
 		}
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
@@ -23,15 +22,16 @@ namespace StoryboardTable
 			// in a Storyboard, Dequeue will ALWAYS return a cell, 
 			UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier);
 			// now set the properties as normal
-			cell.TextLabel.Text = tableItems[indexPath.Row].Name;
-			if (tableItems[indexPath.Row].Done) 
+			cell.TextLabel.Text = tableItems [indexPath.Row].Name;
+			if (tableItems [indexPath.Row].Done)
 				cell.Accessory = UITableViewCellAccessory.Checkmark;
 			else
 				cell.Accessory = UITableViewCellAccessory.None;
 			return cell;
 		}
-		public Chore GetItem(int id) {
-			return tableItems[id];
+		public Chore GetItem (int id)
+		{
+			return tableItems [id];
 		}
 	}
 }

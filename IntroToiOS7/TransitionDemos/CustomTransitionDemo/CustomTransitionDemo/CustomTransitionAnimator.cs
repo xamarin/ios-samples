@@ -2,10 +2,8 @@ using System;
 using CoreGraphics;
 using UIKit;
 
-namespace CustomTransitionDemo
-{
-	public class CustomTransitionAnimator : UIViewControllerAnimatedTransitioning
-	{
+namespace CustomTransitionDemo {
+	public class CustomTransitionAnimator : UIViewControllerAnimatedTransitioning {
 		public CustomTransitionAnimator ()
 		{
 		}
@@ -34,8 +32,7 @@ namespace CustomTransitionDemo
 		}
 	}
 
-	public class TransitioningDelegate : UIViewControllerTransitioningDelegate
-	{
+	public class TransitioningDelegate : UIViewControllerTransitioningDelegate {
 		CustomTransitionAnimator animator;
 
 		public override IUIViewControllerAnimatedTransitioning GetAnimationControllerForPresentedController (UIViewController presented, UIViewController presenting, UIViewController source)

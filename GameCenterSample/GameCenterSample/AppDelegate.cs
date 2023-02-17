@@ -5,14 +5,12 @@ using Foundation;
 using UIKit;
 using GameKit;
 
-namespace GameCenterSample
-{
+namespace GameCenterSample {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 		UIWindow window;
 		MainViewController viewController;
@@ -27,9 +25,8 @@ namespace GameCenterSample
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			if (!isGameCenterAPIAvailable ())
-			{
-				new UIAlertView ("Error", "Game Center is not supported on this device", null, "OK", null).Show();
+			if (!isGameCenterAPIAvailable ()) {
+				new UIAlertView ("Error", "Game Center is not supported on this device", null, "OK", null).Show ();
 				return true;
 			}
 			viewController = new MainViewController ();
@@ -45,7 +42,7 @@ namespace GameCenterSample
 		{
 		}
 
-		private bool isGameCenterAPIAvailable()
+		private bool isGameCenterAPIAvailable ()
 		{
 			return UIDevice.CurrentDevice.CheckSystemVersion (4, 1);
 		}

@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 
 using UIKit;
 
-namespace tvText
-{
+namespace tvText {
 	/// <summary>
 	/// Controls the View for the Search tab.
 	/// </summary>
-	public partial class SecondViewController : UIViewController
-	{
+	public partial class SecondViewController : UIViewController {
 		#region Constants
 		/// <summary>
 		/// The ID of the View Controller used to present search results to the user
@@ -22,7 +20,7 @@ namespace tvText
 		/// Gets or sets the results controller.
 		/// </summary>
 		/// <value>The <c>SearchResultsViewController</c>.</value>
-		public SearchResultsViewController ResultsController { get; set;}
+		public SearchResultsViewController ResultsController { get; set; }
 		#endregion
 
 		#region Constructors

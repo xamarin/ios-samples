@@ -1,21 +1,19 @@
-﻿
-namespace XamarinShot.Models.Interactions
-{
-    using SceneKit;
 
-    public interface IGrabbable
-    {
-        int GrabbableId { get; set; }
-        Player Player { get; set; }
-        bool IsGrabbed { get; set; }
+namespace XamarinShot.Models.Interactions {
+	using SceneKit;
 
-        bool IsVisible { get; set; }
-        bool IsHighlighted { get; }
-        void DoHighlight(bool show, SFXCoordinator sfxCoordinator);
+	public interface IGrabbable {
+		int GrabbableId { get; set; }
+		Player Player { get; set; }
+		bool IsGrabbed { get; set; }
 
-        bool CanGrab(Ray cameraRay);
-        float DistanceFrom(SCNVector3 worldPos);
+		bool IsVisible { get; set; }
+		bool IsHighlighted { get; }
+		void DoHighlight (bool show, SFXCoordinator sfxCoordinator);
 
-        void Move(CameraInfo cameraInfo);
-    }
+		bool CanGrab (Ray cameraRay);
+		float DistanceFrom (SCNVector3 worldPos);
+
+		void Move (CameraInfo cameraInfo);
+	}
 }

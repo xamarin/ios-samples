@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using UIKit;
 using CoreGraphics;
 using Foundation;
 
-namespace Chat
-{
-	public abstract class BubbleCell : UITableViewCell
-	{
+namespace Chat {
+	public abstract class BubbleCell : UITableViewCell {
 		public UIImageView BubbleImageView { get; private set; }
 		public UILabel MessageLabel { get; private set; }
 		public UIImage BubbleImage { get; set; }

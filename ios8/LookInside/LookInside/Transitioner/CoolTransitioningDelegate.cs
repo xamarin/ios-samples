@@ -4,10 +4,8 @@ using System.Globalization;
 using UIKit;
 using Foundation;
 
-namespace LookInside
-{
-	public class CoolTransitioningDelegate : UIViewControllerTransitioningDelegate
-	{
+namespace LookInside {
+	public class CoolTransitioningDelegate : UIViewControllerTransitioningDelegate {
 		UIPresentationController presentationController;
 		CoolAnimatedTransitioning present, dismiss;
 

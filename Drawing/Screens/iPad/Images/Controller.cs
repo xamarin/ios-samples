@@ -2,15 +2,13 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_Drawing.Screens.iPad.Images
-{
-	public class Controller : UIViewController
-	{
+namespace Example_Drawing.Screens.iPad.Images {
+	public class Controller : UIViewController {
 		UIImageView imageView;
 
 		#region -= constructors =-
 
-		public Controller () : base() { }
+		public Controller () : base () { }
 
 		#endregion
 
@@ -31,9 +29,9 @@ namespace Example_Drawing.Screens.iPad.Images
 			// size
 			CGSize bitmapSize = new CGSize (View.Frame.Size);
 			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero,
-									      (int)bitmapSize.Width, (int)bitmapSize.Height, 8,
-									      (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
-									      CGImageAlphaInfo.PremultipliedFirst)) {
+										  (int) bitmapSize.Width, (int) bitmapSize.Height, 8,
+										  (int) (4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
+										  CGImageAlphaInfo.PremultipliedFirst)) {
 
 				// declare vars
 				UIImage apressImage = UIImage.FromFile ("icon-114.png");

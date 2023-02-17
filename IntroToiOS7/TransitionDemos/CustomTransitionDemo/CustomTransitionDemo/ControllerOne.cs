@@ -3,10 +3,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace CustomTransitionDemo
-{
-	public partial class ControllerOne : UIViewController
-	{
+namespace CustomTransitionDemo {
+	public partial class ControllerOne : UIViewController {
 		UIButton showTwo;
 		ControllerTwo controllerTwo;
 		TransitioningDelegate transitioningDelegate;
@@ -20,7 +18,7 @@ namespace CustomTransitionDemo
 			base.ViewDidLoad ();
 
 			View.BackgroundColor = UIColor.White;
-			
+
 			showTwo = UIButton.FromType (UIButtonType.System);
 			showTwo.Frame = new CGRect (View.Frame.Width / 2 - 100, View.Frame.Height / 2 - 25, 200, 50);
 			showTwo.SetTitle ("Show Controller Two", UIControlState.Normal);

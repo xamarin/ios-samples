@@ -6,7 +6,7 @@ namespace UICatalog {
 	public partial class MenuSplitViewController : UISplitViewController {
 
 		bool preferDetailViewControllerOnNextFocusUpdate;
-			
+
 		public override UIView PreferredFocusedView {
 			get {
 				UIView preferredFocusedView;

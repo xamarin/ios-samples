@@ -2,10 +2,8 @@ using System;
 using UIKit;
 using System.Collections.Generic;
 
-namespace Example_SplitView.Screens.MasterView
-{
-	public class MasterTableView : UITableViewController
-	{
+namespace Example_SplitView.Screens.MasterView {
+	public class MasterTableView : UITableViewController {
 		TableSource tableSource;
 
 		public event EventHandler<RowClickedEventArgs> RowClicked;
@@ -23,7 +21,7 @@ namespace Example_SplitView.Screens.MasterView
 			base.ViewDidLoad ();
 
 			// setup our data source
-			List<string> items = new List<string>();
+			List<string> items = new List<string> ();
 			for (int i = 1; i <= 10; i++)
 				items.Add (i.ToString ());
 			tableSource = new TableSource (items, this);
@@ -38,21 +36,19 @@ namespace Example_SplitView.Screens.MasterView
 			return true;
 		}
 
-		public class RowClickedEventArgs : EventArgs
-		{
+		public class RowClickedEventArgs : EventArgs {
 			public string Item { get; set; }
 
-			public RowClickedEventArgs(string item) : base()
+			public RowClickedEventArgs (string item) : base ()
 			{ this.Item = item; }
 		}
 
-		protected class TableSource : UITableViewSource
-		{
+		protected class TableSource : UITableViewSource {
 			public List<string> Items = new List<string> ();
 			protected string cellIdentifier = "basicCell";
 			protected MasterTableView parentController;
 
-			public TableSource(List<string> items, MasterTableView parentController)
+			public TableSource (List<string> items, MasterTableView parentController)
 			{
 				Items = items;
 				this.parentController = parentController;
@@ -74,7 +70,7 @@ namespace Example_SplitView.Screens.MasterView
 				if (cell == null)
 					cell = new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
 				// set the item text
-				cell.TextLabel.Text = Items[indexPath.Row];
+				cell.TextLabel.Text = Items [indexPath.Row];
 
 				return cell;
 			}
@@ -82,7 +78,7 @@ namespace Example_SplitView.Screens.MasterView
 			public override void RowSelected (UITableView tableView, Foundation.NSIndexPath indexPath)
 			{
 				if (parentController.RowClicked != null)
-					parentController.RowClicked (this, new RowClickedEventArgs(Items[indexPath.Row]));
+					parentController.RowClicked (this, new RowClickedEventArgs (Items [indexPath.Row]));
 			}
 		}
 	}

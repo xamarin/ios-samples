@@ -1,16 +1,13 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Photos;
 using Foundation;
 using CoreFoundation;
 
-namespace SamplePhotoApp
-{
-	public partial class MasterViewController : UITableViewController, IPHPhotoLibraryChangeObserver
-	{
-		public enum Section
-		{
+namespace SamplePhotoApp {
+	public partial class MasterViewController : UITableViewController, IPHPhotoLibraryChangeObserver {
+		public enum Section {
 			AllPhotos,
 			SmartAlbums,
 			UserCollections
@@ -26,7 +23,7 @@ namespace SamplePhotoApp
 		PHFetchResult smartAlbums;
 		PHFetchResult userCollections;
 
-		readonly string[] sectionLocalizedTitles = { "", "Smart Albums", "Albums" };
+		readonly string [] sectionLocalizedTitles = { "", "Smart Albums", "Albums" };
 
 		public MasterViewController (IntPtr handle)
 			: base (handle)
@@ -46,9 +43,8 @@ namespace SamplePhotoApp
 			NavigationItem.RightBarButtonItem = new UIBarButtonItem (UIBarButtonSystemItem.Add, AddAlbum);
 
 			// Create a PHFetchResult object for each section in the table view.
-			var allPhotosOptions = new PHFetchOptions
-			{
-				SortDescriptors = new NSSortDescriptor[] { new NSSortDescriptor ("creationDate", true) },
+			var allPhotosOptions = new PHFetchOptions {
+				SortDescriptors = new NSSortDescriptor [] { new NSSortDescriptor ("creationDate", true) },
 			};
 
 			allPhotos = PHAsset.FetchAssets (allPhotosOptions);
@@ -73,24 +69,19 @@ namespace SamplePhotoApp
 		void AddAlbum (object sender, EventArgs args)
 		{
 			var alertController = UIAlertController.Create ("New Album", null, UIAlertControllerStyle.Alert);
-			alertController.AddTextField (textField =>
-			{
+			alertController.AddTextField (textField => {
 				textField.Placeholder = "Album Name";
 			});
 
-			alertController.AddAction (UIAlertAction.Create ("Create", UIAlertActionStyle.Default, action =>
-			{
-				var textField = alertController.TextFields[0];
+			alertController.AddAction (UIAlertAction.Create ("Create", UIAlertActionStyle.Default, action => {
+				var textField = alertController.TextFields [0];
 
 				var title = textField.Text;
-				if (!string.IsNullOrEmpty (title))
-				{
+				if (!string.IsNullOrEmpty (title)) {
 					// Create a new album with the title entered.
-					PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() =>
-					{
+					PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
 						PHAssetCollectionChangeRequest.CreateAssetCollection (title);
-					}, (success, error) =>
-					{
+					}, (success, error) => {
 						if (!success)
 							Console.WriteLine ($"error creating album: {error}");
 					});
@@ -113,35 +104,33 @@ namespace SamplePhotoApp
 
 			destination.Title = cell.TextLabel.Text;
 
-			switch (segue.Identifier)
-			{
-				case showAllPhotos:
-					destination.FetchResult = allPhotos;
+			switch (segue.Identifier) {
+			case showAllPhotos:
+				destination.FetchResult = allPhotos;
+				break;
+
+			case showCollection:
+				// get the asset collection for the selected row
+				var indexPath = TableView.IndexPathForCell (cell);
+				PHCollection collection = null;
+				switch ((Section) indexPath.Section) {
+				case Section.SmartAlbums:
+					collection = (PHAssetCollection) smartAlbums.ObjectAt (indexPath.Row);
 					break;
 
-				case showCollection:
-					// get the asset collection for the selected row
-					var indexPath = TableView.IndexPathForCell (cell);
-					PHCollection collection = null;
-					switch ((Section)indexPath.Section)
-					{
-						case Section.SmartAlbums:
-							collection = (PHAssetCollection)smartAlbums.ObjectAt (indexPath.Row);
-							break;
-
-						case Section.UserCollections:
-							collection = (PHCollection)userCollections.ObjectAt (indexPath.Row);
-							break;
-					}
-
-					// configure the view controller with the asset collection
-					var assetCollection = collection as PHAssetCollection;
-					if (assetCollection == null)
-						throw new InvalidProgramException ("expected asset collection");
-
-					destination.FetchResult = PHAsset.FetchAssets (assetCollection, null);
-					destination.AssetCollection = assetCollection;
+				case Section.UserCollections:
+					collection = (PHCollection) userCollections.ObjectAt (indexPath.Row);
 					break;
+				}
+
+				// configure the view controller with the asset collection
+				var assetCollection = collection as PHAssetCollection;
+				if (assetCollection == null)
+					throw new InvalidProgramException ("expected asset collection");
+
+				destination.FetchResult = PHAsset.FetchAssets (assetCollection, null);
+				destination.AssetCollection = assetCollection;
+				break;
 			}
 		}
 
@@ -156,14 +145,13 @@ namespace SamplePhotoApp
 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			switch ((Section)(int)section)
-			{
-				case Section.AllPhotos:
-					return 1;
-				case Section.SmartAlbums:
-					return smartAlbums.Count;
-				case Section.UserCollections:
-					return userCollections.Count;
+			switch ((Section) (int) section) {
+			case Section.AllPhotos:
+				return 1;
+			case Section.SmartAlbums:
+				return smartAlbums.Count;
+			case Section.UserCollections:
+				return userCollections.Count;
 			}
 
 			throw new InvalidProgramException ();
@@ -171,29 +159,25 @@ namespace SamplePhotoApp
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			switch ((Section)indexPath.Section)
-			{
-				case Section.AllPhotos:
-					{
-						var cell = tableView.DequeueReusableCell (allPhotosIdentifier, indexPath);
-						cell.TextLabel.Text = "All Photos";
-						return cell;
-					}
-				case Section.SmartAlbums:
-					{
-						var cell = tableView.DequeueReusableCell (collectionIdentifier, indexPath);
-						var collection = (PHCollection)smartAlbums.ObjectAt (indexPath.Row);
-						cell.TextLabel.Text = collection.LocalizedTitle;
-						return cell;
-					}
-				case Section.UserCollections:
-					{
-						var cell = tableView.DequeueReusableCell (collectionIdentifier, indexPath);
-						var collection = (PHCollection)userCollections.ObjectAt (indexPath.Row);
-						cell.TextLabel.Text = collection.LocalizedTitle;
+			switch ((Section) indexPath.Section) {
+			case Section.AllPhotos: {
+				var cell = tableView.DequeueReusableCell (allPhotosIdentifier, indexPath);
+				cell.TextLabel.Text = "All Photos";
+				return cell;
+			}
+			case Section.SmartAlbums: {
+				var cell = tableView.DequeueReusableCell (collectionIdentifier, indexPath);
+				var collection = (PHCollection) smartAlbums.ObjectAt (indexPath.Row);
+				cell.TextLabel.Text = collection.LocalizedTitle;
+				return cell;
+			}
+			case Section.UserCollections: {
+				var cell = tableView.DequeueReusableCell (collectionIdentifier, indexPath);
+				var collection = (PHCollection) userCollections.ObjectAt (indexPath.Row);
+				cell.TextLabel.Text = collection.LocalizedTitle;
 
-						return cell;
-					}
+				return cell;
+			}
 			}
 
 			throw new InvalidProgramException ();
@@ -201,7 +185,7 @@ namespace SamplePhotoApp
 
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			return sectionLocalizedTitles[(int)section];
+			return sectionLocalizedTitles [(int) section];
 		}
 
 		#endregion
@@ -212,14 +196,12 @@ namespace SamplePhotoApp
 		{
 			// Change notifications may be made on a background queue. Re-dispatch to the
 			// main queue before acting on the change as we'll be updating the UI.
-			DispatchQueue.MainQueue.DispatchSync (() =>
-			{
+			DispatchQueue.MainQueue.DispatchSync (() => {
 				// Check each of the three top-level fetches for changes.
 
 				// Update the cached fetch result. 
 				var changeDetails = changeInstance.GetFetchResultChangeDetails (allPhotos);
-				if (changeDetails != null)
-				{
+				if (changeDetails != null) {
 					// Update the cached fetch result.
 					allPhotos = changeDetails.FetchResultAfterChanges;
 					// (The table row for this one doesn't need updating, it always says "All Photos".)
@@ -227,17 +209,15 @@ namespace SamplePhotoApp
 
 				// Update the cached fetch results, and reload the table sections to match.
 				changeDetails = changeInstance.GetFetchResultChangeDetails (smartAlbums);
-				if (changeDetails != null)
-				{
+				if (changeDetails != null) {
 					smartAlbums = changeDetails.FetchResultAfterChanges;
-					TableView.ReloadSections (NSIndexSet.FromIndex ((int)Section.SmartAlbums), UITableViewRowAnimation.Automatic);
+					TableView.ReloadSections (NSIndexSet.FromIndex ((int) Section.SmartAlbums), UITableViewRowAnimation.Automatic);
 				}
 
 				changeDetails = changeInstance.GetFetchResultChangeDetails (userCollections);
-				if (changeDetails != null)
-				{
+				if (changeDetails != null) {
 					userCollections = changeDetails.FetchResultAfterChanges;
-					TableView.ReloadSections (NSIndexSet.FromIndex ((int)Section.UserCollections), UITableViewRowAnimation.Automatic);
+					TableView.ReloadSections (NSIndexSet.FromIndex ((int) Section.UserCollections), UITableViewRowAnimation.Automatic);
 				}
 			});
 		}

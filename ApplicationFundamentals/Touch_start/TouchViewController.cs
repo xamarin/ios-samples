@@ -4,10 +4,8 @@ using UIKit;
 using System.CodeDom.Compiler;
 using CoreGraphics;
 
-namespace Touch
-{
-	partial class TouchViewController : UIViewController
-	{
+namespace Touch {
+	partial class TouchViewController : UIViewController {
 		#region Private Variables
 		//private bool imageHighlighted = false;
 		//private bool touchStartedInside;

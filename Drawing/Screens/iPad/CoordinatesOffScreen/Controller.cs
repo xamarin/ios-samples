@@ -2,15 +2,13 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_Drawing.Screens.iPad.CoordinatesOffScreen
-{
-	public class Controller : UIViewController
-	{
+namespace Example_Drawing.Screens.iPad.CoordinatesOffScreen {
+	public class Controller : UIViewController {
 		UIImageView imageView;
 
 		#region -= constructors =-
 
-		public Controller () : base() { }
+		public Controller () : base () { }
 
 		#endregion
 
@@ -31,11 +29,10 @@ namespace Example_Drawing.Screens.iPad.CoordinatesOffScreen
 			// size
 			CGSize bitmapSize = new CGSize (View.Frame.Size);
 			using (CGBitmapContext context = new CGBitmapContext (
-				       IntPtr.Zero,
-				       (int)bitmapSize.Width, (int)bitmapSize.Height, 8,
-				       (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
-				       CGImageAlphaInfo.PremultipliedFirst))
-			{
+					   IntPtr.Zero,
+					   (int) bitmapSize.Width, (int) bitmapSize.Height, 8,
+					   (int) (4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
+					   CGImageAlphaInfo.PremultipliedFirst)) {
 				// declare vars
 				int remainder;
 				int textHeight = 20;
@@ -58,7 +55,7 @@ namespace Example_Drawing.Screens.iPad.CoordinatesOffScreen
 						// starting at 40, draw the coordinate text nearly to the top
 						if (yPos > 40 && i < (numberOfVerticalTicks - 2)) {
 							// draw it every 80 points
-							Math.DivRem ( (int)yPos, (int)80, out remainder);
+							Math.DivRem ((int) yPos, (int) 80, out remainder);
 							if (remainder == 0)
 								ShowTextAtPoint (context, 30, (yPos - (textHeight / 2)), yPos.ToString (), textHeight);
 						}
@@ -86,7 +83,7 @@ namespace Example_Drawing.Screens.iPad.CoordinatesOffScreen
 						// starting at 100, draw the coordinate text nearly to the top
 						if (xPos > 100 && i < (numberOfHorizontalTicks - 1)) {
 							// draw it every 80 points
-							Math.DivRem ((int)xPos, (int)80, out remainder);
+							Math.DivRem ((int) xPos, (int) 80, out remainder);
 							if (remainder == 0)
 								ShowCenteredTextAtPoint (context, xPos, 30, xPos.ToString (), textHeight);
 						}

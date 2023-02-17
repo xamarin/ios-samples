@@ -1,19 +1,16 @@
 using System;
 using System.Collections.Generic;
 
-namespace Xamarin.Code
-{
+namespace Xamarin.Code {
 	/// <summary>
 	/// A group that contains table items
 	/// </summary>
-	public class NavItemGroup
-	{
+	public class NavItemGroup {
 		public string Name { get; set; }
 
 		public string Footer { get; set; }
 
-		public List<NavItem> Items
-		{
+		public List<NavItem> Items {
 			get { return items; }
 			set { items = value; }
 		}

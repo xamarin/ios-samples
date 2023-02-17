@@ -5,10 +5,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Popovers
-{
-	public partial class DetailViewController : UIViewController
-	{
+namespace Popovers {
+	public partial class DetailViewController : UIViewController {
 		[Outlet]
 		public UIToolbar Toolbar { get; set; }
 
@@ -49,7 +47,7 @@ namespace Popovers
 
 			public override void WillHideViewController (UISplitViewController svc, UIViewController aViewController, UIBarButtonItem barButtonItem, UIPopoverController pc)
 			{
-				barButtonItem.Title =  "MasterList";
+				barButtonItem.Title = "MasterList";
 				var items = new List<UIBarButtonItem> (Parent.Toolbar.Items);
 				items.Insert (0, barButtonItem);
 				Parent.Toolbar.SetItems (items.ToArray (), true);
@@ -75,22 +73,22 @@ namespace Popovers
 		public DetailViewController (IntPtr handle) : base (handle)
 		{
 			// lost connection to DetailView.xib, create buttons manually for now
-			Button1 = new UIButton();
-			Button2 = new UIButton();
-			Button3 = new UIButton();
-			Button4 = new UIButton();
-			Button5 = new UIButton();
+			Button1 = new UIButton ();
+			Button2 = new UIButton ();
+			Button3 = new UIButton ();
+			Button4 = new UIButton ();
+			Button5 = new UIButton ();
 		}
 
 		//loads the DetailViewController.xib file and connects it to this object
 		public DetailViewController () : base ("DetailViewController", null)
 		{
 			// lost connection to DetailView.xib, create buttons manually for now
-			Button1 = new UIButton();
-			Button2 = new UIButton();
-			Button3 = new UIButton();
-			Button4 = new UIButton();
-			Button5 = new UIButton();
+			Button1 = new UIButton ();
+			Button2 = new UIButton ();
+			Button3 = new UIButton ();
+			Button4 = new UIButton ();
+			Button5 = new UIButton ();
 		}
 
 		public override void ViewDidLoad ()
@@ -109,9 +107,10 @@ namespace Popovers
 		}
 
 		[Action ("showPopover:")]
-		public void ShowPopover (NSObject sender) {
+		public void ShowPopover (NSObject sender)
+		{
 			// Set the sender to a UIButton.
-			UIButton tappedButton = (UIButton)sender;
+			UIButton tappedButton = (UIButton) sender;
 
 			// Present the popover from the button that was tapped in the detail view.
 			DetailViewPopover.PresentFromRect (tappedButton.Frame, View, UIPopoverArrowDirection.Any, true);
@@ -121,9 +120,10 @@ namespace Popovers
 		}
 
 		[Action ("showPopoverFromBarButtonItem:")]
-		public void ShowPopoverFromBarButtonItem (NSObject sender) {
+		public void ShowPopoverFromBarButtonItem (NSObject sender)
+		{
 			// Set the sender to a UIBarButtonItem.
-			UIBarButtonItem tappedButton = (UIBarButtonItem)sender;
+			UIBarButtonItem tappedButton = (UIBarButtonItem) sender;
 
 			// If the master list popover is showing, dismiss it before presenting the popover from the bar button item.
 			if (MainPopoverController != null)
@@ -145,7 +145,7 @@ namespace Popovers
 
 		public override void DidRotate (UIInterfaceOrientation fromInterfaceOrientation)
 		{
-			 if (LastTappedButton != null)
+			if (LastTappedButton != null)
 				ShowPopover (LastTappedButton);
 		}
 
@@ -159,7 +159,7 @@ namespace Popovers
 				Button5.Frame = new CGRect (588, 824, 160, 160);
 			} else {
 				Button1.Frame = new CGRect (20, 64, 160, 160);
-				Button2.Frame = new CGRect(524, 64, 160, 160);
+				Button2.Frame = new CGRect (524, 64, 160, 160);
 				Button3.Frame = new CGRect (272, 311, 160, 160);
 				Button4.Frame = new CGRect (20, 568, 160, 160);
 				Button5.Frame = new CGRect (524, 568, 160, 160);
@@ -169,7 +169,7 @@ namespace Popovers
 
 		public void WillHideViewController (object sender, UISplitViewHideEventArgs args)
 		{
-			args.BarButtonItem.Title =  "MasterList";
+			args.BarButtonItem.Title = "MasterList";
 			var items = new List<UIBarButtonItem> (Toolbar.Items);
 			items.Insert (0, args.BarButtonItem);
 			Toolbar.SetItems (items.ToArray (), true);

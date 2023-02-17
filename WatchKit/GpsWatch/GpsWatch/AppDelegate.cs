@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -6,14 +6,12 @@ using Foundation;
 using UIKit;
 using CoreLocation;
 
-namespace GpsWatch
-{
+namespace GpsWatch {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		CLLocationManager locationManager;
 		CLLocationCoordinate2D locationCoordinate;
 		CLAuthorizationStatus status;
@@ -40,7 +38,7 @@ namespace GpsWatch
 			SetupLocationManager ();
 		}
 
-		void SetupLocationManager()
+		void SetupLocationManager ()
 		{
 			if (locationManager != null)
 				return;
@@ -56,16 +54,16 @@ namespace GpsWatch
 			status = e.Status;
 
 			switch (status) {
-				case CLAuthorizationStatus.AuthorizedAlways:
-					locationManager.StartUpdatingLocation ();
-					break;
+			case CLAuthorizationStatus.AuthorizedAlways:
+				locationManager.StartUpdatingLocation ();
+				break;
 
-				case CLAuthorizationStatus.NotDetermined:
-					locationManager.RequestAlwaysAuthorization ();
-					break;
+			case CLAuthorizationStatus.NotDetermined:
+				locationManager.RequestAlwaysAuthorization ();
+				break;
 
-				default:
-					break;
+			default:
+				break;
 			}
 		}
 
@@ -76,7 +74,7 @@ namespace GpsWatch
 
 		public override void HandleWatchKitExtensionRequest (UIApplication application, NSDictionary userInfo, Action<NSDictionary> reply)
 		{
-			reply (new NSDictionary ("status", NSNumber.FromUInt32 ((uint)status),
+			reply (new NSDictionary ("status", NSNumber.FromUInt32 ((uint) status),
 				"lon", NSNumber.FromDouble (locationCoordinate.Longitude),
 				"lat", NSNumber.FromDouble (locationCoordinate.Latitude)));
 		}

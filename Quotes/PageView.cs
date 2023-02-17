@@ -6,14 +6,12 @@ using Foundation;
 using CoreGraphics;
 using CoreText;
 
-namespace Quotes
-{
+namespace Quotes {
 	[Register ("PageView")]
-	public class PageView : UIImageView
-	{
+	public class PageView : UIImageView {
 		Page page;
 		public bool UnstyledDrawing;
-		CGRect[] paragraphBounds;
+		CGRect [] paragraphBounds;
 
 		public PageView (IntPtr handle) : base (handle)
 		{
@@ -52,7 +50,7 @@ namespace Quotes
 			}
 		}
 
-		[Export("getLineHeight")]
+		[Export ("getLineHeight")]
 		public float GetLineHeight ()
 		{
 			return page.LineHeight;
@@ -119,7 +117,7 @@ namespace Quotes
 
 		public void SelectParagraphAtPosition (CGPoint position, bool shouldShowMenu)
 		{
-			page.SelectedParagraph = (int)NSRange.NotFound;
+			page.SelectedParagraph = (int) NSRange.NotFound;
 			var bounds = CGRect.Empty;
 
 			for (int i = 0; i < paragraphBounds.Length; i++) {

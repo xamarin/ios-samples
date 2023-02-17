@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 using HomeKit;
-namespace HomeKitIntro
-{
-	public class CharacteristicTableSource : UITableViewSource
-	{
+namespace HomeKitIntro {
+	public class CharacteristicTableSource : UITableViewSource {
 		#region Private Variables
 		private CharacteristicTableViewController _controller;
-		#endregion 
+		#endregion
 
 		#region Computed Properties
 		/// <summary>
@@ -17,7 +15,7 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 		#endregion
 
@@ -218,7 +216,7 @@ namespace HomeKitIntro
 				break;
 			default:
 				// Just display as info it the type is unknown
-				fieldName = characteristic.CharacteristicType.ToString();
+				fieldName = characteristic.CharacteristicType.ToString ();
 				display = CharacteristicDisplayType.Info;
 				editable = false;
 				break;
@@ -227,8 +225,8 @@ namespace HomeKitIntro
 			// Update the current value of the field
 			characteristic.ReadValue ((err) => {
 				// Report errors to console
-				if (err!=null) {
-					Console.WriteLine("Error Updating {0}: {1}",fieldName,err.LocalizedDescription);
+				if (err != null) {
+					Console.WriteLine ("Error Updating {0}: {1}", fieldName, err.LocalizedDescription);
 				}
 			});
 
@@ -239,7 +237,7 @@ namespace HomeKitIntro
 				var InfoCell = tableView.DequeueReusableCell (CharacteristicCellInfo.Key) as CharacteristicCellInfo;
 
 				// Populate the cell
-				InfoCell.DisplayInfo (fieldName, characteristic.Value.ToString());
+				InfoCell.DisplayInfo (fieldName, characteristic.Value.ToString ());
 
 				// Return cell
 				return InfoCell;
@@ -248,7 +246,7 @@ namespace HomeKitIntro
 				var SliderCell = tableView.DequeueReusableCell (CharacteristicCellSlider.Key) as CharacteristicCellSlider;
 
 				// Populate the cell
-				SliderCell.DisplayInfo (fieldName, NSObjectConverter.ToFloat (characteristic.Value), (float)characteristic.Metadata.MinimumValue, (float)characteristic.Metadata.MaximumValue, editable);
+				SliderCell.DisplayInfo (fieldName, NSObjectConverter.ToFloat (characteristic.Value), (float) characteristic.Metadata.MinimumValue, (float) characteristic.Metadata.MaximumValue, editable);
 				SliderCell.Characteristic = characteristic;
 				SliderCell.Controller = _controller;
 
@@ -259,7 +257,7 @@ namespace HomeKitIntro
 				var StepperCell = tableView.DequeueReusableCell (CharacteristicCellStepper.Key) as CharacteristicCellStepper;
 
 				// Populate the cell
-				StepperCell.DisplayInfo (fieldName, NSObjectConverter.ToFloat (characteristic.Value), (float)characteristic.Metadata.MinimumValue, (float)characteristic.Metadata.MaximumValue, editable);
+				StepperCell.DisplayInfo (fieldName, NSObjectConverter.ToFloat (characteristic.Value), (float) characteristic.Metadata.MinimumValue, (float) characteristic.Metadata.MaximumValue, editable);
 				StepperCell.Characteristic = characteristic;
 				StepperCell.Controller = _controller;
 
@@ -271,7 +269,7 @@ namespace HomeKitIntro
 				var SwitchCell = tableView.DequeueReusableCell (CharacteristicCellSwitch.Key) as CharacteristicCellSwitch;
 
 				// Populate the cell
-				SwitchCell.DisplayInfo (fieldName, NSObjectConverter.ToBool(characteristic.Value), editable);
+				SwitchCell.DisplayInfo (fieldName, NSObjectConverter.ToBool (characteristic.Value), editable);
 				SwitchCell.Characteristic = characteristic;
 				SwitchCell.Controller = _controller;
 
@@ -282,7 +280,7 @@ namespace HomeKitIntro
 				var TextCell = tableView.DequeueReusableCell (CharacteristicCellText.Key) as CharacteristicCellText;
 
 				// Populate the cell
-				TextCell.DisplayInfo (fieldName, NSObjectConverter.ToString(characteristic.Value), editable);
+				TextCell.DisplayInfo (fieldName, NSObjectConverter.ToString (characteristic.Value), editable);
 				TextCell.Characteristic = characteristic;
 				TextCell.Controller = _controller;
 

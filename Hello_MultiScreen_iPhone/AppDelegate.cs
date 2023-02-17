@@ -4,11 +4,9 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Hello_MultiScreen_iPhone
-{
+namespace Hello_MultiScreen_iPhone {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		//---- declarations
 		UIWindow window;
 
@@ -18,11 +16,11 @@ namespace Hello_MultiScreen_iPhone
 			this.window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			//---- instantiate a new navigation controller
-			var rootNavigationController = new UINavigationController();
+			var rootNavigationController = new UINavigationController ();
 			//---- instantiate a new home screen
-			HomeScreen homeScreen = new HomeScreen();
+			HomeScreen homeScreen = new HomeScreen ();
 			//---- add the home screen to the navigation controller (it'll be the top most screen)
-			rootNavigationController.PushViewController(homeScreen, false);
+			rootNavigationController.PushViewController (homeScreen, false);
 
 			//---- set the root view controller on the window. the nav controller will handle the rest
 			this.window.RootViewController = rootNavigationController;

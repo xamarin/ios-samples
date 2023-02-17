@@ -3,10 +3,8 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace UIKitEnhancements
-{
-	partial class WebViewController : UIViewController
-	{
+namespace UIKitEnhancements {
+	partial class WebViewController : UIViewController {
 		#region Computed Properties
 		public string URL { get; set; }
 		#endregion
@@ -21,31 +19,33 @@ namespace UIKitEnhancements
 		/// <summary>
 		/// Shows the busy indicator
 		/// </summary>
-		private void ShowBusy() {
+		private void ShowBusy ()
+		{
 
 			//Define Animation
-			UIView.BeginAnimations("Show");
-			UIView.SetAnimationDuration(1.0f);
+			UIView.BeginAnimations ("Show");
+			UIView.SetAnimationDuration (1.0f);
 
 			Loading.Alpha = 0.5f;
 
 			//Execute Animation
-			UIView.CommitAnimations();
+			UIView.CommitAnimations ();
 		}
 
 		/// <summary>
 		/// Hides the busy.
 		/// </summary>
-		private void HideBusy() {
+		private void HideBusy ()
+		{
 
 			//Define Animation
-			UIView.BeginAnimations("Hide");
-			UIView.SetAnimationDuration(1.0f);
+			UIView.BeginAnimations ("Hide");
+			UIView.SetAnimationDuration (1.0f);
 
 			Loading.Alpha = 0f;
 
 			//Execute Animation
-			UIView.CommitAnimations();
+			UIView.CommitAnimations ();
 		}
 		#endregion
 
@@ -58,17 +58,17 @@ namespace UIKitEnhancements
 			Loading.Alpha = 0.0f;
 
 			// Display the give webpage
-			WebView.LoadRequest(new NSUrlRequest(NSUrl.FromString(URL)));
+			WebView.LoadRequest (new NSUrlRequest (NSUrl.FromString (URL)));
 
 			// Wireup Webview notifications
 			WebView.LoadStarted += (sender, e) => {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
-				ShowBusy();
+				ShowBusy ();
 			};
 
 			WebView.LoadFinished += (sender, e) => {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
-				HideBusy();
+				HideBusy ();
 			};
 		}
 		#endregion

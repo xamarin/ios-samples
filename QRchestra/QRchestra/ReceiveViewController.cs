@@ -9,10 +9,8 @@ using CoreText;
 using ObjCRuntime;
 using System.Threading;
 
-namespace QRchestra
-{
-	public partial class ReceiveViewController : UIViewController
-	{
+namespace QRchestra {
+	public partial class ReceiveViewController : UIViewController {
 		int barcodeIndex;
 
 		AVCaptureVideoPreviewLayer previewLayer;
@@ -20,9 +18,9 @@ namespace QRchestra
 		SessionManager sessionManager;
 		Synth synth;
 		NSTimer barcodeTimer;
-		#pragma warning disable 414
+#pragma warning disable 414
 		NSTimer stepTimer; // the sample requries this timer to run!
-		#pragma warning restore 414
+#pragma warning restore 414
 
 		public UIColor OverlayColor {
 			get {
@@ -30,7 +28,7 @@ namespace QRchestra
 			}
 		}
 
-		CGPath createPathForPoints (CGPoint[] points)
+		CGPath createPathForPoints (CGPoint [] points)
 		{
 			CGPath path = new CGPath ();
 			CGPoint point;
@@ -132,7 +130,7 @@ namespace QRchestra
 		}
 
 		// called from ViewDidLoad in a timer loop
-		[Export("step:")]
+		[Export ("step:")]
 		void step (NSTimer timer)
 		{
 			if (sessionManager.Barcodes == null || sessionManager.Barcodes.Count < 1)
@@ -140,13 +138,13 @@ namespace QRchestra
 
 			lock (sessionManager) {
 				barcodeIndex = (barcodeIndex + 1) % sessionManager.Barcodes.Count;
-				var barcode = (AVMetadataMachineReadableCodeObject)sessionManager.Barcodes [barcodeIndex];
+				var barcode = (AVMetadataMachineReadableCodeObject) sessionManager.Barcodes [barcodeIndex];
 
 				if (barcodeTimer != null)
 					barcodeTimer.Invalidate ();
 				barcodeTimer = NSTimer.CreateScheduledTimer (0.5, this, new Selector ("removeDetectedBarcodeUI"), null, false);
 				var transformedBarcode =
-					(AVMetadataMachineReadableCodeObject)previewLayer.GetTransformedMetadataObject (barcode);
+					(AVMetadataMachineReadableCodeObject) previewLayer.GetTransformedMetadataObject (barcode);
 				CGPath barcodeBoundary = createPathForPoints (transformedBarcode.Corners);
 
 				CATransaction.Begin ();
@@ -172,7 +170,7 @@ namespace QRchestra
 			}
 		}
 
-		[Export("removeDetectedBarcodeUI")]
+		[Export ("removeDetectedBarcodeUI")]
 		void removeDetectedBarcodeUI ()
 		{
 			removeAllSublayersFromLayer (barcodeTargetLayer);

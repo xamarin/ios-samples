@@ -1,4 +1,4 @@
-﻿namespace MessagesExtension {
+namespace MessagesExtension {
 	public enum BaseType {
 		base01,
 		base02,
@@ -7,7 +7,7 @@
 	}
 
 	public class Base : IceCreamPart {
-		public static Base[] All { get; } = {
+		public static Base [] All { get; } = {
 			new Base (BaseType.base01),
 			new Base (BaseType.base02),
 			new Base (BaseType.base03),

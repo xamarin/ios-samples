@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace Common
-{
-	public class ComparisionComparer<T> : Comparer<T>
-	{
+namespace Common {
+	public class ComparisionComparer<T> : Comparer<T> {
 		readonly Comparison<T> comparision;
 
 		public ComparisionComparer (Comparison<T> comparision)

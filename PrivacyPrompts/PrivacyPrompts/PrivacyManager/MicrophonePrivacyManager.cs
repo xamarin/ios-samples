@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using AVFoundation;
 using Foundation;
 using UIKit;
 
-namespace PrivacyPrompts
-{
-	public class MicrophonePrivacyManager : IPrivacyManager
-	{
+namespace PrivacyPrompts {
+	public class MicrophonePrivacyManager : IPrivacyManager {
 		string micAccessText = "Not determined";
 
 		public Task RequestAccess ()
@@ -16,8 +14,8 @@ namespace PrivacyPrompts
 
 			AVAudioSession audioSession = AVAudioSession.SharedInstance ();
 			audioSession.RequestRecordPermission (granted => {
-				micAccessText = GetTextStatus(granted);
-				tcs.SetResult(null);
+				micAccessText = GetTextStatus (granted);
+				tcs.SetResult (null);
 			});
 
 			return tcs.Task;
@@ -36,7 +34,7 @@ namespace PrivacyPrompts
 			return micAccessText;
 		}
 
-		static string GetTextStatus(bool granted)
+		static string GetTextStatus (bool granted)
 		{
 			return string.Format ("Access {0}", granted ? "allowed" : "denied");
 		}

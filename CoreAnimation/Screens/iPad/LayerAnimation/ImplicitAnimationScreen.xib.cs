@@ -6,10 +6,8 @@ using UIKit;
 using CoreAnimation;
 using CoreGraphics;
 
-namespace CoreAnimationExample
-{
-	public partial class ImplicitAnimationScreen : UIViewController, IDetailView
-	{
+namespace CoreAnimationExample {
+	public partial class ImplicitAnimationScreen : UIViewController, IDetailView {
 		public event EventHandler ContentsButtonClicked;
 
 		CALayer imgLayer;
@@ -86,16 +84,14 @@ namespace CoreAnimationExample
 			return layer;
 		}
 
-		public class LayerDelegate : CALayerDelegate
-		{
+		public class LayerDelegate : CALayerDelegate {
 			public override void DrawLayer (CALayer layer, CGContext context)
 			{
 				// implement your drawing
 			}
 		}
 		// Method 3: Create a custom CALayer and override the appropriate methods
-		public class MyCustomLayer : CALayer
-		{
+		public class MyCustomLayer : CALayer {
 			public override void DrawInContext (CGContext ctx)
 			{
 				base.DrawInContext (ctx);

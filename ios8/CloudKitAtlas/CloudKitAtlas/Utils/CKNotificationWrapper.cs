@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	public class CKNotificationWrapper : IResult
-	{
+namespace CloudKitAtlas {
+	public class CKNotificationWrapper : IResult {
 		readonly CKNotification notification;
 
 		public CKNotificationWrapper (CKNotification notification)

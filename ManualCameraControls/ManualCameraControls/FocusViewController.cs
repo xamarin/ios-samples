@@ -5,10 +5,8 @@ using AVFoundation;
 using Foundation;
 using UIKit;
 
-namespace ManualCameraControls
-{
-	public partial class FocusViewController : UIViewController
-	{
+namespace ManualCameraControls {
+	public partial class FocusViewController : UIViewController {
 		#region Private Variables
 
 		NSError Error;
@@ -24,7 +22,7 @@ namespace ManualCameraControls
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
 			get {
-				return (AppDelegate)UIApplication.SharedApplication.Delegate;
+				return (AppDelegate) UIApplication.SharedApplication.Delegate;
 			}
 		}
 
@@ -56,7 +54,7 @@ namespace ManualCameraControls
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-				
+
 			// Hide no camera label
 			NoCamera.Hidden = ThisApp.CameraAvailable;
 
@@ -77,14 +75,14 @@ namespace ManualCameraControls
 					// Take action based on the segment selected
 					switch (Segments.SelectedSegment) {
 					case 0:
-					// Activate auto focus and start monitoring position
+						// Activate auto focus and start monitoring position
 						Position.Enabled = false;
 						ThisApp.CaptureDevice.FocusMode = AVCaptureFocusMode.ContinuousAutoFocus;
 						SampleTimer.Start ();
 						Automatic = true;
 						break;
 					case 1:
-					// Stop auto focus and allow the user to control the camera
+						// Stop auto focus and allow the user to control the camera
 						SampleTimer.Stop ();
 						ThisApp.CaptureDevice.FocusMode = AVCaptureFocusMode.Locked;
 						Automatic = false;

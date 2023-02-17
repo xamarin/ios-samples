@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using UIKit;
 
-namespace GrowRowTable
-{
-	public class GrowRowTableDelegate : UITableViewDelegate
-	{
+namespace GrowRowTable {
+	public class GrowRowTableDelegate : UITableViewDelegate {
 		public GrowRowTableDelegate ()
 		{
 		}
@@ -12,7 +10,7 @@ namespace GrowRowTable
 		public override void RowSelected (UITableView tableView, Foundation.NSIndexPath indexPath)
 		{
 			// Output selected row
-			Console.WriteLine("Row selected: {0}",indexPath.Row);
+			Console.WriteLine ("Row selected: {0}", indexPath.Row);
 		}
 	}
 }

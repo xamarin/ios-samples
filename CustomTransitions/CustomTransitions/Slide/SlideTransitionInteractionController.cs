@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 
 using CoreGraphics;
 using UIKit;
 
 namespace CustomTransitions {
-	public class  SlideTransitionInteractionController : UIPercentDrivenInteractiveTransition {
+	public class SlideTransitionInteractionController : UIPercentDrivenInteractiveTransition {
 
 		readonly UIPanGestureRecognizer gestureRecognizer;
 
@@ -22,7 +22,7 @@ namespace CustomTransitions {
 		{
 			TransitionContext = transitionContext;
 			initialTranslationInContainerView = gestureRecognizer.TranslationInView (transitionContext.ContainerView);
-			base.StartInteractiveTransition(transitionContext);
+			base.StartInteractiveTransition (transitionContext);
 		}
 
 		nfloat PercentForGesture (UIPanGestureRecognizer gesture)
@@ -42,24 +42,24 @@ namespace CustomTransitions {
 		}
 
 		void GestureRecognizeDidUpdate (UIPanGestureRecognizer sender)
-		{	
+		{
 			switch (sender.State) {
-				case UIGestureRecognizerState.Changed:
-					if (PercentForGesture(sender) < 0f)
-						CancelInteractiveTransition ();
-					else
-						UpdateInteractiveTransition (PercentForGesture (sender));
-					break;
-				case UIGestureRecognizerState.Ended:
-					if (PercentForGesture(gestureRecognizer) >= .4f) {
-						FinishInteractiveTransition ();
-					} else {
-						CancelInteractiveTransition ();
-					}
-					break;
-				default:
+			case UIGestureRecognizerState.Changed:
+				if (PercentForGesture (sender) < 0f)
 					CancelInteractiveTransition ();
-					break;
+				else
+					UpdateInteractiveTransition (PercentForGesture (sender));
+				break;
+			case UIGestureRecognizerState.Ended:
+				if (PercentForGesture (gestureRecognizer) >= .4f) {
+					FinishInteractiveTransition ();
+				} else {
+					CancelInteractiveTransition ();
+				}
+				break;
+			default:
+				CancelInteractiveTransition ();
+				break;
 			}
 		}
 	}

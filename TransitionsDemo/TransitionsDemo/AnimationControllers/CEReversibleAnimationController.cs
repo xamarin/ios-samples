@@ -2,10 +2,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace TransitionsDemo.AnimationControllers
-{
-	public class CEReversibleAnimationController : UIViewControllerAnimatedTransitioning
-	{
+namespace TransitionsDemo.AnimationControllers {
+	public class CEReversibleAnimationController : UIViewControllerAnimatedTransitioning {
 		public bool Reverse { get; set; }
 
 		public float Duration { get; private set; }
@@ -32,8 +30,8 @@ namespace TransitionsDemo.AnimationControllers
 		}
 
 		public virtual void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
-		                                      UIViewController fromViewController, UIViewController toViewController,
-		                                      UIView fromView, UIView toView)
+											  UIViewController fromViewController, UIViewController toViewController,
+											  UIView fromView, UIView toView)
 		{
 		}
 	}

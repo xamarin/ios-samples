@@ -5,14 +5,12 @@ using System.Collections.Generic;
 using Foundation;
 using CoreTelephony;
 
-namespace CoreTelephonyDemo
-{
-	public partial class CoreTelephonyDemoViewController : UITableViewController
-	{
+namespace CoreTelephonyDemo {
+	public partial class CoreTelephonyDemoViewController : UITableViewController {
 		CTTelephonyNetworkInfo networkInfo;
 		CTCallCenter callCenter;
 		string carrierName;
-		CTCall[] calls = new CTCall [0];
+		CTCall [] calls = new CTCall [0];
 
 		public CoreTelephonyDemoViewController ()
 			: base ("CoreTelephonyDemoViewController", null)
@@ -36,8 +34,7 @@ namespace CoreTelephonyDemo
 
 		private void ProviderUpdatedEvent (CTCarrier carrier)
 		{
-			CoreFoundation.DispatchQueue.MainQueue.DispatchSync (() =>
-			{
+			CoreFoundation.DispatchQueue.MainQueue.DispatchSync (() => {
 				carrierName = carrier == null ? null : carrier.CarrierName;
 				TableView.ReloadData ();
 			});
@@ -45,8 +42,7 @@ namespace CoreTelephonyDemo
 
 		private void CallEvent (CTCall inCTCall)
 		{
-			CoreFoundation.DispatchQueue.MainQueue.DispatchSync (() =>
-			{
+			CoreFoundation.DispatchQueue.MainQueue.DispatchSync (() => {
 				NSSet calls = callCenter.CurrentCalls;
 				calls = callCenter.CurrentCalls;
 				if (calls == null) {
@@ -54,8 +50,7 @@ namespace CoreTelephonyDemo
 				} else {
 					this.calls = calls.ToArray<CTCall> ();
 				}
-				Array.Sort (this.calls, (CTCall a, CTCall b) =>
-				{
+				Array.Sort (this.calls, (CTCall a, CTCall b) => {
 					return string.Compare (a.CallID, b.CallID);
 				});
 				TableView.ReloadData ();
@@ -103,7 +98,7 @@ namespace CoreTelephonyDemo
 			#region implemented abstract members of MonoTouch.UIKit.UITableViewDataSource
 			public override nint RowsInSection (UITableView tableView, nint section)
 			{
-				switch ((SectionIndex) (int)section) {
+				switch ((SectionIndex) (int) section) {
 				case SectionIndex.CurrentCall:
 					var controller = wcontroller.Target as CoreTelephonyDemoViewController;
 					return Math.Max (controller.calls.Length, 1);
@@ -182,7 +177,7 @@ namespace CoreTelephonyDemo
 
 			public override string TitleForHeader (UITableView tableView, nint section)
 			{
-				switch ((SectionIndex) (int)section) {
+				switch ((SectionIndex) (int) section) {
 				case SectionIndex.CurrentCall:
 					return "Current call";
 				case SectionIndex.CallCenter:

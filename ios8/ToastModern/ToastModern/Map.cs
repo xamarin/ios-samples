@@ -5,10 +5,8 @@ using Foundation;
 using ObjCRuntime;
 using System.Timers;
 
-namespace ToastModern
-{
-	public class Map : Layer
-	{
+namespace ToastModern {
+	public class Map : Layer {
 		double lastTime;
 		bool isInertiaing;
 		CGPoint velocity;
@@ -44,7 +42,7 @@ namespace ToastModern
 
 		public override void TouchesMoved (NSSet touches, UIEvent evt)
 		{
-			UITouch touch = (UITouch)touches.AnyObject;
+			UITouch touch = (UITouch) touches.AnyObject;
 
 			UIView.PerformWithoutAnimation (() => {
 				X = X + touch.LocationInView (Screen.GlobalScreen).X - touch.PreviousLocationInView (Screen.GlobalScreen).X;
@@ -53,8 +51,8 @@ namespace ToastModern
 			});
 
 			CGPoint newVelocity = CGPoint.Empty;
-			newVelocity.X = touch.LocationInView (Screen.GlobalScreen).X - (nfloat)(touch.PreviousLocationInView (Screen.GlobalScreen).X / (touch.Timestamp - lastTime));
-			newVelocity.Y = touch.LocationInView (Screen.GlobalScreen).Y - (nfloat)(touch.PreviousLocationInView (Screen.GlobalScreen).Y / (touch.Timestamp - lastTime));
+			newVelocity.X = touch.LocationInView (Screen.GlobalScreen).X - (nfloat) (touch.PreviousLocationInView (Screen.GlobalScreen).X / (touch.Timestamp - lastTime));
+			newVelocity.Y = touch.LocationInView (Screen.GlobalScreen).Y - (nfloat) (touch.PreviousLocationInView (Screen.GlobalScreen).Y / (touch.Timestamp - lastTime));
 			velocity.X = 0.25f * velocity.X + 0.75f * newVelocity.X;
 			velocity.Y = 0.25f * velocity.Y + 0.75f * newVelocity.Y;
 
@@ -63,11 +61,11 @@ namespace ToastModern
 
 		public override void TouchesEnded (NSSet touches, UIEvent evt)
 		{
-			UITouch touch = (UITouch)touches.AnyObject;
+			UITouch touch = (UITouch) touches.AnyObject;
 			CGPoint newVelocity = CGPoint.Empty;
 
-			newVelocity.X = touch.LocationInView (Screen.GlobalScreen).X - (nfloat)(touch.PreviousLocationInView (Screen.GlobalScreen).X / (touch.Timestamp - lastTime));
-			newVelocity.Y = touch.LocationInView (Screen.GlobalScreen).Y - (nfloat)(touch.PreviousLocationInView (Screen.GlobalScreen).Y / (touch.Timestamp - lastTime));
+			newVelocity.X = touch.LocationInView (Screen.GlobalScreen).X - (nfloat) (touch.PreviousLocationInView (Screen.GlobalScreen).X / (touch.Timestamp - lastTime));
+			newVelocity.Y = touch.LocationInView (Screen.GlobalScreen).Y - (nfloat) (touch.PreviousLocationInView (Screen.GlobalScreen).Y / (touch.Timestamp - lastTime));
 			velocity.X = 0.25f * velocity.X + 0.75f * newVelocity.X;
 			velocity.Y = 0.25f * velocity.Y + 0.75f * newVelocity.Y;
 

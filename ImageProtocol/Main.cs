@@ -30,11 +30,9 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-namespace ImageProtocol
-{
-	public class Application
-	{
-		static void Main (string[] args)
+namespace ImageProtocol {
+	public class Application {
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

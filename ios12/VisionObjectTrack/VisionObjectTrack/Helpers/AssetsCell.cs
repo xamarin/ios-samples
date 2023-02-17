@@ -1,15 +1,13 @@
 
-namespace VisionObjectTrack
-{
-    using System;
-    using UIKit;
+namespace VisionObjectTrack {
+	using System;
+	using UIKit;
 
-    public partial class AssetsCell : UICollectionViewCell
-    {
-        public const string Identifier = "AssetCell";
+	public partial class AssetsCell : UICollectionViewCell {
+		public const string Identifier = "AssetCell";
 
-        public string RepresentedAssetIdentifier { get; set; } = string.Empty;
-    
-        public AssetsCell (IntPtr handle) : base (handle) { }
-    }
+		public string RepresentedAssetIdentifier { get; set; } = string.Empty;
+
+		public AssetsCell (IntPtr handle) : base (handle) { }
+	}
 }

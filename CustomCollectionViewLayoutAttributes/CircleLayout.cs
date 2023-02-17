@@ -6,8 +6,7 @@ using CoreAnimation;
 using UIKit;
 using ObjCRuntime;
 
-namespace SimpleCollectionView
-{
+namespace SimpleCollectionView {
 	public class CircleData {
 		public int CellCount = 20;
 		public float Radius;
@@ -15,12 +14,11 @@ namespace SimpleCollectionView
 		public CGPoint Center;
 	}
 
-	public class CircleLayout : UICollectionViewLayout
-	{
+	public class CircleLayout : UICollectionViewLayout {
 		Random random = new Random ();
 		CircleData data = new CircleData ();
 
-		[Export("layoutAttributesClass")]
+		[Export ("layoutAttributesClass")]
 		public static new Class LayoutAttributesClass {
 			get {
 				return new Class (typeof (CustomCollectionViewLayoutAttributes));
@@ -33,9 +31,9 @@ namespace SimpleCollectionView
 
 			CGSize size = CollectionView.Frame.Size;
 
-			data.CellCount = (int)CollectionView.NumberOfItemsInSection (0);
+			data.CellCount = (int) CollectionView.NumberOfItemsInSection (0);
 			data.Center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
-			data.Radius = (int)Math.Min (size.Width, size.Height) / 2.5f;
+			data.Radius = (int) Math.Min (size.Width, size.Height) / 2.5f;
 		}
 
 		public override CGSize CollectionViewContentSize {
@@ -44,10 +42,10 @@ namespace SimpleCollectionView
 			}
 		}
 
-        public override bool ShouldInvalidateLayoutForBoundsChange (CGRect newBounds)
-        {
-            return true;
-        }
+		public override bool ShouldInvalidateLayoutForBoundsChange (CGRect newBounds)
+		{
+			return true;
+		}
 
 		public override UICollectionViewLayoutAttributes LayoutAttributesForItem (NSIndexPath path)
 		{
@@ -65,7 +63,7 @@ namespace SimpleCollectionView
 			return attributes;
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
+		public override UICollectionViewLayoutAttributes [] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			var attributes = new UICollectionViewLayoutAttributes [data.CellCount];
 
@@ -78,8 +76,7 @@ namespace SimpleCollectionView
 		}
 	}
 
-	public class CustomCollectionViewLayoutAttributes : UICollectionViewLayoutAttributes
-	{
+	public class CustomCollectionViewLayoutAttributes : UICollectionViewLayoutAttributes {
 		public int Row { get; set; }
 		public CircleData Data { get; set; }
 		// "distance from center" multiplier.

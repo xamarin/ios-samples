@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace RawExpose
-{
-	public partial class AlbumCollectionViewCell : UICollectionViewCell
-	{
+namespace RawExpose {
+	public partial class AlbumCollectionViewCell : UICollectionViewCell {
 		public static new readonly string ReuseIdentifier = "AlbumCollectionViewCell";
 
 		[Outlet ("imageView")]

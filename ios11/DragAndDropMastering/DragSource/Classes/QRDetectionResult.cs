@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using UIKit;
 using CoreGraphics;
 using Foundation;
 
-namespace DragSource
-{
-	public class QRDetectionResult : NSObject
-	{
+namespace DragSource {
+	public class QRDetectionResult : NSObject {
 		#region Computed Properties
 		public UIImage CroppedImage { get; set; }
 		public CGRect RectInOriginalImage { get; set; } = CGRect.Empty;
@@ -14,11 +12,11 @@ namespace DragSource
 		#endregion
 
 		#region Constructors
-		public QRDetectionResult()
+		public QRDetectionResult ()
 		{
 		}
 
-		public QRDetectionResult(UIImage croppedImage, CGRect rectInOriginalImage, string message)
+		public QRDetectionResult (UIImage croppedImage, CGRect rectInOriginalImage, string message)
 		{
 			// Initialize
 			CroppedImage = croppedImage;

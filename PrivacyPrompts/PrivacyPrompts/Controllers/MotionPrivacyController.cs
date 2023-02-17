@@ -2,16 +2,14 @@ using System;
 
 using UIKit;
 
-namespace PrivacyPrompts
-{
+namespace PrivacyPrompts {
 	/// <summary>
 	/// Note: Accessing motion activity requires your project to have an entitlements.plist file
 	/// There is no API that allows you to directly check for access. Instead, you have to use
 	/// the technique illustrated here: perform a query and check for an error of type
 	/// CMError.MotionActivityNotAuthorized
 	/// </summary>
-	public partial class MotionPrivacyController : UIViewController
-	{
+	public partial class MotionPrivacyController : UIViewController {
 		public MotionPrivacyManager PrivacyManager { get; set; }
 
 		public MotionPrivacyController (IntPtr handle)

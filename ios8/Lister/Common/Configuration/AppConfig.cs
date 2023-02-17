@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.IO;
 
 using Foundation;
 using System.Linq;
 
-namespace Common
-{
-	public class AppConfig : NSObject
-	{
+namespace Common {
+	public class AppConfig : NSObject {
 		const string FirstLaunchUserDefaultsKey = "FirstLaunchUserDefaultsKey";
 		const string StorageOptionUserDefaultsKey = "StorageOptionUserDefaultsKey";
 		const string StoredUbiquityIdentityTokenKey = "UbiquityIdentityTokenKey";
@@ -16,7 +14,7 @@ namespace Common
 
 		public event EventHandler StorageOptionChanged;
 
-		static readonly AppConfig sharedAppConfiguration = new AppConfig();
+		static readonly AppConfig sharedAppConfiguration = new AppConfig ();
 		public static AppConfig SharedAppConfiguration {
 			get {
 				return sharedAppConfiguration;
@@ -27,14 +25,14 @@ namespace Common
 		public StorageType StorageOption {
 			get {
 				if (!storageOption.HasValue)
-					storageOption = (StorageType)(int)NSUserDefaults.StandardUserDefaults.IntForKey (StorageOptionUserDefaultsKey);
+					storageOption = (StorageType) (int) NSUserDefaults.StandardUserDefaults.IntForKey (StorageOptionUserDefaultsKey);
 
 				return storageOption.Value;
 			}
 			set {
 				if (!storageOption.HasValue || value != storageOption.Value) {
 					storageOption = value;
-					NSUserDefaults.StandardUserDefaults.SetInt ((int)value, StorageOptionUserDefaultsKey);
+					NSUserDefaults.StandardUserDefaults.SetInt ((int) value, StorageOptionUserDefaultsKey);
 
 					var handler = StorageOptionChanged;
 					if (handler != null)
@@ -54,7 +52,7 @@ namespace Common
 			get {
 				return new StorageState {
 					StorageOption = StorageOption,
-					AccountDidChange = HasUbiquityIdentityChanged(),
+					AccountDidChange = HasUbiquityIdentityChanged (),
 					CloudAvailable = IsCloudAvailable
 				};
 			}
@@ -78,7 +76,7 @@ namespace Common
 			}
 		}
 
-		public void RunHandlerOnFirstLaunch(Action firstLaunchHandler)
+		public void RunHandlerOnFirstLaunch (Action firstLaunchHandler)
 		{
 			NSUserDefaults defaults = NSUserDefaults.StandardUserDefaults;
 
@@ -87,15 +85,15 @@ namespace Common
 				{ (NSString)StorageOptionUserDefaultsKey, NSObject.FromObject(StorageType.NotSet) }
 			});
 
-			if (defaults.BoolForKey(FirstLaunchUserDefaultsKey)) {
+			if (defaults.BoolForKey (FirstLaunchUserDefaultsKey)) {
 				defaults.SetBool (false, FirstLaunchUserDefaultsKey);
-				firstLaunchHandler();
+				firstLaunchHandler ();
 			}
 		}
 
 		#region Identity
 
-		bool HasUbiquityIdentityChanged()
+		bool HasUbiquityIdentityChanged ()
 		{
 			if (StorageOption != StorageType.Cloud)
 				return false;
@@ -107,7 +105,7 @@ namespace Common
 			bool currentTokenNullStoredNonNull = currentToken == null && storedToken != null;
 			bool storedTokenNullCurrentNonNull = storedToken == null && currentToken != null;
 			bool currentNotEqualStored = currentToken != null && storedToken != null
-			                             && !currentToken.Equals (storedToken);
+										 && !currentToken.Equals (storedToken);
 
 			if (currentTokenNullStoredNonNull || storedTokenNullCurrentNonNull || currentNotEqualStored) {
 				StoreUbiquityIdentityToken ();
@@ -117,7 +115,7 @@ namespace Common
 			return hasChanged;
 		}
 
-		public void StoreUbiquityIdentityToken()
+		public void StoreUbiquityIdentityToken ()
 		{
 			NSUserDefaults defaults = NSUserDefaults.StandardUserDefaults;
 			var token = NSFileManager.DefaultManager.UbiquityIdentityToken;
@@ -134,12 +132,12 @@ namespace Common
 			defaults.Synchronize ();
 		}
 
-		NSObject FetchStoredUbiquityIdentityToken()
+		NSObject FetchStoredUbiquityIdentityToken ()
 		{
 			NSObject storedToken = null;
 
 			// Determine if the iCloud account associated with this device has changed since the last time the user launched the app.
-			var tokenArchive = (NSData)NSUserDefaults.StandardUserDefaults[StoredUbiquityIdentityTokenKey];
+			var tokenArchive = (NSData) NSUserDefaults.StandardUserDefaults [StoredUbiquityIdentityTokenKey];
 			if (tokenArchive != null)
 				storedToken = NSKeyedUnarchiver.UnarchiveObject (tokenArchive);
 

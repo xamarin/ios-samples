@@ -7,10 +7,8 @@ using CoreMedia;
 using Foundation;
 using UIKit;
 
-namespace BracketStripes
-{
-	public partial class CameraViewController : UIViewController
-	{
+namespace BracketStripes {
+	public partial class CameraViewController : UIViewController {
 		private AVCaptureSession captureSession;
 		private AVCaptureDevice captureDevice;
 		private AVCaptureDeviceFormat captureDeviceFormat;
@@ -31,12 +29,12 @@ namespace BracketStripes
 			}
 		}
 
-		private List <AVCaptureBracketedStillImageSettings> ExposureBrackets {
+		private List<AVCaptureBracketedStillImageSettings> ExposureBrackets {
 			get {
-				var brackets = new List <AVCaptureBracketedStillImageSettings> ();
+				var brackets = new List<AVCaptureBracketedStillImageSettings> ();
 
 				nuint fixedBracketCount = 3;
-				var biasValues = new float[] { -2f, 0f, 2f };
+				var biasValues = new float [] { -2f, 0f, 2f };
 
 				for (nuint index = 0; index < Math.Min (fixedBracketCount, maxBracketCount); index++) {
 					float biasValue = biasValues [index];
@@ -47,9 +45,9 @@ namespace BracketStripes
 			}
 		}
 
-		private List <AVCaptureBracketedStillImageSettings> DurationISOBrackets {
+		private List<AVCaptureBracketedStillImageSettings> DurationISOBrackets {
 			get {
-				var brackets = new List <AVCaptureBracketedStillImageSettings> ();
+				var brackets = new List<AVCaptureBracketedStillImageSettings> ();
 
 				Console.WriteLine ("Camera device ISO range: [{0:##}, {1:##}]",
 					captureDeviceFormat.MinISO, captureDeviceFormat.MaxISO);
@@ -58,13 +56,13 @@ namespace BracketStripes
 					captureDeviceFormat.MinExposureDuration.Seconds, captureDeviceFormat.MaxExposureDuration.Seconds);
 
 				nuint fixedBracketCount = 3;
-				var ISOValues = new float[] { 50f, 60f, 500f };
-				var durationSecondsValues = new float[] { 0.25f, 0.05f, 0.005f };
+				var ISOValues = new float [] { 50f, 60f, 500f };
+				var durationSecondsValues = new float [] { 0.25f, 0.05f, 0.005f };
 
 				for (nuint index = 0; index < Math.Min (fixedBracketCount, maxBracketCount); index++) {
-					float ISO = (float)Clamp (ISOValues [index], captureDeviceFormat.MinISO, captureDeviceFormat.MaxISO);
+					float ISO = (float) Clamp (ISOValues [index], captureDeviceFormat.MinISO, captureDeviceFormat.MaxISO);
 					double durationSeconds = Clamp (durationSecondsValues [index],
-						                         captureDeviceFormat.MinExposureDuration.Seconds, captureDeviceFormat.MaxExposureDuration.Seconds);
+												 captureDeviceFormat.MinExposureDuration.Seconds, captureDeviceFormat.MaxExposureDuration.Seconds);
 					var duration = CMTime.FromSeconds (durationSeconds, 483);
 
 					brackets.Add (AVCaptureManualExposureBracketedStillImageSettings.Create (duration, ISO));
@@ -223,7 +221,7 @@ namespace BracketStripes
 			if (imageStripes != null)
 				imageStripes.Dispose ();
 
-			imageStripes = new StripedImage (dimensions, (int)dimensions.Width / 12, (int)bracketSettings.Count);
+			imageStripes = new StripedImage (dimensions, (int) dimensions.Width / 12, (int) bracketSettings.Count);
 			Console.WriteLine ("Warming brackets: {0}", bracketSettings.Count);
 			AVCaptureConnection connection = stillImageOutput.ConnectionFromMediaType (AVMediaType.Video);
 			stillImageOutput.PrepareToCaptureStillImageBracket (connection, bracketSettings.ToArray (), (success, error) => {

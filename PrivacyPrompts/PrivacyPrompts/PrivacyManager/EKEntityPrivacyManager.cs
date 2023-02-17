@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using EventKit;
 using Foundation;
 using System.Threading.Tasks;
 
-namespace PrivacyPrompts
-{
-	public class EKEntityPrivacyManager : IPrivacyManager, IDisposable
-	{
+namespace PrivacyPrompts {
+	public class EKEntityPrivacyManager : IPrivacyManager, IDisposable {
 		readonly EKEntityType type;
-		readonly EKEventStore eventStore = new EKEventStore();
+		readonly EKEventStore eventStore = new EKEventStore ();
 
 		public EKEntityPrivacyManager (EKEntityType entityType)
 		{

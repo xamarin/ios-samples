@@ -4,10 +4,8 @@ using UIKit;
 using System.CodeDom.Compiler;
 using HomeKit;
 
-namespace HomeKitIntro
-{
-	public partial class CharacteristicCellInfo : UITableViewCell
-	{
+namespace HomeKitIntro {
+	public partial class CharacteristicCellInfo : UITableViewCell {
 		#region Static Properties
 		public static readonly NSString Key = new NSString ("CharacteristicCellInfo");
 		#endregion
@@ -19,7 +17,8 @@ namespace HomeKitIntro
 		#endregion
 
 		#region Public Methods
-		public void DisplayInfo(string title, string value) {
+		public void DisplayInfo (string title, string value)
+		{
 
 			// Update UI
 			Title.Text = title;

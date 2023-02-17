@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using CoreFoundation;
@@ -10,7 +10,7 @@ namespace UICatalog {
 	public class DataItemCellComposer {
 		readonly static NSCache processedImageCache = new NSCache ();
 
-		readonly Dictionary <DataItemCollectionViewCell, NSOperationQueue> operationQueues = new Dictionary<DataItemCollectionViewCell, NSOperationQueue> ();
+		readonly Dictionary<DataItemCollectionViewCell, NSOperationQueue> operationQueues = new Dictionary<DataItemCollectionViewCell, NSOperationQueue> ();
 
 		public void ComposeCell (DataItemCollectionViewCell cell, DataItem dataItem)
 		{
@@ -20,7 +20,7 @@ namespace UICatalog {
 			cell.RepresentedDataItem = dataItem;
 			cell.Label.Text = dataItem.Title;
 			cell.ImageView.Alpha = 1f;
-			cell.ImageView.Image = (UIImage)processedImageCache.ObjectForKey ((NSString)dataItem.Identifier);
+			cell.ImageView.Image = (UIImage) processedImageCache.ObjectForKey ((NSString) dataItem.Identifier);
 
 			if (cell.ImageView.Image != null)
 				return;
@@ -38,7 +38,7 @@ namespace UICatalog {
 				if (image == null)
 					return;
 
-				processedImageCache.SetObjectforKey (image, (NSString)dataItem.Identifier);
+				processedImageCache.SetObjectforKey (image, (NSString) dataItem.Identifier);
 				NSOperationQueue.MainQueue.AddOperation (() => {
 					if (cell.RepresentedDataItem == null)
 						return;
@@ -77,8 +77,8 @@ namespace UICatalog {
 
 			using (var colorSpace = CGColorSpace.CreateDeviceRGB ()) {
 				// Create a bitmap context of the same size as the image.
-				var imageWidth = (int)image.Size.Width;
-				var imageHeight = (int)image.Size.Height;
+				var imageWidth = (int) image.Size.Width;
+				var imageHeight = (int) image.Size.Height;
 
 				using (var bitmapContext = new CGBitmapContext (null, imageWidth, imageHeight, 8, imageHeight * 4,
 										colorSpace, CGBitmapFlags.PremultipliedLast | CGBitmapFlags.ByteOrder32Little)) {

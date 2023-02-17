@@ -5,11 +5,9 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// Distinguishes between the three types of cells in the `HomeViewController`.
-	public enum HomeCellType
-	{
+	public enum HomeCellType {
 		// Represents an actual object in HomeKit.
 		Object,
 		// Represents an "Add" row for users to select to create an object in HomeKit.
@@ -23,18 +21,17 @@ namespace HomeKitCatalog
 	/// It contains separate sections for Accessories, Rooms, Zones, Action Sets,
 	/// Triggers, and Service Groups.
 	/// </summary>
-	public partial class HomeViewController : HMCatalogViewController, IHMAccessoryDelegate
-	{
-		static readonly NSString AddCell = (NSString)"AddCell";
-		static readonly NSString DisabledAddCell = (NSString)"DisabledAddCell";
-		static readonly NSString AccessoryCell = (NSString)"AccessoryCell";
-		static readonly NSString UnreachableAccessoryCell = (NSString)"UnreachableAccessoryCell";
-		static readonly NSString RoomCell = (NSString)"RoomCell";
-		static readonly NSString ZoneCell = (NSString)"ZoneCell";
-		static readonly NSString UserCell = (NSString)"UserCell";
-		static readonly NSString ActionSetCell = (NSString)"ActionSetCell";
-		static readonly NSString TriggerCell = (NSString)"TriggerCell";
-		static readonly NSString ServiceGroupCell = (NSString)"ServiceGroupCell";
+	public partial class HomeViewController : HMCatalogViewController, IHMAccessoryDelegate {
+		static readonly NSString AddCell = (NSString) "AddCell";
+		static readonly NSString DisabledAddCell = (NSString) "DisabledAddCell";
+		static readonly NSString AccessoryCell = (NSString) "AccessoryCell";
+		static readonly NSString UnreachableAccessoryCell = (NSString) "UnreachableAccessoryCell";
+		static readonly NSString RoomCell = (NSString) "RoomCell";
+		static readonly NSString ZoneCell = (NSString) "ZoneCell";
+		static readonly NSString UserCell = (NSString) "UserCell";
+		static readonly NSString ActionSetCell = (NSString) "ActionSetCell";
+		static readonly NSString TriggerCell = (NSString) "TriggerCell";
+		static readonly NSString ServiceGroupCell = (NSString) "ServiceGroupCell";
 
 		const string AddTimerTriggerSegue = "Add Timer Trigger";
 		const string AddCharacteristicTriggerSegue = "Add Characteristic Trigger";
@@ -81,27 +78,27 @@ namespace HomeKitCatalog
 
 			switch (segue.Identifier) {
 			case ShowRoomSegue:
-				var roomVC = (RoomViewController)destination;
+				var roomVC = (RoomViewController) destination;
 				roomVC.Room = ObjectCollection.Rooms [row];
 				break;
 
 			case ShowZoneSegue:
-				var zoneViewController = (ZoneViewController)destination;
+				var zoneViewController = (ZoneViewController) destination;
 				zoneViewController.HomeZone = ObjectCollection.Zones [row];
 				break;
 
 			case ShowActionSetSegue:
-				var actionSetVC = (ActionSetViewController)destination;
+				var actionSetVC = (ActionSetViewController) destination;
 				actionSetVC.ActionSet = ObjectCollection.ActionSets [row];
 				break;
 
 			case ShowServiceGroupSegue:
-				var serviceGroupVC = (ServiceGroupViewController)destination;
+				var serviceGroupVC = (ServiceGroupViewController) destination;
 				serviceGroupVC.ServiceGroup = ObjectCollection.ServiceGroups [row];
 				break;
 
 			case ShowAccessorySegue:
-				var detailVC = (ServicesViewController)destination;
+				var detailVC = (ServicesViewController) destination;
 				// The services view controller is generic, we need to provide 
 				// `showsFavorites` to display the stars next to characteristics.
 				detailVC.Accessory = ObjectCollection.Accessories [row];
@@ -111,22 +108,22 @@ namespace HomeKitCatalog
 				break;
 
 			case ModifyAccessorySegue:
-				var addAccessoryVC = (ModifyAccessoryViewController)destination;
+				var addAccessoryVC = (ModifyAccessoryViewController) destination;
 				addAccessoryVC.Accessory = ObjectCollection.Accessories [row];
 				break;
 
 			case ShowTimerTriggerSegue:
-				var triggerVC = (TimerTriggerViewController)destination;
+				var triggerVC = (TimerTriggerViewController) destination;
 				triggerVC.Trigger = ObjectCollection.Triggers [row];
 				break;
 
 			case ShowLocationTriggerSegue:
-				var locationTriggerVC = (LocationTriggerViewController)destination;
+				var locationTriggerVC = (LocationTriggerViewController) destination;
 				locationTriggerVC.Trigger = ObjectCollection.Triggers [row];
 				break;
 
 			case ShowCharacteristicTriggerSegue:
-				var characteristicTriggerVC = (CharacteristicTriggerViewController)destination;
+				var characteristicTriggerVC = (CharacteristicTriggerViewController) destination;
 				characteristicTriggerVC.Trigger = ObjectCollection.Triggers [row];
 				break;
 
@@ -157,10 +154,10 @@ namespace HomeKitCatalog
 			TableView.ReloadData ();
 		}
 
-		HomeCellType CellTypeForIndexPath(NSIndexPath indexPath)
+		HomeCellType CellTypeForIndexPath (NSIndexPath indexPath)
 		{
-			var section = (HomeKitObjectSection)indexPath.Section;
-			bool contains = Array.IndexOf (Enum.GetValues (typeof(HomeKitObjectSection)), section) >= 0;
+			var section = (HomeKitObjectSection) indexPath.Section;
+			bool contains = Array.IndexOf (Enum.GetValues (typeof (HomeKitObjectSection)), section) >= 0;
 			if (!contains)
 				return HomeCellType.None;
 
@@ -173,16 +170,16 @@ namespace HomeKitCatalog
 			return indexPath.Row == objectCount ? HomeCellType.Add : HomeCellType.Object;
 		}
 
-		void UpdateTriggerAddRow()
+		void UpdateTriggerAddRow ()
 		{
-			var triggerSection = NSIndexSet.FromIndex ((int)HomeKitObjectSection.Trigger);
+			var triggerSection = NSIndexSet.FromIndex ((int) HomeKitObjectSection.Trigger);
 			TableView.ReloadSections (triggerSection, UITableViewRowAnimation.Automatic);
 		}
 
 		// Reloads the action set section.
 		void UpdateActionSetSection ()
 		{
-			var actionSetSection = NSIndexSet.FromIndex ((int)HomeKitObjectSection.ActionSet);
+			var actionSetSection = NSIndexSet.FromIndex ((int) HomeKitObjectSection.ActionSet);
 
 			TableView.ReloadSections (actionSetSection, UITableViewRowAnimation.Automatic);
 			UpdateTriggerAddRow ();
@@ -208,12 +205,12 @@ namespace HomeKitCatalog
 
 		public override nint NumberOfSections (UITableView tableView)
 		{
-			return Enum.GetNames (typeof(HomeKitObjectSection)).Length;
+			return Enum.GetNames (typeof (HomeKitObjectSection)).Length;
 		}
 
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			switch ((HomeKitObjectSection)(int)section) {
+			switch ((HomeKitObjectSection) (int) section) {
 			case HomeKitObjectSection.Accessory:
 				return "Accessories";
 			case HomeKitObjectSection.Room:
@@ -233,7 +230,7 @@ namespace HomeKitCatalog
 			}
 		}
 
-		static string TitleForAddRowInSection(HomeKitObjectSection section)
+		static string TitleForAddRowInSection (HomeKitObjectSection section)
 		{
 			switch (section) {
 			case HomeKitObjectSection.Accessory:
@@ -255,7 +252,7 @@ namespace HomeKitCatalog
 			}
 		}
 
-		static string TitleForNoneRowInSection(HomeKitObjectSection section)
+		static string TitleForNoneRowInSection (HomeKitObjectSection section)
 		{
 			switch (section) {
 			case HomeKitObjectSection.Accessory:
@@ -279,7 +276,7 @@ namespace HomeKitCatalog
 
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			switch ((HomeKitObjectSection)(int)section) {
+			switch ((HomeKitObjectSection) (int) section) {
 			case HomeKitObjectSection.Accessory:
 			case HomeKitObjectSection.Room:
 				return null;
@@ -300,7 +297,7 @@ namespace HomeKitCatalog
 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			var sectionEnum = (HomeKitObjectSection)(int)section;
+			var sectionEnum = (HomeKitObjectSection) (int) section;
 
 			// Only "Manage Users" button is in the Users section
 			if (sectionEnum == HomeKitObjectSection.User)
@@ -328,10 +325,10 @@ namespace HomeKitCatalog
 		}
 
 		// Generates a 'none cell' with a localized title.
-		UITableViewCell GetNoneCellForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath)
+		UITableViewCell GetNoneCellForRowAtIndexPath (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = tableView.DequeueReusableCell (DisabledAddCell, indexPath);
-			var section = (HomeKitObjectSection)indexPath.Section;
+			var section = (HomeKitObjectSection) indexPath.Section;
 			cell.TextLabel.Text = TitleForNoneRowInSection (section);
 			return cell;
 		}
@@ -340,11 +337,11 @@ namespace HomeKitCatalog
 		//
 		// In some cases, the 'add cell' will be 'disabled' because the user is not
 		// allowed to perform the action.
-		UITableViewCell GetAddCellForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath)
+		UITableViewCell GetAddCellForRowAtIndexPath (UITableView tableView, NSIndexPath indexPath)
 		{
 			var reuseIdentifier = AddCell;
 
-			var section = (HomeKitObjectSection)indexPath.Section;
+			var section = (HomeKitObjectSection) indexPath.Section;
 
 			if ((!CanAddActionSet && section == HomeKitObjectSection.ActionSet) ||
 				(!CanAddTrigger && section == HomeKitObjectSection.Trigger) || !Home.IsAdmin ())
@@ -356,12 +353,12 @@ namespace HomeKitCatalog
 			return cell;
 		}
 
-		UITableViewCell HomeKitObjectCellForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath)
+		UITableViewCell HomeKitObjectCellForRowAtIndexPath (UITableView tableView, NSIndexPath indexPath)
 		{
 			string name;
 			var row = indexPath.Row;
 
-			switch ((HomeKitObjectSection)indexPath.Section) {
+			switch ((HomeKitObjectSection) indexPath.Section) {
 			case HomeKitObjectSection.Accessory:
 				var accessory = ObjectCollection.Accessories [row];
 				name = accessory.Name;
@@ -401,9 +398,9 @@ namespace HomeKitCatalog
 			return cell;
 		}
 
-		NSString ReuseIdentifierForIndexPath(NSIndexPath indexPath)
+		NSString ReuseIdentifierForIndexPath (NSIndexPath indexPath)
 		{
-			switch( (HomeKitObjectSection)indexPath.Section) {
+			switch ((HomeKitObjectSection) indexPath.Section) {
 			case HomeKitObjectSection.Accessory:
 				var accessory = ObjectCollection.Accessories [indexPath.Row];
 				return accessory.Reachable ? AccessoryCell : UnreachableAccessoryCell;
@@ -427,14 +424,14 @@ namespace HomeKitCatalog
 		// Allows users to remove HomeKit object rows if they are the admin of the home.
 		public override bool CanEditRow (UITableView tableView, NSIndexPath indexPath)
 		{
-			if(!Home.IsAdmin())
+			if (!Home.IsAdmin ())
 				return false;
 
 			// Any row that is not an 'add' row can be removed.
 			if (CellTypeForIndexPath (indexPath) == HomeCellType.Add)
 				return false;
 
-			var section = (HomeKitObjectSection)indexPath.Section;
+			var section = (HomeKitObjectSection) indexPath.Section;
 
 			// We cannot remove built-in action sets.
 			if (section == HomeKitObjectSection.ActionSet) {
@@ -454,7 +451,7 @@ namespace HomeKitCatalog
 
 		public override void CommitEditingStyle (UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
 		{
-			if( editingStyle == UITableViewCellEditingStyle.Delete)
+			if (editingStyle == UITableViewCellEditingStyle.Delete)
 				RemoveHomeKitObjectAtIndexPath (indexPath);
 		}
 
@@ -462,7 +459,7 @@ namespace HomeKitCatalog
 		void RemoveHomeKitObjectAtIndexPath (NSIndexPath indexPath)
 		{
 			int row = indexPath.Row;
-			var section = (HomeKitObjectSection)indexPath.Section;
+			var section = (HomeKitObjectSection) indexPath.Section;
 
 			switch (section) {
 			case HomeKitObjectSection.Accessory:
@@ -493,7 +490,7 @@ namespace HomeKitCatalog
 				throw new InvalidOperationException ("Unexpected `HomeKitObjectSection` value.");
 			}
 
-			TableView.DeleteRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+			TableView.DeleteRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 		}
 
 		async void TryRemove (HMAccessory accessory)
@@ -588,17 +585,17 @@ namespace HomeKitCatalog
 
 		void InsertRowAt (NSIndexPath indexPath)
 		{
-			TableView.InsertRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+			TableView.InsertRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 		}
 
 		void DeleteRowAt (NSIndexPath indexPath)
 		{
-			TableView.DeleteRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+			TableView.DeleteRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 		}
 
 		void ReloadRowAt (NSIndexPath indexPath)
 		{
-			TableView.ReloadRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+			TableView.ReloadRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 		}
 
 		// Handles cell selection based on the cell type.
@@ -610,7 +607,7 @@ namespace HomeKitCatalog
 			if (cell.SelectionStyle == UITableViewCellSelectionStyle.None)
 				return;
 
-			var section = (HomeKitObjectSection)indexPath.Section;
+			var section = (HomeKitObjectSection) indexPath.Section;
 
 			if (CellTypeForIndexPath (indexPath) == HomeCellType.Add) {
 				switch (section) {
@@ -648,7 +645,7 @@ namespace HomeKitCatalog
 		{
 			var cell = tableView.CellAt (indexPath);
 
-			if ((HomeKitObjectSection)indexPath.Section == HomeKitObjectSection.Trigger) {
+			if ((HomeKitObjectSection) indexPath.Section == HomeKitObjectSection.Trigger) {
 				var trigger = ObjectCollection.Triggers [indexPath.Row];
 
 				var timerTrigger = trigger as HMTimerTrigger;
@@ -727,7 +724,7 @@ namespace HomeKitCatalog
 		{
 			try {
 				HMRoom room = await Home.AddRoomAsync (roomName);
-				Add(room);
+				Add (room);
 			} catch (NSErrorException ex) {
 				DisplayError (ex.Error);
 			}
@@ -806,13 +803,13 @@ namespace HomeKitCatalog
 		[Export ("home:didAddTrigger:")]
 		public void DidAddTrigger (HomeKit.HMHome home, HomeKit.HMTrigger trigger)
 		{
-			Add(trigger);
+			Add (trigger);
 		}
 
 		[Export ("home:didRemoveTrigger:")]
 		public void DidRemoveTrigger (HomeKit.HMHome home, HomeKit.HMTrigger trigger)
 		{
-			DeleteRowAt(ObjectCollection.Remove(trigger));
+			DeleteRowAt (ObjectCollection.Remove (trigger));
 		}
 
 		[Export ("home:didUpdateNameForTrigger:")]
@@ -828,7 +825,7 @@ namespace HomeKitCatalog
 		[Export ("home:didAddServiceGroup:")]
 		public void DidAddServiceGroup (HMHome home, HMServiceGroup group)
 		{
-			Add(group);
+			Add (group);
 		}
 
 		[Export ("home:didRemoveServiceGroup:")]

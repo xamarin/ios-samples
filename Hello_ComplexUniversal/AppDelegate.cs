@@ -4,16 +4,14 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Hello_ComplexUniversal
-{
+namespace Hello_ComplexUniversal {
 	/// <summary>
 	/// The UIApplicationDelegate for the application. This class is responsible for launching the
 	/// User Interface of the application, as well as listening (and optionally responding) to
 	/// application events from iOS.
 	/// </summary>
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 		UIWindow window;
 		UIViewController homeScreen;
@@ -38,9 +36,9 @@ namespace Hello_ComplexUniversal
 			//
 			// in this sample, we load a completely different controller, depending on the device:
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone) {
-				homeScreen = new Screens.HomeScreen_iPhone();
+				homeScreen = new Screens.HomeScreen_iPhone ();
 			} else {
-				homeScreen = new Screens.HomeScreen_iPad();
+				homeScreen = new Screens.HomeScreen_iPad ();
 			}
 			window.RootViewController = homeScreen;
 			window.MakeKeyAndVisible ();

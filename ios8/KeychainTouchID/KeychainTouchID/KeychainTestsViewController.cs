@@ -7,10 +7,8 @@ using Security;
 using UIKit;
 using System.Text;
 
-namespace KeychainTouchID
-{
-	public partial class KeychainTestsViewController : BasicTestViewController
-	{
+namespace KeychainTouchID {
+	public partial class KeychainTestsViewController : BasicTestViewController {
 		public KeychainTestsViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -38,7 +36,7 @@ namespace KeychainTouchID
 
 		public override void ViewDidLayoutSubviews ()
 		{
-			var height = (nfloat)Math.Min (View.Bounds.Size.Height, tableView.ContentSize.Height);
+			var height = (nfloat) Math.Min (View.Bounds.Size.Height, tableView.ContentSize.Height);
 			dynamicViewHeight.Constant = height;
 			View.LayoutIfNeeded ();
 		}

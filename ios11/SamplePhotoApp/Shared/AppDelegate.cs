@@ -1,12 +1,10 @@
-﻿using System.Linq;
+using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace SamplePhotoApp
-{
+namespace SamplePhotoApp {
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate, IUISplitViewControllerDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate, IUISplitViewControllerDelegate {
 		public override UIWindow Window { get; set; }
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)

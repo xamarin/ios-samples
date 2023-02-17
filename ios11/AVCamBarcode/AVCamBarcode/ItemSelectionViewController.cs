@@ -1,106 +1,99 @@
-﻿
-namespace AVCamBarcode
-{
-    using Foundation;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using UIKit;
 
-    public interface IItemSelectionViewControllerDelegate
-    {
-        void ItemSelectionViewController<T>(ItemSelectionViewController<T> itemSelectionViewController, IList<T> selectedItems);
-    }
+namespace AVCamBarcode {
+	using Foundation;
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+	using UIKit;
 
-    public class ItemSelectionViewController<T> : UITableViewController
-    {
-        private const string itemCellIdentifier = "Item";
+	public interface IItemSelectionViewControllerDelegate {
+		void ItemSelectionViewController<T> (ItemSelectionViewController<T> itemSelectionViewController, IList<T> selectedItems);
+	}
 
-        private readonly IItemSelectionViewControllerDelegate @delegate;
+	public class ItemSelectionViewController<T> : UITableViewController {
+		private const string itemCellIdentifier = "Item";
 
-        private bool isMultipleSelectionAllowed;
+		private readonly IItemSelectionViewControllerDelegate @delegate;
 
-        private readonly IList<T> selectedItems;
+		private bool isMultipleSelectionAllowed;
 
-        private readonly IList<T> items;
+		private readonly IList<T> selectedItems;
 
-        public ItemSelectionViewController(IItemSelectionViewControllerDelegate @delegate, 
-                                           string identifier, 
-                                           IList<T> items, 
-                                           IList<T> selectedItems, 
-                                           bool isMultipleSelectionAllowed) : base(UITableViewStyle.Grouped)
-        {
-            this.@delegate = @delegate;
-            this.Identifier = identifier;
-            this.items = items;
-            this.selectedItems = selectedItems;
-            this.isMultipleSelectionAllowed = isMultipleSelectionAllowed;
+		private readonly IList<T> items;
 
-            base.NavigationItem.RightBarButtonItem = new UIBarButtonItem(UIBarButtonSystemItem.Done, (sender, args) => this.Done());
-            this.TableView.RegisterClassForCellReuse(typeof(UITableViewCell), itemCellIdentifier);
-        }
+		public ItemSelectionViewController (IItemSelectionViewControllerDelegate @delegate,
+										   string identifier,
+										   IList<T> items,
+										   IList<T> selectedItems,
+										   bool isMultipleSelectionAllowed) : base (UITableViewStyle.Grouped)
+		{
+			this.@delegate = @delegate;
+			this.Identifier = identifier;
+			this.items = items;
+			this.selectedItems = selectedItems;
+			this.isMultipleSelectionAllowed = isMultipleSelectionAllowed;
 
-        public string Identifier { get; private set; }
+			base.NavigationItem.RightBarButtonItem = new UIBarButtonItem (UIBarButtonSystemItem.Done, (sender, args) => this.Done ());
+			this.TableView.RegisterClassForCellReuse (typeof (UITableViewCell), itemCellIdentifier);
+		}
 
-        private void Done()
-        {
-            // Notify the delegate that selecting items is finished.
-            this.@delegate?.ItemSelectionViewController(this, this.selectedItems);
+		public string Identifier { get; private set; }
 
-            // Dismiss the view controller.
-            this.DismissViewController(true, null);
-        }
+		private void Done ()
+		{
+			// Notify the delegate that selecting items is finished.
+			this.@delegate?.ItemSelectionViewController (this, this.selectedItems);
 
-        #region UITableView
+			// Dismiss the view controller.
+			this.DismissViewController (true, null);
+		}
 
-        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-        {
-            var item = this.items[indexPath.Row];
+		#region UITableView
 
-            var cell = tableView.DequeueReusableCell(itemCellIdentifier, indexPath);
-            cell.TintColor = UIColor.Black;
-            cell.TextLabel.Text = item.ToString();
-            cell.Accessory = this.selectedItems.Contains(item) ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
+		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
+		{
+			var item = this.items [indexPath.Row];
 
-            return cell;
-        }
+			var cell = tableView.DequeueReusableCell (itemCellIdentifier, indexPath);
+			cell.TintColor = UIColor.Black;
+			cell.TextLabel.Text = item.ToString ();
+			cell.Accessory = this.selectedItems.Contains (item) ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
 
-        public override nint RowsInSection(UITableView tableView, nint section)
-        {
-            return this.items.Count;
-        }
+			return cell;
+		}
 
-        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
-        {
-            NSIndexPath[] indexPathsToReload = null;
-            if (this.isMultipleSelectionAllowed)
-            {
-                var item = this.items[indexPath.Row];
-                if (!this.selectedItems.Remove(item))
-                {
-                    this.selectedItems.Add(item);
-                }
-               
-                indexPathsToReload = new NSIndexPath[] { indexPath };
-            }
-            else
-            {
-                indexPathsToReload = !this.selectedItems.Any()
-                                     ? new NSIndexPath[] { indexPath }
-                                     : this.selectedItems.Select(item => this.items.IndexOf(item))
-                                                         .Select(index => NSIndexPath.FromRowSection(index, 0))
-                                                         .Concat(new NSIndexPath[] { indexPath })
-                                                         .ToArray();
+		public override nint RowsInSection (UITableView tableView, nint section)
+		{
+			return this.items.Count;
+		}
 
-                this.selectedItems.Clear();
-                this.selectedItems.Add(this.items[indexPath.Row]);
-            }
+		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		{
+			NSIndexPath [] indexPathsToReload = null;
+			if (this.isMultipleSelectionAllowed) {
+				var item = this.items [indexPath.Row];
+				if (!this.selectedItems.Remove (item)) {
+					this.selectedItems.Add (item);
+				}
 
-            // Deselect the selected row & reload the table view cells for the old and new items to swap checkmarks.
-            tableView.DeselectRow(indexPath, true);
-            tableView.ReloadRows(indexPathsToReload, UITableViewRowAnimation.Automatic);
-        }
+				indexPathsToReload = new NSIndexPath [] { indexPath };
+			} else {
+				indexPathsToReload = !this.selectedItems.Any ()
+									 ? new NSIndexPath [] { indexPath }
+									 : this.selectedItems.Select (item => this.items.IndexOf (item))
+														 .Select (index => NSIndexPath.FromRowSection (index, 0))
+														 .Concat (new NSIndexPath [] { indexPath })
+														 .ToArray ();
 
-        #endregion
-    }
+				this.selectedItems.Clear ();
+				this.selectedItems.Add (this.items [indexPath.Row]);
+			}
+
+			// Deselect the selected row & reload the table view cells for the old and new items to swap checkmarks.
+			tableView.DeselectRow (indexPath, true);
+			tableView.ReloadRows (indexPathsToReload, UITableViewRowAnimation.Automatic);
+		}
+
+		#endregion
+	}
 }

@@ -1,39 +1,34 @@
-﻿using System;
+using System;
 using ClockKit;
 using Foundation;
 using WatchKit;
 
-namespace iOSApp.WatchAppExtension
-{
-	[Register("ExtensionDelegate")]
-	public class ExtensionDelegate : WKExtensionDelegate
-	{
-		public override void ApplicationDidFinishLaunching()
+namespace iOSApp.WatchAppExtension {
+	[Register ("ExtensionDelegate")]
+	public class ExtensionDelegate : WKExtensionDelegate {
+		public override void ApplicationDidFinishLaunching ()
 		{
 			// Perform any final initialization of your application.
 
 			var complicationServer = CLKComplicationServer.SharedInstance; // is null :-(
-			if (complicationServer.ActiveComplications != null)
-			{
-				Console.WriteLine("Active complications!!!!!!!!!!");
-				foreach (var complication in complicationServer.ActiveComplications)
-				{
-					Console.WriteLine("Active " + complication.Description);
+			if (complicationServer.ActiveComplications != null) {
+				Console.WriteLine ("Active complications!!!!!!!!!!");
+				foreach (var complication in complicationServer.ActiveComplications) {
+					Console.WriteLine ("Active " + complication.Description);
 					//complicationServer.ReloadTimeline (complication);
 				}
-			}
-			else {
-				Console.WriteLine("No active complications");
+			} else {
+				Console.WriteLine ("No active complications");
 			}
 		}
 
-		public override void ApplicationDidBecomeActive()
+		public override void ApplicationDidBecomeActive ()
 		{
 			// Restart any tasks that were paused (or not yet started) while the application was inactive.
 			// If the application was previously in the background, optionally refresh the user interface.
 		}
 
-		public override void ApplicationWillResignActive()
+		public override void ApplicationWillResignActive ()
 		{
 			// Sent when the application is about to move from active to inactive state.
 			// This can occur for certain types of temporary interruptions

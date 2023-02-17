@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using Foundation;
 using WatchKit;
 
-namespace WatchBackgroundRefresh.WatchBackgroundRefreshWatchAppExtension
-{
-	public partial class InterfaceController : WKInterfaceController, IWKExtensionDelegate, INSUrlSessionDownloadDelegate
-	{
+namespace WatchBackgroundRefresh.WatchBackgroundRefreshWatchAppExtension {
+	public partial class InterfaceController : WKInterfaceController, IWKExtensionDelegate, INSUrlSessionDownloadDelegate {
 		NSUrl sampleDownloadURL = new NSUrl ("http://devstreaming.apple.com/videos/wwdc/2015/802mpzd3nzovlygpbg/802/802_designing_for_apple_watch.pdf?dl=1");
 
 		NSDateFormatter dateFormatter = new NSDateFormatter {
@@ -14,7 +12,7 @@ namespace WatchBackgroundRefresh.WatchBackgroundRefreshWatchAppExtension
 			TimeStyle = NSDateFormatterStyle.Long
 		};
 
-		protected InterfaceController (IntPtr handle) : base(handle)
+		protected InterfaceController (IntPtr handle) : base (handle)
 		{
 			// Note: this .ctor should not contain any initialization logic.
 		}
@@ -26,8 +24,8 @@ namespace WatchBackgroundRefresh.WatchBackgroundRefreshWatchAppExtension
 			UpdateLabel ();
 		}
 
-		[Export("handleBackgroundTasks:")]
-		public void HandleBackgroundTasks(NSSet<WKRefreshBackgroundTask> backgroundTasks)
+		[Export ("handleBackgroundTasks:")]
+		public void HandleBackgroundTasks (NSSet<WKRefreshBackgroundTask> backgroundTasks)
 		{
 			foreach (WKRefreshBackgroundTask task in backgroundTasks) {
 				Console.WriteLine ($"received background task: {task}");
@@ -40,8 +38,8 @@ namespace WatchBackgroundRefresh.WatchBackgroundRefreshWatchAppExtension
 						ScheduleURLSession ();
 					}
 				} else if (task is WKUrlSessionRefreshBackgroundTask) {
-					var backgroundConfigObject = NSUrlSessionConfiguration.BackgroundSessionConfiguration (((WKUrlSessionRefreshBackgroundTask)task).SessionIdentifier);
-					var backgroundSession = NSUrlSession.FromWeakConfiguration(backgroundConfigObject, this, null);
+					var backgroundConfigObject = NSUrlSessionConfiguration.BackgroundSessionConfiguration (((WKUrlSessionRefreshBackgroundTask) task).SessionIdentifier);
+					var backgroundSession = NSUrlSession.FromWeakConfiguration (backgroundConfigObject, this, null);
 					Console.WriteLine ($"Rejoining session {backgroundSession}");
 				}
 
@@ -53,7 +51,7 @@ namespace WatchBackgroundRefresh.WatchBackgroundRefreshWatchAppExtension
 		{
 			// fire now, we're ready
 			var fireDate = DateTime.Now;
-			WKExtension.SharedExtension.ScheduleSnapshotRefresh ((NSDate)fireDate, null, (NSError error) => {
+			WKExtension.SharedExtension.ScheduleSnapshotRefresh ((NSDate) fireDate, null, (NSError error) => {
 				if (error == null)
 					Console.WriteLine ("Successfully scheduled snapshot. All background work completed.");
 			});
@@ -62,10 +60,10 @@ namespace WatchBackgroundRefresh.WatchBackgroundRefreshWatchAppExtension
 		void UpdateLabel ()
 		{
 			var now = DateTime.Now;
-			timeDisplayLabel.SetText(dateFormatter.ToString ((NSDate)now));
+			timeDisplayLabel.SetText (dateFormatter.ToString ((NSDate) now));
 		}
 
-		[Export("URLSession:downloadTask:didFinishDownloadingToURL:")]
+		[Export ("URLSession:downloadTask:didFinishDownloadingToURL:")]
 		public void DidFinishDownloading (NSUrlSession session, NSUrlSessionDownloadTask downloadTask, NSUrl location)
 		{
 			Console.WriteLine ($"NSURLSession finished to url: {location}");
@@ -89,9 +87,9 @@ namespace WatchBackgroundRefresh.WatchBackgroundRefreshWatchAppExtension
 			var fireDate = DateTime.Now.AddSeconds (20);
 
 			// optional, any SecureCoding compliant data can be passed here
-			var userInfo = NSDictionary.FromObjectAndKey ((NSString)"background update", (NSString)"reason");
+			var userInfo = NSDictionary.FromObjectAndKey ((NSString) "background update", (NSString) "reason");
 
-			WKExtension.SharedExtension.ScheduleBackgroundRefresh ((NSDate)fireDate, userInfo, (NSError error) => {
+			WKExtension.SharedExtension.ScheduleBackgroundRefresh ((NSDate) fireDate, userInfo, (NSError error) => {
 				if (error == null)
 					Console.WriteLine ("successfully scheduled background task, use the crown to send the app to the background and wait for handle:BackgroundTasks to fire.");
 			});

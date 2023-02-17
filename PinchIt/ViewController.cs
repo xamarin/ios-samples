@@ -4,10 +4,8 @@ using CoreGraphics;
 using UIKit;
 using Foundation;
 
-namespace PinchIt
-{
-	public class ViewController : UICollectionViewController
-	{
+namespace PinchIt {
+	public class ViewController : UICollectionViewController {
 		static NSString cellClass = new NSString ("Cell");
 
 		public ViewController (UICollectionViewFlowLayout layout) : base (layout)
@@ -44,11 +42,12 @@ namespace PinchIt
 				pinchLayout.pinchedCellPath = CollectionView.IndexPathForItemAtPoint (initialPinchPoint);
 				break;
 			case UIGestureRecognizerState.Changed:
-				pinchLayout.setPinchedCellScale ((float)sender.Scale);
+				pinchLayout.setPinchedCellScale ((float) sender.Scale);
 				pinchLayout.setPinchedCellCenter (sender.LocationInView (CollectionView));
 				break;
 			default:
-				CollectionView.PerformBatchUpdates (delegate {
+				CollectionView.PerformBatchUpdates (delegate
+				{
 					pinchLayout.pinchedCellPath = null;
 					pinchLayout.setPinchedCellScale (1.0f);
 				}, null);

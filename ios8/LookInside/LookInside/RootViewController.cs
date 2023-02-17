@@ -1,18 +1,16 @@
-﻿using System;
+using System;
 using System.Globalization;
 
 using UIKit;
 using Foundation;
 using CoreGraphics;
 
-namespace LookInside
-{
-	public class RootViewController : UICollectionViewController, IUICollectionViewDataSource
-	{
+namespace LookInside {
+	public class RootViewController : UICollectionViewController, IUICollectionViewDataSource {
 		static readonly nint kNumberOfViews = 37;
 		static readonly nfloat kViewsWide = 5;
 		static readonly nfloat kViewMargin = 2;
-		static readonly NSString kCellReuseIdentifier = new NSString("CellReuseIdentifier");
+		static readonly NSString kCellReuseIdentifier = new NSString ("CellReuseIdentifier");
 
 		CoolTransitioningDelegate coolTransitioningDelegate;
 		OverlayTransitioningDelegate overlayTransitioningDelegate;
@@ -30,7 +28,7 @@ namespace LookInside
 		}
 
 		public RootViewController ()
-			: base(new UICollectionViewFlowLayout())
+			: base (new UICollectionViewFlowLayout ())
 		{
 			ConfigureTitleBar ();
 		}
@@ -39,9 +37,9 @@ namespace LookInside
 		{
 			base.ViewDidLoad ();
 
-			CollectionView.RegisterClassForCell(typeof(PhotoCollectionViewCell), kCellReuseIdentifier);
+			CollectionView.RegisterClassForCell (typeof (PhotoCollectionViewCell), kCellReuseIdentifier);
 			CollectionView.BackgroundColor = null;
-			var layout = (UICollectionViewFlowLayout)Layout;
+			var layout = (UICollectionViewFlowLayout) Layout;
 
 			layout.MinimumInteritemSpacing = kViewMargin;
 			layout.MinimumLineSpacing = kViewMargin;
@@ -61,7 +59,7 @@ namespace LookInside
 
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			var cell = (PhotoCollectionViewCell)collectionView.DequeueReusableCell (kCellReuseIdentifier, indexPath);
+			var cell = (PhotoCollectionViewCell) collectionView.DequeueReusableCell (kCellReuseIdentifier, indexPath);
 			string photoName = indexPath.Item.ToString (CultureInfo.InvariantCulture);
 			UIImage photo = UIImage.FromBundle (photoName);
 
@@ -80,7 +78,7 @@ namespace LookInside
 				overlay.TransitioningDelegate = coolTransitioningDelegate;
 			else
 				overlay.TransitioningDelegate = overlayTransitioningDelegate;
-			overlay.PhotoView = (PhotoCollectionViewCell)CollectionView.CellForItem (indexPath);
+			overlay.PhotoView = (PhotoCollectionViewCell) CollectionView.CellForItem (indexPath);
 
 			PresentViewController (overlay, true, null);
 		}
@@ -92,11 +90,11 @@ namespace LookInside
 			nfloat itemWidth = toSize.Width / kViewsWide;
 			itemWidth -= kViewMargin;
 
-			((UICollectionViewFlowLayout)CollectionView.CollectionViewLayout).ItemSize = new CGSize(itemWidth, itemWidth);
+			((UICollectionViewFlowLayout) CollectionView.CollectionViewLayout).ItemSize = new CGSize (itemWidth, itemWidth);
 			Layout.InvalidateLayout ();
 		}
 
-		void ConfigureTitleBar()
+		void ConfigureTitleBar ()
 		{
 			Title = "LookInside Photos";
 			EdgesForExtendedLayout = UIRectEdge.Left | UIRectEdge.Bottom | UIRectEdge.Right;

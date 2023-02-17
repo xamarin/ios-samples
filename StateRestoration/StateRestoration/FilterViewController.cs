@@ -4,10 +4,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace StateRestoration
-{
-	public partial class FilterViewController : UIViewController
-	{
+namespace StateRestoration {
+	public partial class FilterViewController : UIViewController {
 		public ImageFilter filter;
 
 		public FilterViewController (IntPtr handle)

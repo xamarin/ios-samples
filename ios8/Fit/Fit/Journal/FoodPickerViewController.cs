@@ -2,10 +2,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace Fit
-{
-	public partial class FoodPickerViewController : UITableViewController
-	{
+namespace Fit {
+	public partial class FoodPickerViewController : UITableViewController {
 		readonly NSString CellIdentifier = new NSString ("cell");
 		NSEnergyFormatter energyFormatter;
 
@@ -35,7 +33,7 @@ namespace Fit
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			FoodItems = NSArray.FromObjects (new object[] {
+			FoodItems = NSArray.FromObjects (new object [] {
 				FoodItem.Create ("Wheat Bagel", 240000.0),
 				FoodItem.Create ("Bran with Raisins", 190000.0),
 				FoodItem.Create ("Regular Instant Coffee", 1000.0),
@@ -51,13 +49,13 @@ namespace Fit
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return (nint)FoodItems.Count;
+			return (nint) FoodItems.Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = TableView.DequeueReusableCell (CellIdentifier, indexPath);
-			var foodItem = FoodItems.GetItem<FoodItem> ((nuint)indexPath.Row);
+			var foodItem = FoodItems.GetItem<FoodItem> ((nuint) indexPath.Row);
 
 			cell.TextLabel.Text = foodItem.Name;
 			cell.DetailTextLabel.Text = EnergyFormatter.StringFromJoules (foodItem.Joules);
@@ -67,8 +65,8 @@ namespace Fit
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			NSIndexPath indexPathForSelectedRow = TableView.IndexPathForSelectedRow;
-			SelectedFoodItem = FoodItems.GetItem<FoodItem> ((nuint)indexPathForSelectedRow.Row);
-			((JournalViewController)NavigationController.ViewControllers [NavigationController.ViewControllers.Length - 2]).
+			SelectedFoodItem = FoodItems.GetItem<FoodItem> ((nuint) indexPathForSelectedRow.Row);
+			((JournalViewController) NavigationController.ViewControllers [NavigationController.ViewControllers.Length - 2]).
 				AddFoodItem (SelectedFoodItem);
 			NavigationController.PopViewController (true);
 		}

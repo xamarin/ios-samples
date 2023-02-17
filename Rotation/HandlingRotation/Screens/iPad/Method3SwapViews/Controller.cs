@@ -2,10 +2,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace HandlingRotation.Screens.iPad.Method3SwapViews
-{
-	public class Controller : UIViewController
-	{
+namespace HandlingRotation.Screens.iPad.Method3SwapViews {
+	public class Controller : UIViewController {
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();

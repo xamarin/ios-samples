@@ -2,10 +2,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace tvRemote
-{
-	public partial class EventView : UIView
-	{
+namespace tvRemote {
+	public partial class EventView : UIView {
 		#region Computed Properties
 		public override bool CanBecomeFocused {
 			get {

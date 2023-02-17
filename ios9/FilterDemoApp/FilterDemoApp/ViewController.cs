@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using AudioUnit;
 using CoreFoundation;
@@ -25,13 +25,13 @@ namespace FilterDemoApp {
 			var componentDescription = new AudioComponentDescription {
 				ComponentType = AudioComponentType.Effect,
 				ComponentSubType = 0x666c7472,
-				ComponentManufacturer = (AudioComponentManufacturerType)0x44656d6f,
+				ComponentManufacturer = (AudioComponentManufacturerType) 0x44656d6f,
 				ComponentFlags = 0,
 				ComponentFlagsMask = 0
 			};
 
 			AUAudioUnit.RegisterSubclass (
-				new Class (typeof(AUv3FilterDemo)),
+				new Class (typeof (AUv3FilterDemo)),
 				componentDescription,
 				"Local FilterDemo",
 				int.MaxValue
@@ -106,8 +106,8 @@ namespace FilterDemoApp {
 			var audioUnit = playEngine.AudioUnit as AUv3FilterDemo;
 			filterDemoViewController.AudioUnit = audioUnit;
 
-			cutoffParameter = (AUParameter)parameterTree.ValueForKey ((NSString)"cutoff");
-			resonanceParameter = (AUParameter)parameterTree.ValueForKey ((NSString)"resonance");
+			cutoffParameter = (AUParameter) parameterTree.ValueForKey ((NSString) "cutoff");
+			resonanceParameter = (AUParameter) parameterTree.ValueForKey ((NSString) "resonance");
 
 			parameterTree.CreateTokenByAddingParameterObserver ((address, value) => DispatchQueue.MainQueue.DispatchAsync (() => {
 				if (address == cutoffParameter.Address)

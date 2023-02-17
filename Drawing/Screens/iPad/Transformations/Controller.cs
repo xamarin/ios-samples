@@ -2,10 +2,8 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_Drawing.Screens.iPad.Transformations
-{
-	public class Controller : UIViewController
-	{
+namespace Example_Drawing.Screens.iPad.Transformations {
+	public class Controller : UIViewController {
 		UIImageView imageView;
 
 		UIButton btnUp;
@@ -19,15 +17,15 @@ namespace Example_Drawing.Screens.iPad.Transformations
 		UIButton btnScaleDown;
 
 		float currentScale, initialScale = 1.0f;
-		CGPoint currentLocation, initialLocation = new CGPoint(380, 500);
-		float currentRotation , initialRotation = 0;
+		CGPoint currentLocation, initialLocation = new CGPoint (380, 500);
+		float currentRotation, initialRotation = 0;
 		float movementIncrement = 20;
-		float rotationIncrement = (float)(Math.PI * 2 / 16);
+		float rotationIncrement = (float) (Math.PI * 2 / 16);
 		float scaleIncrement = 1.5f;
 
 		#region -= constructors =-
 
-		public Controller () : base()
+		public Controller () : base ()
 		{
 			currentScale = initialScale;
 			currentLocation = initialLocation;
@@ -61,7 +59,7 @@ namespace Example_Drawing.Screens.iPad.Transformations
 			// create our offscreen bitmap context
 			// size
 			CGSize bitmapSize = new CGSize (imageView.Frame.Size);
-			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero, (int)bitmapSize.Width, (int)bitmapSize.Height, 8, (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (), CGImageAlphaInfo.PremultipliedFirst)) {
+			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero, (int) bitmapSize.Width, (int) bitmapSize.Height, 8, (int) (4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (), CGImageAlphaInfo.PremultipliedFirst)) {
 
 				// save the state of the context while we change the CTM
 				context.SaveState ();
@@ -105,42 +103,51 @@ namespace Example_Drawing.Screens.iPad.Transformations
 			InitButton (ref btnScaleDown, new CGPoint (635, 180), 75, "-");
 			View.AddSubview (btnScaleDown);
 
-			btnReset.TouchUpInside += delegate {
+			btnReset.TouchUpInside += delegate
+			{
 				currentScale = initialScale;
 				currentLocation = initialLocation;
 				currentRotation = initialRotation;
-				DrawScreen();
+				DrawScreen ();
 			};
 
-			btnUp.TouchUpInside += delegate {
+			btnUp.TouchUpInside += delegate
+			{
 				currentLocation.Y += movementIncrement;
 				DrawScreen ();
 			};
-			btnDown.TouchUpInside += delegate {
+			btnDown.TouchUpInside += delegate
+			{
 				currentLocation.Y -= movementIncrement;
 				DrawScreen ();
 			};
-			btnLeft.TouchUpInside += delegate {
+			btnLeft.TouchUpInside += delegate
+			{
 				currentLocation.X -= movementIncrement;
 				DrawScreen ();
 			};
-			btnRight.TouchUpInside += delegate {
+			btnRight.TouchUpInside += delegate
+			{
 				currentLocation.X += movementIncrement;
 				DrawScreen ();
 			};
-			btnScaleUp.TouchUpInside += delegate {
+			btnScaleUp.TouchUpInside += delegate
+			{
 				currentScale = currentScale * scaleIncrement;
 				DrawScreen ();
 			};
-			btnScaleDown.TouchUpInside += delegate {
+			btnScaleDown.TouchUpInside += delegate
+			{
 				currentScale = currentScale / scaleIncrement;
 				DrawScreen ();
 			};
-			btnRotateLeft.TouchUpInside += delegate {
+			btnRotateLeft.TouchUpInside += delegate
+			{
 				currentRotation += rotationIncrement;
 				DrawScreen ();
 			};
-			btnRotateRight.TouchUpInside += delegate {
+			btnRotateRight.TouchUpInside += delegate
+			{
 				currentRotation -= rotationIncrement;
 				DrawScreen ();
 			};
@@ -207,7 +214,7 @@ namespace Example_Drawing.Screens.iPad.Transformations
 					if (yPos > 40 && i < (numberOfVerticalTicks - 2)) {
 
 						// draw it every 80 points
-						Math.DivRem ((int)yPos, (int)80, out remainder);
+						Math.DivRem ((int) yPos, (int) 80, out remainder);
 						if (remainder == 0)
 							DrawTextAtPoint (context, 30, (yPos - (textHeight / 2)), yPos.ToString (), textHeight);
 					}
@@ -237,7 +244,7 @@ namespace Example_Drawing.Screens.iPad.Transformations
 					if (xPos > 100 && i < (numberOfHorizontalTicks - 1)) {
 
 						// draw it every 80 points
-						Math.DivRem ((int)xPos, (int)80, out remainder);
+						Math.DivRem ((int) xPos, (int) 80, out remainder);
 						if (remainder == 0)
 							DrawCenteredTextAtPoint (context, xPos, 30, xPos.ToString (), textHeight);
 					}

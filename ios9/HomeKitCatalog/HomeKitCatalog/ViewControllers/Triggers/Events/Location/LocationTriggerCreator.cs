@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using CoreLocation;
 using HomeKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// An `EventTriggerCreator` subclass which allows for the creation of location triggers.
-	public class LocationTriggerCreator : EventTriggerCreator, IMapViewControllerDelegate
-	{
+	public class LocationTriggerCreator : EventTriggerCreator, IMapViewControllerDelegate {
 		HMLocationEvent LocationEvent { get; set; }
 
 		public CLCircularRegion TargetRegion { get; set; }

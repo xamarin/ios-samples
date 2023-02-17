@@ -1,5 +1,5 @@
-﻿// Create a Accept action
-UIMutableUserNotificationAction acceptAction = new UIMutableUserNotificationAction (){
+// Create a Accept action
+UIMutableUserNotificationAction acceptAction = new UIMutableUserNotificationAction () {
 	Identifier = "ACCEPT_ID",
 	Title = "Accept",
 	ActivationMode = UIUserNotificationActivationMode.Background,
@@ -17,7 +17,7 @@ UIMutableUserNotificationAction replyAction = new UIMutableUserNotificationActio
 };
 
 // Create a Trash action
-UIMutableUserNotificationAction trashAction = new UIMutableUserNotificationAction (){
+UIMutableUserNotificationAction trashAction = new UIMutableUserNotificationAction () {
 	Identifier = "TRASH_ID",
 	Title = "Trash",
 	ActivationMode = UIUserNotificationActivationMode.Background,

@@ -13,7 +13,7 @@ namespace Cloud {
 		UITextView docText, alertText;
 
 		public override void ViewDidLoad ()
-		{	
+		{
 			base.ViewDidLoad ();
 
 			#region UI controls, you could do this in a XIB if you wanted
@@ -21,7 +21,7 @@ namespace Cloud {
 			saveButton.Frame = new CGRect (10.0, 10.0, 160.0, 50.0);
 			saveButton.SetTitle ("UpdateChangeCount", UIControlState.Normal);
 			saveButton.Enabled = false;
-			
+
 			alertText = new UITextView (new CGRect (175.0, 10.0, 140.0, 50.0)) {
 				TextColor = UIColor.Red,
 				Editable = false
@@ -32,7 +32,7 @@ namespace Cloud {
 				ScrollEnabled = true,
 				BackgroundColor = UIColor.FromRGB (224, 255, 255)
 			};
-			
+
 			// Add the controls to the view
 			Add (saveButton);
 			Add (docText);
@@ -47,7 +47,7 @@ namespace Cloud {
 				doc.UpdateChangeCount (UIDocumentChangeKind.Done);
 				docText.ResignFirstResponder ();
 			};
-			
+
 			// listen for notifications that the document was modified via the server
 			NSNotificationCenter.DefaultCenter.AddObserver (this,
 				new Selector ("dataReloaded:"),
@@ -59,7 +59,7 @@ namespace Cloud {
 		[Export ("dataReloaded:")]
 		void DataReloaded (NSNotification notification)
 		{
-			doc = (MonkeyDocument)notification.Object;
+			doc = (MonkeyDocument) notification.Object;
 			alertText.Text = string.Format ("{0} dataReloaded: notification", DateTime.Now.ToString ("H:mm:ss"));
 			// we just overwrite whatever was being typed, no conflict resolution for now
 			docText.Text = doc.DocumentString;

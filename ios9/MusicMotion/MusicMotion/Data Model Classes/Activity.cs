@@ -37,7 +37,7 @@ namespace MusicMotion {
 			get {
 				if (Distance == 0)
 					return "N/A";
-				
+
 				var miles = Distance * Activity.MilesPerMeter;
 				var paceInSecondsPerMile = timeInterval / miles;
 				return TimeSpan.FromSeconds (paceInSecondsPerMile).ToString ("h'h 'm'm 's's'");

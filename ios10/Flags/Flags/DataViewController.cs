@@ -3,15 +3,13 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace Flags
-{
-	public partial class DataViewController : UIViewController
-	{
+namespace Flags {
+	public partial class DataViewController : UIViewController {
 		// For more info https://en.wikipedia.org/wiki/Regional_Indicator_Symbol
 		const int RegionalIndicatorSymbolLetterA = 0x1F1E6;
 		const int BaseOffset = RegionalIndicatorSymbolLetterA - 'A';
 
-		[Outlet("answerLabel")]
+		[Outlet ("answerLabel")]
 		UILabel answerLabel { get; set; }
 
 		[Outlet ("flagLabel")]

@@ -11,10 +11,8 @@ using Foundation;
 using Photos;
 using UIKit;
 
-namespace AVCam
-{
-	public partial class AVCamCameraViewController : UIViewController, IAVCaptureFileOutputRecordingDelegate
-	{
+namespace AVCam {
+	public partial class AVCamCameraViewController : UIViewController, IAVCaptureFileOutputRecordingDelegate {
 		AVCamSetupResult setupResult;
 		DispatchQueue sessionQueue;
 		AVCaptureSession session;
@@ -43,18 +41,18 @@ namespace AVCam
 			PhotoButton.Enabled = false;
 			LivePhotoModeButton.Enabled = false;
 			CaptureModeControl.Enabled = false;
-			DepthDataDeliveryButton.Enabled = false; 
+			DepthDataDeliveryButton.Enabled = false;
 
 			// Create the AVCaptureSession.
 			session = new AVCaptureSession ();
 
 			// Create a device discovery session.
 			videoDeviceDiscoverySession = AVCaptureDeviceDiscoverySession.Create (
-				new AVCaptureDeviceType[] { AVCaptureDeviceType.BuiltInWideAngleCamera, AVCaptureDeviceType.BuiltInDualCamera }, 
-				AVMediaType.Video, 
+				new AVCaptureDeviceType [] { AVCaptureDeviceType.BuiltInWideAngleCamera, AVCaptureDeviceType.BuiltInDualCamera },
+				AVMediaType.Video,
 				AVCaptureDevicePosition.Unspecified
 			);
-	
+
 			// Set up the preview view.
 			PreviewView.Session = session;
 
@@ -62,42 +60,40 @@ namespace AVCam
 			sessionQueue = new DispatchQueue ("session queue", false);
 
 			setupResult = AVCamSetupResult.Success;
-	
+
 			/*
 				Check video authorization status. Video access is required and audio
 				access is optional. If audio access is denied, audio is not recorded
 				during movie recording.
 			*/
-			switch (AVCaptureDevice.GetAuthorizationStatus (AVMediaType.Video ))
-			{
-				case AVAuthorizationStatus.Authorized:
-					// The user has previously granted access to the camera.
-					break;
+			switch (AVCaptureDevice.GetAuthorizationStatus (AVMediaType.Video)) {
+			case AVAuthorizationStatus.Authorized:
+				// The user has previously granted access to the camera.
+				break;
 
-				case AVAuthorizationStatus.NotDetermined:
+			case AVAuthorizationStatus.NotDetermined:
 
-					/*
-						The user has not yet been presented with the option to grant
-						video access. We suspend the session queue to delay session
-						setup until the access request has completed.
-						
-						Note that audio access will be implicitly requested when we
-						create an AVCaptureDeviceInput for audio during session setup.
-					*/
-					sessionQueue.Suspend ();
-					AVCaptureDevice.RequestAccessForMediaType (AVMediaType.Video, (bool granted) => {
-						if( !granted ) {
-							setupResult = AVCamSetupResult.CameraNotAuthorized;
-						}
-						sessionQueue.Resume ();
-					});
-					break;
-				default:
-				{
-					// The user has previously denied access.
-					setupResult = AVCamSetupResult.CameraNotAuthorized;
-					break;
-				}
+				/*
+					The user has not yet been presented with the option to grant
+					video access. We suspend the session queue to delay session
+					setup until the access request has completed.
+
+					Note that audio access will be implicitly requested when we
+					create an AVCaptureDeviceInput for audio during session setup.
+				*/
+				sessionQueue.Suspend ();
+				AVCaptureDevice.RequestAccessForMediaType (AVMediaType.Video, (bool granted) => {
+					if (!granted) {
+						setupResult = AVCamSetupResult.CameraNotAuthorized;
+					}
+					sessionQueue.Resume ();
+				});
+				break;
+			default: {
+				// The user has previously denied access.
+				setupResult = AVCamSetupResult.CameraNotAuthorized;
+				break;
+			}
 			}
 			/*
 				Setup the capture session.
@@ -109,8 +105,7 @@ namespace AVCam
 				take a long time. We dispatch session setup to the sessionQueue so
 				that the main queue isn't blocked, which keeps the UI responsive.
 			*/
-			sessionQueue.DispatchAsync (() =>
-			{
+			sessionQueue.DispatchAsync (() => {
 				ConfigureSession ();
 			});
 		}
@@ -119,41 +114,38 @@ namespace AVCam
 		{
 			base.ViewWillAppear (animated);
 
-			sessionQueue.DispatchAsync (() =>
-			{
-				switch (setupResult)
-				{
-					case AVCamSetupResult.Success:
-						// Only setup observers and start the session running if setup succeeded.
-						AddObservers ();
-						session.StartRunning ();
-						sessionRunning = session.Running;
-						break;
+			sessionQueue.DispatchAsync (() => {
+				switch (setupResult) {
+				case AVCamSetupResult.Success:
+					// Only setup observers and start the session running if setup succeeded.
+					AddObservers ();
+					session.StartRunning ();
+					sessionRunning = session.Running;
+					break;
 
-					case AVCamSetupResult.CameraNotAuthorized:
-						sessionQueue.DispatchAsync (() => {
-							var message = NSBundle.MainBundle.LocalizedString (@"AVCam doesn't have permission to use the camera, please change privacy settings", @"Alert message when the user has denied access to the camera");
-							var alertController = UIAlertController.Create ( @"AVCam", message, UIAlertControllerStyle.Alert);
-							var cancelAction = UIAlertAction.Create (NSBundle.MainBundle.LocalizedString (@"OK", @"Alert OK button"), UIAlertActionStyle.Cancel, null);
-							alertController.AddAction (cancelAction);
-							// Provide quick access to Settings.
-							var settingsAction = UIAlertAction.Create (NSBundle.MainBundle.LocalizedString (@"Settings", @"Alert button to open Settings"), UIAlertActionStyle.Default,(action) => {
-								UIApplication.SharedApplication.OpenUrl (new NSUrl (UIApplication.OpenSettingsUrlString));
-							});
-							alertController.AddAction (settingsAction);
-							PresentViewController (alertController, true, null);
+				case AVCamSetupResult.CameraNotAuthorized:
+					sessionQueue.DispatchAsync (() => {
+						var message = NSBundle.MainBundle.LocalizedString (@"AVCam doesn't have permission to use the camera, please change privacy settings", @"Alert message when the user has denied access to the camera");
+						var alertController = UIAlertController.Create (@"AVCam", message, UIAlertControllerStyle.Alert);
+						var cancelAction = UIAlertAction.Create (NSBundle.MainBundle.LocalizedString (@"OK", @"Alert OK button"), UIAlertActionStyle.Cancel, null);
+						alertController.AddAction (cancelAction);
+						// Provide quick access to Settings.
+						var settingsAction = UIAlertAction.Create (NSBundle.MainBundle.LocalizedString (@"Settings", @"Alert button to open Settings"), UIAlertActionStyle.Default, (action) => {
+							UIApplication.SharedApplication.OpenUrl (new NSUrl (UIApplication.OpenSettingsUrlString));
 						});
-						break;
-					case AVCamSetupResult.SessionConfigurationFailed:
-						sessionQueue.DispatchAsync (() =>
-						{
-							var message = NSBundle.MainBundle.LocalizedString (@"Unable to capture media", @"Alert message when something goes wrong during capture session configuration");
-							var alertController = UIAlertController.Create (@"AVCam", message, UIAlertControllerStyle.Alert);
-							var cancelAction = UIAlertAction.Create (NSBundle.MainBundle.LocalizedString (@"OK", @"Alert OK button"), UIAlertActionStyle.Cancel, null);
-							alertController.AddAction (cancelAction);
-							PresentViewController (alertController, true, null);
-						} );
-						break;
+						alertController.AddAction (settingsAction);
+						PresentViewController (alertController, true, null);
+					});
+					break;
+				case AVCamSetupResult.SessionConfigurationFailed:
+					sessionQueue.DispatchAsync (() => {
+						var message = NSBundle.MainBundle.LocalizedString (@"Unable to capture media", @"Alert message when something goes wrong during capture session configuration");
+						var alertController = UIAlertController.Create (@"AVCam", message, UIAlertControllerStyle.Alert);
+						var cancelAction = UIAlertAction.Create (NSBundle.MainBundle.LocalizedString (@"OK", @"Alert OK button"), UIAlertActionStyle.Cancel, null);
+						alertController.AddAction (cancelAction);
+						PresentViewController (alertController, true, null);
+					});
+					break;
 				}
 			});
 		}
@@ -162,10 +154,8 @@ namespace AVCam
 		{
 			base.ViewDidDisappear (animated);
 
-			sessionQueue.DispatchAsync (() =>
-			{
-				if (setupResult == AVCamSetupResult.Success)
-				{
+			sessionQueue.DispatchAsync (() => {
+				if (setupResult == AVCamSetupResult.Success) {
 					session.StopRunning ();
 					RemoveObservers ();
 				}
@@ -189,47 +179,44 @@ namespace AVCam
 
 			var deviceOrientation = UIDevice.CurrentDevice.Orientation;
 
-			if (deviceOrientation.IsPortrait () || deviceOrientation.IsLandscape ())
-			{
-				PreviewView.VideoPreviewLayer.Connection.VideoOrientation = (AVCaptureVideoOrientation)deviceOrientation;
+			if (deviceOrientation.IsPortrait () || deviceOrientation.IsLandscape ()) {
+				PreviewView.VideoPreviewLayer.Connection.VideoOrientation = (AVCaptureVideoOrientation) deviceOrientation;
 			}
 		}
 
 		// Call this on the session queue.
 		void ConfigureSession ()
 		{
-			if (setupResult != AVCamSetupResult.Success)
-			{
+			if (setupResult != AVCamSetupResult.Success) {
 				return;
 			}
 
 			NSError error = null;
 
 			session.BeginConfiguration ();
-	
+
 			/*
 				We do not create an AVCaptureMovieFileOutput when setting up the session because the
 				AVCaptureMovieFileOutput does not support movie recording with AVCaptureSessionPresetPhoto.
 			*/
 			session.SessionPreset = AVCaptureSession.PresetPhoto;
-	
+
 			// Add video input.
-			
+
 			// Choose the back dual camera if available, otherwise default to a wide angle camera.
-			var videoDevice = AVCaptureDevice.GetDefaultDevice (AVCaptureDeviceType.BuiltInDualCamera, AVMediaType.Video,AVCaptureDevicePosition.Back);
-			if ( videoDevice == null) {
+			var videoDevice = AVCaptureDevice.GetDefaultDevice (AVCaptureDeviceType.BuiltInDualCamera, AVMediaType.Video, AVCaptureDevicePosition.Back);
+			if (videoDevice == null) {
 				// If the back dual camera is not available, default to the back wide angle camera.
 				videoDevice = AVCaptureDevice.GetDefaultDevice (AVCaptureDeviceType.BuiltInWideAngleCamera, AVMediaType.Video, AVCaptureDevicePosition.Back);
-				
+
 				// In some cases where users break their phones, the back wide angle camera is not available. In this case, we should default to the front wide angle camera.
-				if (videoDevice == null)
-				{
+				if (videoDevice == null) {
 					videoDevice = AVCaptureDevice.GetDefaultDevice (AVCaptureDeviceType.BuiltInWideAngleCamera, AVMediaType.Video, AVCaptureDevicePosition.Front);
 				}
 			}
 			var lVideoDeviceInput = AVCaptureDeviceInput.FromDevice (videoDevice, out error);
-			if ( lVideoDeviceInput == null ) {
-				Console.WriteLine ( $"Could not create video device input: {error}" );
+			if (lVideoDeviceInput == null) {
+				Console.WriteLine ($"Could not create video device input: {error}");
 				setupResult = AVCamSetupResult.SessionConfigurationFailed;
 				session.CommitConfiguration ();
 				return;
@@ -251,40 +238,37 @@ namespace AVCam
 					*/
 					var statusBarOrientation = UIApplication.SharedApplication.StatusBarOrientation;
 					var initialVideoOrientation = AVCaptureVideoOrientation.Portrait;
-					if (statusBarOrientation != UIInterfaceOrientation.Unknown)
-					{
-						initialVideoOrientation = (AVCaptureVideoOrientation)statusBarOrientation;
+					if (statusBarOrientation != UIInterfaceOrientation.Unknown) {
+						initialVideoOrientation = (AVCaptureVideoOrientation) statusBarOrientation;
 					}
 
 					PreviewView.VideoPreviewLayer.Connection.VideoOrientation = initialVideoOrientation;
-				} );
-			}
-			else {
-				Console.WriteLine ( @"Could not add video device input to the session" );
+				});
+			} else {
+				Console.WriteLine (@"Could not add video device input to the session");
 				setupResult = AVCamSetupResult.SessionConfigurationFailed;
 				session.CommitConfiguration ();
 				return;
 			}
-	
+
 			// Add audio input.
 			var audioDevice = AVCaptureDevice.GetDefaultDevice (AVMediaType.Audio);
 			var audioDeviceInput = AVCaptureDeviceInput.FromDevice (audioDevice, out error);
 			if (audioDeviceInput == null) {
-				Console.WriteLine ( $"Could not create audio device input: {error}");
+				Console.WriteLine ($"Could not create audio device input: {error}");
 			}
 			if (session.CanAddInput (audioDeviceInput)) {
 				session.AddInput (audioDeviceInput);
-			}
-			else {
-				Console.WriteLine ( @"Could not add audio device input to the session" );
+			} else {
+				Console.WriteLine (@"Could not add audio device input to the session");
 			}
 
 			// Add photo output.
 			var lPhotoOutput = new AVCapturePhotoOutput ();
-			if (session.CanAddOutput (lPhotoOutput) ) {
+			if (session.CanAddOutput (lPhotoOutput)) {
 				session.AddOutput (lPhotoOutput);
 				photoOutput = lPhotoOutput;
-				
+
 				photoOutput.IsHighResolutionCaptureEnabled = true;
 				photoOutput.IsLivePhotoCaptureEnabled = photoOutput.IsLivePhotoCaptureSupported;
 				photoOutput.IsDepthDataDeliveryEnabled (photoOutput.IsDepthDataDeliverySupported ());
@@ -295,14 +279,13 @@ namespace AVCam
 
 				inProgressPhotoCaptureDelegates = new Dictionary<long, AVCamPhotoCaptureDelegate> ();
 				inProgressLivePhotoCapturesCount = 0;
-			}
-			else {
-				Console.WriteLine ( @"Could not add photo output to the session" );
+			} else {
+				Console.WriteLine (@"Could not add photo output to the session");
 				setupResult = AVCamSetupResult.SessionConfigurationFailed;
 				session.CommitConfiguration ();
 				return;
 			}
-	
+
 			backgroundRecordingId = UIApplication.BackgroundTaskInvalid;
 
 			session.CommitConfiguration ();
@@ -310,8 +293,7 @@ namespace AVCam
 
 		partial void ResumeInterruptedSession (NSObject sender)
 		{
-			sessionQueue.DispatchAsync (() =>
-			{
+			sessionQueue.DispatchAsync (() => {
 				/*
 					The session might fail to start running, e.g., if a phone or FaceTime call is still
 					using audio or video. A failure to start the session running will be communicated via
@@ -321,28 +303,25 @@ namespace AVCam
 				*/
 				session.StartRunning ();
 				sessionRunning = session.Running;
-				if (!session.Running)
-				{
+				if (!session.Running) {
 					DispatchQueue.MainQueue.DispatchAsync (() => {
 						var message = NSBundle.MainBundle.LocalizedString (@"Unable to resume", @"Alert message when unable to resume the session running");
 						var alertController = UIAlertController.Create (@"AVCam", message, UIAlertControllerStyle.Alert);
 						var cancelAction = UIAlertAction.Create (NSBundle.MainBundle.LocalizedString (@"OK", @"Alert OK button"), UIAlertActionStyle.Cancel, null);
 						alertController.AddAction (cancelAction);
 						PresentViewController (alertController, true, null);
-					} );
-				}
-				else {
+					});
+				} else {
 					DispatchQueue.MainQueue.DispatchAsync (() => {
 						ResumeButton.Hidden = true;
-					} );
+					});
 				}
 			});
 		}
 
 		partial void ToggleCaptureMode (UISegmentedControl captureModeControl)
 		{
-			if (captureModeControl.SelectedSegment == (int)AVCamCaptureMode.Photo)
-			{
+			if (captureModeControl.SelectedSegment == (int) AVCamCaptureMode.Photo) {
 				RecordButton.Enabled = false;
 
 				sessionQueue.DispatchAsync (() => {
@@ -357,15 +336,15 @@ namespace AVCam
 					session.CommitConfiguration ();
 
 					movieFileOutput = null;
-					
-					if (photoOutput.IsLivePhotoCaptureSupported ) {
+
+					if (photoOutput.IsLivePhotoCaptureSupported) {
 						photoOutput.IsLivePhotoCaptureEnabled = true;
 
 
 						DispatchQueue.MainQueue.DispatchAsync (() => {
 							LivePhotoModeButton.Enabled = true;
 							LivePhotoModeButton.Hidden = false;
-						} );
+						});
 					}
 
 					if (photoOutput.IsDepthDataDeliverySupported ()) {
@@ -375,11 +354,10 @@ namespace AVCam
 						DispatchQueue.MainQueue.DispatchAsync (() => {
 							DepthDataDeliveryButton.Hidden = false;
 							DepthDataDeliveryButton.Enabled = true;
-						} );
+						});
 					}
-				} );
-			}
-			else if (captureModeControl.SelectedSegment == (int)AVCamCaptureMode.Movie ) {
+				});
+			} else if (captureModeControl.SelectedSegment == (int) AVCamCaptureMode.Movie) {
 				LivePhotoModeButton.Hidden = true;
 				DepthDataDeliveryButton.Hidden = true;
 
@@ -387,13 +365,12 @@ namespace AVCam
 				sessionQueue.DispatchAsync (() => {
 					var lMovieFileOutput = new AVCaptureMovieFileOutput ();
 
-					if ( session.CanAddOutput (lMovieFileOutput))
-					{
+					if (session.CanAddOutput (lMovieFileOutput)) {
 						session.BeginConfiguration ();
 						session.AddOutput (lMovieFileOutput);
 						session.SessionPreset = AVCaptureSession.PresetHigh;
 						var connection = lMovieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
-						if (connection.SupportsVideoStabilization ) {
+						if (connection.SupportsVideoStabilization) {
 							connection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto;
 						}
 						session.CommitConfiguration ();
@@ -403,9 +380,9 @@ namespace AVCam
 
 						DispatchQueue.MainQueue.DispatchAsync (() => {
 							RecordButton.Enabled = true;
-						} );
+						});
 					}
-				} ); 
+				});
 			}
 		}
 
@@ -424,59 +401,52 @@ namespace AVCam
 				AVCaptureDevicePosition preferredPosition = AVCaptureDevicePosition.Unspecified;
 				AVCaptureDeviceType preferredDeviceType = AVCaptureDeviceType.BuiltInDualCamera;
 
-				switch (currentPosition)
-				{
-					//case AVCaptureDevicePosition.Unspecified:
-						//preferredPosition = AVCaptureDevicePosition.Back;
-						//preferredDeviceType = AVCaptureDeviceType.BuiltInDualCamera;
-						//break;
-					case AVCaptureDevicePosition.Unspecified:
-					case AVCaptureDevicePosition.Front:
-						preferredPosition = AVCaptureDevicePosition.Back;
-						preferredDeviceType = AVCaptureDeviceType.BuiltInDualCamera;
-						break;
-					case AVCaptureDevicePosition.Back:
-						preferredPosition = AVCaptureDevicePosition.Front;
-						preferredDeviceType = AVCaptureDeviceType.BuiltInWideAngleCamera;
-						break;
+				switch (currentPosition) {
+				//case AVCaptureDevicePosition.Unspecified:
+				//preferredPosition = AVCaptureDevicePosition.Back;
+				//preferredDeviceType = AVCaptureDeviceType.BuiltInDualCamera;
+				//break;
+				case AVCaptureDevicePosition.Unspecified:
+				case AVCaptureDevicePosition.Front:
+					preferredPosition = AVCaptureDevicePosition.Back;
+					preferredDeviceType = AVCaptureDeviceType.BuiltInDualCamera;
+					break;
+				case AVCaptureDevicePosition.Back:
+					preferredPosition = AVCaptureDevicePosition.Front;
+					preferredDeviceType = AVCaptureDeviceType.BuiltInWideAngleCamera;
+					break;
 				}
 
 				var devices = videoDeviceDiscoverySession.Devices;
 				AVCaptureDevice newVideoDevice = null;
-		
+
 				// First, look for a device with both the preferred position and device type.
-				foreach (var device in devices)
-				{
-					if (device.Position == preferredPosition && device.DeviceType.GetConstant () == preferredDeviceType.GetConstant ())
-					{
+				foreach (var device in devices) {
+					if (device.Position == preferredPosition && device.DeviceType.GetConstant () == preferredDeviceType.GetConstant ()) {
 						newVideoDevice = device;
 						break;
 					}
 				}
 
 				// Otherwise, look for a device with only the preferred position.
-				if (newVideoDevice == null)
-				{
-					foreach (var device in devices)
-					{
-						if (device.Position == preferredPosition)
-						{
+				if (newVideoDevice == null) {
+					foreach (var device in devices) {
+						if (device.Position == preferredPosition) {
 							newVideoDevice = device;
 							break;
 						}
 					}
 				}
 
-				if (newVideoDevice != null)
-				{
+				if (newVideoDevice != null) {
 					var lVideoDeviceInput = AVCaptureDeviceInput.FromDevice (newVideoDevice);
 
 					session.BeginConfiguration ();
 
 					// Remove the existing device input first, since using the front and back camera simultaneously is not supported.
 					session.RemoveInput (videoDeviceInput);
-			
-					if ( session.CanAddInput (lVideoDeviceInput) ) {
+
+					if (session.CanAddInput (lVideoDeviceInput)) {
 						if (subjectAreaDidChangeObserver != null)
 							subjectAreaDidChangeObserver.Dispose ();
 
@@ -484,20 +454,17 @@ namespace AVCam
 
 						session.AddInput (lVideoDeviceInput);
 						videoDeviceInput = lVideoDeviceInput;
-					}
-					else {
+					} else {
 						session.AddInput (videoDeviceInput);
 					}
 
-					if (movieFileOutput != null)
-					{
+					if (movieFileOutput != null) {
 						var movieFileOutputConnection = movieFileOutput.ConnectionFromMediaType (AVMediaType.Video);
-						if (movieFileOutputConnection.SupportsVideoStabilization)
-						{
+						if (movieFileOutputConnection.SupportsVideoStabilization) {
 							movieFileOutputConnection.PreferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.Auto;
 						}
 					}
-			
+
 					/*
 						Set Live Photo capture and depth data delivery if it is supported. When changing cameras, the
 						`livePhotoCaptureEnabled` and `depthDataDeliveryEnabled` properties of the AVCapturePhotoOutput gets set to NO when
@@ -505,7 +472,7 @@ namespace AVCam
 						added to the session, re-enable Live Photo capture and depth data delivery if they are supported.
 					 */
 					photoOutput.IsLivePhotoCaptureEnabled = photoOutput.IsLivePhotoCaptureSupported;
-					photoOutput.IsDepthDataDeliveryEnabled(photoOutput.IsDepthDataDeliverySupported ());
+					photoOutput.IsDepthDataDeliveryEnabled (photoOutput.IsDepthDataDeliverySupported ());
 
 					session.CommitConfiguration ();
 				}
@@ -513,14 +480,14 @@ namespace AVCam
 
 				DispatchQueue.MainQueue.DispatchAsync (() => {
 					CameraButton.Enabled = true;
-					RecordButton.Enabled = CaptureModeControl.SelectedSegment == (int)AVCamCaptureMode.Movie;
+					RecordButton.Enabled = CaptureModeControl.SelectedSegment == (int) AVCamCaptureMode.Movie;
 					PhotoButton.Enabled = true;
 					LivePhotoModeButton.Enabled = true;
 					CaptureModeControl.Enabled = true;
 					DepthDataDeliveryButton.Enabled = photoOutput.IsDepthDataDeliveryEnabled ();
 					DepthDataDeliveryButton.Hidden = !photoOutput.IsDepthDataDeliverySupported ();
-				} );
-			} );
+				});
+			});
 		}
 
 		partial void FocusAndExposeTap (UIGestureRecognizer gestureRecognizer)
@@ -534,16 +501,16 @@ namespace AVCam
 			sessionQueue.DispatchAsync (() => {
 				var device = videoDeviceInput.Device;
 				NSError error = null;
-				if ( device.LockForConfiguration (out error )) {
+				if (device.LockForConfiguration (out error)) {
 					/*
 						Setting (focus/exposure)PointOfInterest alone does not initiate a (focus/exposure) operation.
 						Call set(Focus/Exposure)Mode() to apply the new point of interest.
 					*/
-					if (device.FocusPointOfInterestSupported && device.IsFocusModeSupported (focusMode) ) {
+					if (device.FocusPointOfInterestSupported && device.IsFocusModeSupported (focusMode)) {
 						device.FocusPointOfInterest = point;
 						device.FocusMode = focusMode;
 					}
-					
+
 					if (device.ExposurePointOfInterestSupported && device.IsExposureModeSupported (exposureMode)) {
 						device.ExposurePointOfInterest = point;
 						device.ExposureMode = exposureMode;
@@ -551,11 +518,10 @@ namespace AVCam
 
 					device.SubjectAreaChangeMonitoringEnabled = monitorSubjectAreaChange;
 					device.UnlockForConfiguration ();
+				} else {
+					Console.WriteLine ($"Could not lock device for configuration: {error}");
 				}
-				else {
-					Console.WriteLine ( $"Could not lock device for configuration: {error}");
-				}
-			} );
+			});
 		}
 
 		partial void CapturePhoto (NSObject sender)
@@ -576,38 +542,29 @@ namespace AVCam
 				AVCapturePhotoSettings photoSettings;
 				// Capture HEIF photo when supported, with flash set to auto and high resolution photo enabled.
 
-				if ( photoOutput.AvailablePhotoCodecTypes.Where (codec => codec == AVVideo2.CodecHEVC).Any ())
-				{
+				if (photoOutput.AvailablePhotoCodecTypes.Where (codec => codec == AVVideo2.CodecHEVC).Any ()) {
 					photoSettings = AVCapturePhotoSettings.FromFormat (new NSDictionary<NSString, NSObject> (AVVideo.CodecKey, AVVideo2.CodecHEVC));
-				}
-				else
-				{
+				} else {
 					photoSettings = AVCapturePhotoSettings.Create ();
 				}
 
-				if (videoDeviceInput.Device.FlashAvailable)
-				{
+				if (videoDeviceInput.Device.FlashAvailable) {
 					photoSettings.FlashMode = AVCaptureFlashMode.Auto;
 				}
 				photoSettings.IsHighResolutionPhotoEnabled = true;
-				if (photoSettings.AvailablePreviewPhotoPixelFormatTypes.Count () > 0)
-				{
+				if (photoSettings.AvailablePreviewPhotoPixelFormatTypes.Count () > 0) {
 					photoSettings.PreviewPhotoFormat = new NSDictionary<NSString, NSObject> (CoreVideo.CVPixelBuffer.PixelFormatTypeKey, photoSettings.AvailablePreviewPhotoPixelFormatTypes.First ());
 				}
-				if (livePhotoMode == AVCamLivePhotoMode.On && photoOutput.IsLivePhotoCaptureSupported)
-				{ 
+				if (livePhotoMode == AVCamLivePhotoMode.On && photoOutput.IsLivePhotoCaptureSupported) {
 					// Live Photo capture is not supported in movie mode.
 					var livePhotoMovieFileName = Guid.NewGuid ().ToString ();
 					var livePhotoMovieFilePath = NSFileManager.DefaultManager.GetTemporaryDirectory ().Append ($"{livePhotoMovieFileName}.mov", false);
 					photoSettings.LivePhotoMovieFileUrl = livePhotoMovieFilePath;
 				}
 
-				if (depthDataDeliveryMode == AVCamDepthDataDeliveryMode.On && photoOutput.IsDepthDataDeliverySupported ())
-				{
+				if (depthDataDeliveryMode == AVCamDepthDataDeliveryMode.On && photoOutput.IsDepthDataDeliverySupported ()) {
 					photoSettings.IsDepthDataDeliveryEnabled (true);
-				}
-				else
-				{
+				} else {
 					photoSettings.IsDepthDataDeliveryEnabled (false);
 				}
 
@@ -618,54 +575,46 @@ namespace AVCam
 						UIView.Animate (0.25, () => {
 							PreviewView.VideoPreviewLayer.Opacity = 1.0f;
 						});
-					} );
-				}, (bool capturing ) => {
+					});
+				}, (bool capturing) => {
 					/*
 						Because Live Photo captures can overlap, we need to keep track of the
 						number of in progress Live Photo captures to ensure that the
 						Live Photo label stays visible during these captures.
 					*/
 					sessionQueue.DispatchAsync (() => {
-						if (capturing)
-						{
+						if (capturing) {
 							inProgressLivePhotoCapturesCount++;
-						}
-						else
-						{
+						} else {
 							inProgressLivePhotoCapturesCount--;
 						}
 
 						var lInProgressLivePhotoCapturesCount = inProgressLivePhotoCapturesCount;
 						DispatchQueue.MainQueue.DispatchAsync (() => {
-							if (lInProgressLivePhotoCapturesCount > 0)
-							{
+							if (lInProgressLivePhotoCapturesCount > 0) {
 								CapturingLivePhotoLabel.Hidden = false;
-							}
-							else if (lInProgressLivePhotoCapturesCount == 0)
-							{
+							} else if (lInProgressLivePhotoCapturesCount == 0) {
 								CapturingLivePhotoLabel.Hidden = true;
-							}
-							else
-							{
+							} else {
 								Console.WriteLine (@"Error: In progress live photo capture count is less than 0");
 							}
-						} );
-					} );
-				}, (AVCamPhotoCaptureDelegate lPhotoCaptureDelegate ) => {
+						});
+					});
+				}, (AVCamPhotoCaptureDelegate lPhotoCaptureDelegate) => {
 					// When the capture is complete, remove a reference to the photo capture delegate so it can be deallocated.
 					sessionQueue.DispatchAsync (() => {
-						inProgressPhotoCaptureDelegates[lPhotoCaptureDelegate.RequestedPhotoSettings.UniqueID] = null;
-					} );
+						inProgressPhotoCaptureDelegates [lPhotoCaptureDelegate.RequestedPhotoSettings.UniqueID] = null;
+					});
 				});
-		
+
 				/*
 					The Photo Output keeps a weak reference to the photo capture delegate so
 					we store it in an array to maintain a strong reference to this object
 					until the capture is completed.
 				*/
-				inProgressPhotoCaptureDelegates[photoCaptureDelegate.RequestedPhotoSettings.UniqueID] = photoCaptureDelegate;
+				inProgressPhotoCaptureDelegates [photoCaptureDelegate.RequestedPhotoSettings.UniqueID] = photoCaptureDelegate;
 				photoOutput.CapturePhoto (photoSettings, photoCaptureDelegate);
-			} );
+			});
 		}
 
 		partial void ToggleLivePhotoMode (UIButton livePhotoModeButton)
@@ -674,16 +623,14 @@ namespace AVCam
 				livePhotoMode = (livePhotoMode == AVCamLivePhotoMode.On) ? AVCamLivePhotoMode.Off : AVCamLivePhotoMode.On;
 				var lLivePhotoMode = livePhotoMode;
 
-				DispatchQueue.MainQueue.DispatchAsync ( () => {
-					if (lLivePhotoMode == AVCamLivePhotoMode.On)
-					{
+				DispatchQueue.MainQueue.DispatchAsync (() => {
+					if (lLivePhotoMode == AVCamLivePhotoMode.On) {
 						LivePhotoModeButton.SetTitle (NSBundle.MainBundle.LocalizedString (@"Live Photo Mode: On", @"Live photo mode button on title"), UIControlState.Normal);
-					}
-					else {
+					} else {
 						LivePhotoModeButton.SetTitle (NSBundle.MainBundle.LocalizedString (@"Live Photo Mode: Off", @"Live photo mode button off title"), UIControlState.Normal);
 					}
-				} );
-			} );
+				});
+			});
 		}
 
 		partial void ToggleDepthDataDeliveryMode (UIButton depthDataDeliveryButton)
@@ -693,17 +640,15 @@ namespace AVCam
 				var lDepthDataDeliveryMode = depthDataDeliveryMode;
 
 				DispatchQueue.MainQueue.DispatchAsync (() => {
-					if (lDepthDataDeliveryMode == AVCamDepthDataDeliveryMode.On)
-					{
+					if (lDepthDataDeliveryMode == AVCamDepthDataDeliveryMode.On) {
 
 						DepthDataDeliveryButton.SetTitle (NSBundle.MainBundle.LocalizedString (@"Depth Data Delivery: On", @"Depth Data mode button on title"), UIControlState.Normal);
-					}
-					else {
+					} else {
 						DepthDataDeliveryButton.SetTitle (NSBundle.MainBundle.LocalizedString (@"Depth Data Delivery: Off", @"Depth Data mode button off title"), UIControlState.Normal);
 
 					}
-				} );
-			} );
+				});
+			});
 		}
 
 		partial void ToggleMovieRecording (NSObject sender)
@@ -726,10 +671,8 @@ namespace AVCam
 			var videoPreviewLayerVideoOrientation = PreviewView.VideoPreviewLayer.Connection.VideoOrientation;
 
 			sessionQueue.DispatchAsync (() => {
-				if (!movieFileOutput.Recording)
-				{
-					if ( UIDevice.CurrentDevice.IsMultitaskingSupported)
-					{
+				if (!movieFileOutput.Recording) {
+					if (UIDevice.CurrentDevice.IsMultitaskingSupported) {
 						/*
 							Setup background task.
 							This is needed because the -[captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:]
@@ -746,8 +689,7 @@ namespace AVCam
 					movieFileOutputConnection.VideoOrientation = videoPreviewLayerVideoOrientation;
 
 					// Use HEVC codec if supported
-					if ( movieFileOutput.AvailableVideoCodecTypes.Where (codec => codec == AVVideo2.CodecHEVC).Any ())
-					{
+					if (movieFileOutput.AvailableVideoCodecTypes.Where (codec => codec == AVVideo2.CodecHEVC).Any ()) {
 						movieFileOutput.SetOutputSettings (new NSDictionary (AVVideo.CodecKey, AVVideo2.CodecHEVC), movieFileOutputConnection);
 					}
 
@@ -755,24 +697,23 @@ namespace AVCam
 					var outputFileName = Guid.NewGuid ().ToString ();
 					var livePhotoMovieFilePath = NSFileManager.DefaultManager.GetTemporaryDirectory ().Append ($"{outputFileName}.mov", false);
 					movieFileOutput.StartRecordingToOutputFile (livePhotoMovieFilePath, this);
-				}
-				else {
+				} else {
 					movieFileOutput.StopRecording ();
 				}
-			} );
+			});
 		}
 
 		[Export ("captureOutput:didStartRecordingToOutputFileAtURL:fromConnections:")]
-		public void DidStartRecording (AVCaptureFileOutput captureOutput, NSUrl outputFileUrl, NSObject[] connections)
+		public void DidStartRecording (AVCaptureFileOutput captureOutput, NSUrl outputFileUrl, NSObject [] connections)
 		{
 			// Enable the Record button to let the user stop the recording.
 			DispatchQueue.MainQueue.DispatchAsync (() => {
 				RecordButton.Enabled = true;
-				RecordButton.SetTitle (NSBundle.MainBundle.LocalizedString(@"Stop", @"Recording button stop title"), UIControlState.Normal);
+				RecordButton.SetTitle (NSBundle.MainBundle.LocalizedString (@"Stop", @"Recording button stop title"), UIControlState.Normal);
 			});
 		}
 
-		public void FinishedRecording (AVCaptureFileOutput captureOutput, NSUrl outputFileUrl, NSObject[] connections, NSError error)
+		public void FinishedRecording (AVCaptureFileOutput captureOutput, NSUrl outputFileUrl, NSObject [] connections, NSError error)
 		{
 			/*
 				Note that currentBackgroundRecordingID is used to end the background task
@@ -788,54 +729,52 @@ namespace AVCam
 			backgroundRecordingId = UIApplication.BackgroundTaskInvalid;
 
 			Action cleanup = () => {
-				if ( NSFileManager.DefaultManager.FileExists (outputFileUrl.Path) ) {
+				if (NSFileManager.DefaultManager.FileExists (outputFileUrl.Path)) {
 					NSError tError;
 					NSFileManager.DefaultManager.Remove (outputFileUrl.Path, out tError);
 				}
-		
-				if (currentBackgroundRecordingId != UIApplication.BackgroundTaskInvalid ) {
+
+				if (currentBackgroundRecordingId != UIApplication.BackgroundTaskInvalid) {
 					UIApplication.SharedApplication.EndBackgroundTask (currentBackgroundRecordingId);
 				}
 			};
-	
+
 			var success = true;
-	
-			if (error != null ) {
-				Console.WriteLine ( $"Movie file finishing error: {error}");
-				var tmpObj = error.UserInfo[AVErrorKeys.RecordingSuccessfullyFinished];
-				if (tmpObj is NSNumber) success = ((NSNumber)tmpObj).BoolValue;
-				else if (tmpObj is NSString) success = ((NSString)tmpObj).BoolValue ();
+
+			if (error != null) {
+				Console.WriteLine ($"Movie file finishing error: {error}");
+				var tmpObj = error.UserInfo [AVErrorKeys.RecordingSuccessfullyFinished];
+				if (tmpObj is NSNumber) success = ((NSNumber) tmpObj).BoolValue;
+				else if (tmpObj is NSString) success = ((NSString) tmpObj).BoolValue ();
 			}
-			if (success ) {
+			if (success) {
 				// Check authorization status.
-				PHPhotoLibrary.RequestAuthorization (( PHAuthorizationStatus status ) => {
-					if ( status == PHAuthorizationStatus.Authorized ) {
+				PHPhotoLibrary.RequestAuthorization ((PHAuthorizationStatus status) => {
+					if (status == PHAuthorizationStatus.Authorized) {
 						// Save the movie file to the photo library and cleanup.
 						PHPhotoLibrary.SharedPhotoLibrary.PerformChanges (() => {
 							var options = new PHAssetResourceCreationOptions ();
 							options.ShouldMoveFile = true;
 							var creationRequest = PHAssetCreationRequest.CreationRequestForAsset ();
 							creationRequest.AddResource (PHAssetResourceType.Video, outputFileUrl, options);
-						},(cbSuccess, cbError) => {
-							if ( ! cbSuccess ) {
-									Console.WriteLine ( $"Could not save movie to photo library: {cbError}");
+						}, (cbSuccess, cbError) => {
+							if (!cbSuccess) {
+								Console.WriteLine ($"Could not save movie to photo library: {cbError}");
 							}
 							cleanup ();
 						});
-					}
-					else {
+					} else {
 						cleanup ();
 					}
 				});
-			}
-			else {
+			} else {
 				cleanup ();
 			}
 
 			// Enable the Camera and Record buttons to let the user switch camera and start another recording.
-			DispatchQueue.MainQueue.DispatchAsync ( () => {
+			DispatchQueue.MainQueue.DispatchAsync (() => {
 				// Only enable the ability to change camera if the device has more than one camera.
-				CameraButton.Enabled = (videoDeviceDiscoverySession.UniqueDevicePositionsCount() > 1);
+				CameraButton.Enabled = (videoDeviceDiscoverySession.UniqueDevicePositionsCount () > 1);
 				RecordButton.Enabled = true;
 				CaptureModeControl.Enabled = true;
 				RecordButton.SetTitle (NSBundle.MainBundle.LocalizedString (@"Record", @"Recording button record title"), UIControlState.Normal);
@@ -871,16 +810,16 @@ namespace AVCam
 				subjectAreaDidChangeObserver.Dispose ();
 			subjectAreaDidChangeObserver = null;
 
-			observerList.ForEach ( i => i.Dispose ());
+			observerList.ForEach (i => i.Dispose ());
 			observerList.Clear ();
 		}
 
 		void ObserveNewSession (NSObservedChange change)
 		{
-			bool isSessionRunning = false ;
+			bool isSessionRunning = false;
 			NSObject tmpObj = change.NewValue;
-			if (tmpObj is NSNumber) isSessionRunning = ((NSNumber)tmpObj).BoolValue;
-			else if (tmpObj is NSString) isSessionRunning = ((NSString)tmpObj).BoolValue ();
+			if (tmpObj is NSNumber) isSessionRunning = ((NSNumber) tmpObj).BoolValue;
+			else if (tmpObj is NSString) isSessionRunning = ((NSString) tmpObj).BoolValue ();
 
 			var livePhotoCaptureSupported = photoOutput.IsLivePhotoCaptureSupported;
 			var livePhotoCaptureEnabled = photoOutput.IsLivePhotoCaptureEnabled;
@@ -889,14 +828,14 @@ namespace AVCam
 
 			DispatchQueue.MainQueue.DispatchAsync (() => {
 				// Only enable the ability to change camera if the device has more than one camera.
-				CameraButton.Enabled = isSessionRunning && (videoDeviceDiscoverySession.UniqueDevicePositionsCount() > 1);
-				RecordButton.Enabled = isSessionRunning && (CaptureModeControl.SelectedSegment == (int)AVCamCaptureMode.Movie);
+				CameraButton.Enabled = isSessionRunning && (videoDeviceDiscoverySession.UniqueDevicePositionsCount () > 1);
+				RecordButton.Enabled = isSessionRunning && (CaptureModeControl.SelectedSegment == (int) AVCamCaptureMode.Movie);
 				PhotoButton.Enabled = isSessionRunning;
 				CaptureModeControl.Enabled = isSessionRunning;
 				LivePhotoModeButton.Enabled = isSessionRunning && livePhotoCaptureEnabled;
-				LivePhotoModeButton.Hidden = !(isSessionRunning && livePhotoCaptureSupported);DepthDataDeliveryButton.Enabled = isSessionRunning && depthDataDeliveryEnabled;
+				LivePhotoModeButton.Hidden = !(isSessionRunning && livePhotoCaptureSupported); DepthDataDeliveryButton.Enabled = isSessionRunning && depthDataDeliveryEnabled;
 				DepthDataDeliveryButton.Hidden = !(isSessionRunning && depthDataDeliverySupported);
-			} );
+			});
 		}
 
 		void SubjectAreaDidChange (NSNotification notification)
@@ -907,7 +846,7 @@ namespace AVCam
 
 		void SessionRuntimeError (NSNotification notification)
 		{
-			NSError error = notification.UserInfo[AVCaptureSession.ErrorKey] as NSError;
+			NSError error = notification.UserInfo [AVCaptureSession.ErrorKey] as NSError;
 			if (error == null) {
 				ResumeButton.Hidden = false;
 				return;
@@ -919,22 +858,18 @@ namespace AVCam
 				reset and the last start running succeeded. Otherwise, enable the user
 				to try to resume the session running.
 			*/
-			if (error.Code == (int)AVError.MediaServicesWereReset)
-			{
+			if (error.Code == (int) AVError.MediaServicesWereReset) {
 				sessionQueue.DispatchAsync (() => {
-					if (sessionRunning)
-					{
+					if (sessionRunning) {
 						session.StartRunning ();
 						sessionRunning = session.Running;
-					}
-					else {
+					} else {
 						DispatchQueue.MainQueue.DispatchAsync (() => {
 							ResumeButton.Hidden = false;
-						} );
+						});
 					}
-				} );
-			}
-			else {
+				});
+			} else {
 				ResumeButton.Hidden = false;
 			}
 		}
@@ -951,16 +886,13 @@ namespace AVCam
 			*/
 			var showResumeButton = false;
 
-			var reason = (AVCaptureSessionInterruptionReason)(notification.UserInfo[AVCaptureSession.InterruptionReasonKey] as NSNumber).Int32Value;
-			Console.WriteLine ($"Capture session was interrupted with reason {(int)reason}");
+			var reason = (AVCaptureSessionInterruptionReason) (notification.UserInfo [AVCaptureSession.InterruptionReasonKey] as NSNumber).Int32Value;
+			Console.WriteLine ($"Capture session was interrupted with reason {(int) reason}");
 
 			if (reason == AVCaptureSessionInterruptionReason.AudioDeviceInUseByAnotherClient ||
-				reason == AVCaptureSessionInterruptionReason.VideoDeviceInUseByAnotherClient)
-			{
+				reason == AVCaptureSessionInterruptionReason.VideoDeviceInUseByAnotherClient) {
 				showResumeButton = true;
-			}
-			else if (reason == AVCaptureSessionInterruptionReason.VideoDeviceNotAvailableWithMultipleForegroundApps)
-			{
+			} else if (reason == AVCaptureSessionInterruptionReason.VideoDeviceNotAvailableWithMultipleForegroundApps) {
 				// Simply fade-in a label to inform the user that the camera is unavailable.
 				CameraUnavailableLabel.Alpha = 0.0f;
 				CameraUnavailableLabel.Hidden = false;
@@ -968,8 +900,8 @@ namespace AVCam
 					CameraUnavailableLabel.Alpha = 1.0f;
 				});
 			}
-			
-			if (showResumeButton ) {
+
+			if (showResumeButton) {
 				// Simply fade-in a button to enable the user to try to resume the session running.
 				ResumeButton.Alpha = 0.0f;
 				ResumeButton.Hidden = false;
@@ -983,8 +915,7 @@ namespace AVCam
 		{
 			Console.WriteLine (@"Capture session interruption ended");
 
-			if (!ResumeButton.Hidden)
-			{
+			if (!ResumeButton.Hidden) {
 				UIView.Animate (0.25, () => {
 					ResumeButton.Alpha = 0.0f;
 				},
@@ -992,7 +923,7 @@ namespace AVCam
 					ResumeButton.Hidden = true;
 				});
 			}
-			if ( ! CameraUnavailableLabel.Hidden ) {
+			if (!CameraUnavailableLabel.Hidden) {
 				UIView.Animate (0.25, () => {
 					CameraUnavailableLabel.Alpha = 0.0f;
 				},
@@ -1007,45 +938,38 @@ namespace AVCam
 
 
 
-	enum AVCamSetupResult
-	{
+	enum AVCamSetupResult {
 		Success,
 		CameraNotAuthorized,
 		SessionConfigurationFailed
 	};
 
-	enum AVCamCaptureMode
-	{
+	enum AVCamCaptureMode {
 		Photo = 0,
 		Movie = 1
 	};
 
-	enum AVCamLivePhotoMode
-	{
+	enum AVCamLivePhotoMode {
 		On,
 		Off
 	};
 
-	enum AVCamDepthDataDeliveryMode
-	{
+	enum AVCamDepthDataDeliveryMode {
 		On,
 		Off
 	};
 
-	static class AVCaptureDeviceDiscoverySessionUtilities
-	{
+	static class AVCaptureDeviceDiscoverySessionUtilities {
 		public static int UniqueDevicePositionsCount (this AVCaptureDeviceDiscoverySession session)
 		{
 			var uniqueDevicePositions = new List<AVCaptureDevicePosition> ();
-	
-			foreach (AVCaptureDevice device in session.Devices)
-			{
-				if (!uniqueDevicePositions.Contains (device.Position))
-				{
+
+			foreach (AVCaptureDevice device in session.Devices) {
+				if (!uniqueDevicePositions.Contains (device.Position)) {
 					uniqueDevicePositions.Add (device.Position);
 				}
 			}
-	
+
 			return uniqueDevicePositions.Count;
 		}
 	}

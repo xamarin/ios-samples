@@ -1,121 +1,109 @@
-﻿
-namespace VisionObjectTrack
-{
-    using AVFoundation;
-    using CoreGraphics;
-    using CoreVideo;
-    using Foundation;
-    using ImageIO;
-    using System;
 
-    /// <summary>
-    /// Contains the video reader implementation using AVCapture.
-    /// </summary>
-    public class VideoReader
-    {
-        private const float MillisecondsInSecond = 1000f;
+namespace VisionObjectTrack {
+	using AVFoundation;
+	using CoreGraphics;
+	using CoreVideo;
+	using Foundation;
+	using ImageIO;
+	using System;
 
-        private AVAsset videoAsset;
-        private AVAssetTrack videoTrack;
-        private AVAssetReader assetReader;
-        private AVAssetReaderTrackOutput videoAssetReaderOutput;
+	/// <summary>
+	/// Contains the video reader implementation using AVCapture.
+	/// </summary>
+	public class VideoReader {
+		private const float MillisecondsInSecond = 1000f;
 
-        protected float FrameRateInMilliseconds => this.videoTrack.NominalFrameRate;
+		private AVAsset videoAsset;
+		private AVAssetTrack videoTrack;
+		private AVAssetReader assetReader;
+		private AVAssetReaderTrackOutput videoAssetReaderOutput;
 
-        public float FrameRateInSeconds => this.FrameRateInMilliseconds * MillisecondsInSecond;
+		protected float FrameRateInMilliseconds => this.videoTrack.NominalFrameRate;
 
-        public CGAffineTransform AffineTransform => this.videoTrack.PreferredTransform.Invert();
+		public float FrameRateInSeconds => this.FrameRateInMilliseconds * MillisecondsInSecond;
 
-        public CGImagePropertyOrientation Orientation
-        {
-            get
-            {
-                var orientation = 1;
-                var angleInDegrees = Math.Atan2(this.AffineTransform.yx, this.AffineTransform.xx) * 180 / Math.PI;
-                switch (angleInDegrees)
-                {
-                    case 0:
-                        orientation = 1; // Recording button is on the right
-                        break;
+		public CGAffineTransform AffineTransform => this.videoTrack.PreferredTransform.Invert ();
 
-                    case 180:
-                        orientation = 3; // abs(180) degree rotation recording button is on the right
-                        break;
+		public CGImagePropertyOrientation Orientation {
+			get {
+				var orientation = 1;
+				var angleInDegrees = Math.Atan2 (this.AffineTransform.yx, this.AffineTransform.xx) * 180 / Math.PI;
+				switch (angleInDegrees) {
+				case 0:
+					orientation = 1; // Recording button is on the right
+					break;
 
-                    case -180:
-                        orientation = 3; // abs(180) degree rotation recording button is on the right
-                        break;
+				case 180:
+					orientation = 3; // abs(180) degree rotation recording button is on the right
+					break;
 
-                    case 90:
-                        orientation = 8; // 90 degree CW rotation recording button is on the top
-                        break;
+				case -180:
+					orientation = 3; // abs(180) degree rotation recording button is on the right
+					break;
 
-                    case -90:
-                        orientation = 6; // 90 degree CCW rotation recording button is on the bottom
-                        break;
+				case 90:
+					orientation = 8; // 90 degree CW rotation recording button is on the top
+					break;
 
-                    default:
-                        orientation = 1;
-                        break;
-                }
+				case -90:
+					orientation = 6; // 90 degree CCW rotation recording button is on the bottom
+					break;
 
-                return (CGImagePropertyOrientation)orientation;
-            }
-        }
+				default:
+					orientation = 1;
+					break;
+				}
 
-        public static VideoReader Create(AVAsset videoAsset)
-        {
-            var result = new VideoReader { videoAsset = videoAsset };
-            var array = result.videoAsset.TracksWithMediaType(AVMediaType.Video);
-            result.videoTrack = array[0];
+				return (CGImagePropertyOrientation) orientation;
+			}
+		}
 
-            if(!result.RestartReading())
-            {
-                result = null;
-            }
+		public static VideoReader Create (AVAsset videoAsset)
+		{
+			var result = new VideoReader { videoAsset = videoAsset };
+			var array = result.videoAsset.TracksWithMediaType (AVMediaType.Video);
+			result.videoTrack = array [0];
 
-            return result;
-        }
+			if (!result.RestartReading ()) {
+				result = null;
+			}
 
-        public bool RestartReading()
-        {
-            var result = false;
+			return result;
+		}
 
-            this.assetReader = AVAssetReader.FromAsset(this.videoAsset, out NSError error);
-            if (error == null)
-            {
-                var settings = new AVVideoSettingsUncompressed { PixelFormatType = CVPixelFormatType.CV420YpCbCr8BiPlanarFullRange };
-                this.videoAssetReaderOutput = new AVAssetReaderTrackOutput(this.videoTrack, settings);
-                if (this.videoAssetReaderOutput != null)
-                {
-                    this.videoAssetReaderOutput.AlwaysCopiesSampleData = true;
+		public bool RestartReading ()
+		{
+			var result = false;
 
-                    if (this.assetReader.CanAddOutput(this.videoAssetReaderOutput))
-                    {
-                        this.assetReader.AddOutput(this.videoAssetReaderOutput);
-                        result = this.assetReader.StartReading();
-                    }
-                }
-            }
-            else 
-            {
-                Console.WriteLine($"Failed to create AVAssetReader object: {error}");
-            }
+			this.assetReader = AVAssetReader.FromAsset (this.videoAsset, out NSError error);
+			if (error == null) {
+				var settings = new AVVideoSettingsUncompressed { PixelFormatType = CVPixelFormatType.CV420YpCbCr8BiPlanarFullRange };
+				this.videoAssetReaderOutput = new AVAssetReaderTrackOutput (this.videoTrack, settings);
+				if (this.videoAssetReaderOutput != null) {
+					this.videoAssetReaderOutput.AlwaysCopiesSampleData = true;
 
-            return result;
-        }
+					if (this.assetReader.CanAddOutput (this.videoAssetReaderOutput)) {
+						this.assetReader.AddOutput (this.videoAssetReaderOutput);
+						result = this.assetReader.StartReading ();
+					}
+				}
+			} else {
+				Console.WriteLine ($"Failed to create AVAssetReader object: {error}");
+			}
 
-        public CVPixelBuffer NextFrame()
-        {
-            CVPixelBuffer result = null;
+			return result;
+		}
 
-            var sampleBuffer = this.videoAssetReaderOutput.CopyNextSampleBuffer();
-            if(sampleBuffer != null)
-            {
-                result = sampleBuffer.GetImageBuffer() as CVPixelBuffer;
-            }
+		public CVPixelBuffer NextFrame ()
+		{
+			CVPixelBuffer result = null;
 
-            return result;
-        }
-    }
+			var sampleBuffer = this.videoAssetReaderOutput.CopyNextSampleBuffer ();
+			if (sampleBuffer != null) {
+				result = sampleBuffer.GetImageBuffer () as CVPixelBuffer;
+			}
+
+			return result;
+		}
+	}
 }

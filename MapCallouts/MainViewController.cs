@@ -6,17 +6,14 @@ using Foundation;
 using UIKit;
 using MapKit;
 
-namespace MapCallouts
-{
-	public partial class MainViewController : UIViewController
-	{
-		enum AnnotationIndex
-		{
+namespace MapCallouts {
+	public partial class MainViewController : UIViewController {
+		enum AnnotationIndex {
 			City,
 			Bridge,
 		}
 
-		MKAnnotation[] mapAnnotations;
+		MKAnnotation [] mapAnnotations;
 		DetailViewController detailViewController;
 
 		const float AnnotationPadding = 10;
@@ -54,8 +51,8 @@ namespace MapCallouts
 			NavigationItem.BackBarButtonItem = temporaryBarButtonItem;
 
 			mapAnnotations = new MKAnnotation [2];
-			mapAnnotations [(int)AnnotationIndex.City] = new SFAnnotation ();
-			mapAnnotations [(int)AnnotationIndex.Bridge] = new BridgeAnnotation ();
+			mapAnnotations [(int) AnnotationIndex.City] = new SFAnnotation ();
+			mapAnnotations [(int) AnnotationIndex.Bridge] = new BridgeAnnotation ();
 
 			GotoLocation ();
 
@@ -74,7 +71,7 @@ namespace MapCallouts
 		void RemoveAllAnnotations ()
 		{
 			foreach (var obj in mapView.Annotations) {
-				mapView.RemoveAnnotation ((MKAnnotation)obj);
+				mapView.RemoveAnnotation ((MKAnnotation) obj);
 			}
 		}
 
@@ -89,14 +86,14 @@ namespace MapCallouts
 		{
 			GotoLocation ();
 			RemoveAllAnnotations ();
-			mapView.AddAnnotation (mapAnnotations [(int)AnnotationIndex.Bridge]);
+			mapView.AddAnnotation (mapAnnotations [(int) AnnotationIndex.Bridge]);
 		}
 
 		partial void cityAction (Foundation.NSObject sender)
 		{
 			GotoLocation ();
 			RemoveAllAnnotations ();
-			mapView.AddAnnotation (mapAnnotations [(int)AnnotationIndex.City]);
+			mapView.AddAnnotation (mapAnnotations [(int) AnnotationIndex.City]);
 		}
 
 		void showDetails ()
@@ -119,7 +116,7 @@ namespace MapCallouts
 			//
 			if (annotation is BridgeAnnotation) { // for Golden Gate Bridge
 				const string BridgeAnnotationIdentifier = "bridgeAnnotationIdentifier";
-				MKPinAnnotationView pinView = (MKPinAnnotationView)mapView.DequeueReusableAnnotation (BridgeAnnotationIdentifier);
+				MKPinAnnotationView pinView = (MKPinAnnotationView) mapView.DequeueReusableAnnotation (BridgeAnnotationIdentifier);
 				if (pinView == null) {
 					MKPinAnnotationView customPinView = new MKPinAnnotationView (annotation, BridgeAnnotationIdentifier);
 					customPinView.PinColor = MKPinAnnotationColor.Purple;
@@ -137,7 +134,7 @@ namespace MapCallouts
 				return pinView;
 			} else if (annotation is SFAnnotation) { // for City of San Francisco
 				const string SFAnnotationIdentifier = "SFAnnotationIdentifier";
-				MKAnnotationView pinView = (MKAnnotationView)mapView.DequeueReusableAnnotation (SFAnnotationIdentifier);
+				MKAnnotationView pinView = (MKAnnotationView) mapView.DequeueReusableAnnotation (SFAnnotationIdentifier);
 				if (pinView == null) {
 					MKAnnotationView annotationView = new MKAnnotationView (annotation, SFAnnotationIdentifier);
 					annotationView.CanShowCallout = true;

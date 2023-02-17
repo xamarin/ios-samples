@@ -64,7 +64,7 @@ namespace TouchCanvas {
 					size.Height *= scale;
 					var colorSpace = CGColorSpace.CreateDeviceRGB ();
 
-					frozenContext = new CGBitmapContext (null, (nint)size.Width, (nint)size.Height, 8, 0, colorSpace, CGImageAlphaInfo.PremultipliedLast);
+					frozenContext = new CGBitmapContext (null, (nint) size.Width, (nint) size.Height, 8, 0, colorSpace, CGImageAlphaInfo.PremultipliedLast);
 					frozenContext.SetLineCap (CGLineCap.Round);
 					frozenContext.ConcatCTM (CGAffineTransform.MakeScale (scale, scale));
 				}
@@ -102,7 +102,7 @@ namespace TouchCanvas {
 			}
 
 			frozenImage = frozenImage ?? FrozenContext.ToImage ();
-			if(frozenImage != null)
+			if (frozenImage != null)
 				context.DrawImage (Bounds, frozenImage);
 
 			foreach (var line in lines)
@@ -143,7 +143,7 @@ namespace TouchCanvas {
 
 				// Incorporate coalesced touch data. The data in the last touch in the returned array will match
 				// the data of the touch supplied to GetCoalescedTouches
-				var coalescedTouches = evt.GetCoalescedTouches (touch) ?? new UITouch[0];
+				var coalescedTouches = evt.GetCoalescedTouches (touch) ?? new UITouch [0];
 				var coalescedRect = AddPointsOfType (PointType.Coalesced, coalescedTouches, line);
 				updateRect = updateRect.UnionWith (coalescedRect);
 
@@ -151,7 +151,7 @@ namespace TouchCanvas {
 				// you may want to use them as inputs to smoothing algorithms rather than directly drawing them. 
 				// Points derived from predicted touches should be removed from the line at the next event for this touch.
 				if (isPredictionEnabled) {
-					var predictedTouches = evt.GetPredictedTouches (touch) ?? new UITouch[0];
+					var predictedTouches = evt.GetPredictedTouches (touch) ?? new UITouch [0];
 					var predictedRect = AddPointsOfType (PointType.Predicted, predictedTouches, line);
 					updateRect = updateRect.UnionWith (predictedRect);
 				}
@@ -167,7 +167,7 @@ namespace TouchCanvas {
 			return newLine;
 		}
 
-		CGRect AddPointsOfType (PointType type, UITouch[] touches, Line line)
+		CGRect AddPointsOfType (PointType type, UITouch [] touches, Line line)
 		{
 			var accumulatedRect = CGRectNull ();
 

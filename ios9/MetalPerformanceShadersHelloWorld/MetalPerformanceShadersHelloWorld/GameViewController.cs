@@ -21,7 +21,7 @@ namespace MetalPerformanceShadersHelloWorld {
 
 		public override void ViewDidLoad ()
 		{
-			metalView = (MTKView)View;
+			metalView = (MTKView) View;
 
 			// Set the view to use the default device.
 			metalView.Device = MTLDevice.SystemDefault;
@@ -78,7 +78,7 @@ namespace MetalPerformanceShadersHelloWorld {
 			// Initialize MetalPerformanceShaders gaussianBlur with Sigma = 10.0f.
 			var gaussianblur = new MPSImageGaussianBlur (metalView.Device, 10f);
 
-			var drawable = ((CAMetalLayer)metalView.Layer).NextDrawable ();
+			var drawable = ((CAMetalLayer) metalView.Layer).NextDrawable ();
 
 			// Run MetalPerformanceShader gaussianblur.
 			gaussianblur.EncodeToCommandBuffer (commandBuffer, sourceTexture, drawable.Texture);

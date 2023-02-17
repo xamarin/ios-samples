@@ -5,14 +5,12 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace tvTable
-{
+namespace tvTable {
 	/// <summary>
 	/// The Table View used to display a collection of <c>CityInformation</c> as Sections and 
 	/// <c>AttractionInformation</c> objects as the Rows in each section
 	/// </summary>
-	public partial class AttractionTableView : UITableView
-	{
+	public partial class AttractionTableView : UITableView {
 		#region Constructors
 		/// <summary>
 		/// Initializes a new instance of the <see cref="T:tvTable.AttractionTableView"/> class.

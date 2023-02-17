@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using CoreMotion;
 using Foundation;
 using UIKit;
 
-namespace PrivacyPrompts
-{
-	public class MotionPrivacyManager : IPrivacyManager, IDisposable
-	{
+namespace PrivacyPrompts {
+	public class MotionPrivacyManager : IPrivacyManager, IDisposable {
 		CMStepCounter stepCounter;
 		string motionStatus = "Indeterminate";
 		nint steps = 0;
@@ -33,7 +31,7 @@ namespace PrivacyPrompts
 			var yesterday = NSDate.FromTimeIntervalSinceNow (-60 * 60 * 24);
 
 			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
-				if(!CMPedometer.IsStepCountingAvailable)
+				if (!CMPedometer.IsStepCountingAvailable)
 					return Task.FromResult<object> (null);
 
 				return pedometer.QueryPedometerDataAsync (yesterday, NSDate.Now)
@@ -48,11 +46,11 @@ namespace PrivacyPrompts
 
 		}
 
-		void PedometrQueryContinuation(Task<CMPedometerData> t)
+		void PedometrQueryContinuation (Task<CMPedometerData> t)
 		{
 			if (t.IsFaulted) {
-				var code = ((NSErrorException)t.Exception.InnerException).Code;
-				if (code == (int)CMError.MotionActivityNotAuthorized)
+				var code = ((NSErrorException) t.Exception.InnerException).Code;
+				if (code == (int) CMError.MotionActivityNotAuthorized)
 					motionStatus = "Not Authorized";
 				return;
 			}
@@ -60,11 +58,11 @@ namespace PrivacyPrompts
 			steps = t.Result.NumberOfSteps.NIntValue;
 		}
 
-		void StepQueryContinuation(Task<nint> t)
+		void StepQueryContinuation (Task<nint> t)
 		{
 			if (t.IsFaulted) {
-				var code = ((NSErrorException)t.Exception.InnerException).Code;
-				if (code == (int)CMError.MotionActivityNotAuthorized)
+				var code = ((NSErrorException) t.Exception.InnerException).Code;
+				if (code == (int) CMError.MotionActivityNotAuthorized)
 					motionStatus = "Not Authorized";
 				return;
 			}
@@ -77,7 +75,7 @@ namespace PrivacyPrompts
 			return motionStatus;
 		}
 
-		public string GetCountsInfo()
+		public string GetCountsInfo ()
 		{
 			return steps > 0 ? string.Format ("You have taken {0} steps in the past 24 hours", steps) : string.Empty;
 		}

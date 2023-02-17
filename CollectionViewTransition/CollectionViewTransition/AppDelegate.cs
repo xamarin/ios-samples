@@ -29,8 +29,7 @@ namespace CollectionViewTransition {
 			Window.MakeKeyAndVisible ();
 		}
 
-		public class NavigationControllerDelegate : UINavigationControllerDelegate
-		{
+		public class NavigationControllerDelegate : UINavigationControllerDelegate {
 			APLTransitionController transitionController;
 
 			public NavigationControllerDelegate (APLTransitionController controller)
@@ -47,8 +46,8 @@ namespace CollectionViewTransition {
 
 			public override IUIViewControllerAnimatedTransitioning GetAnimationControllerForOperation (UINavigationController navigationController, UINavigationControllerOperation operation, UIViewController fromViewController, UIViewController toViewController)
 			{
-				if (!fromViewController.GetType ().IsSubclassOf (typeof(UICollectionViewController)))
-				    return null;
+				if (!fromViewController.GetType ().IsSubclassOf (typeof (UICollectionViewController)))
+					return null;
 				if (!toViewController.GetType ().IsSubclassOf (typeof (UICollectionViewController)))
 					return null;
 				if (!transitionController.HasActiveInteraction)
@@ -59,7 +58,7 @@ namespace CollectionViewTransition {
 			}
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

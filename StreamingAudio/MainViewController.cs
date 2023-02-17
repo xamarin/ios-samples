@@ -1,16 +1,13 @@
 using System;
 using UIKit;
 
-namespace StreamingAudio
-{
-	public enum PlayerOption
-	{
+namespace StreamingAudio {
+	public enum PlayerOption {
 		Stream = 0,
 		StreamAndSave
 	}
 
-	public partial class MainViewController : UIViewController
-	{
+	public partial class MainViewController : UIViewController {
 		const string LetsStopTheWarUrl = "http://ccmixter.org/content/bradstanfield/bradstanfield_-_People_Let_s_Stop_The_War.mp3";
 
 		public MainViewController () : base ("MainViewController", null)

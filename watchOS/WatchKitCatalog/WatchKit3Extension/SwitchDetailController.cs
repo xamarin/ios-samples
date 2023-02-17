@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This controller displays switches and their various configurations.
 */
 
@@ -8,16 +8,14 @@ using UIKit;
 using WatchKit;
 using Foundation;
 
-namespace WatchkitExtension
-{
-	public partial class SwitchDetailController : WKInterfaceController
-	{
+namespace WatchkitExtension {
+	public partial class SwitchDetailController : WKInterfaceController {
 		public SwitchDetailController ()
 		{
-			 offSwitch.SetOn (false);
+			offSwitch.SetOn (false);
 
-			 coloredSwitch.SetColor (UIColor.Blue);
-			 coloredSwitch.SetTitle ("Blue Switch");
+			coloredSwitch.SetColor (UIColor.Blue);
+			coloredSwitch.SetTitle ("Blue Switch");
 		}
 
 		public override void WillActivate ()

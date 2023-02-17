@@ -1,33 +1,30 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	/// Represents the sections in the `CharacteristicsViewController`.
-	public enum CharacteristicTableViewSection
-	{
+	public enum CharacteristicTableViewSection {
 		Characteristics,
 		AssociatedServiceType
 	}
 
 	/// A `UITableViewDataSource` that populates a `CharacteristicsViewController`.
-	public class CharacteristicsTableViewDataSource : NSObject, IUITableViewDelegate, IUITableViewDataSource
-	{
+	public class CharacteristicsTableViewDataSource : NSObject, IUITableViewDelegate, IUITableViewDataSource {
 		static readonly Dictionary<HMServiceType, string> serviceMap = new Dictionary<HMServiceType, string> {
 			{ HMServiceType.LightBulb, "Lightbulb" },
 			{ HMServiceType.Fan,  "Fan" }
 		};
 
-		static readonly NSString characteristicCell = (NSString)"CharacteristicCell";
-		static readonly NSString sliderCharacteristicCell = (NSString)"SliderCharacteristicCell";
-		static readonly NSString switchCharacteristicCell = (NSString)"SwitchCharacteristicCell";
-		static readonly NSString segmentedControlCharacteristicCell = (NSString)"SegmentedControlCharacteristicCell";
-		static readonly NSString textCharacteristicCell = (NSString)"TextCharacteristicCell";
-		static readonly NSString serviceTypeCell = (NSString)"ServiceTypeCell";
+		static readonly NSString characteristicCell = (NSString) "CharacteristicCell";
+		static readonly NSString sliderCharacteristicCell = (NSString) "SliderCharacteristicCell";
+		static readonly NSString switchCharacteristicCell = (NSString) "SwitchCharacteristicCell";
+		static readonly NSString segmentedControlCharacteristicCell = (NSString) "SegmentedControlCharacteristicCell";
+		static readonly NSString textCharacteristicCell = (NSString) "TextCharacteristicCell";
+		static readonly NSString serviceTypeCell = (NSString) "ServiceTypeCell";
 
 		ICharacteristicCellDelegate Delegate;
 		bool showsFavorites;
@@ -35,7 +32,7 @@ namespace HomeKitCatalog
 
 		// returns:  The valid associated service types for this service,
 		// e.g. `HMServiceTypeFan` or `HMServiceTypeLightbulb`
-		public static readonly HMServiceType[] ValidAssociatedServiceTypes = {
+		public static readonly HMServiceType [] ValidAssociatedServiceTypes = {
 			HMServiceType.Fan,
 			HMServiceType.LightBulb
 		};
@@ -73,7 +70,7 @@ namespace HomeKitCatalog
 			var textNib = UINib.FromName (textCharacteristicCell, null);
 			tableView.RegisterNibForCellReuse (textNib, textCharacteristicCell);
 
-			tableView.RegisterClassForCellReuse (typeof(UITableViewCell), serviceTypeCell);
+			tableView.RegisterClassForCellReuse (typeof (UITableViewCell), serviceTypeCell);
 		}
 
 		[Foundation.Export ("numberOfSectionsInTableView:")]
@@ -86,7 +83,7 @@ namespace HomeKitCatalog
 		// The associated service type uses the valid associated service types.
 		public nint RowsInSection (UITableView tableView, nint section)
 		{
-			switch ((CharacteristicTableViewSection)(int)section) {
+			switch ((CharacteristicTableViewSection) (int) section) {
 			case CharacteristicTableViewSection.Characteristics:
 				return Service.Characteristics.Length;
 			case CharacteristicTableViewSection.AssociatedServiceType:
@@ -150,7 +147,7 @@ namespace HomeKitCatalog
 			else if (characteristic.IsTextWritable ())
 				reuseIdentifier = textCharacteristicCell;
 
-		var cell = (CharacteristicCell)tableView.DequeueReusableCell(reuseIdentifier, indexPath);
+			var cell = (CharacteristicCell) tableView.DequeueReusableCell (reuseIdentifier, indexPath);
 
 			cell.ShowsFavorites = showsFavorites;
 			cell.Delegate = Delegate;
@@ -162,7 +159,7 @@ namespace HomeKitCatalog
 		// Uses convenience methods to generate a cell based on the index path's section.
 		public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			switch ((CharacteristicTableViewSection)indexPath.Section) {
+			switch ((CharacteristicTableViewSection) indexPath.Section) {
 			case CharacteristicTableViewSection.Characteristics:
 				return GetCellForCharacteristicCell (tableView, indexPath);
 			case CharacteristicTableViewSection.AssociatedServiceType:
@@ -175,7 +172,7 @@ namespace HomeKitCatalog
 		[Export ("tableView:titleForHeaderInSection:")]
 		public string TitleForHeader (UITableView tableView, nint section)
 		{
-			switch ((CharacteristicTableViewSection)(int)section) {
+			switch ((CharacteristicTableViewSection) (int) section) {
 			case CharacteristicTableViewSection.Characteristics:
 				return "Characteristics";
 			case CharacteristicTableViewSection.AssociatedServiceType:

@@ -3,10 +3,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace UIKitDynamicsDemo
-{
-	public partial class UIKitDynamicsDemoViewController : UIViewController
-	{
+namespace UIKitDynamicsDemo {
+	public partial class UIKitDynamicsDemoViewController : UIViewController {
 		UIImageView imageView;
 		UIImage image;
 		UIDynamicAnimator dynAnimator;
@@ -19,11 +17,11 @@ namespace UIKitDynamicsDemo
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			using (image = UIImage.FromFile ("monkeys.jpg")) {
 
 				imageView = new UIImageView (new CGRect (new CGPoint (View.Center.X - image.Size.Width / 2, 0), image.Size)) {
-					Image =  image
+					Image = image
 				};
 
 				View.AddSubview (imageView);
@@ -32,7 +30,7 @@ namespace UIKitDynamicsDemo
 				dynAnimator = new UIDynamicAnimator (this.View);
 
 				// 2. create behavior(s)
-				var dynItems = new IUIDynamicItem[] { imageView };
+				var dynItems = new IUIDynamicItem [] { imageView };
 				var gravity = new UIGravityBehavior (dynItems);
 				var collision = new UICollisionBehavior (dynItems) {
 					TranslatesReferenceBoundsIntoBoundary = true

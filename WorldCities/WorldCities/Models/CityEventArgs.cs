@@ -1,13 +1,11 @@
 
-namespace WorldCities
-{
-    public class CityEventArgs : System.EventArgs
-    {
-        public WorldCity City { get; private set; }
+namespace WorldCities {
+	public class CityEventArgs : System.EventArgs {
+		public WorldCity City { get; private set; }
 
-        public CityEventArgs(WorldCity city)
-        {
-            City = city;
-        }
-    }
+		public CityEventArgs (WorldCity city)
+		{
+			City = city;
+		}
+	}
 }

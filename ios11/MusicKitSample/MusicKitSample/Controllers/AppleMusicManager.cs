@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using Foundation;
 using MusicKitSample.Models;
 using MusicKitSample.Utilities;
 using System.Collections.Generic;
 using UIKit;
 using System.Threading.Tasks;
-namespace MusicKitSample.Controllers
-{
-	public class AppleMusicManager
-	{
+namespace MusicKitSample.Controllers {
+	public class AppleMusicManager {
 		#region Properties
 
 		// The instance of `URLSession` that is going to be used for making network calls.
@@ -125,7 +123,7 @@ namespace MusicKitSample.Controllers
 
 			if (error != null)
 				throw new NSErrorException (error);
-			
+
 			var results = jsonDictionary [ResponseRootJsonKeys.Results] as NSDictionary ??
 				throw new SerializationException (ResponseRootJsonKeys.Results);
 

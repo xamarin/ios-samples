@@ -1,4 +1,4 @@
-﻿using UIKit;
+using UIKit;
 using System;
 
 namespace CustomTransitions {
@@ -8,7 +8,7 @@ namespace CustomTransitions {
 
 		UIScreenEdgePanGestureRecognizer GestureRecognizer { get; set; }
 
-		UIRectEdge Edge { get ; set; }
+		UIRectEdge Edge { get; set; }
 
 		public SwipeTransitionInteractionController (UIScreenEdgePanGestureRecognizer gestureRecognizer, UIRectEdge edge)
 		{
@@ -58,18 +58,18 @@ namespace CustomTransitions {
 		void GestureRecognizeDidUpdate (UIScreenEdgePanGestureRecognizer sender)
 		{
 			switch (sender.State) {
-				case UIGestureRecognizerState.Changed:
-					UpdateInteractiveTransition (PercentForGesture (sender));
-					break;
-				case UIGestureRecognizerState.Ended:
-					if (PercentForGesture (sender) >= 0.5)
-						FinishInteractiveTransition ();
-					else
-						CancelInteractiveTransition ();
-					break;
-				default:
+			case UIGestureRecognizerState.Changed:
+				UpdateInteractiveTransition (PercentForGesture (sender));
+				break;
+			case UIGestureRecognizerState.Ended:
+				if (PercentForGesture (sender) >= 0.5)
+					FinishInteractiveTransition ();
+				else
 					CancelInteractiveTransition ();
-					break;
+				break;
+			default:
+				CancelInteractiveTransition ();
+				break;
 			}
 		}
 	}

@@ -1,19 +1,17 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 using CoreGraphics;
 using CoreAnimation;
 
-namespace AudioTapProcessor
-{
+namespace AudioTapProcessor {
 	[Register ("VolumeUnitMeterView")]
-	public class VolumeUnitMeterView : UIView
-	{
+	public class VolumeUnitMeterView : UIView {
 		// This is an arbitrary calibration to define 0 db in the VU meter.
 		const float UnitMeterCalibration = 12;
 
-		static readonly float DegreeToRadian = (float)Math.PI / 180;
+		static readonly float DegreeToRadian = (float) Math.PI / 180;
 
 		CALayer NeedleLayer { get; set; }
 
@@ -30,7 +28,7 @@ namespace AudioTapProcessor
 
 				// Convert RMS amplitude into dB (using some arbitrary calibration values).
 				var valueDB = (20.0f * Math.Log10 (value) + UnitMeterCalibration);
-				NeedleLayer.AffineTransform = CGAffineTransform.MakeRotation (ConvertValueToNeedleAngle ((float)valueDB));
+				NeedleLayer.AffineTransform = CGAffineTransform.MakeRotation (ConvertValueToNeedleAngle ((float) valueDB));
 			}
 		}
 

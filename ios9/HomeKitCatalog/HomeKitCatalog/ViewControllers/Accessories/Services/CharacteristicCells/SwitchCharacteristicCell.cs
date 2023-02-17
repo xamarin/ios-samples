@@ -1,16 +1,14 @@
-﻿using System;
+using System;
 
 using CoreGraphics;
 using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `CharacteristicCell` subclass that contains a single switch. Used for Boolean characteristics.
-	[Register("SwitchCharacteristicCell")]
-	public class SwitchCharacteristicCell : CharacteristicCell
-	{
+	[Register ("SwitchCharacteristicCell")]
+	public class SwitchCharacteristicCell : CharacteristicCell {
 		[Outlet ("valueSwitch")]
 		public UISwitch ValueSwitch { get; set; }
 

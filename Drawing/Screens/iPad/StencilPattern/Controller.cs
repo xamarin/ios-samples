@@ -2,15 +2,13 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_Drawing.Screens.iPad.StencilPattern
-{
-	public class Controller : UIViewController
-	{
+namespace Example_Drawing.Screens.iPad.StencilPattern {
+	public class Controller : UIViewController {
 		UIImageView imageView;
 
 		#region -= constructors =-
 
-		public Controller () : base() { }
+		public Controller () : base () { }
 
 		#endregion
 
@@ -30,20 +28,20 @@ namespace Example_Drawing.Screens.iPad.StencilPattern
 			// create our offscreen bitmap context
 			// size
 			CGSize bitmapSize = new CGSize (View.Frame.Size);
-			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero, (int)bitmapSize.Width, (int)bitmapSize.Height, 8, (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (), CGImageAlphaInfo.PremultipliedFirst)) {
+			using (CGBitmapContext context = new CGBitmapContext (IntPtr.Zero, (int) bitmapSize.Width, (int) bitmapSize.Height, 8, (int) (4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (), CGImageAlphaInfo.PremultipliedFirst)) {
 
 				// declare vars
 				CGRect patternRect = new CGRect (0, 0, 16, 16);
 
 				// set the color space of our fill to be the patter colorspace
-				context.SetFillColorSpace (CGColorSpace.CreatePattern (CGColorSpace.CreateDeviceRGB()));
+				context.SetFillColorSpace (CGColorSpace.CreatePattern (CGColorSpace.CreateDeviceRGB ()));
 
 				// create a new pattern
 				CGPattern pattern = new CGPattern (patternRect, CGAffineTransform.MakeRotation (.3f)
 					, 16, 16, CGPatternTiling.NoDistortion, false, DrawPolkaDotPattern);
 
 				// set our fill as our pattern, color doesn't matter because the pattern handles it
-				context.SetFillPattern (pattern, new nfloat[] { 1, 0, 0, 1 });
+				context.SetFillPattern (pattern, new nfloat [] { 1, 0, 0, 1 });
 
 				// fill the entire view with that pattern
 				context.FillRect (imageView.Frame);
@@ -72,7 +70,7 @@ namespace Example_Drawing.Screens.iPad.StencilPattern
 			// declare vars
 			float starDiameter = 16;
 			// 144º
-			float theta = 2 * (float)Math.PI * (2f / 5f);
+			float theta = 2 * (float) Math.PI * (2f / 5f);
 			float radius = starDiameter / 2;
 
 			// move up and over
@@ -80,7 +78,7 @@ namespace Example_Drawing.Screens.iPad.StencilPattern
 
 			context.MoveTo (0, radius);
 			for (int i = 1; i < 5; i++) {
-				context.AddLineToPoint (radius * (float)Math.Sin (i * theta), radius * (float)Math.Cos (i * theta));
+				context.AddLineToPoint (radius * (float) Math.Sin (i * theta), radius * (float) Math.Cos (i * theta));
 			}
 			// fill our star as dark gray
 			context.ClosePath ();

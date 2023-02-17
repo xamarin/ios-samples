@@ -4,10 +4,8 @@ using Foundation;
 using UIKit;
 using GameKit;
 
-namespace GameCenterSample
-{
-	public partial class MainViewController : UIViewController
-	{
+namespace GameCenterSample {
+	public partial class MainViewController : UIViewController {
 
 		public Action<NSError> authenticatedHandler;
 		public PlayerModel player;
@@ -19,16 +17,16 @@ namespace GameCenterSample
 			authenticatedHandler = new Action<NSError> ((error) => {
 				if (GKLocalPlayer.LocalPlayer.Authenticated) {
 					//Switching Users
-					if(currentPlayerID != null || currentPlayerID != GKLocalPlayer.LocalPlayer.PlayerID)
-					{
+					if (currentPlayerID != null || currentPlayerID != GKLocalPlayer.LocalPlayer.PlayerID) {
 						currentPlayerID = GKLocalPlayer.LocalPlayer.PlayerID;
-						player = new PlayerModel();
-						player.loadStoredScores();
-						player.loadSotredAchievements();
+						player = new PlayerModel ();
+						player.loadStoredScores ();
+						player.loadSotredAchievements ();
 					}
 				} else {
 					var alert = new UIAlertView ("Game Center Account Required", "Need login the game center!", null, "Retry", null);
-					alert.Clicked += delegate {
+					alert.Clicked += delegate
+					{
 						GKLocalPlayer.LocalPlayer.Authenticate (authenticatedHandler);
 					};
 					alert.Show ();
@@ -48,7 +46,7 @@ namespace GameCenterSample
 		{
 			base.ViewDidLoad ();
 			this.scoreTextField.EditingDidEndOnExit += (object sender, EventArgs e) => {
-				this.scoreTextField.EndEditing(true);
+				this.scoreTextField.EndEditing (true);
 			};
 
 			//Add event handler for our buttons
@@ -73,7 +71,7 @@ namespace GameCenterSample
 		void resetAchievementsButtonHandleTouchUpInside (object sender, EventArgs e)
 		{
 			if (!GKLocalPlayer.LocalPlayer.Authenticated) {
-				new UIAlertView ("Error", "Need sign in Game Center to reset the achievement", null, "OK", null).Show();
+				new UIAlertView ("Error", "Need sign in Game Center to reset the achievement", null, "OK", null).Show ();
 				GKLocalPlayer.LocalPlayer.Authenticate (authenticatedHandler);
 				return;
 			}
@@ -83,7 +81,7 @@ namespace GameCenterSample
 		void submitAchievementHandleTouchUpInside (object sender, EventArgs e)
 		{
 			if (!GKLocalPlayer.LocalPlayer.Authenticated) {
-				new UIAlertView ("Error", "Need sign in Game Center to submit the achievement", null, "OK", null).Show();
+				new UIAlertView ("Error", "Need sign in Game Center to submit the achievement", null, "OK", null).Show ();
 				GKLocalPlayer.LocalPlayer.Authenticate (authenticatedHandler);
 				return;
 			}
@@ -100,18 +98,17 @@ namespace GameCenterSample
 		void submitScoreHandleTouchUpInside (object sender, EventArgs e)
 		{
 			if (!GKLocalPlayer.LocalPlayer.Authenticated) {
-				new UIAlertView ("Error", "Need sign in Game Center to submit the score", null, "OK", null).Show();
+				new UIAlertView ("Error", "Need sign in Game Center to submit the score", null, "OK", null).Show ();
 				GKLocalPlayer.LocalPlayer.Authenticate (authenticatedHandler);
 				return;
 			}
 
 			GKScore submitScore = new GKScore ("leaderboard");
 			submitScore.Init ();
-			try{
-				submitScore.Value = Convert.ToInt64(this.scoreTextField.Text);
-			}
-			catch{
-				new UIAlertView ("Error", "Score should be a number", null, "OK", null).Show();
+			try {
+				submitScore.Value = Convert.ToInt64 (this.scoreTextField.Text);
+			} catch {
+				new UIAlertView ("Error", "Score should be a number", null, "OK", null).Show ();
 				return;
 			}
 
@@ -125,12 +122,12 @@ namespace GameCenterSample
 			showLeaderboard ();
 		}
 
-		void showLeaderboard()
+		void showLeaderboard ()
 		{
 			GKLeaderboardViewController leaderboardViewController = new GKLeaderboardViewController ();
 			leaderboardViewController.Category = "Leaderboard";
 			leaderboardViewController.DidFinish += (object sender, EventArgs e) => {
-				leaderboardViewController.DismissViewController(true, null);
+				leaderboardViewController.DismissViewController (true, null);
 			};
 			this.PresentViewController (leaderboardViewController, true, null);
 		}
@@ -141,13 +138,13 @@ namespace GameCenterSample
 			showAchievements ();
 		}
 
-		void showAchievements()
+		void showAchievements ()
 		{
 			GKAchievementViewController achievementViewController = new GKAchievementViewController ();
 			achievementViewController.DidFinish += (object sender, EventArgs e) => {
-				achievementViewController.DismissViewController(true, null);
+				achievementViewController.DismissViewController (true, null);
 			};
-			this.PresentViewController(achievementViewController, true, null);
+			this.PresentViewController (achievementViewController, true, null);
 		}
 
 	}

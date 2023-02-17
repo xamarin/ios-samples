@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public partial class BooleanFieldTableViewCell : FormFieldTableViewCell
-	{
+namespace CloudKitAtlas {
+	public partial class BooleanFieldTableViewCell : FormFieldTableViewCell {
 		[Outlet]
 		public UISwitch BooleanField { get; set; }
 

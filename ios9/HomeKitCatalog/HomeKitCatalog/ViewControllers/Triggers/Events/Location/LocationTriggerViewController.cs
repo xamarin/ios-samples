@@ -6,18 +6,16 @@ using CoreLocation;
 using Foundation;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A view controller which facilitates the creation of a location trigger.
-	public partial class LocationTriggerViewController : EventTriggerViewController
-	{
-		static readonly NSString LocationCell = (NSString)"LocationCell";
-		static readonly NSString RegionStatusCell = (NSString)"RegionStatusCell";
+	public partial class LocationTriggerViewController : EventTriggerViewController {
+		static readonly NSString LocationCell = (NSString) "LocationCell";
+		static readonly NSString RegionStatusCell = (NSString) "RegionStatusCell";
 		const string selectLocationSegue = "Select Location";
 
 		static readonly CLGeocoder geocoder = new CLGeocoder ();
 
-		static readonly string[] RegionStatusTitles = {
+		static readonly string [] RegionStatusTitles = {
 			"When I Enter The Area",
 			"When I Leave The Area"
 		};
@@ -28,7 +26,7 @@ namespace HomeKitCatalog
 
 		LocationTriggerCreator LocationTriggerCreator {
 			get {
-				return (LocationTriggerCreator)TriggerCreator;
+				return (LocationTriggerCreator) TriggerCreator;
 			}
 		}
 
@@ -52,8 +50,8 @@ namespace HomeKitCatalog
 			base.ViewDidLoad ();
 
 			TriggerCreator = new LocationTriggerCreator (Trigger, Home);
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), LocationCell);
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), RegionStatusCell);
+			TableView.RegisterClassForCellReuse (typeof (UITableViewCell), LocationCell);
+			TableView.RegisterClassForCellReuse (typeof (UITableViewCell), RegionStatusCell);
 		}
 
 		public override void ViewDidAppear (bool animated)
@@ -115,7 +113,7 @@ namespace HomeKitCatalog
 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			switch (SectionForIndex ((int)section)) {
+			switch (SectionForIndex ((int) section)) {
 			case TriggerTableViewSection.Region:
 				return 2;
 
@@ -182,7 +180,7 @@ namespace HomeKitCatalog
 
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
-			switch (SectionForIndex ((int)section)) {
+			switch (SectionForIndex ((int) section)) {
 			case TriggerTableViewSection.Location:
 				return "Location";
 
@@ -196,7 +194,7 @@ namespace HomeKitCatalog
 
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			switch (SectionForIndex ((int)section)) {
+			switch (SectionForIndex ((int) section)) {
 			case TriggerTableViewSection.Region:
 				return "This trigger can activate when you enter or leave a region. For example, when you arrive at home or when you leave work.";
 

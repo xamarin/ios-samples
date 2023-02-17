@@ -3,10 +3,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace MidiTest
-{
-	public partial class MidiTestViewController : UIViewController
-	{
+namespace MidiTest {
+	public partial class MidiTestViewController : UIViewController {
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}

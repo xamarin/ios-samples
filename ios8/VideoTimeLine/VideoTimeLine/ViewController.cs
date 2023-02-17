@@ -14,10 +14,8 @@ using ObjCRuntime;
 using UIKit;
 using VideoToolbox;
 
-namespace VideoTimeLine
-{
-	public partial class ViewController : UIViewController, IUIImagePickerControllerDelegate, IUIPopoverControllerDelegate, IUINavigationControllerDelegate 
-	{
+namespace VideoTimeLine {
+	public partial class ViewController : UIViewController, IUIImagePickerControllerDelegate, IUIPopoverControllerDelegate, IUINavigationControllerDelegate {
 		DispatchQueue backgroundQueue;
 
 		List<CVPixelBuffer> outputFrames;
@@ -42,7 +40,7 @@ namespace VideoTimeLine
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			backgroundQueue = new DispatchQueue ("com.videotimeline.backgroundqueue", false);
 			displayLink = CADisplayLink.Create (DisplayLinkCallback);
 			displayLink.AddToRunLoop (NSRunLoop.Current, NSRunLoopMode.Default);
@@ -91,7 +89,7 @@ namespace VideoTimeLine
 			var videoPicker = new UIImagePickerController {
 				ModalPresentationStyle = UIModalPresentationStyle.CurrentContext,
 				SourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum,
-				MediaTypes = new string[] { UTType.Movie }
+				MediaTypes = new string [] { UTType.Movie }
 			};
 			videoPicker.FinishedPickingMedia += (object s, UIImagePickerMediaPickedEventArgs e) => {
 				displayLink.Paused = true;
@@ -187,10 +185,10 @@ namespace VideoTimeLine
 			if (error != null)
 				Console.WriteLine ("Error creating Asset Reader: {0}", error.Description);
 
-			AVAssetTrack[] videoTracks = asset.TracksWithMediaType (AVMediaType.Video);
+			AVAssetTrack [] videoTracks = asset.TracksWithMediaType (AVMediaType.Video);
 			AVAssetTrack videoTrack = videoTracks [0];
 			CreateDecompressionSession (videoTrack);
-			var videoTrackOutput = AVAssetReaderTrackOutput.Create (videoTrack, (AVVideoSettingsUncompressed)null);
+			var videoTrackOutput = AVAssetReaderTrackOutput.Create (videoTrack, (AVVideoSettingsUncompressed) null);
 
 			if (assetReader.CanAddOutput (videoTrackOutput))
 				assetReader.AddOutput (videoTrackOutput);
@@ -212,14 +210,14 @@ namespace VideoTimeLine
 				} else if (assetReader.Status == AVAssetReaderStatus.Failed) {
 					Console.WriteLine ("Asset Reader failed with error: {0}", assetReader.Error.Description);
 				} else if (assetReader.Status == AVAssetReaderStatus.Completed) {
-					Console.WriteLine("Reached the end of the video.");
+					Console.WriteLine ("Reached the end of the video.");
 					ChangeStatus ();
 					ReadSampleBuffers (asset);
 				}
 			}
 		}
 		void ChangeStatus ()
-		{			
+		{
 			InvokeOnMainThread (() => {
 				displayLink.Paused = true;
 				playButton.Title = "Play";
@@ -229,8 +227,8 @@ namespace VideoTimeLine
 
 		void CreateDecompressionSession (AVAssetTrack videoTrack)
 		{
-			CMFormatDescription[] formatDescriptions = videoTrack.FormatDescriptions;
-			var formatDescription = (CMVideoFormatDescription)formatDescriptions [0];
+			CMFormatDescription [] formatDescriptions = videoTrack.FormatDescriptions;
+			var formatDescription = (CMVideoFormatDescription) formatDescriptions [0];
 			videoPreferredTransform = videoTrack.PreferredTransform;
 			decompressionSession = VTDecompressionSession.Create (DidDecompress, formatDescription);
 		}
@@ -238,8 +236,8 @@ namespace VideoTimeLine
 		void DidDecompress (IntPtr sourceFrame, VTStatus status, VTDecodeInfoFlags flags, CVImageBuffer buffer, CMTime presentationTimeStamp, CMTime presentationDuration)
 		{
 			if (status != VTStatus.Ok) {
-				Console.WriteLine ("Error decompresssing frame at time: {0:#.###} error: {1} infoFlags: {2}", 
-					(float)presentationTimeStamp.Value / presentationTimeStamp.TimeScale, (int)status, flags);
+				Console.WriteLine ("Error decompresssing frame at time: {0:#.###} error: {1} infoFlags: {2}",
+					(float) presentationTimeStamp.Value / presentationTimeStamp.TimeScale, (int) status, flags);
 				return;
 			}
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using CoreGraphics;
 using Foundation;
@@ -6,10 +6,8 @@ using UIKit;
 
 #if !GREEDY
 
-namespace MemoryDemo
-{
-	public class MemoryDemoViewController : UICollectionViewController
-	{
+namespace MemoryDemo {
+	public class MemoryDemoViewController : UICollectionViewController {
 		// Id used for cell reuse
 		public const string CellId = "ImageCell";
 
@@ -29,10 +27,10 @@ namespace MemoryDemo
 		{
 			base.ViewDidLoad ();
 
-			CollectionView.RegisterClassForCell(typeof(ImageCell), CellId);
+			CollectionView.RegisterClassForCell (typeof (ImageCell), CellId);
 		}
 
-		public override nint GetItemsCount(UICollectionView collectionView, nint section)
+		public override nint GetItemsCount (UICollectionView collectionView, nint section)
 		{
 			return 10000;
 		}
@@ -40,7 +38,7 @@ namespace MemoryDemo
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
 			// Dequeue a cell from the reuse pool
-			var imageCell = (ImageCell)collectionView.DequeueReusableCell(CellId, indexPath);
+			var imageCell = (ImageCell) collectionView.DequeueReusableCell (CellId, indexPath);
 
 			// Reuse the image declared at the class level
 			imageCell.ImageView.Image = image;
@@ -49,14 +47,13 @@ namespace MemoryDemo
 		}
 	}
 
-	public class ImageCell : UICollectionViewCell
-	{
+	public class ImageCell : UICollectionViewCell {
 		public UIImageView ImageView { get; private set; }
 
 		[Export ("initWithFrame:")]
 		public ImageCell (CGRect frame) : base (frame)
 		{
-			ImageView = new UIImageView (new CGRect(0f, 0f, 50f, 50f));
+			ImageView = new UIImageView (new CGRect (0f, 0f, 50f, 50f));
 			ImageView.ContentMode = UIViewContentMode.ScaleAspectFit;
 			ContentView.AddSubview (ImageView);
 		}

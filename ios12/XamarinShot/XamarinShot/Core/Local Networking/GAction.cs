@@ -1,150 +1,131 @@
-﻿
-namespace XamarinShot.Models
-{
-    using Foundation;
-    using System;
-    using System.Runtime.Serialization;
 
-    public class GAction
-    {
-        public BoardSetupAction BoardSetup { get; set; }
+namespace XamarinShot.Models {
+	using Foundation;
+	using System;
+	using System.Runtime.Serialization;
 
-        public GameActionType GameAction { get; set; }
+	public class GAction {
+		public BoardSetupAction BoardSetup { get; set; }
 
-        public PhysicsSyncData Physics { get; set; }
+		public GameActionType GameAction { get; set; }
 
-        public StartGameMusicTime StartGameMusic { get; set; }
+		public PhysicsSyncData Physics { get; set; }
 
-        [Newtonsoft.Json.JsonIgnore]
-        public string Description
-        {
-            get
-            {
-                if (this.GameAction != null)
-                {
-                    switch (this.GameAction.Type)
-                    {
-                        case GameActionType.GActionType.GrabStart:
-                            return "grabStart";
-                        case GameActionType.GActionType.CatapultRelease:
-                            return "catapultRelease";
-                        case GameActionType.GActionType.TryGrab:
-                            return "tryGrab";
-                        case GameActionType.GActionType.GrabMove:
-                            return "grabMove";
-                        case GameActionType.GActionType.GrabbableStatus:
-                            return "grabbableStatus";
-                        case GameActionType.GActionType.HitCatapult:
-                            return "catapultKnockOut";
-                        case GameActionType.GActionType.OneHitKOAnimate:
-                            return "oneHitKOPrepareAnimation";
-                        case GameActionType.GActionType.TryRelease:
-                            return "tryRelease";
-                        case GameActionType.GActionType.LeverMove:
-                            return "levelMove";
-                        case GameActionType.GActionType.ReleaseEnd:
-                            return "releaseEnd";
-                        case GameActionType.GActionType.KnockoutSync:
-                            return "requestKnockoutSync";
-                    }
-                }
-                else if (this.BoardSetup != null)
-                {
-                    switch (this.BoardSetup.Type)
-                    {
-                        case BoardSetupAction.BoardSetupActionType.RequestBoardLocation:
-                            return "requestBoardLocation";
-                        case BoardSetupAction.BoardSetupActionType.BoardLocation:
-                            return "boardLocation";
-                    }
-                }
-                else if (this.Physics != null)
-                {
-                    return "physics";
-                }
-                else if (this.StartGameMusic != null)
-                {
-                    return "startGameMusic";
-                }
+		public StartGameMusicTime StartGameMusic { get; set; }
 
-                throw new NotImplementedException();
-            }
-        }
-    }
+		[Newtonsoft.Json.JsonIgnore]
+		public string Description {
+			get {
+				if (this.GameAction != null) {
+					switch (this.GameAction.Type) {
+					case GameActionType.GActionType.GrabStart:
+						return "grabStart";
+					case GameActionType.GActionType.CatapultRelease:
+						return "catapultRelease";
+					case GameActionType.GActionType.TryGrab:
+						return "tryGrab";
+					case GameActionType.GActionType.GrabMove:
+						return "grabMove";
+					case GameActionType.GActionType.GrabbableStatus:
+						return "grabbableStatus";
+					case GameActionType.GActionType.HitCatapult:
+						return "catapultKnockOut";
+					case GameActionType.GActionType.OneHitKOAnimate:
+						return "oneHitKOPrepareAnimation";
+					case GameActionType.GActionType.TryRelease:
+						return "tryRelease";
+					case GameActionType.GActionType.LeverMove:
+						return "levelMove";
+					case GameActionType.GActionType.ReleaseEnd:
+						return "releaseEnd";
+					case GameActionType.GActionType.KnockoutSync:
+						return "requestKnockoutSync";
+					}
+				} else if (this.BoardSetup != null) {
+					switch (this.BoardSetup.Type) {
+					case BoardSetupAction.BoardSetupActionType.RequestBoardLocation:
+						return "requestBoardLocation";
+					case BoardSetupAction.BoardSetupActionType.BoardLocation:
+						return "boardLocation";
+					}
+				} else if (this.Physics != null) {
+					return "physics";
+				} else if (this.StartGameMusic != null) {
+					return "startGameMusic";
+				}
 
-    public class GameActionType
-    {
-        public GrabInfo TryGrab { get; set; }
-        public GrabInfo GrabStart { get; set; }
-        public GrabInfo GrabMove { get; set; }
-        public GrabInfo TryRelease { get; set; }
-        public GrabInfo ReleaseEnd { get; set; }
+				throw new NotImplementedException ();
+			}
+		}
+	}
 
-        public SlingData CatapultRelease { get; set; }
-        public GrabInfo GrabbableStatus { get; set; }
+	public class GameActionType {
+		public GrabInfo TryGrab { get; set; }
+		public GrabInfo GrabStart { get; set; }
+		public GrabInfo GrabMove { get; set; }
+		public GrabInfo TryRelease { get; set; }
+		public GrabInfo ReleaseEnd { get; set; }
 
-        public HitCatapult CatapultKnockOut { get; set; }
-        public LeverMove LeverMove { get; set; }
+		public SlingData CatapultRelease { get; set; }
+		public GrabInfo GrabbableStatus { get; set; }
 
-        public GActionType Type { get; set; }
+		public HitCatapult CatapultKnockOut { get; set; }
+		public LeverMove LeverMove { get; set; }
 
-        public enum GActionType
-        {
-            OneHitKOAnimate,
+		public GActionType Type { get; set; }
 
-            TryGrab,
-            GrabStart,
-            GrabMove,
-            TryRelease,
-            ReleaseEnd,
+		public enum GActionType {
+			OneHitKOAnimate,
 
-            CatapultRelease,
-            GrabbableStatus,
-            KnockoutSync,
-            HitCatapult,
-            LeverMove,
-        }
-    }
+			TryGrab,
+			GrabStart,
+			GrabMove,
+			TryRelease,
+			ReleaseEnd,
 
-    public class BoardSetupAction
-    {
-        public GameBoardLocation BoardLocation { get; set; }
+			CatapultRelease,
+			GrabbableStatus,
+			KnockoutSync,
+			HitCatapult,
+			LeverMove,
+		}
+	}
 
-        public BoardSetupActionType Type { get; set; }
+	public class BoardSetupAction {
+		public GameBoardLocation BoardLocation { get; set; }
 
-        public enum BoardSetupActionType
-        {
-            RequestBoardLocation,
-            BoardLocation
-        }
-    }
+		public BoardSetupActionType Type { get; set; }
 
-    public class GameBoardLocation
-    {
-        [Newtonsoft.Json.JsonIgnore]
-        public NSData WorldMapData { get; set; }
+		public enum BoardSetupActionType {
+			RequestBoardLocation,
+			BoardLocation
+		}
+	}
 
-        public byte[] WorldMapBytes { get; set; }
+	public class GameBoardLocation {
+		[Newtonsoft.Json.JsonIgnore]
+		public NSData WorldMapData { get; set; }
 
-        public GameBoardLocationType Type { get; set; }
+		public byte [] WorldMapBytes { get; set; }
 
-        [OnSerializing]
-        internal void OnSerializingMethod(StreamingContext context)
-        {
-            this.WorldMapBytes = this.WorldMapData.ToArray();
-        }
+		public GameBoardLocationType Type { get; set; }
 
-        [OnDeserialized]
-        internal void OnDeserializedMethod(StreamingContext context)
-        {
-            this.WorldMapData = NSData.FromArray(this.WorldMapBytes);
-            this.WorldMapBytes = null;
-        }
+		[OnSerializing]
+		internal void OnSerializingMethod (StreamingContext context)
+		{
+			this.WorldMapBytes = this.WorldMapData.ToArray ();
+		}
 
-        public enum GameBoardLocationType
-        {
-            WorldMapData,
-            Manual,
-        }
-    }
+		[OnDeserialized]
+		internal void OnDeserializedMethod (StreamingContext context)
+		{
+			this.WorldMapData = NSData.FromArray (this.WorldMapBytes);
+			this.WorldMapBytes = null;
+		}
+
+		public enum GameBoardLocationType {
+			WorldMapData,
+			Manual,
+		}
+	}
 }

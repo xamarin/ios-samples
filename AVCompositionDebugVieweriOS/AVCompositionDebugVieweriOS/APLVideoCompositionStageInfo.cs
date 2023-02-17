@@ -9,10 +9,8 @@ using CoreMedia;
 using Foundation;
 using UIKit;
 
-namespace AVCompositionDebugVieweriOS
-{
-	public class APLVideoCompositionStageInfo : NSObject
-	{
+namespace AVCompositionDebugVieweriOS {
+	public class APLVideoCompositionStageInfo : NSObject {
 		public CMTimeRange TimeRange { get; set; }
 		public List<string> LayerNames { get; set; }
 		public Dictionary<string, List<CGPoint>> OpacityRamps { get; set; }

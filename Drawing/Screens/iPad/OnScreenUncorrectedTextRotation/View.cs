@@ -2,13 +2,11 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_Drawing.Screens.iPad.OnScreenUncorrectedTextRotation
-{
-	public class View : UIView
-	{
+namespace Example_Drawing.Screens.iPad.OnScreenUncorrectedTextRotation {
+	public class View : UIView {
 		#region -= constructors =-
 
-		public View () : base() { }
+		public View () : base () { }
 
 		#endregion
 

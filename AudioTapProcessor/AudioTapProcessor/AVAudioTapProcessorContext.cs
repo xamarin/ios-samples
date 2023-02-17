@@ -5,10 +5,8 @@ using AVFoundation;
 using MediaToolbox;
 using AudioToolbox;
 
-namespace AudioTapProcessor
-{
-	struct AVAudioTapProcessorContext
-	{
+namespace AudioTapProcessor {
+	struct AVAudioTapProcessorContext {
 		public bool SupportedTapProcessingFormat;
 
 		public bool IsNonInterleaved;

@@ -35,7 +35,7 @@ namespace SimpleDrillDown {
 		public string Genre { get; set; }
 		public string Title { get; set; }
 
-		public static List <Play> CreateDemoPlays ()
+		public static List<Play> CreateDemoPlays ()
 		{
 			var plays = new List<Play> ();
 			plays.Add (new Play {
@@ -49,7 +49,7 @@ namespace SimpleDrillDown {
 				Title = "King Lear",
 				Genre = "Tragedy",
 				Date = new DateTime (1605, 1, 1),
-				Characters = new List<string>  { "Captain", "Cordelia", "Curan", "Doctor", "Duke of Albany", "Duke of Burgundy", "Duke of Cornwall", "Earl of Gloucester", "Earl of Kent", "Edgar", "Edmund", "Fool", "Gentleman", "Goneril", "Herald", "King of France", "Knight", "Lear", "Messenger", "Old Man", "Oswald", "Regan", "Servant 1", "Servant 2", "Servant 3" }
+				Characters = new List<string> { "Captain", "Cordelia", "Curan", "Doctor", "Duke of Albany", "Duke of Burgundy", "Duke of Cornwall", "Earl of Gloucester", "Earl of Kent", "Edgar", "Edmund", "Fool", "Gentleman", "Goneril", "Herald", "King of France", "Knight", "Lear", "Messenger", "Old Man", "Oswald", "Regan", "Servant 1", "Servant 2", "Servant 3" }
 			});
 
 			plays.Add (new Play {

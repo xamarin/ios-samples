@@ -2,22 +2,20 @@ using System;
 using CoreLocation;
 using MapKit;
 
-namespace Protocols_Delegates_Events
-{
-    /// <summary>
-    /// Annotation class that subclasses MKAnnotation abstract class
-    /// MKAnnotation is bound by MonoTouch to the MKAnnotation protocol
-    /// </summary>
-    public class SampleMapAnnotation : MKAnnotation
-    {
+namespace Protocols_Delegates_Events {
+	/// <summary>
+	/// Annotation class that subclasses MKAnnotation abstract class
+	/// MKAnnotation is bound by MonoTouch to the MKAnnotation protocol
+	/// </summary>
+	public class SampleMapAnnotation : MKAnnotation {
 		CLLocationCoordinate2D coordinate;
-        string _title;
+		string _title;
 
-        public SampleMapAnnotation (CLLocationCoordinate2D coordinateToSet)
-        {
+		public SampleMapAnnotation (CLLocationCoordinate2D coordinateToSet)
+		{
 			coordinate = coordinateToSet;
-            _title = "Sample";
-        }
+			_title = "Sample";
+		}
 
 		public override CLLocationCoordinate2D Coordinate {
 			get {
@@ -30,11 +28,11 @@ namespace Protocols_Delegates_Events
 			coordinate = coordinateToSet;
 		}
 
-        public override string Title {
-            get {
-                return _title;
-            }
-        }
-    }
+		public override string Title {
+			get {
+				return _title;
+			}
+		}
+	}
 }
 

@@ -1,9 +1,7 @@
-﻿using System;
+using System;
 
-namespace Common
-{
-	public enum ListColor
-	{
+namespace Common {
+	public enum ListColor {
 		Gray = 0,
 		Blue,
 		Green,

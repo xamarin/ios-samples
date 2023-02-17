@@ -1,17 +1,14 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using UIKit;
 using Foundation;
 using CloudKit;
 
-namespace CloudCaptions
-{
-	[Register("SubmitPostViewController")]
-	public class SubmitPostViewController : UIViewController
-	{
-		class PickerViewModel : UIPickerViewModel
-		{
+namespace CloudCaptions {
+	[Register ("SubmitPostViewController")]
+	public class SubmitPostViewController : UIViewController {
+		class PickerViewModel : UIPickerViewModel {
 			SubmitPostViewController controller;
 
 			public PickerViewModel (SubmitPostViewController controller)
@@ -34,7 +31,7 @@ namespace CloudCaptions
 			{
 				// Sets each item in pickerview as the name of each font with its typeface in its own font
 				// (e.g. Helvetica appears in Helvetica, Courier New appears in Courier New
-				UILabel fontLabel = (UILabel)view ?? new UILabel ();
+				UILabel fontLabel = (UILabel) view ?? new UILabel ();
 
 				var familyName = UIFont.FamilyNames [row];
 				fontLabel.Font = UIFont.FromName (familyName, 24);
@@ -164,71 +161,71 @@ namespace CloudCaptions
 
 			// Creates post record type and initizalizes all of its values
 			CKRecord newRecord = new CKRecord (Post.RecordType);
-			newRecord [Post.FontKey] = (NSString)ImageLabel.Font.Name;
+			newRecord [Post.FontKey] = (NSString) ImageLabel.Font.Name;
 			newRecord [Post.ImageRefKey] = new CKReference (ImageRecord.Record.Id, CKReferenceAction.DeleteSelf);
-			newRecord [Post.TextKey] = (NSString)HiddenText.Text;
-			string[] tags = TagField.Text.ToLower ().Split (new char[]{ ' ' }, StringSplitOptions.RemoveEmptyEntries);
+			newRecord [Post.TextKey] = (NSString) HiddenText.Text;
+			string [] tags = TagField.Text.ToLower ().Split (new char [] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 			newRecord [Post.TagsKey] = NSArray.FromObjects (tags);
 
 			Post newPost = new Post (newRecord);
 			newPost.ImageRecord = ImageRecord;
 
 			// Only upload image record if it is not on server, otherwise just upload the new post record
-			CKRecord[] recordsToSave = ImageRecord.IsOnServer
-				? new CKRecord[] { newRecord }
-				: new CKRecord[] { newRecord, ImageRecord.Record };
+			CKRecord [] recordsToSave = ImageRecord.IsOnServer
+				? new CKRecord [] { newRecord }
+				: new CKRecord [] { newRecord, ImageRecord.Record };
 			// TODO: https://trello.com/c/A9T8Spyp second param is null
-			CKModifyRecordsOperation saveOp = new CKModifyRecordsOperation (recordsToSave, new CKRecordID[0]);
+			CKModifyRecordsOperation saveOp = new CKModifyRecordsOperation (recordsToSave, new CKRecordID [0]);
 			saveOp.PerRecordProgress = (CKRecord record, double progress) => {
 				// Image record type is probably going to take the longest to upload. Reflect it's progress in the progress bar
 				if (record.RecordType == Image.RecordType)
 					InvokeOnMainThread (() => {
-						var val = (float)(progress * 0.95);
+						var val = (float) (progress * 0.95);
 						ProgressBar.SetProgress (val, true);
 					});
 			};
 
 			// When completed it notifies the tableView to add the post we just uploaded, displays error if it didn't work
-			saveOp.Completed = (CKRecord[] savedRecords, CKRecordID[] deletedRecordIDs, NSError operationError) => {
+			saveOp.Completed = (CKRecord [] savedRecords, CKRecordID [] deletedRecordIDs, NSError operationError) => {
 				Error errorResponse = HandleError (operationError);
 				switch (errorResponse) {
-					case Error.Success:
-						// Tells delegate to update so it can display our new post
-						InvokeOnMainThread (() => {
-							DismissViewController (true, null);
-							MainController.Submit (newPost);
-						});
-						break;
+				case Error.Success:
+					// Tells delegate to update so it can display our new post
+					InvokeOnMainThread (() => {
+						DismissViewController (true, null);
+						MainController.Submit (newPost);
+					});
+					break;
 
-					case Error.Retry:
-						CKErrorInfo errorInfo = new CKErrorInfo (operationError.UserInfo);
-						nint retryAfter = errorInfo.RetryAfter.HasValue ? errorInfo.RetryAfter.Value : 3;
-						Console.WriteLine ("Error: {0}. Recoverable, retry after {1} seconds", operationError.Description, retryAfter);
-						Task.Delay ((int)retryAfter * 1000).ContinueWith (_ => PublishPost (sender));
-						break;
+				case Error.Retry:
+					CKErrorInfo errorInfo = new CKErrorInfo (operationError.UserInfo);
+					nint retryAfter = errorInfo.RetryAfter.HasValue ? errorInfo.RetryAfter.Value : 3;
+					Console.WriteLine ("Error: {0}. Recoverable, retry after {1} seconds", operationError.Description, retryAfter);
+					Task.Delay ((int) retryAfter * 1000).ContinueWith (_ => PublishPost (sender));
+					break;
 
-					case Error.Ignore:
-						Console.WriteLine ("Error saving record: {0}", operationError.Description);
+				case Error.Ignore:
+					Console.WriteLine ("Error saving record: {0}", operationError.Description);
 
-						string errorTitle = "Error";
-						string dismissButton = "Okay";
-						string errorMessage = operationError.Code == (long)CKErrorCode.NotAuthenticated
-							? "You must be logged in to iCloud in order to post"
-							: "Unrecoverable error with the upload, check console logs";
+					string errorTitle = "Error";
+					string dismissButton = "Okay";
+					string errorMessage = operationError.Code == (long) CKErrorCode.NotAuthenticated
+						? "You must be logged in to iCloud in order to post"
+						: "Unrecoverable error with the upload, check console logs";
 
-						InvokeOnMainThread (() => {
-							UIAlertController alert = UIAlertController.Create (errorTitle, errorMessage, UIAlertControllerStyle.Alert);
-							alert.AddAction (UIAlertAction.Create (dismissButton, UIAlertActionStyle.Cancel, null));
+					InvokeOnMainThread (() => {
+						UIAlertController alert = UIAlertController.Create (errorTitle, errorMessage, UIAlertControllerStyle.Alert);
+						alert.AddAction (UIAlertAction.Create (dismissButton, UIAlertActionStyle.Cancel, null));
 
-							PostButton.Enabled = true;
-							PresentViewController (alert, true, null);
-							ProgressBar.Hidden = true;
-							PostButton.CustomView = null;
-						});
-						break;
+						PostButton.Enabled = true;
+						PresentViewController (alert, true, null);
+						ProgressBar.Hidden = true;
+						PostButton.CustomView = null;
+					});
+					break;
 
-					default:
-						throw new NotImplementedException ();
+				default:
+					throw new NotImplementedException ();
 				}
 			};
 			CKContainer.DefaultContainer.PublicCloudDatabase.AddOperation (saveOp);
@@ -239,51 +236,51 @@ namespace CloudCaptions
 			if (operationError == null) {
 				return Error.Success;
 			}
-			switch ((CKErrorCode)(long)operationError.Code) {
-				case CKErrorCode.UnknownItem:
-					// This error occurs if it can't find the subscription named autoUpdate. (It tries to delete one that doesn't exits or it searches for one it can't find)
-					// This is okay and expected behavior
-					return Error.Ignore;
+			switch ((CKErrorCode) (long) operationError.Code) {
+			case CKErrorCode.UnknownItem:
+				// This error occurs if it can't find the subscription named autoUpdate. (It tries to delete one that doesn't exits or it searches for one it can't find)
+				// This is okay and expected behavior
+				return Error.Ignore;
 
-				case CKErrorCode.NetworkUnavailable:
-				case CKErrorCode.NetworkFailure:
-					// A reachability check might be appropriate here so we don't just keep retrying if the user has no service
-				case CKErrorCode.ServiceUnavailable:
-				case CKErrorCode.RequestRateLimited:
-					return Error.Retry;
+			case CKErrorCode.NetworkUnavailable:
+			case CKErrorCode.NetworkFailure:
+			// A reachability check might be appropriate here so we don't just keep retrying if the user has no service
+			case CKErrorCode.ServiceUnavailable:
+			case CKErrorCode.RequestRateLimited:
+				return Error.Retry;
 
-				case CKErrorCode.PartialFailure:
-					// This shouldn't happen on a query operation
-				case CKErrorCode.NotAuthenticated:
-				case CKErrorCode.BadDatabase:
-				case CKErrorCode.IncompatibleVersion:
-				case CKErrorCode.BadContainer:
-				case CKErrorCode.PermissionFailure:
-				case CKErrorCode.MissingEntitlement:
-					// This app uses the publicDB with default world readable permissions
-				case CKErrorCode.AssetFileNotFound:
-				case CKErrorCode.AssetFileModified:
-					// Users don't really have an option to delete files so this shouldn't happen
-				case CKErrorCode.QuotaExceeded:
-					// We should not retry if it'll exceed our quota
-				case CKErrorCode.OperationCancelled:
-					// Nothing to do here, we intentionally cancelled
-				case CKErrorCode.InvalidArguments:
-				case CKErrorCode.ResultsTruncated:
-				case CKErrorCode.ServerRecordChanged:
-				case CKErrorCode.ChangeTokenExpired:
-				case CKErrorCode.BatchRequestFailed:
-				case CKErrorCode.ZoneBusy:
-				case CKErrorCode.ZoneNotFound:
-				case CKErrorCode.LimitExceeded:
-				case CKErrorCode.UserDeletedZone:
-					// All of these errors are irrelevant for this save operation. We're only saving new records, not modifying old ones
-				case CKErrorCode.InternalError:
-				case CKErrorCode.ServerRejectedRequest:
-				case CKErrorCode.ConstraintViolation:
-					//Non-recoverable, should not retry
-				default:
-					return Error.Ignore;
+			case CKErrorCode.PartialFailure:
+			// This shouldn't happen on a query operation
+			case CKErrorCode.NotAuthenticated:
+			case CKErrorCode.BadDatabase:
+			case CKErrorCode.IncompatibleVersion:
+			case CKErrorCode.BadContainer:
+			case CKErrorCode.PermissionFailure:
+			case CKErrorCode.MissingEntitlement:
+			// This app uses the publicDB with default world readable permissions
+			case CKErrorCode.AssetFileNotFound:
+			case CKErrorCode.AssetFileModified:
+			// Users don't really have an option to delete files so this shouldn't happen
+			case CKErrorCode.QuotaExceeded:
+			// We should not retry if it'll exceed our quota
+			case CKErrorCode.OperationCancelled:
+			// Nothing to do here, we intentionally cancelled
+			case CKErrorCode.InvalidArguments:
+			case CKErrorCode.ResultsTruncated:
+			case CKErrorCode.ServerRecordChanged:
+			case CKErrorCode.ChangeTokenExpired:
+			case CKErrorCode.BatchRequestFailed:
+			case CKErrorCode.ZoneBusy:
+			case CKErrorCode.ZoneNotFound:
+			case CKErrorCode.LimitExceeded:
+			case CKErrorCode.UserDeletedZone:
+			// All of these errors are irrelevant for this save operation. We're only saving new records, not modifying old ones
+			case CKErrorCode.InternalError:
+			case CKErrorCode.ServerRejectedRequest:
+			case CKErrorCode.ConstraintViolation:
+			//Non-recoverable, should not retry
+			default:
+				return Error.Ignore;
 			}
 		}
 

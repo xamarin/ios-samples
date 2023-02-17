@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace LookInside
-{
-	public class OverlayVibrantLabel : UILabel
-	{
+namespace LookInside {
+	public class OverlayVibrantLabel : UILabel {
 		public OverlayVibrantLabel ()
 		{
 			TranslatesAutoresizingMaskIntoConstraints = false;

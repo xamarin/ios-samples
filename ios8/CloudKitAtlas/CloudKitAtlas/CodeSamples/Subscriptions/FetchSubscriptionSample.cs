@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	public class FetchSubscriptionSample : CodeSample
-	{
+namespace CloudKitAtlas {
+	public class FetchSubscriptionSample : CodeSample {
 		public FetchSubscriptionSample ()
 			: base (title: "FetchSubscription",
 					className: "CkDatabase",

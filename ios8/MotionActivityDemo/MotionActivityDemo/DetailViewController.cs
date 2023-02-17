@@ -6,10 +6,8 @@ using Foundation;
 using UIKit;
 using System.Threading.Tasks;
 
-namespace MotionActivityDemo
-{
-	public partial class DetailViewController : UITableViewController
-	{
+namespace MotionActivityDemo {
+	public partial class DetailViewController : UITableViewController {
 		ActivityDataManager activityDataManager;
 		NSDateFormatter dateFormatter;
 		string currentActivity;
@@ -80,13 +78,13 @@ namespace MotionActivityDemo
 			if (section == 1)
 				return 1;
 			if (section == 2)
-				return (nint)activityDataManager.SignificantActivities.Count;
+				return (nint) activityDataManager.SignificantActivities.Count;
 			return 0;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = tableView.DequeueReusableCell ((NSString)"Cell", indexPath);
+			var cell = tableView.DequeueReusableCell ((NSString) "Cell", indexPath);
 
 			if (indexPath.Section == 0) {
 				if (indexPath.Row == 0) {
@@ -138,7 +136,7 @@ namespace MotionActivityDemo
 
 		static string formatTimeInterval (double interval)
 		{
-			return String.Format ("{0}h {1}m", (int)interval / 3600, (int)(interval / 60) % 60);
+			return String.Format ("{0}h {1}m", (int) interval / 3600, (int) (interval / 60) % 60);
 		}
 	}
 }

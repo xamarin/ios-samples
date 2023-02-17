@@ -5,11 +5,9 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace MidiTest
-{
+namespace MidiTest {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
@@ -30,7 +28,7 @@ namespace MidiTest
 		}
 
 		// This is the main entry point of the application.
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

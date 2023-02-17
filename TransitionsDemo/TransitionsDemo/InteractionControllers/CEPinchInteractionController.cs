@@ -4,10 +4,8 @@ using ObjCRuntime;
 using Foundation;
 using CoreGraphics;
 
-namespace TransitionsDemo.InteractionControllers
-{
-	public class CEPinchInteractionController : CEBaseInteractionController
-	{
+namespace TransitionsDemo.InteractionControllers {
+	public class CEPinchInteractionController : CEBaseInteractionController {
 		private nfloat startScale;
 
 		public override nfloat CompletionSpeed {
@@ -58,7 +56,7 @@ namespace TransitionsDemo.InteractionControllers
 		private void TrackGestureChaged (UIPinchGestureRecognizer pinchGestureRecognizer)
 		{
 			// compute the current pinch fraction
-			float fraction = (float)(1f - pinchGestureRecognizer.Scale / startScale);
+			float fraction = (float) (1f - pinchGestureRecognizer.Scale / startScale);
 			shouldCompleteTransition = (fraction > 0.5);
 			UpdateInteractiveTransition (fraction);
 		}

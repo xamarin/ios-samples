@@ -1,9 +1,7 @@
 using System;
 
-namespace MTDWalkthrough
-{
-	public class Task
-	{
+namespace MTDWalkthrough {
+	public class Task {
 		public Task ()
 		{
 		}

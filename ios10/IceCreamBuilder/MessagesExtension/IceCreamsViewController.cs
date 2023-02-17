@@ -22,36 +22,36 @@ namespace MessagesExtension {
 			var history = IceCreamHistory.Load ();
 
 			items = history.Reverse ()
-			               .Select (s => KeyValue (CollectionViewItem.IceCream, s))
-			               .ToList ();
-			items.Insert (0, KeyValue (CollectionViewItem.Create, (IceCream)null));
+						   .Select (s => KeyValue (CollectionViewItem.IceCream, s))
+						   .ToList ();
+			items.Insert (0, KeyValue (CollectionViewItem.Create, (IceCream) null));
 		}
 
-		[Export("collectionView:numberOfItemsInSection:")]
+		[Export ("collectionView:numberOfItemsInSection:")]
 		public override nint GetItemsCount (UICollectionView collectionView, nint section)
 		{
 			return items.Count;
 		}
 
-		[Export("collectionView:cellForItemAtIndexPath:")]
+		[Export ("collectionView:cellForItemAtIndexPath:")]
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
 			UICollectionViewCell cell = null;
 			var item = items [indexPath.Row];
 
 			switch (item.Key) {
-				case CollectionViewItem.IceCream:
-					cell = DequeueIceCreamCell (item.Value, indexPath);
-					break;
-				case CollectionViewItem.Create:
-					cell = DequeueIceCreamOutlineCell (indexPath);
-					break;
+			case CollectionViewItem.IceCream:
+				cell = DequeueIceCreamCell (item.Value, indexPath);
+				break;
+			case CollectionViewItem.Create:
+				cell = DequeueIceCreamOutlineCell (indexPath);
+				break;
 			}
 
 			return cell;
 		}
 
-		[Export("collectionView:didSelectItemAtIndexPath:")]
+		[Export ("collectionView:didSelectItemAtIndexPath:")]
 		public override void ItemSelected (UICollectionView collectionView, NSIndexPath indexPath)
 		{
 			var item = items [indexPath.Row];

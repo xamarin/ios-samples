@@ -1,10 +1,8 @@
 using System;
 using Foundation;
 
-namespace StateRestoration
-{
-	public class ModifyFilter : ImageFilter
-	{
+namespace StateRestoration {
+	public class ModifyFilter : ImageFilter {
 		const string IntensityKey = "kImageFilterIntensityKey";
 
 		public float Intensity {

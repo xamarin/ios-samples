@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 
 using UIKit;
 
-namespace LookInside
-{
-	public class PhotoCollectionViewCell : UICollectionViewCell
-	{
+namespace LookInside {
+	public class PhotoCollectionViewCell : UICollectionViewCell {
 		UIImageView imageView;
 		public UIImage Image {
 			get {
@@ -21,7 +19,7 @@ namespace LookInside
 		}
 
 		public PhotoCollectionViewCell (IntPtr handle)
-			: base(handle)
+			: base (handle)
 		{
 			imageView = new UIImageView ();
 			imageView.ContentMode = UIViewContentMode.ScaleAspectFill;

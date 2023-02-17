@@ -4,21 +4,19 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Example_Notifications.Screens.iPhone.Home
-{
-	public partial class Home_iPhone : UIViewController
-	{
+namespace Example_Notifications.Screens.iPhone.Home {
+	public partial class Home_iPhone : UIViewController {
 		#region Constructors
 
 		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
-		public Home_iPhone (IntPtr handle) : base(handle) { }
+		public Home_iPhone (IntPtr handle) : base (handle) { }
 
-		[Export("initWithCoder:")]
-		public Home_iPhone (NSCoder coder) : base(coder) { }
+		[Export ("initWithCoder:")]
+		public Home_iPhone (NSCoder coder) : base (coder) { }
 
-		public Home_iPhone () : base("Home_iPhone", null) { }
+		public Home_iPhone () : base ("Home_iPhone", null) { }
 
 		#endregion
 
@@ -34,7 +32,7 @@ namespace Example_Notifications.Screens.iPhone.Home
 
 				//---- set the fire date (the date time in which it will fire)
 				var fireDate = DateTime.Now.AddSeconds (60);
-				notification.FireDate = (NSDate)fireDate;
+				notification.FireDate = (NSDate) fireDate;
 
 				//---- configure the alert stuff
 				notification.AlertAction = "View Alert";
@@ -46,8 +44,8 @@ namespace Example_Notifications.Screens.iPhone.Home
 				//---- set the sound to be the default sound
 				notification.SoundName = UILocalNotification.DefaultSoundName;
 
-//				notification.UserInfo = new NSDictionary();
-//				notification.UserInfo[new NSString("Message")] = new NSString("Your 1 minute notification has fired!");
+				//				notification.UserInfo = new NSDictionary();
+				//				notification.UserInfo[new NSString("Message")] = new NSString("Your 1 minute notification has fired!");
 
 				//---- schedule it
 				UIApplication.SharedApplication.ScheduleLocalNotification (notification);

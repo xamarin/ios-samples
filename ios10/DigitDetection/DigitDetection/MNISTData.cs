@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.IO;
 using System.IO.MemoryMappedFiles;
 
 using Foundation;
 
-namespace DigitDetection
-{
-	public class MNISTData : IDisposable
-	{
+namespace DigitDetection {
+	public class MNISTData : IDisposable {
 		public IntPtr Labels { get; private set; }
 		public int LabelsCount { get; private set; }
 
@@ -34,12 +32,12 @@ namespace DigitDetection
 				byte* i = null;
 				wView.SafeMemoryMappedViewHandle.AcquirePointer (ref i);
 				// remove first 16 bytes that contain info data from array
-				Images = ((IntPtr)i) + 16;
+				Images = ((IntPtr) i) + 16;
 
 				byte* l = null;
 				bView.SafeMemoryMappedViewHandle.AcquirePointer (ref l);
 				// remove first 8 bytes that contain file data from our labels array
-				Labels = (IntPtr)l + 8;
+				Labels = (IntPtr) l + 8;
 			}
 		}
 

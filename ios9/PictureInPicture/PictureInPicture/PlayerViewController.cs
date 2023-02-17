@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using AVFoundation;
 using AVKit;
@@ -7,17 +7,15 @@ using CoreMedia;
 using Foundation;
 using UIKit;
 
-namespace PictureInPicture
-{
+namespace PictureInPicture {
 	// Manages the view used for playback and sets up the `AVPictureInPictureController` for video playback in picture in picture.
-	public partial class PlayerViewController : UIViewController, IAVPictureInPictureControllerDelegate
-	{
+	public partial class PlayerViewController : UIViewController, IAVPictureInPictureControllerDelegate {
 		IDisposable durationObserver;
 		IDisposable rateObserver;
 		IDisposable statusObserver;
 
 		// Attempt to load and test these asset keys before playing
-		static readonly NSString[] assetKeysRequiredToPlay = {
+		static readonly NSString [] assetKeysRequiredToPlay = {
 			(NSString)"playable",
 			(NSString)"hasProtectedContent"
 		};
@@ -35,7 +33,7 @@ namespace PictureInPicture
 
 		PlayerView PlayerView {
 			get {
-				return (PlayerView)View;
+				return (PlayerView) View;
 			}
 		}
 
@@ -95,7 +93,7 @@ namespace PictureInPicture
 		[Outlet]
 		UIToolbar Toolbar { get; set; }
 
-		[Outlet("pictureInPictureActiveLabel")]
+		[Outlet ("pictureInPictureActiveLabel")]
 		UILabel PictureInPictureActiveLabel { get; set; }
 
 		public PlayerViewController (IntPtr handle)
@@ -103,8 +101,8 @@ namespace PictureInPicture
 		{
 		}
 
-		[Action("playPauseButtonWasPressed:")]
-		void PlayPauseButtonWasPressed(UIButton sender)
+		[Action ("playPauseButtonWasPressed:")]
+		void PlayPauseButtonWasPressed (UIButton sender)
 		{
 			PlayPauseButtonWasPressed ();
 		}
@@ -130,8 +128,8 @@ namespace PictureInPicture
 			}
 		}
 
-		[Action("togglePictureInPictureMode:")]
-		void togglePictureInPictureMode(UIButton sender)
+		[Action ("togglePictureInPictureMode:")]
+		void togglePictureInPictureMode (UIButton sender)
 		{
 			// Toggle picture in picture mode.
 			// If active, stop picture in picture and return to inline playback.
@@ -144,8 +142,8 @@ namespace PictureInPicture
 				pictureInPictureController.StartPictureInPicture ();
 		}
 
-		[Action("timeSliderDidChange:")]
-		void timeSliderDidChange(UISlider sender)
+		[Action ("timeSliderDidChange:")]
+		void timeSliderDidChange (UISlider sender)
 		{
 			CurrentTime = sender.Value;
 		}
@@ -184,10 +182,10 @@ namespace PictureInPicture
 			statusObserver.Dispose ();
 		}
 
-		void SetupPlayback()
+		void SetupPlayback ()
 		{
 			var movieURL = NSBundle.MainBundle.GetUrlForResource ("samplemovie", "mov");
-			var asset = new AVUrlAsset (movieURL, (AVUrlAssetOptions)null);
+			var asset = new AVUrlAsset (movieURL, (AVUrlAssetOptions) null);
 
 			// Create a new `AVPlayerItem` and make it our player's current item.
 			//
@@ -200,14 +198,14 @@ namespace PictureInPicture
 			PlayerItem = new AVPlayerItem (asset, assetKeysRequiredToPlay);
 		}
 
-		void SetupPlayerPeriodicTimeObserver()
+		void SetupPlayerPeriodicTimeObserver ()
 		{
 			// Only add the time observer if one hasn't been created yet.
 			if (timeObserverToken != null)
 				return;
 
 			var time = new CMTime (1, 1);
-			timeObserverToken = Player.AddPeriodicTimeObserver (time, DispatchQueue.MainQueue, t => TimeSlider.Value = (float)t.Seconds);
+			timeObserverToken = Player.AddPeriodicTimeObserver (time, DispatchQueue.MainQueue, t => TimeSlider.Value = (float) t.Seconds);
 		}
 
 		void CleanUpPlayerPeriodicTimeObserver ()
@@ -275,10 +273,10 @@ namespace PictureInPicture
 			var hasValidDuration = newDuration.IsNumeric && newDuration.Value != 0;
 			var newDurationSeconds = hasValidDuration ? newDuration.Seconds : 0;
 
-			TimeSlider.MaxValue = (float)newDurationSeconds;
+			TimeSlider.MaxValue = (float) newDurationSeconds;
 
 			var currentTime = Player.CurrentTime.Seconds;
-			TimeSlider.Value = (float)(hasValidDuration ? currentTime : 0);
+			TimeSlider.Value = (float) (hasValidDuration ? currentTime : 0);
 
 			PlayPauseButton.Enabled = hasValidDuration;
 			TimeSlider.Enabled = hasValidDuration;
@@ -287,19 +285,19 @@ namespace PictureInPicture
 		void ObserveCurrentRate (NSObservedChange change)
 		{
 			// Update playPauseButton type.
-			var newRate = ((NSNumber)change.NewValue).DoubleValue;
+			var newRate = ((NSNumber) change.NewValue).DoubleValue;
 
-			UIBarButtonSystemItem style = (Math.Abs(newRate) < float.Epsilon) ? UIBarButtonSystemItem.Play : UIBarButtonSystemItem.Pause;
-			var newPlayPauseButton = new UIBarButtonItem(style, PlayPauseButtonWasPressed);
+			UIBarButtonSystemItem style = (Math.Abs (newRate) < float.Epsilon) ? UIBarButtonSystemItem.Play : UIBarButtonSystemItem.Pause;
+			var newPlayPauseButton = new UIBarButtonItem (style, PlayPauseButtonWasPressed);
 
 			// Replace the current button with the updated button in the toolbar.
-			UIBarButtonItem[] items = Toolbar.Items;
+			UIBarButtonItem [] items = Toolbar.Items;
 
-			var playPauseItemIndex = Array.IndexOf(items, PlayPauseButton);
+			var playPauseItemIndex = Array.IndexOf (items, PlayPauseButton);
 			if (playPauseItemIndex >= 0) {
-				items[playPauseItemIndex] = newPlayPauseButton;
+				items [playPauseItemIndex] = newPlayPauseButton;
 				PlayPauseButton = newPlayPauseButton;
-				Toolbar.SetItems(items, false);
+				Toolbar.SetItems (items, false);
 			}
 		}
 
@@ -308,11 +306,11 @@ namespace PictureInPicture
 			// Display an error if status becomes Failed
 			var newStatusAsNumber = change.NewValue as NSNumber;
 			AVPlayerItemStatus newStatus = (newStatusAsNumber != null)
-				? (AVPlayerItemStatus)newStatusAsNumber.Int32Value
+				? (AVPlayerItemStatus) newStatusAsNumber.Int32Value
 				: AVPlayerItemStatus.Unknown;
 
 			if (newStatus == AVPlayerItemStatus.Failed) {
-				HandleError(Player.CurrentItem.Error);
+				HandleError (Player.CurrentItem.Error);
 			} else if (newStatus == AVPlayerItemStatus.ReadyToPlay) {
 				var asset = Player.CurrentItem != null ? Player.CurrentItem.Asset : null;
 				if (asset != null) {
@@ -321,15 +319,15 @@ namespace PictureInPicture
 					// have been successfully loaded.
 					foreach (var key in assetKeysRequiredToPlay) {
 						NSError error;
-						if (asset.StatusOfValue(key, out error) == AVKeyValueStatus.Failed) {
-							HandleError(error);
+						if (asset.StatusOfValue (key, out error) == AVKeyValueStatus.Failed) {
+							HandleError (error);
 							return;
 						}
 					}
 
 					if (!asset.Playable || asset.ProtectedContent) {
 						// We can't play this asset.
-						HandleError(null);
+						HandleError (null);
 						return;
 					}
 
@@ -353,7 +351,7 @@ namespace PictureInPicture
 				// Enable the `PictureInPictureButton` only if `PictureInPicturePossible`
 				// is true. If this returns false, it might mean that the application
 				// was not configured as shown in the AppDelegate.
-				PictureInPictureButton.Enabled = ((NSNumber)ch.NewValue).BoolValue;
+				PictureInPictureButton.Enabled = ((NSNumber) ch.NewValue).BoolValue;
 			}
 		}
 

@@ -1,4 +1,4 @@
-﻿using UIKit;
+using UIKit;
 using CoreGraphics;
 
 namespace CustomTransitions {
@@ -17,7 +17,7 @@ namespace CustomTransitions {
 		}
 
 		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext)
-		{ 
+		{
 			var fromViewController = transitionContext.GetViewControllerForKey (UITransitionContext.FromViewControllerKey);
 			var toViewController = transitionContext.GetViewControllerForKey (UITransitionContext.ToViewControllerKey);
 
@@ -33,22 +33,22 @@ namespace CustomTransitions {
 			var offset = new CGVector (0f, 0f);
 
 			switch (targetEdge) {
-				case UIRectEdge.Top:
-					offset = new CGVector (0f, 1f);
-					break;
-				case UIRectEdge.Bottom:
-					offset = new CGVector (0f, -1f);
-					break;
-				case UIRectEdge.Left:
-					offset = new CGVector (1f, 0f);
-					break;
-				case UIRectEdge.Right:
-					offset = new CGVector (-1, 0);
-					break;
-				default:
-					offset = new CGVector (0f, 0f);
-					// TODO: error
-					break;
+			case UIRectEdge.Top:
+				offset = new CGVector (0f, 1f);
+				break;
+			case UIRectEdge.Bottom:
+				offset = new CGVector (0f, -1f);
+				break;
+			case UIRectEdge.Left:
+				offset = new CGVector (1f, 0f);
+				break;
+			case UIRectEdge.Right:
+				offset = new CGVector (-1, 0);
+				break;
+			default:
+				offset = new CGVector (0f, 0f);
+				// TODO: error
+				break;
 			}
 
 			if (isPresenting) {
@@ -67,7 +67,7 @@ namespace CustomTransitions {
 
 			var duration = TransitionDuration (transitionContext);
 
-			UIView.Animate(duration, 0, UIViewAnimationOptions.TransitionNone, () => {
+			UIView.Animate (duration, 0, UIViewAnimationOptions.TransitionNone, () => {
 				toView.Frame = isPresenting ?
 					toFrame : new CGRect (fromFrame.X + (fromFrame.Size.Width * offset.dx), fromFrame.Y + (fromFrame.Size.Height * offset.dy), fromFrame.Size.Width, fromFrame.Size.Height);
 			}, () => {

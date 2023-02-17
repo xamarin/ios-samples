@@ -5,11 +5,9 @@ using CoreLocation;
 using Foundation;
 using UIKit;
 
-namespace AirLocate
-{
-	public partial class RangingViewController : UITableViewController
-	{
-		List<CLBeacon>[] beacons;
+namespace AirLocate {
+	public partial class RangingViewController : UITableViewController {
+		List<CLBeacon> [] beacons;
 		CLLocationManager locationManager;
 		List<CLBeaconRegion> rangedRegions;
 
@@ -90,7 +88,7 @@ namespace AirLocate
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return beacons [GetNonEmptySection ((int)section)].Count;
+			return beacons [GetNonEmptySection ((int) section)].Count;
 		}
 
 		public override string TitleForHeader (UITableView tableView, nint section)
@@ -98,7 +96,7 @@ namespace AirLocate
 			if (NumberOfSections (tableView) == 0)
 				return null;
 
-			return ((CLProximity)GetNonEmptySection ((int)section)).ToString ();
+			return ((CLProximity) GetNonEmptySection ((int) section)).ToString ();
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)

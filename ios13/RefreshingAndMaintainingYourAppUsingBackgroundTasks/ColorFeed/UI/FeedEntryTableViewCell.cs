@@ -3,10 +3,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace ColorFeed
-{
-	public partial class FeedEntryTableViewCell : UITableViewCell
-	{
+namespace ColorFeed {
+	public partial class FeedEntryTableViewCell : UITableViewCell {
 		Post post;
 		public Post Post {
 			get => post;

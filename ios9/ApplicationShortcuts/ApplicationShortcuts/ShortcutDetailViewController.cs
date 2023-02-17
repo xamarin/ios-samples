@@ -3,11 +3,9 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace ApplicationShortcuts
-{
-	public partial class ShortcutDetailViewController : UITableViewController, IUITextFieldDelegate, IUIPickerViewDataSource, IUIPickerViewDelegate
-	{
-		static readonly string[] pickerItems = { "Compose", "Play", "Pause", "Add", "Location", "Search", "Share" };
+namespace ApplicationShortcuts {
+	public partial class ShortcutDetailViewController : UITableViewController, IUITextFieldDelegate, IUIPickerViewDataSource, IUIPickerViewDelegate {
+		static readonly string [] pickerItems = { "Compose", "Play", "Pause", "Add", "Location", "Search", "Share" };
 
 		[Outlet ("titleTextField")]
 		public UITextField TitleTextField { get; set; }
@@ -61,7 +59,7 @@ namespace ApplicationShortcuts
 			UIApplicationShortcutIconType iconType = IconTypeForSelectedRow (row);
 
 			// The `iconType` returned may not align to the `iconRawValue` so use the `iconType`'s `rawValue`.
-			PickerView.Select ((int)iconType, 0, false);
+			PickerView.Select ((int) iconType, 0, false);
 
 			textFieldObserverToken = UITextField.Notifications.ObserveTextFieldTextDidChange ((s, e) => {
 				// You cannot dismiss the view controller without a valid shortcut title.
@@ -72,8 +70,8 @@ namespace ApplicationShortcuts
 		// Constructs a UIApplicationShortcutIconType based on the integer result from our picker.
 		static UIApplicationShortcutIconType IconTypeForSelectedRow (int row)
 		{
-			var value = (UIApplicationShortcutIconType)row;
-			bool isDefined = Enum.IsDefined (typeof(UIApplicationShortcutIconType), value);
+			var value = (UIApplicationShortcutIconType) row;
+			bool isDefined = Enum.IsDefined (typeof (UIApplicationShortcutIconType), value);
 			return isDefined ? value : UIApplicationShortcutIconType.Compose;
 		}
 
@@ -103,7 +101,7 @@ namespace ApplicationShortcuts
 		[Export ("pickerView:titleForRow:forComponent:")]
 		public string GetTitle (UIPickerView pickerView, nint row, nint component)
 		{
-			return pickerItems [(int)row];
+			return pickerItems [(int) row];
 		}
 
 		#endregion
@@ -118,7 +116,7 @@ namespace ApplicationShortcuts
 
 			if (segue.Identifier == "ShortcutDetailUpdated") {
 				// In the updated case, create a shortcut item to represent the final state of the view controller.
-				UIApplicationShortcutIconType iconType = IconTypeForSelectedRow ((int)PickerView.SelectedRowInComponent (0));
+				UIApplicationShortcutIconType iconType = IconTypeForSelectedRow ((int) PickerView.SelectedRowInComponent (0));
 				var icon = UIApplicationShortcutIcon.FromType (iconType);
 
 				var userInfo = new NSDictionary<NSString, NSObject> (AppDelegate.ApplicationShortcutUserInfoIconKey, new NSNumber (PickerView.SelectedRowInComponent (0)));

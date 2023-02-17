@@ -5,10 +5,8 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace SoZoomy
-{
-	public partial class PreviewView : UIView
-	{
+namespace SoZoomy {
+	public partial class PreviewView : UIView {
 		public AVCaptureSession Session {
 			get {
 				return (Layer as AVCaptureVideoPreviewLayer).Session;
@@ -18,14 +16,14 @@ namespace SoZoomy
 			}
 		}
 
-/*		public PreviewView () : base ()
-		{
-		}
+		/*		public PreviewView () : base ()
+				{
+				}
 
-		public PreviewView (RectangleF frame) : base (frame)
-		{
-		}
-*/
+				public PreviewView (RectangleF frame) : base (frame)
+				{
+				}
+		*/
 		public PreviewView (IntPtr handle) : base (handle)
 		{
 		}

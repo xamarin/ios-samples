@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	public class SaveRecordZoneSample : CodeSample
-	{
+namespace CloudKitAtlas {
+	public class SaveRecordZoneSample : CodeSample {
 		public SaveRecordZoneSample ()
 			: base (title: "SaveRecordZone",
 					className: "CKDatabase",

@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using Foundation;
 using UIKit;
 
-namespace WatchKitCatalog
-{
-	public partial class WatchKitCatalogViewController : UIViewController
-	{
+namespace WatchKitCatalog {
+	public partial class WatchKitCatalogViewController : UIViewController {
 		static bool UserInterfaceIdiomIsPhone {
 			get { return UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone; }
 		}
@@ -20,7 +18,7 @@ namespace WatchKitCatalog
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -29,7 +27,7 @@ namespace WatchKitCatalog
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 

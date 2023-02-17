@@ -1,11 +1,9 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
-namespace Emporium
-{
+namespace Emporium {
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		public override UIWindow Window { get; set; }
 
 		UINavigationController RootViewController {
@@ -27,7 +25,7 @@ namespace Emporium
 				Product product = productContainer.Product;
 
 				// Firstly, we'll create a product detail page. We can instantiate it from our storyboard...
-				var viewController = (ProductTableViewController)RootViewController?.Storyboard?.InstantiateViewController ("ProductTableViewController");
+				var viewController = (ProductTableViewController) RootViewController?.Storyboard?.InstantiateViewController ("ProductTableViewController");
 
 				// Manually set the product we want to display.
 				if (viewController != null) {

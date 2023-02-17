@@ -17,7 +17,7 @@ namespace MonoCatalog {
 			base.ViewDidLoad ();
 
 			Title = "Text View";
-			textView = new UITextView (View.Frame){
+			textView = new UITextView (View.Frame) {
 				TextColor = UIColor.Black,
 				Font = UIFont.FromName ("Arial", 18f),
 				BackgroundColor = UIColor.White,
@@ -29,11 +29,13 @@ namespace MonoCatalog {
 			};
 
 			// Provide our own save button to dismiss the keyboard
-			textView.Started += delegate {
-				var saveItem = new UIBarButtonItem (UIBarButtonSystemItem.Done, delegate {
+			textView.Started += delegate
+			{
+				var saveItem = new UIBarButtonItem (UIBarButtonSystemItem.Done, delegate
+				{
 					textView.ResignFirstResponder ();
 					NavigationItem.RightBarButtonItem = null;
-					});
+				});
 				NavigationItem.RightBarButtonItem = saveItem;
 			};
 
@@ -44,7 +46,8 @@ namespace MonoCatalog {
 		{
 			base.ViewWillAppear (animated);
 
-			obs1 = NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillShowNotification, delegate (NSNotification n){
+			obs1 = NSNotificationCenter.DefaultCenter.AddObserver (UIKeyboard.WillShowNotification, delegate (NSNotification n)
+			{
 				var kbdRect = UIKeyboard.BoundsFromNotification (n);
 				var duration = UIKeyboard.AnimationDurationFromNotification (n);
 				var frame = View.Frame;
@@ -53,9 +56,10 @@ namespace MonoCatalog {
 				UIView.SetAnimationDuration (duration);
 				View.Frame = frame;
 				UIView.CommitAnimations ();
-				});
+			});
 
-						obs2 = NSNotificationCenter.DefaultCenter.AddObserver (new NSString("UIKeyboardWillHideNotification"), delegate (NSNotification n){
+			obs2 = NSNotificationCenter.DefaultCenter.AddObserver (new NSString ("UIKeyboardWillHideNotification"), delegate (NSNotification n)
+			{
 				var kbdRect = UIKeyboard.BoundsFromNotification (n);
 				var duration = UIKeyboard.AnimationDurationFromNotification (n);
 				var frame = View.Frame;

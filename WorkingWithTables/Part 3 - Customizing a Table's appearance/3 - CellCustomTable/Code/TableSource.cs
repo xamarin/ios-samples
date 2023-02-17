@@ -7,13 +7,13 @@ using UIKit;
 namespace BasicTable {
 	public class TableSource : UITableViewSource {
 		List<TableItem> tableItems;
-		 NSString cellIdentifier = new NSString("TableCell");
-	
+		NSString cellIdentifier = new NSString ("TableCell");
+
 		public TableSource (List<TableItem> items)
 		{
 			tableItems = items;
 		}
-	
+
 		/// <summary>
 		/// Called by the TableView to determine how many cells to create for that particular section.
 		/// </summary>
@@ -21,17 +21,17 @@ namespace BasicTable {
 		{
 			return tableItems.Count;
 		}
-		
+
 		/// <summary>
 		/// Called when a row is touched
 		/// </summary>
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			new UIAlertView("Row Selected"
-				, tableItems[indexPath.Row].Heading, null, "OK", null).Show();
+			new UIAlertView ("Row Selected"
+				, tableItems [indexPath.Row].Heading, null, "OK", null).Show ();
 			tableView.DeselectRow (indexPath, true);
 		}
-		
+
 		/// <summary>
 		/// Called by the TableView to get the actual UITableViewCell to render for the particular row
 		/// </summary>
@@ -45,10 +45,10 @@ namespace BasicTable {
 				cell = new CustomVegeCell (cellIdentifier);
 			}
 
-			cell.UpdateCell (tableItems[indexPath.Row].Heading
-							, tableItems[indexPath.Row].SubHeading
-							, UIImage.FromFile ("Images/" +tableItems[indexPath.Row].ImageName) );
-			
+			cell.UpdateCell (tableItems [indexPath.Row].Heading
+							, tableItems [indexPath.Row].SubHeading
+							, UIImage.FromFile ("Images/" + tableItems [indexPath.Row].ImageName));
+
 			return cell;
 		}
 	}

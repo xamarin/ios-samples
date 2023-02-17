@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using UIKit;
@@ -7,23 +7,20 @@ using CloudKit;
 using Foundation;
 using CoreFoundation;
 
-namespace CloudCaptions
-{
-	[Register("ExistingImageCollectionView")]
-	public class ExistingImageCollectionView : UICollectionView, INSCoding
-	{
-		class CollectionViewDataSource : UICollectionViewDataSource
-		{
+namespace CloudCaptions {
+	[Register ("ExistingImageCollectionView")]
+	public class ExistingImageCollectionView : UICollectionView, INSCoding {
+		class CollectionViewDataSource : UICollectionViewDataSource {
 			readonly ExistingImageCollectionView view;
 
-			public CollectionViewDataSource(ExistingImageCollectionView view)
+			public CollectionViewDataSource (ExistingImageCollectionView view)
 			{
 				this.view = view;
 			}
 
 			public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 			{
-				var cell = (ExistingImageCollectionViewCell)collectionView.DequeueReusableCell (cellReuseIdentifier, indexPath);
+				var cell = (ExistingImageCollectionViewCell) collectionView.DequeueReusableCell (cellReuseIdentifier, indexPath);
 				cell = cell ?? new ExistingImageCollectionViewCell ();
 
 				cell.ThumbnailImage.Image = view.imageRecords [indexPath.Row].Thumbnail;
@@ -39,7 +36,7 @@ namespace CloudCaptions
 			}
 		}
 
-		static readonly NSString cellReuseIdentifier = new NSString("imageCell");
+		static readonly NSString cellReuseIdentifier = new NSString ("imageCell");
 
 		List<Image> imageRecords;
 		DispatchQueue updateArrayQueue;
@@ -51,14 +48,14 @@ namespace CloudCaptions
 			}
 		}
 
-		public ExistingImageCollectionView(IntPtr handle)
-			: base(handle)
+		public ExistingImageCollectionView (IntPtr handle)
+			: base (handle)
 		{
 			Initialize ();
 		}
 
-		public ExistingImageCollectionView(NSCoder coder)
-			: base(coder)
+		public ExistingImageCollectionView (NSCoder coder)
+			: base (coder)
 		{
 			Initialize ();
 		}
@@ -70,7 +67,7 @@ namespace CloudCaptions
 			updateArrayQueue = new DispatchQueue ("UpdateCollectionViewQueue");
 		}
 
-		public void AddImageFromRecord(CKRecord toAdd)
+		public void AddImageFromRecord (CKRecord toAdd)
 		{
 			Image fetchedImage = new Image (toAdd);
 			// Ensures that only one object will be added to the imageRecords array at a time
@@ -80,7 +77,7 @@ namespace CloudCaptions
 			});
 		}
 
-		public void SetLoadingFlag(NSIndexPath index, bool isLoading)
+		public void SetLoadingFlag (NSIndexPath index, bool isLoading)
 		{
 			currentLoadingIndex = isLoading ? index : null;
 			InvokeOnMainThread (ReloadData);
@@ -89,7 +86,7 @@ namespace CloudCaptions
 		public CKRecordID GetRecordId (NSIndexPath index)
 		{
 			// returns the recordID of the item in imageRecords at the given index
-			Image img = imageRecords[index.Row];
+			Image img = imageRecords [index.Row];
 			return img.Record.Id;
 		}
 	}

@@ -9,8 +9,7 @@ using OpenTK.Graphics;
 using Foundation;
 using OpenGLES;
 
-namespace LowLevelGLPaint
-{
+namespace LowLevelGLPaint {
 	public class EAGLView : UIView {
 		All _depthFormat;
 		bool _autoResize;
@@ -54,7 +53,7 @@ namespace LowLevelGLPaint
 		protected override void Dispose (bool disposing)
 		{
 			DestroySurface ();
-			_context.Dispose();
+			_context.Dispose ();
 			_context = null;
 		}
 
@@ -62,17 +61,17 @@ namespace LowLevelGLPaint
 		{
 			CAEAGLLayer eaglLayer = (CAEAGLLayer) Layer;
 			if (!_context.IsCurrent)
-				_context.MakeCurrent(null);
+				_context.MakeCurrent (null);
 
 			var newSize = eaglLayer.Bounds.Size;
-			newSize.Width  = (float) Math.Round (newSize.Width);
+			newSize.Width = (float) Math.Round (newSize.Width);
 			newSize.Height = (float) Math.Round (newSize.Height);
 
 			int oldRenderbuffer = 0, oldFramebuffer = 0;
 			GL.GetInteger (All.RenderbufferBindingOes, out oldRenderbuffer);
 			GL.GetInteger (All.FramebufferBindingOes, out oldFramebuffer);
 
-			GL.Oes.GenRenderbuffers (1,out _renderbuffer);
+			GL.Oes.GenRenderbuffers (1, out _renderbuffer);
 			GL.Oes.BindRenderbuffer (All.RenderbufferOes, _renderbuffer);
 
 			if (!_context.EAGLContext.RenderBufferStorage ((uint) All.RenderbufferOes, eaglLayer)) {
@@ -95,8 +94,7 @@ namespace LowLevelGLPaint
 				GL.Viewport (0, 0, (int) newSize.Width, (int) newSize.Height);
 				GL.Scissor (0, 0, (int) newSize.Width, (int) newSize.Height);
 				_hasBeenCurrent = true;
-			}
-			else
+			} else
 				GL.Oes.BindFramebuffer (All.FramebufferOes, (uint) oldFramebuffer);
 			GL.Oes.BindRenderbuffer (All.RenderbufferOes, (uint) oldRenderbuffer);
 
@@ -110,7 +108,7 @@ namespace LowLevelGLPaint
 			EAGLContext oldContext = EAGLContext.CurrentContext;
 
 			if (!_context.IsCurrent)
-				_context.MakeCurrent(null);
+				_context.MakeCurrent (null);
 
 			if (_depthFormat != 0) {
 				GL.Oes.DeleteRenderbuffers (1, ref _depthbuffer);
@@ -145,11 +143,11 @@ namespace LowLevelGLPaint
 
 		public void SetCurrentContext ()
 		{
-			_context.MakeCurrent(null);
+			_context.MakeCurrent (null);
 		}
 
 		public bool IsCurrentContext {
-			get {return _context.IsCurrent;}
+			get { return _context.IsCurrent; }
 		}
 
 		public void ClearCurrentContext ()
@@ -163,7 +161,7 @@ namespace LowLevelGLPaint
 			EAGLContext oldContext = EAGLContext.CurrentContext;
 
 			if (!_context.IsCurrent)
-				_context.MakeCurrent(null);
+				_context.MakeCurrent (null);
 
 			int oldRenderbuffer = 0;
 			GL.GetInteger (All.RenderbufferBindingOes, out oldRenderbuffer);

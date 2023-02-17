@@ -5,16 +5,14 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A view controller which facilitates the creation of characteristic triggers.
-	public partial class CharacteristicTriggerViewController : EventTriggerViewController
-	{
+	public partial class CharacteristicTriggerViewController : EventTriggerViewController {
 		const string SelectCharacteristicSegue = "Select Characteristic";
 
 		CharacteristicTriggerCreator CharacteristicTriggerCreator {
 			get {
-				return (CharacteristicTriggerCreator)TriggerCreator;
+				return (CharacteristicTriggerCreator) TriggerCreator;
 			}
 		}
 
@@ -71,7 +69,7 @@ namespace HomeKitCatalog
 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			switch (SectionForIndex ((int)section)) {
+			switch (SectionForIndex ((int) section)) {
 			case TriggerTableViewSection.Characteristics:
 				// Plus one for the add row.
 				return events.Count + 1;
@@ -96,9 +94,9 @@ namespace HomeKitCatalog
 		// Returns  A 'condition cell' with the event at the specified index path.
 		UITableViewCell GetConditionCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = (ConditionCell)tableView.DequeueReusableCell (ConditionCell, indexPath);
+			var cell = (ConditionCell) tableView.DequeueReusableCell (ConditionCell, indexPath);
 			var e = events [indexPath.Row];
-			cell.SetCharacteristic (e.Characteristic, (NSNumber)e.TriggerValue);
+			cell.SetCharacteristic (e.Characteristic, (NSNumber) e.TriggerValue);
 			return cell;
 		}
 
@@ -154,7 +152,7 @@ namespace HomeKitCatalog
 					CharacteristicTriggerCreator.RemoveEvent (events [indexPath.Row]);
 					events.Clear ();
 					events.AddRange (CharacteristicTriggerCreator.Events ());
-					tableView.DeleteRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+					tableView.DeleteRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 					break;
 				default:
 					base.CommitEditingStyle (tableView, editingStyle, indexPath);
@@ -165,7 +163,7 @@ namespace HomeKitCatalog
 
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			switch (SectionForIndex ((int)section)) {
+			switch (SectionForIndex ((int) section)) {
 			case TriggerTableViewSection.Characteristics:
 				return "This trigger will activate when any of these characteristics change to their value. For example, 'run when the garage door is opened'.";
 			default:

@@ -4,10 +4,8 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace TransitionsDemo.InteractionControllers
-{
-	public class CEHorizontalSwipeInteractionController : CEBaseInteractionController
-	{
+namespace TransitionsDemo.InteractionControllers {
+	public class CEHorizontalSwipeInteractionController : CEBaseInteractionController {
 		public override nfloat CompletionSpeed {
 			get {
 				return 1 - PercentComplete;
@@ -15,7 +13,7 @@ namespace TransitionsDemo.InteractionControllers
 		}
 
 		public override void WireToViewController (UIKit.UIViewController viewController,
-		                                           CEInteractionOperation operation)
+												   CEInteractionOperation operation)
 		{
 			this.operation = operation;
 			this.viewController = viewController;
@@ -28,7 +26,7 @@ namespace TransitionsDemo.InteractionControllers
 			view.AddGestureRecognizer (gestureRecognizer);
 		}
 
-		[Export("HandleGesture:")]
+		[Export ("HandleGesture:")]
 		public void HandleGesture (UIPanGestureRecognizer panGestureRecognizer)
 		{
 			CGPoint translation = panGestureRecognizer.TranslationInView (panGestureRecognizer.View.Superview);
@@ -72,7 +70,7 @@ namespace TransitionsDemo.InteractionControllers
 		private void TrackGestureChaged (CGPoint translation)
 		{
 			if (InteractionInProgress) {
-				float fraction = (float)translation.X / 200f;
+				float fraction = (float) translation.X / 200f;
 				fraction = Math.Min (Math.Max (fraction, 0f), 1f);
 				shouldCompleteTransition = (fraction > 0.5f);
 

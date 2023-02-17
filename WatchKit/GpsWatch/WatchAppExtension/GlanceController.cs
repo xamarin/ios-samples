@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using WatchKit;
 using Foundation;
 
-namespace WatchAppExtension
-{
-	public partial class GlanceController : WKInterfaceController
-	{
+namespace WatchAppExtension {
+	public partial class GlanceController : WKInterfaceController {
 		public GlanceController (IntPtr handle) : base (handle)
 		{
 		}

@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace Flags
-{
-	public class RootViewControllerDataSource : UIPageViewControllerDataSource
-	{
+namespace Flags {
+	public class RootViewControllerDataSource : UIPageViewControllerDataSource {
 		readonly string [] regionCodes;
 		readonly UIStoryboard storyboard;
 
@@ -63,16 +61,16 @@ namespace Flags
 			var regionCode = regionCodes [index];
 
 			// Return the data view controller for the given index.
-			var dataViewController = (DataViewController)cachedDataViewControllers.ObjectForKey ((NSString)regionCode);
+			var dataViewController = (DataViewController) cachedDataViewControllers.ObjectForKey ((NSString) regionCode);
 			if (dataViewController != null)
 				return dataViewController;
 
 			// Create a new view controller and pass suitable data.
-			dataViewController = (DataViewController)storyboard.InstantiateViewController ("DataViewController");
+			dataViewController = (DataViewController) storyboard.InstantiateViewController ("DataViewController");
 			dataViewController.RegionCode = regionCodes [index];
 
 			// Cache the view controller before returning it.
-			cachedDataViewControllers.SetObjectforKey (dataViewController, (NSString)regionCode);
+			cachedDataViewControllers.SetObjectforKey (dataViewController, (NSString) regionCode);
 			return dataViewController;
 		}
 
@@ -86,8 +84,7 @@ namespace Flags
 		}
 	}
 
-	public static class Utils
-	{
+	public static class Utils {
 		// For more info https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 		public static void Shuffle<T> (this T [] array, Random rng)
 		{

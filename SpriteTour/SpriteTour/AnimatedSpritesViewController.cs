@@ -15,7 +15,7 @@ namespace SpriteTour {
 		{
 			base.CreateSceneContents ();
 
-			SKTexture[] walkFrames = LoadFrames ("Art/warrior_walk_", 28);
+			SKTexture [] walkFrames = LoadFrames ("Art/warrior_walk_", 28);
 
 			SKSpriteNode sprite = new SKSpriteNode (walkFrames [0]) {
 				Position = new CGPoint (Scene.Frame.GetMidX (), Scene.Frame.GetMidY ())

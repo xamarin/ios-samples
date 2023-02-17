@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UIKit;
 using Foundation;
 
-namespace ApplicationShortcuts
-{
-	public partial class ShortcutsTableViewController : UITableViewController
-	{
+namespace ApplicationShortcuts {
+	public partial class ShortcutsTableViewController : UITableViewController {
 		// Pre-defined shortcuts; retrieved from the Info.plist, lazily.
 		List<UIApplicationShortcutItem> staticShortcuts;
 
@@ -27,9 +25,9 @@ namespace ApplicationShortcuts
 				if (array == null)
 					return staticShortcuts;
 
-				Dictionary<string, NSObject>[] shortcuts = ParseShortcuts (array);
+				Dictionary<string, NSObject> [] shortcuts = ParseShortcuts (array);
 
-				foreach (var shortcut in  shortcuts) {
+				foreach (var shortcut in shortcuts) {
 					// The `UIApplicationShortcutItemType` and `UIApplicationShortcutItemTitle` keys are required to successfully create a `UIApplicationShortcutItem`.
 					NSObject rawShortcutType;
 					NSObject rawShortcutTitle;
@@ -56,12 +54,12 @@ namespace ApplicationShortcuts
 		}
 
 		// Shortcuts defined by the application and modifiable based on application state.
-		UIApplicationShortcutItem[] dynamicShortcuts;
+		UIApplicationShortcutItem [] dynamicShortcuts;
 
-		UIApplicationShortcutItem[] DynamicShortcuts {
+		UIApplicationShortcutItem [] DynamicShortcuts {
 			get {
 				if (dynamicShortcuts == null)
-					dynamicShortcuts = UIApplication.SharedApplication.ShortcutItems ?? new UIApplicationShortcutItem[0];
+					dynamicShortcuts = UIApplication.SharedApplication.ShortcutItems ?? new UIApplicationShortcutItem [0];
 
 				return dynamicShortcuts;
 			}
@@ -72,15 +70,15 @@ namespace ApplicationShortcuts
 		{
 		}
 
-		static Dictionary<string, NSObject>[] ParseShortcuts (NSArray items)
+		static Dictionary<string, NSObject> [] ParseShortcuts (NSArray items)
 		{
-			var count = (int)items.Count;
-			var result = new Dictionary<string, NSObject>[count];
+			var count = (int) items.Count;
+			var result = new Dictionary<string, NSObject> [count];
 			for (int i = 0; i < count; i++) {
-				var nDict = items.GetItem<NSDictionary> ((nuint)i);
+				var nDict = items.GetItem<NSDictionary> ((nuint) i);
 				var dict = result [i] = new Dictionary<string, NSObject> ();
 				foreach (var kvp in nDict)
-					dict [(NSString)kvp.Key] = kvp.Value;
+					dict [(NSString) kvp.Key] = kvp.Value;
 			}
 
 			return result;
@@ -180,7 +178,7 @@ namespace ApplicationShortcuts
 			// Update the application's `shortcutItems`.
 			UIApplication.SharedApplication.ShortcutItems = DynamicShortcuts;
 
-			TableView.ReloadRows (new []{ selected }, UITableViewRowAnimation.Automatic);
+			TableView.ReloadRows (new [] { selected }, UITableViewRowAnimation.Automatic);
 		}
 
 		// Unwind segue action called when the user taps 'Cancel' after navigating to the detail controller.

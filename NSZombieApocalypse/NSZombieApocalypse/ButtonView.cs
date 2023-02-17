@@ -2,15 +2,12 @@ using System;
 using CoreGraphics;
 using UIKit;
 
-namespace NSZombieApocalypse
-{
-	public class TrackingEventArgs : EventArgs
-	{
+namespace NSZombieApocalypse {
+	public class TrackingEventArgs : EventArgs {
 		public UITouch Touch { get; set; }
 	}
 
-	public sealed class ButtonView: UIControl
-	{
+	public sealed class ButtonView : UIControl {
 		UILabel labelView;
 		UIImageView imageView;
 
@@ -18,7 +15,7 @@ namespace NSZombieApocalypse
 		public event EventHandler<TrackingEventArgs> TrackingContinuedEvent;
 		public event EventHandler<TrackingEventArgs> TrackingEndedEvent;
 
-		public ButtonView (CGRect frame):base (frame)
+		public ButtonView (CGRect frame) : base (frame)
 		{
 			imageView = new UIImageView (UIImage.FromBundle ("buttonView.png"));
 			AddSubview (imageView);

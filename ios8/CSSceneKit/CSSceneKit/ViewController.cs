@@ -1,18 +1,16 @@
-﻿using System;
+using System;
 using System.Linq;
 
 using UIKit;
 using SceneKit;
 
-namespace CSSceneKit
-{
-	public partial class ViewController : UIViewController
-	{
+namespace CSSceneKit {
+	public partial class ViewController : UIViewController {
 		public ViewController (IntPtr handle) : base (handle)
 		{
 		}
 
-		int Building (float width, float length, float height, float posx, float posy, SCNScene scene, Random rnd) 
+		int Building (float width, float length, float height, float posx, float posy, SCNScene scene, Random rnd)
 		{
 			var boxNode = new SCNNode () {
 				Geometry = new SCNBox {
@@ -21,12 +19,12 @@ namespace CSSceneKit
 					Length = length,
 					ChamferRadius = 0.02f
 				},
-				Position = new SCNVector3(posx, height/2.0f, posy)
+				Position = new SCNVector3 (posx, height / 2.0f, posy)
 			};
 
 			scene.RootNode.AddChildNode (boxNode);
 
-			var buildings = new[] { "Content/building1.jpg", "Content/building2.jpg","Content/building3.jpg" };
+			var buildings = new [] { "Content/building1.jpg", "Content/building2.jpg", "Content/building3.jpg" };
 			var material = new SCNMaterial ();
 			material.Diffuse.Contents = UIImage.FromFile (buildings [rnd.Next (buildings.Length)]);
 			material.Diffuse.ContentsTransform = SCNMatrix4.Scale (new SCNVector3 (width, height, 1.0f));
@@ -50,7 +48,7 @@ namespace CSSceneKit
 			var rnd = new Random ();
 
 			Func<int, int, bool, float> random = (min, max, clamp) => {
-				float num = (float)((double)rnd.Next(min, max) * rnd.NextDouble ());
+				float num = (float) ((double) rnd.Next (min, max) * rnd.NextDouble ());
 				if (!clamp)
 					return num;
 				else if (num < 1.0f)
@@ -60,9 +58,9 @@ namespace CSSceneKit
 			};
 
 			Enumerable.Range (0, 200).Select<int, int> ((i) => Building (
-				random (2,5, true),
-				random (2,5, true),
-				random (2,10, true),
+				random (2, 5, true),
+				random (2, 5, true),
+				random (2, 10, true),
 				random (-20, 20, false),
 				random (-20, 20, false),
 				scene,
@@ -70,7 +68,7 @@ namespace CSSceneKit
 			)).ToArray ();
 
 			//Lights!
-			var lightNode = new SCNNode() {
+			var lightNode = new SCNNode () {
 				Light = new SCNLight (),
 				Position = new SCNVector3 (30.0F, 20.0F, 60.0F)
 			};
@@ -96,9 +94,9 @@ namespace CSSceneKit
 			scene.RootNode.AddChildNode (targetNode);
 
 			var lc = SCNLookAtConstraint.Create (targetNode);
-			cameraNode.Constraints = new[] { lc };
+			cameraNode.Constraints = new [] { lc };
 
-			var scnView = new SCNView(UIScreen.MainScreen.Bounds) {
+			var scnView = new SCNView (UIScreen.MainScreen.Bounds) {
 				Scene = scene,
 				AllowsCameraControl = true,
 				ShowsStatistics = true,
@@ -114,7 +112,7 @@ namespace CSSceneKit
 			};
 
 			var pi2 = Math.PI / 2.0;
-			floorNode.Orientation = SCNQuaternion.FromAxisAngle (SCNVector3.UnitX, (float)(0.0 - pi2));
+			floorNode.Orientation = SCNQuaternion.FromAxisAngle (SCNVector3.UnitX, (float) (0.0 - pi2));
 
 			scene.RootNode.AddChildNode (floorNode);
 

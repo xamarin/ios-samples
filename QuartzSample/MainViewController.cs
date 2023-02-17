@@ -2,13 +2,11 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace QuartzSample
-{
+namespace QuartzSample {
 
-	public partial class MainViewController : UITableViewController
-	{
+	public partial class MainViewController : UITableViewController {
 
-		QuartzViewController[] controllers;
+		QuartzViewController [] controllers;
 
 		public MainViewController (IntPtr b) : base (b)
 		{
@@ -47,8 +45,7 @@ namespace QuartzSample
 		//
 		// The data source for our TableView
 		//
-		class DataSource : UITableViewDataSource
-		{
+		class DataSource : UITableViewDataSource {
 			static NSString kCellIdentifier = new NSString ("MyIdentifier");
 			MainViewController mvc;
 
@@ -86,8 +83,7 @@ namespace QuartzSample
 		//
 		// This class receives notifications that happen on the UITableView
 		//
-		class TableDelegate : UITableViewDelegate
-		{
+		class TableDelegate : UITableViewDelegate {
 			MainViewController mvc;
 
 			public TableDelegate (MainViewController mvc)

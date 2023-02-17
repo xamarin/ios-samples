@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using UIKit;
 
-namespace ToastModern
-{
-	public class Screen : Layer
-	{
+namespace ToastModern {
+	public class Screen : Layer {
 		public static Screen GlobalScreen { get; set; }
 
 		public Screen (UIWindow window) : base (window)

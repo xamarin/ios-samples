@@ -1,15 +1,13 @@
 // class translated from Java
 // Credit goes to Charles Hayden http://www.chayden.net/eliza/Eliza.html
 
-namespace ElizaCore
-{
+namespace ElizaCore {
 	/// <summary>Eliza pre-post entry (two words).</summary>
 	/// <remarks>
 	/// Eliza pre-post entry (two words).
 	/// This is used to store pre transforms or post transforms.
 	/// </remarks>
-	public class PrePost
-	{
+	public class PrePost {
 		/// <summary>The words</summary>
 		internal string src;
 
@@ -17,7 +15,7 @@ namespace ElizaCore
 
 		/// <summary>Initialize the pre-post entry.</summary>
 		/// <remarks>Initialize the pre-post entry.</remarks>
-		internal PrePost(string src, string dest)
+		internal PrePost (string src, string dest)
 		{
 			this.src = src;
 			this.dest = dest;
@@ -25,25 +23,24 @@ namespace ElizaCore
 
 		/// <summary>Print the pre-post entry.</summary>
 		/// <remarks>Print the pre-post entry.</remarks>
-		public virtual void Print(int indent)
+		public virtual void Print (int indent)
 		{
-			for (int i = 0; i < indent; i++)
-			{
-				ConsoleSurrogate.Write(" ");
+			for (int i = 0; i < indent; i++) {
+				ConsoleSurrogate.Write (" ");
 			}
-			ConsoleSurrogate.WriteLine("pre-post: " + src + "  " + dest);
+			ConsoleSurrogate.WriteLine ("pre-post: " + src + "  " + dest);
 		}
 
 		/// <summary>Get src.</summary>
 		/// <remarks>Get src.</remarks>
-		public virtual string Src()
+		public virtual string Src ()
 		{
 			return src;
 		}
 
 		/// <summary>Get dest.</summary>
 		/// <remarks>Get dest.</remarks>
-		public virtual string Dest()
+		public virtual string Dest ()
 		{
 			return dest;
 		}

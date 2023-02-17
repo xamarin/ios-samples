@@ -1,20 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace Chat
-{
-	public class ChatSource : UITableViewSource
-	{
+namespace Chat {
+	public class ChatSource : UITableViewSource {
 		static readonly NSString IncomingCellId = new NSString ("Incoming");
 		static readonly NSString OutgoingCellId = new NSString ("Outgoing");
 
 		IList<Message> messages;
 
-		readonly BubbleCell[] sizingCells;
+		readonly BubbleCell [] sizingCells;
 
 		public ChatSource (IList<Message> messages)
 		{
@@ -22,7 +20,7 @@ namespace Chat
 				throw new ArgumentNullException (nameof (messages));
 
 			this.messages = messages;
-			sizingCells = new BubbleCell[2];
+			sizingCells = new BubbleCell [2];
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)
@@ -35,7 +33,7 @@ namespace Chat
 			BubbleCell cell = null;
 			Message msg = messages [indexPath.Row];
 
-			cell = (BubbleCell)tableView.DequeueReusableCell (GetReuseId (msg.Type));
+			cell = (BubbleCell) tableView.DequeueReusableCell (GetReuseId (msg.Type));
 			cell.Message = msg;
 
 			return cell;
@@ -55,12 +53,12 @@ namespace Chat
 
 		nfloat CalculateHeightFor (Message msg, UITableView tableView)
 		{
-			var index = (int)msg.Type;
+			var index = (int) msg.Type;
 			BubbleCell cell = sizingCells [index];
 			if (cell == null)
-				cell = sizingCells [index] = (BubbleCell)tableView.DequeueReusableCell (GetReuseId (msg.Type));
+				cell = sizingCells [index] = (BubbleCell) tableView.DequeueReusableCell (GetReuseId (msg.Type));
 
-			cell.Message = msg; 
+			cell.Message = msg;
 
 			cell.SetNeedsLayout ();
 			cell.LayoutIfNeeded ();

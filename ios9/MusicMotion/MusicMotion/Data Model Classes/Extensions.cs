@@ -1,4 +1,4 @@
-﻿using CoreMotion;
+using CoreMotion;
 
 namespace MusicMotion {
 	public static class Extensions {

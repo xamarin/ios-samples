@@ -1,11 +1,9 @@
-﻿using CoreGraphics;
+using CoreGraphics;
 using CoreAnimation;
 using UIKit;
 
-namespace AnimationSamples
-{
-	public class ExplicitLayerAnimation : UIViewController
-	{
+namespace AnimationSamples {
+	public class ExplicitLayerAnimation : UIViewController {
 		static UIStoryboard MainStoryboard = UIStoryboard.FromName ("Main", null);
 
 		CALayer layer;
@@ -28,9 +26,9 @@ namespace AnimationSamples
 			View.Layer.AddSublayer (layer);
 
 			View.AddGestureRecognizer (new UITapGestureRecognizer (() => {
-				var initalViewController = (ViewController)MainStoryboard.InstantiateViewController("InitalViewController");
+				var initalViewController = (ViewController) MainStoryboard.InstantiateViewController ("InitalViewController");
 				initalViewController.ModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal;
-				PresentViewController(initalViewController, true, null);
+				PresentViewController (initalViewController, true, null);
 			}));
 		}
 
@@ -48,7 +46,7 @@ namespace AnimationSamples
 
 			//Create a path for the animation to follow
 			var path = new CGPath ();
-			path.AddLines (new []{ fromPt, new CGPoint (50, 300), new CGPoint (200, 50), new CGPoint (200, 300) });
+			path.AddLines (new [] { fromPt, new CGPoint (50, 300), new CGPoint (200, 50), new CGPoint (200, 300) });
 
 			// create a keyframe animation for the position using the path
 			CAKeyFrameAnimation animPosition = CAKeyFrameAnimation.FromKeyPath ("position");

@@ -3,10 +3,8 @@ using CoreGraphics;
 using System;
 using Foundation;
 
-namespace Hello_Universal
-{
-	public partial class Hello_UniversalViewController : UIViewController
-	{
+namespace Hello_Universal {
+	public partial class Hello_UniversalViewController : UIViewController {
 		public Hello_UniversalViewController (string nibName, NSBundle bundle) : base (nibName, bundle)
 		{
 		}
@@ -24,7 +22,7 @@ namespace Hello_Universal
 			base.ViewDidLoad ();
 
 			this.btnClickMe.TouchUpInside += (sender, e) => {
-				this.lblOutput.Text = "Clicked @ " + DateTime.Now.ToShortTimeString();
+				this.lblOutput.Text = "Clicked @ " + DateTime.Now.ToShortTimeString ();
 			};
 		}
 

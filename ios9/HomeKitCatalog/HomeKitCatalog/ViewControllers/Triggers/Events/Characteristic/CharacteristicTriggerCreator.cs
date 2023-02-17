@@ -1,22 +1,19 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
 using HomeKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// Represents modes for a `CharacteristicTriggerCreator`.
-	public enum CharacteristicTriggerCreatorMode
-	{
+	public enum CharacteristicTriggerCreatorMode {
 		Event,
 		Condition
 	}
 
 	// An `EventTriggerCreator` subclass which allows for the creation of characteristic triggers.
-	public class CharacteristicTriggerCreator : EventTriggerCreator
-	{
+	public class CharacteristicTriggerCreator : EventTriggerCreator {
 		// This object will be a characteristic cell delegate and will therefore
 		// be receiving updates when UI elements change value. However, this object
 		// can construct both characteristic events and characteristic triggers.
@@ -25,7 +22,7 @@ namespace HomeKitCatalog
 		public CharacteristicTriggerCreatorMode Mode { get; set; }
 
 		readonly Dictionary<HMCharacteristic, INSCopying> targetValueMap = new Dictionary<HMCharacteristic, INSCopying> ();
-			
+
 		// `HMCharacteristicEvent`s that should be removed if `SaveTriggerWithName()` is called.
 		readonly List<HMCharacteristicEvent> removalCharacteristicEvents = new List<HMCharacteristicEvent> ();
 
@@ -63,7 +60,7 @@ namespace HomeKitCatalog
 		// returns:  A new `HMEventTrigger` with the pending characteristic events and constructed predicate.
 		protected override HMTrigger NewTrigger ()
 		{
-			return new HMEventTrigger (Name, PendingCharacteristicEvents(), NewPredicate ());
+			return new HMEventTrigger (Name, PendingCharacteristicEvents (), NewPredicate ());
 		}
 
 		// Remove all objects from the map so they don't show up in the `events` computed array.
@@ -86,7 +83,7 @@ namespace HomeKitCatalog
 
 		#region Helper Methods
 
-		HMCharacteristicEvent[] PendingCharacteristicEvents ()
+		HMCharacteristicEvent [] PendingCharacteristicEvents ()
 		{
 			return targetValueMap.Select (kvp => new HMCharacteristicEvent (kvp.Key, kvp.Value)).ToArray ();
 		}
@@ -101,7 +98,7 @@ namespace HomeKitCatalog
 				return;
 
 			// Find events who's characteristic is in our map table.
-			foreach (var e in eventTrigger.CharacteristicEvents()) {
+			foreach (var e in eventTrigger.CharacteristicEvents ()) {
 				INSCopying triggerValue;
 				if (targetValueMap.TryGetValue (e.Characteristic, out triggerValue)) {
 					SaveTriggerGroup.Enter ();
@@ -135,7 +132,7 @@ namespace HomeKitCatalog
 		}
 
 		// All `HMCharacteristic`s in the `targetValueMap`.
-		HMCharacteristic[] AllCharacteristics ()
+		HMCharacteristic [] AllCharacteristics ()
 		{
 			var characteristics = new HashSet<HMCharacteristic> (targetValueMap.Keys);
 			return characteristics.ToArray ();
@@ -160,10 +157,10 @@ namespace HomeKitCatalog
 		// The current, sorted collection of `HMCharacteristicEvent`s accumulated by
 		// filtering out the events pending removal from the original trigger events and
 		// then adding new pending events.
-		public HMCharacteristicEvent[] Events ()
+		public HMCharacteristicEvent [] Events ()
 		{
 			var eventTrigger = EventTrigger;
-			HMCharacteristicEvent[] characteristicEvents = eventTrigger != null ? eventTrigger.CharacteristicEvents () : new HMCharacteristicEvent[0];
+			HMCharacteristicEvent [] characteristicEvents = eventTrigger != null ? eventTrigger.CharacteristicEvents () : new HMCharacteristicEvent [0];
 
 			var originalEvents = characteristicEvents.Where (c => !removalCharacteristicEvents.Contains (c));
 			var allEvents = originalEvents.Union (PendingCharacteristicEvents ()).ToArray ();
@@ -185,7 +182,7 @@ namespace HomeKitCatalog
 		{
 			switch (Mode) {
 			case CharacteristicTriggerCreatorMode.Event:
-				UpdateEventValue ((INSCopying)value, characteristic);
+				UpdateEventValue ((INSCopying) value, characteristic);
 				break;
 
 			default:
@@ -204,7 +201,7 @@ namespace HomeKitCatalog
 
 			INSCopying value;
 			if (targetValueMap.TryGetValue (characteristic, out value)) {
-				completion ((NSObject)value, null);
+				completion ((NSObject) value, null);
 				return;
 			}
 
@@ -212,7 +209,7 @@ namespace HomeKitCatalog
 			characteristic.ReadValue (error => {
 				INSCopying v;
 				if (targetValueMap.TryGetValue (characteristic, out v))
-					completion ((NSObject)v, null);
+					completion ((NSObject) v, null);
 				else
 					completion (characteristic.Value, error);
 			});

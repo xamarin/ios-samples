@@ -4,16 +4,14 @@ using UIKit;
 using System.Collections.Generic;
 using Foundation;
 
-namespace Example_Drawing.Screens.iPad.TouchDrawing
-{
-	public class View : UIView
-	{
+namespace Example_Drawing.Screens.iPad.TouchDrawing {
+	public class View : UIView {
 		List<Spot> touchSpots = new List<Spot> ();
-		CGSize spotSize = new CGSize(15,15);
+		CGSize spotSize = new CGSize (15, 15);
 
 		#region -= constructors =-
 
-		public View () : base() { }
+		public View () : base () { }
 
 		#endregion
 
@@ -64,21 +62,20 @@ namespace Example_Drawing.Screens.iPad.TouchDrawing
 			SetNeedsDisplay ();
 		}
 
-		protected class Spot
-		{
+		protected class Spot {
 			public CGPoint Point { get; set; }
 			public float Red { get; set; }
 			public float Green { get; set; }
 			public float Blue { get; set; }
 			public float Alpha { get; set; }
 
-			public static Spot CreateNewRandomColor(CGPoint point)
+			public static Spot CreateNewRandomColor (CGPoint point)
 			{
 				Random rdm = new Random (Environment.TickCount);
 				Spot spot = new View.Spot () {
-					Red = (float)rdm.NextDouble (),
-					Green = (float)rdm.NextDouble (),
-					Blue = (float)rdm.NextDouble (),
+					Red = (float) rdm.NextDouble (),
+					Green = (float) rdm.NextDouble (),
+					Blue = (float) rdm.NextDouble (),
 					Alpha = 1
 				};
 				spot.Point = point;

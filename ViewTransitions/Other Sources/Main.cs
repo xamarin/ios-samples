@@ -29,11 +29,9 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace ViewTransitions
-{
-	public class Application
-	{
-		static void Main (string[] args)
+namespace ViewTransitions {
+	public class Application {
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

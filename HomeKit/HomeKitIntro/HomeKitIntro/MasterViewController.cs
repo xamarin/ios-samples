@@ -3,17 +3,15 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace HomeKitIntro
-{
-	partial class MasterViewController : UINavigationController
-	{
+namespace HomeKitIntro {
+	partial class MasterViewController : UINavigationController {
 		#region Computed Properties
 		/// <summary>
 		/// Returns the delegate of the current running application
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 		#endregion
 
@@ -34,12 +32,12 @@ namespace HomeKitIntro
 				// Was a primary home found?
 				if (ThisApp.HomeManager.PrimaryHome == null) {
 					// Ask user to add a home
-					PerformSegue("AddHomeSegue",this);
+					PerformSegue ("AddHomeSegue", this);
 				} else {
 
 				}
 			};
-				
+
 		}
 		#endregion
 	}

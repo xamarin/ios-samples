@@ -7,20 +7,18 @@ using Mono.Data.Sqlite;
 using Foundation;
 using UIKit;
 
-namespace MonoCatalog
-{
-	public partial class MonoDataSqliteController : UITableViewController
-	{
+namespace MonoCatalog {
+	public partial class MonoDataSqliteController : UITableViewController {
 		// The IntPtr and NSCoder constructors are required for controllers that need
 		// to be able to be created from a xib rather than from managed code
 
-		public MonoDataSqliteController (IntPtr handle) : base(handle)
+		public MonoDataSqliteController (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public MonoDataSqliteController (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public MonoDataSqliteController (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
@@ -34,8 +32,7 @@ namespace MonoCatalog
 		{
 		}
 
-		class ItemsTableDelegate : UITableViewDelegate
-		{
+		class ItemsTableDelegate : UITableViewDelegate {
 			//
 			// Override to provide the sizing of the rows in our table
 			//
@@ -47,8 +44,7 @@ namespace MonoCatalog
 			}
 		}
 
-		class ItemsDataSource : UITableViewDataSource
-		{
+		class ItemsDataSource : UITableViewDataSource {
 			static readonly NSString kAdd = new NSString ("Add");
 			static readonly NSString kKey = new NSString ("Key");
 
@@ -61,7 +57,7 @@ namespace MonoCatalog
 				public Func<UITableView, NSIndexPath, UITableViewCell> Creator;
 			}
 
-			SectionInfo [] Sections = new[]{
+			SectionInfo [] Sections = new []{
 				new SectionInfo { Title = "Add Key/Value Pair", Creator = GetAddKeyValuePairCell },
 				new SectionInfo { Title = "Key/Value Pairs",    Creator = GetKeyValuePairCell },
 			};
@@ -101,7 +97,7 @@ namespace MonoCatalog
 					cell = new UITableViewCell (UITableViewCellStyle.Default, kAdd);
 					cells.Add (cell);
 				} else {
-					RemoveViewWithTag (cell, kKeyTag   << 1);
+					RemoveViewWithTag (cell, kKeyTag << 1);
 					RemoveViewWithTag (cell, kKeyTag);
 					RemoveViewWithTag (cell, kValueTag << 1);
 					RemoveViewWithTag (cell, kValueTag);
@@ -109,38 +105,38 @@ namespace MonoCatalog
 				}
 				var lblKey = new UILabel () {
 					BaselineAdjustment = UIBaselineAdjustment.AlignCenters,
-					Frame              = new CGRect (10f, 0f, 70f, 31f),
-					Tag                = kKeyTag << 1,
-					Text               = "Key: ",
-					TextAlignment      = UITextAlignment.Right,
+					Frame = new CGRect (10f, 0f, 70f, 31f),
+					Tag = kKeyTag << 1,
+					Text = "Key: ",
+					TextAlignment = UITextAlignment.Right,
 				};
 				var key = new UITextField () {
-					BorderStyle        = UITextBorderStyle.Bezel,
-					ClearButtonMode    = UITextFieldViewMode.WhileEditing,
-					Frame              = new CGRect (80f, 1f, 170f, 31f),
-					Placeholder        = "Key",
-					Tag                = kKeyTag,
+					BorderStyle = UITextBorderStyle.Bezel,
+					ClearButtonMode = UITextFieldViewMode.WhileEditing,
+					Frame = new CGRect (80f, 1f, 170f, 31f),
+					Placeholder = "Key",
+					Tag = kKeyTag,
 					AccessibilityLabel = "Key"
 				};
 				var lblValue = new UILabel () {
 					BaselineAdjustment = UIBaselineAdjustment.AlignCenters,
-					Frame              = new CGRect (10f, 37f, 70f, 31f),
-					Tag                = kValueTag << 1,
-					Text               = "Value: ",
-					TextAlignment      = UITextAlignment.Right,
+					Frame = new CGRect (10f, 37f, 70f, 31f),
+					Tag = kValueTag << 1,
+					Text = "Value: ",
+					TextAlignment = UITextAlignment.Right,
 				};
 				var value = new UITextField () {
-					BorderStyle        = UITextBorderStyle.Bezel,
-					ClearButtonMode    = UITextFieldViewMode.WhileEditing,
-					Frame              = new CGRect (80f, 38f, 170f, 31f),
-					Placeholder        = "Value",
-					Tag                = kValueTag,
+					BorderStyle = UITextBorderStyle.Bezel,
+					ClearButtonMode = UITextFieldViewMode.WhileEditing,
+					Frame = new CGRect (80f, 38f, 170f, 31f),
+					Placeholder = "Value",
+					Tag = kValueTag,
 					AccessibilityLabel = "Value"
 				};
 				var add = UIButton.FromType (UIButtonType.ContactAdd);
 				add.HorizontalAlignment = UIControlContentHorizontalAlignment.Center;
-				add.VerticalAlignment   = UIControlContentVerticalAlignment.Center;
-				add.Frame               = new CGRect (255, 0, 40f, 70f);
+				add.VerticalAlignment = UIControlContentVerticalAlignment.Center;
+				add.Frame = new CGRect (255, 0, 40f, 70f);
 				add.SetTitle ("Add", UIControlState.Normal);
 				add.TouchUpInside += (o, e) => {
 					WithCommand (c => {
@@ -148,12 +144,12 @@ namespace MonoCatalog
 						c.Parameters.Add (new SqliteParameter ("@key", key.Text));
 						c.Parameters.Add (new SqliteParameter ("@value", value.Text));
 						c.ExecuteNonQuery ();
-						key.Text      = "";
-						value.Text    = "";
+						key.Text = "";
+						value.Text = "";
 						key.ResignFirstResponder ();
 						value.ResignFirstResponder ();
 						var path = NSIndexPath.FromRowSection (GetItemCount () - 1, 1);
-						tableView.InsertRows (new NSIndexPath [] {path}, UITableViewRowAnimation.Bottom);
+						tableView.InsertRows (new NSIndexPath [] { path }, UITableViewRowAnimation.Bottom);
 					});
 				};
 				cell.ContentView.AddSubview (lblKey);
@@ -181,17 +177,16 @@ namespace MonoCatalog
 					c.CommandText = query;
 					var r = c.ExecuteReader ();
 					while (r.Read ()) {
-						key   = r ["Key"].ToString ();
+						key = r ["Key"].ToString ();
 						value = r ["Value"].ToString ();
 					}
 				});
 				var cell = tableView.DequeueReusableCell (kKey);
-				if (cell == null){
+				if (cell == null) {
 					cell = new UITableViewCell (UITableViewCellStyle.Default, kKey);
 					cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 					cells.Add (cell);
-				}
-				else {
+				} else {
 					RemoveViewWithTag (cell, kKeyTag);
 					RemoveViewWithTag (cell, kValueTag);
 				}
@@ -199,8 +194,8 @@ namespace MonoCatalog
 				Func<string, int, bool, UILabel> createLabel = (v, t, left) => {
 					var label = new UILabel ();
 					label.Frame = left
-						? new CGRect (10f, 1f, width-10, 40)
-						: new CGRect (width, 1f, width-30, 40);
+						? new CGRect (10f, 1f, width - 10, 40)
+						: new CGRect (width, 1f, width - 30, 40);
 					label.Text = v;
 					label.TextAlignment = left
 						? UITextAlignment.Left
@@ -249,9 +244,9 @@ namespace MonoCatalog
 			bool exists = File.Exists (db);
 			if (!exists)
 				SqliteConnection.CreateFile (db);
-			var conn = new SqliteConnection("Data Source=" + db);
+			var conn = new SqliteConnection ("Data Source=" + db);
 			if (!exists) {
-				var commands = new[] {
+				var commands = new [] {
 					"CREATE TABLE Items (Key ntext, Value ntext)",
 					"INSERT INTO [Items] ([Key], [Value]) VALUES ('sample', 'text')",
 				};
@@ -270,8 +265,7 @@ namespace MonoCatalog
 			try {
 				connection.Open ();
 				action (connection);
-			}
-			finally {
+			} finally {
 				connection.Close ();
 			}
 		}

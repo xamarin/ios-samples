@@ -1,4 +1,4 @@
-﻿using AudioToolbox;
+using AudioToolbox;
 using AudioUnit;
 using AVFoundation;
 using Foundation;

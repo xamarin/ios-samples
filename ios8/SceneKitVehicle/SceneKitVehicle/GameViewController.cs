@@ -7,10 +7,8 @@ using SceneKit;
 using UIKit;
 using CoreGraphics;
 
-namespace SceneKitVehicle
-{
-	public partial class GameViewController : UIViewController
-	{
+namespace SceneKitVehicle {
+	public partial class GameViewController : UIViewController {
 		private SCNNode spotLightNode;
 		private SCNNode cameraNode;
 		private SCNNode vehicleNode;
@@ -48,7 +46,7 @@ namespace SceneKitVehicle
 		{
 			UIApplication.SharedApplication.SetStatusBarHidden (true, true);
 
-			var scnView = (SCNView)View;
+			var scnView = (SCNView) View;
 			scnView.BackgroundColor = UIColor.Black;
 			scnView.Scene = SetupScene ();
 			scnView.Scene.PhysicsWorld.Speed = 4f;
@@ -88,14 +86,14 @@ namespace SceneKitVehicle
 		public void AccelerometerDidChange (CMAcceleration acceleration)
 		{
 			float filteringFactor = 0.5f;
-			accelerometer.X = (float)acceleration.X * filteringFactor + accelerometer.X * (1f - filteringFactor);
-			accelerometer.Y = (float)acceleration.Y * filteringFactor + accelerometer.Y * (1f - filteringFactor);
-			accelerometer.Z = (float)acceleration.Z * filteringFactor + accelerometer.Z * (1f - filteringFactor);
+			accelerometer.X = (float) acceleration.X * filteringFactor + accelerometer.X * (1f - filteringFactor);
+			accelerometer.Y = (float) acceleration.Y * filteringFactor + accelerometer.Y * (1f - filteringFactor);
+			accelerometer.Z = (float) acceleration.Z * filteringFactor + accelerometer.Z * (1f - filteringFactor);
 
 			if (accelerometer.X > 0) {
-				orientation = (float)(accelerometer.Y * 1.3f);
+				orientation = (float) (accelerometer.Y * 1.3f);
 			} else {
-				orientation = (float)(-accelerometer.Y * 1.3f);
+				orientation = (float) (-accelerometer.Y * 1.3f);
 			}
 		}
 
@@ -189,25 +187,25 @@ namespace SceneKitVehicle
 			if (scnView.InCarView) {
 				var frontPosition = scnView.PointOfView.PresentationNode.ConvertPositionToNode (new SCNVector3 (0f, 0f, -30f), null);
 				spotLightNode.Position = new SCNVector3 (frontPosition.X, 80f, frontPosition.Z);
-				spotLightNode.Rotation = new SCNVector4 (1f, 0f, 0f, -(float)Math.PI / 2f);
+				spotLightNode.Rotation = new SCNVector4 (1f, 0f, 0f, -(float) Math.PI / 2f);
 			} else {
 				spotLightNode.Position = new SCNVector3 (carPos.X, 80f, carPos.Z + 30f);
-				spotLightNode.Rotation = new SCNVector4 (1f, 0f, 0f, -(float)(Math.PI / 2.8));
+				spotLightNode.Rotation = new SCNVector4 (1f, 0f, 0f, -(float) (Math.PI / 2.8));
 			}
 
-			var overlayScene = (OverlayScene)scnView.OverlayScene;
-			overlayScene.SpeedNeedle.ZRotation = -(vehicle.SpeedInKilometersPerHour * (float)Math.PI / maxSpeed);
+			var overlayScene = (OverlayScene) scnView.OverlayScene;
+			overlayScene.SpeedNeedle.ZRotation = -(vehicle.SpeedInKilometersPerHour * (float) Math.PI / maxSpeed);
 		}
 
 		private void HandleDoubleTap (UITapGestureRecognizer gesture)
 		{
-			var scnView = (SCNView)View;
+			var scnView = (SCNView) View;
 			scnView.Scene = SetupScene ();
 
 			scnView.Scene.PhysicsWorld.Speed = 4f;
 			scnView.PointOfView = cameraNode;
 
-			((GameView)scnView).TouchesCount = 0;
+			((GameView) scnView).TouchesCount = 0;
 		}
 
 		private void ReorientCarIfNeeded ()
@@ -261,7 +259,7 @@ namespace SceneKitVehicle
 		{
 			var max = SCNVector3.Zero;
 			var min = SCNVector3.Zero;
-			var trainScene = SCNScene.FromFile ("train_flat", ResourceManager.ResourceFolder, (NSDictionary)null);
+			var trainScene = SCNScene.FromFile ("train_flat", ResourceManager.ResourceFolder, (NSDictionary) null);
 
 			foreach (var node in trainScene.RootNode.ChildNodes) {
 				if (node.Geometry != null) {
@@ -284,7 +282,7 @@ namespace SceneKitVehicle
 						ChamferRadius = 0f
 					};
 
-					body.PhysicsShape = SCNPhysicsShape.Create (boxShape, (NSDictionary)null);
+					body.PhysicsShape = SCNPhysicsShape.Create (boxShape, (NSDictionary) null);
 					node.Pivot = SCNMatrix4.CreateTranslation (0f, -min.Y, 0f);
 					node.PhysicsBody = body;
 					scene.RootNode.AddChildNode (node);
@@ -375,12 +373,12 @@ namespace SceneKitVehicle
 
 			wall = wall.Clone ();
 			wall.Position = new SCNVector3 (202f, 50f, 0f);
-			wall.Rotation = new SCNVector4 (0f, 1f, 0f, (float)Math.PI / 2f);
+			wall.Rotation = new SCNVector4 (0f, 1f, 0f, (float) Math.PI / 2f);
 			scene.RootNode.AddChildNode (wall);
 
 			wall = wall.Clone ();
 			wall.Position = new SCNVector3 (-202f, 50f, 0f);
-			wall.Rotation = new SCNVector4 (0f, 1f, 0f, -(float)Math.PI / 2f);
+			wall.Rotation = new SCNVector4 (0f, 1f, 0f, -(float) Math.PI / 2f);
 			scene.RootNode.AddChildNode (wall);
 
 			var planeGeometry = new SCNPlane {
@@ -391,7 +389,7 @@ namespace SceneKitVehicle
 			var backWall = SCNNode.FromGeometry (planeGeometry);
 			backWall.Geometry.FirstMaterial = wall.Geometry.FirstMaterial;
 			backWall.Position = new SCNVector3 (0f, 50f, 200f);
-			backWall.Rotation = new SCNVector4 (0f, 1f, 0f, (float)Math.PI);
+			backWall.Rotation = new SCNVector4 (0f, 1f, 0f, (float) Math.PI);
 			backWall.CastsShadow = false;
 			backWall.PhysicsBody = SCNPhysicsBody.CreateStaticBody ();
 			scene.RootNode.AddChildNode (backWall);
@@ -403,7 +401,7 @@ namespace SceneKitVehicle
 
 			var ceilNode = SCNNode.FromGeometry (planeGeometry);
 			ceilNode.Position = new SCNVector3 (0f, 100f, 0f);
-			ceilNode.Rotation = new SCNVector4 (1f, 0f, 0f, (float)Math.PI / 2f);
+			ceilNode.Rotation = new SCNVector4 (1f, 0f, 0f, (float) Math.PI / 2f);
 			ceilNode.Geometry.FirstMaterial.DoubleSided = false;
 			ceilNode.CastsShadow = false;
 			ceilNode.Geometry.FirstMaterial.LocksAmbientWithDiffuse = true;
@@ -428,7 +426,7 @@ namespace SceneKitVehicle
 
 			var block = SCNNode.Create ();
 			block.Position = new SCNVector3 (20f, 10f, -16f);
-			block.Rotation = new SCNVector4 (0f, 1f, 0f, (float)-Math.PI / 4f);
+			block.Rotation = new SCNVector4 (0f, 1f, 0f, (float) -Math.PI / 4f);
 			block.Geometry = blockBox;
 
 			var frontMat = SCNMaterial.Create ();
@@ -441,13 +439,13 @@ namespace SceneKitVehicle
 			backMat.Diffuse.Contents = ResourceManager.GetResourcePath ("book_back.jpg");
 			backMat.Diffuse.MipFilter = SCNFilterMode.Linear;
 
-			block.Geometry.Materials = new SCNMaterial[] { frontMat, backMat };
+			block.Geometry.Materials = new SCNMaterial [] { frontMat, backMat };
 			block.PhysicsBody = SCNPhysicsBody.CreateDynamicBody ();
 			scene.RootNode.AddChildNode (block);
 
 			var rug = SCNNode.Create ();
 			rug.Position = new SCNVector3 (0f, 0.01f, 0f);
-			rug.Rotation = new SCNVector4 (1f, 0f, 0f, (float)Math.PI / 2f);
+			rug.Rotation = new SCNVector4 (1f, 0f, 0f, (float) Math.PI / 2f);
 			var path = UIBezierPath.FromRoundedRect (new CGRect (-50f, -30f, 100f, 50f), 2.5f);
 			path.Flatness = 0.1f;
 			rug.Geometry = SCNShape.Create (path, 0.05f);
@@ -469,11 +467,11 @@ namespace SceneKitVehicle
 
 		private SCNNode SetupVehicle (SCNScene scene)
 		{
-			var carScene = SCNScene.FromFile ("rc_car", ResourceManager.ResourceFolder, (NSDictionary)null);
+			var carScene = SCNScene.FromFile ("rc_car", ResourceManager.ResourceFolder, (NSDictionary) null);
 			var chassisNode = carScene.RootNode.FindChildNode ("rccarBody", false);
 
 			chassisNode.Position = new SCNVector3 (0f, 10f, 30f);
-			chassisNode.Rotation = new SCNVector4 (0f, 1f, 0f, (float)Math.PI);
+			chassisNode.Rotation = new SCNVector4 (0f, 1f, 0f, (float) Math.PI);
 
 			var body = SCNPhysicsBody.CreateDynamicBody ();
 			body.AllowsResting = false;
@@ -486,7 +484,7 @@ namespace SceneKitVehicle
 
 			var frontCameraNode = SCNNode.Create ();
 			frontCameraNode.Position = new SCNVector3 (0f, 3.5f, 2.5f);
-			frontCameraNode.Rotation = new SCNVector4 (0f, 1f, 0f, (float)Math.PI);
+			frontCameraNode.Rotation = new SCNVector4 (0f, 1f, 0f, (float) Math.PI);
 			frontCameraNode.Camera = SCNCamera.Create ();
 			frontCameraNode.Camera.XFov = 75f;
 			frontCameraNode.Camera.ZFar = 500f;
@@ -524,7 +522,7 @@ namespace SceneKitVehicle
 			wheel3.ConnectionPosition = SCNVector3.Subtract (wheel3Node.ConvertPositionToNode (SCNVector3.Zero, chassisNode), new SCNVector3 (wheelHalfWidth, 0f, 0f));
 
 			var vehicle = SCNPhysicsVehicle.Create (chassisNode.PhysicsBody,
-				              new SCNPhysicsVehicleWheel[] { wheel0, wheel1, wheel2, wheel3 });
+							  new SCNPhysicsVehicleWheel [] { wheel0, wheel1, wheel2, wheel3 });
 			scene.PhysicsWorld.AddBehavior (vehicle);
 			this.vehicle = vehicle;
 
@@ -543,7 +541,7 @@ namespace SceneKitVehicle
 			cameraNode.Camera = SCNCamera.Create ();
 			cameraNode.Camera.ZFar = 500f;
 			cameraNode.Position = new SCNVector3 (0f, 60f, 50f);
-			cameraNode.Rotation = new SCNVector4 (1f, 0f, 0f, -(float)Math.PI / 4f * 0.75f);
+			cameraNode.Rotation = new SCNVector4 (1f, 0f, 0f, -(float) Math.PI / 4f * 0.75f);
 			scene.RootNode.AddChildNode (cameraNode);
 
 			return scene;
@@ -560,7 +558,7 @@ namespace SceneKitVehicle
 
 			var lightNode = new SCNNode {
 				Position = new SCNVector3 (0f, 80f, 30f),
-				Rotation = new SCNVector4 (1f, 0f, 0f, (float)(-Math.PI / 2.8))
+				Rotation = new SCNVector4 (1f, 0f, 0f, (float) (-Math.PI / 2.8))
 			};
 
 			lightNode.Light = new SCNLight {
@@ -587,7 +585,7 @@ namespace SceneKitVehicle
 			floor.Geometry.FirstMaterial.LocksAmbientWithDiffuse = true;
 
 			if (IsHighEndDevice)
-				((SCNFloor)floor.Geometry).ReflectionFalloffEnd = 10f;
+				((SCNFloor) floor.Geometry).ReflectionFalloffEnd = 10f;
 
 			var staticBody = SCNPhysicsBody.CreateStaticBody ();
 			floor.PhysicsBody = staticBody;

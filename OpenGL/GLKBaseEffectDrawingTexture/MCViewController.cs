@@ -6,10 +6,8 @@ using OpenTK.Graphics.ES20;
 using Foundation;
 using CoreGraphics;
 
-namespace GLKBaseEffectDrawingTexture
-{
-	public class MCViewController : GLKViewController
-	{
+namespace GLKBaseEffectDrawingTexture {
+	public class MCViewController : GLKViewController {
 		float rotation;
 
 		uint vertexArray;
@@ -59,19 +57,19 @@ namespace GLKBaseEffectDrawingTexture
 			GL.GenBuffers (1, out vertexBuffer);
 			GL.BindBuffer (BufferTarget.ArrayBuffer, vertexBuffer);
 			GL.BufferData (BufferTarget.ArrayBuffer, (IntPtr) (Monkey.MeshVertexData.Length * sizeof (float)),
-			               Monkey.MeshVertexData, BufferUsage.StaticDraw);
+						   Monkey.MeshVertexData, BufferUsage.StaticDraw);
 
 			GL.EnableVertexAttribArray ((int) GLKVertexAttrib.Position);
 			GL.VertexAttribPointer ((int) GLKVertexAttrib.Position, 3, VertexAttribPointerType.Float,
-			                        false, 8 * sizeof (float), 0);
+									false, 8 * sizeof (float), 0);
 
 			GL.EnableVertexAttribArray ((int) GLKVertexAttrib.Normal);
 			GL.VertexAttribPointer ((int) GLKVertexAttrib.Normal, 3, VertexAttribPointerType.Float,
-			                        false, 8 * sizeof(float), 12);
+									false, 8 * sizeof (float), 12);
 
 			GL.EnableVertexAttribArray ((int) GLKVertexAttrib.TexCoord0);
 			GL.VertexAttribPointer ((int) GLKVertexAttrib.TexCoord0, 2, VertexAttribPointerType.Float,
-			                        false, 8 * sizeof(float), 24);
+									false, 8 * sizeof (float), 24);
 
 			GL.ActiveTexture (TextureUnit.Texture0);
 			string path = NSBundle.MainBundle.PathForResource ("monkey", "png");
@@ -82,7 +80,7 @@ namespace GLKBaseEffectDrawingTexture
 			texture = GLKTextureLoader.FromFile (path, options, out error);
 
 			if (texture == null)
-				Console.WriteLine (String.Format("Error loading texture: {0}", error.LocalizedDescription));
+				Console.WriteLine (String.Format ("Error loading texture: {0}", error.LocalizedDescription));
 
 			GLKEffectPropertyTexture tex = new GLKEffectPropertyTexture ();
 			tex.Enabled = true;
@@ -96,11 +94,11 @@ namespace GLKBaseEffectDrawingTexture
 
 		public override void Update ()
 		{
-			float aspect = (float)Math.Abs (View.Bounds.Size.Width / View.Bounds.Size.Height);
+			float aspect = (float) Math.Abs (View.Bounds.Size.Width / View.Bounds.Size.Height);
 
 			Matrix4 projectionMatrix =
 				Matrix4.CreatePerspectiveFieldOfView ((float) (Math.PI * 65f / 180.0f),
-				                                      aspect, 0.1f, 100.0f);
+													  aspect, 0.1f, 100.0f);
 
 			effect.Transform.ProjectionMatrix = projectionMatrix;
 

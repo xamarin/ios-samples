@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using UIKit;
 using Foundation;
 using ObjCRuntime;
 using System.Reflection;
 
-namespace AdaptivePhotos
-{
-	public class CustomTableViewController : UITableViewController
-	{
+namespace AdaptivePhotos {
+	public class CustomTableViewController : UITableViewController {
 		public CustomTableViewController (UITableViewStyle style) : base (style)
 		{
 		}
@@ -20,7 +18,7 @@ namespace AdaptivePhotos
 			if (target != null) {
 				var type = target.GetType ();
 				MethodInfo method = type.GetMethod ("WillShowingDetailViewControllerPushWithSender");
-				return (bool)method.Invoke (target, new object[] { });
+				return (bool) method.Invoke (target, new object [] { });
 			} else {
 				return false;
 			}
@@ -34,7 +32,7 @@ namespace AdaptivePhotos
 			if (target != null) {
 				var type = target.GetType ();
 				MethodInfo method = type.GetMethod ("WillShowingDetailViewControllerPushWithSender");
-				return (bool)method.Invoke (target, new object[] { });
+				return (bool) method.Invoke (target, new object [] { });
 			} else {
 				return false;
 			}
@@ -58,15 +56,14 @@ namespace AdaptivePhotos
 			if (target != null) {
 				var type = target.GetType ();
 				MethodInfo method = type.GetMethod ("CurrentVisibleDetailPhotoWithSender");
-				return (Photo)method.Invoke (target, new object[] { });
+				return (Photo) method.Invoke (target, new object [] { });
 			} else {
 				return null;
 			}
 		}
 	}
 
-	public class CustomViewController : UIViewController
-	{
+	public class CustomViewController : UIViewController {
 		public bool WillShowingViewControllerPushWithSender ()
 		{
 			var selector = new Selector ("WillShowingViewControllerPushWithSender");
@@ -75,7 +72,7 @@ namespace AdaptivePhotos
 			if (target != null) {
 				var type = target.GetType ();
 				MethodInfo method = type.GetMethod ("WillShowingDetailViewControllerPushWithSender");
-				return (bool)method.Invoke (target, new object[] { });
+				return (bool) method.Invoke (target, new object [] { });
 			} else {
 				return false;
 			}
@@ -89,7 +86,7 @@ namespace AdaptivePhotos
 			if (target != null) {
 				var type = target.GetType ();
 				MethodInfo method = type.GetMethod ("WillShowingDetailViewControllerPushWithSender");
-				return (bool)method.Invoke (target, new object[] { });
+				return (bool) method.Invoke (target, new object [] { });
 			} else {
 				return false;
 			}
@@ -106,8 +103,7 @@ namespace AdaptivePhotos
 		}
 	}
 
-	public class CustomNavigationController : UINavigationController
-	{
+	public class CustomNavigationController : UINavigationController {
 		public CustomNavigationController (UIViewController viewController) : base (viewController)
 		{
 		}
@@ -119,8 +115,7 @@ namespace AdaptivePhotos
 		}
 	}
 
-	public class CustomSplitViewController : UISplitViewController
-	{
+	public class CustomSplitViewController : UISplitViewController {
 		[Export ("WillShowingViewControllerPushWithSender")]
 		public bool WillShowingViewControllerPushWithSender ()
 		{
@@ -134,7 +129,7 @@ namespace AdaptivePhotos
 				var target = this.ViewControllers [this.ViewControllers.Length - 1];
 				var type = target.GetType ();
 				MethodInfo method = type.GetMethod ("WillShowingDetailViewControllerPushWithSender");
-				return (bool)method.Invoke (target, new object[] { });
+				return (bool) method.Invoke (target, new object [] { });
 			} else {
 				return false;
 			}

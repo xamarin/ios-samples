@@ -5,14 +5,12 @@ using Foundation;
 using MapKit;
 using CoreLocation;
 
-namespace PrivacyPrompts
-{
-	public partial class LocationPrivacyViewController : UIViewController
-	{
+namespace PrivacyPrompts {
+	public partial class LocationPrivacyViewController : UIViewController {
 		public LocationPrivacyManager PrivacyManager { get; set; }
 
-		public LocationPrivacyViewController(IntPtr handle)
-			: base(handle)
+		public LocationPrivacyViewController (IntPtr handle)
+			: base (handle)
 		{
 		}
 

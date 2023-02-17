@@ -4,10 +4,8 @@ using UIKit;
 using System.CodeDom.Compiler;
 using HomeKit;
 
-namespace HomeKitIntro
-{
-	public partial class CharacteristicCellStepper : UITableViewCell
-	{
+namespace HomeKitIntro {
+	public partial class CharacteristicCellStepper : UITableViewCell {
 		#region Static Properties
 		public static readonly NSString Key = new NSString ("CharacteristicCellStepper");
 		#endregion
@@ -28,16 +26,17 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <value>The controller.</value>
 		public CharacteristicTableViewController Controller { get; set; }
-		#endregion 
+		#endregion
 
 		#region Constructors
 		public CharacteristicCellStepper (IntPtr handle) : base (handle)
 		{
 		}
-		#endregion 
+		#endregion
 
 		#region Public Methods
-		public void DisplayInfo(string title, float value, float min, float max, bool enabled) {
+		public void DisplayInfo (string title, float value, float min, float max, bool enabled)
+		{
 
 			// Update UI
 			Title.Text = title;
@@ -58,7 +57,8 @@ namespace HomeKitIntro
 		/// <summary>
 		/// Wireups the events.
 		/// </summary>
-		private void WireupEvents () {
+		private void WireupEvents ()
+		{
 
 			// Already wired up?
 			if (_wiredup)
@@ -66,14 +66,14 @@ namespace HomeKitIntro
 
 			// Display the new value
 			Stepper.ValueChanged += (sender, e) => {
-				SubTitle.Text = Stepper.Value.ToString();
+				SubTitle.Text = Stepper.Value.ToString ();
 
 				// Set updated value to the characteristic
-				Characteristic.WriteValue(NSObject.FromObject(Stepper.Value),(err) =>{
+				Characteristic.WriteValue (NSObject.FromObject (Stepper.Value), (err) => {
 					// Was there an error?
-					if (err!=null) {
+					if (err != null) {
 						// Yes, inform user
-						AlertView.PresentOKAlert("Update Error",err.LocalizedDescription,Controller);
+						AlertView.PresentOKAlert ("Update Error", err.LocalizedDescription, Controller);
 					}
 				});
 			};

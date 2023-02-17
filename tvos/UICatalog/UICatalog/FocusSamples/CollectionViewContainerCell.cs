@@ -6,7 +6,7 @@ using UIKit;
 namespace UICatalog {
 	public partial class CollectionViewContainerCell : UICollectionViewCell, IUICollectionViewDataSource, IUICollectionViewDelegate {
 
-		DataItem[] dataItems;
+		DataItem [] dataItems;
 		DataItemCellComposer cellComposer = new DataItemCellComposer ();
 
 		[Export ("reuseIdentifier")]
@@ -18,14 +18,14 @@ namespace UICatalog {
 			}
 		}
 
-		public void ConfigureWithDataItems (DataItem[] dataItems)
+		public void ConfigureWithDataItems (DataItem [] dataItems)
 		{
 			this.dataItems = dataItems;
 			CollectionView.ReloadData ();
 		}
 
 		[Export ("initWithCoder:")]
-		public CollectionViewContainerCell (NSCoder coder): base (coder)
+		public CollectionViewContainerCell (NSCoder coder) : base (coder)
 		{
 		}
 
@@ -42,7 +42,7 @@ namespace UICatalog {
 
 		public UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			return (UICollectionViewCell)CollectionView.DequeueReusableCell (DataItemCollectionViewCell.ReuseIdentifier, indexPath);
+			return (UICollectionViewCell) CollectionView.DequeueReusableCell (DataItemCollectionViewCell.ReuseIdentifier, indexPath);
 		}
 
 		[Export ("collectionView:willDisplayCell:forItemAtIndexPath:")]
