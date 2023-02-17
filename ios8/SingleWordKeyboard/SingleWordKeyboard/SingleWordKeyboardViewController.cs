@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using Foundation;
 using UIKit;
 
-namespace SingleWordKeyboard
-{
-	public partial class SingleWordKeyboardViewController : UIViewController
-	{
+namespace SingleWordKeyboard {
+	public partial class SingleWordKeyboardViewController : UIViewController {
 		public SingleWordKeyboardViewController (IntPtr handle)
 			: base (handle)
 		{

@@ -2,13 +2,11 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace DocPicker
-{
+namespace DocPicker {
 	/// <summary>
 	/// The file representation is a simple text file with .txt extension.
 	/// </summary>
-	public class GenericTextDocument : UIDocument
-	{
+	public class GenericTextDocument : UIDocument {
 		#region Private Variable Storage
 		private NSString _dataModel;
 		#endregion
@@ -20,7 +18,7 @@ namespace DocPicker
 		/// <value>The document contents.</value>
 		public string Contents {
 			get { return _dataModel.ToString (); }
-			set { _dataModel = new NSString(value); }
+			set { _dataModel = new NSString (value); }
 		}
 		#endregion
 
@@ -62,7 +60,7 @@ namespace DocPicker
 
 			// Were any contents passed to the document?
 			if (contents != null) {
-				_dataModel = NSString.FromData( (NSData)contents, NSStringEncoding.UTF8 );
+				_dataModel = NSString.FromData ((NSData) contents, NSStringEncoding.UTF8);
 			}
 
 			// Inform caller that the document has been modified
@@ -86,7 +84,7 @@ namespace DocPicker
 			outError = null;
 
 			// Convert the contents to a NSData object and return it
-			NSData docData = _dataModel.Encode(NSStringEncoding.UTF8);
+			NSData docData = _dataModel.Encode (NSStringEncoding.UTF8);
 			return docData;
 		}
 		#endregion
@@ -95,13 +93,14 @@ namespace DocPicker
 		/// <summary>
 		/// Document modified delegate.
 		/// </summary>
-		public delegate void DocumentModifiedDelegate(GenericTextDocument document);
+		public delegate void DocumentModifiedDelegate (GenericTextDocument document);
 		public event DocumentModifiedDelegate DocumentModified;
 
 		/// <summary>
 		/// Raises the document modified event.
 		/// </summary>
-		internal void RaiseDocumentModified(GenericTextDocument document) {
+		internal void RaiseDocumentModified (GenericTextDocument document)
+		{
 			// Inform caller
 			if (this.DocumentModified != null) {
 				this.DocumentModified (document);

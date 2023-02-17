@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using CoreLocation;
 using UIKit;
 
-namespace Location
-{
-	public class LocationManager
-	{
+namespace Location {
+	public class LocationManager {
 
 		protected CLLocationManager locMgr;
 
@@ -19,7 +17,7 @@ namespace Location
 			// iOS 8 has additional permissions requirements
 			if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
 				locMgr.RequestAlwaysAuthorization (); // works in background
-				//locMgr.RequestWhenInUseAuthorization (); // only in foreground
+													  //locMgr.RequestWhenInUseAuthorization (); // only in foreground
 			}
 
 			// iOS 9 requires the following for background location updates
@@ -58,7 +56,7 @@ namespace Location
 		//This will keep going in the background and the foreground
 		public void PrintLocation (object sender, LocationUpdatedEventArgs e)
 		{
-			
+
 			CLLocation location = e.Location;
 			Console.WriteLine ("Altitude: " + location.Altitude + " meters");
 			Console.WriteLine ("Longitude: " + location.Coordinate.Longitude);

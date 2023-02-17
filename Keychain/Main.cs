@@ -5,7 +5,8 @@ using UIKit;
 
 namespace Keychain {
 	public class Application {
-		static void Main (string[] args) {
+		static void Main (string [] args)
+		{
 			UIApplication.Main (args);
 		}
 	}
@@ -17,9 +18,11 @@ namespace Keychain {
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			ThreadPool.QueueUserWorkItem (delegate {
-				window.BeginInvokeOnMainThread (delegate {
-					var rec = new SecRecord (SecKind.GenericPassword){
+			ThreadPool.QueueUserWorkItem (delegate
+			{
+				window.BeginInvokeOnMainThread (delegate
+				{
+					var rec = new SecRecord (SecKind.GenericPassword) {
 						Generic = NSData.FromString ("foo")
 					};
 
@@ -54,7 +57,7 @@ namespace Keychain {
 			return true;
 		}
 
-		static void DisplayMessage (AppDelegate instance, string message, params object[] format)
+		static void DisplayMessage (AppDelegate instance, string message, params object [] format)
 		{
 			new UIAlertView ("Keychain", string.Format (message, format), null, "OK", null).Show ();
 		}

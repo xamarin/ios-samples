@@ -7,11 +7,9 @@ using CoreGraphics;
 using UIKit;
 using AssetsLibrary;
 
-namespace MediaNotes
-{
-	public class Application
-	{
-		static void Main (string[] args)
+namespace MediaNotes {
+	public class Application {
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}
@@ -21,8 +19,7 @@ namespace MediaNotes
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 		UIWindow window;
 		static List<ALAsset> photoAssets;
@@ -66,7 +63,7 @@ namespace MediaNotes
 			photoAssets = new List<ALAsset> (PHOTO_ASSETS_CAPACITY);
 			int photoIndex = 0;
 			bool syncContentController = true;
-			assetsLibrary.Enumerate (ALAssetsGroupType.Album, ( ALAssetsGroup group, ref bool stop) => {
+			assetsLibrary.Enumerate (ALAssetsGroupType.Album, (ALAssetsGroup group, ref bool stop) => {
 
 				if (group != null) {
 
@@ -93,7 +90,7 @@ namespace MediaNotes
 						if (currentPhotoIndex == 0) {
 							setCurrentPhotoToIndex (0);
 						}
-						((PhotoViewController)(ViewController.contentController)).Synchronize (currentPhotoIndex >= 0);
+						((PhotoViewController) (ViewController.contentController)).Synchronize (currentPhotoIndex >= 0);
 					});
 				}
 			},
@@ -116,8 +113,7 @@ namespace MediaNotes
 			currentPhotoIndex = index;
 		}
 
-		public class MyDatasource : PNDataSourceProtocol
-		{
+		public class MyDatasource : PNDataSourceProtocol {
 			public void ProceedToNextItem ()
 			{
 				if (photoAssets.Count > 0) {
@@ -129,7 +125,7 @@ namespace MediaNotes
 			public void ProceedToPreviousItem ()
 			{
 				if (photoAssets.Count > 0) {
-					currentPhotoIndex --;
+					currentPhotoIndex--;
 					setCurrentPhotoToIndex ((currentPhotoIndex < 0) ? photoAssets.Count - 1 : currentPhotoIndex);
 				}
 			}
@@ -142,7 +138,7 @@ namespace MediaNotes
 			public NSUrl UrlForCurrentItem ()
 			{
 				NSDictionary map = currentAsset.UtiToUrlDictionary;
-				return (NSUrl)map.ObjectForKey (new NSString ("public.jpeg"));
+				return (NSUrl) map.ObjectForKey (new NSString ("public.jpeg"));
 			}
 		}
 	}

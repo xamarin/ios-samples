@@ -3,26 +3,23 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace OpenGLScroller
-{
+namespace OpenGLScroller {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			window.RootViewController = new ViewController();
+			window.RootViewController = new ViewController ();
 			window.MakeKeyAndVisible ();
 
 			return true;
 		}
 	}
 
-	public class Application
-	{
-		static void Main (string[] args)
+	public class Application {
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

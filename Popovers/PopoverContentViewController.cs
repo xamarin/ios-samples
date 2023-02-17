@@ -5,10 +5,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Popovers
-{
-	public partial class PopoverContentViewController : UIViewController
-	{
+namespace Popovers {
+	public partial class PopoverContentViewController : UIViewController {
 		public PopoverContentViewController (IntPtr handle) : base (handle)
 		{
 		}

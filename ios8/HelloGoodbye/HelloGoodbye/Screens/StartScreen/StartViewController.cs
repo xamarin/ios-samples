@@ -1,20 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using UIKit;
 using Foundation;
 using ObjCRuntime;
 
-namespace HelloGoodbye
-{
-	public class StartViewController : PhotoBackgroundViewController
-	{
+namespace HelloGoodbye {
+	public class StartViewController : PhotoBackgroundViewController {
 		const float ButtonToButtonVerticalSpacing = 10;
 		const float LogoPadding = 30;
 
 		public StartViewController ()
 		{
-			Title = "HelloGoodbye".LocalizedString("Title of the start page");
+			Title = "HelloGoodbye".LocalizedString ("Title of the start page");
 			BackgroundImage = UIImage.FromBundle ("couple.jpg");
 		}
 
@@ -43,7 +41,7 @@ namespace HelloGoodbye
 			containerView.AddSubview (profileButton);
 			containerView.AddSubview (matchesButton);
 
-			var constraints = new List<NSLayoutConstraint>();
+			var constraints = new List<NSLayoutConstraint> ();
 
 			// Use dummy views space the top of the view, the logo, the buttons, and the bottom of the view evenly apart
 			UIView topDummyView = AddDummyViewToContainerView (containerView, TopLayoutGuide, logoOverlayView, constraints);
@@ -53,7 +51,7 @@ namespace HelloGoodbye
 			constraints.Add (NSLayoutConstraint.Create (middleDummyView, NSLayoutAttribute.Height, NSLayoutRelation.Equal, bottomDummyView, NSLayoutAttribute.Height, 1f, 0f));
 
 			// Position the logo
-			constraints.AddRange (new NSLayoutConstraint[] {
+			constraints.AddRange (new NSLayoutConstraint [] {
 				NSLayoutConstraint.Create (logoOverlayView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, topDummyView, NSLayoutAttribute.Bottom, 1f, 0f),
 				NSLayoutConstraint.Create (logoOverlayView, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, containerView, NSLayoutAttribute.CenterX, 1f, 0f),
 				NSLayoutConstraint.Create (logoOverlayView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal, middleDummyView, NSLayoutAttribute.Top, 1f, 0f),
@@ -77,10 +75,10 @@ namespace HelloGoodbye
 			constraints.Add (NSLayoutConstraint.Create (matchesButton, NSLayoutAttribute.Leading, NSLayoutRelation.Equal, logoOverlayView, NSLayoutAttribute.Leading, 1f, 0f));
 			constraints.Add (NSLayoutConstraint.Create (matchesButton, NSLayoutAttribute.Trailing, NSLayoutRelation.Equal, logoOverlayView, NSLayoutAttribute.Trailing, 1f, 0f));
 
-			containerView.AddConstraints (constraints.ToArray());
+			containerView.AddConstraints (constraints.ToArray ());
 		}
 
-		UIView AddDummyViewToContainerView(UIView containerView, INativeObject topItem, INativeObject bottomItem, List<NSLayoutConstraint> constraints)
+		UIView AddDummyViewToContainerView (UIView containerView, INativeObject topItem, INativeObject bottomItem, List<NSLayoutConstraint> constraints)
 		{
 			UIView dummyView = new UIView {
 				TranslatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +87,7 @@ namespace HelloGoodbye
 			containerView.AddSubview (dummyView);
 
 			// The horizontal layout of the dummy view does not matter, but for completeness, we give it a width of 0 and center it horizontally.
-			constraints.AddRange (new NSLayoutConstraint[] {
+			constraints.AddRange (new NSLayoutConstraint [] {
 				NSLayoutConstraint.Create(dummyView, NSLayoutAttribute.Width, NSLayoutRelation.Equal, null, NSLayoutAttribute.NoAttribute, 0f, 0f),
 				NSLayoutConstraint.Create(dummyView, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal, containerView, NSLayoutAttribute.CenterX, 1f, 0f),
 				NSLayoutConstraint.Create(dummyView, NSLayoutAttribute.Top, NSLayoutRelation.Equal, topItem, NSLayoutAttribute.Bottom,  1f, 0f),
@@ -99,7 +97,7 @@ namespace HelloGoodbye
 			return dummyView;
 		}
 
-		UIButton CreateButton(string titleKey, string titleComment, EventHandler handler)
+		UIButton CreateButton (string titleKey, string titleComment, EventHandler handler)
 		{
 			UIButton button = StyleUtilities.CreateOverlayRoundedRectButton ();
 			button.SetTitle (titleKey.LocalizedString (titleComment), UIControlState.Normal);

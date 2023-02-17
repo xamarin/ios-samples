@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AVFoundation;
 using Foundation;
 using System.Collections.Generic;
@@ -7,10 +7,8 @@ using CoreFoundation;
 using System.Linq;
 using CoreGraphics;
 
-namespace QRchestra
-{
-	public class SessionManager : NSObject
-	{
+namespace QRchestra {
+	public class SessionManager : NSObject {
 		public Action<SessionManager, NSError> StoppedRunning;
 
 		public AVCaptureSession CaptureSession { get; set; }
@@ -40,7 +38,8 @@ namespace QRchestra
 
 		public void StartRunning ()
 		{
-			sessionQueue.DispatchSync (delegate {
+			sessionQueue.DispatchSync (delegate
+			{
 				try {
 					setupCaptureSession ();
 					CaptureSession.StartRunning ();
@@ -54,7 +53,8 @@ namespace QRchestra
 
 		public void StopRunning ()
 		{
-			sessionQueue.DispatchSync (delegate {
+			sessionQueue.DispatchSync (delegate
+			{
 				running = false;
 
 				CaptureSession.StopRunning ();
@@ -76,10 +76,11 @@ namespace QRchestra
 
 			applicationWillEnterForegroundNotificationObserver =
 				NSNotificationCenter.DefaultCenter.AddObserver (UIApplication.WillEnterForegroundNotification.ToString (),
-			                                                    UIApplication.SharedApplication,
-					NSOperationQueue.CurrentQueue, delegate(NSNotification notification) {
-				applicationWillEnterForeground ();
-			});
+																UIApplication.SharedApplication,
+					NSOperationQueue.CurrentQueue, delegate (NSNotification notification)
+					{
+						applicationWillEnterForeground ();
+					});
 
 			videoDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Video);
 
@@ -111,10 +112,11 @@ namespace QRchestra
 			}
 		}
 
-		[Export("captureSessionNotification:")]
-		void captureSessionNotification  (NSNotification notification)
+		[Export ("captureSessionNotification:")]
+		void captureSessionNotification (NSNotification notification)
 		{
-			sessionQueue.DispatchAsync (delegate {
+			sessionQueue.DispatchAsync (delegate
+			{
 				if (notification.Name == AVCaptureSession.WasInterruptedNotification.ToString ()) {
 					Console.WriteLine ("Session interrupted");
 
@@ -124,10 +126,10 @@ namespace QRchestra
 				else if (notification.Name == AVCaptureSession.RuntimeErrorNotification.ToString ()) {
 					captureSessionStoppedRunning ();
 
-					NSError error = (NSError)notification.UserInfo [AVCaptureSession.ErrorKey];
-					if (error.Code == (int)AVError.DeviceIsNotAvailableInBackground) {
+					NSError error = (NSError) notification.UserInfo [AVCaptureSession.ErrorKey];
+					if (error.Code == (int) AVError.DeviceIsNotAvailableInBackground) {
 						Console.WriteLine ("Device not available in background");
-					} else if (error.Code == (int)AVError.MediaServicesWereReset)
+					} else if (error.Code == (int) AVError.MediaServicesWereReset)
 						Console.WriteLine ("Media services were reset");
 					else
 						handleNonRecoverableCaptureSessionRuntimeError (error);
@@ -146,7 +148,8 @@ namespace QRchestra
 			teardownCaptureSession ();
 
 			if (StoppedRunning != null)
-				delegateCallbackQueue.DispatchAsync (delegate {
+				delegateCallbackQueue.DispatchAsync (delegate
+				{
 					StoppedRunning (this, error);
 				});
 		}
@@ -158,7 +161,8 @@ namespace QRchestra
 
 		void applicationWillEnterForeground ()
 		{
-			sessionQueue.DispatchSync (delegate {
+			sessionQueue.DispatchSync (delegate
+			{
 				if (running)
 					CaptureSession.StartRunning ();
 			});
@@ -171,9 +175,10 @@ namespace QRchestra
 
 		void videoPipelineWillStartRunning ()
 		{
-			pipelineRunningTask = UIApplication.SharedApplication.BeginBackgroundTask (delegate {
+			pipelineRunningTask = UIApplication.SharedApplication.BeginBackgroundTask (delegate
+			{
 				Console.WriteLine ("Video capture pipeline background task expired");
-				UIApplication.SharedApplication.EndBackgroundTask(pipelineRunningTask);
+				UIApplication.SharedApplication.EndBackgroundTask (pipelineRunningTask);
 			});
 		}
 
@@ -184,8 +189,8 @@ namespace QRchestra
 		}
 
 		public void DidOutputMetadataObjects (AVCaptureOutput captureOutput,
-		                               AVMetadataObject[] metadataObjects,
-		                               AVCaptureConnection connection)
+									   AVMetadataObject [] metadataObjects,
+									   AVCaptureConnection connection)
 		{
 			Barcodes = metadataObjects.ToList ();
 		}
@@ -289,11 +294,10 @@ namespace QRchestra
 			}
 		}
 
-		class MetadataObjectsDelegate : AVCaptureMetadataOutputObjectsDelegate
-		{
-			public Action<AVCaptureMetadataOutput, AVMetadataObject[], AVCaptureConnection> DidOutputMetadataObjectsAction;
+		class MetadataObjectsDelegate : AVCaptureMetadataOutputObjectsDelegate {
+			public Action<AVCaptureMetadataOutput, AVMetadataObject [], AVCaptureConnection> DidOutputMetadataObjectsAction;
 
-			public override void DidOutputMetadataObjects (AVCaptureMetadataOutput captureOutput, AVMetadataObject[] metadataObjects, AVCaptureConnection connection)
+			public override void DidOutputMetadataObjects (AVCaptureMetadataOutput captureOutput, AVMetadataObject [] metadataObjects, AVCaptureConnection connection)
 			{
 				if (DidOutputMetadataObjectsAction != null)
 					DidOutputMetadataObjectsAction (captureOutput, metadataObjects, connection);

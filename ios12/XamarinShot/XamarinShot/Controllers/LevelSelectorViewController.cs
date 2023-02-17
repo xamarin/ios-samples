@@ -1,74 +1,67 @@
-﻿
-namespace XamarinShot
-{
-    using Foundation;
-    using XamarinShot.Models;
-    using XamarinShot.Utils;
-    using System;
-    using UIKit;
 
-    public interface ILevelSelectorViewControllerDelegate
-    {
-        void OnLevelSelected(LevelSelectorViewController controller, GameLevel level);
-    }
+namespace XamarinShot {
+	using Foundation;
+	using XamarinShot.Models;
+	using XamarinShot.Utils;
+	using System;
+	using UIKit;
 
-    /// <summary>
-    /// View controller for choosing levels.
-    /// </summary>
-    public partial class LevelSelectorViewController : UITableViewController
-    {
-        public LevelSelectorViewController(IntPtr handle) : base(handle) { }
+	public interface ILevelSelectorViewControllerDelegate {
+		void OnLevelSelected (LevelSelectorViewController controller, GameLevel level);
+	}
 
-        public ILevelSelectorViewControllerDelegate Delegate { get; set; }
+	/// <summary>
+	/// View controller for choosing levels.
+	/// </summary>
+	public partial class LevelSelectorViewController : UITableViewController {
+		public LevelSelectorViewController (IntPtr handle) : base (handle) { }
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-            this.TableView.Delegate = this;
-            this.TableView.DataSource = this;
-        }
+		public ILevelSelectorViewControllerDelegate Delegate { get; set; }
 
-        #region UITableViewDataSource
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
+			this.TableView.Delegate = this;
+			this.TableView.DataSource = this;
+		}
 
-        public override nint RowsInSection(UITableView tableView, nint section)
-        {
-            return GameLevel.AllLevels.Count;
-        }
+		#region UITableViewDataSource
 
-        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
-        {
-            var level = GameLevel.Level(indexPath.Row);
-            if (level == null)
-            {
-                throw new Exception($"Level {indexPath.Row} not found");
-            }
+		public override nint RowsInSection (UITableView tableView, nint section)
+		{
+			return GameLevel.AllLevels.Count;
+		}
 
-            var cell = this.TableView.DequeueReusableCell("LevelCell", indexPath);
-            cell.TextLabel.Text = level.Name;
+		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
+		{
+			var level = GameLevel.Level (indexPath.Row);
+			if (level == null) {
+				throw new Exception ($"Level {indexPath.Row} not found");
+			}
 
-            return cell;
-        }
+			var cell = this.TableView.DequeueReusableCell ("LevelCell", indexPath);
+			cell.TextLabel.Text = level.Name;
 
-        #endregion
+			return cell;
+		}
 
-        #region UITableViewDelegate
+		#endregion
 
-        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
-        {
-            var level = GameLevel.Level(indexPath.Row);
-            if (level != null)
-            {
-                UserDefaults.SelectedLevel = level;
-                this.Delegate?.OnLevelSelected(this, level);
+		#region UITableViewDelegate
 
-                this.NavigationController.PopViewController(true);
-            }
-            else
-            {
-                throw new Exception($"Level {indexPath.Row} not found");
-            }
-        }
+		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
+		{
+			var level = GameLevel.Level (indexPath.Row);
+			if (level != null) {
+				UserDefaults.SelectedLevel = level;
+				this.Delegate?.OnLevelSelected (this, level);
 
-        #endregion
-    }
+				this.NavigationController.PopViewController (true);
+			} else {
+				throw new Exception ($"Level {indexPath.Row} not found");
+			}
+		}
+
+		#endregion
+	}
 }

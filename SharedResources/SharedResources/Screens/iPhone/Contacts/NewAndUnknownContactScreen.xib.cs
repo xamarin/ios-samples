@@ -7,10 +7,8 @@ using UIKit;
 using AddressBook;
 using AddressBookUI;
 
-namespace Example_SharedResources.Screens.iPhone.Contacts
-{
-	public partial class NewAndUnknownContactScreen : UIViewController
-	{
+namespace Example_SharedResources.Screens.iPhone.Contacts {
+	public partial class NewAndUnknownContactScreen : UIViewController {
 		// you must declare the Address Book Controllers at the class-level, otherwise they'll get
 		// garbage collected when the method that creates them returns. When the events fire, the handlers
 		// will have also been GC'd
@@ -22,18 +20,18 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
-		public NewAndUnknownContactScreen (IntPtr handle) : base(handle)
+		public NewAndUnknownContactScreen (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public NewAndUnknownContactScreen (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public NewAndUnknownContactScreen (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
 
-		public NewAndUnknownContactScreen () : base("NewAndUnknownContactScreen", null)
+		public NewAndUnknownContactScreen () : base ("NewAndUnknownContactScreen", null)
 		{
 			Initialize ();
 		}
@@ -71,14 +69,14 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 				addressBookNewPerson.NewPersonComplete += (object sender, ABNewPersonCompleteEventArgs args) => {
 
 					// if the "done" button was clicked, rather than cancel
-					if(args.Completed) {
+					if (args.Completed) {
 						// show an alert view with the new contact ID
-						new UIAlertView ("Alert", "New contact created, ID: " + args.Person.Id.ToString(), null, "OK", null).Show();
+						new UIAlertView ("Alert", "New contact created, ID: " + args.Person.Id.ToString (), null, "OK", null).Show ();
 					}
 
 					// pop the controller off the stack
 					// HACK: NavigationController.PopViewControllerAnimated to NavigationController.PopViewController
-					NavigationController.PopViewController(true);
+					NavigationController.PopViewController (true);
 				};
 			};
 
@@ -111,7 +109,7 @@ namespace Example_SharedResources.Screens.iPhone.Contacts
 
 					// this dialog can be cancelled out of as well, but there is no Completed property, so we
 					// just have to do a null check
-					if(args.Person != null) {
+					if (args.Person != null) {
 						// show an alert view with the new contact ID
 						new UIAlertView ("Alert", "New contact created, ID: " + args.Person.Id.ToString (), null, "OK", null).Show ();
 					}

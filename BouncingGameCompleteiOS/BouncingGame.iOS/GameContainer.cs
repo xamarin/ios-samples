@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using CocosSharp;
 
-namespace BouncingGame.iOS
-{
-	public class GameContainer
-	{
+namespace BouncingGame.iOS {
+	public class GameContainer {
 		public GameContainer ()
 		{
 		}

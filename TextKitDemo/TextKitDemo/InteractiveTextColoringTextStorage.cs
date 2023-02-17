@@ -5,13 +5,11 @@ using Foundation;
 using UIKit;
 using CoreText;
 
-namespace TextKitDemo
-{
+namespace TextKitDemo {
 	/*
 	 * Shows how to use color specific portions of a buffer.
 	 */
-	public class InteractiveTextColoringTextStorage : NSTextStorage
-	{
+	public class InteractiveTextColoringTextStorage : NSTextStorage {
 		public Dictionary<string, NSDictionary> Tokens;
 		NSMutableAttributedString backingStore;
 		bool dynamicTextNeedsUpdate;
@@ -54,27 +52,27 @@ namespace TextKitDemo
 			if (changeRange.Location == 0 && changeRange.Length == 0)
 				return;
 
-			var searchRange = new NSRange (0,Value.Length);
-			int startLoc = Value.Substring (0, (int)changeRange.Location).LastIndexOfAny (" \n\t.".ToCharArray ());
-			int endLoc = Value.Substring ((int)(changeRange.Location + changeRange.Length)).IndexOfAny (" \n\t.".ToCharArray ());
-			if(startLoc != -1)
+			var searchRange = new NSRange (0, Value.Length);
+			int startLoc = Value.Substring (0, (int) changeRange.Location).LastIndexOfAny (" \n\t.".ToCharArray ());
+			int endLoc = Value.Substring ((int) (changeRange.Location + changeRange.Length)).IndexOfAny (" \n\t.".ToCharArray ());
+			if (startLoc != -1)
 				searchRange.Location = startLoc;
 			if (endLoc != -1)
 				searchRange.Length = changeRange.Location + endLoc + 1 - startLoc;
 			else
 				searchRange.Length = searchRange.Length - searchRange.Location;
 
-			searchRange.Location = Math.Min ((int)searchRange.Location, (int)changeRange.Location);
-			searchRange.Length = Math.Max ((int)searchRange.Length, (int)changeRange.Length);
+			searchRange.Location = Math.Min ((int) searchRange.Location, (int) changeRange.Location);
+			searchRange.Length = Math.Max ((int) searchRange.Length, (int) changeRange.Length);
 			ApplyTokenAttributes (searchRange);
 		}
 
 		void ApplyTokenAttributes (NSRange searchRange)
 		{
 			NSDictionary attributesForToken = Tokens ["DefaultTokenName"];
-			int startPos = (int)searchRange.Location;
+			int startPos = (int) searchRange.Location;
 
-			string text = backingStore.Value.Substring ((int)searchRange.Location,(int)searchRange.Length);
+			string text = backingStore.Value.Substring ((int) searchRange.Location, (int) searchRange.Length);
 			int nextSpace = text.IndexOfAny (" \n\t.".ToCharArray ());
 			int lastPos = 0;
 			string token;

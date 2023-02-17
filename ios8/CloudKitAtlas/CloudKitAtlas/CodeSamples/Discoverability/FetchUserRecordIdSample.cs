@@ -1,11 +1,9 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	public class FetchUserRecordIdSample : CodeSample
-	{
+namespace CloudKitAtlas {
+	public class FetchUserRecordIdSample : CodeSample {
 		public FetchUserRecordIdSample ()
 			: base (title: "FetchUserRecordId",
 					className: "CKContainer",

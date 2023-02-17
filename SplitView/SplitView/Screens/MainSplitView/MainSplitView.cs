@@ -2,14 +2,12 @@ using System;
 using UIKit;
 using CoreFoundation;
 
-namespace Example_SplitView.Screens.MainSplitView
-{
-	public class MainSplitView : UISplitViewController
-	{
+namespace Example_SplitView.Screens.MainSplitView {
+	public class MainSplitView : UISplitViewController {
 		protected Screens.MasterView.MasterTableView masterView;
 		protected Screens.DetailView.DetailViewScreen detailView;
 
-		public MainSplitView () : base()
+		public MainSplitView () : base ()
 		{
 			// create our master and detail views
 			masterView = new Screens.MasterView.MasterTableView ();
@@ -25,7 +23,7 @@ namespace Example_SplitView.Screens.MainSplitView
 			// when the master view controller is hid (portrait mode), we add a button to
 			// the detail view that when clicked will show the master view in a popover controller
 			this.WillHideViewController += (object sender, UISplitViewHideEventArgs e) => {
-				detailView.AddContentsButton(e.BarButtonItem);
+				detailView.AddContentsButton (e.BarButtonItem);
 			};
 
 			// when the master view controller is shown (landscape mode), remove the button
@@ -45,7 +43,7 @@ namespace Example_SplitView.Screens.MainSplitView
 			// http://spouliot.wordpress.com/2012/03/26/events-vs-objective-c-delegates/
 			// create an array of controllers from them and then assign it to the
 			// controllers property
-			ViewControllers = new UIViewController[] { masterView, detailView };
+			ViewControllers = new UIViewController [] { masterView, detailView };
 		}
 	}
 }

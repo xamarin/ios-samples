@@ -4,10 +4,8 @@ using UIKit;
 using System.CodeDom.Compiler;
 using CoreGraphics;
 
-namespace Touch
-{
-	partial class GestureViewController : UIViewController
-	{
+namespace Touch {
+	partial class GestureViewController : UIViewController {
 		#region Private Variables
 		//private bool imageHighlighted = false;
 		//private RectangleF originalImageFrame = RectangleF.Empty;

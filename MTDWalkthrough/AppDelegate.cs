@@ -6,11 +6,9 @@ using Foundation;
 using UIKit;
 using MonoTouch.Dialog;
 
-namespace MTDWalkthrough
-{
+namespace MTDWalkthrough {
 	[Register ("AppDelegate")]
-    public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow _window;
 		UINavigationController _nav;
 		DialogViewController _rootVC;
@@ -36,24 +34,24 @@ namespace MTDWalkthrough
 
 				++n;
 
-				var task = new Task{Name = "task " + n, DueDate = DateTime.Now};
+				var task = new Task { Name = "task " + n, DueDate = DateTime.Now };
 
 				var element = new EntryElement (task.Name, "Enter task description", task.Description);
 
 				var dateElement = new FutureDateElement ("Due Date", task.DueDate);
 
-				var taskElement = (Element)new RootElement (task.Name){
-                    new Section () {
+				var taskElement = (Element) new RootElement (task.Name){
+					new Section () {
 						element
 					},
-                    new Section () {
+					new Section () {
 						dateElement
-                    },
+					},
 					new Section ("Demo Retrieving Element Value") {
 						new StringElement ("Output Task Description",
 							delegate { Console.WriteLine (element.Value); })
 					}
-                };
+				};
 				_rootElement [0].Add (taskElement);
 			};
 
@@ -65,9 +63,8 @@ namespace MTDWalkthrough
 
 	}
 
-	public class FutureDateElement : DateElement
-	{
-		public FutureDateElement(string caption, DateTime date) : base(caption,date)
+	public class FutureDateElement : DateElement {
+		public FutureDateElement (string caption, DateTime date) : base (caption, date)
 		{
 
 		}
@@ -75,7 +72,7 @@ namespace MTDWalkthrough
 		{
 			UIDatePicker futureDatePicker = base.CreatePicker ();
 			futureDatePicker.BackgroundColor = UIColor.White;
-			futureDatePicker.MinimumDate = (NSDate)DateTime.Today;
+			futureDatePicker.MinimumDate = (NSDate) DateTime.Today;
 			return futureDatePicker;
 		}
 

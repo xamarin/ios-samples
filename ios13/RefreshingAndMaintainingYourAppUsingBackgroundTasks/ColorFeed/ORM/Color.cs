@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using SQLite;
 using SQLiteNetExtensions.Attributes;
@@ -23,6 +23,6 @@ namespace ColorFeed {
 			Blue = blue;
 		}
 
-		public UIColor ToUIColor () => new UIColor ((nfloat)Red, (nfloat)Green, (nfloat)Blue, 1);
+		public UIColor ToUIColor () => new UIColor ((nfloat) Red, (nfloat) Green, (nfloat) Blue, 1);
 	}
 }

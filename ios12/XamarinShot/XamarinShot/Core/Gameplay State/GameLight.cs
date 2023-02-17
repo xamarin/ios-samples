@@ -1,110 +1,102 @@
-﻿
-namespace XamarinShot.Models
-{
-    using CoreGraphics;
-    using SceneKit;
-    using XamarinShot.Utils;
-    using System;
 
-    public class GameLight
-    {
-        private readonly GameLightProperties properties = new GameLightProperties();
+namespace XamarinShot.Models {
+	using CoreGraphics;
+	using SceneKit;
+	using XamarinShot.Utils;
+	using System;
 
-        private readonly SCNNode node;
+	public class GameLight {
+		private readonly GameLightProperties properties = new GameLightProperties ();
 
-        public GameLight(SCNNode node)
-        {
-            this.node = node;
-        }
+		private readonly SCNNode node;
 
-        public void UpdateProperties()
-        {
-            var gameObject = this.node.GetGameObject();
-            if (gameObject != null)
-            {
-                // use the props data, or else use the defaults in the struct above
-                var shadowMapSize = gameObject.PropFloat2("shadowMapSize"); 
-                if(shadowMapSize.HasValue)
-                {
-                    this.properties.ShadowMapSize = shadowMapSize.Value;
-                }
+		public GameLight (SCNNode node)
+		{
+			this.node = node;
+		}
 
-                var angles = gameObject.PropFloat3("angles");
-                if (angles.HasValue)
-                {
-                    var toRadians = (float)Math.PI / 180f;
-                    properties.Angles = angles.Value * toRadians;
-                }
+		public void UpdateProperties ()
+		{
+			var gameObject = this.node.GetGameObject ();
+			if (gameObject != null) {
+				// use the props data, or else use the defaults in the struct above
+				var shadowMapSize = gameObject.PropFloat2 ("shadowMapSize");
+				if (shadowMapSize.HasValue) {
+					this.properties.ShadowMapSize = shadowMapSize.Value;
+				}
 
-                var shadowMode = gameObject.PropInt("shadowMode");
-                if (shadowMode.HasValue)
-                {
-                    this.properties.ShadowMode = shadowMode.Value;
-                }
-            }
-        }
+				var angles = gameObject.PropFloat3 ("angles");
+				if (angles.HasValue) {
+					var toRadians = (float) Math.PI / 180f;
+					properties.Angles = angles.Value * toRadians;
+				}
 
-        public void TransferProperties()
-        {
-            // are euler's set at refeference (ShadowLight) or internal node (LightNode)
-            var lightNode = this.node.FindChildNode("LightNode", true);
-            var light = lightNode.Light;
+				var shadowMode = gameObject.PropInt ("shadowMode");
+				if (shadowMode.HasValue) {
+					this.properties.ShadowMode = shadowMode.Value;
+				}
+			}
+		}
 
-            // As shadow map size is reduced get a softer shadow but more acne
-            // and bias results in shadow offset.  Mostly thin geometry like the boxes
-            // and the shadow plane have acne.  Turn off z-writes on the shadow plane.
+		public void TransferProperties ()
+		{
+			// are euler's set at refeference (ShadowLight) or internal node (LightNode)
+			var lightNode = this.node.FindChildNode ("LightNode", true);
+			var light = lightNode.Light;
 
-            switch (this.properties.ShadowMode)
-            {
-                case 0:
-                    // activate special filtering mode with 16 sample fixed pattern
-                    // this slows down the rendering by 2x
-                    light.ShadowRadius = 0f;
-                    light.ShadowSampleCount = 16;
-                    break;
+			// As shadow map size is reduced get a softer shadow but more acne
+			// and bias results in shadow offset.  Mostly thin geometry like the boxes
+			// and the shadow plane have acne.  Turn off z-writes on the shadow plane.
 
-                case 1:
-                    light.ShadowRadius = 3f; // 2.5
-                    light.ShadowSampleCount = 8;
-                    break;
+			switch (this.properties.ShadowMode) {
+			case 0:
+				// activate special filtering mode with 16 sample fixed pattern
+				// this slows down the rendering by 2x
+				light.ShadowRadius = 0f;
+				light.ShadowSampleCount = 16;
+				break;
 
-                case 2:
-                    // as resolution decreases more acne, use bias and cutoff in shadowPlane shaderModifier
-                    light.ShadowRadius = 1f;
-                    light.ShadowSampleCount = 1;
-                    break;
-                default:
-                    break;
-            }
+			case 1:
+				light.ShadowRadius = 3f; // 2.5
+				light.ShadowSampleCount = 8;
+				break;
 
-            // when true, this reduces acne, but is causing shadow to separate
-            // not seeing much acne, so turn it off for now
-            light.ForcesBackFaceCasters = false;
+			case 2:
+				// as resolution decreases more acne, use bias and cutoff in shadowPlane shaderModifier
+				light.ShadowRadius = 1f;
+				light.ShadowSampleCount = 1;
+				break;
+			default:
+				break;
+			}
 
-            light.ShadowMapSize = new CGSize(this.properties.ShadowMapSize.X,
-                                             this.properties.ShadowMapSize.Y);
+			// when true, this reduces acne, but is causing shadow to separate
+			// not seeing much acne, so turn it off for now
+			light.ForcesBackFaceCasters = false;
 
-            // Can turn on cascades with auto-adjust disabled here, but not in editor.
-            // Based on shadowDistance where next cascade starts.  These are the defaults.
-            // light.shadowCascadeCount = 2
-            // light.shadowCascadeSplittingFactor = 0.15
+			light.ShadowMapSize = new CGSize (this.properties.ShadowMapSize.X,
+											 this.properties.ShadowMapSize.Y);
 
-            // this is a square volume that is mapped to the shadowMapSize
-            // may need to adjust this based on the angle of the light and table size
-            // setting angles won't work until we isolate angles in the level file to a single node
-            // lightNode.parent.angles = prop.angles
-            light.OrthographicScale = 15f;
-            light.ZNear = 1f;
-            light.ZFar = 30f;
-        }
+			// Can turn on cascades with auto-adjust disabled here, but not in editor.
+			// Based on shadowDistance where next cascade starts.  These are the defaults.
+			// light.shadowCascadeCount = 2
+			// light.shadowCascadeSplittingFactor = 0.15
 
-        private class GameLightProperties
-        {
-            public OpenTK.Vector2 ShadowMapSize { get; set; } = new OpenTK.Vector2(2048f, 4096f);
+			// this is a square volume that is mapped to the shadowMapSize
+			// may need to adjust this based on the angle of the light and table size
+			// setting angles won't work until we isolate angles in the level file to a single node
+			// lightNode.parent.angles = prop.angles
+			light.OrthographicScale = 15f;
+			light.ZNear = 1f;
+			light.ZFar = 30f;
+		}
 
-            public SCNVector3 Angles { get; set; } = new SCNVector3(-90f, 0f, 0f);
+		private class GameLightProperties {
+			public OpenTK.Vector2 ShadowMapSize { get; set; } = new OpenTK.Vector2 (2048f, 4096f);
 
-            public int ShadowMode { get; set; } = 0;
-        }
-    }
+			public SCNVector3 Angles { get; set; } = new SCNVector3 (-90f, 0f, 0f);
+
+			public int ShadowMode { get; set; } = 0;
+		}
+	}
 }

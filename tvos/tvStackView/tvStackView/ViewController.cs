@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 
-namespace MySingleView
-{
-	public partial class ViewController : UIViewController
-	{
+namespace MySingleView {
+	public partial class ViewController : UIViewController {
 		#region Constructors
 		public ViewController (IntPtr handle) : base (handle)
 		{
@@ -27,10 +25,11 @@ namespace MySingleView
 		#endregion
 
 		#region Custom Actions
-		partial void PlayerCountChanged (Foundation.NSObject sender) {
+		partial void PlayerCountChanged (Foundation.NSObject sender)
+		{
 
 			// Take Action based on the segment
-			switch(PlayerCount.SelectedSegment) {
+			switch (PlayerCount.SelectedSegment) {
 			case 0:
 				Player1.Hidden = false;
 				Player2.Hidden = true;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
@@ -7,10 +7,8 @@ using Common;
 using ListerKit;
 using System.Threading.Tasks;
 
-namespace Lister
-{
-	public class ListInfo : IEquatable<ListInfo>
-	{
+namespace Lister {
+	public class ListInfo : IEquatable<ListInfo> {
 		public ListColor? Color { get; set; }
 
 		public NSUrl Url { get; private set; }
@@ -23,13 +21,13 @@ namespace Lister
 			}
 		}
 
-		public ListInfo(NSUrl url)
+		public ListInfo (NSUrl url)
 		{
 			Url = url;
 			Name = string.Empty;
 		}
 
-		public Task FetchInfoAsync()
+		public Task FetchInfoAsync ()
 		{
 			var tcs = new TaskCompletionSource<object> ();
 
@@ -41,7 +39,7 @@ namespace Lister
 			return tcs.Task;
 		}
 
-		async void FetchInfo(TaskCompletionSource<object> tcs)
+		async void FetchInfo (TaskCompletionSource<object> tcs)
 		{
 			ListDocument document = new ListDocument (Url);
 
@@ -51,13 +49,13 @@ namespace Lister
 				Name = document.LocalizedName;
 
 				tcs.SetResult (null);
-				document.Close(null);
+				document.Close (null);
 			} else {
 				tcs.SetException (new InvalidOperationException ("Your attempt to open the document failed."));
 			}
 		}
 
-		public void CreateAndSaveWithCompletionHandler(UIOperationHandler completionHandler)
+		public void CreateAndSaveWithCompletionHandler (UIOperationHandler completionHandler)
 		{
 			List list = new List ();
 			list.Color = Color.Value;
@@ -75,8 +73,8 @@ namespace Lister
 			if (obj == null || GetType () != obj.GetType ())
 				return false;
 
-			ListInfo listInfo = (ListInfo)obj;
-			return (Url == null && listInfo.Url == null) || Url.Equals(listInfo.Url);
+			ListInfo listInfo = (ListInfo) obj;
+			return (Url == null && listInfo.Url == null) || Url.Equals (listInfo.Url);
 		}
 
 		public bool Equals (ListInfo other)
@@ -84,7 +82,7 @@ namespace Lister
 			if (other == null || GetType () != other.GetType ())
 				return false;
 
-			return (Url == null && other.Url == null) || Url.Equals(other.Url);
+			return (Url == null && other.Url == null) || Url.Equals (other.Url);
 		}
 
 		public override int GetHashCode ()

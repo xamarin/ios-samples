@@ -1,16 +1,14 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
-namespace tvCollection
-{
+namespace tvCollection {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		#region Computed Properties
-		public override UIWindow Window { get; set;}
-		public CityInfo SelectedCity { get; set;} = new CityInfo("City02.jpg", "Turning Circle", true);
+		public override UIWindow Window { get; set; }
+		public CityInfo SelectedCity { get; set; } = new CityInfo ("City02.jpg", "Turning Circle", true);
 		#endregion
 
 		#region Override Methods

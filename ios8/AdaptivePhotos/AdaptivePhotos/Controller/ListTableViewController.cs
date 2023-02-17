@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 using ObjCRuntime;
 
-namespace AdaptivePhotos
-{
-	public class ListTableViewController : CustomTableViewController
-	{
+namespace AdaptivePhotos {
+	public class ListTableViewController : CustomTableViewController {
 		readonly NSString ListTableViewControllerCellIdentifier = new NSString ("Cell");
 
 		public User User { get; set; }
@@ -21,7 +19,7 @@ namespace AdaptivePhotos
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), ListTableViewControllerCellIdentifier);
+			TableView.RegisterClassForCellReuse (typeof (UITableViewCell), ListTableViewControllerCellIdentifier);
 			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("showDetailTargetDidChange:"),
 				UIViewController.ShowDetailTargetDidChangeNotification, null);
 			ClearsSelectionOnViewWillAppear = false;
@@ -63,7 +61,7 @@ namespace AdaptivePhotos
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return (nint)User.Conversations.Count;
+			return (nint) User.Conversations.Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
@@ -96,7 +94,7 @@ namespace AdaptivePhotos
 				controller.Title = conversation.Name;
 				ShowViewController (controller, this);
 			} else {
-				var photo = conversation.Photos.GetItem <Photo> (conversation.Photos.Count - 1);
+				var photo = conversation.Photos.GetItem<Photo> (conversation.Photos.Count - 1);
 				var controller = new PhotoViewController {
 					Photo = photo,
 					Title = conversation.Name
@@ -115,7 +113,7 @@ namespace AdaptivePhotos
 			controller.NavigationItem.RightBarButtonItem = new UIBarButtonItem (UIBarButtonSystemItem.Done, CloseProfile);
 			var navController = new UINavigationController (controller);
 			navController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
-			navController.PopoverPresentationController.BarButtonItem = (UIBarButtonItem)sender;
+			navController.PopoverPresentationController.BarButtonItem = (UIBarButtonItem) sender;
 			navController.PopoverPresentationController.PermittedArrowDirections = UIPopoverArrowDirection.Any;
 			PresentViewController (navController, true, null);
 		}
@@ -133,7 +131,7 @@ namespace AdaptivePhotos
 
 		Conversation ConversationForIndexPath (NSIndexPath indexPath)
 		{
-			return User.Conversations.GetItem<Conversation> ((nuint)indexPath.Item);
+			return User.Conversations.GetItem<Conversation> ((nuint) indexPath.Item);
 		}
 	}
 }

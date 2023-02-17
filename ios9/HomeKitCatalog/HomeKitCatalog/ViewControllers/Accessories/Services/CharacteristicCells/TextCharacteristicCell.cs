@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 
 using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `CharacteristicCell` subclass that contains a text field. Used for text-input characteristics.
 	[Register ("TextCharacteristicCell")]
-	public class TextCharacteristicCell : CharacteristicCell, IUITextFieldDelegate
-	{
+	public class TextCharacteristicCell : CharacteristicCell, IUITextFieldDelegate {
 		[Outlet ("textField")]
 		public UITextField TextField { get; set; }
 
@@ -68,7 +66,7 @@ namespace HomeKitCatalog
 		[Export ("textFieldDidEndEditing:")]
 		public void EditingEnded (UITextField textField)
 		{
-			SetValue ((NSString)TextField.Text, true);
+			SetValue ((NSString) TextField.Text, true);
 		}
 	}
 }

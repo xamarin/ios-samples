@@ -54,7 +54,7 @@ namespace ButtonTapper3000 {
 
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
-			 foreach (var touch in touches) {
+			foreach (var touch in touches) {
 				var location = (touch as UITouch).LocationInNode (this);
 
 				if (leaderboardsButton.ContainsPoint (location)) {
@@ -108,12 +108,13 @@ namespace ButtonTapper3000 {
 			AddChild (backButton);
 		}
 
-		void LoadAchievementInfo (GKAchievementDescription[] descriptions, NSError error)
+		void LoadAchievementInfo (GKAchievementDescription [] descriptions, NSError error)
 		{
 			if (descriptions == null)
 				return;
 
-			GKAchievement.LoadAchievements (delegate (GKAchievement[] achievements, NSError err) {
+			GKAchievement.LoadAchievements (delegate (GKAchievement [] achievements, NSError err)
+			{
 				int completeOffset = 0;
 				int incompleteOffset = 0;
 
@@ -134,7 +135,8 @@ namespace ButtonTapper3000 {
 					};
 					AddChild (achievementLabel);
 
-					description.LoadImage (delegate (UIImage image, NSError imageError) {
+					description.LoadImage (delegate (UIImage image, NSError imageError)
+					{
 						if (image == null)
 							image = UIImage.FromFile ("Images/DefaultPlayerPhoto.png");
 						var sprite = SKSpriteNode.FromTexture (SKTexture.FromImage (image), new CGSize (32, 32));
@@ -162,7 +164,7 @@ namespace ButtonTapper3000 {
 
 	public class LeaderboardSetsScreen : BasicScene {
 		SKLabelNode backButton;
-		GKLeaderboardSet[] leaderboardSets;
+		GKLeaderboardSet [] leaderboardSets;
 		List<SKLabelNode> leaderboardSetButtons;
 
 		public LeaderboardSetsScreen (CGSize size) : base (size)
@@ -189,7 +191,7 @@ namespace ButtonTapper3000 {
 			AddChild (backButton);
 		}
 
-		void LoadLeaderboardSets (GKLeaderboardSet[] leaderboardSets, NSError error)
+		void LoadLeaderboardSets (GKLeaderboardSet [] leaderboardSets, NSError error)
 		{
 			this.leaderboardSets = leaderboardSets;
 			if (leaderboardSets == null)
@@ -262,7 +264,7 @@ namespace ButtonTapper3000 {
 			AddChild (backButton);
 		}
 
-		void LoadLeaderboard (GKLeaderboard[] leaderboards, NSError error)
+		void LoadLeaderboard (GKLeaderboard [] leaderboards, NSError error)
 		{
 			this.leaderboards = leaderboards;
 			int offset = 0;
@@ -334,7 +336,7 @@ namespace ButtonTapper3000 {
 
 		void DisplayScore (GKScore score, int rank, GKPlayer player)
 		{
-			CGPoint[] podiumPositions = new CGPoint[] {
+			CGPoint [] podiumPositions = new CGPoint [] {
 				new CGPoint (0, 100),
 				new CGPoint (-84, 75),
 				new CGPoint (84, 50)
@@ -348,7 +350,8 @@ namespace ButtonTapper3000 {
 				Position = new CGPoint (FrameMidX + currentPoint.X, FrameMidY + currentPoint.Y - 32)
 			};
 
-			player.LoadPhoto (GKPhotoSize.Small, delegate (UIImage photo, NSError error) {
+			player.LoadPhoto (GKPhotoSize.Small, delegate (UIImage photo, NSError error)
+			{
 				if (photo == null)
 					photo = UIImage.FromFile ("Images/DefaultPlayerPhoto.png");
 				var image = SKSpriteNode.FromTexture (SKTexture.FromImage (photo), new CGSize (32, 32));
@@ -369,9 +372,10 @@ namespace ButtonTapper3000 {
 			string [] identifiers = new string [scores.Length];
 			int n = 0;
 			foreach (var score in scores)
-				identifiers [n++] = score.Player.ToString();
+				identifiers [n++] = score.Player.ToString ();
 
-			GKPlayer.LoadPlayersForIdentifiers (identifiers, delegate (GKPlayer[] players, NSError error) {
+			GKPlayer.LoadPlayersForIdentifiers (identifiers, delegate (GKPlayer [] players, NSError error)
+			{
 				for (int i = 0; i < scores.Length; i++)
 					DisplayScore (scores [i], i, players [i]);
 			});

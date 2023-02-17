@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Drawing;
 
@@ -6,11 +6,9 @@ using CoreAnimation;
 using Foundation;
 using CoreGraphics;
 
-namespace Common
-{
-	public class CheckBoxLayer : CALayer
-	{
-		static readonly string[] keys = new string[] {
+namespace Common {
+	public class CheckBoxLayer : CALayer {
+		static readonly string [] keys = new string [] {
 			"tintColor",
 			"checked",
 			"strokeFactor",
@@ -18,21 +16,21 @@ namespace Common
 			"markInsetFactor"
 		};
 
-		static readonly nfloat[] components = new nfloat[] {
+		static readonly nfloat [] components = new nfloat [] {
 			0.5f, 0.5f, 0.5f
 		};
 
-		[Outlet("strokeFactor")]
+		[Outlet ("strokeFactor")]
 		public float StrokeFactor { get; set; }
 
-		[Outlet("insetFactor")]
+		[Outlet ("insetFactor")]
 		public float InsetFactor { get; set; }
 
-		[Outlet("markInsetFactor")]
+		[Outlet ("markInsetFactor")]
 		public float MarkInsetFactor { get; set; }
 
 		CGColor tintColor;
-		[Outlet("tintColor")]
+		[Outlet ("tintColor")]
 		public CGColor TintColor {
 			get {
 				return tintColor;
@@ -44,7 +42,7 @@ namespace Common
 		}
 
 		bool isChecked;
-		[Outlet("checked")]
+		[Outlet ("checked")]
 		public bool Checked {
 			get {
 				return isChecked;
@@ -86,7 +84,7 @@ namespace Common
 
 			// Create the outer border for the check box.
 			nfloat outerDimension = size - 2 * checkBoxInset;
-			var checkBoxRect = new CGRect(checkBoxInset, checkBoxInset, outerDimension, outerDimension);
+			var checkBoxRect = new CGRect (checkBoxInset, checkBoxInset, outerDimension, outerDimension);
 			checkBoxRect = transform.TransformRect (checkBoxRect);
 
 			// Make the desired width of the outer box.
@@ -103,7 +101,7 @@ namespace Common
 				nfloat markInset = MarkInsetFactor * size;
 
 				nfloat markDimension = size - 2 * markInset;
-				var markRect = new CGRect(markInset, markInset, markDimension, markDimension);
+				var markRect = new CGRect (markInset, markInset, markDimension, markDimension);
 				markRect = transform.TransformRect (markRect);
 
 				context.SetFillColor (TintColor);
@@ -112,7 +110,7 @@ namespace Common
 		}
 
 		[Export ("needsDisplayForKey:")]
-		public new static bool NeedsDisplayForKey(string key)
+		public new static bool NeedsDisplayForKey (string key)
 		{
 			if (keys.Contains (key))
 				return true;

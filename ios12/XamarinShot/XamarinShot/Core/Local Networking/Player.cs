@@ -1,37 +1,35 @@
-﻿
-namespace XamarinShot.Models
-{
-    using System;
-    using MultipeerConnectivity;
 
-    public class Player
-    {
-        private readonly int hashValue;
+namespace XamarinShot.Models {
+	using System;
+	using MultipeerConnectivity;
 
-        public Player(MCPeerID peerID)
-        {
-            this.PeerId = peerID;
-            this.hashValue = peerID.GetHashCode();
-        }
+	public class Player {
+		private readonly int hashValue;
 
-        public Player(string username)
-        {
-            this.PeerId = new MCPeerID(username);
-            this.hashValue = this.PeerId.GetHashCode();
-        }
+		public Player (MCPeerID peerID)
+		{
+			this.PeerId = peerID;
+			this.hashValue = peerID.GetHashCode ();
+		}
 
-        public string Username => this.PeerId.DisplayName;
+		public Player (string username)
+		{
+			this.PeerId = new MCPeerID (username);
+			this.hashValue = this.PeerId.GetHashCode ();
+		}
 
-        public MCPeerID PeerId { get; private set; }
+		public string Username => this.PeerId.DisplayName;
 
-        public override bool Equals(object obj)
-        {
-            return this.PeerId == (obj as Player)?.PeerId;
-        }
+		public MCPeerID PeerId { get; private set; }
 
-        public override int GetHashCode()
-        {
-            return this.PeerId.GetHashCode();
-        }
-    }
+		public override bool Equals (object obj)
+		{
+			return this.PeerId == (obj as Player)?.PeerId;
+		}
+
+		public override int GetHashCode ()
+		{
+			return this.PeerId.GetHashCode ();
+		}
+	}
 }

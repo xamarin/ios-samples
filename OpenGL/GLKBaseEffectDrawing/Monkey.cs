@@ -1,11 +1,9 @@
 using System;
 using OpenTK;
 
-namespace GLKBaseEffectDrawing
-{
-	public static class Monkey
-	{
-		public static float[] MeshVertexData = {
+namespace GLKBaseEffectDrawing {
+	public static class Monkey {
+		public static float [] MeshVertexData = {
 			/*v:*/0.351562f, 0.500724f, 0.433432f, /*n:*/0.183599f, -0.005310f, 0.982971f,
 			/*v:*/0.445312f, 0.414787f, 0.386557f, /*n:*/0.715171f, -0.662465f, 0.222724f,
 			/*v:*/0.476562f, 0.500724f, 0.378744f, /*n:*/0.964446f, -0.012665f, 0.263863f,

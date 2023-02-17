@@ -3,14 +3,12 @@ using System;
 using System.Collections.Generic;
 using Foundation;
 
-namespace InputStreamTest
-{
-	public class NativeUploader : NSObject
-	{
+namespace InputStreamTest {
+	public class NativeUploader : NSObject {
 		NSMutableUrlRequest request;
 		NSUrlConnection url_connection;
 		ZInputStream random_input_stream;
-		Dictionary<string,string> headers;
+		Dictionary<string, string> headers;
 
 		protected override void Dispose (bool disposing)
 		{
@@ -20,7 +18,7 @@ namespace InputStreamTest
 			}
 
 			if (request != null) {
-				if(request.BodyStream!=null)
+				if (request.BodyStream != null)
 					request.BodyStream = null;
 				request.Dispose ();
 				request = null;
@@ -51,7 +49,8 @@ namespace InputStreamTest
 			AddHeader ("Content-Type", "application/octet-stream");
 			AddHeader ("Content-Length", content_length.ToString ());
 
-			InvokeOnMainThread (delegate {
+			InvokeOnMainThread (delegate
+			{
 				try {
 					request = CreateNativePostRequest (url, content_length);
 				} catch (Exception e) {
@@ -104,7 +103,7 @@ namespace InputStreamTest
 			{
 				success_callback = success;
 				failure_callback = failure;
-				data = new NSMutableData();
+				data = new NSMutableData ();
 			}
 
 			public override void ReceivedData (NSUrlConnection connection, NSData d)
@@ -121,7 +120,7 @@ namespace InputStreamTest
 					return;
 				}
 
-				status_code = (int)http_response.StatusCode;
+				status_code = (int) http_response.StatusCode;
 				Console.WriteLine ("Status code of result:   '{0}'", status_code);
 			}
 

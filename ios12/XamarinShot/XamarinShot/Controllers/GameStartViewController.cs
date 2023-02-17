@@ -1,161 +1,152 @@
-﻿
-namespace XamarinShot
-{
-    using Foundation;
-    using XamarinShot.Models;
-    using XamarinShot.Models.Enums;
-    using XamarinShot.Utils;
-    using System;
-    using UIKit;
 
-    public interface IGameStartViewControllerDelegate
-    {
-        void OnSoloGamePressed(UIViewController controller, UIButton button);
-        void OnGameSelected(UIViewController controller, NetworkSession game);
-        void OnGameStarted(UIViewController controller, NetworkSession game);
-        void OnSettingsSelected(UIViewController controller);
-    }
+namespace XamarinShot {
+	using Foundation;
+	using XamarinShot.Models;
+	using XamarinShot.Models.Enums;
+	using XamarinShot.Utils;
+	using System;
+	using UIKit;
 
-    /// <summary>
-    /// View controller for in-game 2D overlay UI.
-    /// </summary>
-    public partial class GameStartViewController : UIViewController, IProximityManagerDelegate
-    {
-        private readonly Player myself = UserDefaults.Myself;
+	public interface IGameStartViewControllerDelegate {
+		void OnSoloGamePressed (UIViewController controller, UIButton button);
+		void OnGameSelected (UIViewController controller, NetworkSession game);
+		void OnGameStarted (UIViewController controller, NetworkSession game);
+		void OnSettingsSelected (UIViewController controller);
+	}
 
-        private readonly ProximityManager proximityManager = ProximityManager.Shared;
+	/// <summary>
+	/// View controller for in-game 2D overlay UI.
+	/// </summary>
+	public partial class GameStartViewController : UIViewController, IProximityManagerDelegate {
+		private readonly Player myself = UserDefaults.Myself;
 
-        private GameBrowser gameBrowser;
+		private readonly ProximityManager proximityManager = ProximityManager.Shared;
 
-        private ButtonBeep backButtonBeep;
+		private GameBrowser gameBrowser;
 
-        private ButtonBeep buttonBeep;
+		private ButtonBeep backButtonBeep;
 
-        public GameStartViewController(IntPtr handle) : base(handle) { }
+		private ButtonBeep buttonBeep;
 
-        public IGameStartViewControllerDelegate Delegate { get; set; }
+		public GameStartViewController (IntPtr handle) : base (handle) { }
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+		public IGameStartViewControllerDelegate Delegate { get; set; }
 
-            this.proximityManager.Delegate = this;
-            this.hostButton.ClipsToBounds = true;
-            this.hostButton.Layer.CornerRadius = 30f;
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
 
-            this.joinButton.ClipsToBounds = true;
-            this.joinButton.Layer.CornerRadius = 30f;
+			this.proximityManager.Delegate = this;
+			this.hostButton.ClipsToBounds = true;
+			this.hostButton.Layer.CornerRadius = 30f;
 
-            this.buttonBeep = ButtonBeep.Create("button_forward.wav", 0.5f);
-            this.backButtonBeep = ButtonBeep.Create("button_backward.wav", 0.5f);
-        }
+			this.joinButton.ClipsToBounds = true;
+			this.joinButton.Layer.CornerRadius = 30f;
 
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
+			this.buttonBeep = ButtonBeep.Create ("button_forward.wav", 0.5f);
+			this.backButtonBeep = ButtonBeep.Create ("button_backward.wav", 0.5f);
+		}
 
-            if (UserDefaults.GameRoomMode)
-            {
-                //os_log(.debug, "Will start beacon ranging")
-                this.proximityManager.Start();
-            }
-        }
+		public override void ViewDidAppear (bool animated)
+		{
+			base.ViewDidAppear (animated);
 
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        {
-            if (!string.IsNullOrEmpty(segue.Identifier) &&
-               Enum.TryParse<GameSegue>(segue.Identifier, true, out var segueType))
-            {
-                switch (segueType)
-                {
-                    case GameSegue.EmbeddedGameBrowser:
-                        if (segue.DestinationViewController is NetworkGameBrowserViewController browser)
-                        {
-                            this.gameBrowser = new GameBrowser(this.myself);
-                            browser.Browser = this.gameBrowser;
-                            browser.ProximityManager = this.proximityManager;
-                        }
+			if (UserDefaults.GameRoomMode) {
+				//os_log(.debug, "Will start beacon ranging")
+				this.proximityManager.Start ();
+			}
+		}
 
-                        break;
-                }
-            }
-        }
+		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
+		{
+			if (!string.IsNullOrEmpty (segue.Identifier) &&
+			   Enum.TryParse<GameSegue> (segue.Identifier, true, out var segueType)) {
+				switch (segueType) {
+				case GameSegue.EmbeddedGameBrowser:
+					if (segue.DestinationViewController is NetworkGameBrowserViewController browser) {
+						this.gameBrowser = new GameBrowser (this.myself);
+						browser.Browser = this.gameBrowser;
+						browser.ProximityManager = this.proximityManager;
+					}
 
-        public void JoinGame(NetworkSession session)
-        {
-            this.Delegate?.OnGameSelected(this, session);
-            this.SetupOverlayVC();
-        }
+					break;
+				}
+			}
+		}
 
-        partial void startSoloGamePressed(UIButton sender)
-        {
-            this.Delegate?.OnSoloGamePressed(this, sender);
-        }
+		public void JoinGame (NetworkSession session)
+		{
+			this.Delegate?.OnGameSelected (this, session);
+			this.SetupOverlayVC ();
+		}
 
-        partial void startGamePressed(UIButton sender)
-        {
-            this.buttonBeep.Play();
-            this.StartGame(this.myself);
-        }
+		partial void startSoloGamePressed (UIButton sender)
+		{
+			this.Delegate?.OnSoloGamePressed (this, sender);
+		}
 
-        partial void settingsPressed(UIButton sender)
-        {
-            this.Delegate?.OnSettingsSelected(this);
-        }
+		partial void startGamePressed (UIButton sender)
+		{
+			this.buttonBeep.Play ();
+			this.StartGame (this.myself);
+		}
 
-        partial void joinButtonPressed(UIButton sender)
-        {
-            this.buttonBeep.Play();
-            this.ShowViews(false);
-        }
+		partial void settingsPressed (UIButton sender)
+		{
+			this.Delegate?.OnSettingsSelected (this);
+		}
 
-        partial void backButtonPressed(UIButton sender)
-        {
-            this.backButtonBeep.Play();
-            this.SetupOverlayVC();
-        }
+		partial void joinButtonPressed (UIButton sender)
+		{
+			this.buttonBeep.Play ();
+			this.ShowViews (false);
+		}
 
-        private void SetupOverlayVC()
-        {
-            this.ShowViews(true);
-        }
+		partial void backButtonPressed (UIButton sender)
+		{
+			this.backButtonBeep.Play ();
+			this.SetupOverlayVC ();
+		}
 
-        private void ShowViews(bool forSetup)
-        {
-            UIView.Transition(this.View, 1d, UIViewAnimationOptions.TransitionCrossDissolve, () =>
-            {
-                this.blurView.Hidden = forSetup;
-                this.browserContainerView.Hidden = forSetup;
-                this.backButton.Hidden = forSetup;
-                this.nearbyGamesLabel.Hidden = forSetup;
+		private void SetupOverlayVC ()
+		{
+			this.ShowViews (true);
+		}
 
-                this.joinButton.Hidden = !forSetup;
-                this.hostButton.Hidden = !forSetup;
-            }, null);
-        }
+		private void ShowViews (bool forSetup)
+		{
+			UIView.Transition (this.View, 1d, UIViewAnimationOptions.TransitionCrossDissolve, () => {
+				this.blurView.Hidden = forSetup;
+				this.browserContainerView.Hidden = forSetup;
+				this.backButton.Hidden = forSetup;
+				this.nearbyGamesLabel.Hidden = forSetup;
 
-        private void StartGame(Player player)
-        {
-            GameTableLocation location = null;
-            if (UserDefaults.GameRoomMode)
-            {
-                location = this.proximityManager.ClosestLocation;
-            }
+				this.joinButton.Hidden = !forSetup;
+				this.hostButton.Hidden = !forSetup;
+			}, null);
+		}
 
-            var gameSession = new NetworkSession(player, true, location, this.myself);
-            this.Delegate?.OnGameStarted(this, gameSession);
-            this.SetupOverlayVC();
-        }
+		private void StartGame (Player player)
+		{
+			GameTableLocation location = null;
+			if (UserDefaults.GameRoomMode) {
+				location = this.proximityManager.ClosestLocation;
+			}
 
-        #region IProximityManagerDelegate
+			var gameSession = new NetworkSession (player, true, location, this.myself);
+			this.Delegate?.OnGameStarted (this, gameSession);
+			this.SetupOverlayVC ();
+		}
 
-        public void LocationChanged(ProximityManager manager, GameTableLocation location)
-        {
-            this.gameBrowser?.Refresh();
-        }
+		#region IProximityManagerDelegate
 
-        public void AuthorizationChanged(ProximityManager manager, bool authorization) { }
+		public void LocationChanged (ProximityManager manager, GameTableLocation location)
+		{
+			this.gameBrowser?.Refresh ();
+		}
 
-        #endregion
-    }
+		public void AuthorizationChanged (ProximityManager manager, bool authorization) { }
+
+		#endregion
+	}
 }

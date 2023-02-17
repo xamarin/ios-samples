@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -38,9 +38,9 @@ namespace Conference_Diffable.Diffable {
 			NSCollectionLayoutSection SectionProviderHandler (nint sectionIndex, INSCollectionLayoutEnvironment layoutEnvironment)
 			{
 				var contentSize = layoutEnvironment.Container.EffectiveContentSize;
-				var columns = (int)(contentSize.Width / nodeSize.Width);
+				var columns = (int) (contentSize.Width / nodeSize.Width);
 				var rowHeight = nodeSize.Height;
-				
+
 				var itemSize = NSCollectionLayoutSize.Create (NSCollectionLayoutDimension.CreateFractionalWidth (1),
 					NSCollectionLayoutDimension.CreateFractionalHeight (1));
 				var item = NSCollectionLayoutItem.Create (itemSize);
@@ -171,8 +171,8 @@ namespace Conference_Diffable.Diffable {
 			return snapshot;
 		}
 
-		int GetRows (CGRect bounds) => (int)(bounds.Height / nodeSize.Height);
-		int GetColumns (CGRect bounds) => (int)(bounds.Width / nodeSize.Width);
+		int GetRows (CGRect bounds) => (int) (bounds.Height / nodeSize.Height);
+		int GetColumns (CGRect bounds) => (int) (bounds.Width / nodeSize.Width);
 	}
 }
 

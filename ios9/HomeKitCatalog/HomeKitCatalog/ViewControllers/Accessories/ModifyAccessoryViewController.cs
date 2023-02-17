@@ -6,25 +6,21 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// Represents the sections in the `ModifyAccessoryViewController`.
-	public enum AddAccessoryTableViewSection
-	{
+	public enum AddAccessoryTableViewSection {
 		Name,
 		Rooms,
 		Identify
 	}
 
-	public interface IModifyAccessoryDelegate
-	{
+	public interface IModifyAccessoryDelegate {
 		void AccessoryViewControllerDidSaveAccessory (ModifyAccessoryViewController accessoryViewController, HMAccessory accessory);
 	}
 
 	// A view controller that allows for renaming, reassigning, and identifying accessories before and after they've been added to a home.
-	public partial class ModifyAccessoryViewController : HMCatalogViewController, IHMAccessoryDelegate
-	{
-		static readonly NSString RoomCell = (NSString)"RoomCell";
+	public partial class ModifyAccessoryViewController : HMCatalogViewController, IHMAccessoryDelegate {
+		static readonly NSString RoomCell = (NSString) "RoomCell";
 
 		// Update this if the acessory failed in any way.
 		bool didEncounterError;
@@ -97,7 +93,7 @@ namespace HomeKitCatalog
 			ResetNameField ();
 
 			// Register a cell for the rooms.
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), RoomCell);
+			TableView.RegisterClassForCellReuse (typeof (UITableViewCell), RoomCell);
 		}
 
 		// Registers as the delegate for the current home and the accessory.
@@ -249,12 +245,12 @@ namespace HomeKitCatalog
 
 		public override nint NumberOfSections (UITableView tableView)
 		{
-			return Enum.GetNames (typeof(AddAccessoryTableViewSection)).Length;
+			return Enum.GetNames (typeof (AddAccessoryTableViewSection)).Length;
 		}
 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			switch ((AddAccessoryTableViewSection)(int)section) {
+			switch ((AddAccessoryTableViewSection) (int) section) {
 			case AddAccessoryTableViewSection.Rooms:
 				return Home.GetAllRooms ().Length;
 			case AddAccessoryTableViewSection.Identify:
@@ -267,7 +263,7 @@ namespace HomeKitCatalog
 
 		public override nfloat GetHeightForRow (UITableView tableView, NSIndexPath indexPath)
 		{
-			switch ((AddAccessoryTableViewSection)indexPath.Section) {
+			switch ((AddAccessoryTableViewSection) indexPath.Section) {
 			case AddAccessoryTableViewSection.Rooms:
 				return UITableView.AutomaticDimension;
 			case AddAccessoryTableViewSection.Identify:
@@ -280,7 +276,7 @@ namespace HomeKitCatalog
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			switch ((AddAccessoryTableViewSection)indexPath.Section) {
+			switch ((AddAccessoryTableViewSection) indexPath.Section) {
 			case AddAccessoryTableViewSection.Rooms:
 				return GetCellForRoom (tableView, indexPath);
 			case AddAccessoryTableViewSection.Identify:
@@ -309,13 +305,13 @@ namespace HomeKitCatalog
 		{
 			tableView.DeselectRow (indexPath, true);
 
-			switch ((AddAccessoryTableViewSection)indexPath.Section) {
+			switch ((AddAccessoryTableViewSection) indexPath.Section) {
 			case AddAccessoryTableViewSection.Rooms:
 				if (!Home.IsAdmin ())
 					return;
 				selectedRoom = Home.GetAllRooms () [indexPath.Row];
 
-				var sections = NSIndexSet.FromIndex ((nint)(int)AddAccessoryTableViewSection.Rooms);
+				var sections = NSIndexSet.FromIndex ((nint) (int) AddAccessoryTableViewSection.Rooms);
 				tableView.ReloadSections (sections, UITableViewRowAnimation.Automatic);
 				break;
 			case AddAccessoryTableViewSection.Identify:

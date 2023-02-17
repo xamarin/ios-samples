@@ -6,10 +6,8 @@ using UIKit;
 using ObjCRuntime;
 using CoreGraphics;
 
-namespace CoreAnimationExample
-{
-	public partial class CustomizableAnimationViewerScreen : UIViewController, IDetailView
-	{
+namespace CoreAnimationExample {
+	public partial class CustomizableAnimationViewerScreen : UIViewController, IDetailView {
 		public event EventHandler ContentsButtonClicked;
 
 		public override void ViewDidLoad ()
@@ -30,26 +28,26 @@ namespace CoreAnimationExample
 				UIView.SetAnimationDelegate (this); //NOTE: you need this for the selector b.s.
 
 				// animation delay
-				UIView.SetAnimationDelay ((double)sldrDelay.Value);
+				UIView.SetAnimationDelay ((double) sldrDelay.Value);
 
 				// animation duration
-				UIView.SetAnimationDuration ((double)sldrDuration.Value);
+				UIView.SetAnimationDuration ((double) sldrDuration.Value);
 
 				// animation curve
 				UIViewAnimationCurve curve = UIViewAnimationCurve.EaseInOut;
 				switch (sgmtCurves.SelectedSegment) {
-					case 0:
-						curve = UIViewAnimationCurve.EaseInOut;
-						break;
-					case 1:
-						curve = UIViewAnimationCurve.EaseIn;
-						break;
-					case 2:
-						curve = UIViewAnimationCurve.EaseOut;
-						break;
-					case 3:
-						curve = UIViewAnimationCurve.Linear;
-						break;
+				case 0:
+					curve = UIViewAnimationCurve.EaseInOut;
+					break;
+				case 1:
+					curve = UIViewAnimationCurve.EaseIn;
+					break;
+				case 2:
+					curve = UIViewAnimationCurve.EaseOut;
+					break;
+				case 3:
+					curve = UIViewAnimationCurve.Linear;
+					break;
 				}
 				UIView.SetAnimationCurve (curve);
 

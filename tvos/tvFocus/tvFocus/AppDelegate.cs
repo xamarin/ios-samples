@@ -1,13 +1,11 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
-namespace tvFocus
-{
+namespace tvFocus {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		#region Computed Properties
 		public override UIWindow Window {
 			get;

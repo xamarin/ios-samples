@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using CoreGraphics;
 using Foundation;
@@ -8,18 +8,15 @@ using SpriteKit;
 using UIKit;
 using WatchKit;
 
-namespace WatchPuzzle.WatchKitAppExtension
-{
-	public static class GameColors
-	{
+namespace WatchPuzzle.WatchKitAppExtension {
+	public static class GameColors {
 		public static readonly UIColor DefaultFont = new UIColor (31f / 255, 226f / 255, 63f / 255, 1);
 		public static readonly UIColor Warning = UIColor.Orange;
 		public static readonly UIColor Danger = UIColor.Red;
 	}
 
 	// A struct containing all the `SCNNode`s used in the game.
-	public struct GameNodes
-	{
+	public struct GameNodes {
 		public readonly SCNNode Object;
 		public readonly SCNMaterial ObjectMaterial;
 		public readonly SCNNode Confetti;
@@ -58,8 +55,7 @@ namespace WatchPuzzle.WatchKitAppExtension
 		}
 	}
 
-	public partial class InterfaceController : WKInterfaceController
-	{
+	public partial class InterfaceController : WKInterfaceController {
 		[Outlet ("sceneInterface")]
 		WKInterfaceSCNScene sceneInterface { get; set; }
 
@@ -310,13 +306,13 @@ namespace WatchPuzzle.WatchKitAppExtension
 			var squaredLenght = location.X * location.X + location.Y * location.Y;
 
 			if (squaredLenght <= 1) {
-				sphereCoord.X = (float)location.X;
-				sphereCoord.Y = (float)location.Y;
-				sphereCoord.Z = (float)NMath.Sqrt (1 - squaredLenght);
+				sphereCoord.X = (float) location.X;
+				sphereCoord.Y = (float) location.Y;
+				sphereCoord.Z = (float) NMath.Sqrt (1 - squaredLenght);
 			} else {
 				var n = 1f / NMath.Sqrt (squaredLenght);
-				sphereCoord.X = (float)(n * location.X);
-				sphereCoord.Y = (float)(n * location.Y);
+				sphereCoord.X = (float) (n * location.X);
+				sphereCoord.Y = (float) (n * location.Y);
 				sphereCoord.Z = 0;
 			}
 
@@ -329,7 +325,7 @@ namespace WatchPuzzle.WatchKitAppExtension
 			var axis = Vector3.Cross (start, end);
 			var angle = NMath.Atan2 (axis.Length, Vector3.Dot (start, end));
 
-			return SCNMatrix4.CreateFromAxisAngle (axis, (float)angle);
+			return SCNMatrix4.CreateFromAxisAngle (axis, (float) angle);
 		}
 
 		// End the game if the object has its initial orientation with a 10 degree tolerance.

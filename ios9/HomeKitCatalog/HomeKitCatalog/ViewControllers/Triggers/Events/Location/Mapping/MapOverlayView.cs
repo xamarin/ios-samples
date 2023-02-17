@@ -4,11 +4,9 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A simple `UIView` subclass to draw a selection circle over a MKMapView of the same size.
-	public partial class MapOverlayView : UIView
-	{
+	public partial class MapOverlayView : UIView {
 		#region ctors
 
 		public MapOverlayView ()
@@ -51,7 +49,7 @@ namespace HomeKitCatalog
 			strokeColor.SetStroke ();
 			circlePath.LineWidth = 3;
 			context.SaveState ();
-			context.SetLineDash (0, new nfloat[] { 6, 6 }, 2);
+			context.SetLineDash (0, new nfloat [] { 6, 6 }, 2);
 			circlePath.Stroke ();
 			context.RestoreState ();
 		}

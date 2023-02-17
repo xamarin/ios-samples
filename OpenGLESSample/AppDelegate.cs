@@ -1,11 +1,9 @@
-﻿using UIKit;
+using UIKit;
 using Foundation;
 
-namespace OpenGLESSample
-{
+namespace OpenGLESSample {
 	// The name AppDelegate is referenced in the MainWindow.xib file.
-	public partial class OpenGLESSampleAppDelegate : UIApplicationDelegate
-	{
+	public partial class OpenGLESSampleAppDelegate : UIApplicationDelegate {
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
@@ -14,7 +12,7 @@ namespace OpenGLESSample
 			};
 			window.RootViewController = rootViewController;
 			glView.AnimationInterval = 1.0 / 60.0;
-			glView.StartAnimation();
+			glView.StartAnimation ();
 
 			window.MakeKeyAndVisible ();
 

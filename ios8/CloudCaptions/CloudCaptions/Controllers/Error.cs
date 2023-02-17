@@ -1,9 +1,7 @@
-﻿using System;
+using System;
 
-namespace CloudCaptions
-{
-	public enum Error
-	{
+namespace CloudCaptions {
+	public enum Error {
 		Ignore,
 		Retry,
 		Success

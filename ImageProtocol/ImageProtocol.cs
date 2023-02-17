@@ -31,10 +31,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace ImageProtocol
-{
-	public class ImageProtocol : NSUrlProtocol
-	{
+namespace ImageProtocol {
+	public class ImageProtocol : NSUrlProtocol {
 		[Export ("canInitWithRequest:")]
 		public static bool canInitWithRequest (NSUrlRequest request)
 		{
@@ -59,7 +57,8 @@ namespace ImageProtocol
 			using (var image = Render (value)) {
 				using (var response = new NSUrlResponse (Request.Url, "image/jpeg", -1, null)) {
 					Client.ReceivedResponse (this, response, NSUrlCacheStoragePolicy.NotAllowed);
-					this.InvokeOnMainThread (delegate {
+					this.InvokeOnMainThread (delegate
+					{
 						using (var data = image.AsJPEG ()) {
 							Client.DataLoaded (this, data);
 						}

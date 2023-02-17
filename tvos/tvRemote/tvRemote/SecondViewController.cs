@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using UIKit;
 
-namespace tvRemote
-{
-	public partial class SecondViewController : UIViewController
-	{
+namespace tvRemote {
+	public partial class SecondViewController : UIViewController {
 		#region Constructors
 		public SecondViewController (IntPtr handle) : base (handle)
 		{
@@ -14,7 +12,7 @@ namespace tvRemote
 		#region Override Methods
 		public override void ViewDidLoad ()
 		{
-			base.ViewDidLoad ();	
+			base.ViewDidLoad ();
 
 			// Wire-up gestures
 			var upGesture = new UISwipeGestureRecognizer (() => {

@@ -7,11 +7,9 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace kvo
-{
+namespace kvo {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UINavigationController topController;
 		UIWindow window;
 		UILabel label;
@@ -45,9 +43,9 @@ namespace kvo
 			// the "ObserveValue" method.
 			//
 			topController.View.Layer.AddObserver (observer: this,
-			                                keyPath:  new NSString ("bounds"),
-											options:  NSKeyValueObservingOptions.New,
-			                                context:  IntPtr.Zero);
+											keyPath: new NSString ("bounds"),
+											options: NSKeyValueObservingOptions.New,
+											context: IntPtr.Zero);
 			return true;
 		}
 
@@ -71,7 +69,7 @@ namespace kvo
 			return rect;
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

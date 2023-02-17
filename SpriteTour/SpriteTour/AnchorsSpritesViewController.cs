@@ -28,7 +28,7 @@ namespace SpriteTour {
 					SKSpriteNode sprite = new SKSpriteNode ("Art/rocket.png") {
 						AnchorPoint = new CGPoint (0.25f * x, 0.25f * y),
 						Position = new CGPoint (Scene.Frame.GetMidX () - 400 + 100 * x,
-						                       Scene.Frame.GetMidY () - 200 + 100 * y)
+											   Scene.Frame.GetMidY () - 200 + 100 * y)
 					};
 					sprite.SetScale (0.25f);
 					Scene.AddChild (sprite);
@@ -74,7 +74,7 @@ namespace SpriteTour {
 			});
 
 			SKAction moveAnchorLeft = SKAction.CustomActionWithDuration (1.0f, (node, elapsedTime) => {
-				(node as SKSpriteNode).AnchorPoint = new CGPoint(1.0f - elapsedTime, 1.0f);
+				(node as SKSpriteNode).AnchorPoint = new CGPoint (1.0f - elapsedTime, 1.0f);
 			});
 
 			SKAction moveAnchorDown = SKAction.CustomActionWithDuration (1.0f, (node, elapsedTime) => {

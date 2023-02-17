@@ -6,14 +6,12 @@ using ObjCRuntime;
 using UIKit;
 using System.IO;
 
-namespace FrogScroller
-{
-	public class TilingView : UIView
-	{
+namespace FrogScroller {
+	public class TilingView : UIView {
 		[Export ("layerClass")]
 		public static Class LayerClass ()
 		{
-			return new Class (typeof(CATiledLayer));
+			return new Class (typeof (CATiledLayer));
 		}
 
 		string ImageName { get; set; }
@@ -22,7 +20,7 @@ namespace FrogScroller
 			base (new CGRect (CGPoint.Empty, size))
 		{
 			ImageName = name;
-			var tiledLayer = (CATiledLayer)this.Layer;
+			var tiledLayer = (CATiledLayer) this.Layer;
 			tiledLayer.LevelsOfDetail = 4;
 		}
 		// to handle the interaction between CATiledLayer and high resolution screens, we need to always keep the
@@ -43,7 +41,7 @@ namespace FrogScroller
 				// its "a" component, which is one of the two scale components. We could also ask for "d".
 				// This assumes (safely) that the view is being scaled equally in both dimensions.
 				var scale = context.GetCTM ().xx;
-				CATiledLayer tiledLayer = (CATiledLayer)this.Layer;
+				CATiledLayer tiledLayer = (CATiledLayer) this.Layer;
 				var tileSize = tiledLayer.TileSize;
 
 				// Even at scales lower than 100%, we are drawing into a rect in the coordinate system of the full
@@ -58,15 +56,15 @@ namespace FrogScroller
 				tileSize.Height /= scale;
 
 				// calculate the rows and columns of tiles that intersect the rect we have been asked to draw
-				int firstCol = (int)Math.Floor (rect.GetMinX () / tileSize.Width);
-				int lastCol = (int)Math.Floor ((rect.GetMaxX () - 1) / tileSize.Width);
-				int firstRow = (int)Math.Floor (rect.GetMinY () / tileSize.Height);
-				int lastRow = (int)Math.Floor ((rect.GetMaxY () - 1) / tileSize.Height);
+				int firstCol = (int) Math.Floor (rect.GetMinX () / tileSize.Width);
+				int lastCol = (int) Math.Floor ((rect.GetMaxX () - 1) / tileSize.Width);
+				int firstRow = (int) Math.Floor (rect.GetMinY () / tileSize.Height);
+				int lastRow = (int) Math.Floor ((rect.GetMaxY () - 1) / tileSize.Height);
 
 				for (int row = firstRow; row <= lastRow; row++) {
 					for (int col = firstCol; col <= lastCol; col++) {
 
-						UIImage tile = TileForScale ((float)scale, row, col);
+						UIImage tile = TileForScale ((float) scale, row, col);
 						var tileRect = new CGRect (tileSize.Width * col, tileSize.Height * row, tileSize.Width, tileSize.Height);
 						// if the tile would stick outside of our bounds, we need to truncate it so as to avoid
 						// stretching out the partial tiles at the right and bottom edges
@@ -80,7 +78,7 @@ namespace FrogScroller
 		public UIImage TileForScale (float scale, int row, int col)
 		{
 			// we use "FromFile" instead of "FromBundle" here because we don't want UIImage to cache our tiles
-			string tileNameWithExt = string.Format ("{0}_{1}_{2}_{3}.png", ImageName, (int)(scale * 1000), col, row);
+			string tileNameWithExt = string.Format ("{0}_{1}_{2}_{3}.png", ImageName, (int) (scale * 1000), col, row);
 			string tilePath = Path.Combine ("Image", "ImageTiles", tileNameWithExt);
 
 			UIImage img = UIImage.FromFile (tilePath);

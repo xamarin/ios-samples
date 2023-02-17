@@ -11,10 +11,8 @@ using OpenGLES;
 using OpenTK.Graphics.ES20;
 using OpenTK;
 
-namespace Stars
-{
-	public class StarsViewController : GLKViewController
-	{
+namespace Stars {
+	public class StarsViewController : GLKViewController {
 		//comment
 		const double RadiansToDegrees = (180 / Math.PI);
 		const int NumCubes = 11;
@@ -23,10 +21,10 @@ namespace Stars
 		const float NearZ = 0.1f;
 		const float FarZ = 1000;
 
-		Vector3[] star = new Vector3 [NumStars];
-		int[] perm = new int [NumStars];
+		Vector3 [] star = new Vector3 [NumStars];
+		int [] perm = new int [NumStars];
 
-		static readonly float[] gCubeVertexData =
+		static readonly float [] gCubeVertexData =
 		{
 			// Data layout for each line below is:
 			// positionX, positionY, positionZ,     normalX, normalY, normalZ,
@@ -73,7 +71,7 @@ namespace Stars
 			-0.5f, 0.5f, -0.5f,        0.0f, 0.0f, -1.0f
 		};
 
-		static readonly float[] gColorData =
+		static readonly float [] gColorData =
 		{
 			255.0f, 51.0f, 51.0f,
 			255.0f, 153.0f, 51.0f,
@@ -189,7 +187,7 @@ namespace Stars
 			// Render the objects with GLKit
 			for (int i = 0; i < (NumCubes + NumStars); i++) {
 				var effect = effects [i];
-				effect.PrepareToDraw();
+				effect.PrepareToDraw ();
 				GL.DrawArrays (BeginMode.Triangles, 0, 36);
 			}
 		}
@@ -204,9 +202,9 @@ namespace Stars
 				var effect = new GLKBaseEffect ();
 				effect.Light0.Enabled = true;
 				effect.Light0.DiffuseColor = new Vector4 (gColorData [3 * i] / 255.0f,
-				                                          gColorData [3 * i + 1] / 255.0f,
-				                                          gColorData [3 * i + 2] / 255.0f,
-				                                          1);
+														  gColorData [3 * i + 1] / 255.0f,
+														  gColorData [3 * i + 2] / 255.0f,
+														  1);
 				effects.Add (effect);
 			}
 
@@ -258,13 +256,13 @@ namespace Stars
 				return;
 
 			var r = dm.Attitude.RotationMatrix;
-			float aspect = (float)Math.Abs (View.Bounds.Size.Width / View.Bounds.Size.Height);
+			float aspect = (float) Math.Abs (View.Bounds.Size.Width / View.Bounds.Size.Height);
 			var projectionMatrix = Matrix4.CreatePerspectiveFieldOfView (MathHelper.DegreesToRadians (65.0f), aspect, NearZ, FarZ);
 
 			Matrix4 baseModelViewMatrix = new Matrix4 ((float) r.m11, (float) r.m21, (float) r.m31, 0,
-			                                           (float) r.m12, (float) r.m22, (float) r.m32, 0,
-			                                           (float) r.m13, (float) r.m23, (float) r.m33, 0,
-			                                    	   0, 0, 0, 1);
+													   (float) r.m12, (float) r.m22, (float) r.m32, 0,
+													   (float) r.m13, (float) r.m23, (float) r.m33, 0,
+													   0, 0, 0, 1);
 
 			// Compute the model view matrix for the objects rendered with the GLKIT
 			// the planets
@@ -296,9 +294,9 @@ namespace Stars
 			rotation += (float) TimeSinceLastUpdate * 0.8f;
 
 			rpyLabel.Text = String.Format ("roll: {0}° pitch: {1}° yaw: {2}°",
-			                               String.Format("{0:0.#}", dm.Attitude.Roll * RadiansToDegrees),
-			                               String.Format("{0:0.#}", dm.Attitude.Pitch * RadiansToDegrees),
-			                               String.Format("{0:0.#}", dm.Attitude.Yaw * RadiansToDegrees));
+										   String.Format ("{0:0.#}", dm.Attitude.Roll * RadiansToDegrees),
+										   String.Format ("{0:0.#}", dm.Attitude.Pitch * RadiansToDegrees),
+										   String.Format ("{0:0.#}", dm.Attitude.Yaw * RadiansToDegrees));
 			//...now we can print out coordinates
 		}
 

@@ -1,10 +1,8 @@
 using System;
 using UIKit;
 
-namespace CoreAnimationExample
-{
-	public class NavItem
-	{
+namespace CoreAnimationExample {
+	public class NavItem {
 
 		#region  declarations
 
@@ -57,14 +55,14 @@ namespace CoreAnimationExample
 		/// a list of the constructor args (if neccesary) for the controller. use this in
 		/// conjunction with ControllerType if lazy-creating controllers.
 		/// </summary>
-		object[] controllerConstructorArgs = new object[] { };
+		object [] controllerConstructorArgs = new object [] { };
 
-		public object[] ControllerConstructorArgs {
+		public object [] ControllerConstructorArgs {
 			get { return controllerConstructorArgs; }
 			set {
 				controllerConstructorArgs = value;
 
-				controllerConstructorTypes = new Type[controllerConstructorArgs.Length];
+				controllerConstructorTypes = new Type [controllerConstructorArgs.Length];
 				for (int i = 0; i < controllerConstructorArgs.Length; i++) {
 					controllerConstructorTypes [i] = controllerConstructorArgs [i].GetType ();
 				}
@@ -74,10 +72,10 @@ namespace CoreAnimationExample
 		/// <summary>
 		/// The types of constructor args.
 		/// </summary>
-		Type[] controllerConstructorTypes = Type.EmptyTypes;
+		Type [] controllerConstructorTypes = Type.EmptyTypes;
 
-		public Type[] ControllerConstructorTypes {
-			get { return  controllerConstructorTypes; }
+		public Type [] ControllerConstructorTypes {
+			get { return controllerConstructorTypes; }
 		}
 
 		#endregion
@@ -103,7 +101,7 @@ namespace CoreAnimationExample
 			this.controllerType = controllerType;
 		}
 
-		public NavItem (string name, Type controllerType, object[] controllerConstructorArgs) : this (name, controllerType)
+		public NavItem (string name, Type controllerType, object [] controllerConstructorArgs) : this (name, controllerType)
 		{
 			this.ControllerConstructorArgs = controllerConstructorArgs;
 		}
@@ -118,7 +116,7 @@ namespace CoreAnimationExample
 			this.imagePath = imagePath;
 		}
 
-		public NavItem (string name, string imagePath, Type controllerType, object[] controllerConstructorArgs) : this (name, controllerType, controllerConstructorArgs)
+		public NavItem (string name, string imagePath, Type controllerType, object [] controllerConstructorArgs) : this (name, controllerType, controllerConstructorArgs)
 		{
 			this.imagePath = imagePath;
 		}

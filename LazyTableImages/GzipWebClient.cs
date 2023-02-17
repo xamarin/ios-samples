@@ -1,10 +1,8 @@
 using System;
 using System.Net;
 
-namespace LazyTableImages
-{
-	public class GzipWebClient : WebClient
-	{
+namespace LazyTableImages {
+	public class GzipWebClient : WebClient {
 		protected override WebRequest GetWebRequest (Uri address)
 		{
 			var request = base.GetWebRequest (address);

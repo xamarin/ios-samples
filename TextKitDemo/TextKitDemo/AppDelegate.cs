@@ -4,11 +4,9 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace TextKitDemo
-{
+namespace TextKitDemo {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		public override UIWindow Window { get; set; }
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
@@ -16,7 +14,7 @@ namespace TextKitDemo
 			return true;
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

@@ -2,10 +2,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace tvSplit
-{
-	public partial class MainSplitViewController : UISplitViewController
-	{
+namespace tvSplit {
+	public partial class MainSplitViewController : UISplitViewController {
 		#region Constructors
 		public MainSplitViewController (IntPtr handle) : base (handle)
 		{

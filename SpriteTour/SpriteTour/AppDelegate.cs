@@ -5,8 +5,7 @@ using UIKit;
 namespace SpriteTour {
 
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			return true;

@@ -1,12 +1,10 @@
-﻿using UIKit;
+using UIKit;
 
-namespace WatchBackgroundRefresh
-{
-	public class Application
-	{
-		static void Main(string[] args)
+namespace WatchBackgroundRefresh {
+	public class Application {
+		static void Main (string [] args)
 		{
-			UIApplication.Main(args, null, "AppDelegate");
+			UIApplication.Main (args, null, "AppDelegate");
 		}
 	}
 }

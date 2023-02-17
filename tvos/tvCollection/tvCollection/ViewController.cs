@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 using tvCollection;
 
-namespace MySingleView
-{
-	public partial class ViewController : UIViewController
-	{
+namespace MySingleView {
+	public partial class ViewController : UIViewController {
 		#region Application Access
 		public static AppDelegate App {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 		#endregion
 
@@ -31,7 +29,7 @@ namespace MySingleView
 			base.ViewWillAppear (animated);
 
 			// Update image with the currently selected one
-			CityView.Image = UIImage.FromFile(App.SelectedCity.ImageFilename);
+			CityView.Image = UIImage.FromFile (App.SelectedCity.ImageFilename);
 			BackgroundView.Image = CityView.Image;
 			CityTitle.Text = App.SelectedCity.Title;
 		}

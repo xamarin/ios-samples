@@ -3,10 +3,8 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace Touch
-{
-	partial class CustomGestureViewController : UIViewController
-	{
+namespace Touch {
+	partial class CustomGestureViewController : UIViewController {
 		#region Private Variables
 		//private bool isChecked = false;
 		//private CheckmarkGestureRecognizer checkmarkGesture;

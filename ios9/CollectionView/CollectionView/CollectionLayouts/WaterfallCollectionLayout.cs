@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using CoreGraphics;
@@ -15,7 +15,7 @@ namespace CollectionView {
 	/// Ported from http://nshint.io/blog/2015/07/16/uicollectionviews-now-have-easy-reordering/ to
 	/// Xamarin.iOS by Kevin Mullins.
 	/// </remarks>
-	[Register("WaterfallCollectionLayout")]
+	[Register ("WaterfallCollectionLayout")]
 	public class WaterfallCollectionLayout : UICollectionViewLayout {
 		#region Variables
 		int columnCount = 2;
@@ -26,8 +26,8 @@ namespace CollectionView {
 		nfloat footerHeight = 0f;
 		UIEdgeInsets sectionInset = new UIEdgeInsets (0f, 0f, 0f, 0f);
 		WaterfallCollectionRenderDirection itemRenderDirection = WaterfallCollectionRenderDirection.ShortestFirst;
-		Dictionary<nint,UICollectionViewLayoutAttributes> headersAttributes = new Dictionary<nint, UICollectionViewLayoutAttributes> ();
-		Dictionary<nint,UICollectionViewLayoutAttributes> footersAttributes = new Dictionary<nint, UICollectionViewLayoutAttributes> ();
+		Dictionary<nint, UICollectionViewLayoutAttributes> headersAttributes = new Dictionary<nint, UICollectionViewLayoutAttributes> ();
+		Dictionary<nint, UICollectionViewLayoutAttributes> footersAttributes = new Dictionary<nint, UICollectionViewLayoutAttributes> ();
 		List<CGRect> unionRects = new List<CGRect> ();
 		List<nfloat> columnHeights = new List<nfloat> ();
 		List<UICollectionViewLayoutAttributes> allItemAttributes = new List<UICollectionViewLayoutAttributes> ();
@@ -35,7 +35,7 @@ namespace CollectionView {
 		#endregion
 
 		#region Computed Properties
-		[Export("ColumnCount")]
+		[Export ("ColumnCount")]
 		public int ColumnCount {
 			get { return columnCount; }
 			set {
@@ -47,7 +47,7 @@ namespace CollectionView {
 			}
 		}
 
-		[Export("MinimumColumnSpacing")]
+		[Export ("MinimumColumnSpacing")]
 		public nfloat MinimumColumnSpacing {
 			get { return minimumColumnSpacing; }
 			set {
@@ -59,7 +59,7 @@ namespace CollectionView {
 			}
 		}
 
-		[Export("MinimumInterItemSpacing")]
+		[Export ("MinimumInterItemSpacing")]
 		public nfloat MinimumInterItemSpacing {
 			get { return minimumInterItemSpacing; }
 			set {
@@ -71,7 +71,7 @@ namespace CollectionView {
 			}
 		}
 
-		[Export("HeaderHeight")]
+		[Export ("HeaderHeight")]
 		public nfloat HeaderHeight {
 			get { return headerHeight; }
 			set {
@@ -83,7 +83,7 @@ namespace CollectionView {
 			}
 		}
 
-		[Export("FooterHeight")]
+		[Export ("FooterHeight")]
 		public nfloat FooterHeight {
 			get { return footerHeight; }
 			set {
@@ -95,7 +95,7 @@ namespace CollectionView {
 			}
 		}
 
-		[Export("SectionInset")]
+		[Export ("SectionInset")]
 		public UIEdgeInsets SectionInset {
 			get { return sectionInset; }
 			set {
@@ -107,7 +107,7 @@ namespace CollectionView {
 			}
 		}
 
-		[Export("ItemRenderDirection")]
+		[Export ("ItemRenderDirection")]
 		public WaterfallCollectionRenderDirection ItemRenderDirection {
 			get { return itemRenderDirection; }
 			set {
@@ -125,10 +125,10 @@ namespace CollectionView {
 		{
 		}
 
-		public WaterfallCollectionLayout(NSCoder coder) : base(coder)
+		public WaterfallCollectionLayout (NSCoder coder) : base (coder)
 		{
 		}
-		#endregion 
+		#endregion
 
 		#region Override Methods
 		public override void PrepareLayout ()
@@ -150,7 +150,7 @@ namespace CollectionView {
 
 			// Initialize column heights
 			for (int n = 0; n < ColumnCount; n++)
-				columnHeights.Add ((nfloat)0);
+				columnHeights.Add ((nfloat) 0);
 
 			// Process all sections
 			nfloat top = 0f;
@@ -161,10 +161,10 @@ namespace CollectionView {
 
 				// Calculate widths
 				var width = CollectionView.Bounds.Width - SectionInset.Left - SectionInset.Right;
-				var itemWidth = (nfloat)Math.Floor ((width - ((ColumnCount - 1) * MinimumColumnSpacing)) / ColumnCount);
+				var itemWidth = (nfloat) Math.Floor ((width - ((ColumnCount - 1) * MinimumColumnSpacing)) / ColumnCount);
 
 				// Calculate section header
-				var heightHeader = (HeightForHeader == null) ? HeaderHeight : 
+				var heightHeader = (HeightForHeader == null) ? HeaderHeight :
 					HeightForHeader (CollectionView, this, section);
 
 				if (heightHeader > 0) {
@@ -187,13 +187,13 @@ namespace CollectionView {
 				for (nint n = 0; n < itemCount; n++) {
 					var indexPath = NSIndexPath.FromRowSection (n, section);
 					columnIndex = NextColumnIndexForItem (n);
-					var xOffset = SectionInset.Left + (itemWidth + MinimumColumnSpacing) * (nfloat)columnIndex;
+					var xOffset = SectionInset.Left + (itemWidth + MinimumColumnSpacing) * (nfloat) columnIndex;
 					var yOffset = columnHeights [columnIndex];
 					var itemSize = (SizeForItem == null) ? new CGSize (0, 0) : SizeForItem (CollectionView, this, indexPath);
 					nfloat itemHeight = 0.0f;
 
 					if (itemSize.Height > 0.0f && itemSize.Width > 0.0f)
-						itemHeight = (nfloat)Math.Floor (itemSize.Height * itemWidth / itemSize.Width);
+						itemHeight = (nfloat) Math.Floor (itemSize.Height * itemWidth / itemSize.Width);
 
 					attributes = UICollectionViewLayoutAttributes.CreateForCell (indexPath);
 					attributes.Frame = new CGRect (xOffset, yOffset, itemWidth, itemHeight);
@@ -225,7 +225,7 @@ namespace CollectionView {
 			int attrs = allItemAttributes.Count;
 			while (i < attrs) {
 				var rect1 = allItemAttributes [i].Frame;
-				i = (int)Math.Min (i + unionSize, attrs) - 1;
+				i = (int) Math.Min (i + unionSize, attrs) - 1;
 				var rect2 = allItemAttributes [i].Frame;
 				unionRects.Add (CGRect.Union (rect1, rect2));
 				i++;
@@ -252,7 +252,7 @@ namespace CollectionView {
 				return null;
 
 			var list = sectionItemAttributes [indexPath.Section];
-			return list [(int)indexPath.Item];
+			return list [(int) indexPath.Item];
 		}
 
 		public override UICollectionViewLayoutAttributes LayoutAttributesForSupplementaryView (NSString kind, NSIndexPath indexPath)
@@ -271,7 +271,7 @@ namespace CollectionView {
 			return attributes;
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
+		public override UICollectionViewLayoutAttributes [] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			int begin = 0;
 			int end = unionRects.Count;
@@ -280,11 +280,11 @@ namespace CollectionView {
 
 			for (int i = 0; i < end; i++)
 				if (rect.IntersectsWith (unionRects [i]))
-					begin = i * (int)unionSize;
+					begin = i * (int) unionSize;
 
 			for (int i = end - 1; i >= 0; i--) {
 				if (rect.IntersectsWith (unionRects [i])) {
-					end = Math.Min ((i + 1) * (int)unionSize, allItemAttributes.Count);
+					end = Math.Min ((i + 1) * (int) unionSize, allItemAttributes.Count);
 					break;
 				}
 			}
@@ -307,7 +307,7 @@ namespace CollectionView {
 		#endregion
 
 		#region Methods
-		int ShortestColumnIndex()
+		int ShortestColumnIndex ()
 		{
 			int index = 0;
 			nfloat shortestHeight = nfloat.MaxValue;
@@ -355,7 +355,7 @@ namespace CollectionView {
 				index = ColumnCount;
 				break;
 			case WaterfallCollectionRenderDirection.RightToLeft:
-				index = (ColumnCount - 1) - ((int)item / ColumnCount);
+				index = (ColumnCount - 1) - ((int) item / ColumnCount);
 				break;
 			}
 
@@ -364,9 +364,9 @@ namespace CollectionView {
 		#endregion
 
 		#region Events
-		public delegate CGSize WaterfallCollectionSizeDelegate(UICollectionView collectionView, WaterfallCollectionLayout layout, NSIndexPath indexPath);
-		public delegate nfloat WaterfallCollectionFloatDelegate(UICollectionView collectionView, WaterfallCollectionLayout layout, nint section);
-		public delegate UIEdgeInsets WaterfallCollectionEdgeInsetsDelegate(UICollectionView collectionView, WaterfallCollectionLayout layout, nint section);
+		public delegate CGSize WaterfallCollectionSizeDelegate (UICollectionView collectionView, WaterfallCollectionLayout layout, NSIndexPath indexPath);
+		public delegate nfloat WaterfallCollectionFloatDelegate (UICollectionView collectionView, WaterfallCollectionLayout layout, nint section);
+		public delegate UIEdgeInsets WaterfallCollectionEdgeInsetsDelegate (UICollectionView collectionView, WaterfallCollectionLayout layout, nint section);
 
 		public event WaterfallCollectionSizeDelegate SizeForItem;
 		public event WaterfallCollectionFloatDelegate HeightForHeader;

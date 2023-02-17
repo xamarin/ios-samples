@@ -3,10 +3,8 @@ using UIKit;
 using CoreGraphics;
 using System.Collections.Generic;
 
-namespace TicTacToe
-{
-	public class TTTRatingControl : UIControl
-	{
+namespace TicTacToe {
+	public class TTTRatingControl : UIControl {
 		const int MinimumRating = 0;
 		const int MaximumRating = 4;
 		int rating;
@@ -49,7 +47,7 @@ namespace TicTacToe
 
 					UIImage image = UIGraphics.GetImageFromCurrentImageContext ();
 					image = image.CreateResizableImage (new UIEdgeInsets (capSize, capSize,
-					                                                      capSize, capSize));
+																		  capSize, capSize));
 					image = image.ImageWithRenderingMode (UIImageRenderingMode.AlwaysTemplate);
 					UIGraphics.EndImageContext ();
 
@@ -77,13 +75,13 @@ namespace TicTacToe
 				for (var rating = MinimumRating; rating <= MaximumRating; rating++) {
 					UIButton button = UIButton.FromType (UIButtonType.Custom);
 					button.SetImage (UIImage.FromBundle ("unselectedButton"),
-					                 UIControlState.Normal);
+									 UIControlState.Normal);
 					button.SetImage (UIImage.FromBundle ("unselectedButton"),
-					                 UIControlState.Highlighted);
+									 UIControlState.Highlighted);
 					button.SetImage (UIImage.FromBundle ("favoriteButton"),
-					                 UIControlState.Selected);
+									 UIControlState.Selected);
 					button.SetImage (UIImage.FromBundle ("favoriteButton"),
-					                 UIControlState.Highlighted | UIControlState.Selected);
+									 UIControlState.Highlighted | UIControlState.Selected);
 					button.Tag = rating;
 					button.TouchUpInside += touchButton;
 					button.AccessibilityLabel = String.Format ("{0} stars", rating + 1);
@@ -95,10 +93,10 @@ namespace TicTacToe
 			}
 
 			CGRect buttonFrame = Bounds;
-			float width = (float)buttonFrame.Size.Width / (MaximumRating - MinimumRating + 1);
+			float width = (float) buttonFrame.Size.Width / (MaximumRating - MinimumRating + 1);
 			for (int index = 0; index < buttons.Count; index++) {
 				UIButton button = buttons [index];
-				buttonFrame.Width = (float)Math.Round (width * (index + 1) - buttonFrame.X);
+				buttonFrame.Width = (float) Math.Round (width * (index + 1) - buttonFrame.X);
 				button.Frame = buttonFrame;
 				buttonFrame.X += buttonFrame.Size.Width;
 			}
@@ -106,8 +104,8 @@ namespace TicTacToe
 
 		void touchButton (object sender, EventArgs e)
 		{
-			UIButton button = (UIButton)sender;
-			Rating = (int)button.Tag;
+			UIButton button = (UIButton) sender;
+			Rating = (int) button.Tag;
 			SendActionForControlEvents (UIControlEvent.ValueChanged);
 		}
 

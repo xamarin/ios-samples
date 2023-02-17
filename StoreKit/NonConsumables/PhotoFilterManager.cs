@@ -23,13 +23,15 @@ namespace NonConsumables {
 		/// effectively bypassing the payment mechanism (assuming a little bit
 		/// of technical knowledge).
 		/// </remarks>
-		public static void Purchase (string productId) {
-			var key = new NSString(productId);
-			NSUserDefaults.StandardUserDefaults.SetBool(true, key);
+		public static void Purchase (string productId)
+		{
+			var key = new NSString (productId);
+			NSUserDefaults.StandardUserDefaults.SetBool (true, key);
 			NSUserDefaults.StandardUserDefaults.Synchronize ();
 		}
-		public static bool HasPurchased (string productId) {
-			var key = new NSString(productId);
+		public static bool HasPurchased (string productId)
+		{
+			var key = new NSString (productId);
 			return NSUserDefaults.StandardUserDefaults.BoolForKey (key);
 		}
 
@@ -37,17 +39,17 @@ namespace NonConsumables {
 		/// Purchaseable feature. This function can't be called until the
 		/// user has purchased the Sepia Filter in-app product.
 		/// </summary>
-		public static void ApplySepia(string imagePath, UIImageView imgview)
+		public static void ApplySepia (string imagePath, UIImageView imgview)
 		{
 			var uiimage = UIImage.FromFile (imagePath);
 			var ciimage = new CIImage (uiimage);
 
-			var sepia = new CISepiaTone();
+			var sepia = new CISepiaTone ();
 			sepia.Image = ciimage;
 			sepia.Intensity = 0.8f;
 			var output = sepia.OutputImage;
 
-			var context = CIContext.FromOptions(null);
+			var context = CIContext.FromOptions (null);
 			var cgimage = context.CreateCGImage (output, output.Extent);
 			var ui = UIImage.FromImage (cgimage);
 
@@ -57,17 +59,17 @@ namespace NonConsumables {
 		/// Purchaseable feature. This function can't be called until the
 		/// user has purchased the Greyscale Filter in-app product.
 		/// </summary>
-		public static void ApplyGreyscale(string imagePath, UIImageView imgview)
+		public static void ApplyGreyscale (string imagePath, UIImageView imgview)
 		{
 			var uiimage = UIImage.FromFile (imagePath);
 			var ciimage = new CIImage (uiimage);
 
-			var greyscale = new CIColorControls();
+			var greyscale = new CIColorControls ();
 			greyscale.Image = ciimage;
 			greyscale.Saturation = 0f;
 			var output = greyscale.OutputImage;
 
-			var context = CIContext.FromOptions(null);
+			var context = CIContext.FromOptions (null);
 			var cgimage = context.CreateCGImage (output, output.Extent);
 			var ui = UIImage.FromImage (cgimage);
 

@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 using CoreGraphics;
 
-namespace LookInside
-{
-	public class OverlayPresentationController : UIPresentationController
-	{
+namespace LookInside {
+	public class OverlayPresentationController : UIPresentationController {
 		UIView dimmingView;
 		UITapGestureRecognizer tap;
 
@@ -36,8 +34,8 @@ namespace LookInside
 		}
 
 		public OverlayPresentationController (UIViewController presentedViewController,
-			                                  UIViewController presentingViewController)
-			: base(presentedViewController, presentingViewController)
+											  UIViewController presentingViewController)
+			: base (presentedViewController, presentingViewController)
 		{
 			PrepareDimmingView ();
 		}
@@ -59,11 +57,10 @@ namespace LookInside
 			SetAplhaOnTransitionBegin (0);
 		}
 
-		void SetAplhaOnTransitionBegin(float alpha)
+		void SetAplhaOnTransitionBegin (float alpha)
 		{
 			var transitionCoordinator = PresentedViewController.GetTransitionCoordinator ();
-			if(transitionCoordinator == null)
-			{
+			if (transitionCoordinator == null) {
 				dimmingView.Alpha = alpha;
 				return;
 			}
@@ -83,7 +80,7 @@ namespace LookInside
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone)
 				return parentContainerSize;
 			else
-				return new CGSize(parentContainerSize.Width / 3, parentContainerSize.Height);
+				return new CGSize (parentContainerSize.Width / 3, parentContainerSize.Height);
 		}
 
 		public override void ContainerViewWillLayoutSubviews ()
@@ -94,7 +91,7 @@ namespace LookInside
 			PresentedView.Frame = FrameOfPresentedViewInContainerView;
 		}
 
-		void PrepareDimmingView()
+		void PrepareDimmingView ()
 		{
 			dimmingView = new UIView ();
 			dimmingView.BackgroundColor = UIColor.FromWhiteAlpha (0, 0.4f);
@@ -104,7 +101,7 @@ namespace LookInside
 			dimmingView.AddGestureRecognizer (tap);
 		}
 
-		void DimmingViewTapped(UIGestureRecognizer gesture)
+		void DimmingViewTapped (UIGestureRecognizer gesture)
 		{
 			if (gesture.State == UIGestureRecognizerState.Recognized)
 				PresentingViewController.DismissViewController (true, null);

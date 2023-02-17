@@ -4,14 +4,12 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace UIKitDynamicsDemo
-{
+namespace UIKitDynamicsDemo {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the 
 	// User Interface of the application, as well as listening (and optionally responding) to 
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 		UIWindow window;
 		UIKitDynamicsDemoViewController viewController;
@@ -25,11 +23,11 @@ namespace UIKitDynamicsDemo
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
-			
+
 			viewController = new UIKitDynamicsDemoViewController ();
 			window.RootViewController = viewController;
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 	}

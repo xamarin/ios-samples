@@ -9,10 +9,8 @@ using Foundation;
 using UIKit;
 using CoreText;
 
-namespace Quotes
-{
-	public class Page : NSObject
-	{
+namespace Quotes {
+	public class Page : NSObject {
 		// The paragraphs loaded from the XML file
 		public List<XElement> Paragraphs { get; set; }
 
@@ -55,17 +53,17 @@ namespace Quotes
 			// TODO: find stage directions and format them differently
 			if (ParagraphIsStageDirection (paragraph)) {
 				var stageDirection = new NSAttributedString (TextForParagraph (paragraph),
-				                                             font: UIFont.FromName ("Helvetica-LightOblique", 24),
-				                                             paragraphStyle: new NSMutableParagraphStyle () { Alignment = UITextAlignment.Center, LineSpacing = 10});
+															 font: UIFont.FromName ("Helvetica-LightOblique", 24),
+															 paragraphStyle: new NSMutableParagraphStyle () { Alignment = UITextAlignment.Center, LineSpacing = 10 });
 				returnValue.Append (stageDirection);
 			} else {
 				var speaker = new NSAttributedString (SpeakerForParagraph (paragraph),
-	                                                  font: UIFont.FromName ("HoeflerText-Black", 24),
-				                                      foregroundColor: UIColor.Brown
-				                                      );
+													  font: UIFont.FromName ("HoeflerText-Black", 24),
+													  foregroundColor: UIColor.Brown
+													  );
 				var text = new NSAttributedString (TextForParagraph (paragraph),
-				                                   font: UIFont.FromName ("HoeflerText-Regular", 24.0f),
-				                                   foregroundColor: UIColor.Black
+												   font: UIFont.FromName ("HoeflerText-Regular", 24.0f),
+												   foregroundColor: UIColor.Black
 #if TEST_OTHER_ATTRIBUTES
 				                                   ,backgroundColor: UIColor.Yellow,
 				                                   ligatures: NSLigatureType.None,
@@ -85,13 +83,13 @@ namespace Quotes
 			}
 
 			returnValue.EnumerateAttribute (UIStringAttributeKey.ParagraphStyle, new NSRange (0, returnValue.Length), NSAttributedStringEnumeration.LongestEffectiveRangeNotRequired,
-			                                (NSObject value, NSRange range, ref bool stop) => {
-				var style = value == null ? new NSMutableParagraphStyle () : (NSMutableParagraphStyle)value.MutableCopy ();
-				style.MinimumLineHeight = LineHeight;
-				style.MaximumLineHeight = LineHeight;
+											(NSObject value, NSRange range, ref bool stop) => {
+												var style = value == null ? new NSMutableParagraphStyle () : (NSMutableParagraphStyle) value.MutableCopy ();
+												style.MinimumLineHeight = LineHeight;
+												style.MaximumLineHeight = LineHeight;
 
-				returnValue.AddAttribute (UIStringAttributeKey.ParagraphStyle, style, range);
-			});
+												returnValue.AddAttribute (UIStringAttributeKey.ParagraphStyle, style, range);
+											});
 
 			return returnValue;
 		}

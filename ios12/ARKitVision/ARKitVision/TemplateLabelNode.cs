@@ -1,54 +1,49 @@
-﻿
-namespace ARKitVision
-{
-    using Foundation;
-    using SpriteKit;
-    using System;
 
-    /// <summary>
-    /// Instantiates styled label nodes based on a template node in a scene file.
-    /// </summary>
-    public class TemplateLabelNode : SKReferenceNode
-    {
-        private readonly string text;
+namespace ARKitVision {
+	using Foundation;
+	using SpriteKit;
+	using System;
 
-        private bool isUpdated;
+	/// <summary>
+	/// Instantiates styled label nodes based on a template node in a scene file.
+	/// </summary>
+	public class TemplateLabelNode : SKReferenceNode {
+		private readonly string text;
 
-        private SKNode localParent;
+		private bool isUpdated;
 
-        public TemplateLabelNode(string text) : base("LabelScene")
-        {
-            this.text = text;
-            this.UpdateText();
-        }
+		private SKNode localParent;
 
-        public TemplateLabelNode(NSCoder coder) : base(coder) => throw new Exception("init(coder:) has not been implemented");
+		public TemplateLabelNode (string text) : base ("LabelScene")
+		{
+			this.text = text;
+			this.UpdateText ();
+		}
 
-        public override void DidLoadReferenceNode(SKNode node)
-        {
-            base.DidLoadReferenceNode(node);
+		public TemplateLabelNode (NSCoder coder) : base (coder) => throw new Exception ("init(coder:) has not been implemented");
 
-            // Apply text to both labels loaded from the template.
-            this.localParent = node?.GetChildNode("LabelNode");
-            if(this.localParent == null)
-            {
-                throw new Exception("misconfigured SpriteKit template file");
-            }
+		public override void DidLoadReferenceNode (SKNode node)
+		{
+			base.DidLoadReferenceNode (node);
 
-            this.UpdateText();
-        }
+			// Apply text to both labels loaded from the template.
+			this.localParent = node?.GetChildNode ("LabelNode");
+			if (this.localParent == null) {
+				throw new Exception ("misconfigured SpriteKit template file");
+			}
 
-        private void UpdateText()
-        {
-            if (!this.isUpdated)
-            {
-                this.isUpdated = !string.IsNullOrEmpty(this.text);
-                foreach (SKLabelNode label in this.localParent.Children)
-                {
-                    label.Name = this.text;
-                    label.Text = this.text;
-                }
-            }
-        }
-    }
+			this.UpdateText ();
+		}
+
+		private void UpdateText ()
+		{
+			if (!this.isUpdated) {
+				this.isUpdated = !string.IsNullOrEmpty (this.text);
+				foreach (SKLabelNode label in this.localParent.Children) {
+					label.Name = this.text;
+					label.Text = this.text;
+				}
+			}
+		}
+	}
 }

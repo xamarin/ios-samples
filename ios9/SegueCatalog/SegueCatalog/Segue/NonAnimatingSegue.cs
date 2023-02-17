@@ -2,10 +2,8 @@ using System;
 
 using UIKit;
 
-namespace SegueCatalog
-{
-	public partial class NonAnimatingSegue : UIStoryboardSegue
-	{
+namespace SegueCatalog {
+	public partial class NonAnimatingSegue : UIStoryboardSegue {
 		public NonAnimatingSegue (IntPtr handle)
 			: base (handle)
 		{

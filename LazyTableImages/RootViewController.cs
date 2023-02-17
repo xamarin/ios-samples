@@ -84,7 +84,8 @@ namespace LazyTableImages {
 				PlaceholderImage = UIImage.FromFile ("Images/Placeholder.png");
 
 				// If either a download fails or the image we download is corrupt, ignore the problem.
-				TaskScheduler.UnobservedTaskException += delegate(object sender, UnobservedTaskExceptionEventArgs e) {
+				TaskScheduler.UnobservedTaskException += delegate (object sender, UnobservedTaskExceptionEventArgs e)
+				{
 					e.SetObserved ();
 				};
 			}
@@ -150,7 +151,7 @@ namespace LazyTableImages {
 			{
 				// Queue the image to be downloaded. This task will execute
 				// as soon as the existing ones have finished.
-				byte[] data = null;
+				byte [] data = null;
 				DownloadTask = DownloadTask.ContinueWith (prevTask => {
 					try {
 						UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;

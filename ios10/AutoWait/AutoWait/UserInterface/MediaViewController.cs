@@ -4,11 +4,9 @@ using AVFoundation;
 using Foundation;
 using UIKit;
 
-namespace AutoWait
-{
-	public partial class MediaViewController : UIViewController
-	{
-		[Outlet("stackView")]
+namespace AutoWait {
+	public partial class MediaViewController : UIViewController {
+		[Outlet ("stackView")]
 		UIStackView stackView { get; set; }
 
 		PlaybackViewController playbackViewController;
@@ -41,11 +39,11 @@ namespace AutoWait
 
 			// Setup sub-view controllers.
 			// 1) A PlaybackViewController for the video and playback controls.
-			playbackViewController = (PlaybackViewController)Storyboard.InstantiateViewController ("Playback");
+			playbackViewController = (PlaybackViewController) Storyboard.InstantiateViewController ("Playback");
 			playbackViewController.Player = player;
 
 			// 2) A PlaybackDetailsViewController for property values.
-			playbackDetailsViewController = (PlaybackDetailsViewController)Storyboard.InstantiateViewController ("PlaybackDetails");
+			playbackDetailsViewController = (PlaybackDetailsViewController) Storyboard.InstantiateViewController ("PlaybackDetails");
 			playbackDetailsViewController.Player = player;
 
 			// Add both new views to our stackView.

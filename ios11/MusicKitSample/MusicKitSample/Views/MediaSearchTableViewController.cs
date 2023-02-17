@@ -11,10 +11,8 @@ using System.Threading.Tasks;
 using CoreGraphics;
 using StoreKit;
 
-namespace MusicKitSample
-{
-	public partial class MediaSearchTableViewController : UITableViewController, IUISearchResultsUpdating, IUISearchBarDelegate, IMediaSearchTableViewCellDelegate
-	{
+namespace MusicKitSample {
+	public partial class MediaSearchTableViewController : UITableViewController, IUISearchResultsUpdating, IUISearchBarDelegate, IMediaSearchTableViewCellDelegate {
 		#region Fields
 
 		static readonly object padlock = new object ();
@@ -91,12 +89,12 @@ namespace MusicKitSample
 			 * Settings app the application will reflect those changes accurately.
 			 */
 			var notificationCenter = NSNotificationCenter.DefaultCenter;
-			authorizationDidUpdateNotificationToken = notificationCenter.AddObserver (AuthorizationManager.AuthorizationDidUpdateNotification, 
-			                                                                          HandleAuthorizationManagerAuthorizationDidUpdateNotification, 
-			                                                                          null);
-			willEnterForegroundNotificationToken = notificationCenter.AddObserver (UIApplication.WillEnterForegroundNotification, 
-			                                                                       HandleAuthorizationManagerAuthorizationDidUpdateNotification, 
-			                                                                       null);
+			authorizationDidUpdateNotificationToken = notificationCenter.AddObserver (AuthorizationManager.AuthorizationDidUpdateNotification,
+																					  HandleAuthorizationManagerAuthorizationDidUpdateNotification,
+																					  null);
+			willEnterForegroundNotificationToken = notificationCenter.AddObserver (UIApplication.WillEnterForegroundNotification,
+																				   HandleAuthorizationManagerAuthorizationDidUpdateNotification,
+																				   null);
 		}
 
 		protected override void Dispose (bool disposing)

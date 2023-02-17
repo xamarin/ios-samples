@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using AVFoundation;
 using CoreMedia;
 
-namespace PhotoFilterExtension
-{
-	public class AudioChannel : ReadWriteSampleBufferChannel
-	{
+namespace PhotoFilterExtension {
+	public class AudioChannel : ReadWriteSampleBufferChannel {
 		public AudioChannel (AVAssetReaderOutput readerOutput, AVAssetWriterInput writerInput)
-			: base(readerOutput, writerInput)
+			: base (readerOutput, writerInput)
 		{
 		}
 

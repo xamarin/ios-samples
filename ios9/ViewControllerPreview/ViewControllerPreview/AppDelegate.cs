@@ -1,4 +1,4 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
 namespace ViewControllerPreview {
@@ -27,4 +27,4 @@ namespace ViewControllerPreview {
 	}
 }
 
- 
+

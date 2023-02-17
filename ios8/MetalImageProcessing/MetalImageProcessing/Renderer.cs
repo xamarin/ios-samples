@@ -8,10 +8,8 @@ using Metal;
 using OpenTK;
 using UIKit;
 
-namespace MetalImageProcessing
-{
-	public class Renderer
-	{
+namespace MetalImageProcessing {
+	public class Renderer {
 		const float interfaceOrientationLandscapeAngle = 35.0f;
 		const float interfaceOrientationPortraitAngle = 50.0f;
 		const float prespectiveNear = 0.1f;
@@ -25,7 +23,7 @@ namespace MetalImageProcessing
 		Quad mpQuad;
 
 		// Interface Orientation
-		UIInterfaceOrientation  mnOrientation;
+		UIInterfaceOrientation mnOrientation;
 		Semaphore inflightSemaphore;
 
 		// Renderer globals
@@ -43,10 +41,10 @@ namespace MetalImageProcessing
 		IMTLTexture outTexture;
 		IMTLRenderPipelineState pipelineState;
 
-		#pragma warning disable 649
+#pragma warning disable 649
 		// Dimensions
 		CGSize size;
-		#pragma warning restore 649
+#pragma warning restore 649
 
 		// Viewing matrix is derived from an eye point, a reference point
 		// indicating the center of the scene, and an up vector.
@@ -170,22 +168,22 @@ namespace MetalImageProcessing
 
 			// we need to set the framebuffer only property of the layer to NO so we
 			// can perform compute on the drawable's texture
-			var metalLayer = (CAMetalLayer)renderView.Layer;
+			var metalLayer = (CAMetalLayer) renderView.Layer;
 			metalLayer.FramebufferOnly = false;
 
-			if(!PreparePipelineState ())
+			if (!PreparePipelineState ())
 				throw new ApplicationException ("ERROR: Failed creating a depth stencil state descriptor!");
 
-			if(!PrepareTexturedQuad ("Default", "jpg"))
+			if (!PrepareTexturedQuad ("Default", "jpg"))
 				throw new ApplicationException ("ERROR: Failed creating a textured quad!");
 
-			if(!PrepareCompute ())
+			if (!PrepareCompute ())
 				throw new ApplicationException ("ERROR: Failed creating a compute stage!");
 
-			if(!PrepareDepthStencilState ())
+			if (!PrepareDepthStencilState ())
 				throw new ApplicationException ("ERROR: Failed creating a depth stencil state!");
 
-			if(!PrepareTransformBuffer ())
+			if (!PrepareTransformBuffer ())
 				throw new ApplicationException ("ERROR: Failed creating a transform buffer!");
 
 			// Default orientation is unknown
@@ -200,13 +198,13 @@ namespace MetalImageProcessing
 			// get the fragment function from the library
 			IMTLFunction fragmentProgram = shaderLibrary.CreateFunction ("texturedQuadFragment");
 
-			if(fragmentProgram == null)
+			if (fragmentProgram == null)
 				Console.WriteLine ("ERROR: Couldn't load fragment function from default library");
 
 			// get the vertex function from the library
 			IMTLFunction vertexProgram = shaderLibrary.CreateFunction ("texturedQuadVertex");
 
-			if(vertexProgram == null)
+			if (vertexProgram == null)
 				Console.WriteLine ("ERROR: Couldn't load vertex function from default library");
 
 			//  create a pipeline state for the quad
@@ -218,12 +216,12 @@ namespace MetalImageProcessing
 				FragmentFunction = fragmentProgram
 			};
 
-			quadPipelineStateDescriptor.ColorAttachments[0].PixelFormat = MTLPixelFormat.BGRA8Unorm;
+			quadPipelineStateDescriptor.ColorAttachments [0].PixelFormat = MTLPixelFormat.BGRA8Unorm;
 
 			NSError error;
 
 			pipelineState = device.CreateRenderPipelineState (quadPipelineStateDescriptor, out error);
-			if(pipelineState == null) {
+			if (pipelineState == null) {
 				Console.WriteLine ("ERROR: Failed acquiring pipeline state descriptor: %@", error.Description);
 				return false;
 			}
@@ -237,7 +235,7 @@ namespace MetalImageProcessing
 			bool isAcquired = mpInTexture.Finalize (device);
 			mpInTexture.MetalTexture.Label = texStr;
 
-			if(!isAcquired) {
+			if (!isAcquired) {
 				Console.WriteLine ("ERROR: Failed creating an input 2d texture!");
 				return false;
 			}
@@ -258,42 +256,42 @@ namespace MetalImageProcessing
 
 			// Create a compute kernel function
 			IMTLFunction function = shaderLibrary.CreateFunction ("grayscale");
-			if(function == null) {
+			if (function == null) {
 				Console.WriteLine ("ERROR: Failed creating a new function!");
 				return false;
 			}
 
 			// Create a compute kernel
 			kernel = device.CreateComputePipelineState (function, out error);
-			if(kernel == null) {
+			if (kernel == null) {
 				Console.WriteLine ("ERROR: Failed creating a compute kernel: %@", error.Description);
 				return false;
 			}
 
-			MTLTextureDescriptor texDesc = MTLTextureDescriptor.CreateTexture2DDescriptor (MTLPixelFormat.RGBA8Unorm, (nuint)size.Width, (nuint)size.Height, false);
-			if(texDesc == null) {
+			MTLTextureDescriptor texDesc = MTLTextureDescriptor.CreateTexture2DDescriptor (MTLPixelFormat.RGBA8Unorm, (nuint) size.Width, (nuint) size.Height, false);
+			if (texDesc == null) {
 				Console.WriteLine ("ERROR: Failed creating a texture 2d descriptor with RGBA unnormalized pixel format!");
 				return false;
 			}
 
 			outTexture = device.CreateTexture (texDesc);
-			if(outTexture == null) {
+			if (outTexture == null) {
 				Console.WriteLine ("ERROR: Failed creating an output 2d texture!");
 				return false;
 			}
 
 			// Set the compute kernel's workgroup size and count
 			workgroupSize = new MTLSize (1, 1, 1);
-			localCount = new MTLSize ((nint)size.Width, (nint)size.Height, 1);
+			localCount = new MTLSize ((nint) size.Width, (nint) size.Height, 1);
 			return true;
 		}
 
 		bool PrepareTransformBuffer ()
 		{
 			// allocate regions of memory for the constant buffer
-			transformBuffer = device.CreateBuffer ((nuint)Marshal.SizeOf<Matrix4> (), MTLResourceOptions.CpuCacheModeDefault);
+			transformBuffer = device.CreateBuffer ((nuint) Marshal.SizeOf<Matrix4> (), MTLResourceOptions.CpuCacheModeDefault);
 
-			if(transformBuffer == null)
+			if (transformBuffer == null)
 				return false;
 
 			transformBuffer.Label = "TransformBuffer";
@@ -343,8 +341,7 @@ namespace MetalImageProcessing
 			// through the camera position and the bottom of your screen.
 			float dangle = 0.0f;
 
-			switch(mnOrientation)
-			{
+			switch (mnOrientation) {
 			case UIInterfaceOrientation.LandscapeLeft:
 			case UIInterfaceOrientation.LandscapeRight:
 				dangle = interfaceOrientationLandscapeAngle;
@@ -365,9 +362,9 @@ namespace MetalImageProcessing
 			float near = prespectiveNear;
 			float far = prespectiveFar;
 			float rangle = MathUtils.Radians (angle);
-			float length = near * (float)Math.Tan (rangle);
+			float length = near * (float) Math.Tan (rangle);
 
-			float right = length / (float)mpQuad.Aspect;
+			float right = length / (float) mpQuad.Aspect;
 			float left = -right;
 			float top = length;
 			float bottom = -top;
@@ -385,8 +382,8 @@ namespace MetalImageProcessing
 		void UpdateBuffer ()
 		{
 			// Update the buffer associated with the linear _transformation matrix
-			int rawsize = Marshal.SizeOf <Matrix4> ();
-			var rawdata = new byte[rawsize];
+			int rawsize = Marshal.SizeOf<Matrix4> ();
+			var rawdata = new byte [rawsize];
 
 			GCHandle pinnedTransform = GCHandle.Alloc (transform, GCHandleType.Pinned);
 			IntPtr ptr = pinnedTransform.AddrOfPinnedObject ();

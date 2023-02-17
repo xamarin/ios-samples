@@ -10,12 +10,10 @@ using CoreGraphics;
 using static CloudKitAtlas.NullableExtensions;
 using System.Diagnostics.Contracts;
 
-namespace CloudKitAtlas
-{
+namespace CloudKitAtlas {
 	public partial class CodeSampleViewController : UIViewController, IUITableViewDelegate, IUITableViewDataSource,
 	IUIScrollViewDelegate, IUITextFieldDelegate, ICLLocationManagerDelegate, IUIImagePickerControllerDelegate,
-	IUINavigationControllerDelegate, IUIPickerViewDelegate, IUIPickerViewDataSource
-	{
+	IUINavigationControllerDelegate, IUIPickerViewDelegate, IUIPickerViewDataSource {
 		CLLocationManager LocationManager { get; } = new CLLocationManager ();
 		UIImagePickerController ImagePickerController { get; } = new UIImagePickerController ();
 
@@ -64,7 +62,7 @@ namespace CloudKitAtlas
 			base.ViewDidLoad ();
 
 			var codeSample = SelectedCodeSample;
-			if(codeSample != null) {
+			if (codeSample != null) {
 				ClassName.Text = $"Class: {codeSample.ClassName}";
 				MethodName.Text = codeSample.MethodName;
 				CodeSampleDescription.Text = codeSample.Description;
@@ -228,7 +226,7 @@ namespace CloudKitAtlas
 
 		void EditingChanged (object sender, EventArgs e)
 		{
-			EditingEnded ((UITextField)sender);
+			EditingEnded ((UITextField) sender);
 		}
 
 		[Export ("textFieldDidEndEditing:")]
@@ -304,7 +302,7 @@ namespace CloudKitAtlas
 				var indexPath = NSIndexPath.FromRowSection (selectedSelectionCellIndex.Value, 0);
 				var cell = TableView.CellAt (indexPath) as SelectionFieldTableViewCell;
 				if (cell != null)
-					return cell.SelectionInput.Items [(int)row].Label;
+					return cell.SelectionInput.Items [(int) row].Label;
 			}
 			return null;
 		}
@@ -316,7 +314,7 @@ namespace CloudKitAtlas
 				var indexPath = NSIndexPath.FromRowSection (selectedSelectionCellIndex.Value, 0);
 				var cell = TableView.CellAt (indexPath) as SelectionFieldTableViewCell;
 				if (cell != null) {
-					cell.SelectedItemLabel.Text = cell.SelectionInput.Items [(int)row].Label;
+					cell.SelectedItemLabel.Text = cell.SelectionInput.Items [(int) row].Label;
 					UIView.AnimateNotify (0.4, () => {
 						PickerHeightConstraint.Constant = 0;
 						View.LayoutIfNeeded ();
@@ -329,10 +327,10 @@ namespace CloudKitAtlas
 							foreach (var index in cell.SelectionInput.Items [oldValue.Value].ToggleIndexes)
 								SelectedCodeSample.Inputs [index].IsHidden = true;
 						}
-						foreach (var index in cell.SelectionInput.Items [(int)row].ToggleIndexes)
+						foreach (var index in cell.SelectionInput.Items [(int) row].ToggleIndexes)
 							SelectedCodeSample.Inputs [index].IsHidden = false;
 
-						cell.SelectionInput.Value = (int)row;
+						cell.SelectionInput.Value = (int) row;
 						TableView.ReloadData ();
 					});
 				}
@@ -351,7 +349,7 @@ namespace CloudKitAtlas
 
 			int index = selectedImageCellIndex.Value;
 			var indexPath = NSIndexPath.FromRowSection (index, 0);
-			var cell = (LocationFieldTableViewCell)TableView.CellAt (indexPath);
+			var cell = (LocationFieldTableViewCell) TableView.CellAt (indexPath);
 
 			cell.LookUpButton.Enabled = status != CLAuthorizationStatus.Denied;
 			if (status == CLAuthorizationStatus.AuthorizedWhenInUse)
@@ -381,12 +379,12 @@ namespace CloudKitAtlas
 
 			var index = selectedImageCellIndex.Value;
 			var indexPath = NSIndexPath.FromRowSection (index, 0);
-			var cell = (LocationFieldTableViewCell)TableView.CellAt (indexPath);
+			var cell = (LocationFieldTableViewCell) TableView.CellAt (indexPath);
 
 			EndLocationLookupForCell (cell);
 
 			var location = locations.LastOrDefault ();
-			if(location != null) {
+			if (location != null) {
 				cell.SetCoordinate (location.Coordinate);
 				ValidateInputs ();
 			}
@@ -425,12 +423,12 @@ namespace CloudKitAtlas
 		[Export ("imagePickerController:didFinishPickingMediaWithInfo:")]
 		public void FinishedPickingMedia (UIImagePickerController picker, NSDictionary info)
 		{
-			var selectedImage = (UIImage)info [UIImagePickerController.OriginalImage];
+			var selectedImage = (UIImage) info [UIImagePickerController.OriginalImage];
 			var imageUrl = GetImageUrl ();
 			if (selectedImage != null && selectedImageCellIndex.HasValue && imageUrl != null) {
 				var index = selectedImageCellIndex.Value;
 				var indexPath = NSIndexPath.FromRowSection (index, 0);
-				var cell = (ImageFieldTableViewCell)TableView.CellAt (indexPath);
+				var cell = (ImageFieldTableViewCell) TableView.CellAt (indexPath);
 				var imageData = selectedImage.AsJPEG (0.8f);
 				imageData?.Save (imageUrl, atomically: true);
 				cell.AssetView.Image = selectedImage;
@@ -524,7 +522,7 @@ namespace CloudKitAtlas
 		static int? Parse (string text)
 		{
 			int value;
-			return int.TryParse (text, out value) ? value : (int?)null;
+			return int.TryParse (text, out value) ? value : (int?) null;
 		}
 	}
 }

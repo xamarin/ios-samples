@@ -1,4 +1,4 @@
-﻿using CoreAnimation;
+using CoreAnimation;
 using CoreGraphics;
 using Foundation;
 using UIKit;

@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using CoreBluetooth;
 using UIKit;
 
-namespace PrivacyPrompts
-{
-	public class BluetoothPrivacyManager : IPrivacyManager, IDisposable
-	{
+namespace PrivacyPrompts {
+	public class BluetoothPrivacyManager : IPrivacyManager, IDisposable {
 		readonly CBCentralManager cbManager = new CBCentralManager ();
 
 		public Task RequestAccess ()

@@ -5,10 +5,8 @@ using Foundation;
 using Metal;
 using MetalPerformanceShaders;
 
-namespace DigitDetection
-{
-	public partial class ViewController : UIViewController
-	{
+namespace DigitDetection {
+	public partial class ViewController : UIViewController {
 		// some properties used to control the app and store appropriate values
 		// we will start with the simple 1 layer
 		bool deep;
@@ -118,7 +116,7 @@ namespace DigitDetection
 				throw new InvalidProgramException ();
 
 			// putting input into MTLTexture in the MPSImage
-			var region = new MTLRegion (new MTLOrigin (0, 0, 0), new MTLSize ((nint)mnistInputWidth, mnistInputHeight, 1));
+			var region = new MTLRegion (new MTLOrigin (0, 0, 0), new MTLSize ((nint) mnistInputWidth, mnistInputHeight, 1));
 			runningNet.SrcImage.Texture.ReplaceRegion (region,
 													   level: 0,
 													   slice: 0,
@@ -147,7 +145,7 @@ namespace DigitDetection
 			var inputImage = new MPSImage (device, runningNet.SID);
 
 			// put image in source texture (input layer)
-			inputImage.Texture.ReplaceRegion (region: new MTLRegion (new MTLOrigin (0, 0, 0), new MTLSize ((nint)mnistInputWidth, mnistInputHeight, 1)),
+			inputImage.Texture.ReplaceRegion (region: new MTLRegion (new MTLOrigin (0, 0, 0), new MTLSize ((nint) mnistInputWidth, mnistInputHeight, 1)),
 											  level: 0,
 											  slice: 0,
 											  pixelBytes: Mnistdata.Images + startIndex,

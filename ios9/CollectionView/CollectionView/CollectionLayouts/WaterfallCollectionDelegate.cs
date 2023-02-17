@@ -1,4 +1,4 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
 namespace CollectionView {
@@ -13,7 +13,7 @@ namespace CollectionView {
 	/// </remarks>
 	public class WaterfallCollectionDelegate : UICollectionViewDelegate {
 		#region Computed Properties
-		public WaterfallCollectionView CollectionView { get; set;}
+		public WaterfallCollectionView CollectionView { get; set; }
 		#endregion
 
 		#region Constructors

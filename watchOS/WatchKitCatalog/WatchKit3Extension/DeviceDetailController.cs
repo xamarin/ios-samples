@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  * This controller displays device specific information to use for ensuring a great experience to the wearer of the WatchKit app.
 */
 
@@ -7,10 +7,8 @@ using System;
 using WatchKit;
 using CoreGraphics;
 
-namespace WatchkitExtension
-{
-	public partial class DeviceDetailController : WKInterfaceController
-	{
+namespace WatchkitExtension {
+	public partial class DeviceDetailController : WKInterfaceController {
 		public DeviceDetailController ()
 		{
 			CGRect bounds = WKInterfaceDevice.CurrentDevice.ScreenBounds;

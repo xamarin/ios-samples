@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using WatchKit;
 using Foundation;
 
-namespace WatchNotifications_iOSWatchKitExtension
-{
-	public partial class NotificationController : WKUserNotificationInterfaceController
-	{
+namespace WatchNotifications_iOSWatchKitExtension {
+	public partial class NotificationController : WKUserNotificationInterfaceController {
 		public NotificationController (IntPtr handle) : base (handle)
 		{
 		}

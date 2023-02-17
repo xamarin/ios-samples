@@ -10,7 +10,7 @@ namespace BasicTable {
 
 		public HomeScreen ()
 		{
-			
+
 		}
 
 		public override void ViewDidLoad ()
@@ -18,23 +18,23 @@ namespace BasicTable {
 			base.ViewDidLoad ();
 			table = new UITableView (View.Bounds, UITableViewStyle.Grouped);
 			table.AutoresizingMask = UIViewAutoresizing.All;
-			CreateTableItems();
+			CreateTableItems ();
 			Add (table);
 		}
 
 		protected void CreateTableItems ()
 		{
-			List<TableItem> veges = new List<TableItem>();
-	
+			List<TableItem> veges = new List<TableItem> ();
+
 			// Credit for test data to 
 			// http://en.wikipedia.org/wiki/List_of_culinary_vegetables
-			var lines = File.ReadLines("VegeData2.txt");
+			var lines = File.ReadLines ("VegeData2.txt");
 			foreach (var line in lines) {
-				var vege = line.Split(',');
-				veges.Add (new TableItem(vege[1]) {SubHeading=vege[0]} );
+				var vege = line.Split (',');
+				veges.Add (new TableItem (vege [1]) { SubHeading = vege [0] });
 			}
 
-			table.Source = new TableSource(veges, this);
+			table.Source = new TableSource (veges, this);
 		}
 	}
 }

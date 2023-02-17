@@ -5,10 +5,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Example_Touch.Screens.iPhone.SimpleTouch
-{
-	public partial class Touches_iPhone : UIViewController
-	{
+namespace Example_Touch.Screens.iPhone.SimpleTouch {
+	public partial class Touches_iPhone : UIViewController {
 		protected bool touchStartedInside;
 		protected bool imageHighlighted = false;
 
@@ -17,18 +15,18 @@ namespace Example_Touch.Screens.iPhone.SimpleTouch
 		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
-		public Touches_iPhone (IntPtr handle) : base(handle)
+		public Touches_iPhone (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public Touches_iPhone (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public Touches_iPhone (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
 
-		public Touches_iPhone () : base("Touches_iPhone", null)
+		public Touches_iPhone () : base ("Touches_iPhone", null)
 		{
 			Initialize ();
 		}
@@ -55,20 +53,20 @@ namespace Example_Touch.Screens.iPhone.SimpleTouch
 			base.TouchesBegan (touches, evt);
 
 			// we can get the number of fingers from the touch count, but Multitouch must be enabled
-			lblNumberOfFingers.Text = "Number of fingers: " + touches.Count.ToString();
+			lblNumberOfFingers.Text = "Number of fingers: " + touches.Count.ToString ();
 
 			// get the touch
 			UITouch touch = touches.AnyObject as UITouch;
 			if (touch != null) {
 
-				Console.WriteLine("screen touched");
+				Console.WriteLine ("screen touched");
 
 				//==== IMAGE TOUCH
 				if (imgTouchMe.Frame.Contains (touch.LocationInView (View)))
 					lblTouchStatus.Text = "TouchesBegan";
 
 				//==== IMAGE DOUBLE TAP
-				if(touch.TapCount == 2 && imgTapMe.Frame.Contains (touch.LocationInView (View))) {
+				if (touch.TapCount == 2 && imgTapMe.Frame.Contains (touch.LocationInView (View))) {
 					if (imageHighlighted)
 						imgTapMe.Image = UIImage.FromBundle ("Images/DoubleTapMe.png");
 					else
@@ -99,8 +97,8 @@ namespace Example_Touch.Screens.iPhone.SimpleTouch
 				if (touchStartedInside) {
 
 					// move the shape
-					nfloat offsetX = touch.PreviousLocationInView (View).X - touch.LocationInView(View).X;
-					nfloat offsetY = touch.PreviousLocationInView (View).Y - touch.LocationInView(View).Y;
+					nfloat offsetX = touch.PreviousLocationInView (View).X - touch.LocationInView (View).X;
+					nfloat offsetY = touch.PreviousLocationInView (View).Y - touch.LocationInView (View).Y;
 					imgDragMe.Frame = new CGRect (new CGPoint (imgDragMe.Frame.X - offsetX, imgDragMe.Frame.Y - offsetY), imgDragMe.Frame.Size);
 				}
 			}

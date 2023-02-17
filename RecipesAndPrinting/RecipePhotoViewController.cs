@@ -29,10 +29,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace RecipesAndPrinting
-{
-	public class RecipePhotoViewController : UIViewController
-	{
+namespace RecipesAndPrinting {
+	public class RecipePhotoViewController : UIViewController {
 		UIImageView imageView;
 
 		public RecipePhotoViewController ()

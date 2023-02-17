@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Foundation;
 using StoreKit;
@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 using UIKit;
 using MediaPlayer;
 
-namespace MusicKitSample.Controllers
-{
-	public class AuthorizationManager : NSObject
-	{
+namespace MusicKitSample.Controllers {
+	public class AuthorizationManager : NSObject {
 		#region Fields
 
 		NSObject CloudServiceCapabilitiesDidChangeNotificationToken;
@@ -66,7 +64,7 @@ namespace MusicKitSample.Controllers
 		         */
 			var notificationCenter = NSNotificationCenter.DefaultCenter;
 			CloudServiceCapabilitiesDidChangeNotificationToken = notificationCenter.AddObserver (SKCloudServiceController.CloudServiceCapabilitiesDidChangeNotification,
-			                                async (obj) => await RequestCloudServiceCapabilitiesAsync ());
+											async (obj) => await RequestCloudServiceCapabilitiesAsync ());
 
 			if (UIDevice.CurrentDevice.CheckSystemVersion (11, 0))
 				StorefrontCountryCodeDidChangeNotificationToken = notificationCenter.AddObserver (SKCloudServiceController.StorefrontCountryCodeDidChangeNotification,

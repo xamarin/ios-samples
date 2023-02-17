@@ -7,13 +7,11 @@ using OpenTK;
 using OpenGLES;
 using OpenTK.Graphics.ES11;
 
-namespace OpenGLESSampleGameView
-{
-	public partial class EAGLView : iPhoneOSGameView
-	{
+namespace OpenGLESSampleGameView {
+	public partial class EAGLView : iPhoneOSGameView {
 
 		[Export ("layerClass")]
-		static Class LayerClass()
+		static Class LayerClass ()
 		{
 			return iPhoneOSGameView.GetLayerClass ();
 		}
@@ -22,34 +20,34 @@ namespace OpenGLESSampleGameView
 		public EAGLView (NSCoder coder) : base (coder)
 		{
 			LayerRetainsBacking = false;
-			LayerColorFormat    = EAGLColorFormat.RGBA8;
+			LayerColorFormat = EAGLColorFormat.RGBA8;
 			ContextRenderingApi = EAGLRenderingAPI.OpenGLES1;
 		}
 
-		protected override void ConfigureLayer(CAEAGLLayer eaglLayer)
+		protected override void ConfigureLayer (CAEAGLLayer eaglLayer)
 		{
 			eaglLayer.Opaque = true;
 		}
 
-		protected override void OnRenderFrame(FrameEventArgs e)
+		protected override void OnRenderFrame (FrameEventArgs e)
 		{
 			base.OnRenderFrame (e);
 
-			float[] squareVertices = {
+			float [] squareVertices = {
 				-0.5f, -0.5f,
 				0.5f, -0.5f,
 				-0.5f, 0.5f,
 				0.5f, 0.5f,
 			};
 
-			byte[] squareColors = {
+			byte [] squareColors = {
 				255, 255,   0, 255,
 				0,   255, 255, 255,
 				0,     0,    0,  0,
 				255,   0,  255, 255,
 			};
 
-			MakeCurrent();
+			MakeCurrent ();
 			GL.Viewport (0, 0, Size.Width, Size.Height);
 
 			GL.MatrixMode (All.Projection);
@@ -68,7 +66,7 @@ namespace OpenGLESSampleGameView
 
 			GL.DrawArrays (All.TriangleStrip, 0, 4);
 
-			SwapBuffers();
+			SwapBuffers ();
 		}
 	}
 }

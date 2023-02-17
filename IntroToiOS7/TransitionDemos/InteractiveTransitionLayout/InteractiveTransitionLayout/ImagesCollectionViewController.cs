@@ -6,10 +6,8 @@ using System.Collections.Generic;
 using System.Threading;
 using MonoTouch.Dialog.Utilities;
 
-namespace InteractiveTransitionLayout
-{
-	public class ImagesCollectionViewController : UICollectionViewController
-	{
+namespace InteractiveTransitionLayout {
+	public class ImagesCollectionViewController : UICollectionViewController {
 		static readonly NSString cellId = new NSString ("ImageCell");
 
 		Monkeys monkeys;
@@ -25,9 +23,9 @@ namespace InteractiveTransitionLayout
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-              
+
 			// register the ImageCell so it can be created from a DequeueReusableCell call
-			CollectionView.RegisterClassForCell (typeof(ImageCell), cellId);
+			CollectionView.RegisterClassForCell (typeof (ImageCell), cellId);
 		}
 
 		public override nint GetItemsCount (UICollectionView collectionView, nint section)
@@ -38,24 +36,23 @@ namespace InteractiveTransitionLayout
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
 			// get an ImageCell from the pool. DequeueReusableCell will create one if necessary
-			ImageCell imageCell = (ImageCell)collectionView.DequeueReusableCell (cellId, indexPath);
+			ImageCell imageCell = (ImageCell) collectionView.DequeueReusableCell (cellId, indexPath);
 
 			// update the image for the speaker
 			imageCell.UpdateImage (monkeys [indexPath.Row].ImageFile);
-                
+
 			return imageCell;
 		}
 
 		// class to use for cell
-		class ImageCell : UICollectionViewCell
-		{
+		class ImageCell : UICollectionViewCell {
 			UIImageView imageView;
 
 			[Export ("initWithFrame:")]
 			ImageCell (CGRect frame) : base (frame)
 			{
 				// create an image view to use in the cell
-				imageView = new UIImageView (new CGRect (0, 0, 100, 100)); 
+				imageView = new UIImageView (new CGRect (0, 0, 100, 100));
 				imageView.ContentMode = UIViewContentMode.ScaleAspectFit;
 
 				// populate the content view

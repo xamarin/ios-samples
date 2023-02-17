@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
@@ -9,11 +9,9 @@ using CoreMedia;
 using CoreFoundation;
 using System.Threading;
 
-namespace AudioTapProcessor
-{
+namespace AudioTapProcessor {
 	[Register ("MainViewController")]
-	public class MainViewController : UIViewController
-	{
+	public class MainViewController : UIViewController {
 		static NSUrl movieUrl;
 
 		NSObject playerTimeObserver;
@@ -25,7 +23,7 @@ namespace AudioTapProcessor
 			get {
 
 				if (player == null && movieUrl != null) {
-					player = new AVPlayer(movieUrl);
+					player = new AVPlayer (movieUrl);
 				}
 
 				return player;
@@ -122,8 +120,8 @@ namespace AudioTapProcessor
 		void SetupSettingsViewController (UIStoryboardSegue segue)
 		{
 			// Setup settings view controller before it is shown.
-			UIViewController topViewController = ((UINavigationController)segue.DestinationViewController).TopViewController;
-			var settingsViewController = (SettingsViewController)topViewController;
+			UIViewController topViewController = ((UINavigationController) segue.DestinationViewController).TopViewController;
+			var settingsViewController = (SettingsViewController) topViewController;
 
 			settingsViewController.Controller = this;
 			settingsViewController.EnabledSwitchValue = AudioTapProcessor.IsBandpassFilterEnabled;
@@ -141,8 +139,8 @@ namespace AudioTapProcessor
 		AVPlayerStatus FetchStatus (NSDictionary change)
 		{
 			var ch = new NSObservedChange (change);
-			var newValue = (NSNumber)ch.NewValue;
-			return newValue == null ? AVPlayerStatus.Unknown : (AVPlayerStatus)newValue.Int32Value;
+			var newValue = (NSNumber) ch.NewValue;
+			return newValue == null ? AVPlayerStatus.Unknown : (AVPlayerStatus) newValue.Int32Value;
 		}
 
 		void OnReadyToPlay ()
@@ -173,7 +171,7 @@ namespace AudioTapProcessor
 		void UpdateTimeIndicators (CMTime time, CMTime duration)
 		{
 			ElapsedTimeLabel.Text = BuildTimeString (time);
-			CurrentTimeSlider.Value = (float)(time.Seconds / duration.Seconds);
+			CurrentTimeSlider.Value = (float) (time.Seconds / duration.Seconds);
 			RemainingTimeLabel.Text = BuildTimeString (duration - time, "-");
 		}
 
@@ -282,9 +280,9 @@ namespace AudioTapProcessor
 						return;
 					}
 
-					NSDate latest = NSDate.FromTimeIntervalSince1970(0);
+					NSDate latest = NSDate.FromTimeIntervalSince1970 (0);
 					group.Enumerate ((ALAsset result, nint index, ref bool stopGroup) => {
-						if(result == null || result.AssetType != ALAssetType.Video)
+						if (result == null || result.AssetType != ALAssetType.Video)
 							return;
 
 						NSUrl url = result.DefaultRepresentation.Url;
@@ -292,7 +290,7 @@ namespace AudioTapProcessor
 							return;
 
 						var diff = result.Date.SecondsSinceReferenceDate - latest.SecondsSinceReferenceDate;
-						if(diff > 0) {
+						if (diff > 0) {
 							latest = result.Date;
 							movieURL = url;
 						}
@@ -307,8 +305,8 @@ namespace AudioTapProcessor
 			waitHandle.WaitOne ();
 
 			if (movieURL == null) {
-				UIAlertView alertView = new UIAlertView(null, "Could not find any movies in assets library to use as sample content.", null, "OK", null);
-				alertView.Show();
+				UIAlertView alertView = new UIAlertView (null, "Could not find any movies in assets library to use as sample content.", null, "OK", null);
+				alertView.Show ();
 			}
 
 			return movieURL;
@@ -337,7 +335,7 @@ namespace AudioTapProcessor
 
 		static AVAssetTrack FetchFirstAudioTrack (AVPlayer player)
 		{
-			AVAssetTrack[] tracks = player.CurrentItem.Asset.Tracks;
+			AVAssetTrack [] tracks = player.CurrentItem.Asset.Tracks;
 			AVAssetTrack firstAudioTrack = tracks.FirstOrDefault (t => t.MediaType == AVMediaType.Audio);
 			return firstAudioTrack;
 		}
@@ -347,9 +345,9 @@ namespace AudioTapProcessor
 			sign = sign ?? string.Empty;
 			var seconds = Math.Round (time.Seconds);
 
-			int hh = (int)Math.Floor (seconds / 3600);
-			int mm = (int)Math.Floor ((seconds - hh * 3600) / 60);
-			int ss = (int)seconds % 60;
+			int hh = (int) Math.Floor (seconds / 3600);
+			int mm = (int) Math.Floor ((seconds - hh * 3600) / 60);
+			int ss = (int) seconds % 60;
 
 			return hh > 0
 				? string.Format ("{0}{1:00}:{2:00}:{3:00}", sign, hh, mm, ss)

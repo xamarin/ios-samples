@@ -30,10 +30,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace RecipesAndPrinting
-{
-	public class RecipeTableViewCell : UITableViewCell
-	{
+namespace RecipesAndPrinting {
+	public class RecipeTableViewCell : UITableViewCell {
 		const float ImageSize = 42.0f;
 		const float EditingInset = 10.0f;
 		const float TextLeftMargin = 8.0f;

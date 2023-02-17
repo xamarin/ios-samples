@@ -2,36 +2,34 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Lifecycle.iOS
-{
-    public class AppLifecycleViewController : UIViewController
-    {
+namespace Lifecycle.iOS {
+	public class AppLifecycleViewController : UIViewController {
 		UILabel label;
-        nfloat labelWidth = 300;
-        nfloat labelHeight = 200;
+		nfloat labelWidth = 300;
+		nfloat labelHeight = 200;
 
-        public AppLifecycleViewController()
-        {
-        }
+		public AppLifecycleViewController ()
+		{
+		}
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
 
-            View.Frame = UIScreen.MainScreen.Bounds;
-            View.BackgroundColor = UIColor.White;
-            View.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
+			View.Frame = UIScreen.MainScreen.Bounds;
+			View.BackgroundColor = UIColor.White;
+			View.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
 
-            var frame = new CGRect(
-                View.Frame.Width / 2 - labelWidth / 2,
-                View.Frame.Height / 2 - labelHeight / 2,
-                labelWidth,
-                labelHeight);
+			var frame = new CGRect (
+				View.Frame.Width / 2 - labelWidth / 2,
+				View.Frame.Height / 2 - labelHeight / 2,
+				labelWidth,
+				labelHeight);
 
-			label = new UILabel(frame);
+			label = new UILabel (frame);
 
 			label.Text = "App Lifecycle Demo";
-			label.Font = UIFont.FromName("Helvetica-Bold", 50f);
+			label.Font = UIFont.FromName ("Helvetica-Bold", 50f);
 			label.AdjustsFontSizeToFitWidth = true;
 
 			// here we can use a notification to let us know when the app has entered the foreground
@@ -42,9 +40,9 @@ namespace Lifecycle.iOS
 			});
 
 
-            View.AddSubview(label);
-        }
+			View.AddSubview (label);
+		}
 
-    }
+	}
 }
 

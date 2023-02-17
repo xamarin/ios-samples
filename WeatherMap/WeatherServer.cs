@@ -30,10 +30,8 @@ using Foundation;
 using MapKit;
 using SQLite;
 
-namespace WeatherMap
-{
-	public class WeatherServer : IDisposable
-	{
+namespace WeatherMap {
+	public class WeatherServer : IDisposable {
 		SQLiteConnection store;
 
 		public WeatherServer ()
@@ -105,7 +103,7 @@ namespace WeatherMap
 			}
 		}
 
-		public WeatherForecastAnnotation[] GetForecastAnnotations (MKCoordinateRegion region, int maxCount)
+		public WeatherForecastAnnotation [] GetForecastAnnotations (MKCoordinateRegion region, int maxCount)
 		{
 			double longMin = region.Center.Longitude - region.Span.LongitudeDelta / 2.0;
 			double longMax = region.Center.Longitude + region.Span.LongitudeDelta / 2.0;
@@ -114,10 +112,10 @@ namespace WeatherMap
 
 			// Query for WeatherForecasts within our specified region
 			var results = from item in store.Table<WeatherForecast> ()
-				where (item.Latitude > latMin && item.Latitude < latMax && item.Longitude > longMin && item.Longitude < longMax)
-					orderby item.Latitude
-					orderby item.Longitude
-					select item;
+						  where (item.Latitude > latMin && item.Latitude < latMax && item.Longitude > longMin && item.Longitude < longMax)
+						  orderby item.Latitude
+						  orderby item.Longitude
+						  select item;
 
 			// Iterate over the results and add them to a list
 			var list = new List<WeatherForecastAnnotation> ();
@@ -134,7 +132,7 @@ namespace WeatherMap
 			var annotations = new WeatherForecastAnnotation [maxCount];
 
 			for (int i = 0; i < maxCount && (int) index < list.Count; i++, index += stride)
-				annotations[i] = list[(int) index];
+				annotations [i] = list [(int) index];
 
 			return annotations;
 		}

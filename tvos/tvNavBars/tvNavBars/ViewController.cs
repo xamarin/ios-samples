@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 
-namespace MySingleView
-{
-	public partial class ViewController : UIViewController
-	{
+namespace MySingleView {
+	public partial class ViewController : UIViewController {
 		#region Constructors
 		public ViewController (IntPtr handle) : base (handle)
 		{
@@ -27,19 +25,22 @@ namespace MySingleView
 		#endregion
 
 		#region Custom Actions
-		partial void ShowFirstHotel (Foundation.NSObject sender) {
+		partial void ShowFirstHotel (Foundation.NSObject sender)
+		{
 			// Change background image
-			HotelImage.Image = UIImage.FromFile("Motel01.jpg");
+			HotelImage.Image = UIImage.FromFile ("Motel01.jpg");
 		}
 
-		partial void ShowSecondHotel (Foundation.NSObject sender) {
+		partial void ShowSecondHotel (Foundation.NSObject sender)
+		{
 			// Change background image
-			HotelImage.Image = UIImage.FromFile("Motel02.jpg");
+			HotelImage.Image = UIImage.FromFile ("Motel02.jpg");
 		}
 
-		partial void ShowThirdHotel (Foundation.NSObject sender) {
+		partial void ShowThirdHotel (Foundation.NSObject sender)
+		{
 			// Change background image
-			HotelImage.Image = UIImage.FromFile("Motel03.jpg");
+			HotelImage.Image = UIImage.FromFile ("Motel03.jpg");
 		}
 		#endregion
 	}

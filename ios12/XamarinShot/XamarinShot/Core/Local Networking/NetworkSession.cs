@@ -1,225 +1,210 @@
-﻿
-namespace XamarinShot.Models
-{
-    using Foundation;
-    using MultipeerConnectivity;
-    using System.Collections.Generic;
-    using System.Linq;
-    using XamarinShot.Utils;
-    using Newtonsoft.Json;
-    using CoreFoundation;
 
-    public interface INetworkSessionDelegate
-    {
-        void NetworkSessionReceived(NetworkSession session, GameCommand command);
+namespace XamarinShot.Models {
+	using Foundation;
+	using MultipeerConnectivity;
+	using System.Collections.Generic;
+	using System.Linq;
+	using XamarinShot.Utils;
+	using Newtonsoft.Json;
+	using CoreFoundation;
 
-        void NetworkSessionJoining(NetworkSession session, Player player);
+	public interface INetworkSessionDelegate {
+		void NetworkSessionReceived (NetworkSession session, GameCommand command);
 
-        void NetworkSessionLeaving(NetworkSession session, Player player);
-    }
+		void NetworkSessionJoining (NetworkSession session, Player player);
 
-    public class NetworkSession : NSObject, IMCSessionDelegate, IMCNearbyServiceAdvertiserDelegate
-    {
-        private const string LocationKey = "LocationAttributeName";
+		void NetworkSessionLeaving (NetworkSession session, Player player);
+	}
 
-        private readonly List<Player> peers = new List<Player>();
+	public class NetworkSession : NSObject, IMCSessionDelegate, IMCNearbyServiceAdvertiserDelegate {
+		private const string LocationKey = "LocationAttributeName";
 
-        private readonly Player myself;
+		private readonly List<Player> peers = new List<Player> ();
 
-        private GameTableLocation location;
+		private readonly Player myself;
 
-        private MCNearbyServiceAdvertiser serviceAdvertiser;
+		private GameTableLocation location;
 
-        private readonly string appIdentifier;
+		private MCNearbyServiceAdvertiser serviceAdvertiser;
 
-        public NetworkSession(Player myself, bool asServer, GameTableLocation location, Player host) : base()
-        {
-            this.myself = myself;
-            this.Session = new MCSession(this.myself.PeerId, null, MCEncryptionPreference.Required);
-            this.IsServer = asServer;
-            this.location = location;
-            this.Host = host;
+		private readonly string appIdentifier;
 
-            this.appIdentifier = NSBundle.MainBundle.BundleIdentifier;
-            this.Session.Delegate = this;
-        }
+		public NetworkSession (Player myself, bool asServer, GameTableLocation location, Player host) : base ()
+		{
+			this.myself = myself;
+			this.Session = new MCSession (this.myself.PeerId, null, MCEncryptionPreference.Required);
+			this.IsServer = asServer;
+			this.location = location;
+			this.Host = host;
 
-        public MCSession Session { get; private set; }
+			this.appIdentifier = NSBundle.MainBundle.BundleIdentifier;
+			this.Session.Delegate = this;
+		}
 
-        public Player Host { get; private set; }
+		public MCSession Session { get; private set; }
 
-        public bool IsServer { get; private set; }
+		public Player Host { get; private set; }
 
-        public INetworkSessionDelegate Delegate { get; set; }
+		public bool IsServer { get; private set; }
 
-        public bool IsAnyActivePeers => this.peers.Any();
+		public INetworkSessionDelegate Delegate { get; set; }
 
-        /// <summary>
-        /// For use when acting as game server
-        /// </summary>
-        public void StartAdvertising()
-        {
-            if (this.serviceAdvertiser == null)
-            {
-                var discoveryInfo = NSDictionary.FromObjectAndKey(new NSString(appIdentifier), new NSString(XamarinShotGameAttribute.AppIdentifier));
-                if (this.location != null)
-                {
-                    discoveryInfo[LocationKey] = new NSString(this.location.Identifier.ToString());
-                }
+		public bool IsAnyActivePeers => this.peers.Any ();
 
-                var advertiser = new MCNearbyServiceAdvertiser(this.myself.PeerId, discoveryInfo, XamarinShotGameService.PlayerService);
-                advertiser.Delegate = this;
-                advertiser.StartAdvertisingPeer();
-                this.serviceAdvertiser = advertiser;
-            }
-        }
+		/// <summary>
+		/// For use when acting as game server
+		/// </summary>
+		public void StartAdvertising ()
+		{
+			if (this.serviceAdvertiser == null) {
+				var discoveryInfo = NSDictionary.FromObjectAndKey (new NSString (appIdentifier), new NSString (XamarinShotGameAttribute.AppIdentifier));
+				if (this.location != null) {
+					discoveryInfo [LocationKey] = new NSString (this.location.Identifier.ToString ());
+				}
 
-        public void StopAdvertising()
-        {
-            // stop advertising
-            this.serviceAdvertiser?.StopAdvertisingPeer();
-            this.serviceAdvertiser = null;
-        }
+				var advertiser = new MCNearbyServiceAdvertiser (this.myself.PeerId, discoveryInfo, XamarinShotGameService.PlayerService);
+				advertiser.Delegate = this;
+				advertiser.StartAdvertisingPeer ();
+				this.serviceAdvertiser = advertiser;
+			}
+		}
 
-        /// <summary>
-        /// for beacon use
-        /// </summary>
-        /// <param name="newLocation">New location.</param>
-        public void UpdateLocation(GameTableLocation newLocation)
-        {
-            this.location = newLocation;
-        }
+		public void StopAdvertising ()
+		{
+			// stop advertising
+			this.serviceAdvertiser?.StopAdvertisingPeer ();
+			this.serviceAdvertiser = null;
+		}
 
-        #region Actions
+		/// <summary>
+		/// for beacon use
+		/// </summary>
+		/// <param name="newLocation">New location.</param>
+		public void UpdateLocation (GameTableLocation newLocation)
+		{
+			this.location = newLocation;
+		}
 
-        private readonly DispatchQueue messagesQueue = new DispatchQueue("messages", true);
+		#region Actions
 
-        private readonly JsonSerializerSettings serializerSettings = new JsonSerializerSettings
-        {
-            NullValueHandling = NullValueHandling.Ignore,
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            Converters = new List<JsonConverter>
-            {
-                new Formattings.BoolFormatting(),
-                new Formattings.SCNVector3Formatting(),
-                new Formattings.SCNVector4Formatting(),
-                new Formattings.SCNMatrix4Formatting(),
-                new Formattings.SCNQuaternionFormatting(),
-            }
-        };
+		private readonly DispatchQueue messagesQueue = new DispatchQueue ("messages", true);
 
-        public void Send(GAction action)
-        {
-            if (this.peers.Any())
-            {
-                var peerIds = this.peers.Select(peer => peer.PeerId).ToArray();
-                this.Send(action, peerIds);
-            }
-        }
+		private readonly JsonSerializerSettings serializerSettings = new JsonSerializerSettings {
+			NullValueHandling = NullValueHandling.Ignore,
+			ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+			Converters = new List<JsonConverter>
+			{
+				new Formattings.BoolFormatting(),
+				new Formattings.SCNVector3Formatting(),
+				new Formattings.SCNVector4Formatting(),
+				new Formattings.SCNMatrix4Formatting(),
+				new Formattings.SCNQuaternionFormatting(),
+			}
+		};
 
-        public void Send(GAction action, Player player)
-        {
-            this.Send(action, new MCPeerID[] { player.PeerId });
-        }
+		public void Send (GAction action)
+		{
+			if (this.peers.Any ()) {
+				var peerIds = this.peers.Select (peer => peer.PeerId).ToArray ();
+				this.Send (action, peerIds);
+			}
+		}
 
-        private void Send(GAction action, MCPeerID[] peerIds)
-        {
-            var json = JsonConvert.SerializeObject(action, this.serializerSettings);
-            this.messagesQueue.DispatchAsync(() =>
-            {
-                using (var data = NSData.FromString(json))
-                {
-                    this.Session.SendData(data, peerIds, MCSessionSendDataMode.Reliable, out NSError error);
-                }
-            });
-        }
+		public void Send (GAction action, Player player)
+		{
+			this.Send (action, new MCPeerID [] { player.PeerId });
+		}
 
-        public void Receive(NSData data, MCPeerID peerID)
-        {
-            var player = this.peers.FirstOrDefault(peer => peer.PeerId == peerID);
-            if (player != null)
-            {
-                string json;
-                using (data)
-                {
-                    json = NSString.FromData(data, NSStringEncoding.UTF8)?.ToString();
-                }
+		private void Send (GAction action, MCPeerID [] peerIds)
+		{
+			var json = JsonConvert.SerializeObject (action, this.serializerSettings);
+			this.messagesQueue.DispatchAsync (() => {
+				using (var data = NSData.FromString (json)) {
+					this.Session.SendData (data, peerIds, MCSessionSendDataMode.Reliable, out NSError error);
+				}
+			});
+		}
 
-                if (!string.IsNullOrEmpty(json))
-                {
-                    var action = JsonConvert.DeserializeObject<GAction>(json);
-                    var command = new GameCommand(player, action);
-                    this.Delegate?.NetworkSessionReceived(this, command);
-                }
-            }
-        }
+		public void Receive (NSData data, MCPeerID peerID)
+		{
+			var player = this.peers.FirstOrDefault (peer => peer.PeerId == peerID);
+			if (player != null) {
+				string json;
+				using (data) {
+					json = NSString.FromData (data, NSStringEncoding.UTF8)?.ToString ();
+				}
 
-        #endregion
+				if (!string.IsNullOrEmpty (json)) {
+					var action = JsonConvert.DeserializeObject<GAction> (json);
+					var command = new GameCommand (player, action);
+					this.Delegate?.NetworkSessionReceived (this, command);
+				}
+			}
+		}
 
-        #region IMCSessionDelegate
+		#endregion
 
-        public void DidChangeState(MCSession session, MCPeerID peerID, MCSessionState state)
-        {
-            var player = new Player(peerID);
-            switch (state)
-            {
-                case MCSessionState.Connected:
-                    this.peers.Add(player);
-                    this.Delegate?.NetworkSessionJoining(this, player);
-                    break;
+		#region IMCSessionDelegate
 
-                case MCSessionState.Connecting:
-                    break;
+		public void DidChangeState (MCSession session, MCPeerID peerID, MCSessionState state)
+		{
+			var player = new Player (peerID);
+			switch (state) {
+			case MCSessionState.Connected:
+				this.peers.Add (player);
+				this.Delegate?.NetworkSessionJoining (this, player);
+				break;
 
-                case MCSessionState.NotConnected:
-                    this.peers.Remove(player);
-                    this.Delegate?.NetworkSessionLeaving(this, player);
-                    break;
-            }
-        }
+			case MCSessionState.Connecting:
+				break;
 
-        public void DidReceiveData(MCSession session, NSData data, MCPeerID peerID)
-        {
-            this.Receive(data, peerID);
-        }
+			case MCSessionState.NotConnected:
+				this.peers.Remove (player);
+				this.Delegate?.NetworkSessionLeaving (this, player);
+				break;
+			}
+		}
 
-        public void DidReceiveStream(MCSession session, NSInputStream stream, string streamName, MCPeerID peerID)
-        {
-            // this app doesn't use streams.
-        }
+		public void DidReceiveData (MCSession session, NSData data, MCPeerID peerID)
+		{
+			this.Receive (data, peerID);
+		}
 
-        public void DidStartReceivingResource(MCSession session, string resourceName, MCPeerID fromPeer, NSProgress progress)
-        {
-            // this app doesn't use named resources.
-        }
+		public void DidReceiveStream (MCSession session, NSInputStream stream, string streamName, MCPeerID peerID)
+		{
+			// this app doesn't use streams.
+		}
 
-        public void DidFinishReceivingResource(MCSession session, string resourceName, MCPeerID fromPeer, NSUrl localUrl, NSError error)
-        {
-            if (error == null && localUrl != null)
-            {
-                // .mappedIfSafe makes the initializer attempt to map the file directly into memory
-                // using mmap(2), rather than serially copying the bytes into memory.
-                // this is faster and our app isn't charged for the memory usage.
-                var data = NSData.FromUrl(localUrl, NSDataReadingOptions.Mapped, out NSError readError);
-                if (readError != null)
-                {
-                    this.Receive(data, fromPeer);
-                }
+		public void DidStartReceivingResource (MCSession session, string resourceName, MCPeerID fromPeer, NSProgress progress)
+		{
+			// this app doesn't use named resources.
+		}
 
-                // removing the file is done by the session, so long as we're done with it before the
-                // delegate method returns.
-            }
-        }
+		public void DidFinishReceivingResource (MCSession session, string resourceName, MCPeerID fromPeer, NSUrl localUrl, NSError error)
+		{
+			if (error == null && localUrl != null) {
+				// .mappedIfSafe makes the initializer attempt to map the file directly into memory
+				// using mmap(2), rather than serially copying the bytes into memory.
+				// this is faster and our app isn't charged for the memory usage.
+				var data = NSData.FromUrl (localUrl, NSDataReadingOptions.Mapped, out NSError readError);
+				if (readError != null) {
+					this.Receive (data, fromPeer);
+				}
 
-        #endregion
+				// removing the file is done by the session, so long as we're done with it before the
+				// delegate method returns.
+			}
+		}
 
-        #region IMCNearbyServiceAdvertiserDelegate
+		#endregion
 
-        public void DidReceiveInvitationFromPeer(MCNearbyServiceAdvertiser advertiser, MCPeerID peerID, NSData context, MCNearbyServiceAdvertiserInvitationHandler invitationHandler)
-        {
-            invitationHandler(true, Session);
-        }
+		#region IMCNearbyServiceAdvertiserDelegate
 
-        #endregion
-    }
+		public void DidReceiveInvitationFromPeer (MCNearbyServiceAdvertiser advertiser, MCPeerID peerID, NSData context, MCNearbyServiceAdvertiserInvitationHandler invitationHandler)
+		{
+			invitationHandler (true, Session);
+		}
+
+		#endregion
+	}
 }

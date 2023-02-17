@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace WalkingGame {
@@ -10,7 +10,7 @@ namespace WalkingGame {
 
 		public MainGame ()
 		{
-			graphics = new GraphicsDeviceManager(this);
+			graphics = new GraphicsDeviceManager (this);
 			graphics.IsFullScreen = true;
 
 			Content.RootDirectory = "Content";
@@ -20,14 +20,14 @@ namespace WalkingGame {
 		{
 			character = new CharacterEntity (GraphicsDevice);
 
-			base.Initialize();
-		} 
+			base.Initialize ();
+		}
 
 
 		protected override void LoadContent ()
 		{
 			// Create a new SpriteBatch, which can be used to draw textures.
-			spriteBatch = new SpriteBatch(GraphicsDevice);
+			spriteBatch = new SpriteBatch (GraphicsDevice);
 		}
 
 		protected override void Update (GameTime gameTime)
@@ -49,7 +49,7 @@ namespace WalkingGame {
 			spriteBatch.End ();
 
 			base.Draw (gameTime);
-		} 
+		}
 	}
 }
 

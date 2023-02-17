@@ -3,55 +3,56 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace MonoTouch.UIKit
-{
-	public class AlertView
-	{
+namespace MonoTouch.UIKit {
+	public class AlertView {
 		#region Static Methods
-		public static UIAlertController PresentOKAlert(string title, string description, UIViewController controller) {
+		public static UIAlertController PresentOKAlert (string title, string description, UIViewController controller)
+		{
 			// No, inform the user that they must create a home first
-			UIAlertController alert = UIAlertController.Create(title, description, UIAlertControllerStyle.Alert);
+			UIAlertController alert = UIAlertController.Create (title, description, UIAlertControllerStyle.Alert);
 
 			// Configure the alert
-			alert.AddAction(UIAlertAction.Create("OK",UIAlertActionStyle.Default,(action) => {}));
+			alert.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Default, (action) => { }));
 
 			// Display the alert
-			controller.PresentViewController(alert,true,null);
+			controller.PresentViewController (alert, true, null);
 
 			// Return created controller
 			return alert;
 		}
 
-		public static UIAlertController PresentOKCancelAlert(string title, string description, UIViewController controller, AlertOKCancelDelegate action) {
+		public static UIAlertController PresentOKCancelAlert (string title, string description, UIViewController controller, AlertOKCancelDelegate action)
+		{
 			// No, inform the user that they must create a home first
-			UIAlertController alert = UIAlertController.Create(title, description, UIAlertControllerStyle.Alert);
+			UIAlertController alert = UIAlertController.Create (title, description, UIAlertControllerStyle.Alert);
 
 			// Add cancel button
-			alert.AddAction(UIAlertAction.Create("Cancel",UIAlertActionStyle.Cancel,(actionCancel) => {
+			alert.AddAction (UIAlertAction.Create ("Cancel", UIAlertActionStyle.Cancel, (actionCancel) => {
 				// Any action?
-				if (action!=null) {
-					action(false);
+				if (action != null) {
+					action (false);
 				}
 			}));
 
 			// Add ok button
-			alert.AddAction(UIAlertAction.Create("OK",UIAlertActionStyle.Default,(actionOK) => {
+			alert.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Default, (actionOK) => {
 				// Any action?
-				if (action!=null) {
-					action(true);
+				if (action != null) {
+					action (true);
 				}
 			}));
 
 			// Display the alert
-			controller.PresentViewController(alert,true,null);
+			controller.PresentViewController (alert, true, null);
 
 			// Return created controller
 			return alert;
 		}
 
-		public static UIAlertController PresentTextInputAlert(string title, string description, string placeholder, string text, UIViewController controller, AlertTextInputDelegate action) {
+		public static UIAlertController PresentTextInputAlert (string title, string description, string placeholder, string text, UIViewController controller, AlertTextInputDelegate action)
+		{
 			// No, inform the user that they must create a home first
-			UIAlertController alert = UIAlertController.Create(title, description, UIAlertControllerStyle.Alert);
+			UIAlertController alert = UIAlertController.Create (title, description, UIAlertControllerStyle.Alert);
 			UITextField field = null;
 
 			// Add and configure text field
@@ -70,23 +71,23 @@ namespace MonoTouch.UIKit
 			});
 
 			// Add cancel button
-			alert.AddAction(UIAlertAction.Create("Cancel",UIAlertActionStyle.Cancel,(actionCancel) => {
+			alert.AddAction (UIAlertAction.Create ("Cancel", UIAlertActionStyle.Cancel, (actionCancel) => {
 				// Any action?
-				if (action!=null) {
-					action(false,"");
+				if (action != null) {
+					action (false, "");
 				}
 			}));
 
 			// Add ok button
-			alert.AddAction(UIAlertAction.Create("OK",UIAlertActionStyle.Default,(actionOK) => {
+			alert.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Default, (actionOK) => {
 				// Any action?
-				if (action!=null && field !=null) {
-					action(true, field.Text);
+				if (action != null && field != null) {
+					action (true, field.Text);
 				}
 			}));
 
 			// Display the alert
-			controller.PresentViewController(alert,true,null);
+			controller.PresentViewController (alert, true, null);
 
 			// Return created controller
 			return alert;
@@ -94,8 +95,8 @@ namespace MonoTouch.UIKit
 		#endregion
 
 		#region Delegates
-		public delegate void AlertOKCancelDelegate(bool OK);
-		public delegate void AlertTextInputDelegate(bool OK, string text);
+		public delegate void AlertOKCancelDelegate (bool OK);
+		public delegate void AlertTextInputDelegate (bool OK, string text);
 		#endregion
 	}
 }

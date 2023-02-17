@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using CoreFoundation;
@@ -6,10 +6,8 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
-	public static class UIViewControllerExtensions
-	{
+namespace HomeKitCatalog {
+	public static class UIViewControllerExtensions {
 		public static void PresentAddAlertWithAttributeType (this UIViewController vc, string type, string placeholder, string shortType, Action<string> completion)
 		{
 			var alertController = Alert.Create (type, completion, placeholder, shortType);
@@ -21,7 +19,7 @@ namespace HomeKitCatalog
 		{
 			var messages = new List<string> ();
 			foreach (var error in errors) {
-				var errorCode = (HMError)(int)error.Code;
+				var errorCode = (HMError) (int) error.Code;
 				if (self.PresentedViewController != null || errorCode == HMError.OperationCancelled || errorCode == HMError.UserDeclinedAddingUser)
 					Console.WriteLine (error.LocalizedDescription);
 				else

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.IO;
 using System.Drawing;
@@ -12,10 +12,8 @@ using CoreVideo;
 using CoreFoundation;
 using CoreGraphics;
 
-namespace PhotoFilterExtension
-{
-	public class AVReaderWriter
-	{
+namespace PhotoFilterExtension {
+	public class AVReaderWriter {
 		readonly IVideoTransformer transformer;
 		readonly AVAsset asset;
 
@@ -48,17 +46,17 @@ namespace PhotoFilterExtension
 			completionProc = completion;
 
 			// Dispatch the setup work with cancellationTokenSrc, to ensure this work can be cancelled
-			asset.LoadValuesTaskAsync (new string[] { "tracks", "duration" }).ContinueWith (_ => {
+			asset.LoadValuesTaskAsync (new string [] { "tracks", "duration" }).ContinueWith (_ => {
 				// Since we are doing these things asynchronously, the user may have already cancelled on the main thread.
 				// In that case, simply return from this block
 				cancellationTokenSrc.Token.ThrowIfCancellationRequested ();
 
 				NSError localError = null;
 
-				if(asset.StatusOfValue ("tracks", out localError) != AVKeyValueStatus.Loaded)
+				if (asset.StatusOfValue ("tracks", out localError) != AVKeyValueStatus.Loaded)
 					throw new NSErrorException (localError);
 
-				if(asset.StatusOfValue ("duration", out localError) != AVKeyValueStatus.Loaded)
+				if (asset.StatusOfValue ("duration", out localError) != AVKeyValueStatus.Loaded)
 					throw new NSErrorException (localError);
 
 				var timeRange = new CMTimeRange {
@@ -75,16 +73,16 @@ namespace PhotoFilterExtension
 				StartReadingAndWriting (timeRange);
 			}, cancellationTokenSrc.Token).ContinueWith (prevTask => {
 				switch (prevTask.Status) {
-					case TaskStatus.Canceled:
-						ReadingAndWritingDidFinish (false, null);
-						break;
+				case TaskStatus.Canceled:
+					ReadingAndWritingDidFinish (false, null);
+					break;
 
-					case TaskStatus.Faulted:
-						ReadingAndWritingDidFinish (false, ((NSErrorException)prevTask.Exception.InnerException).Error);
-						break;
+				case TaskStatus.Faulted:
+					ReadingAndWritingDidFinish (false, ((NSErrorException) prevTask.Exception.InnerException).Error);
+					break;
 
-					default:
-						break;
+				default:
+					break;
 				}
 			});
 		}
@@ -118,17 +116,17 @@ namespace PhotoFilterExtension
 
 			// Decompress to Linear PCM with the asset reader
 			// To read the media data from a specific asset track in the format in which it was stored, pass null to the settings parameter.
-			AVAssetReaderOutput output = AVAssetReaderTrackOutput.Create (audioTrack, (AudioSettings)null);
+			AVAssetReaderOutput output = AVAssetReaderTrackOutput.Create (audioTrack, (AudioSettings) null);
 			if (assetReader.CanAddOutput (output))
 				assetReader.AddOutput (output);
 
-			AVAssetWriterInput input = AVAssetWriterInput.Create (audioTrack.MediaType, (AudioSettings)null);
+			AVAssetWriterInput input = AVAssetWriterInput.Create (audioTrack.MediaType, (AudioSettings) null);
 			if (assetWriter.CanAddInput (input))
 				assetWriter.AddInput (input);
 
 			// Create and save an instance of ReadWriteSampleBufferChannel,
 			// which will coordinate the work of reading and writing sample buffers
-			audioSampleBufferChannel = new AudioChannel(output, input);
+			audioSampleBufferChannel = new AudioChannel (output, input);
 		}
 
 		void SetupAssetReaserWriterForVideo (AVAssetTrack videoTrack)
@@ -145,7 +143,7 @@ namespace PhotoFilterExtension
 			assetReader.AddOutput (output);
 
 			// Get the format description of the track, to fill in attributes of the video stream that we don't want to change
-			var formatDescription = (CMVideoFormatDescription)videoTrack.FormatDescriptions.FirstOrDefault ();
+			var formatDescription = (CMVideoFormatDescription) videoTrack.FormatDescriptions.FirstOrDefault ();
 			// Grab track dimensions from format description
 			CGSize trackDimensions = formatDescription != null
 				? formatDescription.GetPresentationDimensions (false, false)
@@ -154,16 +152,16 @@ namespace PhotoFilterExtension
 			// Grab clean aperture, pixel aspect ratio from format description
 			AVVideoCodecSettings compressionSettings = null;
 			if (formatDescription != null) {
-				var cleanApertureDescr = (NSDictionary)formatDescription.GetExtension (CVImageBuffer.CleanApertureKey);
-				var pixelAspectRatioDescr = (NSDictionary)formatDescription.GetExtension (CVImageBuffer.PixelAspectRatioKey);
+				var cleanApertureDescr = (NSDictionary) formatDescription.GetExtension (CVImageBuffer.CleanApertureKey);
+				var pixelAspectRatioDescr = (NSDictionary) formatDescription.GetExtension (CVImageBuffer.PixelAspectRatioKey);
 				compressionSettings = CreateCodecSettingsFor (cleanApertureDescr, pixelAspectRatioDescr);
 			}
 
 			// Compress to H.264 with the asset writer
 			var videoSettings = new AVVideoSettingsCompressed {
 				Codec = AVVideoCodec.H264,
-				Width = (int)trackDimensions.Width,
-				Height = (int)trackDimensions.Height,
+				Width = (int) trackDimensions.Width,
+				Height = (int) trackDimensions.Height,
 				CodecSettings = compressionSettings
 			};
 			AVAssetWriterInput input = new AVAssetWriterInput (videoTrack.MediaType, videoSettings);

@@ -1,20 +1,17 @@
-﻿using System;
+using System;
 
 using UIKit;
 using CloudKit;
 using CoreGraphics;
 using Foundation;
 
-namespace CloudCaptions
-{
-	[Register("ExistingImageViewController")]
-	public class ExistingImageViewController : UIViewController
-	{
-		class CollectionViewDelegate : UICollectionViewDelegate
-		{
+namespace CloudCaptions {
+	[Register ("ExistingImageViewController")]
+	public class ExistingImageViewController : UIViewController {
+		class CollectionViewDelegate : UICollectionViewDelegate {
 			readonly ExistingImageViewController controller;
 
-			public CollectionViewDelegate(ExistingImageViewController controller)
+			public CollectionViewDelegate (ExistingImageViewController controller)
 			{
 				this.controller = controller;
 			}
@@ -23,7 +20,7 @@ namespace CloudCaptions
 			{
 				// Gets the point at the bottom of the scroll view
 				var contentOffset = scrollView.ContentOffset;
-				CGPoint bottomRowPoint = new CGPoint(contentOffset.X, contentOffset.Y + scrollView.Bounds.Size.Height);
+				CGPoint bottomRowPoint = new CGPoint (contentOffset.X, contentOffset.Y + scrollView.Bounds.Size.Height);
 
 				// Finds number of rows left (gets height of row and adds 5 px spacing between rows)
 				var flowLayout = (UICollectionViewFlowLayout) controller.ImageCollection.CollectionViewLayout;
@@ -32,7 +29,7 @@ namespace CloudCaptions
 				nfloat rowsLeft = (scrollView.ContentSize.Height - bottomRowPoint.Y) / (rowHeight + rowSpacing);
 
 				// If we have less five rows left, load the next set
-				if ((int)rowsLeft < 5)
+				if ((int) rowsLeft < 5)
 					controller.LoadImages ();
 			}
 
@@ -52,43 +49,43 @@ namespace CloudCaptions
 				CKRecordID userSelectedRecordID = controller.ImageCollection.GetRecordId (indexPath);
 				controller.PublicCloudDatabase.FetchRecord (userSelectedRecordID, (record, error) => {
 					// If we get a partial failure, we should unwrap it
-					if(error != null && error.Code == (long)CKErrorCode.PartialFailure) {
-						CKErrorInfo info = new CKErrorInfo(error);
-						error = info[userSelectedRecordID];
+					if (error != null && error.Code == (long) CKErrorCode.PartialFailure) {
+						CKErrorInfo info = new CKErrorInfo (error);
+						error = info [userSelectedRecordID];
 					}
 
-					Error errorResponse = controller.HandleError(error);
+					Error errorResponse = controller.HandleError (error);
 
-					switch(errorResponse) {
-						case Error.Success:
-							controller.ImageCollection.SetLoadingFlag(indexPath, false);
-							Image selectedImage = new Image(record);
-							InvokeOnMainThread(() => {
-								controller.MasterController.GoTo(controller, selectedImage);
-							});
-							break;
+					switch (errorResponse) {
+					case Error.Success:
+						controller.ImageCollection.SetLoadingFlag (indexPath, false);
+						Image selectedImage = new Image (record);
+						InvokeOnMainThread (() => {
+							controller.MasterController.GoTo (controller, selectedImage);
+						});
+						break;
 
-						case Error.Retry:
-							Utils.Retry(()=> {
-								controller.lockSelectThumbnail = false;
-								ItemSelected(collectionView, indexPath);
-							}, error);
-							break;
-
-						case Error.Ignore:
-							Console.WriteLine ("Error: {0}", error.Description);
-							string errorTitle = "Error";
-							string errorMessage = "We couldn't fetch the full size thumbnail you tried to select, try again";
-							string dismissButton = "Okay";
-							UIAlertController alert = UIAlertController.Create(errorTitle, errorMessage, UIAlertControllerStyle.Alert);
-							alert.AddAction(UIAlertAction.Create(dismissButton, UIAlertActionStyle.Cancel, null));
-							InvokeOnMainThread(()=> controller.PresentViewController(alert, true, null));
-							controller.ImageCollection.SetLoadingFlag(indexPath, false);
+					case Error.Retry:
+						Utils.Retry (() => {
 							controller.lockSelectThumbnail = false;
-							break;
+							ItemSelected (collectionView, indexPath);
+						}, error);
+						break;
 
-						default:
-							throw new NotImplementedException();
+					case Error.Ignore:
+						Console.WriteLine ("Error: {0}", error.Description);
+						string errorTitle = "Error";
+						string errorMessage = "We couldn't fetch the full size thumbnail you tried to select, try again";
+						string dismissButton = "Okay";
+						UIAlertController alert = UIAlertController.Create (errorTitle, errorMessage, UIAlertControllerStyle.Alert);
+						alert.AddAction (UIAlertAction.Create (dismissButton, UIAlertActionStyle.Cancel, null));
+						InvokeOnMainThread (() => controller.PresentViewController (alert, true, null));
+						controller.ImageCollection.SetLoadingFlag (indexPath, false);
+						controller.lockSelectThumbnail = false;
+						break;
+
+					default:
+						throw new NotImplementedException ();
 					}
 				});
 			}
@@ -97,10 +94,10 @@ namespace CloudCaptions
 		// This constant determines the number of images to fetch at a time
 		const int UpdateBy = 24;
 
-		[Outlet("imageCollection")]
+		[Outlet ("imageCollection")]
 		ExistingImageCollectionView ImageCollection { get; set; }
 
-		[Outlet("loadingImages")]
+		[Outlet ("loadingImages")]
 		UIActivityIndicatorView loadingImages { get; set; }
 
 		CKQueryCursor imageCursor;
@@ -110,7 +107,7 @@ namespace CloudCaptions
 		bool lockSelectThumbnail; // Only lets user select one image at a time
 
 		CollectionViewDelegate collectionViewDelegate;
-		readonly object locker = new Object();
+		readonly object locker = new Object ();
 
 		CKDatabase PublicCloudDatabase {
 			get {
@@ -121,8 +118,8 @@ namespace CloudCaptions
 		// ExistingImageViewController is detailed controller. Need to store ref to master(parent) controller to perform callback
 		public MainViewController MasterController { get; set; }
 
-		public ExistingImageViewController(IntPtr handle)
-			: base(handle)
+		public ExistingImageViewController (IntPtr handle)
+			: base (handle)
 		{
 
 		}
@@ -131,7 +128,7 @@ namespace CloudCaptions
 		{
 			base.ViewDidLoad ();
 
-			collectionViewDelegate = new CollectionViewDelegate(this);
+			collectionViewDelegate = new CollectionViewDelegate (this);
 			ImageCollection.Delegate = collectionViewDelegate;
 			isLoadingBatch = false;
 			firstThumbnailLoaded = false;
@@ -139,15 +136,15 @@ namespace CloudCaptions
 
 			// This ensures that there are always three images per row whether it's an iPhone or an iPad (20 px subtracted to account for four 5 px spaces between thumbnails)
 			var screenSize = UIScreen.MainScreen.Bounds.Size;
-			nfloat smallerDimension = NMath.Min(screenSize.Width, screenSize.Height);   // Works even if iPad is rotated
-			UICollectionViewFlowLayout flowLayout = (UICollectionViewFlowLayout)ImageCollection.CollectionViewLayout;
+			nfloat smallerDimension = NMath.Min (screenSize.Width, screenSize.Height);   // Works even if iPad is rotated
+			UICollectionViewFlowLayout flowLayout = (UICollectionViewFlowLayout) ImageCollection.CollectionViewLayout;
 			nfloat imageWidth = (smallerDimension - 20) / 3;
-			flowLayout.ItemSize = new CGSize(imageWidth, imageWidth);
+			flowLayout.ItemSize = new CGSize (imageWidth, imageWidth);
 
 			LoadImages ();
 		}
 
-		void LoadImages()
+		void LoadImages ()
 		{
 			// If we're already loading a set of images or there are no images left to load, just return
 			lock (locker) {
@@ -168,7 +165,7 @@ namespace CloudCaptions
 			}
 
 			// We only want to download the thumbnails, not the full image
-			queryOp.DesiredKeys = new string[] {
+			queryOp.DesiredKeys = new string [] {
 				Image.ThumbnailKey
 			};
 			queryOp.ResultsLimit = UpdateBy;
@@ -217,56 +214,55 @@ namespace CloudCaptions
 			if (error == null)
 				return Error.Success;
 
-			switch ((CKErrorCode)(long)error.Code)
-			{
-				case CKErrorCode.NetworkUnavailable:
-				case CKErrorCode.NetworkFailure:
-					// A reachability check might be appropriate here so we don't just keep retrying if the user has no service
-				case CKErrorCode.ServiceUnavailable:
-				case CKErrorCode.RequestRateLimited:
-					return Error.Retry;
+			switch ((CKErrorCode) (long) error.Code) {
+			case CKErrorCode.NetworkUnavailable:
+			case CKErrorCode.NetworkFailure:
+			// A reachability check might be appropriate here so we don't just keep retrying if the user has no service
+			case CKErrorCode.ServiceUnavailable:
+			case CKErrorCode.RequestRateLimited:
+				return Error.Retry;
 
-				case CKErrorCode.UnknownItem:
-					Console.WriteLine ("If an image has never been uploaded, CKErrorCode.UnknownItem will be returned in ExistingImageViewController because it has never seen the Image record type");
-					return Error.Ignore;
+			case CKErrorCode.UnknownItem:
+				Console.WriteLine ("If an image has never been uploaded, CKErrorCode.UnknownItem will be returned in ExistingImageViewController because it has never seen the Image record type");
+				return Error.Ignore;
 
-				case CKErrorCode.InvalidArguments:
-					Console.WriteLine ("If invalid arguments is returned in ExistingImageViewController with a message about not being marked indexable or sortable, go into CloudKit dashboard and set the Image record type as sortable on date created");
-					return Error.Ignore;
+			case CKErrorCode.InvalidArguments:
+				Console.WriteLine ("If invalid arguments is returned in ExistingImageViewController with a message about not being marked indexable or sortable, go into CloudKit dashboard and set the Image record type as sortable on date created");
+				return Error.Ignore;
 
-				case CKErrorCode.IncompatibleVersion:
-				case CKErrorCode.BadContainer:
-				case CKErrorCode.MissingEntitlement:
-				case CKErrorCode.PermissionFailure:
-				case CKErrorCode.BadDatabase:
-					// This app uses the publicDB with default world readable permissions
-				case CKErrorCode.AssetFileNotFound:
-				case CKErrorCode.QuotaExceeded:
-					// We should not retry if it'll exceed our quota
-				case CKErrorCode.OperationCancelled:
-					// Nothing to do here, we intentionally cancelled
-				case CKErrorCode.NotAuthenticated:
-				case CKErrorCode.ResultsTruncated:
-				case CKErrorCode.ServerRecordChanged:
-				case CKErrorCode.AssetFileModified:
-				case CKErrorCode.ChangeTokenExpired:
-				case CKErrorCode.BatchRequestFailed:
-				case CKErrorCode.ZoneBusy:
-				case CKErrorCode.ZoneNotFound:
-				case CKErrorCode.LimitExceeded:
-				case CKErrorCode.UserDeletedZone:
-					// All of these errors are irrelevant for this query operation
-				case CKErrorCode.InternalError:
-				case CKErrorCode.ServerRejectedRequest:
-				case CKErrorCode.ConstraintViolation:
-					//Non-recoverable, should not retry
-				default:
-					return Error.Ignore;
+			case CKErrorCode.IncompatibleVersion:
+			case CKErrorCode.BadContainer:
+			case CKErrorCode.MissingEntitlement:
+			case CKErrorCode.PermissionFailure:
+			case CKErrorCode.BadDatabase:
+			// This app uses the publicDB with default world readable permissions
+			case CKErrorCode.AssetFileNotFound:
+			case CKErrorCode.QuotaExceeded:
+			// We should not retry if it'll exceed our quota
+			case CKErrorCode.OperationCancelled:
+			// Nothing to do here, we intentionally cancelled
+			case CKErrorCode.NotAuthenticated:
+			case CKErrorCode.ResultsTruncated:
+			case CKErrorCode.ServerRecordChanged:
+			case CKErrorCode.AssetFileModified:
+			case CKErrorCode.ChangeTokenExpired:
+			case CKErrorCode.BatchRequestFailed:
+			case CKErrorCode.ZoneBusy:
+			case CKErrorCode.ZoneNotFound:
+			case CKErrorCode.LimitExceeded:
+			case CKErrorCode.UserDeletedZone:
+			// All of these errors are irrelevant for this query operation
+			case CKErrorCode.InternalError:
+			case CKErrorCode.ServerRejectedRequest:
+			case CKErrorCode.ConstraintViolation:
+			//Non-recoverable, should not retry
+			default:
+				return Error.Ignore;
 			}
 		}
 
-		[Export("cancelSelection:")]
-		void CancelSelection(NSObject sender)
+		[Export ("cancelSelection:")]
+		void CancelSelection (NSObject sender)
 		{
 			// If cancel is pressed, dismiss the selection view controller
 			DismissViewController (true, null);

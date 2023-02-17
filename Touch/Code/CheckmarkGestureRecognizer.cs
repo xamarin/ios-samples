@@ -2,10 +2,8 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_Touch.Code
-{
-	public class CheckmarkGestureRecognizer : UIGestureRecognizer
-	{
+namespace Example_Touch.Code {
+	public class CheckmarkGestureRecognizer : UIGestureRecognizer {
 		// declarations
 		protected bool strokeUp = false;
 		protected CGPoint midpoint = CGPoint.Empty;
@@ -34,14 +32,14 @@ namespace Example_Touch.Code
 			base.TouchesMoved (touches, evt);
 
 			// if we haven't already failed
-			if(base.State != UIGestureRecognizerState.Failed) {
+			if (base.State != UIGestureRecognizerState.Failed) {
 
 				// get the current and previous touch point
 				CGPoint newPoint = (touches.AnyObject as UITouch).LocationInView (View);
 				CGPoint previousPoint = (touches.AnyObject as UITouch).PreviousLocationInView (View);
 
 				// if we're not already on the upstroke
-				if(!strokeUp) {
+				if (!strokeUp) {
 
 					// if we're moving down, just continue to set the midpoint at
 					// whatever point we're at. when we start to stroke up, it'll stick

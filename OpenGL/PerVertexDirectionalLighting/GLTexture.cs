@@ -7,10 +7,8 @@ using UIKit;
 using CoreImage;
 using CoreGraphics;
 
-namespace PerVertexDirectionalLighting
-{
-	public class GLTexture
-	{
+namespace PerVertexDirectionalLighting {
+	public class GLTexture {
 		string filename;
 		uint texture;
 
@@ -45,9 +43,9 @@ namespace PerVertexDirectionalLighting
 			nint height = image.CGImage.Height;
 
 			CGColorSpace colorSpace = CGColorSpace.CreateDeviceRGB ();
-			byte [] imageData = new byte[height * width * 4];
-			CGContext context = new CGBitmapContext  (imageData, width, height, 8, 4 * width, colorSpace,
-			                                          CGBitmapFlags.PremultipliedLast | CGBitmapFlags.ByteOrder32Big);
+			byte [] imageData = new byte [height * width * 4];
+			CGContext context = new CGBitmapContext (imageData, width, height, 8, 4 * width, colorSpace,
+													  CGBitmapFlags.PremultipliedLast | CGBitmapFlags.ByteOrder32Big);
 
 			context.TranslateCTM (0, height);
 			context.ScaleCTM (1, -1);
@@ -55,7 +53,7 @@ namespace PerVertexDirectionalLighting
 			context.ClearRect (new CGRect (0, 0, width, height));
 			context.DrawImage (new CGRect (0, 0, width, height), image.CGImage);
 
-			GL.TexImage2D (TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, (int)width, (int)height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, imageData);
+			GL.TexImage2D (TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, (int) width, (int) height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, imageData);
 			context.Dispose ();
 		}
 

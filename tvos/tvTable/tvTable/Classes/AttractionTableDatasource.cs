@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UIKit;
 
-namespace tvTable
-{
+namespace tvTable {
 	/// <summary>
 	/// Attraction table datasource defines all of the data for the Attraction Table
 	/// and provides the individual cells as asked for by the table.
 	/// </summary>
-	public class AttractionTableDatasource : UITableViewDataSource
-	{
+	public class AttractionTableDatasource : UITableViewDataSource {
 		#region Constants
 		/// <summary>
 		/// The unique ID for the prototype cell as defined in the designer.
@@ -22,13 +20,13 @@ namespace tvTable
 		/// Gets or sets the a shortcut to the parent Table View Controller.
 		/// </summary>
 		/// <value>The <c>AttractionTableViewController</c>.</value>
-		public AttractionTableViewController Controller { get; set;}
+		public AttractionTableViewController Controller { get; set; }
 
 		/// <summary>
 		/// Gets or sets the collection of cities.
 		/// </summary>
 		/// <value>A collection of <c>CityInformation</c> objects.</value>
-		public List<CityInformation> Cities { get; set;}
+		public List<CityInformation> Cities { get; set; }
 		#endregion
 
 		#region Constructors
@@ -117,7 +115,7 @@ namespace tvTable
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
 			// Return the number of attractions in the given city
-			return Cities [(int)section].Attractions.Count;
+			return Cities [(int) section].Attractions.Count;
 		}
 
 		/// <summary>
@@ -129,7 +127,7 @@ namespace tvTable
 		public override string TitleForHeader (UITableView tableView, nint section)
 		{
 			// Get the name of the current city
-			return Cities [(int)section].Name;
+			return Cities [(int) section].Name;
 		}
 		#endregion
 	}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
@@ -8,11 +8,9 @@ using Jose;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.OpenSsl;
 
-namespace MusicKitTokenGenerator
-{
-	class Program
-	{
-		static void Main(string[] args)
+namespace MusicKitTokenGenerator {
+	class Program {
+		static void Main (string [] args)
 		{
 			Console.WriteLine ("----- GENERATING TOKEN -----");
 
@@ -22,7 +20,7 @@ namespace MusicKitTokenGenerator
 			Console.WriteLine ($"{token}\n");
 		}
 
-		static string GenerateToken()
+		static string GenerateToken ()
 		{
 			var algorithm = "ES256";
 
@@ -42,9 +40,9 @@ namespace MusicKitTokenGenerator
 
 			var utcNow = DateTime.UtcNow;
 			var epoch = new DateTime (1970, 1, 1);
-			var epochNow = (int)utcNow.Subtract (epoch).TotalSeconds;
+			var epochNow = (int) utcNow.Subtract (epoch).TotalSeconds;
 			var utcExpire = utcNow.AddMonths (6);
-			var epochExpire = (int)utcExpire.Subtract(epoch).TotalSeconds;
+			var epochExpire = (int) utcExpire.Subtract (epoch).TotalSeconds;
 
 			Console.WriteLine ($"The Token was issued at (UTC Time): {utcNow.ToString ("yyyy/MM/dd")}");
 			Console.WriteLine ($"The Token will expire at (UTC Time): {utcExpire.ToString ("yyyy/MM/dd")}\n");
@@ -67,20 +65,19 @@ namespace MusicKitTokenGenerator
 
 			var payloadString = string.Join ($",\n{" ",4}", payload.Select (kv => $"{kv.Key}: {kv.Value}"));
 			Console.WriteLine ($"Payload to be encoded:");
-			Console.WriteLine ($"{{\n{" ", 4}{payloadString}\n}}\n");
+			Console.WriteLine ($"{{\n{" ",4}{payloadString}\n}}\n");
 
-			var parameters = GetPrivateParameters();
+			var parameters = GetPrivateParameters ();
 			var secretKey = ECDsa.Create (parameters);
 			var token = JWT.Encode (payload, secretKey, JwsAlgorithm.ES256, headers);
 
 			return token;
 		}
 
-		static ECParameters GetPrivateParameters()
+		static ECParameters GetPrivateParameters ()
 		{
-			using (var reader = File.OpenText("/path/to/your/MusicKit_Secret_Key.p8"))
-			{
-				var ecPrivateKeyParameters = (ECPrivateKeyParameters)new PemReader (reader).ReadObject ();
+			using (var reader = File.OpenText ("/path/to/your/MusicKit_Secret_Key.p8")) {
+				var ecPrivateKeyParameters = (ECPrivateKeyParameters) new PemReader (reader).ReadObject ();
 				var x = ecPrivateKeyParameters.Parameters.G.AffineXCoord.GetEncoded ();
 				var y = ecPrivateKeyParameters.Parameters.G.AffineYCoord.GetEncoded ();
 				var d = ecPrivateKeyParameters.D.ToByteArrayUnsigned ();

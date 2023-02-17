@@ -4,10 +4,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace Quotes
-{
-	public partial class PageViewController : UIViewController
-	{
+namespace Quotes {
+	public partial class PageViewController : UIViewController {
 		public Page controllerPage { get; set; }
 
 		public override void ViewDidLoad ()
@@ -41,7 +39,7 @@ namespace Quotes
 		partial void ParagraphSelected (UIKit.UILongPressGestureRecognizer sender)
 		{
 			pageView.SelectParagraphAtPosition (sender.LocationInView (pageView),
-			                                    sender.State == UIKit.UIGestureRecognizerState.Ended);
+												sender.State == UIKit.UIGestureRecognizerState.Ended);
 		}
 
 		partial void DrawingModeToggled (UIKit.UISwipeGestureRecognizer sender)

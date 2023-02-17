@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Photos;
 
-namespace PrivacyPrompts
-{
-	public class PhotoPrivacyManager : IPrivacyManager
-	{
+namespace PrivacyPrompts {
+	public class PhotoPrivacyManager : IPrivacyManager {
 		public Task RequestAccess ()
 		{
 			var tcs = new TaskCompletionSource<object> ();

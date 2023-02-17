@@ -1,16 +1,15 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 using CoreGraphics;
 using SceneKit;
 using ARKit;
 
-namespace PlacingObjects
-{
-	public static class SCNMaterialExtensions
-	{
-		public static SCNMaterial CreateMaterial(NSObject diffuse, bool respondsToLighting = true) {
-			var newMaterial = new SCNMaterial();
+namespace PlacingObjects {
+	public static class SCNMaterialExtensions {
+		public static SCNMaterial CreateMaterial (NSObject diffuse, bool respondsToLighting = true)
+		{
+			var newMaterial = new SCNMaterial ();
 
 			// Configure material
 			newMaterial.Diffuse.Contents = diffuse;

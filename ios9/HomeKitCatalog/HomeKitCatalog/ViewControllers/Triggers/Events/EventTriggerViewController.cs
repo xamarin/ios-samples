@@ -1,21 +1,19 @@
-﻿using System;
+using System;
 
 using Foundation;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A base class for all event-based view controllers.
 	// It handles the process of creating and managing trigger conditions.
-	public class EventTriggerViewController : TriggerViewController
-	{
-		protected static readonly NSString AddCell = (NSString)"AddCell";
-		protected static readonly NSString ConditionCell = (NSString)"ConditionCell";
+	public class EventTriggerViewController : TriggerViewController {
+		protected static readonly NSString AddCell = (NSString) "AddCell";
+		protected static readonly NSString ConditionCell = (NSString) "ConditionCell";
 		const string ShowTimeConditionSegue = "Show Time Condition";
 
 		EventTriggerCreator EventTriggerCreator {
 			get {
-				return (EventTriggerCreator)TriggerCreator;
+				return (EventTriggerCreator) TriggerCreator;
 			}
 		}
 
@@ -37,8 +35,8 @@ namespace HomeKitCatalog
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), AddCell);
-			TableView.RegisterClassForCellReuse (typeof(ConditionCell), ConditionCell);
+			TableView.RegisterClassForCellReuse (typeof (UITableViewCell), AddCell);
+			TableView.RegisterClassForCellReuse (typeof (ConditionCell), ConditionCell);
 		}
 
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
@@ -55,7 +53,7 @@ namespace HomeKitCatalog
 
 			var characteristicEventVC = vc as CharacteristicSelectionViewController;
 			if (characteristicEventVC != null) {
-				characteristicEventVC.TriggerCreator = (EventTriggerCreator)TriggerCreator;
+				characteristicEventVC.TriggerCreator = (EventTriggerCreator) TriggerCreator;
 				return;
 			}
 		}
@@ -64,7 +62,7 @@ namespace HomeKitCatalog
 
 		public override nint RowsInSection (UITableView tableView, nint section)
 		{
-			switch (SectionForIndex ((int)section)) {
+			switch (SectionForIndex ((int) section)) {
 			// Add row.
 			case TriggerTableViewSection.Conditions:
 				return EventTriggerCreator.Conditions.Count + 1;
@@ -118,7 +116,7 @@ namespace HomeKitCatalog
 			if (editingStyle == UITableViewCellEditingStyle.Delete) {
 				var predicate = EventTriggerCreator.Conditions [indexPath.Row];
 				EventTriggerCreator.RemoveCondition (predicate);
-				tableView.DeleteRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+				tableView.DeleteRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 			}
 		}
 
@@ -144,13 +142,13 @@ namespace HomeKitCatalog
 		// returns:  A 'condition cell', which displays information about the condition.
 		UITableViewCell GetConditionCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = (ConditionCell)tableView.DequeueReusableCell (ConditionCell);
+			var cell = (ConditionCell) tableView.DequeueReusableCell (ConditionCell);
 			NSPredicate condition = EventTriggerCreator.Conditions [indexPath.Row];
 
 			var hkCondition = condition.HomeKitConditionType ();
 			switch (hkCondition.Type) {
 			case HomeKitConditionType.Characteristic:
-				cell.SetCharacteristic (hkCondition.CharacteristicData.Item1, (NSNumber)hkCondition.CharacteristicData.Item2);
+				cell.SetCharacteristic (hkCondition.CharacteristicData.Item1, (NSNumber) hkCondition.CharacteristicData.Item2);
 				break;
 			case HomeKitConditionType.ExactTime:
 				cell.SetOrder (hkCondition.ExactTimeData.Item1, hkCondition.ExactTimeData.Item2);
@@ -168,7 +166,7 @@ namespace HomeKitCatalog
 
 		public override string TitleForFooter (UITableView tableView, nint section)
 		{
-			switch (SectionForIndex ((int)section)) {
+			switch (SectionForIndex ((int) section)) {
 			case TriggerTableViewSection.Conditions:
 				return "When a trigger is activated by an event, it checks these conditions. If all of them are true, it will set its scenes.";
 			default:

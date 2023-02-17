@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using UIKit;
 using System.Collections.Generic;
 using Foundation;
 
-namespace PopulatingATable
-{
-	public partial class ViewController : UIViewController
-	{
+namespace PopulatingATable {
+	public partial class ViewController : UIViewController {
 		UITableView table;
 		TableSource source;
 
@@ -21,13 +19,13 @@ namespace PopulatingATable
 
 			table = new UITableView (View.Bounds);
 			table.AutoresizingMask = UIViewAutoresizing.All;
-			CreateTableItems();
+			CreateTableItems ();
 			Add (table);
 		}
 
 		void CreateTableItems ()
 		{
-			var tableItems = new string[] {
+			var tableItems = new string [] {
 				"Vegetables",
 				"Fruits",
 				"Flower Buds",
@@ -41,7 +39,7 @@ namespace PopulatingATable
 				var alert = UIAlertController.Create ("Row Selected", e.Content, UIAlertControllerStyle.Alert);
 				alert.AddAction (UIAlertAction.Create ("Ok", UIAlertActionStyle.Default, null));
 
-				PresentViewController(alert, true, null);
+				PresentViewController (alert, true, null);
 			};
 
 			table.Source = source;

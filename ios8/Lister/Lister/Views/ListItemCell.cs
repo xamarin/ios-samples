@@ -1,19 +1,17 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
 using ListerKit;
 
-namespace Lister
-{
-	[Register("ListItemCell")]
-	public class ListItemCell : UITableViewCell
-	{
-		[Outlet("checkBox")]
+namespace Lister {
+	[Register ("ListItemCell")]
+	public class ListItemCell : UITableViewCell {
+		[Outlet ("checkBox")]
 		public CheckBox CheckBox { get; set; }
 
-		[Outlet("textField")]
+		[Outlet ("textField")]
 		public UITextField TextField { get; set; }
 
 		bool complete;
@@ -30,8 +28,8 @@ namespace Lister
 			}
 		}
 
-		public ListItemCell(IntPtr handle)
-			: base(handle)
+		public ListItemCell (IntPtr handle)
+			: base (handle)
 		{
 
 		}

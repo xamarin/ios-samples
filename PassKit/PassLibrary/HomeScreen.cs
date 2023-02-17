@@ -59,8 +59,8 @@ namespace PassLibrary {
 				// Notification for changes to the library!
 				noteCenter = NSNotificationCenter.DefaultCenter.AddObserver (PKPassLibrary.DidChangeNotification, (not) => {
 					BeginInvokeOnMainThread (() => {
-						new UIAlertView("Pass Library Changed"
-						                , "Notification Received", null, "OK", null).Show();
+						new UIAlertView ("Pass Library Changed"
+										, "Notification Received", null, "OK", null).Show ();
 						// refresh the list
 						var passlist = library.GetPasses ();
 						table.Source = new TableSource (passlist, library);
@@ -110,27 +110,27 @@ namespace PassLibrary {
 				var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 				var newFilePath = Path.Combine (documentsPath, "CouponBanana2.pkpass");
 				var builtInPassPath = Path.Combine (System.Environment.CurrentDirectory, "CouponBanana2.pkpass");
-				if (!System.IO.File.Exists(newFilePath))
+				if (!System.IO.File.Exists (newFilePath))
 					System.IO.File.Copy (builtInPassPath, newFilePath);
 
 				NSData nsdata;
-				using ( FileStream oStream = File.Open (newFilePath, FileMode.Open ) ) {
-					nsdata = NSData.FromStream ( oStream );
+				using (FileStream oStream = File.Open (newFilePath, FileMode.Open)) {
+					nsdata = NSData.FromStream (oStream);
 				}
 
-				var err = new NSError(new NSString("42"), -42);
-				var newPass = new PKPass(nsdata,out err);
+				var err = new NSError (new NSString ("42"), -42);
+				var newPass = new PKPass (nsdata, out err);
 
 				bool alreadyExists = library.Contains (newPass);
 
 				if (alreadyExists) {
-					new UIAlertView(newPass.LocalizedDescription + " Tapped"
-					                , "Already exists", null, "OK", null).Show();
+					new UIAlertView (newPass.LocalizedDescription + " Tapped"
+									, "Already exists", null, "OK", null).Show ();
 				} else {
-//					new UIAlertView(newPass.LocalizedDescription + " Tapped"
-//					                , "Isn't in Pass Library", null, "OK, add it", null).Show();
+					//					new UIAlertView(newPass.LocalizedDescription + " Tapped"
+					//					                , "Isn't in Pass Library", null, "OK, add it", null).Show();
 
-					var pkapvc = new PKAddPassesViewController(newPass);
+					var pkapvc = new PKAddPassesViewController (newPass);
 					NavigationController.PresentModalViewController (pkapvc, true);
 				}
 			}
@@ -147,26 +147,26 @@ namespace PassLibrary {
 				var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // Documents folder
 				var newFilePath = Path.Combine (documentsPath, "CouponBanana2.pkpass");
 				var builtInPassPath = Path.Combine (System.Environment.CurrentDirectory, "CouponBanana2.pkpass");
-				if (!System.IO.File.Exists(newFilePath))
+				if (!System.IO.File.Exists (newFilePath))
 					System.IO.File.Copy (builtInPassPath, newFilePath);
 
 				NSData nsdata;
-				using ( FileStream oStream = File.Open (newFilePath, FileMode.Open ) ) {
-					nsdata = NSData.FromStream ( oStream );
+				using (FileStream oStream = File.Open (newFilePath, FileMode.Open)) {
+					nsdata = NSData.FromStream (oStream);
 				}
 
-				var err = new NSError(new NSString("42"), -42);
-				var newPass = new PKPass(nsdata,out err);
+				var err = new NSError (new NSString ("42"), -42);
+				var newPass = new PKPass (nsdata, out err);
 
 				bool alreadyExists = library.Contains (newPass);
 
 				if (alreadyExists) {
 					library.Replace (newPass);
-					new UIAlertView(newPass.LocalizedDescription + " replaced!"
-					                , "your choice if you offer UI when you update", null, "OK", null).Show();
+					new UIAlertView (newPass.LocalizedDescription + " replaced!"
+									, "your choice if you offer UI when you update", null, "OK", null).Show ();
 				} else
-					new UIAlertView(newPass.LocalizedDescription + " doesn't exit"
-					                , "Can't *replace* if the pass isn't already in library", null, "OK", null).Show();
+					new UIAlertView (newPass.LocalizedDescription + " doesn't exit"
+									, "Can't *replace* if the pass isn't already in library", null, "OK", null).Show ();
 			}
 		}
 	}

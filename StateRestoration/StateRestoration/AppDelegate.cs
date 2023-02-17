@@ -4,11 +4,9 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace StateRestoration
-{
+namespace StateRestoration {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		DataSource dataSource;
 
 		public override UIWindow Window { get; set; }
@@ -21,11 +19,11 @@ namespace StateRestoration
 
 			UIApplication.RegisterObjectForStateRestoration (dataSource, "DataSource");
 
-			var navigationController = (UINavigationController)Window.RootViewController;
+			var navigationController = (UINavigationController) Window.RootViewController;
 			navigationController.NavigationBar.BarStyle = UIBarStyle.Black;
 			navigationController.NavigationBar.Translucent = true;
 
-			var viewController = (CollectionViewController)navigationController.ViewControllers [0];
+			var viewController = (CollectionViewController) navigationController.ViewControllers [0];
 			viewController.DataSource = dataSource;
 
 			Window.MakeKeyAndVisible ();

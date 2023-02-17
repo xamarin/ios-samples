@@ -38,7 +38,7 @@ namespace MonoCatalog {
 			"Redo"
 		};
 
-		public ToolbarViewController () : base ("ToolbarViewController", null) {}
+		public ToolbarViewController () : base ("ToolbarViewController", null) { }
 
 		//
 		// This is the general callback that we give to buttons to show how to hook events up
@@ -52,9 +52,9 @@ namespace MonoCatalog {
 		void CreateToolbarItems ()
 		{
 			// The order is mapped one to one to the UIBarButtonItemStyle
-						var style = (UIBarButtonItemStyle)(int) buttonItemStyleSegControl.SelectedSegment;
+			var style = (UIBarButtonItemStyle) (int) buttonItemStyleSegControl.SelectedSegment;
 
-			var systemItem = new UIBarButtonItem (currentSystemItem, Action){
+			var systemItem = new UIBarButtonItem (currentSystemItem, Action) {
 				Style = style
 			};
 
@@ -75,13 +75,13 @@ namespace MonoCatalog {
 
 			NavigationController.NavigationBar.Translucent = false;
 			View.BackgroundColor = UIColor.GroupTableViewBackgroundColor;
-			toolbar = new UIToolbar() {
+			toolbar = new UIToolbar () {
 				BarStyle = UIBarStyle.Default
 			};
 			toolbar.SizeToFit ();
-						float toolbarHeight = (float)toolbar.Frame.Height;
+			float toolbarHeight = (float) toolbar.Frame.Height;
 			var mainViewBounds = View.Bounds;
-			toolbar.Frame = new CGRect (mainViewBounds.X, (float)(mainViewBounds.Y + mainViewBounds.Height - toolbarHeight * 2 + 2),
+			toolbar.Frame = new CGRect (mainViewBounds.X, (float) (mainViewBounds.Y + mainViewBounds.Height - toolbarHeight * 2 + 2),
 							mainViewBounds.Width, toolbarHeight);
 			View.AddSubview (toolbar);
 			currentSystemItem = UIBarButtonSystemItem.Done;
@@ -102,7 +102,7 @@ namespace MonoCatalog {
 		{
 			var style = UIBarButtonItemStyle.Plain;
 
-			switch (sender.SelectedSegment){
+			switch (sender.SelectedSegment) {
 			case 0:
 				style = UIBarButtonItemStyle.Plain;
 				break;
@@ -119,7 +119,7 @@ namespace MonoCatalog {
 
 		partial void toggleBarStyle (UISegmentedControl sender)
 		{
-			switch (sender.SelectedSegment){
+			switch (sender.SelectedSegment) {
 			case 0:
 				toolbar.BarStyle = UIBarStyle.Default;
 				break;
@@ -137,14 +137,14 @@ namespace MonoCatalog {
 
 		partial void toggleTintColor (UISwitch sender)
 		{
-			if (sender.On){
+			if (sender.On) {
 				toolbar.TintColor = UIColor.Red;
 				barStyleSegControl.Enabled = false;
 				barStyleSegControl.Alpha = 0.5f;
 			} else {
 				toolbar.TintColor = null;
 				barStyleSegControl.Enabled = true;
-				barStyleSegControl.Alpha  = 1.0f;
+				barStyleSegControl.Alpha = 1.0f;
 			}
 		}
 
@@ -158,7 +158,7 @@ namespace MonoCatalog {
 
 			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
-				tvc.currentSystemItem = (UIBarButtonSystemItem) (int)picker.SelectedRowInComponent (0);
+				tvc.currentSystemItem = (UIBarButtonSystemItem) (int) picker.SelectedRowInComponent (0);
 				tvc.CreateToolbarItems ();
 			}
 

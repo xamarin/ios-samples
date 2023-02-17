@@ -1,9 +1,7 @@
-﻿using UIKit;
+using UIKit;
 
-namespace tvText
-{
-	public class Application
-	{
+namespace tvText {
+	public class Application {
 		// This is the main entry point of the application.
 		static void Main (string [] args)
 		{

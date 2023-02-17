@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using AVFoundation;
 using CoreAnimation;
 using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace ToastModern
-{
-	public class Camera : Layer
-	{
+namespace ToastModern {
+	public class Camera : Layer {
 		AVCaptureVideoPreviewLayer CameraLayer {
 			get {
 				AVCaptureDevice defaultDevice = AVCaptureDevice.DefaultDeviceWithMediaType (AVMediaType.Video);
@@ -45,7 +43,7 @@ namespace ToastModern
 				Layer.AddSublayer (preview);
 				preview.Position = new CGPoint (160, 309);
 				preview.Bounds = new CGRect (preview.Bounds.Location.X, preview.Bounds.Location.Y, 320, 320f * 16 / 9);
-				preview.Transform = CATransform3D.MakeRotation ((nfloat)Math.PI, 0f, 1f, 0f);
+				preview.Transform = CATransform3D.MakeRotation ((nfloat) Math.PI, 0f, 1f, 0f);
 
 				var previewMask = new CALayer ();
 				Layer.AddSublayer (previewMask);

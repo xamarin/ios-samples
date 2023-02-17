@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using CoreGraphics;
 using Foundation;
 using Metal;
 using OpenTK;
 
-namespace MetalTexturedQuad
-{
-	public class Quad : NSObject
-	{
+namespace MetalTexturedQuad {
+	public class Quad : NSObject {
 		// textured Quad
 		IMTLBuffer vertexBuffer;
 		IMTLBuffer texCoordBuffer;
@@ -19,7 +17,7 @@ namespace MetalTexturedQuad
 		// Dimensions
 		CGRect bounds;
 
-		readonly Vector4[] quadVertices = new Vector4 [] {
+		readonly Vector4 [] quadVertices = new Vector4 [] {
 			new Vector4 (-1f, -1f, 0f, 1f),
 			new Vector4 (1f, -1f, 0f, 1f),
 			new Vector4 (-1f, 1f, 0f, 1f),
@@ -29,7 +27,7 @@ namespace MetalTexturedQuad
 			new Vector4 (1f, 1f, 0f, 1f)
 		};
 
-		readonly Vector2[] quadTexCoords = new Vector2 [] {
+		readonly Vector2 [] quadTexCoords = new Vector2 [] {
 			new Vector2 (0f, 0f),
 			new Vector2 (1f, 0f),
 			new Vector2 (0f, 1f),
@@ -45,7 +43,7 @@ namespace MetalTexturedQuad
 
 		public CGSize Size { get; set; }
 
-		public nfloat Aspect  { get; set; }
+		public nfloat Aspect { get; set; }
 
 		public CGRect Bounds {
 			get {
@@ -92,11 +90,11 @@ namespace MetalTexturedQuad
 		{
 			Aspect = bounds.Size.Width / bounds.Size.Height;
 
-			float aspect = 1.0f / (float)Aspect;
+			float aspect = 1.0f / (float) Aspect;
 			Vector2 localScale = Vector2.Zero;
 
-			localScale.X = (float)(aspect * Size.Width / Bounds.Size.Width);
-			localScale.Y = (float)(Size.Height / Bounds.Size.Height);
+			localScale.X = (float) (aspect * Size.Width / Bounds.Size.Width);
+			localScale.Y = (float) (Size.Height / Bounds.Size.Height);
 
 			// Did the scaling factor change
 			bool newScale = (scale.X != localScale.X) || (scale.Y != localScale.Y);
@@ -107,10 +105,10 @@ namespace MetalTexturedQuad
 				// Update the scaling factor
 				scale = localScale;
 
-				var vertices = new Vector4[quadVertices.Length];
+				var vertices = new Vector4 [quadVertices.Length];
 				IntPtr contentPtr = vertexBuffer.Contents;
 				for (int i = 0; i < vertices.Length; i++) {
-					vertices [i] = (Vector4)Marshal.PtrToStructure (contentPtr, typeof(Vector4));
+					vertices [i] = (Vector4) Marshal.PtrToStructure (contentPtr, typeof (Vector4));
 					contentPtr += Marshal.SizeOf<Vector4> ();
 				}
 
@@ -134,8 +132,8 @@ namespace MetalTexturedQuad
 				vertices [5].X = scale.X;
 				vertices [5].Y = scale.Y;
 
-				int rawsize = quadVertices.Length * Marshal.SizeOf <Vector4> ();
-				var rawdata = new byte[rawsize];
+				int rawsize = quadVertices.Length * Marshal.SizeOf<Vector4> ();
+				var rawdata = new byte [rawsize];
 				GCHandle pinnedTransform = GCHandle.Alloc (vertices, GCHandleType.Pinned);
 				IntPtr ptr = pinnedTransform.AddrOfPinnedObject ();
 				Marshal.Copy (ptr, rawdata, 0, rawsize);

@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UIKit;
 using Foundation;
 
-namespace Phoneword_iOS
-{
-	public partial class ViewController : UIViewController
-	{
+namespace Phoneword_iOS {
+	public partial class ViewController : UIViewController {
 		// translatedNumber was moved here from ViewDidLoad ()
 		string translatedNumber = "";
 
@@ -25,9 +23,9 @@ namespace Phoneword_iOS
 			TranslateButton.TouchUpInside += (object sender, EventArgs e) => {
 				// Convert the phone number with text to a number 
 				// using PhoneTranslator.cs
-				translatedNumber = PhonewordTranslator.ToNumber(
-					PhoneNumberText.Text); 
-				
+				translatedNumber = PhonewordTranslator.ToNumber (
+					PhoneNumberText.Text);
+
 				// Dismiss the keyboard if text field was tapped
 				PhoneNumberText.ResignFirstResponder ();
 
@@ -35,7 +33,7 @@ namespace Phoneword_iOS
 					CallButton.SetTitle ("Call ", UIControlState.Normal);
 					CallButton.Enabled = false;
 				} else {
-					CallButton.SetTitle ("Call " + translatedNumber, 
+					CallButton.SetTitle ("Call " + translatedNumber,
 						UIControlState.Normal);
 					CallButton.Enabled = true;
 				}
@@ -62,14 +60,14 @@ namespace Phoneword_iOS
 			// Nativation without Segues
 			// - if the segue was deleted from the storyboard, this code would enable the button to open the second view controller
 			// 
-//			CallHistoryButton.TouchUpInside += (object sender, EventArgs e) => {
-//				// Launches a new instance of CallHistoryController
-//				CallHistoryController callHistory = this.Storyboard.InstantiateViewController ("CallHistoryController") as CallHistoryController;
-//				if (callHistory != null) {
-//					callHistory.PhoneNumbers = PhoneNumbers;
-//					this.NavigationController.PushViewController (callHistory, true);
-//				}
-//			};
+			//			CallHistoryButton.TouchUpInside += (object sender, EventArgs e) => {
+			//				// Launches a new instance of CallHistoryController
+			//				CallHistoryController callHistory = this.Storyboard.InstantiateViewController ("CallHistoryController") as CallHistoryController;
+			//				if (callHistory != null) {
+			//					callHistory.PhoneNumbers = PhoneNumbers;
+			//					this.NavigationController.PushViewController (callHistory, true);
+			//				}
+			//			};
 		}
 
 		//

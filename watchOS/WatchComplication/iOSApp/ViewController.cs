@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 
 using UIKit;
 
-namespace iOSApp
-{
-	public partial class ViewController : UIViewController
-	{
+namespace iOSApp {
+	public partial class ViewController : UIViewController {
 		public ViewController (IntPtr handle) : base (handle)
 		{
 		}

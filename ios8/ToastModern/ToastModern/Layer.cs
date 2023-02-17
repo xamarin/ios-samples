@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using UIKit;
 using CoreGraphics;
 using Foundation;
 
-namespace ToastModern
-{
-	public class Layer : UIImageView
-	{
+namespace ToastModern {
+	public class Layer : UIImageView {
 		public Action<NSSet> OnTouchDown;
 		public Action<NSSet> OnTouchMove;
 		public Action<NSSet> OnTouchUp;
@@ -93,7 +91,7 @@ namespace ToastModern
 		public static CGColor CreateColor (int red, int green, int blue, int alpha)
 		{
 			CGColorSpace colorSpace = CGColorSpace.CreateDeviceRGB ();
-			var color = new CGColor (colorSpace, new nfloat[] { red / 255f, green / 255f, blue / 255f, alpha / 255f });
+			var color = new CGColor (colorSpace, new nfloat [] { red / 255f, green / 255f, blue / 255f, alpha / 255f });
 			colorSpace.Dispose ();
 			return color;
 		}

@@ -1,9 +1,7 @@
-﻿using UIKit;
+using UIKit;
 
-namespace PhotoFilter
-{
-	public class ViewController : UIViewController
-	{
+namespace PhotoFilter {
+	public class ViewController : UIViewController {
 		UILabel note;
 
 		public override void ViewDidLoad ()
@@ -23,7 +21,7 @@ namespace PhotoFilter
 			View.BackgroundColor = UIColor.White;
 
 			View.AddConstraint (NSLayoutConstraint.Create (note, NSLayoutAttribute.CenterY, NSLayoutRelation.Equal, View, NSLayoutAttribute.CenterY, 1, 0));
-			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("|-[note]-|", (NSLayoutFormatOptions)0, "note", note));
+			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("|-[note]-|", (NSLayoutFormatOptions) 0, "note", note));
 		}
 	}
 }

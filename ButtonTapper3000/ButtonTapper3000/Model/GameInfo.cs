@@ -44,7 +44,7 @@ namespace ButtonTapper3000 {
 		public static GKChallenge Challenge;
 		public static GKLeaderboardSet CurrentSet;
 		public static GKLeaderboard CurrentLeaderBoard;
-		public static int[] GameTimes;
+		public static int [] GameTimes;
 		public static int CurrentTicks;
 
 		static GameInfo ()
@@ -53,12 +53,12 @@ namespace ButtonTapper3000 {
 			GameTimes = new [] { 15, 30, 45 };
 			GameTime = GameTime.Fifteen;
 			CurrentTaps = 0;
-			CurrentTicks = GameTimes [(int)GameTime];
+			CurrentTicks = GameTimes [(int) GameTime];
 		}
 
 		public static int GameTimeInSeconds {
 			get {
-				return GameTimes [(int)GameTime];
+				return GameTimes [(int) GameTime];
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace ButtonTapper3000 {
 		{
 			CurrentTaps = 0;
 			Challenge = null;
-			CurrentTicks = GameTimes [(int)GameTime];
+			CurrentTicks = GameTimes [(int) GameTime];
 		}
 	}
 }

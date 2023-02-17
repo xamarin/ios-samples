@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This controller demonstrates how to present a modal controller with a page-based navigation style. 
  * By performing a Force Touch gesture on the controller (click-and-hold in the iOS Simulator), you can present a menu.
 */
@@ -8,10 +8,8 @@ using System;
 using WatchKit;
 using Foundation;
 
-namespace WatchkitExtension
-{
-	public partial class ControllerDetailController : WKInterfaceController
-	{
+namespace WatchkitExtension {
+	public partial class ControllerDetailController : WKInterfaceController {
 		public ControllerDetailController ()
 		{
 		}

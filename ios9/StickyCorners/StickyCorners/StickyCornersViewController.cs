@@ -39,7 +39,7 @@ namespace StickyCorners {
 			View.AddGestureRecognizer (longPressGestureRecognizer);
 
 			animator = new UIDynamicAnimator (View);
-			stickyBehavior = new StickyCornersBehavior (itemView, (float)length * 0.5f);
+			stickyBehavior = new StickyCornersBehavior (itemView, (float) length * 0.5f);
 			animator.AddBehavior (stickyBehavior);
 		}
 

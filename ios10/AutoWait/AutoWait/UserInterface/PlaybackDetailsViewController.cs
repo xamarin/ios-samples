@@ -8,10 +8,8 @@ using CoreMedia;
 using Foundation;
 using UIKit;
 
-namespace AutoWait
-{
-	public partial class PlaybackDetailsViewController : UIViewController
-	{
+namespace AutoWait {
+	public partial class PlaybackDetailsViewController : UIViewController {
 		[Outlet ("rateLabel")]
 		UILabel RateLabel { get; set; }
 
@@ -182,7 +180,7 @@ namespace AutoWait
 		static string Descr (IEnumerable<CMTimeRange> ranges)
 		{
 			// CMTimeRange -> [0.5s, 9.7s]
-			return string.Join (", ", ranges.Select (r => $"[{Seconds(r.Start)}, {Seconds(r.Start + r.Duration)}]"));
+			return string.Join (", ", ranges.Select (r => $"[{Seconds (r.Start)}, {Seconds (r.Start + r.Duration)}]"));
 		}
 
 		static string Seconds (CMTime time)

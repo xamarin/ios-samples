@@ -3,10 +3,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace CustomTransitionDemo
-{
-	public partial class ControllerTwo : UIViewController
-	{
+namespace CustomTransitionDemo {
+	public partial class ControllerTwo : UIViewController {
 		UIButton showOne;
 
 		public ControllerTwo ()

@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	class SubscriptionIDResult : IResult
-	{
+namespace CloudKitAtlas {
+	class SubscriptionIDResult : IResult {
 		readonly string subscriptionId;
 
 		public string SummaryField { get; set; }
@@ -22,14 +20,13 @@ namespace CloudKitAtlas
 			}
 		}
 
-		public SubscriptionIDResult  (string subscriptionId)
+		public SubscriptionIDResult (string subscriptionId)
 		{
 			this.subscriptionId = subscriptionId;
 		}
 	}
 
-	public class DeleteSubscriptionSample : CodeSample
-	{
+	public class DeleteSubscriptionSample : CodeSample {
 		public DeleteSubscriptionSample ()
 			: base (title: "DeleteSubscription",
 					className: "CKDatabase",

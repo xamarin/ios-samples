@@ -3,25 +3,23 @@ using OpenTK;
 using UIKit;
 using OpenTK.Graphics.ES20;
 
-namespace OpenGLES20Example
-{
-	public class GLViewController : UIViewController
-	{
+namespace OpenGLES20Example {
+	public class GLViewController : UIViewController {
 		GLProgram program;
 		GLTexture texture;
 
 		float rot = 0f;
 
 		int positionAttribute,
-		    textureCoordinateAttribute,
-		    matrixUniform,
+			textureCoordinateAttribute,
+			matrixUniform,
 			textureUniform;
 
-		float[] rotationMatrix = new float[16],
-			    translationMatrix = new float[16],
-			    modelViewMatrix = new float[16],
-		        projectionMatrix = new float[16],
-		        matrix = new float[16];
+		float [] rotationMatrix = new float [16],
+				translationMatrix = new float [16],
+				modelViewMatrix = new float [16],
+				projectionMatrix = new float [16],
+				matrix = new float [16];
 
 		public GLViewController ()
 		{
@@ -62,7 +60,7 @@ namespace OpenGLES20Example
 
 		public void Draw ()
 		{
-			Vector3[] vertices =
+			Vector3 [] vertices =
 			{
 				new Vector3 { X = -0.276385f, Y = -0.850640f, Z = -0.447215f },
 				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f},
@@ -126,7 +124,7 @@ namespace OpenGLES20Example
 				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = 1.000000f},
 			};
 
-			TextureCoord[] textureCoordinates =
+			TextureCoord [] textureCoordinates =
 			{
 				new TextureCoord { S = .648752f, T = 0.445995f},
 				new TextureCoord { S = 0.914415f, T = 0.532311f},
@@ -207,7 +205,7 @@ namespace OpenGLES20Example
 			modelViewMatrix = GLCommon.Matrix3DMultiply (translationMatrix, rotationMatrix);
 
 			GLCommon.Matrix3DSetPerspectiveProjectionWithFieldOfView (ref projectionMatrix, 45.0f, 0.1f, 100.0f,
-				(float)(View.Frame.Size.Width / View.Frame.Size.Height));
+				(float) (View.Frame.Size.Width / View.Frame.Size.Height));
 
 			matrix = GLCommon.Matrix3DMultiply (projectionMatrix, modelViewMatrix);
 			GL.UniformMatrix4 (matrixUniform, 1, false, matrix);

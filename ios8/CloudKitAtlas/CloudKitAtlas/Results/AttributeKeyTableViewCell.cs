@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public partial class AttributeKeyTableViewCell : UITableViewCell
-	{
+namespace CloudKitAtlas {
+	public partial class AttributeKeyTableViewCell : UITableViewCell {
 		[Outlet]
 		public UILabel AttributeKey { get; set; }
 

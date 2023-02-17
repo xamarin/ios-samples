@@ -4,14 +4,12 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace StreamingAudio
-{
+namespace StreamingAudio {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 		UIWindow window;
 		//
@@ -24,7 +22,7 @@ namespace StreamingAudio
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			// create a new window instance based on the screen size
-			var navigationController = new UINavigationController (new MainViewController());
+			var navigationController = new UINavigationController (new MainViewController ());
 			navigationController.NavigationBar.Translucent = false;
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 

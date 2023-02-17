@@ -16,8 +16,7 @@ namespace BreakfastFinder {
 	/// <summary>
 	/// Model Prediction Input Type
 	/// </summary>
-	public class ObjectDetectorInput : NSObject, IMLFeatureProvider
-	{
+	public class ObjectDetectorInput : NSObject, IMLFeatureProvider {
 		static readonly NSSet<NSString> featureNames = new NSSet<NSString> (
 			new NSString ("image"), new NSString ("iouThreshold"), new NSString ("confidenceThreshold")
 		);
@@ -94,8 +93,7 @@ namespace BreakfastFinder {
 	/// <summary>
 	/// Model Prediction Output Type
 	/// </summary>
-	public class ObjectDetectorOutput : NSObject, IMLFeatureProvider
-	{
+	public class ObjectDetectorOutput : NSObject, IMLFeatureProvider {
 		static readonly NSSet<NSString> featureNames = new NSSet<NSString> (
 			new NSString ("confidence"), new NSString ("coordinates")
 		);
@@ -163,8 +161,7 @@ namespace BreakfastFinder {
 	/// <summary>
 	/// Class for model loading and prediction
 	/// </summary>
-	public class ObjectDetector : NSObject
-	{
+	public class ObjectDetector : NSObject {
 		public readonly MLModel model;
 
 		public ObjectDetector ()

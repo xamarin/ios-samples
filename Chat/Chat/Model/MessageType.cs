@@ -1,7 +1,5 @@
-﻿namespace Chat
-{
-	public enum MessageType
-	{
+namespace Chat {
+	public enum MessageType {
 		Incoming,
 		Outgoing,
 	}

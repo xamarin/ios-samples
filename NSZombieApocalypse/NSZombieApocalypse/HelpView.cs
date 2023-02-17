@@ -4,16 +4,14 @@ using UIKit;
 using Foundation;
 using CoreGraphics;
 
-namespace NSZombieApocalypse
-{
-	public sealed class HelpView : UIView
-	{
+namespace NSZombieApocalypse {
+	public sealed class HelpView : UIView {
 		UITextView textView;
 		SymbolMarkView nextButton;
 
-		public event  HelpDidCloseHandler HelpDidClose;
+		public event HelpDidCloseHandler HelpDidClose;
 
-		public HelpView (CGRect frame): base(frame)
+		public HelpView (CGRect frame) : base (frame)
 		{
 			BackgroundColor = UIColor.White;
 			Layer.CornerRadius = 8;
@@ -107,7 +105,8 @@ namespace NSZombieApocalypse
 			CGRect frame = Frame;
 			frame.Y = 0;
 			UIView.Animate (.35, () => {
-				Frame = frame;});
+				Frame = frame;
+			});
 		}
 	}
 	public delegate void HelpDidCloseHandler (HelpView helpView);

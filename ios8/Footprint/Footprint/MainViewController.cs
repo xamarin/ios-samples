@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Foundation;
 using UIKit;
@@ -6,11 +6,9 @@ using MapKit;
 using CoreGraphics;
 using CoreLocation;
 
-namespace Footprint
-{
+namespace Footprint {
 	[Register ("MainViewController")]
-	public class MainViewController : UIViewController
-	{
+	public class MainViewController : UIViewController {
 		[Outlet ("imageView")]
 		UIImageView ImageView { get; set; }
 
@@ -105,18 +103,18 @@ namespace Footprint
 		void OnAuthorizationChanged (object sender, CLAuthorizationChangedEventArgs e)
 		{
 			switch (e.Status) {
-				case CLAuthorizationStatus.AuthorizedAlways:
-				case CLAuthorizationStatus.AuthorizedWhenInUse:
-					Console.WriteLine ("Got authorization, start tracking location");
-					StartTrackingLocation ();
-					break;
+			case CLAuthorizationStatus.AuthorizedAlways:
+			case CLAuthorizationStatus.AuthorizedWhenInUse:
+				Console.WriteLine ("Got authorization, start tracking location");
+				StartTrackingLocation ();
+				break;
 
-				case CLAuthorizationStatus.NotDetermined:
-					locationManager.RequestWhenInUseAuthorization ();
-					break;
+			case CLAuthorizationStatus.NotDetermined:
+				locationManager.RequestWhenInUseAuthorization ();
+				break;
 
-				default:
-					break;
+			default:
+				break;
 			}
 		}
 
@@ -142,7 +140,7 @@ namespace Footprint
 				var scaledPoint = new CGPoint (x, y);
 
 				// Calculate and set the size of the radius
-				nfloat radiusFrameSize = (nfloat)location.HorizontalAccuracy * coordinateConverter.PixelsPerMeter * 2;
+				nfloat radiusFrameSize = (nfloat) location.HorizontalAccuracy * coordinateConverter.PixelsPerMeter * 2;
 				RadiusView.Frame = new CGRect (0, 0, radiusFrameSize, radiusFrameSize);
 
 				// Move the pin and radius to the user's location

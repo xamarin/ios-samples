@@ -1,11 +1,9 @@
 using UIKit;
 using Foundation;
 
-namespace NSZombieApocalypse
-{
+namespace NSZombieApocalypse {
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		ViewController viewController;
 

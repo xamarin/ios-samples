@@ -1,19 +1,18 @@
-﻿using System;
+using System;
 using System.Drawing;
 using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace UIKit
-{
-	public static class UIStringDrawing
-	{
+namespace UIKit {
+	public static class UIStringDrawing {
 		public static UIColor FillColor { get; set; } = UIColor.Black;
 
-		public static CGSize DrawString (this NSString item, CGRect rect, UIFont font, UILineBreakMode mode, UITextAlignment alignment) {
+		public static CGSize DrawString (this NSString item, CGRect rect, UIFont font, UILineBreakMode mode, UITextAlignment alignment)
+		{
 
 			// Get paragraph style
-			var labelStyle = NSParagraphStyle.Default.MutableCopy() as UIKit.NSMutableParagraphStyle;
+			var labelStyle = NSParagraphStyle.Default.MutableCopy () as UIKit.NSMutableParagraphStyle;
 
 			// Adjust alignment
 			labelStyle.Alignment = alignment;
@@ -29,12 +28,12 @@ namespace UIKit
 			};
 
 			// Preform drawing
-			item.DrawString(rect, attributes);
+			item.DrawString (rect, attributes);
 
 			// Return new bounding size
 			return new CGSize (rect.Width, rect.Height);
 		}
-			
+
 	}
 }
 

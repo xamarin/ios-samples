@@ -11,10 +11,8 @@ using Foundation;
 using CoreFoundation;
 using UIKit;
 
-namespace MidiTest
-{
-	public class AudioTest
-	{
+namespace MidiTest {
+	public class AudioTest {
 		AUGraph processingGraph;
 		AudioUnit.AudioUnit samplerUnit;
 
@@ -31,14 +29,14 @@ namespace MidiTest
 			var musicSampler = new AudioComponentDescription () {
 				ComponentManufacturer = AudioComponentManufacturerType.Apple,
 				ComponentType = AudioComponentType.MusicDevice,
-				ComponentSubType = (int)AudioTypeMusicDevice.Sampler
+				ComponentSubType = (int) AudioTypeMusicDevice.Sampler
 			};
 			samplerNode = processingGraph.AddNode (musicSampler);
 
 			var remoteOutput = new AudioComponentDescription () {
 				ComponentManufacturer = AudioComponentManufacturerType.Apple,
 				ComponentType = AudioComponentType.Output,
-				ComponentSubType = (int)AudioTypeOutput.Remote
+				ComponentSubType = (int) AudioTypeOutput.Remote
 			};
 			ioNode = processingGraph.AddNode (remoteOutput);
 
@@ -76,7 +74,7 @@ namespace MidiTest
 
 			for (int i = 0; i < packets.Length; i++) {
 				var packet = packets [i];
-				byte[] data = new byte[packet.Length];
+				byte [] data = new byte [packet.Length];
 				Marshal.Copy (packet.Bytes, data, 0, packet.Length);
 				var midiStatus = data [0];
 				var midiCommand = midiStatus >> 4;
@@ -85,7 +83,7 @@ namespace MidiTest
 					var note = data [1] & 0x7F;
 					var velocity = data [2] & 0x7F;
 
-					int noteNumber = ((int)note) % 12;
+					int noteNumber = ((int) note) % 12;
 					string noteType;
 					switch (noteNumber) {
 					case 0:
@@ -128,9 +126,10 @@ namespace MidiTest
 						throw new NotImplementedException ();
 					}
 
-					samplerUnit.MusicDeviceMIDIEvent ((uint)midiStatus, (uint)note, (uint)velocity);
+					samplerUnit.MusicDeviceMIDIEvent ((uint) midiStatus, (uint) note, (uint) velocity);
 
-					label.InvokeOnMainThread (delegate {
+					label.InvokeOnMainThread (delegate
+					{
 						label.Text = String.Format ("Playing: {0}: {1}", noteType, noteNumber);
 					});
 				}
@@ -140,7 +139,7 @@ namespace MidiTest
 		AudioUnitStatus LoadFromDLSOrSoundFont (CFUrl bankUrl, int presetNumber)
 		{
 			var instrumentData = new SamplerInstrumentData (bankUrl, InstrumentType.SF2Preset) {
-				PresetID = (byte)presetNumber,
+				PresetID = (byte) presetNumber,
 				BankMSB = SamplerInstrumentData.DefaultMelodicBankMSB,
 				BankLSB = SamplerInstrumentData.DefaultBankLSB
 			};

@@ -4,13 +4,11 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace StreamingAudio
-{
+namespace StreamingAudio {
 	/// <summary>
 	/// A Class to hold the AudioBuffer with all setting together
 	/// </summary>
-	internal class AudioBuffer
-	{
+	internal class AudioBuffer {
 		public IntPtr Buffer { get; set; }
 
 		public List<AudioStreamPacketDescription> PacketDescriptions { get; set; }
@@ -23,8 +21,7 @@ namespace StreamingAudio
 	/// <summary>
 	/// Wrapper around OutputQueue and AudioFileStream to allow streaming of various filetypes
 	/// </summary>
-	public class StreamingPlayback : IDisposable
-	{
+	public class StreamingPlayback : IDisposable {
 		public event EventHandler Finished;
 		public event Action<OutputAudioQueue> OutputReady;
 
@@ -44,7 +41,7 @@ namespace StreamingAudio
 
 		public OutputAudioQueue OutputQueue;
 
-		public bool Started  { get; private set; }
+		public bool Started { get; private set; }
 
 		public float Volume {
 			get {
@@ -140,7 +137,7 @@ namespace StreamingAudio
 		/// <summary>
 		/// Main methode to kick off the streaming, just send the bytes to this method
 		/// </summary>
-		public void ParseBytes (byte[] buffer, int count, bool discontinuity, bool lastPacket)
+		public void ParseBytes (byte [] buffer, int count, bool discontinuity, bool lastPacket)
 		{
 			this.lastPacket = lastPacket;
 			fileStream.ParseBytes (buffer, 0, count, discontinuity);
@@ -160,7 +157,7 @@ namespace StreamingAudio
 			if (disposing) {
 
 				if (OutputQueue != null)
-					OutputQueue.Stop(true);
+					OutputQueue.Stop (true);
 
 				if (outputBuffers != null) {
 					foreach (var b in outputBuffers)
@@ -199,7 +196,7 @@ namespace StreamingAudio
 					WaitForBuffer ();
 				}
 
-				AudioQueue.FillAudioData (currentBuffer.Buffer, currentBuffer.CurrentOffset, args.InputData, (int)pd.StartOffset, pd.DataByteSize);
+				AudioQueue.FillAudioData (currentBuffer.Buffer, currentBuffer.CurrentOffset, args.InputData, (int) pd.StartOffset, pd.DataByteSize);
 				// Set new offset for this packet
 				pd.StartOffset = currentBuffer.CurrentOffset;
 				// Add the packet to our Buffer

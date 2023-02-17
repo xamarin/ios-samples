@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Drawing;
 using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace AdaptivePhotos
-{
-	public class RatingControl : UIControl
-	{
+namespace AdaptivePhotos {
+	public class RatingControl : UIControl {
 		const int ratingControlMinimumRating = 0;
 		const int ratingControlMaximumRating = 4;
 
@@ -78,12 +76,12 @@ namespace AdaptivePhotos
 		void UpdateImageViews ()
 		{
 			for (nuint i = 0; i < ImageViews.Count; i++)
-				ImageViews.GetItem <UIImageView> (i).Highlighted = (i + ratingControlMinimumRating <= Rating);
+				ImageViews.GetItem<UIImageView> (i).Highlighted = (i + ratingControlMinimumRating <= Rating);
 		}
 
 		void UpdateRatingWithTouches (NSSet touches, UIEvent evt)
 		{
-			UITouch touch = (UITouch)touches.AnyObject;
+			UITouch touch = (UITouch) touches.AnyObject;
 			CGPoint position = touch.LocationInView (this);
 			UIView touchedView = HitTest (position, evt);
 
@@ -109,7 +107,7 @@ namespace AdaptivePhotos
 
 			UIImageView lastImageView = null;
 			for (nuint i = 0; i < ImageViews.Count; i++) {
-				var imageView = ImageViews.GetItem <UIImageView> (i);
+				var imageView = ImageViews.GetItem<UIImageView> (i);
 				imageView.TranslatesAutoresizingMaskIntoConstraints = false;
 
 				AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-4-[imageView]-4-|",

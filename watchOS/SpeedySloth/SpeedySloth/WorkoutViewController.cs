@@ -1,142 +1,123 @@
-﻿
-namespace SpeedySloth
-{
-    using CoreFoundation;
-    using Foundation;
-    using HealthKit;
-    using System;
-    using UIKit;
-    using WatchConnectivity;
 
-    public partial class WorkoutViewController : UIViewController, IWCSessionDelegate
-    {
-        private readonly HKHealthStore healthStore = new HKHealthStore();
+namespace SpeedySloth {
+	using CoreFoundation;
+	using Foundation;
+	using HealthKit;
+	using System;
+	using UIKit;
+	using WatchConnectivity;
 
-        private Action<WCSession> sessionActivationCompletion;
+	public partial class WorkoutViewController : UIViewController, IWCSessionDelegate {
+		private readonly HKHealthStore healthStore = new HKHealthStore ();
 
-        public WorkoutViewController(IntPtr handle) : base(handle) { }
+		private Action<WCSession> sessionActivationCompletion;
 
-        public HKWorkoutConfiguration Configuration { get; set; }
+		public WorkoutViewController (IntPtr handle) : base (handle) { }
 
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-            this.StartWatchApp();
-        }
+		public HKWorkoutConfiguration Configuration { get; set; }
 
-        public override void ViewDidDisappear(bool animated)
-        {
-            this.healthStore.Dispose();
-            base.ViewDidDisappear(animated);
-        }
+		public override void ViewDidAppear (bool animated)
+		{
+			base.ViewDidAppear (animated);
+			this.StartWatchApp ();
+		}
 
-        #region Convenience
+		public override void ViewDidDisappear (bool animated)
+		{
+			this.healthStore.Dispose ();
+			base.ViewDidDisappear (animated);
+		}
 
-        private void StartWatchApp()
-        {
-            if (this.Configuration != null)
-            {
-                this.GetActiveWCSession((wcSession) =>
-                {
-                    if (wcSession.ActivationState == WCSessionActivationState.Activated && wcSession.WatchAppInstalled)
-                    {
-                        this.healthStore.StartWatchApp(this.Configuration, (isSucces, error) =>
-                        {
-                            if (!isSucces)
-                            {
-                                Console.WriteLine($"starting watch app failed with error: ({error.Description})");
-                            }
-                        });
-                    }
-                });
-            }
-        }
+		#region Convenience
 
-        public void GetActiveWCSession(Action<WCSession> completion)
-        {
-            if (WCSession.IsSupported)
-            {
-                var wcSession = WCSession.DefaultSession;
-                wcSession.Delegate = this;
+		private void StartWatchApp ()
+		{
+			if (this.Configuration != null) {
+				this.GetActiveWCSession ((wcSession) => {
+					if (wcSession.ActivationState == WCSessionActivationState.Activated && wcSession.WatchAppInstalled) {
+						this.healthStore.StartWatchApp (this.Configuration, (isSucces, error) => {
+							if (!isSucces) {
+								Console.WriteLine ($"starting watch app failed with error: ({error.Description})");
+							}
+						});
+					}
+				});
+			}
+		}
 
-                switch (wcSession.ActivationState)
-                {
-                    case WCSessionActivationState.NotActivated:
-                    case WCSessionActivationState.Inactive:
-                        wcSession.ActivateSession();
-                        this.sessionActivationCompletion = completion;
-                        break;
-                    case WCSessionActivationState.Activated:
-                        completion(wcSession);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                // ...Alert the user that their iOS device does not support watch connectivity
-                throw new NotSupportedException("watch connectivity session nor supported");
-            }
-        }
+		public void GetActiveWCSession (Action<WCSession> completion)
+		{
+			if (WCSession.IsSupported) {
+				var wcSession = WCSession.DefaultSession;
+				wcSession.Delegate = this;
 
-        public void UpdateSessionState(string state)
-        {
-            if (state == "ended")
-            {
-                DispatchQueue.MainQueue.DispatchAsync(() =>
-                {
-                    this.DismissModalViewController(true);
-                });
-            }
-            else
-            {
-                this.WorkoutSessionState.Text = state;
-            }
-        }
+				switch (wcSession.ActivationState) {
+				case WCSessionActivationState.NotActivated:
+				case WCSessionActivationState.Inactive:
+					wcSession.ActivateSession ();
+					this.sessionActivationCompletion = completion;
+					break;
+				case WCSessionActivationState.Activated:
+					completion (wcSession);
+					break;
+				default:
+					break;
+				}
+			} else {
+				// ...Alert the user that their iOS device does not support watch connectivity
+				throw new NotSupportedException ("watch connectivity session nor supported");
+			}
+		}
 
-        #endregion
+		public void UpdateSessionState (string state)
+		{
+			if (state == "ended") {
+				DispatchQueue.MainQueue.DispatchAsync (() => {
+					this.DismissModalViewController (true);
+				});
+			} else {
+				this.WorkoutSessionState.Text = state;
+			}
+		}
 
-        #region WCSessionDelegate
+		#endregion
 
-        [Export("session:activationDidCompleteWithState:error:")]
-        public void ActivationDidComplete(WCSession session, WCSessionActivationState activationState, NSError error)
-        {
-            if (activationState == WCSessionActivationState.Activated)
-            {
-                var activationCompletion = this.sessionActivationCompletion;
-                if (activationCompletion != null)
-                {
-                    activationCompletion(session);
-                    this.sessionActivationCompletion = null;
-                }
-            }
-        }
+		#region WCSessionDelegate
 
-        [Export("session:didReceiveMessage:")]
-        public void DidReceiveMessage(WCSession session, Foundation.NSDictionary<Foundation.NSString, Foundation.NSObject> message)
-        {
-            NSObject state;
-            if (message.TryGetValue(new NSString("State"), out state))
-            {
-                DispatchQueue.MainQueue.DispatchAsync(() =>
-                {
-                    var @string = state as NSString;
-                    this.UpdateSessionState(@string);
-                });
-            }
-        }
+		[Export ("session:activationDidCompleteWithState:error:")]
+		public void ActivationDidComplete (WCSession session, WCSessionActivationState activationState, NSError error)
+		{
+			if (activationState == WCSessionActivationState.Activated) {
+				var activationCompletion = this.sessionActivationCompletion;
+				if (activationCompletion != null) {
+					activationCompletion (session);
+					this.sessionActivationCompletion = null;
+				}
+			}
+		}
 
-        [Export("sessionDidBecomeInactive:")]
-        public void DidBecomeInactive(WCSession session)
-        {
-        }
+		[Export ("session:didReceiveMessage:")]
+		public void DidReceiveMessage (WCSession session, Foundation.NSDictionary<Foundation.NSString, Foundation.NSObject> message)
+		{
+			NSObject state;
+			if (message.TryGetValue (new NSString ("State"), out state)) {
+				DispatchQueue.MainQueue.DispatchAsync (() => {
+					var @string = state as NSString;
+					this.UpdateSessionState (@string);
+				});
+			}
+		}
 
-        [Export("sessionDidDeactivate:")]
-        public void DidDeactivate(WCSession session)
-        {
-        }
+		[Export ("sessionDidBecomeInactive:")]
+		public void DidBecomeInactive (WCSession session)
+		{
+		}
 
-        #endregion
-    }
+		[Export ("sessionDidDeactivate:")]
+		public void DidDeactivate (WCSession session)
+		{
+		}
+
+		#endregion
+	}
 }

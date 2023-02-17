@@ -4,10 +4,8 @@ using Foundation;
 using LocalAuthentication;
 using UIKit;
 
-namespace KeychainTouchID
-{
-	public partial class LocalAuthenticationTestsViewController : BasicTestViewController
-	{
+namespace KeychainTouchID {
+	public partial class LocalAuthenticationTestsViewController : BasicTestViewController {
 		public LocalAuthenticationTestsViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -34,7 +32,7 @@ namespace KeychainTouchID
 
 		public override void ViewDidLayoutSubviews ()
 		{
-			var height = (nfloat)Math.Min (View.Bounds.Size.Height, tableView.ContentSize.Height);
+			var height = (nfloat) Math.Min (View.Bounds.Size.Height, tableView.ContentSize.Height);
 			dynamicViewHeight.Constant = height;
 			View.LayoutIfNeeded ();
 		}

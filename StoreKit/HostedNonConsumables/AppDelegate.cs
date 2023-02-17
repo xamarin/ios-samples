@@ -7,7 +7,7 @@ using UIKit;
 namespace NonConsumables {
 	public class Application {
 		// This is the main entry point of the application.
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			// if you want to use a different Application Delegate class from "AppDelegate"
 			// you can specify it here.
@@ -26,9 +26,9 @@ namespace NonConsumables {
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
-			viewController = new HostedProductsViewController();
+			viewController = new HostedProductsViewController ();
 
-			navigationController = new UINavigationController();
+			navigationController = new UINavigationController ();
 			navigationController.PushViewController (viewController, false);
 
 			window.RootViewController = navigationController;

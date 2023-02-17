@@ -20,7 +20,7 @@ namespace StickyCorners {
 		UICollisionBehavior collisionBehavior;
 		IUIDynamicItem item;
 		List<UIFieldBehavior> fieldBehaviors;
-			
+
 		public StickyCorner CurrentCorner {
 			get {
 				var bounds = DynamicAnimator.ReferenceView.Bounds;
@@ -34,7 +34,7 @@ namespace StickyCorners {
 				// Top left.
 				if (rect.Contains (position))
 					return StickyCorner.TopLeft;
-				
+
 				// Bottom left.
 				rect.Location = new CGPoint (0, halfHeight);
 				if (rect.Contains (position))
@@ -113,7 +113,7 @@ namespace StickyCorners {
 
 		public CGPoint GetPositionForCorner (StickyCorner corner)
 		{
-			return fieldBehaviors [(int)corner - 1].Position;
+			return fieldBehaviors [(int) corner - 1].Position;
 		}
 
 		public void UpdateFieldsInBounds (CGRect bounds)
@@ -134,10 +134,10 @@ namespace StickyCorners {
 			var topRight = new CGPoint (w - dx, dy);
 
 			var regionRect = new CGRect (dx, dy, w, h);
-			UpdateFieldBehaviour (fieldBehaviors [(int)StickyCorner.TopLeft - 1], topLeft, regionRect);
-			UpdateFieldBehaviour (fieldBehaviors [(int)StickyCorner.BottomLeft - 1], bottomLeft, regionRect);
-			UpdateFieldBehaviour (fieldBehaviors [(int)StickyCorner.BottomRight - 1], bottomRight, regionRect);
-			UpdateFieldBehaviour (fieldBehaviors [(int)StickyCorner.TopRight - 1], topRight, regionRect);
+			UpdateFieldBehaviour (fieldBehaviors [(int) StickyCorner.TopLeft - 1], topLeft, regionRect);
+			UpdateFieldBehaviour (fieldBehaviors [(int) StickyCorner.BottomLeft - 1], bottomLeft, regionRect);
+			UpdateFieldBehaviour (fieldBehaviors [(int) StickyCorner.BottomRight - 1], bottomRight, regionRect);
+			UpdateFieldBehaviour (fieldBehaviors [(int) StickyCorner.TopRight - 1], topRight, regionRect);
 		}
 
 		public void AddLinearVelocity (CGPoint velocity)

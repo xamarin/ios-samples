@@ -7,12 +7,9 @@ using AudioToolbox;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace MultichannelMixer
-{
-	public class MultichannelMixerController : NSObject
-	{
-		class SoundBuffer
-		{
+namespace MultichannelMixer {
+	public class MultichannelMixerController : NSObject {
+		class SoundBuffer {
 			public IntPtr Data { get; set; }
 			public long TotalFrames { get; set; }
 			public int SampleNum { get; set; }
@@ -21,8 +18,8 @@ namespace MultichannelMixer
 		const double GraphSampleRate = 44100.0;
 
 		AUGraph graph;
-		CFUrl[] sourceURL;
-		SoundBuffer[] soundBuffer;
+		CFUrl [] sourceURL;
+		SoundBuffer [] soundBuffer;
 		bool playing;
 		AudioUnit.AudioUnit mixer;
 
@@ -37,7 +34,7 @@ namespace MultichannelMixer
 				CFUrl.FromFile (sourceB)
 			};
 
-			soundBuffer = new SoundBuffer[sourceURL.Length];
+			soundBuffer = new SoundBuffer [sourceURL.Length];
 			for (int i = 0; i < soundBuffer.Length; ++i)
 				soundBuffer [i] = new SoundBuffer ();
 		}
@@ -134,15 +131,15 @@ namespace MultichannelMixer
 					double rateRatio = GraphSampleRate / clientFormat.SampleRate;
 
 					var numFrames = file.FileLengthFrames;
-					numFrames = (uint)(numFrames * rateRatio); // account for any sample rate conversion
+					numFrames = (uint) (numFrames * rateRatio); // account for any sample rate conversion
 					Debug.Print ("Number of Sample Frames after rate conversion (if any): {0}", numFrames);
 
 					// set up our buffer
-					soundBuffer[i].TotalFrames = numFrames;
+					soundBuffer [i].TotalFrames = numFrames;
 
 					UInt32 samples = (uint) (numFrames * clientFormat.ChannelsPerFrame);
-					var data_size = (int)(sizeof(uint) * samples);
-					soundBuffer[i].Data = Marshal.AllocHGlobal (data_size);
+					var data_size = (int) (sizeof (uint) * samples);
+					soundBuffer [i].Data = Marshal.AllocHGlobal (data_size);
 
 					// set up a AudioBufferList to read data into
 					var bufList = new AudioBuffers (1);
@@ -180,7 +177,7 @@ namespace MultichannelMixer
 					outA [i] = 0;
 					outB [i] = input [sample++];
 				} else {
-					outA [i] = input[sample++];
+					outA [i] = input [sample++];
 					outB [i] = 0;
 				}
 

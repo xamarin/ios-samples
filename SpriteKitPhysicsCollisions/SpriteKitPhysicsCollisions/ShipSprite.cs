@@ -4,10 +4,8 @@ using Foundation;
 using SpriteKit;
 using UIKit;
 
-namespace SpriteKitPhysicsCollisions
-{
-	public class ShipSprite : SKSpriteNode
-	{
+namespace SpriteKitPhysicsCollisions {
+	public class ShipSprite : SKSpriteNode {
 		const int startingShipHealth = 10;
 		const int showDamageBelowHealth = 4;
 
@@ -38,7 +36,7 @@ namespace SpriteKitPhysicsCollisions
 		static readonly Random rand = new Random ();
 		static float myRand (float low, float high)
 		{
-			return (float)rand.NextDouble () * (high - low) + low;
+			return (float) rand.NextDouble () * (high - low) + low;
 		}
 
 		public ShipSprite (CGPoint initialPosition)
@@ -82,7 +80,7 @@ namespace SpriteKitPhysicsCollisions
 			get {
 				if (exhaustNode == null) {
 					var emitter = new ExhaustNode (Scene);
-					engineEngagedAlpha = (float)emitter.ParticleAlpha;
+					engineEngagedAlpha = (float) emitter.ParticleAlpha;
 					AddChild (emitter);
 					exhaustNode = emitter;
 				}
@@ -90,32 +88,31 @@ namespace SpriteKitPhysicsCollisions
 			}
 		}
 
-		void ShowDamage()
+		void ShowDamage ()
 		{
 			// When the ship first shows damage, a damage node is created and added as a child.
 			// If it takes more damage, then the number of particles is increased.
 
-			if (visibleDamageNode == null)
-			{
-				visibleDamageNode = (SKEmitterNode)NSKeyedUnarchiver.UnarchiveFile (NSBundle.MainBundle.PathForResource ("damage", "sks"));
+			if (visibleDamageNode == null) {
+				visibleDamageNode = (SKEmitterNode) NSKeyedUnarchiver.UnarchiveFile (NSBundle.MainBundle.PathForResource ("damage", "sks"));
 				visibleDamageNode.Name = @"damaged";
 
 				// Make the scene the target node because the ship is moving around in the scene. Smoke particles
 				// should be spawned based on the ship, but should otherwise exist independently of the ship.
 				visibleDamageNode.TargetNode = Scene;
 
-				AddChild(visibleDamageNode);
+				AddChild (visibleDamageNode);
 			} else {
 				visibleDamageNode.ParticleBirthRate = visibleDamageNode.ParticleBirthRate * 2;
 			}
 		}
 
-		void MakeExhaustNode()
+		void MakeExhaustNode ()
 		{
-			var emitter = (ExhaustNode)NSKeyedUnarchiver.UnarchiveFile (NSBundle.MainBundle.PathForResource ("exhaust", "sks"));
+			var emitter = (ExhaustNode) NSKeyedUnarchiver.UnarchiveFile (NSBundle.MainBundle.PathForResource ("exhaust", "sks"));
 
 			// Hard coded position at the back of the ship.
-			emitter.Position = new CGPoint(0, -40);
+			emitter.Position = new CGPoint (0, -40);
 			emitter.Name = "exhaust";
 
 			// Make the scene the target node because the ship is moving around in the scene. Exhaust particles
@@ -133,7 +130,7 @@ namespace SpriteKitPhysicsCollisions
 			exhaustNode = emitter;
 		}
 
-		void MakeExhaustNodeIfNeeded()
+		void MakeExhaustNodeIfNeeded ()
 		{
 			if (exhaustNode == null)
 				MakeExhaustNode ();
@@ -158,12 +155,12 @@ namespace SpriteKitPhysicsCollisions
 		{
 			// Create a bunch of explosion emitters and send them flying in all directions. Then remove the ship from the scene.
 			for (int i = 0; i < numberOfChunks; i++) {
-				SKEmitterNode explosion = NodeFactory.CreateExplosionNode(Scene, shipExplosionDuration);
+				SKEmitterNode explosion = NodeFactory.CreateExplosionNode (Scene, shipExplosionDuration);
 
 				float angle = myRand (0, (float) Math.PI * 2);
 				float speed = myRand (shipChunkMinimumSpeed, shipChunkMaximumSpeed);
-				var x = myRand ((float)Position.X - shipChunkDispersion, (float)Position.X + shipChunkDispersion);
-				var y = myRand ((float)Position.Y - shipChunkDispersion, (float)Position.Y + shipChunkDispersion);
+				var x = myRand ((float) Position.X - shipChunkDispersion, (float) Position.X + shipChunkDispersion);
+				var y = myRand ((float) Position.Y - shipChunkDispersion, (float) Position.Y + shipChunkDispersion);
 				explosion.Position = new CGPoint (x, y);
 
 				var body = SKPhysicsBody.CreateCircularBody (0.25f);
@@ -186,7 +183,7 @@ namespace SpriteKitPhysicsCollisions
 			get {
 				// The ship art is oriented so that it faces the top of the scene, but Sprite Kit's rotation default is to the right.
 				// This method calculates the ship orientation for use in other calculations.
-				return (float)ZRotation + (float)Math.PI / 2;
+				return (float) ZRotation + (float) Math.PI / 2;
 			}
 		}
 
@@ -194,7 +191,7 @@ namespace SpriteKitPhysicsCollisions
 			get {
 				// The ship art is oriented so that it faces the top of the scene, but Sprite Kit's rotation default is to the right.
 				// This method calculates the direction for the ship's rear.
-				return (float)ZRotation - (float)Math.PI / 2;
+				return (float) ZRotation - (float) Math.PI / 2;
 			}
 		}
 
@@ -203,8 +200,8 @@ namespace SpriteKitPhysicsCollisions
 			// Add flames out the back and apply thrust to the ship.
 
 			float shipDirection = ShipOrientation;
-			var dx = mainEngineThrust * (float)Math.Cos (shipDirection);
-			var dy = mainEngineThrust * (float)Math.Sin (shipDirection);
+			var dx = mainEngineThrust * (float) Math.Cos (shipDirection);
+			var dy = mainEngineThrust * (float) Math.Sin (shipDirection);
 			PhysicsBody.ApplyForce (new CGVector (dx, dy));
 
 			MakeExhaustNodeIfNeeded ();
@@ -221,8 +218,8 @@ namespace SpriteKitPhysicsCollisions
 		public void ReverseThrust ()
 		{
 			double reverseDirection = ShipOrientation + Math.PI;
-			var dx = reverseThrust * (float)Math.Cos (reverseDirection);
-			var dy = reverseThrust * (float)Math.Sin (reverseDirection);
+			var dx = reverseThrust * (float) Math.Cos (reverseDirection);
+			var dy = reverseThrust * (float) Math.Sin (reverseDirection);
 			PhysicsBody.ApplyForce (new CGVector (dx, dy));
 		}
 

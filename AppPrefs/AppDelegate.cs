@@ -1,16 +1,14 @@
 using Foundation;
 using UIKit;
 
-namespace AppPrefs
-{
+namespace AppPrefs {
 	/// <summary>
 	/// The UIApplicationDelegate for the application. This class is responsible for launching the
 	/// User Interface of the application, as well as listening (and optionally responding) to
 	/// application events from iOS.
 	/// </summary>
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 		NSObject observer;
 
@@ -18,8 +16,8 @@ namespace AppPrefs
 
 		public override void FinishedLaunching (UIApplication application)
 		{
-			Settings.LoadDefaultValues();
-			observer = NSNotificationCenter.DefaultCenter.AddObserver ((NSString)"NSUserDefaultsDidChangeNotification", DefaultsChanged);
+			Settings.LoadDefaultValues ();
+			observer = NSNotificationCenter.DefaultCenter.AddObserver ((NSString) "NSUserDefaultsDidChangeNotification", DefaultsChanged);
 			DefaultsChanged (null);
 		}
 

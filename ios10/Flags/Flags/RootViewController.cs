@@ -5,10 +5,8 @@ using UIKit;
 
 using static UIKit.UIPageViewControllerNavigationDirection;
 
-namespace Flags
-{
-	public partial class RootViewController : UIViewController
-	{
+namespace Flags {
+	public partial class RootViewController : UIViewController {
 		int currentIndex;
 		UIPageViewController pageViewController;
 
@@ -37,7 +35,7 @@ namespace Flags
 			if (startingViewController == null)
 				return;
 
-			DataViewController[] viewControllers = { startingViewController };
+			DataViewController [] viewControllers = { startingViewController };
 			pageViewController.SetViewControllers (viewControllers, Forward, false, null);
 
 

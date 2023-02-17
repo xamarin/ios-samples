@@ -8,8 +8,7 @@ using UIKit;
 using ObjCRuntime;
 using CoreText;
 
-namespace SimpleTextInput
-{
+namespace SimpleTextInput {
 	// A UITextPosition object represents a position in a text container; in other words, it is
 	// an index into the backing string in a text-displaying view.
 	//
@@ -18,8 +17,7 @@ namespace SimpleTextInput
 	// system uses both these objects and UITextRange objects for communicating text-layout information.
 	//
 	// We could use more sophisticated objects, but for demonstration purposes it suffices to wrap integers.
-	class IndexedPosition : UITextPosition
-	{
+	class IndexedPosition : UITextPosition {
 		public int Index { get; private set; }
 
 		private IndexedPosition (int index)

@@ -3,30 +3,28 @@ using CoreFoundation;
 using Foundation;
 using UIKit;
 
-namespace AUSoundTriggeredPlayingSoundMemoryBased
-{
-    public partial class MainView : UIViewController
-    {
-        ExtAudioBufferPlayer player;
-        NSTimer timer;
-        bool isTimerAvailable;
+namespace AUSoundTriggeredPlayingSoundMemoryBased {
+	public partial class MainView : UIViewController {
+		ExtAudioBufferPlayer player;
+		NSTimer timer;
+		bool isTimerAvailable;
 
-        public MainView() : base("MainView", null)
-        {
-        }
+		public MainView () : base ("MainView", null)
+		{
+		}
 
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
+		public override void ViewDidLoad ()
+		{
+			base.ViewDidLoad ();
 
-            var url = CFUrl.FromFile("loop_stereo.aif");
-            player = new ExtAudioBufferPlayer(url);
+			var url = CFUrl.FromFile ("loop_stereo.aif");
+			player = new ExtAudioBufferPlayer (url);
 
-            // setting audio session
-            _slider.ValueChanged += OnSliderValueChanged;
-            _slider.MaxValue = player.TotalFrames;
+			// setting audio session
+			_slider.ValueChanged += OnSliderValueChanged;
+			_slider.MaxValue = player.TotalFrames;
 
-            isTimerAvailable = true;
+			isTimerAvailable = true;
 			timer = NSTimer.CreateRepeatingTimer (TimeSpan.FromMilliseconds (100),
 				_ => {
 					if (isTimerAvailable) {
@@ -37,15 +35,15 @@ namespace AUSoundTriggeredPlayingSoundMemoryBased
 				}
 			);
 
-            NSRunLoop.Current.AddTimer(timer, NSRunLoopMode.Default);
-        }
+			NSRunLoop.Current.AddTimer (timer, NSRunLoopMode.Default);
+		}
 
-        void OnSliderValueChanged(object sender, EventArgs e)
-        {
-            isTimerAvailable = false;
-            player.CurrentFrame = (long)_slider.Value;
-            isTimerAvailable = true;
-        }
-    }
+		void OnSliderValueChanged (object sender, EventArgs e)
+		{
+			isTimerAvailable = false;
+			player.CurrentFrame = (long) _slider.Value;
+			isTimerAvailable = true;
+		}
+	}
 }
 

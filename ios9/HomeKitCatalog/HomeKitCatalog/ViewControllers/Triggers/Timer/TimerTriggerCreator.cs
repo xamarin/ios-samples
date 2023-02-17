@@ -1,20 +1,18 @@
-﻿using System;
+using System;
 
 using Foundation;
 using HomeKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `TriggerCreator` subclass which allows for the creation of timer triggers.
-	public class TimerTriggerCreator : TriggerCreator
-	{
-		static readonly NSCalendarUnit[] Components = {
+	public class TimerTriggerCreator : TriggerCreator {
+		static readonly NSCalendarUnit [] Components = {
 			NSCalendarUnit.Hour,
 			NSCalendarUnit.Day,
 			NSCalendarUnit.WeekOfYear
 		};
 
-		public int SelectedRecurrenceIndex { get ; set; }
+		public int SelectedRecurrenceIndex { get; set; }
 
 		HMTimerTrigger TimerTrigger {
 			get {
@@ -90,7 +88,7 @@ namespace HomeKitCatalog
 			if (components == null)
 				return -1;
 
-			var unit = (NSCalendarUnit)0;
+			var unit = (NSCalendarUnit) 0;
 			if (components.Day == 1)
 				unit = NSCalendarUnit.Day;
 			else if (components.WeekOfYear == 1)
@@ -98,7 +96,7 @@ namespace HomeKitCatalog
 			else if (components.Hour == 1)
 				unit = NSCalendarUnit.Hour;
 
-			return (int)unit == 0 ? -1 : Math.Max (Array.IndexOf (Components, unit), -1);
+			return (int) unit == 0 ? -1 : Math.Max (Array.IndexOf (Components, unit), -1);
 		}
 
 		// Updates the trigger's fire date, entering and leaving the dispatch group if necessary.

@@ -3,10 +3,8 @@ using Foundation;
 using UIKit;
 using AVFoundation;
 
-namespace BracketStripes
-{
-	public partial class CapturePreviewView : UIView
-	{
+namespace BracketStripes {
+	public partial class CapturePreviewView : UIView {
 		private NSString capturingStillImageKeypath = new NSString ("capturingStillImage");
 		private UIView flashView;
 		private AVCaptureVideoPreviewLayer previewLayer;
@@ -40,7 +38,7 @@ namespace BracketStripes
 		{
 			if ((ofObject == CaptureOutput) && (keyPath == capturingStillImageKeypath)) {
 				var ch = new NSObservedChange (change);
-				var value = (NSNumber)ch.NewValue;
+				var value = (NSNumber) ch.NewValue;
 				AnimateVisualShutter (value.BoolValue);
 				return;
 			}

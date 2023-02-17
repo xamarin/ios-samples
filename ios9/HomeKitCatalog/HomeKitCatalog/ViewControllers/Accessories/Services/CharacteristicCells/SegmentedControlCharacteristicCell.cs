@@ -1,17 +1,15 @@
-﻿using System;
+using System;
 
 using CoreGraphics;
 using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `CharacteristicCell` subclass that contains a `UISegmentedControl`.
 	// Used for `HMCharacteristic`s which have associated, non-numeric values, like Lock Management State.
 	[Register ("SegmentedControlCharacteristicCell")]
-	public class SegmentedControlCharacteristicCell : CharacteristicCell
-	{
+	public class SegmentedControlCharacteristicCell : CharacteristicCell {
 		[Outlet ("segmentedControl")]
 		UISegmentedControl SegmentedControl { get; set; }
 
@@ -34,8 +32,8 @@ namespace HomeKitCatalog
 
 		// The possible values for this characteristic.
 		// When this is set, adds localized descriptions to the segmented control.
-		int[] possibleValues = new int[0];
-		int[] PossibleValues {
+		int [] possibleValues = new int [0];
+		int [] PossibleValues {
 			get {
 				return possibleValues;
 			}
@@ -71,11 +69,11 @@ namespace HomeKitCatalog
 
 		// Responds to the segmented control's segment changing.
 		// Sets the value and notifies its delegate.
-		[Export("segmentedControlDidChange:")]
-		void segmentedControlDidChange(UISegmentedControl sender)
+		[Export ("segmentedControlDidChange:")]
+		void segmentedControlDidChange (UISegmentedControl sender)
 		{
-			var value = possibleValues [(int)sender.SelectedSegment];
-			SetValue (new NSNumber(value), true);
+			var value = possibleValues [(int) sender.SelectedSegment];
+			SetValue (new NSNumber (value), true);
 		}
 
 		// If notify is false, then this is an external change,

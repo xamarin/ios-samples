@@ -1,23 +1,20 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace PopulatingATable
-{
-	public class RowArgs : EventArgs
-	{
+namespace PopulatingATable {
+	public class RowArgs : EventArgs {
 		public string Content { get; set; }
 	}
 
-	public class TableSource : UITableViewSource
-	{
+	public class TableSource : UITableViewSource {
 		const string CellIdentifier = "TableCell";
 
 		public event EventHandler<RowArgs> Selected;
-		readonly string[] tableItems;
+		readonly string [] tableItems;
 
-		public TableSource (string[] items)
+		public TableSource (string [] items)
 		{
 			tableItems = items;
 		}
@@ -58,7 +55,7 @@ namespace PopulatingATable
 			// if there are no cells to reuse, create a new one
 			cell = cell ?? new UITableViewCell (UITableViewCellStyle.Default, CellIdentifier);
 
-			cell.TextLabel.Text = tableItems[indexPath.Row];
+			cell.TextLabel.Text = tableItems [indexPath.Row];
 
 			return cell;
 		}

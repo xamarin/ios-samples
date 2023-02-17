@@ -22,10 +22,10 @@ namespace DynamicsCatalog {
 				TranslatesReferenceBoundsIntoBoundary = true
 			};
 			collisionBehavior.BeganBoundaryContact += (sender, e) => {
-				((UIView)e.DynamicItem).BackgroundColor = UIColor.LightGray;
+				((UIView) e.DynamicItem).BackgroundColor = UIColor.LightGray;
 			};
 			collisionBehavior.EndedBoundaryContact += (sender, e) => {
-				((UIView)e.DynamicItem).BackgroundColor = UIColor.Gray;
+				((UIView) e.DynamicItem).BackgroundColor = UIColor.Gray;
 			};
 
 			var squareCenterPoint = new CGPoint (square.Center.X, square.Center.Y - 100);

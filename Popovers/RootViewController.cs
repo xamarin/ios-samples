@@ -5,8 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Popovers
-{
+namespace Popovers {
 	class TableSource : UITableViewSource {
 		public override nint NumberOfSections (UITableView tableView)
 		{
@@ -32,8 +31,7 @@ namespace Popovers
 		}
 	}
 
-	public partial class RootViewController : UITableViewController
-	{
+	public partial class RootViewController : UITableViewController {
 		[Outlet]
 		public DetailViewController DetailViewController { get; set; }
 

@@ -1,14 +1,12 @@
-﻿using UIKit;
+using UIKit;
 
-namespace CodeOnlyDemo
-{
-	class CircleController : UIViewController
-	{
+namespace CodeOnlyDemo {
+	class CircleController : UIViewController {
 		CircleView view;
 
-		public override void LoadView()
+		public override void LoadView ()
 		{
-			view = new CircleView();
+			view = new CircleView ();
 			View = view;
 		}
 	}

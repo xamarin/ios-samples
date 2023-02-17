@@ -22,7 +22,7 @@ namespace CollectionViewTransition {
 			CGSize size = CollectionView.Bounds.Size;
 			CGPoint center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
 
-			int itemCount = (int)CollectionView.NumberOfItemsInSection (0);
+			int itemCount = (int) CollectionView.NumberOfItemsInSection (0);
 
 			if (attributesArray == null)
 				attributesArray = new List<UICollectionViewLayoutAttributes> (itemCount);
@@ -36,7 +36,7 @@ namespace CollectionViewTransition {
 			angles.Add (0);
 			for (int i = 1; i < stackCount * 10; i++) {
 				int hash = (int) (i * 2654435761 % 2 ^ 32);
-				hash = (int)(hash * 2654435761 % 2 ^ 32);
+				hash = (int) (hash * 2654435761 % 2 ^ 32);
 
 				float currentAngle = (float) ((hash % 1000) / 1000.0 * diff) + minAngle;
 				angles.Add (currentAngle);
@@ -72,10 +72,10 @@ namespace CollectionViewTransition {
 
 		public override UICollectionViewLayoutAttributes LayoutAttributesForItem (NSIndexPath indexPath)
 		{
-			return attributesArray [(int)indexPath.Item];
+			return attributesArray [(int) indexPath.Item];
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
+		public override UICollectionViewLayoutAttributes [] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			return attributesArray.ToArray ();
 		}

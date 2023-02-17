@@ -5,10 +5,8 @@ using Foundation;
 using CoreAnimation;
 using UIKit;
 
-namespace SimpleCollectionView
-{
-	public class CircleLayout : UICollectionViewLayout
-	{
+namespace SimpleCollectionView {
+	public class CircleLayout : UICollectionViewLayout {
 		const float ItemSize = 70.0f;
 		int cellCount = 20;
 		float radius;
@@ -18,7 +16,7 @@ namespace SimpleCollectionView
 
 		public CircleLayout ()
 		{
-			RegisterClassForDecorationView (typeof(MyDecorationView), myDecorationViewId);
+			RegisterClassForDecorationView (typeof (MyDecorationView), myDecorationViewId);
 		}
 
 		public override void PrepareLayout ()
@@ -26,9 +24,9 @@ namespace SimpleCollectionView
 			base.PrepareLayout ();
 
 			CGSize size = CollectionView.Frame.Size;
-			cellCount = (int)CollectionView.NumberOfItemsInSection (0);
+			cellCount = (int) CollectionView.NumberOfItemsInSection (0);
 			center = new CGPoint (size.Width / 2.0f, size.Height / 2.0f);
-			radius = (float)Math.Min (size.Width, size.Height) / 2.5f;
+			radius = (float) Math.Min (size.Width, size.Height) / 2.5f;
 		}
 
 		public override CGSize CollectionViewContentSize {
@@ -37,21 +35,21 @@ namespace SimpleCollectionView
 			}
 		}
 
-        public override bool ShouldInvalidateLayoutForBoundsChange (CGRect newBounds)
-        {
-            return true;
-        }
+		public override bool ShouldInvalidateLayoutForBoundsChange (CGRect newBounds)
+		{
+			return true;
+		}
 
 		public override UICollectionViewLayoutAttributes LayoutAttributesForItem (NSIndexPath path)
 		{
 			UICollectionViewLayoutAttributes attributes = UICollectionViewLayoutAttributes.CreateForCell (path);
 			attributes.Size = new CGSize (ItemSize, ItemSize);
-			attributes.Center = new CGPoint (center.X + radius * (float)Math.Cos (2 * path.Row * Math.PI / cellCount),
-			                                center.Y + radius * (float)Math.Sin (2 * path.Row * Math.PI / cellCount));
+			attributes.Center = new CGPoint (center.X + radius * (float) Math.Cos (2 * path.Row * Math.PI / cellCount),
+											center.Y + radius * (float) Math.Sin (2 * path.Row * Math.PI / cellCount));
 			return attributes;
 		}
 
-		public override UICollectionViewLayoutAttributes[] LayoutAttributesForElementsInRect (CGRect rect)
+		public override UICollectionViewLayoutAttributes [] LayoutAttributesForElementsInRect (CGRect rect)
 		{
 			var attributes = new UICollectionViewLayoutAttributes [cellCount + 1];
 
@@ -60,8 +58,8 @@ namespace SimpleCollectionView
 				attributes [i] = LayoutAttributesForItem (indexPath);
 			}
 
-            var decorationAttribs = UICollectionViewLayoutAttributes.CreateForDecorationView (myDecorationViewId, NSIndexPath.FromItemSection (0, 0));
-            decorationAttribs.Size = CollectionView.Frame.Size;
+			var decorationAttribs = UICollectionViewLayoutAttributes.CreateForDecorationView (myDecorationViewId, NSIndexPath.FromItemSection (0, 0));
+			decorationAttribs.Size = CollectionView.Frame.Size;
 			decorationAttribs.Center = CollectionView.Center;
 			decorationAttribs.ZIndex = -1;
 			attributes [cellCount] = decorationAttribs;
@@ -71,8 +69,7 @@ namespace SimpleCollectionView
 
 	}
 
-	public class MyDecorationView : UICollectionReusableView
-	{
+	public class MyDecorationView : UICollectionReusableView {
 		[Export ("initWithFrame:")]
 		public MyDecorationView (CGRect frame) : base (frame)
 		{

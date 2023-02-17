@@ -1,9 +1,8 @@
 using System;
 
-namespace PrivacyPrompts
-{
+namespace PrivacyPrompts {
 	public enum DataClass {
-		
+
 		Advertising,
 		AppleMusic,
 		Bluetooth,

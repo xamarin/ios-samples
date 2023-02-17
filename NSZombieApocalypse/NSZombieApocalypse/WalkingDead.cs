@@ -5,10 +5,8 @@ using Foundation;
 using CoreGraphics;
 
 
-namespace NSZombieApocalypse
-{
-	public class WalkingDead : UIControl
-	{
+namespace NSZombieApocalypse {
+	public class WalkingDead : UIControl {
 		Head head;
 		Body body;
 
@@ -23,8 +21,7 @@ namespace NSZombieApocalypse
 		bool animated;
 		bool walkingForward;
 
-		class Head : BodyPart
-		{
+		class Head : BodyPart {
 			public Head (CGRect rect) : base (rect)
 			{
 			}
@@ -67,8 +64,7 @@ namespace NSZombieApocalypse
 			}
 		}
 
-		class Body : BodyPart
-		{
+		class Body : BodyPart {
 			public Body (CGRect rect) : base (rect)
 			{
 			}
@@ -76,7 +72,7 @@ namespace NSZombieApocalypse
 			public override void Draw (CGRect rect)
 			{
 				rect = rect.Inset (2, 2);
-				float bodyWidth = (float)rect.Size.Width / 2;
+				float bodyWidth = (float) rect.Size.Width / 2;
 				UIBezierPath path = UIBezierPath.FromRoundedRect (new CGRect ((rect.Size.Width - bodyWidth) / 2, 0, bodyWidth, rect.Size.Height), UIRectCorner.TopLeft | UIRectCorner.TopRight, new CGSize (8, 8));
 				UIColor.Black.SetStroke ();
 				UIColor.White.SetFill ();
@@ -86,17 +82,16 @@ namespace NSZombieApocalypse
 			}
 		}
 
-		class RightLeg : BodyPart
-		{
+		class RightLeg : BodyPart {
 			public RightLeg (CGRect rect) : base (rect)
 			{
 			}
 
 			public override void Draw (CGRect rect)
 			{
-				UIView body = ((WalkingDead)Superview).body;
+				UIView body = ((WalkingDead) Superview).body;
 				CGRect bodyFrame = body.Frame;
-				float legWidth = (float)rect.Size.Width / 3;
+				float legWidth = (float) rect.Size.Width / 3;
 				UIBezierPath path = UIBezierPath.FromRoundedRect (new CGRect (20, bodyFrame.GetMaxY () - 5, legWidth, rect.Size.Height * .25f), UIRectCorner.TopRight | UIRectCorner.BottomRight, new CGSize (3, 3));
 				path.LineWidth = 2;
 				UIColor.White.SetFill ();
@@ -105,17 +100,16 @@ namespace NSZombieApocalypse
 			}
 		}
 
-		class LeftLeg : BodyPart
-		{
+		class LeftLeg : BodyPart {
 			public LeftLeg (CGRect rect) : base (rect)
 			{
 			}
 
 			public override void Draw (CGRect rect)
 			{
-				UIView body = ((WalkingDead)Superview).body;
+				UIView body = ((WalkingDead) Superview).body;
 				CGRect bodyFrame = body.Frame;
-				float legWidth = (float)rect.Size.Width / 3;
+				float legWidth = (float) rect.Size.Width / 3;
 				UIBezierPath path = UIBezierPath.FromRoundedRect (new CGRect (30, bodyFrame.GetMaxY () - 5, legWidth, (rect.Size.Height) * .25f), UIRectCorner.TopRight | UIRectCorner.BottomRight, new CGSize (3, 3));
 
 				UIColor.Black.SetColor ();
@@ -126,15 +120,14 @@ namespace NSZombieApocalypse
 			}
 		}
 
-		class RightArm : BodyPart
-		{
+		class RightArm : BodyPart {
 			public RightArm (CGRect rect) : base (rect)
 			{
 			}
 
 			public override void Draw (CGRect rect)
 			{
-				UIView head = ((WalkingDead)Superview).head;
+				UIView head = ((WalkingDead) Superview).head;
 				var path = new UIBezierPath ();
 				path.LineCapStyle = CGLineCap.Round;
 				CGRect headFrame = head.Frame;
@@ -159,15 +152,14 @@ namespace NSZombieApocalypse
 			}
 		}
 
-		sealed class LeftArm : BodyPart
-		{
+		sealed class LeftArm : BodyPart {
 			public LeftArm (CGRect rect) : base (rect)
 			{
 			}
 
 			public override void Draw (CGRect rect)
 			{
-				UIView head = ((WalkingDead)Superview).head;
+				UIView head = ((WalkingDead) Superview).head;
 				var path = new UIBezierPath {
 					LineCapStyle = CGLineCap.Round
 				};
@@ -196,7 +188,7 @@ namespace NSZombieApocalypse
 
 		public event DidDisassembleHandler WalkingDeadDidDisassemble;
 
-		public WalkingDead (CGRect frame) :base (frame)
+		public WalkingDead (CGRect frame) : base (frame)
 		{
 			BackgroundColor = UIColor.Clear;
 			ClipsToBounds = false;
@@ -252,7 +244,7 @@ namespace NSZombieApocalypse
 
 			CGRect superviewFrame = Superview.Frame;
 			startedWalking = NSDate.Now.SecondsSinceReferenceDate;
-			startedWalkingX = (float)Frame.X;
+			startedWalkingX = (float) Frame.X;
 			UIView.Animate (10, 0, UIViewAnimationOptions.AllowUserInteraction, () => {
 				if (!animated)
 					return;
@@ -270,14 +262,14 @@ namespace NSZombieApocalypse
 				TurnAround ();
 
 				startedWalking = NSDate.Now.SecondsSinceReferenceDate;
-				startedWalkingX = (float)Frame.X;
+				startedWalkingX = (float) Frame.X;
 				CGRect frame = Frame;
 				frame.X = 50;
 				UIView.Animate (10, 0, UIViewAnimationOptions.AllowUserInteraction, () => Frame = frame, Walk);
 			});
 		}
 
-		 public void Disassemble ()
+		public void Disassemble ()
 		{
 			animated = false;
 
@@ -304,7 +296,7 @@ namespace NSZombieApocalypse
 			if (!animated)
 				return;
 
-			float armRotation = 10 * (float)Math.PI / 180;
+			float armRotation = 10 * (float) Math.PI / 180;
 			UIView.Animate (1.75, () => {
 				rightArm.Transform = CGAffineTransform.MakeRotation (armRotation);
 				leftArm.Transform = CGAffineTransform.MakeRotation (-armRotation);
@@ -326,7 +318,7 @@ namespace NSZombieApocalypse
 			if (!animated)
 				return;
 
-			const float legRotation = (float)(Math.PI / 4 * .35);
+			const float legRotation = (float) (Math.PI / 4 * .35);
 			UIView.Animate (2.5, () => {
 				rightLeg.Transform = CGAffineTransform.MakeRotation (legRotation);
 				leftLeg.Transform = CGAffineTransform.MakeRotation (-legRotation);
@@ -337,7 +329,7 @@ namespace NSZombieApocalypse
 				UIView.Animate (2.5, () => {
 					rightLeg.Transform = CGAffineTransform.MakeRotation (-legRotation);
 					leftLeg.Transform = CGAffineTransform.MakeRotation (legRotation);
-				},MoveLegs);
+				}, MoveLegs);
 			});
 		}
 
@@ -358,8 +350,8 @@ namespace NSZombieApocalypse
 			rightLeg.Layer.RemoveAllAnimations ();
 			leftLeg.Layer.RemoveAllAnimations ();
 
-			float percentage = (float)(NSDate.Now.SecondsSinceReferenceDate - startedWalking / 10);
-			float xNow = (float)Math.Abs (Frame.X - startedWalkingX) * percentage;
+			float percentage = (float) (NSDate.Now.SecondsSinceReferenceDate - startedWalking / 10);
+			float xNow = (float) Math.Abs (Frame.X - startedWalkingX) * percentage;
 			CGRect frame = Frame;
 			Frame = new CGRect (xNow + (frame.Size.Width / 2), frame.Y, frame.Height, frame.Width);
 		}

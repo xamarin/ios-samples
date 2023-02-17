@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using Foundation;
 
-namespace ElizaCore
-{
-	public class ElizaUser : NSObject
-	{
+namespace ElizaCore {
+	public class ElizaUser : NSObject {
 		#region Computed Properties
 		public string ScreenName { get; set; }
 		public string FirstName { get; set; }

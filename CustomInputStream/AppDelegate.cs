@@ -8,11 +8,9 @@ using UIKit;
 
 using MonoTouch.Dialog;
 
-namespace InputStreamTest
-{
+namespace InputStreamTest {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		DialogViewController dvc;
 		NativeUploader uploader;
@@ -48,17 +46,14 @@ namespace InputStreamTest
 			Console.WriteLine ("Listening on: {0}", listener.LocalEndpoint);
 
 			uploader = new NativeUploader ();
-			uploader.UploadStream ("http://127.0.0.1:" + ((IPEndPoint) listener.LocalEndpoint).Port.ToString (), 1000, () =>
-			{
+			uploader.UploadStream ("http://127.0.0.1:" + ((IPEndPoint) listener.LocalEndpoint).Port.ToString (), 1000, () => {
 				Console.WriteLine ("Upload completed.");
 			});
 
-			listener.BeginAcceptSocket ((IAsyncResult res) =>
-			{
-				ThreadPool.QueueUserWorkItem ((v) =>
-				{
+			listener.BeginAcceptSocket ((IAsyncResult res) => {
+				ThreadPool.QueueUserWorkItem ((v) => {
 					using (var socket = listener.EndAcceptSocket (res)) {
-						byte [] buffer = new byte[1024];
+						byte [] buffer = new byte [1024];
 						int read;
 
 						// receive headers
@@ -83,7 +78,7 @@ namespace InputStreamTest
 			}, null);
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

@@ -2,10 +2,8 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace SoZoomy
-{
-	public class FaceView : UIView
-	{
+namespace SoZoomy {
+	public class FaceView : UIView {
 		public Action<int, FaceView> Callback;
 
 		public int Id;

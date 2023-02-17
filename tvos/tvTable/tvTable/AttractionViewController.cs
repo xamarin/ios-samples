@@ -2,14 +2,12 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace tvTable
-{
+namespace tvTable {
 	/// <summary>
 	/// Controls the <c>AttractionView</c> used to present the detailed information about a <c>AttractionInformation</c>
 	/// object attached to the highlighted Row in the <c>AttractionTableView</c>.
 	/// </summary>
-	public partial class AttractionViewController : UIViewController
-	{
+	public partial class AttractionViewController : UIViewController {
 		#region Private Variables
 		/// <summary>
 		/// The backing store for the <c>AttractionInformation</c> object that the details are being displayed for.
@@ -34,7 +32,7 @@ namespace tvTable
 		/// Gets or sets the split view that the <c>AttractionView</c> is being displayed in.
 		/// </summary>
 		/// <value>The <c>MasertSplitView</c> object.</value>
-		public MasterSplitView SplitView { get; set;}
+		public MasterSplitView SplitView { get; set; }
 		#endregion
 
 		#region Constructors
@@ -94,12 +92,12 @@ namespace tvTable
 		{
 			// Ask user to book flight
 			AlertViewController.PresentOKCancelAlert ("Book Flight",
-			                                          string.Format ("Would you like to book a flight to {0}?", Attraction.City.Name),
-			                                          this,
-			                                          (ok) => {
-				Attraction.City.FlightBooked = ok;
-				IsFlighBooked.Hidden = (!Attraction.City.FlightBooked);
-			});
+													  string.Format ("Would you like to book a flight to {0}?", Attraction.City.Name),
+													  this,
+													  (ok) => {
+														  Attraction.City.FlightBooked = ok;
+														  IsFlighBooked.Hidden = (!Attraction.City.FlightBooked);
+													  });
 		}
 
 		/// <summary>

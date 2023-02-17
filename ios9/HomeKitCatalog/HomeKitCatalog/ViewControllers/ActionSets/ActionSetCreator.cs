@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,11 +6,9 @@ using CoreFoundation;
 using Foundation;
 using HomeKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `CharacteristicCellDelegate` that builds an `HMActionSet` when it receives delegate callbacks.
-	public class ActionSetCreator : ICharacteristicCellDelegate
-	{
+	public class ActionSetCreator : ICharacteristicCellDelegate {
 		HMActionSet ActionSet { get; set; }
 
 		HMHome Home { get; set; }
@@ -98,7 +96,7 @@ namespace HomeKitCatalog
 		// as the action passed in. If such an action exists, the method tells the
 		// existing action to update its target value. Otherwise, the new action is
 		// simply added to the action set.
-		void AddAction (HMCharacteristicWriteAction action, HMActionSet actionSet, Action<NSError>completion)
+		void AddAction (HMCharacteristicWriteAction action, HMActionSet actionSet, Action<NSError> completion)
 		{
 			var existingAction = ExistingActionInActionSetMatchingAction (action);
 			if (existingAction != null)
@@ -113,7 +111,7 @@ namespace HomeKitCatalog
 		{
 			var actionSet = ActionSet;
 			if (actionSet != null) {
-				foreach (var existingAction in actionSet.Actions.Cast<HMCharacteristicWriteAction>()) {
+				foreach (var existingAction in actionSet.Actions.Cast<HMCharacteristicWriteAction> ()) {
 					if (action.Characteristic == existingAction.Characteristic)
 						return existingAction;
 				}
@@ -123,7 +121,7 @@ namespace HomeKitCatalog
 
 		// Iterates over a map table of HMCharacteristic -> object and creates
 		// an array of HMCharacteristicWriteActions based on those targets.
-		HMCharacteristicWriteAction[] ActionsFromMapTable ()
+		HMCharacteristicWriteAction [] ActionsFromMapTable ()
 		{
 			return targetValueMap.Keys.Select (characteristic => {
 				NSObject targetValue = targetValueMap [characteristic];
@@ -139,7 +137,7 @@ namespace HomeKitCatalog
 		}
 
 		// All existing characteristics within `HMCharacteristiWriteActions` and target values in the target value map.
-		public HMCharacteristic[] AllCharacteristics ()
+		public HMCharacteristic [] AllCharacteristics ()
 		{
 			var characteristics = new HashSet<HMCharacteristic> ();
 

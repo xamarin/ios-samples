@@ -5,10 +5,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace SimpleBackgroundFetch
-{
-	public partial class DetailViewController : UIViewController
-	{
+namespace SimpleBackgroundFetch {
+	public partial class DetailViewController : UIViewController {
 		object detailItem;
 
 		public DetailViewController (IntPtr handle) : base (handle)

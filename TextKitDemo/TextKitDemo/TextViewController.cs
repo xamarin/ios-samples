@@ -4,10 +4,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace TextKitDemo
-{
-	public class TextViewController : UIViewController
-	{
+namespace TextKitDemo {
+	public class TextViewController : UIViewController {
 		public DemoModel model;
 		NSObject notification;
 
@@ -25,7 +23,8 @@ namespace TextKitDemo
 
 			if (notification != null)
 				notification.Dispose ();
-			notification = UIApplication.Notifications.ObserveContentSizeCategoryChanged (delegate {
+			notification = UIApplication.Notifications.ObserveContentSizeCategoryChanged (delegate
+			{
 				PreferredContentSizeChanged ();
 			});
 		}

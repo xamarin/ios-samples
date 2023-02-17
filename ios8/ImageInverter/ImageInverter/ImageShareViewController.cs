@@ -4,15 +4,13 @@ using Foundation;
 using UIKit;
 using MobileCoreServices;
 
-namespace ImageInverter
-{
+namespace ImageInverter {
 	[Register ("ImageShareViewController")]
-	public class ImageShareViewController : UIViewController
-	{
-		[Outlet("imageView")]
+	public class ImageShareViewController : UIViewController {
+		[Outlet ("imageView")]
 		public UIImageView ImageView { get; set; }
 
-		[Outlet("shareItem")]
+		[Outlet ("shareItem")]
 		public UIBarButtonItem ShareItem { get; set; }
 
 		public ImageShareViewController (IntPtr handle)
@@ -21,13 +19,13 @@ namespace ImageInverter
 		}
 
 		[Export ("initWithCoder:")]
-		public ImageShareViewController(NSCoder coder)
+		public ImageShareViewController (NSCoder coder)
 			: base (coder)
 		{
 		}
 
-		[Action("share:")]
-		void OnShareClicked(UIBarButtonItem button)
+		[Action ("share:")]
+		void OnShareClicked (UIBarButtonItem button)
 		{
 			var activityViewController = new UIActivityViewController (new [] {
 				ImageView.Image
@@ -45,13 +43,13 @@ namespace ImageInverter
 				NSExtensionItem extensionItem = returnedItems [0];
 				NSItemProvider imageItemProvider = extensionItem.Attachments [0];
 
-				if (!imageItemProvider.HasItemConformingTo(UTType.Image))
+				if (!imageItemProvider.HasItemConformingTo (UTType.Image))
 					return;
 
 				imageItemProvider.LoadItem (UTType.Image, null, (item, loadError) => {
 					if (item != null && loadError == null)
 						InvokeOnMainThread (() => {
-							ImageView.Image = (UIImage)item;
+							ImageView.Image = (UIImage) item;
 						});
 				});
 			});

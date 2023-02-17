@@ -1,18 +1,16 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 using PassKit;
 using System.Collections.Generic;
 
-namespace Emporium
-{
+namespace Emporium {
 	[Register ("ProductTableViewController")]
-	public class ProductTableViewController : UITableViewController, IPKPaymentAuthorizationViewControllerDelegate
-	{
-		static readonly NSString confirmationSegue = (NSString)"ConfirmationSegue";
+	public class ProductTableViewController : UITableViewController, IPKPaymentAuthorizationViewControllerDelegate {
+		static readonly NSString confirmationSegue = (NSString) "ConfirmationSegue";
 
-		readonly NSString[] supportedNetworks = {
+		readonly NSString [] supportedNetworks = {
 			PKPaymentNetwork.Amex,
 			PKPaymentNetwork.Discover,
 			PKPaymentNetwork.MasterCard,
@@ -46,7 +44,7 @@ namespace Emporium
 		public override void PrepareForSegue (UIStoryboardSegue segue, NSObject sender)
 		{
 			if (segue.Identifier == confirmationSegue) {
-				var viewController = (ConfirmationViewController)segue.DestinationViewController;
+				var viewController = (ConfirmationViewController) segue.DestinationViewController;
 				viewController.TransactionIdentifier = paymentToken.TransactionIdentifier;
 			} else {
 				base.PrepareForSegue (segue, sender);
@@ -122,7 +120,7 @@ namespace Emporium
 
 		}
 
-		PKPaymentSummaryItem[] MakeSummaryItems (bool requiresInternationalSurcharge)
+		PKPaymentSummaryItem [] MakeSummaryItems (bool requiresInternationalSurcharge)
 		{
 			var items = new List<PKPaymentSummaryItem> ();
 
@@ -179,7 +177,7 @@ namespace Emporium
 			var address = contact.PostalAddress;
 			var requiresInternationalSurcharge = address.Country != "United States";
 
-			PKPaymentSummaryItem[] summaryItems = MakeSummaryItems (requiresInternationalSurcharge);
+			PKPaymentSummaryItem [] summaryItems = MakeSummaryItems (requiresInternationalSurcharge);
 
 			completion (PKPaymentAuthorizationStatus.Success, new [] { shipping }, summaryItems);
 		}

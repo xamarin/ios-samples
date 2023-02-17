@@ -1,4 +1,4 @@
-﻿using UIKit;
+using UIKit;
 using CoreGraphics;
 
 namespace CustomTransitions {
@@ -11,7 +11,7 @@ namespace CustomTransitions {
 		}
 
 		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext)
-		{ 
+		{
 			var fromViewController = transitionContext.GetViewControllerForKey (UITransitionContext.FromViewControllerKey);
 			var toViewController = transitionContext.GetViewControllerForKey (UITransitionContext.ToViewControllerKey);
 
@@ -41,14 +41,14 @@ namespace CustomTransitions {
 			var duration = TransitionDuration (transitionContext);
 
 			UIView.Animate (duration, 0, UIViewAnimationOptions.TransitionNone, () => {
-					var fromFrameAux = fromFrame;
-					fromFrameAux.Offset (fromFrame.Width * offset.dx, fromFrame.Height * offset.dy);
-					fromView.Frame = fromFrameAux;
+				var fromFrameAux = fromFrame;
+				fromFrameAux.Offset (fromFrame.Width * offset.dx, fromFrame.Height * offset.dy);
+				fromView.Frame = fromFrameAux;
 
-					toView.Frame = toFrame;
-				}, () => {
-					transitionContext.CompleteTransition (!transitionContext.TransitionWasCancelled);
-				}
+				toView.Frame = toFrame;
+			}, () => {
+				transitionContext.CompleteTransition (!transitionContext.TransitionWasCancelled);
+			}
 			);
 		}
 

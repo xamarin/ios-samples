@@ -1,21 +1,19 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 
-namespace ScanningAndDetecting3DObjects
-{
-	internal class ViewControllerDocumentPickerDelegate : UIDocumentPickerDelegate
-	{
+namespace ScanningAndDetecting3DObjects {
+	internal class ViewControllerDocumentPickerDelegate : UIDocumentPickerDelegate {
 		Action<NSUrl> handler;
 
-		internal ViewControllerDocumentPickerDelegate(Action<NSUrl> handler)
+		internal ViewControllerDocumentPickerDelegate (Action<NSUrl> handler)
 		{
 			this.handler = handler;
 		}
 
-		public override void DidPickDocument(UIDocumentPickerViewController controller, NSUrl url)
+		public override void DidPickDocument (UIDocumentPickerViewController controller, NSUrl url)
 		{
-			handler(url);
+			handler (url);
 		}
 	}
 }

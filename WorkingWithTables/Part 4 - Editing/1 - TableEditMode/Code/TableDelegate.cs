@@ -4,10 +4,8 @@ using System.IO;
 using Foundation;
 using UIKit;
 
-namespace BasicTable
-{
-	public class TableDelegate : UITableViewDelegate
-	{
+namespace BasicTable {
+	public class TableDelegate : UITableViewDelegate {
 		#region Constructors
 		public TableDelegate ()
 		{
@@ -20,7 +18,7 @@ namespace BasicTable
 		public TableDelegate (NSObjectFlag t) : base (t)
 		{
 		}
-			
+
 		#endregion
 
 		#region Override Methods
@@ -31,15 +29,16 @@ namespace BasicTable
 		/// <returns>The actions for row.</returns>
 		/// <param name="tableView">Table view.</param>
 		/// <param name="indexPath">Index path.</param>
-		public override UITableViewRowAction[] EditActionsForRow (UITableView tableView, NSIndexPath indexPath)
+		public override UITableViewRowAction [] EditActionsForRow (UITableView tableView, NSIndexPath indexPath)
 		{
 			UITableViewRowAction hiButton = UITableViewRowAction.Create (
-				UITableViewRowActionStyle.Default, 
+				UITableViewRowActionStyle.Default,
 				"Hi",
-				delegate {
+				delegate
+				{
 					Console.WriteLine ("Hello World!");
 				});
-			return new UITableViewRowAction[] { hiButton };
+			return new UITableViewRowAction [] { hiButton };
 		}
 		#endregion
 	}

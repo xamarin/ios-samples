@@ -1,4 +1,4 @@
-﻿using AudioUnit;
+using AudioUnit;
 using AudioToolbox;
 
 namespace FilterDemoFramework {
@@ -15,14 +15,14 @@ namespace FilterDemoFramework {
 
 		void PrepareInputBufferList ()
 		{
-			uint byteSize = MaxFrames * sizeof(float);
+			uint byteSize = MaxFrames * sizeof (float);
 
 			MutableAudioBufferList = new AudioBuffers (OriginalAudioBufferList.Count);
 
 			for (int i = 0; i < OriginalAudioBufferList.Count; ++i) {
-				MutableAudioBufferList[i] = new AudioBuffer {
+				MutableAudioBufferList [i] = new AudioBuffer {
 					Data = OriginalAudioBufferList [i].Data,
-					DataByteSize = (int)byteSize,
+					DataByteSize = (int) byteSize,
 					NumberChannels = OriginalAudioBufferList [i].NumberChannels
 				};
 			}

@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
 using UIKit;
 using System.Timers;
 
-namespace ToastModern
-{
-	public class List : Layer
-	{
+namespace ToastModern {
+	public class List : Layer {
 		double lastTime;
 		bool isInertiaing;
 		double velocity;
@@ -41,11 +39,11 @@ namespace ToastModern
 				if (isSpringing) {
 					spring.Tick ();
 					UIView.PerformWithoutAnimation (() => {
-						Y = (nfloat)spring.Position;
+						Y = (nfloat) spring.Position;
 					});
 				} else if (isInertiaing) {
 					UIView.PerformWithoutAnimation (() => {
-						Y += (nfloat)(velocity / 60);
+						Y += (nfloat) (velocity / 60);
 					});
 
 					velocity *= 0.98;
@@ -81,7 +79,7 @@ namespace ToastModern
 		public override void TouchesMoved (NSSet touches, UIEvent evt)
 		{
 			InvokeOnMainThread (() => {
-				UITouch touch = (UITouch)touches.AnyObject;
+				UITouch touch = (UITouch) touches.AnyObject;
 				UIView.PerformWithoutAnimation (() => {
 					if (Y < min || Y > max)
 						Y += 0.5f * (touch.LocationInView (Screen.GlobalScreen).Y - touch.PreviousLocationInView (Screen.GlobalScreen).Y);
@@ -99,7 +97,7 @@ namespace ToastModern
 
 		public override void TouchesEnded (NSSet touches, UIEvent evt)
 		{
-			UITouch touch = (UITouch)touches.AnyObject;
+			UITouch touch = (UITouch) touches.AnyObject;
 
 			double dy = touch.LocationInView (Screen.GlobalScreen).Y - touch.PreviousLocationInView (Screen.GlobalScreen).Y;
 			double dt = touch.Timestamp - lastTime;

@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace HomeKitIntro
-{
-	public partial class HomeKitIntroViewController : UIViewController
-	{
+namespace HomeKitIntro {
+	public partial class HomeKitIntroViewController : UIViewController {
 		public HomeKitIntroViewController (IntPtr handle) : base (handle)
 		{
 		}
@@ -16,7 +14,7 @@ namespace HomeKitIntro
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -25,7 +23,7 @@ namespace HomeKitIntro
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			
+
 			// Perform any additional setup after loading the view, typically from a nib.
 		}
 

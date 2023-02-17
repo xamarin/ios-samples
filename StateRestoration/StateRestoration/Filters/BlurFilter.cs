@@ -1,10 +1,8 @@
 using System;
 using Foundation;
 
-namespace StateRestoration
-{
-	public class BlurFilter : ImageFilter
-	{
+namespace StateRestoration {
+	public class BlurFilter : ImageFilter {
 		const string BlurRadiusKey = "kImageFilterBlurRadiusKey";
 
 		public float BlurRadius {

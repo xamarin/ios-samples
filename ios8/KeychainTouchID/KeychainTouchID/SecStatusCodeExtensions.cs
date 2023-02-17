@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using Security;
 
-namespace KeychainTouchID
-{
-	public static class Extensions
-	{
-		public static string GetDescription(this SecStatusCode code)
+namespace KeychainTouchID {
+	public static class Extensions {
+		public static string GetDescription (this SecStatusCode code)
 		{
 			string description = string.Empty;
 			switch (code) {

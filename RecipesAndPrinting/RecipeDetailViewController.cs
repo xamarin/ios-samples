@@ -31,10 +31,8 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-namespace RecipesAndPrinting
-{
-	public partial class RecipeDetailViewController : UITableViewController
-	{
+namespace RecipesAndPrinting {
+	public partial class RecipeDetailViewController : UITableViewController {
 		RecipePhotoViewController recipePhotoViewController;
 		RecipeDetailSource tableSource;
 
@@ -87,7 +85,7 @@ namespace RecipesAndPrinting
 			public override nint RowsInSection (UITableView tableView, nint section)
 			{
 				// HACK: Cast nint to int
-				switch ((RecipeSection)(int)section) {
+				switch ((RecipeSection) (int) section) {
 				case RecipeSection.Instructions: return 1;
 				case RecipeSection.Ingredients: return Recipe.Ingredients.Length;
 				default: return 0;
@@ -116,8 +114,8 @@ namespace RecipesAndPrinting
 					amountLabel = cell.ViewWithTag (AmountTag) as UILabel;
 				}
 
-				cell.TextLabel.Text = Recipe.Ingredients[index].Name;
-				amountLabel.Text = Recipe.Ingredients[index].Amount;
+				cell.TextLabel.Text = Recipe.Ingredients [index].Name;
+				amountLabel.Text = Recipe.Ingredients [index].Amount;
 
 				CGSize desiredSize = amountLabel.SizeThatFits (new CGSize (160.0f, 32.0f));
 				// HACK: Change float to nfloat

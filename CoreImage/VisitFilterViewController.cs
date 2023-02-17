@@ -7,10 +7,8 @@ using Foundation;
 using ObjCRuntime;
 using System.Threading.Tasks;
 
-namespace coreimage
-{
-	class VisitFilterViewController : UIViewController
-	{
+namespace coreimage {
+	class VisitFilterViewController : UIViewController {
 		protected UIImageView ImageView { get; set; }
 
 		protected UIBarButtonItem BarButton { get; set; }
@@ -19,7 +17,7 @@ namespace coreimage
 
 		protected bool ShouldStop { get; set; }
 
-		public VisitFilterViewController (FilterHolder[] filterList)
+		public VisitFilterViewController (FilterHolder [] filterList)
 		{
 			FilterList = filterList;
 			ShouldStop = false;

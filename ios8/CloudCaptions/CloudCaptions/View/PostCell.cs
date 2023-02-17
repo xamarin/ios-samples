@@ -1,26 +1,24 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace CloudCaptions
-{
-	[Register("PostCell")]
-	public class PostCell : UITableViewCell
-	{
+namespace CloudCaptions {
+	[Register ("PostCell")]
+	public class PostCell : UITableViewCell {
 		string fontName;
 
-		[Outlet("textLabelInCell")]
+		[Outlet ("textLabelInCell")]
 		UILabel TextLabelInCell { get; set; }
 
-		[Outlet("imageViewInCell")]
+		[Outlet ("imageViewInCell")]
 		UIImageView ImageViewInCell { get; set; }
 
-		[Outlet("activityIndicator")]
+		[Outlet ("activityIndicator")]
 		UIActivityIndicatorView ActivityIndicator { get; set; }
 
 		public PostCell (IntPtr handle)
-			: base(handle)
+			: base (handle)
 		{
 		}
 
@@ -36,16 +34,16 @@ namespace CloudCaptions
 			TextLabelInCell.Font = labelFont;
 		}
 
-		public void DisplayInfoForPost(Post post)
+		public void DisplayInfoForPost (Post post)
 		{
 			// Sets how the cell appears based on the Post passed in
 			ActivityIndicator.StartAnimating ();
 
-			if(post.ImageRecord != null)
+			if (post.ImageRecord != null)
 				ImageViewInCell.Image = post.ImageRecord.FullImage;
 
-			fontName = (string)(NSString)post.PostRecord[Post.FontKey];
-			TextLabelInCell.Text = (string)(NSString)post.PostRecord[Post.TextKey];
+			fontName = (string) (NSString) post.PostRecord [Post.FontKey];
+			TextLabelInCell.Text = (string) (NSString) post.PostRecord [Post.TextKey];
 		}
 	}
 }

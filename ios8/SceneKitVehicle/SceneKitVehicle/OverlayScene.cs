@@ -7,10 +7,8 @@ using SpriteKit;
 using UIKit;
 using CoreGraphics;
 
-namespace SceneKitVehicle
-{
-	public class OverlayScene : SKScene
-	{
+namespace SceneKitVehicle {
+	public class OverlayScene : SKScene {
 		public SKNode SpeedNeedle { get; set; }
 
 		public OverlayScene (CGSize size) : base (size)
@@ -33,7 +31,7 @@ namespace SceneKitVehicle
 			needle.AnchorPoint = new CGPoint (0.5f, 0f);
 			needle.XScale = 0.7f;
 			needle.YScale = 0.7f;
-			needle.ZRotation = (float)Math.PI / 2f;
+			needle.ZRotation = (float) Math.PI / 2f;
 			needleHandle.AddChild (needle);
 			myImage.AddChild (needleHandle);
 

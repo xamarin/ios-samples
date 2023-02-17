@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public partial class TextFieldTableViewCell : FormFieldTableViewCell
-	{
+namespace CloudKitAtlas {
+	public partial class TextFieldTableViewCell : FormFieldTableViewCell {
 		[Outlet]
 		public UITextField TextField { get; set; }
 
@@ -21,7 +19,7 @@ namespace CloudKitAtlas
 		public TextFieldTableViewCell (NSCoder coder)
 			: base (coder)
 		{
-			
+
 		}
 	}
 }

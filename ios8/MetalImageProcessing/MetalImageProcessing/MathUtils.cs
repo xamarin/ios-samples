@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using OpenTK;
 
-namespace MetalImageProcessing
-{
-	public static class MathUtils
-	{
+namespace MetalImageProcessing {
+	public static class MathUtils {
 		public static Matrix4 SwapColumnsAndRows (this Matrix4 matrix)
 		{
 			return new Matrix4 (matrix.Column0, matrix.Column1, matrix.Column2, matrix.Column3);
@@ -12,7 +10,7 @@ namespace MetalImageProcessing
 
 		public static Matrix4 Scale (float x, float y, float z)
 		{
-			return new  Matrix4 (x, 0f, 0f, 0f, 0f, y, 0f, 0f, 0f, 0f, z, 0f, 0f, 0f, 0f, 1f);
+			return new Matrix4 (x, 0f, 0f, 0f, 0f, y, 0f, 0f, 0f, 0f, z, 0f, 0f, 0f, 0f, 1f);
 		}
 
 		public static Matrix4 Translate (Vector3 t)
@@ -37,8 +35,8 @@ namespace MetalImageProcessing
 		public static Matrix4 Rotate (float angle, Vector3 r)
 		{
 			float a = RadiansOverPi (angle);
-			float c = (float)Math.Cos (a);
-			float s = (float)Math.Sin (a);
+			float c = (float) Math.Cos (a);
+			float s = (float) Math.Sin (a);
 
 			float k = 1.0f - c;
 			r.Normalize ();
@@ -95,7 +93,7 @@ namespace MetalImageProcessing
 		public static Matrix4 PerspectiveFov (float fovy, float aspect, float near, float far)
 		{
 			float angle = Radians (0.5f * fovy);
-			float yScale = 1f / (float)Math.Tan (angle);
+			float yScale = 1f / (float) Math.Tan (angle);
 			float xScale = yScale / aspect;
 			float zScale = far / (far - near);
 
@@ -212,8 +210,8 @@ namespace MetalImageProcessing
 
 		public static Matrix4 Frustrum (float fovH, float fovV, float near, float far)
 		{
-			float width = 1f / (float)Math.Tan (Radians (0.5f * fovH));
-			float height = 1f / (float)Math.Tan (Radians (0.5f * fovV));
+			float width = 1f / (float) Math.Tan (Radians (0.5f * fovH));
+			float height = 1f / (float) Math.Tan (Radians (0.5f * fovV));
 			float sDepth = far / (far - near);
 
 			Vector4 P = Vector4.Zero;
@@ -276,7 +274,7 @@ namespace MetalImageProcessing
 
 		public static float Radians (float degrees)
 		{
-			return 1.0f / 180.0f * (float)Math.PI * degrees;
+			return 1.0f / 180.0f * (float) Math.PI * degrees;
 		}
 
 		public static Matrix4 MakeResultMatrix (Vector4 column0, Vector4 column1, Vector4 column2, Vector4 column3)

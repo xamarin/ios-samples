@@ -3,7 +3,7 @@ using UIKit;
 using Foundation;
 
 namespace HandlingRotation {
-	[Register("AppDelegate")]
+	[Register ("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate {
 
 		protected UIWindow window;
@@ -29,17 +29,16 @@ namespace HandlingRotation {
 			mainNavController = new UINavigationController ();
 			mainNavController.NavigationBar.Translucent = false;
 
-			switch (CurrentDevice)
-			{
-				case DeviceType.iPhone:
-					iPhoneHome = new HandlingRotation.Screens.iPhone.Home.HomeScreen ();
-					mainNavController.PushViewController (iPhoneHome, false);
-					break;
+			switch (CurrentDevice) {
+			case DeviceType.iPhone:
+				iPhoneHome = new HandlingRotation.Screens.iPhone.Home.HomeScreen ();
+				mainNavController.PushViewController (iPhoneHome, false);
+				break;
 
-				case DeviceType.iPad:
-					iPadHome = new HandlingRotation.Screens.iPad.Home.HomeScreenPad ();
-					mainNavController.PushViewController (iPadHome, false);
-					break;
+			case DeviceType.iPad:
+				iPadHome = new HandlingRotation.Screens.iPad.Home.HomeScreenPad ();
+				mainNavController.PushViewController (iPadHome, false);
+				break;
 			}
 
 			window.RootViewController = mainNavController;

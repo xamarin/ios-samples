@@ -8,16 +8,15 @@
 //
 using System;
 
-namespace ElizaCore
-{
-	public class String
-	{
+namespace ElizaCore {
+	public class String {
 		public String ()
 		{
 		}
 
-		public static string Sub(string s, int beginIndex, int endIndex) {
-			return s.Substring(beginIndex, endIndex - beginIndex);
+		public static string Sub (string s, int beginIndex, int endIndex)
+		{
+			return s.Substring (beginIndex, endIndex - beginIndex);
 		}
 	}
 }

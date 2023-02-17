@@ -1,9 +1,7 @@
-﻿using UIKit;
+using UIKit;
 
-namespace tvFocus
-{
-	public class Application
-	{
+namespace tvFocus {
+	public class Application {
 		// This is the main entry point of the application.
 		static void Main (string [] args)
 		{
