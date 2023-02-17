@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -36,8 +36,7 @@ namespace ColorFeed {
 		}
 	}
 
-	public static class ServerUtils
-	{
+	public static class ServerUtils {
 		static Random random = new Random (DateTime.Now.Millisecond);
 
 		public static Color CreateRandomColor ()

@@ -7,10 +7,8 @@ using CoreMedia;
 using Foundation;
 using UIKit;
 
-namespace AVCompositionDebugVieweriOS
-{
-	public partial class APLViewController : UIViewController
-	{
+namespace AVCompositionDebugVieweriOS {
+	public partial class APLViewController : UIViewController {
 		/* nanoseconds per second */
 		private const int NSEC_PER_SEC = 1000000000;
 		public static NSString AVCustomEditPlayerViewControllerStatusObservationContext = new NSString ("AVCustomEditPlayerViewControllerStatusObservationContext");
@@ -120,16 +118,16 @@ namespace AVCompositionDebugVieweriOS
 		{
 			double duration = PlayerItemDuration.Seconds;
 
-			float width = (float)scrubber.Bounds.Width;
+			float width = (float) scrubber.Bounds.Width;
 			double time = duration * currentValue;
 			double tolerance = 1.0f * duration / width;
 
 			ScrubIsInFlight = true;
 
 			Player.Seek (CMTime.FromSeconds (time, NSEC_PER_SEC),
-			             CMTime.FromSeconds (tolerance, NSEC_PER_SEC),
-			             CMTime.FromSeconds (tolerance, NSEC_PER_SEC),
-			             HandleScrubToSliderValueComplete
+						 CMTime.FromSeconds (tolerance, NSEC_PER_SEC),
+						 CMTime.FromSeconds (tolerance, NSEC_PER_SEC),
+						 HandleScrubToSliderValueComplete
 			);
 		}
 
@@ -172,7 +170,7 @@ namespace AVCompositionDebugVieweriOS
 
 			var dispatchGroup = DispatchGroup.Create ();
 
-			string[] assetKeysToLoadandTest = new string[] {
+			string [] assetKeysToLoadandTest = new string [] {
 				"tracks",
 				"duration",
 				"composable"
@@ -184,7 +182,7 @@ namespace AVCompositionDebugVieweriOS
 			dispatchGroup.DispatchAsync (DispatchQueue.MainQueue, SynchronizeWithEditor);
 		}
 
-		private void LoadAsset (AVUrlAsset asset, string[] assetKeysToLoadandTest, DispatchGroup dispatchGroup)
+		private void LoadAsset (AVUrlAsset asset, string [] assetKeysToLoadandTest, DispatchGroup dispatchGroup)
 		{
 			dispatchGroup.Enter ();
 			asset.LoadValuesAsynchronously (assetKeysToLoadandTest, () => {
@@ -244,8 +242,8 @@ namespace AVCompositionDebugVieweriOS
 		{
 			var ch = new NSObservedChange (change);
 			if (context == AVCustomEditPlayerViewControllerRateObservationContext.Handle) {
-				float newRate = ((NSNumber)ch.NewValue).FloatValue;
-				NSNumber oldRateNum = (NSNumber)ch.OldValue;
+				float newRate = ((NSNumber) ch.NewValue).FloatValue;
+				NSNumber oldRateNum = (NSNumber) ch.OldValue;
 				if (oldRateNum != null && newRate != oldRateNum.FloatValue) {
 					UpdatePlayPauseButton ();
 					UpdateScrubber ();
@@ -300,7 +298,7 @@ namespace AVCompositionDebugVieweriOS
 			double duration = PlayerItemDuration.Seconds;
 
 			if (duration != 0) {
-				float width = (float)scrubber.Bounds.Width;
+				float width = (float) scrubber.Bounds.Width;
 				double interval = 0.5 * duration / width;
 
 				if (interval > 1.0) {
@@ -308,11 +306,12 @@ namespace AVCompositionDebugVieweriOS
 				}
 
 				timeObserver = Player.AddPeriodicTimeObserver (CMTime.FromSeconds (interval, NSEC_PER_SEC),
-				                                               DispatchQueue.MainQueue,
-				                                               delegate {
-					UpdateScrubber ();
-					UpdateTimeLabel ();
-				});
+															   DispatchQueue.MainQueue,
+															   delegate
+															   {
+																   UpdateScrubber ();
+																   UpdateTimeLabel ();
+															   });
 			}
 		}
 
@@ -331,7 +330,7 @@ namespace AVCompositionDebugVieweriOS
 			if (double.IsInfinity (secondes))
 				secondes = 0;
 
-			int secondsInt = (int)Math.Round (secondes);
+			int secondsInt = (int) Math.Round (secondes);
 			int minutes = secondsInt / 60;
 			secondsInt -= minutes * 60;
 
@@ -345,7 +344,7 @@ namespace AVCompositionDebugVieweriOS
 			double duration = PlayerItemDuration.Seconds;
 			if (!double.IsInfinity (duration)) {
 				double time = Player.CurrentTime.Seconds;
-				scrubber.Value = (float)(time / duration);
+				scrubber.Value = (float) (time / duration);
 			} else
 				scrubber.Value = 0.0f;
 		}
@@ -369,7 +368,7 @@ namespace AVCompositionDebugVieweriOS
 				if (PlayerItem != null) {
 					PlayerItem.SeekingWaitsForVideoCompositionRendering = true;
 					PlayerItem.AddObserver (this, new NSString ("status"), NSKeyValueObservingOptions.New | NSKeyValueObservingOptions.Initial,
-					                        AVCustomEditPlayerViewControllerStatusObservationContext.Handle);
+											AVCustomEditPlayerViewControllerStatusObservationContext.Handle);
 
 					playToEndObserver = AVPlayerItem.Notifications.ObserveDidPlayToEndTime (PlayToEndNotificationHandler);
 				}

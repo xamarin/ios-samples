@@ -7,10 +7,8 @@ using CoreImage;
 using Foundation;
 using UIKit;
 
-namespace ManualCameraControls
-{
-	public partial class BracketedViewController : UIViewController
-	{
+namespace ManualCameraControls {
+	public partial class BracketedViewController : UIViewController {
 		#region Private Variables
 
 		List<UIImageView> Output = new List<UIImageView> ();
@@ -26,7 +24,7 @@ namespace ManualCameraControls
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
 			get {
-				return (AppDelegate)UIApplication.SharedApplication.Delegate;
+				return (AppDelegate) UIApplication.SharedApplication.Delegate;
 			}
 		}
 
@@ -94,7 +92,7 @@ namespace ManualCameraControls
 			Output.Add (BuildOutputView (3));
 
 			// Create preset settings
-			var Settings = new AVCaptureBracketedStillImageSettings[] {
+			var Settings = new AVCaptureBracketedStillImageSettings [] {
 				AVCaptureAutoExposureBracketedStillImageSettings.Create (-2f),
 				AVCaptureAutoExposureBracketedStillImageSettings.Create (0f),
 				AVCaptureAutoExposureBracketedStillImageSettings.Create (2f)
@@ -107,7 +105,7 @@ namespace ManualCameraControls
 				// Reset output index
 				if (OutputIndex < Settings.Length)
 					return;
-				
+
 				OutputIndex = 0;
 
 				// Tell the camera that we are getting ready to do a bracketed capture

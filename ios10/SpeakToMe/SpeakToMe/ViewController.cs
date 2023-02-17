@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 
 using AVFoundation;
 using Foundation;
 using Speech;
 using UIKit;
 
-namespace SpeakToMe
-{
-	public partial class ViewController : UIViewController, ISFSpeechRecognizerDelegate
-	{
+namespace SpeakToMe {
+	public partial class ViewController : UIViewController, ISFSpeechRecognizerDelegate {
 		readonly SFSpeechRecognizer speechRecognizer = new SFSpeechRecognizer (new NSLocale ("en-US"));
 		readonly AVAudioEngine audioEngine = new AVAudioEngine ();
 		SFSpeechAudioBufferRecognitionRequest recognitionRequest;

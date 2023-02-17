@@ -4,10 +4,8 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace TransitionsDemo.InteractionControllers
-{
-	public class CEVerticalSwipeInteractionController : CEBaseInteractionController
-	{
+namespace TransitionsDemo.InteractionControllers {
+	public class CEVerticalSwipeInteractionController : CEBaseInteractionController {
 		public override nfloat CompletionSpeed {
 			get {
 				return 1 - PercentComplete;
@@ -30,7 +28,7 @@ namespace TransitionsDemo.InteractionControllers
 			view.AddGestureRecognizer (gestureRecognizer);
 		}
 
-		[Export("HandleGesture:")]
+		[Export ("HandleGesture:")]
 		public void HandleGesture (UIPanGestureRecognizer gestureRecognizer)
 		{
 			CGPoint translation = gestureRecognizer.TranslationInView (gestureRecognizer.View.Superview);
@@ -51,7 +49,7 @@ namespace TransitionsDemo.InteractionControllers
 			case UIGestureRecognizerState.Changed:
 				if (InteractionInProgress) {
 					// compute the current position
-					float fraction = (float)translation.Y / 200f;
+					float fraction = (float) translation.Y / 200f;
 					fraction = Math.Min (Math.Max (fraction, 0f), 1f);
 					shouldCompleteTransition = (fraction > 0.5f);
 

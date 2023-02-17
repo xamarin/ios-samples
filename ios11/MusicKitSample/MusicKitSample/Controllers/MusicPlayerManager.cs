@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using Foundation;
 using MediaPlayer;
-namespace MusicKitSample.Controllers
-{
-	public class MusicPlayerManager : NSObject
-	{
+namespace MusicKitSample.Controllers {
+	public class MusicPlayerManager : NSObject {
 		#region Types
 
 		// Notification that is fired when there is an update to the 
@@ -46,11 +44,11 @@ namespace MusicKitSample.Controllers
 
 			var notificationCenter = NSNotificationCenter.DefaultCenter;
 			nowPlayingItemDidChangeNotificationToken = notificationCenter.AddObserver (MPMusicPlayerController.NowPlayingItemDidChangeNotification,
-			                                                                           HandleMusicPlayerControllerNowPlayingItemDidChange,
-			                                                                           null);
+																					   HandleMusicPlayerControllerNowPlayingItemDidChange,
+																					   null);
 			playbackStateDidChangeNotificationChangeToken = notificationCenter.AddObserver (MPMusicPlayerController.PlaybackStateDidChangeNotification,
-			                                                                                HandleMusicPlayerControllerPlaybackStateDidChange,
-			                                                                                null);
+																							HandleMusicPlayerControllerPlaybackStateDidChange,
+																							null);
 		}
 
 		#endregion

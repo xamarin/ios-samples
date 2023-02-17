@@ -7,11 +7,9 @@ using CoreGraphics;
 using UIKit;
 using Foundation;
 
-namespace MediaNotes
-{
+namespace MediaNotes {
 	[Register ("YYCommentContainerView")]
-	public class YYCommentContainerView : UIView
-	{
+	public class YYCommentContainerView : UIView {
 		public YYCommentContainerView (IntPtr ptr) : base (ptr)
 		{
 
@@ -24,8 +22,7 @@ namespace MediaNotes
 		}
 	}
 
-	public class YYCommentContainerViewController : UIViewController
-	{
+	public class YYCommentContainerViewController : UIViewController {
 		public YYCommentViewController commentViewController { get; set; }
 
 		bool commentViewIsVisible;
@@ -46,10 +43,10 @@ namespace MediaNotes
 				UIApplication.SharedApplication.SetStatusBarStyle (UIStatusBarStyle.BlackTranslucent, false);
 			}
 			commentViewController = new YYCommentViewController ();
-			commentViewController.associatedObject = (PhotoViewController)child;
+			commentViewController.associatedObject = (PhotoViewController) child;
 		}
 
-		public  YYCommentViewController  YYcommentViewController ()
+		public YYCommentViewController YYcommentViewController ()
 		{
 
 			YYCommentViewController controller = commentViewController;
@@ -80,9 +77,9 @@ namespace MediaNotes
 			UILongPressGestureRecognizer gestureRecognizer = new UILongPressGestureRecognizer (this, new ObjCRuntime.Selector ("LongPressGesture:"));
 			View.AddGestureRecognizer (gestureRecognizer);
 
-# if USE_AUTOLAYOUT
+#if USE_AUTOLAYOUT
 			commentView.TranslatesAutoresizingMaskIntoConstraints = false;
-# endif
+#endif
 		}
 
 		public void AdjustCommentviewFrame ()
@@ -118,7 +115,7 @@ namespace MediaNotes
 			}
 		}
 
-		[Export("LongPressGesture:")]
+		[Export ("LongPressGesture:")]
 		void toggleCommentViewVisibility (UIGestureRecognizer gestureRecognizer)
 		{
 			bool began = (gestureRecognizer.State == UIGestureRecognizerState.Began);
@@ -141,27 +138,28 @@ namespace MediaNotes
 				commentViewController.BeginAppearanceTransition (true, true);
 				View.InsertSubviewAbove (commentView, contentController.View);
 
-				# if (!USE_AUTOLAYOUT)
+#if (!USE_AUTOLAYOUT)
 				AdjustCommentviewFrame();
-				# else
+#else
 				View.SetNeedsUpdateConstraints ();
-				# endif
+#endif
 				UIView.Animate (.5, () => {
-					commentView.Alpha = 0.5f;},
+					commentView.Alpha = 0.5f;
+				},
 				() => {
 					commentViewController.EndAppearanceTransition ();
 					commentViewController.DidMoveToParentViewController (this);
 				});
 			}
 		}
-# if (!USE_AUTOLAYOUT && ENABLE_LAYOUT_SUBVIEWS)
+#if (!USE_AUTOLAYOUT && ENABLE_LAYOUT_SUBVIEWS)
 
 		public override void ViewWillLayoutSubviews ()
 		{
 			 if(commentViewIsVisible)
 					AdjustCommentviewFrame();
 		}
-# else
+#else
 		// If our content controller has been removed because of a memory warning we need to reinsert if we are appearing.
 		public override void ViewWillLayoutSubviews ()
 		{
@@ -173,9 +171,9 @@ namespace MediaNotes
 				}
 			}
 		}
-# endif
+#endif
 
-# if ENABLE_WILL_ROTATE_ADJUSTMENT
+#if ENABLE_WILL_ROTATE_ADJUSTMENT
 		public override void WillAnimateRotation (UIInterfaceOrientation toInterfaceOrientation, double duration)
 		{
 			if (commentViewIsVisible) {
@@ -183,21 +181,21 @@ namespace MediaNotes
 			}
 		}
 
-# endif
+#endif
 
-# if USE_AUTOLAYOUT
+#if USE_AUTOLAYOUT
 		public override void UpdateViewConstraints ()
 		{
 			if (commentViewIsVisible) {
 				NSLayoutConstraint constraint1 = NSLayoutConstraint.Create (commentView, NSLayoutAttribute.CenterX, NSLayoutRelation.Equal,
-				                                                            View, NSLayoutAttribute.CenterX, 1.0f, 0.0f);
+																			View, NSLayoutAttribute.CenterX, 1.0f, 0.0f);
 				NSLayoutConstraint constraint2 = NSLayoutConstraint.Create (commentView, NSLayoutAttribute.Bottom, NSLayoutRelation.Equal,
-				                                                            View, NSLayoutAttribute.Bottom, 1.0f, 0.0f);
+																			View, NSLayoutAttribute.Bottom, 1.0f, 0.0f);
 				NSLayoutConstraint constraint3 = NSLayoutConstraint.Create (commentView, NSLayoutAttribute.Width, NSLayoutRelation.Equal,
-				                                                            View, NSLayoutAttribute.Width, 0.5f, 0.0f);
+																			View, NSLayoutAttribute.Width, 0.5f, 0.0f);
 				NSLayoutConstraint constarint4 = NSLayoutConstraint.Create (commentView, NSLayoutAttribute.Height, NSLayoutRelation.Equal,
-				                                                            View, NSLayoutAttribute.Height, 0.25f, 0.0f);
-				View.AddConstraints (new NSLayoutConstraint[] {
+																			View, NSLayoutAttribute.Height, 0.25f, 0.0f);
+				View.AddConstraints (new NSLayoutConstraint [] {
 					constraint1,
 					constraint2,
 					constraint3,
@@ -207,7 +205,7 @@ namespace MediaNotes
 			base.UpdateViewConstraints ();
 		}
 
-# endif
+#endif
 		public override void ViewWillAppear (bool animated)
 		{
 			contentController.BeginAppearanceTransition (true, true);
@@ -231,12 +229,12 @@ namespace MediaNotes
 				commentViewController.EndAppearanceTransition ();
 			}
 
-# if ENABLE_KEYBOARD_AVOIDANCE
+#if ENABLE_KEYBOARD_AVOIDANCE
 			if (observersregistered == false) {
 				NSNotificationCenter.DefaultCenter.AddObserver (this, new ObjCRuntime.Selector ("KeyBoardWillShow"), UIKeyboard.WillShowNotification, null);
 				NSNotificationCenter.DefaultCenter.AddObserver (this, new ObjCRuntime.Selector ("KeyBoardWillHide"), UIKeyboard.WillHideNotification, null);
 			}
-#  endif
+#endif
 		}
 
 		public override void ViewDidDisappear (bool animated)
@@ -246,15 +244,15 @@ namespace MediaNotes
 				commentViewController.EndAppearanceTransition ();
 			}
 
-# if ENABLE_KEYBOARD_AVOIDANCE
+#if ENABLE_KEYBOARD_AVOIDANCE
 			NSNotificationCenter.DefaultCenter.RemoveObserver (this);
 			observersregistered = false;
-# endif
+#endif
 		}
 
-# if ENABLE_KEYBOARD_AVOIDANCE
+#if ENABLE_KEYBOARD_AVOIDANCE
 
-		[Export("KeyBoardWillShow:")]
+		[Export ("KeyBoardWillShow:")]
 		public void KeyboardWillShow (NSNotification notification)
 		{
 			//Gather some info about the keyboard and its information
@@ -269,7 +267,7 @@ namespace MediaNotes
 			AdjustCommentViewYPosition (keyboardOverlap, animationDuration, false);
 		}
 
-		[Export("KeyBoardWillHide:")]
+		[Export ("KeyBoardWillHide:")]
 		public void KeyBoardWillHide (NSNotification notification)
 		{
 			//Gather some info about the keyboard and its information
@@ -278,6 +276,6 @@ namespace MediaNotes
 			AdjustCommentViewYPosition (-1.0f * keyboardOverlap, animationDuration, false);
 			keyboardOverlap = 0;
 		}
-# endif
+#endif
 	}
 }

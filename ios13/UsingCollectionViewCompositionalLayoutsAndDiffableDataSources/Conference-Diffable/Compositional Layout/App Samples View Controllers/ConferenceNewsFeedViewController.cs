@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Conference_Diffable.CompositionalLayout.CellsandSupplementaryViews;
 using Conference_Diffable.CompositionalLayout.Controllers;
 using Foundation;
@@ -28,7 +28,7 @@ namespace Conference_Diffable.CompositionalLayout.AppSamplesViewControllers {
 			}
 
 			public static bool operator != (Section left, Section right) => !(left == right);
-			public override bool Equals (object obj) => this == (Section)obj;
+			public override bool Equals (object obj) => this == (Section) obj;
 			public bool Equals (Section other) => Value == other.Value;
 			public override int GetHashCode () => HashCode.Combine (base.GetHashCode (), Value);
 		}

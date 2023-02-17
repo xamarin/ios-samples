@@ -3,10 +3,8 @@ using System;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace coreimage
-{
-	public partial class MainViewController : UIViewController
-	{
+namespace coreimage {
+	public partial class MainViewController : UIViewController {
 		public MainViewController () : base ("MainViewController", null)
 		{
 			// Custom initialization
@@ -51,7 +49,8 @@ namespace coreimage
 				ModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal,
 			};
 
-			controller.Done += delegate {
+			controller.Done += delegate
+			{
 				DismissModalViewControllerAnimated (true);
 			};
 

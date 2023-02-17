@@ -1,20 +1,18 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
 using Common;
 
-namespace ListerKit
-{
-	public class ListDocument : UIDocument
-	{
+namespace ListerKit {
+	public class ListDocument : UIDocument {
 		public event EventHandler DocumentDeleted;
 
 		public List List { get; set; }
 
 		public ListDocument (NSUrl url)
-			: base(url)
+			: base (url)
 		{
 			List = new List ();
 		}
@@ -23,13 +21,13 @@ namespace ListerKit
 		{
 			outError = null;
 
-			List deserializedList = (List)NSKeyedUnarchiver.UnarchiveObject ((NSData)contents);
-			if (deserializedList!= null) {
+			List deserializedList = (List) NSKeyedUnarchiver.UnarchiveObject ((NSData) contents);
+			if (deserializedList != null) {
 				List = deserializedList;
 				return true;
 			}
 
-			outError = new NSError (NSError.CocoaErrorDomain, (int)NSCocoaError.FileReadCorruptFile, new NSDictionary (
+			outError = new NSError (NSError.CocoaErrorDomain, (int) NSCocoaError.FileReadCorruptFile, new NSDictionary (
 				NSError.LocalizedDescriptionKey, "Could not read file",
 				NSError.LocalizedFailureReasonErrorKey, "File was in an invalid format"
 			));
@@ -45,7 +43,7 @@ namespace ListerKit
 			if (serializedList != null)
 				return serializedList;
 
-			outError = new NSError (NSError.CocoaErrorDomain, (int)NSCocoaError.FileReadUnknown, new NSDictionary (
+			outError = new NSError (NSError.CocoaErrorDomain, (int) NSCocoaError.FileReadUnknown, new NSDictionary (
 				NSError.LocalizedDescriptionKey, "Could not save file",
 				NSError.LocalizedFailureReasonErrorKey, "An unexpected error occured"
 			));

@@ -3,17 +3,15 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace HomeKitIntro
-{
-	public partial class AccessoryTableViewController : UITableViewController
-	{
+namespace HomeKitIntro {
+	public partial class AccessoryTableViewController : UITableViewController {
 		#region Computed Properties
 		/// <summary>
 		/// Returns the delegate of the current running application
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 
 		/// <summary>
@@ -21,7 +19,7 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <value>The data source.</value>
 		public AccessoryTableSource DataSource {
-			get { return (AccessoryTableSource)TableView.Source; }
+			get { return (AccessoryTableSource) TableView.Source; }
 		}
 
 		/// <summary>
@@ -45,7 +43,8 @@ namespace HomeKitIntro
 		/// <summary>
 		/// Reloads the data.
 		/// </summary>
-		public void ReloadData() {
+		public void ReloadData ()
+		{
 
 			// Ask the table to redisplay its information
 			TableView.ReloadData ();
@@ -56,7 +55,8 @@ namespace HomeKitIntro
 		/// <summary>
 		/// Sets the name of the home.
 		/// </summary>
-		private void SetHomeName() {
+		private void SetHomeName ()
+		{
 			// Was a primary home found?
 			if (ThisApp.HomeManager.PrimaryHome == null) {
 				// No,
@@ -68,12 +68,12 @@ namespace HomeKitIntro
 				// Wireup home view
 				ThisApp.HomeManager.PrimaryHome.DidAddAccessory += (sender, e) => {
 					// Update list
-					ReloadData();
+					ReloadData ();
 				};
 
 				ThisApp.HomeManager.PrimaryHome.DidRemoveAccessory += (sender, e) => {
 					// Update list
-					ReloadData();
+					ReloadData ();
 				};
 			}
 		}
@@ -94,25 +94,25 @@ namespace HomeKitIntro
 			// Wireup events
 			ThisApp.HomeManager.DidUpdateHomes += (sender, e) => {
 				// Update title and reload data
-				SetHomeName();
-				ReloadData();
+				SetHomeName ();
+				ReloadData ();
 			};
 
 			ThisApp.HomeManager.DidUpdatePrimaryHome += (sender, e) => {
 				// Update title and reload data
-				SetHomeName();
-				ReloadData();
+				SetHomeName ();
+				ReloadData ();
 			};
 
 			ThisApp.HomeManager.DidRemoveHome += (sender, e) => {
 				// Update title and reload data
-				SetHomeName();
-				ReloadData();
+				SetHomeName ();
+				ReloadData ();
 			};
 
 			ThisApp.UpdateGUI += () => {
 				// Update list of items
-				ReloadData();
+				ReloadData ();
 			};
 		}
 

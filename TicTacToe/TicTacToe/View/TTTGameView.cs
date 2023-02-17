@@ -7,14 +7,12 @@ using CoreAnimation;
 using Foundation;
 using ObjCRuntime;
 
-namespace TicTacToe
-{
-	public class TTTGameView : UIView
-	{
-		public Func <TTTGameView, TTTMovePlayer, UIImage> ImageForPlayer;
-		public Func <TTTGameView, TTTMovePlayer, UIColor> ColorForPlayer;
-		public Func <TTTGameView, TTTMoveXPosition, TTTMoveYPosition, bool> CanSelect;
-		public Action <TTTGameView, TTTMoveXPosition, TTTMoveYPosition> DidSelect;
+namespace TicTacToe {
+	public class TTTGameView : UIView {
+		public Func<TTTGameView, TTTMovePlayer, UIImage> ImageForPlayer;
+		public Func<TTTGameView, TTTMovePlayer, UIColor> ColorForPlayer;
+		public Func<TTTGameView, TTTMoveXPosition, TTTMoveYPosition, bool> CanSelect;
+		public Action<TTTGameView, TTTMoveXPosition, TTTMoveYPosition> DidSelect;
 		TTTGame game;
 
 		public TTTGame Game {
@@ -37,8 +35,8 @@ namespace TicTacToe
 			}
 		}
 
-		UIView[] horizontalLineViews;
-		UIView[] verticalLineViews;
+		UIView [] horizontalLineViews;
+		UIView [] verticalLineViews;
 		List<UIImageView> moveImageViews;
 		List<UIImageView> moveImageViewReuseQueue;
 		TTTGameLineView lineView;
@@ -47,18 +45,18 @@ namespace TicTacToe
 		public TTTGameView () : base ()
 		{
 			gridColor = UIColor.Black;
-			horizontalLineViews = new UIView[] {
+			horizontalLineViews = new UIView [] {
 				newLineView (),
 				newLineView ()
 			};
-			verticalLineViews = new UIView[] {
+			verticalLineViews = new UIView [] {
 				newLineView (),
 				newLineView ()
 			};
 			updateGridColor ();
 
-			moveImageViews = new List <UIImageView> ();
-			moveImageViewReuseQueue = new List <UIImageView> ();
+			moveImageViews = new List<UIImageView> ();
+			moveImageViewReuseQueue = new List<UIImageView> ();
 
 			lineView = new TTTGameLineView ();
 			lineView.Alpha = 0f;
@@ -84,17 +82,17 @@ namespace TicTacToe
 				CGPoint normalizedPoint = point;
 				normalizedPoint.X -= bounds.X + bounds.Size.Width / 2;
 				normalizedPoint.X *= 3 / bounds.Size.Width;
-				normalizedPoint.X = (float)Math.Round (normalizedPoint.X);
-				normalizedPoint.X = (float)Math.Max (normalizedPoint.X, -1);
-				normalizedPoint.X = (float)Math.Min (normalizedPoint.X, 1);
-				TTTMoveXPosition xPosition = (TTTMoveXPosition)(int)normalizedPoint.X;
+				normalizedPoint.X = (float) Math.Round (normalizedPoint.X);
+				normalizedPoint.X = (float) Math.Max (normalizedPoint.X, -1);
+				normalizedPoint.X = (float) Math.Min (normalizedPoint.X, 1);
+				TTTMoveXPosition xPosition = (TTTMoveXPosition) (int) normalizedPoint.X;
 
 				normalizedPoint.Y -= bounds.Y + bounds.Size.Height / 2;
 				normalizedPoint.Y *= 3 / bounds.Size.Height;
-				normalizedPoint.Y = (float)Math.Round (normalizedPoint.Y);
-				normalizedPoint.Y = (float)Math.Max (normalizedPoint.Y, -1);
-				normalizedPoint.Y = (float)Math.Min (normalizedPoint.Y, 1);
-				TTTMoveYPosition yPosition = (TTTMoveYPosition)(int)normalizedPoint.Y;
+				normalizedPoint.Y = (float) Math.Round (normalizedPoint.Y);
+				normalizedPoint.Y = (float) Math.Max (normalizedPoint.Y, -1);
+				normalizedPoint.Y = (float) Math.Min (normalizedPoint.Y, 1);
+				TTTMoveYPosition yPosition = (TTTMoveYPosition) (int) normalizedPoint.Y;
 
 				if (CanSelect == null || CanSelect (this, xPosition, yPosition))
 					DidSelect (this, xPosition, yPosition);
@@ -119,9 +117,9 @@ namespace TicTacToe
 		{
 			CGRect bounds = Bounds;
 			CGPoint point = new CGPoint (bounds.X + bounds.Size.Width / 2,
-			                           bounds.Y + bounds.Size.Height / 2);
-			point.X += (int)xPosition * bounds.Size.Width / 3;
-			point.Y += (int)yPosition * bounds.Size.Height / 3;
+									   bounds.Y + bounds.Size.Height / 2);
+			point.X += (int) xPosition * bounds.Size.Width / 3;
+			point.Y += (int) yPosition * bounds.Size.Height / 3;
 			return point;
 		}
 
@@ -144,10 +142,10 @@ namespace TicTacToe
 
 		public void UpdateGameState ()
 		{
-			TTTMove[] moves = Game.Moves.ToArray ();
+			TTTMove [] moves = Game.Moves.ToArray ();
 			int moveCount = moves.Length;
 
-			UIImageView[] moveViews = new UIImageView[moveImageViews.Count];
+			UIImageView [] moveViews = new UIImageView [moveImageViews.Count];
 
 			moveImageViews.CopyTo (moveViews);
 
@@ -168,7 +166,8 @@ namespace TicTacToe
 			for (int moveIndex = moveImageViews.Count; moveIndex < moveCount; moveIndex++) {
 				TTTMove move = moves [moveIndex];
 				UIImageView moveView = moveImageView ();
-				UIView.PerformWithoutAnimation (delegate {
+				UIView.PerformWithoutAnimation (delegate
+				{
 					setMove (move, moveView);
 					setVisible (false, moveView);
 				});
@@ -181,10 +180,10 @@ namespace TicTacToe
 			TTTMoveYPosition startYPosition, endYPosition;
 
 			bool hasWinner = Game.GetWinningPlayer (out winningPlayer,
-			                                        out startXPosition,
-			                                        out startYPosition,
-			                                        out endXPosition,
-			                                        out endYPosition);
+													out startXPosition,
+													out startYPosition,
+													out endXPosition,
+													out endYPosition);
 			if (hasWinner) {
 				UIBezierPath path = new UIBezierPath ();
 				path.LineWidth = LineWidth;
@@ -207,13 +206,13 @@ namespace TicTacToe
 				UIView view = horizontalLineViews [i];
 				view.Bounds = new CGRect (0, 0, bounds.Size.Width, LineWidth);
 				view.Center = new CGPoint (bounds.X + bounds.Size.Width / 2,
-				                          (float)Math.Round (bounds.Size.Height * (i + 1) / 3));
+										  (float) Math.Round (bounds.Size.Height * (i + 1) / 3));
 			}
 			for (int i = 0; i < verticalLineViews.Length; i++) {
 				UIView view = verticalLineViews [i];
 				view.Bounds = new CGRect (0, 0, LineWidth, bounds.Size.Height);
-				view.Center = new CGPoint ((float)Math.Round (bounds.Size.Width * (i + 1) / 3),
-				                          bounds.Y + bounds.Size.Height / 2);
+				view.Center = new CGPoint ((float) Math.Round (bounds.Size.Width * (i + 1) / 3),
+										  bounds.Y + bounds.Size.Height / 2);
 			}
 			UpdateGameState ();
 		}
@@ -227,8 +226,7 @@ namespace TicTacToe
 		}
 	}
 
-	public class TTTGameLineView : UIView
-	{
+	public class TTTGameLineView : UIView {
 		UIBezierPath path;
 
 		public UIBezierPath Path {
@@ -257,12 +255,12 @@ namespace TicTacToe
 		[ExportAttribute ("layerClass")]
 		public static Class LayerClass ()
 		{
-			return new Class (typeof(CAShapeLayer));
+			return new Class (typeof (CAShapeLayer));
 		}
 
 		CAShapeLayer shapeLayer {
 			get {
-				return (CAShapeLayer)Layer;
+				return (CAShapeLayer) Layer;
 			}
 		}
 	}

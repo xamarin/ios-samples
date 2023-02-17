@@ -11,7 +11,7 @@ namespace FourInARow {
 		public const int Width = 7;
 		public const int Height = 6;
 
-		public Chip[] Cells { get; private set; }
+		public Chip [] Cells { get; private set; }
 
 		public Player CurrentPlayer { get; set; }
 
@@ -50,7 +50,7 @@ namespace FourInARow {
 				SetChipInColumnRow (chip, column, row);
 		}
 
-		public IGKGameModelPlayer[] GetPlayers ()
+		public IGKGameModelPlayer [] GetPlayers ()
 		{
 			return Player.AllPlayers;
 		}
@@ -69,12 +69,12 @@ namespace FourInARow {
 
 		public void SetGameModel (IGKGameModel gameModel)
 		{
-			var board = (Board)gameModel;
+			var board = (Board) gameModel;
 			UpdateChipsFromBoard (board);
 			CurrentPlayer = board.CurrentPlayer;
 		}
 
-		public IGKGameModelUpdate[] GetGameModelUpdates (IGKGameModelPlayer player)
+		public IGKGameModelUpdate [] GetGameModelUpdates (IGKGameModelPlayer player)
 		{
 			var moves = new List<Move> ();
 
@@ -88,7 +88,7 @@ namespace FourInARow {
 
 		public void ApplyGameModelUpdate (IGKGameModelUpdate gameModelUpdate)
 		{
-			AddChipInColumn (CurrentPlayer.Chip, ((Move)gameModelUpdate).Column);
+			AddChipInColumn (CurrentPlayer.Chip, ((Move) gameModelUpdate).Column);
 			CurrentPlayer = CurrentPlayer.Opponent;
 		}
 
@@ -116,7 +116,7 @@ namespace FourInARow {
 			return IsWin (player.Opponent);
 		}
 
-		int[] RunCountsForPlayer (Player player)
+		int [] RunCountsForPlayer (Player player)
 		{
 			var chip = player.Chip;
 			var counts = new List<int> ();

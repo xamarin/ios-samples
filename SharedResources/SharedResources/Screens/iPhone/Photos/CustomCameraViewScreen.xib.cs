@@ -5,10 +5,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Example_SharedResources.Screens.iPhone.Photos
-{
-	public partial class CustomCameraViewScreen : UIViewController
-	{
+namespace Example_SharedResources.Screens.iPhone.Photos {
+	public partial class CustomCameraViewScreen : UIViewController {
 		protected UIImagePickerController imagePicker;
 		protected PickerDelegate pickerDelegate;
 
@@ -17,18 +15,18 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
-		public CustomCameraViewScreen (IntPtr handle) : base(handle)
+		public CustomCameraViewScreen (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public CustomCameraViewScreen (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public CustomCameraViewScreen (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
 
-		public CustomCameraViewScreen () : base("CustomCameraViewScreen", null)
+		public CustomCameraViewScreen () : base ("CustomCameraViewScreen", null)
 		{
 			Initialize ();
 		}
@@ -55,7 +53,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 					imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;
 
 					// set
-					imagePicker.MediaTypes = new string[] { "public.image" };
+					imagePicker.MediaTypes = new string [] { "public.image" };
 
 					// show the camera controls
 					imagePicker.ShowsCameraControls = true;
@@ -86,8 +84,7 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 
 		// Our custom picker delegate. The events haven't been exposed so we have to use a
 		// delegate.
-		protected class PickerDelegate : UIImagePickerControllerDelegate
-		{
+		protected class PickerDelegate : UIImagePickerControllerDelegate {
 			public override void Canceled (UIImagePickerController picker)
 			{
 				Console.WriteLine ("picker cancelled");
@@ -112,52 +109,52 @@ namespace Example_SharedResources.Screens.iPhone.Photos
 				//MT BUGBUG:
 				Console.Write ("Reference URL: [" + UIImagePickerController.ReferenceUrl + "]");
 
-//				// get common info (shared between images and video)
-//				NSUrl referenceURL = info[new NSString("UIImagePickerControllerReferenceUrl")] as NSUrl;
-//				if(referenceURL != null)
-//				{
-//					//
-//					Console.WriteLine(referenceURL.ToString());
-//				}
+				//				// get common info (shared between images and video)
+				//				NSUrl referenceURL = info[new NSString("UIImagePickerControllerReferenceUrl")] as NSUrl;
+				//				if(referenceURL != null)
+				//				{
+				//					//
+				//					Console.WriteLine(referenceURL.ToString());
+				//				}
 
 				// if it was an image, get the other image info
 				if (isImage) {
-//					// get the original image
-//					UIImage originalImage = info[UIImagePickerController.OriginalImage] as UIImage;
-//					if(originalImage != null)
-//					{
-//						// do something with the image
-//						Console.WriteLine("got the original image");
-//					}
+					//					// get the original image
+					//					UIImage originalImage = info[UIImagePickerController.OriginalImage] as UIImage;
+					//					if(originalImage != null)
+					//					{
+					//						// do something with the image
+					//						Console.WriteLine("got the original image");
+					//					}
 
-//					// get the edited image
-//					UIImage editedImage = info[UIImagePickerController.EditedImage] as UIImage;
-//					if(editedImage != null)
-//					{
-//						// do something with the image
-//						Console.WriteLine("got the edited image");
-//
-//
-//					}
+					//					// get the edited image
+					//					UIImage editedImage = info[UIImagePickerController.EditedImage] as UIImage;
+					//					if(editedImage != null)
+					//					{
+					//						// do something with the image
+					//						Console.WriteLine("got the edited image");
+					//
+					//
+					//					}
 
-//					// get the cropping, if any
-//					try
-//					{
-//						RectangleF cropRectangle = (RectangleF)info[UIImagePickerController.CropRect];
-//						if(cropRectangle != null)
-//						{
-//							// do something with the crop rectangle
-//							Console.WriteLine("Got the crop rectangle");
-//						}
-//					} finally {}
+					//					// get the cropping, if any
+					//					try
+					//					{
+					//						RectangleF cropRectangle = (RectangleF)info[UIImagePickerController.CropRect];
+					//						if(cropRectangle != null)
+					//						{
+					//							// do something with the crop rectangle
+					//							Console.WriteLine("Got the crop rectangle");
+					//						}
+					//					} finally {}
 
-//					//- get the image metadata
-//					NSDictionary imageMetadata = info[UIImagePickerController.MediaMetadata] as NSDictionary;
-//					if(imageMetadata != null)
-//					{
-//						// do something with the metadata
-//						Console.WriteLine("got image metadata");
-//					}
+					//					//- get the image metadata
+					//					NSDictionary imageMetadata = info[UIImagePickerController.MediaMetadata] as NSDictionary;
+					//					if(imageMetadata != null)
+					//					{
+					//						// do something with the metadata
+					//						Console.WriteLine("got image metadata");
+					//					}
 
 				}
 

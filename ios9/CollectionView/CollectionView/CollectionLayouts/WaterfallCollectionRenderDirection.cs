@@ -1,4 +1,4 @@
-﻿namespace CollectionView {
+namespace CollectionView {
 	/// <summary>
 	/// Waterfall collection render direction.
 	/// </summary>

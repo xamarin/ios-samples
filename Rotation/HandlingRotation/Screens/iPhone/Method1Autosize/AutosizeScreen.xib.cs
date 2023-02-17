@@ -7,25 +7,25 @@ using UIKit;
 
 namespace HandlingRotation.Screens.iPhone.Method1Autosize {
 	public partial class AutosizeScreen : UIViewController {
-		List<string> tableItems = new List<string>();
+		List<string> tableItems = new List<string> ();
 
 		#region Constructors
 
 		// The IntPtr and initWithCoder constructors are required for controllers that need
 		// to be able to be created from a xib rather than from managed code
 
-		public AutosizeScreen (IntPtr handle) : base(handle)
+		public AutosizeScreen (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public AutosizeScreen (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public AutosizeScreen (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
 
-		public AutosizeScreen () : base("AutosizeScreen", null)
+		public AutosizeScreen () : base ("AutosizeScreen", null)
 		{
 			Initialize ();
 		}
@@ -57,12 +57,12 @@ namespace HandlingRotation.Screens.iPhone.Method1Autosize {
 			// just return true, but this switch illustrates how you can test for the
 			// different cases
 			switch (toInterfaceOrientation) {
-				case UIInterfaceOrientation.LandscapeLeft:
-				case UIInterfaceOrientation.LandscapeRight:
-				case UIInterfaceOrientation.Portrait:
-				case UIInterfaceOrientation.PortraitUpsideDown:
-				default:
-					return true;
+			case UIInterfaceOrientation.LandscapeLeft:
+			case UIInterfaceOrientation.LandscapeRight:
+			case UIInterfaceOrientation.Portrait:
+			case UIInterfaceOrientation.PortraitUpsideDown:
+			default:
+				return true;
 			}
 		}
 
@@ -80,14 +80,14 @@ namespace HandlingRotation.Screens.iPhone.Method1Autosize {
 			tableItems.Add ("Elbow");
 		}
 
-		[Export("tableView:numberOfRowsInSection:")]
+		[Export ("tableView:numberOfRowsInSection:")]
 		public int RowsInSection (UITableView tableView, int section)
 		{
 			Console.WriteLine ("RowsInSection");
 			return tableItems.Count;
 		}
 
-		[Export("tableView:cellForRowAtIndexPath:")]
+		[Export ("tableView:cellForRowAtIndexPath:")]
 		public UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			Console.WriteLine ("GetCell");
@@ -103,7 +103,7 @@ namespace HandlingRotation.Screens.iPhone.Method1Autosize {
 			}
 
 			// set the cell properties
-			cell.TextLabel.Text = this.tableItems[indexPath.Row];
+			cell.TextLabel.Text = this.tableItems [indexPath.Row];
 
 			// return the cell
 			return cell;

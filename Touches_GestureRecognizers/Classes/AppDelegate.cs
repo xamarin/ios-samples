@@ -30,11 +30,9 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Touches_GestureRecognizers
-{
+namespace Touches_GestureRecognizers {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		Touches_GestureRecognizersViewController viewController;
 

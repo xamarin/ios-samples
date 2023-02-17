@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Drawing;
 using System.Collections.Generic;
@@ -15,10 +15,8 @@ using CoreVideo;
 using CoreMedia;
 using System.Threading.Tasks;
 
-namespace PhotoFilterExtension
-{
-	public partial class PhotoEditingViewController : UIViewController, IPHContentEditingController, IUICollectionViewDelegate, IUICollectionViewDataSource, IVideoTransformer
-	{
+namespace PhotoFilterExtension {
+	public partial class PhotoEditingViewController : UIViewController, IPHContentEditingController, IUICollectionViewDelegate, IUICollectionViewDataSource, IVideoTransformer {
 		const string kFilterInfoFilterNameKey = "filterName";
 		const string kFilterInfoDisplayNameKey = "displayName";
 		const string kFilterInfoPreviewImageKey = "previewImage";
@@ -27,7 +25,7 @@ namespace PhotoFilterExtension
 
 		PHContentEditingInput contentEditingInput;
 
-		FilterInfo[] availableFilterInfos;
+		FilterInfo [] availableFilterInfos;
 		string selectedFilterName;
 		string initialFilterName;
 
@@ -71,8 +69,8 @@ namespace PhotoFilterExtension
 			effectView.TranslatesAutoresizingMaskIntoConstraints = false;
 			View.InsertSubviewAbove (effectView, BackgroundImageView);
 
-			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|[effectView]|", (NSLayoutFormatOptions)0, "effectView", effectView));
-			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|[effectView]|", (NSLayoutFormatOptions)0, "effectView", effectView));
+			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|[effectView]|", (NSLayoutFormatOptions) 0, "effectView", effectView));
+			View.AddConstraints (NSLayoutConstraint.FromVisualFormat ("H:|[effectView]|", (NSLayoutFormatOptions) 0, "effectView", effectView));
 		}
 
 		void FetchAvailableFilters ()
@@ -82,7 +80,7 @@ namespace PhotoFilterExtension
 			var rawFiltersData = NSArray.FromFile (plist);
 
 			nuint count = rawFiltersData.Count;
-			availableFilterInfos = new FilterInfo[count];
+			availableFilterInfos = new FilterInfo [count];
 
 			for (nuint i = 0; i < count; i++)
 				availableFilterInfos [i] = new FilterInfo (rawFiltersData.GetItem<NSDictionary> (i));
@@ -122,16 +120,16 @@ namespace PhotoFilterExtension
 
 			// Load input image
 			switch (contentEditingInput.MediaType) {
-				case PHAssetMediaType.Image:
-					inputImage = contentEditingInput.DisplaySizeImage;
-					break;
+			case PHAssetMediaType.Image:
+				inputImage = contentEditingInput.DisplaySizeImage;
+				break;
 
-				case PHAssetMediaType.Video:
-					inputImage = ImageFor (contentEditingInput.AvAsset, 0);
-					break;
+			case PHAssetMediaType.Video:
+				inputImage = ImageFor (contentEditingInput.AvAsset, 0);
+				break;
 
-				default:
-					break;
+			default:
+				break;
 			}
 
 			// Load adjustment data, if any
@@ -147,14 +145,14 @@ namespace PhotoFilterExtension
 			BackgroundImageView.Image = placeholderImage;
 		}
 
-		static string FetchAdjustmentFilterName(PHContentEditingInput contentEditingInput)
+		static string FetchAdjustmentFilterName (PHContentEditingInput contentEditingInput)
 		{
 			string filterName = null;
 
 			try {
 				PHAdjustmentData adjustmentData = contentEditingInput.AdjustmentData;
 				if (adjustmentData != null)
-					filterName = (NSString)NSKeyedUnarchiver.UnarchiveObject (adjustmentData.Data);
+					filterName = (NSString) NSKeyedUnarchiver.UnarchiveObject (adjustmentData.Data);
 			} catch (Exception exception) {
 				Console.WriteLine ("Exception decoding adjustment data: {0}", exception);
 			}
@@ -169,24 +167,24 @@ namespace PhotoFilterExtension
 
 			Task assetWork = null;
 			switch (contentEditingInput.MediaType) {
-				case PHAssetMediaType.Image:
-					assetWork = FinishPhotoEditing (completionHandler);
-					break;
+			case PHAssetMediaType.Image:
+				assetWork = FinishPhotoEditing (completionHandler);
+				break;
 
-				case PHAssetMediaType.Video:
-					assetWork = FinishVideoEditing (completionHandler);
-					break;
+			case PHAssetMediaType.Video:
+				assetWork = FinishVideoEditing (completionHandler);
+				break;
 
-				default:
-					throw new NotImplementedException ();
+			default:
+				throw new NotImplementedException ();
 			}
 
 			assetWork.ContinueWith (_ => {
-				InvokeOnMainThread(()=> {
+				InvokeOnMainThread (() => {
 					initialFilterName = null;
 
-					TryDisposeContentInputImage();
-					TryDisposeContentInput();
+					TryDisposeContentInputImage ();
+					TryDisposeContentInput ();
 
 					inputImage.Dispose ();
 					inputImage = null;
@@ -202,13 +200,13 @@ namespace PhotoFilterExtension
 			});
 		}
 
-		PHAdjustmentData CreateAdjustmentData()
+		PHAdjustmentData CreateAdjustmentData ()
 		{
-			NSData archivedData = NSKeyedArchiver.ArchivedDataWithRootObject ((NSString)selectedFilterName);
+			NSData archivedData = NSKeyedArchiver.ArchivedDataWithRootObject ((NSString) selectedFilterName);
 			return new PHAdjustmentData (BundleId, "1.0", archivedData);
 		}
 
-		Task FinishPhotoEditing(Action<PHContentEditingOutput> completionHandler)
+		Task FinishPhotoEditing (Action<PHContentEditingOutput> completionHandler)
 		{
 			PHContentEditingOutput contentEditingOutput = CreateOutput ();
 
@@ -236,7 +234,7 @@ namespace PhotoFilterExtension
 			}
 		}
 
-		Task FinishVideoEditing(Action<PHContentEditingOutput> completionHandler)
+		Task FinishVideoEditing (Action<PHContentEditingOutput> completionHandler)
 		{
 			PHContentEditingOutput contentEditingOutput = CreateOutput ();
 			AVReaderWriter avReaderWriter = new AVReaderWriter (contentEditingInput.AvAsset, this);
@@ -246,16 +244,16 @@ namespace PhotoFilterExtension
 			avReaderWriter.WriteToUrl (contentEditingOutput.RenderedContentUrl, error => {
 				bool success = error == null;
 				PHContentEditingOutput output = success ? contentEditingOutput : null;
-				if(!success)
+				if (!success)
 					Console.WriteLine ("An error occured: {0}", error);
 				completionHandler (output);
-				tcs.SetResult(null);  // inform that we may safely clean up any data
+				tcs.SetResult (null);  // inform that we may safely clean up any data
 			});
 
 			return tcs.Task;
 		}
 
-		PHContentEditingOutput CreateOutput()
+		PHContentEditingOutput CreateOutput ()
 		{
 			PHContentEditingOutput contentEditingOutput = new PHContentEditingOutput (contentEditingInput);
 			contentEditingOutput.AdjustmentData = CreateAdjustmentData ();
@@ -348,12 +346,12 @@ namespace PhotoFilterExtension
 		{
 			var filterInfo = availableFilterInfos [indexPath.Item];
 
-			var cell = (UICollectionViewCell)collectionView.DequeueReusableCell (PhotoFilterReuseId, indexPath);
+			var cell = (UICollectionViewCell) collectionView.DequeueReusableCell (PhotoFilterReuseId, indexPath);
 
-			var imageView = (UIImageView)cell.ViewWithTag (999);
+			var imageView = (UIImageView) cell.ViewWithTag (999);
 			imageView.Image = UIImage.FromBundle (filterInfo.PreviewImage);
 
-			UILabel label = (UILabel)cell.ViewWithTag (998);
+			UILabel label = (UILabel) cell.ViewWithTag (998);
 			label.Text = filterInfo.DisplayName;
 
 			UpdateSelectionForCell (cell);
@@ -384,11 +382,11 @@ namespace PhotoFilterExtension
 
 			bool isSelected = cell.Selected;
 
-			UIImageView imageView = (UIImageView)cell.ViewWithTag (999);
+			UIImageView imageView = (UIImageView) cell.ViewWithTag (999);
 			imageView.Layer.BorderColor = View.TintColor.CGColor;
 			imageView.Layer.BorderWidth = isSelected ? 2 : 0;
 
-			UILabel label = (UILabel)cell.ViewWithTag (998);
+			UILabel label = (UILabel) cell.ViewWithTag (998);
 			label.TextColor = isSelected ? View.TintColor : UIColor.White;
 		}
 
@@ -400,24 +398,24 @@ namespace PhotoFilterExtension
 		CIImageOrientation Convert (UIImageOrientation imageOrientation)
 		{
 			switch (imageOrientation) {
-				case  UIImageOrientation.Up:
-					return CIImageOrientation.TopLeft;
-				case UIImageOrientation.Down:
-					return CIImageOrientation.BottomRight;
-				case UIImageOrientation.Left:
-					return CIImageOrientation.LeftBottom;
-				case UIImageOrientation.Right:
-					return CIImageOrientation.RightTop;
-				case UIImageOrientation.UpMirrored:
-					return CIImageOrientation.TopRight;
-				case UIImageOrientation.DownMirrored:
-					return CIImageOrientation.BottomLeft;
-				case UIImageOrientation.LeftMirrored:
-					return CIImageOrientation.LeftTop;
-				case UIImageOrientation.RightMirrored:
-					return CIImageOrientation.RightBottom;
-				default:
-					throw new NotImplementedException ();
+			case UIImageOrientation.Up:
+				return CIImageOrientation.TopLeft;
+			case UIImageOrientation.Down:
+				return CIImageOrientation.BottomRight;
+			case UIImageOrientation.Left:
+				return CIImageOrientation.LeftBottom;
+			case UIImageOrientation.Right:
+				return CIImageOrientation.RightTop;
+			case UIImageOrientation.UpMirrored:
+				return CIImageOrientation.TopRight;
+			case UIImageOrientation.DownMirrored:
+				return CIImageOrientation.BottomLeft;
+			case UIImageOrientation.LeftMirrored:
+				return CIImageOrientation.LeftTop;
+			case UIImageOrientation.RightMirrored:
+				return CIImageOrientation.RightBottom;
+			default:
+				throw new NotImplementedException ();
 			}
 		}
 
@@ -428,14 +426,14 @@ namespace PhotoFilterExtension
 
 			CMTime actualTime;
 			NSError error = null;
-			var requestedTime = new CMTime ((long)time, 100);
+			var requestedTime = new CMTime ((long) time, 100);
 			using (CGImage posterImage = imageGenerator.CopyCGImageAtTime (requestedTime, out actualTime, out error))
 				return UIImage.FromImage (posterImage);
 		}
 
 		#endregion
 
-		void TryDisposeFilterInput()
+		void TryDisposeFilterInput ()
 		{
 			if (ciFilter == null)
 				return;
@@ -447,7 +445,7 @@ namespace PhotoFilterExtension
 			ciFilter.Image = null;
 		}
 
-		void TryDisposeFilter()
+		void TryDisposeFilter ()
 		{
 			if (ciFilter == null)
 				return;
@@ -456,7 +454,7 @@ namespace PhotoFilterExtension
 			ciFilter = null;
 		}
 
-		void TryDisposeFilterPreviewImg()
+		void TryDisposeFilterPreviewImg ()
 		{
 			if (FilterPreviewView == null)
 				return;
@@ -468,7 +466,7 @@ namespace PhotoFilterExtension
 			FilterPreviewView.Image = null;
 		}
 
-		void TryDisposeContentInputImage()
+		void TryDisposeContentInputImage ()
 		{
 			if (contentEditingInput == null)
 				return;
@@ -479,7 +477,7 @@ namespace PhotoFilterExtension
 			contentEditingInput.DisplaySizeImage.Dispose ();
 		}
 
-		void TryDisposeContentInput()
+		void TryDisposeContentInput ()
 		{
 			if (contentEditingInput == null)
 				return;

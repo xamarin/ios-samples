@@ -1,4 +1,4 @@
-﻿//			// Create a new still image session
+//			// Create a new still image session
 //			session = new AVCaptureSession();
 //			var camera = AVCaptureDevice.DefaultDeviceWithMediaType(AVMediaType.Video);
 //			var input = AVCaptureDeviceInput.FromDevice(camera);

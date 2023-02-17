@@ -12,63 +12,59 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Foundation;
 
-namespace HttpClient.Core
-{
-    public class CocoaProvider : NetworkProvider
-    {
-        public override async Task<Stream> ExecuteAsync()
-        {
-            Busy();
+namespace HttpClient.Core {
+	public class CocoaProvider : NetworkProvider {
+		public override async Task<Stream> ExecuteAsync ()
+		{
+			Busy ();
 
-            Stream result = null;
-            using (var cocoa = new Cocoa())
-            {
-                result = await cocoa.ExecuteAsync();
-            }
+			Stream result = null;
+			using (var cocoa = new Cocoa ()) {
+				result = await cocoa.ExecuteAsync ();
+			}
 
-            Done();
+			Done ();
 
-            return result;
-        }
-    }
+			return result;
+		}
+	}
 
-    public class Cocoa : NSUrlConnectionDataDelegate
-    {
-        private TaskCompletionSource<Stream> taskCompletionSource;
+	public class Cocoa : NSUrlConnectionDataDelegate {
+		private TaskCompletionSource<Stream> taskCompletionSource;
 
-        private byte[] result;
+		private byte [] result;
 
-        public Cocoa()
-        {
-            result = new byte[0];
-        }
+		public Cocoa ()
+		{
+			result = new byte [0];
+		}
 
-        public async Task<Stream> ExecuteAsync()
-        {
-            taskCompletionSource = new TaskCompletionSource<Stream>();
+		public async Task<Stream> ExecuteAsync ()
+		{
+			taskCompletionSource = new TaskCompletionSource<Stream> ();
 
-            var req = new NSUrlRequest(new NSUrl(NetworkProvider.WisdomUrl), NSUrlRequestCachePolicy.ReloadIgnoringCacheData, 10);
-            NSUrlConnection.FromRequest(req, this);
+			var req = new NSUrlRequest (new NSUrl (NetworkProvider.WisdomUrl), NSUrlRequestCachePolicy.ReloadIgnoringCacheData, 10);
+			NSUrlConnection.FromRequest (req, this);
 
-            return await taskCompletionSource.Task;
-        }
+			return await taskCompletionSource.Task;
+		}
 
-        public override void ReceivedData(NSUrlConnection connection, NSData data)
-        {
-            var nb = new byte[result.Length + (int)data.Length];
-            result.CopyTo(nb, 0);
-            Marshal.Copy(data.Bytes, nb, result.Length, (int)data.Length);
-            result = nb;
-        }
+		public override void ReceivedData (NSUrlConnection connection, NSData data)
+		{
+			var nb = new byte [result.Length + (int) data.Length];
+			result.CopyTo (nb, 0);
+			Marshal.Copy (data.Bytes, nb, result.Length, (int) data.Length);
+			result = nb;
+		}
 
-        public override void FinishedLoading(NSUrlConnection connection)
-        {
-            taskCompletionSource.TrySetResult(new MemoryStream(result));
-        }
+		public override void FinishedLoading (NSUrlConnection connection)
+		{
+			taskCompletionSource.TrySetResult (new MemoryStream (result));
+		}
 
-        public override void FailedWithError(NSUrlConnection connection, NSError error)
-        {
-            taskCompletionSource.TrySetResult(null);
-        }
-    }
+		public override void FailedWithError (NSUrlConnection connection, NSError error)
+		{
+			taskCompletionSource.TrySetResult (null);
+		}
+	}
 }

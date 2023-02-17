@@ -1,17 +1,14 @@
 using System;
 using UIKit;
 
-namespace TransitionsDemo.InteractionControllers
-{
-	public enum CEInteractionOperation
-	{
+namespace TransitionsDemo.InteractionControllers {
+	public enum CEInteractionOperation {
 		Pop = 0,
 		Dismiss,
 		Tab
 	}
 
-	public class CEBaseInteractionController : UIPercentDrivenInteractiveTransition
-	{
+	public class CEBaseInteractionController : UIPercentDrivenInteractiveTransition {
 		protected bool shouldCompleteTransition;
 		protected UIViewController viewController;
 		protected UIGestureRecognizer gestureRecognizer;
@@ -19,7 +16,7 @@ namespace TransitionsDemo.InteractionControllers
 
 		public bool InteractionInProgress { get; set; }
 
-		public virtual void WireToViewController(UIViewController viewController, CEInteractionOperation operation)
+		public virtual void WireToViewController (UIViewController viewController, CEInteractionOperation operation)
 		{
 		}
 	}

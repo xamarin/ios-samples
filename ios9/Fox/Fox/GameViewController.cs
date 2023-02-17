@@ -25,8 +25,8 @@ namespace Fox {
 
 		SCNMaterial grassArea;
 		SCNMaterial waterArea;
-		SCNNode[] flames;
-		SCNNode[] enemies;
+		SCNNode [] flames;
+		SCNNode [] enemies;
 
 		bool gameIsComplete;
 		bool isInvincible;
@@ -52,7 +52,7 @@ namespace Fox {
 		double previousUpdateTime;
 		nfloat maxPenetrationDistance;
 		float accelerationY;
-		bool  positionNeedsAdjustment;
+		bool positionNeedsAdjustment;
 		SCNVector3 replacementPosition;
 
 		public Character Character { get; set; }
@@ -93,8 +93,8 @@ namespace Fox {
 			pov.EulerAngles = new SCNVector3 (0f, 0f, 0f);
 			pov.Position = new SCNVector3 (0f, 0f, distance);
 
-			cameraYHandle.Rotation = new SCNVector4 (0f, 1f, 0f, (float)Math.PI / 2f + (float)Math.PI / 4f * 3f);
-			cameraXHandle.Rotation = new SCNVector4 (1f, 0f, 0f, -(float)Math.PI / 4f * 0.125f);
+			cameraYHandle.Rotation = new SCNVector4 (0f, 1f, 0f, (float) Math.PI / 2f + (float) Math.PI / 4f * 3f);
+			cameraXHandle.Rotation = new SCNVector4 (1f, 0f, 0f, -(float) Math.PI / 4f * 0.125f);
 			cameraXHandle.AddChildNode (pov);
 
 			// Animate camera on launch and prevent the user from manipulating the camera until the end of the animation
@@ -115,7 +115,7 @@ namespace Fox {
 			cameraYHandle.AddAnimation (cameraYAnimation, null);
 
 			var cameraXAnimation = CABasicAnimation.FromKeyPath ("rotation.w");
-			cameraXAnimation.From = NSNumber.FromDouble (-Math.PI / 2 + cameraXHandle.Rotation.W);	
+			cameraXAnimation.From = NSNumber.FromDouble (-Math.PI / 2 + cameraXHandle.Rotation.W);
 			cameraXAnimation.To = NSNumber.FromDouble (0.0);
 			cameraXAnimation.Additive = true;
 			cameraXAnimation.FillMode = CAFillMode.Both;
@@ -128,7 +128,7 @@ namespace Fox {
 
 			var lookAtConstraint = SCNLookAtConstraint.Create (Character.Node.FindChildNode ("Bip001_Head", true));
 			lookAtConstraint.InfluenceFactor = 0;
-			pov.Constraints = new SCNConstraint[] { lookAtConstraint };
+			pov.Constraints = new SCNConstraint [] { lookAtConstraint };
 		}
 
 		public void PanCamera (CGSize dir)
@@ -149,15 +149,15 @@ namespace Fox {
 
 			if (cameraXHandle.Rotation.X < 0f)
 				cameraXHandle.Rotation = new SCNVector4 (1f, 0f, 0f, -cameraXHandle.Rotation.W);
-			
+
 			SCNTransaction.Commit ();
 
 			SCNTransaction.Begin ();
 			SCNTransaction.AnimationDuration = 0.5;
 			SCNTransaction.AnimationTimingFunction = CAMediaTimingFunction.FromName (CAMediaTimingFunction.EaseOut);
 
-			cameraYHandle.Rotation = new SCNVector4 (0f, 1f, 0f, cameraYHandle.Rotation.Y * (cameraYHandle.Rotation.W - (float)dir.Width * f));
-			cameraXHandle.Rotation = new SCNVector4 (1f, 0f, 0f, (float)Math.Max (-Math.PI / 2.0, Math.Min (0.13, cameraXHandle.Rotation.W + dir.Height * f)));
+			cameraYHandle.Rotation = new SCNVector4 (0f, 1f, 0f, cameraYHandle.Rotation.Y * (cameraYHandle.Rotation.W - (float) dir.Width * f));
+			cameraXHandle.Rotation = new SCNVector4 (1f, 0f, 0f, (float) Math.Max (-Math.PI / 2.0, Math.Min (0.13, cameraXHandle.Rotation.W + dir.Height * f)));
 			SCNTransaction.Commit ();
 		}
 
@@ -166,7 +166,7 @@ namespace Fox {
 			if (node.Geometry != null) {
 				Console.WriteLine (node.Name);
 				node.PhysicsBody = SCNPhysicsBody.CreateStaticBody ();
-				node.PhysicsBody.CategoryBitMask = (nuint)(int)Bitmask.Collision;
+				node.PhysicsBody.CategoryBitMask = (nuint) (int) Bitmask.Collision;
 
 				var options = new SCNPhysicsShapeOptions {
 					ShapeType = SCNPhysicsShapeType.ConcavePolyhedron
@@ -194,7 +194,7 @@ namespace Fox {
 				node.Hidden = false;
 
 				if (node.Name == "water")
-					node.PhysicsBody.CategoryBitMask = (nuint)(int)Bitmask.Water;
+					node.PhysicsBody.CategoryBitMask = (nuint) (int) Bitmask.Water;
 			}
 
 			foreach (SCNNode child in node.ChildNodes) {
@@ -282,7 +282,7 @@ namespace Fox {
 
 		public override void AwakeFromNib ()
 		{
-			GameView = (GameView)View;
+			GameView = (GameView) View;
 			// Create a new scene.
 			SCNScene scene = SCNScene.FromFile ("game.scnassets/level.scn");
 
@@ -313,7 +313,7 @@ namespace Fox {
 			Character.Node.Transform = sp.Transform;
 
 			// Setup physics masks and physics shape
-			SCNNode[] collisionNodes = scene.RootNode.FindNodes ((SCNNode node, out bool stop) => {
+			SCNNode [] collisionNodes = scene.RootNode.FindNodes ((SCNNode node, out bool stop) => {
 				bool? collidable = node.Name?.Contains ("collision");
 				stop = false;
 				return collidable.HasValue && collidable.Value;
@@ -328,7 +328,7 @@ namespace Fox {
 			flames = scene.RootNode.FindNodes ((SCNNode node, out bool stop) => {
 				stop = false;
 				if (node.Name == "flame") {
-					node.PhysicsBody.CategoryBitMask = (nuint)(int)Bitmask.Enemy;
+					node.PhysicsBody.CategoryBitMask = (nuint) (int) Bitmask.Enemy;
 					return true;
 				}
 
@@ -398,7 +398,7 @@ namespace Fox {
 
 			// Move
 			if (Math.Abs (direction.X) > float.Epsilon && Math.Abs (direction.Z) > float.Epsilon) {
-				var characterSpeed = (float)deltaTime * CharacterSpeedFactor * .84f;
+				var characterSpeed = (float) deltaTime * CharacterSpeedFactor * .84f;
 				Character.Node.Position = new SCNVector3 (
 					initialPosition.X + direction.X * characterSpeed,
 					initialPosition.Y + direction.Y * characterSpeed,
@@ -407,7 +407,7 @@ namespace Fox {
 
 				// update orientation
 				double angle = Math.Atan2 (direction.X, direction.Z);
-				Character.Direction = (float)angle;
+				Character.Direction = (float) angle;
 				Character.Walking = true;
 			} else {
 				Character.Walking = false;
@@ -420,15 +420,15 @@ namespace Fox {
 			p1.Y += MaxRise;
 
 			var options = new SCNPhysicsTest {
-				CollisionBitMask = (nuint)(int)(Bitmask.Collision | Bitmask.Water),
+				CollisionBitMask = (nuint) (int) (Bitmask.Collision | Bitmask.Water),
 				SearchMode = SCNPhysicsSearchMode.Closest
 			};
 
-			SCNHitTestResult[] results = GameView.Scene.PhysicsWorld.RayTestWithSegmentFromPoint (p1, p0, options);
+			SCNHitTestResult [] results = GameView.Scene.PhysicsWorld.RayTestWithSegmentFromPoint (p1, p0, options);
 			float groundY = -10;
 
 			if (results.Length > 0) {
-				
+
 				SCNHitTestResult result = results [0];
 				groundY = result.WorldCoordinates.Y;
 				UpdateCameraWithCurrentGround (result.Node);
@@ -447,7 +447,7 @@ namespace Fox {
 					Character.CurrentFloorMaterial = FloorMaterial.Water;
 
 					options = new SCNPhysicsTest {
-						CollisionBitMask = (nuint)(int)Bitmask.Collision,
+						CollisionBitMask = (nuint) (int) Bitmask.Collision,
 						SearchMode = SCNPhysicsSearchMode.Closest
 					};
 
@@ -459,25 +459,25 @@ namespace Fox {
 				}
 			}
 
-//			var nextPosition = Character.Node.Position;
-//			const double threshold = 1e-5;
-//
-//			if (groundY < nextPosition.Y - threshold) {
-//				// approximation of acceleration for a delta time
-//				accelerationY += (float)(deltaTime * GravityAcceleration);
-//				if (groundY < nextPosition.Y - 0.2)
-//					Character.CurrentFloorMaterial = FloorMaterial.Air;
-//			} else {
-//				accelerationY = 0;
-//			}
-//
-//			nextPosition.Y -= accelerationY;
-//
-//			// reset acceleration if we touch the ground
-//			if (groundY > nextPosition.Y) {
-//				accelerationY = 0;
-//				nextPosition.Y = groundY;
-//			}
+			//			var nextPosition = Character.Node.Position;
+			//			const double threshold = 1e-5;
+			//
+			//			if (groundY < nextPosition.Y - threshold) {
+			//				// approximation of acceleration for a delta time
+			//				accelerationY += (float)(deltaTime * GravityAcceleration);
+			//				if (groundY < nextPosition.Y - 0.2)
+			//					Character.CurrentFloorMaterial = FloorMaterial.Air;
+			//			} else {
+			//				accelerationY = 0;
+			//			}
+			//
+			//			nextPosition.Y -= accelerationY;
+			//
+			//			// reset acceleration if we touch the ground
+			//			if (groundY > nextPosition.Y) {
+			//				accelerationY = 0;
+			//				nextPosition.Y = groundY;
+			//			}
 
 			// Flames are static physics bodies, but they are moved by an action - So we need to tell the physics engine that the transforms did change.
 			foreach (SCNNode flame in flames)
@@ -497,47 +497,47 @@ namespace Fox {
 			// Adjust sounds volumes based on distance with the enemy.
 			if (!gameIsComplete) {
 				double fireVolume = 0.3 * Math.Max (0.0, Math.Min (1.0, 1.0 - (distanceToClosestEnemy - 1.2) / 1.6));
-				var  mixerNode = flameThrowerSound.AudioNode as AVAudioMixerNode;
+				var mixerNode = flameThrowerSound.AudioNode as AVAudioMixerNode;
 				if (mixerNode != null)
-					mixerNode.Volume = (float)fireVolume;
+					mixerNode.Volume = (float) fireVolume;
 			}
 		}
 
 		[Export ("physicsWorld:didBeginContact:")]
 		public virtual void DidBeginContact (SCNPhysicsWorld world, SCNPhysicsContact contact)
 		{
-			if (contact.NodeA.PhysicsBody.CategoryBitMask == (nuint)(int)Bitmask.Collision)
+			if (contact.NodeA.PhysicsBody.CategoryBitMask == (nuint) (int) Bitmask.Collision)
 				CharacterNodeHitWallWithContact (contact.NodeB, contact);
 
-			if (contact.NodeB.PhysicsBody.CategoryBitMask == (nuint)(int)Bitmask.Collision)
+			if (contact.NodeB.PhysicsBody.CategoryBitMask == (nuint) (int) Bitmask.Collision)
 				CharacterNodeHitWallWithContact (contact.NodeA, contact);
 
-			if (contact.NodeA.PhysicsBody.CategoryBitMask == (nuint)(int)Bitmask.Collectable)
+			if (contact.NodeA.PhysicsBody.CategoryBitMask == (nuint) (int) Bitmask.Collectable)
 				CollectPearl (contact.NodeA);
 
-			if (contact.NodeB.PhysicsBody.CategoryBitMask == (nuint)(int)Bitmask.Collectable)
+			if (contact.NodeB.PhysicsBody.CategoryBitMask == (nuint) (int) Bitmask.Collectable)
 				CollectPearl (contact.NodeB);
 
-			if (contact.NodeA.PhysicsBody.CategoryBitMask == (nuint)(int)Bitmask.SuperCollectable)
+			if (contact.NodeA.PhysicsBody.CategoryBitMask == (nuint) (int) Bitmask.SuperCollectable)
 				CollectFlower (contact.NodeA);
 
-			if (contact.NodeB.PhysicsBody.CategoryBitMask == (nuint)(int)Bitmask.SuperCollectable)
+			if (contact.NodeB.PhysicsBody.CategoryBitMask == (nuint) (int) Bitmask.SuperCollectable)
 				CollectFlower (contact.NodeB);
 
-			if (contact.NodeA.PhysicsBody.CategoryBitMask == (nuint)(int)Bitmask.Enemy)
+			if (contact.NodeA.PhysicsBody.CategoryBitMask == (nuint) (int) Bitmask.Enemy)
 				WasHit ();
 
-			if (contact.NodeB.PhysicsBody.CategoryBitMask == (nuint)(int)Bitmask.Enemy)
+			if (contact.NodeB.PhysicsBody.CategoryBitMask == (nuint) (int) Bitmask.Enemy)
 				WasHit ();
 		}
 
 		[Export ("physicsWorld:didUpdateContact:")]
 		public virtual void DidUpdateContact (SCNPhysicsWorld world, SCNPhysicsContact contact)
 		{
-			if (contact.NodeA?.PhysicsBody.CategoryBitMask == (nuint)(int)Bitmask.Collision)
+			if (contact.NodeA?.PhysicsBody.CategoryBitMask == (nuint) (int) Bitmask.Collision)
 				CharacterNodeHitWallWithContact (contact.NodeB, contact);
 
-			if (contact.NodeB?.PhysicsBody.CategoryBitMask == (nuint)(int)Bitmask.Collision)
+			if (contact.NodeB?.PhysicsBody.CategoryBitMask == (nuint) (int) Bitmask.Collision)
 				CharacterNodeHitWallWithContact (contact.NodeA, contact);
 		}
 
@@ -579,7 +579,7 @@ namespace Fox {
 
 			var charPosition = Character.Node.Position;
 			SCNVector3 n = contact.ContactNormal;
-			SCNVector3.Multiply (ref n, (float)contact.PenetrationDistance, out n);
+			SCNVector3.Multiply (ref n, (float) contact.PenetrationDistance, out n);
 			n.Y = 0;
 
 			SCNVector3.Add (ref charPosition, ref n, out replacementPosition);
@@ -635,7 +635,7 @@ namespace Fox {
 			// Animate the camera forever
 			DispatchQueue.MainQueue.DispatchAfter (new DispatchTime (DispatchTime.Now, 1 * NanoSecondsPerSeond), () => {
 				cameraYHandle.RunAction (SCNAction.RepeatActionForever (SCNAction.RotateBy (0f, -1f, 0f, 3.0)));
-				cameraXHandle.RunAction (SCNAction.RotateTo (-(float)Math.PI / 4f, 0f, 0f, 5.0));
+				cameraXHandle.RunAction (SCNAction.RotateTo (-(float) Math.PI / 4f, 0f, 0f, 5.0));
 			});
 		}
 
@@ -685,7 +685,7 @@ namespace Fox {
 
 		NSString PathForArtResource (string resourceName)
 		{
-			return (NSString)string.Format ("{0}/{1}", ArtFolderRoot, resourceName);
+			return (NSString) string.Format ("{0}/{1}", ArtFolderRoot, resourceName);
 		}
 	}
 }

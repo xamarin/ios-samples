@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using NotificationCenter;
@@ -7,10 +7,8 @@ using Social;
 using UIKit;
 using CoreGraphics;
 
-namespace DayCountExtension
-{
-	public partial class TodayViewController : SLComposeServiceViewController, INCWidgetProviding
-	{
+namespace DayCountExtension {
+	public partial class TodayViewController : SLComposeServiceViewController, INCWidgetProviding {
 		public TodayViewController (IntPtr handle) : base (handle)
 		{
 		}

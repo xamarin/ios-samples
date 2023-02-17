@@ -5,11 +5,9 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace AVCamManual
-{
+namespace AVCamManual {
 	[Register ("AVCamManualPreviewView")]
-	public class AVCamManualPreviewView : UIView
-	{
+	public class AVCamManualPreviewView : UIView {
 		public static Class LayerClass {
 			[Export ("layerClass")]
 			get {
@@ -19,10 +17,10 @@ namespace AVCamManual
 
 		public AVCaptureSession Session {
 			get {
-				return ((AVCaptureVideoPreviewLayer)Layer).Session;
+				return ((AVCaptureVideoPreviewLayer) Layer).Session;
 			}
 			set {
-				((AVCaptureVideoPreviewLayer)Layer).Session = value;
+				((AVCaptureVideoPreviewLayer) Layer).Session = value;
 			}
 		}
 

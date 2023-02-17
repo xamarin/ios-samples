@@ -1,57 +1,52 @@
-﻿
-namespace XamarinShot.Utils
-{
-    using ARKit;
-    using CoreImage;
-    using Foundation;
-    using UIKit;
 
-    /// <summary>
-    /// Convenience extension for generating screeshots from ARSCNView.
-    /// </summary>
-    public static class ARSCNViewExtensions
-    {
-        public static UIImage CreateScreenshot(this ARSCNView view, UIDeviceOrientation interfaceOrientation)
-        {
-            if(view.Session.CurrentFrame == null)
-            {
-                return null;
-            }
+namespace XamarinShot.Utils {
+	using ARKit;
+	using CoreImage;
+	using Foundation;
+	using UIKit;
 
-            var ciImage = new CIImage(view.Session.CurrentFrame.CapturedImage);
+	/// <summary>
+	/// Convenience extension for generating screeshots from ARSCNView.
+	/// </summary>
+	public static class ARSCNViewExtensions {
+		public static UIImage CreateScreenshot (this ARSCNView view, UIDeviceOrientation interfaceOrientation)
+		{
+			if (view.Session.CurrentFrame == null) {
+				return null;
+			}
 
-            // TODO: check
-            var keys = new NSString[] { CIFilterInputKey.Scale , CIFilterInputKey.AspectRatio };
-            var objects = new NSNumber[] { new NSNumber(0.5f),  new NSNumber(1f) };
+			var ciImage = new CIImage (view.Session.CurrentFrame.CapturedImage);
 
-            var dictionary = NSDictionary.FromObjectsAndKeys(objects, keys);
-            var scaledImage = ciImage.CreateByFiltering("CILanczosScaleTransform", dictionary);
+			// TODO: check
+			var keys = new NSString [] { CIFilterInputKey.Scale, CIFilterInputKey.AspectRatio };
+			var objects = new NSNumber [] { new NSNumber (0.5f), new NSNumber (1f) };
 
-            var context = new CIContext(new CIContextOptions { UseSoftwareRenderer = false });
-            var cgimage = context.CreateCGImage(scaledImage, scaledImage.Extent);
-            if(cgimage != null)
-            {
-                var orientation = UIImageOrientation.Right;
-                switch (interfaceOrientation)
-                {
-                    case UIDeviceOrientation.Portrait:
-                        orientation = UIImageOrientation.Right;
-                        break;
-                    case UIDeviceOrientation.PortraitUpsideDown:
-                        orientation = UIImageOrientation.Left;
-                        break;
-                case UIDeviceOrientation.LandscapeLeft:
-                        orientation = UIImageOrientation.Up;
-                        break;
-                    case UIDeviceOrientation.LandscapeRight:
-                        orientation = UIImageOrientation.Down;
-                        break;
-                }
+			var dictionary = NSDictionary.FromObjectsAndKeys (objects, keys);
+			var scaledImage = ciImage.CreateByFiltering ("CILanczosScaleTransform", dictionary);
 
-                return new UIImage(cgimage, 1f, orientation);
-            }
+			var context = new CIContext (new CIContextOptions { UseSoftwareRenderer = false });
+			var cgimage = context.CreateCGImage (scaledImage, scaledImage.Extent);
+			if (cgimage != null) {
+				var orientation = UIImageOrientation.Right;
+				switch (interfaceOrientation) {
+				case UIDeviceOrientation.Portrait:
+					orientation = UIImageOrientation.Right;
+					break;
+				case UIDeviceOrientation.PortraitUpsideDown:
+					orientation = UIImageOrientation.Left;
+					break;
+				case UIDeviceOrientation.LandscapeLeft:
+					orientation = UIImageOrientation.Up;
+					break;
+				case UIDeviceOrientation.LandscapeRight:
+					orientation = UIImageOrientation.Down;
+					break;
+				}
 
-            return null;
-        }
-    }
+				return new UIImage (cgimage, 1f, orientation);
+			}
+
+			return null;
+		}
+	}
 }

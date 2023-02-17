@@ -1,76 +1,72 @@
-﻿
-namespace XamarinShot.Models
-{
-    using System.Collections.Generic;
-    using SceneKit;
-    using XamarinShot.Models.Enums;
 
-    public class GameRayCastHitInfo
-    {
-        public GameRayCastHitInfo(SCNVector3 position, SCNVector3 direction, IList<SCNHitTestResult> hits)
-        {
-            this.Position = position;
-            this.Direction = direction;
-            this.Hits = hits;
-        }
+namespace XamarinShot.Models {
+	using System.Collections.Generic;
+	using SceneKit;
+	using XamarinShot.Models.Enums;
 
-        public SCNVector3 Position { get; set; }
+	public class GameRayCastHitInfo {
+		public GameRayCastHitInfo (SCNVector3 position, SCNVector3 direction, IList<SCNHitTestResult> hits)
+		{
+			this.Position = position;
+			this.Direction = direction;
+			this.Hits = hits;
+		}
 
-        public SCNVector3 Direction { get; set; }
+		public SCNVector3 Position { get; set; }
 
-        public IList<SCNHitTestResult> Hits { get; set; }
+		public SCNVector3 Direction { get; set; }
 
-        public Ray Ray() 
-        {
-            return new Ray(this.Position, this.Direction);
-        }
-    }
+		public IList<SCNHitTestResult> Hits { get; set; }
 
-    public interface IInteractionDelegate
-    {
-        Player CurrentPlayer { get; }
-        SCNPhysicsWorld PhysicsWorld { get; }
-        IProjectileDelegate ProjectileDelegate { get; }
-        bool IsServer { get; }
-        List<GameObject> AllBlockObjects { get; }
-        List<Catapult> Catapults { get; }
+		public Ray Ray ()
+		{
+			return new Ray (this.Position, this.Direction);
+		}
+	}
 
-        void RemoveTableBoxNodeFromLevel();
+	public interface IInteractionDelegate {
+		Player CurrentPlayer { get; }
+		SCNPhysicsWorld PhysicsWorld { get; }
+		IProjectileDelegate ProjectileDelegate { get; }
+		bool IsServer { get; }
+		List<GameObject> AllBlockObjects { get; }
+		List<Catapult> Catapults { get; }
 
-        void AddNodeToLevel(SCNNode node);
-        Projectile SpawnProjectile();
-        Projectile CreateProjectile();  // Create projectile without putting it into a pool, useful for using it to show when catapult gets pulled
-        int GameObjectPoolCount();
-        void RemoveAllPhysicsBehaviors();
+		void RemoveTableBoxNodeFromLevel ();
 
-        void AddInteraction(IInteraction interaction);
+		void AddNodeToLevel (SCNNode node);
+		Projectile SpawnProjectile ();
+		Projectile CreateProjectile ();  // Create projectile without putting it into a pool, useful for using it to show when catapult gets pulled
+		int GameObjectPoolCount ();
+		void RemoveAllPhysicsBehaviors ();
 
-        void DispatchActionToServer(GameActionType gameAction);
-        void DispatchActionToAll(GameActionType gameAction); // including self
-        void ServerDispatchActionToAll(GameActionType gameAction);
-        void DispatchToPlayer(GameActionType gameAction, Player player);
+		void AddInteraction (IInteraction interaction);
 
-        void PlayWinSound();
-        void StartGameMusic(IInteraction interaction);
-    }
+		void DispatchActionToServer (GameActionType gameAction);
+		void DispatchActionToAll (GameActionType gameAction); // including self
+		void ServerDispatchActionToAll (GameActionType gameAction);
+		void DispatchToPlayer (GameActionType gameAction, Player player);
 
-    public interface IInteraction
-    {
-        void Update(CameraInfo cameraInfo);
+		void PlayWinSound ();
+		void StartGameMusic (IInteraction interaction);
+	}
 
-        /// <summary>
-        /// Handle Inputs
-        /// </summary>
-        void HandleTouch(TouchType type, Ray camera);
+	public interface IInteraction {
+		void Update (CameraInfo cameraInfo);
 
-        /// <summary>
-        /// Handle Action
-        /// </summary>
-        void Handle(GameActionType gameAction, Player player);
+		/// <summary>
+		/// Handle Inputs
+		/// </summary>
+		void HandleTouch (TouchType type, Ray camera);
 
-        /// <summary>
-        /// Handle Collision
-        /// </summary>
-        void DidCollision(SCNNode node, SCNNode otherNode, SCNVector3 pos, float impulse);
-    }
+		/// <summary>
+		/// Handle Action
+		/// </summary>
+		void Handle (GameActionType gameAction, Player player);
+
+		/// <summary>
+		/// Handle Collision
+		/// </summary>
+		void DidCollision (SCNNode node, SCNNode otherNode, SCNVector3 pos, float impulse);
+	}
 }

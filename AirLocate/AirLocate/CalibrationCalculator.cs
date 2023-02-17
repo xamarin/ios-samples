@@ -5,22 +5,18 @@ using CoreFoundation;
 using CoreLocation;
 using Foundation;
 
-namespace AirLocate
-{
-	public class CalibrationCompletedEventArgs : EventArgs
-	{
+namespace AirLocate {
+	public class CalibrationCompletedEventArgs : EventArgs {
 		public int MeasurePower { get; set; }
 
 		public NSError Error { get; set; }
 	}
 
-	public class CalibrationProgressEventArgs : EventArgs
-	{
+	public class CalibrationProgressEventArgs : EventArgs {
 		public float PercentComplete { get; set; }
 	}
 
-	public class CalibrationCancelledError : NSError
-	{
+	public class CalibrationCancelledError : NSError {
 		static NSString ErrorDomain = new NSString (Defaults.Identifier);
 
 		public CalibrationCancelledError () :
@@ -29,15 +25,14 @@ namespace AirLocate
 		}
 	}
 
-	public class CalibrationCalculator
-	{
+	public class CalibrationCalculator {
 		static NSString Rssi = new NSString ("rssi");
 
 		CLLocationManager locationManager;
 		CLBeaconRegion region;
 		bool isCalibrating;
 		NSTimer timer;
-		List<CLBeacon[]> rangedBeacons;
+		List<CLBeacon []> rangedBeacons;
 		float percentComplete;
 
 		public event EventHandler<CalibrationCompletedEventArgs> CalibrationCompletionHandler;
@@ -46,7 +41,7 @@ namespace AirLocate
 		public CalibrationCalculator (CLBeaconRegion region, EventHandler<CalibrationCompletedEventArgs> handler)
 		{
 			this.region = region;
-			rangedBeacons = new List<CLBeacon[]> ();
+			rangedBeacons = new List<CLBeacon []> ();
 			CalibrationCompletionHandler = handler;
 
 			locationManager = new CLLocationManager ();
@@ -54,7 +49,8 @@ namespace AirLocate
 				rangedBeacons.Add (e.Beacons);
 				var progress = ProgressHandler;
 				if (progress != null) {
-					DispatchQueue.MainQueue.DispatchAsync (delegate {
+					DispatchQueue.MainQueue.DispatchAsync (delegate
+					{
 						percentComplete += 1.0f / 20.0f;
 						progress (this, new CalibrationProgressEventArgs () { PercentComplete = percentComplete });
 					});
@@ -83,14 +79,15 @@ namespace AirLocate
 				timer = NSTimer.CreateTimer (20.0f, (r) => {
 					locationManager.StopRangingBeacons (region);
 
-					DispatchQueue.DefaultGlobalQueue.DispatchAsync (new Action (delegate {
+					DispatchQueue.DefaultGlobalQueue.DispatchAsync (new Action (delegate
+					{
 						NSError error = null;
 						List<CLBeacon> allBeacons = new List<CLBeacon> ();
 						int measuredPower = 0;
 						if (!isCalibrating) {
 							error = new CalibrationCancelledError ();
 						} else {
-							foreach (CLBeacon[] beacons in rangedBeacons) {
+							foreach (CLBeacon [] beacons in rangedBeacons) {
 								if (beacons.Length > 1) {
 									error = new CalibrationCancelledError ();
 									break;
@@ -102,21 +99,23 @@ namespace AirLocate
 							if (allBeacons.Count == 0) {
 								error = new CalibrationCancelledError ();
 							} else {
-								allBeacons.Sort (delegate (CLBeacon x, CLBeacon y) {
+								allBeacons.Sort (delegate (CLBeacon x, CLBeacon y)
+								{
 									return (x.ValueForKey (Rssi) as NSNumber).CompareTo (y.ValueForKey (Rssi));
 								});
 								float power = 0;
 								int number = 0;
-								int outlierPadding = (int)(allBeacons.Count * 0.1f);
+								int outlierPadding = (int) (allBeacons.Count * 0.1f);
 								for (int k = outlierPadding; k < allBeacons.Count - (outlierPadding * 2); k++) {
-									power += ((NSNumber)allBeacons [k].ValueForKey (Rssi)).FloatValue;
+									power += ((NSNumber) allBeacons [k].ValueForKey (Rssi)).FloatValue;
 									number++;
 								}
-								measuredPower = (int)power / number;
+								measuredPower = (int) power / number;
 							}
 						}
 
-						DispatchQueue.MainQueue.DispatchAsync (delegate {
+						DispatchQueue.MainQueue.DispatchAsync (delegate
+						{
 							CalibrationCompletionHandler (this, new CalibrationCompletedEventArgs () {
 								MeasurePower = measuredPower,
 								Error = error

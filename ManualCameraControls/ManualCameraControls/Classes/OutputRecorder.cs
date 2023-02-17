@@ -9,14 +9,12 @@ using CoreVideo;
 using CoreMedia;
 using CoreGraphics;
 
-namespace ManualCameraControls
-{
+namespace ManualCameraControls {
 	/// <summary>
 	/// Helper class that pulls an image from the sample buffer and displays it in the <c>UIImageView</c>
 	/// that it has been attached to.
 	/// </summary>
-	public class OutputRecorder : AVCaptureVideoDataOutputSampleBufferDelegate
-	{
+	public class OutputRecorder : AVCaptureVideoDataOutputSampleBufferDelegate {
 		#region Computed Properties
 		/// <summary>
 		/// Gets or sets the display view.
@@ -41,7 +39,8 @@ namespace ManualCameraControls
 		/// </summary>
 		/// <returns>The image from sample buffer.</returns>
 		/// <param name="sampleBuffer">Sample buffer.</param>
-		private UIImage GetImageFromSampleBuffer(CMSampleBuffer sampleBuffer) {
+		private UIImage GetImageFromSampleBuffer (CMSampleBuffer sampleBuffer)
+		{
 
 			// Get a pixel buffer from the sample buffer
 			using (var pixelBuffer = sampleBuffer.GetImageBuffer () as CVPixelBuffer) {
@@ -56,12 +55,12 @@ namespace ManualCameraControls
 
 					// Create new context from buffer
 					using (var context = new CGBitmapContext (pixelBuffer.BaseAddress,
-						                     pixelBuffer.Width,
-						                     pixelBuffer.Height,
-						                     8,
-						                     pixelBuffer.BytesPerRow,
-						                     cs,
-						                     (CGImageAlphaInfo)flags)) {
+											 pixelBuffer.Width,
+											 pixelBuffer.Height,
+											 8,
+											 pixelBuffer.BytesPerRow,
+											 cs,
+											 (CGImageAlphaInfo) flags)) {
 
 						// Get the image from the context
 						using (var cgImage = context.ToImage ()) {
@@ -94,11 +93,11 @@ namespace ManualCameraControls
 			// Trap all errors
 			try {
 				// Grab an image from the buffer
-				var image = GetImageFromSampleBuffer(sampleBuffer);
+				var image = GetImageFromSampleBuffer (sampleBuffer);
 
 				// Display the image
-				if (DisplayView !=null) {
-					DisplayView.BeginInvokeOnMainThread(() => {
+				if (DisplayView != null) {
+					DisplayView.BeginInvokeOnMainThread (() => {
 						// Set the image
 						var oldImg = DisplayView.Image;
 						oldImg?.Dispose ();
@@ -106,15 +105,14 @@ namespace ManualCameraControls
 						DisplayView.Image = image;
 
 						// Rotate image to the correct display orientation
-						DisplayView.Transform = CGAffineTransform.MakeRotation((float)Math.PI/2);
+						DisplayView.Transform = CGAffineTransform.MakeRotation ((float) Math.PI / 2);
 					});
 				}
 
 				// IMPORTANT: You must release the buffer because AVFoundation has a fixed number
 				// of buffers and will stop delivering frames if it runs out.
-				sampleBuffer.Dispose();
-			}
-			catch(Exception e) {
+				sampleBuffer.Dispose ();
+			} catch (Exception e) {
 				// Report error
 				Console.WriteLine ("Error sampling buffer: {0}", e.Message);
 			}

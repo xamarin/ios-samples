@@ -3,14 +3,12 @@ using Foundation;
 using System.Globalization;
 using CoreGraphics;
 
-namespace HomeKitIntro
-{
+namespace HomeKitIntro {
 	/// <summary>
 	/// NS object converter is a helper class that helps to convert NSObjects into
 	/// C# objects
 	/// </summary>
-	public static class NSObjectConverter
-	{
+	public static class NSObjectConverter {
 		#region Static Methods
 		/// <summary>
 		/// Converts to an object.
@@ -25,8 +23,8 @@ namespace HomeKitIntro
 			}
 
 			if (nsO is NSDate) {
-				var nsDate = (NSDate)nsO;
-				return DateTime.SpecifyKind ((DateTime)nsDate, DateTimeKind.Unspecified);
+				var nsDate = (NSDate) nsO;
+				return DateTime.SpecifyKind ((DateTime) nsDate, DateTimeKind.Unspecified);
 			}
 
 			if (nsO is NSDecimalNumber) {
@@ -34,7 +32,7 @@ namespace HomeKitIntro
 			}
 
 			if (nsO is NSNumber) {
-				var x = (NSNumber)nsO;
+				var x = (NSNumber) nsO;
 
 				switch (Type.GetTypeCode (targetType)) {
 				case TypeCode.Boolean:
@@ -65,23 +63,23 @@ namespace HomeKitIntro
 			}
 
 			if (nsO is NSValue) {
-				var v = (NSValue)nsO;
+				var v = (NSValue) nsO;
 
-				if (targetType == typeof(IntPtr)) {
+				if (targetType == typeof (IntPtr)) {
 					return v.PointerValue;
 				}
 
-				if (targetType == typeof(CGSize)) {
+				if (targetType == typeof (CGSize)) {
 					return v.SizeFValue;
 				}
 
-				if (targetType == typeof(CGRect)) {
+				if (targetType == typeof (CGRect)) {
 					return v.RectangleFValue;
 				}
 
-				if (targetType == typeof(CGPoint)) {
+				if (targetType == typeof (CGPoint)) {
 					return v.PointFValue;
-				}           
+				}
 			}
 
 			return nsO;
@@ -92,8 +90,9 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <returns>The string.</returns>
 		/// <param name="nsO">Ns o.</param>
-		public static string ToString(NSObject nsO) {
-			return (string)ToObject (nsO, typeof(string));
+		public static string ToString (NSObject nsO)
+		{
+			return (string) ToObject (nsO, typeof (string));
 		}
 
 		/// <summary>
@@ -101,8 +100,9 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <returns>The date time.</returns>
 		/// <param name="nsO">Ns o.</param>
-		public static DateTime ToDateTime(NSObject nsO){
-			return (DateTime)ToObject (nsO, typeof(DateTime));
+		public static DateTime ToDateTime (NSObject nsO)
+		{
+			return (DateTime) ToObject (nsO, typeof (DateTime));
 		}
 
 		/// <summary>
@@ -110,8 +110,9 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <returns>The decimal.</returns>
 		/// <param name="nsO">Ns o.</param>
-		public static decimal ToDecimal(NSObject nsO){
-			return (decimal)ToObject (nsO, typeof(decimal));
+		public static decimal ToDecimal (NSObject nsO)
+		{
+			return (decimal) ToObject (nsO, typeof (decimal));
 		}
 
 		/// <summary>
@@ -119,8 +120,9 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <returns><c>true</c>, if bool was toed, <c>false</c> otherwise.</returns>
 		/// <param name="nsO">Ns o.</param>
-		public static bool ToBool(NSObject nsO){
-			return (bool)ToObject (nsO, typeof(bool));
+		public static bool ToBool (NSObject nsO)
+		{
+			return (bool) ToObject (nsO, typeof (bool));
 		}
 
 		/// <summary>
@@ -128,8 +130,9 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <returns>The char.</returns>
 		/// <param name="nsO">Ns o.</param>
-		public static char ToChar(NSObject nsO){
-			return (char)ToObject (nsO, typeof(char));
+		public static char ToChar (NSObject nsO)
+		{
+			return (char) ToObject (nsO, typeof (char));
 		}
 
 		/// <summary>
@@ -137,8 +140,9 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <returns>The int.</returns>
 		/// <param name="nsO">Ns o.</param>
-		public static int ToInt(NSObject nsO){
-			return (int)ToObject (nsO, typeof(int));
+		public static int ToInt (NSObject nsO)
+		{
+			return (int) ToObject (nsO, typeof (int));
 		}
 
 		/// <summary>
@@ -146,8 +150,9 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <returns>The float.</returns>
 		/// <param name="nsO">Ns o.</param>
-		public static float ToFloat(NSObject nsO){
-			return (float)ToObject (nsO, typeof(float));
+		public static float ToFloat (NSObject nsO)
+		{
+			return (float) ToObject (nsO, typeof (float));
 		}
 
 		/// <summary>
@@ -155,8 +160,9 @@ namespace HomeKitIntro
 		/// </summary>
 		/// <returns>The double.</returns>
 		/// <param name="nsO">Ns o.</param>
-		public static double ToDouble(NSObject nsO){
-			return (double)ToObject (nsO, typeof(double));
+		public static double ToDouble (NSObject nsO)
+		{
+			return (double) ToObject (nsO, typeof (double));
 		}
 		#endregion
 	}

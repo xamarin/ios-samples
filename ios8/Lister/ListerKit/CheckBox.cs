@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
@@ -6,25 +6,23 @@ using ObjCRuntime;
 
 using Common;
 
-namespace ListerKit
-{
-	[Register("CheckBox")]
-	public class CheckBox : UIControl
-	{
-		[Export("layerClass")]
+namespace ListerKit {
+	[Register ("CheckBox")]
+	public class CheckBox : UIControl {
+		[Export ("layerClass")]
 		public static Class LayerClass {
 			get {
-				return new Class(typeof(CheckBoxLayer));
+				return new Class (typeof (CheckBoxLayer));
 			}
 		}
 
 		CheckBoxLayer CheckBoxLayer {
 			get {
-				return (CheckBoxLayer)Layer;
+				return (CheckBoxLayer) Layer;
 			}
 		}
 
-		[Outlet("checked")]
+		[Outlet ("checked")]
 		public bool Checked {
 			get {
 				return CheckBoxLayer.Checked;
@@ -63,7 +61,7 @@ namespace ListerKit
 		}
 
 		public CheckBox (IntPtr handle)
-			: base(handle)
+			: base (handle)
 		{
 		}
 

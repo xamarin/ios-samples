@@ -5,11 +5,9 @@ using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
 using MonoTouch.CoreGraphics;
 
-namespace GoogleAdMobAds
-{
-	[BaseType (typeof(UIView))]
-	interface GADBannerView
-	{
+namespace GoogleAdMobAds {
+	[BaseType (typeof (UIView))]
+	interface GADBannerView {
 		//@property (nonatomic, copy) NSString *adUnitID;
 		[Export ("adUnitID", ArgumentSemantic.Copy)]
 		string AdUnitID { get; set; }
@@ -39,10 +37,9 @@ namespace GoogleAdMobAds
 	}
 
 	//@protocol GADBannerViewDelegate <NSObject>
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	[Model]
-	interface GADBannerViewDelegate
-	{
+	interface GADBannerViewDelegate {
 		//- (void)adViewDidReceiveAd:(GADBannerView *)view;
 		[Export ("adViewDidReceiveAd:")]
 		void AdViewDidReceiveAd (GADBannerView view);
@@ -69,9 +66,8 @@ namespace GoogleAdMobAds
 	}
 
 	//@interface GADInterstitial : NSObject
-	[BaseType (typeof(NSObject))]
-	interface GADInterstitial
-	{
+	[BaseType (typeof (NSObject))]
+	interface GADInterstitial {
 		//@property (nonatomic, copy) NSString *adUnitID;
 		[Export ("adUnitID", ArgumentSemantic.Copy)]
 		string AdUnitID { get; set; }
@@ -102,10 +98,9 @@ namespace GoogleAdMobAds
 	}
 
 	//@protocol GADInterstitialDelegate <NSObject>
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	[Model]
-	interface GADInterstitialDelegate
-	{
+	interface GADInterstitialDelegate {
 		//- (void)interstitialDidReceiveAd:(GADInterstitial *)ad;
 		[Export ("interstitialDidReceiveAd:")]
 		void interstitialDidReceiveAd (GADInterstitial ad);
@@ -132,9 +127,8 @@ namespace GoogleAdMobAds
 	}
 
 	//@interface GADRequest : NSObject <NSCopying>
-	[BaseType (typeof(NSObject))]
-	interface GADRequest
-	{
+	[BaseType (typeof (NSObject))]
+	interface GADRequest {
 		//+ (GADRequest *)request;
 		[Static, Export ("request")]
 		GADRequest Request ();
@@ -185,9 +179,8 @@ namespace GoogleAdMobAds
 		bool Testing { [Bind ("isTesting")] get; set; }
 	}
 
-	[BaseType (typeof(NSError))]
-	interface GADRequestError
-	{
+	[BaseType (typeof (NSError))]
+	interface GADRequestError {
 
 	}
 }

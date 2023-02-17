@@ -8,7 +8,7 @@ namespace BasicTable {
 		UITableView table;
 
 		public HomeScreen ()
-		{	
+		{
 		}
 
 		public override void ViewDidLoad ()
@@ -17,9 +17,9 @@ namespace BasicTable {
 			var width = View.Bounds.Width;
 			var height = View.Bounds.Height;
 
-			table = new UITableView(new CGRect(0, 0, width, height));
+			table = new UITableView (new CGRect (0, 0, width, height));
 			table.AutoresizingMask = UIViewAutoresizing.All;
-			CreateTableItems();
+			CreateTableItems ();
 			Add (table);
 		}
 
@@ -32,7 +32,7 @@ namespace BasicTable {
 			tableItems.Add ("Legumes");
 			tableItems.Add ("Bulbs");
 			tableItems.Add ("Tubers");
-			table.Source = new TableSource(tableItems.ToArray(), this);
+			table.Source = new TableSource (tableItems.ToArray (), this);
 		}
 
 		public override bool PrefersStatusBarHidden ()

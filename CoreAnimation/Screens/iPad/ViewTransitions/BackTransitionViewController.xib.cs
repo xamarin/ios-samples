@@ -5,10 +5,8 @@ using System.Linq;
 using UIKit;
 using Foundation;
 
-namespace CoreAnimationExample
-{
-	public partial class BackTransitionViewController : UIViewController
-	{
+namespace CoreAnimationExample {
+	public partial class BackTransitionViewController : UIViewController {
 		public event EventHandler<EventArgs> BackClicked;
 
 		public override void ViewDidLoad ()

@@ -8,19 +8,20 @@
 //
 using System;
 
-namespace ElizaCore
-{
-	public static class ConsoleSurrogate
-	{
-		public static void WriteLine() {
+namespace ElizaCore {
+	public static class ConsoleSurrogate {
+		public static void WriteLine ()
+		{
 			Console.WriteLine ("\n");
 		}
 
-		public static void WriteLine(string s) {
+		public static void WriteLine (string s)
+		{
 			Console.WriteLine (s);
 		}
 
-		public static void Write(string s) {
+		public static void Write (string s)
+		{
 			Console.Write (s);
 		}
 

@@ -2,14 +2,12 @@ using Foundation;
 using System;
 using UIKit;
 
-namespace tvText
-{
+namespace tvText {
 	/// <summary>
 	/// Contains the information about a <c>PictureInformation</c> object displayed in the 
 	/// <c>SearchResultsViewController</c> as a Collection View.
 	/// </summary>
-	public partial class SearchResultViewCell : UICollectionViewCell
-	{
+	public partial class SearchResultViewCell : UICollectionViewCell {
 		#region Private Variables
 		/// <summary>
 		/// The backing store for the displayed picture information.

@@ -5,11 +5,9 @@ using HomeKit;
 using UIKit;
 using CoreGraphics;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A `UITableViewCell` subclass for displaying a service and the room and accessory where it resides.
-	public partial class ServiceCell : UITableViewCell
-	{
+	public partial class ServiceCell : UITableViewCell {
 		public bool IncludeAccessoryText { get; set; }
 
 		HMService service;

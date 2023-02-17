@@ -1,10 +1,8 @@
 using UIKit;
 using CoreGraphics;
 
-namespace NSZombieApocalypse
-{
-	public sealed class StatusView : UIView
-	{
+namespace NSZombieApocalypse {
+	public sealed class StatusView : UIView {
 		readonly UILabel label;
 
 		public string Status {

@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using Foundation;
 
-namespace Common
-{
-	[Register("ListItem")]
-	public class ListItem: NSObject, ICloneable, INSCoding
-	{
+namespace Common {
+	[Register ("ListItem")]
+	public class ListItem : NSObject, ICloneable, INSCoding {
 		const string ListItemEncodingTextKey = "text";
 		const string ListItemEncodingCompletedKey = "completed";
 		const string ListItemEncodingUUIDKey = "uuid";
@@ -22,29 +20,29 @@ namespace Common
 			UID = uid;
 		}
 
-		public ListItem(string text)
-			: this(text, false, Guid.NewGuid())
+		public ListItem (string text)
+			: this (text, false, Guid.NewGuid ())
 		{
 		}
 
-		[Export("initWithCoder:")]
-		public ListItem(NSCoder coder)
+		[Export ("initWithCoder:")]
+		public ListItem (NSCoder coder)
 		{
-			Text = (string)(NSString)coder.DecodeObject (ListItemEncodingTextKey);
-			NSUuid uid = (NSUuid)coder.DecodeObject (ListItemEncodingUUIDKey);
-			UID = new Guid (uid.GetBytes());
+			Text = (string) (NSString) coder.DecodeObject (ListItemEncodingTextKey);
+			NSUuid uid = (NSUuid) coder.DecodeObject (ListItemEncodingUUIDKey);
+			UID = new Guid (uid.GetBytes ());
 			IsComplete = coder.DecodeBool (ListItemEncodingCompletedKey);
 		}
 
 		[Export ("encodeWithCoder:")]
 		public void EncodeTo (NSCoder coder)
 		{
-			coder.Encode ((NSString)Text, ListItemEncodingTextKey);
-			coder.Encode (new NSUuid(UID.ToByteArray ()), ListItemEncodingUUIDKey);
+			coder.Encode ((NSString) Text, ListItemEncodingTextKey);
+			coder.Encode (new NSUuid (UID.ToByteArray ()), ListItemEncodingUUIDKey);
 			coder.Encode (IsComplete, ListItemEncodingCompletedKey);
 		}
 
-		public void RefreshIdentity()
+		public void RefreshIdentity ()
 		{
 			UID = Guid.Empty;
 		}

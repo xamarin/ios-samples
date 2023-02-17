@@ -1,12 +1,10 @@
-﻿using Foundation;
+using Foundation;
 using MonoTouch.Dialog;
 using UIKit;
 
-namespace KannadaKeyboardCompanion
-{
+namespace KannadaKeyboardCompanion {
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
@@ -22,7 +20,7 @@ namespace KannadaKeyboardCompanion
 					new UIViewElement("Instruction", web.View, false)
 				}
 			};
-		
+
 			var dv = new DialogViewController (root) {
 				Autorotate = true
 			};
@@ -33,7 +31,7 @@ namespace KannadaKeyboardCompanion
 
 			window.RootViewController = navigation;
 			window.MakeKeyAndVisible ();
-			
+
 			return true;
 		}
 	}

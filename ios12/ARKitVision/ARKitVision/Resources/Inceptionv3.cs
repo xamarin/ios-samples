@@ -16,8 +16,7 @@ namespace ARKitVision {
 	/// <summary>
 	/// Model Prediction Input Type
 	/// </summary>
-	public class Inceptionv3Input : NSObject, IMLFeatureProvider
-	{
+	public class Inceptionv3Input : NSObject, IMLFeatureProvider {
 		static readonly NSSet<NSString> featureNames = new NSSet<NSString> (
 			new NSString ("image")
 		);
@@ -64,8 +63,7 @@ namespace ARKitVision {
 	/// <summary>
 	/// Model Prediction Output Type
 	/// </summary>
-	public class Inceptionv3Output : NSObject, IMLFeatureProvider
-	{
+	public class Inceptionv3Output : NSObject, IMLFeatureProvider {
 		static readonly NSSet<NSString> featureNames = new NSSet<NSString> (
 			new NSString ("classLabelProbs"), new NSString ("classLabel")
 		);
@@ -139,8 +137,7 @@ namespace ARKitVision {
 	/// <summary>
 	/// Class for model loading and prediction
 	/// </summary>
-	public class Inceptionv3 : NSObject
-	{
+	public class Inceptionv3 : NSObject {
 		public Inceptionv3 ()
 		{
 			var url = NSBundle.MainBundle.GetUrlForResource ("Inceptionv3", "mlmodelc");
@@ -154,9 +151,9 @@ namespace ARKitVision {
 			this.Model = model;
 		}
 
-        public MLModel Model { get; private set; }
+		public MLModel Model { get; private set; }
 
-        public static Inceptionv3 Create (NSUrl url, out NSError error)
+		public static Inceptionv3 Create (NSUrl url, out NSError error)
 		{
 			if (url == null)
 				throw new ArgumentNullException (nameof (url));

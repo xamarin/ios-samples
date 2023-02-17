@@ -1,33 +1,29 @@
-﻿using ARKit;
+using ARKit;
 using Foundation;
 using UIKit;
 using System;
 using System.Xml.Serialization;
 
-namespace ScanningAndDetecting3DObjects
-{
-	[Register("AppDelegate")]
-	internal class AppDelegate : UIApplicationDelegate
-	{
-		internal static void FatalError(string msg)
+namespace ScanningAndDetecting3DObjects {
+	[Register ("AppDelegate")]
+	internal class AppDelegate : UIApplicationDelegate {
+		internal static void FatalError (string msg)
 		{
-			Console.WriteLine(msg);
-			throw new Exception(msg);
+			Console.WriteLine (msg);
+			throw new Exception (msg);
 		}
 
-		public override UIWindow Window
-		{
+		public override UIWindow Window {
 			get;
 			set;
 		}
 
-		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			//Note regarding the compiler warning: These are valid C# warnings, as these will resolve against ARConfiguration's static property. Needs library fix. 
 			// 
-			if (! (ARObjectScanningConfiguration.IsSupported && ARWorldTrackingConfiguration.IsSupported) )
-			{
-				FatalError(@"
+			if (!(ARObjectScanningConfiguration.IsSupported && ARWorldTrackingConfiguration.IsSupported)) {
+				FatalError (@"
 				ARKit is not available on this device.For apps that require ARKit
 				for core functionality, use the `arkit` key in the key in the
                 `UIRequiredDeviceCapabilities` section of the Info.plist to prevent
@@ -41,44 +37,38 @@ namespace ScanningAndDetecting3DObjects
 			return true;
 		}
 
-		public override bool OpenUrl(UIApplication application, NSUrl url, NSDictionary options)
+		public override bool OpenUrl (UIApplication application, NSUrl url, NSDictionary options)
 		{
 			var viewController = Window.RootViewController as ViewController;
-			if (viewController != null)
-			{
+			if (viewController != null) {
 				viewController.ModelUrl = url;
 				return true;
-			}
-			else
-			{
+			} else {
 				return false;
 			}
 		}
 
-		public override void WillEnterForeground(UIApplication application)
+		public override void WillEnterForeground (UIApplication application)
 		{
 			var viewController = Window.RootViewController as ViewController;
-			if (viewController != null)
-			{
-				viewController.BackFromBackground();
+			if (viewController != null) {
+				viewController.BackFromBackground ();
 			}
 		}
 
-		public override void OnResignActivation(UIApplication application)
+		public override void OnResignActivation (UIApplication application)
 		{
 			var viewController = Window.RootViewController as ViewController;
-			if (viewController != null)
-			{
-				viewController.ShowBlurView(false);
+			if (viewController != null) {
+				viewController.ShowBlurView (false);
 			}
 		}
 
-		public override void OnActivated(UIApplication application)
+		public override void OnActivated (UIApplication application)
 		{
 			var viewController = Window.RootViewController as ViewController;
-			if (viewController != null)
-			{
-				viewController.ShowBlurView(true);
+			if (viewController != null) {
+				viewController.ShowBlurView (true);
 			}
 		}
 	}

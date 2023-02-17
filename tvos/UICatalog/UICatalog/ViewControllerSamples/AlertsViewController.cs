@@ -13,7 +13,7 @@ namespace UICatalog {
 		const string deleteButtonTitle = "Delete";
 
 		[Export ("initWithCoder:")]
-		public AlertsViewController (NSCoder coder): base (coder)
+		public AlertsViewController (NSCoder coder) : base (coder)
 		{
 		}
 
@@ -22,7 +22,7 @@ namespace UICatalog {
 			var alertController = UIAlertController.Create (title, message, UIAlertControllerStyle.Alert);
 
 			// Create the action.
-			var acceptAction = UIAlertAction.Create (acceptButtonTitle, UIAlertActionStyle.Default, _ => 
+			var acceptAction = UIAlertAction.Create (acceptButtonTitle, UIAlertActionStyle.Default, _ =>
 				Console.WriteLine ("The simple alert's accept action occurred.")
 			);
 
@@ -36,11 +36,11 @@ namespace UICatalog {
 			var alertController = UIAlertController.Create (title, message, UIAlertControllerStyle.Alert);
 
 			// Create the action.
-			var acceptAction = UIAlertAction.Create (acceptButtonTitle, UIAlertActionStyle.Default, _ => 
+			var acceptAction = UIAlertAction.Create (acceptButtonTitle, UIAlertActionStyle.Default, _ =>
 				Console.WriteLine ("The \"OK/Cancel\" alert's other action occurred.")
 			);
 
-			var cancelAction = UIAlertAction.Create (cancelButtonTitle, UIAlertActionStyle.Cancel, _ => 
+			var cancelAction = UIAlertAction.Create (cancelButtonTitle, UIAlertActionStyle.Cancel, _ =>
 				Console.WriteLine ("The \"OK/Cancel\" alert's other action occurred.")
 			);
 
@@ -54,11 +54,11 @@ namespace UICatalog {
 		{
 			var alertController = UIAlertController.Create (title, message, UIAlertControllerStyle.Alert);
 
-			var cancelAction = UIAlertAction.Create (cancelButtonTitle, UIAlertActionStyle.Cancel, _ => 
+			var cancelAction = UIAlertAction.Create (cancelButtonTitle, UIAlertActionStyle.Cancel, _ =>
 				Console.WriteLine ("The \"Other\" alert's other action occurred.")
 			);
 
-			var deleteAction = UIAlertAction.Create (deleteButtonTitle, UIAlertActionStyle.Destructive, _ => 
+			var deleteAction = UIAlertAction.Create (deleteButtonTitle, UIAlertActionStyle.Destructive, _ =>
 				Console.WriteLine ("The \"Other\" alert's other action occurred.")
 			);
 

@@ -4,11 +4,9 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A view controller that displays a list of characteristics within an `HMService`.
-	public partial class CharacteristicsViewController : HMCatalogViewController, IHMAccessoryDelegate
-	{
+	public partial class CharacteristicsViewController : HMCatalogViewController, IHMAccessoryDelegate {
 		CharacteristicsTableViewDataSource tableViewDataSource;
 
 		public HMService Service { get; set; }
@@ -79,7 +77,7 @@ namespace HomeKitCatalog
 		}
 
 		// Reloads the table view and stops the refresh control.
-		[Export("reloadTableView")]
+		[Export ("reloadTableView")]
 		void ReloadTableView ()
 		{
 			SetNotificationsEnabled (true);
@@ -94,7 +92,7 @@ namespace HomeKitCatalog
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			switch ((CharacteristicTableViewSection)indexPath.Section) {
+			switch ((CharacteristicTableViewSection) indexPath.Section) {
 			case CharacteristicTableViewSection.Characteristics:
 				var characteristic = Service.Characteristics [indexPath.Row];
 				DidSelectCharacteristic (characteristic, indexPath);
@@ -123,7 +121,7 @@ namespace HomeKitCatalog
 		// Handles selection of one of the associated service types in the list.
 		void DidSelectAssociatedServiceTypeAtIndexPath (NSIndexPath indexPath)
 		{
-			HMServiceType[] serviceTypes = CharacteristicsTableViewDataSource.ValidAssociatedServiceTypes;
+			HMServiceType [] serviceTypes = CharacteristicsTableViewDataSource.ValidAssociatedServiceTypes;
 			HMServiceType newServiceType = HMServiceType.None;
 			if (indexPath.Row < serviceTypes.Length)
 				newServiceType = serviceTypes [indexPath.Row];
@@ -142,7 +140,7 @@ namespace HomeKitCatalog
 		// Reloads the associated service section in the table view.
 		void DidUpdateAssociatedServiceType ()
 		{
-			var associatedServiceTypeIndexSet = new NSIndexSet ((nuint)(int)CharacteristicTableViewSection.AssociatedServiceType);
+			var associatedServiceTypeIndexSet = new NSIndexSet ((nuint) (int) CharacteristicTableViewSection.AssociatedServiceType);
 			TableView.ReloadSections (associatedServiceTypeIndexSet, UITableViewRowAnimation.Automatic);
 		}
 
@@ -177,7 +175,7 @@ namespace HomeKitCatalog
 			var index = Array.IndexOf (service.Characteristics, characteristic);
 			if (index >= 0) {
 				var indexPath = NSIndexPath.FromRowSection (index, 0);
-				var cell = (CharacteristicCell)TableView.CellAt (indexPath);
+				var cell = (CharacteristicCell) TableView.CellAt (indexPath);
 				cell.SetValue (characteristic.Value, false);
 			}
 		}

@@ -1,4 +1,4 @@
-﻿PowerState
+PowerState
 Hue
 Saturation
 Brightness

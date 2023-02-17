@@ -4,10 +4,8 @@ using UIKit;
 using HealthKit;
 using ObjCRuntime;
 
-namespace Fit
-{
-	public partial class JournalViewController : UITableViewController, IHealthStore
-	{
+namespace Fit {
+	public partial class JournalViewController : UITableViewController, IHealthStore {
 		readonly NSString CellReuseIdentifier = new NSString ("cell");
 		NSEnergyFormatter energyFormatter;
 
@@ -39,7 +37,7 @@ namespace Fit
 		{
 			base.ViewDidLoad ();
 			FoodItems = new NSMutableArray ();
-			if(HealthStore != null)
+			if (HealthStore != null)
 				UpdateJournal (null, null);
 			UIApplication.Notifications.ObserveDidBecomeActive (UpdateJournal);
 		}
@@ -49,12 +47,12 @@ namespace Fit
 			var calendar = NSCalendar.CurrentCalendar;
 
 			var startDate = DateTime.Now.Date;
-			var endDate = startDate.AddDays(1);
+			var endDate = startDate.AddDays (1);
 
 			var sampleType = HKSampleType.GetQuantityType (HKQuantityTypeIdentifierKey.DietaryEnergyConsumed);
-			var predicate = HKQuery.GetPredicateForSamples ((NSDate)startDate, (NSDate)endDate, HKQueryOptions.None);
+			var predicate = HKQuery.GetPredicateForSamples ((NSDate) startDate, (NSDate) endDate, HKQueryOptions.None);
 
-			var query = new HKSampleQuery (sampleType, predicate, 0, new NSSortDescriptor[0], (resultQuery, results, error) => {
+			var query = new HKSampleQuery (sampleType, predicate, 0, new NSSortDescriptor [0], (resultQuery, results, error) => {
 				if (error != null) {
 					Console.WriteLine ("An error occured fetching the user's tracked food. " +
 					"In your app, try to handle this gracefully. The error was: {0}.", error.LocalizedDescription);
@@ -65,7 +63,7 @@ namespace Fit
 					FoodItems.RemoveAllObjects ();
 					foreach (HKQuantitySample sample in results) {
 
-						var foodName = (NSString)sample.Metadata.Dictionary [HKMetadataKey.FoodType];
+						var foodName = (NSString) sample.Metadata.Dictionary [HKMetadataKey.FoodType];
 						double joules = sample.Quantity.GetDoubleValue (HKUnit.Joule);
 						var foodItem = FoodItem.Create (foodName, joules);
 
@@ -94,7 +92,7 @@ namespace Fit
 					FoodItems.Insert (item, 0);
 					var indexPathForInsertedFoodItem = NSIndexPath.FromRowSection (0, 0);
 					InvokeOnMainThread (() => {
-						TableView.InsertRows (new NSIndexPath[] { indexPathForInsertedFoodItem }, UITableViewRowAnimation.Automatic);
+						TableView.InsertRows (new NSIndexPath [] { indexPathForInsertedFoodItem }, UITableViewRowAnimation.Automatic);
 					});
 				} else {
 					Console.WriteLine ("An error occured saving the food {0}. In your app, try to handle this gracefully. " +
@@ -105,13 +103,13 @@ namespace Fit
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return (nint)FoodItems.Count;
+			return (nint) FoodItems.Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			var cell = TableView.DequeueReusableCell (CellReuseIdentifier, indexPath);
-			var foodItem = FoodItems.GetItem<FoodItem> ((nuint)indexPath.Row);
+			var foodItem = FoodItems.GetItem<FoodItem> ((nuint) indexPath.Row);
 			cell.TextLabel.Text = foodItem.Name;
 			cell.DetailTextLabel.Text = EnergyFormatter.StringFromValue (foodItem.Joules, NSEnergyFormatterUnit.Joule);
 			return cell;

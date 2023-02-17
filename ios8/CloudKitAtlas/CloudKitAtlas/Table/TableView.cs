@@ -3,10 +3,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public partial class TableView : UITableView
-	{
+namespace CloudKitAtlas {
+	public partial class TableView : UITableView {
 		public TableView (IntPtr handle)
 			: base (handle)
 		{

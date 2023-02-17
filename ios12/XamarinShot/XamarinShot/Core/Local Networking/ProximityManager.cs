@@ -1,94 +1,85 @@
-﻿
-namespace XamarinShot.Models
-{
-    using CoreLocation;
-    using Foundation;
-    using System.Linq;
 
-    public interface IProximityManagerDelegate
-    {
-        void LocationChanged(ProximityManager manager, GameTableLocation location);
+namespace XamarinShot.Models {
+	using CoreLocation;
+	using Foundation;
+	using System.Linq;
 
-        void AuthorizationChanged(ProximityManager manager, bool authorization);
-    }
+	public interface IProximityManagerDelegate {
+		void LocationChanged (ProximityManager manager, GameTableLocation location);
 
-    public class ProximityManager : CLLocationManagerDelegate
-    {
-        private readonly NSUuid RegionUUID = new NSUuid("53FA6CD3-DFE4-493C-8795-56E71D2DAEAF");
+		void AuthorizationChanged (ProximityManager manager, bool authorization);
+	}
 
-        private const string RegionId = "GameRoom";
+	public class ProximityManager : CLLocationManagerDelegate {
+		private readonly NSUuid RegionUUID = new NSUuid ("53FA6CD3-DFE4-493C-8795-56E71D2DAEAF");
 
-        private readonly CLLocationManager locationManager = new CLLocationManager();
+		private const string RegionId = "GameRoom";
 
-        private readonly CLBeaconRegion region;
+		private readonly CLLocationManager locationManager = new CLLocationManager ();
 
-        public ProximityManager() : base()
-        {
-            this.region = new CLBeaconRegion(RegionUUID, RegionId);
+		private readonly CLBeaconRegion region;
 
-            this.locationManager.Delegate = this;
-            this.RequestAuthorization();
-        }
+		public ProximityManager () : base ()
+		{
+			this.region = new CLBeaconRegion (RegionUUID, RegionId);
 
-        public static ProximityManager Shared { get; } = new ProximityManager();
+			this.locationManager.Delegate = this;
+			this.RequestAuthorization ();
+		}
 
-        public IProximityManagerDelegate Delegate { get; set; }
+		public static ProximityManager Shared { get; } = new ProximityManager ();
 
-        public GameTableLocation ClosestLocation { get; private set; }
+		public IProximityManagerDelegate Delegate { get; set; }
 
-        public bool IsAvailable => CLLocationManager.IsMonitoringAvailable(typeof(CLBeaconRegion));
+		public GameTableLocation ClosestLocation { get; private set; }
 
-        public bool IsAuthorized => CLLocationManager.Status == CLAuthorizationStatus.AuthorizedWhenInUse ||
-                                    CLLocationManager.Status == CLAuthorizationStatus.AuthorizedAlways;
+		public bool IsAvailable => CLLocationManager.IsMonitoringAvailable (typeof (CLBeaconRegion));
 
-        public void Start()
-        {
-            if (this.IsAvailable)
-            {
-                this.locationManager.StartRangingBeacons(this.region);
-            }
-        }
+		public bool IsAuthorized => CLLocationManager.Status == CLAuthorizationStatus.AuthorizedWhenInUse ||
+									CLLocationManager.Status == CLAuthorizationStatus.AuthorizedAlways;
 
-        public void Stop()
-        {
-            if (this.IsAvailable)
-            {
-                this.locationManager.StopRangingBeacons(region);
-            }
-        }
+		public void Start ()
+		{
+			if (this.IsAvailable) {
+				this.locationManager.StartRangingBeacons (this.region);
+			}
+		}
 
-        public override void DidRangeBeacons(CLLocationManager manager, CLBeacon[] beacons, CLBeaconRegion region)
-        {
-            // we want to filter out beacons that have unknown proximity
-            var knownBeacon = beacons.FirstOrDefault(beacon => beacon.Proximity != CLProximity.Unknown);
-            if (knownBeacon != null)
-            {
-                GameTableLocation location = null;
-                if (knownBeacon.Proximity == CLProximity.Near || knownBeacon.Proximity == CLProximity.Immediate)
-                {
-                    location = GameTableLocation.GetLocation(knownBeacon.Minor.Int32Value);
-                }
+		public void Stop ()
+		{
+			if (this.IsAvailable) {
+				this.locationManager.StopRangingBeacons (region);
+			}
+		}
 
-                if (this.ClosestLocation != location)
-                {
-                    // Closest location changed 
-                    this.ClosestLocation = location;
-                    this.Delegate?.LocationChanged(this, location);
-                }
-            }
-        }
+		public override void DidRangeBeacons (CLLocationManager manager, CLBeacon [] beacons, CLBeaconRegion region)
+		{
+			// we want to filter out beacons that have unknown proximity
+			var knownBeacon = beacons.FirstOrDefault (beacon => beacon.Proximity != CLProximity.Unknown);
+			if (knownBeacon != null) {
+				GameTableLocation location = null;
+				if (knownBeacon.Proximity == CLProximity.Near || knownBeacon.Proximity == CLProximity.Immediate) {
+					location = GameTableLocation.GetLocation (knownBeacon.Minor.Int32Value);
+				}
 
-        public override void AuthorizationChanged(CLLocationManager manager, CLAuthorizationStatus status)
-        {
-            this.Delegate?.AuthorizationChanged(this, this.IsAuthorized);
-        }
+				if (this.ClosestLocation != location) {
+					// Closest location changed 
+					this.ClosestLocation = location;
+					this.Delegate?.LocationChanged (this, location);
+				}
+			}
+		}
 
-        private void RequestAuthorization()
-        {
-            if (CLLocationManager.Status == CLAuthorizationStatus.NotDetermined)
-            {
-                this.locationManager.RequestWhenInUseAuthorization();
-            }
-        }
-    }
+		public override void AuthorizationChanged (CLLocationManager manager, CLAuthorizationStatus status)
+		{
+			this.Delegate?.AuthorizationChanged (this, this.IsAuthorized);
+		}
+
+		private void RequestAuthorization ()
+		{
+			if (CLLocationManager.Status == CLAuthorizationStatus.NotDetermined) {
+				this.locationManager.RequestWhenInUseAuthorization ();
+			}
+		}
+	}
 }

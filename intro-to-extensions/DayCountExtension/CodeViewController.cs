@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using UIKit;
 using NotificationCenter;
 using CoreGraphics;
 using Foundation;
 
-namespace DayCountExtension
-{
+namespace DayCountExtension {
 	[Register ("CodeViewController")]
-	public class CodeViewController : UIViewController, INCWidgetProviding
-	{
+	public class CodeViewController : UIViewController, INCWidgetProviding {
 		public CodeViewController ()
 		{
 		}

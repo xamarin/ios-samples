@@ -1,24 +1,22 @@
-﻿
-namespace VisionObjectTrack
-{
-    using Foundation;
-    using UIKit;
 
-    // The UIApplicationDelegate for the application. This class is responsible for launching the
-    // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
-    [Register("AppDelegate")]
-    public class AppDelegate : UIApplicationDelegate
-    {
-        // class-level declarations
+namespace VisionObjectTrack {
+	using Foundation;
+	using UIKit;
 
-        public override UIWindow Window { get; set; }
+	// The UIApplicationDelegate for the application. This class is responsible for launching the
+	// User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
+	[Register ("AppDelegate")]
+	public class AppDelegate : UIApplicationDelegate {
+		// class-level declarations
 
-        public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
-        {
-            // Override point for customization after application launch.
-            // If not required for your application you can safely delete this method
+		public override UIWindow Window { get; set; }
 
-            return true;
-        }
-    }
+		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
+		{
+			// Override point for customization after application launch.
+			// If not required for your application you can safely delete this method
+
+			return true;
+		}
+	}
 }

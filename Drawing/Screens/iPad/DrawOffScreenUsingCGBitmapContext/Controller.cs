@@ -2,13 +2,11 @@ using System;
 using UIKit;
 using CoreGraphics;
 
-namespace Example_Drawing.Screens.iPad.DrawOffScreenUsingCGBitmapContext
-{
-	public class Controller : UIViewController
-	{
+namespace Example_Drawing.Screens.iPad.DrawOffScreenUsingCGBitmapContext {
+	public class Controller : UIViewController {
 		#region -= constructors =-
 
-		public Controller () : base()
+		public Controller () : base ()
 		{
 		}
 
@@ -26,14 +24,14 @@ namespace Example_Drawing.Screens.iPad.DrawOffScreenUsingCGBitmapContext
 			// 32bit RGB (8bits * 4components (aRGB) = 32bit)
 			int bitsPerComponent = 8;
 			// 4bytes for each pixel (32 bits = 4bytes)
-			int bytesPerRow = (int)(4 * bitmapSize.Width);
+			int bytesPerRow = (int) (4 * bitmapSize.Width);
 			// no special color space
 			CGColorSpace colorSpace = CGColorSpace.CreateDeviceRGB ();
 			// aRGB
 			CGImageAlphaInfo alphaType = CGImageAlphaInfo.PremultipliedFirst;
 
 			using (CGBitmapContext context = new CGBitmapContext (data
-				, (int)bitmapSize.Width, (int)bitmapSize.Height, bitsPerComponent
+				, (int) bitmapSize.Width, (int) bitmapSize.Height, bitsPerComponent
 				, bytesPerRow, colorSpace, alphaType)) {
 
 				// draw whatever here.

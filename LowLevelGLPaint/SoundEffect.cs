@@ -2,10 +2,8 @@ using System;
 using Foundation;
 using AudioToolbox;
 
-namespace LowLevelGLPaint
-{
-	public class SoundEffect : NSObject
-	{
+namespace LowLevelGLPaint {
+	public class SoundEffect : NSObject {
 		SystemSound sound;
 
 		public SoundEffect (string path)

@@ -6,7 +6,7 @@ namespace HandlingRotation.Screens.iPad.Method2MoveControls {
 
 		UIButton button1 = UIButton.FromType (UIButtonType.RoundedRect);
 		UIButton button2 = UIButton.FromType (UIButtonType.RoundedRect);
-		UIImageView image = new UIImageView(UIImage.FromFile("icon-144.png"));
+		UIImageView image = new UIImageView (UIImage.FromFile ("icon-144.png"));
 
 		public Controller ()
 		{
@@ -43,14 +43,13 @@ namespace HandlingRotation.Screens.iPad.Method2MoveControls {
 			// we're passed to orientation that it will rotate to. in our case, we could
 			// just return true, but this switch illustrates how you can test for the
 			// different cases
-			switch (toInterfaceOrientation)
-			{
-				case UIInterfaceOrientation.LandscapeLeft:
-				case UIInterfaceOrientation.LandscapeRight:
-				case UIInterfaceOrientation.Portrait:
-				case UIInterfaceOrientation.PortraitUpsideDown:
-				default:
-					return true;
+			switch (toInterfaceOrientation) {
+			case UIInterfaceOrientation.LandscapeLeft:
+			case UIInterfaceOrientation.LandscapeRight:
+			case UIInterfaceOrientation.Portrait:
+			case UIInterfaceOrientation.PortraitUpsideDown:
+			default:
+				return true;
 			}
 		}
 
@@ -78,31 +77,31 @@ namespace HandlingRotation.Screens.iPad.Method2MoveControls {
 			// depending one what orientation we start in, we want to position our controls
 			// appropriately
 			switch (toInterfaceOrientation) {
-				// if we're switchign to landscape
-				case UIInterfaceOrientation.LandscapeLeft:
-				case UIInterfaceOrientation.LandscapeRight:
+			// if we're switchign to landscape
+			case UIInterfaceOrientation.LandscapeLeft:
+			case UIInterfaceOrientation.LandscapeRight:
 
-					// reposition the buttons
-					button1.Frame = new CoreGraphics.CGRect (10, 10, 100, 33);
-					button2.Frame = new CoreGraphics.CGRect (10, 200, 100, 33);
+				// reposition the buttons
+				button1.Frame = new CoreGraphics.CGRect (10, 10, 100, 33);
+				button2.Frame = new CoreGraphics.CGRect (10, 200, 100, 33);
 
-					// reposition the image
-					image.Frame = new CoreGraphics.CGRect (240, 25, this.image.Frame.Width, this.image.Frame.Height);
+				// reposition the image
+				image.Frame = new CoreGraphics.CGRect (240, 25, this.image.Frame.Width, this.image.Frame.Height);
 
-					break;
+				break;
 
-				// we're switch back to portrait
-				case UIInterfaceOrientation.Portrait:
-				case UIInterfaceOrientation.PortraitUpsideDown:
+			// we're switch back to portrait
+			case UIInterfaceOrientation.Portrait:
+			case UIInterfaceOrientation.PortraitUpsideDown:
 
-					// reposition the buttons
-					button1.Frame = new CoreGraphics.CGRect (10, 10, 100, 33);
-					button2.Frame = new CoreGraphics.CGRect (200, 10, 100, 33);
+				// reposition the buttons
+				button1.Frame = new CoreGraphics.CGRect (10, 10, 100, 33);
+				button2.Frame = new CoreGraphics.CGRect (200, 10, 100, 33);
 
-					// reposition the image
-					image.Frame = new CoreGraphics.CGRect (20, 150, this.image.Frame.Width, this.image.Frame.Height);
+				// reposition the image
+				image.Frame = new CoreGraphics.CGRect (20, 150, this.image.Frame.Width, this.image.Frame.Height);
 
-					break;
+				break;
 			}
 		}
 	}

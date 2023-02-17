@@ -15,7 +15,7 @@ namespace UICatalog {
 		};
 
 		[Export ("initWithCoder:")]
-		public ProgressViewController (NSCoder coder): base (coder)
+		public ProgressViewController (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
@@ -25,10 +25,10 @@ namespace UICatalog {
 			progress.AddObserver (this, "fractionCompleted", NSKeyValueObservingOptions.New, progressViewKVOContext);
 		}
 
-		protected override void Dispose(bool disposing)
+		protected override void Dispose (bool disposing)
 		{
 			if (disposed)
-				return; 
+				return;
 
 			if (disposing)
 				progress.RemoveObserver (this, "fractionCompleted");
@@ -59,7 +59,7 @@ namespace UICatalog {
 			if (context == progressViewKVOContext && keyPath == "fractionCompleted" && ofObject == progress) {
 				InvokeOnMainThread (() => {
 					foreach (var progressView in ProgressViews)
-						progressView.SetProgress ((float)progress.FractionCompleted, true);
+						progressView.SetProgress ((float) progress.FractionCompleted, true);
 				});
 			} else {
 				base.ObserveValue (keyPath, ofObject, change, context);

@@ -3,20 +3,17 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace CustomTransitions
-{
+namespace CustomTransitions {
 	[Register ("SlideTransitionDelegate")]
-	public class SlideTransitionDelegate : NSObject, IUITabBarControllerDelegate
-	{
-		public SlideTransitionDelegate (IntPtr handle) : base(handle)
+	public class SlideTransitionDelegate : NSObject, IUITabBarControllerDelegate {
+		public SlideTransitionDelegate (IntPtr handle) : base (handle)
 		{
 		}
 
 		UITabBarController tabBarController;
 
 		[Outlet]
-		public UITabBarController TabBarController
-		{
+		public UITabBarController TabBarController {
 			get {
 				return tabBarController;
 			}
@@ -47,7 +44,8 @@ namespace CustomTransitions
 			get {
 				panGestureRecognizer = panGestureRecognizer ?? new UIPanGestureRecognizer (() => PanGestureRecognizerDidPan (panGestureRecognizer));
 				return panGestureRecognizer;
-			} set {
+			}
+			set {
 				panGestureRecognizer = value;
 			}
 		}
@@ -66,9 +64,9 @@ namespace CustomTransitions
 			var translation = sender.TranslationInView (tabBarController.View);
 
 			if (translation.X > 0f && tabBarController.SelectedIndex > 0) {
-				tabBarController.SelectedIndex --;
+				tabBarController.SelectedIndex--;
 			} else if (translation.X < 0f && (tabBarController.SelectedIndex + 1) < tabBarController.ViewControllers.Length) {
-				tabBarController.SelectedIndex ++;
+				tabBarController.SelectedIndex++;
 			} else if (!(Math.Abs (translation.X) < nfloat.Epsilon && Math.Abs (translation.Y) < nfloat.Epsilon)) {
 				sender.Enabled = false;
 				sender.Enabled = true;
@@ -89,7 +87,7 @@ namespace CustomTransitions
 		[Export ("tabBarController:animationControllerForTransitionFromViewController:toViewController:")]
 		public IUIViewControllerAnimatedTransitioning GetAnimationControllerForTransition (UITabBarController tabBarController, UIViewController fromViewController, UIViewController toViewController)
 		{
-			UIViewController[] viewControllers = tabBarController.ViewControllers;
+			UIViewController [] viewControllers = tabBarController.ViewControllers;
 
 			if (Array.IndexOf (viewControllers, toViewController) > Array.IndexOf (viewControllers, fromViewController))
 				return new SlideTransitionAnimator (UIRectEdge.Left);
@@ -100,7 +98,7 @@ namespace CustomTransitions
 		[Export ("tabBarController:interactionControllerForAnimationController:")]
 		public IUIViewControllerInteractiveTransitioning GetInteractionControllerForAnimationController (UITabBarController tabBarController, IUIViewControllerAnimatedTransitioning animationController)
 		{
-			UIViewController[] viewControllers = tabBarController.ViewControllers;
+			UIViewController [] viewControllers = tabBarController.ViewControllers;
 
 			if (PanGestureRecognizer.State == UIGestureRecognizerState.Began || PanGestureRecognizer.State == UIGestureRecognizerState.Changed)
 				return new SlideTransitionInteractionController (PanGestureRecognizer);

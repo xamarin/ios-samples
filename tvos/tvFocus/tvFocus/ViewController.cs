@@ -1,16 +1,14 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 
-namespace tvFocus
-{
+namespace tvFocus {
 	/// <summary>
 	/// Controls the main View for the app and is responsible for setting up a Foucs Guide
 	/// <c>UIFocusGuide</c> that allows the user to move between the More Info and Buy
 	/// button in the User Interface.
 	/// </summary>
-	public partial class ViewController : UIViewController
-	{
+	public partial class ViewController : UIViewController {
 		#region Private Variables
 		/// <summary>
 		/// Private storage for the Focus Guide that will allow us to
@@ -98,12 +96,12 @@ namespace tvFocus
 		/// <param name="sender">Sender.</param>
 		partial void BuyButton_PrimaryActionTriggered (UIButton sender)
 		{
-			AlertViewController.PresentOKCancelAlert( "Add Flower to Shopping Cart",
-			                                         "Would you like to add the currently selected flower to your shopping cart?",
-			                                         this, 
-			                                         (ok) => {
+			AlertViewController.PresentOKCancelAlert ("Add Flower to Shopping Cart",
+													 "Would you like to add the currently selected flower to your shopping cart?",
+													 this,
+													 (ok) => {
 
-			});
+													 });
 		}
 		#endregion
 	}

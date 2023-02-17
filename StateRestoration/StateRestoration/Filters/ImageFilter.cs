@@ -4,10 +4,8 @@ using CoreImage;
 using UIKit;
 using ObjCRuntime;
 
-namespace StateRestoration
-{
-	public class ImageFilter : UIStateRestoring
-	{
+namespace StateRestoration {
+	public class ImageFilter : UIStateRestoring {
 		const string ActiveKey = "kImageFilterActiveKey";
 
 		public bool Active { get; set; }

@@ -8,10 +8,8 @@ using CoreMedia;
 using Foundation;
 using UIKit;
 
-namespace ColorFeed
-{
-	public partial class ColorView : UIView
-	{
+namespace ColorFeed {
+	public partial class ColorView : UIView {
 		UIImageView imageView;
 		CancellationTokenSource cancellationTokenSource;
 

@@ -3,10 +3,8 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace UIKitEnhancements
-{
-	partial class MainSplitViewController : UISplitViewController
-	{
+namespace UIKitEnhancements {
+	partial class MainSplitViewController : UISplitViewController {
 		#region Constructors
 		public MainSplitViewController (IntPtr handle) : base (handle)
 		{

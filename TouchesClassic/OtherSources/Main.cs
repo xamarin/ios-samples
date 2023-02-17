@@ -1,4 +1,4 @@
-﻿//
+//
 // Main.cs
 //
 // Author:
@@ -30,11 +30,9 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace TouchesClassic
-{
-	public class Application
-	{
-		static void Main (string[] args)
+namespace TouchesClassic {
+	public class Application {
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

@@ -14,8 +14,8 @@ namespace CustomTransitions {
 
 		public override void Perform ()
 		{
-			var sourceViewController = (APSecondViewController)DestinationViewController;
-			var destinationViewController = (APSecondViewController)DestinationViewController;
+			var sourceViewController = (APSecondViewController) DestinationViewController;
+			var destinationViewController = (APSecondViewController) DestinationViewController;
 
 			var presentationController = new AdaptivePresentationController (destinationViewController, sourceViewController);
 

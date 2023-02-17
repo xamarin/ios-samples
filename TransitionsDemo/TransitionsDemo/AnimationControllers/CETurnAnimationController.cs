@@ -4,16 +4,13 @@ using UIKit;
 using CoreAnimation;
 using Foundation;
 
-namespace TransitionsDemo.AnimationControllers
-{
-	public enum  CEDirection
-	{
+namespace TransitionsDemo.AnimationControllers {
+	public enum CEDirection {
 		Horizontal = 0,
 		Vertical
 	}
 
-	public class CETurnAnimationController : CEReversibleAnimationController
-	{
+	public class CETurnAnimationController : CEReversibleAnimationController {
 		public CEDirection TurnDiresction { get; private set; }
 
 		public CETurnAnimationController ()
@@ -22,8 +19,8 @@ namespace TransitionsDemo.AnimationControllers
 		}
 
 		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext,
-		                                        UIViewController fromViewController, UIViewController toViewController,
-		                                        UIView fromView, UIView toView)
+												UIViewController fromViewController, UIViewController toViewController,
+												UIView fromView, UIView toView)
 		{
 			UIView containerView = transitionContext.ContainerView;
 			containerView.AddSubview (toView);
@@ -41,12 +38,12 @@ namespace TransitionsDemo.AnimationControllers
 			float factor = Reverse ? 1f : -1f;
 
 			// flip the to VC halfway round - hiding it
-			toView.Layer.Transform = Rotate (factor * -(float)Math.PI / 2);
+			toView.Layer.Transform = Rotate (factor * -(float) Math.PI / 2);
 			double duration = TransitionDuration (transitionContext);
 
 			Action animations = () => {
 				UIView.AddKeyframeWithRelativeStartTime (0.0, 0.5, () => {
-					fromView.Layer.Transform = Rotate (factor * (float)Math.PI / 2);
+					fromView.Layer.Transform = Rotate (factor * (float) Math.PI / 2);
 				});
 
 				UIView.AddKeyframeWithRelativeStartTime (0.5, 0.5, () => {
@@ -62,9 +59,9 @@ namespace TransitionsDemo.AnimationControllers
 		private CATransform3D Rotate (float angle)
 		{
 			if (TurnDiresction == CEDirection.Horizontal) {
-				return  CATransform3D.MakeRotation (angle, 1f, 0f, 0f);
+				return CATransform3D.MakeRotation (angle, 1f, 0f, 0f);
 			} else {
-				return  CATransform3D.MakeRotation (angle, 0f, 1f, 0f);
+				return CATransform3D.MakeRotation (angle, 0f, 1f, 0f);
 			}
 		}
 	}

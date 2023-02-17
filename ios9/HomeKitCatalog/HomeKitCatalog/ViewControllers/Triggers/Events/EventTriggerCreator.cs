@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using HomeKit;
 using Foundation;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A base class for event trigger creators.
 	// These classes manage the state for characteristic trigger conditions.
-	public class EventTriggerCreator : TriggerCreator, ICharacteristicCellDelegate
-	{
+	public class EventTriggerCreator : TriggerCreator, ICharacteristicCellDelegate {
 		/// A mapping of `HMCharacteristic`s to their values.
 		readonly Dictionary<HMCharacteristic, NSObject> conditionValueMap = new Dictionary<HMCharacteristic, NSObject> ();
 
@@ -22,7 +20,7 @@ namespace HomeKitCatalog
 		// An array of top-level `NSPredicate` objects.
 		// Currently, HMCatalog only supports top-level `NSPredicate`s
 		// which have type `AndPredicateType`.
-		NSPredicate[] OriginalConditions {
+		NSPredicate [] OriginalConditions {
 			get {
 				var eventTrigger = EventTrigger;
 				if (eventTrigger != null) {
@@ -34,7 +32,7 @@ namespace HomeKitCatalog
 					}
 				}
 
-				return new NSPredicate[0];
+				return new NSPredicate [0];
 			}
 		}
 
@@ -96,7 +94,7 @@ namespace HomeKitCatalog
 			});
 		}
 
-		bool TryReadValue (HMCharacteristic  characteristic, Action<NSObject, NSError> completion)
+		bool TryReadValue (HMCharacteristic characteristic, Action<NSObject, NSError> completion)
 		{
 			NSObject value;
 			if (conditionValueMap.TryGetValue (characteristic, out value)) {
@@ -128,7 +126,7 @@ namespace HomeKitCatalog
 		// Generates predicates from the characteristic-value map and adds them to the pending conditions.
 		public void UpdatePredicates ()
 		{
-			foreach (var kvp  in conditionValueMap) {
+			foreach (var kvp in conditionValueMap) {
 				HMCharacteristic characteristic = kvp.Key;
 				NSObject value = kvp.Value;
 				NSPredicate predicate = HMEventTrigger.CreatePredicateForEvaluatingTrigger (characteristic, NSPredicateOperatorType.EqualTo, value);

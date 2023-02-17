@@ -5,10 +5,8 @@ using System.IO;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PerVertexDirectionalLighting
-{
-	public class GLProgram
-	{
+namespace PerVertexDirectionalLighting {
+	public class GLProgram {
 		int program,
 			vertShader,
 			fragShader;
@@ -37,8 +35,8 @@ namespace PerVertexDirectionalLighting
 			int status;
 			string source;
 
-			using (StreamReader sr = new StreamReader(file))
-				source = sr.ReadToEnd();
+			using (StreamReader sr = new StreamReader (file))
+				source = sr.ReadToEnd ();
 
 			shader = GL.CreateShader (type);
 			GL.ShaderSource (shader, source);

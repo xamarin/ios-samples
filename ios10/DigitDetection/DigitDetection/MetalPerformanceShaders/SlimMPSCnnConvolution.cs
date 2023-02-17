@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
@@ -8,16 +8,14 @@ using Metal;
 using MetalPerformanceShaders;
 using ObjCRuntime;
 
-namespace DigitDetection
-{
+namespace DigitDetection {
 	/// <summary>
 	/// The SlimMPSCNNConvolution is a wrapper class around MPSCNNConvolution used to encapsulate:
 	/// - making an MPSCNNConvolutionDescriptor,
 	/// - adding network parameters (weights and bias binaries by memory mapping the binaries)
 	/// - getting our convolution layer
 	/// </summary>
-	public class SlimMPSCnnConvolution : MPSCnnConvolution
-	{
+	public class SlimMPSCnnConvolution : MPSCnnConvolution {
 		// TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=44938
 		[DllImport ("/usr/lib/libobjc.dylib", EntryPoint = "objc_msgSend")]
 		static extern IntPtr IntPtr_objc_msgSend_IntPtr_IntPtr_IntPtr_IntPtr_UInt64 (IntPtr receiver, IntPtr selector, IntPtr arg1, IntPtr arg2, IntPtr arg3, IntPtr arg4, ulong arg5);
@@ -29,7 +27,7 @@ namespace DigitDetection
 			: base (NSObjectFlag.Empty)
 		{
 			const string sel = "initWithDevice:convolutionDescriptor:kernelWeights:biasTerms:flags:";
-			InitializeHandle (IntPtr_objc_msgSend_IntPtr_IntPtr_IntPtr_IntPtr_UInt64 (Handle, Selector.GetHandle (sel), device.Handle, convolutionDescriptor.Handle, kernelWeights, biasTerms, (ulong)flags), sel);
+			InitializeHandle (IntPtr_objc_msgSend_IntPtr_IntPtr_IntPtr_IntPtr_UInt64 (Handle, Selector.GetHandle (sel), device.Handle, convolutionDescriptor.Handle, kernelWeights, biasTerms, (ulong) flags), sel);
 		}
 
 		/// <summary>
@@ -52,7 +50,7 @@ namespace DigitDetection
 													uint inputFeatureChannels, uint outputFeatureChannels,
 													MPSCnnNeuron neuronFilter, IMTLDevice device,
 													string kernelParamsBinaryName, bool padding,
-		                                            uint strideX, uint strideY,
+													uint strideX, uint strideY,
 													uint destinationFeatureChannelOffset, uint groupNum)
 		{
 			// get the url to this layer's weights and bias
@@ -71,8 +69,7 @@ namespace DigitDetection
 				throw new ArgumentException ("Group size can't be less than 1");
 			convDesc.Groups = groupNum;
 
-			unsafe
-			{
+			unsafe {
 				using (var mmfW = MemoryMappedFile.CreateFromFile (wtPath, FileMode.Open, null, 0, MemoryMappedFileAccess.Read))
 				using (var mmfB = MemoryMappedFile.CreateFromFile (bsPath, FileMode.Open, null, 0, MemoryMappedFileAccess.Read))
 				using (var wView = mmfW.CreateViewAccessor (0, 0, MemoryMappedFileAccess.Read))
@@ -83,7 +80,7 @@ namespace DigitDetection
 					byte* b = null;
 					bView.SafeMemoryMappedViewHandle.AcquirePointer (ref b);
 
-					return new SlimMPSCnnConvolution (device, convDesc, (IntPtr)w, (IntPtr)b, MPSCnnConvolutionFlags.None) {
+					return new SlimMPSCnnConvolution (device, convDesc, (IntPtr) w, (IntPtr) b, MPSCnnConvolutionFlags.None) {
 						DestinationFeatureChannelOffset = destinationFeatureChannelOffset,
 						padding = padding
 					};
@@ -109,14 +106,14 @@ namespace DigitDetection
 				var pad_left = pad_along_width / 2;
 
 				Offset = new MPSOffset {
-					X = (nint)(KernelWidth / 2 - pad_left),
-					Y = (nint)(KernelHeight / 2 - pad_top),
+					X = (nint) (KernelWidth / 2 - pad_left),
+					Y = (nint) (KernelHeight / 2 - pad_top),
 					Z = 0
 				};
 			} else {
 				Offset = new MPSOffset {
-					X = (nint)(KernelWidth / 2),
-					Y = (nint)(KernelHeight / 2),
+					X = (nint) (KernelWidth / 2),
+					Y = (nint) (KernelHeight / 2),
 					Z = 0
 				};
 			}

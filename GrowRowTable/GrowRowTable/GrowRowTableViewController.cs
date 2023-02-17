@@ -3,10 +3,8 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace GrowRowTable
-{
-	public partial class GrowRowTableViewController : UITableViewController
-	{
+namespace GrowRowTable {
+	public partial class GrowRowTableViewController : UITableViewController {
 		public GrowRowTableDataSource DataSource {
 			get { return TableView.DataSource as GrowRowTableDataSource; }
 		}
@@ -30,13 +28,13 @@ namespace GrowRowTable
 			base.ViewWillAppear (animated);
 
 			// Initialize table
-			TableView.DataSource = new GrowRowTableDataSource();
+			TableView.DataSource = new GrowRowTableDataSource ();
 			TableView.Delegate = new GrowRowTableDelegate ();
 			TableView.RowHeight = UITableView.AutomaticDimension;
 			TableView.EstimatedRowHeight = 40f;
 			TableView.ReloadData ();
 		}
-			
+
 
 	}
 }

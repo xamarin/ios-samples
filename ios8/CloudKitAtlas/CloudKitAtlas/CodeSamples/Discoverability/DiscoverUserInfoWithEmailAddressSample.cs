@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	public class DiscoverUserInfoWithEmailAddressSample : CodeSample
-	{
+namespace CloudKitAtlas {
+	public class DiscoverUserInfoWithEmailAddressSample : CodeSample {
 		public DiscoverUserInfoWithEmailAddressSample ()
 			: base (title: "DiscoverUserInfo by email",
 					className: "CKContainer",
@@ -25,7 +23,7 @@ namespace CloudKitAtlas
 				throw new InvalidProgramException ();
 
 			var container = CKContainer.DefaultContainer;
-			CKDiscoveredUserInfo userInfo = await container.DiscoverUserInfoAsync ((string)emailAddress);
+			CKDiscoveredUserInfo userInfo = await container.DiscoverUserInfoAsync ((string) emailAddress);
 			return new Results (new IResult [] { new CKDiscoveredUserInfoWrapper (userInfo) });
 		}
 	}

@@ -4,16 +4,14 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Hello_Universal
-{
+namespace Hello_Universal {
 	/// <summary>
 	/// The UIApplicationDelegate for the application. This class is responsible for launching the
 	/// User Interface of the application, as well as listening (and optionally responding) to
 	/// application events from iOS.
 	/// </summary>
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 		UIWindow window;
 		Hello_UniversalViewController viewController;

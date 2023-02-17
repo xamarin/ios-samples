@@ -5,10 +5,8 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using CoreGraphics;
 
-namespace UIKitEnhancements
-{
-	public class SearchResultsUpdator : UISearchResultsUpdating
-	{
+namespace UIKitEnhancements {
+	public class SearchResultsUpdator : UISearchResultsUpdating {
 		#region Constructors
 		public SearchResultsUpdator ()
 		{
@@ -28,14 +26,15 @@ namespace UIKitEnhancements
 		/// <summary>
 		/// Update search results delegate.
 		/// </summary>
-		public delegate void UpdateSearchResultsDelegate(string searchText);
+		public delegate void UpdateSearchResultsDelegate (string searchText);
 		public event UpdateSearchResultsDelegate UpdateSearchResults;
 
 		/// <summary>
 		/// Raises the update search results event.
 		/// </summary>
 		/// <param name="searchText">Search text.</param>
-		private void RaiseUpdateSearchResults(string searchText) {
+		private void RaiseUpdateSearchResults (string searchText)
+		{
 			// Inform caller
 			if (this.UpdateSearchResults != null)
 				this.UpdateSearchResults (searchText);

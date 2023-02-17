@@ -4,10 +4,8 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace StateRestoration
-{
-	public partial class CollectionCell : UICollectionViewCell
-	{
+namespace StateRestoration {
+	public partial class CollectionCell : UICollectionViewCell {
 		UIColor labelColor;
 
 		public override bool Selected {

@@ -6,11 +6,9 @@ using Foundation;
 using UIKit;
 using MonoTouch.Dialog;
 
-namespace MTDJsonDemo
-{
+namespace MTDJsonDemo {
 	[Register ("AppDelegate")]
-    public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow _window;
 		UINavigationController _nav;
 		DialogViewController _rootVC;
@@ -23,12 +21,12 @@ namespace MTDJsonDemo
 			_window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			_rootElement = new RootElement ("Json Example"){
-                new Section ("Demo Json"){
-                    (Element)JsonElement.FromFile ("sample.json"),
-                    (Element)new JsonElement ("Load from url", "http://localhost/sample.json")
-                },
+				new Section ("Demo Json"){
+					(Element)JsonElement.FromFile ("sample.json"),
+					(Element)new JsonElement ("Load from url", "http://localhost/sample.json")
+				},
 				new Section ("Tasks Sample")
-            };
+			};
 
 			_rootVC = new DialogViewController (_rootElement);
 			_nav = new UINavigationController (_rootVC);
@@ -40,7 +38,7 @@ namespace MTDJsonDemo
 
 				++n;
 
-				var task = new Task{Name = "task " + n, DueDate = DateTime.Now};
+				var task = new Task { Name = "task " + n, DueDate = DateTime.Now };
 
 				var taskElement = JsonElement.FromFile ("task.json");
 
@@ -59,7 +57,7 @@ namespace MTDJsonDemo
 					duedate.DateValue = task.DueDate;
 				}
 
-				_rootElement [1].Add ((Element)taskElement);
+				_rootElement [1].Add ((Element) taskElement);
 			};
 
 			_window.RootViewController = _nav;

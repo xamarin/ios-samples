@@ -5,27 +5,25 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Example_SharedResources.Screens.iPhone.Battery
-{
-	public partial class BatteryStatusScreen : UIViewController
-	{
+namespace Example_SharedResources.Screens.iPhone.Battery {
+	public partial class BatteryStatusScreen : UIViewController {
 		#region Constructors
 
 		// The IntPtr and initWithCoder constructors are required for items that need
 		// to be able to be created from a xib rather than from managed code
 
-		public BatteryStatusScreen (IntPtr handle) : base(handle)
+		public BatteryStatusScreen (IntPtr handle) : base (handle)
 		{
 			Initialize ();
 		}
 
-		[Export("initWithCoder:")]
-		public BatteryStatusScreen (NSCoder coder) : base(coder)
+		[Export ("initWithCoder:")]
+		public BatteryStatusScreen (NSCoder coder) : base (coder)
 		{
 			Initialize ();
 		}
 
-		public BatteryStatusScreen () : base("BatteryStatusScreen", null)
+		public BatteryStatusScreen () : base ("BatteryStatusScreen", null)
 		{
 			Initialize ();
 		}
@@ -53,15 +51,15 @@ namespace Example_SharedResources.Screens.iPhone.Battery
 				UIDevice.BatteryLevelDidChangeNotification,
 				(NSNotification n) => {
 					barBatteryLevel.Progress = UIDevice.CurrentDevice.BatteryLevel;
-					n.Dispose();
+					n.Dispose ();
 				});
 
 			// add a notification handler for battery state changes
 			NSNotificationCenter.DefaultCenter.AddObserver (
 				UIDevice.BatteryStateDidChangeNotification,
 				(NSNotification n) => {
-					lblBatteryState.Text = UIDevice.CurrentDevice.BatteryState.ToString();
-					n.Dispose();
+					lblBatteryState.Text = UIDevice.CurrentDevice.BatteryState.ToString ();
+					n.Dispose ();
 				});
 
 		}

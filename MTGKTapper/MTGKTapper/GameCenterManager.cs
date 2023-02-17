@@ -3,10 +3,8 @@ using Foundation;
 using GameKit;
 using UIKit;
 
-namespace MTGKTapper
-{
-	public class GameCenterManager
-	{
+namespace MTGKTapper {
+	public class GameCenterManager {
 		NSMutableDictionary earnedAchievementCache;
 
 		public static bool IsGameCenterAvailable ()
@@ -30,9 +28,9 @@ namespace MTGKTapper
 			};
 			scoreReporter.ReportScore (error => {
 				if (error == null)
-					ShowAlert("Score reported", "Score Reported successfully");
+					ShowAlert ("Score reported", "Score Reported successfully");
 				else
-					ShowAlert("Score Reported Failed", "Score Reported Failed");
+					ShowAlert ("Score Reported Failed", "Score Reported Failed");
 				NSThread.SleepFor (1);
 				controller.UpdateHighScore ();
 			});
@@ -41,7 +39,8 @@ namespace MTGKTapper
 		public void SubmitAchievement (string identifier, double percentComplete, string achievementName)
 		{
 			if (earnedAchievementCache == null) {
-				GKAchievement.LoadAchievements (new GKCompletionHandler (delegate(GKAchievement[] achievements, NSError error) {
+				GKAchievement.LoadAchievements (new GKCompletionHandler (delegate (GKAchievement [] achievements, NSError error)
+				{
 					NSMutableDictionary tempCache = new NSMutableDictionary ();
 					if (achievements != null) {
 						foreach (var achievement in achievements) {
@@ -52,7 +51,7 @@ namespace MTGKTapper
 					SubmitAchievement (identifier, percentComplete, achievementName);
 				}));
 			} else {
-				GKAchievement achievement = (GKAchievement)earnedAchievementCache.ValueForKey (new NSString (identifier));
+				GKAchievement achievement = (GKAchievement) earnedAchievementCache.ValueForKey (new NSString (identifier));
 				if (achievement != null) {
 					if (achievement.PercentComplete >= 100.0 || achievement.PercentComplete >= percentComplete)
 						achievement = null;
@@ -62,7 +61,7 @@ namespace MTGKTapper
 					achievement = new GKAchievement (identifier) {
 						PercentComplete = percentComplete
 					};
-					earnedAchievementCache.Add ((NSString)achievement.Identifier, achievement);
+					earnedAchievementCache.Add ((NSString) achievement.Identifier, achievement);
 				}
 				if (achievement != null) {
 					achievement.ReportAchievement (error => {
@@ -86,7 +85,7 @@ namespace MTGKTapper
 				if (error == null)
 					new UIAlertView ("Achievement reset", "Achievement reset successfully", null, "OK", null).Show ();
 				else
-					new UIAlertView ("Reset failed", string.Format("Reset failed because: {0}", error), null, "OK", null).Show ();
+					new UIAlertView ("Reset failed", string.Format ("Reset failed because: {0}", error), null, "OK", null).Show ();
 			});
 		}
 

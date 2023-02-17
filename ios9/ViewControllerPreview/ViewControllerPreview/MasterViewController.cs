@@ -6,14 +6,13 @@ using UIKit;
 
 namespace ViewControllerPreview {
 	public partial class MasterViewController : UITableViewController, IUIViewControllerPreviewingDelegate {
-		class PreviewDetail
-		{
+		class PreviewDetail {
 			public string Title { get; set; }
 
 			public double PreferredHeight { get; set; }
 		}
 
-		readonly PreviewDetail[] sampleData = {
+		readonly PreviewDetail [] sampleData = {
 			new PreviewDetail { Title = "Small", PreferredHeight = 160 },
 			new PreviewDetail { Title = "Medium", PreferredHeight = 320 },
 			new PreviewDetail { Title = "Large", PreferredHeight = 0 }
@@ -34,19 +33,19 @@ namespace ViewControllerPreview {
 		{
 			base.ViewDidLoad ();
 
-			
+
 		}
 
-        public override void TraitCollectionDidChange(UITraitCollection previousTraitCollection)
-        {
-            //Important: Must call base method
-            base.TraitCollectionDidChange(previousTraitCollection);
+		public override void TraitCollectionDidChange (UITraitCollection previousTraitCollection)
+		{
+			//Important: Must call base method
+			base.TraitCollectionDidChange (previousTraitCollection);
 
-            if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
-                RegisterForPreviewingWithDelegate (this, View);
-            else
-                alertController = UIAlertController.Create ("3D Touch Not Available", "Unsupported device.", UIAlertControllerStyle.Alert);
-        }
+			if (TraitCollection.ForceTouchCapability == UIForceTouchCapability.Available)
+				RegisterForPreviewingWithDelegate (this, View);
+			else
+				alertController = UIAlertController.Create ("3D Touch Not Available", "Unsupported device.", UIAlertControllerStyle.Alert);
+		}
 
 		public override void ViewWillAppear (bool animated)
 		{
@@ -72,9 +71,9 @@ namespace ViewControllerPreview {
 				return;
 
 			var indexPath = TableView.IndexPathForSelectedRow;
-			var previewDetail = sampleData[indexPath.Row];
+			var previewDetail = sampleData [indexPath.Row];
 
-			var detailViewController = (DetailViewController)((UINavigationController)segue.DestinationViewController)?.TopViewController;
+			var detailViewController = (DetailViewController) ((UINavigationController) segue.DestinationViewController)?.TopViewController;
 
 			// Pass the `title` to the `detailViewController`.
 			detailViewController.DetailItemTitle = previewDetail.Title;
@@ -108,7 +107,7 @@ namespace ViewControllerPreview {
 				return null;
 
 			// Create a detail view controller and set its properties.
-			var detailViewController = (DetailViewController)Storyboard.InstantiateViewController ("DetailViewController");
+			var detailViewController = (DetailViewController) Storyboard.InstantiateViewController ("DetailViewController");
 			if (detailViewController == null)
 				return null;
 

@@ -5,11 +5,9 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-namespace CustomPropertyAnimation
-{
+namespace CustomPropertyAnimation {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		UIViewController vc;
 		CircleLayer testLayer;
@@ -25,15 +23,15 @@ namespace CustomPropertyAnimation
 			vc = new UIViewControllerRotation ();
 
 			vc.View.BackgroundColor = UIColor.Black;
-			testLayer = new CircleLayer();
+			testLayer = new CircleLayer ();
 			testLayer.Color = UIColor.Green.CGColor;
 			testLayer.Thickness = 19f;
 			testLayer.Radius = 60f;
 
 			testLayer.Frame = vc.View.Layer.Bounds;
-			vc.View.Layer.AddSublayer(testLayer);
+			vc.View.Layer.AddSublayer (testLayer);
 
-			testLayer.SetNeedsDisplay();
+			testLayer.SetNeedsDisplay ();
 
 			radiusAnimation = CABasicAnimation.FromKeyPath ("radius");
 			radiusAnimation.Duration = 3;
@@ -62,7 +60,7 @@ namespace CustomPropertyAnimation
 		}
 
 		// This is the main entry point of the application.
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			// if you want to use a different Application Delegate class from "AppDelegate"
 			// you can specify it here.
@@ -70,24 +68,21 @@ namespace CustomPropertyAnimation
 		}
 	}
 
-	public class UIViewControllerRotation : UIViewController
-	{
+	public class UIViewControllerRotation : UIViewController {
 		public override void WillAnimateRotation (UIInterfaceOrientation toInterfaceOrientation, double duration)
 		{
 			base.WillAnimateRotation (toInterfaceOrientation, duration);
 
 			// call our helper method to position the controls
-			CALayer[] layers = this.View.Layer.Sublayers;
-			foreach (CALayer layer in layers)
-			{
+			CALayer [] layers = this.View.Layer.Sublayers;
+			foreach (CALayer layer in layers) {
 				layer.Frame = this.View.Layer.Bounds;
 			}
 		}
 
 	}
 
-	public class CircleLayer : CALayer
-	{
+	public class CircleLayer : CALayer {
 		public CircleLayer ()
 		{
 		}
@@ -142,19 +137,19 @@ namespace CustomPropertyAnimation
 
 			// Outer circle
 			context.AddEllipseInRect (new CGRect (centerPoint.X - (float) Radius,
-			                                        centerPoint.Y - (float) Radius,
-			                                        (float) Radius * 2,
-			                                        (float) Radius * 2));
+													centerPoint.Y - (float) Radius,
+													(float) Radius * 2,
+													(float) Radius * 2));
 			// Inner circle
 			context.AddEllipseInRect (new CGRect (centerPoint.X - (float) innerRadius,
-			                                        centerPoint.Y - (float) innerRadius,
-			                                        (float) innerRadius * 2,
-			                                        (float) innerRadius * 2));
+													centerPoint.Y - (float) innerRadius,
+													(float) innerRadius * 2,
+													(float) innerRadius * 2));
 
 			// Fill in circle
 			context.SetFillColor (Color);
 			context.SetShadow (CGSize.Empty, 10.0f, glowColor);
-			context.EOFillPath();
+			context.EOFillPath ();
 		}
 	}
 }

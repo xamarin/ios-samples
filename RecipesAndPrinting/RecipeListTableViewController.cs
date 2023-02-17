@@ -30,10 +30,8 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-namespace RecipesAndPrinting
-{
-	public partial class RecipeListTableViewController : UITableViewController
-	{
+namespace RecipesAndPrinting {
+	public partial class RecipeListTableViewController : UITableViewController {
 		RecipeDetailViewController details;
 		UIBarButtonItem printButtonItem;
 		RecipesController recipes;
@@ -100,7 +98,7 @@ namespace RecipesAndPrinting
 				this.controller = controller;
 			}
 
-			Recipe[] Recipes {
+			Recipe [] Recipes {
 				get { return controller.recipes.Recipes; }
 			}
 
@@ -125,7 +123,7 @@ namespace RecipesAndPrinting
 					cell = new RecipeTableViewCell (UITableViewCellStyle.Default, RecipeCellId);
 
 				// Provide to the cell its corresponding recipe depending on the argument row
-				cell.Recipe = Recipes[indexPath.Row];
+				cell.Recipe = Recipes [indexPath.Row];
 
 				// Right arrow-looking indicator on the right side of the table view cell
 				cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
@@ -135,7 +133,7 @@ namespace RecipesAndPrinting
 
 			public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 			{
-				Recipe recipe = Recipes[indexPath.Row];
+				Recipe recipe = Recipes [indexPath.Row];
 
 				controller.ShowRecipe (recipe, true);
 			}

@@ -1,19 +1,17 @@
-﻿
-namespace XamarinShot.Utils
-{
-    using Foundation;
-    using SceneKit;
 
-    public static class SCNMaterialExtensions
-    {
-        public static SCNMaterial Create(NSObject diffuse)
-        {
-            var material = SCNMaterial.Create();
-            material.Diffuse.Contents = diffuse;
-            material.DoubleSided = true;
-            material.LightingModelName = SCNLightingModel.PhysicallyBased;
+namespace XamarinShot.Utils {
+	using Foundation;
+	using SceneKit;
 
-            return material;
-        }
-    }
+	public static class SCNMaterialExtensions {
+		public static SCNMaterial Create (NSObject diffuse)
+		{
+			var material = SCNMaterial.Create ();
+			material.Diffuse.Contents = diffuse;
+			material.DoubleSided = true;
+			material.LightingModelName = SCNLightingModel.PhysicallyBased;
+
+			return material;
+		}
+	}
 }

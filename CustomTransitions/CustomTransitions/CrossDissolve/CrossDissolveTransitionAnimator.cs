@@ -1,4 +1,4 @@
-﻿using UIKit;
+using UIKit;
 
 namespace CustomTransitions {
 	public class CrossDissolveTransitionAnimator : UIViewControllerAnimatedTransitioning {
@@ -10,13 +10,13 @@ namespace CustomTransitions {
 
 		public override void AnimateTransition (IUIViewControllerContextTransitioning transitionContext)
 		{
-			var fromViewController = transitionContext.GetViewControllerForKey(UITransitionContext.FromViewControllerKey);
-			var toViewController = transitionContext.GetViewControllerForKey(UITransitionContext.ToViewControllerKey);
+			var fromViewController = transitionContext.GetViewControllerForKey (UITransitionContext.FromViewControllerKey);
+			var toViewController = transitionContext.GetViewControllerForKey (UITransitionContext.ToViewControllerKey);
 
 			UIView containerView = transitionContext.ContainerView;
 
-			var fromView = transitionContext.GetViewFor(UITransitionContext.FromViewKey);
-			var toView = transitionContext.GetViewFor(UITransitionContext.ToViewKey);
+			var fromView = transitionContext.GetViewFor (UITransitionContext.FromViewKey);
+			var toView = transitionContext.GetViewFor (UITransitionContext.ToViewKey);
 
 			fromView.Frame = transitionContext.GetInitialFrameForViewController (fromViewController);
 			toView.Frame = transitionContext.GetFinalFrameForViewController (toViewController);
@@ -28,12 +28,12 @@ namespace CustomTransitions {
 			var transitionDuration = TransitionDuration (transitionContext);
 
 			UIView.Animate (transitionDuration, 0, UIViewAnimationOptions.TransitionNone, () => {
-					fromView.Alpha = 0f;
-					toView.Alpha = 1f;
-				}, () => {
-					bool wasCancel = transitionContext.TransitionWasCancelled;
-					transitionContext.CompleteTransition (!wasCancel);
-				}
+				fromView.Alpha = 0f;
+				toView.Alpha = 1f;
+			}, () => {
+				bool wasCancel = transitionContext.TransitionWasCancelled;
+				transitionContext.CompleteTransition (!wasCancel);
+			}
 			);
 		}
 	}

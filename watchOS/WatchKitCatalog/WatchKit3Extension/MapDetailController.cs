@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  * This controller displays a map and demonstrates use of setting its coordinate region, zoom level, and addition and removal of annotations.
 */
 
@@ -11,10 +11,8 @@ using Foundation;
 using CoreGraphics;
 using CoreLocation;
 
-namespace WatchkitExtension
-{
-	public partial class MapDetailController : WKInterfaceController
-	{
+namespace WatchkitExtension {
+	public partial class MapDetailController : WKInterfaceController {
 		MKCoordinateRegion currentRegion;
 		MKCoordinateSpan currentSpan;
 
@@ -101,9 +99,8 @@ namespace WatchkitExtension
 			var secondCoordinate = new CLLocationCoordinate2D (currentRegion.Center.Latitude, currentRegion.Center.Longitude + 0.3f);
 
 			// Uses image in WatchKit Extension bundle
-			using (var image = UIImage.FromBundle("Bumblebee"))
-			{
-				map.AddAnnotation(secondCoordinate, image, CGPoint.Empty);
+			using (var image = UIImage.FromBundle ("Bumblebee")) {
+				map.AddAnnotation (secondCoordinate, image, CGPoint.Empty);
 			}
 		}
 

@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	public class DeleteRecordZoneSample : CodeSample
-	{
+namespace CloudKitAtlas {
+	public class DeleteRecordZoneSample : CodeSample {
 		public DeleteRecordZoneSample ()
 			: base (title: "DeleteRecordZone",
 					className: "CKDatabase",

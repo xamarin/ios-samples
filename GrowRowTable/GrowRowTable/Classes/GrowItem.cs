@@ -1,9 +1,7 @@
-﻿using System;
+using System;
 
-namespace GrowRowTable
-{
-	public class GrowItem
-	{
+namespace GrowRowTable {
+	public class GrowItem {
 		public string ImageName { get; set; } = "";
 		public string Title { get; set; } = "";
 		public string Description { get; set; } = "";

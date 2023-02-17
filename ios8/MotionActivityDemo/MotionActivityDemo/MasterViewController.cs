@@ -8,16 +8,14 @@ using System.Collections.Generic;
 using CoreFoundation;
 using System.Threading.Tasks;
 
-namespace MotionActivityDemo
-{
-	public partial class MasterViewController : UITableViewController
-	{
+namespace MotionActivityDemo {
+	public partial class MasterViewController : UITableViewController {
 		ActivityDataManager dataManager;
 		List<MotionActivityQuery> motionActivityQueries;
 
-		#pragma warning disable 414
+#pragma warning disable 414
 		NSObject observer;
-		#pragma warning disable 414
+#pragma warning disable 414
 
 		public MasterViewController (IntPtr handle) : base (handle)
 		{
@@ -72,9 +70,9 @@ namespace MotionActivityDemo
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			UITableViewCell cell = tableView.DequeueReusableCell ((NSString)"Cell", indexPath);
+			UITableViewCell cell = tableView.DequeueReusableCell ((NSString) "Cell", indexPath);
 
-			MotionActivityQuery query = motionActivityQueries[indexPath.Row];
+			MotionActivityQuery query = motionActivityQueries [indexPath.Row];
 			cell.TextLabel.Text = query.ShortDescription;
 			return cell;
 		}

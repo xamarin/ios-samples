@@ -1,9 +1,7 @@
-﻿using Foundation;
+using Foundation;
 
-namespace Emporium
-{
-	public class Product : NSObject
-	{
+namespace Emporium {
+	public class Product : NSObject {
 		public string Name { get; set; }
 
 		new public string Description { get; set; }

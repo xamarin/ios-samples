@@ -3,8 +3,7 @@ using UIKit;
 using CoreGraphics;
 using Foundation;
 
-namespace PaintCode
-{
+namespace PaintCode {
 	/// <summary>
 	/// Blue button example
 	/// http://paintcodeapp.com/examples.html
@@ -13,8 +12,7 @@ namespace PaintCode
 	/// This implementation only deals with Normal and Pressed states.
 	/// There is no handling for the Disabled state.
 	/// </remarks>
-	public class GlossyButton : UIButton
-	{
+	public class GlossyButton : UIButton {
 		bool isPressed;
 		public UIColor NormalColor;
 
@@ -80,7 +78,7 @@ namespace PaintCode
 				//UIColor background = Enabled ? isPressed ? HighlightedColor : NormalColor : DisabledColor;
 
 				UIColor buttonColor = NormalColor; //UIColor.FromRGBA (0.00f, 0.37f, 0.89f, 1.00f);
-				var buttonColorRGBA = new nfloat[4];
+				var buttonColorRGBA = new nfloat [4];
 				buttonColor.GetRGBA (
 					out buttonColorRGBA [0],
 					out buttonColorRGBA [1],
@@ -89,7 +87,7 @@ namespace PaintCode
 				);
 				if (isPressed) {
 					// Get the Hue Saturation Brightness Alpha copy of the color
-					var buttonColorHSBA = new nfloat[4];
+					var buttonColorHSBA = new nfloat [4];
 					buttonColor.GetHSBA (
 						out buttonColorHSBA [0],
 						out buttonColorHSBA [1],
@@ -99,7 +97,7 @@ namespace PaintCode
 					// Change the brightness to a fixed value (0.5f)
 					buttonColor = UIColor.FromHSBA (buttonColorHSBA [0], buttonColorHSBA [1], 0.5f, buttonColorHSBA [3]);
 					// Re-set the base buttonColorRGBA because everything else is relative to it
-					buttonColorRGBA = new nfloat[4];
+					buttonColorRGBA = new nfloat [4];
 					buttonColor.GetRGBA (
 						out buttonColorRGBA [0],
 						out buttonColorRGBA [1],
@@ -116,24 +114,24 @@ namespace PaintCode
 
 					// ------------- START PAINTCODE -------------
 
-// Color Declarations
+					// Color Declarations
 					UIColor frameColorTop = UIColor.FromRGBA (0.20f, 0.20f, 0.20f, 1.00f);
 					UIColor frameShadowColor = UIColor.FromRGBA (1.00f, 1.00f, 1.00f, 0.40f);
 
 					UIColor glossyColorBottom = UIColor.FromRGBA (
-						                            (buttonColorRGBA [0] * 0.6f + 0.4f),
-						                            (buttonColorRGBA [1] * 0.6f + 0.4f),
-						                            (buttonColorRGBA [2] * 0.6f + 0.4f),
-						                            (buttonColorRGBA [3] * 0.6f + 0.4f)
-					                            );
+													(buttonColorRGBA [0] * 0.6f + 0.4f),
+													(buttonColorRGBA [1] * 0.6f + 0.4f),
+													(buttonColorRGBA [2] * 0.6f + 0.4f),
+													(buttonColorRGBA [3] * 0.6f + 0.4f)
+												);
 					UIColor glossyColorUp = UIColor.FromRGBA (
-						                        (buttonColorRGBA [0] * 0.2f + 0.8f),
-						                        (buttonColorRGBA [1] * 0.2f + 0.8f),
-						                        (buttonColorRGBA [2] * 0.2f + 0.8f),
-						                        (buttonColorRGBA [3] * 0.2f + 0.8f)
-					                        );
+												(buttonColorRGBA [0] * 0.2f + 0.8f),
+												(buttonColorRGBA [1] * 0.2f + 0.8f),
+												(buttonColorRGBA [2] * 0.2f + 0.8f),
+												(buttonColorRGBA [3] * 0.2f + 0.8f)
+											);
 
-// Gradient Declarations
+					// Gradient Declarations
 					var glossyGradientColors = new CGColor [] {
 						glossyColorUp.CGColor,
 						glossyColorBottom.CGColor
@@ -141,7 +139,7 @@ namespace PaintCode
 					var glossyGradientLocations = new nfloat [] { 0, 1 };
 					var glossyGradient = new CGGradient (colorSpace, glossyGradientColors, glossyGradientLocations);
 
-// Shadow Declarations
+					// Shadow Declarations
 					var frameInnerShadow = frameShadowColor.CGColor;
 					var frameInnerShadowOffset = new CGSize (0, -0);
 					const int frameInnerShadowBlurRadius = 3;
@@ -153,10 +151,10 @@ namespace PaintCode
 					const int textShadowBlurRadius = 1;
 					var buttonShadow = UIColor.Black.CGColor;
 
-					var buttonShadowOffset = new CGSize (0, isPressed ? 0 : 2);		// ADDED this code after PaintCode
-					var buttonShadowBlurRadius = isPressed ? 2 : 3;					// ADDED this code after PaintCode
+					var buttonShadowOffset = new CGSize (0, isPressed ? 0 : 2);     // ADDED this code after PaintCode
+					var buttonShadowBlurRadius = isPressed ? 2 : 3;                 // ADDED this code after PaintCode
 
-// outerFrame Drawing
+					// outerFrame Drawing
 					var outerFramePath = UIBezierPath.FromRoundedRect (new CGRect (2.5f, 1.5f, 120, 32), 8);
 					context.SaveState ();
 					context.SetShadow (buttonShadowOffset, buttonShadowBlurRadius, buttonShadow);
@@ -168,14 +166,14 @@ namespace PaintCode
 					outerFramePath.LineWidth = 1;
 					outerFramePath.Stroke ();
 
-// innerFrame Drawing
+					// innerFrame Drawing
 					var innerFramePath = UIBezierPath.FromRoundedRect (new CGRect (5.5f, 4.5f, 114, 26), 5);
 					context.SaveState ();
 					context.SetShadow (frameInnerShadowOffset, frameInnerShadowBlurRadius, frameInnerShadow);
 					buttonColor.SetFill ();
 					innerFramePath.Fill ();
 
-// innerFrame Inner Shadow
+					// innerFrame Inner Shadow
 					var innerFrameBorderRect = innerFramePath.Bounds;
 					innerFrameBorderRect.Inflate (buttonInnerShadowBlurRadius, buttonInnerShadowBlurRadius);
 					innerFrameBorderRect.Offset (-buttonInnerShadowOffset.Width, -buttonInnerShadowOffset.Height);
@@ -188,7 +186,7 @@ namespace PaintCode
 
 					context.SaveState ();
 					{
-						var xOffset = buttonInnerShadowOffset.Width + (float)Math.Round (innerFrameBorderRect.Width);
+						var xOffset = buttonInnerShadowOffset.Width + (float) Math.Round (innerFrameBorderRect.Width);
 						var yOffset = buttonInnerShadowOffset.Height;
 						context.SetShadow (
 							new CGSize (xOffset + (xOffset >= 0 ? 0.1f : -0.1f), yOffset + (yOffset >= 0 ? 0.1f : -0.1f)),
@@ -196,7 +194,7 @@ namespace PaintCode
 							buttonInnerShadow);
 
 						innerFramePath.AddClip ();
-						var transform = CGAffineTransform.MakeTranslation (-(float)Math.Round (innerFrameBorderRect.Width), 0);
+						var transform = CGAffineTransform.MakeTranslation (-(float) Math.Round (innerFrameBorderRect.Width), 0);
 						innerFrameNegativePath.ApplyTransform (transform);
 						UIColor.Gray.SetFill ();
 						innerFrameNegativePath.Fill ();
@@ -209,17 +207,17 @@ namespace PaintCode
 					innerFramePath.LineWidth = 1;
 					innerFramePath.Stroke ();
 
-// Rounded Rectangle Drawing
+					// Rounded Rectangle Drawing
 					var roundedRectanglePath = UIBezierPath.FromRoundedRect (new CGRect (8, 6, 109, 9), 4);
 					context.SaveState ();
 					roundedRectanglePath.AddClip ();
 					context.DrawLinearGradient (glossyGradient, new CGPoint (62.5f, 6), new CGPoint (62.5f, 15), 0);
 					context.RestoreState ();
 
-// Text Drawing
+					// Text Drawing
 					// var textRect = new CGRect (18, 6, 90, 28);
 					context.SaveState ();
-					context.SetShadow(textShadowOffset, textShadowBlurRadius, textShadow);
+					context.SetShadow (textShadowOffset, textShadowBlurRadius, textShadow);
 					glossyColorUp.SetFill ();
 
 					// Use default button-drawn text

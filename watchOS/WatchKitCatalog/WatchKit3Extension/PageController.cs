@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This controller represents a single page of the modal page-based navigation controller, 
  * presented in AAPLControllerDetailController.
 */
@@ -9,10 +9,8 @@ using UIKit;
 using WatchKit;
 using Foundation;
 
-namespace WatchkitExtension
-{
-	public partial class PageController : WKInterfaceController
-	{
+namespace WatchkitExtension {
+	public partial class PageController : WKInterfaceController {
 		public PageController ()
 		{
 		}

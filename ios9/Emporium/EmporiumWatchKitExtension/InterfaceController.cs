@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 
 using WatchKit;
 using Foundation;
 
 using Emporium;
 
-namespace EmporiumWatchKitExtension
-{
-	public partial class InterfaceController : WKInterfaceController
-	{
+namespace EmporiumWatchKitExtension {
+	public partial class InterfaceController : WKInterfaceController {
 		[Outlet ("statusLabel")]
 		public WKInterfaceLabel StatusLabel { get; set; }
 

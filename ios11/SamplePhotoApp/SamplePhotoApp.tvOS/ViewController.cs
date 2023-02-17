@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using Foundation;
 using UIKit;
 
-namespace SamplePhotoApp.tvOS
-{
-	public partial class ViewController : UIViewController
-	{
+namespace SamplePhotoApp.tvOS {
+	public partial class ViewController : UIViewController {
 		public ViewController (IntPtr handle) : base (handle)
 		{
 		}

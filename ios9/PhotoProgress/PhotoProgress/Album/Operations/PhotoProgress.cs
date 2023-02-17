@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Foundation;
 
@@ -13,7 +13,7 @@ namespace PhotoProgress {
 
 		public void AddChild (PhotoProgress child, int pendingUnitCount)
 		{
-			child.CompletedUnitCountChanged += (obj, args) => CompletedUnitCountChanged?.Invoke(obj, args);
+			child.CompletedUnitCountChanged += (obj, args) => CompletedUnitCountChanged?.Invoke (obj, args);
 			base.AddChild (child, pendingUnitCount);
 		}
 

@@ -1,18 +1,14 @@
 using System;
 using UIKit;
 
-namespace Example_SharedResources
-{
+namespace Example_SharedResources {
 	public class Application// : UIApplication
 	{
-		public static void Main (string[] args)
+		public static void Main (string [] args)
 		{
-			try
-			{
+			try {
 				UIApplication.Main (args, null, "AppDelegate");
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				Console.WriteLine (e.ToString ());
 			}
 		}

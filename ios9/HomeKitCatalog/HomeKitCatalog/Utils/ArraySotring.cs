@@ -1,18 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using HomeKit;
 
-namespace HomeKitCatalog
-{
-	public static class ArraySotringExtensions
-	{
-		public static void SortByLocalizedName<T> (this T[] array, Func<T, string> nameGetter)
+namespace HomeKitCatalog {
+	public static class ArraySotringExtensions {
+		public static void SortByLocalizedName<T> (this T [] array, Func<T, string> nameGetter)
 		{
-			Array.Sort(array, (x, y) => {
-				var xName = nameGetter(x);
+			Array.Sort (array, (x, y) => {
+				var xName = nameGetter (x);
 				var yName = nameGetter (y);
-				return xName.CompareTo(yName);
+				return xName.CompareTo (yName);
 			});
 		}
 
@@ -20,9 +18,9 @@ namespace HomeKitCatalog
 		public static void SortByLocalizedName<T> (this List<T> list, Func<T, string> nameGetter)
 		{
 			list.Sort ((x, y) => {
-				var xName = nameGetter(x);
+				var xName = nameGetter (x);
 				var yName = nameGetter (y);
-				return xName.CompareTo(yName);
+				return xName.CompareTo (yName);
 			});
 		}
 

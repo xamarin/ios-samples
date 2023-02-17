@@ -7,10 +7,8 @@ using Foundation;
 using CoreAnimation;
 using CoreGraphics;
 
-namespace CoreAnimationExample
-{
-	public partial class LayerAnimationScreen : UIViewController, IDetailView
-	{
+namespace CoreAnimationExample {
+	public partial class LayerAnimationScreen : UIViewController, IDetailView {
 		public event EventHandler ContentsButtonClicked;
 
 		CGPath animationPath;
@@ -34,7 +32,7 @@ namespace CoreAnimationExample
 			btnAnimate.TouchUpInside += (s, e) => {
 
 				// create a keyframe animation
-				var keyFrameAnimation = (CAKeyFrameAnimation)CAKeyFrameAnimation.GetFromKeyPath ("position");
+				var keyFrameAnimation = (CAKeyFrameAnimation) CAKeyFrameAnimation.GetFromKeyPath ("position");
 				keyFrameAnimation.Path = animationPath;
 				keyFrameAnimation.Duration = 3;
 
@@ -75,10 +73,10 @@ namespace CoreAnimationExample
 			// create our offscreen bitmap context
 			var bitmapSize = new CGSize (View.Frame.Size);
 			using (var context = new CGBitmapContext (
-				                     IntPtr.Zero,
-				                     (int)bitmapSize.Width, (int)bitmapSize.Height, 8,
-				                     (int)(4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
-				                     CGImageAlphaInfo.PremultipliedFirst)) {
+									 IntPtr.Zero,
+									 (int) bitmapSize.Width, (int) bitmapSize.Height, 8,
+									 (int) (4 * bitmapSize.Width), CGColorSpace.CreateDeviceRGB (),
+									 CGImageAlphaInfo.PremultipliedFirst)) {
 
 				// convert to View space
 				var affineTransform = CGAffineTransform.MakeIdentity ();

@@ -5,8 +5,7 @@ using CoreGraphics;
 using QuartzSample;
 
 [Register]
-public class EllipseArcDrawingView : QuartzView
-{
+public class EllipseArcDrawingView : QuartzView {
 	public override void DrawInContext (CGContext context)
 	{
 		// Drawing with a white stroke color
@@ -27,23 +26,23 @@ public class EllipseArcDrawingView : QuartzView
 		context.FillEllipseInRect (new CGRect (30, 210, 60, 60));
 
 		// Stroke 2 seperate arcs
-		context.AddArc (150, 60, 30, 0, (float)Math.PI / 2, false);
+		context.AddArc (150, 60, 30, 0, (float) Math.PI / 2, false);
 		context.StrokePath ();
-		context.AddArc (150, 60, 30, (float)(3 * Math.PI / 2), (float)Math.PI, true);
+		context.AddArc (150, 60, 30, (float) (3 * Math.PI / 2), (float) Math.PI, true);
 		context.StrokePath ();
 
 		// Stroke 2 arcs together going opposite directions.
-		context.AddArc (150, 150, 30, 0, (float)Math.PI / 2, false);
-		context.AddArc (150, 150, 30, (float)(3 * Math.PI / 2), (float)Math.PI, true);
+		context.AddArc (150, 150, 30, 0, (float) Math.PI / 2, false);
+		context.AddArc (150, 150, 30, (float) (3 * Math.PI / 2), (float) Math.PI, true);
 		context.StrokePath ();
 
 		// Stroke 2 arcs together going the same direction..
-		context.AddArc (150, 240, 30, 0, (float)(Math.PI / 2), false);
-		context.AddArc (150, 240, 30, (float)Math.PI, (float)(3 * Math.PI / 2), false);
+		context.AddArc (150, 240, 30, 0, (float) (Math.PI / 2), false);
+		context.AddArc (150, 240, 30, (float) Math.PI, (float) (3 * Math.PI / 2), false);
 		context.StrokePath ();
 
 		// Stroke an arc using AddArcToPoint
-		CGPoint[] p = {
+		CGPoint [] p = {
 			new CGPoint (210, 30),
 			new CGPoint (210, 60),
 			new CGPoint (240, 60),
@@ -106,8 +105,7 @@ public class EllipseArcDrawingView : QuartzView
 }
 
 [Register]
-public class BezierDrawingView : QuartzView
-{
+public class BezierDrawingView : QuartzView {
 	public override void DrawInContext (CGContext context)
 	{
 		// Drawing with a white stroke color

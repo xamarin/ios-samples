@@ -5,13 +5,11 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace UIKitEnhancements
-{
-	public class SearchResultsTableSource :UITableViewSource
-	{
+namespace UIKitEnhancements {
+	public class SearchResultsTableSource : UITableViewSource {
 		#region Private Variables
 		private MainMenuTableViewController _controller;
-		private List<MenuItem> _items = new List<MenuItem>();
+		private List<MenuItem> _items = new List<MenuItem> ();
 		#endregion
 
 		#region Computed Properties
@@ -20,23 +18,20 @@ namespace UIKitEnhancements
 		/// </summary>
 		/// <value>The this app.</value>
 		public AppDelegate ThisApp {
-			get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+			get { return (AppDelegate) UIApplication.SharedApplication.Delegate; }
 		}
 
 		/// <summary>
 		/// Gets or sets the <see cref="UIKitEnhancements.MenuItem"/> at the specified index.
 		/// </summary>
 		/// <param name="index">Index.</param>
-		public MenuItem this[int index]
-		{
-			get
-			{
-				return _items[index];
+		public MenuItem this [int index] {
+			get {
+				return _items [index];
 			}
 
-			set
-			{
-				_items[index] = value;
+			set {
+				_items [index] = value;
 			}
 		}
 
@@ -61,7 +56,8 @@ namespace UIKitEnhancements
 		/// <summary>
 		/// Loads the data.
 		/// </summary>
-		public void Search(string searchText) {
+		public void Search (string searchText)
+		{
 
 			// Clear existing items
 			_items.Clear ();
@@ -170,9 +166,8 @@ namespace UIKitEnhancements
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
 			//Decant reusable cell
-			UITableViewCell searchCell = tableView.DequeueReusableCell("SEARCH"); 
-			if (searchCell == null )
-			{
+			UITableViewCell searchCell = tableView.DequeueReusableCell ("SEARCH");
+			if (searchCell == null) {
 				//Not found, assemble new cell
 				searchCell = new UITableViewCell (UITableViewCellStyle.Default, "SEARCH");
 			}
@@ -195,7 +190,7 @@ namespace UIKitEnhancements
 		{
 			// Note item accessory being displayed and 
 			// open it's details and services view
-			_controller.MenuItem = _items[indexPath.Row];
+			_controller.MenuItem = _items [indexPath.Row];
 
 			// Performing a segue?
 			if (_controller.MenuItem.Segue != "") {
@@ -205,7 +200,7 @@ namespace UIKitEnhancements
 					_controller.PerformSegue (_controller.MenuItem.Segue, _controller);
 				} else {
 					// Yes, invoke segue against the iPad default view
-					ThisApp.iPadViewController.MenuItem = _items[indexPath.Row];
+					ThisApp.iPadViewController.MenuItem = _items [indexPath.Row];
 					ThisApp.iPadViewController.PerformSegue (_controller.MenuItem.Segue, ThisApp.iPadViewController);
 				}
 			}

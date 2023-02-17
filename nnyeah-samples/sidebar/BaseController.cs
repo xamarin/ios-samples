@@ -4,19 +4,17 @@ using Foundation;
 using UIKit;
 using ObjCRuntime;
 
-namespace StoryboardSample
-{
-	public partial class BaseController : UIViewController
-	{
+namespace StoryboardSample {
+	public partial class BaseController : UIViewController {
 		// provide access to the sidebar controller to all inheriting controllers
-		protected SidebarNavigation.SidebarController? SidebarController { 
+		protected SidebarNavigation.SidebarController? SidebarController {
 			get {
 				return (UIApplication.SharedApplication.Delegate as AppDelegate)?.RootViewController?.SidebarController;
-			} 
+			}
 		}
 
 		// provide access to the navigation controller to all inheriting controllers
-		protected NavController NavController { 
+		protected NavController NavController {
 			get {
 				if (UIApplication.SharedApplication.Delegate is AppDelegate appDelegate && appDelegate.RootViewController is not null) {
 					return appDelegate.RootViewController.NavController;
@@ -24,11 +22,11 @@ namespace StoryboardSample
 					Console.WriteLine ("NavController failed");
 					throw new NotSupportedException ("unable to get root view controller.");
 				}
-			} 
+			}
 		}
 
 		// provide access to the storyboard to all inheriting controllers
-		public override UIStoryboard Storyboard { 
+		public override UIStoryboard Storyboard {
 			get {
 				if (UIApplication.SharedApplication.Delegate is AppDelegate appDelegate && appDelegate.RootViewController is not null) {
 					return appDelegate.RootViewController.Storyboard;
@@ -36,7 +34,7 @@ namespace StoryboardSample
 					Console.WriteLine ("Storyboard failed.");
 					throw new NotSupportedException ("unable to get storyboard.");
 				}
-			} 
+			}
 		}
 
 		public BaseController (NativeHandle handle) : base (handle)
@@ -54,7 +52,8 @@ namespace StoryboardSample
 					ButtonHandler), true);
 		}
 
-		void ButtonHandler (object? sender, EventArgs e) {
+		void ButtonHandler (object? sender, EventArgs e)
+		{
 			if (SidebarController is not null) {
 				SidebarController.ToggleMenu ();
 			}

@@ -6,12 +6,10 @@ using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	// A view controller that lists rooms within a home and allows the user to add the rooms to a provided zone.
-	public partial class AddRoomViewController : HMCatalogViewController
-	{
-		static readonly NSString RoomCell = (NSString)"RoomCell";
+	public partial class AddRoomViewController : HMCatalogViewController {
+		static readonly NSString RoomCell = (NSString) "RoomCell";
 
 		readonly List<HMRoom> displayedRooms = new List<HMRoom> ();
 		readonly List<HMRoom> selectedRooms = new List<HMRoom> ();
@@ -88,7 +86,7 @@ namespace HomeKitCatalog
 			else
 				selectedRooms.Add (room);
 
-			tableView.ReloadRows (new []{ indexPath }, UITableViewRowAnimation.Automatic);
+			tableView.ReloadRows (new [] { indexPath }, UITableViewRowAnimation.Automatic);
 		}
 
 		// Resets the list of displayed rooms and reloads the table.

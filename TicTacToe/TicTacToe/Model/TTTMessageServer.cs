@@ -3,10 +3,8 @@ using Foundation;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TicTacToe
-{
-	public class TTTMessageServer
-	{
+namespace TicTacToe {
+	public class TTTMessageServer {
 		public event EventHandler<MessageEvenArg> MessagesAdded;
 
 		List<TTTMessage> messages;
@@ -35,7 +33,7 @@ namespace TicTacToe
 			get {
 				NSError error;
 				return NSFileManager.DefaultManager.GetUrl (NSSearchPathDirectory.DocumentDirectory,
-				                                                 NSSearchPathDomain.User, null, true, out error);
+																 NSSearchPathDomain.User, null, true, out error);
 			}
 		}
 
@@ -43,14 +41,14 @@ namespace TicTacToe
 		{
 			NSData data = NSData.FromUrl (MessagesUrl);
 			if (data != null)
-				messages = (List<TTTMessage>)TTTProfile.ByteArrayToObject (data.ToArray ());
+				messages = (List<TTTMessage>) TTTProfile.ByteArrayToObject (data.ToArray ());
 		}
 
 		public void WriteMessages ()
 		{
 			NSError error;
 
-			byte[] bytes = TTTProfile.ObjectToByteArray (messages);
+			byte [] bytes = TTTProfile.ObjectToByteArray (messages);
 			NSData data = NSData.FromArray (bytes);
 			data.Save (MessagesUrl, false, out error);
 		}

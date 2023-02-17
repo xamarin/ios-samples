@@ -3,10 +3,8 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace Touch
-{
-	partial class CustomGestureViewController : UIViewController
-	{
+namespace Touch {
+	partial class CustomGestureViewController : UIViewController {
 		#region Private Variables
 		private bool isChecked = false;
 		private CheckmarkGestureRecognizer checkmarkGesture;
@@ -19,39 +17,35 @@ namespace Touch
 		#endregion
 
 		#region Override Methods
-		public override void ViewDidLoad()
+		public override void ViewDidLoad ()
 		{
-			base.ViewDidLoad();
+			base.ViewDidLoad ();
 
 			// Wire up the gesture recognizer
-			WireUpCheckmarkGestureRecognizer();
+			WireUpCheckmarkGestureRecognizer ();
 		}
 		#endregion
 
 		#region Private Methods
-		private void WireUpCheckmarkGestureRecognizer()
+		private void WireUpCheckmarkGestureRecognizer ()
 		{
 			// Create the recognizer
-			checkmarkGesture = new CheckmarkGestureRecognizer();
+			checkmarkGesture = new CheckmarkGestureRecognizer ();
 
 			// Wire up the event handler
-			checkmarkGesture.AddTarget(() =>{
-				if (checkmarkGesture.State == (UIGestureRecognizerState.Recognized | UIGestureRecognizerState.Ended))
-				{
-					if (isChecked)
-					{
-						CheckboxImage.Image = UIImage.FromBundle("CheckBox_Unchecked.png");
-					}
-					else
-					{
-						CheckboxImage.Image = UIImage.FromBundle("CheckBox_Checked.png");
+			checkmarkGesture.AddTarget (() => {
+				if (checkmarkGesture.State == (UIGestureRecognizerState.Recognized | UIGestureRecognizerState.Ended)) {
+					if (isChecked) {
+						CheckboxImage.Image = UIImage.FromBundle ("CheckBox_Unchecked.png");
+					} else {
+						CheckboxImage.Image = UIImage.FromBundle ("CheckBox_Checked.png");
 					}
 					isChecked = !isChecked;
 				}
 			});
 
 			// Add the gesture recognizer to the view
-			View.AddGestureRecognizer(checkmarkGesture);
+			View.AddGestureRecognizer (checkmarkGesture);
 		}
 		#endregion
 	}

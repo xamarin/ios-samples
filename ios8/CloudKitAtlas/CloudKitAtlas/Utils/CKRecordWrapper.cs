@@ -1,14 +1,12 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 using Foundation;
 using UIKit;
 using CloudKit;
 using CoreLocation;
 
-namespace CloudKitAtlas
-{
-	public class CKRecordWrapper : IResult
-	{
+namespace CloudKitAtlas {
+	public class CKRecordWrapper : IResult {
 		public CKRecord Record { get; }
 
 		public CKRecordWrapper (CKRecord record)

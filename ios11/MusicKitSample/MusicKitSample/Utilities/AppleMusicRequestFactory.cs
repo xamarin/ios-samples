@@ -1,4 +1,4 @@
-﻿/*
+/*
 Abstract:
 The `AppleMusicRequestFactory` type is used to build the various Apple Music API calls used by the sample.
 */
@@ -6,10 +6,8 @@ The `AppleMusicRequestFactory` type is used to build the various Apple Music API
 using System;
 using Foundation;
 using System.Collections.Generic;
-namespace MusicKitSample.Utilities
-{
-	public struct AppleMusicRequestFactory
-	{
+namespace MusicKitSample.Utilities {
+	public struct AppleMusicRequestFactory {
 		#region Types
 
 		// The base URL for all Apple Music API network calls.
@@ -70,7 +68,7 @@ namespace MusicKitSample.Utilities
 			// Create and configure the `URLRequest`.
 			var urlRequest = new NSMutableUrlRequest (urlComponents.Url) { HttpMethod = "GET" };
 			urlRequest.Headers = new NSDictionary ("Authorization", $"Bearer {developerToken}",
-							       "Music-User-Token", userToken);
+								   "Music-User-Token", userToken);
 
 			return urlRequest;
 		}
@@ -83,7 +81,7 @@ namespace MusicKitSample.Utilities
 			// Create and configure the `URLRequest`.
 			var urlRequest = new NSMutableUrlRequest (urlComponents.Url) { HttpMethod = "GET" };
 			urlRequest.Headers = new NSDictionary ("Authorization", $"Bearer {developerToken}",
-							       "Music-User-Token", userToken);
+								   "Music-User-Token", userToken);
 
 			return urlRequest;
 		}

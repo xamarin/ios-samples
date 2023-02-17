@@ -4,10 +4,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Hello_ComplexUniversal.Screens
-{
-	public partial class HomeScreen_iPad : UIViewController
-	{
+namespace Hello_ComplexUniversal.Screens {
+	public partial class HomeScreen_iPad : UIViewController {
 		//loads the HomeScreen_iPad.xib file and connects it to this object
 		public HomeScreen_iPad () : base ("HomeScreen_iPad", null)
 		{

@@ -9,10 +9,8 @@ using UIKit;
 using EventKitUI;
 using MonoTouch.Dialog;
 
-namespace PokerNightVoting
-{
-	public partial class PokerNightVotingViewController : DialogViewController
-	{
+namespace PokerNightVoting {
+	public partial class PokerNightVotingViewController : DialogViewController {
 		public PNVModel model { get; set; }
 
 		public PokerNightVotingViewController (IntPtr handle) : base (handle)
@@ -24,12 +22,13 @@ namespace PokerNightVoting
 			base.ViewDidLoad ();
 			model = new PNVModel ();
 
-			if(model.SelectedCalendar != null)
+			if (model.SelectedCalendar != null)
 				Title = model.SelectedCalendar.Title;
 
 			// Start listening for changes
 			model.StartBoradcastingModelChangedNotificaitons ();
-			NSNotificationCenter.DefaultCenter.AddObserver (model.PNVModelChangedNotification, delegate {
+			NSNotificationCenter.DefaultCenter.AddObserver (model.PNVModelChangedNotification, delegate
+			{
 				RefreshView ();
 			});
 
@@ -94,12 +93,12 @@ namespace PokerNightVoting
 
 					var entry = new StyledStringElement (local.ToShortTimeString (), votes, UITableViewCellStyle.Value1);
 
-					entry.Tapped += delegate {
+					entry.Tapped += delegate
+					{
 						var controller = new EKEventViewController ();
 						controller.Event = EventAtIndexPath (entry.IndexPath);
 						controller.AllowsEditing = true;
-						controller.Completed += (object sender, EKEventViewEventArgs e) =>
-						{
+						controller.Completed += (object sender, EKEventViewEventArgs e) => {
 							model.FetchPokerEvents ();
 						};
 
@@ -108,7 +107,8 @@ namespace PokerNightVoting
 
 					entry.Accessory = UITableViewCellAccessory.DetailDisclosureButton;
 
-					entry.AccessoryTapped += delegate {
+					entry.AccessoryTapped += delegate
+					{
 						var ekevent = EventAtIndexPath (entry.IndexPath);
 						model.IncreaseVoteOnEvent (ekevent);
 					};
@@ -125,8 +125,7 @@ namespace PokerNightVoting
 			// Show the EKEventEditViewController
 			var controller = new EKEventEditViewController ();
 			controller.EventStore = model.EventStore;
-			controller.Completed += (object obj, EKEventEditEventArgs e) =>
-			{
+			controller.Completed += (object obj, EKEventEditEventArgs e) => {
 				DismissViewController (true, null);
 
 				if (e.Action != EKEventEditViewAction.Canceled) {
@@ -153,32 +152,29 @@ namespace PokerNightVoting
 		{
 			// Show the EKCalendarChooser
 			var calendarChooser = new EKCalendarChooser (EKCalendarChooserSelectionStyle.Single,
-			                                                           EKCalendarChooserDisplayStyle.WritableCalendarsOnly,
-			                                                           model.EventStore);
+																	   EKCalendarChooserDisplayStyle.WritableCalendarsOnly,
+																	   model.EventStore);
 			calendarChooser.ShowsDoneButton = true;
 			calendarChooser.ShowsCancelButton = false;
-			calendarChooser.SelectionChanged += (object obj, EventArgs e) =>
-			{
+			calendarChooser.SelectionChanged += (object obj, EventArgs e) => {
 				// Called whenever the selection is changed by the user
 				model.SelectedCalendar = (EKCalendar) calendarChooser.SelectedCalendars.AnyObject;
 				Title = model.SelectedCalendar.Title;
 			};
-			calendarChooser.Finished += (object obj, EventArgs e) =>
-			{
+			calendarChooser.Finished += (object obj, EventArgs e) => {
 				// These are called when the corresponding button is pressed to dismiss the
 				// controller. It is up to the recipient to dismiss the chooser.
 				model.FetchPokerEvents ();
 				DismissViewController (true, null);
 			};
-			calendarChooser.SelectionChanged += (object obj, EventArgs e) =>
-			{
+			calendarChooser.SelectionChanged += (object obj, EventArgs e) => {
 				// Update our events, since the selected calendar may have changed.
 				model.SelectedCalendar = (EKCalendar) calendarChooser.SelectedCalendars.AnyObject;
 				Title = model.SelectedCalendar.Title;
 			};
 
 			if (model.SelectedCalendar != null) {
-				EKCalendar[] temp = new EKCalendar [1];
+				EKCalendar [] temp = new EKCalendar [1];
 				temp [0] = model.SelectedCalendar;
 				var selectedCalendars = new NSSet (temp);
 				calendarChooser.SelectedCalendars = selectedCalendars;

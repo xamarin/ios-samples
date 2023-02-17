@@ -11,10 +11,8 @@ using CoreImage;
 using Foundation;
 using UIKit;
 
-namespace AsyncDownloadImage
-{
-	public partial class AsyncDownloadImageViewController : UIViewController
-	{
+namespace AsyncDownloadImage {
+	public partial class AsyncDownloadImageViewController : UIViewController {
 		int clickNumber = 0;
 		WebClient webClient;
 		public AsyncDownloadImageViewController () : base ("AsyncDownloadImageViewController", null)
@@ -40,7 +38,7 @@ namespace AsyncDownloadImage
 			this.clickButton.SetTitleColor (UIColor.Blue, UIControlState.Normal);
 			this.clickButton.TouchUpInside += (sender, e) => {
 				clickNumber++;
-				this.clickButton.SetTitle( "Click Me:" + clickNumber, UIControlState.Normal);
+				this.clickButton.SetTitle ("Click Me:" + clickNumber, UIControlState.Normal);
 			};
 
 			this.downloadButton.TouchUpInside += downloadAsync;
@@ -58,49 +56,47 @@ namespace AsyncDownloadImage
 			return UIStatusBarStyle.Default;
 		}
 
-		async void downloadAsync(object sender, System.EventArgs ea)
+		async void downloadAsync (object sender, System.EventArgs ea)
 		{
 			webClient = new WebClient ();
 			//An large image url
 			var url = new Uri ("http://photojournal.jpl.nasa.gov/jpeg/PIA15416.jpg");
-			byte[] bytes = null;
+			byte [] bytes = null;
 
 			webClient.DownloadProgressChanged += HandleDownloadProgressChanged;
 
-			this.downloadButton.SetTitle ("Cancel",UIControlState.Normal);
+			this.downloadButton.SetTitle ("Cancel", UIControlState.Normal);
 			this.downloadButton.TouchUpInside -= downloadAsync;
 			this.downloadButton.TouchUpInside += cancelDownload;
 			infoLabel.Text = "Downloading...";
 
 			//Start download data using DownloadDataTaskAsync
-			try{
-				bytes = await webClient.DownloadDataTaskAsync(url);
-			}
-			catch(OperationCanceledException){
+			try {
+				bytes = await webClient.DownloadDataTaskAsync (url);
+			} catch (OperationCanceledException) {
 				Console.WriteLine ("Task Canceled!");
 				return;
-			}
-			catch(Exception e) {
-				Console.WriteLine (e.ToString());
+			} catch (Exception e) {
+				Console.WriteLine (e.ToString ());
 				return;
 			}
 			string documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
 			string localFilename = "downloaded.png";
- 			string localPath = Path.Combine (documentsPath, localFilename);
+			string localPath = Path.Combine (documentsPath, localFilename);
 			infoLabel.Text = "Download Complete";
 
 			//Save the image using writeAsync
 			FileStream fs = new FileStream (localPath, FileMode.OpenOrCreate);
 			await fs.WriteAsync (bytes, 0, bytes.Length);
 
-			Console.WriteLine("localPath:"+localPath);
+			Console.WriteLine ("localPath:" + localPath);
 
 			//Resizing image is time costing, using async to avoid blocking the UI thread
 			UIImage image = null;
 			CGSize imageViewSize = imageView.Frame.Size;
 
 			infoLabel.Text = "Resizing Image...";
-			await Task.Run( () => { image = UIImage.FromFile(localPath).Scale(imageViewSize); } );
+			await Task.Run (() => { image = UIImage.FromFile (localPath).Scale (imageViewSize); });
 			Console.WriteLine ("Loaded!");
 
 			imageView.Image = image;
@@ -118,10 +114,10 @@ namespace AsyncDownloadImage
 			this.downloadProgress.Progress = e.ProgressPercentage / 100.0f;
 		}
 
-		void cancelDownload(object sender, System.EventArgs ea)
+		void cancelDownload (object sender, System.EventArgs ea)
 		{
 			Console.WriteLine ("Cancel clicked!");
-			if(webClient!=null)
+			if (webClient != null)
 				webClient.CancelAsync ();
 
 			webClient.DownloadProgressChanged -= HandleDownloadProgressChanged;
@@ -132,10 +128,10 @@ namespace AsyncDownloadImage
 			this.downloadProgress.Progress = 0.0f;
 
 			new UIAlertView ("Canceled"
-			                 , "Download has been canceled."
-			                 , null
-			                 , "OK"
-			                 , null).Show();
+							 , "Download has been canceled."
+							 , null
+							 , "OK"
+							 , null).Show ();
 			infoLabel.Text = "Click Dowload button to download the image";
 		}
 

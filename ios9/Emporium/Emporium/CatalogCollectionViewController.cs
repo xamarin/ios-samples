@@ -1,29 +1,27 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace Emporium
-{
+namespace Emporium {
 	[Register ("CatalogCollectionViewController")]
-	public class CatalogCollectionViewController : UICollectionViewController
-	{
-		static readonly NSString reuseIdentifier = (NSString)"ProductCell";
-		static readonly NSString segueIdentifier = (NSString)"ProductDetailSegue";
+	public class CatalogCollectionViewController : UICollectionViewController {
+		static readonly NSString reuseIdentifier = (NSString) "ProductCell";
+		static readonly NSString segueIdentifier = (NSString) "ProductDetailSegue";
 
-		Product[] products;
+		Product [] products;
 
-		Product[] Products {
+		Product [] Products {
 			get {
 				if (products == null) {
 					// Populate the products array from a plist.
 					NSUrl productsURL = NSBundle.MainBundle.GetUrlForResource ("ProductsList", "plist");
 					var productArr = NSArray.FromFile (productsURL.Path);
 
-					products = new Product[(int)productArr.Count];
+					products = new Product [(int) productArr.Count];
 					for (nuint i = 0; i < productArr.Count; i++) {
 						var container = new ProductContainer (productArr.GetItem<NSDictionary> (i));
-						products [(int)i] = container.Product;
+						products [(int) i] = container.Product;
 					}
 				}
 
@@ -43,7 +41,7 @@ namespace Emporium
 				if (indexPaths == null || indexPaths.Length == 0)
 					return;
 
-				var viewController = (ProductTableViewController)segue.DestinationViewController;
+				var viewController = (ProductTableViewController) segue.DestinationViewController;
 				viewController.Product = products [indexPaths [0].Row];
 			} else {
 				base.PrepareForSegue (segue, sender);
@@ -59,7 +57,7 @@ namespace Emporium
 
 		public override UICollectionViewCell GetCell (UICollectionView collectionView, NSIndexPath indexPath)
 		{
-			var cell = (ProductCell)collectionView.DequeueReusableCell (reuseIdentifier, indexPath);
+			var cell = (ProductCell) collectionView.DequeueReusableCell (reuseIdentifier, indexPath);
 			ConfigureCell (cell, Products [indexPath.Row]);
 
 			return cell;

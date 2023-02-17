@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-namespace MonoDevelopTouchCells
-{
-	public class DataSource : UITableViewDataSource
-	{
+namespace MonoDevelopTouchCells {
+	public class DataSource : UITableViewDataSource {
 		List<Item> Data { get; set; }
 
 		public DataSource (IEnumerable<Item> data)
@@ -28,7 +26,7 @@ namespace MonoDevelopTouchCells
 		{
 			string customCellID = "MyCellID" + indexPath.Section + indexPath.Row;
 
-			CustomCell cell = (CustomCell)tableView.DequeueReusableCell (customCellID);
+			CustomCell cell = (CustomCell) tableView.DequeueReusableCell (customCellID);
 
 			if (cell == null) {
 				cell = new CustomCell (UITableViewCellStyle.Default, customCellID);

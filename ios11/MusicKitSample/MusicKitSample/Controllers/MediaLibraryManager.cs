@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using Foundation;
 using MediaPlayer;
 using System.Threading.Tasks;
 using UIKit;
-namespace MusicKitSample.Controllers
-{
-	public class MediaLibraryManager : NSObject
-	{
+namespace MusicKitSample.Controllers {
+	public class MediaLibraryManager : NSObject {
 		#region Types
 
 		// The Key for the `UserDefaults` value representing the UUID of
@@ -51,15 +49,15 @@ namespace MusicKitSample.Controllers
 			// events from the `AuthorizationManager`, 
 			// `MPMediaLibrary` and `UIApplication`.
 			var notificationCenter = NSNotificationCenter.DefaultCenter;
-			authorizationDidUpdateNotificationToken = notificationCenter.AddObserver (AuthorizationManager.AuthorizationDidUpdateNotification, 
-			                                                                          HandleAuthorizationManagerAuthorizationDidUpdateNotification, 
-			                                                                          null);
-			didChangeNotificationToken = notificationCenter.AddObserver (MPMediaLibrary.DidChangeNotification, 
-			                                                             HandleMediaLibraryDidChangeNotification, 
-			                                                             null);
+			authorizationDidUpdateNotificationToken = notificationCenter.AddObserver (AuthorizationManager.AuthorizationDidUpdateNotification,
+																					  HandleAuthorizationManagerAuthorizationDidUpdateNotification,
+																					  null);
+			didChangeNotificationToken = notificationCenter.AddObserver (MPMediaLibrary.DidChangeNotification,
+																		 HandleMediaLibraryDidChangeNotification,
+																		 null);
 			willEnterForegroundNotificationToken = notificationCenter.AddObserver (UIApplication.WillEnterForegroundNotification,
-			                                                                       HandleMediaLibraryDidChangeNotification,
-			                                                                       null);
+																				   HandleMediaLibraryDidChangeNotification,
+																				   null);
 
 			HandleAuthorizationManagerAuthorizationDidUpdateNotification (null);
 		}

@@ -7,11 +7,9 @@ using UIKit;
 using Foundation;
 using CoreGraphics;
 
-namespace MonoCatalog
-{
+namespace MonoCatalog {
 
-	public partial class ButtonsViewController : UITableViewController
-	{
+	public partial class ButtonsViewController : UITableViewController {
 
 		//
 		// This datasource describes how the UITableView should render the
@@ -21,8 +19,7 @@ namespace MonoCatalog
 		//   Row 0: the actual styled button
 		//   Row 1: the text information about the button
 		//
-		class DataSource : UITableViewDataSource
-		{
+		class DataSource : UITableViewDataSource {
 			ButtonsViewController bvc;
 			static NSString kDisplayCell_ID = new NSString ("DisplayCellID");
 			static NSString kSourceCell_ID = new NSString ("SourceCellID");
@@ -39,7 +36,7 @@ namespace MonoCatalog
 
 			public override string TitleForHeader (UITableView tableView, nint section)
 			{
-				return bvc.samples[section].Title;
+				return bvc.samples [section].Title;
 			}
 
 			public override nint RowsInSection (UITableView tableView, nint section)
@@ -63,8 +60,8 @@ namespace MonoCatalog
 						if (viewToRemove != null)
 							viewToRemove.RemoveFromSuperview ();
 					}
-					cell.TextLabel.Text = bvc.samples[indexPath.Section].Label;
-					cell.ContentView.AddSubview (bvc.samples[indexPath.Section].Button);
+					cell.TextLabel.Text = bvc.samples [indexPath.Section].Label;
+					cell.ContentView.AddSubview (bvc.samples [indexPath.Section].Button);
 				} else {
 					cell = tableView.DequeueReusableCell (kSourceCell_ID);
 					if (cell == null) {
@@ -80,15 +77,14 @@ namespace MonoCatalog
 						label.HighlightedTextColor = UIColor.Black;
 						label.Font = UIFont.SystemFontOfSize (12f);
 					}
-					cell.TextLabel.Text = bvc.samples[indexPath.Section].Source;
+					cell.TextLabel.Text = bvc.samples [indexPath.Section].Source;
 				}
 
 				return cell;
 			}
 		}
 
-		class TableDelegate : UITableViewDelegate
-		{
+		class TableDelegate : UITableViewDelegate {
 			//
 			// Override to provide the sizing of the rows in our table
 			//
@@ -100,7 +96,7 @@ namespace MonoCatalog
 		}
 
 		// Load our definition from the NIB file
-		public ButtonsViewController () : base("ButtonsViewController", null)
+		public ButtonsViewController () : base ("ButtonsViewController", null)
 		{
 		}
 
@@ -120,7 +116,8 @@ namespace MonoCatalog
 
 			button.SetTitle (title, UIControlState.Normal);
 			if (darkTextColor)
-				button.SetTitleColor (UIColor.Black, UIControlState.Normal); else
+				button.SetTitleColor (UIColor.Black, UIControlState.Normal);
+			else
 				button.SetTitleColor (UIColor.White, UIControlState.Normal);
 
 			var newImage = image.StretchableImage (12, 0);
@@ -219,8 +216,7 @@ namespace MonoCatalog
 			return button;
 		}
 
-		struct ButtonSample
-		{
+		struct ButtonSample {
 			public string Title, Label, Source;
 			public UIButton Button;
 
@@ -233,7 +229,7 @@ namespace MonoCatalog
 			}
 		}
 
-		ButtonSample[] samples;
+		ButtonSample [] samples;
 
 		public override void ViewDidLoad ()
 		{
@@ -241,7 +237,7 @@ namespace MonoCatalog
 			base.ViewDidLoad ();
 			Title = "Buttons";
 
-			samples = new ButtonSample[] {
+			samples = new ButtonSample [] {
 				new ButtonSample ("UIButton", "Background image", "buttons.cs:\rUIButton GrayButton ()", GrayButton ()),
 				new ButtonSample ("UIButton", "Button with image", "buttons.cs:\rUIButton ImageButton ()", ImageButton ()),
 				new ButtonSample ("UIButtonRoundedRect", "Rounded Button", "buttons.cs:\rUIButton RoundedButtonType ()", RoundedButtonType ()),

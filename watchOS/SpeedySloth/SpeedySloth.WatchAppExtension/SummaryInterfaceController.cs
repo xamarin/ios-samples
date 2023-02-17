@@ -1,55 +1,51 @@
-﻿
-namespace SpeedySloth.WatchAppExtension
-{
-    using Foundation;
-    using HealthKit;
-    using System;
-    using WatchKit;
 
-    public partial class SummaryInterfaceController : WKInterfaceController
-    {
-        private HKWorkout workout;
+namespace SpeedySloth.WatchAppExtension {
+	using Foundation;
+	using HealthKit;
+	using System;
+	using WatchKit;
 
-        protected SummaryInterfaceController(IntPtr handle) : base(handle)
-        {
-            // Note: this .ctor should not contain any initialization logic.
-        }
+	public partial class SummaryInterfaceController : WKInterfaceController {
+		private HKWorkout workout;
 
-        public override void Awake(NSObject context)
-        {
-            base.Awake(context);
+		protected SummaryInterfaceController (IntPtr handle) : base (handle)
+		{
+			// Note: this .ctor should not contain any initialization logic.
+		}
 
-            this.workout = context as HKWorkout;
-            this.SetTitle("Summary");
-        }
+		public override void Awake (NSObject context)
+		{
+			base.Awake (context);
 
-        public override void WillActivate()
-        {
-            base.WillActivate();
+			this.workout = context as HKWorkout;
+			this.SetTitle ("Summary");
+		}
 
-            if (this.workout != null)
-            {
-                var workoutTitle = this.workout.WorkoutActivityType.DisplayString();
-                if (this.workout.Metadata.IndoorWorkout.HasValue)
-                {
-                    var locationType = this.workout.Metadata.IndoorWorkout.Value ? LocationType.Indoor : LocationType.Outdoor;
-                    var formatString = NSBundle.MainBundle.GetLocalizedString("LOCATION_TYPE_%@_WORKOUT_TYPE_%@");
-                    workoutTitle = string.Format(formatString, locationType.DisplayString(), workoutTitle);
-                }
+		public override void WillActivate ()
+		{
+			base.WillActivate ();
 
-                this.WorkoutLabel.SetText(workoutTitle);
-                this.CaloriesLabel.SetText(Utilities.Format(totalEnergyBurned: this.workout.TotalEnergyBurned));
-                this.DistanceLabel.SetText(Utilities.Format(totalDistance: this.workout.TotalDistance));
-                this.DurationLabel.SetText(Utilities.FormatDuration(this.workout.Duration));
-            }
-        }
+			if (this.workout != null) {
+				var workoutTitle = this.workout.WorkoutActivityType.DisplayString ();
+				if (this.workout.Metadata.IndoorWorkout.HasValue) {
+					var locationType = this.workout.Metadata.IndoorWorkout.Value ? LocationType.Indoor : LocationType.Outdoor;
+					var formatString = NSBundle.MainBundle.GetLocalizedString ("LOCATION_TYPE_%@_WORKOUT_TYPE_%@");
+					workoutTitle = string.Format (formatString, locationType.DisplayString (), workoutTitle);
+				}
 
-        partial void TapDoneTapped()
-        {
-            WKInterfaceController.ReloadRootPageControllers(new string[] { nameof(ConfigurationInterfaceController) },
-                                                            null,
-                                                            WKPageOrientation.Vertical,
-                                                            0);
-        }
-    }
+				this.WorkoutLabel.SetText (workoutTitle);
+				this.CaloriesLabel.SetText (Utilities.Format (totalEnergyBurned: this.workout.TotalEnergyBurned));
+				this.DistanceLabel.SetText (Utilities.Format (totalDistance: this.workout.TotalDistance));
+				this.DurationLabel.SetText (Utilities.FormatDuration (this.workout.Duration));
+			}
+		}
+
+		partial void TapDoneTapped ()
+		{
+			WKInterfaceController.ReloadRootPageControllers (new string [] { nameof (ConfigurationInterfaceController) },
+															null,
+															WKPageOrientation.Vertical,
+															0);
+		}
+	}
 }

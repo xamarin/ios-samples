@@ -1,18 +1,16 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 
 using CloudKit;
 using ObjCRuntime;
 
-namespace CloudKitAtlas
-{
+namespace CloudKitAtlas {
 	// TODO: This is a workaround for https://bugzilla.xamarin.com/show_bug.cgi?id=42163
 	// CKFetchRecordChangesOperation doesn't accept null for CKServerChangeToken – this is bug
 	// We have to create CKFetchRecordChangesOperation w/o using ctor
 	// This is a factory class to workaround this issue
 
-	public static class CKFetchRecordChangesOperationFactory
-	{
+	public static class CKFetchRecordChangesOperationFactory {
 		[DllImport ("/usr/lib/libobjc.dylib", EntryPoint = "objc_msgSend")]
 		public static extern IntPtr IntPtr_objc_msgSend (IntPtr receiver, IntPtr selector);
 

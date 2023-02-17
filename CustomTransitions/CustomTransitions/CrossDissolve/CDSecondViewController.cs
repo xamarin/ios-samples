@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 
@@ -8,7 +8,7 @@ namespace CustomTransitions {
 		{
 		}
 
-		partial void DismissAction(UIButton sender)
+		partial void DismissAction (UIButton sender)
 		{
 			DismissViewController (true, null);
 		}

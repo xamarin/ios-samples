@@ -6,10 +6,8 @@ using UIKit;
 using TransitionsDemo.AnimationControllers;
 using TransitionsDemo.InteractionControllers;
 
-namespace TransitionsDemo
-{
-	public partial class SettingsViewController : UITableViewController
-	{
+namespace TransitionsDemo {
+	public partial class SettingsViewController : UITableViewController {
 		private List<KeyValuePair<string, Type>> animationControllers;
 		private List<KeyValuePair<string, Type>> interactionControllers;
 
@@ -41,7 +39,7 @@ namespace TransitionsDemo
 				CEReversibleAnimationController transitionInstance = null;
 
 				if (transitionType != null)
-					transitionInstance = (CEReversibleAnimationController)Activator.CreateInstance (transitionType);
+					transitionInstance = (CEReversibleAnimationController) Activator.CreateInstance (transitionType);
 
 				if (indexPath.Section == 0) {
 					AppDelegate.NavigationControllerAnimationController = transitionInstance;
@@ -54,7 +52,7 @@ namespace TransitionsDemo
 				CEBaseInteractionController transitionInstance = null;
 
 				if (interactionType != null)
-					transitionInstance = (CEBaseInteractionController)Activator.CreateInstance (interactionType);
+					transitionInstance = (CEBaseInteractionController) Activator.CreateInstance (interactionType);
 
 				if (indexPath.Section == 2) {
 					AppDelegate.NavigationControllerInteractionController = transitionInstance;
@@ -135,7 +133,7 @@ namespace TransitionsDemo
 
 		private string ClassToTransitionName (object instance)
 		{
-			if (instance == null || instance.GetType () == typeof(CEReversibleAnimationController))
+			if (instance == null || instance.GetType () == typeof (CEReversibleAnimationController))
 				return "None";
 
 			string animationClass = instance.GetType ().Name;

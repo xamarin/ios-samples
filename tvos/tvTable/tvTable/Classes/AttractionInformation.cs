@@ -1,50 +1,48 @@
-﻿using System;
+using System;
 using Foundation;
 
-namespace tvTable
-{
+namespace tvTable {
 	/// <summary>
 	/// This class stores information about a give attraction for a <c>CityInformation</c>
 	/// instance.
 	/// </summary>
-	public class AttractionInformation : NSObject
-	{
+	public class AttractionInformation : NSObject {
 		#region Computed Properties
 		/// <summary>
 		/// Gets or sets the city that this Attraction belongs to.
 		/// </summary>
 		/// <value>The <c>CityInformation</c> object.</value>
-		public CityInformation City { get; set;}
+		public CityInformation City { get; set; }
 
 		/// <summary>
 		/// Gets or sets the name of the Attraction.
 		/// </summary>
 		/// <value>The name.</value>
-		public string Name { get; set;}
+		public string Name { get; set; }
 
 		/// <summary>
 		/// Gets or sets a short description for the Attraction.
 		/// </summary>
 		/// <value>The description.</value>
-		public string Description { get; set;}
+		public string Description { get; set; }
 
 		/// <summary>
 		/// Gets or sets the Image Asset Name of the image that will be displayed for this Attraction.
 		/// </summary>
 		/// <value>The name of the image as stored in the <c>Assets.xcassets</c>.</value>
-		public string ImageName { get; set;}
+		public string ImageName { get; set; }
 
 		/// <summary>
 		/// Gets or sets a flag marking this Attraction as a favorite.
 		/// </summary>
 		/// <value><c>true</c> if the Attraction is a favorite, else <c>false</c>.</value>
-		public bool IsFavorite { get; set;}
+		public bool IsFavorite { get; set; }
 
 		/// <summary>
 		/// Gets or sets a flag denoting if the user wants directions to this Attraction.
 		/// </summary>
 		/// <value>The add directions.</value>
-		public bool AddDirections { get; set;}
+		public bool AddDirections { get; set; }
 		#endregion
 
 		#region Constructors

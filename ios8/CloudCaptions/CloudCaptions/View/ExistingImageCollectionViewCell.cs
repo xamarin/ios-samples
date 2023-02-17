@@ -1,16 +1,14 @@
-﻿using System;
+using System;
 using UIKit;
 using Foundation;
 
-namespace CloudCaptions
-{
-	[Register("ExistingImageCollectionViewCell")]
-	public class ExistingImageCollectionViewCell : UICollectionViewCell
-	{
-		[Outlet("thumbnailImage")]
+namespace CloudCaptions {
+	[Register ("ExistingImageCollectionViewCell")]
+	public class ExistingImageCollectionViewCell : UICollectionViewCell {
+		[Outlet ("thumbnailImage")]
 		public UIImageView ThumbnailImage { get; set; }
 
-		[Outlet("loadingIndicator")]
+		[Outlet ("loadingIndicator")]
 		UIActivityIndicatorView LoadingIndicator { get; set; }
 
 		UIVisualEffectView blurSubview;
@@ -27,7 +25,7 @@ namespace CloudCaptions
 
 		public void SetLoading (bool loading)
 		{
-			if(loading) {
+			if (loading) {
 				LoadingIndicator.StartAnimating ();
 
 				UIBlurEffect blurEffect = UIBlurEffect.FromStyle (UIBlurEffectStyle.Light);
@@ -35,7 +33,7 @@ namespace CloudCaptions
 				blurSubview.Frame = ThumbnailImage.Frame;
 				ThumbnailImage.AddSubview (blurSubview);
 			} else {
-				if(blurSubview != null) {
+				if (blurSubview != null) {
 					blurSubview.RemoveFromSuperview ();
 					blurSubview = null;
 				}

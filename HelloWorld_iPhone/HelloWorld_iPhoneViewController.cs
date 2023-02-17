@@ -3,10 +3,8 @@ using CoreGraphics;
 using System;
 using Foundation;
 
-namespace HelloWorld_iPhone
-{
-	public partial class HelloWorld_iPhoneViewController : UIViewController
-	{
+namespace HelloWorld_iPhone {
+	public partial class HelloWorld_iPhoneViewController : UIViewController {
 		/// <summary>
 		/// a class-level variable that tracks the number of times the button has been clicked.
 		/// </summary>
@@ -33,7 +31,7 @@ namespace HelloWorld_iPhone
 			//---- wire up our click me button
 			this.btnClickMe.TouchUpInside += (sender, e) => {
 				this._numberOfTimesClicked++;
-				this.lblOutput.Text = "Clicked [" + this._numberOfTimesClicked.ToString() + "] times!";
+				this.lblOutput.Text = "Clicked [" + this._numberOfTimesClicked.ToString () + "] times!";
 			};
 
 		}
@@ -43,7 +41,7 @@ namespace HelloWorld_iPhone
 		/// </summary>
 		partial void actnButtonClick (Foundation.NSObject sender)
 		{
-			this.lblOutput.Text = "Action button " +  ((UIButton)sender).CurrentTitle + " clicked.";
+			this.lblOutput.Text = "Action button " + ((UIButton) sender).CurrentTitle + " clicked.";
 		}
 
 	}

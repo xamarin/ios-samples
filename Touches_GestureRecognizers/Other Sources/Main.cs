@@ -30,11 +30,9 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace Touches_GestureRecognizers
-{
-	public class Application
-	{
-		static void Main (string[] args)
+namespace Touches_GestureRecognizers {
+	public class Application {
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

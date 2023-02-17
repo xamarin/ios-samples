@@ -2,19 +2,17 @@ using System;
 
 using UIKit;
 
-namespace PrivacyPrompts
-{
-	public partial class PrivacyDetailViewController : UIViewController
-	{
+namespace PrivacyPrompts {
+	public partial class PrivacyDetailViewController : UIViewController {
 		// Dependency Injection via property
 		public IPrivacyManager PrivacyManager { get; set; }
 
-		public PrivacyDetailViewController(IntPtr handle)
-			: base(handle)
+		public PrivacyDetailViewController (IntPtr handle)
+			: base (handle)
 		{
 		}
 
-		public PrivacyDetailViewController()
+		public PrivacyDetailViewController ()
 		{
 			throw new InvalidProgramException ();
 		}

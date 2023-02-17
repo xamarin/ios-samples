@@ -7,10 +7,8 @@ using UIKit;
 using CoreImage;
 using CoreGraphics;
 
-namespace OpenGLES20Example
-{
-	public class GLTexture
-	{
+namespace OpenGLES20Example {
+	public class GLTexture {
 		string filename;
 		uint texture;
 
@@ -32,7 +30,7 @@ namespace OpenGLES20Example
 			GL.TexParameter (TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int) All.Nearest);
 
 			//TODO Remove the Substring method if you don't support iOS versions prior to iOS 6.
-			string extension = Path.GetExtension (filename).Substring(1);
+			string extension = Path.GetExtension (filename).Substring (1);
 			string baseFilename = Path.GetFileNameWithoutExtension (filename);
 
 			string path = NSBundle.MainBundle.PathForResource (baseFilename, extension);
@@ -46,9 +44,9 @@ namespace OpenGLES20Example
 			nint height = image.CGImage.Height;
 
 			CGColorSpace colorSpace = CGColorSpace.CreateDeviceRGB ();
-			byte [] imageData = new byte[height * width * 4];
-			CGContext context = new CGBitmapContext  (imageData, width, height, 8, 4 * width, colorSpace,
-			                                          CGBitmapFlags.PremultipliedLast | CGBitmapFlags.ByteOrder32Big);
+			byte [] imageData = new byte [height * width * 4];
+			CGContext context = new CGBitmapContext (imageData, width, height, 8, 4 * width, colorSpace,
+													  CGBitmapFlags.PremultipliedLast | CGBitmapFlags.ByteOrder32Big);
 
 			context.TranslateCTM (0, height);
 			context.ScaleCTM (1, -1);
@@ -56,7 +54,7 @@ namespace OpenGLES20Example
 			context.ClearRect (new CGRect (0, 0, width, height));
 			context.DrawImage (new CGRect (0, 0, width, height), image.CGImage);
 
-			GL.TexImage2D (TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, (int)width, (int)height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, imageData);
+			GL.TexImage2D (TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, (int) width, (int) height, 0, PixelFormat.Rgba, PixelType.UnsignedByte, imageData);
 			context.Dispose ();
 		}
 

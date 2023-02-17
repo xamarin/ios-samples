@@ -3,17 +3,15 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace SegueCatalog
-{
-	public partial class OuterViewController : UIViewController
-	{
+namespace SegueCatalog {
+	public partial class OuterViewController : UIViewController {
 		public OuterViewController (IntPtr handle)
 			: base (handle)
 		{
 		}
 
-		[Action("unwindToOuter:")]
-		void UnwindToOuter(UIStoryboardSegue segue)
+		[Action ("unwindToOuter:")]
+		void UnwindToOuter (UIStoryboardSegue segue)
 		{
 			/*
 			Empty. Exists solely so that "unwind to outer" segues can find 

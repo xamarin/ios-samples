@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using CoreGraphics;
 
 using Foundation;
 using UIKit;
 using HealthKit;
 
-namespace HKWork
-{
-	public partial class HKWorkViewController : UIViewController
-	{
+namespace HKWork {
+	public partial class HKWorkViewController : UIViewController {
 		public HKWorkViewController (IntPtr handle) : base (handle)
 		{
 			HeartRateModel.Instance.EnabledChanged += OnEnabledChanged;
@@ -20,7 +18,7 @@ namespace HKWork
 		{
 			// Releases the view if it doesn't have a superview.
 			base.DidReceiveMemoryWarning ();
-			
+
 			// Release any cached data, images, etc that aren't in use.
 		}
 
@@ -62,10 +60,10 @@ namespace HKWork
 			var s = heartRate.Text;
 			ushort result = 0;
 			if (UInt16.TryParse (s, out result)) {
-				var quantity = HeartRateModel.Instance.HeartRateInBeatsPerMinute(result);
-				HeartRateModel.Instance.StoreHeartRate(quantity);
+				var quantity = HeartRateModel.Instance.HeartRateInBeatsPerMinute (result);
+				HeartRateModel.Instance.StoreHeartRate (quantity);
 			}
-			heartRate.ResignFirstResponder();
+			heartRate.ResignFirstResponder ();
 		}
 
 		#endregion

@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using HomeKit;
 using Foundation;
 
-namespace HomeKitCatalog
-{
-	public static class HMHomeExtensions
-	{
+namespace HomeKitCatalog {
+	public static class HMHomeExtensions {
 		// All the services within all the accessories within the home.
 		static HashSet<HMService> GetAllServices (this HMHome self)
 		{
@@ -25,7 +23,7 @@ namespace HomeKitCatalog
 		public static Dictionary<string, List<HMService>> GetServiceTable (this HMHome self)
 		{
 			var serviceDictionary = new Dictionary<string, List<HMService>> ();
-			foreach (var service in self.GetAllServices()) {
+			foreach (var service in self.GetAllServices ()) {
 				if (!service.IsControllType ())
 					continue;
 
@@ -44,10 +42,10 @@ namespace HomeKitCatalog
 		}
 
 		// returns:  All rooms in the home, including `roomForEntireHome`.
-		public static HMRoom[] GetAllRooms (this HMHome self)
+		public static HMRoom [] GetAllRooms (this HMHome self)
 		{
 			var rooms = self.Rooms;
-			var allRooms = new HMRoom[rooms.Length + 1];
+			var allRooms = new HMRoom [rooms.Length + 1];
 			Array.Copy (rooms, allRooms, rooms.Length);
 			allRooms [rooms.Length] = self.GetRoomForEntireHome ();
 			return allRooms;
@@ -73,7 +71,7 @@ namespace HomeKitCatalog
 		}
 
 		// Searches through the home's accessories to find the accessory that is bridging the provided accessory.
-		public static HMAccessory BridgeForAccessory (this HMHome self, HMAccessory  accessory)
+		public static HMAccessory BridgeForAccessory (this HMHome self, HMAccessory accessory)
 		{
 			if (!accessory.Bridged)
 				return null;

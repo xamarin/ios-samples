@@ -10,7 +10,7 @@ namespace MonoCatalog {
 
 	public partial class TransitionViewController : UIViewController {
 
-		public TransitionViewController () : base ("TransitionViewController", null) {}
+		public TransitionViewController () : base ("TransitionViewController", null) { }
 
 		const float kImageHeight = 200f;
 		const float kImageWidth = 250f;
@@ -24,15 +24,15 @@ namespace MonoCatalog {
 		{
 			Title = "Transition";
 
-			containerView = new UIView (new CGRect ((View.Bounds.Width - kImageWidth)/2.0f, kTopPlacement, kImageWidth, kImageHeight));
+			containerView = new UIView (new CGRect ((View.Bounds.Width - kImageWidth) / 2.0f, kTopPlacement, kImageWidth, kImageHeight));
 			View.AddSubview (containerView);
 
-			mainView = new UIImageView (new CGRect (0, 0, kImageWidth, kImageHeight)){
+			mainView = new UIImageView (new CGRect (0, 0, kImageWidth, kImageHeight)) {
 				Image = UIImage.FromFile ("images/scene1.jpg")
 			};
 			containerView.AddSubview (mainView);
 
-			flipToView = new UIImageView (new CGRect (0, 0, kImageWidth, kImageHeight)){
+			flipToView = new UIImageView (new CGRect (0, 0, kImageWidth, kImageHeight)) {
 				Image = UIImage.FromFile ("images/scene2.jpg")
 			};
 		}
@@ -45,7 +45,7 @@ namespace MonoCatalog {
 				mainView.Superview != null ? UIViewAnimationTransition.FlipFromLeft : UIViewAnimationTransition.FlipFromRight,
 				containerView, true);
 
-			if (flipToView.Superview == null){
+			if (flipToView.Superview == null) {
 				mainView.RemoveFromSuperview ();
 				containerView.AddSubview (flipToView);
 			} else {
@@ -63,7 +63,7 @@ namespace MonoCatalog {
 				mainView.Superview != null ? UIViewAnimationTransition.CurlUp : UIViewAnimationTransition.CurlDown,
 				containerView, true);
 
-			if (flipToView.Superview == null){
+			if (flipToView.Superview == null) {
 				mainView.RemoveFromSuperview ();
 				containerView.AddSubview (flipToView);
 			} else {

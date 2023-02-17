@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace HomeKitCatalog
-{
-	public static class ListExtensions
-	{
+namespace HomeKitCatalog {
+	public static class ListExtensions {
 		public static T RemoveAtIndex<T> (this List<T> list, int index)
 		{
 			var item = list [index];

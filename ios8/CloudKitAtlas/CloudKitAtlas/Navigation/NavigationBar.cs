@@ -7,10 +7,8 @@ using CloudKit;
 using static UIKit.NSLayoutAttribute;
 using static UIKit.NSLayoutRelation;
 
-namespace CloudKitAtlas
-{
-	public partial class NavigationBar : UINavigationBar
-	{
+namespace CloudKitAtlas {
+	public partial class NavigationBar : UINavigationBar {
 		NotificationBar NotificationBar { get; set; }
 
 		public NavigationBar (IntPtr handle)

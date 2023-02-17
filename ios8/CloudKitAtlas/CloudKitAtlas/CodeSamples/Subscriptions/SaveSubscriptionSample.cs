@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using CloudKit;
 using Foundation;
 
-namespace CloudKitAtlas
-{
-	public class SaveSubscriptionSample : CodeSample
-	{
+namespace CloudKitAtlas {
+	public class SaveSubscriptionSample : CodeSample {
 		public override string Error {
 			get {
 				string subscriptionType, zoneName;
@@ -67,7 +65,7 @@ namespace CloudKitAtlas
 					NotificationInfo = notificationInfo
 				};
 			} else {
-				var subscriptionOptions = (CKSubscriptionOptions)0;
+				var subscriptionOptions = (CKSubscriptionOptions) 0;
 
 				bool firesOnRecordCreation;
 				if (TryGetBool ("FiresOnRecordCreation", out firesOnRecordCreation) && firesOnRecordCreation)
@@ -87,7 +85,7 @@ namespace CloudKitAtlas
 
 				string beginsWithText;
 				NSPredicate predicate = TryGetString ("name BEGINSWITH", out beginsWithText)
-							? NSPredicate.FromFormat ("name BEGINSWITH %@", (NSString)beginsWithText)
+							? NSPredicate.FromFormat ("name BEGINSWITH %@", (NSString) beginsWithText)
 							: NSPredicate.FromValue (true);
 
 				notificationInfo.AlertBody = $"Changed {recordType} satisfying {predicate.PredicateFormat}";

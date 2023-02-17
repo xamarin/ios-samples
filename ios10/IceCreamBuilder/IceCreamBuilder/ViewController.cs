@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 
 namespace IceCreamBuilder {
 	public partial class ViewController : UIViewController {
-		protected ViewController (IntPtr handle) : base(handle)
+		protected ViewController (IntPtr handle) : base (handle)
 		{
 		}
 

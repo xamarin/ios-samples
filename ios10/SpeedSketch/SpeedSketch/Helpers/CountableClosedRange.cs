@@ -1,10 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 
-namespace SpeedSketch
-{
-	public class CountableClosedRange : IEnumerable<int>
-	{
+namespace SpeedSketch {
+	public class CountableClosedRange : IEnumerable<int> {
 		public int LowerBound { get; }
 		public int UpperBound { get; }
 

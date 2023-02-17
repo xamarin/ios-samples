@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -20,7 +20,7 @@ namespace Conference_Diffable.CompositionalLayout.BasicsViewControllers {
 			public static SectionLayoutKind Grid3 { get; } = new SectionLayoutKind (2);
 
 			public int EnumValue { get; private set; }
-			
+
 			public static SectionLayoutKind [] AllSections { get; } = { List, Grid5, Grid3 };
 
 			SectionLayoutKind (int enumValue) => EnumValue = enumValue;
@@ -56,7 +56,7 @@ namespace Conference_Diffable.CompositionalLayout.BasicsViewControllers {
 			}
 
 			public static bool operator != (SectionLayoutKind left, SectionLayoutKind right) => !(left == right);
-			public override bool Equals (object obj) => this == (SectionLayoutKind)obj;
+			public override bool Equals (object obj) => this == (SectionLayoutKind) obj;
 			public bool Equals (SectionLayoutKind other) => EnumValue == other.EnumValue;
 			public override int GetHashCode () => HashCode.Combine (base.GetHashCode (), EnumValue);
 		}

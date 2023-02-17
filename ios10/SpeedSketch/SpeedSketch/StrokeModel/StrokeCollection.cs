@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace SpeedSketch
-{
-	public class StrokeCollection
-	{
+namespace SpeedSketch {
+	public class StrokeCollection {
 		public Stroke ActiveStroke { get; set; }
 
 		public List<Stroke> Strokes { get; } = new List<Stroke> ();

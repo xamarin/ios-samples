@@ -2,10 +2,8 @@ using System;
 using UIKit;
 using Foundation;
 
-namespace TicTacToe
-{
-	public class TTTPlayViewController : UIViewController
-	{
+namespace TicTacToe {
+	public class TTTPlayViewController : UIViewController {
 		const float ControllerMargin = 20f;
 		public TTTProfile Profile;
 		public string ProfilePath;
@@ -17,7 +15,7 @@ namespace TicTacToe
 			TabBarItem.Image = UIImage.FromBundle ("playTab");
 			TabBarItem.SelectedImage = UIImage.FromBundle ("playTabSelected");
 
-			NSNotificationCenter.DefaultCenter.AddObserver ((NSString)TTTProfile.IconDidChangeNotification, iconDidChange);
+			NSNotificationCenter.DefaultCenter.AddObserver ((NSString) TTTProfile.IconDidChangeNotification, iconDidChange);
 		}
 
 		public static TTTPlayViewController FromProfile (TTTProfile profile, string profilePath)
@@ -67,16 +65,16 @@ namespace TicTacToe
 			var mMargin = new NSNumber (ControllerMargin);
 
 			view.AddConstraints (NSLayoutConstraint.FromVisualFormat ("|-margin-[gameView]-margin-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"margin", mMargin,
 				"gameView", gameView));
 			view.AddConstraints (NSLayoutConstraint.FromVisualFormat ("|-margin-[pauseButton(==newButton)]-[newButton]-margin-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"margin", mMargin,
 				"pauseButton", pauseButton,
 				"newButton", newButton));
 			view.AddConstraints (NSLayoutConstraint.FromVisualFormat ("V:|-topHeight-[gameView]-margin-[newButton]-bottomHeight-|",
-				(NSLayoutFormatOptions)0,
+				(NSLayoutFormatOptions) 0,
 				"topHeight", mTopHeight,
 				"gameView", gameView,
 				"margin", mMargin,
@@ -104,7 +102,8 @@ namespace TicTacToe
 
 		void newGame (object sender, EventArgs e)
 		{
-			UIView.Animate (0.3f, delegate {
+			UIView.Animate (0.3f, delegate
+			{
 				gameView.Game = Profile.StartNewGame ();
 				saveProfile ();
 				updateBackground ();
@@ -113,11 +112,12 @@ namespace TicTacToe
 
 		void togglePause (object sender, EventArgs e)
 		{
-			UIButton button = (UIButton)sender;
+			UIButton button = (UIButton) sender;
 			bool paused = !button.Selected;
 			button.Selected = paused;
 			gameView.UserInteractionEnabled = !paused;
-			UIView.Animate (0.3f, delegate {
+			UIView.Animate (0.3f, delegate
+			{
 				gameView.Alpha = (paused ? 0.25f : 1f);
 			});
 		}
@@ -144,14 +144,15 @@ namespace TicTacToe
 		}
 
 		public bool CanSelect (TTTGameView gameView, TTTMoveXPosition xPosition,
-		                       TTTMoveYPosition yPosition)
+							   TTTMoveYPosition yPosition)
 		{
 			return gameView.Game.CanAddMove (xPosition, yPosition);
 		}
 
 		public void DidSelect (TTTGameView gameView, TTTMoveXPosition xPosition, TTTMoveYPosition yPosition)
 		{
-			UIView.Animate (0.3, delegate {
+			UIView.Animate (0.3, delegate
+			{
 				gameView.Game.AddMove (xPosition, yPosition);
 				gameView.UpdateGameState ();
 				saveProfile ();

@@ -1,4 +1,4 @@
-﻿namespace UICatalog {
+namespace UICatalog {
 
 	public enum Group {
 		Scenery,

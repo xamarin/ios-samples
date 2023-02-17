@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using ObjCRuntime;
@@ -67,7 +67,7 @@ namespace InfColorPicker {
 	}
 
 	// @protocol InfColorPickerControllerDelegate
-	[BaseType(typeof(NSObject))]
+	[BaseType (typeof (NSObject))]
 	[Model]
 	interface InfColorPickerControllerDelegate {
 

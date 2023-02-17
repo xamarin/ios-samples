@@ -4,7 +4,7 @@ using Foundation;
 
 namespace PassLibrary {
 	public class Application {
-		public static void Main (string[] args)
+		public static void Main (string [] args)
 		{
 			try {
 				UIApplication.Main (args, null, "AppDelegate");
@@ -13,9 +13,8 @@ namespace PassLibrary {
 			}
 		}
 	}
-	[Register("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	[Register ("AppDelegate")]
+	public class AppDelegate : UIApplicationDelegate {
 		protected UIWindow window;
 		UINavigationController navigation;
 		HomeScreen iPhoneHome;
@@ -25,15 +24,15 @@ namespace PassLibrary {
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			window.MakeKeyAndVisible ();
 
-			iPhoneHome = new HomeScreen();
+			iPhoneHome = new HomeScreen ();
 			iPhoneHome.Title = "Pass Library";
-			iPhoneHome.View.Frame = new CoreGraphics.CGRect(0
+			iPhoneHome.View.Frame = new CoreGraphics.CGRect (0
 						, UIApplication.SharedApplication.StatusBarFrame.Height
 						, UIScreen.MainScreen.ApplicationFrame.Width
 						, UIScreen.MainScreen.ApplicationFrame.Height);
 
-			navigation = new UINavigationController();
-			navigation.PushViewController (iPhoneHome,false);
+			navigation = new UINavigationController ();
+			navigation.PushViewController (iPhoneHome, false);
 			window.RootViewController = navigation;
 
 			return true;

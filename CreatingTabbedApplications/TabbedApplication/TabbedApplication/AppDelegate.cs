@@ -5,11 +5,9 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace TabbedApplication
-{
+namespace TabbedApplication {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 		TabController tabController;
 
@@ -21,7 +19,7 @@ namespace TabbedApplication
 			window.RootViewController = tabController;
 
 			window.MakeKeyAndVisible ();
-            
+
 			return true;
 		}
 	}

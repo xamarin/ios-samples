@@ -5,8 +5,7 @@ using Foundation;
 using CoreGraphics;
 using CoreAnimation;
 
-namespace MotionGraphs
-{
+namespace MotionGraphs {
 	// The GraphView class needs to be able to update the scene
 	// quickly in order to track the data at a fast enough frame
 	// rate. The naive implementation tries to draw the entire
@@ -18,13 +17,12 @@ namespace MotionGraphs
 	//
 	// Functions used to draw all content
 	[Register ("GraphView")]
-	public class GraphView : UIView
-	{
+	public class GraphView : UIView {
 		CGPoint kSegmentInitialPosition = new CGPoint (14.0f, 56.0f);
 
 		List<GraphViewSegment> segments { get; set; }
 
-		GraphTextView  text { get; set; }
+		GraphTextView text { get; set; }
 
 		GraphViewSegment current { get; set; }
 
@@ -67,7 +65,7 @@ namespace MotionGraphs
 		public static CGColor CreateDeviceGrayColor (float w, float a)
 		{
 			using (var gray = CGColorSpace.CreateDeviceGray ()) {
-				return new CGColor (gray, new nfloat[] { w, a });
+				return new CGColor (gray, new nfloat [] { w, a });
 			}
 		}
 
@@ -193,8 +191,7 @@ namespace MotionGraphs
 		// drawn over the graph, and hides the fact that the
 		// graph drawing for each segment is incomplete until
 		// the segment is filled.
-		class GraphTextView : UIView
-		{
+		class GraphTextView : UIView {
 			public GraphTextView (CGRect rect) : base (rect)
 			{
 			}
@@ -232,13 +229,12 @@ namespace MotionGraphs
 		}
 		// The GraphViewSegment manages up to 32 values and a CALayer that it updates with
 		// the segment of the graph that those values represent.
-		class GraphViewSegment
-		{
+		class GraphViewSegment {
 			public CALayer Layer { get; set; }
 			// Need 33 values to fill 32 pixel width.
-			double[] xhistory = new double [33];
-			double[] yhistory = new double [33];
-			double[] zhistory = new double [33];
+			double [] xhistory = new double [33];
+			double [] yhistory = new double [33];
+			double [] zhistory = new double [33];
 			int index;
 
 			public GraphViewSegment ()
@@ -250,7 +246,7 @@ namespace MotionGraphs
 				index = 33;
 			}
 
-			void Clear (double[] array)
+			void Clear (double [] array)
 			{
 				for (int i = 0; i < array.Length; i++)
 					array [i] = 0;
@@ -292,8 +288,7 @@ namespace MotionGraphs
 				return index == 0;
 			}
 
-			class LayerDelegate : CALayerDelegate
-			{
+			class LayerDelegate : CALayerDelegate {
 				GraphViewSegment _parent;
 
 				public LayerDelegate (GraphViewSegment parent)
@@ -312,15 +307,15 @@ namespace MotionGraphs
 					DrawGridLines (context, 0.0f, 32.0f);
 
 					//Draw the graph
-					CGPoint[] lines = new CGPoint[64];
+					CGPoint [] lines = new CGPoint [64];
 					int i;
 
 					//X
 					for (i = 0; i < 32; ++i) {
 						lines [i * 2].X = i;
-						lines [i * 2].Y = ((float)(_parent.xhistory [i] * (-1)) * 16.0f);
+						lines [i * 2].Y = ((float) (_parent.xhistory [i] * (-1)) * 16.0f);
 						lines [(i * 2 + 1)].X = i + 1;
-						lines [(i * 2 + 1)].Y = ((float)(_parent.xhistory [i + 1] * (-1)) * 16.0f);
+						lines [(i * 2 + 1)].Y = ((float) (_parent.xhistory [i + 1] * (-1)) * 16.0f);
 					}
 
 					context.SetStrokeColor (GraphXColor ());
@@ -328,8 +323,8 @@ namespace MotionGraphs
 
 					//Y
 					for (i = 0; i < 32; ++i) {
-						lines [i * 2].Y = ((float)(_parent.yhistory [i] * (-1)) * 16.0f);
-						lines [(i * 2 + 1)].Y = ((float)(_parent.yhistory [i + 1] * (-1)) * 16.0f);
+						lines [i * 2].Y = ((float) (_parent.yhistory [i] * (-1)) * 16.0f);
+						lines [(i * 2 + 1)].Y = ((float) (_parent.yhistory [i + 1] * (-1)) * 16.0f);
 					}
 
 					context.SetStrokeColor (GraphYColor ());
@@ -337,8 +332,8 @@ namespace MotionGraphs
 
 					//Z
 					for (i = 0; i < 32; ++i) {
-						lines [i * 2].Y = ((float)(_parent.zhistory [i] * (-1)) * 16.0f);
-						lines [(i * 2 + 1)].Y = ((float)(_parent.zhistory [i + 1] * (-1)) * 16.0f);
+						lines [i * 2].Y = ((float) (_parent.zhistory [i] * (-1)) * 16.0f);
+						lines [(i * 2 + 1)].Y = ((float) (_parent.zhistory [i + 1] * (-1)) * 16.0f);
 					}
 
 					context.SetStrokeColor (GraphZColor ());

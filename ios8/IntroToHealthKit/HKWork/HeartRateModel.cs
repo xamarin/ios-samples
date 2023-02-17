@@ -2,10 +2,8 @@ using System;
 using HealthKit;
 using Foundation;
 
-namespace HKWork
-{
-	public class GenericEventArgs<T> : EventArgs
-	{
+namespace HKWork {
+	public class GenericEventArgs<T> : EventArgs {
 		public T Value { get; protected set; }
 
 		public DateTime Time { get; protected set; }
@@ -17,10 +15,9 @@ namespace HKWork
 		}
 	}
 
-	public delegate void GenericEventHandler<T> (object sender,GenericEventArgs<T> args);
+	public delegate void GenericEventHandler<T> (object sender, GenericEventArgs<T> args);
 
-	public sealed class HeartRateModel : NSObject
-	{
+	public sealed class HeartRateModel : NSObject {
 		//Thread-safe singleton: Overkill for the sample app, but proper design
 		private static volatile HeartRateModel singleton;
 		private static object syncRoot = new Object ();
@@ -50,7 +47,7 @@ namespace HKWork
 		public event GenericEventHandler<String> ErrorMessageChanged;
 		public event GenericEventHandler<Double> HeartRateStored;
 
-		public bool Enabled { 
+		public bool Enabled {
 			get { return enabled; }
 			set {
 				if (enabled != value) {

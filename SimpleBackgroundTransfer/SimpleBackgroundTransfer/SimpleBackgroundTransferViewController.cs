@@ -32,7 +32,8 @@ namespace SimpleBackgroundTransfer {
 			startButton.Clicked += Start;
 
 			// Force the app to crash
-			crashButton.Clicked += delegate {
+			crashButton.Clicked += delegate
+			{
 				string s = null;
 				s.ToString ();
 			};
@@ -70,8 +71,7 @@ namespace SimpleBackgroundTransfer {
 		}
 	}
 
-	public class UrlSessionDelegate : NSObject, INSUrlSessionDownloadDelegate
-    {
+	public class UrlSessionDelegate : NSObject, INSUrlSessionDownloadDelegate {
 		public SimpleBackgroundTransferViewController controller;
 
 		public UrlSessionDelegate (SimpleBackgroundTransferViewController controller)
@@ -84,9 +84,9 @@ namespace SimpleBackgroundTransfer {
 		{
 			Console.WriteLine ("Set Progress");
 			if (downloadTask == controller.downloadTask) {
-				float progress = totalBytesWritten / (float)totalBytesExpectedToWrite;
+				float progress = totalBytesWritten / (float) totalBytesExpectedToWrite;
 				Console.WriteLine (string.Format ("DownloadTask: {0}  progress: {1}", downloadTask, progress));
-				InvokeOnMainThread( () => {
+				InvokeOnMainThread (() => {
 					controller.ProgressView.Progress = progress;
 				});
 			}
@@ -131,7 +131,7 @@ namespace SimpleBackgroundTransfer {
 			else
 				Console.WriteLine ("Task: {0} completed with error: {1}", task, error.LocalizedDescription);
 
-			float progress = task.BytesReceived / (float)task.BytesExpectedToReceive;
+			float progress = task.BytesReceived / (float) task.BytesExpectedToReceive;
 			InvokeOnMainThread (() => {
 				controller.ProgressView.Progress = progress;
 			});
@@ -152,7 +152,7 @@ namespace SimpleBackgroundTransfer {
 				var handler = appDelegate.BackgroundSessionCompletionHandler;
 				if (handler != null) {
 					appDelegate.BackgroundSessionCompletionHandler = null;
-					handler();
+					handler ();
 				}
 			}
 

@@ -1,15 +1,13 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 using MusicKitSample.Controllers;
 using System;
 
-namespace MusicKitSample
-{
+namespace MusicKitSample {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 
 		public override UIWindow Window {
@@ -66,7 +64,7 @@ namespace MusicKitSample
 				recentlyPlayedTableViewController.MusicPlayerManager = MusicPlayerManager;
 			} else
 				throw new InvalidCastException ($"Unable to find expected {nameof (RecentlyPlayedTableViewController)} in at TabBar Index 3");
-			
+
 			if (TopViewController (4) is MediaSearchTableViewController mediaSearchTableViewController) {
 				mediaSearchTableViewController.AuthorizationManager = AuthorizationManager;
 				mediaSearchTableViewController.MediaLibraryManager = MediaLibraryManager;
@@ -80,7 +78,7 @@ namespace MusicKitSample
 		UIViewController TopViewController (int index)
 		{
 			if (Window.RootViewController is UITabBarController tabBarController &&
-			    tabBarController.ViewControllers [index] is UINavigationController navigationController)
+				tabBarController.ViewControllers [index] is UINavigationController navigationController)
 				return navigationController.TopViewController;
 			else
 				throw new InvalidCastException ("Unable to find expected View Controller in Main.storyboard.");

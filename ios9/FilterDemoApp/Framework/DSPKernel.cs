@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using AudioToolbox;
 using AudioUnit;
@@ -12,17 +12,17 @@ namespace FilterDemoFramework {
 			case AURenderEventType.ParameterRamp:
 				AUParameterEvent paramEvent = theEvent.Parameter;
 
-				StartRamp (paramEvent.ParameterAddress, paramEvent.Value, (int)paramEvent.RampDurationSampleFrames);
+				StartRamp (paramEvent.ParameterAddress, paramEvent.Value, (int) paramEvent.RampDurationSampleFrames);
 				break;
 			case AURenderEventType.Midi:
 				throw new NotImplementedException ();
 			}
 		}
 
-// There are two APIs for getting all of the events.
-// - The "raw" pointers from the linked list
-// - The EnumeratorCurrentEvents wrapper
-//#define USE_RAW_EVENT_ENUMERATION
+		// There are two APIs for getting all of the events.
+		// - The "raw" pointers from the linked list
+		// - The EnumeratorCurrentEvents wrapper
+		//#define USE_RAW_EVENT_ENUMERATION
 #if USE_RAW_EVENT_ENUMERATION
 		unsafe void PerformAllSimultaneousEvents (nint now, AURenderEvent** theEvent)
 		{
@@ -59,7 +59,7 @@ namespace FilterDemoFramework {
 #else
 		public unsafe void ProcessWithEvents (AudioTimeStamp timestamp, int frameCount, AURenderEventEnumerator events)
 		{
-			var now = (nint)timestamp.SampleTime;
+			var now = (nint) timestamp.SampleTime;
 			int framesRemaining = frameCount;
 			while (framesRemaining > 0) {
 				if (events.IsAtEnd) {
@@ -68,7 +68,7 @@ namespace FilterDemoFramework {
 					return;
 				}
 
-				var framesThisSegment = (int)(events.Current.Head.EventSampleTime - now);
+				var framesThisSegment = (int) (events.Current.Head.EventSampleTime - now);
 
 				if (framesThisSegment > 0) {
 					int bufferOffset = frameCount - framesRemaining;

@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using Foundation;
 using UIKit;
 using MusicKitSample.Models;
 
-namespace MusicKitSample
-{
-	public partial class MediaItemTableViewCell : UITableViewCell
-	{
+namespace MusicKitSample {
+	public partial class MediaItemTableViewCell : UITableViewCell {
 		#region Cell Identifier
 
 		public static readonly NSString Key = new NSString ("MediaItemTableViewCell");
@@ -82,8 +80,7 @@ namespace MusicKitSample
 		#endregion
 	}
 
-	public interface IMediaSearchTableViewCellDelegate
-	{
+	public interface IMediaSearchTableViewCellDelegate {
 		void AddToPlaylist (MediaItemTableViewCell mediaSearchTableViewCell, MediaItem mediaItem);
 		void PlayMediaItem (MediaItemTableViewCell mediaSearchTableViewCell, MediaItem mediaItem);
 	}

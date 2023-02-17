@@ -10,10 +10,8 @@ using OpenTK.Graphics.ES11;
 using UIKit;
 using OpenGLES;
 
-namespace LowLevelGLPaint
-{
-	public class PaintingView : iPhoneOSGameView
-	{
+namespace LowLevelGLPaint {
+	public class PaintingView : iPhoneOSGameView {
 		public const float BrushOpacity = 1.0f / 3.0f;
 		public const int BrushPixelStep = 3;
 		public const int BrushScale = 2;
@@ -42,23 +40,22 @@ namespace LowLevelGLPaint
 			CreateFrameBuffer ();
 			MakeCurrent ();
 			var brushImage = UIImage.FromFile ("Particle.png").CGImage;
-			var width = (int)brushImage.Width;
-			var height = (int)brushImage.Height;
+			var width = (int) brushImage.Width;
+			var height = (int) brushImage.Height;
 			if (brushImage != null) {
 				IntPtr brushData = Marshal.AllocHGlobal (width * height * 4);
 				if (brushData == IntPtr.Zero)
 					throw new OutOfMemoryException ();
 				try {
 					using (var brushContext = new CGBitmapContext (brushData,
-						(int)width, width, 8, width * 4, brushImage.ColorSpace, CGImageAlphaInfo.PremultipliedLast)) {
+						(int) width, width, 8, width * 4, brushImage.ColorSpace, CGImageAlphaInfo.PremultipliedLast)) {
 						brushContext.DrawImage (new CGRect (0.0f, 0.0f, (float) width, (float) height), brushImage);
 					}
 
 					GL.GenTextures (1, out brushTexture);
 					GL.BindTexture (All.Texture2D, brushTexture);
-					GL.TexImage2D (All.Texture2D, 0, (int) All.Rgba, (int)width, height, 0, All.Rgba, All.UnsignedByte, brushData);
-				}
-				finally {
+					GL.TexImage2D (All.Texture2D, 0, (int) All.Rgba, (int) width, height, 0, All.Rgba, All.UnsignedByte, brushData);
+				} finally {
 					Marshal.FreeHGlobal (brushData);
 				}
 				GL.TexParameter (All.Texture2D, All.TextureMinFilter, (int) All.Linear);
@@ -68,7 +65,7 @@ namespace LowLevelGLPaint
 			}
 			GL.Disable (All.Dither);
 			GL.MatrixMode (All.Projection);
-			GL.Ortho (0, (float)frame.Width, 0, (float)frame.Height, -1, 1);
+			GL.Ortho (0, (float) frame.Width, 0, (float) frame.Height, -1, 1);
 			GL.MatrixMode (All.Modelview);
 			GL.Enable (All.Texture2D);
 			GL.EnableClientState (All.VertexArray);
@@ -101,7 +98,7 @@ namespace LowLevelGLPaint
 			SwapBuffers ();
 		}
 
-		nfloat[] vertexBuffer;
+		nfloat [] vertexBuffer;
 		int vertexMax = 64;
 
 		private void RenderLineFromPoint (CGPoint start, CGPoint end)
@@ -137,7 +134,7 @@ namespace LowLevelGLPaint
 				RenderLineFromPoint (points [i], points [i + 1]);
 
 			if (dataofs < ShakeMe.Data.Count - 1) {
-				dataofs ++;
+				dataofs++;
 				PerformSelector (new Selector ("playback"), null, 0.01f);
 			}
 		}
@@ -160,8 +157,7 @@ namespace LowLevelGLPaint
 				firstTouch = false;
 				PreviousLocation = touch.PreviousLocationInView (this);
 				PreviousLocation.Y = bounds.Height - PreviousLocation.Y;
-			}
-			else {
+			} else {
 				Location = touch.LocationInView (this);
 				Location.Y = bounds.Height - Location.Y;
 				PreviousLocation = touch.PreviousLocationInView (this);

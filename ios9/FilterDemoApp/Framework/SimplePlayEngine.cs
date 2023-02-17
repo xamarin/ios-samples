@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using AudioUnit;
 using AVFoundation;
@@ -17,15 +17,15 @@ namespace FilterDemoFramework {
 
 		Action componentsFoundCallback;
 		readonly DispatchQueue availableEffectsAccessQueue = new DispatchQueue ("SimplePlayEngine.availableEffectsAccessQueue", false);
-		AVAudioUnitComponent[] availableEffects = new AVAudioUnitComponent[0];
+		AVAudioUnitComponent [] availableEffects = new AVAudioUnitComponent [0];
 
 		public AUAudioUnit AudioUnit { get; private set; }
 
-		public AUAudioUnitPreset[] PresetList { get; private set; }
+		public AUAudioUnitPreset [] PresetList { get; private set; }
 
 		public AVAudioUnitComponent [] AvailableEffects {
 			get {
-				AVAudioUnitComponent[] result = null;
+				AVAudioUnitComponent [] result = null;
 
 				availableEffectsAccessQueue.DispatchSync (() => {
 					result = availableEffects;
@@ -59,7 +59,7 @@ namespace FilterDemoFramework {
 
 			var error = AVAudioSession.SharedInstance ().SetCategory (AVAudioSessionCategory.Playback);
 			if (error != null)
-				throw new NSErrorException(error);
+				throw new NSErrorException (error);
 
 			AUAudioUnit.Notifications.ObserveAudioComponentInstanceInvalidation ((sender, e) => {
 				var crashedAU = e.Notification.Object as AUAudioUnit;
@@ -119,7 +119,7 @@ namespace FilterDemoFramework {
 					ScheduleLoop ();
 
 					NSError error;
-					if(!engine.StartAndReturnError (out error))
+					if (!engine.StartAndReturnError (out error))
 						Console.WriteLine (error.LocalizedDescription);
 
 					player.Play ();
@@ -137,8 +137,8 @@ namespace FilterDemoFramework {
 
 			player.ScheduleFile (file, null, () =>
 				stateChangeQueue.DispatchAsync (() => {
-				if (isPlaying)
-					ScheduleLoop ();
+					if (isPlaying)
+						ScheduleLoop ();
 				})
 			);
 		}
@@ -156,7 +156,7 @@ namespace FilterDemoFramework {
 		{
 			AudioComponentDescription? desc = (component != null)
 				? component.AudioComponentDescription
-				: default(AudioComponentDescription?);
+				: default (AudioComponentDescription?);
 
 			SelectEffectWithComponentDescription (desc, completionHandler);
 		}
@@ -176,7 +176,7 @@ namespace FilterDemoFramework {
 
 				effect = null;
 				AudioUnit = null;
-				PresetList = new AUAudioUnitPreset[0];
+				PresetList = new AUAudioUnitPreset [0];
 			}
 
 			if (componentDescription.HasValue) {
@@ -195,7 +195,7 @@ namespace FilterDemoFramework {
 					engine.Connect (avAudioUnitEffect, engine.MainMixerNode, file.ProcessingFormat);
 
 					AudioUnit = avAudioUnitEffect.AUAudioUnit;
-					PresetList = avAudioUnitEffect.AUAudioUnit.FactoryPresets ?? new AUAudioUnitPreset[0];
+					PresetList = avAudioUnitEffect.AUAudioUnit.FactoryPresets ?? new AUAudioUnitPreset [0];
 					Done (completionHandler);
 				});
 			} else {

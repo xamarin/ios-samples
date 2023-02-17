@@ -6,10 +6,8 @@ using Foundation;
 using MapKit;
 using UIKit;
 
-namespace MapCallouts
-{
-	public class SFAnnotation : MKAnnotation
-	{
+namespace MapCallouts {
+	public class SFAnnotation : MKAnnotation {
 		public UIImage Image { get; set; }
 
 		public double Latitute { get; set; }

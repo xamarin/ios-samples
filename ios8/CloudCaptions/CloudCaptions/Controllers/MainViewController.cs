@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using UIKit;
 using CloudKit;
@@ -6,27 +6,25 @@ using System.Threading.Tasks;
 using Foundation;
 using CoreGraphics;
 
-namespace CloudCaptions
-{
-	[Register("MainViewController")]
-	public class MainViewController : UITableViewController, IUIScrollViewDelegate, IUISearchBarDelegate
-	{
-		readonly NSString cellReuseIdentifier = new NSString("post");
+namespace CloudCaptions {
+	[Register ("MainViewController")]
+	public class MainViewController : UITableViewController, IUIScrollViewDelegate, IUISearchBarDelegate {
+		readonly NSString cellReuseIdentifier = new NSString ("post");
 
 		PostManager postManager;
 
 		public MainViewController (IntPtr handle)
-			: base(handle)
+			: base (handle)
 		{
 		}
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			((AppDelegate)UIApplication.SharedApplication.Delegate).TableController = this;
+			((AppDelegate) UIApplication.SharedApplication.Delegate).TableController = this;
 
 			postManager = new PostManager (() => {
-				InvokeOnMainThread(() => { TableView.ReloadData(); });
+				InvokeOnMainThread (() => { TableView.ReloadData (); });
 			});
 			postManager.LoadBatch ();
 
@@ -40,7 +38,7 @@ namespace CloudCaptions
 			NavigationItem.RightBarButtonItem = new UIBarButtonItem (UIBarButtonSystemItem.Compose, OnNewPostClicked);
 		}
 
-		public async void LoadNewPostsWithRecordID(CKRecordID recordID)
+		public async void LoadNewPostsWithRecordID (CKRecordID recordID)
 		{
 			// Called when AppDelegate receives a push notification
 			// The post that triggered the push may not be indexed yet, so a fetch on predicate might not see it.
@@ -48,10 +46,10 @@ namespace CloudCaptions
 			CKDatabase publicDB = CKContainer.DefaultContainer.PublicCloudDatabase;
 			try {
 				CKRecord record = await publicDB.FetchRecordAsync (recordID);
-				Post postThatFiredPush = new Post(record);
-				postThatFiredPush.LoadImage(null, TableView.ReloadData);
-				postManager.LoadNewPosts(postThatFiredPush);
-			} catch(NSErrorException ex) {
+				Post postThatFiredPush = new Post (record);
+				postThatFiredPush.LoadImage (null, TableView.ReloadData);
+				postManager.LoadNewPosts (postThatFiredPush);
+			} catch (NSErrorException ex) {
 				Console.WriteLine (ex.Error);
 			}
 		}
@@ -69,28 +67,28 @@ namespace CloudCaptions
 			UIAlertController picMethod = UIAlertController.Create (alertTitle, null, UIAlertControllerStyle.ActionSheet);
 			picMethod.ModalPresentationStyle = UIModalPresentationStyle.Popover;
 			UIPopoverPresentationController popPresenter = picMethod.PopoverPresentationController;
-			if(popPresenter != null)
+			if (popPresenter != null)
 				popPresenter.BarButtonItem = NavigationItem.RightBarButtonItem;
 
 			string takePhotoButton = "Take Photo";
 			UIAlertAction takePhoto = UIAlertAction.Create (takePhotoButton, UIAlertActionStyle.Default, action => {
-				var imagePicker = new UIImagePickerController();
+				var imagePicker = new UIImagePickerController ();
 				imagePicker.WeakDelegate = this;
 				imagePicker.SourceType = UIImagePickerControllerSourceType.Camera;
-				PresentViewController(imagePicker, true, null);
+				PresentViewController (imagePicker, true, null);
 			});
 
 			string uploadButton = "Upload Photo";
 			UIAlertAction uploadPhoto = UIAlertAction.Create (uploadButton, UIAlertActionStyle.Default, action => {
-				var imagePicker = new UIImagePickerController();
+				var imagePicker = new UIImagePickerController ();
 				imagePicker.WeakDelegate = this;
 				imagePicker.SourceType = UIImagePickerControllerSourceType.PhotoLibrary;
-				PresentViewController(imagePicker, true, null);
+				PresentViewController (imagePicker, true, null);
 			});
 
 			string selectButton = "Select from CloudKit";
 			UIAlertAction selectExisting = UIAlertAction.Create (selectButton, UIAlertActionStyle.Default, action => {
-				PerformSegue("selectExisting", null);
+				PerformSegue ("selectExisting", null);
 			});
 
 			UIAlertAction cancel = UIAlertAction.Create ("Cancel", UIAlertActionStyle.Cancel, null);
@@ -116,9 +114,9 @@ namespace CloudCaptions
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)
 		{
-			var cell = (PostCell)TableView.DequeueReusableCell (cellReuseIdentifier, indexPath);
+			var cell = (PostCell) TableView.DequeueReusableCell (cellReuseIdentifier, indexPath);
 			cell = cell ?? new PostCell ();
-			Post post = postManager.PostCells[indexPath.Row];
+			Post post = postManager.PostCells [indexPath.Row];
 			cell.DisplayInfoForPost (post);
 			return cell;
 		}
@@ -133,11 +131,11 @@ namespace CloudCaptions
 		public void Scrolled (UIScrollView scrollView)
 		{
 			// Checks to see if the user has scrolled five posts from the bottom and if we want to update
-			var tableBottom = new CGPoint(scrollView.ContentOffset.X, scrollView.ContentOffset.Y + scrollView.Bounds.Size.Height);
+			var tableBottom = new CGPoint (scrollView.ContentOffset.X, scrollView.ContentOffset.Y + scrollView.Bounds.Size.Height);
 			int count = postManager.PostCells.Count;
 
 			NSIndexPath index = TableView.IndexPathForRowAtPoint (tableBottom);
-			if( count > 0 && index != null && index.Row + 5 > count)
+			if (count > 0 && index != null && index.Row + 5 > count)
 				postManager.LoadBatch ();
 		}
 
@@ -181,22 +179,22 @@ namespace CloudCaptions
 			// Dismisses imagePicker and pulls up SubmitPostViewController
 			var imageRecord = new Image (eArg.OriginalImage);
 			picker.DismissViewController (true, () => {
-				PerformSegue("newPost", imageRecord);
+				PerformSegue ("newPost", imageRecord);
 			});
 		}
 
 		#endregion
 
-		public void GoTo(ExistingImageViewController controller, Image image)
+		public void GoTo (ExistingImageViewController controller, Image image)
 		{
 			// Gets called when the user taps on an image in the collection view
 			// Dismisses collection view and pulls up a SubmitPostViewController
 			controller.DismissViewController (true, () => {
-				PerformSegue("newPost", image);
+				PerformSegue ("newPost", image);
 			});
 		}
 
-		public void Submit(Post post)
+		public void Submit (Post post)
 		{
 			postManager.LoadNewPosts (post);
 		}
@@ -206,10 +204,10 @@ namespace CloudCaptions
 			base.PrepareForSegue (segue, sender);
 
 			if (segue.Identifier == "selectExisting") {
-				((ExistingImageViewController)segue.DestinationViewController).MasterController = this;
+				((ExistingImageViewController) segue.DestinationViewController).MasterController = this;
 			} else if (segue.Identifier == "newPost") {
-				var controller = ((SubmitPostViewController)segue.DestinationViewController);
-				controller.ImageRecord = (Image)sender;
+				var controller = ((SubmitPostViewController) segue.DestinationViewController);
+				controller.ImageRecord = (Image) sender;
 				controller.MainController = this;
 			} else {
 				throw new NotImplementedException ("Unhandled segue");

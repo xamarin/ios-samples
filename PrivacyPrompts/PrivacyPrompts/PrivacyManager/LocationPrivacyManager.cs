@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 using CoreLocation;
 using Foundation;
 using MapKit;
 using System.Threading.Tasks;
 
-namespace PrivacyPrompts
-{
-	public class LocationPrivacyManager : IPrivacyManager
-	{
+namespace PrivacyPrompts {
+	public class LocationPrivacyManager : IPrivacyManager {
 		public event EventHandler LocationChanged;
 
 		readonly CLLocationManager locationManager;
@@ -24,7 +22,7 @@ namespace PrivacyPrompts
 
 		public string LocationInfo {
 			get {
-				return LocationManager.Location.ToString();
+				return LocationManager.Location.ToString ();
 			}
 		}
 
@@ -34,7 +32,7 @@ namespace PrivacyPrompts
 
 			// If previously allowed, start location manager
 			if (CLLocationManager.Status == CLAuthorizationStatus.AuthorizedWhenInUse)
-				locationManager.StartUpdatingLocation();
+				locationManager.StartUpdatingLocation ();
 
 			locationManager.Failed += OnFailed;
 			locationManager.LocationsUpdated += OnLocationsUpdated;
@@ -48,7 +46,7 @@ namespace PrivacyPrompts
 
 		void OnLocationsUpdated (object sender, CLLocationsUpdatedEventArgs e)
 		{
-			Region = new MKCoordinateRegion(LocationManager.Location.Coordinate, new MKCoordinateSpan(0.1, 0.1));
+			Region = new MKCoordinateRegion (LocationManager.Location.Coordinate, new MKCoordinateSpan (0.1, 0.1));
 
 			var handler = LocationChanged;
 			if (handler != null)
@@ -60,7 +58,7 @@ namespace PrivacyPrompts
 			if (e.Status == CLAuthorizationStatus.AuthorizedWhenInUse)
 				LocationManager.StartUpdatingLocation ();
 
-			if(tcs != null)
+			if (tcs != null)
 				tcs.SetResult (null);
 		}
 

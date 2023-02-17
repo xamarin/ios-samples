@@ -1,79 +1,72 @@
-﻿
-namespace XamarinShot.Models
-{
-    using SceneKit;
-    using XamarinShot.Models.Enums;
-    using System;
-    using System.Collections.Generic;
 
-    /// <summary>
-    /// Abstract:
-    /// Manages user interactions.
-    /// </summary>
-    public class InteractionManager
-    {
-        private readonly Dictionary<int, IInteraction> interactions = new Dictionary<int, IInteraction>();
+namespace XamarinShot.Models {
+	using SceneKit;
+	using XamarinShot.Models.Enums;
+	using System;
+	using System.Collections.Generic;
 
-        public void AddInteraction(IInteraction interaction)
-        {
-            var classIdentifier = interaction.GetType().GetHashCode();
-            this.interactions[classIdentifier] = interaction;
-        }
+	/// <summary>
+	/// Abstract:
+	/// Manages user interactions.
+	/// </summary>
+	public class InteractionManager {
+		private readonly Dictionary<int, IInteraction> interactions = new Dictionary<int, IInteraction> ();
 
-        public IInteraction Interaction(Type interactionClass)
-        {
-            IInteraction result = null;
+		public void AddInteraction (IInteraction interaction)
+		{
+			var classIdentifier = interaction.GetType ().GetHashCode ();
+			this.interactions [classIdentifier] = interaction;
+		}
 
-            var classIdentifier = interactionClass.GetHashCode();
-            if (this.interactions.TryGetValue(classIdentifier, out IInteraction interaction))
-            {
-                result = interaction;
-            }
+		public IInteraction Interaction (Type interactionClass)
+		{
+			IInteraction result = null;
 
-            return result;
-        }
+			var classIdentifier = interactionClass.GetHashCode ();
+			if (this.interactions.TryGetValue (classIdentifier, out IInteraction interaction)) {
+				result = interaction;
+			}
 
-        public void RemoveAllInteractions()
-        {
-            this.interactions.Clear();
-        }
+			return result;
+		}
 
-        public void UpdateAll(CameraInfo cameraInfo)
-        {
-            foreach (var interaction in this.interactions.Values)
-            {
-                interaction.Update(cameraInfo);
-            }
-        }
+		public void RemoveAllInteractions ()
+		{
+			this.interactions.Clear ();
+		}
 
-        public void Handle(GameActionType gameAction, Player player)
-        {
-            foreach (var interaction in this.interactions.Values)
-            {
-                interaction.Handle(gameAction, player);
-            }
-        }
+		public void UpdateAll (CameraInfo cameraInfo)
+		{
+			foreach (var interaction in this.interactions.Values) {
+				interaction.Update (cameraInfo);
+			}
+		}
 
-        #region Touch Event Routing
+		public void Handle (GameActionType gameAction, Player player)
+		{
+			foreach (var interaction in this.interactions.Values) {
+				interaction.Handle (gameAction, player);
+			}
+		}
 
-        public void HandleTouch(TouchType type, Ray camera)
-        {
-            foreach (var interaction in this.interactions.Values)
-            {
-                interaction.HandleTouch(type, camera);
-            }
-        }
+		#region Touch Event Routing
 
-        public void DidCollision(SCNNode nodeA, SCNNode nodeB, SCNVector3 position, float impulse)
-        {
-            foreach (var interaction in this.interactions.Values)
-            {
-                // nodeA and nodeB take turn to be the main node
-                interaction.DidCollision(nodeA, nodeB, position, impulse);
-                interaction.DidCollision(nodeB, nodeA, position, impulse);
-            }
-        }
+		public void HandleTouch (TouchType type, Ray camera)
+		{
+			foreach (var interaction in this.interactions.Values) {
+				interaction.HandleTouch (type, camera);
+			}
+		}
 
-        #endregion
-    }
+		public void DidCollision (SCNNode nodeA, SCNNode nodeB, SCNVector3 position, float impulse)
+		{
+			foreach (var interaction in this.interactions.Values) {
+				// nodeA and nodeB take turn to be the main node
+				interaction.DidCollision (nodeA, nodeB, position, impulse);
+				interaction.DidCollision (nodeB, nodeA, position, impulse);
+			}
+		}
+
+		#endregion
+	}
 }

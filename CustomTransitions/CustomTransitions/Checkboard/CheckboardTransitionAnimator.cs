@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using CoreAnimation;
 using CoreGraphics;
@@ -27,14 +27,14 @@ namespace CustomTransitions {
 
 			// TODO
 			UIImage fromViewSnapshot;
-			var toViewSnapshot = new UIImage();
+			var toViewSnapshot = new UIImage ();
 
 			UIGraphics.BeginImageContextWithOptions (containerView.Bounds.Size, true, containerView.Window.Screen.Scale);
 			fromView.DrawViewHierarchy (containerView.Bounds, false);
 			fromViewSnapshot = UIGraphics.GetImageFromCurrentImageContext ();
 			UIGraphics.EndImageContext ();
 
-			CoreFoundation.DispatchQueue.MainQueue.DispatchAsync (() => { 
+			CoreFoundation.DispatchQueue.MainQueue.DispatchAsync (() => {
 				UIGraphics.BeginImageContextWithOptions (containerView.Bounds.Size, true, containerView.Window.Screen.Scale);
 				toView.DrawViewHierarchy (containerView.Bounds, false);
 				toViewSnapshot = UIGraphics.GetImageFromCurrentImageContext ();
@@ -63,15 +63,15 @@ namespace CustomTransitions {
 			var transitionDuration = TransitionDuration (transitionContext);
 
 			nfloat dx = isPush ? transitionContainer.Bounds.GetMaxY () - transitionContainer.Bounds.GetMinX ()
-			                                        : transitionContainer.Bounds.GetMinX () - transitionContainer.Bounds.GetMaxX ();
+													: transitionContainer.Bounds.GetMinX () - transitionContainer.Bounds.GetMaxX ();
 
 			nfloat dy = isPush ? transitionContainer.Bounds.GetMaxY () - transitionContainer.Bounds.GetMinY () :
-			                                        transitionContainer.Bounds.GetMinY () - transitionContainer.Bounds.GetMaxY ();
+													transitionContainer.Bounds.GetMinY () - transitionContainer.Bounds.GetMaxY ();
 
 			var transitionVector = new CGVector (dx, dy);
 
-			var transitionVectorLength = (nfloat)Math.Sqrt (transitionVector.dx * transitionVector.dx + transitionVector.dy * transitionVector.dy);
-			var transitionUnitVector = new CGVector (transitionVector.dx / transitionVectorLength, transitionVector.dy / new nfloat(transitionVectorLength));
+			var transitionVectorLength = (nfloat) Math.Sqrt (transitionVector.dx * transitionVector.dx + transitionVector.dy * transitionVector.dy);
+			var transitionUnitVector = new CGVector (transitionVector.dx / transitionVectorLength, transitionVector.dy / new nfloat (transitionVectorLength));
 
 			for (int y = 0; y < verticalSlices; y++) {
 				for (int x = 0; x < horizontalSileces; x++) {
@@ -102,7 +102,7 @@ namespace CustomTransitions {
 					toCheckboardSquareView.Layer.MasksToBounds = true;
 					toCheckboardSquareView.Layer.DoubleSided = false;
 					toCheckboardSquareView.Layer.Transform = CATransform3D.MakeRotation (NMath.PI, 0f, 1f, 0f);
-					toCheckboardSquareView.Layer.AddSublayer(toContentLayer);
+					toCheckboardSquareView.Layer.AddSublayer (toContentLayer);
 
 					var fromCheckboardSquareView = new UIView {
 						Frame = new CGRect (x * sliceSize, y * sliceSize, sliceSize, sliceSize),
@@ -124,10 +124,10 @@ namespace CustomTransitions {
 			for (int y = 0; y < verticalSlices; y++) {
 				for (int x = 0; x < horizontalSileces; x++) {
 					double toIndex = y * horizontalSileces * 2f + (x * 2);
-					UIView toCheckboardSquareView = transitionContainer.Subviews[(int)toIndex];
+					UIView toCheckboardSquareView = transitionContainer.Subviews [(int) toIndex];
 
 					double fromIndex = y * horizontalSileces * 2f + (x * 2 + 1);
-					UIView fromCheckboardSquareView = transitionContainer.Subviews[(int)fromIndex];
+					UIView fromCheckboardSquareView = transitionContainer.Subviews [(int) fromIndex];
 
 					CGVector sliceOriginVector;
 
@@ -148,16 +148,16 @@ namespace CustomTransitions {
 
 					sliceAnimationsPending++;
 
-					UIView.Animate(duration, startTime, UIViewAnimationOptions.TransitionNone, () => {
-							toCheckboardSquareView.Layer.Transform = CATransform3D.Identity;
-							fromCheckboardSquareView.Layer.Transform = CATransform3D.MakeRotation (NMath.PI, 0f, 1f, 0f);
-						}, () => {
-							if (--sliceAnimationsPending == 0) {
-								bool wasCancelled = transitionContext.TransitionWasCancelled;
-								transitionContainer.RemoveFromSuperview ();
-								transitionContext.CompleteTransition (!wasCancelled);
-							}
+					UIView.Animate (duration, startTime, UIViewAnimationOptions.TransitionNone, () => {
+						toCheckboardSquareView.Layer.Transform = CATransform3D.Identity;
+						fromCheckboardSquareView.Layer.Transform = CATransform3D.MakeRotation (NMath.PI, 0f, 1f, 0f);
+					}, () => {
+						if (--sliceAnimationsPending == 0) {
+							bool wasCancelled = transitionContext.TransitionWasCancelled;
+							transitionContainer.RemoveFromSuperview ();
+							transitionContext.CompleteTransition (!wasCancelled);
 						}
+					}
 					);
 				}
 			}

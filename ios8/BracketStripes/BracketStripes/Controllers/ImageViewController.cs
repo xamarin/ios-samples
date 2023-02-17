@@ -7,10 +7,8 @@ using UIKit;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace BracketStripes
-{
-	public class ImageViewController : UIViewController
-	{
+namespace BracketStripes {
+	public class ImageViewController : UIViewController {
 		public Action<ImageViewController> ImageViewControllerDidFinish { get; set; }
 
 		public ZoomImageView ImageView { get; set; }

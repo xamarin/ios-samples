@@ -6,7 +6,7 @@ using UIKit;
 
 namespace MusicMotion {
 	public partial class HistoryViewController : UIViewController, IUITableViewDelegate, IUITableViewDataSource, INSCoding {
-		
+
 		readonly string textCellIdentifier = "HistoryCell";
 
 		List<Tuple<string, Func<Activity, string>>> recentActivityItems = new List<Tuple<string, Func<Activity, string>>> {
@@ -60,7 +60,7 @@ namespace MusicMotion {
 		[Export ("tableView:numberOfRowsInSection:")]
 		public nint RowsInSection (UITableView tableView, nint section)
 		{
-			var activity = motionManager.RecentActivities [(int)section].MotionActivity;
+			var activity = motionManager.RecentActivities [(int) section].MotionActivity;
 			return (activity.Running || activity.Walking) ? recentActivityItems.Count : 3;
 		}
 
@@ -81,7 +81,7 @@ namespace MusicMotion {
 		[Export ("tableView:titleForHeaderInSection:")]
 		public string TitleForHeader (UITableView tableView, nint section)
 		{
-			return motionManager.RecentActivities [(int)section].ActivityType;
+			return motionManager.RecentActivities [(int) section].ActivityType;
 		}
 	}
 }

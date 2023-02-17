@@ -1,12 +1,11 @@
-﻿using System;
+using System;
 
 using CoreFoundation;
 using Foundation;
 using HomeKit;
 using UIKit;
 
-namespace HomeKitCatalog
-{
+namespace HomeKitCatalog {
 	/// <summary>
 	/// The `HMCatalogViewController` is a base class which mainly provides easy-access methods for shared HomeKit objects.
 	///
@@ -15,8 +14,7 @@ namespace HomeKitCatalog
 	/// a home has been deleted.
 	/// </summary>
 	[Register ("HMCatalogViewController")]
-	public class HMCatalogViewController : UITableViewController, IHMHomeDelegate
-	{
+	public class HMCatalogViewController : UITableViewController, IHMHomeDelegate {
 		public HomeStore HomeStore {
 			get {
 				return HomeStore.SharedStore;
@@ -80,7 +78,7 @@ namespace HomeKitCatalog
 		protected void DisplayError (NSError error)
 		{
 			if (error != null) {
-				var errorCode = (HMError)(int)error.Code;
+				var errorCode = (HMError) (int) error.Code;
 				if (PresentedViewController != null || errorCode == HMError.OperationCancelled || errorCode == HMError.UserDeclinedAddingUser)
 					Console.WriteLine (error.LocalizedDescription);
 				else

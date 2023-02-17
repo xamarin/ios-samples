@@ -33,10 +33,8 @@ using Foundation;
 using UIKit;
 using CoreFoundation;
 
-namespace RecipesAndPrinting
-{
-	public class RecipePrintPageRenderer : UIPrintPageRenderer
-	{
+namespace RecipesAndPrinting {
+	public class RecipePrintPageRenderer : UIPrintPageRenderer {
 		const float RecipeInfoHeight = 150.0f;
 		const float TitleSize = 24.0f;
 		const float Padding = 10.0f;
@@ -45,9 +43,9 @@ namespace RecipesAndPrinting
 
 		Dictionary<UIPrintFormatter, Recipe> recipeFormatterMap = new Dictionary<UIPrintFormatter, Recipe> ();
 		NSRange pageRange;
-		Recipe[] recipes;
+		Recipe [] recipes;
 
-		public RecipePrintPageRenderer (Recipe[] recipes)
+		public RecipePrintPageRenderer (Recipe [] recipes)
 		{
 			this.HeaderHeight = 20.0f;
 			this.FooterHeight = 20.0f;
@@ -175,7 +173,7 @@ namespace RecipesAndPrinting
 				border.MoveTo (rect.Location);
 				border.AddLineTo (new CGPoint (rect.Right, rect.Top));
 
-				Recipe recipe = recipeFormatterMap[printFormatter];
+				Recipe recipe = recipeFormatterMap [printFormatter];
 
 				// Run custom code to draw upper portion of the recipe presentation (image, title, desc)
 				DrawRecipe (recipe, rect);
@@ -215,7 +213,7 @@ namespace RecipesAndPrinting
 			// Scale the image to fit in the infoRect
 			float maxImageDimension = RecipeInfoHeight - Padding * 2;
 			// HACK: Change float to nfloat
-			nfloat largestImageDimension = (nfloat)Math.Max (image.Size.Width, image.Size.Height);
+			nfloat largestImageDimension = (nfloat) Math.Max (image.Size.Width, image.Size.Height);
 			nfloat scale = maxImageDimension / largestImageDimension;
 
 			imageRect.Size = new CGSize (image.Size.Width * scale, image.Size.Height * scale);

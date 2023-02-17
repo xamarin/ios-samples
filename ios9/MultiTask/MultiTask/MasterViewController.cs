@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 using UIKit;
@@ -6,10 +6,8 @@ using Foundation;
 using CoreGraphics;
 using ObjCRuntime;
 
-namespace MultiTask
-{
-	public partial class MasterViewController : UITableViewController
-	{
+namespace MultiTask {
+	public partial class MasterViewController : UITableViewController {
 		public DetailViewController DetailViewController { get; set; }
 
 		#region Custom Keyboard Shortcut
@@ -17,16 +15,17 @@ namespace MultiTask
 			get { return true; }
 		}
 
-		public override UIKeyCommand[] KeyCommands {
+		public override UIKeyCommand [] KeyCommands {
 			get {
 
-				var keyCommand = UIKeyCommand.Create (new NSString("n"), UIKeyModifierFlags.Command, new Selector ("NewEntry"), new NSString("New Entry"));
-				return new UIKeyCommand[]{ keyCommand };
+				var keyCommand = UIKeyCommand.Create (new NSString ("n"), UIKeyModifierFlags.Command, new Selector ("NewEntry"), new NSString ("New Entry"));
+				return new UIKeyCommand [] { keyCommand };
 			}
 		}
 
-		[Export("NewEntry")]
-		public void NewEntry() {
+		[Export ("NewEntry")]
+		public void NewEntry ()
+		{
 
 			// Add new date-time stamp
 			dataSource.Objects.Insert (0, DateTime.Now);
@@ -43,14 +42,14 @@ namespace MultiTask
 		public MasterViewController (IntPtr handle) : base (handle)
 		{
 			Title = NSBundle.MainBundle.LocalizedString ("Master", "Master");
-			
+
 			if (UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Pad) {
 				PreferredContentSize = new CGSize (320f, 600f);
 				ClearsSelectionOnViewWillAppear = false;
 			}
-				
+
 		}
-			
+
 
 		public override void ViewDidLoad ()
 		{
@@ -63,7 +62,7 @@ namespace MultiTask
 			addButton.AccessibilityLabel = "addButton";
 			NavigationItem.RightBarButtonItem = addButton;
 
-			DetailViewController = (DetailViewController)((UINavigationController)SplitViewController.ViewControllers [1]).TopViewController;
+			DetailViewController = (DetailViewController) ((UINavigationController) SplitViewController.ViewControllers [1]).TopViewController;
 
 			TableView.Source = dataSource = new DataSource (this);
 		}
@@ -87,15 +86,14 @@ namespace MultiTask
 			if (segue.Identifier == "showDetail") {
 				var indexPath = TableView.IndexPathForSelectedRow;
 				var item = dataSource.Objects [indexPath.Row];
-				var controller = (DetailViewController)((UINavigationController)segue.DestinationViewController).TopViewController;
+				var controller = (DetailViewController) ((UINavigationController) segue.DestinationViewController).TopViewController;
 				controller.SetDetailItem (item);
 				controller.NavigationItem.LeftBarButtonItem = SplitViewController.DisplayModeButtonItem;
 				controller.NavigationItem.LeftItemsSupplementBackButton = true;
 			}
 		}
 
-		class DataSource : UITableViewSource
-		{
+		class DataSource : UITableViewSource {
 			static readonly NSString CellIdentifier = new NSString ("Cell");
 			readonly List<object> objects = new List<object> ();
 			readonly MasterViewController controller;

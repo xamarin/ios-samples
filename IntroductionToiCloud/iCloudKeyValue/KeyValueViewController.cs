@@ -14,13 +14,13 @@ namespace Cloud {
 		UIButton saveButton, reloadButton, clearButton;
 		UITextView localText, testText, outputText;
 		UILabel localLabel, testLabel, keyLabel, valueLabel;
-		
+
 		const string sharedKeyName = "Shared";
 
 		public override void ViewDidLoad ()
-		{	
+		{
 			base.ViewDidLoad ();
-			
+
 			#region UI Layout
 			// Create the buttons and TextView to run the sample code
 			saveButton = UIButton.FromType (UIButtonType.RoundedRect);
@@ -30,11 +30,11 @@ namespace Cloud {
 			reloadButton = UIButton.FromType (UIButtonType.RoundedRect);
 			reloadButton.Frame = new CGRect (110.0, 120.0, 90.0, 50.0);
 			reloadButton.SetTitle ("Reload", UIControlState.Normal);
-			
+
 			clearButton = UIButton.FromType (UIButtonType.RoundedRect);
 			clearButton.Frame = new CGRect (210.0, 120.0, 90.0, 50.0);
 			clearButton.SetTitle ("Clear", UIControlState.Normal);
-			
+
 			outputText = new UITextView (new CGRect (10.0, 180.0, 300.0, 270.0)) {
 				Editable = false,
 				ScrollEnabled = true
@@ -77,15 +77,15 @@ namespace Cloud {
 			Add (keyLabel);
 			Add (valueLabel);
 			#endregion
-			
+
 			// Wire up the buttons to the SamplCode class methods
 			saveButton.TouchUpInside += Save;
 
 			reloadButton.TouchUpInside += Reload;
-			
+
 			clearButton.TouchUpInside += Clear;
 		}
-		
+
 		// saves the inputs to iCloud keys
 		void Save (object sender, EventArgs ea)
 		{
@@ -103,8 +103,8 @@ namespace Cloud {
 		void Reload (object sender, EventArgs ea)
 		{
 			var store = NSUbiquitousKeyValueStore.DefaultStore;
-			var synchronized = store.Synchronize (); 
-		
+			var synchronized = store.Synchronize ();
+
 			testText.Text = store.GetString (sharedKeyName);
 			localText.Text = store.GetString (UIDevice.CurrentDevice.Name);
 
@@ -127,45 +127,45 @@ namespace Cloud {
 			localText.ResignFirstResponder ();
 			testText.ResignFirstResponder ();
 		}
-		
+
 		// notification when Key-Value changes are triggered by server
 		NSObject keyValueNotification;
-		
+
 		// register for the notification when iCloud keys are changed
 		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			
+
 			Reload (null, null);
 
-			keyValueNotification = 
+			keyValueNotification =
 			NSNotificationCenter.DefaultCenter.AddObserver (
 				NSUbiquitousKeyValueStore.DidChangeExternallyNotification, notification => {
-				Console.WriteLine ("Cloud notification received");
-				NSDictionary userInfo = notification.UserInfo;
-			
-				var reasonNumber = (NSNumber)userInfo.ObjectForKey (NSUbiquitousKeyValueStore.ChangeReasonKey);
-				nint reason = reasonNumber.NIntValue;
-			
-				var changedKeys = (NSArray)userInfo.ObjectForKey (NSUbiquitousKeyValueStore.ChangedKeysKey);
-				var changedKeysList = new List<string> ();
-				for (uint i = 0; i < changedKeys.Count; i++) {
-					var key = changedKeys.GetItem<NSString> (i); // resolve key to a string
-					changedKeysList.Add (key);
-				}
+					Console.WriteLine ("Cloud notification received");
+					NSDictionary userInfo = notification.UserInfo;
 
-				var store = NSUbiquitousKeyValueStore.DefaultStore;
-				store.Synchronize (); 
-				// now do something with the list...
-				InvokeOnMainThread (() => {
-					outputText.Text += "\n--- Cloud Notification \uE049\uE049\uE049 ---";
-					foreach (var k in changedKeysList)
-						outputText.Text += String.Format ("\n{0}: {1}", k, store.GetString (k));
-					
-					testText.Text = store.GetString (sharedKeyName);
-					localText.Text = store.GetString (UIDevice.CurrentDevice.Name);
+					var reasonNumber = (NSNumber) userInfo.ObjectForKey (NSUbiquitousKeyValueStore.ChangeReasonKey);
+					nint reason = reasonNumber.NIntValue;
+
+					var changedKeys = (NSArray) userInfo.ObjectForKey (NSUbiquitousKeyValueStore.ChangedKeysKey);
+					var changedKeysList = new List<string> ();
+					for (uint i = 0; i < changedKeys.Count; i++) {
+						var key = changedKeys.GetItem<NSString> (i); // resolve key to a string
+						changedKeysList.Add (key);
+					}
+
+					var store = NSUbiquitousKeyValueStore.DefaultStore;
+					store.Synchronize ();
+					// now do something with the list...
+					InvokeOnMainThread (() => {
+						outputText.Text += "\n--- Cloud Notification \uE049\uE049\uE049 ---";
+						foreach (var k in changedKeysList)
+							outputText.Text += String.Format ("\n{0}: {1}", k, store.GetString (k));
+
+						testText.Text = store.GetString (sharedKeyName);
+						localText.Text = store.GetString (UIDevice.CurrentDevice.Name);
+					});
 				});
-			});
 		}
 
 		// remove notification observer

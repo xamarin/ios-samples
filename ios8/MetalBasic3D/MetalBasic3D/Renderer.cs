@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Metal;
 using OpenTK;
 using System.Threading;
@@ -6,10 +6,8 @@ using Foundation;
 using System.Runtime.InteropServices;
 using CoreAnimation;
 
-namespace MetalBasic3D
-{
-	public class Renderer : IGameViewController, IGameView
-	{
+namespace MetalBasic3D {
+	public class Renderer : IGameViewController, IGameView {
 		const int max_inflight_buffers = 3;
 		const int max_bytes_per_frame = 1024 * 1024;
 
@@ -29,7 +27,7 @@ namespace MetalBasic3D
 		const float height = 1f;
 		const float depth = 1f;
 
-		float[] cubeVertexData = new float [216] {
+		float [] cubeVertexData = new float [216] {
 			width, -height, depth,   0.0f, -1.0f,  0.0f,
 			-width, -height, depth,   0.0f, -1.0f, 0.0f,
 			-width, -height, -depth,   0.0f, -1.0f,  0.0f,
@@ -83,7 +81,7 @@ namespace MetalBasic3D
 		IMTLLibrary defaultLibrary;
 
 		Semaphore inflightSemaphore;
-		IMTLBuffer[] dynamicConstantBuffer;
+		IMTLBuffer [] dynamicConstantBuffer;
 
 		// render stage
 		IMTLRenderPipelineState pipelineState;
@@ -94,7 +92,7 @@ namespace MetalBasic3D
 		Matrix4 projectionMatrix;
 		Matrix4 viewMatrix;
 
-		Uniforms[] constantBuffer;
+		Uniforms [] constantBuffer;
 		int multiplier;
 
 		public IMTLDevice Device { get; private set; }
@@ -121,7 +119,7 @@ namespace MetalBasic3D
 			constantDataBufferIndex = 0;
 			inflightSemaphore = new Semaphore (max_inflight_buffers, max_inflight_buffers);
 
-			constantBuffer = new Uniforms[2];
+			constantBuffer = new Uniforms [2];
 			constantBuffer [0].ambientColor = box1AmbientColor;
 			constantBuffer [0].diffuseColor = box1DiffuseColor;
 
@@ -158,7 +156,7 @@ namespace MetalBasic3D
 				constantBuffer [1].ambientColor.Y += multiplier * 0.01f;
 			}
 
-			rotation += (float)gameViewController.TimeSinceLastDraw;
+			rotation += (float) gameViewController.TimeSinceLastDraw;
 		}
 
 		public void RenderViewController (GameViewController gameViewController, bool value)
@@ -169,7 +167,7 @@ namespace MetalBasic3D
 
 		public void Reshape (GameView view)
 		{
-			var aspect = (float)(view.Bounds.Size.Width / view.Bounds.Size.Height);
+			var aspect = (float) (view.Bounds.Size.Width / view.Bounds.Size.Height);
 			projectionMatrix = CreateMatrixFromPerspective (FOVY, aspect, 0.1f, 100.0f);
 			viewMatrix = LookAt (eye, center, up);
 		}
@@ -191,7 +189,7 @@ namespace MetalBasic3D
 			renderEncoder.SetDepthStencilState (depthState);
 
 			RenderBox (renderEncoder, view, 0, "Box1");
-			RenderBox (renderEncoder, view, (nuint)Marshal.SizeOf<Uniforms> (), "Box2");
+			RenderBox (renderEncoder, view, (nuint) Marshal.SizeOf<Uniforms> (), "Box2");
 			renderEncoder.EndEncoding ();
 
 			commandBuffer.AddCompletedHandler ((IMTLCommandBuffer buffer) => {
@@ -211,7 +209,7 @@ namespace MetalBasic3D
 			view.StencilPixelFormat = stencilPixelFormat;
 			view.SampleCount = sampleCount;
 
-			dynamicConstantBuffer = new IMTLBuffer[max_inflight_buffers];
+			dynamicConstantBuffer = new IMTLBuffer [max_inflight_buffers];
 
 			// allocate one region of memory for the constant buffer
 			for (int i = 0; i < max_inflight_buffers; i++) {
@@ -257,8 +255,8 @@ namespace MetalBasic3D
 
 		void PrepareToDraw ()
 		{
-			int rawsize = 2 * Marshal.SizeOf <Uniforms> ();
-			byte[] rawdata = new byte[rawsize];
+			int rawsize = 2 * Marshal.SizeOf<Uniforms> ();
+			byte [] rawdata = new byte [rawsize];
 
 			GCHandle pinnedArray = GCHandle.Alloc (constantBuffer, GCHandleType.Pinned);
 			IntPtr ptr = pinnedArray.AddrOfPinnedObject ();
@@ -284,7 +282,7 @@ namespace MetalBasic3D
 
 		Matrix4 CreateMatrixFromPerspective (float fovY, float aspect, float near, float far)
 		{
-			float yscale = 1.0f / (float)Math.Tan (fovY * 0.5f);
+			float yscale = 1.0f / (float) Math.Tan (fovY * 0.5f);
 			float xscale = yscale / aspect;
 			float zScale = far / (far - near);
 
@@ -311,8 +309,8 @@ namespace MetalBasic3D
 		Matrix4 CreateMatrixFromRotation (float radians, float x, float y, float z)
 		{
 			Vector3 v = Vector3.Normalize (new Vector3 (x, y, z));
-			var cos = (float)Math.Cos (radians);
-			var sin = (float)Math.Sin (radians);
+			var cos = (float) Math.Cos (radians);
+			var sin = (float) Math.Sin (radians);
 			float cosp = 1.0f - cos;
 
 			var m = new Matrix4 {

@@ -13,11 +13,11 @@ namespace Newsstand {
 		/// <summary>
 		/// Pass the issue into the delegate to determine the target file location
 		/// </summary>
-		public NewsstandUrlDelegate1(string name, NKIssue issue)
+		public NewsstandUrlDelegate1 (string name, NKIssue issue)
 		{
 			Issue = issue;
 		}
-		
+
 		/// <summary>
 		/// Delivers progress information for the download
 		/// </summary>
@@ -40,16 +40,16 @@ namespace Newsstand {
 		{
 			Console.WriteLine ($"Downloaded file: {destinationUrl.Path}");
 			Console.WriteLine ($"Target issue location: {Issue.ContentUrl.Path}");
-		
+
 			var saveToFilename = Path.Combine (Issue.ContentUrl.Path, "default.html");
 
 			if (!File.Exists (saveToFilename))
 				File.Move (destinationUrl.Path, saveToFilename);
-		
+
 			Console.WriteLine ($"File moved for issue: {Issue.Name}");
 
 			if (OnDownloadingFinished != null)
 				OnDownloadingFinished ();
 		}
-	}	
+	}
 }

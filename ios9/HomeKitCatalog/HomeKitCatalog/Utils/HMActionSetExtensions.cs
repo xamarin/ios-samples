@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using HomeKit;
 
-namespace HomeKitCatalog
-{
-	public static class HMActionSetExtensions
-	{
-		static readonly HMActionSetType[] BuiltInActionSetTypes = { 
+namespace HomeKitCatalog {
+	public static class HMActionSetExtensions {
+		static readonly HMActionSetType [] BuiltInActionSetTypes = {
 			HMActionSetType.WakeUp,
 			HMActionSetType.HomeDeparture,
 			HMActionSetType.HomeArrival,

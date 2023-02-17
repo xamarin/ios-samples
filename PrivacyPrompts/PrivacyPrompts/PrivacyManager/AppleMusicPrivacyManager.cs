@@ -1,28 +1,26 @@
-﻿using System;
+using System;
 using System.Diagnostics.Contracts;
 using System.Threading.Tasks;
 using Foundation;
 using StoreKit;
 
-namespace PrivacyPrompts
-{
-	public class AppleMusicPrivacyManager : IPrivacyManager
-	{
+namespace PrivacyPrompts {
+	public class AppleMusicPrivacyManager : IPrivacyManager {
 
-		public Task RequestAccess()
+		public Task RequestAccess ()
 		{
-			var tcs = new TaskCompletionSource<object>();
+			var tcs = new TaskCompletionSource<object> ();
 
-			SKCloudServiceController.RequestAuthorization(_ => {
-				tcs.SetResult(null);
+			SKCloudServiceController.RequestAuthorization (_ => {
+				tcs.SetResult (null);
 			});
 
 			return tcs.Task;
 		}
 
-		public string CheckAccess()
+		public string CheckAccess ()
 		{
-			return SKCloudServiceController.AuthorizationStatus.ToString();
+			return SKCloudServiceController.AuthorizationStatus.ToString ();
 		}
 	}
 }

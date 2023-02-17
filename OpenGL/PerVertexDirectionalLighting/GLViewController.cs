@@ -3,28 +3,26 @@ using OpenTK;
 using UIKit;
 using OpenTK.Graphics.ES20;
 
-namespace PerVertexDirectionalLighting
-{
-	public class GLViewController : UIViewController
-	{
+namespace PerVertexDirectionalLighting {
+	public class GLViewController : UIViewController {
 		GLProgram program;
 		GLTexture texture;
 
 		float rot = 0f;
 
 		int positionAttribute,
-		    textureCoordinateAttribute,
-		    normalsAttribute,
-		    matrixUniform,
+			textureCoordinateAttribute,
+			normalsAttribute,
+			matrixUniform,
 			textureUniform,
-		    lightDirectionUniform,
+			lightDirectionUniform,
 			lightDiffuseColorUniform;
 
-		float[] rotationMatrix = new float[16],
-			    translationMatrix = new float[16],
-			    modelViewMatrix = new float[16],
-		        projectionMatrix = new float[16],
-		        matrix = new float[16];
+		float [] rotationMatrix = new float [16],
+				translationMatrix = new float [16],
+				modelViewMatrix = new float [16],
+				projectionMatrix = new float [16],
+				matrix = new float [16];
 
 		public GLViewController ()
 		{
@@ -70,7 +68,7 @@ namespace PerVertexDirectionalLighting
 
 		public void Draw ()
 		{
-			Vector3[] vertices = {
+			Vector3 [] vertices = {
 				new Vector3 { X = -0.276385f, Y = -0.850640f, Z = -0.447215f },
 				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f},
 				new Vector3 { X = 0.723600f, Y = -0.525720f, Z = -0.447215f},
@@ -133,7 +131,7 @@ namespace PerVertexDirectionalLighting
 				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = 1.000000f},
 			};
 
-			TextureCoord[] textureCoordinates = {
+			TextureCoord [] textureCoordinates = {
 				new TextureCoord { S = .648752f, T = 0.445995f},
 				new TextureCoord { S = 0.914415f, T = 0.532311f},
 				new TextureCoord { S = 0.722181f, T = 0.671980f},
@@ -196,7 +194,7 @@ namespace PerVertexDirectionalLighting
 				new TextureCoord { S = 0.254949f, T = 0.686495f},
 			};
 
-			Vector3[] normals = {
+			Vector3 [] normals = {
 				new Vector3 { X = -0.276376f, Y = -0.850642f, Z = -0.447188f },
 				new Vector3 { X = 0.000000f, Y = 0.000000f, Z = -1.000000f },
 				new Vector3 { X = 0.723594f, Y = -0.525712f, Z = -0.447188f },
@@ -279,7 +277,7 @@ namespace PerVertexDirectionalLighting
 			modelViewMatrix = GLCommon.Matrix3DMultiply (translationMatrix, rotationMatrix);
 
 			GLCommon.Matrix3DSetPerspectiveProjectionWithFieldOfView (ref projectionMatrix, 45.0f, 0.1f, 100.0f,
-				(float)(View.Frame.Size.Width / View.Frame.Size.Height));
+				(float) (View.Frame.Size.Width / View.Frame.Size.Height));
 
 			matrix = GLCommon.Matrix3DMultiply (projectionMatrix, modelViewMatrix);
 			GL.UniformMatrix4 (matrixUniform, 1, false, matrix);

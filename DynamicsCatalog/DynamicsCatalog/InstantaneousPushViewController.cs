@@ -17,7 +17,7 @@ namespace DynamicsCatalog {
 			base.ViewDidLoad ();
 
 			var collisionBehavior = new UICollisionBehavior (square) {
-			    TranslatesReferenceBoundsIntoBoundary = true
+				TranslatesReferenceBoundsIntoBoundary = true
 			};
 
 			var pushBehavior = new UIPushBehavior (UIPushBehaviorMode.Instantaneous, square) {
@@ -39,8 +39,8 @@ namespace DynamicsCatalog {
     			 */
 				CGPoint p = gesture.LocationInView (View);
 				CGPoint o = new CGPoint (View.Bounds.GetMidX (), View.Bounds.GetMidY ());
-				float distance = (float)Math.Sqrt ((p.X - o.X) * (p.X - o.X) + (p.Y - o.Y) * (p.Y - o.Y));
-				float angle = (float)Math.Atan2 (p.Y - o.Y, p.X - o.X);
+				float distance = (float) Math.Sqrt ((p.X - o.X) * (p.X - o.X) + (p.Y - o.Y) * (p.Y - o.Y));
+				float angle = (float) Math.Atan2 (p.Y - o.Y, p.X - o.X);
 				distance = Math.Min (distance, 100.0f);
 
 				redSquare.Bounds = new CGRect (0.0f, 0.0f, distance, 5.0f);

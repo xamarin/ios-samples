@@ -1,9 +1,7 @@
-﻿using Foundation;
+using Foundation;
 
-namespace CloudKitAtlas
-{
-	public class SegueArg : NSObject
-	{
+namespace CloudKitAtlas {
+	public class SegueArg : NSObject {
 		public CodeSample Sample { get; set; }
 	}
 }

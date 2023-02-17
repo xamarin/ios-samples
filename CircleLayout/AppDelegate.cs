@@ -1,11 +1,9 @@
 using Foundation;
 using UIKit;
 
-namespace CircleLayout
-{
+namespace CircleLayout {
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		UIWindow window;
 
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
@@ -13,12 +11,12 @@ namespace CircleLayout
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			window.RootViewController = new ViewController (new CircleLayout ());
-			window.MakeKeyAndVisible();
+			window.MakeKeyAndVisible ();
 
 			return true;
 		}
 
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			UIApplication.Main (args, null, "AppDelegate");
 		}

@@ -13,12 +13,10 @@ using OpenTK.Graphics.ES30;
 using static OpenTK.Graphics.ES30.GL;
 using static CoreGraphics.CGAffineTransform;
 
-namespace RawExpose
-{
+namespace RawExpose {
 	// This UIViewController displays an image processed using the CoreImage CIRawFilter in a GLKView.
 	// It also allows the user to perform simple edit, like adjusting exposure, temperature and tint.
-	public partial class ImageViewController : UIViewController, IGLKViewDelegate
-	{
+	public partial class ImageViewController : UIViewController, IGLKViewDelegate {
 		// Outlet to sliders used to edit the image.
 		[Outlet ("exposureSlider")]
 		UISlider ExposureSlider { get; set; }
@@ -30,7 +28,7 @@ namespace RawExpose
 		UISlider TintSlider { get; set; }
 
 		// View used to display the CoreImage output produced by the CIRawFilter.
-		[Outlet("imageView")]
+		[Outlet ("imageView")]
 		public GLKView ImageView { get; set; }
 
 		// Asset containing the image to render.
@@ -92,14 +90,14 @@ namespace RawExpose
 					imageNativeSize = new CGSize (sizeValue.X, sizeValue.Y);
 
 				// Record the original value of the temperature, and setup the editing slider.
-				var tempValue = (NSNumber)ciRawFilter.ValueForKey (Keys.kCIInputNeutralTemperatureKey);
+				var tempValue = (NSNumber) ciRawFilter.ValueForKey (Keys.kCIInputNeutralTemperatureKey);
 				if (tempValue != null) {
 					originalTemp = tempValue.FloatValue;
 					TempSlider.SetValue (tempValue.FloatValue, animated: false);
 				}
 
 				// Record the original value of the tint, and setup the editing slider.
-				var tintValue = (NSNumber)ciRawFilter.ValueForKey (Keys.kCIInputNeutralTintKey);
+				var tintValue = (NSNumber) ciRawFilter.ValueForKey (Keys.kCIInputNeutralTintKey);
 				if (tintValue != null) {
 					originalTint = tintValue.FloatValue;
 					TintSlider.SetValue (tintValue.FloatValue, animated: false);
@@ -146,7 +144,7 @@ namespace RawExpose
 		}
 
 		// Adjust the temperature of the image
-		[Action("temperatureAdjustedWithSender:")]
+		[Action ("temperatureAdjustedWithSender:")]
 		void temperatureAdjusted (UISlider sender)
 		{
 			var filter = ciRawFilter;
@@ -201,7 +199,7 @@ namespace RawExpose
 			// Calculate scale to show the image at.
 			var scaleTransform = MakeScale (view.ContentScaleFactor, view.ContentScaleFactor);
 			var contentScaledRect = CGRectApplyAffineTransform (rect, scaleTransform);
-			var scale = (float)Math.Min (contentScaledRect.Width / nativeSize.Value.Width, contentScaledRect.Height / nativeSize.Value.Height);
+			var scale = (float) Math.Min (contentScaledRect.Width / nativeSize.Value.Width, contentScaledRect.Height / nativeSize.Value.Height);
 
 			// Set scale factor of the CIRawFilter to size it correctly for display.
 			filter.SetValueForKey (NSNumber.FromFloat (scale), Keys.kCIInputScaleFactorKey);
@@ -225,11 +223,10 @@ namespace RawExpose
 	}
 
 	// TODO: https://trello.com/c/cKoavtdL
-	public static class Keys
-	{
+	public static class Keys {
 		static readonly IntPtr CoreImageLibrary = Dlfcn.dlopen ("/System/Library/Frameworks/CoreImage.framework/CoreImage", 0);
 
-		public static NSString kCIOutputNativeSizeKey =  Dlfcn.GetStringConstant (CoreImageLibrary, "kCIOutputNativeSizeKey");
+		public static NSString kCIOutputNativeSizeKey = Dlfcn.GetStringConstant (CoreImageLibrary, "kCIOutputNativeSizeKey");
 		public static NSString kCIInputNeutralTemperatureKey = Dlfcn.GetStringConstant (CoreImageLibrary, "kCIInputNeutralTemperatureKey");
 		public static NSString kCIInputNeutralTintKey = Dlfcn.GetStringConstant (CoreImageLibrary, "kCIInputNeutralTintKey");
 		public static NSString kCIInputScaleFactorKey = Dlfcn.GetStringConstant (CoreImageLibrary, "kCIInputScaleFactorKey");

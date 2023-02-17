@@ -1,19 +1,16 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CoreGraphics;
 
-namespace SpeedSketch
-{
-	public enum StrokeState
-	{
+namespace SpeedSketch {
+	public enum StrokeState {
 		Active,
 		Done,
 		Cancelled
 	}
 
-	public class Stroke : IEnumerable<StrokeSegment>
-	{
+	public class Stroke : IEnumerable<StrokeSegment> {
 		public static CGVector CalligraphyFallbackAzimuthUnitVector = new CGVector (1, 1).Normalize ().Value;
 
 		public List<StrokeSample> Samples { get; } = new List<StrokeSample> ();

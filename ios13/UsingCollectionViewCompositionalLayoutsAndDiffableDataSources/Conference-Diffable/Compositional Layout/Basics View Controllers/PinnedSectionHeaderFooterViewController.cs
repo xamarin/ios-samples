@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -93,7 +93,7 @@ namespace Conference_Diffable.CompositionalLayout.BasicsViewControllers {
 			{
 				// Get a cell of the desired kind.
 				var cell = collectionView.DequeueReusableCell (ListCell.Key, indexPath) as ListCell;
-				
+
 				// Populate the cell with our item description.
 				cell.Label.Text = $"{indexPath.Section}, {indexPath.Row}";
 

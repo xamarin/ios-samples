@@ -1,11 +1,9 @@
-﻿using UIKit;
+using UIKit;
 using Foundation;
 
-namespace QuartzSample
-{
+namespace QuartzSample {
 	// The name AppDelegate is referenced in the MainWindow.xib file.
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// This method is invoked when the application has loaded its UI and its ready to run
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{

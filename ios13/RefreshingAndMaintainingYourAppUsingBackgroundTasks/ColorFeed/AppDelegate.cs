@@ -1,4 +1,4 @@
-﻿/*
+/*
 See LICENSE folder for this sample’s licensing information.
 
 Abstract:
@@ -18,7 +18,7 @@ namespace ColorFeed {
 	[Register ("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
-		
+
 		static readonly string caveat = "Change me!!";
 
 		public static string RefreshTaskId { get; } = "com.xamarin.ColorFeed.refresh";
@@ -71,7 +71,7 @@ namespace ColorFeed {
 			NSNotificationCenter.DefaultCenter.AddObserver (RefreshSuccessNotificationName, RefreshSuccess);
 
 			var request = new BGAppRefreshTaskRequest (RefreshTaskId) {
-				EarliestBeginDate = (NSDate)DateTime.Now.AddMinutes (15) // Fetch no earlier than 15 minutes from now
+				EarliestBeginDate = (NSDate) DateTime.Now.AddMinutes (15) // Fetch no earlier than 15 minutes from now
 			};
 
 			BGTaskScheduler.Shared.Submit (request, out NSError error);

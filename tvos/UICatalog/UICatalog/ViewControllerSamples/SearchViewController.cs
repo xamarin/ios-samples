@@ -7,7 +7,7 @@ namespace UICatalog {
 	public partial class SearchViewController : UIViewController {
 
 		[Export ("initWithCoder:")]
-		public SearchViewController (NSCoder coder): base (coder)
+		public SearchViewController (NSCoder coder) : base (coder)
 		{
 		}
 

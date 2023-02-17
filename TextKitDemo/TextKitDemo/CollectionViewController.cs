@@ -3,10 +3,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace TextKitDemo
-{
-	public partial class CollectionViewController : UICollectionViewController
-	{
+namespace TextKitDemo {
+	public partial class CollectionViewController : UICollectionViewController {
 		NSString key = new NSString ("collectionViewCell");
 
 		public CollectionViewController (IntPtr handle) : base (handle)
@@ -27,7 +25,7 @@ namespace TextKitDemo
 
 			foreach (CollectionViewCell cell in CollectionView.VisibleCells) {
 				var indexPath = CollectionView.IndexPathForCell (cell);
-				cell.FormatCell (DemoModel.GetDemo(indexPath));
+				cell.FormatCell (DemoModel.GetDemo (indexPath));
 			}
 		}
 

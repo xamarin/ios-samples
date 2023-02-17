@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using UIKit;
 using Foundation;
 
-namespace AudioTapProcessor
-{
+namespace AudioTapProcessor {
 	[Register ("SettingsViewController")]
-	public class SettingsViewController : UITableViewController
-	{
+	public class SettingsViewController : UITableViewController {
 		[Outlet]
 		UISwitch EnabledSwitch { get; set; }
 

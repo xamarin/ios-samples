@@ -8,11 +8,10 @@ namespace BasicTable {
 	/// </summary>
 	public class TableItemGroup {
 		public string Name { get; set; }
-	
+
 		public string Footer { get; set; }
-	
-		public List<TableItem> Items
-		{
+
+		public List<TableItem> Items {
 			get { return items; }
 			set { items = value; }
 		}

@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Drawing;
 
 using UIKit;
 
-namespace HelloGoodbye
-{
-	public class PreviewLabel : UILabel
-	{
+namespace HelloGoodbye {
+	public class PreviewLabel : UILabel {
 		public event EventHandler ActivatePreviewLabel;
 
 		public override UIAccessibilityTrait AccessibilityTraits {
@@ -20,7 +18,7 @@ namespace HelloGoodbye
 
 		public PreviewLabel ()
 		{
-			Text = "Preview".LocalizedString("Name of the card preview tab");
+			Text = "Preview".LocalizedString ("Name of the card preview tab");
 			Font = StyleUtilities.LargeFont;
 			TextColor = StyleUtilities.PreviewTabLabelColor;
 		}

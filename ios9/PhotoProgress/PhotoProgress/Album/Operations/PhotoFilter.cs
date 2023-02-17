@@ -1,4 +1,4 @@
-﻿using CoreImage;
+using CoreImage;
 using Foundation;
 using UIKit;
 

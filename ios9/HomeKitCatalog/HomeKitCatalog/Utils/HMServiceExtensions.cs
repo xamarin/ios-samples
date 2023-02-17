@@ -1,13 +1,11 @@
-﻿using System;
+using System;
 
 using Foundation;
 using HomeKit;
 using ObjCRuntime;
 
-namespace HomeKitCatalog
-{
-	public static class HMServiceExtensions
-	{
+namespace HomeKitCatalog {
+	public static class HMServiceExtensions {
 
 		// returns: `true` if this service supports the `associatedServiceType` property; `false` otherwise.
 		public static bool SupportsAssociatedServiceType (this HMService self)
@@ -23,8 +21,7 @@ namespace HomeKitCatalog
 	}
 
 	// TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=33909
-	internal static class HMServiceKeys
-	{
+	internal static class HMServiceKeys {
 		public static readonly IntPtr Handle = Dlfcn.dlopen ("/System/Library/Frameworks/HomeKit.framework/HomeKit", 0);
 
 		static NSString _AccessoryInformation;

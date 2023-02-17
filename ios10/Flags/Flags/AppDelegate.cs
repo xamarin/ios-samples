@@ -1,11 +1,9 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
-namespace Flags
-{
+namespace Flags {
 	[Register ("AppDelegate")]
-	public class AppDelegate : UIApplicationDelegate
-	{
+	public class AppDelegate : UIApplicationDelegate {
 		public override UIWindow Window { get; set; }
 	}
 }

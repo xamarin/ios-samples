@@ -6,10 +6,8 @@ using Foundation;
 using Photos;
 using UIKit;
 
-namespace RawExpose
-{
-	public partial class LightboxCollectionViewController : UICollectionViewController
-	{
+namespace RawExpose {
+	public partial class LightboxCollectionViewController : UICollectionViewController {
 		const string imageSegueName = "ImageSegue";
 
 		readonly List<PHAsset> assets = new List<PHAsset> ();

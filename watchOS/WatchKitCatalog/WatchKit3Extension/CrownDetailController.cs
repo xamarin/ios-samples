@@ -3,61 +3,59 @@ using System;
 using UIKit;
 using WatchKit;
 
-namespace Watchkit2Extension
-{
+namespace Watchkit2Extension {
 	/// <summary>
 	/// New in watchOS 3
 	/// </summary>
-	public partial class CrownDetailController : WKInterfaceController, IWKCrownDelegate
-    {
-        public CrownDetailController (IntPtr handle) : base (handle)
-        {
-        }
-
-		public override void Awake(NSObject context)
+	public partial class CrownDetailController : WKInterfaceController, IWKCrownDelegate {
+		public CrownDetailController (IntPtr handle) : base (handle)
 		{
-			base.Awake(context);
+		}
 
-			var pickerItems = new WKPickerItem[]
+		public override void Awake (NSObject context)
+		{
+			base.Awake (context);
+
+			var pickerItems = new WKPickerItem []
 			{
-				new WKPickerItem {Title = "Item 1", Caption="Red"},	
+				new WKPickerItem {Title = "Item 1", Caption="Red"},
 				new WKPickerItem {Title = "Item 2", Caption="Green"},
 				new WKPickerItem {Title = "Item 3", Caption="Blue"}
 			};
 
-			pickerView.SetItems(pickerItems);
+			pickerView.SetItems (pickerItems);
 
 			CrownSequencer.Delegate = this;
 		}
 
-		public override void WillActivate()
+		public override void WillActivate ()
 		{
-			base.WillActivate();
-			CrownSequencer.Focus();
+			base.WillActivate ();
+			CrownSequencer.Focus ();
 		}
 
-		void UpdateCrownLabels()
+		void UpdateCrownLabels ()
 		{
-			velocityLabel.SetText("RPS:" + CrownSequencer.RotationsPerSecond);
-			stateLabel.SetText(CrownSequencer.Idle ? "Idle:true" : "Idle: false");
+			velocityLabel.SetText ("RPS:" + CrownSequencer.RotationsPerSecond);
+			stateLabel.SetText (CrownSequencer.Idle ? "Idle:true" : "Idle: false");
 		}
 
 
-		partial void FocusCrown(Foundation.NSObject sender) 
+		partial void FocusCrown (Foundation.NSObject sender)
 		{
-			CrownSequencer.Focus();
+			CrownSequencer.Focus ();
 		}
 
-		[Export("crownDidRotate:rotationalDelta:")]
-		public void CrownDidRotate(WKCrownSequencer crownSequencer, double rotationalDelta)
+		[Export ("crownDidRotate:rotationalDelta:")]
+		public void CrownDidRotate (WKCrownSequencer crownSequencer, double rotationalDelta)
 		{
-			UpdateCrownLabels();
+			UpdateCrownLabels ();
 		}
 
-		[Export("crownDidBecomeIdle:")]
-		public void CrownDidBecomeIdle(WKCrownSequencer crownSequencer)
+		[Export ("crownDidBecomeIdle:")]
+		public void CrownDidBecomeIdle (WKCrownSequencer crownSequencer)
 		{
-			UpdateCrownLabels();
+			UpdateCrownLabels ();
 		}
-    }
+	}
 }

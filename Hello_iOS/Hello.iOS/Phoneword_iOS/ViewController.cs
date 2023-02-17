@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 
 using UIKit;
 using Foundation;
 
-namespace Phoneword_iOS
-{
-	public partial class ViewController : UIViewController
-	{
+namespace Phoneword_iOS {
+	public partial class ViewController : UIViewController {
 		public ViewController (IntPtr handle) : base (handle)
 		{
 		}

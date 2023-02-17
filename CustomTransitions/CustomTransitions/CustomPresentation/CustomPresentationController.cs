@@ -1,4 +1,4 @@
-﻿using CoreGraphics;
+using CoreGraphics;
 using Foundation;
 using UIKit;
 
@@ -59,10 +59,10 @@ namespace CustomTransitions {
 
 			ContainerView.AddSubview (dimmingView);
 
-			var transitionCoordinator = PresentingViewController.GetTransitionCoordinator();
+			var transitionCoordinator = PresentingViewController.GetTransitionCoordinator ();
 
 			dimmingView.Alpha = 0f;
-			transitionCoordinator.AnimateAlongsideTransition ((obj) => dimmingView.Alpha = .5f, (obj) => {});
+			transitionCoordinator.AnimateAlongsideTransition ((obj) => dimmingView.Alpha = .5f, (obj) => { });
 		}
 
 		CGRect UIEdgeInsetsInsetRect (CGRect rect, UIEdgeInsets insets)
@@ -123,7 +123,7 @@ namespace CustomTransitions {
 
 				CGRect presentedViewControllerFrame = containerViewBounds;
 				presentedViewControllerFrame.Height = presentedViewContentSize.Height;
-				presentedViewControllerFrame.Y = containerViewBounds.GetMaxY() - presentedViewContentSize.Height;
+				presentedViewControllerFrame.Y = containerViewBounds.GetMaxY () - presentedViewContentSize.Height;
 
 				return presentedViewControllerFrame;
 			}
@@ -148,9 +148,9 @@ namespace CustomTransitions {
 		}
 
 		public void AnimateTransition (IUIViewControllerContextTransitioning transitionContext)
-		{ 
-			var fromViewController = transitionContext.GetViewControllerForKey(UITransitionContext.FromViewControllerKey);
-			var toViewController = transitionContext.GetViewControllerForKey(UITransitionContext.ToViewControllerKey);
+		{
+			var fromViewController = transitionContext.GetViewControllerForKey (UITransitionContext.FromViewControllerKey);
+			var toViewController = transitionContext.GetViewControllerForKey (UITransitionContext.ToViewControllerKey);
 
 			UIView containerView = transitionContext.ContainerView;
 
@@ -158,10 +158,10 @@ namespace CustomTransitions {
 			var fromView = transitionContext.GetViewFor (UITransitionContext.FromViewKey);
 			bool isPresenting = (fromViewController == PresentingViewController);
 
-			var fromViewFinalFrame = transitionContext.GetFinalFrameForViewController(fromViewController);
-			var toViewInitialFrame = transitionContext.GetInitialFrameForViewController(toViewController);
+			var fromViewFinalFrame = transitionContext.GetFinalFrameForViewController (fromViewController);
+			var toViewInitialFrame = transitionContext.GetInitialFrameForViewController (toViewController);
 
-			var toViewFinalFrame = transitionContext.GetFinalFrameForViewController(toViewController);
+			var toViewFinalFrame = transitionContext.GetFinalFrameForViewController (toViewController);
 
 			if (toView != null)
 				containerView.AddSubview (toView);
@@ -180,14 +180,14 @@ namespace CustomTransitions {
 			double transitionDuration = TransitionDuration (transitionContext);
 
 			UIView.Animate (transitionDuration, 0, UIViewAnimationOptions.TransitionNone, () => {
-					if (isPresenting)
-						toView.Frame = toViewFinalFrame;
-					else
-						fromView.Frame = fromViewFinalFrame;
-				}, () => {
-					bool wasCancelled = transitionContext.TransitionWasCancelled;
-					transitionContext.CompleteTransition(!wasCancelled);
-				}
+				if (isPresenting)
+					toView.Frame = toViewFinalFrame;
+				else
+					fromView.Frame = fromViewFinalFrame;
+			}, () => {
+				bool wasCancelled = transitionContext.TransitionWasCancelled;
+				transitionContext.CompleteTransition (!wasCancelled);
+			}
 			);
 		}
 

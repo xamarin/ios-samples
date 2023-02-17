@@ -3,10 +3,8 @@ using CoreGraphics;
 using System;
 using Foundation;
 
-namespace SimpleTextInput
-{
-	public partial class SimpleTextInputViewController : UIViewController
-	{
+namespace SimpleTextInput {
+	public partial class SimpleTextInputViewController : UIViewController {
 		EditableCoreTextView editableCoreTextView { get; set; }
 
 		public SimpleTextInputViewController (string nibName, NSBundle bundle) : base (nibName, bundle)

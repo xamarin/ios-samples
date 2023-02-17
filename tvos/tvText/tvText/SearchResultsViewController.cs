@@ -3,8 +3,7 @@ using System;
 using UIKit;
 using System.Collections.Generic;
 
-namespace tvText
-{
+namespace tvText {
 	/// <summary>
 	/// Controlls the Collection View that will be used to display the results of the user's
 	/// search input. This controller both provides the data for the Collection, but responds
@@ -14,8 +13,7 @@ namespace tvText
 	/// See our Working with Collection View documentation for more information:
 	/// https://developer.xamarin.com/guides/ios/tvos/user-interface/collection-views/
 	/// </remarks>
-	public partial class SearchResultsViewController : UICollectionViewController , IUISearchResultsUpdating
-    {
+	public partial class SearchResultsViewController : UICollectionViewController, IUISearchResultsUpdating {
 		#region Constants
 		/// <summary>
 		/// The cell identifier as entered in the Storyboard.
@@ -35,7 +33,7 @@ namespace tvText
 		/// Gets or sets all pictures that the user can search for.
 		/// </summary>
 		/// <value>A collection of <c>PictureInformation</c> objects.</value>
-		public List<PictureInformation> AllPictures { get; set;}
+		public List<PictureInformation> AllPictures { get; set; }
 
 		/// <summary>
 		/// Gets or sets the pictures that match the user's search term either by
@@ -52,7 +50,7 @@ namespace tvText
 		public string SearchFilter {
 			get { return _searchFilter; }
 			set {
-				_searchFilter = value.ToLower();
+				_searchFilter = value.ToLower ();
 				FindPictures ();
 				CollectionView?.ReloadData ();
 			}
@@ -64,15 +62,15 @@ namespace tvText
 		/// Initializes a new instance of the <see cref="T:tvText.SearchResultsViewController"/> class.
 		/// </summary>
 		/// <param name="handle">Handle.</param>
-        public SearchResultsViewController (IntPtr handle) : base (handle)
-        {
+		public SearchResultsViewController (IntPtr handle) : base (handle)
+		{
 			// Initialize
 			this.AllPictures = new List<PictureInformation> ();
 			this.FoundPictures = new List<PictureInformation> ();
 			PopulatePictures ();
 			FindPictures ();
 
-        }
+		}
 		#endregion
 
 		#region Private Methods
@@ -85,7 +83,7 @@ namespace tvText
 			AllPictures.Clear ();
 
 			// Add images
-			AllPictures.Add (new PictureInformation ("Antipasta Platter","Antipasta","cheese,grapes,tomato,coffee,meat,plate"));
+			AllPictures.Add (new PictureInformation ("Antipasta Platter", "Antipasta", "cheese,grapes,tomato,coffee,meat,plate"));
 			AllPictures.Add (new PictureInformation ("Cheese Plate", "CheesePlate", "cheese,plate,bread"));
 			AllPictures.Add (new PictureInformation ("Coffee House", "CoffeeHouse", "coffee,people,menu,restaurant,cafe"));
 			AllPictures.Add (new PictureInformation ("Computer and Expresso", "ComputerExpresso", "computer,coffee,expresso,phone,notebook"));
@@ -153,7 +151,7 @@ namespace tvText
 		{
 			// Get a new cell and return it
 			var cell = collectionView.DequeueReusableCell (CellID, indexPath);
-			return (UICollectionViewCell)cell;
+			return (UICollectionViewCell) cell;
 		}
 
 		/// <summary>
@@ -223,5 +221,5 @@ namespace tvText
 			}
 		}
 		#endregion
-    }
+	}
 }

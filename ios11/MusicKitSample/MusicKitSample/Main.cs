@@ -1,9 +1,7 @@
-﻿using UIKit;
+using UIKit;
 
-namespace MusicKitSample
-{
-	public class Application
-	{
+namespace MusicKitSample {
+	public class Application {
 		// This is the main entry point of the application.
 		static void Main (string [] args)
 		{

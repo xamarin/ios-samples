@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Foundation;
 using UIKit;
@@ -7,26 +7,24 @@ using CoreFoundation;
 using SceneKit;
 using ARKit;
 
-namespace PlacingObjects
-{
-	public class Plane : SCNNode
-	{
+namespace PlacingObjects {
+	public class Plane : SCNNode {
 		public ARPlaneAnchor Anchor { get; set; }
 
-		public Plane(ARPlaneAnchor anchor)
+		public Plane (ARPlaneAnchor anchor)
 		{
 			// Initialize
 			Anchor = anchor;
 
-			base.Init();
+			base.Init ();
 		}
 
-		public Plane(NSCoder coder) : base(coder)
+		public Plane (NSCoder coder) : base (coder)
 		{
 
 		}
 
-		public void Update(ARPlaneAnchor anchor)
+		public void Update (ARPlaneAnchor anchor)
 		{
 
 			Anchor = anchor;

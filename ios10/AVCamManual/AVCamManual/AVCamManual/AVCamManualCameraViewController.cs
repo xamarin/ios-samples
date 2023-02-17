@@ -12,24 +12,20 @@ using Foundation;
 using Photos;
 using UIKit;
 
-namespace AVCamManual
-{
-	public enum SetupResult
-	{
+namespace AVCamManual {
+	public enum SetupResult {
 		Success,
 		CameraNotAuthorized,
 		SessionConfigurationFailed
 	};
 
-	public enum CaptureMode
-	{
+	public enum CaptureMode {
 		Photo,
 		Movie
 	}
 
 	[Register ("AVCamManualCameraViewController")]
-	public partial class AVCamManualCameraViewController : UIViewController, IAVCapturePhotoCaptureDelegate, IAVCaptureFileOutputRecordingDelegate
-	{
+	public partial class AVCamManualCameraViewController : UIViewController, IAVCapturePhotoCaptureDelegate, IAVCaptureFileOutputRecordingDelegate {
 		IDisposable focusModeToken;
 		IDisposable lensPositionToken;
 		IDisposable exposureModeToken;
@@ -189,10 +185,10 @@ namespace AVCamManual
 
 			UIDeviceOrientation deviceOrientation = UIDevice.CurrentDevice.Orientation;
 			if (deviceOrientation.IsPortrait () || deviceOrientation.IsLandscape ()) {
-				var previewLayer = (AVCaptureVideoPreviewLayer)PreviewView.Layer;
+				var previewLayer = (AVCaptureVideoPreviewLayer) PreviewView.Layer;
 				var connection = PreviewLayer.Connection;
-				if(connection != null)
-					connection.VideoOrientation = (AVCaptureVideoOrientation)deviceOrientation;
+				if (connection != null)
+					connection.VideoOrientation = (AVCaptureVideoOrientation) deviceOrientation;
 			}
 		}
 
@@ -251,7 +247,7 @@ namespace AVCamManual
 			double maxExposureDurationSeconds = VideoDevice.ActiveFormat.MaxExposureDuration.Seconds;
 			// Map from duration to non-linear UI range 0-1
 			double p = (exposureDurationSeconds - minExposureDurationSeconds) / (maxExposureDurationSeconds - minExposureDurationSeconds); // Scale to 0-1
-			ExposureDurationSlider.Value = (float)Math.Pow (p, 1 / ExposureDurationPower); // Apply inverse power
+			ExposureDurationSlider.Value = (float) Math.Pow (p, 1 / ExposureDurationPower); // Apply inverse power
 			ExposureDurationSlider.Enabled = (VideoDevice != null && VideoDevice.ExposureMode == AVCaptureExposureMode.Custom);
 
 			ISOSlider.MinValue = VideoDevice.ActiveFormat.MinISO;
@@ -310,7 +306,7 @@ namespace AVCamManual
 		[Action ("changeManualHUD:")]
 		void ChangeManualHUD (NSObject sender)
 		{
-			var control = (UISegmentedControl)sender;
+			var control = (UISegmentedControl) sender;
 
 			ManualHUDPhotoView.Hidden = control.SelectedSegment != 0;
 			ManualHUDFocusView.Hidden = control.SelectedSegment != 1;
@@ -340,14 +336,14 @@ namespace AVCamManual
 		[Action ("sliderTouchBegan:")]
 		void SliderTouchBegan (NSObject sender)
 		{
-			var slider = (UISlider)sender;
+			var slider = (UISlider) sender;
 			SetColorFor (slider, UIColor.FromRGBA (0, 122, 1, 1));
 		}
 
 		[Action ("sliderTouchEnded:")]
 		void SliderTouchEnded (NSObject sender)
 		{
-			var slider = (UISlider)sender;
+			var slider = (UISlider) sender;
 			SetColorFor (slider, UIColor.Yellow);
 		}
 
@@ -436,10 +432,10 @@ namespace AVCamManual
 					photoSettings = AVCapturePhotoBracketSettings.FromRawPixelFormatType (photoOutput.AvailableRawPhotoPixelFormatTypes [0].UInt32Value, null, bracketedSettings);
 				} else {
 					// TODO: https://bugzilla.xamarin.com/show_bug.cgi?id=44111
-					photoSettings = AVCapturePhotoBracketSettings.FromRawPixelFormatType (0, new NSDictionary<NSString, NSObject> (AVVideo.CodecKey, new NSNumber ((int)AVVideoCodec.JPEG)), bracketedSettings);
+					photoSettings = AVCapturePhotoBracketSettings.FromRawPixelFormatType (0, new NSDictionary<NSString, NSObject> (AVVideo.CodecKey, new NSNumber ((int) AVVideoCodec.JPEG)), bracketedSettings);
 				}
 
-				((AVCapturePhotoBracketSettings)photoSettings).IsLensStabilizationEnabled = true;
+				((AVCapturePhotoBracketSettings) photoSettings).IsLensStabilizationEnabled = true;
 			} else {
 				if (rawEnabled && photoOutput.AvailableRawPhotoPixelFormatTypes.Length > 0) {
 					photoSettings = AVCapturePhotoSettings.FromRawPixelFormatType (photoOutput.AvailableRawPhotoPixelFormatTypes [0].UInt32Value);
@@ -451,7 +447,7 @@ namespace AVCamManual
 				if (VideoDevice.ExposureMode == AVCaptureExposureMode.Custom) {
 					photoSettings.FlashMode = AVCaptureFlashMode.Off;
 				} else {
-					photoSettings.FlashMode = photoOutput.SupportedFlashModes.Contains (new NSNumber ((long)AVCaptureFlashMode.Auto)) ? AVCaptureFlashMode.Auto : AVCaptureFlashMode.Off;
+					photoSettings.FlashMode = photoOutput.SupportedFlashModes.Contains (new NSNumber ((long) AVCaptureFlashMode.Auto)) ? AVCaptureFlashMode.Auto : AVCaptureFlashMode.Off;
 				}
 			}
 
@@ -493,7 +489,7 @@ namespace AVCamManual
 		[Action ("changeCaptureMode:")]
 		void ChangeCaptureMode (UISegmentedControl captureModeControl)
 		{
-			if (captureModeControl.SelectedSegment == (int)CaptureMode.Photo) {
+			if (captureModeControl.SelectedSegment == (int) CaptureMode.Photo) {
 				RecordButton.Enabled = false;
 
 				// Remove the AVCaptureMovieFileOutput from the session because movie recording is not supported with AVCaptureSessionPresetPhoto. Additionally, Live Photo
@@ -506,7 +502,7 @@ namespace AVCamManual
 
 					movieFileOutput = null;
 				});
-			} else if (captureModeControl.SelectedSegment == (int)CaptureMode.Movie) {
+			} else if (captureModeControl.SelectedSegment == (int) CaptureMode.Movie) {
 				sessionQueue.DispatchAsync (() => {
 					var mfo = new AVCaptureMovieFileOutput ();
 					if (Session.CanAddOutput (mfo)) {
@@ -583,7 +579,7 @@ namespace AVCamManual
 				DispatchQueue.MainQueue.DispatchAsync (() => {
 					ConfigureManualHUD ();
 					CameraButton.Enabled = true;
-					RecordButton.Enabled = (CaptureModeControl.SelectedSegment == (int)CaptureMode.Movie);
+					RecordButton.Enabled = (CaptureModeControl.SelectedSegment == (int) CaptureMode.Movie);
 					PhotoButton.Enabled = true;
 					CaptureModeControl.Enabled = true;
 					HUDButton.Enabled = true;
@@ -602,7 +598,7 @@ namespace AVCamManual
 		[Export ("changeFocusMode:")]
 		public void OnChangeFocusModeClicked (NSObject sender)
 		{
-			var control = (UISegmentedControl)sender;
+			var control = (UISegmentedControl) sender;
 			AVCaptureFocusMode mode = focusModes [control.SelectedSegment];
 
 			NSError error = null;
@@ -626,7 +622,7 @@ namespace AVCamManual
 		[Export ("changeLensPosition:")]
 		public void OnChangeLensPositionClicked (NSObject sender)
 		{
-			var control = (UISlider)sender;
+			var control = (UISlider) sender;
 			NSError error = null;
 
 			if (VideoDevice.LockForConfiguration (out error)) {
@@ -664,14 +660,14 @@ namespace AVCamManual
 		[Export ("focusAndExposeTap:")]
 		void OnFocusAndExposeClicked (UIGestureRecognizer gestureRecognizer)
 		{
-			CGPoint devicePoint = ((AVCaptureVideoPreviewLayer)PreviewView.Layer).CaptureDevicePointOfInterestForPoint (gestureRecognizer.LocationInView (gestureRecognizer.View));
+			CGPoint devicePoint = ((AVCaptureVideoPreviewLayer) PreviewView.Layer).CaptureDevicePointOfInterestForPoint (gestureRecognizer.LocationInView (gestureRecognizer.View));
 			SetFocusAndMode (VideoDevice.FocusMode, VideoDevice.ExposureMode, devicePoint, true);
 		}
 
 		[Export ("changeExposureMode:")]
 		public void OnChangeExposureModeClicked (NSObject sender)
 		{
-			var control = (UISegmentedControl)sender;
+			var control = (UISegmentedControl) sender;
 			AVCaptureExposureMode mode = exposureModes [control.SelectedSegment];
 			NSError error = null;
 
@@ -693,7 +689,7 @@ namespace AVCamManual
 		[Export ("changeExposureDuration:")]
 		void OnChangeExposureDurationClicked (NSObject sender)
 		{
-			var control = (UISlider)sender;
+			var control = (UISlider) sender;
 			NSError error = null;
 
 			double p = Math.Pow (control.Value, ExposureDurationPower); // Apply power function to expand slider's low-end range
@@ -712,7 +708,7 @@ namespace AVCamManual
 		[Export ("changeISO:")]
 		public void OnChangeISOClicked (NSObject sender)
 		{
-			var control = (UISlider)sender;
+			var control = (UISlider) sender;
 			NSError error = null;
 
 			if (VideoDevice.LockForConfiguration (out error)) {
@@ -726,7 +722,7 @@ namespace AVCamManual
 		[Export ("changeExposureTargetBias:")]
 		public void OnChangeExposureTargetBiasClicked (NSObject sender)
 		{
-			var control = (UISlider)sender;
+			var control = (UISlider) sender;
 			NSError error = null;
 
 			if (VideoDevice.LockForConfiguration (out error)) {
@@ -740,7 +736,7 @@ namespace AVCamManual
 		[Export ("changeWhiteBalanceMode:")]
 		public void OnChangeWhiteBalanceModeClicked (NSObject sender)
 		{
-			var control = (UISegmentedControl)sender;
+			var control = (UISegmentedControl) sender;
 			AVCaptureWhiteBalanceMode mode = whiteBalanceModes [control.SelectedSegment];
 			NSError error = null;
 
@@ -823,7 +819,7 @@ namespace AVCamManual
 		{
 			// Retrieve the video preview layer's video orientation on the main queue before entering the session queue
 			// We do this to ensure UI elements are accessed on the main thread and session configuration is done on the session queue
-			var previewLayer = (AVCaptureVideoPreviewLayer)PreviewView.Layer;
+			var previewLayer = (AVCaptureVideoPreviewLayer) PreviewView.Layer;
 			AVCaptureVideoOrientation videoPreviewLayerVideoOrientation = previewLayer.Connection.VideoOrientation;
 
 			AVCapturePhotoSettings settings = GetCurrentPhotoSettings ();
@@ -897,7 +893,7 @@ namespace AVCamManual
 						// This avoids using double the disk space during save, which can make a difference on devices with limited free disk space.
 						var options = new PHAssetResourceCreationOptions ();
 						options.ShouldMoveFile = true;
-						PHAssetCreationRequest.CreationRequestForAsset ().AddResource (PHAssetResourceType.Photo, new NSUrl(filePath), options); // Add move (not copy) option
+						PHAssetCreationRequest.CreationRequestForAsset ().AddResource (PHAssetResourceType.Photo, new NSUrl (filePath), options); // Add move (not copy) option
 					}, (success, err) => {
 						if (!success)
 							Console.WriteLine ($"Error occurred while saving raw photo to photo library: {err}");
@@ -928,7 +924,7 @@ namespace AVCamManual
 
 			// Retrieve the video preview layer's video orientation on the main queue before entering the session queue. We do this to ensure UI
 			// elements are accessed on the main thread and session configuration is done on the session queue.
-			var previewLayer = (AVCaptureVideoPreviewLayer)PreviewView.Layer;
+			var previewLayer = (AVCaptureVideoPreviewLayer) PreviewView.Layer;
 			AVCaptureVideoOrientation previewLayerVideoOrientation = previewLayer.Connection.VideoOrientation;
 
 			sessionQueue.DispatchAsync (() => {
@@ -1016,7 +1012,7 @@ namespace AVCamManual
 			DispatchQueue.MainQueue.DispatchAsync (() => {
 				// Only enable the ability to change camera if the device has more than one camera
 				CameraButton.Enabled = (AVCaptureDevice.DevicesWithMediaType (AVMediaType.Video).Length > 1);
-				RecordButton.Enabled = CaptureModeControl.SelectedSegment == (int)CaptureMode.Movie;
+				RecordButton.Enabled = CaptureModeControl.SelectedSegment == (int) CaptureMode.Movie;
 				RecordButton.SetTitle ("Record", UIControlState.Normal);
 				CaptureModeControl.Enabled = true;
 			});
@@ -1034,7 +1030,7 @@ namespace AVCamManual
 			focusModeToken = AddObserver ("videoDevice.focusMode", NSKeyValueObservingOptions.Old | NSKeyValueObservingOptions.New, FocusModeChanged);
 			lensPositionToken = AddObserver ("videoDevice.lensPosition", NSKeyValueObservingOptions.New, LensPositionChanged);
 			exposureModeToken = AddObserver ("videoDevice.exposureMode", NSKeyValueObservingOptions.Old | NSKeyValueObservingOptions.New, ExposureModeChanged);
-			exposureDurationToken = AddObserver ("videoDevice.exposureDuration", NSKeyValueObservingOptions.New, ExposureDurationChanged); 
+			exposureDurationToken = AddObserver ("videoDevice.exposureDuration", NSKeyValueObservingOptions.New, ExposureDurationChanged);
 			isoToken = AddObserver ("videoDevice.ISO", NSKeyValueObservingOptions.New, ISOChanged);
 			exposureTargetBiasToken = AddObserver ("videoDevice.exposureTargetBias", NSKeyValueObservingOptions.New, ExposureTargetBiasChanged);
 			exposureTargetOffsetToken = AddObserver ("videoDevice.exposureTargetOffset", NSKeyValueObservingOptions.New, ExposureTargetOffsetChanged);
@@ -1048,8 +1044,8 @@ namespace AVCamManual
 			// see also the documentation of AVCaptureSessionInterruptionReason. Add observers to handle these session interruptions
 			// and show a preview is paused message. See the documentation of AVCaptureSessionWasInterruptedNotification for other
 			// interruption reasons.
-			wasInterruptedToken =  NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.WasInterruptedNotification, SessionWasInterrupted, Session);
-			interruptionEndedToken =  NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.InterruptionEndedNotification, SessionInterruptionEnded, Session);
+			wasInterruptedToken = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.WasInterruptedNotification, SessionWasInterrupted, Session);
+			interruptionEndedToken = NSNotificationCenter.DefaultCenter.AddObserver (AVCaptureSession.InterruptionEndedNotification, SessionInterruptionEnded, Session);
 		}
 
 		void RemoveObservers ()
@@ -1079,7 +1075,7 @@ namespace AVCamManual
 
 			DispatchQueue.MainQueue.DispatchAsync (() => {
 				CameraButton.Enabled = isRunning && (AVCaptureDevice.DevicesWithMediaType (AVMediaType.Video).Length > 1);
-				RecordButton.Enabled = isRunning && (CaptureModeControl.SelectedSegment == (int)CaptureMode.Movie);
+				RecordButton.Enabled = isRunning && (CaptureModeControl.SelectedSegment == (int) CaptureMode.Movie);
 				PhotoButton.Enabled = isRunning;
 				HUDButton.Enabled = isRunning;
 				CaptureModeControl.Enabled = isRunning;
@@ -1092,13 +1088,13 @@ namespace AVCamManual
 			var oldValue = obj.OldValue;
 
 			if (newValue != null && newValue != NSNull.Null) {
-				var newMode = (AVCaptureFocusMode)newValue.AsInt ();
+				var newMode = (AVCaptureFocusMode) newValue.AsInt ();
 				DispatchQueue.MainQueue.DispatchAsync (() => {
 					FocusModeControl.SelectedSegment = Array.IndexOf (focusModes, newMode);
 					LensPositionSlider.Enabled = (newMode == AVCaptureFocusMode.Locked);
 
 					if (oldValue != null && oldValue != NSNull.Null) {
-						var oldMode = (AVCaptureFocusMode)oldValue.AsInt ();
+						var oldMode = (AVCaptureFocusMode) oldValue.AsInt ();
 						Console.WriteLine ($"focus mode: {StringFromFocusMode (oldMode)} -> {StringFromFocusMode (newMode)}");
 					} else {
 						Console.WriteLine ($"focus mode: {StringFromFocusMode (newMode)}");
@@ -1127,9 +1123,9 @@ namespace AVCamManual
 			var oldValue = obj.OldValue;
 
 			if (newValue != null && newValue != NSNull.Null) {
-				var newMode = (AVCaptureExposureMode)newValue.AsInt ();
+				var newMode = (AVCaptureExposureMode) newValue.AsInt ();
 				if (oldValue != null && oldValue != NSNull.Null) {
-					var oldMode = (AVCaptureExposureMode)oldValue.AsInt ();
+					var oldMode = (AVCaptureExposureMode) oldValue.AsInt ();
 
 					// It’s important to understand the relationship between ExposureDuration and the minimum frame rate as represented by ActiveVideoMaxFrameDuration.
 					// In manual mode, if ExposureDuration is set to a value that's greater than ActiveVideoMaxFrameDuration, then ActiveVideoMaxFrameDuration will
@@ -1153,7 +1149,7 @@ namespace AVCamManual
 					ISOSlider.Enabled = (newMode == AVCaptureExposureMode.Custom);
 
 					if (oldValue != null && oldValue != NSNull.Null) {
-						var oldMode = (AVCaptureExposureMode)oldValue.AsInt ();
+						var oldMode = (AVCaptureExposureMode) oldValue.AsInt ();
 						Console.WriteLine ($"exposure mode: {StringFromExposureMode (oldMode)} -> {StringFromExposureMode (newMode)}");
 					} else {
 						Console.WriteLine ($"exposure mode: {StringFromExposureMode (newMode)}");
@@ -1177,7 +1173,7 @@ namespace AVCamManual
 				double p = (newDurationSeconds - minDurationSeconds) / (maxDurationSeconds - minDurationSeconds); // Scale to 0-1
 				DispatchQueue.MainQueue.DispatchAsync (() => {
 					if (exposureMode != AVCaptureExposureMode.Custom)
-						ExposureDurationSlider.Value = (float)Math.Pow(p ,1 / ExposureDurationPower); // Apply inverse power
+						ExposureDurationSlider.Value = (float) Math.Pow (p, 1 / ExposureDurationPower); // Apply inverse power
 					ExposureDurationValueLabel.Text = FormatDuration (newDurationSeconds);
 				});
 			}
@@ -1193,7 +1189,7 @@ namespace AVCamManual
 				DispatchQueue.MainQueue.DispatchAsync (() => {
 					if (exposureMode != AVCaptureExposureMode.Custom)
 						ISOSlider.Value = newISO;
-					ISOValueLabel.Text = ((int)newISO).ToString (CultureInfo.InvariantCulture);
+					ISOValueLabel.Text = ((int) newISO).ToString (CultureInfo.InvariantCulture);
 				});
 			}
 		}
@@ -1227,14 +1223,14 @@ namespace AVCamManual
 			var oldValue = obj.OldValue;
 
 			if (newValue != null && newValue != NSNull.Null) {
-				var newMode = (AVCaptureWhiteBalanceMode)newValue.AsInt ();
+				var newMode = (AVCaptureWhiteBalanceMode) newValue.AsInt ();
 				DispatchQueue.MainQueue.DispatchAsync (() => {
 					WhiteBalanceModeControl.SelectedSegment = Array.IndexOf (whiteBalanceModes, newMode);
 					TemperatureSlider.Enabled = (newMode == AVCaptureWhiteBalanceMode.Locked);
 					TintSlider.Enabled = (newMode == AVCaptureWhiteBalanceMode.Locked);
 
 					if (oldValue != null && oldValue != NSNull.Null) {
-						var oldMode = (AVCaptureWhiteBalanceMode)oldValue.AsInt ();
+						var oldMode = (AVCaptureWhiteBalanceMode) oldValue.AsInt ();
 						Console.WriteLine ($"white balance mode: {StringFromWhiteBalanceMode (oldMode)} -> {StringFromWhiteBalanceMode (newMode)}");
 					}
 				});
@@ -1243,10 +1239,10 @@ namespace AVCamManual
 
 		unsafe void DeviceWhiteBalanceGainsChange (NSObservedChange obj)
 		{
-			var gains = (NSValue)obj.NewValue;
+			var gains = (NSValue) obj.NewValue;
 			if (gains != null) {
 				AVCaptureWhiteBalanceGains newGains;
-				gains.StoreValueAtAddress ((IntPtr)(void*)&newGains);
+				gains.StoreValueAtAddress ((IntPtr) (void*) &newGains);
 
 				AVCaptureWhiteBalanceTemperatureAndTintValues newTemperatureAndTint = VideoDevice.GetTemperatureAndTintValues (newGains);
 				AVCaptureWhiteBalanceMode whiteBalanceMode = VideoDevice.WhiteBalanceMode;
@@ -1257,8 +1253,8 @@ namespace AVCamManual
 					}
 
 					var ci = CultureInfo.InvariantCulture;
-					TemperatureValueLabel.Text = ((int)newTemperatureAndTint.Temperature).ToString (ci);
-					TintValueLabel.Text = ((int)newTemperatureAndTint.Tint).ToString (ci);
+					TemperatureValueLabel.Text = ((int) newTemperatureAndTint.Temperature).ToString (ci);
+					TintValueLabel.Text = ((int) newTemperatureAndTint.Tint).ToString (ci);
 				});
 			}
 		}
@@ -1271,10 +1267,10 @@ namespace AVCamManual
 
 		void SessionRuntimeError (NSNotification notification)
 		{
-			var error = (NSError)notification.UserInfo [AVCaptureSession.ErrorKey];
+			var error = (NSError) notification.UserInfo [AVCaptureSession.ErrorKey];
 			Console.WriteLine ($"Capture session runtime error: {error}");
 
-			if (error.Code == (long)AVError.MediaServicesWereReset) {
+			if (error.Code == (long) AVError.MediaServicesWereReset) {
 				sessionQueue.DispatchAsync (() => {
 					// If we aren't trying to resume the session, try to restart it, since it must have been stopped due to an error (see -[resumeInterruptedSession:])
 					if (sessionRunning) {
@@ -1299,7 +1295,7 @@ namespace AVCamManual
 			// Note that stopping music playback in Control Center will not automatically resume the session.
 			// Also note that it is not always possible to resume, see ResumeInterruptedSession method.
 			// In iOS 9 and later, the notification's UserInfo dictionary contains information about why the session was interrupted
-			var reason = (AVCaptureSessionInterruptionReason)notification.UserInfo [AVCaptureSession.InterruptionReasonKey].AsInt ();
+			var reason = (AVCaptureSessionInterruptionReason) notification.UserInfo [AVCaptureSession.InterruptionReasonKey].AsInt ();
 			Console.WriteLine ($"Capture session was interrupted with reason {reason}");
 
 			if (reason == AVCaptureSessionInterruptionReason.AudioDeviceInUseByAnotherClient ||
@@ -1335,7 +1331,7 @@ namespace AVCamManual
 
 			if (duration < 1) {
 				// e.x. 1/1000 1/350 etc 
-				var digits = (int)Math.Max (0, 2 + Math.Floor (Math.Log10 (duration)));
+				var digits = (int) Math.Max (0, 2 + Math.Floor (Math.Log10 (duration)));
 				string pattern = "1/{0:####." + new string ('0', digits) + "}";
 				return string.Format (pattern, 1.0 / duration, ci);
 			}

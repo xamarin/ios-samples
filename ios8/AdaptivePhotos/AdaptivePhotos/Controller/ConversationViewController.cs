@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace AdaptivePhotos
-{
-	public class ConversationViewController : CustomTableViewController
-	{
+namespace AdaptivePhotos {
+	public class ConversationViewController : CustomTableViewController {
 		readonly NSString ListTableViewControllerCellIdentifier = new NSString ("Cell");
 
 		public Conversation Conversation { get; set; }
@@ -19,7 +17,7 @@ namespace AdaptivePhotos
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), ListTableViewControllerCellIdentifier);
+			TableView.RegisterClassForCellReuse (typeof (UITableViewCell), ListTableViewControllerCellIdentifier);
 			NSNotificationCenter.DefaultCenter.AddObserver (this, new Selector ("showDetailTargetDidChange:"),
 				UIViewController.ShowDetailTargetDidChangeNotification, null);
 		}
@@ -68,12 +66,12 @@ namespace AdaptivePhotos
 
 		Photo PhotoForIndexPath (NSIndexPath indexPath)
 		{
-			return Conversation.Photos.GetItem<Photo> ((nuint)indexPath.Item);
+			return Conversation.Photos.GetItem<Photo> ((nuint) indexPath.Item);
 		}
 
 		public override nint RowsInSection (UITableView tableview, nint section)
 		{
-			return (nint)Conversation.Photos.Count;
+			return (nint) Conversation.Photos.Count;
 		}
 
 		public override UITableViewCell GetCell (UITableView tableView, NSIndexPath indexPath)

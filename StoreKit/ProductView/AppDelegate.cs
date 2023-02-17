@@ -5,12 +5,10 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace ProductView
-{
-	public class Application
-	{
+namespace ProductView {
+	public class Application {
 		// This is the main entry point of the application.
-		static void Main (string[] args)
+		static void Main (string [] args)
 		{
 			// if you want to use a different Application Delegate class from "AppDelegate"
 			// you can specify it here.
@@ -22,8 +20,7 @@ namespace ProductView
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
-	{
+	public partial class AppDelegate : UIApplicationDelegate {
 		// class-level declarations
 		UIWindow window;
 		UINavigationController navigationController;
@@ -41,9 +38,9 @@ namespace ProductView
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
-			viewController = new ProductViewController();
+			viewController = new ProductViewController ();
 
-			navigationController = new UINavigationController();
+			navigationController = new UINavigationController ();
 			navigationController.NavigationBar.Translucent = false;
 			navigationController.PushViewController (viewController, false);
 

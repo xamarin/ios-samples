@@ -29,8 +29,8 @@ namespace ButtonTapper3000 {
 			ButtonColor = UIColor.FromRGBA (1f, 1f, 0f, 1f);
 			InfoColor = UIColor.FromRGBA (1f, 1f, 1f, 1f);
 
-			FrameMidX = (float)Frame.GetMidX ();
-			FrameMidY = (float)Frame.GetMidY ();
+			FrameMidX = (float) Frame.GetMidX ();
+			FrameMidY = (float) Frame.GetMidY ();
 
 			transition = SKTransition.MoveInWithDirection (SKTransitionDirection.Up, 0.5);
 		}

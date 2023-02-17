@@ -3,10 +3,8 @@ using Foundation;
 using UIKit;
 using System.CodeDom.Compiler;
 
-namespace UIKitEnhancements
-{
-	public partial class MainMenuTableCell : UITableViewCell
-	{
+namespace UIKitEnhancements {
+	public partial class MainMenuTableCell : UITableViewCell {
 		#region Static Properties
 		public static readonly NSString Key = new NSString ("MainMenuTableCell");
 		#endregion
@@ -26,7 +24,8 @@ namespace UIKitEnhancements
 		/// Displays the menu item.
 		/// </summary>
 		/// <param name="item">Item.</param>
-		public void DisplayMenuItem(MenuItem item) {
+		public void DisplayMenuItem (MenuItem item)
+		{
 
 			// Update GUI
 			Title.Text = item.Title;

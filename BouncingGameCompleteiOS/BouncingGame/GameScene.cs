@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using CocosSharp;
 
-namespace BouncingGame
-{
-	public class GameScene : CCScene
-	{
+namespace BouncingGame {
+	public class GameScene : CCScene {
 		CCLayer mainLayer;
 		CCSprite paddleSprite;
 		CCSprite ballSprite;
@@ -19,7 +17,7 @@ namespace BouncingGame
 
 		int score;
 
-		public GameScene(CCWindow mainWindow) : base(mainWindow)
+		public GameScene (CCWindow mainWindow) : base (mainWindow)
 		{
 			mainLayer = new CCLayer ();
 			AddChild (mainLayer);
@@ -55,7 +53,7 @@ namespace BouncingGame
 			paddleSprite.PositionX = locationOnScreen.X;
 		}
 
-		void RunGameLogic(float frameTimeInSeconds)
+		void RunGameLogic (float frameTimeInSeconds)
 		{
 			// This is a linear approximation of gravity, but it's good enough for this game
 			ballYVelocity += frameTimeInSeconds * -gravity;
@@ -63,15 +61,14 @@ namespace BouncingGame
 			ballSprite.PositionX += ballXVelocity * frameTimeInSeconds;
 			ballSprite.PositionY += ballYVelocity * frameTimeInSeconds;
 
-            //////////////////////////New Code Starts here://///////////////////////
+			//////////////////////////New Code Starts here://///////////////////////
 
 			// Check if the two CCSprites overlap...
-			bool doesBallOverlapPaddle = ballSprite.BoundingBoxTransformedToParent.IntersectsRect(
+			bool doesBallOverlapPaddle = ballSprite.BoundingBoxTransformedToParent.IntersectsRect (
 				paddleSprite.BoundingBoxTransformedToParent);
 			// ... and if the ball is moving downward.
 			bool isMovingDownward = ballYVelocity < 0;
-			if (doesBallOverlapPaddle && isMovingDownward)
-			{
+			if (doesBallOverlapPaddle && isMovingDownward) {
 				// First let's invert the velocity:
 				ballYVelocity *= -1;
 				// Then let's assign a random to the ball's x velocity:
@@ -91,12 +88,11 @@ namespace BouncingGame
 			float screenLeft = mainLayer.VisibleBoundsWorldspace.MinX;
 
 
-			bool shouldReflectXVelocity = 
+			bool shouldReflectXVelocity =
 				(ballRight > screenRight && ballXVelocity > 0) ||
 				(ballLeft < screenLeft && ballXVelocity < 0);
 
-			if (shouldReflectXVelocity)
-			{
+			if (shouldReflectXVelocity) {
 				ballXVelocity *= -1;
 			}
 

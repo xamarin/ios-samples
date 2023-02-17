@@ -1,10 +1,8 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 
-namespace KannadaKeyboardCompanion
-{
-	public partial class WebElement : UIViewController
-	{
+namespace KannadaKeyboardCompanion {
+	public partial class WebElement : UIViewController {
 		public string HtmlFile { get; set; }
 
 		public WebElement () : base ("WebElement", null)

@@ -1,19 +1,17 @@
-﻿using System;
+using System;
 
 using UIKit;
 using SpriteKit;
 using CoreGraphics;
 
-namespace SpriteKitPhysicsCollisions
-{
-	public class PlanetNode : SKShapeNode
-	{
+namespace SpriteKitPhysicsCollisions {
+	public class PlanetNode : SKShapeNode {
 		const float defaultSize = 64f;
 
 		public PlanetNode (CGPoint initialPosition, float size = defaultSize)
 		{
 			var path = new CGPath ();
-			path.AddArc (0, 0, size, 0, (float)Math.PI * 2f, true);
+			path.AddArc (0, 0, size, 0, (float) Math.PI * 2f, true);
 			Path = path;
 			StrokeColor = UIColor.Clear;
 			FillColor = UIColor.Green;

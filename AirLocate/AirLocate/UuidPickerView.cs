@@ -2,10 +2,8 @@ using System;
 using Foundation;
 using UIKit;
 
-namespace AirLocate
-{
-	public class UuidPickerView : UIPickerView
-	{
+namespace AirLocate {
+	public class UuidPickerView : UIPickerView {
 
 		public UuidPickerView (UITextField uuidTextField)
 		{
@@ -14,8 +12,7 @@ namespace AirLocate
 			Model = new UuidPickerViewModel (uuidTextField);
 		}
 
-		class UuidPickerViewModel : UIPickerViewModel
-		{
+		class UuidPickerViewModel : UIPickerViewModel {
 
 			UITextField field;
 
@@ -26,7 +23,7 @@ namespace AirLocate
 
 			public override void Selected (UIPickerView picker, nint row, nint component)
 			{
-				field.Text = Defaults.SupportedProximityUuids [(int)row].AsString ();
+				field.Text = Defaults.SupportedProximityUuids [(int) row].AsString ();
 			}
 
 			public override nint GetRowsInComponent (UIPickerView picker, nint component)
@@ -41,7 +38,7 @@ namespace AirLocate
 
 			public override string GetTitle (UIPickerView picker, nint row, nint component)
 			{
-				return Defaults.SupportedProximityUuids [(int)row].AsString ();
+				return Defaults.SupportedProximityUuids [(int) row].AsString ();
 			}
 		}
 	}

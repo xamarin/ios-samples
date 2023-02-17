@@ -1,9 +1,7 @@
-﻿
-namespace VisionObjectTrack.Enums
-{
-    public enum TrackedObjectType
-    {
-        Object,
-        Rectangle,
-    }
+
+namespace VisionObjectTrack.Enums {
+	public enum TrackedObjectType {
+		Object,
+		Rectangle,
+	}
 }

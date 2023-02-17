@@ -1,12 +1,10 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using CloudKit;
 
-namespace CloudKitAtlas
-{
-	public class DiscoverUserInfoWithUserRecordIdSample : CodeSample
-	{
+namespace CloudKitAtlas {
+	public class DiscoverUserInfoWithUserRecordIdSample : CodeSample {
 		public DiscoverUserInfoWithUserRecordIdSample ()
 			: base (title: "DiscoverUserInfo by recordId",
 					className: "CKContainer",
@@ -24,8 +22,8 @@ namespace CloudKitAtlas
 			object recordName, zoneName;
 			if (Data.TryGetValue ("recordName", out recordName) && Data.TryGetValue ("zoneName", out zoneName)) {
 				var container = CKContainer.DefaultContainer;
-				var zoneId = new CKRecordZoneID ((string)zoneName, CKContainer.OwnerDefaultName);
-				var userRecordID = new CKRecordID ((string)recordName, zoneId);
+				var zoneId = new CKRecordZoneID ((string) zoneName, CKContainer.OwnerDefaultName);
+				var userRecordID = new CKRecordID ((string) recordName, zoneId);
 
 				CKDiscoveredUserInfo userInfo = await container.DiscoverUserInfoAsync (userRecordID);
 				return new Results (new IResult [] { new CKDiscoveredUserInfoWrapper (userInfo) });
